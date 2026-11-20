@@ -1,0 +1,219 @@
+[
+  {
+    "caseID": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+    "group": "11",
+    "result": "Passed",
+    "durationSeconds": 164.5888819694519,
+    "rawSource": "artifacts/runtime27/verified-11.tests.json"
+  },
+  {
+    "caseID": "HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart",
+    "group": "11",
+    "result": "Passed",
+    "durationSeconds": 142.7740479707718,
+    "rawSource": "artifacts/runtime27/verified-11.tests.json"
+  },
+  {
+    "caseID": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+    "group": "11",
+    "result": "Failed",
+    "durationSeconds": 69.29350006580353,
+    "rawSource": "artifacts/runtime27/verified-11.tests.json"
+  },
+  {
+    "caseID": "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace",
+    "group": "11",
+    "result": "Failed",
+    "durationSeconds": 52.93774700164795,
+    "rawSource": "artifacts/runtime27/verified-11.tests.json"
+  },
+  {
+    "caseID": "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+    "group": "11",
+    "result": "Failed",
+    "durationSeconds": 82.30646002292633,
+    "rawSource": "artifacts/runtime27/verified-11.tests.json"
+  },
+  {
+    "caseID": "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+    "group": "11",
+    "result": "Failed",
+    "durationSeconds": 52.893243074417114,
+    "rawSource": "artifacts/runtime27/verified-11.tests.json"
+  },
+  {
+    "caseID": "NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad",
+    "group": "11",
+    "result": "Failed",
+    "durationSeconds": 50.00303506851196,
+    "rawSource": "artifacts/runtime27/verified-11.tests.json"
+  },
+  {
+    "caseID": "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+    "group": "11",
+    "result": "Failed",
+    "durationSeconds": 600,
+    "rawSource": "artifacts/runtime27/verified-11.tests.json"
+  },
+  {
+    "caseID": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+    "group": "11",
+    "result": "Failed",
+    "durationSeconds": 115.87043499946594,
+    "rawSource": "artifacts/runtime27/verified-11.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 162.7115799188614,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 62.32276999950409,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 89.20191395282745,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+    "group": "11-search",
+    "result": "Failed",
+    "durationSeconds": 68.59259700775146,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 53.77497398853302,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 59.84773802757263,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 146.37271201610565,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 82.51744401454926,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 83.01189601421356,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 99.46060407161713,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 208.51364707946777,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 58.18798100948334,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 96.99079501628876,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 61.52204608917236,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 254.0307960510254,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 114.83943593502045,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 157.52509605884552,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 142.50286400318146,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 196.65212392807007,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 106.0993139743805,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
+    "group": "11-search",
+    "result": "Passed",
+    "durationSeconds": 64.82741594314575,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  },
+  {
+    "caseID": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "group": "11-search",
+    "result": "Failed",
+    "durationSeconds": 129.3365650177002,
+    "rawSource": "artifacts/runtime27/verified-11-search.tests.json"
+  }
+]

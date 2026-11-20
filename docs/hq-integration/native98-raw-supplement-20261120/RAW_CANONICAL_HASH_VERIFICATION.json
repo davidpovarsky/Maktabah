@@ -1,0 +1,49 @@
+{
+  "rawAndCanonicalDistinct": true,
+  "records": [
+    {
+      "path": "artifacts/runtime27/verified-11.summary.json",
+      "rawBytes": 5531,
+      "rawSHA256": "f08a0540c17395f71332f97646ff365e9e2e7be3ec89c608f6616bc025523f28",
+      "receiptHashRepresentation": "SHA256(json.dumps(value, sort_keys=True).encode())",
+      "canonicalBytes": 5034,
+      "canonicalSHA256": "08b738ac07bad95640536e27f0196cfcd40dff7018b19e8078b63b11484572ad",
+      "receiptExpected": "08b738ac07bad95640536e27f0196cfcd40dff7018b19e8078b63b11484572ad",
+      "match": true,
+      "rawBytesUnmodified": true
+    },
+    {
+      "path": "artifacts/runtime27/verified-11.tests.json",
+      "rawBytes": 12244,
+      "rawSHA256": "4eb64416c408f6faf91c62e5db1db6eef0aa9e23c572ea08e8aae45bb15c8460",
+      "receiptHashRepresentation": "SHA256(json.dumps(value, sort_keys=True).encode())",
+      "canonicalBytes": 8483,
+      "canonicalSHA256": "3e1c5ee5b997efbf08690949d5f5b6123e6908718a69c4996e7ac73a0a96f265",
+      "receiptExpected": "3e1c5ee5b997efbf08690949d5f5b6123e6908718a69c4996e7ac73a0a96f265",
+      "match": true,
+      "rawBytesUnmodified": true
+    },
+    {
+      "path": "artifacts/runtime27/verified-11-search.summary.json",
+      "rawBytes": 2385,
+      "rawSHA256": "8c36846139a915d69f5274f43f15a595a4e3e1dbe8335b4595d88273c9e30ca6",
+      "receiptHashRepresentation": "SHA256(json.dumps(value, sort_keys=True).encode())",
+      "canonicalBytes": 2092,
+      "canonicalSHA256": "c3e97b44469289f2fecab36dbe787bed994925319ddca8fcce63c1d4d9690d93",
+      "receiptExpected": "c3e97b44469289f2fecab36dbe787bed994925319ddca8fcce63c1d4d9690d93",
+      "match": true,
+      "rawBytesUnmodified": true
+    },
+    {
+      "path": "artifacts/runtime27/verified-11-search.tests.json",
+      "rawBytes": 16272,
+      "rawSHA256": "f330a3b64e1fdd885b889188fbbe8dd6fd9016c89dbcf3dd6008b3489394f751",
+      "receiptHashRepresentation": "SHA256(json.dumps(value, sort_keys=True).encode())",
+      "canonicalBytes": 11751,
+      "canonicalSHA256": "dc87490d6877996ca80a4d4f65be2ec6d2c890dda159412e198b6dbac5b59203",
+      "receiptExpected": "dc87490d6877996ca80a4d4f65be2ec6d2c890dda159412e198b6dbac5b59203",
+      "match": true,
+      "rawBytesUnmodified": true
+    }
+  ]
+}

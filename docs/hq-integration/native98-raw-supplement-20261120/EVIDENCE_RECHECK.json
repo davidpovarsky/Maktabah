@@ -1,0 +1,112 @@
+{
+  "verifiedAtUTC": "2026-11-20T14:53:30.841878+00:00",
+  "baseSummaryCommit": "421af5c303b09c13811ff5a687404fa3db1765c6",
+  "run": {
+    "id": 44723902453,
+    "head": "60a57972acb28739ec738565083bf17fb7503028",
+    "appSource": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+    "branch": "codex/otzaria-native98-signature-reviewed-20261120",
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "cancelled",
+    "jobStartedAt": "2026-11-20T11:08:25Z",
+    "jobCompletedAt": "2026-11-20T13:41:08Z",
+    "runtimeStep": {
+      "name": "Inspect real Xcode27 tools or execute reviewed native cases",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "number": 11,
+      "started_at": "2026-11-20T11:09:34Z",
+      "completed_at": "2026-11-20T13:29:03Z"
+    },
+    "watcherObservedEndUTC": "2026-11-20T13:41:21.564231+00:00",
+    "cancellationActor": "UNKNOWN",
+    "cancellationCause": "NOT_ESTABLISHED"
+  },
+  "selection": {
+    "count": 98,
+    "manifestSHA256": "e4f3fd204cdbc40c3aaa1616e84046ff6aaf4238f776cb41912838987af6cd75",
+    "manifestSource": "../native98-observed-summary-20261120/FROZEN_R27_CASES.json"
+  },
+  "build": {
+    "reportedStatus": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+    "reportedActualSourceInputsVerified": 996,
+    "checkout": "60a57972acb28739ec738565083bf17fb7503028",
+    "applicationSource": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+    "applicationTrees": {
+      "Source": "c7732ce8cc0ba7d1a12a1e5c04d9cdb8d8f0fbc9",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "Maktabah.xcodeproj": "1f639a7aad1a355b42b236602cc5dc54324aab33"
+    },
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+    "sdk": "27.2",
+    "scope": "Original build record revalidated; no new compilation"
+  },
+  "verifiedLeaves": {
+    "total": 31,
+    "passed": 22,
+    "failed": 9,
+    "skipped": 0,
+    "devices": "iPad only"
+  },
+  "incomplete": {
+    "rawIndexFailure": 1,
+    "rawStartedWithoutCompletion": 1,
+    "notObservedStarted": 65,
+    "totalWithoutCompleteXCresult": 67
+  },
+  "workflowConclusion": "cancelled",
+  "full98Acceptance": "INCOMPLETE",
+  "HID": "NOT_REACHED",
+  "phoneVerifiedLeaves": 0,
+  "smallArtifact": {
+    "id": 14632383919,
+    "bytes": 35944918,
+    "sha256": "1dec4baa131deaa5cfdb1f2f62b3dea6a84ee7713bccf67a2e62a41f1ff72310",
+    "zipMembers": 102,
+    "allMemberCRCPass": true,
+    "publishedExactZIP": true
+  },
+  "captureArtifact": {
+    "id": 14632274701,
+    "fullArchiveDownloaded": false,
+    "fullArchiveSHAVerified": false,
+    "selectedRangeEvidenceStillOnOfflineWindows": true,
+    "priorAuthenticatedProjectionSummary": "421af5c303b09c13811ff5a687404fa3db1765c6"
+  },
+  "sealingAttempts": [
+    {
+      "attempt": "attempt1",
+      "jobID": "job_11a81e864442",
+      "status": "failed",
+      "exitCode": 1,
+      "error": null,
+      "scope": "EVIDENCE_PACKAGING_ONLY"
+    },
+    {
+      "attempt": "attempt2",
+      "jobID": "job_50418e0d76b8",
+      "status": "failed",
+      "exitCode": 1,
+      "error": null,
+      "scope": "EVIDENCE_PACKAGING_ONLY"
+    },
+    {
+      "attempt": "attempt3",
+      "jobID": "job_4f77deafc2da",
+      "status": "failed",
+      "exitCode": null,
+      "error": "[WinError 206] The filename or extension is too long",
+      "scope": "EVIDENCE_PACKAGING_ONLY"
+    }
+  ],
+  "appTestsRerun": false,
+  "currentSourceAcceptanceTransferred": false,
+  "limitations": [
+    "No final source Native credit",
+    "No attribution of cancellation actor or cause",
+    "Range/capture original bytes are not included in this supplement",
+    "This rechecks exported evidence and does not run the app, engine, build, or tests"
+  ]
+}

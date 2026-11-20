@@ -1,0 +1,44 @@
+{
+  "artifactID": 14632383919,
+  "originalBytes": 35944918,
+  "originalSHA256": "1dec4baa131deaa5cfdb1f2f62b3dea6a84ee7713bccf67a2e62a41f1ff72310",
+  "originalGitBlob": "2115c2bb1e901f95e959fa93e221b703722fb1b8",
+  "parts": [
+    {
+      "path": "raw/archive/runtime27-evidence-14632383919.zip.part01",
+      "offset": 0,
+      "bytes": 8388576,
+      "sha256": "64a2d1ec7ef7263a62de3553d5211dcc705d42d9897c14e8644781448d8c200f",
+      "gitBlob": "8c6f6c3da7ed9140fd88dad0351aa6041a9f17d9"
+    },
+    {
+      "path": "raw/archive/runtime27-evidence-14632383919.zip.part02",
+      "offset": 8388576,
+      "bytes": 8388576,
+      "sha256": "6d566093833157ea93e8e611bad841491aa256b83428578c3aa0b9247dacd65d",
+      "gitBlob": "8b91d5e4777e243eaad21e88b65b2e780671998a"
+    },
+    {
+      "path": "raw/archive/runtime27-evidence-14632383919.zip.part03",
+      "offset": 16777152,
+      "bytes": 8388576,
+      "sha256": "eaf17ffa081617e63bd7aad4516c675235875bd06aaa4a44cff8436c14ca0aea",
+      "gitBlob": "a5449e044bffb37ec845f30f6f32c9ae0edbcac9"
+    },
+    {
+      "path": "raw/archive/runtime27-evidence-14632383919.zip.part04",
+      "offset": 25165728,
+      "bytes": 8388576,
+      "sha256": "ce02450ec88452cd95df8187b7eb7e1fbdbd341f5faad68c31ce998278211b0b",
+      "gitBlob": "36b2dd099903899de5331c4571424b70d756db21"
+    },
+    {
+      "path": "raw/archive/runtime27-evidence-14632383919.zip.part05",
+      "offset": 33554304,
+      "bytes": 2390614,
+      "sha256": "c40dda47bdd3cf31961142a18ddd63a7a2885b49fb6a081abe792e5d4577b595",
+      "gitBlob": "e4d88d85b2e79d188c788c495fed16dc3d187e6d"
+    }
+  ],
+  "reason": "Git connector MCP request body has a 16 MiB limit; original ZIP bytes are preserved exactly in ordered parts"
+}
