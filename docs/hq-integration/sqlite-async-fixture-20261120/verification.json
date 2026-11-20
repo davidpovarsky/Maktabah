@@ -1,0 +1,55 @@
+{
+  "source_base": "bd5142ca5da7c7fe6b658dba2323ac0b463b6672",
+  "source_sha256_lf": {
+    "Tests/HQ/sqlite/SQLiteDatabaseAcceptance.swift": "eb052103d87c89f58765dabe2b6e370f4196d2e53b66b415c80efadbe414514d",
+    "Source/Core/Database/SQLiteDatabase.swift": "8bc64d2bb889d90270b56445e0c9f24a73f5af012fd86f45f44ff18d7b2c0b4b",
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+    "tools/hq-sqlite-acceptance.py": "ba8247a3d1ce9e467a710f94f31b9c611c865ec2d8b5b296c9c217687ccc7e71",
+    "Scripts/CI/typecheck-faithful-ui-tests.py": "60071eb3d5b06ca64d6e2f2cdc0f6dd5c056d5f2bfe88c1a115c0f15b1391856"
+  },
+  "job_id": "job_d04bcd53ee3b",
+  "green": {
+    "executed": 26,
+    "passed": 26,
+    "failed": 0,
+    "compile_exit": 0,
+    "execute_exit": 0,
+    "sqlite_version": "3.53.4"
+  },
+  "old_production_red": {
+    "ref": "b3ae11f7c04b6e0af0b55d192ed4a212f9bafeb0",
+    "executed": 26,
+    "passed": 23,
+    "failed": 3,
+    "compile_exit": 0,
+    "execute_exit": 1,
+    "failed_cases": [
+      {
+        "error": "CheckFailure(message: \"CheckFailure(message: \\\"Cancelled fetch returned rows or the wrong error\\\")\")",
+        "name": "pre_cancelled_fetch_does_not_map_or_leak_lock",
+        "passed": false
+      },
+      {
+        "error": "CheckFailure(message: \"CheckFailure(message: \\\"Cancelled fetch returned rows or the wrong error\\\")\")",
+        "name": "cancelled_fetch_leaves_contended_lock_before_owner_release",
+        "passed": false
+      },
+      {
+        "error": "CheckFailure(message: \"CheckFailure(message: \\\"Cancelled fetch returned rows or the wrong error\\\")\")",
+        "name": "cancellation_wins_as_recursive_lock_becomes_available",
+        "passed": false
+      }
+    ]
+  },
+  "same_fixture_source_in_both_runs": true,
+  "same_case_identities_in_both_runs": true,
+  "no_production_or_driver_or_shared_script_edit": true,
+  "independent_review": {
+    "agent": "github_native_audit",
+    "scope": "read-only source/logic",
+    "result": "no blocker; absolute deadline, exactly-once continuation, cancellation state, holder cleanup and all gates retained"
+  },
+  "candidate_AppleSDK": "NOT_RUN; parent owns combined freeze/rerun",
+  "candidate_NativeUI": "NOT_RUN",
+  "physical_device": "NOT_RUN"
+}
