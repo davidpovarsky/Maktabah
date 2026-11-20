@@ -278,7 +278,7 @@ private struct OtzariaHanlinConnectionView: View {
                 .accessibilityIdentifier("otzaria-hanlin-connect")
             }
             if let scope = session.currentWorkReadOffer, session.currentWorkReadScope == nil {
-                Section(String(localized: "Book access")) {
+                Section {
                     Text(scope.title).font(.headline)
                         .accessibilityIdentifier("otzaria-hanlin-consent-book-title")
                     Text(String(localized: "Library: Otzaria")).foregroundStyle(.secondary)
@@ -289,8 +289,10 @@ private struct OtzariaHanlinConnectionView: View {
                         .font(.footnote)
                     Text(String(localized: "Connecting with book access reopens this saved conversation. Your messages and draft stay saved."))
                         .font(.footnote)
+                } header: {
+                    Text(String(localized: "Book access"))
+                        .accessibilityIdentifier("otzaria-hanlin-current-book-consent")
                 }
-                .accessibilityIdentifier("otzaria-hanlin-current-book-consent")
             } else if session.currentWorkReadScope == nil {
                 Section(String(localized: "Book access")) {
                     Text(String(localized: "Search access is unavailable for the current source."))
