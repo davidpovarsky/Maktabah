@@ -1,0 +1,180 @@
+{
+  "AppleSDK" : "NOT_RUN",
+  "NativeUI" : "NOT_RUN",
+  "cases" : [
+    {
+      "category" : "dependency",
+      "name" : "official_crypto_known_SHA256",
+      "passed" : true,
+      "seconds" : 0.004741668701171875
+    },
+    {
+      "category" : "original_engine",
+      "name" : "whole_bridge_legacy_and_two_positions_one_document",
+      "passed" : true,
+      "seconds" : 0.5180511474609375
+    },
+    {
+      "category" : "original_engine",
+      "name" : "original_hebrew_analyzer_and_prefix_exclusion",
+      "passed" : true,
+      "seconds" : 0.33538055419921875
+    },
+    {
+      "category" : "original_engine",
+      "name" : "original_book_and_facet_dimensions",
+      "passed" : true,
+      "seconds" : 0.6349315643310547
+    },
+    {
+      "category" : "original_engine",
+      "name" : "byte_exact_unicode_scope_identity",
+      "passed" : true,
+      "seconds" : 0.6272296905517578
+    },
+    {
+      "category" : "original_engine",
+      "name" : "actual_deleted_postings_and_snapshot",
+      "passed" : true,
+      "seconds" : 1.086965560913086
+    },
+    {
+      "category" : "original_engine",
+      "name" : "authoritative_zero_matches",
+      "passed" : true,
+      "seconds" : 0.8326320648193359
+    },
+    {
+      "category" : "original_engine",
+      "name" : "empty_and_multiple_tokens_are_unsupported",
+      "passed" : true,
+      "seconds" : 0.2860088348388672
+    },
+    {
+      "category" : "original_engine",
+      "name" : "all_original_work_budgets_return_no_scalar",
+      "passed" : true,
+      "seconds" : 0.2931842803955078
+    },
+    {
+      "category" : "lifetime",
+      "name" : "already_elapsed_deadline_returns_no_scalar",
+      "passed" : true,
+      "seconds" : 0.2801380157470703
+    },
+    {
+      "category" : "source_validation",
+      "name" : "compiled_source_mismatch_cannot_enqueue",
+      "passed" : true,
+      "seconds" : 0.5456161499023438
+    },
+    {
+      "category" : "input_validation",
+      "name" : "oversized_json_envelope_cannot_enqueue",
+      "passed" : true,
+      "seconds" : 0.2400836944580078
+    },
+    {
+      "category" : "lifetime",
+      "name" : "cancel_before_continuation_registration",
+      "passed" : true,
+      "seconds" : 0.0003662109375
+    },
+    {
+      "category" : "lifetime",
+      "name" : "precancelled_task_cannot_enqueue",
+      "passed" : true,
+      "seconds" : 0.3418693542480469
+    },
+    {
+      "category" : "lifetime",
+      "name" : "queued_cancellation_returns_before_queue_release",
+      "passed" : true,
+      "seconds" : 0.2662677764892578
+    },
+    {
+      "category" : "lifetime",
+      "name" : "queued_deadline_returns_before_queue_release",
+      "passed" : true,
+      "seconds" : 0.3893909454345703
+    },
+    {
+      "category" : "lifetime",
+      "name" : "cancellation_isolated_from_other_queued_request",
+      "passed" : true,
+      "seconds" : 0.2935371398925781
+    },
+    {
+      "category" : "lifetime",
+      "name" : "cancelled_queued_capacity_retained_then_recovers",
+      "passed" : true,
+      "seconds" : 0.9405593872070312
+    },
+    {
+      "category" : "lifetime",
+      "name" : "close_cancels_before_queue_sync",
+      "passed" : true,
+      "seconds" : 0.3060035705566406
+    },
+    {
+      "category" : "lifetime",
+      "name" : "concurrent_close_revokes_completed_native_count",
+      "passed" : true,
+      "seconds" : 0.3458995819091797
+    },
+    {
+      "category" : "lifetime",
+      "name" : "own_queue_close_does_not_self_sync",
+      "passed" : true,
+      "seconds" : 0.40015220642089844
+    },
+    {
+      "category" : "lifetime",
+      "name" : "final_engine_retain_released_on_original_queue",
+      "passed" : true,
+      "seconds" : 0.41730499267578125
+    },
+    {
+      "category" : "lifetime",
+      "name" : "deadline_timer_has_no_owner_retain_cycle",
+      "passed" : true,
+      "seconds" : 0.2904319763183594
+    },
+    {
+      "category" : "decoder_adversarial",
+      "name" : "forged_response_proofs_are_rejected",
+      "passed" : true,
+      "seconds" : 0.4547767639160156
+    },
+    {
+      "category" : "decoder_adversarial",
+      "name" : "UInt64_identifiers_do_not_round_through_double",
+      "passed" : true,
+      "seconds" : 0.3467864990234375
+    },
+    {
+      "category" : "decoder_adversarial",
+      "name" : "native_error_messages_are_not_exposed",
+      "passed" : true,
+      "seconds" : 0.0021305084228515625
+    },
+    {
+      "category" : "input_validation",
+      "name" : "typed_request_bounds",
+      "passed" : true,
+      "seconds" : 0.00017547607421875
+    },
+    {
+      "category" : "fixture",
+      "name" : "owned_fixture_cleanup",
+      "passed" : true,
+      "seconds" : 0.25522804260253906
+    }
+  ],
+  "failed" : 0,
+  "originalUserPathDiagnostics" : "NOT_RUN",
+  "passed" : 28,
+  "platform" : "Windows Swift 6.3.3 + real C + original Rust",
+  "sourceCommit" : "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+  "wholeOriginalBridge" : true
+}

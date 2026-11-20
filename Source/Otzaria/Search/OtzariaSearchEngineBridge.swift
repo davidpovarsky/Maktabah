@@ -1,4 +1,8 @@
+#if canImport(CryptoKit)
 import CryptoKit
+#else
+import Crypto
+#endif
 import Foundation
 
 @_silgen_name("otzaria_search_engine_new")
@@ -55,8 +59,16 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
     private var handle: UnsafeMutableRawPointer?
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
+    private let queueIdentity = DispatchSpecificKey<UInt8>()
+    private let occurrenceLock = NSLock()
+    private var occurrenceClosing = false
+    private var occurrenceOperations: [UInt64: OtzariaExactOccurrenceOperation] = [:]
+    #if OTZARIA_OCCURRENCE_TESTING
+    private var occurrenceAfterNativeCount: (@Sendable () -> Void)?
+    #endif
 
     init(indexURL: URL) throws {
+        queue.setSpecific(key: queueIdentity, value: 1)
         try FileManager.default.createDirectory(at: indexURL, withIntermediateDirectories: true)
         var errorPtr: UnsafeMutablePointer<CChar>? = nil
         let handle = indexURL.path.withCString { cPath in
@@ -86,12 +98,121 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
     deinit { close() }
 
     func close() {
-        queue.sync {
-            guard let handle else { return }
+        // Register/enqueue and close are ordered by the same short lock.
+        // Native cancellation must never wait behind the engine queue.
+        let pending = occurrenceLock.withLock {
+            occurrenceClosing = true
+            return Array(occurrenceOperations.values)
+        }
+        pending.forEach { $0.cancel(.engineClosed) }
+        let freeHandle = {
+            guard let handle = self.handle else { return }
             c_engineFree(handle)
             self.handle = nil
         }
+        // A new async worker can own the final Bridge retain. Its cleanup may
+        // therefore run deinit on this queue; self-sync would deadlock.
+        if DispatchQueue.getSpecific(key: queueIdentity) != nil {
+            freeHandle()
+        } else {
+            queue.sync(execute: freeHandle)
+        }
     }
+
+    func countExactTokenOccurrences(
+        request: OtzariaExactOccurrenceRequest,
+        expectedSource: OtzariaExactOccurrenceSource
+    ) async throws -> OtzariaExactOccurrenceResult {
+        guard !Task.isCancelled else { throw OtzariaExactOccurrenceError.cancelled }
+        guard !occurrenceLock.withLock({ occurrenceClosing }) else {
+            throw OtzariaExactOccurrenceError.engineClosed
+        }
+        let (deadlineNanos, overflow) = DispatchTime.now().uptimeNanoseconds
+            .addingReportingOverflow(request.timeoutMs * 1_000_000)
+        guard !overflow else { throw OtzariaExactOccurrenceError.invalidLimits }
+        let deadline = DispatchTime(uptimeNanoseconds: deadlineNanos)
+        let build: OtzariaSearchEngineBuildInfo
+        do { build = try Self.buildInfo() }
+        catch { throw OtzariaExactOccurrenceError.invalidResponse }
+        try expectedSource.validate(buildInfo: build)
+        // C captures its own absolute deadline before any queue/mutex wait.
+        // The Swift deadline starts even earlier and guards await publication.
+        let operation = try OtzariaExactOccurrenceOperation.create(
+            request: request, expectedSource: expectedSource, deadline: deadline
+        )
+        let value = try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { continuation in
+                operation.install(continuation)
+                operation.startDeadlineTimer()
+                let accepted = occurrenceLock.withLock {
+                    guard !occurrenceClosing else { return false }
+                    occurrenceOperations[operation.token] = operation
+                    // Enqueue inside the registration lock, so close cannot
+                    // submit its synchronous free ahead of an accepted worker.
+                    queue.async { [self, operation] in
+                        defer {
+                            _ = occurrenceLock.withLock {
+                                occurrenceOperations.removeValue(forKey: operation.token)
+                            }
+                            operation.releaseAfterWorker()
+                        }
+                        guard !operation.isComplete else { return }
+                        guard let handle else {
+                            operation.cancel(.engineClosed)
+                            return
+                        }
+                        do {
+                            let result = try operation.execute(handle: handle)
+                            #if OTZARIA_OCCURRENCE_TESTING
+                            let hook = occurrenceLock.withLock { occurrenceAfterNativeCount }
+                            hook?()
+                            #endif
+                            operation.complete(.success(result))
+                        } catch let failure as OtzariaExactOccurrenceError {
+                            operation.complete(.failure(failure))
+                        } catch {
+                            operation.complete(.failure(.invalidResponse))
+                        }
+                    }
+                    return true
+                }
+                if !accepted {
+                    operation.cancel(.engineClosed)
+                    operation.releaseAfterWorker()
+                }
+            }
+        } onCancel: {
+            operation.cancel(.cancelled)
+        }
+        guard !Task.isCancelled else { throw OtzariaExactOccurrenceError.cancelled }
+        guard DispatchTime.now().uptimeNanoseconds < deadline.uptimeNanoseconds else {
+            throw OtzariaExactOccurrenceError.deadlineExceeded
+        }
+        guard !occurrenceLock.withLock({ occurrenceClosing }) else {
+            throw OtzariaExactOccurrenceError.engineClosed
+        }
+        return value
+    }
+
+    #if OTZARIA_OCCURRENCE_TESTING
+    // Scheduling/observation only. No raw handle, result, query or provider is
+    // exposed or substituted by these whole-file runtime acceptance hooks.
+    func occurrenceTestEnqueue(_ work: @escaping @Sendable () -> Void) {
+        queue.async(execute: work)
+    }
+
+    func occurrenceTestAfterCount(_ hook: (@Sendable () -> Void)?) {
+        occurrenceLock.withLock { occurrenceAfterNativeCount = hook }
+    }
+
+    var occurrenceTestPendingCount: Int {
+        occurrenceLock.withLock { occurrenceOperations.count }
+    }
+
+    var occurrenceTestIsClosing: Bool {
+        occurrenceLock.withLock { occurrenceClosing }
+    }
+    #endif
 
     func search(_ request: OtzariaSearchRequest) throws -> OtzariaSearchPage {
         try callJSON(operation: "search", payload: request, c_search)

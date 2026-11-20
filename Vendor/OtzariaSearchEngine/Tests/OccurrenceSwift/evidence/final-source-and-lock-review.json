@@ -1,0 +1,24 @@
+{
+  "recordedUTC": "2026-11-20T03:06:22.564580+00:00",
+  "productionFilesUnchangedAfter28CaseRun": [
+    "Source/Otzaria/Search/OtzariaSearchEngineBridge.swift",
+    "Source/Otzaria/Search/OtzariaExactOccurrenceModels.swift",
+    "Source/Otzaria/Search/OtzariaExactOccurrenceOperation.swift"
+  ],
+  "legacyMethodsAndHelpersUnchangedFrom": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+  "finalDriverOnlyChange": "Seed and require exact committed official dependency lock; refuse mismatch; no production/test changes",
+  "finalDriverSyntax": "PASS",
+  "finalDriverFullRuntimeRerun": "NOT_RUN",
+  "sameResolvedPins": true,
+  "driverSHA256": "a8e79a1a61ef980caffcaa6e4fc3b8bb5123358768bc76b223dc3226cc6cce8a",
+  "packageResolvedSHA256": "be51cadd647858233f78691590bcddcfc555acecb041eb836f462f3a9fef38df",
+  "peerReview": {
+    "scope": "Three production Swift files only",
+    "reviewer": "/root/hanlin_api_integration",
+    "result": "No concrete blocker found",
+    "runtimeTestsPerformedByReviewer": false
+  },
+  "AppleSDK": "NOT_RUN",
+  "NativeUI": "NOT_RUN",
+  "appCapability": "NOT_CONNECTED"
+}

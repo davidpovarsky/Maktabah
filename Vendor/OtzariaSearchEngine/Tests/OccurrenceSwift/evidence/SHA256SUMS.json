@@ -1,0 +1,187 @@
+[
+  {
+    "path": "crypto-dependency-build.json",
+    "bytes": 1220,
+    "sha256Raw": "83009136aeb96d8bef59ac7ef976f5105b1e109a67ac4fc06780ebf3c610a935",
+    "sha256LF": "85807dc0ff7b30d6ad982673aa7675a7b9915e4c233984d8f1e9720416c5fd59"
+  },
+  {
+    "path": "crypto-dependency-build.log.gz",
+    "bytes": 3970,
+    "sha256Raw": "53f4b69e71bafca1a2458cea5f308256ac99ca99ed0e48953dd8ff804bd2b5cb"
+  },
+  {
+    "path": "cryptokit-import.log.gz",
+    "bytes": 150,
+    "sha256Raw": "70eabd88f14047dca317c97db1183e9b1a6a66015df93289971e04b78076deac"
+  },
+  {
+    "path": "driver-used-for-attempts-1-2.py.gz",
+    "bytes": 2769,
+    "sha256Raw": "00b88f588349214f1ea53c080a924482577e5e32bbed3147923ff7aabc2c3736"
+  },
+  {
+    "path": "dto-operation-typecheck-attempt1.json",
+    "bytes": 530,
+    "sha256Raw": "f121135b15722b3baa657efb64fb8e70bb091130521d858ff7d67896fb7d2b9c",
+    "sha256LF": "e1f908cf74af03d179131def0392d0df746c395544727d172f9de406be14e424"
+  },
+  {
+    "path": "dto-operation-typecheck-attempt1.log.gz",
+    "bytes": 20,
+    "sha256Raw": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+  },
+  {
+    "path": "final-source-and-lock-review.json",
+    "bytes": 1096,
+    "sha256Raw": "d3a1b50c0ee1d1fdcde82238cd787bce99556dd8582092b538212bbabe734b5b",
+    "sha256LF": "d3a1b50c0ee1d1fdcde82238cd787bce99556dd8582092b538212bbabe734b5b"
+  },
+  {
+    "path": "official-dependency-provenance.json",
+    "bytes": 1692,
+    "sha256Raw": "8c1acaefa8de96bf1d8016763b38f947ebcb53e1930ab3fe34d5ef8aeb1c93f2",
+    "sha256LF": "2bc5ca964c803eef343399fea2d81985b236194a451db82d0d8a8a22ec119820"
+  },
+  {
+    "path": "whole-bridge-attempt1/compile.log.gz",
+    "bytes": 385,
+    "sha256Raw": "ab9f0619b4d5b13cb565cfa2d6946d4c4dbab3df62be8e88cbfe9cf1ea0a4bb8"
+  },
+  {
+    "path": "whole-bridge-attempt1/Package.resolved",
+    "bytes": 626,
+    "sha256Raw": "be51cadd647858233f78691590bcddcfc555acecb041eb836f462f3a9fef38df",
+    "sha256LF": "be51cadd647858233f78691590bcddcfc555acecb041eb836f462f3a9fef38df"
+  },
+  {
+    "path": "whole-bridge-attempt1/runtime-result.json",
+    "bytes": 3140,
+    "sha256Raw": "4c7018408432669e1a1a194f69ec3bddf853443ddb3ac02512271225c966e2b1",
+    "sha256LF": "4c7018408432669e1a1a194f69ec3bddf853443ddb3ac02512271225c966e2b1"
+  },
+  {
+    "path": "whole-bridge-attempt1/runtime.log.gz",
+    "bytes": 1196,
+    "sha256Raw": "5e6599e7c57e292e4c680d2e62aaca89fbb3ab14534aeaf21ec35f08e7c0858e"
+  },
+  {
+    "path": "whole-bridge-attempt1/source-snapshot/OccurrenceSwiftAcceptance.swift.gz",
+    "bytes": 1972,
+    "sha256Raw": "33ae9fe137b7347cad7ff0878ec60c13261795fc151ed3ab833f515e449b0e2a"
+  },
+  {
+    "path": "whole-bridge-attempt1/source-snapshot/OccurrenceSwiftFixtures.swift.gz",
+    "bytes": 2463,
+    "sha256Raw": "a6e70508bf35398e7138a7c2bceb96d513607af3f7d312b5e34e2b5bb610b5a6"
+  },
+  {
+    "path": "whole-bridge-attempt1/source-snapshot/OccurrenceSwiftNativeCases.swift.gz",
+    "bytes": 3165,
+    "sha256Raw": "2f232fce69fbb3299c304bf47cc8448d3746fd7fe8c5b711b0fad96aecb8771a"
+  },
+  {
+    "path": "whole-bridge-attempt1/source-snapshot/OtzariaExactOccurrenceModels.swift.gz",
+    "bytes": 3035,
+    "sha256Raw": "d53144063160f6a813084b8d865caaa58afbd8ffc59d2433059db8e735308aa7"
+  },
+  {
+    "path": "whole-bridge-attempt1/source-snapshot/OtzariaExactOccurrenceOperation.swift.gz",
+    "bytes": 2189,
+    "sha256Raw": "c9e92a5ca2aba72c2232d5a6436c56dce5a0d86db36241811a601ce745431a16"
+  },
+  {
+    "path": "whole-bridge-attempt1/source-snapshot/OtzariaSearchEngineBridge.swift.gz",
+    "bytes": 4775,
+    "sha256Raw": "cc9137e1462d75950abe5e77158628ecb1243761f3e952efc0ba6ea38f84d3bb"
+  },
+  {
+    "path": "whole-bridge-attempt1/source-snapshot/OtzariaSearchMode.swift.gz",
+    "bytes": 319,
+    "sha256Raw": "fc560aa6aad48d6261d14ab45fb784c8d59dd89c5f9bb7cdab39396a8d73d9f2"
+  },
+  {
+    "path": "whole-bridge-attempt1/source-snapshot/OtzariaSearchModels.swift.gz",
+    "bytes": 4385,
+    "sha256Raw": "1aa79082c28a7bca410287a13ba2db2ff8e8e9e62a27b1469a3bb11c4cb60313"
+  },
+  {
+    "path": "whole-bridge-attempt1/verification.json",
+    "bytes": 7574,
+    "sha256Raw": "80222e1ea0e7c79071d26bcd908de167987c40cf7479996dc6d58908d6a2797b",
+    "sha256LF": "f71b6dfaf3308c639b9074e32c56c86f0d8c993aadfab7bc0f16093c3ff9f95c"
+  },
+  {
+    "path": "whole-bridge-attempt2/compile.log.gz",
+    "bytes": 707,
+    "sha256Raw": "89d94b66cd1858c59930f2266a3381e7ad6b5b52242fb0fa395abc7021544afa"
+  },
+  {
+    "path": "whole-bridge-attempt2/Package.resolved",
+    "bytes": 626,
+    "sha256Raw": "be51cadd647858233f78691590bcddcfc555acecb041eb836f462f3a9fef38df",
+    "sha256LF": "be51cadd647858233f78691590bcddcfc555acecb041eb836f462f3a9fef38df"
+  },
+  {
+    "path": "whole-bridge-attempt2/runtime-result.json",
+    "bytes": 4942,
+    "sha256Raw": "fc8423996cd896ffde383a5f808adf4c734f76f0fda47cfc126a2dda6be1fe95",
+    "sha256LF": "fc8423996cd896ffde383a5f808adf4c734f76f0fda47cfc126a2dda6be1fe95"
+  },
+  {
+    "path": "whole-bridge-attempt2/runtime.log.gz",
+    "bytes": 1684,
+    "sha256Raw": "ce7c6606583e724a061a6f1cd03919c6b60923721a8f109123d495635f285a3b"
+  },
+  {
+    "path": "whole-bridge-attempt2/source-snapshot/OccurrenceSwiftAcceptance.swift.gz",
+    "bytes": 2286,
+    "sha256Raw": "ef965e94cb016d71998016bdeb3c55d88850bfa0bb1b42540266b46bd444be83"
+  },
+  {
+    "path": "whole-bridge-attempt2/source-snapshot/OccurrenceSwiftFixtures.swift.gz",
+    "bytes": 2463,
+    "sha256Raw": "a6e70508bf35398e7138a7c2bceb96d513607af3f7d312b5e34e2b5bb610b5a6"
+  },
+  {
+    "path": "whole-bridge-attempt2/source-snapshot/OccurrenceSwiftLifetimeCases.swift.gz",
+    "bytes": 2796,
+    "sha256Raw": "8ec6c2e96424440bebb19546a7406505e8c1e1a949d1c854c6f3a21897d8cdc2"
+  },
+  {
+    "path": "whole-bridge-attempt2/source-snapshot/OccurrenceSwiftNativeCases.swift.gz",
+    "bytes": 3165,
+    "sha256Raw": "2f232fce69fbb3299c304bf47cc8448d3746fd7fe8c5b711b0fad96aecb8771a"
+  },
+  {
+    "path": "whole-bridge-attempt2/source-snapshot/OtzariaExactOccurrenceModels.swift.gz",
+    "bytes": 3035,
+    "sha256Raw": "d53144063160f6a813084b8d865caaa58afbd8ffc59d2433059db8e735308aa7"
+  },
+  {
+    "path": "whole-bridge-attempt2/source-snapshot/OtzariaExactOccurrenceOperation.swift.gz",
+    "bytes": 2189,
+    "sha256Raw": "c9e92a5ca2aba72c2232d5a6436c56dce5a0d86db36241811a601ce745431a16"
+  },
+  {
+    "path": "whole-bridge-attempt2/source-snapshot/OtzariaSearchEngineBridge.swift.gz",
+    "bytes": 4775,
+    "sha256Raw": "cc9137e1462d75950abe5e77158628ecb1243761f3e952efc0ba6ea38f84d3bb"
+  },
+  {
+    "path": "whole-bridge-attempt2/source-snapshot/OtzariaSearchMode.swift.gz",
+    "bytes": 319,
+    "sha256Raw": "fc560aa6aad48d6261d14ab45fb784c8d59dd89c5f9bb7cdab39396a8d73d9f2"
+  },
+  {
+    "path": "whole-bridge-attempt2/source-snapshot/OtzariaSearchModels.swift.gz",
+    "bytes": 4385,
+    "sha256Raw": "1aa79082c28a7bca410287a13ba2db2ff8e8e9e62a27b1469a3bb11c4cb60313"
+  },
+  {
+    "path": "whole-bridge-attempt2/verification.json",
+    "bytes": 9806,
+    "sha256Raw": "4a0733547966f46ef9a570ad98a8a089f06b26be4ca6abeeda4608524798c676",
+    "sha256LF": "bd0a4228b6e32d8dbcc17c25cfd4a13ed5f15cb8c4709b5fd799408c8a713770"
+  }
+]

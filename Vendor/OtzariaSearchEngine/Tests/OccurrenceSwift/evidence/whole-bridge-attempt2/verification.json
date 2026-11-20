@@ -1,0 +1,269 @@
+{
+  "startedUTC": "2026-11-20T02:56:18.016329+00:00",
+  "status": "PASS",
+  "AppleSDK": "NOT_RUN",
+  "NativeUI": "NOT_RUN",
+  "appCapability": "NOT_CONNECTED",
+  "unsafeOriginalDiagnostics": "NOT_RUN",
+  "sourceInventory": {
+    "Source/Otzaria/Search/OtzariaSearchMode.swift": {
+      "sha256Raw": "64f0ebdef73e4e9ee4e84000c4aab5116af6b178abb4f27a8f39fb78fbcc1a3f",
+      "sha256LF": "4d6b3340b0ae26b5a7367038eaab6675a40bac58b989cbe6b1e145e956ac8876"
+    },
+    "Source/Otzaria/Search/OtzariaSearchModels.swift": {
+      "sha256Raw": "362664d005182470dac3b96d9d4c631509dd3a280aca223bb4c1a9b511738ecc",
+      "sha256LF": "e75225c23668dc0470b8d350cf50c9231a999e606a25db283f4e002055b151c9"
+    },
+    "Source/Otzaria/Search/OtzariaSearchEngineBridge.swift": {
+      "sha256Raw": "67201861d1cd9e6a287e8f2d252edc48f852b032d728cdfb7f7f9ff506798ceb",
+      "sha256LF": "67201861d1cd9e6a287e8f2d252edc48f852b032d728cdfb7f7f9ff506798ceb"
+    },
+    "Source/Otzaria/Search/OtzariaExactOccurrenceModels.swift": {
+      "sha256Raw": "d5b2c7cc4de30f0dd579a0193682bcce64a00604454de85176d21aa983f1c89e",
+      "sha256LF": "8ec1e4a4f834b84e12001e600109fd660e4a38bdcb4a48c3a584da14c2a3fc78"
+    },
+    "Source/Otzaria/Search/OtzariaExactOccurrenceOperation.swift": {
+      "sha256Raw": "482b266edf323ac49c8d9068ec6474f62e6c0e9fc0d859b1654a54eb9fc53598",
+      "sha256LF": "6b3ada4ad48a7f0b93d274e673bb94c95e0ea51cf9f4321edec297851cd6001c"
+    },
+    "Vendor/OtzariaSearchEngine/Tests/OccurrenceSwift/OccurrenceSwiftAcceptance.swift": {
+      "sha256Raw": "da28ba8c936f4718e4ea3fa2d70320875a720023c81a9ddc07f6ed48e2bd3b48",
+      "sha256LF": "86586eefdf5afc405d315f22724c937bbdb0dfb94a1150f578de8bd28560b4cf"
+    },
+    "Vendor/OtzariaSearchEngine/Tests/OccurrenceSwift/OccurrenceSwiftFixtures.swift": {
+      "sha256Raw": "d943f3072120663d4df7d1a45fa56755d2b17fcb845de6645634f70c7d64819c",
+      "sha256LF": "30d1ce34f5b3ff09564a8da9cf189f21feba46fafc1a05121144eda17625bc7b"
+    },
+    "Vendor/OtzariaSearchEngine/Tests/OccurrenceSwift/OccurrenceSwiftLifetimeCases.swift": {
+      "sha256Raw": "b864398f27b361ef6f5572161e9d9ae864cd0aa2184b15ac253455bf2854e2d0",
+      "sha256LF": "098f673fada7f530d102d055c38cedde34ffcc2c199e2acb151ccf330bc2428c"
+    },
+    "Vendor/OtzariaSearchEngine/Tests/OccurrenceSwift/OccurrenceSwiftNativeCases.swift": {
+      "sha256Raw": "2ad06cbc2a084072db8cd67c2f03500f38303a29c76326cffdaf3cbe38f6586e",
+      "sha256LF": "108247335ccab73bdd052b75dc2e00b6c3a69fbfe3bee2904db1213a60c3e325"
+    }
+  },
+  "wholeProductionFilesByteIdentical": true,
+  "engineCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+  "staticLibrarySHA256": "7f23e3e87aa604b410f9cd21f1b56aab2d30596c697d46c8fb19ad160e34c7a0",
+  "officialDependencyPins": [
+    {
+      "identity": "swift-asn1",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/apple/swift-asn1.git",
+      "state": {
+        "revision": "917b472dbe53ba699cbb0495f9a95a084bc6364d",
+        "version": "1.7.4"
+      }
+    },
+    {
+      "identity": "swift-crypto",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/apple/swift-crypto.git",
+      "state": {
+        "revision": "1b6b2e274e85105bfa155183145a1dcfd63331f1"
+      }
+    }
+  ],
+  "compileCommand": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+    "build",
+    "--package-path",
+    "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package",
+    "--disable-automatic-resolution",
+    "--product",
+    "OtzariaOccurrenceSwiftAcceptance",
+    "--jobs",
+    "2"
+  ],
+  "compileExit": 0,
+  "executableSHA256": "1722ac11650c83dc899def285cf69ba7c38362a11d334e19c21ac0140e900e06",
+  "runtimeCommand": [
+    "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package\\.build\\x86_64-unknown-windows-msvc\\debug\\OtzariaOccurrenceSwiftAcceptance.exe",
+    "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\Vendor\\OtzariaSearchEngine\\Upstream\\UPSTREAM_MANIFEST.json",
+    "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\whole-bridge-attempt2\\runtime-result.json"
+  ],
+  "runtimeExit": 0,
+  "runtime": {
+    "AppleSDK": "NOT_RUN",
+    "NativeUI": "NOT_RUN",
+    "cases": [
+      {
+        "category": "dependency",
+        "name": "official_crypto_known_SHA256",
+        "passed": true,
+        "seconds": 0.004741668701171875
+      },
+      {
+        "category": "original_engine",
+        "name": "whole_bridge_legacy_and_two_positions_one_document",
+        "passed": true,
+        "seconds": 0.5180511474609375
+      },
+      {
+        "category": "original_engine",
+        "name": "original_hebrew_analyzer_and_prefix_exclusion",
+        "passed": true,
+        "seconds": 0.33538055419921875
+      },
+      {
+        "category": "original_engine",
+        "name": "original_book_and_facet_dimensions",
+        "passed": true,
+        "seconds": 0.6349315643310547
+      },
+      {
+        "category": "original_engine",
+        "name": "byte_exact_unicode_scope_identity",
+        "passed": true,
+        "seconds": 0.6272296905517578
+      },
+      {
+        "category": "original_engine",
+        "name": "actual_deleted_postings_and_snapshot",
+        "passed": true,
+        "seconds": 1.086965560913086
+      },
+      {
+        "category": "original_engine",
+        "name": "authoritative_zero_matches",
+        "passed": true,
+        "seconds": 0.8326320648193359
+      },
+      {
+        "category": "original_engine",
+        "name": "empty_and_multiple_tokens_are_unsupported",
+        "passed": true,
+        "seconds": 0.2860088348388672
+      },
+      {
+        "category": "original_engine",
+        "name": "all_original_work_budgets_return_no_scalar",
+        "passed": true,
+        "seconds": 0.2931842803955078
+      },
+      {
+        "category": "lifetime",
+        "name": "already_elapsed_deadline_returns_no_scalar",
+        "passed": true,
+        "seconds": 0.2801380157470703
+      },
+      {
+        "category": "source_validation",
+        "name": "compiled_source_mismatch_cannot_enqueue",
+        "passed": true,
+        "seconds": 0.5456161499023438
+      },
+      {
+        "category": "input_validation",
+        "name": "oversized_json_envelope_cannot_enqueue",
+        "passed": true,
+        "seconds": 0.2400836944580078
+      },
+      {
+        "category": "lifetime",
+        "name": "cancel_before_continuation_registration",
+        "passed": true,
+        "seconds": 0.0003662109375
+      },
+      {
+        "category": "lifetime",
+        "name": "precancelled_task_cannot_enqueue",
+        "passed": true,
+        "seconds": 0.3418693542480469
+      },
+      {
+        "category": "lifetime",
+        "name": "queued_cancellation_returns_before_queue_release",
+        "passed": true,
+        "seconds": 0.2662677764892578
+      },
+      {
+        "category": "lifetime",
+        "name": "queued_deadline_returns_before_queue_release",
+        "passed": true,
+        "seconds": 0.3893909454345703
+      },
+      {
+        "category": "lifetime",
+        "name": "cancellation_isolated_from_other_queued_request",
+        "passed": true,
+        "seconds": 0.2935371398925781
+      },
+      {
+        "category": "lifetime",
+        "name": "cancelled_queued_capacity_retained_then_recovers",
+        "passed": true,
+        "seconds": 0.9405593872070312
+      },
+      {
+        "category": "lifetime",
+        "name": "close_cancels_before_queue_sync",
+        "passed": true,
+        "seconds": 0.3060035705566406
+      },
+      {
+        "category": "lifetime",
+        "name": "concurrent_close_revokes_completed_native_count",
+        "passed": true,
+        "seconds": 0.3458995819091797
+      },
+      {
+        "category": "lifetime",
+        "name": "own_queue_close_does_not_self_sync",
+        "passed": true,
+        "seconds": 0.40015220642089844
+      },
+      {
+        "category": "lifetime",
+        "name": "final_engine_retain_released_on_original_queue",
+        "passed": true,
+        "seconds": 0.41730499267578125
+      },
+      {
+        "category": "lifetime",
+        "name": "deadline_timer_has_no_owner_retain_cycle",
+        "passed": true,
+        "seconds": 0.2904319763183594
+      },
+      {
+        "category": "decoder_adversarial",
+        "name": "forged_response_proofs_are_rejected",
+        "passed": true,
+        "seconds": 0.4547767639160156
+      },
+      {
+        "category": "decoder_adversarial",
+        "name": "UInt64_identifiers_do_not_round_through_double",
+        "passed": true,
+        "seconds": 0.3467864990234375
+      },
+      {
+        "category": "decoder_adversarial",
+        "name": "native_error_messages_are_not_exposed",
+        "passed": true,
+        "seconds": 0.0021305084228515625
+      },
+      {
+        "category": "input_validation",
+        "name": "typed_request_bounds",
+        "passed": true,
+        "seconds": 0.00017547607421875
+      },
+      {
+        "category": "fixture",
+        "name": "owned_fixture_cleanup",
+        "passed": true,
+        "seconds": 0.25522804260253906
+      }
+    ],
+    "failed": 0,
+    "originalUserPathDiagnostics": "NOT_RUN",
+    "passed": 28,
+    "platform": "Windows Swift 6.3.3 + real C + original Rust",
+    "sourceCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+    "wholeOriginalBridge": true
+  },
+  "engineCheckoutPristineAfter": true,
+  "seconds": 328.812
+}

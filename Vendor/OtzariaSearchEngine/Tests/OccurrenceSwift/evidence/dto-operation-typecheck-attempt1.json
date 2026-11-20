@@ -1,0 +1,16 @@
+{
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+    "-typecheck",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "Source/Otzaria/Search/OtzariaSearchMode.swift",
+    "Source/Otzaria/Search/OtzariaSearchModels.swift",
+    "Source/Otzaria/Search/OtzariaExactOccurrenceModels.swift",
+    "Source/Otzaria/Search/OtzariaExactOccurrenceOperation.swift"
+  ],
+  "exit": 0,
+  "kind": "TYPECHECK_ONLY",
+  "runtimeCases": 0
+}
