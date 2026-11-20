@@ -1,0 +1,166 @@
+{
+  "observed_at": "2026-11-20T02:35:28.181247+00:00",
+  "status": "VERIFIED_ORIGINAL_INPUT_NOT_RUNTIME_QUALIFICATION",
+  "release": "https://github.com/davidpovarsky/Maktabah/releases/tag/otzaria-miniTest10-v6",
+  "release_id": 410332048,
+  "immutable_release": true,
+  "manifest_sha256": "ae3bd170dc4650806a9fdda1beefe682eeefb5abde886363d6feac999603f8d4",
+  "producer": {
+    "adapterVersion": "0.1.0",
+    "commit": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+    "defaultGenerationOrder": 5,
+    "engineVersion": "0.1.0",
+    "indexSchemaVersion": 4,
+    "repository": "Otzaria/otzaria_search_engine",
+    "semanticSidecarRevision": "e836ea6cac05e695efdb03ef227e78cd1a624149",
+    "tantivyVersion": "0.26.1"
+  },
+  "artifact_identity": "08a5ddf76ae187e3ca29c1b483637f1dc8e2a2dcb7001cdb7fe3327236234e83",
+  "archives": [
+    {
+      "asset_id": 633067728,
+      "file": "otzaria-search-manifest.json",
+      "bytes": 4467,
+      "sha256": "ae3bd170dc4650806a9fdda1beefe682eeefb5abde886363d6feac999603f8d4",
+      "reused_verified_file": true
+    },
+    {
+      "asset_id": 633067693,
+      "file": "otzaria-lexical-0000.zst",
+      "bytes": 191435,
+      "sha256": "15400622af8425ee8d7250f2fc434a21354f7e06a8a10caf87c097fab96f3514",
+      "reused_verified_file": true
+    },
+    {
+      "asset_id": 633067691,
+      "file": "otzaria-lexical-0001.zst",
+      "bytes": 14652,
+      "sha256": "bd9f4b8400059e8f51eb9ce590a441f7d03b8c807f3d6c0c3d2a03aabb36e252",
+      "reused_verified_file": true
+    },
+    {
+      "asset_id": 633067692,
+      "file": "otzaria-lexical-0002.zst",
+      "bytes": 1481272,
+      "sha256": "edb9d55d8533fd108542383f70fd322722e6d8bfea6ca24174e5f2a4daca36b3",
+      "reused_verified_file": true
+    },
+    {
+      "asset_id": 633067706,
+      "file": "otzaria-lexical-0003.zst",
+      "bytes": 1208925,
+      "sha256": "f6b6a5b68ed37f1dd618709b97d49e09d56ebb5802c7e5cd4cb35b941e9b7ecd",
+      "reused_verified_file": true
+    },
+    {
+      "asset_id": 633067709,
+      "file": "otzaria-lexical-0004.zst",
+      "bytes": 6174161,
+      "sha256": "e292a12a427ce4bd824ad6971800f9286824ce2b98d03d4138a79798433e74cf",
+      "reused_verified_file": true
+    },
+    {
+      "asset_id": 633067713,
+      "file": "otzaria-lexical-0005.zst",
+      "bytes": 1245261,
+      "sha256": "2d83bf5b22639af6d8029b8dd23899f6f9714542193bcb5f274d26a673a48478",
+      "reused_verified_file": true
+    },
+    {
+      "asset_id": 633067712,
+      "file": "otzaria-lexical-0006.zst",
+      "bytes": 482,
+      "sha256": "37e998ac7770a35164004cc81ba021551f0c0dca767954826593e672b86ac598",
+      "reused_verified_file": true
+    }
+  ],
+  "extraction": [
+    {
+      "asset": "otzaria-lexical-0000.zst",
+      "destination": "d5505a92bd97467a88867ecc6a74de8c.fast",
+      "offset": 0,
+      "extracted_bytes": 525291
+    },
+    {
+      "asset": "otzaria-lexical-0001.zst",
+      "destination": "d5505a92bd97467a88867ecc6a74de8c.fieldnorm",
+      "offset": 0,
+      "extracted_bytes": 75645
+    },
+    {
+      "asset": "otzaria-lexical-0002.zst",
+      "destination": "d5505a92bd97467a88867ecc6a74de8c.idx",
+      "offset": 0,
+      "extracted_bytes": 2333814
+    },
+    {
+      "asset": "otzaria-lexical-0003.zst",
+      "destination": "d5505a92bd97467a88867ecc6a74de8c.pos",
+      "offset": 0,
+      "extracted_bytes": 1531832
+    },
+    {
+      "asset": "otzaria-lexical-0004.zst",
+      "destination": "d5505a92bd97467a88867ecc6a74de8c.store",
+      "offset": 0,
+      "extracted_bytes": 8258234
+    },
+    {
+      "asset": "otzaria-lexical-0005.zst",
+      "destination": "d5505a92bd97467a88867ecc6a74de8c.term",
+      "offset": 0,
+      "extracted_bytes": 1937923
+    },
+    {
+      "asset": "otzaria-lexical-0006.zst",
+      "destination": "meta.json",
+      "offset": 0,
+      "extracted_bytes": 3062
+    }
+  ],
+  "published_files": {
+    "d5505a92bd97467a88867ecc6a74de8c.fast": {
+      "bytes": 525291,
+      "sha256": "429cdf186c96da66106a3030efdd80992aa757ad3a64927757eac2a2313644d7"
+    },
+    "d5505a92bd97467a88867ecc6a74de8c.fieldnorm": {
+      "bytes": 75645,
+      "sha256": "97a8dddcc0c7bd2ced2bdc2f4da4d0c385996cacac8472873735049a1a797188"
+    },
+    "d5505a92bd97467a88867ecc6a74de8c.idx": {
+      "bytes": 2333814,
+      "sha256": "e52486a050e44993a2f29cd3550e77ec0bb2932277fbf0abc06baa5ad416bac3"
+    },
+    "d5505a92bd97467a88867ecc6a74de8c.pos": {
+      "bytes": 1531832,
+      "sha256": "33ce86ccbbad16ecaa289484579f38201e3092005533b6e33be064ba6e411659"
+    },
+    "d5505a92bd97467a88867ecc6a74de8c.store": {
+      "bytes": 8258234,
+      "sha256": "20d76fa5fe0c486f55996eefc11607b3df30f34aa0fddf9e00de652fb67f2480"
+    },
+    "d5505a92bd97467a88867ecc6a74de8c.term": {
+      "bytes": 1937923,
+      "sha256": "61054d07ab3d484eadcad2e984602507ece9fcff0f8fc10cc62253b5ab056960"
+    },
+    "meta.json": {
+      "bytes": 3062,
+      "sha256": "871d3ee5c095e6ed7cee6cfd2e66358a2b8e9863718b97ee08d662846beaef3d"
+    }
+  },
+  "original_segments": [
+    {
+      "segment_id": "d5505a92-bd97-467a-8886-7ecc6a74de8c",
+      "max_doc": 18879,
+      "deletes": null
+    }
+  ],
+  "metadata_document_count_before_any_engine_open": 18879,
+  "pristine": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\artifacts\\miniTest10-v6\\pristine",
+  "zstd": "C:\\Users\\DAVID\\AppData\\Local\\Microsoft\\WinGet\\Packages\\oschwartz10612.Poppler_Microsoft.Winget.Source_8wekyb3d8bbwe\\poppler-25.07.0\\Library\\bin\\zstd.EXE",
+  "engine_opened": false,
+  "index_rebuilt": false,
+  "driver_sha256": "681d3b485882bbecd11032722b0f7ea31d1d18ad1ae128594d18f6dc28425f80",
+  "database_downloaded": false,
+  "seconds": 1.282
+}

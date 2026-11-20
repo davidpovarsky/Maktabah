@@ -1,0 +1,403 @@
+{
+  "rowsScanned": 18879,
+  "bookIds": [
+    1,
+    28,
+    40,
+    103,
+    382,
+    3152,
+    3163,
+    3276,
+    3764,
+    3891
+  ],
+  "queries": {
+    "תורה": {
+      "occurrences": 693,
+      "matchingLiveDocuments": 510,
+      "books": {
+        "1": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "28": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "40": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "103": {
+          "occurrences": 119,
+          "matchingLiveDocuments": 100
+        },
+        "382": {
+          "occurrences": 92,
+          "matchingLiveDocuments": 76
+        },
+        "3152": {
+          "occurrences": 92,
+          "matchingLiveDocuments": 61
+        },
+        "3163": {
+          "occurrences": 21,
+          "matchingLiveDocuments": 16
+        },
+        "3276": {
+          "occurrences": 136,
+          "matchingLiveDocuments": 77
+        },
+        "3764": {
+          "occurrences": 37,
+          "matchingLiveDocuments": 33
+        },
+        "3891": {
+          "occurrences": 196,
+          "matchingLiveDocuments": 147
+        }
+      }
+    },
+    "שלום": {
+      "occurrences": 201,
+      "matchingLiveDocuments": 138,
+      "books": {
+        "1": {
+          "occurrences": 6,
+          "matchingLiveDocuments": 5
+        },
+        "28": {
+          "occurrences": 20,
+          "matchingLiveDocuments": 20
+        },
+        "40": {
+          "occurrences": 2,
+          "matchingLiveDocuments": 2
+        },
+        "103": {
+          "occurrences": 53,
+          "matchingLiveDocuments": 32
+        },
+        "382": {
+          "occurrences": 52,
+          "matchingLiveDocuments": 29
+        },
+        "3152": {
+          "occurrences": 1,
+          "matchingLiveDocuments": 1
+        },
+        "3163": {
+          "occurrences": 2,
+          "matchingLiveDocuments": 2
+        },
+        "3276": {
+          "occurrences": 25,
+          "matchingLiveDocuments": 13
+        },
+        "3764": {
+          "occurrences": 4,
+          "matchingLiveDocuments": 3
+        },
+        "3891": {
+          "occurrences": 36,
+          "matchingLiveDocuments": 31
+        }
+      }
+    },
+    "אלהים": {
+      "occurrences": 703,
+      "matchingLiveDocuments": 557,
+      "books": {
+        "1": {
+          "occurrences": 156,
+          "matchingLiveDocuments": 140
+        },
+        "28": {
+          "occurrences": 204,
+          "matchingLiveDocuments": 190
+        },
+        "40": {
+          "occurrences": 1,
+          "matchingLiveDocuments": 1
+        },
+        "103": {
+          "occurrences": 34,
+          "matchingLiveDocuments": 32
+        },
+        "382": {
+          "occurrences": 6,
+          "matchingLiveDocuments": 5
+        },
+        "3152": {
+          "occurrences": 37,
+          "matchingLiveDocuments": 28
+        },
+        "3163": {
+          "occurrences": 57,
+          "matchingLiveDocuments": 29
+        },
+        "3276": {
+          "occurrences": 137,
+          "matchingLiveDocuments": 79
+        },
+        "3764": {
+          "occurrences": 12,
+          "matchingLiveDocuments": 11
+        },
+        "3891": {
+          "occurrences": 59,
+          "matchingLiveDocuments": 42
+        }
+      }
+    },
+    "ישראל": {
+      "occurrences": 1655,
+      "matchingLiveDocuments": 1079,
+      "books": {
+        "1": {
+          "occurrences": 39,
+          "matchingLiveDocuments": 36
+        },
+        "28": {
+          "occurrences": 49,
+          "matchingLiveDocuments": 47
+        },
+        "40": {
+          "occurrences": 6,
+          "matchingLiveDocuments": 3
+        },
+        "103": {
+          "occurrences": 182,
+          "matchingLiveDocuments": 137
+        },
+        "382": {
+          "occurrences": 294,
+          "matchingLiveDocuments": 212
+        },
+        "3152": {
+          "occurrences": 191,
+          "matchingLiveDocuments": 113
+        },
+        "3163": {
+          "occurrences": 110,
+          "matchingLiveDocuments": 45
+        },
+        "3276": {
+          "occurrences": 195,
+          "matchingLiveDocuments": 90
+        },
+        "3764": {
+          "occurrences": 40,
+          "matchingLiveDocuments": 37
+        },
+        "3891": {
+          "occurrences": 549,
+          "matchingLiveDocuments": 359
+        }
+      }
+    },
+    "רבי": {
+      "occurrences": 1594,
+      "matchingLiveDocuments": 1113,
+      "books": {
+        "1": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "28": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "40": {
+          "occurrences": 38,
+          "matchingLiveDocuments": 24
+        },
+        "103": {
+          "occurrences": 1250,
+          "matchingLiveDocuments": 866
+        },
+        "382": {
+          "occurrences": 23,
+          "matchingLiveDocuments": 21
+        },
+        "3152": {
+          "occurrences": 72,
+          "matchingLiveDocuments": 47
+        },
+        "3163": {
+          "occurrences": 20,
+          "matchingLiveDocuments": 4
+        },
+        "3276": {
+          "occurrences": 7,
+          "matchingLiveDocuments": 4
+        },
+        "3764": {
+          "occurrences": 43,
+          "matchingLiveDocuments": 36
+        },
+        "3891": {
+          "occurrences": 141,
+          "matchingLiveDocuments": 111
+        }
+      }
+    },
+    "רמבם": {
+      "occurrences": 271,
+      "matchingLiveDocuments": 236,
+      "books": {
+        "1": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "28": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "40": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "103": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "382": {
+          "occurrences": 31,
+          "matchingLiveDocuments": 31
+        },
+        "3152": {
+          "occurrences": 1,
+          "matchingLiveDocuments": 1
+        },
+        "3163": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "3276": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "3764": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "3891": {
+          "occurrences": 239,
+          "matchingLiveDocuments": 204
+        }
+      }
+    },
+    "רמב\"ם": {
+      "occurrences": 271,
+      "matchingLiveDocuments": 236,
+      "books": {
+        "1": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "28": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "40": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "103": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "382": {
+          "occurrences": 31,
+          "matchingLiveDocuments": 31
+        },
+        "3152": {
+          "occurrences": 1,
+          "matchingLiveDocuments": 1
+        },
+        "3163": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "3276": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "3764": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "3891": {
+          "occurrences": 239,
+          "matchingLiveDocuments": 204
+        }
+      }
+    },
+    "אברהם": {
+      "occurrences": 239,
+      "matchingLiveDocuments": 195,
+      "books": {
+        "1": {
+          "occurrences": 109,
+          "matchingLiveDocuments": 98
+        },
+        "28": {
+          "occurrences": 4,
+          "matchingLiveDocuments": 4
+        },
+        "40": {
+          "occurrences": 0,
+          "matchingLiveDocuments": 0
+        },
+        "103": {
+          "occurrences": 14,
+          "matchingLiveDocuments": 13
+        },
+        "382": {
+          "occurrences": 2,
+          "matchingLiveDocuments": 2
+        },
+        "3152": {
+          "occurrences": 27,
+          "matchingLiveDocuments": 21
+        },
+        "3163": {
+          "occurrences": 33,
+          "matchingLiveDocuments": 23
+        },
+        "3276": {
+          "occurrences": 32,
+          "matchingLiveDocuments": 19
+        },
+        "3764": {
+          "occurrences": 8,
+          "matchingLiveDocuments": 5
+        },
+        "3891": {
+          "occurrences": 10,
+          "matchingLiveDocuments": 10
+        }
+      }
+    }
+  },
+  "decodedBookSHA256": {
+    "1": "164cd254ce49a2f106d3cdd24bfaf8e4aa9dd36b78031febfa462585c7749503",
+    "28": "cb1a1ed2097a60230d7dd615028ea8c3fcc6eca30b19b395c8ae1f7fc3b083d9",
+    "40": "2b8c8f706b4dc51c191994f37a73d25d42b8c6f5ac226a561b3414db1a56c54b",
+    "103": "97199113126dbd4791afbc0fbdcbc80c5f8fa2d85a0a4e26ec265353ff265455",
+    "382": "30c4e04a340d1e0c3037b20e1e61528f8590d51a4fd96df7e58df001dce923a2",
+    "3152": "646005c64eee8b777084afeca2a00f21be8e966b58f112227cc59b09d680a098",
+    "3163": "aaf9d03ef5411d0e20cf805bff30c10d0d2185caf6c8c8d689f2cd9b100a6839",
+    "3276": "70a183e855ffb179de1b3a67fc9034c05cc67c1dd85ec32d5cf7b7a4e7a30b48",
+    "3764": "ef5d79644156c040e45569a0a2d7ba60901ddb9bff39a9c21667956638f40cdc",
+    "3891": "6ebe0b212555509ddab9178992e40607568daeb1cd83a74bbd6797e4ee8cd905"
+  },
+  "unicodeDataVersion": "15.0.0",
+  "selfChecks": 18,
+  "databaseSHA256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "allSQLDocuments": 18879,
+  "allSQLSources": 10,
+  "scope": "All original decoded rows of ten explicit books; full-v32 global occurrence scalar is not independently scanned."
+}
