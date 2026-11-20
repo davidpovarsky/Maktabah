@@ -1,0 +1,16 @@
+[
+  {
+    "suite": "test-runtime27-release-producer",
+    "exit": 0,
+    "started": "2026-11-20T02:59:03.066221+00:00",
+    "finished": "2026-11-20T02:59:41.358134+00:00",
+    "log_sha256": "b631e0a2c684bc8cd769d7965aa0ec36e75d8dfe21465dc93b3b7098d64d852c"
+  },
+  {
+    "suite": "test-runtime27-release-gate",
+    "exit": 0,
+    "started": "2026-11-20T02:59:41.376522+00:00",
+    "finished": "2026-11-20T02:59:48.778080+00:00",
+    "log_sha256": "f384c514e17f3bda6ee4fdf2f77ebcf29fc7de1ca861f550ba3af2e46f8726ad"
+  }
+]

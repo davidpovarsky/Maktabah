@@ -423,6 +423,7 @@ jobs:
           mkdir -p build/hq-v32-prebuilt-native
           python3 Scripts/CI/test-v32-prebuilt-native.py 2>&1 | tee build/hq-v32-prebuilt-native/evidence-gate-regression.log
           python3 Scripts/CI/test-v32-seed-workspace.py 2>&1 | tee build/hq-v32-prebuilt-native/seed-path-regression.log
+          python3 Tests/HQ/v32/test_container_witness.py 2>&1 | tee build/hq-v32-prebuilt-native/container-witness-regression.log
       - name: Build the original integrated app for the simulator
         env:
           GH_TOKEN: ${{ github.token }}

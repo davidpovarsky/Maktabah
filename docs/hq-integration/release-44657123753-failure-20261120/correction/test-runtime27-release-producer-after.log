@@ -1,0 +1,18 @@
+test_complete_synthetic_producer_payload_reaches_unchanged_real_evidence_checks (__main__.ReleaseProducerTests.test_complete_synthetic_producer_payload_reaches_unchanged_real_evidence_checks) ... ok
+test_current_manifest_names_real_compilable_target_declarations (__main__.ReleaseProducerTests.test_current_manifest_names_real_compilable_target_declarations) ... ok
+test_dependency_drift_remains_blocking_after_producer_aggregation (__main__.ReleaseProducerTests.test_dependency_drift_remains_blocking_after_producer_aggregation) ... ok
+test_miniature_data_cannot_satisfy_production (__main__.ReleaseProducerTests.test_miniature_data_cannot_satisfy_production) ... ok
+test_missing_and_background_only_observations_cannot_be_invented (__main__.ReleaseProducerTests.test_missing_and_background_only_observations_cannot_be_invented) ... ok
+test_missing_or_duplicate_native_device_rejected (__main__.ReleaseProducerTests.test_missing_or_duplicate_native_device_rejected) ... ok
+test_missing_original_oracle_is_rejected_independently_of_native_count (__main__.ReleaseProducerTests.test_missing_original_oracle_is_rejected_independently_of_native_count) ... ok
+test_partial_and_stale_matrix_rejected_before_acceptance (__main__.ReleaseProducerTests.test_partial_and_stale_matrix_rejected_before_acceptance) ... ok
+test_pass_flags_without_raw_results_are_not_acceptance (__main__.ReleaseProducerTests.test_pass_flags_without_raw_results_are_not_acceptance) ... ok
+test_production_flags_cannot_replace_real_release (__main__.ReleaseProducerTests.test_production_flags_cannot_replace_real_release) ... ok
+test_skip_cannot_be_promoted_to_a_pass (__main__.ReleaseProducerTests.test_skip_cannot_be_promoted_to_a_pass) ... ok
+test_wrong_actual_device_and_os_cannot_be_relabelled (__main__.ReleaseProducerTests.test_wrong_actual_device_and_os_cannot_be_relabelled) ... ok
+test_wrong_actual_text_size_rejected (__main__.ReleaseProducerTests.test_wrong_actual_text_size_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 25.542s
+
+OK

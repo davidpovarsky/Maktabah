@@ -1,0 +1,13 @@
+{
+  "at": "2026-11-20T02:43:54.363011+00:00",
+  "actual_tests": 17,
+  "test_exit": 0,
+  "bash_syntax_exit": 0,
+  "test_log_sha256": "0e46130078be19f23757f51d8ef7a71f1e1108867d5f2e219adc9c046436d024",
+  "files": {
+    "Scripts/CI/hq-v32-prebuilt-native.py": "e7480a6ca1591a440c81d148cf8b1c4542ac9a1941fab1d9897aa12c4b1eacaf",
+    "Scripts/run-otzaria-prebuilt-acceptance.sh": "e81a6f7050f38d72522dcf6af5f069d07e13dbeef0c2fbd16c16054d3e7175a4",
+    "Tests/HQ/v32/test_container_witness.py": "0032797258c793cfd9c3cc26bbfe33d4a5f0725ec349dcf9b3dd9023d3502410"
+  },
+  "native_or_simulator_executed": false
+}

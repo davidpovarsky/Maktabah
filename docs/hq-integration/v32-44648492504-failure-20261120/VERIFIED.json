@@ -1,0 +1,41 @@
+{
+  "run": 44648492504,
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44648492504",
+  "checkout": "83bc48f7b27e41d5580124a974d78bfad6ace50c",
+  "application_source": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
+  "overall": "FAILURE",
+  "artifact_id": 14593986941,
+  "artifact_bytes": 39640372,
+  "artifact_sha256": "022030740dd071a459fcdbb5ddf4d5aac91243fc09c2d22f6b661e7b5f53602d",
+  "actual_original_launcher_exit": 0,
+  "actual_indexed_documents": 7080797,
+  "actual_sources": 7876,
+  "actual_query_modes": [
+    "exact",
+    "fuzzy",
+    "advanced"
+  ],
+  "matching_documents_for_original_query_each_mode": 104120,
+  "actual_native_http_resume_bytes": 1048576,
+  "golden_result_count": 25,
+  "ordered_result_identity_equal_after_new_process": true,
+  "source_database_post_hash": "PASS",
+  "installed_app_database_post_hash": "NOT_RUN",
+  "failure": "Command ['xcrun', 'simctl', 'get_app_container', '44A35130-BCBE-421F-9467-03D18E8511B3', 'com.davidpovarsky.chavrusatext', 'data'] returned non-zero exit status 53.",
+  "owned_simulator_cleanup_exit": 0,
+  "correction": "Preserve live original launcher data-container witness bound to fresh invocation nonce, exact created UDID and original bundle. Final checked_file byte count/SHA gate remains mandatory, now on the same recorded real path without a redundant post-shutdown CoreSimulator lookup.",
+  "correction_actual_checks": {
+    "container_binding_tests": 17,
+    "original_evidence_negative_controls": 15,
+    "compiled_original_seed_storage_cases": 3,
+    "bash_syntax": true
+  },
+  "correction_application_and_test_tree_parity_to_7e": {
+    "Source": "aa2cfe9491a389aeafb38edf9b3601c2a9b77bc3",
+    "Vendor": "fd589175514256438eb1a72a0d2efcd5284c247c",
+    "Maktabah.xcodeproj": "0504a80db4dcd844871922ccf68d419eccb478f0",
+    "Maktabah-iOSUITests": "0ad58fec0ca52e25a7ea1163f55d2cf649321068"
+  },
+  "corrected_apple_run": "NOT_RUN",
+  "recorded_at": "2026-11-20T02:47:01.557518+00:00"
+}

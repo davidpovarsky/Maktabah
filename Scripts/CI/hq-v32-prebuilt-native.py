@@ -9,8 +9,9 @@ import datetime
 import hashlib
 import json
 import os
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import re
+import secrets
 import shutil
 import sqlite3
 import subprocess
@@ -201,6 +202,38 @@ def validate_reports(install, reopen, log):
             "native_resumed_bytes": install["resumedDownloadBytes"]}
 
 
+def validated_container_witness(witness, expected_udid, expected_bundle, expected_nonce):
+    """Bind the live launcher's exact path to this invocation and owned device.
+
+    This only resolves the original recorded path. It never supplies a successful
+    database hash, creates a simulator, opens the app or accepts another folder.
+    The unchanged checked_file call remains the final installed-data gate.
+    """
+    require(isinstance(witness, dict) and set(witness) == {
+        "schema_version", "simulator_udid", "bundle_id", "data_container", "invocation_nonce"
+    }, "Missing or unknown container witness fields")
+    require(type(witness["schema_version"]) is int and witness["schema_version"] == 1,
+            "Unsupported container witness version")
+    require(re.fullmatch(r"[0-9A-Fa-f]{8}(?:-[0-9A-Fa-f]{4}){3}-[0-9A-Fa-f]{12}", expected_udid),
+            "Invalid owned simulator identity")
+    require(isinstance(expected_nonce, str) and re.fullmatch(r"[a-f0-9]{64}", expected_nonce),
+            "Missing fresh container invocation")
+    require(witness["simulator_udid"] == expected_udid and witness["bundle_id"] == expected_bundle
+            and witness["invocation_nonce"] == expected_nonce, "Foreign or stale container witness")
+    raw = witness["data_container"]
+    require(isinstance(raw, str) and 0 < len(raw) <= 4096
+            and not any(value in raw for value in ["\0", "\r", "\n", "\\"]),
+            "Invalid container path")
+    path = PurePosixPath(raw)
+    require(path.is_absolute() and str(path) == raw and raw.startswith("/") and not raw.startswith("//")
+            and ".." not in path.parts, "Non-canonical container path")
+    require(len(path.parts) >= 8 and path.parts[-7:-1] == (
+        "Devices", expected_udid, "data", "Containers", "Data", "Application"
+    ) and re.fullmatch(r"[0-9A-Fa-f]{8}(?:-[0-9A-Fa-f]{4}){3}-[0-9A-Fa-f]{12}", path.name),
+            "Container does not belong to the exact owned simulator")
+    return raw
+
+
 def run_native(report):
     require(sys.platform == "darwin", "Actual app installer acceptance requires macOS/Xcode")
     ready = json.loads((OUT / "prepare.json").read_text(encoding="utf-8"))
@@ -230,8 +263,10 @@ def run_native(report):
     report["simulator"] = {"created_by_this_run": True, "udid": udid, "type": device_type, "runtime": runtime}
     save(OUT / "run.json", report)
     REPORTS.mkdir(parents=True, exist_ok=True)
+    container_nonce = secrets.token_hex(32)
     environment = dict(os.environ, OTZARIA_PREBUILT_SIMULATOR_UDID=udid,
                        OTZARIA_PREBUILT_REPORT_DIR=str(REPORTS),
+                       OTZARIA_PREBUILT_CONTAINER_NONCE=container_nonce,
                        OTZARIA_PREBUILT_ACCEPTANCE_GOLDEN_QUERY=GOLDEN_QUERY)
     log_path = OUT / "native-prebuilt.log"
     try:
@@ -249,7 +284,13 @@ def run_native(report):
         checked_file(database, DATABASE_BYTES, DATABASE_SHA)
         report["source_database_unchanged"] = True
         bundle = command(["/usr/libexec/PlistBuddy", "-c", "Print :CFBundleIdentifier", str(app / "Info.plist")])
-        container = Path(command(["xcrun", "simctl", "get_app_container", udid, bundle, "data"]))
+        witness_path = REPORTS / "otzaria-prebuilt-container.json"
+        require(witness_path.is_file() and witness_path.stat().st_size <= 8192,
+                "Missing or oversized live container witness")
+        witness = json.loads(witness_path.read_text(encoding="utf-8"))
+        container = Path(validated_container_witness(witness, udid, bundle, container_nonce))
+        require(container.is_dir() and not container.is_symlink(), "Original app container is missing")
+        report["app_container_witness"] = witness
         installed_database = container / "Documents/otzaria-prebuilt.db"
         checked_file(installed_database, DATABASE_BYTES, DATABASE_SHA)
         report["actual_app_database_sha256"] = DATABASE_SHA

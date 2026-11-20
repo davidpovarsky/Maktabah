@@ -1,0 +1,7 @@
+{
+  "status": "SOURCE_PREFLIGHT_PASS",
+  "mode": "preflight",
+  "checkout_sha": "89b301c0a2671782aa63487f183507c28ceb7308",
+  "application_source_sha": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "error": null
+}

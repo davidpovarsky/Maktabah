@@ -1,0 +1,22 @@
+{
+  "exact_checkout": "89b301c0a2671782aa63487f183507c28ceb7308",
+  "application_source": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "branch": "codex/otzaria-v32-containerfix-20261120",
+  "workflow": "otzaria-search-artifacts.yml",
+  "inputs": {
+    "native_existing_v32": "true",
+    "native_expected_sha": "89b301c0a2671782aa63487f183507c28ceb7308",
+    "publish_release": "false",
+    "repair_manifest_layout": "false",
+    "source_release_tag": "v32-20261010190601",
+    "existing_release_tag": "otzaria-search-data-v32-20261010190601-102293b3a63c"
+  },
+  "dispatch_output": "https://github.com/davidpovarsky/Maktabah/actions/runs/44663283836\n",
+  "at": "2026-11-20T02:47:36.575687+00:00",
+  "preflight_exit": 0,
+  "scope": "Full original native v32 installer/HTTP1MiBresume/query/new-process-reopen/source+installedDBposthash; no reindex/publication/XCTest/physical acceptance",
+  "run": 44663283836,
+  "verified_github_head": "89b301c0a2671782aa63487f183507c28ceb7308",
+  "observed_status": "queued",
+  "watcher": "job_f8caa92f88d5"
+}

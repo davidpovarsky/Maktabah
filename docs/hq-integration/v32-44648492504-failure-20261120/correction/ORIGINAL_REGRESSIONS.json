@@ -1,0 +1,16 @@
+[
+  {
+    "suite": "test-v32-prebuilt-native",
+    "exit": 0,
+    "started": "2026-11-20T02:45:41.970376+00:00",
+    "finished": "2026-11-20T02:45:42.353127+00:00",
+    "log_sha256": "aabdc8ba3c907afbcb3ac1a5bd02863463f0c02bc4ea576df15fca1be00e755f"
+  },
+  {
+    "suite": "test-v32-seed-workspace",
+    "exit": 0,
+    "started": "2026-11-20T02:45:42.364655+00:00",
+    "finished": "2026-11-20T02:45:52.420777+00:00",
+    "log_sha256": "485a7c5131e26fc370f115cc2980a8211fc382f9e303e83a805156c25ad18fe0"
+  }
+]
