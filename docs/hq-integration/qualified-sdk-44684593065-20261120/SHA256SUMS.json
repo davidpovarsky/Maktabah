@@ -1,0 +1,158 @@
+[
+  {
+    "sourceName": "14605719458.zip",
+    "originalBytes": 216346,
+    "originalSHA256": "b6c1e716baf123d9b71fdb30aa484b4a320ebdb5e2ecd2488437c7a3b2d5eb49",
+    "storedPath": "raw/14605719458.zip",
+    "storedBytes": 216346,
+    "storedSHA256": "b6c1e716baf123d9b71fdb30aa484b4a320ebdb5e2ecd2488437c7a3b2d5eb49"
+  },
+  {
+    "sourceName": "artifact-metadata.json",
+    "originalBytes": 759,
+    "originalSHA256": "28fb259ca7237fef56349d8cfec9793cc42131199da16b809b1142e321b16cd4",
+    "storedPath": "raw/artifact-metadata.json.gz",
+    "storedBytes": 415,
+    "storedSHA256": "d054777a1b2759c119db67740690ecb1fa3965f9f91c8a0d2bea15cfb5572708"
+  },
+  {
+    "sourceName": "ARTIFACT_REVIEW.json",
+    "originalBytes": 6246,
+    "originalSHA256": "189146093ecd195018e3be8b3852a780d2c3c93f92b8663f7c43838dc29df54a",
+    "storedPath": "raw/ARTIFACT_REVIEW.json.gz",
+    "storedBytes": 2620,
+    "storedSHA256": "b300d9dbbecb576246787656b52915eb90016ae11092e9717f3f1185434f930e"
+  },
+  {
+    "sourceName": "audit_artifact.py",
+    "originalBytes": 10195,
+    "originalSHA256": "eb395b0bf938ad86dd3f053c68bb4df78db94f7b0c007a1e94bc42b7af8d694a",
+    "storedPath": "raw/audit_artifact.py.gz",
+    "storedBytes": 3690,
+    "storedSHA256": "50763fd625685a882b07d9cf49ffebe8695cd715dc27042712659968dd63a671"
+  },
+  {
+    "sourceName": "audit_source_binding.py",
+    "originalBytes": 2360,
+    "originalSHA256": "1286f2ea38e1d3b29ca1933ccb1a50d86ba873e94f449d48b2d05404b4672c52",
+    "storedPath": "raw/audit_source_binding.py.gz",
+    "storedBytes": 1208,
+    "storedSHA256": "1dc19b24334f1250e58d5b8af22d250f017da8fb483bf2606fdf3b70696708e0"
+  },
+  {
+    "sourceName": "hanlin-sdk-api-tree-projection.json",
+    "originalBytes": 94258,
+    "originalSHA256": "c96b380ed4bca2bceea7ed279596b9be93a0a5b8b6615375e98de9f0bc786f92",
+    "storedPath": "raw/hanlin-sdk-api-tree-projection.json.gz",
+    "storedBytes": 18083,
+    "storedSHA256": "4640dacfd1dfcfd0d1d7d7c2bd046cf335359661389047f40f20d7a54d7b9ea5"
+  },
+  {
+    "sourceName": "NAMED_EXECUTED_CASES.json",
+    "originalBytes": 11265,
+    "originalSHA256": "b0d4b0e96432fff05bcd4a31b438c5cebc5c58f9e46b2ec3beb1586aad872ca4",
+    "storedPath": "raw/NAMED_EXECUTED_CASES.json.gz",
+    "storedBytes": 3958,
+    "storedSHA256": "22d1cfab0b302f08ebbc9debb41792a0da5250b344468aea4a13dd9c3ed6e15c"
+  },
+  {
+    "sourceName": "SOURCE_BINDING_REVIEW.json",
+    "originalBytes": 33110,
+    "originalSHA256": "6b5ae4ba78f6138ffa21d273cb479efb493ce590b99a75afdf2e9e2d3067a0ec",
+    "storedPath": "raw/SOURCE_BINDING_REVIEW.json.gz",
+    "storedBytes": 10564,
+    "storedSHA256": "78c3524f60c65252fa2935db121f0d8cf49b03a8fda8cbf77a5231081fe62ad4"
+  },
+  {
+    "sourceName": "SOURCE_HASH_REFERENCES.json",
+    "originalBytes": 48700,
+    "originalSHA256": "93685d9f78e96ae63fab6a198de481838f47aa39d518d1bdc8d72921da428c45",
+    "storedPath": "raw/SOURCE_HASH_REFERENCES.json.gz",
+    "storedBytes": 6872,
+    "storedSHA256": "d1f050f367960aaaa2188543e6059ab5f31bf3f5910a81a7c1023b77ecdf9003"
+  },
+  {
+    "sourceName": "source-binding-audit.log",
+    "originalBytes": 1091,
+    "originalSHA256": "cfcf4fffe2b8833147d606f422cedfef42ee6c31de229be8dae19962d050c836",
+    "storedPath": "raw/source-binding-audit.log.gz",
+    "storedBytes": 561,
+    "storedSHA256": "efb7e21b23a5f2bef995140f4b5e258a172cc3a9101186ef908e04fe6f405b07"
+  },
+  {
+    "sourceName": "workflow-jobs.json",
+    "originalBytes": 2748,
+    "originalSHA256": "dfa6bfd9c31073ec9d1577daadc772e7140f83b5b26a8b9dd514b7a2498ac1bc",
+    "storedPath": "raw/workflow-jobs.json.gz",
+    "storedBytes": 607,
+    "storedSHA256": "d8fafedb5a34108b48fa31b3389d3bb0b5e9d7db905777eef030b522063aee8f"
+  },
+  {
+    "sourceName": "workflow-run.json",
+    "originalBytes": 14088,
+    "originalSHA256": "7d8a5dfc144ea38aed1af612b78dd8c8ea65e660a26c30ca025f74dcf63dc1d4",
+    "storedPath": "raw/workflow-run.json.gz",
+    "storedBytes": 1723,
+    "storedSHA256": "aa74d402a196d0864e3a55edb2cd76646a456e4e834891e34140096a045a09ba"
+  },
+  {
+    "sourceName": "ZIP_INDEX.json",
+    "originalBytes": 6421,
+    "originalSHA256": "ca2892ee14911d65ac7dc0d81f381d2660ad336a788bd376045d62715259f779",
+    "storedPath": "raw/ZIP_INDEX.json.gz",
+    "storedBytes": 1042,
+    "storedSHA256": "8cfe33edd2ab8d6e706ea74bb0ac0bf8eeec7cf3fe69572bc13e57bde178af3c"
+  },
+  {
+    "sourceName": "ZIP_MEMBER_HASHES.json",
+    "originalBytes": 9124,
+    "originalSHA256": "31d3ab67a8c6dbc11463f4604a98048352a72b08dce8db46a00c0e3cb557933c",
+    "storedPath": "raw/ZIP_MEMBER_HASHES.json.gz",
+    "storedBytes": 2533,
+    "storedSHA256": "6afe2f651e398aeefff08de93462e8d3f3cc953eeb45c01efa2ec98d5094340a"
+  },
+  {
+    "sourceName": "WARNING_INVENTORY.json",
+    "originalBytes": 718725,
+    "originalSHA256": "490a138aa82864c63aa7b312e7c1808ea64a81222a13ae88332128d66660039d",
+    "storedPath": "raw/WARNING_INVENTORY.json.gz",
+    "storedBytes": 26534,
+    "storedSHA256": "55bf675afc796be87ed2ad089e5e59278a43c22726fa3e7a5a9c820464db433d"
+  },
+  {
+    "sourceName": "WATCH_SETUP.json",
+    "originalBytes": 592,
+    "originalSHA256": "ce6fcc9a1d999a2e7cfdf609f7ddf4782daff568ce468076b0ba093617dde623",
+    "storedPath": "raw/WATCH_SETUP.json.gz",
+    "storedBytes": 379,
+    "storedSHA256": "0f30fcbf5db889b84af72ad289aaa0e3372454e2388d6cfd8a22f6899d2f0ce3"
+  },
+  {
+    "sourceName": "WATCH_RESULT.json",
+    "originalBytes": 430,
+    "originalSHA256": "459b373b6f58bd5bc344b0fb7482bbe5ca611fe161e2c18bba93c10cfb05821f",
+    "storedPath": "raw/WATCH_RESULT.json.gz",
+    "storedBytes": 322,
+    "storedSHA256": "b0ee0da5a1fe0ad2faafc81464b9a2b166882d2935656adfdbf1f03fee296a3d"
+  },
+  {
+    "sourceName": "gh-watch.log",
+    "originalBytes": 12296,
+    "originalSHA256": "2cf644a1a3d73fb73e684382e0cab0844e5a2b75c26ccd981f919b590dd2225a",
+    "storedPath": "raw/gh-watch.log.gz",
+    "storedBytes": 639,
+    "storedSHA256": "a921fe0094b07d9b8c28bf681ff54c20baba0f339d02b20ae011a4d850afa7d6"
+  },
+  {
+    "storedPath": "README.md",
+    "storedBytes": 5939,
+    "storedSHA256": "bfbd1fea09a341d21f4bc6d6f0e4dde87fd7f0b8fbe086e93d1e4d2cdb89f7f5",
+    "newlineConvention": "canonical UTF-8 LF"
+  },
+  {
+    "storedPath": "RESULT.json",
+    "storedBytes": 8928,
+    "storedSHA256": "af434b16897d8e12d581bd45870ab50fe933a4a45dfb9e47b4d4f0c1b271629a",
+    "newlineConvention": "canonical UTF-8 LF"
+  }
+]

@@ -1,0 +1,206 @@
+{
+  "status": "VERIFIED_EXACT_QUALIFIED_SOURCE_APPLE_SDK_AND_MACOS_COMPONENT_PASS",
+  "runURL": "https://github.com/davidpovarsky/Maktabah/actions/runs/44684593065",
+  "runID": 44684593065,
+  "runAttempt": 1,
+  "workflowConclusion": "success",
+  "successfulJobID": 136115815349,
+  "successfulJob": "Focused SDK and workspace checks (no app/runtime acceptance)",
+  "otherWorkflowJobsSkipped": 4,
+  "source": {
+    "checkout": "b07f229e85fe894722566ad9444de31d0ba4490f",
+    "application": "2e6f08659b347a755aef4e4fe6c00d9592ba700d",
+    "trees": {
+      "Source": {
+        "workflow": "232e2cce598e3479b4eff9094f39ea8d6db3d9b5",
+        "application": "232e2cce598e3479b4eff9094f39ea8d6db3d9b5",
+        "equal": true
+      },
+      "Vendor": {
+        "workflow": "a9bf10318cfc44c87885c3dcfba48cbaced67788",
+        "application": "a9bf10318cfc44c87885c3dcfba48cbaced67788",
+        "equal": true
+      },
+      "Maktabah.xcodeproj/project.pbxproj": {
+        "workflow": "2741615644741d39b0b19c6146f9c459323dabab",
+        "application": "2741615644741d39b0b19c6146f9c459323dabab",
+        "equal": true
+      },
+      "Maktabah-iOSUITests": {
+        "workflow": "3e2184d053b281095a530038416c0517adc3e850",
+        "application": "3e2184d053b281095a530038416c0517adc3e850",
+        "equal": true
+      }
+    },
+    "registry": {
+      "path": "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift",
+      "sha256": "266d21482cd9aacc3441068937fb3bd4dc292f9b8cb718af9dc384d8802bad35",
+      "declaration": "[.original265ToExactOccurrencesD5]",
+      "qualifiedContracts": [
+        "original265ToExactOccurrencesD5"
+      ],
+      "runtimeQualifiedByThisSDKJob": false
+    },
+    "all112ArtifactSourceHashesMatchGit": true
+  },
+  "artifact": {
+    "id": 14605719458,
+    "name": "faithful-ui-sdk-check",
+    "bytes": 216346,
+    "sha256": "b6c1e716baf123d9b71fdb30aa484b4a320ebdb5e2ecd2488437c7a3b2d5eb49",
+    "entries": 46,
+    "allCRCsVerified": true
+  },
+  "toolchain": {
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.2.0",
+    "sdk": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.2.sdk",
+    "target": "arm64-apple-ios27.0-simulator"
+  },
+  "sdkCompilation": {
+    "uiAcceptanceCodeGeneration": "SDK_COMPILE_PASS",
+    "nativeRoutingHost": "SDK_COMPILE_PASS",
+    "nativeSidebarSearch": "SDK_COMPILE_PASS",
+    "sidebarSplitAdapter": "SDK_COMPILE_PASS",
+    "readerTextVisibility": "SDK_COMPILE_PASS",
+    "toolbar": "SDK_COMPILE_PASS",
+    "originalAppMembership": "PASS",
+    "reportedMainWarningCount": 2670
+  },
+  "groups": [
+    {
+      "name": "hanlin-api12-host",
+      "count": 48,
+      "kind": "executed macOS XCTest leaves",
+      "failed": 0,
+      "skipped": 0,
+      "warnings": 0,
+      "boundary": "Actual frozen SDK Contracts + complete original HostDispatcher + actual ActionCore + actual adapter; explicit backend/authority/native-receipt doubles. No AgentSession, app, provider, native UI or device acceptance."
+    },
+    {
+      "name": "hanlin-consumer-store",
+      "count": 11,
+      "kind": "executed macOS XCTest leaves",
+      "failed": 0,
+      "skipped": 0,
+      "warnings": 0,
+      "boundary": "Complete app store with actual Foundation files, independent host/SDK CAS, scoped lease rejection and platform filesystem write failure. Complete original SDK contract/presentation modules and unchanged message DTO; no engine/provider, UIKit scene, native navigation or physical protection proof."
+    },
+    {
+      "name": "hanlin-navigation-contract",
+      "count": 8,
+      "kind": "executed macOS XCTest leaves",
+      "failed": 0,
+      "skipped": 0,
+      "warnings": 0,
+      "boundary": "Whole unchanged SDK HostDispatcher + complete original Platform/Host contract modules. Explicit host/navigation effect double; no AgentSession, provider, UIKit, Otzaria runtime or actual UI acknowledgement."
+    },
+    {
+      "name": "annotation-exchange",
+      "count": 28,
+      "kind": "real SQLite component cases",
+      "failed": 0,
+      "additionalWALProcessExitAndReopenControls": 2,
+      "capabilityEnabled": false,
+      "annotationRepositoryRuntime": false,
+      "CloudKitRuntime": false,
+      "AnytypeRuntime": false
+    },
+    {
+      "name": "book-page-cache",
+      "count": 26,
+      "kind": "source-bound macOS portable cases",
+      "failed": 0
+    },
+    {
+      "name": "inspector-owner",
+      "count": 17,
+      "kind": "source-bound macOS portable cases",
+      "failed": 0
+    },
+    {
+      "name": "hebrew-ranges",
+      "count": 15,
+      "kind": "real Swift/Foundation source-range cases",
+      "failed": 0
+    },
+    {
+      "name": "sqlite",
+      "count": 25,
+      "kind": "actual SQLite 3.54.0 source cases",
+      "failed": 0,
+      "fullSourceDatabaseCountExecuted": 0,
+      "decompressorExecuted": false
+    },
+    {
+      "name": "workspace",
+      "count": 89,
+      "kind": "portable assertions; not XCTest case count"
+    }
+  ],
+  "SDKOriginalSource": {
+    "repository": "https://github.com/davidpovarsky/hanlin-ai.git",
+    "commit": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+    "all424ReportedBlobsMatchIndependentGitHubTree": true,
+    "packageManifestSHA256": {
+      "Packages/HanlinAgentSDK": "9af2a15811e934e4082360e46f368ea2b0d5ba5d97a77d8bb0ddb34d48e0666b",
+      "Packages/HanlinPlatform": "e9ea19d4bc3fe3873137e0c2e32cda50892ecd39103f3a63250acaa8f373e458",
+      "Packages/HanlinPresentationSDK": "59272c233aca8fbf72f50a9296539b2ed55b33f625ce34d208a2b1c4e3d569b8"
+    }
+  },
+  "nativeDeclarationsChecked": 92,
+  "nativeUICasesExecuted": 0,
+  "fullAppBuildExecuted": false,
+  "physicalDeviceExecuted": false,
+  "d5OccurrenceRuntimeExecuted": false,
+  "fullV32InstallerProbeExecuted": false,
+  "sourceScopesStillRequiringFullAppBuild": {
+    "appComposedSidebar": {
+      "scope": "Full source belongs to actual app compilation, not this standalone SDK module",
+      "status": "REQUIRES_FULL_APP_BUILD",
+      "standaloneCoverage": [
+        "exact native search/title adapters",
+        "exact native split configuration"
+      ],
+      "appMembershipGate": "verify-otzaria-xcode-project.py",
+      "sourceHashes": {
+        "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift": "43f3c338218db1b86a7e5978d85d2e2f447ff16f7570e1e7c24f2b8d56ec5de1",
+        "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentationState.swift": "483ae8936b6986bd156a3ac8e5d8c50a07bb2151cb490ec8d3fee0a2f270683b",
+        "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift": "4549047d28085a9c3b3a638bbcffd8eed6b21db779e838a6ad26379cccaef612"
+      }
+    },
+    "appComposedGlobalSearchField": {
+      "scope": "Actual representable/coordinator require the original native Scene and Environment owner",
+      "status": "REQUIRES_FULL_APP_BUILD",
+      "standaloneCoverage": "Exact original GlobalSearchTextField UIKit control, with no source substitutions",
+      "appMembershipGate": "verify-otzaria-xcode-project.py",
+      "sourceHashes": {
+        "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift": "e28b7db9b430281b99463014b0e44956c89ec8d7cb52d83771d518b297f1feb6"
+      },
+      "componentSHA256": "a4c78e808d4337dfba867cacad8abd8f361afe3e6f2bdee86db512f63f187e2a",
+      "nativeUITestsExecuted": 0
+    }
+  },
+  "warnings": {
+    "reportedMainWarningCount": 2670,
+    "rawLogWarningLineOccurrences": 2688,
+    "uniqueFullWarningLines": 2021,
+    "byEntry": {
+      "toolbar-sdk-compile.log": 4,
+      "ui-acceptance-typecheck.annotation-exchange-compile.log": 10,
+      "ui-acceptance-typecheck.log": 2674
+    },
+    "errorLineOccurrences": 0,
+    "scope": "Raw log occurrences can repeat diagnostics across stages; these are not a sum of independent compiler warnings. Main report counts 2670; all original warning records are retained."
+  },
+  "boundaries": [
+    "Exact qualified registry ON source; this job does not exercise the d5 engine or full-v32 runtime",
+    "No complete app build or simulator launch in this job",
+    "No Native UI or physical device acceptance",
+    "No d5 occurrence runtime or new full-v32 acceptance probe executed here",
+    "Later Native88 commentary setup and DEBUG notes diagnostics, and later device deployment metadata receive no credit from this run"
+  ],
+  "sourceBindingReviewSHA256": "6b5ae4ba78f6138ffa21d273cb479efb493ce590b99a75afdf2e9e2d3067a0ec",
+  "rawArtifactReviewIsIntermediate": "Its NEXT_STEP source-binding field is superseded by the separate completed SOURCE_BINDING_REVIEW and this combined result; raw intermediate remains unchanged.",
+  "collectionOnly": "No compiler, engine, Native execution, CI dispatch/cancellation or duplicate watcher was started while collecting this evidence. The previously assigned sole finite watcher completed successfully."
+}
