@@ -1,0 +1,16 @@
+{
+  "status": "LOCAL_CONTROLS_PASS",
+  "new_cases": 41,
+  "unchanged_original_cases": 29,
+  "total_unique_methods": 70,
+  "raw_result": "raw/validation/focused-schema-v2/RESULT.json.gz",
+  "input_hashes_before": "raw/validation/focused-schema-v2/INPUTS_BEFORE.json.gz",
+  "input_hashes_after": "raw/validation/focused-schema-v2/INPUTS_AFTER.json.gz",
+  "inputs_unchanged": true,
+  "reviewed_base": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "application_M": "UNSELECTED",
+  "frozen_F": "UNSELECTED",
+  "workflow_activation": "NOT_PERFORMED",
+  "Apple": "NOT_RUN",
+  "Native": "NOT_RUN"
+}

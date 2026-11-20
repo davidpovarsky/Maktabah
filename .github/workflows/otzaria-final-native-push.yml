@@ -1,0 +1,182 @@
+# Prepared route only: runtime27-final-push.inputs.json is UNFINALIZED.
+# Root must finalize four original source pins and review this immutable branch before activation.
+name: Native116 original full matrix
+
+on:
+  push:
+    branches:
+      - codex/otzaria-final-native116-20261120
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  runtime27:
+    name: ${{ 'ui' == 'toc-transport' && 'Sefaria Apple Foundation transport55 (no Native UI)' || 'ui' == 'release' && 'Release build and prototype' || 'R27 real UI environment and acceptance' }}
+    if: ${{ github.repository == 'davidpovarsky/Maktabah' && github.event_name == 'push' && github.ref == 'refs/heads/codex/otzaria-final-native116-20261120' && (!false && ('ui' == 'probe' || 'ui' == 'ui' || 'ui' == 'release' || 'ui' == 'toc-transport')) }}
+    runs-on: xcode-27
+    timeout-minutes: ${{ 'ui' == 'toc-transport' && 15 || 'ui' == 'release' && 210 || 'ui' == 'probe' && 300 || 360 }}
+    outputs:
+      release-build-artifact: ${{ steps.release_build_upload.outputs.artifact-id }}
+      release-build-archive-sha: ${{ steps.release_build_pack.outputs.archive_sha256 }}
+    steps:
+      - name: Require isolated immutable runtime request
+        env:
+          REQUESTED_SHA: ${{ github.sha }}
+          CONFLICT: ${{ false || false || false || false || '' != '' || '' != '' || ('ui' == 'toc-transport' && false) }}
+        run: |
+          [[ "$REQUESTED_SHA" =~ ^[a-f0-9]{40}$ ]] || { echo "::error::R27 requires an exact checkout SHA"; exit 1; }
+          [[ "$CONFLICT" == false ]] || { echo "::error::R27 cannot combine unrelated modes"; exit 1; }
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Bind exact final push source (before)
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+        run: python3 Scripts/CI/runtime27_final_push.py --mode ui --stage native --phase before
+      - name: Select an existing SDK-matched runtime for the full device matrix
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
+      - name: Require all 55 Sefaria transport cases on actual Apple Foundation
+        if: ${{ 'ui' == 'ui' || 'ui' == 'release' || 'ui' == 'toc-transport' }}
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+        run: python3 Scripts/CI/sefaria-toc-apple55.py
+      - uses: actions/setup-node@v4
+        if: ${{ ('ui' == 'ui' || 'ui' == 'release') }}
+        with:
+          node-version: 22
+      - uses: ruby/setup-ruby@v1
+        if: ${{ ('ui' == 'ui' || 'ui' == 'release') }}
+        with:
+          ruby-version: '3.3'
+      - name: Read source-pinned Zayit build mode
+        id: zayit_source_mode
+        if: ${{ ('ui' == 'ui' || 'ui' == 'release') }}
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib
+          rebuild = json.loads(pathlib.Path('Scripts/CI/hq-stage2-focused-apple.inputs.json').read_text()).get('rebuild_zayit_framework', False)
+          assert type(rebuild) is bool
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('rebuild=' + str(rebuild).lower() + '\n')
+          PY
+      - name: Use Rust only for the reviewed matching Zayit build
+        if: ${{ steps.zayit_source_mode.outputs.rebuild == 'true' }}
+        uses: dtolnay/rust-toolchain@stable
+      - name: Key disposable compiler cache by real SDK and native inputs
+        id: runtime27_cache_key
+        if: ${{ ('ui' == 'ui' || 'ui' == 'release') }}
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          def git(path):
+              return subprocess.check_output(['git', 'rev-parse', 'HEAD:' + path])
+          inputs = json.loads(pathlib.Path('Scripts/CI/hq-stage2-focused-apple.inputs.json').read_text())
+          inputs.pop('application_source_sha')
+          inputs.pop('application_trees')
+          # A package resource-layout change must not restore an older copied
+          # Resources directory into a newly processed/signable bundle.
+          package_manifests = subprocess.check_output(['git', 'ls-files', '-z', 'Source/**/Package.swift']).decode().split('\0')
+          package_layout = b''.join(git(path) for path in package_manifests if path)
+          rust = subprocess.check_output(['rustc', '-Vv']) if inputs.get('rebuild_zayit_framework') else b''
+          native = (subprocess.check_output(['xcodebuild', '-version']) + git('Vendor') + git('Maktabah.xcodeproj')
+                    + pathlib.Path('Podfile').read_bytes() + json.dumps(inputs, sort_keys=True).encode() + package_layout + rust)
+          prefix = 'runtime27-derived-v2-' + hashlib.sha256(native).hexdigest() + '-'
+          key = prefix + hashlib.sha256(git('Source') + git('Maktabah-iOSUITests')).hexdigest()
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('prefix=' + prefix + '\nkey=' + key + '\n')
+          PY
+      - uses: actions/cache/restore@v4
+        id: runtime27_build_cache
+        if: ${{ ('ui' == 'ui' || 'ui' == 'release') }}
+        with:
+          path: build/DerivedData
+          key: ${{ steps.runtime27_cache_key.outputs.key }}
+          restore-keys: ${{ steps.runtime27_cache_key.outputs.prefix }}
+      - name: Inspect real Xcode27 tools or execute reviewed native cases
+        if: ${{ 'ui' != 'toc-transport' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+          RUNTIME27_MODE: ${{ 'ui' }}
+          RUNTIME27_RELEASE_STAGE: ${{ 'ui' == 'release' && 'build' || '' }}
+        run: python3 Scripts/CI/runtime27.py
+      - name: Bind exact final push source (after)
+        if: always()
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+        run: python3 Scripts/CI/runtime27_final_push.py --mode ui --stage native --phase after
+      - name: Bind original Debug and prototype products for sequential Release
+        id: release_build_pack
+        if: ${{ 'ui' == 'release' }}
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+        run: python3 Scripts/CI/runtime27-release-stages.py pack-build
+      - name: Upload exact Release build handoff
+        id: release_build_upload
+        if: ${{ 'ui' == 'release' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: runtime27-release-build-handoff
+          path: |
+            build/runtime27-handoff/build/build.json
+            build/runtime27-handoff/build/build.tar.gz
+          compression-level: 0
+          if-no-files-found: error
+      - name: Retain compiler cache only after an actual matching test build
+        id: runtime27_cache_ready
+        if: ${{ always() && ('ui' == 'ui' || 'ui' == 'release') }}
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib
+          path = pathlib.Path('build/hq-stage2/result.json')
+          report = json.loads(path.read_text()) if path.is_file() else {}
+          ready = report.get('status') == 'SIMULATOR_BUILD_FOR_REAL_UI_PASS' and report.get('checkout_sha') == os.environ['EXPECTED_CHECKOUT_SHA']
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('ready=' + str(ready).lower() + '\n')
+          PY
+      - uses: actions/cache/save@v4
+        if: ${{ always() && steps.runtime27_cache_ready.outputs.ready == 'true' && steps.runtime27_build_cache.outputs.cache-hit != 'true' }}
+        with:
+          path: build/DerivedData
+          key: ${{ steps.runtime27_cache_key.outputs.key }}
+      - name: Retain real runtime evidence including failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ 'ui' == 'toc-transport' && 'sefaria-toc-apple55-evidence' || 'ui' == 'release' && 'runtime27-release-build-evidence' || 'runtime27-evidence' }}
+          path: |
+            build/artifacts/
+            !build/artifacts/**/*.xcresult/**
+            !build/artifacts/**/*.mp4
+            !build/artifacts/visual-*/**
+            build/hq-stage2/*.json
+            build/hq-stage2/*Package.resolved
+            build/hq-stage2/*.log
+            build/hq-stage2/*.diff
+            build/hq-stage2/generated-Maktabah-project.pbxproj
+            build/hq-stage2/*.xcprivacy
+            build/hq-stage2/ExpoModulesProvider.swift
+            build/hq-stage2/resolved-Podfile.lock
+            build/hq-stage2/privacy-dependency-inputs/
+            build/hq-stage2/rebuilt-zayit/
+          if-no-files-found: error
+
+      - name: Retain original native result bundles and visual captures separately
+        if: ${{ always() && 'ui' != 'release' && 'ui' != 'toc-transport' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: runtime27-native-captures
+          path: |
+            build/artifacts/**/*.xcresult/**
+            build/artifacts/**/*.mp4
+            build/artifacts/visual-*/**
+          if-no-files-found: ignore

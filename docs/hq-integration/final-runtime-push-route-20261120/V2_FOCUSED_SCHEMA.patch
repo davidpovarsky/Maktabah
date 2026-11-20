@@ -1,0 +1,12 @@
+--- v1/Scripts/CI/runtime27_final_push.py
++++ v2/Scripts/CI/runtime27_final_push.py
+@@ -112,7 +112,8 @@
+     pins = [source_record(root, path, head) for path in PIN_PATHS]
+     require({row["path"]: row["sha256"] for row in pins} == pin_hashes, "Final original source pin differs")
+     inputs = json.loads((root / PIN_PATHS[0]).read_bytes())
+-    require(inputs.get("application_source_sha") == application and inputs.get("application_trees") == trees,
++    require(inputs.get("application_source_sha") == application
++            and inputs.get("application_trees") == {path: trees[path] for path in ("Source", "Vendor", "Maktabah.xcodeproj")},
+             "Original focused driver has a different application binding")
+     r27_sha = binding.get("reviewed_r27_sha256")
+     require(isinstance(r27_sha, str) and re.fullmatch("[a-f0-9]{64}", r27_sha), "Missing reviewed R27 source digest")

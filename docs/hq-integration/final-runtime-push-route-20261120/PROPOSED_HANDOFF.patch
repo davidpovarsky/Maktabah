@@ -1,0 +1,64 @@
+--- a/Scripts/CI/runtime27_release_handoff.py
++++ b/Scripts/CI/runtime27_release_handoff.py
+@@ -11,6 +11,8 @@
+ import subprocess
+ import tarfile
+ import zipfile
++
++import runtime27_final_push as final_push
+ 
+ PROTOCOL = "runtime27-release-handoff-v1"
+ REPOSITORY = "davidpovarsky/Maktabah"
+@@ -131,7 +133,7 @@
+         json.dumps(expected, sort_keys=True, separators=(",", ":")).encode()).hexdigest()}
+ 
+ 
+-def context(root):
++def _manual_context(root):
+     root = Path(root)
+     expected = os.environ.get("EXPECTED_CHECKOUT_SHA", "")
+     require(re.fullmatch("[a-f0-9]{40}", expected), "Missing immutable Release checkout")
+@@ -165,6 +167,13 @@
+         "runtime": {"identifier": runtime_id, "version": runtime["version"],
+                     "build": runtime.get("buildversion") or runtime.get("buildVersion")},
+     }
++
++
++def context(root):
++    if os.environ.get("GITHUB_EVENT_NAME") != "push":
++        return _manual_context(root)
++    final_push.environment_identity("release")
++    return final_push.release_context(root, _manual_context(root))
+ 
+ 
+ def resolve_carried_link(name, rows):
+@@ -341,11 +350,14 @@
+ 
+ def validate_artifact_metadata(metadata, run, jobs, expected_context, kind, artifact_id):
+     require(kind in KINDS and positive_integer(artifact_id), "Invalid handoff artifact request")
+-    require(positive_integer(run.get("id")) and positive_integer(run.get("run_attempt"))
+-            and run.get("id") == expected_context["run_id"] and run.get("run_attempt") == expected_context["run_attempt"]
+-            and run.get("head_sha") == expected_context["checkout_sha"]
+-            and run.get("event") == "workflow_dispatch" and run.get("path", "").split("@")[0] == WORKFLOW,
+-            "Handoff workflow source/attempt mismatch")
++    if "push_authority" in expected_context or expected_context.get("workflow") == final_push.ROUTES["release"]["workflow"]:
++        final_push.validate_release_run(run, expected_context)
++    else:
++        require(positive_integer(run.get("id")) and positive_integer(run.get("run_attempt"))
++                and run.get("id") == expected_context["run_id"] and run.get("run_attempt") == expected_context["run_attempt"]
++                and run.get("head_sha") == expected_context["checkout_sha"]
++                and run.get("event") == "workflow_dispatch" and run.get("path", "").split("@")[0] == WORKFLOW,
++                "Handoff workflow source/attempt mismatch")
+     origin = metadata.get("workflow_run", {})
+     require(metadata.get("id") == artifact_id and metadata.get("name") == KINDS[kind][0]
+             and metadata.get("expired") is False and origin.get("id") == expected_context["run_id"]
+@@ -408,5 +420,9 @@
+              "archive_sha256": expected_archive_sha, "receipt_sha256": digest(folder / (kind + ".json")),
+              "github_job_binding": "Digest/run/head/attempt and unique successful producer/upload interval; GitHub exposes no artifact job ID",
+              "full_release_acceptance": False}
++    if "push_authority" in expected_context:
++        proof["push_workflow"] = {"head_branch": run["head_branch"], **{
++            name: {key: run[name][key] for key in ["id", "full_name"]}
++            for name in ["repository", "head_repository"]}}
+     write_json(root / f"build/artifacts/runtime27/handoff-{kind}-import-{consumer}.json", proof)
+     return receipt

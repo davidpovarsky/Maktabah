@@ -1,0 +1,354 @@
+{
+  "base": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "original_workflow_git_blob": "ac42069b4dbbe57898c45e280513412c8df41ee7",
+  "routes": {
+    "ui": {
+      "path": ".github/workflows/otzaria-final-native-push.yml",
+      "jobs": {
+        "runtime27": {
+          "original_steps": 17,
+          "candidate_steps": 19,
+          "only_added_steps": [
+            "Bind exact final push source (before)",
+            "Bind exact final push source (after)"
+          ],
+          "complete_original_job_equal_after_exact_fixed_input_specialization_and_guard_removal": true,
+          "timeout": "${{ 'ui' == 'toc-transport' && 15 || 'ui' == 'release' && 210 || 'ui' == 'probe' && 300 || 360 }}",
+          "needs": null,
+          "outputs": {
+            "release-build-artifact": "${{ steps.release_build_upload.outputs.artifact-id }}",
+            "release-build-archive-sha": "${{ steps.release_build_pack.outputs.archive_sha256 }}"
+          },
+          "steps": [
+            {
+              "name": "Require isolated immutable runtime request",
+              "uses": null,
+              "id": null
+            },
+            {
+              "name": null,
+              "uses": "actions/checkout@v4",
+              "id": null
+            },
+            {
+              "name": "Select an existing SDK-matched runtime for the full device matrix",
+              "uses": null,
+              "id": null
+            },
+            {
+              "name": "Require all 55 Sefaria transport cases on actual Apple Foundation",
+              "uses": null,
+              "id": null
+            },
+            {
+              "name": null,
+              "uses": "actions/setup-node@v4",
+              "id": null
+            },
+            {
+              "name": null,
+              "uses": "ruby/setup-ruby@v1",
+              "id": null
+            },
+            {
+              "name": "Read source-pinned Zayit build mode",
+              "uses": null,
+              "id": "zayit_source_mode"
+            },
+            {
+              "name": "Use Rust only for the reviewed matching Zayit build",
+              "uses": "dtolnay/rust-toolchain@stable",
+              "id": null
+            },
+            {
+              "name": "Key disposable compiler cache by real SDK and native inputs",
+              "uses": null,
+              "id": "runtime27_cache_key"
+            },
+            {
+              "name": null,
+              "uses": "actions/cache/restore@v4",
+              "id": "runtime27_build_cache"
+            },
+            {
+              "name": "Inspect real Xcode27 tools or execute reviewed native cases",
+              "uses": null,
+              "id": null
+            },
+            {
+              "name": "Bind original Debug and prototype products for sequential Release",
+              "uses": null,
+              "id": "release_build_pack"
+            },
+            {
+              "name": "Upload exact Release build handoff",
+              "uses": "actions/upload-artifact@v4",
+              "id": "release_build_upload"
+            },
+            {
+              "name": "Retain compiler cache only after an actual matching test build",
+              "uses": null,
+              "id": "runtime27_cache_ready"
+            },
+            {
+              "name": null,
+              "uses": "actions/cache/save@v4",
+              "id": null
+            },
+            {
+              "name": "Retain real runtime evidence including failure",
+              "uses": "actions/upload-artifact@v4",
+              "id": null
+            },
+            {
+              "name": "Retain original native result bundles and visual captures separately",
+              "uses": "actions/upload-artifact@v4",
+              "id": null
+            }
+          ]
+        }
+      },
+      "push": {
+        "branches": [
+          "codex/otzaria-final-native116-20261120"
+        ]
+      },
+      "permissions": {
+        "contents": "read",
+        "actions": "read"
+      },
+      "cancel_in_progress": "false"
+    },
+    "release": {
+      "path": ".github/workflows/otzaria-final-release-push.yml",
+      "jobs": {
+        "runtime27": {
+          "original_steps": 17,
+          "candidate_steps": 19,
+          "only_added_steps": [
+            "Bind exact final push source (before)",
+            "Bind exact final push source (after)"
+          ],
+          "complete_original_job_equal_after_exact_fixed_input_specialization_and_guard_removal": true,
+          "timeout": "${{ 'release' == 'toc-transport' && 15 || 'release' == 'release' && 210 || 'release' == 'probe' && 300 || 360 }}",
+          "needs": null,
+          "outputs": {
+            "release-build-artifact": "${{ steps.release_build_upload.outputs.artifact-id }}",
+            "release-build-archive-sha": "${{ steps.release_build_pack.outputs.archive_sha256 }}"
+          },
+          "steps": [
+            {
+              "name": "Require isolated immutable runtime request",
+              "uses": null,
+              "id": null
+            },
+            {
+              "name": null,
+              "uses": "actions/checkout@v4",
+              "id": null
+            },
+            {
+              "name": "Select an existing SDK-matched runtime for the full device matrix",
+              "uses": null,
+              "id": null
+            },
+            {
+              "name": "Require all 55 Sefaria transport cases on actual Apple Foundation",
+              "uses": null,
+              "id": null
+            },
+            {
+              "name": null,
+              "uses": "actions/setup-node@v4",
+              "id": null
+            },
+            {
+              "name": null,
+              "uses": "ruby/setup-ruby@v1",
+              "id": null
+            },
+            {
+              "name": "Read source-pinned Zayit build mode",
+              "uses": null,
+              "id": "zayit_source_mode"
+            },
+            {
+              "name": "Use Rust only for the reviewed matching Zayit build",
+              "uses": "dtolnay/rust-toolchain@stable",
+              "id": null
+            },
+            {
+              "name": "Key disposable compiler cache by real SDK and native inputs",
+              "uses": null,
+              "id": "runtime27_cache_key"
+            },
+            {
+              "name": null,
+              "uses": "actions/cache/restore@v4",
+              "id": "runtime27_build_cache"
+            },
+            {
+              "name": "Inspect real Xcode27 tools or execute reviewed native cases",
+              "uses": null,
+              "id": null
+            },
+            {
+              "name": "Bind original Debug and prototype products for sequential Release",
+              "uses": null,
+              "id": "release_build_pack"
+            },
+            {
+              "name": "Upload exact Release build handoff",
+              "uses": "actions/upload-artifact@v4",
+              "id": "release_build_upload"
+            },
+            {
+              "name": "Retain compiler cache only after an actual matching test build",
+              "uses": null,
+              "id": "runtime27_cache_ready"
+            },
+            {
+              "name": null,
+              "uses": "actions/cache/save@v4",
+              "id": null
+            },
+            {
+              "name": "Retain real runtime evidence including failure",
+              "uses": "actions/upload-artifact@v4",
+              "id": null
+            },
+            {
+              "name": "Retain original native result bundles and visual captures separately",
+              "uses": "actions/upload-artifact@v4",
+              "id": null
+            }
+          ]
+        },
+        "runtime27-release-native": {
+          "original_steps": 7,
+          "candidate_steps": 9,
+          "only_added_steps": [
+            "Bind exact final push source (before)",
+            "Bind exact final push source (after)"
+          ],
+          "complete_original_job_equal_after_exact_fixed_input_specialization_and_guard_removal": true,
+          "timeout": "345",
+          "needs": "runtime27",
+          "outputs": {
+            "release-native-artifact": "${{ steps.release_native_upload.outputs.artifact-id }}",
+            "release-native-archive-sha": "${{ steps.release_native_pack.outputs.archive_sha256 }}"
+          },
+          "steps": [
+            {
+              "name": null,
+              "uses": "actions/checkout@v4",
+              "id": null
+            },
+            {
+              "name": "Select the identical installed SDK and runtime",
+              "uses": null,
+              "id": null
+            },
+            {
+              "name": "Execute the complete matrix with the original Debug products",
+              "uses": null,
+              "id": null
+            },
+            {
+              "name": "Bind complete native evidence without granting Release",
+              "uses": null,
+              "id": "release_native_pack"
+            },
+            {
+              "name": "Upload exact Release native handoff",
+              "uses": "actions/upload-artifact@v4",
+              "id": "release_native_upload"
+            },
+            {
+              "name": "Retain partial native evidence including failure",
+              "uses": "actions/upload-artifact@v4",
+              "id": null
+            },
+            {
+              "name": "Retain original native results and visual captures",
+              "uses": "actions/upload-artifact@v4",
+              "id": null
+            }
+          ]
+        },
+        "runtime27-release-production": {
+          "original_steps": 9,
+          "candidate_steps": 11,
+          "only_added_steps": [
+            "Bind exact final push source (before)",
+            "Bind exact final push source (after)"
+          ],
+          "complete_original_job_equal_after_exact_fixed_input_specialization_and_guard_removal": true,
+          "timeout": "300",
+          "needs": [
+            "runtime27",
+            "runtime27-release-native"
+          ],
+          "outputs": {},
+          "steps": [
+            {
+              "name": null,
+              "uses": "actions/checkout@v4",
+              "id": null
+            },
+            {
+              "name": "Select the identical installed SDK and runtime",
+              "uses": null,
+              "id": null
+            },
+            {
+              "name": null,
+              "uses": "actions/setup-node@v4",
+              "id": null
+            },
+            {
+              "name": null,
+              "uses": "ruby/setup-ruby@v1",
+              "id": null
+            },
+            {
+              "name": "Read the unchanged source-pinned Zayit build mode",
+              "uses": null,
+              "id": "release_zayit_source_mode"
+            },
+            {
+              "name": "Use Rust only for the reviewed matching Zayit build",
+              "uses": "dtolnay/rust-toolchain@stable",
+              "id": null
+            },
+            {
+              "name": "Run original native provisioning and same-container Release upgrade",
+              "uses": null,
+              "id": null
+            },
+            {
+              "name": "Retain final strict Release evidence including failure",
+              "uses": "actions/upload-artifact@v4",
+              "id": null
+            },
+            {
+              "name": "Retain original production Release results and captures",
+              "uses": "actions/upload-artifact@v4",
+              "id": null
+            }
+          ]
+        }
+      },
+      "push": {
+        "branches": [
+          "codex/otzaria-final-release114-20261120"
+        ]
+      },
+      "permissions": {
+        "contents": "read",
+        "actions": "read"
+      },
+      "cancel_in_progress": "false"
+    }
+  }
+}

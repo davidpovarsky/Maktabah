@@ -1,0 +1,20 @@
+{
+  "reviewed_at": "2026-11-20T16:32:46.925744+00:00",
+  "original_source": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "integration_base": "fcb1b7034d0d1c722a5f9010e06243838f2db873",
+  "all70_packet_files_hash_verified": true,
+  "canonical_original_sources_verified": [
+    ".github/workflows/sefaria-embedded-validation.yml",
+    "Scripts/CI/runtime27_release_handoff.py",
+    "Scripts/CI/runtime27.py",
+    "Scripts/CI/test-runtime27-release-handoff.py"
+  ],
+  "whole_workflows_and_new_guard_read": true,
+  "original_handoff_delta": "Exact five hunks; complete manual body and artifact/producer/receipt checks preserved",
+  "root_found_and_resolved": "V1 admitted four-tree HQ input but original expected_build_report requires three. V2 keeps four-tree M/HEAD/binding checks and exact original three-tree focused mapping. Original drivers/stages unchanged.",
+  "retained_counterexample": "Four discriminating controls on old guard:2PASS/1FAIL/1ERROR; actual repaired41+unchanged29=70PASS by A; Root replayed sealed evidence only",
+  "full_original_job_preservation": "Original commands, selected cases, groups, waits, budgets, outputs and same-run producer/consumer chain preserved; only exact push authority and before/after source guards added",
+  "finalization": "UNFINALIZED; M/F/Native116/Release114 activation not selected. Freeze must update four original pin files, sole R27 digest literal in otherwise original runtime27.py, and new finalized binding. HQ inputs retain exactly3 application trees; binding retains4 includingUITests.",
+  "Apple_Native_Release": "NOT_RUN",
+  "independent_C_review": "Both original proposal and exact v2 schema correction source-reviewed"
+}

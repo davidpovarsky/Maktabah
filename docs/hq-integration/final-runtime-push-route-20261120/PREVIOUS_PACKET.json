@@ -1,0 +1,8 @@
+{
+  "directory": "/workspace/scratch/8c31d602ec0a/final-runtime-push-route-20261120",
+  "index_sha256": "671e5414b7db58c9dacf2b4a131b4c520c300b93c2d5f270b5ad14a531f1a554",
+  "index_git_blob": "06c806c2ce5e5bfdae2ef476d04845e25637bc92",
+  "payloads": 51,
+  "actual_controls": 66,
+  "outcome": "preserved unchanged; source-review defect in proposed new focused-input schema identified before activation"
+}

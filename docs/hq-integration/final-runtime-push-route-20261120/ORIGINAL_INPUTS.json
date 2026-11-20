@@ -1,0 +1,22 @@
+[
+  {
+    "path": "Scripts/CI/runtime27_release_handoff.py",
+    "git_blob": "a26c0b401b6b5d77d3c298110e531ba32b606bae"
+  },
+  {
+    "path": "Scripts/CI/runtime27-release-stages.py",
+    "git_blob": "4efabe67456a3246a1ddf09eadc0b704b8e297c0"
+  },
+  {
+    "path": "Scripts/CI/test-runtime27-release-handoff.py",
+    "git_blob": "d94cd67e4ae134624e6ae4580538b5347463b4d2"
+  },
+  {
+    "path": "Scripts/CI/test-runtime27-release-stages.py",
+    "git_blob": "26c5b62bf148a16150926d5da478b70cdecc01e7"
+  },
+  {
+    "path": "Scripts/CI/test-runtime27-release-producer.py",
+    "git_blob": "cba67f964e6cc3100b2795f023c4bdca8c8e94a5"
+  }
+]

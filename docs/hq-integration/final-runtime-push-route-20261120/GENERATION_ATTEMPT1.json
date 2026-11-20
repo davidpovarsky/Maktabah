@@ -1,0 +1,9 @@
+{
+  "status": "SETUP_FAILED_BEFORE_WORKFLOW_OUTPUT",
+  "error_type": "KeyError",
+  "error_value": "json",
+  "cause": "Initial broad input token regex also encountered inputs.json filename; no workflow output was produced",
+  "correction": "Only GitHub expression blocks are specialized; original run-body equality is covered by an executed control",
+  "tests_executed": 0,
+  "not_a_native_or_product_failure": true
+}

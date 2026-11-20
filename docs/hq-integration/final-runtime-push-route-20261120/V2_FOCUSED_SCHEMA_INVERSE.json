@@ -1,0 +1,18 @@
+{
+  "source": "Scripts/CI/runtime27_final_push.py",
+  "before": {
+    "bytes": 12750,
+    "sha256": "765fb9f07080337065486af032ef6802c3129c601721baa68d306f14b55e4e00",
+    "git_blob": "676e17cb32caa25d1c0ba69fe4ddcff936f2a9e1"
+  },
+  "after": {
+    "bytes": 12831,
+    "sha256": "169442e78d84528df8965fc18c6454a93b8dbd10201eb839df362779598c8bbf",
+    "git_blob": "c19b327df0f08272710f7dd2d473bbf0ee579545"
+  },
+  "whole_inverse_exact": true,
+  "changed_semantics": "HQ focused inputs keep exactly3 original product trees; separate final binding/HEAD/application still require4 including UITests",
+  "original_stage_blob": "4efabe67456a3246a1ddf09eadc0b704b8e297c0",
+  "original_stage_unchanged": true,
+  "no_other_runtime_delta": true
+}
