@@ -1,0 +1,57 @@
+{
+  "observed_at": "2026-11-20T00:02:15.075590+00:00",
+  "source_ref": "0bc6be41f03855412d7dd24ee72608a7824fb5a7",
+  "source_commit": "0bc6be41f03855412d7dd24ee72608a7824fb5a7",
+  "source_files": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "208780da44d40a0c91edcff3e00f025f3482d0fd8963ea8c8a0e4138a9bcb360",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "c466401f684633ab0d6b5d03c1c5dce6645bd050b09986c04b905e7ec9bfdfe0",
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift": "d1512a48d2688576a32a936a3d3682d4893a23a39b8e98525c941dc7d6aefce7"
+  },
+  "extracted_owner_sha256": "7a0c900f12020eca235acd2c672af79fba48a5009e7010f167caca4e98078c88",
+  "extracted_callback_sha256": "4bbc38d994ed564c3311115c64324ee998341549678f839f4c968d526ac8737b",
+  "compiled_setter_sha256": "0bc41b922a3e3483b71fde26c7b5af99d9b3e3597b637f9c74b0ee4c912f8852",
+  "fixture_sha256": "02acd0726443c6c2ef3891e3a771ff114a73d8025bbdfe7abb5051dae03afa17",
+  "driver_sha256": "89fb1fd69fe8e698ff6dbeaf2d16b4840e967f4af9137d81341c1e7099bff682",
+  "generated_unit_sha256": "4ff80b614bfcd06e92e2fa3fb90b100dde7d7dab39006d68e6a556d071578e3b",
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-parse-as-library",
+    "C:\\Users\\DAVID\\Code\\Maktabah-note-editor-lifecycle-20261120\\build\\note-editor-lifecycle-20261120\\red-same-driver\\ExactNoteEditorOwner.swift",
+    "-o",
+    "C:\\Users\\DAVID\\Code\\Maktabah-note-editor-lifecycle-20261120\\build\\note-editor-lifecycle-20261120\\red-same-driver\\note-editor-owner.exe"
+  ],
+  "compiler": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "compile_exit": 0,
+  "warnings": 0,
+  "test_exit": 1,
+  "passed": [
+    "live_original_editor_attaches",
+    "new_presentation_is_accepted_after_retirement",
+    "owner_replacement_ignores_old_owner_id",
+    "reader_replacement_ignores_old_reader",
+    "current_sheet_blocks_until_dismissal",
+    "present_keeps_original_unsaved_binding_and_rejects_saved_annotation",
+    "dismissal_does_not_clear_live_new_draft"
+  ],
+  "failed": [
+    "old_disappearance_cannot_clear_new_editor",
+    "old_creation_cannot_replace_new_editor",
+    "late_creation_after_dismissal_stays_inactive",
+    "disappearance_before_creation_is_terminal",
+    "stale_callbacks_do_not_invalidate_scene",
+    "identical_unsaved_values_have_distinct_presentations"
+  ],
+  "integration_source_checks": {
+    "presentation_argument_is_bound": false,
+    "workspace_has_one_original_annotation_assignment": false,
+    "callback_captures_presentation_before_async_creation": false,
+    "owner_reads_live_presentation_id": false,
+    "original_binding_uses_actual_setter": false
+  },
+  "status": "FAIL",
+  "native_passes": 0,
+  "boundary": "Exact original app owner and callback, plus candidate workspace setter (private widened only in the fixture). Real Swift 6/MainActor execution; explicit UIKit, SwiftUI Binding, Reader, Annotation and scene revision doubles. Historical API adapter passes no presentation identity to original source. No native UIKit lifecycle scheduling, presentation, visibility, persistence, Core or device acceptance."
+}
