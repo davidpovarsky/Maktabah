@@ -1,0 +1,74 @@
+{
+  "selection_source": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+  "native116_count": 116,
+  "release114_count": 114,
+  "cases": [
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "native116_selected": false,
+      "release114_selections": [
+        {
+          "configuration": "ipad11-native",
+          "device_size": "11",
+          "array_index": 19
+        },
+        {
+          "configuration": "ipad13-native",
+          "device_size": "13",
+          "array_index": 19
+        }
+      ],
+      "focused4_selected": false,
+      "candidate_native_result": "NOT_RUN"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "native116_selected": false,
+      "release114_selections": [
+        {
+          "configuration": "ipad11-native",
+          "device_size": "11",
+          "array_index": 20
+        },
+        {
+          "configuration": "ipad13-native",
+          "device_size": "13",
+          "array_index": 20
+        }
+      ],
+      "focused4_selected": false,
+      "candidate_native_result": "NOT_RUN"
+    }
+  ],
+  "freeze_requirement": "Keep both original cases in ipad11-native and ipad13-native on the final Release114 source; Native116 and Focused4 do not qualify these two cases.",
+  "additional_original_regressions_retained": [
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+      "release_configurations": [
+        "ipad11-native",
+        "ipad13-native"
+      ]
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+      "release_configurations": [
+        "ipad11-native",
+        "ipad13-native"
+      ]
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+      "release_configurations": [
+        "ipad11-native",
+        "ipad13-native"
+      ]
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+      "release_configurations": [
+        "ipad11-native",
+        "ipad13-native"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "repository": "davidpovarsky/Maktabah",
+  "base_commit": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+  "base_tree": "bb8b437d54b632c86273ead54780d571e125442e",
+  "inputs": [
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "commit": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+      "git_blob": "bf44a7546bd360c5813e108d4e70e9ce85af3271",
+      "bytes": 21392,
+      "sha256": "ded371540b4c49a8dc6f9603ca53b42b5bd4e0de83f2d05adaa09616e0828518",
+      "retained": "raw/iPadLayout.swift.gz"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/R27_CASES.json",
+      "commit": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+      "git_blob": "a9e3a9e0895e111df1613c3146bd83ab3b79a713",
+      "bytes": 200381,
+      "sha256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3",
+      "retained": "raw/R27_CASES.json.gz"
+    },
+    {
+      "path": "Scripts/CI/runtime27-release-manifest.json",
+      "commit": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+      "git_blob": "ef60f21746534660cfc947b349b4b1fa860fe3ee",
+      "bytes": 56247,
+      "sha256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f",
+      "retained": "raw/runtime27-release-manifest.json.gz"
+    }
+  ],
+  "unchanged_original_tests": {
+    "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "git_blob": "35a80632725ecd4af8ae5e783f6ae85479c24777",
+    "sha256": "e40e558225e318f614582b5af8466077d81991eecfc254ebcfd149f3cc2a95a0",
+    "retained_in_existing_focused_packet": "https://github.com/davidpovarsky/Maktabah/tree/d5d7928fed2b0a6324d07c5595af10413ac58f8e/docs/hq-integration/reader-inspector-focused-native-20261120"
+  },
+  "source_only_review": {
+    "root": "Reviewed whole patch and iPadLayout; no source blocker reported.",
+    "swift_or_native_execution": false
+  }
+}

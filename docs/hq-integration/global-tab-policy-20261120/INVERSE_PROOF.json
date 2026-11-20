@@ -1,0 +1,20 @@
+{
+  "base_commit": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+  "path": "Source/UI/iOS/Views/iPadLayout.swift",
+  "base_blob": "bf44a7546bd360c5813e108d4e70e9ce85af3271",
+  "base_sha256": "ded371540b4c49a8dc6f9603ca53b42b5bd4e0de83f2d05adaa09616e0828518",
+  "candidate_blob": "a22264dfb0ffec5e19365861914c14c325188dd8",
+  "candidate_sha256": "6a9a754f35e4603f273a5c4f83214efb84e77f49274192d88fd003fc17cba09f",
+  "candidate_bytes": 22498,
+  "whole_file_inverse_exact": true,
+  "inverse_sha256": "ded371540b4c49a8dc6f9603ca53b42b5bd4e0de83f2d05adaa09616e0828518",
+  "moved_original_visibility_expression": true,
+  "global_tab_boundaries": 5,
+  "branch_changes_only_on_feature_enablement": true,
+  "unchanged_reader_selected_tab_state_and_calls": true,
+  "app_or_test_run": false,
+  "root_cause": "NOT_PROVEN: source ownership correction requires original Native geometry and Reader collapse/restore qualification",
+  "swift_parse": "NOT_RUN: no local swiftc",
+  "swift_or_apple_compile": "NOT_RUN",
+  "native_cases_executed": 0
+}

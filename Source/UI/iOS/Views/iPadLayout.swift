@@ -35,30 +35,44 @@ struct iPadLayout: View {
         reduceMotion ? nil : .spring(response: 0.34, dampingFraction: 0.90)
     }
 
+    // The active global tab supplies its own preference. An offscreen Reader
+    // must not be the only publisher of the enclosing tab bar's policy.
+    private var globalTabBarVisibility: Visibility? {
+        guard ChavrusaTextReaderUI.isEnabled else { return nil }
+        return selectedTab == .viewer
+            ? (sidebar.navigationChrome.isVisible ? .visible : .hidden)
+            : .automatic
+    }
+
     var body: some View {
         TabView(selection: $selectedTab) {
             Tab(iOSTab.viewer.title, systemImage: iOSTab.viewer.icon, value: .viewer) {
                 viewerTabContent
+                    .modifier(GlobalTabBarVisibility(visibility: globalTabBarVisibility))
             }
 
             if iOSTab.search.isAvailable(for: backendCoordinator.activeCapabilities) {
                 Tab(iOSTab.search.title, systemImage: iOSTab.search.icon, value: .search) {
                     searchTabContent
+                        .modifier(GlobalTabBarVisibility(visibility: globalTabBarVisibility))
                 }
             }
 
             if iOSTab.author.isAvailable(for: backendCoordinator.activeCapabilities) {
                 Tab(iOSTab.author.title, systemImage: iOSTab.author.icon, value: .author) {
                     authorTabContent
+                        .modifier(GlobalTabBarVisibility(visibility: globalTabBarVisibility))
                 }
             }
 
             Tab(iOSTab.annotations.title, systemImage: iOSTab.annotations.icon, value: .annotations) {
                 annotationsTabContent
+                    .modifier(GlobalTabBarVisibility(visibility: globalTabBarVisibility))
             }
 
             Tab(iOSTab.history.title, systemImage: iOSTab.history.icon, value: .history) {
                 historyTabContent
+                    .modifier(GlobalTabBarVisibility(visibility: globalTabBarVisibility))
             }
         }
         .themeTint()
@@ -161,13 +175,6 @@ struct iPadLayout: View {
         .background(Color.appBackground.ignoresSafeArea())
         .environment(\.chavrusaReaderSidebar, sidebar)
         .environment(\.chavrusaReaderNavigationChromeVisible, sidebar.navigationChrome.isVisible)
-        // Reader chrome must not set the enclosing TabView policy for another global tab.
-        .toolbarVisibility(
-            selectedTab == .viewer
-                ? (sidebar.navigationChrome.isVisible ? .visible : .hidden)
-                : .automatic,
-            for: .tabBar
-        )
         .background {
             ReaderSceneIdentityReader(
                 observeWindow: { owner, window in
@@ -498,5 +505,21 @@ struct iPadLayout: View {
         .toolbarBackground(Color.appBackground, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .background(Color.appBackground)
+    }
+}
+
+/// A direct global-tab content boundary, above each tab's original navigation
+/// and any nested sidebar pager. Only the feature gate changes this branch;
+/// selecting another tab changes the value, without replacing its content.
+private struct GlobalTabBarVisibility: ViewModifier {
+    let visibility: Visibility?
+
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if let visibility {
+            content.toolbarVisibility(visibility, for: .tabBar)
+        } else {
+            content
+        }
     }
 }

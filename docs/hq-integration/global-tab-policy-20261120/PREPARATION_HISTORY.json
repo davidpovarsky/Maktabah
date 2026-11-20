@@ -1,0 +1,6 @@
+{
+  "production_candidate_changed_during_packaging": false,
+  "initial_source_authority_lookup": "Assembly stopped: the retained Git tree is non-recursive. Corrected by fetching both exact selection files at M8ff and binding their actual Git blob IDs.",
+  "first_generic_inverse_verifier": "Rejected non-unique generated context anchors for repeated modifier insertions. The retained original source inverse had already passed; the verifier now binds each insertion to its original tab content line.",
+  "swift_or_native_executions_in_either_attempt": 0
+}

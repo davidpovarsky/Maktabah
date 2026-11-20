@@ -1,0 +1,26 @@
+{
+  "historical_run": 44723918854,
+  "historical_frozen_source": "60a57972acb28739ec738565083bf17fb7503028",
+  "historical_app_source": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+  "observed_ipad11": {
+    "landscape": "FAIL",
+    "portrait": "FAIL",
+    "assertion": "86.0 != 106.0 +/- 1.0 navigation minY"
+  },
+  "authenticated_capture_packet": "../release96-capture-result-44783201113-20261120/README.md",
+  "capture_processor_run": 44783201113,
+  "capture_processing_native_executions": 0,
+  "capture_processor_small_artifact": 14652429659,
+  "capture_processor_small_artifact_sha256": "0715dcfc3e64e39bd1c549201951185928f93622807fb25947fa217fcbda277b",
+  "cause_limit": "Retained AX/screens show the displacement, not the effective SwiftUI preference or controller safe-area state. The policy ownership defect is source-based; causation and repair remain unqualified.",
+  "native_candidate_executions": 0,
+  "swift_parse": "NOT_RUN",
+  "apple_typecheck": "NOT_RUN",
+  "unchanged": [
+    "original navigation/reader state",
+    "all original nested sidebar pager bodies",
+    "all test cases/assertions/deadlines",
+    "geometry/safe-area/padding",
+    "Vendor/SDK/project/workflows"
+  ]
+}

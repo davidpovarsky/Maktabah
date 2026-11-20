@@ -1,0 +1,37 @@
+{
+  "path": "Source/UI/iOS/Views/iPadLayout.swift",
+  "replacements": [
+    {
+      "before": "\n",
+      "after": "\n    // The active global tab supplies its own preference. An offscreen Reader\n    // must not be the only publisher of the enclosing tab bar's policy.\n    private var globalTabBarVisibility: Visibility? {\n        guard ChavrusaTextReaderUI.isEnabled else { return nil }\n        return selectedTab == .viewer\n            ? (sidebar.navigationChrome.isVisible ? .visible : .hidden)\n            : .automatic\n    }\n\n"
+    },
+    {
+      "before": "                viewerTabContent\n",
+      "after": "                viewerTabContent\n                    .modifier(GlobalTabBarVisibility(visibility: globalTabBarVisibility))\n"
+    },
+    {
+      "before": "                    searchTabContent\n",
+      "after": "                    searchTabContent\n                        .modifier(GlobalTabBarVisibility(visibility: globalTabBarVisibility))\n"
+    },
+    {
+      "before": "                    authorTabContent\n",
+      "after": "                    authorTabContent\n                        .modifier(GlobalTabBarVisibility(visibility: globalTabBarVisibility))\n"
+    },
+    {
+      "before": "                annotationsTabContent\n",
+      "after": "                annotationsTabContent\n                    .modifier(GlobalTabBarVisibility(visibility: globalTabBarVisibility))\n"
+    },
+    {
+      "before": "                historyTabContent\n",
+      "after": "                historyTabContent\n                    .modifier(GlobalTabBarVisibility(visibility: globalTabBarVisibility))\n"
+    },
+    {
+      "before": "        // Reader chrome must not set the enclosing TabView policy for another global tab.\n        .toolbarVisibility(\n            selectedTab == .viewer\n                ? (sidebar.navigationChrome.isVisible ? .visible : .hidden)\n                : .automatic,\n            for: .tabBar\n        )\n        .background {\n",
+      "after": "        .background {\n"
+    },
+    {
+      "before": "}\n",
+      "after": "}\n\n/// A direct global-tab content boundary, above each tab's original navigation\n/// and any nested sidebar pager. Only the feature gate changes this branch;\n/// selecting another tab changes the value, without replacing its content.\nprivate struct GlobalTabBarVisibility: ViewModifier {\n    let visibility: Visibility?\n\n    @ViewBuilder\n    func body(content: Content) -> some View {\n        if let visibility {\n            content.toolbarVisibility(visibility, for: .tabBar)\n        } else {\n            content\n        }\n    }\n}\n"
+    }
+  ]
+}

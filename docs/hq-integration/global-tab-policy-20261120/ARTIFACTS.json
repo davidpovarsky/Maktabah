@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "base_commit": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+  "files": [
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "bytes": 22498,
+      "sha256": "6a9a754f35e4603f273a5c4f83214efb84e77f49274192d88fd003fc17cba09f",
+      "git_blob": "a22264dfb0ffec5e19365861914c14c325188dd8"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-policy-20261120/EVIDENCE_BOUNDARY.json",
+      "bytes": 1195,
+      "sha256": "caf45ec7a36785837918c4b262c17b93a33444ceaa6420cae7d6e3471afb7697",
+      "git_blob": "7f1bc012375eaf627d3ab7c9ce8fb7eea0aece2a"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-policy-20261120/EXACT_EDIT.json",
+      "bytes": 2642,
+      "sha256": "aeb5a7d85ffea505c179eb1e0ca9331e77a617534d3aa6f320c370bf12725fce",
+      "git_blob": "1bb5d673c3f8d3c236e862e8cc8ae63bbc056779"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-policy-20261120/INVERSE_PROOF.json",
+      "bytes": 1029,
+      "sha256": "a3ff5852bd2e3cafd14c5bbea9cc721ae4a77424f089e3aa9f6b7a9b25e69cc0",
+      "git_blob": "f7de4aff92290377946fa969ca8e2d49e3714f66"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-policy-20261120/PREPARATION_HISTORY.json",
+      "bytes": 556,
+      "sha256": "7e314fd2fdd78811008b96dea31e4873775d57899b9ebd31349db300e09d792c",
+      "git_blob": "bf562d4f6f9cea03b635068c9c4f614eef582ca0"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-policy-20261120/PROPOSED.patch",
+      "bytes": 3404,
+      "sha256": "f1b74693dda89a25dea215931a1360eb660689c3dfdff39daf6b54d4703d9da2",
+      "git_blob": "eb54d2e42f3f3f3c074ef66d97b3e017afe90242"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-policy-20261120/README.md",
+      "bytes": 3603,
+      "sha256": "90a9fea92aaf7bd2a75870b05c4454931f0a9eeac6f90317a10af4e0cdd62ff5",
+      "git_blob": "1a6728d54e8e54f676084aa8709e5f268f4c0f2a"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-policy-20261120/SELECTION_CROSSWALK.json",
+      "bytes": 2281,
+      "sha256": "7ed4563d75727f50d1d988dac9302919af0a674bdaffc151974ceffb47d888bc",
+      "git_blob": "dd32461667d8ae10e35dd840f96d6d342cf3ae52"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-policy-20261120/SOURCE_AUTHORITY.json",
+      "bytes": 1824,
+      "sha256": "3da9864fd051e9aa8f9e1b005b58e14ffbcc7a0c16c5bd3047c454ac4e0d02bc",
+      "git_blob": "d9955e21509d17c6c5eeb28b52adc2cfd7523477"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-policy-20261120/raw/R27_CASES.json.gz",
+      "bytes": 39232,
+      "sha256": "f7a328df9c28c0a33618ffddcb532181e50c89a9877126efb09c7559f5c69b34",
+      "git_blob": "6b3d03f661499209929feca749b309bd83ec588c"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-policy-20261120/raw/iPadLayout.swift.gz",
+      "bytes": 4233,
+      "sha256": "5537dbda211686906d45024051d49f3ae71047d57575ba582d8ad9f54b165b77",
+      "git_blob": "6a39225fbf19f4cfea057a9dc7fbdce0d6914d5b"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-policy-20261120/raw/runtime27-release-manifest.json.gz",
+      "bytes": 11910,
+      "sha256": "ade682cc51b30a67252391477857cea465f66bb7ad1dfc1c48c60494523f93c9",
+      "git_blob": "42805c59d2f19ae8b30b1d0ed2de290527e513ab"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-policy-20261120/verify_packet.py",
+      "bytes": 3090,
+      "sha256": "c66346ecfea888bb6d424daf23264f9551037dd9a2c270a238cf4b0fb183e477",
+      "git_blob": "dd4cd3ce8e916ce320aec6a7601b26036a755b8a"
+    }
+  ]
+}

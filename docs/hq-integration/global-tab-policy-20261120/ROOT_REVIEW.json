@@ -1,0 +1,29 @@
+{
+  "root_merge_base": "f3a3ee3f7d69ce891255734cf46a0f25350fb81b",
+  "root_merge_tree": "92c4ced30c0d4057d79309f79f14395b08943ad4",
+  "source_inputs": [
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "git_blob": "bf44a7546bd360c5813e108d4e70e9ce85af3271",
+      "bytes": 21392
+    },
+    {
+      "path": "docs/hq-integration/runtime27/R27_CASES.json",
+      "git_blob": "a9e3a9e0895e111df1613c3146bd83ab3b79a713",
+      "bytes": 200381
+    },
+    {
+      "path": "Scripts/CI/runtime27-release-manifest.json",
+      "git_blob": "ef60f21746534660cfc947b349b4b1fa860fe3ee",
+      "bytes": 56247
+    }
+  ],
+  "unchanged_test": "35a80632725ecd4af8ae5e783f6ae85479c24777",
+  "review": "Full one-file patch and original global TabView context read; whole inverse and original selection crosswalk replayed. All three retained originals match current root Git blobs.",
+  "ownership_change": "Use the same visibility policy at all five direct global tab-content boundaries. Flag-off publishes no preference; no state/navigation/geometry/test changes.",
+  "primary_reference": "https://developer.apple.com/documentation/swiftui/view/toolbarvisibility(_:for:).md",
+  "primary_scope": "Apple states visibility preferences propagate to the nearest bar-rendering container; this supports source placement, not a proven cause of the recorded displacement.",
+  "required_native_coverage": "Both original GlobalSearch landscape/portrait methods on iPad11 and iPad13 in Release114. Neither Native116 nor active Focused4 selects them.",
+  "swift_or_native_execution": 0,
+  "original_failure_preserved": true
+}
