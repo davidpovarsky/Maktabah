@@ -1,0 +1,78 @@
+{
+  "candidate": {
+    "actual_completed": 194,
+    "passed": 194,
+    "failed": 0,
+    "skipped": 0,
+    "qualified": true,
+    "final_summary": [
+      194,
+      0,
+      0
+    ],
+    "process": {
+      "command": [
+        "xcrun",
+        "swift",
+        "test",
+        "--package-path",
+        "/Users/runner/work/Maktabah/Maktabah/build/cold-search-core-apple/exact-source-work/Source/Otzaria/Actions",
+        "--scratch-path",
+        "/Users/runner/work/Maktabah/Maktabah/build/cold-search-core-apple/swiftpm-cache",
+        "--jobs",
+        "1",
+        "--disable-swift-testing"
+      ],
+      "completed_at": "2026-11-20T15:43:22.835432+00:00",
+      "cwd": "/Users/runner/work/Maktabah/Maktabah",
+      "elapsed_seconds": 24.605653749999988,
+      "log_sha256": "45eaa2373a809fa63291094d99907ef1d281708093a461bfbc57c7bcb3fea377",
+      "pid": 5582,
+      "returncode": 0,
+      "started_at": "2026-11-20T15:42:58.231262+00:00",
+      "timed_out": false
+    }
+  },
+  "baseline": {
+    "actual_completed": 20,
+    "passed": 11,
+    "failed": 9,
+    "skipped": 0,
+    "qualified": true,
+    "final_summary": [
+      20,
+      35,
+      0
+    ],
+    "process": {
+      "command": [
+        "xcrun",
+        "swift",
+        "test",
+        "--package-path",
+        "/Users/runner/work/Maktabah/Maktabah/build/cold-search-core-apple/exact-source-work/Source/Otzaria/Actions",
+        "--scratch-path",
+        "/Users/runner/work/Maktabah/Maktabah/build/cold-search-core-apple/swiftpm-cache",
+        "--jobs",
+        "1",
+        "--disable-swift-testing",
+        "--filter",
+        "ColdSearchExecutionOfflineTests"
+      ],
+      "completed_at": "2026-11-20T15:42:58.095864+00:00",
+      "cwd": "/Users/runner/work/Maktabah/Maktabah",
+      "elapsed_seconds": 96.35049204199998,
+      "log_sha256": "eeec377d1a749ecc1c40a031965a214cc8e7227621f1655c81a7d007b5cbb113",
+      "pid": 2811,
+      "returncode": 1,
+      "started_at": "2026-11-20T15:41:21.745648+00:00",
+      "timed_out": false
+    }
+  },
+  "source_inputs": 61,
+  "Mac_verifier_controls": 13,
+  "versions": {
+    "swift": "swift-driver version: 1.168.6 Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.2.0",
+    "xcode": "Xcode 27.2\nBuild version 27B52"
+  }
+}

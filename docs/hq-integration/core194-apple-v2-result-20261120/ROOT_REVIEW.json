@@ -1,0 +1,106 @@
+{
+  "Darwin_ownership": "SEPARATE_GATE",
+  "Native": "NOT_RUN",
+  "actual_C_engine": "NOT_RUN",
+  "actual_Mac_Python_verifier_controls": 13,
+  "actual_added_cases": 20,
+  "actual_original_XCTest_cases": 174,
+  "all_source_inputs_equal_canonical_Git": true,
+  "all_starts_leaves_and_exit_classes_replayed_with_original_driver": true,
+  "app_compilation": "NOT_ESTABLISHED",
+  "artifact": {
+    "bytes": 246344,
+    "id": 14645640415,
+    "outer_members": 17,
+    "sha256": "da326ae5f77d1974334521c2af7b8ff2c1283376676f2cb50dd10bbf34fef9ad",
+    "source_members": 61
+  },
+  "attempt": 1,
+  "baseline_scope": "Original19b Executor with shared candidate types and20 new controls, including repaired selection helper; not a whole original19b package run",
+  "before_after_source_identical": true,
+  "candidate_failed": 0,
+  "candidate_passed": 194,
+  "candidate_skipped": 0,
+  "head": "798d31869e8ad4160aa30b0e6dc8d552701c40ec",
+  "original193_of194_failure_retained": true,
+  "replay_executed_Swift": 0,
+  "reviewed_at": "2026-11-20T15:47:49.162421+00:00",
+  "run": 44765478132,
+  "stages": {
+    "baseline20": {
+      "actual_completed": 20,
+      "failed": 9,
+      "final_summary": [
+        20,
+        35,
+        0
+      ],
+      "passed": 11,
+      "process": {
+        "command": [
+          "xcrun",
+          "swift",
+          "test",
+          "--package-path",
+          "/Users/runner/work/Maktabah/Maktabah/build/cold-search-core-apple/exact-source-work/Source/Otzaria/Actions",
+          "--scratch-path",
+          "/Users/runner/work/Maktabah/Maktabah/build/cold-search-core-apple/swiftpm-cache",
+          "--jobs",
+          "1",
+          "--disable-swift-testing",
+          "--filter",
+          "ColdSearchExecutionOfflineTests"
+        ],
+        "completed_at": "2026-11-20T15:42:58.095864+00:00",
+        "cwd": "/Users/runner/work/Maktabah/Maktabah",
+        "elapsed_seconds": 96.35049204199998,
+        "log_sha256": "eeec377d1a749ecc1c40a031965a214cc8e7227621f1655c81a7d007b5cbb113",
+        "pid": 2811,
+        "returncode": 1,
+        "started_at": "2026-11-20T15:41:21.745648+00:00",
+        "timed_out": false
+      },
+      "qualified": true,
+      "skipped": 0
+    },
+    "candidate194": {
+      "actual_completed": 194,
+      "failed": 0,
+      "final_summary": [
+        194,
+        0,
+        0
+      ],
+      "passed": 194,
+      "process": {
+        "command": [
+          "xcrun",
+          "swift",
+          "test",
+          "--package-path",
+          "/Users/runner/work/Maktabah/Maktabah/build/cold-search-core-apple/exact-source-work/Source/Otzaria/Actions",
+          "--scratch-path",
+          "/Users/runner/work/Maktabah/Maktabah/build/cold-search-core-apple/swiftpm-cache",
+          "--jobs",
+          "1",
+          "--disable-swift-testing"
+        ],
+        "completed_at": "2026-11-20T15:43:22.835432+00:00",
+        "cwd": "/Users/runner/work/Maktabah/Maktabah",
+        "elapsed_seconds": 24.605653749999988,
+        "log_sha256": "45eaa2373a809fa63291094d99907ef1d281708093a461bfbc57c7bcb3fea377",
+        "pid": 5582,
+        "returncode": 0,
+        "started_at": "2026-11-20T15:42:58.231262+00:00",
+        "timed_out": false
+      },
+      "qualified": true,
+      "skipped": 0
+    }
+  },
+  "unknown_Windows_job": "job_ed394b183ed4",
+  "versions": {
+    "swift": "swift-driver version: 1.168.6 Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.2.0",
+    "xcode": "Xcode 27.2\nBuild version 27B52"
+  }
+}

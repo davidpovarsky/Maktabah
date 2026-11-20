@@ -1,0 +1,66 @@
+{
+  "source": "798d31869e8ad4160aa30b0e6dc8d552701c40ec",
+  "run": 44765478132,
+  "files": [
+    {
+      "path": "docs/hq-integration/core194-apple-v2-result-20261120/FIRST_RUN_RESULT.json",
+      "bytes": 60633,
+      "sha256": "4a4628611c781f1e109e47af45ac8a3ab5a41aadfb53dec011d37b7146ffffea",
+      "git_blob": "cd6d207a912e0b4b9125c8297ea32c5ecf538437"
+    },
+    {
+      "path": "docs/hq-integration/core194-apple-v2-result-20261120/GITHUB_JOBS.json",
+      "bytes": 2634,
+      "sha256": "125393325823559adb67700e3fa291883d5e4e3ec33f52a3d150c0ed4996b802",
+      "git_blob": "0daf494d9cb1b1b8a7d297b41790d0cd7866e2d1"
+    },
+    {
+      "path": "docs/hq-integration/core194-apple-v2-result-20261120/GITHUB_RECEIPTS.json.gz",
+      "bytes": 332237,
+      "sha256": "c925a333f330d57f03ab53d79d4ff8e2e9cfbfedf5445295dcff966f58a18141",
+      "git_blob": "fa3a327d4d2f3f927f5e4c5dc924094e529358e5"
+    },
+    {
+      "path": "docs/hq-integration/core194-apple-v2-result-20261120/README.md",
+      "bytes": 2837,
+      "sha256": "d767e52ea1badca09bc9d17f38c4f116c631e22543077d919ad843c53a0463ae",
+      "git_blob": "a10bb726d731a513a9400db7981b79dac795f97b"
+    },
+    {
+      "path": "docs/hq-integration/core194-apple-v2-result-20261120/REPLAY.py",
+      "bytes": 7090,
+      "sha256": "263698790827e9e43e18a592c2bef0f4710740d6ca07cf3dbc0df6b21fee7d14",
+      "git_blob": "31400e09fd59d73fad32f969df2b58c57c173c8e"
+    },
+    {
+      "path": "docs/hq-integration/core194-apple-v2-result-20261120/ROOT_REPLAY.log",
+      "bytes": 2289,
+      "sha256": "b17e7ea88580aa7065c2cc5ba63fa6c72178fdc4a5c57ac76725c4f434410155",
+      "git_blob": "1b0a0bfc724e088176d2040f0a2e3e32c54d98fb"
+    },
+    {
+      "path": "docs/hq-integration/core194-apple-v2-result-20261120/ROOT_REVIEW.json",
+      "bytes": 3516,
+      "sha256": "1c85a00911ac250479732aba54f7b87c5f495d871d217182bde4cd4b2417d4f4",
+      "git_blob": "6ea2fd29f607716d5ac9e4dc3eb5d38a770726a4"
+    },
+    {
+      "path": "docs/hq-integration/core194-apple-v2-result-20261120/SOURCE_GIT_PROOF.json",
+      "bytes": 15999,
+      "sha256": "61feb54d8a8dbbddedb95ca7971ed41768ab0a3134192ffba7ce309a7af01cfb",
+      "git_blob": "25b4573f7fc2ee58d20395fb77fba8f09d3f6c6f"
+    },
+    {
+      "path": "docs/hq-integration/core194-apple-v2-result-20261120/artifact-14645640415.zip",
+      "bytes": 246344,
+      "sha256": "da326ae5f77d1974334521c2af7b8ff2c1283376676f2cb50dd10bbf34fef9ad",
+      "git_blob": "a0a03a8a548719d806b1df537579b20e6b36082e"
+    },
+    {
+      "path": "docs/hq-integration/core194-apple-v2-result-20261120/job-136388828011.log.gz",
+      "bytes": 5568,
+      "sha256": "ea8e1f373e212dc9f2adac2dba8789d67490ff9210ca98ef9b1c06e355ea9964",
+      "git_blob": "0be7dff93143673034592e3fc079179264a34b4d"
+    }
+  ]
+}
