@@ -57,7 +57,10 @@ struct OtzariaHanlinCurrentWorkReadScope: Sendable, Equatable {
         }
         return .init(subjectID: metadata.subjectID, correlationID: metadata.correlationID,
             origin: metadata.origin, allowedBackends: [.otzaria], contentRights: [.otzaria],
-            scopes: [.contentRead], allowedWorkKeys: [.otzaria: [workRef.workKey]],
+            // Original Core discovery executes system.listBackends before it
+            // advertises search. Retain that existing permission, without
+            // carrying the metadata context's navigation authority.
+            scopes: [.discovery, .contentRead], allowedWorkKeys: [.otzaria: [workRef.workKey]],
             foregroundSceneID: scene, maxActions: min(metadata.maxActions, 20),
             maxResultBytes: min(metadata.maxResultBytes, 32_768))
     }

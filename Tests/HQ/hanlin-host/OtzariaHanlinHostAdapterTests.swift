@@ -555,7 +555,7 @@ final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
         XCTAssertEqual(read.contentRights, [.otzaria])
         XCTAssertEqual(read.allowedBackends, [.otzaria])
         XCTAssertEqual(read.allowedWorkKeys, [.otzaria: ["book:1"]])
-        XCTAssertEqual(read.scopes, [.contentRead])
+        XCTAssertEqual(read.scopes, [.discovery, .contentRead])
         XCTAssertEqual(read.foregroundSceneID, originalMetadata.foregroundSceneID)
         XCTAssertEqual(read.maxActions, 20)
         XCTAssertEqual(read.maxResultBytes, 32_768)
@@ -572,6 +572,8 @@ final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
 
     func testAllowedScopedSearchExecutesOriginalCoreAndPreservesExactQuery() async throws {
         let (fixture, adapter, session, catalog, _) = try await scopedSetup()
+        XCTAssertEqual(Set(catalog.tools.map { $0.route.logicalToolID.localToolID.rawValue }),
+            ["system.list-backends", "catalog.resolve-work", "catalog.resolve-reference", "search.query"])
         let value = try await adapter.execute(invocation(session, catalog, raw: scopedQuery, toolID: "search.query")) { _ in }
         let result = try completedAction(value)
         XCTAssertEqual(result.action, "search.query")
@@ -801,7 +803,7 @@ final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
     func testSeparateReadContextWithoutContentRightsStaysClosed() async throws {
         let (fixture, adapter, session, oldCatalog, metadata) = try await scopedSetup()
         let denied = ActionExecutionContext(subjectID: metadata.subjectID, correlationID: metadata.correlationID,
-            origin: .internalAI, allowedBackends: [.otzaria], contentRights: [], scopes: [.contentRead],
+            origin: .internalAI, allowedBackends: [.otzaria], contentRights: [], scopes: [.discovery, .contentRead],
             allowedWorkKeys: [.otzaria: ["book:1"]], foregroundSceneID: metadata.foregroundSceneID)
         await fixture.replaceSearchContext(denied)
         let current = try await adapter.catalog(for: session.context)
@@ -818,7 +820,7 @@ final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
             let (fixture, adapter, session, _, metadata) = try await scopedSetup()
             let foreign = ActionExecutionContext(subjectID: foreignScene ? metadata.subjectID : "foreign-subject",
                 correlationID: metadata.correlationID, origin: .internalAI, allowedBackends: [.otzaria],
-                contentRights: [.otzaria], scopes: [.contentRead], allowedWorkKeys: [.otzaria: ["book:1"]],
+                contentRights: [.otzaria], scopes: [.discovery, .contentRead], allowedWorkKeys: [.otzaria: ["book:1"]],
                 foregroundSceneID: foreignScene ? "foreign-scene" : metadata.foregroundSceneID)
             await fixture.replaceSearchContext(foreign)
             do { _ = try await adapter.catalog(for: session.context); XCTFail("Foreign content context accepted") }
