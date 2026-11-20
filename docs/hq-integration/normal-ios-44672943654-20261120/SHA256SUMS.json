@@ -1,0 +1,88 @@
+{
+  "README.md": {
+    "bytes": 5599,
+    "sha256": "00c6d55a35a280f2772c095933be7febed7804c1e0fbe1a3974a9b24c9c37111"
+  },
+  "raw/artifacts.json.gz": {
+    "bytes": 919,
+    "sha256": "e25ab64e5854a0c9079194022ecab82134b179869ed4dae47ee320128d7c53c4",
+    "uncompressedBytes": 4630,
+    "uncompressedSha256": "75e514297c499c0514a7a65588f3e17ceb86aabd82a10dda78d83732458a9bee"
+  },
+  "raw/device-failure-review.json.gz": {
+    "bytes": 1302,
+    "sha256": "59b5f016119c225e8784cdebca1fbba6ff00dc7c80425ef9e12be61ca3b35824",
+    "uncompressedBytes": 8187,
+    "uncompressedSha256": "763a81bc5792d46c76de916f5aa62b47431796c58d635a1b1d6fa307617ef2b5"
+  },
+  "raw/jobs.json.gz": {
+    "bytes": 2807,
+    "sha256": "0a4c6bc6673565331d3599641a5f42a8915baf2621f4e2af3a6815b308a3b662",
+    "uncompressedBytes": 42847,
+    "uncompressedSha256": "e7a2a7ef07fed5c752117f660e9984977b8dbc39fc239c15db1d4075a1ef6067"
+  },
+  "raw/run.json.gz": {
+    "bytes": 1714,
+    "sha256": "d06108d6a3f93c9e58a9edb580b8999a6d3417a5f3aa831d6188ed5fbef5dc1e",
+    "uncompressedBytes": 14263,
+    "uncompressedSha256": "6f21209209b41f623af696ba50cc34e4184ea7498de66f3154951aab97ad69f0"
+  },
+  "raw/sdk-job-runner-proof.log.gz": {
+    "bytes": 265709,
+    "sha256": "e31ca97620d294e15b532cd2fdbafa591a7e80ed5390754e95a545fb89bed8a5",
+    "uncompressedBytes": 3353541,
+    "uncompressedSha256": "b6c0d29ebc9d765f8286845d4d4abebba072f5997bf3be0836ba94ce34dc4e7a"
+  },
+  "raw/sdk-runner-jobs.json.gz": {
+    "bytes": 1161,
+    "sha256": "e8cad518c0ae0e2221d5a60898e4442cec7d7e232b5484f05363b5f06f16c737",
+    "uncompressedBytes": 8588,
+    "uncompressedSha256": "a82df042581c219f36487624eaa575130cc0e2f2076ce17dc6e1e49d6f3f63b0"
+  },
+  "raw/sdk-runner-registration404.json.gz": {
+    "bytes": 151,
+    "sha256": "3b5a54a4d7ced115ea1026dd5a11e4de5219a3112919451996ce8c254c1d0d42",
+    "uncompressedBytes": 178,
+    "uncompressedSha256": "ce8400e33c3196d020c2d617129bda4cd1408b6b4c023d2e54f6e893b1bc9644"
+  },
+  "raw/simulator-archive-verification.json.gz": {
+    "bytes": 387,
+    "sha256": "bd22c19f0104397717d04a093a3c96f3d02466be82c8ba521c1c10e8b10f46a6",
+    "uncompressedBytes": 620,
+    "uncompressedSha256": "2ca214e7610c5a9bd07f3fae387c2f44a2a1bcd3056d6c11039c0e3dc8dc92f2"
+  },
+  "raw/simulator-artifact-metadata.json.gz": {
+    "bytes": 465,
+    "sha256": "c304d9adac3beb68fe8edc5086a8f91d569683cec72c1f5f19fe6647e3ff9f00",
+    "uncompressedBytes": 829,
+    "uncompressedSha256": "1e90c22cd0dc6dbd9526ab3d0ad8d5d54991090f6a0a5fa4b8b7c4a79fc54ab0"
+  },
+  "raw/simulator-build-logs.zip": {
+    "bytes": 62691,
+    "sha256": "75246c8b6109f42dc9f7a427d50ae5e116e528e743ee1f8ce28dd407695d22c8"
+  },
+  "raw/simulator-job.log.gz": {
+    "bytes": 9043,
+    "sha256": "6ebb563facdd69495874d7138f1cb4647c8b57c94818060d53fc25aff53f101f",
+    "uncompressedBytes": 39621,
+    "uncompressedSha256": "4f2c21cb530051447641455832f355e3fa26696d8cb218a0ce794082c8541789"
+  },
+  "raw/watcher-attempt02-closure.json.gz": {
+    "bytes": 166,
+    "sha256": "7a50c518ea6f5718ed232dadd199d25f6ab72fa992ca2f927719a0efe1b3272b",
+    "uncompressedBytes": 188,
+    "uncompressedSha256": "7f06860f047bdddf4b1d4d9ee09a8bb7c44ad2ab7b6ee642bc7232f7b60636b5"
+  },
+  "raw/watcher-attempt02.json.gz": {
+    "bytes": 352,
+    "sha256": "cc634b010846c40bf548caf5c12a97250ffcbd21bb72a21c92cf94d063683e9d",
+    "uncompressedBytes": 567,
+    "uncompressedSha256": "a6b188e910cdef96d5674068339a7c9ecde55cbb25d23082c5593383e5fc0e04"
+  },
+  "raw/watcher-final.json.gz": {
+    "bytes": 569,
+    "sha256": "63fd4986bb33b42ad16038f4c33e7f24defc31c36eb551ec015bfaba6e716d0b",
+    "uncompressedBytes": 952,
+    "uncompressedSha256": "d49c3bc655216aaf773f7396c8aa55186cc09886a8dff86abaff9390c02b6677"
+  }
+}
