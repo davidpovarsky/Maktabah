@@ -1,0 +1,112 @@
+{
+  "baseCommit": "3b1bd069ac12bb95b0f3667cc625602ae5c517aa",
+  "status": "SELECTION_PREPARED_NOT_NATIVE_ACCEPTANCE",
+  "uiExecutions": 114,
+  "prototypeExecutions": 2,
+  "priorUIExecutions": 96,
+  "addedUIExecutions": 18,
+  "configurations": [
+    {
+      "id": "ipad11-native",
+      "ui": 63,
+      "oracles": 1,
+      "device": "11",
+      "profile": "miniTest10",
+      "configuration": "Debug"
+    },
+    {
+      "id": "ipad13-native",
+      "ui": 34,
+      "oracles": 1,
+      "device": "13",
+      "profile": "miniTest10",
+      "configuration": "Debug"
+    },
+    {
+      "id": "ipad13-largest-text",
+      "ui": 1,
+      "oracles": 0,
+      "device": "13",
+      "profile": "miniTest10",
+      "configuration": "Debug"
+    },
+    {
+      "id": "iphone-native",
+      "ui": 15,
+      "oracles": 0,
+      "device": "phone",
+      "profile": "miniTest10",
+      "configuration": "Debug"
+    },
+    {
+      "id": "ipad13-production-release",
+      "ui": 1,
+      "oracles": 0,
+      "device": "13",
+      "profile": "production",
+      "configuration": "Release"
+    }
+  ],
+  "exactNestedManifestInverse": true,
+  "fixtureInverseSevenNumericExpectations": true,
+  "changedFiles": [
+    {
+      "path": "Scripts/CI/runtime27-release-manifest.json",
+      "bytes": 56247,
+      "canonicalGitLF_SHA256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-release-producer.py",
+      "bytes": 12785,
+      "canonicalGitLF_SHA256": "dca60ae3502a9d5651205957193340f0d0b827695a76dd77e296345d36ed3dac"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-release-stages.py",
+      "bytes": 22575,
+      "canonicalGitLF_SHA256": "55bd0d7029b0f44ad23f1157fa31fd47e6f098e30b9d9959dff5b9e1c08acb22"
+    }
+  ],
+  "finalApplicationSource": "PENDING_COORDINATOR_AFTER_APPINTENT_TRANCHE",
+  "originalStages": 3,
+  "originalPerTestSeconds": 600,
+  "originalHID": "11-inch original native window case only",
+  "validation": {
+    "producer": {
+      "executed": 13,
+      "passed": 13
+    },
+    "stages": {
+      "executed": 24,
+      "passed": 24
+    },
+    "gate": {
+      "executed": 23,
+      "passed": 23
+    },
+    "unchangedHandoffWindows": {
+      "executed": 29,
+      "passed": 26,
+      "failures": 2,
+      "errors": 1,
+      "skipped": 0
+    },
+    "initialDirectWindowsProducer": {
+      "executed": 13,
+      "passed": 12,
+      "errors": 1,
+      "reason": "Unchanged exact source SHA detects raw CRLF vs canonical Git LF"
+    }
+  },
+  "actualAggregateCanonicalAttempts": {
+    "executed": 89,
+    "passed": 86,
+    "failures": 2,
+    "errors": 1,
+    "skipped": 0
+  },
+  "Apple": "NOT_RUN",
+  "NativeUI": "NOT_RUN",
+  "productionRelease": "NOT_RUN",
+  "scope": "Whole-source Python controls only; prepared source and declaration gates are source verification, not UI execution",
+  "sealedAt": "2026-11-20T13:28:34.552119+00:00"
+}

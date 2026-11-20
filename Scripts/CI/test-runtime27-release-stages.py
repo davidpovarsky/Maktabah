@@ -216,7 +216,7 @@ class NativeStageFixture(unittest.TestCase):
 class NativeAcceptanceBoundaryTests(NativeStageFixture):
     def test_original_four_config_gates_count_95_ui_and_two_separate_oracles(self):
         checked = stages["strict_native_configurations"](self.report, self.manifest)
-        self.assertEqual(checked["required_ui_passed"], 95)
+        self.assertEqual(checked["required_ui_passed"], 113)
         self.assertEqual(checked["separate_oracle_executed"], 2)
         self.assertIs(checked["full_release_acceptance"], False)
         self.assertEqual(len(checked["configurations"]), 4)
@@ -264,7 +264,7 @@ class NativeAcceptanceBoundaryTests(NativeStageFixture):
         report = json.loads((self.out / "result.json").read_text())
         self.assertEqual(report["status"], "RELEASE_NATIVE_MATRIX_ONLY_PASS")
         self.assertIs(report["full_release_acceptance"], False)
-        self.assertEqual((report["executed_ui_pass"], report["ui_not_run"]), (95, 1))
+        self.assertEqual((report["executed_ui_pass"], report["ui_not_run"]), (113, 1))
 
     def test_failed_child_never_inherits_build_success_or_invents_counts(self):
         with self.assertRaisesRegex(ValueError, "matrix failed"):
@@ -374,7 +374,7 @@ class OutcomePublicationTests(unittest.TestCase):
     def test_complete_manifest_remains_five_configurations_96_ui_and_two_oracles(self):
         manifest = json.loads((CI / "runtime27-release-manifest.json").read_text())
         self.assertEqual(len(manifest["configurations"]), 5)
-        self.assertEqual(sum(len(row["required_ui_cases"]) for row in manifest["configurations"]), 96)
+        self.assertEqual(sum(len(row["required_ui_cases"]) for row in manifest["configurations"]), 114)
         self.assertEqual(sum(len(row.get("required_oracle_cases", [])) for row in manifest["configurations"]), 2)
         self.assertTrue(manifest["full_release_acceptance_required"])
 

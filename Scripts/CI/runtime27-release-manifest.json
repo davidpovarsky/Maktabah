@@ -63,7 +63,16 @@
         "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
-        "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace"
+        "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+        "NativeRoutingAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPad",
+        "NativeRoutingAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad",
+        "NativeRoutingAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPad",
+        "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigation",
+        "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigation",
+        "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOC",
+        "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOC",
+        "SefariaTOCLocalizationPadAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetry",
+        "SefariaTOCLocalizationPadAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetry"
       ],
       "required_oracle_cases": [
         "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle"
@@ -132,7 +141,16 @@
         "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
         "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
         "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
-        "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+        "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+        "NativeRoutingPhoneAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone",
+        "NativeRoutingPhoneAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone",
+        "NativeRoutingPhoneAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOCOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOCOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone"
       ]
     },
     {
@@ -661,5 +679,90 @@
     "excludes_subsequent_compound_core_and_anytype_work": true,
     "acceptance": "PENDING_ACTUAL_CURRENT_SOURCE_APPLE_AND_NATIVE_EXECUTION",
     "execution_coordination": "Prepared only. Root reviews and selects separate immutable Native/Release refs before any dispatch."
+  },
+  "release114_preparation_20261120": {
+    "status": "SELECTION_PREPARED_FINAL_APPLICATION_FREEZE_PENDING",
+    "preparedAt": "2026-11-20T13:17:34.688436+00:00",
+    "base": "3b1bd069ac12bb95b0f3667cc625602ae5c517aa",
+    "native116Preparation": "3b1bd069ac12bb95b0f3667cc625602ae5c517aa",
+    "finalApplicationSource": "PENDING_COORDINATOR_AFTER_APPINTENT_TRANCHE",
+    "originalRequiredUIExecutions": 96,
+    "additionalUIExecutions": 18,
+    "requiredUIExecutions": 114,
+    "requiredSeparatePrototypeExecutions": 2,
+    "configurations": [
+      {
+        "id": "ipad11-native",
+        "ui": 63,
+        "oracles": 1,
+        "device": "11",
+        "profile": "miniTest10",
+        "configuration": "Debug"
+      },
+      {
+        "id": "ipad13-native",
+        "ui": 34,
+        "oracles": 1,
+        "device": "13",
+        "profile": "miniTest10",
+        "configuration": "Debug"
+      },
+      {
+        "id": "ipad13-largest-text",
+        "ui": 1,
+        "oracles": 0,
+        "device": "13",
+        "profile": "miniTest10",
+        "configuration": "Debug"
+      },
+      {
+        "id": "iphone-native",
+        "ui": 15,
+        "oracles": 0,
+        "device": "phone",
+        "profile": "miniTest10",
+        "configuration": "Debug"
+      },
+      {
+        "id": "ipad13-production-release",
+        "ui": 1,
+        "oracles": 0,
+        "device": "13",
+        "profile": "production",
+        "configuration": "Release"
+      }
+    ],
+    "addedCasesByConfiguration": {
+      "ipad11-native": [
+        "NativeRoutingAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPad",
+        "NativeRoutingAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad",
+        "NativeRoutingAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPad",
+        "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigation",
+        "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigation",
+        "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOC",
+        "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOC",
+        "SefariaTOCLocalizationPadAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetry",
+        "SefariaTOCLocalizationPadAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetry"
+      ],
+      "iphone-native": [
+        "NativeRoutingPhoneAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone",
+        "NativeRoutingPhoneAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone",
+        "NativeRoutingPhoneAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOCOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOCOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone"
+      ]
+    },
+    "unchangedOriginalSelectionOrder": true,
+    "unchangedPrototypeOracles": true,
+    "unchangedLargestTextAndProductionCases": true,
+    "unchangedThreeStageWorkflowHIDAnd600sBudgets": true,
+    "AppleFoundation55": "NOT_RUN",
+    "Release114Plus2": "NOT_RUN",
+    "scope": "Only the9 new iPad methods are appended to original11inch and9 phone methods to originaliPhone; no duplicate13inch runs. Same exact18 IDs as Native116. Original96rows/2oracles and every prior metadata field preserved.",
+    "knownCountSetupCorrection": "Coordinator assigned the two book3891-to-book1 public-reader setup calls to current NativeRouting owner; final source freeze must include the separate original newTab fix. No oracle or count change."
   }
 }
