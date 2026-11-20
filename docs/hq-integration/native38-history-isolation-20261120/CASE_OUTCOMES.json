@@ -1,0 +1,268 @@
+[
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+    "device": "ipad11",
+    "expected": "Exact production Core notes.prepareDraft, original source-owned selection and visible original unsaved UITextView; exact purpose receipt, unchanged original annotation store before/after open and after actual Cancel/onDismiss; original workspace and PID preserved.",
+    "configuration_label": "11",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad",
+    "device": "ipad11",
+    "expected": "Exact production Core search.openResults and original query/session/runSearch; one observed submission, completed actual engine and original visible stable row with independently verified SQL locator; original workspace/PID and purpose-bound native.search.results receipt.",
+    "configuration_label": "11",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+    "device": "ipad11",
+    "expected": "Exact production Core reader.openCommentary from independently verified miniTest10 COMMENTARY6529212 (REFERENCE6528846 retained/excluded by original classifier); actual original Reader source text in new tab, exact receipt, original tabs/source/PID preserved and actual return to base.",
+    "configuration_label": "11",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+    "device": "ipad11",
+    "expected": "Original realUI profile menu/editor/Picker Save and Cancel; one existing profile UUID, unchanged other profiles/groups/scenes and reader locator, actual sidecar cold relaunch, explicit default removes optional color field.",
+    "configuration_label": "11",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+    "device": "ipad11",
+    "expected": "Original realUI reader/session, default-OFF current-work consent, real configuration enable/confirm and onDismiss, same saved native conversation/draft, explicit revoke then metadata-only reopening, original reader/workspace preserved, no Send action.",
+    "configuration_label": "11",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+    "device": "ipad11",
+    "expected": "Original landscape overview replacement, single real retained document, exact TextKit object/viewport/locator restoration.",
+    "configuration_label": "11",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+    "device": "ipad11",
+    "expected": "Original portrait overview replacement, single real retained document, exact TextKit object/viewport/locator restoration.",
+    "configuration_label": "11",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+    "device": "ipad11",
+    "expected": "Original landscape Inspector/tools mounted; both redundant headings absent; closing does not reserve a Reader column.",
+    "configuration_label": "11",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+    "device": "ipad11",
+    "expected": "Original portrait Inspector/tools mounted; both redundant headings absent; closing does not reserve a Reader column.",
+    "configuration_label": "11",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "device": "ipad11",
+    "expected": "Actual Hebrew text entry+native submit+visible hittable exact submitted history row, existing native history helper",
+    "configuration_label": "11-search",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+    "device": "ipad11",
+    "expected": "Unsuppressed native header/history accessibility audit; not manual VoiceOver acceptance",
+    "configuration_label": "11-search",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+    "device": "ipad11",
+    "expected": "Actual original feature-off versus candidate landscape Search navigation bar identities and geometry within original1point gates.",
+    "configuration_label": "11-search",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+    "device": "ipad11",
+    "expected": "Actual original feature-off versus candidate portrait Search navigation bar identities and geometry within original1point gates.",
+    "configuration_label": "11-search",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+    "device": "ipad11",
+    "expected": "Actual original feature-off versus candidate landscape Annotations navigation bar identities and geometry within original1point gates.",
+    "configuration_label": "11-search",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+    "device": "ipad11",
+    "expected": "Actual original feature-off versus candidate portrait Annotations navigation bar identities and geometry within original1point gates.",
+    "configuration_label": "11-search",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton",
+    "device": "ipad11",
+    "expected": "Unresolved actual positive rendered search highlight followed by original clear control and zero ranges; no prior PASS or weakened oracle.",
+    "configuration_label": "11-search",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton",
+    "device": "ipad11",
+    "expected": "Original overview closes genuine retained UUIDs to zero, then cold ordinary Reader has no clear-search control and zero observed search ranges.",
+    "configuration_label": "11-search",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+    "device": "ipad11",
+    "expected": "Actual same-process system v2 newTab URL, sealed source DB metadata, original rendered TextKit exact line/highlight/title and one full-Core receipt; actual persisted group gains exactly one unique original tab, every prior tab identity/book/backend is retained, original native tab control returns to prior exact reader locator.",
+    "configuration_label": "11-reader",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+    "device": "ipad11",
+    "expected": "Actual same-process system v2 newTab URL, sealed source DB metadata, original rendered TextKit exact line/highlight/title and one full-Core receipt; actual persisted group gains exactly one unique original tab, every prior tab identity/book/backend is retained, original native tab control returns to prior exact reader locator.",
+    "configuration_label": "11-reader",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+    "device": "ipad11",
+    "expected": "Actual original TorahInspectorKit panel, one receipt per request, repeated opening preserves original tab/book/locator, original Close returns to exact SQL source text.",
+    "configuration_label": "11-reader",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+    "device": "ipad11",
+    "expected": "Actual out-of-process Apple AppIntentsTesting selects the visible original Reader panel entity; same Core/public binder/native receipt and original Close preserves Reader.",
+    "configuration_label": "11-reader",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+    "device": "ipad11",
+    "expected": "Inspector cannot open a hidden Reader from Search, cannot alter private query or original workspace, and produces no Native receipt.",
+    "configuration_label": "11-reader",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad",
+    "device": "ipad11",
+    "expected": "Actual original global-search field and Return warm the already cached original engine, then the existing Core counts book:1/אברהם:109 token occurrences and98 matching documents against independent SQLite/Zstandard oracle. Require exact typed query/unit/evidence and authenticated miniTest10-v6 artifact/DB/18879-document coverage; multi-token refusal without scalar; pre-cancelled Core admission. Original reader text/locator/selection/group/profile/tabs/PID retained and no new navigation receipt. Not an in-flight engine cancellation oracle.",
+    "configuration_label": "11-reader",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory",
+    "device": "ipad11",
+    "expected": "Real original global-search-query input and Return; exact submitted history row visible/hittable after actual app relaunch; original book-search four modes/help/Near distance remain; persisted global query absent from book search",
+    "configuration_label": "11-sidebar",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "device": "ipad11",
+    "expected": "Actual wired native toolbar bounds; genuine resized window; real filtered fixture-book result; Escape dismissal; real Inspector open/close; exact text/locator preserved; SpringBoard semantic Window Controls and measured full-size restore",
+    "configuration_label": "11-window",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+    "device": "ipad11",
+    "expected": "Separate job-local pinned idb direct native HID on this owned disposable simulator. Real A/backspace visibly edit/clear production autofocus field; one Escape removes actual full empty input; genuine narrow resize and real fixture filtering; one Escape removes actual narrow filtered input; Inspector open/close, full text/exact locator and native window restoration. Original XCTest Escape case retained independently; transport ACK alone never UI acceptance.",
+    "configuration_label": "11-window",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+    "device": "ipad11",
+    "expected": "Original real native window resize, toolbar/window bounds, Reader locator, Search, overview and Inspector oracles.",
+    "configuration_label": "11-window",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+    "device": "ipad11",
+    "expected": "Original feature-off real native window resize reference with unchanged Reader and geometry oracles.",
+    "configuration_label": "11-window",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "device": "iphone",
+    "expected": "Actual Hebrew entry/native submit/visible hittable exact history row on conventional iPhone",
+    "configuration_label": "phone",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+    "device": "iphone",
+    "expected": "Actual iPhone and original compact workspace owner, real system v2 URL and sealed source metadata; same exact current/new-tab/refusal oracles as iPad. Original NavigationStack reader marker, exact TextKit focused line and full Core receipt; new-tab return uses original compact overview cell.",
+    "configuration_label": "phone",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+    "device": "iphone",
+    "expected": "Actual compact original Inspector sheet with same Core/public-v2 authority, real visible panel, repeated request, original Close and exact source-text return.",
+    "configuration_label": "phone",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+    "device": "iphone",
+    "expected": "Actual Apple system App Intent opens original compact Reader Inspector with exact scene receipt and original Reader restored after Close.",
+    "configuration_label": "phone",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone",
+    "device": "iphone",
+    "expected": "Exact production Core notes.prepareDraft, original source-owned selection and visible original unsaved UITextView; exact purpose receipt, unchanged original annotation store before/after open and after actual Cancel/onDismiss; original workspace and PID preserved.",
+    "configuration_label": "phone",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone",
+    "device": "iphone",
+    "expected": "Exact production Core search.openResults and original query/session/runSearch; one observed submission, completed actual engine and original visible stable row with independently verified SQL locator; original workspace/PID and purpose-bound native.search.results receipt.",
+    "configuration_label": "phone",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
+    "device": "iphone",
+    "expected": "Exact production Core reader.openCommentary from independently verified miniTest10 COMMENTARY6529212 (REFERENCE6528846 retained/excluded by original classifier); actual original Reader source text in new tab, exact receipt, original tabs/source/PID preserved and actual return to base.",
+    "configuration_label": "phone",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+    "device": "iphone",
+    "expected": "Same original explicit current-work consent/revoke flow on the actual phone reader owner, same saved native conversation/draft and source/workspace, no Send action.",
+    "configuration_label": "phone",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone",
+    "device": "iphone",
+    "expected": "Actual original global-search field and Return warm the already cached original engine, then the existing Core counts book:1/אברהם:109 token occurrences and98 matching documents against independent SQLite/Zstandard oracle. Require exact typed query/unit/evidence and authenticated miniTest10-v6 artifact/DB/18879-document coverage; multi-token refusal without scalar; pre-cancelled Core admission. Original reader text/locator/selection/group/profile/tabs/PID retained and no new navigation receipt. Not an in-flight engine cancellation oracle.",
+    "configuration_label": "phone",
+    "actual": "NOT_RUN"
+  },
+  {
+    "case_id": "FaithfulReaderIPhoneTests/testSourceOverviewReplacesReaderAndRestoresViewport",
+    "device": "iphone",
+    "expected": "Original phone overview replacement and exact TextKit object/viewport/locator restoration.",
+    "configuration_label": "phone",
+    "actual": "NOT_RUN"
+  }
+]

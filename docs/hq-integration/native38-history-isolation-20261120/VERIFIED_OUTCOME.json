@@ -1,0 +1,318 @@
+{
+  "run": 44704452479,
+  "checkout": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+  "application_source": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "test_tree": "56c8aa08b7296940869d57904e634178287dfc48",
+  "case_manifest_sha256": "866afcdb0fe3e0c770b99a2673931404c0b3360eb23383ca813412be7cd9c8c8",
+  "workflow_conclusion": "failure",
+  "runtime_job_started": "2026-11-20T08:40:43Z",
+  "runtime_job_completed": "2026-11-20T09:16:04Z",
+  "api_updated": "2026-11-20T09:16:05Z",
+  "watcher_observed_finished": "2026-11-20T09:16:28.436170+00:00",
+  "selected_cases": 38,
+  "selected_device_distribution": {
+    "ipad11": 28,
+    "iphone": 10
+  },
+  "case_outcomes": {
+    "NOT_RUN": 38
+  },
+  "verified_ui_pass": 0,
+  "verified_ui_failure": 0,
+  "verified_ui_skip": 0,
+  "ui_not_run": 38,
+  "xcresult_bundles_in_retained_artifacts": 0,
+  "captures_artifact_present": false,
+  "native_zero_skip_acceptance": "NOT_EXERCISED; build failed before UI",
+  "synthetic_junit": {
+    "testcases": 38,
+    "errors_NOT_RUN": 38,
+    "failures": 0,
+    "skipped": 0,
+    "not_actual_xctest_leaves": true
+  },
+  "first_compiler_error": {
+    "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "line": 991,
+    "column": 67,
+    "message": "sending 'self' risks causing data races [#RegionIsolation::SendingRisksDataRace]",
+    "log": "hq-stage2/simulator-build-for-testing.log",
+    "log_line": 108355
+  },
+  "toolchain": {
+    "xcode": "Xcode 27.2\nBuild version 27B52\n",
+    "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0\n",
+    "sdk": "27.2"
+  },
+  "source_hash_checks": [
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/BackendTransitionAcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "d01812c706ae6753e721b64081956bb0ef0f69b95a5ad13aef9779b47458a7fd",
+      "actual": "d01812c706ae6753e721b64081956bb0ef0f69b95a5ad13aef9779b47458a7fd",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "b74b6846391df20795290da565f8b4ed76deaed187875ebd20add6a11c6a59ce",
+      "actual": "b74b6846391df20795290da565f8b4ed76deaed187875ebd20add6a11c6a59ce",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "a85e542258934f1adebe468fd72eb19c82aa75bfc3d512e93e6f176114b7c6ab",
+      "actual": "a85e542258934f1adebe468fd72eb19c82aa75bfc3d512e93e6f176114b7c6ab",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/Build8601ThreeRegressionsAcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "52bdd5ab72f3405d5da91bd9f0678a7fc0f32a4ce791ceb2c14b59327aaced18",
+      "actual": "52bdd5ab72f3405d5da91bd9f0678a7fc0f32a4ce791ceb2c14b59327aaced18",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "60f784dde093bb9e21de40a58281e972fe6915fa7af26e8a42dc59012605d16d",
+      "actual": "60f784dde093bb9e21de40a58281e972fe6915fa7af26e8a42dc59012605d16d",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "387879fcc00f2d90f8bb03319c59faf392f093062fcd0d1551a6c34009f9bb11",
+      "actual": "387879fcc00f2d90f8bb03319c59faf392f093062fcd0d1551a6c34009f9bb11",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "fdcf38a22fa039bbd4a8f8183c1e3d6a93ceca889af6cc0ee6e0e7146e2c42b1",
+      "actual": "fdcf38a22fa039bbd4a8f8183c1e3d6a93ceca889af6cc0ee6e0e7146e2c42b1",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "552a010f1b9f6ecd29406e1bca22eec509594e0938cad457fcf9275b96e27240",
+      "actual": "552a010f1b9f6ecd29406e1bca22eec509594e0938cad457fcf9275b96e27240",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/HighlightAnnotationAcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "59fc8f100d87efcc3012b8b86f50b0d4e9a88ef60b9b99d7ee8ec4d4ce74f6dd",
+      "actual": "59fc8f100d87efcc3012b8b86f50b0d4e9a88ef60b9b99d7ee8ec4d4ce74f6dd",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/HistoryLocalizationAcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "99d93b13bd0fbbd092d9320e618af55afd77647036a195637845aa95d2e3c50c",
+      "actual": "99d93b13bd0fbbd092d9320e618af55afd77647036a195637845aa95d2e3c50c",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+      "actual": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "90a34895607e98f05b7cee448d7d96c17ee463a568f31b7fe3ebb3cd0ed4d11d",
+      "actual": "90a34895607e98f05b7cee448d7d96c17ee463a568f31b7fe3ebb3cd0ed4d11d",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "f1622e1ccbe44788b625c7eefb66bcc4b8fcf4766da43b709045f56c7580d08e",
+      "actual": "f1622e1ccbe44788b625c7eefb66bcc4b8fcf4766da43b709045f56c7580d08e",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "0bd7a4b833ef9d8036b077238d179053df6e6b0f1596382b7e59c2f55ceb41b5",
+      "actual": "0bd7a4b833ef9d8036b077238d179053df6e6b0f1596382b7e59c2f55ceb41b5",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b",
+      "actual": "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "a79b4b0b78bf0e1e22f070d4558fc3d692f70c199012a5cd6e85043ea2530562",
+      "actual": "a79b4b0b78bf0e1e22f070d4558fc3d692f70c199012a5cd6e85043ea2530562",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8",
+      "actual": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8",
+      "match": true
+    },
+    {
+      "kind": "test_inputs_sha256",
+      "path": "Maktabah-iOSUITests/iPadTabBarAcceptanceTests.swift",
+      "revision": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "expected": "1e3b18971be087a618d282d486c1a8826035a6f94a34fd247af0114538f6309f",
+      "actual": "1e3b18971be087a618d282d486c1a8826035a6f94a34fd247af0114538f6309f",
+      "match": true
+    },
+    {
+      "kind": "helper_inputs_sha256",
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "revision": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+      "expected": "4adf3ba0502b433b478b00eae696300f36d222caca474bee6d42642c428805d0",
+      "actual": "4adf3ba0502b433b478b00eae696300f36d222caca474bee6d42642c428805d0",
+      "match": true
+    },
+    {
+      "kind": "helper_inputs_sha256",
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "revision": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+      "expected": "de6d847fd92640e9218e5b26622cb3c5b9bd9fd6a243437f610bd07acad5b8c0",
+      "actual": "de6d847fd92640e9218e5b26622cb3c5b9bd9fd6a243437f610bd07acad5b8c0",
+      "match": true
+    },
+    {
+      "kind": "helper_inputs_sha256",
+      "path": "Scripts/CI/runtime27.py",
+      "revision": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+      "expected": "c80ccc5b00a91734cf8a955241797dd72786f0f46ef4896b36ef5df2871d5ed2",
+      "actual": "c80ccc5b00a91734cf8a955241797dd72786f0f46ef4896b36ef5df2871d5ed2",
+      "match": true
+    },
+    {
+      "kind": "helper_inputs_sha256",
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "revision": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+      "expected": "41a0be10a827d820e537ed0a598abe296929a22072f7f4e15fc485dd53cab171",
+      "actual": "41a0be10a827d820e537ed0a598abe296929a22072f7f4e15fc485dd53cab171",
+      "match": true
+    },
+    {
+      "kind": "helper_inputs_sha256",
+      "path": "Scripts/CI/select-runtime27-toolchain.py",
+      "revision": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+      "expected": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8",
+      "actual": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8",
+      "match": true
+    },
+    {
+      "kind": "helper_inputs_sha256",
+      "path": "Scripts/CI/runtime27_interruption.py",
+      "revision": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+      "expected": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
+      "actual": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
+      "match": true
+    },
+    {
+      "kind": "helper_inputs_sha256",
+      "path": "Scripts/CI/runtime27-fixture-oracle.py",
+      "revision": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+      "expected": "8a32a5d82a04a833466021d2a237aae3687d1d87c4ee24ca5df105bbe43e793c",
+      "actual": "8a32a5d82a04a833466021d2a237aae3687d1d87c4ee24ca5df105bbe43e793c",
+      "match": true
+    },
+    {
+      "kind": "helper_inputs_sha256",
+      "path": "tools/verify_xcresult_zero_skips.py",
+      "revision": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+      "expected": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6",
+      "actual": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6",
+      "match": true
+    },
+    {
+      "kind": "helper_inputs_sha256",
+      "path": "Scripts/CI/collect-runtime27-palette-log.py",
+      "revision": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+      "expected": "4eca164c61e84d39f0a01e193020ba6245058d1c198d2aa1490cfa0152fd304f",
+      "actual": "4eca164c61e84d39f0a01e193020ba6245058d1c198d2aa1490cfa0152fd304f",
+      "match": true
+    },
+    {
+      "kind": "helper_inputs_sha256",
+      "path": "Scripts/CI/runtime27-hid.py",
+      "revision": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+      "expected": "7488ccd1d101b5ae455815906b06f5671ca820eaabc18c6ef4b92c492e2172b0",
+      "actual": "7488ccd1d101b5ae455815906b06f5671ca820eaabc18c6ef4b92c492e2172b0",
+      "match": true
+    },
+    {
+      "kind": "helper_inputs_sha256",
+      "path": "Scripts/CI/runtime27-fixture-recovery.py",
+      "revision": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+      "expected": "2dc5f680dde048cbb46463bcf1ca159e41ebb786c87074210175882275853c00",
+      "actual": "2dc5f680dde048cbb46463bcf1ca159e41ebb786c87074210175882275853c00",
+      "match": true
+    },
+    {
+      "kind": "helper_inputs_sha256",
+      "path": "Scripts/CI/runtime27-url-delivery.py",
+      "revision": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+      "expected": "065c8afaed97a7974a2e8ba4c61b3077c63366e21bb8696837a00e4ab4bd17b8",
+      "actual": "065c8afaed97a7974a2e8ba4c61b3077c63366e21bb8696837a00e4ab4bd17b8",
+      "match": true
+    },
+    {
+      "kind": "helper_inputs_sha256",
+      "path": "Scripts/CI/shutdown-faithful-simulator.py",
+      "revision": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+      "expected": "6036b2210fff9fb7a70da707efb067788b3cc5b45aa0cb88017285f865139046",
+      "actual": "6036b2210fff9fb7a70da707efb067788b3cc5b45aa0cb88017285f865139046",
+      "match": true
+    },
+    {
+      "kind": "helper_inputs_sha256",
+      "path": "Scripts/CI/verify-faithful-xctest.py",
+      "revision": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+      "expected": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7",
+      "actual": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7",
+      "match": true
+    }
+  ],
+  "actual_application_input_objects": 996,
+  "exact_M_object_matches": 995,
+  "declared_generated_privacy_overlay": {
+    "path": "Source/PrivacyInfo.xcprivacy",
+    "original_equals_M": true,
+    "generated_matches_actual_object": true,
+    "retained_original_and_generated_sha256_verified": true,
+    "dependency_inputs_verified": true,
+    "original_git_blob": "c86c62cc12e3ceadea279ff9948a8891a0860577",
+    "generated_git_blob": "af80d26d37547b62412f5922bfd9cc601a7e9344"
+  },
+  "initial_collection_comparison": "A first all-objects-equal-M assertion stopped on this declared generated privacy overlay. No product/test failure was inferred; explicit original/generated/dependency evidence was then verified, with no allowance for any other mismatch.",
+  "no_new_dispatch": true
+}

@@ -981,14 +981,15 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
             XCTFail("The matrix must provide the original Simulator container parent")
             return query
         }
-        let initial = observeNativeGlobalHistory(in: containers, namespace: workspaceNamespace, query: query)
+        let historyNamespace = workspaceNamespace
+        let initial = observeNativeGlobalHistory(in: containers, namespace: historyNamespace, query: query)
         attachHistoryObservation(initial, stage: "before-submit")
         guard let originalContainer = initial.container, let originalMetadata = initial.metadataBytes else {
             XCTFail("Require one source-identified original app installation before submitting")
             return query
         }
-        func historyObservation() -> NativeGlobalHistoryObservation {
-            observeNativeGlobalHistory(in: containers, namespace: workspaceNamespace, query: query,
+        let historyObservation: @Sendable () -> NativeGlobalHistoryObservation = {
+            observeNativeGlobalHistory(in: containers, namespace: historyNamespace, query: query,
                                        expectedContainer: originalContainer, expectedMetadata: originalMetadata)
         }
         tap(globalInput)

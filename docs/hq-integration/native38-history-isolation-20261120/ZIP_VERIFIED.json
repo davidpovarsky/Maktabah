@@ -1,0 +1,13 @@
+{
+  "run_id": 44704452479,
+  "artifact_id": 14615913957,
+  "expected_checkout": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+  "started_at": "2026-11-20T09:24:40.650898+00:00",
+  "finished_at": "2026-11-20T09:24:43.749040+00:00",
+  "zip_bytes": 1502571,
+  "zip_sha256": "a3198ef3647bea46864fcb69d4b4656ac23596f36bd498dc5b703a01da1ecbfe",
+  "crc_all_entries": "PASS",
+  "entries": 66,
+  "uncompressed_bytes": 23931050,
+  "original_zip": "build\\native38-44704452479-monitor-20261120\\runtime27-evidence.zip"
+}
