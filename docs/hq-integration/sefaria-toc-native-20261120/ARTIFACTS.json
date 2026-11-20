@@ -1,0 +1,1005 @@
+{
+  "formatVersion": 1,
+  "recordedAt": "2026-11-20T12:37:10.502474+00:00",
+  "parent": "09e7ae372d005952e05422abcda9209aa15b2fae",
+  "native": "NOT_RUN",
+  "appleSDK": "NOT_RUN",
+  "artifacts": [
+    {
+      "source": "NATIVE_PREPARATION.json",
+      "artifact": "raw/NATIVE_PREPARATION.json.gz",
+      "rawBytes": 373,
+      "rawSHA256": "5b222404c53bc32d246666ef99b612ac36f8b1c07bd54164b284332fabac8646",
+      "artifactSHA256": "25e119e6622d5bdb205ff7c7aa44551ecd5c6512ff102655d4c8ecd4a8e21384"
+    },
+    {
+      "source": "official-foundation-urlprotocol/NSURLRequest.swift",
+      "artifact": "raw/official-foundation-urlprotocol/NSURLRequest.swift.gz",
+      "rawBytes": 26097,
+      "rawSHA256": "a7fe3d3a7e6b6b5002bbef0bf7f4fc1ee21360678bc02e786fa0b67f689c9fd4",
+      "artifactSHA256": "9bf5fcbffb6df643fb2c9220ea029257554a5d23c9a52f9f99df3b03c969c4b8"
+    },
+    {
+      "source": "official-foundation-urlprotocol/PROVENANCE.json",
+      "artifact": "raw/official-foundation-urlprotocol/PROVENANCE.json.gz",
+      "rawBytes": 1599,
+      "rawSHA256": "03db2b00070ec8a3ce342c8a992e9f5cacfa615c8393232f1386c1eef7a8d5de",
+      "artifactSHA256": "d1225cf723f364ab0be168d0d07426b10f163dde9f56d5f51f7f0c159eb176fb"
+    },
+    {
+      "source": "official-foundation-urlprotocol/RELEASE_PROVENANCE.json",
+      "artifact": "raw/official-foundation-urlprotocol/RELEASE_PROVENANCE.json.gz",
+      "rawBytes": 992,
+      "rawSHA256": "fef6562e3a5d390761e9feb614255167a103a4c4094024ac7cdcf09d728be815",
+      "artifactSHA256": "dabfd87edc76acb1bfc68da98cf443a3f20acda527eee878fc5c1362bb7ac8af"
+    },
+    {
+      "source": "official-foundation-urlprotocol/swift-6.3.3-NSURLRequest.swift",
+      "artifact": "raw/official-foundation-urlprotocol/swift-6.3.3-NSURLRequest.swift.gz",
+      "rawBytes": 25955,
+      "rawSHA256": "cfd7fcaa9a11ce411357299290e9f70f5bbe7696f2267b085eb7681384860980",
+      "artifactSHA256": "e44d7d4acd319005efff135f968937c164561e222e23e7f7b32f967119775543"
+    },
+    {
+      "source": "official-foundation-urlprotocol/swift-6.3.3-URLProtocol.swift",
+      "artifact": "raw/official-foundation-urlprotocol/swift-6.3.3-URLProtocol.swift.gz",
+      "rawBytes": 18495,
+      "rawSHA256": "6e0af587feb097f3f0985075b434e9cbe31bf1f0d1b03ae7230b546dda12209a",
+      "artifactSHA256": "32f2caef373160bec033643b869fea8179c8ad99bcb6d3bed3add9f16f4283b8"
+    },
+    {
+      "source": "official-foundation-urlprotocol/swift-6.3.3-URLRequest.swift",
+      "artifact": "raw/official-foundation-urlprotocol/swift-6.3.3-URLRequest.swift.gz",
+      "rawBytes": 12141,
+      "rawSHA256": "b05b549e4d33a6671d332930fb68076c97378ad3ea503a0d94f23c29f94ab96c",
+      "artifactSHA256": "80a7bd33fd4702ef417a78e6f3b0afe159217cfbd70f071480de74b504eb5d7d"
+    },
+    {
+      "source": "official-foundation-urlprotocol/URLProtocol.swift",
+      "artifact": "raw/official-foundation-urlprotocol/URLProtocol.swift.gz",
+      "rawBytes": 18937,
+      "rawSHA256": "707f8dc27d81f54f6da245b68f1adcf8e7da645defe8f58dbd2d1800c0c68ec1",
+      "artifactSHA256": "acadd9c3ca210256c4c918f15353346123ec57ce68f83f21beb28ae84889cb07"
+    },
+    {
+      "source": "official-foundation-urlprotocol/URLRequest.swift",
+      "artifact": "raw/official-foundation-urlprotocol/URLRequest.swift.gz",
+      "rawBytes": 12141,
+      "rawSHA256": "b05b549e4d33a6671d332930fb68076c97378ad3ea503a0d94f23c29f94ab96c",
+      "artifactSHA256": "80a7bd33fd4702ef417a78e6f3b0afe159217cfbd70f071480de74b504eb5d7d"
+    },
+    {
+      "source": "official-foundation-urlprotocol/WINDOWS_DLL_CANDIDATES.json",
+      "artifact": "raw/official-foundation-urlprotocol/WINDOWS_DLL_CANDIDATES.json.gz",
+      "rawBytes": 477,
+      "rawSHA256": "523426bf7dc33d479772b54935c0fb62f52bd11563feeb660e55670c48409ae9",
+      "artifactSHA256": "a683343ea56faf8090d0091f8dd316eda07da532ad98d1dbdd32a4e00d65a4e1"
+    },
+    {
+      "source": "SOURCE_PRESERVATION.json",
+      "artifact": "raw/SOURCE_PRESERVATION.json.gz",
+      "rawBytes": 2940,
+      "rawSHA256": "33c8af0b53f1d22064c79e4bd87422603d68e0eb1e8af38f9f0f20733891c44e",
+      "artifactSHA256": "a908a186fe89587b8c7ceae7616039c7fae447aabf6d9453f281c7e79a886dfb"
+    },
+    {
+      "source": "toc-native-syntax/0.stderr.log",
+      "artifact": "raw/toc-native-syntax/0.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "toc-native-syntax/0.stdout.log",
+      "artifact": "raw/toc-native-syntax/0.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "toc-native-syntax/1.stderr.log",
+      "artifact": "raw/toc-native-syntax/1.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "toc-native-syntax/1.stdout.log",
+      "artifact": "raw/toc-native-syntax/1.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "toc-native-syntax/2.stderr.log",
+      "artifact": "raw/toc-native-syntax/2.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "toc-native-syntax/2.stdout.log",
+      "artifact": "raw/toc-native-syntax/2.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "toc-native-syntax/3.stderr.log",
+      "artifact": "raw/toc-native-syntax/3.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "toc-native-syntax/3.stdout.log",
+      "artifact": "raw/toc-native-syntax/3.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "toc-native-syntax/4.stderr.log",
+      "artifact": "raw/toc-native-syntax/4.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "toc-native-syntax/4.stdout.log",
+      "artifact": "raw/toc-native-syntax/4.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "toc-native-syntax/5.stderr.log",
+      "artifact": "raw/toc-native-syntax/5.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "toc-native-syntax/5.stdout.log",
+      "artifact": "raw/toc-native-syntax/5.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "toc-native-syntax/6.stderr.log",
+      "artifact": "raw/toc-native-syntax/6.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "toc-native-syntax/6.stdout.log",
+      "artifact": "raw/toc-native-syntax/6.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "TOC_RETRY_SOURCE_PREPARATION.json",
+      "artifact": "raw/TOC_RETRY_SOURCE_PREPARATION.json.gz",
+      "rawBytes": 1817,
+      "rawSHA256": "bb9d52fe1560331d4b26e16da3ebd82fa4cff17c69255645f43d3c35b8a5618a",
+      "artifactSHA256": "a4b25e62c4337b8ddb74236d4039eb9f929e3eef832ac7e2b67e8f6dd4ca2872"
+    },
+    {
+      "source": "TOC_TRANSPORT_SOURCE_PREPARATION.json",
+      "artifact": "raw/TOC_TRANSPORT_SOURCE_PREPARATION.json.gz",
+      "rawBytes": 567,
+      "rawSHA256": "c90336f9aa6fabba8d47e942436a4ab795f1d71451d08676d8accbcbe6e26d65",
+      "artifactSHA256": "f5d8587b459e49b228b7358ccf57e54a85d767f8e58551c70230a10b9587daed"
+    },
+    {
+      "source": "transport-attempt1/CASES_EXPECTED.json",
+      "artifact": "raw/transport-attempt1/CASES_EXPECTED.json.gz",
+      "rawBytes": 2093,
+      "rawSHA256": "0e5b5884aec24f75f4db9710108e0bded39720e3689da9e3a87f050121b4158a",
+      "artifactSHA256": "4bf9f2deb5359c78fe9f0035eac9b442e7fcdd2c9e675b97c59734e5a6766531"
+    },
+    {
+      "source": "transport-attempt1/COMMANDS.json",
+      "artifact": "raw/transport-attempt1/COMMANDS.json.gz",
+      "rawBytes": 2326,
+      "rawSHA256": "b3d2a91d77c95109ffe453f1338108d4b15b1e3f568a90852c2702ec9d058eb3",
+      "artifactSHA256": "275977f6b3c6370625e69243dd8510d911e8aa57b9c25260f60ca1657eec7db5"
+    },
+    {
+      "source": "transport-attempt1/compile.stderr.log",
+      "artifact": "raw/transport-attempt1/compile.stderr.log.gz",
+      "rawBytes": 2436,
+      "rawSHA256": "aca8eb4ab48db8853ab45180bc91218306b4bebab3e0ad0666390d48d3552537",
+      "artifactSHA256": "eaec2669e983cd82e4efe4910a593c3c2bd827c939c59dbb60ee94b73ad7ce6e"
+    },
+    {
+      "source": "transport-attempt1/compile.stdout.log",
+      "artifact": "raw/transport-attempt1/compile.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "transport-attempt1/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "artifact": "raw/transport-attempt1/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift.gz",
+      "rawBytes": 5433,
+      "rawSHA256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "artifactSHA256": "312ef5e1ee59b146d8ca16c905cd80ddecd6445f94139eb2ee4d7b92ef694578"
+    },
+    {
+      "source": "transport-attempt1/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "artifact": "raw/transport-attempt1/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift.gz",
+      "rawBytes": 2831,
+      "rawSHA256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "artifactSHA256": "be4101adedaf3f89e648312a5dc8318b9d6ea9504ab6d715d95347b04bc11bc0"
+    },
+    {
+      "source": "transport-attempt1/inputs/Source/LibraryBackend/LibraryBackendModels.swift",
+      "artifact": "raw/transport-attempt1/inputs/Source/LibraryBackend/LibraryBackendModels.swift.gz",
+      "rawBytes": 31937,
+      "rawSHA256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "artifactSHA256": "24ea52fd02a9c55f08527330dc8529907435486fb9667e32a5c78023e2d18843"
+    },
+    {
+      "source": "transport-attempt1/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+      "artifact": "raw/transport-attempt1/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift.gz",
+      "rawBytes": 2067,
+      "rawSHA256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "artifactSHA256": "2bec8680d279d0ee8ec84f1451a7498872844c3b607733982f85771b9a9fe1b0"
+    },
+    {
+      "source": "transport-attempt1/inputs/Source/Sefaria/Domain/SefariaModels.swift",
+      "artifact": "raw/transport-attempt1/inputs/Source/Sefaria/Domain/SefariaModels.swift.gz",
+      "rawBytes": 12258,
+      "rawSHA256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "artifactSHA256": "da620a790ae69390ca4e9a9cc8b1f315aad39de5b1bd49413c6d7e024ed44803"
+    },
+    {
+      "source": "transport-attempt1/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "artifact": "raw/transport-attempt1/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift.gz",
+      "rawBytes": 34284,
+      "rawSHA256": "3a33b37270a8cc19826a403db93f7d800a99a453626b2c0c31ec8e0c9f7a0a5e",
+      "artifactSHA256": "0d7d358715a8f555b290e27b42c450b97c1b43c5914f3c7feb9b641203970721"
+    },
+    {
+      "source": "transport-attempt1/inputs/Source/Sefaria/Network/SefariaDTOs.swift",
+      "artifact": "raw/transport-attempt1/inputs/Source/Sefaria/Network/SefariaDTOs.swift.gz",
+      "rawBytes": 22303,
+      "rawSHA256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+      "artifactSHA256": "eaec24db2622687a3c449c8a6a1518de9a85d797ceff4c063211bc5ab3811cb8"
+    },
+    {
+      "source": "transport-attempt1/inputs/Source/Sefaria/Network/SefariaHTTPClient.swift",
+      "artifact": "raw/transport-attempt1/inputs/Source/Sefaria/Network/SefariaHTTPClient.swift.gz",
+      "rawBytes": 27724,
+      "rawSHA256": "729f78094561df7ade5114360165f4ebc549fbc843a8f019f08bf6c85b19cd7f",
+      "artifactSHA256": "56a95840ee129b8ada7116d917857243f6b27e25243ab24c1836c25f9e8335c5"
+    },
+    {
+      "source": "transport-attempt1/INPUTS.json",
+      "artifact": "raw/transport-attempt1/INPUTS.json.gz",
+      "rawBytes": 3470,
+      "rawSHA256": "883d17bbaee268c46730392d258ae5a4ec22487f18b9e9136651fdd4085323fa",
+      "artifactSHA256": "80a9d3f36968ec9ebf5a60715329f9fd809d855bcecd1eeaecfe2e26cc063259"
+    },
+    {
+      "source": "transport-attempt1/RESULT.json",
+      "artifact": "raw/transport-attempt1/RESULT.json.gz",
+      "rawBytes": 739,
+      "rawSHA256": "9542670e4c4414019816e0dcf28c5133472c2bcbae2c0f1aca210ed004fde7f5",
+      "artifactSHA256": "49537d26f5367376b6110262d6367617f6e365c8e3975d58f66a48e344ea6366"
+    },
+    {
+      "source": "transport-attempt2/CASES_EXPECTED.json",
+      "artifact": "raw/transport-attempt2/CASES_EXPECTED.json.gz",
+      "rawBytes": 2093,
+      "rawSHA256": "0e5b5884aec24f75f4db9710108e0bded39720e3689da9e3a87f050121b4158a",
+      "artifactSHA256": "4bf9f2deb5359c78fe9f0035eac9b442e7fcdd2c9e675b97c59734e5a6766531"
+    },
+    {
+      "source": "transport-attempt2/COMMANDS.json",
+      "artifact": "raw/transport-attempt2/COMMANDS.json.gz",
+      "rawBytes": 2326,
+      "rawSHA256": "38142f04ced9410390f1c5d12bf7b83c582dbec510d2bb6be1e0c2868d554771",
+      "artifactSHA256": "c94b0c94491392dabc402d4b83d4c54fbd910b49d2b9856bb8a2303805eadb32"
+    },
+    {
+      "source": "transport-attempt2/compile.stderr.log",
+      "artifact": "raw/transport-attempt2/compile.stderr.log.gz",
+      "rawBytes": 2802,
+      "rawSHA256": "2e397ac3d982977468f157c19c11bb97f43aa0b3011b08fc1f95a413cac5c0c5",
+      "artifactSHA256": "13359b796ac3351d2e3e909aa52d695409197c7e5739dc8552a9bcde8c7cea78"
+    },
+    {
+      "source": "transport-attempt2/compile.stdout.log",
+      "artifact": "raw/transport-attempt2/compile.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "transport-attempt2/driver.stderr.log",
+      "artifact": "raw/transport-attempt2/driver.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "transport-attempt2/driver.stdout.log",
+      "artifact": "raw/transport-attempt2/driver.stdout.log.gz",
+      "rawBytes": 741,
+      "rawSHA256": "8d2fec69a16afe516c9c3afb2ef8072663fe49f17e56f9ee301a98ed3aa21935",
+      "artifactSHA256": "84db523d5a3152e027cacfcada13f7073554f86f52d5776085b675c1af9bed56"
+    },
+    {
+      "source": "transport-attempt2/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "artifact": "raw/transport-attempt2/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift.gz",
+      "rawBytes": 5433,
+      "rawSHA256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "artifactSHA256": "312ef5e1ee59b146d8ca16c905cd80ddecd6445f94139eb2ee4d7b92ef694578"
+    },
+    {
+      "source": "transport-attempt2/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "artifact": "raw/transport-attempt2/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift.gz",
+      "rawBytes": 2831,
+      "rawSHA256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "artifactSHA256": "be4101adedaf3f89e648312a5dc8318b9d6ea9504ab6d715d95347b04bc11bc0"
+    },
+    {
+      "source": "transport-attempt2/inputs/Source/LibraryBackend/LibraryBackendModels.swift",
+      "artifact": "raw/transport-attempt2/inputs/Source/LibraryBackend/LibraryBackendModels.swift.gz",
+      "rawBytes": 31937,
+      "rawSHA256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "artifactSHA256": "24ea52fd02a9c55f08527330dc8529907435486fb9667e32a5c78023e2d18843"
+    },
+    {
+      "source": "transport-attempt2/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+      "artifact": "raw/transport-attempt2/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift.gz",
+      "rawBytes": 2067,
+      "rawSHA256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "artifactSHA256": "2bec8680d279d0ee8ec84f1451a7498872844c3b607733982f85771b9a9fe1b0"
+    },
+    {
+      "source": "transport-attempt2/inputs/Source/Sefaria/Domain/SefariaModels.swift",
+      "artifact": "raw/transport-attempt2/inputs/Source/Sefaria/Domain/SefariaModels.swift.gz",
+      "rawBytes": 12258,
+      "rawSHA256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "artifactSHA256": "da620a790ae69390ca4e9a9cc8b1f315aad39de5b1bd49413c6d7e024ed44803"
+    },
+    {
+      "source": "transport-attempt2/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "artifact": "raw/transport-attempt2/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift.gz",
+      "rawBytes": 34284,
+      "rawSHA256": "3a33b37270a8cc19826a403db93f7d800a99a453626b2c0c31ec8e0c9f7a0a5e",
+      "artifactSHA256": "0d7d358715a8f555b290e27b42c450b97c1b43c5914f3c7feb9b641203970721"
+    },
+    {
+      "source": "transport-attempt2/inputs/Source/Sefaria/Network/SefariaDTOs.swift",
+      "artifact": "raw/transport-attempt2/inputs/Source/Sefaria/Network/SefariaDTOs.swift.gz",
+      "rawBytes": 22303,
+      "rawSHA256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+      "artifactSHA256": "eaec24db2622687a3c449c8a6a1518de9a85d797ceff4c063211bc5ab3811cb8"
+    },
+    {
+      "source": "transport-attempt2/inputs/Source/Sefaria/Network/SefariaHTTPClient.swift",
+      "artifact": "raw/transport-attempt2/inputs/Source/Sefaria/Network/SefariaHTTPClient.swift.gz",
+      "rawBytes": 27757,
+      "rawSHA256": "ac8c541ac34d494459bb1aa6fd6196dcaa4784c69af901d4bd5a429d47957b82",
+      "artifactSHA256": "8175f6a94f8dc50c4c24e78e94444d3ebd7df901360851b1536dbb8097b4ae9f"
+    },
+    {
+      "source": "transport-attempt2/INPUTS.json",
+      "artifact": "raw/transport-attempt2/INPUTS.json.gz",
+      "rawBytes": 3470,
+      "rawSHA256": "771a2685e29bf03bf7416e0d2284fcf09ca787ca2cb2c4d84339db39566b8097",
+      "artifactSHA256": "453d8d988b95666fcfbfaf67d68f60aebc88810f8b4bfb137f6b10b61ef0e85c"
+    },
+    {
+      "source": "transport-attempt2/LAUNCH.json",
+      "artifact": "raw/transport-attempt2/LAUNCH.json.gz",
+      "rawBytes": 813,
+      "rawSHA256": "4256c6907eeb918243e9779dfc51c9bc85bb21c80cc37a3c7b2567202e9ea844",
+      "artifactSHA256": "ee97067fe8d8db389e60a851cceea1ab9d7a923366bb96ddcd5aa02cc3e56747"
+    },
+    {
+      "source": "transport-attempt2/RESULT.json",
+      "artifact": "raw/transport-attempt2/RESULT.json.gz",
+      "rawBytes": 739,
+      "rawSHA256": "1f05d4f85fb22f3e69bcd839cefe5bd9b771405422ceac356e58dddb79297039",
+      "artifactSHA256": "77030cc6e656aa4c2c7fa5be8f7ab759690ccf7d7aec21f191603c488b8648d1"
+    },
+    {
+      "source": "transport-attempt3/cancel-held/CASES.json",
+      "artifact": "raw/transport-attempt3/cancel-held/CASES.json.gz",
+      "rawBytes": 2045,
+      "rawSHA256": "b48a823f0e7ac53d1149b592624dd1eca9c9851583a1e25af60afd13b18aad7c",
+      "artifactSHA256": "c8a936502784bdfe1d2cd8115cee3277d9011ea80ebf6738c3760fe2bff0d007"
+    },
+    {
+      "source": "transport-attempt3/cancel-held/runtime.stderr.log",
+      "artifact": "raw/transport-attempt3/cancel-held/runtime.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "transport-attempt3/cancel-held/runtime.stdout.log",
+      "artifact": "raw/transport-attempt3/cancel-held/runtime.stdout.log.gz",
+      "rawBytes": 1472,
+      "rawSHA256": "67001e9aaeaee3612e4d58dc3ff0538ca071aa068d40daf7aa9235aa7fc15757",
+      "artifactSHA256": "97488412d5d8823390dfdb42d30dfda0b088d41a863c55f9223947d19290ecc5"
+    },
+    {
+      "source": "transport-attempt3/cancel-held/sefaria-toc-07E0A2D2-AEA5-40A9-BCC2-693B974F4BB5-2A0F9BDD-3CE7-4BE7-A184-F83C724AF655-armed.json",
+      "artifact": "raw/transport-attempt3/cancel-held/sefaria-toc-07E0A2D2-AEA5-40A9-BCC2-693B974F4BB5-2A0F9BDD-3CE7-4BE7-A184-F83C724AF655-armed.json.gz",
+      "rawBytes": 341,
+      "rawSHA256": "e95f156d95369cbe78e7fcee6439339fd70d5093cf7cb80191e7409b0fb76de7",
+      "artifactSHA256": "8a8f52b891ff3745eac998c2702de8a43ab46e6689c85daeaac66251420b203e"
+    },
+    {
+      "source": "transport-attempt3/cancel-held/sefaria-toc-07E0A2D2-AEA5-40A9-BCC2-693B974F4BB5-2A0F9BDD-3CE7-4BE7-A184-F83C724AF655-tagged.json",
+      "artifact": "raw/transport-attempt3/cancel-held/sefaria-toc-07E0A2D2-AEA5-40A9-BCC2-693B974F4BB5-2A0F9BDD-3CE7-4BE7-A184-F83C724AF655-tagged.json.gz",
+      "rawBytes": 342,
+      "rawSHA256": "d095a22f2cf611aae90aaf48affd8b8e934c7aed16436c8c9d4c117aadd97d79",
+      "artifactSHA256": "ba5c336f9d5b5ad7b2af79d457ec6a38e202912745e3099df0762bbfb4829b1a"
+    },
+    {
+      "source": "transport-attempt3/CASES_EXPECTED.json",
+      "artifact": "raw/transport-attempt3/CASES_EXPECTED.json.gz",
+      "rawBytes": 2093,
+      "rawSHA256": "0e5b5884aec24f75f4db9710108e0bded39720e3689da9e3a87f050121b4158a",
+      "artifactSHA256": "4bf9f2deb5359c78fe9f0035eac9b442e7fcdd2c9e675b97c59734e5a6766531"
+    },
+    {
+      "source": "transport-attempt3/COMMANDS.json",
+      "artifact": "raw/transport-attempt3/COMMANDS.json.gz",
+      "rawBytes": 2326,
+      "rawSHA256": "300e9e07e8a597614a6cdae946a3e6d029ed9610e5758f963acf291d3e1fe688",
+      "artifactSHA256": "aca3485a177c7258cd1acccfe9f6e93be8a895150e086cda587e8f883a0bcded"
+    },
+    {
+      "source": "transport-attempt3/compile.stderr.log",
+      "artifact": "raw/transport-attempt3/compile.stderr.log.gz",
+      "rawBytes": 339,
+      "rawSHA256": "a58484998e94763217e0a8d71e85fc6e447b03f6ecb62053acda1954e2c564fd",
+      "artifactSHA256": "0c7e3b3f2c381912c3e9709751ddb7835dfe25b7e8d98b3cbde46d612282a9c3"
+    },
+    {
+      "source": "transport-attempt3/compile.stdout.log",
+      "artifact": "raw/transport-attempt3/compile.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "transport-attempt3/driver.stderr.log",
+      "artifact": "raw/transport-attempt3/driver.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "transport-attempt3/driver.stdout.log",
+      "artifact": "raw/transport-attempt3/driver.stdout.log.gz",
+      "rawBytes": 2287,
+      "rawSHA256": "638f5e63b88a588a5dc5184e4c98d5006147b8d6462707118b95dfed893713b4",
+      "artifactSHA256": "2147927b452793997a5adb85858a4df882360e9d8b5661907ecd3c3c6b89bcd4"
+    },
+    {
+      "source": "transport-attempt3/failure-retry/CASES.json",
+      "artifact": "raw/transport-attempt3/failure-retry/CASES.json.gz",
+      "rawBytes": 2050,
+      "rawSHA256": "cbfcdba6621caaf92d7e69c9fdae659cc10917c6e08bfb56651bbf6f6339837f",
+      "artifactSHA256": "cc7778cce0d3bec995616e26b585ca45d9e7a2e5c3f88f68ebeacd463f0295fc"
+    },
+    {
+      "source": "transport-attempt3/failure-retry/runtime.stderr.log",
+      "artifact": "raw/transport-attempt3/failure-retry/runtime.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "transport-attempt3/failure-retry/runtime.stdout.log",
+      "artifact": "raw/transport-attempt3/failure-retry/runtime.stdout.log.gz",
+      "rawBytes": 1477,
+      "rawSHA256": "cb08d60da5685efff9890902da762387ed032ff7a79671a87552abb137ee82d2",
+      "artifactSHA256": "a454aa80b25a84f2fce6780fbccc192bacf07a059b34f7c6d0b798a233f666da"
+    },
+    {
+      "source": "transport-attempt3/failure-retry/sefaria-toc-47273E3D-F3F9-46F8-9928-7EA655933906-49E35734-FA96-4F96-B768-6ED4DD58E8C2-armed.json",
+      "artifact": "raw/transport-attempt3/failure-retry/sefaria-toc-47273E3D-F3F9-46F8-9928-7EA655933906-49E35734-FA96-4F96-B768-6ED4DD58E8C2-armed.json.gz",
+      "rawBytes": 341,
+      "rawSHA256": "17f287aff30d2c7da0bbc0ede5890b6dcef9fdf91e1df0b86c8b809d90526b5a",
+      "artifactSHA256": "913217f8a6945b3ad920273402d604d0840c4b27cfd308019723eb98108c5ffe"
+    },
+    {
+      "source": "transport-attempt3/failure-retry/sefaria-toc-47273E3D-F3F9-46F8-9928-7EA655933906-49E35734-FA96-4F96-B768-6ED4DD58E8C2-tagged.json",
+      "artifact": "raw/transport-attempt3/failure-retry/sefaria-toc-47273E3D-F3F9-46F8-9928-7EA655933906-49E35734-FA96-4F96-B768-6ED4DD58E8C2-tagged.json.gz",
+      "rawBytes": 341,
+      "rawSHA256": "1f4efc2833ffbc7398857647da7b1778df9de774f34982d922a2090b902fcfd3",
+      "artifactSHA256": "1709a0c71a951a552b7c8c0dd179f7a92a4080db63bc1a22a26a9c5ae37af246"
+    },
+    {
+      "source": "transport-attempt3/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "artifact": "raw/transport-attempt3/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift.gz",
+      "rawBytes": 5433,
+      "rawSHA256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "artifactSHA256": "312ef5e1ee59b146d8ca16c905cd80ddecd6445f94139eb2ee4d7b92ef694578"
+    },
+    {
+      "source": "transport-attempt3/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "artifact": "raw/transport-attempt3/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift.gz",
+      "rawBytes": 2831,
+      "rawSHA256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "artifactSHA256": "be4101adedaf3f89e648312a5dc8318b9d6ea9504ab6d715d95347b04bc11bc0"
+    },
+    {
+      "source": "transport-attempt3/inputs/Source/LibraryBackend/LibraryBackendModels.swift",
+      "artifact": "raw/transport-attempt3/inputs/Source/LibraryBackend/LibraryBackendModels.swift.gz",
+      "rawBytes": 31937,
+      "rawSHA256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "artifactSHA256": "24ea52fd02a9c55f08527330dc8529907435486fb9667e32a5c78023e2d18843"
+    },
+    {
+      "source": "transport-attempt3/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+      "artifact": "raw/transport-attempt3/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift.gz",
+      "rawBytes": 2067,
+      "rawSHA256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "artifactSHA256": "2bec8680d279d0ee8ec84f1451a7498872844c3b607733982f85771b9a9fe1b0"
+    },
+    {
+      "source": "transport-attempt3/inputs/Source/Sefaria/Domain/SefariaModels.swift",
+      "artifact": "raw/transport-attempt3/inputs/Source/Sefaria/Domain/SefariaModels.swift.gz",
+      "rawBytes": 12258,
+      "rawSHA256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "artifactSHA256": "da620a790ae69390ca4e9a9cc8b1f315aad39de5b1bd49413c6d7e024ed44803"
+    },
+    {
+      "source": "transport-attempt3/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "artifact": "raw/transport-attempt3/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift.gz",
+      "rawBytes": 34284,
+      "rawSHA256": "3a33b37270a8cc19826a403db93f7d800a99a453626b2c0c31ec8e0c9f7a0a5e",
+      "artifactSHA256": "0d7d358715a8f555b290e27b42c450b97c1b43c5914f3c7feb9b641203970721"
+    },
+    {
+      "source": "transport-attempt3/inputs/Source/Sefaria/Network/SefariaDTOs.swift",
+      "artifact": "raw/transport-attempt3/inputs/Source/Sefaria/Network/SefariaDTOs.swift.gz",
+      "rawBytes": 22303,
+      "rawSHA256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+      "artifactSHA256": "eaec24db2622687a3c449c8a6a1518de9a85d797ceff4c063211bc5ab3811cb8"
+    },
+    {
+      "source": "transport-attempt3/inputs/Source/Sefaria/Network/SefariaHTTPClient.swift",
+      "artifact": "raw/transport-attempt3/inputs/Source/Sefaria/Network/SefariaHTTPClient.swift.gz",
+      "rawBytes": 28630,
+      "rawSHA256": "548a81922ecd66e8396af74f3973a56ecd2d23ac4dd76fe43c0da017f85b88b8",
+      "artifactSHA256": "d4d314df9d323188b31d740c0385ff43dcb797f1d3ab916944ad66c2df96e960"
+    },
+    {
+      "source": "transport-attempt3/INPUTS.json",
+      "artifact": "raw/transport-attempt3/INPUTS.json.gz",
+      "rawBytes": 3470,
+      "rawSHA256": "1a0f8b3952e9eb9dbd371aa5d585f8c2d89962bc73370ca5bdae73f69a1ac91e",
+      "artifactSHA256": "c0327fd9e450a88d7f3e512fb20acc5c2961552d50177b0be040319c1e0ceedb"
+    },
+    {
+      "source": "transport-attempt3/LAUNCH.json",
+      "artifact": "raw/transport-attempt3/LAUNCH.json.gz",
+      "rawBytes": 813,
+      "rawSHA256": "ef945c0d5360c7d381be48d19bfa79cfd1bcfd12162a58b742d5b8882e456384",
+      "artifactSHA256": "9d040387593650837a37533ccef762904da385b16507b635b15bee67063748d3"
+    },
+    {
+      "source": "transport-attempt3/RESULT.json",
+      "artifact": "raw/transport-attempt3/RESULT.json.gz",
+      "rawBytes": 2285,
+      "rawSHA256": "0ce7f36b45a507c693123c6fe57b3b6fa59e3a8cb8b1b0a09e77499a5a412b2b",
+      "artifactSHA256": "dc5e1dd602d0411afb6e1a5f59c456064cb99d1c171014766fe3082d664edaca"
+    },
+    {
+      "source": "transport-lifetime-baseline-original.swift",
+      "artifact": "raw/transport-lifetime-baseline-original.swift.gz",
+      "rawBytes": 18338,
+      "rawSHA256": "cbf59ef2d526f5637a8d194a8c7f8c666c33867851c3e4b05e806b6880d40730",
+      "artifactSHA256": "3245cfd4fbc6e1eb282c763f3b97f37c101373b29fbe1819804501e164feb24a"
+    },
+    {
+      "source": "transport-lifetime-green/CASES_EXPECTED.json",
+      "artifact": "raw/transport-lifetime-green/CASES_EXPECTED.json.gz",
+      "rawBytes": 171,
+      "rawSHA256": "e9e6b31c4e3507c023e9f3730b22bf2d1ca7ff4d49a55b52da31499579b50799",
+      "artifactSHA256": "9a5b8387a0773d3a620058131aa3f8f2ba5fbe8fd1babf31cbe5b059ef6f6ba5"
+    },
+    {
+      "source": "transport-lifetime-green/COMMANDS.json",
+      "artifact": "raw/transport-lifetime-green/COMMANDS.json.gz",
+      "rawBytes": 2380,
+      "rawSHA256": "ab0fe86e24d3abfeb1f84cdaaee2834790cc09c6edc50f247ab82a1b07e61b0a",
+      "artifactSHA256": "773c58b95dd221eb2c065433d380d650a1c8582f2718d463545aa52f7d913250"
+    },
+    {
+      "source": "transport-lifetime-green/compile.stderr.log",
+      "artifact": "raw/transport-lifetime-green/compile.stderr.log.gz",
+      "rawBytes": 351,
+      "rawSHA256": "015fbf06f9368d28ba68524412f5cf0ba6d81eb2163aae24e103be30eaa6ddd4",
+      "artifactSHA256": "31a0535597ce7d432b644d10d73fba0d3bedb515a7b26f5f26d3c0a0e1584c73"
+    },
+    {
+      "source": "transport-lifetime-green/compile.stdout.log",
+      "artifact": "raw/transport-lifetime-green/compile.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "transport-lifetime-green/driver.stderr.log",
+      "artifact": "raw/transport-lifetime-green/driver.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "transport-lifetime-green/driver.stdout.log",
+      "artifact": "raw/transport-lifetime-green/driver.stdout.log.gz",
+      "rawBytes": 1035,
+      "rawSHA256": "2b3833c07d93ffb09b20eb9b001ae6bc015eccc62ef84d1ca640290c154a1714",
+      "artifactSHA256": "663ca017110a9724242fa0cdcb33214913a9b21143ef05708704a70190920e71"
+    },
+    {
+      "source": "transport-lifetime-green/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "artifact": "raw/transport-lifetime-green/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift.gz",
+      "rawBytes": 5433,
+      "rawSHA256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "artifactSHA256": "312ef5e1ee59b146d8ca16c905cd80ddecd6445f94139eb2ee4d7b92ef694578"
+    },
+    {
+      "source": "transport-lifetime-green/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "artifact": "raw/transport-lifetime-green/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift.gz",
+      "rawBytes": 2831,
+      "rawSHA256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "artifactSHA256": "be4101adedaf3f89e648312a5dc8318b9d6ea9504ab6d715d95347b04bc11bc0"
+    },
+    {
+      "source": "transport-lifetime-green/inputs/Source/LibraryBackend/LibraryBackendModels.swift",
+      "artifact": "raw/transport-lifetime-green/inputs/Source/LibraryBackend/LibraryBackendModels.swift.gz",
+      "rawBytes": 31937,
+      "rawSHA256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "artifactSHA256": "24ea52fd02a9c55f08527330dc8529907435486fb9667e32a5c78023e2d18843"
+    },
+    {
+      "source": "transport-lifetime-green/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+      "artifact": "raw/transport-lifetime-green/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift.gz",
+      "rawBytes": 2067,
+      "rawSHA256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "artifactSHA256": "2bec8680d279d0ee8ec84f1451a7498872844c3b607733982f85771b9a9fe1b0"
+    },
+    {
+      "source": "transport-lifetime-green/inputs/Source/Sefaria/Domain/SefariaModels.swift",
+      "artifact": "raw/transport-lifetime-green/inputs/Source/Sefaria/Domain/SefariaModels.swift.gz",
+      "rawBytes": 12258,
+      "rawSHA256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "artifactSHA256": "da620a790ae69390ca4e9a9cc8b1f315aad39de5b1bd49413c6d7e024ed44803"
+    },
+    {
+      "source": "transport-lifetime-green/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "artifact": "raw/transport-lifetime-green/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift.gz",
+      "rawBytes": 34284,
+      "rawSHA256": "3a33b37270a8cc19826a403db93f7d800a99a453626b2c0c31ec8e0c9f7a0a5e",
+      "artifactSHA256": "0d7d358715a8f555b290e27b42c450b97c1b43c5914f3c7feb9b641203970721"
+    },
+    {
+      "source": "transport-lifetime-green/inputs/Source/Sefaria/Network/SefariaDTOs.swift",
+      "artifact": "raw/transport-lifetime-green/inputs/Source/Sefaria/Network/SefariaDTOs.swift.gz",
+      "rawBytes": 22303,
+      "rawSHA256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+      "artifactSHA256": "eaec24db2622687a3c449c8a6a1518de9a85d797ceff4c063211bc5ab3811cb8"
+    },
+    {
+      "source": "transport-lifetime-green/inputs/Source/Sefaria/Network/SefariaHTTPClient.swift",
+      "artifact": "raw/transport-lifetime-green/inputs/Source/Sefaria/Network/SefariaHTTPClient.swift.gz",
+      "rawBytes": 32870,
+      "rawSHA256": "62320ee2f52b027874bed04c1abae824b35e50925b06fc474a9eb6b041257f9c",
+      "artifactSHA256": "18a4bb7b30be25fa54e6439c9da84ab0fa4d03eb6dfec67359382e2fe69bab08"
+    },
+    {
+      "source": "transport-lifetime-green/INPUTS.json",
+      "artifact": "raw/transport-lifetime-green/INPUTS.json.gz",
+      "rawBytes": 4669,
+      "rawSHA256": "1293fee86bb919b3daad496e1d3144b5c15ffd79bfffe038fee31c051bea2060",
+      "artifactSHA256": "ede2f0a79cc0dcfe2c53b70448eea8e87b7ba81b62a22dc91914ec5bcf55e1d4"
+    },
+    {
+      "source": "transport-lifetime-green/lifetime/CASES.json",
+      "artifact": "raw/transport-lifetime-green/lifetime/CASES.json.gz",
+      "rawBytes": 266,
+      "rawSHA256": "9f4781b235a2d825fbf3decae584e0f010a8745f3b94a9fc60d8bf7d57b9c130",
+      "artifactSHA256": "07064e54bfd201b71db28f1874b2f06331b6d110400ddd10134814d26ca52026"
+    },
+    {
+      "source": "transport-lifetime-green/lifetime/runtime.stderr.log",
+      "artifact": "raw/transport-lifetime-green/lifetime/runtime.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "transport-lifetime-green/lifetime/runtime.stdout.log",
+      "artifact": "raw/transport-lifetime-green/lifetime/runtime.stdout.log.gz",
+      "rawBytes": 199,
+      "rawSHA256": "915ca57a0eb5abe883696ec1378893d5b45958f6e7c56fce5c6b5c9cb7eb3f32",
+      "artifactSHA256": "598db608d67baa4179471b639de9d75adfe09c215c2ae42fb58974df91c9c1ae"
+    },
+    {
+      "source": "transport-lifetime-green/RESULT.json",
+      "artifact": "raw/transport-lifetime-green/RESULT.json.gz",
+      "rawBytes": 1033,
+      "rawSHA256": "1238e2c8bc69ea5e7c4f17cdd0bf3972448f1c25e77957fef9b617f829aaafb7",
+      "artifactSHA256": "0998e8a9b6100cd409621ef77ef6b6be34fbcf1b5b214ca2a54951c79b7d0570"
+    },
+    {
+      "source": "transport-lifetime-red/CASES_EXPECTED.json",
+      "artifact": "raw/transport-lifetime-red/CASES_EXPECTED.json.gz",
+      "rawBytes": 171,
+      "rawSHA256": "e9e6b31c4e3507c023e9f3730b22bf2d1ca7ff4d49a55b52da31499579b50799",
+      "artifactSHA256": "9a5b8387a0773d3a620058131aa3f8f2ba5fbe8fd1babf31cbe5b059ef6f6ba5"
+    },
+    {
+      "source": "transport-lifetime-red/COMMANDS.json",
+      "artifact": "raw/transport-lifetime-red/COMMANDS.json.gz",
+      "rawBytes": 2362,
+      "rawSHA256": "86b83129e69c552d23137c57dad609a72644091c59da9594f6558bdc831d433a",
+      "artifactSHA256": "9d227a868ad1e4717a10eff6b5682e5676e0b668b45bebd0e5a5fbccb297f00d"
+    },
+    {
+      "source": "transport-lifetime-red/compile.stderr.log",
+      "artifact": "raw/transport-lifetime-red/compile.stderr.log.gz",
+      "rawBytes": 347,
+      "rawSHA256": "4dd1168a731d93ff65d4dec3dd3b1cbfec9c065b23e3e2a74ae076aa51bd5846",
+      "artifactSHA256": "191a16568861e18cd1d133a9521b3390a8ebc918fbd5d101cb03fd8c2f2a8f37"
+    },
+    {
+      "source": "transport-lifetime-red/compile.stdout.log",
+      "artifact": "raw/transport-lifetime-red/compile.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "transport-lifetime-red/driver.stderr.log",
+      "artifact": "raw/transport-lifetime-red/driver.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "transport-lifetime-red/driver.stdout.log",
+      "artifact": "raw/transport-lifetime-red/driver.stdout.log.gz",
+      "rawBytes": 1366,
+      "rawSHA256": "6d2414f341f2e7b02f6f94dd7f23e3cc50d9238207c476d41a271d812614c459",
+      "artifactSHA256": "27442e13df4983ac1c1a522de8828d83e2665d6a25d9ee616b114d0e9ca18eec"
+    },
+    {
+      "source": "transport-lifetime-red/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "artifact": "raw/transport-lifetime-red/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift.gz",
+      "rawBytes": 5433,
+      "rawSHA256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "artifactSHA256": "312ef5e1ee59b146d8ca16c905cd80ddecd6445f94139eb2ee4d7b92ef694578"
+    },
+    {
+      "source": "transport-lifetime-red/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "artifact": "raw/transport-lifetime-red/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift.gz",
+      "rawBytes": 2831,
+      "rawSHA256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "artifactSHA256": "be4101adedaf3f89e648312a5dc8318b9d6ea9504ab6d715d95347b04bc11bc0"
+    },
+    {
+      "source": "transport-lifetime-red/inputs/Source/LibraryBackend/LibraryBackendModels.swift",
+      "artifact": "raw/transport-lifetime-red/inputs/Source/LibraryBackend/LibraryBackendModels.swift.gz",
+      "rawBytes": 31937,
+      "rawSHA256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "artifactSHA256": "24ea52fd02a9c55f08527330dc8529907435486fb9667e32a5c78023e2d18843"
+    },
+    {
+      "source": "transport-lifetime-red/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+      "artifact": "raw/transport-lifetime-red/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift.gz",
+      "rawBytes": 2067,
+      "rawSHA256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "artifactSHA256": "2bec8680d279d0ee8ec84f1451a7498872844c3b607733982f85771b9a9fe1b0"
+    },
+    {
+      "source": "transport-lifetime-red/inputs/Source/Sefaria/Domain/SefariaModels.swift",
+      "artifact": "raw/transport-lifetime-red/inputs/Source/Sefaria/Domain/SefariaModels.swift.gz",
+      "rawBytes": 12258,
+      "rawSHA256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "artifactSHA256": "da620a790ae69390ca4e9a9cc8b1f315aad39de5b1bd49413c6d7e024ed44803"
+    },
+    {
+      "source": "transport-lifetime-red/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "artifact": "raw/transport-lifetime-red/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift.gz",
+      "rawBytes": 34284,
+      "rawSHA256": "3a33b37270a8cc19826a403db93f7d800a99a453626b2c0c31ec8e0c9f7a0a5e",
+      "artifactSHA256": "0d7d358715a8f555b290e27b42c450b97c1b43c5914f3c7feb9b641203970721"
+    },
+    {
+      "source": "transport-lifetime-red/inputs/Source/Sefaria/Network/SefariaDTOs.swift",
+      "artifact": "raw/transport-lifetime-red/inputs/Source/Sefaria/Network/SefariaDTOs.swift.gz",
+      "rawBytes": 22303,
+      "rawSHA256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+      "artifactSHA256": "eaec24db2622687a3c449c8a6a1518de9a85d797ceff4c063211bc5ab3811cb8"
+    },
+    {
+      "source": "transport-lifetime-red/inputs/Source/Sefaria/Network/SefariaHTTPClient.swift",
+      "artifact": "raw/transport-lifetime-red/inputs/Source/Sefaria/Network/SefariaHTTPClient.swift.gz",
+      "rawBytes": 32506,
+      "rawSHA256": "b6135c62c6e512b6a83f564e528ef35036b8f2c87c5b3e2c188ad8696af71406",
+      "artifactSHA256": "ec39f6c6993863106e4323eefe25a7245bf2c24a80a5578fac8628c19a848313"
+    },
+    {
+      "source": "transport-lifetime-red/INPUTS.json",
+      "artifact": "raw/transport-lifetime-red/INPUTS.json.gz",
+      "rawBytes": 4705,
+      "rawSHA256": "f62378492c48c656db221fb87388c1acb20a25b1e468be14f47b5e0b0435f37e",
+      "artifactSHA256": "46d98905970203c1d826cfb8ba4e86a118900c0f012c7a02f13527b6899e5ed9"
+    },
+    {
+      "source": "transport-lifetime-red/lifetime/CASES.json",
+      "artifact": "raw/transport-lifetime-red/lifetime/CASES.json.gz",
+      "rawBytes": 269,
+      "rawSHA256": "bc6e9ffd0b6d8391594aac01c326dd16199e736f08992fd47e7b8f1a39662068",
+      "artifactSHA256": "301638662150fa422ff3307f57bac5bad10e2eafe426168c1af550b3f5fce27f"
+    },
+    {
+      "source": "transport-lifetime-red/lifetime/runtime.stderr.log",
+      "artifact": "raw/transport-lifetime-red/lifetime/runtime.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "transport-lifetime-red/lifetime/runtime.stdout.log",
+      "artifact": "raw/transport-lifetime-red/lifetime/runtime.stdout.log.gz",
+      "rawBytes": 202,
+      "rawSHA256": "f36f14722caf097dbada554f356d675053ffe0182e0526a990dbd73a1d7ca9a2",
+      "artifactSHA256": "861c883efea7fd2ef2bb0d369f907e2ea3c4575202ef7a80dcaf94b27e854288"
+    },
+    {
+      "source": "transport-lifetime-red/RESULT.json",
+      "artifact": "raw/transport-lifetime-red/RESULT.json.gz",
+      "rawBytes": 1364,
+      "rawSHA256": "0d7e86f74d2d46542acdc6bac477618926cc4711e226bd15a7578c0338051ab0",
+      "artifactSHA256": "83126feac8f70d38ee56c93e91e5c9ccb6328002dc38c5478a81c931b74e7b72"
+    },
+    {
+      "source": "TRANSPORT_LIFETIME_AND_SYNTAX.json",
+      "artifact": "raw/TRANSPORT_LIFETIME_AND_SYNTAX.json.gz",
+      "rawBytes": 7401,
+      "rawSHA256": "19542027f05f853489f01eeb40711469df7e523d6675ab1d9dca07fdda606c2f",
+      "artifactSHA256": "c6a94eac7a2d0c448e19c4e612bfac1869d9d1b9d39257e09811c1376bc0c025"
+    },
+    {
+      "source": "TRANSPORT_LIFETIME_BASELINE.json",
+      "artifact": "raw/TRANSPORT_LIFETIME_BASELINE.json.gz",
+      "rawBytes": 690,
+      "rawSHA256": "ee57eed244a0d7f6ecc03172a77a0d340450d0b75ea9acf2444405fe9054d9f0",
+      "artifactSHA256": "f9bf4170f381b2dde38a760bccda64a3b355c42547c87595da638c6503582a8d"
+    },
+    {
+      "source": "TRANSPORT_LIFETIME_FIX.json",
+      "artifact": "raw/TRANSPORT_LIFETIME_FIX.json.gz",
+      "rawBytes": 586,
+      "rawSHA256": "3b583ec9e0f816ae43ba73a449ebe6e08bfe77a6df13dec5ceebfb9098166973",
+      "artifactSHA256": "fcd50fda834959e867f93eaf69d1f366a9dedcff733a8d5fcf6e7048239c50a1"
+    },
+    {
+      "source": "TRANSPORT_LIFETIME_FIX.patch",
+      "artifact": "raw/TRANSPORT_LIFETIME_FIX.patch.gz",
+      "rawBytes": 5109,
+      "rawSHA256": "fd1877adaae17567b079bee6daedef03ef2a8dd7813f59a93e4b8254572f20f5",
+      "artifactSHA256": "4145564be2f69cf6dff15cc6c4a64440a49d5cd767e9c30eeb9f2c70611d8c6e"
+    },
+    {
+      "source": "TRANSPORT_REJECTED_START_FIX.patch",
+      "artifact": "raw/TRANSPORT_REJECTED_START_FIX.patch.gz",
+      "rawBytes": 2311,
+      "rawSHA256": "3090fcf10d00120f8beec1cc31286d7c5d0896ef42f82826c8f484d282e3c194",
+      "artifactSHA256": "fcc79f6ecd33d4204125ad8c086b2d807a6992d6630aeae7c07ddbfa52f63d64"
+    },
+    {
+      "source": "TRANSPORT_SHADOW_FIX.json",
+      "artifact": "raw/TRANSPORT_SHADOW_FIX.json.gz",
+      "rawBytes": 1232,
+      "rawSHA256": "b9be1e1affb9977993531761224a37df73a1989fa65da440cbc991b2585859ee",
+      "artifactSHA256": "c6ad3536040b503199c70c723863df9f5a21975e60967cf349b741858b573628"
+    },
+    {
+      "source": "pre-stage-tracked-delta.patch",
+      "artifact": "raw/pre-stage-tracked-delta.patch.gz",
+      "rawBytes": 49357,
+      "rawSHA256": "4aaab3d0046d378694e3f9b0acb57f73bd58bd97ee17f4ecc895c89a95aa1d24",
+      "artifactSHA256": "6c0208273c914ef82daeadba39a9d5f92fda76703f05949c766ca3913fdbd759"
+    },
+    {
+      "source": "staged-complete-source-delta.patch",
+      "artifact": "SOURCE_DELTA.patch.gz",
+      "rawBytes": 72190,
+      "rawSHA256": "e43568a282f76ff7ee8984deea6954f4bf7f8d280d315e39f28e4a0d1be6236e",
+      "artifactSHA256": "feb6e66f8c63b6608167bd65990a6941c3374b05f94d6800fc35d95e030618ee"
+    }
+  ],
+  "sourceInputs": [
+    {
+      "path": "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+      "rawBytes": 27415,
+      "rawSHA256": "6b9dedf2fda3a1197eb205fbc2317048652f5c202c79a55f0957d79d98143e91",
+      "canonicalLFBytes": 27415,
+      "canonicalLFSHA256": "6b9dedf2fda3a1197eb205fbc2317048652f5c202c79a55f0957d79d98143e91"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "rawBytes": 4332,
+      "rawSHA256": "6c07fd7be508f622c4d812affae7a3180ea9ff6d4f486f5289194a1637972f10",
+      "canonicalLFBytes": 4332,
+      "canonicalLFSHA256": "6c07fd7be508f622c4d812affae7a3180ea9ff6d4f486f5289194a1637972f10"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+      "rawBytes": 7989,
+      "rawSHA256": "b1873fdeaa9da48dfcdde2a622d205f616fc9f5025b121937751c1bf5c78eb39",
+      "canonicalLFBytes": 7989,
+      "canonicalLFSHA256": "b1873fdeaa9da48dfcdde2a622d205f616fc9f5025b121937751c1bf5c78eb39"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "rawBytes": 12324,
+      "rawSHA256": "802ff46c9e4efc3526aaedb51b9cfd76cc22f611c652f7c44c4d85486a05f4ea",
+      "canonicalLFBytes": 12324,
+      "canonicalLFSHA256": "802ff46c9e4efc3526aaedb51b9cfd76cc22f611c652f7c44c4d85486a05f4ea"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "rawBytes": 31913,
+      "rawSHA256": "884754d03e74b282a9c4a5e680a7f5685410e84a10885ef72c1736680504b859",
+      "canonicalLFBytes": 31913,
+      "canonicalLFSHA256": "884754d03e74b282a9c4a5e680a7f5685410e84a10885ef72c1736680504b859"
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "rawBytes": 340316,
+      "rawSHA256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46",
+      "canonicalLFBytes": 340316,
+      "canonicalLFSHA256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46"
+    },
+    {
+      "path": "Source/Sefaria/Network/SefariaHTTPClient.swift",
+      "rawBytes": 18702,
+      "rawSHA256": "7e064e33a19f032e2175c0d4658f97c23e0fd70d77bc1eabe9e535e7b3aabefd",
+      "canonicalLFBytes": 18702,
+      "canonicalLFSHA256": "7e064e33a19f032e2175c0d4658f97c23e0fd70d77bc1eabe9e535e7b3aabefd"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "rawBytes": 21392,
+      "rawSHA256": "ded371540b4c49a8dc6f9603ca53b42b5bd4e0de83f2d05adaa09616e0828518",
+      "canonicalLFBytes": 21392,
+      "canonicalLFSHA256": "ded371540b4c49a8dc6f9603ca53b42b5bd4e0de83f2d05adaa09616e0828518"
+    },
+    {
+      "path": "Tests/HQ/sefaria-mobile-navigation/TOCTransportAcceptanceAppendix.swift",
+      "rawBytes": 14167,
+      "rawSHA256": "6e3533132d0d643875d42f3f7af54380475450a190996bb261c3ca245d06977e",
+      "canonicalLFBytes": 14167,
+      "canonicalLFSHA256": "6e3533132d0d643875d42f3f7af54380475450a190996bb261c3ca245d06977e"
+    },
+    {
+      "path": "tools/hq-sefaria-toc-transport.py",
+      "rawBytes": 7825,
+      "rawSHA256": "823e03936127e945f4391359970791c40b80774cf15ba4bd83f1e518a89c4ed2",
+      "canonicalLFBytes": 7825,
+      "canonicalLFSHA256": "823e03936127e945f4391359970791c40b80774cf15ba4bd83f1e518a89c4ed2"
+    }
+  ]
+}
