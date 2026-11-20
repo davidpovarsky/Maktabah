@@ -1,0 +1,72 @@
+{
+  "source_ref": null,
+  "sources_lf_sha256": {
+    "Maktabah-iOSUITests/MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "0c5a87f152c39176e20463a3faf4fc18730e46d4488c20bb6b1d58113dbef9d9",
+    "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift": "d4ff446db4acdbb61e0ad19c14696e5194bafbba239ef86876e85a2de30e70cc"
+  },
+  "generated_lf_sha256": "d3d6665b3a703c5ece42c8de397a87721bcc3347e4bfc6692d37adaabd58f06c",
+  "compile_exit": 0,
+  "compiler_output": "   Creating library build\\feature-off-20261120\\launch-green\\launch.lib and object build\\feature-off-20261120\\launch-green\\launch.exp\n\n",
+  "native_cases_executed": 0,
+  "apple_sdk_typecheck": "NOT_RUN",
+  "boundary": "Exact original TestTier, launchWithTier, Faithful launch methods and R27 override compiled with explicit application/XCTest assertion seams; this verifies Swift inheritance, dispatch and argument construction only.",
+  "execute_exit": 0,
+  "actual": {
+    "checks": [
+      {
+        "name": "Original default still uses smoke bypass",
+        "passed": true
+      },
+      {
+        "name": "Original smoke backend argument is preserved",
+        "passed": true
+      },
+      {
+        "name": "Original default profile stays miniTest10",
+        "passed": true
+      },
+      {
+        "name": "Required realUI overload emits no bypass",
+        "passed": true
+      },
+      {
+        "name": "Required realUI overload pins requested preferred backend",
+        "passed": true
+      },
+      {
+        "name": "Required realUI overload pins requested scenario backend",
+        "passed": true
+      },
+      {
+        "name": "Exact base launch method invokes the application seam",
+        "passed": true
+      },
+      {
+        "name": "Original R27 override remains dynamically dispatched",
+        "passed": true
+      },
+      {
+        "name": "Original R27 override preserves requested preferred backend",
+        "passed": true
+      },
+      {
+        "name": "Original R27 override preserves scenario backend",
+        "passed": true
+      },
+      {
+        "name": "Existing realUI tier property remains honored",
+        "passed": true
+      },
+      {
+        "name": "Existing realUI additional arguments remain preserved",
+        "passed": true
+      }
+    ],
+    "checks_count": 12,
+    "failed": 0,
+    "native_cases_executed": 0,
+    "source_assertion_failures": []
+  },
+  "execute_stderr": ""
+}

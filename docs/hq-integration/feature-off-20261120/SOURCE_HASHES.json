@@ -12,8 +12,10 @@
     "repository_lf_sha256": "32e6ab953ba92b747d5415798d873d166d950b4b3495c881e0b0f7cdb01d481a"
   },
   "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": {
-    "working_copy_raw_sha256": "db39a6592c78cd337ec0e60313755fdc09c237b915f149009aa353623c0f3c9d",
-    "repository_lf_sha256": "db39a6592c78cd337ec0e60313755fdc09c237b915f149009aa353623c0f3c9d"
+    "working_copy_raw_sha256": "b18ac830678699a46cbb67aa82a037c2982d4b547b6f2af222507b2a09291054",
+    "repository_lf_sha256": "0c5a87f152c39176e20463a3faf4fc18730e46d4488c20bb6b1d58113dbef9d9",
+    "previous_commit": "455e5afa4d221c810bb0a4e1fde1a208f3a16b7d",
+    "followup": "Required-tier overload preserving the original override signature"
   },
   "tools/hq-feature-off-lifecycle.py": {
     "working_copy_raw_sha256": "a5a8a739904bbd21d8661a531c460304a1be96eb9c10ced2f123f5164e1f14eb",
