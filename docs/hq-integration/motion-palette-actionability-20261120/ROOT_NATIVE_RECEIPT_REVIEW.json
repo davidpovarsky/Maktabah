@@ -1,0 +1,41 @@
+{
+  "status": "READ_ONLY_RECEIPTS_VERIFIED",
+  "F": "8bb0ab7e87895a85265132188ede021cef3a08ae",
+  "M": "409519a6972783990a276ade0dbdc4703bb36ae4",
+  "tree": "8ef2779b87ef6fc00d9a96f6534f8a3836954763",
+  "archive_sha256": "d0c4805b46ae132b3007388ba590947f95624a68bf3c264d3be1381cc5be2cfe",
+  "crc_verified_members": 150,
+  "execution_inputs_before_after": 232,
+  "canonical_union_inputs": 1244,
+  "actual_product_input_count": 1004,
+  "official_generated_privacy_verified": true,
+  "actual_full_app_build": "PASS",
+  "actual_leaves": [
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+      "actual": "Passed",
+      "duration_seconds": 64.42490100860596
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+      "actual": "Passed",
+      "duration_seconds": 53.39760196208954
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "actual": "Failed",
+      "duration_seconds": 241.51282906532288
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+      "actual": "Passed",
+      "duration_seconds": 107.97477900981903
+    }
+  ],
+  "passed": 3,
+  "failed": 1,
+  "skipped": 0,
+  "not_run": 0,
+  "new_Native_tests_executed_by_this_verifier": 0,
+  "full_Native116_or_Release114": false
+}

@@ -1,0 +1,151 @@
+{
+  "files": [
+    {
+      "bytes": 198664,
+      "git_blob": "3eea06e0db02cbd725da61102920835621991b05",
+      "mode": "100644",
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "sha256": "a89be3dd4a43f1858a13086cf0f17a77817bdec4aff2d6aa9d54034b38023cea"
+    },
+    {
+      "bytes": 3663,
+      "git_blob": "3ed34153c1360b96c6c3dc99418c57863c72f845",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/ACTUAL_PREDICATE_TIMELINE.txt",
+      "sha256": "1adc0690dac736caf296c44a98eaf03cf327e06c3e3fa2eaacea685e1e5c81ca"
+    },
+    {
+      "bytes": 6303,
+      "git_blob": "f80d5bd4d98905086c176113bde4f09d888c5520",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/EVIDENCE.json",
+      "sha256": "6fcd7e5bae473bc4d906a55c2a04c17124a325fc5c9dabe42bd91c56477286d2"
+    },
+    {
+      "bytes": 795,
+      "git_blob": "ac3a10b9fb49ca4b52a076df9f7427dd50b98728",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/PROPOSED.patch",
+      "sha256": "8b3540f426f4999940fa43d6308aff3a581bce869a7d0203e88b73b908dc81f4"
+    },
+    {
+      "bytes": 3711,
+      "git_blob": "9e2fba5b0c2618b1b46585085168a49805e9fefa",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/README.md",
+      "sha256": "4e1a18c7bbd3bb16a20ed66f39a021882026a7d59a7116b00673465fedd48a34"
+    },
+    {
+      "bytes": 1438,
+      "git_blob": "24d9e34e3afae2c680859a2ab4fc0f34260c8145",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/ROOT_NATIVE_RECEIPT_REVIEW.json",
+      "sha256": "c5e145a7eba4d8455336788106b72fa648106f47b23dcb4fb49c1dd8713cd516"
+    },
+    {
+      "bytes": 1471,
+      "git_blob": "c1fd7dd51d39eddca2fee86a30ae337bcd36e24e",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/SOURCE_INVERSE.json",
+      "sha256": "60b1b5185f44d57080cc450f1448fe4bc93471049ed28d0161ed302dcd03d4cc"
+    },
+    {
+      "bytes": 1370,
+      "git_blob": "3ade3ab9e1d4fdb3511bf7ec217ca7ab79accf42",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/authority/COMMIT.json",
+      "sha256": "d49f3d304249a849b53cf26b49a576d47018139a1b432fe7ee5319908d1ce397"
+    },
+    {
+      "bytes": 12247,
+      "git_blob": "80e4e8665492a54662c6a4c79219dfbb12101f67",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/authority/ROOT.json",
+      "sha256": "f69ba2b4d84c6d5d1f3ee4c6ea8fb189176cfef6274d001cc8d3c005e1b24ba6"
+    },
+    {
+      "bytes": 6401,
+      "git_blob": "a2a222a47683b5adaab459eb3dddfe5224733e96",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/authority/UI.json",
+      "sha256": "eaa1b4d3f33c473201f833597609f89c6674a9ec7f985945293fb0b5861720b6"
+    },
+    {
+      "bytes": 35839,
+      "git_blob": "f37c2352a1112b4e06f8d950d3fb74e44a368f15",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/raw/40FDFEB7-1937-4F7D-A381-F5715E18CC2C.txt",
+      "sha256": "b1402475aab5c0ce90c4c48ef50fcbf4bf4e4374dacd17593133ecb81b0e39c2"
+    },
+    {
+      "bytes": 1907,
+      "git_blob": "8a303d8a63d04e1e0379ab20a32247919637b72a",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/raw/ARTIFACT_METADATA.json",
+      "sha256": "685f8cc5495cada4e4db47906a392c54fd2488e944425813ba144f0816c14d0f"
+    },
+    {
+      "bytes": 739674,
+      "git_blob": "fcc2626ca7ff8143871ea2305b31ee4b1dc8bdbd",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/raw/C6880617-387A-45E6-93F4-20BC10352FF2.png",
+      "sha256": "cb9566a9d8ce7becb5b225e457fdf934b8001626d82a6e319030441de3a7476a"
+    },
+    {
+      "bytes": 35838,
+      "git_blob": "d5755acafbbbf493a43d3f9b3c2f18d5aef10790",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/raw/C7DD1D39-61CB-46E4-A507-B3638046B95D.txt",
+      "sha256": "64e07e7e6128d4f3e96d1db91d8f0719335e86a421f9b547e64a8c81d466aa01"
+    },
+    {
+      "bytes": 739296,
+      "git_blob": "079515e9b1fc5e5d11a3dddf7a0c256ec7095142",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/raw/EB6087E5-B329-4B2D-ACC3-0BB347B1408E.png",
+      "sha256": "8f0364702d88c0b0a33782dacf0876eee7c236f2cd8b8f62b9b4fa21f490058a"
+    },
+    {
+      "bytes": 353,
+      "git_blob": "922963ecfc8266696043ac2f885505b06a3a4e3f",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/raw/FOCUSED_CAPTURES_DOWNLOAD_VERIFIED.json",
+      "sha256": "0c5ca8e362b18cd5184a3ee1bce57d19bc04e17b6fcbfde6344913aa46f543fd"
+    },
+    {
+      "bytes": 350,
+      "git_blob": "3edc23c3dd2a8ea38c24cfd23239b30983c38b2d",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/raw/FOCUSED_EVIDENCE_DOWNLOAD_VERIFIED.json",
+      "sha256": "10f354ad150c447dd2be4d836252688979a80325ff41394ca4dc86315cd895bf"
+    },
+    {
+      "bytes": 1783,
+      "git_blob": "f5252cdb6116fc60f4c2f9e6042168fca1a3e871",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/raw/MATCHED_ATTACHMENTS.json",
+      "sha256": "eff968a85ed091942c5a39960ccfc46ccfcd0e3ffc56ef4eaf0cad8bbe6c9740"
+    },
+    {
+      "bytes": 42147,
+      "git_blob": "a8d93d99a18b96c2508707041bee732f58ac105d",
+      "inner_bytes": 198505,
+      "inner_sha256": "4799a197b842565bc80cf9bda44a22f026814160168dfa8b0ac3d2c614bd9733",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/raw/original-FaithfulReaderUIAcceptanceTests.swift.gz",
+      "sha256": "d419c5c4ddb493b3bf5ebecd4a1320f027f51e3e66f197b82d6e4c9cdcde335b"
+    },
+    {
+      "bytes": 7669,
+      "git_blob": "89957dadbccb51762872b4b3fed5fe432771a84d",
+      "inner_bytes": 53870,
+      "inner_sha256": "65802e6de4cabdd4c4b8095f739724834c82df0b045573c021486f700511bf07",
+      "mode": "100644",
+      "path": "docs/hq-integration/motion-palette-actionability-20261120/raw/test-simulator-11-reader.log.gz",
+      "sha256": "77a4ae871e260747543b9d6a880f2266b586d2fa5c831e1d6585075013d4a8a2"
+    }
+  ],
+  "parent": "28befd6ef09310eb4becc8ee64e43cba1dc3e00d",
+  "schema": "source-and-bounded-native-evidence-v1",
+  "source_path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+}

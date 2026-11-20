@@ -1,0 +1,34 @@
+{
+  "all_other_bytes_unchanged": true,
+  "base": {
+    "bytes": 198505,
+    "git_blob": "2f2f3a288cf47c2a15161dc462fbde20ce259cc9",
+    "sha256": "4799a197b842565bc80cf9bda44a22f026814160168dfa8b0ac3d2c614bd9733"
+  },
+  "candidate": {
+    "bytes": 198664,
+    "git_blob": "3eea06e0db02cbd725da61102920835621991b05",
+    "sha256": "a89be3dd4a43f1858a13086cf0f17a77817bdec4aff2d6aa9d54034b38023cea"
+  },
+  "case600s_unchanged": true,
+  "inverse": "Replace the unique new comment+return sequence with the unique original return; exact whole-file byte equality verified.",
+  "motion_method_entire_body_unchanged": true,
+  "native": "NOT_RUN",
+  "observed_at": "2026-11-20T21:29:35.641946+00:00",
+  "original_actual_book_click_input_result_hit_tests_and_reader_restoration_unchanged": true,
+  "original_default_capture_body_unchanged": true,
+  "palette_geometry_orientation_finite_containment_and20s_unchanged": true,
+  "parent_commit": "28befd6ef09310eb4becc8ee64e43cba1dc3e00d",
+  "parent_tree": "7837dc145ced7927a506c797df73a29733437dd7",
+  "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "prior_failures_preserved": [
+    "44786439788",
+    "44807261790"
+  ],
+  "product_changed": false,
+  "same_test_declarations": 40,
+  "scope": "Test capture gate correction; no native usability or success inferred.",
+  "status": "EXACT_ONE_CONDITION_SOURCE_CHANGE_ONLY",
+  "swift_typecheck": "NOT_RUN",
+  "ui_tree": "9be9f4c91114f5daffceac8a8ded0e7314f29fb4"
+}

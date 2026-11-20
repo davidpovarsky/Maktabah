@@ -1,0 +1,167 @@
+{
+  "sha": "9be9f4c91114f5daffceac8a8ded0e7314f29fb4",
+  "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/trees/9be9f4c91114f5daffceac8a8ded0e7314f29fb4",
+  "tree": [
+    {
+      "path": "BackendTransitionAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc3e7a1c1c598284be9ced30abd8a7ad5b48fe91",
+      "size": 5997,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/fc3e7a1c1c598284be9ced30abd8a7ad5b48fe91"
+    },
+    {
+      "path": "BookHistoryScopeAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "39636e8abaac379d996e51d5717390590f5d4d98",
+      "size": 5480,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/39636e8abaac379d996e51d5717390590f5d4d98"
+    },
+    {
+      "path": "Build8401SevenDefectsAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05a97fe61782a0c96900c2c23ff992435a751c90",
+      "size": 14183,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/05a97fe61782a0c96900c2c23ff992435a751c90"
+    },
+    {
+      "path": "Build8601ThreeRegressionsAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7447387778b8dd4bba7779d3209ea760ad85a88d",
+      "size": 5521,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/7447387778b8dd4bba7779d3209ea760ad85a88d"
+    },
+    {
+      "path": "DeepLinkedCommentaryAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb0dfc375fb7d3a952be9528c0df5b153c652bbd",
+      "size": 2105,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/bb0dfc375fb7d3a952be9528c0df5b153c652bbd"
+    },
+    {
+      "path": "FaithfulReaderUIAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f2f3a288cf47c2a15161dc462fbde20ce259cc9",
+      "size": 198505,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/2f2f3a288cf47c2a15161dc462fbde20ce259cc9"
+    },
+    {
+      "path": "GlobalSearchNativeAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14f458874a131628e2e770b63e74beffd2de12f7",
+      "size": 89402,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/14f458874a131628e2e770b63e74beffd2de12f7"
+    },
+    {
+      "path": "HanlinConsumerAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "feeae0d69a3881aa15faa2be085273dd4ef97111",
+      "size": 19027,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/feeae0d69a3881aa15faa2be085273dd4ef97111"
+    },
+    {
+      "path": "HighlightAnnotationAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f5f2400477d173bad1079d6c5cca0f3fe508963",
+      "size": 4123,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/0f5f2400477d173bad1079d6c5cca0f3fe508963"
+    },
+    {
+      "path": "HistoryLocalizationAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a4be04e06afb2957670f951507f5d83043db1a2f",
+      "size": 3648,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/a4be04e06afb2957670f951507f5d83043db1a2f"
+    },
+    {
+      "path": "MaktabahUITestBase.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0f7296544e040d69dbf98917777925439468d80",
+      "size": 9285,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/f0f7296544e040d69dbf98917777925439468d80"
+    },
+    {
+      "path": "NativeRoutingAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a8fa49e0ee8f56e42d345a5f1316f24c2e6d67f",
+      "size": 160603,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/2a8fa49e0ee8f56e42d345a5f1316f24c2e6d67f"
+    },
+    {
+      "path": "ProductionOtzariaAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "196233580fe168ae2a689094cd73c5d594d984fd",
+      "size": 11615,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/196233580fe168ae2a689094cd73c5d594d984fd"
+    },
+    {
+      "path": "PullNavigationAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3ef8fc552967872a3313cff28a35d35be2a95a1",
+      "size": 4954,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/c3ef8fc552967872a3313cff28a35d35be2a95a1"
+    },
+    {
+      "path": "R27NativeInteractionAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d5eac5b984c6d371fa3f6e7e5779cc50269b358",
+      "size": 32077,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/1d5eac5b984c6d371fa3f6e7e5779cc50269b358"
+    },
+    {
+      "path": "SefariaEmbeddedAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9175d3f728caac49b975d8409f01a6efdd101e28",
+      "size": 27748,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/9175d3f728caac49b975d8409f01a6efdd101e28"
+    },
+    {
+      "path": "Sidebar11201AcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65befdcc2d7884edb0976fac0005c03676c4e2ac",
+      "size": 19775,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/65befdcc2d7884edb0976fac0005c03676c4e2ac"
+    },
+    {
+      "path": "canonical-miniTest10-metadata.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a995bdb8a6629f3bf0fc4b1f2839fe52bc01596",
+      "size": 349131,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/3a995bdb8a6629f3bf0fc4b1f2839fe52bc01596"
+    },
+    {
+      "path": "canonical-miniTest10-reader-lines.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "06caca5b0febd56496a4631879c3647df1584740",
+      "size": 8134,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/06caca5b0febd56496a4631879c3647df1584740"
+    },
+    {
+      "path": "iPadTabBarAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca89665c931b54f89bc7b1f290001fa4d55cb071",
+      "size": 3665,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/ca89665c931b54f89bc7b1f290001fa4d55cb071"
+    }
+  ],
+  "truncated": false
+}

@@ -1,0 +1,35 @@
+{
+  "sha": "28befd6ef09310eb4becc8ee64e43cba1dc3e00d",
+  "node_id": "C_kwDOTEwysNoAKDI4YmVmZDZlZjA5MzEwZWI0YmVjYzhlZTY0ZTQzY2JhMWRjM2UwMGQ",
+  "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/commits/28befd6ef09310eb4becc8ee64e43cba1dc3e00d",
+  "html_url": "https://github.com/davidpovarsky/Maktabah/commit/28befd6ef09310eb4becc8ee64e43cba1dc3e00d",
+  "author": {
+    "name": "davidpovarsky",
+    "email": "davidpovarski1@gmail.com",
+    "date": "2026-11-20T21:07:03Z"
+  },
+  "committer": {
+    "name": "davidpovarsky",
+    "email": "davidpovarski1@gmail.com",
+    "date": "2026-11-20T21:07:03Z"
+  },
+  "tree": {
+    "sha": "7837dc145ced7927a506c797df73a29733437dd7",
+    "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/trees/7837dc145ced7927a506c797df73a29733437dd7"
+  },
+  "message": "docs(otzaria): preserve complete Native6 failure and active 21:02 execution checkpoint",
+  "parents": [
+    {
+      "sha": "1146a249fdd94c345371c67a8d763f16223017ee",
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/commits/1146a249fdd94c345371c67a8d763f16223017ee",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/commit/1146a249fdd94c345371c67a8d763f16223017ee"
+    }
+  ],
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}
