@@ -1,0 +1,13 @@
+{
+  "parent": "19db1fa70516a3918509a94c75bfc31d379687a1",
+  "source": "5b0f8ef7875a373918d1e2e32f45651e1a15a11f",
+  "source_tree": "ff685eaa3d66badca85c17411aa194fdd62e33a8",
+  "verified_pins": 28,
+  "verified_source_changes": 6,
+  "verified_docs": 10,
+  "core_tree": "5d0ee482c8f10726fe3863792dac94c18e94d792",
+  "read_complete_six_file_patch": true,
+  "original_43_and_28_assertions_preserved": true,
+  "root_python_rerun": 0,
+  "source_apple_execution": 0
+}
