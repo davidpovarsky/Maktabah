@@ -310,7 +310,11 @@ private func extractBodyData(from request: URLRequest) -> Data? {
     return data.isEmpty ? nil : data
 }
 
-private func makeCannedSearchResponse(hits: [(ref: String, title: String, snippet: String, score: Double)], total: Int) -> Data {
+private func makeCannedSearchResponse(
+    hits: [(ref: String, title: String, snippet: String, score: Double)],
+    total: Int,
+    relation: String? = "eq"
+) -> Data {
     let hitsArray: [[String: Any]] = hits.map { h in
         [
             "_score": h.score,
@@ -321,9 +325,13 @@ private func makeCannedSearchResponse(hits: [(ref: String, title: String, snippe
             ]
         ]
     }
+    // Canned fixtures know their complete total. Unknown/lower-bound evidence
+    // must be requested explicitly so production pagination can remain conservative.
+    var totalEvidence: [String: Any] = ["value": total]
+    if let relation { totalEvidence["relation"] = relation }
     let dict: [String: Any] = [
         "hits": [
-            "total": ["value": total],
+            "total": totalEvidence,
             "hits": hitsArray
         ]
     ]
@@ -408,6 +416,36 @@ private func runSearchSemanticsAndFilterTests() async throws {
     let tempDir = FileManager.default.temporaryDirectory.appendingPathComponent("sefaria-tests-\(UUID().uuidString)")
     let testCache = SefariaDiskCache(directory: tempDir)
     let remoteStore = SefariaRemoteStore(configuration: .production, client: mockClient, cache: testCache)
+
+    // Explicit source evidence governs pagination, including legacy/unknown totals.
+    // These use the original DTO decoder and production projector without a request.
+    let evidenceRequest = LibrarySearchRequest(query: "evidence", offset: 0, limit: 10)
+    let evidenceHit: [(ref: String, title: String, snippet: String, score: Double)] = [
+        ("Genesis 1:1", "Genesis", "source row", 1)
+    ]
+    let evidenceRelations: [String?] = ["eq", "gte", nil]
+    for relation in evidenceRelations {
+        let response = try JSONDecoder().decode(
+            SefariaSearchResponseDTO.self,
+            from: makeCannedSearchResponse(hits: evidenceHit, total: 1, relation: relation)
+        )
+        let projected = try await remoteStore.projectSearchResponse(response, request: evidenceRequest)
+        try expect(projected.sourceEvidence?.totalRelation == relation,
+            "source total relation is retained: \(relation ?? "missing")")
+        try expect(projected.nextOffset == (relation == "eq" ? nil : 1),
+            "only explicit exact total ends a nonempty page: \(relation ?? "missing")")
+    }
+    let emptyUnknownResponse = try JSONDecoder().decode(
+        SefariaSearchResponseDTO.self,
+        from: makeCannedSearchResponse(hits: [], total: 1, relation: nil)
+    )
+    let emptyUnknownPage = try await remoteStore.projectSearchResponse(
+        emptyUnknownResponse, request: evidenceRequest
+    )
+    try expect(emptyUnknownPage.nextOffset == nil,
+        "empty source page ends pagination without inventing an exact total")
+    try expect(emptyUnknownPage.sourceEvidence?.totalRelation == nil,
+        "empty source page preserves unknown total evidence")
 
     // 5. Catalog and section-related requests remain bounded across repeated use.
     var catalogRequestCount = 0
@@ -627,6 +665,7 @@ private func runSearchSemanticsAndFilterTests() async throws {
 
     // 8. In-book fallback when a work has no trusted backend path
     var fallbackSentFilters: [String]?
+    var fallbackStarts: [Int] = []
     MockSearchURLProtocol.requestHandler = { request in
         guard let url = request.url else { throw URLError(.badURL) }
         let response = HTTPURLResponse(
@@ -641,6 +680,7 @@ private func runSearchSemanticsAndFilterTests() async throws {
             return (response, makeCannedSearchResponse(hits: [], total: 0))
         }
         fallbackSentFilters = body.filters
+        fallbackStarts.append(body.start)
         return (response, makeCannedSearchResponse(hits: [
             ("Exodus 1:1", "Exodus", "outside scope", 12),
             ("Genesis 1:1", "Genesis", "inside one", 11),
@@ -662,6 +702,11 @@ private func runSearchSemanticsAndFilterTests() async throws {
         scopedPage.hits.first?.locator.position == .canonicalRef("Genesis 1:1"),
         "in-book result retains its exact segment locator"
     )
+
+    try expect(fallbackStarts == [0],
+        "exact mixed-source fixture ends scoped fallback after one actual request")
+    try expect(scopedPage.total == 2 && scopedPage.nextOffset == nil,
+        "exhausted scoped fallback reports its two exact in-work matches")
 
     // 9. Session Invalidation on Query Change
     // Searching for a new query starts fresh
