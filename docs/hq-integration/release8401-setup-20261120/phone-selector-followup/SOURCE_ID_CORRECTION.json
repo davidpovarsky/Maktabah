@@ -1,0 +1,26 @@
+{
+  "base": "ba61f582fe49c588b8ef50f2c2b29b2e3ef73f3c",
+  "source_path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+  "change": "Replace only the phone ternary's obsolete identifier with original reader-open-tabs-button. The selected A3 case is iPad-only in both Release and diagnostic38.",
+  "old_identifier": "\"reader-book-tabs-overview\"",
+  "new_identifier": "\"reader-open-tabs-button\"",
+  "literal_replacements": 1,
+  "inverse_restores_complete_original_file": true,
+  "before_sha256_git_lf": "669217d7b168b44c027ea03d5ed14c31dc3d3f2dde97b35f212f3ef0fbffc698",
+  "after_sha256_git_lf": "c7af65a54e60fa09f9e90da04aa54b0454c903b7695ef12ea5fccbf5eba25fd4",
+  "original_control_source": {
+    "path": "Source/Features/Reader/iOS/iOSReaderView.swift",
+    "sha256_git_lf": "f7c4dd59cc65242faf7c7bfc3ce5d71478d40ba1acfb1e014935d0cffb68e3b5",
+    "lines152_163": "            if (!isRegularLayout && !ipad) || (!isRegularLayout && bManager.openTabs.count > 1) {\n                ToolbarItem(placement: .topBarTrailing) {\n                    Button {\n                        bManager.showingTabsList.toggle()\n                    } label: {\n                        Text(book.book)\n                            .lineLimit(1)\n                            .frame(maxWidth: 190)\n                            .contentShape(Rectangle())\n                    }\n                    .accessibilityIdentifier(\"reader-open-tabs-button\")\n                }"
+  },
+  "original_phone_owner": {
+    "path": "Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift",
+    "sha256_git_lf": "6bbf3c0763393bc28fa10a78f01b8c444b041f9b30659375920cc6b985e80fb0",
+    "lines61_79": "            .onChange(of: manager.showingTabsList, initial: true) { _, showing in\n                if Self.isEnabled && showing { showsOverview = true }\n            }\n            .overlay {\n                if Self.isEnabled {\n                    ReaderOverviewPresentation(isPresented: $showsOverview, onDismiss: {\n                        manager.showingTabsList = false\n                        workspace?.synchronize(manager)\n                    }) {\n                        if let workspace {\n                            StudyGroupsOverview(workspace: workspace, manager: manager, onOpenLibrary: {\n                                manager.switchToMode(.viewer)\n                                // Keep the original phone NavigationStack's Back action.\n                                manager.selectedBook = nil\n                            }, onClose: { showsOverview = false })\n                        } else {\n                            ProgressView().accessibilityLabel(\"טעינת סביבת הלימוד\")\n                        }\n                    }"
+  },
+  "actual_release_context": "Both first phone failures in run44665679661 wait for reader-book-tabs-overview which has no Source definition; Root owns the corresponding three Faithful call-site corrections.",
+  "source_product_changes": false,
+  "other_setup_changes": false,
+  "native": "NOT_RUN",
+  "followup_parse": "NOT_RUN; exact one-string inverse checked, previous source parse remains scoped to ba61"
+}
