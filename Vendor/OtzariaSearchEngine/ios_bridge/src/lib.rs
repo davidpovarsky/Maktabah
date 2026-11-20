@@ -3,6 +3,8 @@
 //! Search semantics, normalization, highlighting, grouping, compatibility,
 //! fingerprints and semantic fusion deliberately remain in upstream.
 
+mod exact_occurrences;
+
 use base64::{engine::general_purpose::STANDARD as BASE64, Engine as _};
 use libc::c_char;
 use search_engine::api::search_engine::{

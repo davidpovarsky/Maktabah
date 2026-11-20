@@ -1,0 +1,39 @@
+{
+  "source_head": "02c98238619f88a56f0180326c336cc1f4e96dea",
+  "engine_source": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+  "engine_original_base": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+  "engine_repository": "davidpovarsky/otzaria_search_engine",
+  "checkout_pristine_before_and_after": true,
+  "source_sha256_lf": {
+    "Vendor/OtzariaSearchEngine/ios_bridge/src/lib.rs": "598d57347b3772ae2aa2fef421e65eb81e447cfc1d8418596b8c80176cdbfe80",
+    "Vendor/OtzariaSearchEngine/ios_bridge/src/exact_occurrences.rs": "2f67ff86c88a038dde9579b7b75f5f39f2008b10ddca80d777bea85513c209a6",
+    "Vendor/OtzariaSearchEngine/ios_bridge/src/exact_occurrences/tests.rs": "2c30a5178c74f56fc0e2f124bfffd99420d3c1a33cb1a37dc4d032f640f63330",
+    "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "4650975df7f3e6338d57d20a2224ac551a55989fe666fe02068b48f3248868b8",
+    "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock": "34115989b7df644333d2978ca15a1bdd612e8859e4ed62f7ee43c9c3508261eb",
+    "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "17332fc216aafe65d96672306ee7c5f3e9089c491c80015feae45f0220fee9c2",
+    "Vendor/OtzariaSearchEngine/include/otzaria_search_engine.h": "e18b589a0dbd616edb8908ed68c8fbcbb847b6501c8a879ecddcde0b6d2871de",
+    "Vendor/OtzariaSearchEngine/Upstream/UPSTREAM_COMMIT": "ca64ffd058af617cc5fd904f14faf7d57a2cc6783700e29a7d7512b1f708ac06",
+    "Vendor/OtzariaSearchEngine/Upstream/UPSTREAM_MANIFEST.json": "673e95031a60b8dbca09441fc53b80ea81d38dfc0ad0f1c611bd57c6fcf07cac"
+  },
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--offline",
+    "--manifest-path",
+    "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml",
+    "--no-default-features",
+    "--lib",
+    "exact_occurrences::tests",
+    "--",
+    "--test-threads=1"
+  ],
+  "cargo_target_dir": "C:\\Users\\DAVID\\Code\\otzaria-search-occurrences-20261120\\rust\\target",
+  "started_utc": "2026-11-20T01:51:35.548365+00:00",
+  "seconds": 4.39,
+  "exit": 101,
+  "test_summary": [],
+  "no_original_engine_diagnostics_selected": true,
+  "AppleSDK": "NOT_RUN",
+  "Native": "NOT_RUN"
+}

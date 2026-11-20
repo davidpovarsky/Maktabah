@@ -1,0 +1,174 @@
+{
+  "recordedUTC": "2026-11-20T02:15:53.188346+00:00",
+  "componentBaseCommit": "02c98238619f88a56f0180326c336cc1f4e96dea",
+  "engineCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+  "originalUpstreamBase": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+  "jobs": {
+    "focusedOffline": "job_4e977562f770",
+    "focusedAndLegacy": "job_331fe9a498f7",
+    "staticlib": "job_7c04b012bb9b",
+    "externalCFailed1": "job_b933118cffb8",
+    "externalCFailed2": "job_d803f12fc1e6",
+    "externalCPass": "job_9c647684305c"
+  },
+  "results": {
+    "focusedPassed": 22,
+    "focusedFailed": 0,
+    "existingBridgePassed": 12,
+    "existingBridgeFailed": 0,
+    "externalC": "PASS",
+    "externalCAssertionGroups": [
+      "actual external C header, link and runtime",
+      "two original token positions differ from one matching document",
+      "genuine snapshot, scope, request and source identity",
+      "one-use execution and released token lifetime",
+      "typed cancellation and zero-deadline without numeric result",
+      "malformed input and duplicate release"
+    ],
+    "offlineAttempt": {
+      "exit": 101,
+      "executedTests": 0
+    },
+    "CLinkAttempts": [
+      {
+        "attempt": 1,
+        "linkExit": 1120,
+        "runtime": "NOT_RUN"
+      },
+      {
+        "attempt": 2,
+        "linkExit": 1120,
+        "runtime": "NOT_RUN"
+      },
+      {
+        "attempt": 3,
+        "linkExit": 0,
+        "runtimeExit": 0
+      }
+    ]
+  },
+  "source_sha256_lf": {
+    "Vendor/OtzariaSearchEngine/ios_bridge/src/lib.rs": "598d57347b3772ae2aa2fef421e65eb81e447cfc1d8418596b8c80176cdbfe80",
+    "Vendor/OtzariaSearchEngine/ios_bridge/src/exact_occurrences.rs": "b409a9e5c062464e03b2115032e7482216b41dbe9b0fec1173b217eee8603282",
+    "Vendor/OtzariaSearchEngine/ios_bridge/src/exact_occurrences/tests.rs": "1bd87eaef8f6ab364eaa48931574594f4481e720651c393b72eaf51365ec68d0",
+    "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "4650975df7f3e6338d57d20a2224ac551a55989fe666fe02068b48f3248868b8",
+    "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock": "34115989b7df644333d2978ca15a1bdd612e8859e4ed62f7ee43c9c3508261eb",
+    "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "17332fc216aafe65d96672306ee7c5f3e9089c491c80015feae45f0220fee9c2",
+    "Vendor/OtzariaSearchEngine/include/otzaria_search_engine.h": "e18b589a0dbd616edb8908ed68c8fbcbb847b6501c8a879ecddcde0b6d2871de",
+    "Vendor/OtzariaSearchEngine/Upstream/UPSTREAM_COMMIT": "ca64ffd058af617cc5fd904f14faf7d57a2cc6783700e29a7d7512b1f708ac06",
+    "Vendor/OtzariaSearchEngine/Upstream/UPSTREAM_MANIFEST.json": "673e95031a60b8dbca09441fc53b80ea81d38dfc0ad0f1c611bd57c6fcf07cac",
+    "Vendor/OtzariaSearchEngine/Tests/OccurrenceFFI/occurrence_ffi_smoke.c": "bc9ebbd84c09f6a878214c1e7616e7900c4636ad8ee853c7a912f71e0178ee51",
+    "Vendor/OtzariaSearchEngine/Tests/OccurrenceFFI/run-c-smoke.py": "91df8910cdd5dd8c3c56aaaebf2c1688cbb30acf7ba68cf7a8821b2eb8ab4bc1"
+  },
+  "artifacts": [
+    {
+      "file": "evidence/focused-attempt1.json",
+      "uncompressedBytes": 2075,
+      "uncompressedSHA256": "bbbb3a0c9dc05e50d85241a801153f1ad0f00085a8af28bce417cb1d9a1223e6",
+      "storedSHA256": "bbbb3a0c9dc05e50d85241a801153f1ad0f00085a8af28bce417cb1d9a1223e6"
+    },
+    {
+      "file": "evidence/focused-attempt1.log.gz",
+      "uncompressedBytes": 126,
+      "uncompressedSHA256": "9a6e82c7be10f8aa511a34000404f0f1efd9429f5a3c47047a807694844e4994",
+      "storedSHA256": "262da18c4fc574cce64e55c3ea35dbe44176921bde2b5921a88f8d165a46abf9"
+    },
+    {
+      "file": "evidence/focused-attempt2.json",
+      "uncompressedBytes": 2162,
+      "uncompressedSHA256": "db7652a5ab9caeb02dc4f94b9e3491934966eff2420def0478858459ac47e13f",
+      "storedSHA256": "db7652a5ab9caeb02dc4f94b9e3491934966eff2420def0478858459ac47e13f"
+    },
+    {
+      "file": "evidence/focused-attempt2.log.gz",
+      "uncompressedBytes": 11238,
+      "uncompressedSHA256": "2e9f9772b64fa946dfe89a9bdc200f41b8fb28c3a1e4bc0fe2594587d771a74d",
+      "storedSHA256": "346edaad2f6821c9dc3864955bb833e071b0c1634b6015fc6372eb29cd4e712b"
+    },
+    {
+      "file": "evidence/existing-bridge-regression.json",
+      "uncompressedBytes": 2178,
+      "uncompressedSHA256": "c3e8def385c763ff2e1abf7d6a1c8dcbddf209887e243204e6104aa3a912677c",
+      "storedSHA256": "c3e8def385c763ff2e1abf7d6a1c8dcbddf209887e243204e6104aa3a912677c"
+    },
+    {
+      "file": "evidence/existing-bridge-regression.log.gz",
+      "uncompressedBytes": 166599,
+      "uncompressedSHA256": "dfb1361dc93e97fd3453255e5d8ffe204ed100d1f23f928089a6c3160015f1f3",
+      "storedSHA256": "172c4e83c88fa3bb28c6b42757a3c86048c224ddf602c22c3f2baae96876e970"
+    },
+    {
+      "file": "evidence/c-staticlib-build.json",
+      "uncompressedBytes": 958,
+      "uncompressedSHA256": "602d2d6325f897aec704c36f235577d2228ae5da88fe3361374cd0c4aa20a17e",
+      "storedSHA256": "602d2d6325f897aec704c36f235577d2228ae5da88fe3361374cd0c4aa20a17e"
+    },
+    {
+      "file": "evidence/c-staticlib-build.log.gz",
+      "uncompressedBytes": 528,
+      "uncompressedSHA256": "741b120f335eddb4212294c577d6d2e9d95333f06306c826ca6b3e67ee56766f",
+      "storedSHA256": "be2541728a0c9f9a61138532b1dbb086ddf09a1d7445136961321b1fca323409"
+    },
+    {
+      "file": "evidence/c-link-driver-inspection.log.gz",
+      "uncompressedBytes": 3984,
+      "uncompressedSHA256": "33fe8b58d5098ee37000e54dc9aef95f20edb43403e769a452061ebbea52462b",
+      "storedSHA256": "47e752fb81485563f7082c4212debf22a8021c0642a4a9a6dc1f02c334704170"
+    },
+    {
+      "file": "evidence/c-smoke-attempt1/c-smoke-result.json",
+      "uncompressedBytes": 2300,
+      "uncompressedSHA256": "0172efc9837c1c956e29ed0d0af75f303208410f89d98020d0bf6de2c100f70f",
+      "storedSHA256": "0172efc9837c1c956e29ed0d0af75f303208410f89d98020d0bf6de2c100f70f"
+    },
+    {
+      "file": "evidence/c-smoke-attempt1/c-compile.log.gz",
+      "uncompressedBytes": 10154,
+      "uncompressedSHA256": "4c93618ea9b780066b52eedcc75ad58ffdad5daa45315a568ef12c13899c6af8",
+      "storedSHA256": "bac77308d12a58f85a476f38888e44f31e11ec03e118149721e705f24b36ae00"
+    },
+    {
+      "file": "evidence/c-smoke-attempt2/c-smoke-result.json",
+      "uncompressedBytes": 2329,
+      "uncompressedSHA256": "2ea1e49b388f178cc0ae872cecb7a8e3d560ea032661fe200698a0eba33b9b0f",
+      "storedSHA256": "2ea1e49b388f178cc0ae872cecb7a8e3d560ea032661fe200698a0eba33b9b0f"
+    },
+    {
+      "file": "evidence/c-smoke-attempt2/c-compile.log.gz",
+      "uncompressedBytes": 10890,
+      "uncompressedSHA256": "5d8c192d8c31d2280cc8e7d57504e58bcdcb463aa779a343e0694414139f4462",
+      "storedSHA256": "af249a4cdc7bbb53114028cd64af9cdecf02f28ad237691b361971cf763a006e"
+    },
+    {
+      "file": "evidence/c-smoke-attempt3/c-smoke-result.json",
+      "uncompressedBytes": 2811,
+      "uncompressedSHA256": "fbb89b3d923c29b96936b2589374fe4212e4aa16df9f908f7deb3a82d5e3080b",
+      "storedSHA256": "fbb89b3d923c29b96936b2589374fe4212e4aa16df9f908f7deb3a82d5e3080b"
+    },
+    {
+      "file": "evidence/c-smoke-attempt3/c-compile.log.gz",
+      "uncompressedBytes": 0,
+      "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "file": "evidence/c-smoke-attempt3/c-runtime.stderr.log.gz",
+      "uncompressedBytes": 280,
+      "uncompressedSHA256": "eda3ad1fe32fc831ec431765b1b4149d02a2625b4a04a9c74345f8b933f2bf47",
+      "storedSHA256": "611fcf4e120d8b295c5d65d4c28d3aaca2fc35fff0eb218cd4795ab7f8835779"
+    },
+    {
+      "file": "evidence/c-smoke-attempt3/c-runtime.stdout.log.gz",
+      "uncompressedBytes": 2846,
+      "uncompressedSHA256": "5d113a7000e313257462e8596f41d3620d99f8db1a99601d85058385d4375a1d",
+      "storedSHA256": "171982412ae0a5c61a47ff15d077a567d01ce1bfe84d6a6e0cdc2fb972f0d70f"
+    }
+  ],
+  "existingCCodeUnchangedBeyondModuleRegistration": true,
+  "engineCheckoutPristineBeforeAndAfter": true,
+  "optionalOriginalUserPathDiagnostics": "NOT_RUN",
+  "AppleSDK": "NOT_RUN",
+  "Native": "NOT_RUN",
+  "fullCorpus": "NOT_RUN",
+  "appCapability": "NOT_CONNECTED"
+}
