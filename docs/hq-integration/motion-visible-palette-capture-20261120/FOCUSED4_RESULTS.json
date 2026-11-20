@@ -1,0 +1,83 @@
+{
+  "run": 44786439788,
+  "attempt": 1,
+  "job": 136462432260,
+  "source_f": "d5d7928fed2b0a6324d07c5595af10413ac58f8e",
+  "source_m": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+  "full_simulator_build": "PASS",
+  "native_selected": {
+    "passed": 3,
+    "failed": 1,
+    "skipped": 0,
+    "total": 4
+  },
+  "source_execution_inputs_before_after_equal": 228,
+  "application_trees_before_after_equal": 4,
+  "artifacts": {
+    "total_count": 2,
+    "artifacts": [
+      {
+        "id": 14661770571,
+        "node_id": "MDg6QXJ0aWZhY3QxNDY2MTc3MDU3MQ==",
+        "name": "reader-inspector-focused-native-evidence",
+        "size_in_bytes": 6433939,
+        "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14661770571",
+        "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14661770571/zip",
+        "expired": false,
+        "digest": "sha256:77b7486151d789839023a083e91bcd3b2cc6205cb2bd699d13c02af5dfb5782c",
+        "created_at": "2026-11-20T19:20:33Z",
+        "updated_at": "2026-11-20T19:20:33Z",
+        "expires_at": "2027-02-18T17:46:10Z",
+        "workflow_run": {
+          "id": 44786439788,
+          "repository_id": 1280062128,
+          "head_repository_id": 1280062128,
+          "head_branch": "codex/otzaria-reader-inspector-focused-native-20261120",
+          "head_sha": "d5d7928fed2b0a6324d07c5595af10413ac58f8e"
+        }
+      },
+      {
+        "id": 14660893232,
+        "node_id": "MDg6QXJ0aWZhY3QxNDY2MDg5MzIzMg==",
+        "name": "reader-inspector-focused-native-captures",
+        "size_in_bytes": 110968229,
+        "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14660893232",
+        "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14660893232/zip",
+        "expired": false,
+        "digest": "sha256:b59cfb7e87136da4fa86154cffc5258b4e821cdc4d05ae84ab197d5f613f050d",
+        "created_at": "2026-11-20T19:20:45Z",
+        "updated_at": "2026-11-20T19:20:45Z",
+        "expires_at": "2027-02-18T17:46:10Z",
+        "workflow_run": {
+          "id": 44786439788,
+          "repository_id": 1280062128,
+          "head_repository_id": 1280062128,
+          "head_branch": "codex/otzaria-reader-inspector-focused-native-20261120",
+          "head_sha": "d5d7928fed2b0a6324d07c5595af10413ac58f8e"
+        }
+      }
+    ]
+  },
+  "archive_verified": [
+    {
+      "file": "evidence.zip",
+      "bytes": 6433939,
+      "sha256": "77b7486151d789839023a083e91bcd3b2cc6205cb2bd699d13c02af5dfb5782c",
+      "crc_members": 146
+    },
+    {
+      "file": "captures.zip",
+      "bytes": 110968229,
+      "sha256": "b59cfb7e87136da4fa86154cffc5258b4e821cdc4d05ae84ab197d5f613f050d",
+      "crc_members": 1424
+    }
+  ],
+  "raw_archive_storage": "Original authenticated GitHub artifact, full local verified downloads; selected raw failure evidence included here. No claim this packet contains the full111MB captures ZIP.",
+  "motion_video": {
+    "member": "visual-11-reader/6F9B0656-94E9-405A-B65F-C9C5DFE8A9AD.mp4",
+    "bytes": 11737626,
+    "sha256": "34b7393a6bc88adc2edb9bc8a3f37524d36166c9a13bda8496c01ea2fb6d1678"
+  },
+  "full_native116_accepted": false,
+  "full_release114_accepted": false
+}

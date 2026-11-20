@@ -1,0 +1,56 @@
+--- a/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
++++ b/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+@@ -563,6 +563,39 @@
+         XCTAssertEqual(settlement, .completed,
+                        "Capture only after native rotation and the original bottom toolbar settle inside the window")
+     }
++    /// A modal palette and the software keyboard own hit testing while open.
++    /// Keep the original Reader toolbar settlement check for the restored Reader;
++    /// here require the actual visible palette, input and result inside its window.
++    func captureOpenLibraryPalette(_ name: String, palette: XCUIElement, result: XCUIElement) {
++        retainNativeEvidence(name + "-before-settlement")
++        let application = app!
++        let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
++            MainActor.assumeIsolated {
++                let window = application.windows.firstMatch.frame
++                let landscape = XCUIDevice.shared.orientation.isLandscape
++                guard window.width > 0, window.height > 0,
++                      (window.width > window.height) == landscape,
++                      palette.exists, result.exists else { return false }
++                let input = palette.textFields.firstMatch
++                guard input.exists else { return false }
++                let paletteFrame = palette.frame
++                let inputFrame = input.frame
++                let resultFrame = result.frame
++                let frames = [window, paletteFrame, inputFrame, resultFrame]
++                guard frames.allSatisfy({ frame in
++                    [frame.minX, frame.minY, frame.width, frame.height].allSatisfy { $0.isFinite }
++                        && !frame.isEmpty
++                }), window.contains(paletteFrame), paletteFrame.contains(inputFrame),
++                    paletteFrame.contains(resultFrame) else { return false }
++                return palette.isHittable && input.isHittable && result.isHittable
++            }
++        }, object: nil)
++        let settlement = XCTWaiter.wait(for: [settled], timeout: 20)
++        retainNativeEvidence(name + (settlement == .completed ? "-settled" : "-UNSETTLED"))
++        XCTAssertEqual(settlement, .completed,
++                       "The open original palette, search input and real result must settle inside the native window")
++    }
++
+     /// Diagnostic retention before an action/assertion; never a visual pass.
+     func retainNativeEvidence(_ name: String) {
+         let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+@@ -1759,11 +1792,12 @@
+         input.typeText("בראשית")
+         let book = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "בראשית")).firstMatch
+         XCTAssertTrue(book.waitForExistence(timeout: 30))
+-        capture("candidate-system-reduce-motion-palette")
++        captureOpenLibraryPalette("candidate-system-reduce-motion-palette", palette: palette, result: book)
+         tap(book)
+         assertReaderHasText()
+         XCTAssertFalse(palette.exists)
+         XCTAssertTrue(readerLibraryPaletteLauncher().exists)
++        capture("candidate-system-reduce-motion-reader-restored")
+     }
+ 
+     @MainActor

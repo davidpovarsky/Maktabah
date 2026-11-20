@@ -1,0 +1,77 @@
+{
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "bytes": 198505,
+      "sha256": "4799a197b842565bc80cf9bda44a22f026814160168dfa8b0ac3d2c614bd9733",
+      "git_blob": "2f2f3a288cf47c2a15161dc462fbde20ce259cc9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/motion-visible-palette-capture-20261120/CANDIDATE.patch",
+      "bytes": 3244,
+      "sha256": "59221a5f34fdfcc140d68dc3bcc0bb6d85792cc11c5801fe4a156e8601f54fca",
+      "git_blob": "706d3dc1e7fea0d1ca00391df254000686bb8acc",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/motion-visible-palette-capture-20261120/FOCUSED4_RESULTS.json",
+      "bytes": 3273,
+      "sha256": "90ecb54c2aea341d83fd33c651b5c95623af60930765e156afaa937898c1867e",
+      "git_blob": "5b259183231804c0ad36f364ecf7f4b6ca80114f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/motion-visible-palette-capture-20261120/RAW_CAPTURE_MANIFEST.json",
+      "bytes": 21583,
+      "sha256": "758a80cd785e83dd97e68db0b68b26af9775b11cc6b26e9a6c273e6932fc7691",
+      "git_blob": "9fe85fd1cb9e95b0f4ae57614b91bf90470fe823",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/motion-visible-palette-capture-20261120/RAW_JOB_LOG.txt.gz",
+      "bytes": 20957,
+      "sha256": "70f55ae086301cf5d37ec2cd11f18720eb84957aea6cd4ab1b0baea2169fb343",
+      "git_blob": "ff222d8bba7e70fa94b202e97bc77f639423468e",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/motion-visible-palette-capture-20261120/RAW_RUNNER_CRASH.ips.gz",
+      "bytes": 9628,
+      "sha256": "72f22230433811a9433f5fab736f1532b0563e068f40bf6418b34d061bc3da3c",
+      "git_blob": "c5b5ffc4f97f9fa08ab8ecf428f76845736d7839",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/motion-visible-palette-capture-20261120/RAW_TEST_LOG.txt.gz",
+      "bytes": 7469,
+      "sha256": "fec66cdf331995ab42ff2998011f8922a2416f8018f256bc9300654e57bf5e3a",
+      "git_blob": "5cfd5c5ecb5adbd479c1108d684eedd0964ebfb4",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/motion-visible-palette-capture-20261120/RAW_XCRESULT_SUMMARY.json",
+      "bytes": 1580,
+      "sha256": "c4faabf7a884eac85c82f4bac4cf986240496c092fc55d0a809470b53f1b9c53",
+      "git_blob": "b3319687d37078912d4c0ea273547e35cc5a7a8f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/motion-visible-palette-capture-20261120/ROOT_REVIEW.json",
+      "bytes": 2212,
+      "sha256": "7ca7bc5ac859d041807d3be3e50a994bc7cde9256c862cd9f4e5e611a9754e7e",
+      "git_blob": "2f72948c2663278f09f9c9541d6ee3b7b9b13445",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "scope": "UI harness source correction and original focused failure evidence; Native v2 pending"
+}
