@@ -1,0 +1,30 @@
+{
+  "gate": "sdk",
+  "branch": "codex/otzaria-occurrence-compile-20261120",
+  "checkout": "f7c110da7f35a1043c1ad6da777cb89fa6d07460",
+  "application_source": "34c7ab5ae026a0d3d08f02a2c97ddf4b38e1a56c",
+  "requested_at": "2026-11-20T04:43:08.594859+00:00",
+  "inputs": {
+    "run_simulator_tests": "false",
+    "validation_runner": "xcode-27",
+    "source_ref": "",
+    "run_production_release": "false",
+    "ui_sdk_check_only": "true",
+    "books_updates_check_only": "false",
+    "hq_stage2_focused": "false",
+    "hq_stage2_expected_sha": "f7c110da7f35a1043c1ad6da777cb89fa6d07460",
+    "runtime27_mode": "off",
+    "ui_diagnostic_cases": ""
+  },
+  "native_executed": 0,
+  "state": "DISPATCH_CONFIRMED_BY_GITHUB",
+  "exit": 0,
+  "stdout": "https://github.com/davidpovarsky/Maktabah/actions/runs/44676266509\n",
+  "stderr": "",
+  "run_id": 44676266509,
+  "github_status_observed": "queued",
+  "github_conclusion_observed": null,
+  "verified_at": "2026-11-20T04:45:15.228558+00:00",
+  "sole_watch_job": "job_5b3353b3c549",
+  "watch_timeout_seconds": 3380
+}
