@@ -33,8 +33,114 @@ struct LibraryCommandPaletteAdapter: View {
             onDismiss: onDismiss
         )
         .accessibilityIdentifier("reader-library-command-palette")
+        #if DEBUG
+        .onReceive(NotificationCenter.default.publisher(for: .init("ChavrusaCommandPaletteEscapeObservation"))) {
+            LibraryCommandPaletteEscapeObservation.recordField($0)
+        }
+        .onAppear { LibraryCommandPaletteEscapeObservation.recordHost(.adapterAppeared) }
+        .onDisappear { LibraryCommandPaletteEscapeObservation.recordHost(.adapterDisappeared) }
+        #endif
     }
 }
+
+#if DEBUG
+/// Passive, bounded, disposable-fixture trace. Release has no observer or writer.
+@MainActor
+enum LibraryCommandPaletteEscapeObservation {
+    enum HostStage: String {
+        case adapterAppeared = "adapter.appeared"
+        case adapterDisappeared = "adapter.disappeared"
+        case readerOpenEnter = "reader.open.enter"
+        case readerOpenReturned = "reader.open.returned"
+        case readerCloseEnter = "reader.close.enter"
+        case readerCloseReturned = "reader.close.returned"
+        case readerStateChanged = "reader.state.changed"
+        case viewerOpenEnter = "viewer.open.enter"
+        case viewerOpenReturned = "viewer.open.returned"
+        case viewerCloseEnter = "viewer.close.enter"
+        case viewerCloseReturned = "viewer.close.returned"
+        case viewerStateChanged = "viewer.state.changed"
+    }
+
+    private static let fieldStages: Set<String> = [
+        "field.attached", "field.focus.before", "field.focus.after",
+        "field.didBegin", "field.didEnd", "field.dismantle.before", "field.dismantle.after",
+        "key.commands", "key.can.escape", "key.presses", "key.insert.escape", "key.command.escape",
+        "dismiss.enter", "dismiss.admitted", "dismiss.resigned", "dismiss.returned"
+    ]
+    private static let fieldFlags = [
+        "firstResponder", "windowAttached", "keyWindow", "sceneForeground", "hasCallback", "wantsFocus"
+    ]
+    private static let repeatedStages: Set<String> = [
+        "key.commands", "key.can.escape", "field.focus.before", "field.focus.after"
+    ]
+    private static var lastRepeated: [String: String] = [:]
+    private static var eventCount = 0
+
+    private static var isEnabled: Bool {
+        ProcessInfo.processInfo.environment["OTZARIA_DATA_PROFILE"] == "miniTest10"
+            && OtzariaDataProfileRegistry.activeProfileID == "miniTest10"
+            && ProcessInfo.processInfo.arguments.contains("-CommandPaletteEscapeTraceEnabled")
+            && UserDefaults.standard.bool(forKey: "CommandPaletteEscapeTraceEnabled")
+            && UserDefaults.standard.string(forKey: "studyWorkspaceTestingNamespace")
+                .flatMap(UUID.init(uuidString:)) != nil
+    }
+
+    static func recordField(_ notification: Notification) {
+        guard isEnabled, let values = notification.userInfo,
+              let stage = values["stage"] as? String, fieldStages.contains(stage),
+              Set(values.keys.compactMap { $0 as? String }).count == values.count,
+              Set(values.keys.compactMap { $0 as? String })
+                .isSubset(of: Set(fieldFlags + ["stage", "accepted", "escapeKeyCode"])) else { return }
+        var flags: [String: Bool] = [:]
+        for name in fieldFlags {
+            guard let value = values[name] as? Bool else { return }
+            flags[name] = value
+        }
+        if values["accepted"] != nil {
+            guard let accepted = values["accepted"] as? Bool else { return }
+            flags["accepted"] = accepted
+        }
+        var code: Int?
+        if values["escapeKeyCode"] != nil {
+            guard let observed = values["escapeKeyCode"] as? Int, observed == 41,
+                  stage == "key.insert.escape" || stage == "key.command.escape"
+                    || (stage == "key.presses" && flags["accepted"] == true) else { return }
+            code = observed
+        }
+        record(stage: stage, flags: flags, escapeKeyCode: code)
+    }
+
+    static func recordHost(_ stage: HostStage, presented: Bool? = nil, focus: Bool? = nil) {
+        guard isEnabled else { return }
+        var flags: [String: Bool] = [:]
+        if let presented { flags["presented"] = presented }
+        if let focus { flags["quickFieldFocused"] = focus }
+        record(stage: stage.rawValue, flags: flags)
+    }
+
+    private static func record(stage: String, flags: [String: Bool], escapeKeyCode: Int? = nil) {
+        let flagsText = flags.keys.sorted().map { "\($0)=\(flags[$0] == true ? 1 : 0)" }.joined(separator: " ")
+        let suffix = flagsText + (escapeKeyCode.map { " escapeKeyCode=\($0)" } ?? "")
+        if repeatedStages.contains(stage) {
+            guard lastRepeated[stage] != suffix else { return }
+            lastRepeated[stage] = suffix
+        }
+        // Bound diagnostics independently of keyboard/UI correctness. A capped
+        // trace is incomplete evidence; it never changes a branch or acceptance.
+        guard eventCount < 256 else {
+            if eventCount == 256 {
+                OtzariaFileLogger.shared.log("[NativePaletteEscape] pid=\(ProcessInfo.processInfo.processIdentifier) stage=trace.limit")
+                eventCount += 1
+            }
+            return
+        }
+        eventCount += 1
+        OtzariaFileLogger.shared.log(
+            "[NativePaletteEscape] pid=\(ProcessInfo.processInfo.processIdentifier) seq=\(eventCount) stage=\(stage) \(suffix)")
+    }
+}
+#endif
 
 /// The owner's compactSearchField, with only library-domain text/icon/binding substituted.
 struct SafariLibrarySearchField: View {

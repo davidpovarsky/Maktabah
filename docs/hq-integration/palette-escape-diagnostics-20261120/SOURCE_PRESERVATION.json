@@ -1,0 +1,65 @@
+{
+  "base": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "inverse": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "originalGitLFSHA256": "387879fcc00f2d90f8bb03319c59faf392f093062fcd0d1551a6c34009f9bb11",
+      "candidateLFSHA256": "42016aa7d6e335f0dd66b07aa7e41478536f28e6af76233117c34dab194d293a",
+      "exactInverseMatch": true
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "originalGitLFSHA256": "41a0be10a827d820e537ed0a598abe296929a22072f7f4e15fc485dd53cab171",
+      "candidateLFSHA256": "1d4b45162b2f2752020a822512d5e5edd679de3e905d0f092b0a21897776eafc",
+      "exactInverseMatch": true
+    },
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "originalGitLFSHA256": "0aeaf779e901813d4059b9117cc73416657da4916b23a4c2a31a118cae4dc18d",
+      "candidateLFSHA256": "bed4981eae7f8fbddf68f69fe8bd28fb6ccfad99ef22646f51465b5e851bee59",
+      "exactInverseMatch": true
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+      "originalGitLFSHA256": "4fa4ee2fd966b346b66fa19ed405e9a68e3ae45d08eac40ed948d29de435a91d",
+      "candidateLFSHA256": "91d1624692db76605cfa837bd4f5e3ab1710602967e424e378dcf398c6aef6ec",
+      "exactInverseMatch": true
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "originalGitLFSHA256": "43f3c338218db1b86a7e5978d85d2e2f447ff16f7570e1e7c24f2b8d56ec5de1",
+      "candidateLFSHA256": "efcdd2444c8bf6d9d615e01811d61d47a9a2c1fa108dfe9f7d623f4bae9b2943",
+      "exactInverseMatch": true
+    },
+    {
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "originalGitLFSHA256": "322159512454716200aed3329c435d000018b698ed25ee230da61b710443c239",
+      "candidateLFSHA256": "f58cb9ad9d74d78c382f824fe1acfd1b11540ea436586b9b4c9ec2e68c9b7fa2",
+      "exactInverseMatch": true
+    }
+  ],
+  "releaseProjection": [
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "releaseSourcePreserved": true,
+      "normalization": "Remove DEBUG blocks and blank lines; collapse only the original one-line action/callback expanded for diagnostics."
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+      "releaseSourcePreserved": true,
+      "normalization": "Remove DEBUG blocks and blank lines; collapse only the original one-line action/callback expanded for diagnostics."
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "releaseSourcePreserved": true,
+      "normalization": "Remove DEBUG blocks and blank lines; collapse only the original one-line action/callback expanded for diagnostics."
+    },
+    {
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "releaseSourcePreserved": true,
+      "normalization": "Remove DEBUG blocks and blank lines; collapse only the original one-line action/callback expanded for diagnostics."
+    }
+  ],
+  "sdk": "160000 commit e00498e33f106cc43be0476ffa2e09329c8ca300\tVendor/HanlinSDK",
+  "vendorOrProjectDiff": false
+}

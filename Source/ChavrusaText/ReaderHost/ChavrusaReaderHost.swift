@@ -145,6 +145,12 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
             .zIndex(3)
         }
         .animation(reduceMotion ? nil : morphSpring, value: searchIsExpanded)
+        #if DEBUG
+        .onChange(of: searchIsExpanded) { _, presented in
+            LibraryCommandPaletteEscapeObservation.recordHost(.readerStateChanged,
+                presented: presented, focus: quickAddressFocused)
+        }
+        #endif
         .onChange(of: quickAddressFocused) { _, focused in
             if focused { quickAddressFocused = false; openSearch() }
         }
@@ -292,15 +298,31 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         .frame(maxWidth: .infinity)
     }
     private func openSearch() {
+        #if DEBUG
+        LibraryCommandPaletteEscapeObservation.recordHost(.readerOpenEnter,
+            presented: searchIsExpanded, focus: quickAddressFocused)
+        #endif
         guard !searchIsExpanded else { return }
         revealNavigationChrome()
         quickAddressFocused = false
         searchIsExpanded = true
+        #if DEBUG
+        LibraryCommandPaletteEscapeObservation.recordHost(.readerOpenReturned,
+            presented: searchIsExpanded, focus: quickAddressFocused)
+        #endif
     }
     private func closeSearch() {
+        #if DEBUG
+        LibraryCommandPaletteEscapeObservation.recordHost(.readerCloseEnter,
+            presented: searchIsExpanded, focus: quickAddressFocused)
+        #endif
         guard searchIsExpanded else { return }
         searchIsExpanded = false
         quickAddressFocused = false
+        #if DEBUG
+        LibraryCommandPaletteEscapeObservation.recordHost(.readerCloseReturned,
+            presented: searchIsExpanded, focus: quickAddressFocused)
+        #endif
     }
     private func openLibrary() {
         revealNavigationChrome()

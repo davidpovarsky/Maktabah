@@ -1,0 +1,43 @@
+[
+  {
+    "name": "baseline",
+    "command": [
+      "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+      "C:\\Users\\DAVID\\Code\\Maktabah-palette-escape-diagnostics-20261120\\tools\\test-palette-escape-diagnostics.py",
+      "--source",
+      "C:\\Users\\DAVID\\Code\\Maktabah-palette-escape-diagnostics-20261120\\build\\palette-escape-diagnostics-20261120\\original-run-faithful-ipad-matrix.py",
+      "--out",
+      "C:\\Users\\DAVID\\Code\\Maktabah-palette-escape-diagnostics-20261120\\build\\palette-escape-diagnostics-20261120\\baseline-collector.json"
+    ],
+    "exitCode": 1,
+    "executed": 17,
+    "passed": 11,
+    "failed": 6,
+    "failedCases": [
+      "exact_escape_case_is_collected",
+      "whole_original_faithful_suite_is_collected",
+      "mixed_release_selection_retains_escape_log",
+      "escape_failure_retains_actual_relocated_container_log",
+      "missing_escape_log_remains_missing",
+      "escape_container_lookup_error_is_retained_without_retry"
+    ],
+    "sourceSHA256": "41a0be10a827d820e537ed0a598abe296929a22072f7f4e15fc485dd53cab171"
+  },
+  {
+    "name": "candidate",
+    "command": [
+      "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+      "C:\\Users\\DAVID\\Code\\Maktabah-palette-escape-diagnostics-20261120\\tools\\test-palette-escape-diagnostics.py",
+      "--source",
+      "C:\\Users\\DAVID\\Code\\Maktabah-palette-escape-diagnostics-20261120\\Scripts\\CI\\run-faithful-ipad-matrix.py",
+      "--out",
+      "C:\\Users\\DAVID\\Code\\Maktabah-palette-escape-diagnostics-20261120\\build\\palette-escape-diagnostics-20261120\\candidate-collector.json"
+    ],
+    "exitCode": 0,
+    "executed": 17,
+    "passed": 17,
+    "failed": 0,
+    "failedCases": [],
+    "sourceSHA256": "1d4b45162b2f2752020a822512d5e5edd679de3e905d0f092b0a21897776eafc"
+  }
+]

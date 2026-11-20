@@ -22,6 +22,18 @@ import runtime27_interruption
 import runtime27_release_handoff
 
 
+def requires_native_log_collection(selection):
+    """Retain the original persistent log for routing and explicit Escape diagnostics."""
+    for case in selection:
+        suite, separator, method = case.partition("/")
+        if suite in ("NativeRoutingAcceptanceTests", "NativeRoutingPhoneAcceptanceTests"):
+            return True
+        if suite == "FaithfulReaderUIAcceptanceTests" and (
+                not separator or method == "testPointerHoverClickAndHardwareKeyboardDismissal"):
+            return True
+    return False
+
+
 def main():
     root = Path.cwd()
     artifacts = root / "build/artifacts"
@@ -497,7 +509,7 @@ def main():
                 if code == 0 and device["executedXCTestCount"] < minimum_count:
                     raise SystemExit("Expected black-box XCTest cases were not actually executed")
                 device["status"] = "EXECUTED_PASS" if code == 0 else "FAIL"
-                if any(case.split("/", 1)[0] in ("NativeRoutingAcceptanceTests", "NativeRoutingPhoneAcceptanceTests") for case in selection):
+                if requires_native_log_collection(selection):
                     native_dir = artifacts / f"native-routing-logs-{label}"
                     native_dir.mkdir(parents=True, exist_ok=True)
                     native_log_report = {"udid": udid, "label": label, "bundleID": "com.davidpovarsky.chavrusatext",

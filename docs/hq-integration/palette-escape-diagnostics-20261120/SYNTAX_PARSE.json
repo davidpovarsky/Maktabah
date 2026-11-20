@@ -1,0 +1,54 @@
+{
+  "inputSHA256": {
+    "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift": "bed4981eae7f8fbddf68f69fe8bd28fb6ccfad99ef22646f51465b5e851bee59",
+    "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift": "f58cb9ad9d74d78c382f824fe1acfd1b11540ea436586b9b4c9ec2e68c9b7fa2",
+    "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift": "91d1624692db76605cfa837bd4f5e3ab1710602967e424e378dcf398c6aef6ec",
+    "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift": "efcdd2444c8bf6d9d615e01811d61d47a9a2c1fa108dfe9f7d623f4bae9b2943",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "42016aa7d6e335f0dd66b07aa7e41478536f28e6af76233117c34dab194d293a"
+  },
+  "sourceUnchangedDuringParse": true,
+  "results": [
+    {
+      "mode": "debug",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+        "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+        "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+        "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+        "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n",
+      "scope": "SYNTAX_PARSE_ONLY_NO_APPLE_MODULE_TYPECHECK"
+    },
+    {
+      "mode": "release",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+        "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+        "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+        "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+        "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n",
+      "scope": "SYNTAX_PARSE_ONLY_NO_APPLE_MODULE_TYPECHECK"
+    }
+  ],
+  "appleTypecheckExecuted": false,
+  "nativeExecutionCount": 0
+}
