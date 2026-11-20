@@ -1,0 +1,9 @@
+{
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+    "--version"
+  ],
+  "exitCode": 0,
+  "output": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions\n",
+  "scope": "Windows portable Swift only"
+}

@@ -438,11 +438,11 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
 
     func waitUntilVisible(_ command: UISceneCommand) async throws -> NativeSurfaceState {
-        // A container's deduplicated layout callback can precede TextKit's
-        // paint/scroll restoration. Observe that same live UIKit witness only
-        // while this original reader request is waiting; never echo the route.
+        // A container's deduplicated layout callback can precede final geometry
+        // or TextKit paint/scroll restoration. Observe the same live UIKit
+        // witness only while its original request is waiting; never echo the route.
         let readerObservation: Task<Void, Never>?
-        if ["native.reader", "native.reader.noteDraft"].contains(command.route.route.destination.rawValue) {
+        if ["native.reader", "native.reader.noteDraft", "native.library", "native.reader.toc"].contains(command.route.route.destination.rawValue) {
             readerObservation = Task { @MainActor [weak self] in
                 while !Task.isCancelled {
                     guard let self, mounted, submissionID == command.invocation.requestId else { return }

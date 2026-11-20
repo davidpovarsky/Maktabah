@@ -1,0 +1,123 @@
+{
+  "path": "RAW_EXECUTION_EVIDENCE.zip",
+  "bytes": 78538,
+  "sha256": "72c486e8682a215d165ebed481a0f8a1f6fbafa978f4dd4447271c4a3baa91c1",
+  "entries": [
+    {
+      "path": "baseline-attempt01/RESULT.json",
+      "bytes": 27414,
+      "sha256": "a848cf1d16de0e4ab96dd60ba889b71cbbb9247808be66df5aed3e54f812c963"
+    },
+    {
+      "path": "baseline-attempt01/compile.log",
+      "bytes": 8691,
+      "sha256": "9a211a0065b441cdcc5f48744e082e509702e8314de92ac3e6c031af3b8018a6"
+    },
+    {
+      "path": "baseline-attempt01/source-before/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 40582,
+      "sha256": "9075d2998c8f4830ad93195ee89c36619c30bc9213f53b59f7665863021ce6c8"
+    },
+    {
+      "path": "baseline-attempt01/source-before/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift",
+      "bytes": 6651,
+      "sha256": "2181d2a78c0179046a92ffd617456b981626f6da62b0c37297b2e50217167d54"
+    },
+    {
+      "path": "baseline-attempt01/package/Package.swift",
+      "bytes": 764,
+      "sha256": "cd0a9e3d456f370fe154b2fe085a6a84fb07285974c90debc47bbad6c76378ed"
+    },
+    {
+      "path": "baseline-attempt01/package/Sources/NativeSurfacePollingAcceptance/NativeSurfacePollingAcceptance.swift",
+      "bytes": 12656,
+      "sha256": "6e760333e4dd7c79f0a8a4f31f9638236d6a8bb02485a96a7568e5cf229c6ed7"
+    },
+    {
+      "path": "baseline-attempt01/package/Sources/NativeSurfacePollingAcceptance/NativeSurfacePollingBoundary.swift",
+      "bytes": 12691,
+      "sha256": "0a316bb747612a691dd76d7d6a4be2f97771578e4eac789009e364bc38d5eb07"
+    },
+    {
+      "path": "baseline-attempt02/RESULT.json",
+      "bytes": 29062,
+      "sha256": "5e81afd85229b2ddf3f8b2206b0769aeeaf5ead4a58ec7650d931eab50ac5d5b"
+    },
+    {
+      "path": "baseline-attempt02/compile.log",
+      "bytes": 563,
+      "sha256": "239f3724bafc3be3d12ebe57869f2b9cb548986f2ac0d1ac24d81c263d7f73c5"
+    },
+    {
+      "path": "baseline-attempt02/tests.log",
+      "bytes": 1867,
+      "sha256": "2acf51fe487976c565175ffb46dc1f7f3b63a8644ca647778bfdf040da389579"
+    },
+    {
+      "path": "baseline-attempt02/source-before/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 40582,
+      "sha256": "9075d2998c8f4830ad93195ee89c36619c30bc9213f53b59f7665863021ce6c8"
+    },
+    {
+      "path": "baseline-attempt02/source-before/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift",
+      "bytes": 6651,
+      "sha256": "2181d2a78c0179046a92ffd617456b981626f6da62b0c37297b2e50217167d54"
+    },
+    {
+      "path": "baseline-attempt02/package/Package.swift",
+      "bytes": 764,
+      "sha256": "cd0a9e3d456f370fe154b2fe085a6a84fb07285974c90debc47bbad6c76378ed"
+    },
+    {
+      "path": "baseline-attempt02/package/Sources/NativeSurfacePollingAcceptance/NativeSurfacePollingAcceptance.swift",
+      "bytes": 12656,
+      "sha256": "6e760333e4dd7c79f0a8a4f31f9638236d6a8bb02485a96a7568e5cf229c6ed7"
+    },
+    {
+      "path": "baseline-attempt02/package/Sources/NativeSurfacePollingAcceptance/NativeSurfacePollingBoundary.swift",
+      "bytes": 12746,
+      "sha256": "a296bdd4b7085608bc1dfd0ebb4abe55df61543be12532eaae376d04b2f0474e"
+    },
+    {
+      "path": "candidate-attempt01/RESULT.json",
+      "bytes": 28978,
+      "sha256": "72b1608e029cf017367c709a976411be845898cf5d448e971e82f9a92c63003e"
+    },
+    {
+      "path": "candidate-attempt01/compile.log",
+      "bytes": 563,
+      "sha256": "c2f142d30f51208de0b9c141ec4e9e9d0db8cc64fa78d9af9d6b91a8b3803746"
+    },
+    {
+      "path": "candidate-attempt01/tests.log",
+      "bytes": 1762,
+      "sha256": "1734916479505fb565a54fe48b6911cb246960488a42b631630954751b5a476e"
+    },
+    {
+      "path": "candidate-attempt01/source-before/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 40628,
+      "sha256": "cc8c3e97dbefcdc7cd9bdc0441c720eb4213b0009bd61c533ee2a50813029a1d"
+    },
+    {
+      "path": "candidate-attempt01/source-before/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift",
+      "bytes": 6775,
+      "sha256": "03f5592df1cdac30e98330ea0ddf9f919e6fc628e694bff9a10c3f73f58b3b0f"
+    },
+    {
+      "path": "candidate-attempt01/package/Package.swift",
+      "bytes": 764,
+      "sha256": "cd0a9e3d456f370fe154b2fe085a6a84fb07285974c90debc47bbad6c76378ed"
+    },
+    {
+      "path": "candidate-attempt01/package/Sources/NativeSurfacePollingAcceptance/NativeSurfacePollingAcceptance.swift",
+      "bytes": 12656,
+      "sha256": "6e760333e4dd7c79f0a8a4f31f9638236d6a8bb02485a96a7568e5cf229c6ed7"
+    },
+    {
+      "path": "candidate-attempt01/package/Sources/NativeSurfacePollingAcceptance/NativeSurfacePollingBoundary.swift",
+      "bytes": 12824,
+      "sha256": "50c3d71b5981f68403ecb1479c20f77e6defd45832c21828818f6e2bab0142ba"
+    }
+  ],
+  "allEntriesVerified": true
+}

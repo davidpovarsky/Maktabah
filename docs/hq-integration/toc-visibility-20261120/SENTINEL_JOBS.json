@@ -1,0 +1,83 @@
+[
+  {
+    "ok": true,
+    "job": {
+      "id": "job_8261f992c2f5",
+      "type": "job_result",
+      "source": "script_run@host_7ec8382e82747448",
+      "severity": "warning",
+      "tool": "script_run",
+      "host": "host_7ec8382e82747448",
+      "status": "failed",
+      "exit_code": 1,
+      "created_at": 1795149868.2193174,
+      "started_at": "2026-11-20T04:44:28.277432+00:00",
+      "finished_at": "2026-11-20T04:46:55.553736+00:00",
+      "duration_s": 147.28,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 900,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "COMMAND ['C:\\\\ProgramData\\\\SentinelX\\\\.venv\\\\Scripts\\\\python.exe', 'tools/hq-native-surface-polling.py', '--artifacts-dir', 'build/toc-visibility-20261120/baseline-attempt01', '--source-ref', 'd0c649794e4262ffdea0e13635d5c8237668bd6e', '--timeout', '600']\r\n{\"status\": \"FAIL\", \"source_ref\": \"d0c649794e4262ffdea0e13635d5c8237668bd6e\", \"expected_count\": 28, \"executed_count\": 0, \"passed\": [], \"failed\": [], \"compile_exit\": 1, \"compile_seconds\": 145.656, \"compiler_warning_count\": 0, \"exact_case_inventory\": false, \"package_inputs_unchanged\": true, \"disk_free_before\": 6628524032, \"disk_free_after\": 5148610560, \"native_passes\": 0}"
+    }
+  },
+  {
+    "ok": true,
+    "job": {
+      "id": "job_3d08f66851ed",
+      "type": "job_result",
+      "source": "script_run@host_7ec8382e82747448",
+      "severity": "warning",
+      "tool": "script_run",
+      "host": "host_7ec8382e82747448",
+      "status": "failed",
+      "exit_code": 1,
+      "created_at": 1795150118.6825874,
+      "started_at": "2026-11-20T04:48:38.741239+00:00",
+      "finished_at": "2026-11-20T04:49:46.091995+00:00",
+      "duration_s": 67.35,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 900,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "COMMAND ['C:\\\\ProgramData\\\\SentinelX\\\\.venv\\\\Scripts\\\\python.exe', 'tools/hq-native-surface-polling.py', '--artifacts-dir', 'build/toc-visibility-20261120/baseline-attempt02', '--source-ref', 'd0c649794e4262ffdea0e13635d5c8237668bd6e', '--timeout', '600']\r\n{\"status\": \"FAIL\", \"source_ref\": \"d0c649794e4262ffdea0e13635d5c8237668bd6e\", \"expected_count\": 28, \"executed_count\": 28, \"passed\": [\"library_late_geometry_with_callback\", \"toc_late_geometry_with_callback\", \"reader_existing_poll_waits_for_geometry\", \"note_draft_existing_poll_waits_for_geometry\", \"library_exact98_percent_remains_accepted\", \"library_below98_percent_remains_refused\", \"toc_not_appeared_remains_refused\", \"library_inactive_scene_remains_refused\", \"library_hidden_ancestor_remains_refused\", \"library_low_alpha_remains_refused\", \"library_modal_above_remains_refused\", \"library_detached_window_remains_refused\", \"library_empty_bounds_remains_refused\", \"library_foreign_scene_remains_refused\", \"toc_old_submission_remains_refused\", \"library_wrong_surface_state_remains_refused\", \"library_deadline_stops_observation\", \"toc_cancellation_stops_observation\", \"library_replaced_submission_cannot_borrow_poll\", \"toc_unmounted_owner_stops_observation\", \"search_unrelated_destination_not_polled\", \"search_results_unrelated_destination_not_polled\", \"inspector_unrelated_destination_not_polled\", \"settings_unrelated_destination_not_polled\", \"reader_missing_rendered_evidence_remains_refused\", \"note_draft_invalid_editor_owner_remains_refused\"], \"failed\": [\"library_late_geometry_without_callback\", \"toc_late_geometry_without_callback\"], \"compile_exit\": 0, \"compile_seconds\": 49.953, \"compiler_warning_count\": 0, \"exact_case_inventory\": true, \"package_inputs_unchanged\": true, \"disk_free_before\": 5186113536, \"disk_free_after\": 5010731008, \"native_passes\": 0}"
+    }
+  },
+  {
+    "ok": true,
+    "job": {
+      "id": "job_4527648fea0e",
+      "type": "job_result",
+      "source": "script_run@host_7ec8382e82747448",
+      "severity": "info",
+      "tool": "script_run",
+      "host": "host_7ec8382e82747448",
+      "status": "succeeded",
+      "exit_code": 0,
+      "created_at": 1795150292.0300684,
+      "started_at": "2026-11-20T04:51:32.087818+00:00",
+      "finished_at": "2026-11-20T04:52:10.810830+00:00",
+      "duration_s": 38.72,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 900,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "COMMAND ['C:\\\\ProgramData\\\\SentinelX\\\\.venv\\\\Scripts\\\\python.exe', 'tools/hq-native-surface-polling.py', '--artifacts-dir', 'build/toc-visibility-20261120/candidate-attempt01', '--timeout', '600']\r\n{\"status\": \"PASS_PORTABLE_ONLY\", \"source_ref\": \"worktree\", \"expected_count\": 28, \"executed_count\": 28, \"passed\": [\"library_late_geometry_without_callback\", \"toc_late_geometry_without_callback\", \"library_late_geometry_with_callback\", \"toc_late_geometry_with_callback\", \"reader_existing_poll_waits_for_geometry\", \"note_draft_existing_poll_waits_for_geometry\", \"library_exact98_percent_remains_accepted\", \"library_below98_percent_remains_refused\", \"toc_not_appeared_remains_refused\", \"library_inactive_scene_remains_refused\", \"library_hidden_ancestor_remains_refused\", \"library_low_alpha_remains_refused\", \"library_modal_above_remains_refused\", \"library_detached_window_remains_refused\", \"library_empty_bounds_remains_refused\", \"library_foreign_scene_remains_refused\", \"toc_old_submission_remains_refused\", \"library_wrong_surface_state_remains_refused\", \"library_deadline_stops_observation\", \"toc_cancellation_stops_observation\", \"library_replaced_submission_cannot_borrow_poll\", \"toc_unmounted_owner_stops_observation\", \"search_unrelated_destination_not_polled\", \"search_results_unrelated_destination_not_polled\", \"inspector_unrelated_destination_not_polled\", \"settings_unrelated_destination_not_polled\", \"reader_missing_rendered_evidence_remains_refused\", \"note_draft_invalid_editor_owner_remains_refused\"], \"failed\": [], \"compile_exit\": 0, \"compile_seconds\": 26.469, \"compiler_warning_count\": 0, \"exact_case_inventory\": true, \"package_inputs_unchanged\": true, \"disk_free_before\": 4864954368, \"disk_free_after\": 4801941504, \"native_passes\": 0}"
+    }
+  }
+]

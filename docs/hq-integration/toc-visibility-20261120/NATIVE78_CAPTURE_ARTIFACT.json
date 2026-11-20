@@ -1,0 +1,15 @@
+{
+  "id": 14597472251,
+  "name": "runtime27-native-captures",
+  "size_in_bytes": 1913982366,
+  "digest": "sha256:6de6f2266c92b17cdcaaa818d74c14baebccdddff9e7f2aedb680cb753ae2b52",
+  "workflow_run": {
+    "id": 44633736259,
+    "repository_id": 1280062128,
+    "head_repository_id": 1280062128,
+    "head_branch": "codex/otzaria-completion-20261120",
+    "head_sha": "7d05dd0bb25a7df307b35174e49e18d0f22eecee"
+  },
+  "created_at": "2026-11-20T03:04:37Z",
+  "expired": false
+}
