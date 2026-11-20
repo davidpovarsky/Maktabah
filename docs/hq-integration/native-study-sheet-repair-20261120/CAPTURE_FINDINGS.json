@@ -1,0 +1,442 @@
+{
+  "schema": 1,
+  "original_run": {
+    "id": 44811999303,
+    "attempt": 1,
+    "head": "a1d11a78152f9d6826c90646fcd72cf7711f12ff",
+    "application_source": "353888ed645c135da9cb229713d17a4594d1edb6",
+    "ipad11": {
+      "passed": 2,
+      "failed": 9,
+      "skipped": 0,
+      "executed": 11
+    },
+    "case_outcomes": [
+      {
+        "actual": "Failed",
+        "case_id": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Actual original sheet has height155/medium/large detents in order, stays physically right in RTL, and preserves Reader/session/content/source/selection and original viewport anchor."
+      },
+      {
+        "actual": "Failed",
+        "case_id": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Actual original sheet has height155/medium/large detents in order, stays physically right in LTR with RTL excerpt, and preserves Reader/session/content/source/selection and original viewport anchor."
+      },
+      {
+        "actual": "Passed",
+        "case_id": "NativeStudySheetPadTests/testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Same actual iPad window narrows and restores with system adaptation while original Reader/session/content/source/selection/presentation and viewport anchor are retained."
+      },
+      {
+        "actual": "Failed",
+        "case_id": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Actual peek detent allows original Reader scrolling behind the same mounted system sheet and retained original inspector ownership."
+      },
+      {
+        "actual": "Failed",
+        "case_id": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Original Notes editor saves, edits, cancels an unsaved edit, saves the edited note, and deletes it through the original store and callbacks."
+      },
+      {
+        "actual": "Passed",
+        "case_id": "NativeStudySheetPadTests/testSystemStudySheetOriginalTOCWaitsForActualSheetDismissal",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Original TOC appears only after actual parent sheet dismissal and retains original Reader and viewport anchor."
+      },
+      {
+        "actual": "Failed",
+        "case_id": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Original embedded Sefaria Inspector retains original backend owner, Reader content and viewport anchor through real detent changes."
+      },
+      {
+        "actual": "Failed",
+        "case_id": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Programmatic Native lifecycle command closes original parent while actual original note child is visible; real child/parent callbacks complete and blocked background controls cannot be tapped."
+      },
+      {
+        "actual": "Failed",
+        "case_id": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Programmatic Native lifecycle command requests original TOC while actual original note child is visible; child then parent dismiss before original TOC appears."
+      },
+      {
+        "actual": "Failed",
+        "case_id": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Programmatic Native lifecycle command reopens only during observed system dismissal; actual new presentation UUID is observed and delivered replay/stale-owner commands are refused without mutating it."
+      },
+      {
+        "actual": "Failed",
+        "case_id": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Actual interactive dismissal followed by same-iPad window resizing does not reopen original inspector without a new user open action."
+      }
+    ]
+  },
+  "source_evidence_artifact": {
+    "id": 14672003494,
+    "bytes": 6665924,
+    "sha256": "26666f593c4d51916361164e6b82faf7f0a2e075a4bb8b17da628926b64dbf77",
+    "root_completed_crc_count": 151
+  },
+  "capture_processor": {
+    "run": 44825211647,
+    "head": "973612a92c9f6d12384bdc2764ac76682e7effb6",
+    "native_executions": 0,
+    "output_artifact": {
+      "id": 14672793992,
+      "name": "native-study-sheet-capture-evidence",
+      "bytes": 35680623,
+      "digest": "sha256:96e01a40a98aadae8ffc3f31dd9bc4c979bd65bd773cac918f254fa8b38d7864"
+    },
+    "root_outer_zip_crc_count": 132,
+    "root_outer_verification": "COMPLETED before local runtime became unavailable",
+    "ci_original_archive": {
+      "artifact_id": 14671753925,
+      "bytes": 576476315,
+      "sha256": "e996e2617478c5d9ee7be07fb11f17004d6ada55ef01e59b894a4b0eadde72f7",
+      "crc_members": 1954,
+      "selected_members": 119,
+      "selected_bytes": 36742461,
+      "qualified": true,
+      "scope": "Actual CI producer receipt; not an offline B or Root full archive replay"
+    },
+    "root_selected_119_source_replay": "NOT_COMPLETED: read-only cell blocked by unavailable execution runtime and terminated without result",
+    "b_inspection": "Selected actual JSON/AX/image bytes were read and viewed before the runtime outage. API metadata and frozen exact member mappings were fetched again after outage."
+  },
+  "findings": [
+    {
+      "id": "reciprocal_presentation_owner",
+      "affected_case_count": 5,
+      "actual": "Original tier observations changed medium to peek or large with real frames and native grabber semantics, while systemDetentIdentifier remained nil.",
+      "frames": {
+        "window": [
+          0,
+          0,
+          1210,
+          834
+        ],
+        "medium": [
+          605,
+          376,
+          580,
+          438
+        ],
+        "peek": [
+          605,
+          659,
+          580,
+          155
+        ],
+        "large": [
+          605,
+          32,
+          580,
+          782
+        ]
+      },
+      "source": "The old ancestor walk accepted inherited presentingViewController and then read presentationController on the first such node.",
+      "candidate": "Require actual reciprocal presenter.presentedViewController === current before accessing presentationController, same live marker window/descendant, and sheet.presentedViewController identity. Record actual bounded controller types and detent identifiers.",
+      "limitation": "The old receipt did not record the exact selected controller type or reciprocity; a wrong owner is a source-supported diagnostic defect, not an independently proved runtime root cause. UIKit can legitimately report nil for the smallest default detent. The strict original assertion is unchanged; no identifier is synthesized."
+    },
+    {
+      "id": "parent_child_carrier",
+      "affected_cases": [
+        "testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+        "testSystemStudySheetTOCWhileOriginalNoteChildIsVisible"
+      ],
+      "actual": "Both commands reached actual_child_before_action with their current parent and note ownership. Final JSON had no mounted marker/system sheet observation and no note_onDismiss/study_onDismiss, while parent/note identities remained. Actual final AX/PNG showed an empty system sheet.",
+      "source": "The original Inspector host returns EmptyView when readerInspectorVisible becomes false. The note sheet and marker were attached to that disappearing content while the presentation state intentionally waits for the child callback before dismissing its parent.",
+      "candidate": "A stable native-only clear ZStack carries the unchanged original Inspector and the existing marker, detent and nested-note modifiers. Original Inspector visibility, close actions, note UUIDs and callback/state order remain unchanged.",
+      "limitation": "This is an evidence-supported lifetime correction. Actual repaired UIKit callback completion still requires Native execution."
+    },
+    {
+      "id": "reopen_during_real_dismissal",
+      "affected_cases": [
+        "testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput"
+      ],
+      "actual_events": [
+        {
+          "event": "actual_sheet_before_close",
+          "uptime": 3657.591641875
+        },
+        {
+          "event": "closing_phase_not_observed",
+          "uptime": 3657.752089792
+        },
+        {
+          "event": "study_onDismiss",
+          "uptime": 3658.253611875
+        }
+      ],
+      "candidate": "Retain only a weak exact UIKit sheet observation keyed by Reader owner, presentation UUID and source token. Reuse it after marker dismantle only while the actual controller is window-mounted and reciprocal or isBeingDismissed; clear it on matching actual onDismiss or identity change.",
+      "limitation": "The original pending-reopen guard still demands actual isBeingDismissed and a real window; a later callback or private state does not count as transition proof."
+    },
+    {
+      "id": "notes_real_input_preparation",
+      "affected_cases": [
+        "testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel"
+      ],
+      "actual": "Initial save/reopen and unsaved edit cancellation passed. The final row's observed label and screenshot show the added saved text before StudySheet-<UUID>, rather than the expected suffix. The old center tap followed by typeText assumed an end caret.",
+      "observed_label": "savedStudySheet-B9B9B873-C12F-4039-B95D-F93AA39A7F30",
+      "candidate": "Use the original suite's real native Command-A input pattern, type the complete intended unsaved/saved value and assert that exact editor value immediately. Preserve original final saved suffix, Cancel, Save, Delete, row and callback assertions.",
+      "limitation": "This is observed rendered/input evidence, not a claim about unobserved leading whitespace in database bytes. No direct store mutation, setValue, fallback or timeout change is introduced."
+    }
+  ],
+  "exact_member_mappings": [
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+      "exportLogLine": 2176,
+      "path": "visual-11-reader/DE9F4CA3-C164-4D73-9362-6FDE1147B337.json",
+      "purpose": "system-study-final-actual-views_0_36BAD794-BD88-4753-A4EE-5EC9A74D9728.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+      "exportLogLine": 2177,
+      "path": "visual-11-reader/0A334C58-202B-4DF1-BAAE-488D1139AB13.txt",
+      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_77335992-FE6C-4B75-9855-DF88B7489313.txt"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+      "exportLogLine": 2178,
+      "path": "visual-11-reader/2BF13144-042D-424B-BD73-FCBEA0DB6314.png",
+      "purpose": "DIAGNOSTIC-system-study-final_0_27E37167-35D1-4C1E-8B63-2C4BE2AC1E18.png"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+      "exportLogLine": 2181,
+      "path": "visual-11-reader/97966BF6-4ED9-4B62-8E5B-9491E55F4C2B.json",
+      "purpose": "system-study-opened-actual-views_0_B4507D3F-C9D1-47DC-BDA1-91074C96276E.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
+      "exportLogLine": 2194,
+      "path": "visual-11-reader/112C7858-1218-479E-BC02-68F9F74455BC.json",
+      "purpose": "system-study-final-actual-views_0_E4548552-C6DB-4298-99FF-148968AA94C3.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
+      "exportLogLine": 2195,
+      "path": "visual-11-reader/9ED9C672-76FF-4FF8-AA93-CF9F10498466.txt",
+      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_602EEC0E-A823-4AB9-96E1-DD90F1CD934C.txt"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
+      "exportLogLine": 2196,
+      "path": "visual-11-reader/D79890D8-B459-4AB1-9480-9245FAB59384.png",
+      "purpose": "DIAGNOSTIC-system-study-final_0_B1EDFA06-05F4-4F5F-9790-8ECD3C8C8F2E.png"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
+      "exportLogLine": 2199,
+      "path": "visual-11-reader/0453D38E-8C3D-41EC-A2BC-3B1C8FEB4E01.json",
+      "purpose": "system-study-opened-actual-views_0_3922D9DA-DF1E-4EFB-8F49-78A76A26AEEF.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
+      "exportLogLine": 2215,
+      "path": "visual-11-reader/40F60079-616C-4146-803E-08C7645BBE0A.json",
+      "purpose": "system-study-final-actual-views_0_D4E57516-8603-4ED4-8A4E-9B01ACD38AB5.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
+      "exportLogLine": 2216,
+      "path": "visual-11-reader/50F6BBF1-4C91-42E6-A5E6-A0B661B9F176.txt",
+      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_7A655CD8-00A2-4376-A06A-03B8A321904A.txt"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
+      "exportLogLine": 2217,
+      "path": "visual-11-reader/51668F1E-2A58-480E-B0A1-E2421611091D.png",
+      "purpose": "DIAGNOSTIC-system-study-final_0_C70E33A1-830B-4D89-AD84-0368A78F7B3E.png"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
+      "exportLogLine": 2263,
+      "path": "visual-11-reader/A3568EA1-B0E8-4384-8FB7-E4DDA87AE9AA.json",
+      "purpose": "system-study-opened-actual-views_0_EBF8D1F7-D4AA-491A-B9EC-AABCFD2116E2.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+      "exportLogLine": 2291,
+      "path": "visual-11-reader/CD1F56CF-0665-40E0-8C9C-330347A479C8.json",
+      "purpose": "system-study-final-actual-views_0_DF5B51AE-B046-4570-8FD6-30836E40BF5E.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+      "exportLogLine": 2292,
+      "path": "visual-11-reader/5037D24A-C2A1-4AC0-91DF-A5D70063D2CF.txt",
+      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_141A0B16-33D5-4BAE-A0F4-6E093EF08C9C.txt"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+      "exportLogLine": 2293,
+      "path": "visual-11-reader/0AA073D4-88FA-4260-923D-3E52A1FEFFFE.png",
+      "purpose": "DIAGNOSTIC-system-study-final_0_763E9215-B454-40F4-9CA0-CCE9B0A486ED.png"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+      "exportLogLine": 2302,
+      "path": "visual-11-reader/AEC66768-438C-4CB9-BF8B-8A49D573385B.json",
+      "purpose": "system-study-opened-actual-views_0_49ABABC5-934D-4A81-BEEC-9FDFFF0CCAAF.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+      "exportLogLine": 2315,
+      "path": "visual-11-reader/280E76C7-A2CC-431E-9F49-8050FB65D08E.json",
+      "purpose": "system-study-final-actual-views_0_32B82947-B5BA-46F0-ABEA-0711B822F076.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+      "exportLogLine": 2316,
+      "path": "visual-11-reader/28001F11-8EA8-45E2-9E8C-C084C5FC2EB6.txt",
+      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_C23844BE-18CD-4261-9AC2-BE96DBB5E140.txt"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+      "exportLogLine": 2317,
+      "path": "visual-11-reader/A377FA81-F51F-4FBB-8FC2-BBE20FC936CE.png",
+      "purpose": "DIAGNOSTIC-system-study-final_0_D4043666-9590-4CCD-BE92-1DC400120A24.png"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+      "exportLogLine": 2320,
+      "path": "visual-11-reader/20B551B0-1FC7-4AEC-BFC7-525E449D4FD8.json",
+      "purpose": "system-study-opened-actual-views_0_23E4F1BF-CB6C-4B13-8491-593A939623D4.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
+      "exportLogLine": 2333,
+      "path": "visual-11-reader/1512C772-A6D1-46C9-AAC8-5951867E5FEF.json",
+      "purpose": "system-study-final-actual-views_0_E22CCCA0-7C43-4F25-86EB-2CB056BD70DC.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
+      "exportLogLine": 2334,
+      "path": "visual-11-reader/F15BBC42-DB9F-4DC6-822E-D5E67E763725.txt",
+      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_AEA5AEC9-9605-464A-A13B-70D81BAF67AC.txt"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
+      "exportLogLine": 2335,
+      "path": "visual-11-reader/AD159036-CFAF-4BA4-A67A-F7D8A8D945D9.png",
+      "purpose": "DIAGNOSTIC-system-study-final_0_D95B8694-5E7F-49E0-90D7-16BFCFD131D7.png"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
+      "exportLogLine": 2337,
+      "path": "visual-11-reader/AB6C5A52-9962-4106-ACB1-1FC6E2C5ED9E.json",
+      "purpose": "system-study-opened-actual-views_0_61AC1E13-5129-4A35-ADE4-F587D2612151.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
+      "exportLogLine": 2368,
+      "path": "visual-11-reader/F4D4F0B6-D131-4882-9F74-FE56AC63149B.json",
+      "purpose": "system-study-final-actual-views_0_500F1FB9-3F48-4225-A100-14EC80EB3885.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
+      "exportLogLine": 2369,
+      "path": "visual-11-reader/9EE7B14E-F10C-41AF-AF36-3151C4E888A1.txt",
+      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_C2E85DB7-A43F-4A17-B5E3-01A680428C4A.txt"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
+      "exportLogLine": 2370,
+      "path": "visual-11-reader/812F49E0-7E8C-4903-B287-D78BA169CBD2.png",
+      "purpose": "DIAGNOSTIC-system-study-final_0_E7ABF21C-D163-45B6-8C3B-63B200FE98EC.png"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
+      "exportLogLine": 2373,
+      "path": "visual-11-reader/E3A7CEEE-E791-4D58-80BE-90035C5CA9C5.json",
+      "purpose": "system-study-opened-actual-views_0_3BAAC929-BA1F-473F-B8F1-6C21E5DC85DC.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
+      "exportLogLine": 2386,
+      "path": "visual-11-reader/453B540A-3F35-42E0-92C2-F364F821F49F.json",
+      "purpose": "system-study-final-actual-views_0_5536FA7B-015E-4FFA-984D-9D79BBA45AC7.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
+      "exportLogLine": 2387,
+      "path": "visual-11-reader/83516544-CECC-4A1F-8B00-C7534E44ED31.txt",
+      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_B1818562-25ED-4D11-98FD-13D06400F9ED.txt"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
+      "exportLogLine": 2388,
+      "path": "visual-11-reader/DA22D6C7-B371-46FE-B88B-9F8F92022EAB.png",
+      "purpose": "DIAGNOSTIC-system-study-final_0_B17EA5B3-4DA5-4FB4-8540-D96AE1B6F5E5.png"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
+      "exportLogLine": 2391,
+      "path": "visual-11-reader/FB4A08C7-BFFB-49EB-A8E9-D92225F1FC2A.json",
+      "purpose": "system-study-opened-actual-views_0_5F4CD0B5-28E8-4589-AE85-361A797B7D5C.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
+      "exportLogLine": 2404,
+      "path": "visual-11-reader/941DB2F0-A010-404D-9D7B-35E0E60E4BE4.json",
+      "purpose": "system-study-final-actual-views_0_04782137-33A2-4C6D-ADEB-94256B57EA11.json"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
+      "exportLogLine": 2405,
+      "path": "visual-11-reader/AF98E3FA-62E2-4DF1-BA2F-19082382B575.txt",
+      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_20E94B67-63BD-4668-9EC8-B7EA4D0955EC.txt"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
+      "exportLogLine": 2406,
+      "path": "visual-11-reader/242995B3-D6E4-4CDB-8A61-4EAA91FC32D0.png",
+      "purpose": "DIAGNOSTIC-system-study-final_0_E6C29339-11CE-467A-BDE1-184817E2BDF8.png"
+    },
+    {
+      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
+      "exportLogLine": 2415,
+      "path": "visual-11-reader/67BF4F47-1765-4F23-9BB0-2CF834CDBFE5.json",
+      "purpose": "system-study-opened-actual-views_0_31FC0033-7C9B-40E1-870C-686122FE3ADF.json"
+    }
+  ],
+  "apple_primary_sources": [
+    {
+      "url": "https://developer.apple.com/documentation/uikit/uiviewcontroller/presentingviewcontroller",
+      "claim": "The presenting controller may be inherited from a presented ancestor."
+    },
+    {
+      "url": "https://developer.apple.com/documentation/uikit/uiviewcontroller/presentationcontroller",
+      "claim": "Access can create a presentation controller even before the view controller is presented."
+    },
+    {
+      "url": "https://developer.apple.com/documentation/uikit/uisheetpresentationcontroller/selecteddetentidentifier",
+      "claim": "Default nil means the smallest detent, so a missing string is not alone proof of a failed detent transition."
+    },
+    {
+      "url": "https://developer.apple.com/documentation/uikit/uiviewcontroller/isbeingdismissed",
+      "claim": "The actual UIKit property remains the transition observation required by the original pending-reopen gate."
+    }
+  ],
+  "candidate_swift": "NOT_RUN",
+  "candidate_native": "NOT_RUN"
+}

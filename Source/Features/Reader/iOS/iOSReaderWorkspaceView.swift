@@ -574,7 +574,7 @@ struct iOSReaderWorkspaceView: View {
     private func nativeStudyPanel(_ presentation: NativeStudySheetPresentationState.Presentation) -> some View {
         let notePresentationID = nativeNoteEditorPresentationID
         let noteHost = NativeStudySheetPresentationState.NoteHost.study(presentation.id)
-        return inspectorPanel(
+        let originalPanel = inspectorPanel(
             showsCloseButton: true,
             chrome: .embeddedSheet,
             nativeSheet: .init(
@@ -585,6 +585,13 @@ struct iOSReaderWorkspaceView: View {
                 expand: { nativeStudyDetent = .medium }
             )
         )
+        // Keep the real child presenter and observation mounted while the
+        // original Inspector content obeys its existing close visibility.
+        return ZStack {
+            Color.clear.allowsHitTesting(false).accessibilityHidden(true)
+            originalPanel
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .environment(\.layoutDirection, layoutDirection)
         #if DEBUG
         .background {

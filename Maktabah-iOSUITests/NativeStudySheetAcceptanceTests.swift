@@ -387,12 +387,20 @@ final class NativeStudySheetPadTests: NativeStudySheetUIBase {
         XCTAssertTrue(row.firstMatch.waitForExistence(timeout: 15)); XCTAssertEqual(row.count, 1)
         nativeTap(row.firstMatch)
         XCTAssertEqual(app.textViews["annotation-note-text"].value as? String, text)
-        nativeTap(app.textViews["annotation-note-text"]); app.textViews["annotation-note-text"].typeText(" unsaved")
+        nativeTap(app.textViews["annotation-note-text"])
+        // Use the existing native Select All input; a center tap does not promise an end caret.
+        app.textViews["annotation-note-text"].typeKey("a", modifierFlags: .command)
+        app.textViews["annotation-note-text"].typeText(text + " unsaved")
+        XCTAssertEqual(app.textViews["annotation-note-text"].value as? String, text + " unsaved")
         nativeTap(app.buttons["annotation-cancel-toolbar"])
         _ = try observe { !$0.actualChild && $0.noteID == nil }
         nativeTap(row.firstMatch)
         XCTAssertEqual(app.textViews["annotation-note-text"].value as? String, text, "Cancel must not persist edited bytes")
-        nativeTap(app.textViews["annotation-note-text"]); app.textViews["annotation-note-text"].typeText(" saved")
+        nativeTap(app.textViews["annotation-note-text"])
+        // Use the existing native Select All input; a center tap does not promise an end caret.
+        app.textViews["annotation-note-text"].typeKey("a", modifierFlags: .command)
+        app.textViews["annotation-note-text"].typeText(text + " saved")
+        XCTAssertEqual(app.textViews["annotation-note-text"].value as? String, text + " saved")
         nativeTap(app.buttons["annotation-save-toolbar"])
         _ = try observe { !$0.actualChild && $0.noteID == nil }
         let editedRow = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@ AND label == %@", "torah-inspector-note-", text + " saved"))
