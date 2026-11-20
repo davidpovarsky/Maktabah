@@ -1,0 +1,39 @@
+{
+  "at_utc": "2026-11-20T08:16:05.378141+00:00",
+  "base": "8969734ffd1406c15ceeba968cbd8a008c680484",
+  "before_sha256_git_lf": "1bb737a208657e874003343edfdb798c99e8700247630ba810e573d40a22b279",
+  "after_sha256_git_lf": "41ee6ac5e00b7fe89e20875d8284aefffb74fc2406c8d6b05dd0e027aa9b68fd",
+  "exact_inverse_preserves_all_original_bytes": true,
+  "original_measured_overview_method": "BYTE_IDENTICAL; count1/full-size/coverage/source/object/pixel/raw-offset/locator/title/reader-frame checks retained",
+  "scope": "Original public-UI fixture preparation before any measured viewport or pan; exact UUID closes limited to current test sidecar group",
+  "production_implementation_changed": false,
+  "syntax_command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios27.0",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native88-harness-repairs-20261120\\Maktabah-iOSUITests\\FaithfulReaderUIAcceptanceTests.swift"
+  ],
+  "syntax_exit": 0,
+  "syntax_warnings": 2,
+  "apple_typecheck": "NOT_RUN",
+  "native": "NOT_RUN",
+  "actor_chain_review": {
+    "reviewer": "asana_audit",
+    "finding": "Syntax parse alone missed nonisolated callers of new MainActor helper",
+    "correction": "Explicit MainActor added to overview helper caller and all three existing native test methods; IDs and method bodies preserved",
+    "methods": [
+      "exerciseOverviewReplacement(orientation: UIDeviceOrientation, phone: Bool)",
+      "testSourceOverviewReplacesReaderAndRestoresViewport()",
+      "testSourceOverviewReplacesReaderAndRestoresViewportLandscape()",
+      "testSourceOverviewReplacesReaderAndRestoresViewportPortrait()"
+    ],
+    "apple_typecheck": "NOT_RUN",
+    "syntax_exit": 0,
+    "syntax_warnings": 2
+  },
+  "final_review_at_utc": "2026-11-20T08:27:50.614889+00:00",
+  "exact_inverse_after_actor_correction": true,
+  "peer_review": "asana_audit reviewed original model compatibility, read-only sidecar ownership, immutable captures, and original measured method. Found nonisolated caller chain; explicit MainActor corrected and reviewed. No remaining concrete source blocker; Apple typecheck/Native not run."
+}
