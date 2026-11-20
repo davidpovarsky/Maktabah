@@ -1,0 +1,12 @@
+{
+  "SYNTAX.json": {
+    "bytes": 944,
+    "sha256": "686ddd05eb49e5a816f307d122e28b18c3cdb168c151b5a0039dc96a5654b75a",
+    "gzip_sha256": "e03a8fefad68fd3d633a6c47f1be121e670a078f31178619dc8718e257fd8f7c"
+  },
+  "syntax.log": {
+    "bytes": 165,
+    "sha256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539",
+    "gzip_sha256": "7bee3ffa8b7a1c707ae072953e5995be8f8c833e5a7ee18573743f00b320cc9e"
+  }
+}

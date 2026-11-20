@@ -1,0 +1,26 @@
+{
+  "base": "263e6b1357c2322226bce54dc8051007b6b12285",
+  "candidate_source_sha256": "2cea09618644b879c60af0f85c788c3a707e2c8ba85e2781ca64a807fd066111",
+  "original_runner_sha256": "9b1fa28388d85f2693bf90f371cd69f6eb7dafc8c2b83bfe332f78e053787e49",
+  "reconstructed_original_sha256": "9b1fa28388d85f2693bf90f371cd69f6eb7dafc8c2b83bfe332f78e053787e49",
+  "original_runner_byte_identical_after_removing_explicit_additions": true,
+  "unchanged_source_blobs_sha256": {
+    "Source/Otzaria/Search/OtzariaExactOccurrenceModels.swift": "8ec1e4a4f834b84e12001e600109fd660e4a38bdcb4a48c3a584da14c2a3fc78",
+    "Source/Otzaria/Search/OtzariaSearchEngineBridge.swift": "67201861d1cd9e6a287e8f2d252edc48f852b032d728cdfb7f7f9ff506798ceb",
+    "Source/Otzaria/Search/OtzariaExactOccurrenceOperation.swift": "6b3ada4ad48a7f0b93d274e673bb94c95e0ea51cf9f4321edec297851cd6001c",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift": "2a43dd19fdba64d94992a567adc91572830decca14c3f74805d3eab433b0c47e",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactInstaller.swift": "76e52d7018757fffaa70e547de49915ca5d767d4fff54f227b78d583fec17e66",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactDownloader.swift": "d7b4871ea1715d427a89e7ecb6b6b9c1eb210bdf2324b7e9ad47524bba95aac2",
+    "Scripts/CI/hq-v32-prebuilt-native.py": "e7480a6ca1591a440c81d148cf8b1c4542ac9a1941fab1d9897aa12c4b1eacaf"
+  },
+  "qualification_git_LF_sha256": "3ccd704a831f4a96ec06a691bdc17e7a8988168659bad766815018c9106983a1",
+  "direct_sql_oracle_uncompressed_sha256": "015b4ac382b8c6005d672234cfa7fc1ddaf291f7e5e0d07982f2c89db242f781",
+  "direct_sql_oracle_uncompressed_bytes": 9544,
+  "observed_typed_result_fields": 24,
+  "source_only_review": {
+    "reviewer": "root",
+    "result": "No blocker found in current Swift diff; explicit syntax/Apple boundary retained"
+  },
+  "native_executed": 0,
+  "timestampUTC": "2026-11-20T05:33:07.000691+00:00"
+}

@@ -9,7 +9,7 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
         let firstFilePath: String?
     }
 
-    private struct Report: Codable {
+    private struct Report: Encodable {
         let passed: Bool
         let phase: String
         let artifactIdentity: String
@@ -17,6 +17,9 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
         let sourceCount: Int
         let checks: [Check]
         let golden: GoldenCheck?
+        let consumerBuild: OtzariaSearchEngineBuildInfo?
+        let artifactProducer: OtzariaSearchArtifactManifest.LexicalEngine?
+        let exactOccurrences: [ExactOccurrenceCheck]
         let localIndexingRan: Bool
         let stagingAbsent: Bool
         let nativeDownloadRan: Bool
@@ -25,6 +28,92 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
         let productionValidatorRan: Bool
         let selectedReleaseTag: String?
         let error: String?
+    }
+
+    private struct ExactOccurrenceCheck: Encodable {
+        let query: String
+        let request: OtzariaExactOccurrenceRequest
+        let result: ObservedOccurrence
+    }
+
+    /// Lossless typed projection of the observed Swift/C result. Expected SQL
+    /// scalars and revisions belong to the external acceptance gate, not this report.
+    private struct ObservedOccurrence: Encodable {
+        let occurrences: UInt64
+        let matchingLiveDocuments: UInt64
+        let proof: Proof
+        let work: Work
+
+        init(_ observed: OtzariaExactOccurrenceResult) {
+            occurrences = observed.occurrences
+            matchingLiveDocuments = observed.matchingLiveDocuments
+            proof = Proof(observed.proof)
+            work = Work(observed.work)
+        }
+
+        struct Segment: Encodable {
+            let segmentId: String
+            let deleteOpstamp: UInt64?
+
+            init(_ observed: OtzariaExactOccurrenceResult.Segment) {
+                segmentId = observed.segmentId
+                deleteOpstamp = observed.deleteOpstamp
+            }
+        }
+
+        struct Snapshot: Encodable {
+            let generationId: UInt64
+            let segments: [Segment]
+
+            init(_ observed: OtzariaExactOccurrenceResult.Snapshot) {
+                generationId = observed.generationId
+                segments = observed.segments.map(Segment.init)
+            }
+        }
+
+        struct Proof: Encodable {
+            let requestToken: UInt64
+            let countKind: String
+            let exact: Bool
+            let analyzedToken: String
+            let requestedFacets: [String]
+            let searcherGeneration: Snapshot
+            let liveIndexDocuments: UInt64
+            let indexSchemaVersion: UInt32
+            let enginePackageVersion: String
+            let engineCommit: String
+            let originalUpstreamBase: String
+            let engineRepository: String
+            let engineBranch: String
+
+            init(_ observed: OtzariaExactOccurrenceResult.Proof) {
+                requestToken = observed.requestToken
+                countKind = observed.countKind
+                exact = observed.exact
+                analyzedToken = observed.analyzedToken
+                requestedFacets = observed.requestedFacets
+                searcherGeneration = Snapshot(observed.searcherGeneration)
+                liveIndexDocuments = observed.liveIndexDocuments
+                indexSchemaVersion = observed.indexSchemaVersion
+                enginePackageVersion = observed.enginePackageVersion
+                engineCommit = observed.engineCommit
+                originalUpstreamBase = observed.originalUpstreamBase
+                engineRepository = observed.engineRepository
+                engineBranch = observed.engineBranch
+            }
+        }
+
+        struct Work: Encodable {
+            let visitedCandidateDocuments: UInt64
+            let inspectedPositions: UInt64
+            let visitedSegments: UInt32
+
+            init(_ observed: OtzariaExactOccurrenceResult.Work) {
+                visitedCandidateDocuments = observed.visitedCandidateDocuments
+                inspectedPositions = observed.inspectedPositions
+                visitedSegments = observed.visitedSegments
+            }
+        }
     }
 
     private struct GoldenCheck: Codable {
@@ -53,12 +142,16 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
         var productionDiscoveryRan = false
         var productionValidatorRan = false
         var selectedReleaseTag: String?
+        var consumerBuild: OtzariaSearchEngineBuildInfo?
+        var artifactProducer: OtzariaSearchArtifactManifest.LexicalEngine?
+        var exactOccurrences: [ExactOccurrenceCheck] = []
         do {
             let localManifest = try JSONDecoder().decode(
                 OtzariaSearchArtifactManifest.self,
                 from: Data(contentsOf: URL(fileURLWithPath: manifestPath))
             )
             identity = localManifest.artifactIdentity
+            artifactProducer = localManifest.lexicalEngine
             let databaseBytes = ((try FileManager.default.attributesOfItem(atPath: databasePath)[.size]) as? NSNumber)?.int64Value ?? 0
             let source = localManifest.sourceDatabase
             let sourceRelease = OtzariaLibraryRelease(
@@ -78,6 +171,7 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                 databaseFileSize: databaseBytes
             )
             let build = try OtzariaSearchEngineBridge.buildInfo()
+            consumerBuild = build
             try OtzariaSearchArtifactPolicy.validate(
                 localManifest,
                 database: databaseManifest,
@@ -233,6 +327,44 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                 references: references,
                 highlightedTopResults: highlighted
             )
+            // This acceptance-only probe uses the same original engine and
+            // handle after install or actual process reopen. It grants no Core
+            // capability and never starts an index build or a second engine.
+            guard OtzariaLexicalIndexReadCompatibility.qualifiedContract(
+                manifest: manifest, consumer: build
+            ) == .original265ToExactOccurrencesD5 else {
+                throw OtzariaSearchArtifactError.validationFailed(
+                    "exact occurrence probe requires the qualified original265-to-d5 read contract"
+                )
+            }
+            let occurrenceSource = try OtzariaExactOccurrenceSource(
+                buildInfo: build, originalUpstreamBase: manifest.lexicalEngine.commit
+            )
+            for occurrenceQuery in ["בראשית", "אברהם"] {
+                let request = try OtzariaExactOccurrenceRequest(
+                    query: occurrenceQuery,
+                    facets: ["/"],
+                    bookIds: [],
+                    timeoutMs: 60_000,
+                    limits: .init(
+                        maxCandidateDocuments: 1_000_000,
+                        maxPositions: 10_000_000,
+                        maxPositionsPerDocument: 262_144,
+                        maxSegments: 4_096
+                    )
+                )
+                let observed = try await engine.countExactTokenOccurrences(
+                    request: request, expectedSource: occurrenceSource
+                )
+                guard observed.proof.liveIndexDocuments == documentCount else {
+                    throw OtzariaSearchArtifactError.validationFailed(
+                        "exact occurrence probe observed a different live corpus"
+                    )
+                }
+                exactOccurrences.append(ExactOccurrenceCheck(
+                    query: occurrenceQuery, request: request, result: ObservedOccurrence(observed)
+                ))
+            }
             let stagingAbsent = !FileManager.default.fileExists(
                 atPath: storage.stagingURL(databasePath: databasePath).path
             )
@@ -252,6 +384,9 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                 sourceCount: paths.count,
                 checks: checks,
                 golden: golden,
+                consumerBuild: consumerBuild,
+                artifactProducer: artifactProducer,
+                exactOccurrences: exactOccurrences,
                 localIndexingRan: false,
                 stagingAbsent: true,
                 nativeDownloadRan: nativeDownloadRan,
@@ -274,6 +409,9 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                 sourceCount: 0,
                 checks: [],
                 golden: nil,
+                consumerBuild: consumerBuild,
+                artifactProducer: artifactProducer,
+                exactOccurrences: exactOccurrences,
                 localIndexingRan: false,
                 stagingAbsent: false,
                 nativeDownloadRan: nativeDownloadRan,
