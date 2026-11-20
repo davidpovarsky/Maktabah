@@ -1,0 +1,435 @@
+{
+  "status": "ACTUAL_WINDOWS_READ_AND_COUNT_QUALIFICATION_READY_FOR_OWNER_REVIEW_REGISTRY_DISABLED",
+  "observedAt": "2026-11-20T05:09:35.017982+00:00",
+  "producerCommit": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+  "consumerCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+  "contract": "otzaria-265-to-d5-lexical-read-v1",
+  "inputs": {
+    "miniTest10-v6": {
+      "release": "https://github.com/davidpovarsky/Maktabah/releases/tag/otzaria-miniTest10-v6",
+      "releaseID": 410332048,
+      "manifestSHA256": "ae3bd170dc4650806a9fdda1beefe682eeefb5abde886363d6feac999603f8d4",
+      "artifactIdentity": "08a5ddf76ae187e3ca29c1b483637f1dc8e2a2dcb7001cdb7fe3327236234e83",
+      "documents": 18879,
+      "originalSegments": [
+        {
+          "segment_id": "d5505a92-bd97-467a-8886-7ecc6a74de8c",
+          "max_doc": 18879,
+          "deletes": null
+        }
+      ],
+      "publishedFiles": {
+        "d5505a92bd97467a88867ecc6a74de8c.fast": {
+          "bytes": 525291,
+          "sha256": "429cdf186c96da66106a3030efdd80992aa757ad3a64927757eac2a2313644d7"
+        },
+        "d5505a92bd97467a88867ecc6a74de8c.fieldnorm": {
+          "bytes": 75645,
+          "sha256": "97a8dddcc0c7bd2ced2bdc2f4da4d0c385996cacac8472873735049a1a797188"
+        },
+        "d5505a92bd97467a88867ecc6a74de8c.idx": {
+          "bytes": 2333814,
+          "sha256": "e52486a050e44993a2f29cd3550e77ec0bb2932277fbf0abc06baa5ad416bac3"
+        },
+        "d5505a92bd97467a88867ecc6a74de8c.pos": {
+          "bytes": 1531832,
+          "sha256": "33ce86ccbbad16ecaa289484579f38201e3092005533b6e33be064ba6e411659"
+        },
+        "d5505a92bd97467a88867ecc6a74de8c.store": {
+          "bytes": 8258234,
+          "sha256": "20d76fa5fe0c486f55996eefc11607b3df30f34aa0fddf9e00de652fb67f2480"
+        },
+        "d5505a92bd97467a88867ecc6a74de8c.term": {
+          "bytes": 1937923,
+          "sha256": "61054d07ab3d484eadcad2e984602507ece9fcff0f8fc10cc62253b5ab056960"
+        },
+        "meta.json": {
+          "bytes": 3062,
+          "sha256": "871d3ee5c095e6ed7cee6cfd2e66358a2b8e9863718b97ee08d662846beaef3d"
+        }
+      }
+    },
+    "full-v32": {
+      "release": "https://github.com/davidpovarsky/Maktabah/releases/tag/otzaria-search-data-v32-20261010190601-102293b3a63c",
+      "releaseID": 419282321,
+      "manifestSHA256": "34319ced48e76f22a5ae2df23745a03332160ddab2dd64244a5c917e0ce00a57",
+      "artifactIdentity": "102293b3a63c7f73fa05298457073804e57e020486753f8f6b8f7964ce29f17e",
+      "documents": 7080797,
+      "originalSegments": [
+        {
+          "segment_id": "18dd1dde-8868-4e2d-84fb-a1c996012a06",
+          "max_doc": 7080797,
+          "deletes": null
+        }
+      ],
+      "publishedFiles": {
+        "18dd1dde88684e2d84fba1c996012a06.fast": {
+          "bytes": 248013057,
+          "sha256": "a655b74fdc0e6f2bda41e865d9c8bd17c290b1bb766b2f5f626180edb936730b"
+        },
+        "18dd1dde88684e2d84fba1c996012a06.fieldnorm": {
+          "bytes": 28323320,
+          "sha256": "69550c48bb2c78040bc5ab086327ab9b126bc0021449e9a61b81bbe222719a5a"
+        },
+        "18dd1dde88684e2d84fba1c996012a06.idx": {
+          "bytes": 933324683,
+          "sha256": "133285180c1881ed1b0db8ac5192d6ad9f00e308cfec73de5648c86b276cac6f"
+        },
+        "18dd1dde88684e2d84fba1c996012a06.pos": {
+          "bytes": 854623140,
+          "sha256": "b314547e81573d5195ec6e4b57dc1dbe1d6efca4393857863cdd5ef44098c278"
+        },
+        "18dd1dde88684e2d84fba1c996012a06.store": {
+          "bytes": 3100155475,
+          "sha256": "19bdb71d70b6d7c70326f137f9c6dae73108063b579467f50c60a45391bb4021"
+        },
+        "18dd1dde88684e2d84fba1c996012a06.term": {
+          "bytes": 55460556,
+          "sha256": "038c02b021e445f9127a45b945d680208aa8660881aba9561534dfa3eef1eb63"
+        },
+        "meta.json": {
+          "bytes": 3066,
+          "sha256": "e1923d186315a0d7df6fdf2207cb26378b1a1e21b90e4f5af12cbb933c89c10a"
+        }
+      }
+    }
+  },
+  "originalSourceParitySHA256": "408133d40ebddd0dc6b0c8dea669709a44f9c57ec608396d03c5ef629934e311",
+  "actualBinaries": {
+    "265": {
+      "librarySHA256": "16f6d54b9bacc49d708da4017051ebac0825c1f2adae163bf53a3908bb8b6cf7",
+      "consumerExecutableSHA256": "d290337b7eb0e89caccfdd11975c5781073babf017b17b60ada89c24445a1039",
+      "consumerSourceSHA256": "700b543b2d9da743e347a3f1bd99d9dbf875802d77a154e115333e784ea81c5c"
+    },
+    "d5": {
+      "librarySHA256": "7f23e3e87aa604b410f9cd21f1b56aab2d30596c697d46c8fb19ad160e34c7a0",
+      "consumerExecutableSHA256": "4af6a44eb2b7cd4f65d2200f0695bf4bbc677010e7ee4f0f7d6070faf70ace32",
+      "consumerSourceSHA256": "700b543b2d9da743e347a3f1bd99d9dbf875802d77a154e115333e784ea81c5c"
+    }
+  },
+  "mini": {
+    "legacyParityCases": 21,
+    "occurrenceSQLComparisons": 33,
+    "sourceSQLRows": 18879,
+    "strictSQLLocatorComparisons": 350,
+    "actualColdProducerRollbackQueryCases": 21,
+    "originalFailedEvaluatorCounts": {
+      "checks": 75,
+      "passed": 74,
+      "failed": 1,
+      "skipped": 0
+    }
+  },
+  "full": {
+    "legacyParityCases": 21,
+    "defaultScopedSQLScalarMatches": 20,
+    "defaultNoScalarBudgetDenialsRetained": 5,
+    "hardBoundsScopedSQLMatches": 5,
+    "strictSQLLocatorComparisons": 450,
+    "actualColdProducerRollbackQueryCases": 21,
+    "fullSQLRows": 7080797,
+    "fullSQLBooks": 7876,
+    "globalSQLComparisons": [
+      {
+        "query": "בראשית",
+        "occurrences": 143982,
+        "matchingLiveDocuments": 104120,
+        "originalSQLMultiplicitySHA256": "5e9277846d7ddef45710677a869ebe736009eb389525181cfceee2a5f074c31e",
+        "actualWork": {
+          "inspectedPositions": 143982,
+          "visitedCandidateDocuments": 104120,
+          "visitedSegments": 1
+        },
+        "proof": {
+          "analyzedToken": "בראשית",
+          "countKind": "distinctTokenPositions",
+          "engineBranch": "codex/otzaria-exact-occurrences-20261120",
+          "engineCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+          "enginePackageVersion": "0.1.0",
+          "engineRepository": "davidpovarsky/otzaria_search_engine",
+          "exact": true,
+          "indexSchemaVersion": 4,
+          "liveIndexDocuments": 7080797,
+          "originalUpstreamBase": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+          "requestToken": 6,
+          "requestedFacets": [
+            "/"
+          ],
+          "searcherGeneration": {
+            "generationId": 1,
+            "segments": [
+              {
+                "deleteOpstamp": null,
+                "segmentId": "18dd1dde88684e2d84fba1c996012a06"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "query": "אברהם",
+        "occurrences": 170515,
+        "matchingLiveDocuments": 109419,
+        "originalSQLMultiplicitySHA256": "6b1beb53a0067ca30b079d85c02219881214423e2e81cd2c0a7a7c502364ef08",
+        "actualWork": {
+          "inspectedPositions": 170515,
+          "visitedCandidateDocuments": 109419,
+          "visitedSegments": 1
+        },
+        "proof": {
+          "analyzedToken": "אברהם",
+          "countKind": "distinctTokenPositions",
+          "engineBranch": "codex/otzaria-exact-occurrences-20261120",
+          "engineCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+          "enginePackageVersion": "0.1.0",
+          "engineRepository": "davidpovarsky/otzaria_search_engine",
+          "exact": true,
+          "indexSchemaVersion": 4,
+          "liveIndexDocuments": 7080797,
+          "originalUpstreamBase": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+          "requestToken": 7,
+          "requestedFacets": [
+            "/"
+          ],
+          "searcherGeneration": {
+            "generationId": 1,
+            "segments": [
+              {
+                "deleteOpstamp": null,
+                "segmentId": "18dd1dde88684e2d84fba1c996012a06"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "independentSQLAttempt": "attempt4-partitioned",
+    "exactOriginalRowCoveragePartitions": 71,
+    "fullRowIDCoverageVerifiedExactlyOnce": true,
+    "actualCRRows": 7,
+    "priorAttempt3": "FAILED on an invalid CR rejection assumption; no partial scalar reused or published",
+    "originalFailedEvaluatorAndBudgetCounts": {
+      "checks": 96,
+      "passed": 81,
+      "failed": 15,
+      "skipped": 0
+    }
+  },
+  "policyPortable": {
+    "red": {
+      "failed": 7,
+      "passed": 92,
+      "skipped": 0,
+      "total": 99
+    },
+    "green": {
+      "failed": 0,
+      "passed": 99,
+      "skipped": 0,
+      "total": 99
+    },
+    "exactWriterMethodsUnchanged": {
+      "func makeIdentity(": true,
+      "func prepareOrResumeBuildingIndex(": true,
+      "private func canSeedBuildingIndex(": true
+    }
+  },
+  "originalPortableRegressionAssertions": {
+    "search": 191,
+    "cachedReadiness": 14,
+    "notTestCaseCount": true
+  },
+  "originalEngineCreatedFiles": {
+    "mini": {
+      "producer265": {
+        ".tantivy-meta.lock": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".tantivy-writer.lock": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "otzaria_index_meta.json": {
+          "bytes": 163,
+          "sha256": "9a20c86cdac371f0405044f2af57cac34c2b84722610a837d3c850f766b91a8b"
+        }
+      },
+      "consumerd5": {
+        ".tantivy-meta.lock": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".tantivy-writer.lock": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "otzaria_index_meta.json": {
+          "bytes": 163,
+          "sha256": "945757b0a93c6aaa02a57a9d902aa19bdbff37b0739d70f1cd4c194b013b5631"
+        }
+      }
+    },
+    "full": {
+      "producer265": {
+        ".tantivy-meta.lock": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".tantivy-writer.lock": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "otzaria_index_meta.json": {
+          "bytes": 163,
+          "sha256": "e519e9aed5e4b11e30923886b9f5430290e11866793e63d7042d35e0801047ee"
+        }
+      },
+      "consumerd5": {
+        ".tantivy-meta.lock": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".tantivy-writer.lock": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "otzaria_index_meta.json": {
+          "bytes": 163,
+          "sha256": "a6571cf062aa8226f81692c76ceee6a614526637abf19dfdeb4690fdbce789a5"
+        }
+      }
+    }
+  },
+  "inputEvidenceSHA256": {
+    "binaries/265/BUILD_ATTEMPT1.json": "59290c4a9a1f3cd1517ebad888f6d3e66fdd8afbfc4f65bca3d9b86b4d15f612",
+    "binaries/d5/SNAPSHOT.json": "82eb3291f02ba48c67308c500594f8f0dd141c52d4080549a853d72819ab17e0",
+    "binaries/265/READ_CONSUMER_BUILD.json": "60479db5e1f9d266b419e9c45f749ae891227c5037ce9696891f757c41e1c9e4",
+    "binaries/d5/READ_CONSUMER_BUILD.json": "ef36551570458b687fd3f8801e576e1a1a3c7f39bb6ae2e605248bc8e7b23b93",
+    "full-sql-global-oracle/attempt4-partitioned/RESULT.json": "015b4ac382b8c6005d672234cfa7fc1ddaf291f7e5e0d07982f2c89db242f781",
+    "full-sql-global-oracle/REGEX_FULL_MINI_AND_CR_PARITY.json": "c74d173ab2dc64658ae595c6b1fbeea93e78aecaf24d1ee67d9b886da630da8a",
+    "full-sql-global-oracle/attempt3/FAILED_ROW_DIAGNOSIS.json": "1def7bdc7e78c1294e31f4adca9a11cb6acf0ce0808e97325040598f967014e8",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0000.json": "3646f6fed53115d673faea2411b5b68e00768b251593db1dc20f19e6a414d8d3",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0001.json": "40fdd06b87ff2a94c4af1668faa7567c42ae24efcac5ebcc72e20179d38ef20f",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0002.json": "1783e863b6501a06ee0297d5c6bb729e8a377a09d18047644fc14c822b763036",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0003.json": "41394b1eede5f0e380bfc5017c6ade24496db441e0f6db5b0cf5879176b00146",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0004.json": "5602f612439452da5cf962df6caf53b8b7fd3419f95f4641f2cb6c6fc01ec2fa",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0005.json": "fc849f9a317de0b56190b2a0c406112f844acb3bd48adf67edc1e05e36081385",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0006.json": "9bc7692ba9d44867d27d73e12256265316aee567226c4aaf8362dae076f28b69",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0007.json": "d31af76725489f854f6b9050d4849f82ef76c905e0c095c1096b21a9d1ba5bde",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0008.json": "373f47c1637aefe0e00b81c6feadc927780a248a0b893dd842b1fa01b25215d8",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0009.json": "cfa9603d5329c5f1f93936d37484226c61fb22e74bde3694aa508c72e2480c6d",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0010.json": "c5015d7c890a4593e52ff480f6548ad7104153189742839aa909727527fbde4a",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0011.json": "a075ade84d73f9f625dfea11ee1a3eb63e2d0126d72ffb7037a7b144a8822739",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0012.json": "de3f68af45b4e631b9db0f635984648bf2e405e496032c117e8331257896ca48",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0013.json": "48dd7410db58ea1ca38c2fd449d384bd0badeae73021713ba900fd0b2c86148b",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0014.json": "570ba476f42d087f26ed130cde20912eee01242d3de5839eb2bed255c8438b0f",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0015.json": "dab47e99a6315f7310bacef76470c89a094232ddddad367902b0f100e75d39bc",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0016.json": "af336dc207a137f0678a575de1a1946b551e63f23b721f3bed2f159e63306efd",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0017.json": "c9c019f61110c736a3a969477191b066d1e420468fa97dd7a2fcc2e89fcf4cd5",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0018.json": "1543dbd38bad2a8ac6ccbd852ceee7372b085f7035e3dbd20c1c09574e201676",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0019.json": "1a55f9b897a4044841b4e32bc067e7136119fd3a1787a0bab91da49ac278807f",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0020.json": "9566d6f3d6a3e86a9fccb2a3cbdef4c6ba081a11e93502fe26b5ab150ef51b2a",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0021.json": "46e4c1dccb3826528cfc59980219e4f43bda0568992a2f1b2190e7e4a6a907cf",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0022.json": "4d334d7c3d651c5ce8e4486072dfd3a320da41d2b7293af7c22cfd30657bd828",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0023.json": "c04cd04d6ed0399f3ceda88d195ece4f2012ac6740105c050a1611e51f8d2abd",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0024.json": "bd7c04f900980bcff1d055aac531a5b6606c21c3a6e5e10e86967a9abdca18c9",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0025.json": "03ecf2574ff04f19e31aab54a574950d5476c956605825248e73c51a3e11fdde",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0026.json": "e06d438111b4b9599d9f789b6435ed92eb6dddee0c63fadef10eb21f781870f2",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0027.json": "43e3ef8485b9469ab0a4cc8e2b0e20c161db749d6adc682c38ecad2e4f18ded2",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0028.json": "1943994a6a9ccd9f7c227601f8516c1acc6eaa8ea646d1d916c841b41b7fc323",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0029.json": "4a8c70b4ed459316eb479f0a73c0e0c4c9f7e107bb580db1264e683bafa5ecb6",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0030.json": "b32d1e7df2b985612de8281b6e222eedc7f2ca0d39d9bf4e00150c237d86641e",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0031.json": "da07c699eeddf4d59455c19945d8ca7b4966b115d2b81a99bf676302de970b6b",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0032.json": "837dfd210ed19b75b926fd7cb359d142f42bb628152e3f3f220c464c9f145890",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0033.json": "bdb2ae124acd8d1d7db046ac19418e29d74f205897d58af5424e7736b396e691",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0034.json": "ecdf16da39c376f5e32e4ef471f9b5d87be810f324685a421d9e34e9effe7833",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0035.json": "324d4030dbd39d7518de388c1856f0e4c56b0bc3b126db72658906c39c500a54",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0036.json": "0ae133a8ceee6320efc285622e2e8879d1fbba43cf29db3005a25fdd5dcbd47e",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0037.json": "95482e7a45fdcf0a52082611d00027c80074a121db86f8d9b37c09fe70653098",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0038.json": "a4ed7b774ece1c1052476c5ee4831c51f8ffa16149c77a827718d8f7e9641da3",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0039.json": "026fee63bd0fd4e9417d9920b20d64b34349ce0650d812246b9fb1af2598feec",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0040.json": "7d6c82d5e7d065db81fbcbad708c1fef6d897519270851ec5f01dadd23d26656",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0041.json": "69918582a9b1ac31f7a97b47bdcad7c02f6a2fbd671a560966a9b9e9065ce992",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0042.json": "c378fd0d8cadadbc3b5e85545a39d48c640a70f13364ea6707d527932c772417",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0043.json": "5b5eaba5c55059c7b3298e421f9b6440e648e55670ab7b07e97f85c06cc8eecc",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0044.json": "7bb80f5a6c240447a845afc7db37e2ecbfb341d0fe98c3a33c79f38f6776243a",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0045.json": "1a64a4d715f66b2016a99e708c1f69e29d734a1ff32030b5ef538cd6419741da",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0046.json": "8964aa2bf36f51453db9f0890386f694d20cc92e53854fa5d36dd72db1a60bb7",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0047.json": "d4d0c2768c1924680c5ca5e8ae2266e57472c5a8b785a0a027b2b55686ddde26",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0048.json": "9a9f6ffaab92b3afb6905c6804e121f5355caee0d1475044d9d66b30cd77249b",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0049.json": "8cebbade1543f54e3c12b4d7adf8d74297b548a644d20609e7b3f35fa5a9e6d4",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0050.json": "42b7cd4d01f6db502071e43536186682640769af345dea02d2776467b47d045e",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0051.json": "1e46328ad8f1501ea8f346a2a46e3190bad6384fbd85b123bf14631efbd0fe81",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0052.json": "bfaaf89ae3e975c1146c6c1a0e7604a639b1cda6da5c90e9077e9e846e6038a6",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0053.json": "a8800b3ae414a8a77168946787f539cc742d583ba3e9e2ba55809a73baa24753",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0054.json": "760c2664d1979072aab962821f2a19be1bd15e21742c6272cb9082d215ce832e",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0055.json": "6333ad9365878ce2561a898f771600007bfe9b4984e295f3d013694a4351a2a5",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0056.json": "5039eee36d558c59164d97f50a87d2b2c0cc0178af9e0c539b533a75aa9aebd1",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0057.json": "854e352fdf0215c7c00f9eb2b49da105b9f21f88ee71b3ffd1a1f8e214af876c",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0058.json": "e4bd08eb0dafdb4f0fa6c4353b6d6e00688a85edd11c8d56a60cb1fb8dc45274",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0059.json": "8f800e920a3b5451c6e13697920b6bff09029dabddf1b19573a98c1bcbdafd2d",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0060.json": "5dbfebf16bb088f6269b7257df3ddbc62d2d9f874b87b774d0b2d39e520ddabd",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0061.json": "dda250c2fb64433435938233fca65870c27cd822624061c4d0dc29c08287259c",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0062.json": "a6392e4c5f70cfc4190dcd12638691b8dc5a59c1af67ef0a8181050653a11ac1",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0063.json": "5c3e923fd33d6157f2298badd8c49a9d11ac27694962e340243828adf9cdc5b1",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0064.json": "0a3a2c6a05fa687db6a6d727c323af30c5a59687feae6d0493de190c585921e3",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0065.json": "90aad284ad6e10d27ee5eb326be0480147503fbe91383fd4faae44cc075ae03c",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0066.json": "bba366157311e30244df5bd774e2692e67539fec9272a508b1979656741d1a7e",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0067.json": "94b647b5adb00b0268b68d868718b22b0a06180eba631c1cca1fa108dd5d4f7a",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0068.json": "1fc9df0fed2b605446f6f797e6cd768227c157767d8488fcb7bfb982825f309f",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0069.json": "c58bc51de545cb24316c76d7d493db10b92381880355c70c4d0ff8069a84f5fd",
+    "full-sql-global-oracle/attempt4-partitioned/partition-0070.json": "051b2b3cbed0a2f8630568aa2869782ca8a0acd08a112e9a05147a15b5fe1435",
+    "full-sql-global-oracle/REGEX_FULL_MINI_PARITY.json": "49fd02afa88abb9d7d97404bc5c81ca072daf6fde15a17e81011ed9414766053",
+    "artifacts/miniTest10-v6/INPUT_VERIFIED.json": "2b61e14f0d8a052f4281ddd8663112cf7ca8e16c5f2b16684aee2ef954661e7f",
+    "artifacts/full-v32/INPUT_VERIFIED.json": "5bde301ec3d7754784f061538214b39081a77c81e5ee54b0ed7b158f4494a4e6",
+    "runtime/miniTest10-v6/attempt3/RESULT.json": "6c05855db692eca4908c6cd893eb31901750010b2effd50ab9f4147afb8f66a9",
+    "runtime/miniTest10-v6/attempt3-reviewed2/RESULT.json": "3234cd12071aee776d33a27f2d5fa3e05a99c90cefa7a2c93da0d3061d4e7d52",
+    "runtime/miniTest10-v6/attempt3/consumerd5-after-inventory.json": "a64ec34b208adce0304c00700a86bc865b1c13dc10194cf489b2d0a3fb8fd273",
+    "runtime/miniTest10-v6/attempt3/consumerd5-commands.tsv": "c168516bb2dcd38ef9ce6d597f75f3714bbf2d61cb41ce24df53a4fbaa91aceb",
+    "runtime/miniTest10-v6/attempt3/consumerd5-consumer.log": "0df17eb587f6a459f73ec14ddeeae2234ca2ab705df111feb6bb21a0dc086f0c",
+    "runtime/miniTest10-v6/attempt3/consumerd5-result.json": "9b115cd7eed3f37b5060bd673fd87e5f62d909b7610ba7a4ea639bd123f6ba20",
+    "runtime/miniTest10-v6/attempt3/PREOPEN.json": "31bbc53fd0a77f1e3c3bde86fd5cf1d4d0a178c4ccb9430d404e279b5ec18513",
+    "runtime/miniTest10-v6/attempt3/producer265-after-inventory.json": "d839e3b963580e088f157a105b0a29bbe088de376842a273dec75e0aff6e6157",
+    "runtime/miniTest10-v6/attempt3/producer265-commands.tsv": "6c1d0801ae660ad833a163a5c166897c5e291e52b33b46e73648432afcbc627f",
+    "runtime/miniTest10-v6/attempt3/producer265-consumer.log": "8810fdce885aeb0cbc9250096d53aee8aa1d801e59e1ebbd3d23dfbc2687d198",
+    "runtime/miniTest10-v6/attempt3/producer265-result.json": "2af2127a69a6416c61107c78be5152376fdf7a471f13f4a9af4465d94c38bfab",
+    "runtime/miniTest10-v6/attempt3/SQL_LOCATORS.json": "0965705b21394b4244543b9b8db90e529a71ecbcbbf5200a8896189399fe6fd3",
+    "runtime/miniTest10-v6/attempt3/SQL_ORACLE.json": "d5879e40e597963616499fbc181eedba3c5c09745d460b03b2e57077f41c5be8",
+    "runtime/miniTest10-v6/attempt3-reviewed2/producer265_reopen_after_d5-result.json": "6718e6a63bb347c4becaf48f7846b5dbbabeb37a84dd125bcfb7cb58c8f2e86c",
+    "runtime/miniTest10-v6/attempt3-reviewed2/producer265_reopen_after_d5-consumer.log": "cf9377c047c2b016771e9ffa9606e534cb9d599e45a065bcf5455b29e0fba6b4",
+    "runtime/miniTest10-v6/attempt3-reviewed2/producer265_reopen_after_d5-commands.tsv": "6c1d0801ae660ad833a163a5c166897c5e291e52b33b46e73648432afcbc627f",
+    "runtime/full-v32/attempt1/RESULT.json": "9a35aad57f1f10f66a2e3aed0a2df0c7295c5a0edd389af189cf06af2e691507",
+    "runtime/full-v32/hard-bounds-and-source-review1/RESULT.json": "281d22bdcbfab6088b5faa247d9940808f9eb2c54fa559a4c87b9356ccfe80cf",
+    "runtime/full-v32/attempt1/after-rollback-inventory.json": "abea78ac5e7741d55c4665b490e847c8615c1c908a4f1ba12c8984beb9d9fa43",
+    "runtime/full-v32/attempt1/consumerd5-after-inventory.json": "abea78ac5e7741d55c4665b490e847c8615c1c908a4f1ba12c8984beb9d9fa43",
+    "runtime/full-v32/attempt1/consumerd5-commands.tsv": "e2f6f3056e6d07cf68a3f87a95bec7634a48a037c6f0bf3a437d54bf7c1a7c30",
+    "runtime/full-v32/attempt1/consumerd5-consumer.log": "b4d3fad321c2cc79887f412a3e9c79b2b38cc7953b5db7adc79de3a54569914c",
+    "runtime/full-v32/attempt1/consumerd5-result.json": "5216ef71afa32817bd6fe0a578c478d410f44092857d3b138dca43c83f7f8af4",
+    "runtime/full-v32/attempt1/PREOPEN.json": "4d728037d57e6ffad8d44fa0e18c3db548aedd6e464fc4259988c9a58ee2b863",
+    "runtime/full-v32/attempt1/producer265-after-inventory.json": "8bb84e2eb095134570b50ab463fdf27d0ae894af59d16a60ea4f8edef6451341",
+    "runtime/full-v32/attempt1/producer265-commands.tsv": "6c1d0801ae660ad833a163a5c166897c5e291e52b33b46e73648432afcbc627f",
+    "runtime/full-v32/attempt1/producer265-consumer.log": "8323bff24eee6e9acedd3bf1c2c972012682fcdb3d69869d813af9c201967d8c",
+    "runtime/full-v32/attempt1/producer265-result.json": "d6a27ca6fadde22de0d5febfe156ead03feaf8101913f8d848eea6db5f679e6a",
+    "runtime/full-v32/attempt1/producer265_reopen_after_d5-commands.tsv": "6c1d0801ae660ad833a163a5c166897c5e291e52b33b46e73648432afcbc627f",
+    "runtime/full-v32/attempt1/producer265_reopen_after_d5-consumer.log": "788f69856d311a335f67e0045395070cfae18b9f8875fbc9d5dc8749ce4634ec",
+    "runtime/full-v32/attempt1/producer265_reopen_after_d5-result.json": "f567a05af7af1e04c3e061df351a0581281814f0812cc56a575cae8713d24e81",
+    "runtime/full-v32/attempt1/SQL_LOCATORS.json": "72c5284775477a0db87f4605c2931958a780c209214102ca3dad24293c2e31ed",
+    "runtime/full-v32/attempt1/SQL_ORACLE.json": "13830030c05108ce88f511595b41c9cb8e06752341b36b6e1e92c9bfe13c6a1f",
+    "runtime/full-v32/hard-bounds-and-source-review1/consumerd5-hard-bounds-result.json": "941d0af217954260a1bfc6e76cbda84345bca6cbb59cb0be323b0ed2f2345515",
+    "runtime/full-v32/hard-bounds-and-source-review1/consumerd5-hard-bounds-consumer.log": "1276a6d3c3ec843ec134deb3852e3c27e73edb623113bb428f26bef269b5b6db",
+    "runtime/full-v32/hard-bounds-and-source-review1/consumerd5-hard-bounds-commands.tsv": "fb6b46086f92c18f73f15638dfdd2305cfea72e24152845843348b5e438e0395",
+    "policy-actual-resources/red-2ba-attempt3/RESULT.json": "69c1265f824f157bc533aa3a04352f3b3f34e24cef6ca4af06c5d437b8c0823f",
+    "policy-actual-resources/green-two-actual-resources/RESULT.json": "e6272a7b2b5b6cbf6a8513b0c9b17e4f8646457518fff1c985ae64ba300ecdd3",
+    "regression-original-search-readiness/attempt1/RESULT.json": "df7770104bb76f470c1eadd9970782b8e516314764e704ce462f617c6025a774",
+    "regression-original-search-readiness/attempt1/original-driver.log": "9821b68377a1cd4e8a226add3f7b7bf74e4baf3df32218bd564ac4ad71c53ab6"
+  },
+  "reviewerSourceSHA256": "60bfa5112df9fad4ad2843a2d74d3c54fa9dbcf7ce8b58bd692cac4ff1ec1a24",
+  "productionRegistryEnabled": false,
+  "applicationEnginePinChanged": false,
+  "appInstallRecovery": "PORTABLE_SOURCE_FLOW_ONLY_NOT_NATIVE",
+  "AppleSDK": "NOT_RUN_BY_THIS_QUALIFICATION",
+  "Native": "NOT_RUN_BY_THIS_QUALIFICATION",
+  "physicalDevice": "NOT_RUN",
+  "universalQueryCoverage": false
+}
