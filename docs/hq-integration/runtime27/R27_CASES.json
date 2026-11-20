@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "source_test_commit": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
+  "source_test_commit": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
+  "app_source": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "All 86 preceding selected cases plus original profile-color and feature-off acceptance: 88 required, 70 iPad27 + 18 iPhone27, zero skips. Real native installation and normal bootstrap, original engines/owners and exact-source oracles are mandatory. No prior-source acceptance transferred.",
+  "scope": "All88 unchanged selected Native cases:70 iPad27 and18 iPhone27; zero skips required. Actual installation, original engines/owners and exact-source oracles are mandatory. Launch tiers are explicit: Faithful smoke uses smokeBypassBootstrap, R27 realUI uses normal bootstrap then DEBUG fixture selection, and production Release uses the original preprovisioned corpus without DEBUG scenario. No prior-source acceptance transferred.",
   "native_cases_executed": 0,
   "required_nonzero_cases": 88,
   "expected_per_device": {
@@ -1330,7 +1330,7 @@
       "native": "NOT_RUN"
     }
   },
-  "application_source_sha": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
+  "application_source_sha": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
   "hanlin_source_pin_history": {
     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
@@ -1615,7 +1615,13 @@
     "whole_phase_accepted": false,
     "previous_windows_checkout_manifest_sha256": "5646b548ab1272540f8fc5c4b6d3472766f3ec8400d58edcb46f506808017285",
     "previous_manifest_hash_encoding": "SHA256 of original repository LF bytes; Windows raw CRLF checkout digest retained separately",
-    "frozen_helper_git_blob_sha256": "46cc8103a4353ec83df4be8df4a9d19d5e22215811e2d3a21b812ff92e26bbe2"
+    "frozen_helper_git_blob_sha256": "a614944ecd441e529a27c86aeb3af824aebe46670efa639ee01bc312e40a684d",
+    "helper_freeze_history": [
+      {
+        "application_source": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
+        "frozen_helper_git_blob_sha256": "46cc8103a4353ec83df4be8df4a9d19d5e22215811e2d3a21b812ff92e26bbe2"
+      }
+    ]
   },
   "phase2_actions_20261120": {
     "baseline_selected_cases": 80,
@@ -1875,5 +1881,34 @@
     "native_cases_executed": 0,
     "portable_evidence_is_not_native": true,
     "execution_coordination": "Primary integrator dispatches immutable branches; independent source and review work remains in isolated worktrees."
+  },
+  "phase3_integrated_freeze_20261120": {
+    "prepared_at_utc": "2026-11-20T01:52:42.638205+00:00",
+    "application_and_test_source": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+    "previous_application_source": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
+    "previous_manifest_git_blob_sha256": "ddee924127a7fdbd7d4b842eb54e15e5b0ef509e4ffe7017f4ef5bc3f5a8cd9d",
+    "selection_unchanged": true,
+    "selected_count": 88,
+    "expected_per_device": {
+      "ipad11": 70,
+      "iphone": 18
+    },
+    "helper_path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "helper_git_blob_sha256": "a614944ecd441e529a27c86aeb3af824aebe46670efa639ee01bc312e40a684d",
+    "native_status": "NOT_RUN",
+    "native_cases_executed": 0,
+    "prior_source_acceptance_transferred": false,
+    "changes": [
+      "Original active iPad overview lifecycle and source-owned scroll chrome",
+      "Original Release palette and overview selectors without weaker identity or cold-restore oracles",
+      "SQLite fixture structured async waits; production SQLite unchanged",
+      "Bounded estimated-payload BookPageCache",
+      "Inactive annotation exchange envelope/ledger with real original SQLite transactions"
+    ],
+    "launch_tiers": {
+      "smoke": "Original UI with explicit smokeBypassBootstrap test argument; does not prove normal bootstrap.",
+      "realUI": "Original normal bootstrap followed by DEBUG fixture backend/book preselection; no fabricated engine results.",
+      "production": "Actual Release binary without DEBUG scenario over preprovisioned original production corpus."
+    }
   }
 }

@@ -175,5 +175,17 @@
     ],
     "native_status": "NOT_RUN",
     "all_previous_ui_and_oracle_cases_preserved": true
+  },
+  "phase3_integrated_freeze_20261120": {
+    "application_and_test_source": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+    "prepared_at_utc": "2026-11-20T01:52:42.638205+00:00",
+    "all_configurations_and_oracles_unchanged": true,
+    "native_status": "NOT_RUN",
+    "launch_tiers": {
+      "smoke": "Original UI with explicit smokeBypassBootstrap test argument; does not prove normal bootstrap.",
+      "realUI": "Original normal bootstrap followed by DEBUG fixture backend/book preselection; no fabricated engine results.",
+      "production": "Actual Release binary without DEBUG scenario over preprovisioned original production corpus."
+    },
+    "helper_git_blob_sha256": "a614944ecd441e529a27c86aeb3af824aebe46670efa639ee01bc312e40a684d"
   }
 }

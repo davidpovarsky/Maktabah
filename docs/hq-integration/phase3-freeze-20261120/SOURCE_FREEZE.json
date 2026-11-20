@@ -1,0 +1,120 @@
+{
+  "prepared_at_utc": "2026-11-20T01:52:42.638205+00:00",
+  "application_and_test_source": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "previous_application_source": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
+  "previous_manifest_git_blob_sha256": "ddee924127a7fdbd7d4b842eb54e15e5b0ef509e4ffe7017f4ef5bc3f5a8cd9d",
+  "selection_unchanged": true,
+  "selected_count": 88,
+  "expected_per_device": {
+    "ipad11": 70,
+    "iphone": 18
+  },
+  "helper_path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "helper_git_blob_sha256": "a614944ecd441e529a27c86aeb3af824aebe46670efa639ee01bc312e40a684d",
+  "native_status": "NOT_RUN",
+  "native_cases_executed": 0,
+  "prior_source_acceptance_transferred": false,
+  "changes": [
+    "Original active iPad overview lifecycle and source-owned scroll chrome",
+    "Original Release palette and overview selectors without weaker identity or cold-restore oracles",
+    "SQLite fixture structured async waits; production SQLite unchanged",
+    "Bounded estimated-payload BookPageCache",
+    "Inactive annotation exchange envelope/ledger with real original SQLite transactions"
+  ],
+  "launch_tiers": {
+    "smoke": "Original UI with explicit smokeBypassBootstrap test argument; does not prove normal bootstrap.",
+    "realUI": "Original normal bootstrap followed by DEBUG fixture backend/book preselection; no fabricated engine results.",
+    "production": "Actual Release binary without DEBUG scenario over preprovisioned original production corpus."
+  },
+  "application_trees": {
+    "Source": "aa2cfe9491a389aeafb38edf9b3601c2a9b77bc3",
+    "Vendor": "fd589175514256438eb1a72a0d2efcd5284c247c",
+    "Maktabah.xcodeproj": "0504a80db4dcd844871922ccf68d419eccb478f0"
+  },
+  "test_tree": "0ad58fec0ca52e25a7ea1163f55d2cf649321068",
+  "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "engine_pin": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+  "native_selection": {
+    "count": 88,
+    "expected_per_device": {
+      "ipad11": 70,
+      "iphone": 18
+    },
+    "groups": 6,
+    "unchanged": true
+  },
+  "release_selection": {
+    "ui_configured_executions": 96,
+    "separate_prototype_oracles": 2,
+    "configurations": 5,
+    "unchanged": true
+  },
+  "prepared_declaration_validation": {
+    "status": "DECLARATIONS_MATCH",
+    "unique_methods": 138,
+    "native_executed": 0,
+    "unique_ui_methods": 137,
+    "includes_separate_prototype_oracle_declarations": true
+  },
+  "portable_package_evidence": {
+    "tested_source": "0bc6be41f03855412d7dd24ee72608a7824fb5a7",
+    "counts": {
+      "Core": 117,
+      "UIRouting": 99,
+      "NativeRoutingHost": 127
+    },
+    "new_executions": 0,
+    "unchanged_input_trees": [
+      {
+        "path": "Source/Otzaria/Actions",
+        "tested_git_tree": "dea7144c42bbd59b13aec2899954c253947c9274",
+        "frozen_git_tree": "dea7144c42bbd59b13aec2899954c253947c9274",
+        "identical": true
+      },
+      {
+        "path": "Source/Otzaria/UIRouting",
+        "tested_git_tree": "9c25ca5c7a78676497b4cde7159a22c92bc9f88b",
+        "frozen_git_tree": "9c25ca5c7a78676497b4cde7159a22c92bc9f88b",
+        "identical": true
+      },
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Sources",
+        "tested_git_tree": "c541afe51601d87f903550d0f44f2f2cd8454fa2",
+        "frozen_git_tree": "c541afe51601d87f903550d0f44f2f2cd8454fa2",
+        "identical": true
+      },
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Tests",
+        "tested_git_tree": "5d736dfda106e4ef3cc2e2eb9e46b1a10fff9050",
+        "frozen_git_tree": "5d736dfda106e4ef3cc2e2eb9e46b1a10fff9050",
+        "identical": true
+      }
+    ],
+    "host_package_and_lockfile_unchanged": true
+  },
+  "checks": [
+    {
+      "name": "source-input-preflight",
+      "exit_code": 0,
+      "log_sha256": "c9f141486d34440abd3fcb81cc39a21add38830ca60f4522d16245693f7ef840"
+    },
+    {
+      "name": "xcode-target-membership",
+      "exit_code": 0,
+      "log_sha256": "a9695e1883ecde202f685f2c221392cbc116542a30dd420d50310c1a5f62035a"
+    }
+  ],
+  "new_component_evidence": {
+    "cache": "docs/hq-integration/cache-budget-20261120",
+    "sqlite_fixture": "docs/hq-integration/sqlite-async-fixture-20261120",
+    "overview": "docs/hq-integration/overview-release-ui-20261120",
+    "annotation_exchange": "docs/hq-integration/annotation-exchange-20261120"
+  },
+  "limits": [
+    "Declarations and target membership are not Apple SDK compilation or Native execution.",
+    "Historical343 Windows package tests are attributed to0bc6be41; exact unchanged input trees are proven here; no new343 execution.",
+    "Cache byte budget is an estimated payload bound, not measured RSS.",
+    "Annotation exchange has no active save/transport/editor integration.",
+    "Occurrence fork and read-compatibility work remain isolated; original engine265 unchanged in this frozen app."
+  ]
+}
