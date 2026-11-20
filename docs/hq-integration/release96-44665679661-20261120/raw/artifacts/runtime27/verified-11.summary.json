@@ -1,0 +1,307 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "7F61A106-EAA9-4D64-8CAD-7986F7832F03",
+        "deviceName": "Faithful 11-inch 9f08b32c",
+        "modelName": "iPad Pro 11-inch (M5)",
+        "osBuildNumber": "24B8117",
+        "osVersion": "27.2",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 29,
+      "passedTests": 26,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "Maktabah-iOS \u00b7 Built with macOS 27.0.1",
+  "expectedFailures": 0,
+  "failedTests": 29,
+  "finishTime": 1795153583.238,
+  "passedTests": 26,
+  "result": "Failed",
+  "runtimeWarnings": [
+    {
+      "issueType": "Runtime Warning",
+      "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+    },
+    {
+      "issueType": "Runtime Warning",
+      "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+    },
+    {
+      "issueType": "Runtime Warning",
+      "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+    },
+    {
+      "issueType": "Runtime Warning",
+      "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+    },
+    {
+      "issueType": "Runtime Warning",
+      "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+    }
+  ],
+  "skippedTests": 0,
+  "startTime": 1795148509.34,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "XCTAssertGreaterThan failed: (\"0\") is not greater than (\"0\") - Rendered attributed text must contain at least 1 search highlight range before clearing",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 1,
+      "testIdentifierString": "Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton",
+      "testName": "testA1_A2_SearchResultHighlightAndClearButton()"
+    },
+    {
+      "failureText": "XCTAssertTrue failed",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 3,
+      "testIdentifierString": "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton",
+      "testName": "testA3_OrdinaryReaderHasNoClearSearchHighlightButton()"
+    },
+    {
+      "failureText": "XCTAssertEqualWithAccuracy failed: (\"108.0\") is not equal to (\"160.0\") +/- (\"1.0\")",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 9,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+      "testName": "testCandidateAnnotationsLandscapeMatchesOriginalNavigation()"
+    },
+    {
+      "failureText": "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 11,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "testName": "testCandidateGlobalSearchLandscapeMatchesOriginalNavigation()"
+    },
+    {
+      "failureText": "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 12,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "testName": "testCandidateGlobalSearchPortraitMatchesOriginalNavigation()"
+    },
+    {
+      "failureText": "XCTAssertFalse failed - The redundant visual study-tools heading must be removed",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 14,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+      "testName": "testCandidateTrimmedOriginalInspectorLandscape()"
+    },
+    {
+      "failureText": "XCTAssertFalse failed - The redundant visual study-tools heading must be removed",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 15,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+      "testName": "testCandidateTrimmedOriginalInspectorPortrait()"
+    },
+    {
+      "failureText": "XCTAssertTrue failed",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 16,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+      "testName": "testCandidateWindowResizePreservesOriginalReaderAndSearch()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 17,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+      "testName": "testEnglishReaderAndOriginalPaletteInLeftToRightLayout()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 18,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+      "testName": "testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace()"
+    },
+    {
+      "failureText": "XCTAssertTrue failed - Control must be inside the actual app viewport",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 19,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+      "testName": "testGroupCopyMoveRenameAndDeleteThroughRealMenus()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Rotation must change the actual native window, not merely return success",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 43,
+      "testIdentifierString": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "testName": "testNormalBootstrapEmbeddedGenesisAndRotation()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Rotation must change the actual native window, not merely return success",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 45,
+      "testIdentifierString": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "testName": "testNormalBootstrapLegacyGenesisAndRotation()"
+    },
+    {
+      "failureText": "XCTAssertGreaterThan failed: (\"375.0\") is not greater than (\"486.0\") - Require a real full-width landscape start",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 46,
+      "testIdentifierString": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "testName": "testNormalBootstrapNativeWindowResizePaletteAndInspector()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 47,
+      "testIdentifierString": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "testName": "testNormalBootstrapOtzariaRotationPreservesExactLocator()"
+    },
+    {
+      "failureText": "XCTAssertTrue failed",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 25,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+      "testName": "testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 40,
+      "testIdentifierString": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+      "testName": "testOriginalWindowResizePreservesReader()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original palette's Escape handler must dismiss through keyboard focus",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 26,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "testName": "testPointerHoverClickAndHardwareKeyboardDismissal()"
+    },
+    {
+      "failureText": "XCTAssertTrue failed",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 55,
+      "testIdentifierString": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+      "testName": "testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - A deliberate downward reader scroll must collapse the document strip",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 27,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+      "testName": "testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll()"
+    },
+    {
+      "failureText": "Test exceeded execution time allowance of 10 minutes",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 28,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+      "testName": "testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 53,
+      "testIdentifierString": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+      "testName": "testSidebarBodyPagingLTR()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 54,
+      "testIdentifierString": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+      "testName": "testSidebarBodyPagingRTL()"
+    },
+    {
+      "failureText": "Test exceeded execution time allowance of 10 minutes",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 29,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+      "testName": "testSidebarPreservesOriginalTextKitViewport()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"2\") is not equal to (\"1\") - This fixture has one genuine active book",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 30,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+      "testName": "testSourceOverviewReplacesReaderAndRestoresViewportLandscape()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"2\") is not equal to (\"1\") - This fixture has one genuine active book",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 31,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+      "testName": "testSourceOverviewReplacesReaderAndRestoresViewportPortrait()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 32,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+      "testName": "testSourceToolbarPaletteAndOverview()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The native accessibility setting must actually reach this Simulator",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 33,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "testName": "testSystemReduceMotionKeepsOriginalPaletteUsable()"
+    },
+    {
+      "failureText": "Test exceeded execution time allowance of 10 minutes",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 35,
+      "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+      "testName": "testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar()"
+    }
+  ],
+  "title": "Test - Maktabah-iOS",
+  "topInsights": [
+    {
+      "category": "Common Failures",
+      "impact": "10% of failures",
+      "text": "3 runs of 3 tests failed with Test exceeded execution time allowance of 10 minutes"
+    },
+    {
+      "category": "Common Failures",
+      "impact": "6% of failures",
+      "text": "2 runs of 2 tests failed with XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+    },
+    {
+      "category": "Common Failures",
+      "impact": "6% of failures",
+      "text": "2 runs of 2 tests failed with XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+    }
+  ],
+  "totalTestCount": 55
+}

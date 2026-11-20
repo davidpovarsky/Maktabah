@@ -1,0 +1,79 @@
+{
+  "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "original": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "current": "c61213d9fcc8b80a8606ba00a1562215312ca2ed",
+  "methods": [
+    {
+      "method": "readerLibraryPaletteLauncher",
+      "same": true,
+      "original_sha256": "56dee9f6a8612c00302116743fbf9e63f272c2e14689334ecd633d8b04b87309",
+      "current_sha256": "56dee9f6a8612c00302116743fbf9e63f272c2e14689334ecd633d8b04b87309",
+      "original_line": 152,
+      "current_line": 247
+    },
+    {
+      "method": "readerBottomChromeAction",
+      "same": true,
+      "original_sha256": "6ae19e554626265f42b5a194b4254eaa38c23f135fd95b8446696ed76d670e6a",
+      "current_sha256": "6ae19e554626265f42b5a194b4254eaa38c23f135fd95b8446696ed76d670e6a",
+      "original_line": 211,
+      "current_line": 306
+    },
+    {
+      "method": "readerSidebarToggle",
+      "same": true,
+      "original_sha256": "9ea9884fb3be3a3d8927dc6074f4440f94cb60baf2b8e465a279d8fe6465c902",
+      "current_sha256": "9ea9884fb3be3a3d8927dc6074f4440f94cb60baf2b8e465a279d8fe6465c902",
+      "original_line": 229,
+      "current_line": 387
+    },
+    {
+      "method": "assertSourceActionsInsideNativeToolbarHost",
+      "same": true,
+      "original_sha256": "3c4804c4f4705f641773ed6d96de84838d73a50f9a92ce96534e7d168d50d311",
+      "current_sha256": "3c4804c4f4705f641773ed6d96de84838d73a50f9a92ce96534e7d168d50d311",
+      "original_line": 311,
+      "current_line": 469
+    },
+    {
+      "method": "exerciseOverviewReplacement",
+      "same": true,
+      "original_sha256": "d7f1115c85cb03da24fa7d219a9ca7638de7cacd9f6a51aeb2ebb11e26eb74b4",
+      "current_sha256": "d7f1115c85cb03da24fa7d219a9ca7638de7cacd9f6a51aeb2ebb11e26eb74b4",
+      "original_line": 330,
+      "current_line": 488
+    },
+    {
+      "method": "exerciseTrimmedOriginalInspector",
+      "same": true,
+      "original_sha256": "686fa9c2270362b057aaef73dd316b167aa333717cd0a839f5a68d58ebf24a0f",
+      "current_sha256": "686fa9c2270362b057aaef73dd316b167aa333717cd0a839f5a68d58ebf24a0f",
+      "original_line": 1357,
+      "current_line": 1548
+    },
+    {
+      "method": "testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+      "same": true,
+      "original_sha256": "d2b40d318d2b69bf1e8f477864e42c068e9a19f04ed88ac0689b7e678461a4b7",
+      "current_sha256": "d2b40d318d2b69bf1e8f477864e42c068e9a19f04ed88ac0689b7e678461a4b7",
+      "original_line": 1559,
+      "current_line": 1750
+    },
+    {
+      "method": "exerciseGlobalHistorySubmission",
+      "same": false,
+      "original_sha256": "69cb5552c3db6c459c47b9b7a2464c65e0d8c6a726cabbdd57c39d9af43ac1ad",
+      "current_sha256": "d013a20acb2c9103d1d68c4f2e759f1b3e9830b195c277cd629b45038f34f3b5",
+      "original_line": 670,
+      "current_line": 833
+    },
+    {
+      "method": "exerciseNativeWindowResize",
+      "same": false,
+      "original_sha256": "6141e6416898826e63ac863e9f737fcdd158796b01d28fc817d729aa3c0309bd",
+      "current_sha256": "50bed9e512f70e8bcfe450bd610f528f2eb55afbd5741901969b38902fb45865",
+      "original_line": 535,
+      "current_line": 693
+    }
+  ]
+}

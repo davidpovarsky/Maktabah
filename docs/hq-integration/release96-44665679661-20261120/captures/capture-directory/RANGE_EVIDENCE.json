@@ -1,0 +1,32 @@
+{
+  "artifactID": 14608653727,
+  "archiveBytes": 3113031780,
+  "advertisedDigest": "sha256:f2d23d3ffe3f2181d0e3ac7178bc207845a9a6fc0979a2c0b97af478974bdecb",
+  "fullArchiveHashVerified": false,
+  "method": "Authenticated redirect and exact HTTP206 ranges; selected CRC validation",
+  "ranges": [
+    {
+      "start": 3113031758,
+      "end": 3113031779,
+      "bytes": 22,
+      "sha256": "9f80a4058d3f1a65c1fc4822c0a3b13c0c42db31fa8bf81df6d6b0ea89cc80e0",
+      "file": "ranges/range-3113031758-3113031779.bin"
+    },
+    {
+      "start": 3113031738,
+      "end": 3113031757,
+      "bytes": 20,
+      "sha256": "02e6020e1aeebec2fc47761c98a1aea9805a28a221a33fe0fe7dda41b912675e",
+      "file": "ranges/range-3113031738-3113031757.bin"
+    },
+    {
+      "start": 3111903650,
+      "end": 3113031757,
+      "bytes": 1128108,
+      "sha256": "7c3c5587b779cd0511747d9a74d5ba55e32a52756fca02d3cd78869285cead56",
+      "file": "ranges/range-3111903650-3113031757.bin"
+    }
+  ],
+  "transferredBytes": 1128150,
+  "selected": []
+}

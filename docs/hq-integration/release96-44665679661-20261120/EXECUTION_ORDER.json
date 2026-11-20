@@ -1,0 +1,827 @@
+[
+  {
+    "configuration_id": "ipad11-native",
+    "rows": [
+      {
+        "order": 1,
+        "case_id": "Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertGreaterThan failed: (\"0\") is not greater than (\"0\") - Rendered attributed text must contain at least 1 search highlight range before clearing"
+        ]
+      },
+      {
+        "order": 2,
+        "case_id": "Build8401SevenDefectsAcceptanceTests/testA1_RealSearchFlowHighlightAndClear",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 3,
+        "case_id": "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed"
+        ]
+      },
+      {
+        "order": 4,
+        "case_id": "Build8401SevenDefectsAcceptanceTests/testB1_B2_PagingTransitionsPreserveReaderStability",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 5,
+        "case_id": "Build8401SevenDefectsAcceptanceTests/testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 6,
+        "case_id": "Build8401SevenDefectsAcceptanceTests/testF1_SefariaHebrewLocaleRTLAndHebrewHeaders",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 7,
+        "case_id": "Build8401SevenDefectsAcceptanceTests/testF2_HebrewTOCStructureAndDafLabels",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 8,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 9,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqualWithAccuracy failed: (\"108.0\") is not equal to (\"160.0\") +/- (\"1.0\")"
+        ]
+      },
+      {
+        "order": 10,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 11,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+        ]
+      },
+      {
+        "order": 12,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+        ]
+      },
+      {
+        "order": 13,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 14,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+        ]
+      },
+      {
+        "order": 15,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+        ]
+      },
+      {
+        "order": 16,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed"
+        ]
+      },
+      {
+        "order": 17,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+        ]
+      },
+      {
+        "order": 18,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+        ]
+      },
+      {
+        "order": 19,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed - Control must be inside the actual app viewport"
+        ]
+      },
+      {
+        "order": 20,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 21,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 22,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 23,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 24,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 25,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed"
+        ]
+      },
+      {
+        "order": 26,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original palette's Escape handler must dismiss through keyboard focus"
+        ]
+      },
+      {
+        "order": 27,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - A deliberate downward reader scroll must collapse the document strip"
+        ]
+      },
+      {
+        "order": 28,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 0,
+        "first_failure_messages": [
+          "Test exceeded execution time allowance of 10 minutes"
+        ]
+      },
+      {
+        "order": 29,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 0,
+        "first_failure_messages": [
+          "Test exceeded execution time allowance of 10 minutes"
+        ]
+      },
+      {
+        "order": 30,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"2\") is not equal to (\"1\") - This fixture has one genuine active book"
+        ]
+      },
+      {
+        "order": 31,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"2\") is not equal to (\"1\") - This fixture has one genuine active book"
+        ]
+      },
+      {
+        "order": 32,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+        ]
+      },
+      {
+        "order": 33,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The native accessibility setting must actually reach this Simulator"
+        ]
+      },
+      {
+        "order": 34,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 35,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 0,
+        "first_failure_messages": [
+          "Test exceeded execution time allowance of 10 minutes"
+        ]
+      },
+      {
+        "order": 36,
+        "case_id": "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 37,
+        "case_id": "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 38,
+        "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 39,
+        "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 40,
+        "case_id": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+        ]
+      },
+      {
+        "order": 41,
+        "case_id": "PullNavigationAcceptanceTests/testPullNavigationCommitBothDirectionsWithoutDuplicates",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 42,
+        "case_id": "PullNavigationAcceptanceTests/testPullNavigationRetreatCancelDoesNotChangeContent",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 43,
+        "case_id": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Rotation must change the actual native window, not merely return success"
+        ]
+      },
+      {
+        "order": 44,
+        "case_id": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 45,
+        "case_id": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Rotation must change the actual native window, not merely return success"
+        ]
+      },
+      {
+        "order": 46,
+        "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertGreaterThan failed: (\"375.0\") is not greater than (\"486.0\") - Require a real full-width landscape start"
+        ]
+      },
+      {
+        "order": 47,
+        "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")"
+        ]
+      },
+      {
+        "order": 48,
+        "case_id": "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 49,
+        "case_id": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaCatalogAndAppLaunch",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 50,
+        "case_id": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaFullAcceptanceDiagnostic",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 51,
+        "case_id": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaReaderPresentation",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 52,
+        "case_id": "SefariaEmbeddedAcceptanceTests/testThreeBackendSwitchRegression",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 53,
+        "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+        ]
+      },
+      {
+        "order": 54,
+        "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+        ]
+      },
+      {
+        "order": 55,
+        "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed"
+        ]
+      }
+    ]
+  },
+  {
+    "configuration_id": "ipad13-native",
+    "rows": [
+      {
+        "order": 1,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 2,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 3,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 4,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+        ]
+      },
+      {
+        "order": 5,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 6,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 7,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+        ]
+      },
+      {
+        "order": 8,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+        ]
+      },
+      {
+        "order": 9,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed"
+        ]
+      },
+      {
+        "order": 10,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+        ]
+      },
+      {
+        "order": 11,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+        ]
+      },
+      {
+        "order": 12,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed - Control must be inside the actual app viewport"
+        ]
+      },
+      {
+        "order": 13,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed"
+        ]
+      },
+      {
+        "order": 14,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed - Control must be inside the actual app viewport"
+        ]
+      },
+      {
+        "order": 15,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed - Control must be inside the actual app viewport"
+        ]
+      },
+      {
+        "order": 16,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed - Control must be inside the actual app viewport"
+        ]
+      },
+      {
+        "order": 17,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+        ]
+      },
+      {
+        "order": 18,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+        ]
+      },
+      {
+        "order": 19,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed - The palette action must stay inside the actual application window"
+        ]
+      },
+      {
+        "order": 20,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed - The palette action must stay inside the actual application window"
+        ]
+      },
+      {
+        "order": 21,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed - Control must be inside the actual app viewport"
+        ]
+      },
+      {
+        "order": 22,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed - The palette action must stay inside the actual application window"
+        ]
+      },
+      {
+        "order": 23,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+        ]
+      },
+      {
+        "order": 24,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 25,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed"
+        ]
+      },
+      {
+        "order": 26,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The native accessibility setting must actually reach this Simulator"
+        ]
+      },
+      {
+        "order": 27,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed"
+        ]
+      },
+      {
+        "order": 28,
+        "case_id": "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed - Control must be inside the actual app viewport"
+        ]
+      },
+      {
+        "order": 29,
+        "case_id": "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed"
+        ]
+      },
+      {
+        "order": 30,
+        "case_id": "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+        ]
+      },
+      {
+        "order": 31,
+        "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+        ]
+      },
+      {
+        "order": 32,
+        "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+        ]
+      },
+      {
+        "order": 33,
+        "case_id": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+        ]
+      },
+      {
+        "order": 34,
+        "case_id": "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 35,
+        "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed"
+        ]
+      }
+    ]
+  },
+  {
+    "configuration_id": "ipad13-largest-text",
+    "rows": [
+      {
+        "order": 1,
+        "case_id": "FaithfulReaderLargeTextTests/testOriginalReaderAndPublicGroupSelectorRemainUsableAtLargeTextSize",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      }
+    ]
+  },
+  {
+    "configuration_id": "iphone-native",
+    "rows": [
+      {
+        "order": 1,
+        "case_id": "FaithfulReaderIPhoneTests/testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed"
+        ]
+      },
+      {
+        "order": 2,
+        "case_id": "FaithfulReaderIPhoneTests/testSourceOverviewReplacesReaderAndRestoresViewport",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "XCTAssertTrue failed"
+        ]
+      },
+      {
+        "order": 3,
+        "case_id": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "Failed to terminate com.davidpovarsky.chavrusatext:25906: Failed to terminate com.davidpovarsky.chavrusatext:0"
+        ]
+      },
+      {
+        "order": 4,
+        "case_id": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+        "finalized_status": "FAIL",
+        "raw_terminal_events": 1,
+        "first_failure_messages": [
+          "Failed to get matching snapshots: Timed out while evaluating UI query."
+        ]
+      },
+      {
+        "order": 5,
+        "case_id": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      },
+      {
+        "order": 6,
+        "case_id": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+        "finalized_status": "PASS",
+        "raw_terminal_events": 1,
+        "first_failure_messages": []
+      }
+    ]
+  },
+  {
+    "configuration_id": "ipad13-production-release",
+    "rows": []
+  }
+]

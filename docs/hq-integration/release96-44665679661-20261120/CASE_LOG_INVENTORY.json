@@ -1,0 +1,80 @@
+[
+  {
+    "label": "11",
+    "case": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+    "path": "build\\release96-monitor-20261120\\case-logs\\11-FaithfulReaderUIAcceptanceTests--testCandidateAnnotationsLandscapeMatchesOriginalNavigation.log",
+    "bytes": 5197
+  },
+  {
+    "label": "11",
+    "case": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+    "path": "build\\release96-monitor-20261120\\case-logs\\11-FaithfulReaderUIAcceptanceTests--testCandidateGlobalSearchLandscapeMatchesOriginalNavigation.log",
+    "bytes": 5663
+  },
+  {
+    "label": "11",
+    "case": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+    "path": "build\\release96-monitor-20261120\\case-logs\\11-FaithfulReaderUIAcceptanceTests--testCandidateTrimmedOriginalInspectorLandscape.log",
+    "bytes": 4454
+  },
+  {
+    "label": "11",
+    "case": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+    "path": "build\\release96-monitor-20261120\\case-logs\\11-FaithfulReaderUIAcceptanceTests--testCandidateWindowResizePreservesOriginalReaderAndSearch.log",
+    "bytes": 15747
+  },
+  {
+    "label": "11",
+    "case": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+    "path": "build\\release96-monitor-20261120\\case-logs\\11-FaithfulReaderUIAcceptanceTests--testSourceOverviewReplacesReaderAndRestoresViewportPortrait.log",
+    "bytes": 9236
+  },
+  {
+    "label": "11",
+    "case": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+    "path": "build\\release96-monitor-20261120\\case-logs\\11-FaithfulReaderVisualBaselineTests--testOriginalWindowResizePreservesReader.log",
+    "bytes": 18206
+  },
+  {
+    "label": "11",
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "path": "build\\release96-monitor-20261120\\case-logs\\11-R27NativePadTests--testNormalBootstrapNativeWindowResizePaletteAndInspector.log",
+    "bytes": 4663
+  },
+  {
+    "label": "13",
+    "case": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+    "path": "build\\release96-monitor-20261120\\case-logs\\13-FaithfulReaderUIAcceptanceTests--testCandidateAnnotationsLandscapeMatchesOriginalNavigation.log",
+    "bytes": 4889
+  },
+  {
+    "label": "13",
+    "case": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+    "path": "build\\release96-monitor-20261120\\case-logs\\13-FaithfulReaderUIAcceptanceTests--testCandidateGlobalSearchLandscapeMatchesOriginalNavigation.log",
+    "bytes": 5663
+  },
+  {
+    "label": "13",
+    "case": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+    "path": "build\\release96-monitor-20261120\\case-logs\\13-FaithfulReaderUIAcceptanceTests--testCandidateTrimmedOriginalInspectorLandscape.log",
+    "bytes": 4454
+  },
+  {
+    "label": "13",
+    "case": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+    "path": "build\\release96-monitor-20261120\\case-logs\\13-FaithfulReaderUIAcceptanceTests--testCandidateWindowResizePreservesOriginalReaderAndSearch.log",
+    "bytes": 15212
+  },
+  {
+    "label": "13",
+    "case": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+    "path": "build\\release96-monitor-20261120\\case-logs\\13-FaithfulReaderUIAcceptanceTests--testSourceOverviewReplacesReaderAndRestoresViewportPortrait.log",
+    "bytes": 43794
+  },
+  {
+    "label": "13",
+    "case": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+    "path": "build\\release96-monitor-20261120\\case-logs\\13-FaithfulReaderVisualBaselineTests--testOriginalWindowResizePreservesReader.log",
+    "bytes": 4380
+  }
+]

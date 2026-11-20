@@ -1,0 +1,91 @@
+{
+  "suites": [
+    {
+      "suite": "FaithfulReaderIPhoneTests",
+      "selection": "FaithfulReaderIPhoneTests/testSourceOverviewReplacesReaderAndRestoresViewport",
+      "expected": [
+        "testSourceOverviewReplacesReaderAndRestoresViewport"
+      ],
+      "passed": [],
+      "failed": [
+        "testSourceOverviewReplacesReaderAndRestoresViewport"
+      ],
+      "missing": [
+        "testSourceOverviewReplacesReaderAndRestoresViewport"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderIPhoneTests",
+      "selection": "FaithfulReaderIPhoneTests/testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting",
+      "expected": [
+        "testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting"
+      ],
+      "passed": [],
+      "failed": [
+        "testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting"
+      ],
+      "missing": [
+        "testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "R27NativePhoneTests",
+      "selection": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "expected": [
+        "testNormalBootstrapOtzariaBackgroundAndColdRestoration"
+      ],
+      "passed": [
+        "testNormalBootstrapOtzariaBackgroundAndColdRestoration"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    },
+    {
+      "suite": "R27NativePhoneTests",
+      "selection": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "expected": [
+        "testNormalBootstrapGlobalHistoryUsesActualSubmit"
+      ],
+      "passed": [],
+      "failed": [
+        "testNormalBootstrapGlobalHistoryUsesActualSubmit"
+      ],
+      "missing": [
+        "testNormalBootstrapGlobalHistoryUsesActualSubmit"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "R27NativePhoneTests",
+      "selection": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "expected": [
+        "testNormalBootstrapLegacyGenesisAndRotation"
+      ],
+      "passed": [
+        "testNormalBootstrapLegacyGenesisAndRotation"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    },
+    {
+      "suite": "R27NativePhoneTests",
+      "selection": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "expected": [
+        "testNormalBootstrapEmbeddedGenesisAndRotation"
+      ],
+      "passed": [],
+      "failed": [
+        "testNormalBootstrapEmbeddedGenesisAndRotation"
+      ],
+      "missing": [
+        "testNormalBootstrapEmbeddedGenesisAndRotation"
+      ],
+      "status": "FAIL"
+    }
+  ],
+  "status": "FAIL"
+}

@@ -1,0 +1,131 @@
+{
+  "scope": "Generated collector scripts/JSON only. Raw GitHub artifact entries unchanged. Readable repository copies use LF; original collector bytes preserved losslessly.",
+  "files": [
+    {
+      "path": "captures/capture-directory/ARTIFACT_METADATA.json",
+      "original_sha256": "f2391921970e0f035f3feaead0cdd6d8079c33cfa378416a45487b7d046e6b5f",
+      "original_bytes": 847,
+      "readable_lf_sha256": "1220a82798f6deef8c7220aabd88fd50a4e2a9b45a2f3c6fd3c2857bb682317c",
+      "original_lossless_gzip": "collector-original/captures/capture-directory/ARTIFACT_METADATA.json.gz"
+    },
+    {
+      "path": "captures/capture-directory/RANGE_EVIDENCE.json",
+      "original_sha256": "4259d33d2b8530ad1d6e2485fd220838d5bdb716d40859bbd6a8891060864198",
+      "original_bytes": 1056,
+      "readable_lf_sha256": "7010464aeb8338dfa13752feec8e8c1a6d40d5972a54f3365fcf69047439b9a6",
+      "original_lossless_gzip": "collector-original/captures/capture-directory/RANGE_EVIDENCE.json.gz"
+    },
+    {
+      "path": "captures/captures-first/ARTIFACT_METADATA.json",
+      "original_sha256": "f2391921970e0f035f3feaead0cdd6d8079c33cfa378416a45487b7d046e6b5f",
+      "original_bytes": 847,
+      "readable_lf_sha256": "1220a82798f6deef8c7220aabd88fd50a4e2a9b45a2f3c6fd3c2857bb682317c",
+      "original_lossless_gzip": "collector-original/captures/captures-first/ARTIFACT_METADATA.json.gz"
+    },
+    {
+      "path": "captures/captures-first/RANGE_EVIDENCE.json",
+      "original_sha256": "5ecad830ca1bd5f771d806fb7c098374a8417cb29dac9cb53fc643326b407be9",
+      "original_bytes": 17226,
+      "readable_lf_sha256": "9fc5bfc2be619cdad4aba2cfefcb8bce71b43a5ce8922f6466c0185d8dd49e76",
+      "original_lossless_gzip": "collector-original/captures/captures-first/RANGE_EVIDENCE.json.gz"
+    },
+    {
+      "path": "captures/captures-followup/ARTIFACT_METADATA.json",
+      "original_sha256": "f2391921970e0f035f3feaead0cdd6d8079c33cfa378416a45487b7d046e6b5f",
+      "original_bytes": 847,
+      "readable_lf_sha256": "1220a82798f6deef8c7220aabd88fd50a4e2a9b45a2f3c6fd3c2857bb682317c",
+      "original_lossless_gzip": "collector-original/captures/captures-followup/ARTIFACT_METADATA.json.gz"
+    },
+    {
+      "path": "captures/captures-followup/RANGE_EVIDENCE.json",
+      "original_sha256": "8baf98d0369a4967a4883498a8c2ef15c0c9e5e7569a53dc6851000294bece63",
+      "original_bytes": 3929,
+      "readable_lf_sha256": "3a2209896980e38019bf48a6cfb40a36a7f84d4820d77b8248f4918202e3e38e",
+      "original_lossless_gzip": "collector-original/captures/captures-followup/RANGE_EVIDENCE.json.gz"
+    },
+    {
+      "path": "captures/CENTRAL_DIRECTORY_INDEX.json",
+      "original_sha256": "69ffe639fd99a20260a9c11daaba49bb0c041450c31127deb878376db41834cf",
+      "original_bytes": 1941649,
+      "readable_lf_sha256": "48de6b29490a4a0f6419a72c0c5dd3f1372033deabd90e2b97daae6d3ade031a",
+      "original_lossless_gzip": "collector-original/captures/CENTRAL_DIRECTORY_INDEX.json.gz"
+    },
+    {
+      "path": "CASE_LOG_INVENTORY.json",
+      "original_sha256": "59564e746ba9b7a121feb03307a9cd1014b354ee957b3b4d6dc4f1ae871536a2",
+      "original_bytes": 3999,
+      "readable_lf_sha256": "2687cda8de31906ecd2073b5d38bb498106bd58b986095fd40775b836596204e",
+      "original_lossless_gzip": "collector-original/CASE_LOG_INVENTORY.json.gz"
+    },
+    {
+      "path": "FAILURE_TRIAGE.json",
+      "original_sha256": "35b65b604bee627e1d2befe8d572c868afbd1f1d72a953719eb00140591da6d3",
+      "original_bytes": 83995,
+      "readable_lf_sha256": "f80f906bb83b5e66308925eb7ae383aa4eaeda4d1e1b92f2cd2862176241f731",
+      "original_lossless_gzip": "collector-original/FAILURE_TRIAGE.json.gz"
+    },
+    {
+      "path": "FIRST_CAPTURE_SELECTION.json",
+      "original_sha256": "3fe94fbc08fe6a6762a80217ef3e74679d409a3c5619a68d479800581c9b8515",
+      "original_bytes": 3541,
+      "readable_lf_sha256": "9b8f59b04859956fdb85340eb798ece305d1a0f3c42225ed2e52eed6c4d0eb48",
+      "original_lossless_gzip": "collector-original/FIRST_CAPTURE_SELECTION.json.gz"
+    },
+    {
+      "path": "HEADING_FRAME_RECEIPT.json",
+      "original_sha256": "7810ec238ac74a4def1a0cd4abfe2d552141c13afac54fde81cadff322cce2e8",
+      "original_bytes": 1111,
+      "readable_lf_sha256": "66bd270b525002d6e7a928c72a55f899c83aabee334d42254ecfa584e18535ac",
+      "original_lossless_gzip": "collector-original/HEADING_FRAME_RECEIPT.json.gz"
+    },
+    {
+      "path": "INDEPENDENT_REVIEW.json",
+      "original_sha256": "ca212091aa41522b8152b542b804cd158c1304f3da283df81020bb34692198d4",
+      "original_bytes": 148070,
+      "readable_lf_sha256": "e30a657a915212bed90cb809e4355efa0e68bdbdc27ae07b896b40170dd2ea69",
+      "original_lossless_gzip": "collector-original/INDEPENDENT_REVIEW.json.gz"
+    },
+    {
+      "path": "INDEPENDENT_REVIEW_ATTEMPT1.json",
+      "original_sha256": "c2484ecb62f98f0368cd540f95307a2d4742b1473410710b853e2af213c3080c",
+      "original_bytes": 148263,
+      "readable_lf_sha256": "faa781400c8f2aeda52770f8aba2b39f9d678721f6e25cb02ca0a807b9c26842",
+      "original_lossless_gzip": "collector-original/INDEPENDENT_REVIEW_ATTEMPT1.json.gz"
+    },
+    {
+      "path": "METHOD_COMPARISON.json",
+      "original_sha256": "20fdecf24b82b69e9f7bc7055cce802050feff38446043181cbdac0b894f6809",
+      "original_bytes": 3213,
+      "readable_lf_sha256": "d6d0a7dc41fe5476f49b91e410c6c732421a4a35597a73c910a7dc35e686c0e9",
+      "original_lossless_gzip": "collector-original/METHOD_COMPARISON.json.gz"
+    },
+    {
+      "path": "read-capture-ranges.py",
+      "original_sha256": "09379c35869ff23ef41a5a85bf4032e3698acaae7f956e20e44674d8ca157355",
+      "original_bytes": 5708,
+      "readable_lf_sha256": "f9031d5941481e343c73fb2c5a2acab00477bb42f03d7aa0960c6e3a77413310",
+      "original_lossless_gzip": "collector-original/read-capture-ranges.py.gz"
+    },
+    {
+      "path": "review-release-evidence-attempt1.py",
+      "original_sha256": "58aface0256ac2fca3c33a3dcc56235fa1c4ce2732412b04c7366d36bbb9a3c2",
+      "original_bytes": 14050,
+      "readable_lf_sha256": "7c59c2d6133cc76f16d3f402fb347c5d577f5ce520c07730fe9c04d6c165dbb3",
+      "original_lossless_gzip": "collector-original/review-release-evidence-attempt1.py.gz"
+    },
+    {
+      "path": "review-release-evidence.py",
+      "original_sha256": "97ce49de153f47759db86eb08fb0b6cd0d428521065a176b152fd602db18e94d",
+      "original_bytes": 14243,
+      "readable_lf_sha256": "fc7724dfb54e662dc3b211e10f717dfbbb307de3e788bd26342579bc9b4241de",
+      "original_lossless_gzip": "collector-original/review-release-evidence.py.gz"
+    },
+    {
+      "path": "SELECTED_EXPORT_NAMES.json",
+      "original_sha256": "a09e30b8f981c4689bf8c2dc741138d78b35feea2758fb1dd04c802ba0f606a1",
+      "original_bytes": 22055,
+      "readable_lf_sha256": "1ddb0ccfa59084d2e513d109ba52a862a4d87cacba81e2da6db4ac5315e2fa31",
+      "original_lossless_gzip": "collector-original/SELECTED_EXPORT_NAMES.json.gz"
+    }
+  ]
+}

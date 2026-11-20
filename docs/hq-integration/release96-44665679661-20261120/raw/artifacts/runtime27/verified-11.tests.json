@@ -1,0 +1,909 @@
+{
+  "devices": [
+    {
+      "architecture": "arm64",
+      "deviceId": "7F61A106-EAA9-4D64-8CAD-7986F7832F03",
+      "deviceName": "Faithful 11-inch 9f08b32c",
+      "modelName": "iPad Pro 11-inch (M5)",
+      "osBuildNumber": "24B8117",
+      "osVersion": "27.2",
+      "platform": "iOS Simulator"
+    }
+  ],
+  "testNodes": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertGreaterThan failed: (\"0\") is not greater than (\"0\") - Rendered attributed text must contain at least 1 search highlight range before clearing",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+                        "lineNumber": 26
+                      }
+                    }
+                  ],
+                  "duration": "45s",
+                  "durationInSeconds": 45.39353001117706,
+                  "name": "testA1_A2_SearchResultHighlightAndClearButton()",
+                  "nodeIdentifier": "Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "duration": "1m 24s",
+                  "durationInSeconds": 84.48676300048828,
+                  "name": "testA1_RealSearchFlowHighlightAndClear()",
+                  "nodeIdentifier": "Build8401SevenDefectsAcceptanceTests/testA1_RealSearchFlowHighlightAndClear()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests/testA1_RealSearchFlowHighlightAndClear",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertTrue failed",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+                        "lineNumber": 118
+                      }
+                    }
+                  ],
+                  "duration": "48s",
+                  "durationInSeconds": 48.048232078552246,
+                  "name": "testA3_OrdinaryReaderHasNoClearSearchHighlightButton()",
+                  "nodeIdentifier": "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "duration": "34s",
+                  "durationInSeconds": 34.93101501464844,
+                  "name": "testB1_B2_PagingTransitionsPreserveReaderStability()",
+                  "nodeIdentifier": "Build8401SevenDefectsAcceptanceTests/testB1_B2_PagingTransitionsPreserveReaderStability()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests/testB1_B2_PagingTransitionsPreserveReaderStability",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "duration": "30s",
+                  "durationInSeconds": 30.262054085731506,
+                  "name": "testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState()",
+                  "nodeIdentifier": "Build8401SevenDefectsAcceptanceTests/testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests/testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "duration": "22s",
+                  "durationInSeconds": 22.843134999275208,
+                  "name": "testF1_SefariaHebrewLocaleRTLAndHebrewHeaders()",
+                  "nodeIdentifier": "Build8401SevenDefectsAcceptanceTests/testF1_SefariaHebrewLocaleRTLAndHebrewHeaders()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests/testF1_SefariaHebrewLocaleRTLAndHebrewHeaders",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "duration": "25s",
+                  "durationInSeconds": 25.881619930267334,
+                  "name": "testF2_HebrewTOCStructureAndDafLabels()",
+                  "nodeIdentifier": "Build8401SevenDefectsAcceptanceTests/testF2_HebrewTOCStructureAndDafLabels()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests/testF2_HebrewTOCStructureAndDafLabels",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                }
+              ],
+              "name": "Build8401SevenDefectsAcceptanceTests",
+              "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests",
+              "nodeType": "Test Suite",
+              "result": "Failed"
+            },
+            {
+              "children": [
+                {
+                  "duration": "1m 21s",
+                  "durationInSeconds": 81.32390701770782,
+                  "name": "testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqualWithAccuracy failed: (\"108.0\") is not equal to (\"160.0\") +/- (\"1.0\")",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 1353
+                      }
+                    }
+                  ],
+                  "duration": "28s",
+                  "durationInSeconds": 28.708364009857178,
+                  "name": "testCandidateAnnotationsLandscapeMatchesOriginalNavigation()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "duration": "25s",
+                  "durationInSeconds": 25.46001410484314,
+                  "name": "testCandidateAnnotationsPortraitMatchesOriginalNavigation()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 1350
+                      }
+                    }
+                  ],
+                  "duration": "32s",
+                  "durationInSeconds": 32.66001498699188,
+                  "name": "testCandidateGlobalSearchLandscapeMatchesOriginalNavigation()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 1350
+                      }
+                    }
+                  ],
+                  "duration": "32s",
+                  "durationInSeconds": 32.14126002788544,
+                  "name": "testCandidateGlobalSearchPortraitMatchesOriginalNavigation()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "duration": "1m 9s",
+                  "durationInSeconds": 69.6278361082077,
+                  "name": "testCandidateReaderThemes()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertFalse failed - The redundant visual study-tools heading must be removed",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 1364
+                      }
+                    }
+                  ],
+                  "duration": "22s",
+                  "durationInSeconds": 22.33318793773651,
+                  "name": "testCandidateTrimmedOriginalInspectorLandscape()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertFalse failed - The redundant visual study-tools heading must be removed",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 1364
+                      }
+                    }
+                  ],
+                  "duration": "22s",
+                  "durationInSeconds": 22.532786011695862,
+                  "name": "testCandidateTrimmedOriginalInspectorPortrait()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertTrue failed",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 324
+                      }
+                    }
+                  ],
+                  "duration": "45s",
+                  "durationInSeconds": 45.33498704433441,
+                  "name": "testCandidateWindowResizePreservesOriginalReaderAndSearch()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 296
+                      }
+                    }
+                  ],
+                  "duration": "38s",
+                  "durationInSeconds": 38.455999970436096,
+                  "name": "testEnglishReaderAndOriginalPaletteInLeftToRightLayout()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 226
+                      }
+                    }
+                  ],
+                  "duration": "18s",
+                  "durationInSeconds": 18.661502957344055,
+                  "name": "testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertTrue failed - Control must be inside the actual app viewport",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 1160
+                      }
+                    }
+                  ],
+                  "duration": "19s",
+                  "durationInSeconds": 19.644158959388733,
+                  "name": "testGroupCopyMoveRenameAndDeleteThroughRealMenus()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "duration": "1m 24s",
+                  "durationInSeconds": 84.10671699047089,
+                  "name": "testHistoryRemainsGlobalAndIsAbsentFromBookSearch()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "duration": "1m 34s",
+                  "durationInSeconds": 94.52332091331482,
+                  "name": "testNativeVoiceOverSpeaksRealOverviewAndPaletteControls()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "duration": "1m 11s",
+                  "durationInSeconds": 71.63817298412323,
+                  "name": "testNewEmptyGroupAndRelaunchPersistence()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "duration": "45s",
+                  "durationInSeconds": 45.623088002204895,
+                  "name": "testNewManagementScreensExposeMeaningfulAccessibilityDescriptions()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "duration": "35s",
+                  "durationInSeconds": 35.712072014808655,
+                  "name": "testOriginalBottomTOCActionOpensContentsFromLibraryPage()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertTrue failed",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 922
+                      }
+                    }
+                  ],
+                  "duration": "1m 18s",
+                  "durationInSeconds": 78.71069395542145,
+                  "name": "testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original palette's Escape handler must dismiss through keyboard focus",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 1135
+                      }
+                    }
+                  ],
+                  "duration": "1m 6s",
+                  "durationInSeconds": 66.58788800239563,
+                  "name": "testPointerHoverClickAndHardwareKeyboardDismissal()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - A deliberate downward reader scroll must collapse the document strip",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 1582
+                      }
+                    }
+                  ],
+                  "duration": "1m 39s",
+                  "durationInSeconds": 99.60410702228546,
+                  "name": "testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "Test exceeded execution time allowance of 10 minutes",
+                      "nodeType": "Failure Message"
+                    }
+                  ],
+                  "duration": "10m",
+                  "durationInSeconds": 600,
+                  "name": "testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "Test exceeded execution time allowance of 10 minutes",
+                      "nodeType": "Failure Message"
+                    }
+                  ],
+                  "duration": "10m",
+                  "durationInSeconds": 600,
+                  "name": "testSidebarPreservesOriginalTextKitViewport()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqual failed: (\"2\") is not equal to (\"1\") - This fixture has one genuine active book",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 399
+                      }
+                    }
+                  ],
+                  "duration": "59s",
+                  "durationInSeconds": 59.83196794986725,
+                  "name": "testSourceOverviewReplacesReaderAndRestoresViewportLandscape()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqual failed: (\"2\") is not equal to (\"1\") - This fixture has one genuine active book",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 399
+                      }
+                    }
+                  ],
+                  "duration": "1m 1s",
+                  "durationInSeconds": 61.24480092525482,
+                  "name": "testSourceOverviewReplacesReaderAndRestoresViewportPortrait()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 296
+                      }
+                    }
+                  ],
+                  "duration": "1m 21s",
+                  "durationInSeconds": 81.38792407512665,
+                  "name": "testSourceToolbarPaletteAndOverview()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The native accessibility setting must actually reach this Simulator",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 1250
+                      }
+                    }
+                  ],
+                  "duration": "54s",
+                  "durationInSeconds": 54.680952072143555,
+                  "name": "testSystemReduceMotionKeepsOriginalPaletteUsable()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "duration": "4m 32s",
+                  "durationInSeconds": 272.1567260026932,
+                  "name": "testThreeProfilesWithThreeGroupsThroughNativeManagement()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "Test exceeded execution time allowance of 10 minutes",
+                      "nodeType": "Failure Message"
+                    }
+                  ],
+                  "duration": "10m",
+                  "durationInSeconds": 600,
+                  "name": "testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                }
+              ],
+              "name": "FaithfulReaderUIAcceptanceTests",
+              "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests",
+              "nodeType": "Test Suite",
+              "result": "Failed"
+            },
+            {
+              "children": [
+                {
+                  "duration": "1m 35s",
+                  "durationInSeconds": 95.77437102794647,
+                  "name": "testOriginalGlobalSearchHistoryThroughNativeControls()",
+                  "nodeIdentifier": "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "duration": "33s",
+                  "durationInSeconds": 33.829126954078674,
+                  "name": "testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions()",
+                  "nodeIdentifier": "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "duration": "5m 41s",
+                  "durationInSeconds": 341.7903940677643,
+                  "name": "testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots()",
+                  "nodeIdentifier": "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "duration": "1m 27s",
+                  "durationInSeconds": 87.46063899993896,
+                  "name": "testOriginalReaderThemes()",
+                  "nodeIdentifier": "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 226
+                      }
+                    }
+                  ],
+                  "duration": "1m 2s",
+                  "durationInSeconds": 62.56443691253662,
+                  "name": "testOriginalWindowResizePreservesReader()",
+                  "nodeIdentifier": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                }
+              ],
+              "name": "FaithfulReaderVisualBaselineTests",
+              "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderVisualBaselineTests",
+              "nodeType": "Test Suite",
+              "result": "Failed"
+            },
+            {
+              "children": [
+                {
+                  "duration": "35s",
+                  "durationInSeconds": 35.69232499599457,
+                  "name": "testPullNavigationCommitBothDirectionsWithoutDuplicates()",
+                  "nodeIdentifier": "PullNavigationAcceptanceTests/testPullNavigationCommitBothDirectionsWithoutDuplicates()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/PullNavigationAcceptanceTests/testPullNavigationCommitBothDirectionsWithoutDuplicates",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "duration": "38s",
+                  "durationInSeconds": 38.49129402637482,
+                  "name": "testPullNavigationRetreatCancelDoesNotChangeContent()",
+                  "nodeIdentifier": "PullNavigationAcceptanceTests/testPullNavigationRetreatCancelDoesNotChangeContent()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/PullNavigationAcceptanceTests/testPullNavigationRetreatCancelDoesNotChangeContent",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                }
+              ],
+              "name": "PullNavigationAcceptanceTests",
+              "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/PullNavigationAcceptanceTests",
+              "nodeType": "Test Suite",
+              "result": "Passed"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Rotation must change the actual native window, not merely return success",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+                        "lineNumber": 87
+                      }
+                    },
+                    {
+                      "name": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions",
+                      "nodeType": "Runtime Warning"
+                    }
+                  ],
+                  "duration": "1m 16s",
+                  "durationInSeconds": 76.48130595684052,
+                  "name": "testNormalBootstrapEmbeddedGenesisAndRotation()",
+                  "nodeIdentifier": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "duration": "1m 41s",
+                  "durationInSeconds": 101.7593549489975,
+                  "name": "testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+                  "nodeIdentifier": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Rotation must change the actual native window, not merely return success",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+                        "lineNumber": 87
+                      }
+                    }
+                  ],
+                  "duration": "1m 2s",
+                  "durationInSeconds": 62.402268052101135,
+                  "name": "testNormalBootstrapLegacyGenesisAndRotation()",
+                  "nodeIdentifier": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertGreaterThan failed: (\"375.0\") is not greater than (\"486.0\") - Require a real full-width landscape start",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+                        "lineNumber": 134
+                      }
+                    }
+                  ],
+                  "duration": "31s",
+                  "durationInSeconds": 31.461735010147095,
+                  "name": "testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+                  "nodeIdentifier": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+                        "lineNumber": 114
+                      }
+                    }
+                  ],
+                  "duration": "59s",
+                  "durationInSeconds": 59.85133409500122,
+                  "name": "testNormalBootstrapOtzariaRotationPreservesExactLocator()",
+                  "nodeIdentifier": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                }
+              ],
+              "name": "R27NativePadTests",
+              "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests",
+              "nodeType": "Test Suite",
+              "result": "Failed"
+            },
+            {
+              "children": [
+                {
+                  "duration": "22s",
+                  "durationInSeconds": 22.795881986618042,
+                  "name": "testOriginalCompactAndExpandedToolbarOracle()",
+                  "nodeIdentifier": "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                }
+              ],
+              "name": "SafariPrototypeReferenceTests",
+              "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SafariPrototypeReferenceTests",
+              "nodeType": "Test Suite",
+              "result": "Passed"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions",
+                      "nodeType": "Runtime Warning"
+                    }
+                  ],
+                  "duration": "27s",
+                  "durationInSeconds": 27.109445929527283,
+                  "name": "testEmbeddedSefariaCatalogAndAppLaunch()",
+                  "nodeIdentifier": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaCatalogAndAppLaunch()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaCatalogAndAppLaunch",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions",
+                      "nodeType": "Runtime Warning"
+                    }
+                  ],
+                  "duration": "32s",
+                  "durationInSeconds": 32.533145904541016,
+                  "name": "testEmbeddedSefariaFullAcceptanceDiagnostic()",
+                  "nodeIdentifier": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaFullAcceptanceDiagnostic()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaFullAcceptanceDiagnostic",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions",
+                      "nodeType": "Runtime Warning"
+                    }
+                  ],
+                  "duration": "18s",
+                  "durationInSeconds": 18.89630889892578,
+                  "name": "testEmbeddedSefariaReaderPresentation()",
+                  "nodeIdentifier": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaReaderPresentation()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaReaderPresentation",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions",
+                      "nodeType": "Runtime Warning"
+                    }
+                  ],
+                  "duration": "26s",
+                  "durationInSeconds": 26.69768798351288,
+                  "name": "testThreeBackendSwitchRegression()",
+                  "nodeIdentifier": "SefariaEmbeddedAcceptanceTests/testThreeBackendSwitchRegression()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests/testThreeBackendSwitchRegression",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                }
+              ],
+              "name": "SefariaEmbeddedAcceptanceTests",
+              "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests",
+              "nodeType": "Test Suite",
+              "result": "Passed"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 233
+                      }
+                    }
+                  ],
+                  "duration": "35s",
+                  "durationInSeconds": 35.25192701816559,
+                  "name": "testSidebarBodyPagingLTR()",
+                  "nodeIdentifier": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 233
+                      }
+                    }
+                  ],
+                  "duration": "37s",
+                  "durationInSeconds": 37.88842797279358,
+                  "name": "testSidebarBodyPagingRTL()",
+                  "nodeIdentifier": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                }
+              ],
+              "name": "Sidebar11201AcceptanceTests",
+              "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Sidebar11201AcceptanceTests",
+              "nodeType": "Test Suite",
+              "result": "Failed"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertTrue failed",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 2016
+                      }
+                    }
+                  ],
+                  "duration": "1m 5s",
+                  "durationInSeconds": 65.46933400630951,
+                  "name": "testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace()",
+                  "nodeIdentifier": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                }
+              ],
+              "name": "StudyProfileNativeAcceptanceTests",
+              "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/StudyProfileNativeAcceptanceTests",
+              "nodeType": "Test Suite",
+              "result": "Failed"
+            }
+          ],
+          "name": "Maktabah-iOSUITests",
+          "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests",
+          "nodeType": "UI test bundle",
+          "result": "Failed"
+        }
+      ],
+      "name": "Maktabah-iOS",
+      "nodeType": "Test Plan",
+      "result": "Failed"
+    }
+  ],
+  "testPlanConfigurations": [
+    {
+      "configurationId": "1",
+      "configurationName": "Test Scheme Action"
+    }
+  ]
+}

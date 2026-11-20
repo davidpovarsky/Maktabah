@@ -1,0 +1,1656 @@
+{
+  "basis": "First actual original assertion, not an inferred product root cause",
+  "counts": {
+    "Actual Simulator accessibility setting": 2,
+    "Actual native window rotation": 3,
+    "Actual rendered search highlight absent": 1,
+    "Control versus application-frame bounds": 10,
+    "Document strip did not collapse after actual scroll": 1,
+    "Global query field admission / AX timeout": 3,
+    "Initial compact native window": 1,
+    "Native navigation geometry": 4,
+    "Original application termination": 1,
+    "Original bottom chrome unavailable to selector": 6,
+    "Original library menu action admission": 1,
+    "Original ordinary-reader action admission": 1,
+    "Original palette hardware Escape dismissal": 1,
+    "Original phone overview action admission": 1,
+    "Original phone reader capability / chrome admission": 1,
+    "Original sidebar action unavailable to selector": 4,
+    "Overview contains two actual documents": 2,
+    "Per-case ten-minute execution allowance": 3,
+    "Profile editor action admission": 2,
+    "Profile menu action admission": 1,
+    "Redundant visible Inspector heading": 4,
+    "Rotation / native chrome settlement": 5,
+    "Toolbar action versus application-frame bounds": 3
+  },
+  "rows": [
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:226: error: -[Maktabah_iOSUITests.FaithfulReaderVisualBaselineTests testOriginalWindowResizePreservesReader] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 226
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Original bottom chrome unavailable to selector",
+      "execution_order": 40,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"2\") is not equal to (\"1\") - This fixture has one genuine active book"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:399: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSourceOverviewReplacesReaderAndRestoresViewportLandscape] : XCTAssertEqual failed: (\"2\") is not equal to (\"1\") - This fixture has one genuine active book"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 399
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Overview contains two actual documents",
+      "execution_order": 30,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"2\") is not equal to (\"1\") - This fixture has one genuine active book"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:399: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSourceOverviewReplacesReaderAndRestoresViewportPortrait] : XCTAssertEqual failed: (\"2\") is not equal to (\"1\") - This fixture has one genuine active book"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 399
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Overview contains two actual documents",
+      "execution_order": 31,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:922: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 922
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Original library menu action admission",
+      "execution_order": 25,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:226: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 226
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Original bottom chrome unavailable to selector",
+      "execution_order": 18,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original palette's Escape handler must dismiss through keyboard focus"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1135: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testPointerHoverClickAndHardwareKeyboardDismissal] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original palette's Escape handler must dismiss through keyboard focus"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1135
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Original palette hardware Escape dismissal",
+      "execution_order": 26,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - Control must be inside the actual app viewport"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1160: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testGroupCopyMoveRenameAndDeleteThroughRealMenus] : XCTAssertTrue failed - Control must be inside the actual app viewport"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1160
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Control versus application-frame bounds",
+      "execution_order": 19,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The native accessibility setting must actually reach this Simulator"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1250: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSystemReduceMotionKeepsOriginalPaletteUsable] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The native accessibility setting must actually reach this Simulator"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1250
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Actual Simulator accessibility setting",
+      "execution_order": 33,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:324: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateWindowResizePreservesOriginalReaderAndSearch] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 324
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Toolbar action versus application-frame bounds",
+      "execution_order": 16,
+      "relative_to_failed_candidate_window_case": "THE_WINDOW_CASE",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:296: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testEnglishReaderAndOriginalPaletteInLeftToRightLayout] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 296
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Rotation / native chrome settlement",
+      "execution_order": 17,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1350: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateGlobalSearchLandscapeMatchesOriginalNavigation] : XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1350
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Native navigation geometry",
+      "execution_order": 11,
+      "relative_to_failed_candidate_window_case": "BEFORE",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1350: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateGlobalSearchPortraitMatchesOriginalNavigation] : XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1350
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Native navigation geometry",
+      "execution_order": 12,
+      "relative_to_failed_candidate_window_case": "BEFORE",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqualWithAccuracy failed: (\"108.0\") is not equal to (\"160.0\") +/- (\"1.0\")"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1353: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateAnnotationsLandscapeMatchesOriginalNavigation] : XCTAssertEqualWithAccuracy failed: (\"108.0\") is not equal to (\"160.0\") +/- (\"1.0\")"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1353
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Native navigation geometry",
+      "execution_order": 9,
+      "relative_to_failed_candidate_window_case": "BEFORE",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1364: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateTrimmedOriginalInspectorLandscape] : XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1364
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Redundant visible Inspector heading",
+      "execution_order": 14,
+      "relative_to_failed_candidate_window_case": "BEFORE",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1364: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateTrimmedOriginalInspectorPortrait] : XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1364
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Redundant visible Inspector heading",
+      "execution_order": 15,
+      "relative_to_failed_candidate_window_case": "BEFORE",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+      "status": "FAIL",
+      "failure_messages": [
+        "Test exceeded execution time allowance of 10 minutes"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Per-case ten-minute execution allowance",
+      "execution_order": 29,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:296: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSourceToolbarPaletteAndOverview] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 296
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Rotation / native chrome settlement",
+      "execution_order": 32,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - A deliberate downward reader scroll must collapse the document strip"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1582: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - A deliberate downward reader scroll must collapse the document strip"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1582
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Document strip did not collapse after actual scroll",
+      "execution_order": 27,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+      "status": "FAIL",
+      "failure_messages": [
+        "Test exceeded execution time allowance of 10 minutes"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Per-case ten-minute execution allowance",
+      "execution_order": 35,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+      "status": "FAIL",
+      "failure_messages": [
+        "Test exceeded execution time allowance of 10 minutes"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Per-case ten-minute execution allowance",
+      "execution_order": 28,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertGreaterThan failed: (\"0\") is not greater than (\"0\") - Rendered attributed text must contain at least 1 search highlight range before clearing"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift:26: error: -[Maktabah_iOSUITests.Build8401SevenDefectsAcceptanceTests testA1_A2_SearchResultHighlightAndClearButton] : XCTAssertGreaterThan failed: (\"0\") is not greater than (\"0\") - Rendered attributed text must contain at least 1 search highlight range before clearing"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+              "line": 26
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Actual rendered search highlight absent",
+      "execution_order": 1,
+      "relative_to_failed_candidate_window_case": "BEFORE",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift:118: error: -[Maktabah_iOSUITests.Build8401SevenDefectsAcceptanceTests testA3_OrdinaryReaderHasNoClearSearchHighlightButton] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+              "line": 118
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Original ordinary-reader action admission",
+      "execution_order": 3,
+      "relative_to_failed_candidate_window_case": "BEFORE",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift:114: error: -[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapOtzariaRotationPreservesExactLocator] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+              "line": 114
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Actual native window rotation",
+      "execution_order": 47,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertGreaterThan failed: (\"375.0\") is not greater than (\"486.0\") - Require a real full-width landscape start"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift:134: error: -[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapNativeWindowResizePaletteAndInspector] : XCTAssertGreaterThan failed: (\"375.0\") is not greater than (\"486.0\") - Require a real full-width landscape start"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+              "line": 134
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Initial compact native window",
+      "execution_order": 46,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Rotation must change the actual native window, not merely return success"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift:87: error: -[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapLegacyGenesisAndRotation] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Rotation must change the actual native window, not merely return success"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+              "line": 87
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Actual native window rotation",
+      "execution_order": 45,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Rotation must change the actual native window, not merely return success"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift:87: error: -[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapEmbeddedGenesisAndRotation] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Rotation must change the actual native window, not merely return success"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+              "line": 87
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Actual native window rotation",
+      "execution_order": 43,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:233: error: -[Maktabah_iOSUITests.Sidebar11201AcceptanceTests testSidebarBodyPagingRTL] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 233
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Original sidebar action unavailable to selector",
+      "execution_order": 54,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:233: error: -[Maktabah_iOSUITests.Sidebar11201AcceptanceTests testSidebarBodyPagingLTR] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 233
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Original sidebar action unavailable to selector",
+      "execution_order": 53,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:2016: error: -[Maktabah_iOSUITests.StudyProfileNativeAcceptanceTests testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 2016
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Profile editor action admission",
+      "execution_order": 55,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:226: error: -[Maktabah_iOSUITests.FaithfulReaderVisualBaselineTests testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 226
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Original bottom chrome unavailable to selector",
+      "execution_order": 30,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:675: error: -[Maktabah_iOSUITests.FaithfulReaderVisualBaselineTests testOriginalGlobalSearchHistoryThroughNativeControls] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 675
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Global query field admission / AX timeout",
+      "execution_order": 29,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:226: error: -[Maktabah_iOSUITests.FaithfulReaderVisualBaselineTests testOriginalWindowResizePreservesReader] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 226
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Original bottom chrome unavailable to selector",
+      "execution_order": 33,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:226: error: -[Maktabah_iOSUITests.FaithfulReaderVisualBaselineTests testOriginalReaderThemes] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 226
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Original bottom chrome unavailable to selector",
+      "execution_order": 32,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:296: error: -[Maktabah_iOSUITests.FaithfulReaderVisualBaselineTests testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 296
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Rotation / native chrome settlement",
+      "execution_order": 31,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:296: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSourceOverviewReplacesReaderAndRestoresViewportLandscape] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 296
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Rotation / native chrome settlement",
+      "execution_order": 23,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:233: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 233
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Original sidebar action unavailable to selector",
+      "execution_order": 18,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:233: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testOriginalBottomTOCActionOpensContentsFromLibraryPage] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 233
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Original sidebar action unavailable to selector",
+      "execution_order": 17,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - Control must be inside the actual app viewport"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1006: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testNativeVoiceOverSpeaksRealOverviewAndPaletteControls] : XCTAssertTrue failed - Control must be inside the actual app viewport"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1006
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Control versus application-frame bounds",
+      "execution_order": 14,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:226: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 226
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Original bottom chrome unavailable to selector",
+      "execution_order": 11,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - The palette action must stay inside the actual application window"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:158: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testPointerHoverClickAndHardwareKeyboardDismissal] : XCTAssertTrue failed - The palette action must stay inside the actual application window"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 158
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Control versus application-frame bounds",
+      "execution_order": 19,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - Control must be inside the actual app viewport"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1160: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testGroupCopyMoveRenameAndDeleteThroughRealMenus] : XCTAssertTrue failed - Control must be inside the actual app viewport"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1160
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Control versus application-frame bounds",
+      "execution_order": 12,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The native accessibility setting must actually reach this Simulator"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1250: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSystemReduceMotionKeepsOriginalPaletteUsable] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The native accessibility setting must actually reach this Simulator"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1250
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Actual Simulator accessibility setting",
+      "execution_order": 26,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:324: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateWindowResizePreservesOriginalReaderAndSearch] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 324
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Toolbar action versus application-frame bounds",
+      "execution_order": 9,
+      "relative_to_failed_candidate_window_case": "THE_WINDOW_CASE",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - Control must be inside the actual app viewport"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1279: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testNewManagementScreensExposeMeaningfulAccessibilityDescriptions] : XCTAssertTrue failed - Control must be inside the actual app viewport"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1279
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Control versus application-frame bounds",
+      "execution_order": 16,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:296: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testEnglishReaderAndOriginalPaletteInLeftToRightLayout] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 296
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Rotation / native chrome settlement",
+      "execution_order": 10,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1350: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateGlobalSearchLandscapeMatchesOriginalNavigation] : XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1350
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Native navigation geometry",
+      "execution_order": 4,
+      "relative_to_failed_candidate_window_case": "BEFORE",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1364: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateTrimmedOriginalInspectorLandscape] : XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1364
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Redundant visible Inspector heading",
+      "execution_order": 7,
+      "relative_to_failed_candidate_window_case": "BEFORE",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1364: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateTrimmedOriginalInspectorPortrait] : XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1364
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Redundant visible Inspector heading",
+      "execution_order": 8,
+      "relative_to_failed_candidate_window_case": "BEFORE",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - The palette action must stay inside the actual application window"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:158: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSidebarPreservesOriginalTextKitViewport] : XCTAssertTrue failed - The palette action must stay inside the actual application window"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 158
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Control versus application-frame bounds",
+      "execution_order": 22,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:324: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSourceToolbarPaletteAndOverview] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 324
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Toolbar action versus application-frame bounds",
+      "execution_order": 25,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - The palette action must stay inside the actual application window"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:158: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll] : XCTAssertTrue failed - The palette action must stay inside the actual application window"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 158
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Control versus application-frame bounds",
+      "execution_order": 20,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - Control must be inside the actual app viewport"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1611: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar] : XCTAssertTrue failed - Control must be inside the actual app viewport"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1611
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Control versus application-frame bounds",
+      "execution_order": 28,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - Control must be inside the actual app viewport"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1627: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testNewEmptyGroupAndRelaunchPersistence] : XCTAssertTrue failed - Control must be inside the actual app viewport"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1627
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Control versus application-frame bounds",
+      "execution_order": 15,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:675: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testHistoryRemainsGlobalAndIsAbsentFromBookSearch] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 675
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Global query field admission / AX timeout",
+      "execution_order": 13,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - Control must be inside the actual app viewport"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1682: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch] : XCTAssertTrue failed - Control must be inside the actual app viewport"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1682
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Control versus application-frame bounds",
+      "execution_order": 21,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1725: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testThreeProfilesWithThreeGroupsThroughNativeManagement] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1725
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Profile menu action admission",
+      "execution_order": 27,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:2016: error: -[Maktabah_iOSUITests.StudyProfileNativeAcceptanceTests testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 2016
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Profile editor action admission",
+      "execution_order": 35,
+      "relative_to_failed_candidate_window_case": "AFTER",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "iphone-native",
+      "case_id": "FaithfulReaderIPhoneTests/testSourceOverviewReplacesReaderAndRestoresViewport",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:380: error: -[Maktabah_iOSUITests.FaithfulReaderIPhoneTests testSourceOverviewReplacesReaderAndRestoresViewport] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 380
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-phone.tests.json",
+      "summary_path": "artifacts/runtime27/verified-phone.summary.json",
+      "first_observed_failure_bucket": "Original phone overview action admission",
+      "execution_order": 2,
+      "relative_to_failed_candidate_window_case": "NOT_PRESENT_IN_CONFIGURATION",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "iphone-native",
+      "case_id": "FaithfulReaderIPhoneTests/testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:823: error: -[Maktabah_iOSUITests.FaithfulReaderIPhoneTests testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 823
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-phone.tests.json",
+      "summary_path": "artifacts/runtime27/verified-phone.summary.json",
+      "first_observed_failure_bucket": "Original phone reader capability / chrome admission",
+      "execution_order": 1,
+      "relative_to_failed_candidate_window_case": "NOT_PRESENT_IN_CONFIGURATION",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "iphone-native",
+      "case_id": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "status": "FAIL",
+      "failure_messages": [
+        "Failed to get matching snapshots: Timed out while evaluating UI query."
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:675: error: -[Maktabah_iOSUITests.R27NativePhoneTests testNormalBootstrapGlobalHistoryUsesActualSubmit] : Failed to get matching snapshots: Timed out while evaluating UI query."
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 675
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-phone.tests.json",
+      "summary_path": "artifacts/runtime27/verified-phone.summary.json",
+      "first_observed_failure_bucket": "Global query field admission / AX timeout",
+      "execution_order": 4,
+      "relative_to_failed_candidate_window_case": "NOT_PRESENT_IN_CONFIGURATION",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "iphone-native",
+      "case_id": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "status": "FAIL",
+      "failure_messages": [
+        "Failed to terminate com.davidpovarsky.chavrusatext:25906: Failed to terminate com.davidpovarsky.chavrusatext:0"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/MaktabahUITestBase.swift:150: error: -[Maktabah_iOSUITests.R27NativePhoneTests testNormalBootstrapEmbeddedGenesisAndRotation] : Failed to terminate com.davidpovarsky.chavrusatext:25906: Failed to terminate com.davidpovarsky.chavrusatext:0"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+              "line": 150
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-phone.tests.json",
+      "summary_path": "artifacts/runtime27/verified-phone.summary.json",
+      "first_observed_failure_bucket": "Original application termination",
+      "execution_order": 3,
+      "relative_to_failed_candidate_window_case": "NOT_PRESENT_IN_CONFIGURATION",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    }
+  ]
+}

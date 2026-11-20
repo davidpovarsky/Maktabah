@@ -1,0 +1,180 @@
+[
+  {
+    "caseHeader": "Exported 5 attachments for: FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation():",
+    "files": [
+      "File: 4A89F386-AC6D-45CF-AA1C-F5FD391F62E1.txt, suggested name: \"candidate-annotationsList-landscape-ui-tree_0_3CF67B4B-DF03-4FB3-9C97-10A7930A3B6D.txt\"",
+      "File: 14DD56F6-A9C4-4237-B923-5CA434B9B671.png, suggested name: \"candidate-annotationsList-landscape_0_61584EE2-6BC9-492C-9DCD-47F114CA77D3.png\"",
+      "File: 541EAC01-ACDC-4A96-9BC2-F6BF28A4B6DA.txt, suggested name: \"candidate-flags-off-annotationsList-landscape-ui-tree_0_364006B0-2E1E-4506-B25D-7A10122AC29B.txt\"",
+      "File: 0480EF09-3546-4615-B854-58523D140C2C.png, suggested name: \"candidate-flags-off-annotationsList-landscape_0_4CC80F48-B3C2-4039-97DE-A7199FA631B9.png\""
+    ]
+  },
+  {
+    "caseHeader": "Exported 5 attachments for: FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation():",
+    "files": [
+      "File: 5A77BF50-5D05-4CC7-AE44-A6192E5BA7D4.txt, suggested name: \"candidate-search-landscape-ui-tree_0_7D4769D1-87DD-41F1-BAAC-C050E721ADC5.txt\"",
+      "File: 4E73FF3A-2611-4DCF-91A0-5D00BA3080D5.png, suggested name: \"candidate-search-landscape_0_EA04F71D-38D2-4210-BBE1-23CE8EAD31E3.png\"",
+      "File: C53E3F98-6D90-46D0-9591-236DE62275DD.txt, suggested name: \"candidate-flags-off-search-landscape-ui-tree_0_F529545F-6091-440A-A7B1-35D5E617B3DD.txt\"",
+      "File: 37F830E9-C873-47D2-BCF2-374C8AA6D511.png, suggested name: \"candidate-flags-off-search-landscape_0_85FD9D20-8660-4F01-9E5E-5DF0E135C0EE.png\""
+    ]
+  },
+  {
+    "caseHeader": "Exported 2 attachments for: FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape():",
+    "files": []
+  },
+  {
+    "caseHeader": "Exported 32 attachments for: FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch():",
+    "files": [
+      "File: BD67AA4F-EC02-4832-AE02-38C273F47C8A.txt, suggested name: \"public.plain-text_0_4D364378-F5E3-48F0-8B0C-4EE9FEE334C5.txt\"",
+      "File: 828A33A2-4897-4491-A90C-CAB2DD10FF94.png, suggested name: \"Screenshot of main screen (ID 1)_1_4D364378-F5E3-48F0-8B0C-4EE9FEE334C5.png\"",
+      "File: E278A097-8EDD-4F4F-8221-DBCA26A06947.txt, suggested name: \"App UI hierarchy for com.apple_0_1B709050-751C-41AC-BD40-0752DB548F08.springboard\"",
+      "File: 3735804C-431C-4740-83C4-E9BF6D2D6888.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_C4E5C267-8455-4862-B3CF-D2CAF4AA09C9.txt\"",
+      "File: 70393FC0-EFE5-4BE0-A8CC-07E4D3223DB8.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_A3A8F425-71A8-429B-AC85-3BBF2B4FE615.txt\"",
+      "File: 2921F791-E7EF-433E-BF3E-65D492548569.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_1C4D9ECF-471A-4E77-A933-86F243E230A2.txt\"",
+      "File: ED971BC5-2075-477A-9A87-72A614CD6503.txt, suggested name: \"App UI hierarchy for com.apple_0_EADC36EE-DA5B-4493-AD96-670D68790EF8.springboard\"",
+      "File: 0A61ED1C-7FF3-4735-B3A9-1DB97DB7191A.txt, suggested name: \"Debug description for `Button (First Match)`_0_AE04B020-9BC7-4F65-A923-2960D028F0F0.txt\"",
+      "File: 1E6F6C38-4A69-4ED2-932A-A83A4D2F2E28.txt, suggested name: \"Debug description for `Button (First Match)`_0_C4EF22E5-6879-49D1-9810-65715D9F1E13.txt\"",
+      "File: 072F4799-1E2B-460B-8A8B-96F00259F59A.txt, suggested name: \"Debug description for `Button (First Match)`_0_923BB1A4-11E5-41C4-BFDC-E60E4D42D188.txt\"",
+      "File: 66AE6FA0-EB36-4F1E-B17E-7B2D526460D4.txt, suggested name: \"App UI hierarchy for com.davidpovarsky_0_A9C7EBB4-C70A-4542-96D5-369525FF45A5.chavrusatext\"",
+      "File: 08981CC3-B4F0-4880-8220-64520932BD2D.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_ABFB020B-7337-41A9-83E1-49639E56A2B7.txt\"",
+      "File: 3060B789-121F-4450-83E2-D544C1BACD1E.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_B104214B-184F-4EB8-A487-54C2DEED5085.txt\"",
+      "File: 56471F79-F75F-4DBD-B7C2-76DA931067FA.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_5B1B5BBA-0670-4161-BBA3-99911D580DDE.txt\"",
+      "File: 2E4C28EB-47C0-40C9-B011-E868A77DCB6B.txt, suggested name: \"App UI hierarchy for com.davidpovarsky_0_A4CAD602-3861-4C59-AB50-94DA4C12DAE6.chavrusatext\"",
+      "File: 4FD7B9BC-1A0E-4AD8-AE89-59C4B7FD3F15.txt, suggested name: \"Debug description for `Button (First Match)`_0_C8FCF1EF-2ADC-4C94-9715-EC6348024CFF.txt\"",
+      "File: CB1C439D-3C1D-4A2E-A75F-6F8CC9C30A31.txt, suggested name: \"Debug description for `Button (First Match)`_0_06B9D5BC-8642-4978-8B8E-B6B20843E6BB.txt\"",
+      "File: 5BAEDB1A-9A58-4C33-ACE7-73487AA95851.txt, suggested name: \"Debug description for `Button (First Match)`_0_DC7B4ADD-FD4E-4D17-8862-46277E9F9C6D.txt\"",
+      "File: 06D7DF1F-8EEB-4890-804D-2C4FCA12796B.txt, suggested name: \"DIAGNOSTIC-candidate-narrow-toolbar-before-action-ui-tree_0_F3213DFE-4F07-413C-9DA4-ADD07CF453A1.txt\"",
+      "File: 229916AF-0F06-4296-8E1F-0F132FF704CA.png, suggested name: \"DIAGNOSTIC-candidate-narrow-toolbar-before-action_0_1EF24084-B587-44BC-884F-F4D2CB0015A0.png\"",
+      "File: 16D0A00D-9188-4D74-896D-443F59CC11BD.txt, suggested name: \"candidate-window-wide-ui-tree_0_F166A4D7-FD45-4C7A-9C11-9565961A1147.txt\"",
+      "File: B434B261-7C6D-4D7C-ABF6-CF78B1FC672E.png, suggested name: \"candidate-window-wide_0_F96EFDAA-1CB3-4057-BD43-9CC92B76D6D4.png\""
+    ]
+  },
+  {
+    "caseHeader": "Exported 12 attachments for: FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait():",
+    "files": [
+      "File: 8DAD035B-C659-4476-B424-A91741B232CB.txt, suggested name: \"DIAGNOSTIC-replacement-context-before-assertions-portrait-nonzero-ui-tree_0_8E4F98B9-7C19-4D9F-9229-6389C95CB564.txt\"",
+      "File: F79B3E0B-B074-40B3-A1C9-448BECCF47BB.png, suggested name: \"DIAGNOSTIC-replacement-context-before-assertions-portrait-nonzero_0_502C7BF6-08F8-49B1-8D62-D38BDF5DF56A.png\"",
+      "File: 23D3FB53-150A-4139-B2FA-5834ADC63F31.txt, suggested name: \"replacement-reader-before-portrait-nonzero-ui-tree_0_5756DAFE-3D94-465A-9C50-F1BC65EFE5E1.txt\"",
+      "File: E103F54D-F274-4945-B6A3-1375D2894D87.png, suggested name: \"replacement-reader-before-portrait-nonzero_0_A653D9A0-44CC-4B17-A8AB-EA69F0DA0E43.png\"",
+      "File: EC082083-EA61-448E-B264-AC3EC9DD337D.txt, suggested name: \"replacement-reader-initial-portrait-nonzero-ui-tree_0_CC34416E-2F2F-43F1-8FDA-33402A275730.txt\"",
+      "File: 152FBBA5-707E-403A-B2F3-A5C8D877841E.png, suggested name: \"replacement-reader-initial-portrait-nonzero_0_A887D44D-07BF-40E4-87E6-3D1515FB4581.png\""
+    ]
+  },
+  {
+    "caseHeader": "Exported 35 attachments for: FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader():",
+    "files": [
+      "File: A87196AC-6F39-4049-8925-B90BFF95530D.txt, suggested name: \"public.plain-text_0_1F000D41-F60F-48B7-994B-18AB6A6D484F.txt\"",
+      "File: E4095868-A056-4461-A8E5-4F3F6C1DA3BD.png, suggested name: \"Screenshot of main screen (ID 1)_1_1F000D41-F60F-48B7-994B-18AB6A6D484F.png\"",
+      "File: DB984550-3A40-48E9-9534-9CC773544F52.txt, suggested name: \"App UI hierarchy for com.apple_0_0A7EF132-A3ED-470F-8F7C-4B19BA5AA3DA.springboard\"",
+      "File: 5AD78D85-314D-4D1A-A4F7-903C4FD9D89B.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_13DC4421-6BA5-4A7F-AC5F-D255704329F8.txt\"",
+      "File: 66890102-D158-4EAE-BC36-F3B1997F95C2.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_52CF500A-9919-45AC-BD4C-CE4A0F6109EC.txt\"",
+      "File: 84A92ACF-88A4-4D7F-A869-143D457B1C23.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_DB94198E-A1CC-46F2-B7D8-1B9EB2817A3A.txt\"",
+      "File: CF180701-6F01-46C5-81FF-49F936979C35.txt, suggested name: \"App UI hierarchy for com.apple_0_0722BB3B-D0F3-47E8-9560-7A4E53E2DBEA.springboard\"",
+      "File: C790A59D-6C19-4E0F-AF6C-929BAF6F12EB.txt, suggested name: \"Debug description for `Button (First Match)`_0_2E8163C2-C654-45F0-A9AF-7ED7488F99CB.txt\"",
+      "File: 6AB01AD8-5B32-4540-9608-3A136D60C15F.txt, suggested name: \"Debug description for `Button (First Match)`_0_A2C4C0CA-B33E-43A7-A596-E1C5BCDBC14F.txt\"",
+      "File: 6E76382B-DAD3-4C43-90B0-AD5791EF2658.txt, suggested name: \"Debug description for `Button (First Match)`_0_7F27086F-2031-4BB3-96FE-3C37C4571484.txt\"",
+      "File: 98389BB2-D8BE-45EF-B399-75CB9A0BD25F.txt, suggested name: \"App UI hierarchy for com.davidpovarsky_0_6AA1F4B7-D1D9-4594-AD85-CF263064799E.chavrusatext\"",
+      "File: 94B76756-3206-4859-A6FE-B5538674BB17.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_D4493A4B-C849-40A3-982E-829FF453F4A8.txt\"",
+      "File: F1A69911-3141-4884-AB10-19815B352193.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_9A6A3072-C424-48C1-890E-BB33EB272AAA.txt\"",
+      "File: 1B0421AE-124F-409A-B1A5-499F8BFC7383.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_C2AF3A7E-ADF8-4FDB-B4D9-E976F36B24B4.txt\"",
+      "File: BDAF6ED2-BE6A-465C-BC82-40FD7AEAF6FA.txt, suggested name: \"App UI hierarchy for com.davidpovarsky_0_E6E8B9A4-BF4F-475D-8387-829301A8A729.chavrusatext\"",
+      "File: 54C5BDCB-07A4-495C-8141-48FE7BB0F245.txt, suggested name: \"Debug description for `Button (First Match)`_0_5E692529-368C-4ACA-911F-34986CCE0154.txt\"",
+      "File: 2A51CA2A-CF3F-4CFC-A619-E1A542D6B7A4.txt, suggested name: \"Debug description for `Button (First Match)`_0_A84081B5-C186-4CCE-A5B1-8D85B642EAC0.txt\"",
+      "File: E37864BD-7469-4558-BBA8-E18F224BED70.txt, suggested name: \"Debug description for `Button (First Match)`_0_8116456D-220B-4BF9-A52A-EFC536F9904B.txt\"",
+      "File: 739CC9D6-FFE8-4C11-BA05-128F42C278BD.txt, suggested name: \"baseline-window-narrow-ui-tree_0_8E2C141C-3C45-443F-8305-74C916BF5F94.txt\"",
+      "File: 76AB8F9B-B289-4CA9-9585-95EC716A1BB7.png, suggested name: \"baseline-window-narrow_0_3DBE3A58-EF03-44E6-9E5B-9BF4EC679E7E.png\"",
+      "File: 36B692D3-D0A4-4822-B50A-C9BA4AF8C238.txt, suggested name: \"baseline-window-wide-ui-tree_0_364F5D00-E62E-4916-9053-BE43163BA3E4.txt\"",
+      "File: BD829894-B721-4F4D-B9AB-63419E2E5BC3.png, suggested name: \"baseline-window-wide_0_563E35D9-3D5D-4E3E-ADCE-FADBD54D1BF8.png\"",
+      "File: 9D124DFF-9A89-40C4-9703-A276739F6540.png, suggested name: \"immutable-baseline-actual-book-body_0_BC128798-DA10-45B5-8DA8-A5C444946F42.png\"",
+      "File: 5C92C6DA-716B-47DC-A422-859C4C49477A.txt, suggested name: \"native-reader-pixel-observation-geometry_0_800BB072-4DAD-4BFC-A42C-3D0CA879EFBD.txt\""
+    ]
+  },
+  {
+    "caseHeader": "Exported 4 attachments for: FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation():",
+    "files": [
+      "File: B4A60C16-60A7-4180-B024-27AFF5459DED.txt, suggested name: \"candidate-annotationsList-landscape-ui-tree_0_F403B8E4-1D87-46FF-BD7C-BF4654A5F7BA.txt\"",
+      "File: 6EE6F312-FD1B-445D-B556-74769BC95CB7.png, suggested name: \"candidate-annotationsList-landscape_0_C6337510-F61C-4EDB-BE49-2A8721A5EA25.png\"",
+      "File: DD60A7C9-6BFF-4811-87DC-46578A9B046D.txt, suggested name: \"candidate-flags-off-annotationsList-landscape-ui-tree_0_F37F1E01-440A-4636-93B8-9317C9BA3332.txt\"",
+      "File: C5FD77F8-E518-41B8-B056-DDEE67E44F41.png, suggested name: \"candidate-flags-off-annotationsList-landscape_0_20DE7BF9-BBF1-4338-A960-1D70898F3B80.png\""
+    ]
+  },
+  {
+    "caseHeader": "Exported 5 attachments for: FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation():",
+    "files": [
+      "File: 5C4340F0-F3E0-4F49-9D57-5BEDA342BE84.txt, suggested name: \"candidate-search-landscape-ui-tree_0_8B0830BD-1567-4950-B53A-25EC8E535235.txt\"",
+      "File: CEDFD47E-86F6-46B0-A54C-958594A09F2A.png, suggested name: \"candidate-search-landscape_0_BAE1DE9A-82E5-40D7-8F84-5F8179CAFD2C.png\"",
+      "File: BAB40DF3-DCA7-4659-AD6E-D9FBEACBC93A.txt, suggested name: \"candidate-flags-off-search-landscape-ui-tree_0_21BF974A-9DD1-4C1C-B04C-3A5F88271FFD.txt\"",
+      "File: 809A157F-156F-4141-B85B-639B78A36852.png, suggested name: \"candidate-flags-off-search-landscape_0_62DF96FA-5F47-4DF5-B82E-D164E56556FE.png\""
+    ]
+  },
+  {
+    "caseHeader": "Exported 2 attachments for: FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape():",
+    "files": []
+  },
+  {
+    "caseHeader": "Exported 31 attachments for: FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch():",
+    "files": [
+      "File: 260E5E0C-5B67-47DF-9A95-B22DA1843F68.txt, suggested name: \"public.plain-text_0_A95D5620-2BC1-4F30-898F-3B07CCA39AF4.txt\"",
+      "File: 73371FC4-9208-4FE5-BE52-CB7D49C457CE.png, suggested name: \"Screenshot of main screen (ID 1)_1_A95D5620-2BC1-4F30-898F-3B07CCA39AF4.png\"",
+      "File: F8466514-4978-44C9-B3C0-2E5E294C3769.txt, suggested name: \"App UI hierarchy for com.apple_0_D2FD88A3-FF1D-4A91-B74C-37E27C008B33.springboard\"",
+      "File: D920A5AA-F1E8-4E96-A4CA-74D876ED0CD6.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_88F09601-F21B-4501-8F89-CD6F8B7E868F.txt\"",
+      "File: 7E57FBA5-5C33-401A-89BE-736517B98F47.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_754A29BC-9BD7-447B-A54D-91E9F9238733.txt\"",
+      "File: E2DC333D-3F06-4951-B869-4C43EE5BBCE6.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_0406A74F-14BB-4ADE-8EE0-EA0479A943E5.txt\"",
+      "File: BE2687A7-C1E1-49F8-8363-7DBC5C350B84.txt, suggested name: \"App UI hierarchy for com.apple_0_0FBD0954-7148-4274-AD7D-1B8ED3B94B46.springboard\"",
+      "File: 5D4FAA27-D44D-4ACB-AB64-30931754CC8E.txt, suggested name: \"Debug description for `Button (First Match)`_0_059CE79C-3B3E-4192-903A-94F5BC728E40.txt\"",
+      "File: 7184C039-A957-4407-AB6A-D9AB30F0A240.txt, suggested name: \"Debug description for `Button (First Match)`_0_ADAA8506-63ED-4006-AA11-F69251ABDF7B.txt\"",
+      "File: AF754353-EB53-4F5A-83DA-19D2898E68F8.txt, suggested name: \"Debug description for `Button (First Match)`_0_62032ACE-C93C-428A-A6CF-785C46BFAE97.txt\"",
+      "File: 45218775-CC71-40A1-9640-64738FB622BD.txt, suggested name: \"App UI hierarchy for com.davidpovarsky_0_9D4055F0-A7EE-4CB0-876A-E6C6D9F7DB4D.chavrusatext\"",
+      "File: B25B4D22-4D66-481E-93DF-ADFBE704AECB.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_FF622268-7EFD-43F7-98C6-C6B6692BBFC2.txt\"",
+      "File: 30523308-6850-4E90-A23C-918733B43B82.txt, suggested name: \"Debug description for `MenuItem (First Match)`_0_7E97486B-6A4A-4045-A178-0EA803160C06.txt\"",
+      "File: A82F5837-530C-4951-8B9D-003293123AAB.txt, suggested name: \"App UI hierarchy for com.davidpovarsky_0_5B13FD09-14F3-4496-B143-4CB4C70DA1C5.chavrusatext\"",
+      "File: 07D0D2CC-CADA-4D00-B92F-9A057A86146C.txt, suggested name: \"Debug description for `Button (First Match)`_0_8940BB20-CF04-470E-818F-36161146AE35.txt\"",
+      "File: B6F2CB60-3DEE-444C-BE82-8A0D0EAAD94E.txt, suggested name: \"Debug description for `Button (First Match)`_0_0EB3CB05-D6F6-437C-A198-45896C2130B1.txt\"",
+      "File: E06B2BDB-3245-4075-92E4-ABC5C0B17196.txt, suggested name: \"Debug description for `Button (First Match)`_0_3E3A482C-22FD-4220-89AE-AD95FD1480C0.txt\"",
+      "File: 7FE67318-B192-484F-AE26-47B679724917.txt, suggested name: \"DIAGNOSTIC-candidate-narrow-toolbar-before-action-ui-tree_0_E632799F-95D4-4410-AAE6-9DAC594E8850.txt\"",
+      "File: B129A9B9-6CB8-4C0A-9395-F72E2B4FF029.png, suggested name: \"DIAGNOSTIC-candidate-narrow-toolbar-before-action_0_B86E7369-178E-423A-82B4-A9DCD5DB811A.png\"",
+      "File: 6A928AB4-0D20-4608-8F55-BAD40C57796C.txt, suggested name: \"candidate-window-wide-ui-tree_0_9B0ED867-87EC-430E-9603-B30FB8A651A1.txt\"",
+      "File: 237913B0-CCE8-4B2B-8087-EB2CDBD7801F.png, suggested name: \"candidate-window-wide_0_1E927D71-E2C8-4FF4-B6CC-6F1C5597CD64.png\""
+    ]
+  },
+  {
+    "caseHeader": "Exported 39 attachments for: FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait():",
+    "files": [
+      "File: C6B30E99-BFC2-424B-8A0D-3DA3FA3A5B2D.txt, suggested name: \"replacement-reader-return-done-portrait-ui-tree_0_98A837D9-9CA2-4191-B3BB-80F96DD6EA3B.txt\"",
+      "File: DFE59E2D-00EB-44F7-8F89-8D76AC95B0C5.png, suggested name: \"replacement-reader-return-done-portrait_0_33B48C77-1737-4414-819D-85C515D4015B.png\"",
+      "File: F4274A9B-B4C0-43B3-8CFA-CD616B1275E1.txt, suggested name: \"replacement-overview-list-portrait-ui-tree_0_892246D2-DF87-46AB-91DF-EF4E547EA31F.txt\"",
+      "File: 54E21303-5737-4CFE-8358-C46B4993B943.png, suggested name: \"replacement-overview-list-portrait_0_069438E2-77E1-483C-9D7A-B711AFE63B66.png\"",
+      "File: 4D79E548-F5CA-4C38-AB05-8131DC0FF994.txt, suggested name: \"replacement-overview-grid-portrait-ui-tree_0_1B17DE00-D570-4D4C-8A76-1F54C56BF7C7.txt\"",
+      "File: 2A5380C8-34DE-4252-A419-DDE9D7920011.png, suggested name: \"replacement-overview-grid-portrait_0_30C9C432-260A-4493-8638-2A1A01CD6D44.png\"",
+      "File: 68DB944D-D19B-4E5A-BCA5-1E0138856ADE.txt, suggested name: \"DIAGNOSTIC-replacement-context-before-assertions-portrait-ui-tree_0_A1B726F1-94AB-4A64-8176-2CE6CBA353F5.txt\"",
+      "File: AE616274-C8D6-4DA1-8E0C-4F4175A5C607.png, suggested name: \"DIAGNOSTIC-replacement-context-before-assertions-portrait_0_D6FA7556-5B5F-4D02-926C-0D241F758ADE.png\"",
+      "File: 17EACCC9-A20E-4676-8302-70B9552D65A8.txt, suggested name: \"replacement-reader-before-portrait-ui-tree_0_00CFEE93-07D4-4799-A8F7-8BF55716EF31.txt\"",
+      "File: 54576A64-3246-4FBB-8FF1-97BAAC082CC4.png, suggested name: \"replacement-reader-before-portrait_0_1B576C51-3FDB-4F11-BA33-A6D1151B5063.png\"",
+      "File: 216C16F9-72C2-4828-B9C5-2DA1B1733DB5.txt, suggested name: \"replacement-reader-initial-portrait-ui-tree_0_494D0D26-24C1-4594-88D9-EB9A53A134EA.txt\"",
+      "File: 51426E75-7A24-41F2-921E-EF443887752B.png, suggested name: \"replacement-reader-initial-portrait_0_8029949A-ACF7-4189-864E-8113CA943236.png\"",
+      "File: 17C00A09-5073-409B-BB55-1D531524FB8C.txt, suggested name: \"replacement-reader-return-selected-portrait-nonzero-ui-tree_0_E26E036E-BDAD-44A9-8761-418C88B716CB.txt\"",
+      "File: 59DDD4A1-78F5-473D-8573-55096C42F831.png, suggested name: \"replacement-reader-return-selected-portrait-nonzero_0_1F192C97-5A7E-433A-9CD3-76635B62B5B0.png\"",
+      "File: 26BAA518-15BE-432A-8301-3ED6E245D746.txt, suggested name: \"replacement-overview-list-portrait-nonzero-ui-tree_0_4FA07B82-E73F-4BF8-9E53-D2F4D51E13E3.txt\"",
+      "File: C451EBDF-1E76-4848-91E1-9DE93B2B1F53.png, suggested name: \"replacement-overview-list-portrait-nonzero_0_7BE198A0-9EDF-4664-9435-E2E6E33B2579.png\"",
+      "File: CA2E80BA-4254-454C-A5CC-9A05894BD728.txt, suggested name: \"replacement-overview-grid-portrait-nonzero-ui-tree_0_A892459A-FF3A-4D45-A158-264164997B0D.txt\"",
+      "File: E5A5DAD7-CBA2-42B9-9A7A-98994B02E932.png, suggested name: \"replacement-overview-grid-portrait-nonzero_0_F21E7ACF-AA8C-4418-878F-10D50F3F80C7.png\"",
+      "File: CD7A4100-BEC7-42D1-B6F1-C587219849D8.txt, suggested name: \"DIAGNOSTIC-replacement-context-before-assertions-portrait-nonzero-ui-tree_0_4F34757F-315D-4BA1-9E6D-E82386A84CCB.txt\"",
+      "File: 16D34E02-0A2B-4E80-861B-B768F5F94E42.png, suggested name: \"DIAGNOSTIC-replacement-context-before-assertions-portrait-nonzero_0_CAB969D3-904C-4538-8AC3-B2912B9FB108.png\"",
+      "File: E1391A13-313C-4D9C-93E7-A28844C50C36.txt, suggested name: \"replacement-reader-return-done-portrait-nonzero-ui-tree_0_386EB1E6-35A8-44CA-9A45-CD05DE9194CA.txt\"",
+      "File: 6AD59165-5020-4104-858B-D9B3E45E0F21.png, suggested name: \"replacement-reader-return-done-portrait-nonzero_0_14EE35D3-26E5-4F37-A768-D0DCFB21DBF1.png\"",
+      "File: 0DF6688B-AD2C-4778-B6BE-1E28E7752DC7.txt, suggested name: \"replacement-overview-list-portrait-nonzero-ui-tree_0_D7A19C03-7F6C-4487-90AA-C26C5157F761.txt\"",
+      "File: 42E0141D-6607-4B2C-A7DE-28ED3C186198.png, suggested name: \"replacement-overview-list-portrait-nonzero_0_AD8EC842-7E65-4EB9-8D7F-FCEF24ED781F.png\"",
+      "File: 66CBF59E-8B84-478D-9DC0-CFF815D5888D.txt, suggested name: \"replacement-overview-grid-portrait-nonzero-ui-tree_0_30BB13BE-20C9-47B5-B9E9-B3A74992380D.txt\"",
+      "File: B3A4613F-B26D-47F3-AA5E-9EBAF8F0635D.png, suggested name: \"replacement-overview-grid-portrait-nonzero_0_75689A22-A6D0-49ED-BD34-E8BBA071524C.png\"",
+      "File: 1B0743B7-A79F-4D25-84DF-9EDCA764BFD7.txt, suggested name: \"DIAGNOSTIC-replacement-context-before-assertions-portrait-nonzero-ui-tree_0_F0687B23-CB85-49FA-948D-715C51E4C7F6.txt\"",
+      "File: 76D79970-0272-4308-BB9A-00F92231EC0A.png, suggested name: \"DIAGNOSTIC-replacement-context-before-assertions-portrait-nonzero_0_DA6E7146-69E4-40BF-B513-71C24BAD2533.png\"",
+      "File: 21A07D68-A7C8-4E6F-A55D-0ABEEC4DAB42.txt, suggested name: \"replacement-reader-before-portrait-nonzero-ui-tree_0_5488CCBB-E6CB-45A8-9BD5-485FA6FCD96E.txt\"",
+      "File: CE6771BA-62A7-471F-9344-C2BE356DB6CE.png, suggested name: \"replacement-reader-before-portrait-nonzero_0_FCE8193B-6930-4105-BF40-E6B6C2C72C85.png\"",
+      "File: 5CF3AEAC-7539-4CBB-AC1E-E448833AB231.txt, suggested name: \"replacement-reader-initial-portrait-nonzero-ui-tree_0_554EB85F-D6B5-4C74-9CCB-D1D99060E898.txt\"",
+      "File: FE16698B-771E-4512-ACB2-F3D8449F92E6.png, suggested name: \"replacement-reader-initial-portrait-nonzero_0_29220E29-DFEE-4D13-B9F7-D74F370AAEEB.png\""
+    ]
+  },
+  {
+    "caseHeader": "Exported 2 attachments for: FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader():",
+    "files": []
+  }
+]

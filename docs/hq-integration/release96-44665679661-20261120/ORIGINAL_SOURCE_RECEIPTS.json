@@ -1,0 +1,17 @@
+[
+  {
+    "path": "Scripts/CI/runtime27-release.py",
+    "commit": "9cc346601bdb3fdda34c2c6ac59894f71dc9ea49",
+    "sha256": "92f8f79fcf085334512c6f7ad5de97e17c68a3d6e8b0bd9ac1088eef5bc337dc"
+  },
+  {
+    "path": "Scripts/CI/runtime27-release-manifest.json",
+    "commit": "9cc346601bdb3fdda34c2c6ac59894f71dc9ea49",
+    "sha256": "7897577ded6c32d82914018e8378db95862e6eabec5fdb263887f95630c9da83"
+  },
+  {
+    "path": "tools/verify_xcresult_zero_skips.py",
+    "commit": "9cc346601bdb3fdda34c2c6ac59894f71dc9ea49",
+    "sha256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6"
+  }
+]

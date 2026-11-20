@@ -1,0 +1,138 @@
+[
+  {
+    "path": "visual-11/0480EF09-3546-4615-B854-58523D140C2C.png",
+    "bytes": 155492,
+    "compressedBytes": 110990,
+    "headerOffset": 2257113178,
+    "crc32": "3adc0bbb",
+    "compression": 8
+  },
+  {
+    "path": "visual-11/06D7DF1F-8EEB-4890-804D-2C4FCA12796B.txt",
+    "bytes": 20312,
+    "compressedBytes": 4080,
+    "headerOffset": 2257229203,
+    "crc32": "30114f16",
+    "compression": 8
+  },
+  {
+    "path": "visual-11/14DD56F6-A9C4-4237-B923-5CA434B9B671.png",
+    "bytes": 169034,
+    "compressedBytes": 125127,
+    "headerOffset": 2277543713,
+    "crc32": "295ade81",
+    "compression": 8
+  },
+  {
+    "path": "visual-11/229916AF-0F06-4296-8E1F-0F132FF704CA.png",
+    "bytes": 3655134,
+    "compressedBytes": 3655390,
+    "headerOffset": 2285182785,
+    "crc32": "33591123",
+    "compression": 8
+  },
+  {
+    "path": "visual-11/37F830E9-C873-47D2-BCF2-374C8AA6D511.png",
+    "bytes": 217175,
+    "compressedBytes": 180753,
+    "headerOffset": 2355386622,
+    "crc32": "349dcbaa",
+    "compression": 8
+  },
+  {
+    "path": "visual-11/4A89F386-AC6D-45CF-AA1C-F5FD391F62E1.txt",
+    "bytes": 8895,
+    "compressedBytes": 1665,
+    "headerOffset": 2380600848,
+    "crc32": "cf8b9243",
+    "compression": 8
+  },
+  {
+    "path": "visual-11/4E73FF3A-2611-4DCF-91A0-5D00BA3080D5.png",
+    "bytes": 217517,
+    "compressedBytes": 181190,
+    "headerOffset": 2381020040,
+    "crc32": "b891abf9",
+    "compression": 8
+  },
+  {
+    "path": "visual-11/541EAC01-ACDC-4A96-9BC2-F6BF28A4B6DA.txt",
+    "bytes": 8692,
+    "compressedBytes": 1638,
+    "headerOffset": 2399369833,
+    "crc32": "d9b8fe80",
+    "compression": 8
+  },
+  {
+    "path": "visual-11/5A77BF50-5D05-4CC7-AE44-A6192E5BA7D4.txt",
+    "bytes": 21506,
+    "compressedBytes": 3000,
+    "headerOffset": 2401126270,
+    "crc32": "63c85a77",
+    "compression": 8
+  },
+  {
+    "path": "visual-11/828A33A2-4897-4491-A90C-CAB2DD10FF94.png",
+    "bytes": 3655564,
+    "compressedBytes": 3655814,
+    "headerOffset": 2512569310,
+    "crc32": "40bc6f6a",
+    "compression": 8
+  },
+  {
+    "path": "visual-11/8DAD035B-C659-4476-B424-A91741B232CB.txt",
+    "bytes": 41067,
+    "compressedBytes": 6451,
+    "headerOffset": 2519305707,
+    "crc32": "11ef28ca",
+    "compression": 8
+  },
+  {
+    "path": "visual-11/BD67AA4F-EC02-4832-AE02-38C273F47C8A.txt",
+    "bytes": 31705,
+    "compressedBytes": 5757,
+    "headerOffset": 2643274704,
+    "crc32": "397c5417",
+    "compression": 8
+  },
+  {
+    "path": "visual-11/C53E3F98-6D90-46D0-9591-236DE62275DD.txt",
+    "bytes": 21322,
+    "compressedBytes": 2980,
+    "headerOffset": 2645932344,
+    "crc32": "0700a807",
+    "compression": 8
+  },
+  {
+    "path": "visual-11/F79B3E0B-B074-40B3-A1C9-448BECCF47BB.png",
+    "bytes": 147108,
+    "compressedBytes": 99387,
+    "headerOffset": 2734010465,
+    "crc32": "78dec78a",
+    "compression": 8
+  },
+  {
+    "path": "visual-11/manifest.json",
+    "bytes": 414298,
+    "compressedBytes": 43873,
+    "headerOffset": 2755931137,
+    "crc32": "6dbb24b7",
+    "compression": 8
+  },
+  {
+    "path": "visual-13/manifest.json",
+    "bytes": 148744,
+    "compressedBytes": 17974,
+    "headerOffset": 3084768017,
+    "crc32": "88180230",
+    "compression": 8
+  },
+  {
+    "path": "visual-11/21F17FD9-60F9-4EB2-9494-107076395746",
+    "bytes": 1212,
+    "compressedBytes": 960,
+    "headerOffset": 2285177065,
+    "crc32": "b61d2df8",
+    "compression": 8
+  }
+]

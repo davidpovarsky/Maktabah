@@ -1,0 +1,824 @@
+[
+  {
+    "name": "artifacts/faithful-ipad-matrix.json",
+    "bytes": 79831,
+    "compressedBytes": 5071,
+    "crc32": "c69e3ab1"
+  },
+  {
+    "name": "artifacts/miniTest10-native-fixture-install-11.json",
+    "bytes": 1792,
+    "compressedBytes": 864,
+    "crc32": "48489351"
+  },
+  {
+    "name": "artifacts/miniTest10-native-fixture-install-13.json",
+    "bytes": 1793,
+    "compressedBytes": 864,
+    "crc32": "10f2f641"
+  },
+  {
+    "name": "artifacts/miniTest10-native-fixture-install-phone.json",
+    "bytes": 1792,
+    "compressedBytes": 862,
+    "crc32": "35cd35f5"
+  },
+  {
+    "name": "artifacts/prototype-reference-manifest.json",
+    "bytes": 401,
+    "compressedBytes": 284,
+    "crc32": "8e69d9a5"
+  },
+  {
+    "name": "artifacts/runtime27/CommandPalette.abi.json",
+    "bytes": 149,
+    "compressedBytes": 111,
+    "crc32": "a8bd602e"
+  },
+  {
+    "name": "artifacts/runtime27/CommandPalette.swiftdoc",
+    "bytes": 29836,
+    "compressedBytes": 9047,
+    "crc32": "4a26dd66"
+  },
+  {
+    "name": "artifacts/runtime27/CommandPalette.swiftmodule",
+    "bytes": 188328,
+    "compressedBytes": 73720,
+    "crc32": "eda1e2af"
+  },
+  {
+    "name": "artifacts/runtime27/CommandPalette.swiftsourceinfo",
+    "bytes": 37164,
+    "compressedBytes": 9348,
+    "crc32": "d497c8d4"
+  },
+  {
+    "name": "artifacts/runtime27/Maktabah-iOS_iphonesimulator27.2-arm64.xctestrun",
+    "bytes": 4992,
+    "compressedBytes": 1254,
+    "crc32": "c2175b56"
+  },
+  {
+    "name": "artifacts/runtime27/ReaderSidebarSplit.abi.json",
+    "bytes": 149,
+    "compressedBytes": 111,
+    "crc32": "a8bd602e"
+  },
+  {
+    "name": "artifacts/runtime27/ReaderSidebarSplit.swift",
+    "bytes": 12387,
+    "compressedBytes": 3501,
+    "crc32": "2fd51d9b"
+  },
+  {
+    "name": "artifacts/runtime27/ReaderSidebarSplit.swiftdoc",
+    "bytes": 412,
+    "compressedBytes": 361,
+    "crc32": "7dfca882"
+  },
+  {
+    "name": "artifacts/runtime27/ReaderSidebarSplit.swiftmodule",
+    "bytes": 39696,
+    "compressedBytes": 18512,
+    "crc32": "f1b52e99"
+  },
+  {
+    "name": "artifacts/runtime27/ReaderSidebarSplit.swiftsourceinfo",
+    "bytes": 676,
+    "compressedBytes": 557,
+    "crc32": "17b9155c"
+  },
+  {
+    "name": "artifacts/runtime27/build-for-testing-driver.log",
+    "bytes": 42350,
+    "compressedBytes": 9147,
+    "crc32": "19e6a9c2"
+  },
+  {
+    "name": "artifacts/runtime27/checkout.txt",
+    "bytes": 41,
+    "compressedBytes": 41,
+    "crc32": "a786974d"
+  },
+  {
+    "name": "artifacts/runtime27/device-types.json",
+    "bytes": 66366,
+    "compressedBytes": 3254,
+    "crc32": "2f2a14e2"
+  },
+  {
+    "name": "artifacts/runtime27/fixture-oracle-11.json",
+    "bytes": 1547,
+    "compressedBytes": 800,
+    "crc32": "07fba482"
+  },
+  {
+    "name": "artifacts/runtime27/fixture-oracle-13.json",
+    "bytes": 1071,
+    "compressedBytes": 659,
+    "crc32": "0b734f7c"
+  },
+  {
+    "name": "artifacts/runtime27/fixture-oracle-phone.json",
+    "bytes": 1071,
+    "compressedBytes": 661,
+    "crc32": "3462ea13"
+  },
+  {
+    "name": "artifacts/runtime27/hid-prepare.log",
+    "bytes": 1623,
+    "compressedBytes": 480,
+    "crc32": "a0cfa526"
+  },
+  {
+    "name": "artifacts/runtime27/hid-tools.json",
+    "bytes": 908,
+    "compressedBytes": 496,
+    "crc32": "8f53619e"
+  },
+  {
+    "name": "artifacts/runtime27/ios-simulator-skill-SKILL.md",
+    "bytes": 31145,
+    "compressedBytes": 12379,
+    "crc32": "6740da09"
+  },
+  {
+    "name": "artifacts/runtime27/maestro-mobile-testing-skill-SKILL.md",
+    "bytes": 8582,
+    "compressedBytes": 3914,
+    "crc32": "c7975600"
+  },
+  {
+    "name": "artifacts/runtime27/palette-compiled-images.json",
+    "bytes": 70543,
+    "compressedBytes": 3967,
+    "crc32": "106aa955"
+  },
+  {
+    "name": "artifacts/runtime27/palette-sdk-compile.log",
+    "bytes": 0,
+    "compressedBytes": 2,
+    "crc32": "00000000"
+  },
+  {
+    "name": "artifacts/runtime27/recording-11.log",
+    "bytes": 263,
+    "compressedBytes": 199,
+    "crc32": "26dd8ed8"
+  },
+  {
+    "name": "artifacts/runtime27/recording-13.log",
+    "bytes": 263,
+    "compressedBytes": 200,
+    "crc32": "9397ca5a"
+  },
+  {
+    "name": "artifacts/runtime27/recording-phone.log",
+    "bytes": 266,
+    "compressedBytes": 200,
+    "crc32": "8805ecc1"
+  },
+  {
+    "name": "artifacts/runtime27/release-manifest.json",
+    "bytes": 13310,
+    "compressedBytes": 2997,
+    "crc32": "974474f4"
+  },
+  {
+    "name": "artifacts/runtime27/release-native-matrix-driver.log",
+    "bytes": 1502995,
+    "compressedBytes": 181756,
+    "crc32": "75c1e17f"
+  },
+  {
+    "name": "artifacts/runtime27/release-prototype-build.log",
+    "bytes": 126462,
+    "compressedBytes": 10582,
+    "crc32": "ab247091"
+  },
+  {
+    "name": "artifacts/runtime27/result.json",
+    "bytes": 156855,
+    "compressedBytes": 12521,
+    "crc32": "2e028969"
+  },
+  {
+    "name": "artifacts/runtime27/runtimes.json",
+    "bytes": 60640,
+    "compressedBytes": 2367,
+    "crc32": "e7f82472"
+  },
+  {
+    "name": "artifacts/runtime27/sdk-path.txt",
+    "bytes": 122,
+    "compressedBytes": 92,
+    "crc32": "feabc55a"
+  },
+  {
+    "name": "artifacts/runtime27/sdk.txt",
+    "bytes": 5,
+    "compressedBytes": 7,
+    "crc32": "4f490a66"
+  },
+  {
+    "name": "artifacts/runtime27/selected-test-declarations.json",
+    "bytes": 26048,
+    "compressedBytes": 2303,
+    "crc32": "1c2a0a7c"
+  },
+  {
+    "name": "artifacts/runtime27/sidebar-sdk-compile.log",
+    "bytes": 0,
+    "compressedBytes": 2,
+    "crc32": "00000000"
+  },
+  {
+    "name": "artifacts/runtime27/simctl-io-help.txt",
+    "bytes": 3082,
+    "compressedBytes": 1221,
+    "crc32": "2f3c2d49"
+  },
+  {
+    "name": "artifacts/runtime27/simctl-ui-help.txt",
+    "bytes": 1776,
+    "compressedBytes": 597,
+    "crc32": "ad928ec8"
+  },
+  {
+    "name": "artifacts/runtime27/swift.txt",
+    "bytes": 128,
+    "compressedBytes": 108,
+    "crc32": "8051ba9a"
+  },
+  {
+    "name": "artifacts/runtime27/test-tree.txt",
+    "bytes": 41,
+    "compressedBytes": 42,
+    "crc32": "ef4768f4"
+  },
+  {
+    "name": "artifacts/runtime27/toolchain-selection.json",
+    "bytes": 13019,
+    "compressedBytes": 783,
+    "crc32": "68660b5b"
+  },
+  {
+    "name": "artifacts/runtime27/verified-11.json",
+    "bytes": 316,
+    "compressedBytes": 236,
+    "crc32": "63322464"
+  },
+  {
+    "name": "artifacts/runtime27/verified-11.summary.json",
+    "bytes": 19758,
+    "compressedBytes": 2653,
+    "crc32": "499ca3b7"
+  },
+  {
+    "name": "artifacts/runtime27/verified-11.tests.json",
+    "bytes": 53084,
+    "compressedBytes": 4821,
+    "crc32": "d436d71a"
+  },
+  {
+    "name": "artifacts/runtime27/verified-13-large-text.json",
+    "bytes": 1021,
+    "compressedBytes": 443,
+    "crc32": "42f3e678"
+  },
+  {
+    "name": "artifacts/runtime27/verified-13-large-text.summary.json",
+    "bytes": 985,
+    "compressedBytes": 461,
+    "crc32": "bb7402fa"
+  },
+  {
+    "name": "artifacts/runtime27/verified-13-large-text.tests.json",
+    "bytes": 1800,
+    "compressedBytes": 541,
+    "crc32": "433cb1ae"
+  },
+  {
+    "name": "artifacts/runtime27/verified-13.json",
+    "bytes": 316,
+    "compressedBytes": 235,
+    "crc32": "89189099"
+  },
+  {
+    "name": "artifacts/runtime27/verified-13.tests.json",
+    "bytes": 37959,
+    "compressedBytes": 3216,
+    "crc32": "45ef0720"
+  },
+  {
+    "name": "artifacts/runtime27/verified-phone.json",
+    "bytes": 316,
+    "compressedBytes": 235,
+    "crc32": "9fe49807"
+  },
+  {
+    "name": "artifacts/runtime27/verified-13.summary.json",
+    "bytes": 17696,
+    "compressedBytes": 2253,
+    "crc32": "adf1589b"
+  },
+  {
+    "name": "artifacts/runtime27/verified-phone.summary.json",
+    "bytes": 2990,
+    "compressedBytes": 849,
+    "crc32": "9390ca93"
+  },
+  {
+    "name": "artifacts/runtime27/verified-phone.tests.json",
+    "bytes": 6820,
+    "compressedBytes": 1101,
+    "crc32": "8a1d74d8"
+  },
+  {
+    "name": "artifacts/runtime27/xcode.txt",
+    "bytes": 31,
+    "compressedBytes": 33,
+    "crc32": "ff4998b5"
+  },
+  {
+    "name": "artifacts/runtime27/xcresult-activities-help.txt",
+    "bytes": 906,
+    "compressedBytes": 400,
+    "crc32": "ce147c80"
+  },
+  {
+    "name": "artifacts/runtime27/xcresult-summary-help.txt",
+    "bytes": 708,
+    "compressedBytes": 318,
+    "crc32": "467b8959"
+  },
+  {
+    "name": "artifacts/runtime27/xcresult-summary-schema.json",
+    "bytes": 5804,
+    "compressedBytes": 898,
+    "crc32": "f0c8e545"
+  },
+  {
+    "name": "artifacts/runtime27/xcresult-test-details-help.txt",
+    "bytes": 817,
+    "compressedBytes": 359,
+    "crc32": "831f0c85"
+  },
+  {
+    "name": "artifacts/runtime27/xcresult-tests-help.txt",
+    "bytes": 713,
+    "compressedBytes": 321,
+    "crc32": "20702f38"
+  },
+  {
+    "name": "artifacts/runtime27/xcresult-tests-schema.json",
+    "bytes": 3740,
+    "compressedBytes": 715,
+    "crc32": "e9cfa77c"
+  },
+  {
+    "name": "artifacts/simctl-ui-help.txt",
+    "bytes": 1776,
+    "compressedBytes": 597,
+    "crc32": "ad928ec8"
+  },
+  {
+    "name": "artifacts/simulator-failure-11-devices.log",
+    "bytes": 22758,
+    "compressedBytes": 2220,
+    "crc32": "670dba0d"
+  },
+  {
+    "name": "artifacts/simulator-failure-11-screenshot.log",
+    "bytes": 251,
+    "compressedBytes": 199,
+    "crc32": "13d3beac"
+  },
+  {
+    "name": "artifacts/simulator-failure-11-services.log",
+    "bytes": 1115938,
+    "compressedBytes": 108689,
+    "crc32": "2daecdec"
+  },
+  {
+    "name": "artifacts/simulator-failure-11.png",
+    "bytes": 4702220,
+    "compressedBytes": 4703581,
+    "crc32": "5dbab9b9"
+  },
+  {
+    "name": "artifacts/simulator-failure-13-devices.log",
+    "bytes": 22758,
+    "compressedBytes": 2224,
+    "crc32": "863ce1b8"
+  },
+  {
+    "name": "artifacts/simulator-failure-13-screenshot.log",
+    "bytes": 251,
+    "compressedBytes": 200,
+    "crc32": "877e7130"
+  },
+  {
+    "name": "artifacts/simulator-failure-13-services.log",
+    "bytes": 1090759,
+    "compressedBytes": 126124,
+    "crc32": "6e458fd5"
+  },
+  {
+    "name": "artifacts/simulator-failure-13.png",
+    "bytes": 6275734,
+    "compressedBytes": 6277622,
+    "crc32": "9964cec1"
+  },
+  {
+    "name": "artifacts/simulator-failure-phone-devices.log",
+    "bytes": 22750,
+    "compressedBytes": 2228,
+    "crc32": "d068aa31"
+  },
+  {
+    "name": "artifacts/simulator-failure-phone-screenshot.log",
+    "bytes": 254,
+    "compressedBytes": 200,
+    "crc32": "c43212a1"
+  },
+  {
+    "name": "artifacts/simulator-failure-phone-services.log",
+    "bytes": 1135946,
+    "compressedBytes": 107822,
+    "crc32": "8670b8cf"
+  },
+  {
+    "name": "artifacts/simulator-failure-phone.png",
+    "bytes": 3827033,
+    "compressedBytes": 3827602,
+    "crc32": "28151b20"
+  },
+  {
+    "name": "artifacts/simulator-install-recovery-11-com.example.safaritoolbarsearch-devices.log",
+    "bytes": 22758,
+    "compressedBytes": 2216,
+    "crc32": "6eede6bd"
+  },
+  {
+    "name": "artifacts/simulator-install-recovery-11-com.example.safaritoolbarsearch-services.log",
+    "bytes": 468374,
+    "compressedBytes": 22850,
+    "crc32": "142e2bad"
+  },
+  {
+    "name": "artifacts/simulator-install-recovery-11-com.example.safaritoolbarsearch-screenshot.log",
+    "bytes": 251,
+    "compressedBytes": 199,
+    "crc32": "789ad289"
+  },
+  {
+    "name": "artifacts/simulator-install-recovery-11-com.example.safaritoolbarsearch.png",
+    "bytes": 3727954,
+    "compressedBytes": 3712471,
+    "crc32": "beebd7ef"
+  },
+  {
+    "name": "artifacts/simulator-install-recovery-13-com.example.safaritoolbarsearch-devices.log",
+    "bytes": 22758,
+    "compressedBytes": 2220,
+    "crc32": "c051dadb"
+  },
+  {
+    "name": "artifacts/simulator-install-recovery-13-com.example.safaritoolbarsearch-services.log",
+    "bytes": 630049,
+    "compressedBytes": 32666,
+    "crc32": "c013db00"
+  },
+  {
+    "name": "artifacts/simulator-install-recovery-13-com.example.safaritoolbarsearch.png",
+    "bytes": 6323481,
+    "compressedBytes": 6324964,
+    "crc32": "7dd31222"
+  },
+  {
+    "name": "artifacts/simulator-install-recovery-phone-com.davidpovarsky.chavrusatext-devices.log",
+    "bytes": 64,
+    "compressedBytes": 60,
+    "crc32": "2075c5cb"
+  },
+  {
+    "name": "artifacts/simulator-install-recovery-phone-com.davidpovarsky.chavrusatext-screenshot.log",
+    "bytes": 254,
+    "compressedBytes": 202,
+    "crc32": "e6e5d039"
+  },
+  {
+    "name": "artifacts/simulator-install-recovery-phone-com.davidpovarsky.chavrusatext-services.log",
+    "bytes": 962060,
+    "compressedBytes": 48605,
+    "crc32": "5a2604b6"
+  },
+  {
+    "name": "artifacts/simulator-install-recovery-phone-com.davidpovarsky.chavrusatext.png",
+    "bytes": 3847095,
+    "compressedBytes": 3847538,
+    "crc32": "264106c6"
+  },
+  {
+    "name": "artifacts/test-case-execution-11.json",
+    "bytes": 24401,
+    "compressedBytes": 2185,
+    "crc32": "b2defe85"
+  },
+  {
+    "name": "artifacts/test-case-execution-13-large-text.json",
+    "bytes": 513,
+    "compressedBytes": 189,
+    "crc32": "fa57420c"
+  },
+  {
+    "name": "artifacts/test-case-execution-13.json",
+    "bytes": 16714,
+    "compressedBytes": 1502,
+    "crc32": "eb08c081"
+  },
+  {
+    "name": "artifacts/test-case-execution-phone.json",
+    "bytes": 2665,
+    "compressedBytes": 396,
+    "crc32": "a049d486"
+  },
+  {
+    "name": "artifacts/test-simulator-11.log",
+    "bytes": 940208,
+    "compressedBytes": 87354,
+    "crc32": "6682e35c"
+  },
+  {
+    "name": "artifacts/test-simulator-13-large-text.log",
+    "bytes": 13156,
+    "compressedBytes": 3293,
+    "crc32": "93b17561"
+  },
+  {
+    "name": "artifacts/test-simulator-13.log",
+    "bytes": 261190,
+    "compressedBytes": 25348,
+    "crc32": "fb72686f"
+  },
+  {
+    "name": "artifacts/test-simulator-phone.log",
+    "bytes": 58931,
+    "compressedBytes": 7136,
+    "crc32": "0c582b5a"
+  },
+  {
+    "name": "artifacts/viewport-reports-11/faithful-reader-83ECFBA0-BAF8-48CD-B07E-346795B0414B.viewport.json",
+    "bytes": 267,
+    "compressedBytes": 202,
+    "crc32": "f6f376b7"
+  },
+  {
+    "name": "artifacts/viewport-reports-11/faithful-reader-A33B2BE3-8348-4D7F-96E3-417EA9CC8FD9.viewport.json",
+    "bytes": 253,
+    "compressedBytes": 192,
+    "crc32": "3b7173b9"
+  },
+  {
+    "name": "artifacts/viewport-reports-11/faithful-reader-B60CC984-384A-4927-AA3D-2478994C5E8A.viewport.json",
+    "bytes": 251,
+    "compressedBytes": 191,
+    "crc32": "e8887561"
+  },
+  {
+    "name": "artifacts/viewport-reports-11/faithful-reader-C161ECDE-0C58-4857-82C2-E193E74103D0.viewport.json",
+    "bytes": 261,
+    "compressedBytes": 199,
+    "crc32": "0b6bb1c5"
+  },
+  {
+    "name": "artifacts/viewport-reports-13/faithful-reader-07956CCB-74CC-4D7E-B004-58C1BE029682.viewport.json",
+    "bytes": 265,
+    "compressedBytes": 201,
+    "crc32": "03425827"
+  },
+  {
+    "name": "artifacts/viewport-reports-13/faithful-reader-32E4DA8E-7EBA-4DA7-80CD-468651BCC9E3.viewport.json",
+    "bytes": 253,
+    "compressedBytes": 189,
+    "crc32": "f9b90f1c"
+  },
+  {
+    "name": "artifacts/viewport-reports-13/faithful-reader-ED4C0228-FE74-4C85-B572-CF1410576FD3.viewport.json",
+    "bytes": 263,
+    "compressedBytes": 198,
+    "crc32": "d7a49ad1"
+  },
+  {
+    "name": "artifacts/viewport-reports-phone/faithful-reader-D06369F6-B169-45B0-93A4-141AA14DF6EE.viewport.json",
+    "bytes": 1738,
+    "compressedBytes": 614,
+    "crc32": "478ad0de"
+  },
+  {
+    "name": "hq-stage2/ExpoModulesProvider.swift",
+    "bytes": 1246,
+    "compressedBytes": 473,
+    "crc32": "497ff62d"
+  },
+  {
+    "name": "hq-stage2/actual-source-inputs.json",
+    "bytes": 97263,
+    "compressedBytes": 31789,
+    "crc32": "cfe9c502"
+  },
+  {
+    "name": "hq-stage2/generated-Maktabah-project.pbxproj",
+    "bytes": 606147,
+    "compressedBytes": 91308,
+    "crc32": "1cea24ae"
+  },
+  {
+    "name": "hq-stage2/generated-pods-project.diff",
+    "bytes": 399541,
+    "compressedBytes": 52278,
+    "crc32": "25b95741"
+  },
+  {
+    "name": "hq-stage2/generated-privacy.diff",
+    "bytes": 2618,
+    "compressedBytes": 560,
+    "crc32": "dde2a370"
+  },
+  {
+    "name": "hq-stage2/hanlin-sdk-after.log",
+    "bytes": 679,
+    "compressedBytes": 416,
+    "crc32": "684fed2b"
+  },
+  {
+    "name": "hq-stage2/hanlin-sdk-inputs-after.json",
+    "bytes": 61045,
+    "compressedBytes": 16010,
+    "crc32": "0443c256"
+  },
+  {
+    "name": "hq-stage2/hanlin-sdk-inputs.json",
+    "bytes": 61045,
+    "compressedBytes": 16010,
+    "crc32": "0443c256"
+  },
+  {
+    "name": "hq-stage2/hanlin-sdk.log",
+    "bytes": 679,
+    "compressedBytes": 416,
+    "crc32": "684fed2b"
+  },
+  {
+    "name": "hq-stage2/maktabah_zayit_search.h.log",
+    "bytes": 300,
+    "compressedBytes": 148,
+    "crc32": "fd7085b1"
+  },
+  {
+    "name": "hq-stage2/matching-embedded-bundle.log",
+    "bytes": 741,
+    "compressedBytes": 365,
+    "crc32": "82f7285f"
+  },
+  {
+    "name": "hq-stage2/matching-zayit-framework.log",
+    "bytes": 22375,
+    "compressedBytes": 2504,
+    "crc32": "db1a6a2e"
+  },
+  {
+    "name": "hq-stage2/native-script-permissions.log",
+    "bytes": 0,
+    "compressedBytes": 2,
+    "crc32": "00000000"
+  },
+  {
+    "name": "hq-stage2/npm-ci.log",
+    "bytes": 3331,
+    "compressedBytes": 1240,
+    "crc32": "550aef10"
+  },
+  {
+    "name": "hq-stage2/otzaria_search_engine.h.log",
+    "bytes": 304,
+    "compressedBytes": 143,
+    "crc32": "1619658f"
+  },
+  {
+    "name": "hq-stage2/pinned-sharp-inputs.log",
+    "bytes": 991,
+    "compressedBytes": 509,
+    "crc32": "b445597c"
+  },
+  {
+    "name": "hq-stage2/pod-install.log",
+    "bytes": 31807,
+    "compressedBytes": 5109,
+    "crc32": "e5554b3c"
+  },
+  {
+    "name": "hq-stage2/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+    "bytes": 877,
+    "compressedBytes": 331,
+    "crc32": "0cf24b94"
+  },
+  {
+    "name": "hq-stage2/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+    "bytes": 855,
+    "compressedBytes": 301,
+    "crc32": "10470de0"
+  },
+  {
+    "name": "hq-stage2/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+    "bytes": 1482,
+    "compressedBytes": 368,
+    "crc32": "ddedeecd"
+  },
+  {
+    "name": "hq-stage2/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+    "bytes": 776,
+    "compressedBytes": 312,
+    "crc32": "efb09f89"
+  },
+  {
+    "name": "hq-stage2/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+    "bytes": 1233,
+    "compressedBytes": 326,
+    "crc32": "82c8ab68"
+  },
+  {
+    "name": "hq-stage2/privacy-generated.xcprivacy",
+    "bytes": 1386,
+    "compressedBytes": 383,
+    "crc32": "621daac8"
+  },
+  {
+    "name": "hq-stage2/privacy-original.xcprivacy",
+    "bytes": 1132,
+    "compressedBytes": 324,
+    "crc32": "9873bf8c"
+  },
+  {
+    "name": "hq-stage2/react-source-checkout.log",
+    "bytes": 453,
+    "compressedBytes": 220,
+    "crc32": "6a5c37f3"
+  },
+  {
+    "name": "hq-stage2/rebuilt-zayit/MaktabahZayitSearch.xcframework.tar",
+    "bytes": 123760640,
+    "compressedBytes": 38311454,
+    "crc32": "134d0f67"
+  },
+  {
+    "name": "hq-stage2/resolve-packages.log",
+    "bytes": 4898,
+    "compressedBytes": 1339,
+    "crc32": "c3571d35"
+  },
+  {
+    "name": "hq-stage2/resolved-Package.resolved",
+    "bytes": 4432,
+    "compressedBytes": 1039,
+    "crc32": "71bee3ea"
+  },
+  {
+    "name": "hq-stage2/resolved-Podfile.lock",
+    "bytes": 100298,
+    "compressedBytes": 11017,
+    "crc32": "b37aa330"
+  },
+  {
+    "name": "hq-stage2/result.json",
+    "bytes": 82673,
+    "compressedBytes": 23165,
+    "crc32": "1e8d0f8c"
+  },
+  {
+    "name": "hq-stage2/simulator-build-for-testing.log",
+    "bytes": 21957910,
+    "compressedBytes": 1088056,
+    "crc32": "3bb7606d"
+  },
+  {
+    "name": "hq-stage2/target-membership.log",
+    "bytes": 130,
+    "compressedBytes": 109,
+    "crc32": "eb137b9c"
+  },
+  {
+    "name": "hq-stage2/workspace-Package.resolved",
+    "bytes": 4432,
+    "compressedBytes": 1039,
+    "crc32": "71bee3ea"
+  },
+  {
+    "name": "hq-stage2/zayit-locked-metadata.log",
+    "bytes": 5135,
+    "compressedBytes": 789,
+    "crc32": "0ed01a92"
+  }
+]
