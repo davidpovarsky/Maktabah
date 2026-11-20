@@ -221,11 +221,15 @@ final class OtzariaSearchIndexManager: @unchecked Sendable {
             throw OtzariaSearchError.invalidEngineResponse("קובץ הזהות המשני של האינדקס חסר או אינו קריא; נתוני הספרים לא השתנו.")
         }
         let currentDatabase = try currentFingerprint(databasePath: databasePath)
+        let trustedManifest = managed && identity.upstreamCommit != currentBuild.upstreamCommit
+            ? trustedManagedReadManifest(indexURL: finalURL, databasePath: databasePath, build: currentBuild)
+            : nil
         guard (managed
                   ? OtzariaSearchArtifactPolicy.managedIdentityMatchesCanonicalData(
                       identity,
                       currentDatabase: currentDatabase,
-                      build: currentBuild
+                      build: currentBuild,
+                      trustedManifest: trustedManifest
                     )
                   : identity.database == currentDatabase
                       && identity.upstreamCommit == currentBuild.upstreamCommit
@@ -248,6 +252,28 @@ final class OtzariaSearchIndexManager: @unchecked Sendable {
 
     func compatibility(databasePath: String) -> OtzariaIndexCompatibility? {
         try? OtzariaSearchEngineBridge.checkCompatibility(indexURL: indexURL(for: databasePath))
+    }
+
+    /// Cross-revision reads require this full original manifest validation.
+    /// A local identity's bare commit cannot supply the missing producer repo.
+    func trustedManagedReadManifest(
+        indexURL: URL,
+        databasePath: String,
+        build: OtzariaSearchEngineBuildInfo
+    ) -> OtzariaSearchArtifactManifest? {
+        guard OtzariaDatabaseAccessController.shared.source == .managedInternal else { return nil }
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        guard let storage = try? OtzariaDatabaseStorage(),
+              let databaseData = try? Data(contentsOf: storage.installationManifestURL),
+              let database = try? decoder.decode(OtzariaDatabaseInstallationManifest.self, from: databaseData),
+              let fingerprint = try? currentFingerprint(databasePath: databasePath),
+              let data = try? Data(contentsOf: indexURL.appendingPathComponent("otzaria_prebuilt_installation.json")),
+              let manifest = try? JSONDecoder().decode(OtzariaSearchArtifactManifest.self, from: data),
+              (try? OtzariaSearchArtifactPolicy.validate(
+                  manifest, database: database, databaseBytes: Int64(fingerprint.fileSize), build: build
+              )) != nil else { return nil }
+        return manifest
     }
 
     func trustedManagedArtifactIdentity(databasePath: String) -> String? {
@@ -459,16 +485,10 @@ final class OtzariaSearchIndexManager: @unchecked Sendable {
                     try fileManager.moveItem(at: candidate, to: target)
                     OtzariaTantivySearchRepository.shared.invalidate(databasePath: databasePath)
                 }
-                let repaired = OtzariaIndexBuildIdentity(
+                let repaired = try OtzariaSearchArtifactPolicy.artifactProducerIdentity(
+                    manifest: manifest,
                     database: try currentFingerprint(databasePath: databasePath),
-                    upstreamCommit: build.upstreamCommit,
-                    engineVersion: build.engineVersion,
-                    indexSchemaVersion: build.indexSchemaVersion,
-                    defaultGenerationOrder: build.defaultGenerationOrder,
-                    adapterVersion: build.adapterVersion,
-                    resourceHashes: build.resourceHashes,
-                    catalogueHash: manifest.lexicalArtifact.catalogueHash,
-                    semanticArtifactIdentity: nil
+                    requiredResourceNames: Set(build.resourceHashes.keys)
                 )
                 if storedIdentity(indexURL: target) != repaired {
                     try writeIdentity(repaired, indexURL: target)

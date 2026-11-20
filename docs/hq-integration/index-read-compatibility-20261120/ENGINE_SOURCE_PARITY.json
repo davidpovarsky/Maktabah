@@ -1,0 +1,40 @@
+{
+  "observed_at": "2026-11-20T02:07:59.771518+00:00",
+  "producer_repository": "Otzaria/otzaria_search_engine",
+  "producer_commit": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+  "consumer_repository": "davidpovarsky/otzaria_search_engine",
+  "consumer_commit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+  "base_tree": "6bb0edcf848608ec9b577d678f12b2c4b162a3d8",
+  "candidate_tree": "c3b420c312480437ae4194be0dd554a07d58bbb5",
+  "base_is_ancestor": true,
+  "changed_paths": "A\tdocs/exact-occurrences-20261120/CONTRACT.md\nA\tdocs/exact-occurrences-20261120/PRE_WRITER_FAILURE_TRACE.md\nA\tdocs/exact-occurrences-20261120/README.md\nA\tdocs/exact-occurrences-20261120/SAFE_TEST_INVENTORY.md\nA\tdocs/exact-occurrences-20261120/TEST_HYGIENE.md\nA\tdocs/exact-occurrences-20261120/baseline-red.json\nA\tdocs/exact-occurrences-20261120/baseline-red.log\nA\tdocs/exact-occurrences-20261120/baseline_occurrence_probe.rs\nA\tdocs/exact-occurrences-20261120/cargo-fetch.json\nA\tdocs/exact-occurrences-20261120/cargo-fetch.log\nA\tdocs/exact-occurrences-20261120/diagnostic-fixture-guard.json\nA\tdocs/exact-occurrences-20261120/diagnostic_fixture_guard_probe.rs\nA\tdocs/exact-occurrences-20261120/focused-after-hygiene.json\nA\tdocs/exact-occurrences-20261120/focused-after-hygiene.log\nA\tdocs/exact-occurrences-20261120/focused-green-attempt1.json\nA\tdocs/exact-occurrences-20261120/focused-green-attempt1.log\nA\tdocs/exact-occurrences-20261120/focused-green-attempt2.json\nA\tdocs/exact-occurrences-20261120/focused-green-attempt2.log\nA\tdocs/exact-occurrences-20261120/focused-green.json\nA\tdocs/exact-occurrences-20261120/focused-green.log\nA\tdocs/exact-occurrences-20261120/focused-inputs.json\nA\tdocs/exact-occurrences-20261120/full-default-regression.json\nA\tdocs/exact-occurrences-20261120/full-default-regression.log\nA\tdocs/exact-occurrences-20261120/hygiene-patch-verification.json\nA\tdocs/exact-occurrences-20261120/hygiene-source.patch.gz\nA\tdocs/exact-occurrences-20261120/legacy-index-post-run-observation.json\nA\tdocs/exact-occurrences-20261120/patch-verification.json\nA\tdocs/exact-occurrences-20261120/safe-library-regression.json\nA\tdocs/exact-occurrences-20261120/safe-library-regression.log\nA\tdocs/exact-occurrences-20261120/source.patch.gz\nA\tdocs/exact-occurrences-20261120/verification-hygiene.json\nA\tdocs/exact-occurrences-20261120/verification-primitive.json\nM\trust/src/api/benchmark.rs\nM\trust/src/api/diagnostic_test.rs\nM\trust/src/api/focused_benchmark.rs\nM\trust/src/api/search_engine.rs\nA\trust/src/diagnostic_test_fixture.rs\nA\trust/src/exact_occurrences.rs\nA\trust/src/exact_occurrences/tests.rs\nM\trust/src/lib.rs\n",
+  "api_parity": {
+    "path": "rust/src/api/search_engine.rs",
+    "base_sha256": "95915f32b54547489a5aabb9091e0f4e531d78377819d80cab6bd1b7835ff537",
+    "candidate_sha256": "59a6ae51a038780d8a78d19952087b735e096373394347affc02160765973f75",
+    "sole_added_block_start_line": 4123,
+    "sole_added_block_lines": 42,
+    "sole_added_block_sha256": "a0b3c21f3b38fe92481c9bc0d5209ec4a5c13375de7f2a96e4c495f09c0007f5",
+    "candidate_without_added_block_is_exact_base": true,
+    "diff_sha256": "1d3adbce8814ebf39982bc4040762670fc93ef1c48bb0fc4f5f5bf4061fe7eed"
+  },
+  "unchanged_dependencies": {
+    "rust/Cargo.toml": {
+      "same_bytes": true,
+      "sha256": "3e9584afbfb53cd97ae08371ae17831c59652f12b6073f6ed1756d7e5e1f586d"
+    },
+    "rust/Cargo.lock": {
+      "same_bytes": true,
+      "sha256": "d8cf629b23f9bf53028ddcca6f27ef7fdf8a0ee1e6e5807050c7f3d3eb5b04da"
+    }
+  },
+  "runtime_qualification": "NOT_RUN",
+  "old_index_read_execution": false,
+  "additional_changed_source_review": {
+    "lib_rs": "Additive exact_occurrences module; diagnostic fixture module is cfg(test).",
+    "benchmark_rs": "Only two opt-in fixture tests changed.",
+    "diagnostic_test_rs": "Original public diagnostic path retained; body extracted to private _at_index helper, tests use owned fixture.",
+    "focused_benchmark_rs": "Original public benchmark path retained; body extracted to private _at_index helper, tests use owned fixture.",
+    "claim_limit": "The legacy SearchEngine API file is byte-identical after removing one added 42-line method. This is source evidence, not binary, old-index, Apple or Native runtime qualification."
+  }
+}

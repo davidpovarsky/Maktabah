@@ -1,0 +1,6 @@
+{
+  "observed_at": "2026-11-20T02:17:10.874453+00:00",
+  "command": "python -X utf8 tools/hq-search-tests.py",
+  "exit": 0,
+  "real_native_or_ffi": false
+}

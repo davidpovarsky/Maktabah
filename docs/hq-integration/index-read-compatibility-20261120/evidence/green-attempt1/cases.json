@@ -1,0 +1,348 @@
+{
+  "cases" : [
+    {
+      "name" : "original_policy_accepts_original265_manifest",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "current_policy_preserves_original265_exact_build",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "baseline_RED_cross_revision_candidate_is_rejected",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_GREEN_exact_265_to_d5_full_policy_probe",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "production_candidate_remains_unqualified_and_rejected",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "actual_v32_manifest_candidate_metadata_probe_only",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_format",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_profile",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_profile_version",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_database_repository",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_database_release",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_database_tag",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_database_asset",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_database_asset_name",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_database_asset_digest",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_database_compressed_size",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_database_size",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_producer_repository",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_producer_commit",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_producer_version",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_producer_schema",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_producer_generation",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_producer_adapter",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_producer_tantivy",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_producer_semantic_revision",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_document_total",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_source_total",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_extracted_total",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_packaged_total",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_file_total",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_part_compression",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_part_digest",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_part_digest_nonhex",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_part_path",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_part_offset",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_part_packaged_bytes",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_part_output_bytes",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_consumer_repository",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_consumer_commit",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_consumer_future_descendant",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_consumer_branch",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_consumer_version",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_consumer_schema",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_consumer_generation",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_consumer_adapter",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_consumer_semantic_revision",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_producer_resource_hash_Application Support\/Otzaria\/lexical.db",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_consumer_resource_hash_Application Support\/Otzaria\/lexical.db",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_missing_resource_Application Support\/Otzaria\/lexical.db",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_producer_resource_hash_Vendor\/OtzariaSearchEngine\/Resources\/Acronyms.json",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_consumer_resource_hash_Vendor\/OtzariaSearchEngine\/Resources\/Acronyms.json",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_missing_resource_Vendor\/OtzariaSearchEngine\/Resources\/Acronyms.json",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_producer_resource_hash_Vendor\/OtzariaSearchEngine\/Resources\/dictionary.json",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_consumer_resource_hash_Vendor\/OtzariaSearchEngine\/Resources\/dictionary.json",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_missing_resource_Vendor\/OtzariaSearchEngine\/Resources\/dictionary.json",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_extra_resource",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_wrong_active_profile",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "candidate_rejects_wrong_actual_database_bytes",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "producer_identity_uses_manifest_fields_and_keeps_consumer_honest",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "untrusted_bare_commit_cannot_authorize_cross_revision_read",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "producer_identity_missing_required_resource_throws",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "install_bulk_preserves_producer_and_old_reader_rollback",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "install_stream_preserves_producer_and_old_reader_rollback",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "recovery_preserves_original_producer_across_path_change",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "recovery_existing_correct_producer_does_not_rewrite_identity",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "recovery_repairs_consumer_restamp_from_original_manifest",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "recovery_production_disabled_preserves_existing_index",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "recovery_incompatible_engine_preserves_existing_index",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "recovery_wrong_count_preserves_existing_index",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "recovery_count_error_preserves_existing_index",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "recovery_wrong_resource_preserves_existing_index",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "recovery_wrong_source_preserves_existing_index",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "recovery_wrong_profile_preserves_existing_index",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "installer_incompatible_engine_preserves_original_final",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "installer_wrong_count_preserves_original_final",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "installer_count_error_preserves_original_final",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "installer_open_error_preserves_original_final",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "installer_promotion_open_error_preserves_original_final",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "streaming_cancellation_keeps_original_final",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "production_readiness_rejects_unqualified_producer_without_mutation",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "new_writer_identity_keeps_real_consumer_revision",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "cross_writer_seed_stays_denied_without_deleting_final",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "checkpoint_cross_writer_does_not_resume_or_seed",
+      "outcome" : "PASS"
+    },
+    {
+      "name" : "checkpoint_same_writer_resumes",
+      "outcome" : "PASS"
+    }
+  ],
+  "counts" : {
+    "failed" : 0,
+    "passed" : 84,
+    "skipped" : 0,
+    "total" : 84
+  },
+  "real_engine_or_index" : false,
+  "runtime_qualification" : "NOT_RUN; production registry empty"
+}

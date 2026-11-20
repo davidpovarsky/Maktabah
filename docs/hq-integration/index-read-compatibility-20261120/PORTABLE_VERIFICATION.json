@@ -1,0 +1,36 @@
+{
+  "observed_at": "2026-11-20T02:20:34.178783+00:00",
+  "base": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "final_sentinel_job": "job_6dcf286b0cc5",
+  "final_red": {
+    "failed": 5,
+    "passed": 87,
+    "skipped": 0,
+    "total": 92
+  },
+  "final_green": {
+    "failed": 0,
+    "passed": 92,
+    "skipped": 0,
+    "total": 92
+  },
+  "original_regression_assertions": {
+    "portable_search": 191,
+    "cached_readiness": 14
+  },
+  "current_source_sha256": {
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift": "9386bab3f68a98aa522e6eba22629b4dd9f79eb040a31f91b15533d89456fe30",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactInstaller.swift": "76e52d7018757fffaa70e547de49915ca5d767d4fff54f227b78d583fec17e66",
+    "Source/Otzaria/Search/OtzariaSearchIndexManager.swift": "d9ca8f6735dd57bcb4f6425f90b9ad76f974212c76be147352b1488b4c15f651"
+  },
+  "exact_writer_methods_unchanged": {
+    "func makeIdentity(": true,
+    "func prepareOrResumeBuildingIndex(": true,
+    "private func canSeedBuildingIndex(": true
+  },
+  "production_qualification": "DISABLED_EMPTY_REGISTRY",
+  "actual_old_index_runtime": "NOT_RUN",
+  "apple_sdk": "NOT_RUN",
+  "native_ui": "NOT_RUN",
+  "no_user_index_access": true
+}
