@@ -2493,3 +2493,402 @@ final class StudyProfileNativeAcceptanceTests: R27NativeUIBase {
         try JSONSerialization.data(withJSONObject: XCTUnwrap(value), options: [.sortedKeys, .fragmentsAllowed])
     }
 }
+
+// MARK: - One hundred original group transitions (additional Native acceptance)
+
+extension FaithfulReaderUIBase {
+    @MainActor
+    fileprivate func prepareSingleBookForGroupStress() throws {
+        try establishSingleBookOverviewFixture(phone: false)
+    }
+}
+
+/// Read-only projection of the original persisted document/navigation identity.
+/// Geometry checkpoints and revision are observed separately, never rewritten.
+private struct GroupStressWorkspace: Decodable, Sendable {
+    struct Profile: Decodable, Equatable, Sendable {
+        let id: UUID
+        let name: String
+        let symbol: String
+        let order: Int
+        let color: String?
+    }
+    struct Locator: Decodable, Equatable, Sendable {
+        struct Position: Decodable, Equatable, Sendable {
+            let kind: String
+            let integer: Int?
+            let string: String?
+        }
+        let backend: String
+        let workKey: String
+        let position: Position
+    }
+    struct Document: Decodable, Equatable, Sendable {
+        struct Session: Decodable, Equatable, Sendable {
+            let id: UUID
+            let bookId: Int
+            let bookTitle: String?
+            let backendLocator: Locator?
+            let locator: Locator?
+            let contentId: Int?
+            let page: Int?
+            let part: Int?
+            let searchText: String?
+            let searchModeRaw: Int?
+            let nearDistance: Int?
+            let highlightTerms: [String]?
+        }
+        let backend: String
+        let session: Session
+    }
+    struct Group: Decodable, Equatable, Sendable {
+        let id: UUID
+        let profileID: UUID
+        let name: String
+        let order: Int
+        let tabs: [Document]
+        let activeTabID: UUID?
+    }
+    struct Scene: Decodable, Sendable {
+        let profileID: UUID
+        let groupID: UUID
+        let activeTabIDsByGroup: [UUID: UUID]?
+    }
+    let version: Int
+    let revision: UInt64
+    let profiles: [Profile]
+    let groups: [Group]
+    let scenes: [String: Scene]
+    let lastActiveSceneID: String?
+
+    var current: (sceneID: String, scene: Scene, group: Group, document: Document)? {
+        guard let sceneID = lastActiveSceneID, let scene = scenes[sceneID],
+              let group = groups.first(where: { $0.id == scene.groupID && $0.profileID == scene.profileID }),
+              let activeID = scene.activeTabIDsByGroup?[group.id] ?? group.activeTabID,
+              let document = group.tabs.first(where: { $0.session.id == activeID }) else { return nil }
+        return (sceneID, scene, group, document)
+    }
+}
+
+@MainActor
+private final class GroupStressNativeObservation {
+    let application: XCUIApplication
+    let url: URL
+    let name: String
+    let sceneID: String?
+    let afterRevision: UInt64?
+
+    init(application: XCUIApplication, url: URL, name: String, sceneID: String?, afterRevision: UInt64?) {
+        self.application = application
+        self.url = url
+        self.name = name
+        self.sceneID = sceneID
+        self.afterRevision = afterRevision
+    }
+
+    func read() -> GroupStressWorkspace? {
+        guard let bytes = try? Data(contentsOf: url),
+              let workspace = try? JSONDecoder().decode(GroupStressWorkspace.self, from: bytes),
+              let current = workspace.current, workspace.version == 1,
+              current.group.name == name, current.group.tabs.count == 1,
+              sceneID.map({ current.sceneID == $0 }) ?? true,
+              afterRevision.map({ workspace.revision > $0 }) ?? true else { return nil }
+        let overview = application.descendants(matching: .any)["study-groups-overview"]
+        guard overview.exists, !application.alerts["לא ניתן לשנות את סביבת הלימוד"].exists else { return nil }
+        let segments = application.segmentedControls["study-group-selector"]
+        let control = segments.exists ? segments : application.buttons["study-group-selector"]
+        guard control.exists, control.isEnabled, control.isHittable,
+              control.value as? String == name else { return nil }
+        let cards = overview.collectionViews.cells.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@", "tab-switcher-grid-cell-"))
+        guard cards.count == 1 else { return nil }
+        let card = cards.element(boundBy: 0)
+        guard card.identifier == "tab-switcher-grid-cell-" + current.document.session.id.uuidString,
+              card.isSelected, card.isHittable else { return nil }
+        return workspace
+    }
+}
+
+@MainActor
+private final class GroupStressEvidence {
+    var transitions: [[String: Any]] = []
+    var completedTransitions = 0
+    var coldRestoreVerified = false
+    let emit: @MainActor (Data) -> Void
+
+    init(emit: @escaping @MainActor (Data) -> Void) { self.emit = emit }
+
+    func record(_ value: [String: Any]) {
+        if let data = try? JSONSerialization.data(withJSONObject: value, options: [.sortedKeys]),
+           let text = String(data: data, encoding: .utf8) {
+            print("GROUP_STRESS_OBSERVATION " + text)
+        }
+    }
+
+    func attachReport() {
+        let value: [String: Any] = [
+            "schema": 1, "requiredConsecutiveTransitions": 100,
+            "completedTransitions": completedTransitions,
+            "coldRestoreVerified": coldRestoreVerified,
+            "timingScope": "XCTest tap, original commit and accessibility observation; not product p95",
+            "transitions": transitions
+        ]
+        if let data = try? JSONSerialization.data(withJSONObject: value, options: [.sortedKeys]) { emit(data) }
+    }
+}
+
+/// Additional iPad/miniTest10 coverage. This does not replace any original case,
+/// full-production-data acceptance, physical-device testing, or a latency gate.
+final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
+    override var readerTestTier: TestTier { .realUI }
+
+    @MainActor
+    func testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore() throws {
+        XCTAssertTrue(isPad, "This additional case requires the original iPad group UI")
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(backend: "otzaria")
+        let initialLocator = try assertTarget(backend: "otzaria")
+        let url = try verifiedGroupStressSidecar()
+        // A fresh UUID sidecar can import real legacy tabs. Use the existing
+        // original UI preparation only after the miniTest10/ownership gates.
+        try prepareSingleBookForGroupStress()
+        openGroupStressOverview()
+        let initial = try readGroupStressWorkspace(url)
+        XCTAssertEqual(initial.version, 1)
+        XCTAssertEqual(initial.profiles.count, 1)
+        XCTAssertEqual(initial.groups.count, 1)
+        let original = try XCTUnwrap(initial.current)
+        XCTAssertEqual(original.group.tabs.count, 1)
+        XCTAssertEqual(original.document.backend, "otzaria")
+        var workspace = try waitForOriginalGroup(named: original.group.name, at: url,
+                                                 sceneID: original.sceneID, afterRevision: nil)
+        let profileID = original.scene.profileID
+        var names = [original.group.name]
+        for name in ["רצף א", "רצף ב"] {
+            XCTAssertFalse(workspace.groups.contains { $0.name == name })
+            let beforeRevision = workspace.revision
+            tap(app.buttons["study-group-actions-menu"])
+            tap(app.buttons["קבוצה מהכרטיסיות הנוכחיות"])
+            let prompt = app.alerts["שם קבוצת הכרטיסיות"]
+            XCTAssertTrue(prompt.exists || prompt.waitForExistence(timeout: 10))
+            prompt.textFields.firstMatch.typeText(name)
+            tap(prompt.buttons["שמירה"])
+            workspace = try waitForOriginalGroup(named: name, at: url,
+                                                  sceneID: original.sceneID, afterRevision: beforeRevision)
+            names.append(name)
+        }
+        XCTAssertEqual(workspace.groups.count, 3)
+        XCTAssertEqual(Set(workspace.groups.map(\.id)).count, 3)
+        XCTAssertTrue(workspace.groups.allSatisfy { $0.profileID == profileID && $0.tabs.count == 1 })
+        XCTAssertEqual(Set(workspace.groups.flatMap { $0.tabs.map { $0.session.id } }).count, 3,
+                       "Original copies must retain three different document owners, not one shared UUID")
+
+        // Hydrate every original reader before pinning its durable navigation
+        // state. These preparation transitions are explicitly not counted.
+        var locators: [UUID: String] = [:]
+        for name in names {
+            let previous = try XCTUnwrap(workspace.current)
+            XCTAssertNotEqual(previous.group.name, name)
+            selectOriginalStressGroup(named: name)
+            workspace = try waitForOriginalGroup(named: name, at: url,
+                                                  sceneID: original.sceneID, afterRevision: workspace.revision)
+            let current = try XCTUnwrap(workspace.current)
+            closeGroupStressOverview()
+            let locator = try assertTarget(backend: "otzaria")
+            XCTAssertEqual(locator, initialLocator, "Copying a group preserves the actual original reading unit")
+            locators[current.group.id] = locator
+            openGroupStressOverview()
+            workspace = try waitForOriginalGroup(named: name, at: url,
+                                                  sceneID: original.sceneID, afterRevision: nil)
+        }
+        let baseline = workspace
+        XCTAssertEqual(locators.count, 3)
+        try assertOriginalGroupMembership(workspace, matches: baseline)
+        try attachWorkspaceSnapshot("groups100-before-consecutive-switches")
+        retainNativeEvidence("groups100-before-consecutive-switches")
+        let evidence = GroupStressEvidence { [weak self] data in
+            let attachment = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
+            attachment.name = "groups100-original-transition-observations"
+            attachment.lifetime = .keepAlways
+            self?.add(attachment)
+        }
+        addTeardownBlock { await evidence.attachReport() }
+
+        for step in 1...100 {
+            let target = try XCTUnwrap(baseline.groups.first { $0.name == names[(step - 1) % names.count] })
+            let previous = try XCTUnwrap(workspace.current)
+            XCTAssertNotEqual(target.id, previous.group.id, "A same-group tap is not a counted transition")
+            let targetDocument = try XCTUnwrap(target.tabs.first)
+            XCTAssertNotEqual(targetDocument.session.id, previous.document.session.id)
+            let start = ProcessInfo.processInfo.systemUptime
+            var observation: [String: Any] = [
+                "step": step, "state": "attempted", "sceneID": previous.sceneID,
+                "profileID": profileID.uuidString,
+                "fromGroupID": previous.group.id.uuidString, "toGroupID": target.id.uuidString,
+                "fromDocumentID": previous.document.session.id.uuidString,
+                "toDocumentID": targetDocument.session.id.uuidString,
+                "beforeRevision": workspace.revision
+            ]
+            evidence.transitions.append(observation)
+            evidence.record(observation)
+            selectOriginalStressGroup(named: target.name)
+            workspace = try waitForOriginalGroup(named: target.name, at: url,
+                                                  sceneID: original.sceneID, afterRevision: workspace.revision)
+            let current = try XCTUnwrap(workspace.current)
+            XCTAssertEqual(current.group.id, target.id)
+            XCTAssertEqual(current.document.session.id, targetDocument.session.id)
+            XCTAssertEqual(current.scene.profileID, profileID)
+            try assertOriginalGroupMembership(workspace, matches: baseline)
+            observation["state"] = "committed"
+            observation["afterRevision"] = workspace.revision
+            observation["observedGroupID"] = current.group.id.uuidString
+            observation["observedDocumentID"] = current.document.session.id.uuidString
+            observation["selectedOriginalCardID"] = "tab-switcher-grid-cell-" + current.document.session.id.uuidString
+            observation["selectedOriginalGroupName"] = current.group.name
+            observation["automationElapsedSeconds"] = ProcessInfo.processInfo.systemUptime - start
+            evidence.transitions[step - 1] = observation
+            evidence.completedTransitions += 1
+            evidence.record(observation)
+        }
+        XCTAssertEqual(evidence.completedTransitions, 100)
+        XCTAssertEqual(evidence.transitions.count, 100)
+        let final = try XCTUnwrap(workspace.current)
+        try attachWorkspaceSnapshot("groups100-after-100-original-commits")
+        retainNativeEvidence("groups100-after-100-original-commits")
+        closeGroupStressOverview()
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), locators[final.group.id])
+
+        app.terminate()
+        launchReader(scenario: "catalog", backend: "otzaria")
+        XCTAssertEqual(try verifiedGroupStressSidecar().standardizedFileURL, url.standardizedFileURL,
+                       "Cold launch must retain this same installed app and owned namespace")
+        let finalLocator = try XCTUnwrap(locators[final.group.id])
+        let locator = app.staticTexts["reader-current-locator"]
+        if locator.label != finalLocator {
+            XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "label == %@", finalLocator), object: locator)], timeout: 30), .completed)
+        }
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), finalLocator)
+        openGroupStressOverview()
+        // A genuine cold launch may create a different system scene identifier.
+        // Its restored group/profile/document must still be the exact final one.
+        workspace = try waitForOriginalGroup(named: final.group.name, at: url,
+                                              sceneID: nil, afterRevision: nil)
+        let restored = try XCTUnwrap(workspace.current)
+        XCTAssertEqual(restored.scene.profileID, profileID)
+        XCTAssertEqual(restored.group.id, final.group.id)
+        XCTAssertEqual(restored.document.session.id, final.document.session.id)
+        try assertOriginalGroupMembership(workspace, matches: baseline)
+        try attachWorkspaceSnapshot("groups100-after-cold-restore")
+        retainNativeEvidence("groups100-after-cold-restore")
+        closeGroupStressOverview()
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), finalLocator)
+        evidence.coldRestoreVerified = true
+    }
+
+    @MainActor
+    private func verifiedGroupStressSidecar() throws -> URL {
+        XCTAssertEqual(readerTestTier, .realUI)
+        XCTAssertNotNil(UUID(uuidString: workspaceNamespace))
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        for (key, expected) in [("-OtzariaDataProfile", "miniTest10"),
+                                ("-studyWorkspaceTestingNamespace", workspaceNamespace),
+                                ("-preferredBackend", "otzaria")] {
+            let indexes = app.launchArguments.indices.filter { app.launchArguments[$0] == key }
+            XCTAssertEqual(indexes.count, 1)
+            let index = try XCTUnwrap(indexes.first)
+            XCTAssertTrue(app.launchArguments.indices.contains(index + 1))
+            XCTAssertEqual(app.launchArguments[index + 1], expected)
+        }
+        XCTAssertEqual(app.launchEnvironment["OTZARIA_DATA_PROFILE"], "miniTest10")
+        XCTAssertEqual(app.launchEnvironment["SIMCTL_CHILD_OTZARIA_DATA_PROFILE"], "miniTest10")
+        XCTAssertTrue(try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_WORK_KEY"]).hasPrefix("book:"),
+                      "The original matrix must independently validate the installed miniTest10 fixture")
+        let url = try workspaceSidecarURL().standardizedFileURL
+        let suffix = ["Library", "Application Support", "ChavrusaText", "StudyWorkspace", "UITests", workspaceNamespace + ".json"]
+        XCTAssertEqual(Array(url.pathComponents.suffix(suffix.count)), suffix)
+        var container = url
+        for _ in suffix { container.deleteLastPathComponent() }
+        XCTAssertEqual(container.deletingLastPathComponent(), try workspaceContainerParent().standardizedFileURL)
+        XCTAssertNotNil(UUID(uuidString: container.lastPathComponent))
+        let metadata = try Data(contentsOf: container.appendingPathComponent(".com.apple.mobile_container_manager.metadata.plist"))
+        let record = try XCTUnwrap(PropertyListSerialization.propertyList(from: metadata, format: nil) as? [String: Any])
+        XCTAssertEqual(record["MCMMetadataIdentifier"] as? String, "com.davidpovarsky.chavrusatext")
+        let resource = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey])
+        XCTAssertEqual(resource.isRegularFile, true)
+        XCTAssertEqual(resource.isSymbolicLink, false)
+        return url
+    }
+
+    private func readGroupStressWorkspace(_ url: URL) throws -> GroupStressWorkspace {
+        try JSONDecoder().decode(GroupStressWorkspace.self, from: Data(contentsOf: url))
+    }
+
+    @MainActor
+    private func openGroupStressOverview() {
+        tap(app.buttons["reader-tabs-overview"])
+        let overview = app.descendants(matching: .any)["study-groups-overview"]
+        XCTAssertTrue(overview.exists || overview.waitForExistence(timeout: 15))
+        let toggle = app.buttons["study-tabs-layout-toggle"]
+        XCTAssertTrue(toggle.exists || toggle.waitForExistence(timeout: 10))
+        if toggle.label == "תצוגת רשת" { tap(toggle) }
+    }
+
+    @MainActor
+    private func closeGroupStressOverview() {
+        let overview = app.descendants(matching: .any)["study-groups-overview"]
+        tap(overview.buttons["סיום"])
+        if overview.exists {
+            XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"), object: overview)], timeout: 15), .completed)
+        }
+    }
+
+    @MainActor
+    private func selectOriginalStressGroup(named name: String) {
+        let selector = app.segmentedControls["study-group-selector"]
+        if selector.exists {
+            XCTAssertTrue(selector.isEnabled)
+            let targets = selector.buttons.matching(NSPredicate(format: "label == %@", name))
+            XCTAssertEqual(targets.count, 1)
+            tap(targets.element(boundBy: 0))
+        } else {
+            let menu = app.buttons["study-group-selector"]
+            XCTAssertTrue(menu.exists && menu.isEnabled)
+            tap(menu)
+            let options = app.collectionViews.cells.buttons.matching(NSPredicate(format: "label == %@", name))
+            XCTAssertTrue(options.firstMatch.exists || options.firstMatch.waitForExistence(timeout: 15))
+            XCTAssertEqual(options.count, 1, "Only the exact original native group action may be selected")
+            tap(options.element(boundBy: 0))
+        }
+    }
+
+    @MainActor
+    private func waitForOriginalGroup(named name: String, at url: URL,
+                                      sceneID: String?, afterRevision: UInt64?) throws -> GroupStressWorkspace {
+        // The predicate captures an explicitly actor-isolated observer, not a
+        // local function that implicitly transfers XCTestCase/self in Swift 6.
+        let observation = GroupStressNativeObservation(application: app, url: url, name: name,
+                                                       sceneID: sceneID, afterRevision: afterRevision)
+        if let workspace = observation.read() { return workspace }
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated { observation.read() != nil }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 15), .completed,
+                       "Require the same original scene, committed sidecar, enabled selected group, and selected original document card")
+        return try XCTUnwrap(observation.read())
+    }
+
+    private func assertOriginalGroupMembership(_ workspace: GroupStressWorkspace,
+                                               matches baseline: GroupStressWorkspace) throws {
+        XCTAssertEqual(workspace.profiles, baseline.profiles)
+        XCTAssertEqual(workspace.groups, baseline.groups,
+                       "Group order, UUID membership, active documents, canonical locators and search state must remain unchanged")
+        let current = try XCTUnwrap(workspace.current)
+        for group in baseline.groups {
+            let document = try XCTUnwrap(group.tabs.first)
+            XCTAssertEqual(current.scene.activeTabIDsByGroup?[group.id], document.session.id,
+                           "The original scene must retain each group's independent document owner")
+        }
+    }
+}

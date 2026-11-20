@@ -1,0 +1,42 @@
+[
+  {
+    "path": "ASANA_PROVENANCE.json",
+    "bytes": 15682,
+    "sha256": "1af2f67af5e9852ce18863480ec084e0ef9f6b1aec2ebf24eaa3b5280150f30a"
+  },
+  {
+    "path": "EXTRA_SELECTION.json",
+    "bytes": 9721,
+    "sha256": "38863dd8515b624bf35f0cd08312a83f782162729a3c11844f9e26631534a493"
+  },
+  {
+    "path": "README.md",
+    "bytes": 5996,
+    "sha256": "2112f341b188de01a5beae6260e038a1a1c05440508070762f672a2f205dcd02"
+  },
+  {
+    "path": "RESULT.json",
+    "bytes": 468,
+    "sha256": "da0d4f52dd4120f4bbfccc62ccd856eccf19805275cbebe88fd4f878d84fb625"
+  },
+  {
+    "path": "source-diff.patch.gz",
+    "bytes": 5741,
+    "sha256": "81c882c2fd694d5b3a386d91e1c005d44ba95cbfa8dba3262b97394b378d1974"
+  },
+  {
+    "path": "SOURCE_PRESERVATION.json",
+    "bytes": 4480,
+    "sha256": "07a4088cccea1b85bb11971ff8b52f275ddf50cb95667db023e1d547d157f233"
+  },
+  {
+    "path": "swift-parse.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "SWIFT_PARSE.json",
+    "bytes": 730,
+    "sha256": "619c95825338e4806e9cc68a43bb315bd074fe341ea2615c3dfca4b9a3132f6a"
+  }
+]

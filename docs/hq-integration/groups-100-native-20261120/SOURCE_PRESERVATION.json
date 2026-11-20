@@ -1,0 +1,90 @@
+{
+  "base": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "modified_file": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "original_git_lf_sha256": "387879fcc00f2d90f8bb03319c59faf392f093062fcd0d1551a6c34009f9bb11",
+  "original_git_lf_bytes": 149675,
+  "current_git_lf_sha256": "5553b5e90e4ecd73f56979799ce2760d6e6187ae419f7e0d92cfe6bfffabf878",
+  "current_git_lf_bytes": 170690,
+  "append_lines": 399,
+  "original_complete_prefix_unchanged": true,
+  "old_declared_test_method_count": 39,
+  "added_declared_methods": [
+    "testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"
+  ],
+  "unchanged": {
+    "docs/hq-integration/runtime27/R27_CASES.json": {
+      "git_lf_sha256": "01a9eb2ad83fb974ce7d2094ab870da5887d1a6aa39295ee5c576ed55a76854c",
+      "bytes": 152269
+    },
+    "Scripts/CI/runtime27-release-manifest.json": {
+      "git_lf_sha256": "b442a4e90e18b4d8f4d5030a94d41122905ec955efa75a1aaacd7adb581ac315",
+      "bytes": 25339
+    },
+    "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift": {
+      "git_lf_sha256": "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b",
+      "bytes": 31726
+    },
+    "Maktabah.xcodeproj/project.pbxproj": {
+      "git_lf_sha256": "ac5e360aa4cb3d6c31354cba83ca72488bfef283067b2bd121231defa95c68df",
+      "bytes": 592111
+    },
+    "Scripts/CI/runtime27.py": {
+      "git_lf_sha256": "c80ccc5b00a91734cf8a955241797dd72786f0f46ef4896b36ef5df2871d5ed2",
+      "bytes": 26323
+    },
+    "Scripts/CI/run-faithful-ipad-matrix.py": {
+      "git_lf_sha256": "41a0be10a827d820e537ed0a598abe296929a22072f7f4e15fc485dd53cab171",
+      "bytes": 49298
+    }
+  },
+  "original_native_case_count": 92,
+  "original_native_ids_sha256": "b004f87a87923492504656de1f54138c4866963d794101b398fc0af61685cd16",
+  "original_release_ui": 96,
+  "original_release_oracles": 2,
+  "original_release_configurations": 5,
+  "product_trees": {
+    "Source": "8c0c17c9df352161a025eb66a7a16114a32d41a3",
+    "Vendor": "91a62524a787c3c0317db65ffda8c3d21dcb9497",
+    "Maktabah.xcodeproj": "1f639a7aad1a355b42b236602cc5dc54324aab33"
+  },
+  "original_sources": {
+    "Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift": {
+      "git_blob": "43717b123e6b7206b4466b1179a151fbcd2acd19",
+      "git_lf_sha256": "c0fc974da17ea1d97135991e7d87ba98c5731814c90e54fadf04754d91a69b5c"
+    },
+    "Source/ChavrusaText/StudyWorkspace/UI/ScrollableGroupsHost.swift": {
+      "git_blob": "35575761a20de182fbc64c18ab6a4f96b730dd5a",
+      "git_lf_sha256": "06752eaa3c446942c410aac486067fea6ad7ae33b7fb8065cb23e449cc2c7b6a"
+    },
+    "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/AdaptiveTabContent.swift": {
+      "git_blob": "da7556d246681e066bde46066397b5dee3fda281",
+      "git_lf_sha256": "9e67d06aaedaddc52ac6661bd69ac542f4d2fa94dc0b06d807ace41404202ed7"
+    },
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift": {
+      "git_blob": "234eea1153ada4fbda360c155ddae27dc8eb62fa",
+      "git_lf_sha256": "da6920095961f53add1c9776e31db2efced8835dd35f6e8e0c08527af2d0ef69"
+    },
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift": {
+      "git_blob": "b8972286fddad561e15e7f1f04ba5a66711ea7a1",
+      "git_lf_sha256": "b10c9d53a50b938ecb791186fdecee23e2ae45ffe77b222ca1957386ee14fef4"
+    },
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift": {
+      "git_blob": "0db0999960f153433cbd7d89a9af6f25957d5877",
+      "git_lf_sha256": "b0339b0b636290daa6a9e88bd00d4e694cba9fac48e4273620b0d772dcb1e7ba"
+    },
+    "Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift": {
+      "git_blob": "d3c3451a79e2d0ded0db3a22d7754ea85747e99c",
+      "git_lf_sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    "Source/LibraryBackend/LibraryBackendModels.swift": {
+      "git_blob": "fe2fbcb9f07762e0d35949b098b55d079a3c95d2",
+      "git_lf_sha256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0"
+    },
+    "Scripts/CI/runtime27-fixture-oracle.py": {
+      "git_blob": "3f2feeb908f717b51c0737b13da6888f9ab86da5",
+      "git_lf_sha256": "8a32a5d82a04a833466021d2a237aae3687d1d87c4ee24ca5df105bbe43e793c"
+    }
+  },
+  "target_registration": "Maktabah.xcodeproj/project.pbxproj synchronized Maktabah-iOSUITests group F30578032FA46222005732C6, referenced by original target F30578012FA46222005732C6",
+  "validation_scope": "source preservation only; no Apple typecheck or Native"
+}
