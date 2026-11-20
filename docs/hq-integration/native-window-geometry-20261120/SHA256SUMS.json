@@ -1,0 +1,45 @@
+{
+  "scope": "exact staged Git bytes before manifest",
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "bytes": 142650,
+      "sha256": "1bb737a208657e874003343edfdb798c99e8700247630ba810e573d40a22b279"
+    },
+    {
+      "path": "docs/hq-integration/native-window-geometry-20261120/ACTUAL_AX_GEOMETRY.json",
+      "bytes": 1753,
+      "sha256": "78d6089ad4699802e088f2cc74de09a6e8626a37426cdcedf14dfc9315a510ff"
+    },
+    {
+      "path": "docs/hq-integration/native-window-geometry-20261120/EXACT_REVIEW.json",
+      "bytes": 21297,
+      "sha256": "bfe33bf850e1de9ada0d1f3b77b2288e3601e3ab8f2df3ed6bd505ebd2c15a52"
+    },
+    {
+      "path": "docs/hq-integration/native-window-geometry-20261120/PEER_REVIEW.json",
+      "bytes": 472,
+      "sha256": "86c48cff6db10ed05da2c4d37d79bd7539a613378f761fc5584d3c68443c1647"
+    },
+    {
+      "path": "docs/hq-integration/native-window-geometry-20261120/README.md",
+      "bytes": 2258,
+      "sha256": "0c647cc37a88e6acc5773e1a22ac04ffe4c1dff777dd469b5f09f3f0481f29dd"
+    },
+    {
+      "path": "docs/hq-integration/native-window-geometry-20261120/SYNTAX_PARSE.json",
+      "bytes": 573,
+      "sha256": "f820b0b82fc3bf148c1a6e0dadc30d76e2046ec88ae363e0dfec1815b9533b9a"
+    },
+    {
+      "path": "docs/hq-integration/native-window-geometry-20261120/syntax-parse.stderr.log",
+      "bytes": 163,
+      "sha256": "e2878126c5fc3f3fcf0b97526a3fda8399e3c882bddf18b3e74a6f5bf5657153"
+    },
+    {
+      "path": "docs/hq-integration/native-window-geometry-20261120/syntax-parse.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
