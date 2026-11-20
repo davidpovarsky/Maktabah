@@ -230,5 +230,145 @@ import OtzariaUIRouting
         XCTAssertEqual(state.calls, 0)
     }
 
+    func testReaderWindowMetadataDoesNotConsultLiveEntityCatalogOrNavigate() async throws {
+        let state = ReaderWindowTestState()
+        let a = NativeIntentService.Destination(backend: .otzaria, destination: UIDestinationID(rawValue: "native.library")!,
+            title: "Library A", sceneID: UIStableID(rawValue: "scene.A")!)
+        let b = NativeIntentService.Destination(backend: .otzaria, destination: a.destination,
+            title: "Library B", sceneID: UIStableID(rawValue: "scene.B")!)
+        let service = NativeIntentService(discover: { state.liveCalls += 1; throw UIRouteError(.unavailable, "live_unavailable") },
+            resolveEntities: { state.generalCalls += 1; throw UIRouteError(.unavailable, "native_scene_busy") },
+            resolveReaderWindows: { state.metadataCalls += 1; return [a, b] },
+            awaitForeground: { _ in state.foregroundCalls += 1 },
+            navigate: { _ in state.navigateCalls += 1; return .requiresForeground })
+        let selected = try await service.readerWindows(identifiers: [b.id])
+        XCTAssertEqual(selected, [b])
+        let named = try await service.readerWindows(matching: "Library A")
+        XCTAssertEqual(named, [a])
+        XCTAssertEqual(state.metadataCalls, 2)
+        XCTAssertEqual(state.liveCalls + state.generalCalls + state.foregroundCalls + state.navigateCalls, 0)
+        do { _ = try await service.destinations(); XCTFail("General discovery failure must not be suppressed") }
+        catch { XCTAssertEqual((error as? UIRouteError)?.code, "native_scene_busy") }
+        XCTAssertEqual(state.generalCalls, 1)
+    }
+
+    func testReaderWindowMetadataNeverIncludesComponentsOrUnrelatedDestinations() async throws {
+        let root = NativeIntentService.Destination(backend: .otzaria, destination: UIDestinationID(rawValue: "native.library")!,
+            title: "Library", sceneID: UIStableID(rawValue: "scene.A")!)
+        let component = NativeIntentService.Destination(backend: root.backend, destination: root.destination,
+            title: "A control", sceneID: root.sceneID, component: UIDestinationID(rawValue: "native.library.control")!)
+        let inspector = NativeIntentService.Destination(backend: root.backend, destination: UIDestinationID(rawValue: "native.reader.inspector")!,
+            title: "Inspector", sceneID: root.sceneID)
+        let service = NativeIntentService(discover: { [root, component, inspector] },
+            resolveReaderWindows: { [root, component, inspector] }, navigate: { _ in .requiresForeground })
+        let windows = try await service.readerWindows()
+        XCTAssertEqual(windows, [root])
+        let selectedControl = try await service.readerWindows(identifiers: [component.id])
+        XCTAssertTrue(selectedControl.isEmpty)
+        let general = try await service.destinations()
+        XCTAssertEqual(general, [root, component, inspector], "The general entity surface remains unchanged")
+    }
+
+    func testReaderWindowsPreserveExistingInitializerFallback() async throws {
+        let root = NativeIntentService.Destination(backend: .sefaria, destination: UIDestinationID(rawValue: "native.library")!,
+            title: "Library", sceneID: UIStableID(rawValue: "scene.A")!)
+        let oldComposition = NativeIntentService(discover: { [] }, resolveEntities: { [root] },
+            navigate: { _ in .requiresForeground })
+        let windows = try await oldComposition.readerWindows()
+        XCTAssertEqual(windows, [root])
+        do { _ = try await oldComposition.open(identifier: root.id); XCTFail("Metadata still cannot authorize execution") }
+        catch { XCTAssertEqual((error as? UIRouteError)?.code, "intent_entity_no_longer_available") }
+    }
+
+    func testReaderWindowQueryBoundsAreCheckedBeforeHostResolution() async throws {
+        let state = ReaderWindowTestState()
+        let service = NativeIntentService(discover: { state.liveCalls += 1; return [] },
+            resolveReaderWindows: { state.metadataCalls += 1; return [] }, navigate: { _ in .requiresForeground })
+        do { _ = try await service.readerWindows(identifiers: Array(repeating: "cached", count: 65)); XCTFail("Oversized ID request") }
+        catch { XCTAssertEqual((error as? UIRouteError)?.code, "too_many_intent_entities") }
+        do { _ = try await service.readerWindows(matching: String(repeating: "x", count: 513)); XCTFail("Oversized query") }
+        catch { XCTAssertEqual((error as? UIRouteError)?.code, "intent_query_too_large") }
+        XCTAssertEqual(state.metadataCalls + state.liveCalls, 0)
+    }
+
+    func testReaderWindowCatalogRejectsDuplicateAndExcessiveHostIdentities() async throws {
+        let values = (0..<129).map { index in
+            NativeIntentService.Destination(backend: .otzaria, destination: UIDestinationID(rawValue: "native.library")!,
+                title: "Library", sceneID: UIStableID(rawValue: "scene.\(index)")!)
+        }
+        for invalid in [[values[0], values[0]], values] {
+            let service = NativeIntentService(discover: { [] }, resolveReaderWindows: { invalid }, navigate: { _ in .requiresForeground })
+            do { _ = try await service.readerWindows(identifiers: [values[0].id]); XCTFail("Invalid complete catalog cannot be hidden by a narrow filter") }
+            catch { XCTAssertEqual((error as? UIRouteError)?.code, "invalid_live_intent_catalog") }
+        }
+    }
+
+    func testReaderWindowSourceRefusalNeverFallsBackToGeneralOrLiveResolver() async throws {
+        let state = ReaderWindowTestState()
+        let service = NativeIntentService(discover: { state.liveCalls += 1; return [] },
+            resolveEntities: { state.generalCalls += 1; return [] },
+            resolveReaderWindows: { state.metadataCalls += 1; throw UIRouteError(.staleState, "intent_source_generation_changed") },
+            navigate: { _ in state.navigateCalls += 1; return .requiresForeground })
+        do { _ = try await service.readerWindows(); XCTFail("Source refusal must propagate") }
+        catch {
+            XCTAssertEqual((error as? UIRouteError)?.status, .staleState)
+            XCTAssertEqual((error as? UIRouteError)?.code, "intent_source_generation_changed")
+        }
+        XCTAssertEqual(state.metadataCalls, 1)
+        XCTAssertEqual(state.generalCalls + state.liveCalls + state.navigateCalls, 0)
+    }
+
+    func testCancelledReaderWindowQueryNeverStartsHostResolution() async throws {
+        let state = ReaderWindowTestState()
+        let service = NativeIntentService(discover: { state.liveCalls += 1; return [] },
+            resolveReaderWindows: { state.metadataCalls += 1; return [] }, navigate: { _ in .requiresForeground })
+        let task = Task { @MainActor in try await service.readerWindows() }
+        task.cancel()
+        do { _ = try await task.value; XCTFail("Pre-cancelled metadata query") }
+        catch { XCTAssertTrue(error is CancellationError) }
+        XCTAssertEqual(state.metadataCalls + state.liveCalls, 0)
+    }
+
+    func testReaderWindowResultIsDiscardedWhenCancellationWinsDuringHostResolution() async throws {
+        let gate = ReaderWindowResolutionGate()
+        let root = NativeIntentService.Destination(backend: .otzaria, destination: UIDestinationID(rawValue: "native.library")!,
+            title: "Library", sceneID: UIStableID(rawValue: "scene.A")!)
+        let service = NativeIntentService(discover: { [] }, resolveReaderWindows: { await gate.resolve() },
+            navigate: { _ in XCTFail("Metadata cannot navigate"); return .requiresForeground })
+        let task = Task { @MainActor in try await service.readerWindows() }
+        await gate.waitUntilStarted()
+        task.cancel()
+        gate.finish([root]) // Deliberately non-cooperating host result after cancellation.
+        do { _ = try await task.value; XCTFail("Stale asynchronous metadata result must be discarded") }
+        catch { XCTAssertTrue(error is CancellationError) }
+        XCTAssertNil(gate.pending)
+    }
+
 }
 @MainActor private final class IntentTestState { var available = true; var prepared = 0; var calls = 0; var selectedScene: UIStableID?; var selectedComponent: UIDestinationID? }
+
+@MainActor private final class ReaderWindowTestState {
+    var metadataCalls = 0
+    var generalCalls = 0
+    var liveCalls = 0
+    var foregroundCalls = 0
+    var navigateCalls = 0
+}
+@MainActor private final class ReaderWindowResolutionGate {
+    var pending: CheckedContinuation<[NativeIntentService.Destination], Never>?
+    private var started: CheckedContinuation<Void, Never>?
+    func resolve() async -> [NativeIntentService.Destination] {
+        await withCheckedContinuation { continuation in
+            pending = continuation
+            started?.resume(); started = nil
+        }
+    }
+    func waitUntilStarted() async {
+        if pending != nil { return }
+        await withCheckedContinuation { started = $0 }
+    }
+    func finish(_ values: [NativeIntentService.Destination]) {
+        let continuation = pending; pending = nil
+        continuation?.resume(returning: values)
+    }
+}

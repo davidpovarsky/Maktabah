@@ -1,0 +1,164 @@
+{
+  "evidence/baseline-attempt01/compile.log": {
+    "bytes": 24837,
+    "sha256": "306acb9cafc288a1c65baff2688dbe3e14a77ee845c430e515c300b7970960d2",
+    "retained_as": "evidence/baseline-attempt01/compile.log.gz",
+    "gzip_sha256": "10fbeb8d2c41cf6f24c91b129ccf781e6ee2d16a324f25f172aacba18c6d58bb"
+  },
+  "evidence/baseline-attempt01/invocation.json": {
+    "bytes": 1370,
+    "sha256": "423b98fbfae9e0aabfb7a09d3fc46037ee723781ff690d434b6d80cacb358d63",
+    "retained_as": "evidence/baseline-attempt01/invocation.json.gz",
+    "gzip_sha256": "bac9174f5e464e0555692adfb7441678e97e176f641653907a1ff335cf5c18b3"
+  },
+  "evidence/baseline-attempt01/RESULT.json": {
+    "bytes": 26164,
+    "sha256": "e56989a023f96193df374fa1da2b05dd2353025243a14b7424350ddb801d6c92",
+    "retained_as": "evidence/baseline-attempt01/RESULT.json.gz",
+    "gzip_sha256": "04f75e9a4af033cbd82ff40214730fe7f1bfaa56cb07bde476e260f86dc0d3c8"
+  },
+  "evidence/baseline-attempt02/compile.log": {
+    "bytes": 526,
+    "sha256": "e6d932ace3ed64e684324a24413a51d0f59c04dfc3fdc6efb51a6ad2b95b3595",
+    "retained_as": "evidence/baseline-attempt02/compile.log.gz",
+    "gzip_sha256": "5b0288d196eae12812bcd51e7edf6f3279cb1c1c705dc17c0691c018d729cc15"
+  },
+  "evidence/baseline-attempt02/invocation.json": {
+    "bytes": 1558,
+    "sha256": "a6f4a6703367a79fe4336febb50a3175adbdb6a1917a08744a5127e321226a5d",
+    "retained_as": "evidence/baseline-attempt02/invocation.json.gz",
+    "gzip_sha256": "7e8733375c36844e146a7f94728ff7a305baa856a4747b7138cb107fca34a75f"
+  },
+  "evidence/baseline-attempt02/RESULT.json": {
+    "bytes": 26585,
+    "sha256": "e41d052db49b7942e9f84e6469f2a46a9baac2c4d88f51bed6e702371788056c",
+    "retained_as": "evidence/baseline-attempt02/RESULT.json.gz",
+    "gzip_sha256": "f3b7c5d3be1ac1f014a8848bbc84c0cfe74b66e07e2906f6b4fcf738ec8b8237"
+  },
+  "evidence/baseline-attempt02/tests.log": {
+    "bytes": 2146,
+    "sha256": "c30e534261a4a7112d5e226e1c1d2b0160250d770a967597561bfc67f191e268",
+    "retained_as": "evidence/baseline-attempt02/tests.log.gz",
+    "gzip_sha256": "64549987d3890f49ab4886852c46b4d5f0d7f5c3a85ddf749097a48fb0e089b3"
+  },
+  "evidence/baseline-attempt01/package/Package.swift": {
+    "bytes": 749,
+    "sha256": "747fb73e907accb246146b335e7409b1cb402de22141a9c2f2496ab6bb6a4b68",
+    "retained_as": "evidence/baseline-attempt01/package/Package.swift.gz",
+    "gzip_sha256": "0928e2f2d222b6a550ec21c288a2a74c91e140875ac23efff15becac060e3c4e"
+  },
+  "evidence/baseline-attempt01/package/Sources/IntentMetadataAcceptance/NativeIntentMetadataAcceptance.swift": {
+    "bytes": 5392,
+    "sha256": "52f0f50e4bb24cd14800ed87fa807f8df188c19a7617c8238efd6d49071ec3b5",
+    "retained_as": "evidence/baseline-attempt01/package/Sources/IntentMetadataAcceptance/NativeIntentMetadataAcceptance.swift.gz",
+    "gzip_sha256": "224e75fbbc9ce2f2de11b60e728994d0b77052b913b77ff20e9dff71d3a0157b"
+  },
+  "evidence/baseline-attempt01/package/Sources/IntentMetadataAcceptance/NativeIntentMetadataBoundary.swift": {
+    "bytes": 20149,
+    "sha256": "fbe4e972ee6fed571da54864eb6cdcb05ae19b315ff5a428a34a3b01dd01d1da",
+    "retained_as": "evidence/baseline-attempt01/package/Sources/IntentMetadataAcceptance/NativeIntentMetadataBoundary.swift.gz",
+    "gzip_sha256": "6e5958055c629f350e9363231d3e33d78443be4a2b7fa623a6bc99bf71da5afd"
+  },
+  "evidence/baseline-attempt02/package/Package.swift": {
+    "bytes": 749,
+    "sha256": "747fb73e907accb246146b335e7409b1cb402de22141a9c2f2496ab6bb6a4b68",
+    "retained_as": "evidence/baseline-attempt02/package/Package.swift.gz",
+    "gzip_sha256": "0928e2f2d222b6a550ec21c288a2a74c91e140875ac23efff15becac060e3c4e"
+  },
+  "evidence/baseline-attempt02/package/Sources/IntentMetadataAcceptance/NativeIntentMetadataAcceptance.swift": {
+    "bytes": 6870,
+    "sha256": "248afef3a8824847e4691e9e8f7aa98e854062ccb4861ed0ed93e6cfe7040c5a",
+    "retained_as": "evidence/baseline-attempt02/package/Sources/IntentMetadataAcceptance/NativeIntentMetadataAcceptance.swift.gz",
+    "gzip_sha256": "02b58b8de6e767f93574d257b428355e75f2f454c5096a27f05b8623a40de0db"
+  },
+  "evidence/baseline-attempt02/package/Sources/IntentMetadataAcceptance/NativeIntentMetadataBoundary.swift": {
+    "bytes": 20597,
+    "sha256": "88d61d26bac81ae16feb93d9e01de62bdab04e7947e6a5b9cc8ec4435663b9ea",
+    "retained_as": "evidence/baseline-attempt02/package/Sources/IntentMetadataAcceptance/NativeIntentMetadataBoundary.swift.gz",
+    "gzip_sha256": "f7ea159594e7bec53fa22b0e6424223636d1cddd7006662dd18229a1a7d5c95e"
+  },
+  "evidence/green-attempt01/compile.log": {
+    "bytes": 774,
+    "sha256": "73f21759a2d5ebe2a0f10b865756a99ae9596ad125e450548d30e89c8882ea92",
+    "retained_as": "evidence/green-attempt01/compile.log.gz",
+    "gzip_sha256": "eeffc00bd44b631e3bc6b29c6c4d822b51921f8dfd46811d959e85253df745b1"
+  },
+  "evidence/green-attempt01/invocation.json": {
+    "bytes": 1572,
+    "sha256": "dfce7a3cb24f14f59ca2402c91547ed45af3504a1fc6407a95ae4f2d8b3c6e13",
+    "retained_as": "evidence/green-attempt01/invocation.json.gz",
+    "gzip_sha256": "dd460714fde7fd1ffb4f810d53f502befc0728cb93bd2526a04395b0f0eb29ec"
+  },
+  "evidence/green-attempt01/package/Package.swift": {
+    "bytes": 749,
+    "sha256": "747fb73e907accb246146b335e7409b1cb402de22141a9c2f2496ab6bb6a4b68",
+    "retained_as": "evidence/green-attempt01/package/Package.swift.gz",
+    "gzip_sha256": "0928e2f2d222b6a550ec21c288a2a74c91e140875ac23efff15becac060e3c4e"
+  },
+  "evidence/green-attempt01/package/Sources/IntentMetadataAcceptance/NativeIntentMetadataAcceptance.swift": {
+    "bytes": 7555,
+    "sha256": "85e07f100bea32514912d4061037c746dcc07d2db599ce80d9af366b2dd434f6",
+    "retained_as": "evidence/green-attempt01/package/Sources/IntentMetadataAcceptance/NativeIntentMetadataAcceptance.swift.gz",
+    "gzip_sha256": "1f337d4e9f61391a9595b9784bbe000af06c6de27acf4f9b342657f0b306037e"
+  },
+  "evidence/green-attempt01/package/Sources/IntentMetadataAcceptance/NativeIntentMetadataBoundary.swift": {
+    "bytes": 23058,
+    "sha256": "0cf0c28177b697bf177f823699ed849413b99b550c9235d72515ee1101083cd3",
+    "retained_as": "evidence/green-attempt01/package/Sources/IntentMetadataAcceptance/NativeIntentMetadataBoundary.swift.gz",
+    "gzip_sha256": "1114476c15745ce7a33f8e5d7b6ce9746a243f60f97e4ab8c02abe5565bbce02"
+  },
+  "evidence/green-attempt01/RESULT.json": {
+    "bytes": 26818,
+    "sha256": "e0c95b32edc5ced08aa48d62ed06a363f47e620d01b67c15f95e75ebee300603",
+    "retained_as": "evidence/green-attempt01/RESULT.json.gz",
+    "gzip_sha256": "a6751ae63d4dcabee8a578486b8ec695b7411560836919be303f1719dc60debf"
+  },
+  "evidence/green-attempt01/tests.log": {
+    "bytes": 744,
+    "sha256": "255002e57c338a5decf74b04e873396a6a94ca8b2f87b132da1f1e480c6f5dd7",
+    "retained_as": "evidence/green-attempt01/tests.log.gz",
+    "gzip_sha256": "335cbdec2c3a7f4891a13284d6b376e72a5fc019009f6cd1855d52b4b45a332c"
+  },
+  "evidence/host-regression-attempt01/RESULT.json": {
+    "bytes": 61308,
+    "sha256": "5a77c8a6749ed10ffa28fff1b19a8dbffa014f6cd8415824b6a9e0b9c7560f65",
+    "retained_as": "evidence/host-regression-attempt01/RESULT.json.gz",
+    "gzip_sha256": "130c5a45e908a39444b1e41f5aaae2afba6ddd7315cf6b8f967bca8ff9761e58"
+  },
+  "evidence/host-regression-attempt01/tests.log": {
+    "bytes": 40980,
+    "sha256": "da2ec9ded190fbd7df76497fdcbc027eb1dee06903895f0f52e9a350283b5e8b",
+    "retained_as": "evidence/host-regression-attempt01/tests.log.gz",
+    "gzip_sha256": "cf78435cbf06401bfdf2e3d85aa097b3ff796059581bd5b9d1ceec1bcad469a8"
+  },
+  "evidence/apple-target-syntax/0.log": {
+    "bytes": 165,
+    "sha256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539",
+    "retained_as": "evidence/apple-target-syntax/0.log.gz",
+    "gzip_sha256": "7bee3ffa8b7a1c707ae072953e5995be8f8c833e5a7ee18573743f00b320cc9e"
+  },
+  "evidence/apple-target-syntax/1.log": {
+    "bytes": 165,
+    "sha256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539",
+    "retained_as": "evidence/apple-target-syntax/1.log.gz",
+    "gzip_sha256": "7bee3ffa8b7a1c707ae072953e5995be8f8c833e5a7ee18573743f00b320cc9e"
+  },
+  "evidence/apple-target-syntax/2.log": {
+    "bytes": 165,
+    "sha256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539",
+    "retained_as": "evidence/apple-target-syntax/2.log.gz",
+    "gzip_sha256": "7bee3ffa8b7a1c707ae072953e5995be8f8c833e5a7ee18573743f00b320cc9e"
+  },
+  "evidence/apple-target-syntax/RESULT.json": {
+    "bytes": 2564,
+    "sha256": "c43df87725362567885c4e1c6c553ad378ecd555619bdc62d49eeb5d59fee3e6",
+    "retained_as": "evidence/apple-target-syntax/RESULT.json.gz",
+    "gzip_sha256": "c603ecdb6b81fa7de0bbcfdb3009215e7c48a4e5034e4590211c54571f932ff5"
+  },
+  "evidence/apple-target-syntax/swift-version.log": {
+    "bytes": 104,
+    "sha256": "a2aa2d7dcd61b2f3db2c0e6ff30a1f0ab2d45f58a9542e79f6b7fa7111b09dd5",
+    "retained_as": "evidence/apple-target-syntax/swift-version.log.gz",
+    "gzip_sha256": "6784b3df6a7b9ec813b14598fadfe106e9757a964044152995868b162a22dbac"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "baseline": "d0c649794e4262ffdea0e13635d5c8237668bd6e",
+  "candidate": "39ba01a0e014e41272ea53aa28ca8a24656f21e1",
+  "unchanged_methods_sha256": {
+    "func destinations() async throws": "c419c37b45437dc9d57bec2285022e14fd707e32c4bea41b7af480c74580d273",
+    "private func awaitIntentForeground": "09b0d11eefa720ce3af35025e25648fe9d0f07fedec667c9fb38cd3fc6c39637",
+    "openReaderIntent after foreground": "f04743ed3c2b6e36673b7ffd3703a729b7f3bf70e2568e03c947d7ab70e6ace4",
+    "NativeIntentService public func destinations(": "2a89a3a035a92078c06626c78dab767bbcc3208a410028be84023fd7c32d206e",
+    "NativeIntentService private func filter(": "31072e17695b7c2c45b85e468a3ec9e25776f98e2d37956b61784cb8e9c32a09",
+    "NativeIntentService public func open(identifier:": "cfb6644c185bf331d22034175e6fa26961cd7c8da2eba3eff8f7fbcd6a013be9",
+    "public struct OpenBookAtLocationIntent:": "a747f7e2428e05392f1426bdda1637bcbc67f2ce00ce218e8c3458289e6ff1ee"
+  },
+  "unchanged_original_16_intent_tests_sha256": {
+    "testRootAndComponentEntitiesRemainDistinctAndRetainOriginalRootID": "8dc201d7e29fb9119d97a5d325e4e6d65454286b524863418781ee11cc8fcee3",
+    "testUnavailableComponentEntityCannotReuseVisibleRootAuthority": "bd5304b74cc33d9db4a3873bf03bab5c14eb1cac892c7044d7a1e4b71d9ca126",
+    "testBackendQualifiedEntitiesRemainDistinctAndQueryUsesActualCatalog": "7120ff6cfbc3213a071eaf5ff20b771cda2455cf998d354010c13f6c47c2d90b",
+    "testStaleEntityFailsBeforeNavigationAndQueuedIsNeverAcknowledged": "71a700e2f5dbfb52e11d83be8bb02c5192849e230c620fc2a9aa4adb6a59fc0d",
+    "testDuplicateLiveEntitiesFailClosed": "ad56a9f50c910476fae9ed5cb3d1ed0f62b5164d2da19fe892224cd9e02f724b",
+    "testNoncompletionStatusesRemainDistinctSystemIntentErrors": "4b88f84ce54d89e8a1665df87feb64ed03c086a8825f421e5f7900d31345f6ae",
+    "testSameBackendDestinationsBindExactUserSelectedWindow": "8b6e0eac28b3f20fa7a7cb41159027a9ddde1667f64dad042ac518c4bf49a424",
+    "testBackgroundIdentityResolvesButOnlyFreshForegroundDiscoveryCanNavigate": "b5eac15cf24f22b7b129799f670c94d1a54a9d08a79bd030b3ac3c2c3c643122",
+    "testRemovedWindowIsOmittedAndCannotBeRecreatedFromCachedEntity": "7b7a5917664d6db41f638906ff2f5723a758085680f62ce0b7042fe75dc71a1b",
+    "testResolvedMetadataCannotBorrowAnotherBackendOrWindow": "e38fae72bc5829dbd6cc08a46b05ab7eef3f9ca0ef58444358655c416116fe20",
+    "testDuplicateExecutionCatalogFailsDespiteUniqueResolvedMetadata": "d64446dbd28315043f586c0a0a8f6ee0024d295ea8c981caced7098996bb482f",
+    "testForegroundWaitUsesExactResolvedIdentityBeforeFreshExecutionDiscovery": "838418820ff0c35876854658fde88eb0a399bdba101c97ee6ae8939cafccf904",
+    "testForegroundWaitDoesNotTurnMetadataIntoExecutionAuthority": "11825a2485b5bcab5494b8f780e5444c56a1675428fb536940ea4e2ffa6783a6",
+    "testChangedWindowDuringForegroundWaitCannotSubstituteAnotherScene": "ba64ffdb38317bc3918c15a43294de56c2833025c6a5c28f512978b90ef7d229",
+    "testUnknownEntityCannotRequestForegroundPreparation": "a70acb53f3be96b3fc039ea75732ced791ff16e5cdb61ce8f7a3fa346e58a80c",
+    "testCancelledForegroundWaitCannotNavigate": "6b6835788d863a42987dc335515f5cb8ce2163edac5876d2519d2522543056ed"
+  },
+  "unchanged_files_sha256": {
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntentService.swift": "a81f036bd8e34e87ceda31919e8e9f05970731dd64968f2e91b043931a8965ad",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeDestinationIntents.swift": "dd101e73718de3bfeb245d33799fb189bcd3a23b242f542dfdcdfb29cd833514"
+  },
+  "unchanged_git_trees": {
+    "Vendor": {
+      "baseline": "fd589175514256438eb1a72a0d2efcd5284c247c",
+      "candidate": "fd589175514256438eb1a72a0d2efcd5284c247c"
+    },
+    "Vendor/HanlinSDK": {
+      "baseline": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+      "candidate": "e00498e33f106cc43be0476ffa2e09329c8ca300"
+    },
+    "Source/Otzaria/Actions": {
+      "baseline": "dea7144c42bbd59b13aec2899954c253947c9274",
+      "candidate": "dea7144c42bbd59b13aec2899954c253947c9274"
+    },
+    "Source/Otzaria/UIRouting": {
+      "baseline": "9c25ca5c7a78676497b4cde7159a22c92bc9f88b",
+      "candidate": "9c25ca5c7a78676497b4cde7159a22c92bc9f88b"
+    },
+    "Maktabah-iOSUITests": {
+      "baseline": "7ef643d128e0011c2ded9c6190c5d768159a09d7",
+      "candidate": "7ef643d128e0011c2ded9c6190c5d768159a09d7"
+    },
+    "Maktabah.xcodeproj": {
+      "baseline": "0504a80db4dcd844871922ccf68d419eccb478f0",
+      "candidate": "0504a80db4dcd844871922ccf68d419eccb478f0"
+    }
+  },
+  "review": {
+    "reviewer": "root",
+    "scope": "read-only source review of candidate39ba",
+    "result": "no source blocker found",
+    "not_apple_or_native_execution": true
+  }
+}

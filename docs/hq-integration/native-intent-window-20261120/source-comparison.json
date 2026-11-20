@@ -1,0 +1,18 @@
+{
+  "composition_path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+  "method_hashes": {
+    "5d8ef991554b01ba6bf3d39222c5ef6cc00a264b": {
+      "func destinations() async throws": "c419c37b45437dc9d57bec2285022e14fd707e32c4bea41b7af480c74580d273",
+      "private func intentEntities() async throws": "310536b68d68fc899aab660b5313aa54f8b234de1c29ea89668ba75e3f685f38",
+      "private func awaitIntentForeground": "09b0d11eefa720ce3af35025e25648fe9d0f07fedec667c9fb38cd3fc6c39637",
+      "private func openReaderIntent": "8e7741ca7ff20d191522ed0d81e974c8b428772ddaa468276875a3ae098a4a69"
+    },
+    "d0c649794e4262ffdea0e13635d5c8237668bd6e": {
+      "func destinations() async throws": "c419c37b45437dc9d57bec2285022e14fd707e32c4bea41b7af480c74580d273",
+      "private func intentEntities() async throws": "310536b68d68fc899aab660b5313aa54f8b234de1c29ea89668ba75e3f685f38",
+      "private func awaitIntentForeground": "09b0d11eefa720ce3af35025e25648fe9d0f07fedec667c9fb38cd3fc6c39637",
+      "private func openReaderIntent": "8e7741ca7ff20d191522ed0d81e974c8b428772ddaa468276875a3ae098a4a69"
+    }
+  },
+  "all_four_identical": true
+}
