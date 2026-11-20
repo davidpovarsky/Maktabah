@@ -1,0 +1,7 @@
+{
+  "status": "LOCAL_VERIFIER_FAILED",
+  "source_sha256": "584d47403fec2c2a8de4ead3a68edf2c15173e57e2b07c01f50a38164ee9d3a3",
+  "error": "Build input differs: Source/PrivacyInfo.xcprivacy",
+  "cause": "First verifier wrongly required all compiled inputs to equal canonical blobs; original source gate explicitly validates generated CocoaPods privacy aggregation. No CI execution or product failure is inferred.",
+  "next": "Replay exact retained original/generated privacy bytes, reasons and dependency manifests instead of ignoring the difference."
+}

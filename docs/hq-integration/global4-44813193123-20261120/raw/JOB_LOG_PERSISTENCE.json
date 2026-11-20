@@ -1,0 +1,32 @@
+[
+  {
+    "name": "ipad11-terminal",
+    "characters": 100360,
+    "utf8_bytes": 100362,
+    "ends_with_newline": true,
+    "final_text": "n-of-node-20-on-github-actions-runners/\n",
+    "file": "global4-44813193123-20261120/ipad11-terminal/JOB.log",
+    "sha256": "7e2dd8cd4be1cfe2913f1501b977b5b59d78b3121f15722ff44663fec7019ee3",
+    "normalization": "none"
+  },
+  {
+    "name": "ipad13-terminal",
+    "characters": 93722,
+    "utf8_bytes": 93724,
+    "ends_with_newline": true,
+    "final_text": "n-of-node-20-on-github-actions-runners/\n",
+    "file": "global4-44813193123-20261120/ipad13-terminal/JOB.log",
+    "sha256": "f8d559ec59ef8bb528ba1de9cbcd92092eab97358f92851a0ce12b033818d987",
+    "normalization": "removed exactly one apply_patch terminal newline"
+  },
+  {
+    "name": "aggregate-terminal",
+    "characters": 49670,
+    "utf8_bytes": 49672,
+    "ends_with_newline": true,
+    "final_text": "n-of-node-20-on-github-actions-runners/\n",
+    "file": "global4-44813193123-20261120/aggregate-terminal/JOB.log",
+    "sha256": "e43ec0be34da7655e1d987e0151cd1c41f325947bb53aed9fcfd5d509c610c64",
+    "normalization": "removed exactly one apply_patch terminal newline"
+  }
+]

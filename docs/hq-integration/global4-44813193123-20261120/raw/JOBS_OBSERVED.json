@@ -1,0 +1,481 @@
+{
+  "total_count": 3,
+  "jobs": [
+    {
+      "id": 136554729770,
+      "run_id": 44813193123,
+      "workflow_name": "Four original Global Search navigation executions",
+      "head_branch": "codex/otzaria-global-tab-ownership-native-20261120",
+      "run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/runs/44813193123",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTEwysM8AAAAfy0vRKg",
+      "head_sha": "e34ee7b30c7c000e0416b76b3e757b22bc121169",
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/jobs/136554729770",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44813193123/job/136554729770",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-20T20:38:33Z",
+      "started_at": "2026-11-20T20:38:36Z",
+      "completed_at": "2026-11-20T21:38:29Z",
+      "name": "Full real app: ipad11 (2 original cases)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-20T20:38:36Z",
+          "completed_at": "2026-11-20T20:38:39Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-20T20:38:39Z",
+          "completed_at": "2026-11-20T20:38:51Z"
+        },
+        {
+          "name": "Bind exact M and unchanged original execution closure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-20T20:38:51Z",
+          "completed_at": "2026-11-20T20:38:52Z"
+        },
+        {
+          "name": "Reject false source or result credit",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-20T20:38:52Z",
+          "completed_at": "2026-11-20T20:38:55Z"
+        },
+        {
+          "name": "Select an existing SDK-matched runtime for the full device matrix",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-20T20:38:55Z",
+          "completed_at": "2026-11-20T20:40:13Z"
+        },
+        {
+          "name": "Require all 55 Sefaria transport cases on actual Apple Foundation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-20T20:40:13Z",
+          "completed_at": "2026-11-20T20:40:42Z"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-20T20:40:42Z",
+          "completed_at": "2026-11-20T20:40:44Z"
+        },
+        {
+          "name": "Run ruby/setup-ruby@v1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-20T20:40:44Z",
+          "completed_at": "2026-11-20T20:40:46Z"
+        },
+        {
+          "name": "Read source-pinned Zayit build mode",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-20T20:40:46Z",
+          "completed_at": "2026-11-20T20:40:46Z"
+        },
+        {
+          "name": "Use Rust only for the reviewed matching Zayit build",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10,
+          "started_at": "2026-11-20T20:40:46Z",
+          "completed_at": "2026-11-20T20:40:46Z"
+        },
+        {
+          "name": "Key disposable compiler cache by real SDK and native inputs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-20T20:40:46Z",
+          "completed_at": "2026-11-20T20:40:48Z"
+        },
+        {
+          "name": "Run actions/cache/restore@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-20T20:40:48Z",
+          "completed_at": "2026-11-20T20:40:48Z"
+        },
+        {
+          "name": "Execute original full app build and unchanged selected native cases",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 13,
+          "started_at": "2026-11-20T20:40:48Z",
+          "completed_at": "2026-11-20T21:36:27Z"
+        },
+        {
+          "name": "Bind post-execution source and actual per-configuration results",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 14,
+          "started_at": "2026-11-20T21:36:27Z",
+          "completed_at": "2026-11-20T21:36:36Z"
+        },
+        {
+          "name": "Retain compiler cache only after an actual matching test build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-20T21:36:36Z",
+          "completed_at": "2026-11-20T21:36:36Z"
+        },
+        {
+          "name": "Run actions/cache/save@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-20T21:36:36Z",
+          "completed_at": "2026-11-20T21:38:16Z"
+        },
+        {
+          "name": "Retain real runtime evidence including failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-20T21:38:16Z",
+          "completed_at": "2026-11-20T21:38:20Z"
+        },
+        {
+          "name": "Retain original native result bundles and visual captures separately",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-20T21:38:20Z",
+          "completed_at": "2026-11-20T21:38:20Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 35,
+          "started_at": "2026-11-20T21:38:20Z",
+          "completed_at": "2026-11-20T21:38:20Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-11-20T21:38:20Z",
+          "completed_at": "2026-11-20T21:38:22Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-11-20T21:38:22Z",
+          "completed_at": "2026-11-20T21:38:27Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/check-runs/136554729770",
+      "labels": [
+        "xcode-27"
+      ],
+      "runner_id": 1000022647,
+      "runner_name": "GitHub Actions 1000022647",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 136554730176,
+      "run_id": 44813193123,
+      "workflow_name": "Four original Global Search navigation executions",
+      "head_branch": "codex/otzaria-global-tab-ownership-native-20261120",
+      "run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/runs/44813193123",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTEwysM8AAAAfy0vSwA",
+      "head_sha": "e34ee7b30c7c000e0416b76b3e757b22bc121169",
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/jobs/136554730176",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44813193123/job/136554730176",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "created_at": "2026-11-20T20:38:33Z",
+      "started_at": "2026-11-20T20:54:39Z",
+      "completed_at": "2026-11-20T21:45:15Z",
+      "name": "Full real app: ipad13 (2 original cases)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-20T20:54:40Z",
+          "completed_at": "2026-11-20T20:54:42Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-20T20:54:42Z",
+          "completed_at": "2026-11-20T20:54:53Z"
+        },
+        {
+          "name": "Bind exact M and unchanged original execution closure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-20T20:54:53Z",
+          "completed_at": "2026-11-20T20:54:54Z"
+        },
+        {
+          "name": "Reject false source or result credit",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-20T20:54:54Z",
+          "completed_at": "2026-11-20T20:54:58Z"
+        },
+        {
+          "name": "Select an existing SDK-matched runtime for the full device matrix",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-20T20:54:58Z",
+          "completed_at": "2026-11-20T20:56:00Z"
+        },
+        {
+          "name": "Require all 55 Sefaria transport cases on actual Apple Foundation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-20T20:56:00Z",
+          "completed_at": "2026-11-20T20:56:15Z"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-20T20:56:15Z",
+          "completed_at": "2026-11-20T20:56:16Z"
+        },
+        {
+          "name": "Run ruby/setup-ruby@v1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-20T20:56:16Z",
+          "completed_at": "2026-11-20T20:56:18Z"
+        },
+        {
+          "name": "Read source-pinned Zayit build mode",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-20T20:56:18Z",
+          "completed_at": "2026-11-20T20:56:18Z"
+        },
+        {
+          "name": "Use Rust only for the reviewed matching Zayit build",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10,
+          "started_at": "2026-11-20T20:56:18Z",
+          "completed_at": "2026-11-20T20:56:18Z"
+        },
+        {
+          "name": "Key disposable compiler cache by real SDK and native inputs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-20T20:56:18Z",
+          "completed_at": "2026-11-20T20:56:18Z"
+        },
+        {
+          "name": "Run actions/cache/restore@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-20T20:56:18Z",
+          "completed_at": "2026-11-20T20:56:19Z"
+        },
+        {
+          "name": "Execute original full app build and unchanged selected native cases",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "number": 13,
+          "started_at": "2026-11-20T20:56:19Z",
+          "completed_at": "2026-11-20T21:38:17Z"
+        },
+        {
+          "name": "Bind post-execution source and actual per-configuration results",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 14,
+          "started_at": "2026-11-20T21:38:19Z",
+          "completed_at": "2026-11-20T21:39:24Z"
+        },
+        {
+          "name": "Retain compiler cache only after an actual matching test build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-20T21:39:24Z",
+          "completed_at": "2026-11-20T21:39:25Z"
+        },
+        {
+          "name": "Run actions/cache/save@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-20T21:39:25Z",
+          "completed_at": "2026-11-20T21:44:19Z"
+        },
+        {
+          "name": "Retain real runtime evidence including failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-20T21:44:19Z",
+          "completed_at": "2026-11-20T21:44:23Z"
+        },
+        {
+          "name": "Retain original native result bundles and visual captures separately",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-20T21:44:23Z",
+          "completed_at": "2026-11-20T21:44:25Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 35,
+          "started_at": "2026-11-20T21:44:25Z",
+          "completed_at": "2026-11-20T21:44:25Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-11-20T21:44:25Z",
+          "completed_at": "2026-11-20T21:44:28Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-11-20T21:44:28Z",
+          "completed_at": "2026-11-20T21:45:13Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/check-runs/136554730176",
+      "labels": [
+        "xcode-27"
+      ],
+      "runner_id": 1000022648,
+      "runner_name": "GitHub Actions 1000022648",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 136588695117,
+      "run_id": 44813193123,
+      "workflow_name": "Four original Global Search navigation executions",
+      "head_branch": "codex/otzaria-global-tab-ownership-native-20261120",
+      "run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/runs/44813193123",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTEwysM8AAAAfzVIWTQ",
+      "head_sha": "e34ee7b30c7c000e0416b76b3e757b22bc121169",
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/jobs/136588695117",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44813193123/job/136588695117",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-20T21:45:15Z",
+      "started_at": "2026-11-20T21:45:17Z",
+      "completed_at": "2026-11-20T21:45:37Z",
+      "name": "Require two plus two actual original Native executions",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-20T21:45:18Z",
+          "completed_at": "2026-11-20T21:45:19Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-20T21:45:19Z",
+          "completed_at": "2026-11-20T21:45:30Z"
+        },
+        {
+          "name": "Download only current-run configuration evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-20T21:45:30Z",
+          "completed_at": "2026-11-20T21:45:32Z"
+        },
+        {
+          "name": "Require both original scopes and recheck actual raw results",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 4,
+          "started_at": "2026-11-20T21:45:32Z",
+          "completed_at": "2026-11-20T21:45:32Z"
+        },
+        {
+          "name": "Retain aggregate failure and partial evidence status",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-20T21:45:32Z",
+          "completed_at": "2026-11-20T21:45:34Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-20T21:45:34Z",
+          "completed_at": "2026-11-20T21:45:34Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-20T21:45:34Z",
+          "completed_at": "2026-11-20T21:45:34Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/check-runs/136588695117",
+      "labels": [
+        "ubuntu-22.04"
+      ],
+      "runner_id": 1000022654,
+      "runner_name": "GitHub Actions 1000022654",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

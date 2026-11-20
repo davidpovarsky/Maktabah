@@ -1,0 +1,15 @@
+{
+  "status": "LOCAL_VERIFIER_FAILED",
+  "source_sha256": "5105d30e913225d6ab9bf3bbf5a779db806301ad4d273289654efb6681feeab3",
+  "error": "Capture ZIP contains unreviewed payload",
+  "observed_members": [
+    {
+      "name": "runtime27/native-13.mp4",
+      "bytes": 0,
+      "compressed": 2,
+      "is_directory": false,
+      "crc32": 0
+    }
+  ],
+  "scope": "Archive-shape verifier assumption only; no new CI or product execution."
+}

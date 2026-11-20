@@ -1,0 +1,80 @@
+{
+  "artifacts": [
+    {
+      "id": 14673280582,
+      "name": "global-tab-ownership-native-aggregate",
+      "size_in_bytes": 136046,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14673280582",
+      "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14673280582/zip",
+      "expired": false,
+      "created_at": "2026-11-20T21:45:34Z",
+      "expires_at": "2027-02-18T20:38:33Z",
+      "updated_at": "2026-11-20T21:45:34Z",
+      "digest": "sha256:987d6624c0ba898a94e071781e8717904df81726c4bb9ec78ae67e5551926858",
+      "workflow_run": {
+        "id": 44813193123,
+        "repository_id": 1280062128,
+        "head_repository_id": 1280062128,
+        "head_branch": "codex/otzaria-global-tab-ownership-native-20261120",
+        "head_sha": "e34ee7b30c7c000e0416b76b3e757b22bc121169"
+      }
+    },
+    {
+      "id": 14672617447,
+      "name": "global-tab-ownership-native-evidence-ipad13",
+      "size_in_bytes": 1930647,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14672617447",
+      "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14672617447/zip",
+      "expired": false,
+      "created_at": "2026-11-20T21:44:23Z",
+      "expires_at": "2027-02-18T20:38:33Z",
+      "updated_at": "2026-11-20T21:44:23Z",
+      "digest": "sha256:f9c2778c1cea47e025f76095d8d00be2a36b314813edfd9f8d1a221bbecf50cf",
+      "workflow_run": {
+        "id": 44813193123,
+        "repository_id": 1280062128,
+        "head_repository_id": 1280062128,
+        "head_branch": "codex/otzaria-global-tab-ownership-native-20261120",
+        "head_sha": "e34ee7b30c7c000e0416b76b3e757b22bc121169"
+      }
+    },
+    {
+      "id": 14672587483,
+      "name": "global-tab-ownership-native-captures-ipad13",
+      "size_in_bytes": 162,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14672587483",
+      "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14672587483/zip",
+      "expired": false,
+      "created_at": "2026-11-20T21:44:26Z",
+      "expires_at": "2027-02-18T20:38:33Z",
+      "updated_at": "2026-11-20T21:44:26Z",
+      "digest": "sha256:4cbc904306b14bd02781f5fe69396eff446388c0d0c5060931629249cea4c8e0",
+      "workflow_run": {
+        "id": 44813193123,
+        "repository_id": 1280062128,
+        "head_repository_id": 1280062128,
+        "head_branch": "codex/otzaria-global-tab-ownership-native-20261120",
+        "head_sha": "e34ee7b30c7c000e0416b76b3e757b22bc121169"
+      }
+    },
+    {
+      "id": 14672078150,
+      "name": "global-tab-ownership-native-evidence-ipad11",
+      "size_in_bytes": 6474526,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14672078150",
+      "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14672078150/zip",
+      "expired": false,
+      "created_at": "2026-11-20T21:38:20Z",
+      "expires_at": "2027-02-18T20:38:33Z",
+      "updated_at": "2026-11-20T21:38:20Z",
+      "digest": "sha256:d6fa367192c1df3080ec8e6ea5fa9f12b9faa8ff64b78ba91d3d5331af59c52c",
+      "workflow_run": {
+        "id": 44813193123,
+        "repository_id": 1280062128,
+        "head_repository_id": 1280062128,
+        "head_branch": "codex/otzaria-global-tab-ownership-native-20261120",
+        "head_sha": "e34ee7b30c7c000e0416b76b3e757b22bc121169"
+      }
+    }
+  ]
+}

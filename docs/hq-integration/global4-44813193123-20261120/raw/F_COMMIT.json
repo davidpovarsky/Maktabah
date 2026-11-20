@@ -1,0 +1,35 @@
+{
+  "sha": "e34ee7b30c7c000e0416b76b3e757b22bc121169",
+  "node_id": "C_kwDOTEwysNoAKGUzNGVlN2IzMGM3YzAwMGUwNDE2Yjc2YjNlNzU3YjIyYmMxMjExNjk",
+  "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/commits/e34ee7b30c7c000e0416b76b3e757b22bc121169",
+  "html_url": "https://github.com/davidpovarsky/Maktabah/commit/e34ee7b30c7c000e0416b76b3e757b22bc121169",
+  "author": {
+    "name": "davidpovarsky",
+    "email": "davidpovarski1@gmail.com",
+    "date": "2026-11-20T20:38:08Z"
+  },
+  "committer": {
+    "name": "davidpovarsky",
+    "email": "davidpovarski1@gmail.com",
+    "date": "2026-11-20T20:38:08Z"
+  },
+  "tree": {
+    "sha": "5691c61d9c347f91589e7b740a3f3340bbc91687",
+    "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/trees/5691c61d9c347f91589e7b740a3f3340bbc91687"
+  },
+  "message": "ci(otzaria): freeze four original Global navigation executions\n\nBind exact isolated tab-bar ownership source cb252 to the unchanged landscape and portrait assertions on both original iPads. Preserve all original runtime gates and budgets, require exact raw XCTest outcomes for both jobs, and retain preceding Native6 failures without inherited credit.",
+  "parents": [
+    {
+      "sha": "cb252c143955d037ab0cef4df556b1e8fcd4c334",
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/commits/cb252c143955d037ab0cef4df556b1e8fcd4c334",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/commit/cb252c143955d037ab0cef4df556b1e8fcd4c334"
+    }
+  ],
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}
