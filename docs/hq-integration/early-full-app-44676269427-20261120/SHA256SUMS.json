@@ -1,0 +1,141 @@
+{
+  "files": [
+    {
+      "sourceName": "workflow-run.json",
+      "storedPath": "raw/workflow-run.json.gz",
+      "rawBytes": 12760,
+      "rawSHA256": "dabe7c1e797dec729e6ae67d36389a228d5d3fdda84a5ffb8408d74f611a3d67",
+      "storedBytes": 1600,
+      "storedSHA256": "b3f5dc662416cdca0f12137ec76b7cfa710be3e756f8c306f25d5ef40a4f7213",
+      "encoding": "gzip-exact-original-bytes"
+    },
+    {
+      "sourceName": "workflow-jobs.json",
+      "storedPath": "raw/workflow-jobs.json.gz",
+      "rawBytes": 3415,
+      "rawSHA256": "ca943483d8f0de1e712c2c342904f9e515ec4de5b9a6bb0315e5b4a6d2c62a94",
+      "storedBytes": 679,
+      "storedSHA256": "84557016f2273845706e62ef4e66673fac6e28df5e04100295cc5b2250bea827",
+      "encoding": "gzip-exact-original-bytes"
+    },
+    {
+      "sourceName": "artifact-metadata.json",
+      "storedPath": "raw/artifact-metadata.json.gz",
+      "rawBytes": 767,
+      "rawSHA256": "27002d308791b2433eb2a71ac80e4b13bcfd482d987e4449d2ed0ecc2e66514c",
+      "storedBytes": 420,
+      "storedSHA256": "7ed9259fa614b52bf7514f9a76b65d8a798ae0aa6c3051dad722797e8fc506ab",
+      "encoding": "gzip-exact-original-bytes"
+    },
+    {
+      "sourceName": "ZIP_INDEX.json",
+      "storedPath": "raw/ZIP_INDEX.json.gz",
+      "rawBytes": 3817,
+      "rawSHA256": "3d3e128101b9b39707e17b6918762a2c03653229aee95d9c8d04592c8a9e6597",
+      "storedBytes": 1034,
+      "storedSHA256": "84faeffb0124445f88f771a0b33e2b194dfdd5f728d8c1bf64176f5c34563356",
+      "encoding": "gzip-exact-original-bytes"
+    },
+    {
+      "sourceName": "ZIP_MEMBER_HASHES.json",
+      "storedPath": "raw/ZIP_MEMBER_HASHES.json.gz",
+      "rawBytes": 6427,
+      "rawSHA256": "19c84cbbbb19eff562da7683076b60dfd31a79e486fc7b2bde504a5600e19f8f",
+      "storedBytes": 2005,
+      "storedSHA256": "2b5ddc84486e348d9d0a650fc89555e98cf39c2ddddbec35da0de2477ec8b203",
+      "encoding": "gzip-exact-original-bytes"
+    },
+    {
+      "sourceName": "hanlin-sdk-api-tree-projection.json",
+      "storedPath": "raw/hanlin-sdk-api-tree-projection.json.gz",
+      "rawBytes": 94258,
+      "rawSHA256": "c96b380ed4bca2bceea7ed279596b9be93a0a5b8b6615375e98de9f0bc786f92",
+      "storedBytes": 18083,
+      "storedSHA256": "4640dacfd1dfcfd0d1d7d7c2bd046cf335359661389047f40f20d7a54d7b9ea5",
+      "encoding": "gzip-exact-original-bytes"
+    },
+    {
+      "sourceName": "audit_artifact.py",
+      "storedPath": "raw/audit_artifact.py.gz",
+      "rawBytes": 12591,
+      "rawSHA256": "c4e1d1d1137700634f3478d93a18bece786382056ba11a684bdc7371ea41f59e",
+      "storedBytes": 4709,
+      "storedSHA256": "c68d5bea9c41ce5781342ca376296f8bc7146e92bd800e623a13269a29be359c",
+      "encoding": "gzip-exact-original-bytes"
+    },
+    {
+      "sourceName": "WARNING_INVENTORY.json",
+      "storedPath": "raw/WARNING_INVENTORY.json.gz",
+      "rawBytes": 473817,
+      "rawSHA256": "74d38b0e38345b6c8996df95146e4e267dada2af12d5967ea3582b5f43dc83b5",
+      "storedBytes": 30710,
+      "storedSHA256": "f010037c9504a4414da9ad94bd0ff655971ef59df0205e2c46ef363e9bcb5c9d",
+      "encoding": "gzip-exact-original-bytes"
+    },
+    {
+      "sourceName": "BUILD_OUTPUT_WITNESSES.json",
+      "storedPath": "raw/BUILD_OUTPUT_WITNESSES.json.gz",
+      "rawBytes": 2045,
+      "rawSHA256": "94f4e5e76b692ca910529bfb73bbc4049c8173a68a9b66b2e5d3869ff575bacc",
+      "storedBytes": 448,
+      "storedSHA256": "9d49edc0871dd91e1dce4d7a32e859a053b5785c21c9a3ac62d7d5092e101686",
+      "encoding": "gzip-exact-original-bytes"
+    },
+    {
+      "sourceName": "ARTIFACT_REVIEW.json",
+      "storedPath": "raw/ARTIFACT_REVIEW.json.gz",
+      "rawBytes": 12276,
+      "rawSHA256": "6dff3f3e6adc6714297f253560a508b12a3917c78874390bbc2b7eeaf2fb89b2",
+      "storedBytes": 3590,
+      "storedSHA256": "50bbfa7c0ee21df8293faa119e05bc277f41597a7e882767a7fa0e23c90c397f",
+      "encoding": "gzip-exact-original-bytes"
+    },
+    {
+      "sourceName": "SOURCE_BINDING_REVIEW.json",
+      "storedPath": "raw/SOURCE_BINDING_REVIEW.json.gz",
+      "rawBytes": 2453,
+      "rawSHA256": "5b8f4c0fbfca3c939f1ca9dc8acfe6d087a447536cd7fbf1abb70bef77181e36",
+      "storedBytes": 1337,
+      "storedSHA256": "ff0213751d72c523c8bc64dd57c4897c1c8fde7287cc47cd002818a15ab93275",
+      "encoding": "gzip-exact-original-bytes"
+    },
+    {
+      "sourceName": "VALIDATOR_SOURCE_EXCERPTS.json",
+      "storedPath": "raw/VALIDATOR_SOURCE_EXCERPTS.json.gz",
+      "rawBytes": 6728,
+      "rawSHA256": "fd47de7c14067baa18154e9f7ff9ba4575060dcbc42bcbfbfc23bc135c381dff",
+      "storedBytes": 2435,
+      "storedSHA256": "9501d23b7c6f75a7f796bb5967559fa9dcf7a99691838eeaf1565103ee788cd4",
+      "encoding": "gzip-exact-original-bytes"
+    },
+    {
+      "sourceName": "audit_source_binding.py",
+      "storedPath": "raw/audit_source_binding.py.gz",
+      "rawBytes": 5492,
+      "rawSHA256": "69dee59ca1a0eacc337e8c16530902ff61ad1dfab89e66db45811b422d2aa14d",
+      "storedBytes": 2476,
+      "storedSHA256": "ddcd25d84c97bc24e4495ca2c08b80cde8284b118e3277b46a81853803a596bd",
+      "encoding": "gzip-exact-original-bytes"
+    },
+    {
+      "sourceName": "AUDITOR_ATTEMPT1.json",
+      "storedPath": "raw/AUDITOR_ATTEMPT1.json.gz",
+      "rawBytes": 781,
+      "rawSHA256": "c591495d8b4bdbce13ce24d6f8225b0244e361a991a1c6057fa1dfa0d1b16c90",
+      "storedBytes": 556,
+      "storedSHA256": "afda9f637a0e78e313ddcf0d34bf5191ea4b8352b397817eba03118c289a86b7",
+      "encoding": "gzip-exact-original-bytes"
+    },
+    {
+      "sourceName": "14606375008.zip",
+      "storedPath": "raw/14606375008.zip",
+      "rawBytes": 1091125,
+      "rawSHA256": "2899854c7566fc11266ce3ddaef0e80a7421253fdf4a34c025cb6df9c3b4c4f7",
+      "storedBytes": 1091125,
+      "storedSHA256": "2899854c7566fc11266ce3ddaef0e80a7421253fdf4a34c025cb6df9c3b4c4f7",
+      "encoding": "original-GitHub-artifact-ZIP"
+    }
+  ],
+  "resultSHA256": "ef4847c3f3e7483d4deb5d80759f3736f92df5981e048d4088717e2d1e4be184",
+  "representation": "Top-level JSON UTF-8 canonical LF bytes; raw files stored as original ZIP or exact-byte gzip."
+}
