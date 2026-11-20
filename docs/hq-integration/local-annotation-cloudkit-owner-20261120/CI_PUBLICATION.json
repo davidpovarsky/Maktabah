@@ -1,0 +1,21 @@
+{
+  "source": "57e4a1cb7cd0bee72e3042e2f4567972237e7e35",
+  "ci": "826711a577063cacac28ed2f24a0daa0603d2e28",
+  "tree": "53f70fd09ddfb740f2abb00eb7215038c5207698",
+  "application_trees": {
+    "Maktabah.xcodeproj": "d2a88b3624cfab55682ea68e2634f4b6a7d5533f",
+    "Source": "267a778fb1c5f7512ebe5e35153c1d3ee743ec5c",
+    "Tests": "afe91dee5f6c6a7a0315f5c1a90a0b82dfe1d7cd",
+    "tools": "447b05cbe2efb0e7c4e9246236fec68857296941"
+  },
+  "ci_paths": [
+    ".github/workflows/otzaria-local-annotation-cloud-apple.yml",
+    "Scripts/CI/local-annotation-cloud-apple.inputs.json",
+    "Scripts/CI/local-annotation-cloud-apple.py",
+    "Scripts/CI/test-local-annotation-cloud-apple.py"
+  ],
+  "all16_changed_blobs_verified": true,
+  "prior_frozen_v2": "421944748f0638b651f771333ab97b620546773b",
+  "reviewed_cloud_ref_absent": true,
+  "tree_truncated": false
+}

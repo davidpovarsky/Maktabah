@@ -1,0 +1,61 @@
+{
+  "source": "57e4a1cb7cd0bee72e3042e2f4567972237e7e35",
+  "tree": "7394eeaa5074904cf4dbfd9dc21a4e9dbcf8d43f",
+  "application_trees": {
+    "Maktabah.xcodeproj": "d2a88b3624cfab55682ea68e2634f4b6a7d5533f",
+    "Source": "267a778fb1c5f7512ebe5e35153c1d3ee743ec5c",
+    "Tests": "afe91dee5f6c6a7a0315f5c1a90a0b82dfe1d7cd",
+    "tools": "447b05cbe2efb0e7c4e9246236fec68857296941"
+  },
+  "parent": "0fe26c3c5bfbe8675e063777371dbeca6685cf4a",
+  "changes": [
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "status": "modified"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift",
+      "status": "added"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift",
+      "status": "added"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+      "status": "modified"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "status": "modified"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+      "status": "modified"
+    },
+    {
+      "path": "Source/Core/CloudKit/CloudKitCoreManager.swift",
+      "status": "modified"
+    },
+    {
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "status": "modified"
+    },
+    {
+      "path": "Tests/HQ/local-annotation-cloud/LocalAnnotationCloudAcceptance.swift",
+      "status": "added"
+    },
+    {
+      "path": "Tests/HQ/local-annotation-cloud/LocalAnnotationCloudBoundary.swift",
+      "status": "added"
+    },
+    {
+      "path": "tools/hq-local-annotation-cloud-acceptance.py",
+      "status": "added"
+    },
+    {
+      "path": "tools/test-local-cloud-pending-sql.py",
+      "status": "added"
+    }
+  ]
+}

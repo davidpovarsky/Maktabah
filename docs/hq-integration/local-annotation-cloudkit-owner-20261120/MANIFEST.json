@@ -1,0 +1,74 @@
+{
+  "actual_evidence": {
+    "apple": 0,
+    "live_cloudkit": 0,
+    "python_controls": 43,
+    "sqlite_premises": 13,
+    "swift": 0
+  },
+  "application_trees": {
+    "Maktabah.xcodeproj": "d2a88b3624cfab55682ea68e2634f4b6a7d5533f",
+    "Source": "267a778fb1c5f7512ebe5e35153c1d3ee743ec5c",
+    "Tests": "afe91dee5f6c6a7a0315f5c1a90a0b82dfe1d7cd",
+    "tools": "447b05cbe2efb0e7c4e9246236fec68857296941"
+  },
+  "branch": "codex/otzaria-local-annotation-cloudkit-owner-20261120",
+  "ci": "826711a577063cacac28ed2f24a0daa0603d2e28",
+  "core_tree": "5d0ee482c8f10726fe3863792dac94c18e94d792",
+  "files": [
+    {
+      "bytes": 855,
+      "path": "CI_PUBLICATION.json",
+      "sha256": "8ccc086cb45bf41b11bddfb71e964621e5970a997be9186470e827f9c674fa0f"
+    },
+    {
+      "bytes": 10733,
+      "path": "COMPILE_INPUTS.json",
+      "sha256": "f5d30f7b0f1225878b0bf18e4b9825be7c406b3e0868ca8679aa604532a824a8"
+    },
+    {
+      "bytes": 25891,
+      "path": "FINAL_SOURCE_GIT_PROOF.json",
+      "sha256": "10ae368f7bba06509397d2f432fa1881b56b15de35700aa242d465d0f5917768"
+    },
+    {
+      "bytes": 1589,
+      "path": "PEER_REVIEWS.json",
+      "sha256": "2117f999f3723eb79b56cfffa977667cc35ef9cada051b106398304ab5c9ead0"
+    },
+    {
+      "bytes": 47212,
+      "path": "RAW_INVENTORY.json",
+      "sha256": "3926a111a9702ed1afc5418325e8f7e6a68c9859a4f7ef2e286e0761faf252a9"
+    },
+    {
+      "bytes": 11827,
+      "path": "README.md",
+      "sha256": "c2527547dd3c55760bf0708de3f76895a915daddc963aaf7ab7a12a52e822d63"
+    },
+    {
+      "bytes": 4303,
+      "path": "SOURCE_PRESERVATION.json",
+      "sha256": "9b4999bfb6000668fd5a7b61f600ef07a9d9cd3bf800db845befafd23f41924d"
+    },
+    {
+      "bytes": 1875,
+      "path": "SOURCE_PUBLICATION.json",
+      "sha256": "3ef3df634970fb7ab01a2867ee1b48d072aac2620a3f23c67d95e139018fea02"
+    },
+    {
+      "bytes": 705075,
+      "path": "raw-evidence.tar.gz",
+      "sha256": "a39673ab4b452b87cec339d1a7bd124fb4628be8bd7a87b6d27baecd5e3b3d80"
+    },
+    {
+      "bytes": 7569,
+      "path": "verify-evidence.py",
+      "sha256": "85e0d11fa7aa691e9e00212af4124c07d7c3bfffeaafd7caeb3b98fae6ccdf13"
+    }
+  ],
+  "future_execution_branch_not_activated": "codex/otzaria-local-annotation-cloud-apple-reviewed-20261120",
+  "schema": "otzaria-owned-cloud-source-evidence-v1",
+  "source": "57e4a1cb7cd0bee72e3042e2f4567972237e7e35",
+  "source_parent": "0fe26c3c5bfbe8675e063777371dbeca6685cf4a"
+}

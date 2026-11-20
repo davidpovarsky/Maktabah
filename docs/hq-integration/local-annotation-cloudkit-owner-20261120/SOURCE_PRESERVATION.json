@@ -1,0 +1,87 @@
+{
+  "apple_executed": 0,
+  "checks": {
+    "all32_original_python_test_declarations_and_assert_calls_retained": true,
+    "complete_original_exchange_result_and_crash_validation_bytes_unchanged": true,
+    "core_exact_reviewed_optional_hook_inverse_and_callback_order": true,
+    "original43_28_assertions_drivers_deadlines_and_remaining_original_product_files": true,
+    "original_read_prepare_save_and_default_cloud_callback_bytes_unchanged": true,
+    "project_six_memberships_two_files_inverse_all_original_bytes": true,
+    "whole_eight_file_git_inverse_matches_originals": true,
+    "whole_original_persistence_prefix_unchanged": true,
+    "whole_original_transaction_and_query_methods_unchanged": true
+  },
+  "current_python_controls": 43,
+  "native_executed": 0,
+  "original_files_unchanged": [
+    "Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift",
+    "Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift",
+    "Tests/HQ/annotation-exchange/AnnotationExchangeAcceptance.swift",
+    "Tests/HQ/annotation-exchange/AnnotationExchangeTestSupport.swift",
+    "tools/hq-local-annotation-editor-acceptance.py",
+    "tools/hq-annotation-exchange-acceptance.py",
+    "Scripts/CI/select-runtime27-toolchain.py",
+    "Source/Features/Annotations/Database/AnnotationRepository.swift",
+    "Source/Features/Annotations/Database/AnnotationStore.swift",
+    "Source/Core/CloudKit/SyncPendingStore.swift",
+    "Source/Core/CloudKit/CloudKitUploadDebouncer.swift",
+    "Source/Core/CloudKit/CloudKitSyncable.swift",
+    "Source/Core/CloudKit/AnnotationSyncHandler.swift",
+    "Source/Core/Database/CloudKitSyncManager.swift",
+    "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift"
+  ],
+  "original_python_controls": 32,
+  "products": [
+    {
+      "base_sha256": "3df45d11b27503e2295517f32789d1ae2ae41f6dc9189c0a1fb0a616881415e9",
+      "candidate_bytes": 598318,
+      "candidate_sha256": "49625ef0f05c3f0c7052ea9b1e069591f635c6dd581e33e1fe70a32d7b41582d",
+      "path": "Maktabah.xcodeproj/project.pbxproj"
+    },
+    {
+      "base_sha256": null,
+      "candidate_bytes": 3982,
+      "candidate_sha256": "40a9a5718d00a1e254345a016922bf1b6526e31ceb8540acf910c61069568d71",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift"
+    },
+    {
+      "base_sha256": null,
+      "candidate_bytes": 14839,
+      "candidate_sha256": "1b9556b20886ec54addc8135be7090d649ba017539df543e4268957e2b3cd243",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift"
+    },
+    {
+      "base_sha256": "cc76dac40c22427ce931fde4286ff11845b6f9672fb659a4d4f7ca117f2f6df5",
+      "candidate_bytes": 3885,
+      "candidate_sha256": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift"
+    },
+    {
+      "base_sha256": "65799a7c6bd19bc0386e32ed4de40dfed22ae68419590f6015bc6fb302b5e003",
+      "candidate_bytes": 25713,
+      "candidate_sha256": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift"
+    },
+    {
+      "base_sha256": "e84ef4260eb75d11471a0526ee5e0d7b96465fc717ee445b711e3deb42216e8a",
+      "candidate_bytes": 9240,
+      "candidate_sha256": "c5e67d67d93ba3c6620c0c7dbbd47ed4ef00305d17e05991da3e70dfb9a7e765",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift"
+    },
+    {
+      "base_sha256": "763fc7eca807422b4e5bdd729a2120f2ba6198f5582fc0814cf542809ab28ee3",
+      "candidate_bytes": 13430,
+      "candidate_sha256": "c2543785eb57ce344c4114b88f7068c5a553670087e532be9de75391cddb88c2",
+      "path": "Source/Core/CloudKit/CloudKitCoreManager.swift"
+    },
+    {
+      "base_sha256": "8bc64d2bb889d90270b56445e0c9f24a73f5af012fd86f45f44ff18d7b2c0b4b",
+      "candidate_bytes": 14916,
+      "candidate_sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+      "path": "Source/Core/Database/SQLiteDatabase.swift"
+    }
+  ],
+  "status": "PASS_SOURCE_INVERSE_ONLY",
+  "swift_executed": 0,
+  "whole_product_patch_sha256": "8fabfed6cf81847e60529a901e24524c8d98dc5cb9b46eb37574c7741a76a8f8"
+}
