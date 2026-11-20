@@ -1,0 +1,154 @@
+[
+  {
+    "source_commit": "03287c697df6c64ec10d0fc36db6df7533c2b871",
+    "path": "docs/hq-integration/profiles-acceptance-20261120/ACCEPTANCE_AUDIT.md",
+    "git_blob": "543fce2cc85c9cc58baf629be87c9adc88c04b20",
+    "git_bytes_sha256": "51e59209b39dfb577cdabff23a66c40f5f4452ff08bc5257188ed0dfbdc2a311",
+    "bytes": 9504,
+    "scope": "Historical scope audit; preserved, superseded only where this dated appendix says so"
+  },
+  {
+    "source_commit": "03287c697df6c64ec10d0fc36db6df7533c2b871",
+    "path": "docs/hq-integration/profiles-acceptance-20261120/SIDEBAR_ARCH_RFC.md",
+    "git_blob": "a59ec65cb9071e92638580fc97b7e9709ad87a36",
+    "git_bytes_sha256": "15438a425944eef1afae504b5243918f1dfda42f75d1e454f45648294b8d9828",
+    "bytes": 4221,
+    "scope": "Planning decision record"
+  },
+  {
+    "source_commit": "03287c697df6c64ec10d0fc36db6df7533c2b871",
+    "path": "docs/hq-integration/profiles-acceptance-20261120/verification.json",
+    "git_blob": "235ff025522ac18aa7013d7003ef49006f4a557d",
+    "git_bytes_sha256": "281e830a8526e50845ee17cd9906a610ea2b9004624f57284451aa8577d648c0",
+    "bytes": 2899,
+    "scope": "Historical89 portable scope and limitations"
+  },
+  {
+    "source_commit": "03287c697df6c64ec10d0fc36db6df7533c2b871",
+    "path": "docs/hq-integration/profiles-acceptance-20261120/workspace-tests-initial.json",
+    "git_blob": "e11a187ed9b46e1c16cb2afa938b538cff9215d1",
+    "git_bytes_sha256": "ba337c2f973c812476a7ba16d517967251fb9914c8ba21b729c475d62bcef613",
+    "bytes": 528,
+    "scope": "Actual original driver execution record"
+  },
+  {
+    "source_commit": "03287c697df6c64ec10d0fc36db6df7533c2b871",
+    "path": "docs/hq-integration/profiles-acceptance-20261120/workspace-tests-initial.log",
+    "git_blob": "585c6cd670b94da4b984816f15780a0835875ce3",
+    "git_bytes_sha256": "c4bb26bdb89d5816c629af0301a447c452e4e30767ce2abd760b51dc0387a05a",
+    "bytes": 289,
+    "scope": "Actual89 aggregate stdout"
+  },
+  {
+    "source_commit": "03287c697df6c64ec10d0fc36db6df7533c2b871",
+    "path": "docs/hq-integration/profiles-acceptance-20261120/historical-fixture-generation.log",
+    "git_blob": "073c46d49d7fa490ab93b8e0b5f3ccabce98e3fd",
+    "git_bytes_sha256": "b44d175bf89971e152d6bf2b2c03b5022b7c13188d036e2a8e1eb6fdbbfde8e1",
+    "bytes": 2305,
+    "scope": "Executed original Codable historical fixture generator"
+  },
+  {
+    "source_commit": "d5a01b53b08c9115dc09a647bd7e147f44da73c7",
+    "path": "tools/fixtures/study-workspace/generate-historical-fixtures.py",
+    "git_blob": "c36bbaa0b4d934a80cbe97774b5cc39c5aa154f1",
+    "git_bytes_sha256": "328e23e59d203fd8781777d05330e791e49cac8251c943ab0db0b0de694a7e2d",
+    "bytes": 7529,
+    "scope": "Original immutable-encoder fixture generator; not re-executed in this appendix"
+  },
+  {
+    "source_commit": "d5a01b53b08c9115dc09a647bd7e147f44da73c7",
+    "path": "tools/fixtures/study-workspace/legacy-reader-session-v1.json",
+    "git_blob": "453e9d6ec03f9a4240c73bd8540c943aa45c3d46",
+    "git_bytes_sha256": "d3d65f962f1bedc25c7e4154316c8789b641590aa2b64a53421ed7b40b86108c",
+    "bytes": 10608,
+    "scope": "10 historical-schema constructed tabs, real production decoder input"
+  },
+  {
+    "source_commit": "d5a01b53b08c9115dc09a647bd7e147f44da73c7",
+    "path": "tools/fixtures/study-workspace/legacy-study-workspace-v1.json",
+    "git_blob": "c7f79eed3c9f4f9ccbff6fd7c9d0e2c6fb27378a",
+    "git_bytes_sha256": "3eaab9c19f18b6ceb59931320f96bfd534d8b6ed5e82a4b9b059b60db51377cc",
+    "bytes": 15231,
+    "scope": "Historical optional-field compatibility input"
+  },
+  {
+    "source_commit": "d5a01b53b08c9115dc09a647bd7e147f44da73c7",
+    "path": "docs/hq-sidebar/UPSTREAM_HOOKS.md",
+    "git_blob": "aeeb5036fb4be5a97eda506286941335812f7269",
+    "git_bytes_sha256": "92552de218dc656c84df6ab826016187e0b67a9e01d4fd9508f2fc51e8b64294",
+    "bytes": 5598,
+    "scope": "Original ownership/alternatives/revert record"
+  },
+  {
+    "source_commit": "d5a01b53b08c9115dc09a647bd7e147f44da73c7",
+    "path": "docs/hq-sidebar/upstream-hooks.patch",
+    "git_blob": "bb488e00a1c5c28dedb0564976f2ec3768c97b3a",
+    "git_bytes_sha256": "b6b8ca9e03784433c3e6c35661984dc37c4da46fe2af025737d2210aa0dddd54",
+    "bytes": 2866,
+    "scope": "Exact original protected hook patch"
+  },
+  {
+    "source_commit": "d5a01b53b08c9115dc09a647bd7e147f44da73c7",
+    "path": "docs/ipad-ui-rebuild/OWNERSHIP_AND_AUTHORIZATION.md",
+    "git_blob": "0e55949e06722df3ef8ff5f4c5d3624ff1e4abd9",
+    "git_bytes_sha256": "aa7fc1e131dca745a41094271918d62cc2320845bfdfa55256f95544b55649db",
+    "bytes": 23385,
+    "scope": "Existing provenance/ownership and scoped approval history, not a new approval"
+  },
+  {
+    "source_commit": "d5a01b53b08c9115dc09a647bd7e147f44da73c7",
+    "path": "docs/ipad-ui-rebuild/PROTECTED_HUNKS.diff",
+    "git_blob": "5f41b48ca2faa253b4ee5f5deaed79e3b82f1360",
+    "git_bytes_sha256": "24e0212e7729d7fd640d6c419c4a11c7a2ed0cb3cd7cf6f6187be2916bf229ea",
+    "bytes": 44815,
+    "scope": "Existing protected-hunk record, not a current whole-tree equality claim"
+  },
+  {
+    "source_commit": "d5a01b53b08c9115dc09a647bd7e147f44da73c7",
+    "path": "docs/ipad-ui-rebuild/9401_before_edit_ownership_matrix.json",
+    "git_blob": "1c104bd5f4033a972b13186d9c5993600f679889",
+    "git_bytes_sha256": "98f9d0770dcb0540bb402ffaeaae11f8963edf8791066ab3f95e5c1c731e6b05",
+    "bytes": 42219,
+    "scope": "Historical before-edit ownership matrix"
+  },
+  {
+    "source_commit": "d5a01b53b08c9115dc09a647bd7e147f44da73c7",
+    "path": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+    "git_blob": "9a3a57bbfed634f2e136c608b11c781312b0e8ff",
+    "git_bytes_sha256": "45c08f1786508e8932ae138e4c493ac6ce8cceb79ca27922a893c0141d391fdf",
+    "bytes": 12242,
+    "scope": "Original source boundary policy, unchanged here"
+  },
+  {
+    "source_commit": "d5a01b53b08c9115dc09a647bd7e147f44da73c7",
+    "path": "docs/architecture/UPSTREAM_EXCEPTION_REGISTER.md",
+    "git_blob": "9813aa540002ba0dd005937e9924f89a584511da",
+    "git_bytes_sha256": "63a397a3822763da0a8efa98d35181c288d7bcd28ed2f9326dd360ab9ea36d10",
+    "bytes": 16731,
+    "scope": "Historical exact exception record, unchanged here"
+  },
+  {
+    "source_commit": "455e5afa4d221c810bb0a4e1fde1a208f3a16b7d",
+    "path": "docs/hq-integration/feature-off-20261120/VERIFICATION.json",
+    "git_blob": "7345a07cd27084578ecaf391233893cded0ee310",
+    "git_bytes_sha256": "774a951bf1da412cdbc0d21f3daaacdb516f97b7f929a8e73f3bfe54791c9e25",
+    "bytes": 2054,
+    "scope": "Actual18 portable lifecycle checks, not Native"
+  },
+  {
+    "source_commit": "455e5afa4d221c810bb0a4e1fde1a208f3a16b7d",
+    "path": "docs/hq-integration/feature-off-20261120/green/RESULT.json",
+    "git_blob": "cfb2456b0d2ccf2acda8d679c44451d29de6bd09",
+    "git_bytes_sha256": "0ab04b8658294572a71163a819196e64228e18636675817452ce04dc13cbbd61",
+    "bytes": 3410,
+    "scope": "Actual18/18 portable outcome"
+  },
+  {
+    "source_commit": "01793f320f1047f008e02a5a0aa1a693732ffdb1",
+    "path": "docs/hq-integration/sec-provenance-reconciliation-20261120/MANIFEST.json",
+    "git_blob": "1c57b5c144c7f6ecb94f5490c6be7dd8b30b9eae",
+    "git_bytes_sha256": "ebbdf2b892582565771694a1a8d96f9d0d59539f494e12618a0ff4a86848f774",
+    "bytes": 7045,
+    "scope": "Independent exact current/historical bytes and bounded ancestry reconciliation"
+  }
+]

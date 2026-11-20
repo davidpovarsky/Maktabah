@@ -1,0 +1,33 @@
+{
+  "source": "Previously retrieved original Asana task snapshot; no new Asana read/write and not current task status",
+  "tasks": [
+    {
+      "gid": "1220036734132868",
+      "name": "[איתן | ARCH][MAIN_SESSION] ownership וחיבור Sidebar חדש בשכבת ChavrusaText",
+      "notes": "STATUS BACKLOG. לתכנן ReaderSidebarPager/ReaderSidebarPage בשכבה downstream (מוצע, לא קיים: Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift). מיפוי upstream-vs-downstream על פי https://github.com/davidpovarsky/Maktabah/blob/fix/build-8601-ipad-backend-toc-otzaria-index-20261027/docs/architecture/UPSTREAM_INTEGRITY_POLICY.md; לקרוא גם https://github.com/davidpovarsky/Maktabah/blob/fix/build-8601-ipad-backend-toc-otzaria-index-20261027/docs/architecture/UPSTREAM_EXCEPTION_REGISTER.md. מקור השינוי בשלוש העמודות: https://github.com/davidpovarsky/Maktabah/blob/fix/build-8601-ipad-backend-toc-otzaria-index-20261027/Source/UI/iOS/Views/iPadLayout.swift#L99-L190. להציג החלטת ארכיטקטורה ומפת ownership, חלופות לחיבור ללא upstream edit, ודיפ exact hunk לאישור בעלים אם נדרש שינוי ב-iPadLayout.swift או project.pbxproj. לא לגעת בקוד upstream לפני אישור מדויק. מסירה: RFC קצר + flow library/TOC/detail + החלטת feature flag ו-rollback, ללא merge/CI/שינוי קוד. התוכנית המלאה במשימת האב.",
+      "created_at": "2026-10-29T22:36:12.000Z",
+      "modified_at": "2026-10-29T22:36:12.182Z",
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220036734132868",
+      "parent": {
+        "gid": "1220036734107652",
+        "name": "[PLANNED][P1][UX][iPad Reader] איחוד עץ הספרים ותוכן העניינים לסיידבאר דו־מסכי (Craft-style)",
+        "resource_type": "task",
+        "resource_subtype": "default_task"
+      }
+    },
+    {
+      "gid": "1220103384074402",
+      "name": "[איתן | ARCH][MAIN_SESSION] מודל פרופיל/קבוצה/טאב, Session migration ו-ownership",
+      "notes": "STATUS: BACKLOG / PLANNED; no implementation/CI. תכנון מודל StudyProfile -> StudyTabGroup -> ReaderDocumentTab; stable UUIDs, sort order, selection per window, same book allowed in multiple groups, independent locators/scroll and view-model lifecycle. Separate concepts: study profile ≠ production/miniTest10 data profile ≠ Otzaria/Sefaria backend. Existing iOSNavigationManager is @Observable with openTabs and activeTabId; iOSReaderSessionManager stores ios_reader_session.json. Design versioned atomic migration of pre-feature sessions into default 'אישי' + default group, backup/recovery and fail-closed rollback; no deletion/duplication of bookmarks/annotations or production DB. Scene-specific active group/profile, stable session restoration, backend session isolation, rapid switching cancellation. Build an ownership/provenance matrix and exact approval requests for any upstream-owned file or project.pbxproj; protected files stay read-only until approved.\nExisting navigation: https://github.com/davidpovarsky/Maktabah/blob/fix/build-8601-ipad-backend-toc-otzaria-index-20261027/Source/UI/iOS/Managers/iOSNavigationManager.swift\nSession: https://github.com/davidpovarsky/Maktabah/blob/fix/build-8601-ipad-backend-toc-otzaria-index-20261027/Source/UI/iOS/Managers/iOSReaderSessionManager.swift\nOwnership policy: https://github.com/davidpovarsky/Maktabah/blob/fix/build-8601-ipad-backend-toc-otzaria-index-20261027/docs/architecture/UPSTREAM_INTEGRITY_POLICY.md\nAcceptance: schema+route contracts, migration fixtures from old sessions, rollback/no-loss tests, multiwindow and backend matrix.",
+      "created_at": "2026-10-31T21:37:14.458Z",
+      "modified_at": "2026-10-31T21:37:14.695Z",
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220103384074402",
+      "parent": {
+        "gid": "1220103384037482",
+        "name": "[PLANNED][P1][UX][MAIN_SESSION] אוצריא — פרופילי לימוד, קבוצות כרטיסיות ו־DuckDuckGo Tab Strip",
+        "resource_type": "task",
+        "resource_subtype": "default_task"
+      }
+    }
+  ]
+}

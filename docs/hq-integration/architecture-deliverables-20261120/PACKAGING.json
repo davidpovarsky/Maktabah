@@ -1,0 +1,7 @@
+{
+  "initial_git_add_exit": 1,
+  "initial_reason": "New docs directory outside the isolated worktree sparse-checkout cone; nothing staged",
+  "resolution": "Exact requested new docs directory added with Git --sparse; sparsity configuration not changed",
+  "source_mutations": false,
+  "native_executed": 0
+}

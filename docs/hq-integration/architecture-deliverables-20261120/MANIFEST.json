@@ -1,0 +1,91 @@
+{
+  "created_at_utc": "2026-11-20T09:58:52.785082+00:00",
+  "scope": "Two original ARCH design deliverables plus actual source-bound portable89 verification; documents only",
+  "files": [
+    {
+      "path": "ARTIFACTS.json",
+      "bytes": 7368,
+      "sha256": "9d41145f5c9e38ce13b43c4e19e0339e89fcc717478408ba34259424b179dd7f"
+    },
+    {
+      "path": "driver.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "driver.stdout.log.gz",
+      "bytes": 186,
+      "sha256": "5489c2e6c43278f0e83b96561a8895d794d96ba34e104bd95b21015d8d19e901"
+    },
+    {
+      "path": "EXECUTION.json",
+      "bytes": 1472,
+      "sha256": "587344f541978b199658959ced35007be9646b68032792df7429ceed7d378065"
+    },
+    {
+      "path": "EXECUTION.original.json.gz",
+      "bytes": 814,
+      "sha256": "10eff65f4ec21c1935702f98b8fd909b04a2a93347f4f82c42b28a8b4a9eed94"
+    },
+    {
+      "path": "INPUT_BINDING_TO_INTEGRATION.json",
+      "bytes": 13277,
+      "sha256": "457e18be5887d77f40db367349a4fa69a521299ad7fdd6a4164ef4e1ca0ba45a"
+    },
+    {
+      "path": "INPUTS.json",
+      "bytes": 12559,
+      "sha256": "f274d67ef7d8666678ac1314d2ba4fffc47843f95728a309d699db14ec6dfda9"
+    },
+    {
+      "path": "INPUTS.original.json.gz",
+      "bytes": 4241,
+      "sha256": "2b2e8787de43942235cccb17a8d1dd26f5c5a44a48190b29fb64cd99b1287a1d"
+    },
+    {
+      "path": "ORIGINAL_TASK_CRITERIA.json",
+      "bytes": 4255,
+      "sha256": "b9b84e08dc8d387d287ffcd2fc5e34abca58285309b01edfae3c01d8625fa43f"
+    },
+    {
+      "path": "PACKAGING.json",
+      "bytes": 308,
+      "sha256": "aba4c8ec8d47445ea15f19c76e511643771869919dffccc83cccdbc3ba96f375"
+    },
+    {
+      "path": "RAW_OUTPUTS.json",
+      "bytes": 1772,
+      "sha256": "6cda1fa7f587139df6625296cc0e0d0587d74dd0495616d9d5a96b99eba36ab7"
+    },
+    {
+      "path": "README.md",
+      "bytes": 10042,
+      "sha256": "8ae9568ca2e7b42d4b660532ecc9506c2fe2ae992157327b835dd1f424fc518c"
+    },
+    {
+      "path": "SOURCE_BINDING.json",
+      "bytes": 17799,
+      "sha256": "7fcd15384c5d49626466da44890923abb2651746746e331b85979e6af2225bd5"
+    },
+    {
+      "path": "STARTED.json",
+      "bytes": 611,
+      "sha256": "804586b6afe78574db495618f688c745f7c84b8ab2e69f2ea6075178543b7218"
+    },
+    {
+      "path": "STARTED.original.json.gz",
+      "bytes": 375,
+      "sha256": "3414e2bc9e9620c6d7288dd3e79e6cf6acfaaf9ab22f0c03eec3c78539d4521b"
+    },
+    {
+      "path": "workspace-compile.log.gz",
+      "bytes": 133,
+      "sha256": "ad4e1f65592d62125f29f144c24feb264285d92c433ca177398da7760bf38803"
+    },
+    {
+      "path": "workspace-test-results.log.gz",
+      "bytes": 97,
+      "sha256": "4d86d134438e33d9545beb9ea01cb38541352cf5da26557732e4efdf693f908d"
+    }
+  ]
+}

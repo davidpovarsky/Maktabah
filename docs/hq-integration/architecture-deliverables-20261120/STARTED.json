@@ -1,0 +1,11 @@
+{
+  "at_utc": "2026-11-20T09:54:08.577971+00:00",
+  "pid": 38460,
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\architecture-deliverables-20261120\\source-d5a01b53\\Scripts\\CI\\test-faithful-workspace.py"
+  ],
+  "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\architecture-deliverables-20261120\\source-d5a01b53",
+  "timeout_seconds": 420,
+  "compiler": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions\n"
+}
