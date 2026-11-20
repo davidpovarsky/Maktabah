@@ -1,0 +1,17 @@
+{
+  "observed_utc": "2026-11-20T04:20:37.264703+00:00",
+  "run_id": 44673191816,
+  "checkout_sha": "6030087e27f75b26d9a9bb144ba9ba71eaddadc5",
+  "application_source_sha": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
+  "selected_native_cases": 12,
+  "selected_by_device": {
+    "ipad11": 8,
+    "iphone": 4
+  },
+  "full90_cases_oracles_required_counts_preserved": true,
+  "canonical_git_full_manifest_sha256": "5df558127ac6c67bcc6e53d0c1c9a1fe80c2d148cb7829ea3244f5c4c964fc69",
+  "original_windows_working_file_sha256": "d7754790873f9220be15db9423b6626cd819dfed076bd092d804c0eea208a61b",
+  "manifest_line_endings": "Git canonical bytes verified equal; the original preparation field records Windows working-file bytes",
+  "native_execution_outcome": "PENDING",
+  "full_phase_acceptance": false
+}

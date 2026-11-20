@@ -1,0 +1,25 @@
+{
+  "at_utc": "2026-11-20T04:56:39.542693+00:00",
+  "path": "Maktabah-iOSUITests\\NativeRoutingAcceptanceTests.swift",
+  "before_sha256": "13536d23c0727ffb3954c479053ffeb7e5a1584d067a32cf7e81b4410b22a57e",
+  "after_sha256": "032fb9cf2204d61b79411f82db244c40c9923224149fc4c5ab74b66e056bff77",
+  "existing_scroll_body_sha256": "0310697708fcf90e267291858fac88cbc6e2298630c9ad4f39da236a631463f0",
+  "existing_scroll_body_preserved_exactly_ignoring_only_indentation": true,
+  "prior_source_reconstructed_exactly": true,
+  "new_caller": "runSystemBookIntent expectedPad return path only",
+  "same_original_uuid": true,
+  "max_actual_scroll_gestures": 8,
+  "viewport_geometry_and_hittability_guards": "UNCHANGED",
+  "native_executed": 0,
+  "purpose": "Reuse the existing same-book clipped-tab correction for the original system book newTab return; no additional navigation/receipt or model mutation",
+  "syntax_command": [
+    "C:/Users/DAVID/AppData/Local/Programs/Swift/Toolchains/6.3.3+Asserts/usr/bin/swiftc.exe",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios27.0",
+    "Maktabah-iOSUITests\\NativeRoutingAcceptanceTests.swift"
+  ],
+  "syntax_exit": 0,
+  "syntax_scope": "WINDOWS_PARSE_ONLY_NO_APPLE_TYPECHECK_NO_NATIVE"
+}

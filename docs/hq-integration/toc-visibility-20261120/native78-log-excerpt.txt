@@ -1,0 +1,39 @@
+2026-11-20T00:56:38.379Z [NativeSceneLifecycle] event=await-mount pid=44997 matches=1 foreground=true
+2026-11-20T00:56:38.635Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-20T00:56:38.635Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-20T00:56:38.635Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-20T00:56:38.635Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-20T00:56:38.638Z [ReaderSidebarPager] pageChanged from=library to=contents
+2026-11-20T00:56:38.672Z [NativeSurfaceWitness] destination=native.reader attached=1 appeared=true activation=0 bounds=true contained=true alpha=true modal=false visible=true pending=true
+2026-11-20T00:56:38.673Z [NativeSurfaceObservation] destination=native.reader visible=true matches=false
+2026-11-20T00:56:38.690Z [NativeSurfaceWitness] destination=native.reader.toc attached=1 appeared=false activation=0 bounds=true contained=true alpha=true modal=false visible=false pending=true
+2026-11-20T00:56:38.690Z [NativeSurfaceObservation] destination=native.reader.toc visible=false matches=true
+2026-11-20T00:56:38.713Z [NativeSurfaceWitness] destination=native.reader.toc attached=1 appeared=true activation=0 bounds=true contained=true alpha=true modal=false visible=true pending=true
+2026-11-20T00:56:38.714Z [NativeSurfaceObservation] destination=native.reader.toc visible=true matches=true
+2026-11-20T00:56:38.786Z [NativeNavigationReceipt] request=984EAE73-DD32-42A4-BB0A-5A0E36B35B88 scene=A4A86D1F-7611-485D-B132-E7BEAF638105 backend=otzaria generation=0 epoch=none revision=4->9 destination=native.reader.toc presentation=currentTab
+2026-11-20T00:56:38.791Z [NativeSurfaceWitness] destination=native.reader.toc attached=1 appeared=true activation=0 bounds=true contained=true alpha=true modal=false visible=true pending=false
+2026-11-20T00:56:38.793Z [NativeSurfaceWitness] destination=native.reader attached=1 appeared=true activation=0 bounds=true contained=true alpha=true modal=false visible=true pending=false
+2026-11-20T00:57:01.761Z [ReaderSidebarPager] shouldReceive eligible=false hasWindow=true hidden=false alphaPositive=true inBounds=false loc=160,-32 bounds=320x952 touchView=UISearchBarTextField
+2026-11-20T00:57:03.404Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-20T00:57:03.498Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=94
+2026-11-20T00:57:03.499Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-20T00:57:03.500Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=1
+2026-11-20T00:57:09.973Z [NativeSceneLifecycle] event=await-mount pid=44997 matches=1 foreground=true
+2026-11-20T00:57:10.222Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-20T00:57:10.223Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-20T00:57:10.223Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-20T00:57:10.223Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-20T00:57:10.227Z [ReaderSidebarPager] pageChanged from=contents to=library
+2026-11-20T00:57:10.343Z [NativeSurfaceWitness] destination=native.reader attached=1 appeared=true activation=0 bounds=true contained=true alpha=true modal=false visible=true pending=true
+2026-11-20T00:57:10.343Z [NativeSurfaceObservation] destination=native.reader visible=true matches=false
+2026-11-20T00:57:10.580Z [NativeSurfaceWitness] destination=native.library attached=1 appeared=false activation=0 bounds=true contained=false alpha=true modal=false visible=false pending=true
+2026-11-20T00:57:10.580Z [NativeSurfaceObservation] destination=native.library visible=false matches=true
+2026-11-20T00:57:10.615Z [NativeSurfaceWitness] destination=native.library attached=1 appeared=true activation=0 bounds=true contained=false alpha=true modal=false visible=false pending=true
+2026-11-20T00:57:15.252Z [NativePresentationWait] code=deadline_exceeded mounted=true foreground=true ready=true
+2026-11-20T00:57:15.253Z [NativeNavigationFailure] code=native_effect_uncertain
+2026-11-20T00:57:15.377Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-20T00:57:15.388Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-20T00:57:15.388Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-20T00:57:15.389Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-20T00:57:15.450Z [NativeSurfaceWitness] destination=native.reader attached=1 appeared=true activation=0 bounds=true contained=true alpha=true modal=true visible=false pending=false
+2026-11-20T00:57:15.467Z [NativeSurfaceWitness] destination=native.library attached=1 appeared=true activation=0 bounds=true contained=true alpha=true modal=true visible=false pending=false

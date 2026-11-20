@@ -1,0 +1,36 @@
+{
+  "at_utc": "2026-11-20T04:49:03.195990+00:00",
+  "results": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+      ],
+      "exit": 0,
+      "working_file_sha256": "b7e41476de4a520bb7c271e0be626f48ae473649e08c7166ebce63887665d50a",
+      "log": "docs\\hq-integration\\native-wait-overhead-20261120\\FaithfulReaderUIAcceptanceTests.parse.log",
+      "scope": "SYNTAX_ONLY_WINDOWS_NO_APPLE_TYPECHECK_NO_NATIVE"
+    },
+    {
+      "path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift"
+      ],
+      "exit": 0,
+      "working_file_sha256": "a1b03ddb40db6c5e377335f0cb0e25fea0476affdf9e0a14c541567869f45c1b",
+      "log": "docs\\hq-integration\\native-wait-overhead-20261120\\Sidebar11201AcceptanceTests.parse.log",
+      "scope": "SYNTAX_ONLY_WINDOWS_NO_APPLE_TYPECHECK_NO_NATIVE"
+    }
+  ],
+  "native_executed": 0
+}

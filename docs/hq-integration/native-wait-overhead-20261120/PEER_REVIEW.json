@@ -1,0 +1,15 @@
+{
+  "reviewer": "github_native_audit",
+  "at_utc": "2026-11-20T04:50:33.843944+00:00",
+  "scope": "READ_ONLY_SOURCE_REVIEW",
+  "concrete_blockers": [],
+  "preserved": [
+    "same actual XCUIElement exists predicate; absent controls retain original timeout",
+    "same actual isSelected predicate; absent/unselected controls retain original15s wait",
+    "20 body and20 dot transitions per language",
+    "query exclusion and clearing, TOC identity, Reader object/source/offset",
+    "600s execution gate, coordinate tap and viewport guards"
+  ],
+  "regression_boundary": "Shared FaithfulReaderUIBase.tap also serves other Native and Release suites; their next real run must use this changed source. No previous timing or Native pass is transferred.",
+  "native_executed": 0
+}

@@ -1,0 +1,19 @@
+{
+  "reviewer": "/root/hanlin_api_integration",
+  "kind": "read-only source review",
+  "result": "No concrete blocker found",
+  "findings": [
+    "Only native.library and native.reader.toc are added to the same existing request-bound poll.",
+    "Original observer, 98-percent witness predicate, defer cancellation, and mounted/submission guards are retained.",
+    "The 28 cases cover delayed geometry without callback, cancellation, replacement, cleanup and refusals.",
+    "UIKit, nativeStateChanged and Reader/note projection boundaries are explicit."
+  ],
+  "limits": {
+    "independentExecution": "NOT_RUN",
+    "appleSDKTypecheck": "NOT_RUN",
+    "nativeUI": "NOT_RUN",
+    "directoryOrchestratorFinalReceipt": "NOT_RUN"
+  },
+  "recordedUTC": "2026-11-20T04:56:53.161030+00:00",
+  "candidateSourceSHA256LF": "cc8c3e97dbefcdc7cd9bdc0441c720eb4213b0009bd61c533ee2a50813029a1d"
+}

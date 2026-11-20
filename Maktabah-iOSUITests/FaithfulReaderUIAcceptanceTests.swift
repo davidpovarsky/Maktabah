@@ -145,7 +145,9 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         add(snapshot)
     }
     func tap(_ element: XCUIElement, file: StaticString = #filePath, line: UInt = #line) {
-        XCTAssertTrue(element.waitForExistence(timeout: 30), file: file, line: line)
+        // An existing live snapshot already proves existence; retain the same
+        // native wait for controls that have not appeared yet.
+        XCTAssertTrue(element.exists || element.waitForExistence(timeout: 30), file: file, line: line)
         XCTAssertTrue(element.frame.intersects(app.frame), "Control must be inside the actual app viewport", file: file, line: line)
         element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
     }

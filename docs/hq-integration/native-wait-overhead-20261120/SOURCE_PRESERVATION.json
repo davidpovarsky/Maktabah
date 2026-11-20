@@ -1,0 +1,24 @@
+{
+  "base": "d0c649794e4262ffdea0e13635d5c8237668bd6e",
+  "at_utc": "2026-11-20T04:48:13.899374+00:00",
+  "native_result": "NOT_RUN",
+  "execution_time_allowance_seconds": 600,
+  "body_transitions_per_language": 20,
+  "dot_transitions_per_language": 20,
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "before_canonical_sha256": "a614944ecd441e529a27c86aeb3af824aebe46670efa639ee01bc312e40a684d",
+      "after_canonical_sha256": "b3e3165a9a54d39dfc32866fd078a410201f1db7240d261ee32124209ac09fa3",
+      "prior_source_restored_exactly": true,
+      "replacements": 1
+    },
+    {
+      "path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+      "before_canonical_sha256": "691635310a71e3e18569214b926e86efd2a4931a8d81a6b9b02443d9c3fcb947",
+      "after_canonical_sha256": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8",
+      "prior_source_restored_exactly": true,
+      "replacements": 5
+    }
+  ]
+}

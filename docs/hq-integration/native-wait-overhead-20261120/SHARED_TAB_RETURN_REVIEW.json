@@ -1,0 +1,15 @@
+{
+  "at_utc": "2026-11-20T05:02:10.649986+00:00",
+  "reviewer": "asana_audit",
+  "mode": "READ_ONLY_SOURCE_REVIEW",
+  "base": "f94e830d65619aee9bf1167d42c9782e93879b96",
+  "candidate_sha256_lf": "032fb9cf2204d61b79411f82db244c40c9923224149fc4c5ab74b66e056bff77",
+  "findings": [],
+  "verified": [
+    "Independent exact inverse reconstructs whole original source",
+    "Bounded eight actual gestures, geometry and final exists/hittable unchanged",
+    "System Book Intent returns using original pre-invocation workspace UUID",
+    "Original SQL text/locator, profile/group/tabs and system-intent receipt/count assertions unchanged"
+  ],
+  "native_executed": 0
+}
