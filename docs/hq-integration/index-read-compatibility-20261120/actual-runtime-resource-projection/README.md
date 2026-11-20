@@ -22,3 +22,7 @@ The original search/readiness regression is **not rerun yet for this correction*
 ## Evidence integrity
 
 VERIFICATION.json maps every retained file to its original byte count and SHA-256 and to a deterministic gzip's SHA-256. Original raw results and logs are not rewritten. The actual C build-information fixture includes the binary/consumer/log provenance; its full raw bytes are also retained. Source snapshots preserve the tested byte hashes independent of checkout line-ending conversion.
+
+## Completed follow-up
+
+The original regression subsequently passed on source 6968a3db: 191 search assertions and 14 cached-readiness assertions. See [the exact follow-up and raw evidence](original-regression-6968/README.md); the production registry remains empty.
