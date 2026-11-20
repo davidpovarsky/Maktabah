@@ -9,6 +9,14 @@ from pathlib import Path
 
 def sha(raw): return hashlib.sha256(raw).hexdigest()
 def utc(): return dt.datetime.now(dt.timezone.utc).isoformat()
+
+def run_captured(command, folder, prefix, timeout):
+    """Retain partial actual output even when the owned child hits its bound."""
+    stdout,stderr=folder/(prefix+".stdout.log"),folder/(prefix+".stderr.log")
+    with stdout.open("wb") as out,stderr.open("wb") as err:
+        result=subprocess.run(command,stdout=out,stderr=err,timeout=timeout)
+    return subprocess.CompletedProcess(command,result.returncode,stdout.read_bytes(),stderr.read_bytes())
+
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--root",type=Path,default=Path(__file__).resolve().parents[1])
@@ -65,32 +73,42 @@ def main():
                           "lifetime.reentrant-stop-prevents-late-callback"]}
     modes=lifetime if a.lifetime_only else {**modes,**lifetime}
     (out/"CASES_EXPECTED.json").write_text(json.dumps(modes,indent=2),encoding="utf-8")
+    active_mode=None
+    result["executionAccounting"]="Only fully verified completed mode inventories count as executed; an interrupted current mode remains unverified."
     try:
         exe=out/"toc-transport-foundation.exe"
         cmd=[shutil.which("swiftc"),"-j1","-swift-version","6","-strict-concurrency=complete",
              "-D","DEBUG","-D","SEFARIA_TOC_TRANSPORT_ACCEPTANCE_TESTS",
              "-module-cache-path",str(a.module_cache),*paths,"-o",str(exe)]
-        (out/"COMMANDS.json").write_text(json.dumps({"compile":cmd,"compileTimeout":180,"runtimeTimeoutPerMode":20},indent=2),encoding="utf-8")
-        start=time.monotonic();r=subprocess.run(cmd,capture_output=True,timeout=180)
+        commands={"compile":cmd,"compileTimeout":180,"runtimeTimeoutPerMode":20,"runtime":[]}
+        (out/"COMMANDS.json").write_text(json.dumps(commands,indent=2),encoding="utf-8")
+        start=time.monotonic();r=run_captured(cmd,out,"compile",180)
         result["compile"]={"returncode":r.returncode,"seconds":time.monotonic()-start}
-        (out/"compile.stdout.log").write_bytes(r.stdout);(out/"compile.stderr.log").write_bytes(r.stderr)
         if r.returncode:raise RuntimeError("compile failure")
         result["executableSHA256"]=sha(exe.read_bytes());result["modes"]={}
         for mode,names in modes.items():
+            active_mode=mode
             folder=out/mode;folder.mkdir()
-            start=time.monotonic();r=subprocess.run([str(exe),mode,str(folder)],capture_output=True,timeout=20)
-            (folder/"runtime.stdout.log").write_bytes(r.stdout);(folder/"runtime.stderr.log").write_bytes(r.stderr)
+            command=[str(exe),mode,str(folder)]
+            commands["runtime"].append({"mode":mode,"command":command,"timeoutSeconds":20})
+            (out/"COMMANDS.json").write_text(json.dumps(commands,indent=2),encoding="utf-8")
+            start=time.monotonic();r=run_captured(command,folder,"runtime",20)
             rows=json.loads(r.stdout.decode("utf-8"))
             if [row["name"] for row in rows]!=names:raise RuntimeError("Exact unique inventory mismatch "+mode)
             (folder/"CASES.json").write_text(json.dumps(rows,indent=2),encoding="utf-8")
             result["modes"][mode]={"returncode":r.returncode,"seconds":time.monotonic()-start,
                  "executed":len(rows),"passed":sum(row["passed"] for row in rows),
                  "failed":[row["name"] for row in rows if not row["passed"]]}
+            active_mode=None
         result["executed"]=sum(x["executed"] for x in result["modes"].values())
         result["passed"]=sum(x["passed"] for x in result["modes"].values())
         result["status"]="PASS" if all(x["returncode"]==0 and not x["failed"] for x in result["modes"].values()) else "FAIL"
     except Exception as e:
-        result["status"]="ERROR";result["error"]=str(e);result.setdefault("executed",0)
+        result["status"]="ERROR";result["error"]=str(e)
+        result["timedOut"]=isinstance(e,subprocess.TimeoutExpired)
+        result["unverifiedPartialMode"]=active_mode
+        result["executed"]=sum(x["executed"] for x in result.get("modes",{}).values())
+        result["passed"]=sum(x["passed"] for x in result.get("modes",{}).values())
     result["inputHashesUnchanged"]=all(sha(path.read_bytes())==digest for path,digest in observed)
     result["finishedAt"]=utc();result["freeBytesAfter"]=shutil.disk_usage(root).free
     if not result["inputHashesUnchanged"]:result["status"]="ERROR"
