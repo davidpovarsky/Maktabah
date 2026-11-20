@@ -67,14 +67,26 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         let topInset: Double?; let bottomInset: Double?
         let overviewPresentations: [Presentation]?
     }
-    func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0, recordViewport: Bool = false, fontSize: Float? = nil, tier: TestTier? = nil) {
+    func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0, recordViewport: Bool = false, fontSize: Float? = nil) {
+        launchReader(enabled: enabled, scenario: scenario, backend: backend, language: language,
+                     background: background, recordViewport: recordViewport, fontSize: fontSize,
+                     tier: readerTestTier)
+    }
+
+    /// The required tier keeps every original override signature intact.
+    func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0, recordViewport: Bool = false, fontSize: Float? = nil, tier: TestTier) {
         // The downstream observer reads the actual original source anchor;
         // never activate the baseline renderer's crash-prone file exporter.
         let prefix = (recordViewport ? ProcessInfo.processInfo.environment["FAITHFUL_VIEWPORT_DIRECTORY"] : nil).map {
             URL(fileURLWithPath: $0).appendingPathComponent("faithful-\(scenario)-" + UUID().uuidString).path
         }
         viewportURL = prefix.map { URL(fileURLWithPath: $0 + ".viewport.json") }
-        launchWithTier(tier ?? readerTestTier, scenario: scenario, backend: backend, extraArgs: [
+        // realUI intentionally omits a backend override in launchWithTier.
+        // Preserve this helper's requested backend instead of inheriting a
+        // previously persisted provider when the feature-off case relaunches.
+        let backendArguments = tier == .realUI
+            ? ["-preferredBackend", backend, "-smokeBackend", backend] : []
+        launchWithTier(tier, scenario: scenario, backend: backend, extraArgs: backendArguments + [
             "-ChavrusaTextFaithfulReaderUIEnabled", enabled ? "YES" : "NO",
             "-studyWorkspaceTestingNamespace", workspaceNamespace,
             "-textViewBackgroundColorLight", String(background)

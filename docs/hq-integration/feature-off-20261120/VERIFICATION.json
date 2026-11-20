@@ -57,5 +57,20 @@
     "result": "No source blocker identified",
     "scope": "Three application source files; fixed feature flag at process launch; no tests, Apple SDK or Native claim"
   },
-  "root_owns_matrix_and_dispatch": true
+  "root_owns_matrix_and_dispatch": true,
+  "launch_signature_followup": {
+    "red_source": "6f3a18aa7551c13c4484ddae0b7ea0fef48e339b",
+    "red_compile_exit": 1,
+    "red_diagnostic": "method does not override any method from its superclass",
+    "green_compile_exit": 0,
+    "green_execute_exit": 0,
+    "checks": 12,
+    "passed": 12,
+    "failed": 0,
+    "source_assertion_failures": 0,
+    "r27_source_unchanged_lf_sha256": "d4ff446db4acdbb61e0ad19c14696e5194bafbba239ef86876e85a2de30e70cc",
+    "job": "job_92f0a5abde1d",
+    "native_ui_cases_executed": 0,
+    "apple_sdk_typecheck": "NOT_RUN"
+  }
 }
