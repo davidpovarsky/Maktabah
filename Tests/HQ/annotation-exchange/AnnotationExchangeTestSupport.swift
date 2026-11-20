@@ -68,8 +68,8 @@ func sqliteRejects(_ body: () throws -> Void) throws {
 }
 
 let namespace = "org.otzaria.annotation"
-let fixedAnnotationID = UUID(uuidString: "11111111-2222-3333-4444-555555555555")!
-let fixedMutationID = UUID(uuidString: "AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE")!
+let fixedAnnotationID = Foundation.UUID(uuidString: "11111111-2222-3333-4444-555555555555")!
+let fixedMutationID = Foundation.UUID(uuidString: "AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE")!
 
 func scope(_ account: String = "account-a", _ space: String = "space-a", _ app: String = "anytype-contract") throws -> AnnotationExchangeDestination {
     try .init(destination: app, account: account, space: space)
@@ -80,9 +80,9 @@ struct Fixture: Sendable {
     let db: SQLiteDatabase
     let ledger: AnnotationExchangeLedger
     let queue: SyncPendingStore
-    let uuid: UUID
+    let uuid: Foundation.UUID
 
-    init(root: URL, name: String, create: Bool = true, install: Bool = true, uuid: UUID = fixedAnnotationID) throws {
+    init(root: URL, name: String, create: Bool = true, install: Bool = true, uuid: Foundation.UUID = fixedAnnotationID) throws {
         path = root.appendingPathComponent(name + ".sqlite")
         db = try SQLiteDatabase(path: path.path)
         ledger = AnnotationExchangeLedger(database: db, digest: AcceptanceDigest())
@@ -142,7 +142,7 @@ struct Fixture: Sendable {
         return try AnnotationExchangeValidation.canonical(.object(object))
     }
 
-    func commit(_ mutation: UUID = UUID(), expectedRevision: Int64 = 0,
+    func commit(_ mutation: Foundation.UUID = Foundation.UUID(), expectedRevision: Int64 = 0,
                 destinations: [AnnotationExchangeDestination]? = nil,
                 preview: String = "תצוגה בלבד") throws -> AnnotationExchangeCommit {
         let source = try witness()
@@ -182,7 +182,7 @@ struct Fixture: Sendable {
 }
 
 func ack(_ delivery: AnnotationExchangeDelivery, destination: AnnotationExchangeDestination? = nil,
-         messageID: UUID? = nil, uuid: UUID? = nil, revision: Int64? = nil, digest: String? = nil,
+         messageID: Foundation.UUID? = nil, uuid: Foundation.UUID? = nil, revision: Int64? = nil, digest: String? = nil,
          envelopeNamespace: String? = nil) -> AnnotationExchangeAcknowledgement {
     .init(messageID: messageID ?? delivery.messageID, destination: destination ?? delivery.destination,
           namespace: envelopeNamespace ?? delivery.namespace, annotationUUID: uuid ?? delivery.annotationUUID,
@@ -200,8 +200,8 @@ func abruptlyTerminate() -> Never {
 
 struct CrashReceipt: Codable {
     let phase: String
-    let mutationID: UUID
-    let messageID: UUID
+    let mutationID: Foundation.UUID
+    let messageID: Foundation.UUID
     let payloadBase64: String
     let payloadDigest: String
     let originalsBase64: String
