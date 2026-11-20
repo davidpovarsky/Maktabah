@@ -1,0 +1,71 @@
+{
+  "startedAt": "2026-11-20T10:32:54.621829+00:00",
+  "mode": "focused-language",
+  "baselineRef": null,
+  "head": "c6542e412fb5b052d182aacbea685c62bdf8440c",
+  "productionExtraction": "NONE: each production file is complete",
+  "nativeAcceptance": "NOT_RUN",
+  "liveRemoteOrOfflineStore": "NOT_RUN",
+  "moduleCache": "C:\\Users\\DAVID\\Code\\Maktabah-inspector-harness-20261120\\build\\inspector-harness-baseline-20261120\\module-cache",
+  "freeBytesBefore": 6600208384,
+  "testBlock": {
+    "wholeOriginalTestFile": "Vendor/SefariaNativeTests/NavigationAndPackageTests.swift",
+    "wholeRawSHA256": "24f2019fd99345f85add2cb9ddffb776fd936c524fdaa09cb96388543dd2789f",
+    "blockSHA256": "12dcd497f9f6fe4f2de1d8ad018b7e7454cf00bf8e5d8eb072d066c3aa62dd11",
+    "expectedUniqueCases": [
+      "schema.hebrew.root",
+      "schema.english.root",
+      "schema.hebrew.nested",
+      "schema.english.nested",
+      "schema.hebrew.canonical-tree",
+      "schema.english.canonical-tree",
+      "schema.hebrew.missing-empty-whitespace",
+      "schema.english.missing-empty-whitespace",
+      "schema.hebrew.primary-over-alias",
+      "schema.english.primary-over-alias",
+      "schema.hebrew.default-wholeRef-identity",
+      "schema.english.default-wholeRef-identity",
+      "shape.hebrew.complex-root",
+      "shape.english.complex-root",
+      "shape.hebrew.missing-empty-whitespace",
+      "shape.english.missing-empty-whitespace",
+      "shape.hebrew.canonical-roots",
+      "shape.english.canonical-roots",
+      "shape-child.hebrew.titles-and-fallbacks",
+      "shape-child.english.titles-and-fallbacks",
+      "shape-child.hebrew.canonical-tree",
+      "shape-child.english.canonical-tree",
+      "adjacent.talmud.hebrew",
+      "adjacent.talmud.english",
+      "adjacent.talmud.canonical-both",
+      "adjacent.alternate.hebrew",
+      "adjacent.alternate.english",
+      "adjacent.alternate.canonical-both",
+      "adjacent.dictionary.literal-headword-both",
+      "adjacent.dictionary.canonical-both",
+      "default.follows-original-language-policy"
+    ]
+  },
+  "toolchain": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions\n",
+  "compile": {
+    "returncode": 0,
+    "elapsedSeconds": 17.56300000002375
+  },
+  "executable": {
+    "size": 1075200,
+    "sha256": "c4561c969f8665d86b107de723db23d84d01f311031e5ef790724a9706bf765f"
+  },
+  "runtime": {
+    "returncode": 0,
+    "elapsedSeconds": 0.061999999976251274
+  },
+  "executed": 31,
+  "passed": 31,
+  "failed": [],
+  "status": "PASS",
+  "inputHashesUnchanged": true,
+  "snapshotInputHashesUnchanged": true,
+  "finishedAt": "2026-11-20T10:33:13.228418+00:00",
+  "elapsedSeconds": 18.59399999998277,
+  "freeBytesAfter": 6598549504
+}

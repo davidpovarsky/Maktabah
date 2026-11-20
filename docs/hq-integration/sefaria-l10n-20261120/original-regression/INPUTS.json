@@ -1,0 +1,317 @@
+[
+  {
+    "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+    "size": 32835,
+    "sha256": "d1d9fa7bf0b20d3c32f2dbd73cc81f8028180524462f6386e77c5ce11e412a34",
+    "canonicalLFSHA256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+    "baseGitBlob": "fe2fbcb9f07762e0d35949b098b55d079a3c95d2"
+  },
+  {
+    "path": "Source/LibraryBackend/LibraryBackendProtocols.swift",
+    "size": 6913,
+    "sha256": "59ca10ce7bb15475403f3365c4ad7a8e71726c259739e1cffb64b9f70abac76b",
+    "canonicalLFSHA256": "de28cf7350e82b3766b6a5404e2f7e9271c48723a124d752e02e244f6de4e674",
+    "baseGitBlob": "50b61805c18e574fa7d1339a01ee93e7d17cea40"
+  },
+  {
+    "path": "Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+    "size": 2127,
+    "sha256": "5fd0f3d710c5e4bb52bccc6c8840a6eec5924f4c72504e45820fbf25f2f8613c",
+    "canonicalLFSHA256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+    "baseGitBlob": "59173d54ed1be62eb25e6f1100771d8b10fb7547"
+  },
+  {
+    "path": "Source/LibraryBackend/BackendCoordinator.swift",
+    "size": 32929,
+    "sha256": "e49db02fc03063936b4463973d55e273fb5ca6b34e27f395535bc3596de82e9f",
+    "canonicalLFSHA256": "508838569fe94061c169871f74f9dcebeaa2adf7cc1b19907453b31d3d5f8332",
+    "baseGitBlob": "4d05fc247a4da6fbb45e4e82905e20a54c8f1ff9"
+  },
+  {
+    "path": "Source/LibraryBackend/LegacyIdentityRegistry.swift",
+    "size": 10842,
+    "sha256": "21d31c0e7bb6ea8c51dca975203e9f3b58086cfa1ba10d1a5832464c6d867508",
+    "canonicalLFSHA256": "0b54b8405de81bd73b64584283299b9d463cf5ae5d10754b97257c98f5e642fe",
+    "baseGitBlob": "92cc79f4cf7edeec737857a756e43128bc569e84"
+  },
+  {
+    "path": "Source/LibraryBackend/MaktabahSearchSnippetFormatter.swift",
+    "size": 6700,
+    "sha256": "2d8df0d3de309024facdcbd85ada22ce9e758aa18ac7fcc8d202c7da1cfffa9f",
+    "canonicalLFSHA256": "5451ab37151f881feef36996ac7fa052ee973d95d2e640843285cb8528ac1551",
+    "baseGitBlob": "f6631839b2d3255e1e3b72f5acbbfca9a274195d"
+  },
+  {
+    "path": "Source/Sefaria/Domain/SefariaModels.swift",
+    "size": 12554,
+    "sha256": "2b2c3025080dee07eac8be5c8aa4214366d2ebd9d96f371abe3e2d6436b86610",
+    "canonicalLFSHA256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+    "baseGitBlob": "2f6c00bebbbbf7ca13cf4374111b09ec1c29e584"
+  },
+  {
+    "path": "Source/Sefaria/Domain/SefariaNavigationParser.swift",
+    "size": 21866,
+    "sha256": "9aa0913e30f11146dcc2268bdcb1b609ed9ef0996fce6967467e9edb583a8c99",
+    "canonicalLFSHA256": "9aa0913e30f11146dcc2268bdcb1b609ed9ef0996fce6967467e9edb583a8c99",
+    "baseGitBlob": "0607002bf477d9f4f8be21fa306693b6eb35d580"
+  },
+  {
+    "path": "Source/Sefaria/Network/SefariaDTOs.swift",
+    "size": 22863,
+    "sha256": "03ab751ab6f28f0aedf275550f9f879304b1e8793fe5a11575b9b64c9a480196",
+    "canonicalLFSHA256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+    "baseGitBlob": "b11caf953f373918d3e17e5741a8e94e343eeeb5"
+  },
+  {
+    "path": "Source/Sefaria/Network/SefariaNetworkConfiguration.swift",
+    "size": 2424,
+    "sha256": "29fd7feafd885a2c4f942dcaa5e2a0959abc066f49986122349a3f1c7eaeae85",
+    "canonicalLFSHA256": "649ee30d66557af5ee27126306bc7700e7f6f9166aabec41d6fc2960a4e11ee3",
+    "baseGitBlob": "e275c2dba66fe7adb10920fa533b2adb349c915d"
+  },
+  {
+    "path": "Source/Sefaria/Network/SefariaHTTPClient.swift",
+    "size": 5840,
+    "sha256": "f26123656c5f12ef87af8c15912283adc17c0297fbd7ce1fcf0975e775d65f83",
+    "canonicalLFSHA256": "5d640f6d8f94926b99d815a39dbea963cf64d360ee0fc5d683f62c8b67a64c19",
+    "baseGitBlob": "7518148a2cd356142c536c5a62f6b44af99bb47f"
+  },
+  {
+    "path": "Source/Sefaria/Cache/SefariaDiskCache.swift",
+    "size": 2202,
+    "sha256": "0e34c9cf499c891fccb08a2738a3d8ad828eb2d223293200758c0e520a23cdc0",
+    "canonicalLFSHA256": "11aaa12a3b50e5121f62651408518ed5c10c826cbd1bb5ed34362df81bb3ebac",
+    "baseGitBlob": "0b79e1e5890ae7514a7adbf956ae583246f4ad2c"
+  },
+  {
+    "path": "Source/Sefaria/Network/SefariaRemoteStore.swift",
+    "size": 38331,
+    "sha256": "03c49c6060f813c29a837416dc967d0e5f747904e097493c5db5658ee1d91e88",
+    "canonicalLFSHA256": "fa7e1a1db54ef8bc61190e21a9d84ab8323827e8d286ababe89699930c64ef77",
+    "baseGitBlob": "456c790647b594d91bdbf68b621c11d5283a03c9"
+  },
+  {
+    "path": "Source/Sefaria/Reading/SefariaHybridNavigationStore.swift",
+    "size": 2690,
+    "sha256": "7c16e76f46ee5e7bd1807bb444d9360301397f652d148bb3b61397b0928ce53c",
+    "canonicalLFSHA256": "4cb3827881b30d90c27bdbecb008ee1d87915cee3997a48d579113aa3238d1b6",
+    "baseGitBlob": "f9fcc64b6c4b0c03d4cd0c730fc2d3137314bc67"
+  },
+  {
+    "path": "Source/Sefaria/Offline/SefariaExportModels.swift",
+    "size": 17046,
+    "sha256": "eae37dfa20d7348cc731d9cfba7a477c4fc3b4c42b9f788e31fdc66b493b7cb6",
+    "canonicalLFSHA256": "2a1316aa7d0dc9a1f0bf1ee1b85d6bebe08f61ba5a867e1e8957c4adbaae2453",
+    "baseGitBlob": "af1669b5b857b0ab28002d05f748d0e35eafdcba"
+  },
+  {
+    "path": "Source/Sefaria/Downloads/SefariaPackagePolicy.swift",
+    "size": 1234,
+    "sha256": "62bd2fc1d05f8275e28ce86acb280641bd2c72d6a0f02a794568e169ebdec866",
+    "canonicalLFSHA256": "1d601a8a035b135e6ca85ea2a86bb6f5c19d7ea32792626b494aad56b5c466fe",
+    "baseGitBlob": "037c2a52f732d1fe72c442440e053711ada57e60"
+  },
+  {
+    "path": "Source/Otzaria/Core/String+OtzariaText.swift",
+    "size": 5305,
+    "sha256": "546adba578aa90dc417c53d42775367b0d5147700e293739c2707042eaf32686",
+    "canonicalLFSHA256": "e62731fccc95328cb6284809e6e4b464ab83e064ed2117d7da1bf8c0ff9a826a",
+    "baseGitBlob": "a51c076d0da77339a27b0a61e1be8f4ee45cb0e6"
+  },
+  {
+    "path": "Source/Otzaria/Domain/OtzariaModels.swift",
+    "size": 4890,
+    "sha256": "ebf7f601b0b81f55111e56742e6521fac11b986554c35b275d0a6d3fe1d06853",
+    "canonicalLFSHA256": "12ad63da275f52eb98b8c89fae7b71c0189756fb482e5d461106a64af44e9c68",
+    "baseGitBlob": "0444ea876504aa95c90e51f1c20b9e3e9220e3c2"
+  },
+  {
+    "path": "Source/Otzaria/Reading/OtzariaLineAnchor.swift",
+    "size": 209,
+    "sha256": "02086e3eb5fd605f041ab801270c6ff3adcf2bf118aa167517ce5f805741a049",
+    "canonicalLFSHA256": "46c7282330eba729c77ddfbf732582bdcbfef2fcc7473b455cc5061bdd3931a6",
+    "baseGitBlob": "2c6c645e783c3a0c762967fa039f98c9fb020558"
+  },
+  {
+    "path": "Source/Otzaria/Reading/OtzariaReadingUnit.swift",
+    "size": 3664,
+    "sha256": "1a653a83de0df5c00c55ad74006b3cb76b810c2a3369bcc161e5f4a1960d03de",
+    "canonicalLFSHA256": "a7468b783f530958641918c23e3d654a31938446f9de0bdbb7211dfc5ab39cfb",
+    "baseGitBlob": "c863f39768256dc2f288cf3c34fd0f140bcf92fb"
+  },
+  {
+    "path": "Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift",
+    "size": 2214,
+    "sha256": "51b928839fb9cc9edbf6ad5a00da7fe02aa28d3d31d7ce07d9d3cb86f40da9d9",
+    "canonicalLFSHA256": "9c01b971ef6093fc7f9a2ea9680353aa9ad9f6b3bb87f7eefd4ac9a6780a4b02",
+    "baseGitBlob": "97d71f716ae34bf15e224651f9f16aca009bdda1"
+  },
+  {
+    "path": "Source/Otzaria/Reading/OtzariaRelationshipClassifier.swift",
+    "size": 13673,
+    "sha256": "2561d4a4c22b685f35e21959c26b8c27d958071259c4ee6e7425ab9e4af62033",
+    "canonicalLFSHA256": "97197c59f64f96073bae1b99154dbef788464a1485d80e9c68a9494cb0534ae5",
+    "baseGitBlob": "d6aebcaf61f143a70088a412850ea81686452dc3"
+  },
+  {
+    "path": "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift",
+    "size": 12635,
+    "sha256": "6e42177dcf465e468994c98ac6b7a363b4560c6666c9f423919bc663377465b1",
+    "canonicalLFSHA256": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+    "baseGitBlob": "02b634f50872ae16ee8e6b089954904bf052e2ec"
+  },
+  {
+    "path": "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift",
+    "size": 21279,
+    "sha256": "5546a074946e5934cbb4001acac444244896d0be2b5f4338f3894e039c71eabf",
+    "canonicalLFSHA256": "5a42c4d09d55207eab25d0690c4125da0899037741ecdb12f13e27b92e8b42fc",
+    "baseGitBlob": "1d9e6a16c9a5ca556dd9e35c62acf100c370cb74"
+  },
+  {
+    "path": "Source/Core/SearchEngine/SearchMode.swift",
+    "size": 764,
+    "sha256": "aadb3776e118cd5fc88446995c9bbd1e223f7f4d423f7e550de567cc4f9b6952",
+    "canonicalLFSHA256": "04f15624ba90aae8bd49a2384608cc7ce40c6f1bf92b5fd1a01ab8489702527e",
+    "baseGitBlob": "60e757d67309fcee32f4818178a739b1c8630f3b"
+  },
+  {
+    "path": "Source/Otzaria/Search/OtzariaSearchMode.swift",
+    "size": 771,
+    "sha256": "64f0ebdef73e4e9ee4e84000c4aab5116af6b178abb4f27a8f39fb78fbcc1a3f",
+    "canonicalLFSHA256": "4d6b3340b0ae26b5a7367038eaab6675a40bac58b989cbe6b1e145e956ac8876",
+    "baseGitBlob": "7fdf7740fd0e4bcddcabd529bc0589310d927ff3"
+  },
+  {
+    "path": "Source/Otzaria/Search/OtzariaSearchModels.swift",
+    "size": 19283,
+    "sha256": "362664d005182470dac3b96d9d4c631509dd3a280aca223bb4c1a9b511738ecc",
+    "canonicalLFSHA256": "e75225c23668dc0470b8d350cf50c9231a999e606a25db283f4e002055b151c9",
+    "baseGitBlob": "22f3980075810cec64fa1e4d52198e5ae2dfa2b2"
+  },
+  {
+    "path": "Source/ZayitSearch/UnifiedSearchScope.swift",
+    "size": 401,
+    "sha256": "a829a42d7fb8789334efeef0cb5f89544a0bcbc75836adc301720e2dd1ad0af7",
+    "canonicalLFSHA256": "cab28b0ad32261adaa4ba0f40fdfa7f3ea54432ff820d218a3938e7c1f46eeb1",
+    "baseGitBlob": "5381d009f991c07531071d95ed32fdfa7435dd8e"
+  },
+  {
+    "path": "Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+    "size": 5565,
+    "sha256": "3a525c49b48d63f02473138d39c1fb997c96fe2b4308eca360795876b3e27b37",
+    "canonicalLFSHA256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+    "baseGitBlob": "fe5593bf2c47ea70002c3debd2a36648ecc48c6b"
+  },
+  {
+    "path": "Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+    "size": 2906,
+    "sha256": "88461569e385921eb18a21b1f6efe87367694c7f5c061b182867bd0c7c3fbcfe",
+    "canonicalLFSHA256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+    "baseGitBlob": "da1faba53fa3f37cb85187313b53f2b0ed6af489"
+  },
+  {
+    "path": "Vendor/SefariaNativeTests/TestSupport.swift",
+    "size": 740,
+    "sha256": "7668525f89b9d65f536180f0a7a70643fabf12288a26f39a1c7c8af1656612d1",
+    "canonicalLFSHA256": "396a9e94156d50e63a09b2e3821332b2994bc6d8787161244b62781a90c5eb93",
+    "baseGitBlob": "0d7da0432f5bad4e902fe747f157fe6433de9c24"
+  },
+  {
+    "path": "Vendor/SefariaNativeTests/LocatorAndRefTests.swift",
+    "size": 4151,
+    "sha256": "53f32945ec843ed4171afe8a8acef1e2660d937d6069311eeb946905b17030dc",
+    "canonicalLFSHA256": "9c2aef103d0c8cc1ddcf12f646301b243637fc0e9cbf64dbc9e5f5b62f137152",
+    "baseGitBlob": "0b01134f768039ec829d01651633eb35403c4019"
+  },
+  {
+    "path": "Vendor/SefariaNativeTests/DecodingTests.swift",
+    "size": 47251,
+    "sha256": "8168c384c1d7241523ad0d016541334417d2f7e2ba78cc68afc6f32341341ae9",
+    "canonicalLFSHA256": "a38ed3671488407ddb8d33e2b097466a407e1463fd33959aa1c4d21882d54575",
+    "baseGitBlob": "3eadc1e3cf257f5e2357a6eab6592a77de590caf"
+  },
+  {
+    "path": "Vendor/SefariaNativeTests/NavigationAndPackageTests.swift",
+    "size": 39413,
+    "sha256": "24f2019fd99345f85add2cb9ddffb776fd936c524fdaa09cb96388543dd2789f",
+    "canonicalLFSHA256": "24f2019fd99345f85add2cb9ddffb776fd936c524fdaa09cb96388543dd2789f",
+    "baseGitBlob": "7cc48c0b49d8e2ac0c3841ec525be385a7b1d22f"
+  },
+  {
+    "path": "Vendor/SefariaNativeTests/LegacyIdentityRegistryTests.swift",
+    "size": 4152,
+    "sha256": "ec57dab85543d6f5d4d9771577cac1ffe00aff670ec0634e140bc92f2471bd22",
+    "canonicalLFSHA256": "c96ad9dfb9ea4edae8d92b2101f755ba817ae4f1a2dc4b4ab3f0222559949827",
+    "baseGitBlob": "3cfb2d5297ac054381b8ad7d3e7dcb1e863ab1e3"
+  },
+  {
+    "path": "Vendor/SefariaNativeTests/BackendCoordinatorTests.swift",
+    "size": 11090,
+    "sha256": "57c5d4414f9a68c6e5a86a3ee56c8ef35030ccde6eeca3de32cef79c5288da0b",
+    "canonicalLFSHA256": "3c8e6efd1efc6ba94c99398f57a28eb2abc946daef780fedebefa74949aace84",
+    "baseGitBlob": "85d3839b57d29921229fc912cf89096d27b5df1a"
+  },
+  {
+    "path": "Vendor/SefariaNativeTests/UnifiedSearchArchitectureTests.swift",
+    "size": 34874,
+    "sha256": "f34bdfae2eb3dcc4b9ce0a82086fb4de95263af932db1f0e914e7fdba7026271",
+    "canonicalLFSHA256": "74414e9424089a8f93db8be3f49ac5227410a1dbba4610ead1e528a678bafc27",
+    "baseGitBlob": "f7f8910771ca9229af8b6c131e2e17191e5076f9"
+  },
+  {
+    "path": "Vendor/SefariaNativeTests/SefariaNativeTestMain.swift",
+    "size": 2126,
+    "sha256": "e847975876a7c33b698d95f56df2e5ff1a1d557a8696aaafc8b0902888e73234",
+    "canonicalLFSHA256": "a653ce179200d6cd70fcc948086710ce29759edb975f7bee36d57cb974559d1b",
+    "baseGitBlob": "89e907837712ce12db1f2e9c4001e1a4f9f55234"
+  },
+  {
+    "path": "Vendor/SefariaMobileReference/Fixtures/index-complex.json",
+    "size": 570,
+    "sha256": "534f73c9ebf4afa96f3bc26bc636a8da57629a05150f4cf023778116dfebb75b",
+    "canonicalLFSHA256": "e9bdf73ab92e7b716e95f7aef845b082abd35d4aa95558edc427b41d64d8608e",
+    "baseGitBlob": "7459aff1ff5c566a0e877828918b19ae904edd8b"
+  },
+  {
+    "path": "Vendor/SefariaMobileReference/Fixtures/offline-metadata.json",
+    "size": 446,
+    "sha256": "a09be8a6686d8b6abb002f48ffb3af1ab0c0858f99ee61b6dabaa0461ed53ff5",
+    "canonicalLFSHA256": "7d71bbbadde6542fc851bd1a3e05005d20067c6f670d1d6de1d2f704696a96df",
+    "baseGitBlob": "c5d785016caecd237c49054e83005b4d0d87fe14"
+  },
+  {
+    "path": "Vendor/SefariaMobileReference/Fixtures/packages.json",
+    "size": 407,
+    "sha256": "9d55f7f7c66d4ab70ef1d540f9a568e661cdb43406ac9539b0a3e357b8a50260",
+    "canonicalLFSHA256": "60fa10d86c15ec8b4b03535daaafdab373121d2af61f3dcc4198bf9a7d4aa2ef",
+    "baseGitBlob": "23dce962e2c4eaa18aaf3c6ac396f7b0086aa0fb"
+  },
+  {
+    "path": "Vendor/SefariaMobileReference/Fixtures/search.json",
+    "size": 247,
+    "sha256": "e92de0680d255187597c18ea7bc3bf989040f3724032252914ce89c3462fcde3",
+    "canonicalLFSHA256": "8316b9f0ac63195a7f2c507992674af07e0110afb9c5e7e32bacdfe376a68eb0",
+    "baseGitBlob": "3b2546dcbcd4b1f6b5e5263b3aae58d13baa3ead"
+  },
+  {
+    "path": "Vendor/SefariaMobileReference/Fixtures/texts-berakhot.json",
+    "size": 273,
+    "sha256": "6827e798f2c1355320b7f0bd4396950cda263db3f7f00977ac721a480e215278",
+    "canonicalLFSHA256": "6896077fa561d11c0ad4eee12f9c9b4d9a0ad7273dc2e919c9019f10fc6246ab",
+    "baseGitBlob": "203804564ae39f49453e01293380235d72b8c2b4"
+  },
+  {
+    "path": "Vendor/SefariaMobileReference/Fixtures/texts-commentary.json",
+    "size": 343,
+    "sha256": "aa483ace316906bb87512f62782d965b21de04437f04b7d33603bd7f7367f843",
+    "canonicalLFSHA256": "60860766cc6aba1ff968b11c0ab2a2fb49ccd76133aa71300163022b272ed6d1",
+    "baseGitBlob": "886d19ef19f0b27a5e9514fdb2b8ca8961e6b5d5"
+  },
+  {
+    "path": "Vendor/SefariaMobileReference/Fixtures/texts-genesis.json",
+    "size": 614,
+    "sha256": "4f6b2f13153b078268e81896d2540109909834f045453ed4025eff1d49ed4fd0",
+    "canonicalLFSHA256": "fa4b7aa4c423e6fef2fc5e37743a3ee98a694d8330852b3504b22ae011334f2a",
+    "baseGitBlob": "cf08b83baed576b3746c953a2a1e85eadebac49a"
+  }
+]

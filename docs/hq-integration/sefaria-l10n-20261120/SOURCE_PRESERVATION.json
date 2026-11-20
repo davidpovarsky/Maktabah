@@ -1,0 +1,17 @@
+{
+  "time": "2026-11-20T10:32:20.338609+00:00",
+  "base": "c6542e412fb5b052d182aacbea685c62bdf8440c",
+  "productionExactInverse": true,
+  "preexistingTestsExactInverse": true,
+  "productionBaselineSHA256": "651c555044682f5389bfbfc085f7a509bdd97906a388a64b199241c90303c7a3",
+  "productionCandidateSHA256": "9aa0913e30f11146dcc2268bdcb1b609ed9ef0996fce6967467e9edb583a8c99",
+  "existingPolicyReused": "LibraryPresentationPolicy.workTitle; no policy/model/DTO modifications",
+  "canonicalReferenceAndTraversalChanges": false,
+  "nativeAcceptance": "NOT_RUN",
+  "peerReview": {
+    "reviewer": "/root/github_native_audit",
+    "scope": "Read-only full three title hunks + original workTitle/schemaTitle/string helpers",
+    "result": "No concrete source/type blocker",
+    "limit": "No compiler or Native execution by reviewer; existing empty-primary suppression of same-language alias unchanged"
+  }
+}

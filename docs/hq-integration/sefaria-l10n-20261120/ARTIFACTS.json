@@ -1,0 +1,221 @@
+{
+  "createdUTC": "2026-11-20T10:47:20.886435+00:00",
+  "representation": "Exact Git blobs; raw compressed streams retain original physical bytes",
+  "files": [
+    {
+      "path": "focused-baseline/CASES.json",
+      "bytes": 13387,
+      "sha256": "3412014c5d0246b96338b98de7e386e278d369d1bda87a4e898f9d03da97273f"
+    },
+    {
+      "path": "focused-baseline/COMMANDS.json",
+      "bytes": 2448,
+      "sha256": "425d6ddc9a7ea6c9ef3d0f9c519277d3bc74130e859c772ee884ae05107dc349"
+    },
+    {
+      "path": "focused-baseline/compile.stderr.log.gz",
+      "bytes": 150,
+      "sha256": "690d0684a27a7d026e4b897334f0c1c9925e26dd039cbcf1ff72460072e4afaf"
+    },
+    {
+      "path": "focused-baseline/compile.stdout.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "focused-baseline/INPUTS.json",
+      "bytes": 5014,
+      "sha256": "47319aa087506498a7905eb9d5bf467db199607d72cd7042eb9e029b5d5c9966"
+    },
+    {
+      "path": "focused-baseline/RESULT.json",
+      "bytes": 3232,
+      "sha256": "7b3ed3518c8b8ac91f8526f9da587b81e3020997ee44173dae837d3f02594117"
+    },
+    {
+      "path": "focused-baseline/runtime.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "focused-baseline/runtime.stdout.log.gz",
+      "bytes": 1093,
+      "sha256": "691a8ff807c28ad210c081130cbe468654a3fd009ed550d467be9e434171ab1f"
+    },
+    {
+      "path": "focused-candidate/CASES.json",
+      "bytes": 13521,
+      "sha256": "7d5c36e6e5a6ca015f8dce8ba8329d0ef68a87936b933bbe72ee0ac39211d1a1"
+    },
+    {
+      "path": "focused-candidate/COMMANDS.json",
+      "bytes": 2460,
+      "sha256": "cce45b6955f2c72e25d8ff50e065d3a07a21b473c21f000ba47f30402f5078e1"
+    },
+    {
+      "path": "focused-candidate/compile.stderr.log.gz",
+      "bytes": 150,
+      "sha256": "21c540743176d648fb1c2880cd9730f7cba3195b6e6c7a489bf29171a5f6965d"
+    },
+    {
+      "path": "focused-candidate/compile.stdout.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "focused-candidate/INPUTS.json",
+      "bytes": 5014,
+      "sha256": "f1aa74ff612aa838b6d7b99eb397d9bfc80f3f773ff0e399ae283b3dd270938b"
+    },
+    {
+      "path": "focused-candidate/RESULT.json",
+      "bytes": 2746,
+      "sha256": "df0c4d3aff0b2ccb216e8b443b4ea23825aad19c2a984825080d232e1a48f5a1"
+    },
+    {
+      "path": "focused-candidate/runtime.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "focused-candidate/runtime.stdout.log.gz",
+      "bytes": 1067,
+      "sha256": "b374e34e94bdbf2adea46f7f489f5831c247d2717f91b1cfac1454af305a6903"
+    },
+    {
+      "path": "original-regression/COMMANDS.json",
+      "bytes": 7450,
+      "sha256": "d9209cc5a9690e1f61c257ce24dcf3f3bfaa4e915b040f37c6743c5d0edc53b3"
+    },
+    {
+      "path": "original-regression/compile.stderr.log.gz",
+      "bytes": 150,
+      "sha256": "14588eac82e5e3a1515e01f9c674de3bf2b1fcb7dc4518f63c3427a2d98017fd"
+    },
+    {
+      "path": "original-regression/compile.stdout.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "original-regression/INPUTS.json",
+      "bytes": 14954,
+      "sha256": "6730f5c464b832c12ac3c2e324c689c0ecb6c0559facf808d9b29b8432a2f80d"
+    },
+    {
+      "path": "original-regression/ORIGINAL_WORKFLOW_STEP.txt.gz",
+      "bytes": 646,
+      "sha256": "7d2e807f744485334740fa9477de1b17709270ee9f8c0fa5460b8af1592805ac"
+    },
+    {
+      "path": "original-regression/RESULT.json",
+      "bytes": 1397,
+      "sha256": "a6d6a91e1344408b47c93e349991cb4beb7c336f38b65526924a85bfecc0f195"
+    },
+    {
+      "path": "original-regression/runtime.stderr.log.gz",
+      "bytes": 166,
+      "sha256": "5c2cbc434347425827b9f15605ec195fd6234caf75625fe50cac0ceb0de8d09b"
+    },
+    {
+      "path": "original-regression/runtime.stdout.log.gz",
+      "bytes": 88,
+      "sha256": "bf3673a190fa6cd6f947486d3baea1e0629457eda96a968176e895d6c39043b6"
+    },
+    {
+      "path": "ORIGINAL_ASANA_ACCEPTANCE.json",
+      "bytes": 1490,
+      "sha256": "27571f1a4f681d0f3db1e6a5c7d910b127e0bbfb806606c8d8365ff7b17fe005"
+    },
+    {
+      "path": "PREPARATION.json",
+      "bytes": 1014,
+      "sha256": "6f9578b74f11413c8b987cbd45b3d986e6bc987d9071d4713a6a6f977fd08a6f"
+    },
+    {
+      "path": "raw/baseline-driver.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "raw/baseline-driver.stdout.log.gz",
+      "bytes": 1120,
+      "sha256": "7a573148a30dc976f23fcf2c5c0ed9550cbae12f9c6ffe52ea3eda3f71193467"
+    },
+    {
+      "path": "raw/BASELINE_LAUNCH.json.gz",
+      "bytes": 343,
+      "sha256": "3e07daae8df0d6119e1f38c2190b5a5e3a335f516615a770eb81f37e922a8a2e"
+    },
+    {
+      "path": "raw/focused-candidate-driver.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "raw/focused-candidate-driver.stdout.log.gz",
+      "bytes": 1101,
+      "sha256": "ad362af54a8fc6ae84cef7c17bc06d002e0c37431ae0c375ac1f8335690b6e79"
+    },
+    {
+      "path": "raw/focused-candidate-launch.json.gz",
+      "bytes": 311,
+      "sha256": "d6056708bb807d038838754d29891db0ca535c89836065e13cd697436b4d353a"
+    },
+    {
+      "path": "raw/original-regression-driver.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "raw/original-regression-driver.stdout.log.gz",
+      "bytes": 785,
+      "sha256": "4d8f338a8d397d75fc0aa6b457309d4fc3e5c25d6dfcc169aafff8c7e998b402"
+    },
+    {
+      "path": "raw/original-regression-launch.json.gz",
+      "bytes": 317,
+      "sha256": "6e24058c3716075822c794547e604660b0b79fe8a5c74751ddc9d7731a678d36"
+    },
+    {
+      "path": "raw/ORIGINAL_ASANA_ACCEPTANCE.json.gz",
+      "bytes": 947,
+      "sha256": "e664aadc3629599ebfd4fde148efc5a41c016bfddfa0583d4b68f800b1f8c95b"
+    },
+    {
+      "path": "raw/PREPARATION.json.gz",
+      "bytes": 626,
+      "sha256": "7e852ee1fab73059cacfb372dc2179e33711c28396c713c849a8ff1686bfb252"
+    },
+    {
+      "path": "raw/PROPOSED.patch.gz",
+      "bytes": 3915,
+      "sha256": "353a57fc9f3a5db644cfb53e3c06898c91ec7563f087cefe7db8a82aa309ce3a"
+    },
+    {
+      "path": "raw/SOURCE_PRESERVATION.json.gz",
+      "bytes": 580,
+      "sha256": "93688738ea82a07c2729a71884660bf047adfbcdcc3ba13349a3ff05ce28817d"
+    },
+    {
+      "path": "RAW_SOURCE_MAP.json",
+      "bytes": 8322,
+      "sha256": "59d78e414c13051773bd66b16a7137e05af7ef92d5cc850372675ec3e7bd9e61"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6302,
+      "sha256": "c6bf9ad2cbe54b82df38d19a2f36aea9253d4b43682a68f3af929e9ade057e4e"
+    },
+    {
+      "path": "SOURCE_INPUT_BINDING.json",
+      "bytes": 1128,
+      "sha256": "9543e5e6ed0418fadab2fa32f8b402affc574e72b640b4a367f6539dfc1e51f9"
+    },
+    {
+      "path": "SOURCE_PRESERVATION.json",
+      "bytes": 898,
+      "sha256": "3275b1e7fb883b459945b160a49e01a026fd411a1a858fd18b526cb60471d1d7"
+    }
+  ]
+}

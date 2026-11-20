@@ -1,0 +1,8 @@
+{
+  "gid": "1219850068707719",
+  "name": "[BUILD 8401][P1][SEFARIA L10N] עברית בתוכן העניינים וטעינה/ריק אמיתיים",
+  "notes": "OPEN — דיווח משתמש פיזי Build 8401: Berakhot TOC ב-UI עברי מציג 'Chapters', '12a', '12b' וכו׳, וב-Eruvin מופיע 'אין תוכן עניינים' (לא הוכח אם ריק קבוע או במהלך טעינה). מקור מוכח כ-pre-existing: Source/Sefaria/Domain/SefariaNavigationParser.swift זהה ב-65ecf29/c8defbf/031df35; alt structures fall back to key באנגלית, chapterDisplayTitle מחזיר SefariaRef.talmudAddress בלי תלות ב-prefersHebrew. תיקון fork-owned: prefer heTitle/schema metadata, מילון מבנים מוסמך (Chapters/Chapter/Folios/Parashot/Sections ועוד), פורמט דף עברי המקביל נכונה ל-12a/12b בלי לשנות canonical refs, עברית/RTL/VoiceOver ואנגלית ללא רגרסיה. TOC loading vs loadedEmpty vs failed/offline עם Retry; לא להראות ריק בזמן בקשת navigationStructures אסינכרונית. לבדוק Berakhot, Eruvin, Rashi, ספר לפי פרק, alt structures, offline/online ושפות he/en. Hook upstream מינימלי רק אחרי אישור פרטני. אין לסמן DONE לפי קומפילציה בלבד.",
+  "completed": false,
+  "modified_at": "2026-10-25T12:00:21.389Z",
+  "permalink_url": "https://app.asana.com/1/1219597879016953/task/1219850068707719"
+}

@@ -31,6 +31,9 @@ private actor FixtureHybridNavigation: LibraryNavigationProviding, LibraryWorkMe
 }
 
 func runNavigationAndPackageTests() async throws {
+    for check in try sefariaNavigationLanguageChecks() {
+        try expect(check.passed, "navigation language \(check.name): expected \(check.expected), got \(check.actual)")
+    }
     let firstRepeatedLeaf = SefariaCatalogIdentity.categoryID(path: ["Tanakh", "Commentary"])
     let secondRepeatedLeaf = SefariaCatalogIdentity.categoryID(path: ["Talmud", "Commentary"])
     try expect(firstRepeatedLeaf != secondRepeatedLeaf, "category identity includes full path")
@@ -75,7 +78,7 @@ func runNavigationAndPackageTests() async throws {
     try expect(collisions.first(where: { $0.kind == .workLocator })?.paths == [["First"], ["Second"]],
         "catalog audit retains every display path for a repeated canonical work")
     let index = try JSONDecoder().decode(SefariaIndexDTO.self, from: fixture("index-complex.json"))
-    let nodes = SefariaNavigationParser.nodes(schema: index.schema, indexTitle: index.title, baseRef: index.title)
+    let nodes = SefariaNavigationParser.nodes(schema: index.schema, indexTitle: index.title, baseRef: index.title, prefersHebrew: true)
     try expect(nodes.count == 2, "complex root nodes")
     try expect(nodes[0].title == "קדש", "Hebrew display title")
     try expect(nodes[0].locator.position == .canonicalRef("Pesach Haggadah, Kadesh"), "English schema key in ref")
@@ -161,7 +164,7 @@ func runNavigationAndPackageTests() async throws {
     let liveComplexShape = try JSONDecoder().decode([SefariaShapeDTO].self, from: Data(#"[{"isComplex":true,"section":"Haggadah","book":"Pesach Haggadah","chapters":[{"heTitle":"קדש","title":"Pesach Haggadah, Kadesh","chapters":2}]}]"#.utf8))
     try expect(liveComplexShape.first?.title == "Pesach Haggadah", "complex shape accepts book as root title")
     let liveComplexNodes = SefariaNavigationParser.nodes(shapes: liveComplexShape, schema: deepSchema,
-        indexTitle: "Pesach Haggadah")
+        indexTitle: "Pesach Haggadah", prefersHebrew: true)
     try expect(liveComplexNodes.first?.children.first?.locator.position == .canonicalRef("Pesach Haggadah, Kadesh"),
         "complex shape uses exact child ref")
     try expect(liveComplexNodes.first?.children.first?.title == "קדש", "complex shape uses Hebrew child title")
@@ -519,3 +522,185 @@ func runNavigationAndPackageTests() async throws {
     )
     try expect(header3.subtitle == "", "Redundant subtitle matching title is suppressed")
 }
+
+// BEGIN SEFARIA_NAVIGATION_LANGUAGE_CASES
+// Test-only fixtures exercise the complete production parser and DTO decoder.
+// Display-language changes must never alter the canonical source references.
+struct SefariaNavigationLanguageCheck {
+    let name: String
+    let actual: [String]
+    let expected: [String]
+    var passed: Bool { actual == expected }
+}
+
+func sefariaNavigationLanguageChecks() throws -> [SefariaNavigationLanguageCheck] {
+    var checks: [SefariaNavigationLanguageCheck] = []
+    func check(_ name: String, _ actual: [String], _ expected: [String]) {
+        checks.append(.init(name: name, actual: actual, expected: expected))
+    }
+    func canonicalTree(_ nodes: [LibraryTOCNode]) -> [String] {
+        nodes.flatMap { [$0.locator.persistenceKey] + canonicalTree($0.children) }
+    }
+
+    let index = try JSONDecoder().decode(SefariaIndexDTO.self, from: fixture("index-complex.json"))
+    let hebrew = SefariaNavigationParser.nodes(
+        schema: index.schema, indexTitle: index.title, baseRef: index.title, prefersHebrew: true)
+    let english = SefariaNavigationParser.nodes(
+        schema: index.schema, indexTitle: index.title, baseRef: index.title, prefersHebrew: false)
+    check("schema.hebrew.root", hebrew.map(\.title), ["קדש", "מגיד"])
+    check("schema.english.root", english.map(\.title), ["Kadesh", "Magid"])
+    check("schema.hebrew.nested", hebrew.last?.children.map(\.title) ?? [], ["ארבעת הבנים"])
+    check("schema.english.nested", english.last?.children.map(\.title) ?? [], ["The Four Sons"])
+    let originalReferences = [
+        "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Kadesh",
+        "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Kadesh 1",
+        "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Kadesh 2",
+        "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Magid",
+        "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Magid, The Four Sons",
+        "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Magid, The Four Sons 1",
+    ]
+    check("schema.hebrew.canonical-tree", canonicalTree(hebrew), originalReferences)
+    check("schema.english.canonical-tree", canonicalTree(english), originalReferences)
+
+    let fallbackSchema = try JSONDecoder().decode(SefariaJSONValue.self, from: Data(#"""
+    {"nodes":[
+      {"key":"EnglishOnly","titles":[{"lang":"en","text":"English title","primary":true}]},
+      {"key":"HebrewOnly","titles":[{"lang":"he","text":"כותרת עברית","primary":true}]},
+      {"key":"EmptyEnglish","titles":[{"lang":"en","text":"","primary":true},{"lang":"he","text":"עברית זמינה","primary":true}]},
+      {"key":"BlankHebrew","titles":[{"lang":"en","text":"Available English","primary":true},{"lang":"he","text":" \n\t ","primary":true}]},
+      {"key":"BothBlank","titles":[{"lang":"en","text":" \t ","primary":true},{"lang":"he","text":"\n","primary":true}]},
+      {"key":"MissingTitles"},
+      {"key":"Primary","titles":[{"lang":"en","text":"English alias"},{"lang":"he","text":"כינוי"},{"lang":"en","text":"Primary English","primary":true},{"lang":"he","text":"עברית ראשית","primary":true}]},
+      {"key":"default","default":true},
+      {"key":"ExplicitRef","wholeRef":"Another Work, Explicit","titles":[{"lang":"en","text":"Explicit English","primary":true},{"lang":"he","text":"עברית מפורשת","primary":true}]}
+    ]}
+    """#.utf8))
+    let fallbackHE = SefariaNavigationParser.nodes(
+        schema: fallbackSchema, indexTitle: "Complex Work", baseRef: "Complex Work", prefersHebrew: true)
+    let fallbackEN = SefariaNavigationParser.nodes(
+        schema: fallbackSchema, indexTitle: "Complex Work", baseRef: "Complex Work", prefersHebrew: false)
+    let commonFallbacks = [
+        "English title", "כותרת עברית", "עברית זמינה", "Available English", "BothBlank", "MissingTitles",
+    ]
+    check("schema.hebrew.missing-empty-whitespace", Array(fallbackHE.prefix(6)).map(\.title), commonFallbacks)
+    check("schema.english.missing-empty-whitespace", Array(fallbackEN.prefix(6)).map(\.title), commonFallbacks)
+    check("schema.hebrew.primary-over-alias", fallbackHE.dropFirst(6).prefix(1).map(\.title), ["עברית ראשית"])
+    check("schema.english.primary-over-alias", fallbackEN.dropFirst(6).prefix(1).map(\.title), ["Primary English"])
+    let canonicalFallbacks = [
+        "EnglishOnly", "HebrewOnly", "EmptyEnglish", "BlankHebrew", "BothBlank", "MissingTitles", "Primary",
+    ].map { "sefaria|Complex Work|ref:Complex Work, \($0)" } + [
+        "sefaria|Complex Work|ref:Complex Work",
+        "sefaria|Complex Work|ref:Another Work, Explicit",
+    ]
+    check("schema.hebrew.default-wholeRef-identity", canonicalTree(fallbackHE), canonicalFallbacks)
+    check("schema.english.default-wholeRef-identity", canonicalTree(fallbackEN), canonicalFallbacks)
+
+    let shapeSchema: SefariaJSONValue = .object(["addressTypes": .array([.string("Integer")])])
+    let roots = try JSONDecoder().decode([SefariaShapeDTO].self, from: Data(#"""
+    [
+      {"isComplex":true,"title":"Complex Work, Introduction","heTitle":"מבוא","chapters":[]},
+      {"isComplex":true,"title":"Complex Work, Missing Hebrew","chapters":[]},
+      {"isComplex":true,"title":"Complex Work, Blank Hebrew","heTitle":" \n\t ","chapters":[]},
+      {"isComplex":true,"title":"","heTitle":"עברית בלבד","chapters":[]}
+    ]
+    """#.utf8))
+    let rootsHE = SefariaNavigationParser.nodes(
+        shapes: roots, schema: shapeSchema, indexTitle: "Complex Work", prefersHebrew: true)
+    let rootsEN = SefariaNavigationParser.nodes(
+        shapes: roots, schema: shapeSchema, indexTitle: "Complex Work", prefersHebrew: false)
+    check("shape.hebrew.complex-root", rootsHE.prefix(1).map(\.title), ["מבוא"])
+    check("shape.english.complex-root", rootsEN.prefix(1).map(\.title), ["Complex Work, Introduction"])
+    let rootFallbacks = ["Complex Work, Missing Hebrew", "Complex Work, Blank Hebrew", "עברית בלבד"]
+    check("shape.hebrew.missing-empty-whitespace", rootsHE.dropFirst().map(\.title), rootFallbacks)
+    check("shape.english.missing-empty-whitespace", rootsEN.dropFirst().map(\.title), rootFallbacks)
+    let rootReferences = [
+        "sefaria|Complex Work|ref:Complex Work, Introduction",
+        "sefaria|Complex Work|ref:Complex Work, Missing Hebrew",
+        "sefaria|Complex Work|ref:Complex Work, Blank Hebrew",
+        "sefaria|Complex Work|ref:",
+    ]
+    check("shape.hebrew.canonical-roots", canonicalTree(rootsHE), rootReferences)
+    check("shape.english.canonical-roots", canonicalTree(rootsEN), rootReferences)
+
+    let nested = try JSONDecoder().decode([SefariaShapeDTO].self, from: Data(#"""
+    [{"isComplex":true,"book":"Complex Work","heTitle":"ספר מורכב","chapters":[
+      {"title":"Complex Work, Kadesh","heTitle":"קדש","chapters":2},
+      {"book":"Complex Work, Appendix","heTitle":"","chapters":1},
+      {"section":"Complex Work, Section","heTitle":"מדור","chapters":1},
+      {"title":"Complex Work, No Hebrew","chapters":1}
+    ]}]
+    """#.utf8))
+    let nestedHE = SefariaNavigationParser.nodes(
+        shapes: nested, schema: shapeSchema, indexTitle: "Complex Work", prefersHebrew: true)
+    let nestedEN = SefariaNavigationParser.nodes(
+        shapes: nested, schema: shapeSchema, indexTitle: "Complex Work", prefersHebrew: false)
+    check("shape-child.hebrew.titles-and-fallbacks", nestedHE.first?.children.map(\.title) ?? [],
+        ["קדש", "Complex Work, Appendix", "מדור", "Complex Work, No Hebrew"])
+    check("shape-child.english.titles-and-fallbacks", nestedEN.first?.children.map(\.title) ?? [],
+        ["Complex Work, Kadesh", "Complex Work, Appendix", "Complex Work, Section", "Complex Work, No Hebrew"])
+    let nestedReferences = [
+        "sefaria|Complex Work|ref:Complex Work",
+        "sefaria|Complex Work|ref:Complex Work, Kadesh",
+        "sefaria|Complex Work|ref:Complex Work, Kadesh 1",
+        "sefaria|Complex Work|ref:Complex Work, Kadesh 2",
+        "sefaria|Complex Work|ref:Complex Work, Appendix",
+        "sefaria|Complex Work|ref:Complex Work, Appendix 1",
+        "sefaria|Complex Work|ref:Complex Work, Section",
+        "sefaria|Complex Work|ref:Complex Work, Section 1",
+        "sefaria|Complex Work|ref:Complex Work, No Hebrew",
+        "sefaria|Complex Work|ref:Complex Work, No Hebrew 1",
+    ]
+    check("shape-child.hebrew.canonical-tree", canonicalTree(nestedHE), nestedReferences)
+    check("shape-child.english.canonical-tree", canonicalTree(nestedEN), nestedReferences)
+
+    let talmud: SefariaJSONValue = .object([
+        "lengths": .array([.number(2)]), "startingAddress": .number(21),
+        "addressTypes": .array([.string("Talmud")]),
+    ])
+    let talmudHE = SefariaNavigationParser.nodes(
+        schema: talmud, indexTitle: "Berakhot", baseRef: "Berakhot", prefersHebrew: true)
+    let talmudEN = SefariaNavigationParser.nodes(
+        schema: talmud, indexTitle: "Berakhot", baseRef: "Berakhot", prefersHebrew: false)
+    check("adjacent.talmud.hebrew", talmudHE.map(\.title), ["י״ב ע״א", "י״ב ע״ב"])
+    check("adjacent.talmud.english", talmudEN.map(\.title), ["12a", "12b"])
+    let talmudReferences = ["sefaria|Berakhot|ref:Berakhot 12a", "sefaria|Berakhot|ref:Berakhot 12b"]
+    check("adjacent.talmud.canonical-both", canonicalTree(talmudHE) + canonicalTree(talmudEN),
+        talmudReferences + talmudReferences)
+
+    let alt: SefariaJSONValue = .object([
+        "nodeType": .string("ArrayMapNode"), "wholeRef": .string("Genesis 1:1-6:8"),
+        "titles": .array([
+            .object(["lang": .string("en"), "primary": .bool(true), "text": .string("Bereshit")]),
+            .object(["lang": .string("he"), "primary": .bool(true), "text": .string("בראשית")]),
+        ]),
+    ])
+    let altHE = SefariaNavigationParser.structures(
+        schema: .object([:]), alternateStructures: ["Parasha": alt], indexTitle: "Genesis", prefersHebrew: true)
+    let altEN = SefariaNavigationParser.structures(
+        schema: .object([:]), alternateStructures: ["Parasha": alt], indexTitle: "Genesis", prefersHebrew: false)
+    check("adjacent.alternate.hebrew", altHE.last?.nodes.map(\.title) ?? [], ["בראשית"])
+    check("adjacent.alternate.english", altEN.last?.nodes.map(\.title) ?? [], ["Bereshit"])
+    check("adjacent.alternate.canonical-both",
+        canonicalTree(altHE.last?.nodes ?? []) + canonicalTree(altEN.last?.nodes ?? []),
+        ["sefaria|Genesis|ref:Genesis 1:1-6:8", "sefaria|Genesis|ref:Genesis 1:1-6:8"])
+
+    let dictionary: SefariaJSONValue = .object([
+        "nodeType": .string("DictionaryNode"),
+        "headwordMap": .array([.array([.string("א"), .string("Jastrow, א")])]),
+    ])
+    let dictionaryHE = SefariaNavigationParser.nodes(
+        schema: dictionary, indexTitle: "Jastrow", baseRef: "Jastrow", prefersHebrew: true)
+    let dictionaryEN = SefariaNavigationParser.nodes(
+        schema: dictionary, indexTitle: "Jastrow", baseRef: "Jastrow", prefersHebrew: false)
+    check("adjacent.dictionary.literal-headword-both",
+        dictionaryHE.map(\.title) + dictionaryEN.map(\.title), ["א", "א"])
+    check("adjacent.dictionary.canonical-both",
+        canonicalTree(dictionaryHE) + canonicalTree(dictionaryEN),
+        ["sefaria|Jastrow|ref:Jastrow, א", "sefaria|Jastrow|ref:Jastrow, א"])
+
+    let implicit = SefariaNavigationParser.nodes(schema: index.schema, indexTitle: index.title, baseRef: index.title)
+    check("default.follows-original-language-policy", implicit.map(\.title),
+        LibraryPresentationPolicy.prefersHebrew() ? ["קדש", "מגיד"] : ["Kadesh", "Magid"])
+    return checks
+}
+// END SEFARIA_NAVIGATION_LANGUAGE_CASES

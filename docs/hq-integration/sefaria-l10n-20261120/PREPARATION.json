@@ -1,0 +1,17 @@
+{
+  "time": "2026-11-20T10:29:00.118704+00:00",
+  "base": "c6542e412fb5b052d182aacbea685c62bdf8440c",
+  "worktree": "C:\\Users\\DAVID\\Code\\Maktabah-sefaria-l10n-20261120",
+  "freeBytes": 6738927616,
+  "existingCachePath": "C:\\Users\\DAVID\\Code\\Maktabah-inspector-harness-20261120\\build\\inspector-harness-baseline-20261120\\module-cache",
+  "existingCacheIsDirectory": true,
+  "driverSHA256": "040f7c495014990c226b04a35c1b039622dc2f49bb60b86b18314f8985900fba",
+  "patchSHA256": "9ddd92e6fd5ed90cdd6bf64c4523d662fe667b1fe7e50a36ff98ed18d49a40fb",
+  "authorization": "Standing owner authorization, root scoped Sefaria L10N assignment; no frozen ref changes",
+  "native": "NOT_RUN",
+  "sourceFilesChanged": [
+    "Source/Sefaria/Domain/SefariaNavigationParser.swift"
+  ],
+  "testFileChanged": "Vendor/SefariaNativeTests/NavigationAndPackageTests.swift",
+  "testBoundary": "Complete production parser and six whole dependencies; test-only extraction of complete named cases block, no source stripping or mocks"
+}
