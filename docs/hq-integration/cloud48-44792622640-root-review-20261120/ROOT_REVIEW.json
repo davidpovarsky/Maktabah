@@ -1,0 +1,28 @@
+{
+  "status": "ROOT_VERIFIED_PUBLISHED_PACKET_FOR_DOCS_INTEGRATION",
+  "author_commit": "0d7528f4f9b354d0686e065f9041a9bec6539bf2",
+  "author_tree": "7b58b8530268c25283528037cd7837998ef1cb26",
+  "parent_f": "452a04c2b05150694d8120ed465afb48da190af3",
+  "exact9docs_git_blobs_verified": true,
+  "packet_index_sha256": "f194679cbb05359d07c1eab21946c0aeadcf90af71dcea3ffeb653a3f49ae718",
+  "readonly_replay": {
+    "canonical_sources": 96,
+    "cold_reopens": 0,
+    "executed_cloud": 0,
+    "executed_local": 0,
+    "original_crash_reopens_passed": 2,
+    "original_exchange_passed": 28,
+    "python_passed": 43,
+    "run_conclusion": "FAILURE",
+    "sealed_payloads": 8,
+    "sqlite_premises_passed": 13,
+    "status": "SEALED_ACTUAL_FAILURE_REPLAY_PASS",
+    "swift_rerun": false,
+    "whole_compile_sources_per_executable": 23,
+    "zip_members": 114
+  },
+  "prior_invocation_error": "Relative executable path with changed cwd failed before verifier; retained ROOT_REPLAY_COMMAND.json; corrected absolute path passed, no Apple rerun",
+  "runtime_source_changes": 0,
+  "integration_parent": "0f0134947871c6c8e8e6d37628916797831bc4fd",
+  "scope": "Original Cloud48 failure and separate exchange component pass only. No observer fix or Repository fix qualification."
+}

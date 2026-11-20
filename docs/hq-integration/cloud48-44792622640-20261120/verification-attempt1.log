@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+  File "/workspace/scratch/8c31d602ec0a/cloud48-44792622640-20261120/publication/docs/hq-integration/cloud48-44792622640-20261120/VERIFY_PACKET.py", line 165, in analyze
+    require(re.findall(r'^PASS ([a-z0-9_]+)$', raw[EXCHANGE + 'tests.log'].decode(), re.M) == [r['name'] for r in cases],
+  File "/workspace/scratch/8c31d602ec0a/cloud48-44792622640-20261120/publication/docs/hq-integration/cloud48-44792622640-20261120/VERIFY_PACKET.py", line 25, in require
+    raise RuntimeError(message)
+RuntimeError: Raw exchange stdout differs from exact leaves
