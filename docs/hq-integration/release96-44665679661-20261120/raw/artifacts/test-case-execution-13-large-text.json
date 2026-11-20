@@ -1,0 +1,18 @@
+{
+  "suites": [
+    {
+      "suite": "FaithfulReaderLargeTextTests",
+      "selection": "FaithfulReaderLargeTextTests/testOriginalReaderAndPublicGroupSelectorRemainUsableAtLargeTextSize",
+      "expected": [
+        "testOriginalReaderAndPublicGroupSelectorRemainUsableAtLargeTextSize"
+      ],
+      "passed": [
+        "testOriginalReaderAndPublicGroupSelectorRemainUsableAtLargeTextSize"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    }
+  ],
+  "status": "EXECUTED_PASS"
+}

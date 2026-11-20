@@ -1,0 +1,8 @@
+{
+  "status": "WATCH_COMPLETED",
+  "returncode": 1,
+  "run": 44692780853,
+  "expectedCheckout": "d8cc18f80e905c66d73963951efac53b43a12080",
+  "startedUTC": "2026-11-20T07:12:33.238770+00:00",
+  "finishedUTC": "2026-11-20T07:43:07.641830+00:00"
+}

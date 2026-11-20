@@ -1,0 +1,37 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "C088F133-7259-4523-A564-B907D7ED29AC",
+        "deviceName": "Faithful 11-inch 925558c9",
+        "modelName": "iPad Pro 11-inch (M5)",
+        "osBuildNumber": "24B8117",
+        "osVersion": "27.2",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "passedTests": 1,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "Maktabah-iOS \u00b7 Built with macOS 27.0.1",
+  "expectedFailures": 0,
+  "failedTests": 0,
+  "finishTime": 1795157892.199,
+  "passedTests": 1,
+  "result": "Passed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1795157509.657,
+  "statistics": [],
+  "testFailures": [],
+  "title": "Test - Maktabah-iOS",
+  "topInsights": [],
+  "totalTestCount": 1
+}

@@ -1,0 +1,139 @@
+{
+  "devices": [
+    {
+      "architecture": "arm64",
+      "deviceId": "900D8B74-DA7F-48DB-B587-CEC1241996A0",
+      "deviceName": "Faithful 11-inch e274295f",
+      "modelName": "iPad Pro 11-inch (M5)",
+      "osBuildNumber": "24B8117",
+      "osVersion": "27.2",
+      "platform": "iOS Simulator"
+    }
+  ],
+  "testNodes": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertTrue failed - A hidden panel or model flag is not visible presentation",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+                        "lineNumber": 1523
+                      }
+                    }
+                  ],
+                  "duration": "1m 41s",
+                  "durationInSeconds": 101.9785840511322,
+                  "name": "testPublicV2InspectorPreservesOriginalReaderAndWorkspace()",
+                  "nodeIdentifier": "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Root opening needs one canonical actual visible receipt",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+                        "lineNumber": 735
+                      }
+                    }
+                  ],
+                  "duration": "59s",
+                  "durationInSeconds": 59.59004092216492,
+                  "name": "testPublicV2InspectorRequiresVisibleOriginalReader()",
+                  "nodeIdentifier": "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertTrue failed",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+                        "lineNumber": 641
+                      }
+                    }
+                  ],
+                  "duration": "1m 37s",
+                  "durationInSeconds": 97.94632601737976,
+                  "name": "testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader()",
+                  "nodeIdentifier": "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertTrue failed",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+                        "lineNumber": 641
+                      }
+                    }
+                  ],
+                  "duration": "1m 23s",
+                  "durationInSeconds": 83.23902904987335,
+                  "name": "testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab()",
+                  "nodeIdentifier": "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "failed: caught error: \"Error Domain=OtzariaUIRouting.UIRouteError Code=1 \"The operation couldn\u2019t be completed. (OtzariaUIRouting.UIRouteError error 1.)\" UserInfo={NSLocalizedDescription=The operation couldn\u2019t be completed. (OtzariaUIRouting.UIRouteError error 1.)}\"",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+                        "lineNumber": 1586
+                      }
+                    }
+                  ],
+                  "duration": "48s",
+                  "durationInSeconds": 48.21310901641846,
+                  "name": "testSystemAppIntentShowsOriginalReaderInspector()",
+                  "nodeIdentifier": "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                }
+              ],
+              "name": "NativeRoutingAcceptanceTests",
+              "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests",
+              "nodeType": "Test Suite",
+              "result": "Failed"
+            }
+          ],
+          "name": "Maktabah-iOSUITests",
+          "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests",
+          "nodeType": "UI test bundle",
+          "result": "Failed"
+        }
+      ],
+      "name": "Maktabah-iOS",
+      "nodeType": "Test Plan",
+      "result": "Failed"
+    }
+  ],
+  "testPlanConfigurations": [
+    {
+      "configurationId": "1",
+      "configurationName": "Test Scheme Action"
+    }
+  ]
+}

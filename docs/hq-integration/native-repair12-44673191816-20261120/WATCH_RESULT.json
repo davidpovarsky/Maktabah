@@ -1,0 +1,8 @@
+{
+  "status": "WATCH_COMPLETED",
+  "returncode": 1,
+  "startedUTC": "2026-11-20T06:39:41.378253+00:00",
+  "finishedUTC": "2026-11-20T07:19:40.389137+00:00",
+  "run": 44673191816,
+  "expectedHead": "6030087e27f75b26d9a9bb144ba9ba71eaddadc5"
+}

@@ -1,0 +1,20 @@
+{
+  "id": 14608089579,
+  "node_id": "MDg6QXJ0aWZhY3QxNDYwODA4OTU3OQ==",
+  "name": "runtime27-evidence",
+  "size_in_bytes": 69365070,
+  "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14608089579",
+  "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14608089579/zip",
+  "expired": false,
+  "digest": "sha256:9cbc4b9b7a3fa7195430bbeb987094ac1fbc6398805641fd79981cd8f4953e63",
+  "created_at": "2026-11-20T07:01:06Z",
+  "updated_at": "2026-11-20T07:01:06Z",
+  "expires_at": "2027-02-18T03:08:37Z",
+  "workflow_run": {
+    "id": 44665679661,
+    "repository_id": 1280062128,
+    "head_repository_id": 1280062128,
+    "head_branch": "codex/otzaria-phase3-release-sourcefix-20261120",
+    "head_sha": "9cc346601bdb3fdda34c2c6ac59894f71dc9ea49"
+  }
+}

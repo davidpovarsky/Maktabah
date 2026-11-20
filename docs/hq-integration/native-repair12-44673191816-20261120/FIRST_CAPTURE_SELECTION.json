@@ -1,0 +1,138 @@
+[
+  {
+    "path": "visual-11/94B37C71-8097-4D57-86B4-BE47077500B6.png",
+    "bytes": 732126,
+    "compressedBytes": 715676,
+    "headerOffset": 360889181,
+    "crc32": "a63bcfc3",
+    "compression": 8
+  },
+  {
+    "path": "visual-11/F00AD1D5-E28F-4375-A0D7-EF12C148C9D7.txt",
+    "bytes": 42228,
+    "compressedBytes": 6593,
+    "headerOffset": 361619186,
+    "crc32": "12c8804d",
+    "compression": 8
+  },
+  {
+    "path": "visual-11-reader/1BD70927-3720-41CD-9F9E-C940AD9018AB.png",
+    "bytes": 238191,
+    "compressedBytes": 190604,
+    "headerOffset": 361725099,
+    "crc32": "7f53124f",
+    "compression": 8
+  },
+  {
+    "path": "visual-11-reader/27CFD088-6692-4E5A-B966-E22AD8484B62.png",
+    "bytes": 238191,
+    "compressedBytes": 190604,
+    "headerOffset": 362119101,
+    "crc32": "7f53124f",
+    "compression": 8
+  },
+  {
+    "path": "visual-11-reader/77C1F301-6B4C-42D1-9F48-FE13E23783E1.txt",
+    "bytes": 28043,
+    "compressedBytes": 3694,
+    "headerOffset": 387621996,
+    "crc32": "582355fd",
+    "compression": 8
+  },
+  {
+    "path": "visual-11-reader/88674C95-2FB8-48B5-BBF4-DC3BA2F72D0A.txt",
+    "bytes": 253,
+    "compressedBytes": 197,
+    "headerOffset": 387627276,
+    "crc32": "7f6aa708",
+    "compression": 8
+  },
+  {
+    "path": "visual-11-reader/8B332035-EF17-48EE-A5BF-CBB476AB8B7D.json",
+    "bytes": 2023,
+    "compressedBytes": 659,
+    "headerOffset": 387627576,
+    "crc32": "31bac0ac",
+    "compression": 8
+  },
+  {
+    "path": "visual-11-reader/A15CF9C7-5942-46F2-9F81-07DAA975E0A1.json",
+    "bytes": 3099,
+    "compressedBytes": 740,
+    "headerOffset": 387647774,
+    "crc32": "bdd6b987",
+    "compression": 8
+  },
+  {
+    "path": "visual-11-reader/A1D58BBB-F4BD-43E3-831E-D9AF14A9BBB2.txt",
+    "bytes": 38740,
+    "compressedBytes": 5324,
+    "headerOffset": 387648618,
+    "crc32": "f7d25233",
+    "compression": 8
+  },
+  {
+    "path": "visual-11-reader/E16C6AE3-DD93-4F9C-83DC-13A190495C6B.txt",
+    "bytes": 28033,
+    "compressedBytes": 3675,
+    "headerOffset": 394704943,
+    "crc32": "e8f0392d",
+    "compression": 8
+  },
+  {
+    "path": "visual-11-reader/F3ED2941-6FD4-461F-BE99-EE2011322F9F.png",
+    "bytes": 876776,
+    "compressedBytes": 848948,
+    "headerOffset": 395105836,
+    "crc32": "c58b04a1",
+    "compression": 8
+  },
+  {
+    "path": "visual-11-search/6B2DD8DE-8113-4229-BCA2-223CCF6E4D5F.png",
+    "bytes": 6935,
+    "compressedBytes": 6601,
+    "headerOffset": 419887892,
+    "crc32": "0779ed7c",
+    "compression": 8
+  },
+  {
+    "path": "visual-11-search/C24BB6B9-8611-4C30-89A7-722CB2E5524E.txt",
+    "bytes": 2844,
+    "compressedBytes": 688,
+    "headerOffset": 420053657,
+    "crc32": "3593f624",
+    "compression": 8
+  },
+  {
+    "path": "visual-11-search/C43475DC-AB20-48DB-8AE4-4122D0BEE84E.png",
+    "bytes": 205621,
+    "compressedBytes": 158958,
+    "headerOffset": 420054448,
+    "crc32": "98fcd174",
+    "compression": 8
+  },
+  {
+    "path": "visual-11-search/E442F9F8-99A2-4B9C-9401-EAA499125C88.txt",
+    "bytes": 45,
+    "compressedBytes": 47,
+    "headerOffset": 420213509,
+    "crc32": "714e946a",
+    "compression": 8
+  },
+  {
+    "path": "visual-phone/3BC70AF8-1821-4BB6-9719-91AF434DAEB7.png",
+    "bytes": 377098,
+    "compressedBytes": 350005,
+    "headerOffset": 422286159,
+    "crc32": "1b0c3a1a",
+    "compression": 8
+  },
+  {
+    "path": "visual-phone/CC62C0D1-4952-43AD-AAC4-DCE84D45681F.txt",
+    "bytes": 13890,
+    "compressedBytes": 3248,
+    "headerOffset": 424977199,
+    "crc32": "02597fa0",
+    "compression": 8
+  }
+]

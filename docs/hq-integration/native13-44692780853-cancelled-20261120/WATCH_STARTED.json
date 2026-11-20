@@ -1,0 +1,23 @@
+{
+  "run": 44692780853,
+  "expectedCheckout": "d8cc18f80e905c66d73963951efac53b43a12080",
+  "expectedAppTests": "c61213d9fcc8b80a8606ba00a1562215312ca2ed",
+  "declaredCases": 13,
+  "iPad": 8,
+  "phone": 5,
+  "HID": true,
+  "startedUTC": "2026-11-20T07:12:33.238770+00:00",
+  "command": [
+    "gh",
+    "run",
+    "watch",
+    "44692780853",
+    "--repo",
+    "davidpovarsky/Maktabah",
+    "--interval",
+    "60",
+    "--exit-status"
+  ],
+  "timeoutSeconds": 3380,
+  "ownership": "sole /root/asana_audit watcher"
+}

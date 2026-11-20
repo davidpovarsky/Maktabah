@@ -1,0 +1,109 @@
+{
+  "suites": [
+    {
+      "suite": "NativeRoutingAcceptanceTests",
+      "selection": "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+      "expected": [
+        "testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeRoutingAcceptanceTests",
+      "selection": "NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad",
+      "expected": [
+        "testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeRoutingAcceptanceTests",
+      "selection": "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+      "expected": [
+        "testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "StudyProfileNativeAcceptanceTests",
+      "selection": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+      "expected": [
+        "testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "R27NativePadTests",
+      "selection": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "expected": [
+        "testNormalBootstrapGlobalHistoryUsesActualSubmit"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeRoutingAcceptanceTests",
+      "selection": "NativeRoutingAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad",
+      "expected": [
+        "testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "R27NativePadTests",
+      "selection": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "expected": [
+        "testNormalBootstrapNativeWindowResizePaletteAndInspector"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "R27NativePadTests",
+      "selection": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+      "expected": [
+        "testNormalBootstrapPaletteHIDComparison"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeRoutingPhoneAcceptanceTests",
+      "selection": "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone",
+      "expected": [
+        "testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeRoutingPhoneAcceptanceTests",
+      "selection": "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone",
+      "expected": [
+        "testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeRoutingPhoneAcceptanceTests",
+      "selection": "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
+      "expected": [
+        "testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "R27NativePhoneTests",
+      "selection": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "expected": [
+        "testNormalBootstrapGlobalHistoryUsesActualSubmit"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeRoutingPhoneAcceptanceTests",
+      "selection": "NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone",
+      "expected": [
+        "testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    }
+  ],
+  "status": "DECLARATIONS_MATCH"
+}

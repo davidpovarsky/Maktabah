@@ -1,0 +1,109 @@
+# Exact original full Release inventory
+
+Run44665679661 only. Repeated IDs in different configurations are distinct required executions.
+
+| Configuration | Case | Finalized outcome |
+|---|---|---|
+| ipad11-native | FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions | PASS |
+| ipad11-native | FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls | PASS |
+| ipad11-native | FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader | FAIL |
+| ipad11-native | FaithfulReaderVisualBaselineTests/testOriginalReaderThemes | PASS |
+| ipad11-native | FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots | PASS |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage | PASS |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls | PASS |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers | PASS |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions | PASS |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes | PASS |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation | PASS |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence | PASS |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch | PASS |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch | FAIL |
+| ipad11-native | FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement | PASS |
+| ipad11-native | SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaFullAcceptanceDiagnostic | PASS |
+| ipad11-native | SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaCatalogAndAppLaunch | PASS |
+| ipad11-native | SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaReaderPresentation | PASS |
+| ipad11-native | SefariaEmbeddedAcceptanceTests/testThreeBackendSwitchRegression | PASS |
+| ipad11-native | Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton | FAIL |
+| ipad11-native | Build8401SevenDefectsAcceptanceTests/testA1_RealSearchFlowHighlightAndClear | PASS |
+| ipad11-native | Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton | FAIL |
+| ipad11-native | Build8401SevenDefectsAcceptanceTests/testB1_B2_PagingTransitionsPreserveReaderStability | PASS |
+| ipad11-native | Build8401SevenDefectsAcceptanceTests/testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState | PASS |
+| ipad11-native | Build8401SevenDefectsAcceptanceTests/testF1_SefariaHebrewLocaleRTLAndHebrewHeaders | PASS |
+| ipad11-native | Build8401SevenDefectsAcceptanceTests/testF2_HebrewTOCStructureAndDafLabels | PASS |
+| ipad11-native | PullNavigationAcceptanceTests/testPullNavigationRetreatCancelDoesNotChangeContent | PASS |
+| ipad11-native | PullNavigationAcceptanceTests/testPullNavigationCommitBothDirectionsWithoutDuplicates | PASS |
+| ipad11-native | R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator | FAIL |
+| ipad11-native | R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit | PASS |
+| ipad11-native | R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector | FAIL |
+| ipad11-native | R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation | FAIL |
+| ipad11-native | R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation | FAIL |
+| ipad11-native | Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL | FAIL |
+| ipad11-native | Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR | FAIL |
+| ipad11-native | StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace | FAIL |
+| ipad13-native | FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions | FAIL |
+| ipad13-native | FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls | FAIL |
+| ipad13-native | FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader | FAIL |
+| ipad13-native | FaithfulReaderVisualBaselineTests/testOriginalReaderThemes | FAIL |
+| ipad13-native | FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait | PASS |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers | PASS |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes | PASS |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation | PASS |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation | PASS |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation | PASS |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch | FAIL |
+| ipad13-native | FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement | FAIL |
+| ipad13-native | StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace | FAIL |
+| ipad13-largest-text | FaithfulReaderLargeTextTests/testOriginalReaderAndPublicGroupSelectorRemainUsableAtLargeTextSize | PASS |
+| iphone-native | FaithfulReaderIPhoneTests/testSourceOverviewReplacesReaderAndRestoresViewport | FAIL |
+| iphone-native | FaithfulReaderIPhoneTests/testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting | FAIL |
+| iphone-native | R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration | PASS |
+| iphone-native | R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit | FAIL |
+| iphone-native | R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation | PASS |
+| iphone-native | R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation | FAIL |
+| ipad13-production-release | FaithfulProductionReleaseTests/testRealProductionLibraryReaderAndGroupRestore | NOT_RUN |
+
+## Separate prototype oracles
+
+| Configuration | Case | Outcome |
+|---|---|---|
+| ipad11-native | SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle | PASS |
+| ipad13-native | SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle | PASS |

@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "scope": "full-release-ui",
+  "full_release_acceptance_required": true,
+  "max_age_hours": 24,
+  "required_os_major": 27,
+  "configurations": [
+    {
+      "id": "ipad11-native",
+      "device_size": "11",
+      "data_profile": "miniTest10",
+      "required_ui_cases": [
+        "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+        "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+        "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+        "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+        "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+        "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+        "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+        "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+        "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+        "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+        "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+        "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+        "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+        "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+        "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+        "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+        "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+        "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+        "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+        "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+        "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+        "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+        "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+        "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+        "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+        "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+        "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+        "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+        "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+        "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaFullAcceptanceDiagnostic",
+        "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaCatalogAndAppLaunch",
+        "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaReaderPresentation",
+        "SefariaEmbeddedAcceptanceTests/testThreeBackendSwitchRegression",
+        "Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton",
+        "Build8401SevenDefectsAcceptanceTests/testA1_RealSearchFlowHighlightAndClear",
+        "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton",
+        "Build8401SevenDefectsAcceptanceTests/testB1_B2_PagingTransitionsPreserveReaderStability",
+        "Build8401SevenDefectsAcceptanceTests/testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState",
+        "Build8401SevenDefectsAcceptanceTests/testF1_SefariaHebrewLocaleRTLAndHebrewHeaders",
+        "Build8401SevenDefectsAcceptanceTests/testF2_HebrewTOCStructureAndDafLabels",
+        "PullNavigationAcceptanceTests/testPullNavigationRetreatCancelDoesNotChangeContent",
+        "PullNavigationAcceptanceTests/testPullNavigationCommitBothDirectionsWithoutDuplicates",
+        "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+        "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+        "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+        "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace"
+      ],
+      "required_oracle_cases": [
+        "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle"
+      ]
+    },
+    {
+      "id": "ipad13-native",
+      "device_size": "13",
+      "data_profile": "miniTest10",
+      "required_ui_cases": [
+        "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+        "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+        "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+        "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+        "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+        "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+        "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+        "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+        "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+        "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+        "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+        "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+        "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+        "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+        "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+        "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+        "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+        "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+        "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+        "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+        "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+        "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+        "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+        "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+        "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+        "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+        "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+        "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+        "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+        "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace"
+      ],
+      "required_oracle_cases": [
+        "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle"
+      ]
+    },
+    {
+      "id": "ipad13-largest-text",
+      "device_size": "13",
+      "data_profile": "miniTest10",
+      "content_size": "accessibility-extra-extra-extra-large",
+      "required_ui_cases": [
+        "FaithfulReaderLargeTextTests/testOriginalReaderAndPublicGroupSelectorRemainUsableAtLargeTextSize"
+      ]
+    },
+    {
+      "id": "iphone-native",
+      "device_size": "phone",
+      "data_profile": "miniTest10",
+      "required_ui_cases": [
+        "FaithfulReaderIPhoneTests/testSourceOverviewReplacesReaderAndRestoresViewport",
+        "FaithfulReaderIPhoneTests/testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting",
+        "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+        "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+        "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+      ]
+    },
+    {
+      "id": "ipad13-production-release",
+      "device_size": "13",
+      "data_profile": "production",
+      "configuration": "Release",
+      "required_ui_cases": [
+        "FaithfulProductionReleaseTests/testRealProductionLibraryReaderAndGroupRestore"
+      ]
+    }
+  ],
+  "scope_note": "Preserves every declared case in the existing full native faithful matrix and production Release, plus Q real-bootstrap9. Separate prototype oracle cases never inflate Maktabah UI counts. Initial9ispartial; physical iPad remains separate.",
+  "prepared_source_requirements": [
+    {
+      "path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+      "sha256": "691635310a71e3e18569214b926e86efd2a4931a8d81a6b9b02443d9c3fcb947",
+      "required_cases": [
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR"
+      ],
+      "state": "REGISTERED_ACTUAL_UITEST_TARGET; current source and independent fixture oracle required; execution still pending",
+      "historical_prepared_reference": {
+        "path": "Tests/HQ/sidebar/Sidebar11201AcceptanceTests.swift",
+        "sha256": "1fe3f1f5f0f2d949914524da7695fdae201c0594a24149f2f80dbd6ba00e6706",
+        "required_cases": [
+          "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+          "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR"
+        ],
+        "state": "PREPARED_NOT_RUN; needs Q-selected target registration and independently derived fixture category paths before execution"
+      }
+    }
+  ],
+  "profile_color_continuation_20261120": {
+    "source": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
+    "new_case": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+    "configurations": [
+      "ipad11-native",
+      "ipad13-native"
+    ],
+    "native_status": "NOT_RUN",
+    "all_previous_ui_and_oracle_cases_preserved": true
+  },
+  "phase3_integrated_freeze_20261120": {
+    "application_and_test_source": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+    "prepared_at_utc": "2026-11-20T01:52:42.638205+00:00",
+    "all_configurations_and_oracles_unchanged": true,
+    "native_status": "NOT_RUN",
+    "launch_tiers": {
+      "smoke": "Original UI with explicit smokeBypassBootstrap test argument; does not prove normal bootstrap.",
+      "realUI": "Original normal bootstrap followed by DEBUG fixture backend/book preselection; no fabricated engine results.",
+      "production": "Actual Release binary without DEBUG scenario over preprovisioned original production corpus."
+    },
+    "helper_git_blob_sha256": "a614944ecd441e529a27c86aeb3af824aebe46670efa639ee01bc312e40a684d"
+  },
+  "release_prepared_source_review_20261120": {
+    "previous_sidebar_sha256": "3fa01d7595ea9849701658e36e098065f465d6411ce651823f874debadc78223",
+    "current_sidebar_sha256": "691635310a71e3e18569214b926e86efd2a4931a8d81a6b9b02443d9c3fcb947",
+    "reviewed_source_commit": "606a48df3ae834f687d69ad16a26e11768fc85eb",
+    "review": "Observe actual original rendered disclosure chevrons instead of treating a virtualized offscreen child as a collapsed category; original paging cases and all96UI+2oracles retained.",
+    "observed_failure_run": 44657123753,
+    "native_executed_in_failed_release_run": 0,
+    "configuration_changes": false
+  }
+}

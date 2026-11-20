@@ -1,0 +1,46 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "1D566BC4-5E0B-47B3-90FF-B8E9DA307D2A",
+        "deviceName": "Faithful 11-inch 22ef4e3a",
+        "modelName": "iPad Pro 11-inch (M5)",
+        "osBuildNumber": "24B8117",
+        "osVersion": "27.2",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 1,
+      "passedTests": 0,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "Maktabah-iOS \u00b7 Built with macOS 27.0.1",
+  "expectedFailures": 0,
+  "failedTests": 1,
+  "finishTime": 1795155422.945,
+  "passedTests": 0,
+  "result": "Failed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1795155187.798,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "Contrast failed",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 1,
+      "testIdentifierString": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+      "testName": "testHeaderAndHistoryNativeAccessibilityAudit()"
+    }
+  ],
+  "title": "Test - Maktabah-iOS",
+  "topInsights": [],
+  "totalTestCount": 1
+}

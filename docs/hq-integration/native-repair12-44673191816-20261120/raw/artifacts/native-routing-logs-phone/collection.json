@@ -1,0 +1,11 @@
+{
+  "udid": "E72E9B64-1676-4C5B-8D65-81FE73DFFDA6",
+  "label": "phone",
+  "bundleID": "com.davidpovarsky.chavrusatext",
+  "collectedAt": "2026-11-20T07:15:53.312900+00:00",
+  "status": "RETAINED",
+  "actualContainer": "/Users/runner/Library/Developer/CoreSimulator/Devices/E72E9B64-1676-4C5B-8D65-81FE73DFFDA6/data/Containers/Data/Application/833FB0FC-2519-47FC-AE63-1A0FCB25C6B0",
+  "bytes": 55398,
+  "sha256": "7b3b398e1aa25da1f67c24588ecfbd7d218e38787461bc03d7b3161a06f7b813",
+  "artifact": "native-routing-logs-phone/otzaria-reader.log"
+}

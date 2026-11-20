@@ -1,0 +1,247 @@
+Optional(Attributes: Application, 0x112968f00, pid: 67599, label: 'ChavrusaText'
+Element subtree:
+ →Application, 0x112968f00, pid: 67599, label: 'ChavrusaText'
+    Window (Main), 0x11296a080, {{0.0, 0.0}, {834.0, 1210.0}}
+      Other, 0x11296b200, {{0.0, 0.0}, {834.0, 1210.0}}
+      Other, 0x112968b40, {{0.0, 0.0}, {834.0, 1210.0}}
+        Other, 0x112968a00, {{0.0, 0.0}, {834.0, 1210.0}}
+          Other, 0x112968c80, {{0.0, 0.0}, {834.0, 1210.0}}
+            Other, 0x11296a440, {{0.0, 0.0}, {834.0, 1210.0}}
+              Other, 0x11296a300, {{0.0, 0.0}, {834.0, 1210.0}}
+                Other, 0x112969040, {{0.0, 0.0}, {834.0, 1210.0}}
+                  Other, 0x112968dc0, {{0.0, 0.0}, {834.0, 1210.0}}
+                    Other, 0x11296a1c0, {{0.0, 0.0}, {834.0, 1210.0}}
+                      Other, 0x11296a800, {{0.0, 0.0}, {834.0, 1210.0}}
+                        Other, 0x11296bac0, {{0.0, 0.0}, {834.0, 1210.0}}
+                          Other, 0x11296b700, {{0.0, 32.0}, {834.0, 1178.0}}
+                            Other, 0x11296be80, {{0.0, 32.0}, {834.0, 1178.0}}
+                              Other, 0x112969680, {{0.0, 32.0}, {834.0, 1178.0}}
+                                Other, 0x11296a940, {{0.0, 32.0}, {320.0, 1178.0}}
+                                  Other, 0x11296bd40, {{0.0, 32.0}, {320.0, 1178.0}}
+                                    Other, 0x112968140, {{0.0, 32.0}, {320.0, 1178.0}}
+                                      Other, 0x11296bc00, {{0.0, 32.0}, {320.0, 1178.0}}
+                                        Other, 0x1129697c0, {{0.0, 32.0}, {320.0, 1178.0}}
+                                          Other, 0x1129688c0, {{0.0, 32.0}, {320.0, 1178.0}}
+                                            Other, 0x112969540, {{0.0, 194.0}, {320.0, 952.0}}
+                                            Other, 0x112968780, {{0.0, 194.0}, {320.0, 952.0}}, identifier: 'reader-sidebar-pager'
+                                              CollectionView, 0x11296b980, {{0.0, 194.0}, {320.0, 952.0}}
+                                                Cell, 0x112969e00, {{0.0, 194.0}, {320.0, 952.0}}
+                                                  Other, 0x11296b480, {{0.0, 194.0}, {320.0, 952.0}}
+                                                    Other, 0x11296af80, {{0.0, 194.0}, {320.0, 952.0}}
+                                                      Other, 0x112969180, {{0.0, 194.0}, {320.0, 952.0}}
+                                                        Other, 0x11296ad00, {{0.0, 194.0}, {320.0, 952.0}}
+                                                          Other, 0x11296b840, {{0.0, 194.0}, {320.0, 952.0}}
+                                                          Other, 0x112969a40, {{0.0, 194.0}, {320.0, 952.0}}, identifier: 'library-column'
+                                                            Other, 0x11296abc0, {{0.0, 194.0}, {320.0, 952.0}}
+                                                              CollectionView, 0x11296b5c0, {{0.0, 194.0}, {320.0, 952.0}}
+                                                                Other, 0x112969f40, {{-16.0, -1710.0}, {352.0, 4163.0}}
+                                                                Cell, 0x112969400, {{16.0, 229.0}, {288.0, 50.0}}, identifier: 'library-tree-path-W1siY2F0ZWdvcnkiLCLXqtec157XldeTINeR15HXnNeZIiwiMCJdXQ=='
+                                                                  Other, 0x112968500, {{16.0, 229.0}, {288.0, 50.0}}
+                                                                    Other, 0x112968640, {{16.0, 229.0}, {288.0, 50.0}}
+                                                                  Other, 0x112969b80, {{16.0, 229.0}, {288.0, 50.0}}
+                                                                    Other, 0x11296a6c0, {{32.0, 229.0}, {256.0, 50.0}}
+                                                                      Other, 0x11296ae40, {{234.0, 239.0}, {30.0, 30.0}}
+                                                                        Image, 0x11296b340, {{234.0, 239.5}, {30.0, 28.5}}, identifier: 'folder.fill', label: 'move'
+                                                                      Image, 0x1129683c0, {{272.0, 246.5}, {16.0, 14.5}}, identifier: 'chevron.forward', label: 'Forward'
+                                                                      StaticText, 0x11296a580, {{32.0, 242.0}, {194.0, 24.0}}, label: 'תלמוד בבלי'
+                                                                Cell, 0x11296b0c0, {{16.0, 279.0}, {288.0, 50.0}}, identifier: 'library-tree-path-W1siY2F0ZWdvcnkiLCLXqteg17TXmiIsIjAiXV0='
+                                                                  Other, 0x11296aa80, {{16.0, 279.0}, {288.0, 50.0}}
+                                                                    Other, 0x1129692c0, {{16.0, 279.0}, {288.0, 50.0}}
+                                                                  Other, 0x112969cc0, {{16.0, 279.0}, {288.0, 50.0}}
+                                                                    Other, 0x112968280, {{32.0, 279.0}, {256.0, 50.0}}
+                                                                      Other, 0x1122d9a40, {{234.0, 289.0}, {30.0, 30.0}}
+                                                                        Image, 0x1122da6c0, {{234.0, 289.5}, {30.0, 28.5}}, identifier: 'folder.fill', label: 'move'
+                                                                      Image, 0x1122d9540, {{272.0, 296.5}, {16.0, 14.5}}, identifier: 'chevron.forward', label: 'Forward'
+                                                                      StaticText, 0x1122d97c0, {{32.0, 292.0}, {194.0, 24.0}}, label: 'תנ״ך'
+                                                                Other, 0x1122d8c80, {{32.0, 278.0}, {194.0, 1.0}}
+                                                                Cell, 0x1122d8140, {{16.0, 329.0}, {288.0, 50.0}}, identifier: 'library-tree-path-W1siY2F0ZWdvcnkiLCLXntep16DXlCIsIjAiXV0='
+                                                                  Other, 0x1122d8500, {{16.0, 329.0}, {288.0, 50.0}}
+                                                                    Other, 0x1122da440, {{16.0, 329.0}, {288.0, 50.0}}
+                                                                  Other, 0x1122d8640, {{16.0, 329.0}, {288.0, 50.0}}
+                                                                    Other, 0x1122d9400, {{32.0, 329.0}, {256.0, 50.0}}
+                                                                      Other, 0x1122d8a00, {{234.0, 339.0}, {30.0, 30.0}}
+                                                                        Image, 0x1122d9040, {{234.0, 339.5}, {30.0, 28.5}}, identifier: 'folder.fill', label: 'move'
+                                                                      Image, 0x1122d8dc0, {{272.0, 346.5}, {16.0, 14.5}}, identifier: 'chevron.forward', label: 'Forward'
+                                                                      StaticText, 0x1122da1c0, {{32.0, 342.0}, {194.0, 24.0}}, label: 'משנה'
+                                                                Other, 0x1122d83c0, {{32.0, 328.0}, {194.0, 1.0}}
+                                                                Cell, 0x1122d8f00, {{16.0, 379.0}, {288.0, 50.0}}, identifier: 'library-tree-path-W1siY2F0ZWdvcnkiLCLXlNec15vXlCIsIjAiXV0='
+                                                                  Other, 0x1122d9180, {{16.0, 379.0}, {288.0, 50.0}}
+                                                                    Other, 0x1122d9f40, {{16.0, 379.0}, {288.0, 50.0}}
+                                                                  Other, 0x1122d9900, {{16.0, 379.0}, {288.0, 50.0}}
+                                                                    Other, 0x1122d8000, {{32.0, 379.0}, {256.0, 50.0}}
+                                                                      Other, 0x1122d8780, {{234.0, 389.0}, {30.0, 30.0}}
+                                                                        Image, 0x1122d9cc0, {{234.0, 389.5}, {30.0, 28.5}}, identifier: 'folder.fill', label: 'move'
+                                                                      Image, 0x1122d9680, {{272.0, 396.5}, {16.0, 14.5}}, identifier: 'chevron.forward', label: 'Forward'
+                                                                      StaticText, 0x1122da800, {{32.0, 392.0}, {194.0, 24.0}}, label: 'הלכה'
+                                                                Other, 0x1122da580, {{32.0, 378.0}, {194.0, 1.0}}
+                                                                Cell, 0x1122d92c0, {{16.0, 429.0}, {288.0, 50.0}}, identifier: 'library-tree-path-W1siY2F0ZWdvcnkiLCLXnteX16nXkdeqINeZ16nXqNeQ15wiLCIwIl1d'
+                                                                  Other, 0x1122d8b40, {{16.0, 429.0}, {288.0, 50.0}}
+                                                                    Other, 0x1122da080, {{16.0, 429.0}, {288.0, 50.0}}
+                                                                  Other, 0x1122d9b80, {{16.0, 429.0}, {288.0, 50.0}}
+                                                                    Other, 0x1122da300, {{32.0, 429.0}, {256.0, 50.0}}
+                                                                      Other, 0x1122d9e00, {{234.0, 439.0}, {30.0, 30.0}}
+                                                                        Image, 0x1122d8280, {{234.0, 439.5}, {30.0, 28.5}}, identifier: 'folder.fill', label: 'move'
+                                                                      Image, 0x1122d88c0, {{272.0, 446.5}, {16.0, 14.5}}, identifier: 'chevron.forward', label: 'Forward'
+                                                                      StaticText, 0x1092c7ac0, {{32.0, 442.0}, {194.0, 24.0}}, label: 'מחשבת ישראל'
+                                                                Other, 0x1092c7980, {{32.0, 428.0}, {194.0, 1.0}}
+                                                                Cell, 0x1092c7d40, {{16.0, 479.0}, {288.0, 50.0}}, identifier: 'library-tree-path-W1siY2F0ZWdvcnkiLCLXodek16jXmSDXnteV16HXqCIsIjAiXV0='
+                                                                  Other, 0x1092c6f80, {{16.0, 479.0}, {288.0, 50.0}}
+                                                                    Other, 0x1092c6e40, {{16.0, 479.0}, {288.0, 50.0}}
+                                                                  Other, 0x1092c75c0, {{16.0, 479.0}, {288.0, 50.0}}
+                                                                    Other, 0x1092c7c00, {{32.0, 479.0}, {256.0, 50.0}}
+                                                                      Other, 0x1092c7840, {{234.0, 489.0}, {30.0, 30.0}}
+                                                                        Image, 0x1092c70c0, {{234.0, 489.5}, {30.0, 28.5}}, identifier: 'folder.fill', label: 'move'
+                                                                      Image, 0x1092c7480, {{272.0, 496.5}, {16.0, 14.5}}, identifier: 'chevron.forward', label: 'Forward'
+                                                                      StaticText, 0x1092c7200, {{32.0, 492.0}, {194.0, 24.0}}, label: 'ספרי מוסר'
+                                                                Other, 0x1092c6d00, {{32.0, 478.0}, {194.0, 1.0}}
+                                                                Other, 0x1092c7340, {{287.0, 194.0}, {30.0, 952.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                                                  Other, 0x1092c7700, {{314.0, 155.0}, {3.0, 36.0}}
+                                                                Other, 0x11206e300, {{0.0, 1113.0}, {320.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                                  Other, 0x11206ed00, {{-39.0, 1140.0}, {36.0, 3.0}}
+                                                                Other, 0x11206f0c0, {{287.0, 194.0}, {30.0, 952.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                                                  Other, 0x11206da40, {{314.0, 155.0}, {3.0, 36.0}}
+                                                                Other, 0x11206e580, {{0.0, 1113.0}, {320.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                                  Other, 0x11206d900, {{-39.0, 1140.0}, {36.0, 3.0}}
+                                                Other, 0x11206df40, {{287.0, 194.0}, {30.0, 952.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                                  Other, 0x11206f700, {{314.0, 1072.0}, {3.0, 7.0}}
+                                                Other, 0x11206ea80, {{287.0, 194.0}, {30.0, 952.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                                  Other, 0x11206f5c0, {{314.0, 1072.0}, {3.0, 7.0}}
+                                            Button, 0x11206fac0, {{116.0, 1146.0}, {44.0, 44.0}}, identifier: 'reader-sidebar-page-0', label: 'Library', Selected
+                                            Button, 0x11206e800, {{160.0, 1146.0}, {44.0, 44.0}}, identifier: 'reader-sidebar-page-1', label: 'Table of Contents'
+                                    NavigationBar, 0x11206e1c0, {{0.0, 86.0}, {320.0, 108.0}}, identifier: 'Library'
+                                      Other, 0x11206ebc0, {{14.0, 90.0}, {36.0, 36.0}}
+                                        Other, 0x11206fc00, {{14.0, 90.0}, {36.0, 36.0}}
+                                          Button, 0x11206ef80, {{15.5, 90.0}, {33.0, 36.0}}, identifier: 'main-settings-button', label: 'Settings'
+                                      Button, 0x11206fe80, {{82.5, 90.0}, {50.0, 36.0}}, identifier: 'otzaria-hanlin-global-launch', label: 'Study chat'
+                                      Button, 0x11206f340, {{148.5, 90.0}, {43.5, 36.0}}, label: 'Group By'
+                                      Button, 0x11206f200, {{212.0, 90.0}, {38.0, 36.0}}, identifier: 'TopOverflowBarButtonItem', label: 'More'
+                                      Button, 0x11206db80, {{270.0, 90.0}, {36.0, 36.0}}, label: 'Hide Sidebar'
+                                      SearchField, 0x11206e440, {{16.0, 140.0}, {288.0, 44.0}}, label: 'Search Library', placeholderValue: 'Search Library'
+                                        Image, 0x11206dcc0, {{28.0, 151.5}, {20.5, 20.0}}, identifier: 'magnifyingglass', label: 'Search'
+                                    Toolbar, 0x11206f840, {{0.0, 32.0}, {320.0, 1178.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                                      Other, 0x11206e6c0, {{0.0, 32.0}, {320.0, 1178.0}}
+                                  Other, 0x11206de00, {{0.0, 32.0}, {320.0, 1178.0}}
+                                    Other, 0x11206ee40, {{0.0, 32.0}, {320.0, 1178.0}}
+                                      Other, 0x11206fd40, {{0.0, 32.0}, {320.0, 1178.0}}
+                                        Other, 0x11206f480, {{0.0, 32.0}, {320.0, 1178.0}}
+                                          Other, 0x11206e940, {{0.0, 32.0}, {320.0, 1178.0}}
+                                            Other, 0x11206f980, {{0.0, 32.0}, {320.0, 1114.0}}
+                                        Other, 0x11206e080, {{0.0, 32.0}, {320.0, 1178.0}}
+                                          Other, 0x111e01040, {{0.0, 32.0}, {320.0, 1114.0}}
+                                Other, 0x111e017c0, {{0.0, 32.0}, {834.0, 1178.0}}
+                                  Other, 0x111e021c0, {{0.0, 32.0}, {834.0, 1178.0}}
+                                    NavigationBar, 0x111e00500, {{0.0, 86.0}, {834.0, 54.0}}, identifier: '_TtGC7SwiftUI32NavigationStackHosting'
+                                      Other, 0x111e00f00, {{340.0, 87.5}, {136.0, 41.0}}
+                                        Other, 0x111e030c0, {{340.0, 87.5}, {136.0, 41.0}}
+                                          ScrollView, 0x111e02800, {{340.0, 92.0}, {136.0, 32.5}}, identifier: 'reader-document-tabs'
+                                            Other, 0x111e00c80, {{259.0, 92.0}, {217.0, 32.5}}
+                                              Button, 0x111e01e00, {{273.0, 98.0}, {79.5, 20.5}}, identifier: 'reader-document-tab-0CB074C3-6A16-4262-9DF0-DB1AFEA78638', label: 'ספר החינוך'
+                                              Button, 0x111e035c0, {{376.5, 99.0}, {19.5, 18.5}}, identifier: 'reader-close-document-tab-EF51797E-FF03-4752-A729-4F8A1E2C5A46', label: 'Close Tab'
+                                              Button, 0x111e00780, {{402.0, 98.0}, {60.0, 20.5}}, identifier: 'reader-document-tab-EF51797E-FF03-4752-A729-4F8A1E2C5A46', label: 'בראשית'
+                                      Button, 0x111e00a00, {{492.0, 90.0}, {42.0, 36.0}}, identifier: 'reader-tabs-overview', label: 'כל הכרטיסיות'
+                                      Button, 0x111e003c0, {{550.0, 90.0}, {50.0, 36.0}}, identifier: 'otzaria-hanlin-reader-launch', label: 'Study chat'
+                                      Button, 0x111e03980, {{616.0, 90.0}, {40.0, 36.0}}, identifier: 'reader-command-palette-launcher', label: 'חיפוש מהיר בספרייה'
+                                      Button, 0x111e00dc0, {{672.0, 90.0}, {40.0, 36.0}}, identifier: 'study-profile-menu', label: 'פרופיל לימוד'
+                                      Other, 0x111e02bc0, {{728.0, 90.0}, {36.0, 36.0}}
+                                        Other, 0x111e03700, {{728.0, 90.0}, {36.0, 36.0}}
+                                          Button, 0x111e02d00, {{728.0, 90.0}, {36.0, 36.0}}, identifier: 'reader-study-toggle', label: 'Open Study Tools'
+                                      Button, 0x111e03480, {{784.0, 90.0}, {36.0, 36.0}}, label: 'Book Info'
+                                    Other, 0x111e03c00, {{0.0, 32.0}, {834.0, 1178.0}}
+                                      Other, 0x111e03200, {{0.0, 32.0}, {834.0, 1178.0}}
+                                        Other, 0x111e02940, {{0.0, 32.0}, {834.0, 1178.0}}
+                                          Other, 0x111e02300, {{0.0, 32.0}, {834.0, 1178.0}}
+                                            Other, 0x111e03d40, {{0.0, 32.0}, {834.0, 1178.0}}, identifier: 'reader-detail-column'
+                                              Other, 0x111e03340, {{0.0, 32.0}, {834.0, 1178.0}}
+                                                Other, 0x111e02580, {{0.0, 32.0}, {834.0, 1178.0}}
+                                                  Other, 0x111e026c0, {{0.0, 32.0}, {834.0, 1178.0}}
+                                                    Other, 0x111e02f80, {{0.0, 32.0}, {834.0, 1178.0}}, identifier: 'reader-surface'
+                                                      Other, 0x111e02440, {{320.0, 32.0}, {514.0, 1178.0}}
+                                                        TextView, 0x111e02e40, {{320.0, 32.0}, {514.0, 1178.0}}, identifier: 'reader-text', value: ‫פרק א‬
+                                                          Other, 0x111e01f40, {{320.0, 32.0}, {1.0, 1.0}}, identifier: 'reader-rendered-highlight-diagnostics', label: 'searchHighlights:0', value: {"renderGeneration...
+                                                          TextView, 0x111e02a80, {{769.9, 42.0}, {55.5, 32.0}}, label: '‫פרק א‬'
+                                                          Other, 0x111e00140, {{296.0, 32.0}, {30.0, 1178.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                                            Other, 0x111e00b40, {{323.0, 1160.0}, {3.0, 47.0}}
+                                                          Other, 0x111e01180, {{320.0, 1177.0}, {484.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                            Other, 0x111e01900, {{323.0, 1204.0}, {478.0, 3.0}}
+                                                      StaticText, 0x111e008c0, {{576.5, 130.2}, {1.0, 20.5}}, identifier: 'reader-header-title', label: 'בראשית'
+                                                      StaticText, 0x111e01b80, {{576.5, 131.2}, {1.0, 20.5}}, identifier: 'reader-current-locator', label: 'otzaria|book:1|line:1', value: otzaria|book:1|lin...
+                                                Other, 0x111e01680, {{0.0, 32.0}, {834.0, 1178.0}}
+                                                  Other, 0x111e00280, {{320.0, 1210.0}, {514.0, 1058.0}}
+                                                    Other, 0x111e02080, {{320.0, 1210.0}, {514.0, 2236.0}}
+                                                      Other, 0x111e01cc0, {{320.0, 1210.0}, {514.0, 1058.0}}
+                                                        Other, 0x111e01a40, {{320.0, 1210.0}, {514.0, 1058.0}}
+                                                    Other, 0x111e01540, {{559.0, 1216.0}, {36.0, 5.0}}
+                                            Other, 0x111e03ac0, {{320.0, 140.0}, {514.0, 996.0}}
+                                    Toolbar, 0x111e012c0, {{0.0, 32.0}, {834.0, 1178.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                                      Other, 0x111e01400, {{0.0, 32.0}, {834.0, 1178.0}}
+                                Toolbar, 0x111e03840, {{0.0, 32.0}, {834.0, 1178.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                                  Other, 0x111e03e80, {{0.0, 32.0}, {834.0, 1178.0}}
+                                    Other, 0x111e16940, {{0.0, 32.0}, {834.0, 1178.0}}
+                                      Other, 0x111e15f40, {{0.0, 32.0}, {834.0, 1178.0}}
+                                        Other, 0x111e17980, {{0.0, 32.0}, {0.0, 0.0}}
+                                          Other, 0x111e15a40, {{330.0, 1146.0}, {92.0, 44.0}}
+                                            Other, 0x111e15540, {{330.0, 1146.0}, {92.0, 44.0}}
+                                              Other, 0x111e16300, {{334.0, 1150.0}, {84.0, 36.0}}
+                                                Other, 0x111e15400, {{334.0, 1150.0}, {84.0, 36.0}}
+                                                  Other, 0x111e16440, {{334.0, 1150.0}, {84.0, 36.0}}
+                                                    Other, 0x111e17480, {{334.0, 1150.0}, {84.0, 36.0}}
+                                                      Button, 0x111e17200, {{334.0, 1150.0}, {84.0, 36.0}}, label: 'בראשית'
+                                          Other, 0x111e16d00, {{524.0, 1146.0}, {96.0, 44.0}}
+                                            Other, 0x111e170c0, {{524.0, 1146.0}, {44.0, 44.0}}
+                                              Other, 0x111e15680, {{528.0, 1150.0}, {36.0, 36.0}}
+                                                Other, 0x111e17840, {{528.0, 1150.0}, {36.0, 36.0}}
+                                                  Other, 0x111e17700, {{528.0, 1150.0}, {36.0, 36.0}}
+                                                    Other, 0x111e14f00, {{528.0, 1150.0}, {36.0, 36.0}}
+                                                      Button, 0x111e14640, {{531.0, 1150.0}, {30.5, 36.0}}, identifier: 'chevron.left', label: 'Next Page'
+                                            Other, 0x111e15cc0, {{576.0, 1146.0}, {44.0, 44.0}}
+                                              Other, 0x111e16a80, {{580.0, 1150.0}, {36.0, 36.0}}
+                                                Other, 0x111e14c80, {{580.0, 1150.0}, {36.0, 36.0}}
+                                                  Other, 0x111e14b40, {{580.0, 1150.0}, {36.0, 36.0}}
+                                                    Other, 0x111e14280, {{580.0, 1150.0}, {36.0, 36.0}}
+                                                      Button, 0x111e14000, {{583.0, 1150.0}, {30.5, 36.0}}, identifier: 'chevron.right', label: 'Previous Page'
+                                          Other, 0x111e143c0, {{722.0, 1146.0}, {102.0, 44.0}}
+                                            Other, 0x111e14500, {{722.0, 1146.0}, {48.0, 44.0}}
+                                              Other, 0x111e14780, {{726.0, 1150.0}, {40.0, 36.0}}
+                                                Other, 0x111e15e00, {{726.0, 1150.0}, {40.0, 36.0}}
+                                                  Other, 0x111e14a00, {{726.0, 1150.0}, {40.0, 36.0}}
+                                                    Other, 0x111e14140, {{726.0, 1150.0}, {40.0, 36.0}}
+                                                      Button, 0x111e16080, {{726.0, 1150.0}, {40.0, 36.0}}, identifier: 'magnifyingglass', label: 'Search'
+                                            Other, 0x111e15180, {{778.0, 1146.0}, {46.0, 44.0}}
+                                              Other, 0x111e148c0, {{782.0, 1150.0}, {38.0, 36.0}}
+                                                Other, 0x111e14dc0, {{782.0, 1150.0}, {38.0, 36.0}}
+                                                  Other, 0x111e16580, {{782.0, 1150.0}, {38.0, 36.0}}
+                                                    Other, 0x111e15040, {{782.0, 1150.0}, {38.0, 36.0}}
+                                                      Button, 0x111e16f80, {{782.0, 1150.0}, {38.0, 36.0}}, identifier: 'reader-more-menu', label: 'More Reader Actions'
+                                                        Button, 0x111e16bc0, {{782.0, 1150.0}, {38.0, 36.0}}
+                                                          Image, 0x111e17340, {{791.0, 1166.0}, {20.0, 4.5}}, identifier: 'ellipsis', label: 'More'
+                            Other, 0x111e152c0, {{0.0, 32.0}, {834.0, 1178.0}}
+                              Other, 0x111e16800, {{0.0, 32.0}, {834.0, 1178.0}}
+                          Other, 0x111e166c0, {{417.0, 611.0}, {0.0, 0.0}}
+                Other, 0x111e157c0, {{0.0, 0.0}, {834.0, 1210.0}}
+                  Other, 0x111e175c0, {{0.0, 32.0}, {834.0, 44.0}}
+                    Button, 0x111e16e40, {{169.2, 36.0}, {87.0, 36.0}}, identifier: 'books.vertical.fill', label: 'Library', Selected
+                      Button, 0x111e15b80, {{169.2, 36.0}, {87.0, 36.0}}, identifier: 'books.vertical.fill', label: 'Library', Selected
+                    Button, 0x111e15900, {{256.2, 36.0}, {87.0, 36.0}}, identifier: 'magnifyingglass', label: 'Search'
+                      Button, 0x111e161c0, {{256.2, 36.0}, {87.0, 36.0}}, identifier: 'magnifyingglass', label: 'Search'
+                    Button, 0x112c7c000, {{343.2, 36.0}, {106.5, 36.0}}, identifier: 'person.text.rectangle.fill', label: 'Narrators'
+                      Button, 0x112c7c140, {{343.2, 36.0}, {106.5, 36.0}}, identifier: 'person.text.rectangle.fill', label: 'Narrators'
+                    Button, 0x112c7c280, {{449.8, 36.0}, {126.5, 36.0}}, identifier: 'quote.closing', label: 'Annotations'
+                      Button, 0x112c7c3c0, {{449.8, 36.0}, {126.5, 36.0}}, identifier: 'quote.closing', label: 'Annotations'
+                    Button, 0x112c7c500, {{576.2, 36.0}, {88.5, 36.0}}, identifier: 'clock.fill', label: 'History'
+                      Button, 0x112c7c640, {{576.2, 36.0}, {88.5, 36.0}}, identifier: 'clock.fill', label: 'History'
+              Other, 0x112c7c780, {{0.0, 32.0}, {834.0, 1158.0}}
+              Other, 0x112c7c8c0, {{417.0, 611.0}, {0.0, 0.0}}
+              Other, 0x112c7ca00, {{417.0, 611.0}, {0.0, 0.0}}
+              Other, 0x112c7cb40, {{417.0, 611.0}, {0.0, 0.0}}
+              StaticText, 0x112c7cc80, {{832.0, 1184.0}, {2.0, 10.0}}, identifier: 'sefaria-embedded-acceptance-result', label: 'PENDING', value: PENDING
+    Window, 0x112c7cdc0, {{0.0, 0.0}, {834.0, 1210.0}}
+      Other, 0x112c7cf00, {{0.0, 0.0}, {834.0, 1210.0}}
+        Other, 0x112c7d040, {{0.0, 0.0}, {834.0, 1210.0}}
+Path to element:
+ →Application, 0x112968f00, pid: 67599, label: 'ChavrusaText'
+Query chain:
+ →Find: Target Application 'com.davidpovarsky.chavrusatext'
+  Output: {
+    Application, 0x112c7d180, pid: 67599, label: 'ChavrusaText'
+  }
+)

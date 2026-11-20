@@ -1,0 +1,18 @@
+{
+  "startedUTC": "2026-11-20T06:39:41.378253+00:00",
+  "run": 44673191816,
+  "expectedHead": "6030087e27f75b26d9a9bb144ba9ba71eaddadc5",
+  "timeoutSeconds": 3380,
+  "command": [
+    "gh",
+    "run",
+    "watch",
+    "44673191816",
+    "--repo",
+    "davidpovarsky/Maktabah",
+    "--interval",
+    "60",
+    "--exit-status"
+  ],
+  "ownership": "Sole child /root/asana_audit watcher; preceding Root watcher timed out without workflow result."
+}

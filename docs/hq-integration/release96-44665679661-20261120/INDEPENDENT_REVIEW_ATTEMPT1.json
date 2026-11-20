@@ -1,0 +1,3511 @@
+{
+  "run_id": 44665679661,
+  "checkout_sha": "9cc346601bdb3fdda34c2c6ac59894f71dc9ea49",
+  "application_and_tests_sha": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "comparison_source_sha": "c61213d9fcc8b80a8606ba00a1562215312ca2ed",
+  "artifact_sha256": "9cbc4b9b7a3fa7195430bbeb987094ac1fbc6398805641fd79981cd8f4953e63",
+  "artifact_bytes": 69365070,
+  "release_manifest_sha256": "7897577ded6c32d82914018e8378db95862e6eabec5fdb263887f95630c9da83",
+  "status": "FAILED_WORKFLOW_RECONCILED",
+  "native_executed_by_this_review": 0,
+  "scope": "Original run only; no PASS transfers to comparison source.",
+  "configurations": [
+    {
+      "configuration_id": "ipad11-native",
+      "label": "11",
+      "declared_ui": 54,
+      "declared_separate_oracle": 1,
+      "data_profile": "miniTest10",
+      "requested_configuration": "Debug",
+      "raw_execution": {
+        "log_sha256": "cfc61c5b628f945ee6a3e502bcabb59907e22455cbf3d446bac23ea3363ea8d4",
+        "started": [
+          {
+            "case_id": "Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton",
+            "event": "started",
+            "suffix": ".",
+            "offset": 12622
+          },
+          {
+            "case_id": "Build8401SevenDefectsAcceptanceTests/testA1_RealSearchFlowHighlightAndClear",
+            "event": "started",
+            "suffix": ".",
+            "offset": 16601
+          },
+          {
+            "case_id": "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton",
+            "event": "started",
+            "suffix": ".",
+            "offset": 23350
+          },
+          {
+            "case_id": "Build8401SevenDefectsAcceptanceTests/testB1_B2_PagingTransitionsPreserveReaderStability",
+            "event": "started",
+            "suffix": ".",
+            "offset": 31475
+          },
+          {
+            "case_id": "Build8401SevenDefectsAcceptanceTests/testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState",
+            "event": "started",
+            "suffix": ".",
+            "offset": 37039
+          },
+          {
+            "case_id": "Build8401SevenDefectsAcceptanceTests/testF1_SefariaHebrewLocaleRTLAndHebrewHeaders",
+            "event": "started",
+            "suffix": ".",
+            "offset": 40944
+          },
+          {
+            "case_id": "Build8401SevenDefectsAcceptanceTests/testF2_HebrewTOCStructureAndDafLabels",
+            "event": "started",
+            "suffix": ".",
+            "offset": 44373
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+            "event": "started",
+            "suffix": ".",
+            "offset": 49127
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+            "event": "started",
+            "suffix": ".",
+            "offset": 65529
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+            "event": "started",
+            "suffix": ".",
+            "offset": 70661
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+            "event": "started",
+            "suffix": ".",
+            "offset": 75596
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+            "event": "started",
+            "suffix": ".",
+            "offset": 81162
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+            "event": "started",
+            "suffix": ".",
+            "offset": 86699
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+            "event": "started",
+            "suffix": ".",
+            "offset": 97226
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+            "event": "started",
+            "suffix": ".",
+            "offset": 101622
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+            "event": "started",
+            "suffix": ".",
+            "offset": 106132
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+            "event": "started",
+            "suffix": ".",
+            "offset": 121709
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+            "event": "started",
+            "suffix": ".",
+            "offset": 128308
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+            "event": "started",
+            "suffix": ".",
+            "offset": 132308
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+            "event": "started",
+            "suffix": ".",
+            "offset": 136028
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+            "event": "started",
+            "suffix": ".",
+            "offset": 151049
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+            "event": "started",
+            "suffix": ".",
+            "offset": 162744
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+            "event": "started",
+            "suffix": ".",
+            "offset": 179859
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+            "event": "started",
+            "suffix": ".",
+            "offset": 191391
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+            "event": "started",
+            "suffix": ".",
+            "offset": 200349
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+            "event": "started",
+            "suffix": ".",
+            "offset": 221474
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+            "event": "started",
+            "suffix": ".",
+            "offset": 234509
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+            "event": "started",
+            "suffix": ".",
+            "offset": 253881
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+            "event": "started",
+            "suffix": ".",
+            "offset": 378255
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+            "event": "started",
+            "suffix": ".",
+            "offset": 503266
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+            "event": "started",
+            "suffix": ".",
+            "offset": 512897
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+            "event": "started",
+            "suffix": ".",
+            "offset": 522024
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+            "event": "started",
+            "suffix": ".",
+            "offset": 535121
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+            "event": "started",
+            "suffix": ".",
+            "offset": 539532
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+            "event": "started",
+            "suffix": ".",
+            "offset": 604116
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+            "event": "started",
+            "suffix": ".",
+            "offset": 740061
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+            "event": "started",
+            "suffix": ".",
+            "offset": 750195
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+            "event": "started",
+            "suffix": ".",
+            "offset": 755464
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+            "event": "started",
+            "suffix": ".",
+            "offset": 800266
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+            "event": "started",
+            "suffix": ".",
+            "offset": 813910
+          },
+          {
+            "case_id": "PullNavigationAcceptanceTests/testPullNavigationCommitBothDirectionsWithoutDuplicates",
+            "event": "started",
+            "suffix": ".",
+            "offset": 831912
+          },
+          {
+            "case_id": "PullNavigationAcceptanceTests/testPullNavigationRetreatCancelDoesNotChangeContent",
+            "event": "started",
+            "suffix": ".",
+            "offset": 837937
+          },
+          {
+            "case_id": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+            "event": "started",
+            "suffix": ".",
+            "offset": 844482
+          },
+          {
+            "case_id": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+            "event": "started",
+            "suffix": ".",
+            "offset": 852638
+          },
+          {
+            "case_id": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+            "event": "started",
+            "suffix": ".",
+            "offset": 862953
+          },
+          {
+            "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+            "event": "started",
+            "suffix": ".",
+            "offset": 870834
+          },
+          {
+            "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+            "event": "started",
+            "suffix": ".",
+            "offset": 875445
+          },
+          {
+            "case_id": "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle",
+            "event": "started",
+            "suffix": ".",
+            "offset": 884668
+          },
+          {
+            "case_id": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaCatalogAndAppLaunch",
+            "event": "started",
+            "suffix": ".",
+            "offset": 888299
+          },
+          {
+            "case_id": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaFullAcceptanceDiagnostic",
+            "event": "started",
+            "suffix": ".",
+            "offset": 890886
+          },
+          {
+            "case_id": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaReaderPresentation",
+            "event": "started",
+            "suffix": ".",
+            "offset": 897607
+          },
+          {
+            "case_id": "SefariaEmbeddedAcceptanceTests/testThreeBackendSwitchRegression",
+            "event": "started",
+            "suffix": ".",
+            "offset": 899916
+          },
+          {
+            "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+            "event": "started",
+            "suffix": ".",
+            "offset": 902935
+          },
+          {
+            "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+            "event": "started",
+            "suffix": ".",
+            "offset": 907705
+          },
+          {
+            "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+            "event": "started",
+            "suffix": ".",
+            "offset": 912850
+          }
+        ],
+        "terminal": [
+          {
+            "case_id": "Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton",
+            "event": "failed",
+            "suffix": "(45.394 seconds).",
+            "offset": 16458
+          },
+          {
+            "case_id": "Build8401SevenDefectsAcceptanceTests/testA1_RealSearchFlowHighlightAndClear",
+            "event": "passed",
+            "suffix": "(84.487 seconds).",
+            "offset": 23214
+          },
+          {
+            "case_id": "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton",
+            "event": "failed",
+            "suffix": "(48.048 seconds).",
+            "offset": 31325
+          },
+          {
+            "case_id": "Build8401SevenDefectsAcceptanceTests/testB1_B2_PagingTransitionsPreserveReaderStability",
+            "event": "passed",
+            "suffix": "(34.931 seconds).",
+            "offset": 36891
+          },
+          {
+            "case_id": "Build8401SevenDefectsAcceptanceTests/testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState",
+            "event": "passed",
+            "suffix": "(30.262 seconds).",
+            "offset": 40789
+          },
+          {
+            "case_id": "Build8401SevenDefectsAcceptanceTests/testF1_SefariaHebrewLocaleRTLAndHebrewHeaders",
+            "event": "passed",
+            "suffix": "(22.843 seconds).",
+            "offset": 44230
+          },
+          {
+            "case_id": "Build8401SevenDefectsAcceptanceTests/testF2_HebrewTOCStructureAndDafLabels",
+            "event": "passed",
+            "suffix": "(25.882 seconds).",
+            "offset": 48746
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+            "event": "passed",
+            "suffix": "(81.324 seconds).",
+            "offset": 65375
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+            "event": "failed",
+            "suffix": "(28.708 seconds).",
+            "offset": 70510
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+            "event": "passed",
+            "suffix": "(25.460 seconds).",
+            "offset": 75446
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+            "event": "failed",
+            "suffix": "(32.660 seconds).",
+            "offset": 81010
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+            "event": "failed",
+            "suffix": "(32.141 seconds).",
+            "offset": 86548
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+            "event": "passed",
+            "suffix": "(69.628 seconds).",
+            "offset": 97108
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+            "event": "failed",
+            "suffix": "(22.333 seconds).",
+            "offset": 101483
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+            "event": "failed",
+            "suffix": "(22.533 seconds).",
+            "offset": 105994
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+            "event": "failed",
+            "suffix": "(45.335 seconds).",
+            "offset": 121559
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+            "event": "failed",
+            "suffix": "(38.456 seconds).",
+            "offset": 128161
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+            "event": "failed",
+            "suffix": "(18.662 seconds).",
+            "offset": 132154
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+            "event": "failed",
+            "suffix": "(19.644 seconds).",
+            "offset": 135887
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+            "event": "passed",
+            "suffix": "(84.107 seconds).",
+            "offset": 150907
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+            "event": "passed",
+            "suffix": "(94.523 seconds).",
+            "offset": 162596
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+            "event": "passed",
+            "suffix": "(71.638 seconds).",
+            "offset": 179727
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+            "event": "passed",
+            "suffix": "(45.623 seconds).",
+            "offset": 191233
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+            "event": "passed",
+            "suffix": "(35.712 seconds).",
+            "offset": 200201
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+            "event": "failed",
+            "suffix": "(78.711 seconds).",
+            "offset": 221317
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+            "event": "failed",
+            "suffix": "(66.588 seconds).",
+            "offset": 234367
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+            "event": "failed",
+            "suffix": "(99.604 seconds).",
+            "offset": 253725
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+            "event": "failed",
+            "suffix": "(59.832 seconds).",
+            "offset": 512744
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+            "event": "failed",
+            "suffix": "(61.245 seconds).",
+            "offset": 521872
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+            "event": "failed",
+            "suffix": "(81.388 seconds).",
+            "offset": 534993
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+            "event": "failed",
+            "suffix": "(54.681 seconds).",
+            "offset": 539391
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+            "event": "passed",
+            "suffix": "(272.157 seconds).",
+            "offset": 603967
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+            "event": "passed",
+            "suffix": "(95.774 seconds).",
+            "offset": 750048
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+            "event": "passed",
+            "suffix": "(33.829 seconds).",
+            "offset": 755302
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+            "event": "passed",
+            "suffix": "(341.790 seconds).",
+            "offset": 800105
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+            "event": "passed",
+            "suffix": "(87.461 seconds).",
+            "offset": 813791
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+            "event": "failed",
+            "suffix": "(62.564 seconds).",
+            "offset": 831538
+          },
+          {
+            "case_id": "PullNavigationAcceptanceTests/testPullNavigationCommitBothDirectionsWithoutDuplicates",
+            "event": "passed",
+            "suffix": "(35.692 seconds).",
+            "offset": 837791
+          },
+          {
+            "case_id": "PullNavigationAcceptanceTests/testPullNavigationRetreatCancelDoesNotChangeContent",
+            "event": "passed",
+            "suffix": "(38.491 seconds).",
+            "offset": 844117
+          },
+          {
+            "case_id": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+            "event": "failed",
+            "suffix": "(76.481 seconds).",
+            "offset": 852514
+          },
+          {
+            "case_id": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+            "event": "passed",
+            "suffix": "(101.759 seconds).",
+            "offset": 862825
+          },
+          {
+            "case_id": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+            "event": "failed",
+            "suffix": "(62.402 seconds).",
+            "offset": 870712
+          },
+          {
+            "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+            "event": "failed",
+            "suffix": "(31.462 seconds).",
+            "offset": 875310
+          },
+          {
+            "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+            "event": "failed",
+            "suffix": "(59.851 seconds).",
+            "offset": 884309
+          },
+          {
+            "case_id": "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle",
+            "event": "passed",
+            "suffix": "(22.796 seconds).",
+            "offset": 887930
+          },
+          {
+            "case_id": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaCatalogAndAppLaunch",
+            "event": "passed",
+            "suffix": "(27.109 seconds).",
+            "offset": 890756
+          },
+          {
+            "case_id": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaFullAcceptanceDiagnostic",
+            "event": "passed",
+            "suffix": "(32.533 seconds).",
+            "offset": 897472
+          },
+          {
+            "case_id": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaReaderPresentation",
+            "event": "passed",
+            "suffix": "(18.896 seconds).",
+            "offset": 899787
+          },
+          {
+            "case_id": "SefariaEmbeddedAcceptanceTests/testThreeBackendSwitchRegression",
+            "event": "passed",
+            "suffix": "(26.698 seconds).",
+            "offset": 902575
+          },
+          {
+            "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+            "event": "failed",
+            "suffix": "(35.252 seconds).",
+            "offset": 907592
+          },
+          {
+            "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+            "event": "failed",
+            "suffix": "(37.888 seconds).",
+            "offset": 912500
+          },
+          {
+            "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+            "event": "failed",
+            "suffix": "(65.469 seconds).",
+            "offset": 925021
+          }
+        ]
+      },
+      "ui_counts": {
+        "PASS": 25,
+        "FAIL": 29
+      },
+      "oracle_counts": {
+        "PASS": 1
+      },
+      "finalized_leaves": 55,
+      "tree_sha256": "bf64483df5818bd7b6b6dcbe61d6f3fbaa76e7d17008c5a4d7f38757f6194d21",
+      "summary_sha256": "218f2b2ec7893508449aebb24dccb449558a3f45611e8cfd053cb9727e71f629",
+      "start_time": 1795148509.34,
+      "finish_time": 1795153583.238,
+      "device": [
+        {
+          "architecture": "arm64",
+          "deviceId": "7F61A106-EAA9-4D64-8CAD-7986F7832F03",
+          "deviceName": "Faithful 11-inch 9f08b32c",
+          "modelName": "iPad Pro 11-inch (M5)",
+          "osBuildNumber": "24B8117",
+          "osVersion": "27.2",
+          "platform": "iOS Simulator"
+        }
+      ]
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "label": "13",
+      "declared_ui": 34,
+      "declared_separate_oracle": 1,
+      "data_profile": "miniTest10",
+      "requested_configuration": "Debug",
+      "raw_execution": {
+        "log_sha256": "9688f5a454f2631f321ec2c5e2aa8c74c4cc7a0b246a8ce165eefc9cc5bfce1f",
+        "started": [
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+            "event": "started",
+            "suffix": ".",
+            "offset": 7380
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+            "event": "started",
+            "suffix": ".",
+            "offset": 22310
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+            "event": "started",
+            "suffix": ".",
+            "offset": 27135
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+            "event": "started",
+            "suffix": ".",
+            "offset": 32070
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+            "event": "started",
+            "suffix": ".",
+            "offset": 37636
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+            "event": "started",
+            "suffix": ".",
+            "offset": 42782
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+            "event": "started",
+            "suffix": ".",
+            "offset": 53309
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+            "event": "started",
+            "suffix": ".",
+            "offset": 57705
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+            "event": "started",
+            "suffix": ".",
+            "offset": 62215
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+            "event": "started",
+            "suffix": ".",
+            "offset": 77262
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+            "event": "started",
+            "suffix": ".",
+            "offset": 83861
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+            "event": "started",
+            "suffix": ".",
+            "offset": 87861
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+            "event": "started",
+            "suffix": ".",
+            "offset": 91581
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+            "event": "started",
+            "suffix": ".",
+            "offset": 102304
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+            "event": "started",
+            "suffix": ".",
+            "offset": 106059
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+            "event": "started",
+            "suffix": ".",
+            "offset": 109480
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+            "event": "started",
+            "suffix": ".",
+            "offset": 113225
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+            "event": "started",
+            "suffix": ".",
+            "offset": 116922
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+            "event": "started",
+            "suffix": ".",
+            "offset": 120787
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+            "event": "started",
+            "suffix": ".",
+            "offset": 124806
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+            "event": "started",
+            "suffix": ".",
+            "offset": 129018
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+            "event": "started",
+            "suffix": ".",
+            "offset": 132811
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+            "event": "started",
+            "suffix": ".",
+            "offset": 136923
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+            "event": "started",
+            "suffix": ".",
+            "offset": 143464
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+            "event": "started",
+            "suffix": ".",
+            "offset": 186625
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+            "event": "started",
+            "suffix": ".",
+            "offset": 190748
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+            "event": "started",
+            "suffix": ".",
+            "offset": 195159
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+            "event": "started",
+            "suffix": ".",
+            "offset": 206180
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+            "event": "started",
+            "suffix": ".",
+            "offset": 210079
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+            "event": "started",
+            "suffix": ".",
+            "offset": 221565
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+            "event": "started",
+            "suffix": ".",
+            "offset": 226659
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+            "event": "started",
+            "suffix": ".",
+            "offset": 232625
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+            "event": "started",
+            "suffix": ".",
+            "offset": 236644
+          },
+          {
+            "case_id": "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle",
+            "event": "started",
+            "suffix": ".",
+            "offset": 240977
+          },
+          {
+            "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+            "event": "started",
+            "suffix": ".",
+            "offset": 244472
+          }
+        ],
+        "terminal": [
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+            "event": "passed",
+            "suffix": "(254.679 seconds).",
+            "offset": 22155
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+            "event": "passed",
+            "suffix": "(35.913 seconds).",
+            "offset": 26984
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+            "event": "passed",
+            "suffix": "(35.047 seconds).",
+            "offset": 31920
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+            "event": "failed",
+            "suffix": "(67.696 seconds).",
+            "offset": 37484
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+            "event": "passed",
+            "suffix": "(29.886 seconds).",
+            "offset": 42631
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+            "event": "passed",
+            "suffix": "(88.476 seconds).",
+            "offset": 53191
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+            "event": "failed",
+            "suffix": "(33.640 seconds).",
+            "offset": 57566
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+            "event": "failed",
+            "suffix": "(28.785 seconds).",
+            "offset": 62077
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+            "event": "failed",
+            "suffix": "(60.470 seconds).",
+            "offset": 77112
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+            "event": "failed",
+            "suffix": "(46.953 seconds).",
+            "offset": 83714
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+            "event": "failed",
+            "suffix": "(25.178 seconds).",
+            "offset": 87707
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+            "event": "failed",
+            "suffix": "(27.233 seconds).",
+            "offset": 91440
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+            "event": "failed",
+            "suffix": "(60.523 seconds).",
+            "offset": 102162
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+            "event": "failed",
+            "suffix": "(33.149 seconds).",
+            "offset": 105911
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+            "event": "failed",
+            "suffix": "(27.454 seconds).",
+            "offset": 109348
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+            "event": "failed",
+            "suffix": "(26.956 seconds).",
+            "offset": 113067
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+            "event": "failed",
+            "suffix": "(25.055 seconds).",
+            "offset": 116774
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+            "event": "failed",
+            "suffix": "(24.734 seconds).",
+            "offset": 120630
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+            "event": "failed",
+            "suffix": "(31.479 seconds).",
+            "offset": 124664
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+            "event": "failed",
+            "suffix": "(29.060 seconds).",
+            "offset": 128862
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+            "event": "failed",
+            "suffix": "(25.211 seconds).",
+            "offset": 132656
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+            "event": "failed",
+            "suffix": "(24.799 seconds).",
+            "offset": 136787
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+            "event": "failed",
+            "suffix": "(46.477 seconds).",
+            "offset": 143311
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+            "event": "passed",
+            "suffix": "(274.497 seconds).",
+            "offset": 186472
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+            "event": "failed",
+            "suffix": "(32.677 seconds).",
+            "offset": 190620
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+            "event": "failed",
+            "suffix": "(55.976 seconds).",
+            "offset": 195018
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+            "event": "failed",
+            "suffix": "(54.910 seconds).",
+            "offset": 206032
+          },
+          {
+            "case_id": "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+            "event": "failed",
+            "suffix": "(28.608 seconds).",
+            "offset": 209680
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+            "event": "failed",
+            "suffix": "(59.720 seconds).",
+            "offset": 221418
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+            "event": "failed",
+            "suffix": "(32.756 seconds).",
+            "offset": 226497
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+            "event": "failed",
+            "suffix": "(40.652 seconds).",
+            "offset": 232465
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+            "event": "failed",
+            "suffix": "(27.802 seconds).",
+            "offset": 236525
+          },
+          {
+            "case_id": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+            "event": "failed",
+            "suffix": "(25.606 seconds).",
+            "offset": 240602
+          },
+          {
+            "case_id": "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle",
+            "event": "passed",
+            "suffix": "(25.611 seconds).",
+            "offset": 244100
+          },
+          {
+            "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+            "event": "failed",
+            "suffix": "(63.655 seconds).",
+            "offset": 256431
+          }
+        ]
+      },
+      "ui_counts": {
+        "FAIL": 28,
+        "PASS": 6
+      },
+      "oracle_counts": {
+        "PASS": 1
+      },
+      "finalized_leaves": 35,
+      "tree_sha256": "5dc1f791ea07bc08e56d51caefa590557588a030de0ca5ed13b49ba390ea167f",
+      "summary_sha256": "623b2cec3a599ea538d2d30e4f8e9b353868c0e7b0e4e958aebed504543b26cf",
+      "start_time": 1795154488.206,
+      "finish_time": 1795156367.592,
+      "device": [
+        {
+          "architecture": "arm64",
+          "deviceId": "3DB66671-E2C2-4FA5-98F7-9BB981560189",
+          "deviceName": "Faithful 13-inch 2846332f",
+          "modelName": "iPad Pro 13-inch (M5)",
+          "osBuildNumber": "24B8117",
+          "osVersion": "27.2",
+          "platform": "iOS Simulator"
+        }
+      ]
+    },
+    {
+      "configuration_id": "ipad13-largest-text",
+      "label": "13-large-text",
+      "declared_ui": 1,
+      "declared_separate_oracle": 0,
+      "data_profile": "miniTest10",
+      "requested_configuration": "Debug",
+      "raw_execution": {
+        "log_sha256": "54544c0d70e8bc02f10e41a6528dfc95bd26c5e253a68d6500743f1529db40f1",
+        "started": [
+          {
+            "case_id": "FaithfulReaderLargeTextTests/testOriginalReaderAndPublicGroupSelectorRemainUsableAtLargeTextSize",
+            "event": "started",
+            "suffix": ".",
+            "offset": 3513
+          }
+        ],
+        "terminal": [
+          {
+            "case_id": "FaithfulReaderLargeTextTests/testOriginalReaderAndPublicGroupSelectorRemainUsableAtLargeTextSize",
+            "event": "passed",
+            "suffix": "(84.256 seconds).",
+            "offset": 11929
+          }
+        ]
+      },
+      "ui_counts": {
+        "PASS": 1
+      },
+      "oracle_counts": {},
+      "finalized_leaves": 1,
+      "tree_sha256": "378ba4c4c9e9ce9325bc4f22498a733d18afb064d699492a976b434bb782fe58",
+      "summary_sha256": "ebe2629d762f8151b44b4a1113181c7a8952fefea235f3cee3f11aa0d295c16c",
+      "start_time": 1795156472.501,
+      "finish_time": 1795156581.94,
+      "device": [
+        {
+          "architecture": "arm64",
+          "deviceId": "3DB66671-E2C2-4FA5-98F7-9BB981560189",
+          "deviceName": "Faithful 13-inch 2846332f",
+          "modelName": "iPad Pro 13-inch (M5)",
+          "osBuildNumber": "24B8117",
+          "osVersion": "27.2",
+          "platform": "iOS Simulator"
+        }
+      ]
+    },
+    {
+      "configuration_id": "iphone-native",
+      "label": "phone",
+      "declared_ui": 6,
+      "declared_separate_oracle": 0,
+      "data_profile": "miniTest10",
+      "requested_configuration": "Debug",
+      "raw_execution": {
+        "log_sha256": "55664c4d622514447b43eb35b9c9d2b7ff4f57f1698d5c411f0ed7a109d0fdcc",
+        "started": [
+          {
+            "case_id": "FaithfulReaderIPhoneTests/testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting",
+            "event": "started",
+            "suffix": ".",
+            "offset": 3618
+          },
+          {
+            "case_id": "FaithfulReaderIPhoneTests/testSourceOverviewReplacesReaderAndRestoresViewport",
+            "event": "started",
+            "suffix": ".",
+            "offset": 22634
+          },
+          {
+            "case_id": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+            "event": "started",
+            "suffix": ".",
+            "offset": 33616
+          },
+          {
+            "case_id": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+            "event": "started",
+            "suffix": ".",
+            "offset": 34866
+          },
+          {
+            "case_id": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+            "event": "started",
+            "suffix": ".",
+            "offset": 38515
+          },
+          {
+            "case_id": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+            "event": "started",
+            "suffix": ".",
+            "offset": 46033
+          }
+        ],
+        "terminal": [
+          {
+            "case_id": "FaithfulReaderIPhoneTests/testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting",
+            "event": "failed",
+            "suffix": "(122.056 seconds).",
+            "offset": 22489
+          },
+          {
+            "case_id": "FaithfulReaderIPhoneTests/testSourceOverviewReplacesReaderAndRestoresViewport",
+            "event": "failed",
+            "suffix": "(84.064 seconds).",
+            "offset": 33255
+          },
+          {
+            "case_id": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+            "event": "failed",
+            "suffix": "(87.757 seconds).",
+            "offset": 34740
+          },
+          {
+            "case_id": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+            "event": "failed",
+            "suffix": "(108.596 seconds).",
+            "offset": 38385
+          },
+          {
+            "case_id": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+            "event": "passed",
+            "suffix": "(72.623 seconds).",
+            "offset": 45909
+          },
+          {
+            "case_id": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+            "event": "passed",
+            "suffix": "(75.843 seconds).",
+            "offset": 57486
+          }
+        ]
+      },
+      "ui_counts": {
+        "FAIL": 4,
+        "PASS": 2
+      },
+      "oracle_counts": {},
+      "finalized_leaves": 6,
+      "tree_sha256": "7ee1511dec1173bb4fbd455ce4321cd749ff18017852d9eb5d856aec11bfad87",
+      "summary_sha256": "33a0b67c8d93a136dbf502ff52fb32f5d32493abc23699143d795d794ed813e9",
+      "start_time": 1795157314.629,
+      "finish_time": 1795157937.331,
+      "device": [
+        {
+          "architecture": "arm64",
+          "deviceId": "DD50E55A-CF91-49FF-B225-06E737A22E13",
+          "deviceName": "Faithful phone-inch 2c82c85c",
+          "modelName": "iPhone 18 Pro",
+          "osBuildNumber": "24B8117",
+          "osVersion": "27.2",
+          "platform": "iOS Simulator"
+        }
+      ]
+    },
+    {
+      "configuration_id": "ipad13-production-release",
+      "label": "production-release",
+      "declared_ui": 1,
+      "declared_separate_oracle": 0,
+      "data_profile": "production",
+      "requested_configuration": "Release",
+      "raw_execution": {},
+      "ui_counts": {
+        "NOT_RUN": 1
+      },
+      "oracle_counts": {},
+      "finalized_leaves": 0
+    }
+  ],
+  "case_outcomes": [
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:226: error: -[Maktabah_iOSUITests.FaithfulReaderVisualBaselineTests testOriginalWindowResizePreservesReader] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 226
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"2\") is not equal to (\"1\") - This fixture has one genuine active book"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:399: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSourceOverviewReplacesReaderAndRestoresViewportLandscape] : XCTAssertEqual failed: (\"2\") is not equal to (\"1\") - This fixture has one genuine active book"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 399
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"2\") is not equal to (\"1\") - This fixture has one genuine active book"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:399: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSourceOverviewReplacesReaderAndRestoresViewportPortrait] : XCTAssertEqual failed: (\"2\") is not equal to (\"1\") - This fixture has one genuine active book"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 399
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:922: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 922
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:226: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 226
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original palette's Escape handler must dismiss through keyboard focus"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1135: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testPointerHoverClickAndHardwareKeyboardDismissal] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original palette's Escape handler must dismiss through keyboard focus"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1135
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - Control must be inside the actual app viewport"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1160: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testGroupCopyMoveRenameAndDeleteThroughRealMenus] : XCTAssertTrue failed - Control must be inside the actual app viewport"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1160
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The native accessibility setting must actually reach this Simulator"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1250: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSystemReduceMotionKeepsOriginalPaletteUsable] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The native accessibility setting must actually reach this Simulator"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1250
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:324: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateWindowResizePreservesOriginalReaderAndSearch] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 324
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:296: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testEnglishReaderAndOriginalPaletteInLeftToRightLayout] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 296
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1350: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateGlobalSearchLandscapeMatchesOriginalNavigation] : XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1350
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1350: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateGlobalSearchPortraitMatchesOriginalNavigation] : XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1350
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqualWithAccuracy failed: (\"108.0\") is not equal to (\"160.0\") +/- (\"1.0\")"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1353: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateAnnotationsLandscapeMatchesOriginalNavigation] : XCTAssertEqualWithAccuracy failed: (\"108.0\") is not equal to (\"160.0\") +/- (\"1.0\")"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1353
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1364: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateTrimmedOriginalInspectorLandscape] : XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1364
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1364: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateTrimmedOriginalInspectorPortrait] : XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1364
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+      "status": "FAIL",
+      "failure_messages": [
+        "Test exceeded execution time allowance of 10 minutes"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:296: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSourceToolbarPaletteAndOverview] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 296
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - A deliberate downward reader scroll must collapse the document strip"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1582: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - A deliberate downward reader scroll must collapse the document strip"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1582
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+      "status": "FAIL",
+      "failure_messages": [
+        "Test exceeded execution time allowance of 10 minutes"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+      "status": "FAIL",
+      "failure_messages": [
+        "Test exceeded execution time allowance of 10 minutes"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaFullAcceptanceDiagnostic",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaCatalogAndAppLaunch",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaReaderPresentation",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "SefariaEmbeddedAcceptanceTests/testThreeBackendSwitchRegression",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertGreaterThan failed: (\"0\") is not greater than (\"0\") - Rendered attributed text must contain at least 1 search highlight range before clearing"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift:26: error: -[Maktabah_iOSUITests.Build8401SevenDefectsAcceptanceTests testA1_A2_SearchResultHighlightAndClearButton] : XCTAssertGreaterThan failed: (\"0\") is not greater than (\"0\") - Rendered attributed text must contain at least 1 search highlight range before clearing"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+              "line": 26
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "Build8401SevenDefectsAcceptanceTests/testA1_RealSearchFlowHighlightAndClear",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift:118: error: -[Maktabah_iOSUITests.Build8401SevenDefectsAcceptanceTests testA3_OrdinaryReaderHasNoClearSearchHighlightButton] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+              "line": 118
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "Build8401SevenDefectsAcceptanceTests/testB1_B2_PagingTransitionsPreserveReaderStability",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "Build8401SevenDefectsAcceptanceTests/testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "Build8401SevenDefectsAcceptanceTests/testF1_SefariaHebrewLocaleRTLAndHebrewHeaders",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "Build8401SevenDefectsAcceptanceTests/testF2_HebrewTOCStructureAndDafLabels",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "PullNavigationAcceptanceTests/testPullNavigationRetreatCancelDoesNotChangeContent",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "PullNavigationAcceptanceTests/testPullNavigationCommitBothDirectionsWithoutDuplicates",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift:114: error: -[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapOtzariaRotationPreservesExactLocator] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+              "line": 114
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertGreaterThan failed: (\"375.0\") is not greater than (\"486.0\") - Require a real full-width landscape start"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift:134: error: -[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapNativeWindowResizePaletteAndInspector] : XCTAssertGreaterThan failed: (\"375.0\") is not greater than (\"486.0\") - Require a real full-width landscape start"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+              "line": 134
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Rotation must change the actual native window, not merely return success"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift:87: error: -[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapLegacyGenesisAndRotation] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Rotation must change the actual native window, not merely return success"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+              "line": 87
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Rotation must change the actual native window, not merely return success"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift:87: error: -[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapEmbeddedGenesisAndRotation] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Rotation must change the actual native window, not merely return success"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+              "line": 87
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:233: error: -[Maktabah_iOSUITests.Sidebar11201AcceptanceTests testSidebarBodyPagingRTL] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 233
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:233: error: -[Maktabah_iOSUITests.Sidebar11201AcceptanceTests testSidebarBodyPagingLTR] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 233
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:2016: error: -[Maktabah_iOSUITests.StudyProfileNativeAcceptanceTests testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 2016
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:226: error: -[Maktabah_iOSUITests.FaithfulReaderVisualBaselineTests testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 226
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:675: error: -[Maktabah_iOSUITests.FaithfulReaderVisualBaselineTests testOriginalGlobalSearchHistoryThroughNativeControls] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 675
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:226: error: -[Maktabah_iOSUITests.FaithfulReaderVisualBaselineTests testOriginalWindowResizePreservesReader] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 226
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:226: error: -[Maktabah_iOSUITests.FaithfulReaderVisualBaselineTests testOriginalReaderThemes] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 226
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:296: error: -[Maktabah_iOSUITests.FaithfulReaderVisualBaselineTests testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 296
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:296: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSourceOverviewReplacesReaderAndRestoresViewportLandscape] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 296
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:233: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 233
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:233: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testOriginalBottomTOCActionOpensContentsFromLibraryPage] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 233
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - Control must be inside the actual app viewport"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1006: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testNativeVoiceOverSpeaksRealOverviewAndPaletteControls] : XCTAssertTrue failed - Control must be inside the actual app viewport"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1006
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:226: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The original bottom toolbar must expose one real visible native overflow action"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 226
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - The palette action must stay inside the actual application window"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:158: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testPointerHoverClickAndHardwareKeyboardDismissal] : XCTAssertTrue failed - The palette action must stay inside the actual application window"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 158
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - Control must be inside the actual app viewport"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1160: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testGroupCopyMoveRenameAndDeleteThroughRealMenus] : XCTAssertTrue failed - Control must be inside the actual app viewport"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1160
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The native accessibility setting must actually reach this Simulator"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1250: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSystemReduceMotionKeepsOriginalPaletteUsable] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The native accessibility setting must actually reach this Simulator"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1250
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:324: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateWindowResizePreservesOriginalReaderAndSearch] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 324
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - Control must be inside the actual app viewport"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1279: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testNewManagementScreensExposeMeaningfulAccessibilityDescriptions] : XCTAssertTrue failed - Control must be inside the actual app viewport"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1279
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:296: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testEnglishReaderAndOriginalPaletteInLeftToRightLayout] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 296
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1350: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateGlobalSearchLandscapeMatchesOriginalNavigation] : XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1350
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1364: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateTrimmedOriginalInspectorLandscape] : XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1364
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1364: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateTrimmedOriginalInspectorPortrait] : XCTAssertFalse failed - The redundant visual study-tools heading must be removed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1364
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - The palette action must stay inside the actual application window"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:158: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSidebarPreservesOriginalTextKitViewport] : XCTAssertTrue failed - The palette action must stay inside the actual application window"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 158
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:324: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSourceToolbarPaletteAndOverview] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 324
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - The palette action must stay inside the actual application window"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:158: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll] : XCTAssertTrue failed - The palette action must stay inside the actual application window"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 158
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - Control must be inside the actual app viewport"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1611: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar] : XCTAssertTrue failed - Control must be inside the actual app viewport"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1611
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - Control must be inside the actual app viewport"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1627: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testNewEmptyGroupAndRelaunchPersistence] : XCTAssertTrue failed - Control must be inside the actual app viewport"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1627
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:675: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testHistoryRemainsGlobalAndIsAbsentFromBookSearch] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 675
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed - Control must be inside the actual app viewport"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1682: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch] : XCTAssertTrue failed - Control must be inside the actual app viewport"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1682
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1725: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testThreeProfilesWithThreeGroupsThroughNativeManagement] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1725
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:2016: error: -[Maktabah_iOSUITests.StudyProfileNativeAcceptanceTests testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 2016
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-largest-text",
+      "case_id": "FaithfulReaderLargeTextTests/testOriginalReaderAndPublicGroupSelectorRemainUsableAtLargeTextSize",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13-large-text.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13-large-text.summary.json"
+    },
+    {
+      "configuration_id": "iphone-native",
+      "case_id": "FaithfulReaderIPhoneTests/testSourceOverviewReplacesReaderAndRestoresViewport",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:380: error: -[Maktabah_iOSUITests.FaithfulReaderIPhoneTests testSourceOverviewReplacesReaderAndRestoresViewport] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 380
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-phone.tests.json",
+      "summary_path": "artifacts/runtime27/verified-phone.summary.json"
+    },
+    {
+      "configuration_id": "iphone-native",
+      "case_id": "FaithfulReaderIPhoneTests/testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertTrue failed"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:823: error: -[Maktabah_iOSUITests.FaithfulReaderIPhoneTests testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting] : XCTAssertTrue failed"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 823
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-phone.tests.json",
+      "summary_path": "artifacts/runtime27/verified-phone.summary.json"
+    },
+    {
+      "configuration_id": "iphone-native",
+      "case_id": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-phone.tests.json",
+      "summary_path": "artifacts/runtime27/verified-phone.summary.json"
+    },
+    {
+      "configuration_id": "iphone-native",
+      "case_id": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "status": "FAIL",
+      "failure_messages": [
+        "Failed to get matching snapshots: Timed out while evaluating UI query."
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:675: error: -[Maktabah_iOSUITests.R27NativePhoneTests testNormalBootstrapGlobalHistoryUsesActualSubmit] : Failed to get matching snapshots: Timed out while evaluating UI query."
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 675
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-phone.tests.json",
+      "summary_path": "artifacts/runtime27/verified-phone.summary.json"
+    },
+    {
+      "configuration_id": "iphone-native",
+      "case_id": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-phone.tests.json",
+      "summary_path": "artifacts/runtime27/verified-phone.summary.json"
+    },
+    {
+      "configuration_id": "iphone-native",
+      "case_id": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "status": "FAIL",
+      "failure_messages": [
+        "Failed to terminate com.davidpovarsky.chavrusatext:25906: Failed to terminate com.davidpovarsky.chavrusatext:0"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/MaktabahUITestBase.swift:150: error: -[Maktabah_iOSUITests.R27NativePhoneTests testNormalBootstrapEmbeddedGenesisAndRotation] : Failed to terminate com.davidpovarsky.chavrusatext:25906: Failed to terminate com.davidpovarsky.chavrusatext:0"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+              "line": 150
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-phone.tests.json",
+      "summary_path": "artifacts/runtime27/verified-phone.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-production-release",
+      "case_id": "FaithfulProductionReleaseTests/testRealProductionLibraryReaderAndGroupRestore",
+      "status": "NOT_RUN",
+      "basis": "Producer stopped before production invocation; no production log, report or finalized tree."
+    }
+  ],
+  "separate_oracle_outcomes": [
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json"
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle",
+      "status": "PASS",
+      "failure_messages": [],
+      "raw_locations_and_errors": [
+        {
+          "errors": [],
+          "locations": []
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json"
+    }
+  ],
+  "source_verification": {
+    "application_trees": {
+      "Source": "aa2cfe9491a389aeafb38edf9b3601c2a9b77bc3",
+      "Vendor": "fd589175514256438eb1a72a0d2efcd5284c247c",
+      "Maktabah.xcodeproj": "0504a80db4dcd844871922ccf68d419eccb478f0"
+    },
+    "test_tree": "0ad58fec0ca52e25a7ea1163f55d2cf649321068",
+    "actual_source_inputs_verified_by_original_build": 888,
+    "package_pins": {
+      "anchoredpopup": "f93c51e75ff4e5242328ac24c8fb12f1f1e84eda",
+      "equatable": "597c2bb34af0c51331eb3b5e705f942d8ee20daa",
+      "floatingpanel": "3db567a19ff81d2d3ce00399021ee87a4fccf7e0",
+      "hanlin-streaming-markdown": "6bde022876ef4af738c154b3d5c871984ef76195",
+      "highlightswift": "99c431b38a1444a5fd6a4978307fbbefe3a7af53",
+      "iosmath": "ba9ab7729b151329c54fd895a7c1859981d9484c",
+      "sparkle": "066e75a8b3e99962685d6a90cdd5293ebffd9261",
+      "swift-ai-sdk": "e7bf34111e603ca977becd007dd4e5bb109af857",
+      "swift-argument-parser": "6a52f3251125d74daf04fcbd5e6f08a75d074382",
+      "swift-cmark": "08ddb528923cc1a6527e02b7a1aee9e516ca749a",
+      "swift-markdown": "7d9a5ce307528578dfa777d505496bd5f544ad94",
+      "swift-syntax": "79e4b74a295b6eb74a8b585e3a39d29e70c1dbd1",
+      "swiftui-shimmer": "0226e21f9bf355d40e07e5f5e1c33679d50e167f",
+      "swiftyjson": "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+      "torahinspectorkit": "19d1b35397af4f10ae70cfb3f444c9de87383b53",
+      "zipfoundation": "22787ffb59de99e5dc1fbfe80b19c97a904ad48d",
+      "zstd": "f8745da6ff1ad1e7bab384bd1f9d742439278e99"
+    },
+    "input_rows": [
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/BackendTransitionAcceptanceTests.swift",
+        "expected": "d01812c706ae6753e721b64081956bb0ef0f69b95a5ad13aef9779b47458a7fd",
+        "actual": "d01812c706ae6753e721b64081956bb0ef0f69b95a5ad13aef9779b47458a7fd"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift",
+        "expected": "d9ffb57b75ffc191af856738010045fa6ef446007d11af45b7728350bedb824d",
+        "actual": "d9ffb57b75ffc191af856738010045fa6ef446007d11af45b7728350bedb824d"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+        "expected": "6560cb3026ce1dd621e7a76ac6876857485fd096453eeb0cc8c5c9f5b9993654",
+        "actual": "6560cb3026ce1dd621e7a76ac6876857485fd096453eeb0cc8c5c9f5b9993654"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/Build8601ThreeRegressionsAcceptanceTests.swift",
+        "expected": "52bdd5ab72f3405d5da91bd9f0678a7fc0f32a4ce791ceb2c14b59327aaced18",
+        "actual": "52bdd5ab72f3405d5da91bd9f0678a7fc0f32a4ce791ceb2c14b59327aaced18"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift",
+        "expected": "60f784dde093bb9e21de40a58281e972fe6915fa7af26e8a42dc59012605d16d",
+        "actual": "60f784dde093bb9e21de40a58281e972fe6915fa7af26e8a42dc59012605d16d"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+        "expected": "a614944ecd441e529a27c86aeb3af824aebe46670efa639ee01bc312e40a684d",
+        "actual": "a614944ecd441e529a27c86aeb3af824aebe46670efa639ee01bc312e40a684d"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+        "expected": "fdcf38a22fa039bbd4a8f8183c1e3d6a93ceca889af6cc0ee6e0e7146e2c42b1",
+        "actual": "fdcf38a22fa039bbd4a8f8183c1e3d6a93ceca889af6cc0ee6e0e7146e2c42b1"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+        "expected": "c9ec8d8727628c5a44ed6fd739b0a8d2e665dbb21e3844534a6f1d2013b0c996",
+        "actual": "c9ec8d8727628c5a44ed6fd739b0a8d2e665dbb21e3844534a6f1d2013b0c996"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/HighlightAnnotationAcceptanceTests.swift",
+        "expected": "59fc8f100d87efcc3012b8b86f50b0d4e9a88ef60b9b99d7ee8ec4d4ce74f6dd",
+        "actual": "59fc8f100d87efcc3012b8b86f50b0d4e9a88ef60b9b99d7ee8ec4d4ce74f6dd"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/HistoryLocalizationAcceptanceTests.swift",
+        "expected": "99d93b13bd0fbbd092d9320e618af55afd77647036a195637845aa95d2e3c50c",
+        "actual": "99d93b13bd0fbbd092d9320e618af55afd77647036a195637845aa95d2e3c50c"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+        "expected": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+        "actual": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+        "expected": "7c37dd838d8c50349a358db4ee474b602b90bfee13f1a8101f05f25ee1023ed5",
+        "actual": "7c37dd838d8c50349a358db4ee474b602b90bfee13f1a8101f05f25ee1023ed5"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift",
+        "expected": "f1622e1ccbe44788b625c7eefb66bcc4b8fcf4766da43b709045f56c7580d08e",
+        "actual": "f1622e1ccbe44788b625c7eefb66bcc4b8fcf4766da43b709045f56c7580d08e"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift",
+        "expected": "0bd7a4b833ef9d8036b077238d179053df6e6b0f1596382b7e59c2f55ceb41b5",
+        "actual": "0bd7a4b833ef9d8036b077238d179053df6e6b0f1596382b7e59c2f55ceb41b5"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+        "expected": "d4ff446db4acdbb61e0ad19c14696e5194bafbba239ef86876e85a2de30e70cc",
+        "actual": "d4ff446db4acdbb61e0ad19c14696e5194bafbba239ef86876e85a2de30e70cc"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+        "expected": "a79b4b0b78bf0e1e22f070d4558fc3d692f70c199012a5cd6e85043ea2530562",
+        "actual": "a79b4b0b78bf0e1e22f070d4558fc3d692f70c199012a5cd6e85043ea2530562"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+        "expected": "691635310a71e3e18569214b926e86efd2a4931a8d81a6b9b02443d9c3fcb947",
+        "actual": "691635310a71e3e18569214b926e86efd2a4931a8d81a6b9b02443d9c3fcb947"
+      },
+      {
+        "kind": "test_inputs_sha256",
+        "path": "Maktabah-iOSUITests/iPadTabBarAcceptanceTests.swift",
+        "expected": "1e3b18971be087a618d282d486c1a8826035a6f94a34fd247af0114538f6309f",
+        "actual": "1e3b18971be087a618d282d486c1a8826035a6f94a34fd247af0114538f6309f"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/hq-stage2-focused-apple.py",
+        "expected": "434fa72de94986e805554ce4c728f774e5af82e6f90da16de8ad158a4469a4eb",
+        "actual": "434fa72de94986e805554ce4c728f774e5af82e6f90da16de8ad158a4469a4eb"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "expected": "87f9d3c796115157fdf68940f6ee338d000e74432d389e75e9428cc709c1cb26",
+        "actual": "87f9d3c796115157fdf68940f6ee338d000e74432d389e75e9428cc709c1cb26"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/runtime27.py",
+        "expected": "ca70334f6327e8f8ae68179be5e700b88d343e3345e8df60fa1ef19d16708234",
+        "actual": "ca70334f6327e8f8ae68179be5e700b88d343e3345e8df60fa1ef19d16708234"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+        "expected": "593c2c445e63ddaefdd78c893211e4aecf34066d015c8c60e8f3c628ed7c5d2b",
+        "actual": "593c2c445e63ddaefdd78c893211e4aecf34066d015c8c60e8f3c628ed7c5d2b"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/select-runtime27-toolchain.py",
+        "expected": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8",
+        "actual": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/runtime27_interruption.py",
+        "expected": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
+        "actual": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/runtime27-fixture-oracle.py",
+        "expected": "8a32a5d82a04a833466021d2a237aae3687d1d87c4ee24ca5df105bbe43e793c",
+        "actual": "8a32a5d82a04a833466021d2a237aae3687d1d87c4ee24ca5df105bbe43e793c"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "tools/verify_xcresult_zero_skips.py",
+        "expected": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6",
+        "actual": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/collect-runtime27-palette-log.py",
+        "expected": "4eca164c61e84d39f0a01e193020ba6245058d1c198d2aa1490cfa0152fd304f",
+        "actual": "4eca164c61e84d39f0a01e193020ba6245058d1c198d2aa1490cfa0152fd304f"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/runtime27-hid.py",
+        "expected": "7488ccd1d101b5ae455815906b06f5671ca820eaabc18c6ef4b92c492e2172b0",
+        "actual": "7488ccd1d101b5ae455815906b06f5671ca820eaabc18c6ef4b92c492e2172b0"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/runtime27-fixture-recovery.py",
+        "expected": "2dc5f680dde048cbb46463bcf1ca159e41ebb786c87074210175882275853c00",
+        "actual": "2dc5f680dde048cbb46463bcf1ca159e41ebb786c87074210175882275853c00"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/runtime27-url-delivery.py",
+        "expected": "065c8afaed97a7974a2e8ba4c61b3077c63366e21bb8696837a00e4ab4bd17b8",
+        "actual": "065c8afaed97a7974a2e8ba4c61b3077c63366e21bb8696837a00e4ab4bd17b8"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/shutdown-faithful-simulator.py",
+        "expected": "6036b2210fff9fb7a70da707efb067788b3cc5b45aa0cb88017285f865139046",
+        "actual": "6036b2210fff9fb7a70da707efb067788b3cc5b45aa0cb88017285f865139046"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/verify-faithful-xctest.py",
+        "expected": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7",
+        "actual": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/runtime27-release.py",
+        "expected": "92f8f79fcf085334512c6f7ad5de97e17c68a3d6e8b0bd9ac1088eef5bc337dc",
+        "actual": "92f8f79fcf085334512c6f7ad5de97e17c68a3d6e8b0bd9ac1088eef5bc337dc"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/runtime27-release-manifest.json",
+        "expected": "7897577ded6c32d82914018e8378db95862e6eabec5fdb263887f95630c9da83",
+        "actual": "7897577ded6c32d82914018e8378db95862e6eabec5fdb263887f95630c9da83"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/run-faithful-production-release.py",
+        "expected": "6e211230c772acf83643503de24e7f3f2c405f0c111091fcd0f5bcc90cd116f1",
+        "actual": "6e211230c772acf83643503de24e7f3f2c405f0c111091fcd0f5bcc90cd116f1"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/build-faithful-prototype-reference.py",
+        "expected": "dcad707af9db6351bf2fa5b86cdaa81aa41fb5668ee3a4760e55cc3d44126e12",
+        "actual": "dcad707af9db6351bf2fa5b86cdaa81aa41fb5668ee3a4760e55cc3d44126e12"
+      },
+      {
+        "kind": "helper_inputs_sha256",
+        "path": "Scripts/CI/verify-runtime27-release-gate.py",
+        "expected": "b3d628601889a307d2b8e807db14bfa41da3641cda294e0e6a33d9fd611898b1",
+        "actual": "b3d628601889a307d2b8e807db14bfa41da3641cda294e0e6a33d9fd611898b1"
+      }
+    ],
+    "built_binary_sha256": {
+      "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app": "5675c44839c9638ae31bec755c753896789bf2911a16d7472fd841336b6ec3ac",
+      "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app": "be33a374b491e45da7cb146dbf1ef21aac7c38f861686a6b6b9086eb5e354b9d",
+      "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest": "e4603729edd79be31904c1f066f26f4b92cf59382088684c138fb30dabdb98c9"
+    }
+  },
+  "original_producer_result": {
+    "status": "FAIL",
+    "executed_ui_pass": 0,
+    "executed_ui_fail": 0,
+    "requested_ui_case_count": 96,
+    "full_release_acceptance": false,
+    "error": "The complete native matrix failed; production Release and distribution remain blocked"
+  },
+  "original_producer_scalar_limit": "executed_ui_pass/fail remain initialization values 0/0 because the Release producer raises after the failed native matrix, before collect_configurations and final aggregation. Finalized original trees below independently establish actual execution.",
+  "matrix": {
+    "appSHA": "9cc346601bdb3fdda34c2c6ac59894f71dc9ea49",
+    "testSHA": "9cc346601bdb3fdda34c2c6ac59894f71dc9ea49",
+    "configuration": "Debug",
+    "dataProfile": "miniTest10",
+    "status": null,
+    "error": null
+  },
+  "production": {
+    "status": "NOT_RUN",
+    "evidence_entries": [],
+    "basis": "Exact original producer exception precedes production invocation (lines184-189); no production artifacts.",
+    "no_release_binary_or_full_corpus_ui_execution_claim": true
+  },
+  "totals": {
+    "PASS": 34,
+    "FAIL": 61,
+    "NOT_RUN": 1
+  },
+  "separate_oracle_totals": {
+    "PASS": 2
+  },
+  "reconciliation_errors": [
+    "Original verifier hash mismatch: 11",
+    "Original verifier hash mismatch: 13",
+    "Original verifier hash mismatch: 13-large-text",
+    "Original verifier hash mismatch: phone"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "status": "EXECUTED_PASS",
+  "scope": "focused-ui",
+  "database_open": "NOT_VERIFIED_BY_TEST_COUNTS",
+  "summary_sha256": "7e19a8d4e0421d587709ce2a066e5ebed7792d7b1a34aa5fc25eed38da73e44c",
+  "tests_sha256": "b4411e267824385d2932e7dc287d5e67ab20b0d17967b86d938a194888f70dab",
+  "target": "Maktabah-iOSUITests",
+  "executed_total": 1,
+  "required_ui_passed": 1,
+  "required_ui_cases": [
+    "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory"
+  ],
+  "cases": {
+    "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory": {
+      "status": "Passed",
+      "identifier": "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory()",
+      "identifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory",
+      "target": "Maktabah-iOSUITests"
+    }
+  },
+  "skipped": 0,
+  "failed": 0
+}

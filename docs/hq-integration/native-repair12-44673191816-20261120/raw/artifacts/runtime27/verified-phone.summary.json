@@ -1,0 +1,54 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "E72E9B64-1676-4C5B-8D65-81FE73DFFDA6",
+        "deviceName": "Faithful phone-inch 7f5b863a",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24B8117",
+        "osVersion": "27.2",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 2,
+      "passedTests": 2,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "Maktabah-iOS \u00b7 Built with macOS 27.0.1",
+  "expectedFailures": 0,
+  "failedTests": 2,
+  "finishTime": 1795158868.937,
+  "passedTests": 2,
+  "result": "Failed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1795158483.822,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "XCTAssertTrue failed",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 1,
+      "testIdentifierString": "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+      "testName": "testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending()"
+    },
+    {
+      "failureText": "failed: caught error: \"Error Domain=OtzariaUIRouting.UIRouteError Code=1 \"The operation couldn\u2019t be completed. (OtzariaUIRouting.UIRouteError error 1.)\" UserInfo={NSLocalizedDescription=The operation couldn\u2019t be completed. (OtzariaUIRouting.UIRouteError error 1.)}\"",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 4,
+      "testIdentifierString": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+      "testName": "testPhoneSystemAppIntentShowsOriginalReaderInspector()"
+    }
+  ],
+  "title": "Test - Maktabah-iOS",
+  "topInsights": [],
+  "totalTestCount": 4
+}

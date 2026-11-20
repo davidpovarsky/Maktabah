@@ -1,0 +1,146 @@
+{
+  "devices": [
+    {
+      "architecture": "arm64",
+      "deviceId": "DD50E55A-CF91-49FF-B225-06E737A22E13",
+      "deviceName": "Faithful phone-inch 2c82c85c",
+      "modelName": "iPhone 18 Pro",
+      "osBuildNumber": "24B8117",
+      "osVersion": "27.2",
+      "platform": "iOS Simulator"
+    }
+  ],
+  "testNodes": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertTrue failed",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 823
+                      }
+                    }
+                  ],
+                  "duration": "2m 2s",
+                  "durationInSeconds": 122.0555340051651,
+                  "name": "testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting()",
+                  "nodeIdentifier": "FaithfulReaderIPhoneTests/testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderIPhoneTests/testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertTrue failed",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 380
+                      }
+                    }
+                  ],
+                  "duration": "1m 24s",
+                  "durationInSeconds": 84.06418597698212,
+                  "name": "testSourceOverviewReplacesReaderAndRestoresViewport()",
+                  "nodeIdentifier": "FaithfulReaderIPhoneTests/testSourceOverviewReplacesReaderAndRestoresViewport()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderIPhoneTests/testSourceOverviewReplacesReaderAndRestoresViewport",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                }
+              ],
+              "name": "FaithfulReaderIPhoneTests",
+              "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderIPhoneTests",
+              "nodeType": "Test Suite",
+              "result": "Failed"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "Failed to terminate com.davidpovarsky.chavrusatext:25906: Failed to terminate com.davidpovarsky.chavrusatext:0",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/MaktabahUITestBase.swift",
+                        "lineNumber": 150
+                      }
+                    }
+                  ],
+                  "duration": "1m 27s",
+                  "durationInSeconds": 87.75713002681732,
+                  "name": "testNormalBootstrapEmbeddedGenesisAndRotation()",
+                  "nodeIdentifier": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "Failed to get matching snapshots: Timed out while evaluating UI query.",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+                        "lineNumber": 675
+                      }
+                    }
+                  ],
+                  "duration": "1m 48s",
+                  "durationInSeconds": 108.59564805030823,
+                  "name": "testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+                  "nodeIdentifier": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                },
+                {
+                  "duration": "1m 12s",
+                  "durationInSeconds": 72.62324607372284,
+                  "name": "testNormalBootstrapLegacyGenesisAndRotation()",
+                  "nodeIdentifier": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "duration": "1m 15s",
+                  "durationInSeconds": 75.84250295162201,
+                  "name": "testNormalBootstrapOtzariaBackgroundAndColdRestoration()",
+                  "nodeIdentifier": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                }
+              ],
+              "name": "R27NativePhoneTests",
+              "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePhoneTests",
+              "nodeType": "Test Suite",
+              "result": "Failed"
+            }
+          ],
+          "name": "Maktabah-iOSUITests",
+          "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests",
+          "nodeType": "UI test bundle",
+          "result": "Failed"
+        }
+      ],
+      "name": "Maktabah-iOS",
+      "nodeType": "Test Plan",
+      "result": "Failed"
+    }
+  ],
+  "testPlanConfigurations": [
+    {
+      "configurationId": "1",
+      "configurationName": "Test Scheme Action"
+    }
+  ]
+}

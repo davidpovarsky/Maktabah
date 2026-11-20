@@ -1,0 +1,26 @@
+{
+  "input": "build\\release96-monitor-20261120\\captures-followup\\entries\\visual-11\\438D4C71-72E4-489F-9EB5-BD65852CDB6A.mp4",
+  "input_sha256": "4ed2be08cbb19e09846d4da1673bdaba9f7e6b2df41a4f262f46cf54f02abb45",
+  "frame_count": 298,
+  "selected_zero_based_frame_index": 297,
+  "frame_timestamp_seconds": 16.166667,
+  "command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-i",
+    "build\\release96-monitor-20261120\\captures-followup\\entries\\visual-11\\438D4C71-72E4-489F-9EB5-BD65852CDB6A.mp4",
+    "-vf",
+    "select=eq(n\\,297)",
+    "-frames:v",
+    "1",
+    "-y",
+    "build\\release96-monitor-20261120\\heading-final-original-frame.png"
+  ],
+  "output": "build\\release96-monitor-20261120\\heading-final-original-frame.png",
+  "output_sha256": "f641262f5dcb3fb49f1a9e63a2043e112fa93a42115aac2a33b842c76f899104",
+  "native_run": 44665679661,
+  "operation": "Decode original last video frame; no UI/content edits",
+  "initial_seek_attempt": "Container duration minus1 returned no frame, exit0; no visual evidence claimed from that attempt."
+}

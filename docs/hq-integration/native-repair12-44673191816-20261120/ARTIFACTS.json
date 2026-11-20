@@ -1,0 +1,45 @@
+{
+  "total_count": 2,
+  "artifacts": [
+    {
+      "id": 14609861460,
+      "node_id": "MDg6QXJ0aWZhY3QxNDYwOTg2MTQ2MA==",
+      "name": "runtime27-evidence",
+      "size_in_bytes": 63017123,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14609861460",
+      "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14609861460/zip",
+      "expired": false,
+      "digest": "sha256:5ff46397642ad94f64c351bbc2dfd5dd97f902602994e8b5354996ac4e00d958",
+      "created_at": "2026-11-20T07:18:06Z",
+      "updated_at": "2026-11-20T07:18:06Z",
+      "expires_at": "2027-02-18T04:15:32Z",
+      "workflow_run": {
+        "id": 44673191816,
+        "repository_id": 1280062128,
+        "head_repository_id": 1280062128,
+        "head_branch": "codex/otzaria-native-repair12-20261120",
+        "head_sha": "6030087e27f75b26d9a9bb144ba9ba71eaddadc5"
+      }
+    },
+    {
+      "id": 14609343962,
+      "node_id": "MDg6QXJ0aWZhY3QxNDYwOTM0Mzk2Mg==",
+      "name": "runtime27-native-captures",
+      "size_in_bytes": 435989487,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14609343962",
+      "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14609343962/zip",
+      "expired": false,
+      "digest": "sha256:8dc9c2cfd42f4fce06d02f6c815750be6898dc4fd371b5145d63db1f1a200b79",
+      "created_at": "2026-11-20T07:18:28Z",
+      "updated_at": "2026-11-20T07:18:28Z",
+      "expires_at": "2027-02-18T04:15:32Z",
+      "workflow_run": {
+        "id": 44673191816,
+        "repository_id": 1280062128,
+        "head_repository_id": 1280062128,
+        "head_branch": "codex/otzaria-native-repair12-20261120",
+        "head_sha": "6030087e27f75b26d9a9bb144ba9ba71eaddadc5"
+      }
+    }
+  ]
+}

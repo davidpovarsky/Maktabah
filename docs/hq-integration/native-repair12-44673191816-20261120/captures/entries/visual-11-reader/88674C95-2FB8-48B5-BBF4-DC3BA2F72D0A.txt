@@ -1,0 +1,1 @@
+2026-11-20T06:29:20.416Z [NativeNavigationReceipt] request=92C466FB-2CAD-415E-884E-86C02D998C37 scene=58DF39F2-7123-4292-82C2-BBDE5A530714 backend=otzaria generation=0 epoch=none revision=11->15 destination=native.reader.inspector presentation=inspector

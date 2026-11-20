@@ -1,0 +1,290 @@
+[
+  {
+    "zipEntry": "artifacts/faithful-ipad-matrix.json",
+    "bytes": 79831,
+    "sha256": "3efe8577c5503465c0829a1db55d1fb2bfb33d1c3bffd5b0ca18960f150f2f63",
+    "stored": "raw/artifacts/faithful-ipad-matrix.json",
+    "losslessGzip": false,
+    "crc32": "c69e3ab1"
+  },
+  {
+    "zipEntry": "artifacts/miniTest10-native-fixture-install-11.json",
+    "bytes": 1792,
+    "sha256": "1dd7fdb72129df07224e38ba67c3fdfdc6bf05815300d53b98b96d5e356da5eb",
+    "stored": "raw/artifacts/miniTest10-native-fixture-install-11.json",
+    "losslessGzip": false,
+    "crc32": "48489351"
+  },
+  {
+    "zipEntry": "artifacts/miniTest10-native-fixture-install-13.json",
+    "bytes": 1793,
+    "sha256": "003c4c47590c54e1d882cb36bf110138fafdb476204b62d5ecb6bfed8b29d383",
+    "stored": "raw/artifacts/miniTest10-native-fixture-install-13.json",
+    "losslessGzip": false,
+    "crc32": "10f2f641"
+  },
+  {
+    "zipEntry": "artifacts/miniTest10-native-fixture-install-phone.json",
+    "bytes": 1792,
+    "sha256": "bde1576f37a1b602c62bb4d1810f6579964a7e74adb722d16d08424fef115cf2",
+    "stored": "raw/artifacts/miniTest10-native-fixture-install-phone.json",
+    "losslessGzip": false,
+    "crc32": "35cd35f5"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/checkout.txt",
+    "bytes": 41,
+    "sha256": "2a492ee9c493b2fb3f656fad869e993debe05b81172067b5cb384217b3e5e00f",
+    "stored": "raw/artifacts/runtime27/checkout.txt",
+    "losslessGzip": false,
+    "crc32": "a786974d"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/fixture-oracle-11.json",
+    "bytes": 1547,
+    "sha256": "ce3f0e246d23b750ae8fced7d072181ad9392d8b2dee313b63b841ee5b4cb660",
+    "stored": "raw/artifacts/runtime27/fixture-oracle-11.json",
+    "losslessGzip": false,
+    "crc32": "07fba482"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/fixture-oracle-13.json",
+    "bytes": 1071,
+    "sha256": "62350de3d9d95574550f2c4f927b594aa861432eac44a80374d94490cfd4a78a",
+    "stored": "raw/artifacts/runtime27/fixture-oracle-13.json",
+    "losslessGzip": false,
+    "crc32": "0b734f7c"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/fixture-oracle-phone.json",
+    "bytes": 1071,
+    "sha256": "7bf56a7fdc7cb9b66e66cd86953694fc196ec6ef02b4c13858d6f00427f5c9fe",
+    "stored": "raw/artifacts/runtime27/fixture-oracle-phone.json",
+    "losslessGzip": false,
+    "crc32": "3462ea13"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/release-manifest.json",
+    "bytes": 13310,
+    "sha256": "7897577ded6c32d82914018e8378db95862e6eabec5fdb263887f95630c9da83",
+    "stored": "raw/artifacts/runtime27/release-manifest.json",
+    "losslessGzip": false,
+    "crc32": "974474f4"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/release-native-matrix-driver.log",
+    "bytes": 1502995,
+    "sha256": "7059742d17e8bd1eb00caf16e554e82eca5c8fd2f89e89809ed88ad68a3838b8",
+    "stored": "raw/artifacts/runtime27/release-native-matrix-driver.log.gz",
+    "losslessGzip": true,
+    "crc32": "75c1e17f"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/result.json",
+    "bytes": 156855,
+    "sha256": "992f2cca1abd0820fe8a045e16b7073bc82bf7f59e1af7f163db21ce27e6efb2",
+    "stored": "raw/artifacts/runtime27/result.json",
+    "losslessGzip": false,
+    "crc32": "2e028969"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/selected-test-declarations.json",
+    "bytes": 26048,
+    "sha256": "61b710ce83a3ef53ff9a830095e953ca926fbbcaedda0c809bf41b90231f7d0c",
+    "stored": "raw/artifacts/runtime27/selected-test-declarations.json",
+    "losslessGzip": false,
+    "crc32": "1c2a0a7c"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/test-tree.txt",
+    "bytes": 41,
+    "sha256": "1ec8e68bb75c7cd2ba5a76937e5c7aa30aa69c67761bc21247fecdba999aaff1",
+    "stored": "raw/artifacts/runtime27/test-tree.txt",
+    "losslessGzip": false,
+    "crc32": "ef4768f4"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-11.json",
+    "bytes": 316,
+    "sha256": "3cce4f1e87cca33532397845c434e47788e56673175dac719619a90ab0168f4d",
+    "stored": "raw/artifacts/runtime27/verified-11.json",
+    "losslessGzip": false,
+    "crc32": "63322464"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-11.summary.json",
+    "bytes": 19758,
+    "sha256": "218f2b2ec7893508449aebb24dccb449558a3f45611e8cfd053cb9727e71f629",
+    "stored": "raw/artifacts/runtime27/verified-11.summary.json",
+    "losslessGzip": false,
+    "crc32": "499ca3b7"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-11.tests.json",
+    "bytes": 53084,
+    "sha256": "bf64483df5818bd7b6b6dcbe61d6f3fbaa76e7d17008c5a4d7f38757f6194d21",
+    "stored": "raw/artifacts/runtime27/verified-11.tests.json",
+    "losslessGzip": false,
+    "crc32": "d436d71a"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-13-large-text.json",
+    "bytes": 1021,
+    "sha256": "7e7f87d801ecb9d5086e53038540ddef16377ecaf53a738182d67f04e5a0fd38",
+    "stored": "raw/artifacts/runtime27/verified-13-large-text.json",
+    "losslessGzip": false,
+    "crc32": "42f3e678"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-13-large-text.summary.json",
+    "bytes": 985,
+    "sha256": "ebe2629d762f8151b44b4a1113181c7a8952fefea235f3cee3f11aa0d295c16c",
+    "stored": "raw/artifacts/runtime27/verified-13-large-text.summary.json",
+    "losslessGzip": false,
+    "crc32": "bb7402fa"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-13-large-text.tests.json",
+    "bytes": 1800,
+    "sha256": "378ba4c4c9e9ce9325bc4f22498a733d18afb064d699492a976b434bb782fe58",
+    "stored": "raw/artifacts/runtime27/verified-13-large-text.tests.json",
+    "losslessGzip": false,
+    "crc32": "433cb1ae"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-13.json",
+    "bytes": 316,
+    "sha256": "83c66c0a34f3bb72c64079bf555a612c3c7c7252b7e73ac7efd71a6f54b372cb",
+    "stored": "raw/artifacts/runtime27/verified-13.json",
+    "losslessGzip": false,
+    "crc32": "89189099"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-13.tests.json",
+    "bytes": 37959,
+    "sha256": "5dc1f791ea07bc08e56d51caefa590557588a030de0ca5ed13b49ba390ea167f",
+    "stored": "raw/artifacts/runtime27/verified-13.tests.json",
+    "losslessGzip": false,
+    "crc32": "45ef0720"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-phone.json",
+    "bytes": 316,
+    "sha256": "f395fe417d4cdf6ead20216c5da56de34951fd4f80e0472fd423440a15e0083e",
+    "stored": "raw/artifacts/runtime27/verified-phone.json",
+    "losslessGzip": false,
+    "crc32": "9fe49807"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-13.summary.json",
+    "bytes": 17696,
+    "sha256": "623b2cec3a599ea538d2d30e4f8e9b353868c0e7b0e4e958aebed504543b26cf",
+    "stored": "raw/artifacts/runtime27/verified-13.summary.json",
+    "losslessGzip": false,
+    "crc32": "adf1589b"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-phone.summary.json",
+    "bytes": 2990,
+    "sha256": "33a0b67c8d93a136dbf502ff52fb32f5d32493abc23699143d795d794ed813e9",
+    "stored": "raw/artifacts/runtime27/verified-phone.summary.json",
+    "losslessGzip": false,
+    "crc32": "9390ca93"
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-phone.tests.json",
+    "bytes": 6820,
+    "sha256": "7ee1511dec1173bb4fbd455ce4321cd749ff18017852d9eb5d856aec11bfad87",
+    "stored": "raw/artifacts/runtime27/verified-phone.tests.json",
+    "losslessGzip": false,
+    "crc32": "8a1d74d8"
+  },
+  {
+    "zipEntry": "artifacts/test-case-execution-11.json",
+    "bytes": 24401,
+    "sha256": "f8e5645b15215c38af3a7ab0889f174eaf0042056604144a001c45ba077c0437",
+    "stored": "raw/artifacts/test-case-execution-11.json",
+    "losslessGzip": false,
+    "crc32": "b2defe85"
+  },
+  {
+    "zipEntry": "artifacts/test-case-execution-13-large-text.json",
+    "bytes": 513,
+    "sha256": "266ff000f11130abbd3930638e6bbedc99c2a32647794b44823acfcb209b7323",
+    "stored": "raw/artifacts/test-case-execution-13-large-text.json",
+    "losslessGzip": false,
+    "crc32": "fa57420c"
+  },
+  {
+    "zipEntry": "artifacts/test-case-execution-13.json",
+    "bytes": 16714,
+    "sha256": "62ac8f6aa73cf2dba55d3b7ebb84c4bdaa68833f68272c1ed9447e05ac94362a",
+    "stored": "raw/artifacts/test-case-execution-13.json",
+    "losslessGzip": false,
+    "crc32": "eb08c081"
+  },
+  {
+    "zipEntry": "artifacts/test-case-execution-phone.json",
+    "bytes": 2665,
+    "sha256": "79a38fd3337dcc6e42c5f00cf212379d6d4e9fa03f9a5efab049c4873ce32924",
+    "stored": "raw/artifacts/test-case-execution-phone.json",
+    "losslessGzip": false,
+    "crc32": "a049d486"
+  },
+  {
+    "zipEntry": "artifacts/test-simulator-11.log",
+    "bytes": 940208,
+    "sha256": "cfc61c5b628f945ee6a3e502bcabb59907e22455cbf3d446bac23ea3363ea8d4",
+    "stored": "raw/artifacts/test-simulator-11.log.gz",
+    "losslessGzip": true,
+    "crc32": "6682e35c"
+  },
+  {
+    "zipEntry": "artifacts/test-simulator-13-large-text.log",
+    "bytes": 13156,
+    "sha256": "54544c0d70e8bc02f10e41a6528dfc95bd26c5e253a68d6500743f1529db40f1",
+    "stored": "raw/artifacts/test-simulator-13-large-text.log.gz",
+    "losslessGzip": true,
+    "crc32": "93b17561"
+  },
+  {
+    "zipEntry": "artifacts/test-simulator-13.log",
+    "bytes": 261190,
+    "sha256": "9688f5a454f2631f321ec2c5e2aa8c74c4cc7a0b246a8ce165eefc9cc5bfce1f",
+    "stored": "raw/artifacts/test-simulator-13.log.gz",
+    "losslessGzip": true,
+    "crc32": "fb72686f"
+  },
+  {
+    "zipEntry": "artifacts/test-simulator-phone.log",
+    "bytes": 58931,
+    "sha256": "55664c4d622514447b43eb35b9c9d2b7ff4f57f1698d5c411f0ed7a109d0fdcc",
+    "stored": "raw/artifacts/test-simulator-phone.log.gz",
+    "losslessGzip": true,
+    "crc32": "0c582b5a"
+  },
+  {
+    "zipEntry": "hq-stage2/hanlin-sdk-inputs-after.json",
+    "bytes": 61045,
+    "sha256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118",
+    "stored": "raw/hq-stage2/hanlin-sdk-inputs-after.json",
+    "losslessGzip": false,
+    "crc32": "0443c256"
+  },
+  {
+    "zipEntry": "hq-stage2/hanlin-sdk-inputs.json",
+    "bytes": 61045,
+    "sha256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118",
+    "stored": "raw/hq-stage2/hanlin-sdk-inputs.json",
+    "losslessGzip": false,
+    "crc32": "0443c256"
+  },
+  {
+    "zipEntry": "hq-stage2/result.json",
+    "bytes": 82673,
+    "sha256": "743e5533f2d8e053f3993d0fc1f24f5dbf657d3bdb7ebcf0e80bf78d53a7597d",
+    "stored": "raw/hq-stage2/result.json",
+    "losslessGzip": false,
+    "crc32": "1e8d0f8c"
+  }
+]

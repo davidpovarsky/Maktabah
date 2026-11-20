@@ -1,0 +1,427 @@
+{
+  "zip": {
+    "path": "build\\native-repair12-monitor-20261120\\runtime27-evidence.zip",
+    "bytes": 63017123,
+    "sha256": "5ff46397642ad94f64c351bbc2dfd5dd97f902602994e8b5354996ac4e00d958"
+  },
+  "checkout_sha": "6030087e27f75b26d9a9bb144ba9ba71eaddadc5",
+  "application_sha": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
+  "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "application_trees": {
+    "Source": "0071219869ddcdc44e8378b7c0fe89c226dc807d",
+    "Vendor": "fd589175514256438eb1a72a0d2efcd5284c247c",
+    "Maktabah.xcodeproj": "0504a80db4dcd844871922ccf68d419eccb478f0"
+  },
+  "manifest_sha256": "de9a8d6853290f818621f38ef86338c2d323050fd562146159e17d691474b841",
+  "expected_count": 12,
+  "counts": {
+    "passed": 3,
+    "failed": 9,
+    "skipped": 0,
+    "not_run": 0,
+    "recorded": 12
+  },
+  "provenance_or_count_errors": [],
+  "groups": [
+    {
+      "label": "11",
+      "expected": 1,
+      "recorded": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "not_run": 0,
+      "summary_result": "Failed",
+      "summary_failures": [
+        {
+          "failureText": "XCTAssertTrue failed",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+          "testName": "testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending()"
+        }
+      ],
+      "devices": [
+        {
+          "architecture": "arm64",
+          "deviceId": "29DC5C78-919D-4D89-9CA1-BB2380F53663",
+          "deviceName": "Faithful 11-inch 516b60cf",
+          "modelName": "iPad Pro 11-inch (M5)",
+          "osBuildNumber": "24B8117",
+          "osVersion": "27.2",
+          "platform": "iOS Simulator"
+        }
+      ]
+    },
+    {
+      "label": "11-search",
+      "expected": 1,
+      "recorded": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "not_run": 0,
+      "summary_result": "Failed",
+      "summary_failures": [
+        {
+          "failureText": "Contrast failed",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+          "testName": "testHeaderAndHistoryNativeAccessibilityAudit()"
+        }
+      ],
+      "devices": [
+        {
+          "architecture": "arm64",
+          "deviceId": "1D566BC4-5E0B-47B3-90FF-B8E9DA307D2A",
+          "deviceName": "Faithful 11-inch 22ef4e3a",
+          "modelName": "iPad Pro 11-inch (M5)",
+          "osBuildNumber": "24B8117",
+          "osVersion": "27.2",
+          "platform": "iOS Simulator"
+        }
+      ]
+    },
+    {
+      "label": "11-reader",
+      "expected": 5,
+      "recorded": 5,
+      "passed": 0,
+      "failed": 5,
+      "skipped": 0,
+      "not_run": 0,
+      "summary_result": "Failed",
+      "summary_failures": [
+        {
+          "failureText": "XCTAssertTrue failed - A hidden panel or model flag is not visible presentation",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+          "testName": "testPublicV2InspectorPreservesOriginalReaderAndWorkspace()"
+        },
+        {
+          "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Root opening needs one canonical actual visible receipt",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 2,
+          "testIdentifierString": "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+          "testName": "testPublicV2InspectorRequiresVisibleOriginalReader()"
+        },
+        {
+          "failureText": "XCTAssertTrue failed",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 3,
+          "testIdentifierString": "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+          "testName": "testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader()"
+        },
+        {
+          "failureText": "XCTAssertTrue failed",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 4,
+          "testIdentifierString": "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+          "testName": "testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab()"
+        },
+        {
+          "failureText": "failed: caught error: \"Error Domain=OtzariaUIRouting.UIRouteError Code=1 \"The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)\" UserInfo={NSLocalizedDescription=The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)}\"",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 5,
+          "testIdentifierString": "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+          "testName": "testSystemAppIntentShowsOriginalReaderInspector()"
+        }
+      ],
+      "devices": [
+        {
+          "architecture": "arm64",
+          "deviceId": "900D8B74-DA7F-48DB-B587-CEC1241996A0",
+          "deviceName": "Faithful 11-inch e274295f",
+          "modelName": "iPad Pro 11-inch (M5)",
+          "osBuildNumber": "24B8117",
+          "osVersion": "27.2",
+          "platform": "iOS Simulator"
+        }
+      ]
+    },
+    {
+      "label": "11-sidebar",
+      "expected": 1,
+      "recorded": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "summary_result": "Passed",
+      "summary_failures": [],
+      "devices": [
+        {
+          "architecture": "arm64",
+          "deviceId": "C088F133-7259-4523-A564-B907D7ED29AC",
+          "deviceName": "Faithful 11-inch 925558c9",
+          "modelName": "iPad Pro 11-inch (M5)",
+          "osBuildNumber": "24B8117",
+          "osVersion": "27.2",
+          "platform": "iOS Simulator"
+        }
+      ]
+    },
+    {
+      "label": "phone",
+      "expected": 4,
+      "recorded": 4,
+      "passed": 2,
+      "failed": 2,
+      "skipped": 0,
+      "not_run": 0,
+      "summary_result": "Failed",
+      "summary_failures": [
+        {
+          "failureText": "XCTAssertTrue failed",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+          "testName": "testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending()"
+        },
+        {
+          "failureText": "failed: caught error: \"Error Domain=OtzariaUIRouting.UIRouteError Code=1 \"The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)\" UserInfo={NSLocalizedDescription=The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)}\"",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 4,
+          "testIdentifierString": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+          "testName": "testPhoneSystemAppIntentShowsOriginalReaderInspector()"
+        }
+      ],
+      "devices": [
+        {
+          "architecture": "arm64",
+          "deviceId": "E72E9B64-1676-4C5B-8D65-81FE73DFFDA6",
+          "deviceName": "Faithful phone-inch 7f5b863a",
+          "modelName": "iPhone 18 Pro",
+          "osBuildNumber": "24B8117",
+          "osVersion": "27.2",
+          "platform": "iOS Simulator"
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+      "group": "11",
+      "result": "Failed",
+      "duration_seconds": 88.54272997379303,
+      "failures": [
+        {
+          "text": "XCTAssertTrue failed",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+            "lineNumber": 234
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+      "group": "11-search",
+      "result": "Failed",
+      "duration_seconds": 111.2373960018158,
+      "failures": [
+        {
+          "text": "Contrast failed",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+            "lineNumber": 482
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "group": "11-reader",
+      "result": "Failed",
+      "duration_seconds": 101.9785840511322,
+      "failures": [
+        {
+          "text": "XCTAssertTrue failed - A hidden panel or model flag is not visible presentation",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+            "lineNumber": 1523
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+      "group": "11-reader",
+      "result": "Failed",
+      "duration_seconds": 59.59004092216492,
+      "failures": [
+        {
+          "text": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Root opening needs one canonical actual visible receipt",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+            "lineNumber": 735
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+      "group": "11-reader",
+      "result": "Failed",
+      "duration_seconds": 97.94632601737976,
+      "failures": [
+        {
+          "text": "XCTAssertTrue failed",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+            "lineNumber": 641
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+      "group": "11-reader",
+      "result": "Failed",
+      "duration_seconds": 83.23902904987335,
+      "failures": [
+        {
+          "text": "XCTAssertTrue failed",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+            "lineNumber": 641
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+      "group": "11-reader",
+      "result": "Failed",
+      "duration_seconds": 48.21310901641846,
+      "failures": [
+        {
+          "text": "failed: caught error: \"Error Domain=OtzariaUIRouting.UIRouteError Code=1 \"The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)\" UserInfo={NSLocalizedDescription=The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)}\"",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+            "lineNumber": 1586
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory",
+      "group": "11-sidebar",
+      "result": "Passed",
+      "duration_seconds": 358.47066700458527,
+      "failures": []
+    },
+    {
+      "case_id": "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+      "group": "phone",
+      "result": "Failed",
+      "duration_seconds": 71.60316300392151,
+      "failures": [
+        {
+          "text": "XCTAssertTrue failed",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+            "lineNumber": 210
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "group": "phone",
+      "result": "Passed",
+      "duration_seconds": 83.13382995128632,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+      "group": "phone",
+      "result": "Passed",
+      "duration_seconds": 127.99152195453644,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+      "group": "phone",
+      "result": "Failed",
+      "duration_seconds": 33.22053098678589,
+      "failures": [
+        {
+          "text": "failed: caught error: \"Error Domain=OtzariaUIRouting.UIRouteError Code=1 \"The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)\" UserInfo={NSLocalizedDescription=The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)}\"",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+            "lineNumber": 1622
+          }
+        }
+      ]
+    }
+  ],
+  "driver_status": "FAIL",
+  "driver_error": "Required real UI subset failed, skipped or did not completely execute",
+  "original_entry_hashes": {
+    "artifacts/runtime27/result.json": {
+      "bytes": 165431,
+      "sha256": "d9e34019de5592db6fdc3a941b550f0850312fd9265edbf861181129c374fc21"
+    },
+    "hq-stage2/result.json": {
+      "bytes": 82673,
+      "sha256": "bab068dadeba397e240702981483487479868772caedfb8d668c3b37de2c4f86"
+    },
+    "artifacts/runtime27/verified-11.tests.json": {
+      "bytes": 2278,
+      "sha256": "8cda82004e114640c7590fc707e72f297ed16c24ab6b3890b5499c68b73f0bd4"
+    },
+    "artifacts/runtime27/verified-11.summary.json": {
+      "bytes": 1537,
+      "sha256": "176be652795fc58473ef370cc7270b4fc6f20a8f93ec5c0732d6890057cc06bc"
+    },
+    "artifacts/runtime27/verified-11-search.tests.json": {
+      "bytes": 2194,
+      "sha256": "fe9fc6d78f257f8c5efdd3a4f25a7ddb079d32579c60013de7f091fef6a61031"
+    },
+    "artifacts/runtime27/verified-11-search.summary.json": {
+      "bytes": 1453,
+      "sha256": "2bd9cbbb56d8f3a3291a845db6486355681aaa7ef00e420fbea9831ebd66acec"
+    },
+    "artifacts/runtime27/verified-11-reader.tests.json": {
+      "bytes": 6849,
+      "sha256": "f5415f17c40ccf0bd5952fc6dddbf406d294984ded874d143193581130486244"
+    },
+    "artifacts/runtime27/verified-11-reader.summary.json": {
+      "bytes": 3899,
+      "sha256": "5ff5f1cca63516fca8de59d39fe1acb4c6088f8451686c6560ba7f26dea6e8e3"
+    },
+    "artifacts/runtime27/verified-11-sidebar.tests.json": {
+      "bytes": 1759,
+      "sha256": "25795181da9c677d1fa99c460876186ba7b87b1bc89a79063f86053e0f201338"
+    },
+    "artifacts/runtime27/verified-11-sidebar.summary.json": {
+      "bytes": 986,
+      "sha256": "3269b03de52440778adf031335e1a03b7d6836ee13f8ab581e81880567329ef8"
+    },
+    "artifacts/runtime27/verified-phone.tests.json": {
+      "bytes": 5138,
+      "sha256": "82f0b1d87e279e78fc3dcfc51520ec4758d217c6b35b7bc694a63384786494cc"
+    },
+    "artifacts/runtime27/verified-phone.summary.json": {
+      "bytes": 2288,
+      "sha256": "2106b1c18b8a6d73f02c316dd3005bc0ba50092ebc36510f6acfff15af6b468a"
+    }
+  },
+  "zero_skips_observed": true,
+  "all_required_executed": true,
+  "all_required_passed": false,
+  "new_execution_performed_by_this_review": false
+}

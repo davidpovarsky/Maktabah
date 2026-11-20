@@ -1,0 +1,516 @@
+{
+  "suites": [
+    {
+      "suite": "FaithfulReaderVisualBaselineTests",
+      "selection": "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+      "expected": [
+        "testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions"
+      ],
+      "passed": [],
+      "failed": [
+        "testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions"
+      ],
+      "missing": [
+        "testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderVisualBaselineTests",
+      "selection": "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+      "expected": [
+        "testOriginalGlobalSearchHistoryThroughNativeControls"
+      ],
+      "passed": [],
+      "failed": [
+        "testOriginalGlobalSearchHistoryThroughNativeControls"
+      ],
+      "missing": [
+        "testOriginalGlobalSearchHistoryThroughNativeControls"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderVisualBaselineTests",
+      "selection": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+      "expected": [
+        "testOriginalWindowResizePreservesReader"
+      ],
+      "passed": [],
+      "failed": [
+        "testOriginalWindowResizePreservesReader"
+      ],
+      "missing": [
+        "testOriginalWindowResizePreservesReader"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderVisualBaselineTests",
+      "selection": "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+      "expected": [
+        "testOriginalReaderThemes"
+      ],
+      "passed": [],
+      "failed": [
+        "testOriginalReaderThemes"
+      ],
+      "missing": [
+        "testOriginalReaderThemes"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderVisualBaselineTests",
+      "selection": "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+      "expected": [
+        "testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots"
+      ],
+      "passed": [],
+      "failed": [
+        "testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots"
+      ],
+      "missing": [
+        "testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+      "expected": [
+        "testSourceOverviewReplacesReaderAndRestoresViewportLandscape"
+      ],
+      "passed": [],
+      "failed": [
+        "testSourceOverviewReplacesReaderAndRestoresViewportLandscape"
+      ],
+      "missing": [
+        "testSourceOverviewReplacesReaderAndRestoresViewportLandscape"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+      "expected": [
+        "testSourceOverviewReplacesReaderAndRestoresViewportPortrait"
+      ],
+      "passed": [
+        "testSourceOverviewReplacesReaderAndRestoresViewportPortrait"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+      "expected": [
+        "testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable"
+      ],
+      "passed": [],
+      "failed": [
+        "testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable"
+      ],
+      "missing": [
+        "testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+      "expected": [
+        "testOriginalBottomTOCActionOpensContentsFromLibraryPage"
+      ],
+      "passed": [],
+      "failed": [
+        "testOriginalBottomTOCActionOpensContentsFromLibraryPage"
+      ],
+      "missing": [
+        "testOriginalBottomTOCActionOpensContentsFromLibraryPage"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+      "expected": [
+        "testNativeVoiceOverSpeaksRealOverviewAndPaletteControls"
+      ],
+      "passed": [],
+      "failed": [
+        "testNativeVoiceOverSpeaksRealOverviewAndPaletteControls"
+      ],
+      "missing": [
+        "testNativeVoiceOverSpeaksRealOverviewAndPaletteControls"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+      "expected": [
+        "testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers"
+      ],
+      "passed": [
+        "testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+      "expected": [
+        "testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace"
+      ],
+      "passed": [],
+      "failed": [
+        "testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace"
+      ],
+      "missing": [
+        "testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "expected": [
+        "testPointerHoverClickAndHardwareKeyboardDismissal"
+      ],
+      "passed": [],
+      "failed": [
+        "testPointerHoverClickAndHardwareKeyboardDismissal"
+      ],
+      "missing": [
+        "testPointerHoverClickAndHardwareKeyboardDismissal"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+      "expected": [
+        "testGroupCopyMoveRenameAndDeleteThroughRealMenus"
+      ],
+      "passed": [],
+      "failed": [
+        "testGroupCopyMoveRenameAndDeleteThroughRealMenus"
+      ],
+      "missing": [
+        "testGroupCopyMoveRenameAndDeleteThroughRealMenus"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "expected": [
+        "testSystemReduceMotionKeepsOriginalPaletteUsable"
+      ],
+      "passed": [],
+      "failed": [
+        "testSystemReduceMotionKeepsOriginalPaletteUsable"
+      ],
+      "missing": [
+        "testSystemReduceMotionKeepsOriginalPaletteUsable"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+      "expected": [
+        "testCandidateWindowResizePreservesOriginalReaderAndSearch"
+      ],
+      "passed": [],
+      "failed": [
+        "testCandidateWindowResizePreservesOriginalReaderAndSearch"
+      ],
+      "missing": [
+        "testCandidateWindowResizePreservesOriginalReaderAndSearch"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+      "expected": [
+        "testNewManagementScreensExposeMeaningfulAccessibilityDescriptions"
+      ],
+      "passed": [],
+      "failed": [
+        "testNewManagementScreensExposeMeaningfulAccessibilityDescriptions"
+      ],
+      "missing": [
+        "testNewManagementScreensExposeMeaningfulAccessibilityDescriptions"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+      "expected": [
+        "testCandidateReaderThemes"
+      ],
+      "passed": [
+        "testCandidateReaderThemes"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+      "expected": [
+        "testEnglishReaderAndOriginalPaletteInLeftToRightLayout"
+      ],
+      "passed": [],
+      "failed": [
+        "testEnglishReaderAndOriginalPaletteInLeftToRightLayout"
+      ],
+      "missing": [
+        "testEnglishReaderAndOriginalPaletteInLeftToRightLayout"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "expected": [
+        "testCandidateGlobalSearchLandscapeMatchesOriginalNavigation"
+      ],
+      "passed": [],
+      "failed": [
+        "testCandidateGlobalSearchLandscapeMatchesOriginalNavigation"
+      ],
+      "missing": [
+        "testCandidateGlobalSearchLandscapeMatchesOriginalNavigation"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "expected": [
+        "testCandidateGlobalSearchPortraitMatchesOriginalNavigation"
+      ],
+      "passed": [
+        "testCandidateGlobalSearchPortraitMatchesOriginalNavigation"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+      "expected": [
+        "testCandidateAnnotationsLandscapeMatchesOriginalNavigation"
+      ],
+      "passed": [
+        "testCandidateAnnotationsLandscapeMatchesOriginalNavigation"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+      "expected": [
+        "testCandidateAnnotationsPortraitMatchesOriginalNavigation"
+      ],
+      "passed": [
+        "testCandidateAnnotationsPortraitMatchesOriginalNavigation"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+      "expected": [
+        "testCandidateTrimmedOriginalInspectorLandscape"
+      ],
+      "passed": [],
+      "failed": [
+        "testCandidateTrimmedOriginalInspectorLandscape"
+      ],
+      "missing": [
+        "testCandidateTrimmedOriginalInspectorLandscape"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+      "expected": [
+        "testCandidateTrimmedOriginalInspectorPortrait"
+      ],
+      "passed": [],
+      "failed": [
+        "testCandidateTrimmedOriginalInspectorPortrait"
+      ],
+      "missing": [
+        "testCandidateTrimmedOriginalInspectorPortrait"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+      "expected": [
+        "testSidebarPreservesOriginalTextKitViewport"
+      ],
+      "passed": [],
+      "failed": [
+        "testSidebarPreservesOriginalTextKitViewport"
+      ],
+      "missing": [
+        "testSidebarPreservesOriginalTextKitViewport"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+      "expected": [
+        "testSourceToolbarPaletteAndOverview"
+      ],
+      "passed": [],
+      "failed": [
+        "testSourceToolbarPaletteAndOverview"
+      ],
+      "missing": [
+        "testSourceToolbarPaletteAndOverview"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+      "expected": [
+        "testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll"
+      ],
+      "passed": [],
+      "failed": [
+        "testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll"
+      ],
+      "missing": [
+        "testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+      "expected": [
+        "testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar"
+      ],
+      "passed": [],
+      "failed": [
+        "testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar"
+      ],
+      "missing": [
+        "testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+      "expected": [
+        "testNewEmptyGroupAndRelaunchPersistence"
+      ],
+      "passed": [],
+      "failed": [
+        "testNewEmptyGroupAndRelaunchPersistence"
+      ],
+      "missing": [
+        "testNewEmptyGroupAndRelaunchPersistence"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+      "expected": [
+        "testHistoryRemainsGlobalAndIsAbsentFromBookSearch"
+      ],
+      "passed": [],
+      "failed": [
+        "testHistoryRemainsGlobalAndIsAbsentFromBookSearch"
+      ],
+      "missing": [
+        "testHistoryRemainsGlobalAndIsAbsentFromBookSearch"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+      "expected": [
+        "testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch"
+      ],
+      "passed": [],
+      "failed": [
+        "testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch"
+      ],
+      "missing": [
+        "testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+      "expected": [
+        "testThreeProfilesWithThreeGroupsThroughNativeManagement"
+      ],
+      "passed": [],
+      "failed": [
+        "testThreeProfilesWithThreeGroupsThroughNativeManagement"
+      ],
+      "missing": [
+        "testThreeProfilesWithThreeGroupsThroughNativeManagement"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "StudyProfileNativeAcceptanceTests",
+      "selection": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+      "expected": [
+        "testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace"
+      ],
+      "passed": [],
+      "failed": [
+        "testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace"
+      ],
+      "missing": [
+        "testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "suite": "SafariPrototypeReferenceTests",
+      "selection": "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle",
+      "expected": [
+        "testOriginalCompactAndExpandedToolbarOracle"
+      ],
+      "passed": [
+        "testOriginalCompactAndExpandedToolbarOracle"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    }
+  ],
+  "status": "FAIL"
+}
