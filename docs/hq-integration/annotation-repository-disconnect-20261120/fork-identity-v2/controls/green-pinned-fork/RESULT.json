@@ -1,0 +1,171 @@
+{
+  "actual_repository_races": 0,
+  "actual_swift_cases": 0,
+  "cases": [
+    {
+      "name": "test_actual_child_failure_is_retained_and_never_normal_completion",
+      "seconds": 0.018308136000996456,
+      "status": "PASS"
+    },
+    {
+      "name": "test_actual_ten_declarations_and_reviewed_whole_repository_hash",
+      "seconds": 0.0007000440018600784,
+      "status": "PASS"
+    },
+    {
+      "name": "test_authorized_fork_requires_exact_identity_and_boolean",
+      "seconds": 0.0006486860002041794,
+      "status": "PASS"
+    },
+    {
+      "name": "test_candidate_failed_skipped_wrong_name_source_and_timeout_are_denied",
+      "seconds": 0.0006426469990401529,
+      "status": "PASS"
+    },
+    {
+      "name": "test_candidate_progress_cold_read_requires_committed_original_helper_note",
+      "seconds": 0.0018659889974514954,
+      "status": "PASS"
+    },
+    {
+      "name": "test_candidate_progress_requires_real_probe_and_both_returns",
+      "seconds": 0.0008238700029323809,
+      "status": "PASS"
+    },
+    {
+      "name": "test_canonical_repository_metadata_accepts_the_authorized_fork",
+      "seconds": 0.0003748639974219259,
+      "status": "PASS"
+    },
+    {
+      "name": "test_draft_baseline_and_new_core_substitutions_are_denied",
+      "seconds": 0.0009349669999210164,
+      "status": "PASS"
+    },
+    {
+      "name": "test_duplicate_malformed_and_oversized_json_are_rejected",
+      "seconds": 0.00043355200250516646,
+      "status": "PASS"
+    },
+    {
+      "name": "test_duplicate_sequence_and_regressing_monotonic_marker_are_rejected",
+      "seconds": 0.0007525919972977135,
+      "status": "PASS"
+    },
+    {
+      "name": "test_exact_push_authority_accepts_actual_attempt_numbers",
+      "seconds": 8.373600212507881e-05,
+      "status": "PASS"
+    },
+    {
+      "name": "test_independent_sqlite_cold_reader_checks_original_note_uuid_tags_and_queue",
+      "seconds": 0.0009310909990745131,
+      "status": "PASS"
+    },
+    {
+      "name": "test_manual_pull_request_schedule_and_wrong_ref_are_denied",
+      "seconds": 0.00011879899830091745,
+      "status": "PASS"
+    },
+    {
+      "name": "test_missing_terminate_reap_group_and_wrong_exit_are_rejected",
+      "seconds": 0.00031337199834524654,
+      "status": "PASS"
+    },
+    {
+      "name": "test_mixed_payload_head_ref_repository_and_deletion_are_denied",
+      "seconds": 0.00010273400039295666,
+      "status": "PASS"
+    },
+    {
+      "name": "test_numbered_original_cycle_is_red_never_a_pass",
+      "seconds": 0.0005988110024190973,
+      "status": "PASS"
+    },
+    {
+      "name": "test_original_error_or_early_completion_never_counts_as_deadlock",
+      "seconds": 0.0002742530014074873,
+      "status": "PASS"
+    },
+    {
+      "name": "test_owned_process_timeout_preserves_output_and_does_not_signal_other_group",
+      "seconds": 0.16028287799781538,
+      "status": "PASS"
+    },
+    {
+      "name": "test_path_escape_and_symlink_are_denied_without_opening_external_database",
+      "seconds": 0.0013258059989311732,
+      "status": "PASS"
+    },
+    {
+      "name": "test_reviewed_binding_and_unchanged_counts",
+      "seconds": 0.0018016810026892927,
+      "status": "PASS"
+    },
+    {
+      "name": "test_source_file_traversal_and_symlink_are_rejected",
+      "seconds": 0.0002849390002666041,
+      "status": "PASS"
+    },
+    {
+      "name": "test_source_report_rejects_missing_changed_or_wrong_run_inputs",
+      "seconds": 0.00012406700261635706,
+      "status": "PASS"
+    },
+    {
+      "name": "test_timeout_without_lifetime_or_helper_marker_is_rejected",
+      "seconds": 0.0004399519966682419,
+      "status": "PASS"
+    },
+    {
+      "name": "test_uncommitted_write_or_lost_tag_or_pending_delete_is_rejected",
+      "seconds": 0.0038633250005659647,
+      "status": "PASS"
+    },
+    {
+      "name": "test_wrong_repository_workflow_and_checkout_are_denied",
+      "seconds": 0.00015389200052595697,
+      "status": "PASS"
+    },
+    {
+      "name": "test_zero_missing_and_noninteger_run_attempt_are_denied",
+      "seconds": 0.00020154400044702925,
+      "status": "PASS"
+    }
+  ],
+  "errors": 0,
+  "executed": 26,
+  "expected_names": [
+    "test_actual_child_failure_is_retained_and_never_normal_completion",
+    "test_actual_ten_declarations_and_reviewed_whole_repository_hash",
+    "test_authorized_fork_requires_exact_identity_and_boolean",
+    "test_candidate_failed_skipped_wrong_name_source_and_timeout_are_denied",
+    "test_candidate_progress_cold_read_requires_committed_original_helper_note",
+    "test_candidate_progress_requires_real_probe_and_both_returns",
+    "test_canonical_repository_metadata_accepts_the_authorized_fork",
+    "test_draft_baseline_and_new_core_substitutions_are_denied",
+    "test_duplicate_malformed_and_oversized_json_are_rejected",
+    "test_duplicate_sequence_and_regressing_monotonic_marker_are_rejected",
+    "test_exact_push_authority_accepts_actual_attempt_numbers",
+    "test_independent_sqlite_cold_reader_checks_original_note_uuid_tags_and_queue",
+    "test_manual_pull_request_schedule_and_wrong_ref_are_denied",
+    "test_missing_terminate_reap_group_and_wrong_exit_are_rejected",
+    "test_mixed_payload_head_ref_repository_and_deletion_are_denied",
+    "test_numbered_original_cycle_is_red_never_a_pass",
+    "test_original_error_or_early_completion_never_counts_as_deadlock",
+    "test_owned_process_timeout_preserves_output_and_does_not_signal_other_group",
+    "test_path_escape_and_symlink_are_denied_without_opening_external_database",
+    "test_reviewed_binding_and_unchanged_counts",
+    "test_source_file_traversal_and_symlink_are_rejected",
+    "test_source_report_rejects_missing_changed_or_wrong_run_inputs",
+    "test_timeout_without_lifetime_or_helper_marker_is_rejected",
+    "test_uncommitted_write_or_lost_tag_or_pending_delete_is_rejected",
+    "test_wrong_repository_workflow_and_checkout_are_denied",
+    "test_zero_missing_and_noninteger_run_attempt_are_denied"
+  ],
+  "failures": 0,
+  "native_ui_executed": 0,
+  "scope": "Synthetic authority/collector inputs, owned Python child process termination and SQLite reader controls only",
+  "skips": 0,
+  "status": "PASS_PYTHON_ADMISSION_COLLECTION_CONTROLS"
+}

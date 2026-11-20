@@ -1,0 +1,23 @@
+[
+  {
+    "label": "red-canonical-metadata",
+    "exit": 1,
+    "executed": 26,
+    "failures": 1,
+    "errors": 1,
+    "skips": 0,
+    "failed": [
+      "test_authorized_fork_requires_exact_identity_and_boolean",
+      "test_canonical_repository_metadata_accepts_the_authorized_fork"
+    ]
+  },
+  {
+    "label": "green-pinned-fork",
+    "exit": 0,
+    "executed": 26,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "failed": []
+  }
+]

@@ -1,0 +1,199 @@
+{
+  "schema": "annotation-disconnect-fork-identity-v2",
+  "base_commit": "939eaf3a5b56fe604354b235579cf7aa4a60e3d4",
+  "base_tree": "77c330767559a94e5a0b35fd05a2e0b0f6faa2a6",
+  "files": [
+    {
+      "path": ".github/workflows/otzaria-annotation-disconnect-apple.yml",
+      "bytes": 7167,
+      "sha256": "820a15e58bf14c75a56ad437b5f82c159845e194c048f5bcec20d8a6412f4f52",
+      "git_blob": "31ca9eccf026efeb5d6aee705f9a1f502394ed03",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "Scripts/CI/annotation-disconnect-apple.inputs.json",
+      "bytes": 21773,
+      "sha256": "ef2bc57d4c7b8d0cfc65e6dea46647c8e909214bbe609ba6749eeced65ba920d",
+      "git_blob": "38c0156eb6cdbbf39227591b682546b12a999ce2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "Scripts/CI/annotation-disconnect-apple.py",
+      "bytes": 26104,
+      "sha256": "08080460e40b8a6ac3b88a8d76b8a1e23737bab505ea94bc556cac5624c7b4b7",
+      "git_blob": "718dd91a1a0ec013d697d80f20abb175e49c4292",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "Scripts/CI/local-annotation-cloud-apple.inputs.json",
+      "bytes": 19262,
+      "sha256": "105cd3ffa91f359464bb4a49b2de22435a88baab81869c3546f713a3e1fae014",
+      "git_blob": "93e1c559206ca7014d59f3b997bc6862093fa881",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "Scripts/CI/test-annotation-disconnect-apple.py",
+      "bytes": 21310,
+      "sha256": "e9f8c9da12600d5b39ff683f74dea8fc5f1697ad261eb458a1436ef102a140cd",
+      "git_blob": "8b36fe6a68a7a4202a4aaf0afd1572e999ecb27a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/CANDIDATE.patch",
+      "bytes": 6717,
+      "sha256": "1f2f28cf769ad293c4098d0d2b9b8b6cbe705f62b1563e0893fd6373e587c7d5",
+      "git_blob": "9fdb9053d5399a7db67b90c686c99e8c26d911b1",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/LOCAL_EXECUTION.json",
+      "bytes": 444,
+      "sha256": "4d076c6e972e72788674a539fffd2fb7b41e358cc85377228e63057f31b63763",
+      "git_blob": "72f7c0960ff8ad69b085b5442f9c87fc708cbc44",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/REPOSITORY_API.json",
+      "bytes": 19284,
+      "sha256": "25393d84b6d5f0e2048ccd6562fe558b6599633d2612877611e11cce820ca5d6",
+      "git_blob": "4a5d1c68082a505f92925490a22c9516d5c970a4",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/ROOT_REVIEW.json",
+      "bytes": 2061,
+      "sha256": "14f2e3e98121685936de3c9fd770c225ce17d51ae3d9e89cbc56f0e72bd110ff",
+      "git_blob": "98295ccca0257c4425c891094587b69cc712935b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/SETUP_ATTEMPT1.json",
+      "bytes": 203,
+      "sha256": "f3f97c5b3d0d280f998531ec0b9b520b7f02cd186785249b41dabcd7e0792d50",
+      "git_blob": "055bc88f33a10a4e9bbdd8f13854ca437f288b5e",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/controls/green-pinned-fork/RESULT.json",
+      "bytes": 6210,
+      "sha256": "bff57556a0522eb956d19af6a8f57875e3ab96f256ab34948f4ac7034a734b03",
+      "git_blob": "7c60c02e440e4e39e73a5bd70f57fe36ea96e85c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/controls/green-pinned-fork/stderr.log",
+      "bytes": 4031,
+      "sha256": "bcf89d33493c447990fc0c8e9a0c9a9dcfc45c32639ad936646718c0648bdb0b",
+      "git_blob": "e29663059f09de5566af00271871bc264a17ead0",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/controls/green-pinned-fork/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/controls/red-canonical-metadata/RESULT.json",
+      "bytes": 6172,
+      "sha256": "b483ddef1631cc36701ca696669ce3218f06b9d8558e3ca923259759dea2b5a1",
+      "git_blob": "5ddb48a61cc6180cd858be89c4a39b7bd71bb3c8",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/controls/red-canonical-metadata/stderr.log",
+      "bytes": 6108,
+      "sha256": "80932f0e7c807551b1fba9823a266753e28ecd3a6d0e683de4504b9e09eac695",
+      "git_blob": "b082d6ae0bfebe30f8ec6d612d76df0fba78598b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/controls/red-canonical-metadata/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/original-v1/.github__workflows__otzaria-annotation-disconnect-apple.yml.gz",
+      "bytes": 2083,
+      "sha256": "950060ceaf514aab56f38634516ff919d36c79275b289a1fbb619848f3039024",
+      "git_blob": "c2d5c81b48dc5f2a0560322dd454459cf90ecb92",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/original-v1/Scripts__CI__annotation-disconnect-apple.inputs.json.gz",
+      "bytes": 7843,
+      "sha256": "3d2ebece6f254d6a2789e388035c4fcc0b14528cba0e659d26e64835b7f851f9",
+      "git_blob": "c9e3b78298917d43fd20d431658e491164f97769",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/original-v1/Scripts__CI__annotation-disconnect-apple.py.gz",
+      "bytes": 7915,
+      "sha256": "76b6d94f276e0784ef790895c077e1338f81fb316157e1f0b757ab2ded9d6cab",
+      "git_blob": "8a66ee6e93b26565bc08ef382f533feacba060a0",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/original-v1/Scripts__CI__test-annotation-disconnect-apple.py.gz",
+      "bytes": 5493,
+      "sha256": "eeda15c24416b9be69f930ec5ce4236f71ef28bc38fd0ff48f8e2e18cc74b7ef",
+      "git_blob": "87446d037a1c504d57fc3a093ec007e48e061130",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/prior-failure/API_READ_1.json",
+      "bytes": 14432,
+      "sha256": "cedc56f10a65a976740766873d0e292f4ffba6700fdad6f307c9aa172ef9c910",
+      "git_blob": "dce80ef28d5020bdb497f20ae80a19a94e20c2cd",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/prior-failure/ARTIFACTS_API.json",
+      "bytes": 834,
+      "sha256": "cd456470fc3b7e3b4fc3441177ccbc272fe0bbb6b711cdc69aa99d662ce9a455",
+      "git_blob": "7a4d41704bc251df68b407b6afd887a5af71d5f0",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/prior-failure/ROOT_JOB_LOG.json",
+      "bytes": 21904,
+      "sha256": "57091a3d46260808952c48b89cf673223168f7155c04d0929f7e7a36912b6733",
+      "git_blob": "6f6357084c88670a94bcee350b6c022ffba1b703",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/prior-failure/evidence.zip",
+      "bytes": 1358,
+      "sha256": "fc42ef83a2c8f3f11510ca4a1357de9079638dccc7f9b4cd842ea199e968716f",
+      "git_blob": "7a9e44db6e1c26b54f7baa3cc99ed0a3cb944850",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "status": "ERROR_BEFORE_CONTROLS",
+  "reason": "Sparse candidate omitted existing select-runtime27-toolchain.py. No test executed. Filled from canonical verified control-root, no source mutation."
+}

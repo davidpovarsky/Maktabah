@@ -1,0 +1,105 @@
+--- a/Scripts/CI/annotation-disconnect-apple.py
++++ b/Scripts/CI/annotation-disconnect-apple.py
+@@ -18,7 +18,7 @@
+ 
+ REPOSITORY = "davidpovarsky/Maktabah"
+ REPOSITORY_ID = 1280062128
+-BRANCH = "codex/otzaria-annotation-disconnect-apple-reviewed-20261120"
++BRANCH = "codex/otzaria-annotation-disconnect-apple-v2-reviewed-20261120"
+ WORKFLOW = ".github/workflows/otzaria-annotation-disconnect-apple.yml"
+ SELF = "Scripts/CI/annotation-disconnect-apple.py"
+ BINDING = "Scripts/CI/annotation-disconnect-apple.inputs.json"
+@@ -130,7 +130,7 @@
+             and event.get("deleted") is False, "Push payload differs")
+     repository = event.get("repository", {})
+     require(type(repository.get("id")) is int and repository["id"] == REPOSITORY_ID
+-            and repository.get("full_name") == REPOSITORY and repository.get("fork") is False,
++            and repository.get("full_name") == REPOSITORY and repository.get("fork") is True,
+             "Push repository differs")
+     return {"repository": REPOSITORY, "branch": BRANCH, "workflow": WORKFLOW,
+             "event": "push", "head_sha": head, "run_id": int(run), "run_attempt": int(attempt)}
+--- a/Scripts/CI/annotation-disconnect-apple.inputs.json
++++ b/Scripts/CI/annotation-disconnect-apple.inputs.json
+@@ -178,7 +178,7 @@
+   },
+   "preparation_state": "SOURCE_M_PUBLISHED_CI_READY_FOR_REVIEW_NO_ACTIVATION",
+   "route": {
+-    "branch": "codex/otzaria-annotation-disconnect-apple-reviewed-20261120",
++    "branch": "codex/otzaria-annotation-disconnect-apple-v2-reviewed-20261120",
+     "repository": "davidpovarsky/Maktabah",
+     "workflow": ".github/workflows/otzaria-annotation-disconnect-apple.yml"
+   },
+--- a/Scripts/CI/test-annotation-disconnect-apple.py
++++ b/Scripts/CI/test-annotation-disconnect-apple.py
+@@ -39,7 +39,7 @@
+         "GITHUB_SHA": head, "EXPECTED_CHECKOUT_SHA": head, "GITHUB_WORKFLOW_SHA": head,
+         "GITHUB_RUN_ID": "123", "GITHUB_RUN_ATTEMPT": "1"}
+     event = {"ref": ref, "after": head, "deleted": False,
+-             "repository": {"id": route.REPOSITORY_ID, "full_name": route.REPOSITORY, "fork": False}}
++             "repository": {"id": route.REPOSITORY_ID, "full_name": route.REPOSITORY, "fork": True}}
+     return environment, event
+ 
+ 
+@@ -127,11 +127,32 @@
+ 
+     def test_mixed_payload_head_ref_repository_and_deletion_are_denied(self):
+         for change in (lambda e: e.update(after="b" * 40), lambda e: e.update(ref="refs/heads/main"),
+-                       lambda e: e.update(deleted=True), lambda e: e["repository"].update(fork=True),
++                       lambda e: e.update(deleted=True), lambda e: e["repository"].update(fork=False),
+                        lambda e: e["repository"].update(id=str(route.REPOSITORY_ID))):
+             env, event = authority()
+             change(event)
+             with self.assertRaises(ValueError):
++                route.identity(env, event)
++
++    def test_canonical_repository_metadata_accepts_the_authorized_fork(self):
++        metadata_path = ROOT / "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/REPOSITORY_API.json"
++        self.assertEqual(route.digest(metadata_path.read_bytes()), "25393d84b6d5f0e2048ccd6562fe558b6599633d2612877611e11cce820ca5d6")
++        metadata = route.load_json(metadata_path)
++        self.assertEqual(metadata["id"], 1280062128)
++        self.assertEqual(metadata["full_name"], "davidpovarsky/Maktabah")
++        self.assertIs(metadata["fork"], True)
++        env, event = authority()
++        event["repository"] = metadata
++        self.assertEqual(route.identity(env, event)["repository"], metadata["full_name"])
++
++    def test_authorized_fork_requires_exact_identity_and_boolean(self):
++        metadata = route.load_json(ROOT / "docs/hq-integration/annotation-repository-disconnect-20261120/fork-identity-v2/REPOSITORY_API.json")
++        for key, value in (("id", 1), ("id", True), ("full_name", "other/Maktabah"),
++                           ("fork", False), ("fork", None), ("fork", 1), ("fork", "true")):
++            env, event = authority()
++            event["repository"] = dict(metadata)
++            event["repository"][key] = value
++            with self.subTest(key=key, value=value), self.assertRaises(ValueError):
+                 route.identity(env, event)
+ 
+     def test_reviewed_binding_and_unchanged_counts(self):
+--- a/.github/workflows/otzaria-annotation-disconnect-apple.yml
++++ b/.github/workflows/otzaria-annotation-disconnect-apple.yml
+@@ -3,7 +3,7 @@
+ on:
+   push:
+     branches:
+-      - codex/otzaria-annotation-disconnect-apple-reviewed-20261120
++      - codex/otzaria-annotation-disconnect-apple-v2-reviewed-20261120
+ 
+ permissions:
+   actions: read
+@@ -15,7 +15,7 @@
+ 
+ jobs:
+   original-repository-disconnect:
+-    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-annotation-disconnect-apple-reviewed-20261120' }}
++    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-annotation-disconnect-apple-v2-reviewed-20261120' }}
+     runs-on: xcode-27
+     timeout-minutes: 75
+     env:
+@@ -36,7 +36,7 @@
+           root = pathlib.Path.cwd()
+           output = root / 'build/annotation-disconnect-route'
+           output.mkdir(parents=True, exist_ok=True)
+-          expected = {'Scripts/CI/annotation-disconnect-apple.py': 'ae4f90af2d19921a32c3221c9dee18bcef7132914bd3dabc7718c382556ef557', 'Scripts/CI/annotation-disconnect-apple.inputs.json': '4d5b0688c9cc3f354d43e0fb0d6ef457defe988265bf577f6da2d06b4b0d0fab', 'Scripts/CI/test-annotation-disconnect-apple.py': '7b3f4401143dc64ad3dd2547b21a249163327b792e3851ede11bf263951d0e42', 'Scripts/CI/select-runtime27-toolchain.py': '92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8'}
++          expected = {'Scripts/CI/annotation-disconnect-apple.py': '08080460e40b8a6ac3b88a8d76b8a1e23737bab505ea94bc556cac5624c7b4b7', 'Scripts/CI/annotation-disconnect-apple.inputs.json': 'ef2bc57d4c7b8d0cfc65e6dea46647c8e909214bbe609ba6749eeced65ba920d', 'Scripts/CI/test-annotation-disconnect-apple.py': 'e9f8c9da12600d5b39ff683f74dea8fc5f1697ad261eb458a1436ef102a140cd', 'Scripts/CI/select-runtime27-toolchain.py': '92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8'}
+           report = {'status': 'FAILED', 'scope': 'Source bootstrap only; no Swift or Native execution', 'pins': expected}
+           try:
+               if set(expected) != {'Scripts/CI/annotation-disconnect-apple.py', 'Scripts/CI/annotation-disconnect-apple.inputs.json', 'Scripts/CI/test-annotation-disconnect-apple.py', 'Scripts/CI/select-runtime27-toolchain.py'}:
