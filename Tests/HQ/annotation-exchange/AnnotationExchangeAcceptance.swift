@@ -17,25 +17,27 @@ final class Acceptance {
 
     func test(_ name: String, _ body: () throws -> Void) {
         let began = Date()
+        acceptancePrint("RUN \(name)")
         do {
             try body()
             results.append(.init(name: name, status: "PASS", milliseconds: Date().timeIntervalSince(began) * 1000, error: nil))
-            print("PASS \(name)")
+            acceptancePrint("PASS \(name)")
         } catch {
             results.append(.init(name: name, status: "FAIL", milliseconds: Date().timeIntervalSince(began) * 1000, error: String(describing: error)))
-            print("FAIL \(name): \(error)")
+            acceptancePrint("FAIL \(name): \(error)")
         }
     }
 
     func asyncTest(_ name: String, _ body: () async throws -> Void) async {
         let began = Date()
+        acceptancePrint("RUN \(name)")
         do {
             try await body()
             results.append(.init(name: name, status: "PASS", milliseconds: Date().timeIntervalSince(began) * 1000, error: nil))
-            print("PASS \(name)")
+            acceptancePrint("PASS \(name)")
         } catch {
             results.append(.init(name: name, status: "FAIL", milliseconds: Date().timeIntervalSince(began) * 1000, error: String(describing: error)))
-            print("FAIL \(name): \(error)")
+            acceptancePrint("FAIL \(name): \(error)")
         }
     }
 
@@ -199,6 +201,15 @@ final class Acceptance {
             try rejects(.staleRevision) { _ = try f.ledger.commit(mutationID: UUID(), payload: bytes, expectedSource: old, expectedRevision: 1, destinations: [scope()]) }
             try require(f.scalar("SELECT count(*) FROM otzaria_annotation_exchange_versions;") == 0, "mismatch wrote version")
         }
+        test("dangling_original_tag_link_changes_witness_and_rejects_stale_commit") {
+            let f = try Fixture(root: root, name: "dangling-tag")
+            let old = try f.witness(), bytes = try f.payload(old)
+            try f.db.execute(query: "INSERT INTO annotation_tags(annotationId,tagId) VALUES (1,987654321);")
+            try require(f.witness().digest != old.digest, "dangling original tag association omitted from source witness")
+            try rejects(.staleSource) {
+                _ = try f.ledger.commit(mutationID: UUID(), payload: bytes, expectedSource: old, expectedRevision: 0, destinations: [scope()])
+            }
+        }
         test("idempotent_retry_binds_exact_payload_and_destination_set") {
             let f = try Fixture(root: root, name: "idempotency")
             let a = try scope(), b = try scope("account-b"), w = try f.witness(), bytes = try f.payload(w)
@@ -347,10 +358,8 @@ final class Acceptance {
         }
         await asyncTest("cancellation_after_real_enqueue_rolls_back_before_commit") {
             let f = try Fixture(root: root, name: "cancel-after-insert"), before = try f.originals()
-            let status = sqlite3_create_function_v2(f.db.dbPointer, "cancel_exchange_task", 0, SQLITE_UTF8, nil, { context, _, _ in
-                withUnsafeCurrentTask { $0?.cancel() }
-                sqlite3_result_int(context, 1)
-            }, nil, nil, nil)
+            let status = sqlite3_create_function_v2(f.db.dbPointer, "cancel_exchange_task", 0, SQLITE_UTF8, nil,
+                                                   cancelExchangeTask, nil, nil, nil)
             try require(status == SQLITE_OK, "SQLite callback setup failed")
             try f.db.execute(query: "CREATE TRIGGER cancel_after_enqueue AFTER INSERT ON otzaria_annotation_exchange_outbox BEGIN SELECT cancel_exchange_task(); END;")
             let task = Task.detached { try f.commit() }
@@ -379,14 +388,19 @@ final class Acceptance {
         }
         let encoder = JSONEncoder(); encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         try encoder.encode(results).write(to: root.appendingPathComponent("CASES.json"))
-        print("CASES \(results.count) PASS \(results.filter { $0.status == "PASS" }.count) FAIL \(results.filter { $0.status == "FAIL" }.count)")
+        acceptancePrint("CASES \(results.count) PASS \(results.filter { $0.status == "PASS" }.count) FAIL \(results.filter { $0.status == "FAIL" }.count)")
         if results.contains(where: { $0.status == "FAIL" }) { throw CheckFailure("acceptance case failures") }
     }
 }
 
 @main
 struct AnnotationExchangeAcceptanceMain {
-    static func main() async throws {
+    static func main() async {
+        do { try await run() }
+        catch { acceptancePrint("FAILED: \(error)"); failAcceptance() }
+    }
+
+    static func run() async throws {
         guard CommandLine.arguments.count == 3 else { throw CheckFailure("usage: executable MODE OWNED_FIXTURE_DIRECTORY") }
         let mode = CommandLine.arguments[1], root = URL(fileURLWithPath: CommandLine.arguments[2], isDirectory: true)
         try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
@@ -426,7 +440,7 @@ struct AnnotationExchangeAcceptanceMain {
                 let committed = try f.commit(receipt.mutationID)
                 try require(!committed.replayed && committed.revision == 1, "rollback lost ability to retry")
             }
-            print("PASS actual_process_termination_\(phase)_commit_reopen")
+            acceptancePrint("PASS actual_process_termination_\(phase)_commit_reopen")
             return
         }
         throw CheckFailure("unknown mode \(mode)")

@@ -48,6 +48,27 @@ struct CheckFailure: Error, CustomStringConvertible, Sendable {
     init(_ description: String) { self.description = description }
 }
 
+func acceptancePrint(_ text: String) {
+    FileHandle.standardOutput.write(Data((text + "\n").utf8))
+}
+
+func failAcceptance() -> Never {
+    #if os(Windows)
+    ExitProcess(1)
+    #else
+    exit(1)
+    #endif
+    fatalError("exit returned")
+}
+
+// A C callback must not inherit the @MainActor isolation of the case runner:
+// the real SQLite statement executes inside the detached writer task.
+func cancelExchangeTask(_ context: OpaquePointer?, _ count: Int32,
+                        _ arguments: UnsafeMutablePointer<OpaquePointer?>?) {
+    withUnsafeCurrentTask { $0?.cancel() }
+    sqlite3_result_int(context, 1)
+}
+
 func require(_ condition: @autoclosure () throws -> Bool, _ message: String) throws {
     guard try condition() else { throw CheckFailure(message) }
 }
