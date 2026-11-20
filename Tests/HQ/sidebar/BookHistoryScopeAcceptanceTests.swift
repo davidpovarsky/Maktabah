@@ -36,8 +36,12 @@ final class BookHistoryScopeAcceptanceTests: FaithfulReaderUIBase {
         // The original fourth mode is Near. Its distance input must still
         // appear after suppressing history; no result/engine is substituted.
         tap(modes.buttons.element(boundBy: 3))
-        let distance = app.textFields["10"]
+        let distance = app.textFields["book-search-near-distance"]
         XCTAssertTrue(distance.waitForExistence(timeout: 10))
+        XCTAssertTrue(distance.isHittable, "The original Near distance remains editable after focus changes")
+        XCTAssertFalse((distance.value as? String ?? "").isEmpty)
+        XCTAssertEqual(modes.buttons.count, 4, "Mode selection must not dismiss the original controls")
+        XCTAssertTrue(help.isHittable)
         XCTAssertFalse(app.buttons.matching(NSPredicate(format: "label CONTAINS %@", query)).firstMatch.exists)
         retainNativeEvidence("book-search-controls-without-global-history")
     }

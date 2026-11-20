@@ -60,17 +60,22 @@ struct iOSBookSearchView: View {
                 ftsMigrationBanner()
             }
             .safeAreaInset(edge: .bottom, spacing: 0) {
-                SearchProgressView(
-                    viewModel: viewModel,
-                    showIntegrationState: false
-                )
-            }
-            .overlay(alignment: .bottom) {
-                SearchHistoryOverlay(
-                    viewModel: viewModel,
-                    showsGlobalHistory: false,
-                    isVisible: .constant(nil)
-                )
+                VStack(spacing: 0) {
+                    SearchProgressView(
+                        viewModel: viewModel,
+                        showIntegrationState: false
+                    )
+                    // These are the original book-search controls. Their
+                    // lifetime belongs to this presented search view, not the
+                    // search field's focus: tapping Near can resign that field
+                    // before its distance editor becomes first responder.
+                    // An inset also reserves space in the original result list.
+                    SearchHistoryOverlay(
+                        viewModel: viewModel,
+                        showsGlobalHistory: false,
+                        isVisible: .constant(true)
+                    )
+                }
             }
         }
         .searchable(

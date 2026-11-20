@@ -1,0 +1,65 @@
+{
+  "recorded_utc": "2026-11-20T04:04:08.875761+00:00",
+  "base_commit": "13cf5e980fe797ab5679d3ca354849a09c480d35",
+  "compiler": "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+  "validation_kind": "SYNTAX_ONLY_NOT_TYPECHECK_OR_NATIVE",
+  "native_executed": 0,
+  "results": [
+    {
+      "file": "Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift",
+      "source_sha256": "b74b6846391df20795290da565f8b4ed76deaed187875ebd20add6a11c6a59ce",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "source_sha256": "13536d23c0727ffb3954c479053ffeb7e5a1584d067a32cf7e81b4410b22a57e",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "Source/ChavrusaText/Search/UI/GlobalSearchHistoryContent.swift",
+      "source_sha256": "3c591f21c7b545a0d612f01f9cdd86bef543503ad1f7d91be71dc24cb8235b14",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarCell.swift",
+      "source_sha256": "0e70441a20ec8e2e6292756daa0013d99d8df7059fa06cf8dae54b4d8ca5087e",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift",
+      "source_sha256": "de87ae23a776b6fd1ff9575ce52a0510f955dd64731f6da797385f0ecbbcca60",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift",
+      "source_sha256": "580ee709da51687a8f8bf6bf44c25db594784985b3e2bb3a3eaeb7367982ab90",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "Source/Features/Search/iOS/SearchComponents.swift",
+      "source_sha256": "61abb04cafb4cd0daaa0aaa99724a93ffad7d5aa0e5f454ddfa5f7318fab2c8b",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "Tests/HQ/sidebar/BookHistoryScopeAcceptanceTests.swift",
+      "source_sha256": "3e1f273e1abc77652116ac37aced99eabc1ed9dc36e55ce616b2d9bfe70b6357",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}
