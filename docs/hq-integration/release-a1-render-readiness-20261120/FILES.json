@@ -1,0 +1,66 @@
+{
+  "2FD910F8-C567-4C20-92BC-5653137EE2F9.txt": {
+    "bytes": 199,
+    "sha256": "850fc0d1a529ecb4c149b0bd80f94424fa2711c492b2db54a9cf6b2f30aeee96"
+  },
+  "ARTIFACT_METADATA.json": {
+    "bytes": 847,
+    "sha256": "f2391921970e0f035f3feaead0cdd6d8079c33cfa378416a45487b7d046e6b5f"
+  },
+  "F7AD9B93-08A8-4AF8-8D74-16DC1D70636C.txt": {
+    "bytes": 199,
+    "sha256": "850fc0d1a529ecb4c149b0bd80f94424fa2711c492b2db54a9cf6b2f30aeee96"
+  },
+  "frame-25.png": {
+    "bytes": 167234,
+    "sha256": "9820403aa9b0800eada3ba7e3cff1276c8777200a40fe98d353db2821a83708d"
+  },
+  "frame-41.7.png": {
+    "bytes": 272719,
+    "sha256": "58304c278a201234a7ad4a5508be92ee661eada0171d29bbce20ae18e8821aa1"
+  },
+  "frame-42.7.png": {
+    "bytes": 636092,
+    "sha256": "a01de297e6d97cba9350fbfce36988af3453b4a2dd61929bc9774fdc2fc5688a"
+  },
+  "FRAME_RECEIPT.json": {
+    "bytes": 1713,
+    "sha256": "4287ca88c6f61096b5dae78d1a83ad2ad4d15e872a8cadb5e994842b606fc8e5"
+  },
+  "ORIGINAL_AX_DIAGNOSTIC_PARENT.json": {
+    "bytes": 1014,
+    "sha256": "61180d34883147a62bec8995719e5a42d184f7cb259843a5d48eacdeb7645dde"
+  },
+  "RANGE_EVIDENCE.json": {
+    "bytes": 3920,
+    "sha256": "bdc25109f5c4bb2ee614bf78f4a798d430bb768ca98cc90f7789e7914ea2eb14"
+  },
+  "README.md": {
+    "bytes": 2934,
+    "sha256": "c3d8124a65ad4af96e83d9439323460b60871331bfdcc0916c06a669e92eb3ef"
+  },
+  "RESULT.json": {
+    "bytes": 2344,
+    "sha256": "454f5fd556a366b1894558d3123a73e08ccdfc53420d1555e66470cbe5a4a742"
+  },
+  "SAMPLE_BOUNDARY_FRAMES.json": {
+    "bytes": 1141,
+    "sha256": "cc34b921f3f0480780fdee356aae4b397d941b63848e6c4f87ff7875a529fd6d"
+  },
+  "SOURCE_EVIDENCE.json": {
+    "bytes": 6137,
+    "sha256": "9f38b3224273cd26ff874822b83376d4010c3412495a8cfba6d89b5c42bf17b4"
+  },
+  "swift-parse.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "SWIFT_PARSE.json": {
+    "bytes": 369,
+    "sha256": "9b4e1853800fbace128b78082f6810882a88f6408d7dd3ffc7061a75d257da90"
+  },
+  "TIMING.json": {
+    "bytes": 662,
+    "sha256": "0ffa7a29de089c2acb71089b6b732f75f131d6e950fb69cc02d9bdb7a932c6dc"
+  }
+}

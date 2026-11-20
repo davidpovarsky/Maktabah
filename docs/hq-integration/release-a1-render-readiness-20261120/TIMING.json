@@ -1,0 +1,13 @@
+{
+  "test_start_record": {
+    "elapsed_seconds": 0.05,
+    "utc": "2026-11-20T04:22:22.087Z"
+  },
+  "video_start_epoch_seconds": 1795148542.409,
+  "last_action_before_count_failure_test_elapsed": 41.98,
+  "estimated_video_offset_for_action_start": 41.608,
+  "blank_frame_video_seconds": 41.7,
+  "blank_frame_identical_to_video39_seconds": true,
+  "first_reviewed_populated_frame_video_seconds": 42.7,
+  "limitation": "XCTest timestamps the diagnostic query start, not the value-return time. Video proves the Reader was mounted blank while the existing readiness checks succeeded, then populated; no later positive structured count was recorded."
+}

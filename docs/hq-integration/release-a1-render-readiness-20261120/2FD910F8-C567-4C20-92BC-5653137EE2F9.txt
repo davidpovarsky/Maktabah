@@ -1,0 +1,4 @@
+Query chain:
+ →Find: Target Application 'com.davidpovarsky.chavrusatext'
+  ↪︎Find: Descendants matching type TextView
+    ↪︎Find: Elements matching predicate '"reader-text" IN identifiers'

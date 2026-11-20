@@ -1,0 +1,47 @@
+{
+  "video_sha256": "1aecae0f195509ec306108cbc35e82a019929d532b3fa9eeb69341d46986ea89",
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "width": 1668,
+        "height": 2420,
+        "r_frame_rate": "600/1",
+        "time_base": "1/600"
+      }
+    ],
+    "format": {
+      "duration": "44.473333"
+    }
+  },
+  "frames": [
+    {
+      "seconds": 25,
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\release-a1-investigation-20261120\\frames\\frame-25.png",
+      "bytes": 167234,
+      "sha256": "9820403aa9b0800eada3ba7e3cff1276c8777200a40fe98d353db2821a83708d"
+    },
+    {
+      "seconds": 34,
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\release-a1-investigation-20261120\\frames\\frame-34.png",
+      "bytes": 253054,
+      "sha256": "0f2bfcde0e9312f971d4777df26d16865206cb3d96e31311306ee2c572703422"
+    },
+    {
+      "seconds": 39,
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\release-a1-investigation-20261120\\frames\\frame-39.png",
+      "bytes": 272719,
+      "sha256": "58304c278a201234a7ad4a5508be92ee661eada0171d29bbce20ae18e8821aa1"
+    },
+    {
+      "seconds": 43,
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\release-a1-investigation-20261120\\frames\\frame-43.png",
+      "bytes": 636092,
+      "sha256": "a01de297e6d97cba9350fbfce36988af3453b4a2dd61929bc9774fdc2fc5688a"
+    }
+  ],
+  "transformation": "Single original decoded frame at requested video time; no crop/scale/retouch."
+}

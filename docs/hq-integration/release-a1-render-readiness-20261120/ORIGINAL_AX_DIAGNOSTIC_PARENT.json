@@ -1,0 +1,6 @@
+{
+  "source": "docs/hq-integration/release96-44665679661-20261120/captures/captures-first/entries/visual-11/8DAD035B-C659-4476-B424-A91741B232CB.txt.gz",
+  "raw_sha256": "d01548cacfb9611afb543c1aa3a25f79f09443a7372d3932f280297759f64595",
+  "excerpt": "                                                      Other, 0x10a766800, {{0.0, 32.0}, {514.0, 1178.0}}\n                                                        TextView, 0x10a766bc0, {{0.0, 32.0}, {514.0, 1178.0}}, identifier: 'reader-text', value: ‫מצוה קב‬\n\n‫מִצְוַ...\n                                                          Other, 0x10a766e40, {{0.0, -1876.5}, {1.0, 1.0}}, identifier: 'reader-rendered-highlight-diagnostics', label: 'searchHighlights:0', value: {\"highlights\":[{\"l...\n                                                          TextView, 0x10a767340, {{334.1, -1866.5}, {178.4, 80.9}}, label: '‫מצוה קב‬'",
+  "limit": "Same actual app/run, another original Reader case; not an A1 final snapshot."
+}

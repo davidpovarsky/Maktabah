@@ -1,0 +1,43 @@
+{
+  "status": "A1_COMPLETED_TEXT_PRECONDITION_SOURCE_CORRECTION_NATIVE_NOT_RUN",
+  "base": "dfd6cdcdd43af7166912a1574b5d70f44e8421a3",
+  "source_path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+  "added_lines": 21,
+  "source_sha256_git_lf_before": "c7af65a54e60fa09f9e90da04aa54b0454c903b7695ef12ea5fccbf5eba25fd4",
+  "source_sha256_git_lf_after": "a85e542258934f1adebe468fd72eb19c82aa75bfc3d512e93e6f176114b7c6ab",
+  "inverse_restores_entire_previous_file": true,
+  "all_original_highlight_clear_oracles_and_timeouts_unchanged": true,
+  "readiness": "Within6seconds, original reader exposes actual alphanumeric text rather than diagnostic JSON, and exactly one original diagnostic child decodes with renderGeneration>0. No searchHighlightCount is tested in readiness.",
+  "actual_failure": {
+    "run": 44665679661,
+    "checkout": "9cc346601bdb3fdda34c2c6ac59894f71dc9ea49",
+    "app": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+    "result": "FAILED count0",
+    "order": 1,
+    "before_any_window_case": true
+  },
+  "captures": {
+    "artifact": 14608653727,
+    "selected_http206_bytes": 15411530,
+    "whole_archive_verified": false,
+    "video_entry": "visual-11/5015DFED-40AD-4830-A96A-592C60452519.mp4",
+    "video_bytes": 14301231,
+    "video_sha256": "1aecae0f195509ec306108cbc35e82a019929d532b3fa9eeb69341d46986ea89",
+    "retained_original_local_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\release-a1-investigation-20261120\\captures-attempt1\\entries\\visual-11\\5015DFED-40AD-4830-A96A-592C60452519.mp4"
+  },
+  "parse": {
+    "command": [
+      "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+      "-frontend",
+      "-parse",
+      "-swift-version",
+      "6",
+      "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\Maktabah-iOSUITests\\Build8401SevenDefectsAcceptanceTests.swift"
+    ],
+    "exit": 0,
+    "warnings": 0
+  },
+  "apple_typecheck": "NOT_RUN",
+  "native_candidate": "NOT_RUN",
+  "claim_limit": "Repairs the observed missing completed-text precondition. Original actual count0 remains failure; video does not count as a passing structured highlight oracle. Native38 must execute the unchanged count>0, native clear, and count0 gates."
+}

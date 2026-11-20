@@ -20,6 +20,27 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
         let readerSurface = app.textViews["reader-text"]
         XCTAssertTrue(waitForElement(readerSurface, timeout: 15.0), "Reader surface must open for search result")
 
+        // A mounted UITextView and its diagnostic child can precede the real
+        // backend text. Require this original reader's actual text before taking
+        // the highlight sample; readiness must not depend on a positive count.
+        let diagnostics = readerSurface.otherElements.matching(
+            identifier: "reader-rendered-highlight-diagnostics")
+        let rendered = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                guard readerSurface.exists,
+                      let text = readerSurface.value as? String,
+                      text.rangeOfCharacter(from: .alphanumerics) != nil,
+                      TestRenderedHighlightSnapshot.fromJSON(text) == nil,
+                      diagnostics.count == 1,
+                      let value = diagnostics.firstMatch.value as? String,
+                      let snapshot = TestRenderedHighlightSnapshot.fromJSON(value)
+                else { return false }
+                return snapshot.renderGeneration > 0
+            }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [rendered], timeout: 6.0), .completed,
+                       "The same original reader must expose rendered book text before sampling highlights")
+
         // A1: Verify rendered search highlights in actual attributed text
         let snapshotBefore = getRenderedHighlightSnapshot()
         if let snapshotBefore {
