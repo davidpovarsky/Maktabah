@@ -1,0 +1,20 @@
+{
+  "at_utc": "2026-11-20T08:30:21.360395+00:00",
+  "base": "07b360406099e545484ad88ae4d44754d75af41f",
+  "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "before_sha256_git_lf": "41ee6ac5e00b7fe89e20875d8284aefffb74fc2406c8d6b05dd0e027aa9b68fd",
+  "after_sha256_git_lf": "387879fcc00f2d90f8bb03319c59faf392f093062fcd0d1551a6c34009f9bb11",
+  "exact_original_action_id": "reader-open-tabs-button",
+  "missing_old_id": "reader-book-tabs-overview",
+  "changed_references": 3,
+  "source_proof": {
+    "Source/Features/Reader/iOS/iOSReaderView.swift": "f7c4dd59cc65242faf7c7bfc3ce5d71478d40ba1acfb1e014935d0cffb68e3b5",
+    "Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift": "6bbf3c0763393bc28fa10a78f01b8c444b041f9b30659375920cc6b985e80fb0"
+  },
+  "exact_inverse": true,
+  "original_assertions_and_test_methods_preserved": true,
+  "product_changed": false,
+  "apple_typecheck": "NOT_RUN",
+  "native": "NOT_RUN",
+  "discovery": "github_native_audit reviewed two actual Phone Release first failures before geometry; original ID absent in Source and original current action proven"
+}

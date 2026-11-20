@@ -537,7 +537,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         XCTAssertEqual(source.first, "otzaria")
         let bookID = try XCTUnwrap(source.count == 3 && source[1].hasPrefix("book:")
             ? Int(source[1].dropFirst("book:".count)) : nil)
-        tap(app.buttons[phone ? "reader-book-tabs-overview" : "reader-tabs-overview"])
+        tap(app.buttons[phone ? "reader-open-tabs-button" : "reader-tabs-overview"])
         let overview = app.descendants(matching: .any)["study-groups-overview"]
         XCTAssertTrue(overview.waitForExistence(timeout: 20))
         let toggle = app.buttons["study-tabs-layout-toggle"]
@@ -644,7 +644,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         let title = app.staticTexts["reader-header-title"].label
         let locator = app.staticTexts["reader-current-locator"].label
         let readerFrame = reader.frame
-        let actionID = phone ? "reader-book-tabs-overview" : "reader-tabs-overview"
+        let actionID = phone ? "reader-open-tabs-button" : "reader-tabs-overview"
         for selectsCurrent in (requiresNonzeroPosition ? [false, true] : [false]) {
             tap(app.buttons[actionID])
             let overview = app.descendants(matching: .any)["study-groups-overview"]
@@ -1124,7 +1124,7 @@ final class FaithfulReaderIPhoneTests: FaithfulReaderUIBase {
             XCTAssertTrue(app.frame.contains(originalBottomAction.frame))
             capture("iphone-original-reader-ipad-flag-\(enabled)")
             if enabled && ProcessInfo.processInfo.environment["FAITHFUL_BASELINE"] != "true" {
-                tap(app.buttons["reader-book-tabs-overview"])
+                tap(app.buttons["reader-open-tabs-button"])
                 let overview = app.descendants(matching: .any)["study-groups-overview"]
                 XCTAssertTrue(overview.waitForExistence(timeout: 20))
                 let toggle = app.buttons["study-tabs-layout-toggle"]
