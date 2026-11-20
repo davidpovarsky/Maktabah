@@ -1,0 +1,46 @@
+{
+  "observedUTC": "2026-11-20T04:00:55.761338+00:00",
+  "status": "VERIFIED_ONE_OWNED_COPY_NO_ENGINE_OPEN",
+  "descriptor": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\input\\fixture-descriptor.json",
+  "inputReceipt": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\artifacts\\miniTest10-v6\\INPUT_VERIFIED.json",
+  "inputReceiptSHA256": "2b61e14f0d8a052f4281ddd8663112cf7ca8e16c5f2b16684aee2ef954661e7f",
+  "databaseSource": "C:\\Users\\DAVID\\Code\\Maktabah-actions-completion-20261120\\build\\actions-native-20261120\\miniTest10\\seforim.db",
+  "databaseSHA256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "pristineIndex": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\artifacts\\miniTest10-v6\\pristine",
+  "publishedFiles": {
+    "d5505a92bd97467a88867ecc6a74de8c.fast": {
+      "bytes": 525291,
+      "sha256": "429cdf186c96da66106a3030efdd80992aa757ad3a64927757eac2a2313644d7"
+    },
+    "d5505a92bd97467a88867ecc6a74de8c.fieldnorm": {
+      "bytes": 75645,
+      "sha256": "97a8dddcc0c7bd2ced2bdc2f4da4d0c385996cacac8472873735049a1a797188"
+    },
+    "d5505a92bd97467a88867ecc6a74de8c.idx": {
+      "bytes": 2333814,
+      "sha256": "e52486a050e44993a2f29cd3550e77ec0bb2932277fbf0abc06baa5ad416bac3"
+    },
+    "d5505a92bd97467a88867ecc6a74de8c.pos": {
+      "bytes": 1531832,
+      "sha256": "33ce86ccbbad16ecaa289484579f38201e3092005533b6e33be064ba6e411659"
+    },
+    "d5505a92bd97467a88867ecc6a74de8c.store": {
+      "bytes": 8258234,
+      "sha256": "20d76fa5fe0c486f55996eefc11607b3df30f34aa0fddf9e00de652fb67f2480"
+    },
+    "d5505a92bd97467a88867ecc6a74de8c.term": {
+      "bytes": 1937923,
+      "sha256": "61054d07ab3d484eadcad2e984602507ece9fcff0f8fc10cc62253b5ab056960"
+    },
+    "meta.json": {
+      "bytes": 3062,
+      "sha256": "871d3ee5c095e6ed7cee6cfd2e66358a2b8e9863718b97ee08d662846beaef3d"
+    }
+  },
+  "sourceAndCopyPayloadHashesBeforeAfterEqual": true,
+  "engineOpened": false,
+  "indexRebuilt": false,
+  "userIndexOpened": false,
+  "sqlOracleSource": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\runtime\\miniTest10-v6\\attempt3\\SQL_ORACLE.json",
+  "sqlOracleSHA256": "d5879e40e597963616499fbc181eedba3c5c09745d460b03b2e57077f41c5be8"
+}

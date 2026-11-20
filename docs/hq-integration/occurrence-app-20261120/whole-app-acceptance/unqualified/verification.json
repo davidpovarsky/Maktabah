@@ -1,0 +1,485 @@
+{
+  "startedUTC": "2026-11-20T04:09:39.127653+00:00",
+  "status": "PASS",
+  "AppleSDK": "NOT_RUN",
+  "NativeUI": "NOT_RUN",
+  "unsafeUserIndexDiagnostics": "NOT_RUN",
+  "qualificationExpected": "unqualified",
+  "inputPayload": {
+    "d5505a92bd97467a88867ecc6a74de8c.fast": {
+      "bytes": 525291,
+      "sha256": "429cdf186c96da66106a3030efdd80992aa757ad3a64927757eac2a2313644d7"
+    },
+    "d5505a92bd97467a88867ecc6a74de8c.fieldnorm": {
+      "bytes": 75645,
+      "sha256": "97a8dddcc0c7bd2ced2bdc2f4da4d0c385996cacac8472873735049a1a797188"
+    },
+    "d5505a92bd97467a88867ecc6a74de8c.idx": {
+      "bytes": 2333814,
+      "sha256": "e52486a050e44993a2f29cd3550e77ec0bb2932277fbf0abc06baa5ad416bac3"
+    },
+    "d5505a92bd97467a88867ecc6a74de8c.pos": {
+      "bytes": 1531832,
+      "sha256": "33ce86ccbbad16ecaa289484579f38201e3092005533b6e33be064ba6e411659"
+    },
+    "d5505a92bd97467a88867ecc6a74de8c.store": {
+      "bytes": 8258234,
+      "sha256": "20d76fa5fe0c486f55996eefc11607b3df30f34aa0fddf9e00de652fb67f2480"
+    },
+    "d5505a92bd97467a88867ecc6a74de8c.term": {
+      "bytes": 1937923,
+      "sha256": "61054d07ab3d484eadcad2e984602507ece9fcff0f8fc10cc62253b5ab056960"
+    },
+    "meta.json": {
+      "bytes": 3062,
+      "sha256": "871d3ee5c095e6ed7cee6cfd2e66358a2b8e9863718b97ee08d662846beaef3d"
+    }
+  },
+  "fixtureInventory": {
+    "Tests/HQ/occurrence-app/OwnerTestAccess.swift": "7e7895d82fa8bc0e3ab32e90b8b8dca6def8f17ec7044190ad33542e997647be",
+    "Tests/HQ/occurrence-app/Package.swift": "50316a1660552987e9780c98183666260af6fa10dcdd9180a6e4b2d3da3b663f",
+    "Tests/HQ/occurrence-app/CASES.json": "88eccacd01ddb9b29c11494a354d9d40c6a45905f5671f773080b3d5213fdc78",
+    "Tests/HQ/occurrence-app/run-acceptance.py": "e70aa64622f52a6684cfb89bbe16c26fda5fa61c25661ae1b5f126d62acb97a0",
+    "Tests/HQ/occurrence-app/prepare-input.py": "ce863b820e19703dc762cf513733869356e8c8487754655baf0320099293a71c"
+  },
+  "sourceCommit": "9080bc07dfb919d10aa86b40b723125f47901cc7",
+  "sourceInventory": {
+    "Source/Otzaria/Search/OtzariaSearchMode.swift": {
+      "sha256Raw": "64f0ebdef73e4e9ee4e84000c4aab5116af6b178abb4f27a8f39fb78fbcc1a3f",
+      "sha256LF": "4d6b3340b0ae26b5a7367038eaab6675a40bac58b989cbe6b1e145e956ac8876",
+      "stagedSHA256": "64f0ebdef73e4e9ee4e84000c4aab5116af6b178abb4f27a8f39fb78fbcc1a3f",
+      "testOnlyAppendix": false
+    },
+    "Source/Otzaria/Search/OtzariaSearchModels.swift": {
+      "sha256Raw": "362664d005182470dac3b96d9d4c631509dd3a280aca223bb4c1a9b511738ecc",
+      "sha256LF": "e75225c23668dc0470b8d350cf50c9231a999e606a25db283f4e002055b151c9",
+      "stagedSHA256": "362664d005182470dac3b96d9d4c631509dd3a280aca223bb4c1a9b511738ecc",
+      "testOnlyAppendix": false
+    },
+    "Source/Otzaria/Search/OtzariaSearchEngineBridge.swift": {
+      "sha256Raw": "35f8fd00e81af13b31c919eaa23e754132ae3df56391df8d573a02e00b7f1496",
+      "sha256LF": "67201861d1cd9e6a287e8f2d252edc48f852b032d728cdfb7f7f9ff506798ceb",
+      "stagedSHA256": "35f8fd00e81af13b31c919eaa23e754132ae3df56391df8d573a02e00b7f1496",
+      "testOnlyAppendix": false
+    },
+    "Source/Otzaria/Search/OtzariaExactOccurrenceModels.swift": {
+      "sha256Raw": "d5b2c7cc4de30f0dd579a0193682bcce64a00604454de85176d21aa983f1c89e",
+      "sha256LF": "8ec1e4a4f834b84e12001e600109fd660e4a38bdcb4a48c3a584da14c2a3fc78",
+      "stagedSHA256": "d5b2c7cc4de30f0dd579a0193682bcce64a00604454de85176d21aa983f1c89e",
+      "testOnlyAppendix": false
+    },
+    "Source/Otzaria/Search/OtzariaExactOccurrenceOperation.swift": {
+      "sha256Raw": "482b266edf323ac49c8d9068ec6474f62e6c0e9fc0d859b1654a54eb9fc53598",
+      "sha256LF": "6b3ada4ad48a7f0b93d274e673bb94c95e0ea51cf9f4321edec297851cd6001c",
+      "stagedSHA256": "482b266edf323ac49c8d9068ec6474f62e6c0e9fc0d859b1654a54eb9fc53598",
+      "testOnlyAppendix": false
+    },
+    "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift": {
+      "sha256Raw": "9d7b4e0dbc3b9ae375d9f44eb997991a9f88f8d2717cab8ad5c0b8cac48f8800",
+      "sha256LF": "1ad1aac7c7471cd94b40c27a3d5a8948ad0e58cd432293f379907d0869b72e3a",
+      "stagedSHA256": "9d7b4e0dbc3b9ae375d9f44eb997991a9f88f8d2717cab8ad5c0b8cac48f8800",
+      "testOnlyAppendix": false
+    },
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactManifest.swift": {
+      "sha256Raw": "770a6f0f8e5752049fd2c98171d7698ea5b91aa3d87d5fb5f08833f2579591e5",
+      "sha256LF": "bd0615f1375b4d5be8b25ce35259a3d35b454638737f91c870c24e0134a48062",
+      "stagedSHA256": "770a6f0f8e5752049fd2c98171d7698ea5b91aa3d87d5fb5f08833f2579591e5",
+      "testOnlyAppendix": false
+    },
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift": {
+      "sha256Raw": "b21a658f50ea570c0a39bf401e310be2f1af45b0842768d4e0a05cd1f0209b3f",
+      "sha256LF": "2a43dd19fdba64d94992a567adc91572830decca14c3f74805d3eab433b0c47e",
+      "stagedSHA256": "b21a658f50ea570c0a39bf401e310be2f1af45b0842768d4e0a05cd1f0209b3f",
+      "testOnlyAppendix": false
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift": {
+      "sha256Raw": "5f25f7fa325ba27cc58fd631ef252cd8e08407f47e1a9dc74d653911893e662c",
+      "sha256LF": "cd20997467a5271a368f9c81e6240dc783aa2b4b903403bd49d24afe66371c27",
+      "stagedSHA256": "5f25f7fa325ba27cc58fd631ef252cd8e08407f47e1a9dc74d653911893e662c",
+      "testOnlyAppendix": false
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfile.swift": {
+      "sha256Raw": "310835c3a943a965e2a13286ebf2a08c7109adba76412b01decb7c8cdf135326",
+      "sha256LF": "3ac83a1f548b6ffb5a9a3a42f50cd25780c3162c077a5731ded94154e50f0348",
+      "stagedSHA256": "310835c3a943a965e2a13286ebf2a08c7109adba76412b01decb7c8cdf135326",
+      "testOnlyAppendix": false
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift": {
+      "sha256Raw": "169fa4fb34f86b9e62934afd07390bf9f7457653149105d8dd4c7494e28aa987",
+      "sha256LF": "b2dcb938d724eb01619e95d14a915f55de069da4b09ac007c15da92ecdd6d84d",
+      "stagedSHA256": "169fa4fb34f86b9e62934afd07390bf9f7457653149105d8dd4c7494e28aa987",
+      "testOnlyAppendix": false
+    },
+    "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift": {
+      "sha256Raw": "4f91544a300f07c4bbbfc3caa3e907cac9a0e6ae48ee9fbe6c1c8f4bce9d371f",
+      "sha256LF": "222a3d0c156a49a5fce593013887c85f2fc9e64c7c6270de3bfa361cb4eb33bf",
+      "stagedSHA256": "629debc691be759f1e792a33b9f3d4426cae41a0d90b56adf91cbfdf523c4a19",
+      "testOnlyAppendix": true
+    },
+    "Source/Core/Database/SQLiteDatabase.swift": {
+      "sha256Raw": "355e4fb166de36e973d4fa6233c090a3ff91d07405de3182f9567de16b5b5f05",
+      "sha256LF": "8bc64d2bb889d90270b56445e0c9f24a73f5af012fd86f45f44ff18d7b2c0b4b",
+      "stagedSHA256": "355e4fb166de36e973d4fa6233c090a3ff91d07405de3182f9567de16b5b5f05",
+      "testOnlyAppendix": false
+    },
+    "Source/Otzaria/Actions/Integration/ActionOccurrenceCoveragePolicy.swift": {
+      "sha256Raw": "7639a143299383ff9bce06f942f5fa8fd7c720d5c3c5fbe8a9fd2092eb20a48e",
+      "sha256LF": "e308e16cc8da3e1efed5abe4a3424fb173095727676caca70dc0bec1894a6e43",
+      "stagedSHA256": "7639a143299383ff9bce06f942f5fa8fd7c720d5c3c5fbe8a9fd2092eb20a48e",
+      "testOnlyAppendix": false
+    },
+    "Source/Otzaria/Actions/Integration/ActionLiveOccurrenceCounter.swift": {
+      "sha256Raw": "a2714a549da0c6f929644dc393d9139d3787d9d224802471e3fa385466e3d8a4",
+      "sha256LF": "61a3cbbd3578713454f20bea7854b7a5bcbc3de396740862a064f64d4ab63312",
+      "stagedSHA256": "a2714a549da0c6f929644dc393d9139d3787d9d224802471e3fa385466e3d8a4",
+      "testOnlyAppendix": false
+    },
+    "Tests/HQ/occurrence-app/OccurrenceAppAcceptance.swift": {
+      "sha256Raw": "4c2ea9ce7b7184fe4bde950832ba9ec097d16d6051e3355a709a06f44db76f91",
+      "sha256LF": "4c2ea9ce7b7184fe4bde950832ba9ec097d16d6051e3355a709a06f44db76f91",
+      "stagedSHA256": "4c2ea9ce7b7184fe4bde950832ba9ec097d16d6051e3355a709a06f44db76f91",
+      "testOnlyAppendix": false
+    },
+    "Tests/HQ/occurrence-app/OccurrenceAppBoundaries.swift": {
+      "sha256Raw": "235d38ca6c08c794bb6ebab0167a17464ff569e2abc7cd508dae531cc61f80cb",
+      "sha256LF": "235d38ca6c08c794bb6ebab0167a17464ff569e2abc7cd508dae531cc61f80cb",
+      "stagedSHA256": "235d38ca6c08c794bb6ebab0167a17464ff569e2abc7cd508dae531cc61f80cb",
+      "testOnlyAppendix": false
+    },
+    "Tests/HQ/occurrence-app/OccurrenceAppCounterCases.swift": {
+      "sha256Raw": "97009a00ef5b1660b036f6b9e93c390561daa916ce23e0366aa693aa730efa1b",
+      "sha256LF": "97009a00ef5b1660b036f6b9e93c390561daa916ce23e0366aa693aa730efa1b",
+      "stagedSHA256": "97009a00ef5b1660b036f6b9e93c390561daa916ce23e0366aa693aa730efa1b",
+      "testOnlyAppendix": false
+    },
+    "Tests/HQ/occurrence-app/OccurrenceAppFixtures.swift": {
+      "sha256Raw": "4be2cda46cd45b22bf164b202a89cb7bd7563f1c99b22056e5b3e24de32796fd",
+      "sha256LF": "4be2cda46cd45b22bf164b202a89cb7bd7563f1c99b22056e5b3e24de32796fd",
+      "stagedSHA256": "4be2cda46cd45b22bf164b202a89cb7bd7563f1c99b22056e5b3e24de32796fd",
+      "testOnlyAppendix": false
+    },
+    "Tests/HQ/occurrence-app/OccurrenceAppOwnerCases.swift": {
+      "sha256Raw": "9bb2aa7205fe20bcb526398fec54d6d7a398a5ec0c9bead97fa0dd743991ff27",
+      "sha256LF": "9bb2aa7205fe20bcb526398fec54d6d7a398a5ec0c9bead97fa0dd743991ff27",
+      "stagedSHA256": "9bb2aa7205fe20bcb526398fec54d6d7a398a5ec0c9bead97fa0dd743991ff27",
+      "testOnlyAppendix": false
+    },
+    "Tests/HQ/occurrence-app/OccurrenceAppPolicyCases.swift": {
+      "sha256Raw": "3eaf3ce0e3956a749e5aad9fcdacbdac32cd675689b76a38ef1876c18faa07c5",
+      "sha256LF": "3eaf3ce0e3956a749e5aad9fcdacbdac32cd675689b76a38ef1876c18faa07c5",
+      "stagedSHA256": "3eaf3ce0e3956a749e5aad9fcdacbdac32cd675689b76a38ef1876c18faa07c5",
+      "testOnlyAppendix": false
+    },
+    "Tests/HQ/occurrence-app/OccurrenceAppQualifiedCases.swift": {
+      "sha256Raw": "a779a7557697ff48b5e1f30d802fde33b775b04f268e6c357ddf7c30bb1eab5c",
+      "sha256LF": "a779a7557697ff48b5e1f30d802fde33b775b04f268e6c357ddf7c30bb1eab5c",
+      "stagedSHA256": "a779a7557697ff48b5e1f30d802fde33b775b04f268e6c357ddf7c30bb1eab5c",
+      "testOnlyAppendix": false
+    },
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": {
+      "sha256Raw": "f2f62c6f9fe76442560bdd2be08320d9e6db3edd79849a4451cead2c63382bab",
+      "sha256LF": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+      "stagedSHA256": "f2f62c6f9fe76442560bdd2be08320d9e6db3edd79849a4451cead2c63382bab",
+      "testOnlyAppendix": false
+    }
+  },
+  "originalCoreInventory": {
+    "Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift": "b45b86613217cb29b5a8ec1e7949e5c0596b667d9c4688eccaa54dd458c4057a",
+    "Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift": "82e9aaf357c02dc71b1fd1351cd9c66bdd8febf32a8601478e78dbb66ed629fc",
+    "Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift": "049d5c042b15047ead280b7a0346598be7e4403ad1aaa7b9b911170195ca3b3c",
+    "Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift": "abe595849a68bc2085ba95989186e687bb7a594d196e9db2530a8008e255f57a",
+    "Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift": "733681a6b082e6742208ea52408f65eee55466e06261fa3d6bbb21f0c5fd8bd8",
+    "Sources/OtzariaActionCore/Contracts/ActionCommentary.swift": "ba5594dac623a0ab538823d82aa651b9f6f6289956eea101f33cb84d67c5ad0c",
+    "Sources/OtzariaActionCore/Contracts/ActionJSON.swift": "d3db8a15f38040009ebfc17500a09fab9a77278afb3e759548ea22dc60e1682a",
+    "Sources/OtzariaActionCore/Contracts/ActionNativeUIFailure.swift": "1252d0c656d3ef692abf3cc7b2d1c4bbb96ccb88167df9324a3db179408cc40f",
+    "Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift": "8ffbf896cf4f5b8380a81b5023b9bd1724b1a4d8ec4f644dc3466044f9080943",
+    "Sources/OtzariaActionCore/Contracts/ActionOccurrenceCount.swift": "09c8cafa679d7935fa81417dc62f2f1b429358962dd77c2f59fcb1ebc1a4f8f6",
+    "Sources/OtzariaActionCore/Contracts/ActionReferences.swift": "fde0a6c25a76c048c30df2ca13acf7e0849ca8a33289424daf59020743aad405",
+    "Sources/OtzariaActionCore/Contracts/ActionRequest.swift": "e0ce60ba449fa879e9c807c8cfc52eac3854ed02d778bd7f1d73fdc6569571fd",
+    "Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift": "ea82447522e138106b85685578b38a203e918c5aea6c6370eb73b5e233a08930",
+    "Sources/OtzariaActionCore/Contracts/ActionSearch.swift": "124e68c87b8598538befde637b4411095fd601981778eaba7eaf8ec9bddd2ea0",
+    "Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift": "418d4015ea20814ba608411cd99154f592c4adbb7a19bfc695cb7dee20b80ea9",
+    "Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift": "7e75bc7f7118c31fa0266094318163b8a1c0a91241b3a3adc830e12241539f4b",
+    "Sources/OtzariaActionCore/Engine/ActionDeadline.swift": "9a627bb057d06f5210076d78732108ef220bd4799f3eb0216978b800c4455c28",
+    "Sources/OtzariaActionCore/Engine/ActionExecutor.swift": "e2600ea5015a7215e7b8affbd1191640d620cb9a1085dd346204726f64c2de2d",
+    "Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift": "3d956c5969861fe5f63d9f2b0b2e48136e81234da5c5c628ae8edce867862eb7",
+    "Sources/OtzariaActionCore/Policy/ActionPolicy.swift": "573a5552c4ccf666f650b46b8a76a9f983a07fae7d40120ff42ab23b5fe64225",
+    "Sources/OtzariaActionCore/Policy/ActionValidation.swift": "53ba35292c7f4c724ec0311ee40b6c4e511ef5f78a35bc3ca904eaf141d24038",
+    "Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift": "8389eae49240d9d26f967721332066d82d4f07e7e37a7aae9638fa5a40a893c1",
+    "Sources/OtzariaActionCore/Ports/ActionPorts.swift": "d8dac3b83d4b0b68a5031677aa12e02c1985765a9562db01b053c7dbd761a1c5",
+    "Sources/OtzariaActionCore/Registry/ActionRegistry.swift": "93e3b7128d9e82d446357cfde655d901170b1d60c35e230e486557c768568f2d",
+    "Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift": "04b7bd6ff34c1664e6dcf6a95540946b0f7dccffdfc6291b4760cf55460be2dd",
+    "Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift": "74c1611564660023b900bcc53be8ae476da51a54db64b0a9617bdc73b9b97549",
+    "Sources/OtzariaActionCore/Resources/action-catalog.v1.json": "21cf2f24255b9bae28fe4725d5394759ec12055e99e37f16fa7140cff755b503",
+    "Sources/OtzariaActionCore/Resources/action-request.v1.schema.json": "5bdd92a543111ede8dfd74c40a284477b26ecf237f1d02b18d7e8a87a76af677",
+    "Sources/OtzariaActionCore/Resources/action-result.v1.schema.json": "f4a25fdcd6aa05e16adaf990b9aa33b12fdc63c513163a23a86feec19ee5b724",
+    "Sources/OtzariaActionCore/Resources/backend-acceptance-cases.v1.json": "678d326932532f267a8a932c286e5cee4b4c982cc9f86ada6238ed532eee85ed",
+    "Sources/OtzariaActionCore/Resources/backend-capability-matrix.v1.json": "e8fb0933325e6c32b52422405e1e4988052d4fd81daac2cff1c019e862ca8965",
+    "Sources/OtzariaActionCore/Resources/examples.v1.json": "939e20a96b34c82699e118d58a9674cd610301f4cf17f451ff9eb93e7ca504a3",
+    "Package.swift": "3987fc6c4d6b2378cc7cf89b44487dbca789980b867476acb4396a73b591be4e"
+  },
+  "wholeOriginalProductionPrefixByteIdentical": true,
+  "ownerAppendixSHA256": "7e7895d82fa8bc0e3ab32e90b8b8dca6def8f17ec7044190ad33542e997647be",
+  "staticLibrarySHA256": "7f23e3e87aa604b410f9cd21f1b56aab2d30596c697d46c8fb19ad160e34c7a0",
+  "engineCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+  "engineCheckout": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\Vendor\\OtzariaSearchEngine\\Checkout\\otzaria_search_engine",
+  "sqliteHeader": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\um\\winsqlite\\winsqlite3.h",
+  "sqliteHeaderSHA256": "27382a4a73e9dfb7ad71c99725015e0113d2a0d1e0e4917d2a9d0a173700bcb1",
+  "officialDependencies": {
+    "swift-crypto": [
+      "https://github.com/apple/swift-crypto.git",
+      "1b6b2e274e85105bfa155183145a1dcfd63331f1"
+    ],
+    "swift-asn1": [
+      "https://github.com/apple/swift-asn1.git",
+      "917b472dbe53ba699cbb0495f9a95a084bc6364d"
+    ]
+  },
+  "resolveCommand": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+    "package",
+    "--package-path",
+    "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\package",
+    "--scratch-path",
+    "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package\\.build",
+    "--skip-update",
+    "resolve"
+  ],
+  "resolveExit": 0,
+  "dependencyCheckoutsBefore": {
+    "swift-crypto": {
+      "head": "1b6b2e274e85105bfa155183145a1dcfd63331f1",
+      "clean": true,
+      "checkout": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package\\.build\\checkouts\\swift-crypto",
+      "checkoutOrigin": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package\\.build\\repositories\\swift-crypto-7e0614ea",
+      "officialOrigin": "https://github.com/apple/swift-crypto.git"
+    },
+    "swift-asn1": {
+      "head": "917b472dbe53ba699cbb0495f9a95a084bc6364d",
+      "clean": true,
+      "checkout": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package\\.build\\checkouts\\swift-asn1",
+      "checkoutOrigin": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package\\.build\\repositories\\swift-asn1-7065ad2c",
+      "officialOrigin": "https://github.com/apple/swift-asn1.git"
+    }
+  },
+  "compileCommand": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+    "build",
+    "--package-path",
+    "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\package",
+    "--scratch-path",
+    "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package\\.build",
+    "--disable-automatic-resolution",
+    "--product",
+    "OtzariaOccurrenceAppAcceptance",
+    "--jobs",
+    "1"
+  ],
+  "compileExit": 0,
+  "resources": {
+    "dictionary.json": {
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\Vendor\\OtzariaSearchEngine\\Resources\\dictionary.json",
+      "sha256": "cc3d02655bd3f5a8f7581cf71623cf60b3cd6ee821686cebf149f755272e9a69",
+      "bytes": 451576
+    },
+    "Acronyms.json": {
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\Vendor\\OtzariaSearchEngine\\Resources\\Acronyms.json",
+      "sha256": "cb101c9feb87394b133098bf569bd9af167babce0f83ab3b151e2599c665389f",
+      "bytes": 1366445
+    },
+    "miniTest10.profile.json": {
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\Source\\Otzaria\\DataProfiles\\miniTest10.profile.json",
+      "sha256": "6b4913f7961efce4028cf34ac51f726586a67d6230c31ecbed5b0e57ae75a658",
+      "bytes": 1350
+    }
+  },
+  "executableSHA256": "968131fbdc9c88c3627a23fa2123e3dda87c50e047514cca218e8d20745e7381",
+  "runtimeCommand": [
+    "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package\\.build\\x86_64-unknown-windows-msvc\\debug\\OtzariaOccurrenceAppAcceptance.exe",
+    "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\input\\fixture-descriptor.json",
+    "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\unqualified-attempt1\\runtime-result.json",
+    "unqualified",
+    "9080bc07dfb919d10aa86b40b723125f47901cc7"
+  ],
+  "runtimeExit": 0,
+  "runtime": {
+    "AppleSDK": "NOT_RUN",
+    "CorePermissionAdmission": "NOT_RUN: direct trusted app-port fixture; whole original Core DTOs compiled",
+    "NativeUI": "NOT_RUN",
+    "actualOriginalOwner": true,
+    "cases": [
+      {
+        "category": "provenance",
+        "name": "actual_original_C_source_and_producer_identity",
+        "passed": true,
+        "seconds": 0.000400543212890625
+      },
+      {
+        "category": "provenance",
+        "name": "original_profile_and_installation_model",
+        "passed": true,
+        "seconds": 0.001995086669921875
+      },
+      {
+        "category": "authentication",
+        "name": "actual_SHA256_known_vector",
+        "passed": true,
+        "seconds": 0.00016021728515625
+      },
+      {
+        "category": "authentication",
+        "name": "complete_original_mini_and_full_manifests",
+        "passed": true,
+        "seconds": 0.0010204315185546875
+      },
+      {
+        "category": "authentication",
+        "name": "legitimate_original_Codable_reencoding",
+        "passed": true,
+        "seconds": 0.003269195556640625
+      },
+      {
+        "category": "authentication",
+        "name": "twenty_nested_complete_manifest_tamper_rejections",
+        "passed": true,
+        "seconds": 0.05327415466308594
+      },
+      {
+        "category": "scope",
+        "name": "canonical_scope_UInt64_and_200_work_bound",
+        "passed": true,
+        "seconds": 0.0035457611083984375
+      },
+      {
+        "category": "scope",
+        "name": "noncanonical_duplicate_and_foreign_scopes_rejected",
+        "passed": true,
+        "seconds": 0.0001659393310546875
+      },
+      {
+        "category": "scope",
+        "name": "unsupported_modes_units_backends_and_text",
+        "passed": true,
+        "seconds": 0.0001277923583984375
+      },
+      {
+        "category": "admission",
+        "name": "actual_production_registry_controls_coverage",
+        "passed": true,
+        "seconds": 0.0004520416259765625
+      },
+      {
+        "category": "owner",
+        "name": "original_owner_initial_publish_clear_and_ABA",
+        "passed": true,
+        "seconds": 0.0002193450927734375
+      },
+      {
+        "category": "owner",
+        "name": "original_owner_same_pair_revokes_old_revision",
+        "passed": true,
+        "seconds": 0.00011444091796875
+      },
+      {
+        "category": "owner",
+        "name": "original_owner_16000_publications_24000_coherent_snapshots",
+        "passed": true,
+        "seconds": 0.028202056884765625
+      },
+      {
+        "category": "counter",
+        "name": "unopened_app_discovery_and_count_never_construct_engine",
+        "passed": true,
+        "seconds": 0.06551551818847656
+      },
+      {
+        "category": "counter",
+        "name": "unknown_external_and_noncanonical_managed_sources_fail_closed",
+        "passed": true,
+        "seconds": 0.03494071960449219
+      },
+      {
+        "category": "counter",
+        "name": "foreign_backend_readiness_and_count_rejected",
+        "passed": true,
+        "seconds": 0.0001983642578125
+      },
+      {
+        "category": "counter",
+        "name": "already_elapsed_absolute_deadline_has_no_scalar",
+        "passed": true,
+        "seconds": 5.14984130859375e-05
+      },
+      {
+        "category": "counter",
+        "name": "already_cancelled_task_has_no_scalar",
+        "passed": true,
+        "seconds": 0.0002231597900390625
+      },
+      {
+        "category": "metadata",
+        "name": "three_original_metadata_files_empty_fail_closed",
+        "passed": true,
+        "seconds": 0.2593269348144531
+      },
+      {
+        "category": "metadata",
+        "name": "three_original_metadata_files_oversized_fail_closed",
+        "passed": true,
+        "seconds": 0.3758125305175781
+      },
+      {
+        "category": "metadata",
+        "name": "three_original_metadata_files_malformed_fail_closed",
+        "passed": true,
+        "seconds": 0.26178932189941406
+      },
+      {
+        "category": "metadata",
+        "name": "three_original_metadata_files_directory_fail_closed",
+        "passed": true,
+        "seconds": 0.22776412963867188
+      },
+      {
+        "category": "metadata",
+        "name": "three_original_metadata_files_missing_fail_closed",
+        "passed": true,
+        "seconds": 0.15937232971191406
+      },
+      {
+        "category": "admission",
+        "name": "valid_original_metadata_cannot_override_OFF_registry",
+        "passed": true,
+        "seconds": 0.06851005554199219
+      }
+    ],
+    "failed": 0,
+    "passed": 24,
+    "positiveManagedNativeCounting": "NOT_RUN: original qualification registry is OFF",
+    "qualificationExpected": false,
+    "sourceCommit": "9080bc07dfb919d10aa86b40b723125f47901cc7",
+    "unsafeUserPathDiagnostics": "NOT_RUN",
+    "wholeProductionFiles": true
+  },
+  "exactUniqueCaseInventoryVerified": true,
+  "caseManifestSHA256": "88eccacd01ddb9b29c11494a354d9d40c6a45905f5671f773080b3d5213fdc78",
+  "dependencyCheckoutsAfter": {
+    "swift-crypto": {
+      "head": "1b6b2e274e85105bfa155183145a1dcfd63331f1",
+      "clean": true,
+      "checkout": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package\\.build\\checkouts\\swift-crypto",
+      "checkoutOrigin": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package\\.build\\repositories\\swift-crypto-7e0614ea",
+      "officialOrigin": "https://github.com/apple/swift-crypto.git"
+    },
+    "swift-asn1": {
+      "head": "917b472dbe53ba699cbb0495f9a95a084bc6364d",
+      "clean": true,
+      "checkout": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package\\.build\\checkouts\\swift-asn1",
+      "checkoutOrigin": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package\\.build\\repositories\\swift-asn1-7065ad2c",
+      "officialOrigin": "https://github.com/apple/swift-asn1.git"
+    }
+  },
+  "publishedPayloadHashesBeforeAfterEqual": true,
+  "seconds": 179.39,
+  "finishedUTC": "2026-11-20T04:12:38.519407+00:00"
+}

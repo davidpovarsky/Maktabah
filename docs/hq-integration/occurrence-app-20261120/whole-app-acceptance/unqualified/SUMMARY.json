@@ -1,0 +1,38 @@
+{
+  "sourceCommit": "9080bc07dfb919d10aa86b40b723125f47901cc7",
+  "compiledWholeProductionFiles": 15,
+  "CorePackage": "whole original source and resources; exact inventory in verification.json",
+  "originalOwnerPrefixUnmodified": true,
+  "ownerAccess": "same-file appendix on copied source only",
+  "status": "PASS",
+  "executedCases": 24,
+  "passed": 24,
+  "failed": 0,
+  "caseNamesExactUnique": true,
+  "compileExit": 0,
+  "runtimeExit": 0,
+  "totalSeconds": 179.39,
+  "compileWarnings": [],
+  "staticLibrarySHA256": "7f23e3e87aa604b410f9cd21f1b56aab2d30596c697d46c8fb19ad160e34c7a0",
+  "executableSHA256": "968131fbdc9c88c3627a23fa2123e3dda87c50e047514cca218e8d20745e7381",
+  "engineCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+  "originalIndexProducer": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+  "qualificationRegistry": "OFF; actual candidate metadata does not authorize coverage",
+  "positiveManagedCounting": "NOT_RUN; nine follow-up cases compile but are not executed",
+  "CorePermissionAdmission": "NOT_RUN; direct trusted app-port fixture with actual Core DTOs",
+  "AppleSDK": "NOT_RUN",
+  "NativeUI": "NOT_RUN",
+  "physicalDevices": "NOT_RUN",
+  "fullV32ManagedAppCount": "NOT_RUN",
+  "originalUserPathDiagnostics": "NOT_RUN",
+  "attempts": [
+    {
+      "name": "unqualified-attempt1",
+      "status": "PASS",
+      "executed": 24,
+      "failed": 0
+    }
+  ],
+  "publishedOwnedPayloadHashesBeforeAfterEqual": true,
+  "packagingNote": "A post-run evidence copier failed on JSON true/false Python literal decoding after byte-identical copies were made; resumed with json.loads and verified those copies. This did not execute or change a test/source."
+}
