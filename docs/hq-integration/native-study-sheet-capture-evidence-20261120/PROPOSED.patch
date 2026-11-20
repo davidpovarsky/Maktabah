@@ -1,0 +1,1264 @@
+--- prior/Scripts/CI/release96-capture-evidence.py
++++ candidate/Scripts/CI/native-study-sheet-capture-evidence.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Verify and select historical Release96 evidence. Executes no app or Native test."""
++"""Verify and select original SideSheet evidence. Executes no app or Native test."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -21,16 +21,16 @@
+ 
+ REPOSITORY = "davidpovarsky/Maktabah"
+ REPOSITORY_ID = 1280062128
+-BASE = "e603d8182a1c10c4b37b14c92b5f0bc3829edea8"
+-BRANCH = "codex/otzaria-release96-capture-evidence-20261120"
+-WORKFLOW = ".github/workflows/otzaria-release96-capture-evidence.yml"
+-DRIVER = "Scripts/CI/release96-capture-evidence.py"
+-TESTS = "Scripts/CI/test-release96-capture-evidence.py"
+-MANIFEST = "Scripts/CI/release96-capture-evidence.json"
++BASE = "28befd6ef09310eb4becc8ee64e43cba1dc3e00d"
++BRANCH = "codex/otzaria-native-study-sheet-capture-evidence-20261120"
++WORKFLOW = ".github/workflows/otzaria-native-study-sheet-capture-evidence.yml"
++DRIVER = "Scripts/CI/native-study-sheet-capture-evidence.py"
++TESTS = "Scripts/CI/test-native-study-sheet-capture-evidence.py"
++MANIFEST = "Scripts/CI/native-study-sheet-capture-evidence.json"
+ SOURCE_PATHS = (WORKFLOW, DRIVER, TESTS, MANIFEST)
+-DOC_PREFIX = "docs/hq-integration/release96-capture-evidence-20261120/"
++DOC_PREFIX = "docs/hq-integration/native-study-sheet-capture-evidence-20261120/"
+ CHUNK = 1024 * 1024
+-SELECTED_COUNT = 20
++SELECTED_COUNT = 119
+ MAX_SELECTED_TOTAL_BYTES = 128 * CHUNK
+ MAX_SELECTED_VIDEO_BYTES = 64 * CHUNK
+ MAX_OTHER_SELECTED_BYTES = 8 * CHUNK
+@@ -131,7 +131,7 @@
+         return urllib.request.Request("https://api.github.com/" + route, headers={
+             "Authorization": "Bearer " + self.token,
+             "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28",
+-            "User-Agent": "otzaria-release96-evidence-reader",
++            "User-Agent": "otzaria-native-study-sheet-evidence-reader",
+         })
+ 
+     def json(self, route):
+@@ -174,7 +174,7 @@
+         host = safe_storage_url(url)
+         # A NEW request and a separate no-redirect opener. No token/header forwarding.
+         request = urllib.request.Request(url, headers={
+-            "Accept": "application/octet-stream", "User-Agent": "otzaria-release96-evidence-reader"})
++            "Accept": "application/octet-stream", "User-Agent": "otzaria-native-study-sheet-evidence-reader"})
+         checkpoint(self.deadline)
+         digest, received = hashlib.sha256(), 0
+         destination.parent.mkdir(parents=True, exist_ok=True)
+@@ -352,7 +352,7 @@
+         for label, value in zip(("RUN", "ARTIFACT", "JOB"), metadata):
+             write_json(output / ("SOURCE_" + label + "_BEFORE.json"), value)
+         validate_metadata(*metadata, contract)
+-        archive = cache / "artifact-14647594631.zip"
++        archive = cache / "artifact-14671753925.zip"
+         downloaded = reader.download(contract["sourceArtifact"]["id"], archive,
+                                      contract["sourceArtifact"]["size_in_bytes"],
+                                      contract["sourceArtifact"]["digest"].removeprefix("sha256:"))
+--- prior/Scripts/CI/test-release96-capture-evidence.py
++++ candidate/Scripts/CI/test-native-study-sheet-capture-evidence.py
+@@ -16,10 +16,10 @@
+ import zipfile
+ 
+ HERE = Path(__file__).resolve().parent
+-SPEC = importlib.util.spec_from_file_location("evidence", HERE / "release96-capture-evidence.py")
++SPEC = importlib.util.spec_from_file_location("evidence", HERE / "native-study-sheet-capture-evidence.py")
+ M = importlib.util.module_from_spec(SPEC)
+ SPEC.loader.exec_module(M)
+-CONTRACT = json.loads((HERE / "release96-capture-evidence.json").read_bytes())
++CONTRACT = json.loads((HERE / "native-study-sheet-capture-evidence.json").read_bytes())
+ 
+ 
+ def metadata():
+@@ -27,9 +27,9 @@
+     run.update(repository={"id": 1280062128, "full_name": "davidpovarsky/Maktabah"},
+                head_repository={"id": 1280062128, "full_name": "davidpovarsky/Maktabah"})
+     artifact = copy.deepcopy(CONTRACT["sourceArtifact"])
+-    artifact["workflow_run"] = {"id": 44723918854, "repository_id": 1280062128,
+-        "head_repository_id": 1280062128, "head_sha": "60a57972acb28739ec738565083bf17fb7503028",
+-        "head_branch": "codex/otzaria-release96-signature-reviewed-20261120"}
++    artifact["workflow_run"] = {"id": 44811999303, "repository_id": 1280062128,
++        "head_repository_id": 1280062128, "head_sha": "a1d11a78152f9d6826c90646fcd72cf7711f12ff",
++        "head_branch": "codex/otzaria-native-study-sheet-native-20261120"}
+     job = copy.deepcopy(CONTRACT["sourceJob"])
+     job["steps"] = [copy.deepcopy(CONTRACT["uploadStep"])]
+     return run, artifact, job
+@@ -44,20 +44,20 @@
+     def test_original_failed_run_with_successful_upload_is_accepted_as_evidence_only(self):
+         M.validate_metadata(*metadata(), CONTRACT)
+         self.assertEqual(CONTRACT["sourceRun"]["conclusion"], "failure")
+-        self.assertEqual(CONTRACT["sourceArtifact"]["size_in_bytes"], 3271556396)
+-
+-    def test_wrong_run(self): self.reject(0, "id", 44723918855)
++        self.assertEqual(CONTRACT["sourceArtifact"]["size_in_bytes"], 576476315)
++
++    def test_wrong_run(self): self.reject(0, "id", 44811999304)
+     def test_wrong_head(self): self.reject(0, "head_sha", "0" * 40)
+     def test_wrong_attempt(self): self.reject(0, "run_attempt", 2)
+     def test_boolean_attempt_is_not_integer(self): self.reject(0, "run_attempt", True)
+     def test_success_is_not_substituted_for_failure(self): self.reject(0, "conclusion", "success")
+     def test_wrong_repository(self): self.reject(0, "repository", {"id": 1, "full_name": M.REPOSITORY})
+     def test_wrong_artifact(self): self.reject(1, "id", 14632383919)
+-    def test_wrong_artifact_size(self): self.reject(1, "size_in_bytes", 3271556395)
++    def test_wrong_artifact_size(self): self.reject(1, "size_in_bytes", 576476314)
+     def test_wrong_artifact_digest(self): self.reject(1, "digest", "sha256:" + "0" * 64)
+     def test_expired_artifact(self): self.reject(1, "expired", True)
+     def test_wrong_artifact_run(self): self.reject(1, "workflow_run", {"id": 1})
+-    def test_wrong_job(self): self.reject(2, "id", 136270631606)
++    def test_wrong_job(self): self.reject(2, "id", 136551383132)
+     def test_wrong_job_attempt(self): self.reject(2, "run_attempt", 2)
+     def test_wrong_job_head(self): self.reject(2, "head_sha", "0" * 40)
+ 
+@@ -71,7 +71,7 @@
+ 
+     def test_upload_window_is_checked_independently(self):
+         values = list(metadata()); contract = copy.deepcopy(CONTRACT)
+-        values[1]["created_at"] = contract["sourceArtifact"]["created_at"] = "2026-11-20T16:29:07Z"
++        values[1]["created_at"] = contract["sourceArtifact"]["created_at"] = "2026-11-20T21:41:07Z"
+         with self.assertRaisesRegex(M.Refusal, "artifact_upload_window"):
+             M.validate_metadata(*values, contract)
+ 
+@@ -187,7 +187,13 @@
+         self.assertFalse((self.root / "result/entries").exists())
+ 
+     def test_video_selected_member_limit(self):
+-        path, contract = self.make()
++        # This real selection contains no video; retain the original video-bound
++        # refusal with an explicit synthetic selected payload in this control only.
++        old = CONTRACT["selectedMembers"][0]["path"]
++        video = "visual-11-reader/synthetic-control-only.mp4"
++        self.payloads[video] = self.payloads.pop(old)
++        path, contract = self.make()
++        contract["selectedMembers"][0]["path"] = video
+         with mock.patch.object(M, "MAX_SELECTED_VIDEO_BYTES", 1):
+             with self.assertRaisesRegex(M.Refusal, "selected_member_limit"):
+                 self.verify(path, contract)
+@@ -214,7 +220,7 @@
+         storage = Opener(Response(data, storage_status))
+         reader = M.GitHubReader("test-token-not-real", time.monotonic() + 20, api, storage)
+         with tempfile.TemporaryDirectory() as tmp:
+-            value = reader.download(14647594631, Path(tmp) / "source.zip",
++            value = reader.download(14671753925, Path(tmp) / "source.zip",
+                                     len(data) if expected_size is None else expected_size,
+                                     hashlib.sha256(data).hexdigest() if expected_sha is None else expected_sha)
+         return value, api, storage
+--- prior/Scripts/CI/release96-capture-evidence.json
++++ candidate/Scripts/CI/native-study-sheet-capture-evidence.json
+@@ -1,190 +1,876 @@
+ {
+   "limitations": [
+-    "The original workflow and Native stage failed; production was skipped. They remain failed/unqualified.",
+-    "The original matrix ended at its outer bound; complete iPad11 results do not qualify interrupted later lanes.",
+-    "This processor proves full artifact integrity and exact extraction only; it performs no app, test, UI or Swift execution.",
+-    "The capture selection is for evidence of the existing failures, not an oracle alteration, image normalization or fixed-product PASS."
++    "Original iPad11 Native outcome remains 2 passed and 9 failed; this route does not change any acceptance result.",
++    "All eleven original cases are represented by their original attachment manifest; exact selected captures cover the nine failed cases.",
++    "Complete original archive SHA and all member CRCs are verified before any selected bytes are published.",
++    "No video decoding, image editing, test rerun, simulator, app, Swift, or product execution occurs."
+   ],
+   "limits": {
+-    "exactSelectedMembers": 20,
++    "exactSelectedMembers": 119,
+     "maxExpandedArchiveBytes": 8589934592,
+     "maxOtherSelectedBytes": 8388608,
+     "maxSelectedTotalBytes": 134217728,
+     "maxSelectedVideoBytes": 67108864
+   },
+-  "originalApplicationSource": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
++  "originalApplicationSource": "353888ed645c135da9cb229713d17a4594d1edb6",
+   "schemaVersion": 1,
+-  "scope": "Read-only processing of historical Release96 captures; 0 new Native/app/test executions.",
++  "scope": "Read-only processing of original SideSheet iPad11 captures; 0 new Native/app/test executions.",
+   "selectedMembers": [
+     {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+-      "exportLogLine": 17282,
+-      "path": "visual-11/9087306E-25E5-4E0D-813E-3914BDAA5E1C.txt",
+-      "purpose": "candidate-search-landscape-ui-tree_0_B988832E-8279-44A9-9297-83C7002D08BC.txt"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+-      "exportLogLine": 17283,
+-      "path": "visual-11/2FAF321F-D2D9-4F94-A7BF-26EA71FF44E2.png",
+-      "purpose": "candidate-search-landscape_0_8D0FF559-AAF9-49E2-93FF-E7C4D4A8E0DC.png"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+-      "exportLogLine": 17284,
+-      "path": "visual-11/51712312-C0CC-4E1B-A8BA-C12F7CF3B721.txt",
+-      "purpose": "candidate-flags-off-search-landscape-ui-tree_0_CCECB803-ED64-4902-8A9A-1EDC45E12382.txt"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+-      "exportLogLine": 17285,
+-      "path": "visual-11/C3D2C8DB-A4EC-48F1-A7CB-8F35953D6FF7.png",
+-      "purpose": "candidate-flags-off-search-landscape_0_A95396C2-3B58-41A5-AEE8-5B80C290BDA6.png"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+-      "exportLogLine": 17289,
+-      "path": "visual-11/89D32B28-9D7A-4E7F-8283-9158A22CA742.txt",
+-      "purpose": "candidate-search-portrait-ui-tree_0_865FD378-2D0C-4243-A4E1-B7CF51B44AD8.txt"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+-      "exportLogLine": 17290,
+-      "path": "visual-11/F743CD9B-9F61-41F1-837D-CE10BAD33B84.png",
+-      "purpose": "candidate-search-portrait_0_07983324-E266-4219-8EBD-D647937F9D51.png"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+-      "exportLogLine": 17291,
+-      "path": "visual-11/44EF8C0A-7504-4ACC-A4FE-CB71B481B51F.txt",
+-      "purpose": "candidate-flags-off-search-portrait-ui-tree_0_073D91D7-8DFB-432D-8103-B9C331451194.txt"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+-      "exportLogLine": 17292,
+-      "path": "visual-11/80196B61-0CF1-4629-9EF9-2E3934E92C1F.png",
+-      "purpose": "candidate-flags-off-search-portrait_0_C6481197-B275-4684-B79D-CAE5A9FA3942.png"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+-      "exportLogLine": 17306,
+-      "path": "visual-11/84658947-E38E-4897-9C93-051C5EE8D1B6.txt",
+-      "purpose": "candidate-studyCommentaries-landscape-ui-tree_0_C4767859-9439-421A-BA5A-3D4BBFA618B9.txt"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+-      "exportLogLine": 17307,
+-      "path": "visual-11/5C0F6368-4710-4B02-B7E1-D741A0ECC91D.png",
+-      "purpose": "candidate-studyCommentaries-landscape_0_3A498D73-21AF-42E6-B05B-22D30D0651F1.png"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+-      "exportLogLine": 17314,
+-      "path": "visual-11/3AAD5D52-661F-4169-A291-57B649A0183F.txt",
+-      "purpose": "candidate-studyCommentaries-portrait-ui-tree_0_B49C7FF7-FA53-4904-8E64-18B1DC56C30A.txt"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+-      "exportLogLine": 17315,
+-      "path": "visual-11/CEABA033-57C6-496F-8FD9-A2D9A1631067.png",
+-      "purpose": "candidate-studyCommentaries-portrait_0_FD2DB57C-47C2-4D21-8FD8-7C3802637E90.png"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+-      "exportLogLine": 17492,
+-      "path": "visual-11/483A02B8-10EB-45EE-AB1E-E9EB082019BF.txt",
+-      "purpose": "candidate-pointer-over-compact-search-ui-tree_0_8B90982A-160D-4844-8062-2557C24B0974.txt"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+-      "exportLogLine": 17493,
+-      "path": "visual-11/2753D740-F1C8-4E29-9234-8DEC8B7B3729.png",
+-      "purpose": "candidate-pointer-over-compact-search_0_DBC0D146-D337-46FC-9100-192CF639522B.png"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+-      "exportLogLine": 17485,
+-      "path": "visual-11/2BDDCC3D-AC17-4AFF-BE03-F6474C702803.txt",
+-      "purpose": "Debug description for `\"reader-library-command-palette\" Any`_0_9CDDA8E6-3F5B-4407-9BFB-C0835BFDD081.txt"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+-      "exportLogLine": 17487,
+-      "path": "visual-11/D80AC0AA-8946-45F0-91D3-D669C43663CA",
+-      "purpose": "Synthesized Event 2026-11-20 at 12.48.21 PM"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+-      "exportLogLine": 17497,
+-      "path": "visual-11/2C13E821-26A3-4178-B3F3-A8C86797F2C7.mp4",
+-      "purpose": "Screen Recording 2026-11-20 at 12.47.26 PM.mp4"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+-      "exportLogLine": 17956,
+-      "path": "visual-11/969E50F2-BF3F-426A-80DA-A2F17D5AA9CE",
+-      "purpose": "Synthesized Event 2026-11-20 at 01.23.45 PM"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+-      "exportLogLine": 17957,
+-      "path": "visual-11/ECE45368-7CE9-4E05-8FE1-9B607FE14DEA",
+-      "purpose": "Synthesized Event 2026-11-20 at 01.23.35 PM"
+-    },
+-    {
+-      "caseId": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+-      "exportLogLine": 17958,
+-      "path": "visual-11/76A11742-C49C-44D6-9A3F-462FC322167C.mp4",
+-      "purpose": "Screen Recording 2026-11-20 at 01.23.13 PM.mp4"
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
++      "exportLogLine": 2174,
++      "path": "visual-11-reader/EF063B99-608B-4B70-883C-0382D7E6251C.png",
++      "purpose": "r27-final-native-screen_0_2F4CF114-9BC4-4EB2-BFB7-E56244035E3D.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
++      "exportLogLine": 2175,
++      "path": "visual-11-reader/B2301AC3-140E-436B-AF3E-BEB6636CD0EC.txt",
++      "purpose": "r27-final-native-hierarchy_0_458F36EF-55A8-46DD-BF6D-3532455DA4C9.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
++      "exportLogLine": 2176,
++      "path": "visual-11-reader/DE9F4CA3-C164-4D73-9362-6FDE1147B337.json",
++      "purpose": "system-study-final-actual-views_0_36BAD794-BD88-4753-A4EE-5EC9A74D9728.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
++      "exportLogLine": 2177,
++      "path": "visual-11-reader/0A334C58-202B-4DF1-BAAE-488D1139AB13.txt",
++      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_77335992-FE6C-4B75-9855-DF88B7489313.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
++      "exportLogLine": 2178,
++      "path": "visual-11-reader/2BF13144-042D-424B-BD73-FCBEA0DB6314.png",
++      "purpose": "DIAGNOSTIC-system-study-final_0_27E37167-35D1-4C1E-8B63-2C4BE2AC1E18.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
++      "exportLogLine": 2181,
++      "path": "visual-11-reader/97966BF6-4ED9-4B62-8E5B-9491E55F4C2B.json",
++      "purpose": "system-study-opened-actual-views_0_B4507D3F-C9D1-47DC-BDA1-91074C96276E.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
++      "exportLogLine": 2182,
++      "path": "visual-11-reader/5BD72616-7F9B-4170-AC8C-F49A5E609C51.txt",
++      "purpose": "DIAGNOSTIC-system-study-opened-ui-tree_0_33218EB9-8248-4533-B561-F5B637753D3E.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
++      "exportLogLine": 2183,
++      "path": "visual-11-reader/E6BD3210-609D-4F21-A919-6D22AC0197B3.png",
++      "purpose": "DIAGNOSTIC-system-study-opened_0_9C25D11A-CE3F-4A82-B443-3F6F75DBD816.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
++      "exportLogLine": 2186,
++      "path": "visual-11-reader/E99FC6EC-64C5-4E9C-9AA5-FF84105259C8.txt",
++      "purpose": "system-study-reader-before-open-ui-tree_0_097ADB4E-E020-4A0D-8CCB-53758C794CC6.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
++      "exportLogLine": 2187,
++      "path": "visual-11-reader/C39C4129-96DB-4BA0-83E1-AC9A2B3636D5.png",
++      "purpose": "system-study-reader-before-open_0_6578AA27-B038-4094-BB9C-5C569A465F27.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
++      "exportLogLine": 2192,
++      "path": "visual-11-reader/63E7EDCB-B2D3-4EC1-8ACC-6473FF19153F.png",
++      "purpose": "r27-final-native-screen_0_5153E431-2B59-46B1-BC00-241AF9AC2DC5.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
++      "exportLogLine": 2193,
++      "path": "visual-11-reader/10FECB15-9C92-4B14-A32F-8E840DE9A800.txt",
++      "purpose": "r27-final-native-hierarchy_0_EA7589B5-3ADC-47FC-8CB1-674578A75154.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
++      "exportLogLine": 2194,
++      "path": "visual-11-reader/112C7858-1218-479E-BC02-68F9F74455BC.json",
++      "purpose": "system-study-final-actual-views_0_E4548552-C6DB-4298-99FF-148968AA94C3.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
++      "exportLogLine": 2195,
++      "path": "visual-11-reader/9ED9C672-76FF-4FF8-AA93-CF9F10498466.txt",
++      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_602EEC0E-A823-4AB9-96E1-DD90F1CD934C.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
++      "exportLogLine": 2196,
++      "path": "visual-11-reader/D79890D8-B459-4AB1-9480-9245FAB59384.png",
++      "purpose": "DIAGNOSTIC-system-study-final_0_B1EDFA06-05F4-4F5F-9790-8ECD3C8C8F2E.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
++      "exportLogLine": 2199,
++      "path": "visual-11-reader/0453D38E-8C3D-41EC-A2BC-3B1C8FEB4E01.json",
++      "purpose": "system-study-opened-actual-views_0_3922D9DA-DF1E-4EFB-8F49-78A76A26AEEF.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
++      "exportLogLine": 2200,
++      "path": "visual-11-reader/7A1018B1-2B84-48A6-BAF7-2577C33A91C0.txt",
++      "purpose": "DIAGNOSTIC-system-study-opened-ui-tree_0_07B568F8-350D-423F-9286-070D652E2CE5.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
++      "exportLogLine": 2201,
++      "path": "visual-11-reader/C85F8691-8A92-4C44-8AE0-4CCF6F895B24.png",
++      "purpose": "DIAGNOSTIC-system-study-opened_0_FB196F34-2E5C-4EB5-A52D-A798D80077CA.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
++      "exportLogLine": 2204,
++      "path": "visual-11-reader/3A1EC7A7-1942-4665-99E3-E83D80C86F5B.txt",
++      "purpose": "system-study-reader-before-open-ui-tree_0_110F7FC2-3E6A-415B-9F82-7B905A5CBA6F.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
++      "exportLogLine": 2205,
++      "path": "visual-11-reader/7C705865-0F20-4F1F-A369-174548DD213B.png",
++      "purpose": "system-study-reader-before-open_0_865DC780-E9F8-48B9-80D4-F114372E6B50.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
++      "exportLogLine": 2207,
++      "path": "visual-11-reader/8667D2FC-DC72-4776-ACE8-A7CA3F305E70.txt",
++      "purpose": "Debug description for `\"reader-text\" TextView`_0_E2BB872F-0B5D-4C26-B280-3F6A089E8FBB.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2213,
++      "path": "visual-11-reader/690F5A6C-E4DC-48B8-99A8-9F18375FF1F5.png",
++      "purpose": "r27-final-native-screen_0_6AA8E02E-3BD8-4129-A342-C0C3DFC80BE9.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2214,
++      "path": "visual-11-reader/01F5480C-F43C-4F33-B8FD-F3057940BBEB.txt",
++      "purpose": "r27-final-native-hierarchy_0_678BABEC-69F3-44B1-8E3D-A72DA26B5D97.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2215,
++      "path": "visual-11-reader/40F60079-616C-4146-803E-08C7645BBE0A.json",
++      "purpose": "system-study-final-actual-views_0_D4E57516-8603-4ED4-8A4E-9B01ACD38AB5.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2216,
++      "path": "visual-11-reader/50F6BBF1-4C91-42E6-A5E6-A0B661B9F176.txt",
++      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_7A655CD8-00A2-4376-A06A-03B8A321904A.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2217,
++      "path": "visual-11-reader/51668F1E-2A58-480E-B0A1-E2421611091D.png",
++      "purpose": "DIAGNOSTIC-system-study-final_0_C70E33A1-830B-4D89-AD84-0368A78F7B3E.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2218,
++      "path": "visual-11-reader/3EA692FC-D792-4629-928E-64990FF2D966.txt",
++      "purpose": "App UI hierarchy for com.davidpovarsky_0_E17DBC55-65C2-430A-9168-379874A51FE2.chavrusatext"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2220,
++      "path": "visual-11-reader/54A7820A-A979-474F-9CA1-A63B59E4948F.txt",
++      "purpose": "Debug description for `Button (First Match)`_0_65DA2998-9B4C-4CBA-BA1B-D7B2133AC6B4.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2221,
++      "path": "visual-11-reader/EA3ECCDA-95C4-4272-AC38-26F363F6810D.txt",
++      "purpose": "Debug description for `Button (First Match)`_0_EA0985C6-A7C1-456A-934C-470EC9EA0EEC.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2222,
++      "path": "visual-11-reader/6A1D88F3-CF99-4413-9C03-BAABFFA96448.txt",
++      "purpose": "Debug description for `Button (First Match)`_0_7BBFC77E-E6E3-4276-93D3-7D8B8ED995D5.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2223,
++      "path": "visual-11-reader/BAA1C541-3A63-41AD-AAA1-829A5F96DA31.txt",
++      "purpose": "Debug description for `Button (First Match)`_0_31B1C096-9664-4F74-A5D9-2F1948B66C35.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2224,
++      "path": "visual-11-reader/F283ECE4-4C93-48C6-A251-0B6EE3D166BF.txt",
++      "purpose": "Debug description for `Button (First Match)`_0_122233CC-264F-418B-8B68-07D3393C20D3.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2225,
++      "path": "visual-11-reader/934411BC-7B15-42EF-A05A-A50A9AC28613.txt",
++      "purpose": "Debug description for `Button (First Match)`_0_26D3F5BF-4CDA-41FC-B5E1-797F9C87D7BF.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2226,
++      "path": "visual-11-reader/88776813-C3E2-4959-A539-BDC12599F254.txt",
++      "purpose": "Debug description for `Button (First Match)`_0_85FD0DDE-A606-446E-A06C-46C13BA45936.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2227,
++      "path": "visual-11-reader/5C8A3F22-BE50-4D1F-B1AC-23FB6160C4EE.txt",
++      "purpose": "Debug description for `Button (First Match)`_0_0E2A146F-571F-47E6-BB38-E2EF0114F599.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2228,
++      "path": "visual-11-reader/AFAD7EA2-B27A-420A-9D82-AD4E90E6D1AD.txt",
++      "purpose": "Debug description for `Button (First Match)`_0_86639C40-EFCF-4D05-8F52-22AB1FDF9503.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2229,
++      "path": "visual-11-reader/EE512A34-5836-4884-9B21-555DEE690598.txt",
++      "purpose": "Debug description for `Button (First Match)`_0_2C4F0C60-43A8-4206-8752-A48749E23C61.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2230,
++      "path": "visual-11-reader/0F1E7DA4-87B6-40A2-B0CC-773490D3DFEC.txt",
++      "purpose": "Debug description for `Button (First Match)`_0_B6486D82-CF6D-4A0A-BA5A-D6F11BD3680C.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2231,
++      "path": "visual-11-reader/5C607245-C624-4214-B4A2-69C2B95A02FE.txt",
++      "purpose": "Debug description for `Button (First Match)`_0_1548DDE5-696F-4B62-B4F5-5F6B46E027FB.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2232,
++      "path": "visual-11-reader/291D130D-0C92-4C79-B41E-EC151F1C5D04.txt",
++      "purpose": "Debug description for `Button (First Match)`_0_B1FEBEC9-04EE-48FF-9922-E134CC5A0D83.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2233,
++      "path": "visual-11-reader/513CB164-CCBD-4991-BC27-B095D7665740.txt",
++      "purpose": "Debug description for `Button (First Match)`_0_7D19725A-DE79-4F92-9C1E-00B008A9211A.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2256,
++      "path": "visual-11-reader/FCC06432-42D2-4B1D-AEE0-8C0277EBECD3.json",
++      "purpose": "system-study-original-note-child-actual-views_0_557859A9-8081-47AE-A7E0-CAED835F703B.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2257,
++      "path": "visual-11-reader/1F81DDBC-69D2-4826-A2A5-0E01ADFC1507.txt",
++      "purpose": "DIAGNOSTIC-system-study-original-note-child-ui-tree_0_6ADB63A1-7AE3-4D90-9AEE-B2F000B048A5.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2258,
++      "path": "visual-11-reader/E6295E3A-6384-44F3-B7F4-BDFF1164F45C.png",
++      "purpose": "DIAGNOSTIC-system-study-original-note-child_0_7095721D-9C67-4DED-B3B3-77020E67AE1C.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2263,
++      "path": "visual-11-reader/A3568EA1-B0E8-4384-8FB7-E4DDA87AE9AA.json",
++      "purpose": "system-study-opened-actual-views_0_EBF8D1F7-D4AA-491A-B9EC-AABCFD2116E2.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2264,
++      "path": "visual-11-reader/A65F67F9-A35D-4373-B9F7-E53674DD95A8.txt",
++      "purpose": "DIAGNOSTIC-system-study-opened-ui-tree_0_A134583C-8147-426F-B412-B2C37A49CFF8.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2265,
++      "path": "visual-11-reader/0D8D5318-E97A-4302-A004-BCE46B681414.png",
++      "purpose": "DIAGNOSTIC-system-study-opened_0_8CDCC8AB-BEA9-45B8-935A-D1D109DB6C04.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2268,
++      "path": "visual-11-reader/EF425238-7145-4258-B3D0-9282BC4DF0BE.txt",
++      "purpose": "system-study-reader-before-open-ui-tree_0_B0CE1B04-8554-477F-9207-A5ECD44248ED.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "exportLogLine": 2269,
++      "path": "visual-11-reader/9DAFA2DC-794D-4E42-808E-C054D53C7FAE.png",
++      "purpose": "system-study-reader-before-open_0_125251C8-519F-45BD-8EFD-971158D24B07.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2289,
++      "path": "visual-11-reader/B2AC78D9-7A1F-42B8-A494-489DDAF00D84.png",
++      "purpose": "r27-final-native-screen_0_703CECF0-40F2-4BA1-92BF-728D119B0C74.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2290,
++      "path": "visual-11-reader/4C30EA73-1209-4EFD-B2B8-88742A337EDE.txt",
++      "purpose": "r27-final-native-hierarchy_0_C4E64DFB-8623-4622-97E4-C32F29C9BA25.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2291,
++      "path": "visual-11-reader/CD1F56CF-0665-40E0-8C9C-330347A479C8.json",
++      "purpose": "system-study-final-actual-views_0_DF5B51AE-B046-4570-8FD6-30836E40BF5E.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2292,
++      "path": "visual-11-reader/5037D24A-C2A1-4AC0-91DF-A5D70063D2CF.txt",
++      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_141A0B16-33D5-4BAE-A0F4-6E093EF08C9C.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2293,
++      "path": "visual-11-reader/0AA073D4-88FA-4260-923D-3E52A1FEFFFE.png",
++      "purpose": "DIAGNOSTIC-system-study-final_0_763E9215-B454-40F4-9CA0-CCE9B0A486ED.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2294,
++      "path": "visual-11-reader/3DA3B76B-DA41-49F3-BEFC-EB2DBF819497.json",
++      "purpose": "system-study-lifecycle-input-closeParent_0_5C1A3964-CF50-4C80-96A5-ECC0B608F325.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2295,
++      "path": "visual-11-reader/579CD21E-DE05-4EA5-925E-4417A3C45931.json",
++      "purpose": "system-study-original-note-child-actual-views_0_12E2987C-9E7C-4B32-B9DE-D3D5BDEAC982.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2296,
++      "path": "visual-11-reader/4D3680D7-7549-49BB-BBF6-0AA28B9AD61B.txt",
++      "purpose": "DIAGNOSTIC-system-study-original-note-child-ui-tree_0_25A43ED6-C5CB-431F-8EBF-EBA704A02188.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2297,
++      "path": "visual-11-reader/C047B3CE-861C-4E2B-848F-D9AA13A42EAC.png",
++      "purpose": "DIAGNOSTIC-system-study-original-note-child_0_9FB1067F-7923-470E-8F75-921CF8DC6C77.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2302,
++      "path": "visual-11-reader/AEC66768-438C-4CB9-BF8B-8A49D573385B.json",
++      "purpose": "system-study-opened-actual-views_0_49ABABC5-934D-4A81-BEEC-9FDFFF0CCAAF.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2303,
++      "path": "visual-11-reader/4C5C7820-A1BF-4F36-8787-70803BBE97D5.txt",
++      "purpose": "DIAGNOSTIC-system-study-opened-ui-tree_0_2D5A7CF2-E7EF-4250-ACF1-4E5CBE2A46B0.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2304,
++      "path": "visual-11-reader/A591C75F-1379-4403-8AF7-6A37201A4DF9.png",
++      "purpose": "DIAGNOSTIC-system-study-opened_0_C2342EE5-B0AF-445D-99F9-B1F98B2875CC.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2307,
++      "path": "visual-11-reader/EEF35702-AAAE-4C68-B6B7-753C56DDEE7D.txt",
++      "purpose": "system-study-reader-before-open-ui-tree_0_8745A18E-8DCB-4A43-B400-D941173FD82C.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2308,
++      "path": "visual-11-reader/F5E65F10-029D-4BE5-A31D-8F4537864088.png",
++      "purpose": "system-study-reader-before-open_0_02B043C3-F610-4795-96A2-8D3FC5773409.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
++      "exportLogLine": 2313,
++      "path": "visual-11-reader/8941D068-0024-4DD4-B3C9-8361902EFC77.png",
++      "purpose": "r27-final-native-screen_0_93169D2A-32C9-4CE1-83AB-07F39D41C631.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
++      "exportLogLine": 2314,
++      "path": "visual-11-reader/6006C8F0-A9E9-4A6B-B25D-0801D83FCFBE.txt",
++      "purpose": "r27-final-native-hierarchy_0_CBE435AE-C8E4-4515-A7AC-0268A73E5CF2.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
++      "exportLogLine": 2315,
++      "path": "visual-11-reader/280E76C7-A2CC-431E-9F49-8050FB65D08E.json",
++      "purpose": "system-study-final-actual-views_0_32B82947-B5BA-46F0-ABEA-0711B822F076.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
++      "exportLogLine": 2316,
++      "path": "visual-11-reader/28001F11-8EA8-45E2-9E8C-C084C5FC2EB6.txt",
++      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_C23844BE-18CD-4261-9AC2-BE96DBB5E140.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
++      "exportLogLine": 2317,
++      "path": "visual-11-reader/A377FA81-F51F-4FBB-8FC2-BBE20FC936CE.png",
++      "purpose": "DIAGNOSTIC-system-study-final_0_D4043666-9590-4CCD-BE92-1DC400120A24.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
++      "exportLogLine": 2320,
++      "path": "visual-11-reader/20B551B0-1FC7-4AEC-BFC7-525E449D4FD8.json",
++      "purpose": "system-study-opened-actual-views_0_23E4F1BF-CB6C-4B13-8491-593A939623D4.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
++      "exportLogLine": 2321,
++      "path": "visual-11-reader/B849951F-3B6D-4597-91B6-9A0F71B51567.txt",
++      "purpose": "DIAGNOSTIC-system-study-opened-ui-tree_0_8788F361-F1D7-4332-9B86-19E1CECF4A5B.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
++      "exportLogLine": 2322,
++      "path": "visual-11-reader/84D46703-B066-402B-88C7-A0B6301BFDE9.png",
++      "purpose": "DIAGNOSTIC-system-study-opened_0_13CF9D28-448A-40DF-92D7-D49D059C516E.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
++      "exportLogLine": 2325,
++      "path": "visual-11-reader/A276F24D-8C84-4B5F-9662-1BC8BDB47A61.txt",
++      "purpose": "system-study-reader-before-open-ui-tree_0_A8CD879E-D255-4EE2-82F2-9F41D8A8B198.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
++      "exportLogLine": 2326,
++      "path": "visual-11-reader/3AF2B744-405C-469D-8FE5-B5D0D4958713.png",
++      "purpose": "system-study-reader-before-open_0_50FED58B-99A6-4942-8D1C-4F2774A44408.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
++      "exportLogLine": 2331,
++      "path": "visual-11-reader/52F51A16-C7AA-48DB-9364-2D4302EC71A4.png",
++      "purpose": "r27-final-native-screen_0_1F2AD36F-6C43-4510-84D2-6777B3F7CE85.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
++      "exportLogLine": 2332,
++      "path": "visual-11-reader/B749DF68-CA2D-4EFC-9F5D-B3AD3DF7A935.txt",
++      "purpose": "r27-final-native-hierarchy_0_5DB1A0CB-2227-4BAC-A28F-AE4BB02E0E8E.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
++      "exportLogLine": 2333,
++      "path": "visual-11-reader/1512C772-A6D1-46C9-AAC8-5951867E5FEF.json",
++      "purpose": "system-study-final-actual-views_0_E22CCCA0-7C43-4F25-86EB-2CB056BD70DC.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
++      "exportLogLine": 2334,
++      "path": "visual-11-reader/F15BBC42-DB9F-4DC6-822E-D5E67E763725.txt",
++      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_AEA5AEC9-9605-464A-A13B-70D81BAF67AC.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
++      "exportLogLine": 2335,
++      "path": "visual-11-reader/AD159036-CFAF-4BA4-A67A-F7D8A8D945D9.png",
++      "purpose": "DIAGNOSTIC-system-study-final_0_D95B8694-5E7F-49E0-90D7-16BFCFD131D7.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
++      "exportLogLine": 2336,
++      "path": "visual-11-reader/6DC01DBF-BA8B-457E-9299-2952F8D770E0.json",
++      "purpose": "system-study-lifecycle-input-reopenDuringDismiss_0_546E674D-358B-439B-A514-570270974B24.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
++      "exportLogLine": 2337,
++      "path": "visual-11-reader/AB6C5A52-9962-4106-ACB1-1FC6E2C5ED9E.json",
++      "purpose": "system-study-opened-actual-views_0_61AC1E13-5129-4A35-ADE4-F587D2612151.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
++      "exportLogLine": 2338,
++      "path": "visual-11-reader/6E070CDA-78FB-4CA7-AD1F-CD224D942DDF.txt",
++      "purpose": "DIAGNOSTIC-system-study-opened-ui-tree_0_13D77DF7-D476-4AC6-974A-5B4820ED9AF0.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
++      "exportLogLine": 2339,
++      "path": "visual-11-reader/04CBB939-CA2F-4967-AA90-7B33254AB4EF.png",
++      "purpose": "DIAGNOSTIC-system-study-opened_0_15DDF4FA-9340-4963-86DB-C675F1373E8E.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
++      "exportLogLine": 2342,
++      "path": "visual-11-reader/AF45CB1C-70C2-49E8-AA73-C7FB383A2F9A.txt",
++      "purpose": "system-study-reader-before-open-ui-tree_0_3CEB5EFD-64BA-4821-A54B-7B28C7FA3780.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
++      "exportLogLine": 2343,
++      "path": "visual-11-reader/9540BC1A-32C5-4188-BA7D-32A359D351FE.png",
++      "purpose": "system-study-reader-before-open_0_63D74D80-F2C7-41A4-9AD8-69CC81AB3B2A.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
++      "exportLogLine": 2366,
++      "path": "visual-11-reader/B521F41F-7129-4B67-B4A1-34C51033DD24.png",
++      "purpose": "r27-final-native-screen_0_E9E6B61C-9FDC-451B-A0C0-70574B116987.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
++      "exportLogLine": 2367,
++      "path": "visual-11-reader/921F2BBC-1E74-47C1-8F69-55F7C0D64941.txt",
++      "purpose": "r27-final-native-hierarchy_0_29492DB2-9212-4CE3-BA6F-09A806AD1E55.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
++      "exportLogLine": 2368,
++      "path": "visual-11-reader/F4D4F0B6-D131-4882-9F74-FE56AC63149B.json",
++      "purpose": "system-study-final-actual-views_0_500F1FB9-3F48-4225-A100-14EC80EB3885.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
++      "exportLogLine": 2369,
++      "path": "visual-11-reader/9EE7B14E-F10C-41AF-AF36-3151C4E888A1.txt",
++      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_C2E85DB7-A43F-4A17-B5E3-01A680428C4A.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
++      "exportLogLine": 2370,
++      "path": "visual-11-reader/812F49E0-7E8C-4903-B287-D78BA169CBD2.png",
++      "purpose": "DIAGNOSTIC-system-study-final_0_E7ABF21C-D163-45B6-8C3B-63B200FE98EC.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
++      "exportLogLine": 2373,
++      "path": "visual-11-reader/E3A7CEEE-E791-4D58-80BE-90035C5CA9C5.json",
++      "purpose": "system-study-opened-actual-views_0_3BAAC929-BA1F-473F-B8F1-6C21E5DC85DC.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
++      "exportLogLine": 2374,
++      "path": "visual-11-reader/549E0C11-6939-4A20-A505-30E03814C87F.txt",
++      "purpose": "DIAGNOSTIC-system-study-opened-ui-tree_0_526AD376-FF68-4B03-AFB7-DDA83656FD3C.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
++      "exportLogLine": 2375,
++      "path": "visual-11-reader/D58B6FF1-F874-4FE3-9F0C-7BC9F8D2321A.png",
++      "purpose": "DIAGNOSTIC-system-study-opened_0_1A7FC550-5D75-42BC-B0F9-7A50B9FB43A2.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
++      "exportLogLine": 2378,
++      "path": "visual-11-reader/F5477F46-4B91-4416-80DA-B6316CA38BED.txt",
++      "purpose": "system-study-reader-before-open-ui-tree_0_2B4F9AEF-4C1A-49D0-8755-3D413F67C7E1.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
++      "exportLogLine": 2379,
++      "path": "visual-11-reader/72E3369D-6492-48D5-9072-C0FDA62FD89A.png",
++      "purpose": "system-study-reader-before-open_0_088C4E74-3F89-44D2-8997-4F196DFB9BF5.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
++      "exportLogLine": 2384,
++      "path": "visual-11-reader/6FB853A2-F9BE-4453-826D-885EBB8C4230.png",
++      "purpose": "r27-final-native-screen_0_80F5F55C-A6DE-49D6-9F63-7F675BFCED8A.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
++      "exportLogLine": 2385,
++      "path": "visual-11-reader/F6980F4B-BAFC-4BC7-82EF-FFC934341562.txt",
++      "purpose": "r27-final-native-hierarchy_0_534EC417-08B5-4B95-9992-914B898167A7.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
++      "exportLogLine": 2386,
++      "path": "visual-11-reader/453B540A-3F35-42E0-92C2-F364F821F49F.json",
++      "purpose": "system-study-final-actual-views_0_5536FA7B-015E-4FFA-984D-9D79BBA45AC7.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
++      "exportLogLine": 2387,
++      "path": "visual-11-reader/83516544-CECC-4A1F-8B00-C7534E44ED31.txt",
++      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_B1818562-25ED-4D11-98FD-13D06400F9ED.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
++      "exportLogLine": 2388,
++      "path": "visual-11-reader/DA22D6C7-B371-46FE-B88B-9F8F92022EAB.png",
++      "purpose": "DIAGNOSTIC-system-study-final_0_B17EA5B3-4DA5-4FB4-8540-D96AE1B6F5E5.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
++      "exportLogLine": 2391,
++      "path": "visual-11-reader/FB4A08C7-BFFB-49EB-A8E9-D92225F1FC2A.json",
++      "purpose": "system-study-opened-actual-views_0_5F4CD0B5-28E8-4589-AE85-361A797B7D5C.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
++      "exportLogLine": 2392,
++      "path": "visual-11-reader/10E010CE-35F3-4568-BE8A-962E1F0DA87B.txt",
++      "purpose": "DIAGNOSTIC-system-study-opened-ui-tree_0_9BF4ECAF-1C83-4C0E-BA2B-0580323382A1.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
++      "exportLogLine": 2393,
++      "path": "visual-11-reader/C442B0CA-962C-449E-9CDC-77E5D7353DD8.png",
++      "purpose": "DIAGNOSTIC-system-study-opened_0_4B059710-E48E-43AB-B2BE-44FF4F41A6CF.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
++      "exportLogLine": 2396,
++      "path": "visual-11-reader/25F1F06D-44F3-4DBA-BC05-69447442747C.txt",
++      "purpose": "system-study-reader-before-open-ui-tree_0_E33DD6EE-9252-4C3F-B80D-20B2088ED140.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
++      "exportLogLine": 2397,
++      "path": "visual-11-reader/40C55E66-9887-4A7F-ACC4-64C65823CB46.png",
++      "purpose": "system-study-reader-before-open_0_4C94F440-897A-4702-BD59-A66BADA19248.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2402,
++      "path": "visual-11-reader/FE460937-F03B-4829-BDFD-F41AE32FDEA0.png",
++      "purpose": "r27-final-native-screen_0_864FE888-74A1-408B-AEA3-17B11D84E803.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2403,
++      "path": "visual-11-reader/923D97EB-A77E-49A1-95FF-54AA085C7312.txt",
++      "purpose": "r27-final-native-hierarchy_0_CC6790B0-528D-4CE3-9AC8-58A7115A7851.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2404,
++      "path": "visual-11-reader/941DB2F0-A010-404D-9D7B-35E0E60E4BE4.json",
++      "purpose": "system-study-final-actual-views_0_04782137-33A2-4C6D-ADEB-94256B57EA11.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2405,
++      "path": "visual-11-reader/AF98E3FA-62E2-4DF1-BA2F-19082382B575.txt",
++      "purpose": "DIAGNOSTIC-system-study-final-ui-tree_0_20E94B67-63BD-4668-9EC8-B7EA4D0955EC.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2406,
++      "path": "visual-11-reader/242995B3-D6E4-4CDB-8A61-4EAA91FC32D0.png",
++      "purpose": "DIAGNOSTIC-system-study-final_0_E6C29339-11CE-467A-BDE1-184817E2BDF8.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2407,
++      "path": "visual-11-reader/6537FB3C-095C-4AC1-953E-642D40D0BE85.json",
++      "purpose": "system-study-lifecycle-input-openContents_0_BD0BD895-D6D5-468F-A2CB-F60CAD0FEE60.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2408,
++      "path": "visual-11-reader/37A060F1-0FB4-4913-838C-84CA0F8937A8.json",
++      "purpose": "system-study-original-note-child-actual-views_0_E837CFC1-8463-455F-98B2-743A52D53F60.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2409,
++      "path": "visual-11-reader/B8C1B8B6-9A9D-408D-B8F5-B7649550CA19.txt",
++      "purpose": "DIAGNOSTIC-system-study-original-note-child-ui-tree_0_34273A8E-6B9F-4C5F-AE27-CC68CB74036A.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2410,
++      "path": "visual-11-reader/2C7B42AE-9372-4C07-A828-DF62A488B4B4.png",
++      "purpose": "DIAGNOSTIC-system-study-original-note-child_0_375A9E61-07EC-4E28-963D-D9C0F9DA873E.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2415,
++      "path": "visual-11-reader/67BF4F47-1765-4F23-9BB0-2CF834CDBFE5.json",
++      "purpose": "system-study-opened-actual-views_0_31FC0033-7C9B-40E1-870C-686122FE3ADF.json"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2416,
++      "path": "visual-11-reader/32D0DD19-5D90-4EEA-A928-7030A7AEFDD0.txt",
++      "purpose": "DIAGNOSTIC-system-study-opened-ui-tree_0_A750ED0A-FEBC-4858-A5FB-78E3D94B684A.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2417,
++      "path": "visual-11-reader/AF8DCCF1-5803-4098-B76D-92F08C699C56.png",
++      "purpose": "DIAGNOSTIC-system-study-opened_0_23DEDE22-F3B4-46E2-BF59-713126F2BDD3.png"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2420,
++      "path": "visual-11-reader/F0E65552-DE7A-423C-A0D9-31F2B24AE97F.txt",
++      "purpose": "system-study-reader-before-open-ui-tree_0_46A5F9A4-B1CC-456A-BF18-A3059C5311B4.txt"
++    },
++    {
++      "caseId": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
++      "exportLogLine": 2421,
++      "path": "visual-11-reader/EACC210C-8D8D-4310-8F20-7FEBB7A1292B.png",
++      "purpose": "system-study-reader-before-open_0_4D7B3A59-9DFC-41B0-A542-BBBE3FFC0046.png"
++    },
++    {
++      "caseId": "ORIGINAL_ELEVEN_CASE_ATTACHMENT_MANIFEST",
++      "exportLogLine": 2425,
++      "path": "visual-11-reader/manifest.json",
++      "purpose": "Original xcresult attachment manifest for all eleven executed iPad11 cases"
+     }
+   ],
+   "selectionProvenance": {
+-    "archiveRoot": "Upload-artifact common ancestor build/artifacts; exact visual-11 members only, no basename fallback",
+-    "exportLog": "runtime27/release-native-matrix-driver.log",
+-    "exportLogSha256": "d8ddc31d698bc2facda8e0846cf06f0cc5fee3f474d56c9a4668105fbc7f9b0a",
+-    "exportLogSourceArchiveSha256": "fb87af0c12fc727d682419c19cc04833ed6825f1732708f1803ab0ae1328cf19",
+-    "exportLogSourceArtifactId": 14647558906,
++    "archiveRoot": "Original upload common ancestor build/artifacts; exact visual-11-reader paths only",
++    "exportLog": "artifacts/runtime27/native-matrix-driver.log",
++    "exportLogSha256": "6ba9d84b99b1737770c0d1534fa2fc9ee3b0cdfa3fce227f1ce8db67eb1b13e8",
++    "failedCaseIds": [
++      "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
++      "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
++      "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++      "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
++      "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
++      "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
++      "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
++      "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
++      "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL"
++    ],
+     "noBasenameFallback": true,
++    "noVideoSelected": true,
++    "originalElevenCaseOutcomes": [
++      {
++        "actual": "Failed",
++        "case_id": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
++        "configuration_label": "11-reader",
++        "device": "ipad11",
++        "expected": "Actual original sheet has height155/medium/large detents in order, stays physically right in RTL, and preserves Reader/session/content/source/selection and original viewport anchor."
++      },
++      {
++        "actual": "Failed",
++        "case_id": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
++        "configuration_label": "11-reader",
++        "device": "ipad11",
++        "expected": "Actual original sheet has height155/medium/large detents in order, stays physically right in LTR with RTL excerpt, and preserves Reader/session/content/source/selection and original viewport anchor."
++      },
++      {
++        "actual": "Passed",
++        "case_id": "NativeStudySheetPadTests/testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor",
++        "configuration_label": "11-reader",
++        "device": "ipad11",
++        "expected": "Same actual iPad window narrows and restores with system adaptation while original Reader/session/content/source/selection/presentation and viewport anchor are retained."
++      },
++      {
++        "actual": "Failed",
++        "case_id": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
++        "configuration_label": "11-reader",
++        "device": "ipad11",
++        "expected": "Actual peek detent allows original Reader scrolling behind the same mounted system sheet and retained original inspector ownership."
++      },
++      {
++        "actual": "Failed",
++        "case_id": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
++        "configuration_label": "11-reader",
++        "device": "ipad11",
++        "expected": "Original Notes editor saves, edits, cancels an unsaved edit, saves the edited note, and deletes it through the original store and callbacks."
++      },
++      {
++        "actual": "Passed",
++        "case_id": "NativeStudySheetPadTests/testSystemStudySheetOriginalTOCWaitsForActualSheetDismissal",
++        "configuration_label": "11-reader",
++        "device": "ipad11",
++        "expected": "Original TOC appears only after actual parent sheet dismissal and retains original Reader and viewport anchor."
++      },
++      {
++        "actual": "Failed",
++        "case_id": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
++        "configuration_label": "11-reader",
++        "device": "ipad11",
++        "expected": "Original embedded Sefaria Inspector retains original backend owner, Reader content and viewport anchor through real detent changes."
++      },
++      {
++        "actual": "Failed",
++        "case_id": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
++        "configuration_label": "11-reader",
++        "device": "ipad11",
++        "expected": "Programmatic Native lifecycle command closes original parent while actual original note child is visible; real child/parent callbacks complete and blocked background controls cannot be tapped."
++      },
++      {
++        "actual": "Failed",
++        "case_id": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
++        "configuration_label": "11-reader",
++        "device": "ipad11",
++        "expected": "Programmatic Native lifecycle command requests original TOC while actual original note child is visible; child then parent dismiss before original TOC appears."
++      },
++      {
++        "actual": "Failed",
++        "case_id": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
++        "configuration_label": "11-reader",
++        "device": "ipad11",
++        "expected": "Programmatic Native lifecycle command reopens only during observed system dismissal; actual new presentation UUID is observed and delivered replay/stale-owner commands are refused without mutating it."
++      },
++      {
++        "actual": "Failed",
++        "case_id": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
++        "configuration_label": "11-reader",
++        "device": "ipad11",
++        "expected": "Actual interactive dismissal followed by same-iPad window resizing does not reopen original inspector without a new user open action."
++      }
++    ],
+     "originalWorkflowArtifactPaths": [
+       "build/artifacts/**/*.xcresult/**",
+       "build/artifacts/**/*.mp4",
+       "build/artifacts/visual-*/**"
+     ],
+-    "originalWorkflowBlob": "08ba8590f0e29e5ad4b3c4295dc9a2cc602fb207"
++    "originalWorkflowBlob": "aa3fc2c9e641c8b60e12da6143d021228208cb09",
++    "selection": "Every original .txt/.json/.png attachment of each failed case plus the original all-case manifest",
++    "sourceEvidenceArtifactId": 14672003494,
++    "sourceEvidenceArtifactSha256": "sha256:26666f593c4d51916361164e6b82faf7f0a2e075a4bb8b17da628926b64dbf77"
+   },
+   "sourceArtifact": {
+-    "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14647594631/zip",
+-    "created_at": "2026-11-20T16:28:02Z",
+-    "digest": "sha256:ea8232db03a3f78c9fd722a1f5777e43f638bef7f4d115a7c0eef9a6319f2457",
++    "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14671753925/zip",
++    "created_at": "2026-11-20T21:40:01Z",
++    "digest": "sha256:e996e2617478c5d9ee7be07fb11f17004d6ada55ef01e59b894a4b0eadde72f7",
+     "expired": false,
+-    "id": 14647594631,
+-    "name": "runtime27-release-native-captures",
+-    "size_in_bytes": 3271556396,
+-    "updated_at": "2026-11-20T16:28:02Z"
++    "id": 14671753925,
++    "name": "native-study-sheet-native-captures-ipad11",
++    "size_in_bytes": 576476315,
++    "updated_at": "2026-11-20T21:40:01Z"
+   },
+   "sourceJob": {
+     "conclusion": "failure",
+-    "head_sha": "60a57972acb28739ec738565083bf17fb7503028",
+-    "id": 136270631605,
+-    "name": "Release native matrix (partial acceptance)",
++    "head_sha": "a1d11a78152f9d6826c90646fcd72cf7711f12ff",
++    "id": 136551383131,
++    "name": "Full real app: ipad11 (11 new cases)",
+     "run_attempt": 1,
+-    "run_id": 44723918854,
++    "run_id": 44811999303,
+     "status": "completed"
+   },
+   "sourceRun": {
+     "conclusion": "failure",
+-    "head_branch": "codex/otzaria-release96-signature-reviewed-20261120",
+-    "head_sha": "60a57972acb28739ec738565083bf17fb7503028",
+-    "id": 44723918854,
+-    "path": ".github/workflows/sefaria-embedded-validation.yml",
++    "head_branch": "codex/otzaria-native-study-sheet-native-20261120",
++    "head_sha": "a1d11a78152f9d6826c90646fcd72cf7711f12ff",
++    "id": 44811999303,
++    "path": ".github/workflows/otzaria-native-study-sheet-native.yml",
+     "run_attempt": 1,
+     "status": "completed"
+   },
+   "uploadStep": {
+-    "completed_at": "2026-11-20T16:28:02Z",
++    "completed_at": "2026-11-20T21:40:01Z",
+     "conclusion": "success",
+-    "name": "Retain original native results and visual captures",
+-    "number": 8,
+-    "started_at": "2026-11-20T16:24:16Z",
++    "name": "Retain original native result bundles and visual captures separately",
++    "number": 18,
++    "started_at": "2026-11-20T21:39:38Z",
+     "status": "completed"
+   }
+ }
+--- prior/.github/workflows/otzaria-release96-capture-evidence.yml
++++ candidate/.github/workflows/otzaria-native-study-sheet-capture-evidence.yml
+@@ -1,15 +1,15 @@
+-name: Recover original Release96 layout and input evidence
++name: Recover original SideSheet failure evidence
+ 
+ on:
+   push:
+-    branches: [codex/otzaria-release96-capture-evidence-20261120]
++    branches: [codex/otzaria-native-study-sheet-capture-evidence-20261120]
+ 
+ permissions:
+   contents: read
+   actions: read
+ 
+ concurrency:
+-  group: release96-capture-evidence-${{ github.ref }}
++  group: native-study-sheet-capture-evidence-${{ github.ref }}
+   cancel-in-progress: false
+ 
+ jobs:
+@@ -18,7 +18,7 @@
+       github.repository == 'davidpovarsky/Maktabah' &&
+       github.repository_id == '1280062128' &&
+       github.event_name == 'push' &&
+-      github.ref == 'refs/heads/codex/otzaria-release96-capture-evidence-20261120'
++      github.ref == 'refs/heads/codex/otzaria-native-study-sheet-capture-evidence-20261120'
+     runs-on: ubuntu-latest
+     timeout-minutes: 20
+     env:
+@@ -31,41 +31,41 @@
+           submodules: false
+           sparse-checkout-cone-mode: false
+           sparse-checkout: |
+-            /.github/workflows/otzaria-release96-capture-evidence.yml
+-            /Scripts/CI/release96-capture-evidence.py
+-            /Scripts/CI/test-release96-capture-evidence.py
+-            /Scripts/CI/release96-capture-evidence.json
++            /.github/workflows/otzaria-native-study-sheet-capture-evidence.yml
++            /Scripts/CI/native-study-sheet-capture-evidence.py
++            /Scripts/CI/test-native-study-sheet-capture-evidence.py
++            /Scripts/CI/native-study-sheet-capture-evidence.json
+       - name: Verify reviewed evidence processor bytes
+         shell: bash
+         run: |
+           set -euo pipefail
+           sha256sum --check <<'HASHES'
+-          bc7ffe737455410eab6fc442929672cdc39167c580620db3a4d4f431c48ab474  Scripts/CI/release96-capture-evidence.py
+-          caa5b93724c7bf5e32b24d538dffca759a25a14e345bb0a3d817e45d3287eda6  Scripts/CI/test-release96-capture-evidence.py
+-          438968149c8d24965971be36a28b62f55cb847a9b0cae24ecdbbc597f0dca8b7  Scripts/CI/release96-capture-evidence.json
++          3d119249dc0859ef0742523bd50f550a871190ae0883b80c9f903b53ecfca9ec  Scripts/CI/native-study-sheet-capture-evidence.py
++          2f5ccf8a6e85b56dfbea99113c035c6f9b97de26e958ffee7a7725a006a67ef6  Scripts/CI/test-native-study-sheet-capture-evidence.py
++          c6ca435bfa712145c17d0f393378db7cf56eda7dfd6300e8709f547970eecaf6  Scripts/CI/native-study-sheet-capture-evidence.json
+           HASHES
+       - name: Run synthetic transport and archive refusal controls (no Native)
+         shell: bash
+         run: |
+           set -euo pipefail
+-          mkdir -p build/release96-capture-evidence
+-          python3 -u Scripts/CI/test-release96-capture-evidence.py 2>&1 | tee build/release96-capture-evidence/python-controls.log
+-      - name: Verify complete original ZIP and retain exactly twenty evidence files
++          mkdir -p build/native-study-sheet-capture-evidence
++          python3 -u Scripts/CI/test-native-study-sheet-capture-evidence.py 2>&1 | tee build/native-study-sheet-capture-evidence/python-controls.log
++      - name: Verify complete original ZIP and retain exactly 119 original evidence files
+         env:
+           GH_TOKEN: ${{ github.token }}
+         shell: bash
+         run: |
+           set -euo pipefail
+-          python3 -u Scripts/CI/release96-capture-evidence.py \
++          python3 -u Scripts/CI/native-study-sheet-capture-evidence.py \
+             --root "$GITHUB_WORKSPACE" \
+-            --output "$GITHUB_WORKSPACE/build/release96-capture-evidence" \
++            --output "$GITHUB_WORKSPACE/build/native-study-sheet-capture-evidence" \
+             --cache "$RUNNER_TEMP/release96-capture-source-$GITHUB_RUN_ID" \
+-            --manifest-sha256 438968149c8d24965971be36a28b62f55cb847a9b0cae24ecdbbc597f0dca8b7
++            --manifest-sha256 c6ca435bfa712145c17d0f393378db7cf56eda7dfd6300e8709f547970eecaf6
+       - name: Retain bounded evidence and failures (no full source ZIP)
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release96-capture-evidence
+-          path: build/release96-capture-evidence/
++          name: native-study-sheet-capture-evidence
++          path: build/native-study-sheet-capture-evidence/
+           if-no-files-found: error
+           retention-days: 90

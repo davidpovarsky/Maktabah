@@ -1,0 +1,26 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-u",
+    "native-study-sheet-capture-evidence-route-20261120/candidate/Scripts/CI/test-native-study-sheet-capture-evidence.py"
+  ],
+  "started_at": "2026-11-20T21:54:59.045692+00:00",
+  "ended_at": "2026-11-20T21:54:59.449793+00:00",
+  "seconds": 0.404101,
+  "returncode": 0,
+  "source_before": {
+    ".github/workflows/otzaria-native-study-sheet-capture-evidence.yml": "998c917479bc4e89980f018a51b7667bd0f9b4b2f280338f71b4d571287f0e2f",
+    "Scripts/CI/native-study-sheet-capture-evidence.json": "e39f3752e252fa4e01057629adc61efb28d33dac148b0904c51b4fcc9c509db7",
+    "Scripts/CI/native-study-sheet-capture-evidence.py": "3d119249dc0859ef0742523bd50f550a871190ae0883b80c9f903b53ecfca9ec",
+    "Scripts/CI/test-native-study-sheet-capture-evidence.py": "2f5ccf8a6e85b56dfbea99113c035c6f9b97de26e958ffee7a7725a006a67ef6"
+  },
+  "source_after": {
+    ".github/workflows/otzaria-native-study-sheet-capture-evidence.yml": "998c917479bc4e89980f018a51b7667bd0f9b4b2f280338f71b4d571287f0e2f",
+    "Scripts/CI/native-study-sheet-capture-evidence.json": "e39f3752e252fa4e01057629adc61efb28d33dac148b0904c51b4fcc9c509db7",
+    "Scripts/CI/native-study-sheet-capture-evidence.py": "3d119249dc0859ef0742523bd50f550a871190ae0883b80c9f903b53ecfca9ec",
+    "Scripts/CI/test-native-study-sheet-capture-evidence.py": "2f5ccf8a6e85b56dfbea99113c035c6f9b97de26e958ffee7a7725a006a67ef6"
+  },
+  "source_unchanged": true,
+  "native_executions": 0
+}

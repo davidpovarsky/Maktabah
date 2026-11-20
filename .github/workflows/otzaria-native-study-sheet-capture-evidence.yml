@@ -1,0 +1,71 @@
+name: Recover original SideSheet failure evidence
+
+on:
+  push:
+    branches: [codex/otzaria-native-study-sheet-capture-evidence-20261120]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: native-study-sheet-capture-evidence-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  evidence:
+    if: >-
+      github.repository == 'davidpovarsky/Maktabah' &&
+      github.repository_id == '1280062128' &&
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/codex/otzaria-native-study-sheet-capture-evidence-20261120'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+          submodules: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/workflows/otzaria-native-study-sheet-capture-evidence.yml
+            /Scripts/CI/native-study-sheet-capture-evidence.py
+            /Scripts/CI/test-native-study-sheet-capture-evidence.py
+            /Scripts/CI/native-study-sheet-capture-evidence.json
+      - name: Verify reviewed evidence processor bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha256sum --check <<'HASHES'
+          3d119249dc0859ef0742523bd50f550a871190ae0883b80c9f903b53ecfca9ec  Scripts/CI/native-study-sheet-capture-evidence.py
+          2f5ccf8a6e85b56dfbea99113c035c6f9b97de26e958ffee7a7725a006a67ef6  Scripts/CI/test-native-study-sheet-capture-evidence.py
+          c6ca435bfa712145c17d0f393378db7cf56eda7dfd6300e8709f547970eecaf6  Scripts/CI/native-study-sheet-capture-evidence.json
+          HASHES
+      - name: Run synthetic transport and archive refusal controls (no Native)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/native-study-sheet-capture-evidence
+          python3 -u Scripts/CI/test-native-study-sheet-capture-evidence.py 2>&1 | tee build/native-study-sheet-capture-evidence/python-controls.log
+      - name: Verify complete original ZIP and retain exactly 119 original evidence files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -u Scripts/CI/native-study-sheet-capture-evidence.py \
+            --root "$GITHUB_WORKSPACE" \
+            --output "$GITHUB_WORKSPACE/build/native-study-sheet-capture-evidence" \
+            --cache "$RUNNER_TEMP/release96-capture-source-$GITHUB_RUN_ID" \
+            --manifest-sha256 c6ca435bfa712145c17d0f393378db7cf56eda7dfd6300e8709f547970eecaf6
+      - name: Retain bounded evidence and failures (no full source ZIP)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-study-sheet-capture-evidence
+          path: build/native-study-sheet-capture-evidence/
+          if-no-files-found: error
+          retention-days: 90

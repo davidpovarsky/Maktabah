@@ -1,0 +1,201 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": ".github/workflows/otzaria-native-study-sheet-capture-evidence.yml",
+      "mode": "100644",
+      "bytes": 2952,
+      "sha256": "c11b52f3d5da23b67d549f42af72047784de3944019707bbeb322ba374949f93",
+      "git_blob": "7ce9c21518af6f40b08e35ad9c6b418fa543d471"
+    },
+    {
+      "path": "Scripts/CI/native-study-sheet-capture-evidence.json",
+      "mode": "100644",
+      "bytes": 46342,
+      "sha256": "c6ca435bfa712145c17d0f393378db7cf56eda7dfd6300e8709f547970eecaf6",
+      "git_blob": "542cf75ba078f8ef14d1e88a7e1ece98d5b81b9d"
+    },
+    {
+      "path": "Scripts/CI/native-study-sheet-capture-evidence.py",
+      "mode": "100644",
+      "bytes": 18944,
+      "sha256": "3d119249dc0859ef0742523bd50f550a871190ae0883b80c9f903b53ecfca9ec",
+      "git_blob": "908d897546ecdf9862fa1e058fb20655a15e0f12"
+    },
+    {
+      "path": "Scripts/CI/test-native-study-sheet-capture-evidence.py",
+      "mode": "100644",
+      "bytes": 16461,
+      "sha256": "2f5ccf8a6e85b56dfbea99113c035c6f9b97de26e958ffee7a7725a006a67ef6",
+      "git_blob": "5000d9c5d93106257f77ef5a94380ee63b4ce8f5"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/PROPOSED.patch",
+      "mode": "100644",
+      "bytes": 68692,
+      "sha256": "0da623b614d012aff6796e8a60e1e3dc506284421228d23b42a8213022849c93",
+      "git_blob": "5e764aa5284f142b5eaee30991fb12688c260001"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/README.md",
+      "mode": "100644",
+      "bytes": 5496,
+      "sha256": "01b636fe473b31cccd124c62d6ff1709c9c0c9e5cc910033370095af7c0b146b",
+      "git_blob": "dd1fb044514ac3fffe0b4ea5e838764a08d0460c"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/ACTUAL_METADATA_CONTROL.json",
+      "mode": "100644",
+      "bytes": 1450,
+      "sha256": "cefcbdc28be969fa1f7cafaa1d16381f192eaf7803da7f42aee385b97f611830",
+      "git_blob": "b57da972a0490b6fb72f32e096b3551ded123169"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/EXPORT_MAPPING_PROVENANCE.json",
+      "mode": "100644",
+      "bytes": 39313,
+      "sha256": "02012303ad10a7d782eb9d34333f3e62481565c6e444447e16fb4b2f2dff4425",
+      "git_blob": "4206d872fc4d1298ff7f71008fd9eb3d923c350f"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/NATIVE_MATRIX_DRIVER.log.gz",
+      "mode": "100644",
+      "bytes": 26946,
+      "sha256": "ae11179c16ed77097fbedb3742d15a2afc0fbc796baa1b359c55d5cdfcb3d3a4",
+      "git_blob": "a881f1cdd919c8c566565b8bed230aa4e0227cf2"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/ORIGINAL_RUNTIME_RESULT.json.gz",
+      "mode": "100644",
+      "bytes": 14410,
+      "sha256": "e2c9d7f29ff93103314d13914eeff5906f11e6f7742fc35bc3562d82e735330f",
+      "git_blob": "a1e2d078fa35372cb1ba4379c5a94effe2ab7a88"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/ORIGINAL_SOURCE_WORKFLOW.yml",
+      "mode": "100644",
+      "bytes": 9786,
+      "sha256": "21fd72f850b358233591c2e0c01a2b6bf7d6b36dd93a5b21ba7752e3b9156598",
+      "git_blob": "aa3fc2c9e641c8b60e12da6143d021228208cb09"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/PRESERVATION_PROOF.json",
+      "mode": "100644",
+      "bytes": 2650,
+      "sha256": "f81834971104c28b760bcd4c70b62e2fdf5e8bf294b6daa7449486039c46c89f",
+      "git_blob": "e850629808ee4b09cff49548ef64b35f845c6c5f"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/PRIOR_EXECUTED_PROCESSOR_RESULT.json",
+      "mode": "100644",
+      "bytes": 6339,
+      "sha256": "0705664acdb0646d616b87c612b072556efd5d9e96a70e00c625aadf1d639ccb",
+      "git_blob": "303f6d291a9ab354a2d95b33cf02a43a95929024"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/PRIOR_EXECUTED_PROCESSOR_SOURCE_BEFORE.json",
+      "mode": "100644",
+      "bytes": 3606,
+      "sha256": "9db72317d91b5d5a7a48820d9c50eb344daa3b98e50a2c6f34d717c1f12600b9",
+      "git_blob": "463fb82105347389bf43cb61cb1f44faadbe530d"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/SOURCE_ARTIFACT_METADATA.json",
+      "mode": "100644",
+      "bytes": 843,
+      "sha256": "868ba15dacbbeedba6711e18f5844bb1551439fade91d02cb62508f86af2bc87",
+      "git_blob": "801752755a2c990f833b0540552efbf8bd6b3f7a"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/SOURCE_JOB_METADATA.json",
+      "mode": "100644",
+      "bytes": 6190,
+      "sha256": "5811578f1c540242722d21e4d6f0463b19c7264c8bd28eec1d59657bf2ef32ca",
+      "git_blob": "e330ba5024bc73880e5888dacc5a06c7a7e5c792"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/SOURCE_RUN_METADATA.json",
+      "mode": "100644",
+      "bytes": 14448,
+      "sha256": "b39a2ce955dcbc8e7ae40d374b0a4fbe1cbee1158732347c3222c4a7b07e266c",
+      "git_blob": "0ca42b04c455b3b75fa9a3a93802621b0a171842"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/controls-attempt1/COMMAND.json",
+      "mode": "100644",
+      "bytes": 1473,
+      "sha256": "89e82addca3190f2d46cb3b5dd7f332e1f4f380087c6c3b27debb5be6cf26ccc",
+      "git_blob": "dccc16672dbd7265d8f7b23bca53422068b8671c"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/controls-attempt1/stderr.log",
+      "mode": "100644",
+      "bytes": 4513,
+      "sha256": "02eca944d999419c8b2598fb4e9a08ba94c354a56e347fb1b862a3178b7eda01",
+      "git_blob": "1fbeda61d706440e67faaef1f7224294fcaedf33"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/controls-attempt1/stdout.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/controls-final/COMMAND.json",
+      "mode": "100644",
+      "bytes": 3329,
+      "sha256": "846ebf3e82933e8ceaaa6a81675449002858ac3179716164835ad94e00cf9f96",
+      "git_blob": "5208210d7364f78c0bfc2146a8d6ae25bbe379a3"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/controls-final/stderr.log",
+      "mode": "100644",
+      "bytes": 4513,
+      "sha256": "66e10f610a0f44452bf35209cd22489afc81907e0b4fed0168b180bf37fda8be",
+      "git_blob": "ec0e881214a3d0447a3e868c1fda51c600d61338"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/evidence/controls-final/stdout.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/prepare.py",
+      "mode": "100644",
+      "bytes": 14068,
+      "sha256": "77001d3b4641c4b0713cbaa690347f0cb6748b3fceedfdb3c01def4d5a2bd650",
+      "git_blob": "c1e92c808cd57339630459da8fcf90203f526b72"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/prior-source/.github/workflows/otzaria-release96-capture-evidence.yml.gz",
+      "mode": "100644",
+      "bytes": 1097,
+      "sha256": "f63130e9784052783e36fdbc8db0f02575e53226f1bd57d94889a6e6f12167e6",
+      "git_blob": "f965befadc60d8c58cb52f84ed8b58ed05f8cd32"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/prior-source/Scripts/CI/release96-capture-evidence.json.gz",
+      "mode": "100644",
+      "bytes": 2893,
+      "sha256": "6c93baf7b6741ebee4d5ccb071504eaccec74194d1b2f28302ebebb8fdcd65df",
+      "git_blob": "17aa093064351f4214d984fb5ea482e8db00666f"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/prior-source/Scripts/CI/release96-capture-evidence.py.gz",
+      "mode": "100644",
+      "bytes": 5839,
+      "sha256": "5c6b50487a89ce6716ed58852fc70fe35a88931b441dbe8729315a4988b81ad4",
+      "git_blob": "42cf07262d3bb986f39c7c92dd164a774d6c4d1b"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-capture-evidence-20261120/prior-source/Scripts/CI/test-release96-capture-evidence.py.gz",
+      "mode": "100644",
+      "bytes": 4458,
+      "sha256": "3d51c3b8408339538184d026698dff01bcd14be8a5b4ba5c9641863d73d85d85",
+      "git_blob": "8dc2c310d36d0a3d53e7baa330de6773406e7a9f"
+    }
+  ]
+}
