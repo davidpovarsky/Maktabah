@@ -1,0 +1,18 @@
+{
+  "archive": "ORIGINAL_EVIDENCE.zip",
+  "archive_bytes": 11255807,
+  "archive_sha256": "d0c4805b46ae132b3007388ba590947f95624a68bf3c264d3be1381cc5be2cfe",
+  "zip_members": 150,
+  "tree_receipt": "CANONICAL_F_TREE.json.gz",
+  "tree": "8ef2779b87ef6fc00d9a96f6534f8a3836954763",
+  "route": "reader-inspector-focused-native",
+  "F": "8bb0ab7e87895a85265132188ede021cef3a08ae",
+  "M": "409519a6972783990a276ade0dbdc4703bb36ae4",
+  "configuration": "11-reader",
+  "expected": {
+    "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad": "Passed",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape": "Passed",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait": "Passed",
+    "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable": "Failed"
+  }
+}

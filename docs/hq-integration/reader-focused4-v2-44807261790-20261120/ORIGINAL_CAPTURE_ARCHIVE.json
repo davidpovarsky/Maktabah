@@ -1,0 +1,9 @@
+{
+  "artifact": "FOCUSED_CAPTURES",
+  "bytes": 125174360,
+  "sha256": "c842d4706b51fa22efb1a72e74d9bde798b26be267aa6e74f333b97a6e62886e",
+  "crc_verified_members": 1507,
+  "expanded_bytes": 127943250,
+  "extracted": "/workspace/scratch/8c31d602ec0a/reader-focused4-v2-44807261790-20261120/focused_captures",
+  "status": "DOWNLOADED_CRC_VERIFIED_ONLY"
+}
