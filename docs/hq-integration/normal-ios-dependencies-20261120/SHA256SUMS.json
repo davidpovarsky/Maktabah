@@ -1,0 +1,146 @@
+{
+  "AUTHENTIC_RUN_REVIEW.json": {
+    "bytes": 13171,
+    "sha256": "57940e7ed9941fef824c37ef6273441903ded899d5642a07b876d5da2bd1153a"
+  },
+  "RAW_MANIFEST.json": {
+    "bytes": 11028,
+    "sha256": "6d2daf879f65dc283e5b7b4c5bda41a582708734db321c57cb63536af71be07b"
+  },
+  "README.md": {
+    "bytes": 9165,
+    "sha256": "cd6f4352b4bef418c16b8b7ed2cc74bfb85afa1ea4dac676bb8e8fa9b859409c"
+  },
+  "SOURCE_PRESERVATION.json": {
+    "bytes": 3868,
+    "sha256": "408c6ff5a920121dec44ba5b184dd04cefa0c51473b4686c9a48877644b09572"
+  },
+  "verify-preservation.py": {
+    "bytes": 4959,
+    "sha256": "a4ec9ed30b0865c2fd04af16e23d17d53ec7a2a463a56b78b79c88bea565a8d9"
+  },
+  "workspace-controls-final.json": {
+    "bytes": 3908,
+    "sha256": "679b4b19b2498fec708a68d9ff94fc648b4a5b6b7df1749b378bd66921880000"
+  },
+  "raw/local-scratch-first-controls.json.gz": {
+    "bytes": 978,
+    "sha256": "907be3bd932f1cea8e51bd66284a07ce8e12905e614943f2295375ba3ee0b2b7"
+  },
+  "raw/artifact-14616019160/build-unsigned-device.log.gz": {
+    "bytes": 174169,
+    "sha256": "fab144e945c46d26c4c1ac5da3828d0f82a4e349a635425621d3fd329b50b6e8"
+  },
+  "raw/artifact-14616019160/equatable-macro-authorization.json.gz": {
+    "bytes": 653,
+    "sha256": "3f52a7d8bb0d48a938da9cfbd01f0d72ed71734667444d4a2cac9103874d1e92"
+  },
+  "raw/artifact-14616019160/hanlin-sdk-source.json.gz": {
+    "bytes": 16157,
+    "sha256": "30755d42f61c0d1be4d5d4eca2afeff5fd33687b148baf83f94ddfa4ff50e5de"
+  },
+  "raw/artifact-14616019160/normal-ios-toolchain.json.gz": {
+    "bytes": 775,
+    "sha256": "8bd260ed910fd9756d33674fe5136e6965eb143e6c16ba2572a64b5ba37443d9"
+  },
+  "raw/artifact-14616098147/build-simulator.log.gz": {
+    "bytes": 25123,
+    "sha256": "d8d563176fc1a48d4d6a133d765b67a2ff71a37db1c7bfacd903752c6b7d5fb3"
+  },
+  "raw/artifact-14616098147/equatable-macro-authorization.json.gz": {
+    "bytes": 653,
+    "sha256": "3f52a7d8bb0d48a938da9cfbd01f0d72ed71734667444d4a2cac9103874d1e92"
+  },
+  "raw/artifact-14616098147/hanlin-sdk-source.json.gz": {
+    "bytes": 16157,
+    "sha256": "30755d42f61c0d1be4d5d4eca2afeff5fd33687b148baf83f94ddfa4ff50e5de"
+  },
+  "raw/artifact-14616098147/normal-ios-toolchain.json.gz": {
+    "bytes": 775,
+    "sha256": "3dba71ae571cca66599d9925f6bee8c0d3b895638f1fb62e6f29d2d25e544afe"
+  },
+  "raw/candidate/original-toolchain-controls.log.gz": {
+    "bytes": 148,
+    "sha256": "9a537f9a2495ce0c79b9ddcf3e8a1749b09f97236afa07f8a54a3ec1992b515b"
+  },
+  "raw/candidate/source-preservation.log.gz": {
+    "bytes": 1252,
+    "sha256": "45278cae5df466752182d3668d4c466a9fe22bc422f2f5e0842d8c44779b8f20"
+  },
+  "raw/candidate/SOURCE_PRESERVATION.json.gz": {
+    "bytes": 1292,
+    "sha256": "b777b56d47f56ac7b9e92dc6fb1bb07a5093401ccec21c5ece5bc7456958a91f"
+  },
+  "raw/candidate/validation-invocations.json.gz": {
+    "bytes": 1638,
+    "sha256": "689e662b803c96d943073969e47128f2bb244454d0763bc74f1e680c6c4fbb13"
+  },
+  "raw/candidate/workspace-controls-final.json.gz": {
+    "bytes": 984,
+    "sha256": "2fe1e69d901a16075ec92f1309ec386c1ac1eb630e2551fcb8d1fc52ac772e92"
+  },
+  "raw/candidate/workspace-controls-final.log.gz": {
+    "bytes": 1318,
+    "sha256": "3dd93a6ada5b14dfb0e2fc50bec065b45714af45b61d12a33b80922d95b85697"
+  },
+  "raw/candidate/workspace-controls.json.gz": {
+    "bytes": 983,
+    "sha256": "8876072a3d1520069f71ed8e4246ad106a38a9de796f69762774b86d5e58970c"
+  },
+  "raw/candidate/workspace-controls.log.gz": {
+    "bytes": 1315,
+    "sha256": "304ed3e9eaf6ecbc0f6a157b0adf58d455bd37b44f8dce086d00b62e31a1a59d"
+  },
+  "raw/normal-run/14616019160-verified.json.gz": {
+    "bytes": 610,
+    "sha256": "4264a18e1a26732bd9260dadfb989c039e88020b902388b32da036c2c62aef08"
+  },
+  "raw/normal-run/14616098147-verified.json.gz": {
+    "bytes": 605,
+    "sha256": "312ac5a945e2279c2d56eb8e1efde75aa987eeab265d4d608cd95e3db244810f"
+  },
+  "raw/normal-run/dispatch-state.json.gz": {
+    "bytes": 575,
+    "sha256": "9791eeb6faacdfa5440e869c4ef4cb78d82a5b59831683f1c4d045e82a771206"
+  },
+  "raw/normal-run/final-artifacts.json.gz": {
+    "bytes": 928,
+    "sha256": "c2e22ce3c017fb0888c86122e48a1fbd83a3934ee4909ec1d0c1f8b5bff744ba"
+  },
+  "raw/normal-run/final-jobs.json.gz": {
+    "bytes": 2910,
+    "sha256": "9225beac1df92a579646b99850a9019236195c4ac32c086b17992ab633211422"
+  },
+  "raw/normal-run/final-run.json.gz": {
+    "bytes": 1729,
+    "sha256": "b9af0264e4572ee5fe959a1df8b3c7096e9e9aaf9b2d6329569ff99eefd86554"
+  },
+  "raw/normal-run/job-136190541914-review.json.gz": {
+    "bytes": 703,
+    "sha256": "3b59fb9f698ffbea92f07073abcb9093237866139455a6d9d8a902034ec52f87"
+  },
+  "raw/normal-run/job-136190541914.log.gz": {
+    "bytes": 226515,
+    "sha256": "7963cba211ae8aae23a58aa6bedfaaebf7d129d0a1cb7439eaccc92e21ec11b4"
+  },
+  "raw/normal-run/job-136190542104-review.json.gz": {
+    "bytes": 750,
+    "sha256": "bb1021c312e48a6bc733a9334117693ca65c08d620dd1113329c115b2d1c9eb3"
+  },
+  "raw/normal-run/job-136190542104.log.gz": {
+    "bytes": 56839,
+    "sha256": "db56f21df4a82beeee2043c2f645c84f16656d714f7f1c7f20328578825cccbb"
+  },
+  "raw/normal-run/watcher-state-attempt01.json.gz": {
+    "bytes": 683,
+    "sha256": "776b062b1dffa424fa31784d83ded75d869735cda726494cd91a0fd2c7b32a5e"
+  },
+  "raw/normal-run/watcher-state-final.json.gz": {
+    "bytes": 789,
+    "sha256": "6affa24a60119dd72dd9a4e6f91a6cea127bf3877fd8913e8caee24c35ee6111"
+  },
+  "raw/normal-run/watcher.log.gz": {
+    "bytes": 1348,
+    "sha256": "ba5900f94c59661e7f5929ed49e8f15d641efef0928ccbeccbb6fd84eca23321"
+  }
+}

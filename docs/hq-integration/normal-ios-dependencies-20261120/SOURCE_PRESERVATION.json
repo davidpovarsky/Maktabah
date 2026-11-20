@@ -1,0 +1,107 @@
+{
+  "status": "PASS_EXACT_SOURCE_PRESERVATION_ONLY",
+  "baseline": "e80cd5f2c27993351533f1be9d0890dfaa82cb42",
+  "candidate_head": "e80cd5f2c27993351533f1be9d0890dfaa82cb42",
+  "workflow_sha256": "5574521593c0464613a50a76a03d4b129d41ab973c6af6e4f31ad467371bb828",
+  "inverse_sha256": "91781359217c1b48c7bc98393265d6bca61e98576325dc206285527d4dfb5691",
+  "baseline_workflow_sha256": "91781359217c1b48c7bc98393265d6bca61e98576325dc206285527d4dfb5691",
+  "inverse": [
+    {
+      "delta": "original Node/Ruby setup",
+      "occurrences": 2
+    },
+    {
+      "delta": "original preparation adapter",
+      "occurrences": 2
+    },
+    {
+      "delta": "workspace build selection",
+      "occurrences": 2
+    },
+    {
+      "delta": "destination-derived SDK Debug",
+      "occurrences": 1
+    },
+    {
+      "delta": "destination-derived SDK Release",
+      "occurrences": 1
+    },
+    {
+      "delta": "original React build settings",
+      "occurrences": 2
+    },
+    {
+      "delta": "built bundle and original source verification",
+      "occurrences": 2
+    },
+    {
+      "delta": "bounded preparation log collection",
+      "occurrences": 2
+    }
+  ],
+  "protected_identities": {
+    "Source": {
+      "baseline": "8c0c17c9df352161a025eb66a7a16114a32d41a3",
+      "current": "8c0c17c9df352161a025eb66a7a16114a32d41a3"
+    },
+    "Vendor": {
+      "baseline": "91a62524a787c3c0317db65ffda8c3d21dcb9497",
+      "current": "91a62524a787c3c0317db65ffda8c3d21dcb9497"
+    },
+    "Maktabah.xcodeproj": {
+      "baseline": "1f639a7aad1a355b42b236602cc5dc54324aab33",
+      "current": "1f639a7aad1a355b42b236602cc5dc54324aab33"
+    },
+    "Podfile": {
+      "baseline": "4ebf2a981de4447b1ce98f885eb0a463ee75e692",
+      "current": "4ebf2a981de4447b1ce98f885eb0a463ee75e692"
+    },
+    "Scripts/CI/hq-stage2-focused-apple.py": {
+      "baseline": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1",
+      "current": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1"
+    },
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": {
+      "baseline": "635513043bb6cce7683cd9b33ab52f242f393866",
+      "current": "635513043bb6cce7683cd9b33ab52f242f393866"
+    },
+    "Scripts/CI/prepare-ios-macro-authorization.py": {
+      "baseline": "bab73c4298104db71bada8ac7a21bc10ce03334e",
+      "current": "bab73c4298104db71bada8ac7a21bc10ce03334e"
+    },
+    "Scripts/CI/prepare-hanlin-sdk.py": {
+      "baseline": "2b3d439abe961e77cf81538043a77d6be50c3904",
+      "current": "2b3d439abe961e77cf81538043a77d6be50c3904"
+    },
+    "Scripts/CI/select-runtime27-toolchain.py": {
+      "baseline": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05",
+      "current": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05"
+    },
+    "Scripts/CI/cache-key-inputs.py": {
+      "baseline": "ce5dd1a625f528e217f46f817fc0739af4e36c20",
+      "current": "ce5dd1a625f528e217f46f817fc0739af4e36c20"
+    },
+    "Scripts/run-ipad-simulator-acceptance.sh": {
+      "baseline": "a68715928ee7902d40206ce811cb1f7b76a3be10",
+      "current": "a68715928ee7902d40206ce811cb1f7b76a3be10"
+    },
+    "Scripts/CI/test-normal-ios-toolchain.py": {
+      "baseline": "25e5f147696901dd57417755a66c41e8d7791a4c",
+      "current": "25e5f147696901dd57417755a66c41e8d7791a4c"
+    },
+    "Vendor/HanlinSDK": {
+      "baseline": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+      "current": "e00498e33f106cc43be0476ffa2e09329c8ca300"
+    },
+    "Vendor/SefariaMobile/Upstream": {
+      "baseline": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "current": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c"
+    },
+    "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved": {
+      "baseline": "2a09ec0e71d3da6855fb57f25a09996816df608c",
+      "current": "2a09ec0e71d3da6855fb57f25a09996816df608c"
+    }
+  },
+  "root_podfile_lock_tracked": false,
+  "all_other_workflow_bytes_preserved": true,
+  "actual_apple_or_native_execution": false
+}
