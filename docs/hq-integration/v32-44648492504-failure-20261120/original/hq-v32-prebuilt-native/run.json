@@ -1,0 +1,104 @@
+{
+  "status": "FAILED",
+  "mode": "run",
+  "observed_at": "2026-11-20T01:42:31.134484+00:00",
+  "checkout_sha": "83bc48f7b27e41d5580124a974d78bfad6ace50c",
+  "application_source_sha": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
+  "original_build_preflight": {
+    "checkout_sha": "83bc48f7b27e41d5580124a974d78bfad6ace50c",
+    "application_source_sha": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
+    "validator_sha256": "434fa72de94986e805554ce4c728f774e5af82e6f90da16de8ad158a4469a4eb",
+    "inputs_sha256": "c7cc9dd42517502e3310bba69d6c1d401208e16dac89c2d850866127ecae214a",
+    "workflow_sha256": "9b65c66e06cd8d3541a3140012d7d128d767ae687b07a2df56d0da951f01a092",
+    "project_sha256": "7e18f2bb0d981fabaddec2b8bdd96c72cf83ea9abb1b32044d425faddc316356",
+    "application_trees": {
+      "Source": "792d71b9f4c3029e8da8854df1d1c47fec010f77",
+      "Vendor": "fd589175514256438eb1a72a0d2efcd5284c247c",
+      "Maktabah.xcodeproj": "1175aa91ffff58b465c635926ba3eebe9a80ae53"
+    },
+    "zayit_framework": {
+      "mode": "REBUILD_EXACT_REVIEWED_RUST",
+      "source_tree": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8",
+      "baseline_producer_sha": "41c278ac67f0c03e19270ed65b891b242a1a3f2e",
+      "changed_paths": [
+        "Vendor/ZayitSearchPort/Rust/src/magic_dictionary_index.rs",
+        "Vendor/ZayitSearchPort/Rust/tests/fixture_index_search.rs"
+      ],
+      "build_script": "Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh",
+      "build_script_git_blob": "a4f123b144b236fc1ec691060cf144e3e9da2cf9"
+    },
+    "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+    "embedded_bundle_build": {
+      "mode": "REBUILD_EXACT_REVIEWED_JS",
+      "overlay_paths": [
+        "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+      ],
+      "source_tree": "1a0e21666586f417186b6218049e03fc1cc232fd"
+    },
+    "package_resolved_sha256": "e8442e70806c4a7109302ace87e041a499f28f0bf5b70a223cca5a09d5da661c",
+    "package_pins": {
+      "anchoredpopup": "f93c51e75ff4e5242328ac24c8fb12f1f1e84eda",
+      "equatable": "597c2bb34af0c51331eb3b5e705f942d8ee20daa",
+      "floatingpanel": "3db567a19ff81d2d3ce00399021ee87a4fccf7e0",
+      "hanlin-streaming-markdown": "6bde022876ef4af738c154b3d5c871984ef76195",
+      "highlightswift": "99c431b38a1444a5fd6a4978307fbbefe3a7af53",
+      "iosmath": "ba9ab7729b151329c54fd895a7c1859981d9484c",
+      "sparkle": "066e75a8b3e99962685d6a90cdd5293ebffd9261",
+      "swift-ai-sdk": "e7bf34111e603ca977becd007dd4e5bb109af857",
+      "swift-argument-parser": "6a52f3251125d74daf04fcbd5e6f08a75d074382",
+      "swift-cmark": "08ddb528923cc1a6527e02b7a1aee9e516ca749a",
+      "swift-markdown": "7d9a5ce307528578dfa777d505496bd5f544ad94",
+      "swift-syntax": "79e4b74a295b6eb74a8b585e3a39d29e70c1dbd1",
+      "swiftui-shimmer": "0226e21f9bf355d40e07e5f5e1c33679d50e167f",
+      "swiftyjson": "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+      "torahinspectorkit": "19d1b35397af4f10ae70cfb3f444c9de87383b53",
+      "zipfoundation": "22787ffb59de99e5dc1fbfe80b19c97a904ad48d",
+      "zstd": "f8745da6ff1ad1e7bab384bd1f9d742439278e99"
+    }
+  },
+  "driver_sha256": "c2e0ba3a9088506ddfade2e5f1395a9f6f45959532622c3dcaf5f11562a40a54",
+  "native_launcher_sha256": "a64b7754a879cb7177c34c99aa45252114407f323c3b095585c67f42b1a729dc",
+  "native_runner_sha256": "9b1fa28388d85f2693bf90f371cd69f6eb7dafc8c2b83bfe332f78e053787e49",
+  "workflow_sha256": "49ce788a5ff45c681ab6d91325c4e2dfb0bd86d8a5b61fb3161f6cbc410fca56",
+  "ui_xctest_cases_executed": 0,
+  "physical_device": "NOT_RUN",
+  "publication": false,
+  "reindex": false,
+  "simulator": {
+    "created_by_this_run": true,
+    "udid": "44A35130-BCBE-421F-9467-03D18E8511B3",
+    "type": {
+      "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 11-inch (M5) (16GB).simdevicetype",
+      "name": "iPad Pro 11-inch (M5) (16GB)",
+      "productFamily": "iPad",
+      "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-M5-16GB"
+    },
+    "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-27-2"
+  },
+  "original_launcher_exit_code": 0,
+  "verification": {
+    "app_pids": {
+      "install": "15950",
+      "reopen": "23550"
+    },
+    "original_modes": [
+      "exact",
+      "fuzzy",
+      "advanced"
+    ],
+    "golden_results": 25,
+    "golden_result_identities_equal_after_restart": true,
+    "native_resumed_bytes": 1048576
+  },
+  "source_database_unchanged": true,
+  "owned_simulator_cleanup": {
+    "exit_code": 0,
+    "stderr": ""
+  },
+  "raw_log_sha256": "1df4b44d7e17431c4fe5abfd397849548634d4113d7a7b66e147fa88eebf6bbc",
+  "report_sha256": {
+    "otzaria-prebuilt-install.json": "aa34fe5573fc3b3b80f87d887152a559bc0e2445057a78558de17ac59882b2d4",
+    "otzaria-prebuilt-reopen.json": "c4e0233af9387529510c8179516596591bc21f0aa6e1a28ec4a1e748e92794e0"
+  },
+  "error": "Command ['xcrun', 'simctl', 'get_app_container', '44A35130-BCBE-421F-9467-03D18E8511B3', 'com.davidpovarsky.chavrusatext', 'data'] returned non-zero exit status 53."
+}

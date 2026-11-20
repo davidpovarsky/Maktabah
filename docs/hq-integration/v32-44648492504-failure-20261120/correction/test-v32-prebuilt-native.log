@@ -1,0 +1,20 @@
+test_changed_order_after_restart_is_rejected (__main__.EvidenceControls.test_changed_order_after_restart_is_rejected) ... ok
+test_controlled_complete_report_is_accepted (__main__.EvidenceControls.test_controlled_complete_report_is_accepted) ... ok
+test_exact_real_manifest_passes_and_modified_bytes_fail (__main__.EvidenceControls.test_exact_real_manifest_passes_and_modified_bytes_fail) ... ok
+test_explicit_owned_simulator_is_used (__main__.EvidenceControls.test_explicit_owned_simulator_is_used) ... ok
+test_full_native_redownload_does_not_count_as_resume (__main__.EvidenceControls.test_full_native_redownload_does_not_count_as_resume) ... ok
+test_missing_native_resume_is_rejected (__main__.EvidenceControls.test_missing_native_resume_is_rejected) ... ok
+test_missing_query_mode_is_rejected (__main__.EvidenceControls.test_missing_query_mode_is_rejected) ... ok
+test_partial_corpus_is_rejected (__main__.EvidenceControls.test_partial_corpus_is_rejected) ... ok
+test_reindex_on_reopen_is_rejected (__main__.EvidenceControls.test_reindex_on_reopen_is_rejected) ... ok
+test_reopen_download_is_rejected (__main__.EvidenceControls.test_reopen_download_is_rejected) ... ok
+test_report_failure_is_not_promoted (__main__.EvidenceControls.test_report_failure_is_not_promoted) ... ok
+test_same_process_is_not_a_restart (__main__.EvidenceControls.test_same_process_is_not_a_restart) ... ok
+test_skipped_original_validator_is_rejected (__main__.EvidenceControls.test_skipped_original_validator_is_rejected) ... ok
+test_unavailable_owned_simulator_cannot_fall_back (__main__.EvidenceControls.test_unavailable_owned_simulator_cannot_fall_back) ... ok
+test_wrong_artifact_is_rejected (__main__.EvidenceControls.test_wrong_artifact_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.011s
+
+OK

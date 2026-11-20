@@ -1,0 +1,9 @@
+test_legacy_searchdownloads_path_reproduces_zero_resumable_bytes (__main__.SeedWorkspaceParity.test_legacy_searchdownloads_path_reproduces_zero_resumable_bytes) ... ok
+test_original_launcher_seed_is_visible_to_production_storage (__main__.SeedWorkspaceParity.test_original_launcher_seed_is_visible_to_production_storage) ... ok
+test_production_seed_does_not_enter_mini_profile (__main__.SeedWorkspaceParity.test_production_seed_does_not_enter_mini_profile) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 9.873s
+
+OK
+{"actual_swift_sources_sha256": {"Source\\Otzaria\\DataProfiles\\OtzariaArtifactStorage.swift": "4acf8875b50478e780c5f98ec7a4f7ca51ea372ed43b0b228794caf5b85fbfc2", "Source\\Otzaria\\DataProfiles\\OtzariaDataProfile.swift": "310835c3a943a965e2a13286ebf2a08c7109adba76412b01decb7c8cdf135326", "Source\\Otzaria\\DataProfiles\\OtzariaDataProfileRegistry.swift": "169fa4fb34f86b9e62934afd07390bf9f7457653149105d8dd4c7494e28aa987"}, "scope": "portable original-path parity only; native HTTP resume NOT_RUN"}

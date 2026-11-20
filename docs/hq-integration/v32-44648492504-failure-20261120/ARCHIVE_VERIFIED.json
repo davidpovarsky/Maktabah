@@ -1,0 +1,258 @@
+{
+  "sha256": "022030740dd071a459fcdbb5ddf4d5aac91243fc09c2d22f6b661e7b5f53602d",
+  "bytes": 39640372,
+  "fileCount": 48,
+  "files": [
+    {
+      "name": "hq-v32-prebuilt-native/evidence-gate-regression.log",
+      "bytes": 1840
+    },
+    {
+      "name": "hq-v32-prebuilt-native/native-prebuilt.log",
+      "bytes": 10944
+    },
+    {
+      "name": "hq-v32-prebuilt-native/otzaria-search-manifest.json",
+      "bytes": 7032
+    },
+    {
+      "name": "hq-v32-prebuilt-native/otzaria-search-releases.json",
+      "bytes": 1060948
+    },
+    {
+      "name": "hq-v32-prebuilt-native/pinned-database-release.json",
+      "bytes": 29386
+    },
+    {
+      "name": "hq-v32-prebuilt-native/preflight.json",
+      "bytes": 3603
+    },
+    {
+      "name": "hq-v32-prebuilt-native/prepare.json",
+      "bytes": 4668
+    },
+    {
+      "name": "hq-v32-prebuilt-native/pinned-index-release.json",
+      "bytes": 34883
+    },
+    {
+      "name": "hq-v32-prebuilt-native/release-discovery-compile.log",
+      "bytes": 0
+    },
+    {
+      "name": "hq-v32-prebuilt-native/release-discovery-tests.log",
+      "bytes": 5913
+    },
+    {
+      "name": "hq-v32-prebuilt-native/reports/otzaria-prebuilt-install.json",
+      "bytes": 5019
+    },
+    {
+      "name": "hq-v32-prebuilt-native/reports/otzaria-prebuilt-reopen.json",
+      "bytes": 5013
+    },
+    {
+      "name": "hq-v32-prebuilt-native/run.json",
+      "bytes": 4998
+    },
+    {
+      "name": "hq-v32-prebuilt-native/seed-path-regression.log",
+      "bytes": 1055
+    },
+    {
+      "name": "hq-v32-prebuilt-native/toolchain.json",
+      "bytes": 17538
+    },
+    {
+      "name": "hq-stage2/ExpoModulesProvider.swift",
+      "bytes": 1246
+    },
+    {
+      "name": "hq-stage2/actual-source-inputs.json",
+      "bytes": 96904
+    },
+    {
+      "name": "hq-stage2/generated-pods-project.diff",
+      "bytes": 401370
+    },
+    {
+      "name": "hq-stage2/generated-privacy.diff",
+      "bytes": 2618
+    },
+    {
+      "name": "hq-stage2/hanlin-sdk-after.log",
+      "bytes": 679
+    },
+    {
+      "name": "hq-stage2/hanlin-sdk-inputs-after.json",
+      "bytes": 61045
+    },
+    {
+      "name": "hq-stage2/hanlin-sdk-inputs.json",
+      "bytes": 61045
+    },
+    {
+      "name": "hq-stage2/hanlin-sdk.log",
+      "bytes": 679
+    },
+    {
+      "name": "hq-stage2/maktabah_zayit_search.h.log",
+      "bytes": 300
+    },
+    {
+      "name": "hq-stage2/matching-embedded-bundle.log",
+      "bytes": 741
+    },
+    {
+      "name": "hq-stage2/matching-zayit-framework.log",
+      "bytes": 22375
+    },
+    {
+      "name": "hq-stage2/native-script-permissions.log",
+      "bytes": 0
+    },
+    {
+      "name": "hq-stage2/npm-ci.log",
+      "bytes": 3331
+    },
+    {
+      "name": "hq-stage2/otzaria_search_engine.h.log",
+      "bytes": 304
+    },
+    {
+      "name": "hq-stage2/pinned-sharp-inputs.log",
+      "bytes": 991
+    },
+    {
+      "name": "hq-stage2/pod-install.log",
+      "bytes": 31886
+    },
+    {
+      "name": "hq-stage2/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+      "bytes": 877
+    },
+    {
+      "name": "hq-stage2/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+      "bytes": 855
+    },
+    {
+      "name": "hq-stage2/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+      "bytes": 776
+    },
+    {
+      "name": "hq-stage2/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+      "bytes": 1233
+    },
+    {
+      "name": "hq-stage2/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+      "bytes": 1482
+    },
+    {
+      "name": "hq-stage2/privacy-generated.xcprivacy",
+      "bytes": 1386
+    },
+    {
+      "name": "hq-stage2/privacy-original.xcprivacy",
+      "bytes": 1132
+    },
+    {
+      "name": "hq-stage2/react-source-checkout.log",
+      "bytes": 453
+    },
+    {
+      "name": "hq-stage2/rebuilt-zayit/MaktabahZayitSearch.xcframework.tar",
+      "bytes": 123760640
+    },
+    {
+      "name": "hq-stage2/resolve-packages.log",
+      "bytes": 4898
+    },
+    {
+      "name": "hq-stage2/resolved-Package.resolved",
+      "bytes": 4432
+    },
+    {
+      "name": "hq-stage2/resolved-Podfile.lock",
+      "bytes": 100298
+    },
+    {
+      "name": "hq-stage2/result.json",
+      "bytes": 82693
+    },
+    {
+      "name": "hq-stage2/simulator-build-for-testing.log",
+      "bytes": 22302746
+    },
+    {
+      "name": "hq-stage2/target-membership.log",
+      "bytes": 130
+    },
+    {
+      "name": "hq-stage2/workspace-Package.resolved",
+      "bytes": 4432
+    },
+    {
+      "name": "hq-stage2/zayit-locked-metadata.log",
+      "bytes": 5135
+    }
+  ],
+  "download_attempts": [
+    {
+      "attempt": 1,
+      "status": "DOWNLOAD_TIMEOUT_45S",
+      "partial_bytes": 22609920,
+      "sha256": "1aea7b93a980f10953a53d0f97728869c1c08e7d7ce12630b0d5908a16cfa1ce"
+    }
+  ],
+  "verified_at": "2026-11-20T02:43:01.796584+00:00",
+  "extracted_file_digests": {
+    "hq-stage2/actual-source-inputs.json": "b4260f1072c16c830b83e17dfa814524f9a6c22eae5287b8bea9bad6e93b50a5",
+    "hq-stage2/ExpoModulesProvider.swift": "c6ec625de1af66d390d35bfb43e4d69508597cfa246f3c939428c77295b017e1",
+    "hq-stage2/generated-pods-project.diff": "babab57c151230a8176621616f0db85fdb839616c79627fd0cce7c12ade679e4",
+    "hq-stage2/generated-privacy.diff": "2f496cd81580a43548668ef59cbaa0510222396bbb6c978ce0919c0faf41ae4e",
+    "hq-stage2/hanlin-sdk-after.log": "baca24125ae53ea60324b2491d0150e52d5c02edae797fb114e68d35dbc52d25",
+    "hq-stage2/hanlin-sdk-inputs-after.json": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118",
+    "hq-stage2/hanlin-sdk-inputs.json": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118",
+    "hq-stage2/hanlin-sdk.log": "baca24125ae53ea60324b2491d0150e52d5c02edae797fb114e68d35dbc52d25",
+    "hq-stage2/maktabah_zayit_search.h.log": "87b20fd3d731cc694a3b004a15f295a72a38e5df7f98e837dc0c0985aa184aea",
+    "hq-stage2/matching-embedded-bundle.log": "29e34f5a221dbe07dfb7ef9fb331dda2800bf2d7e16ee02b9031012ff5922482",
+    "hq-stage2/matching-zayit-framework.log": "274eb37c463a54a08a841473f026e93c4138449c04aea5ed25089bc132328bd1",
+    "hq-stage2/native-script-permissions.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "hq-stage2/npm-ci.log": "6ff6fb017bfdddd337fda5e86cb1403b816b0d04fa923839b3a74a3dd3fa4d0c",
+    "hq-stage2/otzaria_search_engine.h.log": "15648f23bbe5f5f15ae65af39bbabc45ce85e2c62b7786375e77c01f6246eab6",
+    "hq-stage2/pinned-sharp-inputs.log": "78560d94294e7adc970a8f8eb5ffee5288bdf8f10e966c59249bbe32e9ff5c45",
+    "hq-stage2/pod-install.log": "92b99a94cf5d89b4619157d9d1926e189d6dd983b1b36a4b5e4a446a156f971e",
+    "hq-stage2/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+    "hq-stage2/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef",
+    "hq-stage2/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38",
+    "hq-stage2/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d",
+    "hq-stage2/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c",
+    "hq-stage2/privacy-generated.xcprivacy": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5",
+    "hq-stage2/privacy-original.xcprivacy": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1",
+    "hq-stage2/react-source-checkout.log": "b278da59b8bfd20172192fee69776965913a069701ec217aba71aa99075b6248",
+    "hq-stage2/rebuilt-zayit/MaktabahZayitSearch.xcframework.tar": "047a0e567b3388fc02d686d1ebbfbc99e1f99f6fa58fcd5235994ce3481abd56",
+    "hq-stage2/resolve-packages.log": "492cfd97c1790d63bee8f6e8bc7f24fc611698b9f831f66702a315d2a32a16a2",
+    "hq-stage2/resolved-Package.resolved": "e8442e70806c4a7109302ace87e041a499f28f0bf5b70a223cca5a09d5da661c",
+    "hq-stage2/resolved-Podfile.lock": "9a7f88b1d9ebbf4d14f8b6f1efd1fb2d15ac63983bf16ffd3e9ea011f9a55ce7",
+    "hq-stage2/result.json": "ee6abaf047dc166bc5ae605bc025eee1160698a9e00b948313dbfea7464fea75",
+    "hq-stage2/simulator-build-for-testing.log": "a800fe78f32b5a3c7a9b6fd27ad26926f5a22ac380efe93fbaf00a868ea06f96",
+    "hq-stage2/target-membership.log": "a9695e1883ecde202f685f2c221392cbc116542a30dd420d50310c1a5f62035a",
+    "hq-stage2/workspace-Package.resolved": "e8442e70806c4a7109302ace87e041a499f28f0bf5b70a223cca5a09d5da661c",
+    "hq-stage2/zayit-locked-metadata.log": "700558b90512380fe2904ba7c0d1057651137ee19cca857ee2a3e25955801513",
+    "hq-v32-prebuilt-native/evidence-gate-regression.log": "2fed98f0557e27828168f2a5ff5acaf9a8afe1caa372ec99a2f674570550ee36",
+    "hq-v32-prebuilt-native/native-prebuilt.log": "1df4b44d7e17431c4fe5abfd397849548634d4113d7a7b66e147fa88eebf6bbc",
+    "hq-v32-prebuilt-native/otzaria-search-manifest.json": "34319ced48e76f22a5ae2df23745a03332160ddab2dd64244a5c917e0ce00a57",
+    "hq-v32-prebuilt-native/otzaria-search-releases.json": "6d1900a0c8f226a2b7b987f4c81532ef58638e17b87284a963c8c5a35566fd44",
+    "hq-v32-prebuilt-native/pinned-database-release.json": "c8ee305f52d41ef1b2576a3204e606852affd869bd63aa11ddfa22518646cb26",
+    "hq-v32-prebuilt-native/pinned-index-release.json": "868ea282c6c3d0ea57a491adf356791cb4b7ee7d6600a8363cc188170ce02577",
+    "hq-v32-prebuilt-native/preflight.json": "5af9fe2e451820b12e2300623f7515adfe62abc396aea267ea2f589145ff09e2",
+    "hq-v32-prebuilt-native/prepare.json": "0d08380450a0b91d0d1f5c29d49051a22e626c12e8ebe67baaa563c85babbd12",
+    "hq-v32-prebuilt-native/release-discovery-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "hq-v32-prebuilt-native/release-discovery-tests.log": "531bab8318f9b710b13311c1b8bdeadb0e2cc9297189b6950b6f9e45c839d0e9",
+    "hq-v32-prebuilt-native/reports/otzaria-prebuilt-install.json": "aa34fe5573fc3b3b80f87d887152a559bc0e2445057a78558de17ac59882b2d4",
+    "hq-v32-prebuilt-native/reports/otzaria-prebuilt-reopen.json": "c4e0233af9387529510c8179516596591bc21f0aa6e1a28ec4a1e748e92794e0",
+    "hq-v32-prebuilt-native/run.json": "168793f793cbed54c6b6b169cd99c505ecb53aa2eae8a9bdb71e198baaf29f8f",
+    "hq-v32-prebuilt-native/seed-path-regression.log": "791fbcf9b2da78ad0ca0bc9542deece19cddf6493a51c5b496c187dcad3385c2",
+    "hq-v32-prebuilt-native/toolchain.json": "a4d637384751a9dcfb0e17e45bdf1fd8221dc4a3a24c0210137897d90e5f1894"
+  }
+}

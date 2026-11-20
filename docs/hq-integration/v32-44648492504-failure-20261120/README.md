@@ -1,0 +1,15 @@
+# Full v32 evidence and final post-shutdown failure
+
+Run [44648492504](https://github.com/davidpovarsky/Maktabah/actions/runs/44648492504) remains FAILED at checkout83bc48f7/appca314e7. The original GitHub artifact14593986941 (39,640,372 bytes) was downloaded and independently verified against SHA256022030740dd071a459fcdbb5ddf4d5aac91243fc09c2d22f6b661e7b5f53602d. The unchanged original install/reopen reports, complete native log, build report/input inventory and compressed complete build log are retained here. The complete original artifact ZIP remains in the owned host build directory; its full entry inventory and independently computed extracted-file hashes are recorded.
+
+## Actual outcomes before the final failure
+
+The original app launcher exited0. Its production download/validation/install path opened7,080,797 indexed documents and7,876 sources; exact/fuzzy/advanced query reports each observed104,120 matching documents for the original query. These are document hits, not word-occurrence counts. Native HTTP resumed exactly1,048,576 bytes from the seeded production cache path. The reopened app had a distinct real PID, performed no reindex or redownload, and retained the same ordered25 golden source identities/references/highlights. Staging was absent. The original source database's post-run byte count and SHA256 passed. The unchanged strict report validator was independently rerun against these retained real reports and accepted those partial outcomes.
+
+The required final hash of the actual installed app database did NOT execute. After the original launcher's EXIT trap terminated/shut down the owned simulator, the outer driver asked CoreSimulator again for the already-known data-container path. That lookup returned exit53, connection interrupted. Only the exact owned simulator was deleted; cleanup exited0. This evidence does not approve full v32 acceptance, XCTest UI, or a physical device.
+
+## Narrow correction
+
+The original launcher now writes an atomic bounded witness for the exact data-container path returned while the simulator is live. The full-corpus driver binds it to a fresh64-hex invocation nonce, exact created simulator ID, original app bundle, canonical application-container shape and version1. It rejects missing/foreign/stale/unknown/path-traversal witnesses. It still hashes the actual installed database after both app phases with the original exact byte count and SHA256. No fallback path, assumed hash, ignored failure, service reset or reduction in the original corpus/resume/restart/query gates was added.
+
+Actual local verification:17 container-witness tests,15 original evidence negative controls,3 compiled-original Swift storage/seed cases and Bash syntax check all passed. The17 witness tests are added to the original CI preflight gate. No application, SDK, Xcode project or XCTest source changed; they remain identical to app7e777509. Corrected full Apple execution is pending and must pass the installed-database post-hash before full acceptance can be reported.

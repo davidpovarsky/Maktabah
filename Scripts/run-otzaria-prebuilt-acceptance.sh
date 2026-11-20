@@ -72,6 +72,24 @@ xcrun simctl bootstatus "$UDID" -b
 xcrun simctl uninstall "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
 xcrun simctl install "$UDID" "$APP"
 CONTAINER="$(xcrun simctl get_app_container "$UDID" "$BUNDLE_ID" data)"
+# Preserve the exact container returned while this owned simulator is live.
+# The outer full-corpus verifier must still hash the actual installed database
+# after both app phases; it must not depend on another service lookup after this
+# launcher's EXIT trap has shut the simulator down.
+python3 - "$REPORT_DIR/otzaria-prebuilt-container.json" "$UDID" "$BUNDLE_ID" "$CONTAINER" <<'PY_CONTAINER'
+import json, os, pathlib, sys
+output = pathlib.Path(sys.argv[1])
+witness = {
+    "schema_version": 1,
+    "simulator_udid": sys.argv[2],
+    "bundle_id": sys.argv[3],
+    "data_container": sys.argv[4],
+    "invocation_nonce": os.environ.get("OTZARIA_PREBUILT_CONTAINER_NONCE", ""),
+}
+temporary = output.with_name(output.name + ".partial")
+temporary.write_text(json.dumps(witness, indent=2) + "\n", encoding="utf-8")
+temporary.replace(output)
+PY_CONTAINER
 cp "$DATABASE" "$CONTAINER/Documents/otzaria-prebuilt.db"
 cp "$MANIFEST" "$CONTAINER/Documents/otzaria-search-manifest.json"
 if [ -n "$RELEASES_JSON" ]; then
