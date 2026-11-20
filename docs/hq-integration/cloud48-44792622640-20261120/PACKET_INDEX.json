@@ -1,0 +1,47 @@
+{
+  "files": [
+    {
+      "bytes": 4683,
+      "path": "C_GIT_SOURCE_RECORDS.json.gz",
+      "sha256": "9686855c8e6a5a7d99161bef61793c010d3770144b7b9f79a9f98b82d441cb98"
+    },
+    {
+      "bytes": 7738,
+      "path": "README.md",
+      "sha256": "3406421f6aa27674235bbb72ec7fe3e0949a18aa03b9e86e40555e41a3e62840"
+    },
+    {
+      "bytes": 40463,
+      "path": "REVIEW.json",
+      "sha256": "4b2789821c67c7040cbfabd15c16c014107492435110d87b67966910e286bce5"
+    },
+    {
+      "bytes": 15900,
+      "path": "ROOT_API_INPUT.json.gz",
+      "sha256": "229bbac07d239fba34cdb8baad84b5a13e9196967dac006b71bf7e14e46c4bac"
+    },
+    {
+      "bytes": 16966,
+      "path": "VERIFY_PACKET.py",
+      "sha256": "856313e53e8c50a3396ecd947360ea539a8da451eb251425f87456fbec63ccba"
+    },
+    {
+      "bytes": 995050,
+      "path": "artifact-14656519348.zip",
+      "sha256": "1e3fab2c767e19ef673c951e63dd05c50cf0a78bffd070b8d5be1acca9b2e116"
+    },
+    {
+      "bytes": 626,
+      "path": "verification-attempt1.log",
+      "sha256": "0d44d65bf429fe8add603a5764732ca649f963c8c7034db1f769162494c437a5"
+    },
+    {
+      "bytes": 5193,
+      "path": "verification-attempt1.py.gz",
+      "sha256": "bd480a18df406ae8abb1d9fde1f842171c7d27e21db765a4ecd1bb535676dbef"
+    }
+  ],
+  "frozen_head": "452a04c2b05150694d8120ed465afb48da190af3",
+  "schema": 1,
+  "scope": "ACTUAL_APPLE_FAILURE_WITH_SEPARATE_EXCHANGE_COMPONENT_PASS"
+}

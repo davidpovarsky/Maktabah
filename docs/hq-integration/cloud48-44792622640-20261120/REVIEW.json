@@ -1,0 +1,885 @@
+{
+  "actual_error_sites": [
+    "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/AnnotationLocalEditorCloudOwnership.swift:40:40: error: 'inout sending' parameter '$0' is accessible to code in the current isolation context at end of function [#RegionIsolation]"
+  ],
+  "anytype_mount": "NOT_RUN",
+  "artifact_bytes": 995050,
+  "artifact_id": 14656519348,
+  "artifact_members": [
+    {
+      "bytes": 36133,
+      "crc32": 1583130717,
+      "path": "local-annotation-cloud-route/after.json",
+      "sha256": "1ca5a8e1fc59bf46b8c7990d92bd5a496628d9e125119dd195a66001b87e3070"
+    },
+    {
+      "bytes": 20854,
+      "crc32": 2177448601,
+      "path": "local-annotation-cloud-route/python-controls/RESULT.json",
+      "sha256": "ba46fde70662ed20845c17d2e9335ba4ae5a8ff148b395f46aaf7c42e882bb5a"
+    },
+    {
+      "bytes": 35883,
+      "crc32": 1445992137,
+      "path": "local-annotation-cloud-route/before.json",
+      "sha256": "e744a2d91218fc160205bb1e61956868310335816e0a6e05d4b370fa849ed27b"
+    },
+    {
+      "bytes": 606,
+      "crc32": 1859463174,
+      "path": "local-annotation-cloud-route/bootstrap.json",
+      "sha256": "18db2b38d8ce234646a1ca2b9069fb798ecf45d5d7ba08ab764cde44244e3884"
+    },
+    {
+      "bytes": 5404,
+      "crc32": 2242543981,
+      "path": "local-annotation-cloud-route/python-controls.log",
+      "sha256": "67c4dc59663139eb2613fbd076c3c2fc8e7fd5cf908383f0ad6628c2e1fc64ff"
+    },
+    {
+      "bytes": 334967,
+      "crc32": 222014354,
+      "path": "local-annotation-cloud-route/source-after.tar.gz",
+      "sha256": "de7b9b4e5c3b41416aefaed4d082d088aeeaaa12c7af418c997f8c2334dc0b9b"
+    },
+    {
+      "bytes": 334968,
+      "crc32": 512928889,
+      "path": "local-annotation-cloud-route/source-before.tar.gz",
+      "sha256": "7cdee9b4464ddbcca1f2e78fb35a350daf8143fe12d550d49cef1c7d24951dd9"
+    },
+    {
+      "bytes": 5627,
+      "crc32": 834927056,
+      "path": "local-annotation-cloud-route/sql-premises/RESULT.json",
+      "sha256": "69955e2eeffdbd7ca07621aad4888343e3d85f3dec49f86b5b949e7ea42cd306"
+    },
+    {
+      "bytes": 13019,
+      "crc32": 2776280068,
+      "path": "local-annotation-cloud-route/toolchain.json",
+      "sha256": "825973a56ba1317652e22f8a6eaf0871b0ff0b98bf4b3e5f514f47b73bf78f98"
+    },
+    {
+      "bytes": 32585,
+      "crc32": 2750727059,
+      "path": "local-annotation-cloud-acceptance/RESULT.json",
+      "sha256": "3ddb30771e0c79a09cc04e5c95c1b8dab007c084c4c2d42c4b6ff93c613e7de6"
+    },
+    {
+      "bytes": 17682,
+      "crc32": 1465946564,
+      "path": "local-annotation-cloud-acceptance/compile.log",
+      "sha256": "718538e3c72add82bca06e474420813f1a5375944e60d5ee2b23f0fb31dbf86a"
+    },
+    {
+      "bytes": 895,
+      "crc32": 3070562124,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Package.swift",
+      "sha256": "a74ae3d0f4ccf43746048d3b71dbb856b76534c6e7584b3cb4b65fe390440ed8"
+    },
+    {
+      "bytes": 6351,
+      "crc32": 1805710223,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/Annotation.swift",
+      "sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d"
+    },
+    {
+      "bytes": 270,
+      "crc32": 830018961,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationEvent.swift",
+      "sha256": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21"
+    },
+    {
+      "bytes": 1589,
+      "crc32": 3103453404,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationChangeTypes.swift",
+      "sha256": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b"
+    },
+    {
+      "bytes": 33283,
+      "crc32": 3371602703,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationExchangeLedger.swift",
+      "sha256": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918"
+    },
+    {
+      "bytes": 3982,
+      "crc32": 526738679,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationLocalEditorCloudKit.swift",
+      "sha256": "40a9a5718d00a1e254345a016922bf1b6526e31ceb8540acf910c61069568d71"
+    },
+    {
+      "bytes": 14839,
+      "crc32": 2940662301,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationLocalEditorCloudOwnership.swift",
+      "sha256": "1b9556b20886ec54addc8135be7090d649ba017539df543e4268957e2b3cd243"
+    },
+    {
+      "bytes": 3885,
+      "crc32": 659066362,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationLocalEditorModels.swift",
+      "sha256": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb"
+    },
+    {
+      "bytes": 25713,
+      "crc32": 117933947,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationLocalEditorPersistence.swift",
+      "sha256": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972"
+    },
+    {
+      "bytes": 9240,
+      "crc32": 790658804,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationLocalEditorSession.swift",
+      "sha256": "c5e67d67d93ba3c6620c0c7dbbd47ed4ef00305d17e05991da3e70dfb9a7e765"
+    },
+    {
+      "bytes": 4413,
+      "crc32": 1446701405,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationNode.swift",
+      "sha256": "1c73ff3edbc122af24050ecc088d7142c85d886547336167375bfd4d26e48392"
+    },
+    {
+      "bytes": 44176,
+      "crc32": 2374760118,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationRepository.swift",
+      "sha256": "c3f086003d1667014a50fc996ae3976ebdf3ad82b9b6c9a60484762d6dbc16af"
+    },
+    {
+      "bytes": 15022,
+      "crc32": 2782565461,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationStore.swift",
+      "sha256": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37"
+    },
+    {
+      "bytes": 3504,
+      "crc32": 316852862,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationSyncHandler.swift",
+      "sha256": "42f673842385504947fe5f4c798282a67920c1bd051cd67558723aa5defaea7a"
+    },
+    {
+      "bytes": 13430,
+      "crc32": 3992758384,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/CloudKitCoreManager.swift",
+      "sha256": "c2543785eb57ce344c4114b88f7068c5a553670087e532be9de75391cddb88c2"
+    },
+    {
+      "bytes": 1329,
+      "crc32": 3578264910,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/CloudKitSyncable.swift",
+      "sha256": "439c932ab1686853198bb953ace1195f8acb57048b979c12d540e96d4443f69d"
+    },
+    {
+      "bytes": 1979,
+      "crc32": 2505428679,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/CloudKitUploadDebouncer.swift",
+      "sha256": "20f36acf1114f2d13c3d7edbaa1979b5bdc89aa9caeabec00b818ee4cf59f9a2"
+    },
+    {
+      "bytes": 44287,
+      "crc32": 4180364724,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/LocalAnnotationCloudAcceptance.swift",
+      "sha256": "0eb0914e8a1c92559fcb574efcec487d8dc97c276bf4a6a503d3320821285b8c"
+    },
+    {
+      "bytes": 599,
+      "crc32": 862378636,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/LocalAnnotationCloudBoundary.swift",
+      "sha256": "080306f6c765208bd4e2012267eb9866181e4bc25285d7beea6578d405a771b7"
+    },
+    {
+      "bytes": 3758,
+      "crc32": 1481041095,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/LocalAnnotationEditorBoundary.swift",
+      "sha256": "0d5eee1b035e3b05938f72e6acb08415c2a621870dd51795a90eb83eacb16b46"
+    },
+    {
+      "bytes": 14916,
+      "crc32": 2726442482,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/SQLiteDatabase.swift",
+      "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+    },
+    {
+      "bytes": 5569,
+      "crc32": 3749776980,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/OriginalLocalFixture.swift",
+      "sha256": "a428473214415145751bd5e00b9f7d935d0dea90efefd6e4c4bf9e37422a3389"
+    },
+    {
+      "bytes": 3534,
+      "crc32": 2645839424,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/SyncPendingStore.swift",
+      "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14"
+    },
+    {
+      "bytes": 8619,
+      "crc32": 4065094830,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/TorahAnnotationEnvelope.swift",
+      "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f"
+    },
+    {
+      "bytes": 443,
+      "crc32": 3745415494,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationCloudOwnershipAcceptance/UnusedZstdBoundary.swift",
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+    },
+    {
+      "bytes": 6351,
+      "crc32": 1805710223,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/Annotation.swift",
+      "sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d"
+    },
+    {
+      "bytes": 1589,
+      "crc32": 3103453404,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/AnnotationChangeTypes.swift",
+      "sha256": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b"
+    },
+    {
+      "bytes": 270,
+      "crc32": 830018961,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/AnnotationEvent.swift",
+      "sha256": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21"
+    },
+    {
+      "bytes": 33283,
+      "crc32": 3371602703,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/AnnotationExchangeLedger.swift",
+      "sha256": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918"
+    },
+    {
+      "bytes": 3982,
+      "crc32": 526738679,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/AnnotationLocalEditorCloudKit.swift",
+      "sha256": "40a9a5718d00a1e254345a016922bf1b6526e31ceb8540acf910c61069568d71"
+    },
+    {
+      "bytes": 14839,
+      "crc32": 2940662301,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/AnnotationLocalEditorCloudOwnership.swift",
+      "sha256": "1b9556b20886ec54addc8135be7090d649ba017539df543e4268957e2b3cd243"
+    },
+    {
+      "bytes": 3885,
+      "crc32": 659066362,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/AnnotationLocalEditorModels.swift",
+      "sha256": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb"
+    },
+    {
+      "bytes": 25713,
+      "crc32": 117933947,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/AnnotationLocalEditorPersistence.swift",
+      "sha256": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972"
+    },
+    {
+      "bytes": 9240,
+      "crc32": 790658804,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/AnnotationLocalEditorSession.swift",
+      "sha256": "c5e67d67d93ba3c6620c0c7dbbd47ed4ef00305d17e05991da3e70dfb9a7e765"
+    },
+    {
+      "bytes": 4413,
+      "crc32": 1446701405,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/AnnotationNode.swift",
+      "sha256": "1c73ff3edbc122af24050ecc088d7142c85d886547336167375bfd4d26e48392"
+    },
+    {
+      "bytes": 15022,
+      "crc32": 2782565461,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/AnnotationStore.swift",
+      "sha256": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37"
+    },
+    {
+      "bytes": 44176,
+      "crc32": 2374760118,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/AnnotationRepository.swift",
+      "sha256": "c3f086003d1667014a50fc996ae3976ebdf3ad82b9b6c9a60484762d6dbc16af"
+    },
+    {
+      "bytes": 3504,
+      "crc32": 316852862,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/AnnotationSyncHandler.swift",
+      "sha256": "42f673842385504947fe5f4c798282a67920c1bd051cd67558723aa5defaea7a"
+    },
+    {
+      "bytes": 13430,
+      "crc32": 3992758384,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/CloudKitCoreManager.swift",
+      "sha256": "c2543785eb57ce344c4114b88f7068c5a553670087e532be9de75391cddb88c2"
+    },
+    {
+      "bytes": 1329,
+      "crc32": 3578264910,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/CloudKitSyncable.swift",
+      "sha256": "439c932ab1686853198bb953ace1195f8acb57048b979c12d540e96d4443f69d"
+    },
+    {
+      "bytes": 1979,
+      "crc32": 2505428679,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/CloudKitUploadDebouncer.swift",
+      "sha256": "20f36acf1114f2d13c3d7edbaa1979b5bdc89aa9caeabec00b818ee4cf59f9a2"
+    },
+    {
+      "bytes": 599,
+      "crc32": 862378636,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/LocalAnnotationCloudBoundary.swift",
+      "sha256": "080306f6c765208bd4e2012267eb9866181e4bc25285d7beea6578d405a771b7"
+    },
+    {
+      "bytes": 39693,
+      "crc32": 2558405687,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/LocalAnnotationEditorAcceptance.swift",
+      "sha256": "130dfa7cb4e50b9a01f85c796a76b93a5bcc0b6a35fd2d23e0da593c82738b2a"
+    },
+    {
+      "bytes": 3758,
+      "crc32": 1481041095,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/LocalAnnotationEditorBoundary.swift",
+      "sha256": "0d5eee1b035e3b05938f72e6acb08415c2a621870dd51795a90eb83eacb16b46"
+    },
+    {
+      "bytes": 14916,
+      "crc32": 2726442482,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/SQLiteDatabase.swift",
+      "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+    },
+    {
+      "bytes": 3534,
+      "crc32": 2645839424,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/SyncPendingStore.swift",
+      "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14"
+    },
+    {
+      "bytes": 8619,
+      "crc32": 4065094830,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/TorahAnnotationEnvelope.swift",
+      "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f"
+    },
+    {
+      "bytes": 443,
+      "crc32": 3745415494,
+      "path": "local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/UnusedZstdBoundary.swift",
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+    },
+    {
+      "bytes": 27325,
+      "crc32": 2199066073,
+      "path": "local-annotation-cloud-exchange-regression/RESULT.json",
+      "sha256": "67c07a05b5aca8b6253c08bcc3141e9feb50d5d593396d374c809d7085894c13"
+    },
+    {
+      "bytes": 6565,
+      "crc32": 3190446030,
+      "path": "local-annotation-cloud-exchange-regression/compile.log",
+      "sha256": "940e9d9983f88fa65a87dd36ce8701b69e92b8c03e3f5551162f8ca1b6f76bd6"
+    },
+    {
+      "bytes": 59,
+      "crc32": 2850618511,
+      "path": "local-annotation-cloud-exchange-regression/crash-before.log",
+      "sha256": "1f9934c06d52b7ed61bce7b215b8433cc033bdf7e698869f3476f3269c4b7ec8"
+    },
+    {
+      "bytes": 59,
+      "crc32": 2850618511,
+      "path": "local-annotation-cloud-exchange-regression/crash-after.log",
+      "sha256": "1f9934c06d52b7ed61bce7b215b8433cc033bdf7e698869f3476f3269c4b7ec8"
+    },
+    {
+      "bytes": 3982,
+      "crc32": 2046861128,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/CASES.json",
+      "sha256": "f13e2cc74907b06b748d0c941d82fbeb80e873672c049f54928edc0eb8c4b3e3"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 2818853916,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/acks.sqlite",
+      "sha256": "10d2ea52ef2167079a7c6f5c0e708e7f5612182be2f05df48297c917254ad472"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 845775445,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/cancel-after-insert.sqlite",
+      "sha256": "eb3a98563fa3c516ebc6ed303b6d54c6d50b09bf9287bd67d4d2faeb29b9d152"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 2514825255,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/cancel-before.sqlite",
+      "sha256": "aef6e8aa02527be0bece02f66c821bfb5cb401729042c81123f53d009409c0f5"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 3650520813,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/closed.sqlite",
+      "sha256": "7c97b32ce19155add48113075cd0c98bf8542abba9e048886eed9e02fbd258dd"
+    },
+    {
+      "bytes": 215,
+      "crc32": 4050796250,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/cloud-after-ledger.json",
+      "sha256": "1bdaa355718e17134784059e88371af3b83cb9a71f16e8c592a203d1c25c7ea6"
+    },
+    {
+      "bytes": 215,
+      "crc32": 4050796250,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/cloud-before-ledger.json",
+      "sha256": "1bdaa355718e17134784059e88371af3b83cb9a71f16e8c592a203d1c25c7ea6"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 182575750,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/concurrent.sqlite",
+      "sha256": "4a1e76d4e4a540f5666f9422cde3a1238dd907aeb351f77f2e35ee0678658846"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 788291383,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/constraints.sqlite",
+      "sha256": "0fd90a51da555317fd070532829cc537415867116c85e8f3fd2c8ac22b205304"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 3863777751,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/corruption.sqlite",
+      "sha256": "8969b4429df76a567f8ab319fc800f28a06ee1414307ceea773aac0a214ffd04"
+    },
+    {
+      "bytes": 3884,
+      "crc32": 2268980290,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/crash-after.json",
+      "sha256": "8e2752ddde392e4b2918a69e50c14a8290f21505d226f0378c0778875f490832"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 3181519397,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/crash-after.sqlite",
+      "sha256": "42bee1961a668f50c810f87c8d9aabb31fedc59b8ae03c3856218f46e9362f70"
+    },
+    {
+      "bytes": 32768,
+      "crc32": 2077453591,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/crash-after.sqlite-shm",
+      "sha256": "adcb1af3f316af7d1a473adef275ef506a40bd4dd1197d87f7c7e8a40938b7d7"
+    },
+    {
+      "bytes": 0,
+      "crc32": 0,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/crash-after.sqlite-wal",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 3885,
+      "crc32": 1121468324,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/crash-before.json",
+      "sha256": "209cd21cea69ae69cb34a5daff5deb923ea8761515a947a9ebe4762116d1cac5"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 1962652966,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/crash-before.sqlite",
+      "sha256": "e1af415d530a8994d673bc8f7f498b433a553042edf61b03c0dc5334a75b0764"
+    },
+    {
+      "bytes": 32768,
+      "crc32": 872329196,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/crash-before.sqlite-shm",
+      "sha256": "901202e525ac858786267dbcaffeedac66c2cd9ae4ff323be1de9c38052b6f11"
+    },
+    {
+      "bytes": 0,
+      "crc32": 0,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/crash-before.sqlite-wal",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 1128844155,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/dangling-tag.sqlite",
+      "sha256": "c77866a929e7a7b293fe62065313b5ab0599df588e7ebfc8031fe543e62f84cd"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 3944380067,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/enqueue-failure.sqlite",
+      "sha256": "3a2c31e774c691f766ac6dfef07b4494e4673ffecf1aca9f7561641352a6d679"
+    },
+    {
+      "bytes": 53248,
+      "crc32": 3459441372,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/future-schema.sqlite",
+      "sha256": "84ad4ccbfc7b8f97ef838e15b5419678524a3bb38bec8c693a4ba82db7746a32"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 1649921495,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/idempotency.sqlite",
+      "sha256": "b06df6cb6cd17412db6c470693aee1c92e1b247779b40f19a8b60bbe1c9160d5"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 576529889,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/identity.sqlite",
+      "sha256": "5bebe34c20337a0299427e36bc9ceda8b6cbc7a7a737a22692a5717d4286357f"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 2416950755,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/inbox-mismatch.sqlite",
+      "sha256": "73ca0be7cacae094ea66dd9d289f84c67edca27f6f5f0b8bbc57bf4d7e072098"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 2769188044,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/inbox.sqlite",
+      "sha256": "1852c76c0dc302a687dfa8a94c5d63aba7aff4d39e141d2d50f3f30e540c33ca"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 2416950755,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/inert.sqlite",
+      "sha256": "73ca0be7cacae094ea66dd9d289f84c67edca27f6f5f0b8bbc57bf4d7e072098"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 2416950755,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/invalid.sqlite",
+      "sha256": "73ca0be7cacae094ea66dd9d289f84c67edca27f6f5f0b8bbc57bf4d7e072098"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 2416950755,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/mismatch.sqlite",
+      "sha256": "73ca0be7cacae094ea66dd9d289f84c67edca27f6f5f0b8bbc57bf4d7e072098"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 2866178091,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/never-existed.sqlite",
+      "sha256": "5015d1977783539038ab5947d717faa6f001d0f0d1c04f34ec71e168a5bade47"
+    },
+    {
+      "bytes": 114688,
+      "crc32": 1109556562,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/old-ack.sqlite",
+      "sha256": "9e333b2095525ae5c001d519e70514cd7ee89d506475f81b5e501508bb6c7e39"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 2416950755,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/outer-failure.sqlite",
+      "sha256": "73ca0be7cacae094ea66dd9d289f84c67edca27f6f5f0b8bbc57bf4d7e072098"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 2791692297,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/outer-success.sqlite",
+      "sha256": "61de66334939c05e4326d98e77e500d69a311981dd67355e9b2b196a47cdf25c"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 2416950755,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/oversize.sqlite",
+      "sha256": "73ca0be7cacae094ea66dd9d289f84c67edca27f6f5f0b8bbc57bf4d7e072098"
+    },
+    {
+      "bytes": 1667,
+      "crc32": 2489678809,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/rich-payload.json",
+      "sha256": "1ec5d78ea1971ac472ad074b3c008790cba52afac3e1d8d1129c4800e2d4b169"
+    },
+    {
+      "bytes": 64,
+      "crc32": 3015846345,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/rich-payload.sha256",
+      "sha256": "231d3d92ea254ea42bb5ef58d8297f163a414fbab3d16d81e87f5d71fdcb148c"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 2312170511,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/same-second.sqlite",
+      "sha256": "be8d1337601655acbf8acfb0debaecf961cb5e44138dced8f1eed8dae7f59e08"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 555399870,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/source-bytes.sqlite",
+      "sha256": "8882e5f4f9c1835c0febbfbfef081f402c7ebc91a6bfa61ce2c4b0695b65b824"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 4039351865,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/rich.sqlite",
+      "sha256": "231f380f7188972883fc200d2c8ccdb2893c992e92bc63610ef6311d20079557"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 4130256134,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/tombstone.sqlite",
+      "sha256": "1e7cb986c6c9cd8387978a95b68415a719b635357b4fec10f69bb9ceb240ba48"
+    },
+    {
+      "bytes": 106496,
+      "crc32": 2141443130,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/fixtures/unknown.sqlite",
+      "sha256": "230c1f4294e476db3f6d53aee022e71afb30605423161575bf3a2fce84166e2d"
+    },
+    {
+      "bytes": 575,
+      "crc32": 3064636595,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/package/Package.swift",
+      "sha256": "25c322e726f8efe82f175dd24617aa67241d4c805e259ab7ba6b4748a442c17a"
+    },
+    {
+      "bytes": 35544,
+      "crc32": 470457913,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/package/Sources/ExchangeAcceptance/AnnotationExchangeAcceptance.swift",
+      "sha256": "5053083cf4e9105b533fbd1fc7e6aa025c9f86f290676838a11736f0bebcc0de"
+    },
+    {
+      "bytes": 33283,
+      "crc32": 3371602703,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/package/Sources/ExchangeAcceptance/AnnotationExchangeLedger.swift",
+      "sha256": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918"
+    },
+    {
+      "bytes": 11957,
+      "crc32": 2756851995,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/package/Sources/ExchangeAcceptance/AnnotationExchangeTestSupport.swift",
+      "sha256": "3a7f1bae83c02185341c2c2383a82d142ba016aa167d59f0cff656cc2b12fff8"
+    },
+    {
+      "bytes": 14916,
+      "crc32": 2726442482,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/package/Sources/ExchangeAcceptance/SQLiteDatabase.swift",
+      "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+    },
+    {
+      "bytes": 3534,
+      "crc32": 2645839424,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/package/Sources/ExchangeAcceptance/SyncPendingStore.swift",
+      "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14"
+    },
+    {
+      "bytes": 8619,
+      "crc32": 4065094830,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/package/Sources/ExchangeAcceptance/TorahAnnotationEnvelope.swift",
+      "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f"
+    },
+    {
+      "bytes": 443,
+      "crc32": 3745415494,
+      "path": "local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/package/Sources/ExchangeAcceptance/UnusedZstdBoundary.swift",
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+    },
+    {
+      "bytes": 3361,
+      "crc32": 3027583030,
+      "path": "local-annotation-cloud-exchange-regression/tests.log",
+      "sha256": "7284cc3c9a515c81ab6afce261a7604218663b5c8f28e48c7e9cbfa124b57c52"
+    },
+    {
+      "bytes": 73,
+      "crc32": 1962170277,
+      "path": "local-annotation-cloud-exchange-regression/verify-crash-after.log",
+      "sha256": "cfd98c102ca8b8abf4e8e31add161486a0fcc4ed231479c6de68d7613750a17d"
+    },
+    {
+      "bytes": 74,
+      "crc32": 2021930203,
+      "path": "local-annotation-cloud-exchange-regression/verify-crash-before.log",
+      "sha256": "a24a932e2d9e7626bafc0c299192ef4c63a15992661292798a8a8f0dca998c9c"
+    }
+  ],
+  "artifact_sha256": "1e3fab2c767e19ef673c951e63dd05c50cf0a78bffd070b8d5be1acca9b2e116",
+  "attempt": 1,
+  "cloud48": "NOT_RUN_COMPILE_FAILED",
+  "compiled_source_copies": [
+    {
+      "exact_original_fixture_prefix": true,
+      "target": "LocalAnnotationCloudOwnershipAcceptance",
+      "whole_canonical_files": 23
+    },
+    {
+      "exact_original_fixture_prefix": false,
+      "target": "LocalAnnotationEditorAcceptance",
+      "whole_canonical_files": 23
+    }
+  ],
+  "core_tree": "5d0ee482c8f10726fe3863792dac94c18e94d792",
+  "exchange_cases": [
+    {
+      "milliseconds": 0.44798851013183594,
+      "name": "actual_platform_SHA256_known_vectors",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 6.610989570617676,
+      "name": "constructor_is_inert_and_capability_stays_off",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 19.279956817626953,
+      "name": "exact_rich_bytes_preview_and_unknown_fields_survive_reopen",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 10.030984878540039,
+      "name": "unknown_version_is_exact_quarantine_without_execution",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 17.132997512817383,
+      "name": "all_original_handles_close_before_reopen_and_retry",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 23.710966110229492,
+      "name": "duplicate_escaped_keys_malformed_UTF8_and_numbers_are_rejected",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 51.62405967712402,
+      "name": "invalid_UUID_base64_types_and_scope_are_rejected",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 5.674004554748535,
+      "name": "oversized_payload_fails_intact_without_rows",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 16.524910926818848,
+      "name": "schema_constraints_reject_fractional_revision_and_invalid_status",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 7.725000381469727,
+      "name": "unknown_ledger_schema_fails_closed",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 7.354021072387695,
+      "name": "missing_or_ambiguous_original_UUID_is_not_backfilled",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 9.43601131439209,
+      "name": "same_second_source_edit_rejects_stale_witness",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 13.013958930969238,
+      "name": "tag_locator_and_embedded_NUL_each_change_source_witness",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 5.361080169677734,
+      "name": "source_metadata_and_revision_mismatch_do_not_write",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 7.9070329666137695,
+      "name": "dangling_original_tag_link_changes_witness_and_rejects_stale_commit",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 9.967923164367676,
+      "name": "idempotent_retry_binds_exact_payload_and_destination_set",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 13.502001762390137,
+      "name": "ACK_is_bound_to_destination_account_space_UUID_revision_digest_and_message",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 11.703014373779297,
+      "name": "old_ACK_does_not_consume_newer_revision_or_account",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 5.811929702758789,
+      "name": "nested_enqueue_failure_rolls_back_source_cloud_queue_and_ledger",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 9.021997451782227,
+      "name": "outer_failure_after_inner_release_rolls_back_everything",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 9.370088577270508,
+      "name": "successful_outer_transaction_preserves_original_cloud_queue_semantics",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 23.45907688140869,
+      "name": "tombstone_requires_prior_identity_and_absent_original_source",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 10.949015617370605,
+      "name": "known_inbox_is_review_only_exact_idempotent_and_account_scoped",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 3.9499998092651367,
+      "name": "incoming_digest_and_identity_mismatch_are_rejected",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 10.01596450805664,
+      "name": "corrupt_payload_and_orphan_outbox_fail_closed",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 6.843090057373047,
+      "name": "pre_cancelled_commit_and_ACK_do_not_write",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 8.160948753356934,
+      "name": "cancellation_after_real_enqueue_rolls_back_before_commit",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 10.63692569732666,
+      "name": "eight_concurrent_same_revision_writers_have_one_atomic_winner",
+      "status": "PASS"
+    }
+  ],
+  "live_cloudkit": "NOT_RUN",
+  "live_exchange_enabled": false,
+  "local43": "NOT_RUN_COMPILE_FAILED",
+  "local_cold2": "NOT_RUN_COMPILE_FAILED",
+  "local_compile_exit": 1,
+  "native_ui": "NOT_RUN",
+  "not_core194": true,
+  "observer_correction_commit_pending_separate_qualification": "7af3a06d48ccbe77acef180cb99d120971c3804e",
+  "original_crash_reopen2": "PASS",
+  "original_exchange28": "PASS",
+  "original_exchange_warnings": [
+    "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/package/Sources/ExchangeAcceptance/AnnotationExchangeAcceptance.swift:81:24: warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]",
+    "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/package/Sources/ExchangeAcceptance/AnnotationExchangeAcceptance.swift:316:60: warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]",
+    "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/package/Sources/ExchangeAcceptance/AnnotationExchangeAcceptance.swift:326:102: warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]",
+    "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/package/Sources/ExchangeAcceptance/AnnotationExchangeTestSupport.swift:61:5: warning: will never be executed",
+    "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-cloud-exchange-regression/owned-32f1f498-1774-4d5c-9ec4-5a8eea67b1ad/package/Sources/ExchangeAcceptance/AnnotationExchangeTestSupport.swift:219:5: warning: will never be executed"
+  ],
+  "original_exchange_whole_compile_copies": 7,
+  "physical_device": "NOT_RUN",
+  "python_controls_passed": 43,
+  "python_sqlite_version": "3.54.1",
+  "reviewed_application_source": "57e4a1cb7cd0bee72e3042e2f4567972237e7e35",
+  "run_id": 44792622640,
+  "schema": 1,
+  "sdk": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk",
+  "source_archives_payloads_identical": true,
+  "source_files_before_after_git_exact": 96,
+  "source_head": "452a04c2b05150694d8120ed465afb48da190af3",
+  "source_tree": "29b001fbc86030179fe81c043e7c93dc57bb238e",
+  "sqlite_premises_passed": 13,
+  "status": "AUTHENTIC_FAILED_RUN_VERIFIED",
+  "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+  "swift_sqlite_version": "3.54.0"
+}
