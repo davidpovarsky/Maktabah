@@ -1,0 +1,287 @@
+{
+  "base": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+  "files": [
+    {
+      "bytes": 30723,
+      "path": "Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift",
+      "sha256": "1660fba155d9e8d49d3b2a813c628f802dfc26c9040a18d13ae5064742464826"
+    },
+    {
+      "bytes": 596558,
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "sha256": "6764dd597e95b44887b13f269d7e46efb0fc653fc5cd82fef00717de283fd75e"
+    },
+    {
+      "bytes": 19687,
+      "path": "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+      "sha256": "c73691fef3baaca3ca78942ab9f10b6511b9763a8f0e0360a9c1ccabd0ece759"
+    },
+    {
+      "bytes": 41890,
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "sha256": "78216a596cef457919efa556eec39fbb2cea83b35751cc2c32f7d51d2575aba8"
+    },
+    {
+      "bytes": 4639,
+      "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "sha256": "de46e8e9c35135d9b5a4a6ede1be4e4971f96f7f0f0bcb44c9f6ae40e1a77a34"
+    },
+    {
+      "bytes": 6945,
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetLifecycleAcceptance.swift",
+      "sha256": "d21ec1114fbaf098639a59b1c30fa9c7dd726041205a10835a8cc17f1f6f351a"
+    },
+    {
+      "bytes": 3824,
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetOwnerAcceptance.swift",
+      "sha256": "f5f85b809058a41f83206c38065e4e42af735b4b8a58967c392b4c4aecdb92bc"
+    },
+    {
+      "bytes": 2705,
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetOwnerBoundary.swift",
+      "sha256": "79fd91cc19d7c67f671394a518abd5fb9170cde98567e835741962888f554727"
+    },
+    {
+      "bytes": 3321,
+      "path": "Tests/HQ/native-study-sheet/test_native_study_sheet_contract.py",
+      "sha256": "8dfd26ecdef43f8889c44e2aaeb4658409267baea863c9b59c7d2aa933c8b3a2"
+    },
+    {
+      "bytes": 5715,
+      "path": "docs/hq-integration/native-study-sheet-20261120/DEMO_SOURCE.json",
+      "sha256": "b63989bf0c192f894c00f6bc15ee34a79aa252fd2e7e430b6942b43de586fda5"
+    },
+    {
+      "bytes": 522,
+      "path": "docs/hq-integration/native-study-sheet-20261120/INTERACTIVE_DISMISSAL_SOURCE.json",
+      "sha256": "452492bbec939da22da57082ae587bedf77f76dfac1777f3b464d3be3a26e0c7"
+    },
+    {
+      "bytes": 5314,
+      "path": "docs/hq-integration/native-study-sheet-20261120/NATIVE_CASES.json",
+      "sha256": "76b1f8b42cfb7439d569cbeb1cefdfe10425ae73dbd3c90fc0ff9fab7e3d8b26"
+    },
+    {
+      "bytes": 367,
+      "path": "docs/hq-integration/native-study-sheet-20261120/PREPARATION_ATTEMPT01.json",
+      "sha256": "86eeeb3ce03f611c95e7b4d3c00564b9ff6f082be8c31208ce505522368409cd"
+    },
+    {
+      "bytes": 1743,
+      "path": "docs/hq-integration/native-study-sheet-20261120/PROJECT_MEMBERSHIP.json",
+      "sha256": "d6ac6b48298565463f1d9f060173581ce49906b4a21af7f6da1601f850228ae8"
+    },
+    {
+      "bytes": 25676,
+      "path": "docs/hq-integration/native-study-sheet-20261120/PROPOSED.patch",
+      "sha256": "a31f2bf986aab303693f0a40514284225d3dd71baf698d5ff4395beb0d238c04"
+    },
+    {
+      "bytes": 862,
+      "path": "docs/hq-integration/native-study-sheet-20261120/PYTHON_RESULT.json",
+      "sha256": "d7ccb2ec98e2df65d3374b10761b0e037bb2428bcef907441ad402eb32aeab6d"
+    },
+    {
+      "bytes": 11559,
+      "path": "docs/hq-integration/native-study-sheet-20261120/README.md",
+      "sha256": "3745e91e1e471a93670ab33607f8377d6eab58c7b50503f3246e28cdd11aaa04"
+    },
+    {
+      "bytes": 7484,
+      "path": "docs/hq-integration/native-study-sheet-20261120/SOURCE_AUTHORITY.json",
+      "sha256": "5b8b6facc05def2e3c3a933675a1f4306522b230f594c59b2e8b2fd6e372e91c"
+    },
+    {
+      "bytes": 24803,
+      "path": "docs/hq-integration/native-study-sheet-20261120/SOURCE_INVERSE.json",
+      "sha256": "f330c0aad28295e45b237da416f3bd3968ef7f9d86546f32ed12084ec4e1ac5b"
+    },
+    {
+      "bytes": 1008,
+      "path": "docs/hq-integration/native-study-sheet-20261120/SOURCE_REVIEWS.json",
+      "sha256": "3eeeddfafecd6b788a0ad0581e12c51e001063ec8887f771604832430be5f856"
+    },
+    {
+      "bytes": 10617,
+      "path": "docs/hq-integration/native-study-sheet-20261120/TASK_CONTEXT.json",
+      "sha256": "e15e15cce9ac815b97782f3139aa69362a80912a9129d47103c286594febf1bd"
+    },
+    {
+      "bytes": 196355,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "sha256": "e40e558225e318f614582b5af8466077d81991eecfc254ebcfd149f3cc2a95a0"
+    },
+    {
+      "bytes": 9285,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Maktabah-iOSUITests/MaktabahUITestBase.swift",
+      "sha256": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+    },
+    {
+      "bytes": 32077,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed"
+    },
+    {
+      "bytes": 596038,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Maktabah.xcodeproj/project.pbxproj",
+      "sha256": "3df45d11b27503e2295517f32789d1ae2ae41f6dc9189c0a1fb0a616881415e9"
+    },
+    {
+      "bytes": 4432,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "sha256": "e8442e70806c4a7109302ace87e041a499f28f0bf5b70a223cca5a09d5da661c"
+    },
+    {
+      "bytes": 56247,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Scripts/CI/runtime27-release-manifest.json",
+      "sha256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f"
+    },
+    {
+      "bytes": 1890,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Source/ChavrusaText/ReaderHost/ChavrusaReaderWorkspaceLayout.swift",
+      "sha256": "f48ad764997824c5eff15334489055ef9d4026dbc4ed40e4be63cd9987c3f156"
+    },
+    {
+      "bytes": 10227,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "sha256": "c984947478e9a29464c5ec9fff7d87b1cbb6f67a923fa2662c79c62ed033de89"
+    },
+    {
+      "bytes": 32198,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "sha256": "4d0b19560fef3968d1dc1799df1dd97a3aaac432668be4a97f8d750c80364505"
+    },
+    {
+      "bytes": 17781,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "sha256": "89de17fcc574058e8af14a7286fedee766892415074386b38dbfbc35ba321c59"
+    },
+    {
+      "bytes": 45049,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "f163d68594c4a45c3a3f4f02f0aace306feab5cdc5b828f5e25656d7a328050f"
+    },
+    {
+      "bytes": 6821,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift",
+      "sha256": "bdabaaf466a3fc446c20c5be019b85c8c1a54a85bd4abed820ddd5c14c492c97"
+    },
+    {
+      "bytes": 3770,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift",
+      "sha256": "0a25d130908cba0574e4ff26bd608674a1a91598055d1aee94a92e6583f2c724"
+    },
+    {
+      "bytes": 12945,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "sha256": "edbd1574b07037445dc573a74e3ceda183a9d94beba5b804b639352ba829496b"
+    },
+    {
+      "bytes": 2284,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Source/Features/Reader/iOS/iOSReaderTabView.swift",
+      "sha256": "07b97c18906f58c02e9759f65e903f307438de3ebcf3dfd7818524486fe99ff6"
+    },
+    {
+      "bytes": 32103,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "sha256": "86c1bc72309cbb96a1bdb6fd7142ac0f807da07edd8fa6aee6d0be1a39696b50"
+    },
+    {
+      "bytes": 45857,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift",
+      "sha256": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    {
+      "bytes": 3301,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "sha256": "091c0e6cb09b83c393485377ec8837829c255d23ed5e4a39d2abff555ea23362"
+    },
+    {
+      "bytes": 6150,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/Source/Otzaria/Reading/ReaderViewModel+OtzariaLineSources.swift",
+      "sha256": "29e508a3beb1a3ad2beca914ba7198391ecb4ef0fb3fca1c6fe69768d4f97585"
+    },
+    {
+      "bytes": 200381,
+      "path": "docs/hq-integration/native-study-sheet-20261120/base/docs/hq-integration/runtime27/R27_CASES.json",
+      "sha256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3"
+    },
+    {
+      "bytes": 41578,
+      "path": "docs/hq-integration/native-study-sheet-20261120/interactive-dismissal-before.swift",
+      "sha256": "49afc852783ff955ac25d4a1fbcf0c5be9e6be8cf325cd56fc2aba03a7424134"
+    },
+    {
+      "bytes": 2496,
+      "path": "docs/hq-integration/native-study-sheet-20261120/preparation/SOURCES.json",
+      "sha256": "ac698624d2302228a8c9aaf41fa5feb8f6530b9aa7942e1b46a0f04d84b5d46e"
+    },
+    {
+      "bytes": 6140,
+      "path": "docs/hq-integration/native-study-sheet-20261120/preparation/baseline.swift",
+      "sha256": "f805460a4b09cd8306e7a4f6b0dc2700f39f9371e2cc2a45f05d316cde61219c"
+    },
+    {
+      "bytes": 6452,
+      "path": "docs/hq-integration/native-study-sheet-20261120/preparation/candidate.swift",
+      "sha256": "eef1e1162522347aac343545e21c7956e04f4d80772fea0b5681f3bbf9fee847"
+    },
+    {
+      "bytes": 1675,
+      "path": "docs/hq-integration/native-study-sheet-20261120/python-controls.stderr",
+      "sha256": "ff8b9811bf5d7ff410b1063af3cdfa913f037f5e35c8d148c4cf396421563700"
+    },
+    {
+      "bytes": 0,
+      "path": "docs/hq-integration/native-study-sheet-20261120/python-controls.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 19884,
+      "path": "docs/hq-integration/native-study-sheet-20261120/upstream/TorahInspectorKit/Sources/TorahInspectorCore/Models.swift",
+      "sha256": "fb11eb2f32c5a71334204abc05034b62b82409fcc32e543affb90e38d46a506e"
+    },
+    {
+      "bytes": 1972,
+      "path": "docs/hq-integration/native-study-sheet-20261120/upstream/TorahInspectorKit/Sources/TorahInspectorUI/TorahInspectorPresentation.swift",
+      "sha256": "0528cfe4a74d622ed3b2b6e2faeeb94d93ad236a632ac47dc49c31abe09fb09a"
+    },
+    {
+      "bytes": 1002,
+      "path": "docs/hq-integration/native-study-sheet-20261120/upstream/TorahInspectorKit/Sources/TorahInspectorUI/TorahInspectorPresentationOptions.swift",
+      "sha256": "93108c769bda01fa19a03b9ad840edaa3f986fcbf1edfd7668d2c6d1ea49fb79"
+    },
+    {
+      "bytes": 1454,
+      "path": "docs/hq-integration/native-study-sheet-20261120/upstream/TorahInspectorKit/Sources/TorahInspectorUI/TorahInspectorRoute.swift",
+      "sha256": "0dd619aec2c99454c66549e9684eba84c242fe94e108885f89569070819fcd09"
+    },
+    {
+      "bytes": 13005,
+      "path": "docs/hq-integration/native-study-sheet-20261120/upstream/TorahInspectorKit/Sources/TorahInspectorUI/TorahInspectorView.swift",
+      "sha256": "56b1344586acf41c0b260bb285bb6786227986276d08d305b5872e21b3a69c2d"
+    },
+    {
+      "bytes": 34519,
+      "path": "docs/hq-integration/native-study-sheet-20261120/upstream/TorahInspectorKit/Sources/TorahInspectorUI/TorahSegmentDetailView.swift",
+      "sha256": "4613d6e83237fcff481cc8324c2eec437319d4699ad40dc33b33bc7f6ac0a7b9"
+    },
+    {
+      "bytes": 2219,
+      "path": "docs/hq-integration/native-study-sheet-20261120/upstream/TorahInspectorKit/Sources/TorahInspectorUI/TorahStrings.swift",
+      "sha256": "f441d8b23eabae3bebc08fd654480ba3316edd800106417d4bedf57857957e73"
+    },
+    {
+      "bytes": 8909,
+      "path": "docs/hq-integration/native-study-sheet-20261120/verify_packet.py",
+      "sha256": "799cc578c16666851dfe0e20062aa57708f8bcd2f1e64900cdc368aeb80f1563"
+    },
+    {
+      "bytes": 7621,
+      "path": "tools/hq-native-study-sheet-lifecycle.py",
+      "sha256": "02604301e7c5028d5c437c4222fa860f59a01b308acd04c4267ff5550b3ed1d7"
+    }
+  ],
+  "schema": 1,
+  "scope": "source review; Swift/Apple/Native NOT_RUN"
+}

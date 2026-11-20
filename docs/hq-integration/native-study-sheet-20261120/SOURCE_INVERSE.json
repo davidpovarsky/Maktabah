@@ -1,0 +1,549 @@
+[
+  {
+    "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+    "base_sha256": "86c1bc72309cbb96a1bdb6fd7142ac0f807da07edd8fa6aee6d0be1a39696b50",
+    "candidate_sha256": "78216a596cef457919efa556eec39fbb2cea83b35751cc2c32f7d51d2575aba8",
+    "inverse": [
+      {
+        "start_line": 95,
+        "end_line": 97,
+        "before": [],
+        "after": [
+          "    @State private var nativeStudyPresentation = NativeStudySheetPresentationState()\n",
+          "    @State private var nativeStudyDetent: PresentationDetent = .medium\n"
+        ]
+      },
+      {
+        "start_line": 109,
+        "end_line": 112,
+        "before": [],
+        "after": [
+          "    #if DEBUG\n",
+          "    @State private var nativeStudyAcceptance = NativeStudySheetAcceptance()\n",
+          "    #endif\n"
+        ]
+      },
+      {
+        "start_line": 170,
+        "end_line": 176,
+        "before": [],
+        "after": [
+          "    private var usesNativeStudySheet: Bool {\n",
+          "        guard ChavrusaTextReaderUI.isEnabled else { return false }\n",
+          "        if #available(iOS 27.0, *) { return MaktabahApp.isIpad }\n",
+          "        return false\n",
+          "    }\n",
+          "\n"
+        ]
+      },
+      {
+        "start_line": 223,
+        "end_line": 224,
+        "before": [],
+        "after": [
+          "        let dismissingStudyPresentationID = nativeStudyPresentation.presentation?.id\n"
+        ]
+      },
+      {
+        "start_line": 240,
+        "end_line": 252,
+        "before": [],
+        "after": [
+          "        .task {\n",
+          "            guard usesNativeStudySheet, NativeStudySheetAcceptance.namespace != nil else { return }\n",
+          "            let deadline = ProcessInfo.processInfo.systemUptime + 300\n",
+          "            while !Task.isCancelled, ProcessInfo.processInfo.systemUptime < deadline {\n",
+          "                if navigationManager.activeReaderViewModel === viewModel {\n",
+          "                    nativeStudyAcceptance.poll(context: nativeStudyAcceptanceContext,\n",
+          "                        close: { viewModel.closeReaderInspector() }, contents: openContents,\n",
+          "                        toggle: toggleStudyPanel)\n",
+          "                }\n",
+          "                try? await Task.sleep(for: .milliseconds(40))\n",
+          "            }\n",
+          "        }\n"
+        ]
+      },
+      {
+        "start_line": 273,
+        "end_line": 275,
+        "before": [
+          "                    floatingPanelState = .full\n"
+        ],
+        "after": [
+          "                    if usesNativeStudySheet { nativeStudyDetent = .large }\n",
+          "                    else { floatingPanelState = .full }\n"
+        ]
+      },
+      {
+        "start_line": 309,
+        "end_line": 310,
+        "before": [
+          "            if shouldPresentPanelInContent, newState == .hidden, showPanel {\n"
+        ],
+        "after": [
+          "            if !usesNativeStudySheet, shouldPresentPanelInContent, newState == .hidden, showPanel {\n"
+        ]
+      },
+      {
+        "start_line": 316,
+        "end_line": 325,
+        "before": [],
+        "after": [
+          "        .sheet(item: nativeStudyBinding, onDismiss: {\n",
+          "            if let dismissingStudyPresentationID {\n",
+          "                nativeStudyDidDismiss(id: dismissingStudyPresentationID)\n",
+          "            }\n",
+          "        }) { presentation in\n",
+          "            if #available(iOS 27.0, *) {\n",
+          "                nativeStudyPanel(presentation)\n",
+          "            }\n",
+          "        }\n"
+        ]
+      },
+      {
+        "start_line": 326,
+        "end_line": 327,
+        "before": [
+          "            nativeRoutingSession?.noteEditorDidDismiss(id: nativeNoteEditorOwnerID,\n",
+          "                presentationID: dismissingNoteEditorPresentationID)\n"
+        ],
+        "after": [
+          "            noteEditorDidDismiss(presentationID: dismissingNoteEditorPresentationID)\n"
+        ]
+      },
+      {
+        "start_line": 359,
+        "end_line": 360,
+        "before": [
+          "            if sidebarCoordinator != nil {\n"
+        ],
+        "after": [
+          "            if usesNativeStudySheet || sidebarCoordinator != nil {\n"
+        ]
+      },
+      {
+        "start_line": 465,
+        "end_line": 466,
+        "before": [
+          "            if showPanel && !(sidebarCoordinator != nil && shouldPresentPanelInContent) {\n"
+        ],
+        "after": [
+          "            if showPanel && !usesNativeStudySheet && !(sidebarCoordinator != nil && shouldPresentPanelInContent) {\n"
+        ]
+      },
+      {
+        "start_line": 478,
+        "end_line": 479,
+        "before": [
+          "            isEnabled: sidebarCoordinator != nil,\n"
+        ],
+        "after": [
+          "            isEnabled: !usesNativeStudySheet && sidebarCoordinator != nil,\n"
+        ]
+      },
+      {
+        "start_line": 522,
+        "end_line": 524,
+        "before": [
+          "        chrome: TorahInspectorChrome\n"
+        ],
+        "after": [
+          "        chrome: TorahInspectorChrome,\n",
+          "        nativeSheet: NativeStudySheetContent? = nil\n"
+        ]
+      },
+      {
+        "start_line": 543,
+        "end_line": 545,
+        "before": [
+          "            }\n"
+        ],
+        "after": [
+          "            },\n",
+          "            nativeSheet: nativeSheet\n"
+        ]
+      },
+      {
+        "start_line": 555,
+        "end_line": 680,
+        "before": [],
+        "after": [
+          "\n",
+          "    private var nativeStudyBinding: Binding<NativeStudySheetPresentationState.Presentation?> {\n",
+          "        let id = nativeStudyPresentation.presentation?.id\n",
+          "        return Binding(\n",
+          "            get: { usesNativeStudySheet ? nativeStudyPresentation.presentedItem : nil },\n",
+          "            set: { value in\n",
+          "                guard value == nil, let id,\n",
+          "                      nativeStudyPresentation.presentation?.id == id,\n",
+          "                      nativeStudyPresentation.isPresented else { return }\n",
+          "                nativeStudyPresentation.requestDismissal()\n",
+          "                // Commit the same original close intent before layout callbacks\n",
+          "                // can interpret the old model value as a new open request.\n",
+          "                if showPanel { viewModel.closeReaderInspector() }\n",
+          "            }\n",
+          "        )\n",
+          "    }\n",
+          "\n",
+          "    @available(iOS 27.0, *)\n",
+          "    private func nativeStudyPanel(_ presentation: NativeStudySheetPresentationState.Presentation) -> some View {\n",
+          "        let notePresentationID = nativeNoteEditorPresentationID\n",
+          "        let noteHost = NativeStudySheetPresentationState.NoteHost.study(presentation.id)\n",
+          "        return inspectorPanel(\n",
+          "            showsCloseButton: true,\n",
+          "            chrome: .embeddedSheet,\n",
+          "            nativeSheet: .init(\n",
+          "                isPeek: nativeStudyDetent == NativeStudySheetPresentation.peek,\n",
+          "                title: readerHeaderTitle,\n",
+          "                subtitle: readerHeaderSubtitle,\n",
+          "                excerpt: nativeStudyExcerpt,\n",
+          "                expand: { nativeStudyDetent = .medium }\n",
+          "            )\n",
+          "        )\n",
+          "        .environment(\\.layoutDirection, layoutDirection)\n",
+          "        #if DEBUG\n",
+          "        .background {\n",
+          "            if NativeStudySheetAcceptance.namespace != nil {\n",
+          "                NativeStudySheetObservation { controller in\n",
+          "                    nativeStudyAcceptance.observe(controller, context: nativeStudyAcceptanceContext)\n",
+          "                }\n",
+          "                .allowsHitTesting(false).accessibilityHidden(true)\n",
+          "            }\n",
+          "        }\n",
+          "        #endif\n",
+          "        .modifier(NativeStudySheetPresentation(\n",
+          "            detent: $nativeStudyDetent,\n",
+          "            noteIsPresented: nativeStudyPresentation.note?.host == noteHost\n",
+          "        ))\n",
+          "        .sheet(isPresented: annotationEditorBinding(for: noteHost), onDismiss: {\n",
+          "            noteEditorDidDismiss(presentationID: notePresentationID)\n",
+          "        }) {\n",
+          "            annotationEditor\n",
+          "        }\n",
+          "    }\n",
+          "\n",
+          "    private var nativeStudyExcerpt: String {\n",
+          "        let text = viewModel.contentText\n",
+          "        let selected = viewModel.selectedSegmentRange\n",
+          "            ?? viewModel.otzariaSelectedLineAnchor?.range\n",
+          "            ?? viewModel.readerState.selectedRange\n",
+          "        if let selected, let range = Range(selected, in: text) {\n",
+          "            return String(text[range].prefix(220))\n",
+          "        }\n",
+          "        // Section-scoped Inspector: the currently loaded unit is its source.\n",
+          "        // This display projection never changes the original Reader selection.\n",
+          "        return String(text.prefix(220))\n",
+          "    }\n",
+          "\n",
+          "    private func nativeStudyDidDismiss(id: UUID) {\n",
+          "        guard nativeStudyPresentation.presentation?.id == id else { return }\n",
+          "        // A completed parent dismissal also proves any child presentation ended.\n",
+          "        // The exact child UUID makes a later child callback harmless.\n",
+          "        if let note = nativeStudyPresentation.note, note.host == .study(id) {\n",
+          "            setEditingAnnotation(nil)\n",
+          "            pendingNotesDidChange = nil\n",
+          "            noteEditorDidDismiss(presentationID: note.id, fromParentDismissal: true)\n",
+          "        }\n",
+          "        guard let result = nativeStudyPresentation.studyDidDismiss(id: id) else { return }\n",
+          "        #if DEBUG\n",
+          "        nativeStudyAcceptance.didDismissStudy(id)\n",
+          "        #endif\n",
+          "        if !result.studyStillRequested, showPanel { viewModel.closeReaderInspector() }\n",
+          "        if result.showContents { presentContents() }\n",
+          "    }\n",
+          "\n",
+          "    private func noteEditorDidDismiss(presentationID: UUID, fromParentDismissal: Bool = false) {\n",
+          "        if usesNativeStudySheet {\n",
+          "            guard nativeNoteEditorPresentationID == presentationID,\n",
+          "                  editingAnnotation == nil else { return }\n",
+          "            guard nativeStudyPresentation.noteDidDismiss(id: presentationID) else { return }\n",
+          "        }\n",
+          "        nativeRoutingSession?.noteEditorDidDismiss(id: nativeNoteEditorOwnerID,\n",
+          "            presentationID: presentationID)\n",
+          "        #if DEBUG\n",
+          "        nativeStudyAcceptance.didDismissNote(presentationID, fromParent: fromParentDismissal)\n",
+          "        #endif\n",
+          "    }\n",
+          "\n",
+          "    #if DEBUG\n",
+          "    private var nativeStudyAcceptanceContext: NativeStudySheetAcceptance.Context {\n",
+          "        let sourceToken = NativeStudySheetAcceptance.token([\n",
+          "            String(describing: ObjectIdentifier(viewModel)),\n",
+          "            navigationManager.activeTabId?.uuidString ?? \"\",\n",
+          "            viewModel.currentDestination?.sectionLocator.persistenceKey ?? \"\",\n",
+          "            viewModel.backendSection?.locator.persistenceKey ?? \"\",\n",
+          "            String(viewModel.currentContentId), viewModel.currentReaderTextMode.rawValue,\n",
+          "            String(BackendCoordinator.shared.generation)\n",
+          "        ])\n",
+          "        let selectionToken = NativeStudySheetAcceptance.token([\n",
+          "            viewModel.selectedSegmentLocator?.persistenceKey ?? \"\",\n",
+          "            viewModel.selectedSegmentRange.map(NSStringFromRange) ?? \"\",\n",
+          "            viewModel.readerState.selectedRange.map(NSStringFromRange) ?? \"\"\n",
+          "        ])\n",
+          "        return .init(ownerID: nativeNoteEditorOwnerID,\n",
+          "            presentationID: nativeStudyPresentation.presentation?.id,\n",
+          "            noteID: nativeStudyPresentation.note?.id,\n",
+          "            contentID: inspectorContentID,\n",
+          "            sessionIdentity: String(describing: ObjectIdentifier(inspectorSession)),\n",
+          "            readerIdentity: String(describing: ObjectIdentifier(viewModel)), sourceToken: sourceToken,\n",
+          "            selectionToken: selectionToken,\n",
+          "            selectedTool: selectedTool.rawValue,\n",
+          "            detent: nativeStudyDetent == .height(155) ? \"peek\"\n",
+          "                : (nativeStudyDetent == .large ? \"large\" : \"medium\"),\n",
+          "            studyVisible: showPanel)\n",
+          "    }\n",
+          "    #endif\n"
+        ]
+      },
+      {
+        "start_line": 719,
+        "end_line": 724,
+        "before": [],
+        "after": [
+          "                    #if DEBUG\n",
+          "                    if textView == nil || (nativeNoteEditorPresentationID == presentationID && editingAnnotation != nil) {\n",
+          "                        nativeStudyAcceptance.observeNote(textView, presentationID: presentationID)\n",
+          "                    }\n",
+          "                    #endif\n"
+        ]
+      },
+      {
+        "start_line": 743,
+        "end_line": 749,
+        "before": [
+          "        if value != nil { nativeNoteEditorPresentationID = UUID() }\n"
+        ],
+        "after": [
+          "        if value != nil {\n",
+          "            let presentationID = UUID()\n",
+          "            if usesNativeStudySheet,\n",
+          "               !nativeStudyPresentation.beginNote(id: presentationID) { return }\n",
+          "            nativeNoteEditorPresentationID = presentationID\n",
+          "        }\n"
+        ]
+      },
+      {
+        "start_line": 753,
+        "end_line": 763,
+        "before": [
+          "        Binding(\n",
+          "            get: { editingAnnotation != nil },\n"
+        ],
+        "after": [
+          "        annotationEditorBinding(for: .reader)\n",
+          "    }\n",
+          "\n",
+          "    private func annotationEditorBinding(for host: NativeStudySheetPresentationState.NoteHost) -> Binding<Bool> {\n",
+          "        let presentationID = nativeNoteEditorPresentationID\n",
+          "        return Binding(\n",
+          "            get: {\n",
+          "                editingAnnotation != nil && (!usesNativeStudySheet\n",
+          "                    || nativeStudyPresentation.note == NativeStudySheetPresentationState.NotePresentation(id: presentationID, host: host))\n",
+          "            },\n"
+        ]
+      },
+      {
+        "start_line": 764,
+        "end_line": 766,
+        "before": [],
+        "after": [
+          "                guard !usesNativeStudySheet\n",
+          "                    || nativeStudyPresentation.note == NativeStudySheetPresentationState.NotePresentation(id: presentationID, host: host) else { return }\n"
+        ]
+      },
+      {
+        "start_line": 775,
+        "end_line": 784,
+        "before": [],
+        "after": [
+          "        if usesNativeStudySheet, nativeStudyPresentation.presentation != nil {\n",
+          "            nativeStudyPresentation.requestDismissal(showContents: true)\n",
+          "            viewModel.closeReaderInspector()\n",
+          "            if nativeStudyPresentation.note != nil {\n",
+          "                setEditingAnnotation(nil)\n",
+          "                pendingNotesDidChange = nil\n",
+          "            }\n",
+          "            return\n",
+          "        }\n"
+        ]
+      },
+      {
+        "start_line": 860,
+        "end_line": 874,
+        "before": [
+          "            if !showPanel {\n"
+        ],
+        "after": [
+          "            if usesNativeStudySheet {\n",
+          "                showPanelSheet = false\n",
+          "                floatingPanelState = .hidden\n",
+          "                if showPanel {\n",
+          "                    nativeStudyPresentation.requestStudy()\n",
+          "                } else {\n",
+          "                    nativeStudyPresentation.requestDismissal()\n",
+          "                    if let note = nativeStudyPresentation.note,\n",
+          "                       case .study = note.host {\n",
+          "                        setEditingAnnotation(nil)\n",
+          "                        pendingNotesDidChange = nil\n",
+          "                    }\n",
+          "                }\n",
+          "            } else if !showPanel {\n"
+        ]
+      }
+    ]
+  },
+  {
+    "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+    "base_sha256": "091c0e6cb09b83c393485377ec8837829c255d23ed5e4a39d2abff555ea23362",
+    "candidate_sha256": "de46e8e9c35135d9b5a4a6ede1be4e4971f96f7f0f0bcb44c9f6ae40e1a77a34",
+    "inverse": [
+      {
+        "start_line": 16,
+        "end_line": 17,
+        "before": [],
+        "after": [
+          "    var nativeSheet: NativeStudySheetContent? = nil\n"
+        ]
+      },
+      {
+        "start_line": 27,
+        "end_line": 28,
+        "before": [
+          "            TorahInspectorUI.TorahInspectorView(\n",
+          "                repository: inspectorSession.repository,\n",
+          "                selection: selection,\n",
+          "                entryMode: .relationships,\n",
+          "                chrome: chrome,\n",
+          "                selectedTool: $selectedTool,\n",
+          "                presentationOptions: ChavrusaTextReaderUI.isEnabled\n",
+          "                    ? .init(showsStudyToolsTitle: false, showsSelectedSegmentTitle: false)\n",
+          "                    : .init(),\n",
+          "                onClose: {\n",
+          "                    #if DEBUG\n",
+          "                    OtzariaFileLogger.shared.log(\"[NativeInspector] originalClose invoked visible=\\(viewModel.readerInspectorVisible)\")\n",
+          "                    #endif\n",
+          "                    viewModel.closeReaderInspector()\n",
+          "                    #if DEBUG\n",
+          "                    OtzariaFileLogger.shared.log(\"[NativeInspector] originalClose returned visible=\\(viewModel.readerInspectorVisible)\")\n",
+          "                    #endif\n",
+          "                },\n",
+          "                onOpenInNewTab: { selection in\n",
+          "                    guard let locator = inspectorSession.locator(for: selection) else { return }\n",
+          "                    navigationManager.openTorahInspectorLocationInNewTab(locator)\n",
+          "                },\n",
+          "                onAddNote: onAddNote,\n",
+          "                onOpenNote: onOpenNote,\n",
+          "                onDeleteNote: onDeleteNote,\n",
+          "                showsCloseButton: showsCloseButton\n",
+          "            )\n"
+        ],
+        "after": [
+          "            presentedInspector(selection: selection)\n"
+        ]
+      },
+      {
+        "start_line": 44,
+        "end_line": 101,
+        "before": [],
+        "after": [
+          "\n",
+          "    @ViewBuilder\n",
+          "    private func presentedInspector(selection: TorahInspectorSelection) -> some View {\n",
+          "        if let nativeSheet {\n",
+          "            ZStack(alignment: .top) {\n",
+          "                // Never remove/recreate the Kit at a detent boundary. Its\n",
+          "                // private NavigationStack and expanded source state stay owned\n",
+          "                // by this exact Reader/session/contentID.\n",
+          "                originalInspector(selection: selection)\n",
+          "                    .opacity(nativeSheet.isPeek ? 0 : 1)\n",
+          "                    .allowsHitTesting(!nativeSheet.isPeek)\n",
+          "                    .accessibilityHidden(nativeSheet.isPeek)\n",
+          "                if nativeSheet.isPeek {\n",
+          "                    NativeStudySheetPeek(content: nativeSheet, selectedTool: selectedTool,\n",
+          "                        close: closeOriginalInspector)\n",
+          "                }\n",
+          "            }\n",
+          "            .frame(maxWidth: .infinity, maxHeight: .infinity)\n",
+          "            .clipped()\n",
+          "        } else {\n",
+          "            originalInspector(selection: selection)\n",
+          "        }\n",
+          "    }\n",
+          "\n",
+          "    private func originalInspector(selection: TorahInspectorSelection) -> some View {\n",
+          "        TorahInspectorUI.TorahInspectorView(\n",
+          "                repository: inspectorSession.repository,\n",
+          "                selection: selection,\n",
+          "                entryMode: .relationships,\n",
+          "                chrome: chrome,\n",
+          "                selectedTool: $selectedTool,\n",
+          "                presentationOptions: nativeSheet != nil\n",
+          "                    ? .init(showsStudyToolsTitle: false, showsSelectedSegmentTitle: false, usesMinimalChrome: true)\n",
+          "                    : (ChavrusaTextReaderUI.isEnabled\n",
+          "                        ? .init(showsStudyToolsTitle: false, showsSelectedSegmentTitle: false)\n",
+          "                        : .init()),\n",
+          "                onClose: closeOriginalInspector,\n",
+          "                onOpenInNewTab: { selection in\n",
+          "                    guard let locator = inspectorSession.locator(for: selection) else { return }\n",
+          "                    navigationManager.openTorahInspectorLocationInNewTab(locator)\n",
+          "                },\n",
+          "                onAddNote: onAddNote,\n",
+          "                onOpenNote: onOpenNote,\n",
+          "                onDeleteNote: onDeleteNote,\n",
+          "                showsCloseButton: showsCloseButton\n",
+          "            )\n",
+          "    }\n",
+          "\n",
+          "    private func closeOriginalInspector() {\n",
+          "        #if DEBUG\n",
+          "        OtzariaFileLogger.shared.log(\"[NativeInspector] originalClose invoked visible=\\(viewModel.readerInspectorVisible)\")\n",
+          "        #endif\n",
+          "        viewModel.closeReaderInspector()\n",
+          "        #if DEBUG\n",
+          "        OtzariaFileLogger.shared.log(\"[NativeInspector] originalClose returned visible=\\(viewModel.readerInspectorVisible)\")\n",
+          "        #endif\n",
+          "    }\n"
+        ]
+      }
+    ]
+  },
+  {
+    "path": "Maktabah.xcodeproj/project.pbxproj",
+    "base_sha256": "3df45d11b27503e2295517f32789d1ae2ae41f6dc9189c0a1fb0a616881415e9",
+    "candidate_sha256": "6764dd597e95b44887b13f269d7e46efb0fc653fc5cd82fef00717de283fd75e",
+    "inverse": [
+      {
+        "start_line": 112,
+        "end_line": 113,
+        "before": [],
+        "after": [
+          "\t\tACDA26A151221078C4296F37 /* NativeStudySheetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */; };\n"
+        ]
+      },
+      {
+        "start_line": 1972,
+        "end_line": 1973,
+        "before": [],
+        "after": [
+          "\t\tCF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeStudySheetPresenter.swift; sourceTree = \"<group>\"; };\n"
+        ]
+      },
+      {
+        "start_line": 3780,
+        "end_line": 3781,
+        "before": [],
+        "after": [
+          "\t\t\t\tCF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */,\n"
+        ]
+      },
+      {
+        "start_line": 5078,
+        "end_line": 5079,
+        "before": [],
+        "after": [
+          "\t\t\t\tACDA26A151221078C4296F37 /* NativeStudySheetPresenter.swift in Sources */,\n"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,20 @@
+test_complete_balanced_body_preserves_nested_guard (__main__.ResultGateTests.test_complete_balanced_body_preserves_nested_guard) ... ok
+test_declared_lifecycle_twenty_distinct (__main__.ResultGateTests.test_declared_lifecycle_twenty_distinct) ... ok
+test_duplicate_source_signature_rejected (__main__.ResultGateTests.test_duplicate_source_signature_rejected) ... ok
+test_duplicate_substituted_row_rejected (__main__.ResultGateTests.test_duplicate_substituted_row_rejected) ... ok
+test_exact_declared_green (__main__.ResultGateTests.test_exact_declared_green) ... ok
+test_exact_declared_red (__main__.ResultGateTests.test_exact_declared_red) ... ok
+test_missing_source_signature_rejected (__main__.ResultGateTests.test_missing_source_signature_rejected) ... ok
+test_nonboolean_success_rejected (__main__.ResultGateTests.test_nonboolean_success_rejected) ... ok
+test_nonzero_candidate_rejected (__main__.ResultGateTests.test_nonzero_candidate_rejected) ... ok
+test_red_other_failure_rejected (__main__.ResultGateTests.test_red_other_failure_rejected) ... ok
+test_red_signal_after_all_rows_rejected (__main__.ResultGateTests.test_red_signal_after_all_rows_rejected) ... ok
+test_reordered_rows_rejected (__main__.ResultGateTests.test_reordered_rows_rejected) ... ok
+test_setup_zero_rows_rejected (__main__.ResultGateTests.test_setup_zero_rows_rejected) ... ok
+test_timeout_after_complete_rows_rejected (__main__.ResultGateTests.test_timeout_after_complete_rows_rejected) ... ok
+test_unterminated_source_rejected (__main__.ResultGateTests.test_unterminated_source_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.001s
+
+OK

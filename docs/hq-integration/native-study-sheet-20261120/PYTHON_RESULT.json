@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "native-study-sheet-20261120/candidate/Tests/HQ/native-study-sheet/test_native_study_sheet_contract.py"
+  ],
+  "returncode": 0,
+  "actual_controls": 15,
+  "inputs_before": {
+    "Tests/HQ/native-study-sheet/test_native_study_sheet_contract.py": "8dfd26ecdef43f8889c44e2aaeb4658409267baea863c9b59c7d2aa933c8b3a2",
+    "tools/hq-native-study-sheet-lifecycle.py": "02604301e7c5028d5c437c4222fa860f59a01b308acd04c4267ff5550b3ed1d7"
+  },
+  "inputs_after": {
+    "Tests/HQ/native-study-sheet/test_native_study_sheet_contract.py": "8dfd26ecdef43f8889c44e2aaeb4658409267baea863c9b59c7d2aa933c8b3a2",
+    "tools/hq-native-study-sheet-lifecycle.py": "02604301e7c5028d5c437c4222fa860f59a01b308acd04c4267ff5550b3ed1d7"
+  },
+  "Swift_executed": 0,
+  "Native_executed": 0
+}

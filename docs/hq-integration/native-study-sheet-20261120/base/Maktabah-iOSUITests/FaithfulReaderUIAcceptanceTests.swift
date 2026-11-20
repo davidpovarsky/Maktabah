@@ -1,0 +1,3307 @@
+import XCTest
+import Vision
+
+/// XCTest executes teardown blocks even when an assertion aborts a test method.
+/// Keep Simulator-wide state restoration independent of that method's stack.
+@MainActor
+private final class NativeUIRestoration {
+    let restore: @MainActor () -> Void
+    init(_ restore: @escaping @MainActor () -> Void) { self.restore = restore }
+    func run() { restore() }
+}
+
+/// Find only this test's unique sidecar after XCTest's app installation. The
+/// pre-install container UUID is a hint to its parent, never a durable app ID.
+private func matchingTestSidecars(in containers: URL, namespace: String) -> [URL] {
+    guard UUID(uuidString: namespace) != nil,
+          let candidates = try? FileManager.default.contentsOfDirectory(at: containers, includingPropertiesForKeys: nil) else { return [] }
+    return candidates.map {
+        $0.appendingPathComponent("Library/Application Support/ChavrusaText/StudyWorkspace/UITests/\(namespace).json")
+    }.filter { FileManager.default.fileExists(atPath: $0.path) }
+}
+
+
+/// Read-only evidence from this Simulator installation. The runner's pre-install
+/// container UUID is only a parent hint: XCTest may reinstall the app.
+private struct NativeGlobalHistoryObservation {
+    let container: URL?
+    let metadataBytes: Data?
+    let persistedExactlyOnce: Bool
+    let details: [String: Any]
+}
+
+/// Passive evidence only. Acceptance still requires the same bounded regular
+/// preference file, parsed dictionary, installation pin and exact query count.
+private struct NativeGlobalHistoryFileObservation {
+    let data: Data?
+    let details: [String: Any]
+}
+
+private func observeNativeGlobalHistoryFile(_ url: URL, maximum: Int) -> NativeGlobalHistoryFileObservation {
+    var details: [String: Any] = ["maximumBytes": maximum, "bytesRead": 0]
+    func failed(_ stage: String, _ reason: String, _ error: Error? = nil) -> NativeGlobalHistoryFileObservation {
+        var result = details
+        result["status"] = "unavailable"; result["stage"] = stage; result["reason"] = reason
+        if let error {
+            let value = error as NSError
+            result["errorDomain"] = value.domain; result["errorCode"] = value.code
+        }
+        return .init(data: nil, details: result)
+    }
+    let values: URLResourceValues
+    do {
+        values = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey])
+    } catch {
+        let value = error as NSError
+        let missing = (value.domain == NSCocoaErrorDomain &&
+            [NSFileNoSuchFileError, NSFileReadNoSuchFileError].contains(value.code))
+            || (value.domain == NSPOSIXErrorDomain && value.code == 2)
+        return failed("metadata", missing ? "missing" : "metadata_read_failed", error)
+    }
+    details["regularFile"] = values.isRegularFile
+    details["symbolicLink"] = values.isSymbolicLink
+    guard values.isSymbolicLink != true else { return failed("type", "symlink") }
+    guard values.isRegularFile == true else {
+        return failed("type", values.isRegularFile == false ? "nonregular" : "regular_status_unavailable")
+    }
+    guard values.isSymbolicLink == false else { return failed("type", "symlink_status_unavailable") }
+    let handle: FileHandle
+    do { handle = try FileHandle(forReadingFrom: url) }
+    catch { return failed("open", "open_failed", error) }
+    defer { try? handle.close() }
+    do {
+        var bytes = Data()
+        while bytes.count <= maximum {
+            guard let chunk = try handle.read(upToCount: min(65536, maximum + 1 - bytes.count)),
+                  !chunk.isEmpty else {
+                details["status"] = "read"; details["bytesRead"] = bytes.count
+                return .init(data: bytes, details: details)
+            }
+            bytes.append(chunk)
+            details["bytesRead"] = bytes.count
+        }
+    } catch { return failed("read", "read_failed", error) }
+    return failed("budget", "oversize")
+}
+
+/// Existing DEBUG provider/publication observations, never an admission or
+/// history-writer oracle. Missing events cannot establish that Return was lost.
+private func observeNativeGlobalSearchTrace(in container: URL, namespace: String) -> [String: Any] {
+    guard UUID(uuidString: namespace) != nil else { return ["status": "invalid_namespace"] }
+    let file = container.appendingPathComponent("Documents/OtzariaLogs/search-native-" + namespace + ".jsonl")
+    let read = observeNativeGlobalHistoryFile(file, maximum: 8 * 1024 * 1024)
+    var result: [String: Any] = [
+        "fileRead": read.details,
+        "admissionObservation": "NOT_EXPOSED_BY_EXISTING_PASSIVE_CHANNEL",
+        "historyWriterOwnerObservation": "NOT_EXPOSED_BY_EXISTING_PASSIVE_CHANNEL",
+        "inMemoryHistoryObservation": "NOT_EXPOSED_BY_EXISTING_PASSIVE_CHANNEL"
+    ]
+    guard let data = read.data else { return result }
+    var records: [[String: Any]] = []
+    var rejected = 0
+    for line in data.split(separator: 10) where !line.isEmpty {
+        guard let value = (try? JSONSerialization.jsonObject(with: Data(line))) as? [String: Any],
+              value["schemaVersion"] as? Int == 1,
+              value["namespace"] as? String == namespace,
+              value["profileID"] as? String == "miniTest10",
+              let sessionID = value["sessionID"] as? String, UUID(uuidString: sessionID) != nil,
+              let event = value["event"] as? String, ["provider", "published"].contains(event),
+              let engine = value["engine"] as? String, ["otzaria", "zayit"].contains(engine) else {
+            rejected += 1
+            continue
+        }
+        var observed: [String: Any] = [
+            "schemaVersion": 1, "namespace": namespace, "sessionID": sessionID,
+            "event": event, "engine": engine, "profileID": "miniTest10"
+        ]
+        for key in ["submissionRevision", "searchGeneration", "backendGeneration"] {
+            if let number = value[key] as? UInt64 { observed[key] = number }
+        }
+        if let hasMore = value["hasMore"] as? Bool { observed["hasMore"] = hasMore }
+        if let request = value["request"] as? [String: Any],
+           let digest = request["querySHA256"] as? String, digest.utf8.count == 64,
+           digest.utf8.allSatisfy({ ($0 >= 48 && $0 <= 57) || ($0 >= 97 && $0 <= 102) }) {
+            observed["querySHA256"] = digest
+        }
+        records.append(observed)
+    }
+    result["acceptedRecordCount"] = records.count
+    result["rejectedRecordCount"] = rejected
+    result["lastRecords"] = Array(records.suffix(32))
+    result["truncatedToLastRecords"] = records.count > 32
+    return result
+}
+
+private func observeNativeGlobalHistory(
+    in parent: URL, namespace: String, query: String,
+    expectedContainer: URL? = nil, expectedMetadata: Data? = nil
+) -> NativeGlobalHistoryObservation {
+    let bundleID = "com.davidpovarsky.chavrusatext"
+    func boundedRegularFile(_ url: URL, maximum: Int) -> Data? {
+        observeNativeGlobalHistoryFile(url, maximum: maximum).data
+    }
+    func dictionary(_ bytes: Data) -> [String: Any]? {
+        (try? PropertyListSerialization.propertyList(from: bytes, format: nil)) as? [String: Any]
+    }
+    let root = parent.standardizedFileURL
+    let children = (try? FileManager.default.contentsOfDirectory(
+        at: root, includingPropertiesForKeys: [.isDirectoryKey, .isSymbolicLinkKey],
+        options: [.skipsHiddenFiles])) ?? []
+    let candidates: [(URL, Data)] = children.compactMap { child in
+        let container = child.standardizedFileURL
+        guard UUID(uuidString: container.lastPathComponent) != nil,
+              container.deletingLastPathComponent().pathComponents == root.pathComponents,
+              let values = try? container.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey]),
+              values.isDirectory == true, values.isSymbolicLink == false,
+              let metadata = boundedRegularFile(
+                container.appendingPathComponent(".com.apple.mobile_container_manager.metadata.plist"),
+                maximum: 65536),
+              dictionary(metadata)?["MCMMetadataIdentifier"] as? String == bundleID else { return nil }
+        return (container, metadata)
+    }
+    var details: [String: Any] = [
+        "metadataBundleIdentifier": bundleID,
+        "matchingInstallationCount": candidates.count,
+        "candidateContainerIDs": candidates.map { $0.0.lastPathComponent },
+        "queryPersistedExactlyOnce": false
+    ]
+    guard candidates.count == 1, let (container, metadata) = candidates.first else {
+        details["observationError"] = "missing_or_ambiguous_original_installation"
+        return .init(container: nil, metadataBytes: nil, persistedExactlyOnce: false, details: details)
+    }
+    // Feature-off deliberately has no workspace sidecar. If the existing UUID
+    // sidecar is present, it must corroborate this same original installation.
+    let sidecars = matchingTestSidecars(in: root, namespace: namespace)
+    let namespaceMatches = sidecars.isEmpty || (sidecars.count == 1 &&
+        sidecars[0].standardizedFileURL.pathComponents.starts(with: container.pathComponents))
+    let pinned = expectedContainer != nil && expectedMetadata != nil
+    let installationMatches = pinned &&
+        expectedContainer?.standardizedFileURL.pathComponents == container.pathComponents && expectedMetadata == metadata
+    details["containerID"] = container.lastPathComponent
+    details["metadataByteCount"] = metadata.count
+    details["namespaceSidecarCount"] = sidecars.count
+    details["namespaceMatchesInstallation"] = namespaceMatches
+    details["installationPinned"] = pinned
+    details["installationMatchesInitialBytes"] = installationMatches
+    let preference = container.appendingPathComponent("Library/Preferences/" + bundleID + ".plist")
+    let preferenceRead = observeNativeGlobalHistoryFile(preference, maximum: 1024 * 1024)
+    details["preferenceFileRead"] = preferenceRead.details
+    var preferences: [String: Any]?
+    if let bytes = preferenceRead.data {
+        do {
+            let decoded = try PropertyListSerialization.propertyList(from: bytes, format: nil)
+            preferences = decoded as? [String: Any]
+            details["preferenceParse"] = preferences == nil ? "dictionary_root_required" : "dictionary"
+        } catch {
+            let value = error as NSError
+            details["preferenceParse"] = "parse_failed"
+            details["preferenceParseErrorDomain"] = value.domain
+            details["preferenceParseErrorCode"] = value.code
+        }
+    } else {
+        details["preferenceParse"] = "NOT_ATTEMPTED_READ_UNAVAILABLE"
+    }
+    let history = preferences?["SearchHistory"] as? [String] ?? []
+    let count = history.filter { $0 == query }.count
+    details["preferenceReadable"] = preferences != nil
+    details["historyCount"] = history.count
+    details["submittedQueryCount"] = count
+    if let preferences {
+        details["recordSearchHistory"] = preferences["recordSearchHistory"] as? Bool ?? true
+    }
+    let persisted = installationMatches && namespaceMatches && preferences != nil && count == 1
+    details["queryPersistedExactlyOnce"] = persisted
+    if !namespaceMatches { details["observationError"] = "namespace_installation_mismatch" }
+    else if pinned && !installationMatches { details["observationError"] = "original_installation_changed" }
+    else if preferences == nil { details["observationError"] = "original_preferences_unreadable" }
+    return .init(container: namespaceMatches ? container : nil,
+                 metadataBytes: namespaceMatches ? metadata : nil,
+                 persistedExactlyOnce: persisted, details: details)
+}
+
+/// Runs the supplied prototype in its own app, never demo code in Maktabah.
+final class SafariPrototypeReferenceTests: XCTestCase {
+    func testOriginalCompactAndExpandedToolbarOracle() {
+        continueAfterFailure = false
+        let prototype = XCUIApplication(bundleIdentifier: "com.example.safaritoolbarsearch")
+        prototype.launchArguments = ["-AppleLanguages", "(he)", "-AppleLocale", "he_IL"]
+        prototype.launch()
+        for orientation in [UIDeviceOrientation.landscapeLeft, .portrait] {
+            XCUIDevice.shared.orientation = orientation
+            let field = prototype.textFields["חיפוש או הזנת כתובת"]
+            XCTAssertTrue(field.waitForExistence(timeout: 30))
+            let compact = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+            compact.name = "prototype-compact-\(orientation.isLandscape ? "landscape" : "portrait")"
+            compact.lifetime = .keepAlways
+            add(compact)
+        }
+        XCUIDevice.shared.orientation = .landscapeLeft
+        prototype.textFields["חיפוש או הזנת כתובת"].tap()
+        let result = prototype.buttons.matching(NSPredicate(format: "label CONTAINS %@", "בראשית")).firstMatch
+        XCTAssertTrue(result.waitForExistence(timeout: 15), "The original CommandPalette must actually expand")
+        let expanded = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        expanded.name = "prototype-expanded-command-palette"
+        expanded.lifetime = .keepAlways
+        add(expanded)
+        prototype.terminate()
+    }
+}
+
+/// Black-box tests use the actual production-default flags and original views.
+/// A unique sidecar namespace isolates tests without changing canonical sessions/data.
+class FaithfulReaderUIBase: MaktabahUITestBase {
+    let workspaceNamespace = UUID().uuidString
+    private var viewportURL: URL?
+    var readerTestTier: TestTier { .smoke }
+    private var recordsGlobalHistoryTrace = false
+    var readerAdditionalLaunchArguments: [String] {
+        recordsGlobalHistoryTrace ? ["-GlobalSearchNativeTraceEnabled", "YES"] : []
+    }
+    struct Viewport: Codable {
+        struct Presentation: Codable {
+            let wantsOverview: Bool; let isViewLoaded: Bool; let isInWindow: Bool
+            let boundsWidth: Double; let boundsHeight: Double
+            let parentClass: String; let presentedClass: String
+            let hasHostingController: Bool; let isTransitioning: Bool
+        }
+        let source: Int; let offset: Double; let object: Int; let requestID: String
+        let contentHeight: Double?; let viewportHeight: Double?; let contentOffsetY: Double?
+        let topInset: Double?; let bottomInset: Double?
+        let overviewPresentations: [Presentation]?
+    }
+    func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0, recordViewport: Bool = false, fontSize: Float? = nil) {
+        launchReader(enabled: enabled, scenario: scenario, backend: backend, language: language,
+                     background: background, recordViewport: recordViewport, fontSize: fontSize,
+                     tier: readerTestTier)
+    }
+
+    /// The required tier keeps every original override signature intact.
+    func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0, recordViewport: Bool = false, fontSize: Float? = nil, tier: TestTier) {
+        // The downstream observer reads the actual original source anchor;
+        // never activate the baseline renderer's crash-prone file exporter.
+        let prefix = (recordViewport ? ProcessInfo.processInfo.environment["FAITHFUL_VIEWPORT_DIRECTORY"] : nil).map {
+            URL(fileURLWithPath: $0).appendingPathComponent("faithful-\(scenario)-" + UUID().uuidString).path
+        }
+        viewportURL = prefix.map { URL(fileURLWithPath: $0 + ".viewport.json") }
+        // realUI intentionally omits a backend override in launchWithTier.
+        // Preserve this helper's requested backend instead of inheriting a
+        // previously persisted provider when the feature-off case relaunches.
+        let backendArguments = tier == .realUI
+            ? ["-preferredBackend", backend, "-smokeBackend", backend] : []
+        launchWithTier(tier, scenario: scenario, backend: backend, extraArgs: backendArguments + [
+            "-ChavrusaTextFaithfulReaderUIEnabled", enabled ? "YES" : "NO",
+            "-studyWorkspaceTestingNamespace", workspaceNamespace,
+            "-textViewBackgroundColorLight", String(background)
+        ] + (fontSize.map { ["-textViewFontSize", String($0)] } ?? []) + readerAdditionalLaunchArguments, language: language, locale: language == "he" ? "he_IL" : "en_US",
+        extraEnvironment: prefix.map { ["CHAVRUSA_READER_VIEWPORT_REPORT": $0] } ?? [:])
+        dismissAlertsIfNeeded()
+    }
+    func viewport() throws -> Viewport {
+        let oldURL = try XCTUnwrap(viewportURL, "The matrix must supply the viewport observation directory")
+        let sidecar = try workspaceSidecarURL()
+        let container = sidecar.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+        let url = container.appendingPathComponent("Documents").appendingPathComponent(oldURL.lastPathComponent)
+        let request = UUID().uuidString
+        let prefix = String(url.path.dropLast(".viewport.json".count))
+        try request.write(toFile: prefix + ".request", atomically: true, encoding: .utf8)
+        let exists = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let data = try? Data(contentsOf: url),
+                  let report = try? JSONDecoder().decode(Viewport.self, from: data) else { return false }
+            return report.requestID == request && report.offset.isFinite
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [exists], timeout: 15), .completed)
+        return try JSONDecoder().decode(Viewport.self, from: Data(contentsOf: url))
+    }
+    func attachViewport(_ value: Viewport, named name: String) throws {
+        let attachment = XCTAttachment(data: try JSONEncoder().encode(value), uniformTypeIdentifier: "public.json")
+        attachment.name = name
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+    func workspaceContainerParent() throws -> URL {
+        let documents = try XCTUnwrap(ProcessInfo.processInfo.environment["FAITHFUL_VIEWPORT_DIRECTORY"])
+        return URL(fileURLWithPath: documents).deletingLastPathComponent().deletingLastPathComponent()
+    }
+    func workspaceSidecarURL() throws -> URL {
+        let containers = try workspaceContainerParent()
+        let namespace = workspaceNamespace
+        // Receipt/workspace predicates read this helper while their own waiter
+        // runs. An already-created exact UUID sidecar needs no nested XCTWaiter.
+        let existing = matchingTestSidecars(in: containers, namespace: namespace)
+        if existing.count == 1 { return existing[0] }
+        XCTAssertLessThanOrEqual(existing.count, 1, "Duplicate UUID sidecars remain an error")
+        let created = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            matchingTestSidecars(in: containers, namespace: namespace).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [created], timeout: 15), .completed,
+                       "Exactly one real sidecar for this UUID must exist in the installed app's current container")
+        let matches = matchingTestSidecars(in: containers, namespace: namespace)
+        XCTAssertEqual(matches.count, 1)
+        return try XCTUnwrap(matches.first)
+    }
+    func attachWorkspaceSnapshot(_ name: String) throws {
+        let snapshot = XCTAttachment(data: try Data(contentsOf: workspaceSidecarURL()), uniformTypeIdentifier: "public.json")
+        snapshot.name = name
+        snapshot.lifetime = .keepAlways
+        add(snapshot)
+    }
+    func tap(_ element: XCUIElement, file: StaticString = #filePath, line: UInt = #line) {
+        // An existing live snapshot already proves existence; retain the same
+        // native wait for controls that have not appeared yet.
+        XCTAssertTrue(element.exists || element.waitForExistence(timeout: 30), file: file, line: line)
+        XCTAssertTrue(element.frame.intersects(app.windows.firstMatch.frame), "Control must be inside the actual native window", file: file, line: line)
+        element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+    }
+    func readerLibraryPaletteLauncher() -> XCUIElement {
+        let actions = app.buttons.matching(identifier: "reader-command-palette-launcher")
+        XCTAssertTrue(actions.firstMatch.waitForExistence(timeout: 30))
+        XCTAssertEqual(actions.count, 1, "Use the current original native library palette action uniquely")
+        let action = actions.firstMatch
+        XCTAssertTrue(action.isHittable, "The actual palette action must be reachable")
+        XCTAssertTrue(!action.frame.isEmpty && app.windows.firstMatch.frame.contains(action.frame),
+                      "The palette action must stay inside the actual application window")
+        return action
+    }
+
+    /// The original native ReaderTabsView is intentionally mounted only with
+    /// multiple documents. Establish that precondition through two real books,
+    /// then return to the original document before measuring its viewport.
+    func openSecondOriginalBookAndReturn() throws {
+        let initialTitle = app.staticTexts["reader-header-title"].label
+        let initialLocator = app.staticTexts["reader-current-locator"].label
+        XCTAssertFalse(initialTitle.isEmpty)
+        tap(readerLibraryPaletteLauncher())
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 20))
+        let clear = palette.buttons["Clear search"]
+        if clear.exists { tap(clear) }
+        let results = palette.scrollViews.buttons
+        XCTAssertTrue(results.firstMatch.waitForExistence(timeout: 30))
+        let candidate = try XCTUnwrap(results.allElementsBoundByIndex.first {
+            !$0.label.isEmpty && $0.label != initialTitle
+                && $0.isHittable && $0.frame.intersects(palette.frame)
+        }, "Choose a second genuine book from the original visible command results")
+        let secondTitle = candidate.label
+        tap(candidate)
+        assertReaderHasText()
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "label == %@", secondTitle),
+            object: app.staticTexts["reader-header-title"]
+        )], timeout: 30), .completed)
+        let strip = app.descendants(matching: .any)["reader-document-tabs"]
+        XCTAssertTrue(strip.waitForExistence(timeout: 30))
+        let original = strip.buttons.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@ AND label == %@", "reader-document-tab-", initialTitle))
+        let added = strip.buttons.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@ AND label == %@", "reader-document-tab-", secondTitle))
+        XCTAssertEqual(original.count, 1)
+        XCTAssertEqual(added.count, 1)
+        XCTAssertNotEqual(original.firstMatch.identifier, added.firstMatch.identifier,
+                          "The two real UI commands must create distinct document identities")
+        if !original.firstMatch.isHittable { strip.swipeRight() }
+        if !original.firstMatch.isHittable { strip.swipeLeft() }
+        XCTAssertTrue(original.firstMatch.isHittable, "Return using the actual visible original tab button")
+        tap(original.firstMatch)
+        assertReaderHasText()
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "label == %@", initialTitle),
+            object: app.staticTexts["reader-header-title"]
+        )], timeout: 30), .completed)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, initialLocator,
+                       "Return to the original navigation unit before the viewport assertions")
+    }
+
+    func readerBottomChromeAction() -> XCUIElement {
+        let more = app.buttons.matching(identifier: "reader-more-menu").allElementsBoundByIndex.filter {
+            !$0.frame.isEmpty && $0.frame.intersects(app.windows.firstMatch.frame) && $0.isHittable
+        }
+        if let action = more.first {
+            XCTAssertEqual(more.count, 1, "Observe one real visible reader More action")
+            return action
+        }
+        // The genuine 9401 compact-window hierarchy exposes UIKit's native
+        // bottom overflow instead of the reader's overflowed More item. Use
+        // that actual control to measure chrome, never the full-height Toolbar.
+        let overflow = app.buttons.matching(identifier: "BottomOverflowBarButtonItem")
+        let visible = overflow.allElementsBoundByIndex.filter {
+            !$0.frame.isEmpty && $0.frame.intersects(app.windows.firstMatch.frame) && $0.isHittable
+        }
+        XCTAssertEqual(visible.count, 1, "The original bottom toolbar must expose one real visible native overflow action")
+        return visible.first ?? overflow.firstMatch
+    }
+
+    @MainActor
+    func originalStudyToolsActionInWindow() throws -> XCUIElement {
+        let labels = ["Open Study Tools", "פתיחת כלי לימוד"]
+        let identifier = "reader-study-toggle"
+
+        // Native88 exposes this original toolbar action directly in the restored
+        // wide window, but moves it into UIKit's top overflow at 375pt. Resolve
+        // that same user action through the real toolbar; never synthesize a
+        // command, resize the window, or select a generic button by position.
+        func visible(_ query: XCUIElementQuery) -> [XCUIElement] {
+            let bounds = app.windows.firstMatch.frame.insetBy(dx: -1, dy: -1)
+            return query.allElementsBoundByIndex.filter { element in
+                let frame = element.frame
+                return !frame.isEmpty && bounds.contains(frame) && element.isHittable
+            }
+        }
+        func uniqueOriginalAction(_ candidates: [XCUIElement]) throws -> XCUIElement {
+            XCTAssertEqual(candidates.count, 1,
+                           "Require one visible original Study Tools action in the current native window")
+            let action = try XCTUnwrap(candidates.count == 1 ? candidates.first : nil)
+            XCTAssertTrue(labels.contains(action.label),
+                          "The original source-owned action must open Study Tools")
+            return try XCTUnwrap(labels.contains(action.label) ? action : nil)
+        }
+
+        let directQuery = app.buttons.matching(identifier: identifier)
+        let overflowQuery = app.navigationBars.buttons.matching(identifier: "TopOverflowBarButtonItem")
+        let toolbarReady = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                !visible(directQuery).isEmpty || !visible(overflowQuery).isEmpty
+            }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [toolbarReady], timeout: 15), .completed,
+                       "The actual window must expose the original Study Tools action or its native top overflow")
+        let direct = visible(directQuery)
+        if !direct.isEmpty {
+            return try uniqueOriginalAction(direct)
+        }
+
+        let overflows = visible(overflowQuery)
+        XCTAssertEqual(overflows.count, 1, "Do not choose between multiple visible native overflow controls")
+        let overflow = try XCTUnwrap(overflows.count == 1 ? overflows.first : nil)
+        overflow.tap()
+
+        // UIKit may expose the menu action by its original localized title.
+        // Both exact labels come from the unchanged source String Catalog.
+        let menuQuery = app.buttons.matching(NSPredicate(
+            format: "identifier == %@ OR label IN %@", identifier, labels))
+        let menuReady = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated { !visible(menuQuery).isEmpty }
+        }, object: nil)
+        let outcome = XCTWaiter.wait(for: [menuReady], timeout: 15)
+        let evidence = XCTAttachment(string:
+            "actualWindow=\(app.windows.firstMatch.frame)\n\(app.debugDescription)")
+        evidence.name = "original-study-tools-native-overflow-hierarchy"
+        evidence.lifetime = .keepAlways
+        add(evidence)
+        XCTAssertEqual(outcome, .completed,
+                       "Opening the actual native overflow must reveal the original Study Tools action")
+        return try uniqueOriginalAction(visible(menuQuery))
+    }
+
+    func readerSidebarToggle() -> XCUIElement {
+        let custom = app.buttons["reader-host-sidebar-toggle"]
+        let native = app.navigationBars.buttons.matching(NSPredicate(format:
+            "label IN %@", ["הצגת סרגל הצד", "הסתרת סרגל הצד", "Show Sidebar", "Hide Sidebar"]))
+        XCTAssertEqual((custom.exists ? 1 : 0) + native.count, 1,
+                       "Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden")
+        return custom.exists ? custom : native.firstMatch
+    }
+    func exerciseOriginalBottomTOCAction() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        let libraryPage = app.buttons["reader-sidebar-page-0"]
+        if !libraryPage.exists || !libraryPage.frame.intersects(app.frame) {
+            tap(readerSidebarToggle())
+        }
+        tap(libraryPage)
+        let originalLocator = app.staticTexts["reader-current-locator"].label
+        let readerWidth = app.textViews["reader-text"].frame.width
+        tap(app.buttons["reader-more-menu"])
+        tap(app.buttons["reader-toc-toggle"])
+        let contentsPage = app.buttons["reader-sidebar-page-1"]
+        let selected = XCTNSPredicateExpectation(predicate: NSPredicate(format: "isSelected == true"), object: contentsPage)
+        XCTAssertEqual(XCTWaiter.wait(for: [selected], timeout: 15), .completed,
+                       "The original TOC action must select Contents, rather than hiding an open Library page")
+        XCTAssertTrue(app.descendants(matching: .any)["toc-column"].exists)
+        XCTAssertTrue(app.frame.contains(contentsPage.frame), "Contents must actually remain on screen")
+        XCTAssertEqual(app.textViews["reader-text"].frame.width, readerWidth, accuracy: 1)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator)
+        capture("candidate-original-bottom-toc-action")
+    }
+    func capture(_ name: String, windowed: Bool = false) {
+        let application = app!
+        let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                let frame = application.windows.firstMatch.frame
+                let landscape = XCUIDevice.shared.orientation.isLandscape
+                guard frame.width > 0, frame.height > 0,
+                      (windowed || (frame.width > frame.height) == landscape) else { return false }
+                let reader = application.textViews["reader-text"]
+                guard reader.exists && reader.isHittable else { return true }
+                let more = application.buttons.matching(identifier: "reader-more-menu").allElementsBoundByIndex.filter {
+                    !$0.frame.isEmpty && $0.frame.intersects(frame) && $0.isHittable
+                }
+                let overflow = application.buttons.matching(identifier: "BottomOverflowBarButtonItem").allElementsBoundByIndex.filter {
+                    !$0.frame.isEmpty && $0.frame.intersects(frame) && $0.isHittable
+                }
+                let actions = more.isEmpty ? overflow : more
+                guard actions.count == 1, let bottomMenu = actions.first else { return false }
+                return windowed ? bottomMenu.frame.width > 0 && bottomMenu.frame.height > 0 : frame.contains(bottomMenu.frame)
+            }
+        }, object: nil)
+        let settlement = XCTWaiter.wait(for: [settled], timeout: 20)
+        // Capture the display rather than XCTest's app-rectangle crop: the
+        // iPadOS 27 landscape app crop can retain portrait dimensions and clip
+        // the trailing toolbar. Preserve the complete system/window chrome.
+        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        // Preserve the genuine image and hierarchy even if the strict native
+        // settling assertion fails. An UNSETTLED capture is diagnostic evidence,
+        // never an automatic visual-acceptance pass.
+        attachment.name = settlement == .completed ? name : "UNSETTLED-" + name
+        attachment.lifetime = .keepAlways
+        add(attachment)
+        let hierarchy = XCTAttachment(string: "appFrame=\(app.frame)\nactualWindow=\(app.windows.firstMatch.frame)\norientation=\(XCUIDevice.shared.orientation.rawValue)\n\(app.debugDescription)")
+        hierarchy.name = name + "-ui-tree"
+        hierarchy.lifetime = .keepAlways
+        add(hierarchy)
+        XCTAssertEqual(settlement, .completed,
+                       "Capture only after native rotation and the original bottom toolbar settle inside the window")
+    }
+    /// Diagnostic retention before an action/assertion; never a visual pass.
+    func retainNativeEvidence(_ name: String) {
+        let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        image.name = "DIAGNOSTIC-" + name
+        image.lifetime = .keepAlways
+        add(image)
+        let tree = XCTAttachment(string: "appFrame=\(app.frame)\nactualWindow=\(app.windows.firstMatch.frame)\n\(app.debugDescription)")
+        tree.name = "DIAGNOSTIC-" + name + "-ui-tree"
+        tree.lifetime = .keepAlways
+        add(tree)
+    }
+
+    func assertSourceActionsInsideNativeToolbarHost() {
+        let hosts = app.navigationBars.containing(.button, identifier: "reader-tabs-overview")
+        XCTAssertEqual(hosts.count, 1, "Identify the current original native navigation bar uniquely")
+        let host = hosts.firstMatch
+        XCTAssertTrue(host.exists)
+        for identifier in ["reader-tabs-overview", "reader-command-palette-launcher"] {
+            let actions = host.buttons.matching(identifier: identifier)
+            XCTAssertEqual(actions.count, 1, "The source action must belong to this native toolbar")
+            let action = actions.firstMatch
+            XCTAssertTrue(action.exists && action.isHittable)
+            XCTAssertFalse(action.frame.isEmpty)
+            XCTAssertTrue(host.frame.insetBy(dx: -1, dy: -1).contains(action.frame),
+                          "Source actions must stay inside the actual native toolbar's hit-test bounds")
+            XCTAssertTrue(app.windows.firstMatch.frame.contains(action.frame))
+        }
+    }
+
+    /// Actual application presentation/return, with the existing read-only
+    /// TextKit observer proving identity and the current source/pixel anchor.
+    @MainActor
+    func exerciseOverviewReplacement(orientation: UIDeviceOrientation, phone: Bool) throws {
+        XCUIDevice.shared.orientation = orientation
+        let platform = phone ? "phone" : (orientation.isLandscape ? "landscape" : "portrait")
+        // This supported preference renders genuine text beyond the viewport.
+        // Its canonical navigation may restore the top or a later position;
+        // establish the required nonzero position through the actual reader.
+        launchReader(recordViewport: true, fontSize: 48)
+        try establishSingleBookOverviewFixture(phone: phone)
+        try exerciseOverviewAtCurrentPosition(platform: platform + "-nonzero", phone: phone, requiresNonzeroPosition: true)
+        // Also retain full-display visual proof at the original 19pt default.
+        launchReader(recordViewport: true, fontSize: 19)
+        try establishSingleBookOverviewFixture(phone: phone)
+        try exerciseOverviewAtCurrentPosition(platform: platform, phone: phone, requiresNonzeroPosition: false)
+    }
+
+
+    private struct OverviewFixtureWorkspace: Decodable, Sendable {
+        struct Document: Decodable, Sendable {
+            struct Session: Decodable, Sendable { let id: UUID; let bookId: Int }
+            let backend: String; let session: Session
+        }
+        struct Group: Decodable, Sendable {
+            let id: UUID; let profileID: UUID; let activeTabID: UUID?; let tabs: [Document]
+        }
+        struct Scene: Decodable, Sendable {
+            let profileID: UUID; let groupID: UUID; let activeTabIDsByGroup: [UUID: UUID]?
+        }
+        let groups: [Group]; let scenes: [String: Scene]; let lastActiveSceneID: String?
+        func current() -> (Group, UUID)? {
+            guard let sceneID = lastActiveSceneID, let scene = scenes[sceneID],
+                  let group = groups.first(where: { $0.id == scene.groupID && $0.profileID == scene.profileID }),
+                  let activeID = scene.activeTabIDsByGroup?[group.id] ?? group.activeTabID,
+                  group.tabs.contains(where: { $0.session.id == activeID }) else { return nil }
+            return (group, activeID)
+        }
+    }
+
+    /// A fresh sidecar still imports the ordinary reader's real saved tabs.
+    /// Establish this test's one-book precondition through original UI before
+    /// measuring any source/pixel anchor; never rewrite a session or viewport.
+    @MainActor
+    private func establishSingleBookOverviewFixture(phone: Bool) throws {
+        XCTAssertNotEqual(readerTestTier, .production, "Fixture preparation is limited to the isolated miniTest10 cases")
+        assertReaderHasText()
+        let title = app.staticTexts["reader-header-title"].label
+        let locator = app.staticTexts["reader-current-locator"].label
+        let source = locator.components(separatedBy: "|")
+        XCTAssertEqual(source.count, 3)
+        XCTAssertEqual(source.first, "otzaria")
+        let bookID = try XCTUnwrap(source.count == 3 && source[1].hasPrefix("book:")
+            ? Int(source[1].dropFirst("book:".count)) : nil)
+        tap(app.buttons[phone ? "reader-open-tabs-button" : "reader-tabs-overview"])
+        let overview = app.descendants(matching: .any)["study-groups-overview"]
+        XCTAssertTrue(overview.waitForExistence(timeout: 20))
+        let toggle = app.buttons["study-tabs-layout-toggle"]
+        XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+        if toggle.label == "תצוגת רשת" { tap(toggle) }
+        let prefix = "tab-switcher-grid-cell-"
+        let cells = overview.collectionViews.cells.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@", prefix))
+        XCTAssertTrue(cells.firstMatch.waitForExistence(timeout: 15))
+        let selected = cells.allElementsBoundByIndex.filter { $0.isSelected }
+        XCTAssertEqual(selected.count, 1, "The original overview must identify one actual selected document")
+        let selectedCell = try XCTUnwrap(selected.first)
+        let keptID = try XCTUnwrap(UUID(uuidString: String(selectedCell.identifier.dropFirst(prefix.count))))
+        let observedIDs = try cells.allElementsBoundByIndex.map {
+            try XCTUnwrap(UUID(uuidString: String($0.identifier.dropFirst(prefix.count))))
+        }
+        let originalIDs = Set(observedIDs)
+        XCTAssertEqual(originalIDs.count, observedIDs.count)
+        XCTAssertLessThanOrEqual(originalIDs.count, 32, "Keep fixture cleanup bounded to the observed original group")
+        let url = try workspaceSidecarURL()
+        @Sendable func currentWorkspace() -> (OverviewFixtureWorkspace.Group, UUID)? {
+            guard let bytes = try? Data(contentsOf: url),
+                  let snapshot = try? JSONDecoder().decode(OverviewFixtureWorkspace.self, from: bytes) else { return nil }
+            return snapshot.current()
+        }
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let (group, active) = currentWorkspace() else { return false }
+            return active == keptID && Set(group.tabs.map { $0.session.id }) == originalIDs
+                && group.tabs.count == originalIDs.count
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 15), .completed,
+                       "Corroborate the selected native UUID and every observed member with this exact test sidecar")
+        let original = try XCTUnwrap(currentWorkspace())
+        let retained = try XCTUnwrap(original.0.tabs.first { $0.session.id == keptID })
+        XCTAssertEqual(retained.backend, "otzaria")
+        XCTAssertEqual(retained.session.bookId, bookID)
+        try attachWorkspaceSnapshot("overview-fixture-original-members")
+        retainNativeEvidence("overview-fixture-before-native-close")
+        var removed = Set<UUID>()
+        for id in originalIDs.subtracting([keptID]).sorted(by: { $0.uuidString < $1.uuidString }) {
+            let cell = cells[prefix + id.uuidString]
+            XCTAssertTrue(cell.exists && cell.isHittable)
+            XCTAssertFalse(cell.isSelected, "Never close the selected source document during preparation")
+            cell.swipeRight()
+            let vanished = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: cell)
+            XCTAssertEqual(XCTWaiter.wait(for: [vanished], timeout: 15), .completed,
+                           "The original RTL swipe must remove this exact observed noncurrent UUID")
+            removed.insert(id)
+            let expectedIDs = originalIDs.subtracting(removed)
+            let persisted = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                guard let (group, active) = currentWorkspace() else { return false }
+                return group.id == original.0.id && active == keptID
+                    && Set(group.tabs.map { $0.session.id }) == expectedIDs
+                    && group.tabs.count == expectedIDs.count
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [persisted], timeout: 15), .completed,
+                           "Each original close must persist only that UUID removal and preserve the active document")
+            XCTAssertTrue(cells[prefix + keptID.uuidString].exists)
+            XCTAssertTrue(cells[prefix + keptID.uuidString].isSelected)
+        }
+        XCTAssertEqual(cells.count, 1)
+        XCTAssertEqual(try XCTUnwrap(currentWorkspace()).1, keptID)
+        try attachWorkspaceSnapshot("overview-fixture-single-original-book")
+        tap(app.buttons["סיום"])
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: overview)], timeout: 15), .completed)
+        assertReaderHasText()
+        XCTAssertEqual(app.staticTexts["reader-header-title"].label, title)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
+    }
+
+    private func exerciseOverviewAtCurrentPosition(platform: String, phone: Bool, requiresNonzeroPosition: Bool) throws {
+        assertReaderHasText()
+        let reader = app.textViews["reader-text"]
+        let initial = try viewport()
+        try attachViewport(initial, named: "replacement-viewport-opening-" + platform)
+        capture("replacement-reader-initial-" + platform)
+        var positioned = try viewport()
+        if requiresNonzeroPosition {
+            for attempt in 1...2 {
+                let documentY = try XCTUnwrap(positioned.contentOffsetY) + XCTUnwrap(positioned.topInset)
+                if positioned.source > 0 && documentY > 5 { break }
+                // A short real pan targets the original text view. Its own
+                // pull navigation may advance a section before positioning.
+                // Never assign an offset or use the stale contentSize cache.
+                let start = reader.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.7))
+                let end = start.withOffset(CGVector(dx: 0, dy: -min(220, reader.frame.height * 0.3)))
+                start.press(forDuration: 0.05, thenDragTo: end)
+                positioned = try viewport()
+                try attachViewport(positioned, named: "replacement-viewport-user-pan-\(attempt)-" + platform)
+                retainNativeEvidence("replacement-user-pan-\(attempt)-" + platform)
+            }
+        }
+        capture("replacement-reader-before-" + platform)
+        // Observe again after the full-frame settling check, not a stale report
+        // from before native layout. The source/pixel anchor is authoritative.
+        let before = try viewport()
+        try attachViewport(before, named: "replacement-viewport-before-" + platform)
+        if requiresNonzeroPosition {
+            XCTAssertGreaterThan(before.source, 0, "Preserve a real visible source position beyond the opening character")
+            let documentY = try XCTUnwrap(before.contentOffsetY) + XCTUnwrap(before.topInset)
+            XCTAssertGreaterThan(documentY, 5, "The original reader must actually be positioned beyond the top")
+        }
+        let title = app.staticTexts["reader-header-title"].label
+        let locator = app.staticTexts["reader-current-locator"].label
+        let readerFrame = reader.frame
+        let actionID = phone ? "reader-open-tabs-button" : "reader-tabs-overview"
+        for selectsCurrent in (requiresNonzeroPosition ? [false, true] : [false]) {
+            tap(app.buttons[actionID])
+            let overview = app.descendants(matching: .any)["study-groups-overview"]
+            let opened = overview.waitForExistence(timeout: 20)
+            retainNativeEvidence("replacement-context-before-assertions-" + platform)
+            if !opened, let report = try? viewport() {
+                try attachViewport(report, named: "replacement-presentation-failure-" + platform)
+            }
+            XCTAssertTrue(opened, "The real source action must display the actual overview")
+            XCTAssertEqual(overview.frame.width, app.frame.width, accuracy: 2,
+                           "The source overview must occupy the reader context's whole width")
+            XCTAssertGreaterThanOrEqual(overview.frame.height, app.frame.height * 0.9,
+                                        "A centered partial-height sheet is not screen replacement")
+            XCTAssertFalse(reader.exists && reader.isHittable,
+                           "The covered original reader must not receive overview touches")
+            let toggle = app.buttons["study-tabs-layout-toggle"]
+            XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+            if toggle.label == "תצוגת רשת" { tap(toggle) }
+            let cells = overview.collectionViews.cells.matching(NSPredicate(
+                format: "identifier BEGINSWITH %@", "tab-switcher-grid-cell-"))
+            XCTAssertEqual(cells.count, 1, "This fixture has one genuine active book")
+            capture("replacement-overview-grid-" + platform)
+            tap(toggle)
+            XCTAssertTrue(overview.collectionViews.cells.matching(NSPredicate(
+                format: "identifier BEGINSWITH %@", "tab-switcher-list-cell-")).firstMatch.waitForExistence(timeout: 10))
+            capture("replacement-overview-list-" + platform)
+            if selectsCurrent {
+                tap(overview.collectionViews.cells.matching(NSPredicate(
+                    format: "identifier BEGINSWITH %@", "tab-switcher-list-cell-")).firstMatch)
+            } else {
+                tap(app.buttons["סיום"])
+            }
+            XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"), object: overview)], timeout: 15), .completed)
+            assertReaderHasText()
+            let after = try viewport()
+            try attachViewport(after, named: "replacement-viewport-return-\(selectsCurrent ? "selected" : "done")-" + platform)
+            XCTAssertEqual(after.object, before.object, "Return must reuse the original TextKit instance")
+            XCTAssertEqual(after.source, before.source, "Return must preserve the first visible source character")
+            XCTAssertEqual(after.offset, before.offset, accuracy: 1, "Return must preserve the source pixel anchor")
+            XCTAssertEqual(try XCTUnwrap(after.contentOffsetY), try XCTUnwrap(before.contentOffsetY), accuracy: 1,
+                           "Return must also preserve the original raw native content offset")
+            XCTAssertEqual(app.staticTexts["reader-header-title"].label, title)
+            XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
+            XCTAssertEqual(reader.frame.width, readerFrame.width, accuracy: 1)
+            XCTAssertEqual(reader.frame.height, readerFrame.height, accuracy: 1)
+            capture("replacement-reader-return-\(selectsCurrent ? "selected" : "done")-" + platform)
+        }
+    }
+
+    func assertReaderHasText(expectedSourceText: String? = nil) {
+        let text = app.textViews["reader-text"]
+        XCTAssertTrue(text.waitForExistence(timeout: 60), "The original TextKit reader must render")
+        let application = app!
+        let laidOut = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                let frame = text.frame
+                return frame.width > 80 && frame.height > 80 && frame.minX.isFinite && frame.minY.isFinite
+                    && frame.width <= application.frame.width + 1 && frame.height <= application.frame.height + 1
+            }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [laidOut], timeout: 30), .completed,
+                       "The actual reader must finish native window reflow before inspecting its pixels")
+        let predicate: NSPredicate
+        if let expectedSourceText {
+            XCTAssertFalse(expectedSourceText.isEmpty, "Independent source text must not be empty")
+            let directionControls: Set<UInt32> = [0x200E, 0x200F, 0x202A, 0x202B, 0x202C, 0x202D, 0x202E, 0x2066, 0x2067, 0x2068, 0x2069]
+            // Capture the existing MainActor-owned element instead of transferring
+            // NSPredicate's unisolated Any? argument across the actor boundary.
+            predicate = NSPredicate { _, _ in
+                MainActor.assumeIsolated {
+                    guard let actual = text.value as? String else { return false }
+                    return actual.unicodeScalars.filter { !directionControls.contains($0.value) }.map(String.init)
+                        .joined().trimmingCharacters(in: .whitespacesAndNewlines) == expectedSourceText
+                }
+            }
+        } else {
+            predicate = NSPredicate(format: "value MATCHES %@", "(?s).{31,}")
+        }
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: predicate, object: text)], timeout: 30), .completed,
+                       "Require actual source text; structured diagnostics alone are not text evidence")
+        let title = app.staticTexts["reader-header-title"]
+        XCTAssertTrue(title.waitForExistence(timeout: 10))
+        XCTAssertFalse(["", "ספר", "Book 1"].contains(title.label), "A fabricated placeholder is not a genuine loaded book")
+        let rendered = text.value as? String ?? ""
+        XCTAssertFalse(rendered.contains("Error Domain") || rendered.contains("Content ID not found") || rendered.contains("no such table"), "An error message must not count as book text")
+        if TestRenderedHighlightSnapshot.fromJSON(rendered) != nil {
+            // Immutable 9401 replaces the native value with diagnostic JSON.
+            // Detect actual printed glyphs inside the reader body, excluding
+            // headers/toolbars. This does not OCR Hebrew or infer book identity;
+            // the canonical title and native screenshots remain separate proof.
+            do {
+                // The public element screenshot resolves its native window
+                // context. App/element coordinates and a full display screenshot
+                // diverge once iPadOS places a resized window over the desktop.
+                let image = text.screenshot().image
+                guard let rawImage = image.cgImage else { XCTFail("The native text screenshot has no pixels"); return }
+                let rotated = [.left, .right, .leftMirrored, .rightMirrored].contains(image.imageOrientation)
+                let displaySize = CGSize(width: CGFloat(rotated ? rawImage.height : rawImage.width) / image.scale,
+                                         height: CGFloat(rotated ? rawImage.width : rawImage.height) / image.scale)
+                let format = UIGraphicsImageRendererFormat()
+                format.scale = image.scale
+                let normalized = UIGraphicsImageRenderer(size: displaySize, format: format).image { _ in
+                    image.draw(in: CGRect(origin: .zero, size: displaySize))
+                }
+                let readerFrame = text.frame
+                let navigationFrames = app.navigationBars.allElementsBoundByIndex.map { $0.frame }.filter {
+                    $0.width > 0 && $0.height > 0 && $0.intersects(readerFrame)
+                        && $0.intersection(readerFrame).width > readerFrame.width * 0.5
+                }
+                let bottomAction = readerBottomChromeAction()
+                guard let navigationBottom = navigationFrames.map({ $0.maxY }).max(), bottomAction.exists else {
+                    XCTFail("Cannot identify the original native chrome to isolate genuine book pixels"); return
+                }
+                // UITextView extends behind native bars. Exclude their actual
+                // measured frames so title/status/tab labels cannot count as
+                // loaded book text when the original value is diagnostic JSON.
+                let top = max(readerFrame.minY, navigationBottom) + 12
+                // On iPadOS 27 the accessibility Toolbar container spans the
+                // whole content area. Its real bottom action has precise bounds.
+                let bottom = min(readerFrame.maxY, bottomAction.frame.minY) - 12
+                let frame = CGRect(x: 12, y: top - readerFrame.minY,
+                                   width: readerFrame.width - 24, height: bottom - top)
+                guard frame.width > 0, frame.height > 0 else {
+                    XCTFail("The original reader has no visible book body between its native bars"); return
+                }
+                let pixelsPerPointX = displaySize.width * normalized.scale / readerFrame.width
+                let pixelsPerPointY = displaySize.height * normalized.scale / readerFrame.height
+                let pixels = CGRect(x: frame.minX * pixelsPerPointX, y: frame.minY * pixelsPerPointY,
+                                    width: frame.width * pixelsPerPointX, height: frame.height * pixelsPerPointY)
+                let geometry = XCTAttachment(string: "app=\(app.frame)\nreader=\(readerFrame)\nimageSize=\(image.size)\nimageOrientation=\(image.imageOrientation.rawValue)\ndisplaySize=\(displaySize)\nbookPixels=\(pixels)")
+                geometry.name = "native-reader-pixel-observation-geometry"
+                geometry.lifetime = .keepAlways
+                add(geometry)
+                guard let crop = normalized.cgImage?.cropping(to: pixels) else {
+                    XCTFail("Cannot inspect the actual reader pixels"); return
+                }
+                let request = VNDetectTextRectanglesRequest()
+                request.reportCharacterBoxes = true
+                try VNImageRequestHandler(cgImage: crop).perform([request])
+                let lines = request.results ?? []
+                let body = XCTAttachment(image: UIImage(cgImage: crop))
+                body.name = "immutable-baseline-actual-book-body"
+                body.lifetime = .keepAlways
+                add(body)
+                XCTAssertGreaterThanOrEqual(lines.count, 2, "The immutable baseline must display multiple real text lines")
+                XCTAssertGreaterThanOrEqual(lines.reduce(0) { $0 + ($1.characterBoxes?.count ?? 0) }, 30,
+                                            "A JSON accessibility value or empty/loading reader is not rendered book-text evidence")
+            } catch { XCTFail("Could not inspect actual reader text pixels: \(error)") }
+        } else {
+            XCTAssertFalse(rendered.trimmingCharacters(in: .whitespacesAndNewlines).hasPrefix("{"),
+                           "Native reader value must be book text, not diagnostic JSON")
+        }
+    }
+
+    @MainActor
+    func exerciseNativeWindowResize(enabled: Bool) throws {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(enabled: enabled, scenario: "readerDetail")
+        assertReaderHasText()
+        let application = app!
+        let window = application.windows.firstMatch
+        let originalLocator = app.staticTexts["reader-current-locator"].label
+        capture(enabled ? "candidate-window-wide" : "baseline-window-wide")
+        // Measure after the same strict native rotation/toolbar settling used
+        // by the actual screenshot, rather than keeping an earlier frame.
+        let originalFrame = window.frame
+        let restoration = NativeUIRestoration {
+            let current = window.frame
+            if abs(current.width - originalFrame.width) > 2 || abs(current.height - originalFrame.height) > 2 {
+                let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+                // The retained Release failure exposes this exact public
+                // SpringBoard control in screen coordinates. An application
+                // frame can retain a zero origin after its native window moves.
+                let controls = springboard.buttons["window-controls:com.davidpovarsky.chavrusatext"]
+                let openedControls = controls.waitForExistence(timeout: 10) && controls.isHittable
+                if openedControls { controls.tap() }
+                let labels = ["Full Screen", "Enter Full Screen", "Zoom", "מסך מלא", "הצג במסך מלא"]
+                let predicate = NSPredicate(format: "label IN %@", labels)
+                let candidates = [application.buttons, application.menuItems, springboard.buttons, springboard.menuItems]
+                var selected = false
+                for query in candidates where openedControls {
+                    let action = query.matching(predicate).firstMatch
+                    if action.waitForExistence(timeout: 3), action.isHittable {
+                        action.tap()
+                        selected = true
+                        break
+                    }
+                }
+                if !selected {
+                    XCTContext.runActivity(named: "Native window controls unavailable") { activity in
+                        let tree = XCTAttachment(string: application.debugDescription + "\nSPRINGBOARD\n" + springboard.debugDescription)
+                        tree.lifetime = .keepAlways
+                        activity.add(tree)
+                        let screen = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+                        screen.lifetime = .keepAlways
+                        activity.add(screen)
+                    }
+                    XCTFail("Cannot restore the actual window through its native Full Screen action")
+                    return
+                }
+                let restored = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                    MainActor.assumeIsolated {
+                        abs(window.frame.width - originalFrame.width) < 2 && abs(window.frame.height - originalFrame.height) < 2
+                    }
+                }, object: nil)
+                XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 30), .completed,
+                               "Restore the actual window before other baseline/candidate cases")
+            }
+        }
+        addTeardownBlock { await restoration.run() }
+        // Apple's iPad windowing gesture: drag the system bottom-right handle.
+        // This must change the actual window, not an injected size class/frame.
+        let handle = window.coordinate(withNormalizedOffset: CGVector(dx: 1, dy: 1)).withOffset(CGVector(dx: -12, dy: -12))
+        let destination = window.coordinate(withNormalizedOffset: CGVector(dx: 0.55, dy: 0.7))
+        handle.press(forDuration: 0.5, thenDragTo: destination)
+        let resized = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated { window.frame.width < originalFrame.width - 80 }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [resized], timeout: 30), .completed,
+                       "The native iPad window must actually resize; a simulated width is not acceptance")
+        if enabled {
+            // Exercise the source toolbar before the separate original bottom-
+            // toolbar settling gate. Its existing strict assertion stays below.
+            retainNativeEvidence("candidate-narrow-toolbar-before-action")
+            assertSourceActionsInsideNativeToolbarHost()
+            tap(app.buttons["reader-tabs-overview"])
+            let overview = app.descendants(matching: .any)["study-groups-overview"]
+            retainNativeEvidence("candidate-narrow-overview-after-action")
+            XCTAssertTrue(overview.waitForExistence(timeout: 15))
+            capture("candidate-narrow-source-overview", windowed: true)
+            tap(app.buttons["סיום"])
+        }
+        capture(enabled ? "candidate-window-narrow" : "baseline-window-narrow", windowed: true)
+        assertReaderHasText()
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator,
+                       "Window reflow must preserve the actual navigation unit")
+        XCTAssertTrue(readerBottomChromeAction().exists, "The original bottom toolbar must survive narrow window reflow")
+        let geometry = XCTAttachment(string: "wide=\(originalFrame)\nnarrow=\(window.frame)\napplicationSnapshot=\(app.frame)")
+        geometry.name = enabled ? "candidate-native-window-geometry" : "baseline-native-window-geometry"
+        geometry.lifetime = .keepAlways
+        add(geometry)
+        if enabled {
+            let field = readerLibraryPaletteLauncher()
+            XCTAssertTrue(field.waitForExistence(timeout: 15))
+            XCTAssertTrue(field.isHittable, "The actual library palette action must remain reachable in the native narrow window")
+            field.tap()
+            let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+            XCTAssertTrue(palette.waitForExistence(timeout: 15))
+            capture("candidate-window-narrow-palette", windowed: true)
+            palette.textFields.firstMatch.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
+            let collapsed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: palette)
+            XCTAssertEqual(XCTWaiter.wait(for: [collapsed], timeout: 15), .completed)
+            let beforeInspector = getRenderedHighlightSnapshot()
+            XCTAssertNotNil(beforeInspector)
+            let study = try originalStudyToolsActionInWindow()
+            XCTAssertTrue(study.waitForExistence(timeout: 15), "Original study tools must remain available in a real compact window")
+            study.tap()
+            let inspector = app.descendants(matching: .any)["torah-inspector-panel"]
+            XCTAssertTrue(inspector.waitForExistence(timeout: 30))
+            XCTAssertTrue(app.descendants(matching: .any)["torah-inspector-tools"].exists)
+            capture("candidate-window-narrow-original-floating-inspector", windowed: true)
+            let close = app.buttons["torah-inspector-close"]
+            XCTAssertTrue(close.waitForExistence(timeout: 15))
+            XCTAssertTrue(close.isHittable)
+            XCTAssertTrue(app.windows.firstMatch.frame.insetBy(dx: -1, dy: -1).contains(close.frame),
+                          "Close the actual original Inspector inside its current native window")
+            close.tap()
+            let closed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: inspector)
+            XCTAssertEqual(XCTWaiter.wait(for: [closed], timeout: 15), .completed)
+            assertReaderHasText()
+            XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator)
+            let afterInspector = getRenderedHighlightSnapshot()
+            XCTAssertNotNil(afterInspector)
+            XCTAssertEqual(afterInspector?.segmentSelectionCount, beforeInspector?.segmentSelectionCount,
+                           "Opening the original Inspector in a compact window must not manufacture a book selection")
+        }
+    }
+
+    func selectStudyGroup(named name: String) {
+        let selector = app.segmentedControls["study-group-selector"]
+        if selector.exists {
+            tap(selector.buttons[name])
+        } else {
+            // The source's public AdaptiveTabContent can choose its native
+            // Menu in a compact sheet/window or accessibility text size.
+            tap(app.buttons["study-group-selector"])
+            // The native popover is a collection of cells. The underlying
+            // overview toolbar also has a button named 'All Tabs'.
+            let options = app.collectionViews.cells.buttons.matching(NSPredicate(format: "label == %@", name))
+            XCTAssertTrue(options.firstMatch.waitForExistence(timeout: 15))
+            XCTAssertEqual(options.count, 1, "Select the unique real group action in the native popover")
+            tap(options.element(boundBy: 0))
+        }
+    }
+
+    @discardableResult
+    func exerciseGlobalHistorySubmission(enabled: Bool) -> String {
+        let previousTrace = recordsGlobalHistoryTrace
+        recordsGlobalHistoryTrace = true
+        defer { recordsGlobalHistoryTrace = previousTrace }
+        let query = "בדיקת היסטוריה " + UUID().uuidString
+        launchReader(enabled: enabled, scenario: "search")
+        let fields = app.descendants(matching: .any).matching(identifier: "global-search-query")
+        let globalInput = fields.firstMatch
+        XCTAssertTrue(globalInput.waitForExistence(timeout: 40))
+        XCTAssertEqual(fields.count, 1, "Require the single original global query field")
+        XCTAssertTrue(globalInput.elementType == .searchField || globalInput.elementType == .textField)
+        XCTAssertTrue(app.collectionViews["global-search-history"].waitForExistence(timeout: 20))
+        func attachHistoryObservation(_ observation: NativeGlobalHistoryObservation, stage: String,
+                                      nativeHistoryRowVisible: Bool? = nil, waiterResult: XCTWaiter.Result? = nil) {
+            var details = observation.details
+            details["stage"] = stage
+            details["nativeHistoryRowVisible"] = nativeHistoryRowVisible
+            details["waiterResult"] = waiterResult.map { String(describing: $0) }
+            // Read only at the existing attachment points, never in settlement
+            // predicates; the original DEBUG writer supplies any actual state.
+            if let container = observation.container {
+                details["originalPassiveSearchTrace"] = observeNativeGlobalSearchTrace(
+                    in: container, namespace: workspaceNamespace)
+            }
+            let fields = app.descendants(matching: .any).matching(identifier: "global-search-query")
+            let fieldCount = fields.count
+            details["originalQueryFieldCount"] = fieldCount
+            if fieldCount == 1 {
+                let field = fields.element
+                details["originalQueryFieldValue"] = field.value as? String
+                details["originalQueryFieldMatchesExpected"] = field.value as? String == query
+                details["originalQueryFieldEnabled"] = field.isEnabled
+                details["originalQueryFieldHittable"] = field.isHittable
+            }
+            details["originalUIStates"] = [
+                "history": app.collectionViews["global-search-history"].exists,
+                "loading": app.otherElements["global-search-loading"].exists,
+                "cancel": app.buttons["global-search-cancel"].exists,
+                "error": app.otherElements["global-search-error"].exists,
+                "missingIndex": app.otherElements["global-search-missing-index"].exists,
+                "dirty": app.otherElements["global-search-dirty"].exists,
+                "cancelled": app.otherElements["global-search-cancelled"].exists,
+                "empty": app.otherElements["global-search-empty"].exists
+            ]
+            let data = (try? JSONSerialization.data(withJSONObject: details, options: [.prettyPrinted, .sortedKeys])) ?? Data()
+            let diagnostic = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
+            diagnostic.name = "global-history-native-persistence-" + stage
+            diagnostic.lifetime = .keepAlways
+            add(diagnostic)
+            let hierarchy = XCTAttachment(string: app.debugDescription)
+            hierarchy.name = "global-history-original-state-" + stage
+            hierarchy.lifetime = .keepAlways
+            add(hierarchy)
+        }
+        guard let containers = try? workspaceContainerParent() else {
+            XCTFail("The matrix must provide the original Simulator container parent")
+            return query
+        }
+        let historyNamespace = workspaceNamespace
+        let initial = observeNativeGlobalHistory(in: containers, namespace: historyNamespace, query: query)
+        attachHistoryObservation(initial, stage: "before-submit")
+        guard let originalContainer = initial.container, let originalMetadata = initial.metadataBytes else {
+            XCTFail("Require one source-identified original app installation before submitting")
+            return query
+        }
+        let historyObservation: @Sendable () -> NativeGlobalHistoryObservation = {
+            observeNativeGlobalHistory(in: containers, namespace: historyNamespace, query: query,
+                                       expectedContainer: originalContainer, expectedMetadata: originalMetadata)
+        }
+        tap(globalInput)
+        // NativeGlobalSearchField.textFieldShouldReturn submits through the
+        // original session; there is no Start Search button in this header.
+        globalInput.typeText(query + "\n")
+        XCTAssertEqual(globalInput.value as? String, query)
+        let application = app!
+        let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                !application.collectionViews["global-search-history"].exists
+                    && !application.otherElements["global-search-loading"].exists
+                    && !application.buttons["global-search-cancel"].exists
+                    && historyObservation().persistedExactlyOnce
+            }
+        }, object: nil)
+        let settledResult = XCTWaiter.wait(for: [settled], timeout: 90)
+        let beforeTermination = historyObservation()
+        // UserDefaults writes are observed, never forced. Do not terminate merely
+        // because a loading/history view disappeared, or replace a native writer.
+        attachHistoryObservation(beforeTermination, stage: "before-terminate", waiterResult: settledResult)
+        XCTAssertEqual(settledResult, .completed,
+                       "The original Return submission must settle and persist in its own installation before relaunch")
+        XCTAssertTrue(beforeTermination.persistedExactlyOnce,
+                      "The exact submitted query must be written once by the original app before termination")
+        // The current original screen shows inline history before a submission,
+        // not on refocus of existing results. Relaunch its actual session and
+        // require the same query persisted by the original submit action.
+        app.terminate()
+        launchReader(enabled: enabled, scenario: "search")
+        let reopenedFields = app.descendants(matching: .any).matching(identifier: "global-search-query")
+        XCTAssertTrue(reopenedFields.firstMatch.waitForExistence(timeout: 40))
+        XCTAssertEqual(reopenedFields.count, 1)
+        tap(reopenedFields.firstMatch)
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 10),
+                      "Observe the actual native keyboard before checking usable history")
+        // Capture the actual focused global screen even when the following
+        // assertion fails, so immutable baseline behavior can be compared.
+        capture(enabled ? "candidate-global-search-history" : "baseline-global-search-history")
+        let historyRows = app.collectionViews["global-search-history"].buttons
+            .matching(identifier: "global-search-history-" + query)
+        let historyRow = historyRows.firstMatch
+        let historyIsVisible = historyRow.waitForExistence(timeout: 20)
+        let afterRelaunch = historyObservation()
+        // Attach before assertions: continueAfterFailure=false previously aborted
+        // this case before its persistence diagnostic could be retained.
+        attachHistoryObservation(afterRelaunch, stage: "after-relaunch", nativeHistoryRowVisible: historyIsVisible)
+        XCTAssertTrue(afterRelaunch.persistedExactlyOnce,
+                      "The same original installation must retain the exact query after relaunch")
+        XCTAssertEqual(historyRows.count, 1, "The exact genuine submitted history query must occur once")
+        XCTAssertTrue(historyRow.label.contains(query))
+        XCTAssertTrue(historyIsVisible, "A submitted global query must appear in the original global history")
+        XCTAssertTrue(historyRow.isHittable, "The submitted history row must actually be visible and usable above the native keyboard")
+        XCTAssertLessThanOrEqual(historyRow.frame.maxY, app.keyboards.firstMatch.frame.minY + 2,
+                                 "The original history row must remain above the real native keyboard")
+        return query
+    }
+}
+
+final class FaithfulReaderVisualBaselineTests: FaithfulReaderUIBase {
+    func testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(enabled: false, scenario: "studyCommentaries")
+        XCTAssertTrue(app.textViews["reader-text"].waitForExistence(timeout: 60))
+        XCTAssertTrue(app.descendants(matching: .any)["torah-inspector-tools"].waitForExistence(timeout: 30))
+        // This is an actual original-app reference, independently retained
+        // before any bottom-toolbar/pixel assertion can abort the test.
+        let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        image.name = "baseline-inspector-reference-before-reader-assertions"
+        image.lifetime = .keepAlways
+        add(image)
+        let hierarchy = XCTAttachment(string: app.debugDescription)
+        hierarchy.name = "baseline-inspector-reference-ui-tree"
+        hierarchy.lifetime = .keepAlways
+        add(hierarchy)
+        assertReaderHasText()
+    }
+
+    func testOriginalGlobalSearchHistoryThroughNativeControls() {
+        exerciseGlobalHistorySubmission(enabled: false)
+    }
+
+    @MainActor
+    func testOriginalWindowResizePreservesReader() throws {
+        try exerciseNativeWindowResize(enabled: false)
+    }
+
+    func testOriginalReaderThemes() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        for (name, index) in [("light", 0), ("dark", 4), ("sepia", 1)] {
+            launchReader(enabled: false, scenario: "readerDetail", background: index)
+            assertReaderHasText()
+            capture("baseline-reader-theme-\(name)")
+        }
+    }
+
+    func testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots() {
+        for scenario in ["catalog", "reader", "readerDetail", "readerTOC", "search", "annotationsList", "studyCommentaries"] {
+            launchReader(enabled: false, scenario: scenario)
+            XCTAssertTrue(findTabButton(hebrew: "ספר", english: "Library").waitForExistence(timeout: 60))
+            if ["reader", "readerDetail", "readerTOC", "studyCommentaries"].contains(scenario) { assertReaderHasText() }
+            for orientation in [UIDeviceOrientation.landscapeLeft, .portrait] {
+                XCUIDevice.shared.orientation = orientation
+                capture("baseline-\(scenario)-\(orientation.isLandscape ? "landscape" : "portrait")")
+            }
+            XCTAssertFalse(app.descendants(matching: .any)["chavrusa-reader-host"].exists)
+        }
+        launchReader(enabled: false, scenario: "readerDetail", language: "en")
+        assertReaderHasText()
+        for orientation in [UIDeviceOrientation.landscapeLeft, .portrait] {
+            XCUIDevice.shared.orientation = orientation
+            capture("baseline-reader-detail-en-\(orientation.isLandscape ? "landscape" : "portrait")")
+        }
+    }
+}
+
+final class FaithfulReaderIPhoneTests: FaithfulReaderUIBase {
+    @MainActor
+    func testSourceOverviewReplacesReaderAndRestoresViewport() throws {
+        try exerciseOverviewReplacement(orientation: .portrait, phone: true)
+    }
+
+    func testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting() {
+        XCUIDevice.shared.orientation = .portrait
+        for enabled in [false, true] {
+            launchReader(enabled: enabled)
+            assertReaderHasText()
+            XCTAssertFalse(app.descendants(matching: .any)["chavrusa-reader-host"].exists)
+            XCTAssertFalse(app.descendants(matching: .any)["reader-document-tabs"].exists)
+            XCTAssertFalse(app.textFields["reader-library-search-field"].exists)
+            let originalBottomAction = readerBottomChromeAction()
+            XCTAssertTrue(originalBottomAction.exists)
+            XCTAssertTrue(app.frame.contains(originalBottomAction.frame))
+            capture("iphone-original-reader-ipad-flag-\(enabled)")
+            if enabled && ProcessInfo.processInfo.environment["FAITHFUL_BASELINE"] != "true" {
+                tap(app.buttons["reader-open-tabs-button"])
+                let overview = app.descendants(matching: .any)["study-groups-overview"]
+                XCTAssertTrue(overview.waitForExistence(timeout: 20))
+                let toggle = app.buttons["study-tabs-layout-toggle"]
+                XCTAssertTrue(toggle.waitForExistence(timeout: 15))
+                if toggle.label == "תצוגת רשת" { tap(toggle) }
+                let grid = overview.collectionViews.cells.matching(NSPredicate(
+                    format: "identifier BEGINSWITH %@", "tab-switcher-grid-cell-")).firstMatch
+                XCTAssertTrue(grid.waitForExistence(timeout: 15))
+                XCTAssertGreaterThan(grid.frame.width, 0)
+                XCTAssertGreaterThanOrEqual(grid.frame.minX, app.frame.minX)
+                XCTAssertLessThanOrEqual(grid.frame.maxX, app.frame.maxX)
+                capture("iphone-compact-original-tab-grid")
+                tap(toggle)
+                XCTAssertTrue(overview.collectionViews.cells.matching(NSPredicate(
+                    format: "identifier BEGINSWITH %@", "tab-switcher-list-cell-")).firstMatch.waitForExistence(timeout: 15))
+                capture("iphone-compact-original-tab-list")
+                tap(app.buttons["סיום"])
+                assertReaderHasText()
+                XCTAssertFalse(app.descendants(matching: .any)["reader-document-tabs"].exists)
+            }
+        }
+    }
+}
+
+/// Selected separately after CoreSimulator confirms the largest text setting.
+final class FaithfulReaderLargeTextTests: FaithfulReaderUIBase {
+    func testOriginalReaderAndPublicGroupSelectorRemainUsableAtLargeTextSize() {
+        let baseline = ProcessInfo.processInfo.environment["FAITHFUL_BASELINE"] == "true"
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(enabled: !baseline)
+        assertReaderHasText()
+        capture(baseline ? "baseline-large-text-reader" : "candidate-large-text-reader")
+        if baseline {
+            XCTAssertFalse(app.descendants(matching: .any)["chavrusa-reader-host"].exists)
+        } else {
+            tap(app.buttons["כל הכרטיסיות"])
+            XCTAssertTrue(app.descendants(matching: .any)["study-groups-overview"].waitForExistence(timeout: 15))
+            // The original safe AdaptiveTabContent uses a native menu for
+            // accessibility text sizes. It must still expose real membership.
+            tap(app.buttons["study-group-selector"])
+            XCTAssertTrue(app.buttons["כל הכרטיסיות"].waitForExistence(timeout: 10))
+            capture("candidate-large-text-group-menu")
+        }
+    }
+}
+
+final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
+    private var recordsPaletteEscape = false
+    override var readerAdditionalLaunchArguments: [String] {
+        super.readerAdditionalLaunchArguments
+            + (recordsPaletteEscape ? ["-CommandPaletteEscapeTraceEnabled", "YES"] : [])
+    }
+
+    @MainActor
+    func testSourceOverviewReplacesReaderAndRestoresViewportLandscape() throws {
+        try exerciseOverviewReplacement(orientation: .landscapeLeft, phone: false)
+    }
+
+    @MainActor
+    func testSourceOverviewReplacesReaderAndRestoresViewportPortrait() throws {
+        try exerciseOverviewReplacement(orientation: .portrait, phone: false)
+    }
+
+    @MainActor
+    func testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(backend: "otzaria", language: "en")
+        assertReaderHasText()
+        let originalLocator = app.staticTexts["reader-current-locator"].label
+        let originalTitle = app.staticTexts["reader-header-title"].label
+        let libraryDot = app.buttons["reader-sidebar-page-0"]
+        if !libraryDot.exists || !libraryDot.frame.intersects(app.frame) {
+            tap(readerSidebarToggle())
+        }
+        tap(libraryDot)
+        let library = app.otherElements["library-column"]
+        XCTAssertTrue(library.waitForExistence(timeout: 15))
+        let bar = app.navigationBars["Library"]
+        tap(bar.buttons["Group By"])
+        tap(app.collectionViews.cells.buttons["Category"])
+        let categoryLabels = Set(library.staticTexts.allElementsBoundByIndex.map { $0.label })
+        XCTAssertFalse(categoryLabels.isEmpty, "Observe the real canonical library tree")
+        tap(bar.buttons["Group By"])
+        tap(app.collectionViews.cells.buttons["Author"])
+        let regrouped = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                let authors = Set(library.staticTexts.allElementsBoundByIndex.map { $0.label })
+                return !authors.isEmpty && authors != categoryLabels
+            }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [regrouped], timeout: 30), .completed,
+                       "The original grouping action must actually change the library's visible membership")
+        tap(bar.buttons["Group By"])
+        tap(app.collectionViews.cells.buttons["Category"])
+        let downloaded = bar.buttons["Downloaded"]
+        if downloaded.exists {
+            // The original control is conditional on bundle mode. Exercise
+            // its real native state only where the original source offers it.
+            let selected = downloaded.isSelected
+            let value = downloaded.value as? String
+            tap(downloaded)
+            XCTAssertTrue(downloaded.isSelected != selected || (downloaded.value as? String) != value)
+            tap(downloaded)
+            XCTAssertEqual(downloaded.isSelected, selected)
+            XCTAssertEqual(downloaded.value as? String, value)
+        }
+        let options = app.collectionViews.containing(.button, identifier: "Select…").firstMatch
+        let directOptions = bar.buttons["Library Options"]
+        if directOptions.exists {
+            tap(directOptions)
+        } else {
+            // iPadOS can place the original Library menu in this toolbar's
+            // native overflow; use that same observed bar and its real action.
+            let overflow = bar.buttons.matching(identifier: "TopOverflowBarButtonItem")
+            XCTAssertEqual(overflow.count, 1, "Require one original Library toolbar overflow")
+            tap(overflow.element(boundBy: 0))
+            let submenu = app.collectionViews.cells.buttons.matching(identifier: "Library Options")
+            let presented = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                MainActor.assumeIsolated { options.exists || submenu.count > 0 }
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [presented], timeout: 15), .completed,
+                           "The original overflow must expose Library Options or its actual actions")
+            if !options.exists {
+                XCTAssertEqual(submenu.count, 1, "Require the unique original Library Options submenu")
+                tap(submenu.element(boundBy: 0))
+            }
+        }
+        XCTAssertTrue(options.waitForExistence(timeout: 15))
+        let actions = options.cells.buttons
+        XCTAssertEqual(actions.count, 2, "Otzaria retains the original Select and Import actions")
+        XCTAssertEqual(Set(actions.allElementsBoundByIndex.map { $0.label }), Set(["Select…", "Import Book"]))
+        XCTAssertFalse(actions.matching(NSPredicate(format: "label BEGINSWITH %@", "Books Updates")).firstMatch.exists,
+                       "The Otzaria fixture must not offer the foreign Maktabah SQL updater")
+        tap(options.cells.buttons["Select…"])
+        XCTAssertTrue(bar.buttons["Done"].waitForExistence(timeout: 15))
+        XCTAssertTrue(bar.buttons["Delete"].exists)
+        XCTAssertFalse(bar.buttons["Delete"].isEnabled, "No unselected book may be deleted")
+        capture("candidate-original-library-selection-actions")
+        tap(bar.buttons["Done"])
+        tap(app.buttons["main-settings-button"])
+        XCTAssertTrue(app.buttons["settings-done-button"].waitForExistence(timeout: 15))
+        capture("candidate-original-settings")
+        tap(app.buttons["settings-done-button"])
+        tap(app.buttons["Book Info"])
+        let close = app.navigationBars.buttons["Close"]
+        XCTAssertTrue(close.waitForExistence(timeout: 30))
+        XCTAssertTrue(app.segmentedControls.firstMatch.exists, "The genuine unified book-info view must load")
+        capture("candidate-original-book-info")
+        tap(close)
+        assertReaderHasText()
+        XCTAssertEqual(app.staticTexts["reader-header-title"].label, originalTitle)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator)
+        XCTAssertTrue(app.buttons["reader-more-menu"].exists)
+    }
+
+    func testOriginalBottomTOCActionOpensContentsFromLibraryPage() {
+        exerciseOriginalBottomTOCAction()
+    }
+
+    @MainActor
+    func testNativeVoiceOverSpeaksRealOverviewAndPaletteControls() throws {
+        guard #available(iOS 27.0, *) else {
+            XCTFail("The required iPadOS 27 VoiceOver service is unavailable"); return
+        }
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        let bookTitle = app.staticTexts["reader-header-title"].label
+        let service = XCUIDevice.shared.voiceOverService
+        let wasEnabled = service.isEnabled
+        addTeardownBlock {
+            try await MainActor.run {
+                let service = XCUIDevice.shared.voiceOverService
+                if wasEnabled { if !service.isEnabled { XCTAssertNoThrow(try service.enable()) } }
+                else { XCTAssertNoThrow(try service.disable()) }
+            }
+        }
+
+        @MainActor
+        func assertSpoken(_ expected: [String], name: String) throws {
+            if !service.isEnabled { try service.enable() }
+            XCTAssertTrue(service.isEnabled, "VoiceOver itself must actually run")
+            var speech: [String] = []
+            // Enabling VoiceOver can focus the Done action rather than the
+            // first RTL toolbar control. Forward navigation need not wrap;
+            // exercise both native directions before declaring a label absent.
+            for forward in [true, false] {
+                var previous: String?
+                var repeats = 0
+                for _ in 0..<80 {
+                    let utterance = try (forward ? service.moveForward() : service.moveBackward()).utterance
+                    speech.append(utterance)
+                    XCTContext.runActivity(named: name) { activity in
+                        let output = XCTAttachment(string: utterance)
+                        output.name = name + "-\(speech.count)"
+                        output.lifetime = .keepAlways
+                        activity.add(output)
+                    }
+                    if expected.allSatisfy({ phrase in speech.contains { $0.contains(phrase) } }) { break }
+                    repeats = previous == utterance ? repeats + 1 : 0
+                    previous = utterance
+                    if repeats >= 4 { break }
+                }
+                if expected.allSatisfy({ phrase in speech.contains { $0.contains(phrase) } }) { break }
+            }
+            for phrase in expected {
+                XCTAssertTrue(speech.contains { $0.contains(phrase) }, "Actual VoiceOver speech must include \(phrase)")
+            }
+            // Return to ordinary XCTest pointer/touch interaction between
+            // surfaces. Never substitute an accessibility audit for speech.
+            try service.disable()
+        }
+
+        tap(app.buttons["כל הכרטיסיות"])
+        XCTAssertTrue(app.descendants(matching: .any)["study-groups-overview"].waitForExistence(timeout: 15))
+        try assertSpoken(["סיום", "פעולות בקבוצת הכרטיסיות", bookTitle], name: "candidate-native-voiceover-overview-speech")
+        tap(app.buttons["סיום"])
+        tap(readerLibraryPaletteLauncher())
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 15))
+        let input = palette.textFields.firstMatch
+        XCTAssertTrue(input.waitForExistence(timeout: 10))
+        input.typeText("בראשית")
+        XCTAssertTrue(palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "בראשית")).firstMatch.waitForExistence(timeout: 30))
+        try assertSpoken(["בראשית", "Clear search"], name: "candidate-native-voiceover-palette-speech")
+    }
+
+    func testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers() throws {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        let originalLocator = app.staticTexts["reader-current-locator"].label
+        let originalTitle = app.staticTexts["reader-header-title"].label
+        tap(app.buttons["כל הכרטיסיות"])
+        let sidecar = try workspaceSidecarURL()
+        let saved = sidecar.appendingPathExtension("ui-failure-original")
+        let originalBytes = try Data(contentsOf: sidecar)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: saved.path))
+        // Block only this UUID-scoped test sidecar's atomic destination. The
+        // canonical session, corpus, notes and every other sidecar stay intact.
+        try FileManager.default.moveItem(at: sidecar, to: saved)
+        addTeardownBlock {
+            if FileManager.default.fileExists(atPath: saved.path) {
+                if FileManager.default.fileExists(atPath: sidecar.path) {
+                    let contents = try FileManager.default.contentsOfDirectory(atPath: sidecar.path)
+                    XCTAssertTrue(contents.isEmpty, "Only remove the empty directory created by this test")
+                    guard contents.isEmpty else { return }
+                    try FileManager.default.removeItem(at: sidecar)
+                }
+                try FileManager.default.moveItem(at: saved, to: sidecar)
+            }
+        }
+        try FileManager.default.createDirectory(at: sidecar, withIntermediateDirectories: false)
+        tap(app.buttons["study-group-actions-menu"])
+        tap(app.buttons["קבוצה ריקה"])
+        let prompt = app.alerts["שם קבוצת הכרטיסיות"]
+        XCTAssertTrue(prompt.waitForExistence(timeout: 10))
+        prompt.textFields.firstMatch.typeText("קבוצה שאסור לשמור")
+        tap(prompt.buttons["שמירה"])
+        let error = app.alerts["לא ניתן לשנות את סביבת הלימוד"]
+        XCTAssertTrue(error.waitForExistence(timeout: 15), "The actual atomic-write error must be surfaced")
+        capture("candidate-actual-sidecar-write-failure")
+        tap(error.buttons["אישור"])
+        XCTAssertTrue(app.staticTexts[originalTitle].waitForExistence(timeout: 15), "Failure must retain the original group's real document")
+        XCTAssertEqual(try Data(contentsOf: saved), originalBytes, "The pre-failure bytes must remain intact")
+        try FileManager.default.removeItem(at: sidecar)
+        try FileManager.default.moveItem(at: saved, to: sidecar)
+        tap(app.buttons["סיום"])
+        assertReaderHasText()
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator)
+        // Reopening synchronizes through the same real persistence path again.
+        tap(app.buttons["כל הכרטיסיות"])
+        XCTAssertTrue(app.staticTexts[originalTitle].waitForExistence(timeout: 15))
+        XCTAssertFalse(app.alerts["לא ניתן לשנות את סביבת הלימוד"].exists)
+        XCTAssertNoThrow(try Data(contentsOf: sidecar))
+        capture("candidate-sidecar-write-recovery")
+    }
+
+    func testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace() throws {
+        let containers = try workspaceContainerParent()
+        launchReader(enabled: false, tier: .realUI)
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        assertReaderHasText()
+        XCTAssertFalse(app.descendants(matching: .any)["chavrusa-reader-host"].exists)
+        XCTAssertFalse(app.descendants(matching: .any)["reader-sidebar-pager"].exists)
+        XCTAssertFalse(app.buttons["reader-command-palette-launcher"].exists)
+        let originalHighlights = try XCTUnwrap(getRenderedHighlightSnapshot())
+        capture("candidate-before-workspace-migration-original-reader")
+        app.terminate()
+        XCTAssertTrue(matchingTestSidecars(in: containers, namespace: workspaceNamespace).isEmpty,
+                      "Disabled startup/shutdown must not create workspace state in any installed app container")
+        launchReader(tier: .realUI)
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        assertReaderHasText()
+        XCTAssertTrue(app.buttons["reader-command-palette-launcher"].waitForExistence(timeout: 30))
+        let pager = app.descendants(matching: .any)["reader-sidebar-pager"]
+        if !pager.exists || !pager.isHittable { tap(readerSidebarToggle()) }
+        XCTAssertTrue(pager.waitForExistence(timeout: 30), "The enabled original split must mount its actual sidebar pager")
+        let migratedHighlights = try XCTUnwrap(getRenderedHighlightSnapshot())
+        XCTAssertEqual(migratedHighlights.searchHighlightCount, originalHighlights.searchHighlightCount)
+        XCTAssertEqual(migratedHighlights.annotationHighlightCount, originalHighlights.annotationHighlightCount)
+        XCTAssertEqual(migratedHighlights.segmentSelectionCount, originalHighlights.segmentSelectionCount,
+                       "Enabling the workspace must not create a fake paragraph selection")
+        capture("candidate-after-workspace-migration-original-reader")
+        let sidecar = try workspaceSidecarURL()
+        app.terminate()
+        let enabledBytes = try Data(contentsOf: sidecar)
+        launchReader(enabled: false, tier: .realUI)
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        assertReaderHasText()
+        XCTAssertFalse(app.descendants(matching: .any)["chavrusa-reader-host"].exists)
+        XCTAssertFalse(app.descendants(matching: .any)["reader-sidebar-pager"].exists)
+        XCTAssertFalse(app.buttons["reader-command-palette-launcher"].exists)
+        XCTAssertFalse(app.textFields["reader-library-search-field"].exists)
+        capture("candidate-disabled-original-reader")
+        app.terminate()
+        XCTAssertEqual(try Data(contentsOf: workspaceSidecarURL()), enabledBytes,
+                       "Disabled startup/shutdown must leave an existing workspace byte-identical")
+    }
+
+    func testPointerHoverClickAndHardwareKeyboardDismissal() {
+        recordsPaletteEscape = true
+        XCTAssertTrue(XCUIDevice.shared.supportsPointerInteraction,
+                      "The required iPad Simulator must support real pointer events")
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        let field = readerLibraryPaletteLauncher()
+        XCTAssertTrue(field.waitForExistence(timeout: 30))
+        let originalFieldFrame = field.frame
+        let fieldPoint = field.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+        fieldPoint.hover()
+        capture("candidate-pointer-over-compact-search")
+        fieldPoint.click()
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 15))
+        let input = palette.textFields.firstMatch
+        XCTAssertTrue(input.waitForExistence(timeout: 10))
+        input.typeText("בראשית")
+        let result = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "בראשית")).firstMatch
+        XCTAssertTrue(result.waitForExistence(timeout: 30))
+        input.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
+        let collapsed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: palette)
+        XCTAssertEqual(XCTWaiter.wait(for: [collapsed], timeout: 15), .completed,
+                       "The original palette's Escape handler must dismiss through keyboard focus")
+        let restoredFieldFrame = field.frame
+        XCTAssertEqual(restoredFieldFrame.minX, originalFieldFrame.minX, accuracy: 1)
+        XCTAssertEqual(restoredFieldFrame.minY, originalFieldFrame.minY, accuracy: 1)
+        XCTAssertEqual(restoredFieldFrame.width, originalFieldFrame.width, accuracy: 1)
+        XCTAssertEqual(restoredFieldFrame.height, originalFieldFrame.height, accuracy: 1)
+        fieldPoint.click()
+        XCTAssertTrue(input.waitForExistence(timeout: 15))
+        XCTAssertEqual(input.value as? String, "בראשית",
+                       "Reopening the original palette without typing must retain the canonical library query")
+        XCTAssertTrue(result.waitForExistence(timeout: 30))
+        let resultPoint = result.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+        resultPoint.hover()
+        capture("candidate-pointer-over-library-result")
+        resultPoint.click()
+        assertReaderHasText()
+        XCTAssertFalse(palette.exists)
+    }
+
+    func testGroupCopyMoveRenameAndDeleteThroughRealMenus() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        let bookTitle = app.staticTexts["reader-header-title"].label
+        tap(app.buttons["כל הכרטיסיות"])
+        tap(app.buttons["study-group-actions-menu"])
+        tap(app.buttons["קבוצה ריקה"])
+        let nameAlert = app.alerts["שם קבוצת הכרטיסיות"]
+        XCTAssertTrue(nameAlert.waitForExistence(timeout: 10))
+        nameAlert.textFields.firstMatch.typeText("יעד העברה")
+        tap(nameAlert.buttons["שמירה"])
+        XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
+        selectStudyGroup(named: "כל הכרטיסיות")
+        let card = app.collectionViews.cells.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@ AND label CONTAINS %@", "tab-switcher-", bookTitle)).firstMatch
+        XCTAssertTrue(card.waitForExistence(timeout: 15))
+        card.press(forDuration: 1)
+        tap(app.buttons["העתקה לקבוצה"])
+        tap(app.collectionViews.cells.buttons["יעד העברה"])
+        selectStudyGroup(named: "יעד העברה")
+        XCTAssertTrue(card.waitForExistence(timeout: 15), "Copy must create a real document card in its destination")
+        let overview = app.descendants(matching: .any)["study-groups-overview"]
+        tap(overview.buttons.matching(NSPredicate(
+            format: "label BEGINSWITH %@ AND label CONTAINS %@", "סגור ", bookTitle)).firstMatch)
+        XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
+        selectStudyGroup(named: "כל הכרטיסיות")
+        XCTAssertTrue(card.waitForExistence(timeout: 15), "Closing the copied document must preserve its source")
+        XCTAssertTrue(card.waitForExistence(timeout: 15))
+        card.press(forDuration: 1)
+        tap(app.buttons["העברה לקבוצה"])
+        tap(app.collectionViews.cells.buttons["יעד העברה"])
+        XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15), "Move must remove the source card")
+        selectStudyGroup(named: "יעד העברה")
+        XCTAssertTrue(card.waitForExistence(timeout: 15))
+        tap(app.buttons["study-group-actions-menu"])
+        tap(app.buttons["שינוי שם הקבוצה"])
+        XCTAssertTrue(nameAlert.waitForExistence(timeout: 10))
+        let nameField = nameAlert.textFields.firstMatch
+        nameField.tap()
+        // Exercise the native input's Select All command without relying on
+        // a particular OS translation of its transient editing-menu item.
+        nameField.typeKey("a", modifierFlags: .command)
+        nameField.typeText("יעד ששמו עודכן")
+        XCTAssertEqual(nameField.value as? String, "יעד ששמו עודכן")
+        tap(nameAlert.buttons["שמירה"])
+        selectStudyGroup(named: "יעד ששמו עודכן")
+        XCTAssertTrue(card.waitForExistence(timeout: 15), "Rename must preserve membership")
+        capture("candidate-group-move-copy-rename")
+        tap(app.buttons["study-group-actions-menu"])
+        tap(app.buttons["מחיקת קבוצה"])
+        // The second tap is the native destructive confirmation, not the Menu.
+        tap(app.buttons["מחיקת קבוצה"])
+        XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
+        selectStudyGroup(named: "כל הכרטיסיות")
+        XCTAssertFalse(card.exists)
+        capture("candidate-deleted-group-retains-replacement")
+    }
+
+    @MainActor
+    func testSystemReduceMotionKeepsOriginalPaletteUsable() {
+        let settings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
+        settings.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+        settings.launch()
+        let accessibility = settings.staticTexts["Accessibility"].firstMatch
+        for _ in 0..<6 {
+            if accessibility.exists && accessibility.isHittable { break }
+            settings.swipeUp()
+        }
+        XCTAssertTrue(accessibility.waitForExistence(timeout: 15))
+        accessibility.tap()
+        let motion = settings.staticTexts["Motion"].firstMatch
+        XCTAssertTrue(motion.waitForExistence(timeout: 15))
+        motion.tap()
+        let toggle = settings.switches["Reduce Motion"].firstMatch
+        XCTAssertTrue(toggle.waitForExistence(timeout: 15))
+
+        // On this Settings layout the native switch accessibility element
+        // includes the complete labelled row. Its automatic hittable point
+        // was the row centre, not the visible trailing switch track.
+        @MainActor
+        func tapOriginalReduceMotionSwitch(stage: String) {
+            let nativeWindow = settings.windows.firstMatch
+            guard toggle.exists, toggle.isHittable, nativeWindow.exists else {
+                XCTFail("The original Reduce Motion switch must be visible and hittable")
+                return
+            }
+            let controlFrame = toggle.frame
+            let windowFrame = nativeWindow.frame
+            let target = toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.5))
+            let point = target.screenPoint
+            let geometry = [
+                controlFrame.minX, controlFrame.minY, controlFrame.width, controlFrame.height,
+                windowFrame.minX, windowFrame.minY, windowFrame.width, windowFrame.height,
+                point.x, point.y
+            ]
+            let witness = XCTAttachment(string:
+                "stage=\(stage)\ncontrolFrame=\(controlFrame)\nwindowFrame=\(windowFrame)\n"
+                + "screenPoint=\(point)\nsystemReduceMotion=\(UIAccessibility.isReduceMotionEnabled)\n"
+                + settings.debugDescription)
+            witness.name = "system-reduce-motion-\(stage)-original-switch"
+            witness.lifetime = .keepAlways
+            add(witness)
+            guard geometry.allSatisfy({ $0.isFinite }), !controlFrame.isEmpty,
+                  !windowFrame.isEmpty, controlFrame.contains(point), windowFrame.contains(point) else {
+                XCTFail("The original switch tap must stay inside its finite visible native window")
+                return
+            }
+            target.tap()
+        }
+        // Verify the actual system preference, independent of the Settings
+        // switch's localized accessibility value on this OS version.
+        let wasEnabled = UIAccessibility.isReduceMotionEnabled
+        if !wasEnabled { tapOriginalReduceMotionSwitch(stage: "enable") }
+        let restoration = NativeUIRestoration {
+            settings.activate()
+            XCTAssertTrue(toggle.waitForExistence(timeout: 15))
+            if UIAccessibility.isReduceMotionEnabled != wasEnabled { tapOriginalReduceMotionSwitch(stage: "restore") }
+            let restored = XCTNSPredicateExpectation(
+                predicate: NSPredicate { _, _ in
+                    MainActor.assumeIsolated { UIAccessibility.isReduceMotionEnabled == wasEnabled }
+                }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 15), .completed)
+            settings.terminate()
+        }
+        addTeardownBlock { await restoration.run() }
+        let reduced = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated { UIAccessibility.isReduceMotionEnabled }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [reduced], timeout: 15), .completed,
+                       "The native accessibility setting must actually reach this Simulator")
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        tap(readerLibraryPaletteLauncher())
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 15))
+        let input = palette.textFields.firstMatch
+        XCTAssertTrue(input.waitForExistence(timeout: 10))
+        input.typeText("בראשית")
+        let book = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "בראשית")).firstMatch
+        XCTAssertTrue(book.waitForExistence(timeout: 30))
+        capture("candidate-system-reduce-motion-palette")
+        tap(book)
+        assertReaderHasText()
+        XCTAssertFalse(palette.exists)
+        XCTAssertTrue(readerLibraryPaletteLauncher().exists)
+    }
+
+    @MainActor
+    func testCandidateWindowResizePreservesOriginalReaderAndSearch() throws {
+        try exerciseNativeWindowResize(enabled: true)
+    }
+
+    func testNewManagementScreensExposeMeaningfulAccessibilityDescriptions() throws {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        tap(app.buttons["כל הכרטיסיות"])
+        XCTAssertTrue(app.descendants(matching: .any)["study-groups-overview"].waitForExistence(timeout: 15))
+        try app.performAccessibilityAudit(for: .sufficientElementDescription)
+        tap(app.buttons["סיום"])
+        tap(app.buttons["study-profile-menu"])
+        tap(app.buttons["ניהול פרופילי לימוד"])
+        XCTAssertTrue(app.descendants(matching: .any)["study-profile-management"].waitForExistence(timeout: 15))
+        try app.performAccessibilityAudit(for: .sufficientElementDescription)
+        tap(app.buttons["פרופיל לימוד חדש"])
+        XCTAssertTrue(app.textFields["שם הפרופיל"].waitForExistence(timeout: 15))
+        try app.performAccessibilityAudit(for: .sufficientElementDescription)
+        tap(app.buttons["ביטול"])
+    }
+
+    func testCandidateReaderThemes() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        for (name, index) in [("light", 0), ("dark", 4), ("sepia", 1)] {
+            launchReader(scenario: "readerDetail", background: index)
+            assertReaderHasText()
+            capture("candidate-reader-theme-\(name)")
+        }
+    }
+
+    func testEnglishReaderAndOriginalPaletteInLeftToRightLayout() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(scenario: "readerDetail", language: "en")
+        assertReaderHasText()
+        for orientation in [UIDeviceOrientation.landscapeLeft, .portrait] {
+            XCUIDevice.shared.orientation = orientation
+            capture("candidate-reader-detail-en-\(orientation.isLandscape ? "landscape" : "portrait")")
+        }
+        XCUIDevice.shared.orientation = .landscapeLeft
+        tap(readerLibraryPaletteLauncher())
+        XCTAssertTrue(app.descendants(matching: .any)["reader-library-command-palette"].waitForExistence(timeout: 15))
+        capture("candidate-command-palette-en")
+    }
+
+    func testCandidateGlobalSearchLandscapeMatchesOriginalNavigation() {
+        exerciseUnchangedOriginalScreen("search", orientation: .landscapeLeft)
+    }
+    func testCandidateGlobalSearchPortraitMatchesOriginalNavigation() {
+        exerciseUnchangedOriginalScreen("search", orientation: .portrait)
+    }
+    func testCandidateAnnotationsLandscapeMatchesOriginalNavigation() {
+        exerciseUnchangedOriginalScreen("annotationsList", orientation: .landscapeLeft)
+    }
+    func testCandidateAnnotationsPortraitMatchesOriginalNavigation() {
+        exerciseUnchangedOriginalScreen("annotationsList", orientation: .portrait)
+    }
+    func testCandidateTrimmedOriginalInspectorLandscape() {
+        exerciseTrimmedOriginalInspector(orientation: .landscapeLeft)
+    }
+    func testCandidateTrimmedOriginalInspectorPortrait() {
+        exerciseTrimmedOriginalInspector(orientation: .portrait)
+    }
+
+    private func exerciseUnchangedOriginalScreen(_ scenario: String, orientation: UIDeviceOrientation) {
+        XCUIDevice.shared.orientation = orientation
+        launchReader(enabled: false, scenario: scenario)
+        capture("candidate-flags-off-\(scenario)-\(orientation.isLandscape ? "landscape" : "portrait")")
+        let originalBars = app.navigationBars.allElementsBoundByIndex.map { ($0.identifier, $0.frame) }
+            .sorted { $0.0 < $1.0 }
+        XCTAssertFalse(originalBars.isEmpty, "Observe the actual original navigation geometry")
+        launchReader(scenario: scenario)
+        capture("candidate-\(scenario)-\(orientation.isLandscape ? "landscape" : "portrait")")
+        let candidateBars = app.navigationBars.allElementsBoundByIndex.map { ($0.identifier, $0.frame) }
+            .sorted { $0.0 < $1.0 }
+        XCTAssertEqual(candidateBars.count, originalBars.count)
+        for (original, candidate) in zip(originalBars, candidateBars) {
+            XCTAssertEqual(candidate.0, original.0)
+            XCTAssertEqual(candidate.1.minX, original.1.minX, accuracy: 1)
+            XCTAssertEqual(candidate.1.minY, original.1.minY, accuracy: 1,
+                           "A viewer-only document strip must not shift another global tab's native navigation")
+            XCTAssertEqual(candidate.1.width, original.1.width, accuracy: 1)
+            XCTAssertEqual(candidate.1.height, original.1.height, accuracy: 1)
+        }
+    }
+
+    private func exerciseTrimmedOriginalInspector(orientation: UIDeviceOrientation) {
+        XCUIDevice.shared.orientation = orientation
+        launchReader(scenario: "studyCommentaries")
+        XCTAssertTrue(findTabButton(hebrew: "ספר", english: "Library").waitForExistence(timeout: 60))
+        assertReaderHasText()
+        XCTAssertTrue(app.descendants(matching: .any)["torah-inspector-panel"].waitForExistence(timeout: 30), "The original Inspector must actually be presented")
+        XCTAssertTrue(app.descendants(matching: .any)["torah-inspector-tools"].waitForExistence(timeout: 15), "Original study-tool actions must remain available")
+        XCTAssertFalse(app.staticTexts["כלי לימוד"].exists, "The redundant visual study-tools heading must be removed")
+        XCTAssertFalse(app.staticTexts["קטע נבחר"].exists, "The redundant visual selected-segment heading must be removed")
+        capture("candidate-studyCommentaries-\(orientation.isLandscape ? "landscape" : "portrait")")
+        let readerWithPanel = app.textViews["reader-text"].frame
+        tap(app.buttons["torah-inspector-close"])
+        let inspector = app.descendants(matching: .any)["torah-inspector-panel"]
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: inspector
+        )], timeout: 15), .completed)
+        XCTAssertEqual(app.textViews["reader-text"].frame.width, readerWithPanel.width, accuracy: 1,
+                       "FloatingPanel must overlay Reader without reserving an opaque column")
+    }
+
+    @MainActor
+    func testSidebarPreservesOriginalTextKitViewport() throws {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(recordViewport: true)
+        assertReaderHasText()
+        try openSecondOriginalBookAndReturn()
+        XCTAssertTrue(app.descendants(matching: .any)["reader-document-tabs"].waitForExistence(timeout: 30))
+        capture("candidate-reader-landscape")
+        let tocDot = app.buttons["reader-sidebar-page-1"]
+        let libraryDot = app.buttons["reader-sidebar-page-0"]
+        if !tocDot.exists || !tocDot.frame.intersects(app.frame) || tocDot.frame.isEmpty {
+            tap(readerSidebarToggle())
+        }
+        let originalReaderWidth = app.textViews["reader-text"].frame.width
+        let originalLocator = app.staticTexts["reader-current-locator"].label
+        let library = app.otherElements["library-column"]
+        XCTAssertTrue(library.waitForExistence(timeout: 15))
+        library.swipeUp()
+        @MainActor func visibleLibraryLabels() -> [String] {
+            library.staticTexts.allElementsBoundByIndex.filter {
+                !$0.frame.isEmpty && $0.frame.intersects(library.frame)
+            }.map { $0.label }
+        }
+        let originalLibraryLabels = visibleLibraryLabels()
+        XCTAssertFalse(originalLibraryLabels.isEmpty, "Observe the actual scrolled library before changing sidebar pages")
+        let originalViewport = try viewport()
+        for _ in 0..<20 {
+            tap(tocDot)
+            XCTAssertTrue(app.descendants(matching: .any)["toc-column"].exists)
+            tap(libraryDot)
+            XCTAssertTrue(app.descendants(matching: .any)["library-column"].exists)
+            XCTAssertEqual(visibleLibraryLabels(), originalLibraryLabels,
+                           "Changing only the sidebar page must retain the original library's visible rows and scroll")
+            XCTAssertEqual(app.textViews["reader-text"].frame.width, originalReaderWidth, accuracy: 1, "Sidebar page changes must preserve reader width")
+            XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator, "Sidebar page changes must not navigate the book")
+            let actual = try viewport()
+            XCTAssertEqual(actual.object, originalViewport.object, "The original TextKit view must survive sidebar page changes")
+            XCTAssertEqual(actual.source, originalViewport.source, "The first visible source character must remain anchored")
+            XCTAssertEqual(actual.offset, originalViewport.offset, accuracy: 1, "Sidebar page changes must not shift the book viewport")
+        }
+        let pager = app.descendants(matching: .any)["reader-sidebar-pager"]
+        for _ in 0..<20 {
+            let wasContents = tocDot.isSelected
+            func changedPage() -> XCTNSPredicateExpectation {
+                XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                    MainActor.assumeIsolated { tocDot.isSelected != wasContents }
+                }, object: nil)
+            }
+            pager.swipeLeft()
+            // Wait for the real page transition before trying the opposite
+            // RTL direction; an immediate reverse gesture can undo it.
+            if XCTWaiter.wait(for: [changedPage()], timeout: 3) != .completed {
+                pager.swipeRight()
+                XCTAssertEqual(XCTWaiter.wait(for: [changedPage()], timeout: 15), .completed,
+                               "A genuine sidebar swipe must change the selected page")
+            }
+            XCTAssertNotEqual(tocDot.isSelected, wasContents, "A sidebar swipe must change pages without changing the reader")
+        }
+        capture("candidate-library-sidebar")
+        tap(tocDot)
+        capture("candidate-toc-sidebar")
+        tap(libraryDot)
+    }
+
+    func testSourceToolbarPaletteAndOverview() throws {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        let initialTitle = app.staticTexts["reader-header-title"].label
+        XCTAssertFalse(initialTitle.isEmpty)
+        assertSourceActionsInsideNativeToolbarHost()
+        let field = readerLibraryPaletteLauncher()
+        tap(field)
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 15))
+        let paletteField = palette.textFields.firstMatch
+        XCTAssertTrue(paletteField.waitForExistence(timeout: 10))
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 15), "Capture the genuine full software keyboard, not a keyboard-free preview")
+        XCTAssertGreaterThan(app.keyboards.firstMatch.frame.height, 160,
+                             "A keyboard accessory strip alone does not prove the full software keyboard is visible")
+        paletteField.typeText("בראשית")
+        let result = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@ AND NOT label CONTAINS %@", "בראשית", initialTitle)).firstMatch
+        XCTAssertTrue(result.waitForExistence(timeout: 30), "Actual canonical-library books must appear in original CommandPalette")
+        capture("candidate-command-palette-keyboard")
+        let globalHistory = findTabButton(hebrew: "היסטוריה", english: "History")
+        XCTAssertTrue(globalHistory.exists)
+        XCTAssertGreaterThanOrEqual(paletteField.frame.minY, globalHistory.frame.maxY - 1,
+                                   "The actual expanded input must clear the original global tabs instead of rendering underneath them")
+        tap(result)
+        assertReaderHasText()
+        XCTAssertFalse(palette.exists)
+        XCTAssertTrue(app.descendants(matching: .any)["reader-document-tabs"].waitForExistence(timeout: 30),
+                      "The original strip must appear after the second genuine library book opens")
+        capture("candidate-library-opened-reader-no-fixture-selection")
+        tap(app.buttons["כל הכרטיסיות"])
+        retainNativeEvidence("candidate-overview-after-toolbar-action")
+        let overview = app.descendants(matching: .any)["study-groups-overview"]
+        XCTAssertTrue(overview.waitForExistence(timeout: 15))
+        XCTAssertTrue(app.descendants(matching: .any)["study-group-selector"].exists)
+        let layoutToggle = app.buttons["study-tabs-layout-toggle"]
+        XCTAssertTrue(layoutToggle.waitForExistence(timeout: 15))
+        if layoutToggle.label == "תצוגת רשת" { tap(layoutToggle) }
+        XCTAssertTrue(overview.descendants(matching: .any).matching(
+            NSPredicate(format: "identifier BEGINSWITH %@", "tab-switcher-grid-cell-")
+        ).firstMatch.waitForExistence(timeout: 15), "The original DuckDuckGo grid cell must render the open book")
+        capture("candidate-all-tabs-public-fallback")
+        tap(app.buttons["study-tabs-layout-toggle"])
+        XCTAssertTrue(overview.descendants(matching: .any).matching(
+            NSPredicate(format: "identifier BEGINSWITH %@", "tab-switcher-list-cell-")
+        ).firstMatch.waitForExistence(timeout: 15), "The original DuckDuckGo list cell must replace the grid cell")
+        capture("candidate-all-tabs-list")
+        tap(layoutToggle)
+        let card = overview.collectionViews.cells.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@", "tab-switcher-grid-cell-")).firstMatch
+        XCTAssertTrue(card.waitForExistence(timeout: 15))
+        let closedID = try XCTUnwrap(UUID(uuidString: String(card.identifier.dropFirst("tab-switcher-grid-cell-".count))))
+        let sidecarURL = try workspaceSidecarURL()
+        func persistedTabs(containing id: UUID) throws -> (groupID: String, ids: Set<UUID>)? {
+            let value = try JSONSerialization.jsonObject(with: Data(contentsOf: sidecarURL)) as? [String: Any]
+            let groups = value?["groups"] as? [[String: Any]] ?? []
+            for group in groups {
+                let tabs = group["tabs"] as? [[String: Any]] ?? []
+                let ids = Set(tabs.compactMap { ($0["session"] as? [String: Any])?["id"] as? String }.compactMap(UUID.init(uuidString:)))
+                if ids.contains(id), let groupID = group["id"] as? String { return (groupID, ids) }
+            }
+            return nil
+        }
+        let original = try XCTUnwrap(persistedTabs(containing: closedID))
+        let closedCard = overview.collectionViews.cells["tab-switcher-grid-cell-" + closedID.uuidString]
+        @Sendable func persistedOrder() -> [UUID]? {
+            guard let bytes = try? Data(contentsOf: sidecarURL),
+                  let value = (try? JSONSerialization.jsonObject(with: bytes)) as? [String: Any],
+                  let groups = value["groups"] as? [[String: Any]],
+                  let group = groups.first(where: { $0["id"] as? String == original.groupID }),
+                  let tabs = group["tabs"] as? [[String: Any]] else { return nil }
+            return tabs.compactMap { ($0["session"] as? [String: Any])?["id"] as? String }.compactMap(UUID.init(uuidString:))
+        }
+        let beforeDrag = try XCTUnwrap(persistedOrder())
+        let gridCells = overview.collectionViews.cells.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@", "tab-switcher-grid-cell-"))
+        XCTAssertGreaterThanOrEqual(gridCells.count, 2, "Open two distinct canonical books before testing actual source drag reorder")
+        let destination = gridCells.element(boundBy: gridCells.count - 1)
+        XCTAssertNotEqual(closedCard.identifier, destination.identifier,
+                          "The real drag destination must be a different source card")
+        closedCard.press(forDuration: 0.6, thenDragTo: destination)
+        retainNativeEvidence("candidate-overview-after-real-drag")
+        let orderObservation = XCTAttachment(string: "before=\(beforeDrag)\nafter=\(String(describing: persistedOrder()))")
+        orderObservation.name = "actual-source-drag-persisted-order"
+        orderObservation.lifetime = .keepAlways
+        add(orderObservation)
+        let reordered = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let order = persistedOrder() else { return false }
+            return Set(order) == Set(beforeDrag) && order != beforeDrag
+                && order.filter { $0 != closedID } == beforeDrag.filter { $0 != closedID }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [reordered], timeout: 15), .completed,
+                       "A real source drag must persist a new order without losing IDs or disturbing the other books")
+        capture("candidate-overview-original-drag-reorder")
+        closedCard.swipeRight()
+        let removed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: closedCard)
+        XCTAssertEqual(XCTWaiter.wait(for: [removed], timeout: 15), .completed,
+                       "The source RTL swipe must remove the exact original card")
+        let persisted = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let bytes = try? Data(contentsOf: sidecarURL),
+                  let value = (try? JSONSerialization.jsonObject(with: bytes)) as? [String: Any],
+                  let groups = value["groups"] as? [[String: Any]],
+                  let group = groups.first(where: { $0["id"] as? String == original.groupID }),
+                  let tabs = group["tabs"] as? [[String: Any]] else { return false }
+            let ids = Set(tabs.compactMap { ($0["session"] as? [String: Any])?["id"] as? String }.compactMap(UUID.init(uuidString:)))
+            return ids == original.ids.subtracting([closedID])
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [persisted], timeout: 15), .completed,
+                       "Swipe close must persist the exact surviving document IDs")
+        capture("candidate-overview-original-swipe-close")
+        tap(app.buttons["סיום"])
+        _ = readerSidebarToggle()
+        tap(app.buttons["study-profile-menu"])
+        tap(app.buttons["ניהול פרופילי לימוד"])
+        XCTAssertTrue(app.descendants(matching: .any)["study-profile-management"].waitForExistence(timeout: 15))
+        capture("candidate-profile-management")
+    }
+
+    func testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll() throws {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(recordViewport: true)
+        assertReaderHasText()
+        try openSecondOriginalBookAndReturn()
+        let sidebarPage = app.buttons["reader-sidebar-page-0"]
+        if sidebarPage.exists && sidebarPage.isHittable {
+            tap(readerSidebarToggle())
+            XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "hittable == false"), object: sidebarPage
+            )], timeout: 15), .completed, "Establish the closed-sidebar precondition before testing opening it")
+        }
+        let text = app.textViews["reader-text"]
+        let originalObject = try viewport().object
+        let strip = app.descendants(matching: .any)["reader-document-tabs"]
+        XCTAssertTrue(strip.waitForExistence(timeout: 30))
+
+        text.swipeUp()
+        retainNativeEvidence("candidate-reader-after-downward-scroll")
+        let hidden = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"),
+            object: strip
+        )
+        XCTAssertEqual(XCTWaiter.wait(for: [hidden], timeout: 15), .completed,
+                       "A deliberate downward reader scroll must collapse the document strip")
+        let globalHistory = findTabButton(hebrew: "היסטוריה", english: "History")
+        XCTAssertTrue(!globalHistory.exists || !globalHistory.isHittable,
+                      "The system global tab bar should collapse with reader chrome when supported")
+
+        XCTAssertEqual(try viewport().object, originalObject, "Collapsing chrome must retain the original TextKit instance")
+        capture("candidate-reader-scroll-chrome-hidden")
+        text.swipeDown()
+        XCTAssertTrue(strip.waitForExistence(timeout: 15),
+                      "Upward reader scrolling must restore the document strip")
+        XCTAssertTrue(findTabButton(hebrew: "היסטוריה", english: "History").waitForExistence(timeout: 15))
+
+        text.swipeUp()
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: strip
+        )], timeout: 15), .completed)
+        tap(readerSidebarToggle())
+        XCTAssertTrue(strip.waitForExistence(timeout: 15),
+                      "Opening the sidebar must restore reader navigation chrome")
+        XCTAssertEqual(try viewport().object, originalObject, "Restoring chrome must retain the original TextKit instance")
+        capture("candidate-reader-scroll-chrome-restored")
+    }
+
+    func testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar() {
+        launchReader()
+        assertReaderHasText()
+        for _ in 0..<20 {
+            for (hebrew, english) in [("היסטוריה", "History"), ("חיפוש", "Search"), ("מוסרים", "Narrators")] {
+                tap(findTabButton(hebrew: hebrew, english: english))
+                tap(findTabButton(hebrew: "ספר", english: "Library"))
+                assertReaderHasText()
+                XCTAssertTrue(app.buttons["reader-more-menu"].exists, "Original bottom toolbar must remain present after every global-tab round trip")
+            }
+        }
+        for orientation in [UIDeviceOrientation.landscapeLeft, .portrait] {
+            XCUIDevice.shared.orientation = orientation
+            assertReaderHasText()
+            capture("candidate-reader-\(orientation.isLandscape ? "landscape" : "portrait")")
+        }
+    }
+
+    func testNewEmptyGroupAndRelaunchPersistence() throws {
+        launchReader()
+        assertReaderHasText()
+        tap(app.buttons["כל הכרטיסיות"])
+        tap(app.buttons["study-group-actions-menu"])
+        tap(app.buttons["קבוצה ריקה"])
+        let alert = app.alerts["שם קבוצת הכרטיסיות"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 10))
+        alert.textFields.firstMatch.typeText("קבוצת בדיקה")
+        tap(alert.buttons["שמירה"])
+        XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
+        capture("candidate-empty-group")
+        tap(app.buttons["סיום"])
+        retainNativeEvidence("candidate-empty-group-after-dismissal")
+        XCTAssertFalse(app.descendants(matching: .any)["reader-document-tabs"].exists,
+                       "An empty group must not expose a blank document strip")
+        XCTAssertTrue(app.buttons["reader-tabs-overview"].exists)
+        XCTAssertTrue(readerLibraryPaletteLauncher().exists,
+                      "The original native overview and library palette actions must remain available without books")
+        capture("candidate-library-no-open-books-toolbar")
+        try attachWorkspaceSnapshot("empty-group-sidecar-before-cold-launch")
+        app.terminate()
+        launchReader(scenario: "catalog")
+        XCTAssertTrue(app.buttons["כל הכרטיסיות"].waitForExistence(timeout: 30))
+        let emptyReader = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.textViews["reader-text"])
+        let restored = XCTWaiter.wait(for: [emptyReader], timeout: 30)
+        try attachWorkspaceSnapshot("empty-group-sidecar-after-cold-launch")
+        XCTAssertEqual(restored, .completed, "Wait for the actual asynchronous sidecar projection, retaining the empty-reader requirement")
+        XCTAssertFalse(app.textViews["reader-text"].exists, "The empty sidecar group must suppress stale legacy-session resurrection")
+        XCTAssertFalse(app.descendants(matching: .any)["reader-document-tabs"].exists)
+        XCTAssertTrue(readerLibraryPaletteLauncher().exists)
+        tap(app.buttons["כל הכרטיסיות"])
+        XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15), "Empty selection must survive app relaunch without importing old tabs again")
+        XCTAssertTrue(app.descendants(matching: .any)["study-group-selector"].exists)
+    }
+
+    func testHistoryRemainsGlobalAndIsAbsentFromBookSearch() {
+        let query = exerciseGlobalHistorySubmission(enabled: true)
+        app.terminate()
+        launchReader()
+        assertReaderHasText()
+        let bottomToolbar = app.toolbars.containing(.button, identifier: "reader-more-menu").firstMatch
+        let bookSearch = bottomToolbar.buttons.matching(NSPredicate(format: "label == 'חיפוש' OR label == 'Search'")).firstMatch
+        tap(bookSearch)
+        let bookInput = app.searchFields.firstMatch
+        tap(bookInput)
+        XCTAssertFalse(app.buttons.matching(NSPredicate(format: "label CONTAINS %@", query)).firstMatch.exists,
+                       "The same genuine history query must not be offered inside book-local search")
+        capture("candidate-book-search-without-global-history")
+    }
+
+    func testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch() throws {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        let locator = app.staticTexts["reader-current-locator"]
+        let initial = locator.label
+        XCTAssertFalse(initial.isEmpty)
+        tap(app.buttons["כל הכרטיסיות"])
+        tap(app.buttons["study-group-actions-menu"])
+        tap(app.buttons["קבוצה מהכרטיסיות הנוכחיות"])
+        let alert = app.alerts["שם קבוצת הכרטיסיות"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 10))
+        alert.textFields.firstMatch.typeText("מיקום שני")
+        tap(alert.buttons["שמירה"])
+        selectStudyGroup(named: "מיקום שני")
+        tap(app.buttons["סיום"])
+        assertReaderHasText()
+        XCTAssertEqual(locator.label, initial)
+        let next = app.buttons.matching(NSPredicate(format: "label == 'העמוד הבא' OR label == 'Next Page'")).firstMatch
+        XCTAssertTrue(next.isEnabled, "The genuine fixture book must have another navigation unit")
+        tap(next)
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "label != %@", initial), object: locator)], timeout: 30), .completed)
+        let second = locator.label
+        XCTAssertFalse(second.isEmpty)
+        for _ in 0..<20 {
+            for (name, expected) in [("כל הכרטיסיות", initial), ("מיקום שני", second)] {
+                tap(app.buttons["כל הכרטיסיות"])
+                selectStudyGroup(named: name)
+                tap(app.buttons["סיום"])
+                assertReaderHasText()
+                XCTAssertEqual(locator.label, expected, "Each group must restore its own actual canonical locator")
+            }
+        }
+        capture("candidate-independent-group-locations")
+        try attachWorkspaceSnapshot("independent-locations-sidecar-before-cold-launch")
+        app.terminate()
+        launchReader(scenario: "catalog")
+        assertReaderHasText()
+        let restored = XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "label == %@", second), object: app.staticTexts["reader-current-locator"])], timeout: 30)
+        try attachWorkspaceSnapshot("independent-locations-sidecar-after-cold-launch")
+        XCTAssertEqual(restored, .completed, "The asynchronously hydrated reader must reach the exact independently retained locator")
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, second, "The selected group's actual locator must survive cold relaunch")
+    }
+
+    func testThreeProfilesWithThreeGroupsThroughNativeManagement() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        tap(app.buttons["study-profile-menu"])
+        tap(app.buttons["ניהול פרופילי לימוד"])
+        for name in ["לימוד א", "לימוד ב"] {
+            tap(app.buttons["פרופיל לימוד חדש"])
+            let field = app.textFields["שם הפרופיל"]
+            tap(field)
+            field.typeText(name)
+            tap(app.buttons["שמירה"])
+            XCTAssertTrue(app.staticTexts[name].waitForExistence(timeout: 10))
+        }
+        tap(app.buttons["סיום"])
+        for profileName in ["אישי", "לימוד א", "לימוד ב"] {
+            tap(app.buttons["study-profile-menu"])
+            tap(app.buttons[profileName])
+            tap(app.buttons["כל הכרטיסיות"])
+            for suffix in ["א", "ב"] {
+                tap(app.buttons["study-group-actions-menu"])
+                tap(app.buttons["קבוצה ריקה"])
+                let alert = app.alerts["שם קבוצת הכרטיסיות"]
+                XCTAssertTrue(alert.waitForExistence(timeout: 10))
+                alert.textFields.firstMatch.typeText("\(profileName) \(suffix)")
+                tap(alert.buttons["שמירה"])
+                XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
+            }
+            let selector = app.segmentedControls["study-group-selector"]
+            let expected = ["כל הכרטיסיות", "\(profileName) א", "\(profileName) ב"]
+            if selector.exists {
+                XCTAssertEqual(selector.buttons.count, 3)
+                for name in expected { XCTAssertTrue(selector.buttons[name].exists) }
+            } else {
+                // A native page sheet has compact traits even on a wide iPad.
+                // Inspect the original public fallback's actual menu membership.
+                let menu = app.buttons["study-group-selector"]
+                XCTAssertTrue(menu.waitForExistence(timeout: 15))
+                let selected = menu.value as? String
+                XCTAssertEqual(selected, "\(profileName) ב")
+                tap(menu)
+                let options = app.collectionViews.cells.buttons.matching(NSPredicate(format: "label IN %@", expected))
+                XCTAssertTrue(options.firstMatch.waitForExistence(timeout: 15))
+                XCTAssertEqual(options.count, 3)
+                for name in expected { XCTAssertEqual(options.matching(NSPredicate(format: "label == %@", name)).count, 1) }
+                tap(options.matching(NSPredicate(format: "label == %@", "\(profileName) ב")).element(boundBy: 0))
+            }
+            capture("candidate-profile-groups-\(profileName)")
+            tap(app.buttons["סיום"])
+        }
+    }
+}
+
+/// Run only against a Release binary over the full native production install.
+/// No smoke scenario, bootstrap bypass, feature override or test namespace.
+final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
+    private var observedProductionWorkspace: (url: URL, groupID: UUID)?
+
+    private static func documentCount(in url: URL, groupID: UUID) -> Int? {
+        guard let bytes = try? Data(contentsOf: url),
+              let value = (try? JSONSerialization.jsonObject(with: bytes)) as? [String: Any],
+              let groups = value["groups"] as? [[String: Any]],
+              let group = groups.first(where: { ($0["id"] as? String).flatMap(UUID.init(uuidString:)) == groupID }),
+              let tabs = group["tabs"] as? [[String: Any]] else { return nil }
+        return tabs.count
+    }
+
+    private static func productionWorkspaces(in containers: URL, containing documentID: UUID) -> [(url: URL, groupID: UUID)] {
+        guard let directories = try? FileManager.default.contentsOfDirectory(at: containers, includingPropertiesForKeys: nil) else { return [] }
+        return directories.flatMap { directory -> [(url: URL, groupID: UUID)] in
+            let file = directory.appendingPathComponent("Library/Application Support/ChavrusaText/StudyWorkspace/workspace-v1.json")
+            guard let bytes = try? Data(contentsOf: file),
+                  let value = (try? JSONSerialization.jsonObject(with: bytes)) as? [String: Any],
+                  let groups = value["groups"] as? [[String: Any]] else { return [] }
+            return groups.compactMap { group in
+                guard let id = (group["id"] as? String).flatMap(UUID.init(uuidString:)),
+                      let tabs = group["tabs"] as? [[String: Any]],
+                      tabs.contains(where: { tab in
+                          let session = tab["session"] as? [String: Any]
+                          return (session?["id"] as? String).flatMap(UUID.init(uuidString:)) == documentID
+                      }) else { return nil }
+                return (file, id)
+            }
+        }
+    }
+
+    private func observeProductionCurrentDocumentID() -> UUID? {
+        let title = app.staticTexts["reader-header-title"].label
+        let locator = app.staticTexts["reader-current-locator"].label
+        XCTAssertFalse(title.isEmpty)
+        tap(app.buttons["reader-tabs-overview"])
+        let overview = app.descendants(matching: .any)["study-groups-overview"]
+        XCTAssertTrue(overview.waitForExistence(timeout: 15))
+        let cards = overview.collectionViews.cells.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@ AND label BEGINSWITH %@", "tab-switcher-", title + ", "))
+        XCTAssertTrue(cards.firstMatch.waitForExistence(timeout: 15))
+        XCTAssertEqual(cards.count, 1, "Observe the exact real selected book's original overview card uniquely")
+        let card = cards.firstMatch
+        XCTAssertTrue(!card.frame.isEmpty && card.frame.intersects(overview.frame))
+        let prefix = card.identifier.hasPrefix("tab-switcher-grid-cell-")
+            ? "tab-switcher-grid-cell-" : "tab-switcher-list-cell-"
+        let id = UUID(uuidString: String(card.identifier.dropFirst(prefix.count)))
+        XCTAssertNotNil(id, "Observe the actual original-source card's document identity")
+        tap(overview.buttons["סיום"])
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: overview
+        )], timeout: 15), .completed)
+        assertReaderHasText()
+        XCTAssertEqual(app.staticTexts["reader-header-title"].label, title)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator,
+                       "Identity observation must not navigate or substitute the current reader")
+        return id
+    }
+
+    private func requireProductionDocumentCount(_ count: Int) {
+        if observedProductionWorkspace == nil {
+            guard let hint = ProcessInfo.processInfo.environment["FAITHFUL_PRODUCTION_WORKSPACE_FILE"] else {
+                XCTFail("The production matrix must provide its native installation container hint"); return
+            }
+            guard let documentID = observeProductionCurrentDocumentID() else {
+                XCTFail("Observe the actual original-source document identity before locating its ordinary sidecar"); return
+            }
+            var containers = URL(fileURLWithPath: hint)
+            for _ in 0..<6 { containers.deleteLastPathComponent() }
+            let root = containers
+            let located = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                Self.productionWorkspaces(in: root, containing: documentID).count == 1
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [located], timeout: 30), .completed,
+                           "Resolve the actual ordinary sidecar by the independently observed UI document, after XCTest installation")
+            let matches = Self.productionWorkspaces(in: root, containing: documentID)
+            XCTAssertEqual(matches.count, 1, "Do not choose a stale container or an arbitrary scene")
+            observedProductionWorkspace = matches.first
+        }
+        guard let observed = observedProductionWorkspace else {
+            XCTFail("The production workspace was not independently located"); return
+        }
+        let persisted = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            Self.documentCount(in: observed.url, groupID: observed.groupID) == count
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [persisted], timeout: 30), .completed,
+                       "The actual production projection must persist exactly \(count) documents")
+    }
+
+    private func replacePaletteQuery(_ query: String, in input: XCUIElement) {
+        input.typeKey(XCUIKeyboardKey(rawValue: "a"), modifierFlags: .command)
+        input.typeText(query)
+        XCTAssertEqual(input.value as? String, query)
+    }
+
+    private func openProductionBook(named title: String, isFirstDocument: Bool = false) {
+        tap(readerLibraryPaletteLauncher())
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 20))
+        let input = palette.textFields.firstMatch
+        XCTAssertTrue(input.waitForExistence(timeout: 15))
+        replacePaletteQuery(title, in: input)
+        let result = palette.buttons.matching(NSPredicate(format: "label == %@", title)).firstMatch
+        XCTAssertTrue(result.waitForExistence(timeout: 30), "Select an actual title obtained from the production palette")
+        tap(result)
+        let text = app.textViews["reader-text"]
+        XCTAssertTrue(text.waitForExistence(timeout: 60))
+        let rendered = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value MATCHES %@", "(?s).+"), object: text)
+        XCTAssertEqual(XCTWaiter.wait(for: [rendered], timeout: 30), .completed)
+        let value = text.value as? String ?? ""
+        XCTAssertFalse(value.contains("Error Domain") || value.contains("Content ID not found") || value.contains("no such table"))
+        XCTAssertEqual(app.staticTexts["reader-header-title"].label, title)
+        if isFirstDocument {
+            // The original strip's count>1 contract is unchanged. Verify the
+            // sole real document through its original overview card instead.
+            XCTAssertNotNil(observeProductionCurrentDocumentID())
+            return
+        }
+        let strip = app.descendants(matching: .any)["reader-document-tabs"]
+        let selectedTitle = strip.descendants(matching: .any).matching(
+            NSPredicate(format: "identifier BEGINSWITH %@ AND label == %@", "reader-document-tab-", title)).firstMatch
+        XCTAssertTrue(selectedTitle.waitForExistence(timeout: 15), "The genuine selected document must appear in the original-source tab strip")
+        let visible = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated { !selectedTitle.frame.isEmpty && selectedTitle.frame.intersects(strip.frame) }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [visible], timeout: 15), .completed, "The selected real book tab must be inside the strip viewport")
+    }
+
+    private func exerciseThirtyRealProductionDocuments(initialTitle: String) {
+        requireProductionDocumentCount(1)
+        tap(readerLibraryPaletteLauncher())
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 20))
+        let input = palette.textFields.firstMatch
+        XCTAssertTrue(input.waitForExistence(timeout: 15))
+        replacePaletteQuery("משנה", in: input)
+        let results = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "משנה"))
+        XCTAssertTrue(results.firstMatch.waitForExistence(timeout: 30))
+        var titles: [String] = []
+        for _ in 0..<20 {
+            for result in results.allElementsBoundByIndex {
+                let title = result.label
+                if title != initialTitle && !titles.contains(title) { titles.append(title) }
+            }
+            if titles.count >= 29 { break }
+            palette.scrollViews.firstMatch.swipeUp()
+        }
+        XCTAssertGreaterThanOrEqual(titles.count, 29, "Obtain 29 distinct genuine titles from the visible production UI; no invented book IDs")
+        input.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
+        let chosen = Array(titles.prefix(29))
+        let membership = XCTAttachment(string: chosen.joined(separator: "\n"))
+        membership.name = "release-production-thirty-real-document-titles"
+        membership.lifetime = .keepAlways
+        add(membership)
+        for repetition in 1...2 {
+            requireProductionDocumentCount(1)
+            for (index, title) in chosen.enumerated() {
+                openProductionBook(named: title)
+                requireProductionDocumentCount(index + 2)
+                if index == 0 { capture("release-production-tabs-2-cycle-\(repetition)") }
+            }
+            requireProductionDocumentCount(30)
+            capture("release-production-tabs-30-cycle-\(repetition)")
+            tap(app.buttons["כל הכרטיסיות"])
+            let overview = app.descendants(matching: .any)["study-groups-overview"]
+            XCTAssertTrue(overview.waitForExistence(timeout: 15))
+            for remaining in stride(from: 29, through: 0, by: -1) {
+                let close = overview.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "סגור ")).firstMatch
+                tap(close)
+                requireProductionDocumentCount(remaining)
+                if remaining <= 1 { capture("release-production-tabs-\(remaining)-cycle-\(repetition)") }
+            }
+            XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
+            tap(app.buttons["סיום"])
+            XCTAssertFalse(app.textViews["reader-text"].exists)
+            openProductionBook(named: initialTitle, isFirstDocument: true)
+            requireProductionDocumentCount(1)
+        }
+    }
+
+    func testRealProductionLibraryReaderAndGroupRestore() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchWithTier(.production, backend: "otzaria")
+        dismissAlertsIfNeeded()
+        tap(findTabButton(hebrew: "ספר", english: "Library"))
+        tap(readerLibraryPaletteLauncher())
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 30))
+        let input = palette.textFields.firstMatch
+        XCTAssertTrue(input.waitForExistence(timeout: 20))
+        let count = palette.staticTexts.matching(NSPredicate(format: "label MATCHES %@", "^[0-9]+ commands?$")).firstMatch
+        XCTAssertTrue(count.waitForExistence(timeout: 30), "The original palette must expose its genuine command membership")
+        let commandCount = Int(count.label.split(separator: " ").first.map(String.init) ?? "") ?? 0
+        XCTAssertGreaterThanOrEqual(commandCount, 100, "The production UI must exercise at least 100 real library results")
+        input.typeText("ברכות")
+        let book = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "ברכות")).firstMatch
+        XCTAssertTrue(book.waitForExistence(timeout: 60), "Full production catalog must supply an actual book")
+        capture("release-production-library-palette")
+        tap(book)
+        assertReaderHasText()
+        let initialTitle = app.staticTexts["reader-header-title"].label
+        for _ in 0..<20 {
+            tap(findTabButton(hebrew: "היסטוריה", english: "History"))
+            tap(findTabButton(hebrew: "ספר", english: "Library"))
+            assertReaderHasText()
+            XCTAssertTrue(app.buttons["reader-more-menu"].exists)
+        }
+        capture("release-production-reader")
+        exerciseThirtyRealProductionDocuments(initialTitle: initialTitle)
+        tap(app.buttons["כל הכרטיסיות"])
+        tap(app.buttons["study-group-actions-menu"])
+        tap(app.buttons["קבוצה ריקה"])
+        let alert = app.alerts["שם קבוצת הכרטיסיות"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 10))
+        alert.textFields.firstMatch.typeText("בדיקת Release")
+        tap(alert.buttons["שמירה"])
+        XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
+        tap(app.buttons["סיום"])
+        app.terminate()
+        launchWithTier(.production, backend: "otzaria")
+        tap(findTabButton(hebrew: "ספר", english: "Library"))
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: app.textViews["reader-text"])], timeout: 30), .completed,
+                       "The ordinary production sidecar must finish restoring its empty group")
+        XCTAssertFalse(app.textViews["reader-text"].exists)
+        tap(app.buttons["כל הכרטיסיות"])
+        XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 30))
+        capture("release-production-empty-group-restored")
+    }
+}
+
+
+/// Real UI bootstrap, the original profile editor/store, and a per-test UUID sidecar.
+/// This case is deliberately iPad-only; it is not physical-device visual acceptance.
+final class StudyProfileNativeAcceptanceTests: R27NativeUIBase {
+    func testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace() throws {
+        XCTAssertTrue(isPad, "The selected profile-color case requires an actual iPad Simulator")
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        let locator = try assertTarget(backend: "otzaria")
+        tap(app.buttons["study-profile-menu"])
+        tap(app.buttons["ניהול פרופילי לימוד"])
+
+        // Create through the original native UI, never seed or mutate the sidecar.
+        tap(app.buttons["פרופיל לימוד חדש"])
+        let name = app.textFields["שם הפרופיל"]
+        tap(name)
+        name.typeText("פרופיל צבע נוסף")
+        tap(app.buttons["שמירה"])
+        XCTAssertTrue(app.staticTexts["פרופיל צבע נוסף"].waitForExistence(timeout: 10))
+        let before = try profileWorkspace()
+        let profiles = try XCTUnwrap(before["profiles"] as? [[String: Any]])
+        XCTAssertEqual(profiles.count, 2)
+        let personal = try XCTUnwrap(profiles.first { $0["name"] as? String == "אישי" })
+        let other = try XCTUnwrap(profiles.first { $0["name"] as? String == "פרופיל צבע נוסף" })
+        let profileID = try XCTUnwrap(personal["id"] as? String)
+        XCTAssertNotNil(UUID(uuidString: profileID))
+        XCTAssertNil(personal["color"])
+        XCTAssertNil(other["color"])
+
+        openProfileEditor(id: profileID)
+        chooseProfileColor(named: "אדום")
+        tap(app.buttons["ביטול"])
+        XCTAssertTrue(app.buttons["study-profile-actions-\(profileID)"].waitForExistence(timeout: 10))
+        let cancelled = try profileWorkspace()
+        XCTAssertEqual(try normalizedProfileValue(cancelled["profiles"]),
+                       try normalizedProfileValue(before["profiles"]),
+                       "Cancel must not persist the draft color or alter another profile")
+
+        openProfileEditor(id: profileID)
+        XCTAssertEqual(profileColorPicker().value as? String, "ברירת מחדל")
+        chooseProfileColor(named: "כחול")
+        tap(app.buttons["שמירה"])
+        let row = app.descendants(matching: .any).matching(identifier: "study-profile-\(profileID)").firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        XCTAssertTrue(row.isHittable)
+        XCTAssertEqual(row.value as? String, "כחול", "The original visible profile row must expose the selected color")
+        capture("profile-color-original-management-blue")
+        try attachWorkspaceSnapshot("profile-color-after-original-save")
+        let saved = try profileWorkspace()
+        let savedProfiles = try XCTUnwrap(saved["profiles"] as? [[String: Any]])
+        var changed = try XCTUnwrap(savedProfiles.first { $0["id"] as? String == profileID })
+        XCTAssertEqual(changed.removeValue(forKey: "color") as? String, "blue")
+        XCTAssertEqual(try normalizedProfileValue(changed), try normalizedProfileValue(personal),
+                       "A color-only Save preserves the original profile UUID, name, icon and order")
+        XCTAssertEqual(try normalizedProfileValue(savedProfiles.first { $0["id"] as? String == other["id"] as? String }),
+                       try normalizedProfileValue(other), "Another profile remains unchanged")
+        for key in ["groups", "scenes"] {
+            XCTAssertEqual(try normalizedProfileValue(saved[key]), try normalizedProfileValue(before[key]),
+                           "A profile color cannot change documents, locators, group membership or scene selection")
+        }
+        tap(app.buttons["סיום"])
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
+
+        app.terminate()
+        launchReader()
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
+        let restored = try profileWorkspace()
+        XCTAssertEqual(try normalizedProfileValue(restored["profiles"]), try normalizedProfileValue(saved["profiles"]),
+                       "The actual persisted color and untouched profile must survive a cold app launch")
+        tap(app.buttons["study-profile-menu"])
+        tap(app.buttons["ניהול פרופילי לימוד"])
+        openProfileEditor(id: profileID)
+        XCTAssertEqual(profileColorPicker().value as? String, "כחול")
+        capture("profile-color-original-editor-after-cold-relaunch")
+        chooseProfileColor(named: "ברירת מחדל")
+        tap(app.buttons["שמירה"])
+        XCTAssertTrue(app.buttons["study-profile-actions-\(profileID)"].waitForExistence(timeout: 10))
+        let reset = try profileWorkspace()
+        let resetProfiles = try XCTUnwrap(reset["profiles"] as? [[String: Any]])
+        XCTAssertEqual(try normalizedProfileValue(resetProfiles), try normalizedProfileValue(profiles),
+                       "Explicit default selection restores the original omitted optional field")
+        try attachWorkspaceSnapshot("profile-color-reset-to-original-default")
+        tap(app.buttons["סיום"])
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
+    }
+
+    private func openProfileEditor(id: String) {
+        tap(app.buttons["study-profile-actions-\(id)"])
+        let editActions = app.collectionViews.cells.buttons.matching(
+            NSPredicate(format: "identifier == %@ AND label == %@", "pencil", "עריכה")
+        )
+        XCTAssertTrue(editActions.firstMatch.waitForExistence(timeout: 15),
+                      "The selected profile's original Edit menu action must appear")
+        XCTAssertEqual(editActions.count, 1,
+                       "The profile Edit action must be distinct from the navigation bar's reordering Edit button")
+        tap(editActions.element)
+        XCTAssertTrue(profileColorPicker().waitForExistence(timeout: 10))
+    }
+
+    private func profileColorPicker() -> XCUIElement {
+        app.buttons["study-profile-color"]
+    }
+
+    private func chooseProfileColor(named name: String) {
+        let picker = profileColorPicker()
+        XCTAssertTrue(picker.isHittable)
+        guard let currentValue = picker.value as? String, !currentValue.isEmpty else {
+            XCTFail("The identified native Picker must expose its current value before interaction")
+            return
+        }
+        let valueLabels = picker.staticTexts.matching(NSPredicate(format: "label == %@", currentValue))
+        guard valueLabels.count == 1 else {
+            XCTFail("Tap the unique exact current-value label inside the identified native Picker")
+            return
+        }
+        let valueLabel = valueLabels.element
+        let pickerFrame = picker.frame
+        let valueFrame = valueLabel.frame
+        let windowFrame = app.windows.firstMatch.frame
+        let finiteFrames = [pickerFrame, valueFrame, windowFrame].allSatisfy {
+            !$0.isNull && !$0.isInfinite && !$0.isEmpty
+                && $0.minX.isFinite && $0.minY.isFinite
+                && $0.width.isFinite && $0.height.isFinite
+        }
+        guard picker.isHittable, valueLabel.isHittable, finiteFrames,
+              pickerFrame.contains(valueFrame), windowFrame.contains(valueFrame) else {
+            XCTFail("The current-value label must be hittable and fully inside its Picker and actual window")
+            return
+        }
+        tap(valueLabel)
+        tap(app.buttons.matching(NSPredicate(format: "label == %@", name)).firstMatch)
+        XCTAssertEqual(picker.value as? String, name, "Selection must be visible in the original native Picker before Save")
+    }
+
+    private func profileWorkspace() throws -> [String: Any] {
+        try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: workspaceSidecarURL())) as? [String: Any])
+    }
+
+    private func normalizedProfileValue(_ value: Any?) throws -> Data {
+        try JSONSerialization.data(withJSONObject: XCTUnwrap(value), options: [.sortedKeys, .fragmentsAllowed])
+    }
+}
+
+// MARK: - One hundred original group transitions (additional Native acceptance)
+
+extension FaithfulReaderUIBase {
+    @MainActor
+    fileprivate func prepareSingleBookForGroupStress() throws {
+        try establishSingleBookOverviewFixture(phone: false)
+    }
+}
+
+/// Read-only projection of the original persisted document/navigation identity.
+/// Geometry checkpoints and revision are observed separately, never rewritten.
+private struct GroupStressWorkspace: Decodable, Sendable {
+    struct Profile: Decodable, Equatable, Sendable {
+        let id: UUID
+        let name: String
+        let symbol: String
+        let order: Int
+        let color: String?
+    }
+    struct Locator: Decodable, Equatable, Sendable {
+        struct Position: Decodable, Equatable, Sendable {
+            let kind: String
+            let integer: Int?
+            let string: String?
+        }
+        let backend: String
+        let workKey: String
+        let position: Position
+    }
+    struct Document: Decodable, Equatable, Sendable {
+        struct Session: Decodable, Equatable, Sendable {
+            let id: UUID
+            let bookId: Int
+            let bookTitle: String?
+            let backendLocator: Locator?
+            let locator: Locator?
+            let contentId: Int?
+            let page: Int?
+            let part: Int?
+            let searchText: String?
+            let searchModeRaw: Int?
+            let nearDistance: Int?
+            let highlightTerms: [String]?
+        }
+        let backend: String
+        let session: Session
+    }
+    struct Group: Decodable, Equatable, Sendable {
+        let id: UUID
+        let profileID: UUID
+        let name: String
+        let order: Int
+        let tabs: [Document]
+        let activeTabID: UUID?
+    }
+    struct Scene: Decodable, Sendable {
+        let profileID: UUID
+        let groupID: UUID
+        let activeTabIDsByGroup: [UUID: UUID]?
+    }
+    let version: Int
+    let revision: UInt64
+    let profiles: [Profile]
+    let groups: [Group]
+    let scenes: [String: Scene]
+    let lastActiveSceneID: String?
+
+    var current: (sceneID: String, scene: Scene, group: Group, document: Document)? {
+        guard let sceneID = lastActiveSceneID, let scene = scenes[sceneID],
+              let group = groups.first(where: { $0.id == scene.groupID && $0.profileID == scene.profileID }),
+              let activeID = scene.activeTabIDsByGroup?[group.id] ?? group.activeTabID,
+              let document = group.tabs.first(where: { $0.session.id == activeID }) else { return nil }
+        return (sceneID, scene, group, document)
+    }
+}
+
+@MainActor
+private enum GroupStressSnapshot {
+    // All attributes below come from one actual XCTest snapshot. No snapshot
+    // survives a tap, workspace transition, or predicate evaluation.
+    static func descendants(of root: any XCUIElementSnapshot) -> [any XCUIElementSnapshot] {
+        var result: [any XCUIElementSnapshot] = []
+        for child in root.children {
+            result.append(child)
+            result.append(contentsOf: descendants(of: child))
+        }
+        return result
+    }
+
+    static func matches(_ element: any XCUIElementSnapshot, identifying name: String) -> Bool {
+        // Preserve XCUIElementQuery's string-subscript identifying properties.
+        element.identifier == name || element.title == name || element.label == name
+            || element.value as? String == name || element.placeholderValue == name
+    }
+
+    static func documentCards(under overview: any XCUIElementSnapshot) -> [any XCUIElementSnapshot] {
+        @MainActor
+        func visit(_ node: any XCUIElementSnapshot, insideCollection: Bool) -> [any XCUIElementSnapshot] {
+            var result: [any XCUIElementSnapshot] = []
+            for child in node.children {
+                if insideCollection, child.elementType == .cell,
+                   child.identifier.hasPrefix("tab-switcher-grid-cell-") {
+                    result.append(child)
+                }
+                result.append(contentsOf: visit(child, insideCollection:
+                    insideCollection || child.elementType == .collectionView))
+            }
+            return result
+        }
+        // The original scope is overview.collectionViews.cells, not all cards
+        // anywhere in the app. Visit each descendant once even for nested lists.
+        return visit(overview, insideCollection: false)
+    }
+
+    static func finitePositive(_ frame: CGRect) -> Bool {
+        !frame.isNull && !frame.isInfinite && !frame.isEmpty
+            && frame.minX.isFinite && frame.minY.isFinite
+            && frame.width.isFinite && frame.height.isFinite
+    }
+}
+
+@MainActor
+private final class GroupStressNativeObservation {
+    let application: XCUIApplication
+    let url: URL
+    let name: String
+    let sceneID: String?
+    let afterRevision: UInt64?
+
+    init(application: XCUIApplication, url: URL, name: String, sceneID: String?, afterRevision: UInt64?) {
+        self.application = application
+        self.url = url
+        self.name = name
+        self.sceneID = sceneID
+        self.afterRevision = afterRevision
+    }
+
+    func read() -> GroupStressWorkspace? {
+        guard let bytes = try? Data(contentsOf: url),
+              let workspace = try? JSONDecoder().decode(GroupStressWorkspace.self, from: bytes),
+              let current = workspace.current, workspace.version == 1,
+              current.group.name == name, current.group.tabs.count == 1,
+              sceneID.map({ current.sceneID == $0 }) ?? true,
+              afterRevision.map({ workspace.revision > $0 }) ?? true else { return nil }
+        guard let snapshot = try? application.snapshot() else { return nil }
+        let elements = GroupStressSnapshot.descendants(of: snapshot)
+        let overviews = elements.filter { GroupStressSnapshot.matches($0, identifying: "study-groups-overview") }
+        guard overviews.count == 1, let overviewSnapshot = overviews.first,
+              !elements.contains(where: {
+                  $0.elementType == .alert
+                      && GroupStressSnapshot.matches($0, identifying: "לא ניתן לשנות את סביבת הלימוד")
+              }) else { return nil }
+        let segments = elements.filter {
+            $0.elementType == .segmentedControl && GroupStressSnapshot.matches($0, identifying: "study-group-selector")
+        }
+        let controls = segments.isEmpty ? elements.filter {
+            $0.elementType == .button && GroupStressSnapshot.matches($0, identifying: "study-group-selector")
+        } : segments
+        guard controls.count == 1, let controlSnapshot = controls.first,
+              controlSnapshot.isEnabled, controlSnapshot.value as? String == name else { return nil }
+        let cards = GroupStressSnapshot.documentCards(under: overviewSnapshot)
+        let expectedCardID = "tab-switcher-grid-cell-" + current.document.session.id.uuidString
+        guard cards.count == 1, let cardSnapshot = cards.first,
+              cardSnapshot.identifier == expectedCardID, cardSnapshot.isSelected else { return nil }
+
+        // Hittability is a live XCUIElement property, not a frame approximation
+        // or snapshot attribute. Keep both original real hit-test requirements.
+        let overview = application.descendants(matching: .any)["study-groups-overview"]
+        let control = controlSnapshot.elementType == .segmentedControl
+            ? application.segmentedControls["study-group-selector"]
+            : application.buttons["study-group-selector"]
+        let card = overview.collectionViews.cells.matching(NSPredicate(
+            format: "identifier == %@", expectedCardID)).element
+        guard control.isHittable, card.isHittable else { return nil }
+        return workspace
+    }
+}
+
+@MainActor
+private final class GroupStressEvidence {
+    var transitions: [[String: Any]] = []
+    var completedTransitions = 0
+    var coldRestoreVerified = false
+    let emit: @MainActor (Data) -> Void
+
+    init(emit: @escaping @MainActor (Data) -> Void) { self.emit = emit }
+
+    func record(_ value: [String: Any]) {
+        if let data = try? JSONSerialization.data(withJSONObject: value, options: [.sortedKeys]),
+           let text = String(data: data, encoding: .utf8) {
+            print("GROUP_STRESS_OBSERVATION " + text)
+        }
+    }
+
+    func attachReport() {
+        let value: [String: Any] = [
+            "schema": 1, "requiredConsecutiveTransitions": 100,
+            "completedTransitions": completedTransitions,
+            "coldRestoreVerified": coldRestoreVerified,
+            "timingScope": "XCTest tap, original commit and accessibility observation; not product p95",
+            "transitions": transitions
+        ]
+        if let data = try? JSONSerialization.data(withJSONObject: value, options: [.sortedKeys]) { emit(data) }
+    }
+}
+
+// MARK: Actual app process observations for the original groups100 case
+
+private struct GroupStressApplicationMetric: Codable, Sendable {
+    let schema: Int
+    let timingScope: String
+    let memoryMetric: String
+    let memoryScope: String
+    let namespace: String
+    let operationID: UUID
+    let launchID: UUID
+    let sequence: Int
+    let processID: Int32
+    let sceneID: String
+    let fromGroupID: UUID?
+    let toGroupID: UUID
+    let observedGroupID: UUID?
+    let fromDocumentID: UUID?
+    let observedDocumentID: UUID?
+    let beforeRevision: UInt64?
+    let afterRevision: UInt64?
+    let fromBackend: String
+    let observedBackend: String
+    let footprintBeforeBytes: UInt64?
+    let footprintAfterBytes: UInt64?
+    let elapsedSeconds: Double
+    let returnedNormally: Bool
+}
+
+private struct GroupStressMetricExpectation: Sendable {
+    let sceneID: String
+    let fromGroupID: UUID
+    let toGroupID: UUID
+    let fromDocumentID: UUID
+    let toDocumentID: UUID
+    let observedBeforeRevision: UInt64
+    let observedAfterRevision: UInt64
+}
+
+/// Reads the real app container's original reader log. Matching is independently
+/// bound to the UI/sidecar observations, not to a flag claiming a successful test.
+private struct GroupStressMetricReader: Sendable {
+    enum Failure: Error { case missingOrInvalidEvidence }
+    let url: URL
+    let namespace: String
+    let expected: [GroupStressMetricExpectation]
+
+    func samples() throws -> [GroupStressApplicationMetric] {
+        let resource = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey])
+        guard resource.isRegularFile == true, resource.isSymbolicLink == false else {
+            throw Failure.missingOrInvalidEvidence
+        }
+        let text = try String(contentsOf: url, encoding: .utf8)
+        let prefix = "[NativeGroupSwitchPerformance] "
+        return try text.split(separator: "\n").compactMap { line in
+            guard let range = line.range(of: prefix) else { return nil }
+            let bytes = Data(line[range.upperBound...].utf8)
+            let sample = try JSONDecoder().decode(GroupStressApplicationMetric.self, from: bytes)
+            return sample.namespace == namespace ? sample : nil
+        }
+    }
+
+    func matched() throws -> [GroupStressApplicationMetric] {
+        let records = try samples()
+        guard expected.count == 100 else { throw Failure.missingOrInvalidEvidence }
+        var selected: [GroupStressApplicationMetric] = []
+        for observation in expected {
+            let matches = records.filter { sample in
+                guard sample.sceneID == observation.sceneID,
+                      sample.fromGroupID == observation.fromGroupID,
+                      sample.toGroupID == observation.toGroupID,
+                      sample.observedGroupID == observation.toGroupID,
+                      sample.fromDocumentID == observation.fromDocumentID,
+                      sample.observedDocumentID == observation.toDocumentID,
+                      let before = sample.beforeRevision, let after = sample.afterRevision else { return false }
+                // Ordinary checkpoints may advance revision between the UI
+                // observations and tap. The actual commit must lie inside them.
+                return before >= observation.observedBeforeRevision && after > before
+                    && after <= observation.observedAfterRevision
+            }
+            guard matches.count == 1, let sample = matches.first,
+                  sample.schema == 1, sample.returnedNormally,
+                  sample.fromBackend == "otzaria", sample.observedBackend == "otzaria",
+                  sample.processID > 0, sample.elapsedSeconds.isFinite, sample.elapsedSeconds >= 0,
+                  sample.timingScope == "original group operation through ordinary session persistence",
+                  sample.memoryMetric == "phys_footprint_bytes",
+                  sample.memoryScope == "operation boundary samples; not continuous peak RSS",
+                  (sample.footprintBeforeBytes ?? 0) > 0, (sample.footprintAfterBytes ?? 0) > 0 else {
+                throw Failure.missingOrInvalidEvidence
+            }
+            selected.append(sample)
+        }
+        guard Set(selected.map(\.operationID)).count == 100,
+              Set(selected.map(\.launchID)).count == 1,
+              Set(selected.map(\.processID)).count == 1,
+              let first = selected.first,
+              selected.enumerated().allSatisfy({ $0.element.sequence == first.sequence + $0.offset }) else {
+            throw Failure.missingOrInvalidEvidence
+        }
+        return selected
+    }
+}
+
+// END Actual app process observations
+
+/// Additional iPad/miniTest10 coverage. This does not replace any original case,
+/// full-production-data acceptance, physical-device testing, or a latency gate.
+final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
+    override var readerTestTier: TestTier { .realUI }
+    override var readerAdditionalLaunchArguments: [String] {
+        super.readerAdditionalLaunchArguments + ["-StudyGroupPerformanceEnabled", "YES"]
+    }
+
+    @MainActor
+    func testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore() throws {
+        XCTAssertTrue(isPad, "This additional case requires the original iPad group UI")
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(backend: "otzaria", tier: .realUI)
+        let initialLocator = try assertTarget(backend: "otzaria")
+        let url = try verifiedGroupStressSidecar()
+        // A fresh UUID sidecar can import real legacy tabs. Use the existing
+        // original UI preparation only after the miniTest10/ownership gates.
+        try prepareSingleBookForGroupStress()
+        openGroupStressOverview()
+        let initial = try readGroupStressWorkspace(url)
+        XCTAssertEqual(initial.version, 1)
+        XCTAssertEqual(initial.profiles.count, 1)
+        XCTAssertEqual(initial.groups.count, 1)
+        let original = try XCTUnwrap(initial.current)
+        XCTAssertEqual(original.group.tabs.count, 1)
+        XCTAssertEqual(original.document.backend, "otzaria")
+        var workspace = try waitForOriginalGroup(named: original.group.name, at: url,
+                                                 sceneID: original.sceneID, afterRevision: nil)
+        let profileID = original.scene.profileID
+        var names = [original.group.name]
+        for name in ["רצף א", "רצף ב"] {
+            XCTAssertFalse(workspace.groups.contains { $0.name == name })
+            let beforeRevision = workspace.revision
+            tap(app.buttons["study-group-actions-menu"])
+            tap(app.buttons["קבוצה מהכרטיסיות הנוכחיות"])
+            let prompt = app.alerts["שם קבוצת הכרטיסיות"]
+            XCTAssertTrue(prompt.exists || prompt.waitForExistence(timeout: 10))
+            prompt.textFields.firstMatch.typeText(name)
+            tap(prompt.buttons["שמירה"])
+            workspace = try waitForOriginalGroup(named: name, at: url,
+                                                  sceneID: original.sceneID, afterRevision: beforeRevision)
+            names.append(name)
+        }
+        XCTAssertEqual(workspace.groups.count, 3)
+        XCTAssertEqual(Set(workspace.groups.map(\.id)).count, 3)
+        XCTAssertTrue(workspace.groups.allSatisfy { $0.profileID == profileID && $0.tabs.count == 1 })
+        XCTAssertEqual(Set(workspace.groups.flatMap { $0.tabs.map { $0.session.id } }).count, 3,
+                       "Original copies must retain three different document owners, not one shared UUID")
+
+        // Hydrate every original reader before pinning its durable navigation
+        // state. These preparation transitions are explicitly not counted.
+        var locators: [UUID: String] = [:]
+        for name in names {
+            let previous = try XCTUnwrap(workspace.current)
+            XCTAssertNotEqual(previous.group.name, name)
+            selectOriginalStressGroup(named: name)
+            workspace = try waitForOriginalGroup(named: name, at: url,
+                                                  sceneID: original.sceneID, afterRevision: workspace.revision)
+            let current = try XCTUnwrap(workspace.current)
+            closeGroupStressOverview()
+            let locator = try assertTarget(backend: "otzaria")
+            XCTAssertEqual(locator, initialLocator, "Copying a group preserves the actual original reading unit")
+            locators[current.group.id] = locator
+            openGroupStressOverview()
+            workspace = try waitForOriginalGroup(named: name, at: url,
+                                                  sceneID: original.sceneID, afterRevision: nil)
+        }
+        let baseline = workspace
+        XCTAssertEqual(locators.count, 3)
+        try assertOriginalGroupMembership(workspace, matches: baseline)
+        try attachWorkspaceSnapshot("groups100-before-consecutive-switches")
+        retainNativeEvidence("groups100-before-consecutive-switches")
+        let evidence = GroupStressEvidence { [weak self] data in
+            let attachment = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
+            attachment.name = "groups100-original-transition-observations"
+            attachment.lifetime = .keepAlways
+            self?.add(attachment)
+        }
+        addTeardownBlock { await evidence.attachReport() }
+
+        var performanceExpectations: [GroupStressMetricExpectation] = []
+        for step in 1...100 {
+            let target = try XCTUnwrap(baseline.groups.first { $0.name == names[(step - 1) % names.count] })
+            let previous = try XCTUnwrap(workspace.current)
+            XCTAssertNotEqual(target.id, previous.group.id, "A same-group tap is not a counted transition")
+            let targetDocument = try XCTUnwrap(target.tabs.first)
+            XCTAssertNotEqual(targetDocument.session.id, previous.document.session.id)
+            let start = ProcessInfo.processInfo.systemUptime
+            var observation: [String: Any] = [
+                "step": step, "state": "attempted", "sceneID": previous.sceneID,
+                "profileID": profileID.uuidString,
+                "fromGroupID": previous.group.id.uuidString, "toGroupID": target.id.uuidString,
+                "fromDocumentID": previous.document.session.id.uuidString,
+                "toDocumentID": targetDocument.session.id.uuidString,
+                "beforeRevision": workspace.revision
+            ]
+            evidence.transitions.append(observation)
+            evidence.record(observation)
+            selectOriginalStressGroup(named: target.name)
+            let selectionReturnedAt = ProcessInfo.processInfo.systemUptime
+            workspace = try waitForOriginalGroup(named: target.name, at: url,
+                                                  sceneID: original.sceneID, afterRevision: workspace.revision)
+            let observationReturnedAt = ProcessInfo.processInfo.systemUptime
+            observation["automationSelectionElapsedSeconds"] = selectionReturnedAt - start
+            observation["automationObservationElapsedSeconds"] = observationReturnedAt - selectionReturnedAt
+            let current = try XCTUnwrap(workspace.current)
+            XCTAssertEqual(current.group.id, target.id)
+            XCTAssertEqual(current.document.session.id, targetDocument.session.id)
+            XCTAssertEqual(current.scene.profileID, profileID)
+            try assertOriginalGroupMembership(workspace, matches: baseline)
+            performanceExpectations.append(.init(
+                sceneID: previous.sceneID, fromGroupID: previous.group.id, toGroupID: current.group.id,
+                fromDocumentID: previous.document.session.id, toDocumentID: current.document.session.id,
+                observedBeforeRevision: try XCTUnwrap(observation["beforeRevision"] as? UInt64),
+                observedAfterRevision: workspace.revision))
+            observation["state"] = "committed"
+            observation["afterRevision"] = workspace.revision
+            observation["observedGroupID"] = current.group.id.uuidString
+            observation["observedDocumentID"] = current.document.session.id.uuidString
+            observation["selectedOriginalCardID"] = "tab-switcher-grid-cell-" + current.document.session.id.uuidString
+            observation["selectedOriginalGroupName"] = current.group.name
+            observation["automationElapsedSeconds"] = ProcessInfo.processInfo.systemUptime - start
+            evidence.transitions[step - 1] = observation
+            evidence.completedTransitions += 1
+            evidence.record(observation)
+        }
+        XCTAssertEqual(evidence.completedTransitions, 100)
+        XCTAssertEqual(evidence.transitions.count, 100)
+        try captureGroupApplicationMetrics(sidecar: url, expected: performanceExpectations)
+        let final = try XCTUnwrap(workspace.current)
+        try attachWorkspaceSnapshot("groups100-after-100-original-commits")
+        retainNativeEvidence("groups100-after-100-original-commits")
+        closeGroupStressOverview()
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), locators[final.group.id])
+
+        app.terminate()
+        launchReader(scenario: "catalog", backend: "otzaria", tier: .realUI)
+        XCTAssertEqual(try verifiedGroupStressSidecar().standardizedFileURL, url.standardizedFileURL,
+                       "Cold launch must retain this same installed app and owned namespace")
+        let finalLocator = try XCTUnwrap(locators[final.group.id])
+        let locator = app.staticTexts["reader-current-locator"]
+        if locator.label != finalLocator {
+            XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "label == %@", finalLocator), object: locator)], timeout: 30), .completed)
+        }
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), finalLocator)
+        openGroupStressOverview()
+        // A genuine cold launch may create a different system scene identifier.
+        // Its restored group/profile/document must still be the exact final one.
+        workspace = try waitForOriginalGroup(named: final.group.name, at: url,
+                                              sceneID: nil, afterRevision: nil)
+        let restored = try XCTUnwrap(workspace.current)
+        XCTAssertEqual(restored.scene.profileID, profileID)
+        XCTAssertEqual(restored.group.id, final.group.id)
+        XCTAssertEqual(restored.document.session.id, final.document.session.id)
+        try assertOriginalGroupMembership(workspace, matches: baseline)
+        try attachWorkspaceSnapshot("groups100-after-cold-restore")
+        retainNativeEvidence("groups100-after-cold-restore")
+        closeGroupStressOverview()
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), finalLocator)
+        evidence.coldRestoreVerified = true
+    }
+
+
+    @MainActor
+    private func captureGroupApplicationMetrics(sidecar: URL, expected: [GroupStressMetricExpectation]) throws {
+        var container = sidecar
+        for _ in 0..<6 { container.deleteLastPathComponent() }
+        let reader = GroupStressMetricReader(
+            url: container.appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log"),
+            namespace: workspaceNamespace, expected: expected)
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            (try? reader.matched()) != nil
+        }, object: nil)
+        let result = XCTWaiter.wait(for: [ready], timeout: 10)
+        // Retain available real observations even if the additional evidence
+        // requirement fails. Never substitute XCTest IPC duration or a constant.
+        if let raw = try? reader.samples(), let bytes = try? JSONEncoder().encode(raw) {
+            let attachment = XCTAttachment(data: bytes, uniformTypeIdentifier: "public.json")
+            attachment.name = "groups100-application-raw-boundary-samples"
+            attachment.lifetime = .keepAlways
+            add(attachment)
+        }
+        XCTAssertEqual(result, .completed, "Require 100 uniquely matched actual app operation/memory observations")
+        let samples = try reader.matched()
+        let elapsedMS = samples.map { $0.elapsedSeconds * 1000 }.sorted()
+        func percentile(_ fraction: Double) -> Double {
+            elapsedMS[max(0, Int(ceil(Double(elapsedMS.count) * fraction)) - 1)]
+        }
+        let footprint = samples.flatMap { [$0.footprintBeforeBytes!, $0.footprintAfterBytes!] }
+        let value: [String: Any] = [
+            "schema": 1, "namespace": workspaceNamespace, "count": samples.count,
+            "timingScope": samples[0].timingScope, "percentileMethod": "nearest rank",
+            "p50OperationMilliseconds": percentile(0.50),
+            "p95OperationMilliseconds": percentile(0.95),
+            "maxOperationMilliseconds": elapsedMS.last!,
+            "memoryMetric": samples[0].memoryMetric, "memoryScope": samples[0].memoryScope,
+            "boundarySampleCount": footprint.count,
+            "firstFootprintBytes": samples[0].footprintBeforeBytes!,
+            "lastFootprintBytes": samples.last!.footprintAfterBytes!,
+            "maxObservedBoundaryFootprintBytes": footprint.max()!,
+            "performanceThresholdDefined": false,
+            "scope": "Debug iPad Simulator miniTest10; not first-pixel, physical-device, full-corpus, CPU or continuous-peak acceptance"
+        ]
+        let report = XCTAttachment(data: try JSONSerialization.data(withJSONObject: value, options: [.sortedKeys]),
+                                  uniformTypeIdentifier: "public.json")
+        report.name = "groups100-application-operation-memory-summary"
+        report.lifetime = .keepAlways
+        add(report)
+    }
+
+    @MainActor
+    private func verifiedGroupStressSidecar() throws -> URL {
+        XCTAssertEqual(readerTestTier, .realUI)
+        XCTAssertNotNil(UUID(uuidString: workspaceNamespace))
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        for (key, expected) in [("-OtzariaDataProfile", "miniTest10"),
+                                ("-studyWorkspaceTestingNamespace", workspaceNamespace),
+                                ("-preferredBackend", "otzaria")] {
+            let indexes = app.launchArguments.indices.filter { app.launchArguments[$0] == key }
+            XCTAssertEqual(indexes.count, 1)
+            let index = try XCTUnwrap(indexes.first)
+            XCTAssertTrue(app.launchArguments.indices.contains(index + 1))
+            XCTAssertEqual(app.launchArguments[index + 1], expected)
+        }
+        XCTAssertEqual(app.launchEnvironment["OTZARIA_DATA_PROFILE"], "miniTest10")
+        XCTAssertEqual(app.launchEnvironment["SIMCTL_CHILD_OTZARIA_DATA_PROFILE"], "miniTest10")
+        XCTAssertTrue(try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_WORK_KEY"]).hasPrefix("book:"),
+                      "The original matrix must independently validate the installed miniTest10 fixture")
+        let url = try workspaceSidecarURL().standardizedFileURL
+        let suffix = ["Library", "Application Support", "ChavrusaText", "StudyWorkspace", "UITests", workspaceNamespace + ".json"]
+        XCTAssertEqual(Array(url.pathComponents.suffix(suffix.count)), suffix)
+        var container = url
+        for _ in suffix { container.deleteLastPathComponent() }
+        XCTAssertEqual(container.deletingLastPathComponent(), try workspaceContainerParent().standardizedFileURL)
+        XCTAssertNotNil(UUID(uuidString: container.lastPathComponent))
+        let metadata = try Data(contentsOf: container.appendingPathComponent(".com.apple.mobile_container_manager.metadata.plist"))
+        let record = try XCTUnwrap(PropertyListSerialization.propertyList(from: metadata, format: nil) as? [String: Any])
+        XCTAssertEqual(record["MCMMetadataIdentifier"] as? String, "com.davidpovarsky.chavrusatext")
+        let resource = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey])
+        XCTAssertEqual(resource.isRegularFile, true)
+        XCTAssertEqual(resource.isSymbolicLink, false)
+        return url
+    }
+
+    private func readGroupStressWorkspace(_ url: URL) throws -> GroupStressWorkspace {
+        try JSONDecoder().decode(GroupStressWorkspace.self, from: Data(contentsOf: url))
+    }
+
+    @MainActor
+    private func openGroupStressOverview() {
+        tap(app.buttons["reader-tabs-overview"])
+        let overview = app.descendants(matching: .any)["study-groups-overview"]
+        XCTAssertTrue(overview.exists || overview.waitForExistence(timeout: 15))
+        let toggle = app.buttons["study-tabs-layout-toggle"]
+        XCTAssertTrue(toggle.exists || toggle.waitForExistence(timeout: 10))
+        if toggle.label == "תצוגת רשת" { tap(toggle) }
+    }
+
+    @MainActor
+    private func closeGroupStressOverview() {
+        let overview = app.descendants(matching: .any)["study-groups-overview"]
+        tap(overview.buttons["סיום"])
+        if overview.exists {
+            XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"), object: overview)], timeout: 15), .completed)
+        }
+    }
+
+    @MainActor
+    private func selectOriginalStressGroup(named name: String) {
+        guard let snapshot = try? app.snapshot() else {
+            XCTFail("Require a fresh actual app snapshot before the original group action")
+            return
+        }
+        let elements = GroupStressSnapshot.descendants(of: snapshot)
+        let selectors = elements.filter {
+            $0.elementType == .segmentedControl && GroupStressSnapshot.matches($0, identifying: "study-group-selector")
+        }
+        if !selectors.isEmpty {
+            guard selectors.count == 1, let selectorSnapshot = selectors.first,
+                  selectorSnapshot.isEnabled else {
+                XCTFail("Require the unique enabled original segmented group selector")
+                return
+            }
+            let targets = GroupStressSnapshot.descendants(of: selectorSnapshot).filter {
+                $0.elementType == .button && $0.label == name
+            }
+            guard targets.count == 1, let target = targets.first,
+                  let windowSnapshot = elements.first(where: { $0.elementType == .window }),
+                  [selectorSnapshot.frame, target.frame, windowSnapshot.frame].allSatisfy({ GroupStressSnapshot.finitePositive($0) }),
+                  selectorSnapshot.frame.contains(target.frame),
+                  windowSnapshot.frame.contains(target.frame) else {
+                XCTFail("Require the exact original group button wholly inside its selector and actual window")
+                return
+            }
+            let selector = app.segmentedControls["study-group-selector"]
+            let liveTarget = selector.buttons.matching(NSPredicate(format: "label == %@", name)).element
+            let window = app.windows.firstMatch
+            guard liveTarget.isHittable, liveTarget.frame == target.frame,
+                  window.frame == windowSnapshot.frame else {
+                XCTFail("The original group button and window must remain live and match the fresh snapshot")
+                return
+            }
+            // A real XCTest tap at the same validated button midpoint, relative
+            // to its original window. Preserve ordinary XCTest idle handling.
+            window.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
+                .withOffset(CGVector(dx: target.frame.midX - windowSnapshot.frame.minX,
+                                     dy: target.frame.midY - windowSnapshot.frame.minY)).tap()
+        } else {
+            let menu = app.buttons["study-group-selector"]
+            XCTAssertTrue(menu.exists && menu.isEnabled)
+            tap(menu)
+            let options = app.collectionViews.cells.buttons.matching(NSPredicate(format: "label == %@", name))
+            XCTAssertTrue(options.firstMatch.exists || options.firstMatch.waitForExistence(timeout: 15))
+            XCTAssertEqual(options.count, 1, "Only the exact original native group action may be selected")
+            tap(options.element(boundBy: 0))
+        }
+    }
+
+    @MainActor
+    private func waitForOriginalGroup(named name: String, at url: URL,
+                                      sceneID: String?, afterRevision: UInt64?) throws -> GroupStressWorkspace {
+        // The predicate captures an explicitly actor-isolated observer, not a
+        // local function that implicitly transfers XCTestCase/self in Swift 6.
+        let observation = GroupStressNativeObservation(application: app, url: url, name: name,
+                                                       sceneID: sceneID, afterRevision: afterRevision)
+        if let workspace = observation.read() { return workspace }
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated { observation.read() != nil }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 15), .completed,
+                       "Require the same original scene, committed sidecar, enabled selected group, and selected original document card")
+        return try XCTUnwrap(observation.read())
+    }
+
+    private func assertOriginalGroupMembership(_ workspace: GroupStressWorkspace,
+                                               matches baseline: GroupStressWorkspace) throws {
+        XCTAssertEqual(workspace.profiles, baseline.profiles)
+        XCTAssertEqual(workspace.groups, baseline.groups,
+                       "Group order, UUID membership, active documents, canonical locators and search state must remain unchanged")
+        let current = try XCTUnwrap(workspace.current)
+        for group in baseline.groups {
+            let document = try XCTUnwrap(group.tabs.first)
+            XCTAssertEqual(current.scene.activeTabIDsByGroup?[group.id], document.session.id,
+                           "The original scene must retain each group's independent document owner")
+        }
+    }
+}
