@@ -19,7 +19,7 @@ import uuid
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--profile", choices=["miniTest10", "production"], default="miniTest10")
-parser.add_argument("--artifact-label", choices=["11", "13", "phone", "11-search", "11-reader", "11-sidebar", "11-window"])
+parser.add_argument("--artifact-label", choices=["11", "13", "phone", "11-search", "11-reader", "11-sidebar", "11-window", "11-index"])
 arguments = parser.parse_args()
 profile = arguments.profile
 artifact_suffix = "-" + arguments.artifact_label if arguments.artifact_label else ""

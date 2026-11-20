@@ -1,0 +1,32 @@
+[
+  {
+    "name": "FAILED_LOCAL_PREFLIGHT.json",
+    "raw_sha256": "9988fccc0b4b319f196cc0a0f990be0204d07a089e3d2e3c233863fc696f6403",
+    "raw_bytes": 1212,
+    "archive_sha256": "ffe836f26324c169df7c3e9083446b410d3146b5a3c256f5ad932ccf565ad83f"
+  },
+  {
+    "name": "FULL98_DECLARATIONS.json",
+    "raw_sha256": "7e41d794b36e4571ef13db69d895db1f8feb0d6173e0510865c542104609b9eb",
+    "raw_bytes": 30160,
+    "archive_sha256": "15d9e0b3bed19537296f0bf7467e5abacbee602aaba3c84d5b15be088693554c"
+  },
+  {
+    "name": "FULL_SOURCE_PREFLIGHT.json",
+    "raw_sha256": "70067e1d58da772a4065543df96814add58e45acfdc2c41cf231f4e2b8c7dc2d",
+    "raw_bytes": 4408,
+    "archive_sha256": "dfce1dc2859dd5b5594c83e4ef0cb78a3eae68c157c3791cb7bfeebc4693c205"
+  },
+  {
+    "name": "original-release-gate-tests.stdout.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "archive_sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+  },
+  {
+    "name": "original-release-gate-tests.stderr.log",
+    "raw_sha256": "99dc4bc58293c0729e73751101477a1013de4ed6b646f92e7af198c466195387",
+    "raw_bytes": 3473,
+    "archive_sha256": "910a04f7185ff0bdbb7d72027f13d57fca37dff68ce2bf476bc06e83ca51e14e"
+  }
+]

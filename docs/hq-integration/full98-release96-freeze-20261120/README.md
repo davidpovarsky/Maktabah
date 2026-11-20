@@ -7,3 +7,7 @@ Release retains exactly its original96 UI leaves and two separate prototype orac
 The integrated code includes the actual Swift6 history-isolation fix, destination-derived normal iOS SDK and original React/Pods preparation, original Library menu admission and Reduce Motion hit target fixes, bounded DEBUG Escape observations, source provenance evidence, and the six new acceptance cases. Engine/resource contracts and the original Hanlin SDK pin are unchanged. Old source hashes and raw failures are preserved; current source pointers and the active helper hash are refreshed explicitly.
 
 Source/declaration/manifest preflights are execution preparation only. All new Apple/Native/Release results remain NOT_RUN until the actual workflows produce final source-bound evidence. Physical devices and distribution remain separate.
+
+## Owned index group registration
+
+The first local freeze passed source and98 declaration checks but the original runner rejected the new11-index label. No CI was dispatched from it. Two explicit allowlists now register exactly11-index at size11: the owned-group validator and the original miniature-fixture CLI. Original92 groups and all other size/label/selection guards remain unchanged. The original Release-gate suite and the additional actual function/CLI negative controls were executed and retained. No timeout, native source oracle, installer or ownership boundary was weakened.

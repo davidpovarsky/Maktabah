@@ -1,0 +1,63 @@
+{
+  "at_utc": "2026-11-20T10:00:28.853376+00:00",
+  "initial_local_freeze": "df640795cebfafe164647726402692f7907f8387",
+  "changes": "Two literal allowlists gain only11-index:size11; no source/selection/oracle/timeout/cleanup/capability guard removed",
+  "exact_inverse": true,
+  "checks": [
+    {
+      "name": "Original92 groups unchanged before/after",
+      "passed": true
+    },
+    {
+      "name": "Original guard reproduced rejection of unregistered new group",
+      "passed": true
+    },
+    {
+      "name": "Complete98 groups partition once including dedicated5-case index simulator",
+      "passed": true
+    },
+    {
+      "name": "Retained rejection: wrong index device",
+      "passed": true
+    },
+    {
+      "name": "Retained rejection: path traversal label",
+      "passed": true
+    },
+    {
+      "name": "Retained rejection: empty index scope",
+      "passed": true
+    },
+    {
+      "name": "Retained rejection: duplicate group case",
+      "passed": true
+    },
+    {
+      "name": "Original fixture CLI rejected unregistered11-index",
+      "passed": true
+    },
+    {
+      "name": "Actual fixture CLI admits only new exact label with unchanged miniature default",
+      "passed": true
+    },
+    {
+      "name": "Actual fixture CLI retains path traversal rejection",
+      "passed": true
+    },
+    {
+      "name": "Original release-gate test suite still passes",
+      "passed": true
+    }
+  ],
+  "original_release_gate_exit_code": 0,
+  "original_release_gate_output": "test_empty_duplicate_unknown_wrong_device_scopes_rejected (__main__.AffectedExecutionTests.test_empty_duplicate_unknown_wrong_device_scopes_rejected) ... ok\r\ntest_fresh_isolation_exactly_partitions_affected_cases (__main__.AffectedExecutionTests.test_fresh_isolation_exactly_partitions_affected_cases) ... ok\r\ntest_missing_execution_is_not_an_executed_ui_failure (__main__.AffectedExecutionTests.test_missing_execution_is_not_an_executed_ui_failure) ... ok\r\ntest_nonrequested_prior_pass_is_not_reported_as_new_or_not_run (__main__.AffectedExecutionTests.test_nonrequested_prior_pass_is_not_reported_as_new_or_not_run) ... ok\r\ntest_supplemental_navigation_cases_preserve_original_phase_and_not_run (__main__.AffectedExecutionTests.test_supplemental_navigation_cases_preserve_original_phase_and_not_run) ... ok\r\ntest_skipped_and_expected_failure_never_become_ui_passes (__main__.EvidenceClassificationTests.test_skipped_and_expected_failure_never_become_ui_passes) ... ok\r\ntest_post_verification_staging_error_cannot_leave_success_status (__main__.GateMainFailureTests.test_post_verification_staging_error_cannot_leave_success_status) ... ok\r\ntest_changed_native_lock_and_provider_are_rejected (__main__.PreparedInputTests.test_changed_native_lock_and_provider_are_rejected) ... ok\r\ntest_changed_native_toolchain_rejected (__main__.PreparedInputTests.test_changed_native_toolchain_rejected) ... ok\r\ntest_matching_prepared_context_reaches_existing_source_auditor (__main__.PreparedInputTests.test_matching_prepared_context_reaches_existing_source_auditor) ... ok\r\ntest_only_named_actual_results_count (__main__.PreparedInputTests.test_only_named_actual_results_count) ... ok\r\ntest_original_sdk_or_pinned_package_drift_before_signing_is_rejected (__main__.PreparedInputTests.test_original_sdk_or_pinned_package_drift_before_signing_is_rejected) ... ok\r\ntest_complete_positive_fixture (__main__.ReleaseGateTests.test_complete_positive_fixture) ... ok\r\ntest_documentation_only_reuse_preserves_checked_sha (__main__.ReleaseGateTests.test_documentation_only_reuse_preserves_checked_sha) ... ok\r\ntest_extra_checkout_and_missing_checkout_are_rejected (__main__.ReleaseGateTests.test_extra_checkout_and_missing_checkout_are_rejected) ... ok\r\ntest_extra_unit_cases_cannot_replace_required_ui (__main__.ReleaseGateTests.test_extra_unit_cases_cannot_replace_required_ui) ... ok\r\ntest_legacy_six_pins_cannot_replace_current_nine (__main__.ReleaseGateTests.test_legacy_six_pins_cannot_replace_current_nine) ... ok\r\ntest_prototype_oracle_never_inflates_native_ui_count (__main__.ReleaseGateTests.test_prototype_oracle_never_inflates_native_ui_count) ... ok\r\ntest_reject_stale_failed_partial_and_missing_evidence (__main__.ReleaseGateTests.test_reject_stale_failed_partial_and_missing_evidence) ... ok\r\ntest_same_count_self_consistent_foreign_revision_is_rejected (__main__.ReleaseGateTests.test_same_count_self_consistent_foreign_revision_is_rejected) ... ok\r\ntest_sdk_revision_source_and_post_build_drift_are_rejected (__main__.ReleaseGateTests.test_sdk_revision_source_and_post_build_drift_are_rejected) ... ok\r\ntest_small_corpus_cannot_satisfy_production (__main__.ReleaseGateTests.test_small_corpus_cannot_satisfy_production) ... ok\r\ntest_unaccepted_lock_bytes_and_sdk_gitlink_are_rejected (__main__.ReleaseGateTests.test_unaccepted_lock_bytes_and_sdk_gitlink_are_rejected) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 23 tests in 1.242s\r\n\r\nOK\r\n",
+  "native": "NOT_RUN",
+  "prior_failed_local_preflight": {
+    "id": "job_50178dc7dd25",
+    "status": "failed",
+    "exit_code": 1,
+    "started_at": "2026-11-20T09:54:50.583113+00:00",
+    "finished_at": "2026-11-20T09:55:05.378229+00:00",
+    "output": "[codex/otzaria-occurrence-app-20261120 df640795] ci(otzaria): freeze full native98 and preserved release96 gates\r\n 6 files changed, 577 insertions(+), 14 deletions(-)\r\n create mode 100644 docs/hq-integration/full98-release96-freeze-20261120/README.md\r\n create mode 100644 docs/hq-integration/full98-release96-freeze-20261120/SOURCE_FREEZE.json\nTraceback (most recent call last):\r\n  File \"C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_a679179d5c5e46ab926bf9df723df514\\script.py\", line 141, in <module>\r\n    verified_groups=runpy.run_path(str(root/'Scripts/CI/runtime27.py'))['execution_groups'](native)\r\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-20261120\\Scripts\\CI\\runtime27.py\", line 54, in execution_groups\r\n    raise ValueError(\"Invalid owned simulator size/artifact label/scope\")\r\nValueError: Invalid owned simulator size/artifact label/scope"
+  }
+}

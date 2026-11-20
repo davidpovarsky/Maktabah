@@ -49,7 +49,7 @@ def execution_groups(contract):
     for group in groups:
         size, label, members = group["size"], group["label"], group["case_ids"]
         allowed = {"11": "11", "13": "13", "phone": "phone", "11-reader": "11", "11-window": "11",
-                   "11-search": "11", "11-sidebar": "11"}
+                   "11-search": "11", "11-sidebar": "11", "11-index": "11"}
         if allowed.get(label) != size or not members:
             raise ValueError("Invalid owned simulator size/artifact label/scope")
         device = {"11": "ipad11", "13": "ipad13", "phone": "iphone"}[size]
