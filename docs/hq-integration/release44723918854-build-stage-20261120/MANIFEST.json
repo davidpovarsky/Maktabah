@@ -1,0 +1,67 @@
+{
+  "files": [
+    {
+      "path": "raw/artifact.zip.gz",
+      "gzip_bytes": 1562987,
+      "gzip_sha256": "3e135bdaa36d0269733f0c1cc5757c571c886cb724a4cfa8e3ae5822845014a9",
+      "raw_bytes": 1618660,
+      "raw_sha256": "42978dc266c442eae2023c01b6ff944d752f052a5cf60b76588b441d9c16447a"
+    },
+    {
+      "path": "raw/RUN.json.gz",
+      "gzip_bytes": 1610,
+      "gzip_sha256": "b0bc38409a43652a17e6e4f19468f995f085a8dd918b468815aa13132915626d",
+      "raw_bytes": 12775,
+      "raw_sha256": "f263a36a83d33dd76d4ad3530bb1dfbd6ea3e55338e4caeb231ac1aee06083a7"
+    },
+    {
+      "path": "raw/JOBS.json.gz",
+      "gzip_bytes": 1657,
+      "gzip_sha256": "c532b1f0721cfd2bf6a3f0958300cba2f415416f8ff1b9ad165ec3ab71649e3b",
+      "raw_bytes": 10939,
+      "raw_sha256": "100f9d0b1bddf0292cf1c033decf8108a16527ca89cd2423f6ed6bfe1eece84e"
+    },
+    {
+      "path": "raw/ARTIFACTS.json.gz",
+      "gzip_bytes": 582,
+      "gzip_sha256": "a57001cc81d661839f297f6dcdec9cc16b7f7b71ee1385f0f8e5a1b12437c179",
+      "raw_bytes": 1538,
+      "raw_sha256": "7010118bc5b1df9e381d60ccfe9b6062c3a977041bf2b340bcc3462a32275eaa"
+    },
+    {
+      "path": "raw/DOWNLOAD_VERIFIED.json.gz",
+      "gzip_bytes": 5076,
+      "gzip_sha256": "b4530ea2f55113df1c5c6e1f5575617b5439be94a5b65e81f56cb349b81382bc",
+      "raw_bytes": 19333,
+      "raw_sha256": "68d0cfbacbfd4676b4cba1f5ed0983c1763562eda5236a0a5fcbca3bf30b41ff"
+    },
+    {
+      "path": "raw/ROOT_REVIEW.json.gz",
+      "gzip_bytes": 673,
+      "gzip_sha256": "2ed91b66b5a55fac1e27cd275f5ad6870681243e3d87db2e64d9866ababbae4c",
+      "raw_bytes": 1296,
+      "raw_sha256": "675b2018e689a516b5f84d3dfa7fa06969da8e8394c3b8ea1bda6bbbbd6ccb24"
+    },
+    {
+      "path": "raw/ROOT_REVIEW_ATTEMPT0.json.gz",
+      "gzip_bytes": 214,
+      "gzip_sha256": "a1558a429f5e8df30109d096b1985efb6e3998b1a3beb02d83b28226b4ddc862",
+      "raw_bytes": 262,
+      "raw_sha256": "805d8ba7ee956727960bbc62b47cebdc9f929b8b1a9856d20c1d6167cfc3daad"
+    },
+    {
+      "path": "raw/ROOT_REVIEW_ATTEMPT0.py.gz",
+      "gzip_bytes": 1972,
+      "gzip_sha256": "692c1cf684437fc767edb5ff1a618ff4f7a3751f0c75578e6152788118fe1615",
+      "raw_bytes": 4376,
+      "raw_sha256": "ba4b42124b6e60d37024bd3c98879042f28c01f5af1ee98122558eae98e200ef"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2295,
+      "sha256": "56b2cec4edb55bbe5d0f7324c2a2465fbd883bdd124bec6e8df0f811c9a6537a"
+    }
+  ],
+  "status": "BUILD_STAGE_ONLY",
+  "ui_executed": 0
+}
