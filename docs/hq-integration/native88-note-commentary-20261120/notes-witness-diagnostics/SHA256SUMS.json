@@ -1,0 +1,47 @@
+{
+  "files": [
+    {
+      "path": "raw/NOTE_DIAGNOSTICS_INVERSE_PROOF.json.gz",
+      "rawSHA256": "4d1b38bc71670b4ac392eb3f3b8936c2be1ea57a5333391c9f1933e9a7edbafc",
+      "rawBytes": 8560,
+      "storedSHA256": "56a31bbacc342a40091a0e1c2bef9cd543c8e9d33d785d0755e36571e60552e6",
+      "storedBytes": 2374
+    },
+    {
+      "path": "raw/NOTE_DIAGNOSTICS_PARSE_RESULT.json.gz",
+      "rawSHA256": "98aaa5000517f741b8d976ea1ffaf08ee3c211ae92c46eef86b529115e1941b4",
+      "rawBytes": 2356,
+      "storedSHA256": "ebea2dffa633b326a2c8dcbbd961baad73f12ff6343bc88d075c7a599d7a8bf7",
+      "storedBytes": 679
+    },
+    {
+      "path": "raw/NOTE_DIAGNOSTICS_RELEASE_SOURCE_PARITY.json.gz",
+      "rawSHA256": "0d4394d5d23368e80f0c321a7e73a1b5795db3ae1ebad5f85f04a2d9bbea49e7",
+      "rawBytes": 1124,
+      "storedSHA256": "5c87c4f2e5a6300a05c21a337e88b1f03d9a8c990532a621faf9a14aa7eb155d",
+      "storedBytes": 527
+    },
+    {
+      "path": "raw/MaktabahNativeRoutingHost-parse.log.gz",
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawBytes": 0,
+      "storedSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "storedBytes": 20
+    },
+    {
+      "path": "raw/MaktabahNativeSceneBindings-parse.log.gz",
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawBytes": 0,
+      "storedSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "storedBytes": 20
+    },
+    {
+      "path": "raw/MaktabahNativeSceneSession-parse.log.gz",
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawBytes": 0,
+      "storedSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "storedBytes": 20
+    }
+  ],
+  "resultSHA256": "381eb888c14d46dce57936e946967ffd43657ac0a58e878b75e2b7c6fe7f2731"
+}

@@ -293,6 +293,19 @@ struct MaktabahNativeSceneBindings {
         }
     }
 
+    #if DEBUG
+    func noteDraftSourceDiagnostic() -> String {
+        "activeTab=\(manager.activeTabId == tabID)"
+            + " currentReader=\(Self.currentReader(in: manager) === reader)"
+            + " destination=\(reader.currentDestination == destination)"
+            + " contentID=\(reader.currentContentId == contentID)"
+            + " textMode=\(reader.currentReaderTextMode == textMode)"
+            + " selectedLocator=\(reader.selectedSegmentLocator == selectedLocator)"
+            + " lineAnchor=\(reader.otzariaSelectedLineAnchor == lineAnchor)"
+            + " selectedRange=\(reader.readerState.selectedRange == selectedRange)"
+    }
+    #endif
+
     func apply() throws {
         try validate()
         reader.readerInspectorVisible = true
@@ -414,6 +427,14 @@ struct MaktabahNativeSceneBindings {
         try owner.present(draft)
         try validate()
     }
+    #if DEBUG
+    func sourceDiagnostic() -> String {
+        sourceGuard.noteDraftSourceDiagnostic()
+            + " sourceText=\(reader.contentText.utf8.elementsEqual(sourceText.utf8))"
+            + " ownerReader=\(owner.reader === reader)"
+    }
+    #endif
+
     func validateVisible() throws {
         try validate()
         guard isApplied, let textView = owner.textView,
