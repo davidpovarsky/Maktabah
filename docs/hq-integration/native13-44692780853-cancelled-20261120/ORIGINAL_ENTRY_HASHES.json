@@ -1,0 +1,51 @@
+[
+  {
+    "zipEntry": "artifacts/runtime27/checkout.txt",
+    "bytes": 41,
+    "sha256": "2ff1cefe017674ced293f9fd4344c089e9f86eb5d44a2ac62d9359683e634775",
+    "stored": "raw/artifacts/runtime27/checkout.txt",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/test-tree.txt",
+    "bytes": 41,
+    "sha256": "7a045a46b9da8ead66fb7a1b20dcf6637647f6f28bb7b53e73c49c2e305f45df",
+    "stored": "raw/artifacts/runtime27/test-tree.txt",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/selected-test-declarations.json",
+    "bytes": 3971,
+    "sha256": "d33536da2402f8f9b07f053e4d16f90616131fd3133a76d7396c2ce07fc9cbc0",
+    "stored": "raw/artifacts/runtime27/selected-test-declarations.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/toolchain-selection.json",
+    "bytes": 13019,
+    "sha256": "c917c555916bde705182a838a88889b9e2aece6c4e8430fbe95fd61bcb8d1df1",
+    "stored": "raw/artifacts/runtime27/toolchain-selection.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/build-for-testing-driver.log",
+    "bytes": 16968,
+    "sha256": "651ce8488e85efd438a664aba0f8e110453f1636ded83d268c7eaa5569d9cf6d",
+    "stored": "raw/artifacts/runtime27/build-for-testing-driver.log.gz",
+    "losslessGzip": true
+  },
+  {
+    "zipEntry": "hq-stage2/actual-source-inputs.json",
+    "bytes": 113162,
+    "sha256": "73ccb20c6f97c99ab5794a094726d7948d0c8cb7f0251f5e3084144797d9756f",
+    "stored": "raw/hq-stage2/actual-source-inputs.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "hq-stage2/simulator-build-for-testing.log",
+    "bytes": 13648726,
+    "sha256": "9e3dc8604de87b8740c64e30dbe92743ee726686ce62ea96800ed492ed976cd9",
+    "stored": "raw/hq-stage2/simulator-build-for-testing.log.gz",
+    "losslessGzip": true
+  }
+]

@@ -1,0 +1,348 @@
+{
+  "observed_at": "2026-11-20T07:26:56.295112+00:00",
+  "status": "MATCHED_MATRIX_PAIR_SELECTED",
+  "active_developer_dir": "/Applications/Xcode_27.1.app/Contents/Developer",
+  "candidates": [
+    {
+      "developer_dir": "/Applications/Xcode.app/Contents/Developer",
+      "xcode": "Xcode 27.1\nBuild version 27A9275",
+      "xcode_version": "27.1",
+      "sdk_version": "27.1",
+      "app_intents_testing_exists": true,
+      "app_intents_testing": "/Applications/Xcode_27.1.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/AppIntentsTesting.framework/AppIntentsTesting",
+      "runtime_inventory": [
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+          "version": "27.0",
+          "buildversion": "24A434",
+          "isAvailable": true,
+          "supports_full_device_matrix": true
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-1",
+          "version": "27.1",
+          "buildversion": "24A94425",
+          "isAvailable": true,
+          "supports_full_device_matrix": false
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2",
+          "version": "27.2",
+          "buildversion": "24B8117",
+          "isAvailable": true,
+          "supports_full_device_matrix": true
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2-iPhone19-4",
+          "version": "27.2",
+          "buildversion": "24B91016s",
+          "isAvailable": true,
+          "supports_full_device_matrix": false
+        }
+      ],
+      "matching_runtime_ids": [],
+      "status": "NO_MATCHED_MATRIX_PAIR"
+    },
+    {
+      "developer_dir": "/Applications/Xcode_27.0.0.app/Contents/Developer",
+      "xcode": "Xcode 27.0\nBuild version 27A266a",
+      "xcode_version": "27.0",
+      "sdk_version": "27.0",
+      "app_intents_testing_exists": true,
+      "app_intents_testing": "/Applications/Xcode_27.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/AppIntentsTesting.framework/AppIntentsTesting",
+      "runtime_inventory": [
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+          "version": "27.0",
+          "buildversion": "24A434",
+          "isAvailable": true,
+          "supports_full_device_matrix": true
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-1",
+          "version": "27.1",
+          "buildversion": "24A94425",
+          "isAvailable": true,
+          "supports_full_device_matrix": false
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2",
+          "version": "27.2",
+          "buildversion": "24B8117",
+          "isAvailable": true,
+          "supports_full_device_matrix": true
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2-iPhone19-4",
+          "version": "27.2",
+          "buildversion": "24B91016s",
+          "isAvailable": true,
+          "supports_full_device_matrix": false
+        }
+      ],
+      "matching_runtime_ids": [
+        "com.apple.CoreSimulator.SimRuntime.iOS-27-0"
+      ],
+      "status": "MATCHED_MATRIX_PAIR"
+    },
+    {
+      "developer_dir": "/Applications/Xcode_27.0.app/Contents/Developer",
+      "xcode": "Xcode 27.0\nBuild version 27A266a",
+      "xcode_version": "27.0",
+      "sdk_version": "27.0",
+      "app_intents_testing_exists": true,
+      "app_intents_testing": "/Applications/Xcode_27.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/AppIntentsTesting.framework/AppIntentsTesting",
+      "runtime_inventory": [
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+          "version": "27.0",
+          "buildversion": "24A434",
+          "isAvailable": true,
+          "supports_full_device_matrix": true
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-1",
+          "version": "27.1",
+          "buildversion": "24A94425",
+          "isAvailable": true,
+          "supports_full_device_matrix": false
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2",
+          "version": "27.2",
+          "buildversion": "24B8117",
+          "isAvailable": true,
+          "supports_full_device_matrix": true
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2-iPhone19-4",
+          "version": "27.2",
+          "buildversion": "24B91016s",
+          "isAvailable": true,
+          "supports_full_device_matrix": false
+        }
+      ],
+      "matching_runtime_ids": [
+        "com.apple.CoreSimulator.SimRuntime.iOS-27-0"
+      ],
+      "status": "MATCHED_MATRIX_PAIR"
+    },
+    {
+      "developer_dir": "/Applications/Xcode_27.1.0.app/Contents/Developer",
+      "xcode": "Xcode 27.1\nBuild version 27A9275",
+      "xcode_version": "27.1",
+      "sdk_version": "27.1",
+      "app_intents_testing_exists": true,
+      "app_intents_testing": "/Applications/Xcode_27.1.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/AppIntentsTesting.framework/AppIntentsTesting",
+      "runtime_inventory": [
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+          "version": "27.0",
+          "buildversion": "24A434",
+          "isAvailable": true,
+          "supports_full_device_matrix": true
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-1",
+          "version": "27.1",
+          "buildversion": "24A94425",
+          "isAvailable": true,
+          "supports_full_device_matrix": false
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2",
+          "version": "27.2",
+          "buildversion": "24B8117",
+          "isAvailable": true,
+          "supports_full_device_matrix": true
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2-iPhone19-4",
+          "version": "27.2",
+          "buildversion": "24B91016s",
+          "isAvailable": true,
+          "supports_full_device_matrix": false
+        }
+      ],
+      "matching_runtime_ids": [],
+      "status": "NO_MATCHED_MATRIX_PAIR"
+    },
+    {
+      "developer_dir": "/Applications/Xcode_27.1.app/Contents/Developer",
+      "xcode": "Xcode 27.1\nBuild version 27A9275",
+      "xcode_version": "27.1",
+      "sdk_version": "27.1",
+      "app_intents_testing_exists": true,
+      "app_intents_testing": "/Applications/Xcode_27.1.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/AppIntentsTesting.framework/AppIntentsTesting",
+      "runtime_inventory": [
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+          "version": "27.0",
+          "buildversion": "24A434",
+          "isAvailable": true,
+          "supports_full_device_matrix": true
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-1",
+          "version": "27.1",
+          "buildversion": "24A94425",
+          "isAvailable": true,
+          "supports_full_device_matrix": false
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2",
+          "version": "27.2",
+          "buildversion": "24B8117",
+          "isAvailable": true,
+          "supports_full_device_matrix": true
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2-iPhone19-4",
+          "version": "27.2",
+          "buildversion": "24B91016s",
+          "isAvailable": true,
+          "supports_full_device_matrix": false
+        }
+      ],
+      "matching_runtime_ids": [],
+      "status": "NO_MATCHED_MATRIX_PAIR"
+    },
+    {
+      "developer_dir": "/Applications/Xcode_27.2.0.app/Contents/Developer",
+      "xcode": "Xcode 27.2\nBuild version 27B52",
+      "xcode_version": "27.2",
+      "sdk_version": "27.2",
+      "app_intents_testing_exists": true,
+      "app_intents_testing": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/AppIntentsTesting.framework/AppIntentsTesting",
+      "runtime_inventory": [
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+          "version": "27.0",
+          "buildversion": "24A434",
+          "isAvailable": true,
+          "supports_full_device_matrix": true
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-1",
+          "version": "27.1",
+          "buildversion": "24A94425",
+          "isAvailable": true,
+          "supports_full_device_matrix": false
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2",
+          "version": "27.2",
+          "buildversion": "24B8117",
+          "isAvailable": true,
+          "supports_full_device_matrix": true
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2-iPhone19-4",
+          "version": "27.2",
+          "buildversion": "24B91016s",
+          "isAvailable": true,
+          "supports_full_device_matrix": false
+        }
+      ],
+      "matching_runtime_ids": [
+        "com.apple.CoreSimulator.SimRuntime.iOS-27-2"
+      ],
+      "status": "MATCHED_MATRIX_PAIR"
+    },
+    {
+      "developer_dir": "/Applications/Xcode_27.2.app/Contents/Developer",
+      "xcode": "Xcode 27.2\nBuild version 27B52",
+      "xcode_version": "27.2",
+      "sdk_version": "27.2",
+      "app_intents_testing_exists": true,
+      "app_intents_testing": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/AppIntentsTesting.framework/AppIntentsTesting",
+      "runtime_inventory": [
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+          "version": "27.0",
+          "buildversion": "24A434",
+          "isAvailable": true,
+          "supports_full_device_matrix": true
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-1",
+          "version": "27.1",
+          "buildversion": "24A94425",
+          "isAvailable": true,
+          "supports_full_device_matrix": false
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2",
+          "version": "27.2",
+          "buildversion": "24B8117",
+          "isAvailable": true,
+          "supports_full_device_matrix": true
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2-iPhone19-4",
+          "version": "27.2",
+          "buildversion": "24B91016s",
+          "isAvailable": true,
+          "supports_full_device_matrix": false
+        }
+      ],
+      "matching_runtime_ids": [
+        "com.apple.CoreSimulator.SimRuntime.iOS-27-2"
+      ],
+      "status": "MATCHED_MATRIX_PAIR"
+    },
+    {
+      "developer_dir": "/Applications/Xcode_27.app/Contents/Developer",
+      "xcode": "Xcode 27.0\nBuild version 27A266a",
+      "xcode_version": "27.0",
+      "sdk_version": "27.0",
+      "app_intents_testing_exists": true,
+      "app_intents_testing": "/Applications/Xcode_27.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/AppIntentsTesting.framework/AppIntentsTesting",
+      "runtime_inventory": [
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+          "version": "27.0",
+          "buildversion": "24A434",
+          "isAvailable": true,
+          "supports_full_device_matrix": true
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-1",
+          "version": "27.1",
+          "buildversion": "24A94425",
+          "isAvailable": true,
+          "supports_full_device_matrix": false
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2",
+          "version": "27.2",
+          "buildversion": "24B8117",
+          "isAvailable": true,
+          "supports_full_device_matrix": true
+        },
+        {
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2-iPhone19-4",
+          "version": "27.2",
+          "buildversion": "24B91016s",
+          "isAvailable": true,
+          "supports_full_device_matrix": false
+        }
+      ],
+      "matching_runtime_ids": [
+        "com.apple.CoreSimulator.SimRuntime.iOS-27-0"
+      ],
+      "status": "MATCHED_MATRIX_PAIR"
+    }
+  ],
+  "selected": {
+    "developer_dir": "/Applications/Xcode_27.2.app/Contents/Developer",
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "xcode_version": "27.2",
+    "sdk_version": "27.2",
+    "app_intents_testing": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/AppIntentsTesting.framework/AppIntentsTesting",
+    "runtime_identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2"
+  },
+  "native_ui_executed": 0,
+  "global_xcode_select_changed": false,
+  "toolchains_installed": false
+}

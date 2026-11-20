@@ -1,0 +1,23 @@
+{
+  "run": 44692780853,
+  "checkout": "d8cc18f80e905c66d73963951efac53b43a12080",
+  "appTests": "c61213d9fcc8b80a8606ba00a1562215312ca2ed",
+  "status": "completed",
+  "conclusion": "cancelled",
+  "selectedNativeCases": 13,
+  "verifiedNativeExecutions": 0,
+  "verifiedNativePasses": 0,
+  "testTree": {
+    "actual": "f6deb72fb3e84918061baaa727463aaef7b6a2aa",
+    "gitExpected": "f6deb72fb3e84918061baaa727463aaef7b6a2aa"
+  },
+  "artifactPresence": {
+    "nativeMatrixLog": false,
+    "finalizedTests": [],
+    "testSimulatorLogs": [],
+    "runtimeResult": false,
+    "buildResult": false
+  },
+  "lastBuildActivity": "React-CoreModules Objective-C++ compilation; no compiler error or Test Suite/Test Case lines observed",
+  "sourceProvenThrowsDefect": "Separately inspected source issue; not an observed Apple compiler diagnostic in this cancelled run"
+}

@@ -1,0 +1,250 @@
+[
+  {
+    "path": "artifacts/runtime27/CommandPalette.abi.json",
+    "bytes": 149
+  },
+  {
+    "path": "artifacts/runtime27/CommandPalette.swiftdoc",
+    "bytes": 29836
+  },
+  {
+    "path": "artifacts/runtime27/CommandPalette.swiftmodule",
+    "bytes": 188328
+  },
+  {
+    "path": "artifacts/runtime27/CommandPalette.swiftsourceinfo",
+    "bytes": 37164
+  },
+  {
+    "path": "artifacts/runtime27/ReaderSidebarSplit.abi.json",
+    "bytes": 149
+  },
+  {
+    "path": "artifacts/runtime27/ReaderSidebarSplit.swift",
+    "bytes": 12387
+  },
+  {
+    "path": "artifacts/runtime27/ReaderSidebarSplit.swiftdoc",
+    "bytes": 412
+  },
+  {
+    "path": "artifacts/runtime27/ReaderSidebarSplit.swiftmodule",
+    "bytes": 39696
+  },
+  {
+    "path": "artifacts/runtime27/ReaderSidebarSplit.swiftsourceinfo",
+    "bytes": 676
+  },
+  {
+    "path": "artifacts/runtime27/build-for-testing-driver.log",
+    "bytes": 16968
+  },
+  {
+    "path": "artifacts/runtime27/checkout.txt",
+    "bytes": 41
+  },
+  {
+    "path": "artifacts/runtime27/device-types.json",
+    "bytes": 66366
+  },
+  {
+    "path": "artifacts/runtime27/hid-prepare.log",
+    "bytes": 1623
+  },
+  {
+    "path": "artifacts/runtime27/hid-tools.json",
+    "bytes": 908
+  },
+  {
+    "path": "artifacts/runtime27/ios-simulator-skill-SKILL.md",
+    "bytes": 31145
+  },
+  {
+    "path": "artifacts/runtime27/maestro-mobile-testing-skill-SKILL.md",
+    "bytes": 8582
+  },
+  {
+    "path": "artifacts/runtime27/palette-sdk-compile.log",
+    "bytes": 0
+  },
+  {
+    "path": "artifacts/runtime27/runtimes.json",
+    "bytes": 58443
+  },
+  {
+    "path": "artifacts/runtime27/sdk-path.txt",
+    "bytes": 122
+  },
+  {
+    "path": "artifacts/runtime27/sdk.txt",
+    "bytes": 5
+  },
+  {
+    "path": "artifacts/runtime27/selected-test-declarations.json",
+    "bytes": 3971
+  },
+  {
+    "path": "artifacts/runtime27/sidebar-sdk-compile.log",
+    "bytes": 0
+  },
+  {
+    "path": "artifacts/runtime27/simctl-io-help.txt",
+    "bytes": 3082
+  },
+  {
+    "path": "artifacts/runtime27/simctl-ui-help.txt",
+    "bytes": 1776
+  },
+  {
+    "path": "artifacts/runtime27/swift.txt",
+    "bytes": 128
+  },
+  {
+    "path": "artifacts/runtime27/test-tree.txt",
+    "bytes": 41
+  },
+  {
+    "path": "artifacts/runtime27/toolchain-selection.json",
+    "bytes": 13019
+  },
+  {
+    "path": "artifacts/runtime27/xcode.txt",
+    "bytes": 31
+  },
+  {
+    "path": "artifacts/runtime27/xcresult-activities-help.txt",
+    "bytes": 906
+  },
+  {
+    "path": "artifacts/runtime27/xcresult-summary-help.txt",
+    "bytes": 708
+  },
+  {
+    "path": "artifacts/runtime27/xcresult-summary-schema.json",
+    "bytes": 5804
+  },
+  {
+    "path": "artifacts/runtime27/xcresult-test-details-help.txt",
+    "bytes": 817
+  },
+  {
+    "path": "artifacts/runtime27/xcresult-tests-help.txt",
+    "bytes": 713
+  },
+  {
+    "path": "artifacts/runtime27/xcresult-tests-schema.json",
+    "bytes": 3740
+  },
+  {
+    "path": "hq-stage2/ExpoModulesProvider.swift",
+    "bytes": 1246
+  },
+  {
+    "path": "hq-stage2/actual-source-inputs.json",
+    "bytes": 113162
+  },
+  {
+    "path": "hq-stage2/generated-Maktabah-project.pbxproj",
+    "bytes": 610513
+  },
+  {
+    "path": "hq-stage2/generated-pods-project.diff",
+    "bytes": 408654
+  },
+  {
+    "path": "hq-stage2/generated-privacy.diff",
+    "bytes": 2618
+  },
+  {
+    "path": "hq-stage2/hanlin-sdk-inputs.json",
+    "bytes": 61045
+  },
+  {
+    "path": "hq-stage2/hanlin-sdk.log",
+    "bytes": 679
+  },
+  {
+    "path": "hq-stage2/maktabah_zayit_search.h.log",
+    "bytes": 300
+  },
+  {
+    "path": "hq-stage2/matching-embedded-bundle.log",
+    "bytes": 741
+  },
+  {
+    "path": "hq-stage2/native-script-permissions.log",
+    "bytes": 0
+  },
+  {
+    "path": "hq-stage2/npm-ci.log",
+    "bytes": 3331
+  },
+  {
+    "path": "hq-stage2/otzaria_search_engine.h.log",
+    "bytes": 304
+  },
+  {
+    "path": "hq-stage2/pinned-sharp-inputs.log",
+    "bytes": 991
+  },
+  {
+    "path": "hq-stage2/pod-install.log",
+    "bytes": 31807
+  },
+  {
+    "path": "hq-stage2/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+    "bytes": 877
+  },
+  {
+    "path": "hq-stage2/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+    "bytes": 855
+  },
+  {
+    "path": "hq-stage2/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+    "bytes": 1482
+  },
+  {
+    "path": "hq-stage2/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+    "bytes": 776
+  },
+  {
+    "path": "hq-stage2/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+    "bytes": 1233
+  },
+  {
+    "path": "hq-stage2/privacy-generated.xcprivacy",
+    "bytes": 1386
+  },
+  {
+    "path": "hq-stage2/privacy-original.xcprivacy",
+    "bytes": 1132
+  },
+  {
+    "path": "hq-stage2/react-source-checkout.log",
+    "bytes": 453
+  },
+  {
+    "path": "hq-stage2/resolve-packages.log",
+    "bytes": 4898
+  },
+  {
+    "path": "hq-stage2/resolved-Package.resolved",
+    "bytes": 4432
+  },
+  {
+    "path": "hq-stage2/resolved-Podfile.lock",
+    "bytes": 100298
+  },
+  {
+    "path": "hq-stage2/simulator-build-for-testing.log",
+    "bytes": 13648726
+  },
+  {
+    "path": "hq-stage2/target-membership.log",
+    "bytes": 130
+  },
+  {
+    "path": "hq-stage2/workspace-Package.resolved",
+    "bytes": 4432
+  }
+]
