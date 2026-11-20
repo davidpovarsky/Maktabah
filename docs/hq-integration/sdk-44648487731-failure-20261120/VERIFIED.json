@@ -1,0 +1,38 @@
+{
+  "verified_at": "2026-11-20T01:24:04.548151+00:00",
+  "run_id": 44648487731,
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44648487731",
+  "checkout_sha": "83bc48f7b27e41d5580124a974d78bfad6ace50c",
+  "application_source_sha": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
+  "conclusion": "failure",
+  "artifact": {
+    "id": 14591380311,
+    "bytes": 182966,
+    "sha256": "29b2d5e89052d8d09233448b60e053ce2afe646c0f08655e8283e43ad215a0fb"
+  },
+  "sdk": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.2.sdk",
+  "xcode": "Xcode 27.2\nBuild version 27B52",
+  "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+  "ui_sdk_typecheck": "SDK_COMPILE_PASS",
+  "ui_warning_count": 2504,
+  "native_selected_declarations": 88,
+  "native_ui_executions": 0,
+  "sqlite_compile_exit": 1,
+  "sqlite_runtime": "NOT_RUN",
+  "sqlite_fixture_apple_noasync_errors": [
+    69,
+    81,
+    94,
+    262,
+    288
+  ],
+  "hebrew_matcher_pass": 15,
+  "inspector_owner_pass": 17,
+  "hanlin_legacy_pass": 8,
+  "hanlin_filesystem_pass": 11,
+  "hanlin_api12_pass": 28,
+  "aggregate": "FAIL",
+  "full_app_build": "NOT_RUN",
+  "native_88": "NOT_RUN",
+  "physical": "NOT_RUN"
+}
