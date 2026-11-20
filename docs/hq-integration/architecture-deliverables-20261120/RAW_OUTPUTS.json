@@ -1,0 +1,44 @@
+[
+  {
+    "path": "driver.stdout.log.gz",
+    "original_bytes": 292,
+    "original_sha256": "c33efe84e32f7eab8385734a5488d37019a9aa2beeb9f4621d2f5ebd5adf403b",
+    "gzip_sha256": "5489c2e6c43278f0e83b96561a8895d794d96ba34e104bd95b21015d8d19e901"
+  },
+  {
+    "path": "driver.stderr.log.gz",
+    "original_bytes": 0,
+    "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gzip_sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+  },
+  {
+    "path": "workspace-compile.log.gz",
+    "original_bytes": 210,
+    "original_sha256": "b20b831c20befbbff0cdfcae0d1d93b7238b93bed192c74d62665e89158281bd",
+    "gzip_sha256": "ad4e1f65592d62125f29f144c24feb264285d92c433ca177398da7760bf38803"
+  },
+  {
+    "path": "workspace-test-results.log.gz",
+    "original_bytes": 82,
+    "original_sha256": "4028d11f2869c212b575ac8cc91bdc397f98af4f4d9b7a94664292e68e60ed72",
+    "gzip_sha256": "4d86d134438e33d9545beb9ea01cb38541352cf5da26557732e4efdf693f908d"
+  },
+  {
+    "path": "INPUTS.original.json.gz",
+    "original_bytes": 12869,
+    "original_sha256": "8142fb0017a0a0305fac717502d74060be4c9fa3edd2a2f84b050b9e1ebaa22e",
+    "gzip_sha256": "2b2e8787de43942235cccb17a8d1dd26f5c5a44a48190b29fb64cd99b1287a1d"
+  },
+  {
+    "path": "EXECUTION.original.json.gz",
+    "original_bytes": 1509,
+    "original_sha256": "51e10b65763749c6f7a653ab52f1abfa45e86aab327df1a4cd16f0552a88476c",
+    "gzip_sha256": "10eff65f4ec21c1935702f98b8fd909b04a2a93347f4f82c42b28a8b4a9eed94"
+  },
+  {
+    "path": "STARTED.original.json.gz",
+    "original_bytes": 622,
+    "original_sha256": "4f376000031a007ecd1a0f06c23e9df3ad44aa1faadaa248fd43d11e43e791bf",
+    "gzip_sha256": "3414e2bc9e9620c6d7288dd3e79e6cf6acfaaf9ab22f0c03eec3c78539d4521b"
+  }
+]

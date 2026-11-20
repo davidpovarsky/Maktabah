@@ -1,0 +1,323 @@
+{
+  "at_utc": "2026-11-20T09:55:34.417777+00:00",
+  "references": {
+    "current": "d5a01b53b08c9115dc09a647bd7e147f44da73c7",
+    "historical_workspace": "03287c697df6c64ec10d0fc36db6df7533c2b871",
+    "sidebar_flag_fix": "455e5afa4d221c810bb0a4e1fde1a208f3a16b7d",
+    "sec_reconciliation": "01793f320f1047f008e02a5a0aa1a693732ffdb1"
+  },
+  "compiled_input_count": 37,
+  "compiled_inputs": [
+    {
+      "path": "Source/ChavrusaText/ReaderRendering/ReaderPullNavigationStateMachine.swift",
+      "historical_lf_sha256": "9560a855867ef42a15e0304ca45e770a6ae1c824ec4ba7b598be35760db7bad5",
+      "current_lf_sha256": "9560a855867ef42a15e0304ca45e770a6ae1c824ec4ba7b598be35760db7bad5",
+      "current_git_blob": "4840c75a7598da8da4115d232651a4462e663749",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderRendering/ReaderSelectionRangeMapper.swift",
+      "historical_lf_sha256": "97f05de4dcb3ce774b3ac6f881ab352501695793f861bb0efdcb42f5b54cf8af",
+      "current_lf_sha256": "97f05de4dcb3ce774b3ac6f881ab352501695793f861bb0efdcb42f5b54cf8af",
+      "current_git_blob": "5eb92b8cad2b405833dd33cadfbb65638ea5b588",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/BackendAnnotationBridge.swift",
+      "historical_lf_sha256": "b48e702ae0af4b1027052fd3b6269359dbb919cd86ba5ce710b3bed48e97dc56",
+      "current_lf_sha256": "b48e702ae0af4b1027052fd3b6269359dbb919cd86ba5ce710b3bed48e97dc56",
+      "current_git_blob": "5e0f886cd40061c2117ea50bd69422366e4ae377",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderSessionRestoreCoordinator.swift",
+      "historical_lf_sha256": "3d9ecf798b4a2a99a58a8f7d354927d5a07a1ac6d5fadd8ededf346b1d9ba972",
+      "current_lf_sha256": "3d9ecf798b4a2a99a58a8f7d354927d5a07a1ac6d5fadd8ededf346b1d9ba972",
+      "current_git_blob": "da9b3152197f1ae9b10423304e2c2914cd963a46",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/SerializedSessionWriter.swift",
+      "historical_lf_sha256": "1a14bb40887ec2d3cc49cea5393eb1e02508fb74832cbe32982f8f5bad9f0aa6",
+      "current_lf_sha256": "1a14bb40887ec2d3cc49cea5393eb1e02508fb74832cbe32982f8f5bad9f0aa6",
+      "current_git_blob": "808ed54251d6bbd1f7094f5f40b2571882a2e6fb",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift",
+      "historical_lf_sha256": "f201af68a761d520529f844899720c67603a3cc50b0b4c641259145bcf791bb6",
+      "current_lf_sha256": "f201af68a761d520529f844899720c67603a3cc50b0b4c641259145bcf791bb6",
+      "current_git_blob": "f8b444a4de6a5b577c570a1ce3a78a9b3470a3d4",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+      "historical_lf_sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db",
+      "current_lf_sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db",
+      "current_git_blob": "d3c3451a79e2d0ded0db3a22d7754ea85747e99c",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/TargetBackendBookResolver.swift",
+      "historical_lf_sha256": "609d29e370778a8d5e4675de12288f9b7f0636a7a280d3b36ad37f16c98d3b89",
+      "current_lf_sha256": "609d29e370778a8d5e4675de12288f9b7f0636a7a280d3b36ad37f16c98d3b89",
+      "current_git_blob": "85bd35a035929d397fe709eae3d873d4395a38bb",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "historical_lf_sha256": "f4c95ea53db30649fa4e0cd079c2c3c3363494a5dabb92a9f547979cfa047f49",
+      "current_lf_sha256": "ad167b13a3bbb518ad5a0e4b521cdf00313028b7f2109a597b1bedcede3c3ed0",
+      "current_git_blob": "a59323cdc7def061eb6e2223a70afadaf5a9013a",
+      "unchanged_since_historical89": false
+    },
+    {
+      "path": "Source/ChavrusaText/Testing/ReaderRenderedHighlightInspector.swift",
+      "historical_lf_sha256": "bdfa1b65d109e82317c5c52d4e447e7d8863b5d722fc77c464108a453ab2a5ef",
+      "current_lf_sha256": "bdfa1b65d109e82317c5c52d4e447e7d8863b5d722fc77c464108a453ab2a5ef",
+      "current_git_blob": "49ff59356c924869655237175979baa016dd7b41",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "historical_lf_sha256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "current_lf_sha256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "current_git_blob": "fe5593bf2c47ea70002c3debd2a36648ecc48c6b",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "historical_lf_sha256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "current_lf_sha256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "current_git_blob": "da1faba53fa3f37cb85187313b53f2b0ed6af489",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderDestinationResolver.swift",
+      "historical_lf_sha256": "715d5fef2cde466eebb2767a75f5e5d4fb6fb86d56c7c81cc90a8b1f260fb4d3",
+      "current_lf_sha256": "715d5fef2cde466eebb2767a75f5e5d4fb6fb86d56c7c81cc90a8b1f260fb4d3",
+      "current_git_blob": "da917c920dd08ecd57ec20af3fa8def7c8b7f69a",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderBackendPagingCoordinator.swift",
+      "historical_lf_sha256": "bdfd4e1f6786da17afeae806e90810c185048648025c9adb8bf02e1aa040902d",
+      "current_lf_sha256": "bdfd4e1f6786da17afeae806e90810c185048648025c9adb8bf02e1aa040902d",
+      "current_git_blob": "b3e1ccb2254b3904218354b221affd207b5e5c6d",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/Search/ReaderSearchContextCoordinator.swift",
+      "historical_lf_sha256": "880c439d6d53efbd15bfdbe573c6f3f3436fb8eaf00be37ce025c304968b73c1",
+      "current_lf_sha256": "880c439d6d53efbd15bfdbe573c6f3f3436fb8eaf00be37ce025c304968b73c1",
+      "current_git_blob": "823728ac8f5b376836d0ec8b49a0cd55f420b2cc",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/TOCReadingLocationTracker.swift",
+      "historical_lf_sha256": "eb868d58ffa7752dee5eae82228c9ccffbc36bd02812ccfd8a0d01c054541982",
+      "current_lf_sha256": "eb868d58ffa7752dee5eae82228c9ccffbc36bd02812ccfd8a0d01c054541982",
+      "current_git_blob": "8837f135106bce47d6120f60dd4911b51089f1e4",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/Sefaria/Domain/SefariaModels.swift",
+      "historical_lf_sha256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "current_lf_sha256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "current_git_blob": "2f6c00bebbbbf7ca13cf4374111b09ec1c29e584",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/Sefaria/Offline/SefariaExportModels.swift",
+      "historical_lf_sha256": "2a1316aa7d0dc9a1f0bf1ee1b85d6bebe08f61ba5a867e1e8957c4adbaae2453",
+      "current_lf_sha256": "2a1316aa7d0dc9a1f0bf1ee1b85d6bebe08f61ba5a867e1e8957c4adbaae2453",
+      "current_git_blob": "af1669b5b857b0ab28002d05f748d0e35eafdcba",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/Sefaria/Offline/SefariaOfflinePaths.swift",
+      "historical_lf_sha256": "b02e12239eec6980645c55a9dd86529e8448ba51dca00efd099b4931f3e07bcf",
+      "current_lf_sha256": "b02e12239eec6980645c55a9dd86529e8448ba51dca00efd099b4931f3e07bcf",
+      "current_git_blob": "78201577d42bf38566e9d3c3d2c4cd06c5a89fe6",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/Otzaria/Search/OtzariaSearchMode.swift",
+      "historical_lf_sha256": "4d6b3340b0ae26b5a7367038eaab6675a40bac58b989cbe6b1e145e956ac8876",
+      "current_lf_sha256": "4d6b3340b0ae26b5a7367038eaab6675a40bac58b989cbe6b1e145e956ac8876",
+      "current_git_blob": "7fdf7740fd0e4bcddcabd529bc0589310d927ff3",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/Otzaria/Search/OtzariaSearchModels.swift",
+      "historical_lf_sha256": "e75225c23668dc0470b8d350cf50c9231a999e606a25db283f4e002055b151c9",
+      "current_lf_sha256": "e75225c23668dc0470b8d350cf50c9231a999e606a25db283f4e002055b151c9",
+      "current_git_blob": "22f3980075810cec64fa1e4d52198e5ae2dfa2b2",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/LibraryBackend/LibraryBackendProtocols.swift",
+      "historical_lf_sha256": "de28cf7350e82b3766b6a5404e2f7e9271c48723a124d752e02e244f6de4e674",
+      "current_lf_sha256": "de28cf7350e82b3766b6a5404e2f7e9271c48723a124d752e02e244f6de4e674",
+      "current_git_blob": "50b61805c18e574fa7d1339a01ee93e7d17cea40",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+      "historical_lf_sha256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "current_lf_sha256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "current_git_blob": "fe2fbcb9f07762e0d35949b098b55d079a3c95d2",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+      "historical_lf_sha256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "current_lf_sha256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "current_git_blob": "59173d54ed1be62eb25e6f1100771d8b10fb7547",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/LibraryBackend/BackendCoordinator.swift",
+      "historical_lf_sha256": "a179355611cc079de57576a4a0b072bd0c62ceae731743da0c9dfc4d134e4b67",
+      "current_lf_sha256": "508838569fe94061c169871f74f9dcebeaa2adf7cc1b19907453b31d3d5f8332",
+      "current_git_blob": "4d05fc247a4da6fbb45e4e82905e20a54c8f1ff9",
+      "unchanged_since_historical89": false
+    },
+    {
+      "path": "Source/LibraryBackend/LegacyIdentityRegistry.swift",
+      "historical_lf_sha256": "0b54b8405de81bd73b64584283299b9d463cf5ae5d10754b97257c98f5e642fe",
+      "current_lf_sha256": "0b54b8405de81bd73b64584283299b9d463cf5ae5d10754b97257c98f5e642fe",
+      "current_git_blob": "92cc79f4cf7edeec737857a756e43128bc569e84",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift",
+      "historical_lf_sha256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+      "current_lf_sha256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+      "current_git_blob": "478db71cbf52e0e42839b6417e3e3569129e42b0",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "historical_lf_sha256": "f5c039dd22134182e8c1eda871f6bd4ecaa6b916edf24ca7643ea72a1f907df8",
+      "current_lf_sha256": "f5c039dd22134182e8c1eda871f6bd4ecaa6b916edf24ca7643ea72a1f907df8",
+      "current_git_blob": "efd5c651bda5577447b836ee40429cece2dfb429",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/SefariaEmbedded/Runtime/SefariaExpoLifecycleAdapter.swift",
+      "historical_lf_sha256": "2792d42f3531f7753e6de12ce27fb5cab87ca75be6711b8d99e241e5283e7d83",
+      "current_lf_sha256": "2792d42f3531f7753e6de12ce27fb5cab87ca75be6711b8d99e241e5283e7d83",
+      "current_git_blob": "5b57b725a661f58bf133812328e36a30fe44c33b",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift",
+      "historical_lf_sha256": "a6db78ccd1d7a5ce818e9e86c87998889e2010f72667b3b0f4bff070599b2fab",
+      "current_lf_sha256": "a6db78ccd1d7a5ce818e9e86c87998889e2010f72667b3b0f4bff070599b2fab",
+      "current_git_blob": "6a5a5466a08e384415f65eae15d1e6131919430b",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderNavigationChromeState.swift",
+      "historical_lf_sha256": "db8795e7cf77585ca3883b3651eea1d1cfafdffc80e0d740264c9a76aa4914cc",
+      "current_lf_sha256": "db8795e7cf77585ca3883b3651eea1d1cfafdffc80e0d740264c9a76aa4914cc",
+      "current_git_blob": "135f75bfdd1d28df0341f82ff4315e09d4fa4e0d",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "historical_lf_sha256": "da6920095961f53add1c9776e31db2efced8835dd35f6e8e0c08527af2d0ef69",
+      "current_lf_sha256": "da6920095961f53add1c9776e31db2efced8835dd35f6e8e0c08527af2d0ef69",
+      "current_git_blob": "234eea1153ada4fbda360c155ddae27dc8eb62fa",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+      "historical_lf_sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b",
+      "current_lf_sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b",
+      "current_git_blob": "de3a6a7d8d16e9a81a6f5cfcdf6859c84efbcbdd",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "historical_lf_sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25",
+      "current_lf_sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25",
+      "current_git_blob": "99d267d3968f160b641a7f8138ffaefbd8ce6517",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "historical_lf_sha256": "b0339b0b636290daa6a9e88bd00d4e694cba9fac48e4273620b0d772dcb1e7ba",
+      "current_lf_sha256": "b0339b0b636290daa6a9e88bd00d4e694cba9fac48e4273620b0d772dcb1e7ba",
+      "current_git_blob": "0db0999960f153433cbd7d89a9af6f25957d5877",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderNavigationDisplayPolicy.swift",
+      "historical_lf_sha256": "7b03ca345a7527bdb8a32604136a8f88fdbe7fcc82d503557122ea527551c640",
+      "current_lf_sha256": "7b03ca345a7527bdb8a32604136a8f88fdbe7fcc82d503557122ea527551c640",
+      "current_git_blob": "5a0cd0ee4eaf48256d5150aee0516805e5741a2c",
+      "unchanged_since_historical89": true
+    },
+    {
+      "path": "tools/test_faithful_study_workspace.swift",
+      "historical_lf_sha256": "619aeae15cfde94d1511b3699254ad1ae95f21554d448b1317eb408e6525bfec",
+      "current_lf_sha256": "619aeae15cfde94d1511b3699254ad1ae95f21554d448b1317eb408e6525bfec",
+      "current_git_blob": "b53ee8aecdb5d5b16ed5136ec0f8c21d998f0cce",
+      "unchanged_since_historical89": true
+    }
+  ],
+  "critical_contract_sources": [
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "current_lf_sha256": "da6920095961f53add1c9776e31db2efced8835dd35f6e8e0c08527af2d0ef69",
+      "historical_lf_sha256": "da6920095961f53add1c9776e31db2efced8835dd35f6e8e0c08527af2d0ef69",
+      "exact_bytes_equal": true,
+      "is_current_portable_compiled_input": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+      "current_lf_sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b",
+      "historical_lf_sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b",
+      "exact_bytes_equal": true,
+      "is_current_portable_compiled_input": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "current_lf_sha256": "b0339b0b636290daa6a9e88bd00d4e694cba9fac48e4273620b0d772dcb1e7ba",
+      "historical_lf_sha256": "b0339b0b636290daa6a9e88bd00d4e694cba9fac48e4273620b0d772dcb1e7ba",
+      "exact_bytes_equal": true,
+      "is_current_portable_compiled_input": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "current_lf_sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25",
+      "historical_lf_sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25",
+      "exact_bytes_equal": true,
+      "is_current_portable_compiled_input": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "current_lf_sha256": "b10c9d53a50b938ecb791186fdecee23e2ae45ffe77b222ca1957386ee14fef4",
+      "historical_lf_sha256": "b10c9d53a50b938ecb791186fdecee23e2ae45ffe77b222ca1957386ee14fef4",
+      "exact_bytes_equal": true,
+      "is_current_portable_compiled_input": false
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+      "current_lf_sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db",
+      "historical_lf_sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db",
+      "exact_bytes_equal": true,
+      "is_current_portable_compiled_input": true
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSReaderSessionManager.swift",
+      "current_lf_sha256": "f05e6d7c6e66ab69ed3246a92b3260288728a2df66adcc95b11ee0b41a798a2f",
+      "historical_lf_sha256": "f05e6d7c6e66ab69ed3246a92b3260288728a2df66adcc95b11ee0b41a798a2f",
+      "exact_bytes_equal": true,
+      "is_current_portable_compiled_input": false
+    }
+  ],
+  "claim": "Hash equality is source binding, not a new test execution. Current execution is recorded separately."
+}
