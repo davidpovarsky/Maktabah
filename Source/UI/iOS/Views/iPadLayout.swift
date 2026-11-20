@@ -103,6 +103,15 @@ struct iPadLayout: View {
 
     @ViewBuilder
     private var viewerTabContent: some View {
+        if ChavrusaTextReaderUI.isEnabled {
+            workspaceViewerTabContent
+        } else {
+            originalViewerTabContent
+        }
+    }
+
+    @ViewBuilder
+    private var workspaceViewerTabContent: some View {
         NavigationSplitView(
             columnVisibility: $columnVisibility,
             preferredCompactColumn: $preferredLibraryCompactColumn
@@ -139,6 +148,49 @@ struct iPadLayout: View {
         .environment(\.chavrusaReaderSidebar, sidebar)
     }
 
+    /// Preserve the original flag-off three-column composition from
+    /// 3dc5100900fc25eac1b312d7893eb50e7bd510cb. The current original Library,
+    /// TOC and Reader still own their controls, rendering and data.
+    private var originalViewerTabContent: some View {
+        NavigationSplitView(
+            columnVisibility: $columnVisibility,
+            preferredCompactColumn: $preferredLibraryCompactColumn
+        ) {
+            NavigationStack {
+                iOSLibraryView()
+                    .navigationTitle(iOSTab.viewer.title)
+                    .toolbarGeneral(showSettings: $showSettings)
+            }
+            .searchable(
+                text: Bindable(bManager.libraryViewModel).searchQuery,
+                placement: .toolbar,
+                prompt: String(localized: "Search Library")
+            )
+            .toolbarBackground(Color.appBackground, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .background(Color.appBackground)
+            .accessibilityElement(children: .contain)
+            .accessibilityIdentifier("library-column")
+            .modifier(MaktabahNativeRoutingSurface(kind: .library))
+        } content: {
+            activeReaderTableOfContents
+                .accessibilityElement(children: .contain)
+                .accessibilityIdentifier("toc-column")
+                .modifier(MaktabahNativeRoutingSurface(kind: .tableOfContents))
+        } detail: {
+            iOSReaderTabView(
+                columnVisibility: $columnVisibility,
+                preferredCompactColumn: $preferredLibraryCompactColumn
+            )
+            .background(Color.appBackground)
+            .accessibilityElement(children: .contain)
+            .accessibilityIdentifier("reader-detail-column")
+            .modifier(MaktabahNativeRoutingSurface(kind: .reader))
+        }
+        .navigationSplitViewStyle(.balanced)
+        .background(Color.appBackground.ignoresSafeArea())
+    }
+
     @ViewBuilder
     private var activeReaderTableOfContents: some View {
         if let tab = activeReaderTab {
@@ -150,7 +202,7 @@ struct iPadLayout: View {
                 embedsNavigationStack: false,
                 onSelect: { id in
                     tab.viewModel.didSelectTOCNode(id: id)
-                    if horizontalSizeClass == .compact { closeTableOfContents() }
+                    if ChavrusaTextReaderUI.isEnabled && horizontalSizeClass == .compact { closeTableOfContents() }
                 }
             )
             .onAppear {

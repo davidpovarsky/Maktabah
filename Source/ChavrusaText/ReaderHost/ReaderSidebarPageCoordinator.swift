@@ -109,16 +109,24 @@ struct Exact9401WorkspaceLifecycle: ViewModifier {
     let manager: iOSNavigationManager
     var compactWorkspaceOwner: MaktabahNativeWorkspaceOwner? = nil
     @State private var workspaceOwner = MaktabahNativeWorkspaceOwner()
-    private var workspace: StudyWorkspaceNavigationAdapter? { workspaceOwner.current }
+    private var workspace: StudyWorkspaceNavigationAdapter? {
+        // A disabled process must not create, expose or checkpoint workspace
+        // state, including an owner retained from an earlier view evaluation.
+        ChavrusaTextReaderUI.isEnabled ? workspaceOwner.current : nil
+    }
+    private var routingWorkspaceOwner: MaktabahNativeWorkspaceOwner? {
+        guard ChavrusaTextReaderUI.isEnabled else { return nil }
+        return MaktabahApp.isIpad ? workspaceOwner : compactWorkspaceOwner
+    }
     @State private var sceneID = ""
     @Environment(\.scenePhase) private var scenePhase
 
     func body(content: Content) -> some View {
         content
-            .environment(\.exact9401Workspace, MaktabahApp.isIpad ? workspace : compactWorkspaceOwner?.current)
-            .environment(\.maktabahNativeWorkspaceOwner, MaktabahApp.isIpad ? workspaceOwner : compactWorkspaceOwner)
+            .environment(\.exact9401Workspace, routingWorkspaceOwner?.current)
+            .environment(\.maktabahNativeWorkspaceOwner, routingWorkspaceOwner)
             .background {
-                if MaktabahApp.isIpad {
+                if ChavrusaTextReaderUI.isEnabled && MaktabahApp.isIpad {
                     ReaderSceneIdentityReader { sceneID = $0 }
                         .frame(width: 0, height: 0)
                         .accessibilityHidden(true)
@@ -134,7 +142,7 @@ struct Exact9401WorkspaceLifecycle: ViewModifier {
                 }
             }
             .task(id: sceneID) {
-                guard MaktabahApp.isIpad, workspace == nil, !sceneID.isEmpty else { return }
+                guard ChavrusaTextReaderUI.isEnabled, MaktabahApp.isIpad, workspace == nil, !sceneID.isEmpty else { return }
                 manager.restoreSessionIfNeeded()
                 let adapter = StudyWorkspaceNavigationAdapter(sceneID: sceneID, store: .forCurrentProcess())
                 do { try workspaceOwner.replace(with: adapter) } catch { return }

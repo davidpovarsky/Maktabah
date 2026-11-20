@@ -1,0 +1,103 @@
+{
+  "source_ref": "799c30e06f73b97e39cbe08afc2e77a29b2906d1",
+  "source_path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+  "source_raw_sha256": "d89dc4c50797c1dc0d6558ff253d744e91b09421d7c8a6da84d1e84bfbd3e604",
+  "source_lf_sha256": "d89dc4c50797c1dc0d6558ff253d744e91b09421d7c8a6da84d1e84bfbd3e604",
+  "fixture_sha256": "c941b67f933aaaadbda87845a2449675d5283fab7c816aacc790d894390fd66e",
+  "generated_sha256": "ee37be5153e90a0d226026c7ec93042757b0b49a06b9cd2a232f3f701548073d",
+  "compile_exit": 0,
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-parse-as-library",
+    "build\\feature-off-20261120\\red\\ExactFeatureOffLifecycle.swift",
+    "-o",
+    "build\\feature-off-20261120\\red\\feature-off.exe"
+  ],
+  "native_ui_executed": 0,
+  "apple_sdk_typecheck": "NOT_RUN",
+  "boundary": "Actual Foundation/UserDefaults flag and exact original lifecycle/task/getter/callback expressions; explicit platform, manager, adapter and store effect doubles writing only an owned temporary file. No SwiftUI rendering, original workspace store, Apple SDK or Native acceptance.",
+  "execute_exit": 0,
+  "actual": {
+    "cases": [
+      {
+        "name": "Unset flag preserves the original enabled default",
+        "passed": true
+      },
+      {
+        "name": "Explicit false is read from real Foundation UserDefaults",
+        "passed": true
+      },
+      {
+        "name": "Explicit true is read from real Foundation UserDefaults",
+        "passed": true
+      },
+      {
+        "name": "Disabled iPad never constructs a store or attaches/restores",
+        "passed": false
+      },
+      {
+        "name": "Disabled fresh launch creates no owned sidecar",
+        "passed": false
+      },
+      {
+        "name": "Disabled lifecycle exposes no routing workspace owner",
+        "passed": false
+      },
+      {
+        "name": "Disabled lifecycle mounts no iPad identity/checkpoint observers",
+        "passed": false
+      },
+      {
+        "name": "Disabled startup leaves existing workspace bytes unchanged",
+        "passed": false
+      },
+      {
+        "name": "Enabled iPad creates and attaches exactly one original lifecycle owner",
+        "passed": true
+      },
+      {
+        "name": "Enabled lifecycle exposes that exact original owner",
+        "passed": true
+      },
+      {
+        "name": "Enabled lifecycle retains scene/checkpoint observers",
+        "passed": true
+      },
+      {
+        "name": "Existing owner prevents duplicate restore/store/attach",
+        "passed": true
+      },
+      {
+        "name": "Missing scene identity cannot create or attach a store",
+        "passed": true
+      },
+      {
+        "name": "iPhone never creates a second iPad store",
+        "passed": true
+      },
+      {
+        "name": "iPhone exposes only its existing compact owner",
+        "passed": true
+      },
+      {
+        "name": "Disabled callbacks cannot checkpoint a retained adapter",
+        "passed": false
+      },
+      {
+        "name": "Disabled workspace getter does not expose a retained adapter",
+        "passed": false
+      },
+      {
+        "name": "Enabled callback still checkpoints the exact retained owner",
+        "passed": false
+      }
+    ],
+    "failed": 8,
+    "native_ui_executed": 0,
+    "passed": 10,
+    "tests": 18
+  }
+}
