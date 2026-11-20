@@ -7,3 +7,11 @@ The88 Native selections and all96 fullRelease UI configuration executions plus2 
 Launch tiers are explicitly distinguished in SOURCE_FREEZE.json; smoke bypass does not prove normal bootstrap. No source-level, Windows, declaration or SDK result grants a Native pass. All new actual Apple outcomes remain NOT_RUN at this checkpoint. Component evidence retains earlier failures and exact execution boundaries.
 
 Historical343 package test results remain attributed to0bc6be41. Input-tree and Package/lockfile equality were checked; those tests were not rerun or added to the new execution count.
+
+## Dispatched actual acceptance runs
+
+Checkout fe4df7c39aec242d00046bc454c81963ba4285a0 is preserved on three immutable workflow refs. GitHub run metadata independently matched the exact checkout and branch. Dispatch is not acceptance.
+
+- Apple SDK: https://github.com/davidpovarsky/Maktabah/actions/runs/44657109179; observed queued.
+- Native88: https://github.com/davidpovarsky/Maktabah/actions/runs/44657116407; observed queued.
+- Full Release96UI +2oracles: https://github.com/davidpovarsky/Maktabah/actions/runs/44657123753; observed queued.
