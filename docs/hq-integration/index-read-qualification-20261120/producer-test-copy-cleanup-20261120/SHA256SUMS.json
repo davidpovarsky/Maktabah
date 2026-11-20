@@ -1,0 +1,32 @@
+{
+  "createdAt": "2026-11-20T05:41:11.979845+00:00",
+  "entries": [
+    {
+      "path": "raw/INVENTORY_BEFORE.json.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\producer-read-copy-cleanup-20261120\\INVENTORY_BEFORE.json",
+      "rawBytes": 15567,
+      "rawSHA256": "b6759abc1f15cdabbf71f351d3ff067914718840cc7ac1ea0a2d0ee959ffb10c",
+      "storedBytes": 3313,
+      "storedSHA256": "ed91024ae78fee40a77867f594507258f3d867bec5adcb7d84ebe17077b81142"
+    },
+    {
+      "path": "raw/RESULT.json.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\producer-read-copy-cleanup-20261120\\RESULT.json",
+      "rawBytes": 1278,
+      "rawSHA256": "f5b2f1575891c6751eaef29d65695fb41ec1abd08e39cbc12b7d5f9abb0e9af9",
+      "storedBytes": 665,
+      "storedSHA256": "c107594cf3a71ced3a1d5f3b6568584352d086a571720d949ba45d4a3bb2a5bb"
+    }
+  ],
+  "summaryFiles": [
+    {
+      "path": "README.md",
+      "sha256": "54b431a9e461f73271370c564e407431f43bf2112e57c1c6b72356f0ac6d717d"
+    },
+    {
+      "path": "VERIFICATION_SCOPE.json",
+      "sha256": "2bccbde4bc186339a5eab4b1ee9c09623a5f898e26e33e53c57a88bd546060f5"
+    }
+  ],
+  "originalSourceAndEvidenceUnchanged": true
+}

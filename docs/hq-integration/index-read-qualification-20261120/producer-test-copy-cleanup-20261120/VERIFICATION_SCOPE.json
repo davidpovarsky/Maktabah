@@ -1,0 +1,20 @@
+{
+  "receiptFieldClarification": {
+    "allFileSizesAndMtimesUnchangedSinceAfterInventory": "The sealed after-inventory stores bytes and SHA-256, not file mtimes. At cleanup, each current size matched the sealed byte count and each current mtime was not later than the after-inventory file mtime. This is a bounded metadata check, not a second historical mtime-map comparison or a new full-payload hash."
+  },
+  "exactChecks": [
+    "All ten target filenames and sizes matched the committed after-inventory",
+    "All current write times preceded or equaled the sealed after-inventory file write time",
+    "Each file had one hard link and no reparse/symlink attribute",
+    "All ten share-denied read handles opened simultaneously before deletion",
+    "No matching owned engine or index-reader process was observed",
+    "Small metadata/lock files were hashed again",
+    "Original pristine and retained consumer payloads, and fourteen archives, had identical size/inode/mtime across deletion; both retained meta.json files had exact expected hashes",
+    "Target inventory was rechecked by inode/size/mtime immediately before each unlink"
+  ],
+  "fullFiveGBPayloadRehashedAtCleanup": false,
+  "previousFullHashEvidenceCommit": "df3b894cef2c8ea3dd50ccb31394635aa8fe4077",
+  "previousFullHashInventorySHA256": "8bb84e2eb095134570b50ab463fdf27d0ae894af59d16a60ea4f8edef6451341",
+  "rawReceiptsPreservedWithoutRewriting": true,
+  "change": "Deletion of one completed owned temporary producer test copy only"
+}
