@@ -1,0 +1,23 @@
+{
+  "at_utc": "2026-11-20T04:40:00.888937+00:00",
+  "native_source_commit": "81b961afd8a0a2e7ae2f81e4d6af65460b85d9f2",
+  "integrated_application_source": "34c7ab5ae026a0d3d08f02a2c97ddf4b38e1a56c",
+  "prior_manifest_canonical_git_sha256": "5df558127ac6c67bcc6e53d0c1c9a1fe80c2d148cb7829ea3244f5c4c964fc69",
+  "all_prior_90_cases_and_oracles_preserved": true,
+  "new_case_ids": [
+    "NativeRoutingAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad",
+    "NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone"
+  ],
+  "required_cases": 92,
+  "expected_per_device": {
+    "ipad11": 72,
+    "iphone": 20
+  },
+  "native_executed": 0,
+  "registry_state": "UNQUALIFIED_DISABLED",
+  "dispatch_state": "NOT_READY: final producer/source freeze and qualified registry still required",
+  "parse_passed": 2,
+  "prior_source_preservation_passed": 2,
+  "apple_typecheck": "NOT_RUN",
+  "native_result": "NOT_RUN"
+}
