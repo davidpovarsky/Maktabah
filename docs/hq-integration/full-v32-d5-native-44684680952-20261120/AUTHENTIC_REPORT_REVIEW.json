@@ -1,0 +1,426 @@
+{
+  "status": "VERIFIED_AUTHENTIC_NATIVE_REPORTS_ONLY",
+  "observed_utc": "2026-11-20T08:12:38.979946+00:00",
+  "checkout_sha": "b07f229e85fe894722566ad9444de31d0ba4490f",
+  "application_source_sha": "2e6f08659b347a755aef4e4fe6c00d9592ba700d",
+  "artifact_id": 14611023544,
+  "archive_sha256": "988b23cec3c14e5a99325de4613f03276099a900e467921e2fe564d757f3af41",
+  "validation": "Unmodified exact-checkout original Python validate_reports/load_occurrence_oracle and container validation executed against authenticated ZIP reports and exact Git source oracle; no new Native run",
+  "original_validator_and_native_source_sha256": {
+    "Scripts/CI/hq-v32-prebuilt-native.py": "a5209ff0ae93e2ab8c260f7493e4198915081388dde5c6a89bb41be5a09a0f3c",
+    "Scripts/run-otzaria-prebuilt-acceptance.sh": "e81a6f7050f38d72522dcf6af5f069d07e13dbeef0c2fbd16c16054d3e7175a4",
+    "Source/Otzaria/Search/Distribution/OtzariaPrebuiltSearchAcceptanceRunner.swift": "2cea09618644b879c60af0f85c788c3a707e2c8ba85e2781ca64a807fd066111",
+    ".github/workflows/otzaria-search-artifacts.yml": "5c422eb34a71f3c3ea4fb0d64ae371b098213e54fc3e0dc9a8d8136bb7005a17"
+  },
+  "pinned_read_inputs": {
+    "Scripts/CI/hq-v32-prebuilt-native.py": {
+      "bytes": 29386,
+      "sha256": "a5209ff0ae93e2ab8c260f7493e4198915081388dde5c6a89bb41be5a09a0f3c"
+    },
+    "docs/hq-integration/index-read-qualification-20261120/QUALIFICATION_REVIEW.json": {
+      "bytes": 27739,
+      "sha256": "3ccd704a831f4a96ec06a691bdc17e7a8988168659bad766815018c9106983a1"
+    },
+    "docs/hq-integration/index-read-qualification-20261120/raw/full-sql-global-oracle/attempt4-partitioned/RESULT.json.gz": {
+      "bytes": 4406,
+      "sha256": "3305cc2c6690ea66a94efc1e2600526e318353f66c1c387d6327f7aad97abe49"
+    },
+    "docs/hq-integration/full-v32-native-20261119/otzaria-search-manifest.json": {
+      "bytes": 7032,
+      "sha256": "34319ced48e76f22a5ae2df23745a03332160ddab2dd64244a5c917e0ce00a57"
+    }
+  },
+  "verification": {
+    "app_pids": {
+      "install": "82475",
+      "reopen": "87760"
+    },
+    "original_modes": [
+      "exact",
+      "fuzzy",
+      "advanced"
+    ],
+    "golden_results": 25,
+    "golden_result_identities_equal_after_restart": true,
+    "native_resumed_bytes": 1048576,
+    "exact_occurrence_checks_per_phase": 2,
+    "exact_occurrence_engine_revision": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+    "independent_sql_oracle_sha256_raw": "015b4ac382b8c6005d672234cfa7fc1ddaf291f7e5e0d07982f2c89db242f781",
+    "qualification_review_sha256_git_lf": "3ccd704a831f4a96ec06a691bdc17e7a8988168659bad766815018c9106983a1",
+    "exact_occurrence_boundary": "ACTUAL_NATIVE_SWIFT_C_BRIDGE_NOT_CORE_OR_UI"
+  },
+  "phases": [
+    {
+      "phase": "install",
+      "passed": true,
+      "documentCount": 7080797,
+      "sourceCount": 7876,
+      "consumerCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+      "artifactProducer": {
+        "adapterVersion": "0.1.0",
+        "commit": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+        "defaultGenerationOrder": 5,
+        "engineVersion": "0.1.0",
+        "indexSchemaVersion": 4,
+        "repository": "Otzaria/otzaria_search_engine",
+        "semanticSidecarRevision": "e836ea6cac05e695efdb03ef227e78cd1a624149",
+        "tantivyVersion": "0.26.1"
+      },
+      "nativeDownloadRan": true,
+      "resumedDownloadBytes": 1048576,
+      "localIndexingRan": false,
+      "original_modes": [
+        {
+          "count": 104120,
+          "firstFilePath": "otzaria-book:1",
+          "mode": "exact",
+          "query": "בראשית"
+        },
+        {
+          "count": 104120,
+          "firstFilePath": "otzaria-book:1",
+          "mode": "fuzzy",
+          "query": "בראשית"
+        },
+        {
+          "count": 104120,
+          "firstFilePath": "otzaria-book:1",
+          "mode": "advanced",
+          "query": "בראשית"
+        }
+      ],
+      "golden_count": 25,
+      "exactOccurrences": [
+        {
+          "query": "בראשית",
+          "request": {
+            "bookIds": [],
+            "facets": [
+              "/"
+            ],
+            "limits": {
+              "maxCandidateDocuments": 1000000,
+              "maxPositions": 10000000,
+              "maxPositionsPerDocument": 262144,
+              "maxSegments": 4096
+            },
+            "mode": "exact",
+            "query": "בראשית",
+            "timeoutMs": 60000,
+            "version": 1
+          },
+          "result": {
+            "matchingLiveDocuments": 104120,
+            "occurrences": 143982,
+            "proof": {
+              "analyzedToken": "בראשית",
+              "countKind": "distinctTokenPositions",
+              "engineBranch": "codex/otzaria-exact-occurrences-20261120",
+              "engineCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+              "enginePackageVersion": "0.1.0",
+              "engineRepository": "davidpovarsky/otzaria_search_engine",
+              "exact": true,
+              "indexSchemaVersion": 4,
+              "liveIndexDocuments": 7080797,
+              "originalUpstreamBase": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+              "requestToken": 1,
+              "requestedFacets": [
+                "/"
+              ],
+              "searcherGeneration": {
+                "generationId": 1,
+                "segments": [
+                  {
+                    "segmentId": "18dd1dde88684e2d84fba1c996012a06"
+                  }
+                ]
+              }
+            },
+            "work": {
+              "inspectedPositions": 143982,
+              "visitedCandidateDocuments": 104120,
+              "visitedSegments": 1
+            }
+          }
+        },
+        {
+          "query": "אברהם",
+          "request": {
+            "bookIds": [],
+            "facets": [
+              "/"
+            ],
+            "limits": {
+              "maxCandidateDocuments": 1000000,
+              "maxPositions": 10000000,
+              "maxPositionsPerDocument": 262144,
+              "maxSegments": 4096
+            },
+            "mode": "exact",
+            "query": "אברהם",
+            "timeoutMs": 60000,
+            "version": 1
+          },
+          "result": {
+            "matchingLiveDocuments": 109419,
+            "occurrences": 170515,
+            "proof": {
+              "analyzedToken": "אברהם",
+              "countKind": "distinctTokenPositions",
+              "engineBranch": "codex/otzaria-exact-occurrences-20261120",
+              "engineCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+              "enginePackageVersion": "0.1.0",
+              "engineRepository": "davidpovarsky/otzaria_search_engine",
+              "exact": true,
+              "indexSchemaVersion": 4,
+              "liveIndexDocuments": 7080797,
+              "originalUpstreamBase": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+              "requestToken": 2,
+              "requestedFacets": [
+                "/"
+              ],
+              "searcherGeneration": {
+                "generationId": 1,
+                "segments": [
+                  {
+                    "segmentId": "18dd1dde88684e2d84fba1c996012a06"
+                  }
+                ]
+              }
+            },
+            "work": {
+              "inspectedPositions": 170515,
+              "visitedCandidateDocuments": 109419,
+              "visitedSegments": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "phase": "reopen",
+      "passed": true,
+      "documentCount": 7080797,
+      "sourceCount": 7876,
+      "consumerCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+      "artifactProducer": {
+        "adapterVersion": "0.1.0",
+        "commit": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+        "defaultGenerationOrder": 5,
+        "engineVersion": "0.1.0",
+        "indexSchemaVersion": 4,
+        "repository": "Otzaria/otzaria_search_engine",
+        "semanticSidecarRevision": "e836ea6cac05e695efdb03ef227e78cd1a624149",
+        "tantivyVersion": "0.26.1"
+      },
+      "nativeDownloadRan": false,
+      "resumedDownloadBytes": 0,
+      "localIndexingRan": false,
+      "original_modes": [
+        {
+          "count": 104120,
+          "firstFilePath": "otzaria-book:1",
+          "mode": "exact",
+          "query": "בראשית"
+        },
+        {
+          "count": 104120,
+          "firstFilePath": "otzaria-book:1",
+          "mode": "fuzzy",
+          "query": "בראשית"
+        },
+        {
+          "count": 104120,
+          "firstFilePath": "otzaria-book:1",
+          "mode": "advanced",
+          "query": "בראשית"
+        }
+      ],
+      "golden_count": 25,
+      "exactOccurrences": [
+        {
+          "query": "בראשית",
+          "request": {
+            "bookIds": [],
+            "facets": [
+              "/"
+            ],
+            "limits": {
+              "maxCandidateDocuments": 1000000,
+              "maxPositions": 10000000,
+              "maxPositionsPerDocument": 262144,
+              "maxSegments": 4096
+            },
+            "mode": "exact",
+            "query": "בראשית",
+            "timeoutMs": 60000,
+            "version": 1
+          },
+          "result": {
+            "matchingLiveDocuments": 104120,
+            "occurrences": 143982,
+            "proof": {
+              "analyzedToken": "בראשית",
+              "countKind": "distinctTokenPositions",
+              "engineBranch": "codex/otzaria-exact-occurrences-20261120",
+              "engineCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+              "enginePackageVersion": "0.1.0",
+              "engineRepository": "davidpovarsky/otzaria_search_engine",
+              "exact": true,
+              "indexSchemaVersion": 4,
+              "liveIndexDocuments": 7080797,
+              "originalUpstreamBase": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+              "requestToken": 1,
+              "requestedFacets": [
+                "/"
+              ],
+              "searcherGeneration": {
+                "generationId": 1,
+                "segments": [
+                  {
+                    "segmentId": "18dd1dde88684e2d84fba1c996012a06"
+                  }
+                ]
+              }
+            },
+            "work": {
+              "inspectedPositions": 143982,
+              "visitedCandidateDocuments": 104120,
+              "visitedSegments": 1
+            }
+          }
+        },
+        {
+          "query": "אברהם",
+          "request": {
+            "bookIds": [],
+            "facets": [
+              "/"
+            ],
+            "limits": {
+              "maxCandidateDocuments": 1000000,
+              "maxPositions": 10000000,
+              "maxPositionsPerDocument": 262144,
+              "maxSegments": 4096
+            },
+            "mode": "exact",
+            "query": "אברהם",
+            "timeoutMs": 60000,
+            "version": 1
+          },
+          "result": {
+            "matchingLiveDocuments": 109419,
+            "occurrences": 170515,
+            "proof": {
+              "analyzedToken": "אברהם",
+              "countKind": "distinctTokenPositions",
+              "engineBranch": "codex/otzaria-exact-occurrences-20261120",
+              "engineCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+              "enginePackageVersion": "0.1.0",
+              "engineRepository": "davidpovarsky/otzaria_search_engine",
+              "exact": true,
+              "indexSchemaVersion": 4,
+              "liveIndexDocuments": 7080797,
+              "originalUpstreamBase": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+              "requestToken": 2,
+              "requestedFacets": [
+                "/"
+              ],
+              "searcherGeneration": {
+                "generationId": 1,
+                "segments": [
+                  {
+                    "segmentId": "18dd1dde88684e2d84fba1c996012a06"
+                  }
+                ]
+              }
+            },
+            "work": {
+              "inspectedPositions": 170515,
+              "visitedCandidateDocuments": 109419,
+              "visitedSegments": 1
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "source_database_unchanged": true,
+  "actual_app_database_sha256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+  "report_sha256": {
+    "otzaria-prebuilt-container.json": "ec83deb2ea3d62f3e8ad35538f7d5fec5e9be2929b3e2a1162f4f9dcfb00a4f6",
+    "otzaria-prebuilt-install.json": "79eb8d3aada8b7ef8e0a06c3592bd4ad5651929a8288c385d40ba82830309ee2",
+    "otzaria-prebuilt-reopen.json": "e26fa6b3ce273d54a3e5ba2c805e36fda6ee764fee25980f21b73469c923cd0c"
+  },
+  "native_log_sha256": "dcc0819c38e5914217c229cf79b2cc2d03671641063f46562fe262ba9177ccff",
+  "build": {
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+    "sdk": "27.2",
+    "source_inputs_verified": 996,
+    "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+    "scope": "SIMULATOR_BUILD_FOR_REAL_UI",
+    "device": "NOT_RUN",
+    "signing": "SIMULATOR_AD_HOC_ONLY",
+    "framework_inputs": [
+      {
+        "id": 14596463166,
+        "sha256": "efc73de90d74fdd380ffecfa334fe9dcece38519832b89cf3fb2a5741dcc25ad",
+        "producer": {
+          "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+          "producer_run": 44661774024,
+          "producer_attempt": 1,
+          "producer_run_conclusion": "failure",
+          "producer_job": 136041463727,
+          "producer_job_conclusion": "success",
+          "artifact_digest": "sha256:efc73de90d74fdd380ffecfa334fe9dcece38519832b89cf3fb2a5741dcc25ad",
+          "artifact_created_at": "2026-11-20T02:59:15Z",
+          "scope": "EXACT_ARTIFACT_AND_SUCCESSFUL_FRAMEWORK_JOB_NOT_WHOLE_WORKFLOW"
+        }
+      },
+      {
+        "id": 14595389912,
+        "sha256": "64f4ba7b8d6cfced525732699fd1958ca0cc5ec836369dcf839d91df855914d7",
+        "producer": {
+          "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+          "producer_run": 44661774024,
+          "producer_attempt": 1,
+          "producer_run_conclusion": "failure",
+          "producer_job": 136041463406,
+          "producer_job_conclusion": "success",
+          "artifact_digest": "sha256:64f4ba7b8d6cfced525732699fd1958ca0cc5ec836369dcf839d91df855914d7",
+          "artifact_created_at": "2026-11-20T02:42:53Z",
+          "scope": "EXACT_ARTIFACT_AND_SUCCESSFUL_FRAMEWORK_JOB_NOT_WHOLE_WORKFLOW"
+        }
+      }
+    ]
+  },
+  "simulator": {
+    "created_by_this_run": true,
+    "udid": "5178F47E-BD60-4DDC-9477-7CAFB1B1C9FD",
+    "type": {
+      "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 11-inch (M5) (16GB).simdevicetype",
+      "name": "iPad Pro 11-inch (M5) (16GB)",
+      "productFamily": "iPad",
+      "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-M5-16GB"
+    },
+    "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-27-2"
+  },
+  "scope": "Original native downloader, installer, d5 engine, exact/fuzzy/advanced queries, SQL-qualified exact occurrences and process restart; no Core admission, XCTest UI or physical device",
+  "publication": false,
+  "reindex": false,
+  "xctest_ui_cases": 0,
+  "physical_device": "NOT_RUN",
+  "original_owned_simulator_cleanup_exit": 0,
+  "peer_review": {
+    "reviewer": "github_native_audit",
+    "scope": "READ_ONLY_REVIEW_OF_COMPLETE_AUTHENTIC_REPORT_REVIEW_AND_KNOWN_ORIGINAL_SOURCES",
+    "conclusion": "No contradictory source attribution or boundary claim found. No independent ZIP download/revalidation or validator rerun by reviewer."
+  },
+  "workflow_timing": {
+    "successful_native_job_completed_at": "2026-11-20T07:59:55Z",
+    "workflow_updated_at": "2026-11-20T07:59:56Z",
+    "watcher_final_observation": "2026-11-20T08:00:54.606772+00:00",
+    "watcher_time_is_not_execution_completion": true
+  }
+}

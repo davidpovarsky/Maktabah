@@ -1,0 +1,263 @@
+{
+  "recorded_utc": "2026-11-20T08:10:21.203349+00:00",
+  "metadata": {
+    "id": 14611023544,
+    "node_id": "MDg6QXJ0aWZhY3QxNDYxMTAyMzU0NA==",
+    "name": "full-v32-native-prebuilt-evidence",
+    "size_in_bytes": 1341770,
+    "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14611023544",
+    "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14611023544/zip",
+    "expired": false,
+    "digest": "sha256:988b23cec3c14e5a99325de4613f03276099a900e467921e2fe564d757f3af41",
+    "created_at": "2026-11-20T07:59:53Z",
+    "updated_at": "2026-11-20T07:59:53Z",
+    "expires_at": "2027-02-18T05:59:49Z",
+    "workflow_run": {
+      "id": 44684680952,
+      "repository_id": 1280062128,
+      "head_repository_id": 1280062128,
+      "head_branch": "codex/otzaria-qualified-v32-d5-20261120",
+      "head_sha": "b07f229e85fe894722566ad9444de31d0ba4490f"
+    }
+  },
+  "archive_bytes": 1341770,
+  "archive_sha256": "988b23cec3c14e5a99325de4613f03276099a900e467921e2fe564d757f3af41",
+  "crc_verified_all": true,
+  "entries": [
+    {
+      "path": "hq-v32-prebuilt-native/container-witness-regression.log",
+      "bytes": 2363,
+      "crc32": "0f14759d"
+    },
+    {
+      "path": "hq-v32-prebuilt-native/evidence-gate-regression.log",
+      "bytes": 3681,
+      "crc32": "143c3fd9"
+    },
+    {
+      "path": "hq-v32-prebuilt-native/native-prebuilt.log",
+      "bytes": 19674,
+      "crc32": "95678494"
+    },
+    {
+      "path": "hq-v32-prebuilt-native/otzaria-search-manifest.json",
+      "bytes": 7032,
+      "crc32": "3257e1fd"
+    },
+    {
+      "path": "hq-v32-prebuilt-native/otzaria-search-releases.json",
+      "bytes": 1060961,
+      "crc32": "27ef2d3f"
+    },
+    {
+      "path": "hq-v32-prebuilt-native/pinned-database-release.json",
+      "bytes": 29386,
+      "crc32": "adf6e822"
+    },
+    {
+      "path": "hq-v32-prebuilt-native/pinned-index-release.json",
+      "bytes": 34896,
+      "crc32": "a5b37a35"
+    },
+    {
+      "path": "hq-v32-prebuilt-native/preflight.json",
+      "bytes": 4444,
+      "crc32": "90b96bd7"
+    },
+    {
+      "path": "hq-v32-prebuilt-native/prepare.json",
+      "bytes": 5509,
+      "crc32": "2b6cba42"
+    },
+    {
+      "path": "hq-v32-prebuilt-native/release-discovery-compile.log",
+      "bytes": 0,
+      "crc32": "00000000"
+    },
+    {
+      "path": "hq-v32-prebuilt-native/release-discovery-tests.log",
+      "bytes": 5951,
+      "crc32": "209c155c"
+    },
+    {
+      "path": "hq-v32-prebuilt-native/reports/otzaria-prebuilt-container.json",
+      "bytes": 409,
+      "crc32": "1c8ca207"
+    },
+    {
+      "path": "hq-v32-prebuilt-native/reports/otzaria-prebuilt-install.json",
+      "bytes": 9384,
+      "crc32": "6757bba6"
+    },
+    {
+      "path": "hq-v32-prebuilt-native/reports/otzaria-prebuilt-reopen.json",
+      "bytes": 9378,
+      "crc32": "a981d4fa"
+    },
+    {
+      "path": "hq-v32-prebuilt-native/run.json",
+      "bytes": 6981,
+      "crc32": "2b44be8a"
+    },
+    {
+      "path": "hq-v32-prebuilt-native/seed-path-regression.log",
+      "bytes": 1055,
+      "crc32": "0d0a3223"
+    },
+    {
+      "path": "hq-stage2/ExpoModulesProvider.swift",
+      "bytes": 1246,
+      "crc32": "497ff62d"
+    },
+    {
+      "path": "hq-v32-prebuilt-native/toolchain.json",
+      "bytes": 13019,
+      "crc32": "608cd820"
+    },
+    {
+      "path": "hq-stage2/actual-source-inputs.json",
+      "bytes": 113162,
+      "crc32": "6e40b8c4"
+    },
+    {
+      "path": "hq-stage2/generated-pods-project.diff",
+      "bytes": 409488,
+      "crc32": "31dfc310"
+    },
+    {
+      "path": "hq-stage2/generated-privacy.diff",
+      "bytes": 2618,
+      "crc32": "dde2a370"
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk-after.log",
+      "bytes": 679,
+      "crc32": "684fed2b"
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk-inputs-after.json",
+      "bytes": 61045,
+      "crc32": "0443c256"
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk-inputs.json",
+      "bytes": 61045,
+      "crc32": "0443c256"
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk.log",
+      "bytes": 679,
+      "crc32": "684fed2b"
+    },
+    {
+      "path": "hq-stage2/maktabah_zayit_search.h.log",
+      "bytes": 300,
+      "crc32": "fd7085b1"
+    },
+    {
+      "path": "hq-stage2/matching-embedded-bundle.log",
+      "bytes": 741,
+      "crc32": "82f7285f"
+    },
+    {
+      "path": "hq-stage2/native-script-permissions.log",
+      "bytes": 0,
+      "crc32": "00000000"
+    },
+    {
+      "path": "hq-stage2/npm-ci.log",
+      "bytes": 3331,
+      "crc32": "98e564f5"
+    },
+    {
+      "path": "hq-stage2/otzaria_search_engine.h.log",
+      "bytes": 304,
+      "crc32": "1619658f"
+    },
+    {
+      "path": "hq-stage2/pinned-sharp-inputs.log",
+      "bytes": 991,
+      "crc32": "b445597c"
+    },
+    {
+      "path": "hq-stage2/pod-install.log",
+      "bytes": 31807,
+      "crc32": "72ef27f0"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+      "bytes": 877,
+      "crc32": "0cf24b94"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+      "bytes": 855,
+      "crc32": "10470de0"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+      "bytes": 776,
+      "crc32": "efb09f89"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+      "bytes": 1233,
+      "crc32": "82c8ab68"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+      "bytes": 1482,
+      "crc32": "ddedeecd"
+    },
+    {
+      "path": "hq-stage2/privacy-generated.xcprivacy",
+      "bytes": 1386,
+      "crc32": "621daac8"
+    },
+    {
+      "path": "hq-stage2/privacy-original.xcprivacy",
+      "bytes": 1132,
+      "crc32": "9873bf8c"
+    },
+    {
+      "path": "hq-stage2/react-source-checkout.log",
+      "bytes": 453,
+      "crc32": "6a5c37f3"
+    },
+    {
+      "path": "hq-stage2/resolve-packages.log",
+      "bytes": 4898,
+      "crc32": "407ea8d4"
+    },
+    {
+      "path": "hq-stage2/resolved-Package.resolved",
+      "bytes": 4432,
+      "crc32": "71bee3ea"
+    },
+    {
+      "path": "hq-stage2/resolved-Podfile.lock",
+      "bytes": 100298,
+      "crc32": "b37aa330"
+    },
+    {
+      "path": "hq-stage2/result.json",
+      "bytes": 83550,
+      "crc32": "0cffb70c"
+    },
+    {
+      "path": "hq-stage2/simulator-build-for-testing.log",
+      "bytes": 22397675,
+      "crc32": "fbf30b8b"
+    },
+    {
+      "path": "hq-stage2/target-membership.log",
+      "bytes": 130,
+      "crc32": "0c5c3cb5"
+    },
+    {
+      "path": "hq-stage2/workspace-Package.resolved",
+      "bytes": 4432,
+      "crc32": "71bee3ea"
+    }
+  ]
+}
