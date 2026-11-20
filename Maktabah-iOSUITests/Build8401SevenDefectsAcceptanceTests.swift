@@ -116,7 +116,7 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
         dismissAlertsIfNeeded()
         // The original document strip mounts only while more than one book
         // is open. The source overview owns close-to-zero for the same group.
-        let overviewButton = app.buttons[isPad ? "reader-tabs-overview" : "reader-book-tabs-overview"]
+        let overviewButton = app.buttons[isPad ? "reader-tabs-overview" : "reader-open-tabs-button"]
         XCTAssertTrue(overviewButton.waitForExistence(timeout: 20))
         XCTAssertTrue(overviewButton.isHittable)
         overviewButton.tap()
