@@ -1,0 +1,69 @@
+{
+  "AppleSDK_typecheck": "NOT_RUN",
+  "SearchData_native_methods_preserved": 5,
+  "canonical_source_sha256": "548a940d0f9715674822753679c236604735c0857ef241cbc7adacf6f46fd0d3",
+  "capture_full_archive_hash_verified": false,
+  "capture_selected_entry_crc_and_bytes_verified": true,
+  "existing_native_method_ids_preserved": 29,
+  "explicit_reinstall_call_sites": 3,
+  "metadata_helper_final": {
+    "failed": 0,
+    "finished_utc": "2026-11-20T14:09:15.813396+00:00",
+    "helper_sha256": "2ad8e88d590a4cf4b5e4de9028fd09d8345e5adccdf6a7c38cf758d3e830e298",
+    "passed": 33
+  },
+  "native_candidate": "NOT_RUN",
+  "observed_hash_source_derived_matches": {
+    "after": {
+      "bytes": 163,
+      "candidate": {
+        "created_at_unix_seconds": 1795181732,
+        "engine_version": "0.1.0",
+        "format": "otzaria-search-index",
+        "schema_version": 4,
+        "tantivy_version": "0.26.1"
+      },
+      "candidate_bytes": "{\n  \"format\": \"otzaria-search-index\",\n  \"schema_version\": 4,\n  \"engine_version\": \"0.1.0\",\n  \"tantivy_version\": \"0.26.1\",\n  \"created_at_unix_seconds\": 1795181732\n}\n",
+      "scope": "source-derived serializer candidate exactly matching SHA observed in actual Native log; not a raw captured file",
+      "sha256": "768dfd7417528f6f561f484e64b43d8f9438f3123b483547671641d68e0fcc0a",
+      "utc": "2026-11-20T13:35:32+00:00"
+    },
+    "before": {
+      "bytes": 163,
+      "candidate": {
+        "created_at_unix_seconds": 1795181380,
+        "engine_version": "0.1.0",
+        "format": "otzaria-search-index",
+        "schema_version": 4,
+        "tantivy_version": "0.26.1"
+      },
+      "candidate_bytes": "{\n  \"format\": \"otzaria-search-index\",\n  \"schema_version\": 4,\n  \"engine_version\": \"0.1.0\",\n  \"tantivy_version\": \"0.26.1\",\n  \"created_at_unix_seconds\": 1795181380\n}\n",
+      "scope": "source-derived serializer candidate exactly matching SHA observed in actual Native log; not a raw captured file",
+      "sha256": "f0319223893cce1e7f3e62837ec16be660f23ac652c2ae5fda65996151d79b6e",
+      "utc": "2026-11-20T13:29:40+00:00"
+    }
+  },
+  "original_failure": {
+    "F": "60a57972acb28739ec738565083bf17fb7503028",
+    "M": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+    "case": "SearchDataNativeAcceptanceTests/testCorruptIndexShowsRepairRequiredAndOriginalRepairSurvivesColdLaunch",
+    "run": 44723902453,
+    "seconds": 203.536,
+    "status": "FAIL_RETAINED"
+  },
+  "original_file_matches_actual_native_F60": true,
+  "prior_string_equality_attempt": {
+    "failed": 0,
+    "passed": 33,
+    "retained": true
+  },
+  "product_engine_SDK_changes": 0,
+  "raw_gzip_count": 47,
+  "schema": 1,
+  "source": "d2f10ab0953de4b2bbc7d169740eb10172fe3c2e",
+  "source_base": "0f25cb37711cbc1057d34a20ee8552bbcae75903",
+  "source_file": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+  "source_review": "C read complete patch; strict UTF8 byte comparison suggestion applied; original5cases/all9files/cold/restore preserved",
+  "status": "SOURCE_AND_FOUNDATION_HELPER_VERIFIED_NATIVE_NOT_RUN",
+  "whole_file_syntax_exit": 0
+}
