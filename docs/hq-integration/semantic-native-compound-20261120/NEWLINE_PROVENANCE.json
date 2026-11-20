@@ -1,0 +1,41 @@
+{
+  "records": [
+    {
+      "view": "NATIVE_TEST_SOURCE_INVERSE.json",
+      "rawGzip": "raw/original-crlf/NATIVE_TEST_SOURCE_INVERSE.json.gz",
+      "originalSHA256": "368a0e9a0a233d60a98acc58ae969ef06c5245e62c15335a3895a24cde7fe026",
+      "gitLFSHA256": "aa0d38da86b713783485a0c7d3fda1cd58d065e71e28b96d52ef7758e99db9e1",
+      "crlfCount": 16
+    },
+    {
+      "view": "ORIGINAL_CHAPTER_LINKS.json",
+      "rawGzip": "raw/original-crlf/ORIGINAL_CHAPTER_LINKS.json.gz",
+      "originalSHA256": "6d3156e5c34b40c06c6e225b31a5d4d67314ee6e094d832dfbf02510092d464d",
+      "gitLFSHA256": "43536f87cf8c68a77bc6556df96b883863aea8844c55a06d58c0fdc843175233",
+      "crlfCount": 14
+    },
+    {
+      "view": "ORIGINAL_MINI_CATALOG_TOC.json",
+      "rawGzip": "raw/original-crlf/ORIGINAL_MINI_CATALOG_TOC.json.gz",
+      "originalSHA256": "8f1650db48b0227f1fe804edd97cf279a9c1b15a7317c8e0d51db836b7c9b5a0",
+      "gitLFSHA256": "57fcbae5c49e7d483b8de4c852d511982dd7ff5bf9b38580d4831e9afbfaef39",
+      "crlfCount": 419
+    },
+    {
+      "view": "ORIGINAL_TOC_COMMENTARY_CANDIDATES.json",
+      "rawGzip": "raw/original-crlf/ORIGINAL_TOC_COMMENTARY_CANDIDATES.json.gz",
+      "originalSHA256": "7033b2dcf6f04ac4a036149133dcfb8ee256a7679ecb20f5ee7a9aacab89e7b8",
+      "gitLFSHA256": "259d7ae0e0aa9724754dea8ba9a26c3bdafd1d9b863fafabc69d87a57f93706a",
+      "crlfCount": 21
+    },
+    {
+      "view": "PROBE_SOURCE_INVERSE.json",
+      "rawGzip": "raw/original-crlf/PROBE_SOURCE_INVERSE.json.gz",
+      "originalSHA256": "84e1aee3ba119ea6345dfdbae83cf83fa7b59ff5ae968e3b40b54aec8788cfde",
+      "gitLFSHA256": "8f86b344a08845163a49fc595fedebe22de10789d9a7fa2544a49591af1a05aa",
+      "crlfCount": 13
+    }
+  ],
+  "reason": "Initial Git diff whitespace check rejected original CRLF as trailing CR; exact raw bytes are retained and readable views only normalize CRLF to LF.",
+  "sourceOrExecutedTestsChanged": false
+}

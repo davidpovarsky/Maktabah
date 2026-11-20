@@ -189,6 +189,23 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         return true
     }
     #if DEBUG
+    /// Passive acceptance observation of the existing exact Reader/editor owner.
+    /// Missing ownership is unknown, distinct from an owned dismissed draft.
+    struct NoteDraftAcceptanceState {
+        let ownerID: UUID
+        let draft: Annotation?
+        let presentationActive: Bool
+    }
+    func noteDraftAcceptanceState(reader: ReaderViewModel) -> NoteDraftAcceptanceState? {
+        guard mounted, foreground,
+              MaktabahNativeInspectorBinding.currentReader(in: bindings.manager) === reader,
+              let owner = noteEditorOwner, owner.reader === reader else { return nil }
+        return .init(ownerID: owner.id, draft: owner.current,
+                     presentationActive: owner.presentationActive)
+    }
+    #endif
+
+    #if DEBUG
     /// Passive flags for the actual owner/marker seam. Never publishes a
     /// receipt, forces TextKit layout, changes selection, or logs note content.
     func diagnoseNoteDraftSurface(stage: String, reader: ReaderViewModel? = nil, draft: Annotation? = nil) {

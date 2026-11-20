@@ -1,0 +1,45 @@
+{
+  "sourceCommit": "a4200ee4b08b3c2013284d7e128b7dc0c9c4ddc1",
+  "gitFiles": [
+    {
+      "path": "Source/Otzaria/App/OtzariaAppContainer.swift",
+      "gitSHA256": "4cea2cf3f54cd81bae51a79ab9fc0e2f83e9ea1f1823c15f3252122e94e4690b",
+      "bytes": 35371
+    },
+    {
+      "path": "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift",
+      "gitSHA256": "5a42c4d09d55207eab25d0690c4125da0899037741ecdb12f13e27b92e8b42fc",
+      "bytes": 20847
+    },
+    {
+      "path": "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift",
+      "gitSHA256": "bd78a3f63e300164551411227835e108923729bbd83ed82cfea05e0e5d3dd433",
+      "bytes": 9104
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift",
+      "gitSHA256": "11267448ee64f23ccbc858a5aaf0b89ae6dda208262177a0015cca52d6ed0a03",
+      "bytes": 14414
+    },
+    {
+      "path": "docs/hq-integration/occurrence-app-20261120/whole-app-acceptance/unqualified/INDEPENDENT_MINI_SQL_ORACLE.json",
+      "gitSHA256": "5193a01adb3b63762ffc790be4b42e432a75438a5a0f67ac795ac06d2543411b",
+      "bytes": 9763
+    },
+    {
+      "path": "docs/hq-integration/occurrence-app-20261120/native-count-source/README.md",
+      "gitSHA256": "882a84608632c0b0688bd06aa183b5af976b1c8adf3e268699800b6b592ae9d0",
+      "bytes": 5573
+    },
+    {
+      "path": "docs/hq-integration/occurrence-app-20261120/whole-app-acceptance/qualified/README.md",
+      "gitSHA256": "f035c4988b5a923a84f52bc02e3278313be03cb610a07ab019551dc7289eafb3",
+      "bytes": 5969
+    }
+  ],
+  "independentOraclePath": "docs/hq-integration/occurrence-app-20261120/whole-app-acceptance/unqualified/INDEPENDENT_MINI_SQL_ORACLE.json",
+  "gitOracleSHA256": "5193a01adb3b63762ffc790be4b42e432a75438a5a0f67ac795ac06d2543411b",
+  "originalWindowsRawOracleHashIsNotGitLFHash": true,
+  "existingQualifiedWindowsCases": 32,
+  "newNativeCredit": 0
+}

@@ -1,0 +1,14 @@
+{
+  "committedAt": "2026-11-20T11:37:28.448926+00:00",
+  "sourceCommit": "a4200ee4b08b3c2013284d7e128b7dc0c9c4ddc1",
+  "branch": "codex/otzaria-semantic-native-20261120",
+  "paths": [
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift"
+  ],
+  "commitOutput": "[codex/otzaria-semantic-native-20261120 a4200ee4] test: exercise original compound actions in Native Reader flows\n 3 files changed, 595 insertions(+), 2 deletions(-)\n",
+  "status": "",
+  "diskFreeBefore": 2782027776,
+  "diskFreeAfter": 2781921280
+}

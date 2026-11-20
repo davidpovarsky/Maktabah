@@ -1,0 +1,16 @@
+{
+  "sourceCommit": "a4200ee4b08b3c2013284d7e128b7dc0c9c4ddc1",
+  "scope": "Read-only source reviews, not Apple typecheck or execution",
+  "reviews": [
+    {
+      "reviewer": "/root/github_native_audit",
+      "statement": "Read all three diffs. No concrete blocker: DEBUG authority is one-work and bound to Reader/tab/request/destination/loaded section/full projection/epoch/locale after Search; no Hanlin grant. The note accessor reads the actual owner and the closed phase needs same owner UUID, nil current draft, inactive presentation and actual readiness. Six Pad/Phone wrappers retain the real count, request, receipt, Cancel/store/locator and catalog-heading refusal checks.",
+      "limits": "No DB or Native execution independently verified in this review; original 90/30 second waits require actual Native execution."
+    },
+    {
+      "reviewer": "/root",
+      "statement": "Read all three committed a4200ee files, complete DEBUG probe/accessor and all six cases; no new blocker found.",
+      "limits": "Source-only; independent evidence verification/merge pending at the time of this review."
+    }
+  ]
+}

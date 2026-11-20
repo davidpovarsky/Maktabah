@@ -1,0 +1,57 @@
+{
+  "scope": "SYNTAX_ONLY; no Apple typecheck or Native execution",
+  "startedAt": "2026-11-20T11:34:59.327156+00:00",
+  "compiler": "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "sha256": "5dd52bedc07c0338df5f6995fd744706d45ac3821713fd141c58494bdc5369c0",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "C:\\Users\\DAVID\\Code\\Maktabah-semantic-compound-20261120\\Source\\ChavrusaText\\UIRoutingHost\\Integration\\MaktabahNativeRoutingComposition.swift"
+      ],
+      "exitCode": 0,
+      "warnings": 2,
+      "stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n",
+      "sourceUnchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "f163d68594c4a45c3a3f4f02f0aace306feab5cdc5b828f5e25656d7a328050f",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "C:\\Users\\DAVID\\Code\\Maktabah-semantic-compound-20261120\\Source\\ChavrusaText\\UIRoutingHost\\Integration\\MaktabahNativeSceneSession.swift"
+      ],
+      "exitCode": 0,
+      "warnings": 2,
+      "stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n",
+      "sourceUnchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "sha256": "bc9c330ba8c60153ab2fff3d355c3e41e82077ad512452e632b91c6d39a637ec",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "C:\\Users\\DAVID\\Code\\Maktabah-semantic-compound-20261120\\Maktabah-iOSUITests\\NativeRoutingAcceptanceTests.swift"
+      ],
+      "exitCode": 0,
+      "warnings": 2,
+      "stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n",
+      "sourceUnchanged": true
+    }
+  ],
+  "completedAt": "2026-11-20T11:34:59.843852+00:00",
+  "passed": true
+}

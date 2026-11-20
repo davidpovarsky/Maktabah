@@ -1597,7 +1597,8 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     private let documents: URL
 
     init?(kind: String) {
-        guard ["notes", "search", "commentary", "count"].contains(kind) else { return nil }
+        guard ["notes", "search", "commentary", "count", "journey-count-results",
+               "journey-commentary-draft", "journey-catalog-stop"].contains(kind) else { return nil }
         let args = ProcessInfo.processInfo.arguments
         func value(_ key: String) -> String? {
             guard let i = args.firstIndex(of: key), args.indices.contains(i + 1) else { return nil }
@@ -1868,7 +1869,219 @@ extension MaktabahNativeRoutingComposition {
         }
     }
 
+    /// Only the explicitly launched disposable fixture can invoke this caller.
+    /// The live one-work read authority is local to this invocation; it neither
+    /// alters production discovery nor issues a Hanlin/model content grant.
+    private func runSemanticCountResultsAcceptanceProbe(_ probe: MaktabahNativeActionAcceptanceProbe,
+                                                        manager: iOSNavigationManager,
+                                                        reader: ReaderViewModel) async {
+        do {
+            for _ in 0..<900 {
+                try Task.checkCancellation()
+                if probe.hasResult { return }
+                let search = manager.unifiedSearchSession
+                if manager.currentMode == .viewer,
+                   MaktabahNativeInspectorBinding.currentReader(in: manager) === reader,
+                   let scene = actionAcceptanceSession(manager: manager), scene.isPresentationReady,
+                   search.hasSubmitted, !search.isSearching, !search.resultsAreDirty,
+                   search.errorMessage == nil, search.query == "אברהם",
+                   search.selectedBookIds.isEmpty, !search.results.isEmpty,
+                   let locator = reader.selectedSegmentLocator,
+                   let tabID = manager.activeTabId, try probe.consumeTrigger() {
+                    // As in the original commentary probe, this explicit request
+                    // belongs to Composition when its source View disappears.
+                    await Task { @MainActor in
+                        do {
+                            guard let entry = self.scenes[scene.sceneID], entry.session === scene else {
+                                throw ActionPortError.staleState
+                            }
+                            let ref = try ActionAppIdentityBridge.actionRef(locator)
+                            let source = try self.hanlinSource(sceneID: scene.sceneID, entry: entry)
+                            guard ref.backend == .otzaria, ref.workKey == "book:1",
+                                  source.backend.backend == .otzaria,
+                                  let loaded = source.currentWorkReadSource,
+                                  loaded.readerOwner == ObjectIdentifier(reader) else {
+                                throw ActionPortError.unavailable
+                            }
+                            let read = ActionExecutionContext(
+                                subjectID: "maktabah.acceptance.journey:" + probe.token.uuidString,
+                                correlationID: probe.token, origin: .inApp,
+                                allowedBackends: [.otzaria], contentRights: [.otzaria],
+                                scopes: [.discovery, .contentRead],
+                                allowedWorkKeys: [.otzaria: [ref.workKey]],
+                                foregroundSceneID: scene.sceneID.rawValue, maxActions: 1)
+                            let query = ActionOccurrenceQuery(backend: ref.backend, text: "אברהם",
+                                scopeWorkRefs: [.init(backend: ref.backend, workKey: ref.workKey)])
+                            let submission = search.submissionRevision
+                            var authorityObservations = 0
+                            var authorityAfterSearch = 0
+                            let observeRead: @MainActor () throws -> ActionExecutionContext = { [self] in
+                                try Task.checkCancellation()
+                                guard let live = scenes[scene.sceneID], live.session === scene,
+                                      scene.mounted, scene.foreground,
+                                      manager.activeTabId == tabID else { throw ActionPortError.staleState }
+                                let tabs = manager.openTabs.filter { $0.id == tabID }
+                                guard tabs.count == 1, tabs[0].viewModel === reader,
+                                      reader.contentLoadCoordinator.currentRequestToken() == loaded.requestToken,
+                                      reader.currentDestination == loaded.requested,
+                                      reader.backendSection?.locator == loaded.loaded.sectionLocator,
+                                      reader.selectedSegmentLocator == locator,
+                                      case .loaded = reader.state else { throw ActionPortError.staleState }
+                                let observed = try hanlinSource(sceneID: scene.sceneID, entry: live)
+                                guard observed.backend == source.backend, observed.source == source.source,
+                                      observed.epoch == source.epoch, observed.projection == source.projection,
+                                      observed.locale == source.locale else { throw ActionPortError.staleState }
+                                authorityObservations += 1
+                                if manager.currentMode == .search { authorityAfterSearch += 1 }
+                                return read
+                            }
+                            let journey = try await self.countThenOpenSearchResults(
+                                query: query, manager: manager, readAuthority: observeRead)
+                            let rows: [[String: Any]] = try search.results.prefix(20).map { item in
+                                var row: [String: Any] = ["stableID": item.stableID]
+                                if let actual = item.backendLocator {
+                                    row["locator"] = try probe.json(ActionAppIdentityBridge.actionRef(actual))
+                                }
+                                return row
+                            }
+                            var payload: [String: Any] = [
+                                "plannedActions": journey.plannedActions,
+                                "steps": try probe.json(journey.steps),
+                                "journeyComplete": journey.isComplete,
+                                "originalReaderLocator": try probe.json(ref),
+                                "originalBackendGeneration": source.backend.generation,
+                                "readAuthorityObservations": authorityObservations,
+                                "readAuthorityAfterSearch": authorityAfterSearch,
+                                "originalQuery": search.query,
+                                "originalExactScope": search.scope == .exact,
+                                "originalSort": search.otzariaOrder.rawValue,
+                                "originalSubmissionBefore": submission,
+                                "originalSubmissionAfter": search.submissionRevision,
+                                "originalHasSubmitted": search.hasSubmitted,
+                                "originalIsSearching": search.isSearching,
+                                "originalResultsAreDirty": search.resultsAreDirty,
+                                "originalBookIDs": search.selectedBookIds.sorted(),
+                                "originalModelBookIDs": manager.searchViewModel.selectedBookIds.sorted(),
+                                "originalRows": rows,
+                                "processID": ProcessInfo.processInfo.processIdentifier,
+                            ]
+                            if let error = search.errorMessage { payload["originalError"] = error }
+                            try probe.write(payload: payload)
+                        } catch {
+                            try? probe.write(payload: ["probeError": "semantic_count_results_failed",
+                                "errorType": String(describing: type(of: error))])
+                        }
+                    }.value
+                    return
+                }
+                try await Task.sleep(for: .milliseconds(100))
+            }
+            try probe.write(payload: ["probeError": "semantic_count_source_or_trigger_not_ready"])
+        } catch is CancellationError {
+        } catch {
+            try? probe.write(payload: ["probeError": "semantic_count_probe_failed"])
+        }
+    }
+
+    private func runSemanticCommentaryDraftAcceptanceProbe(_ probe: MaktabahNativeActionAcceptanceProbe,
+                                                           manager: iOSNavigationManager,
+                                                           reader: ReaderViewModel) async {
+        do {
+            for _ in 0..<900 {
+                try Task.checkCancellation()
+                if probe.hasResult { return }
+                if MaktabahNativeInspectorBinding.currentReader(in: manager) === reader,
+                   let scene = actionAcceptanceSession(manager: manager), scene.isPresentationReady,
+                   AnnotationRepository.shared.db != nil,
+                   let base = reader.selectedSegmentLocator, try probe.consumeTrigger() {
+                    await Task { @MainActor in
+                        do {
+                            let ref = try ActionAppIdentityBridge.actionRef(base)
+                            let original = try AnnotationRepository.shared.loadAllAnnotations()
+                            let proposal = "טיוטת מסע \(probe.token.uuidString)"
+                            let journey: ActionSemanticJourneyResult
+                            if probe.kind == "journey-catalog-stop" {
+                                guard let work = probe.argument("-nativeActionAcceptanceBaseWorkQuery"),
+                                      let section = probe.argument("-nativeActionAcceptanceSection"),
+                                      let commentary = probe.argument("-nativeActionAcceptanceCommentaryQuery") else {
+                                    throw ActionPortError.invalidResponse
+                                }
+                                journey = try await self.resolveCommentaryThenPrepareDraft(
+                                    backend: ref.backend, baseWorkQuery: work, section: section,
+                                    commentaryQuery: commentary, proposedText: proposal, manager: manager)
+                            } else {
+                                guard let target = probe.argument("-nativeActionAcceptanceTargetWorkKey") else {
+                                    throw ActionPortError.invalidResponse
+                                }
+                                journey = try await self.openCommentaryThenPrepareDraft(baseLocator: ref,
+                                    workRef: .init(backend: ref.backend, workKey: target),
+                                    proposedText: proposal, manager: manager)
+                            }
+                            let currentReader = MaktabahNativeInspectorBinding.currentReader(in: manager)
+                            let editor = currentReader.flatMap { scene.noteDraftAcceptanceState(reader: $0) }
+                            let draft = editor?.draft
+                            var payload: [String: Any] = [
+                                "plannedActions": journey.plannedActions,
+                                "steps": try probe.json(journey.steps),
+                                "journeyComplete": journey.isComplete,
+                                "originalBaseLocator": try probe.json(ref),
+                                "originalStoreUnchanged": try AnnotationRepository.shared.loadAllAnnotations() == original,
+                                "originalEditorOwnerObserved": editor != nil,
+                                "originalUnsavedEditor": draft != nil && draft?.id == nil,
+                                "originalEditorOwnsProposal": draft?.note == proposal,
+                                "originalEditorPresentationActive": editor?.presentationActive == true,
+                                "processID": ProcessInfo.processInfo.processIdentifier,
+                            ]
+                            if let actual = draft?.backendLocator {
+                                payload["originalDraftLocator"] = try probe.json(ActionAppIdentityBridge.actionRef(actual))
+                            }
+                            try probe.write(payload: payload)
+                            guard journey.isComplete, let currentReader, let editor, draft != nil else { return }
+                            // Only the real UITest Cancel button closes the original
+                            // editor. Unknown/replaced ownership can never certify nil.
+                            for _ in 0..<300 {
+                                try Task.checkCancellation()
+                                if let observed = scene.noteDraftAcceptanceState(reader: currentReader),
+                                   observed.ownerID == editor.ownerID, observed.draft == nil,
+                                   !observed.presentationActive, scene.isPresentationReady {
+                                    try probe.write(phase: "closed", payload: [
+                                        "originalStoreUnchanged": try AnnotationRepository.shared.loadAllAnnotations() == original,
+                                        "originalEditorDismissed": true,
+                                        "originalSceneReady": scene.mounted && scene.foreground && scene.isPresentationReady,
+                                        "originalEditorOwnerUnchanged": true,
+                                    ])
+                                    return
+                                }
+                                try await Task.sleep(for: .milliseconds(100))
+                            }
+                            try probe.write(phase: "closed", payload: ["probeError": "semantic_original_editor_dismissal_not_observed"])
+                        } catch {
+                            try? probe.write(payload: ["probeError": "semantic_commentary_draft_failed",
+                                "errorType": String(describing: type(of: error))])
+                        }
+                    }.value
+                    return
+                }
+                try await Task.sleep(for: .milliseconds(100))
+            }
+            try probe.write(payload: ["probeError": "semantic_commentary_source_or_trigger_not_ready"])
+        } catch is CancellationError {
+        } catch {
+            try? probe.write(payload: ["probeError": "semantic_commentary_probe_failed"])
+        }
+    }
+
     func runCommentaryAcceptanceProbe(manager: iOSNavigationManager, reader: ReaderViewModel) async {
+        if let probe = MaktabahNativeActionAcceptanceProbe(kind: "journey-count-results") {
+            await runSemanticCountResultsAcceptanceProbe(probe, manager: manager, reader: reader)
+            return
+        }
+        for kind in ["journey-commentary-draft", "journey-catalog-stop"] {
+            if let probe = MaktabahNativeActionAcceptanceProbe(kind: kind) {
+                await runSemanticCommentaryDraftAcceptanceProbe(probe, manager: manager, reader: reader)
+                return
+            }
+        }
         if let probe = MaktabahNativeActionAcceptanceProbe(kind: "count") {
             await runOccurrenceCountAcceptanceProbe(probe, manager: manager, reader: reader)
             return

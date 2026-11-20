@@ -1,0 +1,16 @@
+{
+  "base": "3bc062fed639d0213dfb30c87cb35bd71ac80bcb",
+  "originalCasesAndHelpersBytePreservedExceptExplicitNewKindAllowlist": true,
+  "baseSHA256": "90a34895607e98f05b7cee448d7d96c17ee463a568f31b7fe3ebb3cd0ed4d11d",
+  "candidateSHA256": "bc9c330ba8c60153ab2fff3d355c3e41e82077ad512452e632b91c6d39a637ec",
+  "newCaseNames": [
+    "testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPad",
+    "testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad",
+    "testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPad",
+    "testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone",
+    "testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone",
+    "testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPhone"
+  ],
+  "native": "NOT_RUN",
+  "appleTypecheck": "NOT_RUN"
+}

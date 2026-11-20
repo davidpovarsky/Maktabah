@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "observedAt": "2026-11-20T11:37:00.915639+00:00",
+  "database": "C:\\Users\\DAVID\\Code\\Maktabah-actions-completion-20261120\\build\\actions-native-20261120\\miniTest10\\seforim.db",
+  "bytes": 15470592,
+  "readOnlyURI": true,
+  "queryOnly": true,
+  "sha256Before": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "sha256After": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "queries": {
+    "exactTOCHeading": {
+      "sql": "SELECT te.id,te.bookId,te.parentId,tt.text,te.lineId,l.lineIndex FROM tocEntry te JOIN tocText tt ON tt.id=te.textId JOIN line l ON l.id=te.lineId WHERE te.id=600",
+      "columns": [
+        "id",
+        "bookId",
+        "parentId",
+        "text",
+        "lineId",
+        "lineIndex"
+      ],
+      "rows": [
+        [
+          600,
+          28,
+          599,
+          "פרק א",
+          15827,
+          1
+        ]
+      ]
+    },
+    "exactVerseAndCommentaryLink": {
+      "sql": "SELECT l.id,l.sourceBookId,l.sourceLineId,s.lineIndex,l.targetBookId,l.targetLineId,t.lineIndex,c.name FROM link l JOIN line s ON s.id=l.sourceLineId JOIN line t ON t.id=l.targetLineId JOIN connection_type c ON c.id=l.connectionTypeId WHERE l.id=6529212",
+      "columns": [
+        "id",
+        "sourceBookId",
+        "sourceLineId",
+        "lineIndex",
+        "targetBookId",
+        "targetLineId",
+        "lineIndex",
+        "name"
+      ],
+      "rows": [
+        [
+          6529212,
+          28,
+          6188105,
+          2,
+          3276,
+          6609893,
+          4,
+          "COMMENTARY"
+        ]
+      ]
+    },
+    "headingOutgoing": {
+      "sql": "SELECT id FROM link WHERE sourceLineId=15827",
+      "columns": [
+        "id"
+      ],
+      "rows": []
+    },
+    "headingIncoming": {
+      "sql": "SELECT id FROM link WHERE targetLineId=15827",
+      "columns": [
+        "id"
+      ],
+      "rows": []
+    },
+    "headingCoverage": {
+      "sql": "SELECT linkId FROM link_coverage WHERE lineId=15827",
+      "columns": [
+        "linkId"
+      ],
+      "rows": []
+    },
+    "exactBookTitles": {
+      "sql": "SELECT id,title,heRef FROM book WHERE id IN (28,3276) ORDER BY id",
+      "columns": [
+        "id",
+        "title",
+        "heRef"
+      ],
+      "rows": [
+        [
+          28,
+          "תהילים",
+          "תהילים"
+        ],
+        [
+          3276,
+          "חומת אנך על תהלים",
+          "חומת אנך על תהלים"
+        ]
+      ]
+    }
+  },
+  "native": "NOT_RUN",
+  "scope": "Original miniTest10 metadata/link identity only; no text decode, count execution, engine load, or UI execution"
+}

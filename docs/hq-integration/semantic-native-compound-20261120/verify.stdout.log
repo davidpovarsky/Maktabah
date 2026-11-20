@@ -1,0 +1,10 @@
+{
+  "status": "PASS_SOURCE_AND_RECORDED_EVIDENCE_ONLY",
+  "sealedFiles": 48,
+  "sourceCommit": "a4200ee4b08b3c2013284d7e128b7dc0c9c4ddc1",
+  "originalDeclarations": 50,
+  "candidateDeclarations": 56,
+  "newNativeDeclarations": 6,
+  "nativeExecuted": 0,
+  "appleTypecheck": "NOT_RUN"
+}
