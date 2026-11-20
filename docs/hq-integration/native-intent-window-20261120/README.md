@@ -1,5 +1,9 @@
 # Reader-window identity before foreground activation
 
+This file preserves the baseline RED investigation. The implemented candidate
+39ba and actual **15/15 fixture +135/135 Host** results are recorded in
+[GREEN_EVIDENCE.md](GREEN_EVIDENCE.md), with Apple/Native gates still pending.
+
 ## Source and observed baseline
 
 The application baseline is `d0c649794e4262ffdea0e13635d5c8237668bd6e`.
