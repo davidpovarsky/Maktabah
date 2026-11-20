@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "sourceBase": "0f25cb37711cbc1057d34a20ee8552bbcae75903",
+  "failedWorkflow": 44723902453,
+  "failedSource": "60a57972acb28739ec738565083bf17fb7503028",
+  "nativeCandidate": "NOT_RUN",
+  "appleTypecheck": "NOT_RUN",
+  "artifacts": [
+    {
+      "path": "raw/PARSE.json.gz",
+      "bytes": 435,
+      "sha256": "bfc270e3d5409f7bcbe37e95ec9e62e6486617ce77ffc4be4c413fe4558932b0",
+      "rawBytes": 714,
+      "rawSHA256": "1c0277d74fc188ce6921fa45659224441d4b2f1d685dd5b04f695d62d8d52e5c"
+    },
+    {
+      "path": "raw/PROPOSED.patch.gz",
+      "bytes": 524,
+      "sha256": "a7b2a6d30e37961211a9f3fda1b8b3ba3a9376053bb4eaa456e1a7d03a955ed6",
+      "rawBytes": 1483,
+      "rawSHA256": "2e67aaae606faa9eb0d72a0f3d6808c19e30cfea2a7dc5a4e836c1c9d7dc1f97"
+    },
+    {
+      "path": "raw/SOURCE.after.swift.gz",
+      "bytes": 4702,
+      "sha256": "dc68fed82b5ead92123272983570b1d147cb8a21dc8e5b38a578e817e11ac755",
+      "rawBytes": 20092,
+      "rawSHA256": "aa8bfd6566ea1dd188648f832a9c4d04d68b4a607307580b6a5e16a30080b441"
+    },
+    {
+      "path": "raw/SOURCE.before.swift.gz",
+      "bytes": 4687,
+      "sha256": "4ed16674305e3ed0118d32ffff40bfbc049cd340140801e0aa9726c579fbdbb9",
+      "rawBytes": 20031,
+      "rawSHA256": "9dab5f5711950dba354dd9f03bd033ca44dd7c7f0d20f2b518dd4567002cd41f"
+    },
+    {
+      "path": "raw/SOURCE_PROOF.json.gz",
+      "bytes": 395,
+      "sha256": "f091aca7e17b59a929afa458569763a39fdb6ea898e6741459a798060018a762",
+      "rawBytes": 580,
+      "rawSHA256": "8af1c5cdf9e3de85c97127dae14811cc166f9c7f5261f82e834d49c6926b326e"
+    },
+    {
+      "path": "raw/capture-artifact-metadata.json.gz",
+      "bytes": 480,
+      "sha256": "fa97ad94dfd2b6d9f2b2a152b18ff2f40dbb03d12e90420d844c6391ab1452e4",
+      "rawBytes": 849,
+      "rawSHA256": "688c448646a660c660cc9623163303ba9dcffac684bbc1ea7b373d49f4b1091e"
+    },
+    {
+      "path": "raw/failed-native-consent.ax.txt.gz",
+      "bytes": 6789,
+      "sha256": "3e195c7d238435b6701578b21fcaca43652150d6396b0b4d952091b3302857e8",
+      "rawBytes": 44899,
+      "rawSHA256": "8955ad6fb5c5a062cf73dbcee43d572d887356a4258a2142147f88499ff6f3fb"
+    },
+    {
+      "path": "raw/failed-native-consent.case.log.gz",
+      "bytes": 1665,
+      "sha256": "ab0fe36ab7f1ea2045280c36cf2a2b621fed18a7cefa7c513af5ff677d58d7d9",
+      "rawBytes": 11447,
+      "rawSHA256": "d3c48b3b9e773551d186439e7babd3d51c7b127a6bb8a0be2b6e0b05c418510f"
+    },
+    {
+      "path": "raw/failed-native-consent.png.gz",
+      "bytes": 696000,
+      "sha256": "67f573c5088550a7b6ceb054be1c4e3dfa990c0e1962d98e08e425da82bd8506",
+      "rawBytes": 715961,
+      "rawSHA256": "d1e130e4ae8629fe700aa25a29d72e3daf473b9c988b57b8ce3f6b4b64f5bdc8"
+    },
+    {
+      "path": "raw/failed-native-group11.summary.json.gz",
+      "bytes": 1460,
+      "sha256": "59c602b191ea636eaa18942ab740fd650a1d3812a18ef7184be483b39c93e2bf",
+      "rawBytes": 5531,
+      "rawSHA256": "f08a0540c17395f71332f97646ff365e9e2e7be3ec89c608f6616bc025523f28"
+    },
+    {
+      "path": "raw/parse.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/parse.stdout.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/selected-range-evidence.json.gz",
+      "bytes": 8119,
+      "sha256": "dcb40c149441229357ebd8a2d352a7d8a3f60cfc4003b75dbe087ca700690847",
+      "rawBytes": 32569,
+      "rawSHA256": "026a4b4e2c2382261bad06a1ae0ae5e293e40878073c2e496d48470dea742a26"
+    },
+    {
+      "path": "raw/small-artifact-verified.json.gz",
+      "bytes": 228,
+      "sha256": "7418a871803e13472ad47808fdba60c2ce2844b4315047ac45e5598869588f85",
+      "rawBytes": 311,
+      "rawSHA256": "f38f0a60bb1913d8ce40297eb6ccc46750b1bb0abca0fcfb2958e240bd1f1a57"
+    }
+  ]
+}
