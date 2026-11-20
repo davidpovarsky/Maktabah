@@ -386,6 +386,12 @@ struct iOSReaderWorkspaceView: View {
                 }
             }
 
+            if !MaktabahApp.isIpad {
+                ToolbarItem(placement: .topBarTrailing) {
+                    OtzariaHanlinChatLaunchButton(identifier: "otzaria-hanlin-reader-launch")
+                }
+            }
+
             ToolbarItem(placement: .topBarTrailing) {
                 Button(action: toggleStudyPanel) {
                     PanelToggleIcon(isOpen: showPanel)

@@ -1,0 +1,144 @@
+{
+  "recorded_utc": "2026-11-20T08:08:19.521922+00:00",
+  "source_base": "c61213d9fcc8b80a8606ba00a1562215312ca2ed",
+  "branch": "codex/otzaria-hanlin-consent-native-20261120",
+  "source_snapshot": {
+    "Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift": {
+      "raw_sha256": "ad167b13a3bbb518ad5a0e4b521cdf00313028b7f2109a597b1bedcede3c3ed0",
+      "canonical_lf_sha256": "ad167b13a3bbb518ad5a0e4b521cdf00313028b7f2109a597b1bedcede3c3ed0",
+      "bytes": 4610
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift": {
+      "raw_sha256": "89de17fcc574058e8af14a7286fedee766892415074386b38dbfbc35ba321c59",
+      "canonical_lf_sha256": "89de17fcc574058e8af14a7286fedee766892415074386b38dbfbc35ba321c59",
+      "bytes": 17781
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": {
+      "raw_sha256": "f5f1f6f1a44e05d6ea90f566d084ebda72667dd4e69afeac37a22cb39141103d",
+      "canonical_lf_sha256": "f5f1f6f1a44e05d6ea90f566d084ebda72667dd4e69afeac37a22cb39141103d",
+      "bytes": 43904
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": {
+      "raw_sha256": "fca5b15c9d0723e7e89c1beae2cd8fddb2de0720c28a9b1ac8e83ce0db6146c2",
+      "canonical_lf_sha256": "fca5b15c9d0723e7e89c1beae2cd8fddb2de0720c28a9b1ac8e83ce0db6146c2",
+      "bytes": 112293
+    },
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift": {
+      "raw_sha256": "621503592b81135c4e420698d2068d41c14be0ef691a548a53f8dc85b103889d",
+      "canonical_lf_sha256": "621503592b81135c4e420698d2068d41c14be0ef691a548a53f8dc85b103889d",
+      "bytes": 31749
+    },
+    "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift": {
+      "raw_sha256": "552a010f1b9f6ecd29406e1bca22eec509594e0938cad457fcf9275b96e27240",
+      "canonical_lf_sha256": "552a010f1b9f6ecd29406e1bca22eec509594e0938cad457fcf9275b96e27240",
+      "bytes": 18962
+    },
+    "Tests/HQ/hanlin-native-source/HanlinCurrentWorkSourceBoundary.swift": {
+      "raw_sha256": "2788f6d83f4e78e8d64b226d735876aa1669f7886aa90852bf987e0dd2870501",
+      "canonical_lf_sha256": "2788f6d83f4e78e8d64b226d735876aa1669f7886aa90852bf987e0dd2870501",
+      "bytes": 5552
+    },
+    "Tests/HQ/hanlin-native-source/HanlinCurrentWorkSourceAcceptance.swift": {
+      "raw_sha256": "fccc2fc6943fef3dc27f4ec7533b72dba26209c01d856756cf733ec8aaf2a052",
+      "canonical_lf_sha256": "fccc2fc6943fef3dc27f4ec7533b72dba26209c01d856756cf733ec8aaf2a052",
+      "bytes": 8575
+    },
+    "tools/hq-hanlin-current-work-source.py": {
+      "raw_sha256": "cae0d365f26a67ae5ed4afa4bc78981d025c07ae0b5159e387736c3769a8a03e",
+      "canonical_lf_sha256": "cae0d365f26a67ae5ed4afa4bc78981d025c07ae0b5159e387736c3769a8a03e",
+      "bytes": 7591
+    }
+  },
+  "sdk_entry": "160000 commit e00498e33f106cc43be0476ffa2e09329c8ca300\tVendor/HanlinSDK",
+  "original_native_surface_sha256": "cdce552f42215dd6749410b0fc8fcc74899ab25ecb30ef8bbd261d803aba5cde",
+  "candidate_source_method_sha256": "3b9da246dc28017339e7a536ea0d387fa441d5b007927e45e0391fbf7b2d7f6b",
+  "baseline": {
+    "sentinel_job": "job_9e2ce4083f1f",
+    "status": "FAIL",
+    "started_utc": "2026-11-20T07:54:04.445959+00:00",
+    "finished_utc": "2026-11-20T07:54:17.956592+00:00",
+    "compile_exit": 0,
+    "compile_seconds": 13.187,
+    "compiler_warnings": 0,
+    "runtime_exit": 1,
+    "runtime_seconds": 0.078,
+    "executed": 27,
+    "passed": 15,
+    "failed": 12,
+    "executable_sha256": "3e0eb6bfa8b421361e51fd58321528568395a7c5ddcad4645f198cae76f6549b",
+    "source_inputs_unchanged": true
+  },
+  "candidate": {
+    "sentinel_job": "job_e03061397871",
+    "status": "PASS_SOURCE_METHODS_ONLY",
+    "started_utc": "2026-11-20T07:57:53.516198+00:00",
+    "finished_utc": "2026-11-20T07:58:04.485403+00:00",
+    "compile_exit": 0,
+    "compile_seconds": 10.89,
+    "compiler_warnings": 0,
+    "runtime_exit": 0,
+    "runtime_seconds": 0.063,
+    "executed": 27,
+    "passed": 27,
+    "failed": 0,
+    "executable_sha256": "349a625d333f1b713a6dd88d76c7e4eb6d4696a707ff4c46d07fcb542690a76a",
+    "source_inputs_unchanged": true
+  },
+  "boundary": "Real full LibraryBackendModels, ReaderDestinationResolver, ReaderContentLoadCoordinator; original entire surface method and candidate current-work method extracted byte-for-byte. Explicit UIKit/SwiftUI/manager and Action/UI DTO doubles. Baseline uses the original Hanlin reader-surface selection, not a native app/SDK/Core permission run. No DB, network, provider or physical-device acceptance.",
+  "native_executed_on_repair": 0,
+  "apple_typecheck_on_repair": "NOT_RUN",
+  "actual_core_sdk_permissions_on_this_fixture": "NOT_RUN",
+  "model_provider_requests_on_this_fixture": "NONE; fixture has no network/provider path",
+  "historical_failure": {
+    "run_id": 44673191816,
+    "app_source": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
+    "capture_records": [
+      {
+        "commit": "e5dd2004203cf20033b24ebe5bf31ef10022a55d",
+        "path": "docs/hq-integration/native-repair12-44673191816-20261120/captures/entries/visual-11/F00AD1D5-E28F-4375-A0D7-EF12C148C9D7.txt",
+        "original_capture_sha256": "7fae909521f0e90af194bde951082a8fab439bbf79cb5fad7bdeaff439d90964",
+        "git_blob_sha256": "7fae909521f0e90af194bde951082a8fab439bbf79cb5fad7bdeaff439d90964",
+        "git_blob_canonical_lf_sha256": "7fae909521f0e90af194bde951082a8fab439bbf79cb5fad7bdeaff439d90964",
+        "bytes_in_git_blob": 42228,
+        "copied_png": false
+      },
+      {
+        "commit": "e5dd2004203cf20033b24ebe5bf31ef10022a55d",
+        "path": "docs/hq-integration/native-repair12-44673191816-20261120/captures/entries/visual-11/94B37C71-8097-4D57-86B4-BE47077500B6.png",
+        "original_capture_sha256": "d25ac50fa2a4cb20f7a7dbc4c4cbbefa9abd43407b04d02cb011a6777da54392",
+        "git_blob_sha256": "d25ac50fa2a4cb20f7a7dbc4c4cbbefa9abd43407b04d02cb011a6777da54392",
+        "git_blob_canonical_lf_sha256": "11c31271b01d2e4ac07c7eef6e6cdcdd7d429197783c9a4bc0b4507e54ae93b0",
+        "bytes_in_git_blob": 732126,
+        "copied_png": false
+      },
+      {
+        "commit": "e5dd2004203cf20033b24ebe5bf31ef10022a55d",
+        "path": "docs/hq-integration/native-repair12-44673191816-20261120/captures/entries/visual-phone/CC62C0D1-4952-43AD-AAC4-DCE84D45681F.txt",
+        "original_capture_sha256": "a4093102c4136621775215dd87f40aae18ccd3c08f45444a5f118b6d4941c2c2",
+        "git_blob_sha256": "a4093102c4136621775215dd87f40aae18ccd3c08f45444a5f118b6d4941c2c2",
+        "git_blob_canonical_lf_sha256": "a4093102c4136621775215dd87f40aae18ccd3c08f45444a5f118b6d4941c2c2",
+        "bytes_in_git_blob": 13890,
+        "copied_png": false
+      },
+      {
+        "commit": "e5dd2004203cf20033b24ebe5bf31ef10022a55d",
+        "path": "docs/hq-integration/native-repair12-44673191816-20261120/captures/entries/visual-phone/3BC70AF8-1821-4BB6-9719-91AF434DAEB7.png",
+        "original_capture_sha256": "f3cfcb7de216fa3bbae1a40ab289ee0868f98dfb7c679a63d83cdce42cb32128",
+        "git_blob_sha256": "f3cfcb7de216fa3bbae1a40ab289ee0868f98dfb7c679a63d83cdce42cb32128",
+        "git_blob_canonical_lf_sha256": "7007e88b9e3513ad4ee5bb6433a2f94b51f54f6fbb9b9460fa9f22177ceec2b8",
+        "bytes_in_git_blob": 377098,
+        "copied_png": false
+      }
+    ],
+    "specific_historical_pad_nil_guard": "NOT_LOGGED; source mismatch reproduced independently"
+  },
+  "peer_review": {
+    "asana_audit": "Source-only review of Native helper: no blocker; synchronous nested helpers inherit @MainActor throwing parent, both calls use try, direct-or-overflow wait retains unique original action and no Send. app.frame clipping does not prove moved-window support."
+  },
+  "remaining_native_cases": [
+    "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+    "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending"
+  ],
+  "artifact_root": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-consent-native-20261120\\build\\hanlin-consent-native-20261120",
+  "cleanup_scope": "Conclusive owned completed Inspector derivatives only; raw inventory receipt retained."
+}
