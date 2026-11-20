@@ -1,0 +1,208 @@
+{
+  "algorithm": "SHA-256",
+  "files": [
+    {
+      "path": "EVIDENCE.json",
+      "bytes": 2025,
+      "sha256": "f5eb6a1ec6fb37b4c148ba284ffa60490d04952472d83d2777a9bcd8fb9dc801"
+    },
+    {
+      "path": "INVERSE_MATERIAL.json",
+      "bytes": 10317,
+      "sha256": "68470f6a502f0e755d9fdb7834cae728a79f452c749379cfd8a2ff87775bfec6"
+    },
+    {
+      "path": "PBX_TARGET_MEMBERSHIP.json",
+      "bytes": 258,
+      "sha256": "18e61de103d2ad3ac602ff38744f72e7f8aa7b89661ead64255e57539424e07b"
+    },
+    {
+      "path": "PEER_REVIEW.json",
+      "bytes": 400,
+      "sha256": "0e39de275d3e21f634338c5eaf0840e543873f6e4ae4ba289f3c0d4ee708a442"
+    },
+    {
+      "path": "raw/attempt1/COMMANDS.json.gz",
+      "bytes": 400,
+      "sha256": "995adaa889edacfb1dcc1e45694a1edb62d16114854ebc661bee8238e70add70",
+      "rawBytes": 1135,
+      "rawSHA256": "74f4a491e4a4e30307a681ad89f68988c4214635d7211844c3db43de70dc6542"
+    },
+    {
+      "path": "raw/attempt1/compile.log.gz",
+      "bytes": 138,
+      "sha256": "5aa59dd34f500a9d5cca45562ad1f619a576334b1226c73f7efb77b44a1644a4",
+      "rawBytes": 296,
+      "rawSHA256": "a2ffca505b913d773bd5196d7a2630f77d8a2a0d0fe84c3b5d009bb959030d32"
+    },
+    {
+      "path": "raw/attempt1/controls.log.gz",
+      "bytes": 869,
+      "sha256": "e71e26aa23a659d85100dc5ac276e8209a6428404ee066b7ebb0939a81ecab95",
+      "rawBytes": 3677,
+      "rawSHA256": "2d5bc5b48673cfe5a4642a962d195cfee09ece31a7d4753c8ece23a42a9f03ec"
+    },
+    {
+      "path": "raw/attempt1/driver.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/attempt1/driver.stdout.log.gz",
+      "bytes": 792,
+      "sha256": "c0fe2dd5a794ad1a24644ba0e4e86e9ca0b39a6f2245e728f7c0ac913d7d1a31",
+      "rawBytes": 2605,
+      "rawSHA256": "3c00e4fdcee0c04ece37201db253fc7ce83cebdc15ec20f868ee80e88fd4c553"
+    },
+    {
+      "path": "raw/attempt1/MetricReaderAndFixture.swift.gz",
+      "bytes": 4480,
+      "sha256": "ba8d9105859f186b8c921c382911eeb9994c579fda841628edb9a9e55a7ea0cb",
+      "rawBytes": 16302,
+      "rawSHA256": "db76d6947deba7b471b46ba45a851aa3b016329b4f830727ace18a189dc7416f"
+    },
+    {
+      "path": "raw/attempt1/RESULT.json.gz",
+      "bytes": 1671,
+      "sha256": "a6702c006794b9147b5d440d06ae467445566334bf442ddc9e246fbc6f9da0c4",
+      "rawBytes": 5673,
+      "rawSHA256": "e48945c002ae8cf958961251bfbfba923fe56e8d82f2f90ccc7c55942d9d3908"
+    },
+    {
+      "path": "raw/attempt1/source/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift.gz",
+      "bytes": 38495,
+      "sha256": "5e23e7c944528eb27a49220db931f4df027b988150a21525cbbec3c5e2233b45",
+      "rawBytes": 182817,
+      "rawSHA256": "17407e7fff4efb27be7cb0da4c6f2883b1a78de74de0e5a601de54a51ef87139"
+    },
+    {
+      "path": "raw/attempt1/source/Source/ChavrusaText/StudyWorkspace/StudyGroupSwitchPerformanceObservation.swift.gz",
+      "bytes": 1662,
+      "sha256": "cd93590060711e2ab35b9d832d7506a928615666389e43d34b06d7fa419fe879",
+      "rawBytes": 5521,
+      "rawSHA256": "8153cdc98a1e393f81174de635edf0046e1391f3646afcb5c38a7488eb762fb6"
+    },
+    {
+      "path": "raw/attempt1/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift.gz",
+      "bytes": 6935,
+      "sha256": "a1bd595a7f5aa7eef2c5e4a4c533e5b71960fc3a37515a10823da829853819d8",
+      "rawBytes": 33987,
+      "rawSHA256": "a0066002ee649927092278d906d6470e9723a10ea9ef139950605011a6d54182"
+    },
+    {
+      "path": "raw/attempt1/source/Source/Otzaria/Search/OtzariaIndexFileLogger.swift.gz",
+      "bytes": 1328,
+      "sha256": "7ea0b69aabc1dadf23292d1503b9645c7fa489aea5bb0773e18dc1ba91ad628b",
+      "rawBytes": 3920,
+      "rawSHA256": "18958480f302d5521af404a1c68a6374588f4849b02e2d6aeb34b89230dfd557"
+    },
+    {
+      "path": "raw/attempt1/source/tools/test_groups100_performance.swift.gz",
+      "bytes": 3428,
+      "sha256": "a8021fb3d96ca8300129def479e384ae47ed9c842c00ad808487a6f4c0dc7bbc",
+      "rawBytes": 11642,
+      "rawSHA256": "2e70791b3660ee4113379efbe931a686388016e83a2cca24ed394c0e7efcadce"
+    },
+    {
+      "path": "raw/inverse_payload.json.gz",
+      "bytes": 3179,
+      "sha256": "3306a19fe694376406a0941ad25ca0d1462b89f94fdacb83c16e7a6924eaf899",
+      "rawBytes": 10333,
+      "rawSHA256": "71a6804ce703a7f18725a29c66750c9280b387f728563db3d43d05082f0155ed"
+    },
+    {
+      "path": "raw/PBX_TARGET_MEMBERSHIP.json.gz",
+      "bytes": 211,
+      "sha256": "a01b3e511fbd01b5547581754b2c26e21fdfab963a384a705ee1b43fb88459a0",
+      "rawBytes": 269,
+      "rawSHA256": "33d3324b778416201cc81db92420795d9effb8af022c71ee1226509edf7180d7"
+    },
+    {
+      "path": "raw/PREPARATION_MEMBERSHIP_SYNTAX_FAILURE.json.gz",
+      "bytes": 940,
+      "sha256": "3173f48d74f9983dcc4beded31119cc11ccc7bb93b3592d96879c46abebc13b0",
+      "rawBytes": 3908,
+      "rawSHA256": "fbccb3fdb7b11cee3b6796b3dd9332f5260a5d33778a18958bfd9db4f6a1e820"
+    },
+    {
+      "path": "raw/PROJECT_AND_REVISION_REVIEW.json.gz",
+      "bytes": 540,
+      "sha256": "633ff4f0f94e699a4b3e10b1e1873f08724cbd8e3ba74f0130f9e4b98ac986ab",
+      "rawBytes": 1159,
+      "rawSHA256": "e5ab00305759e34ee1d096bcc918c12e3f14cdb7286558b7eb7ad10056eefda5"
+    },
+    {
+      "path": "raw/SOURCE_REVIEW.json.gz",
+      "bytes": 489,
+      "sha256": "4cf6264f070e9b2e3f85395a50983c354d7e619c642138b49d362547396c76f6",
+      "rawBytes": 893,
+      "rawSHA256": "3bd75c1d4aaf4b7ac3e20a0c3286230838c67593020352e98a90d9348a64d818"
+    },
+    {
+      "path": "raw/syntax-debug/FaithfulReaderUIAcceptanceTests.stderr.log.gz",
+      "bytes": 141,
+      "sha256": "7bee3ffa8b7a1c707ae072953e5995be8f8c833e5a7ee18573743f00b320cc9e",
+      "rawBytes": 165,
+      "rawSHA256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539"
+    },
+    {
+      "path": "raw/syntax-debug/FaithfulReaderUIAcceptanceTests.stdout.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/syntax-debug/RESULT.json.gz",
+      "bytes": 734,
+      "sha256": "06dde2fa41f92ae93bd8c6b6f0f2abacf6369948070adae1822d350aeeee87ac",
+      "rawBytes": 2512,
+      "rawSHA256": "09f3afaf5304d8c2362061731ea1d013d7e0d5642a67b0b3fb2608da312e26d0"
+    },
+    {
+      "path": "raw/syntax-debug/StudyGroupSwitchPerformanceObservation.stderr.log.gz",
+      "bytes": 141,
+      "sha256": "7bee3ffa8b7a1c707ae072953e5995be8f8c833e5a7ee18573743f00b320cc9e",
+      "rawBytes": 165,
+      "rawSHA256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539"
+    },
+    {
+      "path": "raw/syntax-debug/StudyGroupSwitchPerformanceObservation.stdout.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/syntax-debug/StudyWorkspaceNavigationAdapter.stderr.log.gz",
+      "bytes": 141,
+      "sha256": "7bee3ffa8b7a1c707ae072953e5995be8f8c833e5a7ee18573743f00b320cc9e",
+      "rawBytes": 165,
+      "rawSHA256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539"
+    },
+    {
+      "path": "raw/syntax-debug/StudyWorkspaceNavigationAdapter.stdout.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5821,
+      "sha256": "e35b06ff6ca1a2c35e174a2c7eb585eb012f5f9e4d3380c0931646746b1cb334"
+    },
+    {
+      "path": "SOURCE_INPUTS.json",
+      "bytes": 891,
+      "sha256": "f55c1afe33c9ff374d0d762849122865f3dd882838e8cfbba2b0d7102ef04a60"
+    },
+    {
+      "path": "verify-evidence.py",
+      "bytes": 4084,
+      "sha256": "497e4af4956e4dcc36db93d8d3bd90ee988facbac4328922d00928fa7e6b777f"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "source_phase": "F30576E22FA46222005732C6",
+  "targets": [
+    {
+      "id": "F30576DD2FA46222005732C6",
+      "name": "Maktabah-iOS"
+    }
+  ],
+  "project_sha256": "96faef1cf8eecd6ef06210a9acb00f55becd44cb518335f2ffb7dd72d913d17c",
+  "iOS_only": true
+}
