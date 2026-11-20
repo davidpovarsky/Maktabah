@@ -119,6 +119,17 @@ class SQLiteDatabase: @unchecked Sendable {
         }
     }
 
+    /// Executes synchronous work under this connection's existing serialization
+    /// lock. The owned annotation completion uses this to retain the same lock
+    /// across its lifetime admission and the original transaction's COMMIT.
+    /// Never await or invoke a transport; callers must obey their reviewed lock
+    /// order. Owned annotation completion never acquires repository state.
+    func withSerializedAccess<Value>(_ body: () throws -> Value) rethrows -> Value {
+        lock.lock()
+        defer { lock.unlock() }
+        return try body()
+    }
+
     func transaction(_ block: () throws -> Void) throws {
         lock.lock()
         defer { lock.unlock() }

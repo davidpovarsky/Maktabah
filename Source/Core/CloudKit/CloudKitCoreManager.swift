@@ -149,7 +149,11 @@ final class CloudKitCoreManager: Sendable {
 
     // MARK: - Core Operations
 
-    func upload(records: [CKRecord], completion: (@Sendable (Result<Void, any Error>) -> Void)? = nil) {
+    func upload(
+        records: [CKRecord],
+        completionNotification: (@Sendable () -> Void)? = nil,
+        completion: (@Sendable (Result<Void, any Error>) -> Void)? = nil
+    ) {
         guard let privateDatabase else {
             completion?(.failure(CloudKitConfigurationError.unavailable(configurationError)))
             return
@@ -164,7 +168,11 @@ final class CloudKitCoreManager: Sendable {
 
         operation.modifyRecordsResultBlock = { [weak self] result in
             completion?(result)
-            self?.notifyWorkerToSync()
+            if let completionNotification {
+                completionNotification()
+            } else {
+                self?.notifyWorkerToSync()
+            }
         }
 
         operation.database = privateDatabase
@@ -289,6 +297,10 @@ final class CloudKitCoreManager: Sendable {
 
         return request
     }
+
+    // A read-only snapshot of the existing configured request. An opt-in owner
+    // must revalidate its original context before dispatching these same bytes.
+    func workerRequestSnapshot() -> URLRequest? { makeWorker() }
 
     private func asyncWorker() {
         guard let request = makeWorker() else { return }
