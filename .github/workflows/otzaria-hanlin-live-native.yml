@@ -39,6 +39,23 @@ jobs:
           PYCONFIG
       - name: Select an existing SDK-matched runtime
         run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
+      - name: Verify the real Simulator App Group resolver interface
+        run: |
+          python3 - <<'PYGROUP'
+          import hashlib, json, pathlib, subprocess
+          command = ['xcrun', 'simctl', 'help', 'get_app_container']
+          result = subprocess.run(command, capture_output=True, timeout=45)
+          raw = result.stdout + result.stderr
+          text = raw.decode('utf-8', errors='strict')
+          path = pathlib.Path('build/hanlin-live-preflight/app-group-resolver-interface.json')
+          path.parent.mkdir(parents=True, exist_ok=False)
+          report = {'command': command, 'exit_code': result.returncode,
+                    'help_sha256': hashlib.sha256(raw).hexdigest(), 'help': text,
+                    'actual_installed_container_resolution': 'DEFERRED_TO_OWNED_NATIVE_FIXTURE'}
+          path.write_text(json.dumps(report, indent=2) + '\n')
+          assert result.returncode == 0 and len(raw) <= 65536
+          assert 'get_app_container' in text and 'group' in text.lower(), 'Actual simctl group selector interface unavailable'
+          PYGROUP
       - uses: actions/setup-node@v4
         with:
           node-version: 22

@@ -1,0 +1,23 @@
+{
+  "status": "ROOT_REVIEW_OF_OBSERVED_CONTROL_RUN",
+  "executed": 9,
+  "passed": 9,
+  "runner_sha256_at_observed_run": "5b55ced9aeec880c058e21d94dc26d337ad15b652b91afecdd20f2bf27a66237",
+  "control_sha256": "64599b4380334901f82beee35a5fb88e1ee6b3f62af01a46491e5f4e0f98f108",
+  "command": "python tools/verify-hanlin-live-app-group-controls.py",
+  "scope": "Observed local POSIX disposable filesystem and explicit simctl boundary double; actual Simulator/API/provider are NOT_RUN.",
+  "controls": [
+    "canonical owned App Group accepted outside private container",
+    "same-hash different group denied",
+    "other Simulator denied",
+    "private copy denied",
+    "changed SHA denied",
+    "reported symlink denied",
+    "canonical leaf redirect denied",
+    "empty multiple relative CLI output denied",
+    "current app group re-resolved after relocation without copy/delete"
+  ],
+  "unchanged_prior_tests_reexecuted": 0,
+  "current_runner_sha256": "8891f05b5375fb4c56a426b9cf36b262a7135fb56122cd5b581979073a50d70f",
+  "tested_helpers_unchanged_after_evidence_admission_addition": true
+}

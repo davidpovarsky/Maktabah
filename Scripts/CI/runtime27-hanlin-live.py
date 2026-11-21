@@ -21,6 +21,8 @@ MODEL = "gemini-2.5-flash-lite"
 REVIEWED_SOURCE = "a0781bd2628c1311394f7da6aa1e84c17f252fa4"
 ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/openai/"
 BUNDLE = "com.davidpovarsky.chavrusatext"
+CANONICAL_APP_GROUP = "group.com.davidpovarsky.itorah"
+FIXTURE_RELATIVE = Path("Otzaria/Profiles/miniTest10/database/seforim.db")
 PRIVATE_RELATIVE = Path("Library/Application Support/OtzariaHanlinLiveProviderAcceptance/provider.json")
 WORK = ROOT / "build/hanlin-live-private"
 OUT = ROOT / "build/hanlin-live-evidence"
@@ -148,6 +150,44 @@ def owned_application_root(udid):
     return Path.home() / "Library/Developer/CoreSimulator/Devices" / canonical / "data/Containers/Data/Application"
 
 
+def actual_owned_app_group(udid):
+    # Resolve through the installed application's real group entitlement. This
+    # directory is separate from its relocatable private data container.
+    application_path = owned_application_root(udid)
+    application_root = application_path.resolve(strict=True)
+    require(application_root == application_path.absolute(), "Owned Simulator application root is redirected")
+    group_path = application_root.parents[1] / "Shared/AppGroup"
+    group_root = group_path.resolve(strict=True)
+    require(group_root == group_path, "Owned Simulator App Group root is redirected")
+    output = subprocess.check_output(
+        ["xcrun", "simctl", "get_app_container", udid, BUNDLE, CANONICAL_APP_GROUP],
+        text=True, timeout=45,
+    ).strip()
+    require(bool(output) and len(output) <= 4096 and "\n" not in output and "\r" not in output,
+            "Invalid installed App Group resolver output")
+    raw = Path(output)
+    require(raw.is_absolute() and not raw.is_symlink(), "Invalid installed App Group path")
+    group = raw.resolve(strict=True)
+    require(group.parent == group_root and group.is_dir(), "App Group is not on the owned Simulator")
+    return group
+
+
+def owned_fixture_database(udid, expected_sha256, reported_path=None):
+    require(isinstance(expected_sha256, str) and re.fullmatch(r"[0-9a-f]{64}", expected_sha256),
+            "Invalid original fixture hash")
+    group = actual_owned_app_group(udid)
+    database = group / FIXTURE_RELATIVE
+    require(database.is_file() and not database.is_symlink() and database.resolve(strict=True) == database,
+            "Canonical shared fixture is missing or redirected")
+    if reported_path is not None:
+        reported = Path(reported_path)
+        require(reported.is_absolute() and not reported.is_symlink()
+                and reported.resolve(strict=True) == database,
+                "Fixture oracle does not identify the installed application's canonical App Group database")
+    require(digest(database) == expected_sha256, "Original shared miniature fixture hash changed")
+    return database, group
+
+
 def clean_private_input(udid):
     root = owned_application_root(udid)
     removed = 0
@@ -204,10 +244,14 @@ class LiveAcceptance:
         oracle = json.loads((ROOT / f"build/artifacts/runtime27/fixture-oracle-{label}.json").read_text())
         require(oracle["profileID"] == "miniTest10" and oracle["profileVersion"] == 6,
                 "Live input requires the public original miniature fixture")
-        database = Path(oracle["database_path"]).resolve(strict=True)
-        require(database.is_relative_to(data) and digest(database) == oracle["database_sha256"], "Wrong installed fixture")
-        self.database_relative = database.relative_to(data)
+        database, group = owned_fixture_database(udid, oracle["database_sha256"], oracle["database_path"])
+        self.database_relative = FIXTURE_RELATIVE
         self.database_sha256 = oracle["database_sha256"]
+        write(WORK / "fixture-container.json", {"udid": udid, "bundle": BUNDLE,
+              "app_group_identifier": CANONICAL_APP_GROUP, "resolved_group_container": str(group),
+              "database_relative": FIXTURE_RELATIVE.as_posix(), "database_sha256": self.database_sha256,
+              "resolver": "simctl get_app_container installed-bundle exact-group-identifier",
+              "private_provider_container": str(data), "provider_input_uses_private_container": True})
         selected = oracle["selected"]
         require(isinstance(selected["lineIndex"], int), "No original current fixture line")
         text_oracle = runpy.run_path(str(ROOT / "tools/otzaria_original_sql_oracle.py"))
@@ -252,9 +296,8 @@ class LiveAcceptance:
         raw = file.read_bytes()
         self.scan(raw)
         proof = json.loads(raw)
-        actual_database = file.parent.parent / self.database_relative
-        require(actual_database.is_file() and digest(actual_database) == self.database_sha256,
-                "Original miniature library changed during the live read")
+        require(self.database_relative == FIXTURE_RELATIVE, "Shared fixture identity changed")
+        actual_database, actual_group = owned_fixture_database(udid, self.database_sha256)
         require(proof.get("status") == "NATIVE_ASSERTIONS_COMPLETED" and proof.get("nonce") == self.nonce
                 and proof.get("model") == MODEL and proof.get("nativeConsentGranted") is True
                 and proof.get("nativeConsentRevoked") is True and proof.get("workspacePreserved") is True
@@ -263,7 +306,10 @@ class LiveAcceptance:
         self.witness = proof
         (WORK / "native-witness.json").write_bytes(raw)
         write(WORK / "fixture-after.json", {"database_sha256": self.database_sha256, "database_unchanged": True,
-              "actual_owned_container": str(file.parent.parent)})
+              "actual_owned_private_container": str(file.parent.parent),
+              "actual_owned_group_container": str(actual_group),
+              "app_group_identifier": CANONICAL_APP_GROUP,
+              "database_relative": self.database_relative.as_posix()})
 
     def cleanup(self, udid):
         if self.udid is None:
@@ -415,9 +461,12 @@ def main():
         try:
             raw = WORK / "artifacts"
             for name in ["source-before.json", "source-after.json", "selection.json", "declarations.json",
-                         "ownership.json", "artifact-isolation.json", "fixture-query.json", "fixture-after.json", "native-witness.json"]:
+                         "ownership.json", "artifact-isolation.json", "fixture-container.json",
+                         "fixture-query.json", "fixture-after.json", "native-witness.json"]:
                 live.admit(WORK / name, name)
             live.admit(ROOT / "build/hq-stage2/result.json", "original-build-result.json")
+            live.admit(ROOT / "build/hanlin-live-preflight/app-group-resolver-interface.json",
+                       "app-group-resolver-interface.json")
             for name in ["faithful-ipad-matrix.json", "test-simulator-11.log", "test-case-execution-11.json"]:
                 live.admit(raw / name, name)
             for name in ["miniTest10-native-fixture-install-11.json", "miniTest10-native-fixture-install-11-attempt-1.json",

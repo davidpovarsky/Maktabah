@@ -1,0 +1,27 @@
+{
+  "run_id": 44953692820,
+  "checkout_sha": "17be5b0abdd6c3b71a340320010e658a5595e9b6",
+  "application_source_sha": "a0781bd2628c1311394f7da6aa1e84c17f252fa4",
+  "artifact_id": 14727618227,
+  "artifact_sha256": "1ad9ff92b8616d5fc94371c6ccd86eec3372251eea9e5ef7ebdc535e6fffb5ef",
+  "admitted_files_verified": 11,
+  "source_before_after_equal": true,
+  "execution_inputs": 257,
+  "code_images": 5,
+  "original_build_status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+  "actual_compiled_source_inputs": 1007,
+  "native_fixture_passed": true,
+  "fixture_database_sha256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "fixture_is_app_group": true,
+  "fixture_not_in_private_application_container": true,
+  "failure_phase": "NATIVE_MATRIX",
+  "primary_error": "ValueError: Wrong installed fixture",
+  "XCTest_execution": "NOT_RUN",
+  "provider_conversations": 0,
+  "private_input_staged": false,
+  "private_input_removed": true,
+  "owned_simulator_cleanup": [
+    "PASS"
+  ],
+  "source_scope": "No application/test code change is required for this container-boundary correction. Actual simctl resolution remains a Native gate."
+}
