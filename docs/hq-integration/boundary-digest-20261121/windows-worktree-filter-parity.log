@@ -1,0 +1,6 @@
+test_global_autocrlf_worktree_matches_committed_patch_and_blob (__main__.PatchDigestTests.test_global_autocrlf_worktree_matches_committed_patch_and_blob) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.594s
+
+OK

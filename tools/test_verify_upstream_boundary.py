@@ -18,9 +18,7 @@ import tempfile
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
 def run_cmd(cmd, cwd, env=None):
-    merged_env = os.environ.copy()
-    if env:
-        merged_env.update(env)
+    merged_env = os.environ.copy() if env is None else env.copy()
     res = subprocess.run(
         cmd,
         cwd=cwd,
@@ -35,7 +33,7 @@ def run_cmd(cmd, cwd, env=None):
 
 def main():
     print("=== Running Upstream Boundary Guard Fixture Tests (Pass 4 Hardened) ===")
-    checker_path = os.path.abspath(r"C:\Users\DAVID\Code\Maktabah-v42-integration\Scripts\CI\verify-upstream-boundary.py")
+    checker_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "Scripts", "CI", "verify-upstream-boundary.py"))
 
     test_results = []
 
@@ -97,7 +95,7 @@ def main():
 
         # Subtest A: Using default WORKTREE mode with clean working tree
         report_json_path = os.path.join(tmpdir, "report_p3_1.json")
-        c, o, e = run_cmd(["python", checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha, "--report-json", report_json_path], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha, "--report-json", report_json_path], cwd=tmpdir)
         has_committed_violation = False
         if os.path.exists(report_json_path):
             with open(report_json_path, "r", encoding="utf-8") as jf:
@@ -106,7 +104,7 @@ def main():
         test_results.append(("P3-1. Committed upstream modification with clean worktree -> FAIL (COMMITTED)", c == 1 and has_committed_violation))
 
         # Subtest B: Using explicit --head HEAD
-        c, o, e = run_cmd(["python", checker_path, "--base", baseline_sha, "--head", committed_bad_head, "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", baseline_sha, "--head", committed_bad_head, "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("P3-1. Committed upstream modification with --head HEAD -> FAIL", c == 1 and "UNAUTHORIZED_UPSTREAM_MODIFICATION" in o))
 
         # Reset back to clean baseline for subsequent fixture tests
@@ -117,7 +115,7 @@ def main():
         nested_file = os.path.join(tmpdir, "Source", "Core", "UntrackedInCore.swift")
         with open(nested_file, "w", encoding="utf-8") as f:
             f.write("// Unauthorized untracked file\n")
-        c, o, e = run_cmd(["python", checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("1. Untracked nested protected file -> FAIL", c == 1 and "PROTECTED_NAMESPACE_POLLUTION" in o))
         os.remove(nested_file)
 
@@ -126,14 +124,14 @@ def main():
         os.makedirs(os.path.dirname(fork_file), exist_ok=True)
         with open(fork_file, "w", encoding="utf-8") as f:
             f.write("// Authorized fork-owned file\n")
-        c, o, e = run_cmd(["python", checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("2. Untracked fork-only file -> PASS", c == 0))
         os.remove(fork_file)
 
         # Test 3: Tracked protected modification -> FAIL
         with open(os.path.join(tmpdir, "Source", "Core", "UpstreamFile.swift"), "a", encoding="utf-8") as f:
             f.write("// New unauthorized modification\n")
-        c, o, e = run_cmd(["python", checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("3. Tracked protected modification -> FAIL", c == 1 and "UNAUTHORIZED_UPSTREAM_MODIFICATION" in o))
         git("checkout", "--", "Source/Core/UpstreamFile.swift")
 
@@ -141,14 +139,14 @@ def main():
         with open(os.path.join(tmpdir, "Source", "Core", "UpstreamFile.swift"), "a", encoding="utf-8") as f:
             f.write("// Staged modification\n")
         git("add", "Source/Core/UpstreamFile.swift")
-        c, o, e = run_cmd(["python", checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("4. Index-only staged edit -> FAIL", c == 1 and "UNAUTHORIZED_UPSTREAM_MODIFICATION" in o))
         git("reset", "--hard", baseline_sha)
 
         # Test 5: Unstaged edit -> FAIL
         with open(os.path.join(tmpdir, "Source", "Features", "Reader", "iOS", "iOSReaderView.swift"), "a", encoding="utf-8") as f:
             f.write("// Unstaged modification\n")
-        c, o, e = run_cmd(["python", checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("5. Unstaged edit -> FAIL", c == 1 and "UNAUTHORIZED_UPSTREAM_MODIFICATION" in o))
         git("checkout", "--", "Source/Features/Reader/iOS/iOSReaderView.swift")
 
@@ -157,7 +155,7 @@ def main():
         os.makedirs(os.path.join(tmpdir, "Source", "Features", "Reader", "iOS"), exist_ok=True)
         with open(os.path.join(tmpdir, "Source", "Features", "Reader", "iOS", "RenamedReaderView.swift"), "w", encoding="utf-8") as f:
             f.write("// Disguised rename\n")
-        c, o, e = run_cmd(["python", checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("6. Protected deletion / rename trick -> FAIL", c == 1 and "UPSTREAM_FILE_DELETED" in o))
         git("reset", "--hard", baseline_sha)
         git("clean", "-fd")
@@ -168,13 +166,13 @@ def main():
         hebrew_file = os.path.join(hebrew_dir, "קובץ בדיקה.swift")
         with open(hebrew_file, "w", encoding="utf-8") as f:
             f.write("// Unicode test\n")
-        c, o, e = run_cmd(["python", checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("7. Non-ASCII Hebrew and spaces in fork path -> PASS without crash", c == 0))
         os.remove(hebrew_file)
         os.rmdir(hebrew_dir)
 
         # Test 8: Historical divergence unchanged -> PASS
-        c, o, e = run_cmd(["python", checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("8. Historical divergence unchanged -> PASS", c == 0))
 
         # Test 9: Modified guard + protected code (bypass attempt) -> FAIL
@@ -182,15 +180,15 @@ def main():
             f.write("\n# Bypass modification\n")
         with open(os.path.join(tmpdir, "Source", "Core", "UpstreamFile.swift"), "a", encoding="utf-8") as f:
             f.write("// Coupled modification\n")
-        c, o, e = run_cmd(["python", checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("9. Guard file modified together with protected code -> FAIL (Bypass detected)", c == 1 and "UNAUTHORIZED_POLICY_BYPASS_ATTEMPT" in o))
         git("reset", "--hard", baseline_sha)
 
         # Test 10: Nonexistent refs -> FAIL with exit code 2
-        c, o, e = run_cmd(["python", checker_path, "--base", "nonexistent_ref_12345", "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", "nonexistent_ref_12345", "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("10. Nonexistent base ref -> exit code 2", c == 2))
 
-        c2, o2, e2 = run_cmd(["python", checker_path, "--base", baseline_sha, "--upstream-ref", "nonexistent_upstream_54321"], cwd=tmpdir)
+        c2, o2, e2 = run_cmd([sys.executable, checker_path, "--base", baseline_sha, "--upstream-ref", "nonexistent_upstream_54321"], cwd=tmpdir)
         test_results.append(("11. Nonexistent upstream ref -> exit code 2", c2 == 2))
 
         # --- BATCH B CRYPTOGRAPHIC FIXTURES (Ed25519 & Trust Gates) ---
@@ -199,16 +197,14 @@ def main():
         with open(os.path.join(tmpdir, "Source", "Core", "UpstreamFile.swift"), "w", encoding="utf-8") as f:
             f.write(good_content)
         good_blob = git("hash-object", "Source/Core/UpstreamFile.swift")
-        diff_cmd = ["git", "diff", baseline_sha, "HEAD", "--", "Source/Core/UpstreamFile.swift"]
-        _, d_out, _ = run_cmd(diff_cmd, cwd=tmpdir)
         import hashlib
-        diff_sha = hashlib.sha256(d_out.replace("\r\n", "\n").encode("utf-8")).hexdigest()
 
         # Import helper from checker
-        import sys
         sys.path.insert(0, os.path.dirname(checker_path))
         from importlib.machinery import SourceFileLoader
         checker_mod = SourceFileLoader("checker", checker_path).load_module()
+        diff_sha = hashlib.sha256(checker_mod.canonical_patch_bytes(
+            baseline_sha, "WORKTREE", "Source/Core/UpstreamFile.swift", tmpdir)).hexdigest()
 
         valid_expiry = "2030-12-31T23:59:59Z"
         canonical_payload = checker_mod.construct_canonical_attestation_payload(
@@ -250,13 +246,13 @@ def main():
         base_with_crypto_reg = git("rev-parse", "HEAD")
 
         # Test 12a: Valid Ed25519 signature + configured test owner key -> PASS
-        c, o, e = run_cmd(["python", checker_path, "--base", base_with_crypto_reg, "--upstream-ref", upstream_sha, "--owner-public-key", test_pub_hex], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", base_with_crypto_reg, "--upstream-ref", upstream_sha, "--owner-public-key", test_pub_hex], cwd=tmpdir)
         test_results.append(("12a. Valid Ed25519 signature with configured test key -> PASS (APPROVED_UPSTREAM_EXCEPTION)", c == 0 and "APPROVED_UPSTREAM_EXCEPTION" in o))
 
         # Test 12b: Approved file with unexpected extra hunk -> FAIL
         with open(os.path.join(tmpdir, "Source", "Core", "UpstreamFile.swift"), "a", encoding="utf-8") as f:
             f.write("// Unexpected extra hunk\n")
-        c, o, e = run_cmd(["python", checker_path, "--base", base_with_crypto_reg, "--upstream-ref", upstream_sha, "--owner-public-key", test_pub_hex], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", base_with_crypto_reg, "--upstream-ref", upstream_sha, "--owner-public-key", test_pub_hex], cwd=tmpdir)
         test_results.append(("12b. Unexpected extra hunk on approved file -> FAIL (UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION)", c == 1 and "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION" in o))
         git("reset", "--hard", base_with_crypto_reg)
 
@@ -265,7 +261,7 @@ def main():
             f.write(good_content)
         env_no_key = os.environ.copy()
         env_no_key.pop("MAKTABAH_OWNER_VERIFICATION_KEY", None)
-        c, o, e = run_cmd(["python", checker_path, "--base", base_with_crypto_reg, "--upstream-ref", upstream_sha], cwd=tmpdir, env=env_no_key)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", base_with_crypto_reg, "--upstream-ref", upstream_sha], cwd=tmpdir, env=env_no_key)
         test_results.append(("12c. Owner key unconfigured in environment -> FAIL (TRUST_GATE_BLOCKED_OWNER_CONFIGURATION)", c == 1 and "TRUST_GATE_BLOCKED_OWNER_CONFIGURATION" in o))
 
         # Test 12d: Corrupted / invalid Ed25519 signature -> FAIL (INVALID_CRYPTOGRAPHIC_SIGNATURE)
@@ -278,7 +274,7 @@ def main():
         git("commit", "-m", "Register with corrupted signature")
         base_corrupted_sig = git("rev-parse", "HEAD")
 
-        c, o, e = run_cmd(["python", checker_path, "--base", base_corrupted_sig, "--upstream-ref", upstream_sha, "--owner-public-key", test_pub_hex], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", base_corrupted_sig, "--upstream-ref", upstream_sha, "--owner-public-key", test_pub_hex], cwd=tmpdir)
         test_results.append(("12d. Corrupted cryptographic signature -> FAIL (INVALID_CRYPTOGRAPHIC_SIGNATURE)", c == 1 and "INVALID_CRYPTOGRAPHIC_SIGNATURE" in o))
         git("reset", "--hard", base_with_crypto_reg)
 
@@ -295,7 +291,7 @@ def main():
 
         with open(os.path.join(tmpdir, "Source", "Core", "UpstreamFile.swift"), "w", encoding="utf-8") as f:
             f.write(good_content)
-        c, o, e = run_cmd(["python", checker_path, "--base", base_unauth_reg, "--upstream-ref", upstream_sha, "--owner-public-key", test_pub_hex], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", base_unauth_reg, "--upstream-ref", upstream_sha, "--owner-public-key", test_pub_hex], cwd=tmpdir)
         test_results.append(("12e. Unauthorized signer key -> FAIL (UNAUTHORIZED_SIGNER_KEY)", c == 1 and "UNAUTHORIZED_SIGNER_KEY" in o))
         git("reset", "--hard", base_with_crypto_reg)
 
@@ -322,14 +318,14 @@ def main():
 
         with open(os.path.join(tmpdir, "Source", "Core", "UpstreamFile.swift"), "w", encoding="utf-8") as f:
             f.write(good_content)
-        c, o, e = run_cmd(["python", checker_path, "--base", base_expired_reg, "--upstream-ref", upstream_sha, "--owner-public-key", test_pub_hex], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", base_expired_reg, "--upstream-ref", upstream_sha, "--owner-public-key", test_pub_hex], cwd=tmpdir)
         test_results.append(("12f. Expired attestation -> FAIL (ATTESTATION_EXPIRED)", c == 1 and "ATTESTATION_EXPIRED" in o))
         git("reset", "--hard", base_with_crypto_reg)
 
         # Test 12g: Production CI environment strictly forbids --allow-unsafe-register -> FAIL (PROD_CI_FORBIDS_UNSAFE_REGISTER)
         ci_env = os.environ.copy()
         ci_env["CI"] = "true"
-        c, o, e = run_cmd(["python", checker_path, "--base", base_with_crypto_reg, "--upstream-ref", upstream_sha, "--allow-unsafe-register"], cwd=tmpdir, env=ci_env)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", base_with_crypto_reg, "--upstream-ref", upstream_sha, "--allow-unsafe-register"], cwd=tmpdir, env=ci_env)
         test_results.append(("12g. Production CI forbids --allow-unsafe-register -> FAIL (PROD_CI_FORBIDS_UNSAFE_REGISTER)", c == 1 and "PROD_CI_FORBIDS_UNSAFE_REGISTER" in o))
 
         # Test 13: Untrusted branch modifies exception register and protected code together -> FAIL (Coupled Bypass)
@@ -337,14 +333,14 @@ def main():
             f.write("\n// bypass comment\n")
         with open(os.path.join(tmpdir, "Source", "Features", "Reader", "iOS", "iOSReaderView.swift"), "a", encoding="utf-8") as f:
             f.write("// Unauthorized modification\n")
-        c, o, e = run_cmd(["python", checker_path, "--base", base_with_crypto_reg, "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", base_with_crypto_reg, "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("13. Modified approval register + source in same untrusted PR -> FAIL (Coupled Bypass)", c == 1 and "UNAUTHORIZED_POLICY_BYPASS_ATTEMPT" in o))
         git("reset", "--hard", base_with_crypto_reg)
         git("clean", "-fd")
 
         # Test 14: Pushed branch with zero before SHA -> fallback to configured baseline
         os.environ["MAKTABAH_BASELINE_SHA"] = base_with_crypto_reg
-        c, o, e = run_cmd(["python", checker_path, "--base", "0000000000000000000000000000000000000000", "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", "0000000000000000000000000000000000000000", "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("14. Pushed branch with zero before SHA -> fallback to baseline and PASS", c == 0))
         del os.environ["MAKTABAH_BASELINE_SHA"]
 
@@ -357,11 +353,11 @@ def main():
         git("add", ".")
         git("commit", "-m", "Clean fork feature")
         pr_head_sha = git("rev-parse", "HEAD")
-        c, o, e = run_cmd(["python", checker_path, "--base", base_with_crypto_reg, "--head", pr_head_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", base_with_crypto_reg, "--head", pr_head_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("15. PR with trusted base SHA -> PASS", c == 0))
 
         # Test 16: workflow_dispatch with custom approved base -> PASS
-        c, o, e = run_cmd(["python", checker_path, "--base", baseline_sha, "--head", pr_head_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", baseline_sha, "--head", pr_head_sha, "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("16. workflow_dispatch with custom approved base -> PASS", c == 0))
 
         # Test 17: Unapproved proposal in OWNER_APPROVAL_REQUIRED state fails closed
@@ -385,7 +381,7 @@ def main():
 
         with open(os.path.join(tmpdir, "Source", "Features", "Reader", "iOS", "iOSReaderView.swift"), "a", encoding="utf-8") as f:
             f.write("// Edit pending owner approval\n")
-        c, o, e = run_cmd(["python", checker_path, "--base", base_pending_reg, "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", base_pending_reg, "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("17. Unapproved proposal in OWNER_APPROVAL_REQUIRED state -> FAIL (PENDING_UPSTREAM_APPROVAL)", c == 1 and "PENDING_UPSTREAM_APPROVAL" in o))
         git("reset", "--hard", base_pending_reg)
         git("clean", "-fd")
@@ -411,7 +407,7 @@ def main():
 
         with open(os.path.join(tmpdir, "Source", "Features", "Reader", "iOS", "iOSReaderView.swift"), "w", encoding="utf-8") as f:
             f.write(good_content)
-        c, o, e = run_cmd(["python", checker_path, "--base", base_fake_approved, "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", base_fake_approved, "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("18. Agent-created APPROVED without owner attestation -> FAIL (MISSING_OWNER_ATTESTATION)", c == 1 and "MISSING_OWNER_ATTESTATION" in o))
         git("reset", "--hard", base_fake_approved)
 
@@ -440,7 +436,7 @@ def main():
 
         with open(os.path.join(tmpdir, "Source", "Features", "Reader", "iOS", "iOSReaderView.swift"), "w", encoding="utf-8") as f:
             f.write(good_content)
-        c, o, e = run_cmd(["python", checker_path, "--base", base_unsigned_reg, "--upstream-ref", upstream_sha, "--owner-public-key", test_pub_hex], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", base_unsigned_reg, "--upstream-ref", upstream_sha, "--owner-public-key", test_pub_hex], cwd=tmpdir)
         test_results.append(("19. Forged attestation missing signature/signer -> FAIL (MISSING_OWNER_SIGNATURE)", c == 1 and "MISSING_OWNER_SIGNATURE" in o))
         git("reset", "--hard", base_unsigned_reg)
 
@@ -471,7 +467,7 @@ def main():
 
         with open(os.path.join(tmpdir, "Source", "Features", "Reader", "iOS", "iOSReaderView.swift"), "w", encoding="utf-8") as f:
             f.write(good_content)
-        c, o, e = run_cmd(["python", checker_path, "--base", base_stale_reg, "--upstream-ref", upstream_sha, "--owner-public-key", test_pub_hex], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", base_stale_reg, "--upstream-ref", upstream_sha, "--owner-public-key", test_pub_hex], cwd=tmpdir)
         test_results.append(("20. Stale approval at wrong base -> FAIL (ATTESTATION_BASE_MISMATCH)", c == 1 and "ATTESTATION_BASE_MISMATCH" in o))
         git("reset", "--hard", base_stale_reg)
 
@@ -481,15 +477,19 @@ def main():
             json.dump(reg_data_crypto, f, indent=2)
         with open(os.path.join(tmpdir, "Source", "Core", "UpstreamFile.swift"), "w", encoding="utf-8") as f:
             f.write("// Unauthorized modification trying to use CLI register flag\n")
-        c, o, e = run_cmd(["python", checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha, "--exception-register", untrusted_local_json], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", baseline_sha, "--upstream-ref", upstream_sha, "--exception-register", untrusted_local_json], cwd=tmpdir)
         test_results.append(("21. CLI --exception-register without unsafe flag -> ignored and FAIL", c == 1 and "UNAUTHORIZED_UPSTREAM_MODIFICATION" in o))
         git("reset", "--hard", base_stale_reg)
 
         # Test 22: Misleading same base and head scan (--base HEAD --head HEAD) -> FAIL (SAME_BASE_AND_HEAD_NOT_PROOF)
-        c, o, e = run_cmd(["python", checker_path, "--base", "HEAD", "--head", "HEAD", "--upstream-ref", upstream_sha], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", "HEAD", "--head", "HEAD", "--upstream-ref", upstream_sha], cwd=tmpdir)
         test_results.append(("22. Misleading scan (--base HEAD --head HEAD) -> FAIL (SAME_BASE_AND_HEAD_NOT_PROOF)", c == 1 and "SAME_BASE_AND_HEAD_NOT_PROOF" in o))
 
         # Test 23: Patch digest mismatch when hunk differs from attested patch digest -> FAIL (PATCH_DIGEST_MISMATCH)
+        bad_digest_payload = checker_mod.construct_canonical_attestation_payload(
+            "davidpovarsky/Maktabah", "Source/Features/Reader/iOS/iOSReaderView.swift",
+            base_stale_reg, good_blob, "0" * 64, "BAD_DIFF_DIGEST", valid_expiry)
+        bad_digest_signature = test_private_key.sign(bad_digest_payload).hex()
         bad_digest_reg = {
             "version": 1,
             "baseline_sha": base_stale_reg,
@@ -502,7 +502,8 @@ def main():
                     "owner_attestation": {
                         "base_sha": base_stale_reg,
                         "signer_public_key": test_pub_hex,
-                        "signature": valid_signature,
+                        "signature": bad_digest_signature,
+                        "expires_at": valid_expiry,
                         "expected_head_blob_sha": good_blob,
                         "patch_digest_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
                     }
@@ -517,7 +518,7 @@ def main():
 
         with open(os.path.join(tmpdir, "Source", "Features", "Reader", "iOS", "iOSReaderView.swift"), "w", encoding="utf-8") as f:
             f.write(good_content)
-        c, o, e = run_cmd(["python", checker_path, "--base", base_bad_digest, "--upstream-ref", upstream_sha, "--owner-public-key", test_pub_hex], cwd=tmpdir)
+        c, o, e = run_cmd([sys.executable, checker_path, "--base", base_bad_digest, "--upstream-ref", upstream_sha, "--owner-public-key", test_pub_hex], cwd=tmpdir)
         test_results.append(("23. Patch diff digest mismatch -> FAIL (PATCH_DIGEST_MISMATCH)", c == 1 and "PATCH_DIGEST_MISMATCH" in o))
 
     print("\nFixture Test Results:")

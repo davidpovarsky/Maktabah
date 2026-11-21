@@ -436,16 +436,18 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Run Cryptographic Boundary Security Negative Tests
+      - name: Run Disposable Cryptographic Boundary Fixtures
         run: |
           python3 tools/test_upstream_boundary_security.py
+          python3 tools/test_verify_upstream_boundary.py
+          python3 tools/test_upstream_patch_digest.py
 
       - name: Verify Upstream Boundary Guard
         id: guard
         run: |
           mkdir -p build/reports
           EXIT_CODE=0
-          EXPECTED_VERIFIER_SHA="654a411bc78011037e6b0178d63ad8e2efb8cae3a6bb3da823738d076b387d0f"
+          EXPECTED_VERIFIER_SHA="9733798a242382f59da99cb999a169e2c69c59010b336742e9a8fa151e837676"
           ACTUAL_VERIFIER_SHA=$(shasum -a 256 tools/verify_upstream_boundary.py | cut -d' ' -f1)
           if [ "$ACTUAL_VERIFIER_SHA" != "$EXPECTED_VERIFIER_SHA" ]; then
             echo "::error::tools/verify_upstream_boundary.py SHA256 mismatch ($ACTUAL_VERIFIER_SHA != $EXPECTED_VERIFIER_SHA)!"

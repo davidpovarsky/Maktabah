@@ -1,0 +1,36 @@
+=== Running Upstream Boundary Guard Fixture Tests (Pass 4 Hardened) ===
+
+Fixture Test Results:
+  [PASS] P3-1. Committed upstream modification with clean worktree -> FAIL (COMMITTED)
+  [PASS] P3-1. Committed upstream modification with --head HEAD -> FAIL
+  [PASS] 1. Untracked nested protected file -> FAIL
+  [PASS] 2. Untracked fork-only file -> PASS
+  [PASS] 3. Tracked protected modification -> FAIL
+  [PASS] 4. Index-only staged edit -> FAIL
+  [PASS] 5. Unstaged edit -> FAIL
+  [PASS] 6. Protected deletion / rename trick -> FAIL
+  [PASS] 7. Non-ASCII Hebrew and spaces in fork path -> PASS without crash
+  [PASS] 8. Historical divergence unchanged -> PASS
+  [PASS] 9. Guard file modified together with protected code -> FAIL (Bypass detected)
+  [PASS] 10. Nonexistent base ref -> exit code 2
+  [PASS] 11. Nonexistent upstream ref -> exit code 2
+  [PASS] 12a. Valid Ed25519 signature with configured test key -> PASS (APPROVED_UPSTREAM_EXCEPTION)
+  [PASS] 12b. Unexpected extra hunk on approved file -> FAIL (UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION)
+  [PASS] 12c. Owner key unconfigured in environment -> FAIL (TRUST_GATE_BLOCKED_OWNER_CONFIGURATION)
+  [PASS] 12d. Corrupted cryptographic signature -> FAIL (INVALID_CRYPTOGRAPHIC_SIGNATURE)
+  [PASS] 12e. Unauthorized signer key -> FAIL (UNAUTHORIZED_SIGNER_KEY)
+  [PASS] 12f. Expired attestation -> FAIL (ATTESTATION_EXPIRED)
+  [PASS] 12g. Production CI forbids --allow-unsafe-register -> FAIL (PROD_CI_FORBIDS_UNSAFE_REGISTER)
+  [PASS] 13. Modified approval register + source in same untrusted PR -> FAIL (Coupled Bypass)
+  [PASS] 14. Pushed branch with zero before SHA -> fallback to baseline and PASS
+  [PASS] 15. PR with trusted base SHA -> PASS
+  [PASS] 16. workflow_dispatch with custom approved base -> PASS
+  [PASS] 17. Unapproved proposal in OWNER_APPROVAL_REQUIRED state -> FAIL (PENDING_UPSTREAM_APPROVAL)
+  [PASS] 18. Agent-created APPROVED without owner attestation -> FAIL (MISSING_OWNER_ATTESTATION)
+  [PASS] 19. Forged attestation missing signature/signer -> FAIL (MISSING_OWNER_SIGNATURE)
+  [PASS] 20. Stale approval at wrong base -> FAIL (ATTESTATION_BASE_MISMATCH)
+  [PASS] 21. CLI --exception-register without unsafe flag -> ignored and FAIL
+  [PASS] 22. Misleading scan (--base HEAD --head HEAD) -> FAIL (SAME_BASE_AND_HEAD_NOT_PROOF)
+  [PASS] 23. Patch diff digest mismatch -> FAIL (PATCH_DIGEST_MISMATCH)
+
+Overall Result: ALL FIXTURES PASSED

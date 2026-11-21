@@ -25,10 +25,48 @@ spec = importlib.util.spec_from_file_location("boundary_guard", os.path.join(REP
 bg = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(bg)
 
+def create_disposable_security_repository(cwd):
+    """Fourteen synthetic protected files; never edit the source checkout."""
+    def git(*args):
+        result = subprocess.run(["git", *args], cwd=cwd, capture_output=True, check=True,
+                                text=True, encoding="utf-8")
+        return result.stdout.strip()
+    git("init", "-b", "main")
+    git("config", "user.name", "Non-production boundary fixture")
+    git("config", "user.email", "boundary-fixture@example.invalid")
+    git("config", "core.autocrlf", "false")
+    paths = ["Source/Features/Reader/ViewModel/ReaderViewModel.swift"] + [
+        f"Source/Core/Fixture{index:02d}.swift" for index in range(1, 14)]
+    for path in paths:
+        full = os.path.join(cwd, path)
+        os.makedirs(os.path.dirname(full), exist_ok=True)
+        with open(full, "w", encoding="utf-8", newline="\n") as out:
+            out.write("// Original synthetic fixture\n")
+    policy = os.path.join(cwd, "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md")
+    os.makedirs(os.path.dirname(policy), exist_ok=True)
+    with open(policy, "w", encoding="utf-8") as out:
+        out.write("# Non-production fixture policy\n")
+    git("add", ".")
+    git("commit", "-m", "Synthetic upstream fixture")
+    baseline = git("rev-parse", "HEAD")
+    for path in paths:
+        with open(os.path.join(cwd, path), "a", encoding="utf-8", newline="\n") as out:
+            out.write("// Exact synthetic owner-reviewed hunk\n")
+    git("add", ".")
+    git("commit", "-m", "Synthetic protected hunks")
+    return baseline
+
+
 def run_security_tests():
     print("=" * 70)
     print("CHAVRUSATEXT BUILD 8401: UPSTREAM BOUNDARY SECURITY VERIFICATION SUITE")
     print("=" * 70)
+
+    global REPO_DIR
+    source_repo = REPO_DIR
+    fixture = tempfile.TemporaryDirectory(prefix="boundary-security-fixture-")
+    REPO_DIR = fixture.name
+    print("Using a disposable NON-PRODUCTION repository and fixture keys only.")
 
     # Save original CI environment variables to allow fixture testing
     orig_ci = os.environ.get("CI")
@@ -37,6 +75,8 @@ def run_security_tests():
     os.environ["GITHUB_ACTIONS"] = "false"
 
     try:
+        base_commit = create_disposable_security_repository(REPO_DIR)
+        upstream_commit = base_commit
         # Generate a dedicated NON-PRODUCTION test fixture Ed25519 key pair
         fixture_priv = Ed25519PrivateKey.generate()
         fixture_pub = fixture_priv.public_key()
@@ -50,7 +90,6 @@ def run_security_tests():
         attacker_pub_hex = attacker_pub_bytes.hex()
 
         target_path = "Source/Features/Reader/ViewModel/ReaderViewModel.swift"
-        base_commit = "031df35710ab2c6015efb1acd1e65154dbcd3f24"
         approval_id = "BUILD_8401_PATCH_05"
         future_expiry = (datetime.now(timezone.utc) + timedelta(days=90)).isoformat()
         past_expiry = (datetime.now(timezone.utc) - timedelta(days=5)).isoformat()
@@ -60,9 +99,8 @@ def run_security_tests():
         head_blob = head_blob.strip()
         assert code == 0 and head_blob
 
-        code, diff_out, _ = bg.run_cmd(["git", "diff", base_commit, "HEAD", "--", target_path], cwd=REPO_DIR)
-        diff_norm = diff_out.replace("\r\n", "\n")
-        actual_diff_sha256 = hashlib.sha256(diff_norm.encode("utf-8")).hexdigest()
+        actual_diff_sha256 = hashlib.sha256(
+            bg.canonical_patch_bytes(base_commit, "HEAD", target_path, REPO_DIR)).hexdigest()
 
         # Canonical payload helper
         def sign_payload(priv_key, repo, path, base_sha, head_blob_sha, patch_sha256, app_id, exp_at):
@@ -121,11 +159,14 @@ def run_security_tests():
                 }]
             }
             with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+                for entry in custom_reg.get("exceptions", []):
+                    if isinstance(entry.get("owner_attestation"), dict):
+                        entry["owner_attestation"].setdefault("approval_id", approval_id)
                 json.dump(custom_reg, f)
                 tname = f.name
             try:
                 return bg.verify_boundaries(
-                    base_ref=base_commit, head_ref="HEAD", upstream_ref="a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                    base_ref=base_commit, head_ref="HEAD", upstream_ref=upstream_commit,
                     cwd=REPO_DIR, exception_register=tname, allow_unsafe_register=True, owner_public_key=fixture_pub_hex
                 )
             finally:
@@ -150,11 +191,14 @@ def run_security_tests():
                 }]
             }
             with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+                for entry in custom_reg.get("exceptions", []):
+                    if isinstance(entry.get("owner_attestation"), dict):
+                        entry["owner_attestation"].setdefault("approval_id", approval_id)
                 json.dump(custom_reg, f)
                 tname = f.name
             try:
                 return bg.verify_boundaries(
-                    base_ref=base_commit, head_ref="HEAD", upstream_ref="a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                    base_ref=base_commit, head_ref="HEAD", upstream_ref=upstream_commit,
                     cwd=REPO_DIR, exception_register=tname, allow_unsafe_register=True, owner_public_key=fixture_pub_hex
                 )
             finally:
@@ -178,13 +222,16 @@ def run_security_tests():
                 }]
             }
             with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+                for entry in custom_reg.get("exceptions", []):
+                    if isinstance(entry.get("owner_attestation"), dict):
+                        entry["owner_attestation"].setdefault("approval_id", approval_id)
                 json.dump(custom_reg, f)
                 tname = f.name
             try:
                 old_env = os.environ.pop("MAKTABAH_OWNER_VERIFICATION_KEY", None)
                 try:
                     return bg.verify_boundaries(
-                        base_ref=base_commit, head_ref="HEAD", upstream_ref="a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                        base_ref=base_commit, head_ref="HEAD", upstream_ref=upstream_commit,
                         cwd=REPO_DIR, exception_register=tname, allow_unsafe_register=True, owner_public_key=None
                     )
                 finally:
@@ -213,11 +260,14 @@ def run_security_tests():
                 }]
             }
             with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+                for entry in custom_reg.get("exceptions", []):
+                    if isinstance(entry.get("owner_attestation"), dict):
+                        entry["owner_attestation"].setdefault("approval_id", approval_id)
                 json.dump(custom_reg, f)
                 tname = f.name
             try:
                 return bg.verify_boundaries(
-                    base_ref=base_commit, head_ref="HEAD", upstream_ref="a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                    base_ref=base_commit, head_ref="HEAD", upstream_ref=upstream_commit,
                     cwd=REPO_DIR, exception_register=tname, allow_unsafe_register=True, owner_public_key=fixture_pub_hex
                 )
             finally:
@@ -244,11 +294,14 @@ def run_security_tests():
                 }]
             }
             with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+                for entry in custom_reg.get("exceptions", []):
+                    if isinstance(entry.get("owner_attestation"), dict):
+                        entry["owner_attestation"].setdefault("approval_id", approval_id)
                 json.dump(custom_reg, f)
                 tname = f.name
             try:
                 return bg.verify_boundaries(
-                    base_ref=base_commit, head_ref="HEAD", upstream_ref="a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                    base_ref=base_commit, head_ref="HEAD", upstream_ref=upstream_commit,
                     cwd=REPO_DIR, exception_register=tname, allow_unsafe_register=True, owner_public_key=fixture_pub_hex
                 )
             finally:
@@ -274,11 +327,14 @@ def run_security_tests():
                 }]
             }
             with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+                for entry in custom_reg.get("exceptions", []):
+                    if isinstance(entry.get("owner_attestation"), dict):
+                        entry["owner_attestation"].setdefault("approval_id", approval_id)
                 json.dump(custom_reg, f)
                 tname = f.name
             try:
                 return bg.verify_boundaries(
-                    base_ref=base_commit, head_ref="HEAD", upstream_ref="a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                    base_ref=base_commit, head_ref="HEAD", upstream_ref=upstream_commit,
                     cwd=REPO_DIR, exception_register=tname, allow_unsafe_register=True, owner_public_key=fixture_pub_hex
                 )
             finally:
@@ -303,11 +359,14 @@ def run_security_tests():
                 }]
             }
             with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+                for entry in custom_reg.get("exceptions", []):
+                    if isinstance(entry.get("owner_attestation"), dict):
+                        entry["owner_attestation"].setdefault("approval_id", approval_id)
                 json.dump(custom_reg, f)
                 tname = f.name
             try:
                 return bg.verify_boundaries(
-                    base_ref=base_commit, head_ref="HEAD", upstream_ref="a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                    base_ref=base_commit, head_ref="HEAD", upstream_ref=upstream_commit,
                     cwd=REPO_DIR, exception_register=tname, allow_unsafe_register=True, owner_public_key=fixture_pub_hex
                 )
             finally:
@@ -333,11 +392,14 @@ def run_security_tests():
                 }]
             }
             with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+                for entry in custom_reg.get("exceptions", []):
+                    if isinstance(entry.get("owner_attestation"), dict):
+                        entry["owner_attestation"].setdefault("approval_id", approval_id)
                 json.dump(custom_reg, f)
                 tname = f.name
             try:
                 return bg.verify_boundaries(
-                    base_ref=base_commit, head_ref="HEAD", upstream_ref="a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                    base_ref=base_commit, head_ref="HEAD", upstream_ref=upstream_commit,
                     cwd=REPO_DIR, exception_register=tname, allow_unsafe_register=True, owner_public_key=fixture_pub_hex
                 )
             finally:
@@ -363,11 +425,14 @@ def run_security_tests():
                 }]
             }
             with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+                for entry in custom_reg.get("exceptions", []):
+                    if isinstance(entry.get("owner_attestation"), dict):
+                        entry["owner_attestation"].setdefault("approval_id", approval_id)
                 json.dump(custom_reg, f)
                 tname = f.name
             try:
                 return bg.verify_boundaries(
-                    base_ref=base_commit, head_ref="HEAD", upstream_ref="a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                    base_ref=base_commit, head_ref="HEAD", upstream_ref=upstream_commit,
                     cwd=REPO_DIR, exception_register=tname, allow_unsafe_register=True, owner_public_key=fixture_pub_hex
                 )
             finally:
@@ -392,11 +457,14 @@ def run_security_tests():
                 }]
             }
             with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+                for entry in custom_reg.get("exceptions", []):
+                    if isinstance(entry.get("owner_attestation"), dict):
+                        entry["owner_attestation"].setdefault("approval_id", approval_id)
                 json.dump(custom_reg, f)
                 tname = f.name
             try:
                 return bg.verify_boundaries(
-                    base_ref=base_commit, head_ref="HEAD", upstream_ref="a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                    base_ref=base_commit, head_ref="HEAD", upstream_ref=upstream_commit,
                     cwd=REPO_DIR, exception_register=tname, allow_unsafe_register=True, owner_public_key=fixture_pub_hex
                 )
             finally:
@@ -408,7 +476,7 @@ def run_security_tests():
             os.environ["CI"] = "true"
             try:
                 return bg.verify_boundaries(
-                    base_ref=base_commit, head_ref="HEAD", upstream_ref="a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                    base_ref=base_commit, head_ref="HEAD", upstream_ref=upstream_commit,
                     cwd=REPO_DIR, allow_unsafe_register=True, owner_public_key=fixture_pub_hex
                 )
             finally:
@@ -418,7 +486,7 @@ def run_security_tests():
         # Negative Test 12: Zero-commit scan (base == head) does not prove boundary integrity
         def test_same_base_head():
             return bg.verify_boundaries(
-                base_ref="HEAD", head_ref="HEAD", upstream_ref="a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                base_ref="HEAD", head_ref="HEAD", upstream_ref=upstream_commit,
                 cwd=REPO_DIR, owner_public_key=fixture_pub_hex
             )
         assert_test("Test 12: Zero-commit scan base == head rejected", "SAME_BASE_AND_HEAD_NOT_PROOF", test_same_base_head)
@@ -427,11 +495,14 @@ def run_security_tests():
         def test_unapproved_modification():
             custom_reg = {"exceptions": []}
             with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+                for entry in custom_reg.get("exceptions", []):
+                    if isinstance(entry.get("owner_attestation"), dict):
+                        entry["owner_attestation"].setdefault("approval_id", approval_id)
                 json.dump(custom_reg, f)
                 tname = f.name
             try:
                 return bg.verify_boundaries(
-                    base_ref=base_commit, head_ref="HEAD", upstream_ref="a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                    base_ref=base_commit, head_ref="HEAD", upstream_ref=upstream_commit,
                     cwd=REPO_DIR, exception_register=tname, allow_unsafe_register=True, owner_public_key=fixture_pub_hex
                 )
             finally:
@@ -446,7 +517,7 @@ def run_security_tests():
                 f.write("// unapproved namespace pollution\n")
             try:
                 return bg.verify_boundaries(
-                    base_ref=base_commit, head_ref="WORKTREE", upstream_ref="a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                    base_ref=base_commit, head_ref="WORKTREE", upstream_ref=upstream_commit,
                     cwd=REPO_DIR, owner_public_key=fixture_pub_hex
                 )
             finally:
@@ -464,7 +535,7 @@ def run_security_tests():
                 with open(policy_path, "a", encoding="utf-8") as f:
                     f.write("\n<!-- unauthorized bypass edit -->\n")
                 return bg.verify_boundaries(
-                    base_ref=base_commit, head_ref="WORKTREE", upstream_ref="a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                    base_ref=base_commit, head_ref="WORKTREE", upstream_ref=upstream_commit,
                     cwd=REPO_DIR, owner_public_key=fixture_pub_hex
                 )
             finally:
@@ -483,9 +554,8 @@ def run_security_tests():
             for i, p_path in enumerate(all_files):
                 code, p_blob, _ = bg.run_cmd(["git", "rev-parse", f"HEAD:{p_path}"], cwd=REPO_DIR)
                 p_blob = p_blob.strip()
-                code, diff_out, _ = bg.run_cmd(["git", "diff", base_commit, "HEAD", "--", p_path], cwd=REPO_DIR)
-                diff_norm = diff_out.replace("\r\n", "\n")
-                p_diff_sha = hashlib.sha256(diff_norm.encode("utf-8")).hexdigest()
+                p_diff_sha = hashlib.sha256(
+                    bg.canonical_patch_bytes(base_commit, "HEAD", p_path, REPO_DIR)).hexdigest()
                 p_id = f"TEST_PATCH_{i+1:02d}"
 
                 sig, _ = sign_payload(fixture_priv, "davidpovarsky/Maktabah", p_path, base_commit, p_blob, p_diff_sha, p_id, future_expiry)
@@ -493,7 +563,8 @@ def run_security_tests():
                     "patch_id": p_id,
                     "path": p_path,
                     "status": "APPROVED",
-                    "approval_ref": f"TEST_APPROVAL.md#{p_id.lower()}",
+                    "approval_ref": p_id,
+                    "approval_evidence_ref": f"TEST_APPROVAL.md#{p_id.lower()}",
                     "expected_head_blob_sha": p_blob,
                     "patch_digest_sha256": p_diff_sha,
                     "owner_attestation": {
@@ -511,7 +582,7 @@ def run_security_tests():
             positive_reg = {
                 "schema_version": "1.2.0",
                 "baseline_commit": base_commit,
-                "upstream_pinned_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                "upstream_pinned_sha": upstream_commit,
                 "exceptions": signed_exceptions
             }
 
@@ -520,7 +591,7 @@ def run_security_tests():
                 tname = f.name
             try:
                 return bg.verify_boundaries(
-                    base_ref=base_commit, head_ref="HEAD", upstream_ref="a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+                    base_ref=base_commit, head_ref="HEAD", upstream_ref=upstream_commit,
                     cwd=REPO_DIR, exception_register=tname, allow_unsafe_register=True, owner_public_key=fixture_pub_hex
                 )
             finally:
@@ -542,6 +613,8 @@ def run_security_tests():
             print("\n[VERIFIED] All 15 negative conditions and 1 positive test passed fail-closed requirements!")
 
     finally:
+        REPO_DIR = source_repo
+        fixture.cleanup()
         # Restore environment variables
         if orig_ci is not None:
             os.environ["CI"] = orig_ci

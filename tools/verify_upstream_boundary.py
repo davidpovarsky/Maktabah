@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 import hashlib
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -80,6 +81,164 @@ def construct_canonical_attestation_payload(repo, path, base_sha, head_blob_sha,
         "repo": str(repo)
     }
     return json.dumps(canonical_data, sort_keys=True, separators=(',', ':')).encode('utf-8')
+
+
+# BEGIN SELF-CONTAINED PATCH VERIFICATION
+# Kept byte-identical in both guards: the PR workflow checks out only its trusted
+# guard file, so importing a helper from an untrusted candidate would weaken it.
+class PatchVerificationError(ValueError):
+    def __init__(self, code, message):
+        super().__init__(message)
+        self.code = code
+
+
+def canonical_patch_bytes(base_ref, head_ref, path, cwd):
+    """Render LF-normalized patch bytes with full object IDs and fixed options.
+
+    No Git configuration is written. Binary bytes are never decoded with a
+    lossy text codec. WORKTREE includes staged and unstaged file content.
+    """
+    env = os.environ.copy()
+    # Preserve normal Git clean/filter and attributes semantics, especially a
+    # global core.autocrlf that materialized Windows working files. Removing it
+    # here would disagree with the ordinary hash-object check below.
+    for key in ("GIT_EXTERNAL_DIFF", "GIT_DIFF_OPTS"):
+        env.pop(key, None)
+    cmd = ["git", "--no-pager", "-c", "core.quotePath=true",
+           "-c", "diff.suppressBlankEmpty=false",
+           "diff", "--full-index", "--binary", "--no-color", "--no-ext-diff",
+           "--no-textconv", "--no-renames", "--no-relative",
+           "--src-prefix=a/", "--dst-prefix=b/", "--line-prefix=",
+           "--unified=3", "--inter-hunk-context=0", "--diff-algorithm=myers",
+           "--indent-heuristic", "--ignore-submodules=none", "--submodule=short",
+           "--output-indicator-new=+", "--output-indicator-old=-",
+           "--output-indicator-context= ", base_ref]
+    if head_ref != "WORKTREE":
+        cmd.append(head_ref)
+    cmd.extend(["--", ":(literal)" + path])
+    result = subprocess.run(cmd, cwd=cwd, env=env, stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE, shell=False)
+    if result.returncode != 0:
+        raise PatchVerificationError("PATCH_DIFF_READ_ERROR",
+                                     "Git could not render the exact patch.")
+    return result.stdout.replace(b"\r\n", b"\n")
+
+
+def attested_record_fields(entry, attestation):
+    """Bind all aliases to the same values used in the seven signed fields.
+
+    Legacy records without an explicit attestation approval_id retain their
+    original approval_ref payload. An unsigned conflicting alias is never
+    silently preferred, repaired, or accepted.
+    """
+    approval_id = attestation.get("approval_id") or entry.get("approval_ref") or "REF-APPROVED"
+    for name in ("approval_ref", "patch_id"):
+        if entry.get(name) and str(entry[name]) != str(approval_id):
+            raise PatchVerificationError("ATTESTATION_IDENTITY_CONFLICT",
+                                         "Unsigned " + name + " conflicts with the signed approval ID.")
+
+    def bound_value(values, code, field):
+        present = [str(value) for value in values if value]
+        if len(set(present)) > 1:
+            raise PatchVerificationError(code, "Conflicting " + field + " aliases.")
+        if not present:
+            raise PatchVerificationError("MISSING_ATTESTATION_BINDING",
+                                         "Owner attestation lacks " + field + ".")
+        return present[0]
+
+    expected_blob = bound_value(
+        [attestation.get("expected_head_blob_sha"), entry.get("expected_head_blob_sha")],
+        "ATTESTATION_BLOB_CONFLICT", "head blob")
+    expected_digest = bound_value(
+        [attestation.get("canonical_patch_sha256"), attestation.get("patch_digest_sha256"),
+         attestation.get("canonical_diff_sha256"), entry.get("patch_digest_sha256")],
+        "ATTESTATION_DIGEST_CONFLICT", "patch digest")
+    if not re.fullmatch(r"(?:[0-9a-f]{40}|[0-9a-f]{64})", expected_blob):
+        raise PatchVerificationError("MISSING_ATTESTATION_BINDING", "Head blob must be a full object ID.")
+    if not re.fullmatch(r"[0-9a-f]{64}", expected_digest):
+        raise PatchVerificationError("MISSING_ATTESTATION_BINDING", "Patch digest must be a SHA-256 hex value.")
+    return expected_blob, expected_digest, str(approval_id)
+
+
+def read_archived_patch(cwd, filename):
+    """Read only an in-repository archive; its bytes still require authentication."""
+    repository = os.path.realpath(cwd)
+    root = os.path.realpath(os.path.join(repository, "docs", "architecture"))
+    try:
+        contained = os.path.commonpath([repository, root]) == repository
+    except ValueError:
+        contained = False
+    if not contained:
+        raise PatchVerificationError("PATCH_FILE_OUTSIDE_REPOSITORY",
+                                     "The archive directory resolves outside the repository.")
+    if not isinstance(filename, str) or not filename:
+        raise PatchVerificationError("PATCH_FILE_NOT_FOUND", "Invalid archive filename.")
+    candidates = [os.path.join(root, "build-8401-patches", filename),
+                  os.path.join(root, filename)]
+    for candidate in candidates:
+        candidate = os.path.realpath(candidate)
+        try:
+            if os.path.commonpath([root, candidate]) != root:
+                continue
+        except ValueError:
+            continue
+        if os.path.isfile(candidate):
+            try:
+                with open(candidate, "rb") as archive:
+                    return archive.read().replace(b"\r\n", b"\n")
+            except OSError as exc:
+                raise PatchVerificationError("PATCH_FILE_READ_ERROR", str(exc)) from exc
+    raise PatchVerificationError("PATCH_FILE_NOT_FOUND",
+                                 "Packaged patch file is missing or outside the archive directory.")
+
+
+def expand_authenticated_legacy_index(archive, current_patch):
+    """Adapt only abbreviated index tokens, preserving every other patch byte.
+
+    The caller must first verify the owner signature AND archive SHA-256. This
+    is not a normalization of hunks, modes, paths, or arbitrary index lines.
+    Unsupported/multi-file archives remain fail-closed.
+    """
+    old_lines = archive.splitlines(keepends=True)
+    new_lines = current_patch.splitlines(keepends=True)
+    if sum(line.startswith(b"diff --git ") for line in old_lines) != 1:
+        return None
+    if sum(line.startswith(b"diff --git ") for line in new_lines) != 1:
+        return None
+    old_indexes = [i for i, line in enumerate(old_lines) if line.startswith(b"index ")]
+    new_indexes = [i for i, line in enumerate(new_lines) if line.startswith(b"index ")]
+    if len(old_indexes) != 1 or old_indexes != new_indexes:
+        return None
+    index = old_indexes[0]
+    old = re.fullmatch(rb"index ([0-9a-f]{4,64})\.\.([0-9a-f]{4,64})( [0-7]{6})?\n", old_lines[index])
+    new = re.fullmatch(rb"index ([0-9a-f]{40}|[0-9a-f]{64})\.\.([0-9a-f]{40}|[0-9a-f]{64})( [0-7]{6})?\n", new_lines[index])
+    if not old or not new or old.group(3) != new.group(3):
+        return None
+    if not all(new.group(n).startswith(old.group(n)) for n in (1, 2)):
+        return None
+    old_lines[index] = new_lines[index]
+    return b"".join(old_lines)
+
+
+def verify_record_patch(base_ref, head_ref, path, cwd, expected_digest, expected_patch_file=None):
+    """Verify a digest already bound to an authentic owner signature."""
+    current_patch = canonical_patch_bytes(base_ref, head_ref, path, cwd)
+    actual_digest = hashlib.sha256(current_patch).hexdigest()
+    if expected_patch_file:
+        archive = read_archived_patch(cwd, expected_patch_file)
+        if hashlib.sha256(archive).hexdigest() != expected_digest:
+            raise PatchVerificationError("PATCH_FILE_DIGEST_MISMATCH",
+                                         "Packaged patch bytes differ from the signed digest.")
+        if archive == current_patch and actual_digest == expected_digest:
+            return "full-index-v1"
+        if expand_authenticated_legacy_index(archive, current_patch) == current_patch:
+            return "authenticated-legacy-index-width"
+    elif actual_digest == expected_digest:
+        return "full-index-v1"
+    raise PatchVerificationError("PATCH_DIGEST_MISMATCH",
+                                 "Exact patch mismatch; legacy compatibility requires its authentic archive.")
+# END SELF-CONTAINED PATCH VERIFICATION
+
 
 def verify_ed25519_signature(public_key_raw, signature_raw, payload_bytes):
     """
@@ -577,114 +736,53 @@ def verify_boundaries(base_ref, head_ref, upstream_ref, cwd, exception_register=
                     protected_files_changed.append(path)
                     continue
 
-                # Verify head blob hash
-                expected_blob = approved_entry.get("expected_head_blob_sha") or attestation.get("expected_head_blob_sha")
-                if expected_blob:
-                    actual_blob = None
-                    if head_ref == "WORKTREE":
-                        code, out, _ = run_cmd(["git", "hash-object", path], cwd=cwd)
-                        if code == 0:
-                            actual_blob = out.strip()
-                    else:
-                        code, out, _ = run_cmd(["git", "rev-parse", f"{head_ref}:{path}"], cwd=cwd)
-                        if code == 0:
-                            actual_blob = out.strip()
+                # Resolve the exact values authenticated by the unchanged seven-field payload.
+                try:
+                    expected_blob, expected_digest, approval_id = attested_record_fields(approved_entry, attestation)
+                except PatchVerificationError as exc:
+                    violations.append({"type": exc.code, "path": path, "status": status,
+                                       "provenance": provenance, "message": str(exc)})
+                    protected_files_changed.append(path)
+                    continue
 
-                    if actual_blob != expected_blob:
-                        violations.append({
-                            "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
-                            "path": path,
-                            "status": status,
-                            "provenance": provenance,
-                            "message": f"Modified upstream file differs from approved exception blob (actual {actual_blob} != expected {expected_blob}): {path}"
-                        })
-                        protected_files_changed.append(path)
-                        continue
-
-                # Verify patch diff digest if provided in attestation
-                expected_digest = attestation.get("patch_digest_sha256") or attestation.get("canonical_diff_sha256") or approved_entry.get("patch_digest_sha256")
-                actual_diff_digest = None
-                diff_cmd = ["git", "diff", base_ref, "HEAD", "--", path] if head_ref == "WORKTREE" else ["git", "diff", base_ref, head_ref, "--", path]
-                d_code, d_out, _ = run_cmd(diff_cmd, cwd=cwd)
-                if d_code == 0:
-                    norm_diff = d_out.replace("\r\n", "\n")
-                    actual_diff_digest = hashlib.sha256(norm_diff.encode("utf-8")).hexdigest()
-                    if expected_digest and actual_diff_digest != expected_digest:
-                        violations.append({
-                            "type": "PATCH_DIGEST_MISMATCH",
-                            "path": path,
-                            "status": status,
-                            "provenance": provenance,
-                            "message": f"Modified upstream file hunk digest mismatch (actual {actual_diff_digest} != expected {expected_digest}): {path}"
-                        })
-                        protected_files_changed.append(path)
-                        continue
-
-                # Verify packaged patch file on disk if specified
-                expected_patch_file = approved_entry.get("expected_patch_file")
-                if expected_patch_file:
-                    patch_path = os.path.join(cwd, "docs", "architecture", "build-8401-patches", expected_patch_file)
-                    if not os.path.exists(patch_path):
-                        patch_path = os.path.join(cwd, "docs", "architecture", expected_patch_file)
-                    if not os.path.exists(patch_path):
-                        violations.append({
-                            "type": "PATCH_FILE_NOT_FOUND",
-                            "path": path,
-                            "status": status,
-                            "provenance": provenance,
-                            "message": f"Packaged patch file '{expected_patch_file}' for {path} not found on disk."
-                        })
-                        protected_files_changed.append(path)
-                        continue
-                    try:
-                        with open(patch_path, "rb") as pf:
-                            pf_norm = pf.read().replace(b"\r\n", b"\n")
-                        pf_digest = hashlib.sha256(pf_norm).hexdigest()
-                        if expected_digest and pf_digest != expected_digest:
-                            violations.append({
-                                "type": "PATCH_FILE_DIGEST_MISMATCH",
-                                "path": path,
-                                "status": status,
-                                "provenance": provenance,
-                                "message": f"Packaged patch file digest mismatch ({pf_digest} != {expected_digest}) for {path}"
-                            })
-                            protected_files_changed.append(path)
-                            continue
-                    except Exception as e:
-                        violations.append({
-                            "type": "PATCH_FILE_READ_ERROR",
-                            "path": path,
-                            "status": status,
-                            "provenance": provenance,
-                            "message": f"Failed reading packaged patch file '{expected_patch_file}': {str(e)}"
-                        })
-                        protected_files_changed.append(path)
-                        continue
-
-                # Cryptographic Ed25519 signature verification over canonical payload
-                repo_id = attestation.get("repo", "davidpovarsky/Maktabah")
-                approval_id = attestation.get("approval_id") or approved_entry.get("approval_ref") or "REF-APPROVED"
-                patch_sha_for_payload = attestation.get("canonical_patch_sha256") or expected_digest or actual_diff_digest or ""
+                if head_ref == "WORKTREE":
+                    b_code, b_out, _ = run_cmd(["git", "hash-object", path], cwd=cwd)
+                else:
+                    b_code, b_out, _ = run_cmd(["git", "rev-parse", f"{head_ref}:{path}"], cwd=cwd)
+                actual_blob = b_out.strip() if b_code == 0 else None
+                if actual_blob != expected_blob:
+                    violations.append({
+                        "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION", "path": path,
+                        "status": status, "provenance": provenance,
+                        "message": f"Modified upstream file differs from approved exception blob (actual {actual_blob} != expected {expected_blob}): {path}"
+                    })
+                    protected_files_changed.append(path)
+                    continue
 
                 payload_bytes = construct_canonical_attestation_payload(
-                    repo=repo_id,
-                    path=path,
-                    base_sha=attestation_base,
-                    head_blob_sha=expected_blob or "",
-                    patch_sha256=patch_sha_for_payload,
-                    approval_id=approval_id,
+                    repo=attestation.get("repo", "davidpovarsky/Maktabah"),
+                    path=path, base_sha=attestation_base, head_blob_sha=expected_blob,
+                    patch_sha256=expected_digest, approval_id=approval_id,
                     expires_at=expires_at or "NEVER"
                 )
-
                 sig_valid, sig_msg = verify_ed25519_signature(pinned_owner_key, signature, payload_bytes)
                 if not sig_valid:
                     violations.append({
-                        "type": "INVALID_CRYPTOGRAPHIC_SIGNATURE",
-                        "path": path,
-                        "status": status,
-                        "provenance": provenance,
+                        "type": "INVALID_CRYPTOGRAPHIC_SIGNATURE", "path": path,
+                        "status": status, "provenance": provenance,
                         "message": f"Ed25519 cryptographic signature verification failed: {sig_msg}"
                     })
+                    protected_files_changed.append(path)
+                    continue
+
+                # Legacy archive adaptation is reachable only after authentic owner verification.
+                try:
+                    patch_format = verify_record_patch(
+                        base_ref, head_ref, path, cwd, expected_digest,
+                        approved_entry.get("expected_patch_file"))
+                except PatchVerificationError as exc:
+                    violations.append({"type": exc.code, "path": path, "status": status,
+                                       "provenance": provenance, "message": str(exc)})
                     protected_files_changed.append(path)
                     continue
 
@@ -693,6 +791,7 @@ def verify_boundaries(base_ref, head_ref, upstream_ref, cwd, exception_register=
                     "path": path,
                     "approval_ref": approved_entry.get("approval_ref"),
                     "attestation": attestation,
+                    "patch_format": patch_format,
                     "message": f"Cryptographically verified upstream exception: {path} (approval={approval_id}, signer={pinned_owner_key[:12]}...)"
                 })
                 continue
