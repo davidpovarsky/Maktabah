@@ -1,7 +1,7 @@
 {
   "runtime27-hanlin-live.py": {
-    "sha256": "f9936fd321913b4b5f0ef06deb6e88a841e1bdda553b47de98dbb530b980dae8",
-    "bytes": 25250
+    "sha256": "27bdf0651d616b646e68d29d0833a0ad4a9a1c76ae97cdc1486b5eb27910d110",
+    "bytes": 25280
   },
   "hanlin-live-matrix-hook.patch": {
     "sha256": "e013a582bce7fbd0d8f99afd99b3e4d00d3a135e4abb614cdd6fecb96ce2c271",

@@ -356,7 +356,7 @@ def main():
     WORK.mkdir(parents=True, mode=0o700)
     OUT.mkdir(parents=True, mode=0o700)
     report = {"status": "FAIL", "selector": SELECTOR, "model": MODEL, "endpoint": ENDPOINT,
-              "native116_acceptance": False, "release114_acceptance": False, "new_provider_conversations": 0}
+              "native116_acceptance": False, "release114_acceptance": False, "verified_completed_provider_conversations": 0}
     artifacts = ROOT / "build/artifacts"
     matrix_code = None
     phase = "SOURCE_BEFORE"
@@ -388,7 +388,7 @@ def main():
                 and strict.get("skipped") == 0 and strict.get("failed") == 0
                 and live.removed and live.consumed and live.witness is not None and live.redactions == 0,
                 "Original live acceptance did not fully pass")
-        report.update(status="LIVE_ORIGINAL_HOST_NATIVE_PASS", new_provider_conversations=1)
+        report.update(status="LIVE_ORIGINAL_HOST_NATIVE_PASS", verified_completed_provider_conversations=1)
     except BaseException as error:
         report.update(failure_phase=phase, error_kind=type(error).__name__, matrix_exit_code=matrix_code)
     finally:
