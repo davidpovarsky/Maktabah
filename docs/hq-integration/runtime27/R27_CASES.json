@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "source_test_commit": "e982ce60a8003752c0b9c6be11ba7293299d5fc8",
+  "source_test_commit": "2818019c7dcecda953c74caa4f38823fb97cf70f",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "e982ce60a8003752c0b9c6be11ba7293299d5fc8",
+  "app_source": "2818019c7dcecda953c74caa4f38823fb97cf70f",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "Complete original Native116 on frozen source e982ce60a8003752c0b9c6be11ba7293299d5fc8; no execution credit before original native acceptance.",
+  "scope": "Complete original Native116 on frozen source 2818019c7dcecda953c74caa4f38823fb97cf70f; no execution credit before original native acceptance.",
   "native_cases_executed": 0,
   "required_nonzero_cases": 116,
   "expected_per_device": {
@@ -1585,7 +1585,7 @@
       "native": "NOT_RUN"
     }
   },
-  "application_source_sha": "e982ce60a8003752c0b9c6be11ba7293299d5fc8",
+  "application_source_sha": "2818019c7dcecda953c74caa4f38823fb97cf70f",
   "hanlin_source_pin_history": {
     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
