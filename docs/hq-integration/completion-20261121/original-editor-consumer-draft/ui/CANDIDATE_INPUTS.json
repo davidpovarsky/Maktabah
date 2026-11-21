@@ -1,0 +1,37 @@
+{
+  "base_commit": "34d06949e7fedbda6e0d256a769b3d0b8659c211",
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/OriginalEditorAnnotationAcceptanceTests.swift",
+      "base_sha256": null,
+      "candidate_sha256": "67f84cb8e66fa7111c99c41af7b018a49bdacfb22491e05e5f470c432e17e365",
+      "bytes": 15407
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "base_sha256": "ac406169c0689459209f2397873f7af64327249308e2737818d9250f7022b642",
+      "candidate_sha256": "b607f2909c5f480fa7b89d41c564548136ab30268cfa42a30cda5743667a2e79",
+      "bytes": 601307
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift",
+      "base_sha256": null,
+      "candidate_sha256": "8fe05dce3f997020cee3f709697313d981cd8ff419fe7e90cc38aea81790ff46",
+      "bytes": 18423
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift",
+      "base_sha256": "e97623b694d3df46fbc648258f337d4d7c5af16bca7b1c81710036f557856c5b",
+      "candidate_sha256": "7c41e0296f4d3feaef87c2e9199e3d3112b17b88896fb2850d4bdd2731a08224",
+      "bytes": 6423
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "base_sha256": "bc6d1737e558bd2dc7698c85b580a7bbae5151579f22dff44537976ae7ac401c",
+      "candidate_sha256": "8a0efc79f67bbca9ab260beb1cb89d4c6dca12e640ff38ddbb9c88437c825ca5",
+      "bytes": 21061
+    }
+  ],
+  "patch_sha256": "1ca6843ce106269064325cc665dd80096d98604cc74b813620a5e3fcf2ae821a",
+  "root_adapter_guard_patch_sha256": "a61c733f248cab66ec72c741b00e7a58bf666b8bbb1ef5887030770cdcbb331b"
+}

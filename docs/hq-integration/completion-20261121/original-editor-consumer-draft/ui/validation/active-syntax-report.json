@@ -1,0 +1,74 @@
+{
+  "job": {
+    "id": "job_efb01560fe73",
+    "status": "succeeded",
+    "started_at": "2026-11-21T23:43:14.473034+00:00",
+    "finished_at": "2026-11-21T23:43:22.466518+00:00",
+    "duration_s": 7.99
+  },
+  "status": "PASS",
+  "scope": "active-conditional syntax parse only; no UIKit/SDK typecheck, linker, simulator or Native execution",
+  "compiler": "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+  "compiler_version": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "source_payload_sha256": "dd03c7bb386ecb1c5469c0e15e47ff9739160e6ba02f255582a24cecc8f43d10",
+  "parsed_count": 7,
+  "results": [
+    {
+      "path": "Maktabah-iOSUITests/OriginalEditorAnnotationAcceptanceTests.swift",
+      "canonical_sha256": "67f84cb8e66fa7111c99c41af7b018a49bdacfb22491e05e5f470c432e17e365",
+      "active_sha256": "67f84cb8e66fa7111c99c41af7b018a49bdacfb22491e05e5f470c432e17e365",
+      "returncode": 0,
+      "seconds": 1.115,
+      "diagnostic": ""
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift",
+      "canonical_sha256": "8fe05dce3f997020cee3f709697313d981cd8ff419fe7e90cc38aea81790ff46",
+      "active_sha256": "57ceca8b53de6d4300da1aa022c32a5c9594029c3e1acce25a26a36dbfabc2be",
+      "returncode": 0,
+      "seconds": 0.913,
+      "diagnostic": ""
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift",
+      "canonical_sha256": "7c41e0296f4d3feaef87c2e9199e3d3112b17b88896fb2850d4bdd2731a08224",
+      "active_sha256": "c6308575e839941333e4afa1a073b101635ba827f44a37d9912015a2413bb8d5",
+      "returncode": 0,
+      "seconds": 0.914,
+      "diagnostic": ""
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "canonical_sha256": "8a0efc79f67bbca9ab260beb1cb89d4c6dca12e640ff38ddbb9c88437c825ca5",
+      "active_sha256": "de848a82d33f29899cbdcd6e04197c845456757def67b72249a32383b54e33e3",
+      "returncode": 0,
+      "seconds": 0.854,
+      "diagnostic": ""
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "canonical_sha256": "bb6092b2cfe7b8257eb2dcd5d103840352293e1998238ae18033b23b8ced5a06",
+      "active_sha256": "23dbea7e8fb3ef01637f9e71c3d16d0b1e0c078db8052c139da4817ca3b38d47",
+      "returncode": 0,
+      "seconds": 0.859,
+      "diagnostic": ""
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift",
+      "canonical_sha256": "89d8b9aa9b69d8d95e140e86b5ff59d9d980615b6fc1a4d6a32e13989fda7d40",
+      "active_sha256": "e0311ea1d902f2dadfb3d264b79f5c75987624b08c019a864b10d257ee1f33be",
+      "returncode": 0,
+      "seconds": 0.723,
+      "diagnostic": ""
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift",
+      "canonical_sha256": "1e48b127263a6993d3acc6022a0c55aef34f61466c357353f6c266264b4d57c0",
+      "active_sha256": "f9c0fa8ab655e89050c4eb3ea24cc81e5f834a69f16a866171c5f4fe5dd062aa",
+      "returncode": 0,
+      "seconds": 0.799,
+      "diagnostic": ""
+    }
+  ],
+  "native_tests_run": 0
+}

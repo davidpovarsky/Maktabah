@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "status": "REVIEWED_SOURCE_DRAFT_APPLE_NATIVE_PENDING",
+  "base_commit": "fb6a88f4e6ac3b0bfe0adb0a8992e2b0c3af4b5d",
+  "base_application_source": "ee27d8170dd94472856b29307a5478a58e7056eb",
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/OriginalEditorAnnotationAcceptanceTests.swift",
+      "base_sha256": null,
+      "sha256": "67f84cb8e66fa7111c99c41af7b018a49bdacfb22491e05e5f470c432e17e365",
+      "bytes": 15407
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "base_sha256": "ac406169c0689459209f2397873f7af64327249308e2737818d9250f7022b642",
+      "sha256": "b607f2909c5f480fa7b89d41c564548136ab30268cfa42a30cda5743667a2e79",
+      "bytes": 601307
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift",
+      "base_sha256": null,
+      "sha256": "8fe05dce3f997020cee3f709697313d981cd8ff419fe7e90cc38aea81790ff46",
+      "bytes": 18423
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift",
+      "base_sha256": "e97623b694d3df46fbc648258f337d4d7c5af16bca7b1c81710036f557856c5b",
+      "sha256": "7c41e0296f4d3feaef87c2e9199e3d3112b17b88896fb2850d4bdd2731a08224",
+      "bytes": 6423
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "base_sha256": "bc6d1737e558bd2dc7698c85b580a7bbae5151579f22dff44537976ae7ac401c",
+      "sha256": "8a0efc79f67bbca9ab260beb1cb89d4c6dca12e640ff38ddbb9c88437c825ca5",
+      "bytes": 21061
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+      "base_sha256": "c5e67d67d93ba3c6620c0c7dbbd47ed4ef00305d17e05991da3e70dfb9a7e765",
+      "sha256": "ab12767d96243fec6e5b914c56061fcb5cfb9e1d88add827eeaf3e382592e2b3",
+      "bytes": 9524
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "base_sha256": null,
+      "sha256": "bb6092b2cfe7b8257eb2dcd5d103840352293e1998238ae18033b23b8ced5a06",
+      "bytes": 8405
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift",
+      "base_sha256": null,
+      "sha256": "89d8b9aa9b69d8d95e140e86b5ff59d9d980615b6fc1a4d6a32e13989fda7d40",
+      "bytes": 7031
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift",
+      "base_sha256": null,
+      "sha256": "1e48b127263a6993d3acc6022a0c55aef34f61466c357353f6c266264b4d57c0",
+      "bytes": 6343
+    }
+  ],
+  "root_review": [
+    "Original same persistence owner retired nonisolated; exact Session and original lifetime six portable controls PASS with explicit storage/event probes.",
+    "Saved blank-note entry guards real original note text/style/tags/native view; original Save/Delete code unchanged.",
+    "Actual SDK Host retained; same UUID/revision CAS follows terminal original native capture; real commit receipt retained without reviving old owner.",
+    "Independent native test types two blocks through original UITextViews and requires actual original import/rendered reopen.",
+    "Missing SDK is an explicit qualification failure, never a conditional Native pass.",
+    "Compiled adapters confined to Debug iOS Simulator and real module availability; exact marker only."
+  ],
+  "qualified_here": {
+    "exact_session_portable_controls": 6,
+    "activated_swift_syntax_files": 7,
+    "apple_typecheck": 0,
+    "apple_build": 0,
+    "native_editor": 0,
+    "native_import": 0
+  },
+  "not_qualified": [
+    "new editable SDK public API and native import/export",
+    "actual Apple app link with exact distribution and shared resource collision checks",
+    "production text preview and general rich-body quick-note editing",
+    "full Native116, Release114, physical device and TestFlight"
+  ],
+  "prior_core194_transfer": "Published historical ee27 source proof only. This branch changes the compiled Session and adds consumers; its new sources do not inherit the 82/82 ee27 compiled-input assertion.",
+  "original_native_six_run": "https://github.com/davidpovarsky/Maktabah/actions/runs/44962008465",
+  "sdk_inspection_v10_not_usable_for_new_host": true
+}

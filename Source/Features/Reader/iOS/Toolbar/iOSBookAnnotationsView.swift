@@ -21,6 +21,11 @@ struct iOSBookAnnotationsView: View {
         NavigationStack {
             ScrollViewReader { proxy in
                 annotationLists
+                    #if DEBUG && os(iOS) && targetEnvironment(simulator)
+                    .modifier(AnnotationOriginalEditorQualificationIdentity(
+                        identifier: "original-book-annotations-list",
+                        value: viewModel.hasLoaded ? "loaded" : "loading"))
+                    #endif
                     .onAppear {
                         guard let targetId = viewModel.scrollPositionId else { return }
                         proxy.scrollTo(targetId, anchor: .top)
@@ -109,12 +114,20 @@ struct iOSBookAnnotationsView: View {
                 }
                 .padding(.vertical, 4)
             }
+            #if DEBUG && os(iOS) && targetEnvironment(simulator)
+            .modifier(AnnotationOriginalEditorQualificationIdentity(
+                identifier: "original-book-annotation-" + String(ann.stableId)))
+            #endif
             .contextMenu {
                 Button {
                     editingAnnotation = ann
                 } label: {
                     Label(String(localized: .Annotation.editAnnotation), systemImage: "pencil")
                 }
+                #if DEBUG && os(iOS) && targetEnvironment(simulator)
+                .modifier(AnnotationOriginalEditorQualificationIdentity(
+                    identifier: "original-book-annotation-edit-" + String(ann.stableId)))
+                #endif
 
                 Button(role: .destructive) {
                     Task { await deleteAnnotation(ann) }

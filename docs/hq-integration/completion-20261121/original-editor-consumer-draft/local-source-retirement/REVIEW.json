@@ -1,0 +1,40 @@
+{
+  "base_session_git_blob": "1d35ea064eb70ddfa4d09f6313098b0db8c5bd26",
+  "base_session_commit": "ee27d8170dd94472856b29307a5478a58e7056eb",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift",
+      "base_sha256": "1d4128ea12256bcd9910894d5dc79395418fe909116c4aa78b1b7c2df98f16c9",
+      "sha256": "b17b423dfe767653790de81aa5c99ceacc8043f310d0afbd2980212d747471ae"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "base_sha256": "4d43585219957662f04278bd3419c9bde4ab07d899f86a6eed76ca3957cc88a2",
+      "sha256": "e1685436400addbd22418e118c00ea9bf1a5f081bda09379550c6a74aa237fb7"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift",
+      "base_sha256": "bad6d07a6a22ed9f1d1ca4a1c0d12ecb4dcc2589cd84e463adff97768f780e86",
+      "sha256": "dc1cd2e2cbb4abfeb99af4716c0bc905425ef4563655ef81324f8935cc289a28"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+      "base_sha256": "c5e67d67d93ba3c6620c0c7dbbd47ed4ef00305d17e05991da3e70dfb9a7e765",
+      "sha256": "ab12767d96243fec6e5b914c56061fcb5cfb9e1d88add827eeaf3e382592e2b3"
+    }
+  ],
+  "patch_sha256": "3c22f1aa6279685d37213b3111dc67f19464c5f124f02075e720f82dd934ab29",
+  "review": "Root and independent native agent confirmed source observation previously did not retire the actual local persistence owner. New nonisolated retire aliases exactly existing owner; no new lock/store/authority.",
+  "semantics": "Retirement before the original transaction ownership checks refuses/rolls back as original code permits; retirement after its last check may leave a real durable commit. Existing completedWithoutOwnership receipt must survive; never promise cancellation or rollback after commit. Own treeInvalidated after native save intentionally retires old source and may produce that valid receipt.",
+  "binding": "Actual local session bound before first await in qualification begin/reopen and idempotently at Mount.open; overlapping original event subscriptions remain.",
+  "validation": "Six targeted exact Session/original lifetime controls PASS: Swift 6.3.3 swift-version 6, compile=0, run=0. Explicit persistence/events/CloudKit probes; Combine/UIKit/SQLite/Native NOT_RUN.",
+  "core194_transfer": "ee27 proof remains historical; this future compiled-source delta is not silently counted in its 82 matching inputs.",
+  "targeted_controls": {
+    "job_id": "job_0a06f3662766",
+    "result_sha256": "d84b36ebac7425994b0cd98ff8ab4ac185aadd871f3093eb1dd3fd274630512c",
+    "result_path": "annotation_local_retirement_controls/RESULT.json",
+    "executed": 6,
+    "passed": 6,
+    "seconds": 48.45
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "files": [
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "base_sha256": "e1685436400addbd22418e118c00ea9bf1a5f081bda09379550c6a74aa237fb7",
+      "candidate_sha256": "bb6092b2cfe7b8257eb2dcd5d103840352293e1998238ae18033b23b8ced5a06"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift",
+      "base_sha256": "dc1cd2e2cbb4abfeb99af4716c0bc905425ef4563655ef81324f8935cc289a28",
+      "candidate_sha256": "89d8b9aa9b69d8d95e140e86b5ff59d9d980615b6fc1a4d6a32e13989fda7d40"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift",
+      "base_sha256": "b17b423dfe767653790de81aa5c99ceacc8043f310d0afbd2980212d747471ae",
+      "candidate_sha256": "1e48b127263a6993d3acc6022a0c55aef34f61466c357353f6c266264b4d57c0"
+    }
+  ],
+  "patch_sha256": "a61c733f248cab66ec72c741b00e7a58bf666b8bbb1ef5887030770cdcbb331b"
+}

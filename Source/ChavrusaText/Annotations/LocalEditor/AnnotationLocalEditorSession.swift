@@ -9,6 +9,9 @@ final class AnnotationLocalEditorSession {
     let annotationUUID: UUID
     let databaseURL: URL
     private let persistence: AnnotationLocalEditorPersistence
+    // Alias the original transaction owner's one-way lifetime. Source events
+    // may arrive off MainActor while its detached SQLite worker is suspended.
+    private nonisolated let retirementOwner: AnnotationLocalEditorLifetime
     private let didCommit: @MainActor @Sendable (AnnotationLocalEditorCommitted, Bool) -> Void
     private let didCommitOwnedCloud: (@MainActor @Sendable (AnnotationLocalEditorCommitted, Bool) -> Void)?
     private var busy = false
@@ -17,16 +20,17 @@ final class AnnotationLocalEditorSession {
                      didCommitOwnedCloud: (@MainActor @Sendable (AnnotationLocalEditorCommitted, Bool) -> Void)? = nil,
                      didCommit: @escaping @MainActor @Sendable (AnnotationLocalEditorCommitted, Bool) -> Void) {
         self.persistence = persistence; self.didCommit = didCommit
+        retirementOwner = persistence.owner
         self.didCommitOwnedCloud = didCommitOwnedCloud
         id = persistence.sessionID; annotationUUID = persistence.annotationUUID
         databaseURL = persistence.connection.databaseURL
     }
 
-    deinit { persistence.owner.retire() }
+    deinit { retirementOwner.retire() }
 
     /// Cancel/host removal retires authority permanently. It never deletes the
     /// saved annotation or retries an operation that was already admitted.
-    func retire() { persistence.owner.retire() }
+    nonisolated func retire() { retirementOwner.retire() }
     var isCurrent: Bool { persistence.isOwned }
 
     func read() async throws -> AnnotationLocalEditorSnapshot {
