@@ -1,0 +1,1128 @@
+{
+  "schema": "otzaria-integration-reuse-audit-v1",
+  "observed_at": "2026-11-21T19:11:36.553925+00:00",
+  "candidate": "cf44ada2a47aa0abb152af1fdce4f14d5417456d",
+  "branch": "codex/otzaria-completion-20261121",
+  "central_before": "5c108887f142779a84ef114cd85e50fb1eaceb8b",
+  "qualified_base": {
+    "checkout": "da20cace0519d7a3e0aaca6e7cd14d51b5a3d210",
+    "application_source": "bd855c02fcef94a732f584c5992aeacec6b1b21d",
+    "run": "https://github.com/davidpovarsky/Maktabah/actions/runs/44830431710"
+  },
+  "merged_sources": [
+    "8685e8c5aca5df5c1e9802467efb98bc129313af",
+    "cb252c143955d037ab0cef4df556b1e8fcd4c334",
+    "1bf1da14c0c3d74bb790331d8df365accac905f9",
+    "3248dfb5d45b3ae12372be4292dc330cd4608de7",
+    "273273b1f6b338d5838ee20051f4cd1be7b6fbc1"
+  ],
+  "merge_history": [
+    "cf44ada2a47aa0abb152af1fdce4f14d5417456d 923df986ae33f2f005b4d83a66b56f2bd805f184 273273b1f6b338d5838ee20051f4cd1be7b6fbc1 Merge preserved-oracle Native harness repairs for scrolling and Motion restoration",
+    "923df986ae33f2f005b4d83a66b56f2bd805f184 8f3ca56befc4239bf90787d10819da1317eff879 3248dfb5d45b3ae12372be4292dc330cd4608de7 Merge scoped palette Escape focus ownership candidate",
+    "8f3ca56befc4239bf90787d10819da1317eff879 3093d557fe2e2a576a210d701e84910fdfa29b53 1bf1da14c0c3d74bb790331d8df365accac905f9 Merge original Reduce Motion palette actionability acceptance repair",
+    "3093d557fe2e2a576a210d701e84910fdfa29b53 263109f7d73deab7a0f689616ca2e1958ef08ce6 cb252c143955d037ab0cef4df556b1e8fcd4c334 Merge selected Reader tab visibility ownership",
+    "263109f7d73deab7a0f689616ca2e1958ef08ce6 da20cace0519d7a3e0aaca6e7cd14d51b5a3d210 8685e8c5aca5df5c1e9802467efb98bc129313af Merge native Study Sheet owner and presentation into qualified Core194 source"
+  ],
+  "merge_conflicts": [],
+  "project_membership": {
+    "additions": 4,
+    "deletions": 0,
+    "all_previous_project_lines_preserved": true
+  },
+  "changed_product_and_native_files": [
+    "M\tMaktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "A\tMaktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift",
+    "M\tMaktabah.xcodeproj/project.pbxproj",
+    "M\tSource/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+    "A\tSource/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+    "M\tSource/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+    "M\tSource/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+    "M\tSource/UI/iOS/Views/iPadLayout.swift"
+  ],
+  "combined_component_reuse": {
+    "source_pin_count": 119,
+    "exact_count": 118,
+    "nonmatching": [
+      {
+        "path": "Maktabah.xcodeproj/project.pbxproj",
+        "original_blob": "eaf385c363750e04688a4cda181f40597f22f315",
+        "candidate_blob": "2d536b1539153ffabff775bf384a8b080cac1e4b",
+        "exact": false
+      }
+    ],
+    "source_pin_comparisons": [
+      {
+        "path": ".github/workflows/otzaria-local-annotation-cloud-apple.yml",
+        "original_blob": "2b450b1adcc95d26571e103a2acad406c786b7db",
+        "candidate_blob": "2b450b1adcc95d26571e103a2acad406c786b7db",
+        "exact": true
+      },
+      {
+        "path": "Maktabah.xcodeproj/project.pbxproj",
+        "original_blob": "eaf385c363750e04688a4cda181f40597f22f315",
+        "candidate_blob": "2d536b1539153ffabff775bf384a8b080cac1e4b",
+        "exact": false
+      },
+      {
+        "path": "Scripts/CI/annotation-disconnect-apple.inputs.json",
+        "original_blob": "7cdea6fa72a8abfb407f71948cd0e6bb7a02dea9",
+        "candidate_blob": "7cdea6fa72a8abfb407f71948cd0e6bb7a02dea9",
+        "exact": true
+      },
+      {
+        "path": "Scripts/CI/annotation-disconnect-apple.py",
+        "original_blob": "72a3bc23ea32e72a5a0364a196d5596099f5e68b",
+        "candidate_blob": "72a3bc23ea32e72a5a0364a196d5596099f5e68b",
+        "exact": true
+      },
+      {
+        "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "original_blob": "401931f2f39d47bc56790f267e03d622218a0ea3",
+        "candidate_blob": "401931f2f39d47bc56790f267e03d622218a0ea3",
+        "exact": true
+      },
+      {
+        "path": "Scripts/CI/hq-stage2-focused-apple.py",
+        "original_blob": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1",
+        "candidate_blob": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1",
+        "exact": true
+      },
+      {
+        "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+        "original_blob": "05b1879352e4abe926e6de7fe17603de428746cf",
+        "candidate_blob": "05b1879352e4abe926e6de7fe17603de428746cf",
+        "exact": true
+      },
+      {
+        "path": "Scripts/CI/local-annotation-cloud-apple.inputs.json",
+        "original_blob": "b3f7cf43689e33ef3527b78cd959a04cf79b229a",
+        "candidate_blob": "b3f7cf43689e33ef3527b78cd959a04cf79b229a",
+        "exact": true
+      },
+      {
+        "path": "Scripts/CI/local-annotation-cloud-apple.py",
+        "original_blob": "d13ca7d1be66bafa5c0a9d450eb98881975d7537",
+        "candidate_blob": "d13ca7d1be66bafa5c0a9d450eb98881975d7537",
+        "exact": true
+      },
+      {
+        "path": "Scripts/CI/runtime27.py",
+        "original_blob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+        "candidate_blob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+        "exact": true
+      },
+      {
+        "path": "Scripts/CI/runtime27_interruption.py",
+        "original_blob": "1fb612721275dc2f3109a955ec97403789e7f7c6",
+        "candidate_blob": "1fb612721275dc2f3109a955ec97403789e7f7c6",
+        "exact": true
+      },
+      {
+        "path": "Scripts/CI/select-runtime27-toolchain.py",
+        "original_blob": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05",
+        "candidate_blob": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05",
+        "exact": true
+      },
+      {
+        "path": "Scripts/CI/test-annotation-disconnect-apple.py",
+        "original_blob": "e76c28302de51e1ae55c70e28c0fc442e7737b3c",
+        "candidate_blob": "e76c28302de51e1ae55c70e28c0fc442e7737b3c",
+        "exact": true
+      },
+      {
+        "path": "Scripts/CI/test-local-annotation-cloud-apple.py",
+        "original_blob": "57e2909492663413c6770e476ca7657a3fe18fea",
+        "candidate_blob": "57e2909492663413c6770e476ca7657a3fe18fea",
+        "exact": true
+      },
+      {
+        "path": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+        "original_blob": "c58864a98532c50c5b158c5e9ffbf0775ea92136",
+        "candidate_blob": "c58864a98532c50c5b158c5e9ffbf0775ea92136",
+        "exact": true
+      },
+      {
+        "path": "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+        "original_blob": "30602a567c239852fc56de436e35f939c5486997",
+        "candidate_blob": "30602a567c239852fc56de436e35f939c5486997",
+        "exact": true
+      },
+      {
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift",
+        "original_blob": "fea867c79e7acc97f441b37b72c92accaddcdf29",
+        "candidate_blob": "fea867c79e7acc97f441b37b72c92accaddcdf29",
+        "exact": true
+      },
+      {
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift",
+        "original_blob": "a1ddaf0ff4a243d9cef5850c144941728927f650",
+        "candidate_blob": "a1ddaf0ff4a243d9cef5850c144941728927f650",
+        "exact": true
+      },
+      {
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+        "original_blob": "feffbb8b323e9ed2b1212f4d7a1adaab4f8ecca3",
+        "candidate_blob": "feffbb8b323e9ed2b1212f4d7a1adaab4f8ecca3",
+        "exact": true
+      },
+      {
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+        "original_blob": "d4d77f1dbaa8650c5336dcc7c0483a9ef17a13e5",
+        "candidate_blob": "d4d77f1dbaa8650c5336dcc7c0483a9ef17a13e5",
+        "exact": true
+      },
+      {
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+        "original_blob": "1d35ea064eb70ddfa4d09f6313098b0db8c5bd26",
+        "candidate_blob": "1d35ea064eb70ddfa4d09f6313098b0db8c5bd26",
+        "exact": true
+      },
+      {
+        "path": "Source/Core/CloudKit/AnnotationSyncHandler.swift",
+        "original_blob": "30096dd4533109d2c0975de0db9399ab7b932cd2",
+        "candidate_blob": "30096dd4533109d2c0975de0db9399ab7b932cd2",
+        "exact": true
+      },
+      {
+        "path": "Source/Core/CloudKit/CloudKitCoreManager.swift",
+        "original_blob": "6834a1beab5ffa38ddedf3404392c3be138a73c5",
+        "candidate_blob": "6834a1beab5ffa38ddedf3404392c3be138a73c5",
+        "exact": true
+      },
+      {
+        "path": "Source/Core/CloudKit/CloudKitSyncable.swift",
+        "original_blob": "b7f647b4e7b51d328ac5eaa58675fa62f14f786f",
+        "candidate_blob": "b7f647b4e7b51d328ac5eaa58675fa62f14f786f",
+        "exact": true
+      },
+      {
+        "path": "Source/Core/CloudKit/CloudKitUploadDebouncer.swift",
+        "original_blob": "c8db3d4141369ba5217e9bff72367c9d4afe0100",
+        "candidate_blob": "c8db3d4141369ba5217e9bff72367c9d4afe0100",
+        "exact": true
+      },
+      {
+        "path": "Source/Core/CloudKit/SyncPendingStore.swift",
+        "original_blob": "52f4039c55aac40b8cccb9cf01441cecda1ef3a8",
+        "candidate_blob": "52f4039c55aac40b8cccb9cf01441cecda1ef3a8",
+        "exact": true
+      },
+      {
+        "path": "Source/Core/Configuration/AppConfig.swift",
+        "original_blob": "bc1029dfe8b08a5acbe9e4a131da19fb10f98c94",
+        "candidate_blob": "bc1029dfe8b08a5acbe9e4a131da19fb10f98c94",
+        "exact": true
+      },
+      {
+        "path": "Source/Core/Configuration/ReusableFunc.swift",
+        "original_blob": "9804cb1132925d130b9045a062ca99d46e907260",
+        "candidate_blob": "9804cb1132925d130b9045a062ca99d46e907260",
+        "exact": true
+      },
+      {
+        "path": "Source/Core/Database/CloudKitSyncManager.swift",
+        "original_blob": "cb400f59c5154688532524622544e135634d5cca",
+        "candidate_blob": "cb400f59c5154688532524622544e135634d5cca",
+        "exact": true
+      },
+      {
+        "path": "Source/Core/Database/SQLiteDatabase.swift",
+        "original_blob": "a7d7180ef1b7ba77a40a98d32592365206c1e41f",
+        "candidate_blob": "a7d7180ef1b7ba77a40a98d32592365206c1e41f",
+        "exact": true
+      },
+      {
+        "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+        "original_blob": "3dedc2068864b9076d84dc7322a1e7371b7895d4",
+        "candidate_blob": "3dedc2068864b9076d84dc7322a1e7371b7895d4",
+        "exact": true
+      },
+      {
+        "path": "Source/Features/Annotations/Database/AnnotationStore.swift",
+        "original_blob": "aed5ca06c5839a1169ac0e41b02967d028047df6",
+        "candidate_blob": "aed5ca06c5839a1169ac0e41b02967d028047df6",
+        "exact": true
+      },
+      {
+        "path": "Source/Features/Annotations/Models/Annotation.swift",
+        "original_blob": "e88cffe612ba294d9b818fbb09fc05d5b86a3991",
+        "candidate_blob": "e88cffe612ba294d9b818fbb09fc05d5b86a3991",
+        "exact": true
+      },
+      {
+        "path": "Source/Features/Annotations/Models/Annotation.xcstrings",
+        "original_blob": "238e8bb2a3e2a676fb59e2af888a96e8c93553ff",
+        "candidate_blob": "238e8bb2a3e2a676fb59e2af888a96e8c93553ff",
+        "exact": true
+      },
+      {
+        "path": "Source/Features/Annotations/Models/AnnotationChangeTypes.swift",
+        "original_blob": "d82cc1be0d2fb1a21b0e97ff25954ca4f1f382ee",
+        "candidate_blob": "d82cc1be0d2fb1a21b0e97ff25954ca4f1f382ee",
+        "exact": true
+      },
+      {
+        "path": "Source/Features/Annotations/Models/AnnotationEvent.swift",
+        "original_blob": "42b8ba3d8d37d56aab4d83a4fd1354b2f3f8d7cc",
+        "candidate_blob": "42b8ba3d8d37d56aab4d83a4fd1354b2f3f8d7cc",
+        "exact": true
+      },
+      {
+        "path": "Source/Features/Annotations/Models/AnnotationNode.swift",
+        "original_blob": "aefdacf6d13ea0c13d6fde3ed0b160421006290a",
+        "candidate_blob": "aefdacf6d13ea0c13d6fde3ed0b160421006290a",
+        "exact": true
+      },
+      {
+        "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+        "original_blob": "64cd681bfcdb89cb41073162cc2cc0af96d65cf6",
+        "candidate_blob": "64cd681bfcdb89cb41073162cc2cc0af96d65cf6",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/.gitignore",
+        "original_blob": "0ca9c3807d91c4f5557a3a222a0d61efc9fa6917",
+        "candidate_blob": "0ca9c3807d91c4f5557a3a222a0d61efc9fa6917",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift",
+        "original_blob": "c247e147286e7da365e96ca4a56cca074516bdec",
+        "candidate_blob": "c247e147286e7da365e96ca4a56cca074516bdec",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift",
+        "original_blob": "12414c2f72006c4fd411d681e60fde897dc94057",
+        "candidate_blob": "12414c2f72006c4fd411d681e60fde897dc94057",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift",
+        "original_blob": "fdfe92a35542f4b502a04966eaae3da982e551b9",
+        "candidate_blob": "fdfe92a35542f4b502a04966eaae3da982e551b9",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Integration/ActionLiveOccurrenceCounter.swift",
+        "original_blob": "e7720d8f646f1636342eca6e6d66a099f80621fd",
+        "candidate_blob": "e7720d8f646f1636342eca6e6d66a099f80621fd",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Integration/ActionOccurrenceCoveragePolicy.swift",
+        "original_blob": "92719b8baf92e84a5d0f48ada75a5ece07348adc",
+        "candidate_blob": "92719b8baf92e84a5d0f48ada75a5ece07348adc",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Package.swift",
+        "original_blob": "6e0f66e23a58df559e2eccdd62c5b894437aada8",
+        "candidate_blob": "6e0f66e23a58df559e2eccdd62c5b894437aada8",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/README.md",
+        "original_blob": "0c740823c4dbf5a2dd0d0ba114f2846a065641c3",
+        "candidate_blob": "0c740823c4dbf5a2dd0d0ba114f2846a065641c3",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift",
+        "original_blob": "a36a7dfc079f6fdd2f8752b7d047aad43a2ab37c",
+        "candidate_blob": "a36a7dfc079f6fdd2f8752b7d047aad43a2ab37c",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift",
+        "original_blob": "a558a29aeaa892c03beeeb3e66d16a26d5c2878d",
+        "candidate_blob": "a558a29aeaa892c03beeeb3e66d16a26d5c2878d",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift",
+        "original_blob": "ddd6a831edb9b1956ee09396069dd2bb0dde6ef3",
+        "candidate_blob": "ddd6a831edb9b1956ee09396069dd2bb0dde6ef3",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift",
+        "original_blob": "a96c660469c7f888e7595f3c9252b57e2daa246e",
+        "candidate_blob": "a96c660469c7f888e7595f3c9252b57e2daa246e",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift",
+        "original_blob": "1a605f41609c49e892649179be48d86bca8bdc39",
+        "candidate_blob": "1a605f41609c49e892649179be48d86bca8bdc39",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionCommentary.swift",
+        "original_blob": "f1ede5b8fde6fd8dad93644680dac9c6f83255f3",
+        "candidate_blob": "f1ede5b8fde6fd8dad93644680dac9c6f83255f3",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift",
+        "original_blob": "26c77db83fc6bf10e7edd1aeb0a95a682d246768",
+        "candidate_blob": "26c77db83fc6bf10e7edd1aeb0a95a682d246768",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNativeUIFailure.swift",
+        "original_blob": "94b347f4e0dc306527f27e68f5c5037a0e591f88",
+        "candidate_blob": "94b347f4e0dc306527f27e68f5c5037a0e591f88",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift",
+        "original_blob": "b2a58dff91dfa13ce0bb01e0a4b53eb2cb9eec28",
+        "candidate_blob": "b2a58dff91dfa13ce0bb01e0a4b53eb2cb9eec28",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOccurrenceCount.swift",
+        "original_blob": "8f25ebef32bf30ee0cb7ecd5a0ed6a49a328e819",
+        "candidate_blob": "8f25ebef32bf30ee0cb7ecd5a0ed6a49a328e819",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift",
+        "original_blob": "83bdb60b536356b034ecc71f0969777f088f56ef",
+        "candidate_blob": "83bdb60b536356b034ecc71f0969777f088f56ef",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift",
+        "original_blob": "18772cf8fe4be88b165db45434cd39af9eaa5959",
+        "candidate_blob": "18772cf8fe4be88b165db45434cd39af9eaa5959",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift",
+        "original_blob": "cae77610732cc405ae8857e7c0588b45eb5ee266",
+        "candidate_blob": "cae77610732cc405ae8857e7c0588b45eb5ee266",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift",
+        "original_blob": "4b2bf57b8be7b5cec1243809b127b3bc0a9d4e3c",
+        "candidate_blob": "4b2bf57b8be7b5cec1243809b127b3bc0a9d4e3c",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift",
+        "original_blob": "41028d323eaba2d6e3a9f10865aa6c4eed0b6230",
+        "candidate_blob": "41028d323eaba2d6e3a9f10865aa6c4eed0b6230",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+        "original_blob": "e7acf923928a2c041da185a38ab0ff658b66fc80",
+        "candidate_blob": "e7acf923928a2c041da185a38ab0ff658b66fc80",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift",
+        "original_blob": "7086ec52c7d4c35cc12b81c1bc3106b231103a23",
+        "candidate_blob": "7086ec52c7d4c35cc12b81c1bc3106b231103a23",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+        "original_blob": "d39ae93c3a12f9b26071f836425b38f8900c487b",
+        "candidate_blob": "d39ae93c3a12f9b26071f836425b38f8900c487b",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift",
+        "original_blob": "6ce8bb4db0122e9c74e30e68d36f6da4cb7c3201",
+        "candidate_blob": "6ce8bb4db0122e9c74e30e68d36f6da4cb7c3201",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift",
+        "original_blob": "e307ff135859121d7f5720b52277bc2387796eb9",
+        "candidate_blob": "e307ff135859121d7f5720b52277bc2387796eb9",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift",
+        "original_blob": "dcaea3c26680124f33d7a2c90c719bde4f738d67",
+        "candidate_blob": "dcaea3c26680124f33d7a2c90c719bde4f738d67",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift",
+        "original_blob": "67f0facd2d806ebc20160db038b3f63f98b09b6e",
+        "candidate_blob": "67f0facd2d806ebc20160db038b3f63f98b09b6e",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+        "original_blob": "faaea78e38b34e03abec768860a9c35d8838a8a8",
+        "candidate_blob": "faaea78e38b34e03abec768860a9c35d8838a8a8",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+        "original_blob": "941cd321869dcef3d5a95c1d0d5b5fb493529c53",
+        "candidate_blob": "941cd321869dcef3d5a95c1d0d5b5fb493529c53",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift",
+        "original_blob": "d44190d2dd6d6ed634447a094ba27c7922bbb11e",
+        "candidate_blob": "d44190d2dd6d6ed634447a094ba27c7922bbb11e",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift",
+        "original_blob": "e1718ea08d404509008e347706b1bd34103381c6",
+        "candidate_blob": "e1718ea08d404509008e347706b1bd34103381c6",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift",
+        "original_blob": "6c2f6cd6736eb84fcdd1cb63163169a3b5d60a19",
+        "candidate_blob": "6c2f6cd6736eb84fcdd1cb63163169a3b5d60a19",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-catalog.v1.json",
+        "original_blob": "0301b404b0792df72f58b185337517b2b17c719f",
+        "candidate_blob": "0301b404b0792df72f58b185337517b2b17c719f",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-request.v1.schema.json",
+        "original_blob": "d7061a0379b4200fad6b15d682fc5d8d7f715d40",
+        "candidate_blob": "d7061a0379b4200fad6b15d682fc5d8d7f715d40",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-result.v1.schema.json",
+        "original_blob": "7ddf4235e97f9d278b755a523a21491cbcee8742",
+        "candidate_blob": "7ddf4235e97f9d278b755a523a21491cbcee8742",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-acceptance-cases.v1.json",
+        "original_blob": "806d1eff72612adf2d9463028599e74993d4fe30",
+        "candidate_blob": "806d1eff72612adf2d9463028599e74993d4fe30",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-capability-matrix.v1.json",
+        "original_blob": "9494c5d5f7e7c783dd8a72ba61381e2d68919039",
+        "candidate_blob": "9494c5d5f7e7c783dd8a72ba61381e2d68919039",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/examples.v1.json",
+        "original_blob": "0ec9c6f2fc976ee1dd868008bafb7bf43e6861c6",
+        "candidate_blob": "0ec9c6f2fc976ee1dd868008bafb7bf43e6861c6",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/BackendSemantics/BackendSemanticsTests.swift",
+        "original_blob": "eae3ff7aae593aedcf04464f7fac77ef37958827",
+        "candidate_blob": "eae3ff7aae593aedcf04464f7fac77ef37958827",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/ContractAPITests.swift",
+        "original_blob": "6b30bbce2c3fa8a0f8b5792414bcca5ce9ac145e",
+        "candidate_blob": "6b30bbce2c3fa8a0f8b5792414bcca5ce9ac145e",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/WireSecurityTests.swift",
+        "original_blob": "37452cc5d943a049787ac15bc27c1ec060fa034d",
+        "candidate_blob": "37452cc5d943a049787ac15bc27c1ec060fa034d",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/ColdSearchExecutionOfflineTests.swift",
+        "original_blob": "1f9123bef2bb209250b5d505f49a6fdf4f9ab6d6",
+        "candidate_blob": "1f9123bef2bb209250b5d505f49a6fdf4f9ab6d6",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/EngineTests.swift",
+        "original_blob": "f85ad546d8c437e86e65cd4836a5100e0ce561eb",
+        "candidate_blob": "f85ad546d8c437e86e65cd4836a5100e0ce561eb",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/NoteDraftActionTests.swift",
+        "original_blob": "94334a6da7fc86ae1c90f2787017153aca7a193a",
+        "candidate_blob": "94334a6da7fc86ae1c90f2787017153aca7a193a",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/OccurrenceActionTests.swift",
+        "original_blob": "9aa799ce587862b1d69f83cd4e06e9bdb01d53fe",
+        "candidate_blob": "9aa799ce587862b1d69f83cd4e06e9bdb01d53fe",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/SemanticJourneyTests.swift",
+        "original_blob": "b303f01df0d65a7e9ce74a457ef7edacbd8a0fe6",
+        "candidate_blob": "b303f01df0d65a7e9ce74a457ef7edacbd8a0fe6",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Ports/MockPorts.swift",
+        "original_blob": "9d5e0e301822a18619e54f122d5b402e0a0faf09",
+        "candidate_blob": "9d5e0e301822a18619e54f122d5b402e0a0faf09",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogActionResolverTests.swift",
+        "original_blob": "105ab11449b2334c15b454533c4e727eabfc14e7",
+        "candidate_blob": "105ab11449b2334c15b454533c4e727eabfc14e7",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogSourceSectionsTests.swift",
+        "original_blob": "e13430cbbea90f867eb517b9d84fe483e36106da",
+        "candidate_blob": "e13430cbbea90f867eb517b9d84fe483e36106da",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CommentaryActionTests.swift",
+        "original_blob": "924f865e36835f8486c4f58071f3b4d82a2dbd2a",
+        "candidate_blob": "924f865e36835f8486c4f58071f3b4d82a2dbd2a",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/SearchResultsActionTests.swift",
+        "original_blob": "e2933cade8515fcb74e7b4ab9aa8604db7367cc7",
+        "candidate_blob": "e2933cade8515fcb74e7b4ab9aa8604db7367cc7",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/App/OtzariaAppContainer.swift",
+        "original_blob": "eb689ae87de7f9fa8d360e45a141d5a4aecf23c8",
+        "candidate_blob": "eb689ae87de7f9fa8d360e45a141d5a4aecf23c8",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactInstaller.swift",
+        "original_blob": "5035a9234bf5706569f730366adba7a275e2dab5",
+        "candidate_blob": "5035a9234bf5706569f730366adba7a275e2dab5",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Search/OtzariaSearchEngineBridge.swift",
+        "original_blob": "4b21b39abc9628b8f007c49d9cebaa21d22a212d",
+        "candidate_blob": "4b21b39abc9628b8f007c49d9cebaa21d22a212d",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
+        "original_blob": "2a3b379ed998830190923536ec0924fd6e622639",
+        "candidate_blob": "2a3b379ed998830190923536ec0924fd6e622639",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Storage/ITorahSharedContainer.swift",
+        "original_blob": "8df9fc1232e154fae2787f4dbddf199c7f00494c",
+        "candidate_blob": "8df9fc1232e154fae2787f4dbddf199c7f00494c",
+        "exact": true
+      },
+      {
+        "path": "Tests/HQ/annotation-disconnect/AnnotationRepositoryDisconnectAcceptance.swift",
+        "original_blob": "1c9596801f94749a82c254f05a86e432ea55761a",
+        "candidate_blob": "1c9596801f94749a82c254f05a86e432ea55761a",
+        "exact": true
+      },
+      {
+        "path": "Tests/HQ/annotation-exchange/AnnotationExchangeAcceptance.swift",
+        "original_blob": "79b114b591ef7346093646ee01ccbfb7ceff43ce",
+        "candidate_blob": "79b114b591ef7346093646ee01ccbfb7ceff43ce",
+        "exact": true
+      },
+      {
+        "path": "Tests/HQ/annotation-exchange/AnnotationExchangeTestSupport.swift",
+        "original_blob": "eb4ca0f06fb46b42175f1b3a08c4db09a4ec447c",
+        "candidate_blob": "eb4ca0f06fb46b42175f1b3a08c4db09a4ec447c",
+        "exact": true
+      },
+      {
+        "path": "Tests/HQ/cold-search/CORE_INPUTS.json",
+        "original_blob": "2d678e0d7ad4a446eecab240dc44ddfe6028091c",
+        "candidate_blob": "2d678e0d7ad4a446eecab240dc44ddfe6028091c",
+        "exact": true
+      },
+      {
+        "path": "Tests/HQ/cold-search/baseline-19b-ActionExecutor.swift.gz",
+        "original_blob": "865b7b1660f7397577925c0626d260ff19591c18",
+        "candidate_blob": "865b7b1660f7397577925c0626d260ff19591c18",
+        "exact": true
+      },
+      {
+        "path": "Tests/HQ/cold-search/test_core_driver.py",
+        "original_blob": "4dbd7b8a63bd9699e50f8417a8070679e5a9ed44",
+        "candidate_blob": "4dbd7b8a63bd9699e50f8417a8070679e5a9ed44",
+        "exact": true
+      },
+      {
+        "path": "Tests/HQ/local-annotation-cloud/LocalAnnotationCloudAcceptance.swift",
+        "original_blob": "df96549af006a148c4c1b4ef5c82a3afc8ee443e",
+        "candidate_blob": "df96549af006a148c4c1b4ef5c82a3afc8ee443e",
+        "exact": true
+      },
+      {
+        "path": "Tests/HQ/local-annotation-cloud/LocalAnnotationCloudBoundary.swift",
+        "original_blob": "0056a307f0aede09d39bf0c15665db3f9fb18c9c",
+        "candidate_blob": "0056a307f0aede09d39bf0c15665db3f9fb18c9c",
+        "exact": true
+      },
+      {
+        "path": "Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift",
+        "original_blob": "467f45f7859ad03824d030be1855c2b27a1a98a5",
+        "candidate_blob": "467f45f7859ad03824d030be1855c2b27a1a98a5",
+        "exact": true
+      },
+      {
+        "path": "Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift",
+        "original_blob": "0f8bf29a30d63aa7769b723973784839a44300c9",
+        "candidate_blob": "0f8bf29a30d63aa7769b723973784839a44300c9",
+        "exact": true
+      },
+      {
+        "path": "Tests/HQ/sqlite/UnusedZstdBoundary.swift",
+        "original_blob": "af39c8673dcda19785f6f1259474c39941f5a5a0",
+        "candidate_blob": "af39c8673dcda19785f6f1259474c39941f5a5a0",
+        "exact": true
+      },
+      {
+        "path": "docs/hq-actions-bridge/embedded-handler-fixtures.json",
+        "original_blob": "86ab7654efc5317afffbbe5a0cbbb98f646ab775",
+        "candidate_blob": "86ab7654efc5317afffbbe5a0cbbb98f646ab775",
+        "exact": true
+      },
+      {
+        "path": "docs/hq-integration/annotation-combined-core194-apple-v3-20261120/reference/original-cloud-binding.json",
+        "original_blob": "8a51e2b47b0237de65a1702a7ef64645a4ea11f4",
+        "candidate_blob": "8a51e2b47b0237de65a1702a7ef64645a4ea11f4",
+        "exact": true
+      },
+      {
+        "path": "docs/hq-integration/annotation-repository-disconnect-20261120/compile-types-v3/REPOSITORY_API.json",
+        "original_blob": "4a5d1c68082a505f92925490a22c9516d5c970a4",
+        "candidate_blob": "4a5d1c68082a505f92925490a22c9516d5c970a4",
+        "exact": true
+      },
+      {
+        "path": "tools/hq-annotation-disconnect-acceptance.py",
+        "original_blob": "dc0de14212b41e02f925e023e4a1b44ce4503a5a",
+        "candidate_blob": "dc0de14212b41e02f925e023e4a1b44ce4503a5a",
+        "exact": true
+      },
+      {
+        "path": "tools/hq-annotation-exchange-acceptance.py",
+        "original_blob": "4f87f3a4f4b61144fd3bcf6ee8b1975e5708fb72",
+        "candidate_blob": "4f87f3a4f4b61144fd3bcf6ee8b1975e5708fb72",
+        "exact": true
+      },
+      {
+        "path": "tools/hq-cold-search-core-acceptance.py",
+        "original_blob": "a7f8867a4118ff2707a2aa9ed75f7ab28fbbc5ea",
+        "candidate_blob": "a7f8867a4118ff2707a2aa9ed75f7ab28fbbc5ea",
+        "exact": true
+      },
+      {
+        "path": "tools/hq-local-annotation-cloud-acceptance.py",
+        "original_blob": "11117d25545434adbd698e713eb4542422312cc9",
+        "candidate_blob": "11117d25545434adbd698e713eb4542422312cc9",
+        "exact": true
+      },
+      {
+        "path": "tools/hq-local-annotation-editor-acceptance.py",
+        "original_blob": "d1ad554013d77c7c80e3cce8c6c17509455ff345",
+        "candidate_blob": "d1ad554013d77c7c80e3cce8c6c17509455ff345",
+        "exact": true
+      },
+      {
+        "path": "tools/test-local-annotation-editor-gate.py",
+        "original_blob": "b6f0e88657f7f0586175f14b325fd784a95d747c",
+        "candidate_blob": "b6f0e88657f7f0586175f14b325fd784a95d747c",
+        "exact": true
+      },
+      {
+        "path": "tools/test-local-annotation-editor-sql.py",
+        "original_blob": "fa91b24b351651d7ddd62a0c2894d0b7fb418759",
+        "candidate_blob": "fa91b24b351651d7ddd62a0c2894d0b7fb418759",
+        "exact": true
+      },
+      {
+        "path": "tools/test-local-cloud-pending-sql.py",
+        "original_blob": "b54c68b2ec400239c90ad7e0ee829c2930316c42",
+        "candidate_blob": "b54c68b2ec400239c90ad7e0ee829c2930316c42",
+        "exact": true
+      }
+    ],
+    "component_trees": [
+      {
+        "path": "Source/Otzaria/Actions",
+        "qualified_tree": "a89104250c1aedf75e6aa95ed3f111a4dc597217",
+        "candidate_tree": "a89104250c1aedf75e6aa95ed3f111a4dc597217",
+        "exact": true
+      },
+      {
+        "path": "Source/ChavrusaText/Annotations",
+        "qualified_tree": "f9387af793df1d643d6f457db907b84e1570c3c9",
+        "candidate_tree": "f9387af793df1d643d6f457db907b84e1570c3c9",
+        "exact": true
+      },
+      {
+        "path": "Source/Features/Annotations/Database",
+        "qualified_tree": "8837d532a1ae7aa3a2a6a41ad64fffb7375261ba",
+        "candidate_tree": "8837d532a1ae7aa3a2a6a41ad64fffb7375261ba",
+        "exact": true
+      },
+      {
+        "path": "Source/Core/CloudKit",
+        "qualified_tree": "fd4b159314393331c6f511c7d69c2b038563d7be",
+        "candidate_tree": "fd4b159314393331c6f511c7d69c2b038563d7be",
+        "exact": true
+      },
+      {
+        "path": "Source/Core/Database",
+        "qualified_tree": "3f4200cc3602afa74f006bbd8bcb69f99e3a5370",
+        "candidate_tree": "3f4200cc3602afa74f006bbd8bcb69f99e3a5370",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Search",
+        "qualified_tree": "5f25e1fb7843f1172e5eeae73a4d87778953a223",
+        "candidate_tree": "5f25e1fb7843f1172e5eeae73a4d87778953a223",
+        "exact": true
+      },
+      {
+        "path": "Source/Otzaria/Storage",
+        "qualified_tree": "ba09ea3a864b8f1f678d5d4765401e3d5469f1a8",
+        "candidate_tree": "ba09ea3a864b8f1f678d5d4765401e3d5469f1a8",
+        "exact": true
+      },
+      {
+        "path": "Vendor",
+        "qualified_tree": "4065c0e62af325e83a65fe0c70270985229807ae",
+        "candidate_tree": "4065c0e62af325e83a65fe0c70270985229807ae",
+        "exact": true
+      }
+    ],
+    "decision": "Reuse qualified Core194 and original annotation component results for identical inputs; perform fresh full-app compile and affected Native tests. No current Native or physical acceptance is implied."
+  },
+  "sefaria_apple55_reuse": {
+    "historical_source": "ce56baedf0fec15f61a117e5649e8c6865781120",
+    "run": "https://github.com/davidpovarsky/Maktabah/actions/runs/44743177022",
+    "inputs": [
+      {
+        "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+        "historical": {
+          "git_blob": "fe2fbcb9f07762e0d35949b098b55d079a3c95d2",
+          "sha256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+          "bytes": 31937
+        },
+        "candidate": {
+          "git_blob": "fe2fbcb9f07762e0d35949b098b55d079a3c95d2",
+          "sha256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+          "bytes": 31937
+        },
+        "exact": true
+      },
+      {
+        "path": "Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+        "historical": {
+          "git_blob": "59173d54ed1be62eb25e6f1100771d8b10fb7547",
+          "sha256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+          "bytes": 2067
+        },
+        "candidate": {
+          "git_blob": "59173d54ed1be62eb25e6f1100771d8b10fb7547",
+          "sha256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+          "bytes": 2067
+        },
+        "exact": true
+      },
+      {
+        "path": "Source/Sefaria/Domain/SefariaModels.swift",
+        "historical": {
+          "git_blob": "2f6c00bebbbbf7ca13cf4374111b09ec1c29e584",
+          "sha256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+          "bytes": 12258
+        },
+        "candidate": {
+          "git_blob": "2f6c00bebbbbf7ca13cf4374111b09ec1c29e584",
+          "sha256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+          "bytes": 12258
+        },
+        "exact": true
+      },
+      {
+        "path": "Source/Sefaria/Domain/SefariaNavigationParser.swift",
+        "historical": {
+          "git_blob": "86b7b97047426083516f40a9034ef7765b7c6a2f",
+          "sha256": "3a33b37270a8cc19826a403db93f7d800a99a453626b2c0c31ec8e0c9f7a0a5e",
+          "bytes": 34284
+        },
+        "candidate": {
+          "git_blob": "86b7b97047426083516f40a9034ef7765b7c6a2f",
+          "sha256": "3a33b37270a8cc19826a403db93f7d800a99a453626b2c0c31ec8e0c9f7a0a5e",
+          "bytes": 34284
+        },
+        "exact": true
+      },
+      {
+        "path": "Source/Sefaria/Network/SefariaDTOs.swift",
+        "historical": {
+          "git_blob": "b11caf953f373918d3e17e5741a8e94e343eeeb5",
+          "sha256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+          "bytes": 22303
+        },
+        "candidate": {
+          "git_blob": "b11caf953f373918d3e17e5741a8e94e343eeeb5",
+          "sha256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+          "bytes": 22303
+        },
+        "exact": true
+      },
+      {
+        "path": "Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+        "historical": {
+          "git_blob": "fe5593bf2c47ea70002c3debd2a36648ecc48c6b",
+          "sha256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+          "bytes": 5433
+        },
+        "candidate": {
+          "git_blob": "fe5593bf2c47ea70002c3debd2a36648ecc48c6b",
+          "sha256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+          "bytes": 5433
+        },
+        "exact": true
+      },
+      {
+        "path": "Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+        "historical": {
+          "git_blob": "da1faba53fa3f37cb85187313b53f2b0ed6af489",
+          "sha256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+          "bytes": 2831
+        },
+        "candidate": {
+          "git_blob": "da1faba53fa3f37cb85187313b53f2b0ed6af489",
+          "sha256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+          "bytes": 2831
+        },
+        "exact": true
+      },
+      {
+        "path": "Source/Sefaria/Network/SefariaHTTPClient.swift",
+        "historical": {
+          "git_blob": "0e2e6d99e014809bc4066f10da6a16f6d3a8537f",
+          "sha256": "7e064e33a19f032e2175c0d4658f97c23e0fd70d77bc1eabe9e535e7b3aabefd",
+          "bytes": 18702
+        },
+        "candidate": {
+          "git_blob": "0e2e6d99e014809bc4066f10da6a16f6d3a8537f",
+          "sha256": "7e064e33a19f032e2175c0d4658f97c23e0fd70d77bc1eabe9e535e7b3aabefd",
+          "bytes": 18702
+        },
+        "exact": true
+      },
+      {
+        "path": "Tests/HQ/sefaria-mobile-navigation/TOCTransportAcceptanceAppendix.swift",
+        "historical": {
+          "git_blob": "1a4466ad5d56329c64e0df650340432ed4d6636a",
+          "sha256": "6e3533132d0d643875d42f3f7af54380475450a190996bb261c3ca245d06977e",
+          "bytes": 14167
+        },
+        "candidate": {
+          "git_blob": "1a4466ad5d56329c64e0df650340432ed4d6636a",
+          "sha256": "6e3533132d0d643875d42f3f7af54380475450a190996bb261c3ca245d06977e",
+          "bytes": 14167
+        },
+        "exact": true
+      },
+      {
+        "path": "tools/hq-sefaria-toc-transport.py",
+        "historical": {
+          "git_blob": "d5519abb6fc5e6cfba46a7a1266e518ea501f832",
+          "sha256": "451bd2ea7e1722ec34cec24447da40fa8b54f964885c96def2e8a26ec216fcbd",
+          "bytes": 8768
+        },
+        "candidate": {
+          "git_blob": "d5519abb6fc5e6cfba46a7a1266e518ea501f832",
+          "sha256": "451bd2ea7e1722ec34cec24447da40fa8b54f964885c96def2e8a26ec216fcbd",
+          "bytes": 8768
+        },
+        "exact": true
+      },
+      {
+        "path": "tools/hq-sefaria-navigation-language.py",
+        "historical": {
+          "git_blob": "0940ece4e2736abe951e4b063702d74eba8e2bf3",
+          "sha256": "040f7c495014990c226b04a35c1b039622dc2f49bb60b86b18314f8985900fba",
+          "bytes": 12770
+        },
+        "candidate": {
+          "git_blob": "0940ece4e2736abe951e4b063702d74eba8e2bf3",
+          "sha256": "040f7c495014990c226b04a35c1b039622dc2f49bb60b86b18314f8985900fba",
+          "bytes": 12770
+        },
+        "exact": true
+      },
+      {
+        "path": "Scripts/CI/sefaria-toc-apple55.py",
+        "historical": {
+          "git_blob": "cda603645479664a09481ab5b1685162fceedaad",
+          "sha256": "682fa506c34af463844327850c5df0119b4c0c8fab0249527949b424809e465f",
+          "bytes": 14675
+        },
+        "candidate": {
+          "git_blob": "cda603645479664a09481ab5b1685162fceedaad",
+          "sha256": "682fa506c34af463844327850c5df0119b4c0c8fab0249527949b424809e465f",
+          "bytes": 14675
+        },
+        "exact": true
+      },
+      {
+        "path": "Scripts/CI/runtime27_interruption.py",
+        "historical": {
+          "git_blob": "1fb612721275dc2f3109a955ec97403789e7f7c6",
+          "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
+          "bytes": 7650
+        },
+        "candidate": {
+          "git_blob": "1fb612721275dc2f3109a955ec97403789e7f7c6",
+          "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
+          "bytes": 7650
+        },
+        "exact": true
+      }
+    ],
+    "decision": "Reuse Apple Foundation55 only if every recorded exact input remains identical; no network, UI, embedded Hermes or physical claim."
+  },
+  "sdk": {
+    "historical_checkout": "e90feda1",
+    "historical_application": "c37b72374b65a44d54cdcffea2e39f5818a12aac",
+    "run": "https://github.com/davidpovarsky/Maktabah/actions/runs/44668457275",
+    "gitlink_historical": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+    "gitlink_candidate": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+    "store_inputs": [
+      {
+        "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinConversationStore.swift",
+        "historical": {
+          "git_blob": "9079ff6e766e98aea7ea41e567d57228e55400b5",
+          "sha256": "72f19477d9649468e6aa6dad2501c19ed933cbe455c793c8b13cb43e92af83a4",
+          "bytes": 15580
+        },
+        "candidate": {
+          "git_blob": "9079ff6e766e98aea7ea41e567d57228e55400b5",
+          "sha256": "72f19477d9649468e6aa6dad2501c19ed933cbe455c793c8b13cb43e92af83a4",
+          "bytes": 15580
+        },
+        "exact": true
+      },
+      {
+        "path": "Tests/HQ/hanlin-consumer/OtzariaHanlinConversationStoreTests.swift",
+        "historical": {
+          "git_blob": "d8f99c093f0625a228fa4bab3287e702811eba40",
+          "sha256": "45bb2a82e110fcccfe41e7c68ca4ccc26aa74e8e0cba0f8542657cb996f5af3a",
+          "bytes": 18885
+        },
+        "candidate": {
+          "git_blob": "d8f99c093f0625a228fa4bab3287e702811eba40",
+          "sha256": "45bb2a82e110fcccfe41e7c68ca4ccc26aa74e8e0cba0f8542657cb996f5af3a",
+          "bytes": 18885
+        },
+        "exact": true
+      },
+      {
+        "path": "tools/hq-hanlin-consumer-store.py",
+        "historical": {
+          "git_blob": "71c4e5114ddeabb8d62c48dfa69e394208b78eb3",
+          "sha256": "ebafcf4a1a4b41f0c59b4954a70604bc4970d441370967d2dca1017259703bdc",
+          "bytes": 6839
+        },
+        "candidate": {
+          "git_blob": "71c4e5114ddeabb8d62c48dfa69e394208b78eb3",
+          "sha256": "ebafcf4a1a4b41f0c59b4954a70604bc4970d441370967d2dca1017259703bdc",
+          "bytes": 6839
+        },
+        "exact": true
+      },
+      {
+        "path": "Scripts/CI/verify-faithful-xctest.py",
+        "historical": {
+          "git_blob": "0084b85d78c0c9cedd0fbcd12363cec5d39afda1",
+          "sha256": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7",
+          "bytes": 6009
+        },
+        "candidate": {
+          "git_blob": "0084b85d78c0c9cedd0fbcd12363cec5d39afda1",
+          "sha256": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7",
+          "bytes": 6009
+        },
+        "exact": true
+      }
+    ],
+    "store_decision": "Store11 is reusable on exact SDK/store/fixture/driver/verifier inputs. No provider or Native UI claim.",
+    "host48_decision": "Do not reuse original Host48 as current-Core acceptance: driver compiles complete ActionCore, which changed since c37b7237. Rerun existing host fixture on current source or obtain later exact evidence.",
+    "host48_existing_command": "python3 tools/hq-hanlin-host-contracts.py --hanlin-repo Vendor/HanlinSDK --hanlin-sha e00498e33f106cc43be0476ffa2e09329c8ca300 --artifacts-dir <fresh-directory>",
+    "whole_umbrella_decision": "Do not transfer every original SDK sub-suite: SQLite, routing and workspace inputs changed. Reuse components individually only."
+  },
+  "full_v32_reuse": {
+    "source": "b07f229e85fe894722566ad9444de31d0ba4490f",
+    "run": "https://github.com/davidpovarsky/Maktabah/actions/runs/44684680952",
+    "engine_trees": [
+      {
+        "path": "Vendor/OtzariaSearchEngine",
+        "historical_tree": "424e157913f36db2b5cc4c6204056f56c3194dd9",
+        "candidate_tree": "424e157913f36db2b5cc4c6204056f56c3194dd9",
+        "exact": true
+      },
+      {
+        "path": "Vendor/ZayitSearchPort",
+        "historical_tree": "a121537e72fb10ce7c710ad55f7d084a0427cf2d",
+        "candidate_tree": "a121537e72fb10ce7c710ad55f7d084a0427cf2d",
+        "exact": true
+      }
+    ],
+    "app_changes": [
+      "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactInstaller.swift",
+      "Source/Otzaria/Search/OtzariaSearchEngineBridge.swift",
+      "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
+      "Source/Otzaria/Storage/ITorahSharedContainer.swift"
+    ],
+    "decision": "Retain historical corpus/index/engine qualification. Current app installer recovery/promotion and cold-index preparation have changed; do not label whole current-app full-v32 journey passed. Validate affected boundaries rather than repeating unchanged corpus measurements."
+  },
+  "lockfile": {
+    "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+    "blob": "2a09ec0e71d3da6855fb57f25a09996816df608c",
+    "same_as_bd855c02_c37b7237_ce56baed_b07f229e": true
+  },
+  "new_tests_executed_by_auditor": 0,
+  "native_status": "NOT_RUN_ON_UNIFIED_CANDIDATE",
+  "physical_status": "NOT_RUN",
+  "source_audit_only": true,
+  "preserved_original_dirty_worktrees": [
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-native-core-repairs-20261120",
+      "observed": [
+        "M Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+        "?? Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/ColdSearchExecutionTests.swift"
+      ]
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-native98-evidence-20261120",
+      "observed": [
+        "?? docs/hq-integration/native98-observed-20261120/"
+      ]
+    }
+  ]
+}
