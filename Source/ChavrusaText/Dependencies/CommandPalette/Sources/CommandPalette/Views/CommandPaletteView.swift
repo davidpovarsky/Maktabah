@@ -156,7 +156,13 @@ public struct CommandPaletteView: View {
                 KeyCap(label: "esc")
             }
             .buttonStyle(.plain)
+            #if os(iOS)
+            // The focused UIKit field owns Escape. Keep the scene shortcut
+            // available when focus leaves that field, without two owners.
+            .keyboardShortcut(isSearchFieldFocused ? nil : KeyboardShortcut.cancelAction)
+            #else
             .keyboardShortcut(.cancelAction)
+            #endif
             .accessibilityLabel(Text("Close command palette"))
             .accessibilityIdentifier("command-palette-close")
         }
