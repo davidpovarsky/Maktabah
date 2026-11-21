@@ -1,0 +1,222 @@
+{
+  "status": "FAILED",
+  "scope": "FOCUSED_SEVEN_ONLY",
+  "full_native116_acceptance": false,
+  "full_release114_acceptance": false,
+  "required_case_ids": [
+    "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+    "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+    "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+    "R27NativePadTests/testNormalBootstrapPaletteHIDComparison"
+  ],
+  "checkout_sha": "3b475a8f8fd88ddfd12d0e6c891979e965cf9ce2",
+  "application_source_sha": "cf44ada2a47aa0abb152af1fdce4f14d5417456d",
+  "application_trees": {
+    "Source": "3cde661448f47c5798aed3364d205d9685c658c5",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "f740290b1429319c2f85d2b2635394eafb84b23e",
+    "Maktabah-iOSUITests": "a9d30b950baf01d1a1387f0011b4b60c9b210504"
+  },
+  "built_binary_sha256": {
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app": "fa466723aadcbb00290d14a60c96d02784f342dc2cc096cb7c0ffd3a41157b13",
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app": "e3e971b82ecf32284748d3821fbc127e5abdb6bad2463e048bc3df19726e7014",
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest": "27d4a72a11581bd126adb0806044598c0c885dd11c1021bbe4bda709510bf44d"
+  },
+  "compiled_image_bytes_unchanged": true,
+  "actual_counts_by_device": {
+    "11-reader": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "2F0D1536-CE1B-4628-A03B-40222412B7D2",
+            "deviceName": "Faithful 11-inch 4f9988ce",
+            "modelName": "iPad Pro 11-inch (M5)",
+            "osBuildNumber": "24B8117",
+            "osVersion": "27.2",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 2,
+          "passedTests": 0,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Test Scheme Action"
+          }
+        }
+      ],
+      "environmentDescription": "Maktabah-iOS \u00b7 Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 2,
+      "finishTime": 1795291637.064,
+      "passedTests": 0,
+      "result": "Failed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1795291345.564,
+      "statistics": [],
+      "testFailures": [
+        {
+          "failureText": "failed - The original switch tap must stay inside its finite visible native window",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+          "testName": "testSystemReduceMotionKeepsOriginalPaletteUsable()"
+        },
+        {
+          "failureText": "XCTAssertGreaterThan failed: (\"-180.0\") is not greater than (\"80.0\") - The original Reader must have actual scrollable overflow before the gesture",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 2,
+          "testIdentifierString": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+          "testName": "testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt()"
+        }
+      ],
+      "title": "Test - Maktabah-iOS",
+      "topInsights": [],
+      "totalTestCount": 2
+    },
+    "11-search": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "9FA0C54E-14CF-4681-B3E6-EC1D8425A3D4",
+            "deviceName": "Faithful 11-inch 2a775698",
+            "modelName": "iPad Pro 11-inch (M5)",
+            "osBuildNumber": "24B8117",
+            "osVersion": "27.2",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 1,
+          "passedTests": 1,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Test Scheme Action"
+          }
+        }
+      ],
+      "environmentDescription": "Maktabah-iOS \u00b7 Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 1,
+      "finishTime": 1795292672.171,
+      "passedTests": 1,
+      "result": "Failed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1795292516.919,
+      "statistics": [],
+      "testFailures": [
+        {
+          "failureText": "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+          "testName": "testCandidateGlobalSearchLandscapeMatchesOriginalNavigation()"
+        }
+      ],
+      "title": "Test - Maktabah-iOS",
+      "topInsights": [],
+      "totalTestCount": 2
+    },
+    "11-window": {}
+  },
+  "case_outcomes": [
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+      "device": "ipad11",
+      "expected": "Unchanged original XCTest assertions in NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+      "configuration_label": "11-reader",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "device": "ipad11",
+      "expected": "Unchanged original XCTest assertions in FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "configuration_label": "11-reader",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "device": "ipad11",
+      "expected": "Unchanged original XCTest assertions in FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "configuration_label": "11-search",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "device": "ipad11",
+      "expected": "Unchanged original XCTest assertions in FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "configuration_label": "11-search",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+      "device": "ipad11",
+      "expected": "Separate job-local pinned idb direct native HID on this owned disposable simulator. Real A/backspace visibly edit/clear production autofocus field; one Escape removes actual full empty input; genuine narrow resize and real fixture filtering; one Escape removes actual narrow filtered input; Inspector open/close, full text/exact locator and native window restoration. Original XCTest Escape case retained independently; transport ACK alone never UI acceptance.",
+      "configuration_label": "11-window",
+      "actual": "NOT_RUN"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "device": "ipad11",
+      "expected": "Unchanged original XCTest assertions in FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "configuration_label": "11-window",
+      "actual": "NOT_RUN"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "device": "ipad11",
+      "expected": "Unchanged original XCTest assertions in R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "configuration_label": "11-window",
+      "actual": "NOT_RUN"
+    }
+  ],
+  "executed_ui_pass": 1,
+  "executed_ui_fail": 3,
+  "executed_ui_skip": 0,
+  "ui_not_run": 3,
+  "error": "ValueError: Seven original native cases did not all execute and pass",
+  "artifact": {
+    "id": 14724450161,
+    "bytes": 25598249,
+    "sha256": "0484d4115576cd30b6ea35ad8a32aded9bca10d12d0fcf25dd10e883702dd8de",
+    "zip_crc_verified": true
+  },
+  "captures": {
+    "id": 14723843717,
+    "bytes": 232535008,
+    "github_reported_sha256": "f491fc96a67d80179771044bf2ba7df83907af2a4408de76a21b4f41ff8ddde8",
+    "local_download": "IN_PROGRESS_AT_REPORT_CREATION"
+  },
+  "wrapper_fix": {
+    "status": "SOURCE_WIRING_REPAIRED_NOT_NATIVE_VERIFIED",
+    "changes": {
+      ".github/workflows/otzaria-completion-focused-native.yml": {
+        "before_blob": "0ff63e6408e24d0732f5720de0e0a7efa8139760",
+        "before_sha256": "bb79d90792f2bef137c7971745cc7f51d9f41f90ad55f0a650dc5cd52eed7a4f",
+        "after_sha256": "cff0c4c56ff7f0b7f6fd04d005c54ca984de2410b162a98346a57814c02f9818",
+        "only_addition": "GH_TOKEN: secrets.GITHUB_TOKEN on original execution step"
+      },
+      ".github/workflows/otzaria-hanlin-live-native.yml": {
+        "before_blob": "24eda6654f5599b4f0bac93fb385e63725a53949",
+        "before_sha256": "a07a052a125626cf5c70b7f1e9f074a4b096bc6e4f7b4932b13ed63d82d9d8b1",
+        "after_sha256": "8cdf070fd4011a50f40852d015e610442931683e5d75b9db301f45e2fb9f2529",
+        "only_addition": "GH_TOKEN: secrets.GITHUB_TOKEN on original execution step"
+      }
+    },
+    "original_reference": ".github/workflows/sefaria-embedded-validation.yml",
+    "exact_403_url": "NOT_RECORDED",
+    "api_rate_limiting": "PLAUSIBLE_NOT_PROVEN",
+    "http403_retry_added": false,
+    "current_live_attempt_unchanged": 44947117347
+  }
+}

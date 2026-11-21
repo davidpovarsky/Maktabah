@@ -84,6 +84,8 @@ jobs:
       - name: Prepare original native HID bridge
         run: python3 Scripts/CI/runtime27-hid.py prepare --out build/artifacts/runtime27/hid-tools.json
       - name: Execute seven exact original native cases without rebuilding
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 Scripts/CI/completion-focused-native.py run
       - name: Collect original raw native case outcomes including failures
         if: always()

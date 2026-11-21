@@ -113,6 +113,7 @@ jobs:
         id: live_case
         if: ${{ always() && steps.live_credential.outputs.configured == 'true' }}
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OTZARIA_HANLIN_LIVE_API_KEY: ${{ secrets.OTZARIA_LIVE_GEMINI_API_KEY }}
         run: python3 Scripts/CI/runtime27-hanlin-live.py
       - name: Verify private input removal and original evidence restoration
