@@ -1,0 +1,23 @@
+test_actual_changed_hunk_is_rejected (__main__.PatchDigestTests.test_actual_changed_hunk_is_rejected) ... ok
+test_actual_mode_change_is_rejected_with_identical_blob (__main__.PatchDigestTests.test_actual_mode_change_is_rejected_with_identical_blob) ... ok
+test_archive_root_cannot_escape_repository_through_symlink (__main__.PatchDigestTests.test_archive_root_cannot_escape_repository_through_symlink) ... ok
+test_archive_tampering_is_rejected (__main__.PatchDigestTests.test_archive_tampering_is_rejected) ... ok
+test_conflicting_digest_and_blob_aliases_are_rejected (__main__.PatchDigestTests.test_conflicting_digest_and_blob_aliases_are_rejected) ... ok
+test_conflicting_unsigned_identity_fields_are_rejected (__main__.PatchDigestTests.test_conflicting_unsigned_identity_fields_are_rejected) ... ok
+test_full_index_is_stable_across_core_abbrev_and_legacy_widths (__main__.PatchDigestTests.test_full_index_is_stable_across_core_abbrev_and_legacy_widths) ... ok
+test_invalid_signature_cannot_activate_archive_compatibility (__main__.PatchDigestTests.test_invalid_signature_cannot_activate_archive_compatibility) ... ok
+test_legacy_approval_ref_is_verified_as_the_exact_signed_id (__main__.PatchDigestTests.test_legacy_approval_ref_is_verified_as_the_exact_signed_id) ... ok
+test_legacy_requires_exact_authenticated_archive (__main__.PatchDigestTests.test_legacy_requires_exact_authenticated_archive) ... ok
+test_local_blank_context_configuration_does_not_change_canonical_patch (__main__.PatchDigestTests.test_local_blank_context_configuration_does_not_change_canonical_patch) ... ok
+test_object_store_collision_does_not_invalidate_authentic_legacy_archive (__main__.PatchDigestTests.test_object_store_collision_does_not_invalidate_authentic_legacy_archive) ... ok
+test_self_contained_helpers_are_identical (__main__.PatchDigestTests.test_self_contained_helpers_are_identical) ... ok
+test_seven_field_payload_is_unchanged (__main__.PatchDigestTests.test_seven_field_payload_is_unchanged) ... ok
+test_signed_archive_cannot_substitute_hunk_path_mode_or_index (__main__.PatchDigestTests.test_signed_archive_cannot_substitute_hunk_path_mode_or_index) ... ok
+test_signer_rejects_identity_conflict_without_touching_proposals (__main__.PatchDigestTests.test_signer_rejects_identity_conflict_without_touching_proposals) ... ok
+test_unsigned_generator_and_signer_preflight_share_exact_bytes (__main__.PatchDigestTests.test_unsigned_generator_and_signer_preflight_share_exact_bytes) ... ok
+test_worktree_renderer_includes_uncommitted_bytes (__main__.PatchDigestTests.test_worktree_renderer_includes_uncommitted_bytes) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 136.203s
+
+OK

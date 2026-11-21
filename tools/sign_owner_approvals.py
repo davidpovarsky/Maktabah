@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 tools/sign_owner_approvals.py — Owner Cryptographic Signing & Attestation Packaging Tool
-Computes canonical payloads for all 14 Build 8401 upstream hunks, provides owner-side
+Computes canonical payloads for a fixed review manifest (Build 8401 by default), provides owner-side
 Ed25519 signing from a secure private-key file, and verifies cryptographic attestations fail-closed.
 """
 
@@ -102,11 +102,21 @@ def get_canonical_payloads(manifest_data, base_commit, repo_id, expires_at):
 
 def validate_manifest_preconditions(manifest_data, patches_dir, cwd):
     """
-    Enforces strict 14/14 patch file and blob parity before any signing operation.
+    Enforces exact manifest count and patch parity before any signing operation.
+    New full-index manifests also bind their immutable source commit and blobs.
     """
     patches = manifest_data.get("patches", [])
-    if len(patches) != 14:
-        raise ValueError(f"Manifest must contain exactly 14 patches, found {len(patches)}")
+    expected_count = manifest_data.get("total_patches", 14)
+    if not isinstance(expected_count, int) or expected_count <= 0 or len(patches) != expected_count:
+        raise ValueError(f"Manifest patch count differs from its declared total ({expected_count})")
+    patch_format = manifest_data.get("patch_format")
+    if patch_format not in (None, "git-full-index-v1"):
+        raise ValueError("Unsupported patch rendering contract")
+    if patch_format and not manifest_data.get("head_commit"):
+        raise ValueError("Full-index manifest requires an immutable head_commit")
+    if patch_format and any(not bg.re.fullmatch(r"(?:[0-9a-f]{40}|[0-9a-f]{64})", str(manifest_data.get(field, "")))
+                            for field in ("base_commit", "head_commit")):
+        raise ValueError("Full-index manifest source commits must use full object IDs")
 
     seen_ids = set()
     seen_paths = set()
@@ -136,21 +146,57 @@ def validate_manifest_preconditions(manifest_data, patches_dir, cwd):
         if actual_digest != p_digest:
             raise ValueError(f"Patch file digest mismatch for '{p_file}': actual {actual_digest} != expected {p_digest}")
 
+        if patch_format == "git-full-index-v1":
+            base = manifest_data.get("base_commit")
+            head = manifest_data["head_commit"]
+            for commit, expected_blob in ((base, p.get("base_blob_sha")), (head, p_blob)):
+                code, actual_blob, _ = bg.run_cmd(["git", "rev-parse", f"{commit}:{p_path}"], cwd=cwd)
+                if code or actual_blob.strip() != expected_blob:
+                    raise ValueError(f"Manifest blob differs from the immutable source for '{p_path}'")
+            if bg.canonical_patch_bytes(base, head, p_path, cwd) != pf_norm:
+                raise ValueError(f"Patch is not the canonical full-index diff for '{p_path}'")
+
+
+def validate_register_identities(register_data, payloads):
+    """Reject conflicting record IDs before loading a key or changing a record."""
+    for payload in payloads:
+        matches = [entry for entry in register_data.get("exceptions", [])
+                   if entry.get("patch_id") == payload["patch_id"]]
+        if len(matches) != 1:
+            raise ValueError("Each signing payload requires exactly one matching proposal record")
+        entry = matches[0]
+        if entry.get("path") != payload["path"]:
+            raise ValueError("Proposal path conflicts with the signing payload")
+        if entry.get("approval_ref") and entry["approval_ref"] != payload["patch_id"]:
+            raise ValueError("Proposal approval_ref conflicts with the signing payload ID; no record was normalized")
+        for field, expected in (("expected_head_blob_sha", payload["head_blob_sha"]),
+                                ("patch_digest_sha256", payload["patch_digest_sha256"]),
+                                ("expected_patch_file", payload["expected_patch_file"])):
+            if entry.get(field) and entry[field] != expected:
+                raise ValueError("Proposal " + field + " conflicts with the signing payload")
+
 def main():
     parser = argparse.ArgumentParser(description="ChavrusaText Build 8401 Owner Signing and Attestation Packaging Tool")
-    parser.add_argument("--generate-payloads", action="store_true", help="Print canonical unsigned payloads for all 14 hunks")
-    parser.add_argument("--sign", action="store_true", help="Sign all 14 hunks with owner private key and update UPSTREAM_EXCEPTION_REGISTER.json")
+    parser.add_argument("--generate-payloads", action="store_true", help="Print canonical unsigned payloads for the exact manifest")
+    parser.add_argument("--sign", action="store_true", help="Sign the exact reviewed manifest with owner private key and update UPSTREAM_EXCEPTION_REGISTER.json")
     parser.add_argument("--verify", action="store_true", help="Verify current exception register against owner verification key")
     parser.add_argument("--private-key-file", help="Path to secure file containing owner Ed25519 private key (never raw key)")
     parser.add_argument("--owner-public-key", help="Owner Ed25519 public key (hex or base64) to verify after signing")
     parser.add_argument("--head-ref", default="WORKTREE", help="Git ref or WORKTREE to check during verification (default: WORKTREE)")
     parser.add_argument("--expires-days", type=int, default=365, help="Attestation validity duration in days (default: 365)")
     parser.add_argument("--repo-id", default="davidpovarsky/Maktabah", help="GitHub repository identifier")
+    parser.add_argument("--manifest", help="Reviewed patch manifest (defaults to historical Build 8401 manifest)")
+    parser.add_argument("--patches-dir", help="Directory containing the exact manifest patch files")
     args = parser.parse_args()
 
     manifest_path = os.path.join(REPO_DIR, "docs", "architecture", "BUILD_8401_REPRODUCIBLE_PAYLOAD_MANIFEST.json")
     patches_dir = os.path.join(REPO_DIR, "docs", "architecture", "build-8401-patches")
     register_path = os.path.join(REPO_DIR, "docs", "architecture", "UPSTREAM_EXCEPTION_REGISTER.json")
+    if args.manifest:
+        manifest_path = os.path.abspath(args.manifest)
+        patches_dir = os.path.dirname(manifest_path)
+    if args.patches_dir:
+        patches_dir = os.path.abspath(args.patches_dir)
 
     with open(manifest_path, "r", encoding="utf-8") as f:
         manifest_data = json.load(f)
@@ -167,15 +213,15 @@ def main():
         print(f"Repository: {args.repo_id} | Base Commit: {base_commit} | Expires: {expires_at}")
         print("=" * 80)
         for idx, p in enumerate(payloads, 1):
-            print(f"\n[{idx:02d}/14] {p['patch_id']}: {p['path']}")
+            print(f"\n[{idx:02d}/{len(payloads)}] {p['patch_id']}: {p['path']}")
             print(f"     Blob SHA:       {p['head_blob_sha']}")
             print(f"     Diff SHA256:    {p['patch_digest_sha256']}")
             print(f"     Patch File:     {p['expected_patch_file']}")
             print(f"     Payload Digest: {p['canonical_sha256']}")
             print(f"     Canonical JSON: {p['canonical_json']}")
         print("\n" + "=" * 80)
-        print("To sign these 14 hunks, execute with owner private-key file:")
-        print("  python tools/sign_owner_approvals.py --sign --private-key-file <PATH_TO_PRIVATE_KEY_FILE>")
+        print(f"To sign these {len(payloads)} hunks, use the reviewed manifest and owner private-key file:")
+        print("  python tools/sign_owner_approvals.py --sign --manifest <REVIEWED_MANIFEST> --patches-dir <EXACT_PATCHES_DIR> --private-key-file <OWNER_KEY_PATH> --owner-public-key <PINNED_PUBLIC_KEY>")
         print("=" * 80)
         if not args.sign and not args.verify:
             return
@@ -204,6 +250,10 @@ def main():
             print("Error: --sign requires --private-key-file <path>", file=sys.stderr)
             sys.exit(1)
 
+        with open(register_path, "r", encoding="utf-8") as f:
+            register_data = json.load(f)
+        validate_register_identities(register_data, payloads)
+
         priv_key = load_private_key_from_file(args.private_key_file)
         pub_key = priv_key.public_key()
         pub_bytes = pub_key.public_bytes_raw()
@@ -221,9 +271,6 @@ def main():
                 print(f"Error: Derived public key ({pub_hex}) does NOT match specified owner public key ({args.owner_public_key})!", file=sys.stderr)
                 sys.exit(1)
             print("Verified: Private key matches specified owner verification public key.")
-
-        with open(register_path, "r", encoding="utf-8") as f:
-            register_data = json.load(f)
 
         signed_count = 0
         exceptions = register_data.get("exceptions", [])
@@ -250,8 +297,8 @@ def main():
             }
             signed_count += 1
 
-        if signed_count != 14:
-            print(f"Error: Expected to sign exactly 14 exceptions, but signed {signed_count}!", file=sys.stderr)
+        if signed_count != len(payloads):
+            print(f"Error: Expected to sign exactly {len(payloads)} exceptions, but signed {signed_count}!", file=sys.stderr)
             sys.exit(1)
 
         register_data["approval_gate_status"] = "GATE_CLOSED_OWNER_APPROVED"

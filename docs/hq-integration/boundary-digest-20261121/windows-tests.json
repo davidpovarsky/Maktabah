@@ -1,0 +1,21 @@
+{
+  "runtime": "3.12.5 (tags/v3.12.5:ff3bc82, Aug  6 2024, 20:45:27) [MSC v.1940 64 bit (AMD64)]",
+  "time_utc": "2026-11-21T20:17:13.764351+00:00",
+  "tests": [
+    {
+      "script": "test_verify_upstream_boundary.py",
+      "returncode": 0,
+      "log": "test_verify_upstream_boundary.py.log"
+    },
+    {
+      "script": "test_upstream_boundary_security.py",
+      "returncode": 0,
+      "log": "test_upstream_boundary_security.py.log"
+    },
+    {
+      "script": "test_upstream_patch_digest.py",
+      "returncode": 0,
+      "log": "test_upstream_patch_digest.py.log"
+    }
+  ]
+}

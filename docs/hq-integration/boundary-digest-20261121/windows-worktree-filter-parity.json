@@ -1,0 +1,6 @@
+{
+  "case": "PatchDigestTests.test_global_autocrlf_worktree_matches_committed_patch_and_blob",
+  "returncode": 0,
+  "tools_guard_lf_sha256": "9733798a242382f59da99cb999a169e2c69c59010b336742e9a8fa151e837676",
+  "ci_guard_lf_sha256": "70cf39a26e0010122467c9775d9290a93da2a82dcc792c48b679251a4e93baca"
+}

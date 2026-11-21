@@ -1,0 +1,33 @@
+======================================================================
+CHAVRUSATEXT BUILD 8401: UPSTREAM BOUNDARY SECURITY VERIFICATION SUITE
+======================================================================
+Using a disposable NON-PRODUCTION repository and fixture keys only.
+
+--- Running 15 Negative Security Tests ---
+  [PASS] Test 1: Unsigned APPROVED entry without attestation -> MISSING_OWNER_ATTESTATION
+  [PASS] Test 2: Attestation signed by unauthorized key -> UNAUTHORIZED_SIGNER_KEY
+  [PASS] Test 3: Missing owner key in policy configuration -> TRUST_GATE_BLOCKED_OWNER_CONFIGURATION
+  [PASS] Test 4: Modified head blob SHA differs from actual -> UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION
+  [PASS] Test 5: Modified diff digest mismatch -> PATCH_DIGEST_MISMATCH
+  [PASS] Test 6: Missing packaged patch file on disk -> PATCH_FILE_NOT_FOUND
+  [PASS] Test 7: Expired attestation timestamp -> ATTESTATION_EXPIRED
+  [PASS] Test 8: Swapped path in signature payload -> INVALID_CRYPTOGRAPHIC_SIGNATURE
+  [PASS] Test 9: Baseline commit mismatch -> ATTESTATION_BASE_MISMATCH
+  [PASS] Test 10: Corrupted signature bytes -> INVALID_CRYPTOGRAPHIC_SIGNATURE
+  [PASS] Test 11: Production CI strictly forbids --allow-unsafe-register -> PROD_CI_FORBIDS_UNSAFE_REGISTER
+  [PASS] Test 12: Zero-commit scan base == head rejected -> SAME_BASE_AND_HEAD_NOT_PROOF
+  [PASS] Test 13: Protected upstream modification without exception entry -> UNAUTHORIZED_UPSTREAM_MODIFICATION
+  [PASS] Test 14: Protected namespace pollution rejected -> PROTECTED_NAMESPACE_POLLUTION
+  [PASS] Test 15: Policy bypass via coupled policy file modification -> UNAUTHORIZED_POLICY_BYPASS_ATTEMPT
+
+--- Running 1 Positive Verification Test ---
+  [PASS] Test 16: Complete genuine fixture verification
+
+======================================================================
+SUMMARY OF BOUNDARY SECURITY VERIFICATION
+======================================================================
+Total Security Tests Executed: 16
+Passed: 16
+Failed: 0
+
+[VERIFIED] All 15 negative conditions and 1 positive test passed fail-closed requirements!
