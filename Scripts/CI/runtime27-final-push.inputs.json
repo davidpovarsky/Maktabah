@@ -1,20 +1,20 @@
 {
   "schema": "otzaria-final-runtime-push-v1",
-  "state": "UNFINALIZED",
+  "state": "FINALIZED",
   "reviewed_wrapper_base": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
-  "application_source_sha": null,
-  "reviewed_r27_sha256": null,
+  "application_source_sha": "e982ce60a8003752c0b9c6be11ba7293299d5fc8",
+  "reviewed_r27_sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed",
   "application_trees": {
-    "Source": null,
-    "Vendor": null,
-    "Maktabah.xcodeproj": null,
-    "Maktabah-iOSUITests": null
+    "Source": "21ec01cea104b1f894f623ef11bbac8c16ce997e",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
+    "Maktabah-iOSUITests": "a9d30b950baf01d1a1387f0011b4b60c9b210504"
   },
   "source_pin_sha256": {
-    "Scripts/CI/hq-stage2-focused-apple.inputs.json": null,
-    "docs/hq-integration/runtime27/R27_CASES.json": null,
-    "Scripts/CI/runtime27-release-manifest.json": null,
-    "Scripts/CI/hq-v32-prebuilt-native.py": null
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "b2e18638fefe12e9f8496ddcdc2b239d3398ceb3b6a6e179a1789fd8c536a35d",
+    "docs/hq-integration/runtime27/R27_CASES.json": "c11bdc2ca3b16abde719d954ac71103c26f20903261fd7324047bc76e4e2b344",
+    "Scripts/CI/runtime27-release-manifest.json": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f",
+    "Scripts/CI/hq-v32-prebuilt-native.py": "251e231415bac7d7952eab645969e079b2748320e03527ab339f62f47d6b4c4c"
   },
   "selection": {
     "native_cases": 116,

@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "source_test_commit": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+  "source_test_commit": "e982ce60a8003752c0b9c6be11ba7293299d5fc8",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+  "app_source": "e982ce60a8003752c0b9c6be11ba7293299d5fc8",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "Preparation for the complete Native116: all98 original selected cases plus6 original Core compound journeys and12 Hebrew/English Sefaria TOC/transport cases. Exact final app/test source pins remain pending Coordinator integration; this preparation is not an executable frozen-source acceptance or a completed Native result.",
+  "scope": "Complete original Native116 on frozen source e982ce60a8003752c0b9c6be11ba7293299d5fc8; no execution credit before original native acceptance.",
   "native_cases_executed": 0,
   "required_nonzero_cases": 116,
   "expected_per_device": {
@@ -540,7 +540,7 @@
     "automatic_retry": false,
     "full_phase_accepted": false
   },
-  "selected_scope_reason": "All98 original case IDs, catalog/oracles, order within each original group, seven owned Simulator groups, original600s per-test limits and HID-only11-window remain. Append6 Core and12 Sefaria declarations; final source/pins are deliberately not set before the pending AppIntent integration.",
+  "selected_scope_reason": "All116 original selected case IDs, rows, assertions, group order, owned Simulator groups,600s per-test limits and HID selection are preserved; application/test source is finalized.",
   "supplemental_cases": [
     {
       "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
@@ -1585,7 +1585,7 @@
       "native": "NOT_RUN"
     }
   },
-  "application_source_sha": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+  "application_source_sha": "e982ce60a8003752c0b9c6be11ba7293299d5fc8",
   "hanlin_source_pin_history": {
     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",

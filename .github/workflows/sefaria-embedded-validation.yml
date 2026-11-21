@@ -121,8 +121,13 @@ jobs:
           fetch-depth: 0
       - name: Select an existing SDK-matched runtime for the full device matrix
         run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
+      - name: Verify exact-input reuse of the original Apple Foundation55
+        if: ${{ inputs.runtime27_mode == 'ui' || inputs.runtime27_mode == 'release' }}
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ inputs.hq_stage2_expected_sha }}
+        run: python3 Scripts/CI/reuse-sefaria-toc-apple55.py
       - name: Require all 55 Sefaria transport cases on actual Apple Foundation
-        if: ${{ inputs.runtime27_mode == 'ui' || inputs.runtime27_mode == 'release' || inputs.runtime27_mode == 'toc-transport' }}
+        if: ${{ inputs.runtime27_mode == 'toc-transport' }}
         env:
           EXPECTED_CHECKOUT_SHA: ${{ inputs.hq_stage2_expected_sha }}
         run: python3 Scripts/CI/sefaria-toc-apple55.py
