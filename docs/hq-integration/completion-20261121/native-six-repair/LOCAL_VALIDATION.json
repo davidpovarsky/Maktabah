@@ -1,0 +1,81 @@
+{
+  "status": "SYNTAX_AND_DECLARATIONS_PASS",
+  "checked_at": "2026-11-21T23:21:24.348373+00:00",
+  "swift": "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+  "swift_files": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "sha256_lf": "045704be9a6015674fbde56a245e21017783cf2201633b28f45816e7653e63d6",
+      "exit_code": 0,
+      "diagnostics": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n"
+    },
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "sha256_lf": "3f3b5380bc69ec54abc6413556c6920fb85376ae0bb404d82a1414cdbc9d0733",
+      "exit_code": 0,
+      "diagnostics": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "sha256_lf": "a966b47ebcae3c65678e35e91678a9aed2e7e0faf83e0f89e586fd5c06f460de",
+      "exit_code": 0,
+      "diagnostics": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n"
+    }
+  ],
+  "declarations": {
+    "suites": [
+      {
+        "suite": "FaithfulReaderUIAcceptanceTests",
+        "selection": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+        "expected": [
+          "testSystemReduceMotionKeepsOriginalPaletteUsable"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "FaithfulReaderUIAcceptanceTests",
+        "selection": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+        "expected": [
+          "testCandidateGlobalSearchLandscapeMatchesOriginalNavigation"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "FaithfulReaderUIAcceptanceTests",
+        "selection": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+        "expected": [
+          "testCandidateGlobalSearchPortraitMatchesOriginalNavigation"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "FaithfulReaderUIAcceptanceTests",
+        "selection": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+        "expected": [
+          "testPointerHoverClickAndHardwareKeyboardDismissal"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "R27NativePadTests",
+        "selection": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+        "expected": [
+          "testNormalBootstrapPaletteKeyboardDispatchCalibration"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "R27NativePadTests",
+        "selection": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+        "expected": [
+          "testNormalBootstrapPaletteHIDComparison"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      }
+    ],
+    "status": "DECLARATIONS_MATCH"
+  },
+  "Apple_typecheck": "NOT_RUN",
+  "Native": "NOT_RUN",
+  "previous_HID_controls_reexecuted": 0
+}

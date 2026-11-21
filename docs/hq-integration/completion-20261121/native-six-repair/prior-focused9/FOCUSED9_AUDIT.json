@@ -1,0 +1,480 @@
+{
+  "schema": 1,
+  "audited_utc": "2026-11-21T23:18:12.390671+00:00",
+  "run_id": 44952423858,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44952423858",
+  "native_job_id": 136993056781,
+  "checkout_sha": "87a44cdccb8c2b371f3459d7ec4a12e1311c2fd8",
+  "application_source_sha": "a0781bd2628c1311394f7da6aa1e84c17f252fa4",
+  "application_trees": {
+    "Source": "7b672630a07f6798120dea948e74c6ad1f760cb6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
+    "Maktabah-iOSUITests": "646d0593ecf5aaaa801327cece03d99a879aef04"
+  },
+  "actual_result": {
+    "status": "FAILED",
+    "executed_ui_pass": 4,
+    "executed_ui_fail": 5,
+    "executed_ui_skip": 0,
+    "ui_not_run": 0,
+    "compiled_image_bytes_unchanged": true
+  },
+  "actual_case_outcomes": [
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
+      "device": "ipad11",
+      "expected": "Real system v2 URL, same app PID, normal bootstrap, sealed installed miniTest10 SQL metadata, two distinct actual source lines in the current book, original TextKit exact locator and segment highlight, exactly one newly issued full-Core native receipt per navigation with real scene/revision.",
+      "configuration_label": "11-reader",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+      "configuration_label": "11-reader",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in NativeStudySheetPadTests/testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor",
+      "configuration_label": "11-reader",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "configuration_label": "11-reader",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "configuration_label": "11-search",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "configuration_label": "11-search",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+      "device": "ipad11",
+      "expected": "Separate job-local pinned idb direct native HID on this owned disposable simulator. Real A/backspace visibly edit/clear production autofocus field; one Escape removes actual full empty input; genuine narrow resize and real fixture filtering; one Escape removes actual narrow filtered input; Inspector open/close, full text/exact locator and native window restoration. Original XCTest Escape case retained independently; transport ACK alone never UI acceptance.",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    }
+  ],
+  "recorded_main_executable_sha256_by_bundle": {
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app": "d8e5c751ccb291fe8094c49493c90ef40d0e9e79cb668e3b248c0a2be195a80b",
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app": "41ccea6589bbe6d72165b2ffc25eb5eb298c7db1603011b9a9ff6f71cb6510ae",
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest": "71840768a6c1fb299f1dba7ca81174072654b3462b8dbb0214ed5d5c7657d2db"
+  },
+  "original_catalog_hashes": {
+    "native116": "17794127a5cf50501f120652bbb2ad7cc26d9a95573b9134ef1ff9a56b2eed49",
+    "release114": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f"
+  },
+  "evidence_zip": {
+    "artifact_id": 14727733277,
+    "bytes": 30252061,
+    "sha256": "91b079c2f2f90e07e7c0e209e58316e317f5283aee94aa4ef3c2f45b06c0a1bc",
+    "whole_sha256_verified": true,
+    "all_zip_crc": "PASS",
+    "member_count": 110,
+    "download_receipt": "download-receipt.json"
+  },
+  "capture_zip_selected_members": {
+    "artifact_id": "14728526550",
+    "advertised_zip_sha256": "5389504e4fd0b2f586de3ffbacb8946083aec7b5496180628a83e00108a5706f",
+    "whole_zip_digest_verified": false,
+    "central_directory_sha256": "9ba4420f93860676e237f6c50781033a38539b594c1349687708aa7b9f3a550b",
+    "verification": "Exact HTTP206 archive ranges; central directory/local header identity, selected member size and CRC checked. Whole ZIP was not downloaded.",
+    "members": [
+      {
+        "path": "visual-11-reader/manifest.json",
+        "bytes": 37671,
+        "sha256": "6e093268f0d0685b26caee4e7882111394c871d19a44ddd768786beca75d4752",
+        "crc32": "2588f350",
+        "CRC": "PASS",
+        "range_bytes_received": 70769
+      },
+      {
+        "path": "visual-11-search/manifest.json",
+        "bytes": 4726,
+        "sha256": "915742cbb0ae61d06ad8bba43e7828bc8e0d468e66e84187d059e658fb4647a0",
+        "crc32": "c5effddc",
+        "CRC": "PASS",
+        "range_bytes_received": 66578
+      },
+      {
+        "path": "visual-11-window/manifest.json",
+        "bytes": 41690,
+        "sha256": "eb84f00e9323189fa4a35292f22ddddf7e9946f3ab838d85616c10a9b6c84c82",
+        "crc32": "74e2be73",
+        "CRC": "PASS",
+        "range_bytes_received": 70737
+      },
+      {
+        "path": "visual-11-reader/3DF19593-D605-42A3-87BB-F21FD60ABB67.txt",
+        "bytes": 29254,
+        "sha256": "ae939a30632c8825c7ac6cde8988ad6114d6243856ec06a141134856f32eb036",
+        "crc32": "b7fea04c",
+        "CRC": "PASS",
+        "range_bytes_received": 69497,
+        "test": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable()",
+        "deviceId": "03576137-A127-473B-8AF1-A690A0BD08B3",
+        "suggestedHumanReadableName": "system-reduce-motion-restore-original-switch_0_F93E5793-2D80-47FD-A72A-D2886A3E5773.txt",
+        "timestamp": 1795298964.941
+      },
+      {
+        "path": "visual-11-search/DF58E357-8F2F-496A-B9C2-467E1BB00700.txt",
+        "bytes": 21375,
+        "sha256": "117d7dff3b40e480a1b192b242aa3c30305a97591c7d83d60082956ed920721e",
+        "crc32": "8bf63eee",
+        "CRC": "PASS",
+        "range_bytes_received": 68614,
+        "test": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation()",
+        "deviceId": "1CE588FE-11FA-492A-AC11-83B2E897B162",
+        "suggestedHumanReadableName": "candidate-search-portrait-ui-tree_0_46A1676B-2938-43FF-8C47-F42FD7934B42.txt",
+        "timestamp": 1795299800.825
+      },
+      {
+        "path": "visual-11-search/C6982B14-20EF-41A9-8645-4179F7B90D66.txt",
+        "bytes": 21111,
+        "sha256": "f05309632ed6f6f8ff5f5ac7b41ba9f794e3181cd474adec00da34d74f93b272",
+        "crc32": "bcf9daa8",
+        "CRC": "PASS",
+        "range_bytes_received": 68596,
+        "test": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation()",
+        "deviceId": "1CE588FE-11FA-492A-AC11-83B2E897B162",
+        "suggestedHumanReadableName": "candidate-flags-off-search-portrait-ui-tree_0_A845AEB1-D8BA-40B8-837B-9FB575602410.txt",
+        "timestamp": 1795299695.372
+      },
+      {
+        "path": "visual-11-window/D67D3E3C-30EA-4C2D-BD4D-B2456A704215.txt",
+        "bytes": 21707,
+        "sha256": "b1640cfd0cb49520562c61086cb81f72f3a9c5b12ac66fec7513e72595f41d8f",
+        "crc32": "4ffa435f",
+        "CRC": "PASS",
+        "range_bytes_received": 69927,
+        "test": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison()",
+        "deviceId": "AA36EBFB-682E-484D-9E70-3C404BDAD2BD",
+        "suggestedHumanReadableName": "original-study-tools-native-overflow-hierarchy_0_85C62145-AB41-4F3A-BB67-350AA9D23B31.txt",
+        "timestamp": 1795300540.766
+      },
+      {
+        "path": "visual-11-window/AFA0F6DB-6B74-48CF-85D8-96D9CC940899.txt",
+        "bytes": 19221,
+        "sha256": "3f7b68a242d1603929c0c5fc9e09bd04652f5e9ba3e9a145acda5860d6360407",
+        "crc32": "7f8604db",
+        "CRC": "PASS",
+        "range_bytes_received": 69612,
+        "test": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison()",
+        "deviceId": "AA36EBFB-682E-484D-9E70-3C404BDAD2BD",
+        "suggestedHumanReadableName": "r27-hid-narrow-filtered-after-one-escape-hierarchy_0_64282ADE-9746-4A00-A5A5-D14C620525AD.txt",
+        "timestamp": 1795300520.108
+      },
+      {
+        "path": "visual-11-window/CD20BA56-C53F-4C1F-A625-1413A5F84D16.txt",
+        "bytes": 19221,
+        "sha256": "1b59a18c66f6634ec87f4c964ce6c33f2fed177f5c91c4e93faa4a0d3afcd6d5",
+        "crc32": "e0f28393",
+        "CRC": "PASS",
+        "range_bytes_received": 69625,
+        "test": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison()",
+        "deviceId": "AA36EBFB-682E-484D-9E70-3C404BDAD2BD",
+        "suggestedHumanReadableName": "r27-hid-actual-narrow-window-hierarchy_0_EE88849A-1D6C-4BF5-9EF4-C4AFF0372831.txt",
+        "timestamp": 1795300506.498
+      },
+      {
+        "path": "visual-11-window/57E09589-657D-44A6-9137-BD07F58DB620.txt",
+        "bytes": 17987,
+        "sha256": "0f94039c4920a6f726a7fda92c371ec4bd6d57fe2eb1a39711b880818aae0319",
+        "crc32": "129416ff",
+        "CRC": "PASS",
+        "range_bytes_received": 69412,
+        "test": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison()",
+        "deviceId": "AA36EBFB-682E-484D-9E70-3C404BDAD2BD",
+        "suggestedHumanReadableName": "r27-hid-full-empty-after-one-escape-hierarchy_0_409866B9-15B4-410B-9F63-BDF4A674BC8E.txt",
+        "timestamp": 1795300493.095
+      },
+      {
+        "path": "visual-11-reader/9421F819-15FE-4153-B1A2-F5AFA6F56F1F.json",
+        "bytes": 3097,
+        "sha256": "23788ae018ed69bf450d6ed670d9a08a2f6ea414cd9f2ca941e9e0b37403e40e",
+        "crc32": "2e8aeb4c",
+        "CRC": "PASS",
+        "range_bytes_received": 66359,
+        "test": "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines()",
+        "deviceId": "03576137-A127-473B-8AF1-A690A0BD08B3",
+        "suggestedHumanReadableName": "native-current-reader-receipt_0_A674E81A-52B2-4498-99F1-ABF0A6BE02ED.json",
+        "timestamp": 1795299072.537
+      },
+      {
+        "path": "visual-11-reader/2C7B9B06-B8E0-448E-AA00-EAC1BBD2C685.json",
+        "bytes": 3093,
+        "sha256": "e5cfa6d274539f2597b83c12bbc7812e06e616ab8380c9e433ce304cf30e0b4d",
+        "crc32": "b1a9a7c5",
+        "CRC": "PASS",
+        "range_bytes_received": 66363,
+        "test": "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines()",
+        "deviceId": "03576137-A127-473B-8AF1-A690A0BD08B3",
+        "suggestedHumanReadableName": "native-current-reader-receipt_0_2FEDE2BA-2E4F-41F9-866C-51E19310B37F.json",
+        "timestamp": 1795299044.684
+      },
+      {
+        "path": "visual-11-reader/9DE9C943-28D0-4CD8-A009-D27C0A98BE60.json",
+        "bytes": 298,
+        "sha256": "fae4c7f07fa4ee06803a4dc06943ac668cfc061ac40f7600f94de25165293a42",
+        "crc32": "52d48ee9",
+        "CRC": "PASS",
+        "range_bytes_received": 65831,
+        "test": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt()",
+        "deviceId": "03576137-A127-473B-8AF1-A690A0BD08B3",
+        "suggestedHumanReadableName": "system-study-background-scroll-after_0_9D81B8FF-8F00-4617-A6AD-667A01DF9CF7.json",
+        "timestamp": 1795299115.325
+      },
+      {
+        "path": "visual-11-reader/8476171B-2A14-4063-BC29-E3280AFBAE03.json",
+        "bytes": 301,
+        "sha256": "4e153b2575a97aa5e4685b85b025273fdccac0367acfbd65cfa622313950ef57",
+        "crc32": "ee4b7cba",
+        "CRC": "PASS",
+        "range_bytes_received": 65834,
+        "test": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt()",
+        "deviceId": "03576137-A127-473B-8AF1-A690A0BD08B3",
+        "suggestedHumanReadableName": "system-study-background-scroll-before_0_11591CB7-1D2B-413B-95BF-DF095A60356E.json",
+        "timestamp": 1795299110.553
+      },
+      {
+        "path": "visual-11-reader/F8DF51BC-2031-4BC3-AFF9-5B472CF9B3F2.json",
+        "bytes": 1188,
+        "sha256": "ed4baa23c7360e7b08b2e1451141d8cdecf70e34d85f67b7af1a2faddbb12f12",
+        "crc32": "dc844859",
+        "CRC": "PASS",
+        "range_bytes_received": 66269,
+        "test": "NativeStudySheetPadTests/testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor()",
+        "deviceId": "03576137-A127-473B-8AF1-A690A0BD08B3",
+        "suggestedHumanReadableName": "system-study-same-ipad-wide-again-actual-views_0_119DA715-ADC9-4B46-9B89-8CED71A6A27B.json",
+        "timestamp": 1795299179.197
+      },
+      {
+        "path": "visual-11-reader/F8060BD0-0150-4A7C-9BF9-A9C6C4D78D7A.json",
+        "bytes": 1215,
+        "sha256": "7c25330799c6579a9095c556659895a6840222f53f4a457787028ba0c0c757e3",
+        "crc32": "db6c1615",
+        "CRC": "PASS",
+        "range_bytes_received": 66276,
+        "test": "NativeStudySheetPadTests/testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor()",
+        "deviceId": "03576137-A127-473B-8AF1-A690A0BD08B3",
+        "suggestedHumanReadableName": "system-study-same-ipad-narrow-actual-views_0_47742439-5A82-4688-BA0D-6607B8DE23C8.json",
+        "timestamp": 1795299168.77
+      },
+      {
+        "path": "visual-11-reader/40416205-E49F-4F8B-8093-304D363100F2.json",
+        "bytes": 1195,
+        "sha256": "6471e270e806bdba85ffa3595ab47a5f02e938fe177ed82a8d6ce138cd3769c4",
+        "crc32": "87a4c5c0",
+        "CRC": "PASS",
+        "range_bytes_received": 66271,
+        "test": "NativeStudySheetPadTests/testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor()",
+        "deviceId": "03576137-A127-473B-8AF1-A690A0BD08B3",
+        "suggestedHumanReadableName": "system-study-opened-actual-views_0_89EE05B9-D7EA-442A-A867-D25481A33DE1.json",
+        "timestamp": 1795299155.223
+      },
+      {
+        "path": "visual-11-reader/D4381BC0-455C-49C8-919C-B361465D40C1.txt",
+        "bytes": 244,
+        "sha256": "9f8c43ae0fcd6089d7785d34650b4829b3fb7a4a4941ba250209aa6ed7c39e3b",
+        "crc32": "43c47549",
+        "CRC": "PASS",
+        "range_bytes_received": 65818,
+        "test": "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines()",
+        "deviceId": "03576137-A127-473B-8AF1-A690A0BD08B3",
+        "suggestedHumanReadableName": "actual-current-reader-core-receipt_0_A21EEFBD-1C59-463A-A6FA-FCD720061A0A.txt",
+        "timestamp": 1795299072.532
+      },
+      {
+        "path": "visual-11-reader/D6996669-214C-4464-86F6-23614EC293EB.txt",
+        "bytes": 244,
+        "sha256": "b835fc695b4e8a7ee2a182e70e787d46f1203df00e1f9b52a3fe24f4014b436e",
+        "crc32": "2f79db0d",
+        "CRC": "PASS",
+        "range_bytes_received": 65817,
+        "test": "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines()",
+        "deviceId": "03576137-A127-473B-8AF1-A690A0BD08B3",
+        "suggestedHumanReadableName": "actual-current-reader-core-receipt_0_1EF4ED89-8E14-428E-AC90-B381C41D0EC3.txt",
+        "timestamp": 1795299044.679
+      }
+    ]
+  },
+  "preserved_unchanged_reader_passes": {
+    "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt": {
+      "actual": "Passed",
+      "same_original_text_view": true,
+      "object_integer": "-1916144027433399681",
+      "original_overflow_points": 5210,
+      "original_overflow_assertion_gt": 80,
+      "actual_content_offset_y_before": 175.5,
+      "actual_content_offset_y_after": 651,
+      "actual_gesture_delta": 475.5,
+      "unchanged_gesture_assertion_gt": 20,
+      "textkit2_before_and_after_both_observations": true,
+      "attachments": [
+        "visual-11-reader/8476171B-2A14-4063-BC29-E3280AFBAE03.json",
+        "visual-11-reader/9DE9C943-28D0-4CD8-A009-D27C0A98BE60.json"
+      ]
+    },
+    "NativeStudySheetPadTests/testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor": {
+      "actual": "Passed",
+      "window_sequence": [
+        [
+          0,
+          0,
+          1210,
+          834
+        ],
+        [
+          0,
+          0,
+          375,
+          486
+        ],
+        [
+          0,
+          0,
+          1210,
+          834
+        ]
+      ],
+      "identities_unchanged": {
+        "readerIdentity": "ObjectIdentifier(0x0000000120c9f000)",
+        "sessionIdentity": "ObjectIdentifier(0x0000000120cfd0a0)",
+        "sheetIdentity": "ObjectIdentifier(0x000000012a975b00)",
+        "ownerID": "290AFCAC-1EA2-48C7-939F-6D4EB39AECAE",
+        "contentID": "7D63BA0F-05C6-41DB-8334-746BF29D9121",
+        "presentationID": "45539F14-0565-4383-B6C1-59B4E172A8FC",
+        "sourceToken": "1ac6c75eb50f6d71e188e544570761a4e34f9d8f437a3d962ab3f947554497b4",
+        "selectionToken": "8a37b9af96898b65cebad5ebe5e6170106042935679b5de2ea7322503c0cf8cf"
+      },
+      "real_system_sheet": true
+    },
+    "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines": {
+      "actual": "Passed",
+      "actual_core_receipts": [
+        {
+          "path": "visual-11-reader/D6996669-214C-4464-86F6-23614EC293EB.txt",
+          "sha256": "b835fc695b4e8a7ee2a182e70e787d46f1203df00e1f9b52a3fe24f4014b436e",
+          "original_text": "2026-11-21T22:10:31.203Z [NativeNavigationReceipt] request=A54E4CD0-E487-4731-878F-53E9FB38A189 scene=8C3E4AEE-8532-492E-B416-630F94E1C321 backend=otzaria generation=0 epoch=none revision=19->23 destination=native.reader presentation=currentTab"
+        },
+        {
+          "path": "visual-11-reader/D4381BC0-455C-49C8-919C-B361465D40C1.txt",
+          "sha256": "9f8c43ae0fcd6089d7785d34650b4829b3fb7a4a4941ba250209aa6ed7c39e3b",
+          "original_text": "2026-11-21T22:10:48.649Z [NativeNavigationReceipt] request=F4915FFB-817A-4D9B-899D-5664375CC7D6 scene=8C3E4AEE-8532-492E-B416-630F94E1C321 backend=otzaria generation=0 epoch=none revision=26->30 destination=native.reader presentation=currentTab"
+        }
+      ],
+      "actual_saved_focus_locators": [
+        1,
+        10
+      ],
+      "native_scene": "8C3E4AEE-8532-492E-B416-630F94E1C321"
+    }
+  },
+  "historical_pass_to_revalidate_for_new_comparison_inputs": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+  "failure_diagnosis": {
+    "pointer_escape": {
+      "original_test_result": "Failed",
+      "source_line": "FaithfulReaderUIAcceptanceTests.swift:1636",
+      "log": "artifacts/test-simulator-11-window.log:187",
+      "actual_app_pid": 96276,
+      "actual_focus_markers_present": true,
+      "escape_dispatch_marker_after_XCTest_request": false,
+      "scope": "No observed Escape dispatch. Does not prove every possible OS suppression reason; do not patch product callback speculatively."
+    },
+    "calibration_escape": {
+      "original_test_result": "Failed",
+      "source_line": "R27NativeInteractionAcceptanceTests.swift:286",
+      "log": "artifacts/test-simulator-11-window.log:710",
+      "actual_app_pid": 3057,
+      "production_close_button_and_down_up_selection_assertions": "PASS before failure",
+      "actual_focus_markers_present": true,
+      "escape_dispatch_marker_after_XCTest_request": false,
+      "second_filtered_escape_block": "NOT_REACHED"
+    },
+    "genuine_hid": {
+      "original_test_result": "Failed",
+      "source_line": "FaithfulReaderUIAcceptanceTests.swift:492",
+      "actual_app_pid": 98686,
+      "actual_A_edit_and_backspace_clear": "PASS substeps",
+      "full_empty_and_narrow_filtered_input_removed_after_one_real_escape_each": "PASS substeps",
+      "narrow_window": [
+        418,
+        117,
+        375,
+        486
+      ],
+      "failure": "Original Study Tools action absent from actual native overflow; only Personal and Book Info visible.",
+      "source_cause": "Original toolbar Button uses only custom ZStack icon; title exists only as accessibility/help. Proposed semantic Label preserves actual action and icon.",
+      "native_inspector_open_close_and_final_restore_oracles": "NOT_REACHED before failure",
+      "whole_test_credit": false
+    },
+    "reduce_motion": {
+      "original_test_result": "Failed",
+      "source_line": "FaithfulReaderUIAcceptanceTests.swift:1799",
+      "log": "artifacts/test-simulator-11-reader.log:394",
+      "root_owns_followup": true,
+      "last_exported_attachment_time": "2026-11-21T22:09:25.633Z",
+      "posttap_failed_wait_frame_present_in_export_manifest": false
+    },
+    "global_search_portrait": {
+      "original_test_result": "Failed",
+      "source_line": "FaithfulReaderUIAcceptanceTests.swift:1907",
+      "log": "artifacts/test-simulator-11-search.log:151",
+      "actual_y": 86,
+      "baseline_y": 106,
+      "tolerance": 1,
+      "root_owns_followup": true
+    }
+  },
+  "persistent_keyboard_trace": "artifacts/native-routing-logs-11-window/otzaria-reader.log",
+  "actual_hid_transport_receipts": "artifacts/runtime27/hid-11-window.jsonl",
+  "proof_file_hashes": {
+    "artifacts/continuation-focused/result.json": "30e3c969860d0e228f4c9e6834dd8c60f4b185f66f1ea841e7efa7ddaba6866c",
+    "artifacts/continuation-focused/source-before.json": "6f966e3b00293c9c9f6b6ac05862c90484267b83c4f6d4eaeb893b16a62168c8",
+    "artifacts/runtime27/junit.xml": "f25316f629af324bcb93985e7571d3bccf5276e71db5ee1f8c206b9cf86e0476",
+    "artifacts/runtime27/verified-11-reader.summary.json": "8ae2e8b2de2a8b93f4b2b5e5db7b82e5bacd0d87ead0ac7c9ada6997581ed576",
+    "artifacts/runtime27/verified-11-search.summary.json": "20818b934f0869a346bce04b2a55f5384ee39e01f13cdc1f7e5c6e8c50aa05f2",
+    "artifacts/runtime27/verified-11-window.summary.json": "7e2e85f9608e1ad66a128ef87969722947c96abbbef34b995b924bb9fa8c6759",
+    "artifacts/native-routing-logs-11-window/otzaria-reader.log": "efe2ac9b4507638f92a907bc7a75d59cccead080d023de83807defdf1af2a298",
+    "artifacts/runtime27/hid-11-window.jsonl": "4b3059b4a4ff0cacebc194a1dfca70c61331ec81467fd71765f3aa25353422da",
+    "hq-stage2/result.json": "39347ca8d63030eabbc7630fbfc874e2099e85d68eb7b2ad45d0a00386b3d3ba"
+  },
+  "exclusions": [
+    "No full Native116 or Release114 acceptance",
+    "No new Host48 execution: separate report reuses its 48 earlier real passes with input proof",
+    "No physical iPad qualification",
+    "Real HID substeps do not convert any failed case to Passed",
+    "Selected capture ZIP members verified individually; complete capture ZIP SHA256 was not verified",
+    "No CI rerun/watch/dispatch or root worktree mutation by this audit"
+  ]
+}

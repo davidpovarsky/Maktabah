@@ -1,0 +1,1 @@
+2026-11-21T22:10:48.649Z [NativeNavigationReceipt] request=F4915FFB-817A-4D9B-899D-5664375CC7D6 scene=8C3E4AEE-8532-492E-B416-630F94E1C321 backend=otzaria generation=0 epoch=none revision=26->30 destination=native.reader presentation=currentTab

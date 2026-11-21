@@ -1,0 +1,211 @@
+--- a/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
++++ b/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+@@ -1,4 +1,5 @@
+ import XCTest
++import UIKit
+ import Vision
+ 
+ /// XCTest executes teardown blocks even when an assertion aborts a test method.
+@@ -250,6 +251,46 @@
+ /// Black-box tests use the actual production-default flags and original views.
+ /// A unique sidecar namespace isolates tests without changing canonical sessions/data.
+ class FaithfulReaderUIBase: MaktabahUITestBase {
++    @MainActor
++    func sendNativeHID(_ usage: UIKeyboardHIDUsage) throws {
++        let token = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_HID_TOKEN"],
++                                 "Job-local pinned HID server is mandatory for hardware keyboard acceptance")
++        let sidecar = try workspaceSidecarURL()
++        let container = sidecar.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
++            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
++        let nonce = UUID().uuidString
++        let prefix = container.appendingPathComponent("Documents/r27-hid-\(token)-\(nonce)")
++        let request = URL(fileURLWithPath: prefix.path + ".request.json")
++        let ack = URL(fileURLWithPath: prefix.path + ".ack.json")
++        let payload: [String: Any] = ["token": token, "nonce": nonce, "key": usage.rawValue]
++        // Keep private IPC paths out of XCTest's automatic NSError reporting.
++        do {
++            try JSONSerialization.data(withJSONObject: payload).write(to: request, options: .atomic)
++        } catch {
++            XCTFail("Could not write owned HID request")
++            return
++        }
++        let acknowledged = XCTWaiter.wait(for: [XCTNSPredicateExpectation(
++            predicate: NSPredicate { _, _ in FileManager.default.fileExists(atPath: ack.path) }, object: nil
++        )], timeout: 20)
++        XCTAssertEqual(acknowledged, .completed, "Real HID transport must acknowledge this exact request")
++        guard acknowledged == .completed,
++              let data = try? Data(contentsOf: ack),
++              let response = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any],
++              let publicData = try? JSONSerialization.data(withJSONObject: response, options: [.sortedKeys]),
++              String(decoding: publicData, as: UTF8.self).range(of: token, options: .caseInsensitive) == nil else {
++            XCTFail("HID acknowledgement must be valid and credential-free")
++            return
++        }
++        XCTAssertEqual(response["nonce"] as? String, nonce)
++        XCTAssertEqual(response["key"] as? Int, usage.rawValue)
++        XCTAssertEqual(response["delivered"] as? Bool, true, "Transport error: \(response)")
++        let attachment = XCTAttachment(data: publicData, uniformTypeIdentifier: "public.json")
++        attachment.name = "r27-hid-transport-only-\(usage.rawValue)"
++        attachment.lifetime = .keepAlways
++        add(attachment)
++    }
++
+     let workspaceNamespace = UUID().uuidString
+     private var viewportURL: URL?
+     var readerTestTier: TestTier { .smoke }
+@@ -1610,7 +1651,7 @@
+                        "Disabled startup/shutdown must leave an existing workspace byte-identical")
+     }
+ 
+-    func testPointerHoverClickAndHardwareKeyboardDismissal() {
++    func testPointerHoverClickAndHardwareKeyboardDismissal() throws {
+         recordsPaletteEscape = true
+         XCTAssertTrue(XCUIDevice.shared.supportsPointerInteraction,
+                       "The required iPad Simulator must support real pointer events")
+@@ -1631,7 +1672,7 @@
+         input.typeText("בראשית")
+         let result = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "בראשית")).firstMatch
+         XCTAssertTrue(result.waitForExistence(timeout: 30))
+-        input.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
++        try sendNativeHID(.keyboardEscape)
+         let collapsed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: palette)
+         XCTAssertEqual(XCTWaiter.wait(for: [collapsed], timeout: 15), .completed,
+                        "The original palette's Escape handler must dismiss through keyboard focus")
+--- a/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift
++++ b/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift
+@@ -281,7 +281,7 @@
+         }, object: nil)
+         XCTAssertEqual(XCTWaiter.wait(for: [movesBack], timeout: 15), .completed)
+         recordWindowEvidence("r27-calibration-keycommand-up-restored-selection")
+-        input.firstMatch.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
++        try sendNativeHID(.keyboardEscape)
+         recordWindowEvidence("r27-calibration-full-window-after-escape")
+         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+             predicate: NSPredicate(format: "count == 0"), object: input
+@@ -303,7 +303,7 @@
+         XCTAssertTrue(result.waitForExistence(timeout: 15))
+         XCTAssertTrue(result.isHittable)
+         recordWindowEvidence("r27-calibration-full-window-filtered-fixture")
+-        input.firstMatch.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
++        try sendNativeHID(.keyboardEscape)
+         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+             predicate: NSPredicate(format: "count == 0"), object: input
+         )], timeout: 15), .completed, "Escape must also remove the genuinely filtered input")
+@@ -312,8 +312,8 @@
+         XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
+     }
+ 
+-    /// Separate delivery comparison. The original XCTest Escape case above
+-    /// remains unchanged and independently required; this is not a retry.
++    /// Separate native HID window/Inspector journey. The original pointer and
++    /// calibrated full-window keyboard cases remain independently required.
+     @MainActor
+     func testNormalBootstrapPaletteHIDComparison() throws {
+         XCTAssertTrue(isPad)
+@@ -405,46 +405,6 @@
+         restoreNativeWindow(to: original.size)
+         XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
+         XCTAssertEqual(app.textViews["reader-text"].value as? String, text)
+-    }
+-
+-    @MainActor
+-    private func sendNativeHID(_ usage: UIKeyboardHIDUsage) throws {
+-        let token = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_HID_TOKEN"],
+-                                 "Job-local HID server is mandatory for this separate comparison")
+-        let sidecar = try workspaceSidecarURL()
+-        let container = sidecar.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+-            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+-        let nonce = UUID().uuidString
+-        let prefix = container.appendingPathComponent("Documents/r27-hid-\(token)-\(nonce)")
+-        let request = URL(fileURLWithPath: prefix.path + ".request.json")
+-        let ack = URL(fileURLWithPath: prefix.path + ".ack.json")
+-        let payload: [String: Any] = ["token": token, "nonce": nonce, "key": usage.rawValue]
+-        // Keep private IPC paths out of XCTest's automatic NSError reporting.
+-        do {
+-            try JSONSerialization.data(withJSONObject: payload).write(to: request, options: .atomic)
+-        } catch {
+-            XCTFail("Could not write owned HID request")
+-            return
+-        }
+-        let acknowledged = XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+-            predicate: NSPredicate { _, _ in FileManager.default.fileExists(atPath: ack.path) }, object: nil
+-        )], timeout: 20)
+-        XCTAssertEqual(acknowledged, .completed, "Real HID transport must acknowledge this exact request")
+-        guard acknowledged == .completed,
+-              let data = try? Data(contentsOf: ack),
+-              let response = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any],
+-              let publicData = try? JSONSerialization.data(withJSONObject: response, options: [.sortedKeys]),
+-              String(decoding: publicData, as: UTF8.self).range(of: token, options: .caseInsensitive) == nil else {
+-            XCTFail("HID acknowledgement must be valid and credential-free")
+-            return
+-        }
+-        XCTAssertEqual(response["nonce"] as? String, nonce)
+-        XCTAssertEqual(response["key"] as? Int, usage.rawValue)
+-        XCTAssertEqual(response["delivered"] as? Bool, true, "Transport error: \(response)")
+-        let attachment = XCTAttachment(data: publicData, uniformTypeIdentifier: "public.json")
+-        attachment.name = "r27-hid-transport-only-\(usage.rawValue)"
+-        attachment.lifetime = .keepAlways
+-        add(attachment)
+     }
+ 
+     @MainActor
+--- a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
++++ b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
+@@ -430,7 +430,11 @@
+ 
+             ToolbarItem(placement: .topBarTrailing) {
+                 Button(action: toggleStudyPanel) {
+-                    PanelToggleIcon(isOpen: showPanel)
++                    Label {
++                        showPanel ? Text("Close Study Tools") : Text("Open Study Tools")
++                    } icon: {
++                        PanelToggleIcon(isOpen: showPanel)
++                    }
+                 }
+                 .accessibilityLabel(showPanel ? Text("Close Study Tools") : Text("Open Study Tools"))
+                 .accessibilityIdentifier("reader-study-toggle")
+--- a/Scripts/CI/runtime27-release.py
++++ b/Scripts/CI/runtime27-release.py
+@@ -33,9 +33,16 @@
+ 
+ 
+ def requires_native_hid(selected_cases):
+-    # This original case sends real A/Delete/Escape HID events. A Release
+-    # manifest uses no R27 execution-group object, but still needs that transport.
+-    return "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector" in selected_cases
++    # These original cases require real hardware delivery. XCTest typeKey Escape
++    # produced no app event in run 44952423858; genuine HID dismissed both real
++    # full and narrow palette inputs. Release has no R27 execution-group object.
++    required = {
++        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
++        "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
++        "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
++        "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
++    }
++    return bool(required.intersection(selected_cases))
+ 
+ 
+ def load_manifest(root=ROOT):
+--- a/Scripts/CI/test-runtime27-release-stages.py
++++ b/Scripts/CI/test-runtime27-release-stages.py
+@@ -324,6 +324,20 @@
+         self.assertFalse(self.evaluate(actual, contract={"hid_comparison": True}, scenario={"hid_comparison": False}))
+         self.assertFalse(self.evaluate(actual, contract={"hid_comparison": False}))
+ 
++    def test_original_escape_cases_and_comparison_require_real_delivery(self):
++        actual = self.condition()
++        cases = [
++            "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
++            "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
++            "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
++        ]
++        for case in cases:
++            with self.subTest(case=case):
++                self.assertTrue(release["requires_native_hid"]([case]))
++                self.assertTrue(self.evaluate(actual, release_manifest={"synthetic": True},
++                                              selection=[case]))
++                self.assertFalse(release["requires_native_hid"]([case + "Extra"]))
++
+     def test_unrelated_release_case_does_not_start_hid_transport(self):
+         self.assertFalse(self.evaluate(self.condition(), release_manifest={"synthetic": True},
+                                        selection=["R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation"]))

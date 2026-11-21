@@ -1,0 +1,45 @@
+{
+  "previous_run": "https://github.com/davidpovarsky/Maktabah/actions/runs/44952423858",
+  "previous_checkout": "87a44cdccb8c2b371f3459d7ec4a12e1311c2fd8",
+  "previous_application_source": "a0781bd2628c1311394f7da6aa1e84c17f252fa4",
+  "original_outcomes": {
+    "executed": 9,
+    "pass": 4,
+    "fail": 5,
+    "skip": 0,
+    "not_run": 0
+  },
+  "root_patch_sha256": "11b64751b083922571fd16a2ccf2b371ea60f045367db0b367eb1ca098294e33",
+  "native_patch_sha256": "8cd5fd0e6daa71b6445abffe0f80ce7b6943ea382442678f4c7337df0fdd8d7c",
+  "findings": [
+    "Original HID input visibly changed and dismissed real palette input in full and narrow windows. Original XCTest Escape paths did not record app dispatch; app Escape code remains unchanged.",
+    "Actual opened native overflow hierarchy contains Personal and Book Info, but lacks Study Tools. Original custom icon-only Button is now a semantic Label with unchanged action, icon, identity and accessibility.",
+    "Reduce Motion restoration target was inside the correct portrait native track. No original post-tap frame was retained; blocked process notification remains a hypothesis, not an established product root cause.",
+    "Reduce Motion now targets the exposed actual UISwitch and releases MainActor during the unchanged 15-second observation of the real UIAccessibility flag. Original Settings before/after evidence and all palette assertions remain.",
+    "Global comparison previously used different persisted initial selections for flags-off/on. Exact old flags-off portrait recorded y86; new flags-off recorded y106. Paired launch preferences now explicitly compare original viewer-entry and restored-global-entry on BOTH flags states; all identifier/count/frame +/-1 assertions remain.",
+    "No global product inset, fixed geometry, or modified feature-off product was introduced."
+  ],
+  "reviewers": {
+    "root": "Reviewed exact native patch, original logs and selected capture text.",
+    "asana_audit": "No concrete Swift/concurrency/control issue in root settings/comparison delta; Native outcome remains required.",
+    "native_failures": "Sealed exact original nine-case artifact proof; four local transport-driver controls passed without repeating Native."
+  },
+  "next_selection_count": 6,
+  "retained_historical_passes": [
+    "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+    "NativeStudySheetPadTests/testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor",
+    "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines"
+  ],
+  "landscape_rerun_reason": "Shared comparison entry-state inputs changed; both original landscape and portrait selectors need revalidation.",
+  "scope": {
+    "Apple_typecheck": "NOT_RUN",
+    "Native": "NOT_RUN",
+    "full_native116": false,
+    "full_release114": false,
+    "old_host48_reexecution": 0
+  },
+  "primary_documentation": [
+    "https://developer.apple.com/documentation/xctest/xctwaiter/fulfillment(of:timeout:enforceorder:)-swift.type.method",
+    "https://developer.apple.com/documentation/SwiftUI/Button"
+  ]
+}

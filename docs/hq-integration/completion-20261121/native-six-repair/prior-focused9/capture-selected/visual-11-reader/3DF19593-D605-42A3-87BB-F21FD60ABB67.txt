@@ -1,0 +1,290 @@
+stage=restore
+controlFrame=(360.0, 116.0, 434.0, 28.0)
+windowFrame=(0.0, 0.0, 834.0, 1210.0)
+screenPoint=(772.3, 130.0)
+systemReduceMotion=true
+Attributes: Application, 0x110766800, pid: 70204, label: 'Settings'
+Element subtree:
+ →Application, 0x110766800, pid: 70204, label: 'Settings'
+    Window (Main), 0x110766e40, {{0.0, 0.0}, {834.0, 1210.0}}
+      Other, 0x110764b40, {{0.0, 0.0}, {834.0, 1210.0}}
+        Other, 0x110764780, {{0.0, 0.0}, {834.0, 1210.0}}
+          Other, 0x110766440, {{0.0, 0.0}, {834.0, 1210.0}}
+            Other, 0x110766580, {{0.0, 0.0}, {834.0, 1210.0}}
+              Other, 0x1107666c0, {{0.0, 0.0}, {834.0, 1210.0}}
+                Other, 0x110766bc0, {{0.0, 0.0}, {834.0, 1210.0}}
+                  Other, 0x110766d00, {{0.0, 0.0}, {834.0, 1210.0}}
+                    Other, 0x110766940, {{0.0, 0.0}, {320.0, 1210.0}}
+                      Other, 0x110765040, {{0.0, 0.0}, {320.0, 1210.0}}
+                        Other, 0x110765180, {{0.0, 0.0}, {320.0, 1210.0}}
+                          Other, 0x110765540, {{0.0, 0.0}, {320.0, 1210.0}}
+                            Other, 0x110765680, {{0.0, 0.0}, {320.0, 1210.0}}
+                              Other, 0x1107657c0, {{0.0, 0.0}, {320.0, 1210.0}}
+                                CollectionView, 0x110768a00, {{0.0, 0.0}, {320.0, 1210.0}}, identifier: 'com.apple.settings.sidebar.collectionView', label: 'Sidebar'
+                                  Other, 0x110768b40, {{-16.0, -2280.0}, {352.0, 2530.5}}
+                                  Other, 0x110768c80, {{0.0, 0.0}, {320.0, 1210.0}}
+                                    Other, 0x110768640, {{0.0, 0.0}, {320.0, 180.0}}
+                                  Other, 0x110768780, {{0.0, 0.0}, {320.0, 1210.0}}
+                                  Cell, 0x110768280, {{16.0, 140.0}, {288.0, 100.5}}
+                                    Other, 0x1107683c0, {{16.0, 140.0}, {288.0, 100.5}}
+                                    Other, 0x110768500, {{16.0, 140.0}, {288.0, 100.5}}
+                                      Other, 0x1107688c0, {{16.0, 140.0}, {288.0, 100.5}}
+                                        Other, 0x106f2b340, {{16.0, 140.0}, {288.0, 100.5}}
+                                          Button, 0x106f2b480, {{16.0, 140.0}, {288.0, 100.5}}, identifier: 'com.apple.settings.primaryAppleAccount', label: 'Apple Account, Sign in to access your iCloud data, the App Store, Apple services, and more.'
+                                            Image, 0x10654d180, {{32.0, 160.5}, {60.0, 60.0}}, identifier: 'apple.id', label: 'apple.id'
+                                            StaticText, 0x10654e800, {{100.0, 151.0}, {138.5, 24.0}}, label: 'Apple Account'
+                                            StaticText, 0x10654c8c0, {{100.0, 177.5}, {178.5, 52.0}}, label: 'Sign in to access your iCloud data, the App Store, Apple services, and more.'
+                                  Other, 0x10654ca00, {{-16.0, 250.5}, {352.0, 62.0}}
+                                  Cell, 0x10654cb40, {{16.0, 250.5}, {288.0, 52.0}}
+                                    Other, 0x10654cc80, {{16.0, 250.5}, {288.0, 52.0}}
+                                    Other, 0x10654cdc0, {{16.0, 250.5}, {288.0, 52.0}}
+                                      Other, 0x10654cf00, {{16.0, 250.5}, {288.0, 52.0}}
+                                        Other, 0x10654d040, {{16.0, 250.5}, {288.0, 52.0}}
+                                          Button, 0x10654d400, {{16.0, 250.5}, {288.0, 52.0}}, identifier: 'com.apple.settings.spotlightIndexingProgress', label: 'Optimizing Search and Siri'
+                                            Image, 0x10654d540, {{30.0, 262.5}, {28.0, 28.0}}
+                                            StaticText, 0x10654d680, {{30.0, 262.5}, {237.0, 28.0}}, label: 'Optimizing Search and Siri'
+                                  Other, 0x10654d7c0, {{-16.0, 312.5}, {352.0, 426.0}}
+                                  Cell, 0x10654d900, {{16.0, 312.5}, {288.0, 52.0}}
+                                    Other, 0x10654da40, {{16.0, 312.5}, {288.0, 52.0}}
+                                    Other, 0x10654db80, {{16.0, 312.5}, {288.0, 52.0}}
+                                      Other, 0x10654dcc0, {{16.0, 312.5}, {288.0, 52.0}}
+                                        Other, 0x10654de00, {{16.0, 312.5}, {288.0, 52.0}}
+                                          Button, 0x10654df40, {{16.0, 312.5}, {288.0, 52.0}}, identifier: 'com.apple.settings.general', label: 'General'
+                                            Image, 0x10654e080, {{30.0, 324.5}, {28.0, 28.0}}
+                                            StaticText, 0x10654e1c0, {{30.0, 324.5}, {95.5, 28.0}}, label: 'General'
+                                  Cell, 0x10654e300, {{16.0, 364.5}, {288.0, 52.0}}, Focused, Selected
+                                    Other, 0x10654e440, {{16.0, 364.5}, {288.0, 52.0}}
+                                      Other, 0x10654e580, {{16.0, 364.5}, {288.0, 52.0}}
+                                        Other, 0x10654e6c0, {{16.0, 364.5}, {288.0, 52.0}}
+                                    Other, 0x11077aa80, {{16.0, 364.5}, {288.0, 52.0}}
+                                      Other, 0x1069d1b80, {{16.0, 364.5}, {288.0, 52.0}}
+                                        Other, 0x1069d2bc0, {{16.0, 364.5}, {288.0, 52.0}}
+                                          Button, 0x106550000, {{16.0, 364.5}, {288.0, 52.0}}, identifier: 'com.apple.settings.accessibility', label: 'Accessibility', Selected
+                                            Image, 0x106550140, {{30.0, 376.5}, {28.0, 28.0}}
+                                            StaticText, 0x106550280, {{30.0, 376.5}, {134.0, 28.0}}, label: 'Accessibility'
+                                  Cell, 0x1065503c0, {{16.0, 416.5}, {288.0, 52.0}}
+                                    Other, 0x106550500, {{16.0, 416.5}, {288.0, 52.0}}
+                                    Other, 0x106550640, {{16.0, 416.5}, {288.0, 52.0}}
+                                      Other, 0x106550780, {{16.0, 416.5}, {288.0, 52.0}}
+                                        Other, 0x1065508c0, {{16.0, 416.5}, {288.0, 52.0}}
+                                          Button, 0x106550a00, {{16.0, 416.5}, {288.0, 52.0}}, identifier: 'com.apple.settings.appearance', label: 'Appearance'
+                                            Image, 0x106550b40, {{30.0, 428.5}, {28.0, 28.0}}
+                                            StaticText, 0x106550c80, {{30.0, 428.5}, {128.0, 28.0}}, label: 'Appearance'
+                                  Cell, 0x106550dc0, {{16.0, 468.5}, {288.0, 52.0}}
+                                    Other, 0x106550f00, {{16.0, 468.5}, {288.0, 52.0}}
+                                    Other, 0x106551040, {{16.0, 468.5}, {288.0, 52.0}}
+                                      Other, 0x106551180, {{16.0, 468.5}, {288.0, 52.0}}
+                                        Other, 0x1065512c0, {{16.0, 468.5}, {288.0, 52.0}}
+                                          Button, 0x106551400, {{16.0, 468.5}, {288.0, 52.0}}, identifier: 'com.apple.settings.camera', label: 'Camera'
+                                            Image, 0x106551540, {{30.0, 480.5}, {28.0, 28.0}}
+                                            StaticText, 0x106551680, {{30.0, 480.5}, {95.5, 28.0}}, label: 'Camera'
+                                  Cell, 0x1065517c0, {{16.0, 520.5}, {288.0, 52.0}}
+                                    Other, 0x106551900, {{16.0, 520.5}, {288.0, 52.0}}
+                                    Other, 0x106551a40, {{16.0, 520.5}, {288.0, 52.0}}
+                                      Other, 0x106551b80, {{16.0, 520.5}, {288.0, 52.0}}
+                                        Other, 0x106551cc0, {{16.0, 520.5}, {288.0, 52.0}}
+                                          Button, 0x106551e00, {{16.0, 520.5}, {288.0, 52.0}}, identifier: 'com.apple.settings.homeScreen', label: 'Home Screen & App Library'
+                                            Image, 0x106551f40, {{30.0, 532.5}, {28.0, 28.0}}
+                                            StaticText, 0x106552080, {{30.0, 532.5}, {248.0, 28.0}}, label: 'Home Screen & App Library'
+                                  Cell, 0x1065521c0, {{16.0, 572.5}, {288.0, 52.0}}
+                                    Other, 0x106552300, {{16.0, 572.5}, {288.0, 52.0}}
+                                    Other, 0x106552440, {{16.0, 572.5}, {288.0, 52.0}}
+                                      Other, 0x106552580, {{16.0, 572.5}, {288.0, 52.0}}
+                                        Other, 0x1065526c0, {{16.0, 572.5}, {288.0, 52.0}}
+                                          Button, 0x106552800, {{16.0, 572.5}, {288.0, 52.0}}, identifier: 'com.apple.settings.multitaskingAndGestures', label: 'Multitasking & Gestures'
+                                            Image, 0x106552940, {{30.0, 584.5}, {28.0, 28.0}}
+                                            StaticText, 0x106552a80, {{30.0, 584.5}, {217.5, 28.0}}, label: 'Multitasking & Gestures'
+                                  Cell, 0x106552bc0, {{16.0, 624.5}, {288.0, 52.0}}
+                                    Other, 0x106552d00, {{16.0, 624.5}, {288.0, 52.0}}
+                                    Other, 0x106552e40, {{16.0, 624.5}, {288.0, 52.0}}
+                                      Other, 0x106552f80, {{16.0, 624.5}, {288.0, 52.0}}
+                                        Other, 0x1065530c0, {{16.0, 624.5}, {288.0, 52.0}}
+                                          Button, 0x106553200, {{16.0, 624.5}, {288.0, 52.0}}, identifier: 'com.apple.settings.search', label: 'Search'
+                                            Image, 0x106553340, {{30.0, 636.5}, {28.0, 28.0}}
+                                            StaticText, 0x106553480, {{30.0, 636.5}, {89.5, 28.0}}, label: 'Search'
+                                  Cell, 0x1065535c0, {{16.0, 676.5}, {288.0, 52.0}}
+                                    Other, 0x106553700, {{16.0, 676.5}, {288.0, 52.0}}
+                                    Other, 0x106553840, {{16.0, 676.5}, {288.0, 52.0}}
+                                      Other, 0x106553980, {{16.0, 676.5}, {288.0, 52.0}}
+                                        Other, 0x106553ac0, {{16.0, 676.5}, {288.0, 52.0}}
+                                          Button, 0x106553c00, {{16.0, 676.5}, {288.0, 52.0}}, identifier: 'com.apple.settings.siri', label: 'Siri'
+                                            Image, 0x106553d40, {{30.0, 688.5}, {28.0, 28.0}}
+                                            StaticText, 0x106553e80, {{30.0, 688.5}, {60.0, 28.0}}, label: 'Siri'
+                                  Other, 0x11076c000, {{-16.0, 738.5}, {352.0, 62.0}}
+                                  Cell, 0x11076c140, {{16.0, 738.5}, {288.0, 52.0}}
+                                    Other, 0x11076c280, {{16.0, 738.5}, {288.0, 52.0}}
+                                    Other, 0x11076c3c0, {{16.0, 738.5}, {288.0, 52.0}}
+                                      Other, 0x11076c500, {{16.0, 738.5}, {288.0, 52.0}}
+                                        Other, 0x11076c640, {{16.0, 738.5}, {288.0, 52.0}}
+                                          Button, 0x11076c780, {{16.0, 738.5}, {288.0, 52.0}}, identifier: 'com.apple.settings.screenTime', label: 'Screen Time'
+                                            Image, 0x11076c8c0, {{30.0, 750.5}, {28.0, 28.0}}
+                                            StaticText, 0x11076ca00, {{30.0, 750.5}, {131.5, 28.0}}, label: 'Screen Time'
+                                  Other, 0x11076cb40, {{-16.0, 800.5}, {352.0, 114.0}}
+                                  Cell, 0x11076cc80, {{16.0, 800.5}, {288.0, 52.0}}
+                                    Other, 0x11076cdc0, {{16.0, 800.5}, {288.0, 52.0}}
+                                    Other, 0x11076cf00, {{16.0, 800.5}, {288.0, 52.0}}
+                                      Other, 0x11076d040, {{16.0, 800.5}, {288.0, 52.0}}
+                                        Other, 0x11076d180, {{16.0, 800.5}, {288.0, 52.0}}
+                                          Button, 0x11076d2c0, {{16.0, 800.5}, {288.0, 52.0}}, identifier: 'com.apple.settings.passcodeAndBiometrics', label: 'Passcode'
+                                            Image, 0x11076d400, {{30.0, 812.5}, {28.0, 28.0}}
+                                            StaticText, 0x11076d540, {{30.0, 812.5}, {110.0, 28.0}}, label: 'Passcode'
+                                  Cell, 0x11076d680, {{16.0, 852.5}, {288.0, 52.0}}
+                                    Other, 0x11076d7c0, {{16.0, 852.5}, {288.0, 52.0}}
+                                    Other, 0x11076d900, {{16.0, 852.5}, {288.0, 52.0}}
+                                      Other, 0x11076da40, {{16.0, 852.5}, {288.0, 52.0}}
+                                        Other, 0x11076db80, {{16.0, 852.5}, {288.0, 52.0}}
+                                          Button, 0x11076dcc0, {{16.0, 852.5}, {288.0, 52.0}}, identifier: 'com.apple.settings.privacyAndSecurity', label: 'Privacy & Security'
+                                            Image, 0x11076de00, {{30.0, 864.5}, {28.0, 28.0}}
+                                            StaticText, 0x11076df40, {{30.0, 864.5}, {174.5, 28.0}}, label: 'Privacy & Security'
+                                  Other, 0x11076e080, {{-16.0, 914.5}, {352.0, 114.0}}
+                                  Cell, 0x11076e1c0, {{16.0, 914.5}, {288.0, 52.0}}
+                                    Other, 0x11076e300, {{16.0, 914.5}, {288.0, 52.0}}
+                                    Other, 0x11076e440, {{16.0, 914.5}, {288.0, 52.0}}
+                                      Other, 0x11076e580, {{16.0, 914.5}, {288.0, 52.0}}
+                                        Other, 0x11076e6c0, {{16.0, 914.5}, {288.0, 52.0}}
+                                          Button, 0x11076e800, {{16.0, 914.5}, {288.0, 52.0}}, identifier: 'com.apple.settings.gameCenter', label: 'Game Center'
+                                            Image, 0x11076e940, {{30.0, 926.5}, {28.0, 28.0}}
+                                            StaticText, 0x11076ea80, {{30.0, 926.5}, {137.0, 28.0}}, label: 'Game Center'
+                                  Cell, 0x11076ebc0, {{16.0, 966.5}, {288.0, 52.0}}
+                                    Other, 0x11076ed00, {{16.0, 966.5}, {288.0, 52.0}}
+                                    Other, 0x11076ee40, {{16.0, 966.5}, {288.0, 52.0}}
+                                      Other, 0x11076ef80, {{16.0, 966.5}, {288.0, 52.0}}
+                                        Other, 0x11076f0c0, {{16.0, 966.5}, {288.0, 52.0}}
+                                          Button, 0x11076f200, {{16.0, 966.5}, {288.0, 52.0}}, identifier: 'com.apple.settings.iCloud', label: 'iCloud'
+                                            Image, 0x11076f340, {{30.0, 978.5}, {28.0, 28.0}}
+                                            StaticText, 0x11076f480, {{30.0, 978.5}, {84.5, 28.0}}, label: 'iCloud'
+                                  Other, 0x11076f5c0, {{-16.0, 1028.5}, {352.0, 62.0}}
+                                  Cell, 0x11076f700, {{16.0, 1028.5}, {288.0, 52.0}}
+                                    Other, 0x11076f840, {{16.0, 1028.5}, {288.0, 52.0}}
+                                    Other, 0x11076f980, {{16.0, 1028.5}, {288.0, 52.0}}
+                                      Other, 0x11076fac0, {{16.0, 1028.5}, {288.0, 52.0}}
+                                        Other, 0x11076fc00, {{16.0, 1028.5}, {288.0, 52.0}}
+                                          Button, 0x11076fd40, {{16.0, 1028.5}, {288.0, 52.0}}, identifier: 'com.apple.settings.apps', label: 'Apps'
+                                            Image, 0x11076fe80, {{30.0, 1040.5}, {28.0, 28.0}}
+                                            StaticText, 0x110770000, {{30.0, 1040.5}, {75.5, 28.0}}, label: 'Apps'
+                                  Other, 0x110770140, {{-16.0, 1090.5}, {352.0, 2482.0}}
+                                  Cell, 0x110770280, {{16.0, 1090.5}, {288.0, 52.0}}
+                                    Other, 0x1107703c0, {{16.0, 1090.5}, {288.0, 52.0}}
+                                    Other, 0x110770500, {{16.0, 1090.5}, {288.0, 52.0}}
+                                      Other, 0x110770640, {{16.0, 1090.5}, {288.0, 52.0}}
+                                        Other, 0x110770780, {{16.0, 1090.5}, {288.0, 52.0}}
+                                          Button, 0x1107708c0, {{16.0, 1090.5}, {288.0, 52.0}}, identifier: 'com.apple.settings.developer', label: 'Developer'
+                                            Image, 0x110770a00, {{30.0, 1102.5}, {28.0, 28.0}}
+                                            StaticText, 0x110770b40, {{30.0, 1102.5}, {114.0, 28.0}}, label: 'Developer'
+                                  Other, 0x110770c80, {{287.0, 140.0}, {30.0, 1070.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                    Other, 0x110770dc0, {{314.0, 180.5}, {3.0, 1026.5}}
+                                  Other, 0x110770f00, {{287.0, 140.0}, {30.0, 1070.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                    Other, 0x110771040, {{314.0, 180.5}, {3.0, 1026.5}}
+                                Other, 0x110771180, {{160.0, 665.0}, {0.0, 0.0}}
+                        NavigationBar, 0x1107712c0, {{0.0, 32.0}, {320.0, 108.0}}, identifier: 'Settings'
+                          SearchField, 0x110771400, {{16.0, 86.0}, {288.0, 44.0}}, label: 'Search', placeholderValue: 'Search'
+                            Button, 0x110771540, {{270.0, 97.0}, {18.0, 22.5}}, identifier: 'Dictate', label: 'Dictate'
+                            Image, 0x110771680, {{28.0, 97.5}, {20.5, 20.0}}, identifier: 'magnifyingglass', label: 'Search'
+                            Button, 0x1107717c0, {{270.0, 97.0}, {18.0, 22.5}}, identifier: 'Dictate', label: 'Dictate'
+                        Toolbar, 0x110771900, {{0.0, 0.0}, {320.0, 1210.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                          Other, 0x110771a40, {{0.0, 0.0}, {320.0, 1210.0}}
+                      Other, 0x110771b80, {{0.0, 0.0}, {320.0, 1210.0}}
+                        Other, 0x110771cc0, {{0.0, 0.0}, {320.0, 1210.0}}
+                          Other, 0x110771e00, {{0.0, 0.0}, {320.0, 1210.0}}
+                            Other, 0x110771f40, {{0.0, 0.0}, {320.0, 1210.0}}
+                              Other, 0x110772080, {{0.0, 0.0}, {320.0, 1210.0}}
+                                Other, 0x1107721c0, {{0.0, 0.0}, {320.0, 1210.0}}
+                            Other, 0x110772300, {{0.0, 0.0}, {320.0, 1210.0}}
+                              Other, 0x110772440, {{0.0, 0.0}, {320.0, 1210.0}}
+                    Other, 0x110772580, {{0.0, 0.0}, {834.0, 1210.0}}
+                      Other, 0x1107726c0, {{0.0, 0.0}, {834.0, 1210.0}}
+                        NavigationBar, 0x110772800, {{0.0, 32.0}, {834.0, 54.0}}, identifier: 'Motion'
+                          Button, 0x110772940, {{330.0, 32.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Accessibility'
+                          StaticText, 0x110772a80, {{549.0, 43.5}, {55.5, 21.0}}, label: 'Motion'
+                        Other, 0x110772bc0, {{0.0, 0.0}, {834.0, 1210.0}}
+                          Other, 0x110772d00, {{0.0, 0.0}, {834.0, 1210.0}}
+                            Other, 0x110772e40, {{0.0, 0.0}, {834.0, 1210.0}}
+                              Other, 0x110772f80, {{0.0, 0.0}, {834.0, 1210.0}}
+                                Other, 0x1107730c0, {{320.0, 86.0}, {514.0, 1104.0}}
+                                  Table, 0x110773200, {{0.0, 0.0}, {834.0, 1210.0}}
+                                    Other, 0x110773340, {{0.0, 86.0}, {834.0, 17.5}}
+                                    Cell, 0x110773480, {{340.0, 103.5}, {474.0, 53.0}}, identifier: 'REDUCE_MOTION'
+                                      Other, 0x1107735c0, {{340.0, 103.5}, {474.0, 53.0}}
+                                        Other, 0x110773700, {{340.0, 103.5}, {474.0, 53.0}}
+                                          Switch, 0x110773840, {{360.0, 116.0}, {434.0, 28.0}}, identifier: 'REDUCE_MOTION', label: 'Reduce Motion', value: 1
+                                            Button, 0x110773980, {{360.0, 119.8}, {115.0, 20.5}}, identifier: 'REDUCE_MOTION', label: 'Reduce Motion'
+                                            Switch, 0x110773ac0, {{733.0, 116.0}, {63.0, 28.0}}, value: 1
+                                      Other, 0x110773c00, {{340.0, 103.5}, {474.0, 53.0}}
+                                        Other, 0x110773d40, {{340.0, 103.5}, {474.0, 53.0}}
+                                      Other, 0x110773e80, {{340.0, 155.5}, {474.0, 1.0}}
+                                    Other, 0x1069d4000, {{0.0, 156.5}, {834.0, 46.0}}, identifier: 'Reduce the motion of the user interface, including the parallax effect of icons.'
+                                      Other, 0x1069d4140, {{340.0, 156.5}, {474.0, 46.0}}, label: 'Reduce the motion of the user interface, including the parallax effect of icons.'
+                                    Other, 0x1069d4280, {{0.0, 202.5}, {834.0, 17.5}}
+                                    Cell, 0x1069d43c0, {{340.0, 220.0}, {474.0, 53.0}}, identifier: 'REDUCE_MOTION_REDUCE_SLIDE_ANIMATIONS'
+                                      Other, 0x1069d4500, {{340.0, 220.0}, {474.0, 53.0}}
+                                        Other, 0x1069d4640, {{340.0, 220.0}, {474.0, 53.0}}
+                                          Switch, 0x1069d4780, {{360.0, 232.5}, {434.0, 28.0}}, identifier: 'REDUCE_MOTION_REDUCE_SLIDE_ANIMATIONS', label: 'Prefer Cross-Fade Transitions', value: 0
+                                            Button, 0x1069d48c0, {{360.0, 236.2}, {226.5, 20.5}}, identifier: 'REDUCE_MOTION_REDUCE_SLIDE_ANIMATIONS', label: 'Prefer Cross-Fade Transitions'
+                                            Switch, 0x1069d4a00, {{733.0, 232.5}, {63.0, 28.0}}, value: 0
+                                      Other, 0x1069d4b40, {{340.0, 220.0}, {474.0, 53.0}}
+                                        Other, 0x1069d4c80, {{340.0, 220.0}, {474.0, 53.0}}
+                                      Other, 0x1069d4dc0, {{340.0, 272.0}, {474.0, 1.0}}
+                                    Other, 0x1069d4f00, {{0.0, 273.0}, {834.0, 46.0}}, identifier: 'Reduces the movement of onscreen elements and screen actions, such as launching or moving between apps, to help with motion sensitivity.'
+                                      Other, 0x1069d5040, {{340.0, 273.0}, {474.0, 46.0}}, label: 'Reduces the movement of onscreen elements and screen actions, such as launching or moving between apps, to help with motion sensitivity.'
+                                    Other, 0x1069d5180, {{0.0, 319.0}, {834.0, 17.5}}
+                                    Cell, 0x1069d52c0, {{340.0, 336.5}, {474.0, 53.0}}, identifier: 'REDUCE_MOTION_AUTOPLAY_ANIMATED_IMAGES'
+                                      Other, 0x1069d5400, {{340.0, 336.5}, {474.0, 53.0}}
+                                        Other, 0x1069d5540, {{340.0, 336.5}, {474.0, 53.0}}
+                                          Switch, 0x1069d5680, {{360.0, 349.0}, {434.0, 28.0}}, identifier: 'REDUCE_MOTION_AUTOPLAY_ANIMATED_IMAGES', label: 'Auto-Play Animated Images', value: 1
+                                            Button, 0x1069d57c0, {{360.0, 352.8}, {211.0, 20.5}}, identifier: 'REDUCE_MOTION_AUTOPLAY_ANIMATED_IMAGES', label: 'Auto-Play Animated Images'
+                                            Switch, 0x1069d5900, {{733.0, 349.0}, {63.0, 28.0}}, value: 1
+                                      Other, 0x1069d5a40, {{340.0, 336.5}, {474.0, 53.0}}
+                                        Other, 0x1069d5b80, {{340.0, 336.5}, {474.0, 53.0}}
+                                      Other, 0x1069d5cc0, {{360.0, 388.5}, {434.0, 1.0}}
+                                    Cell, 0x1069d5e00, {{340.0, 389.5}, {474.0, 53.0}}, identifier: 'REDUCE_MOTION_AUTOPLAY_VIDEO_PREVIEWS'
+                                      Other, 0x1069d5f40, {{340.0, 389.5}, {474.0, 53.0}}
+                                        Other, 0x1069d6080, {{340.0, 389.5}, {474.0, 53.0}}
+                                          Switch, 0x1069d61c0, {{360.0, 402.0}, {434.0, 28.0}}, identifier: 'REDUCE_MOTION_AUTOPLAY_VIDEO_PREVIEWS', label: 'Auto-Play Video Previews', value: 1
+                                            Button, 0x1069d6300, {{360.0, 405.8}, {195.5, 20.5}}, identifier: 'REDUCE_MOTION_AUTOPLAY_VIDEO_PREVIEWS', label: 'Auto-Play Video Previews'
+                                            Switch, 0x1069d6440, {{733.0, 402.0}, {63.0, 28.0}}, value: 1
+                                      Other, 0x1069d6580, {{340.0, 389.5}, {474.0, 53.0}}
+                                        Other, 0x1069d66c0, {{340.0, 389.5}, {474.0, 53.0}}
+                                      Other, 0x1069d6800, {{360.0, 441.5}, {434.0, 1.0}}
+                                    Cell, 0x1069d6940, {{340.0, 442.5}, {474.0, 53.0}}, identifier: 'ReduceMotionAutoplayMessagesEffects'
+                                      Other, 0x1069d6a80, {{340.0, 442.5}, {474.0, 53.0}}
+                                        Other, 0x1069d6bc0, {{340.0, 442.5}, {474.0, 53.0}}
+                                          Switch, 0x1069d6d00, {{360.0, 455.0}, {434.0, 28.0}}, identifier: 'ReduceMotionAutoplayMessagesEffects', label: 'Auto-Play Message Effects', value: 0
+                                            Button, 0x1069d6e40, {{360.0, 458.8}, {205.5, 20.5}}, identifier: 'ReduceMotionAutoplayMessagesEffects', label: 'Auto-Play Message Effects'
+                                            Switch, 0x1069d6f80, {{733.0, 455.0}, {63.0, 28.0}}, value: 0
+                                      Other, 0x1069d70c0, {{340.0, 442.5}, {474.0, 53.0}}
+                                        Other, 0x1069d7200, {{340.0, 442.5}, {474.0, 53.0}}
+                                      Other, 0x1069d7340, {{340.0, 494.5}, {474.0, 1.0}}
+                                    Other, 0x1069d7480, {{0.0, 495.5}, {834.0, 46.0}}, identifier: 'Control if videos, animated images, and full screen effects in messages play automatically.'
+                                      Other, 0x1069d75c0, {{340.0, 495.5}, {474.0, 46.0}}, label: 'Control if videos, animated images, and full screen effects in messages play automatically.'
+                                    Other, 0x1069d7700, {{0.0, 541.5}, {834.0, 17.5}}
+                                    Cell, 0x1069d7840, {{340.0, 559.0}, {474.0, 53.0}}, identifier: 'PREFER_NONBLINKING_CURSOR'
+                                      Other, 0x1069d7980, {{340.0, 559.0}, {474.0, 53.0}}
+                                        Other, 0x1069d7ac0, {{340.0, 559.0}, {474.0, 53.0}}
+                                          Switch, 0x1069d7c00, {{360.0, 571.5}, {434.0, 28.0}}, identifier: 'PREFER_NONBLINKING_CURSOR', label: 'Prefer Non-Blinking Cursor', value: 0
+                                            Button, 0x1069d7d40, {{360.0, 575.2}, {205.0, 20.5}}, identifier: 'PREFER_NONBLINKING_CURSOR', label: 'Prefer Non-Blinking Cursor'
+                                            Switch, 0x1069d7e80, {{733.0, 571.5}, {63.0, 28.0}}, value: 0
+                                      Other, 0x1069d8000, {{340.0, 559.0}, {474.0, 53.0}}
+                                        Other, 0x1069d8140, {{340.0, 559.0}, {474.0, 53.0}}
+                                      Other, 0x1069d8280, {{340.0, 611.0}, {474.0, 1.0}}
+                                    Other, 0x1069d83c0, {{0.0, 612.0}, {834.0, 30.0}}, identifier: 'Prefer the cursor indicator in text does not blink.'
+                                      Other, 0x1069d8500, {{340.0, 612.0}, {474.0, 30.0}}, label: 'Prefer the cursor indicator in text does not blink.'
+                                    Other, 0x1069d8640, {{801.0, 86.0}, {30.0, 1094.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                      Other, 0x1069d8780, {{828.0, 617.0}, {3.0, 560.0}}
+                                    Other, 0x1069d88c0, {{320.0, 1177.0}, {484.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                      Other, 0x1069d8a00, {{323.0, 1204.0}, {478.0, 3.0}}
+                        Toolbar, 0x1069d8b40, {{0.0, 0.0}, {834.0, 1210.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                          Other, 0x1069d8c80, {{0.0, 0.0}, {834.0, 1210.0}}
+                    Toolbar, 0x1069d8dc0, {{0.0, 0.0}, {834.0, 1210.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                      Other, 0x1069d8f00, {{0.0, 0.0}, {834.0, 1210.0}}
+                Other, 0x1069d9040, {{0.0, 0.0}, {834.0, 1210.0}}
+                  Other, 0x1069d9180, {{0.0, 0.0}, {834.0, 1210.0}}
+    Window, 0x1069d92c0, {{0.0, 0.0}, {834.0, 1210.0}}
+      Other, 0x1069d9400, {{0.0, 0.0}, {834.0, 1210.0}}
+        Other, 0x1069d9540, {{0.0, 0.0}, {834.0, 1210.0}}
+Path to element:
+ →Application, 0x110766800, pid: 70204, label: 'Settings'
+Query chain:
+ →Find: Application 'com.apple.Preferences'
+  Output: {
+    Application, 0x1069d9680, pid: 70204, label: 'Settings'
+  }

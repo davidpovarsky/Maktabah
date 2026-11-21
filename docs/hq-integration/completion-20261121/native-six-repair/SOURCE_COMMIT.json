@@ -1,0 +1,122 @@
+{
+  "status": "SOURCE_COMMITTED_NOT_PUSHED",
+  "source_commit": "ee27d8170dd94472856b29307a5478a58e7056eb",
+  "parent": "34d06949e7fedbda6e0d256a769b3d0b8659c211",
+  "branch": "codex/otzaria-native-six-repair-20261121",
+  "application_trees": {
+    "Source": "7d3c913d8de4ff29837216003b7d71b6896a76f7",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
+    "Maktabah-iOSUITests": "ef1d0eb39a95b23f291238c97158e81a277114b9"
+  },
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "sha256_lf": "045704be9a6015674fbde56a245e21017783cf2201633b28f45816e7653e63d6",
+      "diff_numstat": "127\t39\tMaktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+    },
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "sha256_lf": "3f3b5380bc69ec54abc6413556c6920fb85376ae0bb404d82a1414cdbc9d0733",
+      "diff_numstat": "4\t44\tMaktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "sha256_lf": "a966b47ebcae3c65678e35e91678a9aed2e7e0faf83e0f89e586fd5c06f460de",
+      "diff_numstat": "5\t1\tSource/Features/Reader/iOS/iOSReaderWorkspaceView.swift"
+    },
+    {
+      "path": "Scripts/CI/runtime27-release.py",
+      "sha256_lf": "3f8e89f126fb532f87d360f0b8f346e6addd4a6130d0a96a49f0296b872f2918",
+      "diff_numstat": "10\t3\tScripts/CI/runtime27-release.py"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-release-stages.py",
+      "sha256_lf": "657e4ade25a547044dc0fb6b7df39bedcdc1145325f7846fd923a4509aea4c1d",
+      "diff_numstat": "14\t0\tScripts/CI/test-runtime27-release-stages.py"
+    }
+  ],
+  "validation": {
+    "status": "SYNTAX_AND_DECLARATIONS_PASS",
+    "checked_at": "2026-11-21T23:21:24.348373+00:00",
+    "swift": "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+    "swift_files": [
+      {
+        "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+        "sha256_lf": "045704be9a6015674fbde56a245e21017783cf2201633b28f45816e7653e63d6",
+        "exit_code": 0,
+        "diagnostics": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n"
+      },
+      {
+        "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+        "sha256_lf": "3f3b5380bc69ec54abc6413556c6920fb85376ae0bb404d82a1414cdbc9d0733",
+        "exit_code": 0,
+        "diagnostics": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n"
+      },
+      {
+        "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+        "sha256_lf": "a966b47ebcae3c65678e35e91678a9aed2e7e0faf83e0f89e586fd5c06f460de",
+        "exit_code": 0,
+        "diagnostics": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n"
+      }
+    ],
+    "declarations": {
+      "suites": [
+        {
+          "suite": "FaithfulReaderUIAcceptanceTests",
+          "selection": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+          "expected": [
+            "testSystemReduceMotionKeepsOriginalPaletteUsable"
+          ],
+          "status": "DECLARATIONS_MATCH"
+        },
+        {
+          "suite": "FaithfulReaderUIAcceptanceTests",
+          "selection": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+          "expected": [
+            "testCandidateGlobalSearchLandscapeMatchesOriginalNavigation"
+          ],
+          "status": "DECLARATIONS_MATCH"
+        },
+        {
+          "suite": "FaithfulReaderUIAcceptanceTests",
+          "selection": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+          "expected": [
+            "testCandidateGlobalSearchPortraitMatchesOriginalNavigation"
+          ],
+          "status": "DECLARATIONS_MATCH"
+        },
+        {
+          "suite": "FaithfulReaderUIAcceptanceTests",
+          "selection": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+          "expected": [
+            "testPointerHoverClickAndHardwareKeyboardDismissal"
+          ],
+          "status": "DECLARATIONS_MATCH"
+        },
+        {
+          "suite": "R27NativePadTests",
+          "selection": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+          "expected": [
+            "testNormalBootstrapPaletteKeyboardDispatchCalibration"
+          ],
+          "status": "DECLARATIONS_MATCH"
+        },
+        {
+          "suite": "R27NativePadTests",
+          "selection": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+          "expected": [
+            "testNormalBootstrapPaletteHIDComparison"
+          ],
+          "status": "DECLARATIONS_MATCH"
+        }
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    "Apple_typecheck": "NOT_RUN",
+    "Native": "NOT_RUN",
+    "previous_HID_controls_reexecuted": 0
+  },
+  "checked_at": "2026-11-21T23:22:23.047852+00:00",
+  "commit_output": "[codex/otzaria-native-six-repair-20261121 ee27d817] fix(ios): preserve native study tools and real keyboard acceptance\n 5 files changed, 160 insertions(+), 87 deletions(-)"
+}

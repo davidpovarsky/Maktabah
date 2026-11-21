@@ -1,0 +1,23 @@
+{
+  "decision": "Preserve original evidence bytes including CRLF, original log whitespace and literal patch context; production/CI source diff-check must pass independently. No raw evidence is normalized.",
+  "actual_source_check": "PASS",
+  "original_evidence_whitespace_count": 1641,
+  "evidence_file_counts": {
+    "docs/hq-integration/completion-20261121/native-six-repair/APPLIED.json": 44,
+    "docs/hq-integration/completion-20261121/native-six-repair/LOCAL_VALIDATION.json": 80,
+    "docs/hq-integration/completion-20261121/native-six-repair/SOURCE_COMMIT.json": 121,
+    "docs/hq-integration/completion-20261121/native-six-repair/native-keyboard-and-overflow.patch": 10,
+    "docs/hq-integration/completion-20261121/native-six-repair/native-settings-and-comparison-inputs.patch": 8,
+    "docs/hq-integration/completion-20261121/native-six-repair/prior-focused9/FOCUSED9_AUDIT.json": 480,
+    "docs/hq-integration/completion-20261121/native-six-repair/prior-focused9/artifacts/native-routing-logs-11-window/otzaria-reader.log": 4,
+    "docs/hq-integration/completion-20261121/native-six-repair/prior-focused9/artifacts/test-simulator-11-reader.log": 3,
+    "docs/hq-integration/completion-20261121/native-six-repair/prior-focused9/artifacts/test-simulator-11-window.log": 1,
+    "docs/hq-integration/completion-20261121/native-six-repair/prior-focused9/capture-range-initial.json": 15,
+    "docs/hq-integration/completion-20261121/native-six-repair/prior-focused9/capture-selected-receipt.json": 224,
+    "docs/hq-integration/completion-20261121/native-six-repair/prior-focused9/capture-selected-source-index.json": 198,
+    "docs/hq-integration/completion-20261121/native-six-repair/prior-focused9/download-receipt.json": 453
+  },
+  "zip_and_member_sha_verification": "PASS",
+  "attribute_scope": "docs/hq-integration/completion-20261121/native-six-repair",
+  "checked_at": "2026-11-21T23:28:32.066989+00:00"
+}

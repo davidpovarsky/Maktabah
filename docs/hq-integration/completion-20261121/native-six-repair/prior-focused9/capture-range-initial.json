@@ -1,0 +1,16 @@
+{
+  "artifact_id": "14728526550",
+  "status": 206,
+  "content_range": "bytes 831525791-831656862/831656863",
+  "content_length": "131072",
+  "tail_bytes": 131072,
+  "eocd": {
+    "disk": 0,
+    "directory_disk": 0,
+    "disk_entries": 4900,
+    "entries": 4900,
+    "directory_bytes": 828934,
+    "directory_offset": 830827907,
+    "comment_bytes": 0
+  }
+}

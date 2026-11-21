@@ -1,0 +1,454 @@
+{
+  "run": 44952423858,
+  "artifact": 14727733277,
+  "sha256": "91b079c2f2f90e07e7c0e209e58316e317f5283aee94aa4ef3c2f45b06c0a1bc",
+  "bytes": 30252061,
+  "crc": "PASS",
+  "members": 110,
+  "uncompressed": 59115016,
+  "downloadedUTC": "2026-11-21T22:59:31.763682+00:00",
+  "retainedZIP": "C:\\Users\\DAVID\\Code\\Maktabah-peek-overflow-20261121\\build\\focused9-result-44952423858\\completion-focused-native-evidence-14727733277.zip",
+  "extracted": "C:\\Users\\DAVID\\Code\\Maktabah-peek-overflow-20261121\\build\\focused9-result-44952423858\\evidence",
+  "files": [
+    {
+      "path": "artifacts/continuation-focused/Maktabah-iOS_iphonesimulator27.2-arm64.xctestrun",
+      "bytes": 4992
+    },
+    {
+      "path": "artifacts/continuation-focused/declarations.json",
+      "bytes": 2678
+    },
+    {
+      "path": "artifacts/continuation-focused/built-binaries.json",
+      "bytes": 497
+    },
+    {
+      "path": "artifacts/continuation-focused/original-post-ui-input-audit.json",
+      "bytes": 88197
+    },
+    {
+      "path": "artifacts/continuation-focused/result.json",
+      "bytes": 69081
+    },
+    {
+      "path": "artifacts/continuation-focused/selection.json",
+      "bytes": 181303
+    },
+    {
+      "path": "artifacts/continuation-focused/source-before.json",
+      "bytes": 56952
+    },
+    {
+      "path": "artifacts/continuation-host48-reuse/result.json",
+      "bytes": 1235
+    },
+    {
+      "path": "artifacts/faithful-ipad-matrix.json",
+      "bytes": 72503
+    },
+    {
+      "path": "artifacts/miniTest10-native-fixture-install-11-reader.json",
+      "bytes": 1792
+    },
+    {
+      "path": "artifacts/miniTest10-native-fixture-install-11-search.json",
+      "bytes": 1791
+    },
+    {
+      "path": "artifacts/miniTest10-native-fixture-install-11-window.json",
+      "bytes": 1794
+    },
+    {
+      "path": "artifacts/native-routing-logs-11-reader/collection.json",
+      "bytes": 551
+    },
+    {
+      "path": "artifacts/native-routing-logs-11-reader/otzaria-reader.log",
+      "bytes": 88928
+    },
+    {
+      "path": "artifacts/native-routing-logs-11-window/collection.json",
+      "bytes": 551
+    },
+    {
+      "path": "artifacts/native-routing-logs-11-window/otzaria-reader.log",
+      "bytes": 58484
+    },
+    {
+      "path": "artifacts/runtime27/cases.html",
+      "bytes": 2930
+    },
+    {
+      "path": "artifacts/runtime27/continuation-focused-matrix.log",
+      "bytes": 204046
+    },
+    {
+      "path": "artifacts/runtime27/fixture-oracle-11-reader.json",
+      "bytes": 1071
+    },
+    {
+      "path": "artifacts/runtime27/fixture-oracle-11-search.json",
+      "bytes": 1071
+    },
+    {
+      "path": "artifacts/runtime27/fixture-oracle-11-window.json",
+      "bytes": 1071
+    },
+    {
+      "path": "artifacts/runtime27/hid-11-window-0.log",
+      "bytes": 3485
+    },
+    {
+      "path": "artifacts/runtime27/hid-11-window-1.log",
+      "bytes": 0
+    },
+    {
+      "path": "artifacts/runtime27/hid-11-window.jsonl",
+      "bytes": 950
+    },
+    {
+      "path": "artifacts/runtime27/hid-tools.json",
+      "bytes": 908
+    },
+    {
+      "path": "artifacts/runtime27/palette-compiled-images.json",
+      "bytes": 70627
+    },
+    {
+      "path": "artifacts/runtime27/palette-input-11-window-stream-stderr.log",
+      "bytes": 44
+    },
+    {
+      "path": "artifacts/runtime27/junit.xml",
+      "bytes": 2374
+    },
+    {
+      "path": "artifacts/runtime27/palette-input-11-window-stream.json",
+      "bytes": 655
+    },
+    {
+      "path": "artifacts/runtime27/palette-input-11-window-stream.log",
+      "bytes": 114
+    },
+    {
+      "path": "artifacts/runtime27/palette-input-11-window.json",
+      "bytes": 712
+    },
+    {
+      "path": "artifacts/runtime27/palette-input-11-window.log",
+      "bytes": 46
+    },
+    {
+      "path": "artifacts/runtime27/recording-11-reader.log",
+      "bytes": 270
+    },
+    {
+      "path": "artifacts/runtime27/recording-11-search.log",
+      "bytes": 270
+    },
+    {
+      "path": "artifacts/runtime27/recording-11-window.log",
+      "bytes": 270
+    },
+    {
+      "path": "artifacts/runtime27/toolchain-selection.json",
+      "bytes": 13019
+    },
+    {
+      "path": "artifacts/runtime27/url-delivery-11-reader.jsonl",
+      "bytes": 364
+    },
+    {
+      "path": "artifacts/runtime27/url-delivery-11-reader.log",
+      "bytes": 0
+    },
+    {
+      "path": "artifacts/runtime27/verified-11-reader.json",
+      "bytes": 316
+    },
+    {
+      "path": "artifacts/runtime27/verified-11-reader.summary.json",
+      "bytes": 1554
+    },
+    {
+      "path": "artifacts/runtime27/verified-11-reader.tests.json",
+      "bytes": 4746
+    },
+    {
+      "path": "artifacts/runtime27/verified-11-search.json",
+      "bytes": 316
+    },
+    {
+      "path": "artifacts/runtime27/verified-11-search.summary.json",
+      "bytes": 1648
+    },
+    {
+      "path": "artifacts/runtime27/verified-11-window.json",
+      "bytes": 316
+    },
+    {
+      "path": "artifacts/runtime27/verified-11-search.tests.json",
+      "bytes": 3007
+    },
+    {
+      "path": "artifacts/runtime27/verified-11-window.tests.json",
+      "bytes": 5004
+    },
+    {
+      "path": "artifacts/runtime27/verified-11-window.summary.json",
+      "bytes": 2847
+    },
+    {
+      "path": "artifacts/simulator-failure-11-reader-devices.log",
+      "bytes": 22711
+    },
+    {
+      "path": "artifacts/simulator-failure-11-reader-screenshot.log",
+      "bytes": 258
+    },
+    {
+      "path": "artifacts/simulator-failure-11-reader.png",
+      "bytes": 4717813
+    },
+    {
+      "path": "artifacts/simulator-failure-11-reader-services.log",
+      "bytes": 1000870
+    },
+    {
+      "path": "artifacts/simulator-failure-11-search-devices.log",
+      "bytes": 22711
+    },
+    {
+      "path": "artifacts/simulator-failure-11-search-screenshot.log",
+      "bytes": 258
+    },
+    {
+      "path": "artifacts/simulator-failure-11-search-services.log",
+      "bytes": 1001627
+    },
+    {
+      "path": "artifacts/simulator-failure-11-search.png",
+      "bytes": 4710053
+    },
+    {
+      "path": "artifacts/simulator-failure-11-window-devices.log",
+      "bytes": 22711
+    },
+    {
+      "path": "artifacts/simulator-failure-11-window-screenshot.log",
+      "bytes": 258
+    },
+    {
+      "path": "artifacts/simulator-failure-11-window-services.log",
+      "bytes": 1009397
+    },
+    {
+      "path": "artifacts/simulator-failure-11-window.png",
+      "bytes": 4709589
+    },
+    {
+      "path": "artifacts/simulator-install-recovery-11-reader-com.davidpovarsky.chavrusatext-devices.log",
+      "bytes": 22711
+    },
+    {
+      "path": "artifacts/simulator-install-recovery-11-reader-com.davidpovarsky.chavrusatext-screenshot.log",
+      "bytes": 258
+    },
+    {
+      "path": "artifacts/simulator-install-recovery-11-reader-com.davidpovarsky.chavrusatext-services.log",
+      "bytes": 1000394
+    },
+    {
+      "path": "artifacts/simulator-install-recovery-11-reader-com.davidpovarsky.chavrusatext.png",
+      "bytes": 4707282
+    },
+    {
+      "path": "artifacts/simulator-install-recovery-11-search-com.davidpovarsky.chavrusatext-devices.log",
+      "bytes": 22711
+    },
+    {
+      "path": "artifacts/simulator-install-recovery-11-search-com.davidpovarsky.chavrusatext-screenshot.log",
+      "bytes": 258
+    },
+    {
+      "path": "artifacts/simulator-install-recovery-11-search-com.davidpovarsky.chavrusatext-services.log",
+      "bytes": 1000394
+    },
+    {
+      "path": "artifacts/simulator-install-recovery-11-window-com.davidpovarsky.chavrusatext-devices.log",
+      "bytes": 22711
+    },
+    {
+      "path": "artifacts/simulator-install-recovery-11-window-com.davidpovarsky.chavrusatext-screenshot.log",
+      "bytes": 258
+    },
+    {
+      "path": "artifacts/simulator-install-recovery-11-window-com.davidpovarsky.chavrusatext-services.log",
+      "bytes": 1000106
+    },
+    {
+      "path": "artifacts/simulator-install-recovery-11-search-com.davidpovarsky.chavrusatext.png",
+      "bytes": 4712815
+    },
+    {
+      "path": "artifacts/simulator-install-recovery-11-window-com.davidpovarsky.chavrusatext.png",
+      "bytes": 4707480
+    },
+    {
+      "path": "artifacts/test-case-execution-11-reader.json",
+      "bytes": 1802
+    },
+    {
+      "path": "artifacts/test-case-execution-11-search.json",
+      "bytes": 996
+    },
+    {
+      "path": "artifacts/test-case-execution-11-window.json",
+      "bytes": 1382
+    },
+    {
+      "path": "artifacts/test-simulator-11-reader.log",
+      "bytes": 70589
+    },
+    {
+      "path": "artifacts/test-simulator-11-search.log",
+      "bytes": 13503
+    },
+    {
+      "path": "artifacts/test-simulator-11-window.log",
+      "bytes": 65928
+    },
+    {
+      "path": "artifacts/viewport-reports-11-reader/faithful-readerDetail-1687E595-55E9-4166-990A-335BBCE0D2E0.viewport.json",
+      "bytes": 329
+    },
+    {
+      "path": "artifacts/viewport-reports-11-reader/faithful-readerDetail-D714E573-0236-4028-9AA4-B5980C45160E.viewport.json",
+      "bytes": 324
+    },
+    {
+      "path": "hq-stage2/ExpoModulesProvider.swift",
+      "bytes": 1246
+    },
+    {
+      "path": "hq-stage2/actual-source-inputs.json",
+      "bytes": 114619
+    },
+    {
+      "path": "hq-stage2/generated-Maktabah-project.pbxproj",
+      "bytes": 617235
+    },
+    {
+      "path": "hq-stage2/generated-pods-project.diff",
+      "bytes": 420588
+    },
+    {
+      "path": "hq-stage2/generated-privacy.diff",
+      "bytes": 2618
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk-after.log",
+      "bytes": 679
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk-inputs-after.json",
+      "bytes": 61045
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk-inputs.json",
+      "bytes": 61045
+    },
+    {
+      "path": "hq-stage2/matching-embedded-bundle.log",
+      "bytes": 741
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk.log",
+      "bytes": 679
+    },
+    {
+      "path": "hq-stage2/maktabah_zayit_search.h.log",
+      "bytes": 300
+    },
+    {
+      "path": "hq-stage2/native-script-permissions.log",
+      "bytes": 0
+    },
+    {
+      "path": "hq-stage2/npm-ci.log",
+      "bytes": 3331
+    },
+    {
+      "path": "hq-stage2/otzaria_search_engine.h.log",
+      "bytes": 304
+    },
+    {
+      "path": "hq-stage2/pinned-sharp-inputs.log",
+      "bytes": 991
+    },
+    {
+      "path": "hq-stage2/pod-install.log",
+      "bytes": 31886
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+      "bytes": 877
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+      "bytes": 855
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+      "bytes": 1482
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+      "bytes": 776
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+      "bytes": 1233
+    },
+    {
+      "path": "hq-stage2/privacy-generated.xcprivacy",
+      "bytes": 1386
+    },
+    {
+      "path": "hq-stage2/privacy-original.xcprivacy",
+      "bytes": 1132
+    },
+    {
+      "path": "hq-stage2/react-source-checkout.log",
+      "bytes": 453
+    },
+    {
+      "path": "hq-stage2/resolve-packages.log",
+      "bytes": 4898
+    },
+    {
+      "path": "hq-stage2/resolved-Package.resolved",
+      "bytes": 4432
+    },
+    {
+      "path": "hq-stage2/resolved-Podfile.lock",
+      "bytes": 100298
+    },
+    {
+      "path": "hq-stage2/result.json",
+      "bytes": 83531
+    },
+    {
+      "path": "hq-stage2/simulator-build-for-testing.log",
+      "bytes": 22065927
+    },
+    {
+      "path": "hq-stage2/target-membership.log",
+      "bytes": 130
+    },
+    {
+      "path": "hq-stage2/workspace-Package.resolved",
+      "bytes": 4432
+    }
+  ]
+}

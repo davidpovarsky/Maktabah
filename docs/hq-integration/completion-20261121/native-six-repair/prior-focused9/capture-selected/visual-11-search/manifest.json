@@ -1,0 +1,95 @@
+[
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "1CE588FE-11FA-492A-AC11-83B2E897B162",
+        "deviceName" : "Faithful 11-inch b14be25e",
+        "exportedFileName" : "8558F2E2-8AFD-42A3-9A13-A6FD611576DB.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "candidate-search-landscape-ui-tree_0_F8A76C15-3ED0-4B1D-8311-602FD20D80E2.txt",
+        "timestamp" : 1795299662.141
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "1CE588FE-11FA-492A-AC11-83B2E897B162",
+        "deviceName" : "Faithful 11-inch b14be25e",
+        "exportedFileName" : "292EDAEA-5FA7-4563-AF6F-2EDBDE72AF71.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "candidate-search-landscape_0_08F9AA64-04C4-46CC-A02B-02BBC83BE488.png",
+        "timestamp" : 1795299661.336
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "1CE588FE-11FA-492A-AC11-83B2E897B162",
+        "deviceName" : "Faithful 11-inch b14be25e",
+        "exportedFileName" : "C6AE4948-CF8F-4639-9817-DEA1B3C5972A.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "candidate-flags-off-search-landscape-ui-tree_0_1C07F7A2-56AF-41A6-882D-B9F0A423AC61.txt",
+        "timestamp" : 1795299649.843
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "1CE588FE-11FA-492A-AC11-83B2E897B162",
+        "deviceName" : "Faithful 11-inch b14be25e",
+        "exportedFileName" : "00BF5A0D-BC30-4E95-ADB2-FCE5B110E8E3.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "candidate-flags-off-search-landscape_0_F0023765-57F6-44BB-A4C7-C5ACACF7465C.png",
+        "timestamp" : 1795299648.472
+      }
+    ],
+    "testIdentifier" : "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation()",
+    "testIdentifierURL" : "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "1CE588FE-11FA-492A-AC11-83B2E897B162",
+        "deviceName" : "Faithful 11-inch b14be25e",
+        "exportedFileName" : "DF58E357-8F2F-496A-B9C2-467E1BB00700.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "candidate-search-portrait-ui-tree_0_46A1676B-2938-43FF-8C47-F42FD7934B42.txt",
+        "timestamp" : 1795299800.825
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "1CE588FE-11FA-492A-AC11-83B2E897B162",
+        "deviceName" : "Faithful 11-inch b14be25e",
+        "exportedFileName" : "CBE5BB04-F802-45F4-A530-E51425F36DED.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "candidate-search-portrait_0_0AA4C11F-04CC-45FB-98BF-53A177CB9692.png",
+        "timestamp" : 1795299799.871
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "1CE588FE-11FA-492A-AC11-83B2E897B162",
+        "deviceName" : "Faithful 11-inch b14be25e",
+        "exportedFileName" : "C6982B14-20EF-41A9-8645-4179F7B90D66.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "candidate-flags-off-search-portrait-ui-tree_0_A845AEB1-D8BA-40B8-837B-9FB575602410.txt",
+        "timestamp" : 1795299695.372
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "1CE588FE-11FA-492A-AC11-83B2E897B162",
+        "deviceName" : "Faithful 11-inch b14be25e",
+        "exportedFileName" : "DCA0EE4B-AD65-4211-BE9B-1DDC98D7972B.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "candidate-flags-off-search-portrait_0_61942B56-FD8B-4265-BDAE-9906F23DA945.png",
+        "timestamp" : 1795299684.798
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "1CE588FE-11FA-492A-AC11-83B2E897B162",
+        "deviceName" : "Faithful 11-inch b14be25e",
+        "exportedFileName" : "609619CC-848B-455D-AFB6-FA3B3998428E.mp4",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Screen Recording 2026-11-21 at 10.21.04 PM.mp4",
+        "timestamp" : 1795299664.554
+      }
+    ],
+    "testIdentifier" : "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation()",
+    "testIdentifierURL" : "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation"
+  }
+]

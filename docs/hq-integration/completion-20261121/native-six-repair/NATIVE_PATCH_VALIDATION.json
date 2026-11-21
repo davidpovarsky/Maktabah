@@ -1,0 +1,47 @@
+{
+  "base_source": "a0781bd2628c1311394f7da6aa1e84c17f252fa4",
+  "changed_files": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "base_git_blob": "bbaa54592a7c012e1532dc822872c08e88e7a398",
+      "base_sha256": "2a94294aaa7b5750a0e5d3173a0cd227fa4c571957b610b3e47df371a30b0ccc",
+      "candidate_sha256": "dde0398c614aa9570232e3d75003483246cf105e81b1da330bc88905b9dbb892"
+    },
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "base_git_blob": "1d5eac5b984c6d371fa3f6e7e5779cc50269b358",
+      "base_sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed",
+      "candidate_sha256": "3f3b5380bc69ec54abc6413556c6920fb85376ae0bb404d82a1414cdbc9d0733"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "base_git_blob": "8c0d862e202c6a2f7ecff178b5d161aa6fcfc98e",
+      "base_sha256": "51d09cb4664748d2211126d06b49ff1b6de3459407a5056496a59b42f3dbde68",
+      "candidate_sha256": "a966b47ebcae3c65678e35e91678a9aed2e7e0faf83e0f89e586fd5c06f460de"
+    },
+    {
+      "path": "Scripts/CI/runtime27-release.py",
+      "base_git_blob": "3baae6db531f2e14b1d55f2ab41d76af8fb24029",
+      "base_sha256": "aae3efc5c2fdb1123f24c05842d4b235434a46b6125c8280461f875a6690ea41",
+      "candidate_sha256": "3f8e89f126fb532f87d360f0b8f346e6addd4a6130d0a96a49f0296b872f2918"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-release-stages.py",
+      "base_git_blob": "26c5b62bf148a16150926d5da478b70cdecc01e7",
+      "base_sha256": "55bd0d7029b0f44ad23f1157fa31fd47e6f098e30b9d9959dff5b9e1c08acb22",
+      "candidate_sha256": "657e4ade25a547044dc0fb6b7df39bedcdc1145325f7846fd923a4509aea4c1d"
+    }
+  ],
+  "patch_sha256": "8cd5fd0e6daa71b6445abffe0f80ce7b6943ea382442678f4c7337df0fdd8d7c",
+  "authentic_base_git_blobs": "PASS",
+  "git_apply_check_whitespace_error": "PASS",
+  "existing_HID_requirement_controls": {
+    "run": 4,
+    "failures": 0,
+    "errors": 0,
+    "scope": "Actual existing matrix condition and release selector function; disposable orchestration inputs only"
+  },
+  "apple_framework_typecheck": "NOT_RUN",
+  "native_UI_revalidation": "NOT_RUN",
+  "full_Native116_or_Release114_acceptance": false
+}

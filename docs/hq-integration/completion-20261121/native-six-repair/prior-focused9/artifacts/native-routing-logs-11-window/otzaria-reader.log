@@ -1,0 +1,509 @@
+2026-11-21T22:33:11.477Z [ReaderSidebarPager] attach host=UILayoutContainerView viewBounds=320x610 hostBounds=320x738 collapsed=false tiles=true
+2026-11-21T22:33:12.164Z [NativeSceneLifecycle] event=mount pid=96276 foreground=true
+2026-11-21T22:33:12.229Z [NativeSurfaceWitness] destination=native.library lifecycle=make
+2026-11-21T22:33:12.232Z [NativeSurfaceWitness] destination=native.library lifecycle=update registered=1
+2026-11-21T22:33:12.301Z [NativeSurfaceWitness] destination=native.library attached=1 appeared=false activation=0 bounds=true contained=true alpha=true modal=false visible=false pending=false
+2026-11-21T22:33:12.328Z [NativeSurfaceWitness] destination=native.library attached=1 appeared=true activation=0 bounds=true contained=true alpha=true modal=false visible=true pending=false
+2026-11-21T22:33:12.942Z [NativeSurfaceWitness] destination=native.library lifecycle=update registered=1
+2026-11-21T22:33:12.952Z [NativeSurfaceWitness] destination=native.library lifecycle=make
+2026-11-21T22:33:12.952Z [NativeSurfaceWitness] destination=native.library lifecycle=update registered=1
+2026-11-21T22:33:12.956Z [NativeSurfaceWitness] destination=native.library attached=1 appeared=false activation=0 bounds=true contained=true alpha=false modal=false visible=false pending=false
+2026-11-21T22:33:13.123Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:33:13.124Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:33:13.124Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:33:13.124Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:33:13.148Z [NativeSurfaceWitness] destination=native.library lifecycle=update registered=1
+2026-11-21T22:33:13.156Z [NativeSurfaceWitness] destination=native.library lifecycle=update registered=1
+2026-11-21T22:33:13.167Z [NativeSurfaceWitness] destination=native.library lifecycle=update registered=1
+2026-11-21T22:33:13.194Z [NativeSurfaceWitness] destination=native.library lifecycle=update registered=1
+2026-11-21T22:33:13.195Z [NativeSurfaceWitness] destination=native.library attached=1 appeared=true activation=0 bounds=true contained=true alpha=false modal=false visible=false pending=false
+2026-11-21T22:33:13.195Z [NativeSurfaceWitness] destination=native.library attached=1 appeared=false activation=0 bounds=true contained=true alpha=true modal=false visible=false pending=false
+2026-11-21T22:33:13.274Z [OtzariaReadingUnitService] bookIndex bookId=3891 tocEntries=616 lineTocMappings=3284 durationMs=13
+2026-11-21T22:33:13.287Z [Perf] [ReadingUnitService.tocSummaries] finished in 11ms bookId=3891 mode=paragraph
+2026-11-21T22:33:13.287Z [OtzariaReadingUnitService] unitSummaries bookId=3891 mode=paragraph count=615 durationMs=25
+2026-11-21T22:33:13.338Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:33:13.339Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:33:13.339Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:33:13.339Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:33:13.447Z [NativeSurfaceWitness] destination=native.library attached=1 appeared=true activation=0 bounds=true contained=true alpha=true modal=false visible=true pending=false
+2026-11-21T22:33:14.217Z [OtzariaGenericBackendAdapter] stage=enter backend=otzaria positionKind=legacyLine workKeyKind=bookPrefix
+2026-11-21T22:33:14.232Z [OtzariaReadingUnitService] sourceLines bookId=3891 tocEntryId=643037 start=522 count=5 durationMs=11
+2026-11-21T22:33:14.233Z [OtzariaReadingUnitService] readingUnit bookId=3891 lineIndex=523 mode=paragraph result=ok modeUnitId=toc:643037 tocEntryId=643037 startLineIndex=522 endLineIndex=526 sourceLineCount=5 plainTextUTF8Bytes=5130 htmlUTF8Bytes=5146 heRef=ספר החינוך,  קב, א durationMs=13
+2026-11-21T22:33:14.233Z [Perf] [ReadingUnitService.readingUnit] finished in 13ms bookId=3891 lineIndex=523 mode=paragraph
+2026-11-21T22:33:14.233Z [OtzariaGenericBackendAdapter] stage=unit_hit bookId=3891 lineIndex=523 mode=paragraph
+2026-11-21T22:33:14.317Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:33:14.319Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=2
+2026-11-21T22:33:14.320Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:33:14.320Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:33:14.383Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:33:14.389Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=6
+2026-11-21T22:33:14.390Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:33:14.391Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=1
+2026-11-21T22:33:14.430Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:33:14.430Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:33:14.430Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:33:14.430Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:33:14.467Z [NativeSurfaceWitness] destination=native.library lifecycle=update registered=1
+2026-11-21T22:33:14.836Z [NativeSurfaceWitness] destination=native.library lifecycle=update registered=1
+2026-11-21T22:33:38.379Z [NativePaletteEscape] pid=96276 seq=1 stage=viewer.open.enter presented=0
+2026-11-21T22:33:38.380Z [NativePaletteEscape] pid=96276 seq=2 stage=viewer.open.returned presented=1
+2026-11-21T22:33:38.612Z [NativePaletteEscape] pid=96276 seq=3 stage=viewer.state.changed presented=1
+2026-11-21T22:33:38.612Z [NativePaletteEscape] pid=96276 seq=4 stage=adapter.appeared 
+2026-11-21T22:33:38.625Z [NativePaletteEscape] pid=96276 seq=5 stage=field.focus.before firstResponder=0 hasCallback=1 keyWindow=0 sceneForeground=0 wantsFocus=1 windowAttached=0
+2026-11-21T22:33:39.361Z [NativePaletteEscape] pid=96276 seq=6 stage=field.attached firstResponder=0 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:33:39.364Z [NativePaletteEscape] pid=96276 seq=7 stage=field.focus.before firstResponder=0 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:33:39.364Z [NativePaletteEscape] pid=96276 seq=8 stage=field.didBegin firstResponder=1 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:33:39.366Z [NativePaletteEscape] pid=96276 seq=9 stage=field.focus.after firstResponder=1 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:33:39.395Z [NativePaletteEscape] pid=96276 seq=10 stage=key.commands firstResponder=1 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:33:41.206Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:33:41.207Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:33:41.207Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:33:41.207Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:33:41.217Z [NativePaletteEscape] pid=96276 seq=11 stage=field.focus.before firstResponder=1 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:34:25.022Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:25.031Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=9
+2026-11-21T22:34:25.031Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:25.031Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:25.279Z [OtzariaReadingUnitService] bookIndex bookId=3891 tocEntries=616 lineTocMappings=3284 durationMs=7
+2026-11-21T22:34:25.287Z [Perf] [ReadingUnitService.tocSummaries] finished in 7ms bookId=3891 mode=paragraph
+2026-11-21T22:34:25.287Z [OtzariaReadingUnitService] unitSummaries bookId=3891 mode=paragraph count=615 durationMs=15
+2026-11-21T22:34:25.658Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:25.667Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=9
+2026-11-21T22:34:25.667Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:25.667Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:25.709Z [ReaderSidebarPager] attach host=UILayoutContainerView viewBounds=320x586 hostBounds=320x802 collapsed=false tiles=true
+2026-11-21T22:34:25.751Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:25.757Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=5
+2026-11-21T22:34:25.757Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:25.758Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:25.811Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:25.823Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=12
+2026-11-21T22:34:25.825Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:25.825Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:25.954Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:25.957Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=2
+2026-11-21T22:34:25.957Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:25.957Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:26.294Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:26.301Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=6
+2026-11-21T22:34:26.302Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:26.302Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:26.445Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:26.470Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=24
+2026-11-21T22:34:26.470Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:26.470Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:26.514Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:26.521Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=7
+2026-11-21T22:34:26.521Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:26.521Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:26.561Z [NativeSceneLifecycle] event=mount pid=98686 foreground=false
+2026-11-21T22:34:26.586Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:26.586Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:26.586Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:26.587Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:26.668Z [NativeSurfaceWitness] destination=native.library lifecycle=make
+2026-11-21T22:34:26.671Z [NativeSurfaceWitness] destination=native.library lifecycle=update registered=1
+2026-11-21T22:34:26.734Z [NativeSurfaceWitness] destination=native.library attached=1 appeared=false activation=1 bounds=true contained=true alpha=true modal=false visible=false pending=false
+2026-11-21T22:34:26.755Z [NativeSurfaceWitness] destination=native.library attached=1 appeared=true activation=1 bounds=true contained=true alpha=true modal=false visible=false pending=false
+2026-11-21T22:34:26.805Z [OtzariaGenericBackendAdapter] stage=enter backend=otzaria positionKind=legacyLine workKeyKind=bookPrefix
+2026-11-21T22:34:26.808Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:26.811Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=2
+2026-11-21T22:34:26.818Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:26.819Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:26.819Z [OtzariaReadingUnitService] sourceLines bookId=3891 tocEntryId=643037 start=522 count=5 durationMs=7
+2026-11-21T22:34:26.819Z [OtzariaReadingUnitService] readingUnit bookId=3891 lineIndex=523 mode=paragraph result=ok modeUnitId=toc:643037 tocEntryId=643037 startLineIndex=522 endLineIndex=526 sourceLineCount=5 plainTextUTF8Bytes=5130 htmlUTF8Bytes=5146 heRef=ספר החינוך,  קב, א durationMs=10
+2026-11-21T22:34:26.820Z [Perf] [ReadingUnitService.readingUnit] finished in 10ms bookId=3891 lineIndex=523 mode=paragraph
+2026-11-21T22:34:26.822Z [OtzariaGenericBackendAdapter] stage=unit_hit bookId=3891 lineIndex=523 mode=paragraph
+2026-11-21T22:34:26.849Z [OtzariaGenericBackendAdapter] stage=enter backend=otzaria positionKind=legacyLine workKeyKind=bookPrefix
+2026-11-21T22:34:26.850Z [OtzariaReadingUnitService] sourceLines bookId=3891 tocEntryId=643037 start=522 count=5 durationMs=0
+2026-11-21T22:34:26.851Z [OtzariaReadingUnitService] readingUnit bookId=3891 lineIndex=523 mode=paragraph result=ok modeUnitId=toc:643037 tocEntryId=643037 startLineIndex=522 endLineIndex=526 sourceLineCount=5 plainTextUTF8Bytes=5130 htmlUTF8Bytes=5146 heRef=ספר החינוך,  קב, א durationMs=1
+2026-11-21T22:34:26.851Z [Perf] [ReadingUnitService.readingUnit] finished in 1ms bookId=3891 lineIndex=523 mode=paragraph
+2026-11-21T22:34:26.851Z [OtzariaGenericBackendAdapter] stage=unit_hit bookId=3891 lineIndex=523 mode=paragraph
+2026-11-21T22:34:26.857Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:26.857Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:26.857Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:26.858Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:26.895Z [NativeSceneLifecycle] event=foreground pid=98686 foreground=true
+2026-11-21T22:34:26.954Z [NativeSurfaceWitness] destination=native.library lifecycle=update registered=1
+2026-11-21T22:34:26.983Z [NativeSurfaceWitness] destination=native.library attached=1 appeared=true activation=0 bounds=true contained=true alpha=true modal=false visible=true pending=false
+2026-11-21T22:34:27.097Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:27.102Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=4
+2026-11-21T22:34:27.102Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:27.102Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:27.141Z [NativeSurfaceWitness] destination=native.library lifecycle=update registered=1
+2026-11-21T22:34:27.178Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:27.185Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=6
+2026-11-21T22:34:27.185Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:27.186Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:27.366Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:27.367Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:27.367Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:27.367Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:27.427Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:27.435Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=8
+2026-11-21T22:34:27.435Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:27.435Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:27.462Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:27.524Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=61
+2026-11-21T22:34:27.525Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:27.525Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:27.595Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:27.595Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:27.596Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:27.596Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:27.738Z [OtzariaGenericBackendAdapter] stage=enter backend=otzaria positionKind=legacyLine workKeyKind=bookPrefix
+2026-11-21T22:34:27.744Z [OtzariaReadingUnitService] sourceLines bookId=3891 tocEntryId=643037 start=522 count=5 durationMs=0
+2026-11-21T22:34:27.744Z [OtzariaReadingUnitService] readingUnit bookId=3891 lineIndex=523 mode=paragraph result=ok modeUnitId=toc:643037 tocEntryId=643037 startLineIndex=522 endLineIndex=526 sourceLineCount=5 plainTextUTF8Bytes=5130 htmlUTF8Bytes=5146 heRef=ספר החינוך,  קב, א durationMs=1
+2026-11-21T22:34:27.744Z [Perf] [ReadingUnitService.readingUnit] finished in 1ms bookId=3891 lineIndex=523 mode=paragraph
+2026-11-21T22:34:27.745Z [OtzariaGenericBackendAdapter] stage=unit_hit bookId=3891 lineIndex=523 mode=paragraph
+2026-11-21T22:34:27.971Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:27.978Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=6
+2026-11-21T22:34:27.994Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:27.994Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:40.359Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:40.360Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:40.360Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:40.361Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:51.610Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:51.616Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:34:51.618Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:34:51.618Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:03.302Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:03.314Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:03.317Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:03.319Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:03.392Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:03.393Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:03.393Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:03.393Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:03.517Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:03.517Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:03.520Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:03.520Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:03.814Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:03.815Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:03.816Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:03.816Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:04.249Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:04.250Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:04.251Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:04.251Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:04.270Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:04.270Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:04.271Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:04.271Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:04.450Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:04.451Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:04.451Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:04.451Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:04.651Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:04.651Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:04.652Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:04.652Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:04.756Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:04.774Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=18
+2026-11-21T22:35:04.775Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:04.775Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:09.294Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:09.298Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=4
+2026-11-21T22:35:09.298Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:09.299Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:12.092Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:12.093Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:12.270Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:12.270Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:13.518Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:13.518Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:13.520Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:13.521Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:13.527Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:13.528Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:13.528Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:13.528Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:13.746Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:13.752Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=6
+2026-11-21T22:35:13.753Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:13.753Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:13.876Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:13.876Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:13.876Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:13.877Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:15.284Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:15.285Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:15.285Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:15.285Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:18.590Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:18.592Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:18.592Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:18.593Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:19.051Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:19.055Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:19.058Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:19.060Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:19.099Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:19.099Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:19.100Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:19.182Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=89
+2026-11-21T22:35:45.277Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:45.279Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:45.279Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:45.279Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:45.640Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:45.641Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:45.641Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:45.641Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:50.124Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:50.127Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:50.128Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:50.128Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:50.129Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:50.129Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:50.129Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:50.129Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:50.155Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:50.155Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=1
+2026-11-21T22:35:50.155Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:50.156Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:52.118Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:52.119Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:35:52.119Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:35:52.123Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:03.111Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:03.112Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:03.112Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:03.112Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:03.463Z [OtzariaReadingUnitService] bookIndex bookId=3891 tocEntries=616 lineTocMappings=3284 durationMs=14
+2026-11-21T22:36:03.472Z [Perf] [ReadingUnitService.tocSummaries] finished in 8ms bookId=3891 mode=paragraph
+2026-11-21T22:36:03.472Z [OtzariaReadingUnitService] unitSummaries bookId=3891 mode=paragraph count=615 durationMs=23
+2026-11-21T22:36:03.743Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:03.743Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:03.743Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:03.743Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:03.777Z [ReaderSidebarPager] attach host=UILayoutContainerView viewBounds=320x586 hostBounds=320x802 collapsed=false tiles=true
+2026-11-21T22:36:03.822Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:03.822Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:03.822Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:03.822Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:03.889Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:03.892Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=2
+2026-11-21T22:36:03.892Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:03.892Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:04.021Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:04.021Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:04.021Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:04.021Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:04.528Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:04.630Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=102
+2026-11-21T22:36:04.630Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:04.630Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:04.650Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:04.650Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:04.650Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:04.650Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:04.669Z [NativeSceneLifecycle] event=mount pid=3057 foreground=true
+2026-11-21T22:36:04.698Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:04.699Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:04.744Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:04.745Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:04.820Z [NativeSurfaceWitness] destination=native.library lifecycle=make
+2026-11-21T22:36:04.823Z [NativeSurfaceWitness] destination=native.library lifecycle=update registered=1
+2026-11-21T22:36:04.881Z [NativeSurfaceWitness] destination=native.library attached=1 appeared=false activation=0 bounds=true contained=true alpha=true modal=false visible=false pending=false
+2026-11-21T22:36:04.901Z [NativeSurfaceWitness] destination=native.library attached=1 appeared=true activation=0 bounds=true contained=true alpha=true modal=false visible=true pending=false
+2026-11-21T22:36:04.906Z [OtzariaGenericBackendAdapter] stage=enter backend=otzaria positionKind=legacyLine workKeyKind=bookPrefix
+2026-11-21T22:36:04.915Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:04.916Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:04.916Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:04.916Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:04.923Z [OtzariaReadingUnitService] sourceLines bookId=3891 tocEntryId=643037 start=522 count=5 durationMs=11
+2026-11-21T22:36:04.924Z [OtzariaReadingUnitService] readingUnit bookId=3891 lineIndex=522 mode=paragraph result=ok modeUnitId=toc:643037 tocEntryId=643037 startLineIndex=522 endLineIndex=526 sourceLineCount=5 plainTextUTF8Bytes=5130 htmlUTF8Bytes=5146 heRef=ספר החינוך,  קב, א durationMs=12
+2026-11-21T22:36:04.924Z [Perf] [ReadingUnitService.readingUnit] finished in 12ms bookId=3891 lineIndex=522 mode=paragraph
+2026-11-21T22:36:04.924Z [OtzariaGenericBackendAdapter] stage=unit_hit bookId=3891 lineIndex=522 mode=paragraph
+2026-11-21T22:36:04.966Z [OtzariaGenericBackendAdapter] stage=enter backend=otzaria positionKind=legacyLine workKeyKind=bookPrefix
+2026-11-21T22:36:04.973Z [OtzariaReadingUnitService] sourceLines bookId=3891 tocEntryId=643037 start=522 count=5 durationMs=0
+2026-11-21T22:36:04.974Z [OtzariaReadingUnitService] readingUnit bookId=3891 lineIndex=522 mode=paragraph result=ok modeUnitId=toc:643037 tocEntryId=643037 startLineIndex=522 endLineIndex=526 sourceLineCount=5 plainTextUTF8Bytes=5130 htmlUTF8Bytes=5146 heRef=ספר החינוך,  קב, א durationMs=1
+2026-11-21T22:36:04.975Z [Perf] [ReadingUnitService.readingUnit] finished in 1ms bookId=3891 lineIndex=522 mode=paragraph
+2026-11-21T22:36:04.976Z [OtzariaGenericBackendAdapter] stage=unit_hit bookId=3891 lineIndex=522 mode=paragraph
+2026-11-21T22:36:05.376Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:05.376Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:05.376Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:05.376Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:05.433Z [NativeSurfaceWitness] destination=native.library lifecycle=update registered=1
+2026-11-21T22:36:05.471Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:05.471Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:05.471Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:05.471Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:05.837Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:05.837Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:05.838Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:05.838Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:06.012Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:06.012Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:06.012Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:06.121Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=109
+2026-11-21T22:36:06.179Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:06.179Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:06.179Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:06.179Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:06.189Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:06.189Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:06.189Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:06.199Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=9
+2026-11-21T22:36:06.220Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:06.220Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:06.220Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:06.220Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:06.313Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:06.384Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=70
+2026-11-21T22:36:06.384Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:06.384Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:06.698Z [OtzariaGenericBackendAdapter] stage=enter backend=otzaria positionKind=legacyLine workKeyKind=bookPrefix
+2026-11-21T22:36:06.702Z [OtzariaReadingUnitService] sourceLines bookId=3891 tocEntryId=643037 start=522 count=5 durationMs=0
+2026-11-21T22:36:06.703Z [OtzariaReadingUnitService] readingUnit bookId=3891 lineIndex=523 mode=paragraph result=ok modeUnitId=toc:643037 tocEntryId=643037 startLineIndex=522 endLineIndex=526 sourceLineCount=5 plainTextUTF8Bytes=5130 htmlUTF8Bytes=5146 heRef=ספר החינוך,  קב, א durationMs=1
+2026-11-21T22:36:06.703Z [Perf] [ReadingUnitService.readingUnit] finished in 1ms bookId=3891 lineIndex=523 mode=paragraph
+2026-11-21T22:36:06.704Z [OtzariaGenericBackendAdapter] stage=unit_hit bookId=3891 lineIndex=523 mode=paragraph
+2026-11-21T22:36:06.755Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:06.762Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=7
+2026-11-21T22:36:06.763Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:06.763Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:15.948Z [NativePaletteEscape] pid=3057 seq=1 stage=viewer.open.enter presented=0
+2026-11-21T22:36:15.949Z [NativePaletteEscape] pid=3057 seq=2 stage=viewer.open.returned presented=1
+2026-11-21T22:36:16.099Z [NativePaletteEscape] pid=3057 seq=3 stage=viewer.state.changed presented=1
+2026-11-21T22:36:16.100Z [NativePaletteEscape] pid=3057 seq=4 stage=adapter.appeared 
+2026-11-21T22:36:16.107Z [NativePaletteEscape] pid=3057 seq=5 stage=field.focus.before firstResponder=0 hasCallback=1 keyWindow=0 sceneForeground=0 wantsFocus=1 windowAttached=0
+2026-11-21T22:36:16.634Z [NativePaletteEscape] pid=3057 seq=6 stage=field.attached firstResponder=0 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:36:16.634Z [NativePaletteEscape] pid=3057 seq=7 stage=field.focus.before firstResponder=0 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:36:16.634Z [NativePaletteEscape] pid=3057 seq=8 stage=field.didBegin firstResponder=1 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:36:16.634Z [NativePaletteEscape] pid=3057 seq=9 stage=field.focus.after firstResponder=1 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:36:17.247Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:17.248Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:17.248Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:17.248Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:17.262Z [NativePaletteEscape] pid=3057 seq=10 stage=field.focus.before firstResponder=1 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:36:21.333Z [NativePaletteEscape] pid=3057 seq=11 stage=viewer.close.enter presented=1
+2026-11-21T22:36:21.333Z [NativePaletteEscape] pid=3057 seq=12 stage=viewer.close.returned presented=0
+2026-11-21T22:36:21.337Z [NativePaletteEscape] pid=3057 seq=13 stage=viewer.state.changed presented=0
+2026-11-21T22:36:21.413Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:21.424Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:21.425Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:21.428Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:21.439Z [NativePaletteEscape] pid=3057 seq=14 stage=field.dismantle.before firstResponder=1 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:36:21.439Z [NativePaletteEscape] pid=3057 seq=15 stage=field.attached firstResponder=0 hasCallback=0 keyWindow=0 sceneForeground=0 wantsFocus=1 windowAttached=0
+2026-11-21T22:36:21.440Z [NativePaletteEscape] pid=3057 seq=16 stage=field.focus.before firstResponder=0 hasCallback=0 keyWindow=0 sceneForeground=0 wantsFocus=1 windowAttached=0
+2026-11-21T22:36:21.441Z [NativePaletteEscape] pid=3057 seq=17 stage=field.dismantle.after firstResponder=0 hasCallback=0 keyWindow=0 sceneForeground=0 wantsFocus=1 windowAttached=0
+2026-11-21T22:36:21.441Z [NativePaletteEscape] pid=3057 seq=18 stage=adapter.disappeared 
+2026-11-21T22:36:32.064Z [NativePaletteEscape] pid=3057 seq=19 stage=viewer.open.enter presented=0
+2026-11-21T22:36:32.065Z [NativePaletteEscape] pid=3057 seq=20 stage=viewer.open.returned presented=1
+2026-11-21T22:36:32.130Z [NativePaletteEscape] pid=3057 seq=21 stage=viewer.state.changed presented=1
+2026-11-21T22:36:32.130Z [NativePaletteEscape] pid=3057 seq=22 stage=adapter.appeared 
+2026-11-21T22:36:32.136Z [NativePaletteEscape] pid=3057 seq=23 stage=field.focus.before firstResponder=0 hasCallback=1 keyWindow=0 sceneForeground=0 wantsFocus=1 windowAttached=0
+2026-11-21T22:36:32.246Z [NativePaletteEscape] pid=3057 seq=24 stage=field.attached firstResponder=0 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:36:32.247Z [NativePaletteEscape] pid=3057 seq=25 stage=field.focus.before firstResponder=0 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:36:32.247Z [NativePaletteEscape] pid=3057 seq=26 stage=field.didBegin firstResponder=1 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:36:32.533Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:32.533Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:32.534Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:32.534Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:32.546Z [NativePaletteEscape] pid=3057 seq=27 stage=field.focus.before firstResponder=1 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:36:40.801Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:40.801Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:40.871Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:40.872Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:40.975Z [NativePaletteEscape] pid=3057 seq=28 stage=key.commands firstResponder=1 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:36:40.994Z [NativePaletteEscape] pid=3057 seq=29 stage=key.presses accepted=0 firstResponder=1 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:36:42.612Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:42.612Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:42.613Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:42.613Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:46.206Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:46.206Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:46.217Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:46.218Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:46.260Z [NativePaletteEscape] pid=3057 seq=30 stage=key.presses accepted=0 firstResponder=1 hasCallback=1 keyWindow=1 sceneForeground=1 wantsFocus=1 windowAttached=1
+2026-11-21T22:36:46.910Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:46.911Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:46.911Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:46.912Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:46.930Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:46.931Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:46.931Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:46.931Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:47.557Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:47.558Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:47.558Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:47.558Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:47.558Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:47.559Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:47.559Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:47.571Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:47.655Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:47.656Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:47.656Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:47.656Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:47.723Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:47.723Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:47.723Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:47.723Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:47.733Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:47.733Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:47.734Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:47.734Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:47.850Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:47.850Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:47.850Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:47.850Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:47.865Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:47.866Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:36:47.866Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:36:47.866Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:50.177Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:50.182Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:50.183Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:50.183Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:50.198Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:50.199Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:50.199Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:50.199Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:50.918Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:50.918Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:50.918Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:50.918Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:51.357Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:51.358Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:51.359Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:51.360Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:51.373Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:51.373Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:51.375Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:51.376Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:51.495Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:51.495Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:51.496Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:51.496Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:51.560Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:51.561Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:51.561Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:51.561Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:51.578Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:51.578Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:51.579Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:51.579Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:51.841Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:51.842Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:51.842Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:51.842Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:51.853Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:51.854Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:38:51.854Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:38:51.854Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:40:08.292Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:40:08.293Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:40:08.306Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:40:08.307Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:40:08.952Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:40:08.952Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:40:08.971Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:40:08.971Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:40:08.988Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:40:08.988Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0
+2026-11-21T22:40:08.988Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes start bookId=3891
+2026-11-21T22:40:08.989Z [OtzariaMaktabahBridge] getAvailableReadingUnitModes done bookId=3891 count=3 durationMs=0

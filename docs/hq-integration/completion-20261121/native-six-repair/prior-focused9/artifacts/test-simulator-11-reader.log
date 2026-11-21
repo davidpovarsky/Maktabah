@@ -1,0 +1,978 @@
+Command line invocation:
+    /Applications/Xcode_27.2.app/Contents/Developer/usr/bin/xcodebuild test-without-building -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -parallel-testing-enabled NO -destination "platform=iOS Simulator,id=03576137-A127-473B-8AF1-A690A0BD08B3" -derivedDataPath build/DerivedData -resultBundlePath /Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-reader.xcresult -test-timeouts-enabled YES -default-test-execution-time-allowance 600 -maximum-test-execution-time-allowance 600 "-only-testing:Maktabah-iOSUITests/NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt" "-only-testing:Maktabah-iOSUITests/NativeStudySheetPadTests/testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor" "-only-testing:Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable" "-only-testing:Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines"
+
+Resolve Package Graph
+
+Fetching from https://github.com/davidpovarsky/TorahInspectorKit.git
+
+Fetching from https://github.com/davidpovarsky/swift-ai-sdk.git (cached)
+
+Fetching from https://github.com/davidpovarsky/hanlin-streaming-markdown (cached)
+
+Fetching from https://github.com/appstefan/highlightswift (cached)
+
+Fetching from https://github.com/junyan72/iosMath (cached)
+
+Fetching from https://github.com/scenee/FloatingPanel.git
+
+Fetching from https://github.com/swiftlang/swift-markdown.git (cached)
+
+Fetching from https://github.com/ordo-one/equatable (cached)
+
+Fetching from https://github.com/swiftlang/swift-syntax.git (cached)
+
+Fetching from https://github.com/apple/swift-argument-parser (cached)
+
+Fetching from https://github.com/sparkle-project/Sparkle
+
+Fetching from https://github.com/markiv/SwiftUI-Shimmer (cached)
+
+Fetching from https://github.com/weichsel/ZIPFoundation.git
+
+Fetching from https://github.com/SwiftyJSON/SwiftyJSON.git (cached)
+
+Fetching from https://github.com/facebook/zstd.git
+
+Fetching from https://github.com/swiftlang/swift-cmark (cached)
+
+Fetching from https://github.com/exyte/AnchoredPopup.git
+
+Creating working copy of package ‘ZIPFoundation’
+
+Checking out 0.9.20 of package ‘ZIPFoundation’
+
+Creating working copy of package ‘swift-cmark’
+
+Checking out 0.9.0 of package ‘swift-cmark’
+
+Creating working copy of package ‘Sparkle’
+
+Checking out 2.9.1 of package ‘Sparkle’
+
+Creating working copy of package ‘highlightswift’
+
+Checking out 99c431b38a1444a5fd6a4978307fbbefe3a7af53 of package ‘highlightswift’
+
+Creating working copy of package ‘SwiftyJSON’
+
+Checking out 5.0.1 of package ‘SwiftyJSON’
+
+Creating working copy of package ‘swift-markdown’
+
+Checking out 0.7.3 of package ‘swift-markdown’
+
+Creating working copy of package ‘equatable’
+
+Checking out 1.4.1 of package ‘equatable’
+
+Creating working copy of package ‘AnchoredPopup’
+
+Checking out 1.3.1 of package ‘AnchoredPopup’
+
+Creating working copy of package ‘TorahInspectorKit’
+
+Checking out 19d1b35397af4f10ae70cfb3f444c9de87383b53 of package ‘TorahInspectorKit’
+
+Creating working copy of package ‘swift-ai-sdk’
+
+Checking out e7bf34111e603ca977becd007dd4e5bb109af857 of package ‘swift-ai-sdk’
+
+Creating working copy of package ‘swift-argument-parser’
+
+Checking out 1.8.2 of package ‘swift-argument-parser’
+
+Creating working copy of package ‘hanlin-streaming-markdown’
+
+Checking out 6bde022876ef4af738c154b3d5c871984ef76195 of package ‘hanlin-streaming-markdown’
+
+Creating working copy of package ‘swift-syntax’
+
+Checking out 603.0.2 of package ‘swift-syntax’
+
+Creating working copy of package ‘zstd’
+
+Checking out 1.5.7 of package ‘zstd’
+
+Creating working copy of package ‘SwiftUI-Shimmer’
+
+Checking out 1.5.1 of package ‘SwiftUI-Shimmer’
+
+Creating working copy of package ‘FloatingPanel’
+
+Checking out 3.2.4 of package ‘FloatingPanel’
+
+Creating working copy of package ‘iosMath’
+
+Checking out ba9ab7729b151329c54fd895a7c1859981d9484c of package ‘iosMath’
+
+
+Resolved source packages:
+  HighlightSwift: https://github.com/appstefan/highlightswift @ 99c431b
+  SwiftAISDK: https://github.com/davidpovarsky/swift-ai-sdk.git @ e7bf341
+  Sparkle: https://github.com/sparkle-project/Sparkle @ 2.9.1
+  SwiftUI-Shimmer: https://github.com/markiv/SwiftUI-Shimmer @ 1.5.1
+  OtzariaUIRouting: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/UIRouting @ local
+  cmark-gfm: https://github.com/swiftlang/swift-cmark @ 0.9.0
+  Equatable: https://github.com/ordo-one/equatable @ 1.4.1
+  CommandPalette: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette @ local
+  swift-syntax: https://github.com/swiftlang/swift-syntax.git @ 603.0.2
+  iosMath: https://github.com/junyan72/iosMath @ ba9ab77
+  ZIPFoundation: https://github.com/weichsel/ZIPFoundation.git @ 0.9.20
+  ChavrusaUIRoutingHost: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/UIRoutingHost @ local
+  SwiftyJSON: https://github.com/SwiftyJSON/SwiftyJSON.git @ 5.0.1
+  AnchoredPopup: https://github.com/exyte/AnchoredPopup.git @ 1.3.1
+  swift-markdown: https://github.com/swiftlang/swift-markdown.git @ 0.7.3
+  FloatingPanel: https://github.com/scenee/FloatingPanel.git @ 3.2.4
+  TorahInspectorKit: https://github.com/davidpovarsky/TorahInspectorKit.git @ 19d1b35
+  swift-argument-parser: https://github.com/apple/swift-argument-parser @ 1.8.2
+  HanlinPresentationSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPresentationSDK @ local
+  HanlinPlatform: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPlatform @ local
+  HanlinAgentSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinAgentSDK @ local
+  SwiftStreamingMarkdown: https://github.com/davidpovarsky/hanlin-streaming-markdown @ 6bde022
+  zstd: https://github.com/facebook/zstd.git @ 1.5.7
+  OtzariaActionCore: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Actions @ local
+
+Writing result bundle at path:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-reader.xcresult
+
+2026-11-21 22:07:18.535378+0000 Maktabah-iOSUITests-Runner[66089:182478] [Default] Running tests...
+2026-11-21 22:07:18.621123+0000 Maktabah-iOSUITests-Runner[66089:182478] [UIKit App Config] Update the Info.plist: Launch screens will soon be required.
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-11-21 22:07:26.195.
+Test Suite 'Maktabah-iOSUITests.xctest' started at 2026-11-21 22:07:26.196.
+Test Suite 'FaithfulReaderUIAcceptanceTests' started at 2026-11-21 22:07:26.196.
+Test Case '-[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSystemReduceMotionKeepsOriginalPaletteUsable]' started.
+    t =     0.02s Start Test at 2026-11-21 22:07:26.212
+    t =     0.11s Set Up
+    t =     0.12s Setting device orientation to Portrait
+    t =     0.14s     Device orientation changed to Portrait
+    t =     0.19s     Wait for com.apple.springboard to idle
+    t =     0.26s Open com.apple.Preferences
+    t =     0.26s     Launch com.apple.Preferences
+    t =     2.11s         Setting up automation session
+objc[66089]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.Qx6wPr/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x101e78310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.Qx6wPr/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x101ecc398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     4.95s         Wait for com.apple.Preferences to idle
+    t =    10.48s Checking existence of `Switch (First Match)`
+    t =    10.86s Checking existence of `"Motion" StaticText`
+    t =    11.00s Checking existence of `"Accessibility" StaticText`
+    t =    11.08s Find the "Accessibility" StaticText
+    t =    11.20s Waiting 15.0s for "Accessibility" StaticText to exist
+    t =    12.25s     Checking `Expect predicate `existsNoRetry == 1` for object "Accessibility" StaticText`
+    t =    12.25s         Checking existence of `"Accessibility" StaticText`
+    t =    12.34s Tap "Accessibility" StaticText
+    t =    12.34s     Wait for com.apple.Preferences to idle
+    t =    12.35s     Find the "Accessibility" StaticText
+    t =    12.42s     Check for interrupting elements affecting "Accessibility" StaticText
+    t =    12.54s         Wait for com.apple.springboard to idle
+    t =    12.60s     Synthesize event
+    t =    13.02s     Wait for com.apple.Preferences to idle
+    t =    16.62s Waiting 15.0s for "Motion" StaticText to exist
+    t =    17.65s     Checking `Expect predicate `existsNoRetry == 1` for object "Motion" StaticText`
+    t =    17.65s         Checking existence of `"Motion" StaticText`
+    t =    17.80s Tap "Motion" StaticText
+    t =    17.80s     Wait for com.apple.Preferences to idle
+    t =    17.81s     Find the "Motion" StaticText
+    t =    17.92s     Check for interrupting elements affecting "Motion" StaticText
+    t =    17.99s         Wait for com.apple.springboard to idle
+    t =    18.01s     Synthesize event
+    t =    18.31s     Wait for com.apple.Preferences to idle
+    t =    18.92s Waiting 15.0s for Switch (First Match) to exist
+    t =    20.00s     Checking `Expect predicate `existsNoRetry == 1` for object Switch (First Match)`
+    t =    20.00s         Checking existence of `Switch (First Match)`
+    t =    20.11s Checking existence of `Switch (First Match)`
+    t =    20.17s Find the Switch (First Match)
+    t =    20.24s Checking existence of `Window (First Match)`
+    t =    20.25s Find the "REDUCE_MOTION" Switch
+    t =    20.32s Find the Window (First Match)
+    t =    20.33s Find the "REDUCE_MOTION" Switch
+    t =    20.40s Find the "REDUCE_MOTION" Switch
+    t =    20.49s Requesting snapshot of accessibility hierarchy for app with pid 66459
+    t =    21.17s Requesting snapshot of accessibility hierarchy for app with pid 66459
+    t =    21.32s Added attachment named 'system-reduce-motion-enable-original-switch'
+    t =    21.33s Tap "REDUCE_MOTION" Switch[0.95, 0.50]
+    t =    21.33s     Wait for com.apple.Preferences to idle
+    t =    21.33s     Find the "REDUCE_MOTION" Switch
+    t =    21.39s     Check for interrupting elements affecting "REDUCE_MOTION" Switch
+    t =    21.46s         Wait for com.apple.springboard to idle
+    t =    21.49s     Synthesize event
+    t =    21.50s         Find the "REDUCE_MOTION" Switch
+    t =    21.57s         Find the "REDUCE_MOTION" Switch
+    t =    21.64s         Find the "REDUCE_MOTION" Switch
+    t =    22.00s     Wait for com.apple.Preferences to idle
+    t =    23.72s Setting device orientation to Landscape Left
+    t =    23.72s     Device orientation changed to Landscape Left
+    t =    23.78s     Interface orientation changed to Landscape Right
+    t =    24.12s     Wait for com.apple.Preferences to idle
+    t =    24.82s     Wait for com.apple.springboard to idle
+    t =    24.85s Open com.davidpovarsky.chavrusatext
+    t =    24.85s     Launch com.davidpovarsky.chavrusatext
+2026-11-21 22:07:52.870 xcodebuild[59810:164288] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-21 22:07:52.871 xcodebuild[59810:164288] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    30.18s         Setting up automation session
+    t =    33.95s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    38.19s Get number of matches for: Descendants matching type Alert
+    t =    39.34s Waiting 60.0s for "reader-text" TextView to exist
+    t =    40.40s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    40.40s         Checking existence of `"reader-text" TextView`
+    t =    41.64s Find the "reader-text" TextView
+    t =    41.80s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    41.92s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    43.11s Checking `Expect predicate `value MATCHES "(?s).{31,}"` for object "reader-text" TextView`
+    t =    43.11s     Find the "reader-text" TextView
+    t =    43.29s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    44.34s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    44.34s         Checking existence of `"reader-header-title" StaticText`
+    t =    44.49s Find the "reader-header-title" StaticText
+    t =    44.64s Find the "reader-text" TextView
+    t =    44.81s Waiting 30.0s for "reader-command-palette-launcher" Button to exist
+    t =    45.82s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-command-palette-launcher" Button`
+    t =    45.82s         Checking existence of `"reader-command-palette-launcher" Button`
+    t =    45.97s Get number of matches for: Elements matching predicate '"reader-command-palette-launcher" IN identifiers'
+    t =    46.13s Find the "reader-command-palette-launcher" Button
+    t =    46.33s Find the "reader-command-palette-launcher" Button
+    t =    46.50s Find the Window (First Match)
+    t =    46.51s Find the "reader-command-palette-launcher" Button
+    t =    46.67s Checking existence of `"reader-command-palette-launcher" Button`
+    t =    46.83s Find the "reader-command-palette-launcher" Button
+    t =    47.01s Find the Window (First Match)
+    t =    47.03s Tap "reader-command-palette-launcher" Button[0.50, 0.50]
+    t =    47.03s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    47.03s     Find the "reader-command-palette-launcher" Button
+    t =    47.17s     Check for interrupting elements affecting "reader-command-palette-launcher" Button
+    t =    47.31s         Wait for com.apple.springboard to idle
+    t =    47.34s     Synthesize event
+    t =    47.34s         Find the "reader-command-palette-launcher" Button
+    t =    47.49s         Find the "reader-command-palette-launcher" Button
+    t =    47.63s         Find the "reader-command-palette-launcher" Button
+    t =    48.07s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    51.13s Waiting 15.0s for "reader-library-command-palette" Any to exist
+    t =    52.15s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-library-command-palette" Any`
+    t =    52.15s         Checking existence of `"reader-library-command-palette" Any`
+    t =    52.51s Waiting 10.0s for TextField (First Match) to exist
+    t =    53.54s     Checking `Expect predicate `existsNoRetry == 1` for object TextField (First Match)`
+    t =    53.54s         Checking existence of `TextField (First Match)`
+    t =    54.11s Type 'בראשית' into TextField (First Match)
+    t =    54.11s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    54.11s     Find the TextField (First Match)
+    t =    55.93s     Check for interrupting elements affecting "חפש ספר בספרייה…" TextField
+    t =    56.08s         Wait for com.apple.springboard to idle
+    t =    56.36s     Synthesize event
+    t =    56.71s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    56.88s Waiting 30.0s for Button (First Match) to exist
+    t =    57.92s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    57.92s         Checking existence of `Button (First Match)`
+    t =    63.01s Added attachment named 'DIAGNOSTIC-candidate-system-reduce-motion-palette-before-settlement'
+    t =    63.01s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    63.19s Find the Window (First Match)
+    t =    63.22s Requesting snapshot of accessibility hierarchy for app with pid 67267
+    t =    64.20s Requesting snapshot of accessibility hierarchy for app with pid 67267
+    t =    64.60s Added attachment named 'DIAGNOSTIC-candidate-system-reduce-motion-palette-before-settlement-ui-tree'
+    t =    65.67s Find the Window (First Match)
+    t =    65.70s Getting device orientation
+    t =    65.70s Checking existence of `"reader-library-command-palette" Any`
+    t =    66.05s Checking existence of `Button (First Match)`
+    t =    68.12s Checking existence of `TextField (First Match)`
+    t =    70.16s Find the "reader-library-command-palette" Any
+    t =    70.37s Find the TextField (First Match)
+    t =    75.72s Find the Button (First Match)
+    t =    77.61s Find the "חפש ספר בספרייה…" TextField
+    t =    78.44s Find the "בראשית" Button
+    t =    79.50s Added attachment named 'DIAGNOSTIC-candidate-system-reduce-motion-palette-settled'
+    t =    79.50s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    79.69s Find the Window (First Match)
+    t =    79.70s Requesting snapshot of accessibility hierarchy for app with pid 67267
+    t =    80.60s Requesting snapshot of accessibility hierarchy for app with pid 67267
+    t =    80.99s Added attachment named 'DIAGNOSTIC-candidate-system-reduce-motion-palette-settled-ui-tree'
+    t =    81.00s Checking existence of `"בראשית" Button`
+    t =    81.69s Find the "בראשית" Button
+    t =    82.36s Find the Window (First Match)
+    t =    82.38s Tap "בראשית" Button[0.50, 0.50]
+    t =    82.38s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    82.39s     Find the "בראשית" Button
+    t =    83.26s     Check for interrupting elements affecting "בראשית" Button
+    t =    83.45s         Wait for com.apple.springboard to idle
+    t =    83.59s     Synthesize event
+    t =    83.61s         Find the "בראשית" Button
+    t =    84.44s         Find the "בראשית" Button
+    t =    85.21s         Find the "בראשית" Button
+    t =    86.37s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    87.40s Waiting 60.0s for "reader-text" TextView to exist
+    t =    88.48s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    88.48s         Checking existence of `"reader-text" TextView`
+    t =    89.78s Find the "reader-text" TextView
+    t =    90.00s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    90.12s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    91.27s Checking `Expect predicate `value MATCHES "(?s).{31,}"` for object "reader-text" TextView`
+    t =    91.27s     Find the "reader-text" TextView
+    t =    91.48s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    92.50s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    92.50s         Checking existence of `"reader-header-title" StaticText`
+    t =    92.68s Find the "reader-header-title" StaticText
+    t =    92.88s Find the "reader-text" TextView
+    t =    93.10s Checking existence of `"reader-library-command-palette" Other`
+    t =    93.31s Waiting 30.0s for "reader-command-palette-launcher" Button to exist
+    t =    94.33s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-command-palette-launcher" Button`
+    t =    94.33s         Checking existence of `"reader-command-palette-launcher" Button`
+    t =    94.56s Get number of matches for: Elements matching predicate '"reader-command-palette-launcher" IN identifiers'
+    t =    94.74s Find the "reader-command-palette-launcher" Button
+    t =    94.97s Find the "reader-command-palette-launcher" Button
+    t =    95.18s Find the Window (First Match)
+    t =    95.20s Find the "reader-command-palette-launcher" Button
+    t =    95.39s Checking existence of `"reader-command-palette-launcher" Button`
+    t =    96.59s Find the Window (First Match)
+    t =    96.60s Getting device orientation
+    t =    96.60s Checking existence of `"reader-text" TextView`
+    t =    96.79s Find the "reader-text" TextView
+    t =    97.38s Added attachment named 'candidate-system-reduce-motion-reader-restored'
+    t =    97.39s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    97.52s Find the Window (First Match)
+    t =    97.53s Getting device orientation
+    t =    97.53s Requesting snapshot of accessibility hierarchy for app with pid 67267
+    t =    98.14s Requesting snapshot of accessibility hierarchy for app with pid 67267
+    t =    98.43s Added attachment named 'candidate-system-reduce-motion-reader-restored-ui-tree'
+    t =    98.43s Tear Down
+    t =    98.43s     Getting device orientation
+    t =    98.43s     Setting device orientation to Portrait
+    t =    98.45s         Device orientation changed to Portrait
+    t =    98.65s         Interface orientation changed to Portrait
+    t =    98.65s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    98.84s         Wait for com.apple.springboard to idle
+    t =    99.34s     Open com.apple.Preferences
+    t =    99.34s         Launch com.apple.Preferences
+    t =    99.68s             Setting up automation session
+    t =   104.10s             Wait for com.apple.Preferences to idle
+    t =   108.01s     Checking existence of `Switch (First Match)`
+    t =   108.21s     Checking existence of `"Motion" StaticText`
+    t =   108.36s     Checking existence of `"Accessibility" StaticText`
+    t =   108.44s     Find the "Accessibility" StaticText
+    t =   108.56s     Waiting 15.0s for "Accessibility" StaticText to exist
+    t =   109.58s         Checking `Expect predicate `existsNoRetry == 1` for object "Accessibility" StaticText`
+    t =   109.58s             Checking existence of `"Accessibility" StaticText`
+    t =   109.67s     Tap "Accessibility" StaticText
+    t =   109.67s         Wait for com.apple.Preferences to idle
+    t =   109.67s         Find the "Accessibility" StaticText
+    t =   109.77s         Check for interrupting elements affecting "Accessibility" StaticText
+    t =   109.87s             Wait for com.apple.springboard to idle
+    t =   109.90s         Synthesize event
+    t =   110.23s         Wait for com.apple.Preferences to idle
+    t =   113.13s     Waiting 15.0s for "Motion" StaticText to exist
+    t =   114.16s         Checking `Expect predicate `existsNoRetry == 1` for object "Motion" StaticText`
+    t =   114.16s             Checking existence of `"Motion" StaticText`
+    t =   114.30s     Tap "Motion" StaticText
+    t =   114.30s         Wait for com.apple.Preferences to idle
+    t =   114.30s         Find the "Motion" StaticText
+    t =   114.41s         Check for interrupting elements affecting "Motion" StaticText
+    t =   114.50s             Wait for com.apple.springboard to idle
+    t =   114.52s         Synthesize event
+    t =   114.83s         Wait for com.apple.Preferences to idle
+    t =   115.35s     Waiting 15.0s for Switch (First Match) to exist
+    t =   116.40s         Checking `Expect predicate `existsNoRetry == 1` for object Switch (First Match)`
+    t =   116.40s             Checking existence of `Switch (First Match)`
+    t =   116.49s     Waiting 15.0s for Switch (First Match) to exist
+    t =   117.53s         Checking `Expect predicate `existsNoRetry == 1` for object Switch (First Match)`
+    t =   117.53s             Checking existence of `Switch (First Match)`
+    t =   117.60s     Checking existence of `Switch (First Match)`
+    t =   117.67s     Find the Switch (First Match)
+    t =   117.75s     Checking existence of `Window (First Match)`
+    t =   117.75s     Find the "REDUCE_MOTION" Switch
+    t =   117.83s     Find the Window (First Match)
+    t =   117.84s     Find the "REDUCE_MOTION" Switch
+    t =   117.91s     Find the "REDUCE_MOTION" Switch
+    t =   117.99s     Requesting snapshot of accessibility hierarchy for app with pid 70204
+    t =   118.61s     Requesting snapshot of accessibility hierarchy for app with pid 70204
+    t =   118.75s     Added attachment named 'system-reduce-motion-restore-original-switch'
+    t =   118.75s     Tap "REDUCE_MOTION" Switch[0.95, 0.50]
+    t =   118.75s         Wait for com.apple.Preferences to idle
+    t =   118.75s         Find the "REDUCE_MOTION" Switch
+    t =   118.82s         Check for interrupting elements affecting "REDUCE_MOTION" Switch
+    t =   118.88s             Wait for com.apple.springboard to idle
+    t =   118.90s         Synthesize event
+    t =   118.92s             Find the "REDUCE_MOTION" Switch
+    t =   119.00s             Find the "REDUCE_MOTION" Switch
+    t =   119.08s             Find the "REDUCE_MOTION" Switch
+    t =   119.44s         Wait for com.apple.Preferences to idle
+/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1799: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSystemReduceMotionKeepsOriginalPaletteUsable] : XCTAssertEqual failed: ("XCTWaiterResult(rawValue: 2)") is not equal to ("XCTWaiterResult(rawValue: 1)")
+    t =   135.05s     Terminate com.apple.Preferences:70204
+    t =   136.10s     Setting device orientation to Landscape Left
+    t =   136.10s         Device orientation changed to Landscape Left
+    t =   136.21s         Interface orientation changed to Landscape Right
+    t =   136.21s         Wait for com.apple.springboard to idle
+    t =   137.18s Checking for reports corresponding to termination of 1 app(s).
+Test Case '-[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testSystemReduceMotionKeepsOriginalPaletteUsable]' failed (157.201 seconds).
+Test Suite 'FaithfulReaderUIAcceptanceTests' failed at 2026-11-21 22:10:03.413.
+	 Executed 1 test, with 1 failure (0 unexpected) in 157.201 (157.217) seconds
+Test Suite 'NativeRoutingAcceptanceTests' started at 2026-11-21 22:10:03.414.
+Test Case '-[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testPublicV2CurrentReaderShowsTwoCanonicalSourceLines]' started.
+    t =     0.00s Start Test at 2026-11-21 22:10:03.415
+    t =     0.03s Set Up
+    t =     0.06s Added attachment named 'native-reader-independent-source-metadata'
+    t =     0.06s Open com.davidpovarsky.chavrusatext
+    t =     0.06s     Launch com.davidpovarsky.chavrusatext
+    t =     0.06s         Terminate com.davidpovarsky.chavrusatext:67267
+2026-11-21 22:10:04.517 xcodebuild[59810:164288] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-21 22:10:04.517 xcodebuild[59810:164288] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.88s         Setting up automation session
+    t =     6.01s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    10.37s Get number of matches for: Descendants matching type Alert
+    t =    10.97s Added attachment named 'native-reader-independent-text-source'
+    t =    10.99s Added attachment named 'native-reader-independent-text-source'
+    t =    12.03s Checking existence of `"reader-current-locator" StaticText`
+    t =    12.27s Find the "reader-current-locator" StaticText
+    t =    12.42s Waiting 6.0s for "reader-rendered-highlight-diagnostics" Other to exist
+    t =    13.46s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-rendered-highlight-diagnostics" Other`
+    t =    13.46s         Checking existence of `"reader-rendered-highlight-diagnostics" Other`
+    t =    13.62s Find the "reader-rendered-highlight-diagnostics" Other
+    t =    13.79s Waiting 60.0s for "reader-text" TextView to exist
+    t =    14.83s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    14.83s         Checking existence of `"reader-text" TextView`
+    t =    16.04s Find the "reader-text" TextView
+    t =    16.20s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    16.31s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    17.48s Checking `Expect predicate `BLOCKPREDICATE(0x110a5b3c0)` for object "reader-text" TextView`
+    t =    17.48s     Find the "reader-text" TextView
+    t =    17.62s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    18.63s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    18.63s         Checking existence of `"reader-header-title" StaticText`
+    t =    18.78s Find the "reader-header-title" StaticText
+    t =    18.93s Find the "reader-text" TextView
+    t =    19.09s Find the "reader-current-locator" StaticText
+    t =    19.23s Waiting 6.0s for "reader-rendered-highlight-diagnostics" Other to exist
+    t =    20.30s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-rendered-highlight-diagnostics" Other`
+    t =    20.30s         Checking existence of `"reader-rendered-highlight-diagnostics" Other`
+    t =    20.44s Find the "reader-rendered-highlight-diagnostics" Other
+    t =    20.59s Find the "reader-header-title" StaticText
+    t =    20.75s Wait for com.davidpovarsky.chavrusatext to become Running Foreground
+    t =    20.76s Requesting snapshot of accessibility hierarchy for app with pid 73230
+    t =    21.49s Requesting snapshot of accessibility hierarchy for app with pid 73230
+    t =    21.72s Get number of matches for: Descendants matching type Alert
+    t =    21.74s Checking existence of `"History & Favorites" NavigationBar`
+    t =    23.98s Added attachment named 'actual-system-url-transport-only'
+    t =    25.03s Get number of matches for: Descendants matching type Alert
+    t =    25.07s Get number of matches for: Descendants matching type Alert
+    t =    26.12s Get all elements bound by index for: Descendants matching type Alert
+    t =    26.14s Find the Alert (Element at index 0)
+    t =    26.16s Get all elements bound by index for: Elements matching predicate 'label == "Open"'
+    t =    26.22s Checking existence of `Button (Element at index 0)`
+    t =    26.25s Find the Button (Element at index 0)
+    t =    26.30s Get all elements bound by index for: Descendants matching type Alert
+    t =    26.32s Find the Alert (Element at index 0)
+    t =    26.35s Find the "Open in “ChavrusaText”?" Alert
+    t =    26.38s Get all elements bound by index for: Elements matching predicate 'label == "Open"'
+    t =    26.41s Checking existence of `Button (Element at index 0)`
+    t =    26.44s Find the Button (Element at index 0)
+    t =    26.47s Tap "Open" Button
+    t =    26.47s     Wait for com.apple.springboard to idle
+    t =    26.48s     Find the "Open" Button
+    t =    26.51s     Check for interrupting elements affecting "Open" Button
+    t =    26.55s     Synthesize event
+    t =    26.85s     Wait for com.apple.springboard to idle
+    t =    28.17s Get number of matches for: Descendants matching type Alert
+    t =    28.18s Added attachment named 'actual-system-open-confirmation'
+    t =    28.18s Wait for com.davidpovarsky.chavrusatext to become Running Foreground
+    t =    28.19s Requesting snapshot of accessibility hierarchy for app with pid 73230
+    t =    28.75s Requesting snapshot of accessibility hierarchy for app with pid 73230
+    t =    29.00s Added attachment named 'actual-warm-system-url-process-identity'
+    t =    29.00s Checking existence of `"Unable to open link" Alert`
+    t =    29.16s Added attachment named 'native-reader-independent-text-source'
+    t =    30.18s Checking existence of `"reader-current-locator" StaticText`
+    t =    30.33s Find the "reader-current-locator" StaticText
+    t =    30.47s Waiting 6.0s for "reader-rendered-highlight-diagnostics" Other to exist
+    t =    31.50s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-rendered-highlight-diagnostics" Other`
+    t =    31.50s         Checking existence of `"reader-rendered-highlight-diagnostics" Other`
+    t =    31.67s Find the "reader-rendered-highlight-diagnostics" Other
+    t =    31.82s Waiting 60.0s for "reader-text" TextView to exist
+    t =    32.85s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    32.85s         Checking existence of `"reader-text" TextView`
+    t =    34.03s Find the "reader-text" TextView
+    t =    34.19s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    34.32s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    35.53s Checking `Expect predicate `BLOCKPREDICATE(0x110a490e0)` for object "reader-text" TextView`
+    t =    35.53s     Find the "reader-text" TextView
+    t =    35.69s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    36.75s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    36.75s         Checking existence of `"reader-header-title" StaticText`
+    t =    36.89s Find the "reader-header-title" StaticText
+    t =    37.04s Find the "reader-text" TextView
+    t =    37.17s Find the "reader-current-locator" StaticText
+    t =    37.31s Waiting 6.0s for "reader-rendered-highlight-diagnostics" Other to exist
+    t =    38.34s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-rendered-highlight-diagnostics" Other`
+    t =    38.34s         Checking existence of `"reader-rendered-highlight-diagnostics" Other`
+    t =    38.48s Find the "reader-rendered-highlight-diagnostics" Other
+    t =    38.62s Find the "reader-current-locator" StaticText
+    t =    38.75s Waiting 6.0s for "reader-rendered-highlight-diagnostics" Other to exist
+    t =    39.77s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-rendered-highlight-diagnostics" Other`
+    t =    39.77s         Checking existence of `"reader-rendered-highlight-diagnostics" Other`
+    t =    39.91s Find the "reader-rendered-highlight-diagnostics" Other
+    t =    40.04s Find the "reader-header-title" StaticText
+    t =    41.27s Added attachment named 'actual-current-reader-core-receipt'
+    t =    41.27s Added attachment named 'native-current-reader-receipt'
+    t =    41.27s Requesting snapshot of accessibility hierarchy for app with pid 73230
+    t =    41.85s Requesting snapshot of accessibility hierarchy for app with pid 73230
+    t =    42.12s Added attachment named 'native-core-reader-source-line-1-hierarchy'
+    t =    42.32s Added attachment named 'native-core-reader-source-line-1-screen'
+    t =    42.33s Wait for com.davidpovarsky.chavrusatext to become Running Foreground
+    t =    42.33s Requesting snapshot of accessibility hierarchy for app with pid 73230
+    t =    42.84s Requesting snapshot of accessibility hierarchy for app with pid 73230
+    t =    43.08s Get number of matches for: Descendants matching type Alert
+    t =    43.10s Checking existence of `"History & Favorites" NavigationBar`
+    t =    45.38s Added attachment named 'actual-system-url-transport-only'
+    t =    46.43s Get number of matches for: Descendants matching type Alert
+    t =    46.45s Checking existence of `"Unable to open link" Alert`
+    t =    46.59s Checking existence of `"History & Favorites" NavigationBar`
+    t =    47.46s Get number of matches for: Descendants matching type Alert
+    t =    47.48s Checking existence of `"Unable to open link" Alert`
+    t =    47.62s Checking existence of `"History & Favorites" NavigationBar`
+    t =    48.40s Get number of matches for: Descendants matching type Alert
+    t =    48.42s Checking existence of `"Unable to open link" Alert`
+    t =    48.56s Checking existence of `"History & Favorites" NavigationBar`
+    t =    49.41s Get number of matches for: Descendants matching type Alert
+    t =    49.42s Checking existence of `"Unable to open link" Alert`
+    t =    49.56s Checking existence of `"History & Favorites" NavigationBar`
+    t =    50.43s Get number of matches for: Descendants matching type Alert
+    t =    50.45s Checking existence of `"Unable to open link" Alert`
+    t =    50.59s Checking existence of `"History & Favorites" NavigationBar`
+    t =    51.45s Get number of matches for: Descendants matching type Alert
+    t =    51.47s Checking existence of `"Unable to open link" Alert`
+    t =    51.61s Checking existence of `"History & Favorites" NavigationBar`
+    t =    52.48s Get number of matches for: Descendants matching type Alert
+    t =    52.50s Checking existence of `"Unable to open link" Alert`
+    t =    52.63s Checking existence of `"History & Favorites" NavigationBar`
+    t =    53.41s Get number of matches for: Descendants matching type Alert
+    t =    53.42s Checking existence of `"Unable to open link" Alert`
+    t =    53.57s Checking existence of `"History & Favorites" NavigationBar`
+    t =    54.43s Get number of matches for: Descendants matching type Alert
+    t =    54.45s Checking existence of `"Unable to open link" Alert`
+    t =    54.58s Checking existence of `"History & Favorites" NavigationBar`
+    t =    55.39s Get number of matches for: Descendants matching type Alert
+    t =    55.41s Checking existence of `"Unable to open link" Alert`
+    t =    55.54s Checking existence of `"History & Favorites" NavigationBar`
+    t =    55.64s Checking existence of `"History & Favorites" NavigationBar` (retry 1)
+    t =    55.65s Checking existence of `"History & Favorites" NavigationBar` (retry 2)
+    t =    55.65s Get number of matches for: Descendants matching type Alert
+    t =    55.67s Wait for com.davidpovarsky.chavrusatext to become Running Foreground
+    t =    55.67s Requesting snapshot of accessibility hierarchy for app with pid 73230
+    t =    56.39s Requesting snapshot of accessibility hierarchy for app with pid 73230
+    t =    56.84s Added attachment named 'actual-warm-system-url-process-identity'
+    t =    56.84s Checking existence of `"Unable to open link" Alert`
+    t =    56.98s Added attachment named 'native-reader-independent-text-source'
+    t =    58.03s Checking existence of `"reader-current-locator" StaticText`
+    t =    58.18s Find the "reader-current-locator" StaticText
+    t =    58.31s Waiting 6.0s for "reader-rendered-highlight-diagnostics" Other to exist
+    t =    59.32s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-rendered-highlight-diagnostics" Other`
+    t =    59.32s         Checking existence of `"reader-rendered-highlight-diagnostics" Other`
+    t =    59.47s Find the "reader-rendered-highlight-diagnostics" Other
+    t =    59.62s Waiting 60.0s for "reader-text" TextView to exist
+    t =    60.65s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    60.65s         Checking existence of `"reader-text" TextView`
+    t =    61.84s Find the "reader-text" TextView
+    t =    61.99s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    62.11s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    63.26s Checking `Expect predicate `BLOCKPREDICATE(0x106d864c0)` for object "reader-text" TextView`
+    t =    63.26s     Find the "reader-text" TextView
+    t =    63.43s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    64.47s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    64.47s         Checking existence of `"reader-header-title" StaticText`
+    t =    64.62s Find the "reader-header-title" StaticText
+    t =    64.76s Find the "reader-text" TextView
+    t =    64.92s Find the "reader-current-locator" StaticText
+    t =    65.07s Waiting 6.0s for "reader-rendered-highlight-diagnostics" Other to exist
+    t =    66.10s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-rendered-highlight-diagnostics" Other`
+    t =    66.10s         Checking existence of `"reader-rendered-highlight-diagnostics" Other`
+    t =    66.25s Find the "reader-rendered-highlight-diagnostics" Other
+    t =    66.41s Find the "reader-current-locator" StaticText
+    t =    66.55s Waiting 6.0s for "reader-rendered-highlight-diagnostics" Other to exist
+    t =    67.61s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-rendered-highlight-diagnostics" Other`
+    t =    67.61s         Checking existence of `"reader-rendered-highlight-diagnostics" Other`
+    t =    67.77s Find the "reader-rendered-highlight-diagnostics" Other
+    t =    67.93s Find the "reader-header-title" StaticText
+    t =    69.12s Added attachment named 'actual-current-reader-core-receipt'
+    t =    69.12s Added attachment named 'native-current-reader-receipt'
+    t =    69.12s Requesting snapshot of accessibility hierarchy for app with pid 73230
+    t =    69.82s Requesting snapshot of accessibility hierarchy for app with pid 73230
+    t =    70.08s Added attachment named 'native-core-reader-source-line-10-hierarchy'
+    t =    70.28s Added attachment named 'native-core-reader-source-line-10-screen'
+    t =    70.28s Tear Down
+    t =    70.29s     Requesting snapshot of accessibility hierarchy for app with pid 73230
+    t =    70.93s     Requesting snapshot of accessibility hierarchy for app with pid 73230
+    t =    71.21s     Added attachment named 'native-route-final-hierarchy'
+    t =    71.39s     Added attachment named 'native-route-final-screen'
+    t =    71.39s     Get number of matches for: Descendants matching type Alert
+Test Case '-[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testPublicV2CurrentReaderShowsTwoCanonicalSourceLines]' passed (71.640 seconds).
+Test Suite 'NativeRoutingAcceptanceTests' passed at 2026-11-21 22:11:15.054.
+	 Executed 1 test, with 0 failures (0 unexpected) in 71.640 (71.640) seconds
+Test Suite 'NativeStudySheetPadTests' started at 2026-11-21 22:11:15.055.
+Test Case '-[Maktabah_iOSUITests.NativeStudySheetPadTests testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt]' started.
+    t =     0.00s Start Test at 2026-11-21 22:11:15.055
+    t =     0.02s Set Up
+    t =     0.02s Setting device orientation to Landscape Left
+    t =     0.03s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =     0.03s     Wait for com.apple.springboard to idle
+    t =     0.04s Open com.davidpovarsky.chavrusatext
+    t =     0.04s     Launch com.davidpovarsky.chavrusatext
+    t =     0.04s         Terminate com.davidpovarsky.chavrusatext:73230
+2026-11-21 22:11:16.132 xcodebuild[59810:164288] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-21 22:11:16.132 xcodebuild[59810:164288] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     2.21s         Setting up automation session
+    t =     5.49s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    10.89s Get number of matches for: Descendants matching type Alert
+    t =    11.35s Waiting 60.0s for "reader-text" TextView to exist
+    t =    12.39s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    12.39s         Checking existence of `"reader-text" TextView`
+    t =    13.56s Find the "reader-text" TextView
+    t =    13.68s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    13.76s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    14.88s Checking `Expect predicate `value MATCHES "(?s).{31,}"` for object "reader-text" TextView`
+    t =    14.88s     Find the "reader-text" TextView
+    t =    15.00s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    16.04s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    16.04s         Checking existence of `"reader-header-title" StaticText`
+    t =    16.15s Find the "reader-header-title" StaticText
+    t =    16.28s Find the "reader-text" TextView
+    t =    16.40s Waiting 15.0s for "reader-current-locator" StaticText to exist
+    t =    17.46s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-current-locator" StaticText`
+    t =    17.46s         Checking existence of `"reader-current-locator" StaticText`
+    t =    17.56s Find the "reader-current-locator" StaticText
+    t =    17.66s Find the "reader-header-title" StaticText
+    t =    18.86s Find the Window (First Match)
+    t =    18.92s Getting device orientation
+    t =    18.92s Checking existence of `"reader-text" TextView`
+    t =    19.03s Find the "reader-text" TextView
+    t =    19.18s Get all elements bound by index for: Elements matching predicate '"reader-more-menu" IN identifiers'
+    t =    19.29s Find the "reader-more-menu" Button
+    t =    19.40s Find the "reader-more-menu" Button
+    t =    19.51s Find the "reader-more-menu" Button
+    t =    19.65s Get all elements bound by index for: Elements matching predicate '"BottomOverflowBarButtonItem" IN identifiers'
+    t =    19.77s Find the "reader-more-menu" Button
+    t =    20.08s Added attachment named 'system-study-reader-before-open'
+    t =    20.08s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    20.19s Find the Window (First Match)
+    t =    20.20s Getting device orientation
+    t =    20.20s Requesting snapshot of accessibility hierarchy for app with pid 77158
+    t =    20.59s Requesting snapshot of accessibility hierarchy for app with pid 77158
+    t =    20.76s Added attachment named 'system-study-reader-before-open-ui-tree'
+    t =    20.76s Find the "reader-text" TextView
+    t =    21.92s Find the Window (First Match)
+    t =    21.94s Get all elements bound by index for: Elements matching predicate '"reader-study-toggle" IN identifiers'
+    t =    22.04s Find the "reader-study-toggle" Button
+    t =    22.15s Find the "reader-study-toggle" Button
+    t =    22.30s Find the Window (First Match)
+    t =    22.31s Get all elements bound by index for: Elements matching predicate '"reader-study-toggle" IN identifiers'
+    t =    22.41s Find the "reader-study-toggle" Button
+    t =    22.53s Find the "reader-study-toggle" Button
+    t =    22.72s Find the "reader-study-toggle" Button
+    t =    22.83s Find the "reader-study-toggle" Button
+    t =    22.96s Waiting 15.0s for "reader-study-toggle" Button to exist
+    t =    23.99s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-study-toggle" Button`
+    t =    23.99s         Checking existence of `"reader-study-toggle" Button`
+    t =    24.11s Find the "reader-study-toggle" Button
+    t =    24.27s Find the "reader-study-toggle" Button
+    t =    24.39s Find the Window (First Match)
+    t =    24.43s Tap "reader-study-toggle" Button
+    t =    24.43s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    24.43s     Find the "reader-study-toggle" Button
+    t =    24.56s     Check for interrupting elements affecting "reader-study-toggle" Button
+    t =    24.68s         Wait for com.apple.springboard to idle
+    t =    24.70s     Synthesize event
+    t =    25.05s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    26.99s Waiting 15.0s for "torah-inspector-panel" Other to exist
+    t =    28.03s     Checking `Expect predicate `existsNoRetry == 1` for object "torah-inspector-panel" Other`
+    t =    28.03s         Checking existence of `"torah-inspector-panel" Other`
+    t =    28.15s Checking existence of `"torah-inspector-tools" SegmentedControl`
+    t =    28.49s Added attachment named 'DIAGNOSTIC-system-study-opened'
+    t =    28.49s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    28.57s Find the Window (First Match)
+    t =    28.58s Requesting snapshot of accessibility hierarchy for app with pid 77158
+    t =    29.04s Requesting snapshot of accessibility hierarchy for app with pid 77158
+    t =    29.24s Added attachment named 'DIAGNOSTIC-system-study-opened-ui-tree'
+    t =    29.24s Added attachment named 'system-study-opened-actual-views'
+    t =    30.29s Press Window (First Match)[0.00, 0.00] -> (895.0, 384.0) for 0.2 seconds, then drag to Window (First Match)[0.00, 0.00] -> (895.0, 669.0) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    30.29s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    30.30s     Find the Window (First Match)
+    t =    30.31s     Check for interrupting elements affecting Window
+    t =    30.43s         Wait for com.apple.springboard to idle
+    t =    30.46s     Synthesize event
+    t =    30.47s         Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    30.52s         Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    30.60s         Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    30.63s         Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    30.65s         Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    31.69s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    33.69s Added attachment named 'DIAGNOSTIC-system-study-drag-peek'
+    t =    33.69s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    33.78s Find the Window (First Match)
+    t =    33.79s Requesting snapshot of accessibility hierarchy for app with pid 77158
+    t =    34.27s Requesting snapshot of accessibility hierarchy for app with pid 77158
+    t =    34.46s Added attachment named 'DIAGNOSTIC-system-study-drag-peek-ui-tree'
+    t =    34.47s Added attachment named 'system-study-drag-peek-actual-views'
+    t =    35.50s Added attachment named 'system-study-background-scroll-before'
+    t =    35.50s Find the "reader-text" TextView
+    t =    35.62s Find the Window (First Match)
+    t =    35.64s Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    35.66s Find the "reader-text" TextView
+    t =    35.80s Press Window at {{0.0, 0.0}, {1210.0, 834.0}}[0.00, 0.00] -> (100.0, 633.5) for 0.2 seconds, then drag to Window at {{0.0, 0.0}, {1210.0, 834.0}}[0.00, 0.00] -> (100.0, 312.7) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    35.80s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    35.81s     Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    35.82s     Check for interrupting elements affecting Window
+    t =    35.91s         Wait for com.apple.springboard to idle
+    t =    35.94s     Synthesize event
+    t =    35.95s         Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    36.00s         Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    36.02s         Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    36.37s         Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    36.39s         Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    37.56s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    40.27s Added attachment named 'system-study-background-scroll-after'
+    t =    41.33s Checking existence of `"reader-study-peek-close" Button`
+    t =    41.45s Waiting 15.0s for "reader-study-peek-close" Button to exist
+    t =    42.47s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-study-peek-close" Button`
+    t =    42.48s         Checking existence of `"reader-study-peek-close" Button`
+    t =    42.59s Find the "reader-study-peek-close" Button
+    t =    42.76s Find the "reader-study-peek-close" Button
+    t =    42.91s Find the Window (First Match)
+    t =    42.93s Tap "reader-study-peek-close" Button
+    t =    42.93s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    42.93s     Find the "reader-study-peek-close" Button
+    t =    43.06s     Check for interrupting elements affecting "reader-study-peek-close" Button
+    t =    43.18s         Wait for com.apple.springboard to idle
+    t =    43.20s     Synthesize event
+    t =    43.52s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    45.22s Checking existence of `"torah-inspector-panel" Other`
+    t =    45.45s Checking existence of `"reader-study-peek" Other`
+    t =    46.79s Added attachment named 'DIAGNOSTIC-system-study-actual-background-reader-scroll'
+    t =    46.79s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    46.86s Find the Window (First Match)
+    t =    46.87s Requesting snapshot of accessibility hierarchy for app with pid 77158
+    t =    47.21s Requesting snapshot of accessibility hierarchy for app with pid 77158
+    t =    47.38s Added attachment named 'DIAGNOSTIC-system-study-actual-background-reader-scroll-ui-tree'
+    t =    47.39s Added attachment named 'system-study-actual-background-reader-scroll-actual-views'
+    t =    47.39s Tear Down
+    t =    47.57s     Added attachment named 'DIAGNOSTIC-system-study-final'
+    t =    47.57s     Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    47.64s     Find the Window (First Match)
+    t =    47.65s     Requesting snapshot of accessibility hierarchy for app with pid 77158
+    t =    47.99s     Requesting snapshot of accessibility hierarchy for app with pid 77158
+    t =    48.15s     Added attachment named 'DIAGNOSTIC-system-study-final-ui-tree'
+    t =    48.16s     Added attachment named 'system-study-final-actual-views'
+    t =    48.16s     Requesting snapshot of accessibility hierarchy for app with pid 77158
+    t =    48.54s     Requesting snapshot of accessibility hierarchy for app with pid 77158
+    t =    48.69s     Added attachment named 'r27-final-native-hierarchy'
+    t =    48.87s     Added attachment named 'r27-final-native-screen'
+    t =    48.87s     Setting device orientation to Portrait
+    t =    48.87s         Device orientation changed to Portrait
+    t =    49.02s         Interface orientation changed to Portrait
+    t =    49.03s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    49.83s         Wait for com.apple.springboard to idle
+Test Case '-[Maktabah_iOSUITests.NativeStudySheetPadTests testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt]' passed (50.179 seconds).
+Test Case '-[Maktabah_iOSUITests.NativeStudySheetPadTests testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor]' started.
+    t =     0.00s Start Test at 2026-11-21 22:12:05.235
+    t =     0.02s Set Up
+    t =     0.03s Setting device orientation to Landscape Left
+    t =     0.03s     Device orientation changed to Landscape Left
+    t =     0.14s     Interface orientation changed to Landscape Right
+    t =     0.27s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =     0.84s     Wait for com.apple.springboard to idle
+    t =     1.01s Open com.davidpovarsky.chavrusatext
+    t =     1.01s     Launch com.davidpovarsky.chavrusatext
+    t =     1.01s         Terminate com.davidpovarsky.chavrusatext:77158
+2026-11-21 22:12:07.282 xcodebuild[59810:164288] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-21 22:12:07.282 xcodebuild[59810:164288] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     2.32s         Setting up automation session
+    t =     6.23s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    11.96s Get number of matches for: Descendants matching type Alert
+    t =    12.26s Waiting 60.0s for "reader-text" TextView to exist
+    t =    13.28s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    13.28s         Checking existence of `"reader-text" TextView`
+    t =    14.43s Find the "reader-text" TextView
+    t =    14.57s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    14.64s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    15.78s Checking `Expect predicate `value MATCHES "(?s).{31,}"` for object "reader-text" TextView`
+    t =    15.78s     Find the "reader-text" TextView
+    t =    15.91s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    16.95s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    16.95s         Checking existence of `"reader-header-title" StaticText`
+    t =    17.06s Find the "reader-header-title" StaticText
+    t =    17.17s Find the "reader-text" TextView
+    t =    17.29s Waiting 15.0s for "reader-current-locator" StaticText to exist
+    t =    18.31s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-current-locator" StaticText`
+    t =    18.31s         Checking existence of `"reader-current-locator" StaticText`
+    t =    18.41s Find the "reader-current-locator" StaticText
+    t =    18.52s Find the "reader-header-title" StaticText
+    t =    19.68s Find the Window (First Match)
+    t =    19.69s Getting device orientation
+    t =    19.69s Checking existence of `"reader-text" TextView`
+    t =    19.79s Find the "reader-text" TextView
+    t =    19.94s Get all elements bound by index for: Elements matching predicate '"reader-more-menu" IN identifiers'
+    t =    20.06s Find the "reader-more-menu" Button
+    t =    20.18s Find the "reader-more-menu" Button
+    t =    20.31s Find the "reader-more-menu" Button
+    t =    20.44s Get all elements bound by index for: Elements matching predicate '"BottomOverflowBarButtonItem" IN identifiers'
+    t =    20.55s Find the "reader-more-menu" Button
+    t =    20.85s Added attachment named 'system-study-reader-before-open'
+    t =    20.85s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    20.93s Find the Window (First Match)
+    t =    20.94s Getting device orientation
+    t =    20.94s Requesting snapshot of accessibility hierarchy for app with pid 80119
+    t =    21.30s Requesting snapshot of accessibility hierarchy for app with pid 80119
+    t =    21.47s Added attachment named 'system-study-reader-before-open-ui-tree'
+    t =    21.47s Find the "reader-text" TextView
+    t =    22.66s Find the Window (First Match)
+    t =    22.67s Get all elements bound by index for: Elements matching predicate '"reader-study-toggle" IN identifiers'
+    t =    22.77s Find the "reader-study-toggle" Button
+    t =    22.91s Find the "reader-study-toggle" Button
+    t =    23.11s Find the Window (First Match)
+    t =    23.12s Get all elements bound by index for: Elements matching predicate '"reader-study-toggle" IN identifiers'
+    t =    23.22s Find the "reader-study-toggle" Button
+    t =    23.33s Find the "reader-study-toggle" Button
+    t =    23.49s Find the "reader-study-toggle" Button
+    t =    23.59s Find the "reader-study-toggle" Button
+    t =    23.69s Waiting 15.0s for "reader-study-toggle" Button to exist
+    t =    24.73s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-study-toggle" Button`
+    t =    24.73s         Checking existence of `"reader-study-toggle" Button`
+    t =    24.87s Find the "reader-study-toggle" Button
+    t =    25.06s Find the "reader-study-toggle" Button
+    t =    25.16s Find the Window (First Match)
+    t =    25.19s Tap "reader-study-toggle" Button
+    t =    25.19s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    25.19s     Find the "reader-study-toggle" Button
+    t =    25.31s     Check for interrupting elements affecting "reader-study-toggle" Button
+    t =    25.41s         Wait for com.apple.springboard to idle
+    t =    25.43s     Synthesize event
+    t =    25.77s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    27.77s Waiting 15.0s for "torah-inspector-panel" Other to exist
+    t =    28.79s     Checking `Expect predicate `existsNoRetry == 1` for object "torah-inspector-panel" Other`
+    t =    28.79s         Checking existence of `"torah-inspector-panel" Other`
+    t =    28.93s Checking existence of `"torah-inspector-tools" SegmentedControl`
+    t =    29.28s Added attachment named 'DIAGNOSTIC-system-study-opened'
+    t =    29.28s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    29.38s Find the Window (First Match)
+    t =    29.39s Requesting snapshot of accessibility hierarchy for app with pid 80119
+    t =    29.79s Requesting snapshot of accessibility hierarchy for app with pid 80119
+    t =    29.98s Added attachment named 'DIAGNOSTIC-system-study-opened-ui-tree'
+    t =    29.99s Added attachment named 'system-study-opened-actual-views'
+    t =    29.99s Waiting 15.0s for "Notes" Button to exist
+    t =    31.04s     Checking `Expect predicate `existsNoRetry == 1` for object "Notes" Button`
+    t =    31.04s         Checking existence of `"Notes" Button`
+    t =    31.16s Find the "Notes" Button
+    t =    31.30s Find the "Notes" Button
+    t =    31.41s Find the Window (First Match)
+    t =    31.44s Tap "Notes" Button
+    t =    31.44s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    31.44s     Find the "Notes" Button
+    t =    31.57s     Check for interrupting elements affecting "Notes" Button
+    t =    31.67s         Wait for com.apple.springboard to idle
+    t =    31.69s     Synthesize event
+    t =    32.01s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    35.61s Find the Window (First Match)
+    t =    35.63s Find the Window (First Match)
+    t =    35.64s Press Window at {{0.0, 0.0}, {1210.0, 834.0}}[1.00, 1.00] -> (-12.0, -12.0) for 0.5 seconds, then drag to Window at {{0.0, 0.0}, {1210.0, 834.0}}[0.55, 0.70] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    35.64s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    35.65s     Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    35.66s     Check for interrupting elements affecting Window
+    t =    35.75s         Wait for com.apple.springboard to idle
+    t =    35.78s     Synthesize event
+    t =    35.79s         Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    35.80s         Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    35.82s         Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    35.84s         Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    35.86s         Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    37.79s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    40.44s Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    40.45s Find the Window at {{418.0, 117.0}, {375.0, 486.0}}
+    t =    42.86s Added attachment named 'DIAGNOSTIC-system-study-same-ipad-narrow'
+    t =    42.86s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    42.95s Find the Window (First Match)
+    t =    42.96s Requesting snapshot of accessibility hierarchy for app with pid 80119
+    t =    43.40s Requesting snapshot of accessibility hierarchy for app with pid 80119
+    t =    43.53s Added attachment named 'DIAGNOSTIC-system-study-same-ipad-narrow-ui-tree'
+    t =    43.54s Added attachment named 'system-study-same-ipad-narrow-actual-views'
+    t =    43.54s Find the Window (First Match)
+    t =    43.55s Waiting 10.0s for "window-controls:com.davidpovarsky.chavrusatext" Button to exist
+    t =    44.56s     Checking `Expect predicate `existsNoRetry == 1` for object "window-controls:com.davidpovarsky.chavrusatext" Button`
+    t =    44.56s         Checking existence of `"window-controls:com.davidpovarsky.chavrusatext" Button`
+    t =    44.70s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    44.70s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    44.70s Find the "window-controls:com.davidpovarsky.chavrusatext" Button
+    t =    44.74s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    44.74s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    44.76s Tap "window-controls:com.davidpovarsky.chavrusatext" Button
+    t =    44.76s     Wait for com.apple.springboard to idle
+    t =    44.76s     Find the "window-controls:com.davidpovarsky.chavrusatext" Button
+    t =    44.80s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    44.80s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    44.80s     Check for interrupting elements affecting "window-controls:com.davidpovarsky.chavrusatext" Button
+    t =    44.81s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    44.90s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    44.91s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    44.92s     Synthesize event
+    t =    45.23s     Wait for com.apple.springboard to idle
+    t =    46.70s Checking existence of `Button (First Match)`
+    t =    46.74s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    46.74s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    46.75s Find the Button (First Match)
+    t =    46.79s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    46.79s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    46.81s Checking existence of `"Zoom-button" Button`
+    t =    46.86s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    46.86s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    46.86s Find the "Zoom-button" Button
+    t =    46.90s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    46.92s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    46.94s Tap "Zoom-button" Button
+    t =    46.94s     Wait for com.apple.springboard to idle
+    t =    46.94s     Find the "Zoom-button" Button
+    t =    46.99s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    46.99s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    47.00s     Check for interrupting elements affecting "Zoom-button" Button
+    t =    47.00s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    47.15s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    47.16s Ignoring failure to get hierarchy for remote element in process 81878 (Error getting main window kAXErrorServerNotFound)
+    t =    47.16s     Synthesize event
+    t =    47.93s     Wait for com.apple.springboard to idle
+    t =    50.71s Find the Window at {{418.0, 117.0}, {375.0, 486.0}}
+    t =    50.74s Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    53.07s Added attachment named 'DIAGNOSTIC-system-study-same-ipad-wide-again'
+    t =    53.07s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    53.18s Find the Window (First Match)
+    t =    53.19s Requesting snapshot of accessibility hierarchy for app with pid 80119
+    t =    53.73s Requesting snapshot of accessibility hierarchy for app with pid 80119
+    t =    53.96s Added attachment named 'DIAGNOSTIC-system-study-same-ipad-wide-again-ui-tree'
+    t =    53.96s Added attachment named 'system-study-same-ipad-wide-again-actual-views'
+    t =    53.97s Tear Down
+    t =    53.97s     Find the Window (First Match)
+    t =    54.00s     Find the Window at {{0.0, 0.0}, {1210.0, 834.0}}
+    t =    54.21s     Added attachment named 'DIAGNOSTIC-system-study-final'
+    t =    54.21s     Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    54.31s     Find the Window (First Match)
+    t =    54.32s     Requesting snapshot of accessibility hierarchy for app with pid 80119
+    t =    54.80s     Requesting snapshot of accessibility hierarchy for app with pid 80119
+    t =    55.54s     Added attachment named 'DIAGNOSTIC-system-study-final-ui-tree'
+    t =    55.54s     Added attachment named 'system-study-final-actual-views'
+    t =    55.54s     Requesting snapshot of accessibility hierarchy for app with pid 80119
+    t =    56.13s     Requesting snapshot of accessibility hierarchy for app with pid 80119
+    t =    56.34s     Added attachment named 'r27-final-native-hierarchy'
+    t =    56.54s     Added attachment named 'r27-final-native-screen'
+    t =    56.54s     Setting device orientation to Portrait
+    t =    56.54s         Device orientation changed to Portrait
+    t =    56.59s         Interface orientation changed to Portrait
+    t =    56.65s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    56.88s         Wait for com.apple.springboard to idle
+Test Case '-[Maktabah_iOSUITests.NativeStudySheetPadTests testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor]' passed (57.741 seconds).
+Test Suite 'NativeStudySheetPadTests' passed at 2026-11-21 22:13:02.976.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 107.920 (107.921) seconds
+Test Suite 'Maktabah-iOSUITests.xctest' failed at 2026-11-21 22:13:02.976.
+	 Executed 4 tests, with 1 failure (0 unexpected) in 336.760 (336.780) seconds
+Test Suite 'Selected tests' failed at 2026-11-21 22:13:02.977.
+	 Executed 4 tests, with 1 failure (0 unexpected) in 336.760 (336.781) seconds
+2026-11-21 22:13:36.094 xcodebuild[59810:164288] [MT] IDETestOperationsObserverDebug: 382.726 elapsed -- Testing started completed.
+2026-11-21 22:13:36.094 xcodebuild[59810:164288] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-21 22:13:36.094 xcodebuild[59810:164288] [MT] IDETestOperationsObserverDebug: 382.726 sec, +382.726 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-reader.xcresult
+
+Failing tests:
+	FaithfulReaderUIAcceptanceTests.testSystemReduceMotionKeepsOriginalPaletteUsable()
+
+** TEST EXECUTE FAILED **
+
+Testing started

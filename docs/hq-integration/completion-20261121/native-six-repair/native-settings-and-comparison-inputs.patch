@@ -1,0 +1,200 @@
+diff --git a/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift b/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+--- a/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
++++ b/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+@@ -5,9 +5,9 @@
+ /// Keep Simulator-wide state restoration independent of that method's stack.
+ @MainActor
+ private final class NativeUIRestoration {
+-    let restore: @MainActor () -> Void
+-    init(_ restore: @escaping @MainActor () -> Void) { self.restore = restore }
+-    func run() { restore() }
++    let restore: @MainActor () async -> Void
++    init(_ restore: @escaping @MainActor () async -> Void) { self.restore = restore }
++    func run() async { await restore() }
+ }
+ 
+ /// Find only this test's unique sidecar after XCTest's app installation. The
+@@ -1338,9 +1338,11 @@
+ 
+ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
+     private var recordsPaletteEscape = false
++    private var originalNavigationInitialTab: Int?
+     override var readerAdditionalLaunchArguments: [String] {
+         super.readerAdditionalLaunchArguments
+             + (recordsPaletteEscape ? ["-CommandPaletteEscapeTraceEnabled", "YES"] : [])
++            + (originalNavigationInitialTab.map { ["-lastSelectedTab", String($0)] } ?? [])
+     }
+ 
+     @MainActor
+@@ -1713,7 +1715,7 @@
+     }
+ 
+     @MainActor
+-    func testSystemReduceMotionKeepsOriginalPaletteUsable() {
++    func testSystemReduceMotionKeepsOriginalPaletteUsable() async {
+         let settings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
+         settings.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+         // Keep Settings' switch frame and screenPoint in the same portrait space.
+@@ -1745,9 +1747,8 @@
+         }
+         let toggle = openOriginalMotionSettings()
+ 
+-        // On this Settings layout the native switch accessibility element
+-        // includes the complete labelled row. Its automatic hittable point
+-        // was the row centre, not the visible trailing switch track.
++        // Settings exposes a labelled row and its actual nested UISwitch.
++        // Target that native control, with bounds witnessed in portrait.
+         @MainActor
+         func tapOriginalReduceMotionSwitch(_ toggle: XCUIElement, stage: String) {
+             let nativeWindow = settings.windows.firstMatch
+@@ -1755,24 +1756,32 @@
+                 XCTFail("The original Reduce Motion switch must be visible and hittable")
+                 return
+             }
+-            let controlFrame = toggle.frame
++            let track = toggle.switches.firstMatch
++            guard track.exists, track.isHittable else {
++                XCTFail("The original Reduce Motion row must expose its actual native switch")
++                return
++            }
++            let rowFrame = toggle.frame
++            let controlFrame = track.frame
+             let windowFrame = nativeWindow.frame
+-            let target = toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.5))
++            let target = track.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+             let point = target.screenPoint
+             let geometry = [
++                rowFrame.minX, rowFrame.minY, rowFrame.width, rowFrame.height,
+                 controlFrame.minX, controlFrame.minY, controlFrame.width, controlFrame.height,
+                 windowFrame.minX, windowFrame.minY, windowFrame.width, windowFrame.height,
+                 point.x, point.y
+             ]
+             let witness = XCTAttachment(string:
+-                "stage=\(stage)\ncontrolFrame=\(controlFrame)\nwindowFrame=\(windowFrame)\n"
++                "stage=\(stage)\nrowFrame=\(rowFrame)\ncontrolFrame=\(controlFrame)\nwindowFrame=\(windowFrame)\n"
+                 + "screenPoint=\(point)\nsystemReduceMotion=\(UIAccessibility.isReduceMotionEnabled)\n"
+                 + settings.debugDescription)
+             witness.name = "system-reduce-motion-\(stage)-original-switch"
+             witness.lifetime = .keepAlways
+             add(witness)
+             guard geometry.allSatisfy({ $0.isFinite }), !controlFrame.isEmpty,
+-                  !windowFrame.isEmpty, controlFrame.contains(point), windowFrame.contains(point) else {
++                  !windowFrame.isEmpty, !rowFrame.isEmpty, rowFrame.contains(point),
++                  controlFrame.contains(point), windowFrame.contains(point) else {
+                 XCTFail("The original switch tap must stay inside its finite visible native window")
+                 return
+             }
+@@ -1780,6 +1789,24 @@
+         }
+         // Verify the actual system preference, independent of the Settings
+         // switch's localized accessibility value on this OS version.
++        // Yield MainActor while the system notification is delivered. A
++        // synchronous XCTWaiter on this actor can block that delivery.
++        @MainActor
++        func waitForOriginalReduceMotion(_ enabled: Bool) async -> XCTWaiter.Result {
++            let changed = XCTestExpectation(description: "Original system Reduce Motion equals \(enabled)")
++            let observation = Task { @MainActor in
++                while !Task.isCancelled {
++                    if UIAccessibility.isReduceMotionEnabled == enabled {
++                        changed.fulfill()
++                        return
++                    }
++                    do { try await Task.sleep(for: .milliseconds(100)) }
++                    catch { return }
++                }
++            }
++            defer { observation.cancel() }
++            return await XCTWaiter.fulfillment(of: [changed], timeout: 15)
++        }
+         let wasEnabled = UIAccessibility.isReduceMotionEnabled
+         if !wasEnabled { tapOriginalReduceMotionSwitch(toggle, stage: "enable") }
+         let restoration = NativeUIRestoration {
+@@ -1792,18 +1819,20 @@
+             if UIAccessibility.isReduceMotionEnabled != wasEnabled {
+                 tapOriginalReduceMotionSwitch(restoredToggle, stage: "restore")
+             }
+-            let restored = XCTNSPredicateExpectation(
+-                predicate: NSPredicate { _, _ in
+-                    MainActor.assumeIsolated { UIAccessibility.isReduceMotionEnabled == wasEnabled }
+-                }, object: nil)
+-            XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 15), .completed)
++            let restored = await waitForOriginalReduceMotion(wasEnabled)
++            let restorationWitness = XCTAttachment(string:
++                "expectedSystemReduceMotion=\(wasEnabled)\n"
++                + "actualSystemReduceMotion=\(UIAccessibility.isReduceMotionEnabled)\n"
++                + settings.debugDescription)
++            restorationWitness.name = "system-reduce-motion-after-restoration-wait"
++            restorationWitness.lifetime = .keepAlways
++            add(restorationWitness)
++            XCTAssertEqual(restored, .completed)
+             settings.terminate()
+         }
+         addTeardownBlock { await restoration.run() }
+-        let reduced = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+-            MainActor.assumeIsolated { UIAccessibility.isReduceMotionEnabled }
+-        }, object: nil)
+-        XCTAssertEqual(XCTWaiter.wait(for: [reduced], timeout: 15), .completed,
++        let reduced = await waitForOriginalReduceMotion(true)
++        XCTAssertEqual(reduced, .completed,
+                        "The native accessibility setting must actually reach this Simulator")
+         XCUIDevice.shared.orientation = .landscapeLeft
+         launchReader()
+@@ -1891,23 +1920,41 @@
+ 
+     private func exerciseUnchangedOriginalScreen(_ scenario: String, orientation: UIDeviceOrientation) {
+         XCUIDevice.shared.orientation = orientation
+-        launchReader(enabled: false, scenario: scenario)
+-        capture("candidate-flags-off-\(scenario)-\(orientation.isLandscape ? "landscape" : "portrait")")
+-        let originalBars = app.navigationBars.allElementsBoundByIndex.map { ($0.identifier, $0.frame) }
+-            .sorted { $0.0 < $1.0 }
+-        XCTAssertFalse(originalBars.isEmpty, "Observe the actual original navigation geometry")
+-        launchReader(scenario: scenario)
+-        capture("candidate-\(scenario)-\(orientation.isLandscape ? "landscape" : "portrait")")
+-        let candidateBars = app.navigationBars.allElementsBoundByIndex.map { ($0.identifier, $0.frame) }
+-            .sorted { $0.0 < $1.0 }
+-        XCTAssertEqual(candidateBars.count, originalBars.count)
+-        for (original, candidate) in zip(originalBars, candidateBars) {
+-            XCTAssertEqual(candidate.0, original.0)
+-            XCTAssertEqual(candidate.1.minX, original.1.minX, accuracy: 1)
+-            XCTAssertEqual(candidate.1.minY, original.1.minY, accuracy: 1,
+-                           "A viewer-only document strip must not shift another global tab's native navigation")
+-            XCTAssertEqual(candidate.1.width, original.1.width, accuracy: 1)
+-            XCTAssertEqual(candidate.1.height, original.1.height, accuracy: 1)
++        let destinationTab: Int
++        switch scenario {
++        case "search": destinationTab = 3
++        case "annotationsList": destinationTab = 5
++        default:
++            XCTFail("The original navigation comparison requires a known global destination")
++            return
++        }
++        let previousInitialTab = originalNavigationInitialTab
++        defer { originalNavigationInitialTab = previousInitialTab }
++        // The first launch saves its selected global tab. Without an identical
++        // launch preference, the second launch exercises a different restoration
++        // path. Compare both original entry paths with the same inputs on each
++        // side; the actual native frames and every geometry assertion remain.
++        for initialTab in [0, destinationTab] {
++            originalNavigationInitialTab = initialTab
++            let suffix = initialTab == 0 ? "" : "-restored-tab-\(initialTab)"
++            launchReader(enabled: false, scenario: scenario)
++            capture("candidate-flags-off-\(scenario)-\(orientation.isLandscape ? "landscape" : "portrait")\(suffix)")
++            let originalBars = app.navigationBars.allElementsBoundByIndex.map { ($0.identifier, $0.frame) }
++                .sorted { $0.0 < $1.0 }
++            XCTAssertFalse(originalBars.isEmpty, "Observe the actual original navigation geometry")
++            launchReader(scenario: scenario)
++            capture("candidate-\(scenario)-\(orientation.isLandscape ? "landscape" : "portrait")\(suffix)")
++            let candidateBars = app.navigationBars.allElementsBoundByIndex.map { ($0.identifier, $0.frame) }
++                .sorted { $0.0 < $1.0 }
++            XCTAssertEqual(candidateBars.count, originalBars.count)
++            for (original, candidate) in zip(originalBars, candidateBars) {
++                XCTAssertEqual(candidate.0, original.0)
++                XCTAssertEqual(candidate.1.minX, original.1.minX, accuracy: 1)
++                XCTAssertEqual(candidate.1.minY, original.1.minY, accuracy: 1,
++                               "A viewer-only document strip must not shift another global tab's native navigation")
++                XCTAssertEqual(candidate.1.width, original.1.width, accuracy: 1)
++                XCTAssertEqual(candidate.1.height, original.1.height, accuracy: 1)
++            }
+         }
+     }
+ 

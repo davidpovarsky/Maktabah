@@ -1,0 +1,23 @@
+{
+  "status": "METADATA_AND_EVIDENCE_STAGED_FOR_REVIEW",
+  "source_commit": "ee27d8170dd94472856b29307a5478a58e7056eb",
+  "focused_count": 6,
+  "three_prior_pass_cases_reexecuted": false,
+  "landscape_affected_by_comparison_input_change": true,
+  "all_original_case_assertions_retained": true,
+  "strict_pass_skip_cleanup_and_binary_gates_unchanged": true,
+  "original_full_catalogs_unchanged": true,
+  "metadata_files": [
+    "Scripts/CI/completion-focused-native.py",
+    ".github/workflows/otzaria-completion-focused-native.yml",
+    "docs/hq-integration/completion-20261121/native-six-repair/ROOT_REVIEW.json",
+    "docs/hq-integration/completion-20261121/native-six-repair/NATIVE_PATCH_VALIDATION.json",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+    "Scripts/CI/runtime27.py"
+  ],
+  "scoped_evidence_zip_sha256": "7a3d86d5443d70b7382cd90813c9b5e503197c93179e585ecb39d23303fe7af4",
+  "scoped_evidence_members": 38,
+  "actual_Apple_or_Native_claim": false,
+  "checked_at": "2026-11-21T23:24:50.297001+00:00",
+  "diff_stat": ".github/workflows/otzaria-completion-focused-native.yml |  4 ++--\n Scripts/CI/completion-focused-native.py                 | 13 +++++--------\n Scripts/CI/hq-stage2-focused-apple.inputs.json          |  4 ++--\n Scripts/CI/runtime27.py                                 |  2 +-\n 4 files changed, 10 insertions(+), 13 deletions(-)"
+}

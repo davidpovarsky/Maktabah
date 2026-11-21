@@ -1,0 +1,45 @@
+{
+  "status": "PATCHES_APPLIED_NOT_COMMITTED",
+  "root": "C:\\Users\\DAVID\\Code\\Maktabah-native-six-20261121",
+  "branch": "codex/otzaria-native-six-repair-20261121",
+  "base": "34d06949e7fedbda6e0d256a769b3d0b8659c211",
+  "checked_at": "2026-11-21T23:19:56.832382+00:00",
+  "patches": [
+    {
+      "name": "native-keyboard-and-overflow.patch",
+      "sha256": "8cd5fd0e6daa71b6445abffe0f80ce7b6943ea382442678f4c7337df0fdd8d7c"
+    },
+    {
+      "name": "native-settings-and-comparison-inputs.patch",
+      "sha256": "11b64751b083922571fd16a2ccf2b371ea60f045367db0b367eb1ca098294e33"
+    }
+  ],
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "sha256_lf": "045704be9a6015674fbde56a245e21017783cf2201633b28f45816e7653e63d6",
+      "diff_numstat": "127\t39\tMaktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+    },
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "sha256_lf": "3f3b5380bc69ec54abc6413556c6920fb85376ae0bb404d82a1414cdbc9d0733",
+      "diff_numstat": "4\t44\tMaktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "sha256_lf": "a966b47ebcae3c65678e35e91678a9aed2e7e0faf83e0f89e586fd5c06f460de",
+      "diff_numstat": "5\t1\tSource/Features/Reader/iOS/iOSReaderWorkspaceView.swift"
+    },
+    {
+      "path": "Scripts/CI/runtime27-release.py",
+      "sha256_lf": "3f8e89f126fb532f87d360f0b8f346e6addd4a6130d0a96a49f0296b872f2918",
+      "diff_numstat": "10\t3\tScripts/CI/runtime27-release.py"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-release-stages.py",
+      "sha256_lf": "657e4ade25a547044dc0fb6b7df39bedcdc1145325f7846fd923a4509aea4c1d",
+      "diff_numstat": "14\t0\tScripts/CI/test-runtime27-release-stages.py"
+    }
+  ],
+  "status_porcelain": "M Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift\n M Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift\n M Scripts/CI/runtime27-release.py\n M Scripts/CI/test-runtime27-release-stages.py\n M Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift"
+}

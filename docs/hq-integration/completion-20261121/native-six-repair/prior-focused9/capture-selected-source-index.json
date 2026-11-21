@@ -1,0 +1,198 @@
+{
+  "artifact_id": 14728526550,
+  "advertised_bytes": 831656863,
+  "central_directory_offset": 830827907,
+  "central_directory_bytes": 828934,
+  "entries": [
+    {
+      "path": "visual-11-reader/2C7B9B06-B8E0-448E-AA00-EAC1BBD2C685.json",
+      "method": 8,
+      "flags": 8,
+      "crc32": "b1a9a7c5",
+      "compressed_bytes": 740,
+      "bytes": 3093,
+      "offset": 615484303,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-reader/3DF19593-D605-42A3-87BB-F21FD60ABB67.txt",
+      "method": 8,
+      "flags": 8,
+      "crc32": "b7fea04c",
+      "compressed_bytes": 3875,
+      "bytes": 29254,
+      "offset": 616792189,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-reader/40416205-E49F-4F8B-8093-304D363100F2.json",
+      "method": 8,
+      "flags": 8,
+      "crc32": "87a4c5c0",
+      "compressed_bytes": 648,
+      "bytes": 1195,
+      "offset": 616796167,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-reader/8476171B-2A14-4063-BC29-E3280AFBAE03.json",
+      "method": 8,
+      "flags": 8,
+      "crc32": "ee4b7cba",
+      "compressed_bytes": 211,
+      "bytes": 301,
+      "offset": 623627347,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-reader/9421F819-15FE-4153-B1A2-F5AFA6F56F1F.json",
+      "method": 8,
+      "flags": 8,
+      "crc32": "2e8aeb4c",
+      "compressed_bytes": 736,
+      "bytes": 3097,
+      "offset": 623737162,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-reader/9DE9C943-28D0-4CD8-A009-D27C0A98BE60.json",
+      "method": 8,
+      "flags": 8,
+      "crc32": "52d48ee9",
+      "compressed_bytes": 208,
+      "bytes": 298,
+      "offset": 671092747,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-reader/D4381BC0-455C-49C8-919C-B361465D40C1.txt",
+      "method": 8,
+      "flags": 8,
+      "crc32": "43c47549",
+      "compressed_bytes": 196,
+      "bytes": 244,
+      "offset": 673838448,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-reader/D6996669-214C-4464-86F6-23614EC293EB.txt",
+      "method": 8,
+      "flags": 8,
+      "crc32": "2f79db0d",
+      "compressed_bytes": 195,
+      "bytes": 244,
+      "offset": 673845015,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-reader/F8060BD0-0150-4A7C-9BF9-A9C6C4D78D7A.json",
+      "method": 8,
+      "flags": 8,
+      "crc32": "db6c1615",
+      "compressed_bytes": 653,
+      "bytes": 1215,
+      "offset": 675150162,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-reader/F8DF51BC-2031-4BC3-AFF9-5B472CF9B3F2.json",
+      "method": 8,
+      "flags": 8,
+      "crc32": "dc844859",
+      "compressed_bytes": 646,
+      "bytes": 1188,
+      "offset": 675150919,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-reader/manifest.json",
+      "method": 8,
+      "flags": 8,
+      "crc32": "2588f350",
+      "compressed_bytes": 5174,
+      "bytes": 37671,
+      "offset": 675151669,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-search/C6982B14-20EF-41A9-8645-4179F7B90D66.txt",
+      "method": 8,
+      "flags": 8,
+      "crc32": "bcf9daa8",
+      "compressed_bytes": 2974,
+      "bytes": 21111,
+      "offset": 675554609,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-search/DF58E357-8F2F-496A-B9C2-467E1BB00700.txt",
+      "method": 8,
+      "flags": 8,
+      "crc32": "8bf63eee",
+      "compressed_bytes": 2992,
+      "bytes": 21375,
+      "offset": 687595647,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-search/manifest.json",
+      "method": 8,
+      "flags": 8,
+      "crc32": "c5effddc",
+      "compressed_bytes": 983,
+      "bytes": 4726,
+      "offset": 687598742,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-window/57E09589-657D-44A6-9137-BD07F58DB620.txt",
+      "method": 8,
+      "flags": 8,
+      "crc32": "129416ff",
+      "compressed_bytes": 3790,
+      "bytes": 17987,
+      "offset": 748103035,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-window/AFA0F6DB-6B74-48CF-85D8-96D9CC940899.txt",
+      "method": 8,
+      "flags": 8,
+      "crc32": "7f8604db",
+      "compressed_bytes": 3990,
+      "bytes": 19221,
+      "offset": 774109980,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-window/CD20BA56-C53F-4C1F-A625-1413A5F84D16.txt",
+      "method": 8,
+      "flags": 8,
+      "crc32": "e0f28393",
+      "compressed_bytes": 4003,
+      "bytes": 19221,
+      "offset": 779707398,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-window/D67D3E3C-30EA-4C2D-BD4D-B2456A704215.txt",
+      "method": 8,
+      "flags": 8,
+      "crc32": "4ffa435f",
+      "compressed_bytes": 4305,
+      "bytes": 21707,
+      "offset": 827021293,
+      "external_attributes": 2175008800
+    },
+    {
+      "path": "visual-11-window/manifest.json",
+      "method": 8,
+      "flags": 8,
+      "crc32": "74e2be73",
+      "compressed_bytes": 5142,
+      "bytes": 41690,
+      "offset": 830822689,
+      "external_attributes": 2175008800
+    }
+  ]
+}
