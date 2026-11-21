@@ -1,0 +1,137 @@
+{
+  "F": "8bb0ab7e87895a85265132188ede021cef3a08ae",
+  "M": "409519a6972783990a276ade0dbdc4703bb36ae4",
+  "actual": "FAIL at capture settlement before real book tap",
+  "actual_failure_line": 595,
+  "actual_matched_attachments": [
+    {
+      "configurationName": "Test Scheme Action",
+      "deviceId": "06AAAE61-5E86-46BF-899A-C717581E921D",
+      "deviceName": "Faithful 11-inch 2a41f3b5",
+      "exportedFileName": "C7DD1D39-61CB-46E4-A507-B3638046B95D.txt",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "DIAGNOSTIC-candidate-system-reduce-motion-palette-UNSETTLED-ui-tree_0_AA65A5B7-BE1E-4609-BB85-155EF08A3B83.txt",
+      "timestamp": 1795208903.172
+    },
+    {
+      "configurationName": "Test Scheme Action",
+      "deviceId": "06AAAE61-5E86-46BF-899A-C717581E921D",
+      "deviceName": "Faithful 11-inch 2a41f3b5",
+      "exportedFileName": "C6880617-387A-45E6-93F4-20BC10352FF2.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "DIAGNOSTIC-candidate-system-reduce-motion-palette-UNSETTLED_0_6A780E29-8641-4388-9891-884F6C10BC95.png",
+      "timestamp": 1795208898.684
+    },
+    {
+      "configurationName": "Test Scheme Action",
+      "deviceId": "06AAAE61-5E86-46BF-899A-C717581E921D",
+      "deviceName": "Faithful 11-inch 2a41f3b5",
+      "exportedFileName": "40FDFEB7-1937-4F7D-A381-F5715E18CC2C.txt",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "DIAGNOSTIC-candidate-system-reduce-motion-palette-before-settlement-ui-tree_0_9E173967-E5A2-4A35-9188-F0E8255FD9A1.txt",
+      "timestamp": 1795208865.803
+    },
+    {
+      "configurationName": "Test Scheme Action",
+      "deviceId": "06AAAE61-5E86-46BF-899A-C717581E921D",
+      "deviceName": "Faithful 11-inch 2a41f3b5",
+      "exportedFileName": "EB6087E5-B329-4B2D-ACC3-0BB347B1408E.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "DIAGNOSTIC-candidate-system-reduce-motion-palette-before-settlement_0_AE50750C-EB17-4B88-AAF6-12800278735C.png",
+      "timestamp": 1795208862.448
+    }
+  ],
+  "attempt": 1,
+  "before_and_after_identical_frames": {
+    "book_button": [
+      133,
+      238.5,
+      624,
+      46
+    ],
+    "input": [
+      209.5,
+      161,
+      506,
+      25.5
+    ],
+    "palette": [
+      125,
+      146,
+      640,
+      513
+    ],
+    "window": [
+      0,
+      0,
+      1210,
+      834
+    ]
+  },
+  "captures_zip": {
+    "artifact": "FOCUSED_CAPTURES",
+    "bytes": 125174360,
+    "crc_verified_members": 1507,
+    "expanded_bytes": 127943250,
+    "extracted": "/workspace/scratch/8c31d602ec0a/reader-focused4-v2-44807261790-20261120/focused_captures",
+    "sha256": "c842d4706b51fa22efb1a72e74d9bde798b26be267aa6e74f333b97a6e62886e",
+    "status": "DOWNLOADED_CRC_VERIFIED_ONLY"
+  },
+  "case": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable()",
+  "evidence_zip": {
+    "artifact": "FOCUSED_EVIDENCE",
+    "bytes": 11255807,
+    "crc_verified_members": 150,
+    "expanded_bytes": 35916599,
+    "extracted": "/workspace/scratch/8c31d602ec0a/reader-focused4-v2-44807261790-20261120/focused_evidence",
+    "sha256": "d0c4805b46ae132b3007388ba590947f95624a68bf3c264d3be1381cc5be2cfe",
+    "status": "DOWNLOADED_CRC_VERIFIED_ONLY"
+  },
+  "inference": "The first evaluation reached palette.isHittable and short-circuited before the actual control hit tests. This is inferred from exact source evaluation order and XCTest operations, not a directly serialized Boolean.",
+  "limits": [
+    "No input/result hittability success is inferred from screenshots.",
+    "The modified test has not compiled or executed on Apple.",
+    "The original real result click and restored Reader checks remain required; no prior failure becomes PASS."
+  ],
+  "log_order": [
+    "134.84 window;134.87 orientation;134.88 palette exists;135.39 book exists;137.58 input exists",
+    "139.22 palette frame;139.99 input frame;141.62 button frame",
+    "143.21 Find reader-library-command-palette Other;144.86 next window evaluation",
+    "No input/result hittability reads follow the first container hittability check; second evaluation later incurs XCTest query retries"
+  ],
+  "raw_files": {
+    "before_ax": {
+      "bytes": 35839,
+      "path": "/workspace/scratch/8c31d602ec0a/reader-focused4-v2-44807261790-20261120/focused_captures/visual-11-reader/40FDFEB7-1937-4F7D-A381-F5715E18CC2C.txt",
+      "sha256": "b1402475aab5c0ce90c4c48ef50fcbf4bf4e4374dacd17593133ecb81b0e39c2"
+    },
+    "before_image": {
+      "bytes": 739296,
+      "path": "/workspace/scratch/8c31d602ec0a/reader-focused4-v2-44807261790-20261120/focused_captures/visual-11-reader/EB6087E5-B329-4B2D-ACC3-0BB347B1408E.png",
+      "sha256": "8f0364702d88c0b0a33782dacf0876eee7c236f2cd8b8f62b9b4fa21f490058a"
+    },
+    "log": {
+      "bytes": 53870,
+      "path": "/workspace/scratch/8c31d602ec0a/reader-focused4-v2-44807261790-20261120/focused_evidence/artifacts/test-simulator-11-reader.log",
+      "sha256": "65802e6de4cabdd4c4b8095f739724834c82df0b045573c021486f700511bf07"
+    },
+    "manifest": {
+      "bytes": 27531,
+      "path": "/workspace/scratch/8c31d602ec0a/reader-focused4-v2-44807261790-20261120/focused_captures/visual-11-reader/manifest.json",
+      "sha256": "663269fffbfadc94edaf21ab5cbbcf5c8733806d794cee84bdc9a51f9177b30b"
+    },
+    "unsettled_ax": {
+      "bytes": 35838,
+      "path": "/workspace/scratch/8c31d602ec0a/reader-focused4-v2-44807261790-20261120/focused_captures/visual-11-reader/C7DD1D39-61CB-46E4-A507-B3638046B95D.txt",
+      "sha256": "64e07e7e6128d4f3e96d1db91d8f0719335e86a421f9b547e64a8c81d466aa01"
+    },
+    "unsettled_image": {
+      "bytes": 739674,
+      "path": "/workspace/scratch/8c31d602ec0a/reader-focused4-v2-44807261790-20261120/focused_captures/visual-11-reader/C6880617-387A-45E6-93F4-20BC10352FF2.png",
+      "sha256": "cb9566a9d8ce7becb5b225e457fdf934b8001626d82a6e319030441de3a7476a"
+    }
+  },
+  "run": 44807261790,
+  "source_change": "Only container-level hittability removed; original actionable input/result hit tests and all geometry/ownership/20s checks remain.",
+  "visual_observation": "Before/UNSETTLED screenshot shows original input and Genesis result above the software keyboard. Palette remains an Other grouping element in AX."
+}

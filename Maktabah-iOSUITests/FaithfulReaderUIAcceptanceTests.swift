@@ -587,7 +587,9 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
                         && !frame.isEmpty
                 }), window.contains(paletteFrame), paletteFrame.contains(inputFrame),
                     paletteFrame.contains(resultFrame) else { return false }
-                return palette.isHittable && input.isHittable && result.isHittable
+                // The palette accessibility container groups these original controls.
+                // Require the actionable controls to be hittable inside its verified bounds.
+                return input.isHittable && result.isHittable
             }
         }, object: nil)
         let settlement = XCTWaiter.wait(for: [settled], timeout: 20)

@@ -1,0 +1,57 @@
+{
+  "status": "ROOT_EXACT60_DOC_PACKET_HASHES_AND_RAW_SIX_CASES_VERIFIED",
+  "packet_index_sha256": "6ac601d3d2240444cba34b5052d1052d6d7af8d72eafd929c62c1d646ff7bddb",
+  "sealed_files": 60,
+  "sealed_bytes": 18664872,
+  "actual_F": "bce0fee51c813fe2b830d87d61b1c7943f0344f4",
+  "actual_M": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+  "actual_run": 44796704535,
+  "attempt": 1,
+  "outcomes": "2PASS_4FAIL_0SKIP_0UNVERIFIED",
+  "configurations": [
+    {
+      "device": "ipad11",
+      "canonical_inputs": 1273,
+      "actual_full_build": "PASS",
+      "actual_leaves": [
+        [
+          "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+          "Failed"
+        ],
+        [
+          "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+          "Passed"
+        ],
+        [
+          "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+          "Failed"
+        ],
+        [
+          "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+          "Failed"
+        ]
+      ],
+      "after_product_proof": "original helper1004 inputs; clean pinned package checkouts; original privacy aggregation retained"
+    },
+    {
+      "device": "ipad13",
+      "canonical_inputs": 1273,
+      "actual_full_build": "PASS",
+      "actual_leaves": [
+        [
+          "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+          "Passed"
+        ],
+        [
+          "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+          "Failed"
+        ]
+      ],
+      "after_product_proof": "original helper1004 inputs; clean pinned package checkouts; original privacy aggregation retained"
+    }
+  ],
+  "new_tests_executed": 0,
+  "source_mutations": 0,
+  "capture_scope": "Two complete capture ZIPs remain original GitHub artifacts and local originals; packet includes matched raw selected captures, two full evidence ZIPs and aggregate ZIP. Previous complete CRC receipts retained.",
+  "secrets": "No DOWNLOAD_SECRET/transport receipts in sealed manifest."
+}

@@ -1,0 +1,54 @@
+[
+  {
+    "path": "/workspace/scratch/8c31d602ec0a/keyboard-global-44796704535-20261120/ipad13-evidence.zip",
+    "artifact_id": 14662875377,
+    "bytes": 8211368,
+    "sha256": "0ca7e80954b7dae6f31b243d645327c6a2aa00e5bc613df0f9423b001adc053f",
+    "crc_members": 142,
+    "api_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14662875377",
+    "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44796704535",
+    "publication_path": "docs/hq-integration/native6-44796704535-20261120/original-artifacts/ipad13-evidence.zip"
+  },
+  {
+    "path": "/workspace/scratch/8c31d602ec0a/keyboard-global-44796704535-20261120/ipad13-captures.zip",
+    "artifact_id": 14663085383,
+    "bytes": 93782761,
+    "sha256": "cbe77a98338e3c6285354a2626760c05167dfc35863f0fab633e9b524826cd6b",
+    "crc_members": 1337,
+    "api_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14663085383",
+    "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44796704535",
+    "publication_path": null,
+    "publication_limit": "Complete original capture ZIP retained locally and at its authentic GitHub artifact; this packet carries selected raw captures and complete capture manifests."
+  },
+  {
+    "path": "/workspace/scratch/8c31d602ec0a/keyboard-global-44796704535-20261120/ipad11-evidence.zip",
+    "artifact_id": 14662824248,
+    "bytes": 6532578,
+    "sha256": "57c2db7c85407763b44f230b1a25d88f914b75d03132bf17369b03661d73fbc2",
+    "crc_members": 147,
+    "api_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14662824248",
+    "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44796704535",
+    "publication_path": "docs/hq-integration/native6-44796704535-20261120/original-artifacts/ipad11-evidence.zip"
+  },
+  {
+    "path": "/workspace/scratch/8c31d602ec0a/keyboard-global-44796704535-20261120/ipad11-captures.zip",
+    "artifact_id": 14662809284,
+    "bytes": 221407962,
+    "sha256": "1adad83ccdcd467f9bcb63bdbc8bc15cdc518689917a27e50f57be282d6a64d2",
+    "crc_members": 1539,
+    "api_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14662809284",
+    "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44796704535",
+    "publication_path": null,
+    "publication_limit": "Complete original capture ZIP retained locally and at its authentic GitHub artifact; this packet carries selected raw captures and complete capture manifests."
+  },
+  {
+    "path": "/workspace/scratch/8c31d602ec0a/keyboard-global-44796704535-20261120/aggregate.zip",
+    "artifact_id": 14662898052,
+    "bytes": 255350,
+    "sha256": "5c0ed7b1c7ddd5e9ca473a69ca08bab4cc5b49fea58defe29c80388b85aa1cbb",
+    "crc_members": 1,
+    "api_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14662898052",
+    "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44796704535",
+    "publication_path": "docs/hq-integration/native6-44796704535-20261120/original-artifacts/aggregate.zip"
+  }
+]

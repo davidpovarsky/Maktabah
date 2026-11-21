@@ -1,0 +1,9 @@
+{
+  "artifact": "FOCUSED_EVIDENCE",
+  "bytes": 11255807,
+  "sha256": "d0c4805b46ae132b3007388ba590947f95624a68bf3c264d3be1381cc5be2cfe",
+  "crc_verified_members": 150,
+  "expanded_bytes": 35916599,
+  "extracted": "/workspace/scratch/8c31d602ec0a/reader-focused4-v2-44807261790-20261120/focused_evidence",
+  "status": "DOWNLOADED_CRC_VERIFIED_ONLY"
+}
