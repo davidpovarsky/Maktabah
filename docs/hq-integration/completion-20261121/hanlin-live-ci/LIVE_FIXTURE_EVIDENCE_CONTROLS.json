@@ -1,0 +1,39 @@
+{
+  "status": "DISPOSABLE_FIXTURE_EVIDENCE_CONTROLS_PASS",
+  "runner_sha256": "01167a04298ca3dec70fabed49318a7c0b78b54d683ebe843a5cfde87400a9be",
+  "controls": [
+    {
+      "control": "original failed fixture phase and error retained; absent strict evidence not read; five exact reports admitted",
+      "status": "PASS"
+    },
+    {
+      "control": "provider raw bytes in fixture reject the entire evidence publication",
+      "status": "PASS"
+    },
+    {
+      "control": "provider base64 bytes in fixture reject the entire evidence publication",
+      "status": "PASS"
+    },
+    {
+      "control": "GitHub token raw bytes in fixture reject the entire evidence publication",
+      "status": "PASS"
+    },
+    {
+      "control": "GitHub token base64 bytes in fixture reject the entire evidence publication",
+      "status": "PASS"
+    },
+    {
+      "control": "absent fixture token does not introduce an empty secret pattern",
+      "status": "PASS"
+    },
+    {
+      "control": "failed fixture does not bypass unchanged before and after source validation",
+      "status": "PASS"
+    }
+  ],
+  "controls_passed": 7,
+  "native_tests_executed": 0,
+  "provider_requests": 0,
+  "real_credentials_read": false,
+  "prior_18_controls_rerun": false
+}
