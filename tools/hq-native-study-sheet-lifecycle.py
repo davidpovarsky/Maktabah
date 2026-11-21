@@ -14,7 +14,7 @@ import re
 import subprocess
 import sys
 
-STATE = 'Source/Features/Reader/iOS/NativeStudySheetPresenter.swift'
+STATE = 'Source/ChavrusaText/Reader/NativeStudySheetPresenter.swift'
 WORKSPACE = 'Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift'
 READER = 'Source/Otzaria/Reading/ReaderViewModel+OtzariaLineSources.swift'
 FIXTURES = 'Tests/HQ/native-study-sheet'

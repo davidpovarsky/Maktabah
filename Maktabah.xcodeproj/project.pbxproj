@@ -1976,7 +1976,7 @@
 		F38FF42F2FA82034003E7B71 /* iOSRowiSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSRowiSidebarView.swift; sourceTree = "<group>"; };
 		F38FF4312FA82059003E7B71 /* iOSRowiHierarchicalCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSRowiHierarchicalCollectionViewController.swift; sourceTree = "<group>"; };
 		F38FF4352FA89EEE003E7B71 /* iOSReaderTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderTabView.swift; sourceTree = "<group>"; };
-		CF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeStudySheetPresenter.swift; sourceTree = "<group>"; };
+		CF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reader/NativeStudySheetPresenter.swift"; sourceTree = "<group>"; };
 		C40000000000000000000002 /* iOSReaderWorkspaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderWorkspaceView.swift; sourceTree = "<group>"; };
 		F3902E8B2F9EE1CA004BA5D1 /* AnnotationTagVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationTagVC.swift; sourceTree = "<group>"; };
 		F3902EAE2F9EE1CB004BA5D1 /* TagMergePopoverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMergePopoverVC.swift; sourceTree = "<group>"; };
@@ -2281,6 +2281,7 @@
 		CFEE00000000000000000001 /* ChavrusaText */ = {
 			isa = PBXGroup;
 			children = (
+				CF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */,
 				5C779026CC573B19C11E67E9 /* TorahAnnotationEnvelope.swift */,
 				15AA5DEFA4B1E2823A7CCD9A /* AnnotationExchangeLedger.swift */,
 				CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */,
@@ -3788,7 +3789,6 @@
 			isa = PBXGroup;
 			children = (
 				B40000000000000000000002 /* iOSBookInfoAnchoredCard.swift */,
-				CF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */,
 				C40000000000000000000002 /* iOSReaderWorkspaceView.swift */,
 				FE8000090000000000000009 /* Toolbar */,
 				F36382682FA7BFB40006636C /* iOSAnnotationEditorSheet.swift */,
