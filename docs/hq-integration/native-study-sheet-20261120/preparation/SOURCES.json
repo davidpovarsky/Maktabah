@@ -1,0 +1,57 @@
+{
+  "inputs": {
+    "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift": "c73691fef3baaca3ca78942ab9f10b6511b9763a8f0e0360a9c1ccabd0ece759",
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift": "78216a596cef457919efa556eec39fbb2cea83b35751cc2c32f7d51d2575aba8",
+    "Source/Otzaria/Reading/ReaderViewModel+OtzariaLineSources.swift": "29e508a3beb1a3ad2beca914ba7198391ecb4ef0fb3fca1c6fe69768d4f97585",
+    "Tests/HQ/native-study-sheet/NativeStudySheetOwnerBoundary.swift": "79fd91cc19d7c67f671394a518abd5fb9170cde98567e835741962888f554727",
+    "Tests/HQ/native-study-sheet/NativeStudySheetOwnerAcceptance.swift": "f5f85b809058a41f83206c38065e4e42af735b4b8a58967c392b4c4aecdb92bc",
+    "Tests/HQ/native-study-sheet/NativeStudySheetLifecycleAcceptance.swift": "d21ec1114fbaf098639a59b1c30fa9c7dd726041205a10835a8cc17f1f6f351a",
+    "before_workspace": "49afc852783ff955ac25d4a1fbcf0c5be9e6be8cf325cd56fc2aba03a7424134"
+  },
+  "extracted": {
+    "baseline": {
+      "ORIGINAL_BINDING_BODY": {
+        "sha256": "f23073d2fdd0c2c458ac30f43da59f4d9853157803053bf1b60eed76140424f7",
+        "bytes": 481
+      },
+      "ORIGINAL_UPDATE_BODY": {
+        "sha256": "2e89b2df8e3334bcc24cb68658d60a8d75862b071b2c6c632cd9b391dc3ecadc",
+        "bytes": 1663
+      },
+      "ORIGINAL_TOGGLE_BODY": {
+        "sha256": "6fb932b90013177c8563d66755628fe62b8154e4bd921cd722fdef09b29fb306",
+        "bytes": 190
+      },
+      "ORIGINAL_DISMISS_BODY": {
+        "sha256": "1b2f71cc897c40f190f0a275f4895df3ed5bfab4d35e56e7126d32a4d3501bba",
+        "bytes": 851
+      },
+      "ORIGINAL_CLOSE_BODY": {
+        "sha256": "9d54db9a35e5369dc9587bdc0cc9d554845277b20d55e90f11b53f87e58f5fb7",
+        "bytes": 386
+      }
+    },
+    "candidate": {
+      "ORIGINAL_BINDING_BODY": {
+        "sha256": "2bd93e96b7244b05302bf721c7a537662e0a64b46d6499c0a722c844f9aed8a7",
+        "bytes": 793
+      },
+      "ORIGINAL_UPDATE_BODY": {
+        "sha256": "2e89b2df8e3334bcc24cb68658d60a8d75862b071b2c6c632cd9b391dc3ecadc",
+        "bytes": 1663
+      },
+      "ORIGINAL_TOGGLE_BODY": {
+        "sha256": "6fb932b90013177c8563d66755628fe62b8154e4bd921cd722fdef09b29fb306",
+        "bytes": 190
+      },
+      "ORIGINAL_DISMISS_BODY": {
+        "sha256": "1b2f71cc897c40f190f0a275f4895df3ed5bfab4d35e56e7126d32a4d3501bba",
+        "bytes": 851
+      },
+      "ORIGINAL_CLOSE_BODY": {
+        "sha256": "9d54db9a35e5369dc9587bdc0cc9d554845277b20d55e90f11b53f87e58f5fb7",
+        "bytes": 386
+      }
+    }
+  }
+}

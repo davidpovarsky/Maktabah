@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "base_commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+  "replacements": [
+    {
+      "path": "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+      "label": "weak exact UIKit owner fields",
+      "expected": 1,
+      "old": "    private weak var marker: UIViewController?\n",
+      "new": "    private struct SheetOwner: Equatable {\n        let ownerID: UUID\n        let presentationID: UUID\n        let sourceToken: String\n\n        init?(_ context: Context) {\n            guard let presentationID = context.presentationID else { return nil }\n            ownerID = context.ownerID\n            self.presentationID = presentationID\n            sourceToken = context.sourceToken\n        }\n    }\n\n    private weak var marker: UIViewController?\n    // UIKit owns this controller. Observation must not extend its lifetime.\n    private weak var observedSheet: UISheetPresentationController?\n    private var observedSheetOwner: SheetOwner?\n"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+      "label": "actual callback clears only its weak owner",
+      "expected": 1,
+      "old": "    func didDismissStudy(_ id: UUID) { record(\"study_onDismiss\", presentationID: id) }\n",
+      "new": "    func didDismissStudy(_ id: UUID) {\n        // A stale callback must not clear a newer presentation's observation.\n        if observedSheetOwner?.presentationID == id {\n            observedSheet = nil\n            observedSheetOwner = nil\n        }\n        record(\"study_onDismiss\", presentationID: id)\n    }\n"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+      "label": "reciprocal discovery plus exact live weak fallback",
+      "expected": 1,
+      "old": "    private var actualSheet: UISheetPresentationController? {\n        var node = marker\n        for _ in 0..<16 {\n            guard let current = node else { return nil }\n            if current.presentingViewController != nil,\n               let sheet = current.presentationController as? UISheetPresentationController {\n                return sheet\n            }\n            node = current.parent\n        }\n        return nil\n    }\n",
+      "new": "    private func actualSheet(for context: Context) -> UISheetPresentationController? {\n        let owner = SheetOwner(context)\n        if observedSheetOwner != owner {\n            observedSheet = nil\n            observedSheetOwner = nil\n        }\n        guard let owner else { return nil }\n\n        if let observedContext, SheetOwner(observedContext) == owner,\n           let markerView = marker?.viewIfLoaded, let window = markerView.window {\n            var node = marker\n            for _ in 0..<16 {\n                guard let current = node else { break }\n                // presentingViewController may be inherited from an ancestor.\n                // Prove the reciprocal presentation before accessing a property\n                // that could create a controller for an unpresented child.\n                if let presenter = current.presentingViewController,\n                   presenter.presentedViewController === current,\n                   let view = current.viewIfLoaded, view.window === window,\n                   markerView.isDescendant(of: view),\n                   let sheet = current.presentationController as? UISheetPresentationController,\n                   sheet.presentedViewController === current {\n                    observedSheet = sheet\n                    observedSheetOwner = owner\n                    return sheet\n                }\n                node = current.parent\n            }\n        }\n\n        // SwiftUI may dismantle the marker before the real UIKit dismissal\n        // completes. Continue observing only that exact weak UIKit owner.\n        guard observedSheetOwner == owner, let sheet = observedSheet else { return nil }\n        let presented = sheet.presentedViewController\n        guard presented.viewIfLoaded?.window != nil,\n              presented.presentingViewController?.presentedViewController === presented\n                || presented.isBeingDismissed else { return nil }\n        return sheet\n    }\n"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+      "label": "context-bound actual sheet guards",
+      "expected": 2,
+      "old": "let sheet = actualSheet,",
+      "new": "let sheet = actualSheet(for: context),"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+      "label": "context-bound missing real owner",
+      "expected": 1,
+      "old": "|| actualSheet == nil",
+      "new": "|| actualSheet(for: context) == nil"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+      "label": "context-bound observation",
+      "expected": 1,
+      "old": "        let sheet = actualSheet\n",
+      "new": "        let sheet = actualSheet(for: context)\n"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+      "label": "bounded observed UIKit owner and detent metadata",
+      "expected": 1,
+      "old": "        row[\"systemDetentIdentifier\"] = sheet?.selectedDetentIdentifier?.rawValue\n",
+      "new": "        row[\"systemDetentIdentifier\"] = sheet?.selectedDetentIdentifier?.rawValue\n        if let sheet {\n            let presented = sheet.presentedViewController\n            row[\"systemReciprocalPresentation\"] =\n                presented.presentingViewController?.presentedViewController === presented\n            row[\"systemPresentationControllerType\"] = String(String(reflecting: type(of: sheet)).prefix(160))\n            row[\"systemPresentedControllerType\"] = String(String(reflecting: type(of: presented)).prefix(160))\n            row[\"systemDetentIdentifiers\"] = sheet.detents.prefix(8).map {\n                String($0.identifier.rawValue.prefix(160))\n            }\n            row[\"systemDetentIdentifiersTruncated\"] = sheet.detents.count > 8\n                || sheet.detents.contains { $0.identifier.rawValue.count > 160 }\n        }\n"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "label": "stable native-only sheet carrier",
+      "expected": 1,
+      "old": "    private func nativeStudyPanel(_ presentation: NativeStudySheetPresentationState.Presentation) -> some View {\n        let notePresentationID = nativeNoteEditorPresentationID\n        let noteHost = NativeStudySheetPresentationState.NoteHost.study(presentation.id)\n        return inspectorPanel(\n            showsCloseButton: true,\n            chrome: .embeddedSheet,\n            nativeSheet: .init(\n                isPeek: nativeStudyDetent == NativeStudySheetPresentation.peek,\n                title: readerHeaderTitle,\n                subtitle: readerHeaderSubtitle,\n                excerpt: nativeStudyExcerpt,\n                expand: { nativeStudyDetent = .medium }\n            )\n        )\n        .environment(\\.layoutDirection, layoutDirection)\n        #if DEBUG\n        .background {\n            if NativeStudySheetAcceptance.namespace != nil {\n                NativeStudySheetObservation { controller in\n                    nativeStudyAcceptance.observe(controller, context: nativeStudyAcceptanceContext)\n                }\n                .allowsHitTesting(false).accessibilityHidden(true)\n            }\n        }\n        #endif\n        .modifier(NativeStudySheetPresentation(\n            detent: $nativeStudyDetent,\n            noteIsPresented: nativeStudyPresentation.note?.host == noteHost\n        ))\n        .sheet(isPresented: annotationEditorBinding(for: noteHost), onDismiss: {\n            noteEditorDidDismiss(presentationID: notePresentationID)\n        }) {\n            annotationEditor\n        }\n    }\n\n",
+      "new": "    private func nativeStudyPanel(_ presentation: NativeStudySheetPresentationState.Presentation) -> some View {\n        let notePresentationID = nativeNoteEditorPresentationID\n        let noteHost = NativeStudySheetPresentationState.NoteHost.study(presentation.id)\n        let originalPanel = inspectorPanel(\n            showsCloseButton: true,\n            chrome: .embeddedSheet,\n            nativeSheet: .init(\n                isPeek: nativeStudyDetent == NativeStudySheetPresentation.peek,\n                title: readerHeaderTitle,\n                subtitle: readerHeaderSubtitle,\n                excerpt: nativeStudyExcerpt,\n                expand: { nativeStudyDetent = .medium }\n            )\n        )\n        // Keep the real child presenter and observation mounted while the\n        // original Inspector content obeys its existing close visibility.\n        return ZStack {\n            Color.clear.allowsHitTesting(false).accessibilityHidden(true)\n            originalPanel\n        }\n        .frame(maxWidth: .infinity, maxHeight: .infinity)\n        .environment(\\.layoutDirection, layoutDirection)\n        #if DEBUG\n        .background {\n            if NativeStudySheetAcceptance.namespace != nil {\n                NativeStudySheetObservation { controller in\n                    nativeStudyAcceptance.observe(controller, context: nativeStudyAcceptanceContext)\n                }\n                .allowsHitTesting(false).accessibilityHidden(true)\n            }\n        }\n        #endif\n        .modifier(NativeStudySheetPresentation(\n            detent: $nativeStudyDetent,\n            noteIsPresented: nativeStudyPresentation.note?.host == noteHost\n        ))\n        .sheet(isPresented: annotationEditorBinding(for: noteHost), onDismiss: {\n            noteEditorDidDismiss(presentationID: notePresentationID)\n        }) {\n            annotationEditor\n        }\n    }\n\n"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift",
+      "label": "real native complete unsaved edit preparation",
+      "expected": 1,
+      "old": "        nativeTap(app.textViews[\"annotation-note-text\"]); app.textViews[\"annotation-note-text\"].typeText(\" unsaved\")\n",
+      "new": "        nativeTap(app.textViews[\"annotation-note-text\"])\n        // Use the existing native Select All input; a center tap does not promise an end caret.\n        app.textViews[\"annotation-note-text\"].typeKey(\"a\", modifierFlags: .command)\n        app.textViews[\"annotation-note-text\"].typeText(text + \" unsaved\")\n        XCTAssertEqual(app.textViews[\"annotation-note-text\"].value as? String, text + \" unsaved\")\n"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift",
+      "label": "real native complete saved edit preparation",
+      "expected": 1,
+      "old": "        nativeTap(app.textViews[\"annotation-note-text\"]); app.textViews[\"annotation-note-text\"].typeText(\" saved\")\n",
+      "new": "        nativeTap(app.textViews[\"annotation-note-text\"])\n        // Use the existing native Select All input; a center tap does not promise an end caret.\n        app.textViews[\"annotation-note-text\"].typeKey(\"a\", modifierFlags: .command)\n        app.textViews[\"annotation-note-text\"].typeText(text + \" saved\")\n        XCTAssertEqual(app.textViews[\"annotation-note-text\"].value as? String, text + \" saved\")\n"
+    }
+  ]
+}

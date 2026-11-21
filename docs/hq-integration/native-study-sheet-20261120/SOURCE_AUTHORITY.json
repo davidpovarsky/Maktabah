@@ -1,0 +1,174 @@
+{
+  "base": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+  "tree": "471d1ba11037617f2cadf14826bf5013d508b8ee",
+  "canonical_inputs": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "git_blob": "35a80632725ecd4af8ae5e783f6ae85479c24777",
+      "sha256": "e40e558225e318f614582b5af8466077d81991eecfc254ebcfd149f3cc2a95a0",
+      "bytes": 196355
+    },
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "git_blob": "1d5eac5b984c6d371fa3f6e7e5779cc50269b358",
+      "sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed",
+      "bytes": 32077
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "git_blob": "489fd95080cd47c8b2138f70bc9ab72e5e4879f0",
+      "sha256": "3df45d11b27503e2295517f32789d1ae2ae41f6dc9189c0a1fb0a616881415e9",
+      "bytes": 596038
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "git_blob": "2a09ec0e71d3da6855fb57f25a09996816df608c",
+      "sha256": "e8442e70806c4a7109302ace87e041a499f28f0bf5b70a223cca5a09d5da661c",
+      "bytes": 4432
+    },
+    {
+      "path": "Scripts/CI/runtime27-release-manifest.json",
+      "git_blob": "ef60f21746534660cfc947b349b4b1fa860fe3ee",
+      "sha256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f",
+      "bytes": 56247
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ChavrusaReaderWorkspaceLayout.swift",
+      "git_blob": "45b6e3f51ead13412a42962bb61db8616fef3d7b",
+      "sha256": "f48ad764997824c5eff15334489055ef9d4026dbc4ed40e4be63cd9987c3f156",
+      "bytes": 1890
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "git_blob": "b524195aaa657a93a95ace3e78bee5a30c956f6e",
+      "sha256": "c984947478e9a29464c5ec9fff7d87b1cbb6f67a923fa2662c79c62ed033de89",
+      "bytes": 10227
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "git_blob": "1fdd5b9002fe07b19f4c7b475215cc3d7a0c12a8",
+      "sha256": "4d0b19560fef3968d1dc1799df1dd97a3aaac432668be4a97f8d750c80364505",
+      "bytes": 32198
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "git_blob": "a115a5adbebf8e52b023e16880257a024f1b78e7",
+      "sha256": "89de17fcc574058e8af14a7286fedee766892415074386b38dbfbc35ba321c59",
+      "bytes": 17781
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "git_blob": "da38520df403bf4331a1811529586e82d67b528e",
+      "sha256": "f163d68594c4a45c3a3f4f02f0aace306feab5cdc5b828f5e25656d7a328050f",
+      "bytes": 45049
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift",
+      "git_blob": "c4ddedf9eb8b0f6a84dc89c5b344f22ab475b4ee",
+      "sha256": "bdabaaf466a3fc446c20c5be019b85c8c1a54a85bd4abed820ddd5c14c492c97",
+      "bytes": 6821
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift",
+      "git_blob": "1b1d4b0520eae69000ed5af4fec24b552f33ca04",
+      "sha256": "0a25d130908cba0574e4ff26bd608674a1a91598055d1aee94a92e6583f2c724",
+      "bytes": 3770
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "git_blob": "7f57e3883b42fb6aa76a7e76ae1220a2134f3f87",
+      "sha256": "edbd1574b07037445dc573a74e3ceda183a9d94beba5b804b639352ba829496b",
+      "bytes": 12945
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderTabView.swift",
+      "git_blob": "21968285d3de6fc1fa1dd1614084c3e1a099436b",
+      "sha256": "07b97c18906f58c02e9759f65e903f307438de3ebcf3dfd7818524486fe99ff6",
+      "bytes": 2284
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "git_blob": "0324b71b4b1e2863fa8ec02e8cd3d36155cb4ced",
+      "sha256": "86c1bc72309cbb96a1bdb6fd7142ac0f807da07edd8fa6aee6d0be1a39696b50",
+      "bytes": 32103
+    },
+    {
+      "path": "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift",
+      "git_blob": "71b8ab4ff1da5d37b2f41c4360f08603dd3cd26c",
+      "sha256": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e",
+      "bytes": 45857
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "git_blob": "6c523085be22903b3899d6e9bd202ca2204dbe09",
+      "sha256": "091c0e6cb09b83c393485377ec8837829c255d23ed5e4a39d2abff555ea23362",
+      "bytes": 3301
+    },
+    {
+      "path": "Source/Otzaria/Reading/ReaderViewModel+OtzariaLineSources.swift",
+      "git_blob": "750fe0c6ee8be61b547c283675fa121c3827940a",
+      "sha256": "29e508a3beb1a3ad2beca914ba7198391ecb4ef0fb3fca1c6fe69768d4f97585",
+      "bytes": 6150
+    },
+    {
+      "path": "docs/hq-integration/runtime27/R27_CASES.json",
+      "git_blob": "a9e3a9e0895e111df1613c3146bd83ab3b79a713",
+      "sha256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3",
+      "bytes": 200381
+    },
+    {
+      "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+      "git_blob": "f0f7296544e040d69dbf98917777925439468d80",
+      "sha256": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+      "bytes": 9285
+    }
+  ],
+  "kit": {
+    "commit": "19d1b35397af4f10ae70cfb3f444c9de87383b53",
+    "tree": "bc7b255f787287bd3c1b45f53ef68e0d8616d010",
+    "files": [
+      {
+        "path": "upstream/TorahInspectorKit/Sources/TorahInspectorUI/TorahInspectorView.swift",
+        "git_blob": "b44a43b9afa9e4f5ab6d0b8b4036ba36662cb486",
+        "sha256": "56b1344586acf41c0b260bb285bb6786227986276d08d305b5872e21b3a69c2d",
+        "bytes": 13005
+      },
+      {
+        "path": "upstream/TorahInspectorKit/Sources/TorahInspectorUI/TorahInspectorPresentationOptions.swift",
+        "git_blob": "b97b34393a8540b6b59d41230fc1991ca2849508",
+        "sha256": "93108c769bda01fa19a03b9ad840edaa3f986fcbf1edfd7668d2c6d1ea49fb79",
+        "bytes": 1002
+      },
+      {
+        "path": "upstream/TorahInspectorKit/Sources/TorahInspectorUI/TorahInspectorPresentation.swift",
+        "git_blob": "111338ea1a81889c1c2c471dccff09e3f3bb377a",
+        "sha256": "0528cfe4a74d622ed3b2b6e2faeeb94d93ad236a632ac47dc49c31abe09fb09a",
+        "bytes": 1972
+      },
+      {
+        "path": "upstream/TorahInspectorKit/Sources/TorahInspectorUI/TorahSegmentDetailView.swift",
+        "git_blob": "f3b1b4fc55a6dd56cbb8044b6f776efce0423c28",
+        "sha256": "4613d6e83237fcff481cc8324c2eec437319d4699ad40dc33b33bc7f6ac0a7b9",
+        "bytes": 34519
+      },
+      {
+        "path": "upstream/TorahInspectorKit/Sources/TorahInspectorCore/Models.swift",
+        "git_blob": "9615f9eec24613bcdcbb8779f418152f89ed247d",
+        "sha256": "fb11eb2f32c5a71334204abc05034b62b82409fcc32e543affb90e38d46a506e",
+        "bytes": 19884
+      },
+      {
+        "path": "upstream/TorahInspectorKit/Sources/TorahInspectorUI/TorahInspectorRoute.swift",
+        "git_blob": "97079ca15b0eccf0c9d2a460ec7d8d6bbd96fc1c",
+        "sha256": "0dd619aec2c99454c66549e9684eba84c242fe94e108885f89569070819fcd09",
+        "bytes": 1454
+      },
+      {
+        "path": "upstream/TorahInspectorKit/Sources/TorahInspectorUI/TorahStrings.swift",
+        "git_blob": "b2aec2b6b291a20f9598bbaa1fbcab49fbca7e9a",
+        "sha256": "f441d8b23eabae3bebc08fd654480ba3316edd800106417d4bedf57857957e73",
+        "bytes": 2219
+      }
+    ]
+  }
+}

@@ -1,0 +1,313 @@
+{
+  "schema": 1,
+  "scope": "In-memory JavaScript source/inverse inspection only. Not Swift typecheck, Foundation execution, UIKit or Native qualification.",
+  "base_commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+  "base_tree": "324aad3ea57a4d4807c4d01998a1fd89a10e179e",
+  "changed_sources": [
+    {
+      "path": "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+      "before": {
+        "bytes": 19687,
+        "sha256": "c73691fef3baaca3ca78942ab9f10b6511b9763a8f0e0360a9c1ccabd0ece759",
+        "git_blob": "d33ce1267578c3660c5e9672e8510b46d73fd9e0"
+      },
+      "after": {
+        "bytes": 22841,
+        "sha256": "d6af9838d18aa21ddc069c85e815b171f71d5d55bd31b2ec59190f5285402895",
+        "git_blob": "014e14471892a2f822ae349b7b9bc6f83321928a"
+      },
+      "whole_inverse": true
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "before": {
+        "bytes": 41890,
+        "sha256": "78216a596cef457919efa556eec39fbb2cea83b35751cc2c32f7d51d2575aba8",
+        "git_blob": "28f48811b12618719daadfc43a56fe4b3557e414"
+      },
+      "after": {
+        "bytes": 42245,
+        "sha256": "51d09cb4664748d2211126d06b49ff1b6de3459407a5056496a59b42f3dbde68",
+        "git_blob": "8c0d862e202c6a2f7ecff178b5d161aa6fcfc98e"
+      },
+      "whole_inverse": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift",
+      "before": {
+        "bytes": 30723,
+        "sha256": "1660fba155d9e8d49d3b2a813c628f802dfc26c9040a18d13ae5064742464826",
+        "git_blob": "7bb0d01beee292c067478db8b4d0380ed405749f"
+      },
+      "after": {
+        "bytes": 31307,
+        "sha256": "252eaf744a820a5a37b479fa6746ab0e3cfd1d182247a274f72acd06c945e76a",
+        "git_blob": "40be553b5ec0ebcf917b6c876e02e12bfbd845bd"
+      },
+      "whole_inverse": true
+    }
+  ],
+  "unchanged_host": {
+    "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+    "bytes": 4639,
+    "sha256": "de46e8e9c35135d9b5a4a6ede1be4e4971f96f7f0f0bcb44c9f6ae40e1a77a34",
+    "git_blob": "f0a61c57c4d22efc88baed96e9a7fa36b752e74a"
+  },
+  "unchanged_foundation_sources": [
+    {
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetOwnerBoundary.swift",
+      "bytes": 2705,
+      "sha256": "79fd91cc19d7c67f671394a518abd5fb9170cde98567e835741962888f554727",
+      "git_blob": "562a079989959d863a4fd1b150967a83952de1c0",
+      "candidate_changed": false
+    },
+    {
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetOwnerAcceptance.swift",
+      "bytes": 3824,
+      "sha256": "f5f85b809058a41f83206c38065e4e42af735b4b8a58967c392b4c4aecdb92bc",
+      "git_blob": "e7a90e105dd590f25d9ebd0ca5139d3c3300a3b1",
+      "candidate_changed": false
+    },
+    {
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetLifecycleAcceptance.swift",
+      "bytes": 6945,
+      "sha256": "d21ec1114fbaf098639a59b1c30fa9c7dd726041205a10835a8cc17f1f6f351a",
+      "git_blob": "47fa809e8a533869f2fe6ef24737aac9f253a53a",
+      "candidate_changed": false
+    },
+    {
+      "path": "tools/hq-native-study-sheet-lifecycle.py",
+      "bytes": 7621,
+      "sha256": "02604301e7c5028d5c437c4222fa860f59a01b308acd04c4267ff5550b3ed1d7",
+      "git_blob": "6c21f5736dda42da711d177a5b342a03d0c5acf3",
+      "candidate_changed": false
+    }
+  ],
+  "original_case_ids": [
+    "testSystemStudySheetThreeDetentsPhysicallyRightRTL",
+    "testSystemStudySheetThreeDetentsPhysicallyRightLTR",
+    "testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor",
+    "testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+    "testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
+    "testSystemStudySheetOriginalTOCWaitsForActualSheetDismissal",
+    "testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
+    "testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+    "testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
+    "testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
+    "testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+    "testOriginalPhoneInspectorFallbackRetainsReader"
+  ],
+  "original_assertion_line_count": 104,
+  "candidate_assertion_line_count": 106,
+  "original_budget_lines": [
+    "                              timeout: TimeInterval = 15) throws -> StudySheetObservation {",
+    "        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: timeout), .completed,",
+    "        XCTAssertTrue(element.waitForExistence(timeout: 15))",
+    "        XCTAssertTrue(app.otherElements[\"torah-inspector-panel\"].waitForExistence(timeout: 15))",
+    "        XCTAssertTrue(app.textViews[\"annotation-note-text\"].waitForExistence(timeout: 15))",
+    "        XCTAssertEqual(XCTWaiter.wait(for: [resized], timeout: 30), .completed,",
+    "        XCTAssertTrue(controls.waitForExistence(timeout: 10)); XCTAssertTrue(controls.isHittable); controls.tap()",
+    "        XCTAssertEqual(XCTWaiter.wait(for: [menu], timeout: 10), .completed)",
+    "        XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 30), .completed)",
+    "        XCTAssertTrue(row.firstMatch.waitForExistence(timeout: 15)); XCTAssertEqual(row.count, 1)",
+    "        XCTAssertTrue(editedRow.firstMatch.waitForExistence(timeout: 15)); XCTAssertEqual(editedRow.count, 1)",
+    "        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate(format: \"count == 0\"), object: editedRow)], timeout: 15), .completed)",
+    "        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate(format: \"count == 0\"), object: row)], timeout: 15), .completed)",
+    "        XCTAssertTrue(app.descendants(matching: .any)[\"toc-column\"].waitForExistence(timeout: 15))",
+    "        XCTAssertTrue(app.descendants(matching: .any)[\"toc-column\"].waitForExistence(timeout: 15))",
+    "        XCTAssertTrue(app.otherElements[\"torah-inspector-panel\"].waitForExistence(timeout: 15))",
+    "        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate(format: \"exists == false\"), object: app.otherElements[\"torah-inspector-panel\"])], timeout: 15), .completed)"
+  ],
+  "checks": [
+    {
+      "id": "three_whole_source_inverses",
+      "passed": true
+    },
+    {
+      "id": "generated_patch_applies_exactly",
+      "passed": true
+    },
+    {
+      "id": "exact_12_native_case_ids",
+      "passed": true
+    },
+    {
+      "id": "original_native_budget_lines_exact",
+      "passed": true
+    },
+    {
+      "id": "every_original_assertion_line_retained",
+      "passed": true
+    },
+    {
+      "id": "only_two_additive_exact_input_assertions",
+      "passed": true
+    },
+    {
+      "id": "original_foundation_state_whole_exact",
+      "passed": true
+    },
+    {
+      "id": "presenter_production_prefix_exact",
+      "passed": true
+    },
+    {
+      "id": "weak_ui_owner_not_strong_property",
+      "passed": true
+    },
+    {
+      "id": "identity_includes_owner_presentation_source",
+      "passed": true
+    },
+    {
+      "id": "reciprocal_check_precedes_controller_property",
+      "passed": true
+    },
+    {
+      "id": "actual_pending_dismissal_guard_unchanged",
+      "passed": true
+    },
+    {
+      "id": "raw_selected_detent_receipt_unchanged",
+      "passed": true
+    },
+    {
+      "id": "real_native_input_only",
+      "passed": true
+    },
+    {
+      "id": "native_only_carrier_with_no_hit_testing",
+      "passed": true
+    },
+    {
+      "id": "original_host_whole_git_blob",
+      "passed": true
+    }
+  ],
+  "checks_passed": 16,
+  "checks_failed": 0,
+  "swift_typecheck": "NOT_RUN",
+  "native": "NOT_RUN",
+  "root_selected_119_replay": "PENDING_NOT_CONFIRMED",
+  "generation_attempts": [
+    {
+      "stage": "in_memory_diff_helper",
+      "result": "NOT_COMPLETED",
+      "error": "TypeError: a.split is not a function; original source store entries are metadata objects, not strings",
+      "source_mutation": false,
+      "swift_run": false,
+      "native_run": false
+    },
+    {
+      "stage": "in_memory_diff_helper",
+      "result": "EXACT_REPLAY_VERIFIED",
+      "scope": "Metadata container corrected; source bytes unchanged"
+    }
+  ],
+  "actual_tree_source_bindings": [
+    {
+      "path": "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+      "bytes": 19687,
+      "sha256": "c73691fef3baaca3ca78942ab9f10b6511b9763a8f0e0360a9c1ccabd0ece759",
+      "git_blob": "d33ce1267578c3660c5e9672e8510b46d73fd9e0",
+      "actual_tree_blob": "d33ce1267578c3660c5e9672e8510b46d73fd9e0",
+      "actual_mode": "100644",
+      "match": true
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "bytes": 41890,
+      "sha256": "78216a596cef457919efa556eec39fbb2cea83b35751cc2c32f7d51d2575aba8",
+      "git_blob": "28f48811b12618719daadfc43a56fe4b3557e414",
+      "actual_tree_blob": "28f48811b12618719daadfc43a56fe4b3557e414",
+      "actual_mode": "100644",
+      "match": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift",
+      "bytes": 30723,
+      "sha256": "1660fba155d9e8d49d3b2a813c628f802dfc26c9040a18d13ae5064742464826",
+      "git_blob": "7bb0d01beee292c067478db8b4d0380ed405749f",
+      "actual_tree_blob": "7bb0d01beee292c067478db8b4d0380ed405749f",
+      "actual_mode": "100644",
+      "match": true
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "bytes": 4639,
+      "sha256": "de46e8e9c35135d9b5a4a6ede1be4e4971f96f7f0f0bcb44c9f6ae40e1a77a34",
+      "git_blob": "f0a61c57c4d22efc88baed96e9a7fa36b752e74a",
+      "actual_tree_blob": "f0a61c57c4d22efc88baed96e9a7fa36b752e74a",
+      "actual_mode": "100644",
+      "match": true
+    },
+    {
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetOwnerBoundary.swift",
+      "bytes": 2705,
+      "sha256": "79fd91cc19d7c67f671394a518abd5fb9170cde98567e835741962888f554727",
+      "git_blob": "562a079989959d863a4fd1b150967a83952de1c0",
+      "candidate_changed": false,
+      "actual_tree_blob": "562a079989959d863a4fd1b150967a83952de1c0",
+      "actual_mode": "100644",
+      "match": true
+    },
+    {
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetOwnerAcceptance.swift",
+      "bytes": 3824,
+      "sha256": "f5f85b809058a41f83206c38065e4e42af735b4b8a58967c392b4c4aecdb92bc",
+      "git_blob": "e7a90e105dd590f25d9ebd0ca5139d3c3300a3b1",
+      "candidate_changed": false,
+      "actual_tree_blob": "e7a90e105dd590f25d9ebd0ca5139d3c3300a3b1",
+      "actual_mode": "100644",
+      "match": true
+    },
+    {
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetLifecycleAcceptance.swift",
+      "bytes": 6945,
+      "sha256": "d21ec1114fbaf098639a59b1c30fa9c7dd726041205a10835a8cc17f1f6f351a",
+      "git_blob": "47fa809e8a533869f2fe6ef24737aac9f253a53a",
+      "candidate_changed": false,
+      "actual_tree_blob": "47fa809e8a533869f2fe6ef24737aac9f253a53a",
+      "actual_mode": "100644",
+      "match": true
+    },
+    {
+      "path": "tools/hq-native-study-sheet-lifecycle.py",
+      "bytes": 7621,
+      "sha256": "02604301e7c5028d5c437c4222fa860f59a01b308acd04c4267ff5550b3ed1d7",
+      "git_blob": "6c21f5736dda42da711d177a5b342a03d0c5acf3",
+      "candidate_changed": false,
+      "actual_tree_blob": "6c21f5736dda42da711d177a5b342a03d0c5acf3",
+      "actual_mode": "100644",
+      "match": true
+    }
+  ],
+  "actual_tree_entries": 8413,
+  "actual_tree_leaves": 7014,
+  "package_resolved": {
+    "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+    "bytes": 4432,
+    "sha256": "e8442e70806c4a7109302ace87e041a499f28f0bf5b70a223cca5a09d5da661c",
+    "git_blob": "2a09ec0e71d3da6855fb57f25a09996816df608c",
+    "candidate_changed": false,
+    "kit_pins": [
+      {
+        "identity": "torahinspectorkit",
+        "kind": "remoteSourceControl",
+        "location": "https://github.com/davidpovarsky/TorahInspectorKit.git",
+        "state": {
+          "revision": "19d1b35397af4f10ae70cfb3f444c9de87383b53"
+        }
+      }
+    ]
+  },
+  "peer_review": {
+    "reviewer": "/root/github_native_audit",
+    "scope": "Read-only source review of all three actual Git blobs 014e14471892a2f822ae349b7b9bc6f83321928a / 8c0d862e202c6a2f7ecff178b5d161aa6fcfc98e / 40be553b5ec0ebcf917b6c876e02e12bfbd845bd",
+    "finding": "No concrete source blocker found; actual UIKit identity/detent/child runtime NOT_RUN."
+  },
+  "root_review": {
+    "scope": "Entire 11,004-byte diff efa41d683ed1a9777bc4dd6d4ba113a793e4b90d read by Root",
+    "decision": "Source-level clearance; isolated unreferenced source commit on exact M353888 authorized. No integration ref, branch or CI activation."
+  }
+}

@@ -1,0 +1,347 @@
+import Observation
+import SwiftUI
+import TorahInspectorCore
+
+@MainActor @Observable
+public final class TorahInspectorModel {
+    public private(set) var selection: TorahInspectorSelection
+    public let repository: TorahInspectorRepository
+
+    public init(repository: TorahInspectorRepository, selection: TorahInspectorSelection) {
+        self.selection = selection
+        self.repository = repository
+    }
+}
+
+public struct TorahInspectorView: View {
+    private let selection: TorahInspectorSelection
+    private let repository: TorahInspectorRepository
+    private let actions: TorahInspectorHostActions
+    private let entryMode: TorahInspectorEntryMode
+    private let chrome: TorahInspectorChrome
+    private let presentationOptions: TorahInspectorPresentationOptions
+    private let externalSelectedTool: Binding<TorahStudyTool>?
+    @State private var localSelectedTool: TorahStudyTool = .commentaries
+
+    public init(
+        repository: TorahInspectorRepository,
+        selection: TorahInspectorSelection,
+        entryMode: TorahInspectorEntryMode = .sourceReader,
+        chrome: TorahInspectorChrome = .floatingPanel,
+        selectedTool: Binding<TorahStudyTool>? = nil,
+        presentationOptions: TorahInspectorPresentationOptions = .init(),
+        actions: TorahInspectorHostActions = TorahInspectorHostActions()
+    ) {
+        self.repository = repository
+        self.selection = selection
+        self.entryMode = entryMode
+        self.chrome = chrome
+        self.externalSelectedTool = selectedTool
+        self.presentationOptions = presentationOptions
+        self.actions = actions
+    }
+
+    public init(
+        repository: TorahInspectorRepository,
+        selection: TorahInspectorSelection,
+        entryMode: TorahInspectorEntryMode = .sourceReader,
+        chrome: TorahInspectorChrome = .floatingPanel,
+        selectedTool: Binding<TorahStudyTool>? = nil,
+        presentationOptions: TorahInspectorPresentationOptions = .init(),
+        onClose: (() -> Void)? = nil,
+        onInsertSegment: ((TorahSourceTransfer) -> Void)? = nil,
+        onOpenInNewTab: ((TorahInspectorSelection) -> Void)? = nil,
+        onAddNote: ((TorahInspectorSelection, @escaping TorahInspectorHostActions.NotesDidChange) -> Void)? = nil,
+        onOpenNote: ((TorahInspectorNote, TorahInspectorSelection, @escaping TorahInspectorHostActions.NotesDidChange) -> Void)? = nil,
+        onDeleteNote: ((TorahInspectorNote, TorahInspectorSelection, @escaping TorahInspectorHostActions.NotesDidChange) -> Void)? = nil,
+        showsCloseButton: Bool? = nil
+    ) {
+        self.init(
+            repository: repository,
+            selection: selection,
+            entryMode: entryMode,
+            chrome: chrome,
+            selectedTool: selectedTool,
+            presentationOptions: presentationOptions,
+            actions: TorahInspectorHostActions(
+                onClose: onClose,
+                onInsertSegment: onInsertSegment,
+                onOpenInNewTab: onOpenInNewTab,
+                onAddNote: onAddNote,
+                onOpenNote: onOpenNote,
+                onDeleteNote: onDeleteNote,
+                showsCloseButton: showsCloseButton
+            )
+        )
+    }
+
+    public var body: some View {
+        Group {
+            switch entryMode {
+            case .sourceReader:
+                _InspectorSourceReaderEntry(
+                    selection: selection,
+                    repository: repository,
+                    selectedTool: selectedToolBinding,
+                    chrome: chrome,
+                    actions: actions
+                )
+            case .relationships, .segmentRelationships:
+                _InspectorRelationshipsEntry(
+                    selection: selection,
+                    repository: repository,
+                    selectedTool: selectedToolBinding,
+                    chrome: chrome,
+                    actions: actions
+                )
+            }
+        }
+        .environment(\.torahInspectorPresentationOptions, presentationOptions)
+    }
+
+    private var selectedToolBinding: Binding<TorahStudyTool> {
+        Binding(
+            get: { externalSelectedTool?.wrappedValue ?? localSelectedTool },
+            set: { newValue in
+                if let externalSelectedTool {
+                    externalSelectedTool.wrappedValue = newValue
+                } else {
+                    localSelectedTool = newValue
+                }
+            }
+        )
+    }
+}
+
+// MARK: - Internal entry-point views
+
+/// Shared navigationDestination builder (extracted to avoid duplication).
+private struct _InspectorNavigationDestinations: ViewModifier {
+    let selection: TorahInspectorSelection
+    let repository: TorahInspectorRepository
+    @Binding var selectedTool: TorahStudyTool
+    let chrome: TorahInspectorChrome
+    let actions: TorahInspectorHostActions
+
+    func body(content: Content) -> some View {
+        content.navigationDestination(for: TorahInspectorRoute.self) { route in
+            switch route {
+            case .segment(let segment):
+                TorahSegmentDetailView(
+                    focus: TorahInspectorFocus(
+                        segment: segment,
+                        providerID: selection.providerID,
+                        sectionRef: selection.canonicalRef
+                    ),
+                    repository: repository,
+                    selectedTool: $selectedTool,
+                    chrome: chrome,
+                    actions: actions
+                )
+            case .source(let nextSelection):
+                _InspectorLinkedSourceEntry(
+                    selection: nextSelection,
+                    repository: repository,
+                    selectedTool: $selectedTool,
+                    chrome: chrome,
+                    actions: actions
+                )
+            }
+        }
+    }
+}
+
+/// A relationship tap is a drill-down inside the inspector. Loading the
+/// linked document is still necessary, but presenting its full source reader
+/// makes a compact inspector look and behave like a replacement reader.
+private struct _InspectorLinkedSourceEntry: View {
+    let selection: TorahInspectorSelection
+    let repository: TorahInspectorRepository
+    @Binding var selectedTool: TorahStudyTool
+    let chrome: TorahInspectorChrome
+    let actions: TorahInspectorHostActions
+
+    @State private var segment: TorahTextSegment?
+    @State private var errorMessage: String?
+
+    var body: some View {
+        Group {
+            if let segment {
+                TorahSegmentDetailView(
+                    focus: TorahInspectorFocus(
+                        segment: segment,
+                        providerID: selection.providerID,
+                        sectionRef: selection.canonicalRef
+                    ),
+                    repository: repository,
+                    selectedTool: $selectedTool,
+                    chrome: chrome,
+                    actions: actions
+                )
+            } else if let errorMessage {
+                ContentUnavailableView {
+                    Label(TorahStrings.text("No text available"), systemImage: "exclamationmark.triangle")
+                } description: {
+                    Text(errorMessage)
+                } actions: {
+                    Button(TorahStrings.retry) { Task { await loadSegment() } }
+                }
+            } else {
+                ProgressView()
+            }
+        }
+        .task(id: selection.id) { await loadSegment() }
+    }
+
+    private func loadSegment() async {
+        segment = nil
+        errorMessage = nil
+        do {
+            let document = try await repository.document(
+                for: selection.canonicalRef,
+                providerID: selection.providerID
+            )
+            guard let resolved = TorahInspectorSegmentResolver.segment(
+                in: document,
+                preferredReference: selection.preferredSegmentRef ?? selection.canonicalRef
+            ) else {
+                throw TorahError.noText
+            }
+            segment = resolved
+        } catch is CancellationError {
+        } catch {
+            errorMessage = TorahStrings.message(for: error)
+        }
+    }
+}
+
+/// Entry at the scrollable source-reader (default behaviour).
+private struct _InspectorSourceReaderEntry: View {
+    let selection: TorahInspectorSelection
+    let repository: TorahInspectorRepository
+    @Binding var selectedTool: TorahStudyTool
+    let chrome: TorahInspectorChrome
+    let actions: TorahInspectorHostActions
+    @State private var path: [TorahInspectorRoute] = []
+
+    var body: some View {
+        NavigationStack(path: $path) {
+            TorahSourceReaderView(selection: selection, repository: repository, actions: actions)
+                .modifier(_InspectorNavigationDestinations(
+                    selection: selection,
+                    repository: repository,
+                    selectedTool: $selectedTool,
+                    chrome: chrome,
+                    actions: actions
+                ))
+        }
+    }
+}
+
+/// Entry directly at the segment relationships view.
+/// The root of the NavigationStack is the segment detail (relationships),
+/// so the user sees relationships immediately without a source reader flash.
+/// Tapping a related source pushes within the same stack.
+private struct _InspectorRelationshipsEntry: View {
+    let selection: TorahInspectorSelection
+    let repository: TorahInspectorRepository
+    @Binding var selectedTool: TorahStudyTool
+    let chrome: TorahInspectorChrome
+    let actions: TorahInspectorHostActions
+    @State private var path: [TorahInspectorRoute] = []
+    @State private var focus: TorahInspectorFocus?
+    @State private var errorMessage: String?
+
+    init(
+        selection: TorahInspectorSelection,
+        repository: TorahInspectorRepository,
+        selectedTool: Binding<TorahStudyTool>,
+        chrome: TorahInspectorChrome,
+        actions: TorahInspectorHostActions
+    ) {
+        self.selection = selection
+        self.repository = repository
+        self._selectedTool = selectedTool
+        self.chrome = chrome
+        self.actions = actions
+    }
+
+    var body: some View {
+        NavigationStack(path: $path) {
+            Group {
+                if let focus {
+                    TorahSegmentDetailView(
+                        focus: focus,
+                        repository: repository,
+                        selectedTool: $selectedTool,
+                        chrome: chrome,
+                        actions: actions
+                    )
+                } else if let errorMessage {
+                    ContentUnavailableView {
+                        Label(TorahStrings.text("No text available"), systemImage: "exclamationmark.triangle")
+                    } description: {
+                        Text(errorMessage)
+                    } actions: {
+                        Button(TorahStrings.retry) { Task { await loadSegment() } }
+                    }
+                } else {
+                    ProgressView()
+                }
+            }
+            .modifier(_InspectorNavigationDestinations(
+                selection: selection,
+                repository: repository,
+                selectedTool: $selectedTool,
+                chrome: chrome,
+                actions: actions
+            ))
+            .task(id: selection.id) { await loadSegment() }
+        }
+    }
+
+    private func loadSegment() async {
+        focus = nil
+        errorMessage = nil
+        do {
+            let document = try await repository.document(
+                for: selection.canonicalRef,
+                providerID: selection.providerID
+            )
+            switch selection.scope {
+            case .segment:
+                guard let preferred = selection.preferredSegmentRef,
+                      let resolved = TorahInspectorSegmentResolver.segment(
+                        in: document,
+                        preferredReference: preferred
+                      ) else {
+                    throw TorahError.noText
+                }
+                focus = TorahInspectorFocus(
+                    segment: resolved,
+                    providerID: selection.providerID,
+                    sectionRef: selection.canonicalRef
+                )
+            case .section:
+                focus = TorahInspectorFocus(
+                    selection: selection,
+                    displayRef: document.sectionRef,
+                    hebrewDisplayRef: document.hebrewSectionRef,
+                    text: document.segments.map(\.text).joined(separator: "\n")
+                )
+            }
+        } catch is CancellationError {
+        } catch {
+            errorMessage = TorahStrings.message(for: error)
+        }
+    }
+}
+
+enum TorahInspectorSegmentResolver {
+    static func segment(
+        in document: TorahTextDocument,
+        preferredReference: String
+    ) -> TorahTextSegment? {
+        document.segments.first { $0.canonicalRef == preferredReference }
+    }
+}

@@ -93,6 +93,8 @@ struct iOSReaderWorkspaceView: View {
     @State private var dragStartWidth: CGFloat?
     @State private var showPanelSheet = false
     @State private var compactPanelDetent: PresentationDetent = .medium
+    @State private var nativeStudyPresentation = NativeStudySheetPresentationState()
+    @State private var nativeStudyDetent: PresentationDetent = .medium
     @State private var runsCompactTOCTransitionSmoke = false
     @State private var runsFloatingFullSmoke = false
     @State private var pendingCompactContentsOpen = false
@@ -105,6 +107,9 @@ struct iOSReaderWorkspaceView: View {
     @State private var nativeNoteEditorPresentationID = UUID()
     @State private var noteErrorMessage: String?
     @State private var pendingNotesDidChange: TorahInspectorHostActions.NotesDidChange?
+    #if DEBUG
+    @State private var nativeStudyAcceptance = NativeStudySheetAcceptance()
+    #endif
 
     init(
         book: BooksData,
@@ -163,6 +168,12 @@ struct iOSReaderWorkspaceView: View {
         viewModel.readerInspectorVisible
     }
 
+    private var usesNativeStudySheet: Bool {
+        guard ChavrusaTextReaderUI.isEnabled else { return false }
+        if #available(iOS 27.0, *) { return MaktabahApp.isIpad }
+        return false
+    }
+
     private var readerHeaderTitle: String {
         let title = book.book.trimmingCharacters(in: .whitespacesAndNewlines)
         if !title.isEmpty {
@@ -210,6 +221,7 @@ struct iOSReaderWorkspaceView: View {
 
     var body: some View {
         let dismissingNoteEditorPresentationID = nativeNoteEditorPresentationID
+        let dismissingStudyPresentationID = nativeStudyPresentation.presentation?.id
         Group {
             if !useWideLayout, compactUsesContentsFallback {
                 tocColumn
@@ -226,6 +238,18 @@ struct iOSReaderWorkspaceView: View {
         }
         .onDisappear { nativeRoutingSession?.detachNoteEditor(id: nativeNoteEditorOwnerID) }
         #if DEBUG
+        .task {
+            guard usesNativeStudySheet, NativeStudySheetAcceptance.namespace != nil else { return }
+            let deadline = ProcessInfo.processInfo.systemUptime + 300
+            while !Task.isCancelled, ProcessInfo.processInfo.systemUptime < deadline {
+                if navigationManager.activeReaderViewModel === viewModel {
+                    nativeStudyAcceptance.poll(context: nativeStudyAcceptanceContext,
+                        close: { viewModel.closeReaderInspector() }, contents: openContents,
+                        toggle: toggleStudyPanel)
+                }
+                try? await Task.sleep(for: .milliseconds(40))
+            }
+        }
         .task {
             await MaktabahNativeRoutingComposition.shared.runNoteDraftAcceptanceProbe(
                 manager: navigationManager, reader: viewModel, currentDraft: { editingAnnotation })
@@ -247,7 +271,8 @@ struct iOSReaderWorkspaceView: View {
                 runsFloatingFullSmoke = false
                 try? await Task.sleep(for: .seconds(1))
                 withAnimation(.spring(response: 0.42, dampingFraction: 0.90, blendDuration: 0.08)) {
-                    floatingPanelState = .full
+                    if usesNativeStudySheet { nativeStudyDetent = .large }
+                    else { floatingPanelState = .full }
                 }
             }
             let arguments = ProcessInfo.processInfo.arguments
@@ -282,16 +307,24 @@ struct iOSReaderWorkspaceView: View {
             updatePanelPresentation()
         }
         .onChange(of: floatingPanelState) { _, newState in
-            if shouldPresentPanelInContent, newState == .hidden, showPanel {
+            if !usesNativeStudySheet, shouldPresentPanelInContent, newState == .hidden, showPanel {
                 viewModel.closeReaderInspector()
             }
         }
         .sheet(isPresented: $showPanelSheet, onDismiss: compactPanelDidDismiss) {
             compactStudyPanel
         }
+        .sheet(item: nativeStudyBinding, onDismiss: {
+            if let dismissingStudyPresentationID {
+                nativeStudyDidDismiss(id: dismissingStudyPresentationID)
+            }
+        }) { presentation in
+            if #available(iOS 27.0, *) {
+                nativeStudyPanel(presentation)
+            }
+        }
         .sheet(isPresented: annotationEditorBinding, onDismiss: {
-            nativeRoutingSession?.noteEditorDidDismiss(id: nativeNoteEditorOwnerID,
-                presentationID: dismissingNoteEditorPresentationID)
+            noteEditorDidDismiss(presentationID: dismissingNoteEditorPresentationID)
         }) {
             annotationEditor
         }
@@ -324,7 +357,7 @@ struct iOSReaderWorkspaceView: View {
     @ViewBuilder
     private var workspaceDetail: some View {
         GeometryReader { geometry in
-            if sidebarCoordinator != nil {
+            if usesNativeStudySheet || sidebarCoordinator != nil {
                 // One original HStack/reader position across page and width
                 // changes; the original Inspector floats over that surface.
                 wideWorkspace(totalWidth: geometry.size.width)
@@ -430,7 +463,7 @@ struct iOSReaderWorkspaceView: View {
                 .geometryGroup()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-            if showPanel && !(sidebarCoordinator != nil && shouldPresentPanelInContent) {
+            if showPanel && !usesNativeStudySheet && !(sidebarCoordinator != nil && shouldPresentPanelInContent) {
                 panelResizeHandle(allowedMaximum: allowedMaximum)
                     .transition(.opacity)
                 inspectorPanel(showsCloseButton: true, chrome: .floatingPanel)
@@ -443,7 +476,7 @@ struct iOSReaderWorkspaceView: View {
         }
         .animation(.snappy(duration: 0.42, extraBounce: 0), value: showPanel)
         .modifier(SharedSidebarFloatingPanel(
-            isEnabled: sidebarCoordinator != nil,
+            isEnabled: !usesNativeStudySheet && sidebarCoordinator != nil,
             isFloating: shouldPresentPanelInContent,
             state: $floatingPanelState,
             panel: inspectorPanel(showsCloseButton: true, chrome: .floatingPanel)
@@ -487,7 +520,8 @@ struct iOSReaderWorkspaceView: View {
 
     private func inspectorPanel(
         showsCloseButton: Bool,
-        chrome: TorahInspectorChrome
+        chrome: TorahInspectorChrome,
+        nativeSheet: NativeStudySheetContent? = nil
     ) -> some View {
         OtzariaReaderSourcesInspectorHost(
             viewModel: viewModel,
@@ -507,7 +541,8 @@ struct iOSReaderWorkspaceView: View {
             },
             onDeleteNote: { note, _, completion in
                 deleteNote(note, completion: completion)
-            }
+            },
+            nativeSheet: nativeSheet
         )
         .id("\(BackendCoordinator.shared.generation):\(viewModel.currentReaderTextMode.rawValue):\(inspectorContentID)")
     }
@@ -518,6 +553,138 @@ struct iOSReaderWorkspaceView: View {
         .presentationDragIndicator(.visible)
         .presentationBackgroundInteraction(.enabled(upThrough: .medium))
     }
+
+    private var nativeStudyBinding: Binding<NativeStudySheetPresentationState.Presentation?> {
+        let id = nativeStudyPresentation.presentation?.id
+        return Binding(
+            get: { usesNativeStudySheet ? nativeStudyPresentation.presentedItem : nil },
+            set: { value in
+                guard value == nil, let id,
+                      nativeStudyPresentation.presentation?.id == id,
+                      nativeStudyPresentation.isPresented else { return }
+                nativeStudyPresentation.requestDismissal()
+                // Commit the same original close intent before layout callbacks
+                // can interpret the old model value as a new open request.
+                if showPanel { viewModel.closeReaderInspector() }
+            }
+        )
+    }
+
+    @available(iOS 27.0, *)
+    private func nativeStudyPanel(_ presentation: NativeStudySheetPresentationState.Presentation) -> some View {
+        let notePresentationID = nativeNoteEditorPresentationID
+        let noteHost = NativeStudySheetPresentationState.NoteHost.study(presentation.id)
+        let originalPanel = inspectorPanel(
+            showsCloseButton: true,
+            chrome: .embeddedSheet,
+            nativeSheet: .init(
+                isPeek: nativeStudyDetent == NativeStudySheetPresentation.peek,
+                title: readerHeaderTitle,
+                subtitle: readerHeaderSubtitle,
+                excerpt: nativeStudyExcerpt,
+                expand: { nativeStudyDetent = .medium }
+            )
+        )
+        // Keep the real child presenter and observation mounted while the
+        // original Inspector content obeys its existing close visibility.
+        return ZStack {
+            Color.clear.allowsHitTesting(false).accessibilityHidden(true)
+            originalPanel
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .environment(\.layoutDirection, layoutDirection)
+        #if DEBUG
+        .background {
+            if NativeStudySheetAcceptance.namespace != nil {
+                NativeStudySheetObservation { controller in
+                    nativeStudyAcceptance.observe(controller, context: nativeStudyAcceptanceContext)
+                }
+                .allowsHitTesting(false).accessibilityHidden(true)
+            }
+        }
+        #endif
+        .modifier(NativeStudySheetPresentation(
+            detent: $nativeStudyDetent,
+            noteIsPresented: nativeStudyPresentation.note?.host == noteHost
+        ))
+        .sheet(isPresented: annotationEditorBinding(for: noteHost), onDismiss: {
+            noteEditorDidDismiss(presentationID: notePresentationID)
+        }) {
+            annotationEditor
+        }
+    }
+
+    private var nativeStudyExcerpt: String {
+        let text = viewModel.contentText
+        let selected = viewModel.selectedSegmentRange
+            ?? viewModel.otzariaSelectedLineAnchor?.range
+            ?? viewModel.readerState.selectedRange
+        if let selected, let range = Range(selected, in: text) {
+            return String(text[range].prefix(220))
+        }
+        // Section-scoped Inspector: the currently loaded unit is its source.
+        // This display projection never changes the original Reader selection.
+        return String(text.prefix(220))
+    }
+
+    private func nativeStudyDidDismiss(id: UUID) {
+        guard nativeStudyPresentation.presentation?.id == id else { return }
+        // A completed parent dismissal also proves any child presentation ended.
+        // The exact child UUID makes a later child callback harmless.
+        if let note = nativeStudyPresentation.note, note.host == .study(id) {
+            setEditingAnnotation(nil)
+            pendingNotesDidChange = nil
+            noteEditorDidDismiss(presentationID: note.id, fromParentDismissal: true)
+        }
+        guard let result = nativeStudyPresentation.studyDidDismiss(id: id) else { return }
+        #if DEBUG
+        nativeStudyAcceptance.didDismissStudy(id)
+        #endif
+        if !result.studyStillRequested, showPanel { viewModel.closeReaderInspector() }
+        if result.showContents { presentContents() }
+    }
+
+    private func noteEditorDidDismiss(presentationID: UUID, fromParentDismissal: Bool = false) {
+        if usesNativeStudySheet {
+            guard nativeNoteEditorPresentationID == presentationID,
+                  editingAnnotation == nil else { return }
+            guard nativeStudyPresentation.noteDidDismiss(id: presentationID) else { return }
+        }
+        nativeRoutingSession?.noteEditorDidDismiss(id: nativeNoteEditorOwnerID,
+            presentationID: presentationID)
+        #if DEBUG
+        nativeStudyAcceptance.didDismissNote(presentationID, fromParent: fromParentDismissal)
+        #endif
+    }
+
+    #if DEBUG
+    private var nativeStudyAcceptanceContext: NativeStudySheetAcceptance.Context {
+        let sourceToken = NativeStudySheetAcceptance.token([
+            String(describing: ObjectIdentifier(viewModel)),
+            navigationManager.activeTabId?.uuidString ?? "",
+            viewModel.currentDestination?.sectionLocator.persistenceKey ?? "",
+            viewModel.backendSection?.locator.persistenceKey ?? "",
+            String(viewModel.currentContentId), viewModel.currentReaderTextMode.rawValue,
+            String(BackendCoordinator.shared.generation)
+        ])
+        let selectionToken = NativeStudySheetAcceptance.token([
+            viewModel.selectedSegmentLocator?.persistenceKey ?? "",
+            viewModel.selectedSegmentRange.map(NSStringFromRange) ?? "",
+            viewModel.readerState.selectedRange.map(NSStringFromRange) ?? ""
+        ])
+        return .init(ownerID: nativeNoteEditorOwnerID,
+            presentationID: nativeStudyPresentation.presentation?.id,
+            noteID: nativeStudyPresentation.note?.id,
+            contentID: inspectorContentID,
+            sessionIdentity: String(describing: ObjectIdentifier(inspectorSession)),
+            readerIdentity: String(describing: ObjectIdentifier(viewModel)), sourceToken: sourceToken,
+            selectionToken: selectionToken,
+            selectedTool: selectedTool.rawValue,
+            detent: nativeStudyDetent == .height(155) ? "peek"
+                : (nativeStudyDetent == .large ? "large" : "medium"),
+            studyVisible: showPanel)
+    }
+    #endif
 
     @ViewBuilder
     private var annotationEditor: some View {
@@ -557,6 +724,11 @@ struct iOSReaderWorkspaceView: View {
                     nativeRoutingSession?.noteEditorTextViewChanged(
                         id: nativeNoteEditorOwnerID, reader: viewModel,
                         presentationID: presentationID, textView: textView)
+                    #if DEBUG
+                    if textView == nil || (nativeNoteEditorPresentationID == presentationID && editingAnnotation != nil) {
+                        nativeStudyAcceptance.observeNote(textView, presentationID: presentationID)
+                    }
+                    #endif
                 },
                 nativeSurface: {
                     AnyView(Color.clear.modifier(MaktabahNativeRoutingSurface(kind: .noteDraft,
@@ -576,14 +748,29 @@ struct iOSReaderWorkspaceView: View {
     private func setEditingAnnotation(_ value: Annotation?) {
         // One identity per original sheet entry, including reopening the same
         // unsaved value. Callback closures capture this value, never a live getter.
-        if value != nil { nativeNoteEditorPresentationID = UUID() }
+        if value != nil {
+            let presentationID = UUID()
+            if usesNativeStudySheet,
+               !nativeStudyPresentation.beginNote(id: presentationID) { return }
+            nativeNoteEditorPresentationID = presentationID
+        }
         editingAnnotation = value
     }
 
     private var annotationEditorBinding: Binding<Bool> {
-        Binding(
-            get: { editingAnnotation != nil },
+        annotationEditorBinding(for: .reader)
+    }
+
+    private func annotationEditorBinding(for host: NativeStudySheetPresentationState.NoteHost) -> Binding<Bool> {
+        let presentationID = nativeNoteEditorPresentationID
+        return Binding(
+            get: {
+                editingAnnotation != nil && (!usesNativeStudySheet
+                    || nativeStudyPresentation.note == NativeStudySheetPresentationState.NotePresentation(id: presentationID, host: host))
+            },
             set: { isPresented in
+                guard !usesNativeStudySheet
+                    || nativeStudyPresentation.note == NativeStudySheetPresentationState.NotePresentation(id: presentationID, host: host) else { return }
                 if !isPresented {
                     setEditingAnnotation(nil)
                     pendingNotesDidChange = nil
@@ -593,6 +780,15 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func openContents() {
+        if usesNativeStudySheet, nativeStudyPresentation.presentation != nil {
+            nativeStudyPresentation.requestDismissal(showContents: true)
+            viewModel.closeReaderInspector()
+            if nativeStudyPresentation.note != nil {
+                setEditingAnnotation(nil)
+                pendingNotesDidChange = nil
+            }
+            return
+        }
         if sidebarCoordinator != nil {
             presentContents()
             return
@@ -669,7 +865,20 @@ struct iOSReaderWorkspaceView: View {
 
     private func updatePanelPresentation(animated: Bool = true) {
         let updates = {
-            if !showPanel {
+            if usesNativeStudySheet {
+                showPanelSheet = false
+                floatingPanelState = .hidden
+                if showPanel {
+                    nativeStudyPresentation.requestStudy()
+                } else {
+                    nativeStudyPresentation.requestDismissal()
+                    if let note = nativeStudyPresentation.note,
+                       case .study = note.host {
+                        setEditingAnnotation(nil)
+                        pendingNotesDidChange = nil
+                    }
+                }
+            } else if !showPanel {
                 showPanelSheet = false
                 floatingPanelState = .hidden
             } else if shouldPresentPanelInContent {

@@ -1,0 +1,1 @@
+{"phase":"source packet preparation","status":"INTERRUPTED_BY_OWNER","exit_code":130,"reason":"Character-granularity difflib was unnecessarily expensive for the original large PBX file. Canonical source copies had completed; no compiler, XCTest or Native executed. Retrying remaining source-only preparation with line-granularity inverse ranges.","executed_tests":0}

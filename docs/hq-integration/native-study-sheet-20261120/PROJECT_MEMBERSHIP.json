@@ -1,0 +1,26 @@
+{
+  "base": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+  "original_file_blob": "489fd95080cd47c8b2138f70bc9ab72e5e4879f0",
+  "group": "FE8000080000000000000008",
+  "sources_phase": "F30576E22FA46222005732C6",
+  "matches_original_workspace_membership": true,
+  "new_file_id": "CF725657C84191F3E5BCC1A6",
+  "new_build_id": "ACDA26A151221078C4296F37",
+  "four_additions_inverse_exact": true,
+  "source": "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+  "new_ui_test_files": "original synchronized Maktabah-iOSUITests root; no extra targets",
+  "added_lines": [
+    "\t\tACDA26A151221078C4296F37 /* NativeStudySheetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */; };\n",
+    "\t\tCF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeStudySheetPresenter.swift; sourceTree = \"<group>\"; };\n",
+    "\t\t\t\tCF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */,\n",
+    "\t\t\t\tACDA26A151221078C4296F37 /* NativeStudySheetPresenter.swift in Sources */,\n"
+  ],
+  "candidate_sha256": "6764dd597e95b44887b13f269d7e46efb0fc653fc5cd82fef00717de283fd75e",
+  "target": "Maktabah-iOS",
+  "target_id": "F30576DD2FA46222005732C6",
+  "candidate_git_blob": "eb1ab4a38d41a135c2cddf6a8e109c51edb6fc74",
+  "ui_test_target": "F30578012FA46222005732C6",
+  "ui_test_synchronized_root": "F30578032FA46222005732C6",
+  "source_count_in_phase": 1,
+  "pending_final_freeze_pin": "Scripts/CI/hq-stage2-otzaria-test-additions.json: excluded_build_inputs[\"Maktabah.xcodeproj/project.pbxproj\"] plus parent additions SHA in hq-stage2-focused-apple.inputs.json; Root freeze only"
+}

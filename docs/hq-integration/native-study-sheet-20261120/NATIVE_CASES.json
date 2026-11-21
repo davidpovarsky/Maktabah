@@ -1,0 +1,117 @@
+{
+  "status": "UNFINALIZED_APPLE_NATIVE_NOT_RUN",
+  "base": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+  "new_cases": [
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
+      "device": "iPad11",
+      "scope": "actual_native_controls_and_geometry",
+      "timeout_seconds": 600,
+      "status": "NOT_RUN"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
+      "device": "iPad11",
+      "scope": "actual_native_controls_and_geometry",
+      "timeout_seconds": 600,
+      "status": "NOT_RUN"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor",
+      "device": "iPad11",
+      "scope": "actual_native_controls_and_geometry",
+      "timeout_seconds": 600,
+      "status": "NOT_RUN"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+      "device": "iPad11",
+      "scope": "actual_native_controls_and_geometry",
+      "timeout_seconds": 600,
+      "status": "NOT_RUN"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
+      "device": "iPad11",
+      "scope": "actual_native_controls_and_geometry",
+      "timeout_seconds": 600,
+      "status": "NOT_RUN"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetOriginalTOCWaitsForActualSheetDismissal",
+      "device": "iPad11",
+      "scope": "actual_native_controls_and_geometry",
+      "timeout_seconds": 600,
+      "status": "NOT_RUN"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
+      "device": "iPad11",
+      "scope": "actual_native_controls_and_geometry",
+      "timeout_seconds": 600,
+      "status": "NOT_RUN"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+      "device": "iPad11",
+      "scope": "programmatic_native_lifecycle",
+      "timeout_seconds": 600,
+      "status": "NOT_RUN"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
+      "device": "iPad11",
+      "scope": "programmatic_native_lifecycle",
+      "timeout_seconds": 600,
+      "status": "NOT_RUN"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
+      "device": "iPad11",
+      "scope": "programmatic_native_lifecycle",
+      "timeout_seconds": 600,
+      "status": "NOT_RUN"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+      "device": "iPad11",
+      "scope": "actual_native_controls_and_geometry",
+      "timeout_seconds": 600,
+      "status": "NOT_RUN"
+    },
+    {
+      "case_id": "NativeStudySheetPhoneFallbackTests/testOriginalPhoneInspectorFallbackRetainsReader",
+      "device": "phone",
+      "scope": "actual_native_controls_and_geometry",
+      "timeout_seconds": 600,
+      "status": "NOT_RUN"
+    }
+  ],
+  "preserved_original_manifest_sha256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3",
+  "original_cases": 116,
+  "existing_regressions_required_without_replacement": [
+    "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+    "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+    "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+    "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+    "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge",
+    "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+    "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+    "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+    "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone",
+    "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+    "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
+    "NativeRoutingAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad",
+    "NativeRoutingPhoneAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone"
+  ],
+  "required_environment": [
+    "FAITHFUL_VIEWPORT_DIRECTORY",
+    "R27_EXPECTED_OTZARIA_WORK_KEY",
+    "R27_EXPECTED_OTZARIA_BOOK_TITLE"
+  ],
+  "launch_tier": "realUI; no smokeBypassBootstrap",
+  "additional_actual_matrix": "physical RTL/LTR and same-iPad resize should also execute on iPad13; no phone proxy for adaptation",
+  "notes": "Existing Core/Notes/TOC/source-link/new-tab receipts retain their original assertions and deadlines. New programmatic race inputs do not prove gesture/HID/Core admission. No old release case changed."
+}

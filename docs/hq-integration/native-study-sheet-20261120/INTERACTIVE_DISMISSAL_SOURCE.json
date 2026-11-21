@@ -1,0 +1,7 @@
+{
+  "before_sha256": "49afc852783ff955ac25d4a1fbcf0c5be9e6be8cf325cd56fc2aba03a7424134",
+  "after_sha256": "78216a596cef457919efa556eec39fbb2cea83b35751cc2c32f7d51d2575aba8",
+  "failure": "Matching item-nil callback left original owner open, so a layout update could request a new presentation before real onDismiss.",
+  "correction": "Exact nonnil current UUID and currently-presented guard; close original owner synchronously after requesting dismissal. Existing close method unchanged.",
+  "apple_runtime": "NOT_RUN"
+}
