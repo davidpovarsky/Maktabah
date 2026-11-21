@@ -1715,6 +1715,9 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
     func testSystemReduceMotionKeepsOriginalPaletteUsable() {
         let settings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
         settings.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+        // Keep Settings' switch frame and screenPoint in the same portrait space.
+        // The original app journey below still runs in landscape.
+        XCUIDevice.shared.orientation = .portrait
         settings.launch()
         @MainActor
         func openOriginalMotionSettings() -> XCUIElement {
@@ -1779,6 +1782,9 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let wasEnabled = UIAccessibility.isReduceMotionEnabled
         if !wasEnabled { tapOriginalReduceMotionSwitch(toggle, stage: "enable") }
         let restoration = NativeUIRestoration {
+            let readerOrientation = XCUIDevice.shared.orientation
+            defer { XCUIDevice.shared.orientation = readerOrientation }
+            XCUIDevice.shared.orientation = .portrait
             settings.activate()
             let restoredToggle = openOriginalMotionSettings()
             XCTAssertTrue(restoredToggle.waitForExistence(timeout: 15))
