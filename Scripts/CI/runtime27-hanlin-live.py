@@ -165,10 +165,12 @@ def clean_private_input(udid):
 
 
 class LiveAcceptance:
-    def __init__(self, key):
+    def __init__(self, key, fixture_token=""):
         require(20 <= len(key) <= 4096 and all(32 < ord(c) < 127 for c in key), "Live credential unavailable")
         self._key = key
         self._patterns = [key.encode(), base64.b64encode(key.encode())]
+        if fixture_token:
+            self._patterns.extend([fixture_token.encode(), base64.b64encode(fixture_token.encode())])
         self.nonce = str(uuid.uuid4()).upper()
         self.udid = None
         self.staged = False
@@ -350,7 +352,9 @@ def main():
     for name, value in list(os.environ.items()):
         if key and value == key:
             os.environ.pop(name)
-    live = LiveAcceptance(key)
+    # GH_TOKEN remains available to the original public-fixture installer, but
+    # neither credential may appear in any admitted fixture or Native evidence.
+    live = LiveAcceptance(key, os.environ.get("GH_TOKEN", ""))
     key = None
     require(not WORK.exists() and not OUT.exists(), "Preserve an existing live attempt")
     WORK.mkdir(parents=True, mode=0o700)
@@ -379,9 +383,16 @@ def main():
         after = source_context()
         write(WORK / "source-after.json", after)
         require(before == after, "Original source or built code changed during live execution")
+        phase = "NATIVE_MATRIX"
         matrix = json.loads((artifacts / "faithful-ipad-matrix.json").read_text())
-        strict = json.loads((artifacts / "runtime27/verified-11.json").read_text())
         device = matrix["devices"]
+        if matrix_code != 0:
+            report["matrix_failures"] = [{key: item.get(key) for key in
+                ["status", "failedPhase", "error", "ownedSimulatorCleanup"]} for item in device]
+        require(matrix_code == 0 and len(device) == 1 and device[0]["status"] == "EXECUTED_PASS",
+                "Original live matrix did not pass; preserve its primary failure")
+        phase = "STRICT_NATIVE_VERIFICATION"
+        strict = json.loads((artifacts / "runtime27/verified-11.json").read_text())
         require(matrix_code == 0 and len(device) == 1 and device[0]["status"] == "EXECUTED_PASS"
                 and device[0].get("ownedSimulatorCleanup") == "PASS" and strict.get("status") == "EXECUTED_PASS"
                 and strict.get("required_ui_cases") == [SELECTOR] and strict.get("executed_total") == 1
@@ -408,6 +419,10 @@ def main():
                 live.admit(WORK / name, name)
             live.admit(ROOT / "build/hq-stage2/result.json", "original-build-result.json")
             for name in ["faithful-ipad-matrix.json", "test-simulator-11.log", "test-case-execution-11.json"]:
+                live.admit(raw / name, name)
+            for name in ["miniTest10-native-fixture-install-11.json", "miniTest10-native-fixture-install-11-attempt-1.json",
+                         "miniTest10-native-fixture-install-11-before-reboot.json", "miniTest10-native-fixture-termination-11.json",
+                         "miniTest10-native-fixture-termination-11-before-reboot.json"]:
                 live.admit(raw / name, name)
             for name in ["verified-11.json", "verified-11.summary.json", "verified-11.tests.json", "fixture-oracle-11.json"]:
                 live.admit(raw / "runtime27" / name, name)

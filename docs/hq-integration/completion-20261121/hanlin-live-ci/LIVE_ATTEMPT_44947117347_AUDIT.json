@@ -1,0 +1,227 @@
+{
+  "status": "FAIL_NATIVE_FIXTURE_BEFORE_LIVE_INPUT",
+  "run": {
+    "id": 44947117347,
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44947117347",
+    "head_sha": "633ea6e1d6153a27841b6cb899fa73be8a869ef8",
+    "application_source_sha": "2818019c7dcecda953c74caa4f38823fb97cf70f",
+    "job_id": 136976742821
+  },
+  "artifact": {
+    "zip_sha256": "eaa6c6be94286c1d1f55a82137cc06c4fce9f19df89d89e9fb0314464f1863f0",
+    "zip_bytes": 70610,
+    "zip_crc": "PASS",
+    "members": [
+      "admission.json",
+      "artifact-isolation.json",
+      "declarations.json",
+      "faithful-ipad-matrix.json",
+      "original-build-result.json",
+      "result.json",
+      "selection.json",
+      "source-after.json",
+      "source-before.json"
+    ],
+    "member_hashes_verified": 8,
+    "extracted_bytes_identical": true,
+    "artifact_metadata": {
+      "id": 14726305229,
+      "name": "otzaria-hanlin-live-native-evidence",
+      "size_in_bytes": 70610,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14726305229",
+      "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14726305229/zip",
+      "expired": false,
+      "created_at": "2026-11-21T21:31:09Z",
+      "expires_at": "2027-02-19T20:35:49Z",
+      "updated_at": "2026-11-21T21:31:09Z",
+      "digest": "sha256:eaa6c6be94286c1d1f55a82137cc06c4fce9f19df89d89e9fb0314464f1863f0",
+      "workflow_run": {
+        "id": 44947117347,
+        "repository_id": 1280062128,
+        "head_repository_id": 1280062128,
+        "head_branch": "codex/otzaria-hanlin-live-20261121",
+        "head_sha": "633ea6e1d6153a27841b6cb899fa73be8a869ef8"
+      }
+    },
+    "pre_staging_diagnostics": {
+      "run_id": 44947117347,
+      "job_id": 136976742821,
+      "job_log_sha256": "fd9facd73d100e9424764ec4e9556053a34d57fe626901f64ffb8073673a8430",
+      "job_log_bytes": 122966,
+      "diagnostics": [
+        {
+          "line": 1056,
+          "diagnostic": "PROVISIONING_NATIVE_FIXTURES"
+        },
+        {
+          "line": 1059,
+          "diagnostic": "CalledProcessError: Command ['/opt/homebrew/opt/python@3.15/bin/python3.15', 'Scripts/CI/prepare-faithful-ipad-fixtures.py', '--artifact-label', '11'] returned non-zero exit status 1.\"}"
+        }
+      ],
+      "raw_job_log_persisted": false,
+      "additional_safe_diagnostics": [
+        {
+          "line": 1058,
+          "timestamp": "2026-11-21T21:30:47.0508110Z",
+          "diagnostic": "Native miniTest10 report failed; see the saved report"
+        },
+        {
+          "line": 1073,
+          "timestamp": "2026-11-21T21:31:06.4769170Z",
+          "diagnostic": "No live private input was staged"
+        },
+        {
+          "line": 1074,
+          "timestamp": "2026-11-21T21:31:06.4806450Z",
+          "diagnostic": "{\"cleanup\": \"PASS\", \"errors\": []}"
+        }
+      ]
+    }
+  },
+  "evidence": {
+    "source_before_after_identical": true,
+    "execution_inputs": 255,
+    "source_identity": {
+      "application_source_sha": "2818019c7dcecda953c74caa4f38823fb97cf70f",
+      "application_trees": {
+        "Maktabah.xcodeproj": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
+        "Source": "9f1d9a2703c531d1c42e19253f5fbc516616a7fe",
+        "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+      },
+      "binaries": {
+        "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/Maktabah-iOSUITests-Runner": "f4503ee1d682ce528e40195e94f5862c3cce2fa6ee70a55c6b2ceb3b5db46c08",
+        "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest/Maktabah-iOSUITests": "284ce532bb910d66aaf1e2f3348570cc023585204a84bf3939f35b2d66986a10",
+        "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah": "e0acdfc99c47c24b11ac99abc07c0fafcaa3727f2dd7e8315e40eabfbe334746",
+        "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah.debug.dylib": "fc39e589f98ee4e75e5e968d7b048509e9af590a3243d2dd4329db1ad421f4d1",
+        "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/__preview.dylib": "b59bdf7c4b988e46551c4676cd5be90b1c88eb6e39dde48cf9f17ddb7f0081fa"
+      },
+      "checkout_sha": "633ea6e1d6153a27841b6cb899fa73be8a869ef8",
+      "generated_project_sha256": "4ca7d8fdb9714200fbfaabc77b7c609f57ad715e2585642dd3ad830958f32218",
+      "original_build_status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+      "reviewed_source_sha": "2818019c7dcecda953c74caa4f38823fb97cf70f",
+      "workspace_sha256": "d27bfdb7fb6d0dc873c287f7c4b84c161de200fec99b9a0fb11eec850896eb3f"
+    },
+    "admission": {
+      "files": {
+        "artifact-isolation.json": {
+          "bytes": 257,
+          "sha256": "09bd1ed207c7e350e271f13fc0b82ec6cb7e14683d002084e8500181c3b6d4a4"
+        },
+        "declarations.json": {
+          "bytes": 378,
+          "sha256": "0fed38adfa5d55010a9ff2993f6c83a6705e3bddb17eebe69f2461c277136a77"
+        },
+        "faithful-ipad-matrix.json": {
+          "bytes": 23103,
+          "sha256": "d67be53cb057d0588e819ff3e401ba0bc51e7808e7be8086db027a93dda7ab11"
+        },
+        "original-build-result.json": {
+          "bytes": 83531,
+          "sha256": "ad8b02a67b249230fee3e7a59571266f080a9f5713ac4d9adc228e80891b1161"
+        },
+        "result.json": {
+          "bytes": 760,
+          "sha256": "715a2a7e6309100c5d158d4e18908c73431a47b447198b08ae4a34e8eb4e5d18"
+        },
+        "selection.json": {
+          "bytes": 642,
+          "sha256": "2ee3649a010b596b1cfea694455fde5e511de3eac55704a8892d37789a1e6cea"
+        },
+        "source-after.json": {
+          "bytes": 58138,
+          "sha256": "9b810226f4fb62f2d882ef9693d7d27dfde09c7874321a3a9a2a7ad41eb02286"
+        },
+        "source-before.json": {
+          "bytes": 58138,
+          "sha256": "9b810226f4fb62f2d882ef9693d7d27dfde09c7874321a3a9a2a7ad41eb02286"
+        }
+      },
+      "private_input_removed": false,
+      "provider_file_excluded": true,
+      "raw_video_excluded": true,
+      "raw_xcresult_and_attachments_excluded": true,
+      "status": "SCANNED_ALLOWLIST_ONLY"
+    },
+    "artifact_isolation": {
+      "had_prior": true,
+      "prior_identity": {
+        "content_sha256": "98a242a41e19b1f1be89910bc4aca8f40389f083cbd4a25ebddcce146bbec5f4",
+        "directory_inode": 2024613,
+        "files": 1
+      },
+      "restored": true,
+      "run_attempt": "1",
+      "run_id": "44947117347"
+    },
+    "devices": [
+      {
+        "size": "11",
+        "label": "11",
+        "udid": "6972AF31-50AC-477C-BD5D-3EBA0D15693F",
+        "status": "FAIL",
+        "incompatiblePairs": [],
+        "phase": "FAILED",
+        "phaseStartedAt": "2026-11-21T21:30:47.061646+00:00",
+        "phaseDetails": {
+          "error": "CalledProcessError: Command ['/opt/homebrew/opt/python@3.15/bin/python3.15', 'Scripts/CI/prepare-faithful-ipad-fixtures.py', '--artifact-label', '11'] returned non-zero exit status 1."
+        },
+        "installationAttempts": [
+          {
+            "bundle": "com.davidpovarsky.chavrusatext",
+            "attempt": 1,
+            "status": "INSTALL_TIMEOUT",
+            "timedOutPhase": "VERIFYING_APP_CONTAINER",
+            "error": "Command '['xcrun', 'simctl', 'get_app_container', '6972AF31-50AC-477C-BD5D-3EBA0D15693F', 'com.davidpovarsky.chavrusatext', 'app']' timed out after 45 seconds",
+            "diagnostics": "TIMEOUT"
+          },
+          {
+            "bundle": "com.davidpovarsky.chavrusatext",
+            "attempt": 2,
+            "status": "INSTALLED",
+            "appContainer": "/Users/runner/Library/Developer/CoreSimulator/Devices/6972AF31-50AC-477C-BD5D-3EBA0D15693F/data/Containers/Bundle/Application/7B4C447B-51FD-4415-A60E-3F41460355E8/Maktabah.app"
+          }
+        ],
+        "error": "CalledProcessError: Command ['/opt/homebrew/opt/python@3.15/bin/python3.15', 'Scripts/CI/prepare-faithful-ipad-fixtures.py', '--artifact-label', '11'] returned non-zero exit status 1.",
+        "failedPhase": "PROVISIONING_NATIVE_FIXTURES",
+        "ownedSimulatorCleanup": "PASS"
+      }
+    ]
+  },
+  "outcome": {
+    "original_full_app_and_ui_runner_build": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+    "primary_failed_phase": "PROVISIONING_NATIVE_FIXTURES",
+    "original_cli_diagnostic": "Native miniTest10 report failed; see the saved report",
+    "fixture_report_published": false,
+    "exact_fixture_error_available": false,
+    "http403_proven": false,
+    "secondary_wrapper_error_kind": "FileNotFoundError",
+    "secondary_wrapper_reported_phase": "SOURCE_AFTER",
+    "secondary_error_cause": "The original strict XCTest report does not exist because provisioning failed before XCTest; source-after.json was successfully written and equals source-before.json.",
+    "native_tests_executed": 0,
+    "private_input_staged": false,
+    "private_input_consumed": false,
+    "private_input_removed": false,
+    "verified_completed_provider_conversations": 0,
+    "owned_simulator_cleanup": "PASS",
+    "always_cleanup_step": "PASS",
+    "prior_artifacts_restored": true,
+    "credential_scan_redactions": 0,
+    "native116_acceptance": false,
+    "release114_acceptance": false,
+    "hanlin_app_or_sdk_failure_observed": false
+  },
+  "boundary": {
+    "later_source": "a0781bd2628c1311394f7da6aa1e84c17f252fa4",
+    "old_build_does_not_prove_later_source": true,
+    "gh_token_missing_from_this_execution_step": true,
+    "gh_token_restored_on_base_87a44cdc": true,
+    "secret_lifecycle_owner": "root agent",
+    "credential_values_in_audit": false
+  },
+  "correction": {
+    "base": "87a44cdccb8c2b371f3459d7ec4a12e1311c2fd8",
+    "runner_sha256": "01167a04298ca3dec70fabed49318a7c0b78b54d683ebe843a5cfde87400a9be",
+    "scope": "CI-only: preserve original matrix failure, admit five fixed original fixture reports, scan Gemini and GH_TOKEN raw/base64; no source, XCTest, matrix, validator, timeout, retry or lifecycle change.",
+    "controls": "7 disposable targeted controls passed; 18 previous controls not repeated; no provider or Native execution."
+  }
+}
