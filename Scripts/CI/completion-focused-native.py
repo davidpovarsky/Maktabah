@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Seven original diagnostics on one integrated app; no full-phase acceptance."""
+"""Nine original diagnostics on one integrated app; no full-phase acceptance."""
 import hashlib
 import json
 import os
@@ -11,7 +11,7 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = "cf44ada2a47aa0abb152af1fdce4f14d5417456d"
+SOURCE = "a0781bd2628c1311394f7da6aa1e84c17f252fa4"
 OUT = ROOT / "build/artifacts/continuation-focused"
 MANIFEST = OUT / "selection.json"
 FULL = ROOT / "docs/hq-integration/runtime27/R27_CASES.json"
@@ -19,7 +19,9 @@ RELEASE = ROOT / "Scripts/CI/runtime27-release-manifest.json"
 GROUPS = [
     {"label": "11-reader", "size": "11", "hid_comparison": False, "case_ids": [
         "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+        "NativeStudySheetPadTests/testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor",
         "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+        "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
     ]},
     {"label": "11-search", "size": "11", "hid_comparison": False, "case_ids": [
         "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
@@ -89,14 +91,14 @@ def prepare():
         if identity not in existing:
             contract.setdefault("supplemental_cases", []).append({
                 "case_id": identity, "device": "ipad11", "status": "NOT_RUN",
-                "oracle": "Unchanged original XCTest assertions in " + identity,
+                "oracle": "Original XCTest assertions retained in " + identity,
             })
     contract.update(source_test_commit=SOURCE, app_source=SOURCE, application_source_sha=SOURCE,
                     execution_case_ids=SELECTED, execution_groups=GROUPS,
                     required_nonzero_cases=len(SELECTED), native_cases_executed=0,
                     expected_per_device={"ipad11": len(SELECTED), "ipad13": 0, "iphone": 0},
                     diagnostic_only=True, hid_comparison=True,
-                    scope="Seven original focused diagnostics; full Native116/Release114 remain unaccepted")
+                    scope="Nine original focused diagnostics; full Native116/Release114 remain unaccepted")
     driver = runpy.run_path(str(ROOT / "Scripts/CI/runtime27.py"))
     driver["execution_groups"](contract)
     declaration = runpy.run_path(str(ROOT / "Scripts/CI/verify-faithful-xctest.py"))["validate_selections"](
@@ -133,7 +135,7 @@ def execute():
         controller.restore()
 
 def collect():
-    report = {"status": "FAILED", "scope": "FOCUSED_SEVEN_ONLY", "full_native116_acceptance": False,
+    report = {"status": "FAILED", "scope": "FOCUSED_NINE_ONLY", "full_native116_acceptance": False,
               "full_release114_acceptance": False, "required_case_ids": SELECTED}
     try:
         context = source_context()
@@ -174,7 +176,7 @@ def collect():
                 or any(d.get("status") != "EXECUTED_PASS" or d.get("ownedSimulatorCleanup") != "PASS" for d in devices)
                 or report.get("executed_ui_pass") != len(SELECTED)
                 or any(report.get(key, 0) for key in ["executed_ui_fail", "executed_ui_skip", "ui_not_run"])):
-            raise ValueError("Seven original native cases did not all execute and pass")
+            raise ValueError("Nine original native cases did not all execute and pass")
         report["status"] = "SELECTED_UI_EXECUTED_PASS"
         return 0
     except Exception as error:

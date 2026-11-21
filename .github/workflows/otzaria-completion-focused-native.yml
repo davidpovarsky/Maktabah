@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   focused-native:
-    name: One full app build and seven original focused native cases
+    name: One full app build and nine original focused native cases
     runs-on: xcode-27
     timeout-minutes: 210
     env:
@@ -83,7 +83,7 @@ jobs:
         run: python3 Scripts/CI/reuse-host48.py
       - name: Prepare original native HID bridge
         run: python3 Scripts/CI/runtime27-hid.py prepare --out build/artifacts/runtime27/hid-tools.json
-      - name: Execute seven exact original native cases without rebuilding
+      - name: Execute nine exact original native cases without rebuilding
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 Scripts/CI/completion-focused-native.py run
