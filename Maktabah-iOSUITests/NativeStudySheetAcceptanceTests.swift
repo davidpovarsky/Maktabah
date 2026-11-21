@@ -137,10 +137,12 @@ class NativeStudySheetUIBase: R27NativeUIBase {
 
     @discardableResult
     @MainActor
-    fileprivate func startSheet(language: String = "en", backend: String = "otzaria") throws -> StudySheetObservation {
+    fileprivate func startSheet(language: String = "en", backend: String = "otzaria",
+                                fontSize: Float? = nil) throws -> StudySheetObservation {
         XCTAssertTrue(isPad, "Required iPad execution cannot be replaced by an iPhone screenshot")
         XCUIDevice.shared.orientation = .landscapeLeft
-        launchReader(scenario: "readerDetail", backend: backend, language: language, recordViewport: true)
+        launchReader(scenario: "readerDetail", backend: backend, language: language,
+                     recordViewport: true, fontSize: fontSize)
         _ = try assertTarget(backend: backend)
         capture("system-study-reader-before-open")
         readerWidthBeforeOpen = app.textViews["reader-text"].frame.width
@@ -349,8 +351,17 @@ final class NativeStudySheetPadTests: NativeStudySheetUIBase {
 
     @MainActor
     func testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt() throws {
-        _ = try startSheet()
+        // The same original passage fits at the default font on this iPad.
+        // Use the existing Reader font setting to make real scrolling possible.
+        _ = try startSheet(fontSize: 48)
         let first = try dragDetent("peek"), before = try viewport()
+        try attachViewport(before, named: "system-study-background-scroll-before")
+        let contentHeight = try XCTUnwrap(before.contentHeight)
+        let viewportHeight = try XCTUnwrap(before.viewportHeight)
+        let topInset = try XCTUnwrap(before.topInset), bottomInset = try XCTUnwrap(before.bottomInset)
+        XCTAssertTrue([contentHeight, viewportHeight, topInset, bottomInset].allSatisfy(\.isFinite))
+        XCTAssertGreaterThan(contentHeight + topInset + bottomInset - viewportHeight, 80,
+                             "The original Reader must have actual scrollable overflow before the gesture")
         let reader = app.textViews["reader-text"], actual = try frame(first.sheetFrame)
         let bounds = try frame(first.windowBounds), window = app.windows.firstMatch
         let top = window.coordinate(withNormalizedOffset: .zero)
@@ -363,6 +374,7 @@ final class NativeStudySheetPadTests: NativeStudySheetUIBase {
         top.withOffset(CGVector(dx: x, dy: startY)).press(forDuration: 0.2,
             thenDragTo: top.withOffset(CGVector(dx: x, dy: endY)))
         let moved = try viewport()
+        try attachViewport(moved, named: "system-study-background-scroll-after")
         XCTAssertEqual(before.object, moved.object)
         let previousY = try XCTUnwrap(before.contentOffsetY), actualY = try XCTUnwrap(moved.contentOffsetY)
         XCTAssertGreaterThan(abs(actualY - previousY), 20, "Original Reader must actually scroll behind Peek")

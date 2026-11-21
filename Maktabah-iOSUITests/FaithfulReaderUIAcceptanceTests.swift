@@ -1716,24 +1716,36 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let settings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
         settings.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
         settings.launch()
-        let accessibility = settings.staticTexts["Accessibility"].firstMatch
-        for _ in 0..<6 {
-            if accessibility.exists && accessibility.isHittable { break }
-            settings.swipeUp()
+        @MainActor
+        func openOriginalMotionSettings() -> XCUIElement {
+            // Settings can be terminated while the real app is foregrounded.
+            // Reacquire its current native page and switch after activation.
+            let toggle = settings.switches.matching(NSPredicate(
+                format: "identifier == %@ OR label == %@", "REDUCE_MOTION", "Reduce Motion"
+            )).firstMatch
+            if toggle.exists && toggle.isHittable { return toggle }
+            let motion = settings.staticTexts["Motion"].firstMatch
+            if !motion.exists || !motion.isHittable {
+                let accessibility = settings.staticTexts["Accessibility"].firstMatch
+                for _ in 0..<6 {
+                    if accessibility.exists && accessibility.isHittable { break }
+                    settings.swipeUp()
+                }
+                XCTAssertTrue(accessibility.waitForExistence(timeout: 15))
+                accessibility.tap()
+            }
+            XCTAssertTrue(motion.waitForExistence(timeout: 15))
+            motion.tap()
+            XCTAssertTrue(toggle.waitForExistence(timeout: 15))
+            return toggle
         }
-        XCTAssertTrue(accessibility.waitForExistence(timeout: 15))
-        accessibility.tap()
-        let motion = settings.staticTexts["Motion"].firstMatch
-        XCTAssertTrue(motion.waitForExistence(timeout: 15))
-        motion.tap()
-        let toggle = settings.switches["Reduce Motion"].firstMatch
-        XCTAssertTrue(toggle.waitForExistence(timeout: 15))
+        let toggle = openOriginalMotionSettings()
 
         // On this Settings layout the native switch accessibility element
         // includes the complete labelled row. Its automatic hittable point
         // was the row centre, not the visible trailing switch track.
         @MainActor
-        func tapOriginalReduceMotionSwitch(stage: String) {
+        func tapOriginalReduceMotionSwitch(_ toggle: XCUIElement, stage: String) {
             let nativeWindow = settings.windows.firstMatch
             guard toggle.exists, toggle.isHittable, nativeWindow.exists else {
                 XCTFail("The original Reduce Motion switch must be visible and hittable")
@@ -1765,11 +1777,14 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         // Verify the actual system preference, independent of the Settings
         // switch's localized accessibility value on this OS version.
         let wasEnabled = UIAccessibility.isReduceMotionEnabled
-        if !wasEnabled { tapOriginalReduceMotionSwitch(stage: "enable") }
+        if !wasEnabled { tapOriginalReduceMotionSwitch(toggle, stage: "enable") }
         let restoration = NativeUIRestoration {
             settings.activate()
-            XCTAssertTrue(toggle.waitForExistence(timeout: 15))
-            if UIAccessibility.isReduceMotionEnabled != wasEnabled { tapOriginalReduceMotionSwitch(stage: "restore") }
+            let restoredToggle = openOriginalMotionSettings()
+            XCTAssertTrue(restoredToggle.waitForExistence(timeout: 15))
+            if UIAccessibility.isReduceMotionEnabled != wasEnabled {
+                tapOriginalReduceMotionSwitch(restoredToggle, stage: "restore")
+            }
             let restored = XCTNSPredicateExpectation(
                 predicate: NSPredicate { _, _ in
                     MainActor.assumeIsolated { UIAccessibility.isReduceMotionEnabled == wasEnabled }
