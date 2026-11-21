@@ -1,0 +1,49 @@
+{
+  "status": "DIAGNOSED_REPAIR_NOT_NATIVE_VERIFIED",
+  "original_run": 44940208007,
+  "artifact": 14723843717,
+  "artifact_sha256": "f491fc96a67d80179771044bf2ba7df83907af2a4408de76a21b4f41ff8ddde8",
+  "selector": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+  "attachments": [
+    {
+      "file": "build\\focused-captures-44940208007\\captures\\visual-11-reader\\786ABF14-9063-4FFE-A3DC-5159E7146345.txt",
+      "sha256": "7ad3fbea98eb58201e6a852328acea9aaf1e515ff7ba826717af9045ce3686ee",
+      "geometry": [
+        "stage=enable",
+        "controlFrame=(360.0, 116.0, 434.0, 28.0)",
+        "windowFrame=(0.0, 0.0, 834.0, 1210.0)",
+        "screenPoint=(772.3, 130.0)",
+        "systemReduceMotion=false"
+      ]
+    },
+    {
+      "file": "build\\focused-captures-44940208007\\captures\\visual-11-reader\\A4EED2EF-5FA2-464C-834D-ED4BCCD82B00.txt",
+      "sha256": "c59cb6d7ccf6c7c4d6ec5467c035d07d9d470e1bdf285aff7291fa644f073491",
+      "geometry": [
+        "stage=restore",
+        "controlFrame=(360.0, 116.0, 810.0, 28.0)",
+        "windowFrame=(0.0, 0.0, 1210.0, 834.0)",
+        "screenPoint=(704.0, 1129.5)",
+        "systemReduceMotion=true"
+      ]
+    }
+  ],
+  "diagnosis": "The landscape restoration reports a portrait-rotated screenPoint while native control/window frames remain landscape. The existing finite containment guard correctly rejects it.",
+  "repair": "Native Settings setup and restoration use portrait; teardown restores readerOrientation. Original landscape app journey, native switch, guards, actual UIAccessibility flag checks, timeouts and selector are preserved.",
+  "root_review": "Approved exact six inserted lines before commit.",
+  "verification": {
+    "base": "633ea6e1d6153a27841b6cb899fa73be8a869ef8",
+    "source_canonical_sha256": "b70814a0a4fe22883a27f05fc1e94125949f755678ff53702fefcf2b1050e252",
+    "original_canonical_sha256": "83cd685cdb37822910262fe4f4f9c413105b8d955431c73ea495b1257d72147d",
+    "diff_check": "PASS",
+    "exact_original_bytes_preserved_except_six_inserted_lines": true,
+    "syntax_parse": {
+      "compiler": "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+      "version": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    "native_execution": "NOT_RUN"
+  },
+  "native_execution": "NOT_RUN"
+}
