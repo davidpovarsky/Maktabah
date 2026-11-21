@@ -1,0 +1,18 @@
+{
+  "status": "UNSIGNED_REVIEW_READY",
+  "application_source_sha": "2818019c7dcecda953c74caa4f38823fb97cf70f",
+  "baseline_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+  "pinned_upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "patch_format": "git-full-index-v1",
+  "protected_patches": 49,
+  "archive_members": 50,
+  "archive_sha256": "2d083451dc1755130edbed17e25d8437d452109d5ae34c4502b6440266c82825",
+  "archive_bytes": 94479,
+  "manifest_sha256": "9499e1d858d36bd9fe53c40520eb7c74de225c13e3fef72580c81bdeca5fa838",
+  "generator_commit": "978db8b37256d4dd2d58e91a0ea8d531798221c0",
+  "generator_blob": "be8530b90390abaef22f79eb4a6fe4836c6d973a",
+  "register_changed": false,
+  "owner_signatures_created": 0,
+  "owner_trust_changed": false,
+  "acceptance_credit": 0
+}
