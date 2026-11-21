@@ -1,0 +1,13 @@
+{
+  "base": "555e8072582c19c05f10e69e82a8d8844271614d",
+  "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+  "patch_sha256": "b140174cb02caffb90cdd19c49c8ea76b3f19c81d8513d7d6feec725d6e75dc9",
+  "legacy_glyph_body_unchanged_except_indentation_and_hoisted_rect_assignment": true,
+  "common_final_geometry_and_clipping_checks_byte_identical": true,
+  "source_range_validation_and_mapping_unchanged": true,
+  "native_geometry": "firstRect(for:) of one actual nonempty composed-character UITextRange, converted from textInputView",
+  "closest_position_is_only_candidate_not_visibility_proof": true,
+  "swift_parse_exit": 0,
+  "swift_parse_output_bytes": 0,
+  "apple_sdk_typecheck_and_native_runtime": "NOT_RUN"
+}

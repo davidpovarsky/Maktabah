@@ -1,0 +1,197 @@
+{
+  "checked_tree_parent": "555e8072582c19c05f10e69e82a8d8844271614d",
+  "working_visibility_blob": "753507570a4e619d504d9952ea2cfee640a65766",
+  "search_scope": "All Git-tracked Swift, Objective-C, Objective-C++ and headers, including vendor code; exact layoutManager/layoutManagers/NSLayoutManager identifiers include delegated/property/textContainer getter paths.",
+  "files_examined": 945,
+  "source_matches": [
+    {
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "line": 236,
+      "text": "// Reading layoutManager would replace this view's TextKit 2 engine."
+    },
+    {
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "line": 276,
+      "text": "textView.layoutManager.ensureLayout(forCharacterRange: first)"
+    },
+    {
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "line": 277,
+      "text": "glyphs = textView.layoutManager.glyphRange(forCharacterRange: first, actualCharacterRange: nil)"
+    },
+    {
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "line": 283,
+      "text": "let visible = textView.layoutManager.glyphRange(forBoundingRect: containerViewport, in: textView.textContainer)"
+    },
+    {
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "line": 288,
+      "text": "rect = textView.layoutManager.boundingRect(forGlyphRange: glyphs, in: textView.textContainer)"
+    },
+    {
+      "file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "line": 70,
+      "text": "// Query the active engine before touching layoutManager: that getter"
+    },
+    {
+      "file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "line": 90,
+      "text": "layoutManager.ensureLayout(for: textContainer)"
+    },
+    {
+      "file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "line": 101,
+      "text": "layoutManager.glyphIndex(for: containerPoint, in: textContainer),"
+    },
+    {
+      "file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "line": 102,
+      "text": "max(0, layoutManager.numberOfGlyphs - 1)"
+    },
+    {
+      "file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "line": 105,
+      "text": "layoutManager.characterIndexForGlyph(at: glyphIndex),"
+    },
+    {
+      "file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "line": 108,
+      "text": "let glyphRect = layoutManager.boundingRect("
+    },
+    {
+      "file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "line": 144,
+      "text": "layoutManager.ensureLayout(for: textContainer)"
+    },
+    {
+      "file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "line": 152,
+      "text": "let glyphRange = layoutManager.glyphRange("
+    },
+    {
+      "file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "line": 156,
+      "text": "guard glyphRange.location < layoutManager.numberOfGlyphs else { return }"
+    },
+    {
+      "file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "line": 157,
+      "text": "let glyphRect = layoutManager.boundingRect("
+    }
+  ],
+  "other_tracked_matches": [
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 15,
+      "text": "let layoutManager: NSTextLayoutManager"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 38,
+      "text": "return TextLayoutSetup(storage: textContentStorage, layoutManager: textLayoutManager, fullText: fullText)"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 44,
+      "text": "let layoutManager = setup.layoutManager"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 52,
+      "text": "let docStart = layoutManager.documentRange.location"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 53,
+      "text": "guard let targetLoc = layoutManager.location(docStart, offsetBy: targetRange.location) else {"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 59,
+      "text": "layoutManager.ensureLayout(for: targetRange)"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 62,
+      "text": "let fragment = layoutManager.textLayoutFragment(for: targetLoc)"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 74,
+      "text": "let layoutManager = setup.layoutManager"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 82,
+      "text": "layoutManager.ensureLayout(for: [range1, range2])"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 84,
+      "text": "let docStart = layoutManager.documentRange.location"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 85,
+      "text": "if let loc1 = layoutManager.location(docStart, offsetBy: range1.location),"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 86,
+      "text": "let loc2 = layoutManager.location(docStart, offsetBy: range2.location)"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 88,
+      "text": "#expect(layoutManager.textLayoutFragment(for: loc1) != nil)"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 89,
+      "text": "#expect(layoutManager.textLayoutFragment(for: loc2) != nil)"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 96,
+      "text": "let layoutManager = setup.layoutManager"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 99,
+      "text": "layoutManager.ensureLayout(for: NSRange(location: -1, length: 0))"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 100,
+      "text": "layoutManager.ensureLayout(for: NSRange(location: 0, length: 0))"
+    },
+    {
+      "file": "MaktabahTests/TextLayoutManagerTests.swift",
+      "line": 101,
+      "text": "layoutManager.ensureLayout(for: NSRange(location: 999_999, length: 50))"
+    },
+    {
+      "file": "docs/hq-integration/native-study-sheet-20261120/base/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "line": 244,
+      "text": "textView.layoutManager.ensureLayout(forCharacterRange: first)"
+    },
+    {
+      "file": "docs/hq-integration/native-study-sheet-20261120/base/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "line": 245,
+      "text": "glyphs = textView.layoutManager.glyphRange(forCharacterRange: first, actualCharacterRange: nil)"
+    },
+    {
+      "file": "docs/hq-integration/native-study-sheet-20261120/base/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "line": 251,
+      "text": "let visible = textView.layoutManager.glyphRange(forBoundingRect: containerViewport, in: textView.textContainer)"
+    },
+    {
+      "file": "docs/hq-integration/native-study-sheet-20261120/base/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "line": 256,
+      "text": "let rect = textView.layoutManager.boundingRect(forGlyphRange: glyphs, in: textView.textContainer)"
+    }
+  ],
+  "conclusion": "All actual Source NSLayoutManager getter calls are now within the three legacy branches reached only after textLayoutManager is nil. No Source explicit NSLayoutManager construction, textContainer.layoutManager getter, or additional delegate getter was found.",
+  "native_runtime": "NOT_RUN"
+}
