@@ -1,0 +1,357 @@
+{
+  "status": "ARTIFACT_AND_SCOPED_INPUT_CLOSURE_VERIFIED",
+  "audited_at": "2026-11-21T20:40:20.186727+00:00",
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44941360413",
+  "run_id": 44941360413,
+  "attempt": 1,
+  "artifact_id": 14722834927,
+  "zip_bytes": 1358070,
+  "zip_sha256": "d9d26b6035f7a282f3217045308d82bf3c00df3b3c9acf61e5b2005471754316",
+  "zip_crc_verified": true,
+  "zip_members": 47,
+  "checkout_sha": "1da5532834315d6aebe3402751a3bf0682753c9f",
+  "application_source_sha": "cf44ada2a47aa0abb152af1fdce4f14d5417456d",
+  "current_source_sha": "2818019c7dcecda953c74caa4f38823fb97cf70f",
+  "source_bindings_sha256": {
+    "Scripts/CI/hq-v32-prebuilt-native.py": "ea9815d4fca5dc4ac3cfdd01af535d1e78f3e6451a259e8107dfd2b7cf8990fa",
+    "Scripts/run-otzaria-prebuilt-acceptance.sh": "e81a6f7050f38d72522dcf6af5f069d07e13dbeef0c2fbd16c16054d3e7175a4",
+    "Source/Otzaria/Search/Distribution/OtzariaPrebuiltSearchAcceptanceRunner.swift": "2cea09618644b879c60af0f85c788c3a707e2c8ba85e2781ca64a807fd066111",
+    ".github/workflows/otzaria-search-artifacts.yml": "5c422eb34a71f3c3ea4fb0d64ae371b098213e54fc3e0dc9a8d8136bb7005a17"
+  },
+  "source_inputs": {
+    "recorded": 1007,
+    "direct_git_blob_matches": 1006,
+    "declared_generated_configuration_verified": 1,
+    "source_baselines_unchanged_at_current_path": 1005,
+    "changed_inputs": [
+      {
+        "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+        "run_source_blob": "948fff2f4b454f5ddd711ad7034a785c8ddb657f",
+        "current_blob": "3c4f641a3e6e8d38c130622afa2e9a89ced3d5cf",
+        "same_blob_current_paths": []
+      },
+      {
+        "path": "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+        "run_source_blob": "014e14471892a2f822ae349b7b9bc6f83321928a",
+        "current_blob": null,
+        "same_blob_current_paths": [
+          "Source/ChavrusaText/Reader/NativeStudySheetPresenter.swift"
+        ]
+      }
+    ],
+    "v32_closure": {
+      "Source/Otzaria/Search": {
+        "tree": "5f25e1fb7843f1172e5eeae73a4d87778953a223",
+        "unchanged": true,
+        "recorded_inputs": 22
+      },
+      "Source/Otzaria/Storage": {
+        "tree": "ba09ea3a864b8f1f678d5d4765401e3d5469f1a8",
+        "unchanged": true,
+        "recorded_inputs": 1
+      },
+      "Source/Otzaria/App": {
+        "tree": "e0c5763d67d741f97abf765463eae8b1e98410ad",
+        "unchanged": true,
+        "recorded_inputs": 5
+      },
+      "Source/LibraryBackend": {
+        "tree": "2b4db497b77f3a337b7e3d65a0a86eb62fd134ab",
+        "unchanged": true,
+        "recorded_inputs": 12
+      },
+      "Vendor/OtzariaSearchEngine": {
+        "tree": "424e157913f36db2b5cc4c6204056f56c3194dd9",
+        "unchanged": true,
+        "recorded_inputs": 121
+      }
+    },
+    "all_vendor_tree_unchanged": true
+  },
+  "generated_privacy": {
+    "original_blob": "c86c62cc12e3ceadea279ff9948a8891a0860577",
+    "compiled_sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5",
+    "preserved_original_declarations": true,
+    "dependency_backed_added_reasons": 6
+  },
+  "application_diff": [
+    "M\tMaktabah.xcodeproj/project.pbxproj",
+    "M\tSource/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+    "R100\tSource/Features/Reader/iOS/NativeStudySheetPresenter.swift\tSource/ChavrusaText/Reader/NativeStudySheetPresenter.swift"
+  ],
+  "manifest_summary": {
+    "artifactIdentity": "102293b3a63c7f73fa05298457073804e57e020486753f8f6b8f7964ce29f17e",
+    "formatVersion": 1,
+    "semantic": null
+  },
+  "manifest_structure": {
+    "lexicalArtifact": {
+      "catalogueHash": "5a09a7a60e999e83",
+      "documentCount": 7080797,
+      "extractedBytes": 5219903297,
+      "fileCount": 7,
+      "packagedBytes": 3809352289,
+      "segmentsAfterOptimize": 1,
+      "segmentsBeforeOptimize": 4418,
+      "sourceCount": 7876
+    },
+    "lexicalEngine": {
+      "adapterVersion": "0.1.0",
+      "commit": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+      "defaultGenerationOrder": 5,
+      "engineVersion": "0.1.0",
+      "indexSchemaVersion": 4,
+      "repository": "Otzaria/otzaria_search_engine",
+      "semanticSidecarRevision": "e836ea6cac05e695efdb03ef227e78cd1a624149",
+      "tantivyVersion": "0.26.1"
+    },
+    "resources": {},
+    "sourceDatabase": {
+      "assetID": 629048655,
+      "assetName": "seforim-schema6.db.zst",
+      "bookCount": 7876,
+      "compressedBytes": 1850679582,
+      "databaseBytes": 3821240320,
+      "databaseSHA256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+      "documentCount": 7080797,
+      "releaseID": 409213893,
+      "releaseTag": "v32-20261010190601",
+      "repository": "Otzaria/SeforimLibrary",
+      "sourceAssetDigest": "sha256:6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44"
+    }
+  },
+  "database": {
+    "bytes": 3821240320,
+    "sha256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+    "books": 7876,
+    "lines": 7080797
+  },
+  "database_source_after_and_app_copy_hash_equal": true,
+  "schema_credit": {
+    "canonical_asset": "seforim-schema6.db.zst",
+    "native_index_schema": 4,
+    "source_book_and_line_tables_counted_in_read_only_sqlite": true,
+    "sqlite_user_version_numeric_assertion": "NOT_RECORDED"
+  },
+  "database_local_rehash": "NOT_PERFORMED_DB_NOT_IN_ARTIFACT; verified executed CI gate and hash-bound reports",
+  "native": {
+    "simulator": {
+      "created_by_this_run": true,
+      "udid": "B69CF6C0-E38F-4E1E-9F2C-AB6F7AAAB215",
+      "type": {
+        "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 11-inch (M5) (16GB).simdevicetype",
+        "name": "iPad Pro 11-inch (M5) (16GB)",
+        "productFamily": "iPad",
+        "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-M5-16GB"
+      },
+      "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-27-2"
+    },
+    "pids": {
+      "install": "20796",
+      "reopen": "27466"
+    },
+    "resume_bytes": 1048576,
+    "reopen_download": false,
+    "reopen_resume_bytes": 0,
+    "checks": [
+      {
+        "count": 104120,
+        "firstFilePath": "otzaria-book:1",
+        "mode": "exact",
+        "query": "בראשית"
+      },
+      {
+        "count": 104120,
+        "firstFilePath": "otzaria-book:1",
+        "mode": "fuzzy",
+        "query": "בראשית"
+      },
+      {
+        "count": 104120,
+        "firstFilePath": "otzaria-book:1",
+        "mode": "advanced",
+        "query": "בראשית"
+      }
+    ],
+    "same_checks_and_golden_after_restart": true,
+    "golden_query": "לחתוך צנון בסכין בשרי",
+    "golden_ordered_result_ids": [
+      17686675338218,
+      31520764985410,
+      17836999183531,
+      28402618730346,
+      17879948854687,
+      28402618730413,
+      28402618730434,
+      17879948854576,
+      1683627180939,
+      30829275269486,
+      17433272254491,
+      17433272254649,
+      17437567221957,
+      17725330032952,
+      17725330030767,
+      18120467025808,
+      18073222382152,
+      17729625003226,
+      18421114741333,
+      32452772915387,
+      32452772915389,
+      32452772915401,
+      32452772915437,
+      32452772915439,
+      32452772915473
+    ],
+    "golden_highlighted_top_results": 25,
+    "sources": 7876,
+    "documents": 7080797,
+    "production_discovery_and_validator": true,
+    "staging_absent_both_phases": true
+  },
+  "exact_occurrences": [
+    {
+      "query": "בראשית",
+      "documents": 104120,
+      "occurrences": 143982,
+      "engine_revision": "d5d59d1269bdf87fb0a6901cf31941726a0c699b"
+    },
+    {
+      "query": "אברהם",
+      "documents": 109419,
+      "occurrences": 170515,
+      "engine_revision": "d5d59d1269bdf87fb0a6901cf31941726a0c699b"
+    }
+  ],
+  "independent_sql": {
+    "raw_sha256": "015b4ac382b8c6005d672234cfa7fc1ddaf291f7e5e0d07982f2c89db242f781",
+    "rows": 7080797,
+    "books": 7876,
+    "partitions": 71,
+    "exactly_once": true,
+    "engine_loaded": false,
+    "index_read": false,
+    "counts": {
+      "בראשית": {
+        "occurrences": 143982,
+        "matchingLiveDocuments": 104120,
+        "firstMatchingLineIDs": [
+          1,
+          135442,
+          135769,
+          135804,
+          135805,
+          135806,
+          135807,
+          135813,
+          135829,
+          135870,
+          135873,
+          135891,
+          135896,
+          135897,
+          135952,
+          135970,
+          135971,
+          135974,
+          136055,
+          136057,
+          136148,
+          136184,
+          136192,
+          136197,
+          136214
+        ],
+        "matchingLineMultiplicitySHA256": "5e9277846d7ddef45710677a869ebe736009eb389525181cfceee2a5f074c31e"
+      },
+      "אברהם": {
+        "occurrences": 170515,
+        "matchingLiveDocuments": 109419,
+        "firstMatchingLineIDs": [
+          135764,
+          135766,
+          135767,
+          135768,
+          135769,
+          135770,
+          135772,
+          135773,
+          135774,
+          135776,
+          135778,
+          135779,
+          135780,
+          135781,
+          135782,
+          135783,
+          135784,
+          135785,
+          135786,
+          135787,
+          135789,
+          135790,
+          135792,
+          135793,
+          135797
+        ],
+        "matchingLineMultiplicitySHA256": "6b1beb53a0067ca30b079d85c02219881214423e2e81cd2c0a7a7c502364ef08"
+      }
+    }
+  },
+  "otzaria_framework": {
+    "id": 14596463166,
+    "sha256": "efc73de90d74fdd380ffecfa334fe9dcece38519832b89cf3fb2a5741dcc25ad",
+    "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+    "producer_run": 44661774024,
+    "producer_job": 136041463727
+  },
+  "framework_success_scope": "EXACT_ARTIFACT_AND_SUCCESSFUL_FRAMEWORK_JOB_NOT_WHOLE_WORKFLOW",
+  "framework_producer_input_closure": {
+    "original_entries_preserved_mode_type_blob": 43,
+    "test_only_regular_file_additions": 78,
+    "current_whole_vendor_unchanged": true,
+    "fresh_github_metadata_matches": true,
+    "framework_zip_downloaded_by_audit": false
+  },
+  "consumer_build": {
+    "adapterVersion": "0.1.0",
+    "defaultGenerationOrder": 5,
+    "engineVersion": "0.1.0",
+    "indexSchemaVersion": 4,
+    "resourceHashes": {
+      "Vendor/OtzariaSearchEngine/Resources/Acronyms.json": "cb101c9feb87394b133098bf569bd9af167babce0f83ab3b151e2599c665389f",
+      "Vendor/OtzariaSearchEngine/Resources/dictionary.json": "cc3d02655bd3f5a8f7581cf71623cf60b3cd6ee821686cebf149f755272e9a69"
+    },
+    "semanticEnabled": true,
+    "semanticSidecarRevision": "e836ea6cac05e695efdb03ef227e78cd1a624149",
+    "syncedAt": "2026-11-20T01:36:23Z",
+    "upstreamBranch": "codex/otzaria-exact-occurrences-20261120",
+    "upstreamCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+    "upstreamRepository": "davidpovarsky/otzaria_search_engine"
+  },
+  "producer_index_build": {
+    "adapterVersion": "0.1.0",
+    "commit": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+    "defaultGenerationOrder": 5,
+    "engineVersion": "0.1.0",
+    "indexSchemaVersion": 4,
+    "repository": "Otzaria/otzaria_search_engine",
+    "semanticSidecarRevision": "e836ea6cac05e695efdb03ef227e78cd1a624149",
+    "tantivyVersion": "0.26.1"
+  },
+  "final_app_macho_sha256": "NOT_RECORDED_IN_THIS_ARTIFACT",
+  "allowed_credit": [
+    "exact pinned existing full-v32 native downloader/install and 1MiB resume",
+    "production release discovery/validation with authenticated catalog snapshot",
+    "native d5 Swift/C bridge exact/fuzzy/advanced queries and two SQL-qualified occurrence counts",
+    "actual separate-process reopen, same ordered query identities, no redownload/reindex",
+    "unchanged exact v32 component inputs at current source; not whole-app binary equivalence"
+  ],
+  "excluded_credit": [
+    "Core request/admission path and real-UI query presentation",
+    "XCTest UI and physical-device acceptance",
+    "crash/interrupted-install recovery beyond observed partial-download resume",
+    "release signing/archive/publication",
+    "broad corpus benchmark or additional query qualification",
+    "runtime acceptance of new Hanlin view/test changes or entire current app binary"
+  ]
+}
