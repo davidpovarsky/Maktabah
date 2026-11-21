@@ -1,0 +1,81 @@
+{
+  "status": "DISPOSABLE_CONTROLS_PASS",
+  "controls": [
+    {
+      "control": "raw credential admission rejected",
+      "status": "PASS"
+    },
+    {
+      "control": "encoded credential admission rejected",
+      "status": "PASS"
+    },
+    {
+      "control": "stdout redacted before write",
+      "status": "PASS"
+    },
+    {
+      "control": "live input cannot join standard or Release selection",
+      "status": "PASS"
+    },
+    {
+      "control": "original evidence bytes and directory restored idempotently",
+      "status": "PASS"
+    },
+    {
+      "control": "interruption before rename preserves original directory",
+      "status": "PASS"
+    },
+    {
+      "control": "changed original evidence rejects restoration acceptance",
+      "status": "PASS"
+    },
+    {
+      "control": "unconsumed private input is removed without claiming consumption",
+      "status": "PASS"
+    },
+    {
+      "control": "second cleanup preserves original unconsumed outcome",
+      "status": "PASS"
+    },
+    {
+      "control": "reappearing private input rejects acceptance",
+      "status": "PASS"
+    },
+    {
+      "control": "consumed private input verified on still-owned device",
+      "status": "PASS"
+    },
+    {
+      "control": "unsafe source never enters upload directory",
+      "status": "PASS"
+    },
+    {
+      "control": "symlink evidence rejected",
+      "status": "PASS"
+    },
+    {
+      "control": "restoration failure cannot skip private/device cleanup",
+      "status": "PASS"
+    },
+    {
+      "control": "private removal failure still attempts owned shutdown and deletion",
+      "status": "PASS"
+    },
+    {
+      "control": "wrong workflow attempt cannot remove a device",
+      "status": "PASS"
+    },
+    {
+      "control": "standard matrix AST is identical when live hook is unselected",
+      "status": "PASS"
+    },
+    {
+      "control": "cache precedes secret delivery and upload is allowlisted only",
+      "status": "PASS"
+    }
+  ],
+  "controls_passed": 18,
+  "native_tests_executed": 0,
+  "provider_requests": 0,
+  "real_credentials_read": false
+}

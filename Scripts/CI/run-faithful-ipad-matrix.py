@@ -37,7 +37,7 @@ def requires_native_log_collection(selection):
     return False
 
 
-def main():
+def main(live_provider=None):
     root = Path.cwd()
     artifacts = root / "build/artifacts"
     artifacts.mkdir(parents=True, exist_ok=True)
@@ -114,6 +114,8 @@ def main():
                     or any(len(value["expected"]) != 1 for value in selection["suites"])):
                 raise SystemExit("Every diagnostic selection must name one declared, unique Suite/testMethod: "
                                  + json.dumps(selection))
+        if live_provider is not None:
+            live_provider.validate_selection(baseline, release_manifest, diagnostic_cases)
         app_sha = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
         report = {"appSHA": app_sha, "testSHA": os.environ.get("GITHUB_SHA"), "baseline": baseline,
                   "configuration": "Debug", "dataProfile": "miniTest10", "devices": [],
@@ -277,6 +279,10 @@ def main():
                             cleanup_errors,
                         )
                         active_xcodebuild = None
+                    if live_provider is not None and udid is not None:
+                        runtime27_interruption.run_isolated_cleanup_step(
+                            "live_private_input", lambda: live_provider.cleanup(udid), cleanup_errors
+                        )
                     if native_url_delivery is not None:
                         runtime27_interruption.run_isolated_cleanup_step(
                             "native_url_delivery", native_url_delivery.stop, cleanup_errors
@@ -453,9 +459,12 @@ def main():
                             "NativeRoutingAcceptanceTests/testCoreSearchOpenResults",
                             "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResults"
                         )) for case in selection)))
-                    recording_log = (artifacts / f"runtime27/recording-{label}.log").open("w")
-                    recording = subprocess.Popen(["xcrun", "simctl", "io", udid, "recordVideo", str(artifacts / f"runtime27/native-{label}.mp4")],
-                                                 stdout=recording_log, stderr=subprocess.STDOUT)
+                    if live_provider is not None:
+                        environment.update(live_provider.stage(udid, container, label, selection))
+                    else:
+                        recording_log = (artifacts / f"runtime27/recording-{label}.log").open("w")
+                        recording = subprocess.Popen(["xcrun", "simctl", "io", udid, "recordVideo", str(artifacts / f"runtime27/native-{label}.mp4")],
+                                                     stdout=recording_log, stderr=subprocess.STDOUT)
                 if runtime27_contract and label == "11-window":
                     palette_log_stream = runpy.run_path("Scripts/CI/collect-runtime27-palette-log.py")["PaletteLogStream"](udid, label).start()
                 phase("RUNNING_NATIVE_XCTEST", suites=selection)
@@ -463,6 +472,8 @@ def main():
                     process = subprocess.Popen(command, env=environment, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
                     active_xcodebuild = process
                     for line in process.stdout:
+                        if live_provider is not None:
+                            line = live_provider.redact_evidence(line)
                         if hid_comparison is not None:
                             line = hid_comparison.redact_evidence(line)
                         if native_url_delivery is not None:
@@ -512,6 +523,8 @@ def main():
                 if code == 0 and device["executedXCTestCount"] < minimum_count:
                     raise SystemExit("Expected black-box XCTest cases were not actually executed")
                 device["status"] = "EXECUTED_PASS" if code == 0 else "FAIL"
+                if live_provider is not None:
+                    live_provider.capture(udid, label)
                 if requires_native_log_collection(selection):
                     native_dir = artifacts / f"native-routing-logs-{label}"
                     native_dir.mkdir(parents=True, exist_ok=True)
@@ -541,7 +554,7 @@ def main():
                     for source in (candidate / "Documents").glob("faithful-*.viewport.json"):
                         shutil.copyfile(source, viewport_reports / source.name)
                 # Attachments are exported even after a failing test for honest diagnosis.
-                if result.is_dir():
+                if result.is_dir() and live_provider is None:
                     subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(result),
                                     "--output-path", str(artifacts / f"visual-{label}")], check=True)
                 if size == "13" and not runtime27_contract:
@@ -622,7 +635,8 @@ def main():
                 except OSError as write_error:
                     device["matrixReportWriteError"] = f"{type(write_error).__name__}: {write_error}"
                 try:
-                    subprocess.run([sys.executable, "Scripts/CI/collect-faithful-simulator-failure.py", udid, label], check=False, timeout=150)
+                    if live_provider is None:
+                        subprocess.run([sys.executable, "Scripts/CI/collect-faithful-simulator-failure.py", udid, label], check=False, timeout=150)
                 except subprocess.TimeoutExpired:
                     device["diagnostics"] = "TIMEOUT"
                 # Retain a hard failure, but still execute the other required native
@@ -632,6 +646,14 @@ def main():
                     run_interrupted_cleanup()
                 elif udid is not None:
                     try:
+                        if live_provider is not None:
+                            live_cleanup_errors = {}
+                            runtime27_interruption.run_isolated_cleanup_step(
+                                "live_private_input", lambda: live_provider.cleanup(udid), live_cleanup_errors
+                            )
+                            if live_cleanup_errors:
+                                device["status"] = "FAIL"
+                                device["livePrivateInputCleanup"] = live_cleanup_errors
                         if native_url_delivery is not None:
                             native_url_delivery.stop()
                             native_url_delivery = None
