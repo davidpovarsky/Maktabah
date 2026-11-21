@@ -33,9 +33,16 @@ def digest(path):
 
 
 def requires_native_hid(selected_cases):
-    # This original case sends real A/Delete/Escape HID events. A Release
-    # manifest uses no R27 execution-group object, but still needs that transport.
-    return "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector" in selected_cases
+    # These original cases require real hardware delivery. XCTest typeKey Escape
+    # produced no app event in run 44952423858; genuine HID dismissed both real
+    # full and narrow palette inputs. Release has no R27 execution-group object.
+    required = {
+        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+        "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+        "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+        "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+    }
+    return bool(required.intersection(selected_cases))
 
 
 def load_manifest(root=ROOT):

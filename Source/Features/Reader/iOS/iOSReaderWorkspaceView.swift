@@ -430,7 +430,11 @@ struct iOSReaderWorkspaceView: View {
 
             ToolbarItem(placement: .topBarTrailing) {
                 Button(action: toggleStudyPanel) {
-                    PanelToggleIcon(isOpen: showPanel)
+                    Label {
+                        showPanel ? Text("Close Study Tools") : Text("Open Study Tools")
+                    } icon: {
+                        PanelToggleIcon(isOpen: showPanel)
+                    }
                 }
                 .accessibilityLabel(showPanel ? Text("Close Study Tools") : Text("Open Study Tools"))
                 .accessibilityIdentifier("reader-study-toggle")

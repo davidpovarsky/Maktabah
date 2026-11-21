@@ -324,6 +324,20 @@ class ExistingHIDRequirementTests(unittest.TestCase):
         self.assertFalse(self.evaluate(actual, contract={"hid_comparison": True}, scenario={"hid_comparison": False}))
         self.assertFalse(self.evaluate(actual, contract={"hid_comparison": False}))
 
+    def test_original_escape_cases_and_comparison_require_real_delivery(self):
+        actual = self.condition()
+        cases = [
+            "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+            "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+            "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+        ]
+        for case in cases:
+            with self.subTest(case=case):
+                self.assertTrue(release["requires_native_hid"]([case]))
+                self.assertTrue(self.evaluate(actual, release_manifest={"synthetic": True},
+                                              selection=[case]))
+                self.assertFalse(release["requires_native_hid"]([case + "Extra"]))
+
     def test_unrelated_release_case_does_not_start_hid_transport(self):
         self.assertFalse(self.evaluate(self.condition(), release_manifest={"synthetic": True},
                                        selection=["R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation"]))

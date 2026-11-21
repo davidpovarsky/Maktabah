@@ -281,7 +281,7 @@ final class R27NativePadTests: R27NativeUIBase {
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [movesBack], timeout: 15), .completed)
         recordWindowEvidence("r27-calibration-keycommand-up-restored-selection")
-        input.firstMatch.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
+        try sendNativeHID(.keyboardEscape)
         recordWindowEvidence("r27-calibration-full-window-after-escape")
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "count == 0"), object: input
@@ -303,7 +303,7 @@ final class R27NativePadTests: R27NativeUIBase {
         XCTAssertTrue(result.waitForExistence(timeout: 15))
         XCTAssertTrue(result.isHittable)
         recordWindowEvidence("r27-calibration-full-window-filtered-fixture")
-        input.firstMatch.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
+        try sendNativeHID(.keyboardEscape)
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "count == 0"), object: input
         )], timeout: 15), .completed, "Escape must also remove the genuinely filtered input")
@@ -312,8 +312,8 @@ final class R27NativePadTests: R27NativeUIBase {
         XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
     }
 
-    /// Separate delivery comparison. The original XCTest Escape case above
-    /// remains unchanged and independently required; this is not a retry.
+    /// Separate native HID window/Inspector journey. The original pointer and
+    /// calibrated full-window keyboard cases remain independently required.
     @MainActor
     func testNormalBootstrapPaletteHIDComparison() throws {
         XCTAssertTrue(isPad)
@@ -405,46 +405,6 @@ final class R27NativePadTests: R27NativeUIBase {
         restoreNativeWindow(to: original.size)
         XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
         XCTAssertEqual(app.textViews["reader-text"].value as? String, text)
-    }
-
-    @MainActor
-    private func sendNativeHID(_ usage: UIKeyboardHIDUsage) throws {
-        let token = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_HID_TOKEN"],
-                                 "Job-local HID server is mandatory for this separate comparison")
-        let sidecar = try workspaceSidecarURL()
-        let container = sidecar.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
-            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
-        let nonce = UUID().uuidString
-        let prefix = container.appendingPathComponent("Documents/r27-hid-\(token)-\(nonce)")
-        let request = URL(fileURLWithPath: prefix.path + ".request.json")
-        let ack = URL(fileURLWithPath: prefix.path + ".ack.json")
-        let payload: [String: Any] = ["token": token, "nonce": nonce, "key": usage.rawValue]
-        // Keep private IPC paths out of XCTest's automatic NSError reporting.
-        do {
-            try JSONSerialization.data(withJSONObject: payload).write(to: request, options: .atomic)
-        } catch {
-            XCTFail("Could not write owned HID request")
-            return
-        }
-        let acknowledged = XCTWaiter.wait(for: [XCTNSPredicateExpectation(
-            predicate: NSPredicate { _, _ in FileManager.default.fileExists(atPath: ack.path) }, object: nil
-        )], timeout: 20)
-        XCTAssertEqual(acknowledged, .completed, "Real HID transport must acknowledge this exact request")
-        guard acknowledged == .completed,
-              let data = try? Data(contentsOf: ack),
-              let response = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any],
-              let publicData = try? JSONSerialization.data(withJSONObject: response, options: [.sortedKeys]),
-              String(decoding: publicData, as: UTF8.self).range(of: token, options: .caseInsensitive) == nil else {
-            XCTFail("HID acknowledgement must be valid and credential-free")
-            return
-        }
-        XCTAssertEqual(response["nonce"] as? String, nonce)
-        XCTAssertEqual(response["key"] as? Int, usage.rawValue)
-        XCTAssertEqual(response["delivered"] as? Bool, true, "Transport error: \(response)")
-        let attachment = XCTAttachment(data: publicData, uniformTypeIdentifier: "public.json")
-        attachment.name = "r27-hid-transport-only-\(usage.rawValue)"
-        attachment.lifetime = .keepAlways
-        add(attachment)
     }
 
     @MainActor
