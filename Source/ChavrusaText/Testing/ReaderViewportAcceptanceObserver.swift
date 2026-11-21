@@ -55,7 +55,9 @@ struct ReaderViewportAcceptanceObserver: UIViewRepresentable {
             guard matches.count == 1, let text = matches.first else { return }
             // This existing method only observes the original source anchor.
             // Its optional old file exporter is deliberately NOT activated.
+            let usesTextKit2BeforeObservation = text.textLayoutManager != nil
             text.updateViewportAccessibilityMetadata()
+            let usesTextKit2AfterObservation = text.textLayoutManager != nil
             let fields = Dictionary((text.accessibilityHint ?? "").split(separator: ";").compactMap { field -> (String, String)? in
                 let pair = field.split(separator: "=", maxSplits: 1)
                 guard pair.count == 2 else { return nil }
@@ -77,6 +79,8 @@ struct ReaderViewportAcceptanceObserver: UIViewRepresentable {
             if let root = window.rootViewController { inspectController(root) }
             let report: [String: Any] = ["source": source, "offset": offset, "object": object,
                                           "overviewPresentations": presentations,
+                                          "usesTextKit2BeforeObservation": usesTextKit2BeforeObservation,
+                                          "usesTextKit2AfterObservation": usesTextKit2AfterObservation,
                                           "contentHeight": Double(text.contentSize.height),
                                           "viewportHeight": Double(text.bounds.height),
                                           "contentOffsetY": Double(text.contentOffset.y),

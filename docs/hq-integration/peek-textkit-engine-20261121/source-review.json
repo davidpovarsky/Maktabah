@@ -1,0 +1,15 @@
+{
+  "base": "633ea6e1d6153a27841b6cb899fa73be8a869ef8",
+  "files": [
+    "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+    "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift"
+  ],
+  "legacy_capture_fallback_byte_identical": true,
+  "legacy_restore_fallback_byte_identical": true,
+  "font48_preserved": true,
+  "overflow80_gesture20_object_owner_anchor_assertions_preserved": true,
+  "patch_sha256": "d8b1f39e8db12978aa97f3d39995fa37ff94254461b472d35b5dcc1147bd27c3",
+  "native_runtime_validation": "NOT_RUN; root controls focused Apple route"
+}

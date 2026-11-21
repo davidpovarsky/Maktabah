@@ -67,6 +67,26 @@ class iOSCustomIbarotTextView: UITextView {
 
     private func captureViewportAnchor() -> ViewportAnchor? {
         guard textStorage.length > 0 else { return nil }
+        // Query the active engine before touching layoutManager: that getter
+        // irreversibly switches a TextKit 2 UITextView into compatibility mode.
+        if textLayoutManager != nil {
+            let point = CGPoint(
+                x: textContainerInset.left + textContainer.lineFragmentPadding + 1,
+                y: contentOffset.y + adjustedContentInset.top + 1
+            )
+            guard let closest = closestPosition(to: textInputView.convert(point, from: self)) else { return nil }
+            let rawIndex = offset(from: beginningOfDocument, to: closest)
+            guard rawIndex >= 0, rawIndex <= textStorage.length else { return nil }
+            let characterIndex = rawIndex < textStorage.length ? rawIndex
+                : (textStorage.string as NSString).rangeOfComposedCharacterSequence(at: textStorage.length - 1).location
+            guard let position = position(from: beginningOfDocument, offset: characterIndex) else { return nil }
+            let caret = convert(caretRect(for: position), from: textInputView)
+            guard caret.minY.isFinite, caret.height.isFinite, caret.height > 0 else { return nil }
+            let sourceIndex = currentRenderResult?
+                .sourceCharacterIndex(forDisplayedIndex: characterIndex) ?? characterIndex
+            return ViewportAnchor(sourceCharacterIndex: sourceIndex,
+                                  verticalOffset: caret.minY - contentOffset.y)
+        }
         layoutManager.ensureLayout(for: textContainer)
 
         let point = CGPoint(
@@ -98,6 +118,29 @@ class iOSCustomIbarotTextView: UITextView {
     private func restorePendingViewportAnchor() {
         guard let anchor = pendingViewportAnchor, textStorage.length > 0 else { return }
         pendingViewportAnchor = nil
+        if let textLayoutManager {
+            let displayedRange = currentRenderResult?.displayedRange(
+                forSourceRange: NSRange(location: anchor.sourceCharacterIndex, length: 1)
+            ) ?? NSRange(location: anchor.sourceCharacterIndex, length: 1)
+            guard displayedRange.location != NSNotFound,
+                  displayedRange.location < textStorage.length else { return }
+            textLayoutManager.ensureLayout(for: displayedRange)
+            guard let position = position(from: beginningOfDocument, offset: displayedRange.location) else { return }
+            let caret = convert(caretRect(for: position), from: textInputView)
+            guard caret.minY.isFinite, caret.height.isFinite, caret.height > 0 else { return }
+            let proposedY = caret.minY - anchor.verticalOffset
+            let minimumY = -adjustedContentInset.top
+            let maximumY = max(
+                minimumY,
+                contentSize.height - bounds.height + adjustedContentInset.bottom
+            )
+            setContentOffset(
+                CGPoint(x: contentOffset.x, y: min(max(proposedY, minimumY), maximumY)),
+                animated: false
+            )
+            updateViewportAccessibilityMetadata()
+            return
+        }
         layoutManager.ensureLayout(for: textContainer)
 
         let displayedRange = currentRenderResult?.displayedRange(
