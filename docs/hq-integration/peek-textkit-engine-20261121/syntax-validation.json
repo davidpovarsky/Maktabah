@@ -1,0 +1,17 @@
+{
+  "checked_at_utc": "2026-11-21T21:08:29.967518+00:00",
+  "compiler": "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+  "compiler_version": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "mode": "Swift frontend syntax parsing on Windows; no UIKit SDK typecheck or Native runtime credit",
+  "files": [
+    "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+    "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift"
+  ],
+  "swift_parse_exit": 0,
+  "swift_parse_output_bytes": 0,
+  "diff_check_exit": 0,
+  "diff_check_output": "",
+  "native_compile_and_runtime": "NOT_RUN"
+}

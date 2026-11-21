@@ -1,0 +1,156 @@
+{
+  "base": "633ea6e1d6153a27841b6cb899fa73be8a869ef8",
+  "run": {
+    "id": 44940208007,
+    "attempt": 1,
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44940208007",
+    "case_id": "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+    "result": "FAILED before the Reader press/drag at the raw overflow prerequisite",
+    "assertion": "contentHeight - viewportHeight + topInset + bottomInset > 80",
+    "actual_overflow": -180,
+    "native_revalidation": "NOT_RUN"
+  },
+  "evidence_artifact": {
+    "id": 14724450161,
+    "bytes": 25598249,
+    "sha256": "0484d4115576cd30b6ea35ad8a32aded9bca10d12d0fcf25dd10e883702dd8de"
+  },
+  "captures_artifact": {
+    "id": 14723843717,
+    "bytes": 232535008,
+    "sha256": "f491fc96a67d80179771044bf2ba7df83907af2a4408de76a21b4f41ff8ddde8",
+    "parent_verified_crc_members": 2700
+  },
+  "retained_members": [
+    {
+      "file": "viewport-before-gesture.json",
+      "artifact_member": "visual-11-reader/4A3A2355-677E-454B-918C-BE9EAB5330EF.json",
+      "bytes": 230,
+      "sha256": "e51614587ce3025bdd4d422a2d58e401f822f9974f1426b85ae546596fcb23b9"
+    },
+    {
+      "file": "before-sheet-hierarchy.txt",
+      "artifact_member": "visual-11-reader/60011A28-D76E-43E9-9DD2-DDDBA3893255.txt",
+      "bytes": 18379,
+      "sha256": "d8f89c23aafb010cc70f58d6a0ca667563f2be9059519dc554c6417d761466ce"
+    },
+    {
+      "file": "peek-hierarchy.txt",
+      "artifact_member": "visual-11-reader/E3C41F8A-EAB2-4CDE-894E-231E0033FA3C.txt",
+      "bytes": 25854,
+      "sha256": "aa200927891e42ca7bbf8e98369b44b6ed9d42b5793d55a123db1c8a8afb9fcc"
+    },
+    {
+      "file": "peek-actual-views.json",
+      "artifact_member": "visual-11-reader/BC1DC114-D107-4F69-8E5D-FEADD72E4AD6.json",
+      "bytes": 1183,
+      "sha256": "b59d124e2ab2e4ba87bf7d838a017d4881d93084a6314738caaff2151b54c34a"
+    },
+    {
+      "file": "peek.png",
+      "artifact_member": "visual-11-reader/B7FD8C3D-AE0E-4BD6-B647-E3C124792D6A.png",
+      "bytes": 1141223,
+      "sha256": "df21604f9d92bda2e6f65ab1f6ba565a0c36c2e25ba8049c97822a05daee5157"
+    }
+  ],
+  "raw_viewport": {
+    "overviewPresentations": [],
+    "offset": -6.84375,
+    "viewportHeight": 802,
+    "topInset": 0,
+    "object": 6218213291716677757,
+    "source": 459,
+    "contentHeight": 622,
+    "bottomInset": 0,
+    "contentOffsetY": 506,
+    "requestID": "2F5A60F2-8B8E-4104-A8E1-2711DA0D66E3"
+  },
+  "observed_geometry": {
+    "window": [
+      0,
+      0,
+      1210,
+      834
+    ],
+    "reader": [
+      0,
+      32,
+      1210,
+      802
+    ],
+    "peek_sheet": [
+      605,
+      659,
+      580,
+      155
+    ],
+    "before_and_peek_paragraph_frames_y_height": [
+      [
+        -298.3,
+        1132.0
+      ],
+      [
+        918.6,
+        808.6
+      ],
+      [
+        1812.1,
+        80.9
+      ],
+      [
+        1977.8,
+        485.2
+      ]
+    ],
+    "rendered_content_vs_one_page_scrollbar_mismatch_exists_before_first_observer_request": true
+  },
+  "scope": {
+    "fixture_changed": false,
+    "font48_preserved": true,
+    "raw_overflow80_preserved": true,
+    "real_gesture20_preserved": true,
+    "original_object_owner_source_anchor_assertions_preserved": true,
+    "content_size_mutated": false,
+    "original_textview_replaced": false,
+    "legacy_capture_and_restore_fallbacks_byte_identical": true,
+    "full_native116_catalog_changed": false,
+    "release114_catalog_changed": false
+  },
+  "textkit_proof": {
+    "source_blob_before": "e017b066f70e4dcf0353a33ac89cd776bab9f40a",
+    "old_capture_and_restore_access_layout_manager_unconditionally": true,
+    "runtime_engine_was_not_recorded_by_failed_run": true,
+    "engine_measurement": "Actual text.textLayoutManager != nil immediately before and immediately after updateViewportAccessibilityMetadata; optional decoding remains nil if absent and equality to true fails.",
+    "next_run_must_prove": "TextKit2 survives observation and width changes, raw scrollability is valid, a real gesture scrolls the original Reader behind Peek, and original width/source/offset/owner invariants pass."
+  },
+  "focused_revalidation": {
+    "device": "ipad11",
+    "configuration_label": "11-reader",
+    "case_ids": [
+      "NativeStudySheetPadTests/testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt",
+      "NativeStudySheetPadTests/testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor"
+    ],
+    "prior_seven_cases": "Root retains all original seven selectors individually and adds only the existing width case, making eight unique cases."
+  },
+  "prior_width_acceptance": {
+    "source_document": "docs/hq-integration/native-study-sheet-repair-20261120/CAPTURE_FINDINGS.json",
+    "run_id": 44811999303,
+    "attempt": 1,
+    "workflow_head": "a1d11a78152f9d6826c90646fcd72cf7711f12ff",
+    "application_source": "353888ed645c135da9cb229713d17a4594d1edb6",
+    "case": {
+      "actual": "Passed",
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor",
+      "configuration_label": "11-reader",
+      "device": "ipad11",
+      "expected": "Same actual iPad window narrows and restores with system adaptation while original Reader/session/content/source/selection/presentation and viewport anchor are retained."
+    },
+    "whole_run_credit": false
+  },
+  "official_sources": [
+    "https://developer.apple.com/videos/play/wwdc2022/10090/",
+    "https://developer.apple.com/documentation/uikit/uitextinput",
+    "https://developer.apple.com/documentation/uikit/uitextview/textlayoutmanager.md",
+    "https://developer.apple.com/documentation/uikit/uitextinput/caretrect(for:).md"
+  ]
+}

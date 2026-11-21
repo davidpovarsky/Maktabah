@@ -331,6 +331,8 @@ final class NativeStudySheetPadTests: NativeStudySheetUIBase {
     func testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor() throws {
         let first = try startSheet()
         let notes = try selectNotes(), initial = try viewport()
+        XCTAssertEqual(initial.usesTextKit2BeforeObservation, true)
+        XCTAssertEqual(initial.usesTextKit2AfterObservation, true)
         let originalSize = app.windows.firstMatch.frame.size
         let cleanup = StudySheetWindowCleanup { [self] in restoreWindow(originalSize) }
         addTeardownBlock { await cleanup.run() }
@@ -341,12 +343,18 @@ final class NativeStudySheetPadTests: NativeStudySheetUIBase {
         XCTAssertEqual(actual.midX, bounds.midX, accuracy: 2, "The same iPad must adapt to a centered bottom sheet")
         XCTAssertGreaterThan(actual.width, bounds.width * 0.85)
         XCTAssertGreaterThanOrEqual(actual.maxY, bounds.maxY - 32)
-        try retainSheet("same-ipad-narrow"); assertAnchor(initial, try viewport())
+        let narrowViewport = try viewport()
+        XCTAssertEqual(narrowViewport.usesTextKit2BeforeObservation, true)
+        XCTAssertEqual(narrowViewport.usesTextKit2AfterObservation, true)
+        try retainSheet("same-ipad-narrow"); assertAnchor(initial, narrowViewport)
         restoreWindow(originalSize)
         let wide = try observe { $0.systemSheet && $0.appeared && ($0.windowBounds?[2] ?? 0) > 748 }
         assertSameOwner(first, wide); XCTAssertEqual(wide.selectedTool, notes.selectedTool)
         XCTAssertGreaterThan(try frame(wide.sheetFrame).midX, try frame(wide.windowBounds).midX)
-        assertAnchor(initial, try viewport()); try retainSheet("same-ipad-wide-again")
+        let wideViewport = try viewport()
+        XCTAssertEqual(wideViewport.usesTextKit2BeforeObservation, true)
+        XCTAssertEqual(wideViewport.usesTextKit2AfterObservation, true)
+        assertAnchor(initial, wideViewport); try retainSheet("same-ipad-wide-again")
     }
 
     @MainActor
@@ -356,6 +364,8 @@ final class NativeStudySheetPadTests: NativeStudySheetUIBase {
         _ = try startSheet(fontSize: 48)
         let first = try dragDetent("peek"), before = try viewport()
         try attachViewport(before, named: "system-study-background-scroll-before")
+        XCTAssertEqual(before.usesTextKit2BeforeObservation, true, "The original Reader must retain TextKit 2")
+        XCTAssertEqual(before.usesTextKit2AfterObservation, true, "Viewport observation must preserve the active engine")
         let contentHeight = try XCTUnwrap(before.contentHeight)
         let viewportHeight = try XCTUnwrap(before.viewportHeight)
         let topInset = try XCTUnwrap(before.topInset), bottomInset = try XCTUnwrap(before.bottomInset)
@@ -375,6 +385,8 @@ final class NativeStudySheetPadTests: NativeStudySheetUIBase {
             thenDragTo: top.withOffset(CGVector(dx: x, dy: endY)))
         let moved = try viewport()
         try attachViewport(moved, named: "system-study-background-scroll-after")
+        XCTAssertEqual(moved.usesTextKit2BeforeObservation, true)
+        XCTAssertEqual(moved.usesTextKit2AfterObservation, true)
         XCTAssertEqual(before.object, moved.object)
         let previousY = try XCTUnwrap(before.contentOffsetY), actualY = try XCTUnwrap(moved.contentOffsetY)
         XCTAssertGreaterThan(abs(actualY - previousY), 20, "Original Reader must actually scroll behind Peek")

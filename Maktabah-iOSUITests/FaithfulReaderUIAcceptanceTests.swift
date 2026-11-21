@@ -267,6 +267,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         let source: Int; let offset: Double; let object: Int; let requestID: String
         let contentHeight: Double?; let viewportHeight: Double?; let contentOffsetY: Double?
         let topInset: Double?; let bottomInset: Double?
+        let usesTextKit2BeforeObservation: Bool?; let usesTextKit2AfterObservation: Bool?
         let overviewPresentations: [Presentation]?
     }
     func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0, recordViewport: Bool = false, fontSize: Float? = nil) {

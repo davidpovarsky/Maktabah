@@ -232,29 +232,62 @@ enum ReaderNativeTextVisibility {
         let viewport = textView.bounds.inset(by: textView.adjustedContentInset)
         guard !viewport.isEmpty,
               textView.convert(viewport, to: window).intersects(window.bounds) else { return false }
-        let glyphs: NSRange
-        if let sourceRange {
-            let sourceLength = (renderedSource as NSString).length
-            guard valid(sourceRange, length: sourceLength) else { return false }
-            let range = displayedRange(sourceRange)
-            guard valid(range, length: textView.textStorage.length) else { return false }
-            // Require the focus's first rendered glyph in the actual viewport;
-            // a model range or a distant part of a long paragraph is insufficient.
-            let first = NSRange(location: range.location, length: 1)
-            textView.layoutManager.ensureLayout(forCharacterRange: first)
-            glyphs = textView.layoutManager.glyphRange(forCharacterRange: first, actualCharacterRange: nil)
+        let rect: CGRect
+        // Reading layoutManager would replace this view's TextKit 2 engine.
+        // Keep visibility observation on the original native text-input path.
+        if textView.textLayoutManager != nil {
+            let characterIndex: Int
+            if let sourceRange {
+                let sourceLength = (renderedSource as NSString).length
+                guard valid(sourceRange, length: sourceLength) else { return false }
+                let range = displayedRange(sourceRange)
+                guard valid(range, length: textView.textStorage.length) else { return false }
+                // Inspect only the focus's first displayed character, just as
+                // the legacy glyph path does; a later visible line cannot pass.
+                characterIndex = range.location
+            } else {
+                let point = CGPoint(x: viewport.midX, y: viewport.midY)
+                guard let closest = textView.closestPosition(
+                    to: textView.textInputView.convert(point, from: textView)
+                ) else { return false }
+                let index = textView.offset(from: textView.beginningOfDocument, to: closest)
+                guard index >= 0, index <= textView.textStorage.length else { return false }
+                characterIndex = min(index, textView.textStorage.length - 1)
+            }
+            let firstCharacter = (renderedText as NSString)
+                .rangeOfComposedCharacterSequence(at: characterIndex)
+            guard valid(firstCharacter, length: textView.textStorage.length),
+                  let start = textView.position(from: textView.beginningOfDocument, offset: firstCharacter.location),
+                  let end = textView.position(from: textView.beginningOfDocument, offset: NSMaxRange(firstCharacter)),
+                  let range = textView.textRange(from: start, to: end), !range.isEmpty else { return false }
+            // A nearest position is only a candidate. The actual nonempty text
+            // range's rectangle must pass every original viewport/clip check.
+            rect = textView.convert(textView.firstRect(for: range), from: textView.textInputView)
         } else {
-            // Non-focused reads also require a real glyph in the viewport.
-            // UIKit returns a range whose first/last glyph intersects this rect.
-            let containerViewport = viewport.offsetBy(dx: -textView.textContainerInset.left,
-                                                       dy: -textView.textContainerInset.top)
-            let visible = textView.layoutManager.glyphRange(forBoundingRect: containerViewport, in: textView.textContainer)
-            guard visible.length > 0 else { return false }
-            glyphs = NSRange(location: visible.location, length: 1)
+            let glyphs: NSRange
+            if let sourceRange {
+                let sourceLength = (renderedSource as NSString).length
+                guard valid(sourceRange, length: sourceLength) else { return false }
+                let range = displayedRange(sourceRange)
+                guard valid(range, length: textView.textStorage.length) else { return false }
+                // Require the focus's first rendered glyph in the actual viewport;
+                // a model range or a distant part of a long paragraph is insufficient.
+                let first = NSRange(location: range.location, length: 1)
+                textView.layoutManager.ensureLayout(forCharacterRange: first)
+                glyphs = textView.layoutManager.glyphRange(forCharacterRange: first, actualCharacterRange: nil)
+            } else {
+                // Non-focused reads also require a real glyph in the viewport.
+                // UIKit returns a range whose first/last glyph intersects this rect.
+                let containerViewport = viewport.offsetBy(dx: -textView.textContainerInset.left,
+                                                           dy: -textView.textContainerInset.top)
+                let visible = textView.layoutManager.glyphRange(forBoundingRect: containerViewport, in: textView.textContainer)
+                guard visible.length > 0 else { return false }
+                glyphs = NSRange(location: visible.location, length: 1)
+            }
+            guard glyphs.length > 0 else { return false }
+            rect = textView.layoutManager.boundingRect(forGlyphRange: glyphs, in: textView.textContainer)
+                .offsetBy(dx: textView.textContainerInset.left, dy: textView.textContainerInset.top)
         }
-        guard glyphs.length > 0 else { return false }
-        let rect = textView.layoutManager.boundingRect(forGlyphRange: glyphs, in: textView.textContainer)
-            .offsetBy(dx: textView.textContainerInset.left, dy: textView.textContainerInset.top)
         guard !rect.isEmpty, rect.origin.x.isFinite, rect.origin.y.isFinite,
               rect.width.isFinite, rect.height.isFinite else { return false }
         guard viewport.insetBy(dx: -1, dy: -1).intersects(rect),
