@@ -1,0 +1,130 @@
+diff --git a/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift b/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
+index fa5430a8..e017b066 100644
+--- a/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
++++ b/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
+@@ -638,7 +638,16 @@ struct iOSIbarotTextView: UIViewRepresentable {
+ 
+         let rendered = resolveRenderedContent(textView: textView, context: context)
+ 
+-        if let pendingTarget = viewModel.consumePendingReaderScrollTarget() {
++        #if DEBUG
++        ReaderRenderedHighlightInspector.updateDiagnostics(
++            for: textView,
++            searchRanges: rendered.searchRanges,
++            currentLocator: viewModel.currentLocator?.persistenceKey,
++            renderGeneration: context.coordinator.renderGeneration
++        )
++        #endif
++
++        if let pendingTarget = viewModel.consumePendingReaderScrollTarget(for: viewModel.currentLocator) {
+             switch pendingTarget {
+             case .top:
+                 scrollTextViewToTop(textView)
+@@ -700,6 +709,21 @@ struct iOSIbarotTextView: UIViewRepresentable {
+         viewModel.fetchSelectedRange = { [weak textView] in
+             textView?.selectedRange
+         }
++        viewModel.isNativeReaderTextVisible = { [weak textView, weak viewModel, weak coordinator = context.coordinator] sceneID, sourceRange in
++            guard let textView, let viewModel, let coordinator,
++                  coordinator.parent.viewModel === viewModel,
++                  let key = coordinator.lastRenderKey,
++                  key.bookId == viewModel.currentBook?.id,
++                  key.contentId == viewModel.currentContentId,
++                  let rendered = textView.currentRenderResult,
++                  !textView.isRestoringScroll else { return false }
++            return ReaderNativeTextVisibility.isVisible(
++                textView: textView, sceneID: sceneID,
++                expectedSource: viewModel.contentText, renderedSource: rendered.sourceText,
++                renderedText: rendered.attributedString.string, sourceRange: sourceRange,
++                displayedRange: { rendered.displayedRange(forSourceRange: $0) }
++            )
++        }
+     }
+ 
+     private func resolveRenderedContent(
+@@ -715,6 +739,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
+             text: text,
+             annotations: annotations,
+             searchEventId: activeSearchEventId,
++            selectedSegmentRange: selectedSegmentRange,
++            highlightTerms: viewModel.highlightTerms,
+             showHarakat: state.showHarakat,
+             clickableAnnotation: state.clickableAnnotation,
+             enhancedUnderline: enhancedUnderline,
+@@ -731,6 +757,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
+             return cached
+         }
+ 
++        context.coordinator.renderGeneration += 1
+         let newlyRendered = renderAttributedContent(
+             textView: textView,
+             context: context,
+@@ -764,6 +791,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
+         let text: String
+         let annotations: [Annotation]
+         let searchEventId: UUID?
++        let selectedSegmentRange: NSRange?
++        let highlightTerms: [String]?
+         let showHarakat: Bool
+         let clickableAnnotation: Bool
+         let enhancedUnderline: Bool
+@@ -843,10 +872,10 @@ struct iOSIbarotTextView: UIViewRepresentable {
+                displayedSelected.location >= 0,
+                displayedSelected.length > 0,
+                displayedSelected.location + displayedSelected.length <= attributedString.length {
+-                attributedString.addAttribute(
+-                    .backgroundColor,
+-                    value: UIColor.systemBlue.withAlphaComponent(0.14),
+-                    range: displayedSelected
++                ReaderSelectionBackground.apply(
++                    to: attributedString, range: displayedSelected,
++                    attribute: .backgroundColor,
++                    color: UIColor.systemBlue.withAlphaComponent(0.14)
+                 )
+             }
+         }
+@@ -975,6 +1004,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
+         var lastRenderedContent: RenderedAttributedContent?
+         var lastBackgroundColorIndex: Int?
+         var animationTask: Task<Void, Never>?
++        var renderGeneration: Int = 0
+         private var lastSelectionChangeDate: Date?
+         private var manualDragStartOffset: CGFloat?
+         private var didClearSearchForCurrentDrag = false
+@@ -1059,6 +1089,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
+         // MARK: - Pull-to-Navigate Scroll Detection
+ 
+         func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
++            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel, beginsDrag: true)
+             manualDragStartOffset = scrollView.contentOffset.y
+             didClearSearchForCurrentDrag = false
+         }
+@@ -1070,10 +1101,11 @@ struct iOSIbarotTextView: UIViewRepresentable {
+ 
+             (scrollView as? iOSCustomIbarotTextView)?.updateViewportAccessibilityMetadata()
+             if !didClearSearchForCurrentDrag,
+-               ReaderSearchHighlightPolicy.shouldClearAfterManualScroll(
++               ReaderSearchContextCoordinator.shouldClearAfterScroll(
+                    startOffsetY: manualDragStartOffset.map(Double.init),
+                    currentOffsetY: Double(scrollView.contentOffset.y),
+                    viewportHeight: Double(scrollView.bounds.height),
++                   isManualUserDrag: scrollView.isDragging || scrollView.isTracking,
+                    hasActiveHighlight: parent.viewModel.hasActiveSearchHighlight
+                ) {
+                 didClearSearchForCurrentDrag = true
+@@ -1092,6 +1124,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
+             let bottomOverscroll = offsetY - effectiveMaxOffsetY
+ 
+             let isRestoring = (scrollView as? iOSCustomIbarotTextView)?.isRestoringScroll ?? false
++            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel)
+             let transition = pullStateMachine.handleScroll(
+                 topOverscroll: topOverscroll,
+                 bottomOverscroll: bottomOverscroll,
+@@ -1128,6 +1161,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
+         }
+ 
+         func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
++            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel, reachedTop: true)
+             updateLastKnownScrollPosition(from: scrollView)
+         }
+ 

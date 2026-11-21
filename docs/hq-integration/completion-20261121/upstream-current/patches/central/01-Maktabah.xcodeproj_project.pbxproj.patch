@@ -1,0 +1,204 @@
+diff --git a/Maktabah.xcodeproj/project.pbxproj b/Maktabah.xcodeproj/project.pbxproj
+index 710fb0db..9f04627c 100644
+--- a/Maktabah.xcodeproj/project.pbxproj
++++ b/Maktabah.xcodeproj/project.pbxproj
+@@ -110,6 +110,7 @@
+ 		F3F000020000000000000002 /* iOSReaderSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F000010000000000000001 /* iOSReaderSessionManager.swift */; };
+ 		B30000000000000000000001 /* AnchoredPopup in Frameworks */ = {isa = PBXBuildFile; productRef = B20000000000000000000001 /* AnchoredPopup */; };
+ 		C30000000000000000000001 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = C20000000000000000000001 /* FloatingPanel */; };
++		ACDA26A151221078C4296F37 /* NativeStudySheetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */; };
+ 		C40000000000000000000001 /* iOSReaderWorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40000000000000000000002 /* iOSReaderWorkspaceView.swift */; };
+ 		B40000000000000000000001 /* iOSBookInfoAnchoredCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40000000000000000000002 /* iOSBookInfoAnchoredCard.swift */; };
+ 		A30000000000000000000001 /* TorahInspectorCore in Frameworks */ = {isa = PBXBuildFile; productRef = A20000000000000000000001 /* TorahInspectorCore */; };
+@@ -1292,6 +1293,7 @@
+ 		A42DDBE8569676110112B7FE /* ReaderSidebarPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CD2E3E306E8AA1C0DA7F9C /* ReaderSidebarPager.swift */; };
+ 		9188F501FA26158F8E9E93DE /* StudyWorkspaceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0551A9F2C4FEF69B0442D1 /* StudyWorkspaceModels.swift */; };
+ 		80083054F71F56EACF16965B /* StudyWorkspaceNavigationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6930BB1B38DAAAEDD6116B80 /* StudyWorkspaceNavigationAdapter.swift */; };
++		3323288CD52CDAF06CEC202F /* StudyGroupSwitchPerformanceObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9336519789154002DB5A1B7 /* StudyGroupSwitchPerformanceObservation.swift */; };
+ 		0A17F7E8BBDA06247E7CAF65 /* StudyWorkspacePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1CFB38BF18B871F499F3AF /* StudyWorkspacePersistence.swift */; };
+ 		B51EE7D17CE12DEE940894A0 /* StudyWorkspaceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B97DF0DEF05B94BF47F3D6 /* StudyWorkspaceStore.swift */; };
+ 		F2AD42BF9D75E1CCC26788D5 /* StudyWorkspaceMappingOwnership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7B5E7CFC1C5368638997DD /* StudyWorkspaceMappingOwnership.swift */; };
+@@ -1376,6 +1378,33 @@
+ 		4C4E1E4F9DC2F168D2260AC8 /* AnnotationExchangeLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA5DEFA4B1E2823A7CCD9A /* AnnotationExchangeLedger.swift */; };
+ 		7CFE6AEF1FAFD68BFCEEC502 /* AnnotationExchangeLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA5DEFA4B1E2823A7CCD9A /* AnnotationExchangeLedger.swift */; };
+ 		D238792D20CAE8596B84D69F /* AnnotationExchangeLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA5DEFA4B1E2823A7CCD9A /* AnnotationExchangeLedger.swift */; };
++		621609BD78BD7727EF7ABCE8 /* OtzariaExactOccurrenceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D4379F1684D2EC923A5F45 /* OtzariaExactOccurrenceModels.swift */; };
++		1ECEA89930E2CB726019F133 /* OtzariaExactOccurrenceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D4379F1684D2EC923A5F45 /* OtzariaExactOccurrenceModels.swift */; };
++		0D322D1D9F633A1AFE401074 /* OtzariaExactOccurrenceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D4379F1684D2EC923A5F45 /* OtzariaExactOccurrenceModels.swift */; };
++		FF6F2C5D88653B72B6978794 /* OtzariaExactOccurrenceOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DAE20D05123E43D5D4AC0E /* OtzariaExactOccurrenceOperation.swift */; };
++		77626BD0CAC8E2428A88F0BB /* OtzariaExactOccurrenceOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DAE20D05123E43D5D4AC0E /* OtzariaExactOccurrenceOperation.swift */; };
++		BA9022BBA589D9AB7CB55EF6 /* OtzariaExactOccurrenceOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DAE20D05123E43D5D4AC0E /* OtzariaExactOccurrenceOperation.swift */; };
++		94A3D0C76D647D289B857109 /* ActionOccurrenceCoveragePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0484FE7FC64F330F16C8C5A /* ActionOccurrenceCoveragePolicy.swift */; };
++		6D689CE9D7D7418D5F23E4DF /* ActionOccurrenceCoveragePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0484FE7FC64F330F16C8C5A /* ActionOccurrenceCoveragePolicy.swift */; };
++		F904F00CC96FE017113ADD55 /* ActionOccurrenceCoveragePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0484FE7FC64F330F16C8C5A /* ActionOccurrenceCoveragePolicy.swift */; };
++		D2F86FB13C3717CFF8A90CF5 /* ActionLiveOccurrenceCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1DBD3D3E948B3DD85ABEC2 /* ActionLiveOccurrenceCounter.swift */; };
++		AB5F4859B86BDD4C5689FBE1 /* ActionLiveOccurrenceCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1DBD3D3E948B3DD85ABEC2 /* ActionLiveOccurrenceCounter.swift */; };
++		CD43474CAD4598816EBBACB7 /* ActionLiveOccurrenceCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1DBD3D3E948B3DD85ABEC2 /* ActionLiveOccurrenceCounter.swift */; };
++		C4D9F799C43B95EC13DAFE68 /* AnnotationLocalEditorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */; };
++		FDFFEE666030424CBE21238A /* AnnotationLocalEditorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */; };
++		AB467DB193BB97E635A4C008 /* AnnotationLocalEditorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */; };
++		339269F3BD193BCD1D8B9A27 /* AnnotationLocalEditorPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */; };
++		9D6C002E3485E64BCFCAB334 /* AnnotationLocalEditorPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */; };
++		2A81EE6B3B2514B9F4773658 /* AnnotationLocalEditorPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */; };
++		387C03A49E4420CA3ECF3308 /* AnnotationLocalEditorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */; };
++		748C74D5CF6846864D4BB910 /* AnnotationLocalEditorCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */; };
++		AA0B2A425A2CDC8BAD52AF7C /* AnnotationLocalEditorCloudOwnership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */; };
++		2636D2D8F62C8C21A825A12A /* AnnotationLocalEditorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */; };
++		FEB4253270577A8B5205C105 /* AnnotationLocalEditorCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */; };
++		3D61193ECD8DA163968A5427 /* AnnotationLocalEditorCloudOwnership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */; };
++		D627561A0D3655B435E380A6 /* AnnotationLocalEditorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */; };
++		9D3E374BD59EC6A061949F0F /* AnnotationLocalEditorCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */; };
++		D3E72B183F56A898BFD45419 /* AnnotationLocalEditorCloudOwnership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */; };
+ /* End PBXBuildFile section */
+ 
+ /* Begin PBXContainerItemProxy section */
+@@ -1947,6 +1976,7 @@
+ 		F38FF42F2FA82034003E7B71 /* iOSRowiSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSRowiSidebarView.swift; sourceTree = "<group>"; };
+ 		F38FF4312FA82059003E7B71 /* iOSRowiHierarchicalCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSRowiHierarchicalCollectionViewController.swift; sourceTree = "<group>"; };
+ 		F38FF4352FA89EEE003E7B71 /* iOSReaderTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderTabView.swift; sourceTree = "<group>"; };
++		CF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reader/NativeStudySheetPresenter.swift"; sourceTree = "<group>"; };
+ 		C40000000000000000000002 /* iOSReaderWorkspaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderWorkspaceView.swift; sourceTree = "<group>"; };
+ 		F3902E8B2F9EE1CA004BA5D1 /* AnnotationTagVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationTagVC.swift; sourceTree = "<group>"; };
+ 		F3902EAE2F9EE1CB004BA5D1 /* TagMergePopoverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMergePopoverVC.swift; sourceTree = "<group>"; };
+@@ -2100,6 +2130,7 @@
+ 		E7CD2E3E306E8AA1C0DA7F9C /* ReaderSidebarPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderSidebarPager.swift"; sourceTree = "<group>"; };
+ 		4C0551A9F2C4FEF69B0442D1 /* StudyWorkspaceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceModels.swift"; sourceTree = "<group>"; };
+ 		6930BB1B38DAAAEDD6116B80 /* StudyWorkspaceNavigationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceNavigationAdapter.swift"; sourceTree = "<group>"; };
++		C9336519789154002DB5A1B7 /* StudyGroupSwitchPerformanceObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyGroupSwitchPerformanceObservation.swift"; sourceTree = "<group>"; };
+ 		7C1CFB38BF18B871F499F3AF /* StudyWorkspacePersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspacePersistence.swift"; sourceTree = "<group>"; };
+ 		38B97DF0DEF05B94BF47F3D6 /* StudyWorkspaceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceStore.swift"; sourceTree = "<group>"; };
+ 		5F7B5E7CFC1C5368638997DD /* StudyWorkspaceMappingOwnership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift; sourceTree = SOURCE_ROOT; };
+@@ -2159,6 +2190,15 @@
+ 		8C3C3FCF16863769D7BE6F42 /* OtzariaHanlinConversationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinConversationStore.swift; sourceTree = SOURCE_ROOT; };
+ 		5C779026CC573B19C11E67E9 /* TorahAnnotationEnvelope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Exchange/TorahAnnotationEnvelope.swift"; sourceTree = "<group>"; };
+ 		15AA5DEFA4B1E2823A7CCD9A /* AnnotationExchangeLedger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Exchange/AnnotationExchangeLedger.swift"; sourceTree = "<group>"; };
++		F3D4379F1684D2EC923A5F45 /* OtzariaExactOccurrenceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Search/OtzariaExactOccurrenceModels.swift"; sourceTree = "<group>"; };
++		50DAE20D05123E43D5D4AC0E /* OtzariaExactOccurrenceOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Search/OtzariaExactOccurrenceOperation.swift"; sourceTree = "<group>"; };
++		D0484FE7FC64F330F16C8C5A /* ActionOccurrenceCoveragePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Actions/Integration/ActionOccurrenceCoveragePolicy.swift"; sourceTree = "<group>"; };
++		DF1DBD3D3E948B3DD85ABEC2 /* ActionLiveOccurrenceCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Actions/Integration/ActionLiveOccurrenceCounter.swift"; sourceTree = "<group>"; };
++		CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorModels.swift"; sourceTree = "<group>"; };
++		60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift"; sourceTree = "<group>"; };
++		5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorSession.swift"; sourceTree = "<group>"; };
++		5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift"; sourceTree = "<group>"; };
++		6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift"; sourceTree = "<group>"; };
+ /* End PBXFileReference section */
+ 
+ /* Begin PBXFileSystemSynchronizedRootGroup section */
+@@ -2241,8 +2281,14 @@
+ 		CFEE00000000000000000001 /* ChavrusaText */ = {
+ 			isa = PBXGroup;
+ 			children = (
++				CF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */,
+ 				5C779026CC573B19C11E67E9 /* TorahAnnotationEnvelope.swift */,
+ 				15AA5DEFA4B1E2823A7CCD9A /* AnnotationExchangeLedger.swift */,
++				CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */,
++				60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */,
++				5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */,
++				5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */,
++				6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */,
+ 				9F5BEF33F7E721EEC8281795 /* Global Search UI */,
+ 				93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */,
+ 				177DC9EB2AB8099576B13411 /* ThirdPartyNotices */,
+@@ -2271,6 +2317,7 @@
+ 				5F7B5E7CFC1C5368638997DD /* StudyWorkspaceMappingOwnership.swift */,
+ 				7C1CFB38BF18B871F499F3AF /* StudyWorkspacePersistence.swift */,
+ 				6930BB1B38DAAAEDD6116B80 /* StudyWorkspaceNavigationAdapter.swift */,
++				C9336519789154002DB5A1B7 /* StudyGroupSwitchPerformanceObservation.swift */,
+ 				4C0551A9F2C4FEF69B0442D1 /* StudyWorkspaceModels.swift */,
+ 				E7CD2E3E306E8AA1C0DA7F9C /* ReaderSidebarPager.swift */,
+ 				77905F3E4D45774DC0C1B55F /* ReaderSidebarPageCoordinator.swift */,
+@@ -2450,6 +2497,10 @@
+ 				BBD350FDBA74BE71A875EEC5 /* ActionAppIdentityBridge.swift */,
+ 				7472B7F434959A9F0E806751 /* ActionBackendCoordinatorFacade.swift */,
+ 				C2942E0C742F60E22D222A90 /* ActionLiveBackendBridge.swift */,
++				DF1DBD3D3E948B3DD85ABEC2 /* ActionLiveOccurrenceCounter.swift */,
++				D0484FE7FC64F330F16C8C5A /* ActionOccurrenceCoveragePolicy.swift */,
++				50DAE20D05123E43D5D4AC0E /* OtzariaExactOccurrenceOperation.swift */,
++				F3D4379F1684D2EC923A5F45 /* OtzariaExactOccurrenceModels.swift */,
+ 			);
+ 			path = Otzaria;
+ 			sourceTree = "<group>";
+@@ -4260,6 +4311,11 @@
+ 			isa = PBXSourcesBuildPhase;
+ 			files = (
+ 				4C4E1E4F9DC2F168D2260AC8 /* AnnotationExchangeLedger.swift in Sources */,
++				C4D9F799C43B95EC13DAFE68 /* AnnotationLocalEditorModels.swift in Sources */,
++				339269F3BD193BCD1D8B9A27 /* AnnotationLocalEditorPersistence.swift in Sources */,
++				387C03A49E4420CA3ECF3308 /* AnnotationLocalEditorSession.swift in Sources */,
++				748C74D5CF6846864D4BB910 /* AnnotationLocalEditorCloudKit.swift in Sources */,
++				AA0B2A425A2CDC8BAD52AF7C /* AnnotationLocalEditorCloudOwnership.swift in Sources */,
+ 				E87B9F1B268D74CCA1A03D7E /* TorahAnnotationEnvelope.swift in Sources */,
+ 				12625FDCCD291F169D6788B2 /* MaktabahBookUpdateSafety.swift in Sources */,
+ 				E81108000000000000000003 /* ReaderNavigationChromeState.swift in Sources */,
+@@ -4603,12 +4659,21 @@
+ 				2AFA9DDCD22B555F95D3101F /* ActionAppIdentityBridge.swift in Sources */,
+ 				194BA2C5D63DD7A0E9C7CF99 /* ActionBackendCoordinatorFacade.swift in Sources */,
+ 				4F8A0BC7E981AEBBFFB4825A /* ActionLiveBackendBridge.swift in Sources */,
++				D2F86FB13C3717CFF8A90CF5 /* ActionLiveOccurrenceCounter.swift in Sources */,
++				94A3D0C76D647D289B857109 /* ActionOccurrenceCoveragePolicy.swift in Sources */,
++				FF6F2C5D88653B72B6978794 /* OtzariaExactOccurrenceOperation.swift in Sources */,
++				621609BD78BD7727EF7ABCE8 /* OtzariaExactOccurrenceModels.swift in Sources */,
+ 			);
+ 		};
+ 		4B7C90A52F83494200454BE1 /* Sources */ = {
+ 			isa = PBXSourcesBuildPhase;
+ 			files = (
+ 				7CFE6AEF1FAFD68BFCEEC502 /* AnnotationExchangeLedger.swift in Sources */,
++				FDFFEE666030424CBE21238A /* AnnotationLocalEditorModels.swift in Sources */,
++				9D6C002E3485E64BCFCAB334 /* AnnotationLocalEditorPersistence.swift in Sources */,
++				2636D2D8F62C8C21A825A12A /* AnnotationLocalEditorSession.swift in Sources */,
++				FEB4253270577A8B5205C105 /* AnnotationLocalEditorCloudKit.swift in Sources */,
++				3D61193ECD8DA163968A5427 /* AnnotationLocalEditorCloudOwnership.swift in Sources */,
+ 				D063CFCD71B1E5C5250AE920 /* TorahAnnotationEnvelope.swift in Sources */,
+ 				36A587F9D67487F899E8D564 /* MaktabahBookUpdateSafety.swift in Sources */,
+ 								CF2000000000000000000001 /* BackendAnnotationBridge.swift in Sources */,
+@@ -4952,6 +5017,10 @@
+ 				6D44E07645CB357B0002F3B1 /* ActionAppIdentityBridge.swift in Sources */,
+ 				5093AF69136F77C09B9B49C9 /* ActionBackendCoordinatorFacade.swift in Sources */,
+ 				A94DBD84766950781F6B9DE1 /* ActionLiveBackendBridge.swift in Sources */,
++				AB5F4859B86BDD4C5689FBE1 /* ActionLiveOccurrenceCounter.swift in Sources */,
++				6D689CE9D7D7418D5F23E4DF /* ActionOccurrenceCoveragePolicy.swift in Sources */,
++				77626BD0CAC8E2428A88F0BB /* OtzariaExactOccurrenceOperation.swift in Sources */,
++				1ECEA89930E2CB726019F133 /* OtzariaExactOccurrenceModels.swift in Sources */,
+ 			);
+ 		};
+ 		4BD8A4E3307E521A00E04BCB /* Sources */ = {
+@@ -4963,6 +5032,11 @@
+ 			isa = PBXSourcesBuildPhase;
+ 			files = (
+ 				D238792D20CAE8596B84D69F /* AnnotationExchangeLedger.swift in Sources */,
++				AB467DB193BB97E635A4C008 /* AnnotationLocalEditorModels.swift in Sources */,
++				2A81EE6B3B2514B9F4773658 /* AnnotationLocalEditorPersistence.swift in Sources */,
++				D627561A0D3655B435E380A6 /* AnnotationLocalEditorSession.swift in Sources */,
++				9D3E374BD59EC6A061949F0F /* AnnotationLocalEditorCloudKit.swift in Sources */,
++				D3E72B183F56A898BFD45419 /* AnnotationLocalEditorCloudOwnership.swift in Sources */,
+ 				EA8CD1F296E0EA146F79764C /* TorahAnnotationEnvelope.swift in Sources */,
+ 				DFC8CE07B634812E1D8AF37E /* MaktabahNativeIntents.swift in Sources */,
+ 				98A05700AC19A0B451C190A6 /* OtzariaHanlinHostAdapter.swift in Sources */,
+@@ -4991,6 +5065,7 @@
+ 				A42DDBE8569676110112B7FE /* ReaderSidebarPager.swift in Sources */,
+ 				9188F501FA26158F8E9E93DE /* StudyWorkspaceModels.swift in Sources */,
+ 				80083054F71F56EACF16965B /* StudyWorkspaceNavigationAdapter.swift in Sources */,
++				3323288CD52CDAF06CEC202F /* StudyGroupSwitchPerformanceObservation.swift in Sources */,
+ 				0A17F7E8BBDA06247E7CAF65 /* StudyWorkspacePersistence.swift in Sources */,
+ 				B51EE7D17CE12DEE940894A0 /* StudyWorkspaceStore.swift in Sources */,
+ 				F2AD42BF9D75E1CCC26788D5 /* StudyWorkspaceMappingOwnership.swift in Sources */,
+@@ -5017,6 +5092,7 @@
+ 				E2D27ABB6420FBA0155F9C29 /* SafariToolbarSourcePort.swift in Sources */,
+ 				F3F000020000000000000002 /* iOSReaderSessionManager.swift in Sources */,
+ 				B40000000000000000000001 /* iOSBookInfoAnchoredCard.swift in Sources */,
++				ACDA26A151221078C4296F37 /* NativeStudySheetPresenter.swift in Sources */,
+ 				C40000000000000000000001 /* iOSReaderWorkspaceView.swift in Sources */,
+ 				A50000000000000000000001 /* MaktabahTorahInspectorAdapter.swift in Sources */,
+ 				A50000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift in Sources */,
+@@ -5497,6 +5573,10 @@
+ 				29329543A6CFE5F569B0EF8A /* ActionAppIdentityBridge.swift in Sources */,
+ 				9EE909C2BAB12E1FD38F399C /* ActionBackendCoordinatorFacade.swift in Sources */,
+ 				1B3CB8CCEBD0480AC2E676CB /* ActionLiveBackendBridge.swift in Sources */,
++				CD43474CAD4598816EBBACB7 /* ActionLiveOccurrenceCounter.swift in Sources */,
++				F904F00CC96FE017113ADD55 /* ActionOccurrenceCoveragePolicy.swift in Sources */,
++				BA9022BBA589D9AB7CB55EF6 /* OtzariaExactOccurrenceOperation.swift in Sources */,
++				0D322D1D9F633A1AFE401074 /* OtzariaExactOccurrenceModels.swift in Sources */,
+ 			);
+ 		};
+ /* End PBXSourcesBuildPhase section */

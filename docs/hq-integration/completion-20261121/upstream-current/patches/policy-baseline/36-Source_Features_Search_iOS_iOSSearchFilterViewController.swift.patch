@@ -1,0 +1,12 @@
+diff --git a/Source/Features/Search/iOS/iOSSearchFilterViewController.swift b/Source/Features/Search/iOS/iOSSearchFilterViewController.swift
+index ad057e54..05254df8 100644
+--- a/Source/Features/Search/iOS/iOSSearchFilterViewController.swift
++++ b/Source/Features/Search/iOS/iOSSearchFilterViewController.swift
+@@ -234,6 +234,7 @@ struct SearchFilterModalView: UIViewControllerRepresentable {
+         filterVC.applyCategories(viewModel.displayedCategories)
+ 
+         let searchController = UISearchController(searchResultsController: nil)
++        searchController.searchBar.text = viewModel.filterText
+         searchController.obscuresBackgroundDuringPresentation = false
+         searchController.searchBar.placeholder = "חיפוש ספר"
+         searchController.searchResultsUpdater = context.coordinator

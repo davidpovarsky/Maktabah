@@ -1,0 +1,29 @@
+diff --git a/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift b/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift
+index 6920c2e..dc36f7d 100644
+--- a/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift
++++ b/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift
+@@ -120,6 +120,14 @@ struct iOSTOCView: View {
+                         systemImage: "exclamationmark.triangle",
+                         description: Text(failure.message)
+                     )
++                } else if tocViewModel.isLoading && identifiableNodes.isEmpty {
++                    VStack(spacing: 12) {
++                        ProgressView()
++                        Text(String(localized: "Loading Table of Contents..."))
++                            .font(.subheadline)
++                            .foregroundStyle(.secondary)
++                    }
++                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                 } else if identifiableNodes.isEmpty {
+                     ContentUnavailableView(
+                         String(localized: "No Table of Contents"),
+@@ -173,6 +181,9 @@ struct iOSTOCView: View {
+                         .onChange(of: tocViewModel.tocRanges.count) { _, _ in
+                             scrollSelected(proxy: proxy)
+                         }
++                        .onChange(of: selectedId) { _, _ in
++                            scrollSelected(proxy: proxy)
++                        }
+                     }
+                 }
+             }

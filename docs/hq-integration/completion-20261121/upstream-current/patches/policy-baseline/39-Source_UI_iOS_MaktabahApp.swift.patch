@@ -1,0 +1,208 @@
+diff --git a/Source/UI/iOS/MaktabahApp.swift b/Source/UI/iOS/MaktabahApp.swift
+index 4328c412..465c81c9 100644
+--- a/Source/UI/iOS/MaktabahApp.swift
++++ b/Source/UI/iOS/MaktabahApp.swift
+@@ -1,10 +1,18 @@
+ import CloudKit
+ import SwiftUI
+ 
++#if canImport(Expo)
++import Expo
++typealias MaktabahAppDelegateBase = ExpoAppDelegate
++#else
++typealias MaktabahAppDelegateBase = NSObject
++#endif
++
+ @main
+ struct MaktabahApp: App {
+     @Environment(\.scenePhase) private var scenePhase
+     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
++    static weak var sharedAppDelegate: AppDelegate?
+ 
+     static var isIpad: Bool {
+         if UIDevice.current.userInterfaceIdiom == .pad {
+@@ -25,6 +33,7 @@ struct MaktabahApp: App {
+ 
+     init() {
+         BackendComposition.registerAll()
++        MaktabahNativeRoutingComposition.shared.installIntentDependency()
+         // Native acceptance launches exercise isolated Otzaria bootstrap/search
+         // paths and must not be blocked by unrelated first-launch setup.
+         if OtzariaNativeBootstrapAcceptanceRunner.isRequested
+@@ -134,22 +143,127 @@ struct MaktabahApp: App {
+     }
+ }
+ 
+-class AppDelegate: NSObject, UIApplicationDelegate {
+-    func application(
++#if canImport(UIKit) && canImport(ObjectiveC)
++import ObjectiveC
++
++enum ExpoKVCSupport {
++    /// Narrowly ensures that the runtime delegate object (e.g. SwiftUI's internal AppDelegateProxy)
++    /// responds to `_expoAppDelegate` without adding properties to all NSObjects or replacing methods.
++    @MainActor
++    static func configureTargetedDelegateKVC() {
++        guard let delegate = UIApplication.shared.delegate else { return }
++        let delegateClass: AnyClass = type(of: delegate)
++        let sel = Selector(("_expoAppDelegate"))
++        if !class_respondsToSelector(delegateClass, sel) {
++            let block: @convention(block) (AnyObject) -> Any? = { _ in
++                return MaktabahApp.sharedAppDelegate
++            }
++            let imp = imp_implementationWithBlock(block)
++            class_addMethod(delegateClass, sel, imp, "@@:")
++        }
++    }
++}
++#else
++enum ExpoKVCSupport {
++    static func configureTargetedDelegateKVC() {}
++}
++#endif
++
++#if canImport(Expo)
++@MainActor
++class AppDelegate: MaktabahAppDelegateBase {
++    override init() {
++        super.init()
++        MaktabahApp.sharedAppDelegate = self
++        ExpoKVCSupport.configureTargetedDelegateKVC()
++    }
++
++    /// Explicitly exposed property to satisfy Expo's `value(forKey: "_expoAppDelegate")`
++    /// lookup directly on the concrete app delegate without modifying any unrelated NSObjects.
++    @objc var _expoAppDelegate: Any? {
++        return self
++    }
++
++    // MARK: - Expo & React Native Host Delegation & Clean Integration
++
++    @objc var window: UIWindow? {
++        get {
++            #if canImport(UIKit)
++            return SefariaExpoLifecycleAdapter.shared.hostedWindow
++            #else
++            nil
++            #endif
++        }
++        set {
++            #if canImport(UIKit)
++            SefariaExpoLifecycleAdapter.shared.hostedWindow = newValue
++            #endif
++        }
++    }
++
++    @objc var reactNativeFactory: Any? {
++        get {
++            #if canImport(UIKit)
++            return self.factory ?? SefariaExpoLifecycleAdapter.shared.reactNativeFactory
++            #else
++            nil
++            #endif
++        }
++        set {
++            #if canImport(UIKit)
++            if let f = newValue as? RCTReactNativeFactory {
++                self.factory = f
++            }
++            #endif
++        }
++    }
++
++    @objc var reactNativeDelegate: Any? {
++        get {
++            #if canImport(UIKit)
++            return SefariaExpoLifecycleAdapter.shared.reactNativeDelegate
++            #else
++            nil
++            #endif
++        }
++        set {}
++    }
++
++    override func application(
+         _ application: UIApplication,
+         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+     ) -> Bool {
++        _ = super.application(application, didFinishLaunchingWithOptions: launchOptions)
++        SefariaExpoLifecycleAdapter.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+         if AppConfig.useICloud, CloudKitCoreManager.shared.isAvailable {
+             application.registerForRemoteNotifications()
+         }
+         return true
+     }
+ 
+-    func application(_ application: UIApplication,
+-                     didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+-                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
++    override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
++        let superHandled = super.application(app, open: url, options: options)
++        let adapterHandled = SefariaExpoLifecycleAdapter.shared.application(app, open: url, options: options)
++        return superHandled || adapterHandled
++    }
++
++    override func application(
++        _ application: UIApplication,
++        continue userActivity: NSUserActivity,
++        restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void
++    ) -> Bool {
++        let superHandled = super.application(application, continue: userActivity, restorationHandler: restorationHandler)
++        let adapterHandled = SefariaExpoLifecycleAdapter.shared.application(application, continue: userActivity, restorationHandler: restorationHandler)
++        return superHandled || adapterHandled
++    }
++
++    override func application(
++        _ application: UIApplication,
++        didReceiveRemoteNotification userInfo: [AnyHashable: Any],
++        fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
++    ) {
+         guard AppConfig.useICloud, CloudKitCoreManager.shared.isAvailable else {
+-            completionHandler(.noData)
++            super.application(application, didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler)
+             return
+         }
+         CloudKitSyncManager.shared.fetchChanges()
+@@ -158,16 +272,40 @@ class AppDelegate: NSObject, UIApplicationDelegate {
+             completionHandler(updated ? .newData : .noData)
+         }
+     }
+-    func applicationDidEnterBackground(_ application: UIApplication) {
++
++    override func applicationDidEnterBackground(_ application: UIApplication) {
++        super.applicationDidEnterBackground(application)
+         OtzariaTantivySearchRepository.shared.closeAllEngines()
+     }
+ 
+-    func applicationWillTerminate(_ application: UIApplication) {
++    override func applicationWillTerminate(_ application: UIApplication) {
++        super.applicationWillTerminate(application)
+         OtzariaTantivySearchRepository.shared.closeAllEngines()
+         WidgetUpdateCoordinator.shared.flushPendingUpdatesTask(forceCloudKit: true)
+         CloudKitCoreManager.shared.syncWorker()
+     }
+ }
++#else
++@MainActor
++class AppDelegate: NSObject, UIApplicationDelegate {
++    override init() {
++        super.init()
++        MaktabahApp.sharedAppDelegate = self
++    }
++
++    @objc var window: UIWindow? {
++        get { nil }
++        set {}
++    }
++
++    func application(
++        _ application: UIApplication,
++        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
++    ) -> Bool {
++        return true
++    }
++}
++#endif
+ 
+ extension View {
+     @ViewBuilder

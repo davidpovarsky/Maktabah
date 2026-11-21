@@ -1,0 +1,92 @@
+diff --git a/Source/Features/Annotations/Database/AnnotationRepository.swift b/Source/Features/Annotations/Database/AnnotationRepository.swift
+index 52d19c0a..3dedc206 100644
+--- a/Source/Features/Annotations/Database/AnnotationRepository.swift
++++ b/Source/Features/Annotations/Database/AnnotationRepository.swift
+@@ -47,6 +47,7 @@ final class AnnotationRepository: SyncPendingManaging, Sendable {
+         var db: SQLiteDatabase?
+         var syncPendingStore: SyncPendingStore?
+         var dbURL: URL?
++        var localEditorLifetime = AnnotationLocalEditorLifetime()
+     }
+ 
+     private let state = Mutex(State())
+@@ -84,7 +85,11 @@ final class AnnotationRepository: SyncPendingManaging, Sendable {
+         }
+ 
+         let url = folderURL.appendingPathComponent("Annotations.sqlite")
+-        state.withLock { $0.dbURL = url }
++        state.withLock { s in
++            s.localEditorLifetime.retire()
++            s.localEditorLifetime = AnnotationLocalEditorLifetime()
++            s.dbURL = url
++        }
+ 
+         let isNewDatabase = !fm.fileExists(atPath: url.path)
+ 
+@@ -105,6 +110,8 @@ final class AnnotationRepository: SyncPendingManaging, Sendable {
+                 db.enableWALMode()
+                 let store = SyncPendingStore(database: db)
+                 state.withLock { s in
++                    s.localEditorLifetime.retire()
++                    s.localEditorLifetime = AnnotationLocalEditorLifetime()
+                     s.db = db
+                     s.syncPendingStore = store
+                 }
+@@ -115,10 +122,33 @@ final class AnnotationRepository: SyncPendingManaging, Sendable {
+     }
+ 
+     func disconnect() {
+-        state.withLock { s in
+-            s.db?.checkpoint()
+-            s.db = nil
+-            s.syncPendingStore = nil
++        // Capture once, then release state before waiting for this database.
++        // An existing transaction may need repository state to finish its
++        // original writes; holding state while checkpoint waits would deadlock.
++        let captured = state.withLock { (database: $0.db, lifetime: $0.localEditorLifetime) }
++        guard let database = captured.database else {
++            state.withLock { s in
++                guard s.db == nil, s.localEditorLifetime === captured.lifetime else { return }
++                s.localEditorLifetime.retire()
++                s.syncPendingStore = nil
++            }
++            return
++        }
++        disconnect(database: database, lifetime: captured.lifetime)
++    }
++
++    // Retire only the captured generation. If another connection replaces it
++    // while this call waits, that new connection is not this teardown's owner.
++    // The original no-argument path always enters through this implementation.
++    func disconnect(database: SQLiteDatabase, lifetime: AnnotationLocalEditorLifetime) {
++        database.withSerializedAccess {
++            state.withLock { s in
++                guard s.db === database, s.localEditorLifetime === lifetime else { return }
++                lifetime.retire()
++                database.checkpoint()
++                s.db = nil
++                s.syncPendingStore = nil
++            }
+         }
+     }
+ 
+@@ -126,6 +156,19 @@ final class AnnotationRepository: SyncPendingManaging, Sendable {
+         _db?.checkpoint()
+     }
+ 
++    // Captures an existing handle only; no setup, UUID backfill, or migration.
++    func captureLocalEditorConnection() throws -> AnnotationLocalEditorConnection {
++        try state.withLock { s in
++            guard let db = s.db, let pending = s.syncPendingStore, let url = s.dbURL else {
++                throw AnnotationLocalEditorError.noConnection
++            }
++            try s.localEditorLifetime.requireCurrent()
++            return .init(database: db, syncPending: pending, databaseURL: url,
++                         lifetime: s.localEditorLifetime,
++                         mapRow: { [self] row, tags in makeAnnotation(from: row, tags: tags) })
++        }
++    }
++
+     // MARK: - Schema
+ 
+     private func createAnnotationsTableAndSchemaIfNeeded() throws {

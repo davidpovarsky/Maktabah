@@ -1,0 +1,407 @@
+{
+  "status": "FAIL",
+  "base_ref": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+  "head_ref": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+  "upstream_ref": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "total_changes_detected": 6370,
+  "total_violations": 49,
+  "total_warnings": 0,
+  "violations": [
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": ".gitignore",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): .gitignore"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "CLAUDE.md",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): CLAUDE.md"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=SCOPED_INTEGRATION_NATIVE_ACCEPTANCE_OPEN): Maktabah.xcodeproj/project.pbxproj"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Core/CloudKit/CloudKitCoreManager.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Core/CloudKit/CloudKitCoreManager.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=IMPLEMENTED_REAL_SQLITE_PASS_NATIVE_PENDING): Source/Core/Database/SQLiteDatabase.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Annotations/Database/AnnotationRepository.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Library/Database/Updater/BookUpdateManager.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Library/Database/Updater/BookUpdateManager.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Library/Updates/BookUpdateView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Library/Updates/BookUpdateView.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Library/ViewModel/BookUpdateVM.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Library/ViewModel/BookUpdateVM.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Library/iOS/iOSLibraryView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Library/iOS/iOSLibraryView.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Reader/Cache/BookPageCache.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Reader/Cache/BookPageCache.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/Features/Reader/ViewModel/BookTOCViewModel.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/Features/Reader/ViewModel/ReaderViewModel.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=IMPLEMENTED_NATIVE_VALIDATION_PENDING): Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Reader/iOS/iOSReaderView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/Features/Reader/iOS/iOSReaderView.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Search/Models/SearchResultItem.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Search/Models/SearchResultItem.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Search/ViewModel/Extensions/Search+Execution.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Search/ViewModel/SearchViewModel.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Search/ViewModel/SearchViewModel.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Search/iOS/SearchComponents.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Search/iOS/SearchComponents.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=DEBUG_TEST_HOOK_SYNTAX_PASS_APPLE_NATIVE_NOT_RUN): Source/Features/Search/iOS/SearchModeView.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Search/iOS/SearchResultsListView.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Search/iOS/iOSSearchFilterViewController.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Setting/SettingsView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/Features/Setting/SettingsView.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Localizable.xcstrings",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Localizable.xcstrings"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/UI/iOS/MaktabahApp.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/UI/iOS/MaktabahApp.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/UI/iOS/Managers/BootstrapManager.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/UI/iOS/Managers/BootstrapManager.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/UI/iOS/Managers/iOSNavigationManager.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/UI/iOS/Managers/iOSReaderSessionManager.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/UI/iOS/Managers/iOSReaderSessionManager.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/UI/iOS/Views/Common/ListContentView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/UI/iOS/Views/Common/ListContentView.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/UI/iOS/Views/iOSMainView.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/UI/iOS/Views/iPadLayout.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/UI/iOS/Views/iPhoneLayout.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/UI/iOS/Views/iPhoneLayout.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/UI/iOS/Wrappers/iOSIbarotTextView.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/iOS-Info.plist",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/iOS-Info.plist"
+    }
+  ],
+  "warnings": [],
+  "policy_files_changed": [],
+  "protected_files_changed": [
+    ".gitignore",
+    "CLAUDE.md",
+    "Maktabah.xcodeproj/project.pbxproj",
+    "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+    "Source/Core/CloudKit/CloudKitCoreManager.swift",
+    "Source/Core/Database/SQLiteDatabase.swift",
+    "Source/Features/Annotations/Database/AnnotationRepository.swift",
+    "Source/Features/Library/Database/Updater/BookUpdateManager.swift",
+    "Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift",
+    "Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift",
+    "Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift",
+    "Source/Features/Library/Updates/BookUpdateView.swift",
+    "Source/Features/Library/ViewModel/BookUpdateVM.swift",
+    "Source/Features/Library/iOS/iOSLibraryView.swift",
+    "Source/Features/Reader/Cache/BookPageCache.swift",
+    "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
+    "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+    "Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift",
+    "Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift",
+    "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+    "Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift",
+    "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+    "Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift",
+    "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+    "Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift",
+    "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+    "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+    "Source/Features/Reader/iOS/iOSReaderView.swift",
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+    "Source/Features/Search/Models/SearchResultItem.swift",
+    "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
+    "Source/Features/Search/ViewModel/SearchViewModel.swift",
+    "Source/Features/Search/iOS/SearchComponents.swift",
+    "Source/Features/Search/iOS/SearchModeView.swift",
+    "Source/Features/Search/iOS/SearchResultsListView.swift",
+    "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+    "Source/Features/Setting/SettingsView.swift",
+    "Source/Localizable.xcstrings",
+    "Source/UI/iOS/MaktabahApp.swift",
+    "Source/UI/iOS/Managers/BootstrapManager.swift",
+    "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+    "Source/UI/iOS/Managers/iOSReaderSessionManager.swift",
+    "Source/UI/iOS/Views/Common/ListContentView.swift",
+    "Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift",
+    "Source/UI/iOS/Views/iOSMainView.swift",
+    "Source/UI/iOS/Views/iPadLayout.swift",
+    "Source/UI/iOS/Views/iPhoneLayout.swift",
+    "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+    "Source/iOS-Info.plist"
+  ]
+}

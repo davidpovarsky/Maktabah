@@ -1,0 +1,15 @@
+diff --git a/Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift b/Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift
+index 9b924357..850dcefe 100644
+--- a/Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift
++++ b/Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift
+@@ -52,6 +52,10 @@ struct TOCNodeRow: View {
+                             .frame(width: 16, height: 16, alignment: .center)
+                     }
+                     .buttonStyle(.plain)
++                    .accessibilityIdentifier("toc-expand-\(item.id)")
++                    .accessibilityLabel(String.localizedStringWithFormat(
++                        isExpanded.wrappedValue ? String(localized: "Collapse %@")
++                            : String(localized: "Expand %@"), item.bab))
+                     // Berikan frame statis pada area klik tombol
+                     .frame(width: 32, height: 32)
+                 } else {

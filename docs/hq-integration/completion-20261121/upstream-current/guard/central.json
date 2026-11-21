@@ -1,0 +1,103 @@
+{
+  "status": "FAIL",
+  "base_ref": "5c108887f142779a84ef114cd85e50fb1eaceb8b",
+  "head_ref": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+  "upstream_ref": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "total_changes_detected": 4378,
+  "total_violations": 11,
+  "total_warnings": 0,
+  "violations": [
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=SCOPED_INTEGRATION_NATIVE_ACCEPTANCE_OPEN): Maktabah.xcodeproj/project.pbxproj"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Core/CloudKit/CloudKitCoreManager.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Core/CloudKit/CloudKitCoreManager.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=IMPLEMENTED_REAL_SQLITE_PASS_NATIVE_PENDING): Source/Core/Database/SQLiteDatabase.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Annotations/Database/AnnotationRepository.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=IMPLEMENTED_NATIVE_VALIDATION_PENDING): Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift"
+    },
+    {
+      "type": "PENDING_UPSTREAM_APPROVAL",
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file has unapproved proposal (status=OWNER_APPROVAL_REQUIRED): Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Localizable.xcstrings",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Localizable.xcstrings"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/UI/iOS/Views/iPadLayout.swift"
+    }
+  ],
+  "warnings": [],
+  "policy_files_changed": [],
+  "protected_files_changed": [
+    "Maktabah.xcodeproj/project.pbxproj",
+    "Source/Core/CloudKit/CloudKitCoreManager.swift",
+    "Source/Core/Database/SQLiteDatabase.swift",
+    "Source/Features/Annotations/Database/AnnotationRepository.swift",
+    "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+    "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+    "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+    "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+    "Source/Localizable.xcstrings",
+    "Source/UI/iOS/Views/iPadLayout.swift"
+  ]
+}

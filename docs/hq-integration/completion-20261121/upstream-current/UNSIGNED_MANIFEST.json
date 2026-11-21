@@ -1,0 +1,1463 @@
+{
+  "schema": "otzaria-unsigned-upstream-provenance-v1",
+  "status": "UNSIGNED_CURRENT_SOURCE_REVIEW_ONLY",
+  "repository": "davidpovarsky/Maktabah",
+  "captured_at_utc": "2026-11-21T19:39:09.836738+00:00",
+  "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+  "head_tree": "82ee00301d3783bbbf26c7e1c0d44ceb8bf68d90",
+  "pinned_upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "pin_scope": "Existing verifier pin; no claim of latest upstream.",
+  "application_trees": {
+    "Source": "21ec01cea104b1f894f623ef11bbac8c16ce997e",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
+    "Maktabah-iOSUITests": "a9d30b950baf01d1a1387f0011b4b60c9b210504"
+  },
+  "canonical_patch_command": [
+    "git",
+    "diff",
+    "<base_sha>",
+    "<head_sha>",
+    "--",
+    "<path>"
+  ],
+  "canonical_encoding": "Existing guard run_cmd UTF-8 errors=replace/text=True, CRLF normalized to LF, encoded UTF-8",
+  "bound_policy_inputs": {
+    "tools/verify_upstream_boundary.py": {
+      "git_blob": "53a52cfa4c67a319e1d811fa2a5af28eead42d0e",
+      "sha256": "654a411bc78011037e6b0178d63ad8e2efb8cae3a6bb3da823738d076b387d0f"
+    },
+    "Scripts/CI/verify-upstream-boundary.py": {
+      "git_blob": "6483a0fa0404928051547a957f4e7ea933d2b28e",
+      "sha256": "3c0f76129fb88c172ae0986a860cb9bb65a1784541026cf864f077476c23b1a4"
+    },
+    "docs/architecture/UPSTREAM_EXCEPTION_REGISTER.json": {
+      "git_blob": "5edf785dae25a3bfd97fa0a4388ab4329e5bb26f",
+      "sha256": "42dcf64878d851ce1fef9f9644177f541d6ab702eb2fff6323ec17b335adc6d8"
+    },
+    "docs/architecture/BUILD_8401_REPRODUCIBLE_PAYLOAD_MANIFEST.json": {
+      "git_blob": "731677bf4387fde61541a7c3a3345c24d30f744a",
+      "sha256": "c3779bbaf4d6065fa4518ca1ecce972268ec5bafed2a39f6fde113b86b40973f"
+    },
+    "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md": {
+      "git_blob": "9a3a57bbfed634f2e136c608b11c781312b0e8ff",
+      "sha256": "45c08f1786508e8932ae138e4c493ac6ce8cceb79ca27922a893c0141d391fdf"
+    },
+    "docs/architecture/BATCH_B_TRUSTED_OWNER_APPROVAL_GATE.md": {
+      "git_blob": "3d60435b7db5d1e232d29e593f85329d3e1ef552",
+      "sha256": "d189e0c4647c917bf06a7af78e7dabc76471606ce23a862d42dcac033cc644a3"
+    }
+  },
+  "scopes": {
+    "central": {
+      "base_sha": "5c108887f142779a84ef114cd85e50fb1eaceb8b",
+      "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+      "protected_path_count": 11,
+      "guard_status": "FAIL",
+      "guard_counts": {
+        "PENDING_UPSTREAM_APPROVAL": 7,
+        "UNAUTHORIZED_UPSTREAM_MODIFICATION": 4
+      },
+      "saved_guard_report": "guard/central.json",
+      "paths": [
+        {
+          "path": "Maktabah.xcodeproj/project.pbxproj",
+          "base_sha": "5c108887f142779a84ef114cd85e50fb1eaceb8b",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "710fb0db3c157243028059c7ecd4d9f3650a3677",
+          "head_blob_sha": "9f04627c21a6f337e34400daef60fbf8a54c3f14",
+          "upstream_blob_sha": "2ad0d56cce44a158d86b25b72086f84ae651b106",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/central/01-Maktabah.xcodeproj_project.pbxproj.patch",
+          "patch_bytes": 21606,
+          "canonical_patch_sha256": "2726d07777dab025e1c388e4ff375bd1080439408a0ca96835f3672c5877f6db",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "GLOBAL_SEARCH_MANAGER_REGISTRATION_DEPLOYMENT_20261115",
+          "effective_record_status": "SCOPED_INTEGRATION_NATIVE_ACCEPTANCE_OPEN",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_12",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            },
+            {
+              "patch_id": "GLOBAL_SEARCH_MANAGER_REGISTRATION_DEPLOYMENT_20261115",
+              "status": "SCOPED_INTEGRATION_NATIVE_ACCEPTANCE_OPEN",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Core/CloudKit/CloudKitCoreManager.swift",
+          "base_sha": "5c108887f142779a84ef114cd85e50fb1eaceb8b",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "4139a39a84601622b6882994b8dbf4d457967208",
+          "head_blob_sha": "6834a1beab5ffa38ddedf3404392c3be138a73c5",
+          "upstream_blob_sha": "4e1bddf1dda487bb68e58a044dd64473c761f52d",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/central/02-Source_Core_CloudKit_CloudKitCoreManager.swift.patch",
+          "patch_bytes": 3012,
+          "canonical_patch_sha256": "44df0ef49f56fa51f2f2a19662080594dee0155fddd25c6d1b10b842ad31f3e9",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Core/Database/SQLiteDatabase.swift",
+          "base_sha": "5c108887f142779a84ef114cd85e50fb1eaceb8b",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "bc237e0b42c3c65b275d883a318a9ef525c95037",
+          "head_blob_sha": "a7d7180ef1b7ba77a40a98d32592365206c1e41f",
+          "upstream_blob_sha": "3cf9f96fb23bd7259df5be7256c97314ac776aa1",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/central/03-Source_Core_Database_SQLiteDatabase.swift.patch",
+          "patch_bytes": 1001,
+          "canonical_patch_sha256": "a497e179b36c0c0400e39c39fc9ac0302bf8b3d9e941ea966f933ffc1f6ff2ab",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "CONTINUATION_20261118_SQLITE_ERROR_PROPAGATION",
+          "effective_record_status": "IMPLEMENTED_REAL_SQLITE_PASS_NATIVE_PENDING",
+          "declared_context_records": [
+            {
+              "patch_id": "CONTINUATION_20261118_SQLITE_ERROR_PROPAGATION",
+              "status": "IMPLEMENTED_REAL_SQLITE_PASS_NATIVE_PENDING",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+          "base_sha": "5c108887f142779a84ef114cd85e50fb1eaceb8b",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "52d19c0a7042ac81ca9194b52c21e13a17bd640a",
+          "head_blob_sha": "3dedc2068864b9076d84dc7322a1e7371b7895d4",
+          "upstream_blob_sha": "6998a584bc11422bcd67061650900e526d8713a7",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/central/04-Source_Features_Annotations_Database_AnnotationRepository.swift.patch",
+          "patch_bytes": 4092,
+          "canonical_patch_sha256": "cb89a4cbc196f8c558a72fe2b7eafb870dd8481f5ab7c2e4a43d6e967916352e",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+          "base_sha": "5c108887f142779a84ef114cd85e50fb1eaceb8b",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "9b924357f80454eac037f8ab48454dd07ce69a66",
+          "head_blob_sha": "850dcefe3c8726da93cd3a73414bbced244aea4d",
+          "upstream_blob_sha": "34ccadc2342a3ebb9c24a7abd31715683ce9db28",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/central/05-Source_Features_Reader_iOS_Toolbar_TOCNodeRow.swift.patch",
+          "patch_bytes": 904,
+          "canonical_patch_sha256": "2215dd5d6bfd119298e2e0ee9c9d9b7fa9015eee7e350b23703b43f2164cdc76",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_14",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_14",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+          "base_sha": "5c108887f142779a84ef114cd85e50fb1eaceb8b",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "de504b55304909dc804606aa7e4b3c80a52f5bc5",
+          "head_blob_sha": "39769ae3d8469e6713ce77b32a28937a84b3c11d",
+          "upstream_blob_sha": "5e22388064b650d393a1ec3de68395ba15eeb381",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/central/06-Source_Features_Reader_iOS_Toolbar_iOSReaderBottomToolbarView.swift.patch",
+          "patch_bytes": 830,
+          "canonical_patch_sha256": "e6837be6acd9b25cd95b4a2c51b4d71acb6c2a305c7a4f9784415f6f70e66aff",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_06",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_06",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+          "base_sha": "5c108887f142779a84ef114cd85e50fb1eaceb8b",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "42287267c7d73858fa58c0da52baab863a2f0ac9",
+          "head_blob_sha": "d8386c58093527a0f81e3ac1bf4fac739e5ab966",
+          "upstream_blob_sha": "d7821f49cf1e147faadc83ca25a9fbcef42e92ae",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/central/07-Source_Features_Reader_iOS_Toolbar_iOSTOCView.swift.patch",
+          "patch_bytes": 6578,
+          "canonical_patch_sha256": "2fba1743149a2797a3dce777b80fc51bb7e5a7dc4bb3961af93ec69c03c21be9",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_07",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_07",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+          "base_sha": "5c108887f142779a84ef114cd85e50fb1eaceb8b",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "0adbb502f0c022b847d47c8c4f625baece84d090",
+          "head_blob_sha": "64cd681bfcdb89cb41073162cc2cc0af96d65cf6",
+          "upstream_blob_sha": "f610402a57cbcb6b679b75c2d0683c2ece4b2647",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/central/08-Source_Features_Reader_iOS_iOSAnnotationEditorSheet.swift.patch",
+          "patch_bytes": 1144,
+          "canonical_patch_sha256": "0c0af2fc32130fdddefde92a36c409d7c9c1d00c2c10ce59ca18a2111bc2069e",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "CONTINUATION_20261120_ORIGINAL_NOTE_DRAFT_WITNESS",
+          "effective_record_status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+          "declared_context_records": [
+            {
+              "patch_id": "CONTINUATION_20261120_ORIGINAL_NOTE_DRAFT_WITNESS",
+              "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+          "base_sha": "5c108887f142779a84ef114cd85e50fb1eaceb8b",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "0ee7f6315850a9e7286aea05c70096fcc2deaff2",
+          "head_blob_sha": "8c0d862e202c6a2f7ecff178b5d161aa6fcfc98e",
+          "upstream_blob_sha": null,
+          "ownership": "PROTECTED_NAMESPACE_OR_SHARED_PROJECT",
+          "patch_file": "patches/central/09-Source_Features_Reader_iOS_iOSReaderWorkspaceView.swift.patch",
+          "patch_bytes": 20497,
+          "canonical_patch_sha256": "320d258918d3608b94e8e9a02f2a69ae18879b605952cf6cc11bba69b5c5948a",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_08",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_08",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Localizable.xcstrings",
+          "base_sha": "5c108887f142779a84ef114cd85e50fb1eaceb8b",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "42d8a361d763ae5584919e821807827633925932",
+          "head_blob_sha": "511a85ca4442f82c7f9edbe5303eacf073730017",
+          "upstream_blob_sha": "8ba5d76c26315b4649b64c24fca5fbea39b6ed33",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/central/10-Source_Localizable.xcstrings.patch",
+          "patch_bytes": 1910,
+          "canonical_patch_sha256": "7e2af13285c3fda99f6da1b0fb6a80ba70aed9fb22b73d8475c07c4a4696d7fc",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/UI/iOS/Views/iPadLayout.swift",
+          "base_sha": "5c108887f142779a84ef114cd85e50fb1eaceb8b",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "035cbd8cfaea4a57ed5bb74c697776e023ef943e",
+          "head_blob_sha": "e8eeb06489f5d8076e12f95ae489dd5d554fb786",
+          "upstream_blob_sha": "11842dfc000cd50562090694ca74e1a090ac28d8",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/central/11-Source_UI_iOS_Views_iPadLayout.swift.patch",
+          "patch_bytes": 2733,
+          "canonical_patch_sha256": "2c5d5c584ef18297abfd7b70b42e8a7785d1b2c952c7a1ee709892439f52c9ba",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": [
+            {
+              "patch_id": "GLOBAL_SEARCH_1220546245946205_20261115",
+              "status": "AUTHORIZED_SCOPED_IMPLEMENTATION_NATIVE_ACCEPTANCE_OPEN",
+              "singular_path_consumed_by_loader": false,
+              "attestation_present": false
+            }
+          ]
+        }
+      ]
+    },
+    "policy-baseline": {
+      "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+      "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+      "protected_path_count": 49,
+      "guard_status": "FAIL",
+      "guard_counts": {
+        "UNAUTHORIZED_UPSTREAM_MODIFICATION": 30,
+        "PENDING_UPSTREAM_APPROVAL": 19
+      },
+      "saved_guard_report": "guard/policy-baseline.json",
+      "paths": [
+        {
+          "path": ".gitignore",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "22db52e5ee89e8caffbefd10930bcf84871b146f",
+          "head_blob_sha": "13e0283e18450fefd77f87532412f30be5a3124b",
+          "upstream_blob_sha": "7f1d4811bda7066094dacdffed4dffc5520bda7b",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/01-.gitignore.patch",
+          "patch_bytes": 365,
+          "canonical_patch_sha256": "c84a4020dc184833c852430e216f47b686363b69c94b7a31dcf51d68ee3b4204",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "CLAUDE.md",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "3f8a7c113c2bca5c5e8d767a79e6bec75464e28d",
+          "head_blob_sha": "b527e5f0dba1979adb32d4144b4d8c9e99163824",
+          "upstream_blob_sha": "483a15a7f6224b31896a4f61b8c44fa5ee480a5e",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/02-CLAUDE.md.patch",
+          "patch_bytes": 7138,
+          "canonical_patch_sha256": "30751b1c3e4c3e2398435ca03a83fc8d3ad4da36b6e32d570a0de6b480a8b493",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Maktabah.xcodeproj/project.pbxproj",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "8a332467292ba7a0198be11966fa7147c0edcc42",
+          "head_blob_sha": "9f04627c21a6f337e34400daef60fbf8a54c3f14",
+          "upstream_blob_sha": "2ad0d56cce44a158d86b25b72086f84ae651b106",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/03-Maktabah.xcodeproj_project.pbxproj.patch",
+          "patch_bytes": 110165,
+          "canonical_patch_sha256": "a0e9f1672479abf015cc14561993f8e1acefdf85640bed0380bd580331f728c4",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "GLOBAL_SEARCH_MANAGER_REGISTRATION_DEPLOYMENT_20261115",
+          "effective_record_status": "SCOPED_INTEGRATION_NATIVE_ACCEPTANCE_OPEN",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_12",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            },
+            {
+              "patch_id": "GLOBAL_SEARCH_MANAGER_REGISTRATION_DEPLOYMENT_20261115",
+              "status": "SCOPED_INTEGRATION_NATIVE_ACCEPTANCE_OPEN",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "e8026c340ee56e905d803f0ec7407bd425486a94",
+          "head_blob_sha": "2a09ec0e71d3da6855fb57f25a09996816df608c",
+          "upstream_blob_sha": "e8026c340ee56e905d803f0ec7407bd425486a94",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/04-Maktabah.xcodeproj_project.xcworkspace_xcshareddata_swiftpm_Package.resolved.patch",
+          "patch_bytes": 5579,
+          "canonical_patch_sha256": "3d49801d81976f31ea71182bf6f956401cec7a64802ef88f7bbe57e0190fa989",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Core/CloudKit/CloudKitCoreManager.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "4139a39a84601622b6882994b8dbf4d457967208",
+          "head_blob_sha": "6834a1beab5ffa38ddedf3404392c3be138a73c5",
+          "upstream_blob_sha": "4e1bddf1dda487bb68e58a044dd64473c761f52d",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/05-Source_Core_CloudKit_CloudKitCoreManager.swift.patch",
+          "patch_bytes": 3012,
+          "canonical_patch_sha256": "44df0ef49f56fa51f2f2a19662080594dee0155fddd25c6d1b10b842ad31f3e9",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Core/Database/SQLiteDatabase.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "47d6739b80fbf94e7ae1a4dc14744ee6d07aed1f",
+          "head_blob_sha": "a7d7180ef1b7ba77a40a98d32592365206c1e41f",
+          "upstream_blob_sha": "3cf9f96fb23bd7259df5be7256c97314ac776aa1",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/06-Source_Core_Database_SQLiteDatabase.swift.patch",
+          "patch_bytes": 4205,
+          "canonical_patch_sha256": "578fd6f81ae3ed366ebe4f602718ecd0b6dd354bd03ad840f3a4dfc36a357113",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "CONTINUATION_20261118_SQLITE_ERROR_PROPAGATION",
+          "effective_record_status": "IMPLEMENTED_REAL_SQLITE_PASS_NATIVE_PENDING",
+          "declared_context_records": [
+            {
+              "patch_id": "CONTINUATION_20261118_SQLITE_ERROR_PROPAGATION",
+              "status": "IMPLEMENTED_REAL_SQLITE_PASS_NATIVE_PENDING",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "52d19c0a7042ac81ca9194b52c21e13a17bd640a",
+          "head_blob_sha": "3dedc2068864b9076d84dc7322a1e7371b7895d4",
+          "upstream_blob_sha": "6998a584bc11422bcd67061650900e526d8713a7",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/07-Source_Features_Annotations_Database_AnnotationRepository.swift.patch",
+          "patch_bytes": 4092,
+          "canonical_patch_sha256": "cb89a4cbc196f8c558a72fe2b7eafb870dd8481f5ab7c2e4a43d6e967916352e",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Features/Library/Database/Updater/BookUpdateManager.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "e041494b9e8cdb3831d3c93f008b2207755e757a",
+          "head_blob_sha": "940a67a916f76348d11ae593ba6349948bb13582",
+          "upstream_blob_sha": "e041494b9e8cdb3831d3c93f008b2207755e757a",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/08-Source_Features_Library_Database_Updater_BookUpdateManager.swift.patch",
+          "patch_bytes": 4210,
+          "canonical_patch_sha256": "2d0c573defb11e7bd136533afa27f54ef782b316292116edd09155054cca95d5",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "10fe299b48da8da24e1eea08929b971cc0b3fe06",
+          "head_blob_sha": "2cadfc0a6cc532b272178194ac3a8d2ee0bd1968",
+          "upstream_blob_sha": "10fe299b48da8da24e1eea08929b971cc0b3fe06",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/09-Source_Features_Library_Database_Updater_BookUpdateMgr_Fetch.swift.patch",
+          "patch_bytes": 6123,
+          "canonical_patch_sha256": "1cf8d9af763f43bbd9d2e995423c2e40de24df97f55c7c01a50a227818df41ed",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "5d5a8b1c0c9693d4b44af4aee19e4200c470e799",
+          "head_blob_sha": "076c7b559c5ff2ea6eec88ab76b1802a26d9f5a3",
+          "upstream_blob_sha": "5d5a8b1c0c9693d4b44af4aee19e4200c470e799",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/10-Source_Features_Library_Database_Updater_BookUpdateMgr_Import.swift.patch",
+          "patch_bytes": 10844,
+          "canonical_patch_sha256": "84dd2ff0c4e8979de6e082bb89fcb7c647b942ad7213da4ca47a5f357ddd40cc",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "1ebd757b381152031e68ef2f223a9e5f91f0c716",
+          "head_blob_sha": "7727f5dc3248ac315f083c3dfe4c884839e650b7",
+          "upstream_blob_sha": "1ebd757b381152031e68ef2f223a9e5f91f0c716",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/11-Source_Features_Library_Database_Updater_BookUpdateMgr_SQLite.swift.patch",
+          "patch_bytes": 2594,
+          "canonical_patch_sha256": "f0a1dc2a7ddf1d862f52a83f5a774ce73f5dfa71bf20a888c1a6c5c06a02d3b3",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Features/Library/Updates/BookUpdateView.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "df466461353a7aea565dcb287b3a4181383fc29c",
+          "head_blob_sha": "d8162f600dbc177362c6cb53152e99c5aa2a0153",
+          "upstream_blob_sha": "df466461353a7aea565dcb287b3a4181383fc29c",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/12-Source_Features_Library_Updates_BookUpdateView.swift.patch",
+          "patch_bytes": 615,
+          "canonical_patch_sha256": "6b4977a7f64f91fffdb959d929f257ccc5ae6f790bc359324bdb409a3209f36a",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Features/Library/ViewModel/BookUpdateVM.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "bcd0632bf2ecf742eb8f2315b43f4e1f8a99fd90",
+          "head_blob_sha": "9e59b5f0e6a8c160d82ca76b175a0915c1e96db0",
+          "upstream_blob_sha": "bcd0632bf2ecf742eb8f2315b43f4e1f8a99fd90",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/13-Source_Features_Library_ViewModel_BookUpdateVM.swift.patch",
+          "patch_bytes": 5323,
+          "canonical_patch_sha256": "162a53fc203701fdc45454b652103e9d6067b83798edd4077d6032457ab38d6d",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Features/Library/iOS/iOSLibraryView.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "ede65ecf6d6117a1fe48c8bd51f51e229c2c3be9",
+          "head_blob_sha": "46f202177491274e37e140326913cfcbf716883b",
+          "upstream_blob_sha": "5accad6bd75005974b4a7f633020c9f1af05bb80",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/14-Source_Features_Library_iOS_iOSLibraryView.swift.patch",
+          "patch_bytes": 1411,
+          "canonical_patch_sha256": "5686d64ed099ba3fd18f7365f2ca5b10212efb2dfe1850bd2bdef9ccd529c09c",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Features/Reader/Cache/BookPageCache.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "85f4c9ef2518da49b60394ffdb0b14616f686d2a",
+          "head_blob_sha": "c7540a5ac13671d72973acc0ee93fd1d977b9eb9",
+          "upstream_blob_sha": "ccc4cf138cd9f910809723e1535266562ca16243",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/15-Source_Features_Reader_Cache_BookPageCache.swift.patch",
+          "patch_bytes": 10620,
+          "canonical_patch_sha256": "17353c0ad2afe78e4cf9937167b6199775b603ea603ddd0288d1c23a804d0ba9",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "173bfe8a68fd2c6b46967f58e863fcd1e7db77f2",
+          "head_blob_sha": "2338175e3d2ed5f421c91c192957135dde61d00a",
+          "upstream_blob_sha": "62e6f2dc3a78e43f28a044d6ad98ef4d265788fc",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/16-Source_Features_Reader_ViewModel_BookTOCViewModel.swift.patch",
+          "patch_bytes": 5881,
+          "canonical_patch_sha256": "e59d0094c7db491e76c68b815827e0184e7bccd9c0ad5bff03522be5c0e29021",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_09",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_09",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "11caf78e533c0a88b8ee2d9d0472165371da6676",
+          "head_blob_sha": "2f1002c6d131211c72185796042c9e5e7f401cba",
+          "upstream_blob_sha": "27ab4f6bbaab57b6f9632b83248e9206afb6faf7",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/17-Source_Features_Reader_ViewModel_Extensions_Reader_Content.swift.patch",
+          "patch_bytes": 7094,
+          "canonical_patch_sha256": "0c15e331bab7cc4f1254ed905ff09dacb60c510207006c3d83f7dc390fa8ab3b",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_03",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_03",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            },
+            {
+              "patch_id": "CONTINUATION_20261117_READER_OFFMAIN",
+              "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+              "singular_path_consumed_by_loader": false,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "8584cc718dbb7888a1cde7e24fcf61b957100898",
+          "head_blob_sha": "dff3cecf5510770a9cd0aff8c55b0040b69cf528",
+          "upstream_blob_sha": "09644d0b222d74f90505fedba323899d2734c086",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/18-Source_Features_Reader_ViewModel_Extensions_Reader_Navigation.swift.patch",
+          "patch_bytes": 3188,
+          "canonical_patch_sha256": "de3b3a67bcca7decddf9d2d9c737615f7b05c3f299ffbb34e7244f83e11b1b10",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_02",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_02",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "ba2a051005cfdef04c33dd6e800295453dc47449",
+          "head_blob_sha": "1b1d4b0520eae69000ed5af4fec24b552f33ca04",
+          "upstream_blob_sha": "bf5126a55a6d2928ae76f0965b905f95eb62a868",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/19-Source_Features_Reader_ViewModel_Extensions_Reader_iOS.swift.patch",
+          "patch_bytes": 1762,
+          "canonical_patch_sha256": "03cfc0c37bc94c5cfb5ae68421229ca133b9b8eb0b0843f162d1174a4dc6269c",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_04",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_04",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "7ab42dbf00653317dbaaa266385729353b99d323",
+          "head_blob_sha": "7f57e3883b42fb6aa76a7e76ae1220a2134f3f87",
+          "upstream_blob_sha": "b3e430ac208357ebdf66ab50329c76c0c8880c4e",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/20-Source_Features_Reader_ViewModel_ReaderViewModel.swift.patch",
+          "patch_bytes": 4260,
+          "canonical_patch_sha256": "bf5f7f9bf1e01535545e5dc3c57f0692dc2d7e2e17e3e80921e9f6a22ae20a15",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_05",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_05",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            },
+            {
+              "patch_id": "CONTINUATION_20261117_READER_OFFMAIN",
+              "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+              "singular_path_consumed_by_loader": false,
+              "attestation_present": false
+            },
+            {
+              "patch_id": "CONTINUATION_20261118_NATIVE_READER_TEXT_WITNESS",
+              "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+              "singular_path_consumed_by_loader": false,
+              "attestation_present": false
+            },
+            {
+              "patch_id": "CONTINUATION_20261118_NATIVE_READER_CORE_FENCE",
+              "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+              "singular_path_consumed_by_loader": false,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "dbc93dd0475b9daafda54c8b53b7800a0916b39c",
+          "head_blob_sha": "612dffd9889a2eeb7f53dc03c462a150952fbfaa",
+          "upstream_blob_sha": "dbc93dd0475b9daafda54c8b53b7800a0916b39c",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/21-Source_Features_Reader_iOS_Toolbar_ReaderTabItemView.swift.patch",
+          "patch_bytes": 2200,
+          "canonical_patch_sha256": "80b6fa899d882f1fae225ffc310859693a446d1dcd1ee64c9ad309d0e33e19a3",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "357400e811ad5f3fd022bb43117d333e9357ed1c",
+          "head_blob_sha": "850dcefe3c8726da93cd3a73414bbced244aea4d",
+          "upstream_blob_sha": "34ccadc2342a3ebb9c24a7abd31715683ce9db28",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/22-Source_Features_Reader_iOS_Toolbar_TOCNodeRow.swift.patch",
+          "patch_bytes": 1203,
+          "canonical_patch_sha256": "83cfee43e7bf99928f5bb703530b3b22c069b7de8a7f16d649a001cb18aa6435",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_14",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_14",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "6f19264c9248b1a06c3bfa57092f90bc319965e8",
+          "head_blob_sha": "b1c1b4a1c0b7d5ad24cf3425142e4f76afcd1a56",
+          "upstream_blob_sha": "3519f971897ee248a0f744a8b04ea28b29ef6d3b",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/23-Source_Features_Reader_iOS_Toolbar_iOSBookSearchView.swift.patch",
+          "patch_bytes": 1693,
+          "canonical_patch_sha256": "d5c5a4e64106f31844d02174532cb5267487e7674bb8967f7182a983d7688d42",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "daa0abfe16ce0ef23366dd1a2fb71402544127be",
+          "head_blob_sha": "39769ae3d8469e6713ce77b32a28937a84b3c11d",
+          "upstream_blob_sha": "5e22388064b650d393a1ec3de68395ba15eeb381",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/24-Source_Features_Reader_iOS_Toolbar_iOSReaderBottomToolbarView.swift.patch",
+          "patch_bytes": 2700,
+          "canonical_patch_sha256": "1f1c04d1fb5e514cb016308d52b71d8d003d5b5d7cc1d581f2cbfa552c965fcb",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_06",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_06",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "6381e62df4fe0dace12efb44987a7bcbf7d3c6a2",
+          "head_blob_sha": "e7fdeeada1226cf42552b3b4484234e44d478293",
+          "upstream_blob_sha": "b8b2085032c21d1f6be833e3ac371b17dd37a574",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/25-Source_Features_Reader_iOS_Toolbar_iOSReaderNavigationPopoverView.swift.patch",
+          "patch_bytes": 2563,
+          "canonical_patch_sha256": "73722393a6371d79602c7183cd75b89d974277c85c367b57450e1480be37041e",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "6920c2e41f163b04cebb05eb0a0bc58deacd2ad4",
+          "head_blob_sha": "d8386c58093527a0f81e3ac1bf4fac739e5ab966",
+          "upstream_blob_sha": "d7821f49cf1e147faadc83ca25a9fbcef42e92ae",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/26-Source_Features_Reader_iOS_Toolbar_iOSTOCView.swift.patch",
+          "patch_bytes": 10572,
+          "canonical_patch_sha256": "d5517da54f7b2f221934d7aceff15f1bb7cf5bbdd239847cde0068edc7c55ea0",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_07",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_07",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "6770977ce0d4594884dd0ceca61864b341545ee4",
+          "head_blob_sha": "64cd681bfcdb89cb41073162cc2cc0af96d65cf6",
+          "upstream_blob_sha": "f610402a57cbcb6b679b75c2d0683c2ece4b2647",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/27-Source_Features_Reader_iOS_iOSAnnotationEditorSheet.swift.patch",
+          "patch_bytes": 2097,
+          "canonical_patch_sha256": "b2252532fc4afa74056fb546e0e2eb0376eeb08cb9a9117a97ee60937236d077",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "CONTINUATION_20261120_ORIGINAL_NOTE_DRAFT_WITNESS",
+          "effective_record_status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+          "declared_context_records": [
+            {
+              "patch_id": "CONTINUATION_20261120_ORIGINAL_NOTE_DRAFT_WITNESS",
+              "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Reader/iOS/iOSReaderView.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "3da6586c02412b4b66a072bf9c14342639a6a61c",
+          "head_blob_sha": "a6bfea6931dc52fe6457073be8a4490abeb99ede",
+          "upstream_blob_sha": "4e028dd3b6d33180011a80347b0c7e253c7b4827",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/28-Source_Features_Reader_iOS_iOSReaderView.swift.patch",
+          "patch_bytes": 1867,
+          "canonical_patch_sha256": "7f1dc63ff0e43a3e568cda9b008b519ecf60dcd3d1945844dabf1276a884a889",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BATCH_B_PATCH_02",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "1a136ebdd29f8a4c46bbf59bc4b2a5a2bdf6d4f0",
+          "head_blob_sha": "8c0d862e202c6a2f7ecff178b5d161aa6fcfc98e",
+          "upstream_blob_sha": null,
+          "ownership": "PROTECTED_NAMESPACE_OR_SHARED_PROJECT",
+          "patch_file": "patches/policy-baseline/29-Source_Features_Reader_iOS_iOSReaderWorkspaceView.swift.patch",
+          "patch_bytes": 29911,
+          "canonical_patch_sha256": "60ddaeab34206ca9dc806c551a1a7e43cabb16a6489c7801fbb14a8da92447c3",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_08",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_08",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Search/Models/SearchResultItem.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "2849a4c722eaa5d871b233354adc5c39ba2deea7",
+          "head_blob_sha": "2eed19f58dae86205bfd01b838db77a5ad1129ba",
+          "upstream_blob_sha": "68b7d86be161a574eebf64661c14d382ffcba8f8",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/30-Source_Features_Search_Models_SearchResultItem.swift.patch",
+          "patch_bytes": 3388,
+          "canonical_patch_sha256": "86339507a24b96a674dfc5953d051c5e98b07995eff10f948f7be35814bce262",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "43b7466bfc59bbdc30ee9dca7f9f0276bbb9e4d9",
+          "head_blob_sha": "0dffa1139c3492834162cdddc52fb3252223eaa8",
+          "upstream_blob_sha": "553a799d1f872c657de3342f72531d4b50e09aa7",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/31-Source_Features_Search_ViewModel_Extensions_Search_Execution.swift.patch",
+          "patch_bytes": 1303,
+          "canonical_patch_sha256": "2d48d17923ba8f79915676527ce537e8aca9d9886beccbe70984c6e5eca185d8",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": [
+            {
+              "patch_id": "GLOBAL_SEARCH_1220546245946205_20261115",
+              "status": "AUTHORIZED_SCOPED_IMPLEMENTATION_NATIVE_ACCEPTANCE_OPEN",
+              "singular_path_consumed_by_loader": false,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Search/ViewModel/SearchViewModel.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "e81831d421f0694ffebe6f31099ab7cf2ae9a913",
+          "head_blob_sha": "566117c44bba83cffbb0664fc700b673e331eb63",
+          "upstream_blob_sha": "98ff8f399d666910ce9076eb4536ce03649fc9c1",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/32-Source_Features_Search_ViewModel_SearchViewModel.swift.patch",
+          "patch_bytes": 744,
+          "canonical_patch_sha256": "961bc4c333621035f85ee7919d787a2206e016be300bbee76b61a77013eda0b5",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": [
+            {
+              "patch_id": "GLOBAL_SEARCH_1220546245946205_20261115",
+              "status": "AUTHORIZED_SCOPED_IMPLEMENTATION_NATIVE_ACCEPTANCE_OPEN",
+              "singular_path_consumed_by_loader": false,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Search/iOS/SearchComponents.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "f2d54d4ecb370af011054fa1dfe65a8350d1575f",
+          "head_blob_sha": "505eb9ff52842307b8b800a0cd207e151e6416bf",
+          "upstream_blob_sha": "06246b43616fc0d5827c990b28e9769b9ebc5295",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/33-Source_Features_Search_iOS_SearchComponents.swift.patch",
+          "patch_bytes": 3748,
+          "canonical_patch_sha256": "ce7477e3beacd545c4f4f03c0282d75ab211f78cc1f94b4ad095d9c6ca47574d",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/Features/Search/iOS/SearchModeView.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "6e45959aa5f828127eeac199471f060463865c0a",
+          "head_blob_sha": "d4f061293e7c8682d41320602da5692d47dce7d9",
+          "upstream_blob_sha": "ea456edd332b29825d6ca0c59463a1dc41317032",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/34-Source_Features_Search_iOS_SearchModeView.swift.patch",
+          "patch_bytes": 8388,
+          "canonical_patch_sha256": "13a53c24243023019a15bb81e238edb0f281cafd540610fdb40c795cb4d74e7f",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "COMPLETION_20261120_NATIVE_ACTION_ACCEPTANCE_TRIGGER",
+          "effective_record_status": "DEBUG_TEST_HOOK_SYNTAX_PASS_APPLE_NATIVE_NOT_RUN",
+          "declared_context_records": [
+            {
+              "patch_id": "GLOBAL_SEARCH_1220546245946205_20261115",
+              "status": "AUTHORIZED_SCOPED_IMPLEMENTATION_NATIVE_ACCEPTANCE_OPEN",
+              "singular_path_consumed_by_loader": false,
+              "attestation_present": false
+            },
+            {
+              "patch_id": "COMPLETION_20261120_SEMANTIC_SEARCH_OWNER",
+              "status": "IMPLEMENTED_PORTABLE_PASS_NATIVE_PENDING",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            },
+            {
+              "patch_id": "COMPLETION_20261120_NATIVE_ACTION_ACCEPTANCE_TRIGGER",
+              "status": "DEBUG_TEST_HOOK_SYNTAX_PASS_APPLE_NATIVE_NOT_RUN",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "1354ba65a888ad38683e1f39bf57a13a81034046",
+          "head_blob_sha": "d8b91be607657bc47476ebe91e013ca7c222c7a1",
+          "upstream_blob_sha": "1ae742e7c369a5797db7c08ed22c36d63bfbe4d5",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/35-Source_Features_Search_iOS_SearchResultsListView.swift.patch",
+          "patch_bytes": 1985,
+          "canonical_patch_sha256": "02b75e898b224043fd858d59c2f9587fe9f74b4cac62f2f6d68fb27028bc1ac4",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": [
+            {
+              "patch_id": "GLOBAL_SEARCH_1220546245946205_20261115",
+              "status": "AUTHORIZED_SCOPED_IMPLEMENTATION_NATIVE_ACCEPTANCE_OPEN",
+              "singular_path_consumed_by_loader": false,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "ad057e54c475dd7bbe5134c2e83f4ef47b484d80",
+          "head_blob_sha": "05254df866e1f6a866e2807a8a5ed49561273b22",
+          "upstream_blob_sha": "13653841d4b2eb7715fc5cfeef66cb159ba9cecf",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/36-Source_Features_Search_iOS_iOSSearchFilterViewController.swift.patch",
+          "patch_bytes": 815,
+          "canonical_patch_sha256": "0e7dad74201c72b7e3dd06c1985f61f76ee2a94222124f0d1437c27e17ce821a",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": [
+            {
+              "patch_id": "GLOBAL_SEARCH_1220546245946205_20261115",
+              "status": "AUTHORIZED_SCOPED_IMPLEMENTATION_NATIVE_ACCEPTANCE_OPEN",
+              "singular_path_consumed_by_loader": false,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Features/Setting/SettingsView.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "47aa588f3ca41fffb303e823e44958b2627e8df1",
+          "head_blob_sha": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
+          "upstream_blob_sha": "96b116fe791d46a4c940e5ad3f0c5a21420de020",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/37-Source_Features_Setting_SettingsView.swift.patch",
+          "patch_bytes": 3057,
+          "canonical_patch_sha256": "3ab6be978e9aec03629b3fee05b52ed132baf1387c7d18de2a1b3c2eb912af8e",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_10",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_10",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/Localizable.xcstrings",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "2be61f6ca2a3975aaf89eddec24e5808e27e0085",
+          "head_blob_sha": "511a85ca4442f82c7f9edbe5303eacf073730017",
+          "upstream_blob_sha": "8ba5d76c26315b4649b64c24fca5fbea39b6ed33",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/38-Source_Localizable.xcstrings.patch",
+          "patch_bytes": 2703,
+          "canonical_patch_sha256": "51867dfdd4602fd55aabad9750ed08ac05206974e40de3e19ed689ed1e3ddf49",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/UI/iOS/MaktabahApp.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "4328c412cb7a88704884fe29b75db04987f404d3",
+          "head_blob_sha": "465c81c9af7c75136898e0afe92fb80b35178d7c",
+          "upstream_blob_sha": "873d3d8bb2132b4c9c5309f3e0b9ff6055927727",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/39-Source_UI_iOS_MaktabahApp.swift.patch",
+          "patch_bytes": 7525,
+          "canonical_patch_sha256": "14bc6acaf6f94893ed6a0a003fcaf52fc7e9623bc7a0a8cafbda097f8f674f60",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/UI/iOS/Managers/BootstrapManager.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "60d8fb888271c6600ae904a1f7ee11b9b865c924",
+          "head_blob_sha": "d205d7c234fdc2cafd4a6c22f5a6fe21c05ea1a2",
+          "upstream_blob_sha": "87217a0f4033723cbaee73af44233308a4a16452",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/40-Source_UI_iOS_Managers_BootstrapManager.swift.patch",
+          "patch_bytes": 2405,
+          "canonical_patch_sha256": "0d754ed3b67681018e0c401d9b099a97ba48a993df760b2ce8227b32e9bf9a0b",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "32046c0b2c468fa4e7b312b1474b582c751da1aa",
+          "head_blob_sha": "17ac03d083571da1c5abcb033facd23140dcc8d6",
+          "upstream_blob_sha": "1f18b94eb518e265924d3f8cc2548a35f877a153",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/41-Source_UI_iOS_Managers_iOSNavigationManager.swift.patch",
+          "patch_bytes": 10853,
+          "canonical_patch_sha256": "613625354b302284fc8576f6b7bded3b99e36ee43b5a86dff16cab3a76ddf2f2",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_11",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_11",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/UI/iOS/Managers/iOSReaderSessionManager.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "217bbb011c09173f292f738375b7b63f0aa5e4b5",
+          "head_blob_sha": "41b29a581f9e76bd127359db94f6a804f324efdf",
+          "upstream_blob_sha": null,
+          "ownership": "PROTECTED_NAMESPACE_OR_SHARED_PROJECT",
+          "patch_file": "patches/policy-baseline/42-Source_UI_iOS_Managers_iOSReaderSessionManager.swift.patch",
+          "patch_bytes": 3601,
+          "canonical_patch_sha256": "021a85eafd600e1fbf0acc0d8047600872364240a6aa257f5fbbf0fa6eab058f",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BATCH_B_PATCH_07",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/UI/iOS/Views/Common/ListContentView.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "c009dfc4c93281f2e3fecbc04c17925ab06de837",
+          "head_blob_sha": "df6e248cee2391caf0a9c193c2ec343ce5ab2f45",
+          "upstream_blob_sha": "01c414794e0e26b7e3b493c9d8baa02aae79fb11",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/43-Source_UI_iOS_Views_Common_ListContentView.swift.patch",
+          "patch_bytes": 1303,
+          "canonical_patch_sha256": "0a0a19dfeb5ef53d3853af6d932d46ff4b129e15f94e7c712f80c9eb1a7286f9",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "39f01f0a3c86cce8b75a137aa8d5a535b5764957",
+          "head_blob_sha": "3f7bb041252146dc4893d407b44f343646de4f8b",
+          "upstream_blob_sha": "920c004e8b67e4173e2d67b0626f5a2bd995c8cc",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/44-Source_UI_iOS_Views_Common_iOSHierarchicalCollectionViewController.swift.patch",
+          "patch_bytes": 2711,
+          "canonical_patch_sha256": "d9048063d25434a125dc2318820ea6c318688ef6dcd8de427d9e8439163adace",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        },
+        {
+          "path": "Source/UI/iOS/Views/iOSMainView.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "14475c6a8454321809810e35d50ba9dbab5dbb3b",
+          "head_blob_sha": "2d7ec48ce9aca3fe5ed54b584045c409906acf4e",
+          "upstream_blob_sha": "ebe75d40d015231bc48314fd7c6366085b757900",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/45-Source_UI_iOS_Views_iOSMainView.swift.patch",
+          "patch_bytes": 8708,
+          "canonical_patch_sha256": "f50abb33057e6d11f600b12d725d3bf37c787c4df688d03ed7321689d76aecb1",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_13",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_13",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/UI/iOS/Views/iPadLayout.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "2d73e432c29e3f3fe1711f7bb242267312ad0a70",
+          "head_blob_sha": "e8eeb06489f5d8076e12f95ae489dd5d554fb786",
+          "upstream_blob_sha": "11842dfc000cd50562090694ca74e1a090ac28d8",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/46-Source_UI_iOS_Views_iPadLayout.swift.patch",
+          "patch_bytes": 15389,
+          "canonical_patch_sha256": "f38c69a5b006ddb074b02cdcf292aa2ff26cec12b0925811c298292014d9010f",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": [
+            {
+              "patch_id": "GLOBAL_SEARCH_1220546245946205_20261115",
+              "status": "AUTHORIZED_SCOPED_IMPLEMENTATION_NATIVE_ACCEPTANCE_OPEN",
+              "singular_path_consumed_by_loader": false,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/UI/iOS/Views/iPhoneLayout.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "b6692b114311ee389e9548ff557887194bdb3e05",
+          "head_blob_sha": "0f62ae7d935deb63b93c787d8f1d2177b1e4c471",
+          "upstream_blob_sha": "d1193b9dba2bd1b9fc1dd3a84ee29cdf3e784cbb",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/47-Source_UI_iOS_Views_iPhoneLayout.swift.patch",
+          "patch_bytes": 2103,
+          "canonical_patch_sha256": "08555b2ed63c6be13da18604c3e0d05f57951e761219cdfd5b4286da93f104ad",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": [
+            {
+              "patch_id": "GLOBAL_SEARCH_1220546245946205_20261115",
+              "status": "AUTHORIZED_SCOPED_IMPLEMENTATION_NATIVE_ACCEPTANCE_OPEN",
+              "singular_path_consumed_by_loader": false,
+              "attestation_present": false
+            },
+            {
+              "patch_id": "CONTINUATION_20261117_PHONE_GLOBAL_ROUTING",
+              "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+              "singular_path_consumed_by_loader": false,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "fa5430a8ee65318f65fbcdfd0e5d5f68a0f4b912",
+          "head_blob_sha": "e017b066f70e4dcf0353a33ac89cd776bab9f40a",
+          "upstream_blob_sha": "0d1894d6e92491509534aaf0748f8eb92d277dfe",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/48-Source_UI_iOS_Wrappers_iOSIbarotTextView.swift.patch",
+          "patch_bytes": 6592,
+          "canonical_patch_sha256": "ee5cab46f16a1a24d3d97ffc3e3b6426dae04808949f7bcc668c537140f9a08b",
+          "guard_types": [
+            "PENDING_UPSTREAM_APPROVAL"
+          ],
+          "effective_record_id": "BUILD_8401_PATCH_01",
+          "effective_record_status": "OWNER_APPROVAL_REQUIRED",
+          "declared_context_records": [
+            {
+              "patch_id": "BUILD_8401_PATCH_01",
+              "status": "OWNER_APPROVAL_REQUIRED",
+              "singular_path_consumed_by_loader": true,
+              "attestation_present": false
+            },
+            {
+              "patch_id": "CONTINUATION_20261118_NATIVE_READER_TEXT_WITNESS",
+              "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+              "singular_path_consumed_by_loader": false,
+              "attestation_present": false
+            }
+          ]
+        },
+        {
+          "path": "Source/iOS-Info.plist",
+          "base_sha": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+          "head_sha": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+          "base_blob_sha": "6359948ac3c6adb449216a51f7eea2e624a61af1",
+          "head_blob_sha": "0e9b422df3c67c09309eaa19279e85705dca341e",
+          "upstream_blob_sha": "8134c807cd51b8fce6792dd391b77306f0627199",
+          "ownership": "PINNED_UPSTREAM_TRACKED",
+          "patch_file": "patches/policy-baseline/49-Source_iOS-Info.plist.patch",
+          "patch_bytes": 286,
+          "canonical_patch_sha256": "aae07eb08f6d34ac147b1488a946f2719c24f3168b0f4afd06477ee4a23b35d6",
+          "guard_types": [
+            "UNAUTHORIZED_UPSTREAM_MODIFICATION"
+          ],
+          "effective_record_id": null,
+          "effective_record_status": null,
+          "declared_context_records": []
+        }
+      ]
+    }
+  },
+  "historical_8401_summary": {
+    "entries": 14,
+    "current_blob_matches": 2,
+    "current_digest_matches": 0,
+    "retained_patch_integrity_matches": 14
+  },
+  "guard_reexecuted_by_generator": false,
+  "acceptance_granted": false,
+  "policy_or_register_modified": false,
+  "signing_attempted": false,
+  "keys_created_or_accessed": false,
+  "register_records": 24,
+  "register_records_with_attestation": 0,
+  "array_only_records_ignored_by_original_loader": [
+    "GLOBAL_SEARCH_1220546245946205_20261115",
+    "CONTINUATION_20261117_READER_OFFMAIN",
+    "CONTINUATION_20261117_PHONE_GLOBAL_ROUTING",
+    "CONTINUATION_20261118_NATIVE_READER_TEXT_WITNESS",
+    "CONTINUATION_20261118_NATIVE_READER_CORE_FENCE"
+  ],
+  "remaining_trust_material": [
+    "An authentic externally configured owner Ed25519 verifier identity.",
+    "Authentic signatures over the final accepted base/path/head-blob/patch-digest tuples.",
+    "Genuine approval reference and validity period in the unchanged canonical signature payload.",
+    "Current records in the singular-path form admitted by the unchanged loader.",
+    "Required final native/product acceptance, separately from cryptographic verification."
+  ]
+}

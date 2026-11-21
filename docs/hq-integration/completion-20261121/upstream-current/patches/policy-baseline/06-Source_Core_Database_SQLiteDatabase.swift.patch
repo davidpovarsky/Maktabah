@@ -1,0 +1,89 @@
+diff --git a/Source/Core/Database/SQLiteDatabase.swift b/Source/Core/Database/SQLiteDatabase.swift
+index 47d6739b..a7d7180e 100644
+--- a/Source/Core/Database/SQLiteDatabase.swift
++++ b/Source/Core/Database/SQLiteDatabase.swift
+@@ -119,6 +119,17 @@ class SQLiteDatabase: @unchecked Sendable {
+         }
+     }
+ 
++    /// Executes synchronous work under this connection's existing serialization
++    /// lock. The owned annotation completion uses this to retain the same lock
++    /// across its lifetime admission and the original transaction's COMMIT.
++    /// Never await or invoke a transport; callers must obey their reviewed lock
++    /// order. Owned annotation completion never acquires repository state.
++    func withSerializedAccess<Value>(_ body: () throws -> Value) rethrows -> Value {
++        lock.lock()
++        defer { lock.unlock() }
++        return try body()
++    }
++
+     func transaction(_ block: () throws -> Void) throws {
+         lock.lock()
+         defer { lock.unlock() }
+@@ -165,8 +176,16 @@ class SQLiteDatabase: @unchecked Sendable {
+ 
+     @discardableResult
+     func fetch<T>(query: String, parameters: [Any] = [], mapping: (SQLiteRow) throws -> T) throws -> [T] {
+-        lock.lock()
++        // Keep statement/decoder serialization, but allow a cancelled read to
++        // leave the queue while an unrelated fetch still owns this same lock.
++        try Task.checkCancellation()
++        while !lock.lock(before: Date(timeIntervalSinceNow: 0.01)) {
++            try Task.checkCancellation()
++        }
+         defer { lock.unlock() }
++        // Cancellation can win as acquisition succeeds; establish the unlock
++        // first and do not prepare or publish a statement in that case.
++        try Task.checkCancellation()
+         return try _fetchNoLock(query: query, parameters: parameters, mapping: mapping)
+     }
+ 
+@@ -231,9 +250,16 @@ class SQLiteDatabase: @unchecked Sendable {
+         var results: [T] = []
+         let row = SQLiteRow(stmt: stmt)
+ 
+-        while sqlite3_step(stmt) == SQLITE_ROW {
++        var status = sqlite3_step(stmt)
++        while status == SQLITE_ROW {
+             let mapped = try mapping(row)
+             results.append(mapped)
++            status = sqlite3_step(stmt)
++        }
++        // Only DONE proves a complete read. BUSY, INTERRUPT and other errors
++        // must not publish a partial/empty page or allow a transaction to commit.
++        guard status == SQLITE_DONE else {
++            throw SQLiteError.executionFailed(String(cString: sqlite3_errmsg(dbPointer)))
+         }
+ 
+         return results
+@@ -270,21 +296,25 @@ class SQLiteDatabase: @unchecked Sendable {
+     private func bind(parameters: [Any], to stmt: OpaquePointer?) throws {
+         for (index, value) in parameters.enumerated() {
+             let bindIndex = Int32(index + 1)
++            let status: Int32
+             switch value {
+             case let intVal as Int:
+-                sqlite3_bind_int64(stmt, bindIndex, Int64(intVal))
++                status = sqlite3_bind_int64(stmt, bindIndex, Int64(intVal))
+             case let int64Val as Int64:
+-                sqlite3_bind_int64(stmt, bindIndex, int64Val)
++                status = sqlite3_bind_int64(stmt, bindIndex, int64Val)
+             case let doubleVal as Double:
+-                sqlite3_bind_double(stmt, bindIndex, doubleVal)
++                status = sqlite3_bind_double(stmt, bindIndex, doubleVal)
+             case let stringVal as String:
+                 let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+-                sqlite3_bind_text(stmt, bindIndex, stringVal, -1, SQLITE_TRANSIENT)
++                status = sqlite3_bind_text(stmt, bindIndex, stringVal, -1, SQLITE_TRANSIENT)
+             case is NSNull:
+-                sqlite3_bind_null(stmt, bindIndex)
++                status = sqlite3_bind_null(stmt, bindIndex)
+             default:
+                 throw SQLiteError.bindFailed("Unsupported type for parameter at index \(index)")
+             }
++            guard status == SQLITE_OK else {
++                throw SQLiteError.bindFailed(String(cString: sqlite3_errmsg(dbPointer)))
++            }
+         }
+     }
+ }

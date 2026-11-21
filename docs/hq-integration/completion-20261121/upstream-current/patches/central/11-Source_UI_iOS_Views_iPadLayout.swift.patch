@@ -1,0 +1,61 @@
+diff --git a/Source/UI/iOS/Views/iPadLayout.swift b/Source/UI/iOS/Views/iPadLayout.swift
+index 035cbd8c..e8eeb064 100644
+--- a/Source/UI/iOS/Views/iPadLayout.swift
++++ b/Source/UI/iOS/Views/iPadLayout.swift
+@@ -35,10 +35,18 @@ struct iPadLayout: View {
+         reduceMotion ? nil : .spring(response: 0.34, dampingFraction: 0.90)
+     }
+ 
++    // Only the selected Reader supplies a preference to the global tab bar.
++    // Other tabs retain their original system policy.
++    private var readerTabBarVisibility: Visibility? {
++        guard ChavrusaTextReaderUI.isEnabled, selectedTab == .viewer else { return nil }
++        return sidebar.navigationChrome.isVisible ? .visible : .hidden
++    }
++
+     var body: some View {
+         TabView(selection: $selectedTab) {
+             Tab(iOSTab.viewer.title, systemImage: iOSTab.viewer.icon, value: .viewer) {
+                 viewerTabContent
++                    .modifier(ReaderTabBarVisibility(visibility: readerTabBarVisibility))
+             }
+ 
+             if iOSTab.search.isAvailable(for: backendCoordinator.activeCapabilities) {
+@@ -161,7 +169,6 @@ struct iPadLayout: View {
+         .background(Color.appBackground.ignoresSafeArea())
+         .environment(\.chavrusaReaderSidebar, sidebar)
+         .environment(\.chavrusaReaderNavigationChromeVisible, sidebar.navigationChrome.isVisible)
+-        .toolbarVisibility(sidebar.navigationChrome.isVisible ? .visible : .hidden, for: .tabBar)
+         .background {
+             ReaderSceneIdentityReader(
+                 observeWindow: { owner, window in
+@@ -315,6 +322,7 @@ struct iPadLayout: View {
+                 selectedId: selectedTOCNode(for: tab.viewModel)?.id,
+                 bookTitle: tab.book.book,
+                 onClose: closeTableOfContents,
++                onRetry: { tab.viewModel.loadTOC(book: tab.book) },
+                 embedsNavigationStack: false,
+                 onSelect: { id in
+                     tab.viewModel.didSelectTOCNode(id: id)
+@@ -493,3 +501,21 @@ struct iPadLayout: View {
+         .background(Color.appBackground)
+     }
+ }
++
++/// Keep Reader content at the same structural position when tab selection
++/// changes. Only this noninteractive background conditionally publishes a
++/// preference, above the Reader's navigation and nested sidebar pager.
++private struct ReaderTabBarVisibility: ViewModifier {
++    let visibility: Visibility?
++
++    func body(content: Content) -> some View {
++        content.background {
++            if let visibility {
++                Color.clear
++                    .toolbarVisibility(visibility, for: .tabBar)
++                    .allowsHitTesting(false)
++                    .accessibilityHidden(true)
++            }
++        }
++    }
++}

@@ -1,0 +1,45 @@
+diff --git a/Source/Features/Reader/iOS/iOSReaderView.swift b/Source/Features/Reader/iOS/iOSReaderView.swift
+index 3da6586c..a6bfea69 100644
+--- a/Source/Features/Reader/iOS/iOSReaderView.swift
++++ b/Source/Features/Reader/iOS/iOSReaderView.swift
+@@ -17,6 +17,7 @@ struct iOSReaderView: View {
+     var viewModel: ReaderViewModel
+     var textViewState = TextViewState.shared
+     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
++    @Environment(\.chavrusaReaderSidebar) private var sidebarCoordinator
+     @Environment(iOSNavigationManager.self) var bManager
+ 
+     var isRegularLayout: Bool {
+@@ -82,6 +83,9 @@ struct iOSReaderView: View {
+ 
+     private var tableOfContentsIsPresented: Bool {
+         guard let columnVisibility else { return false }
++        if let sidebarCoordinator {
++            return sidebarCoordinator.page == .contents && columnVisibility.wrappedValue != .detailOnly
++        }
+         return columnVisibility.wrappedValue != .detailOnly
+     }
+ 
+@@ -119,12 +123,12 @@ struct iOSReaderView: View {
+         .navigationTitle(resolvedNavigationTitle)
+         .navigationBarTitleDisplayMode(.inline)
+         .platformTabBarVisibility(hiddenOnPhone: true)
+-        .if(!MaktabahApp.isIpad) { view in
++        .if(!MaktabahApp.isIpad, transform: { view in
+             view.toolbarVisibility(
+                 isReading ? .hidden : .visible,
+                 for: .navigationBar, .bottomBar
+             )
+-        }
++        })
+         .onTapGesture {
+             withAnimation(.easeInOut) {
+                 isReading.toggle()
+@@ -155,6 +159,7 @@ struct iOSReaderView: View {
+                             .frame(maxWidth: 190)
+                             .contentShape(Rectangle())
+                     }
++                    .accessibilityIdentifier("reader-open-tabs-button")
+                 }
+             }
+ 
