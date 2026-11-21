@@ -1,0 +1,225 @@
+diff --git a/Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift b/Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift
+index 5d5a8b1c..076c7b55 100644
+--- a/Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift
++++ b/Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift
+@@ -15,6 +15,7 @@ extension BookUpdateManager {
+         providedMetadata: BookMetadata? = nil,
+         authorRow: [String: any Sendable]? = nil
+     ) async throws -> BookUpdateResult {
++        let safetyContext = try await MaktabahBookUpdateSafety.preflight()
+         guard let metadata = try providedMetadata ?? readBookMetadata(from: url, fallbackBookId: 0) else {
+             throw NSError(
+                 domain: "BookUpdate",
+@@ -25,6 +26,7 @@ extension BookUpdateManager {
+             )
+         }
+ 
++        try MaktabahBookUpdateSafety.validateBookIdentity(expected: metadata.bkid, actual: metadata.bkid, archive: metadata.archive)
+         try preCreateArchiveTables(archiveId: metadata.archive, bookId: metadata.bkid)
+ 
+         let workingDirectory = try makeWorkingDirectory()
+@@ -56,7 +58,8 @@ extension BookUpdateManager {
+             downloadedBookURL: downloadedBookURL,
+             ftsSourceURL: ftsSourceURL,
+             authorContext: nil,
+-            workingDirectory: workingDirectory
++            workingDirectory: workingDirectory,
++            safetyContext: safetyContext
+         )
+ 
+         return try await applyStagedBookUpdate(stagedUpdate, isOfflineImport: true)
+@@ -79,12 +82,14 @@ extension BookUpdateManager {
+     }
+ 
+     func preCreateArchiveTables(archiveId: Int, bookId: Int) throws {
+-        guard let targetPath = AppConfig.archiveDatabasePath(archiveId: archiveId) else { return }
++        try MaktabahBookUpdateSafety.requireArchive(archiveId)
++        guard let targetPath = AppConfig.archiveDatabasePath(archiveId: archiveId) else {
++            throw MaktabahBookUpdateSafety.Failure.invalidArchive
++        }
+ 
+         let db = try openDatabase(path: targetPath, enableWAL: false)
+         defer {
+             sqlite3_close_v2(db)
+-            FileManager.default.removeDatabaseSidecars(atPath: targetPath)
+         }
+ 
+         Logger.library.debug("[Import] Pre-creating tables in archive \(archiveId)...")
+@@ -108,6 +113,16 @@ extension BookUpdateManager {
+         knownExists: Bool? = nil,
+         isOfflineImport: Bool = false
+     ) async throws -> BookUpdateResult {
++        let safetyContext = try await MaktabahBookUpdateSafety.preflight()
++        guard stagedUpdate.safetyContext == safetyContext else {
++            throw MaktabahBookUpdateSafety.Failure.changedLibrary
++        }
++        try MaktabahBookUpdateSafety.validateBookIdentity(expected: stagedUpdate.entry.bkid, actual: stagedUpdate.metadata.bkid, archive: stagedUpdate.metadata.archive)
++        if !isOfflineImport, stagedUpdate.metadata.bVer.map(Int64.init) != stagedUpdate.entry.versionName {
++            throw MaktabahBookUpdateSafety.Failure.incompatibleSchema
++        }
++        try MaktabahBookUpdateSafety.requireArchive(stagedUpdate.metadata.archive)
++        return try await MaktabahBookUpdateSafety.$operationContext.withValue(safetyContext) {
+         defer {
+             FileManager.default.removeDatabaseAndSidecars(at: stagedUpdate.ftsSourceURL)
+             FileManager.default.removeDatabaseAndSidecars(at: stagedUpdate.downloadedBookURL)
+@@ -132,12 +147,15 @@ extension BookUpdateManager {
+             )
+         }
+ 
++        try await MaktabahBookUpdateSafety.revalidate(safetyContext)
++
+         try convertBookDatabase(at: stagedUpdate.downloadedBookURL, bookId: stagedUpdate.metadata.bkid)
+         try await BookArchiveSingleFlight.shared.run(
+             archiveId: stagedUpdate.metadata.archive,
+             bookId: stagedUpdate.metadata.bkid
+         ) { [weak self] in
+             guard let self else { return }
++            try await MaktabahBookUpdateSafety.revalidate(safetyContext)
+             try replaceArchiveDatabase(
+                 with: stagedUpdate.downloadedBookURL,
+                 archiveId: stagedUpdate.metadata.archive,
+@@ -146,6 +164,7 @@ extension BookUpdateManager {
+             )
+         }
+ 
++        try await MaktabahBookUpdateSafety.revalidate(safetyContext)
+         try saveBookMetadata(stagedUpdate.metadata, exists: exists, isOfflineImport: isOfflineImport)
+ 
+         // Hapus cache per-kitab di folder Books jika ada, agar pembaca beralih ke arsip yang diperbarui
+@@ -159,6 +178,7 @@ extension BookUpdateManager {
+             catId: stagedUpdate.entry.category,
+             action: exists ? .updated : .inserted
+         )
++        }
+     }
+ 
+     private func shouldSkipOnlineUpdate(stagedUpdate: StagedBookUpdate, exists: Bool) throws -> Bool {
+@@ -180,6 +200,7 @@ extension BookUpdateManager {
+     }
+ 
+     func changeBookId(oldId: Int, newId: Int) throws {
++        try MaktabahBookUpdateSafety.requireCurrent()
+         LibraryDataManager.shared.closeAllArchiveConnections()
+         guard let mainPath = AppConfig.mainDatabasePath else { return }
+ 
+@@ -219,7 +240,6 @@ extension BookUpdateManager {
+         let archiveDb = try openDatabase(path: archivePath, enableWAL: false)
+         defer {
+             sqlite3_close_v2(archiveDb)
+-            FileManager.default.removeDatabaseSidecars(atPath: archivePath)
+         }
+ 
+         _ = sqlite3_exec(archiveDb, "DROP TABLE IF EXISTS \"b\(newId)\";", nil, nil, nil)
+@@ -249,7 +269,6 @@ extension BookUpdateManager {
+         let ftsDb = try openDatabase(path: ftsPath, enableWAL: false)
+         defer {
+             sqlite3_close_v2(ftsDb)
+-            FileManager.default.removeDatabaseSidecars(atPath: ftsPath)
+         }
+ 
+         let hasUnified = ArchiveDatabaseTools.hasUnifiedFTS(db: ftsDb, schemaName: "main")
+@@ -261,7 +280,6 @@ extension BookUpdateManager {
+                 let archiveDb = try openDatabase(path: archivePath, enableWAL: false)
+                 defer {
+                     sqlite3_close_v2(archiveDb)
+-                    FileManager.default.removeDatabaseSidecars(atPath: archivePath)
+                 }
+                 try archiveDb.safeAttachDatabase(path: ftsPath, schema: "fts_db")
+                 defer { _ = sqlite3_exec(archiveDb, "DETACH DATABASE fts_db;", nil, nil, nil) }
+@@ -336,7 +354,6 @@ extension BookUpdateManager {
+         if let archivePath, let archiveDb = try? openDatabase(path: archivePath, enableWAL: false) {
+             defer {
+                 sqlite3_close_v2(archiveDb)
+-                FileManager.default.removeDatabaseSidecars(atPath: archivePath)
+             }
+             _ = sqlite3_exec(archiveDb,
+                              "ALTER TABLE \"b\(newId)\" RENAME TO \"b\(oldId)\";", nil, nil, nil)
+@@ -346,7 +363,6 @@ extension BookUpdateManager {
+         if let ftsPath, let ftsDb = try? openDatabase(path: ftsPath, enableWAL: false) {
+             defer {
+                 sqlite3_close_v2(ftsDb)
+-                FileManager.default.removeDatabaseSidecars(atPath: ftsPath)
+             }
+             let hasUnified = ArchiveDatabaseTools.hasUnifiedFTS(db: ftsDb, schemaName: "main")
+             if hasUnified {
+@@ -364,7 +380,6 @@ extension BookUpdateManager {
+                     )
+                     _ = sqlite3_exec(archiveDb, "DETACH DATABASE fts_db;", nil, nil, nil)
+                     sqlite3_close_v2(archiveDb)
+-                    FileManager.default.removeDatabaseSidecars(atPath: archivePath)
+                 }
+             } else {
+                 _ = sqlite3_exec(ftsDb,
+@@ -494,7 +509,13 @@ extension BookUpdateManager {
+     ) throws {
+         guard let targetPath = AppConfig.archiveDatabasePath(archiveId: archiveId),
+               let ftsDBPath = AppConfig.archiveFtsDatabasePath(archiveId: archiveId)
+-        else { return }
++        else { throw MaktabahBookUpdateSafety.Failure.invalidArchive }
++
++        try MaktabahBookUpdateSafety.requireArchive(archiveId)
++        for source in [sourceURL, ftsSourceURL] {
++            let sourceDB = try MaktabahBookUpdateSafety.openReadOnly(path: source.path)
++            sqlite3_close_v2(sourceDB)
++        }
+ 
+         LibraryDataManager.shared.closeArchiveConnection(archiveId: archiveId)
+ 
+@@ -502,13 +523,13 @@ extension BookUpdateManager {
+         guard let db = dbPtr else { return }
+         defer {
+             if let db = dbPtr {
+-                checkpoint(db: db, archivePath: targetPath, ftsPath: ftsDBPath)
++                try? checkpoint(db: db)
+             }
+         }
+ 
+-        try db.safeAttachDatabase(path: sourceURL.path, schema: "source_db")
+-        try db.safeAttachDatabase(path: ftsSourceURL.path, schema: "fts_source_db")
+-        try db.safeAttachDatabase(path: ftsDBPath, schema: "fts_db")
++        try db.safeAttachDatabase(path: MaktabahBookUpdateSafety.existingDatabaseURI(path: sourceURL.path, readOnly: true), schema: "source_db")
++        try db.safeAttachDatabase(path: MaktabahBookUpdateSafety.existingDatabaseURI(path: ftsSourceURL.path, readOnly: true), schema: "fts_source_db")
++        try db.safeAttachDatabase(path: MaktabahBookUpdateSafety.existingDatabaseURI(path: ftsDBPath), schema: "fts_db")
+ 
+         let tableName = "b\(bookId)"
+         let tocTable = "t\(bookId)"
+@@ -522,8 +543,8 @@ extension BookUpdateManager {
+         // 2. Build FTS terpisah di luar transaksi main
+         try appendOrBuildFTS(db: db, tableName: tableName, bookId: bookId)
+ 
+-        checkpoint(db: db, archivePath: targetPath, ftsPath: ftsDBPath)
+         dbPtr = nil
++        try checkpoint(db: db)
+ 
+         IntegrationCache.shared.markIntegrated(bookId: bookId, archiveId: archiveId)
+         DatabaseManager.shared.invalidateArchiveCache(archiveId: archiveId)
+@@ -557,27 +578,7 @@ extension BookUpdateManager {
+         }
+     }
+ 
+-    private func checkpoint(
+-        db: OpaquePointer,
+-        archivePath: String? = nil,
+-        ftsPath: String? = nil
+-    ) {
+-        _ = sqlite3_exec(db, "PRAGMA wal_checkpoint(TRUNCATE);", nil, nil, nil)
+-        _ = sqlite3_exec(db, "PRAGMA journal_mode = DELETE;", nil, nil, nil)
+-        _ = sqlite3_exec(db, "PRAGMA fts_db.wal_checkpoint(TRUNCATE);", nil, nil, nil)
+-        _ = sqlite3_exec(db, "PRAGMA fts_db.journal_mode = DELETE;", nil, nil, nil)
+-
+-        try? exec(db, "DETACH DATABASE fts_db;")
+-        try? exec(db, "DETACH DATABASE fts_source_db;")
+-        try? exec(db, "DETACH DATABASE source_db;")
+-
+-        sqlite3_close_v2(db)
+-
+-        if let archivePath {
+-            FileManager.default.removeDatabaseSidecars(atPath: archivePath)
+-        }
+-        if let ftsPath {
+-            FileManager.default.removeDatabaseSidecars(atPath: ftsPath)
+-        }
++    private func checkpoint(db: OpaquePointer) throws {
++        try MaktabahBookUpdateSafety.checkpointAndClose(db)
+     }
+ }

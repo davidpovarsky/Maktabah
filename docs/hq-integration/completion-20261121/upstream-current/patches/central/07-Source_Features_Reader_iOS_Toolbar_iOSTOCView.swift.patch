@@ -1,0 +1,142 @@
+diff --git a/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift b/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift
+index 42287267..d8386c58 100644
+--- a/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift
++++ b/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift
+@@ -13,6 +13,7 @@ struct iOSTOCView: View {
+     let selectedId: Int?
+     let bookTitle: String?
+     let onClose: (() -> Void)?
++    let onRetry: (() -> Void)?
+     let embedsNavigationStack: Bool
+     let onSelect: (Int, String) -> Void
+ 
+@@ -27,6 +28,7 @@ struct iOSTOCView: View {
+         selectedId: Int?,
+         bookTitle: String? = nil,
+         onClose: (() -> Void)? = nil,
++        onRetry: (() -> Void)? = nil,
+         embedsNavigationStack: Bool = true,
+         onSelect: @escaping (Int, String) -> Void
+     ) {
+@@ -34,6 +36,7 @@ struct iOSTOCView: View {
+         self.selectedId = selectedId
+         self.bookTitle = bookTitle
+         self.onClose = onClose
++        self.onRetry = onRetry
+         self.embedsNavigationStack = embedsNavigationStack
+         self.onSelect = onSelect
+     }
+@@ -43,6 +46,7 @@ struct iOSTOCView: View {
+         selectedId: Int?,
+         bookTitle: String? = nil,
+         onClose: (() -> Void)? = nil,
++        onRetry: (() -> Void)? = nil,
+         embedsNavigationStack: Bool = true,
+         onSelect: @escaping (Int) -> Void
+     ) {
+@@ -51,6 +55,7 @@ struct iOSTOCView: View {
+             selectedId: selectedId,
+             bookTitle: bookTitle,
+             onClose: onClose,
++            onRetry: onRetry,
+             embedsNavigationStack: embedsNavigationStack,
+             onSelect: { id, _ in onSelect(id) }
+         )
+@@ -92,6 +97,9 @@ struct iOSTOCView: View {
+         .themeTint()
+         .listStyle(.plain)
+         .navigationSplitViewColumnWidth(min: 220, ideal: 260, max: 320)
++        #if DEBUG && targetEnvironment(simulator)
++        .task { await SefariaTOCOwnerAcceptance.observe(tocViewModel, onRetry: onRetry) }
++        #endif
+     }
+ 
+     private var contents: some View {
+@@ -111,17 +119,26 @@ struct iOSTOCView: View {
+                         }
+                     }
+                     .pickerStyle(.segmented)
++                    .accessibilityIdentifier("toc-structure-picker")
+                     .padding(.horizontal)
+                     .padding(.vertical, 8)
+                     .background(Color.appBackground)
+                 }
+ 
+                 if let failure = tocViewModel.loadFailure {
+-                    ContentUnavailableView(
+-                        String(localized: "Table of Contents Unavailable"),
+-                        systemImage: "exclamationmark.triangle",
+-                        description: Text(failure.message)
+-                    )
++                    ContentUnavailableView {
++                        Label(String(localized: "Table of Contents Unavailable"),
++                              systemImage: "exclamationmark.triangle")
++                    } description: {
++                        Text(failure.message)
++                    } actions: {
++                        if let onRetry {
++                            Button("Retry", action: onRetry)
++                                .accessibilityIdentifier("toc-retry")
++                        }
++                    }
++                    .accessibilityElement(children: .contain)
++                    .accessibilityIdentifier("toc-failure")
+                 } else if (tocViewModel.isLoading || tocViewModel.loadingStatus == .loading || tocViewModel.loadingStatus == .idle) && identifiableNodes.isEmpty {
+                     VStack(spacing: 12) {
+                         ProgressView()
+@@ -130,11 +147,14 @@ struct iOSTOCView: View {
+                             .foregroundStyle(.secondary)
+                     }
+                     .frame(maxWidth: .infinity, maxHeight: .infinity)
++                    .accessibilityElement(children: .contain)
++                    .accessibilityIdentifier("toc-loading")
+                 } else if identifiableNodes.isEmpty {
+                     ContentUnavailableView(
+                         String(localized: "No Table of Contents"),
+                         systemImage: "list.bullet.rectangle"
+                     )
++                    .accessibilityIdentifier("toc-empty")
+                 } else {
+                     ScrollViewReader { proxy in
+                         ThemeList(isGrouped: false) {
+@@ -147,6 +167,7 @@ struct iOSTOCView: View {
+                                 )
+                             }
+                         }
++                        .accessibilityIdentifier("toc-content-list")
+                         .modifier(ReaderSidebarContentsSearch(text: $searchText))
+                         .navigationBarTitleDisplayMode(.inline)
+                         .modifier(ReaderContentsNavigationTitle(bookTitle: bookTitle))
+@@ -236,3 +257,32 @@ struct iOSTOCView: View {
+         }
+     )
+ }
++
++#if DEBUG && targetEnvironment(simulator)
++/// The only initiation is the mounted original TOC owner's existing reload
++/// callback. TaskLocal inheritance must be observed by the real HTTP request;
++/// no data, status or successful result can be supplied by this acceptance hook.
++@MainActor
++private enum SefariaTOCOwnerAcceptance {
++    static func observe(_ owner: BookTOCViewModel, onRetry: (() -> Void)?) async {
++        guard OtzariaDataProfileRegistry.activeProfileID == "miniTest10",
++              let configuration = SefariaTOCTransportAcceptance.configuration,
++              let onRetry else { return }
++        let deadline = ContinuousClock.now.advanced(by: .seconds(60))
++        while !Task.isCancelled, ContinuousClock.now < deadline {
++            if let nonce = SefariaTOCTransportAcceptance.command(configuration: configuration) {
++                let roots = owner.navigationStructures.flatMap(\.nodes)
++                guard !owner.isLoading, owner.loadingStatus == .loaded,
++                      owner.loadFailure == nil, !roots.isEmpty,
++                      roots.allSatisfy({ $0.locator.backend == .sefaria && $0.locator.workKey == "Genesis" }),
++                      let context = SefariaTOCTransportAcceptance.arm(configuration: configuration,
++                        nonce: nonce, ownerID: String(describing: ObjectIdentifier(owner))) else { return }
++                SefariaTOCTransportAcceptance.$context.withValue(context) { onRetry() }
++                return
++            }
++            do { try await Task.sleep(for: .milliseconds(100)) }
++            catch { return }
++        }
++    }
++}
++#endif

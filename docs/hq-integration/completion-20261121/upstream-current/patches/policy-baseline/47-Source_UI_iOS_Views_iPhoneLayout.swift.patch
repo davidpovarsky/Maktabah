@@ -1,0 +1,48 @@
+diff --git a/Source/UI/iOS/Views/iPhoneLayout.swift b/Source/UI/iOS/Views/iPhoneLayout.swift
+index b6692b11..0f62ae7d 100644
+--- a/Source/UI/iOS/Views/iPhoneLayout.swift
++++ b/Source/UI/iOS/Views/iPhoneLayout.swift
+@@ -86,6 +86,7 @@ struct iPhoneLayout: View {
+     private var viewerTabContent: some View {
+         NavigationStack {
+             iOSLibraryView()
++                .modifier(MaktabahNativeRoutingSurface(kind: .library))
+                 .navigationTitle(iOSTab.viewer.title)
+                 .adaptiveReaderPush(
+                     item: $bManager.selectedBook,
+@@ -103,6 +104,7 @@ struct iPhoneLayout: View {
+     private var searchTabContent: some View {
+         NavigationStack {
+             SearchModeView()
++                .modifier(MaktabahNativeRoutingSurface(kind: .search))
+                 .navigationTitle(iOSTab.search.title)
+                 .adaptiveReaderPush(
+                     item: $bManager.selectedBook,
+@@ -110,11 +112,6 @@ struct iPhoneLayout: View {
+                 )
+                 .toolbarGeneral(showSettings: $showSettings)
+         }
+-        .searchable(
+-            text: Bindable(bManager.searchViewModel).filterText,
+-            placement: .toolbar,
+-            prompt: String(localized: "Filter Books to Search")
+-        )
+     }
+ 
+     private var authorTabContent: some View {
+@@ -137,6 +134,7 @@ struct iPhoneLayout: View {
+     private var annotationsTabContent: some View {
+         NavigationStack {
+             AnnotationListView()
++                .modifier(MaktabahNativeRoutingSurface(kind: .annotations))
+                 .navigationTitle(iOSTab.annotations.title)
+                 .adaptiveReaderPush(
+                     item: $bManager.selectedBook,
+@@ -149,6 +147,7 @@ struct iPhoneLayout: View {
+     private var historyTabContent: some View {
+         NavigationStack {
+             iOSHistoryView()
++                .modifier(MaktabahNativeRoutingSurface(kind: .history))
+                 .navigationTitle(iOSTab.history.title)
+                 .adaptiveReaderPush(
+                     item: $bManager.selectedBook,

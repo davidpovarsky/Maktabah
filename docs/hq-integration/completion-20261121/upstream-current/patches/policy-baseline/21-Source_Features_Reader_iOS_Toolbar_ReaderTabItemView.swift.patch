@@ -1,0 +1,43 @@
+diff --git a/Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift b/Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift
+index dbc93dd0..612dffd9 100644
+--- a/Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift
++++ b/Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift
+@@ -10,6 +10,7 @@ import SwiftUI
+ struct ReaderTabsView: View {
+     @Environment(iOSNavigationManager.self) var bManager
+     @Environment(\.verticalSizeClass) private var verticalSizeClass
++    @Environment(\.chavrusaReaderNavigationChromeVisible) private var chromeVisible
+ 
+     private var isCompactHeight: Bool {
+         verticalSizeClass == .compact
+@@ -39,6 +40,14 @@ struct ReaderTabsView: View {
+             .padding(.vertical, isCompactHeight ? 2 : 4)
+             .background(Color(.systemBackground).opacity(0.4))
+             .clipShape(RoundedRectangle(cornerRadius: 30))
++            .accessibilityIdentifier(chromeVisible == nil ? "" : "reader-document-tabs")
++            // The enabled iPad host can collapse the original strip. Nil
++            // preserves the original phone and feature-off sizing policy.
++            .frame(height: chromeVisible == false ? 0 : nil)
++            .opacity(chromeVisible == false ? 0 : 1)
++            .clipped()
++            .allowsHitTesting(chromeVisible != false)
++            .accessibilityHidden(chromeVisible == false)
+             .onAppear {
+                 if let activeId = bManager.activeTabId {
+                     DispatchQueue.main.async {
+@@ -79,6 +88,7 @@ struct ReaderTabItemView: View {
+                         .clipShape(Circle())
+                 }
+                 .accessibilityLabel(String(localized: "Close Tab"))
++                .accessibilityIdentifier("reader-close-document-tab-" + tab.id.uuidString)
+                 .help(String(localized: "Close Tab"))
+                 .buttonStyle(.plain)
+             }
+@@ -96,6 +106,7 @@ struct ReaderTabItemView: View {
+                     )
+             }
+             .buttonStyle(.plain)
++            .accessibilityIdentifier("reader-document-tab-" + tab.id.uuidString)
+         }
+         .padding(.horizontal, 10)
+         .padding(.vertical, isCompactHeight ? 3 : 6)

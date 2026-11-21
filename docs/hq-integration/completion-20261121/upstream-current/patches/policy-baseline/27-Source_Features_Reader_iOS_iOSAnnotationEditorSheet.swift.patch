@@ -1,0 +1,44 @@
+diff --git a/Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift b/Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift
+index 6770977c..64cd681b 100644
+--- a/Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift
++++ b/Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift
+@@ -6,6 +6,11 @@ struct iOSAnnotationEditorSheet: View {
+     @State var annotation: Annotation
+     let onSave: (Annotation) throws -> Void
+     let onDelete: (Int64) throws -> Void
++    // Passive host observation only; Save/Cancel and persistence stay here.
++    var onNativeTextView: ((UITextView?) -> Void)? = nil
++    // Host-owned visibility observation mounts on the actual editor Form.
++    // The editor's default presentation, editing and persistence remain unchanged.
++    var nativeSurface: (@MainActor () -> AnyView)? = nil
+ 
+     @State private var noteText: String = ""
+     @State private var selectedColorHex: String = ""
+@@ -49,7 +54,10 @@ struct iOSAnnotationEditorSheet: View {
+         NavigationStack {
+             ThemeForm {
+                 ThemeSection("Note") {
+-                    iOSAutoDirectionTextView(text: $noteText, onCreated: { self.editorTextView = $0 })
++                    iOSAutoDirectionTextView(text: $noteText, onCreated: {
++                        self.editorTextView = $0
++                        onNativeTextView?($0)
++                    })
+                         .frame(minHeight: 80)
+                 }
+ 
+@@ -152,6 +160,7 @@ struct iOSAnnotationEditorSheet: View {
+                     }
+                 }
+             }
++            .background { nativeSurface?() }
+             .navigationTitle(.Annotation.editAnnotation)
+             .navigationBarTitleDisplayMode(.inline)
+             .toolbar {
+@@ -197,6 +206,7 @@ struct iOSAnnotationEditorSheet: View {
+                 #endif
+             }
+             .onDisappear {
++                onNativeTextView?(nil)
+                 if AccessibleAutoDirectionTextView.activeInstance === editorTextView {
+                     AccessibleAutoDirectionTextView.activeInstance = nil
+                 }

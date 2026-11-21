@@ -1,0 +1,56 @@
+diff --git a/Source/UI/iOS/Managers/BootstrapManager.swift b/Source/UI/iOS/Managers/BootstrapManager.swift
+index 60d8fb88..d205d7c2 100644
+--- a/Source/UI/iOS/Managers/BootstrapManager.swift
++++ b/Source/UI/iOS/Managers/BootstrapManager.swift
+@@ -65,7 +65,9 @@ final class iOSBootstrapManager {
+ 
+         #if DEBUG
+         if ProcessInfo.processInfo.arguments.contains("-smokeBypassBootstrap") {
+-            _ = try? await OtzariaBootstrapAdapter.restoreForAppLaunch()
++            if backendCoordinator.committedBackendID == .otzaria {
++                _ = try? await OtzariaBootstrapAdapter.restoreForAppLaunch()
++            }
+             finishSetup()
+             return
+         }
+@@ -92,7 +94,7 @@ final class iOSBootstrapManager {
+             }
+         }
+ 
+-        if backendCoordinator.committedBackendID == .sefaria {
++        if backendCoordinator.committedBackendID == .sefaria || backendCoordinator.committedBackendID == .sefariaEmbedded {
+             finishSetup()
+             return
+         }
+@@ -125,6 +127,11 @@ final class iOSBootstrapManager {
+             requiresInitialSourceSelection = false
+             requiresSefariaConfirmation = true
+             isChecking = false
++        case .sefariaEmbedded:
++            backendCoordinator.commit(.sefariaEmbedded)
++            requiresInitialSourceSelection = false
++            isChecking = false
++            finishSetup()
+         case .otzaria:
+             backendCoordinator.beginConfiguration(of: .otzaria)
+             showOtzariaConfiguration()
+@@ -495,6 +502,10 @@ final class iOSBootstrapManager {
+             backendCoordinator.commit(.sefaria)
+             return
+         }
++        if backendID == .sefariaEmbedded {
++            backendCoordinator.commit(.sefariaEmbedded)
++            return
++        }
+         if OtzariaMaktabahBridge.shared.isEnabled {
+             backendCoordinator.commit(.otzaria)
+             return
+@@ -508,7 +519,7 @@ final class iOSBootstrapManager {
+         cancelManagedDownload()
+         backendCoordinator.cancelConfiguration()
+         coreDownloadState.errorPresentation = nil
+-        if backendCoordinator.committedBackendID != .sefaria {
++        if backendCoordinator.committedBackendID != .sefaria && backendCoordinator.committedBackendID != .sefariaEmbedded {
+             showSourceSelection()
+         } else {
+             requiresInitialSourceSelection = false

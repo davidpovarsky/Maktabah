@@ -1,0 +1,12 @@
+diff --git a/Source/iOS-Info.plist b/Source/iOS-Info.plist
+index 6359948a..0e9b422d 100644
+--- a/Source/iOS-Info.plist
++++ b/Source/iOS-Info.plist
+@@ -31,5 +31,7 @@
+ 	<array>
+ 		<string>remote-notification</string>
+ 	</array>
++	<key>RCTNewArchEnabled</key>
++	<true/>
+ </dict>
+ </plist>

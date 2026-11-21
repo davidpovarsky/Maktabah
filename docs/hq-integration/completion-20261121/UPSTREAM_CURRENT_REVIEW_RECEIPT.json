@@ -1,0 +1,110 @@
+{
+  "verified_files": 82,
+  "zip_members": 83,
+  "manifest_sha256": "bd304c92c4edd26adb8c2aa86b3eabb165ba2a5abf7b43807ecc5eadfa0f0b9f",
+  "zip_sha256": "d149e0df04864b3c4412453f412a63377bf094e5ec39b09aaccc927b7dc90fad",
+  "guard_counts": {
+    "central": {
+      "PENDING_UPSTREAM_APPROVAL": 7,
+      "UNAUTHORIZED_UPSTREAM_MODIFICATION": 4
+    },
+    "policy-baseline": {
+      "UNAUTHORIZED_UPSTREAM_MODIFICATION": 30,
+      "PENDING_UPSTREAM_APPROVAL": 19
+    }
+  },
+  "same_blob_historical_comparisons": [
+    {
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift",
+      "head_blob": "1b1d4b0520eae69000ed5af4fec24b552f33ca04",
+      "historical_digest": "28a36e0bd79ffae0c081c8897318a3081ea4e33c604673dc11f9478a4d774f52",
+      "current_digest": "03cfc0c37bc94c5cfb5ae68421229ca133b9b8eb0b0843f162d1174a4dc6269c",
+      "patch_diff": [
+        "--- \n",
+        "+++ \n",
+        "@@ -1,5 +1,5 @@\n",
+        " diff --git a/Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift b/Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift",
+        "-index ba2a051..1b1d4b0 100644",
+        "+index ba2a0510..1b1d4b05 100644",
+        " --- a/Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift",
+        " +++ b/Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift",
+        " @@ -80,23 +80,30 @@ extension ReaderViewModel {"
+      ],
+      "sole_difference_is_index_abbreviation": true
+    },
+    {
+      "path": "Source/Features/Setting/SettingsView.swift",
+      "head_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
+      "historical_digest": "6032922fd8075e96487c9087be75d92552b2a11f7de51c389bcfb38fd21a9a62",
+      "current_digest": "3ab6be978e9aec03629b3fee05b52ed132baf1387c7d18de2a1b3c2eb912af8e",
+      "patch_diff": [
+        "--- \n",
+        "+++ \n",
+        "@@ -1,5 +1,5 @@\n",
+        " diff --git a/Source/Features/Setting/SettingsView.swift b/Source/Features/Setting/SettingsView.swift",
+        "-index 47aa588..e7d7f1d 100644",
+        "+index 47aa588f..e7d7f1d5 100644",
+        " --- a/Source/Features/Setting/SettingsView.swift",
+        " +++ b/Source/Features/Setting/SettingsView.swift",
+        " @@ -227,6 +227,7 @@ extension SettingsView {"
+      ],
+      "sole_difference_is_index_abbreviation": true
+    }
+  ],
+  "ignored_context_records": [
+    "GLOBAL_SEARCH_1220546245946205_20261115",
+    "CONTINUATION_20261117_READER_OFFMAIN",
+    "CONTINUATION_20261117_PHONE_GLOBAL_ROUTING",
+    "CONTINUATION_20261118_NATIVE_READER_TEXT_WITNESS",
+    "CONTINUATION_20261118_NATIVE_READER_CORE_FENCE"
+  ],
+  "application_tree_identity": {
+    "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815": {
+      "Source": "21ec01cea104b1f894f623ef11bbac8c16ce997e",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "Maktabah.xcodeproj": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
+      "Maktabah-iOSUITests": "a9d30b950baf01d1a1387f0011b4b60c9b210504"
+    },
+    "e982ce60a8003752c0b9c6be11ba7293299d5fc8": {
+      "Source": "21ec01cea104b1f894f623ef11bbac8c16ce997e",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "Maktabah.xcodeproj": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
+      "Maktabah-iOSUITests": "a9d30b950baf01d1a1387f0011b4b60c9b210504"
+    },
+    "041480bdfed0b2a5b82efe9aa3cf85c0210590ec": {
+      "Source": "21ec01cea104b1f894f623ef11bbac8c16ce997e",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "Maktabah.xcodeproj": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
+      "Maktabah-iOSUITests": "a9d30b950baf01d1a1387f0011b4b60c9b210504"
+    }
+  },
+  "git_status": "?? docs/hq-integration/completion-20261121/upstream-current/",
+  "status": "UNSIGNED_INTEGRITY_AND_SOURCE_IDENTITY_REVIEW_ONLY",
+  "captured_head": "05a8d83d5f05bd8a67c2594bc3c69dfb8340a815",
+  "bundle_path": "upstream-current/upstream-current-05a8d83d.zip",
+  "git_version": "git version 2.52.0.windows.1",
+  "core_abbrev_config": "UNSET (Git computes default)",
+  "guard_digest_observation": "The unchanged guard invokes plain git diff; its patch digest includes the Git-computed index abbreviation. The two unchanged historical blobs differ only in 7-vs-8-character index lines. No guard or digest normalization was changed.",
+  "signature_or_policy_changes": false,
+  "guard_reexecuted_for_tree_identical_descendants": false,
+  "descendant_scope_identity": {
+    "e982ce60a8003752c0b9c6be11ba7293299d5fc8": {
+      "protected_paths_unchanged": 49,
+      "policy_inputs_unchanged": 6,
+      "other_changed_paths": [
+        "Scripts/CI/hq-v32-prebuilt-native.py"
+      ],
+      "guard_reexecuted": false
+    },
+    "041480bdfed0b2a5b82efe9aa3cf85c0210590ec": {
+      "protected_paths_unchanged": 49,
+      "policy_inputs_unchanged": 6,
+      "other_changed_paths": [
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+        "Scripts/CI/hq-v32-prebuilt-native.py"
+      ],
+      "guard_reexecuted": false
+    }
+  }
+}

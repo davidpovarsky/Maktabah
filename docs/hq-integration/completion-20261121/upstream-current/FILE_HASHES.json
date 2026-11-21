@@ -1,0 +1,330 @@
+{
+  "generate_unsigned_provenance.py": {
+    "bytes": 12895,
+    "sha256": "6b51821ede5db01635136deb760bf59695e6bd268b40aacf6f3ad3b5173348a3"
+  },
+  "guard/central.json": {
+    "bytes": 4696,
+    "sha256": "6437ff0c54b6f7d48ffbbd719810230ee9957b4a6718528bd4ce3f839ee91ad8"
+  },
+  "guard/policy-baseline.json": {
+    "bytes": 19760,
+    "sha256": "882b48b51b58ef080c5ef1a14d601a57a7cbc310de2acd84579ba8e479e57824"
+  },
+  "historical-patches/01-iosibarottextview-decoration-cache-and-scroll.patch": {
+    "bytes": 3345,
+    "sha256": "fd59a96009a07b2113ae8bd67dd777a582cc780d30f95314c2fc0fae14b714be"
+  },
+  "historical-patches/02-readernavigation-backend-paging.patch": {
+    "bytes": 2621,
+    "sha256": "34b40f8baea61c7f2d05c1c051a10e3aebba740ec4057bad0bced76a48189d52"
+  },
+  "historical-patches/03-readercontent-bounded-destination-resolution.patch": {
+    "bytes": 6080,
+    "sha256": "5cd5923ac01179af1a46e58429f843c688bd1e4024b49a42c072f42775e67bbe"
+  },
+  "historical-patches/04-readerios-search-context-and-selection.patch": {
+    "bytes": 1760,
+    "sha256": "28a36e0bd79ffae0c081c8897318a3081ea4e33c604673dc11f9478a4d774f52"
+  },
+  "historical-patches/05-readerviewmodel-search-event-preservation.patch": {
+    "bytes": 2158,
+    "sha256": "a3da7d01ff3be86d13c0503e2d7555c2527207f760e273209191e935f1598ee8"
+  },
+  "historical-patches/06-iosreaderbottomtoolbarview-clear-x.patch": {
+    "bytes": 706,
+    "sha256": "5ea782f34f538f1eeffed9415b8f591a436037b5b66d09bd0ad001513372c58a"
+  },
+  "historical-patches/07-iostoceview-live-tracking-and-loading-state.patch": {
+    "bytes": 1488,
+    "sha256": "11d17f08d4fce0a4ec6d21e0e7713213901e759aba1c2d762602af791339be8e"
+  },
+  "historical-patches/08-iosreaderworkspaceview-toc-tracking.patch": {
+    "bytes": 3781,
+    "sha256": "3e0d0be43bf47ff1ece26de42e43dd630f202d32cf996bdb6d35ef4fdff2b362"
+  },
+  "historical-patches/09-booktocviewmodel-loading-and-matching.patch": {
+    "bytes": 4648,
+    "sha256": "f48d826698cba715d8b0122bc49f3eae43d0b51b8436ee0c7ac1509e04ad24a4"
+  },
+  "historical-patches/10-settingsview-backend-switch-error-handling.patch": {
+    "bytes": 3055,
+    "sha256": "6032922fd8075e96487c9087be75d92552b2a11f7de51c389bcfb38fd21a9a62"
+  },
+  "historical-patches/11-iosnavigationmanager-cold-catalog-and-search-context.patch": {
+    "bytes": 3373,
+    "sha256": "90a227d7ff6b7ee3b88dbd71ec5cb073a7c267578be9ea90094a304775b4b752"
+  },
+  "historical-patches/12-maktabah-xcode-target-integration.patch": {
+    "bytes": 12958,
+    "sha256": "7c53ed58272d4753d07201d49eeb5700bacd8d082d4289bd0c95ced26641be44"
+  },
+  "historical-patches/13-iosmainview-settings-and-search-navigation.patch": {
+    "bytes": 1386,
+    "sha256": "b6dc9ee8b2ba4983e332a965eab545a7eb2e3424f77d4a7cbd8f02b798f8784f"
+  },
+  "historical-patches/14-tocnoderow-accessibility-selection.patch": {
+    "bytes": 564,
+    "sha256": "b445028df943660eab3ad1bfd9f23176fae70be41025db21e7242413d94a3563"
+  },
+  "HISTORICAL_8401_COMPARISON.json": {
+    "bytes": 13580,
+    "sha256": "3adac0a731e9dae268754eca4e8cc477d14b5bb870ec326487ece7d801310542"
+  },
+  "inputs/BUILD_8401_REPRODUCIBLE_PAYLOAD_MANIFEST.json": {
+    "bytes": 10426,
+    "sha256": "c3779bbaf4d6065fa4518ca1ecce972268ec5bafed2a39f6fde113b86b40973f"
+  },
+  "inputs/UPSTREAM_EXCEPTION_REGISTER.json": {
+    "bytes": 25976,
+    "sha256": "42dcf64878d851ce1fef9f9644177f541d6ab702eb2fff6323ec17b335adc6d8"
+  },
+  "patches/central/01-Maktabah.xcodeproj_project.pbxproj.patch": {
+    "bytes": 21606,
+    "sha256": "2726d07777dab025e1c388e4ff375bd1080439408a0ca96835f3672c5877f6db"
+  },
+  "patches/central/02-Source_Core_CloudKit_CloudKitCoreManager.swift.patch": {
+    "bytes": 3012,
+    "sha256": "44df0ef49f56fa51f2f2a19662080594dee0155fddd25c6d1b10b842ad31f3e9"
+  },
+  "patches/central/03-Source_Core_Database_SQLiteDatabase.swift.patch": {
+    "bytes": 1001,
+    "sha256": "a497e179b36c0c0400e39c39fc9ac0302bf8b3d9e941ea966f933ffc1f6ff2ab"
+  },
+  "patches/central/04-Source_Features_Annotations_Database_AnnotationRepository.swift.patch": {
+    "bytes": 4092,
+    "sha256": "cb89a4cbc196f8c558a72fe2b7eafb870dd8481f5ab7c2e4a43d6e967916352e"
+  },
+  "patches/central/05-Source_Features_Reader_iOS_Toolbar_TOCNodeRow.swift.patch": {
+    "bytes": 904,
+    "sha256": "2215dd5d6bfd119298e2e0ee9c9d9b7fa9015eee7e350b23703b43f2164cdc76"
+  },
+  "patches/central/06-Source_Features_Reader_iOS_Toolbar_iOSReaderBottomToolbarView.swift.patch": {
+    "bytes": 830,
+    "sha256": "e6837be6acd9b25cd95b4a2c51b4d71acb6c2a305c7a4f9784415f6f70e66aff"
+  },
+  "patches/central/07-Source_Features_Reader_iOS_Toolbar_iOSTOCView.swift.patch": {
+    "bytes": 6578,
+    "sha256": "2fba1743149a2797a3dce777b80fc51bb7e5a7dc4bb3961af93ec69c03c21be9"
+  },
+  "patches/central/08-Source_Features_Reader_iOS_iOSAnnotationEditorSheet.swift.patch": {
+    "bytes": 1144,
+    "sha256": "0c0af2fc32130fdddefde92a36c409d7c9c1d00c2c10ce59ca18a2111bc2069e"
+  },
+  "patches/central/09-Source_Features_Reader_iOS_iOSReaderWorkspaceView.swift.patch": {
+    "bytes": 20497,
+    "sha256": "320d258918d3608b94e8e9a02f2a69ae18879b605952cf6cc11bba69b5c5948a"
+  },
+  "patches/central/10-Source_Localizable.xcstrings.patch": {
+    "bytes": 1910,
+    "sha256": "7e2af13285c3fda99f6da1b0fb6a80ba70aed9fb22b73d8475c07c4a4696d7fc"
+  },
+  "patches/central/11-Source_UI_iOS_Views_iPadLayout.swift.patch": {
+    "bytes": 2733,
+    "sha256": "2c5d5c584ef18297abfd7b70b42e8a7785d1b2c952c7a1ee709892439f52c9ba"
+  },
+  "patches/policy-baseline/01-.gitignore.patch": {
+    "bytes": 365,
+    "sha256": "c84a4020dc184833c852430e216f47b686363b69c94b7a31dcf51d68ee3b4204"
+  },
+  "patches/policy-baseline/02-CLAUDE.md.patch": {
+    "bytes": 7138,
+    "sha256": "30751b1c3e4c3e2398435ca03a83fc8d3ad4da36b6e32d570a0de6b480a8b493"
+  },
+  "patches/policy-baseline/03-Maktabah.xcodeproj_project.pbxproj.patch": {
+    "bytes": 110165,
+    "sha256": "a0e9f1672479abf015cc14561993f8e1acefdf85640bed0380bd580331f728c4"
+  },
+  "patches/policy-baseline/04-Maktabah.xcodeproj_project.xcworkspace_xcshareddata_swiftpm_Package.resolved.patch": {
+    "bytes": 5579,
+    "sha256": "3d49801d81976f31ea71182bf6f956401cec7a64802ef88f7bbe57e0190fa989"
+  },
+  "patches/policy-baseline/05-Source_Core_CloudKit_CloudKitCoreManager.swift.patch": {
+    "bytes": 3012,
+    "sha256": "44df0ef49f56fa51f2f2a19662080594dee0155fddd25c6d1b10b842ad31f3e9"
+  },
+  "patches/policy-baseline/06-Source_Core_Database_SQLiteDatabase.swift.patch": {
+    "bytes": 4205,
+    "sha256": "578fd6f81ae3ed366ebe4f602718ecd0b6dd354bd03ad840f3a4dfc36a357113"
+  },
+  "patches/policy-baseline/07-Source_Features_Annotations_Database_AnnotationRepository.swift.patch": {
+    "bytes": 4092,
+    "sha256": "cb89a4cbc196f8c558a72fe2b7eafb870dd8481f5ab7c2e4a43d6e967916352e"
+  },
+  "patches/policy-baseline/08-Source_Features_Library_Database_Updater_BookUpdateManager.swift.patch": {
+    "bytes": 4210,
+    "sha256": "2d0c573defb11e7bd136533afa27f54ef782b316292116edd09155054cca95d5"
+  },
+  "patches/policy-baseline/09-Source_Features_Library_Database_Updater_BookUpdateMgr_Fetch.swift.patch": {
+    "bytes": 6123,
+    "sha256": "1cf8d9af763f43bbd9d2e995423c2e40de24df97f55c7c01a50a227818df41ed"
+  },
+  "patches/policy-baseline/10-Source_Features_Library_Database_Updater_BookUpdateMgr_Import.swift.patch": {
+    "bytes": 10844,
+    "sha256": "84dd2ff0c4e8979de6e082bb89fcb7c647b942ad7213da4ca47a5f357ddd40cc"
+  },
+  "patches/policy-baseline/11-Source_Features_Library_Database_Updater_BookUpdateMgr_SQLite.swift.patch": {
+    "bytes": 2594,
+    "sha256": "f0a1dc2a7ddf1d862f52a83f5a774ce73f5dfa71bf20a888c1a6c5c06a02d3b3"
+  },
+  "patches/policy-baseline/12-Source_Features_Library_Updates_BookUpdateView.swift.patch": {
+    "bytes": 615,
+    "sha256": "6b4977a7f64f91fffdb959d929f257ccc5ae6f790bc359324bdb409a3209f36a"
+  },
+  "patches/policy-baseline/13-Source_Features_Library_ViewModel_BookUpdateVM.swift.patch": {
+    "bytes": 5323,
+    "sha256": "162a53fc203701fdc45454b652103e9d6067b83798edd4077d6032457ab38d6d"
+  },
+  "patches/policy-baseline/14-Source_Features_Library_iOS_iOSLibraryView.swift.patch": {
+    "bytes": 1411,
+    "sha256": "5686d64ed099ba3fd18f7365f2ca5b10212efb2dfe1850bd2bdef9ccd529c09c"
+  },
+  "patches/policy-baseline/15-Source_Features_Reader_Cache_BookPageCache.swift.patch": {
+    "bytes": 10620,
+    "sha256": "17353c0ad2afe78e4cf9937167b6199775b603ea603ddd0288d1c23a804d0ba9"
+  },
+  "patches/policy-baseline/16-Source_Features_Reader_ViewModel_BookTOCViewModel.swift.patch": {
+    "bytes": 5881,
+    "sha256": "e59d0094c7db491e76c68b815827e0184e7bccd9c0ad5bff03522be5c0e29021"
+  },
+  "patches/policy-baseline/17-Source_Features_Reader_ViewModel_Extensions_Reader_Content.swift.patch": {
+    "bytes": 7094,
+    "sha256": "0c15e331bab7cc4f1254ed905ff09dacb60c510207006c3d83f7dc390fa8ab3b"
+  },
+  "patches/policy-baseline/18-Source_Features_Reader_ViewModel_Extensions_Reader_Navigation.swift.patch": {
+    "bytes": 3188,
+    "sha256": "de3b3a67bcca7decddf9d2d9c737615f7b05c3f299ffbb34e7244f83e11b1b10"
+  },
+  "patches/policy-baseline/19-Source_Features_Reader_ViewModel_Extensions_Reader_iOS.swift.patch": {
+    "bytes": 1762,
+    "sha256": "03cfc0c37bc94c5cfb5ae68421229ca133b9b8eb0b0843f162d1174a4dc6269c"
+  },
+  "patches/policy-baseline/20-Source_Features_Reader_ViewModel_ReaderViewModel.swift.patch": {
+    "bytes": 4260,
+    "sha256": "bf5f7f9bf1e01535545e5dc3c57f0692dc2d7e2e17e3e80921e9f6a22ae20a15"
+  },
+  "patches/policy-baseline/21-Source_Features_Reader_iOS_Toolbar_ReaderTabItemView.swift.patch": {
+    "bytes": 2200,
+    "sha256": "80b6fa899d882f1fae225ffc310859693a446d1dcd1ee64c9ad309d0e33e19a3"
+  },
+  "patches/policy-baseline/22-Source_Features_Reader_iOS_Toolbar_TOCNodeRow.swift.patch": {
+    "bytes": 1203,
+    "sha256": "83cfee43e7bf99928f5bb703530b3b22c069b7de8a7f16d649a001cb18aa6435"
+  },
+  "patches/policy-baseline/23-Source_Features_Reader_iOS_Toolbar_iOSBookSearchView.swift.patch": {
+    "bytes": 1693,
+    "sha256": "d5c5a4e64106f31844d02174532cb5267487e7674bb8967f7182a983d7688d42"
+  },
+  "patches/policy-baseline/24-Source_Features_Reader_iOS_Toolbar_iOSReaderBottomToolbarView.swift.patch": {
+    "bytes": 2700,
+    "sha256": "1f1c04d1fb5e514cb016308d52b71d8d003d5b5d7cc1d581f2cbfa552c965fcb"
+  },
+  "patches/policy-baseline/25-Source_Features_Reader_iOS_Toolbar_iOSReaderNavigationPopoverView.swift.patch": {
+    "bytes": 2563,
+    "sha256": "73722393a6371d79602c7183cd75b89d974277c85c367b57450e1480be37041e"
+  },
+  "patches/policy-baseline/26-Source_Features_Reader_iOS_Toolbar_iOSTOCView.swift.patch": {
+    "bytes": 10572,
+    "sha256": "d5517da54f7b2f221934d7aceff15f1bb7cf5bbdd239847cde0068edc7c55ea0"
+  },
+  "patches/policy-baseline/27-Source_Features_Reader_iOS_iOSAnnotationEditorSheet.swift.patch": {
+    "bytes": 2097,
+    "sha256": "b2252532fc4afa74056fb546e0e2eb0376eeb08cb9a9117a97ee60937236d077"
+  },
+  "patches/policy-baseline/28-Source_Features_Reader_iOS_iOSReaderView.swift.patch": {
+    "bytes": 1867,
+    "sha256": "7f1dc63ff0e43a3e568cda9b008b519ecf60dcd3d1945844dabf1276a884a889"
+  },
+  "patches/policy-baseline/29-Source_Features_Reader_iOS_iOSReaderWorkspaceView.swift.patch": {
+    "bytes": 29911,
+    "sha256": "60ddaeab34206ca9dc806c551a1a7e43cabb16a6489c7801fbb14a8da92447c3"
+  },
+  "patches/policy-baseline/30-Source_Features_Search_Models_SearchResultItem.swift.patch": {
+    "bytes": 3388,
+    "sha256": "86339507a24b96a674dfc5953d051c5e98b07995eff10f948f7be35814bce262"
+  },
+  "patches/policy-baseline/31-Source_Features_Search_ViewModel_Extensions_Search_Execution.swift.patch": {
+    "bytes": 1303,
+    "sha256": "2d48d17923ba8f79915676527ce537e8aca9d9886beccbe70984c6e5eca185d8"
+  },
+  "patches/policy-baseline/32-Source_Features_Search_ViewModel_SearchViewModel.swift.patch": {
+    "bytes": 744,
+    "sha256": "961bc4c333621035f85ee7919d787a2206e016be300bbee76b61a77013eda0b5"
+  },
+  "patches/policy-baseline/33-Source_Features_Search_iOS_SearchComponents.swift.patch": {
+    "bytes": 3748,
+    "sha256": "ce7477e3beacd545c4f4f03c0282d75ab211f78cc1f94b4ad095d9c6ca47574d"
+  },
+  "patches/policy-baseline/34-Source_Features_Search_iOS_SearchModeView.swift.patch": {
+    "bytes": 8388,
+    "sha256": "13a53c24243023019a15bb81e238edb0f281cafd540610fdb40c795cb4d74e7f"
+  },
+  "patches/policy-baseline/35-Source_Features_Search_iOS_SearchResultsListView.swift.patch": {
+    "bytes": 1985,
+    "sha256": "02b75e898b224043fd858d59c2f9587fe9f74b4cac62f2f6d68fb27028bc1ac4"
+  },
+  "patches/policy-baseline/36-Source_Features_Search_iOS_iOSSearchFilterViewController.swift.patch": {
+    "bytes": 815,
+    "sha256": "0e7dad74201c72b7e3dd06c1985f61f76ee2a94222124f0d1437c27e17ce821a"
+  },
+  "patches/policy-baseline/37-Source_Features_Setting_SettingsView.swift.patch": {
+    "bytes": 3057,
+    "sha256": "3ab6be978e9aec03629b3fee05b52ed132baf1387c7d18de2a1b3c2eb912af8e"
+  },
+  "patches/policy-baseline/38-Source_Localizable.xcstrings.patch": {
+    "bytes": 2703,
+    "sha256": "51867dfdd4602fd55aabad9750ed08ac05206974e40de3e19ed689ed1e3ddf49"
+  },
+  "patches/policy-baseline/39-Source_UI_iOS_MaktabahApp.swift.patch": {
+    "bytes": 7525,
+    "sha256": "14bc6acaf6f94893ed6a0a003fcaf52fc7e9623bc7a0a8cafbda097f8f674f60"
+  },
+  "patches/policy-baseline/40-Source_UI_iOS_Managers_BootstrapManager.swift.patch": {
+    "bytes": 2405,
+    "sha256": "0d754ed3b67681018e0c401d9b099a97ba48a993df760b2ce8227b32e9bf9a0b"
+  },
+  "patches/policy-baseline/41-Source_UI_iOS_Managers_iOSNavigationManager.swift.patch": {
+    "bytes": 10853,
+    "sha256": "613625354b302284fc8576f6b7bded3b99e36ee43b5a86dff16cab3a76ddf2f2"
+  },
+  "patches/policy-baseline/42-Source_UI_iOS_Managers_iOSReaderSessionManager.swift.patch": {
+    "bytes": 3601,
+    "sha256": "021a85eafd600e1fbf0acc0d8047600872364240a6aa257f5fbbf0fa6eab058f"
+  },
+  "patches/policy-baseline/43-Source_UI_iOS_Views_Common_ListContentView.swift.patch": {
+    "bytes": 1303,
+    "sha256": "0a0a19dfeb5ef53d3853af6d932d46ff4b129e15f94e7c712f80c9eb1a7286f9"
+  },
+  "patches/policy-baseline/44-Source_UI_iOS_Views_Common_iOSHierarchicalCollectionViewController.swift.patch": {
+    "bytes": 2711,
+    "sha256": "d9048063d25434a125dc2318820ea6c318688ef6dcd8de427d9e8439163adace"
+  },
+  "patches/policy-baseline/45-Source_UI_iOS_Views_iOSMainView.swift.patch": {
+    "bytes": 8708,
+    "sha256": "f50abb33057e6d11f600b12d725d3bf37c787c4df688d03ed7321689d76aecb1"
+  },
+  "patches/policy-baseline/46-Source_UI_iOS_Views_iPadLayout.swift.patch": {
+    "bytes": 15389,
+    "sha256": "f38c69a5b006ddb074b02cdcf292aa2ff26cec12b0925811c298292014d9010f"
+  },
+  "patches/policy-baseline/47-Source_UI_iOS_Views_iPhoneLayout.swift.patch": {
+    "bytes": 2103,
+    "sha256": "08555b2ed63c6be13da18604c3e0d05f57951e761219cdfd5b4286da93f104ad"
+  },
+  "patches/policy-baseline/48-Source_UI_iOS_Wrappers_iOSIbarotTextView.swift.patch": {
+    "bytes": 6592,
+    "sha256": "ee5cab46f16a1a24d3d97ffc3e3b6426dae04808949f7bcc668c537140f9a08b"
+  },
+  "patches/policy-baseline/49-Source_iOS-Info.plist.patch": {
+    "bytes": 286,
+    "sha256": "aae07eb08f6d34ac147b1488a946f2719c24f3168b0f4afd06477ee4a23b35d6"
+  },
+  "REVIEW.md": {
+    "bytes": 1928,
+    "sha256": "932d5befda1c4e163fddda63de4068d0e21713165b49866ab5506a6c518bf468"
+  },
+  "UNSIGNED_MANIFEST.json": {
+    "bytes": 72990,
+    "sha256": "bd304c92c4edd26adb8c2aa86b3eabb165ba2a5abf7b43807ecc5eadfa0f0b9f"
+  }
+}

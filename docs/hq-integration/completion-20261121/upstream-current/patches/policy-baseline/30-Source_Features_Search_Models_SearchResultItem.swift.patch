@@ -1,0 +1,69 @@
+diff --git a/Source/Features/Search/Models/SearchResultItem.swift b/Source/Features/Search/Models/SearchResultItem.swift
+index 2849a4c7..2eed19f5 100644
+--- a/Source/Features/Search/Models/SearchResultItem.swift
++++ b/Source/Features/Search/Models/SearchResultItem.swift
+@@ -27,6 +27,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable, Sendable, Identifiab
+     let highlightTerms: [String]?
+     let versionTitle: String?
+     let resultLanguage: String?
++    let backendHitID: String?
+     private nonisolated(unsafe) let rawAttributedText: NSAttributedString?
+ 
+     var attributedText: NSAttributedString {
+@@ -38,12 +39,14 @@ struct SearchResultItem: Codable, CopyableResult, Hashable, Sendable, Identifiab
+     }
+ 
+     var stableID: String {
++        if let backendHitID { return backendHitID }
+         let locator = backendLocator?.persistenceKey
+             ?? "legacy:\(archive):\(tableName):\(bookId):\(part):\(page)"
+         return "\(locator)|\(versionTitle ?? "")|\(resultLanguage ?? "")"
+     }
+ 
+     var id: String {
++        if let backendHitID { return backendHitID }
+         if let backendLocator {
+             return "\(backendLocator.persistenceKey)_\(versionTitle ?? "")"
+         }
+@@ -65,6 +68,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable, Sendable, Identifiab
+         case highlightTerms
+         case versionTitle
+         case resultLanguage
++        case backendHitID
+     }
+ 
+     init(
+@@ -79,7 +83,8 @@ struct SearchResultItem: Codable, CopyableResult, Hashable, Sendable, Identifiab
+         locationDisplayText: String? = nil,
+         highlightTerms: [String]? = nil,
+         versionTitle: String? = nil,
+-        resultLanguage: String? = nil
++        resultLanguage: String? = nil,
++        backendHitID: String? = nil
+     ) {
+         self.archive = archive
+         self.tableName = tableName
+@@ -92,6 +97,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable, Sendable, Identifiab
+         self.highlightTerms = highlightTerms
+         self.versionTitle = versionTitle
+         self.resultLanguage = resultLanguage
++        self.backendHitID = backendHitID
+         rawAttributedText = attributedText
+     }
+ 
+@@ -109,6 +115,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable, Sendable, Identifiab
+         try container.encodeIfPresent(highlightTerms, forKey: .highlightTerms)
+         try container.encodeIfPresent(versionTitle, forKey: .versionTitle)
+         try container.encodeIfPresent(resultLanguage, forKey: .resultLanguage)
++        try container.encodeIfPresent(backendHitID, forKey: .backendHitID)
+ 
+         if let rawAttributedText {
+             try container.encode(rawAttributedText.archivedData(), forKey: .attributedText)
+@@ -129,6 +136,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable, Sendable, Identifiab
+         highlightTerms = try container.decodeIfPresent([String].self, forKey: .highlightTerms)
+         versionTitle = try container.decodeIfPresent(String.self, forKey: .versionTitle)
+         resultLanguage = try container.decodeIfPresent(String.self, forKey: .resultLanguage)
++        backendHitID = try container.decodeIfPresent(String.self, forKey: .backendHitID)
+ 
+         if let data = try container.decodeIfPresent(Data.self, forKey: .attributedText) {
+             rawAttributedText = NSAttributedString.unarchiveSecure(from: data)

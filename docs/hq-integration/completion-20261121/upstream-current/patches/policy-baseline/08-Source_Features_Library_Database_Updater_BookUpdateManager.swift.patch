@@ -1,0 +1,83 @@
+diff --git a/Source/Features/Library/Database/Updater/BookUpdateManager.swift b/Source/Features/Library/Database/Updater/BookUpdateManager.swift
+index e041494b..940a67a9 100644
+--- a/Source/Features/Library/Database/Updater/BookUpdateManager.swift
++++ b/Source/Features/Library/Database/Updater/BookUpdateManager.swift
+@@ -37,6 +37,7 @@ final class BookUpdateManager: Sendable {
+         let ftsSourceURL: URL
+         let authorContext: AuthorContext?
+         let workingDirectory: URL
++        var safetyContext: MaktabahBookUpdateSafety.Context? = nil
+     }
+ 
+     struct AuthorContext: Sendable {
+@@ -73,17 +74,24 @@ final class BookUpdateManager: Sendable {
+         _ entry: BookIndexEntry,
+         authIndex: [Int: AuthIndexEntry]
+     ) async throws -> StagedBookUpdate {
++        let safetyContext = try await MaktabahBookUpdateSafety.preflight()
++        try MaktabahBookUpdateSafety.requireStagingCapacity(entry.fileSize)
+         let (metadata, workingDirectory) = try await downloadAndReadMetadata(entry: entry)
++        try await MaktabahBookUpdateSafety.revalidate(safetyContext)
++        try MaktabahBookUpdateSafety.validateBookIdentity(expected: entry.bkid, actual: metadata.bkid, archive: metadata.archive)
++        guard metadata.bVer.map(Int64.init) == entry.versionName else { throw MaktabahBookUpdateSafety.Failure.incompatibleSchema }
+         let bookArtifacts = try await downloadBookAndFtsSource(metadata: metadata, entry: entry)
+         let authorContext = resolveAuthorContext(metadata: metadata, authIndex: authIndex)
+ 
++        try await MaktabahBookUpdateSafety.revalidate(safetyContext)
+         return StagedBookUpdate(
+             entry: entry,
+             metadata: metadata,
+             downloadedBookURL: bookArtifacts.downloadedBookURL,
+             ftsSourceURL: bookArtifacts.ftsSourceURL,
+             authorContext: authorContext,
+-            workingDirectory: workingDirectory
++            workingDirectory: workingDirectory,
++            safetyContext: safetyContext
+         )
+     }
+     private func downloadAndReadMetadata(
+@@ -159,6 +167,7 @@ final class BookUpdateManager: Sendable {
+         bookId: Int,
+         workingDirectory: URL
+     ) throws -> URL {
++        try MaktabahBookUpdateSafety.requireCurrent()
+         let ftsSourceURL = workingDirectory.appendingPathComponent(
+             "b\(bookId)_fts_source_\(UUID().uuidString).sqlite"
+         )
+@@ -197,6 +206,7 @@ final class BookUpdateManager: Sendable {
+ 
+     @MainActor
+     func integrateBooks(metadata: BookMetadata) {
++        guard (try? MaktabahBookUpdateSafety.requireCurrent()) != nil else { return }
+         // Mark as integrated since the tables are already copied to the archive
+         IntegrationCache.shared.markIntegrated(
+             bookId: metadata.bkid,
+@@ -210,6 +220,7 @@ final class BookUpdateManager: Sendable {
+     }
+ 
+     func makeWorkingDirectory() throws -> URL {
++        try MaktabahBookUpdateSafety.requireCurrent()
+         guard let filesPath = AppConfig.databaseFilesPath else {
+             throw NSError(
+                 domain: "BookUpdate",
+@@ -234,6 +245,7 @@ final class BookUpdateManager: Sendable {
+     }
+ 
+     func cleanupWorkingDirectory() {
++        guard (try? MaktabahBookUpdateSafety.requireCurrent()) != nil else { return }
+         guard let filesPath = AppConfig.databaseFilesPath else { return }
+         let directory = URL(fileURLWithPath: filesPath).appendingPathComponent("Updates", isDirectory: true)
+         FileManager.default.cleanupDirectory(at: directory)
+@@ -245,7 +257,12 @@ final class BookUpdateManager: Sendable {
+         SQLite: Bool = false,
+         filePrefix: String? = nil
+     ) async throws -> URL {
++        try MaktabahBookUpdateSafety.requireCurrent()
++        try Task.checkCancellation()
+         let (tempURL, _) = try await URLSession.shared.download(from: url)
++        defer { try? FileManager.default.removeItem(at: tempURL) }
++        try Task.checkCancellation()
++        try MaktabahBookUpdateSafety.requireCurrent()
+         let defaultName =
+             url.lastPathComponent.isEmpty ? "download" : url.lastPathComponent
+         let cleanedPrefix = filePrefix?.trimmingCharacters(
