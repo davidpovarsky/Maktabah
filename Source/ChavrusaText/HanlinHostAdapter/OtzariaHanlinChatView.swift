@@ -304,8 +304,51 @@ private struct OtzariaHanlinConnectionView: View {
             }
         }
         .accessibilityIdentifier("otzaria-hanlin-connection-form")
+        .onAppear {
+#if DEBUG && targetEnvironment(simulator)
+            prefillLiveAcceptanceConnectionIfRequested()
+#endif
+        }
         .onDisappear { credential = "" }
     }
+
+#if DEBUG && targetEnvironment(simulator)
+    /// Uses the same one-use private-input pattern as the pinned Hanlin app.
+    /// This only fills the existing form; Connect, consent and Send stay native.
+    private func prefillLiveAcceptanceConnectionIfRequested() {
+        let environment = ProcessInfo.processInfo.environment
+        guard environment["OTZARIA_HANLIN_LIVE_PROVIDER_CASE"] == "1",
+              let nonce = environment["OTZARIA_HANLIN_LIVE_NONCE"], UUID(uuidString: nonce) != nil else { return }
+        let manager = FileManager.default
+        do {
+            let support = try manager.url(for: .applicationSupportDirectory,
+                in: .userDomainMask, appropriateFor: nil, create: false)
+            let file = support.appendingPathComponent("OtzariaHanlinLiveProviderAcceptance/provider.json")
+            // Reopening the original form never restores a consumed credential.
+            guard manager.fileExists(atPath: file.path) else { return }
+            let attributes = try manager.attributesOfItem(atPath: file.path)
+            guard attributes[.type] as? FileAttributeType == .typeRegular,
+                  ((attributes[.size] as? NSNumber)?.intValue ?? Int.max) <= 8192,
+                  ((attributes[.posixPermissions] as? NSNumber)?.intValue ?? 0) == 0o600,
+                  let input = try JSONSerialization.jsonObject(with: Data(contentsOf: file)) as? [String: String],
+                  Set(input.keys) == ["nonce", "apiKey", "model", "endpoint"],
+                  input["nonce"] == nonce,
+                  input["endpoint"] == "https://generativelanguage.googleapis.com/v1beta/openai/",
+                  let configuredModel = input["model"], configuredModel.utf8.count <= 128,
+                  configuredModel.range(of: #"\Agemini-[a-z0-9][a-z0-9._-]*\z"#, options: .regularExpression) != nil,
+                  let key = input["apiKey"], !key.isEmpty, key.utf8.count <= 4096 else {
+                fatalError("The private live-acceptance input is unavailable")
+            }
+            try manager.removeItem(at: file)
+            endpoint = "https://generativelanguage.googleapis.com/v1beta/openai/"
+            model = configuredModel
+            credential = key
+        } catch {
+            // Do not print parser errors, input bytes or account fields.
+            fatalError("The private live-acceptance input could not be consumed")
+        }
+    }
+#endif
 }
 private struct OtzariaHanlinHistoryView: View {
     let owner: OtzariaHanlinChatOwner

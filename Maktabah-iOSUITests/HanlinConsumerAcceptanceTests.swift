@@ -346,3 +346,268 @@ final class HanlinReaderConsumerAcceptanceTests: R27NativeUIBase {
     }
 
 }
+
+/// Explicit live-account selector, excluded from Native116 and Release114.
+/// The runner stages a one-use private input; XCTest never receives the key.
+final class HanlinLiveProviderAcceptanceTests: R27NativeUIBase {
+    private struct Workspace: Decodable {
+        struct Document: Decodable, Equatable {
+            struct Session: Decodable, Equatable { let id: UUID; let bookId: Int }
+            let backend: String; let session: Session
+        }
+        struct Group: Decodable {
+            let id: UUID; let profileID: UUID; let activeTabID: UUID?; let tabs: [Document]
+        }
+        struct Scene: Decodable {
+            let profileID: UUID; let groupID: UUID; let activeTabIDsByGroup: [UUID: UUID]?
+        }
+        struct Owner: Equatable {
+            let sceneID: String; let profileID: UUID; let groupID: UUID
+            let activeTabID: UUID; let tabs: [Document]
+        }
+        let groups: [Group]; let scenes: [String: Scene]; let lastActiveSceneID: String?
+        func owner() throws -> Owner {
+            let id = try XCTUnwrap(lastActiveSceneID)
+            let scene = try XCTUnwrap(scenes[id])
+            let group = try XCTUnwrap(groups.first { $0.id == scene.groupID && $0.profileID == scene.profileID })
+            let tab = try XCTUnwrap(scene.activeTabIDsByGroup?[group.id] ?? group.activeTabID)
+            XCTAssertTrue(group.tabs.contains { $0.session.id == tab })
+            return .init(sceneID: id, profileID: scene.profileID, groupID: group.id, activeTabID: tab, tabs: group.tabs)
+        }
+    }
+
+    @MainActor
+    private func ownedContainer() throws -> URL {
+        // Resolve the actual UUID sidecar, including an XCTest reinstall.
+        var value = try workspaceSidecarURL()
+        for _ in 0..<6 { value.deleteLastPathComponent() }
+        return value
+    }
+
+    private nonisolated static func readerReceiptLines(_ log: URL) throws -> Set<String> {
+        guard FileManager.default.fileExists(atPath: log.path) else { return [] }
+        return Set(try String(contentsOf: log, encoding: .utf8).split(separator: "\n").map(String.init)
+            .filter { $0.contains("[NativeNavigationReceipt]") && $0.contains("destination=native.reader ") })
+    }
+
+    @MainActor
+    private func savedConversation(prompt: String) throws -> [String: Any] {
+        let root = try ownedContainer().appendingPathComponent("Library/Application Support/ChavrusaText/HanlinConversations/v1")
+        let files = try XCTUnwrap(FileManager.default.enumerator(at: root,
+            includingPropertiesForKeys: [.isRegularFileKey, .fileSizeKey], options: [.skipsHiddenFiles]))
+        var matches: [[String: Any]] = []
+        var count = 0
+        for case let file as URL in files where file.pathExtension == "json" {
+            count += 1
+            XCTAssertLessThanOrEqual(count, 256, "Only the bounded fresh Simulator conversation store may be inspected")
+            let attributes = try file.resourceValues(forKeys: [.isRegularFileKey, .fileSizeKey])
+            guard attributes.isRegularFile == true else { continue }
+            XCTAssertLessThanOrEqual(try XCTUnwrap(attributes.fileSize), 8 * 1024 * 1024)
+            let value = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: file)) as? [String: Any])
+            guard let history = value["history"] as? [String: Any],
+                  let messages = history["messages"] as? [[String: Any]],
+                  messages.contains(where: { ($0["role"] as? String) == "user" && ($0["content"] as? String) == prompt }) else { continue }
+            matches.append(value)
+        }
+        XCTAssertEqual(matches.count, 1, "Exactly one original saved conversation must contain this live challenge")
+        return try XCTUnwrap(matches.first)
+    }
+
+    @MainActor
+    func testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent() throws {
+        let environment = ProcessInfo.processInfo.environment
+        try XCTSkipUnless(environment["OTZARIA_HANLIN_LIVE_PROVIDER_CASE"] == "1",
+            "This separate live-account selector requires the explicit owned private-input route")
+        continueAfterFailure = false
+        executionTimeAllowance = 600
+        XCTAssertTrue(isPad, "The separate live selector declares the original 11-inch iPad")
+        let nonce = try XCTUnwrap(environment["OTZARIA_HANLIN_LIVE_NONCE"])
+        XCTAssertNotNil(UUID(uuidString: nonce))
+        let workKey = try XCTUnwrap(environment["R27_EXPECTED_OTZARIA_WORK_KEY"])
+        let title = try XCTUnwrap(environment["R27_EXPECTED_OTZARIA_BOOK_TITLE"])
+        let query = try XCTUnwrap(environment["OTZARIA_HANLIN_LIVE_QUERY"])
+        let section = try XCTUnwrap(environment["OTZARIA_HANLIN_LIVE_SECTION"])
+        let model = try XCTUnwrap(environment["OTZARIA_HANLIN_LIVE_MODEL"])
+        XCTAssertLessThanOrEqual(model.utf8.count, 128)
+        XCTAssertNotNil(model.range(of: #"\Agemini-[a-z0-9][a-z0-9._-]*\z"#, options: .regularExpression))
+        XCTAssertFalse(query.isEmpty)
+        XCTAssertNotNil(Int64(section), "CI must independently derive the original current fixture line")
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchWithTier(.realUI, scenario: "reader", backend: "otzaria", extraArgs: [
+            "-preferredBackend", "otzaria", "-smokeBackend", "otzaria",
+            "-ChavrusaTextFaithfulReaderUIEnabled", "YES", "-studyWorkspaceTestingNamespace", workspaceNamespace
+        ], language: "en", locale: "en_US", extraEnvironment: [
+            "OTZARIA_HANLIN_LIVE_PROVIDER_CASE": "1", "OTZARIA_HANLIN_LIVE_NONCE": nonce
+        ])
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        dismissAlertsIfNeeded()
+        let originalLocator = try assertTarget(backend: "otzaria")
+        XCTAssertEqual(originalLocator, "otzaria|" + workKey + "|line:" + section,
+            "The live source must resolve the independently selected current fixture line")
+        let originalText = try XCTUnwrap(app.textViews["reader-text"].value as? String)
+        func owner() throws -> Workspace.Owner {
+            try JSONDecoder().decode(Workspace.self, from: Data(contentsOf: workspaceSidecarURL())).owner()
+        }
+        let originalOwner = try owner()
+        func press(_ element: XCUIElement, timeout: TimeInterval = 30) {
+            XCTAssertTrue(element.waitForExistence(timeout: timeout))
+            XCTAssertTrue(element.isHittable, "The actual native control must perform this action")
+            element.tap()
+        }
+        press(app.buttons["otzaria-hanlin-reader-launch"])
+        let consent = app.switches["otzaria-hanlin-allow-current-book"]
+        XCTAssertTrue(consent.waitForExistence(timeout: 30))
+        XCTAssertEqual(consent.value as? String, "0")
+        XCTAssertEqual(app.staticTexts["otzaria-hanlin-consent-book-title"].label, title)
+        XCTAssertEqual(app.textFields["otzaria-hanlin-service-address"].value as? String,
+                       "https://generativelanguage.googleapis.com/v1beta/openai/")
+        XCTAssertEqual(app.textFields["otzaria-hanlin-model"].value as? String, model)
+        // Never inspect, attach, type or assert the SecureField's credential value.
+        let form = app.descendants(matching: .any)["otzaria-hanlin-connection-form"].firstMatch
+        for _ in 0..<4 where !consent.isHittable { form.swipeUp() }
+        press(consent)
+        XCTAssertEqual(consent.value as? String, "1")
+        let connect = app.buttons["otzaria-hanlin-connect"]
+        for _ in 0..<4 where !connect.isHittable { form.swipeDown() }
+        press(connect)
+        let revoke = app.buttons["otzaria-hanlin-end-book-access"]
+        XCTAssertTrue(revoke.waitForExistence(timeout: 30), "The original native dismissal must issue the source-qualified read session")
+        XCTAssertEqual(app.buttons.matching(identifier: "otzaria-hanlin-close").count, 1)
+
+        let work: [String: Any] = ["backend": "otzaria", "workKey": workKey]
+        let searchArguments: [String: Any] = ["backend": "otzaria", "text": query,
+            "scopeWorkRefs": [work], "limit": 1, "offset": 0, "matchMode": "exact"]
+        let referenceArguments: [String: Any] = ["backend": "otzaria", "workRef": work, "section": section]
+        func json(_ value: Any) throws -> String {
+            String(decoding: try JSONSerialization.data(withJSONObject: value, options: [.sortedKeys]), as: UTF8.self)
+        }
+        let marker = "OTZARIA_LIVE_" + nonce
+        let prompt = try "Call otzaria_search_query exactly once with this JSON: " + json(searchArguments)
+            + ". After its actual result, call otzaria_catalog_resolve_reference exactly once with this JSON: "
+            + json(referenceArguments) + ". Use only these two advertised tools. Never invent a tool result. "
+            + "After both real tools succeed reply with exactly " + marker + " as plain text; do not emit OpenUI."
+        let editor = app.textViews["otzaria-hanlin-composer"]
+        press(editor); editor.typeText(prompt)
+        let send = app.buttons["otzaria-hanlin-send"]
+        XCTAssertTrue(send.isEnabled)
+        press(send)
+        let links = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "otzaria-hanlin-source-"))
+        XCTAssertTrue(links.firstMatch.waitForExistence(timeout: 180),
+            "Only the original Host result callback may create the native source receipt")
+        let completed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"),
+            object: app.buttons["otzaria-hanlin-stop"])
+        XCTAssertEqual(XCTWaiter.wait(for: [completed], timeout: 90), .completed)
+        XCTAssertEqual(links.count, 1)
+        XCTAssertTrue(links.firstMatch.isHittable)
+        let sourceID = try XCTUnwrap(UUID(uuidString: String(links.firstMatch.identifier.dropFirst("otzaria-hanlin-source-".count))))
+        XCTAssertTrue(app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", marker))
+            .firstMatch.waitForExistence(timeout: 30), "The actual live continuation must reach the original transcript")
+
+        let saved = try savedConversation(prompt: prompt)
+        let conversationID = try XCTUnwrap(saved["conversationID"] as? String)
+        let history = try XCTUnwrap(saved["history"] as? [String: Any])
+        let messages = try XCTUnwrap(history["messages"] as? [[String: Any]])
+        XCTAssertEqual(messages.count, 2)
+        let assistant = try XCTUnwrap(messages.first { ($0["role"] as? String) == "assistant" })
+        XCTAssertEqual(assistant["content"] as? String, marker)
+        let savedSources = try XCTUnwrap(history["sources"] as? [[String: Any]])
+        XCTAssertEqual(savedSources.count, 1)
+        let savedSource = try XCTUnwrap(savedSources.first)
+        XCTAssertEqual(UUID(uuidString: try XCTUnwrap(savedSource["id"] as? String)), sourceID)
+        XCTAssertEqual(savedSource["messageID"] as? String, assistant["id"] as? String)
+        let destination = try XCTUnwrap(URL(string: try XCTUnwrap(savedSource["destination"] as? String)))
+        XCTAssertEqual(destination.scheme, "maktabah")
+        XCTAssertEqual(destination.host, "action")
+        XCTAssertNil(destination.user); XCTAssertNil(destination.password); XCTAssertNil(destination.fragment)
+        let activities = try XCTUnwrap(history["activities"] as? [[String: Any]])
+        XCTAssertEqual(activities.count, 2, "Exactly the two requested original Core tools must run")
+        func receipt(_ alias: String, action: String, arguments: [String: Any]) throws -> [String: Any] {
+            let rows = activities.filter { ($0["name"] as? String) == alias }
+            XCTAssertEqual(rows.count, 1)
+            let activity = try XCTUnwrap(rows.first)
+            XCTAssertEqual(activity["status"] as? String, "Completed")
+            XCTAssertEqual(activity["isActive"] as? Bool, false)
+            let actualArguments = try XCTUnwrap(activity["arguments"] as? String)
+            let decodedArguments = try JSONSerialization.jsonObject(with: Data(actualArguments.utf8))
+            XCTAssertEqual(try json(decodedArguments), try json(arguments))
+            let raw = try XCTUnwrap(activity["result"] as? String)
+            let result = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(raw.utf8)) as? [String: Any])
+            XCTAssertEqual(result["action"] as? String, action)
+            XCTAssertEqual(result["status"] as? String, "completed")
+            XCTAssertEqual(result["backend"] as? String, "otzaria")
+            return result
+        }
+        let search = try receipt("otzaria_search_query", action: "search.query", arguments: searchArguments)
+        let resolved = try receipt("otzaria_catalog_resolve_reference", action: "catalog.resolveReference", arguments: referenceArguments)
+        let hits = try XCTUnwrap((search["data"] as? [String: Any])?["hits"] as? [[String: Any]])
+        XCTAssertEqual(hits.count, 1, "A real hit from the permitted fixture book must reach the original transcript")
+        let hitLocator = try XCTUnwrap(hits.first?["locator"] as? [String: Any])
+        XCTAssertEqual(hitLocator["backend"] as? String, "otzaria")
+        XCTAssertEqual(hitLocator["workKey"] as? String, workKey)
+        XCTAssertEqual(UUID(uuidString: try XCTUnwrap(resolved["requestId"] as? String)), sourceID,
+            "The visible native source button must bind the actual canonical Core result")
+        let resolvedLocator = try XCTUnwrap((resolved["data"] as? [String: Any])?["locator"] as? [String: Any])
+        XCTAssertEqual(resolvedLocator["backend"] as? String, "otzaria")
+        XCTAssertEqual(resolvedLocator["workKey"] as? String, workKey)
+
+        let draft = "UNSENT_LIVE_" + nonce
+        press(editor); editor.typeText(draft)
+        press(revoke)
+        XCTAssertTrue(app.buttons["otzaria-hanlin-reconnect"].waitForExistence(timeout: 30))
+        XCTAssertFalse(revoke.exists)
+        XCTAssertEqual(editor.value as? String, draft)
+        XCTAssertFalse(send.isEnabled, "Native revocation must discard the original model connection")
+        let after = try savedConversation(prompt: prompt)
+        XCTAssertEqual(after["conversationID"] as? String, conversationID)
+        XCTAssertEqual(try json(try XCTUnwrap((after["history"] as? [String: Any])?["activities"])), try json(activities))
+        XCTAssertEqual(try json(try XCTUnwrap((after["history"] as? [String: Any])?["sources"])), try json(savedSources))
+        let readerLog = try ownedContainer().appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+        let beforeNavigation = try Self.readerReceiptLines(readerLog)
+        XCTAssertEqual(links.count, 1)
+        XCTAssertEqual(UUID(uuidString: String(links.firstMatch.identifier.dropFirst("otzaria-hanlin-source-".count))), sourceID)
+        for _ in 0..<4 where !links.firstMatch.isHittable { app.scrollViews.firstMatch.swipeDown() }
+        press(links.firstMatch)
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"),
+            object: app.buttons["otzaria-hanlin-close"])], timeout: 30), .completed)
+        let acknowledged = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let actual = try? Self.readerReceiptLines(readerLog) else { return false }
+            return beforeNavigation.isSubset(of: actual) && actual.subtracting(beforeNavigation).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [acknowledged], timeout: 30), .completed,
+            "Open source must reach the original native Reader acknowledgement after actual chat dismissal")
+        let navigationLine = try XCTUnwrap(Self.readerReceiptLines(readerLog).subtracting(beforeNavigation).first)
+        let parts = navigationLine.split(separator: " ", maxSplits: 2)
+        XCTAssertEqual(parts.count, 3)
+        XCTAssertEqual(parts[1], "[NativeNavigationReceipt]")
+        var fields: [String: String] = [:]
+        for part in parts[2].split(separator: " ") {
+            let pair = part.split(separator: "=", maxSplits: 1)
+            XCTAssertEqual(pair.count, 2)
+            XCTAssertNil(fields[String(pair[0])])
+            fields[String(pair[0])] = String(pair[1])
+        }
+        XCTAssertEqual(Set(fields.keys), ["request", "scene", "backend", "generation", "epoch", "revision", "destination", "presentation"])
+        XCTAssertNotNil(fields["request"].flatMap(UUID.init(uuidString:)))
+        XCTAssertEqual(fields["scene"], originalOwner.sceneID)
+        XCTAssertEqual(fields["backend"], "otzaria")
+        XCTAssertEqual(fields["destination"], "native.reader")
+        XCTAssertEqual(fields["presentation"], "currentTab")
+        XCTAssertEqual(fields["epoch"], "none")
+        XCTAssertNotNil(fields["generation"].flatMap(UInt64.init))
+        let revisions = try XCTUnwrap(fields["revision"]).components(separatedBy: "->")
+        XCTAssertEqual(revisions.count, 2)
+        XCTAssertGreaterThan(try XCTUnwrap(UInt64(revisions[1])), try XCTUnwrap(UInt64(revisions[0])))
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), originalLocator)
+        XCTAssertTrue(try XCTUnwrap(app.textViews["reader-text"].value as? String).utf8.elementsEqual(originalText.utf8))
+        XCTAssertEqual(try owner(), originalOwner, "The live read and native revocation must preserve the exact source/workspace owner")
+        let proof: [String: Any] = ["status": "NATIVE_ASSERTIONS_COMPLETED", "nonce": nonce,
+            "conversationID": conversationID, "workKey": workKey, "query": query, "section": section, "model": model,
+            "visibleSourceResultID": sourceID.uuidString, "searchResult": search, "referenceResult": resolved,
+            "nativeReaderReceipt": navigationLine,
+            "nativeConsentGranted": true, "nativeConsentRevoked": true, "workspacePreserved": true,
+            "credentialTypedOrExported": false]
+        let file = try ownedContainer().appendingPathComponent("Documents/otzaria-hanlin-live-" + nonce + ".json")
+        try JSONSerialization.data(withJSONObject: proof, options: [.sortedKeys]).write(to: file, options: .atomic)
+        print("OTZARIA_HANLIN_LIVE_COMPLETED=" + nonce)
+    }
+}

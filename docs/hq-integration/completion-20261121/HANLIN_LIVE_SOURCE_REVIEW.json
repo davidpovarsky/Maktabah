@@ -1,0 +1,22 @@
+{
+  "base": "275d12a38169a61a7cdc53a44cd76abfbef1ab09",
+  "patch_sha256": "83e239754be61f57bfc5d8454250fa9f9e4b40a568ac11a1c11ca2739c9bdf1e",
+  "review": "Debug Simulator private-input prefill + separate live selector; native Connect/consent/provider/Core/revocation/Reader receipt remain original",
+  "original_consumer_tests_canonical_bytes_preserved": true,
+  "native116_and_release114_catalogs_unchanged": true,
+  "sdk_engine_provider_code_changed": false,
+  "syntax_parse_exit": 0,
+  "apple_typecheck": "NOT_RUN",
+  "live_native": "NOT_RUN",
+  "files": {
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift": {
+      "git_blob": "3c4f641a3e6e8d38c130622afa2e9a89ced3d5cf",
+      "sha256": "8dedebec659b00dd86bf72c681944bdeb1bda0a28dfeda95b7a84a05c9a13905"
+    },
+    "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift": {
+      "git_blob": "7f1dfaf9de93ad4beca117143f3af0eb675b39a8",
+      "sha256": "b1f953086a0a2642dfef10ab3e9fb66900d6ff427b483c7617dd172fceba88c2"
+    }
+  },
+  "ci_credential_staging": "NOT_PERFORMED"
+}
