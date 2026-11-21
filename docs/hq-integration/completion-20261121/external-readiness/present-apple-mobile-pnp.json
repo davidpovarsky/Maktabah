@@ -1,0 +1,44 @@
+{
+  "checked_at_utc": "2026-11-21T19:59:55.874033+00:00",
+  "host_id": "host_7ec8382e82747448",
+  "operation": "read-only present Windows PnP inventory filtered to Apple mobile names",
+  "devices": [
+    {
+      "Class": "System",
+      "FriendlyName": "iPad (3) Hands-Free HF",
+      "Status": "OK"
+    },
+    {
+      "Class": "Bluetooth",
+      "FriendlyName": "iPad (3)",
+      "Status": "OK"
+    },
+    {
+      "Class": "Bluetooth",
+      "FriendlyName": "iPad (3) Avrcp Transport",
+      "Status": "OK"
+    },
+    {
+      "Class": "MEDIA",
+      "FriendlyName": "iPad (3) Hands-Free HF Audio",
+      "Status": "OK"
+    },
+    {
+      "Class": "MEDIA",
+      "FriendlyName": "iPad (3) A2DP SNK",
+      "Status": "OK"
+    },
+    {
+      "Class": "Bluetooth",
+      "FriendlyName": "iPad (3) Avrcp Transport",
+      "Status": "OK"
+    },
+    {
+      "Class": "Bluetooth",
+      "FriendlyName": "iPad (3)",
+      "Status": "OK"
+    }
+  ],
+  "physical_native_execution_verified": false,
+  "interpretation": "Present Bluetooth/audio/system entries alone do not establish an executable Apple mobile test bridge. No connected physical USB mobile bridge was observed in this query. No device data or settings were changed."
+}

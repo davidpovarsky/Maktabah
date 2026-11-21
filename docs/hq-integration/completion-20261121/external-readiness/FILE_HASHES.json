@@ -1,0 +1,22 @@
+{
+  "captured_at_head": "2dfbef1b10fae348abbc37662cd03cdb74442d7c",
+  "files": {
+    "catalog.raw.csv": {
+      "bytes": 792,
+      "sha256": "99c2cf2fb5e4d5c9f30d2d0016cd769eef2b0953642e3464619310da4710c293"
+    },
+    "present-apple-mobile-pnp.json": {
+      "bytes": 1222,
+      "sha256": "64628867a0145386b13d0720d60e6e7d9009167823ab08d6eb12858d1f4136ae"
+    },
+    "provider-live-check.json": {
+      "bytes": 708,
+      "sha256": "821e423ad0a08326935b6128abe9ab046a5b378d9c44e0deb3e0307bb626c8e7"
+    },
+    "README.md": {
+      "bytes": 1556,
+      "sha256": "2cec850d4c8922340f20d0e090777e0daf4048006554e57be1f1109c13897166"
+    }
+  },
+  "native_pass_credit": 0
+}
