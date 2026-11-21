@@ -52,21 +52,25 @@ struct iPadLayout: View {
             if iOSTab.search.isAvailable(for: backendCoordinator.activeCapabilities) {
                 Tab(iOSTab.search.title, systemImage: iOSTab.search.icon, value: .search) {
                     searchTabContent
+                        .modifier(GlobalTabBarVisibility(isSelected: selectedTab == .search))
                 }
             }
 
             if iOSTab.author.isAvailable(for: backendCoordinator.activeCapabilities) {
                 Tab(iOSTab.author.title, systemImage: iOSTab.author.icon, value: .author) {
                     authorTabContent
+                        .modifier(GlobalTabBarVisibility(isSelected: selectedTab == .author))
                 }
             }
 
             Tab(iOSTab.annotations.title, systemImage: iOSTab.annotations.icon, value: .annotations) {
                 annotationsTabContent
+                    .modifier(GlobalTabBarVisibility(isSelected: selectedTab == .annotations))
             }
 
             Tab(iOSTab.history.title, systemImage: iOSTab.history.icon, value: .history) {
                 historyTabContent
+                    .modifier(GlobalTabBarVisibility(isSelected: selectedTab == .history))
             }
         }
         .themeTint()
@@ -516,6 +520,24 @@ private struct ReaderTabBarVisibility: ViewModifier {
                     .allowsHitTesting(false)
                     .accessibilityHidden(true)
             }
+        }
+    }
+}
+
+/// The selected original global destination explicitly owns a visible tab bar.
+/// Give the native tab container a positive request after leaving Reader,
+/// rather than relying on removal of the offscreen Reader's preference.
+/// Keep each destination at the same structural position as selection changes.
+private struct GlobalTabBarVisibility: ViewModifier {
+    let isSelected: Bool
+
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if ChavrusaTextReaderUI.isEnabled {
+            content.modifier(ReaderTabBarVisibility(visibility: isSelected ? .visible : nil))
+        } else {
+            // The original flags-off destination has no added preference host.
+            content
         }
     }
 }
