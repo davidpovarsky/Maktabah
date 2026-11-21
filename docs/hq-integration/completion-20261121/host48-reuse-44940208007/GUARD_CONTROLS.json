@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "scope": "Evidence reuse guard controls; zero Swift or native tests rerun",
+  "controls": [
+    {
+      "name": "original_actual_compiled_source_fixture",
+      "status": "PASS_MATCH"
+    },
+    {
+      "name": "changed_working_source",
+      "status": "PASS_REJECTED"
+    },
+    {
+      "name": "changed_HEAD_hidden_by_original_working_bytes",
+      "status": "PASS_REJECTED"
+    },
+    {
+      "name": "committed_input_hidden_by_working_deletion",
+      "status": "PASS_REJECTED"
+    },
+    {
+      "name": "untracked_nested_adapter_input",
+      "status": "PASS_REJECTED"
+    },
+    {
+      "name": "corrupt_prior_evidence",
+      "status": "PASS_REJECTED"
+    }
+  ],
+  "positive_current_root_receipt": "verified-source-reuse.json",
+  "initial_attempt": {
+    "job": "job_f982aa2ac4ca",
+    "result": "45 second observer command timeout while populating disposable fixture; no guard outcome",
+    "resumed_same_owned_fixture": true
+  },
+  "disposable_fixture_cleanup": "PASS",
+  "cleanup_initial_failure": "Windows read-only Git object; confined writable-attribute cleanup of the owned disposable control directory succeeded",
+  "completed_control_job": "job_a46186c88ebe"
+}

@@ -79,8 +79,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 Scripts/CI/hq-stage2-focused-apple.py --build-for-testing --derived-data build/DerivedData
-      - name: Revalidate affected Host48 against original Hanlin SDK
-        run: python3 tools/hq-hanlin-host-contracts.py --hanlin-repo Vendor/HanlinSDK --hanlin-sha e00498e33f106cc43be0476ffa2e09329c8ca300 --artifacts-dir build/artifacts/continuation-host48
+      - name: Verify unchanged Host48 inputs and reuse the real prior 48-test result
+        run: python3 Scripts/CI/reuse-host48.py
       - name: Prepare original native HID bridge
         run: python3 Scripts/CI/runtime27-hid.py prepare --out build/artifacts/runtime27/hid-tools.json
       - name: Execute seven exact original native cases without rebuilding

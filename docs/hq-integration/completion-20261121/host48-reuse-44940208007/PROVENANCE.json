@@ -1,0 +1,30 @@
+{
+  "prior_run_id": 44940208007,
+  "prior_run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44940208007",
+  "prior_checkout_sha": "3b475a8f8fd88ddfd12d0e6c891979e965cf9ce2",
+  "prior_application_source_sha": "cf44ada2a47aa0abb152af1fdce4f14d5417456d",
+  "artifact_id": 14724450161,
+  "artifact_sha256": "0484d4115576cd30b6ea35ad8a32aded9bca10d12d0fcf25dd10e883702dd8de",
+  "builder_path": "tools/hq-hanlin-host-contracts.py",
+  "files": {
+    "result.json": {
+      "sha256": "eeefecd517fe19ebf6c7d21e1344ccbcacf8a1322eb81d2d990f4328ad494232",
+      "bytes": 6785
+    },
+    "inputs.json": {
+      "sha256": "2a9ed703cfe180ed86703e6ac1f6823d2662060e2c4c5070863165c4e4cb279a",
+      "bytes": 18713
+    },
+    "swift-test.log": {
+      "sha256": "f89135a00f65af688fff8fd2f184c108c6efa84ec4ac3dc220d86c03f3abde95",
+      "bytes": 16811
+    },
+    "package/Package.swift": {
+      "sha256": "5b415e30641ceef8519991421146f0107f3e52589c559c22935e43c434d544ab",
+      "bytes": 853
+    }
+  },
+  "builder_sha256": "07b30678c06aff58b1e351a12c3a3a74056cea9322891f2253f77e37057f4626",
+  "subset_archive_sha256": "331c19caf9887172412103b65f404a74ea8e27ed469e11c065516451186c4bf2",
+  "subset_archive_bytes": 8802
+}
