@@ -1,0 +1,240 @@
+{
+  "status": "VERIFIED_SOURCE_BOUND_STANDALONE_OWNER_SQLITE6_TRUE_MERGE",
+  "utc": "2026-11-22T05:16:40.223465+00:00",
+  "root_before": "d38a1bd2eae61b55f0ff574d67a16bce146ce460",
+  "true_merge": "351a3f697a83d89f982d9ef262b1e41b1992bc8a",
+  "evidence": "8894bd50ba7cc6529ecd36a053c1682b492869cf",
+  "fixture_source": "7eafe41f9229ed0ad8a040782522ca4d76b4a034",
+  "application_source": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "product_trees_unchanged": {
+    "Source": "ac887bdbfbfce2d30d9591bb867d61b11da31cc6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "24345d612f8c70398f4590977f8b4696021ae413"
+  },
+  "payload_count": 33,
+  "payload_bytes": 187028,
+  "canonical_inputs": [
+    {
+      "name": "Lifetime.swift",
+      "origin": "davidpovarsky/anytype-swift",
+      "commit": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+      "compiled_sha256": "451054685e2ff0c30371d384904be831412eec16c2a5e16c660d2f1891921eb4",
+      "current_canonical_equal": true
+    },
+    {
+      "name": "Operation.swift",
+      "origin": "davidpovarsky/anytype-swift",
+      "commit": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+      "compiled_sha256": "55804cf1a06b59dc80846ab4bc8b874a2d54ae28649288c5b49930267b9ae844",
+      "current_canonical_equal": true
+    },
+    {
+      "name": "Binding.swift",
+      "origin": "davidpovarsky/anytype-swift",
+      "commit": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+      "compiled_sha256": "e304f05ed114342795dbc3a603490311142d63f9a6a156bdcdafd68743e710cb",
+      "current_canonical_equal": true
+    },
+    {
+      "name": "Owner.swift",
+      "origin": "davidpovarsky/anytype-swift",
+      "commit": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+      "compiled_sha256": "5ff93fe232eaed63519ce3721bf423c777d6d0b4d312f6d48c4bf8f6ca6b1adc",
+      "current_canonical_equal": true
+    },
+    {
+      "name": "PreparedEditorPageDocument.swift",
+      "origin": "davidpovarsky/anytype-swift",
+      "commit": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+      "compiled_sha256": "42e595c324e46947d4b964070994a193478d57072931b92be1451f155e2cb32e",
+      "current_canonical_equal": true
+    },
+    {
+      "name": "RoleSource.swift",
+      "origin": "davidpovarsky/anytype-swift",
+      "commit": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+      "compiled_sha256": "bd497ad835574512d29d75f7285cf13e54f9353b6f62500b56655cf36a1b0951",
+      "current_canonical_equal": true
+    },
+    {
+      "name": "OriginalTypePermissionProbe.swift",
+      "origin": "davidpovarsky/anytype-swift",
+      "commit": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+      "compiled_sha256": "0708d577f19f0c382cec913b990e949716c543536c4166575ed60e96f5c33f6a",
+      "current_canonical_equal": false
+    },
+    {
+      "name": "SQLiteDatabase.swift",
+      "origin": "davidpovarsky/Maktabah",
+      "commit": "67518e8df6975c976e8f1cd9e622328dc45985fc",
+      "compiled_sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+      "current_canonical_equal": true
+    },
+    {
+      "name": "UnusedZstdBoundary.swift",
+      "origin": "davidpovarsky/Maktabah",
+      "commit": "67518e8df6975c976e8f1cd9e622328dc45985fc",
+      "compiled_sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+      "current_canonical_equal": true
+    }
+  ],
+  "execution_input_count": 12,
+  "compiled_copy_count": 10,
+  "actual_cases": [
+    {
+      "durableRows": 1,
+      "events": [
+        "owner_body_admitted",
+        "outer_commit_returned",
+        "owner_returned_current_success",
+        "owner_onDrained"
+      ],
+      "facts": {
+        "onDrained": "1",
+        "outerCommit": "true",
+        "publishedCurrentSuccess": "true"
+      },
+      "name": "current_owner_outer_commit_succeeds",
+      "ownerOutcome": "current_owner_success",
+      "status": "PASS"
+    },
+    {
+      "durableRows": 0,
+      "events": [
+        "account_retired_before_admission",
+        "owner_onDrained",
+        "owner_rejected_retired"
+      ],
+      "facts": {
+        "bodyExecutions": "0",
+        "outerCommit": "false",
+        "publishedCurrentSuccess": "false"
+      },
+      "name": "retirement_before_admission_denies_body",
+      "ownerOutcome": "rejected_retired",
+      "status": "PASS"
+    },
+    {
+      "durableRows": 1,
+      "events": [
+        "owner_body_admitted",
+        "account_beginClosing_returned_on_other_thread",
+        "insert_after_account_retirement",
+        "outer_commit_returned",
+        "owner_onDrained",
+        "owner_completed_without_ownership"
+      ],
+      "facts": {
+        "durableFactDisposition": "retained_pending_recovery",
+        "outerCommit": "true",
+        "publishedCurrentSuccess": "false",
+        "retirementThread": "separate"
+      },
+      "name": "account_retirement_after_admission_commits_without_publication",
+      "ownerOutcome": "completed_without_ownership_retired",
+      "status": "PASS"
+    },
+    {
+      "durableRows": 1,
+      "events": [
+        "owner_body_admitted",
+        "outer_commit_returned",
+        "owner_retired_after_commit",
+        "owner_onDrained",
+        "owner_completed_without_ownership"
+      ],
+      "facts": {
+        "durableFactDisposition": "retained_pending_recovery",
+        "outerCommit": "true",
+        "publishedCurrentSuccess": "false",
+        "resetOrRecreate": "false"
+      },
+      "name": "retirement_after_commit_preserves_durable_fact",
+      "ownerOutcome": "completed_without_ownership_retired",
+      "status": "PASS"
+    },
+    {
+      "durableRows": 0,
+      "events": [
+        "owner_body_admitted",
+        "transaction_body_returned_before_deferred_check",
+        "sqlite_commit_failed_and_original_transaction_rolled_back",
+        "owner_onDrained"
+      ],
+      "facts": {
+        "autocommitRestored": "true",
+        "bodyReturned": "true",
+        "outerCommit": "false",
+        "publishedCurrentSuccess": "false",
+        "sqliteError": "FOREIGN KEY constraint failed"
+      },
+      "name": "deferred_fk_commit_failure_rolls_back",
+      "ownerOutcome": "sqlite_commit_failed",
+      "status": "PASS"
+    },
+    {
+      "durableRows": 1,
+      "events": [
+        "owner_body_admitted",
+        "owner_and_account_retired_inside_transaction",
+        "account_waitForOperationsToDrain_entering",
+        "outer_commit_returned",
+        "account_waitForOperationsToDrain_returned",
+        "owner_onDrained",
+        "owner_completed_without_ownership"
+      ],
+      "facts": {
+        "accountDrainReturned": "true",
+        "negativeHoldMilliseconds": "250",
+        "outerCommit": "true",
+        "ownerOnDrained": "1",
+        "publishedCurrentSuccess": "false"
+      },
+      "name": "owner_and_account_teardown_wait_for_actual_drain",
+      "ownerOutcome": "completed_without_ownership_retired",
+      "status": "PASS"
+    }
+  ],
+  "writer": {
+    "ACK": "0",
+    "cases": "6",
+    "fixtureOnlyTables": "true",
+    "nativeRPC": "0",
+    "nativeReceipts": "0",
+    "pid": "25548",
+    "productionIdentityWrites": "0",
+    "sourceOwner": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+    "sqlite": "3.53.4"
+  },
+  "reopen": {
+    "ACK": "0",
+    "account_retirement_after_admission_commits_without_publication": "1",
+    "current_owner_outer_commit_succeeds": "1",
+    "deferred_fk_commit_failure_rolls_back": "0",
+    "nativeRPC": "0",
+    "nativeReceipts": "0",
+    "owner_and_account_teardown_wait_for_actual_drain": "1",
+    "pid": "30036",
+    "productionIdentityWrites": "0",
+    "retirement_after_commit_preserves_durable_fact": "1",
+    "retirement_before_admission_denies_body": "0",
+    "sqlite": "3.53.4",
+    "status": "PASS",
+    "writerPID": "25548"
+  },
+  "executable_sha256": "ef9c79aa8d9f025f6da8ad5c803220b9efd96acae355062481a524b9d131a05e",
+  "independent_review": "native_completion read full fixture and runner and verified actual receipt, dependency transformations, canonical/source/copied bytes and executed binary; approved standalone synchronous admission only",
+  "qualification_correction": "Compiler path and version were recorded; the executed test binary was hashed. No compiler executable hash was recorded. Immutable README wording about compiler hashes is narrowed by this statement.",
+  "ordering_limit": "The six controls admit the original Owner before SQLite serialization. They do not qualify the stronger future held-exclusive-read callback ordering. Separate new controls must hold original exclusive read, acquire SQLite serialization, preserve nested read admission, and COMMIT without await under the database lock.",
+  "platform_limit": "Windows Swift6.3.3 / real SQLite3.53.4, fixture-only document permissions/tables; not Apple, actual AccountManager/Space/native SDK, identity/body receipt, production writer, RPC, ACK or StageB-F.",
+  "historical_index_rewritten": false,
+  "tests_executed_by_integration": 0,
+  "premerge_recovery": {
+    "first_job": "job_e20efdb0d403",
+    "stopped_before_mutation": true,
+    "cause": "Root verification assumed two newlines before the exact RoleSource region; actual immutable source uses one prefix newline and one suffix newline. All canonical region bytes, compiled source and previous ZIP remain exact.",
+    "source_or_evidence_edits": 0,
+    "test_reruns": 0
+  }
+}

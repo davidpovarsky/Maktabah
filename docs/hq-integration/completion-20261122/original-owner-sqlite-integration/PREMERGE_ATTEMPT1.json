@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_e20efdb0d403",
+    "type": "job_result",
+    "source": "exec@host_7ec8382e82747448",
+    "severity": "warning",
+    "tool": "exec",
+    "host": "host_7ec8382e82747448",
+    "status": "failed",
+    "exit_code": 1,
+    "created_at": 1795324440.6380854,
+    "started_at": "2026-11-22T05:14:00.666821+00:00",
+    "finished_at": "2026-11-22T05:14:09.737236+00:00",
+    "duration_s": 9.07,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 300,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "Traceback (most recent call last):\r\n  File \"C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-continuation-20261122\\merge_original_owner_sqlite_six.py\", line 68, in <module>\r\n    assert compiled==get(\"inputs/\"+item[\"name\"])\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError"
+  }
+}

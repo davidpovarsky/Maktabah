@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_e8a51020a9ba",
+    "type": "job_result",
+    "source": "exec@host_7ec8382e82747448",
+    "severity": "info",
+    "tool": "exec",
+    "host": "host_7ec8382e82747448",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795324543.6793907,
+    "started_at": "2026-11-22T05:15:43.709150+00:00",
+    "finished_at": "2026-11-22T05:15:50.862148+00:00",
+    "duration_s": 7.15,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 180,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "[\r\n  {\r\n    \"name\": \"Lifetime.swift\",\r\n    \"canonical_bytes\": 5574,\r\n    \"compiled_bytes\": 5574,\r\n    \"transform_bytes\": 5574,\r\n    \"exact\": true\r\n  },\r\n  {\r\n    \"name\": \"Operation.swift\",\r\n    \"canonical_bytes\": 2459,\r\n    \"compiled_bytes\": 2435,\r\n    \"transform_bytes\": 2435,\r\n    \"exact\": true\r\n  },\r\n  {\r\n    \"name\": \"Binding.swift\",\r\n    \"canonical_bytes\": 3025,\r\n    \"compiled_bytes\": 3025,\r\n    \"transform_bytes\": 3025,\r\n    \"exact\": true\r\n  },\r\n  {\r\n    \"name\": \"Owner.swift\",\r\n    \"canonical_bytes\": 49230,\r\n    \"compiled_bytes\": 49206,\r\n    \"transform_bytes\": 49206,\r\n    \"exact\": true\r\n  },\r\n  {\r\n    \"name\": \"PreparedEditorPageDocument.swift\",\r\n    \"canonical_bytes\": 1093,\r\n    \"compiled_bytes\": 1093,\r\n    \"transform_bytes\": 1093,\r\n    \"exact\": true\r\n  },\r\n  {\r\n    \"name\": \"RoleSource.swift\",\r\n    \"canonical_bytes\": 9627,\r\n    \"compiled_bytes\": 4634,\r\n    \"transform_bytes\": 4634,\r\n    \"exact\": false,\r\n    \"unified_diff\": [\r\n      \"--- strict_one_line_removed\",\r\n      \"+++ actual_compiled\",\r\n      \"@@ -1,5 +1,4 @@\",\r\n      \" import Foundation\",\r\n      \"-\",\r\n      \" // ORIGINAL_CHANNEL_PIN_PERMISSION_BEGIN\",\r\n      \" /// A frozen observation of the actual original participant subscription. Its\",\r\n      \" /// constructors remain in this file; a caller cannot assert a role or account.\"\r\n    ]\r\n  },\r\n  {\r\n    \"name\": \"SQLiteDatabase.swift\",\r\n    \"canonical_bytes\": 14916,\r\n    \"compiled_bytes\": 14916,\r\n    \"transform_bytes\": 14916,\r\n    \"exact\": true\r\n  },\r\n  {\r\n    \"name\": \"UnusedZstdBoundary.swift\",\r\n    \"canonical_bytes\": 443,\r\n    \"compiled_bytes\": 443,\r\n    \"transform_bytes\": 443,\r\n    \"exact\": true\r\n  }\r\n]\r\n{\"head\": \"d38a1bd2eae61b55f0ff574d67a16bce146ce460\", \"status\": \"\"}"
+  }
+}
