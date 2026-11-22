@@ -251,12 +251,12 @@ def require_compiled_host_api(qualification):
     require(isinstance(surface, dict) and surface.get("status") == "ACTUAL_TARGET_PUBLIC_SURFACE_INSPECTED"
             and surface.get("target") == "AnytypeOriginalEditor"
             and type(surface.get("reviewed_host_and_spi_requirements_observed")) is int
-            and surface["reviewed_host_and_spi_requirements_observed"] == 21
+            and surface["reviewed_host_and_spi_requirements_observed"] == 38
             and surface.get("editable_mount_api") == public_api
             and surface.get("qualification_spi_scope_verified") is True
             and surface.get("public_host_scope_verified") is True
             and surface.get("public_original_editor_or_writer_declarations") == []
-            and isinstance(surface.get("own_public_symbols"), list) and len(surface["own_public_symbols"]) >= 21
+            and isinstance(surface.get("own_public_symbols"), list) and len(surface["own_public_symbols"]) >= 38
             and all(isinstance(symbol, dict) and type(symbol.get("spi")) is bool
                     for symbol in surface["own_public_symbols"]),
             "Original full public/qualification-SPI verifier prerequisite is incomplete")
@@ -527,3 +527,4 @@ if __name__ == "__main__":
     checkout = Path(__file__).resolve().parents[2]
     embed(checkout, owned_path(checkout, args.receipt, build=True), args.receipt_sha256, Path(args.app),
           owned_path(checkout, args.evidence, build=True))
+

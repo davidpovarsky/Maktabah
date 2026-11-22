@@ -1,0 +1,38 @@
+{
+  "base": "a1940076187c0c2e6047115162771f0e48e5cab8",
+  "status": "SOURCE_INTEGRATED_NATIVE_VALIDATION_PENDING",
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/OriginalEditorAnnotationAcceptanceTests.swift",
+      "sha256": "d02dec78c501096c82d4cf07b57c94e1844db612abb86d127ff86d3cc41e0994",
+      "bytes": 22385
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "sha256": "3460e43127e69d07a917d9b28b10edd1b37046586f9d12ba91de84ab8ee4c7ca",
+      "bytes": 9530
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift",
+      "sha256": "b7168a50da9f0d400b1cd83aa58bfc3eb1b13d3eb369fae5277be70667b66344",
+      "bytes": 13433
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift",
+      "sha256": "7a5df8c948a554d85369980a8fba686fedc010787209bc17808646df6bca5fa8",
+      "bytes": 28504
+    },
+    {
+      "path": "Scripts/CI/runtime27-original-editor-native.py",
+      "sha256": "cfbd35cc620021b15dd10167897a217204deaeb6cbcd54a4ff77f9f250545e1a",
+      "bytes": 42390
+    }
+  ],
+  "sdk_stageb_source_commit": "4cc56934121d73152a8d73f0b97cfea81ae3864b",
+  "collector_assertions_actual_pass": 20,
+  "collector_reporting_wrapper": "FAILED_AFTER_ASSERTIONS: imported module registry bookkeeping; actual outcomes retained; no replay",
+  "swift_parse": "NOT_RUN: Windows compiler version timed out before source; local Swift compiler unavailable",
+  "native_process_relaunch": "NOT_RUN",
+  "frozen_prior_suites": "Native116 and Release114 unchanged; dedicated process-relaunch selector separate",
+  "consumer_binding": "Collector SOURCE and SDK admission fields await final producer binding before native execution"
+}

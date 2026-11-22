@@ -1,0 +1,51 @@
+{
+  "status": "READY_FOR_FINAL_PRODUCER_BINDING_NATIVE_NOT_RUN",
+  "base_app_source": "cdc8cbb3b0fa9ea428b0367d764fe82ac6c5899a",
+  "source_tree_invariants": {
+    "Source": "f6056372f52f0425fe77a556b02d26c82188d364",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "ca36ba13f1fd900adf528a3e404fed6a66290b6b"
+  },
+  "known_sdk_repository_id": 1289863025,
+  "changes_after_successful_sdk": {
+    "Scripts/CI/runtime27-original-editor-native.py": {
+      "SOURCE": "Set to an ancestor consumer source commit whose Source/Vendor/project/UITest trees match checkout; cdc8 is valid if union changes CI only."
+    },
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": {
+      "application_source_sha": "Same immutable consumer SOURCE.",
+      "application_trees": "Use exact Source/Vendor/Maktabah.xcodeproj trees above; preserve engine/artifact/Hanlin/Sefaria/resource pins."
+    },
+    "Scripts/CI/runtime27-original-editor.inputs.json": {
+      "source_sha": "Actual final combined SDK producer head; equal QUALIFICATION.source_sha and SourceProvenance/OriginalSource.application_source.",
+      "repository_id": 1289863025,
+      "run_id": "Actual successful producer run.",
+      "run_attempt": "Actual successful producer attempt.",
+      "job_id": "Actual completed original-editor-framework job.",
+      "artifact_id": "Qualified framework artifact ID, also framework_artifact.id.",
+      "archive_bytes": "Framework ZIP bytes, also framework_artifact.size_in_bytes.",
+      "archive_sha256": "Framework ZIP SHA256, also framework_artifact.sha256.",
+      "distribution_manifest_sha256": "SHA256 of framework-distribution.json inside retained evidence payload.",
+      "qualification_sha256": "SHA256 of QUALIFICATION.json inside actual framework ZIP.",
+      "original_source_sha256": "SHA256 of SourceProvenance/OriginalSource.json inside actual framework ZIP.",
+      "hanlin_source_sha256": "SHA256 of original-hanlin-snapshot.json inside retained evidence payload.",
+      "framework_artifact": "Exact id/name/size/digest from qualified framework upload; preserve owned path and exact upload step.",
+      "evidence_artifact": "Exact id/name/size/digest from same producer evidence upload; preserve owned path and exact upload step.",
+      "status": "Mark bound only after actual producer metadata and artifact bytes agree."
+    },
+    ".github/workflows/otzaria-original-editor-stageb-native.yml": {
+      "push.branches": "Bind one final owned StageB branch.",
+      "jobs.original-editor-stageb.if": "Bind the same refs/heads branch; no duplicate dispatch."
+    }
+  },
+  "unchanged_native_scope": {
+    "selector": "OriginalEditorAnnotationAcceptanceTests/testSavedBlankAnnotationUsesOriginalEditorAndReopensMixedBlocksAfterProcessRelaunch",
+    "devices": "One owned ipad11 simulator via original matrix.",
+    "Native116": "Unchanged catalog.",
+    "Release114": "Unchanged manifest.",
+    "runtime_build": "App and SDK must use same actual Xcode/Swift/SDK27 pair."
+  },
+  "producer_required_steps": "Current required step strings still match Clang producer workflow.",
+  "consumer_contract": "Exact observed requirement count tightened from 21 to 38, preserving all old requirements. New actual-binary API probe covers resume and owned cleanup without execution.",
+  "tested_scope": "Three new synthetic admission cases actual PASS; no previous cases replayed. Swift probe awaits actual Apple binary typecheck."
+}

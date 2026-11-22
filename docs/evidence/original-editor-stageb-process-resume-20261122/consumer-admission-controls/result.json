@@ -1,0 +1,22 @@
+{
+  "scope": "SYNTHETIC_PROCESS_RESUME_RECEIPT_ADMISSION_ONLY",
+  "source_sha256": "b1fcb2b60ec6da8fcd03427b4f3a9c580e3c2553365c1318e424275c16708082",
+  "apple_build": "NOT_RUN",
+  "native_editor_ui_tests": 0,
+  "prior_passed_controls_reexecuted": false,
+  "controls": [
+    {
+      "name": "complete_38_requirement_receipt_keeps_native_not_run",
+      "status": "PASS"
+    },
+    {
+      "name": "old_21_requirement_sdk_cannot_admit_process_resume",
+      "status": "PASS"
+    },
+    {
+      "name": "partial_or_unverified_process_resume_surface_is_rejected",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}
