@@ -1,0 +1,118 @@
+{
+  "status": "PASS_ORIGINAL_OWNER_SQLITE6_DISTINCT_PROCESS_REOPEN",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "commands": [
+    {
+      "label": "compile",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+        "-swift-version",
+        "5",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-j",
+        "1",
+        "-whole-module-optimization",
+        "-Onone",
+        "-I",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-sqlite\\build\\windows-six-20261122\\SQLite3",
+        "-L",
+        "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.26100.0\\um\\x64",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-sqlite\\build\\windows-six-20261122\\inputs\\Lifetime.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-sqlite\\build\\windows-six-20261122\\inputs\\Operation.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-sqlite\\build\\windows-six-20261122\\inputs\\Binding.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-sqlite\\build\\windows-six-20261122\\inputs\\Owner.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-sqlite\\build\\windows-six-20261122\\inputs\\PreparedEditorPageDocument.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-sqlite\\build\\windows-six-20261122\\inputs\\RoleSource.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-sqlite\\build\\windows-six-20261122\\inputs\\OriginalTypePermissionProbe.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-sqlite\\build\\windows-six-20261122\\inputs\\SQLiteDatabase.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-sqlite\\build\\windows-six-20261122\\inputs\\UnusedZstdBoundary.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-sqlite\\build\\windows-six-20261122\\inputs\\OriginalOwnerSQLiteAcceptance.swift",
+        "-o",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-sqlite\\build\\windows-six-20261122\\OriginalOwnerSQLiteAcceptance.exe"
+      ],
+      "exit": 0,
+      "seconds": 41.61000000000058
+    },
+    {
+      "label": "controls",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-sqlite\\build\\windows-six-20261122\\OriginalOwnerSQLiteAcceptance.exe",
+        "controls",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-sqlite\\validation\\windows-six-20261122\\fixtures"
+      ],
+      "exit": 0,
+      "seconds": 1.9380000000019209
+    },
+    {
+      "label": "reopen",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-sqlite\\build\\windows-six-20261122\\OriginalOwnerSQLiteAcceptance.exe",
+        "reopen",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-sqlite\\validation\\windows-six-20261122\\fixtures"
+      ],
+      "exit": 0,
+      "seconds": 0.25
+    }
+  ],
+  "original_owner_source": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+  "application_source": "67518e8df6975c976e8f1cd9e622328dc45985fc",
+  "expected_controls": [
+    "current_owner_outer_commit_succeeds",
+    "retirement_before_admission_denies_body",
+    "account_retirement_after_admission_commits_without_publication",
+    "retirement_after_commit_preserves_durable_fact",
+    "deferred_fk_commit_failure_rolls_back",
+    "owner_and_account_teardown_wait_for_actual_drain"
+  ],
+  "selected_controls": 6,
+  "original_suites_reexecuted": false,
+  "actual_original_owner": true,
+  "actual_original_sqlite": true,
+  "fixture_only_document_permission_values": true,
+  "fixture_only_tables": true,
+  "native_rpc": 0,
+  "production_identity_write": 0,
+  "native_receipt": 0,
+  "ack": 0,
+  "interop": {
+    "platform": "Windows SDK winsqlite3",
+    "header": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\um\\winsqlite\\winsqlite3.h",
+    "header_sha256": "27382a4a73e9dfb7ad71c99725015e0113d2a0d1e0e4917d2a9d0a173700bcb1",
+    "import_library": "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.26100.0\\um\\x64\\winsqlite3.lib",
+    "import_library_sha256": "e725f37a9a2199e974b46f4cf71d87248e59073b931f8e72ba02ac144bf72400",
+    "modulemap": "module SQLite3 [system] { header \"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um/winsqlite/winsqlite3.h\" link \"winsqlite3\" export * }\n",
+    "modulemap_sha256": "3abfda73dbd6208896a14028bed643a3fce985b1982bee0bc4269e728cf35b20"
+  },
+  "swift": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "executable_sha256": "ef9c79aa8d9f025f6da8ad5c803220b9efd96acae355062481a524b9d131a05e",
+  "writer": {
+    "ACK": "0",
+    "cases": "6",
+    "fixtureOnlyTables": "true",
+    "nativeRPC": "0",
+    "nativeReceipts": "0",
+    "pid": "25548",
+    "productionIdentityWrites": "0",
+    "sourceOwner": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+    "sqlite": "3.53.4"
+  },
+  "reopen": {
+    "ACK": "0",
+    "account_retirement_after_admission_commits_without_publication": "1",
+    "current_owner_outer_commit_succeeds": "1",
+    "deferred_fk_commit_failure_rolls_back": "0",
+    "nativeRPC": "0",
+    "nativeReceipts": "0",
+    "owner_and_account_teardown_wait_for_actual_drain": "1",
+    "pid": "30036",
+    "productionIdentityWrites": "0",
+    "retirement_after_commit_preserves_durable_fact": "1",
+    "retirement_before_admission_denies_body": "0",
+    "sqlite": "3.53.4",
+    "status": "PASS",
+    "writerPID": "25548"
+  },
+  "sources_unchanged": true,
+  "compiled_copies_unchanged": true
+}

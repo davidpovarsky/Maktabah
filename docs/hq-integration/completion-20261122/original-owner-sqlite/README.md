@@ -1,6 +1,6 @@
 # Original Owner + original SQLite composition controls
 
-This packet joins the unchanged original Anytype EditorDocumentWriteOwner, Lifetime, Operation and InvocationDispatchBinding with the complete original Maktabah SQLiteDatabase. It uses six new fixture-only controls and a separate-process readback. Current preparation status: NOT_COMPILED / NOT_EXECUTED; actual outcomes must be read from the later retained execution receipt.
+This packet joins the unchanged original Anytype EditorDocumentWriteOwner, Lifetime, Operation and InvocationDispatchBinding with the complete original Maktabah SQLiteDatabase. It uses six new fixture-only controls and a separate-process readback. The frozen six-case candidate7eafe41f9229ed0ad8a040782522ca4d76b4a034 was actually compiled and executed once on Windows: all six controls and the distinct-process readback passed (Sentinel job_e533d6094c6c). The original preparation manifest is retained as its input snapshot; the later VALIDATION_SUMMARY.json and raw validation/windows-six-20261122 receipts establish the execution result.
 
 ## Source and fixture boundary
 
@@ -28,3 +28,13 @@ The fixture composition seam uses the existing Owner method outside the existing
 Use the existing installed Swift compiler with Swift5 language mode and complete strict-concurrency checking, matching the verified original Owner portable dependency envelope. Windows uses the original Windows SDK winsqlite3 header/import library. The portable runner also retains an Apple SDK SQLite path without introducing a replacement module map; no Apple execution is claimed by preparation.
 
 Run run-original-owner-sqlite-controls.py with a new explicit --result-dir. It creates a fresh owned build, records exact canonical/compiled source hashes, executes only the six new cases and the one fresh-process readback, then verifies all source/copied bytes remain unchanged. It preserves raw stdout/stderr, compiler and binary hashes, commands, actual Owner outcomes, independent durable-row observations and process IDs.
+
+## Actual retained outcome and remaining composition boundary
+
+Swift6.3.3 targeted x86_64-unknown-windows-msvc with complete concurrency checking. Real SDK SQLite3.53.4 used WAL and FULL synchronous mode. The complete original files compiled in41.610 seconds; six new controls ran in1.938 seconds, and a fresh process readback in0.250 seconds. The control process25548 and readback process30036 observed durable row counts1,0,1,1,0,1. The executed binary SHA256 isef9c79aa8d9f025f6da8ad5c803220b9efd96acae355062481a524b9d131a05e. All12 execution-input hashes and all10 compiled-source hashes remained unchanged and matched committed input bytes.
+
+The real deferred-FK error was FOREIGN KEY constraint failed at COMMIT; the original transaction rolled back and restored autocommit. In each admitted/post-COMMIT retirement case, the durable row remained1 while original Owner returned completedWithoutOwnership and current publication stayed false. Actual Owner.onDrained and account waitForOperationsToDrain events followed the real outer COMMIT. These are two separate outcomes, not an exception being relabeled as rollback.
+
+This evidence qualifies standalone synchronous local admission. It does not yet qualify a persistence callback nested inside withExclusiveRead. The original read lineage refuses the default requiresEditing:true mutation scope. A held-read persistence callback must explicitly preserve requiresEditing:false/read scope and add no native RPC privilege; two dedicated new controls are being prepared for that distinct combination. The six passing bodies will not be rerun or relabeled for it. Initial native creation also has no BaseDocument Owner yet; actual selected account/Space authority must come from the existing runtime, independently of this fixture.
+
+The result is Windows portable-original-code evidence, not an Apple/native AccountManager/Space/engine execution, opaque native identity/body receipt, production writer or StageB-F acceptance. No earlier control suite, network, original editor runtime or ACK ran. Native's read-only source/runner review is separate from execution and does not rerun tests.

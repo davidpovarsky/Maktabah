@@ -1,0 +1,115 @@
+[
+  {
+    "durableRows" : 1,
+    "events" : [
+      "owner_body_admitted",
+      "outer_commit_returned",
+      "owner_returned_current_success",
+      "owner_onDrained"
+    ],
+    "facts" : {
+      "onDrained" : "1",
+      "outerCommit" : "true",
+      "publishedCurrentSuccess" : "true"
+    },
+    "name" : "current_owner_outer_commit_succeeds",
+    "ownerOutcome" : "current_owner_success",
+    "status" : "PASS"
+  },
+  {
+    "durableRows" : 0,
+    "events" : [
+      "account_retired_before_admission",
+      "owner_onDrained",
+      "owner_rejected_retired"
+    ],
+    "facts" : {
+      "bodyExecutions" : "0",
+      "outerCommit" : "false",
+      "publishedCurrentSuccess" : "false"
+    },
+    "name" : "retirement_before_admission_denies_body",
+    "ownerOutcome" : "rejected_retired",
+    "status" : "PASS"
+  },
+  {
+    "durableRows" : 1,
+    "events" : [
+      "owner_body_admitted",
+      "account_beginClosing_returned_on_other_thread",
+      "insert_after_account_retirement",
+      "outer_commit_returned",
+      "owner_onDrained",
+      "owner_completed_without_ownership"
+    ],
+    "facts" : {
+      "durableFactDisposition" : "retained_pending_recovery",
+      "outerCommit" : "true",
+      "publishedCurrentSuccess" : "false",
+      "retirementThread" : "separate"
+    },
+    "name" : "account_retirement_after_admission_commits_without_publication",
+    "ownerOutcome" : "completed_without_ownership_retired",
+    "status" : "PASS"
+  },
+  {
+    "durableRows" : 1,
+    "events" : [
+      "owner_body_admitted",
+      "outer_commit_returned",
+      "owner_retired_after_commit",
+      "owner_onDrained",
+      "owner_completed_without_ownership"
+    ],
+    "facts" : {
+      "durableFactDisposition" : "retained_pending_recovery",
+      "outerCommit" : "true",
+      "publishedCurrentSuccess" : "false",
+      "resetOrRecreate" : "false"
+    },
+    "name" : "retirement_after_commit_preserves_durable_fact",
+    "ownerOutcome" : "completed_without_ownership_retired",
+    "status" : "PASS"
+  },
+  {
+    "durableRows" : 0,
+    "events" : [
+      "owner_body_admitted",
+      "transaction_body_returned_before_deferred_check",
+      "sqlite_commit_failed_and_original_transaction_rolled_back",
+      "owner_onDrained"
+    ],
+    "facts" : {
+      "autocommitRestored" : "true",
+      "bodyReturned" : "true",
+      "outerCommit" : "false",
+      "publishedCurrentSuccess" : "false",
+      "sqliteError" : "FOREIGN KEY constraint failed"
+    },
+    "name" : "deferred_fk_commit_failure_rolls_back",
+    "ownerOutcome" : "sqlite_commit_failed",
+    "status" : "PASS"
+  },
+  {
+    "durableRows" : 1,
+    "events" : [
+      "owner_body_admitted",
+      "owner_and_account_retired_inside_transaction",
+      "account_waitForOperationsToDrain_entering",
+      "outer_commit_returned",
+      "account_waitForOperationsToDrain_returned",
+      "owner_onDrained",
+      "owner_completed_without_ownership"
+    ],
+    "facts" : {
+      "accountDrainReturned" : "true",
+      "negativeHoldMilliseconds" : "250",
+      "outerCommit" : "true",
+      "ownerOnDrained" : "1",
+      "publishedCurrentSuccess" : "false"
+    },
+    "name" : "owner_and_account_teardown_wait_for_actual_drain",
+    "ownerOutcome" : "completed_without_ownership_retired",
+    "status" : "PASS"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "ACK" : "0",
+  "account_retirement_after_admission_commits_without_publication" : "1",
+  "current_owner_outer_commit_succeeds" : "1",
+  "deferred_fk_commit_failure_rolls_back" : "0",
+  "nativeRPC" : "0",
+  "nativeReceipts" : "0",
+  "owner_and_account_teardown_wait_for_actual_drain" : "1",
+  "pid" : "30036",
+  "productionIdentityWrites" : "0",
+  "retirement_after_commit_preserves_durable_fact" : "1",
+  "retirement_before_admission_denies_body" : "0",
+  "sqlite" : "3.53.4",
+  "status" : "PASS",
+  "writerPID" : "25548"
+}

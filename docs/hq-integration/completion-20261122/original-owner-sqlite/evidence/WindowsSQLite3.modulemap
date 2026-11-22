@@ -1,0 +1,1 @@
+module SQLite3 [system] { header "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um/winsqlite/winsqlite3.h" link "winsqlite3" export * }

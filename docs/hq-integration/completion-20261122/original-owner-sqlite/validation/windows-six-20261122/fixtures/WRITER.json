@@ -1,0 +1,11 @@
+{
+  "ACK" : "0",
+  "cases" : "6",
+  "fixtureOnlyTables" : "true",
+  "nativeRPC" : "0",
+  "nativeReceipts" : "0",
+  "pid" : "25548",
+  "productionIdentityWrites" : "0",
+  "sourceOwner" : "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+  "sqlite" : "3.53.4"
+}
