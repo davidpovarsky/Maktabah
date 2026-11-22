@@ -1,0 +1,43 @@
+{
+  "schema": "otzaria.fresh-keyboard-root-admission/1",
+  "status": "PASS_FOR_ONE_NO_SEND_NATIVE_DIAGNOSTIC",
+  "observed_at": "2026-11-22T10:46:05.515801+00:00",
+  "head": "cad3742628a37ad4f9eaa3cdbd522d70cb6d0bd1",
+  "admitted_checkout": "aec8162c34598c859c9dc61b6e8b298b5d5d36e6",
+  "application_source": "d49cedb3d5c163b7a008248d94b80a2eda28e3ce",
+  "parent_failure_publication": "ae9f63b17b6f9df91d2d125700dc8b62d2aa2cc4",
+  "source_evidence_payloads_verified": 51,
+  "source_evidence_index_sha256": "58259786c0bc094034e2b7bc2d14b4f26c47b15e047e093f26f69365ef8e3282",
+  "execution_inputs_independently_git_verified": 279,
+  "exact_original_test_inverse": true,
+  "added_lines": 12,
+  "native_query": "Unique actual original keyboard button label Hide keyboard; normal native tap then bounded absence before unchanged original consent/Connect/reopen assertions.",
+  "three_product_trees_unchanged": true,
+  "all_four_app_trees_bound": true,
+  "binder_delta": "Only focused source SHA, HQ application source SHA and dedicated trigger branch.",
+  "actual_local_commands": [
+    {
+      "label": "focused-prepare",
+      "exit_code": 0,
+      "seconds": 29.031
+    },
+    {
+      "label": "hq-preflight",
+      "exit_code": 0,
+      "seconds": 6.469
+    },
+    {
+      "label": "host48-reuse",
+      "exit_code": 0,
+      "seconds": 12.031
+    }
+  ],
+  "actual_full_file_parse_exit": 0,
+  "actual_host48_reuse_not_replay": true,
+  "native_tests_executed_by_review": 0,
+  "case": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
+  "temporary_live_key_needed": false,
+  "provider_send": false,
+  "actual_failure_evidence": "Original AX keyboard/window geometry and exact failed hit-test were read. Actual finalPNG1aafa427 viewed by root has no visible keyboard0.410s later; no pixel-proved occlusion or Live8 root cause is inferred.",
+  "next_action": "Sole Native owner may push this exact head once to codex/otzaria-hanlin-fresh-read-keyboard-native-20261122; one finite observer and one eventual artifact intake. No other Native/Live tests."
+}

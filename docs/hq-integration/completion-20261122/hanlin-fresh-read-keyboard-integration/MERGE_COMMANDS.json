@@ -1,0 +1,202 @@
+[
+  {
+    "label": "head-before",
+    "arguments": [
+      "rev-parse",
+      "HEAD"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "cda3a7b6fbf8a3ac49de204031f33b509e6fe27121d73711dfb9f64d8d3e035a",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "clean-before",
+    "arguments": [
+      "status",
+      "--porcelain=v1"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "branch-before",
+    "arguments": [
+      "branch",
+      "--show-current"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "b011f9d16e78abe9e7b432d33c86c54d3997a81c2a18dba68aa0bd963ce8eb6f",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "exact-candidate-object",
+    "arguments": [
+      "cat-file",
+      "-e",
+      "cad3742628a37ad4f9eaa3cdbd522d70cb6d0bd1^{commit}"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "candidate-base",
+    "arguments": [
+      "merge-base",
+      "895bbcb54f86be0fc0463d7ed9d78f3599d6bdd2",
+      "cad3742628a37ad4f9eaa3cdbd522d70cb6d0bd1"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "cda3a7b6fbf8a3ac49de204031f33b509e6fe27121d73711dfb9f64d8d3e035a",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "candidate-tree-Source",
+    "arguments": [
+      "rev-parse",
+      "cad3742628a37ad4f9eaa3cdbd522d70cb6d0bd1:Source"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "21589b85ed77c48aa951df01d989011283859834870ba428c668e45f6c1474c9",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "candidate-tree-Vendor",
+    "arguments": [
+      "rev-parse",
+      "cad3742628a37ad4f9eaa3cdbd522d70cb6d0bd1:Vendor"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "c5aa9de917230993db9be003dced34daa3d1d5a6911423535bd7b516186f6971",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "candidate-tree-Maktabah-xcodeproj",
+    "arguments": [
+      "rev-parse",
+      "cad3742628a37ad4f9eaa3cdbd522d70cb6d0bd1:Maktabah.xcodeproj"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "a2b985dcc6998a850c94b3e8e5daa678b903a34919247fce217306844d5f1c24",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "candidate-tree-Maktabah-iOSUITests",
+    "arguments": [
+      "rev-parse",
+      "cad3742628a37ad4f9eaa3cdbd522d70cb6d0bd1:Maktabah-iOSUITests"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "b79b78ea9a41612f9dffc0e637bee3f434e4660b4769000fe70cfba435b8cc7c",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "exact-test-delta",
+    "arguments": [
+      "diff",
+      "--name-only",
+      "895bbcb54f86be0fc0463d7ed9d78f3599d6bdd2",
+      "cad3742628a37ad4f9eaa3cdbd522d70cb6d0bd1",
+      "--",
+      "Maktabah-iOSUITests"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "733dc5987d7dadba3ae8bc6b05edba9f749205ee9b265df16d682e9d825c0e6a",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "exact-test-source",
+    "arguments": [
+      "show",
+      "cad3742628a37ad4f9eaa3cdbd522d70cb6d0bd1:Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "9413eed5741bf3fec8b6c97da86ecb6caed026c7f9e85d80219beb57d037b0a7",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "merge-admitted-candidate",
+    "arguments": [
+      "merge",
+      "--no-ff",
+      "--no-commit",
+      "cad3742628a37ad4f9eaa3cdbd522d70cb6d0bd1"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "96bb6a194a796153cbd0c640642866371219451832063763d544b942a8d97c4e"
+  },
+  {
+    "label": "unmerged-after-merge",
+    "arguments": [
+      "ls-files",
+      "-u"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "candidate-full-tree",
+    "arguments": [
+      "rev-parse",
+      "cad3742628a37ad4f9eaa3cdbd522d70cb6d0bd1^{tree}"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "23ff66cea61e7471011fde53d1b34503d86df92fc2ed62d82a25273a2bcdd8fb",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "exact-merged-index-tree",
+    "arguments": [
+      "write-tree"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "23ff66cea61e7471011fde53d1b34503d86df92fc2ed62d82a25273a2bcdd8fb",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "commit-source-merge",
+    "arguments": [
+      "commit",
+      "-m",
+      "merge(otzaria): integrate admitted native keyboard diagnostic and failure evidence [skip ci]"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "10e80adbf2b416e22e47de00e578d028a4d1eee2ea1ecab0cfff8f50d41a4904",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "source-merge-head",
+    "arguments": [
+      "rev-parse",
+      "HEAD"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "65686e211a4ddd8f1265508944594558396506db9ba9c74acc9c7444958f4cd1",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "source-merge-parents",
+    "arguments": [
+      "show",
+      "-s",
+      "--format=%P",
+      "HEAD"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "839446f4248c4d26de8f4e0d35f7d5a63bd78d6cbbcbe84d860d1bd5d6c4d4f0",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "source-merge-tree",
+    "arguments": [
+      "rev-parse",
+      "HEAD^{tree}"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "23ff66cea61e7471011fde53d1b34503d86df92fc2ed62d82a25273a2bcdd8fb",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "files": {
+    ".gitattributes": {
+      "bytes": 80,
+      "sha256": "66579e5245d0dd75829f4d2f8e0b32f7ca2ec56567515d4ceae57d51db082fc9"
+    },
+    "ACTUAL_INTEGRATION.py": {
+      "bytes": 19588,
+      "sha256": "f81e5ead8d89a53be04c182cbc39ce7e20bbcb7667ca8a646f8d471b71ac1242"
+    },
+    "INTEGRATION.json": {
+      "bytes": 1423,
+      "sha256": "8283deecd2782f818e1facfd43a3ece3c4940544b3859faa1bcc7d904d1f0146"
+    },
+    "MERGE_COMMANDS.json": {
+      "bytes": 6547,
+      "sha256": "5bd3903d9cce0830d5637db4bfa46c24eace3c32a051dcb0104c4d40481ba46c"
+    },
+    "README.md": {
+      "bytes": 1159,
+      "sha256": "5d9670ee3fe662e70297dde25a272169cb96d4921b8e51a92fadedcde2345b3f"
+    },
+    "root-admission/ACTUAL_ROOT_REVIEW.py": {
+      "bytes": 9013,
+      "sha256": "65483738fe0b67788f25f734af8fa153245025cf3fbe50b8d474b3cbe7d9f3a0"
+    },
+    "root-admission/GIT_BLOB_BINDINGS.json": {
+      "bytes": 78682,
+      "sha256": "3a072ee4ad117c63bc614b810979d851155d0945760227afa1c523ddada46da3"
+    },
+    "root-admission/ROOT_REVIEW.json": {
+      "bytes": 2098,
+      "sha256": "690f0dec0cc4fa25257ba344901b21677f34b28f15b895e04bf795b06eea63cf"
+    }
+  },
+  "payload_count": 8
+}

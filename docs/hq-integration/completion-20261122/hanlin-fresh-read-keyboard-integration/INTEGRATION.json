@@ -1,0 +1,28 @@
+{
+  "status": "SOURCE_AND_EVIDENCE_INTEGRATED_NATIVE_OUTCOME_PENDING",
+  "observed_at": "2026-11-22T11:14:20.369999+00:00",
+  "merge_commit": "bd70070c8be365a602aa5c6d4da448495ec94327",
+  "parents": [
+    "895bbcb54f86be0fc0463d7ed9d78f3599d6bdd2",
+    "cad3742628a37ad4f9eaa3cdbd522d70cb6d0bd1"
+  ],
+  "exact_candidate_tree": "36b0dbc0f02df132b9157df478f04ec78ffc427c",
+  "all_merged_git_entries_equal_candidate": true,
+  "application_test_snapshot": "d49cedb3d5c163b7a008248d94b80a2eda28e3ce",
+  "product_trees": {
+    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "86f07db3f58fe6d73c063b02ae3c1d31ae2d2468"
+  },
+  "original_root_admission_sha256": "690f0dec0cc4fa25257ba344901b21677f34b28f15b895e04bf795b06eea63cf",
+  "published_candidate_payloads_verified_by_original_review": 51,
+  "execution_inputs_verified_by_original_review": 279,
+  "source_test_change": "12 native keyboard-hide lines only; original consent/Connect/reopen/revocation assertions retained",
+  "new_tests_compilers_downloads": 0,
+  "native_run": "45014115643",
+  "native_attempt": 1,
+  "native_checkout": "cad3742628a37ad4f9eaa3cdbd522d70cb6d0bd1",
+  "sole_observer": "job_795c24b6c364",
+  "scope": "Source and evidence union. No actual result for this run is admitted by the merge."
+}
