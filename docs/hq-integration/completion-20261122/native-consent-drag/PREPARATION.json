@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "source_commit": "783c908b3c09940039d46a45c82aa732d487ba44",
+  "parent": "6736f7a1a3eda82fd70d70d4a192c9ba15a09282",
+  "candidate_sha256": "9f4c35fee98102373e5961759569077833d8eb83ad427255d7f11ef2e55d5143",
+  "product_trees": {
+    "Maktabah-iOSUITests": "f480f0cd64100f752620fbb5a22a5b77fb612fae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "selected_case": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
+  "outside_selected_case_exact_bytes_unchanged": true,
+  "application_changes": 0,
+  "old_test_cases_replayed": 0,
+  "execution_status": "NOT_RUN",
+  "preserved_failure_run": 45028340249,
+  "evidence_documentation_commit": "a2c960b3cafa02be9cec8f01aebba893ad67cd47",
+  "peer_review": "heart_completion independently checked original source lifecycle, actual frame/touch evidence and exact candidate. Root removed only an apply_patch-added trailing newline to preserve exact remote bytes outside this case; no statement/gesture changed.",
+  "gesture": "One original native child switch drag inside its observed frame, normalized(0.25,0.5) to(0.75,0.5),0.1s hold; no tap retry or direct state assignment",
+  "acceptance": "All original Connect/read-session/no-send/Reader/Owner assertions retained; row and native child must both become1; endpoint/model must remain unchanged",
+  "workflow_branch": "codex/otzaria-native-package-cache-20261122",
+  "dispatch_policy": "One expected-head fast-forward after exact source/admission review, preserve the prior matching compiler cache on the same branch"
+}
