@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "source_commit": "3b4345bd0ae33b83c2ff4ae7697164343f0792b8",
+  "parent": "81039998e66bba1d7310455d80a3c50e59785699",
+  "changed_product_paths": [
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift"
+  ],
+  "source_before_blob": "c6b1234a9af2b4f8e187eee84f9d3a589ba44394",
+  "one_line_change": ".accessibilityElement(children: .contain) immediately before banner accessibilityIdentifier",
+  "preserved": {
+    "button_id": "otzaria-hanlin-end-book-access",
+    "button_action": "owner.endCurrentWorkReadAccess(sessionID: session.id)",
+    "full_UI_test_tree": "f480f0cd64100f752620fbb5a22a5b77fb612fae",
+    "all_original_assertions": true,
+    "permission_and_session_logic": true,
+    "live_credentials_used": false,
+    "send_action_invoked": false
+  },
+  "product_trees": {
+    "Source": "8197eab0668a42b311b7056987e54d5a973903f8",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "f480f0cd64100f752620fbb5a22a5b77fb612fae"
+  },
+  "failed_run": 45034727427,
+  "actual_previous_counts": {
+    "pass": 0,
+    "fail": 1,
+    "skip": 0,
+    "not_run": 0
+  },
+  "previous_failure": "XCTAssertTrue missing original end-book-access identifier after original Connect; native213.80960595607758seconds",
+  "observed_cause": "Actual afterConnect hierarchy shows genuine Book search scope and visible End book access Button carrying inherited parent identifier otzaria-hanlin-book-access. Native drag had enabled both switches; screenshot confirms the connected UI.",
+  "after_connect_ax_sha256": "246748e976a5192509781f0e8e4d6fbb4ecffafcc65f4dc84c3371154bafb2d7",
+  "after_connect_screenshot_sha256": "69a1353f9debaa6f98113b433f30e6fe7c04a3816599cb1747ae26c3cf8297f2",
+  "peer_review": "heart_completion reviewed exact original source/lookup and one-line container delta; only actual native gate will qualify it.",
+  "apple_reference": "https://developer.apple.com/documentation/swiftui/accessibilitychildbehavior/contain",
+  "validation": "No synthetic mirror test added. Actual Apple UI typecheck and same single failed no-send case remain required; older passed suites are preserved.",
+  "execution_status": "NOT_RUN_FOR_THIS_SOURCE",
+  "workflow_branch": "codex/otzaria-native-package-cache-20261122",
+  "dispatch_policy": "One expected-head fast-forward only after exact source/bindings readback; previous run and both observers are terminal."
+}

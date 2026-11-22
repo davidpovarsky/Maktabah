@@ -11,7 +11,7 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = "783c908b3c09940039d46a45c82aa732d487ba44"
+SOURCE = "3b4345bd0ae33b83c2ff4ae7697164343f0792b8"
 OUT = ROOT / "build/artifacts/continuation-focused"
 MANIFEST = OUT / "selection.json"
 FULL = ROOT / "docs/hq-integration/runtime27/R27_CASES.json"
