@@ -1,0 +1,127 @@
+{
+  "status": "PASS_20_NEW_SCHEMA2_ADMISSION_BOUNDARIES",
+  "scope": "Synthetic GitHub metadata, qualification and ZIP boundaries using actual admission functions; exact original dotfile bytes. No SDK/native/app runtime execution.",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "expected_ids": [
+    "schema2_boundaries.Schema2Boundaries.test_any_change_to_fixed_framework_contract_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_artifact_cannot_cross_producer_roles",
+    "schema2_boundaries.Schema2Boundaries.test_artifact_must_be_created_inside_own_upload",
+    "schema2_boundaries.Schema2Boundaries.test_boolean_counts_cannot_replace_integer_attempts",
+    "schema2_boundaries.Schema2Boundaries.test_changed_sidecar_is_detected_with_unchanged_products",
+    "schema2_boundaries.Schema2Boundaries.test_changed_source_bound_dotfile_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_cleanup_acknowledgement_is_not_completed_cleanup",
+    "schema2_boundaries.Schema2Boundaries.test_exact_wrapper_and_original_dotfile_bytes_are_read",
+    "schema2_boundaries.Schema2Boundaries.test_extra_outer_wrapper_member_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_failed_runtime_receipt_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_flat_framework_alias_cannot_claim_new_control",
+    "schema2_boundaries.Schema2Boundaries.test_missing_hebrew_runtime_observation_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_missing_source_bound_dotfile_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_new_head_cannot_be_old_framework_head",
+    "schema2_boundaries.Schema2Boundaries.test_old_failed_producer_remains_explicitly_failed",
+    "schema2_boundaries.Schema2Boundaries.test_qualification_cannot_be_inside_product_inventory",
+    "schema2_boundaries.Schema2Boundaries.test_reused_framework_cannot_claim_new_build",
+    "schema2_boundaries.Schema2Boundaries.test_runtime_metadata_must_succeed",
+    "schema2_boundaries.Schema2Boundaries.test_separate_roles_are_accepted_without_relabeling",
+    "schema2_boundaries.Schema2Boundaries.test_toolchain_change_is_rejected"
+  ],
+  "started_ids": [
+    "schema2_boundaries.Schema2Boundaries.test_any_change_to_fixed_framework_contract_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_artifact_cannot_cross_producer_roles",
+    "schema2_boundaries.Schema2Boundaries.test_artifact_must_be_created_inside_own_upload",
+    "schema2_boundaries.Schema2Boundaries.test_boolean_counts_cannot_replace_integer_attempts",
+    "schema2_boundaries.Schema2Boundaries.test_changed_sidecar_is_detected_with_unchanged_products",
+    "schema2_boundaries.Schema2Boundaries.test_changed_source_bound_dotfile_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_cleanup_acknowledgement_is_not_completed_cleanup",
+    "schema2_boundaries.Schema2Boundaries.test_exact_wrapper_and_original_dotfile_bytes_are_read",
+    "schema2_boundaries.Schema2Boundaries.test_extra_outer_wrapper_member_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_failed_runtime_receipt_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_flat_framework_alias_cannot_claim_new_control",
+    "schema2_boundaries.Schema2Boundaries.test_missing_hebrew_runtime_observation_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_missing_source_bound_dotfile_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_new_head_cannot_be_old_framework_head",
+    "schema2_boundaries.Schema2Boundaries.test_old_failed_producer_remains_explicitly_failed",
+    "schema2_boundaries.Schema2Boundaries.test_qualification_cannot_be_inside_product_inventory",
+    "schema2_boundaries.Schema2Boundaries.test_reused_framework_cannot_claim_new_build",
+    "schema2_boundaries.Schema2Boundaries.test_runtime_metadata_must_succeed",
+    "schema2_boundaries.Schema2Boundaries.test_separate_roles_are_accepted_without_relabeling",
+    "schema2_boundaries.Schema2Boundaries.test_toolchain_change_is_rejected"
+  ],
+  "passed_ids": [
+    "schema2_boundaries.Schema2Boundaries.test_any_change_to_fixed_framework_contract_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_artifact_cannot_cross_producer_roles",
+    "schema2_boundaries.Schema2Boundaries.test_artifact_must_be_created_inside_own_upload",
+    "schema2_boundaries.Schema2Boundaries.test_boolean_counts_cannot_replace_integer_attempts",
+    "schema2_boundaries.Schema2Boundaries.test_changed_sidecar_is_detected_with_unchanged_products",
+    "schema2_boundaries.Schema2Boundaries.test_changed_source_bound_dotfile_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_cleanup_acknowledgement_is_not_completed_cleanup",
+    "schema2_boundaries.Schema2Boundaries.test_exact_wrapper_and_original_dotfile_bytes_are_read",
+    "schema2_boundaries.Schema2Boundaries.test_extra_outer_wrapper_member_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_failed_runtime_receipt_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_flat_framework_alias_cannot_claim_new_control",
+    "schema2_boundaries.Schema2Boundaries.test_missing_hebrew_runtime_observation_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_missing_source_bound_dotfile_is_rejected",
+    "schema2_boundaries.Schema2Boundaries.test_new_head_cannot_be_old_framework_head",
+    "schema2_boundaries.Schema2Boundaries.test_old_failed_producer_remains_explicitly_failed",
+    "schema2_boundaries.Schema2Boundaries.test_qualification_cannot_be_inside_product_inventory",
+    "schema2_boundaries.Schema2Boundaries.test_reused_framework_cannot_claim_new_build",
+    "schema2_boundaries.Schema2Boundaries.test_runtime_metadata_must_succeed",
+    "schema2_boundaries.Schema2Boundaries.test_separate_roles_are_accepted_without_relabeling",
+    "schema2_boundaries.Schema2Boundaries.test_toolchain_change_is_rejected"
+  ],
+  "tests_run": 20,
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "source_inputs": [
+    {
+      "path": "FRAMEWORK_PRODUCER.json",
+      "bytes": 5555,
+      "sha256": "9a5ae9a6196bb52bebf14c7e77508755f75f6df1c2c6ee62bbdc3cf5907c82c4"
+    },
+    {
+      "path": "candidate/Scripts/CI/hq-original-editor-distribution.py",
+      "bytes": 35281,
+      "sha256": "4711f3089b9a214923a0ccc36808b6efbfbef7250646db0915006e3e01736d3d"
+    },
+    {
+      "path": "candidate/Scripts/CI/original_editor_continuation_admission.py",
+      "bytes": 27570,
+      "sha256": "a8bca577b337eec3f3d6a154036c28447fce5b5dc57f83e950a74532c3446f5f"
+    },
+    {
+      "path": "candidate/Scripts/CI/restore-original-editor-distribution.py",
+      "bytes": 12482,
+      "sha256": "152a7bb8d4bb2abd5591d907453f13a859de5e9b55c13b74a0221876af8bd3d4"
+    },
+    {
+      "path": "candidate/Scripts/CI/runtime27-original-editor-native.py",
+      "bytes": 43410,
+      "sha256": "0d4fb04c71b133ab364b313fd4d58ff2008a6518051d50d7db2e03fa98235d19"
+    },
+    {
+      "path": "controls/original-dotfiles/app-gitattributes",
+      "bytes": 66,
+      "sha256": "2b436011cbcacb1393ca93f5c449ed0b1e5b4348e9ce5fcb3e8ec00469e1b692"
+    },
+    {
+      "path": "controls/original-dotfiles/hanlin-gitattributes",
+      "bytes": 162,
+      "sha256": "ef8722d0d0dd44cfb82678da6fd1056f9e9a9c6d943e9125bcd6f6a5460e88e6"
+    },
+    {
+      "path": "controls/run_boundary_controls.py",
+      "bytes": 3163,
+      "sha256": "64d519c522dded725fefa8855cca4f7851d4117234856fea853b8346da8a97f3"
+    },
+    {
+      "path": "controls/test_schema2_admission.py",
+      "bytes": 13496,
+      "sha256": "046e3e0c1c004fa7b4f81abf47d1ef35604de10ede362ba3c78aa87d0028adbb"
+    }
+  ],
+  "source_unchanged": true,
+  "framework_builds": 0,
+  "simulator_attempts": 0,
+  "prior_controls_replayed": 0
+}
