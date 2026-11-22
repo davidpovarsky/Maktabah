@@ -1,21 +1,21 @@
 # Otzaria continuation — 22 November 2026
 
-Snapshot: 2026-11-22 02:11 UTC. This is an execution checkpoint, not product acceptance.
+Snapshot: 2026-11-22 02:21 UTC. This is an execution checkpoint, not product acceptance.
 
 ## Integrated source
 
-The active integration worktree is `C:\Users\DAVID\Code\Maktabah-completion-20261122`, branch `codex/otzaria-completion-20261122`. The last published commit before this checkpoint is [d5fe015a6425dd87de5cff75de298bc46b7142ce](https://github.com/davidpovarsky/Maktabah/commit/d5fe015a6425dd87de5cff75de298bc46b7142ce).
+The active integration worktree is `C:\Users\DAVID\Code\Maktabah-completion-20261122`, branch `codex/otzaria-completion-20261122`. The reviewed consumer was integrated by true two-parent merge [1fde656921389d4bce9781cc13427fc4025297ed](https://github.com/davidpovarsky/Maktabah/commit/1fde656921389d4bce9781cc13427fc4025297ed); its four product trees are exactly those of source eaa971f9.
 
-The application and original UI-test trees are still exactly those of application source `62095a46f3eda10df87fad49812083ba163ee3ef`. Original Native fixes and the Live CI corrections were integrated through true two-parent merge `17fd831e1a33462c3503eb59af54f8445da67641`. Final Release push admission was integrated through true merge `759d753c2a0505bfb0fcae3cea3fb54f66cf5fb7`. No default branch, original user database, old worktree or historical result was reset.
+The application and original UI-test trees are exactly those of application source `eaa971f9a861c2b0878f4d558b606e60100ddcae`. The running Native/Live checks below remain bound to their earlier source62095 and do not automatically accept this newer application. Original Native fixes and the Live CI corrections were integrated through true two-parent merge `17fd831e1a33462c3503eb59af54f8445da67641`. Final Release push admission was integrated through true merge `759d753c2a0505bfb0fcae3cea3fb54f66cf5fb7`. No default branch, original user database, old worktree or historical result was reset.
 
 | Tree | Exact Git tree |
 |---|---|
-| Source | 7d3c913d8de4ff29837216003b7d71b6896a76f7 |
+| Source | cbdb967e402efb6d663b0681d89b987e3e2b9905 |
 | Vendor | 4065c0e62af325e83a65fe0c70270985229807ae |
-| Maktabah.xcodeproj | 0cb7fe0654ac1e601e2d88420f95cca0837e5699 |
-| Maktabah-iOSUITests | 196d1e1433a7e6ad3284430bc191510257daad89 |
+| Maktabah.xcodeproj | b3da2d1a2b3693a3deac1a7effac1e0916118609 |
+| Maktabah-iOSUITests | f336b041f6c503a30b32edb6055f933d22ebaa3b |
 
-The original-editor consumer remains isolated until its genuine producer distribution is qualified and the exact distribution inputs can replace its explicit UNFINALIZED values.
+The guarded original-editor consumer, lifecycle correction and HTTP result fix are now integrated. The ordinary HQ build keeps its default path: original editor admission is optional and imported only when supplied, and native SDK mounting is guarded by canImport. UNFINALIZED producer values block the dedicated StageB build, not the ordinary app build. The earlier isolation assumption was corrected after reading the actual driver. StageB remains unexecuted until the genuine producer distribution is qualified.
 
 ## Required original run outcomes
 
