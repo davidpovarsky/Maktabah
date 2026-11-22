@@ -1,6 +1,6 @@
 # Otzaria / Maktabah — current development checkpoint
 
-Snapshot: 2026-11-22T08:50:03.962083+00:00. Current run states below are observations at this checkpoint, not final acceptance.
+Snapshot: 2026-11-22T08:51:15.687459+00:00. Current run states below are observations at this checkpoint, not final acceptance.
 
 This report records executed work and its limits. It does not declare product, full Native, Release or original-editor acceptance.
 
@@ -31,7 +31,7 @@ The private diagnostic source6aa is integrated with34 actual Python boundary con
 
 Anytype original Space permission composition is true-merged into the published root native integration branch at217308ae2859c250295bbbdfa3d69f8dbf28a1e4 (merge d84a52e65df162771d320d4e744821b2eae01e71). Root independently verified86 payloads,18 original inputs,13 compiled inputs, actual PE/XML/raw logs and10 distinct passing component cases without rerun. Held-read adapter source3bbe081753f84a36370ac545bdc0271e0aad8f58/evidencef81582f4773f8a472723fa31ab9f024591704432 is published after26 new portable tests passed; independent root intake/merge is pending. The prior fixture compile failure is retained. This is not native RPC/body/COMMIT/ACK qualification.
 
-The two-file Anytype generic-cut repair source4bab/profile56d5d0b68d9d46b93ea31fdc69873d5f1d9ee793 passed two new bounded controls and one49-input local admission. Original framework run45003378181 is active under the author's sole finite observer; no framework result is inferred. Heart observerV4 has133 frozen source-review payloads/108 verified immutable originals and independent strict-decoder review, but zero builds/tests/native executions; genuine disposable-native controls are being prepared. Full runtime/device integration, Native116/Release114, signing and peer StageB gates remain open.
+The two-file Anytype generic-cut repair source4bab/profile56d5d0b68d9d46b93ea31fdc69873d5f1d9ee793 passed two new bounded controls and one49-input local admission. Original framework run45003378181 completed FAILURE at08:49:17UTC on exact56d5; the author's sole observer is terminal and the author owns one artifact intake/diagnosis. No framework qualification is inferred. Heart observerV4 has133 frozen source-review payloads/108 verified immutable originals and independent strict-decoder review, but zero builds/tests/native executions; genuine disposable-native controls are being prepared. Full runtime/device integration, Native116/Release114, signing and peer StageB gates remain open.
 
 ## Live8 terminal result and completed secret cleanup
 
@@ -61,7 +61,6 @@ The Live7 admitted failure evidence alone could not distinguish a missed dismiss
 | [Hanlin Live 44969637013](https://github.com/davidpovarsky/Maktabah/actions/runs/44969637013) | FAILURE, 01:40:07 UTC | The exact locator assertion failed before consent, Connect or provider execution: source line523 versus canonical paragraph start522. |
 | [Hanlin Live6 44974028362](https://github.com/davidpovarsky/Maktabah/actions/runs/44974028362) | FAILURE, 02:47:08 UTC | Original app/UI build and corrected exact locator assertion passed. The consent switch remained0 after a native tap at HanlinConsumerAcceptanceTests.swift:469. Connect and provider completion were not reached. |
 | [Hanlin Live7 44993301949](https://github.com/davidpovarsky/Maktabah/actions/runs/44993301949) | FAILURE, 06:54:09 UTC | Original app/UI build, exact locator and consent ON passed. After Connect, the source-qualified read-session element was absent. No prompt was sent. |
-
 | [Hanlin Live8 45000580919](https://github.com/davidpovarsky/Maktabah/actions/runs/45000580919) | FAILURE,08:39:52UTC | Original app/UI build and21 diagnostic stages through configuration completion passed their observations. The unchanged revoke-button assertion failed;0 verified provider conversations. |
 
 All four recorded Live attempts completed zero verified provider conversations. Each remains a separate source-bound failure.
