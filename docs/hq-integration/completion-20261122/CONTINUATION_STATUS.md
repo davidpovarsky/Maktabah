@@ -1,110 +1,117 @@
-# Otzaria continuation â€” 22 November 2026
+# Otzaria / Maktabah — current development checkpoint
 
-Snapshot: 2026-11-22 02:43 UTC. This is an execution checkpoint, not product acceptance.
+Snapshot: 2026-11-22T03:22:07.149515+00:00.
 
-## Integrated source
+This report records executed work and its limits. It does not declare product, full Native, Release or original-editor acceptance.
 
-The active integration worktree is `C:\Users\DAVID\Code\Maktabah-completion-20261122`, branch `codex/otzaria-completion-20261122`. The reviewed consumer was integrated by true two-parent merge [1fde656921389d4bce9781cc13427fc4025297ed](https://github.com/davidpovarsky/Maktabah/commit/1fde656921389d4bce9781cc13427fc4025297ed); its four product trees are exactly those of source eaa971f9.
+## Current integrated application
 
-The application and original UI-test trees are exactly those of application source `eaa971f9a861c2b0878f4d558b606e60100ddcae`. The Native/Live checks below remain bound to their earlier source62095 and do not automatically accept this newer application. Original Native fixes and the Live CI corrections were integrated through true two-parent merge `17fd831e1a33462c3503eb59af54f8445da67641`. Final Release push admission was integrated through true merge `759d753c2a0505bfb0fcae3cea3fb54f66cf5fb7`. No default branch, original user database, old worktree or historical result was reset.
+The canonical branch is [codex/otzaria-completion-20261122](https://github.com/davidpovarsky/Maktabah/tree/codex/otzaria-completion-20261122). Its application source for the next four focused Native cases is [385ee84a8acb3fbc3c013c0977417b61fd3d8a17](https://github.com/davidpovarsky/Maktabah/commit/385ee84a8acb3fbc3c013c0977417b61fd3d8a17); source-binding metadata is 46a185242b28b71d4b6d253747f2b8d46e4189a0.
 
-| Tree | Exact Git tree |
+| Product tree | Exact Git tree |
 |---|---|
-| Source | cbdb967e402efb6d663b0681d89b987e3e2b9905 |
+| Source | 362d3336b0c11a8f428b25252edbb81f9907c2f8 |
 | Vendor | 4065c0e62af325e83a65fe0c70270985229807ae |
-| Maktabah.xcodeproj | b3da2d1a2b3693a3deac1a7effac1e0916118609 |
-| Maktabah-iOSUITests | f336b041f6c503a30b32edb6055f933d22ebaa3b |
+| Maktabah.xcodeproj | 8c0fa1ccfbcfae01fae3c267512864e00efcf078 |
+| Maktabah-iOSUITests | cd108ec2cec9f8c6089a1eeff2ec77bc9372a469 |
 
-The guarded original-editor consumer, lifecycle correction and HTTP result fix are now integrated. The ordinary HQ build keeps its default path: original editor admission is optional and imported only when supplied, and native SDK mounting is guarded by canImport. UNFINALIZED producer values block the dedicated StageB build, not the ordinary app build. The earlier isolation assumption was corrected after reading the actual driver. StageB remains unexecuted until the genuine producer distribution is qualified.
+[APPLICATION_FREEZE.json](native-four-application-freeze/APPLICATION_FREEZE.json) verifies the exact merge, changed paths, payload hashes and trees. Ordinary HQ, future original-editor Native and future Hanlin Live bindings target this application. The focused wrapper is owned by native_completion and will run three failed original selectors plus one isolated consent diagnostic. Full Native116 and Release114 manifests have not been relabeled as accepted or silently updated.
 
-## Required original run outcomes
+This is a focused diagnostic source freeze. Original-editor distribution integration, production annotation work and subsequent verified corrections may require a later application freeze.
 
-### Native 44969361774
+## Requested runs and temporary secret cleanup
 
-[Original run](https://github.com/davidpovarsky/Maktabah/actions/runs/44969361774), attempt 1, wrapper `3bb181f4d3ca1bde9f1ce43de40d1f3658d821c5`, application `62095a46`.
-
-The run finished FAILURE at02:36:42 UTC. Actual Apple UI-test compile, original app/UI-runner build, original Host48 input-equivalence reuse and real HID preparation passed. The admitted six-case result is3 PASS /3 FAIL /0 skipped /0 not-run. ReduceMotion, pointer plus hardwareEscape, and full HIDComparison (including narrow-window/Inspector) passed. Both global-search orientation cases failed at an exact20px navigation geometry difference; KeyboardDispatchCalibration failed at visible selection after an actual field down-arrow command. The original99-file evidence ZIP was verified at SHA256228e3fd02e3063afbc3cb8a59cc3d85907219399c48ab7fb870a1ff1585971a6. Failed cases are under source/AX diagnosis; passed cases are retained.
-
-The original finite observer `job_90b5115b73af` expired at 01:57:15 while CI was still active. Its successful process exit is not a successful test result. After confirming that no corresponding `gh run watch` process remained, the assigned Native owner started one replacement observer, `job_dc394cf49052`, PID 23332. It observes the same run; no rerun or cancellation occurred. Receipt: `Maktabah-release-push-consumer-20261122\build\native6-observer-44969361774-v2\START.json`.
-
-### Hanlin Live 44969637013
-
-[Original run](https://github.com/davidpovarsky/Maktabah/actions/runs/44969637013), attempt 1, wrapper `b16c157f09c60599527bf67b6dc17e4ab68fd46b`, application `a0781bd2628c1311394f7da6aa1e84c17f252fa4`, original Hanlin `e00498e33f106cc43be0476ffa2e09329c8ca300`.
-
-The run finished **FAILURE** at 01:40:07 UTC. The original build, CPython 3.12/arm64, original decoder and fixture provisioning succeeded. One Native test failed before Connect/consent/provider execution: its exact locator assertion expected source line 523, while the original default-paragraph reader returned paragraph start 522. Zero provider conversations were completed.
-
-The temporary repository secret `OTZARIA_LIVE_GEMINI_API_KEY` belonging to this original run was **deleted and verified absent**: DELETE returned 204, subsequent GET returned 404 at 01:40:14.523327 UTC. The complete metadata-only cleanup receipt is retained in [hanlin-live5-paragraph/secret-cleanup-44969637013.json](hanlin-live5-paragraph/secret-cleanup-44969637013.json).
-
-All 21 admitted evidence files were checked against their admission sizes and SHA256 values. Before/after source receipts are byte-identical. The artifact is GitHub artifact 14734780218, 82,687 bytes, reported ZIP digest `2d4f90d9021db7fbf2004f94bef655f4aec9a57f8ba4e11e42f1e09dd9483f34`. The downloaded file contents were verified; no claim is made that the original ZIP itself was locally hashed. Raw private provider input, xcresult attachments and videos remain excluded by the original evidence policy.
-
-## Executed repairs and their limits
-
-| Change | Evidence actually obtained | Remaining acceptance |
+| Run | Actual result | What the evidence establishes |
 |---|---|---|
-| Live paragraph oracle, source e746d824 | Ten focused positive/negative SQL controls; independent read-only real miniTest10 v6 DB; original XCTest byte-identical | Actual provider/Core/UI journey in Live6 |
-| Exact final Release push consumer, c4e4f26b | 31 gate tests; 29 Linux handoff tests; old push rejection reproduced; strict matching push accepted in fixture controls | Fresh full Release114+2, signed release and distribution |
-| Foundation55 reuse in both final workflows | Existing original Apple55 evidence checked against all 13 unchanged inputs | No additional test pass inferred |
-| Original-editor presentation lifetime, e297a430 | Seven compiled portable controls using exact presentation class and original lifetime, with explicit SDK/DB probes; three active syntax parses | Apple SDK, original framework, mounted editor, durable save/reopen |
-| Worker HTTP result, eaa971f9 | Original HTTP500 false success reproduced; 16 Foundation response/error controls pass; exact result propagation reviewed | Live CloudKit/outbound activation is not claimed |
+| [Native 44969361774](https://github.com/davidpovarsky/Maktabah/actions/runs/44969361774) | FAILURE, 22 November 02:36:42 UTC | Original app and UI runner built. Six Native cases executed: three PASS, three FAIL, no skipped or missing cases. |
+| [Hanlin Live 44969637013](https://github.com/davidpovarsky/Maktabah/actions/runs/44969637013) | FAILURE, 01:40:07 UTC | The exact locator assertion failed before consent, Connect or provider execution: source line523 versus canonical paragraph start522. |
+| [Hanlin Live6 44974028362](https://github.com/davidpovarsky/Maktabah/actions/runs/44974028362) | FAILURE, 02:47:08 UTC | Original app/UI build and corrected exact locator assertion passed. The consent switch remained0 after a native tap at HanlinConsumerAcceptanceTests.swift:469. Connect and provider completion were not reached. |
 
-The real miniature database SHA256 is `d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef`. Its first relationship selects book3891, source line523. Independent SQL places that line in TOC entry643037 with exact members522â€“526. The new oracle rejects ambiguous mappings, foreign-book entries, non-leaf entries, unsupported root-title placement and missing source lines. It retains both the requested source anchor and the independently derived paragraph locator. It does not accept an observed UI locator as an expected value and does not allow approximate locator equality.
+Both Live attempts completed zero verified provider conversations. They remain separate historical failures.
 
-A local preparation attempt detected inherited Windows CRLF conversion before any secret or GitHub run was created. Eight affected files were proven to differ only by CRLF, their original bytes were retained, and exact Git bytes were restored. The original executed/reviewed Windows hashes remain preserved; [EXACT_GIT_BYTE_EQUIVALENCE.json](hanlin-live5-paragraph/EXACT_GIT_BYTE_EQUIVALENCE.json) records explicit Git/CI correspondence and identical Python ASTs. Passing controls were not rerun merely because line endings changed. The new Live launch then verified all 260 execution-input blobs exactly.
+The temporary OTZARIA_LIVE_GEMINI_API_KEY was deleted after each relevant run, with exact metadata matching and an absence check:
 
-The worker fix accepts actual HTTP2xx responses and preserves transport, cancellation, non-HTTP and rejection failures. It does not change pending-row acknowledgement or invent automatic retry. The current opt-in owned-cloud editor path has no production caller; this correction is not claimed as completed rich-body synchronization.
+| Secret instance | DELETE | Subsequent GET | Verified time |
+|---|---:|---:|---|
+| Original run, created01:03:09Z | 204 | 404 | 01:40:14.523327 UTC |
+| Live6, created=updated02:00:10Z | 204 | 404 | 02:47:33.815508 UTC |
 
-## Active Live6: a new, distinct secret lifecycle
+Receipts: [original cleanup](hanlin-live5-paragraph/secret-cleanup-44969637013.json) and [Live6 cleanup](hanlin-live6-consent/secret-cleanup-44974028362.json). Both lifecycle owners are terminal. No further cleanup or duplicate Live observer is required. The next focused Native route supplies no provider credential.
 
-[Run 44974028362](https://github.com/davidpovarsky/Maktabah/actions/runs/44974028362), attempt 1, wrapper `9c66b4ccc06340a04de53a4c3370182873ed18bc`, application `62095a46`, was started by one non-force push at approximately 02:00 UTC.
+The Live6 artifact14735424221 was downloaded once, verified at83,455 bytes, SHA256 aac873daf6657ef014ed1c1b3db48a44162d240e95408ef39df846fbfac8e880, and passed ZIP CRC. All21 admitted files match their original size/SHA256 records; source-before and source-after are byte-identical. [Retained Live6 evidence](hanlin-live6-consent/README.md) preserves the failure and its scope. Private provider input, raw xcresult attachments and video were excluded by the original policy.
 
-It has passed toolchain, App Group interface, Python/decoder and cache preparation and is building the original app/UI runner. It has not yet produced a provider or Native acceptance result.
+## Native findings, repairs and next execution
 
-A new temporary secret was created only after verifying the previous name absent. Its metadata is created_at=updated_at=`2026-11-22T02:00:10Z`. **This is not the deleted 01:03:09Z secret.** The sole observer and cleanup owner is `job_4401638d9d95`. Its lifecycle is `Maktabah-completion-20261122\build\hanlin-live6-lifecycle-attempt2\lifecycle.json`. It checks exact run/attempt/head, waits for terminal CI state, then deletes only matching secret metadata and verifies404. Do not launch a competing watcher or delete using the previous run's metadata. No secret value was written to evidence, printed, or passed in argv.
+The three passing original cases are ReduceMotion, pointer plus hardware Escape, and HIDComparison including the narrow-window Inspector journey. They are retained and excluded from the next focused selection.
 
-## Original Anytype producer and consumer
+The two Search failures occurred only in restored initial-Search comparisons. Original AX and images show the TabView container beginning at different heights while native tab buttons remain at the same position. Both original and candidate branches can enter the early-restoration mismatch. Code f5d53f3928e8a2319de19373103dcbe3f3153e3c initializes the canonical, available saved destination and its existing navigation manager before the first TabView mount. It preserves the original onAppear/session behavior and changes no offsets, geometry assertions or tolerances. Eighteen new portable restoration controls and full-file Swift syntax passed; UIKit behavior is awaiting the actual rerun.
 
-Producer run44972129359 passed all 221 declared source controls and failed before framework compilation at dependency resolution. Actual resolver evidence refined the cause: the nested PinkhaKit Inspector requirement disagreed with the Xcode project, and the lock lacked seven genuine Hanlin transitive dependencies. The source candidate `3a33d083af7a4f087b37bf910904bb817e990ee0` preserves all44 old pin records and adds the seven manifest-proven pins, total51. Apple resolution run44973540287 completed actual resolution successfully with51 unchanged pin records, then its observation assertion incorrectly required an originHash change. The strict-only follow-up [44975218662](https://github.com/davidpovarsky/anytype-swift/actions/runs/44975218662) passed at02:19:56 UTC: the original -onlyUsePackageVersionsFromResolvedFile resolution exited0 in187.57seconds. It reused the prior unrestricted-resolution proof rather than repeating that operation. The real framework producer is now [44976039281](https://github.com/davidpovarsky/anytype-swift/actions/runs/44976039281), frozen wrapper fc03fcd713e2c449ad97c5d1e604a9433c2a309b. Its actual221 source controls, strict51-pin resolution, Hanlin verification, Xcode preflight and exact Heart checks passed. The run then failed at ComputeTargetDependencyGraph before Swift compilation because Xcode required explicit authorization for EquatableMacros. The sole observer job_03d696836005 is terminal. A narrowly scoped exact-package macro trust preparation is being reviewed; no blanket validation bypass or product-source change is credited.
+The keyboard calibration failure was an incorrect identity comparison. Verified before/after AX shows selection moving from RECENT בראשית at y238.5 to the separate main ספרים בראשית row at y314.0. The test compared equal display labels. Code a43aa9d8a658d5afbadc66edaa3c109a28edcad8 exposes the existing original item.id as an accessibility identifier. The test now requires unique real row identities, the exact first selection, the exact next row after DownArrow and the original row after UpArrow. Key dispatch, selection logic, Escape/HID routes and timeouts are unchanged. Both complete Swift files passed syntax and an independent review; no Native PASS is inferred.
 
-Reviewed source-only followups from the parallel continuation are being reused by their exact preimage/patch/output hashes: History15, widgets4 R2, TypeProperties7 and the one-line original shake-undo reservation. Prefixes6d2f3755/6947afe4/9bebdf10/0a93b302 identify patch SHA256 values, not necessarily Git commits. The TypeProperties transfer was independently verified at its shared Windows path with ZIP SHA256 `3735f3a3359a0917b3108ec6505929df28dc58b61e555835b5ea90cfc5498c6a`. Channel-pin permission-lifetime changes have 18 portable controls and five syntax parses; their Apple/Native acceptance is still pending.
+Code18ed08f80c0c6760e8003a70733637945192f8c9 adds the actual original Reader/Chat consent interaction without a key, Connect or Send. It records native AX/screens before and after one switch tap, waits for the actual ON value, taps OFF, closes and verifies the exact original book text, locator and workspace owner. This makes the Live6 failure observable without collecting private provider input. It is a new diagnostic, not a substitute for live-provider or saved-conversation acceptance.
 
-The consumer branch `codex/otzaria-original-editor-lifecycle-20261122` retains source/evidence up to `5ccd0c318f0900c41302a6a27a7ab359930e424b`, application `eaa971f9`. Stage B continues to require the original framework, public/SPI API evidence, source membership, binary provenance and one real original UI case. Local opaque-body save/reopen does not demonstrate preview transport, classification, CloudKit rich-body synchronization, or bidirectional conflicts.
+The original Native evidence ZIP14735253756 was verified at20,480,209 bytes, SHA256228e3fd02e3063afbc3cb8a59cc3d85907219399c48ab7fb870a1ff1585971a6. The full captures ZIP14736147772 was verified at433,737,125 bytes, SHA25697e5a1de4128a282d631abe104fa273ad77b5b1ba010e6fbc84ef47290c0252d, with all3015 ZIP entries CRC-checked. The17 priority entries match the fully verified archive byte-for-byte. [Native raw evidence and controls](../../native-followup-20261122/) and [integration proof](native-current-integration/MERGE_PROOF.json) preserve both successful and failed outcomes.
 
-The original Repository import defect has been reproduced using the unchanged original Repository/Annotation/SQLite/SyncPendingStore and real Locator/lifetime, Swift6.3.3 and SQLite3.53.4, with explicit Windows logging/catalog boundaries. Six defects reproduced in both a writer process and a separate reopen process: same-UUID imports lose durable backendLocator/context, and UUID-less positional fallback can adopt another backend/work/position or malformed locator. Three original valid controls passed. A minimal isolated downstream identity helper plus original SQL binding correction is in progress; this checkpoint does not credit a fix or Apple acceptance. Schema and pending upload/delete rows are preserved.
+## Repository identity and shared Cloud worker
 
-## Acceptance still open
+The original Repository defect was reproduced with the actual Repository, Annotation, SQLite and SyncPendingStore. Six defective cases failed in the original writer and separate reopen process; three valid controls passed. Code5d0a11f6a799bee9deb23dc91b29e832bec14335 persists backend locator/context for same-UUID imports and prevents UUID-less positional fallback from adopting another backend/work/position or malformed locator. Schema, timestamps and original pending-upload/delete records were preserved.
 
-- Full Native116 and fresh Release114 UI plus2 independent oracles must be frozen to the final application/test/vendor/project trees and pass their original gates. The Release evidence lifetime remains24hours.
-- Original editor StageB must actually mount, type two native blocks, save under the same annotation UUID, import/reopen and demonstrate survival. StagesCâ€“F remain distinct requirements: classification and document visibility,100/1000/5000 behavior, outbound durable synchronization, explicitly verified bidirectional conflict semantics, and actual iPad UI/accessibility/lifecycle coverage.
-- Historical Core194, Host48, Store11, Foundation55 and full-v32 evidence is retained only within its actual unchanged dependency closure. Successful component evidence is not converted into current UI or release acceptance.
-- The previous49-file protected upstream patch package is stale. Generate a new exact full-index package only after final code integration. Genuine owner attestation and the pinned verification authority must be available; operational development authorization is not a fabricated cryptographic signature.
-- Books Updates still lacks the required backend/schema/source-hash/migration contract in the observed provider feed. The original refusal boundary remains.
-- Last physical-device evidence did not establish an Apple mobile bridge. Actual owner iPad QA follows a valid internal TestFlight build; it is not a circular pre-upload prerequisite. Software gates, signed IPA and AppleVALID still precede release acceptance.
+[Apple run44977823319](https://github.com/davidpovarsky/Maktabah/actions/runs/44977823319) completed SUCCESS on checkout385fffafb5b014f0777b3100151b5b6d0e75eed9, application5d0a11f6:
 
-## Coordination and durable records
+- Original Cloud48:48/48.
+- Actual original Repository imports:9/9.
+- Distinct-process SQLite reopen:9/9, process IDs19651 and19652.
+- Apple Swift6.4.2, SQLite3.54.0 and original OSLog.
+- All93 source inputs unchanged during execution.
 
-Asana handoff: [1220763167870295](https://app.asana.com/0/0/1220763167870295/f). The parallel context completed this **administrative handoff only** at02:02:18 UTC after checking delivery/receipt evidence. The32 product tasks remain open. This is not product completion.
+The raw artifact14736950047,656,371 bytes, SHA25657d265b96541376c07c683a099b3888518d23163a508d604facf7b18a65c8844, was verified against GitHub metadata and locally CRC-checked. It was independently verified again from its exact Git blob before merging. [Full original Apple evidence](cloud-import-identity/apple-44977823319/) is integrated through mergeae9790022b5f1c07157781d07fba6df239594a55. These are component results; live CloudKit transport, Anytype and Native UI were not executed by that route.
 
-Relevant current discussions are UI06 [1220542467495722](https://app.asana.com/0/0/1220542467495722/f), cross-app [1220545194715722](https://app.asana.com/0/0/1220545194715722/f), and Release [1219684630509114](https://app.asana.com/0/0/1219684630509114/f).
+The earlier HTTP worker correctioneaa971f9 retained16 passing Foundation response/error controls. The original Core termination flush had the same false-success pattern: a rejected HTTP response with no transport error was logged as successful. Code5f862ea7d785de813fc28680cfe403a3e082ba22 reuses the exact pure classifier and moves its single declaration into the existing shared Core file. Its callback writes a typed failure into the original Mutex and signals the same semaphore once. The three-second wait, pending queue, ACK, cancellation and retry behavior are unchanged.
 
-SentinelX continuation context `sxc_NCA3K3YC` is related to preserved parallel context `sxc_WAXQV0PW`. The current team owns canonical integration, the Anytype producer, isolated consumer fixes and the single Native/Live observers. The parallel context publishes its reviewed source packets to a separate neutral branch. No existing worktree, user data, failed run or prior evidence is replaced.
+Four new exact-callback controls reproduced the original HTTP503 false success and verified accepted204, rejected HTTP, missing response and original transport-error identity. The prior16 cases were not rerun. All three original application targets and the original local/cloud acceptance closures include the shared declaration. [Core evidence](core-worker-termination/README.md) retains source relocation, target membership, original receipts and the270-input source preflight.
 
-## Consumer integration source admission
+The original Apple import9 compiled closure is unchanged across the Core correction and remains reusable. The Cloud48 run remains an actual result for application5d; it is not claimed to have executed the later Core changes. A full app compile is included in the next Native route.
 
-The raw [consumer-1fde/MERGE_PROOF.json](consumer-1fde/MERGE_PROOF.json) verifies merge parents and all four product trees. Existing ordinary HQ source preflight and original-editor source-context admission both passed at head1119c492, job94107d9acc37. These are source checks with zero new Apple/Native executions. Future Live binding now targets the integrated sourceeaa971f9; the running Live6 remains frozen9c66/source62095.
+## Original Anytype producer
 
-Native observer job_dc394cf49052 ended at02:36:54.811 UTC on actual terminal FAILURE; observer_returncode1, observer_window_ended=false. No third observer is needed.
+The original51-pin graph has real Apple resolution evidence. Strict-only run44975218662 passed on the original locked graph, without repeating the prior successful unrestricted resolution. The original44 records were retained and seven manifest-proven Hanlin transitive dependencies added; no fictitious originHash was introduced.
 
-## Mandatory signing gate integration
+Producer44976039281 onfc03 passed source controls, original Hanlin, Heart and toolchain checks, then failed at ComputeTargetDependencyGraph before Swift compilation because Xcode required authorization for EquatableMacros. The correction authorizes only the reviewed Equatable1.4.1 package/revision/target and restores the prior macro trust bytes. It does not disable macro validation globally.
 
-True mergef802143e integrates gate5255c96a and evidenceea60a522. TestFlight signing/upload now depends on authentic owner approval, with immutable verifier9733798a, exact candidate/source coverage and external verification key. Dev boundary triggers and fatal trusted-base fetch failures are included. [owner-gate-f802](owner-gate-f802/) retains the actual merged candidate's refusal:50 protected paths,0 verified approvals, no external owner public key, plus the existing coupled-policy diagnostic. Nineteen new controls were retained without rerun. No signature, registry edit, Native result or release is inferred.
+The current producer is [44978502186](https://github.com/davidpovarsky/anytype-swift/actions/runs/44978502186), frozen atcb2df9baa201db0ce404ba37eac853424bae6204. Publishing10 fromef89/f254 and the narrow macro preparation were integrated together. The local seal covered2252 original Swift sources and49 execution inputs. The sole native observer is job_f81168b93de0. The last received runtime update had passed source, Hanlin, Xcode, original Heart and scoped macro preparation and entered the real framework/consumer step. A successful distribution, binary consumer, API witness and restoration receipt have not yet been received.
 
-## Current checkpoint after Repository integration and Live6 cleanup
+Ordinary HQ keeps optional original-editor admission and canImport guarding. An UNFINALIZED producer blocks dedicated StageB, not every ordinary app build. StageB still requires the genuine qualified original distribution and actual native two-block save/reopen evidence. Source-only and portable controls are not editor runtime acceptance.
 
-At this checkpoint the canonical integration includes true merge 1bd060335717af7833eb4fba4456efe9ab900593, preserving exactly application 5d0a11f6a799bee9deb23dc91b29e832bec14335's four product trees. See consumer-cloud-5d/MERGE_PROOF.json. The earlier eaa source paragraphs remain historical. The exact Repository correction is retained with nine passing writer and nine separate-process reopen cases; real Apple run44977823319 remains pending and has one owner.
-Live6 is now terminal FAILURE, not running: exact locator passed, consent remained0 after native tap at line469, no Connect or provider completion. hanlin-live6-consent contains all21 verified admitted files, exact source receipts and secret DELETE204/GET404 at02:47:33.815508 UTC. There is no active temporary Live secret or Live observer.
-Native44969361774 keyboard diagnosis is precise: before/after AX proves selection moved from RECENT בראשית to the same-labelled main ספרים בראשית row. Its comparison of display labels was not row identity; correction will use real original item IDs and exact adjacent-row assertions. Geometry restoration correction is separately reviewed; neither is credited as Native PASS.
-The current coupled-policy refusal concerns unapproved violating paths. Authentic, valid approval of all protected paths removes those entries from the original verifier's violating set; it is not an independent permanent block and does not require a new policy baseline. The external owner key/signatures remain absent.
+The new production annotation work is isolated from the frozen producer. Exact original Heart source shows that creation and indexing can diverge; a zero-result index query cannot prove no object was created. The reviewed direction preserves an uncertain create intent and permits recovery only through a positively verified original native identity. It does not issue a second create or ACK after an uncertain outcome. Dedicated annotation classification, stable destination identity, visibility and original-service integration remain unfinished.
 
-## Apple component PASS and keyboard identity correction
+The peer continuation owns the property-modal source chain. Its files and frozen producer are not being modified by competing writers.
 
-Apple44977823319 is verified SUCCESS: Cloud48=48/48, original Repository9/9 and distinct-process reopen9/9; original Apple OSLog, Swift6.4.2, SQLite3.54.0, PIDs19651/19652,93 unchanged inputs. Exact raw artifact and readable results are integrated under cloud-import-identity/apple-44977823319. Earlier pending language is historical. Keyboard source a43aa9d8a658d5afbadc66edaa3c109a28edcad8 fixes the demonstrated same-label oracle via actual original row IDs and exact next/up assertions; Native acceptance remains pending. TEAMdb224/a2fd has been merged with exact incoming payloads and unchanged product trees. See keyboard-identity-and-evidence-merges/INTEGRATION.json; no passed tests were rerun.
+## Retained dependency evidence
+
+The peer's [M17 run44976915323](https://github.com/davidpovarsky/anytype-swift/actions/runs/44976915323) passed one original strict CocoaPods-workspace resolution for Maktabah813fbe79c1b325ee21a8c2be78bb86577f44bf6c. All17 pins/checkouts,268 prepared workspace inputs and424 original Hanlin records were preserved. There was no automatic resolver or second strict invocation. Evidence commit538b2c9ca153c81a593faa08fab3b6a080d428e8 is retained by the peer. Reuse for385ee requires an explicit dependency/preparation comparison; it is not assumed.
+
+Historical Core194, Host48, Store11, Foundation55 and full-v32 results remain limited to their proved unchanged dependency closures. A successful component does not accept the current full application. Passed tests are rerun only for a concrete changed dependency or a required final gate.
+
+## Signing and remaining external requirements
+
+Mandatory authentic owner approval before TestFlight signing/upload was integrated through mergef802143e. It uses immutable verifier source978db8b3 and SHA2569733798a242382f59da99cb999a169e2c69c59010b336742e9a8fa151e837676, exact candidate/source coverage and the original policy baseline031df357. The actual audit atf802 refused50 protected paths with zero verified approvals; [raw gate evidence](owner-gate-f802/) remains unchanged.
+
+The coupled-policy diagnostic applies to unapproved violating paths. Valid authentic approval of all protected paths removes those entries; it does not require inventing a new baseline. The last authority check found no external owner verification key or authentic signatures. Operational development authorization is not a fabricated cryptographic signature. The final full-index owner package must be regenerated after the final source is established, including the later protected Core change.
+
+Other requirements remain open:
+
+- Full Native116 and fresh Release114 UI plus2 independent oracles on one qualified final source/build; the24-hour Release evidence limit remains.
+- Actual original-editor StageB and classification,100/1000/5000 behavior, durable outbound delivery and separately verified bidirectional conflicts.
+- Native RTL/LTR, VoiceOver, lifecycle, multiwindow and physical-iPad acceptance where required by each task.
+- Books Updates provider contract: the last verified feed lacked authoritative backend/schema/source-hash/migration fields; the original refusal remains.
+- Physical execution: the last verified host inventory exposed no usable Apple mobile-device bridge. Actual owner iPad QA follows a valid internal TestFlight build; it is not a circular pre-upload gate.
+
+## Asana acceptance and coordination
+
+[Handoff1220763167870295](https://app.asana.com/0/0/1220763167870295/f) is an administrative delivery record, not product completion.
+
+[TEAM1219611682682931](https://app.asana.com/0/0/1219611682682931/f) was completed after all six reviewed documentation fixes and26 evidence files were integrated by true merge5f019f29486dbe53b4b48f0773119079e536fec5, exact payload/product-tree checks, publication and read-back. Existing76 documentation checks and original ensure-team were reused. The review was technically delegated under the current explicit authorization; no personal owner reading of old PR3 is asserted.
+
+The last task inventory has49 top-level tasks:31 open and18 completed. No additional task met its actual complete definition of done. Core/API still require real client/native/live-consent evidence; ReaderHistory explicitly needs physical iPad; research-only scope was superseded by implementation acceptance. Those tasks remain open.
+
+Canonical continuation context: sxc_NCA3K3YC. Peer context: sxc_WAXQV0PW. Each run has one designated observer. Dirty legacy worktrees, original databases, failed runs and earlier raw evidence are preserved.
