@@ -1,0 +1,23 @@
+{
+  "application_source": "786f5ea6daabd2e1f775b518939223091f3ced4f",
+  "at": "2026-11-22T03:06:46.041938+00:00",
+  "consent_diagnostic_commit": "18ed08f80c0c6760e8003a70733637945192f8c9",
+  "consent_full_file_syntax_exit": 0,
+  "consent_independent_review": "native_completion approved real controls/identities, no credentials/Connect/Send/fallback",
+  "consent_selector": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection",
+  "geometry_merge": "786f5ea6daabd2e1f775b518939223091f3ced4f",
+  "geometry_reviewed_code": "f5d53f3928e8a2319de19373103dcbe3f3153e3c",
+  "incoming_manifest_files_verified": 60,
+  "merge_parents": [
+    "18ed08f80c0c6760e8003a70733637945192f8c9",
+    "c729c8aec506a83f930b7b46a9be7d5d529bcdee"
+  ],
+  "native_acceptance": "PENDING_FOUR_CASE_FOCUSED_RUN",
+  "native_tests_rerun": 0,
+  "product_trees": {
+    "Maktabah-iOSUITests": "cd108ec2cec9f8c6089a1eeff2ec77bc9372a469",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Source": "f0c91c81c3e38330136772f123d43e86830c1248",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  }
+}
