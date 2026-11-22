@@ -1,0 +1,47 @@
+[
+  {
+    "path": "visual-11-reader/11D71C53-0D47-4874-B0D5-91DD41A6B8D9.txt",
+    "bytes": 43576,
+    "sha256": "c935b2799a2ffc304a40c831d1c02b2de2a111facb0ec73963c6c5ff9438b814"
+  },
+  {
+    "path": "visual-11-reader/5C812184-6119-42E1-83B2-E751835AE097.png",
+    "bytes": 693401,
+    "sha256": "ca89fd335f925755ceae3cfc947bdab191cf65f0e10eb6f76262adff9909e9d9"
+  },
+  {
+    "path": "visual-11-reader/939A958E-01D8-4B1C-987A-047836AA27A7.png",
+    "bytes": 693246,
+    "sha256": "ec515bf4808afaaa671d403a661f32d92c2d852f92c3bfde0c97e6b309d65ed6"
+  },
+  {
+    "path": "visual-11-reader/A02E68AD-7248-4E4E-ACD2-664400BD1AD5.png",
+    "bytes": 692924,
+    "sha256": "3f8196f18f929f0006dce6397163eafd8d3013b039f797f3d2b729b0b78bb8a1"
+  },
+  {
+    "path": "visual-11-reader/CE9022AF-A123-4586-9AAD-61328E4F421D.txt",
+    "bytes": 43576,
+    "sha256": "758516bbbe4afdeb5bdddf9178c03b850f8fd668d379ecd50740c51ad1a8b406"
+  },
+  {
+    "path": "visual-11-reader/DE0F6204-2D8B-42DA-983D-2E0B2494FEEE.txt",
+    "bytes": 31840,
+    "sha256": "3fc08039a12d5b40e87e2fc3e2a568899120c3d43282143e8baf59b9c424a039"
+  },
+  {
+    "path": "visual-11-reader/E1444A32-5A6B-4CDE-9CD2-B271F3288FEC.txt",
+    "bytes": 43572,
+    "sha256": "703667207d7bb0f16cc5110f6a6758c4e98dae7ccf0942c85986f503efcf2c3c"
+  },
+  {
+    "path": "visual-11-reader/E4115EA1-EBE8-424D-8843-90075CBCC953.png",
+    "bytes": 882369,
+    "sha256": "02c66c0a3daaf0a0247e5c7e13be4de16a5b014ad4209bee548305be0bf6842b"
+  },
+  {
+    "path": "visual-11-reader/manifest.json",
+    "bytes": 4052,
+    "sha256": "7522211e96c40d2d51446cb9be260f1079e48a392c999ef87a15357fb33df706"
+  }
+]

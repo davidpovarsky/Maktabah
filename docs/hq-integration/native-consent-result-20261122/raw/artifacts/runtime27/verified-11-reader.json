@@ -1,0 +1,23 @@
+{
+  "status": "EXECUTED_PASS",
+  "scope": "focused-ui",
+  "database_open": "NOT_VERIFIED_BY_TEST_COUNTS",
+  "summary_sha256": "8b2b4447300e25cf162eaa59cfdd924453efacbd2d5599b0d6a6a8476f62bf65",
+  "tests_sha256": "4a7c155389ff177020dd2aa4c022fe0d2bac608b44aa7f46c9a1d3461d1bd44e",
+  "target": "Maktabah-iOSUITests",
+  "executed_total": 1,
+  "required_ui_passed": 1,
+  "required_ui_cases": [
+    "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection"
+  ],
+  "cases": {
+    "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection": {
+      "status": "Passed",
+      "identifier": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection()",
+      "identifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection",
+      "target": "Maktabah-iOSUITests"
+    }
+  },
+  "skipped": 0,
+  "failed": 0
+}

@@ -1,0 +1,18 @@
+{
+  "suites": [
+    {
+      "suite": "HanlinReaderConsumerAcceptanceTests",
+      "selection": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection",
+      "expected": [
+        "testOriginalIPadCurrentWorkConsentToggleWithoutConnection"
+      ],
+      "passed": [
+        "testOriginalIPadCurrentWorkConsentToggleWithoutConnection"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    }
+  ],
+  "status": "EXECUTED_PASS"
+}

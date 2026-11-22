@@ -1,0 +1,302 @@
+[
+  {
+    "path": "artifacts/continuation-focused/Maktabah-iOS_iphonesimulator27.2-arm64.xctestrun",
+    "bytes": 4992,
+    "sha256": "e8074d3ac6336b468191ea466f66df6801df09f3c04dfeba3a819d27a0389277"
+  },
+  {
+    "path": "artifacts/continuation-focused/built-binaries.json",
+    "bytes": 497,
+    "sha256": "5c056f942f4d92989aaf344854d3d70c063ac13177d9fccc0cf7f8d78e86f67b"
+  },
+  {
+    "path": "artifacts/continuation-focused/declarations.json",
+    "bytes": 372,
+    "sha256": "7fd358314b930863fec66ff5c19e71895c109a240c4241dee6a31ce4928ab2d4"
+  },
+  {
+    "path": "artifacts/continuation-focused/original-post-ui-input-audit.json",
+    "bytes": 88197,
+    "sha256": "9610f738e154530beb1f48e01563e2decf587d026e1595d015b682defd97af13"
+  },
+  {
+    "path": "artifacts/continuation-focused/result.json",
+    "bytes": 64505,
+    "sha256": "ae919dcd342a1d123453aadba48688b7927d2f059bbb0f48f09a230f60976056"
+  },
+  {
+    "path": "artifacts/continuation-focused/selection.json",
+    "bytes": 177883,
+    "sha256": "e0319bb4afe37c33bcf78c255d50c8c71854aa2d90396730d382b7734afc48b7"
+  },
+  {
+    "path": "artifacts/continuation-focused/source-before.json",
+    "bytes": 61977,
+    "sha256": "e5c13da548987411f10f7fcdc86feafa77a435cfe02dea999b88367445bc4124"
+  },
+  {
+    "path": "artifacts/continuation-host48-reuse/result.json",
+    "bytes": 1235,
+    "sha256": "ecc830f7f31a9da3a4884c7703624726d9a646f92c16cc2d7c683e0e891e7062"
+  },
+  {
+    "path": "artifacts/faithful-ipad-matrix.json",
+    "bytes": 23180,
+    "sha256": "05328b703607fc9b73212efbd9674883425651121cffa4e878dffc73d217b87e"
+  },
+  {
+    "path": "artifacts/miniTest10-native-fixture-install-11-reader.json",
+    "bytes": 1790,
+    "sha256": "102f1320703e9e3c375b8e0c79030c963a4b7b82315732dd226d8ffdf69b3e1d"
+  },
+  {
+    "path": "artifacts/runtime27/cases.html",
+    "bytes": 369,
+    "sha256": "640697afb5750c2ba4590cc6b6b71dbbde862513fb60294eb3662a9dd5d102e1"
+  },
+  {
+    "path": "artifacts/runtime27/continuation-focused-matrix.log",
+    "bytes": 24903,
+    "sha256": "d29837cd362cef03e6efb473e58be2b3e0f0fa52d18216fc1a7ef124d744f74c"
+  },
+  {
+    "path": "artifacts/runtime27/fixture-oracle-11-reader.json",
+    "bytes": 1071,
+    "sha256": "af143821ef34807dcb4916ee7a2f6163ef22f6da9b0b1c99cc2d9b25be7c905a"
+  },
+  {
+    "path": "artifacts/runtime27/junit.xml",
+    "bytes": 270,
+    "sha256": "050e1d08fa68218fcb3a7f98ba0ca5def19a39be336d495d2f78f1865617624e"
+  },
+  {
+    "path": "artifacts/runtime27/palette-compiled-images.json",
+    "bytes": 70627,
+    "sha256": "240fc76ffa84ac39eb9420353e2c04a694aaa16a67ca23375c9131b604faedfc"
+  },
+  {
+    "path": "artifacts/runtime27/recording-11-reader.log",
+    "bytes": 270,
+    "sha256": "c147b666f482bb50e8ebfb53ceb4f9739912a40b1e51054e921e5b9696eea693"
+  },
+  {
+    "path": "artifacts/runtime27/toolchain-selection.json",
+    "bytes": 13019,
+    "sha256": "bf2313ee124790296787ec684c95ee590d393caeef6ab44a4df2d976176f26be"
+  },
+  {
+    "path": "artifacts/runtime27/verified-11-reader.json",
+    "bytes": 1009,
+    "sha256": "dace584d12fd39ae70758edeff9cc7f28d301277b7bb332216dbcd1791be7bd5"
+  },
+  {
+    "path": "artifacts/runtime27/verified-11-reader.summary.json",
+    "bytes": 986,
+    "sha256": "d25f470d4a691331bba03dea6793bc6ac426ac582b70d9ed7b2b2a7e2c4d098f"
+  },
+  {
+    "path": "artifacts/runtime27/verified-11-reader.tests.json",
+    "bytes": 1798,
+    "sha256": "ade888020458bfb578cb07358bf7a9c343b1890bfb832610f9d768e87af84dcf"
+  },
+  {
+    "path": "artifacts/simulator-install-recovery-11-reader-com.davidpovarsky.chavrusatext-devices.log",
+    "bytes": 64,
+    "sha256": "26820f1b2b5ca84452c8a2cf4d0899d5678e2422dbba7f3843c50fb4ff6a30e2"
+  },
+  {
+    "path": "artifacts/simulator-install-recovery-11-reader-com.davidpovarsky.chavrusatext-services.log",
+    "bytes": 606661,
+    "sha256": "6613c6fc79a00f35bd71fd2ae2057b598755b132261268de6763d1f353702a34"
+  },
+  {
+    "path": "artifacts/simulator-install-recovery-11-reader-com.davidpovarsky.chavrusatext.png",
+    "bytes": 4715321,
+    "sha256": "6b73fffada0362ba993376fce684c1440d6ecc49293424b566a0f7268aca1105"
+  },
+  {
+    "path": "artifacts/simulator-install-recovery-11-reader-com.davidpovarsky.chavrusatext-screenshot.log",
+    "bytes": 258,
+    "sha256": "1e009ad7d5824aa005e0f13ddf5c0a1beeda30da8471e91847fadec140681c89"
+  },
+  {
+    "path": "artifacts/test-case-execution-11-reader.json",
+    "bytes": 497,
+    "sha256": "023b0afcf166660059b959c5db0ef29acfda9db7a528ddb4d10be0dfe02e8a72"
+  },
+  {
+    "path": "artifacts/test-simulator-11-reader.log",
+    "bytes": 20224,
+    "sha256": "bf9e99e1e91dbe7b798327a49b87d21c2e12e0c1d9ca0dfd289d281929dd8327"
+  },
+  {
+    "path": "artifacts/ui-acceptance-typecheck.json",
+    "bytes": 4042,
+    "sha256": "a57e666d06dc411d8951e33454dc3c3a37b3b1203e09605da75fb36969274ed0"
+  },
+  {
+    "path": "artifacts/ui-acceptance-typecheck.log",
+    "bytes": 2105957,
+    "sha256": "d577c76e9b8f1327594c0fa55ab945e0414728786a16a95aeb297ef35e1f034d"
+  },
+  {
+    "path": "artifacts/xcuiautomation-voiceover-sdk.txt",
+    "bytes": 13992,
+    "sha256": "a67c1b7395766d301e65f88ed64c1424a2e707fca4ddd3a6d50e1bb7d072cb67"
+  },
+  {
+    "path": "hq-stage2/ExpoModulesProvider.swift",
+    "bytes": 1246,
+    "sha256": "c6ec625de1af66d390d35bfb43e4d69508597cfa246f3c939428c77295b017e1"
+  },
+  {
+    "path": "hq-stage2/actual-source-inputs.json",
+    "bytes": 115282,
+    "sha256": "ccdfdedcb039725401430228e9c55e2b140a752eab9eef96a963795677a14ce6"
+  },
+  {
+    "path": "hq-stage2/generated-Maktabah-project.pbxproj",
+    "bytes": 620777,
+    "sha256": "02a3368bbd0d246a13d9250e37c445a9393640f5d9739bfae8d1a9e154827ae6"
+  },
+  {
+    "path": "hq-stage2/generated-pods-project.diff",
+    "bytes": 425784,
+    "sha256": "bc067d6aef9c8de557cb7c5811e6eadced9851b8b0a3b7498fe5fd06a4446cb1"
+  },
+  {
+    "path": "hq-stage2/generated-privacy.diff",
+    "bytes": 2618,
+    "sha256": "2f496cd81580a43548668ef59cbaa0510222396bbb6c978ce0919c0faf41ae4e"
+  },
+  {
+    "path": "hq-stage2/hanlin-sdk-after.log",
+    "bytes": 679,
+    "sha256": "baca24125ae53ea60324b2491d0150e52d5c02edae797fb114e68d35dbc52d25"
+  },
+  {
+    "path": "hq-stage2/hanlin-sdk-inputs-after.json",
+    "bytes": 61045,
+    "sha256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118"
+  },
+  {
+    "path": "hq-stage2/hanlin-sdk-inputs.json",
+    "bytes": 61045,
+    "sha256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118"
+  },
+  {
+    "path": "hq-stage2/hanlin-sdk.log",
+    "bytes": 679,
+    "sha256": "baca24125ae53ea60324b2491d0150e52d5c02edae797fb114e68d35dbc52d25"
+  },
+  {
+    "path": "hq-stage2/maktabah_zayit_search.h.log",
+    "bytes": 300,
+    "sha256": "87b20fd3d731cc694a3b004a15f295a72a38e5df7f98e837dc0c0985aa184aea"
+  },
+  {
+    "path": "hq-stage2/matching-embedded-bundle.log",
+    "bytes": 741,
+    "sha256": "29e34f5a221dbe07dfb7ef9fb331dda2800bf2d7e16ee02b9031012ff5922482"
+  },
+  {
+    "path": "hq-stage2/native-script-permissions.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "hq-stage2/npm-ci.log",
+    "bytes": 3331,
+    "sha256": "95531850c8f4cc39a5f3209e64a6edb09322104748ca3ca11a0341e036281385"
+  },
+  {
+    "path": "hq-stage2/otzaria_search_engine.h.log",
+    "bytes": 304,
+    "sha256": "15648f23bbe5f5f15ae65af39bbabc45ce85e2c62b7786375e77c01f6246eab6"
+  },
+  {
+    "path": "hq-stage2/pinned-sharp-inputs.log",
+    "bytes": 991,
+    "sha256": "78560d94294e7adc970a8f8eb5ffee5288bdf8f10e966c59249bbe32e9ff5c45"
+  },
+  {
+    "path": "hq-stage2/pod-install.log",
+    "bytes": 31807,
+    "sha256": "34a451245bd573997cc9ead9dfc4cd4ed3e0f138319e155f06d17fba7aa43ec8"
+  },
+  {
+    "path": "hq-stage2/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+    "bytes": 877,
+    "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd"
+  },
+  {
+    "path": "hq-stage2/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+    "bytes": 855,
+    "sha256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef"
+  },
+  {
+    "path": "hq-stage2/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+    "bytes": 1482,
+    "sha256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38"
+  },
+  {
+    "path": "hq-stage2/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+    "bytes": 776,
+    "sha256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d"
+  },
+  {
+    "path": "hq-stage2/privacy-generated.xcprivacy",
+    "bytes": 1386,
+    "sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5"
+  },
+  {
+    "path": "hq-stage2/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+    "bytes": 1233,
+    "sha256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c"
+  },
+  {
+    "path": "hq-stage2/privacy-original.xcprivacy",
+    "bytes": 1132,
+    "sha256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1"
+  },
+  {
+    "path": "hq-stage2/resolve-packages.log",
+    "bytes": 4898,
+    "sha256": "ad85d685756ea6e11dc89faeb07114b38661b6092d9628b1e2e9d251f4e7e38b"
+  },
+  {
+    "path": "hq-stage2/resolved-Package.resolved",
+    "bytes": 4432,
+    "sha256": "722609bb6b71362aee5e7f401246edcd037a2d1815c2fc4704bf93830d9f5530"
+  },
+  {
+    "path": "hq-stage2/react-source-checkout.log",
+    "bytes": 453,
+    "sha256": "b278da59b8bfd20172192fee69776965913a069701ec217aba71aa99075b6248"
+  },
+  {
+    "path": "hq-stage2/resolved-Podfile.lock",
+    "bytes": 100298,
+    "sha256": "9a7f88b1d9ebbf4d14f8b6f1efd1fb2d15ac63983bf16ffd3e9ea011f9a55ce7"
+  },
+  {
+    "path": "hq-stage2/result.json",
+    "bytes": 83531,
+    "sha256": "e6c07430bad61756e2f10007f7fd9bad4fa4b70b5e4e3026a3fa92c5485f897e"
+  },
+  {
+    "path": "hq-stage2/simulator-build-for-testing.log",
+    "bytes": 22044726,
+    "sha256": "feba42dcaaf0cac581d9ea4ec4966728ef45e7c9c775b9f4fa9217a9343c42c3"
+  },
+  {
+    "path": "hq-stage2/target-membership.log",
+    "bytes": 130,
+    "sha256": "eb1ed33822080468fc3cc73faa487cc02c8a1bed4564287c6cbc07eeddcbf043"
+  },
+  {
+    "path": "hq-stage2/workspace-Package.resolved",
+    "bytes": 4432,
+    "sha256": "722609bb6b71362aee5e7f401246edcd037a2d1815c2fc4704bf93830d9f5530"
+  }
+]

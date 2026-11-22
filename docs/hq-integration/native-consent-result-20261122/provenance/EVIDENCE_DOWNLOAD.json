@@ -1,0 +1,14 @@
+{
+  "status": "DOWNLOADED_ONCE_HASH_AND_CRC_VERIFIED",
+  "at": "2026-11-22T05:59:31.246456+00:00",
+  "run_id": 44987561349,
+  "head": "64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b",
+  "application_source": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "id": 14742146824,
+  "name": "completion-focused-native-evidence",
+  "bytes": 6363659,
+  "sha256": "096c6d6b92744e246de0b4092d6df82369d5c4369a939dbaf27b881aeb86faff",
+  "crc_entries": 60,
+  "extracted_files": 60,
+  "original_full_archive": "C:\\Users\\DAVID\\Code\\Maktabah-native-followup-20261122\\build\\native-consent-result-44987561349\\evidence.zip"
+}

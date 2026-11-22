@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_a6ae975e84e0",
+    "type": "job_result",
+    "source": "script_run@host_7ec8382e82747448",
+    "severity": "warning",
+    "tool": "script_run",
+    "host": "host_7ec8382e82747448",
+    "status": "failed",
+    "exit_code": 1,
+    "created_at": 1795327792.365052,
+    "started_at": "2026-11-22T06:09:52.410053+00:00",
+    "finished_at": "2026-11-22T06:10:02.339515+00:00",
+    "duration_s": 9.93,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 600,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "Traceback (most recent call last):\r\n  File \"C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_aa9d93bb52da4ab1adeb95df0d0b29b0\\script.py\", line 72, in <module>\r\n    assert len(row)==len(child)==1, {\"stage\":stage,\"switches\":lines}\r\n           ^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: {'stage': 'before_native_tap', 'switches': [\"                                    Switch, 0x10a40ea80, {{331.0, 561.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-allow-current-book', label: 'Allow search in this book for this chat', value: 0\", '                                      Switch, 0x10a40ed00, {{798.0, 573.5}, {63.0, 28.0}}, value: 0']}"
+  }
+}

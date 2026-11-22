@@ -1,0 +1,74 @@
+{
+  "status": "INDEPENDENT_SOURCE_AND_SINGLE_XCRESULT_PASS_VERIFIED",
+  "at": "2026-11-22T06:02:50.690229+00:00",
+  "run_id": 44987561349,
+  "checkout_sha": "64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b",
+  "application_source_sha": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "application_trees": {
+    "Source": "ac887bdbfbfce2d30d9591bb867d61b11da31cc6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "24345d612f8c70398f4590977f8b4696021ae413"
+  },
+  "execution_input_git_blobs_independently_verified": 276,
+  "original_auditor_actual_source_inputs_verified": 1012,
+  "build_status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+  "compiled_images_unchanged": true,
+  "build_and_post_UI_source_fields_equal": true,
+  "post_UI_only_additions": [
+    "Exact original Hanlin --verify-only command",
+    "Byte-identical privacy aggregation receipt repeated"
+  ],
+  "strict_status": "EXECUTED_PASS",
+  "summary_canonical_sha256": "8b2b4447300e25cf162eaa59cfdd924453efacbd2d5599b0d6a6a8476f62bf65",
+  "tests_canonical_sha256": "4a7c155389ff177020dd2aa4c022fe0d2bac608b44aa7f46c9a1d3461d1bd44e",
+  "counts": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "not_run": 0
+  },
+  "case": {
+    "duration": "1m 39s",
+    "durationInSeconds": 99.83200895786285,
+    "name": "testOriginalIPadCurrentWorkConsentToggleWithoutConnection()",
+    "nodeIdentifier": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection()",
+    "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection",
+    "nodeType": "Test Case",
+    "result": "Passed"
+  },
+  "device": {
+    "architecture": "arm64",
+    "deviceId": "CC708E22-FBF9-46B8-99BF-B31EB2FC4853",
+    "deviceName": "Faithful 11-inch 8ee52763",
+    "modelName": "iPad Pro 11-inch (M5)",
+    "osBuildNumber": "24B8117",
+    "osVersion": "27.2",
+    "platform": "iOS Simulator"
+  },
+  "cleanup": "PASS",
+  "installation_attempts": [
+    {
+      "bundle": "com.davidpovarsky.chavrusatext",
+      "attempt": 1,
+      "status": "INSTALL_TIMEOUT",
+      "timedOutPhase": "VERIFYING_APP_CONTAINER",
+      "error": "Command '['xcrun', 'simctl', 'get_app_container', 'CC708E22-FBF9-46B8-99BF-B31EB2FC4853', 'com.davidpovarsky.chavrusatext', 'app']' timed out after 45 seconds"
+    },
+    {
+      "bundle": "com.davidpovarsky.chavrusatext",
+      "attempt": 2,
+      "status": "INSTALLED",
+      "appContainer": "/Users/runner/Library/Developer/CoreSimulator/Devices/CC708E22-FBF9-46B8-99BF-B31EB2FC4853/data/Containers/Bundle/Application/C5FA0D11-A5E2-45FD-8EA3-278F131B8A13/Maktabah.app"
+    }
+  ],
+  "matrix_running_native_phase_at": "2026-11-22T05:46:53.379206+00:00",
+  "summary_started_at": "2026-11-22T05:52:35.229000+00:00",
+  "summary_finished_at": "2026-11-22T05:54:41.741000+00:00",
+  "xcode": "Xcode 27.2\nBuild version 27B52",
+  "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+  "full_native116_acceptance": false,
+  "full_release114_acceptance": false,
+  "live_provider_acceptance": false,
+  "verification_reexecuted_tests": false
+}

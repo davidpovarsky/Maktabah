@@ -1,0 +1,44 @@
+{
+  "run_id": 44987561349,
+  "application_source": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "review": "Raw AX outer row and its native switch agree at all three stages; screenshots are retained separately.",
+  "states": [
+    {
+      "stage": "before_native_tap",
+      "expected_and_observed_value": 0,
+      "hierarchy": "raw/captures/visual-11-reader/E1444A32-5A6B-4CDE-9CD2-B271F3288FEC.txt",
+      "screenshot": "raw/captures/visual-11-reader/939A958E-01D8-4B1C-987A-047836AA27A7.png",
+      "original_switch_lines": [
+        "                                    Switch, 0x10a40ea80, {{331.0, 561.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-allow-current-book', label: 'Allow search in this book for this chat', value: 0",
+        "                                      Switch, 0x10a40ed00, {{798.0, 573.5}, {63.0, 28.0}}, value: 0"
+      ]
+    },
+    {
+      "stage": "after_native_tap",
+      "expected_and_observed_value": 1,
+      "hierarchy": "raw/captures/visual-11-reader/11D71C53-0D47-4874-B0D5-91DD41A6B8D9.txt",
+      "screenshot": "raw/captures/visual-11-reader/5C812184-6119-42E1-83B2-E751835AE097.png",
+      "original_switch_lines": [
+        "                                    Switch, 0x10a402a80, {{331.0, 561.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-allow-current-book', label: 'Allow search in this book for this chat', value: 1",
+        "                                      Switch, 0x10a402d00, {{798.0, 573.5}, {63.0, 28.0}}, value: 1"
+      ]
+    },
+    {
+      "stage": "after_native_revoke",
+      "expected_and_observed_value": 0,
+      "hierarchy": "raw/captures/visual-11-reader/CE9022AF-A123-4586-9AAD-61328E4F421D.txt",
+      "screenshot": "raw/captures/visual-11-reader/A02E68AD-7248-4E4E-ACD2-664400BD1AD5.png",
+      "original_switch_lines": [
+        "                                    Switch, 0x10affaa80, {{331.0, 561.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-allow-current-book', label: 'Allow search in this book for this chat', value: 0",
+        "                                      Switch, 0x10affad00, {{798.0, 573.5}, {63.0, 28.0}}, value: 0"
+      ]
+    }
+  ],
+  "final_original_reader": {
+    "hierarchy": "raw/captures/visual-11-reader/DE0F6204-2D8B-42DA-983D-2E0B2494FEEE.txt",
+    "screenshot": "raw/captures/visual-11-reader/E4115EA1-EBE8-424D-8843-90075CBCC953.png",
+    "no_switch_after_chat_closed": true
+  },
+  "actual_injected_tap_coordinate_measured": false,
+  "reexecuted_tests": false
+}
