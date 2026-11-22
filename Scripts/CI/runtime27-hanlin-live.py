@@ -467,6 +467,8 @@ def main():
             live.admit(ROOT / "build/hq-stage2/result.json", "original-build-result.json")
             live.admit(ROOT / "build/hanlin-live-preflight/app-group-resolver-interface.json",
                        "app-group-resolver-interface.json")
+            live.admit(ROOT / "build/hanlin-live-preflight/python-oracle-environment.json",
+                       "python-oracle-environment.json")
             for name in ["faithful-ipad-matrix.json", "test-simulator-11.log", "test-case-execution-11.json"]:
                 live.admit(raw / name, name)
             for name in ["miniTest10-native-fixture-install-11.json", "miniTest10-native-fixture-install-11-attempt-1.json",

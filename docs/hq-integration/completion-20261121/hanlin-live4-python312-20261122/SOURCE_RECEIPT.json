@@ -1,0 +1,17 @@
+{
+  "status": "WORKFLOW_ONLY_REPAIR",
+  "base": "f955a3677f70ae61a8f3f40b7c3caa73fb9a541e",
+  "candidate_workflow_sha256": "cf2675f26984932c49014126314a45f9ce05b04c9f2286350f1ce00257685660",
+  "unchanged_trees": {
+    "Source": "7b672630a07f6798120dea948e74c6ad1f760cb6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
+    "Maktabah-iOSUITests": "646d0593ecf5aaaa801327cece03d99a879aef04"
+  },
+  "unchanged_live_driver_sha256": "2309f38a8a16c11955e2d012c0ba36823c3d73d729cd5062831aa3b015ed4461",
+  "previous_run": 44968087855,
+  "new_native_execution": false,
+  "decoder_smoke_rerun": false,
+  "secret_active": false,
+  "timestamp": "2026-11-22T01:01:39.262808+00:00"
+}

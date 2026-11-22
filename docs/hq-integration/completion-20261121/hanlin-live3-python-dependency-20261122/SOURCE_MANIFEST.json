@@ -1,0 +1,19 @@
+{
+  "base": "34d06949e7fedbda6e0d256a769b3d0b8659c211",
+  "application_source_unchanged": "a0781bd2628c1311394f7da6aa1e84c17f252fa4",
+  "files": [
+    {
+      "path": ".github/workflows/otzaria-hanlin-live-native.yml",
+      "base_git_blob": "908166d416f778201957f07837f5d6a337a445f5",
+      "candidate_sha256": "748a48fffbe5615db23ca9900b3802e55b5c2f2a149b6a73fcc215b86fff936f",
+      "bytes": 9376
+    },
+    {
+      "path": "Scripts/CI/runtime27-hanlin-live.py",
+      "base_git_blob": "893ab49c3cbcc4a6dac8a78a8248e21d7cf23a85",
+      "candidate_sha256": "2309f38a8a16c11955e2d012c0ba36823c3d73d729cd5062831aa3b015ed4461",
+      "bytes": 29597
+    }
+  ],
+  "patch_sha256": "d85ce92b8cb64a422edac0f75ee0f50cb910752e8c5ed22f6f3dcf2249799d0f"
+}
