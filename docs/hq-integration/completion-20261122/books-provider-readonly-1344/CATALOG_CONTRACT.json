@@ -1,0 +1,47 @@
+{
+  "observed_start_utc": "2026-11-22T13:44:40.585120+00:00",
+  "observed_end_utc": "2026-11-22T13:44:42.494028+00:00",
+  "elapsed_seconds": 1.907,
+  "source_commit": "a1940076187c0c2e6047115162771f0e48e5cab8",
+  "source_path": "Source/Features/Library/ViewModel/BookUpdateVM.swift",
+  "source_sha256": "3221f80de70ffb2ec7286b5e5607042a88d8dbd66a60bb28be509eb16857f66d",
+  "url": "https://drive.google.com/uc?export=download&id=1FYrscpCBIuIym2ZHB6QBwYfy9eswYDna",
+  "effective_url": "https://drive.usercontent.google.com/download?id=1FYrscpCBIuIym2ZHB6QBwYfy9eswYDna&export=download",
+  "http_status": 200,
+  "bytes": 792,
+  "sha256": "99c2cf2fb5e4d5c9f30d2d0016cd769eef2b0953642e3464619310da4710c293",
+  "nonempty_rows": 8,
+  "data_rows": 7,
+  "columns_per_row": [
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6
+  ],
+  "header": [
+    "bkid",
+    "cat",
+    "verName",
+    "link",
+    "size",
+    "bk"
+  ],
+  "database_opened": false,
+  "updater_executed": false,
+  "payload_downloaded": false,
+  "tests_replayed": false,
+  "parser_delimiter": ";",
+  "reparsed_existing_bytes_utc": "2026-11-22T13:45:48.217199+00:00",
+  "parse_correction": "First exploratory receipt used default comma delimiter; this receipt parses the original semicolon catalog. No network request or test was repeated.",
+  "blocked_provider": true,
+  "missing_contract_fields": [
+    "backend",
+    "target_schema",
+    "source_database_hash",
+    "migration_manifest"
+  ]
+}
