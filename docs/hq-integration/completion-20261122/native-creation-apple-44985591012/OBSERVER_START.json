@@ -1,0 +1,8 @@
+{
+  "pid": 6692,
+  "run_id": "44985591012",
+  "head": "d2c63c336f8c07602871283c26bfb89468d97901",
+  "started_utc": "2026-11-22T04:34:48Z",
+  "deadline_seconds": 2200,
+  "observer_sha256": "b19913a57d06dfc542a3a0cdbd806e973ee478cf5580707e0503a40d1413bb48"
+}

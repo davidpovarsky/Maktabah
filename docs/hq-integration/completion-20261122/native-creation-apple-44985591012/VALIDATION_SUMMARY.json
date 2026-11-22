@@ -1,0 +1,57 @@
+{
+  "status": "PASS_APPLE_NATIVE_CREATION_FENCE24_CRASH3",
+  "run_id": 44985591012,
+  "run_attempt": 1,
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44985591012",
+  "checkout_sha": "d2c63c336f8c07602871283c26bfb89468d97901",
+  "application_source": "67518e8df6975c976e8f1cd9e622328dc45985fc",
+  "application_trees": {
+    "Maktabah-iOSUITests": "cd108ec2cec9f8c6089a1eeff2ec77bc9372a469",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Source": "ac887bdbfbfce2d30d9591bb867d61b11da31cc6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "closure_source": "2f8a8b978bf331fc0d8754b44da986aacc40d4d0",
+  "execution_inputs_verified_against_git_and_tar": 47,
+  "compiler_inputs": 42,
+  "artifact": {
+    "id": 14739304841,
+    "bytes": 138656,
+    "sha256": "e24da784d58f06acc3e34d45a44afadb1a31e297e3ba9f7a933e44e43304f7d0",
+    "github_digest_matched": true
+  },
+  "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "sqlite": "3.54.0",
+  "digest": "Original AnnotationExchangePlatformDigest / CryptoKit",
+  "controls_passed": 24,
+  "process_pairs": [
+    {
+      "phase": "prepared",
+      "reopen": "13922",
+      "writer": "13921"
+    },
+    {
+      "phase": "marked",
+      "reopen": "13924",
+      "writer": "13923"
+    },
+    {
+      "phase": "nested",
+      "reopen": "13926",
+      "writer": "13925"
+    }
+  ],
+  "all_crash_exits": 73,
+  "all_reopen_exits": 0,
+  "executable_sha256": "8b854df03aaa3bba2b281f8b628cc00483a22d1213b9465e967ff2502b908413",
+  "fresh_owned_build": true,
+  "sources_and_copies_unchanged": true,
+  "previous_suites_reexecuted": false,
+  "production_identity_writer": 0,
+  "native_sdk": 0,
+  "rpc": 0,
+  "ACK": 0,
+  "acceptance_limit": "New durable local creation-fence persistence only. No original-editor embedding, native identity/body receipt, Sync, visibility, actual iPad, cross-device or StageB-F completion.",
+  "evidence_verification": "Offline retained artifact/source verification only; no test re-execution, extra download, source-check rerun or dispatch."
+}

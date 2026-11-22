@@ -1,0 +1,21 @@
+/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/native-creation-fence/build/controls-44985591012-1/package/Sources/NativeCreationFenceAcceptance/AnnotationExchangeTestSupport.swift:61:5: [1;33mwarning: [1;39mwill never be executed[0;0m
+ [0;36m57 |[0;0m     ExitProcess(1)
+ [0;36m58 |[0;0m     #else
+ [0;36m59 |[0;0m     exit(1)
+    [0;36m|[0;0m     `- [1;39mnote: [1;39ma call to a never-returning function[0;0m
+ [0;36m60 |[0;0m     #endif
+ [0;36m61 |[0;0m     fatalError("exit returned")
+    [0;36m|[0;0m     `- [1;33mwarning: [1;39mwill never be executed[0;0m
+ [0;36m62 |[0;0m }
+ [0;36m63 |[0;0m 
+
+/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/native-creation-fence/build/controls-44985591012-1/package/Sources/NativeCreationFenceAcceptance/AnnotationExchangeTestSupport.swift:219:5: [1;33mwarning: [1;39mwill never be executed[0;0m
+[0;36m215 |[0;0m     TerminateProcess(GetCurrentProcess(), 73)
+[0;36m216 |[0;0m     #else
+[0;36m217 |[0;0m     _exit(73)
+    [0;36m|[0;0m     `- [1;39mnote: [1;39ma call to a never-returning function[0;0m
+[0;36m218 |[0;0m     #endif
+[0;36m219 |[0;0m     fatalError("termination returned")
+    [0;36m|[0;0m     `- [1;33mwarning: [1;39mwill never be executed[0;0m
+[0;36m220 |[0;0m }
+[0;36m221 |[0;0m 
