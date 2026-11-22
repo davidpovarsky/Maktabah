@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_d061e56c2cea",
+    "type": "job_result",
+    "source": "script_run@host_7ec8382e82747448",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_7ec8382e82747448",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795338776.8468297,
+    "started_at": "2026-11-22T09:12:56.893689+00:00",
+    "finished_at": "2026-11-22T10:04:09.797170+00:00",
+    "duration_s": 3072.9,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 3600,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"schema\": \"otzaria.fresh-read-finite-observer/1\", \"status\": \"OBSERVED_TERMINAL\", \"runID\": 45006363282, \"checkout\": \"997bc6872fed666daef8f720ddd1f847647be80c\", \"applicationSource\": \"7eb9d2a5c8ac7ccb184e3cc50fb36b6272475ff1\", \"attempt\": 1, \"started\": \"2026-11-22T09:12:57.576699+00:00\", \"command\": [\"gh\", \"run\", \"watch\", \"45006363282\", \"--repo\", \"davidpovarsky/Maktabah\", \"--exit-status\", \"--interval\", \"30\"], \"watchBudgetSeconds\": 3300, \"watcherCount\": 1, \"newPushes\": 0, \"workflowReruns\": 0, \"secretCreated\": false, \"watchTimedOut\": false, \"ownedWatchPID\": 21356, \"watchReturncode\": 1, \"watchDurationSeconds\": 3069.36, \"github\": {\"id\": 45006363282, \"head_sha\": \"997bc6872fed666daef8f720ddd1f847647be80c\", \"head_branch\": \"codex/otzaria-hanlin-fresh-read-diagnostic-20261122\", \"run_attempt\": 1, \"status\": \"completed\", \"conclusion\": \"failure\", \"created_at\": \"2026-11-22T09:12:00Z\", \"updated_at\": \"2026-11-22T10:03:40Z\", \"html_url\": \"https://github.com/davidpovarsky/Maktabah/actions/runs/45006363282\", \"path\": \".github/workflows/otzaria-completion-focused-native.yml\"}, \"artifactMetadataReturncode\": 0, \"artifacts\": [{\"id\": 14749682058, \"name\": \"completion-focused-native-evidence\", \"size_in_bytes\": 6409802, \"digest\": \"sha256:9436a1e07582667ea201da5c36461cf3f1402077133906dcc4cca32a59c1a893\", \"expired\": false, \"created_at\": \"2026-11-22T10:03:30Z\", \"updated_at\": \"2026-11-22T10:03:30Z\"}, {\"id\": 14749388619, \"name\": \"completion-focused-native-captures\", \"size_in_bytes\": 104633270, \"digest\": \"sha256:cdd24a7b99d1b6c230f0a3c7313db69fdc743cb7b475ecd03f52fca9dc2e9825\", \"expired\": false, \"created_at\": \"2026-11-22T10:03:35Z\", \"updated_at\": \"2026-11-22T10:03:35Z\"}], \"finished\": \"2026-11-22T10:04:09.226466+00:00\", \"files\": [{\"path\": \"actual-finite-observer.py\", \"bytes\": 3938, \"sha256\": \"141875022f27670a22464aaf9b9b74dd48d150cde8a627d58525c756c3c65ec1\"}, {\"path\": \"artifacts-api.stderr\", \"bytes\": 0, \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, {\"path\": \"artifacts-api.stdout\", \"bytes\": 1543, \"sha256\": \"70f6657a3cef2e7b5ed6fa20339912a338c86843260c0ce78e55664a645ca9e6\"}, {\"path\": \"ARTIFACTS.json\", \"bytes\": 1882, \"sha256\": \"70eef4ed9b20d16aba4baaac1dde9ba7ce439f950b0692749b2d0d05025a6092\"}, {\"path\": \"GITHUB_RUN.json\", \"bytes\": 14089, \"sha256\": \"bbfa4c6e215b8602c33dfcb176f73702eff585b11f6ed6551dba127a17f589a0\"}, {\"path\": \"terminal-api.stderr\", \"bytes\": 0, \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, {\"path\": \"terminal-api.stdout\", \"bytes\": 12760, \"sha256\": \"19076132d8511bbc71ed2071548830dec752143beb04409f8e7eb73675e489b5\"}, {\"path\": \"watch.stderr\", \"bytes\": 0, \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, {\"path\": \"watch.stdout\", \"bytes\": 137161, \"sha256\": \"5070d8254514991e7ca55edb7874cec67622f701b97c2e586fba069a88cfad19\"}]}"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "interpreter": "python3",
+  "sudo": false,
+  "cwd": null,
+  "cleanup": true,
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_b6cfd2b4f68846e2969b710953661353\\script.py"
+  ],
+  "output": "{\"status\": \"VERIFIED_ACTUAL_FAILURE\", \"path\": \"C:\\\\Users\\\\DAVID\\\\AppData\\\\Local\\\\Temp\\\\fr450063\\\\independent\\\\generated-privacy-continuation\\\\VERIFICATION.json\", \"sha256\": \"a8e32ac75ce80a6490806eda6a0ea70f7c937cef36545bf922fd3a3149ac2d87\", \"verifiedExecutionInputsFromPreservedFirstPrefix\": 279, \"verifiedBuildInputBindings\": 1012, \"primaryPayloads\": 60, \"nativeCounts\": [0, 1, 0], \"cleanup\": \"PASS\", \"diffKeys\": [\"commands\", \"generated_configuration\"]}",
+  "duration": 4.06,
+  "returncode": 0,
+  "_notice": "You have 50 unread SentinelX notification(s) (job results and/or announcements). Call notifications_check to read them."
+}

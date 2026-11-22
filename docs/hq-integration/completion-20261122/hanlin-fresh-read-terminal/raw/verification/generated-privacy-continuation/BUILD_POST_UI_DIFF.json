@@ -1,0 +1,530 @@
+{
+  "commands": {
+    "before": [
+      [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "Scripts/CI/prepare-hanlin-sdk.py",
+        "--sha",
+        "e00498e33f106cc43be0476ffa2e09329c8ca300",
+        "--output",
+        "/Users/runner/work/Maktabah/Maktabah/build/hq-stage2/hanlin-sdk-inputs.json"
+      ],
+      [
+        "git",
+        "submodule",
+        "update",
+        "--init",
+        "--depth",
+        "1",
+        "Vendor/SefariaMobile/Upstream"
+      ],
+      [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "Scripts/CI/prepare-pinned-sharp-libvips.py"
+      ],
+      [
+        "npm",
+        "ci",
+        "--legacy-peer-deps"
+      ],
+      [
+        "chmod",
+        "-R",
+        "+x",
+        "/Users/runner/work/Maktabah/Maktabah/Vendor/SefariaMobile/Upstream/node_modules/.bin",
+        "/Users/runner/work/Maktabah/Maktabah/Vendor/SefariaMobile/Upstream/node_modules/expo/bin"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "react-native",
+        "bundle",
+        "--config",
+        "../Integration/metro.config.embedded.js",
+        "--platform",
+        "ios",
+        "--dev",
+        "false",
+        "--entry-file",
+        "../Integration/index.embedded.js",
+        "--bundle-output",
+        "/Users/runner/work/Maktabah/Maktabah/build/jsbundle/main.jsbundle",
+        "--assets-dest",
+        "/Users/runner/work/Maktabah/Maktabah/build/jsbundle"
+      ],
+      [
+        "pod",
+        "install"
+      ],
+      [
+        "bash",
+        "Scripts/CI/verify-xcframework.sh",
+        "Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework",
+        "otzaria_search_engine.h"
+      ],
+      [
+        "bash",
+        "Scripts/CI/verify-xcframework.sh",
+        "Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework",
+        "maktabah_zayit_search.h"
+      ],
+      [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "Scripts/CI/verify-otzaria-xcode-project.py"
+      ],
+      [
+        "xcodebuild",
+        "-resolvePackageDependencies",
+        "-workspace",
+        "Maktabah.xcworkspace",
+        "-scheme",
+        "Maktabah-iOS",
+        "-clonedSourcePackagesDirPath",
+        "build/SourcePackages",
+        "-onlyUsePackageVersionsFromResolvedFile"
+      ],
+      [
+        "xcodebuild",
+        "build-for-testing",
+        "-workspace",
+        "Maktabah.xcworkspace",
+        "-scheme",
+        "Maktabah-iOS",
+        "-clonedSourcePackagesDirPath",
+        "build/SourcePackages",
+        "-configuration",
+        "Debug",
+        "-destination",
+        "generic/platform=iOS Simulator",
+        "-derivedDataPath",
+        "/Users/runner/work/Maktabah/Maktabah/build/DerivedData",
+        "-disableAutomaticPackageResolution",
+        "-jobs",
+        "2",
+        "-showBuildTimingSummary",
+        "CODE_SIGNING_ALLOWED=YES",
+        "CODE_SIGNING_REQUIRED=YES",
+        "CODE_SIGN_IDENTITY=-",
+        "ARCHS=arm64",
+        "ONLY_ACTIVE_ARCH=YES",
+        "ENABLE_USER_SCRIPT_SANDBOXING=NO",
+        "RCT_NO_LAUNCH_PACKAGER=1",
+        "SKIP_BUNDLING=1",
+        "FAIL_ON_MISSING_BUNDLE=1"
+      ],
+      [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "Scripts/CI/prepare-hanlin-sdk.py",
+        "--sha",
+        "e00498e33f106cc43be0476ffa2e09329c8ca300",
+        "--output",
+        "/Users/runner/work/Maktabah/Maktabah/build/hq-stage2/hanlin-sdk-inputs-after.json",
+        "--verify-only"
+      ]
+    ],
+    "after": [
+      [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "Scripts/CI/prepare-hanlin-sdk.py",
+        "--sha",
+        "e00498e33f106cc43be0476ffa2e09329c8ca300",
+        "--output",
+        "/Users/runner/work/Maktabah/Maktabah/build/hq-stage2/hanlin-sdk-inputs.json"
+      ],
+      [
+        "git",
+        "submodule",
+        "update",
+        "--init",
+        "--depth",
+        "1",
+        "Vendor/SefariaMobile/Upstream"
+      ],
+      [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "Scripts/CI/prepare-pinned-sharp-libvips.py"
+      ],
+      [
+        "npm",
+        "ci",
+        "--legacy-peer-deps"
+      ],
+      [
+        "chmod",
+        "-R",
+        "+x",
+        "/Users/runner/work/Maktabah/Maktabah/Vendor/SefariaMobile/Upstream/node_modules/.bin",
+        "/Users/runner/work/Maktabah/Maktabah/Vendor/SefariaMobile/Upstream/node_modules/expo/bin"
+      ],
+      [
+        "npx",
+        "--no-install",
+        "react-native",
+        "bundle",
+        "--config",
+        "../Integration/metro.config.embedded.js",
+        "--platform",
+        "ios",
+        "--dev",
+        "false",
+        "--entry-file",
+        "../Integration/index.embedded.js",
+        "--bundle-output",
+        "/Users/runner/work/Maktabah/Maktabah/build/jsbundle/main.jsbundle",
+        "--assets-dest",
+        "/Users/runner/work/Maktabah/Maktabah/build/jsbundle"
+      ],
+      [
+        "pod",
+        "install"
+      ],
+      [
+        "bash",
+        "Scripts/CI/verify-xcframework.sh",
+        "Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework",
+        "otzaria_search_engine.h"
+      ],
+      [
+        "bash",
+        "Scripts/CI/verify-xcframework.sh",
+        "Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework",
+        "maktabah_zayit_search.h"
+      ],
+      [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "Scripts/CI/verify-otzaria-xcode-project.py"
+      ],
+      [
+        "xcodebuild",
+        "-resolvePackageDependencies",
+        "-workspace",
+        "Maktabah.xcworkspace",
+        "-scheme",
+        "Maktabah-iOS",
+        "-clonedSourcePackagesDirPath",
+        "build/SourcePackages",
+        "-onlyUsePackageVersionsFromResolvedFile"
+      ],
+      [
+        "xcodebuild",
+        "build-for-testing",
+        "-workspace",
+        "Maktabah.xcworkspace",
+        "-scheme",
+        "Maktabah-iOS",
+        "-clonedSourcePackagesDirPath",
+        "build/SourcePackages",
+        "-configuration",
+        "Debug",
+        "-destination",
+        "generic/platform=iOS Simulator",
+        "-derivedDataPath",
+        "/Users/runner/work/Maktabah/Maktabah/build/DerivedData",
+        "-disableAutomaticPackageResolution",
+        "-jobs",
+        "2",
+        "-showBuildTimingSummary",
+        "CODE_SIGNING_ALLOWED=YES",
+        "CODE_SIGNING_REQUIRED=YES",
+        "CODE_SIGN_IDENTITY=-",
+        "ARCHS=arm64",
+        "ONLY_ACTIVE_ARCH=YES",
+        "ENABLE_USER_SCRIPT_SANDBOXING=NO",
+        "RCT_NO_LAUNCH_PACKAGER=1",
+        "SKIP_BUNDLING=1",
+        "FAIL_ON_MISSING_BUNDLE=1"
+      ],
+      [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "Scripts/CI/prepare-hanlin-sdk.py",
+        "--sha",
+        "e00498e33f106cc43be0476ffa2e09329c8ca300",
+        "--output",
+        "/Users/runner/work/Maktabah/Maktabah/build/hq-stage2/hanlin-sdk-inputs-after.json",
+        "--verify-only"
+      ],
+      [
+        "/opt/homebrew/opt/python@3.15/bin/python3.15",
+        "Scripts/CI/prepare-hanlin-sdk.py",
+        "--sha",
+        "e00498e33f106cc43be0476ffa2e09329c8ca300",
+        "--output",
+        "/Users/runner/work/Maktabah/Maktabah/build/hq-stage2/hanlin-sdk-inputs-after.json",
+        "--verify-only"
+      ]
+    ]
+  },
+  "generated_configuration": {
+    "before": [
+      {
+        "path": "Source/PrivacyInfo.xcprivacy",
+        "origin": "Original React Native CocoaPods privacy aggregation",
+        "original_git_blob": "c86c62cc12e3ceadea279ff9948a8891a0860577",
+        "original_sha256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1",
+        "compiled_sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5",
+        "all_other_declarations_unchanged": true,
+        "all_original_reasons_retained": true,
+        "added_reasons": [
+          {
+            "category": "NSPrivacyAccessedAPICategoryUserDefaults",
+            "reason": "1C8F.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "installed Pods",
+                "path": "Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/Resources/PrivacyInfo.xcprivacy",
+                "sha256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef",
+                "artifact_path": "privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy"
+              },
+              {
+                "pod_source": "installed Pods",
+                "path": "Pods/FirebaseRemoteConfig/FirebaseRemoteConfig/Swift/Resources/PrivacyInfo.xcprivacy",
+                "sha256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38",
+                "artifact_path": "privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy"
+              }
+            ]
+          },
+          {
+            "category": "NSPrivacyAccessedAPICategoryUserDefaults",
+            "reason": "C56D.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "installed Pods",
+                "path": "Pods/GoogleUtilities/GoogleUtilities/Privacy/Resources/PrivacyInfo.xcprivacy",
+                "sha256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c",
+                "artifact_path": "privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy"
+              }
+            ]
+          },
+          {
+            "category": "NSPrivacyAccessedAPICategoryFileTimestamp",
+            "reason": "0A2A.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "ExpoFileSystem",
+                "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+                "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+                "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+              }
+            ]
+          },
+          {
+            "category": "NSPrivacyAccessedAPICategoryDiskSpace",
+            "reason": "85F4.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "ExpoFileSystem",
+                "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+                "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+                "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+              }
+            ]
+          },
+          {
+            "category": "NSPrivacyAccessedAPICategoryDiskSpace",
+            "reason": "E174.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "ExpoFileSystem",
+                "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+                "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+                "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+              }
+            ]
+          },
+          {
+            "category": "NSPrivacyAccessedAPICategorySystemBootTime",
+            "reason": "35F9.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "React",
+                "path": "Vendor/SefariaMobile/Upstream/node_modules/react-native/third-party-podspecs/boost/PrivacyInfo.xcprivacy",
+                "sha256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d",
+                "artifact_path": "privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "after": [
+      {
+        "path": "Source/PrivacyInfo.xcprivacy",
+        "origin": "Original React Native CocoaPods privacy aggregation",
+        "original_git_blob": "c86c62cc12e3ceadea279ff9948a8891a0860577",
+        "original_sha256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1",
+        "compiled_sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5",
+        "all_other_declarations_unchanged": true,
+        "all_original_reasons_retained": true,
+        "added_reasons": [
+          {
+            "category": "NSPrivacyAccessedAPICategoryUserDefaults",
+            "reason": "1C8F.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "installed Pods",
+                "path": "Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/Resources/PrivacyInfo.xcprivacy",
+                "sha256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef",
+                "artifact_path": "privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy"
+              },
+              {
+                "pod_source": "installed Pods",
+                "path": "Pods/FirebaseRemoteConfig/FirebaseRemoteConfig/Swift/Resources/PrivacyInfo.xcprivacy",
+                "sha256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38",
+                "artifact_path": "privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy"
+              }
+            ]
+          },
+          {
+            "category": "NSPrivacyAccessedAPICategoryUserDefaults",
+            "reason": "C56D.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "installed Pods",
+                "path": "Pods/GoogleUtilities/GoogleUtilities/Privacy/Resources/PrivacyInfo.xcprivacy",
+                "sha256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c",
+                "artifact_path": "privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy"
+              }
+            ]
+          },
+          {
+            "category": "NSPrivacyAccessedAPICategoryFileTimestamp",
+            "reason": "0A2A.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "ExpoFileSystem",
+                "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+                "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+                "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+              }
+            ]
+          },
+          {
+            "category": "NSPrivacyAccessedAPICategoryDiskSpace",
+            "reason": "85F4.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "ExpoFileSystem",
+                "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+                "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+                "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+              }
+            ]
+          },
+          {
+            "category": "NSPrivacyAccessedAPICategoryDiskSpace",
+            "reason": "E174.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "ExpoFileSystem",
+                "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+                "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+                "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+              }
+            ]
+          },
+          {
+            "category": "NSPrivacyAccessedAPICategorySystemBootTime",
+            "reason": "35F9.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "React",
+                "path": "Vendor/SefariaMobile/Upstream/node_modules/react-native/third-party-podspecs/boost/PrivacyInfo.xcprivacy",
+                "sha256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d",
+                "artifact_path": "privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Source/PrivacyInfo.xcprivacy",
+        "origin": "Original React Native CocoaPods privacy aggregation",
+        "original_git_blob": "c86c62cc12e3ceadea279ff9948a8891a0860577",
+        "original_sha256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1",
+        "compiled_sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5",
+        "all_other_declarations_unchanged": true,
+        "all_original_reasons_retained": true,
+        "added_reasons": [
+          {
+            "category": "NSPrivacyAccessedAPICategoryUserDefaults",
+            "reason": "1C8F.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "installed Pods",
+                "path": "Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/Resources/PrivacyInfo.xcprivacy",
+                "sha256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef",
+                "artifact_path": "privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy"
+              },
+              {
+                "pod_source": "installed Pods",
+                "path": "Pods/FirebaseRemoteConfig/FirebaseRemoteConfig/Swift/Resources/PrivacyInfo.xcprivacy",
+                "sha256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38",
+                "artifact_path": "privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy"
+              }
+            ]
+          },
+          {
+            "category": "NSPrivacyAccessedAPICategoryUserDefaults",
+            "reason": "C56D.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "installed Pods",
+                "path": "Pods/GoogleUtilities/GoogleUtilities/Privacy/Resources/PrivacyInfo.xcprivacy",
+                "sha256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c",
+                "artifact_path": "privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy"
+              }
+            ]
+          },
+          {
+            "category": "NSPrivacyAccessedAPICategoryFileTimestamp",
+            "reason": "0A2A.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "ExpoFileSystem",
+                "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+                "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+                "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+              }
+            ]
+          },
+          {
+            "category": "NSPrivacyAccessedAPICategoryDiskSpace",
+            "reason": "85F4.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "ExpoFileSystem",
+                "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+                "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+                "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+              }
+            ]
+          },
+          {
+            "category": "NSPrivacyAccessedAPICategoryDiskSpace",
+            "reason": "E174.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "ExpoFileSystem",
+                "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+                "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+                "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+              }
+            ]
+          },
+          {
+            "category": "NSPrivacyAccessedAPICategorySystemBootTime",
+            "reason": "35F9.1",
+            "dependency_inputs": [
+              {
+                "pod_source": "React",
+                "path": "Vendor/SefariaMobile/Upstream/node_modules/react-native/third-party-podspecs/boost/PrivacyInfo.xcprivacy",
+                "sha256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d",
+                "artifact_path": "privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

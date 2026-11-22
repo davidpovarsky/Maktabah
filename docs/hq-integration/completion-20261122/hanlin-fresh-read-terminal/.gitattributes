@@ -1,0 +1,3 @@
+raw/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+packaging/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof,-space-before-tab
+raw/primary/hq-stage2/generated-pods-project.diff -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof,-space-before-tab

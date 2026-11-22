@@ -1,0 +1,412 @@
+Faithful 11-reader-inch: BOOTING {"udid": "674A64A8-3EBF-441E-88CD-0B2E30C8A2E7"}
+Monitoring boot status for Faithful 11-inch 8188b54e (674A64A8-3EBF-441E-88CD-0B2E30C8A2E7).
+Device already booted, nothing to do.
+
+Faithful 11-reader-inch: INSTALLING {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1, "timeoutSeconds": 600}
+Faithful 11-reader-inch: VERIFYING_APP_CONTAINER {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1}
+Faithful 11-reader-inch: INSTALLED {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1}
+Faithful 11-reader-inch: PROVISIONING_NATIVE_FIXTURES {}
+com.davidpovarsky.chavrusatext: 13151
+Native UI fixture ready: {'passed': True, 'profileID': 'miniTest10', 'profileVersion': 6, 'bookCount': 10, 'shaMatched': True}
+Faithful 11-reader-inch: RUNNING_NATIVE_XCTEST {"suites": ["HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"]}
+Command line invocation:
+    /Applications/Xcode_27.2.app/Contents/Developer/usr/bin/xcodebuild test-without-building -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -parallel-testing-enabled NO -destination "platform=iOS Simulator,id=674A64A8-3EBF-441E-88CD-0B2E30C8A2E7" -derivedDataPath build/DerivedData -resultBundlePath /Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-reader.xcresult -test-timeouts-enabled YES -default-test-execution-time-allowance 600 -maximum-test-execution-time-allowance 600 "-only-testing:Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+
+Resolve Package Graph
+
+Fetching from https://github.com/davidpovarsky/TorahInspectorKit.git
+
+Fetching from https://github.com/davidpovarsky/swift-ai-sdk.git (cached)
+
+Fetching from https://github.com/davidpovarsky/hanlin-streaming-markdown (cached)
+
+Fetching from https://github.com/appstefan/highlightswift (cached)
+
+Fetching from https://github.com/junyan72/iosMath (cached)
+
+Fetching from https://github.com/swiftlang/swift-cmark (cached)
+
+Fetching from https://github.com/apple/swift-argument-parser (cached)
+
+Fetching from https://github.com/scenee/FloatingPanel.git
+
+Fetching from https://github.com/ordo-one/equatable (cached)
+
+Fetching from https://github.com/facebook/zstd.git
+
+Fetching from https://github.com/swiftlang/swift-syntax.git (cached)
+
+Fetching from https://github.com/sparkle-project/Sparkle
+
+Fetching from https://github.com/swiftlang/swift-markdown.git (cached)
+
+Fetching from https://github.com/markiv/SwiftUI-Shimmer (cached)
+
+Fetching from https://github.com/exyte/AnchoredPopup.git
+
+Fetching from https://github.com/SwiftyJSON/SwiftyJSON.git (cached)
+
+Fetching from https://github.com/weichsel/ZIPFoundation.git
+
+Creating working copy of package ‘swift-syntax’
+
+Checking out 603.0.2 of package ‘swift-syntax’
+
+Creating working copy of package ‘swift-cmark’
+
+Checking out 0.9.0 of package ‘swift-cmark’
+
+Creating working copy of package ‘iosMath’
+
+Checking out ba9ab7729b151329c54fd895a7c1859981d9484c of package ‘iosMath’
+
+Creating working copy of package ‘highlightswift’
+
+Checking out 99c431b38a1444a5fd6a4978307fbbefe3a7af53 of package ‘highlightswift’
+
+Creating working copy of package ‘SwiftyJSON’
+
+Checking out 5.0.1 of package ‘SwiftyJSON’
+
+Creating working copy of package ‘hanlin-streaming-markdown’
+
+Checking out 6bde022876ef4af738c154b3d5c871984ef76195 of package ‘hanlin-streaming-markdown’
+
+Creating working copy of package ‘swift-markdown’
+
+Checking out 0.7.3 of package ‘swift-markdown’
+
+Creating working copy of package ‘TorahInspectorKit’
+
+Checking out 23db0f84e88d9ee9c7053c49de86903fc7bb5785 of package ‘TorahInspectorKit’
+
+Creating working copy of package ‘zstd’
+
+Checking out 1.5.7 of package ‘zstd’
+
+Creating working copy of package ‘equatable’
+
+Checking out 1.4.1 of package ‘equatable’
+
+Creating working copy of package ‘Sparkle’
+
+Checking out 2.9.1 of package ‘Sparkle’
+
+Creating working copy of package ‘AnchoredPopup’
+
+Checking out 1.3.1 of package ‘AnchoredPopup’
+
+Creating working copy of package ‘swift-ai-sdk’
+
+Checking out e7bf34111e603ca977becd007dd4e5bb109af857 of package ‘swift-ai-sdk’
+
+Creating working copy of package ‘FloatingPanel’
+
+Checking out 3.2.4 of package ‘FloatingPanel’
+
+Creating working copy of package ‘swift-argument-parser’
+
+Checking out 1.8.2 of package ‘swift-argument-parser’
+
+Creating working copy of package ‘SwiftUI-Shimmer’
+
+Checking out 1.5.1 of package ‘SwiftUI-Shimmer’
+
+Creating working copy of package ‘ZIPFoundation’
+
+Checking out 0.9.20 of package ‘ZIPFoundation’
+
+
+Resolved source packages:
+  SwiftUI-Shimmer: https://github.com/markiv/SwiftUI-Shimmer @ 1.5.1
+  OtzariaUIRouting: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/UIRouting @ local
+  cmark-gfm: https://github.com/swiftlang/swift-cmark @ 0.9.0
+  OtzariaActionCore: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Actions @ local
+  zstd: https://github.com/facebook/zstd.git @ 1.5.7
+  SwiftAISDK: https://github.com/davidpovarsky/swift-ai-sdk.git @ e7bf341
+  CommandPalette: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette @ local
+  HanlinPresentationSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPresentationSDK @ local
+  ZIPFoundation: https://github.com/weichsel/ZIPFoundation.git @ 0.9.20
+  HighlightSwift: https://github.com/appstefan/highlightswift @ 99c431b
+  ChavrusaUIRoutingHost: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/UIRoutingHost @ local
+  AnchoredPopup: https://github.com/exyte/AnchoredPopup.git @ 1.3.1
+  SwiftyJSON: https://github.com/SwiftyJSON/SwiftyJSON.git @ 5.0.1
+  swift-markdown: https://github.com/swiftlang/swift-markdown.git @ 0.7.3
+  iosMath: https://github.com/junyan72/iosMath @ ba9ab77
+  HanlinPlatform: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPlatform @ local
+  FloatingPanel: https://github.com/scenee/FloatingPanel.git @ 3.2.4
+  swift-syntax: https://github.com/swiftlang/swift-syntax.git @ 603.0.2
+  SwiftStreamingMarkdown: https://github.com/davidpovarsky/hanlin-streaming-markdown @ 6bde022
+  Equatable: https://github.com/ordo-one/equatable @ 1.4.1
+  TorahInspectorKit: https://github.com/davidpovarsky/TorahInspectorKit.git @ 23db0f8
+  Sparkle: https://github.com/sparkle-project/Sparkle @ 2.9.1
+  swift-argument-parser: https://github.com/apple/swift-argument-parser @ 1.8.2
+  HanlinAgentSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinAgentSDK @ local
+
+Writing result bundle at path:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-reader.xcresult
+
+2026-11-22 09:59:25.155061+0000 Maktabah-iOSUITests-Runner[22172:311231] [Default] Running tests...
+2026-11-22 09:59:25.324207+0000 Maktabah-iOSUITests-Runner[22172:311231] [UIKit App Config] Update the Info.plist: Launch screens will soon be required.
+objc[22172]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.CuNrzt/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x106118310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.CuNrzt/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x10614c398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-11-22 09:59:33.798.
+Test Suite 'Maktabah-iOSUITests.xctest' started at 2026-11-22 09:59:33.799.
+Test Suite 'HanlinReaderConsumerAcceptanceTests' started at 2026-11-22 09:59:33.799.
+Test Case '-[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending]' started.
+    t =     0.01s Start Test at 2026-11-22 09:59:33.805
+    t =     0.20s Set Up
+    t =     0.22s Setting device orientation to Landscape Left
+2026-11-22 09:59:38.095 xcodebuild[14393:290351] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-22 09:59:38.095 xcodebuild[14393:290351] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.25s     Device orientation changed to Landscape Left
+    t =     0.84s     Interface orientation changed to Landscape Right
+    t =     0.94s     Wait for com.apple.springboard to idle
+    t =     1.45s Open com.davidpovarsky.chavrusatext
+    t =     1.45s     Launch com.davidpovarsky.chavrusatext
+    t =    10.32s         Setting up automation session
+    t =    16.89s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    24.55s Get number of matches for: Descendants matching type Alert
+    t =    25.21s Waiting 60.0s for "reader-text" TextView to exist
+    t =    26.27s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    26.27s         Checking existence of `"reader-text" TextView`
+    t =    27.80s Find the "reader-text" TextView
+    t =    28.07s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    28.25s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    29.47s Checking `Expect predicate `value MATCHES "(?s).{31,}"` for object "reader-text" TextView`
+    t =    29.48s     Find the "reader-text" TextView
+    t =    29.71s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    30.75s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    30.75s         Checking existence of `"reader-header-title" StaticText`
+    t =    30.97s Find the "reader-header-title" StaticText
+    t =    31.22s Find the "reader-text" TextView
+    t =    31.48s Waiting 15.0s for "reader-current-locator" StaticText to exist
+    t =    32.51s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-current-locator" StaticText`
+    t =    32.51s         Checking existence of `"reader-current-locator" StaticText`
+    t =    32.75s Find the "reader-current-locator" StaticText
+    t =    32.98s Find the "reader-header-title" StaticText
+    t =    33.28s Find the "reader-text" TextView
+    t =    33.50s Waiting 30.0s for "otzaria-hanlin-reader-launch" Button to exist
+    t =    34.55s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-reader-launch" Button`
+    t =    34.55s         Checking existence of `"otzaria-hanlin-reader-launch" Button`
+    t =    34.77s Find the "otzaria-hanlin-reader-launch" Button
+    t =    34.99s Find the "otzaria-hanlin-reader-launch" Button
+    t =    35.31s Tap "otzaria-hanlin-reader-launch" Button
+    t =    35.31s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    35.31s     Find the "otzaria-hanlin-reader-launch" Button
+    t =    35.50s     Check for interrupting elements affecting "otzaria-hanlin-reader-launch" Button
+    t =    35.69s         Wait for com.apple.springboard to idle
+    t =    35.76s     Synthesize event
+    t =    36.30s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    37.88s Waiting 30.0s for "otzaria-hanlin-allow-current-book" Switch to exist
+    t =    38.93s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    38.93s         Checking existence of `"otzaria-hanlin-allow-current-book" Switch`
+    t =    39.20s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    39.47s Find the "otzaria-hanlin-consent-book-title" StaticText
+    t =    39.74s Waiting 30.0s for "otzaria-hanlin-service-address" TextField to exist
+    t =    40.79s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-service-address" TextField`
+    t =    40.79s         Checking existence of `"otzaria-hanlin-service-address" TextField`
+    t =    41.04s Find the "otzaria-hanlin-service-address" TextField
+    t =    41.38s Find the "otzaria-hanlin-service-address" TextField
+    t =    41.67s Tap "otzaria-hanlin-service-address" TextField
+    t =    41.67s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    41.68s     Find the "otzaria-hanlin-service-address" TextField
+    t =    41.93s     Check for interrupting elements affecting "otzaria-hanlin-service-address" TextField
+    t =    42.15s         Wait for com.apple.springboard to idle
+    t =    42.18s     Synthesize event
+    t =    42.48s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    47.25s Type 'a' key with modifiers '⌘' (0x10)
+    t =    47.25s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    47.30s     Find the "otzaria-hanlin-service-address" TextField
+    t =    47.72s     Check for interrupting elements affecting "otzaria-hanlin-service-address" TextField
+    t =    47.97s         Wait for com.apple.springboard to idle
+    t =    48.02s     Synthesize event
+    t =    48.73s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    49.35s Type 'https://generative...' into "otzaria-hanlin-service-address" TextField
+    t =    49.35s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    49.65s     Find the "otzaria-hanlin-service-address" TextField
+    t =    50.00s     Check for interrupting elements affecting "otzaria-hanlin-service-address" TextField
+    t =    50.28s         Wait for com.apple.springboard to idle
+    t =    50.74s     Synthesize event
+    t =    51.91s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    51.91s Find the "otzaria-hanlin-service-address" TextField
+    t =    52.32s Waiting 30.0s for "otzaria-hanlin-model" TextField to exist
+    t =    53.37s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-model" TextField`
+    t =    53.37s         Checking existence of `"otzaria-hanlin-model" TextField`
+    t =    53.67s Find the "otzaria-hanlin-model" TextField
+    t =    53.97s Find the "otzaria-hanlin-model" TextField
+    t =    54.42s Tap "otzaria-hanlin-model" TextField
+    t =    54.42s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    54.43s     Find the "otzaria-hanlin-model" TextField
+    t =    54.82s     Check for interrupting elements affecting "otzaria-hanlin-model" TextField
+    t =    55.18s         Wait for com.apple.springboard to idle
+    t =    55.23s     Synthesize event
+    t =    55.79s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    56.45s Type 'unused-native-fres...' into "otzaria-hanlin-model" TextField
+    t =    56.45s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    56.56s     Find the "otzaria-hanlin-model" TextField
+    t =    57.12s     Check for interrupting elements affecting "otzaria-hanlin-model" TextField
+    t =    57.61s         Wait for com.apple.springboard to idle
+    t =    57.65s     Synthesize event
+    t =    58.39s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    58.40s Find the "otzaria-hanlin-model" TextField
+    t =    58.79s Waiting 30.0s for "otzaria-hanlin-api-key" SecureTextField to exist
+    t =    59.83s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-api-key" SecureTextField`
+    t =    59.83s         Checking existence of `"otzaria-hanlin-api-key" SecureTextField`
+    t =    60.15s Find the "otzaria-hanlin-api-key" SecureTextField
+    t =    60.44s Find the "otzaria-hanlin-api-key" SecureTextField
+    t =    60.72s Tap "otzaria-hanlin-api-key" SecureTextField
+    t =    60.72s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    60.72s     Find the "otzaria-hanlin-api-key" SecureTextField
+    t =    61.03s     Check for interrupting elements affecting "otzaria-hanlin-api-key" SecureTextField
+    t =    61.37s         Wait for com.apple.springboard to idle
+    t =    61.44s     Synthesize event
+    t =    61.76s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    62.03s Type 'ui-no-send-credent...' into "otzaria-hanlin-api-key" SecureTextField
+    t =    62.04s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    62.09s     Find the "otzaria-hanlin-api-key" SecureTextField
+    t =    62.42s     Check for interrupting elements affecting "otzaria-hanlin-api-key" SecureTextField
+    t =    62.67s         Wait for com.apple.springboard to idle
+    t =    62.71s     Synthesize event
+    t =    63.27s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    63.28s Waiting 20.0s for "otzaria-hanlin-connection-form" Any to exist
+    t =    64.32s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-connection-form" Any`
+    t =    64.32s         Checking existence of `"otzaria-hanlin-connection-form" Any`
+    t =    64.73s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    65.04s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    65.34s Get number of matches for: Descendants matching type Switch
+    t =    65.65s Find the Switch (Element at index 0)
+    t =    65.97s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    66.32s Find the "0" Switch
+    t =    66.59s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    66.95s Find the "0" Switch
+    t =    67.28s Find the "0" Switch
+    t =    67.64s Swipe up "otzaria-hanlin-connection-form" Any
+    t =    67.64s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    67.65s     Find the "otzaria-hanlin-connection-form" Any
+    t =    68.04s     Check for interrupting elements affecting "otzaria-hanlin-connection-form" CollectionView
+    t =    68.27s         Wait for com.apple.springboard to idle
+    t =    68.35s     Synthesize event
+    t =    68.84s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    68.86s Find the "0" Switch
+    t =    70.12s Swipe up "otzaria-hanlin-connection-form" CollectionView
+    t =    70.12s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    70.13s     Find the "otzaria-hanlin-connection-form" CollectionView
+    t =    71.16s     Check for interrupting elements affecting "otzaria-hanlin-connection-form" CollectionView
+    t =    71.43s         Wait for com.apple.springboard to idle
+    t =    71.51s     Synthesize event
+    t =    72.05s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    72.06s Find the "0" Switch
+    t =    72.35s Swipe up "otzaria-hanlin-connection-form" CollectionView
+    t =    72.35s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    72.37s     Find the "otzaria-hanlin-connection-form" CollectionView
+    t =    73.20s     Check for interrupting elements affecting "otzaria-hanlin-connection-form" CollectionView
+    t =    73.57s         Wait for com.apple.springboard to idle
+    t =    73.70s     Synthesize event
+    t =    74.34s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    74.35s Find the "0" Switch
+    t =    74.67s Swipe up "otzaria-hanlin-connection-form" CollectionView
+    t =    74.67s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    74.68s     Find the "otzaria-hanlin-connection-form" CollectionView
+    t =    77.40s     Check for interrupting elements affecting "otzaria-hanlin-connection-form" CollectionView
+    t =    77.81s         Wait for com.apple.springboard to idle
+    t =    78.12s     Synthesize event
+    t =    78.96s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    78.98s Waiting 30.0s for "0" Switch to exist
+    t =    80.02s     Checking `Expect predicate `existsNoRetry == 1` for object "0" Switch`
+    t =    80.02s         Checking existence of `"0" Switch`
+    t =    80.42s Find the "0" Switch
+    t =    80.65s Find the "0" Switch
+/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift:294: error: -[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending] : XCTAssertTrue failed - Use the actual native control
+    t =    81.40s Tear Down
+    t =    81.40s     Requesting snapshot of accessibility hierarchy for app with pid 22874
+    t =    82.57s     Requesting snapshot of accessibility hierarchy for app with pid 22874
+    t =    83.01s     Added attachment named 'r27-final-native-hierarchy'
+    t =    83.42s     Added attachment named 'r27-final-native-screen'
+    t =    83.42s     Setting device orientation to Portrait
+    t =    83.43s         Device orientation changed to Portrait
+    t =    83.84s         Interface orientation changed to Portrait
+    t =    84.28s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    86.61s         Wait for com.apple.springboard to idle
+Test Case '-[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending]' failed (88.019 seconds).
+Test Suite 'HanlinReaderConsumerAcceptanceTests' failed at 2026-11-22 10:01:01.825.
+	 Executed 1 test, with 1 failure (0 unexpected) in 88.019 (88.025) seconds
+Test Suite 'Maktabah-iOSUITests.xctest' failed at 2026-11-22 10:01:01.833.
+	 Executed 1 test, with 1 failure (0 unexpected) in 88.019 (88.034) seconds
+Test Suite 'Selected tests' failed at 2026-11-22 10:01:01.833.
+	 Executed 1 test, with 1 failure (0 unexpected) in 88.019 (88.035) seconds
+2026-11-22 10:01:45.861 xcodebuild[14393:290351] [MT] IDETestOperationsObserverDebug: 149.273 elapsed -- Testing started completed.
+2026-11-22 10:01:45.861 xcodebuild[14393:290351] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-22 10:01:45.861 xcodebuild[14393:290351] [MT] IDETestOperationsObserverDebug: 149.273 sec, +149.273 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-reader.xcresult
+
+Failing tests:
+	HanlinReaderConsumerAcceptanceTests.testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending()
+
+** TEST EXECUTE FAILED **
+
+Testing started
+{
+  "suites": [
+    {
+      "suite": "HanlinReaderConsumerAcceptanceTests",
+      "selection": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
+      "expected": [
+        "testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+      ],
+      "passed": [],
+      "failed": [
+        "testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+      ],
+      "missing": [
+        "testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+      ],
+      "status": "FAIL"
+    }
+  ],
+  "status": "FAIL"
+}
+::error::xcresult summary did not pass
+{
+  "status": "FAIL",
+  "scope": "focused-ui",
+  "database_open": "NOT_VERIFIED_BY_TEST_COUNTS",
+  "summary_sha256": "24a73da1384ee74dbb459409a443915c09e127e6b9a76059aac5c0ef8eb5957f",
+  "tests_sha256": "badf9854b4c41bbf037598f5e6c65e6c50083feda8a19ba67af003efdb516135",
+  "error": "xcresult summary did not pass"
+}
+Exported 28 attachments for: HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending():
+File: 5A18E3D2-AFFA-4A2A-A6D0-2CDBFA03A39B.png, suggested name: "r27-final-native-screen_0_FE0F6F74-AC93-4886-AB43-EA5CEE5A0670.png"
+File: D6DD0481-8830-4F76-AD60-F2BF50762000.txt, suggested name: "r27-final-native-hierarchy_0_06AC1DFB-6251-4DD3-8D1C-EFAAF7035839.txt"
+File: 9C6B179B-D592-445F-88C7-AB4CF97D89C5, suggested name: "UI Snapshot 2026-11-22 at 10.00.51 AM"
+File: 23869D5D-365B-40D1-B213-CF20FB52C814, suggested name: "Synthesized Event 2026-11-22 at 10.00.52 AM"
+File: F0BAF002-2DFB-4870-B7D1-A2EB1C6DA8CE, suggested name: "UI Snapshot 2026-11-22 at 10.00.47 AM"
+File: 06EE3CCB-764D-4110-8805-B0031B376209, suggested name: "Synthesized Event 2026-11-22 at 10.00.48 AM"
+File: 04D6489D-007C-467F-B006-D600B456A5CE, suggested name: "UI Snapshot 2026-11-22 at 10.00.45 AM"
+File: E20B7D0B-C91B-43EC-8F59-6B2152CA2F6D, suggested name: "Synthesized Event 2026-11-22 at 10.00.45 AM"
+File: 7C3CAC6E-75AA-49F8-8D25-0E806C00D10C, suggested name: "UI Snapshot 2026-11-22 at 10.00.42 AM"
+File: A144A14C-2808-44E6-A16D-C0D5664E91E0, suggested name: "Synthesized Event 2026-11-22 at 10.00.42 AM"
+File: 5F5C785F-39C0-4E00-A9BA-8885B1679992, suggested name: "UI Snapshot 2026-11-22 at 10.00.36 AM"
+File: A8400223-39CF-4906-9B7E-E6B7322B6664, suggested name: "Synthesized Event 2026-11-22 at 10.00.37 AM"
+File: 7E4F8315-55D8-44E7-B1D5-9A5D52A039D8, suggested name: "UI Snapshot 2026-11-22 at 10.00.35 AM"
+File: A0266C60-BE85-41BC-8407-8461F372DEFF, suggested name: "Synthesized Event 2026-11-22 at 10.00.35 AM"
+File: 2C7B9313-8884-407E-BF26-F4FC010004E1, suggested name: "UI Snapshot 2026-11-22 at 10.00.31 AM"
+File: C807FD69-188A-462C-8052-E03932D9C83B, suggested name: "Synthesized Event 2026-11-22 at 10.00.32 AM"
+File: 1F859E49-1CE8-49BB-A341-2F13F6CAC4A1, suggested name: "UI Snapshot 2026-11-22 at 10.00.29 AM"
+File: 0476BF8E-D76A-4AF5-8AF3-73BF6BF4B016, suggested name: "Synthesized Event 2026-11-22 at 10.00.29 AM"
+File: 3BA6E556-3E23-47F1-ABF4-2DD8BA62E5BA, suggested name: "UI Snapshot 2026-11-22 at 10.00.24 AM"
+File: 18854D93-BCF2-44FD-BDBD-E22FD8BF762C, suggested name: "Synthesized Event 2026-11-22 at 10.00.25 AM"
+File: 03AB02A8-927B-435F-9023-BCFAA172B708, suggested name: "UI Snapshot 2026-11-22 at 10.00.21 AM"
+File: A970C9DF-2FA2-40DF-9870-A1F8CEE65300, suggested name: "Synthesized Event 2026-11-22 at 10.00.22 AM"
+File: DE284012-0090-41FF-A2EE-DB801604C632, suggested name: "UI Snapshot 2026-11-22 at 10.00.15 AM"
+File: A8914E36-A1E1-41AE-980E-CFE8C274DFD1, suggested name: "Synthesized Event 2026-11-22 at 10.00.16 AM"
+File: 0F01ADB1-9446-4F52-ACD1-1F44F765D8CF, suggested name: "UI Snapshot 2026-11-22 at 10.00.09 AM"
+File: B41ACCAE-AB14-4DCE-9C3B-80FA3C2A2BDD, suggested name: "Synthesized Event 2026-11-22 at 10.00.10 AM"
+File: 77EE2AF1-FD66-4C71-A2D3-78F71B0332CA, suggested name: "UI Snapshot 2026-11-22 at 10.00.03 AM"
+File: 47AE1234-98E4-41AE-B021-546D93C684DF.mp4, suggested name: "Screen Recording 2026-11-22 at 09.59.34 AM.mp4"
+
+Generated manifest file with attachment details: /Users/runner/work/Maktabah/Maktabah/build/artifacts/visual-11-reader/manifest.json
+Faithful 11-reader-inch: FAILED {"error": "SystemExit: Native UI acceptance failed: ['HanlinReaderConsumerAcceptanceTests']; acceptance status 65; actual xcodebuild status 65"}
+Native acceptance failed for ['11-reader']; see per-device logs and the complete matrix. Release is prohibited.

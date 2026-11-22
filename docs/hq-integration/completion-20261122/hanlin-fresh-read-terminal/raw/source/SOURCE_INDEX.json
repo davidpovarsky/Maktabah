@@ -1,0 +1,23 @@
+[
+  {
+    "commit": "997bc6872fed666daef8f720ddd1f847647be80c",
+    "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+    "blob": "51cbc099c13288f706de001e3327abc1e98af655",
+    "bytes": 46033,
+    "sha256": "10b913029739ae3f9f5ca94a220eaaf0329cf07c1b3bb9f62f823d833a5f7c2b"
+  },
+  {
+    "commit": "997bc6872fed666daef8f720ddd1f847647be80c",
+    "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+    "blob": "f9a5d33d3c76113357257a86fd28d22531b9a3a7",
+    "bytes": 30127,
+    "sha256": "7439fd761e6661db719259bdf1e32eb59bb9dbdf084747849b92147e7702e004"
+  },
+  {
+    "commit": "997bc6872fed666daef8f720ddd1f847647be80c",
+    "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "blob": "d363e9091cd00d8b76cb8506a4f4017ee35780c9",
+    "bytes": 204965,
+    "sha256": "8b9973dd2742dab3840361da27492b41752d26954cd7f3081d6d1ee20ed6f03b"
+  }
+]
