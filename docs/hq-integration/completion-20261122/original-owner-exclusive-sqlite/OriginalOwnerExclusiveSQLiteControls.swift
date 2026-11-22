@@ -89,15 +89,19 @@ private extension OriginalOwnerExclusiveSQLiteAcceptance {
             try await MainActor.run {
                 try require(f.owner.isCapturing && f.owner.pendingOperationCount == 1, "actual exclusive-read parent holds capture")
                 f.log.append("original_exclusive_read_entered")
-                let committed: String = try f.owner.performSynchronousOperation(
-                    contextId: f.document.objectId, spaceId: f.document.spaceId,
-                    requiresEditing: false
-                ) {
-                    observation.bodyExecutions += 1
-                    try require(f.owner.isCapturing && f.owner.pendingOperationCount == 2, "actual child read inherits held parent scope")
-                    f.log.append("explicit_read_scope_local_body_admitted")
-                    return try f.database.withSerializedAccess {
-                        try require(sqlite3_get_autocommit(f.database.dbPointer) != 0, "real outer transaction required")
+                // Intended local persistence seam: the already-held original read
+                // encloses DB serialization, then synchronous read-scope admission.
+                // There is no await inside the DB lock or transaction.
+                let committed: String = try f.database.withSerializedAccess {
+                    f.log.append("sqlite_serialized_lock_acquired_inside_read")
+                    try require(sqlite3_get_autocommit(f.database.dbPointer) != 0, "real outer transaction required")
+                    let result: String = try f.owner.performSynchronousOperation(
+                        contextId: f.document.objectId, spaceId: f.document.spaceId,
+                        requiresEditing: false
+                    ) {
+                        observation.bodyExecutions += 1
+                        try require(f.owner.isCapturing && f.owner.pendingOperationCount == 2, "actual child read inherits held parent scope")
+                        f.log.append("explicit_read_scope_local_body_admitted")
                         try f.database.transaction {
                             try f.insertFact()
                             try require(f.owner.isCapturing, "read barrier held through SQL body")
@@ -110,9 +114,12 @@ private extension OriginalOwnerExclusiveSQLiteAcceptance {
                         f.log.append("local_outer_commit_inside_exclusive_read")
                         return "fixture_local_fact_committed"
                     }
+                    try require(f.owner.isCapturing && f.owner.pendingOperationCount == 1, "child read drains while original barrier remains held")
+                    f.log.append("explicit_child_read_returned_before_capture_release")
+                    return result
                 }
-                try require(f.owner.isCapturing && f.owner.pendingOperationCount == 1, "child read drains while original barrier remains held")
-                f.log.append("explicit_child_read_returned_before_capture_release")
+                try require(f.owner.isCapturing && f.owner.pendingOperationCount == 1, "original read remains held after DB lock returns")
+                f.log.append("sqlite_serialized_lock_returned_before_capture_release")
                 return committed
             }
         }
@@ -123,9 +130,18 @@ private extension OriginalOwnerExclusiveSQLiteAcceptance {
         try require(try independentRows(f.path) == 1, "read-scoped local fact persists")
         f.owner.retire()
         try require(f.drain.count == 1 && f.drain.durableRows == 1 && f.drain.error == nil, "normal teardown sees committed local fact")
+        try require(f.log.snapshot() == [
+            "original_exclusive_read_entered", "sqlite_serialized_lock_acquired_inside_read",
+            "explicit_read_scope_local_body_admitted", "local_outer_commit_inside_exclusive_read",
+            "explicit_child_read_returned_before_capture_release",
+            "sqlite_serialized_lock_returned_before_capture_release",
+            "original_exclusive_read_returned", "owner_onDrained"
+        ], "exact held-read, serialized-lock, child admission, COMMIT, drain order")
         return ("current_owner_explicit_read_scope_success", [
             "bodyExecutions": "1", "requiresEditing": "false", "outerCommit": "true",
             "originalReadBarrierHeldAtCommit": "true", "publishedCurrentSuccess": "true",
+            "lockOrder": "exclusiveRead_then_SQLiteSerialized_then_childRead_then_outerCommit",
+            "awaitInsideSQLiteLockOrTransaction": "false",
             "nativeRPCDispatched": "0", "nativeMutationAuthorityUpgrade": "false"
         ])
     }
@@ -140,27 +156,31 @@ private extension OriginalOwnerExclusiveSQLiteAcceptance {
                 try await MainActor.run {
                     try require(f.owner.isCapturing && f.owner.pendingOperationCount == 1, "actual exclusive read holds parent")
                     f.log.append("original_exclusive_read_entered")
-                    do {
-                        // Deliberately use the original default mutation scope.
-                        // It must be refused before this explicit fixture SQL body.
-                        try f.owner.performSynchronousOperation(
-                            contextId: f.document.objectId, spaceId: f.document.spaceId
-                        ) {
-                            observation.bodyExecutions += 1
-                            try f.database.withSerializedAccess {
+                    try f.database.withSerializedAccess {
+                        f.log.append("sqlite_serialized_lock_acquired_inside_read")
+                        try require(sqlite3_get_autocommit(f.database.dbPointer) != 0, "no transaction before child admission")
+                        do {
+                            // Deliberately use the original default mutation scope
+                            // while the DB lock is held, before any SQL transaction.
+                            try f.owner.performSynchronousOperation(
+                                contextId: f.document.objectId, spaceId: f.document.spaceId
+                            ) {
+                                observation.bodyExecutions += 1
                                 try f.database.transaction { try f.insertFact() }
                             }
+                            throw ControlFailure(description: "native read lineage incorrectly upgraded to mutation")
+                        } catch let error as EditorDocumentWriteError {
+                            try require(error == .rejected(.unqualifiedDispatch), "exact default nested-mutation rejection")
+                            observation.innerRejected = true
+                            f.log.append("default_mutation_rejected_before_fixture_sql")
                         }
-                        throw ControlFailure(description: "native read lineage incorrectly upgraded to mutation")
-                    } catch let error as EditorDocumentWriteError {
-                        try require(error == .rejected(.unqualifiedDispatch), "exact default nested-mutation rejection")
-                        observation.innerRejected = true
-                        f.log.append("default_mutation_rejected_before_fixture_sql")
+                        try require(observation.bodyExecutions == 0, "rejected nested body must never begin")
+                        try require(sqlite3_get_autocommit(f.database.dbPointer) != 0, "rejected mutation started no SQL transaction")
+                        try require(try independentRows(f.path) == 0, "rejected mutation wrote no local fact")
+                        try require(f.owner.isCapturing && f.owner.pendingOperationCount == 1, "rejected child created no pending lease")
                     }
-                    try require(observation.bodyExecutions == 0, "rejected nested body must never begin")
-                    try require(sqlite3_get_autocommit(f.database.dbPointer) != 0, "rejected mutation started no SQL transaction")
-                    try require(try independentRows(f.path) == 0, "rejected mutation wrote no local fact")
-                    try require(f.owner.isCapturing && f.owner.pendingOperationCount == 1, "rejected child created no pending lease")
+                    try require(f.owner.isCapturing && f.owner.pendingOperationCount == 1, "held read outlives DB serialization")
+                    f.log.append("sqlite_serialized_lock_returned_before_capture_release")
                     return "inner_rejection_observed"
                 }
             }
@@ -175,10 +195,18 @@ private extension OriginalOwnerExclusiveSQLiteAcceptance {
         try require(try independentRows(f.path) == 0, "no fixture row after rejected native mutation upgrade")
         f.owner.retire()
         try require(f.drain.count == 1 && f.drain.durableRows == 0 && f.drain.error == nil, "teardown sees untouched local table")
+        try require(f.log.snapshot() == [
+            "original_exclusive_read_entered", "sqlite_serialized_lock_acquired_inside_read",
+            "default_mutation_rejected_before_fixture_sql",
+            "sqlite_serialized_lock_returned_before_capture_release",
+            "original_exclusive_read_failed_write_latched", "owner_onDrained"
+        ], "exact rejection under serialized lock before transaction, then barrier drain")
         return ("rejected_unqualified_dispatch_and_failed_write_latched", [
             "bodyExecutions": "0", "requiresEditing": "true_default", "outerCommit": "false",
             "innerRejection": "unqualifiedDispatch", "outerRejection": "failedWrite",
-            "publishedCurrentSuccess": "false", "nativeRPCDispatched": "0"
+            "publishedCurrentSuccess": "false", "nativeRPCDispatched": "0",
+            "SQLiteSerializedLockHeldAtRejection": "true", "SQLTransactionStarted": "false",
+            "awaitInsideSQLiteLockOrTransaction": "false"
         ])
     }
 

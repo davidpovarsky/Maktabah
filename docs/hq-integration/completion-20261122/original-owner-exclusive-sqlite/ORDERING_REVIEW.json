@@ -1,0 +1,12 @@
+{
+  "review": "root requires already-held read -> original SQLite serialization -> nested synchronous requiresEditing:false -> outer COMMIT",
+  "ordering_draft": "bead22580633e296a09db185b28e510e7a12421c",
+  "source_fragment_sha256": "5d4cb2744a4d03d8a46808618ccd78052d316ab7dedffd462cf22bdaf42066ed",
+  "combined_compiler_source_sha256": "000ee2f310ca9ac3c62072e701995597e75fa2d158a1e176a0decd5df27fe9a8",
+  "runner_sha256": "179e4ad274200ca436134b0017153b769cc536bb04fd2f6251e22285d9d9c8b3",
+  "historical_six_packet_unchanged": true,
+  "await_inside_sqlite_lock_or_transaction": false,
+  "execution_status": "NOT_RUN",
+  "production_changes": 0,
+  "new_controls": 2
+}
