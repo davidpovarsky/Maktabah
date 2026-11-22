@@ -1,6 +1,6 @@
 # Otzaria / Maktabah — current development checkpoint
 
-Snapshot: 2026-11-22T03:22:07.149515+00:00.
+Snapshot: 2026-11-22T03:54:01.253454+00:00.
 
 This report records executed work and its limits. It does not declare product, full Native, Release or original-editor acceptance.
 
@@ -78,7 +78,13 @@ The original51-pin graph has real Apple resolution evidence. Strict-only run4497
 
 Producer44976039281 onfc03 passed source controls, original Hanlin, Heart and toolchain checks, then failed at ComputeTargetDependencyGraph before Swift compilation because Xcode required authorization for EquatableMacros. The correction authorizes only the reviewed Equatable1.4.1 package/revision/target and restores the prior macro trust bytes. It does not disable macro validation globally.
 
-Producer [44978502186](https://github.com/davidpovarsky/anytype-swift/actions/runs/44978502186), frozen atcb2df9baa201db0ce404ba37eac853424bae6204, finished FAILURE. Its genuine framework step failed at03:12:36 UTC and its job completed03:12:45 UTC; the sole observerjob_f81168b93de0 ended03:13:20. Scoped Equatable approval and exact trust-store restoration both passed. The source-bound artifact14737027101,1,088,166 bytes, SHA256ee74d656be583028f8891a102197e06378bbd59bcdc282a63afc756400b8b7f0, identifies actual Services compiler errors: PublishingService rethrows a concrete protobuf error that this module compilation rejects as Swift.Error; TemplatesService references two app-only ObjectDetails predicates. The producer owner is making two bounded repairs preserving the original error existential and reading the exact original template type through the retained native owner. No qualified framework distribution or binary consumer execution is credited. Published peer property16 source388a3726/evidence06b639ff is under independent review for the same next build; no producer retry has yet been dispatched by this checkpoint.
+Producer [44978502186](https://github.com/davidpovarsky/anytype-swift/actions/runs/44978502186), frozen atcb2df9baa201db0ce404ba37eac853424bae6204, finished FAILURE. Its genuine framework step failed at03:12:36 UTC and its job completed03:12:45 UTC; the sole observerjob_f81168b93de0 ended03:13:20. Scoped Equatable approval, actual macro compilation/link/sign, and exact trust-store restoration passed. Artifact14737027101,1,088,166 bytes, SHA256ee74d656be583028f8891a102197e06378bbd59bcdc282a63afc756400b8b7f0 preserves the actual Services compiler errors.
+
+Both original Services repairs were reviewed in full. PublishingService preserves the caught Swift.Error existential and its existing null-error policy. TemplatesService resolves the actual referenced type through strict original ObjectShow under the existing task-local Owner: exact root, exactly one returned row, exact ID and Space. Each original RPC obtains a fresh permit; no new Owner, passive-parent reentry or weakened restriction is introduced. The original app-only predicates are replaced by the original available module values.
+
+The completed peer property16 source388a3726/evidence06b639ff was independently reviewed against cb2: all16 preimages/outputs,80 evidence payloads,14 actual new controls and the13 intended production control inputs verified without rerunning the controls. Services commitb5b4869660415cbc5f273141162482a32f68f9fd and exact peer source cherry-pickfcdff77b3e75dd0b38cb939d15affd68cf43c180 are composed together; peer evidence is retained at2b39d5e3f0161b1a8a0b8724b43a8f5f464592fc.
+
+The repaired producer is frozen/published ata5fffd7f0ead01b3086019f4c1bef7c01f3a699d. Actual [run44982412759](https://github.com/davidpovarsky/anytype-swift/actions/runs/44982412759), attempt1, began03:50:19 UTC and was independently verified IN_PROGRESS on that exact SHA. The sole finite observer is job_e7d5048ee778. Local source/profile admission passed with the original2252 source count, unchanged51 pins and49 execution inputs. Pure CRLF checkout differences in six unchanged control sources were backed up and canonicalized to their exact Git bytes; no source semantics or global Git setting changed. No qualified framework, binary consumer or Native editor result is yet credited.
 
 Ordinary HQ keeps optional original-editor admission and canImport guarding. An UNFINALIZED producer blocks dedicated StageB, not every ordinary app build. StageB still requires the genuine qualified original distribution and actual native two-block save/reopen evidence. Source-only and portable controls are not editor runtime acceptance.
 
@@ -88,9 +94,25 @@ The peer continuation owns the property-modal source chain. Its files and frozen
 
 ## Retained dependency evidence
 
-The peer's [M17 run44976915323](https://github.com/davidpovarsky/anytype-swift/actions/runs/44976915323) passed one original strict CocoaPods-workspace resolution for Maktabah813fbe79c1b325ee21a8c2be78bb86577f44bf6c. All17 pins/checkouts,268 prepared workspace inputs and424 original Hanlin records were preserved. There was no automatic resolver or second strict invocation. Evidence commit538b2c9ca153c81a593faa08fab3b6a080d428e8 is retained by the peer. Reuse for385ee requires an explicit dependency/preparation comparison; it is not assumed.
+The peer's [M17 run44976915323](https://github.com/davidpovarsky/anytype-swift/actions/runs/44976915323) passed one original strict CocoaPods-workspace resolution for Maktabah813fbe79c1b325ee21a8c2be78bb86577f44bf6c. All17 pins/checkouts,268 prepared workspace inputs and424 original Hanlin records were preserved. There was no automatic resolver or second strict invocation. Evidence commit538b2c9ca153c81a593faa08fab3b6a080d428e8 is retained by the peer.
+
+The requested exact reuse comparison for application385ee/execution metadata46a is now verified and published in9ced75da7726b55668f1341a1ff5a241a65abc4a. Root independently checked23 actual Git input comparisons, the7 unchanged PBX package/owner/build sections, all17 pins and the4 original preparation functions. The project difference is exactly8 added source-registration lines. The complete26-member peer packet contains25 verified payloads; ZIP SHA2569bd73752aaf5bd1587d98a57053f4b48c5281356cb68c227203b737d206b167b, CRC PASS. [Reuse report](m17-reuse-385ee/README.md) and [root admission](m17-reuse-385ee/ROOT_REVIEW.json) preserve exact scope. No resolver, compiler or test was rerun. The historical strict17-package resolution is reusable; the historical268-file generated workspace stamp is not transferred. Current Pods/workspace/privacy/provider preparation and actual build gates remain required.
 
 Historical Core194, Host48, Store11, Foundation55 and full-v32 results remain limited to their proved unchanged dependency closures. A successful component does not accept the current full application. Passed tests are rerun only for a concrete changed dependency or a required final gate.
+
+## Current dev history integration
+
+True merge031e3cfde4bd072c7e6f6a8ecc6d0a364b4af219 joins completion9ced75da7726b55668f1341a1ff5a241a65abc4a and the freshly verified dev9859c754545aed8c34b311b63490778a51db5d7e. Proof commit879d1e0e5148bb1ce9d93512746b510a622affe6 is its direct child. All11 conflicts were resolved after an independent full three-way review. All18 existing dev-touched files retain their exact current completion bytes; current workflows already include dev's notification changes. The sole effective addition is dev's original54-line Live Activity Bridge workflow,1,923 bytes/SHA256427678d3ae83c659912b2b009d0c8a5aed72027e6fd9f35ce300370a1690f4f6.
+
+Independent post-merge review verified both actual parents, all18 retained blobs, all4 product trees, every receipt payload, and unchanged owner verifier/baseline, TestFlight/UI-before-signing and release gates. The removed old inline release upload was not restored. [Actual merge proof](dev-history-integration/INTEGRATION.json) records source-preserving integration. No component, resolver or Native suite was rerun for this history/CI-only change.
+
+## Durable native-creation fence work
+
+An isolated consumer extension adds explicit opt-in native-attempt/mapping tables to the original AnnotationExchangeLedger without changing original v1 tables, PRAGMA user_version, startup behavior or ACK. The dispatch uncertainty transition now refuses an enclosing transaction and holds the original SQLite connection lock through the true outermost COMMIT. A released SAVEPOINT is not accepted as durable.
+
+The frozen draft9ad84c76 passed18 new actual original-source SQLite controls plus3 abrupt-process-termination/distinct-process-reopen pairs on Windows Swift6.3.3/SQLite3.53.4. The first compiler timeout was preserved; its same-cache continuation executed the cases. A separately identified UUID-case ambiguity is under an actual negative reproduction before integration: a noncanonical stored UUID must fail closed instead of hiding prior uncertainty. This draft is not yet integrated or a Native result.
+
+The isolated SDK policy files511c648c/12beaebc passed52 new pure Swift controls and were fully reviewed. They define conservative recovery and separate identity from applied-body assessment. The durable attempt uses the existing messageID; no ID is minted during recovery. No DTO, caller boolean or metadata marker is a runtime receipt. A retained original account/Space/Owner and actual native readback must issue sealed identity/application receipts before any mapping writer or ACK can be wired. Production native schema, account bootstrap and visibility remain unfinished.
 
 ## Signing and remaining external requirements
 
