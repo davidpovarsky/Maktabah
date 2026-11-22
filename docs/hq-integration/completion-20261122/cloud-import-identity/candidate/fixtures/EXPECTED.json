@@ -1,0 +1,427 @@
+[
+  {
+    "expectedAdded" : 0,
+    "expectedCount" : 1,
+    "expectedSameID" : true,
+    "expectedUpdated" : 1,
+    "localID" : 1,
+    "localLocator" : {
+      "backend" : "sefaria",
+      "position" : {
+        "kind" : "canonicalRef",
+        "string" : "Genesis 1:1"
+      },
+      "workKey" : "Genesis"
+    },
+    "localRawLocator" : "{\"workKey\":\"Genesis\",\"position\":{\"string\":\"Genesis 1:1\",\"kind\":\"canonicalRef\"},\"backend\":\"sefaria\"}",
+    "name" : "same_uuid_locator_and_context",
+    "older" : false,
+    "pending" : [
+      {
+        "operation" : "delete",
+        "queuedAt" : 1795314882,
+        "record" : "unrelated-delete"
+      },
+      {
+        "operation" : "upload",
+        "queuedAt" : 1795314882,
+        "record" : "unrelated-upload"
+      }
+    ],
+    "remoteContext" : "remote-context",
+    "remoteLocator" : {
+      "backend" : "sefaria",
+      "position" : {
+        "kind" : "canonicalRef",
+        "string" : "Genesis 1:2"
+      },
+      "workKey" : "Genesis"
+    },
+    "remoteUUID" : "00000000-0000-4000-8000-000000000001",
+    "schema" : [
+      "index|idx_ann_bk_content|CREATE INDEX idx_ann_bk_content ON annotations (bkId, contentId)",
+      "index|idx_ann_ck_record_id|CREATE INDEX idx_ann_ck_record_id ON annotations (ckRecordId)",
+      "index|idx_ann_tag_ids|CREATE UNIQUE INDEX idx_ann_tag_ids ON annotation_tags (annotationId, tagId)",
+      "index|idx_sync_pending_op_queued|CREATE INDEX idx_sync_pending_op_queued ON sync_pending (operation, queued_at)",
+      "table|annotation_tags|CREATE TABLE annotation_tags (\n    annotationId INTEGER,\n    tagId INTEGER\n)",
+      "table|annotations|CREATE TABLE annotations (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    bkId INTEGER,\n    contentId INTEGER,\n    startIndex INTEGER,\n    length INTEGER,\n    startIndexDiac INTEGER,\n    lengthDiac INTEGER,\n    color TEXT,\n    type INTEGER,\n    note TEXT,\n    createdAt INTEGER,\n    context TEXT,\n    part INTEGER,\n    page INTEGER\n, ckRecordId TEXT, lastModified INTEGER, backendLocator TEXT)",
+      "table|sqlite_sequence|CREATE TABLE sqlite_sequence(name,seq)",
+      "table|sync_pending|CREATE TABLE sync_pending (\n    ck_record_id TEXT PRIMARY KEY,\n    operation TEXT NOT NULL CHECK(operation IN ('upload', 'delete')),\n    queued_at INTEGER NOT NULL\n)",
+      "table|tags|CREATE TABLE tags (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    name TEXT,\n    normalizedName TEXT UNIQUE\n)"
+    ]
+  },
+  {
+    "expectedAdded" : 1,
+    "expectedCount" : 2,
+    "expectedSameID" : false,
+    "expectedUpdated" : 0,
+    "localID" : 1,
+    "localLocator" : {
+      "backend" : "sefaria",
+      "position" : {
+        "kind" : "canonicalRef",
+        "string" : "Genesis 1:1"
+      },
+      "workKey" : "Genesis"
+    },
+    "localRawLocator" : "{\"workKey\":\"Genesis\",\"position\":{\"kind\":\"canonicalRef\",\"string\":\"Genesis 1:1\"},\"backend\":\"sefaria\"}",
+    "name" : "legacy_different_backend",
+    "older" : false,
+    "pending" : [
+      {
+        "operation" : "delete",
+        "queuedAt" : 1795314882,
+        "record" : "unrelated-delete"
+      },
+      {
+        "operation" : "upload",
+        "queuedAt" : 1795314882,
+        "record" : "unrelated-upload"
+      }
+    ],
+    "remoteContext" : "original-context",
+    "remoteLocator" : {
+      "backend" : "otzaria",
+      "position" : {
+        "kind" : "canonicalRef",
+        "string" : "Genesis 1:1"
+      },
+      "workKey" : "Genesis"
+    },
+    "remoteUUID" : "00000000-0000-4000-8000-000000000002",
+    "schema" : [
+      "index|idx_ann_bk_content|CREATE INDEX idx_ann_bk_content ON annotations (bkId, contentId)",
+      "index|idx_ann_ck_record_id|CREATE INDEX idx_ann_ck_record_id ON annotations (ckRecordId)",
+      "index|idx_ann_tag_ids|CREATE UNIQUE INDEX idx_ann_tag_ids ON annotation_tags (annotationId, tagId)",
+      "index|idx_sync_pending_op_queued|CREATE INDEX idx_sync_pending_op_queued ON sync_pending (operation, queued_at)",
+      "table|annotation_tags|CREATE TABLE annotation_tags (\n    annotationId INTEGER,\n    tagId INTEGER\n)",
+      "table|annotations|CREATE TABLE annotations (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    bkId INTEGER,\n    contentId INTEGER,\n    startIndex INTEGER,\n    length INTEGER,\n    startIndexDiac INTEGER,\n    lengthDiac INTEGER,\n    color TEXT,\n    type INTEGER,\n    note TEXT,\n    createdAt INTEGER,\n    context TEXT,\n    part INTEGER,\n    page INTEGER\n, ckRecordId TEXT, lastModified INTEGER, backendLocator TEXT)",
+      "table|sqlite_sequence|CREATE TABLE sqlite_sequence(name,seq)",
+      "table|sync_pending|CREATE TABLE sync_pending (\n    ck_record_id TEXT PRIMARY KEY,\n    operation TEXT NOT NULL CHECK(operation IN ('upload', 'delete')),\n    queued_at INTEGER NOT NULL\n)",
+      "table|tags|CREATE TABLE tags (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    name TEXT,\n    normalizedName TEXT UNIQUE\n)"
+    ]
+  },
+  {
+    "expectedAdded" : 1,
+    "expectedCount" : 2,
+    "expectedSameID" : false,
+    "expectedUpdated" : 0,
+    "localID" : 1,
+    "localLocator" : {
+      "backend" : "sefaria",
+      "position" : {
+        "kind" : "canonicalRef",
+        "string" : "Genesis 1:1"
+      },
+      "workKey" : "Genesis"
+    },
+    "localRawLocator" : "{\"workKey\":\"Genesis\",\"position\":{\"string\":\"Genesis 1:1\",\"kind\":\"canonicalRef\"},\"backend\":\"sefaria\"}",
+    "name" : "legacy_different_work",
+    "older" : false,
+    "pending" : [
+      {
+        "operation" : "delete",
+        "queuedAt" : 1795314882,
+        "record" : "unrelated-delete"
+      },
+      {
+        "operation" : "upload",
+        "queuedAt" : 1795314882,
+        "record" : "unrelated-upload"
+      }
+    ],
+    "remoteContext" : "original-context",
+    "remoteLocator" : {
+      "backend" : "sefaria",
+      "position" : {
+        "kind" : "canonicalRef",
+        "string" : "Genesis 1:1"
+      },
+      "workKey" : "Exodus"
+    },
+    "remoteUUID" : "00000000-0000-4000-8000-000000000003",
+    "schema" : [
+      "index|idx_ann_bk_content|CREATE INDEX idx_ann_bk_content ON annotations (bkId, contentId)",
+      "index|idx_ann_ck_record_id|CREATE INDEX idx_ann_ck_record_id ON annotations (ckRecordId)",
+      "index|idx_ann_tag_ids|CREATE UNIQUE INDEX idx_ann_tag_ids ON annotation_tags (annotationId, tagId)",
+      "index|idx_sync_pending_op_queued|CREATE INDEX idx_sync_pending_op_queued ON sync_pending (operation, queued_at)",
+      "table|annotation_tags|CREATE TABLE annotation_tags (\n    annotationId INTEGER,\n    tagId INTEGER\n)",
+      "table|annotations|CREATE TABLE annotations (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    bkId INTEGER,\n    contentId INTEGER,\n    startIndex INTEGER,\n    length INTEGER,\n    startIndexDiac INTEGER,\n    lengthDiac INTEGER,\n    color TEXT,\n    type INTEGER,\n    note TEXT,\n    createdAt INTEGER,\n    context TEXT,\n    part INTEGER,\n    page INTEGER\n, ckRecordId TEXT, lastModified INTEGER, backendLocator TEXT)",
+      "table|sqlite_sequence|CREATE TABLE sqlite_sequence(name,seq)",
+      "table|sync_pending|CREATE TABLE sync_pending (\n    ck_record_id TEXT PRIMARY KEY,\n    operation TEXT NOT NULL CHECK(operation IN ('upload', 'delete')),\n    queued_at INTEGER NOT NULL\n)",
+      "table|tags|CREATE TABLE tags (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    name TEXT,\n    normalizedName TEXT UNIQUE\n)"
+    ]
+  },
+  {
+    "expectedAdded" : 1,
+    "expectedCount" : 2,
+    "expectedSameID" : false,
+    "expectedUpdated" : 0,
+    "localID" : 1,
+    "localLocator" : {
+      "backend" : "sefaria",
+      "position" : {
+        "kind" : "canonicalRef",
+        "string" : "Genesis 1:1"
+      },
+      "workKey" : "Genesis"
+    },
+    "localRawLocator" : "{\"position\":{\"kind\":\"canonicalRef\",\"string\":\"Genesis 1:1\"},\"workKey\":\"Genesis\",\"backend\":\"sefaria\"}",
+    "name" : "legacy_different_position",
+    "older" : false,
+    "pending" : [
+      {
+        "operation" : "delete",
+        "queuedAt" : 1795314883,
+        "record" : "unrelated-delete"
+      },
+      {
+        "operation" : "upload",
+        "queuedAt" : 1795314882,
+        "record" : "unrelated-upload"
+      }
+    ],
+    "remoteContext" : "original-context",
+    "remoteLocator" : {
+      "backend" : "sefaria",
+      "position" : {
+        "kind" : "canonicalRef",
+        "string" : "Genesis 1:2"
+      },
+      "workKey" : "Genesis"
+    },
+    "remoteUUID" : "00000000-0000-4000-8000-000000000004",
+    "schema" : [
+      "index|idx_ann_bk_content|CREATE INDEX idx_ann_bk_content ON annotations (bkId, contentId)",
+      "index|idx_ann_ck_record_id|CREATE INDEX idx_ann_ck_record_id ON annotations (ckRecordId)",
+      "index|idx_ann_tag_ids|CREATE UNIQUE INDEX idx_ann_tag_ids ON annotation_tags (annotationId, tagId)",
+      "index|idx_sync_pending_op_queued|CREATE INDEX idx_sync_pending_op_queued ON sync_pending (operation, queued_at)",
+      "table|annotation_tags|CREATE TABLE annotation_tags (\n    annotationId INTEGER,\n    tagId INTEGER\n)",
+      "table|annotations|CREATE TABLE annotations (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    bkId INTEGER,\n    contentId INTEGER,\n    startIndex INTEGER,\n    length INTEGER,\n    startIndexDiac INTEGER,\n    lengthDiac INTEGER,\n    color TEXT,\n    type INTEGER,\n    note TEXT,\n    createdAt INTEGER,\n    context TEXT,\n    part INTEGER,\n    page INTEGER\n, ckRecordId TEXT, lastModified INTEGER, backendLocator TEXT)",
+      "table|sqlite_sequence|CREATE TABLE sqlite_sequence(name,seq)",
+      "table|sync_pending|CREATE TABLE sync_pending (\n    ck_record_id TEXT PRIMARY KEY,\n    operation TEXT NOT NULL CHECK(operation IN ('upload', 'delete')),\n    queued_at INTEGER NOT NULL\n)",
+      "table|tags|CREATE TABLE tags (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    name TEXT,\n    normalizedName TEXT UNIQUE\n)"
+    ]
+  },
+  {
+    "expectedAdded" : 0,
+    "expectedCount" : 1,
+    "expectedSameID" : true,
+    "expectedUpdated" : 1,
+    "localID" : 1,
+    "localLocator" : {
+      "backend" : "sefaria",
+      "position" : {
+        "kind" : "canonicalRef",
+        "string" : "Genesis 1:1"
+      },
+      "workKey" : "Genesis"
+    },
+    "localRawLocator" : "{\"position\":{\"string\":\"Genesis 1:1\",\"kind\":\"canonicalRef\"},\"workKey\":\"Genesis\",\"backend\":\"sefaria\"}",
+    "name" : "legacy_equal_locator_reordered_json",
+    "older" : false,
+    "pending" : [
+      {
+        "operation" : "delete",
+        "queuedAt" : 1795314883,
+        "record" : "unrelated-delete"
+      },
+      {
+        "operation" : "upload",
+        "queuedAt" : 1795314883,
+        "record" : "unrelated-upload"
+      }
+    ],
+    "remoteContext" : "original-context",
+    "remoteLocator" : {
+      "backend" : "sefaria",
+      "position" : {
+        "kind" : "canonicalRef",
+        "string" : "Genesis 1:1"
+      },
+      "workKey" : "Genesis"
+    },
+    "remoteUUID" : "00000000-0000-4000-8000-000000000005",
+    "schema" : [
+      "index|idx_ann_bk_content|CREATE INDEX idx_ann_bk_content ON annotations (bkId, contentId)",
+      "index|idx_ann_ck_record_id|CREATE INDEX idx_ann_ck_record_id ON annotations (ckRecordId)",
+      "index|idx_ann_tag_ids|CREATE UNIQUE INDEX idx_ann_tag_ids ON annotation_tags (annotationId, tagId)",
+      "index|idx_sync_pending_op_queued|CREATE INDEX idx_sync_pending_op_queued ON sync_pending (operation, queued_at)",
+      "table|annotation_tags|CREATE TABLE annotation_tags (\n    annotationId INTEGER,\n    tagId INTEGER\n)",
+      "table|annotations|CREATE TABLE annotations (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    bkId INTEGER,\n    contentId INTEGER,\n    startIndex INTEGER,\n    length INTEGER,\n    startIndexDiac INTEGER,\n    lengthDiac INTEGER,\n    color TEXT,\n    type INTEGER,\n    note TEXT,\n    createdAt INTEGER,\n    context TEXT,\n    part INTEGER,\n    page INTEGER\n, ckRecordId TEXT, lastModified INTEGER, backendLocator TEXT)",
+      "table|sqlite_sequence|CREATE TABLE sqlite_sequence(name,seq)",
+      "table|sync_pending|CREATE TABLE sync_pending (\n    ck_record_id TEXT PRIMARY KEY,\n    operation TEXT NOT NULL CHECK(operation IN ('upload', 'delete')),\n    queued_at INTEGER NOT NULL\n)",
+      "table|tags|CREATE TABLE tags (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    name TEXT,\n    normalizedName TEXT UNIQUE\n)"
+    ]
+  },
+  {
+    "expectedAdded" : 0,
+    "expectedCount" : 1,
+    "expectedSameID" : true,
+    "expectedUpdated" : 1,
+    "localID" : 1,
+    "name" : "legacy_positive_original_identity",
+    "older" : false,
+    "pending" : [
+      {
+        "operation" : "delete",
+        "queuedAt" : 1795314883,
+        "record" : "unrelated-delete"
+      },
+      {
+        "operation" : "upload",
+        "queuedAt" : 1795314883,
+        "record" : "unrelated-upload"
+      }
+    ],
+    "remoteContext" : "original-context",
+    "remoteUUID" : "00000000-0000-4000-8000-000000000006",
+    "schema" : [
+      "index|idx_ann_bk_content|CREATE INDEX idx_ann_bk_content ON annotations (bkId, contentId)",
+      "index|idx_ann_ck_record_id|CREATE INDEX idx_ann_ck_record_id ON annotations (ckRecordId)",
+      "index|idx_ann_tag_ids|CREATE UNIQUE INDEX idx_ann_tag_ids ON annotation_tags (annotationId, tagId)",
+      "index|idx_sync_pending_op_queued|CREATE INDEX idx_sync_pending_op_queued ON sync_pending (operation, queued_at)",
+      "table|annotation_tags|CREATE TABLE annotation_tags (\n    annotationId INTEGER,\n    tagId INTEGER\n)",
+      "table|annotations|CREATE TABLE annotations (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    bkId INTEGER,\n    contentId INTEGER,\n    startIndex INTEGER,\n    length INTEGER,\n    startIndexDiac INTEGER,\n    lengthDiac INTEGER,\n    color TEXT,\n    type INTEGER,\n    note TEXT,\n    createdAt INTEGER,\n    context TEXT,\n    part INTEGER,\n    page INTEGER\n, ckRecordId TEXT, lastModified INTEGER, backendLocator TEXT)",
+      "table|sqlite_sequence|CREATE TABLE sqlite_sequence(name,seq)",
+      "table|sync_pending|CREATE TABLE sync_pending (\n    ck_record_id TEXT PRIMARY KEY,\n    operation TEXT NOT NULL CHECK(operation IN ('upload', 'delete')),\n    queued_at INTEGER NOT NULL\n)",
+      "table|tags|CREATE TABLE tags (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    name TEXT,\n    normalizedName TEXT UNIQUE\n)"
+    ]
+  },
+  {
+    "expectedAdded" : 1,
+    "expectedCount" : 2,
+    "expectedSameID" : false,
+    "expectedUpdated" : 0,
+    "localID" : 1,
+    "name" : "legacy_negative_missing_locator",
+    "older" : false,
+    "pending" : [
+      {
+        "operation" : "delete",
+        "queuedAt" : 1795314883,
+        "record" : "unrelated-delete"
+      },
+      {
+        "operation" : "upload",
+        "queuedAt" : 1795314883,
+        "record" : "unrelated-upload"
+      }
+    ],
+    "remoteContext" : "original-context",
+    "remoteLocator" : {
+      "backend" : "sefaria",
+      "position" : {
+        "kind" : "canonicalRef",
+        "string" : "Genesis 1:1"
+      },
+      "workKey" : "Genesis"
+    },
+    "remoteUUID" : "00000000-0000-4000-8000-000000000007",
+    "schema" : [
+      "index|idx_ann_bk_content|CREATE INDEX idx_ann_bk_content ON annotations (bkId, contentId)",
+      "index|idx_ann_ck_record_id|CREATE INDEX idx_ann_ck_record_id ON annotations (ckRecordId)",
+      "index|idx_ann_tag_ids|CREATE UNIQUE INDEX idx_ann_tag_ids ON annotation_tags (annotationId, tagId)",
+      "index|idx_sync_pending_op_queued|CREATE INDEX idx_sync_pending_op_queued ON sync_pending (operation, queued_at)",
+      "table|annotation_tags|CREATE TABLE annotation_tags (\n    annotationId INTEGER,\n    tagId INTEGER\n)",
+      "table|annotations|CREATE TABLE annotations (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    bkId INTEGER,\n    contentId INTEGER,\n    startIndex INTEGER,\n    length INTEGER,\n    startIndexDiac INTEGER,\n    lengthDiac INTEGER,\n    color TEXT,\n    type INTEGER,\n    note TEXT,\n    createdAt INTEGER,\n    context TEXT,\n    part INTEGER,\n    page INTEGER\n, ckRecordId TEXT, lastModified INTEGER, backendLocator TEXT)",
+      "table|sqlite_sequence|CREATE TABLE sqlite_sequence(name,seq)",
+      "table|sync_pending|CREATE TABLE sync_pending (\n    ck_record_id TEXT PRIMARY KEY,\n    operation TEXT NOT NULL CHECK(operation IN ('upload', 'delete')),\n    queued_at INTEGER NOT NULL\n)",
+      "table|tags|CREATE TABLE tags (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    name TEXT,\n    normalizedName TEXT UNIQUE\n)"
+    ]
+  },
+  {
+    "expectedAdded" : 1,
+    "expectedCount" : 2,
+    "expectedSameID" : false,
+    "expectedUpdated" : 0,
+    "localID" : 1,
+    "localRawLocator" : "{\"backend\":\"sefaria\",\"workKey\":\"Genesis\",\"position\":\"malformed\"}",
+    "name" : "legacy_malformed_locator",
+    "older" : false,
+    "pending" : [
+      {
+        "operation" : "delete",
+        "queuedAt" : 1795314884,
+        "record" : "unrelated-delete"
+      },
+      {
+        "operation" : "upload",
+        "queuedAt" : 1795314884,
+        "record" : "unrelated-upload"
+      }
+    ],
+    "remoteContext" : "original-context",
+    "remoteLocator" : {
+      "backend" : "sefaria",
+      "position" : {
+        "kind" : "canonicalRef",
+        "string" : "Genesis 1:1"
+      },
+      "workKey" : "Genesis"
+    },
+    "remoteUUID" : "00000000-0000-4000-8000-000000000008",
+    "schema" : [
+      "index|idx_ann_bk_content|CREATE INDEX idx_ann_bk_content ON annotations (bkId, contentId)",
+      "index|idx_ann_ck_record_id|CREATE INDEX idx_ann_ck_record_id ON annotations (ckRecordId)",
+      "index|idx_ann_tag_ids|CREATE UNIQUE INDEX idx_ann_tag_ids ON annotation_tags (annotationId, tagId)",
+      "index|idx_sync_pending_op_queued|CREATE INDEX idx_sync_pending_op_queued ON sync_pending (operation, queued_at)",
+      "table|annotation_tags|CREATE TABLE annotation_tags (\n    annotationId INTEGER,\n    tagId INTEGER\n)",
+      "table|annotations|CREATE TABLE annotations (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    bkId INTEGER,\n    contentId INTEGER,\n    startIndex INTEGER,\n    length INTEGER,\n    startIndexDiac INTEGER,\n    lengthDiac INTEGER,\n    color TEXT,\n    type INTEGER,\n    note TEXT,\n    createdAt INTEGER,\n    context TEXT,\n    part INTEGER,\n    page INTEGER\n, ckRecordId TEXT, lastModified INTEGER, backendLocator TEXT)",
+      "table|sqlite_sequence|CREATE TABLE sqlite_sequence(name,seq)",
+      "table|sync_pending|CREATE TABLE sync_pending (\n    ck_record_id TEXT PRIMARY KEY,\n    operation TEXT NOT NULL CHECK(operation IN ('upload', 'delete')),\n    queued_at INTEGER NOT NULL\n)",
+      "table|tags|CREATE TABLE tags (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    name TEXT,\n    normalizedName TEXT UNIQUE\n)"
+    ]
+  },
+  {
+    "expectedAdded" : 0,
+    "expectedCount" : 1,
+    "expectedSameID" : true,
+    "expectedUpdated" : 0,
+    "localID" : 1,
+    "localLocator" : {
+      "backend" : "sefaria",
+      "position" : {
+        "kind" : "canonicalRef",
+        "string" : "Genesis 1:1"
+      },
+      "workKey" : "Genesis"
+    },
+    "localRawLocator" : "{\"backend\":\"sefaria\",\"position\":{\"kind\":\"canonicalRef\",\"string\":\"Genesis 1:1\"},\"workKey\":\"Genesis\"}",
+    "name" : "same_uuid_older_remote_preserved",
+    "older" : true,
+    "pending" : [
+      {
+        "operation" : "delete",
+        "queuedAt" : 1795314884,
+        "record" : "unrelated-delete"
+      },
+      {
+        "operation" : "upload",
+        "queuedAt" : 1795314884,
+        "record" : "unrelated-upload"
+      }
+    ],
+    "remoteContext" : "original-context",
+    "remoteLocator" : {
+      "backend" : "sefaria",
+      "position" : {
+        "kind" : "canonicalRef",
+        "string" : "Genesis 1:1"
+      },
+      "workKey" : "Genesis"
+    },
+    "remoteUUID" : "00000000-0000-4000-8000-000000000009",
+    "schema" : [
+      "index|idx_ann_bk_content|CREATE INDEX idx_ann_bk_content ON annotations (bkId, contentId)",
+      "index|idx_ann_ck_record_id|CREATE INDEX idx_ann_ck_record_id ON annotations (ckRecordId)",
+      "index|idx_ann_tag_ids|CREATE UNIQUE INDEX idx_ann_tag_ids ON annotation_tags (annotationId, tagId)",
+      "index|idx_sync_pending_op_queued|CREATE INDEX idx_sync_pending_op_queued ON sync_pending (operation, queued_at)",
+      "table|annotation_tags|CREATE TABLE annotation_tags (\n    annotationId INTEGER,\n    tagId INTEGER\n)",
+      "table|annotations|CREATE TABLE annotations (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    bkId INTEGER,\n    contentId INTEGER,\n    startIndex INTEGER,\n    length INTEGER,\n    startIndexDiac INTEGER,\n    lengthDiac INTEGER,\n    color TEXT,\n    type INTEGER,\n    note TEXT,\n    createdAt INTEGER,\n    context TEXT,\n    part INTEGER,\n    page INTEGER\n, ckRecordId TEXT, lastModified INTEGER, backendLocator TEXT)",
+      "table|sqlite_sequence|CREATE TABLE sqlite_sequence(name,seq)",
+      "table|sync_pending|CREATE TABLE sync_pending (\n    ck_record_id TEXT PRIMARY KEY,\n    operation TEXT NOT NULL CHECK(operation IN ('upload', 'delete')),\n    queued_at INTEGER NOT NULL\n)",
+      "table|tags|CREATE TABLE tags (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    name TEXT,\n    normalizedName TEXT UNIQUE\n)"
+    ]
+  }
+]

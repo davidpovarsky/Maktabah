@@ -1,0 +1,124 @@
+{
+  "cases" : [
+    {
+      "added" : 0,
+      "failures" : [
+        "durable_backend_locator",
+        "durable_context",
+        "cache_database_source_divergence"
+      ],
+      "name" : "same_uuid_locator_and_context",
+      "status" : "FAIL",
+      "updated" : 1
+    },
+    {
+      "added" : 0,
+      "failures" : [
+        "annotation_count",
+        "row_identity",
+        "durable_backend_locator",
+        "unrelated_legacy_source_modified",
+        "original_tags_modified",
+        "original_import_result",
+        "cache_database_source_divergence"
+      ],
+      "name" : "legacy_different_backend",
+      "status" : "FAIL",
+      "updated" : 1
+    },
+    {
+      "added" : 0,
+      "failures" : [
+        "annotation_count",
+        "row_identity",
+        "durable_backend_locator",
+        "unrelated_legacy_source_modified",
+        "original_tags_modified",
+        "original_import_result",
+        "cache_database_source_divergence"
+      ],
+      "name" : "legacy_different_work",
+      "status" : "FAIL",
+      "updated" : 1
+    },
+    {
+      "added" : 0,
+      "failures" : [
+        "annotation_count",
+        "row_identity",
+        "durable_backend_locator",
+        "unrelated_legacy_source_modified",
+        "original_tags_modified",
+        "original_import_result",
+        "cache_database_source_divergence"
+      ],
+      "name" : "legacy_different_position",
+      "status" : "FAIL",
+      "updated" : 1
+    },
+    {
+      "added" : 0,
+      "failures" : [
+
+      ],
+      "name" : "legacy_equal_locator_reordered_json",
+      "status" : "PASS",
+      "updated" : 1
+    },
+    {
+      "added" : 0,
+      "failures" : [
+
+      ],
+      "name" : "legacy_positive_original_identity",
+      "status" : "PASS",
+      "updated" : 1
+    },
+    {
+      "added" : 0,
+      "failures" : [
+        "annotation_count",
+        "row_identity",
+        "durable_backend_locator",
+        "unrelated_legacy_source_modified",
+        "original_tags_modified",
+        "original_import_result",
+        "cache_database_source_divergence"
+      ],
+      "name" : "legacy_negative_missing_locator",
+      "status" : "FAIL",
+      "updated" : 1
+    },
+    {
+      "added" : 0,
+      "failures" : [
+        "annotation_count",
+        "row_identity",
+        "durable_backend_locator",
+        "unrelated_legacy_source_modified",
+        "original_tags_modified",
+        "original_import_result",
+        "cache_database_source_divergence"
+      ],
+      "name" : "legacy_malformed_locator",
+      "status" : "FAIL",
+      "updated" : 1
+    },
+    {
+      "added" : 0,
+      "failures" : [
+
+      ],
+      "name" : "same_uuid_older_remote_preserved",
+      "status" : "PASS",
+      "updated" : 0
+    }
+  ],
+  "failed" : 6,
+  "mode" : "write",
+  "passed" : 3,
+  "process_id" : 18948,
+  "schema" : 1,
+  "scope" : "actual full original Repository\/Annotation\/SQLite\/SyncPendingStore; owned fixture DBs; no CloudKit transport, Store cache or native UI",
+  "sqlite_version" : "3.53.4"
+}

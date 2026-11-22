@@ -1,0 +1,20 @@
+{
+  "status": "SOURCE_AND_SELECTION_REVIEW_PASS",
+  "original_cloud_assertions": 48,
+  "assertions_changed": 0,
+  "preserved_function_asts": [
+    "cloud_declaration_names",
+    "verify_cloud_cases",
+    "fixture_prefix",
+    "source_provenance"
+  ],
+  "default_targets": [
+    "LocalAnnotationEditorAcceptance",
+    "LocalAnnotationCloudOwnershipAcceptance"
+  ],
+  "cloud_only_targets": [
+    "LocalAnnotationCloudOwnershipAcceptance"
+  ],
+  "apple_runtime_executed": 0,
+  "core194_executed": 0
+}

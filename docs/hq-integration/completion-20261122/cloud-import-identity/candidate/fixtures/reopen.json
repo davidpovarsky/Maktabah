@@ -1,0 +1,74 @@
+{
+  "cases" : [
+    {
+      "failures" : [
+
+      ],
+      "name" : "same_uuid_locator_and_context",
+      "status" : "PASS"
+    },
+    {
+      "failures" : [
+
+      ],
+      "name" : "legacy_different_backend",
+      "status" : "PASS"
+    },
+    {
+      "failures" : [
+
+      ],
+      "name" : "legacy_different_work",
+      "status" : "PASS"
+    },
+    {
+      "failures" : [
+
+      ],
+      "name" : "legacy_different_position",
+      "status" : "PASS"
+    },
+    {
+      "failures" : [
+
+      ],
+      "name" : "legacy_equal_locator_reordered_json",
+      "status" : "PASS"
+    },
+    {
+      "failures" : [
+
+      ],
+      "name" : "legacy_positive_original_identity",
+      "status" : "PASS"
+    },
+    {
+      "failures" : [
+
+      ],
+      "name" : "legacy_negative_missing_locator",
+      "status" : "PASS"
+    },
+    {
+      "failures" : [
+
+      ],
+      "name" : "legacy_malformed_locator",
+      "status" : "PASS"
+    },
+    {
+      "failures" : [
+
+      ],
+      "name" : "same_uuid_older_remote_preserved",
+      "status" : "PASS"
+    }
+  ],
+  "failed" : 0,
+  "mode" : "reopen",
+  "passed" : 9,
+  "process_id" : 8284,
+  "schema" : 1,
+  "scope" : "actual full original Repository\/Annotation\/SQLite\/SyncPendingStore; owned fixture DBs; no CloudKit transport, Store cache or native UI",
+  "sqlite_version" : "3.53.4"
+}

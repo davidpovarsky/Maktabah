@@ -1,0 +1,44 @@
+name: Original Repository import and Cloud48 Apple continuation
+
+on:
+  push:
+    branches: [codex/otzaria-cloud-import-identity-apple-20261122]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cloud-import-identity-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  cloud-import:
+    name: Original Cloud48 and nine Repository import plus fresh-process reopen cases
+    runs-on: xcode-27
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Verify the sealed original source closure
+        run: python3 Scripts/CI/cloud-import-identity-apple.py prepare
+      - name: Select the existing Apple toolchain
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
+      - name: Execute the unchanged owned Cloud48 cases once
+        run: python3 tools/hq-local-annotation-cloud-acceptance.py --cloud-only --artifacts-dir build/cloud-import-identity-apple/cloud48
+      - name: Execute original Repository import and real fresh-process SQLite reopen
+        run: python3 docs/hq-integration/completion-20261122/cloud-import-identity/run-import-controls.py --phase candidate --artifacts-dir build/cloud-import-identity-apple/import9
+      - name: Verify raw results and unchanged compiled inputs
+        if: always()
+        run: python3 Scripts/CI/cloud-import-identity-apple.py collect
+      - name: Preserve actual source, outcomes and failure logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloud-import-identity-apple-evidence
+          path: |
+            build/cloud-import-identity-apple/
+            !build/cloud-import-identity-apple/cloud48/owned-*/swift-build/**
+            !build/cloud-import-identity-apple/import9/build/**
+          if-no-files-found: error

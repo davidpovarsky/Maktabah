@@ -1,0 +1,95 @@
+{
+  "cases" : [
+    {
+      "failures" : [
+        "durable_backend_locator",
+        "durable_context"
+      ],
+      "name" : "same_uuid_locator_and_context",
+      "status" : "FAIL"
+    },
+    {
+      "failures" : [
+        "annotation_count",
+        "row_identity",
+        "durable_backend_locator",
+        "unrelated_legacy_source_modified",
+        "original_tags_modified"
+      ],
+      "name" : "legacy_different_backend",
+      "status" : "FAIL"
+    },
+    {
+      "failures" : [
+        "annotation_count",
+        "row_identity",
+        "durable_backend_locator",
+        "unrelated_legacy_source_modified",
+        "original_tags_modified"
+      ],
+      "name" : "legacy_different_work",
+      "status" : "FAIL"
+    },
+    {
+      "failures" : [
+        "annotation_count",
+        "row_identity",
+        "durable_backend_locator",
+        "unrelated_legacy_source_modified",
+        "original_tags_modified"
+      ],
+      "name" : "legacy_different_position",
+      "status" : "FAIL"
+    },
+    {
+      "failures" : [
+
+      ],
+      "name" : "legacy_equal_locator_reordered_json",
+      "status" : "PASS"
+    },
+    {
+      "failures" : [
+
+      ],
+      "name" : "legacy_positive_original_identity",
+      "status" : "PASS"
+    },
+    {
+      "failures" : [
+        "annotation_count",
+        "row_identity",
+        "durable_backend_locator",
+        "unrelated_legacy_source_modified",
+        "original_tags_modified"
+      ],
+      "name" : "legacy_negative_missing_locator",
+      "status" : "FAIL"
+    },
+    {
+      "failures" : [
+        "annotation_count",
+        "row_identity",
+        "durable_backend_locator",
+        "unrelated_legacy_source_modified",
+        "original_tags_modified"
+      ],
+      "name" : "legacy_malformed_locator",
+      "status" : "FAIL"
+    },
+    {
+      "failures" : [
+
+      ],
+      "name" : "same_uuid_older_remote_preserved",
+      "status" : "PASS"
+    }
+  ],
+  "failed" : 6,
+  "mode" : "reopen",
+  "passed" : 3,
+  "process_id" : 21940,
+  "schema" : 1,
+  "scope" : "actual full original Repository\/Annotation\/SQLite\/SyncPendingStore; owned fixture DBs; no CloudKit transport, Store cache or native UI",
+  "sqlite_version" : "3.53.4"
+}

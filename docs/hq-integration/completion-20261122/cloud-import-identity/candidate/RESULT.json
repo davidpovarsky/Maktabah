@@ -1,0 +1,194 @@
+{
+  "phase": "candidate",
+  "status": "PASS_REAL_REPOSITORY_SQLITE",
+  "commands": [
+    {
+      "label": "compile-original-repository",
+      "command": [
+        "swiftc",
+        "-swift-version",
+        "6",
+        "-j",
+        "1",
+        "-parse-as-library",
+        "-I",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\build\\support",
+        "-I",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\build\\support\\SQLite3",
+        "-L",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\build\\support",
+        "-lOSLog",
+        "-L",
+        "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.26100.0\\um\\x64",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\Source\\Features\\Annotations\\Models\\Annotation.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\Source\\Features\\Annotations\\Database\\AnnotationRepository.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\Source\\Core\\Database\\SQLiteDatabase.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\Source\\Core\\CloudKit\\SyncPendingStore.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\Tests\\HQ\\sqlite\\UnusedZstdBoundary.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\Boundary.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\OriginalLocator.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\OriginalLocalConnection.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\CloudImportIdentityControls.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\Source\\ChavrusaText\\Annotations\\AnnotationCloudImportIdentity.swift",
+        "-o",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\build\\candidate\\cloud-import-controls.exe"
+      ],
+      "exit": 0,
+      "seconds": 111.39100000000326
+    },
+    {
+      "label": "write",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\build\\candidate\\cloud-import-controls.exe",
+        "write",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\candidate\\fixtures"
+      ],
+      "exit": 0,
+      "seconds": 2.764999999999418
+    },
+    {
+      "label": "reopen",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\build\\candidate\\cloud-import-controls.exe",
+        "reopen",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\candidate\\fixtures"
+      ],
+      "exit": 0,
+      "seconds": 0.7969999999986612
+    }
+  ],
+  "native_executed": 0,
+  "cloudkit_transport_executed": 0,
+  "sqlite_header": {
+    "path": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\um\\winsqlite\\winsqlite3.h",
+    "sha256": "27382a4a73e9dfb7ad71c99725015e0113d2a0d1e0e4917d2a9d0a173700bcb1"
+  },
+  "logging": "explicit Windows OSLog boundary; original Repository source untouched",
+  "toolchain": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "executable_sha256": "58701d1c9d32dd96fd780a4514e5fc287e672cbe0fc68f028f7f2e0542a43ed0",
+  "write": {
+    "process_id": 34116,
+    "sqlite_version": "3.53.4",
+    "passed": 9,
+    "failed": 0,
+    "cases": [
+      {
+        "added": 0,
+        "failures": [],
+        "name": "same_uuid_locator_and_context",
+        "status": "PASS",
+        "updated": 1
+      },
+      {
+        "added": 1,
+        "failures": [],
+        "name": "legacy_different_backend",
+        "status": "PASS",
+        "updated": 0
+      },
+      {
+        "added": 1,
+        "failures": [],
+        "name": "legacy_different_work",
+        "status": "PASS",
+        "updated": 0
+      },
+      {
+        "added": 1,
+        "failures": [],
+        "name": "legacy_different_position",
+        "status": "PASS",
+        "updated": 0
+      },
+      {
+        "added": 0,
+        "failures": [],
+        "name": "legacy_equal_locator_reordered_json",
+        "status": "PASS",
+        "updated": 1
+      },
+      {
+        "added": 0,
+        "failures": [],
+        "name": "legacy_positive_original_identity",
+        "status": "PASS",
+        "updated": 1
+      },
+      {
+        "added": 1,
+        "failures": [],
+        "name": "legacy_negative_missing_locator",
+        "status": "PASS",
+        "updated": 0
+      },
+      {
+        "added": 1,
+        "failures": [],
+        "name": "legacy_malformed_locator",
+        "status": "PASS",
+        "updated": 0
+      },
+      {
+        "added": 0,
+        "failures": [],
+        "name": "same_uuid_older_remote_preserved",
+        "status": "PASS",
+        "updated": 0
+      }
+    ]
+  },
+  "fresh_process_reopen": {
+    "process_id": 8284,
+    "sqlite_version": "3.53.4",
+    "passed": 9,
+    "failed": 0,
+    "cases": [
+      {
+        "failures": [],
+        "name": "same_uuid_locator_and_context",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "legacy_different_backend",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "legacy_different_work",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "legacy_different_position",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "legacy_equal_locator_reordered_json",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "legacy_positive_original_identity",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "legacy_negative_missing_locator",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "legacy_malformed_locator",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "same_uuid_older_remote_preserved",
+        "status": "PASS"
+      }
+    ]
+  },
+  "source_unchanged": true
+}

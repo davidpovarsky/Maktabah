@@ -1,0 +1,59 @@
+{
+  "base": "5ccd0c318f0900c41302a6a27a7ab359930e424b",
+  "scope": "Reproduce original CloudKit import DB/cache locator/context divergence and legacy backend collision; fix only if confirmed",
+  "authorization": "Current user continuation authorization; root explicitly approved reproduction and minimal same-schema import correction on 2026-11-22",
+  "files": [
+    {
+      "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "ownership": "UPSTREAM_OWNED_LEGACY_DOWNSTREAM_HOOK",
+      "upstream": "100644 blob cdcd41de11f352310459362d841a9d2da70cf91f\tSource/Features/Annotations/Database/AnnotationRepository.swift",
+      "before_blob": "3dedc2068864b9076d84dc7322a1e7371b7895d4",
+      "sha256": "634d07799a2e3985ba7a16817856f8d8ccba3045519ad21dab805e3c9b8d1ef8"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/BackendAnnotationBridge.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream": "",
+      "before_blob": "5e0f886cd40061c2117ea50bd69422366e4ae377",
+      "sha256": "b48e702ae0af4b1027052fd3b6269359dbb919cd86ba5ce710b3bed48e97dc56"
+    }
+  ],
+  "authorized_followup": {
+    "recorded_at": "2026-11-22T02:32:00.526652+00:00",
+    "baseline_job": "job_0e4f705b8680",
+    "baseline_status": "BASELINE_DEFECTS_REPRODUCED",
+    "baseline_cases": {
+      "write": {
+        "passed": 3,
+        "failed": 6,
+        "pid": 18948
+      },
+      "reopen": {
+        "passed": 3,
+        "failed": 6,
+        "pid": 21940
+      }
+    },
+    "baseline_source_archive": {
+      "path": "docs/hq-integration/completion-20261122/cloud-import-identity/baseline/exact-source-before.tar.gz",
+      "sha256": "9a4142367bda75b156b972ce01b8f48f28b4bf9e9d3059805464c1ac40d5fba8"
+    },
+    "actual_scope": "Original CloudKit SQL update persists existing context/backendLocator columns; legacy positional adoption requires the original TextLocator equality through a downstream helper. No schema, pending queue, timestamps, UUID or account changes.",
+    "helper": "Source/ChavrusaText/Annotations/AnnotationCloudImportIdentity.swift",
+    "protected_hooks": [
+      "Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "Maktabah.xcodeproj/project.pbxproj"
+    ],
+    "source_closure": "Register the same helper in existing three app targets and original local annotation lower-level driver, inherited by Cloud48/disconnect.",
+    "validation_authorization": "Root approved optional cloud-only mode preserving default and all original Cloud48 bodies/validators; actual Apple nine import plus distinct-process reopen; no unrelated Core194 rerun.",
+    "not_modified": "Source/LibraryBackend/BackendAnnotationBridge.swift",
+    "trust": "Protected SQL/project hooks belong in final unsigned full-index package. Authentic attestation remains separate.",
+    "prior_edit_attempt": {
+      "job": "job_a1cd21e7b7f7",
+      "status": "TIMEOUT",
+      "product_edits": 0,
+      "retained_valid_source_archive": true,
+      "verified_by": "job_a0c4104c634b"
+    }
+  }
+}
