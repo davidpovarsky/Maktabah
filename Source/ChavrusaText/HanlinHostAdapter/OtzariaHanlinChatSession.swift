@@ -21,6 +21,119 @@ final class OtzariaHanlinConnectionRequest {
     }
 }
 
+
+/// A bounded acceptance journal of original control flow. Every value is a fixed
+/// enum or boolean; credentials, model/source text and session identities never
+/// enter this schema. It cannot grant access or alter an original outcome.
+@MainActor
+enum OtzariaHanlinConnectionDiagnostic {
+    enum Stage: String {
+        case inputConsumed, connectEntered, connectRejected, requestValidated, readRequestValidated
+        case readRequestReturned, connectFailed
+        case carriedConfigureEntered, carriedConfigureRejected, carriedConfigurationMismatch
+        case engineConstructed, configurationActivated, configurationCompleted, configureFailed
+        case openEntered, openRejected, openIssued, openFailed, mountObserved
+        case consentCaptureEntered, consentCaptured, closeRequested
+        case dismissObserved, dismissAccepted, readReopenEntered
+        case consentConsumeEntered, consentConsumed
+        case sourceComparisonRejected, sourceValidationFailed
+    }
+    enum Reason: String {
+        case none, cancelled, invalidArguments, invalidContext, staleContext
+        case denied, duplicateInvocation, otherHostError, otherError
+    }
+    enum Flag: String {
+        case closed, storageFailed, configured, connecting, hasOperation
+        case allowRead, hasReadOffer, hasReadScope, credentialPresent
+        case retired, hasPresentation, hasNativeSession, mounted, foreground
+        case hasNavigationTask, matchingSession, isPresented, hasPendingReadReopen
+        case preservingContinuation, hasConsent, hasConnection
+        case sameBackend, sameMappingSource, sameMappingEpoch, sameWorkspaceProjection
+        case sameReaderContent, sameReadSource, sameSelection, sameLocale
+    }
+
+    #if DEBUG && targetEnvironment(simulator)
+    private static var boundNonce: String?
+    private static var destination: URL?
+    private static var events: [[String: Any]] = []
+    private static var overflow = false
+    #endif
+
+    static func reason(for error: any Error) -> Reason {
+        if error is CancellationError { return .cancelled }
+        guard let error = error as? HanlinHostError else { return .otherError }
+        switch error {
+        case .invalidArguments: return .invalidArguments
+        case .invalidContext: return .invalidContext
+        case .staleContext: return .staleContext
+        case .denied: return .denied
+        case .duplicateInvocation: return .duplicateInvocation
+        default: return .otherHostError
+        }
+    }
+
+
+    /// Only the original one-use input consumer calls this after validating,
+    /// consuming and applying that exact input. Existing evidence is preserved.
+    static func beginOwnedLiveInput(nonce: String) {
+        #if DEBUG && targetEnvironment(simulator)
+        let environment = ProcessInfo.processInfo.environment
+        guard boundNonce == nil,
+              environment["OTZARIA_HANLIN_LIVE_PROVIDER_CASE"] == "1",
+              environment["OTZARIA_HANLIN_LIVE_NONCE"] == nonce,
+              UUID(uuidString: nonce)?.uuidString == nonce else { return }
+        do {
+            let directory = try FileManager.default.url(for: .documentDirectory,
+                in: .userDomainMask, appropriateFor: nil, create: false)
+            let file = directory.appendingPathComponent("otzaria-hanlin-connection-stages-" + nonce + ".json")
+            let initial: [[String: Any]] = [[
+                "sequence": 1, "stage": Stage.inputConsumed.rawValue,
+                "reason": Reason.none.rawValue, "flags": [String: Bool](),
+            ]]
+            let data = try JSONSerialization.data(withJSONObject: [
+                "schemaVersion": 1, "overflow": false, "events": initial,
+            ], options: [.sortedKeys])
+            try data.write(to: file, options: .withoutOverwriting)
+            try FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: file.path)
+            events = initial
+            overflow = false
+            destination = file
+            boundNonce = nonce
+        } catch {
+            // Keep the original business flow and any preexisting evidence.
+            // A missing/incomplete journal is not diagnostic success.
+        }
+        #endif
+    }
+
+    static func record(_ stage: Stage, reason: Reason = .none, flags: [Flag: Bool] = [:]) {
+        #if DEBUG && targetEnvironment(simulator)
+        let environment = ProcessInfo.processInfo.environment
+        guard let boundNonce, let file = destination,
+              environment["OTZARIA_HANLIN_LIVE_PROVIDER_CASE"] == "1",
+              environment["OTZARIA_HANLIN_LIVE_NONCE"] == boundNonce else { return }
+        if events.count < 96 && flags.count <= 9 {
+            events.append([
+                "sequence": events.count + 1,
+                "stage": stage.rawValue,
+                "reason": reason.rawValue,
+                "flags": Dictionary(uniqueKeysWithValues: flags.map { ($0.key.rawValue, $0.value) }),
+            ])
+        } else { overflow = true }
+        do {
+            let data = try JSONSerialization.data(withJSONObject: [
+                "schemaVersion": 1, "overflow": overflow, "events": events,
+            ], options: [.sortedKeys])
+            try data.write(to: file, options: .atomic)
+            try FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: file.path)
+        } catch {
+            // Diagnostic I/O never changes the original action, error, guard or
+            // cleanup. The collector reports a missing journal explicitly.
+        }
+        #endif
+    }
+}
+
 /// Scene-owned presentation state around the original SDK session and engine.
 /// The original Core/scene adapter remains the only source of host authority.
 @MainActor @Observable
@@ -174,17 +287,30 @@ final class OtzariaHanlinChatSession: Identifiable {
     /// form action requests the displayed current work. That action only queues
     /// a source-bound dismissal/reopen; it never sends a model message.
     func configure(endpoint: String, modelID: String, credential: String, allowCurrentWorkRead: Bool = false) {
-        guard !closed, !storageFailed, !isConfigured, !isConnecting, operation == nil else { return }
+        OtzariaHanlinConnectionDiagnostic.record(.connectEntered, flags: [
+            .closed: closed, .storageFailed: storageFailed, .configured: isConfigured,
+            .connecting: isConnecting, .hasOperation: operation != nil,
+            .allowRead: allowCurrentWorkRead, .hasReadOffer: currentWorkReadOffer != nil,
+            .hasReadScope: currentWorkReadScope != nil, .credentialPresent: !credential.isEmpty,
+        ])
+        guard !closed, !storageFailed, !isConfigured, !isConnecting, operation == nil else {
+            OtzariaHanlinConnectionDiagnostic.record(.connectRejected)
+            return
+        }
         do {
             let request = try OtzariaHanlinConnectionRequest(endpoint: endpoint, modelID: modelID, credential: credential)
+            OtzariaHanlinConnectionDiagnostic.record(.requestValidated)
             if allowCurrentWorkRead {
                 guard currentWorkReadScope == nil, let offer = currentWorkReadOffer else { throw HanlinHostError.denied }
                 try validateOwner()
+                OtzariaHanlinConnectionDiagnostic.record(.readRequestValidated)
                 try onRequestReadConnection(request, offer)
+                OtzariaHanlinConnectionDiagnostic.record(.readRequestReturned, flags: [.closed: closed])
             } else {
                 configure(request)
             }
         } catch {
+            OtzariaHanlinConnectionDiagnostic.record(.connectFailed, reason: OtzariaHanlinConnectionDiagnostic.reason(for: error))
             if !closed { errorMessage = String(localized: "The connection could not be configured. Check the address, model and key.") }
         }
     }
@@ -192,8 +318,17 @@ final class OtzariaHanlinChatSession: Identifiable {
     /// Only the original owner may carry the same immutable request through an
     /// actual sheet dismissal. A different request cannot reuse its read grant.
     func configure(_ request: OtzariaHanlinConnectionRequest) {
-        guard !closed, !storageFailed, !isConfigured, !isConnecting, operation == nil else { return }
+        OtzariaHanlinConnectionDiagnostic.record(.carriedConfigureEntered, flags: [
+            .closed: closed, .storageFailed: storageFailed, .configured: isConfigured,
+            .connecting: isConnecting, .hasOperation: operation != nil,
+            .hasReadScope: currentWorkReadScope != nil,
+        ])
+        guard !closed, !storageFailed, !isConfigured, !isConnecting, operation == nil else {
+            OtzariaHanlinConnectionDiagnostic.record(.carriedConfigureRejected)
+            return
+        }
         guard requiredConfigurationID == nil || requiredConfigurationID == request.id else {
+            OtzariaHanlinConnectionDiagnostic.record(.carriedConfigurationMismatch)
             onClose(); return
         }
         isConnecting = true
@@ -206,7 +341,9 @@ final class OtzariaHanlinChatSession: Identifiable {
                 let configuration = request.configuration
                 let engine = try HanlinAISDKAgentEngine(configuration: configuration,
                     fetch: HanlinAISDKProviderFactory.makeFetch(sessionConfiguration: .ephemeral))
+                OtzariaHanlinConnectionDiagnostic.record(.engineConstructed)
                 try self.onConnectionConfigured(request.id)
+                OtzariaHanlinConnectionDiagnostic.record(.configurationActivated)
                 try await self.requireCurrent()
                 let session = HanlinAgentSession(identity: self.identity, host: self.host, engine: engine, store: self.store)
                 session.onHostResult = { [weak self] event in
@@ -224,7 +361,10 @@ final class OtzariaHanlinChatSession: Identifiable {
                                    modelID: configuration.baseModelID)
                 self.isConfigured = true
                 self.errorMessage = nil
+                OtzariaHanlinConnectionDiagnostic.record(.configurationCompleted)
             } catch {
+                OtzariaHanlinConnectionDiagnostic.record(.configureFailed,
+                    reason: OtzariaHanlinConnectionDiagnostic.reason(for: error))
                 if !self.closed {
                     self.errorMessage = String(localized: "The connection could not be configured. Check the address, model and key.")
                     // A failed granted connection cannot be retried with a new

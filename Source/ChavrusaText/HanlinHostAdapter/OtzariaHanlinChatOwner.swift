@@ -67,8 +67,17 @@ final class OtzariaHanlinChatOwner {
     }
 
     private func openConversation(conversationID: UUID?, expectedNamespace: HanlinConversationNamespace?, readReopen: ReadReopen?) {
+        OtzariaHanlinConnectionDiagnostic.record(.openEntered, flags: [
+            .retired: retired, .hasPresentation: presentation != nil,
+            .hasNavigationTask: navigationTask != nil, .hasNativeSession: nativeSession != nil,
+            .mounted: nativeSession?.mounted == true, .foreground: nativeSession?.foreground == true,
+            .hasConsent: readReopen?.consent != nil, .hasConnection: readReopen?.connection != nil,
+        ])
         guard !retired, presentation == nil, navigationTask == nil,
-              let manager, let nativeSession, nativeSession.mounted, nativeSession.foreground else { return }
+              let manager, let nativeSession, nativeSession.mounted, nativeSession.foreground else {
+            OtzariaHanlinConnectionDiagnostic.record(.openRejected)
+            return
+        }
         var issued: HanlinHostSession?
         do {
             let readConnection: (consent: MaktabahNativeRoutingComposition.HanlinReadConsent, dismissedSessionID: UUID, configurationID: UUID)?
@@ -124,7 +133,10 @@ final class OtzariaHanlinChatOwner {
             if let connection = readReopen?.connection {
                 connectionAfterMount = (sessionID, connection)
             }
+            OtzariaHanlinConnectionDiagnostic.record(.openIssued, flags: [.hasReadScope: readScope != nil])
         } catch {
+            OtzariaHanlinConnectionDiagnostic.record(.openFailed,
+                reason: OtzariaHanlinConnectionDiagnostic.reason(for: error))
             readReopen?.consent?.revoke()
             connectionAfterMount = nil
             if let issued {
@@ -137,6 +149,10 @@ final class OtzariaHanlinChatOwner {
     }
 
     func didMount(sceneID: String, sessionID: UUID) {
+        OtzariaHanlinConnectionDiagnostic.record(.mountObserved, flags: [
+            .matchingSession: presentation?.id == sessionID, .isPresented: isPresented,
+            .retired: retired, .hasNativeSession: nativeSession != nil,
+        ])
         guard presentation?.id == sessionID, isPresented, !retired else { return }
         guard let nativeSession, sceneID == nativeSession.sceneID.rawValue else {
             requestClose(sessionID: sessionID); return
@@ -197,6 +213,7 @@ final class OtzariaHanlinChatOwner {
     /// displayed work and supplies the exact immutable model configuration.
     private func requestReadConnection(_ request: OtzariaHanlinConnectionRequest,
         displayedScope: OtzariaHanlinCurrentWorkReadScope, sessionID: UUID) throws {
+        OtzariaHanlinConnectionDiagnostic.record(.consentCaptureEntered)
         try validate(sessionID)
         guard let presentation, let manager, !presentation.isConfigured,
               !presentation.isConnecting, !presentation.isStreaming,
@@ -208,6 +225,7 @@ final class OtzariaHanlinChatOwner {
             }
         pendingReadReopen = .init(originalSessionID: sessionID, namespace: presentation.identity.context.namespace,
             conversationID: presentation.identity.conversationID, consent: consent, connection: request)
+        OtzariaHanlinConnectionDiagnostic.record(.consentCaptured)
         requestClose(sessionID: sessionID, preservingContinuation: true)
     }
 
@@ -233,6 +251,11 @@ final class OtzariaHanlinChatOwner {
     }
 
     func requestClose(sessionID: UUID? = nil, preservingContinuation: Bool = false) {
+        OtzariaHanlinConnectionDiagnostic.record(.closeRequested, flags: [
+            .hasPresentation: presentation != nil,
+            .matchingSession: presentation != nil && (sessionID == nil || presentation?.id == sessionID),
+            .preservingContinuation: preservingContinuation, .hasPendingReadReopen: pendingReadReopen != nil,
+        ])
         guard let presentation, sessionID == nil || presentation.id == sessionID else { return }
         if !preservingContinuation {
             pendingNavigation?.cancel(); pendingNavigation = nil; pendingHistory = nil
@@ -248,9 +271,15 @@ final class OtzariaHanlinChatOwner {
     /// SwiftUI calls this after the actual owned sheet finishes dismissing.
     /// A replacement cannot be opened while that old presentation is retained.
     func didDismiss(sessionID: UUID?) {
+        OtzariaHanlinConnectionDiagnostic.record(.dismissObserved, flags: [
+            .hasPresentation: presentation != nil,
+            .matchingSession: sessionID != nil && presentation?.id == sessionID,
+            .isPresented: isPresented, .hasPendingReadReopen: pendingReadReopen != nil,
+        ])
         // A superseded SwiftUI callback has no ownership over this sheet or its
         // pending grant, even if the current sheet is itself already dismissing.
         guard let sessionID, let current = presentation, current.id == sessionID, !isPresented else { return }
+        OtzariaHanlinConnectionDiagnostic.record(.dismissAccepted)
         current.revoke()
         if pendingNavigation == nil { composition.closeHanlinHostSession(current.identity) }
         nativeSession?.finishStudyChatPresentation(sessionID)
@@ -261,6 +290,9 @@ final class OtzariaHanlinChatOwner {
             guard !retired, readReopen.originalSessionID == sessionID else {
                 readReopen.consent?.revoke(); return
             }
+            OtzariaHanlinConnectionDiagnostic.record(.readReopenEntered, flags: [
+                .hasConsent: readReopen.consent != nil, .hasConnection: readReopen.connection != nil,
+            ])
             openConversation(conversationID: readReopen.conversationID,
                 expectedNamespace: readReopen.namespace, readReopen: readReopen)
             return

@@ -425,6 +425,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             workspace: observed.projection.groupID.uuidString, space: observed.backend.backend.rawValue)
         let readScope: OtzariaHanlinCurrentWorkReadScope?
         if let readConnection {
+            OtzariaHanlinConnectionDiagnostic.record(.consentConsumeEntered)
             guard entry.pendingHanlinReadConsent === readConnection.consent,
                   readConnection.consent.originalSession.conversationID == conversationID,
                   readConnection.consent.originalSession.context.sceneID == entry.hanlinSceneID else {
@@ -434,6 +435,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             readScope = try readConnection.consent.witness.consume(
                 dismissedSessionID: readConnection.dismissedSessionID, currentSource: observed,
                 namespace: namespace, configurationID: readConnection.configurationID)
+            OtzariaHanlinConnectionDiagnostic.record(.consentConsumed)
             scenes[sceneID]?.pendingHanlinReadConsent = nil
         } else { readScope = nil }
         // Native UIKit identifiers remain strings. This UUID belongs only to the
@@ -559,10 +561,23 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             throw HanlinHostError.staleContext
         }
         do {
-            guard try hanlinSource(sceneID: sceneID, entry: entry, allowingHanlinSession: active.session.id) == active.observed else {
+            let observed = try hanlinSource(sceneID: sceneID, entry: entry, allowingHanlinSession: active.session.id)
+            guard observed == active.observed else {
+                OtzariaHanlinConnectionDiagnostic.record(.sourceComparisonRejected, flags: [
+                    .sameBackend: observed.backend == active.observed.backend,
+                    .sameMappingSource: observed.source == active.observed.source,
+                    .sameMappingEpoch: observed.epoch == active.observed.epoch,
+                    .sameWorkspaceProjection: observed.projection == active.observed.projection,
+                    .sameReaderContent: observed.readerContent == active.observed.readerContent,
+                    .sameReadSource: observed.currentWorkReadSource == active.observed.currentWorkReadSource,
+                    .sameSelection: observed.selectedRange == active.observed.selectedRange,
+                    .sameLocale: observed.locale == active.observed.locale,
+                ])
                 throw HanlinHostError.staleContext
             }
         } catch {
+            OtzariaHanlinConnectionDiagnostic.record(.sourceValidationFailed,
+                reason: OtzariaHanlinConnectionDiagnostic.reason(for: error))
             invalidateHanlin(sceneID: sceneID)
             throw HanlinHostError.staleContext
         }
