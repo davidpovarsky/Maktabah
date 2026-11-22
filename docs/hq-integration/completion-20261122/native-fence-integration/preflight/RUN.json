@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-22T04:15:36.176476+00:00",
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "Scripts/CI/hq-stage2-focused-apple.py",
+    "--preflight-only"
+  ],
+  "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-completion-20261122",
+  "expected_checkout": "577ea1472da2e127a7068046e6b8c3e40293b98b",
+  "exit_code": 0,
+  "seconds": 7.5,
+  "source_only": true,
+  "sdk_downloads": 0,
+  "builds": 0,
+  "tests": 0,
+  "stdout_sha256": "7cc1c2c5b7e6db1ba26d6d54aeabd79f87db850bba9d656eaa1bfbbaa300d96d",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
