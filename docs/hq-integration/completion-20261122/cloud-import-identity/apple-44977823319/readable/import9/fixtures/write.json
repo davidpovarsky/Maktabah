@@ -1,0 +1,92 @@
+{
+  "cases" : [
+    {
+      "added" : 0,
+      "failures" : [
+
+      ],
+      "name" : "same_uuid_locator_and_context",
+      "status" : "PASS",
+      "updated" : 1
+    },
+    {
+      "added" : 1,
+      "failures" : [
+
+      ],
+      "name" : "legacy_different_backend",
+      "status" : "PASS",
+      "updated" : 0
+    },
+    {
+      "added" : 1,
+      "failures" : [
+
+      ],
+      "name" : "legacy_different_work",
+      "status" : "PASS",
+      "updated" : 0
+    },
+    {
+      "added" : 1,
+      "failures" : [
+
+      ],
+      "name" : "legacy_different_position",
+      "status" : "PASS",
+      "updated" : 0
+    },
+    {
+      "added" : 0,
+      "failures" : [
+
+      ],
+      "name" : "legacy_equal_locator_reordered_json",
+      "status" : "PASS",
+      "updated" : 1
+    },
+    {
+      "added" : 0,
+      "failures" : [
+
+      ],
+      "name" : "legacy_positive_original_identity",
+      "status" : "PASS",
+      "updated" : 1
+    },
+    {
+      "added" : 1,
+      "failures" : [
+
+      ],
+      "name" : "legacy_negative_missing_locator",
+      "status" : "PASS",
+      "updated" : 0
+    },
+    {
+      "added" : 1,
+      "failures" : [
+
+      ],
+      "name" : "legacy_malformed_locator",
+      "status" : "PASS",
+      "updated" : 0
+    },
+    {
+      "added" : 0,
+      "failures" : [
+
+      ],
+      "name" : "same_uuid_older_remote_preserved",
+      "status" : "PASS",
+      "updated" : 0
+    }
+  ],
+  "failed" : 0,
+  "mode" : "write",
+  "passed" : 9,
+  "process_id" : 19651,
+  "schema" : 1,
+  "scope" : "actual full original Repository\/Annotation\/SQLite\/SyncPendingStore; owned fixture DBs; no CloudKit transport, Store cache or native UI",
+  "sqlite_version" : "3.54.0"
+}

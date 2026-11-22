@@ -1,0 +1,188 @@
+{
+  "phase": "candidate",
+  "status": "PASS_REAL_REPOSITORY_SQLITE",
+  "commands": [
+    {
+      "label": "compile-original-repository",
+      "command": [
+        "xcrun",
+        "--sdk",
+        "macosx",
+        "swiftc",
+        "-swift-version",
+        "6",
+        "-j",
+        "1",
+        "-parse-as-library",
+        "-target",
+        "arm64-apple-macosx15.0",
+        "-lsqlite3",
+        "/Users/runner/work/Maktabah/Maktabah/Source/Features/Annotations/Models/Annotation.swift",
+        "/Users/runner/work/Maktabah/Maktabah/Source/Features/Annotations/Database/AnnotationRepository.swift",
+        "/Users/runner/work/Maktabah/Maktabah/Source/Core/Database/SQLiteDatabase.swift",
+        "/Users/runner/work/Maktabah/Maktabah/Source/Core/CloudKit/SyncPendingStore.swift",
+        "/Users/runner/work/Maktabah/Maktabah/Tests/HQ/sqlite/UnusedZstdBoundary.swift",
+        "/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/cloud-import-identity/Boundary.swift",
+        "/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/cloud-import-identity/OriginalLocator.swift",
+        "/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/cloud-import-identity/OriginalLocalConnection.swift",
+        "/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/cloud-import-identity/CloudImportIdentityControls.swift",
+        "/Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Annotations/AnnotationCloudImportIdentity.swift",
+        "-o",
+        "/Users/runner/work/Maktabah/Maktabah/build/cloud-import-identity-apple/import9/build/cloud-import-controls"
+      ],
+      "exit": 0,
+      "seconds": 6.19904541599999
+    },
+    {
+      "label": "write",
+      "command": [
+        "/Users/runner/work/Maktabah/Maktabah/build/cloud-import-identity-apple/import9/build/cloud-import-controls",
+        "write",
+        "/Users/runner/work/Maktabah/Maktabah/build/cloud-import-identity-apple/import9/fixtures"
+      ],
+      "exit": 0,
+      "seconds": 0.07281862499996805
+    },
+    {
+      "label": "reopen",
+      "command": [
+        "/Users/runner/work/Maktabah/Maktabah/build/cloud-import-identity-apple/import9/build/cloud-import-controls",
+        "reopen",
+        "/Users/runner/work/Maktabah/Maktabah/build/cloud-import-identity-apple/import9/fixtures"
+      ],
+      "exit": 0,
+      "seconds": 0.042766583000002356
+    }
+  ],
+  "native_executed": 0,
+  "cloudkit_transport_executed": 0,
+  "logging": "original Apple OSLog",
+  "sdk": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk",
+  "toolchain": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+  "executable_sha256": "976374c42970be99d8353286295c7e4d6d831029feaddc988a4db762fed349de",
+  "write": {
+    "process_id": 19651,
+    "sqlite_version": "3.54.0",
+    "passed": 9,
+    "failed": 0,
+    "cases": [
+      {
+        "added": 0,
+        "failures": [],
+        "name": "same_uuid_locator_and_context",
+        "status": "PASS",
+        "updated": 1
+      },
+      {
+        "added": 1,
+        "failures": [],
+        "name": "legacy_different_backend",
+        "status": "PASS",
+        "updated": 0
+      },
+      {
+        "added": 1,
+        "failures": [],
+        "name": "legacy_different_work",
+        "status": "PASS",
+        "updated": 0
+      },
+      {
+        "added": 1,
+        "failures": [],
+        "name": "legacy_different_position",
+        "status": "PASS",
+        "updated": 0
+      },
+      {
+        "added": 0,
+        "failures": [],
+        "name": "legacy_equal_locator_reordered_json",
+        "status": "PASS",
+        "updated": 1
+      },
+      {
+        "added": 0,
+        "failures": [],
+        "name": "legacy_positive_original_identity",
+        "status": "PASS",
+        "updated": 1
+      },
+      {
+        "added": 1,
+        "failures": [],
+        "name": "legacy_negative_missing_locator",
+        "status": "PASS",
+        "updated": 0
+      },
+      {
+        "added": 1,
+        "failures": [],
+        "name": "legacy_malformed_locator",
+        "status": "PASS",
+        "updated": 0
+      },
+      {
+        "added": 0,
+        "failures": [],
+        "name": "same_uuid_older_remote_preserved",
+        "status": "PASS",
+        "updated": 0
+      }
+    ]
+  },
+  "fresh_process_reopen": {
+    "process_id": 19652,
+    "sqlite_version": "3.54.0",
+    "passed": 9,
+    "failed": 0,
+    "cases": [
+      {
+        "failures": [],
+        "name": "same_uuid_locator_and_context",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "legacy_different_backend",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "legacy_different_work",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "legacy_different_position",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "legacy_equal_locator_reordered_json",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "legacy_positive_original_identity",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "legacy_negative_missing_locator",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "legacy_malformed_locator",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "same_uuid_older_remote_preserved",
+        "status": "PASS"
+      }
+    ]
+  },
+  "source_unchanged": true
+}

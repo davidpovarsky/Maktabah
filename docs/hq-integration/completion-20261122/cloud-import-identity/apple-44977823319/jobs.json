@@ -1,0 +1,113 @@
+{
+  "jobs": [
+    {
+      "check_run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/check-runs/137071546909",
+      "completed_at": "2026-11-22T02:52:22Z",
+      "conclusion": "success",
+      "created_at": "2026-11-22T02:49:14Z",
+      "head_branch": "codex/otzaria-cloud-import-identity-apple-20261122",
+      "head_sha": "385fffafb5b014f0777b3100151b5b6d0e75eed9",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44977823319/job/137071546909",
+      "id": 137071546909,
+      "labels": [
+        "xcode-27"
+      ],
+      "name": "Original Cloud48 and nine Repository import plus fresh-process reopen cases",
+      "node_id": "CR_kwDOTEwysM8AAAAf6hnSHQ",
+      "run_attempt": 1,
+      "run_id": 44977823319,
+      "run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/runs/44977823319",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions",
+      "runner_id": 1000022992,
+      "runner_name": "GitHub Actions 1000022992",
+      "started_at": "2026-11-22T02:49:17Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-11-22T02:49:19Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-11-22T02:49:17Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-22T02:49:33Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-11-22T02:49:19Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-22T02:49:34Z",
+          "conclusion": "success",
+          "name": "Verify the sealed original source closure",
+          "number": 3,
+          "started_at": "2026-11-22T02:49:33Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-22T02:50:31Z",
+          "conclusion": "success",
+          "name": "Select the existing Apple toolchain",
+          "number": 4,
+          "started_at": "2026-11-22T02:49:34Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-22T02:52:06Z",
+          "conclusion": "success",
+          "name": "Execute the unchanged owned Cloud48 cases once",
+          "number": 5,
+          "started_at": "2026-11-22T02:50:31Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-22T02:52:14Z",
+          "conclusion": "success",
+          "name": "Execute original Repository import and real fresh-process SQLite reopen",
+          "number": 6,
+          "started_at": "2026-11-22T02:52:06Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-22T02:52:15Z",
+          "conclusion": "success",
+          "name": "Verify raw results and unchanged compiled inputs",
+          "number": 7,
+          "started_at": "2026-11-22T02:52:14Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-22T02:52:18Z",
+          "conclusion": "success",
+          "name": "Preserve actual source, outcomes and failure logs",
+          "number": 8,
+          "started_at": "2026-11-22T02:52:15Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-22T02:52:18Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 16,
+          "started_at": "2026-11-22T02:52:18Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-22T02:52:19Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 17,
+          "started_at": "2026-11-22T02:52:18Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/jobs/137071546909",
+      "workflow_name": "Original Repository import and Cloud48 Apple continuation"
+    }
+  ],
+  "total_count": 1
+}

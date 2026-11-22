@@ -1,0 +1,34 @@
+{
+  "application_source": "5d0a11f6a799bee9deb23dc91b29e832bec14335",
+  "artifact_id": 14736950047,
+  "artifact_sha256": "57d265b96541376c07c683a099b3888518d23163a508d604facf7b18a65c8844",
+  "artifact_zip_bytes": 656371,
+  "exact_source_inputs": 93,
+  "finished_at": "2026-11-22T02:52:58.868041+00:00",
+  "github_conclusion": "success",
+  "head": "385fffafb5b014f0777b3100151b5b6d0e75eed9",
+  "last_status": "completed",
+  "logs_exit_code": 0,
+  "observed_at": "2026-11-22T02:52:48.118800+00:00",
+  "polls": 2,
+  "reported_result": {
+    "anytype_runtime_executed": 0,
+    "application_source": "5d0a11f6a799bee9deb23dc91b29e832bec14335",
+    "checkout_sha": "385fffafb5b014f0777b3100151b5b6d0e75eed9",
+    "cloud48_passed": 48,
+    "cloudkit_transport_executed": 0,
+    "core194_tests_executed": 0,
+    "import_passed": 9,
+    "live_exchange_enabled": false,
+    "native_ui_executed": 0,
+    "process_ids": [
+      19651,
+      19652
+    ],
+    "reopen_passed": 9,
+    "status": "PASS_APPLE_CLOUD48_AND_ORIGINAL_IMPORT9_REOPEN9"
+  },
+  "run_id": 44977823319,
+  "started_at": "2026-11-22T02:52:16.009949+00:00",
+  "status": "VERIFIED_APPLE_PASS"
+}

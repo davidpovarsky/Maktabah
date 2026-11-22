@@ -43,3 +43,9 @@ PRE_EDIT_REVIEW.json records current authorization and scope. The original Repos
 ## Source publication preflight
 
 Bound checkout 385fffafb5b014f0777b3100151b5b6d0e75eed9 passed the actual ordinary HQ source preflight, all 93 reviewed Apple input hashes, and the original editor source context with 270 exact execution inputs (job_7f127a427db8). The earlier stale Project build-exclusion pin rejection on d7a988f3 is retained, together with the exact eight-line registration delta and corrected existing manifest digest. No test exclusion rule was weakened. The single dedicated Apple run is frozen at 385fffaf; later evidence-only commits preserve the same application and compiled inputs.
+
+## Actual Apple result — verified
+
+Run 44977823319 completed SUCCESS on exact frozen checkout 385fffaf / application 5d0a. Apple Swift 6.4.2 with MacOSX27.2 SDK executed all unchanged Cloud48 assertions: 48 passed, 0 failed. Original Repository import cases passed 9/9, then reopened actual Apple SQLite 3.54.0 in a separate process: 9/9 passed, PIDs 19651 and 19652.
+
+Artifact 14736950047 is 656371 bytes, SHA256 57d265b96541376c07c683a099b3888518d23163a508d604facf7b18a65c8844, exactly matching the GitHub digest and size; ZIP CRC verified. Its complete raw archive is retained under apple-44977823319, together with GitHub run/jobs/metadata, source inventories, raw Actions logs and readable result/case reports. All 93 reviewed source hashes match before/after; compiled copies are exact. No Core194/local43/cold2 rerun, live network/CloudKit, Anytype runtime, full app or Native credit is claimed.
