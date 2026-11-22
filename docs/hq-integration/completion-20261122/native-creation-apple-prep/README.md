@@ -18,7 +18,7 @@ The neutral preparation branch does not match the gate branch codex/otzaria-nati
 
 ## Required source composition
 
-Root's new canonical application source is 67518e8df6975c976e8f1cd9e622328dc45985fc, containing the reviewed ledger and the current application/UI work. Root requested composition of its verified published HEAD before sealing this route. The final binding must name that canonical application and all four exact Source/Vendor/project/UI-test trees, plus the separately committed route closure. The source gate refuses unsealed input, dirty bytes, missing/extra dependencies, tree drift or unreviewed helpers. No early full source admission is claimed for the older isolated application composition.
+Root's new canonical application source is 67518e8df6975c976e8f1cd9e622328dc45985fc, containing the reviewed ledger and the current application/UI work. The verified published parent 5b2e63cedf54fb839d07304526c4b2dcb97bb1b1 was composed in a true two-parent merge 80e997759adb784fa417bf5e820a834ccdfaee6f. All four resulting Source/Vendor/project/UI-test trees equal application67518. The final route closure is committed at 2f8a8b978bf331fc0d8754b44da986aacc40d4d0. Its 47 execution inputs (42 compiler inputs plus five route/toolchain/helper inputs) are sealed from committed Git blobs using a single batch read. The source gate refuses unsealed input, dirty bytes, missing/extra dependencies, tree drift or unreviewed helpers. No early full source admission is claimed for the older isolated application composition.
 
 ## Actual execution contract
 
@@ -28,4 +28,4 @@ Collection requires the real Apple Swift target and system SQLite, the seven unc
 
 The same existing Core194, exchange28, Cloud48, Native UI and live suites are not part of this route. Only the new creation-fence component and its real persistence semantics are selected. Windows evidence is retained for its original exact inputs; it is not relabeled as Apple evidence.
 
-Current status: prepared for review; source binding awaits canonical composition; actual Apple execution NOT_RUN.
+Current status: canonical composition and committed input sealing completed; one local source-only admission is next; actual Apple execution NOT_RUN. No CI dispatch is authorized by the existence of this packet.

@@ -1,0 +1,18 @@
+{
+  "application_source": "67518e8df6975c976e8f1cd9e622328dc45985fc",
+  "application_trees": {
+    "Source": "ac887bdbfbfce2d30d9591bb867d61b11da31cc6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "cd108ec2cec9f8c6089a1eeff2ec77bc9372a469"
+  },
+  "closure_source": "2f8a8b978bf331fc0d8754b44da986aacc40d4d0",
+  "compiler_inputs": 42,
+  "execution_inputs": 47,
+  "input_manifest_sha256": "6b46ab9beb16e56355fc891782d9777a92c0eaad0cd56500eb7f800ac3f02a7b",
+  "source_sealing": "Committed Git blobs via one cat-file --batch read",
+  "source_admission_runs_so_far": 0,
+  "test_executions": 0,
+  "ci_dispatches": 0,
+  "actual_apple_status": "NOT_RUN"
+}
