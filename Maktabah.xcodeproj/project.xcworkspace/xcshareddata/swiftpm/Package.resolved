@@ -127,7 +127,7 @@
       "kind": "remoteSourceControl",
       "location": "https://github.com/davidpovarsky/TorahInspectorKit.git",
       "state": {
-        "revision": "19d1b35397af4f10ae70cfb3f444c9de87383b53"
+        "revision": "23db0f84e88d9ee9c7053c49de86903fc7bb5785"
       }
     },
     {

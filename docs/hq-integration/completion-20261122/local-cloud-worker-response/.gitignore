@@ -1,0 +1,5 @@
+/validation/*.exe
+/validation/*.lib
+/validation/*.exp
+/validation/*.pdb
+/validation/*.ilk

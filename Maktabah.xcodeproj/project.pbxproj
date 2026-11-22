@@ -1405,6 +1405,10 @@
 		D627561A0D3655B435E380A6 /* AnnotationLocalEditorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */; };
 		9D3E374BD59EC6A061949F0F /* AnnotationLocalEditorCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */; };
 		D3E72B183F56A898BFD45419 /* AnnotationLocalEditorCloudOwnership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */; };
+		0A5B8A034B694C2818E41C8A /* AnnotationOriginalEditorMount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582DC05D9E1950BEEE7D085 /* AnnotationOriginalEditorMount.swift */; };
+		C618B79C91FD2056B24F707B /* AnnotationOriginalEditorQualification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E859C54909759C046AAFE93F /* AnnotationOriginalEditorQualification.swift */; };
+		99F17897FA4D1681FA1511C9 /* AnnotationOriginalEditorSourceObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E8F4C005D15A968E44F0E9 /* AnnotationOriginalEditorSourceObservation.swift */; };
+		072BBF47E208223DA5B0A671 /* AnnotationOriginalEditorQualificationUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463EBB14A3F80237EF0281C /* AnnotationOriginalEditorQualificationUI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2199,6 +2203,10 @@
 		5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorSession.swift"; sourceTree = "<group>"; };
 		5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift"; sourceTree = "<group>"; };
 		6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift"; sourceTree = "<group>"; };
+		7582DC05D9E1950BEEE7D085 /* AnnotationOriginalEditorMount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorMount.swift"; sourceTree = "<group>"; };
+		E859C54909759C046AAFE93F /* AnnotationOriginalEditorQualification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift"; sourceTree = "<group>"; };
+		96E8F4C005D15A968E44F0E9 /* AnnotationOriginalEditorSourceObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift"; sourceTree = "<group>"; };
+		B463EBB14A3F80237EF0281C /* AnnotationOriginalEditorQualificationUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2281,6 +2289,10 @@
 		CFEE00000000000000000001 /* ChavrusaText */ = {
 			isa = PBXGroup;
 			children = (
+				7582DC05D9E1950BEEE7D085 /* AnnotationOriginalEditorMount.swift */,
+				E859C54909759C046AAFE93F /* AnnotationOriginalEditorQualification.swift */,
+				96E8F4C005D15A968E44F0E9 /* AnnotationOriginalEditorSourceObservation.swift */,
+				B463EBB14A3F80237EF0281C /* AnnotationOriginalEditorQualificationUI.swift */,
 				CF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */,
 				5C779026CC573B19C11E67E9 /* TorahAnnotationEnvelope.swift */,
 				15AA5DEFA4B1E2823A7CCD9A /* AnnotationExchangeLedger.swift */,
@@ -5031,6 +5043,10 @@
 		F30576E22FA46222005732C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				0A5B8A034B694C2818E41C8A /* AnnotationOriginalEditorMount.swift in Sources */,
+				C618B79C91FD2056B24F707B /* AnnotationOriginalEditorQualification.swift in Sources */,
+				99F17897FA4D1681FA1511C9 /* AnnotationOriginalEditorSourceObservation.swift in Sources */,
+				072BBF47E208223DA5B0A671 /* AnnotationOriginalEditorQualificationUI.swift in Sources */,
 				D238792D20CAE8596B84D69F /* AnnotationExchangeLedger.swift in Sources */,
 				AB467DB193BB97E635A4C008 /* AnnotationLocalEditorModels.swift in Sources */,
 				2A81EE6B3B2514B9F4773658 /* AnnotationLocalEditorPersistence.swift in Sources */,
@@ -6512,7 +6528,7 @@
 			repositoryURL = "https://github.com/davidpovarsky/TorahInspectorKit.git";
 			requirement = {
 				kind = revision;
-				revision = 19d1b35397af4f10ae70cfb3f444c9de87383b53;
+				revision = 23db0f84e88d9ee9c7053c49de86903fc7bb5785;
 			};
 		};
 		CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {

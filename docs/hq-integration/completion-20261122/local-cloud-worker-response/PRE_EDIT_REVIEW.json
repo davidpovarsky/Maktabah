@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "base": "5e18f5160c919427dccbe420ee4ec111b74fd427",
+  "authorization": "Current owner request and root coordination approval to fix HTTP result handling; no queue/schema/retry change",
+  "problem": "sendWorker ignores URLResponse and reports success on non-2xx HTTP when error is nil",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "origin": "09214fff31c236a23671b7b5ba2eeb0fa25c8be0 stage(otzaria): retain qualified annotation components for compatibility review",
+      "before_git_blob": "a1ddaf0ff4a243d9cef5850c144941728927f650",
+      "before_sha256": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "origin": "09214fff31c236a23671b7b5ba2eeb0fa25c8be0 stage(otzaria): retain qualified annotation components for compatibility review",
+      "before_git_blob": "fea867c79e7acc97f441b37b72c92accaddcdf29",
+      "before_sha256": "40a9a5718d00a1e254345a016922bf1b6526e31ceb8540acf910c61069568d71"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "session_source": "/workspace/scratch/ab739d619196/maktabah_original_editor_consumer/source/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+  "session_sha256": "ab12767d96243fec6e5b914c56061fcb5cfb9e1d88add827eeaf3e382592e2b3",
+  "original_models": "/workspace/scratch/ab739d619196/maktabah_original_editor_ui/base/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+  "models_sha256": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb",
+  "lifetime_extraction": "exact original Error enum and full lifetime class through next declaration marker",
+  "files": {
+    "AnnotationLocalEditorSession.swift": "ab12767d96243fec6e5b914c56061fcb5cfb9e1d88add827eeaf3e382592e2b3",
+    "OriginalLifetime.swift": "83c85b81a471b5b03d61ba82bc9cef5206eb2923811f3b4e8390ddb363042a79",
+    "controls.swift": "ee5906556de7462843ba7d2a6e621b5480137afd0c8996fb52ef30ddd90002e7",
+    "probes.swift": "d9e7a93b6bd0769123b93c8f52c795341c47fa203e22098fc59e394eaa512963"
+  },
+  "credit": "Portable exact Session/Lifetime controls only; persistence/event/cloud types are explicit probes; no SQLite/Combine/UIKit/Native credit"
+}

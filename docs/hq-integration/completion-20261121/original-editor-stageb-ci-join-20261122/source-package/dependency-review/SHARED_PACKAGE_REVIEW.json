@@ -1,0 +1,94 @@
+[
+  {
+    "identity": "floatingpanel",
+    "maktabah_revision": "3db567a19ff81d2d3ce00399021ee87a4fccf7e0",
+    "maktabah_url": "https://github.com/scenee/FloatingPanel.git",
+    "anytype_recorded_v9_revision": "22d46c526084724a718b8c39ab77f12452712cc7",
+    "same": false,
+    "original_export_paths": [
+      "Modules/FloatingPanel.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo",
+      "Modules/FloatingPanel.swiftmodule/arm64-apple-ios-simulator.abi.json",
+      "Modules/FloatingPanel.swiftmodule/arm64-apple-ios-simulator.swiftdoc",
+      "Modules/FloatingPanel.swiftmodule/arm64-apple-ios-simulator.swiftmodule"
+    ],
+    "original_export_path_count": 4
+  },
+  {
+    "identity": "swift-ai-sdk",
+    "maktabah_revision": "e7bf34111e603ca977becd007dd4e5bb109af857",
+    "maktabah_url": "https://github.com/davidpovarsky/swift-ai-sdk.git",
+    "anytype_recorded_v9_revision": "e7bf34111e603ca977becd007dd4e5bb109af857",
+    "same": true,
+    "original_export_paths": [
+      "Modules/SwiftAISDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo",
+      "Modules/SwiftAISDK.swiftmodule/arm64-apple-ios-simulator.abi.json",
+      "Modules/SwiftAISDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc",
+      "Modules/SwiftAISDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule"
+    ],
+    "original_export_path_count": 4
+  },
+  {
+    "identity": "swift-argument-parser",
+    "maktabah_revision": "6a52f3251125d74daf04fcbd5e6f08a75d074382",
+    "maktabah_url": "https://github.com/apple/swift-argument-parser",
+    "anytype_recorded_v9_revision": "6a52f3251125d74daf04fcbd5e6f08a75d074382",
+    "same": true,
+    "original_export_paths": [],
+    "original_export_path_count": 0
+  },
+  {
+    "identity": "swift-syntax",
+    "maktabah_revision": "79e4b74a295b6eb74a8b585e3a39d29e70c1dbd1",
+    "maktabah_url": "https://github.com/swiftlang/swift-syntax.git",
+    "anytype_recorded_v9_revision": "0687f71944021d616d34d922343dcef086855920",
+    "same": false,
+    "original_export_paths": [],
+    "original_export_path_count": 0
+  },
+  {
+    "identity": "swiftyjson",
+    "maktabah_revision": "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+    "maktabah_url": "https://github.com/SwiftyJSON/SwiftyJSON.git",
+    "anytype_recorded_v9_revision": "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+    "same": true,
+    "original_export_paths": [],
+    "original_export_path_count": 0
+  },
+  {
+    "identity": "torahinspectorkit",
+    "maktabah_revision": "19d1b35397af4f10ae70cfb3f444c9de87383b53",
+    "maktabah_url": "https://github.com/davidpovarsky/TorahInspectorKit.git",
+    "anytype_recorded_v9_revision": "158acb295f832e96907cdadc813a1c2a4bb6a03c",
+    "same": false,
+    "original_export_paths": [
+      "Bundles/TorahInspectorKit_TorahInspectorUI.bundle/Info.plist",
+      "Bundles/TorahInspectorKit_TorahInspectorUI.bundle/_CodeSignature/CodeDirectory",
+      "Bundles/TorahInspectorKit_TorahInspectorUI.bundle/_CodeSignature/CodeRequirements",
+      "Bundles/TorahInspectorKit_TorahInspectorUI.bundle/_CodeSignature/CodeResources",
+      "Bundles/TorahInspectorKit_TorahInspectorUI.bundle/_CodeSignature/CodeSignature",
+      "Bundles/TorahInspectorKit_TorahInspectorUI.bundle/en.lproj/Localizable.strings",
+      "Bundles/TorahInspectorKit_TorahInspectorUI.bundle/he.lproj/Localizable.strings"
+    ],
+    "original_export_path_count": 7
+  },
+  {
+    "identity": "zipfoundation",
+    "maktabah_revision": "22787ffb59de99e5dc1fbfe80b19c97a904ad48d",
+    "maktabah_url": "https://github.com/weichsel/ZIPFoundation.git",
+    "anytype_recorded_v9_revision": "02b6abe5f6eef7e3cbd5f247c5cc24e246efcfe0",
+    "same": false,
+    "original_export_paths": [
+      "Bundles/ZIPFoundation_ZIPFoundation.bundle/Info.plist",
+      "Bundles/ZIPFoundation_ZIPFoundation.bundle/PrivacyInfo.xcprivacy",
+      "Bundles/ZIPFoundation_ZIPFoundation.bundle/_CodeSignature/CodeDirectory",
+      "Bundles/ZIPFoundation_ZIPFoundation.bundle/_CodeSignature/CodeRequirements",
+      "Bundles/ZIPFoundation_ZIPFoundation.bundle/_CodeSignature/CodeResources",
+      "Bundles/ZIPFoundation_ZIPFoundation.bundle/_CodeSignature/CodeSignature",
+      "Modules/ZIPFoundation.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo",
+      "Modules/ZIPFoundation.swiftmodule/arm64-apple-ios-simulator.abi.json",
+      "Modules/ZIPFoundation.swiftmodule/arm64-apple-ios-simulator.swiftdoc",
+      "Modules/ZIPFoundation.swiftmodule/arm64-apple-ios-simulator.swiftmodule"
+    ],
+    "original_export_path_count": 10
+  }
+]

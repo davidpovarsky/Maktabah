@@ -1,0 +1,9 @@
+{
+  "job": "job_5a4c2fdce773",
+  "command": "python run-presentation-controls.py",
+  "reported_exit": 0,
+  "reported_output": "no output",
+  "validation_directory_present": false,
+  "tests_executed": 0,
+  "decision": "Use verified SentinelX python3 interpreter; no validation or success claimed from the command wrapper"
+}

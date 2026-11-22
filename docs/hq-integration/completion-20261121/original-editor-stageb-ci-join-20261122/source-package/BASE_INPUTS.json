@@ -1,0 +1,25 @@
+{
+  "knownSourcePrefix": "fb6a88",
+  "files": [
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "sha": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1",
+      "sha256": "4adf3ba0502b433b478b00eae696300f36d222caca474bee6d42642c428805d0",
+      "bytes": 47630
+    },
+    {
+      "path": "Scripts/CI/completion-focused-native.py",
+      "sha": "2b234fbdccace763f0e47864a549ef0e83b641f2",
+      "sha256": "8adffa0d40a78f9559940b99309c40fd1222a0911d7bb22063fb1110e3b60904",
+      "bytes": 11202
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "sha": "3b20f8dded104d6e0d8c1315e73fdfed39470a4d",
+      "sha256": "02b1c365888540df0cd55cee0e765de2402c6eedc3a79f9b775fe92293156e31",
+      "bytes": 51357,
+      "role": "UNCHANGED_MATRIX_CALLBACK_AND_LIFECYCLE_REFERENCE"
+    }
+  ],
+  "source": "fb6a88f4e6ac3b0bfe0adb0a8992e2b0c3af4b5d"
+}

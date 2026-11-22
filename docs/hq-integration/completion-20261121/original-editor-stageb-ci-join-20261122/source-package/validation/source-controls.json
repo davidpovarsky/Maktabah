@@ -1,0 +1,108 @@
+{
+  "apple_build": "NOT_RUN",
+  "controls": [
+    {
+      "name": "python_sources_parse",
+      "status": "PASS"
+    },
+    {
+      "name": "original_stage2_default_ast_unchanged_after_removing_optional_branch",
+      "status": "PASS"
+    },
+    {
+      "name": "optional_sdk_rejects_preflight-only",
+      "status": "PASS"
+    },
+    {
+      "name": "optional_sdk_rejects_build-for-testing_prepare-inputs-only",
+      "status": "PASS"
+    },
+    {
+      "name": "optional_sdk_rejects_unsigned_build",
+      "status": "PASS"
+    },
+    {
+      "name": "missing_product_copy_retains_exact_bytes_and_modes",
+      "status": "PASS"
+    },
+    {
+      "name": "identical_existing_product_is_reused_without_rewriting",
+      "status": "PASS"
+    },
+    {
+      "name": "different_shared_resource_rejects_without_overwriting",
+      "status": "PASS"
+    },
+    {
+      "name": "extra_existing_member_cannot_evade_collision_check",
+      "status": "PASS"
+    },
+    {
+      "name": "different_transported_file_mode_rejects",
+      "status": "PASS"
+    },
+    {
+      "name": "linked_destination_is_never_followed",
+      "status": "PASS"
+    },
+    {
+      "name": "linked_destination_parent_is_never_followed",
+      "status": "PASS"
+    },
+    {
+      "name": "source_alias_is_rejected_before_copy",
+      "status": "PASS"
+    },
+    {
+      "name": "named_receipt_reader_enforces_size_alias_and_owner_boundary",
+      "status": "PASS"
+    },
+    {
+      "name": "unfinalized_artifact_pins_reject_before_network_or_write",
+      "status": "PASS"
+    },
+    {
+      "name": "original_sdk_zip_ordinary_members",
+      "status": "PASS"
+    },
+    {
+      "name": "original_sdk_zip_parent_traversal",
+      "status": "PASS"
+    },
+    {
+      "name": "original_sdk_zip_absolute_member",
+      "status": "PASS"
+    },
+    {
+      "name": "original_sdk_zip_case_alias",
+      "status": "PASS"
+    },
+    {
+      "name": "original_sdk_zip_backslash",
+      "status": "PASS"
+    },
+    {
+      "name": "original_sdk_zip_symlink",
+      "status": "PASS"
+    },
+    {
+      "name": "callback_admits_only_the_exact_separate_case",
+      "status": "PASS"
+    }
+  ],
+  "failed": 0,
+  "native_tests": 0,
+  "passed": 22,
+  "ruby_execution": "NOT_RUN",
+  "scope": "ACTUAL_SOURCE_FILESYSTEM_ADMISSION_CONTROLS_ONLY",
+  "source_inputs": {
+    "Scripts/CI/OriginalEditorDistributionAPICheck.swift": "a401360e5fbbe4151a7174f34a3ed881180e8b8a22fb9b8ea32bfa3735dfa903",
+    "Scripts/CI/hq-original-editor-app-target.rb": "9ffed86329b24750b4e2abf1872e79907eb22803042a4a98fa2b2d72f9f19c96",
+    "Scripts/CI/hq-original-editor-distribution.py": "fa5d6e1a10a67c3ccf4770d49e4097649d1f258a1df02d3594859d0f7ae59a60",
+    "Scripts/CI/hq-stage2-focused-apple.py": "0dbe133b8f0ee188dc2f0d0c375972a210571498ecac928f1174730ebb0e83f5",
+    "Scripts/CI/restore-original-editor-distribution.py": "37b005af915ff61e6d2b49f518c7336011b529d69bc9a412839842b798ff51d4",
+    "Scripts/CI/runtime27-original-editor-native.py": "f0df9291449f6ee4e78646fa9f3ad9f5a41658593968ab0ac30df2ba88972b3a",
+    "Scripts/CI/runtime27-original-editor.inputs.json": "e542b5429e761144b7e0a895c3bace1ccd78d442713a5a5ae442cfabb352e71c"
+  },
+  "status": "SOURCE_CONTROLS_PASS"
+}

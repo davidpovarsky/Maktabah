@@ -1,0 +1,59 @@
+{
+  "source_manifest": {
+    "session_source": "/workspace/scratch/ab739d619196/maktabah_original_editor_consumer/source/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+    "session_sha256": "ab12767d96243fec6e5b914c56061fcb5cfb9e1d88add827eeaf3e382592e2b3",
+    "original_models": "/workspace/scratch/ab739d619196/maktabah_original_editor_ui/base/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+    "models_sha256": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb",
+    "lifetime_extraction": "exact original Error enum and full lifetime class through next declaration marker",
+    "files": {
+      "AnnotationLocalEditorSession.swift": "ab12767d96243fec6e5b914c56061fcb5cfb9e1d88add827eeaf3e382592e2b3",
+      "OriginalLifetime.swift": "83c85b81a471b5b03d61ba82bc9cef5206eb2923811f3b4e8390ddb363042a79",
+      "controls.swift": "ee5906556de7462843ba7d2a6e621b5480137afd0c8996fb52ef30ddd90002e7",
+      "probes.swift": "d9e7a93b6bd0769123b93c8f52c795341c47fa203e22098fc59e394eaa512963"
+    },
+    "credit": "Portable exact Session/Lifetime controls only; persistence/event/cloud types are explicit probes; no SQLite/Combine/UIKit/Native credit"
+  },
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-j",
+    "1",
+    "C:\\Users\\DAVID\\Code\\Maktabah-peek-overflow-20261121\\build\\annotation-local-retirement-controls\\AnnotationLocalEditorSession.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-peek-overflow-20261121\\build\\annotation-local-retirement-controls\\OriginalLifetime.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-peek-overflow-20261121\\build\\annotation-local-retirement-controls\\controls.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-peek-overflow-20261121\\build\\annotation-local-retirement-controls\\probes.swift",
+    "-o",
+    "C:\\Users\\DAVID\\Code\\Maktabah-peek-overflow-20261121\\build\\annotation-local-retirement-controls\\L.exe"
+  ],
+  "compiler_jobs": 1,
+  "compile_returncode": 0,
+  "compile_stdout": "",
+  "compile_stderr": "   Creating library C:\\Users\\DAVID\\Code\\Maktabah-peek-overflow-20261121\\build\\annotation-local-retirement-controls\\L.lib and object C:\\Users\\DAVID\\Code\\Maktabah-peek-overflow-20261121\\build\\annotation-local-retirement-controls\\L.exp\n\n",
+  "compile_seconds": 47.91,
+  "run_returncode": 0,
+  "run_stdout": "{\"controls\":[\"retirement-before-worker-admission\",\"held-worker-rechecks-same-retired-owner\",\"committed-held-result-keeps-receipt-suppresses-delivery\",\"own-treeInvalidated-preserves-real-commit-without-ownership\",\"unchanged-current-default-still-delivers-commit\",\"same-identities-new-session-cannot-revive-old-owner\"],\"controls_passed\":6,\"executed\":\"Exact changed AnnotationLocalEditorSession and original lifetime with explicit persistence\\/event probes\",\"not_executed\":[\"SQLite transaction or rollback\",\"Combine source observation\",\"UIKit\",\"Native\",\"CloudKit network\"],\"status\":\"PASS\"}\n",
+  "run_stderr": "",
+  "controls": {
+    "controls": [
+      "retirement-before-worker-admission",
+      "held-worker-rechecks-same-retired-owner",
+      "committed-held-result-keeps-receipt-suppresses-delivery",
+      "own-treeInvalidated-preserves-real-commit-without-ownership",
+      "unchanged-current-default-still-delivers-commit",
+      "same-identities-new-session-cannot-revive-old-owner"
+    ],
+    "controls_passed": 6,
+    "executed": "Exact changed AnnotationLocalEditorSession and original lifetime with explicit persistence/event probes",
+    "not_executed": [
+      "SQLite transaction or rollback",
+      "Combine source observation",
+      "UIKit",
+      "Native",
+      "CloudKit network"
+    ],
+    "status": "PASS"
+  },
+  "seconds": 48.45
+}

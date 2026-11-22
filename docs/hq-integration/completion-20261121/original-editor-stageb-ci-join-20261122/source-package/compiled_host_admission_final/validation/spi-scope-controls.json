@@ -1,0 +1,25 @@
+{
+  "apple_build": "NOT_RUN",
+  "controls": [
+    {
+      "name": "compiled_host_proof_preserves_full_surface_and_resource_only_scope",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_qualification_spi_and_public_scope_proofs_are_required",
+      "status": "PASS"
+    }
+  ],
+  "failed": 0,
+  "native_editor_ui_tests": 0,
+  "passed": 2,
+  "prior_22_and_13_source_controls_reexecuted": false,
+  "scope": "SYNTHETIC_QUALIFICATION_RECEIPT_AND_EXACT_SOURCE_DELTA_CONTROLS",
+  "source_inputs": {
+    "Scripts/CI/hq-original-editor-distribution.py": "a995f5abc1af4060fff2ac2a8b82c4d9bdec992febe854d381cbab81793c5ca9",
+    "Scripts/CI/runtime27-original-editor-native.py": "f11bd345f29dbc8f27b6f9034d4acf335e923bb947be764f4137c73ae6b9ac76",
+    "tools/verify-original-editor-host-admission-controls.py": "89679736d76a2cd7d5bb37b060af89b8173653c738d0453ae2f4bc9e9c3e2b00"
+  },
+  "spi_scope_only": true,
+  "status": "CHANGED_HOST_ADMISSION_CONTROLS_PASS"
+}

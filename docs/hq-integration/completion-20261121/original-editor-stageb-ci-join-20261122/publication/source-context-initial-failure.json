@@ -1,0 +1,9 @@
+{
+  "code_commit": "8792e0f82b4ad8e8415aa60086528495d3c041c1",
+  "diagnosis": "All252 mismatches in267 execution inputs were pure CRLF presentation; immutable source already matched",
+  "exact_working_input_error": "Dirty tracked execution input: .github/workflows/cloudkit-schema.yml",
+  "job_id": "job_40352851a8a5",
+  "native_execution": "NOT_RUN",
+  "preflight_returncode": 0,
+  "runtime_gate_changed": false
+}

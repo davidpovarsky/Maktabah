@@ -1,0 +1,24 @@
+--- a/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift
++++ b/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift
+@@ -1,4 +1,4 @@
+-#if os(iOS)
++#if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+ import Foundation
+ import UIKit
+ import AnytypeOriginalEditor
+--- a/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift
++++ b/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift
+@@ -1,4 +1,4 @@
+-#if DEBUG && os(iOS) && targetEnvironment(simulator)
++#if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+ import Foundation
+ @_spi(OriginalEditorQualification) import AnytypeOriginalEditor
+ 
+--- a/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift
++++ b/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift
+@@ -1,4 +1,4 @@
+-#if os(iOS)
++#if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+ import Foundation
+ @preconcurrency import Combine
+ import AnytypeOriginalEditor

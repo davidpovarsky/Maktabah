@@ -1,0 +1,118 @@
+{
+  "application_source": "e5dadac39b88e0a2fd9de989dc8f58f8c7cd07c5",
+  "base_checkout": "01ec8feb8087c544e3b9c3db1a8405c2faf54ba3",
+  "files": [
+    {
+      "base_git_blob": null,
+      "base_sha256": null,
+      "bytes": 7015,
+      "git_blob": "d738825df8bad26bb4b967507bdfb5e40e908300",
+      "path": ".github/workflows/otzaria-original-editor-stageb-native.yml",
+      "sha256": "e90bcc9f42f5bf11c7b959e5fec858de4dcb9d1db9f44ef3217a13a4a9c34309"
+    },
+    {
+      "base_git_blob": null,
+      "base_sha256": null,
+      "bytes": 1207,
+      "git_blob": "80b70d1e1c1124130298accc09745dab7d4d0365",
+      "path": "Scripts/CI/OriginalEditorDistributionAPICheck.swift",
+      "sha256": "a401360e5fbbe4151a7174f34a3ed881180e8b8a22fb9b8ea32bfa3735dfa903"
+    },
+    {
+      "base_git_blob": null,
+      "base_sha256": null,
+      "bytes": 7181,
+      "git_blob": "84eb665e0ac7da3d4aa92724e22f04c0e557228b",
+      "path": "Scripts/CI/hq-original-editor-app-target.rb",
+      "sha256": "9ffed86329b24750b4e2abf1872e79907eb22803042a4a98fa2b2d72f9f19c96"
+    },
+    {
+      "base_git_blob": null,
+      "base_sha256": null,
+      "bytes": 33784,
+      "git_blob": "a6e5215d5f1bdf5b0af7532c8e25f281dd86b9de",
+      "path": "Scripts/CI/hq-original-editor-distribution.py",
+      "sha256": "a995f5abc1af4060fff2ac2a8b82c4d9bdec992febe854d381cbab81793c5ca9"
+    },
+    {
+      "base_git_blob": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1",
+      "base_sha256": "4adf3ba0502b433b478b00eae696300f36d222caca474bee6d42642c428805d0",
+      "bytes": 48574,
+      "git_blob": "ab9164b58c3a64571590220ed8fc558e20279486",
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "sha256": "0dbe133b8f0ee188dc2f0d0c375972a210571498ecac928f1174730ebb0e83f5"
+    },
+    {
+      "base_git_blob": null,
+      "base_sha256": null,
+      "bytes": 12250,
+      "git_blob": "2ba388080aa49756e852442b2d063ccf6ee30ead",
+      "path": "Scripts/CI/restore-original-editor-distribution.py",
+      "sha256": "37b005af915ff61e6d2b49f518c7336011b529d69bc9a412839842b798ff51d4"
+    },
+    {
+      "base_git_blob": null,
+      "base_sha256": null,
+      "bytes": 28579,
+      "git_blob": "93bad0fd5f93f231095deda54be4c06777a700ab",
+      "path": "Scripts/CI/runtime27-original-editor-native.py",
+      "sha256": "f11bd345f29dbc8f27b6f9034d4acf335e923bb947be764f4137c73ae6b9ac76"
+    },
+    {
+      "base_git_blob": null,
+      "base_sha256": null,
+      "bytes": 1821,
+      "git_blob": "dee5478dbc50d498b6da819d1ad4e3a1552da16c",
+      "path": "Scripts/CI/runtime27-original-editor.inputs.json",
+      "sha256": "e542b5429e761144b7e0a895c3bace1ccd78d442713a5a5ae442cfabb352e71c"
+    },
+    {
+      "base_git_blob": null,
+      "base_sha256": null,
+      "bytes": 10010,
+      "git_blob": "0755bab355fb5f42d1eab0ad628949ab8a30f113",
+      "path": "tools/verify-original-editor-host-admission-controls.py",
+      "sha256": "89679736d76a2cd7d5bb37b060af89b8173653c738d0453ae2f4bc9e9c3e2b00"
+    },
+    {
+      "base_git_blob": null,
+      "base_sha256": null,
+      "bytes": 12460,
+      "git_blob": "38a7ee9c35f139188dad4d10a7ae387f44e5cca1",
+      "path": "tools/verify-original-editor-integration-controls.py",
+      "sha256": "75de0da0778c26fa6a29c00d47bc5a86e8dd1e0d34199f6ceb0dc0533e399fcc"
+    },
+    {
+      "base_git_blob": null,
+      "base_sha256": null,
+      "bytes": 9514,
+      "git_blob": "5bb684fcb269dc7fe3f28f0f0cd76b1ebf26c62c",
+      "path": "tools/verify-original-editor-runtime-closure-controls.py",
+      "sha256": "d4fc33d740e79605f79209415d434c2ffce00d341fd0aa947252fd6d6a1d939c"
+    }
+  ],
+  "patches": [
+    {
+      "path": "original-editor-stageb-native.patch",
+      "sha256": "b23847ae9fd7b34eca44966455042b52b7c42e895ddb303a6756d0e73b64c5bf"
+    },
+    {
+      "path": "stageb_ui_preflight_delta/stageb-ui-compile-only.delta.patch",
+      "sha256": "287291aab3361109d2f123ef3b2638c73e948e704e651d1c2f8bddaf2829d3ca"
+    },
+    {
+      "path": "compiled_host_admission_final/compiled-host-admission-and-current-source.delta.patch",
+      "sha256": "2b91995e2fd38d474d97c8e3384cf72cedd46e6d4fdf2503e9df4ef44ede98a1"
+    }
+  ],
+  "schema": 1,
+  "status": "REVIEWED_CI_JOIN_SOURCE_ONLY_PRODUCER_INPUTS_UNFINALIZED",
+  "validation": {
+    "all11_final_byte_hashes": "PASS",
+    "app_test_source_changes": false,
+    "exact_ordered_patch_apply_whitespace": "PASS",
+    "native_execution": "NOT_RUN",
+    "prior_portable_controls_reexecuted": false,
+    "python_parse": 7
+  }
+}

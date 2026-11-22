@@ -61,6 +61,18 @@ struct iOSAnnotationEditorSheet: View {
                         .frame(minHeight: 80)
                 }
 
+                #if DEBUG && os(iOS) && targetEnvironment(simulator)
+                AnnotationOriginalEditorQualificationEntry(annotation: annotation, draft: {
+                    .init(noteText: noteText,
+                          nativeText: editorTextView?.text,
+                          lastEnteredText: AccessibleAutoDirectionTextView.lastEnteredText,
+                          nativeEditorIsCurrent: editorTextView?.window != nil
+                            && AccessibleAutoDirectionTextView.activeInstance === editorTextView,
+                          selectedColorHex: selectedColorHex,
+                          isUnderline: isUnderline, tagsText: tagsText)
+                }, closeOriginalSheet: { dismiss() })
+                #endif
+
                 ThemeSection {
                     Button(action: saveAnnotation) {
                         HStack {

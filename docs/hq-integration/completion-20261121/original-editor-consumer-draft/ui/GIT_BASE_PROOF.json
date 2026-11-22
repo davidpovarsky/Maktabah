@@ -1,0 +1,23 @@
+{
+  "source": "34d06949e7fedbda6e0d256a769b3d0b8659c211",
+  "files": [
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "bytes": 20313,
+      "sha256": "bc6d1737e558bd2dc7698c85b580a7bbae5151579f22dff44537976ae7ac401c",
+      "git_blob": "64cd681bfcdb89cb41073162cc2cc0af96d65cf6"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift",
+      "bytes": 5611,
+      "sha256": "e97623b694d3df46fbc648258f337d4d7c5af16bca7b1c81710036f557856c5b",
+      "git_blob": "a485fa8df7f5b8f6cfa567cf3f895b07957b6de5"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "bytes": 598847,
+      "sha256": "ac406169c0689459209f2397873f7af64327249308e2737818d9250f7022b642",
+      "git_blob": "9f04627c21a6f337e34400daef60fbf8a54c3f14"
+    }
+  ]
+}

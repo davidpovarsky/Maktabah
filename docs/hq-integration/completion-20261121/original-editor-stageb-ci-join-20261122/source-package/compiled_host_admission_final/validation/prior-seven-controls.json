@@ -1,0 +1,44 @@
+{
+  "apple_build": "NOT_RUN",
+  "controls": [
+    {
+      "name": "compiled_host_proof_preserves_full_surface_and_resource_only_scope",
+      "status": "PASS"
+    },
+    {
+      "name": "historical_inspection_only_producer_cannot_admit_editable_host",
+      "status": "PASS"
+    },
+    {
+      "name": "missing_wrong_or_overclaimed_outer_execution_fields_are_rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "incomplete_wrong_or_unsafe_public_spi_verifier_proof_is_rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "missing_or_malformed_actual_consumer_api_probe_hash_is_rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "every_original_artifact_source_signature_consumer_resource_and_collision_guard_is_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "runner_source_pin_only_changes_to_reviewed_e5dadac3_consumer",
+      "status": "PASS"
+    }
+  ],
+  "failed": 0,
+  "native_editor_ui_tests": 0,
+  "passed": 7,
+  "prior_22_and_13_source_controls_reexecuted": false,
+  "scope": "SYNTHETIC_QUALIFICATION_RECEIPT_AND_EXACT_SOURCE_DELTA_CONTROLS",
+  "source_inputs": {
+    "Scripts/CI/hq-original-editor-distribution.py": "29109239338a63209f1444331c205a36b0312d51172f6d2be47528aead259e5f",
+    "Scripts/CI/runtime27-original-editor-native.py": "f11bd345f29dbc8f27b6f9034d4acf335e923bb947be764f4137c73ae6b9ac76",
+    "tools/verify-original-editor-host-admission-controls.py": "19e9f7edd86926618086ef63507a3b1806f33c776be7a21977ed3966258b6a7d"
+  },
+  "status": "CHANGED_HOST_ADMISSION_CONTROLS_PASS"
+}

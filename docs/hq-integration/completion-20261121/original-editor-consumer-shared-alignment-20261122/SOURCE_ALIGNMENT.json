@@ -1,0 +1,39 @@
+{
+  "status": "SOURCE_INTEGRATED_APPLE_EDITOR_VALIDATION_PENDING",
+  "base_consumer": "3566e9d09939583e8ddc4d489d44add01238d8c0",
+  "merged_original_compiler_fix": "62095a46f3eda10df87fad49812083ba163ee3ef",
+  "merge_commit": "17a4503e7301bc9f08143c3870f9787b0c09a39c",
+  "application_source_sha": "e5dadac39b88e0a2fd9de989dc8f58f8c7cd07c5",
+  "application_trees": {
+    "Source": "0f8df30e7931481bb010e355152d9dc1f7ad7528",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "b3da2d1a2b3693a3deac1a7effac1e0916118609",
+    "Maktabah-iOSUITests": "f336b041f6c503a30b32edb6055f933d22ebaa3b"
+  },
+  "inspector_previous": "19d1b35397af4f10ae70cfb3f444c9de87383b53",
+  "inspector_common_source": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+  "inspector_verified_receipt_commit": "1ea2aba49ff69af07a8acca94da946f1f8cfc613",
+  "inspector_actual_run": 44968013856,
+  "inspector_actual_methods": 30,
+  "inspector_actual_cases": 32,
+  "inspector_official_run_conclusion": "failure after passing Swift tests: reporting parser only; exact unchanged archived evidence replay passed",
+  "shared_pin_files": [
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "old_git_blob": "a24b9cb00b53daf07ac4a97b92949438d1a9df00",
+      "after_sha256": "52e2a72f90a3ad70f4517519a35985d1bf20d2bc0b603440a40100d23363aec4"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "old_git_blob": "2a09ec0e71d3da6855fb57f25a09996816df608c",
+      "after_sha256": "722609bb6b71362aee5e7f401246edcd037a2d1815c2fc4704bf93830d9f5530"
+    }
+  ],
+  "project_proof_previous_blob": "9f04627c21a6f337e34400daef60fbf8a54c3f14",
+  "project_proof_current_blob": "282b75da81da7ee94db39e57c861fe9a0e59e9eb",
+  "other_excluded_engine_inputs_unchanged": true,
+  "actual_native_tests_executed": 0,
+  "original_editor_sdk_artifact_admitted": false,
+  "old_core194_requalified": false,
+  "timestamp": "2026-11-22T01:06:49.288228+00:00"
+}

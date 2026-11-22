@@ -1,0 +1,2026 @@
+{
+  "head": "8792e0f82b4ad8e8415aa60086528495d3c041c1",
+  "parent": "01ec8feb8087c544e3b9c3db1a8405c2faf54ba3",
+  "branch": "codex/otzaria-original-editor-consumer-draft-20261121",
+  "status": "",
+  "diff_names": [],
+  "mismatches": [
+    {
+      "path": ".github/workflows/cloudkit-schema.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "749b9d9d11e7938173befda69ae5a24eb7df71c7bbac6fcb1bfcb12ef5efcd5d",
+      "canonical_sha256": "18fbe94d583c84f6f2e9924f5ffd1e4615fd691e6edef7e0e5d80ee7c876ec3a",
+      "before_bytes": 7337,
+      "canonical_bytes": 7133
+    },
+    {
+      "path": ".github/workflows/codeql.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "a7795b4b9ba65ebc9e4bfcf154e53e2e04ec5babe9c3d16c3c23cb03a94696a4",
+      "canonical_sha256": "62240912bef82638f32722fb59e00a954beb33f6c9ed3c343468ce49152ec081",
+      "before_bytes": 2593,
+      "canonical_bytes": 2511
+    },
+    {
+      "path": ".github/workflows/deploy-docs.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "0eef51d2165fdd27c0ca6f80e742bf756920775925b37f265e6505a6b7e4998d",
+      "canonical_sha256": "74867b7b02e2e457bc5bda80a013fcdba3f84233dc713932896ff1882c8c9f75",
+      "before_bytes": 787,
+      "canonical_bytes": 748
+    },
+    {
+      "path": ".github/workflows/ios-build-data-profile.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "46ea564ddad5ff5ae1d54a50c06ab81cdce514f829aeb5fad8c2290b7d0817cc",
+      "canonical_sha256": "7fcbb946be0140085c6c7655c51c3d700d1cd0dcb03323b19ac7c53a7cc60b8a",
+      "before_bytes": 18883,
+      "canonical_bytes": 18432
+    },
+    {
+      "path": ".github/workflows/ios-build.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "de5a58054a4a6de7c721d9f5d8877d166eefe5a0dd478c4cad019f765c42115f",
+      "canonical_sha256": "3007261f207d6955130dca50c90d1e5656033f8122eca0bec0862a7a447ba194",
+      "before_bytes": 50105,
+      "canonical_bytes": 49006
+    },
+    {
+      "path": ".github/workflows/ios-testflight.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "0c51ed459a3b668d81cdb579280640922bb7ba960922377bb7b210f41f222cfb",
+      "canonical_sha256": "0f7a5552ee3c671a255d6c3f8579e9492c01516ff6b67aebe19032fdd8963894",
+      "before_bytes": 57613,
+      "canonical_bytes": 56396
+    },
+    {
+      "path": ".github/workflows/maktabah-batch-b-validation.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "db81971937f1a2ffc6f0ffe274df1f9cf3ed88d35c4bfdfacb44bf91c81d9e37",
+      "canonical_sha256": "0ec784852dcfac9f2af5a978a54d838a474482435a519e0d77e10ad15f337a57",
+      "before_bytes": 30905,
+      "canonical_bytes": 30258
+    },
+    {
+      "path": ".github/workflows/mini-test10-data-profile.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "7760835c9d6b09cccf2ed36f1fe8d731ce65bda32b30a46c52e04d41d9ddc3c4",
+      "canonical_sha256": "9c7b6ab864f1c5c97925f0d840968d8c64beadf3680c620c192a286e820e8bc9",
+      "before_bytes": 39654,
+      "canonical_bytes": 38891
+    },
+    {
+      "path": ".github/workflows/otzaria-annotation-core194-combined-apple-v3.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "70c27cc916b7ff783cb5a7c3c0cfb8e3dcc90f5ba542270413f3415567fd5603",
+      "canonical_sha256": "2299ef5aad8ea1b5e4bd6ea5109564939207f5cdcc3a1d6d21734820e565d286",
+      "before_bytes": 12227,
+      "canonical_bytes": 11998
+    },
+    {
+      "path": ".github/workflows/otzaria-cold-search-core-validation.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "ad46b9e8028bd4e256979919a455708231df3cd7d827b1d8c4151b80f245c09d",
+      "canonical_sha256": "be5512a48abf51be945c0f7b901005bb591f72eb2785519a8906adf48e4c865b",
+      "before_bytes": 2155,
+      "canonical_bytes": 2101
+    },
+    {
+      "path": ".github/workflows/otzaria-cold-search-ownership-validation.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "dd9cd7275c72544b0a146c00c544d74bd9711fd0f39a545f8b82724f83ad6c4a",
+      "canonical_sha256": "a4d42f9cd085d9dc5b35d187d91f0ca986495e84236b22fa8d2cb0a4c5c13fb5",
+      "before_bytes": 3552,
+      "canonical_bytes": 3483
+    },
+    {
+      "path": ".github/workflows/otzaria-completion-focused-native.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "51a08dc2964ceb9680cac6b31dec9b5046a82c3a5f9f8275d5826ebe187eaefb",
+      "canonical_sha256": "90e80272f6744197e067629dab1e8d80806cb91e331f7d46f98201fcc7940ffa",
+      "before_bytes": 6940,
+      "canonical_bytes": 6796
+    },
+    {
+      "path": ".github/workflows/otzaria-final-native-push.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "0868799db789f649c0f566749ff08ca38a0eae63b8ffc064f11dcbe34f7476f9",
+      "canonical_sha256": "3b23508d0d1428f1d46ae257b095a55b26bda37ffaabdd393b03976337648aa7",
+      "before_bytes": 9287,
+      "canonical_bytes": 9105
+    },
+    {
+      "path": ".github/workflows/otzaria-final-release-push.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "1f52f66f00d93865b3c7a73994b7cb443d04212078bf03069150dbb220a967aa",
+      "canonical_sha256": "432392f56770354def915557bdfa615791d38aae55a3d14178253d2e2c48119a",
+      "before_bytes": 17023,
+      "canonical_bytes": 16685
+    },
+    {
+      "path": ".github/workflows/otzaria-hanlin-live-native.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "ecb1b9780de8e3a588283de681fb878bdf6acfbecaa62911c3fdc36a3c207fb4",
+      "canonical_sha256": "7842f7f2f6a8030179d0457ab03ade57e77bb88f993a853a5076d4a69c0ee6dd",
+      "before_bytes": 7342,
+      "canonical_bytes": 7196
+    },
+    {
+      "path": ".github/workflows/otzaria-local-annotation-cloud-apple.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "06ceae71a6dab05bdc66e6db84b8e0b84f36d0bdfd72f11d025a7e30b922fc68",
+      "canonical_sha256": "3cdc4d9faa08c79ce7b66effbcd0dc0920030338b3dd7316974369b44a6abc4f",
+      "before_bytes": 5819,
+      "canonical_bytes": 5714
+    },
+    {
+      "path": ".github/workflows/otzaria-local-annotation-editor-apple.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "cb5cf4d65321afd660cf461e2dc159192f8ee7f7b023274d0c3dfe2dc8a4a3bb",
+      "canonical_sha256": "c44d4a954e46dbc01475647d152c84f3d7c2a0640dbd6701f2e8cb40a73bb099",
+      "before_bytes": 5545,
+      "canonical_bytes": 5443
+    },
+    {
+      "path": ".github/workflows/otzaria-native98-commentary-evidence.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "3c1b25021d350aac7abc6c80cc206bec454ff8791ed2151ae50d9938c2048983",
+      "canonical_sha256": "04b63203f554b17c495a1d1ded1cc44e1868ce2cc794a73159b8f52046d2fbe3",
+      "before_bytes": 2900,
+      "canonical_bytes": 2829
+    },
+    {
+      "path": ".github/workflows/otzaria-release96-capture-evidence.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "b5a473b011ae6a3c0c96b25e2f4cae02fe840031c9dfb104e543ab270ec1ee35",
+      "canonical_sha256": "c8a8746e37de38250ae365e4445a0ad9c02b589aa3e3cb5824f4af060c420179",
+      "before_bytes": 2873,
+      "canonical_bytes": 2802
+    },
+    {
+      "path": ".github/workflows/otzaria-search-artifacts.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "a563631a8c81851e168f7ededc809fbfb7977396942457cad5177604f950d9a0",
+      "canonical_sha256": "5c422eb34a71f3c3ea4fb0d64ae371b098213e54fc3e0dc9a8d8136bb7005a17",
+      "before_bytes": 22808,
+      "canonical_bytes": 22345
+    },
+    {
+      "path": ".github/workflows/otzaria-search-gates.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "fbfe5a985be97faf55f8ff328c6865afa892187ba33f83f28ee64f459e155f34",
+      "canonical_sha256": "4681c043927f7abade9beb990aff04f9ad1b4261f4b20dedc4898afea58dae12",
+      "before_bytes": 44282,
+      "canonical_bytes": 43340
+    },
+    {
+      "path": ".github/workflows/otzaria-ui-sdk-intermediate.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "77ed6a26f8d674127fc10318a6d58553706b27845bc7ff923edf239ff4fefa65",
+      "canonical_sha256": "e67d8e97c13b3073fa4600d9826fdbcb43654187ed3195a208a52606a293a4ff",
+      "before_bytes": 2107,
+      "canonical_bytes": 2057
+    },
+    {
+      "path": ".github/workflows/pr-build.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "2dac40afdcaa139528bca05c3556649f4d6ae61c596838cec73b2702519e9aef",
+      "canonical_sha256": "30fd9692b51536cbe81937d6494ee8eb245062645f97c5b258a54ff0c886c07a",
+      "before_bytes": 3537,
+      "canonical_bytes": 3424
+    },
+    {
+      "path": ".github/workflows/pr-review.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "49e11217ab6781264a1b87db18b13f4aae4d83fd36846a93f6867f84f94fb585",
+      "canonical_sha256": "a3c278e19f131c53ab5c269e95a6f485cd5190c3dd51c34ac9613aad90683e23",
+      "before_bytes": 1725,
+      "canonical_bytes": 1678
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "26efe1e0dfee8ea236a04c16a0c67c6005672d7e24a0263085169b87d69feb2c",
+      "canonical_sha256": "43ba6f396bb6e637785fb01089ca2305a951ac5a3a0dc7e894969e73d61d40a4",
+      "before_bytes": 26079,
+      "canonical_bytes": 25449
+    },
+    {
+      "path": ".github/workflows/sefaria-embedded-validation.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "3e2bac755084e7973ab2e7fa6b12af694e82da433df563197b4bc8558e69a8fd",
+      "canonical_sha256": "a498b99ec37f50b03348cc32b801a45bf1f50839d302702a02229fa2ccacb224",
+      "before_bytes": 45484,
+      "canonical_bytes": 44597
+    },
+    {
+      "path": ".github/workflows/upstream-boundary-guard.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "141e4a9a3a7c4afa35a6009063ecdde139cbcfba01ebe4ba8d6c8f87a44a270d",
+      "canonical_sha256": "6a45e862a81297ba55d3f29466e448bccfec0fa662380e4bb7141edd35d6b5ef",
+      "before_bytes": 2781,
+      "canonical_bytes": 2707
+    },
+    {
+      "path": ".github/workflows/upstream-resolved-fast-validation-2026-09-04.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f867fb3c0bfba454bdb02684d8c105838e2a30e305324f03887d5d7a9e9a404f",
+      "canonical_sha256": "c345a228e395a020fb2ed43c313cb16cfbc321088d9e1cce06cf9493a4b3612b",
+      "before_bytes": 10047,
+      "canonical_bytes": 9801
+    },
+    {
+      "path": ".github/workflows/upstream-resolved-validation-2026-09-04.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f8b1572b9c9d60413653ae27a7e45f3c1d91d00a434f388f9120f41988f56684",
+      "canonical_sha256": "152daa90e94ab32b377287fbf2037ff5b8da514ff80284dbf7451c6ebccd0f97",
+      "before_bytes": 11640,
+      "canonical_bytes": 11358
+    },
+    {
+      "path": ".github/workflows/zayit-demo-data.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "ffb02d2aef4f14c410d5fe2c6a179e7f4c5102341d07d2dc313d713800e47017",
+      "canonical_sha256": "0a242a0463a9a99d410546d63980dced9309d42b8dd9d20f4b668837d0a1ba70",
+      "before_bytes": 15461,
+      "canonical_bytes": 15098
+    },
+    {
+      "path": ".github/workflows/zayit-production-data.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "c8b8d363928fb4ed023d9365f98cfacde48b1bd6705175e30aed5a1e1cee3d20",
+      "canonical_sha256": "2e3423bfed20bdf8c44cb310f699def9484540a09e9b097fcfa2503cb185375c",
+      "before_bytes": 20373,
+      "canonical_bytes": 19998
+    },
+    {
+      "path": ".github/workflows/zayit-search-gates.yml",
+      "kind": "PURE_CRLF",
+      "before_sha256": "c672aa0f70fc28a28fbb52174c7b3d494b11eeab299a720d43d28972f553916c",
+      "canonical_sha256": "d6cf3107ded68b5fb144eb3f1d2149519cff55fd0c67a5346cff85726d19fd33",
+      "before_bytes": 6864,
+      "canonical_bytes": 6691
+    },
+    {
+      "path": "Maktabah-iOSUITests/BackendTransitionAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "e59ae4d7cda521e1bae7499f72d47358dbe2ce9b7c2454575c89e242a313d493",
+      "canonical_sha256": "d01812c706ae6753e721b64081956bb0ef0f69b95a5ad13aef9779b47458a7fd",
+      "before_bytes": 6127,
+      "canonical_bytes": 5997
+    },
+    {
+      "path": "Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "3d2852a21aa1dda9133d0d8e203e533fbb4a7a2878863a11bb32c520f3ba32a7",
+      "canonical_sha256": "b74b6846391df20795290da565f8b4ed76deaed187875ebd20add6a11c6a59ce",
+      "before_bytes": 5577,
+      "canonical_bytes": 5480
+    },
+    {
+      "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "c32936e011dcb0b0e8c69d2d7a728d933ebf9841ac37a46d0050227df2dccba6",
+      "canonical_sha256": "a85e542258934f1adebe468fd72eb19c82aa75bfc3d512e93e6f176114b7c6ab",
+      "before_bytes": 14456,
+      "canonical_bytes": 14183
+    },
+    {
+      "path": "Maktabah-iOSUITests/Build8601ThreeRegressionsAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "5c2a7046740b14a47bf56dd07d9d2b0b9e30458342e524ba87e9cd0f26ff0acc",
+      "canonical_sha256": "52bdd5ab72f3405d5da91bd9f0678a7fc0f32a4ce791ceb2c14b59327aaced18",
+      "before_bytes": 5642,
+      "canonical_bytes": 5521
+    },
+    {
+      "path": "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "0589de5eaba4ec68b89115dfbc85675b2063a3d36420c51b65c7b7805d98d6d1",
+      "canonical_sha256": "60f784dde093bb9e21de40a58281e972fe6915fa7af26e8a42dc59012605d16d",
+      "before_bytes": 2152,
+      "canonical_bytes": 2105
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "370950a0769e722a40536574c9a91b26b4207e6a1a94a88a93194171e44ce1df",
+      "canonical_sha256": "8b9973dd2742dab3840361da27492b41752d26954cd7f3081d6d1ee20ed6f03b",
+      "before_bytes": 208419,
+      "canonical_bytes": 204965
+    },
+    {
+      "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "71c2d2d37ffc108d7a2c0d2ecf4d07b83fc26bdd91e95ad6f93dafc286de0cf4",
+      "canonical_sha256": "4f56efa323615e0c602d5c55a090c2d6751b1fb229bced37a216b92d7b15424f",
+      "before_bytes": 90988,
+      "canonical_bytes": 89402
+    },
+    {
+      "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "e1f3b697b147fe9973a3f82571b8ff16f2f598f1128d48e7cc87b039c212436b",
+      "canonical_sha256": "b1f953086a0a2642dfef10ab3e9fb66900d6ff427b483c7617dd172fceba88c2",
+      "before_bytes": 37871,
+      "canonical_bytes": 37258
+    },
+    {
+      "path": "Maktabah-iOSUITests/HighlightAnnotationAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "04d174326ef7b8fe33765d2e3206a266f398301aafad9b260a074f5a3c2a7276",
+      "canonical_sha256": "59fc8f100d87efcc3012b8b86f50b0d4e9a88ef60b9b99d7ee8ec4d4ce74f6dd",
+      "before_bytes": 4227,
+      "canonical_bytes": 4123
+    },
+    {
+      "path": "Maktabah-iOSUITests/HistoryLocalizationAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "6b8389b5d5f25a030c556038a2a186eaece6ded10d7dcad20a3187662c3ab99d",
+      "canonical_sha256": "99d93b13bd0fbbd092d9320e618af55afd77647036a195637845aa95d2e3c50c",
+      "before_bytes": 3722,
+      "canonical_bytes": 3648
+    },
+    {
+      "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "1a61b64f2055064f0a8a6c55eb740e0a94757ffd5c6f5fdc2414895d05a7bfa9",
+      "canonical_sha256": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+      "before_bytes": 9525,
+      "canonical_bytes": 9285
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "8a08771fd692aa4e7cca32eb652ca53318d33511988ce20e2920837d761d45e5",
+      "canonical_sha256": "640de48033d86f5de8d26f025027f1de0cf06f8adf1413860014f0a77b37ad7f",
+      "before_bytes": 163066,
+      "canonical_bytes": 160603
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "92e86b4781edd5be33937257880734061d2b124894694030a24410fb03ac4540",
+      "canonical_sha256": "963e90d9810b83e50e9763db5965396ab2d7bdabec41e58fefac29fde99a7628",
+      "before_bytes": 33712,
+      "canonical_bytes": 33147
+    },
+    {
+      "path": "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "15cecef68e16f182dda7b986137bf8734b6be60bef2024a5478d22460977efb8",
+      "canonical_sha256": "f1622e1ccbe44788b625c7eefb66bcc4b8fcf4766da43b709045f56c7580d08e",
+      "before_bytes": 11859,
+      "canonical_bytes": 11615
+    },
+    {
+      "path": "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "0ca473b334e9b6a973267b1891f74059972310e3ab0d5bd814f6d7da428b8f1c",
+      "canonical_sha256": "0bd7a4b833ef9d8036b077238d179053df6e6b0f1596382b7e59c2f55ceb41b5",
+      "before_bytes": 5041,
+      "canonical_bytes": 4954
+    },
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "37dc6ddb44477c7f3f4cdce65f7f4e0109c2450863076355fc20ca6ea4166a55",
+      "canonical_sha256": "3f3b5380bc69ec54abc6413556c6920fb85376ae0bb404d82a1414cdbc9d0733",
+      "before_bytes": 30066,
+      "canonical_bytes": 29530
+    },
+    {
+      "path": "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "a2ddee275a280343eca4a0f7ad8b391146c477920e5cada103fc0b73678aad09",
+      "canonical_sha256": "d4d78663f69d64d0507dd5941cba364e31c9d1c81c9de4625880132c059341dd",
+      "before_bytes": 28275,
+      "canonical_bytes": 27748
+    },
+    {
+      "path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "a1b03ddb40db6c5e377335f0cb0e25fea0476affdf9e0a14c541567869f45c1b",
+      "canonical_sha256": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8",
+      "before_bytes": 20147,
+      "canonical_bytes": 19775
+    },
+    {
+      "path": "Maktabah-iOSUITests/canonical-miniTest10-reader-lines.json",
+      "kind": "PURE_CRLF",
+      "before_sha256": "6d628c04d995e623483a83017f26d5d8d2d6ed3a22f7b880e1d7dbf4f11086ff",
+      "canonical_sha256": "51632762100689aa2da6a6d360a6434d4fa4caf5e57971f4ad8e327ab6e173dc",
+      "before_bytes": 8192,
+      "canonical_bytes": 8134
+    },
+    {
+      "path": "Maktabah-iOSUITests/iPadTabBarAcceptanceTests.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "4f645d72583329049b4033d80407afa61fbf0f0884c99c626977225eddb4499f",
+      "canonical_sha256": "1e3b18971be087a618d282d486c1a8826035a6f94a34fd247af0114538f6309f",
+      "before_bytes": 3745,
+      "canonical_bytes": 3665
+    },
+    {
+      "path": "Scripts/CI/annotation-combined-core194-apple.inputs.json",
+      "kind": "PURE_CRLF",
+      "before_sha256": "8f68f6d73cc36c4fe972eae673368cb295d3bdd393999b6490ca6b45d21f201a",
+      "canonical_sha256": "1b149e1de256e30ca3bbe29b3fdea0a5b9c7e230e12a20d06a6a4f6de48fc24c",
+      "before_bytes": 42957,
+      "canonical_bytes": 42138
+    },
+    {
+      "path": "Scripts/CI/annotation-combined-core194-apple.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "b6d9a64ea6ceec60000aee034c18edc8613d8e2d31a774dea600e5400499ef8f",
+      "canonical_sha256": "2a3261b14034b665d6a5f4f5e2b619c0da234a35df4bab16ddfb06f4dcbe737f",
+      "before_bytes": 61994,
+      "canonical_bytes": 61025
+    },
+    {
+      "path": "Scripts/CI/annotation-disconnect-apple.inputs.json",
+      "kind": "PURE_CRLF",
+      "before_sha256": "1748ba0e43002b5cd1dee0c2f504794c9df18352899bb4c7f572f7cb71c49c5e",
+      "canonical_sha256": "83cb3bfec717c2a1a9cea5c0662335ba7a762abc03788e777d8b2f7399741855",
+      "before_bytes": 22189,
+      "canonical_bytes": 21773
+    },
+    {
+      "path": "Scripts/CI/annotation-disconnect-apple.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "7b55d96181e0e16972fb5d8401804b586a67395a93e1b9e4044091a8b668ea15",
+      "canonical_sha256": "d5d1842259590866b68c11180422a20c2432ab07daba73623196ea5861f52568",
+      "before_bytes": 27616,
+      "canonical_bytes": 27172
+    },
+    {
+      "path": "Scripts/CI/app-store-connect-provisioning.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "0f1fc274dad0c1766676f3d1263ecc16a910e7ad05dd869ff7ac9191970a1b61",
+      "canonical_sha256": "506a10aba5061089419b9bd76976490b132e056804c46369a0dd93fc8473953b",
+      "before_bytes": 9181,
+      "canonical_bytes": 8932
+    },
+    {
+      "path": "Scripts/CI/build-faithful-prototype-reference.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "c11c107c2f34cfbcb8a1c7dc4904b11a6f23d44a8203c9f6b6b8250c5607b7f5",
+      "canonical_sha256": "dcad707af9db6351bf2fa5b86cdaa81aa41fb5668ee3a4760e55cc3d44126e12",
+      "before_bytes": 6117,
+      "canonical_bytes": 6046
+    },
+    {
+      "path": "Scripts/CI/cache-key-inputs.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "d2e90cec369a453f84f509c61799faf1dfb0e09d928534a98874dbffe9b8c6f8",
+      "canonical_sha256": "81033663abc229e3546d6faf12d2cb1d731996aab2d035fc609082e08c369960",
+      "before_bytes": 891,
+      "canonical_bytes": 865
+    },
+    {
+      "path": "Scripts/CI/collect-faithful-simulator-failure.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "37bec7cea63cae6be7ce9735d6a0989ea3f7d3603dccb1430387c7267f03fa22",
+      "canonical_sha256": "25ea5c086b234583c84d306692ccfbf3c098c4c1fd3ed14c30278f29beb800f6",
+      "before_bytes": 1779,
+      "canonical_bytes": 1743
+    },
+    {
+      "path": "Scripts/CI/collect-runtime27-palette-log.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "0db7cb5a3a64aed4a2149fe48fe44bba6d6974b02c35e11201c7d7efc765c504",
+      "canonical_sha256": "4eca164c61e84d39f0a01e193020ba6245058d1c198d2aa1490cfa0152fd304f",
+      "before_bytes": 4818,
+      "canonical_bytes": 4713
+    },
+    {
+      "path": "Scripts/CI/completion-focused-native.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "83f0b3cba0961eba6ad73fc6228e55c95d6228b85e843666e247229b954d8540",
+      "canonical_sha256": "8adffa0d40a78f9559940b99309c40fd1222a0911d7bb22063fb1110e3b60904",
+      "before_bytes": 11398,
+      "canonical_bytes": 11202
+    },
+    {
+      "path": "Scripts/CI/ensure-otzaria-upstream-checkout.sh",
+      "kind": "PURE_CRLF",
+      "before_sha256": "9e12f57c4ee19e2ef5517362649639586027849f7714f8e3b153311fe4616f76",
+      "canonical_sha256": "cb9a0ce8e5eb41ae2f2b62bd7040661200fc08210105d99f10ba052ffcb84120",
+      "before_bytes": 4198,
+      "canonical_bytes": 4081
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "91340a5c66e392a62122870dde18509f40db7fb462e080785d565df74287d9ee",
+      "canonical_sha256": "0dbe133b8f0ee188dc2f0d0c375972a210571498ecac928f1174730ebb0e83f5",
+      "before_bytes": 49329,
+      "canonical_bytes": 48574
+    },
+    {
+      "path": "Scripts/CI/hq-v32-prebuilt-native.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "1368cdced57ff08c3c6f2a839840a25c23ec4ec4d844b6d914c1675d7c256fbf",
+      "canonical_sha256": "885706e8cc843d2b6d5ba04b0752acf8e1c23c6baae5c1e9bcccc0518d0736be",
+      "before_bytes": 29865,
+      "canonical_bytes": 29386
+    },
+    {
+      "path": "Scripts/CI/local-annotation-cloud-apple.inputs.json",
+      "kind": "PURE_CRLF",
+      "before_sha256": "a7eaa388857ae7efa967e53e1a3964f2a54c98ea744aadfcf0c763ea5ed6c690",
+      "canonical_sha256": "2f34f4b4fa3b51acc1602d925d10f042589d4eef4cf7846da692af55d47a28a3",
+      "before_bytes": 19715,
+      "canonical_bytes": 19352
+    },
+    {
+      "path": "Scripts/CI/local-annotation-cloud-apple.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "42daaa1a022027dc6fe24af9c985b729b1b5a962b135eb975cfe992c36bff805",
+      "canonical_sha256": "f39979e99c8d3172bc105b17ff0f6e373b65e9de9f2dd34efffce83f933f5fd6",
+      "before_bytes": 30827,
+      "canonical_bytes": 30332
+    },
+    {
+      "path": "Scripts/CI/local-annotation-editor-apple.inputs.json",
+      "kind": "PURE_CRLF",
+      "before_sha256": "6d6d70fcd40a9befd54ed36cdbd2f8df0f09f96fd5d7538f2d6bda727ace609a",
+      "canonical_sha256": "24668f86e873218a1405d3ad3cf1a45e7f830839948f19f685318f1308badc5f",
+      "before_bytes": 13135,
+      "canonical_bytes": 12882
+    },
+    {
+      "path": "Scripts/CI/local-annotation-editor-apple.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "4224bdbb1807745e0263196150764f4b4e63afa14794d410425b965e9c422794",
+      "canonical_sha256": "7bb6ab2ebd5ce8d7f2ea92c7cd59171cf2c96d39371250cc1fd533715d8d7628",
+      "before_bytes": 27419,
+      "canonical_bytes": 26964
+    },
+    {
+      "path": "Scripts/CI/native98-commentary-evidence.json",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f525de3439c4481833bba828c302943511e0259fef302a4cbf0421db8b91e15b",
+      "canonical_sha256": "3bfecef77c4e5341ec16ff9bdebe5b611cafa042d30d31af90dbb49d2d0a8e07",
+      "before_bytes": 2932,
+      "canonical_bytes": 2857
+    },
+    {
+      "path": "Scripts/CI/native98-commentary-evidence.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "4d3dbbde3d2ab2707a597b347c2823677d4e77172f5ae595a543b40e4f372674",
+      "canonical_sha256": "61826896dd6bfdcad1f462ebd508454a201facde921c1a57d72568cb6d4cef72",
+      "before_bytes": 18784,
+      "canonical_bytes": 18410
+    },
+    {
+      "path": "Scripts/CI/prepare-faithful-ipad-fixtures.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "cd4a63b7140fc3bc950da83ab38eafd688f677be2a88a4a6d1e847a53d746884",
+      "canonical_sha256": "1aef6221d2cefe49432c859e3a483c8b6321c062e156738bca66a12c6d792dbe",
+      "before_bytes": 3821,
+      "canonical_bytes": 3752
+    },
+    {
+      "path": "Scripts/CI/prepare-hanlin-sdk.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "8307e75b9c2bb545f159daa345b9f61c1c3fbf9c548cd72688228c52dad94e67",
+      "canonical_sha256": "7e9a303e20390b9a33ee6cddc73979dc1557741636d6e00067c55a90188af404",
+      "before_bytes": 4200,
+      "canonical_bytes": 4117
+    },
+    {
+      "path": "Scripts/CI/prepare-ios-macro-authorization.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "d6245c957825253ddfbf72b7dc28b67f9bd3e2151deeec9208ff09c58e2f51d4",
+      "canonical_sha256": "26c483cf04a41d16ccde9a35767b39e31f7b59d51f891c0089024012b0ea65f5",
+      "before_bytes": 3435,
+      "canonical_bytes": 3362
+    },
+    {
+      "path": "Scripts/CI/prepare-normal-ios-workspace.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "147551bc2178f41008e11f7294b48c3d8ed9b824276f2f13ad1f8d7c90080cb9",
+      "canonical_sha256": "0352a277567dcfa562e6e4cab02b0c2fdb614fe3df0af75971e2e532b1b18f52",
+      "before_bytes": 10953,
+      "canonical_bytes": 10766
+    },
+    {
+      "path": "Scripts/CI/prepare-pinned-sharp-libvips.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "00792dee9ecaf405a05a42804c2a9425bdc596b8cf0073c5c5c1da986cc45043",
+      "canonical_sha256": "37a279a3ab6e1bf7ece3d92c657a8c4f5e1fcb9e5007564b4aef0408f0eee764",
+      "before_bytes": 6366,
+      "canonical_bytes": 6252
+    },
+    {
+      "path": "Scripts/CI/prepare-swift-packages.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "255d17ba0efd6ae857611f37720cfb11f1a5d1ef7384a560b966508ef94da9b5",
+      "canonical_sha256": "a849c3d438a8bd84a031a4d3bc93f7522ea1203a047f91c3284346a0b3f0e85d",
+      "before_bytes": 3925,
+      "canonical_bytes": 3813
+    },
+    {
+      "path": "Scripts/CI/release96-capture-evidence.json",
+      "kind": "PURE_CRLF",
+      "before_sha256": "bb3e23c295af9fe7511fd1e33b3f48bbff1ab087e1ad26c34420bdc352d11475",
+      "canonical_sha256": "438968149c8d24965971be36a28b62f55cb847a9b0cae24ecdbbc597f0dca8b7",
+      "before_bytes": 9282,
+      "canonical_bytes": 9092
+    },
+    {
+      "path": "Scripts/CI/release96-capture-evidence.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "afc471a574b373f8f332e4bf38faccbfed9598dfed0dac3df0c2cf6456007d6f",
+      "canonical_sha256": "bc7ffe737455410eab6fc442929672cdc39167c580620db3a4d4f431c48ab474",
+      "before_bytes": 19255,
+      "canonical_bytes": 18873
+    },
+    {
+      "path": "Scripts/CI/reuse-host48.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "eedc6791488fe09177557a8a1f0b7e9135caed93b6dd763beaae9797693e1fb0",
+      "canonical_sha256": "98a407dedd0da4575cee7fc70bfdb4fe5b62effd513654ea3dd7d52700ac686b",
+      "before_bytes": 7934,
+      "canonical_bytes": 7762
+    },
+    {
+      "path": "Scripts/CI/reuse-sefaria-toc-apple55.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "017c54f05746406af3f8a4f10b5d66cb383bf5d0c95e14813d61e51811c99457",
+      "canonical_sha256": "09209dbe1778b16bb5dac6528672d4fcc63937b2cb8529e7a0adde999bbb7d8e",
+      "before_bytes": 7372,
+      "canonical_bytes": 7234
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "c0f057276bb1e5dbcc05b38ebcb07f572977148f308bfc9cb6a2efa892e21b50",
+      "canonical_sha256": "02b1c365888540df0cd55cee0e765de2402c6eedc3a79f9b775fe92293156e31",
+      "before_bytes": 52106,
+      "canonical_bytes": 51357
+    },
+    {
+      "path": "Scripts/CI/run-faithful-production-release.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f82cde4a291866356c76d362de0a625543243a9d2db97992a13b777f848ef59a",
+      "canonical_sha256": "6e211230c772acf83643503de24e7f3f2c405f0c111091fcd0f5bcc90cd116f1",
+      "before_bytes": 10995,
+      "canonical_bytes": 10834
+    },
+    {
+      "path": "Scripts/CI/runtime27-final-push.inputs.json",
+      "kind": "PURE_CRLF",
+      "before_sha256": "2869558cd228ffc88e51c311298a96a60fcfec0338e00701d751bccbc2b30c34",
+      "canonical_sha256": "e0f26f96e4661add3a8105363f332cd34dccbf3117197a00c417f2755219fc21",
+      "before_bytes": 1604,
+      "canonical_bytes": 1569
+    },
+    {
+      "path": "Scripts/CI/runtime27-fixture-oracle.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "cfbe33c5b26da200e18bc95ffd111a2a7f13c366f4b6a1097a3e85045b414d83",
+      "canonical_sha256": "8a32a5d82a04a833466021d2a237aae3687d1d87c4ee24ca5df105bbe43e793c",
+      "before_bytes": 5980,
+      "canonical_bytes": 5883
+    },
+    {
+      "path": "Scripts/CI/runtime27-fixture-recovery.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "98f9f2e7abf9595f26863130a3aae7e5d41d2309d180c74acdf14c4a62972963",
+      "canonical_sha256": "2dc5f680dde048cbb46463bcf1ca159e41ebb786c87074210175882275853c00",
+      "before_bytes": 1380,
+      "canonical_bytes": 1355
+    },
+    {
+      "path": "Scripts/CI/runtime27-hanlin-live.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "57d3085d5744bd4a69c55f4fb690832bc686c85cca59e1aa7cbc97feb75be2b2",
+      "canonical_sha256": "8891f05b5375fb4c56a426b9cf36b262a7135fb56122cd5b581979073a50d70f",
+      "before_bytes": 29969,
+      "canonical_bytes": 29448
+    },
+    {
+      "path": "Scripts/CI/runtime27-hid.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "db54fc07d377b84850527344ba71a96116b2c9df0297621ebe9e1b339c5f54db",
+      "canonical_sha256": "7488ccd1d101b5ae455815906b06f5671ca820eaabc18c6ef4b92c492e2172b0",
+      "before_bytes": 9131,
+      "canonical_bytes": 8944
+    },
+    {
+      "path": "Scripts/CI/runtime27-release-manifest.json",
+      "kind": "PURE_CRLF",
+      "before_sha256": "edcbeff3187c8e03b7f4b2df186b9f636404ffd07923c8cdc0debe2220e2cd1c",
+      "canonical_sha256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f",
+      "before_bytes": 57015,
+      "canonical_bytes": 56247
+    },
+    {
+      "path": "Scripts/CI/runtime27-release-stages.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "249056fc9251641ea2382d6809b8a5e75c06334ba8ffd904ca8f5656933865e3",
+      "canonical_sha256": "1615b5aa05a260207023954f55ead35832ea814dcaf2881c12d958d341f750b8",
+      "before_bytes": 19320,
+      "canonical_bytes": 18985
+    },
+    {
+      "path": "Scripts/CI/runtime27-release.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "6271294ff5b838c18ecf087966b5dacdf137be0606e77d7f819327c3aeef73a5",
+      "canonical_sha256": "3f8e89f126fb532f87d360f0b8f346e6addd4a6130d0a96a49f0296b872f2918",
+      "before_bytes": 15249,
+      "canonical_bytes": 15000
+    },
+    {
+      "path": "Scripts/CI/runtime27-url-delivery.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "6ca5e124410b37932f5ec387ee891c45a21a1accc45ab5f04ca2c2c1d431edb7",
+      "canonical_sha256": "065c8afaed97a7974a2e8ba4c61b3077c63366e21bb8696837a00e4ab4bd17b8",
+      "before_bytes": 5945,
+      "canonical_bytes": 5818
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "c8447a73ec41af0d8b68312134bd20dc71d854817bbc0b034d3667714e938894",
+      "canonical_sha256": "0478af3a4c88d13097096d24d4660b83417dee42be08a9ed0305452b9142814f",
+      "before_bytes": 26746,
+      "canonical_bytes": 26341
+    },
+    {
+      "path": "Scripts/CI/runtime27_final_push.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "2bba4347418119db2729d06543e32113b353e590b148071448512ba0e1d1e833",
+      "canonical_sha256": "169442e78d84528df8965fc18c6454a93b8dbd10201eb839df362779598c8bbf",
+      "before_bytes": 13053,
+      "canonical_bytes": 12831
+    },
+    {
+      "path": "Scripts/CI/runtime27_interruption.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "579a40ffbb3031f73e26c491f879c6e9fe9acbfded1a81183e14856d3f508b04",
+      "canonical_sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
+      "before_bytes": 7877,
+      "canonical_bytes": 7650
+    },
+    {
+      "path": "Scripts/CI/runtime27_release_handoff.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "dc83925bd76061b0d23b91d7f2cd7f3506758b3174562c79daf62bc512206a85",
+      "canonical_sha256": "4de76f780315c022cf8fb3152d4c5efdc108a1bb58b3e919f15db73e18c4331c",
+      "before_bytes": 24106,
+      "canonical_bytes": 23678
+    },
+    {
+      "path": "Scripts/CI/sefaria-toc-apple55.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "327a0677c988fc225ffdd3a13a618ac36a493481590002133deda6355a576081",
+      "canonical_sha256": "682fa506c34af463844327850c5df0119b4c0c8fab0249527949b424809e465f",
+      "before_bytes": 14938,
+      "canonical_bytes": 14675
+    },
+    {
+      "path": "Scripts/CI/select-ipad-simulator.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "6e6f8f98dd84863d54813132206c839921ccb24ebc182431cf3c6267dd87b058",
+      "canonical_sha256": "254739972d21289d387cd95f7e4a803aedb4da63bdc459e2a5adcdf558d6f8f4",
+      "before_bytes": 2234,
+      "canonical_bytes": 2166
+    },
+    {
+      "path": "Scripts/CI/select-runtime27-toolchain.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f71f714aa6c435a7f387520ef36dd6ea2cf666c303c45aa1251131158cfde11a",
+      "canonical_sha256": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8",
+      "before_bytes": 6497,
+      "canonical_bytes": 6377
+    },
+    {
+      "path": "Scripts/CI/select-xcode-26.sh",
+      "kind": "PURE_CRLF",
+      "before_sha256": "729e9eaa6b5f89ec63edb90ce5a178f1806ee6c3f14d1887fd5f260eb7c8fb38",
+      "canonical_sha256": "6fd83bd643dea432cfc8083e53c1562c08842fce5148e6bcb7b31b09fc295529",
+      "before_bytes": 548,
+      "canonical_bytes": 533
+    },
+    {
+      "path": "Scripts/CI/select-xcode-27.sh",
+      "kind": "PURE_CRLF",
+      "before_sha256": "4c77098264ac4135684578b763a8729825264f48858ff5b5e905298f65825707",
+      "canonical_sha256": "443252b60d08daef156c4cac6bf94af6d6a11eaf694cd8139b08a0004fead282",
+      "before_bytes": 485,
+      "canonical_bytes": 472
+    },
+    {
+      "path": "Scripts/CI/shutdown-faithful-simulator.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "bb0e40c76c9585169ce9eb7bd6e883debe150ddf3ea73bb0b5617fa3aafc0241",
+      "canonical_sha256": "6036b2210fff9fb7a70da707efb067788b3cc5b45aa0cb88017285f865139046",
+      "before_bytes": 1447,
+      "canonical_bytes": 1417
+    },
+    {
+      "path": "Scripts/CI/test-9401-exact-source.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "9286845d7cd1e5550f1f4ce9119f18f7d3d10730127ccb289de6deb289172510",
+      "canonical_sha256": "343065fa83b370f11851050a6f2fb9aa05721cecfd8743d48b10bbc1f5ed0c02",
+      "before_bytes": 10476,
+      "canonical_bytes": 10286
+    },
+    {
+      "path": "Scripts/CI/test-annotation-combined-core194-apple.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "98f055ff6f26ad4fdc12d7741dc5331c79b4cb1dbe0c8078e544cf2266322abd",
+      "canonical_sha256": "d42db8edc79a5dbb3e25e2edab1f96abb353d044810ad8825b8482161035ca8a",
+      "before_bytes": 39156,
+      "canonical_bytes": 38572
+    },
+    {
+      "path": "Scripts/CI/test-annotation-disconnect-apple.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "a750172ce4bae60940f86d0a482ac837fa6ce2a4c8f1268aa607e4725fb96c1d",
+      "canonical_sha256": "2dd6666c359cc2d8ff0a281851a546a0be20993b0fef5427b05f6976a539783c",
+      "before_bytes": 21723,
+      "canonical_bytes": 21310
+    },
+    {
+      "path": "Scripts/CI/test-artifact-release-discovery.sh",
+      "kind": "PURE_CRLF",
+      "before_sha256": "6e53f370fd69719da659e1e8889a6174a700540ebb287c8f2340540a9e85e914",
+      "canonical_sha256": "50d88cbf5d4f9f34952e9661ce07aac6d012ece5ee6032ab1244ce48b4c715ad",
+      "before_bytes": 1069,
+      "canonical_bytes": 1048
+    },
+    {
+      "path": "Scripts/CI/test-faithful-tabs-in-app.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "8ff113415dfee877cb0ac6344367dce8f42da83c7e3d5b5385502ab3f7999100",
+      "canonical_sha256": "1042050138db72c975361170fdc530dc9076fdf6a90ddb124d37a35d42b9f578",
+      "before_bytes": 7064,
+      "canonical_bytes": 6986
+    },
+    {
+      "path": "Scripts/CI/test-faithful-workspace.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "e6941755622b053a1845810bab424612ca2536ff34ec192c52b0aaf613e5115f",
+      "canonical_sha256": "13dd6477d2b142c4637f6f79231f17d379e0e042a0bceb715d8693a1cd4cbec5",
+      "before_bytes": 1836,
+      "canonical_bytes": 1805
+    },
+    {
+      "path": "Scripts/CI/test-local-annotation-cloud-apple.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "178b4f9e9558eec58ad2112f1d9b9b1394aa9c78df780d066e61e007fd4eafb9",
+      "canonical_sha256": "1b2a21f84ae9690b283844b3907608b8338a9e3c067f941f36fd356d532ad059",
+      "before_bytes": 29935,
+      "canonical_bytes": 29447
+    },
+    {
+      "path": "Scripts/CI/test-local-annotation-editor-apple.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "e9a394fd875029b0427310a1930688721ee6ff31616257dd7888d4124895e7ff",
+      "canonical_sha256": "42bd75d6cf87a3bb62d7f184c339be011ffc8bd4620a98fd495f928b3abb7211",
+      "before_bytes": 23896,
+      "canonical_bytes": 23499
+    },
+    {
+      "path": "Scripts/CI/test-native-reader-reservation.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "9eff6eacb8ad51899510fb2140e74db117f0b3ea3620002bc8bef30ee8fed67b",
+      "canonical_sha256": "b69457e2a64ef86808b9b2240217f1acd45cca82fb8a7f6053a35351dd6b50c7",
+      "before_bytes": 2284,
+      "canonical_bytes": 2255
+    },
+    {
+      "path": "Scripts/CI/test-native-sidebar-policy.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "d200520ac1468f0c2dde25b5cdf349f1689cf40fee409c7ee6b5ca99ae8e97a4",
+      "canonical_sha256": "fc4d75cffde13b6b77fd9210054f5bd7f080ea7ab04688531afa2149613163b2",
+      "before_bytes": 738,
+      "canonical_bytes": 723
+    },
+    {
+      "path": "Scripts/CI/test-native98-commentary-evidence.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "b7e0ef0cffe910e46889c2a108eb2f54f01e91c00de74ea8ff5cbcea639101f7",
+      "canonical_sha256": "2e1178acbeb759a21c2811d1321c99139ff394437b468501850c73f06314e406",
+      "before_bytes": 14701,
+      "canonical_bytes": 14434
+    },
+    {
+      "path": "Scripts/CI/test-normal-ios-raw-capture.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "a0a26bc7926c7ffe45b72248e412f023d1b8d69d5330610057cd5964feae8604",
+      "canonical_sha256": "93e60a94780893b3fe2ef830d2168842c9dd3f04222d432eb8f23ab22ea19dd5",
+      "before_bytes": 16168,
+      "canonical_bytes": 15828
+    },
+    {
+      "path": "Scripts/CI/test-normal-ios-toolchain.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "264cd2bcace2fff33d19c15d5b9dc0295da8312eeb48b2b98237a77ee5fb5a20",
+      "canonical_sha256": "bced71f7dfb4bf96db462acfe0bf0dbbd40ed73b0e7f4cf7b1126ea18a42ca5d",
+      "before_bytes": 15628,
+      "canonical_bytes": 15337
+    },
+    {
+      "path": "Scripts/CI/test-normal-ios-workspace.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "eadabf8fbc26bb131abff974e5b50723cd3ca42085bae148e6dbafd6ec52a46c",
+      "canonical_sha256": "7db8686277573bbc9224b4a9f6a56cb78f686ac63d6d137f0f0293568d0c9f44",
+      "before_bytes": 22227,
+      "canonical_bytes": 21853
+    },
+    {
+      "path": "Scripts/CI/test-otzaria-package-registration.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "5d8c17ebf930d651bbbc4efbb7afb362896f408f0fbe869b12c81a0ab2e0e1a7",
+      "canonical_sha256": "b9609973f3272e7ab962639918226636d2280c56bbf59e3d63014619f8021b61",
+      "before_bytes": 3644,
+      "canonical_bytes": 3589
+    },
+    {
+      "path": "Scripts/CI/test-release96-capture-evidence.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "bb9c8536ead8d512d19b8e1b78297c74161223a05a3fe2937ab9e21b9584136b",
+      "canonical_sha256": "caa5b93724c7bf5e32b24d538dffca759a25a14e345bb0a3d817e45d3287eda6",
+      "before_bytes": 16359,
+      "canonical_bytes": 16059
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-fixture-oracle.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "e4040f129550e26c2042c23f08bc4f0b76bf760524ad2ac315432c14ef02d40a",
+      "canonical_sha256": "ca6e0f1b600f4601c5cf35453a735c2ba195978c220235f56df7f96608839c97",
+      "before_bytes": 5524,
+      "canonical_bytes": 5414
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-fixture-recovery.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "97a673d1f4d4e210222bba08c90b738fbe03b130704c3060675a8dd618eafbc7",
+      "canonical_sha256": "ac0afbc8c79d4cbb0c999156e41ff26811be37374ec00459b09af0a75f9a6a0c",
+      "before_bytes": 3021,
+      "canonical_bytes": 2966
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-hid.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "881f63eacd415d8b6d8913b1080da7b1e276b4ba71b4f5d4b35b768472c3a97c",
+      "canonical_sha256": "55331d080ade96946fd1fa817af437c64128dd1f1a9d94fe873712de79fb114d",
+      "before_bytes": 9705,
+      "canonical_bytes": 9508
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-release-gate.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "de34d342db3efe06a4b87ee380f1ca6ffb065df53d2a476160390be33cabc826",
+      "canonical_sha256": "0253b2ce63ebafcc55f133514975555bf5a93956fbe3fd54994774a920f6315b",
+      "before_bytes": 25528,
+      "canonical_bytes": 25110
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-release-handoff.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "0fdedb505ccf2501e7c15034a7147c3f3197d13f2eff79a8e70da5182c797389",
+      "canonical_sha256": "81df1415c68ce53d0b94e65756e82322e3168d976329df2db376c768f82538e4",
+      "before_bytes": 20565,
+      "canonical_bytes": 20175
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-release-producer.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "8031c26692c90eed4bc6bcdb5d70aec5b63bb2b72fe2a6daa7ff0405bd29d15c",
+      "canonical_sha256": "dca60ae3502a9d5651205957193340f0d0b827695a76dd77e296345d36ed3dac",
+      "before_bytes": 12995,
+      "canonical_bytes": 12785
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-release-stages.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "2258cdd4ddf4154e6e6bc52e2d8111b37b683395e4f1b80e4b82917baf492ae0",
+      "canonical_sha256": "657e4ade25a547044dc0fb6b7df39bedcdc1145325f7846fd923a4509aea4c1d",
+      "before_bytes": 23752,
+      "canonical_bytes": 23355
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-url-delivery.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "0d99e74f2ccea8c84a226915e228dd1caff3a770243e735c1f22bd56f964f67f",
+      "canonical_sha256": "24d092635946b6d7053f1f94b1234f7344dddb2b3bbfedb7a6a8d0dc785429c1",
+      "before_bytes": 6980,
+      "canonical_bytes": 6840
+    },
+    {
+      "path": "Scripts/CI/test-shutdown-faithful-simulator.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "ba12e9782b997e80a9d633107206f1685cdb937ed542b4d42e4578e0bfe2e345",
+      "canonical_sha256": "6423e1eeba3aeb719f7f6fd72eea200d1c97afea65ba0eaf31da5657ff5e4c03",
+      "before_bytes": 2309,
+      "canonical_bytes": 2259
+    },
+    {
+      "path": "Scripts/CI/test-strict-10601-contracts.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "ec30afd909b5b77878a5165f402036f9ac73c9cca7baf8aa99041df7b9ed5b3c",
+      "canonical_sha256": "caea685049cc4bf4a0d03c1bb1b611fd1b6bf752ddf39c235014d5bd5c014c37",
+      "before_bytes": 6534,
+      "canonical_bytes": 6426
+    },
+    {
+      "path": "Scripts/CI/test-strict-10601-portable.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "d9aee610c168dcb5d5f6169f011c950b70ea657c14d9df1ba89f54d0c0a3b53b",
+      "canonical_sha256": "bae6ddf462dbc5c8562379472dc47903b18c5b7d4832457badcf4040e6731dad",
+      "before_bytes": 2052,
+      "canonical_bytes": 2017
+    },
+    {
+      "path": "Scripts/CI/test-v32-prebuilt-native.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "7ed35276090721a8c2fdaad822ee430fb185243205de89b6d832d0bc16fdf644",
+      "canonical_sha256": "4ac3e8933d1ee6ebd6d679995abef283db90e50610f0816abc38780a7b2dcd41",
+      "before_bytes": 13805,
+      "canonical_bytes": 13547
+    },
+    {
+      "path": "Scripts/CI/test-v32-seed-workspace.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "bd979ab5be548922c7a969b220a6d0367a298027705e29ae9d762d38553e3a2b",
+      "canonical_sha256": "70a3c017f30ccc154d518ae73fd7c611c69e46e8ed159355912154736de0b411",
+      "before_bytes": 6615,
+      "canonical_bytes": 6493
+    },
+    {
+      "path": "Scripts/CI/test-verify-faithful-xctest.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "e92a564074735276c7c5a22d597af9e42bf2b3bea46d3baab3ec6f3aac1409a4",
+      "canonical_sha256": "a97fc97872023abe8763dd38ce04aacd12b434626916e722c564c1cdd669a9d6",
+      "before_bytes": 4807,
+      "canonical_bytes": 4710
+    },
+    {
+      "path": "Scripts/CI/test-zayit-framework-source-closure.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "ee6132fa719e4b836488e17655dc6f00570d84d0904012499f9360b6f254d758",
+      "canonical_sha256": "0ababa4165e3bf9ededa8a441f2cdaa91f1a38d04c2d4662823a6c3515c475ef",
+      "before_bytes": 6051,
+      "canonical_bytes": 5943
+    },
+    {
+      "path": "Scripts/CI/test_hq_stage2_macro_trust.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "1ff7a131ab566df04d62b3ce24ceb37886d322eff3c791aff8531e221fafb548",
+      "canonical_sha256": "3873184a71073e8c30cddbcfb4f83879a306e0701bf6e6dcec3596a8b66a8dd8",
+      "before_bytes": 4401,
+      "canonical_bytes": 4316
+    },
+    {
+      "path": "Scripts/CI/typecheck-faithful-ui-tests.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "b9e9599dfaef479ad8cbbe02b1f1f34faffe6f0e3d8dcae282c2489e277548cc",
+      "canonical_sha256": "10cdd8d90719f8a74dbca11dd34265326a3f2bce5cd90e113cd090c1adfc168b",
+      "before_bytes": 25657,
+      "canonical_bytes": 25314
+    },
+    {
+      "path": "Scripts/CI/verify-9401-exact-source.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "63c7a3dc1d475878dbc2690cdb54632f184e0504dce261b9a06b046219c5eb6d",
+      "canonical_sha256": "7d10306c0dbb7989f2bbbb1f7c15476c013743948aae5f4abacb8ff8fdb3da9d",
+      "before_bytes": 31341,
+      "canonical_bytes": 30858
+    },
+    {
+      "path": "Scripts/CI/verify-cloudkit-production-schema.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f712fe73788ee62d2492043b7c311f7933fc16b134349c22051ebb35c1127f84",
+      "canonical_sha256": "296e4deab4a932ba44c23615ee4105912e8ee3482ba94d4a39412f20f5deb789",
+      "before_bytes": 4894,
+      "canonical_bytes": 4745
+    },
+    {
+      "path": "Scripts/CI/verify-faithful-xctest.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "5a1d173f73db80bddcef2a3253577f9309911910066832bd2f5a4ddb91f9505e",
+      "canonical_sha256": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7",
+      "before_bytes": 6122,
+      "canonical_bytes": 6009
+    },
+    {
+      "path": "Scripts/CI/verify-ios-signing-entitlements.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "e0a8889b0462b4626759591823b6bf2eba571136840db5c2924d035d85b0315a",
+      "canonical_sha256": "cb1ba9effcb0de4e59a66ed4c67d161bfd2c869673e5b949e35b709ecdffa722",
+      "before_bytes": 5676,
+      "canonical_bytes": 5537
+    },
+    {
+      "path": "Scripts/CI/verify-otzaria-xcode-project.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "3337b85dd5432ac91056195cf0039da617dd942f31121828b6e89d6c7e938429",
+      "canonical_sha256": "c3bc822db4b816989217de154fdcb56266e897a2e1212f894a7a9cd33b36c4ee",
+      "before_bytes": 7270,
+      "canonical_bytes": 7113
+    },
+    {
+      "path": "Scripts/CI/verify-release-stage-preservation.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "1bb5cad4b5c019484a3d0a9b3c81bee5b604a3954984f64a6cc3c2c2844d70c7",
+      "canonical_sha256": "1d0f08ea9e854843354ac1520652e06581454ca1289d37f035b7c24be6c238d9",
+      "before_bytes": 11540,
+      "canonical_bytes": 11308
+    },
+    {
+      "path": "Scripts/CI/verify-runtime27-release-gate.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "50c133df0a29e6ced31670b535ca9d321f403bf406c03ce7691da2f419081d61",
+      "canonical_sha256": "b3d628601889a307d2b8e807db14bfa41da3641cda294e0e6a33d9fd611898b1",
+      "before_bytes": 18895,
+      "canonical_bytes": 18620
+    },
+    {
+      "path": "Scripts/CI/verify-ui-sdk-intermediate-source.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "b9a85b4282e7c946c4af6955c098cbe5ea267cb81ba21a3fe49a5226e21e37e1",
+      "canonical_sha256": "1e81f07d3076ac188770c896a1ac4d57d46821d4ffe28c0024468a8114808440",
+      "before_bytes": 6130,
+      "canonical_bytes": 6007
+    },
+    {
+      "path": "Scripts/CI/verify-upstream-boundary.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "df4c69e20e6eda256c8e7dce40e99e8031f7e3ce6584666aa1607ff177c1968e",
+      "canonical_sha256": "70cf39a26e0010122467c9775d9290a93da2a82dcc792c48b679251a4e93baca",
+      "before_bytes": 38987,
+      "canonical_bytes": 38157
+    },
+    {
+      "path": "Scripts/CI/verify-xcframework.sh",
+      "kind": "PURE_CRLF",
+      "before_sha256": "1af07317282ecc018d8e5288ace9cdf7326f335701d614c7264a4632a0001fc5",
+      "canonical_sha256": "6cc8cc2d1a22026e0864c1ddac337460146bc0e0b5da0a2a587dd9f2a1a19782",
+      "before_bytes": 839,
+      "canonical_bytes": 808
+    },
+    {
+      "path": "Scripts/CI/wait-for-testflight-build.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f1e1c7dd7e066e4661adaaff136f0808bbc6b777a2ed53f3b595e83b08e8bdd9",
+      "canonical_sha256": "471af69fd3fbed792e7c4b30781bac01bd471f24c2f7b7a12c501aab961fefe2",
+      "before_bytes": 6714,
+      "canonical_bytes": 6542
+    },
+    {
+      "path": "tools/ai-team/ensure-team.ps1",
+      "kind": "PURE_CRLF",
+      "before_sha256": "4d9e26d3f8e23b6b300557bd213bd8b92e48b7066919fecd561e122813243d27",
+      "canonical_sha256": "293d22ec107dcf699b1be0a25af0c7d18016e435f8a4909d13b60d75fdeaa7ad",
+      "before_bytes": 1793,
+      "canonical_bytes": 1732
+    },
+    {
+      "path": "tools/assemble_and_verify_bundle.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "920c22d7f186e2e300bbe1583f7345bb3dec183c9581b7ec60fb9027379bece7",
+      "canonical_sha256": "ee06520a75df10872d838d994f8ff1d37bf191b1d9a787c8cf9216c7e78eed10",
+      "before_bytes": 14096,
+      "canonical_bytes": 13839
+    },
+    {
+      "path": "tools/assemble_batch_b_payload.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "5ce8b69217b0ded76d052c6f2996447a7f4e93dfd74f7ca74550726590ce8b3c",
+      "canonical_sha256": "9e2e5e7b095b4aa2d56beb90f0851a0c911399db2b9f19177d989fd3a7064f89",
+      "before_bytes": 5002,
+      "canonical_bytes": 4880
+    },
+    {
+      "path": "tools/build_maktabah_ios.sh",
+      "kind": "PURE_CRLF",
+      "before_sha256": "673345af9a8eef54876d57cfa3d20fc874f80fb4867548274f75140214f4f430",
+      "canonical_sha256": "2c974e064a4cf3f4d0db6d84b21172ef65171b2e67ca725ad53f2ed62571724e",
+      "before_bytes": 1435,
+      "canonical_bytes": 1385
+    },
+    {
+      "path": "tools/faithful-ui-reference/GELATIN_LICENSE.txt",
+      "kind": "PURE_CRLF",
+      "before_sha256": "fc2b66b0a2327de9f125ac4fb9ec458c0d088306189594cc9d34c2fd01e4a778",
+      "canonical_sha256": "43f59abd80c6c9a164a50982c1e31ccee1d48c5c51b9d8d6a577aa10dacf6578",
+      "before_bytes": 1087,
+      "canonical_bytes": 1066
+    },
+    {
+      "path": "tools/faithful-ui-reference/MyApp.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "49dd63f97f9f44d9b1ab0ec38615609f1fb9aa4ce200caf9ff8965caa5b82d55",
+      "canonical_sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+      "before_bytes": 27961,
+      "canonical_bytes": 27302
+    },
+    {
+      "path": "tools/faithful-ui-reference/README.md",
+      "kind": "PURE_CRLF",
+      "before_sha256": "6b23e245d827d18f72709b3a8c961c8080cecb7c50ef2a69268e5e09e0201253",
+      "canonical_sha256": "633c0d33a2eabf1b74a67aa4b653b415d68a43ec1fbff37a303cc692d796f737",
+      "before_bytes": 674,
+      "canonical_bytes": 664
+    },
+    {
+      "path": "tools/fixtures/study-workspace/generate-historical-fixtures.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "fc5c1f81e1fd7f8359e972121fa0b95a995b35bcffb70756ec27eca146432d38",
+      "canonical_sha256": "328e23e59d203fd8781777d05330e791e49cac8251c943ab0db0b0de694a7e2d",
+      "before_bytes": 7671,
+      "canonical_bytes": 7529
+    },
+    {
+      "path": "tools/fixtures/study-workspace/legacy-reader-session-v1.json",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f6b719d4483156083ca77bfdb317e2dfff4c29e4439644647558098c9c520fb9",
+      "canonical_sha256": "d3d65f962f1bedc25c7e4154316c8789b641590aa2b64a53421ed7b40b86108c",
+      "before_bytes": 11096,
+      "canonical_bytes": 10608
+    },
+    {
+      "path": "tools/fixtures/study-workspace/legacy-study-workspace-v1.json",
+      "kind": "PURE_CRLF",
+      "before_sha256": "3bfe329948bc3b15a28ca836a4b6cb7e2c9a7b1dd21c266302e38d6e745fb538",
+      "canonical_sha256": "3eaab9c19f18b6ceb59931320f96bfd534d8b6ed5e82a4b9b059b60db51377cc",
+      "before_bytes": 15790,
+      "canonical_bytes": 15231
+    },
+    {
+      "path": "tools/fixtures/study-workspace/provenance.json",
+      "kind": "PURE_CRLF",
+      "before_sha256": "2ca0a5437743fd56e9ef1d9b44d9338af2d0d2867e4611573c9c32617387a96c",
+      "canonical_sha256": "237d0039425e16d80b5d69640ade75628e59de34038d1e84feafc6193f2c4014",
+      "before_bytes": 2598,
+      "canonical_bytes": 2547
+    },
+    {
+      "path": "tools/fixtures/xcresult-zero-skips/missing_xcresult_six_unit_log.log",
+      "kind": "PURE_CRLF",
+      "before_sha256": "b9a9ed423a7aa7f2e67c9bc41f4efd407da179f709882d511b857d5da43e818d",
+      "canonical_sha256": "b1a356e79518e4ed28c03151e38f212fdb99103edbf6d5858d84098e054eb99d",
+      "before_bytes": 408,
+      "canonical_bytes": 402
+    },
+    {
+      "path": "tools/fixtures/xcresult-zero-skips/real_log_failure_rejected.log",
+      "kind": "PURE_CRLF",
+      "before_sha256": "6f50bf21b6b8ae0359712f8dcbb5695e41aa0f8327571a871a62b898dc75875f",
+      "canonical_sha256": "be720ed841a09962709409cb0712532e74d38aae2f43cf5c65ddfc23a316094c",
+      "before_bytes": 478,
+      "canonical_bytes": 471
+    },
+    {
+      "path": "tools/fixtures/xcresult-zero-skips/real_log_skip_rejected.log",
+      "kind": "PURE_CRLF",
+      "before_sha256": "707b259667355f784d7be97ee5790b0fec6ebc6d6ce42adda338e41496d79963",
+      "canonical_sha256": "8a38c185dd0e05f49d139b0f27892b210c2629e9783b10b3d6b3093230a9a5dd",
+      "before_bytes": 479,
+      "canonical_bytes": 472
+    },
+    {
+      "path": "tools/generate_migration_ledger.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "28f1c921a338d180d6fcb672a2361bf7e4b7838381c76697df99a3876ca1961c",
+      "canonical_sha256": "e74e9cacbf2212ac01d8bb3b4eb19da245e2c49bd8765a385dcc124346eea79d",
+      "before_bytes": 23404,
+      "canonical_bytes": 22993
+    },
+    {
+      "path": "tools/generate_owner_patch_manifest.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "cb2a8817d59c3c615d786243b9fd4a19d9a1231827958c0392a97bef321dd3d0",
+      "canonical_sha256": "dd2d52b8da6c637d123bd6024d364fad60c3d671e37fc2b6e723699c9d451f6b",
+      "before_bytes": 4098,
+      "canonical_bytes": 4018
+    },
+    {
+      "path": "tools/global-search-action-swift6-tests.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "e3b173c8a535f6246535a7a671021a223463f4b64f7e82416ffc39eadd2b526e",
+      "canonical_sha256": "c37dcb8ee5a5c25186558eeb2c16e277145e9db0eacd01af06cf7614bdf9904b",
+      "before_bytes": 7694,
+      "canonical_bytes": 7567
+    },
+    {
+      "path": "tools/global-search-presentation-tests.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "d9a60b87d590b778112137459b4c8eca09dbc1393200354e6895923bead1d158",
+      "canonical_sha256": "4ddb677042dc98eac403995b782e7f148c856b32519c7e80a372b815d8fa3279",
+      "before_bytes": 6997,
+      "canonical_bytes": 6903
+    },
+    {
+      "path": "tools/global-search-registration-proposal.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "5cdb5ba71ac17066544368e5b51a2f436f13165035f6adb7df0f547a5fc4e82d",
+      "canonical_sha256": "5804dbd7c39fd3fbace8f6a2c73d886e7e77d645d1bedb1aa14a7fa8f908d742",
+      "before_bytes": 4818,
+      "canonical_bytes": 4755
+    },
+    {
+      "path": "tools/hq-annotation-disconnect-acceptance.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "08179b338b19b14c641d9fb9e2d35d603fc2ce53849c8637b824c62d8ca3d2e4",
+      "canonical_sha256": "e0d46e6e0a52fe8a9671529f7fa692a990fbfea5e0b5dad24770f4efb5c61cf4",
+      "before_bytes": 24716,
+      "canonical_bytes": 24252
+    },
+    {
+      "path": "tools/hq-annotation-exchange-acceptance.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "c0a32e37db0d10fd08f18ee7e7b7e8b434588bc61b3056eb0be5f0abeaec0005",
+      "canonical_sha256": "e5bb838def64d8a64f8228889d6d371dfe3968b4ee0ec521cd122f58428eb97f",
+      "before_bytes": 11863,
+      "canonical_bytes": 11654
+    },
+    {
+      "path": "tools/hq-book-page-cache-regression.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "c897ba378f1ace39bf76a0e5fff4b96bacd9156f568cc1ee9406d8148792451c",
+      "canonical_sha256": "068a459e919dbe5ecb7c08f7cccf2f0cb7e7c701350beb921cca64f827edfc80",
+      "before_bytes": 4608,
+      "canonical_bytes": 4534
+    },
+    {
+      "path": "tools/hq-cold-search-core-acceptance.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "51a2a4ffa6ed0ecd14c62d5b41e92567dc100ae65f9cc33760fefbffc09cee8b",
+      "canonical_sha256": "8e308b41e9bb1bdcabcb5528a7e3269684c0a1eb52ee94ade32ea55ba49283ea",
+      "before_bytes": 17302,
+      "canonical_bytes": 16993
+    },
+    {
+      "path": "tools/hq-cold-search-ownership.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "411664df67109e4df72cf1a4c661787aa498c84c59286a147a63a957fb6ed123",
+      "canonical_sha256": "06226561f58167cbf0dbf3ec070e1255037eaceda9c7b7640010548745d398aa",
+      "before_bytes": 15251,
+      "canonical_bytes": 14971
+    },
+    {
+      "path": "tools/hq-feature-off-lifecycle.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "facef9946f13136d8c587ff647b73ca047dde7189696a0b8ca26abb558d83943",
+      "canonical_sha256": "a5a8a739904bbd21d8661a531c460304a1be96eb9c10ced2f123f5164e1f14eb",
+      "before_bytes": 4598,
+      "canonical_bytes": 4521
+    },
+    {
+      "path": "tools/hq-full-source-inspector.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f546fd92e309be2df513756b41281610ee1028a4f9beeb487096f239d44028ad",
+      "canonical_sha256": "3bbb6c13a16ed721c87fe281eba4161bb455791d764ab4a131063f2a2c43e9a2",
+      "before_bytes": 13753,
+      "canonical_bytes": 13553
+    },
+    {
+      "path": "tools/hq-full-source-reader.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "83040c05301332ec40ace3ecd5bfa44521d6c04bbb3efc7f18979243105c4a7d",
+      "canonical_sha256": "c24c71051a9a85f011f828197d16f84e52ee2e18394e4aa7d367b8e1f217dad0",
+      "before_bytes": 14050,
+      "canonical_bytes": 13871
+    },
+    {
+      "path": "tools/hq-groups100-performance-checks.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f5bc41c5c5c1f9fc7af409bdfa4830528adbb5c40900c12e125a7bfee186b6bf",
+      "canonical_sha256": "249cfdfee0b14a1a4a13ebc0d88033046ee1e5126c0724151820a1efbddb3ed5",
+      "before_bytes": 4665,
+      "canonical_bytes": 4587
+    },
+    {
+      "path": "tools/hq-hanlin-consumer-store.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "902fe5c292bbfb11f03a8ae8ad6ce20c600a6bcb42b4ff4f2b49fd6543d204c4",
+      "canonical_sha256": "ebafcf4a1a4b41f0c59b4954a70604bc4970d441370967d2dca1017259703bdc",
+      "before_bytes": 6955,
+      "canonical_bytes": 6839
+    },
+    {
+      "path": "tools/hq-hanlin-current-work-source.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "abb31ed72225391a6ecec6f2776639320588ec6521d1413230793e7a0680d085",
+      "canonical_sha256": "cae0d365f26a67ae5ed4afa4bc78981d025c07ae0b5159e387736c3769a8a03e",
+      "before_bytes": 7690,
+      "canonical_bytes": 7591
+    },
+    {
+      "path": "tools/hq-hanlin-host-contracts.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "3dd35e9fcaa0d05d7bb080edec52e8aeb934cc0d2b8436022ad3bc999f4c21a2",
+      "canonical_sha256": "07b30678c06aff58b1e351a12c3a3a74056cea9322891f2253f77e37057f4626",
+      "before_bytes": 6088,
+      "canonical_bytes": 6005
+    },
+    {
+      "path": "tools/hq-hanlin-navigation-transition.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "95ce6772fd75cdc9155f19577a1f3888d97dc2897c0fcafb0d544b8979f7208e",
+      "canonical_sha256": "b88931c2d1e70c6c4955581e7f8d974e115d003051f1c62e1af19a0583fd5564",
+      "before_bytes": 5449,
+      "canonical_bytes": 5350
+    },
+    {
+      "path": "tools/hq-hebrew-match-ranges.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "2062d1f658b08317f88b6dce0fc14adc20e1a7881c2879a2f741c36e0b5f67d2",
+      "canonical_sha256": "cbc4838a87c66d933d5386a0a424bafe74cfa9fd1198fbf1fff0a135e356c9d8",
+      "before_bytes": 2699,
+      "canonical_bytes": 2645
+    },
+    {
+      "path": "tools/hq-inspector-fixtures.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "bc3b9964e9bc6c0c332ae4a2b444b1b3e08eafdf2d2ff6414ffdb3b7a2aeedcf",
+      "canonical_sha256": "a502668e7c0a72fac30e935f460a12029fce354952ebeb0ee747f003cfdb5081",
+      "before_bytes": 20419,
+      "canonical_bytes": 20141
+    },
+    {
+      "path": "tools/hq-local-annotation-cloud-acceptance.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "7aaf7ad1d5944ba2f755a284e6b771474a8dd540f421320093db340d55981045",
+      "canonical_sha256": "9ef5252edfb7c47235279775da201715ff22ee9e1b81dab698c8d4bb2f429bbd",
+      "before_bytes": 13829,
+      "canonical_bytes": 13582
+    },
+    {
+      "path": "tools/hq-local-annotation-editor-acceptance.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f8c1bf3349e0807aa5fb53de1353ca23f8637e9d649befff9fa858180ca45bf7",
+      "canonical_sha256": "76bd98bf2fe2c8df4332b13e25399a85a95d0e653e2db1f00ebe723eef423a14",
+      "before_bytes": 16406,
+      "canonical_bytes": 16135
+    },
+    {
+      "path": "tools/hq-native-inspector-binding.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "9869603f33e9ad8a208650b49a6d884007019b3c7794ac6f84efcae78786cee3",
+      "canonical_sha256": "381d3664061c73ecd81db3b1551e5126af3a22770ef5e5686151d4a173a75dc9",
+      "before_bytes": 10437,
+      "canonical_bytes": 10266
+    },
+    {
+      "path": "tools/hq-native-inspector-ownership.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "78dd96b99e48738be378b294464647755834e32c57b3b7970acfb82e01f63620",
+      "canonical_sha256": "37d264afd8363e072c57e8edef7f2a31eaf20c6e8b5f462c6fe25ba05f0f15b1",
+      "before_bytes": 3170,
+      "canonical_bytes": 3113
+    },
+    {
+      "path": "tools/hq-native-intent-metadata.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "bfaafe553b9d3ba15e726c692dfbeadfad552d2825b119691fb8d7585d5304cf",
+      "canonical_sha256": "b09275020397f8eadb6572377c1d5ac68e092e4cb586a7e1ed5130d424d4cfad",
+      "before_bytes": 10238,
+      "canonical_bytes": 10074
+    },
+    {
+      "path": "tools/hq-native-note-editor-ownership.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "8dbd0a05c0e23692d8c6200d861f546afde51498235912d934e4d0dbb4208c83",
+      "canonical_sha256": "13023ee04fb7378776be0cc3b8e0ab2a967fa74b7fde312c130b21094db75045",
+      "before_bytes": 7359,
+      "canonical_bytes": 7234
+    },
+    {
+      "path": "tools/hq-native-reader-text-oracle.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "22d95b2967242e06f930b5f439b191b22efa8ef979f11bdd2e2e0b11e35e75a8",
+      "canonical_sha256": "35366e36e064b28ccb612d573e76af4922440879ad8de4e17709060e56621e04",
+      "before_bytes": 4066,
+      "canonical_bytes": 3989
+    },
+    {
+      "path": "tools/hq-native-search-field-ownership.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "7c960d37d3b11bda3cdb8ca4081029228d05fb713d7fe40c348eae0523dc77b9",
+      "canonical_sha256": "be2f04696815fcd1cb5ed7a9d4ece3e11e4d573c2318d6e6022b99d276d27a3c",
+      "before_bytes": 2817,
+      "canonical_bytes": 2776
+    },
+    {
+      "path": "tools/hq-native-study-sheet-lifecycle.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "4e78a63bdf518be108c7045502bcec1e406ff283390b2b4d468a99d97f4c1c9b",
+      "canonical_sha256": "9f7def2a467b0dbdd1fae0b891d2b38d0e5d7dac3ab115d1128e62e59cec8520",
+      "before_bytes": 7770,
+      "canonical_bytes": 7621
+    },
+    {
+      "path": "tools/hq-native-surface-polling.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "0a82d62f73164440755f2f0b0070d990a797231400b9deef54c404e0e289b0ca",
+      "canonical_sha256": "76bebabc0cf6355dbba8fa83eed15f47749df78a80b09a6867654a452d25b314",
+      "before_bytes": 9880,
+      "canonical_bytes": 9712
+    },
+    {
+      "path": "tools/hq-otzaria-download-cancellation.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "3d5e50fa8694055f796df0bd85291c9e099cea7397b1300c0859f2b91b3eb3d8",
+      "canonical_sha256": "f8e3aaaab074b1dc04d074e379630247260df4c8f13dd430f7366293dd4014e3",
+      "before_bytes": 4641,
+      "canonical_bytes": 4574
+    },
+    {
+      "path": "tools/hq-otzaria-full-index-hard-bound-review.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "57f580af1b5c55b012704d7c5460e5ec16c4aa65b9654d3a45fe3bed54d55deb",
+      "canonical_sha256": "3ec8520d56495f8bf3a128a85c753e837714d781b996c783d11654463a36647a",
+      "before_bytes": 9599,
+      "canonical_bytes": 9456
+    },
+    {
+      "path": "tools/hq-otzaria-full-sql-occurrence-oracle.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "30f0897a3b1148a2be973067a61570069dc5d0c272a489b67ebd6bcfa6dce906",
+      "canonical_sha256": "492fff2382d5061fabae15ea39dae75af49800a062cb44e46c444c682faa7dcb",
+      "before_bytes": 9322,
+      "canonical_bytes": 9148
+    },
+    {
+      "path": "tools/hq-otzaria-full-sql-occurrence-partitions.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "472dc66f77a0eaf6e723e6b04438bb1b443971c4535178277e0931ff557415c9",
+      "canonical_sha256": "3416b43bc5bf0afea64c54f90b335b12176a9eb61d103a4037f01e55ab66c4e4",
+      "before_bytes": 16093,
+      "canonical_bytes": 15828
+    },
+    {
+      "path": "tools/hq-otzaria-install-ownership.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "5958f6f9bef9e3fd5a5001ec0c99206101dabb7c25cc845aa8bfe56493af22ea",
+      "canonical_sha256": "b910b9fc76af72040cc1478da953ea802fd212d49aa23770a0953f852cd34cd5",
+      "before_bytes": 10013,
+      "canonical_bytes": 9863
+    },
+    {
+      "path": "tools/hq-otzaria-installer-fences.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "4e201910d6b1691ab4d7db2aaa2733b90a6bc041b0e198bf2e521a4c3f89e59e",
+      "canonical_sha256": "4bdde0ba8647530340939644a1b326bb65d5d184215bb6a644a7a7bf62619f96",
+      "before_bytes": 5619,
+      "canonical_bytes": 5558
+    },
+    {
+      "path": "tools/hq-otzaria-old-index-inputs.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "89582742abb38a266ff032ec6bf5b300d0f23e4e1304e972bfa9cde6d097a3ed",
+      "canonical_sha256": "681d3b485882bbecd11032722b0f7ea31d1d18ad1ae128594d18f6dc28425f80",
+      "before_bytes": 9933,
+      "canonical_bytes": 9766
+    },
+    {
+      "path": "tools/hq-otzaria-old-index-qualification-review.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "00d3b9f6dad374e02d0a0526fb229585e6eaaf82b9787881d692047a33ad615e",
+      "canonical_sha256": "60bfa5112df9fad4ad2843a2d74d3c54fa9dbcf7ce8b58bd692cac4ff1ec1a24",
+      "before_bytes": 19181,
+      "canonical_bytes": 18918
+    },
+    {
+      "path": "tools/hq-otzaria-old-index-runtime.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "633a3ec2cd12d21f67d79368fc15880f3cb5e824f3d3dd3595a0e062b1848b25",
+      "canonical_sha256": "c3a402c1adee0fe2bfcbea2c19a0d11fe3dc4bbe3f1c43bb74d9c043c067b2e4",
+      "before_bytes": 22810,
+      "canonical_bytes": 22469
+    },
+    {
+      "path": "tools/hq-otzaria-original-index-locator-review.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "d3bc4c2b7ba887f89c1995dcde73e2b72fd5205bcfe9f2fb3b7f0a60972b2602",
+      "canonical_sha256": "f60f3d2e5d7af1e1e73c6109bd93c7ca9866a1a6a278ea34895e687f93866595",
+      "before_bytes": 5250,
+      "canonical_bytes": 5171
+    },
+    {
+      "path": "tools/hq-otzaria-read-compatibility.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "e5fb1485145556e3593c4d7c6c1d7ca208d507e507b2abc8cc0c6a44167e21cb",
+      "canonical_sha256": "b5f7acd1e40f752c296e9a1a565d2e1c686db11826b1beb8c1551772e1b15f5f",
+      "before_bytes": 10078,
+      "canonical_bytes": 9929
+    },
+    {
+      "path": "tools/hq-reader-checks.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "a202f085f6d3bf111b63cbc02362c014d1eeb963894a9f11e4ef81bf46df10c5",
+      "canonical_sha256": "5c6a4bbc1c79cac6cf06234b40a15d45f752ec7bc9029dcf7b0616833911e47b",
+      "before_bytes": 15777,
+      "canonical_bytes": 15543
+    },
+    {
+      "path": "tools/hq-reader-intent-compound.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "e873d4dcb47f6489ad9d2f7af528f0d9da650679f1879ba0343f4816a486dbf8",
+      "canonical_sha256": "199b9c24a346caf6e4cdbf257574906ca3dddf2876205049177f1ab6aeb69ba0",
+      "before_bytes": 6003,
+      "canonical_bytes": 5903
+    },
+    {
+      "path": "tools/hq-reader-plaintext-parity.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "fe0579d5d2bb63f624b252c44ea7a18d63b491fc9e4bce0b4b477f83a2e7d193",
+      "canonical_sha256": "c023cd09954c1fe3ff2bcebffd3a4e371d40d84ff53836ae06ccc65436a0d5d6",
+      "before_bytes": 6044,
+      "canonical_bytes": 5958
+    },
+    {
+      "path": "tools/hq-reader-selection-background.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "eeaa0c87a01bab7c6b3b22bf59dc0a454df1b2a073c17d7d0bcf28f684cfa9e6",
+      "canonical_sha256": "a8643009a517da2b11ede92b591cc1d519cc4835d16214f8192d51e04a7b4861",
+      "before_bytes": 3890,
+      "canonical_bytes": 3832
+    },
+    {
+      "path": "tools/hq-search-audit-manifests.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "bb9001cb51ccd1eb9141c5ad4cf3654fc5a12b9a79c323a2d064c8e742bc0d23",
+      "canonical_sha256": "119a8d917e999b001f671c430c03c252b62e3670f4dd3521719b33bcb31a5b54",
+      "before_bytes": 15144,
+      "canonical_bytes": 14922
+    },
+    {
+      "path": "tools/hq-search-tests.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "902d688309c8f6ba7bfbba4941504000f453082fa2d28124b0f717066db57e69",
+      "canonical_sha256": "c475fa1975422f773d0cc0a41aea9fd8ad4b473b7294c5c318c2a44757ff7047",
+      "before_bytes": 8691,
+      "canonical_bytes": 8570
+    },
+    {
+      "path": "tools/hq-sefaria-mobile-bounds.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "d9235beed94d390ca44affd33374139088bcfd9192cc6818268c1758aa91fd78",
+      "canonical_sha256": "5793ff76af6e425eca6b1ce681bb69316e334f2cdf8169f379173019b51aefa2",
+      "before_bytes": 4477,
+      "canonical_bytes": 4417
+    },
+    {
+      "path": "tools/hq-sefaria-mobile-navigation.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "9d484375d56504f65463d56ab5628aea79f09e54950c82cec7e5d63f25176802",
+      "canonical_sha256": "2bcec1956c066d02877b70950392c87796ccd78397f611fc81471c06ebe4a12c",
+      "before_bytes": 7079,
+      "canonical_bytes": 6973
+    },
+    {
+      "path": "tools/hq-sefaria-navigation-language.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "5e857e3dc1ef130afc2f22a6285bf38d440a2dcc3aa0c1ad81739379611a3fd2",
+      "canonical_sha256": "040f7c495014990c226b04a35c1b039622dc2f49bb60b86b18314f8985900fba",
+      "before_bytes": 12980,
+      "canonical_bytes": 12770
+    },
+    {
+      "path": "tools/hq-sefaria-toc-transport.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "1e0eb3734ec88bdae6e5a3a194f52960f710aa475a33f2cb16cb58ed701dc46e",
+      "canonical_sha256": "451bd2ea7e1722ec34cec24447da40fa8b54f964885c96def2e8a26ec216fcbd",
+      "before_bytes": 8885,
+      "canonical_bytes": 8768
+    },
+    {
+      "path": "tools/hq-semantic-journey-host.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "5ad3caa7d925b7884c0daed20504ecda8cc8f89382669eb19efbbc89dada308c",
+      "canonical_sha256": "a051ebbe4e17c9be961f8ff1e862889c28f92a8c152291889973d8fb3d592a01",
+      "before_bytes": 10190,
+      "canonical_bytes": 9995
+    },
+    {
+      "path": "tools/hq-sidebar-check.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "def0b04856f9cff41eece97ccd0c19d30b76571278a6defe623a7638ce76c982",
+      "canonical_sha256": "dbb94593fc1b0675c2a942ec1dedfedda200e2b70fe4a37441c00f9f1f90645e",
+      "before_bytes": 1728,
+      "canonical_bytes": 1697
+    },
+    {
+      "path": "tools/hq-sqlite-acceptance.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "350aeb06d1b9dad7444ebe58113429636f8c041bdc492c782029207dc6c6e378",
+      "canonical_sha256": "ba8247a3d1ce9e467a710f94f31b9c611c865ec2d8b5b296c9c217687ccc7e71",
+      "before_bytes": 5871,
+      "canonical_bytes": 5760
+    },
+    {
+      "path": "tools/hq-updates-extract-fixtures.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "58857735f90ce1532e9595001a4bf5c552a6448079fcd44ad2a5b067212f93b9",
+      "canonical_sha256": "33d81aa1f9d88a8267a1a768c2f393873b8fe26c2d6d09998aba98621f931a74",
+      "before_bytes": 3046,
+      "canonical_bytes": 2999
+    },
+    {
+      "path": "tools/hq-updates-test-apple.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "af51a1320d37d75d867cdafd70bcaaf50ec35fc36ae4849ccfc331ec6cc284bd",
+      "canonical_sha256": "efe0204d1648c0c9240771b059038ed8c8c5dcd6740c74ade2617ca1153a2352",
+      "before_bytes": 3869,
+      "canonical_bytes": 3799
+    },
+    {
+      "path": "tools/hq-updates-test.ps1",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f9be04b78cae72b67791404c09c3b76b508dd6c9c087e3c2f534096d609d6660",
+      "canonical_sha256": "8134c53dfab6a35e1478e1dccea24bc52533e75d16a33a54b0bcb772375555eb",
+      "before_bytes": 2449,
+      "canonical_bytes": 2421
+    },
+    {
+      "path": "tools/hq-workspace-mapping-producer-checks.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "978ebd7f0c89a36829f0bb0117f90a1d4d99ee4d93b43e6440f2e50b65ea2f64",
+      "canonical_sha256": "322316b2d7fa4037d772bbc89331dc7f924294d4dbf764723a8918014a97e490",
+      "before_bytes": 5750,
+      "canonical_bytes": 5663
+    },
+    {
+      "path": "tools/hq-zayit-package-readiness.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "b827c7237a9f20fe95896e59784f3807f639ac8ef75f3a6da367c19c6278559f",
+      "canonical_sha256": "95b287bf839d79df67396e175a6c870ef87466103ec4e7e8786f00783217045b",
+      "before_bytes": 8069,
+      "canonical_bytes": 7960
+    },
+    {
+      "path": "tools/hq-zayit-transfer-cancellation.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "b422a5cfbabb0fc2bdcda03dcf2ae58b4f526c7c12eb934eaf154f8581595568",
+      "canonical_sha256": "44ef6f1c79eb8509471d7303440bd261863287ca39b5c97a238c622c74cb8491",
+      "before_bytes": 8706,
+      "canonical_bytes": 8592
+    },
+    {
+      "path": "tools/otzaria_original_sql_oracle.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "d51606a8bdfeb835afafcca73bcd5ee580b6ca1987e28b53ece528f2e8ad97fc",
+      "canonical_sha256": "9b1fd4d1db7433d0a60a0fa7c05d5861aca1142bd76ecb71d51b9d51fee31c9d",
+      "before_bytes": 11566,
+      "canonical_bytes": 11341
+    },
+    {
+      "path": "tools/phase1-mount-wait-checks.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "b4b0f1d338d65410f427027b5b2af770eae9c58b3bded5bf8f80ed4ab1d98f97",
+      "canonical_sha256": "be054438f744f02cae02f4822dff83c3d56ccbb6fb025701f8a257788c27b8d9",
+      "before_bytes": 4964,
+      "canonical_bytes": 4907
+    },
+    {
+      "path": "tools/sign_owner_approvals.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "8203814731247ad857cba17ad7d265f8f2e3e4afd72f3cf7c458092db305930d",
+      "canonical_sha256": "07e94cbb190d28d1a0f086f77d47bd8d921cea69bc87a130bd36829cfc0d0006",
+      "before_bytes": 16977,
+      "canonical_bytes": 16642
+    },
+    {
+      "path": "tools/test-local-annotation-editor-gate.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "c045998483f9fc08a6c4099398a14ae45a63fc6ea069af06641eee00555e6e1d",
+      "canonical_sha256": "ebf4567506838f61a1f3838b82efd44196ddc5810290ab09a8dc8d671d775054",
+      "before_bytes": 9035,
+      "canonical_bytes": 8865
+    },
+    {
+      "path": "tools/test-local-annotation-editor-sql.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f2cdf445dacd6fa66114dacff8a68163edaa7b3f8a49d3b2d3b1a15c3d18d59a",
+      "canonical_sha256": "24cd22170829f162b76b845c667f259a5925a756f4791e8b80c8880bc00d8b4f",
+      "before_bytes": 14969,
+      "canonical_bytes": 14698
+    },
+    {
+      "path": "tools/test-local-cloud-pending-sql.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "631c81178733a7716bbab0180bf2f5571de01652142a636a2c21f2ec4d2c2114",
+      "canonical_sha256": "d321cd6512c69fec1c8ae7b3bfaddf8d356792f97d0bf3769727b1815a0e04f8",
+      "before_bytes": 14770,
+      "canonical_bytes": 14533
+    },
+    {
+      "path": "tools/test-palette-escape-diagnostics.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "444fc83c7173222b686a35851a1a25a7c8efbefd716101693a7cf45cb31e2b53",
+      "canonical_sha256": "1754203f50424ca466be2dc0a03130f502b235f41723ee3bf4ff79d5eefc3639",
+      "before_bytes": 8993,
+      "canonical_bytes": 8826
+    },
+    {
+      "path": "tools/test_access_control_compiler.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f8bf18f8a7a723469f2c559a4c2c60e5e24d974986ccb787e47da0a9b0537431",
+      "canonical_sha256": "b6b894f9c1b2376491ce783fe7ac445a29e13491d408c37857f1814900775f7a",
+      "before_bytes": 2890,
+      "canonical_bytes": 2816
+    },
+    {
+      "path": "tools/test_chavrusa_text_components.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "227e259a50f2c1fbfc0e3742285febd31c3229fd7577e42c06a18df8e3ef70c0",
+      "canonical_sha256": "764160c3e39243ff135398ae624478a8bd91341cd0eca5d2629c610b72cbd2bd",
+      "before_bytes": 133757,
+      "canonical_bytes": 131605
+    },
+    {
+      "path": "tools/test_faithful_study_workspace.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "db8b44171d36653ff8544d50dee26dbccbf90c43dada796a470060207238085c",
+      "canonical_sha256": "619aeae15cfde94d1511b3699254ad1ae95f21554d448b1317eb408e6525bfec",
+      "before_bytes": 30559,
+      "canonical_bytes": 30205
+    },
+    {
+      "path": "tools/test_final_integration_contracts.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "8fa32e46d29f8496a3da0092aaa4f03c0a3def19948e5102529d25ab2c92914d",
+      "canonical_sha256": "1fe0c0861e9f57d3885bdf707190e5c49784615e6c30360bb8b5b9cdadbc30af",
+      "before_bytes": 9782,
+      "canonical_bytes": 9571
+    },
+    {
+      "path": "tools/test_git_config_preservation.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "70dcecafee22df57fa106207f6f97cfb759975b9114526682ac9947bbf7513c5",
+      "canonical_sha256": "cd54a0c656bfa4b3ff24606bc8315450b621003c2b3bb74c425155d605c5bad9",
+      "before_bytes": 4156,
+      "canonical_bytes": 4071
+    },
+    {
+      "path": "tools/test_groups100_performance.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "1cbef04a2a756df6a7b03427f74654c14458d0e433b7e0c2c9d2828feea5716d",
+      "canonical_sha256": "2e70791b3660ee4113379efbe931a686388016e83a2cca24ed394c0e7efcadce",
+      "before_bytes": 11838,
+      "canonical_bytes": 11642
+    },
+    {
+      "path": "tools/test_native_reader_reservation.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "b927be1d21970e7012fb4b76938afdee148dc78dfcc5dfaad18152d748014b8b",
+      "canonical_sha256": "7c4b07b5fe5dbf70323ec4b24ed18e753401d24adc09eca3d9f665f114fb441e",
+      "before_bytes": 10251,
+      "canonical_bytes": 10078
+    },
+    {
+      "path": "tools/test_native_sidebar_policy.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "6b19780c6c3245237a1ad365c25c941a65584360af1d4c02018343e5eb66241a",
+      "canonical_sha256": "f57f177cd25c86925b0c3296530499da089b832462a0248b2fbdaba8cb06de24",
+      "before_bytes": 7873,
+      "canonical_bytes": 7805
+    },
+    {
+      "path": "tools/test_o2b_native_ux.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "568346311d0b15fbaee8ec10f82119c29160122b7ec77e55fc1b9c35f5f365ed",
+      "canonical_sha256": "2eb602d12612abbc16594b9528d42a587d273361051a2f14a716f1df4f9e7b6f",
+      "before_bytes": 31064,
+      "canonical_bytes": 30342
+    },
+    {
+      "path": "tools/test_reader_feature_off_lifecycle.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f8370a8ee35723c12c41579f8220cfce756d9c9dce13ecb45a214387dd315c8a",
+      "canonical_sha256": "767d60d1a7f550d4a62407dd97c6814f0f08f40a2834504acd0627f2dcb661c7",
+      "before_bytes": 7463,
+      "canonical_bytes": 7331
+    },
+    {
+      "path": "tools/test_runtime27_interruption.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f8a0233f417c2dc033eb42574c619171243511a635ce4ea4d8a130458e2ec764",
+      "canonical_sha256": "5fb6efba5d1a55187b8872d10b980b772195f00342b248991cc3c058dfc39297",
+      "before_bytes": 86111,
+      "canonical_bytes": 84650
+    },
+    {
+      "path": "tools/test_strict_10601_repairs.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "201442cf01cf512d0fcec42d3a19c7c5742339db7d20e50ef6ca9e2c40f423cd",
+      "canonical_sha256": "65e8c1d6ec64a4f046a9966ffa5917c6e3fda7141d399d2149ae8fdd750fff75",
+      "before_bytes": 12262,
+      "canonical_bytes": 12085
+    },
+    {
+      "path": "tools/test_upstream_boundary_security.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "beb663c7036094743b49991d01399dbc10670e9b1b7ca2c95249ae4099f90c84",
+      "canonical_sha256": "d6fc56ee27ea79f183f5c82ee80049708422cec1db1c082c71a59a167eb94940",
+      "before_bytes": 31854,
+      "canonical_bytes": 31225
+    },
+    {
+      "path": "tools/test_upstream_patch_digest.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "7d6d08708d20b9403a8e9d3a4818c954d89cbc50a740e4cf2cc94fb9e95a6354",
+      "canonical_sha256": "486c2ee086e2a2f615db5ab57e311b440d9edcd8688eb1c51c65b4155015a773",
+      "before_bytes": 20736,
+      "canonical_bytes": 20359
+    },
+    {
+      "path": "tools/test_verify_upstream_boundary.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "e643336280c917f41c91967c211cd8bc47d7e1bea5ca0670c8c6eaf30c728795",
+      "canonical_sha256": "df85848ebc9f9fbe9398090b06eb33202974df60da6d16935214c3f15b489109",
+      "before_bytes": 33178,
+      "canonical_bytes": 32642
+    },
+    {
+      "path": "tools/test_verify_xcresult_zero_skips.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "20a41c96e128b9ee872679e3307a3824d08aab32606447653c2a979eac8f6727",
+      "canonical_sha256": "ccc5d5ed5c9d5f273c14c412d7d70e321ee041fb8584054f24c20f9c9de1ec7d",
+      "before_bytes": 8988,
+      "canonical_bytes": 8840
+    },
+    {
+      "path": "tools/test_workspace_mapping_producer.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "0460129257aa4c3821ed68da4241144340a62f4aa41de720a73bb3540ba71267",
+      "canonical_sha256": "ee5e8265be31d41f4da1bd68e3f5c8e7823ff740c3c9ea2a8b7f0736c2dbbc9b",
+      "before_bytes": 13343,
+      "canonical_bytes": 13165
+    },
+    {
+      "path": "tools/test_workspace_mapping_startup_reconciliation.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "d20ad774501ada85b7b76ada3eb5a07e2c1c8f14859e8c4bb4d8c67f87f82c85",
+      "canonical_sha256": "9afb600dfc80e4874dae345f5c04219b239cf82bf02c255bb55c0c57d8589d4a",
+      "before_bytes": 7579,
+      "canonical_bytes": 7477
+    },
+    {
+      "path": "tools/test_zayit_reader_navigation.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "036c731cff8abc04f6ffea855daef3e86f377d0a5f6fbf095ae2aa1e3fccbb62",
+      "canonical_sha256": "e2438c1dd8dfa76482331287c94345bdb356a3e5c3a17f4e4d167f7143758669",
+      "before_bytes": 3088,
+      "canonical_bytes": 3038
+    },
+    {
+      "path": "tools/verify-hanlin-live-app-group-controls.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "51107797ac075b156447730191f4f8a9178122c923542c50c533c41294f2c236",
+      "canonical_sha256": "64599b4380334901f82beee35a5fb88e1ee6b3f62af01a46491e5f4e0f98f108",
+      "before_bytes": 5704,
+      "canonical_bytes": 5581
+    },
+    {
+      "path": "tools/verify-hanlin-live-fixture-evidence-controls.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "78b4c15467f0e88ab2d2e3e855cb3c1d258e3553e00e3a6489172556143fdd0b",
+      "canonical_sha256": "665288cb6478ba32dbe94959e8928de1ef46ac06af200b7374afef8192fb9f9f",
+      "before_bytes": 7634,
+      "canonical_bytes": 7507
+    },
+    {
+      "path": "tools/verify-hanlin-live-runner-controls.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "f00064bea1e480b2f2a35085dbcc6f554e85b4ae1233fcc5233b18410d8dfcf7",
+      "canonical_sha256": "3e79a39f60d30656dd22fbee4659dbae197912beed471221bf725bd5101298b6",
+      "before_bytes": 10004,
+      "canonical_bytes": 9782
+    },
+    {
+      "path": "tools/verify_upstream_boundary.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "948b31a1e043a01b24cbfab3ddb73b27e1b1c5a1ce7ea10a2316f73703439075",
+      "canonical_sha256": "9733798a242382f59da99cb999a169e2c69c59010b336742e9a8fa151e837676",
+      "before_bytes": 42230,
+      "canonical_bytes": 41334
+    },
+    {
+      "path": "tools/verify_xcresult_zero_skips.py",
+      "kind": "PURE_CRLF",
+      "before_sha256": "0adb9378226f1736b900b36ba18ca4bc0333c064e650ab487993a1af7b8816ad",
+      "canonical_sha256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6",
+      "before_bytes": 10417,
+      "canonical_bytes": 10243
+    },
+    {
+      "path": "tools/workspace_mapping_native_boundary_fixture.swift",
+      "kind": "PURE_CRLF",
+      "before_sha256": "b3f50d12ceda26d137fe1c2a4842d62bd095a8349e2779130af225a00698fe91",
+      "canonical_sha256": "035cf3180f74222fdd26e0fd0f8638074d5d51d3af9d8af2c27cf7e3f17906e0",
+      "before_bytes": 17889,
+      "canonical_bytes": 17584
+    }
+  ],
+  "total_inputs": 267
+}

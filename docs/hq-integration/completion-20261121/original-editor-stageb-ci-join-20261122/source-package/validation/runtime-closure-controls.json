@@ -1,0 +1,69 @@
+{
+  "apple_build": "NOT_RUN",
+  "controls": [
+    {
+      "name": "identical_shared_revisions_do_not_claim_an_exception",
+      "status": "PASS"
+    },
+    {
+      "name": "different_runtime_revision_rejects_floatingpanel",
+      "status": "PASS"
+    },
+    {
+      "name": "different_runtime_revision_rejects_torahinspectorkit",
+      "status": "PASS"
+    },
+    {
+      "name": "different_runtime_revision_rejects_zipfoundation",
+      "status": "PASS"
+    },
+    {
+      "name": "only_the_exact_observed_build_tool_pair_is_conditional",
+      "status": "PASS"
+    },
+    {
+      "name": "case_aliased_package_identity_is_rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "all_actual_manifest_products_and_targets_are_covered",
+      "status": "PASS"
+    },
+    {
+      "name": "missing_or_header_only_symbol_evidence_cannot_pass",
+      "status": "PASS"
+    },
+    {
+      "name": "associated_symbol_after_large_prefix_is_not_truncated",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_subprocess_full_output_is_retained_losslessly",
+      "status": "PASS"
+    },
+    {
+      "name": "failed_or_empty_actual_command_cannot_qualify",
+      "status": "PASS"
+    },
+    {
+      "name": "complete_image_membership_hashes_and_alias_rejection",
+      "status": "PASS"
+    },
+    {
+      "name": "early_import_preflight_never_executes_fixture_and_rejects_missing_dependency",
+      "status": "PASS"
+    }
+  ],
+  "failed": 0,
+  "native_tests": 0,
+  "nm_or_otool_executed": false,
+  "passed": 13,
+  "prior_22_controls_reexecuted": false,
+  "scope": "CHANGED_SOURCE_ADMISSION_CONTROLS_ONLY",
+  "source_inputs": {
+    "Scripts/CI/hq-original-editor-distribution.py": "941e435a7406c028b6d99d11de6b25c15738b3f61b8d87974ad4f89ae0c36c88",
+    "Scripts/CI/runtime27-original-editor-native.py": "7d7954b8502465b549f2032a4471622abb7bc58e151d776eaeabf5e853964cb8",
+    "tools/verify-original-editor-runtime-closure-controls.py": "d4fc33d740e79605f79209415d434c2ffce00d341fd0aa947252fd6d6a1d939c"
+  },
+  "status": "CHANGED_SOURCE_CONTROLS_PASS"
+}

@@ -1,0 +1,53 @@
+{
+  "toolchain": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions\n",
+  "compile_exit": 0,
+  "compile_seconds": 31.42199999999866,
+  "command": [
+    "swiftc",
+    "-swift-version",
+    "6",
+    "-j",
+    "1",
+    "-parse-as-library",
+    "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\original-editor-lifecycle\\validation\\PresentationControls.swift",
+    "-o",
+    "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\original-editor-lifecycle\\validation\\presentation-controls.exe"
+  ],
+  "execution": "PASS",
+  "run_exit": 0,
+  "controls": {
+    "count": 7,
+    "passed": [
+      "single_begin_and_single_owned_save",
+      "retire_during_initial_await_fences_source",
+      "retire_cancels_owned_save_and_keeps_capture",
+      "already_committed_receipt_survives_retirement",
+      "post_capture_envelope_refusal_keeps_recovery",
+      "retire_cancels_reopen_and_retires_late_host",
+      "retired_presentation_never_adopts_new_work"
+    ],
+    "schema": 1,
+    "scope": "exact extracted presentation class and original lifetime; explicit SDK, filesystem and data probes; no Apple/Native/SQLite/CloudKit"
+  },
+  "binary_sha256": "946f0da2f6bbda4ec9508f213ff873af5d949719b25fda73278b78a589f834bd",
+  "syntax": [
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift",
+      "source_sha256": "414a59be4e55a60388afeeee8253b3fbfde129c5dbd7bed108e5f1fc5adb1a93",
+      "active_source_sha256": "3e8dd2b7986582b650981b67eb33512d5f0fc6e5c2ce87bbe7d2b5ba34c07b26",
+      "exit": 0
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift",
+      "source_sha256": "8d5776714231971263be14979c5d3b34fae1e143cb7bbeb7610a7ca99d291be6",
+      "active_source_sha256": "87cb0c85e3773d3368cef744c9c96d4ec7475dfb324c46226afdb9e20a4d1405",
+      "exit": 0
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift",
+      "source_sha256": "c4f2349ca01c7a3a34ec6a8384ee789bc948e134385258469fbeadbed6df8065",
+      "active_source_sha256": "9e2be991eb4bc5ea04595ed5adfb4113c423e4a2016de1f522bb0762b93ca6dc",
+      "exit": 0
+    }
+  ]
+}

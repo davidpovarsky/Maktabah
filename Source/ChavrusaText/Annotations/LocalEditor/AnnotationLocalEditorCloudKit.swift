@@ -58,9 +58,10 @@ extension AnnotationLocalEditorCloudClient {
             try await Task.sleep(for: .seconds(60))
         }, sendWorker: { request in
             await withCheckedContinuation { continuation in
-                URLSession.shared.dataTask(with: request) { _, _, error in
-                    if let error { continuation.resume(returning: .failure(error)) }
-                    else { continuation.resume(returning: .success(())) }
+                URLSession.shared.dataTask(with: request) { _, response, error in
+                    continuation.resume(returning: AnnotationLocalEditorCloudWorkerResponse.result(
+                        response: response, error: error
+                    ))
                 }.resume()
             }
         })
