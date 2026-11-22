@@ -1,0 +1,8 @@
+{
+  "status": "FAIL",
+  "scope": "focused-ui",
+  "database_open": "NOT_VERIFIED_BY_TEST_COUNTS",
+  "summary_sha256": "f326e87941a9e94ef1206c99f63070fa2731540fc411c0d10c108c3bce1c0fb9",
+  "tests_sha256": "c20d67df4e196ae55864f437b0121be6fe2f644abf3800f88bf75255f5de459e",
+  "error": "xcresult summary did not pass"
+}

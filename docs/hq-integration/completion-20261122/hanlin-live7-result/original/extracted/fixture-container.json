@@ -1,0 +1,11 @@
+{
+  "app_group_identifier": "group.com.davidpovarsky.itorah",
+  "bundle": "com.davidpovarsky.chavrusatext",
+  "database_relative": "Otzaria/Profiles/miniTest10/database/seforim.db",
+  "database_sha256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "private_provider_container": "/Users/runner/Library/Developer/CoreSimulator/Devices/E65C8F7C-E903-4BCC-BAE4-8EFB1E1C93AF/data/Containers/Data/Application/F2A403C7-DBC4-4B3F-80FE-C98EDECB4D85",
+  "provider_input_uses_private_container": true,
+  "resolved_group_container": "/Users/runner/Library/Developer/CoreSimulator/Devices/E65C8F7C-E903-4BCC-BAE4-8EFB1E1C93AF/data/Containers/Shared/AppGroup/359ECFEA-9A30-4D0D-93C5-028DC29184CA",
+  "resolver": "simctl get_app_container installed-bundle exact-group-identifier",
+  "udid": "E65C8F7C-E903-4BCC-BAE4-8EFB1E1C93AF"
+}

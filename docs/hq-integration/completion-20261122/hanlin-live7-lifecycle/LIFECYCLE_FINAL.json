@@ -1,0 +1,48 @@
+{
+  "repository": "davidpovarsky/Maktabah",
+  "secret_name": "OTZARIA_LIVE_GEMINI_API_KEY",
+  "source_environment_name": "GEMINI_API_KEY",
+  "checkout_sha": "77c7df82ef5f822bf0b1dd7e08ff2b4b98d425d2",
+  "application_source_sha": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "trigger_branch": "codex/otzaria-hanlin-live-20261121",
+  "started_utc": "2026-11-22T06:20:18.638707+00:00",
+  "credential_in_argv": false,
+  "credential_value_written_to_evidence": false,
+  "secret_cleanup_required": false,
+  "controller_sha256": "a434659cbf0e3ac4f678bf2ee514af3e7398e1e9314cf5380e904fd12d092637",
+  "native_prerequisite": {
+    "id": 44987561349,
+    "head_sha": "64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b",
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "updated_at": "2026-11-22T05:56:40Z",
+    "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44987561349"
+  },
+  "prior_absent": true,
+  "execution_inputs_verified": 281,
+  "state": "DELETED_AND_ABSENCE_VERIFIED",
+  "secret_set_started_utc": "2026-11-22T06:20:39.503313+00:00",
+  "metadata": {
+    "name": "OTZARIA_LIVE_GEMINI_API_KEY",
+    "created_at": "2026-11-22T06:20:41Z",
+    "updated_at": "2026-11-22T06:20:41Z"
+  },
+  "push_started_utc": "2026-11-22T06:20:41.540226+00:00",
+  "push_exit_code": 0,
+  "dispatch_started_utc": "2026-11-22T06:20:45.889305+00:00",
+  "run_id": 44993301949,
+  "run_attempt": 1,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44993301949",
+  "watch_exit_code": 1,
+  "observed_run": {
+    "id": 44993301949,
+    "head_sha": "77c7df82ef5f822bf0b1dd7e08ff2b4b98d425d2",
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "updated_at": "2026-11-22T06:54:09Z",
+    "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44993301949"
+  },
+  "cleanup_receipt": "C:\\Users\\DAVID\\Code\\Maktabah-completion-20261122\\build\\hanlin-live7-lifecycle\\cleanup.json"
+}

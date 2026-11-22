@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_7c50ab0cc8c2",
+    "type": "job_result",
+    "source": "script_run@host_7ec8382e82747448",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_7ec8382e82747448",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795332372.305791,
+    "started_at": "2026-11-22T07:26:12.391475+00:00",
+    "finished_at": "2026-11-22T07:26:18.012648+00:00",
+    "duration_s": 5.62,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 180,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"status\": \"PASS\", \"receipt\": \"C:\\\\Users\\\\DAVID\\\\AppData\\\\Local\\\\Temp\\\\otzaria-continuation-20261122\\\\live7_root_review.json\", \"receiptSHA256\": \"7aeeb5d02182159c65d04e3a69bf2da761ddf6031d5197d884c6973c1d3e4fce\", \"script\": \"C:\\\\ProgramData\\\\SentinelX\\\\uploads\\\\.sentinelx_uploads\\\\script_job_a5083b4f799e4f3785b89fb81eab8629\\\\live7_root_review.py\", \"scriptSHA256\": \"d9c924296a07fe2b52eaac3abaa20482b39cb69a7b2bb99baff8ba79050871d7\", \"verifiedPayloads\": 28, \"verifiedGitInputs\": 281, \"caseCounts\": {\"total\": 1, \"passed\": 0, \"failed\": 1, \"skipped\": 0}, \"secretAbsent\": true}"
+  }
+}

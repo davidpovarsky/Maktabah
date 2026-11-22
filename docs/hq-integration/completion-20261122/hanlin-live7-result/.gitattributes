@@ -1,0 +1,2 @@
+ROOT_REVIEW.json -text whitespace=cr-at-eol
+ROOT_REVIEW.py -text whitespace=cr-at-eol

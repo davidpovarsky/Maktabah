@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "createdUTC": "2026-11-22T07:28:33.469583+00:00",
+  "parent": "d14f845f2b0760ce8d3bf186ca656db57f435f9f",
+  "run": 44993301949,
+  "attempt": 1,
+  "checkout": "77c7df82ef5f822bf0b1dd7e08ff2b4b98d425d2",
+  "applicationSource": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "originalPacketIndexSHA256": "96b582b77ecee01b05cfd0c79d542c1ca4379c9953674899df17dd7f8a14e662",
+  "originalPayloadCount": 28,
+  "originalCopiedFileCount": 29,
+  "rootReviewSHA256": "7aeeb5d02182159c65d04e3a69bf2da761ddf6031d5197d884c6973c1d3e4fce",
+  "scope": "Evidence and continuation report only; no application/test/workflow/manifest changes or new execution",
+  "fourProductTrees": {
+    "Source": "ac887bdbfbfce2d30d9591bb867d61b11da31cc6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "24345d612f8c70398f4590977f8b4696021ae413"
+  },
+  "lifecycleReceipts": {
+    "LIFECYCLE_FINAL.json": "dac851d9f124e52aacc1af8926d776ef5cd3b322a47f025c7e32d6c50699e3ef",
+    "SECRET_CLEANUP.json": "cab31524a9591b33bbcd42074be45554b2bb1bf84246a69c8f78a37fb23d2d93"
+  },
+  "reportSHA256": "5e19c807541965e46ce6c69376412b8b3f80d5b2325c3f46a79a2d334797811a",
+  "publicationScriptSHA256": "ca8a04d18137e880509c26b74683bca32fa8431dbdcaa0ba6bbc97b41ed9f59f",
+  "publicationCorrection": "PUBLICATION_CORRECTION.json",
+  "correctionScope": "No frozen payload, actual review, product, test or workflow changes; preserved raw CRLF for two immutable review files"
+}

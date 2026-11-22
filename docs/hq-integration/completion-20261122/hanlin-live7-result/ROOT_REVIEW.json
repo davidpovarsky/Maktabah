@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "scope": "Independent evidence verification only; no test, build, download, credential or CI action",
+  "createdUTC": "2026-11-22T07:26:17.911218+00:00",
+  "canonicalHead": "d14f845f2b0760ce8d3bf186ca656db57f435f9f",
+  "checkout": "77c7df82ef5f822bf0b1dd7e08ff2b4b98d425d2",
+  "applicationSource": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "run": 44993301949,
+  "attempt": 1,
+  "runConclusion": "failure",
+  "packetPayloadCount": 28,
+  "packetPayloadBytes": 456797,
+  "packetIndexSHA256": "96b582b77ecee01b05cfd0c79d542c1ca4379c9953674899df17dd7f8a14e662",
+  "zipSafeCRCFiles": 22,
+  "admittedFiles": 21,
+  "executionGitBlobsVerified": 281,
+  "fourProductTrees": {
+    "Source": "ac887bdbfbfce2d30d9591bb867d61b11da31cc6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "24345d612f8c70398f4590977f8b4696021ae413"
+  },
+  "beforeAfterBytesIdentical": true,
+  "runnerRecordedStableBinaryDigests": 5,
+  "binaryBoundary": "Binary bytes excluded from artifact; no independent local binary-byte verification",
+  "caseCounts": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0
+  },
+  "caseDurationSeconds": 78.00888001918793,
+  "completedProviderConversations": 0,
+  "cleanup": {
+    "state": "DELETED_AND_ABSENCE_VERIFIED",
+    "before_metadata": {
+      "name": "OTZARIA_LIVE_GEMINI_API_KEY",
+      "created_at": "2026-11-22T06:20:41Z",
+      "updated_at": "2026-11-22T06:20:41Z"
+    },
+    "delete_http_status": 204,
+    "after_http_status": 404,
+    "checkout_sha": "77c7df82ef5f822bf0b1dd7e08ff2b4b98d425d2",
+    "run_id": 44993301949,
+    "finished_at": "2026-11-22T06:54:36.558829+00:00"
+  },
+  "scriptSHA256": "d9c924296a07fe2b52eaac3abaa20482b39cb69a7b2bb99baff8ba79050871d7"
+}

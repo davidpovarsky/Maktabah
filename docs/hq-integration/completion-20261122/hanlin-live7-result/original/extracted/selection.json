@@ -1,0 +1,24 @@
+{
+  "cases": [
+    {
+      "case_id": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+      "device": "ipad11"
+    }
+  ],
+  "diagnostic_only": true,
+  "execution_case_ids": [
+    "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
+  ],
+  "execution_groups": [
+    {
+      "case_ids": [
+        "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
+      ],
+      "hid_comparison": false,
+      "label": "11",
+      "size": "11"
+    }
+  ],
+  "hid_comparison": false,
+  "required_nonzero_cases": 1
+}
