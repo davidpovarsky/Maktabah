@@ -9,6 +9,7 @@ import os
 from pathlib import Path, PurePosixPath
 import plistlib
 import re
+import runpy
 import shutil
 import subprocess
 import sys
@@ -644,11 +645,16 @@ def main():
     ap.add_argument("--preflight-only", action="store_true", help="Source/input closure only; no SDK or downloads")
     ap.add_argument("--build-for-testing", action="store_true", help="Same exact inputs, real UI runner, simulator-only ad-hoc signing")
     ap.add_argument("--derived-data", default="build/hq-stage2/DerivedData")
+    ap.add_argument("--original-editor-admission",
+                    help="Exact reviewed SDK distribution input; optional Debug Simulator app target only")
     ap.add_argument("--prepare-inputs-only", action="store_true",
                     help="Restore and verify the original inputs for a later Release build; no Debug rebuild")
     ap.add_argument("--preparation-evidence-dir",
                     help="Separate build/ evidence directory required for input-only preparation")
     args = ap.parse_args()
+    require(not args.original_editor_admission or
+            (args.build_for_testing and not args.preflight_only and not args.prepare_inputs_only),
+            "Original editor qualification requires the real Debug Simulator test build")
     if args.prepare_inputs_only:
         require(args.build_for_testing and not args.preflight_only and args.preparation_evidence_dir,
                 "Input-only preparation requires the original test-input checks and separate evidence")
@@ -702,6 +708,11 @@ def main():
             report.update(status="PREPARED_ORIGINAL_INPUTS_ONLY", scope="RELEASE_INPUT_RESTORATION",
                           app_build_executed=False, runtime="NOT_RUN", signing=False)
             return 0
+        original_editor = None
+        if args.original_editor_admission:
+            original_editor = runpy.run_path(str(ROOT / "Scripts/CI/hq-original-editor-distribution.py"))
+            admitted_editor = original_editor["prepare"](
+                ROOT, args.original_editor_admission, report, OUT, logged)
         derived_data = checked_path(ROOT / "build", str(Path(args.derived_data).relative_to("build")))
         signing = (["CODE_SIGNING_ALLOWED=YES", "CODE_SIGNING_REQUIRED=YES", "CODE_SIGN_IDENTITY=-"] if args.build_for_testing
                    else ["CODE_SIGNING_ALLOWED=NO", "CODE_SIGNING_REQUIRED=NO", "CODE_SIGN_IDENTITY="])
@@ -726,6 +737,9 @@ def main():
         require(pins(lock) == report["package_pins"], "Build changed committed package revisions")
         report["package_resolved_after_sha256"] = digest(lock)
         prepare_original_hanlin(config, report, verify_only=True)
+        if original_editor is not None:
+            original_editor["verify_built_app"](ROOT, admitted_editor,
+                derived_data / "Build/Products/Debug-iphonesimulator/Maktabah.app", OUT / "original-editor")
         report["status"] = "SIMULATOR_BUILD_FOR_REAL_UI_PASS" if args.build_for_testing else "UNSIGNED_APP_BUILD_PASS"
         return 0
     except Exception as error:

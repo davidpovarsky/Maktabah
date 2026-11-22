@@ -1,0 +1,140 @@
+name: Original editor saved annotation native acceptance
+
+on:
+  push:
+    branches: [codex/otzaria-original-editor-stageb-native-20261122]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: original-editor-stageb-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  original-editor-stageb:
+    if: github.repository == 'davidpovarsky/Maktabah' && github.event_name == 'push' && github.ref == 'refs/heads/codex/otzaria-original-editor-stageb-native-20261122'
+    runs-on: xcode-27
+    timeout-minutes: 210
+    env:
+      EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify Python dependencies and freeze the separate original saved-annotation case
+        run: python3 Scripts/CI/runtime27-original-editor-native.py prepare
+      - name: Select the existing SDK-matched original runtime
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
+      - name: Compile the original UI tests against the selected Apple SDK
+        run: python3 Scripts/CI/typecheck-faithful-ui-tests.py --ui-compile-only
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - name: Read the original source-pinned Zayit build mode
+        id: zayit_source_mode
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib
+          rebuild = json.loads(pathlib.Path('Scripts/CI/hq-stage2-focused-apple.inputs.json').read_text()).get('rebuild_zayit_framework', False)
+          assert type(rebuild) is bool
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('rebuild=' + str(rebuild).lower() + '\n')
+          PY
+      - uses: dtolnay/rust-toolchain@stable
+        if: ${{ steps.zayit_source_mode.outputs.rebuild == 'true' }}
+      - name: Restore only the exact successful original SDK export
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 Scripts/CI/restore-original-editor-distribution.py --admission Scripts/CI/runtime27-original-editor.inputs.json
+      - name: Key disposable compiler cache by actual toolchain and SDK artifact
+        id: build_cache_key
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          def git(path):
+              return subprocess.check_output(['git', 'rev-parse', 'HEAD:' + path])
+          inputs = json.loads(pathlib.Path('Scripts/CI/hq-stage2-focused-apple.inputs.json').read_text())
+          inputs.pop('application_source_sha')
+          inputs.pop('application_trees')
+          manifests = subprocess.check_output(['git', 'ls-files', '-z', 'Source/**/Package.swift']).decode().split('\0')
+          layout = b''.join(git(path) for path in manifests if path)
+          rust = subprocess.check_output(['rustc', '-Vv']) if inputs.get('rebuild_zayit_framework') else b''
+          integration = b''.join(git('Scripts/CI/' + name) for name in [
+              'hq-stage2-focused-apple.py', 'hq-original-editor-distribution.py',
+              'hq-original-editor-app-target.rb', 'OriginalEditorDistributionAPICheck.swift'])
+          native = (subprocess.check_output(['xcodebuild', '-version']) + git('Vendor') + git('Maktabah.xcodeproj')
+                    + pathlib.Path('Podfile').read_bytes() + json.dumps(inputs, sort_keys=True).encode() + layout + rust
+                    + pathlib.Path('Scripts/CI/runtime27-original-editor.inputs.json').read_bytes() + integration)
+          prefix = 'original-editor-stageb-derived-v1-' + hashlib.sha256(native).hexdigest() + '-'
+          key = prefix + hashlib.sha256(git('Source') + git('Maktabah-iOSUITests')).hexdigest()
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('prefix=' + prefix + '\nkey=' + key + '\n')
+          PY
+      - uses: actions/cache/restore@v4
+        id: build_cache
+        with:
+          path: build/DerivedData
+          key: ${{ steps.build_cache_key.outputs.key }}
+          restore-keys: ${{ steps.build_cache_key.outputs.prefix }}
+      - name: Build the real app and UI runner once with the admitted original SDK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python3 Scripts/CI/hq-stage2-focused-apple.py
+          --build-for-testing --derived-data build/DerivedData
+          --original-editor-admission Scripts/CI/runtime27-original-editor.inputs.json
+      - name: Execute the separate original annotation editor journey
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 Scripts/CI/runtime27-original-editor-native.py run
+      - name: Verify original native results and retain named evidence
+        if: always()
+        run: python3 Scripts/CI/runtime27-original-editor-native.py collect
+      - name: Admit only actual matching build products to the compiler cache
+        id: cache_ready
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib
+          path = pathlib.Path('build/hq-stage2/result.json')
+          report = json.loads(path.read_text()) if path.is_file() else {}
+          expected = hashlib.sha256(pathlib.Path('Scripts/CI/runtime27-original-editor.inputs.json').read_bytes()).hexdigest()
+          ready = (report.get('status') == 'SIMULATOR_BUILD_FOR_REAL_UI_PASS'
+                   and report.get('checkout_sha') == os.environ['EXPECTED_CHECKOUT_SHA']
+                   and report.get('original_editor_distribution', {}).get('admission_sha256') == expected)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('ready=' + str(ready).lower() + '\n')
+          PY
+      - uses: actions/cache/save@v4
+        if: ${{ always() && steps.cache_ready.outputs.ready == 'true' && steps.build_cache.outputs.cache-hit != 'true' }}
+        with:
+          path: build/DerivedData
+          key: ${{ steps.build_cache_key.outputs.key }}
+      - name: Retain bounded original editor qualification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-editor-stageb-evidence-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            build/original-editor-native-evidence/
+            build/original-editor-sdk-metadata/
+            build/hq-stage2/*.json
+            build/hq-stage2/*.log
+            build/hq-stage2/*Package.resolved
+            build/hq-stage2/*.diff
+            build/hq-stage2/*.xcprivacy
+            build/hq-stage2/ExpoModulesProvider.swift
+            build/hq-stage2/resolved-Podfile.lock
+            build/hq-stage2/generated-Maktabah-project.pbxproj
+            build/hq-stage2/privacy-dependency-inputs/
+            build/hq-stage2/original-editor/
+          if-no-files-found: error
+          retention-days: 14
