@@ -2,7 +2,7 @@ name: Original fresh-read no-send native diagnostic
 
 on:
   push:
-    branches: [codex/otzaria-hanlin-fresh-read-diagnostic-20261122]
+    branches: [codex/otzaria-hanlin-fresh-read-keyboard-native-20261122]
 
 permissions:
   contents: read

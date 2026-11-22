@@ -1,0 +1,12 @@
+{
+  "status": "RETAINED_RAW_PATCH_CONTEXT_WHITESPACE",
+  "diagnosticCount": 779,
+  "paths": [
+    "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/generated-pods-project.diff"
+  ],
+  "allDiagnostics": "space before tab in indent",
+  "oldAttributesSha256": "124fdd3922e1972bf1e8f354a05cde309884c9140a8a3f2ea06583bf294d09d4",
+  "newAttributesSha256": "20682c453f083da3e00b590d25ab7f2f19ed0c13a9a6cd364bc150271bf4e365",
+  "rawPayloadBytesChanged": false,
+  "testsOrParseRepeated": false
+}

@@ -1,0 +1,42 @@
+{
+  "schema": "otzaria.fresh-read-keyboard-source-admission/1",
+  "status": "RUNNING",
+  "started": "2026-11-22T10:34:06.294824+00:00",
+  "checkout": "aec8162c34598c859c9dc61b6e8b298b5d5d36e6",
+  "applicationSource": "d49cedb3d5c163b7a008248d94b80a2eda28e3ce",
+  "newTestsExecuted": 0,
+  "nativeExecuted": false,
+  "providerRequests": false,
+  "commands": [],
+  "inputs": {
+    "Scripts/CI/completion-focused-native.py": {
+      "bytes": 10835,
+      "sha256": "a355447144d28a0f6bc09def3a3b8bb1cfd055a2b9f383cb2b275e5579342fea"
+    },
+    ".github/workflows/otzaria-completion-focused-native.yml": {
+      "bytes": 6653,
+      "sha256": "e2306ded02ab66b6c9d0acbaa144c630cbc7d5b44d5230a604241fb521a91b4c"
+    },
+    "Scripts/CI/hq-stage2-focused-apple.py": {
+      "bytes": 48574,
+      "sha256": "0dbe133b8f0ee188dc2f0d0c375972a210571498ecac928f1174730ebb0e83f5"
+    },
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": {
+      "bytes": 4333,
+      "sha256": "587938b3f8e4c64de5ccc2819aa9251323dfcad70f8828304b810ee8bcbb72fe"
+    },
+    "Scripts/CI/reuse-host48.py": {
+      "bytes": 7762,
+      "sha256": "98a407dedd0da4575cee7fc70bfdb4fe5b62effd513654ea3dd7d52700ac686b"
+    },
+    "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift": {
+      "bytes": 46831,
+      "sha256": "9413eed5741bf3fec8b6c97da86ecb6caed026c7f9e85d80219beb57d037b0a7"
+    }
+  },
+  "python": {
+    "path": "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "sha256": "18e806e2bfb8ffedf61274d6517694e2a52e130b22e870d38671a9c37391dd52",
+    "version": "3.12.5 (tags/v3.12.5:ff3bc82, Aug  6 2024, 20:45:27) [MSC v.1940 64 bit (AMD64)]"
+  }
+}

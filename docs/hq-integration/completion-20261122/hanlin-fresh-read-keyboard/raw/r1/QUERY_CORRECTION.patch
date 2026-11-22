@@ -1,0 +1,11 @@
+--- candidate-v0.swift
++++ candidate-v1.swift
+@@ -315,7 +315,7 @@
+         key.typeText("ui-no-send-credential")
+         let keyboard = app.keyboards.firstMatch
+         XCTAssertTrue(keyboard.waitForExistence(timeout: 10))
+-        let hideKeyboard = keyboard.buttons.matching(identifier: "Hide keyboard")
++        let hideKeyboard = keyboard.buttons.matching(NSPredicate(format: "label == %@", "Hide keyboard"))
+         XCTAssertEqual(hideKeyboard.count, 1)
+         capture("hanlin-fresh-read-no-send-before-native-keyboard-dismiss")
+         tapNative(hideKeyboard.element(boundBy: 0))

@@ -1,0 +1,13 @@
+{
+  "suites": [
+    {
+      "suite": "HanlinReaderConsumerAcceptanceTests",
+      "selection": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
+      "expected": [
+        "testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    }
+  ],
+  "status": "DECLARATIONS_MATCH"
+}

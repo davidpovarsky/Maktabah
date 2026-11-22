@@ -1,0 +1,161 @@
+{
+  "schema": "otzaria.fresh-read-keyboard-source-admission/1",
+  "status": "PASS_SOURCE_ADMISSION_ONLY",
+  "started": "2026-11-22T10:34:06.294824+00:00",
+  "checkout": "aec8162c34598c859c9dc61b6e8b298b5d5d36e6",
+  "applicationSource": "d49cedb3d5c163b7a008248d94b80a2eda28e3ce",
+  "newTestsExecuted": 0,
+  "nativeExecuted": false,
+  "providerRequests": false,
+  "commands": [
+    {
+      "label": "focused-prepare",
+      "command": [
+        "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+        "Scripts/CI/completion-focused-native.py",
+        "prepare"
+      ],
+      "timeoutSeconds": 180,
+      "started": "2026-11-22T10:34:07.084998+00:00",
+      "environmentOverrides": {
+        "PYTHONUTF8": "1",
+        "EXPECTED_CHECKOUT_SHA": "aec8162c34598c859c9dc61b6e8b298b5d5d36e6"
+      },
+      "returncode": 0,
+      "finished": "2026-11-22T10:34:36.112578+00:00",
+      "durationSeconds": 29.031,
+      "stdout": {
+        "path": "focused-prepare.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "focused-prepare.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "hq-preflight",
+      "command": [
+        "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+        "Scripts/CI/hq-stage2-focused-apple.py",
+        "--preflight-only"
+      ],
+      "timeoutSeconds": 180,
+      "started": "2026-11-22T10:34:36.119634+00:00",
+      "environmentOverrides": {
+        "PYTHONUTF8": "1",
+        "EXPECTED_CHECKOUT_SHA": "aec8162c34598c859c9dc61b6e8b298b5d5d36e6"
+      },
+      "returncode": 0,
+      "finished": "2026-11-22T10:34:42.588472+00:00",
+      "durationSeconds": 6.469,
+      "stdout": {
+        "path": "hq-preflight.stdout",
+        "bytes": 3625,
+        "sha256": "08eecac127532302170f2d670254cea89c70f06b2eb8c5322720b37cbb0d1e61"
+      },
+      "stderr": {
+        "path": "hq-preflight.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "host48-reuse",
+      "command": [
+        "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+        "Scripts/CI/reuse-host48.py"
+      ],
+      "timeoutSeconds": 180,
+      "started": "2026-11-22T10:34:42.633250+00:00",
+      "environmentOverrides": {
+        "PYTHONUTF8": "1",
+        "EXPECTED_CHECKOUT_SHA": "aec8162c34598c859c9dc61b6e8b298b5d5d36e6"
+      },
+      "returncode": 0,
+      "finished": "2026-11-22T10:34:54.676939+00:00",
+      "durationSeconds": 12.031,
+      "stdout": {
+        "path": "host48-reuse.stdout",
+        "bytes": 1196,
+        "sha256": "6c3117698a175127982d6d457a5cd71cdb22af67a41149de82c41c7d6db3d8ba"
+      },
+      "stderr": {
+        "path": "host48-reuse.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "inputs": {
+    "Scripts/CI/completion-focused-native.py": {
+      "bytes": 10835,
+      "sha256": "a355447144d28a0f6bc09def3a3b8bb1cfd055a2b9f383cb2b275e5579342fea"
+    },
+    ".github/workflows/otzaria-completion-focused-native.yml": {
+      "bytes": 6653,
+      "sha256": "e2306ded02ab66b6c9d0acbaa144c630cbc7d5b44d5230a604241fb521a91b4c"
+    },
+    "Scripts/CI/hq-stage2-focused-apple.py": {
+      "bytes": 48574,
+      "sha256": "0dbe133b8f0ee188dc2f0d0c375972a210571498ecac928f1174730ebb0e83f5"
+    },
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": {
+      "bytes": 4333,
+      "sha256": "587938b3f8e4c64de5ccc2819aa9251323dfcad70f8828304b810ee8bcbb72fe"
+    },
+    "Scripts/CI/reuse-host48.py": {
+      "bytes": 7762,
+      "sha256": "98a407dedd0da4575cee7fc70bfdb4fe5b62effd513654ea3dd7d52700ac686b"
+    },
+    "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift": {
+      "bytes": 46831,
+      "sha256": "9413eed5741bf3fec8b6c97da86ecb6caed026c7f9e85d80219beb57d037b0a7"
+    }
+  },
+  "python": {
+    "path": "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "sha256": "18e806e2bfb8ffedf61274d6517694e2a52e130b22e870d38671a9c37391dd52",
+    "version": "3.12.5 (tags/v3.12.5:ff3bc82, Aug  6 2024, 20:45:27) [MSC v.1940 64 bit (AMD64)]"
+  },
+  "selectedCases": [
+    "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+  ],
+  "executionInputCount": 279,
+  "trees": {
+    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "86f07db3f58fe6d73c063b02ae3c1d31ae2d2468"
+  },
+  "hostReuse": {
+    "originalRun": "https://github.com/davidpovarsky/Maktabah/actions/runs/44940208007",
+    "originalTestsPassed": 48,
+    "newTestsExecuted": 0
+  },
+  "finished": "2026-11-22T10:34:55.681140+00:00",
+  "retainedOutputs": [
+    {
+      "path": "outputs/build/artifacts/continuation-focused/declarations.json",
+      "bytes": 391,
+      "sha256": "c7864d8bb2b29aaeb12d039f07578c0745087b3a0983e910941151f032282ea5"
+    },
+    {
+      "path": "outputs/build/artifacts/continuation-focused/selection.json",
+      "bytes": 180462,
+      "sha256": "074cd711925cc9f59366b9f87453575c8e26e1839cedbf7213d77e50be1a696a"
+    },
+    {
+      "path": "outputs/build/artifacts/continuation-focused/source-before.json",
+      "bytes": 64072,
+      "sha256": "022610f8a77c06a4e44ca24af3d94d712b8de15938e94b37705268dc1cc06148"
+    },
+    {
+      "path": "outputs/build/artifacts/continuation-host48-reuse/result.json",
+      "bytes": 1256,
+      "sha256": "f2a1ef7b733952914790200e3539fc719401c8e7c96f8cb1adf309c2b4114047"
+    }
+  ]
+}

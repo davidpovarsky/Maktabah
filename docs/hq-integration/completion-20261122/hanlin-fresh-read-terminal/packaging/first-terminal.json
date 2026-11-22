@@ -1,0 +1,36 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"ok\":true,\"job\":{\"id\":\"job_081f2d4b3b64\",\"type\":\"job_result\",\"source\":\"script_run@host_7ec8382e82747448\",\"severity\":\"warning\",\"tool\":\"script_run\",\"host\":\"host_7ec8382e82747448\",\"status\":\"failed\",\"exit_code\":1,\"created_at\":1795343275.7514405,\"started_at\":\"2026-11-22T10:27:55.800871+00:00\",\"finished_at\":\"2026-11-22T10:28:24.552351+00:00\",\"duration_s\":28.75,\"error\":null,\"output_truncated\":false,\"timeout_s\":360,\"read\":false,\"notified\":{\"telegram\":null,\"resend\":null},\"notify_spec\":{},\"output\":\"Traceback (most recent call last):\\r\\n  File \\\"C:\\\\ProgramData\\\\SentinelX\\\\uploads\\\\.sentinelx_uploads\\\\script_job_c34fd308c3634143b57fe5f62b46fcb7\\\\script.py\\\", line 28, in <module>\\r\\n    git(\\\"diff\\\",\\\"--cached\\\",\\\"--check\\\")\\r\\n  File \\\"C:\\\\ProgramData\\\\SentinelX\\\\uploads\\\\.sentinelx_uploads\\\\script_job_c34fd308c3634143b57fe5f62b46fcb7\\\\script.py\\\", line 9, in git\\r\\n    def git(*a):return subprocess.check_output([\\\"git\\\",\\\"-c\\\",\\\"core.autocrlf=false\\\",*a],cwd=repo,timeout=90)\\r\\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\r\\n  File \\\"C:\\\\Users\\\\DAVID\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Lib\\\\subprocess.py\\\", line 466, in check_output\\r\\n    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,\\r\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\r\\n  File \\\"C:\\\\Users\\\\DAVID\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Lib\\\\subprocess.py\\\", line 571, in run\\r\\n    raise CalledProcessError(retcode, process.args,\\r\\nsubprocess.CalledProcessError: Command '['git', '-c', 'core.autocrlf=false', 'diff', '--cached', '--check']' returned non-zero exit status 2.\"}}"
+    }
+  ],
+  "structuredContent": {
+    "ok": true,
+    "job": {
+      "id": "job_081f2d4b3b64",
+      "type": "job_result",
+      "source": "script_run@host_7ec8382e82747448",
+      "severity": "warning",
+      "tool": "script_run",
+      "host": "host_7ec8382e82747448",
+      "status": "failed",
+      "exit_code": 1,
+      "created_at": 1795343275.7514405,
+      "started_at": "2026-11-22T10:27:55.800871+00:00",
+      "finished_at": "2026-11-22T10:28:24.552351+00:00",
+      "duration_s": 28.75,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 360,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "Traceback (most recent call last):\r\n  File \"C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_c34fd308c3634143b57fe5f62b46fcb7\\script.py\", line 28, in <module>\r\n    git(\"diff\",\"--cached\",\"--check\")\r\n  File \"C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_c34fd308c3634143b57fe5f62b46fcb7\\script.py\", line 9, in git\r\n    def git(*a):return subprocess.check_output([\"git\",\"-c\",\"core.autocrlf=false\",*a],cwd=repo,timeout=90)\r\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\DAVID\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\subprocess.py\", line 466, in check_output\r\n    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\DAVID\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\subprocess.py\", line 571, in run\r\n    raise CalledProcessError(retcode, process.args,\r\nsubprocess.CalledProcessError: Command '['git', '-c', 'core.autocrlf=false', 'diff', '--cached', '--check']' returned non-zero exit status 2."
+    }
+  },
+  "isError": false
+}

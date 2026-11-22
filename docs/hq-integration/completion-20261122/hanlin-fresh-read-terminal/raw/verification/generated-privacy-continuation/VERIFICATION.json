@@ -1,0 +1,149 @@
+{
+  "schema": "otzaria.native-fresh-read-independent-verification/1",
+  "status": "VERIFIED_ACTUAL_FAILURE",
+  "created": "2026-11-22T10:17:22.924545+00:00",
+  "runID": 45006363282,
+  "checkout": "997bc6872fed666daef8f720ddd1f847647be80c",
+  "applicationSource": "7eb9d2a5c8ac7ccb184e3cc50fb36b6272475ff1",
+  "applicationTrees": {
+    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "e4f67f6fc7cd0a4242d4ed5277490acad3464ec1"
+  },
+  "primaryPayloadFilesVerified": 60,
+  "executionInputsGitBytesVerified": 279,
+  "executionInputVerificationEvidence": "First issued verifier completed all 279 Git blob, length and SHA checks before its retained later assertion rejected the known CocoaPods generated privacy file. This continuation does not replay those byte checks.",
+  "firstVerifierFailureRetained": true,
+  "buildSourceBindings": {
+    "total": 1012,
+    "unchangedGitBlobs": 1011,
+    "generatedPrivacyBlobAndBytesVerified": true,
+    "allNonReasonDeclarationsUnchanged": true,
+    "allOriginalReasonsRetained": true,
+    "addedDependencyReasons": [
+      [
+        "NSPrivacyAccessedAPICategoryDiskSpace",
+        "85F4.1"
+      ],
+      [
+        "NSPrivacyAccessedAPICategoryDiskSpace",
+        "E174.1"
+      ],
+      [
+        "NSPrivacyAccessedAPICategoryFileTimestamp",
+        "0A2A.1"
+      ],
+      [
+        "NSPrivacyAccessedAPICategorySystemBootTime",
+        "35F9.1"
+      ],
+      [
+        "NSPrivacyAccessedAPICategoryUserDefaults",
+        "1C8F.1"
+      ],
+      [
+        "NSPrivacyAccessedAPICategoryUserDefaults",
+        "C56D.1"
+      ]
+    ],
+    "dependencyInputs": {
+      "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef": {
+        "path": "privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+        "bytes": 855,
+        "originalPath": "Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/Resources/PrivacyInfo.xcprivacy"
+      },
+      "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38": {
+        "path": "privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+        "bytes": 1482,
+        "originalPath": "Pods/FirebaseRemoteConfig/FirebaseRemoteConfig/Swift/Resources/PrivacyInfo.xcprivacy"
+      },
+      "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c": {
+        "path": "privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+        "bytes": 1233,
+        "originalPath": "Pods/GoogleUtilities/GoogleUtilities/Privacy/Resources/PrivacyInfo.xcprivacy"
+      },
+      "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd": {
+        "path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+        "bytes": 877,
+        "originalPath": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy"
+      },
+      "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d": {
+        "path": "privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+        "bytes": 776,
+        "originalPath": "Vendor/SefariaMobile/Upstream/node_modules/react-native/third-party-podspecs/boost/PrivacyInfo.xcprivacy"
+      }
+    }
+  },
+  "uniqueExecutedCases": 1,
+  "nativePassed": 0,
+  "nativeFailed": 1,
+  "nativeSkipped": 0,
+  "case": {
+    "children": [
+      {
+        "name": "XCTAssertTrue failed - Use the actual native control",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+          "lineNumber": 294
+        }
+      }
+    ],
+    "duration": "1m 28s",
+    "durationInSeconds": 88.01875698566437,
+    "name": "testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending()",
+    "nodeIdentifier": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending()",
+    "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
+    "nodeType": "Test Case",
+    "result": "Failed"
+  },
+  "strictSummaryCanonicalHashVerified": true,
+  "strictTestsCanonicalHashVerified": true,
+  "binaryEvidence": {
+    "beforeAfterThreeExecutableDigestsRecorded": {
+      "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app": "1765295093adc72553b18ab4c5106dcbcc4188445e8e597b43ad75d0b7941add",
+      "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app": "3086dedeaf97ddefa63872433a5712806c4b396faf3e41d0152ff0144505d2b9",
+      "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest": "fcc4403956b5d849b79821df0fa6d0b49d94489049f4f8882667791d7f058386"
+    },
+    "actualBinaryPayloadsRetained": false,
+    "scope": "Original runner recorded matching before/after executable digests. The separate compiled-image record reports three images (five unique paths across both records); no independent binary-byte verification is claimed."
+  },
+  "buildPostUIDifferences": {
+    "keys": [
+      "commands",
+      "generated_configuration"
+    ],
+    "oneAdditionalOriginalAuditCommand": true,
+    "sameOriginalPrivacyAggregationRecordRepeated": true
+  },
+  "ownedSimulatorCleanup": "PASS",
+  "host48": {
+    "newTests": 0,
+    "reusedExactOriginalInputs": true,
+    "priorRun": 44940208007
+  },
+  "failureStage": "Existing unique native consent child non-hittable after manual normal form entry and four swipeUp gestures; consent tap, Connect, reopen and revoke assertion not reached.",
+  "axEvidence": {
+    "path": "captures/visual-11-reader/D6DD0481-8830-4F76-AD60-F2BF50762000.txt",
+    "sha256": "3c1acd6364e664eeb40f9a8cd9e757f21b09927e909c0438c46305ae04fa0406",
+    "focusedSecureField": true,
+    "keyboardFrame": [
+      0,
+      461,
+      1210,
+      370
+    ],
+    "nativeSwitchFrame": [
+      798,
+      528.5,
+      63,
+      28
+    ],
+    "realHideKeyboardButton": true,
+    "screenshotLimitation": "The teardown screenshot taken 0.410 seconds after the AX attachment does not visibly display the keyboard. No screenshot-based keyboard or exact injected-tap-coordinate claim is made."
+  },
+  "providerRequestOrCredentialClaim": "Reviewed no-key/no-send diagnostic. No provider acceptance or complete network instrumentation is inferred.",
+  "productChangesByAudit": 0,
+  "newTestsExecutedByAudit": 0
+}

@@ -1,0 +1,19 @@
+{
+  "command": [
+    "git",
+    "-c",
+    "core.autocrlf=false",
+    "worktree",
+    "add",
+    "-b",
+    "codex/otzaria-hanlin-fresh-read-keyboard-evidence-20261122",
+    "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-fresh-read-keyboard-20261122",
+    "895bbcb54f86be0fc0463d7ed9d78f3599d6bdd2"
+  ],
+  "started": "2026-11-22T10:25:56.811206+00:00",
+  "duration": 51.328000000008615,
+  "returncode": 0,
+  "head": "895bbcb54f86be0fc0463d7ed9d78f3599d6bdd2",
+  "status": "",
+  "result": "PASS"
+}

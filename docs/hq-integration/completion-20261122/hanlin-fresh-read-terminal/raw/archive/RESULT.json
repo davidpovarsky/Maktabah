@@ -1,0 +1,48 @@
+{
+  "schema": "otzaria.native-fresh-read-artifact-intake/1",
+  "status": "PASS",
+  "runID": 45006363282,
+  "head": "997bc6872fed666daef8f720ddd1f847647be80c",
+  "applicationSource": "7eb9d2a5c8ac7ccb184e3cc50fb36b6272475ff1",
+  "attempt": 1,
+  "started": "2026-11-22T10:08:02.377248+00:00",
+  "artifacts": [
+    {
+      "id": 14749682058,
+      "kind": "evidence",
+      "bytes": 6409802,
+      "sha256": "9436a1e07582667ea201da5c36461cf3f1402077133906dcc4cca32a59c1a893",
+      "status": "VERIFIED_EXTRACTED",
+      "command": [
+        "gh",
+        "api",
+        "repos/davidpovarsky/Maktabah/actions/artifacts/14749682058/zip"
+      ],
+      "ownedPID": 18592,
+      "returncode": 0,
+      "fileCount": 60,
+      "expandedBytes": 32025289,
+      "finished": "2026-11-22T10:08:16.999352+00:00"
+    },
+    {
+      "id": 14749388619,
+      "kind": "captures",
+      "bytes": 104633270,
+      "sha256": "cdd24a7b99d1b6c230f0a3c7313db69fdc743cb7b475ecd03f52fca9dc2e9825",
+      "status": "VERIFIED_EXTRACTED",
+      "command": [
+        "gh",
+        "api",
+        "repos/davidpovarsky/Maktabah/actions/artifacts/14749388619/zip"
+      ],
+      "ownedPID": 27960,
+      "returncode": 0,
+      "fileCount": 1388,
+      "expandedBytes": 105588620,
+      "finished": "2026-11-22T10:11:49.762011+00:00"
+    }
+  ],
+  "downloadsPerArtifact": 1,
+  "secretUsed": false,
+  "finished": "2026-11-22T10:11:49.765003+00:00"
+}
