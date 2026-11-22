@@ -1,0 +1,57 @@
+{
+  "head": "558fdd787b26b6c9dc33b6fb59da7c080fa2671c",
+  "source_inputs": {
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/Lifetime.swift": "451054685e2ff0c30371d384904be831412eec16c2a5e16c660d2f1891921eb4",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/Operation.swift": "55804cf1a06b59dc80846ab4bc8b874a2d54ae28649288c5b49930267b9ae844",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/Binding.swift": "e304f05ed114342795dbc3a603490311142d63f9a6a156bdcdafd68743e710cb",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/Owner.swift": "5ff93fe232eaed63519ce3721bf423c777d6d0b4d312f6d48c4bf8f6ca6b1adc",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/PreparedEditorPageDocument.swift": "42e595c324e46947d4b964070994a193478d57072931b92be1451f155e2cb32e",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/RoleSource.swift": "bd497ad835574512d29d75f7285cf13e54f9353b6f62500b56655cf36a1b0951",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/OriginalTypePermissionProbe.swift": "0708d577f19f0c382cec913b990e949716c543536c4166575ed60e96f5c33f6a",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/SQLiteDatabase.swift": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/PRODUCTION_INPUTS.json": "5803a514092dd84fded7dc7e93f4a2467cb3be57abfed3375ac899d9409c25d7",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/OriginalOwnerSQLiteAcceptance.swift": "f922db58646a0c7f5714d487df8f31bef70acdbf49902843c2ddb954a6fef7ea",
+    "docs/hq-integration/completion-20261122/original-owner-exclusive-sqlite/OriginalOwnerExclusiveSQLiteControls.swift": "5d4cb2744a4d03d8a46808618ccd78052d316ab7dedffd462cf22bdaf42066ed",
+    "docs/hq-integration/completion-20261122/original-owner-exclusive-sqlite/run-exclusive-owner-sqlite-controls.py": "179e4ad274200ca436134b0017153b769cc536bb04fd2f6251e22285d9d9c8b3",
+    "docs/hq-integration/completion-20261122/original-owner-exclusive-positive/PositiveOnly.swift": "3b7982e006d48e85d3281a4b04f96291ade1a543aa125db37ab688a2ea981383",
+    "docs/hq-integration/completion-20261122/original-owner-exclusive-positive/run-positive-only.py": "541e949476da377116dd81c89389741a3de76272b3d563962ace1a2a17581cd5"
+  },
+  "historical_evidence_inputs": {
+    "docs/hq-integration/completion-20261122/original-owner-exclusive-sqlite/validation/windows-exclusive-two-20261122/RESULT.json": "d3f526d50b9f99a1be3919d6276c36f2ac8dbde514e9387de16d3efb9a11eaea",
+    "docs/hq-integration/completion-20261122/original-owner-exclusive-sqlite/validation/windows-exclusive-two-20261122/SOURCE_MANIFEST.json": "ed1adccd667975f7e63b6dde9e93b20e13084292955d62a90f4e7bedc97f21e1",
+    "docs/hq-integration/completion-20261122/original-owner-exclusive-sqlite/validation/windows-exclusive-two-20261122/fixtures/CASES.json": "cdc294992fa34c29acce77ad2f20094bc92e2a2d5ad391e364aaefd094d495f8",
+    "docs/hq-integration/completion-20261122/original-owner-exclusive-sqlite/validation/windows-exclusive-two-20261122/fixtures/WRITER.json": "09f36873840a4221bccdcdd37bdfb28112467cd4e8bf19ebb00551de74113331",
+    "docs/hq-integration/completion-20261122/original-owner-exclusive-sqlite/evidence/FAILED_PATH_OBSERVATION.json": "1e35481872f1946205dcb8229af3acd22505d1b7cff530c02576ca07dea68533"
+  },
+  "compiled_copies": {
+    "Lifetime.swift": "451054685e2ff0c30371d384904be831412eec16c2a5e16c660d2f1891921eb4",
+    "Operation.swift": "55804cf1a06b59dc80846ab4bc8b874a2d54ae28649288c5b49930267b9ae844",
+    "Binding.swift": "e304f05ed114342795dbc3a603490311142d63f9a6a156bdcdafd68743e710cb",
+    "Owner.swift": "5ff93fe232eaed63519ce3721bf423c777d6d0b4d312f6d48c4bf8f6ca6b1adc",
+    "PreparedEditorPageDocument.swift": "42e595c324e46947d4b964070994a193478d57072931b92be1451f155e2cb32e",
+    "RoleSource.swift": "bd497ad835574512d29d75f7285cf13e54f9353b6f62500b56655cf36a1b0951",
+    "OriginalTypePermissionProbe.swift": "0708d577f19f0c382cec913b990e949716c543536c4166575ed60e96f5c33f6a",
+    "SQLiteDatabase.swift": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+    "UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+    "PositiveOnly.swift": "971cc4ce7bebe197161fba9ed4545cfefb8b042492863316e3013fb1b10e49e8"
+  },
+  "derivation": {
+    "helper_prefix_bytes": 6694,
+    "helper_prefix_sha256": "e70be884090dd1f52bdc63a7ffe0a3b527d059e67cb1b960671114687c3a30ff",
+    "observation_bytes": 158,
+    "observation_sha256": "e4a892bcec41d87846ccb32b0594d45ad7ff1c7d86fe48981e05822f7eed31d4",
+    "unchanged_positive_function_bytes": 4824,
+    "unchanged_positive_function_sha256": "1dd7cfa4f7cf13b559b51a6ce6cb38a02893199a880dd9f0d4819ccc1171a162",
+    "retained_negative_function_sha256": "e5c82b131fcbb523aa908d7c5f80aa0c4dea7365c28cb63a56570ecb64ed59fb",
+    "entrypoint_sha256": "3b7982e006d48e85d3281a4b04f96291ade1a543aa125db37ab688a2ea981383",
+    "combined_sha256": "971cc4ce7bebe197161fba9ed4545cfefb8b042492863316e3013fb1b10e49e8",
+    "negative_assertion_compiled": false,
+    "prior_six_assertions_compiled": false
+  },
+  "negative_database": {
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\validation\\windows-exclusive-two-20261122\\fixtures\\exclusive_read_refuses_default_mutation_before_sql.sqlite",
+    "sha256": "e0c5b9d088647eab4ff31754c2e079237ea8fb3f6644028fa0d249ffc8279c68",
+    "bytes": 20480
+  }
+}

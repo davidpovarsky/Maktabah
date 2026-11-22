@@ -1,0 +1,51 @@
+{
+  "observed_at": "2026-11-22T05:22:19.545947+00:00",
+  "source_candidate": "f81213dc5bba73272c9d0aa9873a7ef1e05e1528",
+  "actual_parent_exists": true,
+  "paths": [
+    {
+      "name": "exclusive_read_allows_explicit_local_read_scope_commit",
+      "sqlite_filename": "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\validation\\windows-exclusive-two-20261122\\fixtures\\exclusive_read_allows_explicit_local_read_scope_commit.sqlite",
+      "characters": 253,
+      "utf16_code_units": 253,
+      "initial_journal_filename_characters": 261,
+      "exists": true,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "FAIL",
+      "events": []
+    },
+    {
+      "name": "exclusive_read_refuses_default_mutation_before_sql",
+      "sqlite_filename": "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\validation\\windows-exclusive-two-20261122\\fixtures\\exclusive_read_refuses_default_mutation_before_sql.sqlite",
+      "characters": 249,
+      "utf16_code_units": 249,
+      "initial_journal_filename_characters": 257,
+      "exists": true,
+      "bytes": 20480,
+      "sha256": "e0c5b9d088647eab4ff31754c2e079237ea8fb3f6644028fa0d249ffc8279c68",
+      "status": "PASS",
+      "events": [
+        "original_exclusive_read_entered",
+        "sqlite_serialized_lock_acquired_inside_read",
+        "default_mutation_rejected_before_fixture_sql",
+        "sqlite_serialized_lock_returned_before_capture_release",
+        "original_exclusive_read_failed_write_latched",
+        "owner_onDrained"
+      ]
+    }
+  ],
+  "diagnosis": "Positive fixture initialization failed before any Owner event. The observed journal filename length is consistent with a Windows SDK path limit; this is an inference until the unchanged positive body is executed at a shorter owned path.",
+  "writer": {
+    "ACK": "0",
+    "cases": "2",
+    "fixtureOnlyTables": "true",
+    "nativeRPC": "0",
+    "nativeReceipts": "0",
+    "pid": "20252",
+    "productionIdentityWrites": "0",
+    "scope": "two new exclusive-read combinations; six original controls not executed",
+    "sourceOwner": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+    "sqlite": "3.53.4"
+  }
+}

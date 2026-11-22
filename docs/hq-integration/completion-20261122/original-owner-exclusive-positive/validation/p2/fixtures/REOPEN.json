@@ -1,0 +1,11 @@
+{
+  "ACK" : "0",
+  "durableRows" : "1",
+  "nativeRPC" : "0",
+  "nativeReceipts" : "0",
+  "pid" : "20488",
+  "productionIdentityWrites" : "0",
+  "sqlite" : "3.53.4",
+  "status" : "PASS",
+  "writerPID" : "4968"
+}

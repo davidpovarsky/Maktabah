@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\DAVID\Code\Maktabah-original-owner-sqlite-controls-20261122\docs\hq-integration\completion-20261122\original-owner-exclusive-sqlite\run-exclusive-owner-sqlite-controls.py", line 104, in main
+    assert result.returncode==0 and [r["name"] for r in cases]==expected and all(r["status"]=="PASS" and r.get("error") is None for r in cases),"new exclusive-read/SQLite controls failed"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: new exclusive-read/SQLite controls failed

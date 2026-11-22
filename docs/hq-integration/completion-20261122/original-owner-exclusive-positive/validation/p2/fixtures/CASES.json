@@ -1,0 +1,29 @@
+[
+  {
+    "durableRows" : 1,
+    "events" : [
+      "original_exclusive_read_entered",
+      "sqlite_serialized_lock_acquired_inside_read",
+      "explicit_read_scope_local_body_admitted",
+      "local_outer_commit_inside_exclusive_read",
+      "explicit_child_read_returned_before_capture_release",
+      "sqlite_serialized_lock_returned_before_capture_release",
+      "original_exclusive_read_returned",
+      "owner_onDrained"
+    ],
+    "facts" : {
+      "awaitInsideSQLiteLockOrTransaction" : "false",
+      "bodyExecutions" : "1",
+      "lockOrder" : "exclusiveRead_then_SQLiteSerialized_then_childRead_then_outerCommit",
+      "nativeMutationAuthorityUpgrade" : "false",
+      "nativeRPCDispatched" : "0",
+      "originalReadBarrierHeldAtCommit" : "true",
+      "outerCommit" : "true",
+      "publishedCurrentSuccess" : "true",
+      "requiresEditing" : "false"
+    },
+    "name" : "exclusive_read_allows_explicit_local_read_scope_commit",
+    "ownerOutcome" : "current_owner_explicit_read_scope_success",
+    "status" : "PASS"
+  }
+]

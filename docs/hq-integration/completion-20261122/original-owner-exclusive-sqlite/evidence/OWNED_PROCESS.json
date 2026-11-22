@@ -1,0 +1,10 @@
+{
+  "pid": 25596,
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\run-exclusive-owner-sqlite-controls.py",
+    "--result-dir",
+    "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\validation\\windows-exclusive-two-20261122"
+  ],
+  "head": "f81213dc5bba73272c9d0aa9873a7ef1e05e1528"
+}

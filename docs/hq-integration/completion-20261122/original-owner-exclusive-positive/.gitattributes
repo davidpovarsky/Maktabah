@@ -1,0 +1,3 @@
+* -text
+*.log -whitespace
+evidence/EXECUTION_WRAPPER.py -whitespace

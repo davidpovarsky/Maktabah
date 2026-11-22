@@ -1,0 +1,17 @@
+{
+  "reviewer": "/root/native_completion",
+  "source_candidate": "558fdd787b26b6c9dc33b6fb59da7c080fa2671c",
+  "status": "APPROVED_FOR_ONE_POSITIVE_ONLY_EXECUTION",
+  "reviewed": [
+    "All105-line entrypoint and120-line runner and committed Git hashes.",
+    "Initial RED tree equals d8b0b6ae and six tree equals8894.",
+    "All9 dependency hashes and13 original closure inputs.",
+    "Exact helper6694, observation158 and unchanged positive4824 produce combined18243 hash971cc4ce.",
+    "Passing negative assertion absent; original DB20480B SHAe0c5b9d0 and exact6 negative events retained.",
+    "Original independentRows uses SQLITE_OPEN_READONLY|FULLMUTEX and queryOnly."
+  ],
+  "limits": [
+    "Source approval only, no positive runtime PASS yet.",
+    "No assertion, original Owner, SQLite, schema or production writer modification."
+  ]
+}

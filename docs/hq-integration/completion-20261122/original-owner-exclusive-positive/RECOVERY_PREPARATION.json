@@ -1,0 +1,22 @@
+{
+  "frozen_initial_red": "d8b0b6ae2a69eb0049bbfa524a2f34f878109dbf",
+  "original_assertions_source": "f81213dc5bba73272c9d0aa9873a7ef1e05e1528",
+  "initial_all_indexed_payloads_unchanged": true,
+  "original_six_packet_unchanged": true,
+  "helper_bytes": 6694,
+  "helper_sha256": "e70be884090dd1f52bdc63a7ffe0a3b527d059e67cb1b960671114687c3a30ff",
+  "observation_bytes": 158,
+  "observation_sha256": "e4a892bcec41d87846ccb32b0594d45ad7ff1c7d86fe48981e05822f7eed31d4",
+  "unchanged_positive_function_bytes": 4824,
+  "unchanged_positive_function_sha256": "1dd7cfa4f7cf13b559b51a6ce6cb38a02893199a880dd9f0d4819ccc1171a162",
+  "retained_negative_function_sha256": "e5c82b131fcbb523aa908d7c5f80aa0c4dea7365c28cb63a56570ecb64ed59fb",
+  "entrypoint_sha256": "3b7982e006d48e85d3281a4b04f96291ade1a543aa125db37ab688a2ea981383",
+  "runner_sha256": "541e949476da377116dd81c89389741a3de76272b3d563962ace1a2a17581cd5",
+  "combined_source_sha256": "971cc4ce7bebe197161fba9ed4545cfefb8b042492863316e3013fb1b10e49e8",
+  "positive_filename_characters": 227,
+  "journal_candidate_characters": 235,
+  "selected_new_controls": 1,
+  "negative_assertion_compiled_or_reexecuted": false,
+  "production_changes": 0,
+  "execution_status": "NOT_RUN"
+}

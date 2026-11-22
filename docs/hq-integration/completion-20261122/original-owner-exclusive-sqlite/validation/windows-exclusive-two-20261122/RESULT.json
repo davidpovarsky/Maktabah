@@ -1,0 +1,123 @@
+{
+  "status": "FAILED",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "commands": [
+    {
+      "label": "compile",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+        "-swift-version",
+        "5",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-j",
+        "1",
+        "-whole-module-optimization",
+        "-Onone",
+        "-I",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\build\\windows-exclusive-two-20261122\\SQLite3",
+        "-L",
+        "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.26100.0\\um\\x64",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\build\\windows-exclusive-two-20261122\\inputs\\Lifetime.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\build\\windows-exclusive-two-20261122\\inputs\\Operation.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\build\\windows-exclusive-two-20261122\\inputs\\Binding.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\build\\windows-exclusive-two-20261122\\inputs\\Owner.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\build\\windows-exclusive-two-20261122\\inputs\\PreparedEditorPageDocument.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\build\\windows-exclusive-two-20261122\\inputs\\RoleSource.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\build\\windows-exclusive-two-20261122\\inputs\\OriginalTypePermissionProbe.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\build\\windows-exclusive-two-20261122\\inputs\\SQLiteDatabase.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\build\\windows-exclusive-two-20261122\\inputs\\UnusedZstdBoundary.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\build\\windows-exclusive-two-20261122\\inputs\\OriginalOwnerExclusiveSQLiteControls.swift",
+        "-o",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\build\\windows-exclusive-two-20261122\\OriginalOwnerExclusiveSQLiteAcceptance.exe"
+      ],
+      "exit": 0,
+      "seconds": 46.43699999999808
+    },
+    {
+      "label": "controls",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\build\\windows-exclusive-two-20261122\\OriginalOwnerExclusiveSQLiteAcceptance.exe",
+        "controls",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\validation\\windows-exclusive-two-20261122\\fixtures"
+      ],
+      "exit": 1,
+      "seconds": 0.9840000000040163
+    }
+  ],
+  "original_owner_source": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+  "application_source": "67518e8df6975c976e8f1cd9e622328dc45985fc",
+  "expected_controls": [
+    "exclusive_read_allows_explicit_local_read_scope_commit",
+    "exclusive_read_refuses_default_mutation_before_sql"
+  ],
+  "selected_controls": 2,
+  "six_previous_controls_reexecuted": false,
+  "original_suites_reexecuted": false,
+  "actual_original_owner": true,
+  "actual_original_sqlite": true,
+  "fixture_only_document_permission_values": true,
+  "fixture_only_tables": true,
+  "native_rpc": 0,
+  "production_identity_write": 0,
+  "native_receipt": 0,
+  "ack": 0,
+  "interop": {
+    "platform": "Windows SDK winsqlite3",
+    "header": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\um\\winsqlite\\winsqlite3.h",
+    "header_sha256": "27382a4a73e9dfb7ad71c99725015e0113d2a0d1e0e4917d2a9d0a173700bcb1",
+    "import_library": "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.26100.0\\um\\x64\\winsqlite3.lib",
+    "import_library_sha256": "e725f37a9a2199e974b46f4cf71d87248e59073b931f8e72ba02ac144bf72400",
+    "modulemap": "module SQLite3 [system] { header \"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um/winsqlite/winsqlite3.h\" link \"winsqlite3\" export * }\n",
+    "modulemap_sha256": "3abfda73dbd6208896a14028bed643a3fce985b1982bee0bc4269e728cf35b20"
+  },
+  "control_derivation": {
+    "frozen_fixture_source_sha256": "f922db58646a0c7f5714d487df8f31bef70acdbf49902843c2ddb954a6fef7ea",
+    "selected_prefix_bytes": 6694,
+    "selected_prefix_sha256": "e70be884090dd1f52bdc63a7ffe0a3b527d059e67cb1b960671114687c3a30ff",
+    "new_fragment_sha256": "5d4cb2744a4d03d8a46808618ccd78052d316ab7dedffd462cf22bdaf42066ed",
+    "combined_control_sha256": "000ee2f310ca9ac3c62072e701995597e75fa2d158a1e176a0decd5df27fe9a8",
+    "operation": "exact prefix before frozen @main marker concatenated with complete new fragment; no old-six assertion body included"
+  },
+  "swift": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "executable_sha256": "b9f82c547bafb18e78e1271d85ba50aac578df85b7d5bc6292cfcf580567ef2b",
+  "cases": [
+    {
+      "error": "executionFailed(\"unable to open database file\")",
+      "events": [],
+      "facts": {},
+      "name": "exclusive_read_allows_explicit_local_read_scope_commit",
+      "ownerOutcome": "not_verified",
+      "status": "FAIL"
+    },
+    {
+      "durableRows": 0,
+      "events": [
+        "original_exclusive_read_entered",
+        "sqlite_serialized_lock_acquired_inside_read",
+        "default_mutation_rejected_before_fixture_sql",
+        "sqlite_serialized_lock_returned_before_capture_release",
+        "original_exclusive_read_failed_write_latched",
+        "owner_onDrained"
+      ],
+      "facts": {
+        "SQLTransactionStarted": "false",
+        "SQLiteSerializedLockHeldAtRejection": "true",
+        "awaitInsideSQLiteLockOrTransaction": "false",
+        "bodyExecutions": "0",
+        "innerRejection": "unqualifiedDispatch",
+        "nativeRPCDispatched": "0",
+        "outerCommit": "false",
+        "outerRejection": "failedWrite",
+        "publishedCurrentSuccess": "false",
+        "requiresEditing": "true_default"
+      },
+      "name": "exclusive_read_refuses_default_mutation_before_sql",
+      "ownerOutcome": "rejected_unqualified_dispatch_and_failed_write_latched",
+      "status": "PASS"
+    }
+  ],
+  "error": "AssertionError('new exclusive-read/SQLite controls failed')",
+  "sources_unchanged": true,
+  "compiled_copies_unchanged": true
+}
