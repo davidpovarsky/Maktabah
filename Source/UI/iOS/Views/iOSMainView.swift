@@ -78,13 +78,27 @@ enum iOSTab: Int, CaseIterable, Identifiable {
 struct iOSMainView: View {
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    @State private var navigationManager = iOSNavigationManager()
-    @State private var selectedTab: iOSTab = .viewer
+    @State private var navigationManager: iOSNavigationManager
+    @State private var selectedTab: iOSTab
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
     @State private var showSettings = false
     @State private var sidebar = ReaderSidebarPageCoordinator()
     @State private var sefariaEmbeddedAcceptanceResult: String?
     @Bindable var donationManager = DonationManager.shared
+
+    // Restore the global destination before TabView creates its first native
+    // container. Switching from a temporary Reader in onAppear can leave the
+    // restored split view with the Reader's initial tab-bar safe-area layout.
+    init() {
+        let manager = iOSNavigationManager()
+        let savedTab = iOSTab(rawValue: UserDefaults.standard.integer(forKey: "lastSelectedTab")) ?? .viewer
+        let canonicalTab = savedTab.canonical
+        let initialTab = canonicalTab.isAvailable(for: BackendCoordinator.shared.activeCapabilities)
+            ? canonicalTab : .viewer
+        manager.switchToMode(initialTab.appMode)
+        _navigationManager = State(initialValue: manager)
+        _selectedTab = State(initialValue: initialTab)
+    }
 
     var body: some View {
         @Bindable var bManager = navigationManager

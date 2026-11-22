@@ -1,0 +1,452 @@
+[
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "C1C629A1-9BAB-4B83-A0C5-606D1D842132.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "candidate-pointer-over-library-result-ui-tree_0_2BC6F49A-3DCB-4C79-8F9B-74948BBB4FD0.txt",
+        "timestamp" : 1795314590.49
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "17407EA4-A297-41EA-B273-510291AF824A.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "candidate-pointer-over-library-result_0_DF3CF421-4674-4ED1-8A99-836745F0AE5E.png",
+        "timestamp" : 1795314588.393
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "C0C57CC1-E38C-4E1C-9233-BA151A79981C.json",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-transport-only-41_0_F1F5E1C6-56BF-4A91-BE64-5C688CBB7269.json",
+        "timestamp" : 1795314562.582
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "DC34B7D6-E18E-4F16-8E3B-70DC198E17DF.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "candidate-pointer-over-compact-search-ui-tree_0_613FD0C2-D0C4-45EB-8BF6-A1CEA7403C72.txt",
+        "timestamp" : 1795314536.405
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "9294205D-1911-4ECB-8018-EB0EDA440C2A.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "candidate-pointer-over-compact-search_0_15F84792-6408-4A4C-9D3E-47C045F0D404.png",
+        "timestamp" : 1795314535.185
+      }
+    ],
+    "testIdentifier" : "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal()",
+    "testIdentifierURL" : "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "79468C38-C7D0-4CDF-9A8A-83F4E952DD94.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-final-native-screen_0_BDC05378-42F1-498E-8843-FB6288ECA7AC.png",
+        "timestamp" : 1795314720.085
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "97DA3504-3840-498C-835D-9631D39B77F3.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-final-native-hierarchy_0_20B2E2E2-2F7B-4B96-B763-99E7F9B6FCFF.txt",
+        "timestamp" : 1795314719.803
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "030BCE5D-30F3-4854-B2D9-32B86B793C3A.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-native-fullscreen-restored-screen_0_B359B533-8679-46ED-B1DC-7323938B92A9.png",
+        "timestamp" : 1795314712.146
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "3361355E-59C3-42F7-B114-DC468991A743.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-native-fullscreen-restored-hierarchy_0_ACC25A9E-DA41-4C80-9700-F27E12C5E874.txt",
+        "timestamp" : 1795314711.895
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "E6F9D436-4642-4D9F-8BDC-1E127F7AFEBD.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-narrow-inspector-open-screen_0_130B5944-D12C-40EC-A0AB-AC436F577C43.png",
+        "timestamp" : 1795314694.021
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "63F60650-8446-46D6-83FD-9E1DB4B5778D.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-narrow-inspector-open-hierarchy_0_8A468527-1B1F-481B-954D-FDC565FC1580.txt",
+        "timestamp" : 1795314693.607
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "A7F74124-F8A1-465E-B1F5-6FD6C9A555A3.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "original-study-tools-native-overflow-hierarchy_0_31767CCC-0836-4D4D-8EC9-FD8870ECBA70.txt",
+        "timestamp" : 1795314687.92
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "AD6C2CC9-A249-41DB-87B6-D566771AEDF6.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-narrow-filtered-after-one-escape-screen_0_EF7AE5D6-8E69-4352-B0FD-6B0DA02B05AA.png",
+        "timestamp" : 1795314681.182
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "0D6BE2A3-2533-48C2-A440-E5D8CC441466.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-narrow-filtered-after-one-escape-hierarchy_0_7941E198-5D8D-4B0E-ADBD-9C70A609B0BB.txt",
+        "timestamp" : 1795314680.837
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "DBB14520-68A9-440B-9679-65D4EA455084.json",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-transport-only-41_0_B0C06565-6FC5-4FD6-8A72-5C9ABEF11B5A.json",
+        "timestamp" : 1795314680.239
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "AD35832B-377E-47B5-8362-95DE34DD5797.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-actual-narrow-filtered-fixture-screen_0_B1EF2079-FEAF-4770-B2B2-536A1C8F9623.png",
+        "timestamp" : 1795314678.184
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "DC7E30AC-7354-4211-A0A0-EDB724CC3FAD.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-actual-narrow-filtered-fixture-hierarchy_0_FD393F48-B62F-41CE-8EC5-051476D61D8C.txt",
+        "timestamp" : 1795314677.786
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "72396025-D8A3-4B72-8E51-705C69C9E512.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-actual-narrow-window-screen_0_5341DD1D-EE0F-4E90-99E7-6348150185EE.png",
+        "timestamp" : 1795314660.912
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "15FBE577-72D2-4E77-8181-0BA0C4C42E78.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-actual-narrow-window-hierarchy_0_52A08F8C-CA22-4AB1-9B66-76DA52BA814C.txt",
+        "timestamp" : 1795314660.499
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "5141DB83-CC81-481C-B0E8-A1E0884C5622.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-full-empty-after-one-escape-screen_0_F4A8084C-68D3-4B85-9531-485B92CD7038.png",
+        "timestamp" : 1795314647.055
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "034B8095-7A19-45FB-91BC-FA5AE57FB63B.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-full-empty-after-one-escape-hierarchy_0_6B6EE026-67F6-45A0-8EB9-E36BB357495F.txt",
+        "timestamp" : 1795314646.82
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "C715029D-9EA6-4540-A6A7-3FECC7791F5F.json",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-transport-only-41_0_126BB887-1EF1-4C00-BC10-7A15C33015BB.json",
+        "timestamp" : 1795314646.254
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "C526D9DE-9B69-41E3-9AFA-F7601303887E.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-backspace-actually-cleared-input-screen_0_C9C996BF-9B52-43AC-A5C2-DC6925898959.png",
+        "timestamp" : 1795314644.202
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "B8CD53B0-E87F-4457-8225-E76F9A659311.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-backspace-actually-cleared-input-hierarchy_0_196CCD92-8C12-47D0-B865-42D9747D9064.txt",
+        "timestamp" : 1795314643.775
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "E44B3097-8369-42FD-A5FC-74B4CDA44011.json",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-transport-only-42_0_559EB2B2-00F6-4A6F-B2C9-66549CBC2204.json",
+        "timestamp" : 1795314640.133
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "CBBD63D3-061E-4A1E-BF38-2B972AAD522A.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-a-actually-edited-input-screen_0_2815C4E3-3D5C-4F66-8EC8-A95ACD235AE5.png",
+        "timestamp" : 1795314639.06
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "355EE9E1-BB71-4453-96A8-AD7CCBA238DB.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-a-actually-edited-input-hierarchy_0_BAEFCAEF-FB24-42C7-B93A-4C80497C69DC.txt",
+        "timestamp" : 1795314638.703
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "03C9C519-E5FC-445C-9615-32546F141461.json",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-hid-transport-only-4_0_6A6F7132-E7BE-4385-BB05-95B5C8F01D11.json",
+        "timestamp" : 1795314634.815
+      }
+    ],
+    "testIdentifier" : "R27NativePadTests/testNormalBootstrapPaletteHIDComparison()",
+    "testIdentifierURL" : "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapPaletteHIDComparison"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "14DD2308-B898-4933-8081-AB0ADB31D2BF.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-final-native-screen_0_F888369E-21AD-47EB-9A90-7696F4C5BB33.png",
+        "timestamp" : 1795314816.962
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "EA383A6B-B8AB-44E5-B2B0-0268094D528C.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-final-native-hierarchy_0_D46320AF-7A6D-480A-8CDA-BAA31E766DF4.txt",
+        "timestamp" : 1795314816.601
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "ADE34198-9D25-41E9-89A9-AA8D2143879D.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Element Debug Description_0_3C0440EF-5BF5-45B2-AEB9-B197BBAE2122.txt",
+        "timestamp" : 1795314811.366
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "5C1BA645-2A91-41BE-AD01-7A56E3FA5955",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 02.33.11 AM",
+        "timestamp" : 1795314791.632
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "FB6CA31C-1F10-4F2C-B393-7324679104E5",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-11-22 at 02.33.12 AM",
+        "timestamp" : 1795314792.894
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "4408E0E9-29F9-46A8-8155-1197123791C7.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-calibration-full-window-input-screen_0_9DA9A794-D5DE-457F-AE52-B0488A46E17F.png",
+        "timestamp" : 1795314777.621
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "30F2DF62-699B-46C6-AC13-4A84B2F93D5D.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-calibration-full-window-input-hierarchy_0_2F6C8277-6ED3-4C04-B139-B21316438EE6.txt",
+        "timestamp" : 1795314777.258
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "A633092D-A88E-4F34-9B03-38BB842C3674",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 02.32.54 AM",
+        "timestamp" : 1795314774.459
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "73B698B2-0C32-483B-9A3A-CF8D32866DE5",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-11-22 at 02.32.55 AM",
+        "timestamp" : 1795314775.021
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "2626BDFB-64B3-48F4-8B88-8B113DE41A20",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 02.32.42 AM",
+        "timestamp" : 1795314762.439
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "BAB27AF9-C123-4C31-B703-B7EDECC6ADD5",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-11-22 at 02.32.42 AM",
+        "timestamp" : 1795314762.772
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "651A8A03-8AB0-407E-AABA-10388CEF3D71",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 02.32.37 AM",
+        "timestamp" : 1795314757.622
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "196BDB90-D932-4F1F-A807-938DFE4E3836.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-calibration-actual-close-button-dismissed-screen_0_35784F9E-003A-4F2F-92FF-84F64BF06BA4.png",
+        "timestamp" : 1795314753.903
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "3B404CE1-01BA-4163-92BC-A79EA20781DD.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-calibration-actual-close-button-dismissed-hierarchy_0_54B76A6F-3CFB-44F0-B52B-D7BDE5EAF475.txt",
+        "timestamp" : 1795314753.698
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "AED57822-3530-490D-8C63-8BDBA33DE857",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 02.32.31 AM",
+        "timestamp" : 1795314751.36
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "DFB33868-DB3A-4E75-8E1B-04F7DDA9F6D5",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-11-22 at 02.32.31 AM",
+        "timestamp" : 1795314751.665
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "9DC3D5B7-6B1F-40C1-B3FD-98033694FF39",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 02.32.24 AM",
+        "timestamp" : 1795314744.927
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "3B607475-1170-4DDE-B1FC-0DE3CF27B63D",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-11-22 at 02.32.25 AM",
+        "timestamp" : 1795314745.274
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "66C51AAA-0688-4619-AC3E-C2EE8D1FD455",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 02.32.20 AM",
+        "timestamp" : 1795314740.246
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "29C1CE85-BA0E-4329-9C06-16F137C1BA65",
+        "deviceName" : "Faithful 11-inch 87448661",
+        "exportedFileName" : "57D891E9-D152-4803-94D7-FEC785439F90.mp4",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Screen Recording 2026-11-22 at 02.32.01 AM.mp4",
+        "timestamp" : 1795314721.775
+      }
+    ],
+    "testIdentifier" : "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration()",
+    "testIdentifierURL" : "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration"
+  }
+]

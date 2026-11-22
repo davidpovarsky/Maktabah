@@ -1,0 +1,26 @@
+{
+  "status": "FAIL",
+  "run": 44969361774,
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44969361774",
+  "wrapper": "3bb181f4d3ca1bde9f1ce43de40d1f3658d821c5",
+  "application_source": "62095a46f3eda10df87fad49812083ba163ee3ef",
+  "completed_at": "2026-11-22T02:36:42Z",
+  "counts": {
+    "passed": 3,
+    "failed": 3,
+    "skipped": 0,
+    "not_run": 0
+  },
+  "passed": [
+    "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+    "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+    "R27NativePadTests/testNormalBootstrapPaletteHIDComparison"
+  ],
+  "failed": [
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+    "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration"
+  ],
+  "new_native_execution": "NONE",
+  "new_code_native_acceptance": "PENDING"
+}

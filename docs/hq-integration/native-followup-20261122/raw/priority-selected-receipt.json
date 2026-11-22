@@ -1,0 +1,143 @@
+{
+  "status": "PRIORITY_ENTRY_CRC_VERIFIED_FULL_ARCHIVE_DIGEST_PENDING",
+  "range_calls": 54,
+  "received_bytes": 3351296,
+  "files": [
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-search\\4AA34666-7112-4221-AC2D-308545744F4D.txt",
+      "human": "candidate-search-landscape-restored-tab-3-ui-tree_0_2F1E8BEB-4A8E-4596-8133-6313214E58A8.txt",
+      "test": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation()",
+      "bytes": 21362,
+      "sha256": "fffac08d7268632c2c4a4f5f682172251fdec1cd44c54e96aaad99d8cb1752b3",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-search\\269BE7E0-526C-492A-A5BA-BA15C5A8F1CD.png",
+      "human": "candidate-search-landscape-restored-tab-3_0_1A6F9A31-6B7C-4867-8A03-2FEC48D8735B.png",
+      "test": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation()",
+      "bytes": 230864,
+      "sha256": "abbc60b59ce17bd30e9cf2d9d346f6748088c9263d750c27613bb361eb5c4d14",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-search\\117FF072-6436-4684-AE43-E5A268B030A6.txt",
+      "human": "candidate-flags-off-search-landscape-restored-tab-3-ui-tree_0_149C81AF-F74B-4334-93C6-B2AD2F38F002.txt",
+      "test": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation()",
+      "bytes": 21101,
+      "sha256": "03c7a6fa1cc7bac864703b105f0e490f3ce98e592b8817e2e4403ec10163acd8",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-search\\19BB4B75-C899-4C21-BDA3-A2DE644A7E85.png",
+      "human": "candidate-flags-off-search-landscape-restored-tab-3_0_E01A2AA3-99E5-4A1D-BD29-394160CB0519.png",
+      "test": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation()",
+      "bytes": 230299,
+      "sha256": "f5c5f0eb36c088c2131d170354a88f2fccd4ef64ee08d06c908893ab97558f1b",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-search\\E0EBDD6B-2CC0-4091-8189-74D42C9F330D.txt",
+      "human": "candidate-search-landscape-ui-tree_0_FF4B6526-8F21-4BEC-AC8E-30F3A77DC5F5.txt",
+      "test": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation()",
+      "bytes": 21369,
+      "sha256": "b4db51d6e9a3e7d0320761dc70272aefd996d4b5185448d5b45f39ce2d777ad2",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-search\\5BD2C259-3629-4C60-9464-A6ECC1874CC5.txt",
+      "human": "candidate-flags-off-search-landscape-ui-tree_0_72FFBCC5-2334-4037-AC5F-EC626D5B70FB.txt",
+      "test": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation()",
+      "bytes": 21101,
+      "sha256": "901c7150009bfce83d08e943d9b78e3cd4074a68494e6398df146879f2f41c68",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-search\\5981BBE5-170A-4B8D-9C70-F98F048AB6CD.txt",
+      "human": "candidate-search-portrait-restored-tab-3-ui-tree_0_B71FC255-B75D-4BDC-80ED-4354BC193DEC.txt",
+      "test": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation()",
+      "bytes": 21379,
+      "sha256": "49bbc16167fe9d6c2bd5c1fd330b2af79d28e761136d7dae216b648b1259e9ed",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-search\\D0DC7B6B-F095-4260-9CF0-677EF924DB9B.png",
+      "human": "candidate-search-portrait-restored-tab-3_0_CA296818-0855-49BA-88B4-27E635BC4C18.png",
+      "test": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation()",
+      "bytes": 212259,
+      "sha256": "992bd07a0d81221d8b9957c7d85c004c659c1f06ec4d74f0b7af0fa5e06446d7",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-search\\33FCC659-0A9A-45CC-AC3C-5FA406E25A58.txt",
+      "human": "candidate-flags-off-search-portrait-restored-tab-3-ui-tree_0_77B70DB6-1226-4E93-97F2-48294E7A3712.txt",
+      "test": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation()",
+      "bytes": 21107,
+      "sha256": "a458279ec860583ca90923875bd1c3bf6970f46f191d201233dbf6fb5abdbfca",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-search\\E783CCC3-359D-43B7-B44A-4617C8CCA167.png",
+      "human": "candidate-flags-off-search-portrait-restored-tab-3_0_DA747C8C-5F2A-440F-9271-41BB7ADA449A.png",
+      "test": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation()",
+      "bytes": 213317,
+      "sha256": "91ae704f96e13bfe192080a4a48ca3bcbf0876a798c32eefeba6da106355d88c",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-search\\946F2D2C-5E44-4376-8BEF-96A292B21620.txt",
+      "human": "candidate-search-portrait-ui-tree_0_C3F19C13-A040-432F-81E8-AEE47EE8D186.txt",
+      "test": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation()",
+      "bytes": 21379,
+      "sha256": "fdde964e0c85bdabda78f9530a1198a81ed64918d3f7b83729ef7040914663e6",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-search\\17F6BA9C-ADE5-49F4-8426-80522CB2B68B.txt",
+      "human": "candidate-flags-off-search-portrait-ui-tree_0_590E5771-E012-4B58-A263-7188934F038A.txt",
+      "test": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation()",
+      "bytes": 21111,
+      "sha256": "7ee21342ee715d2199d12a58a03820e366fdacb3173bcfe0f0d1a78cb47a9578",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-window\\14DD2308-B898-4933-8081-AB0ADB31D2BF.png",
+      "human": "r27-final-native-screen_0_F888369E-21AD-47EB-9A90-7696F4C5BB33.png",
+      "test": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration()",
+      "bytes": 1039436,
+      "sha256": "95e7e9eafcdb7671f12cdfeaa2e88fe4a2bd705870e54ba43b3dbcea258630f3",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-window\\EA383A6B-B8AB-44E5-B2B0-0268094D528C.txt",
+      "human": "r27-final-native-hierarchy_0_D46320AF-7A6D-480A-8CDA-BAA31E766DF4.txt",
+      "test": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration()",
+      "bytes": 31622,
+      "sha256": "a2000e13d2542e38af560cd559b998fcdfd1958fa55ec3b3ce51f23784b7a2ef",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-window\\ADE34198-9D25-41E9-89A9-AA8D2143879D.txt",
+      "human": "Element Debug Description_0_3C0440EF-5BF5-45B2-AEB9-B197BBAE2122.txt",
+      "test": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration()",
+      "bytes": 366,
+      "sha256": "65d3b4330d84bd538e8ed63a085df959d4aa3c94da8b642ee2f45fcb9e37af83",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-window\\4408E0E9-29F9-46A8-8155-1197123791C7.png",
+      "human": "r27-calibration-full-window-input-screen_0_9DA9A794-D5DE-457F-AE52-B0488A46E17F.png",
+      "test": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration()",
+      "bytes": 1039156,
+      "sha256": "709086cb1db9ed4bcbe59f6082d42ba7fbd7993a69e87057561a0e697390dc2b",
+      "zip_crc": "PASS"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\native6-44969361774\\captures-priority\\visual-11-window\\30F2DF62-699B-46C6-AC13-4A84B2F93D5D.txt",
+      "human": "r27-calibration-full-window-input-hierarchy_0_2F6C8277-6ED3-4C04-B139-B21316438EE6.txt",
+      "test": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration()",
+      "bytes": 32140,
+      "sha256": "703b5cfa116a7f2c408f273224ebae532dbbb26b2029d3af4ca06e435380c7a0",
+      "zip_crc": "PASS"
+    }
+  ]
+}

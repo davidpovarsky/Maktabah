@@ -1,0 +1,7 @@
+Query chain:
+ →Find: Target Application 'com.davidpovarsky.chavrusatext'
+  ↪︎Find: Descendants matching type Other
+    ↪︎Find: Elements matching predicate '"reader-library-command-palette" IN identifiers'
+      ↪︎Find: Descendants matching type Button
+        ↪︎Find: Elements matching predicate 'isSelected == 1'
+          ↪︎Find: First Match
