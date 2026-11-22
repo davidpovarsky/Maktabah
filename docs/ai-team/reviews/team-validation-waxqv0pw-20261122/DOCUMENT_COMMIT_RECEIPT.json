@@ -1,0 +1,387 @@
+{
+  "status": "SIX_DOCUMENT_CORRECTION_COMMITTED_AND_CANONICAL_BYTES_VERIFIED",
+  "base_commit": "70388c090af788adaa82346c94176790df2c65f0",
+  "branch": "codex/otzaria-team-validation-waxqv0pw-20261122",
+  "documentation_commit": "db2241bf789a407386588fa274564dd2e443c6f1",
+  "patch_sha256": "92d9b70fd4ad67605bad2b723d6e2ad179756be1510686e9bbb3cb240d0f3770",
+  "input_archive_sha256": "a62939d6a734fdf48e82eaae2c68fb2dbbab0474628381d12e2ac6b9a615c8b4",
+  "existing_config_and_context_inputs": [
+    {
+      "path": ".agents/agents/dana.md",
+      "git_blob": "8473c1b7f1a708b34384cd08032b00a8affc6d43",
+      "canonical_sha256": "ee4d1f63ee811f3484fce58aa31df97d7997bce9948bfa10f8f15be274704043",
+      "actual_sha256": "ee4d1f63ee811f3484fce58aa31df97d7997bce9948bfa10f8f15be274704043",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".agents/agents/eitan.md",
+      "git_blob": "e56ed641150f163526dfb1cc15f051efba6485d0",
+      "canonical_sha256": "5f06aad9a7e00da41063cb7934696742a0bdc98f391ca3ca66ce0b3fae8325d2",
+      "actual_sha256": "5f06aad9a7e00da41063cb7934696742a0bdc98f391ca3ca66ce0b3fae8325d2",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".agents/agents/maya.md",
+      "git_blob": "f12dd2a98eb3de6c8bd39d9f61281d9b17cf4d01",
+      "canonical_sha256": "549d0bb26158a3ebc2c2bee2f6d8330648b93b88ed7a06f15afa0ffff5205ece",
+      "actual_sha256": "549d0bb26158a3ebc2c2bee2f6d8330648b93b88ed7a06f15afa0ffff5205ece",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".agents/agents/noam.md",
+      "git_blob": "b346f34a3fd66e0c9d2e58c0383d6eeb329f89e5",
+      "canonical_sha256": "2bbc1648f0de8722220d60fb5e8ceac274193a67bfe60e31e9c5ead16de18c8c",
+      "actual_sha256": "2bbc1648f0de8722220d60fb5e8ceac274193a67bfe60e31e9c5ead16de18c8c",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".agents/agents/roni.md",
+      "git_blob": "6286859146bf3cc7968bb495ed8460819b6d0708",
+      "canonical_sha256": "d32b8ab7310f57fd8c889a77795f42c0d47d192f83932fd202c9e64c7c4c7b78",
+      "actual_sha256": "d32b8ab7310f57fd8c889a77795f42c0d47d192f83932fd202c9e64c7c4c7b78",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".agents/agents/tomer.md",
+      "git_blob": "a54ba5c80952803f5c36866f4f4b4a2d38951fd9",
+      "canonical_sha256": "1aa293891604a07da2620d3e53ecccdc467a7c96ad371152965836f6bb847097",
+      "actual_sha256": "1aa293891604a07da2620d3e53ecccdc467a7c96ad371152965836f6bb847097",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".agents/agents/yael.md",
+      "git_blob": "7c45e38eb22efb4bc952c358a031e665c3e6a402",
+      "canonical_sha256": "9a0edf710066205453ac0e8fde43dd213cfdf5b2b7d787d3c7c924ba2c91d5f6",
+      "actual_sha256": "9a0edf710066205453ac0e8fde43dd213cfdf5b2b7d787d3c7c924ba2c91d5f6",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".agents/roles/dana.md",
+      "git_blob": "a1f418725c068643f33b3f7ff74937c165b939a6",
+      "canonical_sha256": "246a1bd33887a37e3269887ecfa56f51c6cc1538c3e82e4ad48cf9403283068a",
+      "actual_sha256": "246a1bd33887a37e3269887ecfa56f51c6cc1538c3e82e4ad48cf9403283068a",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".agents/roles/eitan.md",
+      "git_blob": "6149bc2d919e4c7180bd82189634a92452f86a7a",
+      "canonical_sha256": "45ae04a403e840c7dea5a35289a3ff96d2e52ba5e0601a8d0f823d25db023018",
+      "actual_sha256": "45ae04a403e840c7dea5a35289a3ff96d2e52ba5e0601a8d0f823d25db023018",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".agents/roles/maya.md",
+      "git_blob": "bfb14e012505a523b4f88139907afd8c4d213d8b",
+      "canonical_sha256": "f332d71267db3d5791b1f6ccf0926b58d529c97134a8e7662145219877230146",
+      "actual_sha256": "f332d71267db3d5791b1f6ccf0926b58d529c97134a8e7662145219877230146",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".agents/roles/noam.md",
+      "git_blob": "85365d879e87291b6888e05954d0cc6a33c15378",
+      "canonical_sha256": "8b6985d433c566eddd99f0100697327b2b166f089d222ace04b6134e36be0647",
+      "actual_sha256": "8b6985d433c566eddd99f0100697327b2b166f089d222ace04b6134e36be0647",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".agents/roles/roni.md",
+      "git_blob": "dceccd2a3ff1f4e644e7c665e840ab48735d2bcb",
+      "canonical_sha256": "8b8bffd799a580927f40b8c089ec2a8e330b0cc8c4695f1880a2fc8e458e6beb",
+      "actual_sha256": "8b8bffd799a580927f40b8c089ec2a8e330b0cc8c4695f1880a2fc8e458e6beb",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".agents/roles/tomer.md",
+      "git_blob": "909e66753bd9ef25ff9026be81181359de276ebe",
+      "canonical_sha256": "d090314eb8df5692142d54b16427eca38716083d305a7e8269986c77fcaa07a1",
+      "actual_sha256": "d090314eb8df5692142d54b16427eca38716083d305a7e8269986c77fcaa07a1",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".agents/roles/yael.md",
+      "git_blob": "1e4fc6134fa89ae14ea087c63ccc01332630cc91",
+      "canonical_sha256": "3b518b543f69c7f40f6f56e488de82b0fff996905b891ac553edf63c491b9fa6",
+      "actual_sha256": "3b518b543f69c7f40f6f56e488de82b0fff996905b891ac553edf63c491b9fa6",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".agents/rules/ai-team-router.md",
+      "git_blob": "9e881c40b4ca5c4f1ca3ef63e3c7c7cd17083128",
+      "canonical_sha256": "4a113ae0359e96e57179be249c6b5490772a26d74139241d6739b1bb84017fe0",
+      "actual_sha256": "4a113ae0359e96e57179be249c6b5490772a26d74139241d6739b1bb84017fe0",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".agents/skills/asana-team-coordination/SKILL.md",
+      "git_blob": "c71d7bda2c19b900565186043f6b70f78036a64e",
+      "canonical_sha256": "a03be8e8c2bf2e540a6955eaa23923cc54a5f34de38aa8c69bea5dea8ea48b4a",
+      "actual_sha256": "a03be8e8c2bf2e540a6955eaa23923cc54a5f34de38aa8c69bea5dea8ea48b4a",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".codex/agents/dana.toml",
+      "git_blob": "1e13c5f4d044035d1c91b6513d090feb298b7ac9",
+      "canonical_sha256": "3b749e17a027f8f8007fb0ffc20b91be552648aefb1df680ab893eab9892e695",
+      "actual_sha256": "3b749e17a027f8f8007fb0ffc20b91be552648aefb1df680ab893eab9892e695",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".codex/agents/eitan.toml",
+      "git_blob": "23cc688112a53ef34f85873bc8c224ce09c00813",
+      "canonical_sha256": "76b8d2515cc8f99f04259dc36e39237d5d2af5b4e1c405ed4d23a86a7df34f0f",
+      "actual_sha256": "76b8d2515cc8f99f04259dc36e39237d5d2af5b4e1c405ed4d23a86a7df34f0f",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".codex/agents/maya.toml",
+      "git_blob": "d9f3610fa1d93102816371a636ea3f43eadb7999",
+      "canonical_sha256": "35414d8f4d3e855639d6d3a02167789065c8e4f1c4c135fb668cf29340f2a6c7",
+      "actual_sha256": "35414d8f4d3e855639d6d3a02167789065c8e4f1c4c135fb668cf29340f2a6c7",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".codex/agents/noam.toml",
+      "git_blob": "caf359c4ac3eaf3b5da2541f14589e7c278a6d7e",
+      "canonical_sha256": "8be779ba272a762ac47619fb1bb415817fcf21ec1df4c3964c4928e8c8805447",
+      "actual_sha256": "8be779ba272a762ac47619fb1bb415817fcf21ec1df4c3964c4928e8c8805447",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".codex/agents/roni.toml",
+      "git_blob": "d2f57293442ac29143dc1f9b3ab4cae94dc1f4be",
+      "canonical_sha256": "cc4a46d1518e70ca06635c5e0b70dd07f1315643d4e9e5b79dff21ff8f5562c4",
+      "actual_sha256": "cc4a46d1518e70ca06635c5e0b70dd07f1315643d4e9e5b79dff21ff8f5562c4",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".codex/agents/tomer.toml",
+      "git_blob": "29a8ea3dc17dbe36d6137f92a19d2f04068cbd2c",
+      "canonical_sha256": "f2c484052cc87f1f678f9c22dd3cebdb6648aec20e9d380c686a2f33d9497911",
+      "actual_sha256": "f2c484052cc87f1f678f9c22dd3cebdb6648aec20e9d380c686a2f33d9497911",
+      "only_crlf_difference": false
+    },
+    {
+      "path": ".codex/agents/yael.toml",
+      "git_blob": "2e7cb806bcbd5e5a8b23743ec9c745e68f46f156",
+      "canonical_sha256": "9a2a937077d92a22d55cee78019699069213de813a6f4bdf4c4d3f0f8e586c31",
+      "actual_sha256": "9a2a937077d92a22d55cee78019699069213de813a6f4bdf4c4d3f0f8e586c31",
+      "only_crlf_difference": false
+    },
+    {
+      "path": "AGENTS.md",
+      "git_blob": "7bb033aff1bfc351ae03369667dc3c929d5226e7",
+      "canonical_sha256": "e371f43f3d108f3848741a61eb6875c37fd8b8afcd451cd5673c6a0596fc28a9",
+      "actual_sha256": "e371f43f3d108f3848741a61eb6875c37fd8b8afcd451cd5673c6a0596fc28a9",
+      "only_crlf_difference": false
+    },
+    {
+      "path": "CLAUDE.md",
+      "git_blob": "b527e5f0dba1979adb32d4144b4d8c9e99163824",
+      "canonical_sha256": "8653ecf6384e7f212fbeff31b2b4baca886bc84cc03982971ffd22e072e1c1cf",
+      "actual_sha256": "8653ecf6384e7f212fbeff31b2b4baca886bc84cc03982971ffd22e072e1c1cf",
+      "only_crlf_difference": false
+    },
+    {
+      "path": "GEMINI.md",
+      "git_blob": "0c7d5aee54aeed25c55de6bff2cecc5fc73a3caf",
+      "canonical_sha256": "e22222f11dff49d9855d8d184399490e352aca90aaaf491f9ea0c8e8f670c910",
+      "actual_sha256": "e22222f11dff49d9855d8d184399490e352aca90aaaf491f9ea0c8e8f670c910",
+      "only_crlf_difference": false
+    },
+    {
+      "path": "docs/ai-team/ASANA_POLICY.md",
+      "git_blob": "864a1e5b8ee8e12805da98704c44f62a69750c03",
+      "canonical_sha256": "97b13784ea0197b60678dc58f4f47d27612c6a1607e8b909ca5dda31e811e6ea",
+      "actual_sha256": "97b13784ea0197b60678dc58f4f47d27612c6a1607e8b909ca5dda31e811e6ea",
+      "only_crlf_difference": false
+    },
+    {
+      "path": "docs/ai-team/BRANCH_INTEGRATION.md",
+      "git_blob": "3c825746bbbbffe72fece142bdd07c9321035bf9",
+      "canonical_sha256": "834a4409858ff7d8b204e1b45e84a0902d70fac00c57b6a2cc6f3971f58c780a",
+      "actual_sha256": "834a4409858ff7d8b204e1b45e84a0902d70fac00c57b6a2cc6f3971f58c780a",
+      "only_crlf_difference": false
+    },
+    {
+      "path": "docs/ai-team/PLATFORMS.md",
+      "git_blob": "4153b43b09563b09d2b74f694a08d6da3c1a0345",
+      "canonical_sha256": "c918b8ec62a9c23c145691b54df8e9d09f7565bca66f82595c35677f906b9422",
+      "actual_sha256": "c918b8ec62a9c23c145691b54df8e9d09f7565bca66f82595c35677f906b9422",
+      "only_crlf_difference": false
+    },
+    {
+      "path": "docs/ai-team/PROJECT_ASSIGNMENTS.md",
+      "git_blob": "608f28b72d9c0aae89178b567eb0104622eb951e",
+      "canonical_sha256": "0c022e15f93aeb117b15e0751e7ee0b00018b893946123fa2bc7cae83ded1482",
+      "actual_sha256": "0c022e15f93aeb117b15e0751e7ee0b00018b893946123fa2bc7cae83ded1482",
+      "only_crlf_difference": false
+    },
+    {
+      "path": "docs/ai-team/TASK_HANDOFF_TEMPLATE.md",
+      "git_blob": "d4a323800f2e16a0a7dffff73b4d36c6e24d26c6",
+      "canonical_sha256": "d1feefd401b777a64e9a35443307750ecf843943bfd44e983dd53af171f45f01",
+      "actual_sha256": "d1feefd401b777a64e9a35443307750ecf843943bfd44e983dd53af171f45f01",
+      "only_crlf_difference": false
+    },
+    {
+      "path": "docs/ai-team/TEAM.md",
+      "git_blob": "90b513d1eee097096cc986ed60a91534c9611f38",
+      "canonical_sha256": "1f9913a66019d7101ac0d1d3e1e38a3717bbb02684753cd4035c0e0658c2777d",
+      "actual_sha256": "1f9913a66019d7101ac0d1d3e1e38a3717bbb02684753cd4035c0e0658c2777d",
+      "only_crlf_difference": false
+    },
+    {
+      "path": "docs/ai-team/VALIDATION.md",
+      "git_blob": "0b2c24515b77cc768acc1302e01aee18c87cb0e5",
+      "canonical_sha256": "ee0eee12ba8485ccf691d1a3962730f8630d1da9101c10baa90c20741e1573b5",
+      "actual_sha256": "ee0eee12ba8485ccf691d1a3962730f8630d1da9101c10baa90c20741e1573b5",
+      "only_crlf_difference": false
+    },
+    {
+      "path": "tools/ai-team/ensure-team.ps1",
+      "git_blob": "6da00b7dac0c5a564aadcc2a5d22c1a7c4a6f543",
+      "canonical_sha256": "293d22ec107dcf699b1be0a25af0c7d18016e435f8a4909d13b60d75fdeaa7ad",
+      "actual_sha256": "293d22ec107dcf699b1be0a25af0c7d18016e435f8a4909d13b60d75fdeaa7ad",
+      "only_crlf_difference": false
+    },
+    {
+      "path": "PROJECT_AGENT_GUIDANCE.md",
+      "git_blob": "f37b33123b66c3c473d56a876f2b7257d2f1744c",
+      "canonical_sha256": "cd245836cee86bd38e66bfb26d45dc0ff8bf80945038be7c5ed75d319472d49d",
+      "actual_sha256": "cd245836cee86bd38e66bfb26d45dc0ff8bf80945038be7c5ed75d319472d49d",
+      "only_crlf_difference": false
+    },
+    {
+      "path": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "git_blob": "9a3a57bbfed634f2e136c608b11c781312b0e8ff",
+      "canonical_sha256": "45c08f1786508e8932ae138e4c493ac6ce8cceb79ca27922a893c0141d391fdf",
+      "actual_sha256": "45c08f1786508e8932ae138e4c493ac6ce8cceb79ca27922a893c0141d391fdf",
+      "only_crlf_difference": false
+    }
+  ],
+  "canonicalized_only_proven_crlf_paths": [],
+  "changed_paths": [
+    ".agents/rules/ai-team-router.md",
+    "docs/ai-team/BRANCH_INTEGRATION.md",
+    "docs/ai-team/PLATFORMS.md",
+    "docs/ai-team/PROJECT_ASSIGNMENTS.md",
+    "docs/ai-team/TEAM.md",
+    "docs/ai-team/VALIDATION.md"
+  ],
+  "output_hashes": [
+    {
+      "path": ".agents/rules/ai-team-router.md",
+      "base_blob": "9e881c40b4ca5c4f1ca3ef63e3c7c7cd17083128",
+      "base_sha256": "4a113ae0359e96e57179be249c6b5490772a26d74139241d6739b1bb84017fe0",
+      "sha256": "75853a66ed7765ef02f950f75d253e24fcc5c2520b27a0b3aff93945d878f236",
+      "bytes": 2816
+    },
+    {
+      "path": "docs/ai-team/BRANCH_INTEGRATION.md",
+      "base_blob": "3c825746bbbbffe72fece142bdd07c9321035bf9",
+      "base_sha256": "834a4409858ff7d8b204e1b45e84a0902d70fac00c57b6a2cc6f3971f58c780a",
+      "sha256": "baa415086254aeccfcd46fadd04718b456d5ca4e4296e8507aed3ff7f58122ab",
+      "bytes": 2817
+    },
+    {
+      "path": "docs/ai-team/PLATFORMS.md",
+      "base_blob": "4153b43b09563b09d2b74f694a08d6da3c1a0345",
+      "base_sha256": "c918b8ec62a9c23c145691b54df8e9d09f7565bca66f82595c35677f906b9422",
+      "sha256": "698a6eefc860144afa13628847438a139c73fccdccdf4982775b3d9c361caa10",
+      "bytes": 2803
+    },
+    {
+      "path": "docs/ai-team/PROJECT_ASSIGNMENTS.md",
+      "base_blob": "608f28b72d9c0aae89178b567eb0104622eb951e",
+      "base_sha256": "0c022e15f93aeb117b15e0751e7ee0b00018b893946123fa2bc7cae83ded1482",
+      "sha256": "a9411f8cf9ba5988d5f0c19cd776322ac2fc638982c4ef93b8cf0587b4d6c15e",
+      "bytes": 4371
+    },
+    {
+      "path": "docs/ai-team/TEAM.md",
+      "base_blob": "90b513d1eee097096cc986ed60a91534c9611f38",
+      "base_sha256": "1f9913a66019d7101ac0d1d3e1e38a3717bbb02684753cd4035c0e0658c2777d",
+      "sha256": "1da27bf11201f5aef48372cd2909d661835295336a4ae7c61434d09b39278a90",
+      "bytes": 7793
+    },
+    {
+      "path": "docs/ai-team/VALIDATION.md",
+      "base_blob": "0b2c24515b77cc768acc1302e01aee18c87cb0e5",
+      "base_sha256": "ee0eee12ba8485ccf691d1a3962730f8630d1da9101c10baa90c20741e1573b5",
+      "sha256": "d04b38b831c33f83190615fe6b82b2ce172097f256c3a7bab45a027e995d8ca3",
+      "bytes": 2515
+    }
+  ],
+  "protected_trees": [
+    {
+      "path": "Source",
+      "base": "7d3c913d8de4ff29837216003b7d71b6896a76f7",
+      "after": "7d3c913d8de4ff29837216003b7d71b6896a76f7",
+      "unchanged": true
+    },
+    {
+      "path": "Vendor",
+      "base": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "after": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah.xcodeproj",
+      "base": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
+      "after": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests",
+      "base": "196d1e1433a7e6ad3284430bc191510257daad89",
+      "after": "196d1e1433a7e6ad3284430bc191510257daad89",
+      "unchanged": true
+    },
+    {
+      "path": "MaktabahTests",
+      "base": "b4ea8d9ef86400672d68948d760d98c936efa8f7",
+      "after": "b4ea8d9ef86400672d68948d760d98c936efa8f7",
+      "unchanged": true
+    },
+    {
+      "path": "Tests",
+      "base": "71a1667bd9e871010cc74ed8554829a03639ee4f",
+      "after": "71a1667bd9e871010cc74ed8554829a03639ee4f",
+      "unchanged": true
+    },
+    {
+      "path": ".github",
+      "base": "11bad996302a64744f54882a628df0f4b2dd1e7a",
+      "after": "11bad996302a64744f54882a628df0f4b2dd1e7a",
+      "unchanged": true
+    },
+    {
+      "path": "Scripts",
+      "base": "e9ff939c4cc9a2730eda12231e4b240c49db9cda",
+      "after": "e9ff939c4cc9a2730eda12231e4b240c49db9cda",
+      "unchanged": true
+    },
+    {
+      "path": "scripts",
+      "base": "7c1c4d6e9e6025ef745e0390cebcbb9ddd534be5",
+      "after": "7c1c4d6e9e6025ef745e0390cebcbb9ddd534be5",
+      "unchanged": true
+    },
+    {
+      "path": "tools",
+      "base": "75870b155973eafdb178820e65ee5dddcbe8a82b",
+      "after": "75870b155973eafdb178820e65ee5dddcbe8a82b",
+      "unchanged": true
+    },
+    {
+      "path": ".codex",
+      "base": "bce7772eb5eb55be69f56b1cdcacc5e5a94a2075",
+      "after": "bce7772eb5eb55be69f56b1cdcacc5e5a94a2075",
+      "unchanged": true
+    }
+  ],
+  "working_tree_clean": true,
+  "other_ref_writes": false,
+  "new_ci_runs": 0,
+  "finished_utc": "2026-11-22T02:30:13.373931+00:00"
+}

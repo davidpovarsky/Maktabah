@@ -1,0 +1,7 @@
+{
+  "root_reviewed_patch_sha256": "caf31037540f1e5cfc22fed68818eb6f1eb5d1605576eeb05c05b41e03229a94",
+  "final_patch_sha256": "92d9b70fd4ad67605bad2b723d6e2ad179756be1510686e9bbb3cb240d0f3770",
+  "only_post_review_source_change": "Label Verified Branch State as snapshot: 22 November 2026, 01:57 UTC. Preserve9c66 immutable historical evidence.",
+  "publication_base": "70388c090af788adaa82346c94176790df2c65f0",
+  "all_existing_config_inputs_identical": true
+}

@@ -1,0 +1,17 @@
+{
+  "ancestry": [
+    {
+      "ancestor": "33d65c2b32531f67e4f341eccc285eb0d1d86142",
+      "descendant": "34d06949e7fedbda6e0d256a769b3d0b8659c211",
+      "returncode": 0,
+      "is_ancestor": true
+    },
+    {
+      "ancestor": "33d65c2b32531f67e4f341eccc285eb0d1d86142",
+      "descendant": "9c66b4ccc06340a04de53a4c3370182873ed18bc",
+      "returncode": 0,
+      "is_ancestor": true
+    }
+  ],
+  "mutations": 0
+}

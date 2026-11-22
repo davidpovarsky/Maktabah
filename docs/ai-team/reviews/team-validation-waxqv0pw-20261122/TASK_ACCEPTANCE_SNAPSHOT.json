@@ -1,0 +1,9 @@
+{
+  "gid": "1219611682682931",
+  "name": "[TEAM][SETUP] צוות הסוכנים — שיוך תפקידים ואימות מעטפת GitHub",
+  "notes": "Task owner (logical): Eitan. Integration: Tomer. Verification: Roni.\nRepo: https://github.com/davidpovarsky/Maktabah\nSource branch: fix/maktabah-search-detail-unification\nDraft coordination branch: agent/team-orchestration-20261018\nReview docs/ai-team/TEAM.md and PROJECT_ASSIGNMENTS.md; preserve existing AGENTS.md/CLAUDE.md and project-specific safety gates. Map existing OPEN tasks to named roles only after reviewing evidence. No automatic task updates, CI, merge or release. ChatGPT may update Asana only on explicit user request. Roles are labels, not distinct Asana users.\nDefinition of done: owner reviews draft PR, validates repo-specific policies, chooses task routing and approves activation. This setup task is NOT a claim that agents are running.\n\n---\n[אימות חיבור Antigravity | 2026-10-18 | תומר - INT]\nחיבור Antigravity MCP ואוטוריזציית כתיבה מאומתת הופעלו בהצלחה:\n- קונפיגורציית צוות מלאה (33 קבצים) מופתה ומוזגה לענף fix/maktabah-search-detail-unification (SHA 33d65c2), agent/team-orchestration-20261018 (SHA abbdd71) ו-main.\n- מדיניות Asana החדשה עודכנה ומאפשרת עדכון וסגירה אוטונומיים על פי אימות ראיות מלא (docs/ai-team/ASANA_POLICY.md).\n- חיבור MCP קריאה-כתיבה-קריאה חוזרת (read-back) מאומת.",
+  "completed": false,
+  "modified_at": "2026-10-18T21:03:42.247Z",
+  "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219611682682931",
+  "scope": "Exact setup acceptance snapshot; not current human-review attestation"
+}
