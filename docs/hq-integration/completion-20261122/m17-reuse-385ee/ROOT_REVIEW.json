@@ -1,0 +1,192 @@
+{
+  "schema": 1,
+  "status": "ROOT_VERIFIED_HISTORICAL_17_PACKAGE_RESOLUTION_REUSE_ONLY",
+  "reviewed_at": "2026-11-22T03:47:09.036655+00:00",
+  "integration_preimage": "459303ff72f4b12ae3772148afba883e3f17f6c5",
+  "application": "385ee84a8acb3fbc3c013c0977417b61fd3d8a17",
+  "execution_metadata": "46a185242b28b71d4b6d253747f2b8d46e4189a0",
+  "historical_source": "813fbe79c1b325ee21a8c2be78bb86577f44bf6c",
+  "original_m17_run": 44976915323,
+  "packet_sha256": "9bd73752aaf5bd1587d98a57053f4b48c5281356cb68c227203b737d206b167b",
+  "verified_packet_payloads": 25,
+  "packet_members": 26,
+  "packet_crc": "PASS",
+  "actual_git_input_comparisons": [
+    {
+      "path": ".gitmodules",
+      "baseline": "dbefe3a99b1c267817d7e95a8979554b08d8f9a8",
+      "application": "dbefe3a99b1c267817d7e95a8979554b08d8f9a8",
+      "metadata": "dbefe3a99b1c267817d7e95a8979554b08d8f9a8"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "baseline": "282b75da81da7ee94db39e57c861fe9a0e59e9eb",
+      "application": "3261731b3c225ec783b7f7542b53726c71f638c1",
+      "metadata": "3261731b3c225ec783b7f7542b53726c71f638c1"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "baseline": "99a5b952aab40cb3d5ffe03153c9cf8c07ed341b",
+      "application": "99a5b952aab40cb3d5ffe03153c9cf8c07ed341b",
+      "metadata": "99a5b952aab40cb3d5ffe03153c9cf8c07ed341b"
+    },
+    {
+      "path": "Podfile",
+      "baseline": "4ebf2a981de4447b1ce98f885eb0a463ee75e692",
+      "application": "4ebf2a981de4447b1ce98f885eb0a463ee75e692",
+      "metadata": "4ebf2a981de4447b1ce98f885eb0a463ee75e692"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "baseline": "b20a3034879d7c666a4b5c04bac61986d3c232f0",
+      "application": "f8e35a7926152b21a0d583ccdecbb6243f75187e",
+      "metadata": "1427643353765888170ea0313854ccf1993f4fd3"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "baseline": "ab9164b58c3a64571590220ed8fc558e20279486",
+      "application": "ab9164b58c3a64571590220ed8fc558e20279486",
+      "metadata": "ab9164b58c3a64571590220ed8fc558e20279486"
+    },
+    {
+      "path": "Scripts/CI/prepare-hanlin-sdk.py",
+      "baseline": "2b3d439abe961e77cf81538043a77d6be50c3904",
+      "application": "2b3d439abe961e77cf81538043a77d6be50c3904",
+      "metadata": "2b3d439abe961e77cf81538043a77d6be50c3904"
+    },
+    {
+      "path": "Scripts/CI/prepare-pinned-sharp-libvips.py",
+      "baseline": "4ed75a5f8e661cb3aac6de763dd68f31631d9860",
+      "application": "4ed75a5f8e661cb3aac6de763dd68f31631d9860",
+      "metadata": "4ed75a5f8e661cb3aac6de763dd68f31631d9860"
+    },
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Package.swift",
+      "baseline": "29b39d3e69cb0197a099768a7a8dbff793aacfa7",
+      "application": "29b39d3e69cb0197a099768a7a8dbff793aacfa7",
+      "metadata": "29b39d3e69cb0197a099768a7a8dbff793aacfa7"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Package.swift",
+      "baseline": "125ecf527f49830015b68e2ecb59c15a211df61b",
+      "application": "125ecf527f49830015b68e2ecb59c15a211df61b",
+      "metadata": "125ecf527f49830015b68e2ecb59c15a211df61b"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Package.swift",
+      "baseline": "6e0f66e23a58df559e2eccdd62c5b894437aada8",
+      "application": "6e0f66e23a58df559e2eccdd62c5b894437aada8",
+      "metadata": "6e0f66e23a58df559e2eccdd62c5b894437aada8"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Package.swift",
+      "baseline": "1c7d5d67a69d7ec920575a19e00d0118d3611cc8",
+      "application": "1c7d5d67a69d7ec920575a19e00d0118d3611cc8",
+      "metadata": "1c7d5d67a69d7ec920575a19e00d0118d3611cc8"
+    },
+    {
+      "path": "Maktabah.xcodeproj/xcshareddata/xcschemes/Maktabah-Direct.xcscheme",
+      "baseline": "3f56ad90329f3a8d36320d3ce3afa20cfc2ee983",
+      "application": "3f56ad90329f3a8d36320d3ce3afa20cfc2ee983",
+      "metadata": "3f56ad90329f3a8d36320d3ce3afa20cfc2ee983"
+    },
+    {
+      "path": "Maktabah.xcodeproj/xcshareddata/xcschemes/Maktabah-iOS.xcscheme",
+      "baseline": "214f46a3458a1eb213e3c11e7b3fc1b5d31d9e26",
+      "application": "214f46a3458a1eb213e3c11e7b3fc1b5d31d9e26",
+      "metadata": "214f46a3458a1eb213e3c11e7b3fc1b5d31d9e26"
+    },
+    {
+      "path": "Maktabah.xcodeproj/xcshareddata/xcschemes/Maktabah.xcscheme",
+      "baseline": "771d301a3776873d8c3e2120b0c0145a30411bab",
+      "application": "771d301a3776873d8c3e2120b0c0145a30411bab",
+      "metadata": "771d301a3776873d8c3e2120b0c0145a30411bab"
+    },
+    {
+      "path": "Maktabah.xcodeproj/xcshareddata/xcschemes/MaktabahWidgetExtension.xcscheme",
+      "baseline": "2822d691805cbee448c2fa70ccb8c92ca0f2bf4e",
+      "application": "2822d691805cbee448c2fa70ccb8c92ca0f2bf4e",
+      "metadata": "2822d691805cbee448c2fa70ccb8c92ca0f2bf4e"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Package.swift",
+      "baseline": "bfdc15a8519a6a8d09f0a825c4b2103e0385a17e",
+      "application": "bfdc15a8519a6a8d09f0a825c4b2103e0385a17e",
+      "metadata": "bfdc15a8519a6a8d09f0a825c4b2103e0385a17e"
+    },
+    {
+      "path": "Vendor/OtzariaSearchEngine/Tests/OccurrenceSwift/Package.resolved",
+      "baseline": "fffa967e7c69a80859b3b5bdb94333c989d6090a",
+      "application": "fffa967e7c69a80859b3b5bdb94333c989d6090a",
+      "metadata": "fffa967e7c69a80859b3b5bdb94333c989d6090a"
+    },
+    {
+      "path": "Vendor/OtzariaSearchEngine/Tests/OccurrenceSwift/Package.swift",
+      "baseline": "2d5d0bfc1742d5d871d4fbca737f92080037226a",
+      "application": "2d5d0bfc1742d5d871d4fbca737f92080037226a",
+      "metadata": "2d5d0bfc1742d5d871d4fbca737f92080037226a"
+    },
+    {
+      "path": "Vendor/OtzariaSearchEngine/Tests/OccurrenceSwift/evidence/repository/actual42/Package.resolved",
+      "baseline": "fffa967e7c69a80859b3b5bdb94333c989d6090a",
+      "application": "fffa967e7c69a80859b3b5bdb94333c989d6090a",
+      "metadata": "fffa967e7c69a80859b3b5bdb94333c989d6090a"
+    },
+    {
+      "path": "Vendor/OtzariaSearchEngine/Tests/OccurrenceSwift/evidence/whole-bridge-attempt1/Package.resolved",
+      "baseline": "fffa967e7c69a80859b3b5bdb94333c989d6090a",
+      "application": "fffa967e7c69a80859b3b5bdb94333c989d6090a",
+      "metadata": "fffa967e7c69a80859b3b5bdb94333c989d6090a"
+    },
+    {
+      "path": "Vendor/OtzariaSearchEngine/Tests/OccurrenceSwift/evidence/whole-bridge-attempt2/Package.resolved",
+      "baseline": "fffa967e7c69a80859b3b5bdb94333c989d6090a",
+      "application": "fffa967e7c69a80859b3b5bdb94333c989d6090a",
+      "metadata": "fffa967e7c69a80859b3b5bdb94333c989d6090a"
+    },
+    {
+      "path": "Source/PrivacyInfo.xcprivacy",
+      "baseline": "c86c62cc12e3ceadea279ff9948a8891a0860577",
+      "application": "c86c62cc12e3ceadea279ff9948a8891a0860577",
+      "metadata": "c86c62cc12e3ceadea279ff9948a8891a0860577"
+    }
+  ],
+  "unchanged_pbx_sections": [
+    "XCLocalSwiftPackageReference",
+    "XCRemoteSwiftPackageReference",
+    "XCSwiftPackageProductDependency",
+    "PBXProject",
+    "PBXNativeTarget",
+    "XCBuildConfiguration",
+    "XCConfigurationList"
+  ],
+  "project_added_lines": 8,
+  "project_removed_lines": 0,
+  "source_vendor_manifest_count": 10,
+  "exact_pin_count": 17,
+  "actual_original_preparation_functions_verified": 4,
+  "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "hanlin_424_payload_crosscheck": "Retained peer audit compares historical before/after/final to immutable e004 Git tree; no code changes or re-execution by root.",
+  "unchanged_product_trees": {
+    "Source": "362d3336b0c11a8f428b25252edbb81f9907c2f8",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "cd108ec2cec9f8c6089a1eeff2ec77bc9372a469"
+  },
+  "new_resolver_build_test_runs": 0,
+  "generated_268_workspace_stamp_transferred": false,
+  "current_preparation_build_and_native_acceptance": "STILL_REQUIRED",
+  "limits": {
+    "historical_strict_17_resolution": "REUSE_WITH_EXACT_SCOPE",
+    "historical_complete_268_workspace_byte_stamp": "NOT_TRANSFERRED",
+    "application_code_equivalence": false,
+    "new_app_build_or_Native_credit": false,
+    "new_preparation_and_build_existing_gates": "STILL_REQUIRED",
+    "conditions": [
+      "Same exact package graph/lock/local manifests/Hanlin and reviewed original preparation route.",
+      "Historical toolchain remains Xcode27.0/Swift6.4, Node22.23.4/Ruby3.3.14/CocoaPods1.17.0; this audit does not observe a new runner.",
+      "Current generated workspace/Podfile.lock/privacy/provider output must be checked by the normal new preparation/build gates.",
+      "Any later SDK distribution, package/pin/manifests/owning-array/preparation change needs its own identity review."
+    ]
+  }
+}
