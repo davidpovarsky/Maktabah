@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_eb436ef8a476",
+    "type": "job_result",
+    "source": "script_run@host_7ec8382e82747448",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_7ec8382e82747448",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795317263.1282203,
+    "started_at": "2026-11-22T03:14:23.172940+00:00",
+    "finished_at": "2026-11-22T03:14:46.592243+00:00",
+    "duration_s": 23.42,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 300,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"head\": \"484691ece8bb47c0751ab44452e53183259eea5a\", \"application_source\": \"5f862ea7d785de813fc28680cfe403a3e082ba22\", \"status\": \"PASS_SOURCE_CLOSURES_ONLY\", \"native_runtime_executed\": 0, \"classifier16_reexecuted\": false, \"callback4_reexecuted\": false, \"apple_suites_reexecuted\": false, \"ordinary_hq_preflight\": true, \"original_editor_exact_execution_inputs\": 270, \"sdk_admission_enabled\": false}"
+  }
+}

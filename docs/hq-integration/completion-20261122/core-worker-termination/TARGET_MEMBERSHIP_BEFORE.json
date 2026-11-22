@@ -1,0 +1,138 @@
+{
+  "head": "30c5292275845e619dc236863d0053b8d94b097c",
+  "status": "M Source/Core/CloudKit/CloudKitCoreManager.swift\n?? docs/hq-integration/completion-20261122/core-worker-termination/",
+  "buildIDs": {
+    "CloudKitCoreManager.swift": [
+      "F321E0202FC7050F00CB37DD",
+      "F321E0242FC7050F00CB37DD",
+      "F321E0282FC7050F00CB37DD"
+    ],
+    "AnnotationLocalEditorCloudOwnership.swift": [
+      "AA0B2A425A2CDC8BAD52AF7C",
+      "3D61193ECD8DA163968A5427",
+      "D3E72B183F56A898BFD45419"
+    ]
+  },
+  "targets": [
+    {
+      "name": "Maktabah-iOSUITests",
+      "sourcePhases": [
+        "F30578042FA46222005732C6"
+      ],
+      "membership": {
+        "CloudKitCoreManager.swift": false,
+        "AnnotationLocalEditorCloudOwnership.swift": false
+      }
+    },
+    {
+      "name": "Maktabah",
+      "sourcePhases": [
+        "4B3202242EDAFE85003B95D1"
+      ],
+      "membership": {
+        "CloudKitCoreManager.swift": true,
+        "AnnotationLocalEditorCloudOwnership.swift": true
+      }
+    },
+    {
+      "name": "Maktabah-Direct",
+      "sourcePhases": [
+        "4B7C90A52F83494200454BE1"
+      ],
+      "membership": {
+        "CloudKitCoreManager.swift": true,
+        "AnnotationLocalEditorCloudOwnership.swift": true
+      }
+    },
+    {
+      "name": "MaktabahTests",
+      "sourcePhases": [
+        "4BD8A4E3307E521A00E04BCB"
+      ],
+      "membership": {
+        "CloudKitCoreManager.swift": false,
+        "AnnotationLocalEditorCloudOwnership.swift": false
+      }
+    },
+    {
+      "name": "MaktabahWidgetExtension",
+      "sourcePhases": [
+        "211C61EBAF37E14B5BD92385"
+      ],
+      "membership": {
+        "CloudKitCoreManager.swift": false,
+        "AnnotationLocalEditorCloudOwnership.swift": false
+      }
+    },
+    {
+      "name": "Maktabah-iOS",
+      "sourcePhases": [
+        "F30576E22FA46222005732C6"
+      ],
+      "membership": {
+        "CloudKitCoreManager.swift": true,
+        "AnnotationLocalEditorCloudOwnership.swift": true
+      }
+    }
+  ],
+  "packages": [
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Package.swift",
+      "interestingLines": [
+        "        .target(name: \"CommandPalette\"),"
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Package.swift",
+      "interestingLines": [
+        "        .target(name: \"DuckDuckGoBookTabs\", path: \".\", exclude: [\"Tests\"], sources: [",
+        "        .testTarget(name: \"DuckDuckGoBookTabsTests\", dependencies: [\"DuckDuckGoBookTabs\"], path: \"Tests\")"
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Package.swift",
+      "interestingLines": [
+        "    dependencies: [.package(path: \"../../Otzaria/UIRouting\"), .package(path: \"../../Otzaria/Actions\")],",
+        "        .target(name: \"ChavrusaUIRoutingHost\", dependencies: ["
+      ]
+    },
+    {
+      "path": "Source/Otzaria/Actions/Package.swift",
+      "interestingLines": [
+        "        .target(name: \"OtzariaActionCore\", resources: [.process(\"Resources\")]),"
+      ]
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Package.swift",
+      "interestingLines": [
+        "    dependencies: [.package(path: \"../Actions\")],",
+        "        .target(name: \"OtzariaUIRouting\", dependencies: [.product(name: \"OtzariaActionCore\", package: \"Actions\")], resources: [.process(\"Resources\")]),",
+        "        .testTarget(name: \"OtzariaUIRoutingTests\", dependencies: [\"OtzariaUIRouting\"], resources: [.copy(\"Contracts/Fixtures\")])"
+      ]
+    }
+  ],
+  "sourceDriverMatches": [
+    "tools\\hq-local-annotation-editor-acceptance.py:35:    \"Source/Core/CloudKit/SyncPendingStore.swift\",",
+    "tools\\hq-local-annotation-cloud-acceptance.py:28:    \"Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift\",",
+    "tools\\hq-local-annotation-cloud-acceptance.py:30:    \"Source/Core/CloudKit/CloudKitCoreManager.swift\",",
+    "tools\\hq-local-annotation-cloud-acceptance.py:31:    \"Source/Core/CloudKit/CloudKitUploadDebouncer.swift\",",
+    "tools\\hq-local-annotation-cloud-acceptance.py:32:    \"Source/Core/CloudKit/CloudKitSyncable.swift\",",
+    "tools\\hq-local-annotation-cloud-acceptance.py:33:    \"Source/Core/CloudKit/AnnotationSyncHandler.swift\",",
+    "tools\\hq-annotation-exchange-acceptance.py:24:    \"Source/Core/CloudKit/SyncPendingStore.swift\",",
+    "tools\\generate_migration_ledger.py:209:        \"Source/Core/CloudKit/CloudKitCoreManager.swift\",",
+    "tools\\generate_migration_ledger.py:210:        \"Source/Core/CloudKit/AnnotationSyncHandler.swift\",",
+    "Scripts\\CI\\local-annotation-cloud-apple.py:359:    sql_paths = {\"Source/Core/CloudKit/SyncPendingStore.swift\",",
+    "Scripts\\CI\\annotation-disconnect-apple.py:179:    require(callback_delta == [\"M\\tSource/Core/CloudKit/CloudKitCoreManager.swift\"],",
+    "Scripts\\CI\\annotation-disconnect-apple.py:182:    require(set(repair_delta) == {\"M\\tSource/Core/CloudKit/CloudKitCoreManager.swift\", \"M\\t\" + FIXTURE}",
+    "Scripts\\CI\\annotation-disconnect-apple.py:192:                             \"Source/Core/CloudKit/CloudKitCoreManager.swift\": \"M\"},",
+    "Scripts\\CI\\annotation-disconnect-apple.py:246:    for relative in (REPOSITORY_SOURCE, \"Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift\",",
+    "Scripts\\CI\\annotation-disconnect-apple.py:247:                     \"Source/Core/CloudKit/CloudKitCoreManager.swift\"):",
+    "Scripts\\CI\\annotation-combined-core194-apple.py:245:CORE_MANAGER = \"Source/Core/CloudKit/CloudKitCoreManager.swift\"",
+    "Scripts\\CI\\test-local-annotation-cloud-apple.py:67:            \"Source/Core/CloudKit/SyncPendingStore.swift\",",
+    "Scripts\\CI\\test-local-annotation-cloud-apple.py:315:        path = self.fixture.local_owned / \"package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationLocalEditorCloudOwnership.swift\"",
+    "Source\\Core\\CloudKit\\CloudKitCoreManager.swift:2://  CloudKitCoreManager.swift",
+    "tools\\test-local-annotation-editor-sql.py:22:QUEUE = \"Source/Core/CloudKit/SyncPendingStore.swift\"",
+    "tools\\test-local-cloud-pending-sql.py:25:    original_path = args.root / \"Source/Core/CloudKit/SyncPendingStore.swift\""
+  ],
+  "rgCode": 0
+}

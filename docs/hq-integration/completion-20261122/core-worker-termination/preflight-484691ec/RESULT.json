@@ -1,0 +1,12 @@
+{
+  "head": "484691ece8bb47c0751ab44452e53183259eea5a",
+  "application_source": "5f862ea7d785de813fc28680cfe403a3e082ba22",
+  "status": "PASS_SOURCE_CLOSURES_ONLY",
+  "native_runtime_executed": 0,
+  "classifier16_reexecuted": false,
+  "callback4_reexecuted": false,
+  "apple_suites_reexecuted": false,
+  "ordinary_hq_preflight": true,
+  "original_editor_exact_execution_inputs": 270,
+  "sdk_admission_enabled": false
+}

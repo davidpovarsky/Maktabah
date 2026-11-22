@@ -8,6 +8,27 @@ import Foundation
 import OSLog
 import Synchronization
 
+/// Transport completion for the existing optional worker notification only.
+/// HTTP rejection is an actual failure even when URLSession has no error.
+/// No response URL, body, account identity or configured request is diagnosed.
+enum AnnotationLocalEditorCloudWorkerResponse {
+    enum Failure: Error, Sendable, Equatable {
+        case missingHTTPResponse
+        case httpStatus(Int)
+    }
+
+    static func result(response: URLResponse?, error: (any Error)?) -> Result<Void, any Error> {
+        if let error { return .failure(error) }
+        guard let response = response as? HTTPURLResponse else {
+            return .failure(Failure.missingHTTPResponse)
+        }
+        guard (200..<300).contains(response.statusCode) else {
+            return .failure(Failure.httpStatus(response.statusCode))
+        }
+        return .success(())
+    }
+}
+
 /// Manajer inti untuk operasi CloudKit yang kompatibel penuh dengan Swift 6.
 ///
 /// Menggunakan `Synchronization.Mutex` (macOS 15+ / iOS 18+) untuk menggantikan `DispatchQueue.sync`
@@ -344,8 +365,12 @@ final class CloudKitCoreManager: Sendable {
         let semaphore = DispatchSemaphore(value: 0)
         let errorState = Mutex<(any Error)?>(nil)
 
-        URLSession.shared.dataTask(with: request) { _, _, error in
-            errorState.withLock { $0 = error }
+        URLSession.shared.dataTask(with: request) { _, response, error in
+            if case .failure(let failure) = AnnotationLocalEditorCloudWorkerResponse.result(
+                response: response, error: error
+            ) {
+                errorState.withLock { $0 = failure }
+            }
             semaphore.signal()
         }.resume()
 

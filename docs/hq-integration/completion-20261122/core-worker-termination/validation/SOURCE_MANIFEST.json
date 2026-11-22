@@ -1,0 +1,19 @@
+{
+  "base": "30c5292275845e619dc236863d0053b8d94b097c",
+  "boundary": "URLSession transport invocation replaced by exact @Sendable callback invocation in a small harness; no full CloudKitCoreManager typecheck or network.",
+  "classifier16_reused": "docs/hq-integration/completion-20261122/local-cloud-worker-response/validation/RESULT.json",
+  "inputs": {
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift": "903514e8653d1833e0137e8ef4b353f31aa05d4324eda438af5c6aede63f2c94",
+    "Source/Core/CloudKit/CloudKitCoreManager.swift": "83a69caa0a3ea7f06c868a9efb14001aa2c6615885b74ca7662db50218c1d1ea",
+    "docs/hq-integration/completion-20261122/core-worker-termination/CoreManager-before.swift": "1d9de7832d00dd566e3fb3b50214a39ce48c3fd07b8e4b0a148bfeca0916fa34",
+    "docs/hq-integration/completion-20261122/core-worker-termination/ExactCallbacks.swift": "c518c6e8644c3589bb6dfe0c19356d0c09698471fbee28777e3437a8b8627b36",
+    "docs/hq-integration/completion-20261122/core-worker-termination/candidate-callback.txt": "c21baa23e9671560dec274d4009b78b332d75bc1476da91075d21df2e4f1416e",
+    "docs/hq-integration/completion-20261122/core-worker-termination/controls.swift": "97ed5e2cb253a29c2640141203460bf60c1dde22a1e59a45b93d1bdcd443b6ee",
+    "docs/hq-integration/completion-20261122/core-worker-termination/original-callback.txt": "c6f1c24320ae41625a3c48e4f3cde71d1e337ca523f9ab5fca78ec7b9a7bf0f5",
+    "docs/hq-integration/completion-20261122/core-worker-termination/run-callback-controls.py": "d62d057010ad2c6464ca2c487afa4446f5906b785e2943833796299add3d77f7",
+    "docs/hq-integration/completion-20261122/local-cloud-worker-response/WorkerResponse.swift": "e253f2b5c97facca1a944508b3c6a202f0851967cb08898a6f6bd22e2e575415"
+  },
+  "new_controls": "Only callback-to-Mutex error state and one semaphore signal; original classifier suite is not reexecuted.",
+  "original_three_second_wait_unchanged": true,
+  "outside_callback_unchanged": true
+}

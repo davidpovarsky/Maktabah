@@ -1,0 +1,15 @@
+{
+  "baseline" : "HTTP_503_WRONG_SUCCESS_REPRODUCED",
+  "cases" : [
+    "http_rejection_enters_original_error_state_once",
+    "accepted_response_preserves_original_completion_once",
+    "missing_response_enters_original_error_state_once",
+    "transport_error_identity_and_signal_preserved"
+  ],
+  "cloudkit_runtime_executed" : 0,
+  "native_ui_executed" : 0,
+  "network_requests" : 0,
+  "passed" : 4,
+  "scope" : "Exact original\/candidate @Sendable callback closures; actual Mutex\/DispatchSemaphore\/Foundation responses; unchanged classifier reused",
+  "status" : "PASS_EXACT_TERMINATION_CALLBACK_WIRING"
+}
