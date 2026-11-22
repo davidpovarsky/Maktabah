@@ -1,0 +1,24 @@
+{
+  "device_udid": "4F27587A-00AD-40DF-8C68-A1EA7A0F402D",
+  "command": [
+    "xcrun",
+    "simctl",
+    "spawn",
+    "4F27587A-00AD-40DF-8C68-A1EA7A0F402D",
+    "log",
+    "stream",
+    "--style",
+    "json",
+    "--level",
+    "debug",
+    "--predicate",
+    "subsystem == \"com.davidpovarsky.chavrusatext\" AND category == \"R27PaletteInput\""
+  ],
+  "maximum_seconds": 900,
+  "exit_code": 0,
+  "forced_stop": false,
+  "bytes": 114,
+  "sha256": "046f14c3c167109ef3340cb6d24de498b970227c985ed03dfde461c2650bc6d5",
+  "status": "RETAINED_RAW_STREAM",
+  "acceptance_effect": "NONE; require actual mount/edit markers before interpreting missing handlers"
+}

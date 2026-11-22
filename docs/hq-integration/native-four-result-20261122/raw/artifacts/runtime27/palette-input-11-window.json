@@ -1,0 +1,27 @@
+{
+  "status": "CAPTURED",
+  "device_udid": "4F27587A-00AD-40DF-8C68-A1EA7A0F402D",
+  "command": [
+    "xcrun",
+    "simctl",
+    "spawn",
+    "4F27587A-00AD-40DF-8C68-A1EA7A0F402D",
+    "log",
+    "show",
+    "--style",
+    "json",
+    "--last",
+    "15m",
+    "--info",
+    "--debug",
+    "--predicate",
+    "subsystem == \"com.davidpovarsky.chavrusatext\" AND category == \"R27PaletteInput\""
+  ],
+  "acceptance_effect": "NONE; diagnostic capture is not a UI pass",
+  "exit_code": 0,
+  "truncated": false,
+  "path": "palette-input-11-window.log",
+  "bytes": 46,
+  "sha256": "6e6d58451b11b191c4192fb324cbdba3cdce95725feb1ffa7a0f0469aa25c386",
+  "matching_events": "UNPARSED; inspect retained raw diagnostics"
+}

@@ -1,0 +1,35 @@
+2026-11-22 04:16:35.497+0000 IDB Companion Built at Nov 1 2026 15:33:23
+2026-11-22 04:16:35.515+0000 IDB Companion architecture arm64
+2026-11-22 04:16:35.516+0000 Invoked with args=[/Users/runner/work/_temp/r27-hid-tools-qijvqpcz/companion/idb_companion, --udid, 4F27587A-00AD-40DF-8C68-A1EA7A0F402D, --grpc-domain-sock, /tmp/r27-hid-3sd2665y/companion.sock]
+2026-11-22 04:16:35.520+0000 Providing targets across Simulator and Device sets.
+2026-11-22 04:16:35.522+0000 CoreSimulator: Already loaded, skipping
+2026-11-22 04:16:35.523+0000 CoreSimulator: SimDevice has correct path of /Library/Developer
+2026-11-22 04:16:35.523+0000 Loaded All Private Frameworks [CoreSimulator]
+2026-11-22 04:16:36.211+0000 Cleaning up UDS if exists
+2026-11-22 04:16:36.216+0000 Starting swift server on unix socket /tmp/r27-hid-3sd2665y/companion.sock
+2026-11-22 04:16:36.235+0000 Swift server started on [unix]/tmp/r27-hid-3sd2665y/companion.sock
+{"grpc_path":"\/tmp\/r27-hid-3sd2665y\/companion.sock"}
+2026-11-22 04:16:36.236+0000 Companion will stay alive if target goes offline
+2026-11-22 04:16:36.715+0000 connect called with: [metadata=[:], localFilePath=/tmp/r27-hid-3sd2665y/tmp7jb98dpm]
+2026-11-22 04:16:36.716+0000 connect succeeded in 1ms
+2026-11-22 04:20:25.856+0000 hid called with: []
+2026-11-22 04:20:25.886+0000 [4F27587A-00AD-40DF-8C68-A1EA7A0F402D] SimulatorKit: Loading from /Applications/Xcode_27.1.app/Contents/SharedFrameworks/SimulatorKit.framework
+2026-11-22 04:20:25.955+0000 [4F27587A-00AD-40DF-8C68-A1EA7A0F402D] SimulatorKit: Successfully loaded
+2026-11-22 04:20:25.955+0000 [4F27587A-00AD-40DF-8C68-A1EA7A0F402D] Loaded All Private Frameworks [SimulatorKit]
+2026-11-22 04:20:26.930+0000 Negotiated the dtuhid HID transport
+2026-11-22 04:20:26.937+0000 [grpc_handler] Sending Key <hidden>
+2026-11-22 04:20:26.942+0000 [grpc_handler] Delay 0.05s
+2026-11-22 04:20:27.114+0000 [grpc_handler] Sending Key <hidden>
+2026-11-22 04:20:27.245+0000 Closed client stream of hid after 3 frames
+2026-11-22 04:20:27.366+0000 hid succeeded in 1.51s
+2026-11-22 04:20:50.819+0000 hid called with: []
+2026-11-22 04:20:50.824+0000 [grpc_handler] Sending Key <hidden>
+2026-11-22 04:20:50.824+0000 [grpc_handler] Delay 0.05s
+2026-11-22 04:20:51.058+0000 [grpc_handler] Sending Key <hidden>
+2026-11-22 04:20:51.062+0000 Closed client stream of hid after 3 frames
+2026-11-22 04:20:51.459+0000 hid succeeded in 640ms
+2026-11-22 04:21:14.057+0000 Signalled: SIGTERM
+2026-11-22 04:21:14.057+0000 Shutting down swift server
+2026-11-22 04:21:14.094+0000 Server closed
+2026-11-22 04:21:14.094+0000 Successfully removed temporal directory: file:///tmp/r27-hid-3sd2665y/IDB/90F74554-65E0-4809-88A7-94B8316E8D72
+2026-11-22 04:21:14.101+0000 Responding to termination of idb with signo 15

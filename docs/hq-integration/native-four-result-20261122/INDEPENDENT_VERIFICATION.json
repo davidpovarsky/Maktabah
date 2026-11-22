@@ -1,0 +1,129 @@
+{
+  "status": "INDEPENDENT_SOURCE_AND_XCRESULT_RECEIPTS_VERIFIED",
+  "at": "2026-11-22T04:28:11.025786+00:00",
+  "run_id": 44980625976,
+  "checkout_sha": "c107c8ac600de6bbe6d92571fbbbdc6349cd143a",
+  "application_source_sha": "385ee84a8acb3fbc3c013c0977417b61fd3d8a17",
+  "application_trees": {
+    "Source": "362d3336b0c11a8f428b25252edbb81f9907c2f8",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "cd108ec2cec9f8c6089a1eeff2ec77bc9372a469"
+  },
+  "summary_receipts": [
+    {
+      "label": "11-reader",
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "canonical_summary_sha256": "e62ee12c525c9fda21ee595e6073ae80e687d77e7501925406fff9819dc0233b",
+      "canonical_tests_sha256": "020325ef15ecbba3b46fd25f4429cd56bf198161345dddf178411dca79b983c3",
+      "failures": [
+        {
+          "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - One actual consent switch tap must turn access ON",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection",
+          "testName": "testOriginalIPadCurrentWorkConsentToggleWithoutConnection()"
+        }
+      ]
+    },
+    {
+      "label": "11-search",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "canonical_summary_sha256": "5adbeec45f8a90d4b902837c2338a5a8f396a70e70c86e8af73ac3f560046f01",
+      "canonical_tests_sha256": "cd73de1923705babddeca161ecf8c5a951814c394d5fe513d4304d6fe3fe93c2",
+      "failures": []
+    },
+    {
+      "label": "11-window",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "canonical_summary_sha256": "c8f25ca11a2b68134b9f010ce0d62afe1d9ad172b57cac597a1c794072ba5ca9",
+      "canonical_tests_sha256": "30e2268d616298ce8d89776731231116a24dfa0a157d2af125803908a421ab11",
+      "failures": []
+    }
+  ],
+  "counts": {
+    "passed": 3,
+    "failed": 1,
+    "skipped": 0,
+    "not_run": 0
+  },
+  "cases": [
+    {
+      "case_id": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection",
+      "configuration_label": "11-reader",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "configuration_label": "11-search",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "configuration_label": "11-search",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "configuration_label": "11-window",
+      "actual": "Passed"
+    }
+  ],
+  "build_and_post_UI_audit_source_fields_equal": true,
+  "post_UI_report_only_additions": [
+    "Exact original Hanlin --verify-only invocation",
+    "Identical original CocoaPods privacy aggregation receipt repeated"
+  ],
+  "initial_independent_comparison_note": "An initial whole-report equality assertion was overstrict because the original post-UI auditor appends these two observations. No source, test or original gate changed; all other report fields and the exact appended entries were verified.",
+  "compiled_images_unchanged": true,
+  "actual_source_inputs_verified_by_original_auditor": 1012,
+  "all_execution_input_git_blobs_bytes_sha256_independently_verified": 275,
+  "devices": [
+    {
+      "label": "11-reader",
+      "status": "FAIL",
+      "runtime": "27.2",
+      "device": "iPad Pro 11-inch (M5)",
+      "cleanup": "PASS",
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0
+    },
+    {
+      "label": "11-search",
+      "status": "EXECUTED_PASS",
+      "runtime": "27.2",
+      "device": "iPad Pro 11-inch (M5)",
+      "cleanup": "PASS",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "label": "11-window",
+      "status": "EXECUTED_PASS",
+      "runtime": "27.2",
+      "device": "iPad Pro 11-inch (M5)",
+      "cleanup": "PASS",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "verification_reexecuted_UI_or_component_tests": false
+}

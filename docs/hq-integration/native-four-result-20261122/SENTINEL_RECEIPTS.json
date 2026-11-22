@@ -1,0 +1,56 @@
+{
+  "observer": {
+    "ok": true,
+    "job": {
+      "id": "job_d3c08232bc6c",
+      "type": "job_result",
+      "source": "script_run@host_7ec8382e82747448",
+      "severity": "info",
+      "tool": "script_run",
+      "host": "host_7ec8382e82747448",
+      "status": "succeeded",
+      "exit_code": 0,
+      "created_at": 1795318032.158161,
+      "started_at": "2026-11-22T03:27:12.205601+00:00",
+      "finished_at": "2026-11-22T04:23:01.494096+00:00",
+      "duration_s": 3349.29,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 3600,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"observer_status\": \"TERMINAL_OBSERVED\", \"run_id\": 44980625976, \"run_url\": \"https://github.com/davidpovarsky/Maktabah/actions/runs/44980625976\", \"head_sha\": \"c107c8ac600de6bbe6d92571fbbbdc6349cd143a\", \"application_source\": \"385ee84a8acb3fbc3c013c0977417b61fd3d8a17\", \"started_at\": \"2026-11-22T03:27:13.902941+00:00\", \"pid\": 28412, \"maximum_watch_seconds\": 3350, \"purpose\": \"Observe this one existing run; no workflow dispatch or cancellation\", \"scope\": \"FOCUSED_FOUR_ONLY\", \"gh_watch_exit_code\": 1, \"finished_at\": \"2026-11-22T04:22:54.603743+00:00\", \"actual_run_status\": \"completed\", \"actual_run_conclusion\": \"failure\", \"actual_run_attempt\": 1, \"actual_run_updated_at\": \"2026-11-22T04:22:33Z\", \"jobs\": [{\"id\": 137080119677, \"name\": \"One app build, three repaired Native cases and isolated consent diagnostic\", \"conclusion\": \"failure\", \"failed_steps\": [{\"name\": \"Execute four selected Native cases without rebuilding or provider credentials\", \"conclusion\": \"failure\"}, {\"name\": \"Collect original raw native case outcomes including failures\", \"conclusion\": \"failure\"}]}]}"
+    }
+  },
+  "captures": {
+    "ok": true,
+    "job": {
+      "id": "job_31fc69401fbe",
+      "type": "job_result",
+      "source": "script_run@host_7ec8382e82747448",
+      "severity": "info",
+      "tool": "script_run",
+      "host": "host_7ec8382e82747448",
+      "status": "succeeded",
+      "exit_code": 0,
+      "created_at": 1795321519.009966,
+      "started_at": "2026-11-22T04:25:19.047766+00:00",
+      "finished_at": "2026-11-22T04:30:55.719076+00:00",
+      "duration_s": 336.67,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 600,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"status\": \"DOWNLOADED_HASH_BYTES_CRC_VERIFIED\", \"run_id\": 44980625976, \"artifact_id\": 14738409302, \"bytes\": 184151371, \"sha256\": \"666e299ed8b685ed5af7d3046727adc43fbe000de1211d65e2998cbfaf263240\", \"members\": 1601, \"exported_captures\": 50, \"at\": \"2026-11-22T04:30:55.583744+00:00\"}"
+    }
+  }
+}

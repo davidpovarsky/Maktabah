@@ -1,0 +1,18 @@
+{
+  "suites": [
+    {
+      "suite": "R27NativePadTests",
+      "selection": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "expected": [
+        "testNormalBootstrapPaletteKeyboardDispatchCalibration"
+      ],
+      "passed": [
+        "testNormalBootstrapPaletteKeyboardDispatchCalibration"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    }
+  ],
+  "status": "EXECUTED_PASS"
+}
