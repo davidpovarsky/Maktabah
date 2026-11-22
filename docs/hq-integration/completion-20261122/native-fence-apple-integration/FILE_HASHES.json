@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 29,
+      "sha256": "730a35ae3d558080083c3103d9ac8100c3f6561678092abe341701dfa331eb1d"
+    },
+    {
+      "path": "INTEGRATION.json",
+      "bytes": 10038,
+      "sha256": "d3149d3cb343349e84713be0f78f269a7900ec933f764fa55535a5cc4414b4ce"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1892,
+      "sha256": "23acf3fb476c713c700e619312bd5ad633a2b41a1a00f16f5c80cf7621d2e38e"
+    }
+  ]
+}
