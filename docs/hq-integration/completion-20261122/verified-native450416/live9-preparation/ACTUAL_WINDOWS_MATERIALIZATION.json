@@ -1,0 +1,8 @@
+{
+  "reviewed_lf_sha256": "c83e3bf3ef37cf749d79a8e20e63d1180ce2d3fe33b4b639062b1e3bfcafb5bd",
+  "actual_executed_sha256": "9718a5eb04e50f83df9cc83f7c8b284e251ddefbd12ad20fd6ea646bfd4ff93a",
+  "transformation": "Exact Windows LF to CRLF script materialization only",
+  "all_ast_nodes_identical": true,
+  "no_controller_reexecution": true,
+  "credential_in_source": false
+}

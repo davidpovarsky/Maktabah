@@ -1,0 +1,42 @@
+{
+  "at_utc": "2026-11-22T17:25:31.800268+00:00",
+  "exists": true,
+  "fields": {
+    "state": "RUNNING",
+    "run_id": 45048898269,
+    "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45048898269",
+    "secret_cleanup_required": true
+  },
+  "keys": [
+    "repository",
+    "secret_name",
+    "source_environment_name",
+    "checkout_sha",
+    "application_source_sha",
+    "trigger_branch",
+    "started_utc",
+    "credential_in_argv",
+    "credential_value_written_to_evidence",
+    "secret_cleanup_required",
+    "controller_sha256",
+    "native_prerequisite",
+    "native_prerequisite_application_source",
+    "native_prerequisite_raw",
+    "native_prerequisite_scope",
+    "execution_reason",
+    "diagnostic_source_review",
+    "provider_availability",
+    "prior_absent",
+    "execution_inputs_verified",
+    "state",
+    "secret_set_started_utc",
+    "metadata",
+    "push_started_utc",
+    "push_exit_code",
+    "dispatch_started_utc",
+    "run_id",
+    "run_attempt",
+    "run_url"
+  ]
+}
+

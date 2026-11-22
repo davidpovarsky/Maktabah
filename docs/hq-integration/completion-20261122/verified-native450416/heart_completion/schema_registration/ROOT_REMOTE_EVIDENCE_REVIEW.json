@@ -1,0 +1,154 @@
+{
+  "verified_at_utc": "2026-11-22T17:27:18.867179+00:00",
+  "commit": "c21b9ebcbf255e6f4c02611069d8f40b75436a05",
+  "parent": "0896ae82864142e0b633278a8c5cb718ddf66e1e",
+  "tree": "943231ed1fb6e17cb607f48a437f074befb0a59c",
+  "verified_blobs": 23,
+  "artifact_redownloads": 0,
+  "native_reexecutions": 0,
+  "files": [
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/18-run-semantics.stdout",
+      "bytes": 5167,
+      "sha256": "37da73d9d0f4d00a65d356e3d439dbbb4d715e8584325694b6b33728c98e432f",
+      "git_blob": "24c9e4b7ec1ecf984742d3ef96fbc6931490ed75"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/21-run-native.stdout",
+      "bytes": 2690162,
+      "sha256": "69e6f4046d88aa22f880e3946d0a2f67fdd634cde618d9790e7c1a44a9e3d3d8",
+      "git_blob": "66a43558115fb91ace8e36e13ec7136a630e25e1"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/COMMANDS.json",
+      "bytes": 27783,
+      "sha256": "d6016ca54237b3e4d9817418140d31774ea5fd918a9a09c71b5f555897b36e38",
+      "git_blob": "60b53d7cf054be567bc128a564c0f4aa221c235f"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/EVIDENCE_INDEX.json",
+      "bytes": 8946,
+      "sha256": "e90fc2e5adc5b55df302d5e055fbc57ad1964a54548e7bfa90578aeb429f4e8e",
+      "git_blob": "477ea5c808d8fd777ce3adb6be10e1397d21e13e"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/Heart_Schema_Native_Defaults_45046749798.zip",
+      "bytes": 3191815,
+      "sha256": "3ac1d224746d3a466cf978798fc238eaec0c556ffd5ed4ae2f3fcb894a07210a",
+      "git_blob": "4ad4d5e61752a4566568048e6cb730a3c50bb34c"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/README.md",
+      "bytes": 4310,
+      "sha256": "4dbe875b06f5fab7ce48500794af66db16f7bfa9585e89c382dedaf305039978",
+      "git_blob": "1e55f7470f7dd34e600fbffcd2f5231ea409bbf6"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/RESULT.json",
+      "bytes": 35941,
+      "sha256": "3c396b2cb910f0b0042435c90228390f3ae125e3ff7c0526acd06ca48d8421a5",
+      "git_blob": "e333b3cb1a05f6b586cb95ded85cf3fdcaf0f8f0"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/SEMANTIC_ACTIVATION.json",
+      "bytes": 1255,
+      "sha256": "a6fbd5f8b4e3fab0de154d3eb716a03d3c0edca296943dc4ee50ddf99d495598",
+      "git_blob": "e3f1e27f05ffb712e3a35161de548e40f175ccc6"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/SEMANTIC_ARCHIVE_GIT_BLOB.json",
+      "bytes": 455,
+      "sha256": "f832a165eb24325450faa179dbeba8b7e44e9d93d1c2e289192feea2ab8480f5",
+      "git_blob": "0c67c629ce23907d8bfdc43afdf8fc4a95eaf96a"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/SEMANTIC_EXACT_HEAD_VERIFICATION.json",
+      "bytes": 414,
+      "sha256": "1f831101e55f645e4ed1c545d7957d202e57ba80eda6c90f485bc8aaa3994155",
+      "git_blob": "cdadbf1b2106367c158dc35a6ba0a0f087fd3d2e"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/SEMANTIC_INTAKE_LOCAL_CORRECTION.json",
+      "bytes": 1596,
+      "sha256": "49239dbcf3023d0c4865bbaecab1b00ea86e09e5d5ca6a76ff08654454aaa18e",
+      "git_blob": "ac3c5081b5bb1ea219f6b68c015316784d74a778"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/SEMANTIC_OBSERVER_TERMINAL.json",
+      "bytes": 19609,
+      "sha256": "c50d9f79ea7a8e1df5a4a920bc2a6480ff4a33d3d0baa594d24680424a8ece4b",
+      "git_blob": "9ed0b5641ce4403ef55c009ed1b1c591fd261e97"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/SEMANTIC_PUBLICATION_LOCAL_INDEX.json",
+      "bytes": 8304,
+      "sha256": "337f3062e32dbd973189db421a8c2c8acd9626482a2dd673153f0f80bd4828e2",
+      "git_blob": "5ff034feef7312621a6666dac6934da3b3c2cef3"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/SEMANTIC_TERMINAL_GITHUB.json",
+      "bytes": 20993,
+      "sha256": "90f70f713dda726cf76f841804438184154ae55106de1d14f8746b46c146e13d",
+      "git_blob": "52ef4c2eb609d0a85524b43a60aa9c8ff38e9378"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/VERIFIED_SEMANTIC_RESULT.json",
+      "bytes": 5831,
+      "sha256": "b23d2c9dd7f6ea0ed5f7316ac7c6b72f6961cc2a7519eef6cd9fe3521d3811d1",
+      "git_blob": "cc08b6cbfd696ecefa10d94a11b3ea1cb7e619d7"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/missing-attachment-00-registered.json",
+      "bytes": 44366,
+      "sha256": "f001b47642e2148b285aad73647d65b16fcf5baa55e9aa5a33d98bc8cfc4227d",
+      "git_blob": "a0424cce682086197c6ce387053eb032942f8c17"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/missing-attachment-01-unrelated-property-added.json",
+      "bytes": 45744,
+      "sha256": "0615e84c0b452ee43952147f303f45081096734392c19c50b149979cc202e1b4",
+      "git_blob": "b032d69f232c2311e850fc290f0be707888f4ff8"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/missing-attachment-02-second-view-applied.json",
+      "bytes": 57961,
+      "sha256": "4e0c3af1c987fc0147bb2a8d55c132bcdb13d7c36c32b3d2cc469069b4506425",
+      "git_blob": "234ffa249faa987010a8e7129525d57ebf7dbe57"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/missing-attachment-03-metadata-property-removed.json",
+      "bytes": 56397,
+      "sha256": "ab54b3df3b0e31eb699c10e511a20ad89ebba42b242e1ee79fa1a3da290c0e96",
+      "git_blob": "d19a6a4daa7a984eaf543bea0c5859bdbba5efd0"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/missing-attachment-04-before-registration-attempt.json",
+      "bytes": 56399,
+      "sha256": "4172a8bb8d55d72b64af3ba1e7b7aaa62f8206818ca49891b68ce5d83d309445",
+      "git_blob": "61a2027571a9c086b6cf33a8e4d7bacde44ae80c"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/missing-attachment-05-after-registration-attempt.json",
+      "bytes": 57968,
+      "sha256": "4e90f084a112171a355501e014fbcbd8d80c1a811c06930160c4e451322673c2",
+      "git_blob": "745072b8410773689fc5e31c00ad2cfc29fb98d1"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/verify_native_defaults_artifact.py",
+      "bytes": 14129,
+      "sha256": "7bc1854957b5e02ff4eaaa18cd305426852ee5f07fee778752bac69d2db7a807",
+      "git_blob": "5e958a9af5d96e5b8a532b91746e967b4b19feff"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native-run-45046749798/watch_native_defaults_45046749798.py",
+      "bytes": 5310,
+      "sha256": "422dab5478bcdab5c128d4d15081e7ab9b3f054606f1887492f94a1be94a281b",
+      "git_blob": "b1d7e28f01f4c953ec839f8912e5de5ccf77c484"
+    }
+  ],
+  "previous_read_only_attempt": {
+    "job": "job_83324f2413dc",
+    "failure": "GitHub Contents API omits bytes for files larger than 1 MiB; corrected verifier uses immutable Git blob API after path-to-blob binding; no evidence changes or native executions"
+  }
+}
+

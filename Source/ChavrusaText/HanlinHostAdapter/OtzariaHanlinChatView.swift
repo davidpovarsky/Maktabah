@@ -62,6 +62,7 @@ private struct OtzariaHanlinChatView: View {
                             .accessibilityIdentifier("otzaria-hanlin-end-book-access")
                     }
                     .frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal).padding(.vertical, 8)
+                    .accessibilityElement(children: .contain)
                     .accessibilityIdentifier("otzaria-hanlin-book-access")
                 }
                 if let error = session.errorMessage { HanlinChatErrorBanner(errorMessage: error) }

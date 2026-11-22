@@ -1,0 +1,26 @@
+{
+  "status": "ACTUAL_NATIVE_PREREQUISITE_BOUND_READY_FOR_ONE_OWNED_LIVE_EXECUTION",
+  "at": "2026-11-22T17:14:07.473944+00:00",
+  "controller_sha256": "c83e3bf3ef37cf749d79a8e20e63d1180ce2d3fe33b4b639062b1e3bfcafb5bd",
+  "reviewed_previous_sha256": "04f7f71c56a35aace1dd2cac6753e982be2bbb0bfe30586291d0284e6ca063cc",
+  "changes": [
+    "NATIVE_ARCHIVE_SHA256",
+    "NATIVE_ARTIFACT_ID"
+  ],
+  "all_other_AST_nodes_identical": true,
+  "source": "4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1",
+  "application_source": "3b4345bd0ae33b83c2ff4ae7697164343f0792b8",
+  "native_run": 45041601629,
+  "native_attempt": 1,
+  "native_head": "6591bba49d2b5a28d02b763c4360406843fce4cf",
+  "native_artifact": 14763633318,
+  "native_archive_sha256": "e86d64c98c774b3e6e01611d46b2ab753c7c8b145643d6b654abfc6c2fb1b2b6",
+  "actual_pass": 1,
+  "actual_fail": 0,
+  "actual_skip": 0,
+  "actual_duration_seconds": 182.78378796577454,
+  "summary_sha256": "a9835434a6c0885a028fb0154f34e7b60873cb3d4651bc512837fd691d605979",
+  "case_tree_sha256": "94d1d080d6fac749561d00ac181bcb49d17c778258a146cb65db38509f41aa29",
+  "old_live_branch_is_verified_ancestor": true,
+  "new_secret_or_push_before_this_receipt": false
+}

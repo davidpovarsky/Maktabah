@@ -1,0 +1,19 @@
+{
+  "receipt": {
+    "status": "ONE_LINE_CANONICAL_CANDIDATE_PREPARED_NOT_COMMITTED",
+    "at": "2026-11-22T17:11:20.357984+00:00",
+    "parent": "b435db307bd3abe3ab25ff48b5134309fd759b04",
+    "tested_app": "3b4345bd0ae33b83c2ff4ae7697164343f0792b8",
+    "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+    "canonical_before_sha256": "4786980d957ca3b0a5dce6f80f5eed64b7b374178ad38c4d0d3ae3e2ed12ab18",
+    "canonical_after_sha256": "5f99c1f10f5dd2046817e8eb21a12238301a1213a254c4bfdf9e8c663637e125",
+    "canonical_before_git_blob": "c6b1234a9af2b4f8e187eee84f9d3a589ba44394",
+    "tested_git_blob": "5f5819f67abb19eb83db8f25632cc9ee25fc1e84",
+    "canonical_after_git_blob": "5f5819f67abb19eb83db8f25632cc9ee25fc1e84",
+    "tested_equals_canonical_after": true,
+    "unrelated_canonical_bytes_preserved": true,
+    "source_working_tree_unchanged": true
+  },
+  "patch": "--- a/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift\n+++ b/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift\n@@ -62,6 +62,7 @@\n                             .accessibilityIdentifier(\"otzaria-hanlin-end-book-access\")\n                     }\n                     .frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal).padding(.vertical, 8)\n+                    .accessibilityElement(children: .contain)\n                     .accessibilityIdentifier(\"otzaria-hanlin-book-access\")\n                 }\n                 if let error = session.errorMessage { HanlinChatErrorBanner(errorMessage: error) }\n"
+}
+

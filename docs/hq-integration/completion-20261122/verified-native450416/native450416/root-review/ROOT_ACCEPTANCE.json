@@ -1,0 +1,107 @@
+{
+  "schema": "otzaria.root-native450416-acceptance/1",
+  "at": "2026-11-22T17:21:55.216971+00:00",
+  "run_id": 45041601629,
+  "head": "6591bba49d2b5a28d02b763c4360406843fce4cf",
+  "app_source": "3b4345bd0ae33b83c2ff4ae7697164343f0792b8",
+  "actual_pass": 1,
+  "actual_fail": 0,
+  "actual_skip": 0,
+  "not_run": 0,
+  "compiled_image_bytes_unchanged": true,
+  "full_native116_acceptance": false,
+  "full_release114_acceptance": false,
+  "canonical_json_hash_reconciliation": {
+    "summary": {
+      "raw_sha256": "a9835434a6c0885a028fb0154f34e7b60873cb3d4651bc512837fd691d605979",
+      "collector_sha256": "9d380af69f36c54a9c4a67aeebb68756dae31e9026e68a97466db1b45ed870d0",
+      "matching_canonical_serializations": [
+        {
+          "ensure_ascii": true,
+          "sort_keys": true,
+          "indent": null,
+          "separators": null,
+          "trailing_newline": false
+        },
+        {
+          "ensure_ascii": true,
+          "sort_keys": false,
+          "indent": null,
+          "separators": null,
+          "trailing_newline": false
+        }
+      ]
+    },
+    "tests": {
+      "raw_sha256": "94d1d080d6fac749561d00ac181bcb49d17c778258a146cb65db38509f41aa29",
+      "collector_sha256": "36c08a12d08b350a909d365aa36834a85bc54f55cc731565f0165906ce5ac963",
+      "matching_canonical_serializations": [
+        {
+          "ensure_ascii": true,
+          "sort_keys": true,
+          "indent": null,
+          "separators": null,
+          "trailing_newline": false
+        },
+        {
+          "ensure_ascii": true,
+          "sort_keys": false,
+          "indent": null,
+          "separators": null,
+          "trailing_newline": false
+        },
+        {
+          "ensure_ascii": false,
+          "sort_keys": true,
+          "indent": null,
+          "separators": null,
+          "trailing_newline": false
+        },
+        {
+          "ensure_ascii": false,
+          "sort_keys": false,
+          "indent": null,
+          "separators": null,
+          "trailing_newline": false
+        }
+      ]
+    }
+  },
+  "selected_original_captures": [
+    {
+      "member": "visual-11-reader/19C6105D-8C53-47D6-9ED0-CA1699BD38C8.txt",
+      "human_name": "hanlin-fresh-read-no-send-returned-to-original-reader-ui-tree_0_D10F5A15-223B-472C-B363-28A2E2D5C4E3.txt",
+      "bytes": 31942,
+      "sha256": "65622ddff9c5c7e80aa92d9bb6d540e9ba4935970b05b1cbda3ea0eb349aafb2",
+      "associated_with_failure": false
+    },
+    {
+      "member": "visual-11-reader/0D697DED-8AEA-436C-9583-7CEE9F53AAB8.png",
+      "human_name": "hanlin-fresh-read-no-send-returned-to-original-reader_0_6D8AFB51-BE62-4425-8155-A8990D748C11.png",
+      "bytes": 882416,
+      "sha256": "4132f0b6c575f1ede09d8e2fded25c621a3e186a2ea324eca42de62f4024e53b",
+      "associated_with_failure": false
+    },
+    {
+      "member": "visual-11-reader/13264832-258A-436B-98CB-1EA9016AF14F.txt",
+      "human_name": "hanlin-fresh-read-no-send-after-original-dismiss-reopen-ui-tree_0_2B71BB42-9CFB-455A-9178-8DE4442EE509.txt",
+      "bytes": 35924,
+      "sha256": "aa2ad974ad450873351697ac1000414f33a8e6a201a5e12ccebf7cee8d0b6988",
+      "associated_with_failure": false
+    },
+    {
+      "member": "visual-11-reader/DEABA939-9527-4D58-B104-A7287DEEA8EF.png",
+      "human_name": "hanlin-fresh-read-no-send-after-original-dismiss-reopen_0_66B15F8A-2BD3-4AC4-ADE7-589C78CAD1CA.png",
+      "bytes": 783248,
+      "sha256": "e8a58c85edd969ec6a40cd01fa9cc08f7fcd932d7c5daf7e29269e242f061a8f",
+      "associated_with_failure": false
+    }
+  ],
+  "selected_ax_lines": [
+    "                          Other, 0x108bcd040, {{331.0, 159.0}, {399.5, 61.0}}, identifier: 'otzaria-hanlin-book-access'",
+    "                            Button, 0x108bccc80, {{331.0, 199.5}, {129.5, 20.5}}, identifier: 'otzaria-hanlin-end-book-access', label: 'End book access'",
+    "                          Button, 0x108bb6940, {{823.0, 679.0}, {32.0, 32.0}}, identifier: 'otzaria-hanlin-send', label: 'Send', Disabled"
+  ],
+  "new_artifact_downloads": 0,
+  "prior_host48_reexecuted": 0
+}

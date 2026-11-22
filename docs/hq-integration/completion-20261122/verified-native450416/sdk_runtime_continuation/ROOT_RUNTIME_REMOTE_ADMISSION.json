@@ -1,0 +1,236 @@
+{
+  "schema": "otzaria.root-sdk-runtime-remote-admission/1",
+  "at": "2026-11-22T17:17:04.177470+00:00",
+  "head": "452032e3ae51d4dec3c91b3f14ef1d70e43f1219",
+  "parent": "edce5b975b173059522f90adb71271fb95adf963",
+  "tree": "a10cdb6162ef1e1e6b407b6e4d6be3c00fb7c498",
+  "all37_remote_blobs_verified": true,
+  "only37_added_paths": true,
+  "existing_paths_modified": 0,
+  "hanlin_source_repository_private": false,
+  "activation_performed": false,
+  "files": [
+    {
+      "path": ".github/workflows/pinkha-original-editor-runtime-continuation.yml",
+      "git_blob": "79c63f8f5fcca8865a5476a220b6f9e78a368386",
+      "sha256": "5ef868d5078c944de10d5ce40a36165faf36381c2ff4a0c336fb4cfc9c243256",
+      "bytes": 7084
+    },
+    {
+      "path": "Tools/OriginalEditor/run_runtime_continuation.py",
+      "git_blob": "398ac1471cdd4d53232fd9aa0a39cb0993816ee3",
+      "sha256": "5dc0f1c0c9ebb4ef72e6d15c13f185ad42a86209dd50f37f6b20fcd44874df12",
+      "bytes": 37980
+    },
+    {
+      "path": "Tools/OriginalEditor/runtime_continuation_process.py",
+      "git_blob": "423ca948b785cfdf577832df4a927065882e775f",
+      "sha256": "d55f83a6eb3f3334356087813743dce773ec74b7c07695f2184d77c4a07d212f",
+      "bytes": 7495
+    },
+    {
+      "path": "Tools/OriginalEditor/runtime_continuation_inputs.json",
+      "git_blob": "5854508c40874f0d131933b4f3788b4957ebbabc",
+      "sha256": "51fc7e47df710254e29cf2ef6e4e9ceb8c83743d6b5e3f361099a7f7991fc032",
+      "bytes": 6477
+    },
+    {
+      "path": "Tools/OriginalEditor/runtime_continuation_controls.py",
+      "git_blob": "3167c31041fdd8a0df9521046b64b964d3307717",
+      "sha256": "9e60d70fcd21c4efd5702dcdcfba79bab67c38b374e637e457151c7cb1b85abb",
+      "bytes": 16432
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/.gitattributes",
+      "git_blob": "68b2d38a601672decf8b644adce16eb8c109f937",
+      "sha256": "ed52ccb3541226d583cf18fa3a3c271a8fbf1c66fbc6d0ddc761f8034f25fff9",
+      "bytes": 21
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/BUILD_PREPARATION.json",
+      "git_blob": "68bbdb281e67ea6787357fa08003f6cc0059e339",
+      "sha256": "ba28fd96907ee96ecd2b20b10e195b05dd32b3eb2c201ae5535576f32cd57846",
+      "bytes": 3490
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/CONTRACT.md",
+      "git_blob": "cdd61af4ccad06e1b4d17efb3ead6b9facb6386c",
+      "sha256": "68fc1e6f709dbf5cd88da006f766266e1ea4751ba6febc0d622de65b07acc3d3",
+      "bytes": 8524
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/FRAMEWORK_PRODUCER.json",
+      "git_blob": "c4efffaf7c41362dde219dd6d1047430b2fdb3e2",
+      "sha256": "9a5ae9a6196bb52bebf14c7e77508755f75f6df1c2c6ee62bbdc3cf5907c82c4",
+      "bytes": 5555
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/ORIGINAL_HELPER_BINDINGS.json",
+      "git_blob": "c36760be497d16fe62d27001e36995a0f0348f41",
+      "sha256": "12a3d167b135f804ae1962f846b9f93169d447f8d1c9c6ce027dcc5b8cae802c",
+      "bytes": 1446
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/PROCESS_SOURCE_REUSE.json",
+      "git_blob": "73d740d460b10d986c4bece68f1f74acea76a91d",
+      "sha256": "05b4226c3292ea239bceae4917d37265541d1ac85bef4578d47903ca3fc22e0b",
+      "bytes": 315
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/SOURCE_FILES.json",
+      "git_blob": "c38d8b17b6224a7cee5c7b8184cf5bf7be40ae08",
+      "sha256": "46865d247764f09324ae7ad981e6bf0107170beb3e82994a1ad4f2f6cad9f003",
+      "bytes": 1201
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/STAGEB_CONSUMER_PEER_REVIEW.json",
+      "git_blob": "ab464f2083c92943ef28930a2ded510aa17ada3b",
+      "sha256": "b3fb19bc7fa5a48f3438a1948579d765ea44828c108a97f7ecc0788779bc359f",
+      "bytes": 4033
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/STAGEB_PATH_REBIND_PEER_REVIEW.json",
+      "git_blob": "0b88a20716e905532a9e3c0e65d741eae052c6c3",
+      "sha256": "bfc049107e5108d0a50965ca43f570292f71aac689e6a9c4a4bccdd8ec978f64",
+      "bytes": 1494
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/WORKFLOW_SYNTAX.json",
+      "git_blob": "4c9c03e7a816229ebab25464aa5faaea6f5c115a",
+      "sha256": "9390e77d03b7a57dc5c6eb814d4c2f81b77f9bae8658668cdc1528caf9d612eb",
+      "bytes": 453
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/controls/EXECUTION.json",
+      "git_blob": "48b8eff249bc16ecf36eeee6968b5a30bd76f2f4",
+      "sha256": "0a45819839d799e206f8cbe5bf4a2887b5859e1814d5dc415f3a1c60ed1acd51",
+      "bytes": 2134
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/controls/RESULT.json",
+      "git_blob": "a0e0370a63e49472296aad56f4b7198c23d54949",
+      "sha256": "6156f2084686205542a5b35659b812cb56f6a14156970917e289a8578e80c997",
+      "bytes": 3685
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/controls/SOURCE_BINDING.json",
+      "git_blob": "219600be116a022c794d28a7ac597a783eb09f59",
+      "sha256": "a20b43eec6121f15e0f514777d80baddb878f2a64fd10cc81710d2a7f3c6ffb8",
+      "bytes": 2009
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/controls/executed-source/run_runtime_continuation.py",
+      "git_blob": "1f88349a3c93e4affff03ed846b434e484911e2c",
+      "sha256": "7bc41f89357564cdef6fb85ccf05452ab39798814b292135143a4177352949a0",
+      "bytes": 37976
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/controls/executed-source/test_runtime_continuation.py",
+      "git_blob": "8a731f7126e7dfab8e27eeac6a31a17274406421",
+      "sha256": "23467e5764672bb797616eca8ed8562d0267584dcab769902241034be7e3efd3",
+      "bytes": 16443
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/controls/initial-harness-error/RESULT.json",
+      "git_blob": "4f27496a8e12f3236cce9a5056128c4a25f4b728",
+      "sha256": "40c18dad3c71569151ffb8e2e5e4367260d7ebf2c104dfa636c29fd8fbeecd64",
+      "bytes": 392
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/controls/initial-harness-error/stderr.log",
+      "git_blob": "fd6df85bcbea98f4f1186c41727c58dac8feea69",
+      "sha256": "4c6d24689d1fa466d64d2249b0d665489cb1d36678bfd1b7dfaa82731c95c378",
+      "bytes": 1062
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/controls/initial-harness-error/stdout.log",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/controls/stderr.log",
+      "git_blob": "ca2310b8fef2deadd18c845b817d33a76997b850",
+      "sha256": "7675cfc8be2be91c189dcb944a476e2bef5e596c6c1548a2b76d16c572c071c2",
+      "bytes": 3407
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/controls/stdout.log",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/historical/RAW_ARCHIVE_GIT_BLOB.json",
+      "git_blob": "bcdcc3c7e64a4c2679ec3e997c34783f6e8cda95",
+      "sha256": "9a8bff2701517223631be67500971d8f78f59aab0228aff9e4251b2e1c96e810",
+      "bytes": 166
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/historical/RAW_ARCHIVE_VERIFICATION.json",
+      "git_blob": "54f7c5245a4958807b8d6e888ef6ab37e0e9f9e4",
+      "sha256": "8ac180a26d372c1069a8edff4d69004806e2abda3bfda708ecc22516f0678abf",
+      "bytes": 274
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/historical/ROOT_EVIDENCE_REVIEW.json",
+      "git_blob": "75339762e9096e3721bb1fe3cddb98c74e861b4d",
+      "sha256": "20ee7416f2a5fda2a24c19a8854aee31a490c951c9a4a392a661736b2dcb0624",
+      "bytes": 955
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/historical/TERMINAL_SUMMARY.json",
+      "git_blob": "ad697d87369f9e67a63d8960a7518bcf4fa1dd50",
+      "sha256": "4ac869910b7a74c6e4b64bafd50eea50389d4e61371e78467313481602f05353",
+      "bytes": 2839
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/historical/compact-terminal-evidence.zip",
+      "git_blob": "dfd226e4fae9b2a882e2fb9bce5ea87aad5c5304",
+      "sha256": "3e60e0c4532013cd0557763495e63d35d014fe218d5740f2ef6f31dc537941d9",
+      "bytes": 464018
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/omissions/ACTUAL_ARCHIVE_INTAKE.json",
+      "git_blob": "94e72adb6ce6e67d7bb779b651f78d6009a52fd0",
+      "sha256": "a099d20dd2a6cbc5ac044669b2fe1401b7f79e1d836c2aabd3fbf3bf8ff19eb3",
+      "bytes": 2656
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/omissions/ORIGINAL_DOTFILE_RESTORATION.json",
+      "git_blob": "216d01dddc1f4dae6b311c3dc17b04bfa6ca0f51",
+      "sha256": "527122d69928443cd0aa5a1dc9c51702b3f109f80059dcce31c660ec767c1c12",
+      "bytes": 1665
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/omissions/RECOVERED_BYTES.json",
+      "git_blob": "8fefe5d344413267360203faac0c8891999f27a6",
+      "sha256": "cc311bef7deeca778c3b2010e07857b9b92096066e95681b60ace0cdc2c74992",
+      "bytes": 379
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/omissions/ROOT_LOCAL_RECOVERY_REVIEW.json",
+      "git_blob": "82c007961c64b6bd8102dfcc210bd194fb921373",
+      "sha256": "cd3cac909ee07d0812da0e6d8b3fdc67e3554340481375f1191ab39370c40d25",
+      "bytes": 1568
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/omissions/ROOT_REMOTE_RECOVERY_REVIEW.json",
+      "git_blob": "8e02881a7d9204672700946763d9cd3e46bc1f03",
+      "sha256": "14e9304a58695822e0bf68b25faf63d05d40dbbab870651286580198cdf0b48d",
+      "bytes": 1907
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/omissions/app-attributes.txt",
+      "git_blob": "46463d2d6b4f76c31f92276555c623d1742a8e26",
+      "sha256": "2b436011cbcacb1393ca93f5c449ed0b1e5b4348e9ce5fcb3e8ec00469e1b692",
+      "bytes": 66
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-runtime-continuation-20261122/omissions/hanlin-attributes.txt",
+      "git_blob": "71b406acafc439cccd53f7a6145ad350815fc54f",
+      "sha256": "ef8722d0d0dd44cfb82678da6fd1056f9e9a9c6d943e9125bcd6f6a5460e88e6",
+      "bytes": 162
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "status": "ROOT_SOURCE_AND_24_ACTUAL_BOUNDARY_CONTROLS_VERIFIED",
+  "at": "2026-11-22T17:16:04.804020+00:00",
+  "source": "452032e3ae51d4dec3c91b3f14ef1d70e43f1219",
+  "parent": "edce5b975b173059522f90adb71271fb95adf963",
+  "local_publication_inputs_verified": 37,
+  "new_actual_control_passes": 24,
+  "test_bodies_replayed": 0,
+  "result_sha256": "6156f2084686205542a5b35659b812cb56f6a14156970917e289a8578e80c997",
+  "raw_terminal_outcomes_verified": 24,
+  "path_only_inverse_bindings_exact": true,
+  "three_original_process_helper_definitions_byte_identical": true,
+  "source_review": "Strict separate historical framework/new runtime roles; exact2526 archive members plus two source-proven dotfiles; one consumer build/owned simulator/install; original en/he observations and exact product/toolchain provenance; qualification only after cleanup. No original framework/source-suite replay.",
+  "apple_execution": "NOT_RUN"
+}

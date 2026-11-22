@@ -1,0 +1,21 @@
+{
+  "schema": "otzaria.root-native450416-original-capture-review/1",
+  "at_utc": "2026-11-22T17:29:49.051849+00:00",
+  "run": 45041601629,
+  "viewed_original_pngs": [
+    {
+      "path": "DEABA939-9527-4D58-B104-A7287DEEA8EF.png",
+      "sha256": "e8a58c85edd969ec6a40cd01fa9cc08f7fcd932d7c5daf7e29269e242f061a8f",
+      "observation": "Reopened Study chat visibly shows Book search: ספר החינוך and End book access; message field is empty and send control disabled."
+    },
+    {
+      "path": "0D697DED-8AEA-436C-9583-7CEE9F53AAB8.png",
+      "sha256": "4132f0b6c575f1ede09d8e2fded25c621a3e186a2ea324eca42de62f4024e53b",
+      "observation": "Returned to the original Hebrew reader; the original selected text remains visible and chat sheet is dismissed."
+    }
+  ],
+  "ax_observation": "Parent otzaria-hanlin-book-access is Other and nested End book access button independently has otzaria-hanlin-end-book-access.",
+  "images_modified": false,
+  "test_reexecutions": 0,
+  "scope": "Visual corroboration of the original actual selected-case PASS; no full Native116 or Release114 claim."
+}
