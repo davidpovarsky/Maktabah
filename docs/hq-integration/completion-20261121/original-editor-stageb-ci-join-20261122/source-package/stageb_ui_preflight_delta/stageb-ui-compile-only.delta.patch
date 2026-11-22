@@ -1,0 +1,12 @@
+diff --git a/.github/workflows/otzaria-original-editor-stageb-native.yml b/.github/workflows/otzaria-original-editor-stageb-native.yml
+--- a/.github/workflows/otzaria-original-editor-stageb-native.yml
++++ b/.github/workflows/otzaria-original-editor-stageb-native.yml
+@@ -30,6 +30,8 @@
+         run: python3 Scripts/CI/runtime27-original-editor-native.py prepare
+       - name: Select the existing SDK-matched original runtime
+         run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
++      - name: Compile the original UI tests against the selected Apple SDK
++        run: python3 Scripts/CI/typecheck-faithful-ui-tests.py --ui-compile-only
+       - uses: actions/setup-node@v4
+         with:
+           node-version: 22

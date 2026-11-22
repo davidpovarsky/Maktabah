@@ -1,0 +1,57 @@
+{
+  "apple_build": "NOT_RUN",
+  "base_original_ten_file_patch_sha256": "b23847ae9fd7b34eca44966455042b52b7c42e895ddb303a6756d0e73b64c5bf",
+  "consumer_application_source": "e5dadac39b88e0a2fd9de989dc8f58f8c7cd07c5",
+  "consumer_coherent_input_checkout": "01ec8feb8087c544e3b9c3db1a8405c2faf54ba3",
+  "files": {
+    "Scripts/CI/hq-original-editor-distribution.py": {
+      "base_git_blob": "d0da3a21d0430b5e6ba669a7d394f46fbb3ede5c",
+      "base_sha256": "941e435a7406c028b6d99d11de6b25c15738b3f61b8d87974ad4f89ae0c36c88",
+      "bytes": 33784,
+      "git_blob": "a6e5215d5f1bdf5b0af7532c8e25f281dd86b9de",
+      "sha256": "a995f5abc1af4060fff2ac2a8b82c4d9bdec992febe854d381cbab81793c5ca9"
+    },
+    "Scripts/CI/runtime27-original-editor-native.py": {
+      "base_git_blob": "09d39ab57807836b18f5b5361537f636e8889e20",
+      "base_sha256": "7d7954b8502465b549f2032a4471622abb7bc58e151d776eaeabf5e853964cb8",
+      "bytes": 28579,
+      "git_blob": "93bad0fd5f93f231095deda54be4c06777a700ab",
+      "sha256": "f11bd345f29dbc8f27b6f9034d4acf335e923bb947be764f4137c73ae6b9ac76"
+    },
+    "tools/verify-original-editor-host-admission-controls.py": {
+      "base_git_blob": null,
+      "base_sha256": null,
+      "bytes": 10010,
+      "git_blob": "0755bab355fb5f42d1eab0ad628949ab8a30f113",
+      "sha256": "89679736d76a2cd7d5bb37b060af89b8173653c738d0453ae2f4bc9e9c3e2b00"
+    }
+  },
+  "native_editor_ui_tests": 0,
+  "patch": {
+    "bytes": 14973,
+    "path": "compiled-host-admission-and-current-source.delta.patch",
+    "sha256": "2b91995e2fd38d474d97c8e3384cf72cedd46e6d4fdf2503e9df4ef44ede98a1"
+  },
+  "producer_artifact_pins": "REMAIN_UNFINALIZED_FAIL_CLOSED",
+  "producer_scope_fields": [
+    "qualification_spi_scope_verified",
+    "public_host_scope_verified"
+  ],
+  "producer_symbol_spi_marker": "Required boolean on every retained original own_public_symbols row; no independent path classification in consumer",
+  "replaces_prior_delta_sha256": "6d22052684dd81a6c4628132e9d28c86a775d016f5f363871ec469d8b224bae2",
+  "schema": 1,
+  "status": "FINAL_REVIEWABLE_COMPILED_HOST_SPI_ADMISSION_DELTA_APPLE_NATIVE_NOT_RUN",
+  "validation": {
+    "current_affected_positive_and_scope_controls_passed": 2,
+    "current_receipt": "validation/spi-scope-controls.json",
+    "current_receipt_sha256": "3392d817110aa5a90f860256e77711ab2cd0a9b6178547e9a955368bf4c3ef5d",
+    "current_total_declared_control_groups": 8,
+    "exact_patch_roundtrip": "PASS",
+    "patch_whitespace": "PASS",
+    "prior22_and13_controls_reexecuted": false,
+    "prior_pre_scope_controls_passed": 7,
+    "prior_receipt_sha256": "f33f19cf144e153a0f30e0751f90455da454810b8707f78ec9ff7a5ceee2424f",
+    "python_syntax_files": 3,
+    "unaffected_prior_admission_controls_reexecuted": false
+  }
+}

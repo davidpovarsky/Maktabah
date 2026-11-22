@@ -1,0 +1,22 @@
+{
+  "application_source": "e5dadac39b88e0a2fd9de989dc8f58f8c7cd07c5",
+  "base_checkout": "01ec8feb8087c544e3b9c3db1a8405c2faf54ba3",
+  "branch": "codex/otzaria-original-editor-consumer-draft-20261121",
+  "code_commit": "8792e0f82b4ad8e8415aa60086528495d3c041c1",
+  "declaration_status": "DECLARATIONS_MATCH",
+  "native_cases_executed": 0,
+  "preflight_returncode": 0,
+  "prior_source_control_groups_reexecuted": false,
+  "producer_inputs": "UNFINALIZED_FAIL_CLOSED",
+  "protected_trees": {
+    "Maktabah-iOSUITests": "f336b041f6c503a30b32edb6055f933d22ebaa3b",
+    "Maktabah.xcodeproj": "b3da2d1a2b3693a3deac1a7effac1e0916118609",
+    "Source": "0f8df30e7931481bb010e355152d9dc1f7ad7528",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "recorded_at": "2026-11-22T01:32:23.311716+00:00",
+  "schema": 1,
+  "selected_case": "OriginalEditorAnnotationAcceptanceTests/testSavedBlankAnnotationUsesOriginalEditorAndDurablyReopensTwoBlocks",
+  "source_preflight_sha256": "33f03d27c2b334ea6e5458abf67b97e75bb663e00b1ce45f3f77869357d6b274",
+  "status": "ORIGINAL_STAGEB_COMMITTED_SOURCE_PREFLIGHT_PASS_NATIVE_NOT_RUN"
+}

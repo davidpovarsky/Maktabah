@@ -1,0 +1,8 @@
+{
+  "status": "SOURCE_CONTROL_PASS",
+  "control": "unfinalized_artifact_pins_reject_before_network_or_write",
+  "executed": 1,
+  "other_prior_controls_not_rerun": 21,
+  "source_control_sha256": "75de0da0778c26fa6a29c00d47bc5a86e8dd1e0d34199f6ceb0dc0533e399fcc",
+  "native_tests": 0
+}

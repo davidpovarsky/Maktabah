@@ -1,0 +1,33 @@
+{
+  "apple_build": "NOT_RUN",
+  "native_tests": 0,
+  "patch": {
+    "bytes": 119500,
+    "path": "original-editor-stageb-native.patch",
+    "sha256": "b23847ae9fd7b34eca44966455042b52b7c42e895ddb303a6756d0e73b64c5bf"
+  },
+  "python_sources_parsed": 6,
+  "roundtrip": {
+    "candidate_files": 10,
+    "status": "EXACT_PATCH_ROUNDTRIP_PASS",
+    "unmodified_base_reference_files_preserved": 2,
+    "whitespace_check": "PASS"
+  },
+  "ruby_execution": "NOT_RUN",
+  "source_inputs": {
+    ".github/workflows/otzaria-original-editor-stageb-native.yml": "90730addfe7b4322e821446c2e8725099c6fc736445cde36170ccc571593dca3",
+    "Scripts/CI/OriginalEditorDistributionAPICheck.swift": "a401360e5fbbe4151a7174f34a3ed881180e8b8a22fb9b8ea32bfa3735dfa903",
+    "Scripts/CI/hq-original-editor-app-target.rb": "9ffed86329b24750b4e2abf1872e79907eb22803042a4a98fa2b2d72f9f19c96",
+    "Scripts/CI/hq-original-editor-distribution.py": "941e435a7406c028b6d99d11de6b25c15738b3f61b8d87974ad4f89ae0c36c88",
+    "Scripts/CI/hq-stage2-focused-apple.py": "0dbe133b8f0ee188dc2f0d0c375972a210571498ecac928f1174730ebb0e83f5",
+    "Scripts/CI/restore-original-editor-distribution.py": "37b005af915ff61e6d2b49f518c7336011b529d69bc9a412839842b798ff51d4",
+    "Scripts/CI/runtime27-original-editor-native.py": "7d7954b8502465b549f2032a4471622abb7bc58e151d776eaeabf5e853964cb8",
+    "Scripts/CI/runtime27-original-editor.inputs.json": "e542b5429e761144b7e0a895c3bace1ccd78d442713a5a5ae442cfabb352e71c",
+    "tools/verify-original-editor-integration-controls.py": "75de0da0778c26fa6a29c00d47bc5a86e8dd1e0d34199f6ceb0dc0533e399fcc",
+    "tools/verify-original-editor-runtime-closure-controls.py": "d4fc33d740e79605f79209415d434c2ffce00d341fd0aa947252fd6d6a1d939c"
+  },
+  "status": "SOURCE_SYNTAX_YAML_AND_PATCH_CHECKS_PASS",
+  "swift_api_typecheck": "NOT_RUN_REQUIRES_ACTUAL_NEW_SDK",
+  "workflow_conditions": "ONE_PUSH_REF_ONE_APP_BUILD_ONE_SEPARATE_CASE",
+  "yaml_workflow_steps": 16
+}

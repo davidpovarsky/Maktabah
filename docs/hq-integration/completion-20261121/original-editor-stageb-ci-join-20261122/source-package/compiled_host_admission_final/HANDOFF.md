@@ -1,0 +1,13 @@
+# Final compiled Host/SPI admission delta
+
+This patch **replaces** the prior `6d220526…` admission delta. Apply it directly after the original ten-file Stage B patch `b23847ae…`; also apply the independent UI compile workflow delta `287291aa…`. Do not apply both admission versions. The prior version and seven-control receipt are retained as historical evidence under `validation/`.
+
+The new producer must already pass its original real run/artifact, framework, consumer, full public API, signatures and English/Hebrew resource gates. The new additive installer checks require the outer compiled Host/API labels, Native UI count zero, actual compiled-consumer probe hash, the full original 21-requirement public/SPI verifier result, and both `qualification_spi_scope_verified === true` and `public_host_scope_verified === true`. Every retained symbol must carry the original producer's boolean `spi` marker. The consumer preserves the original full surface and does not duplicate its source/path classification. The complete QUALIFICATION.json remains bound by its reviewed immutable artifact SHA256 and exact producer source/run.
+
+Nested resource observations keep their original `NOT_EXPOSED` editing label. The compiled Host/API prerequisite grants no editing, save/reopen, device or production acceptance. Every existing artifact, source, toolchain, consumer, signature, package, collision and resource condition remains intact.
+
+The dedicated Native runner changes only its source constant to `e5dadac39b88e0a2fd9de989dc8f58f8c7cd07c5`, whose coherent metadata checkout is `01ec8feb8087c544e3b9c3db1a8405c2faf54ba3`. All original selector, lifecycle, source/binary checks, evidence capture and zero-skip Native assertions remain unchanged.
+
+Validation is deliberately scoped. Seven controls passed on the pre-SPI admission revision and remain recorded with that revision's exact source hashes. On this final revision, only the affected positive admission control and the new SPI/public-scope rejection control ran: **2 passed**. The latter rejects absent, false, numeric or string scope claims and missing/nonboolean symbol markers. Unaffected earlier controls, including the separate 22- and 13-control groups, were not rerun. The full current control script declares eight groups for future use. Three current Python files parse, and the exact patch passes whitespace and byte round-trip validation.
+
+`DELTA_INPUTS.json` records all preimage/output/patch/report hashes. SDK artifact pins remain **UNFINALIZED** and fail closed. There has been no Apple or Native execution for this installer delta.

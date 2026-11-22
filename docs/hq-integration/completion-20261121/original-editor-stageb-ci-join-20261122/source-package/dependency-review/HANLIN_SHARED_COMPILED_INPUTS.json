@@ -1,0 +1,3630 @@
+{
+  "added": [
+    {
+      "blob": "05d524c01119976113b7741f55641754375c57c7",
+      "bytes": 3084,
+      "mode": "100644",
+      "path": "Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostNavigationTransition.swift"
+    },
+    {
+      "blob": "5b61e8e139f374acc37c863218f10eda0dc7a4fa",
+      "bytes": 1326,
+      "mode": "100644",
+      "path": "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinMiniAppDismissControl.swift"
+    },
+    {
+      "blob": "c36e815db5d69d1262e7bfb13c06869561d69ef7",
+      "bytes": 4479,
+      "mode": "100644",
+      "path": "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinMiniAppVisibilityStore.swift"
+    },
+    {
+      "blob": "512b38ccdd73737f4449ec8943ada3b76f3fae38",
+      "bytes": 523,
+      "mode": "100644",
+      "path": "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinStoreFileAccess.swift"
+    },
+    {
+      "blob": "33cd39c15ca26997b95cb05d5a60fe612ac3bc2b",
+      "bytes": 6353,
+      "mode": "100644",
+      "path": "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinKeychainCredentialStore.swift"
+    },
+    {
+      "blob": "29cbfcb392dfb343d38e9228847b19343ffb609d",
+      "bytes": 2797,
+      "mode": "100644",
+      "path": "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinManagedStateTransaction.swift"
+    },
+    {
+      "blob": "31a50d0c0792ff70ca3251fc50d680b33b801546",
+      "bytes": 20798,
+      "mode": "100644",
+      "path": "Packages/HanlinPlatform/Sources/HanlinScriptStore/HanlinProductTransfer.swift"
+    },
+    {
+      "blob": "2c2c279bc62a06f337a054f1b0e7fbbc784c2308",
+      "bytes": 5225,
+      "mode": "100644",
+      "path": "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/Composer/HanlinDetachedCapabilityChips.swift"
+    },
+    {
+      "blob": "4abb1fb050e72487a08c9454c3c8ad494d68baf7",
+      "bytes": 16442,
+      "mode": "100644",
+      "path": "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/Composer/HanlinMorphComposer.swift"
+    },
+    {
+      "blob": "4191033fc809a31f5ea62dc429c0e504a58c282f",
+      "bytes": 30406,
+      "mode": "100644",
+      "path": "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/Composer/NativeMultilineTextEditor.swift"
+    },
+    {
+      "blob": "a508c908849bc9e9bbc47835404a36932f0ec150",
+      "bytes": 8103,
+      "mode": "100644",
+      "path": "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/HanlinMarkdownView.swift"
+    },
+    {
+      "blob": "8093de0288861e110cc2f772643481fca1eff169",
+      "bytes": 2361,
+      "mode": "100644",
+      "path": "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/HanlinSources.swift"
+    },
+    {
+      "blob": "538e1262651d527585de294f7aa579319fb0916b",
+      "bytes": 7611,
+      "mode": "100644",
+      "path": "Packages/HanlinPresentationSDK/Sources/HanlinPresentationKit/HanlinCitations.swift"
+    }
+  ],
+  "anytype_count": 325,
+  "anytype_files": {
+    "Packages/HanlinAgentSDK/Package.swift": {
+      "blob": "1af275c3f3097eb361251e4ed2a6d12e5271a174",
+      "bytes": 3056,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinAgentSession.swift": {
+      "blob": "d800b27951fc6962db78da2a1866f263e4e1fb9e",
+      "bytes": 33107,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinHostDispatcher.swift": {
+      "blob": "d5e7d185f73c5e2c82912c037eb41154fb6e5c9a",
+      "bytes": 11482,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinHostSchemaValidation.swift": {
+      "blob": "47d2e3321a2aa8b87f78eb776f66cced7411acef",
+      "bytes": 5610,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinModelToolInputGuard.swift": {
+      "blob": "b60eb62a5f8af327813516c1dc598265684d48da",
+      "bytes": 4778,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/Providers/HanlinAppleOnDeviceProvider.swift": {
+      "blob": "1762ce03bcbdd6533d5d8411979853876964b7df",
+      "bytes": 7773,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/Providers/HanlinAppleTextDelta.swift": {
+      "blob": "dab00fd9a4b16c3a9989b01ad61337a1192b7a0c",
+      "bytes": 1616,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinConversationStore.swift": {
+      "blob": "c2f3ecec54184c5aff29d58b037dccd05e6cbd5b",
+      "bytes": 4841,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostContext.swift": {
+      "blob": "4066d54a7aa9aa77ffca4db47611623c193ec30a",
+      "bytes": 8843,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostEvents.swift": {
+      "blob": "eb0f2ff80be6f7c999cf9a40fcc327e94ba4b5a8",
+      "bytes": 1989,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostIntegration.swift": {
+      "blob": "99ac76dd17204176df3a9d56b5b1a235707db1e8",
+      "bytes": 9102,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostInteraction.swift": {
+      "blob": "572635d8aaa858c8e72a0cb9c30086c9da957ec8",
+      "bytes": 1621,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinPersistenceAdapters/HanlinInMemoryConversationStore.swift": {
+      "blob": "2488aa8d6065b52b8afc0af051ff79aad475d013",
+      "bytes": 1268,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinPersistenceAdapters/HanlinPrivateConversationStore.swift": {
+      "blob": "5612eab55c1796f2a34dcd21c54cab415ee2d34a",
+      "bytes": 6127,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Package.swift": {
+      "blob": "088e256101f1f5f330e20ba5c915cd5e188ba11f",
+      "bytes": 4335,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Codec/JSONLexer.swift": {
+      "blob": "8e00322d6b0528fdc207bf4a115339fa89e3512a",
+      "bytes": 8519,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Codec/JSONParser.swift": {
+      "blob": "0d91d64f3bbcb05547a021a6ac745cc2c544f495",
+      "bytes": 3884,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Codec/JSONParsingOptions.swift": {
+      "blob": "50e9b0477f7778094e4f5378d72885d0334c4772",
+      "bytes": 515,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Codec/JSONTokenMachine.swift": {
+      "blob": "4702b135c5852a4669cfa9060bbf37e52fed97a8",
+      "bytes": 9952,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Codec/JSONWriter.swift": {
+      "blob": "7ae458c387478328ad1ad7dea40be7735d8d9fa0",
+      "bytes": 11390,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Codec/JSONWritingOptions.swift": {
+      "blob": "fe043c366b50e21257a232ac4c1b722f734a53bc",
+      "bytes": 2901,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONBase64.swift": {
+      "blob": "63922b36b53d1f2358d7f1763c711334e4773d5e",
+      "bytes": 3482,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONCodableBridge.swift": {
+      "blob": "47c522b7007794ff15da1f67f684d20e5b24efbf",
+      "bytes": 10131,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONCodablePayload.swift": {
+      "blob": "476a94b29fdb8569f3280cdd3e259f07285bee94",
+      "bytes": 10112,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONCodingStrategies.swift": {
+      "blob": "17a4fd0c3d8dc974c3f4b3df265b0b0c236461fc",
+      "bytes": 4976,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONDecodingContainers.swift": {
+      "blob": "72bb62a89dabea50b048c7db3474472201ab0fd8",
+      "bytes": 5303,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONEncodingContainers.swift": {
+      "blob": "0659879cf9b2e85004bae57932a4fb730307e22d",
+      "bytes": 5181,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONValueConveniences.swift": {
+      "blob": "56b66abb3b5459a3fc232dfd429f87c42eb9f07b",
+      "bytes": 1714,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONValueDecoder.swift": {
+      "blob": "323ff7411380123a627165da0617e1e3658cd5d8",
+      "bytes": 7560,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONValueEncoder.swift": {
+      "blob": "c215974c8277ca9987c52f33c93c9bae346a7898",
+      "bytes": 10398,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Construction/JSONArrayAccumulator.swift": {
+      "blob": "518b18ad6808ff52d99af3c5d44b952857323838",
+      "bytes": 2814,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Construction/JSONConstruction.swift": {
+      "blob": "678c3216db6c585510869bb17867021831631022",
+      "bytes": 1634,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Construction/JSONObjectAccumulator.swift": {
+      "blob": "e4fdeb0914eb6c48e4f952333b6ad54c1947cdfd",
+      "bytes": 3624,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Diagnostics/JSONDiagnostic.swift": {
+      "blob": "38a5acf4e30fcc84541cec3658452a2341786673",
+      "bytes": 1416,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Diagnostics/JSONOperationReport.swift": {
+      "blob": "6d13a0d8d83daad7f2495bfb87b81165cfa52394",
+      "bytes": 974,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Diagnostics/JSONOperationStatistics.swift": {
+      "blob": "d92ba7c0a77a2f6a24be62caa73bfb4e7d2e1e16",
+      "bytes": 1260,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Diagnostics/JSONPreview.swift": {
+      "blob": "d55d3a9d79224bd566b59424661e078520b39c52",
+      "bytes": 8991,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Diagnostics/JSONRedaction.swift": {
+      "blob": "129b59dc88ba35ea7cf6cd50e97b76b4592b8189",
+      "bytes": 899,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Diagnostics/JSONSourceLocation.swift": {
+      "blob": "d9c2c0440a1389f102f2a88d15f54d9bb273e03b",
+      "bytes": 1165,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Document/JSONDocument.swift": {
+      "blob": "43d77074d73e48453c0f531d05c98315f48919c5",
+      "bytes": 3480,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Document/JSONSourceMap.swift": {
+      "blob": "3df9aacda7936040a065824ed5c55b182e950ab6",
+      "bytes": 5568,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Documentation.docc/CommandLine.md": {
+      "blob": "4de3d0165f601fa7fae73c1b735a5fe480eb74aa",
+      "bytes": 4339,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Documentation.docc/Composition.md": {
+      "blob": "e22d1879d0249fd4da1b4200b09247df009883d5",
+      "bytes": 6392,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Documentation.docc/ExactPersistence.md": {
+      "blob": "a62ccec6099da4b6354a1fa785bf97dbf1bca7fa",
+      "bytes": 2196,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Documentation.docc/ExactValuesAndCoding.md": {
+      "blob": "51ba895b08ba06f989bf754a905efa22e6025535",
+      "bytes": 3301,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Documentation.docc/JSON.md": {
+      "blob": "249447be71ea2814b98ac7e19dad9434a4f51f1c",
+      "bytes": 4004,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Documentation.docc/QuickEntryPoints.md": {
+      "blob": "f384626efb013b362041c1f4fa787b6e1da720ef",
+      "bytes": 2892,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Documentation.docc/ScopedReads.md": {
+      "blob": "e0783e6b4b785c152dd767dc5287297cd5df4777",
+      "bytes": 2026,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Errors/JSONAccessFailure.swift": {
+      "blob": "b2ceed8f28244416f65af20f2366a86ec3942712",
+      "bytes": 777,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Errors/JSONFailure.swift": {
+      "blob": "5602afd8a65909a95ba62491708dd42503014f96",
+      "bytes": 3773,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Errors/JSONResourceViolation.swift": {
+      "blob": "1c2c9ac31e9ca3a5006ec42607c7c5d907ae3314",
+      "bytes": 1803,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Integrity/JSONHashMeter.swift": {
+      "blob": "4b1cf63e322f62ff27eed0867422c792242c0656",
+      "bytes": 787,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Integrity/JSONSHA256Core.swift": {
+      "blob": "a25242ab66e13be5df8d2b59644328779d048400",
+      "bytes": 6115,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Limits/JSONCompositionScope.swift": {
+      "blob": "0e0eeee0872a50775d0a79f1eb8a69dbf8b94e85",
+      "bytes": 10434,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Limits/JSONLimits.swift": {
+      "blob": "476535779853f29167ab1389b03c283a786f8700",
+      "bytes": 13317,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Limits/JSONOperationContext.swift": {
+      "blob": "7a16f9c2169cd10539973f036ea67acf8abd47ed",
+      "bytes": 447,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Limits/JSONWorkMeter.swift": {
+      "blob": "73b19cd18e2ca88c561a7e5d06f27008472793da",
+      "bytes": 14710,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Number/DecimalComponents.swift": {
+      "blob": "f8ae80b7414ef06e62f6b4c237f552135850bdb1",
+      "bytes": 3359,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Number/JSONNumber.swift": {
+      "blob": "64c5763b6c88f05f2effa0669dbf1af1de90683b",
+      "bytes": 8015,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Number/JSONNumberConversions.swift": {
+      "blob": "46e6a3eceaa34dd48589dd03406e5670f10e5e39",
+      "bytes": 14631,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Pointer/JSONEditing.swift": {
+      "blob": "e17e366e656d4dcfa451ab5197ca252dceb5e7d7",
+      "bytes": 3920,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Pointer/JSONLocationComponent.swift": {
+      "blob": "24ad93c45baf477b0997d91bf84430ad3ca63c10",
+      "bytes": 326,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Pointer/JSONPointer.swift": {
+      "blob": "e1d3b376a2ed5e9b1d10343148d7d0e755380113",
+      "bytes": 14041,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Reading/JSONReadCursor.swift": {
+      "blob": "b494f2f83a8fa6aa5107ada5c0d6050361bf0f77",
+      "bytes": 18030,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Reading/JSONReadPreparation.swift": {
+      "blob": "1a46e358549017c5a9a0c75595d4d9f1e8dad956",
+      "bytes": 1634,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Reading/JSONReadScope.swift": {
+      "blob": "430106b266044fa3d9d6b4e54d1747f99f638747",
+      "bytes": 12929,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSON.swift": {
+      "blob": "5205ffd74ab63dac889bb557b0f55a6e2bb6245e",
+      "bytes": 3715,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONAccessors.swift": {
+      "blob": "e4f6c5d3fb69bbc8f519d36e278e95a20a81e4cc",
+      "bytes": 2829,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONComparison.swift": {
+      "blob": "22694cc59b11c07ccd386aa00a67013f00174e53",
+      "bytes": 5999,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONEntryPoints.swift": {
+      "blob": "a482b3d1a322eec595e0ff5a8d1ff15a4db234e4",
+      "bytes": 4821,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONExactKeyIndex.swift": {
+      "blob": "ab77da668ccf3d3ecb7bad9b2a2ef03acbd21f78",
+      "bytes": 5591,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONFingerprint.swift": {
+      "blob": "33c7fd09395a5fa659bba1da1e8130d41f5f3c02",
+      "bytes": 3317,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONKey.swift": {
+      "blob": "9cd9dc066a3c52809d04ad136b002b322406a2b9",
+      "bytes": 3676,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONMember.swift": {
+      "blob": "af6d1695d17f208ebe990b23d517ec63cad28e18",
+      "bytes": 1019,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONObject.swift": {
+      "blob": "818ba93f23f4fa86b5078a426a49db8f47a9843a",
+      "bytes": 7506,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONPresence.swift": {
+      "blob": "497980d83562fcd7a5aa5aea57f5264dd315f30e",
+      "bytes": 3098,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONRegexRuntime/RegexBudget.swift": {
+      "blob": "94cb4629776eb397ed6c3e3b619cf91c96800a5a",
+      "bytes": 509,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONRegexRuntime/RegexCompiler.swift": {
+      "blob": "a89634ac1513cb7758e4ae83d3d6edfe6f064d46",
+      "bytes": 6001,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONRegexRuntime/RegexParser.swift": {
+      "blob": "d229c8527d8517b6a1754b6cda3286ac6ec59fe9",
+      "bytes": 19514,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONRegexRuntime/RegexProgram.swift": {
+      "blob": "0ba991fa5a54a3e6594bf6eb0997dd775bf85592",
+      "bytes": 1512,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONRegexRuntime/RegexUnicodeTables.swift": {
+      "blob": "b766042e9ac13937aa838816c1d3f685bfd3d867",
+      "bytes": 354636,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONRegexRuntime/RegexVM.swift": {
+      "blob": "511e36aa8f926bca6709093843a40d8afbdb8fbe",
+      "bytes": 13744,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Compilation/CompiledJSONSchema.swift": {
+      "blob": "7b1419dd8cdf21acfa202a800dcfdf5558f59814",
+      "bytes": 4975,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Compilation/JSONSchemaCompilationFailure.swift": {
+      "blob": "3a8d8c987b2d055a5c7175a632c3ad05443afb1f",
+      "bytes": 1688,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Compilation/JSONSchemaCompiler.swift": {
+      "blob": "b9487d83eb368d78cdfb96ce83b049da18316126",
+      "bytes": 30702,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Compilation/JSONSchemaPlan.swift": {
+      "blob": "cca928ac1bb5177ae5461d0c31c789e3d1646b74",
+      "bytes": 2635,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Compilation/JSONSchemaQualifiedNode.swift": {
+      "blob": "3b841263ee21796749455c2be058039fa98e5896",
+      "bytes": 2789,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Compilation/JSONSchemaShape.swift": {
+      "blob": "7bac8997dad9f10e706edfdf77d0c266d87ebad6",
+      "bytes": 4017,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Compilation/JSONSchemaVocabulary.swift": {
+      "blob": "a0b3e0c621be88a6e02da052b64796a6a68c16ce",
+      "bytes": 1912,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Construction/JSONSchemaBuilder.swift": {
+      "blob": "26e3de68d2231ed3b122ff73d655046cfec5471f",
+      "bytes": 1925,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Document/JSONCompositionScope+URI.swift": {
+      "blob": "60a44ae2e06c2b87f3b9597b3fc7b906d3c30ca8",
+      "bytes": 1960,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Document/JSONSchemaBuiltins.swift": {
+      "blob": "1a2239193116eb727b1c3415a3a00b40b56c5a2c",
+      "bytes": 8776,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Document/JSONSchemaDocument.swift": {
+      "blob": "ca8b0bcccb19ced461c93a4c6584ee1cd4fdce45",
+      "bytes": 2827,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Document/JSONSchemaRegistry.swift": {
+      "blob": "675730a8f823f816001737c21997373a288d30a3",
+      "bytes": 3648,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Document/JSONSchemaURI.swift": {
+      "blob": "b833dd1ab09aa2308b3105a1f9085436368b444a",
+      "bytes": 5301,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Document/JSONSchemaURINormalization.swift": {
+      "blob": "5e69f87422b54b6d2af4b4c4baf39fb44125dfa0",
+      "bytes": 5027,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Documentation.docc/CompiledPlanConvenience.md": {
+      "blob": "772a2f995665bafc48b002bd93ecc0bf5f1a2a78",
+      "bytes": 1254,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Documentation.docc/JSONSchema.md": {
+      "blob": "d21ae01b4283503a57dc39fcbffc5bd3a63755f0",
+      "bytes": 4486,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Documentation.docc/OfflineValidation.md": {
+      "blob": "3901c4770b733348b507110437f0bc80b5547d82",
+      "bytes": 3844,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Documentation.docc/ProviderSchemas.md": {
+      "blob": "7f0e001eb1b1ae41ca6df9055ddaeba9ac64ce25",
+      "bytes": 3475,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Evaluation/JSONAnnotationState.swift": {
+      "blob": "7afa2d6de949db4288fe97b98231274315ff6e93",
+      "bytes": 2009,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Evaluation/JSONEvaluationFrame.swift": {
+      "blob": "95190a70ce336ef4ed7512784c22060ed47e06f4",
+      "bytes": 2069,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Evaluation/JSONSchemaAssertions.swift": {
+      "blob": "a6071f5f5f94a3413114155bbd252595b6c6c7ba",
+      "bytes": 4939,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Evaluation/JSONSchemaEvaluation.swift": {
+      "blob": "31a3f2759e091486926a9b0073ac5bc1171700e5",
+      "bytes": 37761,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Evaluation/JSONSchemaEvaluationFailure.swift": {
+      "blob": "a6f90dd39a5cde52754130dd32a0717cbe441c3e",
+      "bytes": 903,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Evaluation/JSONSchemaValidator.swift": {
+      "blob": "c0d5e7b36817adb95614177408042c87a1a7ad56",
+      "bytes": 2521,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Formats/JSONIDNA.swift": {
+      "blob": "95d450aebf2d2f389c3f78b17046c2b517d12387",
+      "bytes": 7286,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Formats/JSONIDNAData.swift": {
+      "blob": "f3b2d7146410ad5a4a803de282522d996c0d5ad8",
+      "bytes": 490730,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Formats/JSONIDNAMapping.swift": {
+      "blob": "2e0316257040390936783c58125a08f64873d7e0",
+      "bytes": 2585,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Formats/JSONIDNAUnicode.swift": {
+      "blob": "4572d141b98a79b40a20f2bfbc01a57bf1d696b4",
+      "bytes": 4232,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Formats/JSONPunycode.swift": {
+      "blob": "efab4fa9184931824feb737640073cf03a5277d7",
+      "bytes": 5210,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Formats/JSONSchemaFormats.swift": {
+      "blob": "ba0a0ddce2c7e53941822a0e87844722b3651e81",
+      "bytes": 8772,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Formats/JSONSchemaIdentifierFormats.swift": {
+      "blob": "6f4c7502767898656d7b7655ce7a44f46b4736c1",
+      "bytes": 7349,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Formats/JSONSchemaMailboxFormats.swift": {
+      "blob": "c00eec7c236ee08b4a38790ab948d866621401f3",
+      "bytes": 2406,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Inspection/JSONDeclaredAnnotations.swift": {
+      "blob": "0574d0228c87e444619b9142fd42a89a95160e84",
+      "bytes": 708,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Inspection/JSONSchemaNodeView.swift": {
+      "blob": "20e68b0b654780e47d9e22824cb487c6a23bccc7",
+      "bytes": 6411,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Inspection/JSONSchemaReferenceTarget.swift": {
+      "blob": "19bed0eeae448a4dcf02b392f3ee2e2e67b628d5",
+      "bytes": 938,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Limits/JSONSchemaOptions.swift": {
+      "blob": "01dee00b8bdabe9727b6b0ed585b009ab6c0382a",
+      "bytes": 1875,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Output/JSONValidationIssue.swift": {
+      "blob": "4818ea63f2351cab151f7a3316bcc89e7ec4cb0e",
+      "bytes": 1306,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Output/JSONValidationOutput.swift": {
+      "blob": "7ec46d523534a52fe6806a97fb6b788a10bcf82e",
+      "bytes": 616,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Output/JSONValidationOutputAdapter.swift": {
+      "blob": "4f0b6f8a7111698e34c4edd979ecf59c65e3af74",
+      "bytes": 6922,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Output/JSONValidationResult.swift": {
+      "blob": "043ace850d377719f03ef15427ce0d4cc6ff1d6d",
+      "bytes": 2827,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Providers/JSONSchemaProviderInspection.swift": {
+      "blob": "ab0d5435e412d4113651e7e89b6c7a21382cb8eb",
+      "bytes": 18285,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Providers/JSONSchemaProviderProfile.swift": {
+      "blob": "cd84dbdb1e0333cb3c99094e8853a81dc53980dd",
+      "bytes": 8323,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Providers/OpenAIJSONSchemaBridge.swift": {
+      "blob": "90951c40384d6457bccaf88fbd1e4ad4e016ca43",
+      "bytes": 16714,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/Provenance.json": {
+      "blob": "2311d78deef821afb6b14cee03f52c1aa3e26d77",
+      "bytes": 3029,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/meta/applicator.json": {
+      "blob": "ca69923096f3a2e4fe5eb8152a92d87d146cf021",
+      "bytes": 1659,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/meta/content.json": {
+      "blob": "2f6e056a9ac2399582eaf05985a26acf9161f213",
+      "bytes": 519,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/meta/core.json": {
+      "blob": "dfc092d9646e1ea89e4d771bfcf2a4ca87eeac75",
+      "bytes": 1564,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/meta/format-annotation.json": {
+      "blob": "51ef7ea118c34e8ac3da66c973bae02b9e8325d8",
+      "bytes": 448,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/meta/format-assertion.json": {
+      "blob": "5e73fd7571e504990f7a055da960056f07dcdb19",
+      "bytes": 445,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/meta/meta-data.json": {
+      "blob": "05cbc22afde5ebe6ba84957ca412277bde1e4b08",
+      "bytes": 892,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/meta/unevaluated.json": {
+      "blob": "5f62a3ffa20be07dc813d6b8a154fa8451d0dc61",
+      "bytes": 506,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/meta/validation.json": {
+      "blob": "606b87ba2ec213d63b9e2035a6acc4edcb4b8357",
+      "bytes": 2834,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/schema.json": {
+      "blob": "d5e2d31c3c88e61f4c204cb6616887bba7e105dd",
+      "bytes": 2452,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Package.swift": {
+      "blob": "0779b4fb4f044a8fc259c06fc3d4d6f3e172c1d0",
+      "bytes": 9541,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKAgentEngine.swift": {
+      "blob": "b263e833b504e1321123aec4d0ae7b81360689e0",
+      "bytes": 27912,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKModels.swift": {
+      "blob": "56227895221bb693343b9269d8d329ebc2b66902",
+      "bytes": 6880,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKProviderFactory.swift": {
+      "blob": "9ce573782df375974d911708b3f21fdc51e20bd8",
+      "bytes": 11497,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinCapturedStreamReplay.swift": {
+      "blob": "9c8da6db693b1ec7b6c2ead643b1356e1b68a8b6",
+      "bytes": 7787,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatEngine.swift": {
+      "blob": "a372e9dbce3242a5a03e406cdba7414bf649c7d0",
+      "bytes": 6838,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatMessage.swift": {
+      "blob": "c99be01a793abd27f9af7819fd571f183258ece2",
+      "bytes": 1040,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatModelConfiguration.swift": {
+      "blob": "b53f797f046b3a671858f2c419630b2bb7c668f4",
+      "bytes": 7036,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatRequestBuilder.swift": {
+      "blob": "aec967db17a8dc082a91cea7d3e41c0471fda2c6",
+      "bytes": 16132,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatStreamEvent.swift": {
+      "blob": "81b56aa2a03543803757352c91b808ad200ae288",
+      "bytes": 1488,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatStreamParser.swift": {
+      "blob": "483bd3548f66332a0785b698d3a0149b0deda1dd",
+      "bytes": 11530,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatStructuredPart.swift": {
+      "blob": "e4ce0a0910ec97bb2a5d87962df51fd03c3fae56",
+      "bytes": 1096,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatTransportTrace.swift": {
+      "blob": "99f3184e127f48ddb289a23b9a01b715b1d670b8",
+      "bytes": 569,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinNativeStructuredResponse.swift": {
+      "blob": "dd0201c3485f7154b452cf6c237162f266c40c11",
+      "bytes": 8406,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinNonEmptyLanguageModel.swift": {
+      "blob": "e4690c00af7ff565375d32c94b5bbc4342062c87",
+      "bytes": 5939,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinCanonicalMiniAppCatalog.swift": {
+      "blob": "208faa770b3969ceb62f525baeec428881fb6e22",
+      "bytes": 5732,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinCompiledMiniAppProvider.swift": {
+      "blob": "a76017db8a852cd957b753f8ff281caa05388243",
+      "bytes": 3884,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinMiniAppDataStore.swift": {
+      "blob": "6c1ef53a83cc3aceb0cc44ba7c8dc2594c860728",
+      "bytes": 11359,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinMiniAppKeyValueStore.swift": {
+      "blob": "9307c1d4faa820a129f802c98c7605bbae7d821c",
+      "bytes": 7280,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinMiniAppRequestBroker.swift": {
+      "blob": "9f77fdaa25c0425e33ad6e2b8214af5e0d1fdefb",
+      "bytes": 8289,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinSQLiteService.swift": {
+      "blob": "197870580bae6d22f517200a939271b1a2cf84ab",
+      "bytes": 20916,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinCatalogContracts.swift": {
+      "blob": "9526fe7c52589500dd7baa6cbef12fbc037baf4c",
+      "bytes": 9413,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinChatStructuredPart.swift": {
+      "blob": "e5b10543c2fe174934c17a328ec38db58fa71a82",
+      "bytes": 3784,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinContractError.swift": {
+      "blob": "1ba95599146746e21dc29d48fcf6437d2cd8a3e1",
+      "bytes": 5423,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinDescriptors.swift": {
+      "blob": "91d256b101eacd094a0221613a2489806e310293",
+      "bytes": 44005,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinExposureContracts.swift": {
+      "blob": "08785a5ed83fac92a1cb11b1685681a6b1048274",
+      "bytes": 21524,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinIdentifiers.swift": {
+      "blob": "26ce7f7138fb00ade59780b854d075f49e4f4a52",
+      "bytes": 15313,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinJSONSchemaDocument.swift": {
+      "blob": "5e788e7b4ab1519d2ddd52d6b31253a4be436fa6",
+      "bytes": 4842,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinManifestSchema.swift": {
+      "blob": "0f46e4f63e5f6a42e081b693b955767dc4a5d5ad",
+      "bytes": 565,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinMiniAppContracts.swift": {
+      "blob": "0224586d26cd2dc5b1f9f4618c61ba493093c917",
+      "bytes": 6472,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinPermissionContracts.swift": {
+      "blob": "3f7819721750b12326c6b8c5c37dce89eb9eb197",
+      "bytes": 8912,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinPreparedRuntimeVersion.swift": {
+      "blob": "2ff326e3d33e72c597988dababcd1586902a2d3c",
+      "bytes": 1109,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinPresentationContracts.swift": {
+      "blob": "486ad7bb698598ed4f7255113574a61a3ea42215",
+      "bytes": 10661,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinRuntimeProfiles.swift": {
+      "blob": "583adfd86eef1311d149f8258aaeda3406817113",
+      "bytes": 5825,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinScriptContracts.swift": {
+      "blob": "212f99cc38942dace810c07b1219ca929ea1fe8e",
+      "bytes": 24323,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinSessionContracts.swift": {
+      "blob": "89d5d8be6916d7024efeb8d548dba719d5ac9657",
+      "bytes": 6805,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinSkillContracts.swift": {
+      "blob": "8a796f3329ee2f04da1bb74e1fa03ecd96e08170",
+      "bytes": 3494,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinToolContracts.swift": {
+      "blob": "2974c7eea85d2007ab3847c746a2632b68cdb05c",
+      "bytes": 7298,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinValue.swift": {
+      "blob": "a8430f4a88d066a853d22a24fe6e5ac245a374c4",
+      "bytes": 56729,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinVersions.swift": {
+      "blob": "c44dfa46ed185941df4a7e97d1ac5070c7461626",
+      "bytes": 15847,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinWireProtocol.swift": {
+      "blob": "1de464fa8ce1371b3496fabd860754cffae24e92",
+      "bytes": 6725,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/Resources/HanlinAppManifest.schema.json": {
+      "blob": "ec8bb7a1eba616ddaeff7fff5eddd35915f41adb",
+      "bytes": 20017,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptCompiler/HanlinArchivePolicy.swift": {
+      "blob": "415a9e980144628962da64594d5aaf1d646ab0e7",
+      "bytes": 21210,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptCompiler/HanlinPackageCenter.swift": {
+      "blob": "275b2dc85c3d7c302e18d62820cb8bee476f994c",
+      "bytes": 9834,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptCompiler/HanlinProductionCompilerProfile.swift": {
+      "blob": "c9294b47fda504d60fd32210e02fc0a5c6ff9256",
+      "bytes": 3422,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptCompiler/HanlinScriptAnalyzer.swift": {
+      "blob": "c3b22de25cf392372c6584bdc04ccc3b293812fb",
+      "bytes": 43007,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptCompiler/HanlinScriptingBundler.swift": {
+      "blob": "d7ca6ff54312f5ef42bb061514849e79eb655413",
+      "bytes": 22434,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptCompiler/HanlinScriptingPackageExporter.swift": {
+      "blob": "0b3155393271a18047ee3e6316736629802b0fff",
+      "bytes": 3772,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptCompiler/HanlinWidgetPackagePreparation.swift": {
+      "blob": "646c0bb1d842d3fe75de3902bc1a3755ec1ccb53",
+      "bytes": 2978,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptCompiler/Resources/production-compiler-profile.json": {
+      "blob": "dc595eb348463dac61885e2f71db3fe9b8692b26",
+      "bytes": 629,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptContracts/HanlinInstallContracts.swift": {
+      "blob": "40013b4eb40767cb17f6f5cb3d02211f91880bb1",
+      "bytes": 17109,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptContracts/HanlinPackageContracts.swift": {
+      "blob": "c64483aae86a13d2410a40b13e921e904b92dce7",
+      "bytes": 16372,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptContracts/HanlinScriptRuntimeContracts.swift": {
+      "blob": "ffa43fd4f3c6eeaf45bfc8a5f09fd6e91e3cd44f",
+      "bytes": 5004,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptContracts/HanlinScriptingPerformanceBudgets.swift": {
+      "blob": "4ec45b91fd761b71d4f109d9dc8f127a1852b633",
+      "bytes": 2837,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptContracts/HanlinWidgetProgram.swift": {
+      "blob": "cf22e121e4e1d00820c36f56898949c1345c2326",
+      "bytes": 3826,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptContracts/Resources/HanlinScriptingPackage.schema.json": {
+      "blob": "0ae42afac1fb0c884ba8d0561bed484aa765ad47",
+      "bytes": 839,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptDeviceServices/HanlinAppleCalendarService.swift": {
+      "blob": "148e26aa5a24b4e322dc53411997599e3b8d4a36",
+      "bytes": 10962,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptDeviceServices/HanlinAppleHealthService.swift": {
+      "blob": "9d6beb31ce7097217af1a49439aae6ed5a472c06",
+      "bytes": 9236,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptDeviceServices/HanlinAppleLocationService.swift": {
+      "blob": "878f8b7bd868c73dcd764a2cb53b438e8fa6a4d5",
+      "bytes": 3899,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptDeviceServices/HanlinAppleNotificationService.swift": {
+      "blob": "911ca2998b926d8ec964abffa6ff5cdd5efb14a7",
+      "bytes": 3993,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptDeviceServices/HanlinAppleServiceContracts.swift": {
+      "blob": "8ca86f6d09e86f6ab0e8c9b8d50eee73e934f643",
+      "bytes": 9369,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptDeviceServices/README.md": {
+      "blob": "25c78e025338ec9f1e706496f487d9f314b9b019",
+      "bytes": 1138,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ExpoWidgets/HanlinExpoWidgetsDynamicView.swift": {
+      "blob": "b9a4608fa5f79fd0723af33a09b5013b5bb6f1dd",
+      "bytes": 561,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ExpoWidgets/HanlinExpoWidgetsRuntime.swift": {
+      "blob": "60a7790f74215bb008e8363c21abf16aa4205f4b",
+      "bytes": 5689,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ExpoWidgets/HanlinExpoWidgetsViewRenderer.swift": {
+      "blob": "935c006497b01f8cdbb0d58b09acc1306a6da21c",
+      "bytes": 554,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinCompactAgentContracts.swift": {
+      "blob": "769549c76f59ff8fca84f854e3e20e85825062e2",
+      "bytes": 10640,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinExtensionNodeView.swift": {
+      "blob": "b695e34d6a088250b2b854a4430ae06c577081ce",
+      "bytes": 10854,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinGenericWidgetActionIntent.swift": {
+      "blob": "5150f7dbcc0d98270c69efb1c41915c780700521",
+      "bytes": 2341,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinInvocationDelivery.swift": {
+      "blob": "6cf7ce25aebb7224593a86a1e6e7b495bf6ddb67",
+      "bytes": 4403,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinInvocationExecutor.swift": {
+      "blob": "1bf2195bb0dbc4d1af446bc19c313915bdfff03e",
+      "bytes": 3912,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinInvocationQueue.swift": {
+      "blob": "9b2e218b7f1ebb45750ed245d5b8d10f9870fa52",
+      "bytes": 16624,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinLiveActivityUILayout.swift": {
+      "blob": "67f6f6cf7ae57d91537c42cc46a41480094af003",
+      "bytes": 2731,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinMiniAppCardView.swift": {
+      "blob": "7ca9b18f7586132a9b838dc6a862e68013b3335b",
+      "bytes": 6380,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinPreparedWidget.swift": {
+      "blob": "17177d3624dc1ca07801ec84bd86e0fff6f109b3",
+      "bytes": 8835,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinScriptAppIntentBridge.swift": {
+      "blob": "258d2b7fd76dba8a5933e1870291a45c2b932a7b",
+      "bytes": 3610,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinScriptExtensionContracts.swift": {
+      "blob": "31e8f6ae5a990c3ce129f479838e126b6b0e8e7b",
+      "bytes": 28272,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinScriptExtensionStore.swift": {
+      "blob": "ef5015e5f1c59ecff1e997f12b734b494fe894dc",
+      "bytes": 56120,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinScriptLiveActivityController.swift": {
+      "blob": "39e060c2a5ec31ad5529aeb2504f4c19fbe044e9",
+      "bytes": 2208,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinShareInvocation.swift": {
+      "blob": "492ec25ad472a3fda338cd18c03d2b5ec0a2a059",
+      "bytes": 2716,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinWidgetActionExecutor.swift": {
+      "blob": "0185891f53d457c37ef16ba9359ba0f14f9ba62f",
+      "bytes": 7603,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinWidgetInstance.swift": {
+      "blob": "50bc0752fd7cc2bdbc03e70579b0d69d98c7d9fe",
+      "bytes": 16735,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/Resources/ExpoWidgets.bundle": {
+      "blob": "c6348eea875de9c0a1eff71f79de2ae4d54c7378",
+      "bytes": 102063,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/Resources/support.bundle/moment.min.js": {
+      "blob": "57cd2d4f3d3d8b64a34577593a9be3be50503e1b",
+      "bytes": 58862,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/Resources/support.bundle/util.js": {
+      "blob": "7b31855c353f2884c9a909da6695989ab5820952",
+      "bytes": 1025,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/HanlinScriptWidgetDynamicView.swift": {
+      "blob": "93dfdaeef6ce8599e85dcb2771263c796ca170cc",
+      "bytes": 432,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/HanlinScriptWidgetElementView.swift": {
+      "blob": "9c34d042fe8139cc32faf9ccd27e920b289ec764",
+      "bytes": 1760,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/HanlinScriptWidgetResources.swift": {
+      "blob": "d384c2dcb7ba27e280957e264d3c7763a9d2baf5",
+      "bytes": 4670,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/HanlinScriptWidgetRuntime.swift": {
+      "blob": "57e453664a595da7ae04328393a196d87dd7aba4",
+      "bytes": 16508,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Animation/ClockHandKit-LICENSE.txt": {
+      "blob": "73782177100c7d539d6f0abae99539491276c56b",
+      "bytes": 1060,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Animation/ClockHandRotationEffect.swift": {
+      "blob": "b1f51c596e7261bf82d45af0f968e26f032f09cb",
+      "bytes": 1139,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Animation/ScriptWidgetAttributeAnimationModifier.swift": {
+      "blob": "7d3c17a9040473dbe606e66761f38068ff5240cd",
+      "bytes": 8918,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Animation/SwingAnimationModifier.swift": {
+      "blob": "51482885873ca7731631b85702c2c99d1c41d48e",
+      "bytes": 2453,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Debug/ScriptWidgetAttributeDebugModeModifier.swift": {
+      "blob": "69899b03515a4c6c5d1add936be0d7b534db0903",
+      "bytes": 652,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Effect/ScriptWidgetAttributeRotation3DEffectModifier.swift": {
+      "blob": "816a9ad1d9138e88059c92438e1b660bbde081fd",
+      "bytes": 1771,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Effect/ScriptWidgetAttributeRotationEffectModifier.swift": {
+      "blob": "94c2eb86035ad08bad0b11bc4ebf08dcf3fdb06c",
+      "bytes": 684,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Effect/ScriptWidgetAttributeShadowModifier.swift": {
+      "blob": "b7128dd024b04b60733e029ea429159d7beaab8d",
+      "bytes": 1517,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/General/ScriptWidgetAttributeBackgroundModifier.swift": {
+      "blob": "bd312d48c9a5870c361e9de059bc248e12837453",
+      "bytes": 5711,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/General/ScriptWidgetAttributeClippedModifier.swift": {
+      "blob": "e7113c6f891a13e89e9935a303ecd3e19bc168d7",
+      "bytes": 1119,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/General/ScriptWidgetAttributeCornerRadiusModifier.swift": {
+      "blob": "528a7e610f465a7777e92e4fb0cae73677af43c3",
+      "bytes": 704,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/General/ScriptWidgetAttributeFrameModifier.swift": {
+      "blob": "36234c578a67ff6ad4cfb881403f6ab7fbcdd88b",
+      "bytes": 6467,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/General/ScriptWidgetAttributeOpacityModifier.swift": {
+      "blob": "ca9a0f8eb6545c4c1496590fbc759c6dd0387171",
+      "bytes": 654,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/General/ScriptWidgetAttributePaddingModifier.swift": {
+      "blob": "00c1a269b90a3f552704aeb80223d10294b8e9be",
+      "bytes": 3306,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Image/ScriptWidgetAttributeImageModifier.swift": {
+      "blob": "a82d310bd16e12e76edee2a9946f50b20d2dd6c2",
+      "bytes": 1110,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/ScriptWidgetAttributeGeneral.swift": {
+      "blob": "01d880c6c74332e086ee21bd7f956cfa00c123b8",
+      "bytes": 1687,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/ScriptWidgetAttributeText.swift": {
+      "blob": "5cb4750244a96ea1075606d60010be98eaa7da4a",
+      "bytes": 612,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Text/ScriptWidgetAttributeFontModifier.swift": {
+      "blob": "51c637ce6e36ed7afda219003bf2fe4b4eea083a",
+      "bytes": 5719,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Text/ScriptWidgetAttributeForegroundModifier.swift": {
+      "blob": "03e6d3c8d0740ace5a8fba59fad45bc5174cafee",
+      "bytes": 1458,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Text/ScriptWidgetAttributeTextAlignmentModifier.swift": {
+      "blob": "a570a54cb4a87c05695757d542e7bd9ed3642f51",
+      "bytes": 1212,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagButton.swift": {
+      "blob": "057980a7d75e91f547695fed7fdeeff2ba8a6375",
+      "bytes": 2142,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagChart.swift": {
+      "blob": "1a3e4d93c0109edfa616f8af8ae95541efb0802e",
+      "bytes": 27457,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagDate.swift": {
+      "blob": "6987ae324f4074437aac50d12599d3516b7ccc2b",
+      "bytes": 3121,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagExtras.swift": {
+      "blob": "71c0f4227fbf7dd1db1f3eeff6e52044e4fe069c",
+      "bytes": 12023,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagGauge.swift": {
+      "blob": "0b68e0188ca44b06863f7898c443efb9cd777949",
+      "bytes": 8351,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagGif.swift": {
+      "blob": "c5767f4d4a560a33eb5bd1d4182bfeb1c596bee8",
+      "bytes": 7963,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagGrid.swift": {
+      "blob": "02512b47c72aa302d26d913e897508d99f7698a0",
+      "bytes": 5123,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagImage.swift": {
+      "blob": "4f713dccc0c298f47041bbbfec7e6e361d7c899b",
+      "bytes": 13572,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagLink.swift": {
+      "blob": "f361530b810fbd207a124b11f8f74f59ee6c7c7e",
+      "bytes": 2119,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagShape.swift": {
+      "blob": "750f87d9204718bcacc986c99074afc346bf210c",
+      "bytes": 8640,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagSpacer.swift": {
+      "blob": "de79daa92ff75adaf5ba272758afcc0894301406",
+      "bytes": 438,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagStack.swift": {
+      "blob": "dc232277f7d55a4400e4720dc4ae36f52e3e7966",
+      "bytes": 5434,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagText.swift": {
+      "blob": "ea184dcddcc6cf0f7b3264fe4d2bb2c783f67ea1",
+      "bytes": 1007,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagToggle.swift": {
+      "blob": "a34caa60e862a6a2d72b6565a14f60f6744db7b3",
+      "bytes": 2010,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagZStack.swift": {
+      "blob": "f35009725a6c415fef4f25b0a7321478629c2fd3",
+      "bytes": 827,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/ScriptWidgetElementView.swift": {
+      "blob": "69631c47e695d28a0142e7e5ff490149a8044e31",
+      "bytes": 5969,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/ScriptWidgetRuntimeElement.swift": {
+      "blob": "9b67a8f259e444eebdd13503bd767b40d64547f9",
+      "bytes": 7617,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/LICENSE.txt": {
+      "blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "bytes": 11358,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/MIT-previous.txt": {
+      "blob": "503a8252bcbec9a230424b39473ddb920e49b645",
+      "bytes": 1071,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/NOTICE.txt": {
+      "blob": "f7cc5d243badda230e6afacde0b31907d2548fa2",
+      "bytes": 621,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Util/MineGaugeView.swift": {
+      "blob": "e65fce1a3a75ee6123ce50a62ee2da1fbb211674",
+      "bytes": 5804,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Util/MineRingView.swift": {
+      "blob": "65547b2b907496559ce7d79fb93d9b9f48f8836e",
+      "bytes": 356,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Util/ScriptWidgetElementColor.swift": {
+      "blob": "f7a70ceccd6ff1d212b9baece1f3ef09a6529b5b",
+      "bytes": 4033,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Util/ScriptWidgetElementGradient.swift": {
+      "blob": "79e50f5dbc0da20da99247cabaed612b7856f7a4",
+      "bytes": 5346,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Util/ScriptWidgetElementPoint.swift": {
+      "blob": "304a82ec6ca796cc7badd99b97fd5d8e2ec90aa0",
+      "bytes": 1206,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptRuntime/HanlinScriptSessionCoordinator.swift": {
+      "blob": "97f397e1c7d8fa4a00dfbceee9a76c335241209c",
+      "bytes": 7443,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptServices/HanlinScriptPermissionAuthority.swift": {
+      "blob": "31eea199a824b7d177e9490fbb0d699d826ac5a5",
+      "bytes": 1337,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptServices/HanlinScriptServiceBroker.swift": {
+      "blob": "5e18e26a4257c3b495034a433570b90972f4da4d",
+      "bytes": 9021,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptServices/HanlinScriptServiceContracts.swift": {
+      "blob": "8f0dedef6ba35bdf41b008f0208e42283c074452",
+      "bytes": 4431,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptStore/HanlinAtomicScriptStore.swift": {
+      "blob": "3d7f300ad606e20edb1c3a38886f5c00c953bbfd",
+      "bytes": 25110,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptStore/HanlinScriptPackageDiscovery.swift": {
+      "blob": "e607cb892c79072885ed05b1d79357463b69a835",
+      "bytes": 1600,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptStore/HanlinShareInboxStore.swift": {
+      "blob": "830a2aa2b38f4101aa75326c1895c8e12f3c9b19",
+      "bytes": 13425,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptStore/HanlinShareItemLoader.swift": {
+      "blob": "dbe460911f1d2908f5977b49e1dd0d41713236b0",
+      "bytes": 3126,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptStore/HanlinStoredPackageSnapshot+MiniAppRegistration.swift": {
+      "blob": "da7e892e3cac97b6d48230ef929a34c1226c4af0",
+      "bytes": 16911,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptUI/HanlinChatUIComponents.swift": {
+      "blob": "e3867a14f493cd7cadd43b20d5b6753c48e5331a",
+      "bytes": 7093,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptUI/HanlinSVGView.swift": {
+      "blob": "7453a70ebb7c6805d083214909d6e967eaa0652f",
+      "bytes": 4306,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptUI/HanlinScriptUIContracts.swift": {
+      "blob": "ed606e6490eadadd19ae6a0ce0c9bbaf86a3b72d",
+      "bytes": 6153,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptUI/HanlinScriptUIReconciler.swift": {
+      "blob": "8b5315e1c73811c27edc3818c52529935d9b4e78",
+      "bytes": 6997,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptUI/HanlinScriptUIView.swift": {
+      "blob": "001f604437fe2c19945e3ecffff101634b1d24eb",
+      "bytes": 30441,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptUI/Resources/jsx-runtime.js": {
+      "blob": "c67b5b6a75b66b7a01367bc5fca513be245bc57b",
+      "bytes": 1681,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingApplicationRuntime/HanlinScriptingApplicationSession.swift": {
+      "blob": "07923f03df535388725806c3e4ab3192bcef9f75",
+      "bytes": 204320,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingApplicationRuntime/HanlinScriptingFileResourceLimits.swift": {
+      "blob": "491421431c5371af859c7fc2aeace46844ae6461",
+      "bytes": 1021,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingApplicationRuntime/HanlinScriptingRuntimeServices.swift": {
+      "blob": "a55546aeeffe2b90a38cb818bfcd9f39f3d92b2f",
+      "bytes": 100325,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingApplicationRuntime/HanlinScriptingSQLite.swift": {
+      "blob": "1701c8d0ecc45f2705460f2a1267a4f1192bc448",
+      "bytes": 6870,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingApplicationRuntime/HanlinScriptingStorage.swift": {
+      "blob": "58c13ef48b42a007ac3a2a2ad12102bd14b46f2a",
+      "bytes": 4036,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/HanlinScriptingSDK.swift": {
+      "blob": "699c5c09fd42884ba94d1dd9d4a15e72d3e2c499",
+      "bytes": 3875,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/Resources/global.d.ts": {
+      "blob": "090437ee3faefafcad7e1feb2c31c999707c339f",
+      "bytes": 713964,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/Resources/manifest.json": {
+      "blob": "9b9a26d093de16073240669ed145252bda60f03b",
+      "bytes": 747,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/Resources/node.d.ts": {
+      "blob": "b3527d74279b1b47a8d59d8ac7006a0d4a209ace",
+      "bytes": 40903,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/Resources/runtime-registration.json": {
+      "blob": "85051ce6401caa41347dd53dcf2d332376b43daa",
+      "bytes": 974512,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/Resources/safari-ext.d.ts": {
+      "blob": "656bb60c40ab8982bb407cc7b7ebac270f8b58ba",
+      "bytes": 12670,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/Resources/scripting-foundation.d.ts": {
+      "blob": "b56671516aa3dbe17236a1cbc4770421b08bba9a",
+      "bytes": 2830,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/Resources/scripting.d.ts": {
+      "blob": "4d7ebd1c02c337d01d075437d2c26aebd7057ed4",
+      "bytes": 456732,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/Resources/web-fetch.d.ts": {
+      "blob": "a72be236ac48c95886147393704c8c7b612a0de6",
+      "bytes": 16789,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinWidgetCompiler/HanlinWidgetCompiler.swift": {
+      "blob": "4a8ad74c8c971ed5994a41be9350c9b48e988489",
+      "bytes": 5059,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinWidgetCompiler/Resources/core.js": {
+      "blob": "dc20f84735ca553e83d606ab06807593151a907a",
+      "bytes": 2805380,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinWidgetCompiler/Resources/prepare-widget.js": {
+      "blob": "28f2430c95de21fd6e3b628bc86ff96210901c4c",
+      "bytes": 6658,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Package.swift": {
+      "blob": "cc11c8efa373f50a401783b2ca84faf8e46ec15f",
+      "bytes": 830,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/HanlinChatView.swift": {
+      "blob": "6093173d4796cd822000b0d8b20abbc2617b2488",
+      "bytes": 2412,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/HanlinInlineToolApproval.swift": {
+      "blob": "274621d05edcaaa5da0c365216b9e16aadf158b5",
+      "bytes": 2232,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/HanlinToolActivityHeader.swift": {
+      "blob": "c60b2fd8a1cccdd598e8ff49333a853d8197f528",
+      "bytes": 3873,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/Motion/ChatMotionConfiguration.swift": {
+      "blob": "d616f9921ca1ee542b80f4db664728d02ff90714",
+      "bytes": 3309,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/Motion/ChatMotionPreferences.swift": {
+      "blob": "02814acb08b74b99ba95a0f9944158f5e2af5481",
+      "bytes": 2958,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/Motion/ChatShimmerEffect.swift": {
+      "blob": "65667addb599f0c7f2d3d46d50f60c2f8e37810e",
+      "bytes": 2106,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/Motion/HanlinAnimatedDisclosure.swift": {
+      "blob": "f90bbbbfd196168f2aeec31f1a73dc6ae17f089d",
+      "bytes": 5693,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinPresentationKit/MessageOpenUIStateStore.swift": {
+      "blob": "e514d1424d2011d0add41ab14a631fbb46cd3636",
+      "bytes": 5857,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinPresentationKit/OpenUIInlineParts.swift": {
+      "blob": "18edd56c16ce9ff95fa9174b0ddec3a7f6bb2ab4",
+      "bytes": 3977,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinPresentationKit/PresentationProfile.swift": {
+      "blob": "df325142e6fbb1420f1b5bb006fbd0846fef7756",
+      "bytes": 7982,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinPresentationKit/PresentationValue.swift": {
+      "blob": "82473fcd14aaaf42915c5b0ce50e26bb8aad4ab4",
+      "bytes": 2295,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/NativeOpenUINode.swift": {
+      "blob": "5c128e5fc6b54f173f435fe38dc865f638d1ac7c",
+      "bytes": 18426,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/OpenUIBlock.swift": {
+      "blob": "1a05f6ee6f7c4090622be5e377d748415151cb82",
+      "bytes": 10387,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/OpenUICatalogs.swift": {
+      "blob": "3f42d9a850194cdff58f6d9bce99799f83ea4af0",
+      "bytes": 3041,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/OpenUIRendererConfiguration.swift": {
+      "blob": "21115abf38412c0397c2d654a009857c6899f876",
+      "bytes": 1406,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/.gitattributes": {
+      "blob": "71b406acafc439cccd53f7a6145ad350815fc54f",
+      "bytes": 162,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/THIRD_PARTY_NOTICES.md": {
+      "blob": "4bc23ec539cd1f35f3e1d67510eee9bc76fdb410",
+      "bytes": 5693,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/bridge.css": {
+      "blob": "3db2487a574b26ba90620018a9038eee2ad82e99",
+      "bytes": 356861,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/bridge.js": {
+      "blob": "e21fc49b275f02d03d047b3e111cfc82f01cb107",
+      "bytes": 3580288,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/bridge.js.LEGAL.txt": {
+      "blob": "44d547716941fc1050201703718646698db6c58e",
+      "bytes": 76610,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/catalog-manifest.json": {
+      "blob": "5889373fefc75c9c1993675cad56adad95dc074c",
+      "bytes": 4787,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/index.html": {
+      "blob": "cf079cceaceaf67ed22a6d4101225c4b43ec04b0",
+      "bytes": 469,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/original-prompt.txt": {
+      "blob": "b7218ce66ed9b937f03151095a611621b545101f",
+      "bytes": 34202,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/torah-prompt.txt": {
+      "blob": "7c459b580d1b5704bfbc2aa66d601f1a501af681",
+      "bytes": 34958,
+      "mode": "100644"
+    }
+  },
+  "anytype_revision": "116cc6be0654a5d11bc56ba00e0310031107ee36",
+  "changed": [
+    {
+      "anytype": {
+        "blob": "d800b27951fc6962db78da2a1866f263e4e1fb9e",
+        "bytes": 33107,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "2f93f21a4b49c9205ba1da60779626cebebf7512",
+        "bytes": 35047,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinAgentSession.swift"
+    },
+    {
+      "anytype": {
+        "blob": "d5e7d185f73c5e2c82912c037eb41154fb6e5c9a",
+        "bytes": 11482,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "889fd8071ee18fd3fe9ccb611094e6273d54c4b9",
+        "bytes": 16079,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinHostDispatcher.swift"
+    },
+    {
+      "anytype": {
+        "blob": "0779b4fb4f044a8fc259c06fc3d4d6f3e172c1d0",
+        "bytes": 9541,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "01281d4e1ecb09cb33cddea28a448c355cd81f8e",
+        "bytes": 9614,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinPlatform/Package.swift"
+    },
+    {
+      "anytype": {
+        "blob": "b263e833b504e1321123aec4d0ae7b81360689e0",
+        "bytes": 27912,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "d8b353bc455addd30e850a7324127314ae935bf0",
+        "bytes": 35975,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKAgentEngine.swift"
+    },
+    {
+      "anytype": {
+        "blob": "56227895221bb693343b9269d8d329ebc2b66902",
+        "bytes": 6880,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "2e4e4c2317dc1d7348e9ca4a94d6fcd1f7978110",
+        "bytes": 9029,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKModels.swift"
+    },
+    {
+      "anytype": {
+        "blob": "9ce573782df375974d911708b3f21fdc51e20bd8",
+        "bytes": 11497,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "08d6e5c8a5bcf4143e9ad5f29298a353034924dd",
+        "bytes": 12237,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKProviderFactory.swift"
+    },
+    {
+      "anytype": {
+        "blob": "a372e9dbce3242a5a03e406cdba7414bf649c7d0",
+        "bytes": 6838,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "e1e0a9151de04c8af1bb0a7b81879f1f46bfa0ca",
+        "bytes": 7284,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatEngine.swift"
+    },
+    {
+      "anytype": {
+        "blob": "6c1ef53a83cc3aceb0cc44ba7c8dc2594c860728",
+        "bytes": 11359,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "ac8b91422a0c81dd455bd822e52c127c7ed03e9e",
+        "bytes": 12150,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinMiniAppDataStore.swift"
+    },
+    {
+      "anytype": {
+        "blob": "9307c1d4faa820a129f802c98c7605bbae7d821c",
+        "bytes": 7280,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "fafe30140f24b7fa22d999dbc7e25e12e36965bf",
+        "bytes": 10202,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinMiniAppKeyValueStore.swift"
+    },
+    {
+      "anytype": {
+        "blob": "197870580bae6d22f517200a939271b1a2cf84ab",
+        "bytes": 20916,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "effa3491063b67f5afee18a9065ad7aae9e26d27",
+        "bytes": 23631,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinSQLiteService.swift"
+    },
+    {
+      "anytype": {
+        "blob": "769549c76f59ff8fca84f854e3e20e85825062e2",
+        "bytes": 10640,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "9e6102938eb563cf180662aa5a0b2c4cfbf08948",
+        "bytes": 12254,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinCompactAgentContracts.swift"
+    },
+    {
+      "anytype": {
+        "blob": "3d7f300ad606e20edb1c3a38886f5c00c953bbfd",
+        "bytes": 25110,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "4dd3d4d527b0ef6d9f8bfd4815a1c420f1f032dd",
+        "bytes": 36058,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinPlatform/Sources/HanlinScriptStore/HanlinAtomicScriptStore.swift"
+    },
+    {
+      "anytype": {
+        "blob": "07923f03df535388725806c3e4ab3192bcef9f75",
+        "bytes": 204320,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "395392a26ea32ee1c546fa23bfb18d0633556009",
+        "bytes": 207294,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinPlatform/Sources/HanlinScriptingApplicationRuntime/HanlinScriptingApplicationSession.swift"
+    },
+    {
+      "anytype": {
+        "blob": "58c13ef48b42a007ac3a2a2ad12102bd14b46f2a",
+        "bytes": 4036,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "e05c26901698ba4aaf713a714737722e75b7fb08",
+        "bytes": 4057,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinPlatform/Sources/HanlinScriptingApplicationRuntime/HanlinScriptingStorage.swift"
+    },
+    {
+      "anytype": {
+        "blob": "cc11c8efa373f50a401783b2ca84faf8e46ec15f",
+        "bytes": 830,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "c40be1427716aa4bb6a8fa7ed4cadfc0cfb17eae",
+        "bytes": 1170,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinPresentationSDK/Package.swift"
+    },
+    {
+      "anytype": {
+        "blob": "5c128e5fc6b54f173f435fe38dc865f638d1ac7c",
+        "bytes": 18426,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "71936eef623671f8bcbd4df4a3b1da913ef9cb13",
+        "bytes": 22157,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/NativeOpenUINode.swift"
+    },
+    {
+      "anytype": {
+        "blob": "e21fc49b275f02d03d047b3e111cfc82f01cb107",
+        "bytes": 3580288,
+        "mode": "100644"
+      },
+      "maktabah": {
+        "blob": "cc1d1bd09195e859014d50920a95ff45ce14b453",
+        "bytes": 3581863,
+        "mode": "100644"
+      },
+      "path": "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/bridge.js"
+    }
+  ],
+  "maktabah_count": 338,
+  "maktabah_files": {
+    "Packages/HanlinAgentSDK/Package.swift": {
+      "blob": "1af275c3f3097eb361251e4ed2a6d12e5271a174",
+      "bytes": 3056,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinAgentSession.swift": {
+      "blob": "2f93f21a4b49c9205ba1da60779626cebebf7512",
+      "bytes": 35047,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinHostDispatcher.swift": {
+      "blob": "889fd8071ee18fd3fe9ccb611094e6273d54c4b9",
+      "bytes": 16079,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinHostSchemaValidation.swift": {
+      "blob": "47d2e3321a2aa8b87f78eb776f66cced7411acef",
+      "bytes": 5610,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinModelToolInputGuard.swift": {
+      "blob": "b60eb62a5f8af327813516c1dc598265684d48da",
+      "bytes": 4778,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/Providers/HanlinAppleOnDeviceProvider.swift": {
+      "blob": "1762ce03bcbdd6533d5d8411979853876964b7df",
+      "bytes": 7773,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/Providers/HanlinAppleTextDelta.swift": {
+      "blob": "dab00fd9a4b16c3a9989b01ad61337a1192b7a0c",
+      "bytes": 1616,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinConversationStore.swift": {
+      "blob": "c2f3ecec54184c5aff29d58b037dccd05e6cbd5b",
+      "bytes": 4841,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostContext.swift": {
+      "blob": "4066d54a7aa9aa77ffca4db47611623c193ec30a",
+      "bytes": 8843,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostEvents.swift": {
+      "blob": "eb0f2ff80be6f7c999cf9a40fcc327e94ba4b5a8",
+      "bytes": 1989,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostIntegration.swift": {
+      "blob": "99ac76dd17204176df3a9d56b5b1a235707db1e8",
+      "bytes": 9102,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostInteraction.swift": {
+      "blob": "572635d8aaa858c8e72a0cb9c30086c9da957ec8",
+      "bytes": 1621,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostNavigationTransition.swift": {
+      "blob": "05d524c01119976113b7741f55641754375c57c7",
+      "bytes": 3084,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinPersistenceAdapters/HanlinInMemoryConversationStore.swift": {
+      "blob": "2488aa8d6065b52b8afc0af051ff79aad475d013",
+      "bytes": 1268,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Sources/HanlinPersistenceAdapters/HanlinPrivateConversationStore.swift": {
+      "blob": "5612eab55c1796f2a34dcd21c54cab415ee2d34a",
+      "bytes": 6127,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Package.swift": {
+      "blob": "088e256101f1f5f330e20ba5c915cd5e188ba11f",
+      "bytes": 4335,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Codec/JSONLexer.swift": {
+      "blob": "8e00322d6b0528fdc207bf4a115339fa89e3512a",
+      "bytes": 8519,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Codec/JSONParser.swift": {
+      "blob": "0d91d64f3bbcb05547a021a6ac745cc2c544f495",
+      "bytes": 3884,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Codec/JSONParsingOptions.swift": {
+      "blob": "50e9b0477f7778094e4f5378d72885d0334c4772",
+      "bytes": 515,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Codec/JSONTokenMachine.swift": {
+      "blob": "4702b135c5852a4669cfa9060bbf37e52fed97a8",
+      "bytes": 9952,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Codec/JSONWriter.swift": {
+      "blob": "7ae458c387478328ad1ad7dea40be7735d8d9fa0",
+      "bytes": 11390,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Codec/JSONWritingOptions.swift": {
+      "blob": "fe043c366b50e21257a232ac4c1b722f734a53bc",
+      "bytes": 2901,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONBase64.swift": {
+      "blob": "63922b36b53d1f2358d7f1763c711334e4773d5e",
+      "bytes": 3482,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONCodableBridge.swift": {
+      "blob": "47c522b7007794ff15da1f67f684d20e5b24efbf",
+      "bytes": 10131,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONCodablePayload.swift": {
+      "blob": "476a94b29fdb8569f3280cdd3e259f07285bee94",
+      "bytes": 10112,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONCodingStrategies.swift": {
+      "blob": "17a4fd0c3d8dc974c3f4b3df265b0b0c236461fc",
+      "bytes": 4976,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONDecodingContainers.swift": {
+      "blob": "72bb62a89dabea50b048c7db3474472201ab0fd8",
+      "bytes": 5303,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONEncodingContainers.swift": {
+      "blob": "0659879cf9b2e85004bae57932a4fb730307e22d",
+      "bytes": 5181,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONValueConveniences.swift": {
+      "blob": "56b66abb3b5459a3fc232dfd429f87c42eb9f07b",
+      "bytes": 1714,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONValueDecoder.swift": {
+      "blob": "323ff7411380123a627165da0617e1e3658cd5d8",
+      "bytes": 7560,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Coding/JSONValueEncoder.swift": {
+      "blob": "c215974c8277ca9987c52f33c93c9bae346a7898",
+      "bytes": 10398,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Construction/JSONArrayAccumulator.swift": {
+      "blob": "518b18ad6808ff52d99af3c5d44b952857323838",
+      "bytes": 2814,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Construction/JSONConstruction.swift": {
+      "blob": "678c3216db6c585510869bb17867021831631022",
+      "bytes": 1634,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Construction/JSONObjectAccumulator.swift": {
+      "blob": "e4fdeb0914eb6c48e4f952333b6ad54c1947cdfd",
+      "bytes": 3624,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Diagnostics/JSONDiagnostic.swift": {
+      "blob": "38a5acf4e30fcc84541cec3658452a2341786673",
+      "bytes": 1416,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Diagnostics/JSONOperationReport.swift": {
+      "blob": "6d13a0d8d83daad7f2495bfb87b81165cfa52394",
+      "bytes": 974,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Diagnostics/JSONOperationStatistics.swift": {
+      "blob": "d92ba7c0a77a2f6a24be62caa73bfb4e7d2e1e16",
+      "bytes": 1260,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Diagnostics/JSONPreview.swift": {
+      "blob": "d55d3a9d79224bd566b59424661e078520b39c52",
+      "bytes": 8991,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Diagnostics/JSONRedaction.swift": {
+      "blob": "129b59dc88ba35ea7cf6cd50e97b76b4592b8189",
+      "bytes": 899,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Diagnostics/JSONSourceLocation.swift": {
+      "blob": "d9c2c0440a1389f102f2a88d15f54d9bb273e03b",
+      "bytes": 1165,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Document/JSONDocument.swift": {
+      "blob": "43d77074d73e48453c0f531d05c98315f48919c5",
+      "bytes": 3480,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Document/JSONSourceMap.swift": {
+      "blob": "3df9aacda7936040a065824ed5c55b182e950ab6",
+      "bytes": 5568,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Documentation.docc/CommandLine.md": {
+      "blob": "4de3d0165f601fa7fae73c1b735a5fe480eb74aa",
+      "bytes": 4339,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Documentation.docc/Composition.md": {
+      "blob": "e22d1879d0249fd4da1b4200b09247df009883d5",
+      "bytes": 6392,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Documentation.docc/ExactPersistence.md": {
+      "blob": "a62ccec6099da4b6354a1fa785bf97dbf1bca7fa",
+      "bytes": 2196,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Documentation.docc/ExactValuesAndCoding.md": {
+      "blob": "51ba895b08ba06f989bf754a905efa22e6025535",
+      "bytes": 3301,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Documentation.docc/JSON.md": {
+      "blob": "249447be71ea2814b98ac7e19dad9434a4f51f1c",
+      "bytes": 4004,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Documentation.docc/QuickEntryPoints.md": {
+      "blob": "f384626efb013b362041c1f4fa787b6e1da720ef",
+      "bytes": 2892,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Documentation.docc/ScopedReads.md": {
+      "blob": "e0783e6b4b785c152dd767dc5287297cd5df4777",
+      "bytes": 2026,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Errors/JSONAccessFailure.swift": {
+      "blob": "b2ceed8f28244416f65af20f2366a86ec3942712",
+      "bytes": 777,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Errors/JSONFailure.swift": {
+      "blob": "5602afd8a65909a95ba62491708dd42503014f96",
+      "bytes": 3773,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Errors/JSONResourceViolation.swift": {
+      "blob": "1c2c9ac31e9ca3a5006ec42607c7c5d907ae3314",
+      "bytes": 1803,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Integrity/JSONHashMeter.swift": {
+      "blob": "4b1cf63e322f62ff27eed0867422c792242c0656",
+      "bytes": 787,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Integrity/JSONSHA256Core.swift": {
+      "blob": "a25242ab66e13be5df8d2b59644328779d048400",
+      "bytes": 6115,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Limits/JSONCompositionScope.swift": {
+      "blob": "0e0eeee0872a50775d0a79f1eb8a69dbf8b94e85",
+      "bytes": 10434,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Limits/JSONLimits.swift": {
+      "blob": "476535779853f29167ab1389b03c283a786f8700",
+      "bytes": 13317,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Limits/JSONOperationContext.swift": {
+      "blob": "7a16f9c2169cd10539973f036ea67acf8abd47ed",
+      "bytes": 447,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Limits/JSONWorkMeter.swift": {
+      "blob": "73b19cd18e2ca88c561a7e5d06f27008472793da",
+      "bytes": 14710,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Number/DecimalComponents.swift": {
+      "blob": "f8ae80b7414ef06e62f6b4c237f552135850bdb1",
+      "bytes": 3359,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Number/JSONNumber.swift": {
+      "blob": "64c5763b6c88f05f2effa0669dbf1af1de90683b",
+      "bytes": 8015,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Number/JSONNumberConversions.swift": {
+      "blob": "46e6a3eceaa34dd48589dd03406e5670f10e5e39",
+      "bytes": 14631,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Pointer/JSONEditing.swift": {
+      "blob": "e17e366e656d4dcfa451ab5197ca252dceb5e7d7",
+      "bytes": 3920,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Pointer/JSONLocationComponent.swift": {
+      "blob": "24ad93c45baf477b0997d91bf84430ad3ca63c10",
+      "bytes": 326,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Pointer/JSONPointer.swift": {
+      "blob": "e1d3b376a2ed5e9b1d10343148d7d0e755380113",
+      "bytes": 14041,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Reading/JSONReadCursor.swift": {
+      "blob": "b494f2f83a8fa6aa5107ada5c0d6050361bf0f77",
+      "bytes": 18030,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Reading/JSONReadPreparation.swift": {
+      "blob": "1a46e358549017c5a9a0c75595d4d9f1e8dad956",
+      "bytes": 1634,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Reading/JSONReadScope.swift": {
+      "blob": "430106b266044fa3d9d6b4e54d1747f99f638747",
+      "bytes": 12929,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSON.swift": {
+      "blob": "5205ffd74ab63dac889bb557b0f55a6e2bb6245e",
+      "bytes": 3715,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONAccessors.swift": {
+      "blob": "e4f6c5d3fb69bbc8f519d36e278e95a20a81e4cc",
+      "bytes": 2829,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONComparison.swift": {
+      "blob": "22694cc59b11c07ccd386aa00a67013f00174e53",
+      "bytes": 5999,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONEntryPoints.swift": {
+      "blob": "a482b3d1a322eec595e0ff5a8d1ff15a4db234e4",
+      "bytes": 4821,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONExactKeyIndex.swift": {
+      "blob": "ab77da668ccf3d3ecb7bad9b2a2ef03acbd21f78",
+      "bytes": 5591,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONFingerprint.swift": {
+      "blob": "33c7fd09395a5fa659bba1da1e8130d41f5f3c02",
+      "bytes": 3317,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONKey.swift": {
+      "blob": "9cd9dc066a3c52809d04ad136b002b322406a2b9",
+      "bytes": 3676,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONMember.swift": {
+      "blob": "af6d1695d17f208ebe990b23d517ec63cad28e18",
+      "bytes": 1019,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONObject.swift": {
+      "blob": "818ba93f23f4fa86b5078a426a49db8f47a9843a",
+      "bytes": 7506,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON/Value/JSONPresence.swift": {
+      "blob": "497980d83562fcd7a5aa5aea57f5264dd315f30e",
+      "bytes": 3098,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONRegexRuntime/RegexBudget.swift": {
+      "blob": "94cb4629776eb397ed6c3e3b619cf91c96800a5a",
+      "bytes": 509,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONRegexRuntime/RegexCompiler.swift": {
+      "blob": "a89634ac1513cb7758e4ae83d3d6edfe6f064d46",
+      "bytes": 6001,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONRegexRuntime/RegexParser.swift": {
+      "blob": "d229c8527d8517b6a1754b6cda3286ac6ec59fe9",
+      "bytes": 19514,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONRegexRuntime/RegexProgram.swift": {
+      "blob": "0ba991fa5a54a3e6594bf6eb0997dd775bf85592",
+      "bytes": 1512,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONRegexRuntime/RegexUnicodeTables.swift": {
+      "blob": "b766042e9ac13937aa838816c1d3f685bfd3d867",
+      "bytes": 354636,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONRegexRuntime/RegexVM.swift": {
+      "blob": "511e36aa8f926bca6709093843a40d8afbdb8fbe",
+      "bytes": 13744,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Compilation/CompiledJSONSchema.swift": {
+      "blob": "7b1419dd8cdf21acfa202a800dcfdf5558f59814",
+      "bytes": 4975,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Compilation/JSONSchemaCompilationFailure.swift": {
+      "blob": "3a8d8c987b2d055a5c7175a632c3ad05443afb1f",
+      "bytes": 1688,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Compilation/JSONSchemaCompiler.swift": {
+      "blob": "b9487d83eb368d78cdfb96ce83b049da18316126",
+      "bytes": 30702,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Compilation/JSONSchemaPlan.swift": {
+      "blob": "cca928ac1bb5177ae5461d0c31c789e3d1646b74",
+      "bytes": 2635,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Compilation/JSONSchemaQualifiedNode.swift": {
+      "blob": "3b841263ee21796749455c2be058039fa98e5896",
+      "bytes": 2789,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Compilation/JSONSchemaShape.swift": {
+      "blob": "7bac8997dad9f10e706edfdf77d0c266d87ebad6",
+      "bytes": 4017,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Compilation/JSONSchemaVocabulary.swift": {
+      "blob": "a0b3e0c621be88a6e02da052b64796a6a68c16ce",
+      "bytes": 1912,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Construction/JSONSchemaBuilder.swift": {
+      "blob": "26e3de68d2231ed3b122ff73d655046cfec5471f",
+      "bytes": 1925,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Document/JSONCompositionScope+URI.swift": {
+      "blob": "60a44ae2e06c2b87f3b9597b3fc7b906d3c30ca8",
+      "bytes": 1960,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Document/JSONSchemaBuiltins.swift": {
+      "blob": "1a2239193116eb727b1c3415a3a00b40b56c5a2c",
+      "bytes": 8776,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Document/JSONSchemaDocument.swift": {
+      "blob": "ca8b0bcccb19ced461c93a4c6584ee1cd4fdce45",
+      "bytes": 2827,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Document/JSONSchemaRegistry.swift": {
+      "blob": "675730a8f823f816001737c21997373a288d30a3",
+      "bytes": 3648,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Document/JSONSchemaURI.swift": {
+      "blob": "b833dd1ab09aa2308b3105a1f9085436368b444a",
+      "bytes": 5301,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Document/JSONSchemaURINormalization.swift": {
+      "blob": "5e69f87422b54b6d2af4b4c4baf39fb44125dfa0",
+      "bytes": 5027,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Documentation.docc/CompiledPlanConvenience.md": {
+      "blob": "772a2f995665bafc48b002bd93ecc0bf5f1a2a78",
+      "bytes": 1254,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Documentation.docc/JSONSchema.md": {
+      "blob": "d21ae01b4283503a57dc39fcbffc5bd3a63755f0",
+      "bytes": 4486,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Documentation.docc/OfflineValidation.md": {
+      "blob": "3901c4770b733348b507110437f0bc80b5547d82",
+      "bytes": 3844,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Documentation.docc/ProviderSchemas.md": {
+      "blob": "7f0e001eb1b1ae41ca6df9055ddaeba9ac64ce25",
+      "bytes": 3475,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Evaluation/JSONAnnotationState.swift": {
+      "blob": "7afa2d6de949db4288fe97b98231274315ff6e93",
+      "bytes": 2009,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Evaluation/JSONEvaluationFrame.swift": {
+      "blob": "95190a70ce336ef4ed7512784c22060ed47e06f4",
+      "bytes": 2069,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Evaluation/JSONSchemaAssertions.swift": {
+      "blob": "a6071f5f5f94a3413114155bbd252595b6c6c7ba",
+      "bytes": 4939,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Evaluation/JSONSchemaEvaluation.swift": {
+      "blob": "31a3f2759e091486926a9b0073ac5bc1171700e5",
+      "bytes": 37761,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Evaluation/JSONSchemaEvaluationFailure.swift": {
+      "blob": "a6f90dd39a5cde52754130dd32a0717cbe441c3e",
+      "bytes": 903,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Evaluation/JSONSchemaValidator.swift": {
+      "blob": "c0d5e7b36817adb95614177408042c87a1a7ad56",
+      "bytes": 2521,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Formats/JSONIDNA.swift": {
+      "blob": "95d450aebf2d2f389c3f78b17046c2b517d12387",
+      "bytes": 7286,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Formats/JSONIDNAData.swift": {
+      "blob": "f3b2d7146410ad5a4a803de282522d996c0d5ad8",
+      "bytes": 490730,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Formats/JSONIDNAMapping.swift": {
+      "blob": "2e0316257040390936783c58125a08f64873d7e0",
+      "bytes": 2585,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Formats/JSONIDNAUnicode.swift": {
+      "blob": "4572d141b98a79b40a20f2bfbc01a57bf1d696b4",
+      "bytes": 4232,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Formats/JSONPunycode.swift": {
+      "blob": "efab4fa9184931824feb737640073cf03a5277d7",
+      "bytes": 5210,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Formats/JSONSchemaFormats.swift": {
+      "blob": "ba0a0ddce2c7e53941822a0e87844722b3651e81",
+      "bytes": 8772,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Formats/JSONSchemaIdentifierFormats.swift": {
+      "blob": "6f4c7502767898656d7b7655ce7a44f46b4736c1",
+      "bytes": 7349,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Formats/JSONSchemaMailboxFormats.swift": {
+      "blob": "c00eec7c236ee08b4a38790ab948d866621401f3",
+      "bytes": 2406,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Inspection/JSONDeclaredAnnotations.swift": {
+      "blob": "0574d0228c87e444619b9142fd42a89a95160e84",
+      "bytes": 708,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Inspection/JSONSchemaNodeView.swift": {
+      "blob": "20e68b0b654780e47d9e22824cb487c6a23bccc7",
+      "bytes": 6411,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Inspection/JSONSchemaReferenceTarget.swift": {
+      "blob": "19bed0eeae448a4dcf02b392f3ee2e2e67b628d5",
+      "bytes": 938,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Limits/JSONSchemaOptions.swift": {
+      "blob": "01dee00b8bdabe9727b6b0ed585b009ab6c0382a",
+      "bytes": 1875,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Output/JSONValidationIssue.swift": {
+      "blob": "4818ea63f2351cab151f7a3316bcc89e7ec4cb0e",
+      "bytes": 1306,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Output/JSONValidationOutput.swift": {
+      "blob": "7ec46d523534a52fe6806a97fb6b788a10bcf82e",
+      "bytes": 616,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Output/JSONValidationOutputAdapter.swift": {
+      "blob": "4f0b6f8a7111698e34c4edd979ecf59c65e3af74",
+      "bytes": 6922,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Output/JSONValidationResult.swift": {
+      "blob": "043ace850d377719f03ef15427ce0d4cc6ff1d6d",
+      "bytes": 2827,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Providers/JSONSchemaProviderInspection.swift": {
+      "blob": "ab0d5435e412d4113651e7e89b6c7a21382cb8eb",
+      "bytes": 18285,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Providers/JSONSchemaProviderProfile.swift": {
+      "blob": "cd84dbdb1e0333cb3c99094e8853a81dc53980dd",
+      "bytes": 8323,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Providers/OpenAIJSONSchemaBridge.swift": {
+      "blob": "90951c40384d6457bccaf88fbd1e4ad4e016ca43",
+      "bytes": 16714,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/Provenance.json": {
+      "blob": "2311d78deef821afb6b14cee03f52c1aa3e26d77",
+      "bytes": 3029,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/meta/applicator.json": {
+      "blob": "ca69923096f3a2e4fe5eb8152a92d87d146cf021",
+      "bytes": 1659,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/meta/content.json": {
+      "blob": "2f6e056a9ac2399582eaf05985a26acf9161f213",
+      "bytes": 519,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/meta/core.json": {
+      "blob": "dfc092d9646e1ea89e4d771bfcf2a4ca87eeac75",
+      "bytes": 1564,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/meta/format-annotation.json": {
+      "blob": "51ef7ea118c34e8ac3da66c973bae02b9e8325d8",
+      "bytes": 448,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/meta/format-assertion.json": {
+      "blob": "5e73fd7571e504990f7a055da960056f07dcdb19",
+      "bytes": 445,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/meta/meta-data.json": {
+      "blob": "05cbc22afde5ebe6ba84957ca412277bde1e4b08",
+      "bytes": 892,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/meta/unevaluated.json": {
+      "blob": "5f62a3ffa20be07dc813d6b8a154fa8451d0dc61",
+      "bytes": 506,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/meta/validation.json": {
+      "blob": "606b87ba2ec213d63b9e2035a6acc4edcb4b8357",
+      "bytes": 2834,
+      "mode": "100644"
+    },
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema/Resources/Draft2020-12/schema.json": {
+      "blob": "d5e2d31c3c88e61f4c204cb6616887bba7e105dd",
+      "bytes": 2452,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Package.swift": {
+      "blob": "01281d4e1ecb09cb33cddea28a448c355cd81f8e",
+      "bytes": 9614,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKAgentEngine.swift": {
+      "blob": "d8b353bc455addd30e850a7324127314ae935bf0",
+      "bytes": 35975,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKModels.swift": {
+      "blob": "2e4e4c2317dc1d7348e9ca4a94d6fcd1f7978110",
+      "bytes": 9029,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKProviderFactory.swift": {
+      "blob": "08d6e5c8a5bcf4143e9ad5f29298a353034924dd",
+      "bytes": 12237,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinCapturedStreamReplay.swift": {
+      "blob": "9c8da6db693b1ec7b6c2ead643b1356e1b68a8b6",
+      "bytes": 7787,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatEngine.swift": {
+      "blob": "e1e0a9151de04c8af1bb0a7b81879f1f46bfa0ca",
+      "bytes": 7284,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatMessage.swift": {
+      "blob": "c99be01a793abd27f9af7819fd571f183258ece2",
+      "bytes": 1040,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatModelConfiguration.swift": {
+      "blob": "b53f797f046b3a671858f2c419630b2bb7c668f4",
+      "bytes": 7036,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatRequestBuilder.swift": {
+      "blob": "aec967db17a8dc082a91cea7d3e41c0471fda2c6",
+      "bytes": 16132,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatStreamEvent.swift": {
+      "blob": "81b56aa2a03543803757352c91b808ad200ae288",
+      "bytes": 1488,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatStreamParser.swift": {
+      "blob": "483bd3548f66332a0785b698d3a0149b0deda1dd",
+      "bytes": 11530,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatStructuredPart.swift": {
+      "blob": "e4ce0a0910ec97bb2a5d87962df51fd03c3fae56",
+      "bytes": 1096,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinChatTransportTrace.swift": {
+      "blob": "99f3184e127f48ddb289a23b9a01b715b1d670b8",
+      "bytes": 569,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinNativeStructuredResponse.swift": {
+      "blob": "dd0201c3485f7154b452cf6c237162f266c40c11",
+      "bytes": 8406,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinNonEmptyLanguageModel.swift": {
+      "blob": "e4690c00af7ff565375d32c94b5bbc4342062c87",
+      "bytes": 5939,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinCanonicalMiniAppCatalog.swift": {
+      "blob": "208faa770b3969ceb62f525baeec428881fb6e22",
+      "bytes": 5732,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinCompiledMiniAppProvider.swift": {
+      "blob": "a76017db8a852cd957b753f8ff281caa05388243",
+      "bytes": 3884,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinMiniAppDataStore.swift": {
+      "blob": "ac8b91422a0c81dd455bd822e52c127c7ed03e9e",
+      "bytes": 12150,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinMiniAppDismissControl.swift": {
+      "blob": "5b61e8e139f374acc37c863218f10eda0dc7a4fa",
+      "bytes": 1326,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinMiniAppKeyValueStore.swift": {
+      "blob": "fafe30140f24b7fa22d999dbc7e25e12e36965bf",
+      "bytes": 10202,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinMiniAppRequestBroker.swift": {
+      "blob": "9f77fdaa25c0425e33ad6e2b8214af5e0d1fdefb",
+      "bytes": 8289,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinMiniAppVisibilityStore.swift": {
+      "blob": "c36e815db5d69d1262e7bfb13c06869561d69ef7",
+      "bytes": 4479,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinMiniAppCore/HanlinSQLiteService.swift": {
+      "blob": "effa3491063b67f5afee18a9065ad7aae9e26d27",
+      "bytes": 23631,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinCatalogContracts.swift": {
+      "blob": "9526fe7c52589500dd7baa6cbef12fbc037baf4c",
+      "bytes": 9413,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinChatStructuredPart.swift": {
+      "blob": "e5b10543c2fe174934c17a328ec38db58fa71a82",
+      "bytes": 3784,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinContractError.swift": {
+      "blob": "1ba95599146746e21dc29d48fcf6437d2cd8a3e1",
+      "bytes": 5423,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinDescriptors.swift": {
+      "blob": "91d256b101eacd094a0221613a2489806e310293",
+      "bytes": 44005,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinExposureContracts.swift": {
+      "blob": "08785a5ed83fac92a1cb11b1685681a6b1048274",
+      "bytes": 21524,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinIdentifiers.swift": {
+      "blob": "26ce7f7138fb00ade59780b854d075f49e4f4a52",
+      "bytes": 15313,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinJSONSchemaDocument.swift": {
+      "blob": "5e788e7b4ab1519d2ddd52d6b31253a4be436fa6",
+      "bytes": 4842,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinManifestSchema.swift": {
+      "blob": "0f46e4f63e5f6a42e081b693b955767dc4a5d5ad",
+      "bytes": 565,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinMiniAppContracts.swift": {
+      "blob": "0224586d26cd2dc5b1f9f4618c61ba493093c917",
+      "bytes": 6472,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinPermissionContracts.swift": {
+      "blob": "3f7819721750b12326c6b8c5c37dce89eb9eb197",
+      "bytes": 8912,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinPreparedRuntimeVersion.swift": {
+      "blob": "2ff326e3d33e72c597988dababcd1586902a2d3c",
+      "bytes": 1109,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinPresentationContracts.swift": {
+      "blob": "486ad7bb698598ed4f7255113574a61a3ea42215",
+      "bytes": 10661,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinRuntimeProfiles.swift": {
+      "blob": "583adfd86eef1311d149f8258aaeda3406817113",
+      "bytes": 5825,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinScriptContracts.swift": {
+      "blob": "212f99cc38942dace810c07b1219ca929ea1fe8e",
+      "bytes": 24323,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinSessionContracts.swift": {
+      "blob": "89d5d8be6916d7024efeb8d548dba719d5ac9657",
+      "bytes": 6805,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinSkillContracts.swift": {
+      "blob": "8a796f3329ee2f04da1bb74e1fa03ecd96e08170",
+      "bytes": 3494,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinStoreFileAccess.swift": {
+      "blob": "512b38ccdd73737f4449ec8943ada3b76f3fae38",
+      "bytes": 523,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinToolContracts.swift": {
+      "blob": "2974c7eea85d2007ab3847c746a2632b68cdb05c",
+      "bytes": 7298,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinValue.swift": {
+      "blob": "a8430f4a88d066a853d22a24fe6e5ac245a374c4",
+      "bytes": 56729,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinVersions.swift": {
+      "blob": "c44dfa46ed185941df4a7e97d1ac5070c7461626",
+      "bytes": 15847,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinWireProtocol.swift": {
+      "blob": "1de464fa8ce1371b3496fabd860754cffae24e92",
+      "bytes": 6725,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/Resources/HanlinAppManifest.schema.json": {
+      "blob": "ec8bb7a1eba616ddaeff7fff5eddd35915f41adb",
+      "bytes": 20017,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptCompiler/HanlinArchivePolicy.swift": {
+      "blob": "415a9e980144628962da64594d5aaf1d646ab0e7",
+      "bytes": 21210,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptCompiler/HanlinPackageCenter.swift": {
+      "blob": "275b2dc85c3d7c302e18d62820cb8bee476f994c",
+      "bytes": 9834,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptCompiler/HanlinProductionCompilerProfile.swift": {
+      "blob": "c9294b47fda504d60fd32210e02fc0a5c6ff9256",
+      "bytes": 3422,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptCompiler/HanlinScriptAnalyzer.swift": {
+      "blob": "c3b22de25cf392372c6584bdc04ccc3b293812fb",
+      "bytes": 43007,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptCompiler/HanlinScriptingBundler.swift": {
+      "blob": "d7ca6ff54312f5ef42bb061514849e79eb655413",
+      "bytes": 22434,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptCompiler/HanlinScriptingPackageExporter.swift": {
+      "blob": "0b3155393271a18047ee3e6316736629802b0fff",
+      "bytes": 3772,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptCompiler/HanlinWidgetPackagePreparation.swift": {
+      "blob": "646c0bb1d842d3fe75de3902bc1a3755ec1ccb53",
+      "bytes": 2978,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptCompiler/Resources/production-compiler-profile.json": {
+      "blob": "dc595eb348463dac61885e2f71db3fe9b8692b26",
+      "bytes": 629,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptContracts/HanlinInstallContracts.swift": {
+      "blob": "40013b4eb40767cb17f6f5cb3d02211f91880bb1",
+      "bytes": 17109,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptContracts/HanlinPackageContracts.swift": {
+      "blob": "c64483aae86a13d2410a40b13e921e904b92dce7",
+      "bytes": 16372,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptContracts/HanlinScriptRuntimeContracts.swift": {
+      "blob": "ffa43fd4f3c6eeaf45bfc8a5f09fd6e91e3cd44f",
+      "bytes": 5004,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptContracts/HanlinScriptingPerformanceBudgets.swift": {
+      "blob": "4ec45b91fd761b71d4f109d9dc8f127a1852b633",
+      "bytes": 2837,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptContracts/HanlinWidgetProgram.swift": {
+      "blob": "cf22e121e4e1d00820c36f56898949c1345c2326",
+      "bytes": 3826,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptContracts/Resources/HanlinScriptingPackage.schema.json": {
+      "blob": "0ae42afac1fb0c884ba8d0561bed484aa765ad47",
+      "bytes": 839,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptDeviceServices/HanlinAppleCalendarService.swift": {
+      "blob": "148e26aa5a24b4e322dc53411997599e3b8d4a36",
+      "bytes": 10962,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptDeviceServices/HanlinAppleHealthService.swift": {
+      "blob": "9d6beb31ce7097217af1a49439aae6ed5a472c06",
+      "bytes": 9236,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptDeviceServices/HanlinAppleLocationService.swift": {
+      "blob": "878f8b7bd868c73dcd764a2cb53b438e8fa6a4d5",
+      "bytes": 3899,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptDeviceServices/HanlinAppleNotificationService.swift": {
+      "blob": "911ca2998b926d8ec964abffa6ff5cdd5efb14a7",
+      "bytes": 3993,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptDeviceServices/HanlinAppleServiceContracts.swift": {
+      "blob": "8ca86f6d09e86f6ab0e8c9b8d50eee73e934f643",
+      "bytes": 9369,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptDeviceServices/README.md": {
+      "blob": "25c78e025338ec9f1e706496f487d9f314b9b019",
+      "bytes": 1138,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ExpoWidgets/HanlinExpoWidgetsDynamicView.swift": {
+      "blob": "b9a4608fa5f79fd0723af33a09b5013b5bb6f1dd",
+      "bytes": 561,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ExpoWidgets/HanlinExpoWidgetsRuntime.swift": {
+      "blob": "60a7790f74215bb008e8363c21abf16aa4205f4b",
+      "bytes": 5689,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ExpoWidgets/HanlinExpoWidgetsViewRenderer.swift": {
+      "blob": "935c006497b01f8cdbb0d58b09acc1306a6da21c",
+      "bytes": 554,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinCompactAgentContracts.swift": {
+      "blob": "9e6102938eb563cf180662aa5a0b2c4cfbf08948",
+      "bytes": 12254,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinExtensionNodeView.swift": {
+      "blob": "b695e34d6a088250b2b854a4430ae06c577081ce",
+      "bytes": 10854,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinGenericWidgetActionIntent.swift": {
+      "blob": "5150f7dbcc0d98270c69efb1c41915c780700521",
+      "bytes": 2341,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinInvocationDelivery.swift": {
+      "blob": "6cf7ce25aebb7224593a86a1e6e7b495bf6ddb67",
+      "bytes": 4403,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinInvocationExecutor.swift": {
+      "blob": "1bf2195bb0dbc4d1af446bc19c313915bdfff03e",
+      "bytes": 3912,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinInvocationQueue.swift": {
+      "blob": "9b2e218b7f1ebb45750ed245d5b8d10f9870fa52",
+      "bytes": 16624,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinKeychainCredentialStore.swift": {
+      "blob": "33cd39c15ca26997b95cb05d5a60fe612ac3bc2b",
+      "bytes": 6353,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinLiveActivityUILayout.swift": {
+      "blob": "67f6f6cf7ae57d91537c42cc46a41480094af003",
+      "bytes": 2731,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinManagedStateTransaction.swift": {
+      "blob": "29cbfcb392dfb343d38e9228847b19343ffb609d",
+      "bytes": 2797,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinMiniAppCardView.swift": {
+      "blob": "7ca9b18f7586132a9b838dc6a862e68013b3335b",
+      "bytes": 6380,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinPreparedWidget.swift": {
+      "blob": "17177d3624dc1ca07801ec84bd86e0fff6f109b3",
+      "bytes": 8835,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinScriptAppIntentBridge.swift": {
+      "blob": "258d2b7fd76dba8a5933e1870291a45c2b932a7b",
+      "bytes": 3610,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinScriptExtensionContracts.swift": {
+      "blob": "31e8f6ae5a990c3ce129f479838e126b6b0e8e7b",
+      "bytes": 28272,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinScriptExtensionStore.swift": {
+      "blob": "ef5015e5f1c59ecff1e997f12b734b494fe894dc",
+      "bytes": 56120,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinScriptLiveActivityController.swift": {
+      "blob": "39e060c2a5ec31ad5529aeb2504f4c19fbe044e9",
+      "bytes": 2208,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinShareInvocation.swift": {
+      "blob": "492ec25ad472a3fda338cd18c03d2b5ec0a2a059",
+      "bytes": 2716,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinWidgetActionExecutor.swift": {
+      "blob": "0185891f53d457c37ef16ba9359ba0f14f9ba62f",
+      "bytes": 7603,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/HanlinWidgetInstance.swift": {
+      "blob": "50bc0752fd7cc2bdbc03e70579b0d69d98c7d9fe",
+      "bytes": 16735,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/Resources/ExpoWidgets.bundle": {
+      "blob": "c6348eea875de9c0a1eff71f79de2ae4d54c7378",
+      "bytes": 102063,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/Resources/support.bundle/moment.min.js": {
+      "blob": "57cd2d4f3d3d8b64a34577593a9be3be50503e1b",
+      "bytes": 58862,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/Resources/support.bundle/util.js": {
+      "blob": "7b31855c353f2884c9a909da6695989ab5820952",
+      "bytes": 1025,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/HanlinScriptWidgetDynamicView.swift": {
+      "blob": "93dfdaeef6ce8599e85dcb2771263c796ca170cc",
+      "bytes": 432,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/HanlinScriptWidgetElementView.swift": {
+      "blob": "9c34d042fe8139cc32faf9ccd27e920b289ec764",
+      "bytes": 1760,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/HanlinScriptWidgetResources.swift": {
+      "blob": "d384c2dcb7ba27e280957e264d3c7763a9d2baf5",
+      "bytes": 4670,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/HanlinScriptWidgetRuntime.swift": {
+      "blob": "57e453664a595da7ae04328393a196d87dd7aba4",
+      "bytes": 16508,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Animation/ClockHandKit-LICENSE.txt": {
+      "blob": "73782177100c7d539d6f0abae99539491276c56b",
+      "bytes": 1060,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Animation/ClockHandRotationEffect.swift": {
+      "blob": "b1f51c596e7261bf82d45af0f968e26f032f09cb",
+      "bytes": 1139,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Animation/ScriptWidgetAttributeAnimationModifier.swift": {
+      "blob": "7d3c17a9040473dbe606e66761f38068ff5240cd",
+      "bytes": 8918,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Animation/SwingAnimationModifier.swift": {
+      "blob": "51482885873ca7731631b85702c2c99d1c41d48e",
+      "bytes": 2453,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Debug/ScriptWidgetAttributeDebugModeModifier.swift": {
+      "blob": "69899b03515a4c6c5d1add936be0d7b534db0903",
+      "bytes": 652,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Effect/ScriptWidgetAttributeRotation3DEffectModifier.swift": {
+      "blob": "816a9ad1d9138e88059c92438e1b660bbde081fd",
+      "bytes": 1771,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Effect/ScriptWidgetAttributeRotationEffectModifier.swift": {
+      "blob": "94c2eb86035ad08bad0b11bc4ebf08dcf3fdb06c",
+      "bytes": 684,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Effect/ScriptWidgetAttributeShadowModifier.swift": {
+      "blob": "b7128dd024b04b60733e029ea429159d7beaab8d",
+      "bytes": 1517,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/General/ScriptWidgetAttributeBackgroundModifier.swift": {
+      "blob": "bd312d48c9a5870c361e9de059bc248e12837453",
+      "bytes": 5711,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/General/ScriptWidgetAttributeClippedModifier.swift": {
+      "blob": "e7113c6f891a13e89e9935a303ecd3e19bc168d7",
+      "bytes": 1119,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/General/ScriptWidgetAttributeCornerRadiusModifier.swift": {
+      "blob": "528a7e610f465a7777e92e4fb0cae73677af43c3",
+      "bytes": 704,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/General/ScriptWidgetAttributeFrameModifier.swift": {
+      "blob": "36234c578a67ff6ad4cfb881403f6ab7fbcdd88b",
+      "bytes": 6467,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/General/ScriptWidgetAttributeOpacityModifier.swift": {
+      "blob": "ca9a0f8eb6545c4c1496590fbc759c6dd0387171",
+      "bytes": 654,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/General/ScriptWidgetAttributePaddingModifier.swift": {
+      "blob": "00c1a269b90a3f552704aeb80223d10294b8e9be",
+      "bytes": 3306,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Image/ScriptWidgetAttributeImageModifier.swift": {
+      "blob": "a82d310bd16e12e76edee2a9946f50b20d2dd6c2",
+      "bytes": 1110,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/ScriptWidgetAttributeGeneral.swift": {
+      "blob": "01d880c6c74332e086ee21bd7f956cfa00c123b8",
+      "bytes": 1687,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/ScriptWidgetAttributeText.swift": {
+      "blob": "5cb4750244a96ea1075606d60010be98eaa7da4a",
+      "bytes": 612,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Text/ScriptWidgetAttributeFontModifier.swift": {
+      "blob": "51c637ce6e36ed7afda219003bf2fe4b4eea083a",
+      "bytes": 5719,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Text/ScriptWidgetAttributeForegroundModifier.swift": {
+      "blob": "03e6d3c8d0740ace5a8fba59fad45bc5174cafee",
+      "bytes": 1458,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Attributes/Text/ScriptWidgetAttributeTextAlignmentModifier.swift": {
+      "blob": "a570a54cb4a87c05695757d542e7bd9ed3642f51",
+      "bytes": 1212,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagButton.swift": {
+      "blob": "057980a7d75e91f547695fed7fdeeff2ba8a6375",
+      "bytes": 2142,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagChart.swift": {
+      "blob": "1a3e4d93c0109edfa616f8af8ae95541efb0802e",
+      "bytes": 27457,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagDate.swift": {
+      "blob": "6987ae324f4074437aac50d12599d3516b7ccc2b",
+      "bytes": 3121,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagExtras.swift": {
+      "blob": "71c0f4227fbf7dd1db1f3eeff6e52044e4fe069c",
+      "bytes": 12023,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagGauge.swift": {
+      "blob": "0b68e0188ca44b06863f7898c443efb9cd777949",
+      "bytes": 8351,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagGif.swift": {
+      "blob": "c5767f4d4a560a33eb5bd1d4182bfeb1c596bee8",
+      "bytes": 7963,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagGrid.swift": {
+      "blob": "02512b47c72aa302d26d913e897508d99f7698a0",
+      "bytes": 5123,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagImage.swift": {
+      "blob": "4f713dccc0c298f47041bbbfec7e6e361d7c899b",
+      "bytes": 13572,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagLink.swift": {
+      "blob": "f361530b810fbd207a124b11f8f74f59ee6c7c7e",
+      "bytes": 2119,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagShape.swift": {
+      "blob": "750f87d9204718bcacc986c99074afc346bf210c",
+      "bytes": 8640,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagSpacer.swift": {
+      "blob": "de79daa92ff75adaf5ba272758afcc0894301406",
+      "bytes": 438,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagStack.swift": {
+      "blob": "dc232277f7d55a4400e4720dc4ae36f52e3e7966",
+      "bytes": 5434,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagText.swift": {
+      "blob": "ea184dcddcc6cf0f7b3264fe4d2bb2c783f67ea1",
+      "bytes": 1007,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagToggle.swift": {
+      "blob": "a34caa60e862a6a2d72b6565a14f60f6744db7b3",
+      "bytes": 2010,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/Elements/ScriptWidgetElementTagZStack.swift": {
+      "blob": "f35009725a6c415fef4f25b0a7321478629c2fd3",
+      "bytes": 827,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/ScriptWidgetElementView.swift": {
+      "blob": "69631c47e695d28a0142e7e5ff490149a8044e31",
+      "bytes": 5969,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Component/ScriptWidgetRuntimeElement.swift": {
+      "blob": "9b67a8f259e444eebdd13503bd767b40d64547f9",
+      "bytes": 7617,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/LICENSE.txt": {
+      "blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "bytes": 11358,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/MIT-previous.txt": {
+      "blob": "503a8252bcbec9a230424b39473ddb920e49b645",
+      "bytes": 1071,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/NOTICE.txt": {
+      "blob": "f7cc5d243badda230e6afacde0b31907d2548fa2",
+      "bytes": 621,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Util/MineGaugeView.swift": {
+      "blob": "e65fce1a3a75ee6123ce50a62ee2da1fbb211674",
+      "bytes": 5804,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Util/MineRingView.swift": {
+      "blob": "65547b2b907496559ce7d79fb93d9b9f48f8836e",
+      "bytes": 356,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Util/ScriptWidgetElementColor.swift": {
+      "blob": "f7a70ceccd6ff1d212b9baece1f3ef09a6529b5b",
+      "bytes": 4033,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Util/ScriptWidgetElementGradient.swift": {
+      "blob": "79e50f5dbc0da20da99247cabaed612b7856f7a4",
+      "bytes": 5346,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptExtensions/ScriptWidget/Original/Util/ScriptWidgetElementPoint.swift": {
+      "blob": "304a82ec6ca796cc7badd99b97fd5d8e2ec90aa0",
+      "bytes": 1206,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptRuntime/HanlinScriptSessionCoordinator.swift": {
+      "blob": "97f397e1c7d8fa4a00dfbceee9a76c335241209c",
+      "bytes": 7443,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptServices/HanlinScriptPermissionAuthority.swift": {
+      "blob": "31eea199a824b7d177e9490fbb0d699d826ac5a5",
+      "bytes": 1337,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptServices/HanlinScriptServiceBroker.swift": {
+      "blob": "5e18e26a4257c3b495034a433570b90972f4da4d",
+      "bytes": 9021,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptServices/HanlinScriptServiceContracts.swift": {
+      "blob": "8f0dedef6ba35bdf41b008f0208e42283c074452",
+      "bytes": 4431,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptStore/HanlinAtomicScriptStore.swift": {
+      "blob": "4dd3d4d527b0ef6d9f8bfd4815a1c420f1f032dd",
+      "bytes": 36058,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptStore/HanlinProductTransfer.swift": {
+      "blob": "31a50d0c0792ff70ca3251fc50d680b33b801546",
+      "bytes": 20798,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptStore/HanlinScriptPackageDiscovery.swift": {
+      "blob": "e607cb892c79072885ed05b1d79357463b69a835",
+      "bytes": 1600,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptStore/HanlinShareInboxStore.swift": {
+      "blob": "830a2aa2b38f4101aa75326c1895c8e12f3c9b19",
+      "bytes": 13425,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptStore/HanlinShareItemLoader.swift": {
+      "blob": "dbe460911f1d2908f5977b49e1dd0d41713236b0",
+      "bytes": 3126,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptStore/HanlinStoredPackageSnapshot+MiniAppRegistration.swift": {
+      "blob": "da7e892e3cac97b6d48230ef929a34c1226c4af0",
+      "bytes": 16911,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptUI/HanlinChatUIComponents.swift": {
+      "blob": "e3867a14f493cd7cadd43b20d5b6753c48e5331a",
+      "bytes": 7093,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptUI/HanlinSVGView.swift": {
+      "blob": "7453a70ebb7c6805d083214909d6e967eaa0652f",
+      "bytes": 4306,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptUI/HanlinScriptUIContracts.swift": {
+      "blob": "ed606e6490eadadd19ae6a0ce0c9bbaf86a3b72d",
+      "bytes": 6153,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptUI/HanlinScriptUIReconciler.swift": {
+      "blob": "8b5315e1c73811c27edc3818c52529935d9b4e78",
+      "bytes": 6997,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptUI/HanlinScriptUIView.swift": {
+      "blob": "001f604437fe2c19945e3ecffff101634b1d24eb",
+      "bytes": 30441,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptUI/Resources/jsx-runtime.js": {
+      "blob": "c67b5b6a75b66b7a01367bc5fca513be245bc57b",
+      "bytes": 1681,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingApplicationRuntime/HanlinScriptingApplicationSession.swift": {
+      "blob": "395392a26ea32ee1c546fa23bfb18d0633556009",
+      "bytes": 207294,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingApplicationRuntime/HanlinScriptingFileResourceLimits.swift": {
+      "blob": "491421431c5371af859c7fc2aeace46844ae6461",
+      "bytes": 1021,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingApplicationRuntime/HanlinScriptingRuntimeServices.swift": {
+      "blob": "a55546aeeffe2b90a38cb818bfcd9f39f3d92b2f",
+      "bytes": 100325,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingApplicationRuntime/HanlinScriptingSQLite.swift": {
+      "blob": "1701c8d0ecc45f2705460f2a1267a4f1192bc448",
+      "bytes": 6870,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingApplicationRuntime/HanlinScriptingStorage.swift": {
+      "blob": "e05c26901698ba4aaf713a714737722e75b7fb08",
+      "bytes": 4057,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/HanlinScriptingSDK.swift": {
+      "blob": "699c5c09fd42884ba94d1dd9d4a15e72d3e2c499",
+      "bytes": 3875,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/Resources/global.d.ts": {
+      "blob": "090437ee3faefafcad7e1feb2c31c999707c339f",
+      "bytes": 713964,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/Resources/manifest.json": {
+      "blob": "9b9a26d093de16073240669ed145252bda60f03b",
+      "bytes": 747,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/Resources/node.d.ts": {
+      "blob": "b3527d74279b1b47a8d59d8ac7006a0d4a209ace",
+      "bytes": 40903,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/Resources/runtime-registration.json": {
+      "blob": "85051ce6401caa41347dd53dcf2d332376b43daa",
+      "bytes": 974512,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/Resources/safari-ext.d.ts": {
+      "blob": "656bb60c40ab8982bb407cc7b7ebac270f8b58ba",
+      "bytes": 12670,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/Resources/scripting-foundation.d.ts": {
+      "blob": "b56671516aa3dbe17236a1cbc4770421b08bba9a",
+      "bytes": 2830,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/Resources/scripting.d.ts": {
+      "blob": "4d7ebd1c02c337d01d075437d2c26aebd7057ed4",
+      "bytes": 456732,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinScriptingSDK/Resources/web-fetch.d.ts": {
+      "blob": "a72be236ac48c95886147393704c8c7b612a0de6",
+      "bytes": 16789,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinWidgetCompiler/HanlinWidgetCompiler.swift": {
+      "blob": "4a8ad74c8c971ed5994a41be9350c9b48e988489",
+      "bytes": 5059,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinWidgetCompiler/Resources/core.js": {
+      "blob": "dc20f84735ca553e83d606ab06807593151a907a",
+      "bytes": 2805380,
+      "mode": "100644"
+    },
+    "Packages/HanlinPlatform/Sources/HanlinWidgetCompiler/Resources/prepare-widget.js": {
+      "blob": "28f2430c95de21fd6e3b628bc86ff96210901c4c",
+      "bytes": 6658,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Package.swift": {
+      "blob": "c40be1427716aa4bb6a8fa7ed4cadfc0cfb17eae",
+      "bytes": 1170,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/Composer/HanlinDetachedCapabilityChips.swift": {
+      "blob": "2c2c279bc62a06f337a054f1b0e7fbbc784c2308",
+      "bytes": 5225,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/Composer/HanlinMorphComposer.swift": {
+      "blob": "4abb1fb050e72487a08c9454c3c8ad494d68baf7",
+      "bytes": 16442,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/Composer/NativeMultilineTextEditor.swift": {
+      "blob": "4191033fc809a31f5ea62dc429c0e504a58c282f",
+      "bytes": 30406,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/HanlinChatView.swift": {
+      "blob": "6093173d4796cd822000b0d8b20abbc2617b2488",
+      "bytes": 2412,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/HanlinInlineToolApproval.swift": {
+      "blob": "274621d05edcaaa5da0c365216b9e16aadf158b5",
+      "bytes": 2232,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/HanlinMarkdownView.swift": {
+      "blob": "a508c908849bc9e9bbc47835404a36932f0ec150",
+      "bytes": 8103,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/HanlinSources.swift": {
+      "blob": "8093de0288861e110cc2f772643481fca1eff169",
+      "bytes": 2361,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/HanlinToolActivityHeader.swift": {
+      "blob": "c60b2fd8a1cccdd598e8ff49333a853d8197f528",
+      "bytes": 3873,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/Motion/ChatMotionConfiguration.swift": {
+      "blob": "d616f9921ca1ee542b80f4db664728d02ff90714",
+      "bytes": 3309,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/Motion/ChatMotionPreferences.swift": {
+      "blob": "02814acb08b74b99ba95a0f9944158f5e2af5481",
+      "bytes": 2958,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/Motion/ChatShimmerEffect.swift": {
+      "blob": "65667addb599f0c7f2d3d46d50f60c2f8e37810e",
+      "bytes": 2106,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI/Motion/HanlinAnimatedDisclosure.swift": {
+      "blob": "f90bbbbfd196168f2aeec31f1a73dc6ae17f089d",
+      "bytes": 5693,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinPresentationKit/HanlinCitations.swift": {
+      "blob": "538e1262651d527585de294f7aa579319fb0916b",
+      "bytes": 7611,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinPresentationKit/MessageOpenUIStateStore.swift": {
+      "blob": "e514d1424d2011d0add41ab14a631fbb46cd3636",
+      "bytes": 5857,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinPresentationKit/OpenUIInlineParts.swift": {
+      "blob": "18edd56c16ce9ff95fa9174b0ddec3a7f6bb2ab4",
+      "bytes": 3977,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinPresentationKit/PresentationProfile.swift": {
+      "blob": "df325142e6fbb1420f1b5bb006fbd0846fef7756",
+      "bytes": 7982,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinPresentationKit/PresentationValue.swift": {
+      "blob": "82473fcd14aaaf42915c5b0ce50e26bb8aad4ab4",
+      "bytes": 2295,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/NativeOpenUINode.swift": {
+      "blob": "71936eef623671f8bcbd4df4a3b1da913ef9cb13",
+      "bytes": 22157,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/OpenUIBlock.swift": {
+      "blob": "1a05f6ee6f7c4090622be5e377d748415151cb82",
+      "bytes": 10387,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/OpenUICatalogs.swift": {
+      "blob": "3f42d9a850194cdff58f6d9bce99799f83ea4af0",
+      "bytes": 3041,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/OpenUIRendererConfiguration.swift": {
+      "blob": "21115abf38412c0397c2d654a009857c6899f876",
+      "bytes": 1406,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/.gitattributes": {
+      "blob": "71b406acafc439cccd53f7a6145ad350815fc54f",
+      "bytes": 162,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/THIRD_PARTY_NOTICES.md": {
+      "blob": "4bc23ec539cd1f35f3e1d67510eee9bc76fdb410",
+      "bytes": 5693,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/bridge.css": {
+      "blob": "3db2487a574b26ba90620018a9038eee2ad82e99",
+      "bytes": 356861,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/bridge.js": {
+      "blob": "cc1d1bd09195e859014d50920a95ff45ce14b453",
+      "bytes": 3581863,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/bridge.js.LEGAL.txt": {
+      "blob": "44d547716941fc1050201703718646698db6c58e",
+      "bytes": 76610,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/catalog-manifest.json": {
+      "blob": "5889373fefc75c9c1993675cad56adad95dc074c",
+      "bytes": 4787,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/index.html": {
+      "blob": "cf079cceaceaf67ed22a6d4101225c4b43ec04b0",
+      "bytes": 469,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/original-prompt.txt": {
+      "blob": "b7218ce66ed9b937f03151095a611621b545101f",
+      "bytes": 34202,
+      "mode": "100644"
+    },
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI/Resources/OpenUI/torah-prompt.txt": {
+      "blob": "7c459b580d1b5704bfbc2aa66d601f1a501af681",
+      "bytes": 34958,
+      "mode": "100644"
+    }
+  },
+  "maktabah_revision": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "removed": [],
+  "scope": "Complete canonical Git blob closure for the three original Package.swift and Sources/resource trees; no Native execution"
+}

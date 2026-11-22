@@ -1,0 +1,17 @@
+{
+  "apple_execution": "NOT_RUN",
+  "base_complete_patch_sha256": "b23847ae9fd7b34eca44966455042b52b7c42e895ddb303a6756d0e73b64c5bf",
+  "base_workflow_sha256": "90730addfe7b4322e821446c2e8725099c6fc736445cde36170ccc571593dca3",
+  "candidate_workflow_sha256": "e90bcc9f42f5bf11c7b959e5fec858de4dcb9d1db9f44ef3217a13a4a9c34309",
+  "only_change": "One existing --ui-compile-only step immediately after runtime selection; no driver or catalog changes",
+  "patch_sha256": "287291aab3361109d2f123ef3b2638c73e948e704e651d1c2f8bddaf2829d3ca",
+  "required_before_use": "Merge root335f94b9 Native6 repair / actual committed descendant exposing --ui-compile-only, and freeze that source with the shared Inspector alignment. fb6 script has no early mode.",
+  "status": "SEPARATE_WORKFLOW_DELTA_READY",
+  "validation": [
+    "YAML parses",
+    "all other workflow content identical",
+    "correct early placement",
+    "exact patch roundtrip",
+    "whitespace check PASS"
+  ]
+}

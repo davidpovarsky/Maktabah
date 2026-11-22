@@ -1,0 +1,15 @@
+{
+  "application_source": "e5dadac39b88e0a2fd9de989dc8f58f8c7cd07c5",
+  "branch": "codex/otzaria-original-editor-consumer-draft-20261121",
+  "evidence_files": 26,
+  "head": "01ec8feb8087c544e3b9c3db1a8405c2faf54ba3",
+  "payload_sha256": "8259411ffcd9e05df377e06d6f07a1f4e64482e3e89980c7681f49f95c9f5478",
+  "protected_trees": {
+    "Maktabah-iOSUITests": "f336b041f6c503a30b32edb6055f933d22ebaa3b",
+    "Maktabah.xcodeproj": "b3da2d1a2b3693a3deac1a7effac1e0916118609",
+    "Source": "0f8df30e7931481bb010e355152d9dc1f7ad7528",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "source_files": 11,
+  "status": "EXACT_CLEAN_CONSUMER_SOURCE_PREIMAGE"
+}
