@@ -1,8 +1,8 @@
-name: Original consent switch focused native diagnostic
+name: Original fresh-read no-send native diagnostic
 
 on:
   push:
-    branches: [codex/otzaria-completion-consent-native-20261122]
+    branches: [codex/otzaria-hanlin-fresh-read-diagnostic-20261122]
 
 permissions:
   contents: read
@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   focused-native:
-    name: One app build and one original consent diagnostic
+    name: One app build and one original fresh-read diagnostic
     runs-on: xcode-27
     timeout-minutes: 210
     env:
@@ -83,7 +83,7 @@ jobs:
         run: python3 Scripts/CI/hq-stage2-focused-apple.py --build-for-testing --derived-data build/DerivedData
       - name: Verify unchanged Host48 inputs and reuse the real prior 48-test result
         run: python3 Scripts/CI/reuse-host48.py
-      - name: Execute one original consent diagnostic without rebuilding or provider credentials
+      - name: Execute one original fresh-read diagnostic without rebuilding or a provider key
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 Scripts/CI/completion-focused-native.py run
