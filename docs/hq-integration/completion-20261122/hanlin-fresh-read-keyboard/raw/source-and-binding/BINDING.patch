@@ -1,0 +1,37 @@
+diff --git a/.github/workflows/otzaria-completion-focused-native.yml b/.github/workflows/otzaria-completion-focused-native.yml
+index 7787202f..294d855e 100644
+--- a/.github/workflows/otzaria-completion-focused-native.yml
++++ b/.github/workflows/otzaria-completion-focused-native.yml
+@@ -2,7 +2,7 @@ name: Original fresh-read no-send native diagnostic
+ 
+ on:
+   push:
+-    branches: [codex/otzaria-hanlin-fresh-read-diagnostic-20261122]
++    branches: [codex/otzaria-hanlin-fresh-read-keyboard-native-20261122]
+ 
+ permissions:
+   contents: read
+diff --git a/Scripts/CI/completion-focused-native.py b/Scripts/CI/completion-focused-native.py
+index 7a813ce8..1559bce1 100644
+--- a/Scripts/CI/completion-focused-native.py
++++ b/Scripts/CI/completion-focused-native.py
+@@ -11,7 +11,7 @@ import subprocess
+ import sys
+ 
+ ROOT = Path(__file__).resolve().parents[2]
+-SOURCE = "7eb9d2a5c8ac7ccb184e3cc50fb36b6272475ff1"
++SOURCE = "d49cedb3d5c163b7a008248d94b80a2eda28e3ce"
+ OUT = ROOT / "build/artifacts/continuation-focused"
+ MANIFEST = OUT / "selection.json"
+ FULL = ROOT / "docs/hq-integration/runtime27/R27_CASES.json"
+diff --git a/Scripts/CI/hq-stage2-focused-apple.inputs.json b/Scripts/CI/hq-stage2-focused-apple.inputs.json
+index 25f467b1..33dc0fee 100644
+--- a/Scripts/CI/hq-stage2-focused-apple.inputs.json
++++ b/Scripts/CI/hq-stage2-focused-apple.inputs.json
+@@ -1,5 +1,5 @@
+ {
+-  "application_source_sha": "7eb9d2a5c8ac7ccb184e3cc50fb36b6272475ff1",
++  "application_source_sha": "d49cedb3d5c163b7a008248d94b80a2eda28e3ce",
+   "application_trees": {
+     "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+     "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",

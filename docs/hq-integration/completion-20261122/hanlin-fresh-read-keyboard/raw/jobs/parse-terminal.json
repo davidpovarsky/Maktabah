@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "interpreter": "python3",
+  "sudo": false,
+  "cwd": null,
+  "cleanup": true,
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_b8f3a38537e64491b7635aa6131f1fa0\\script.py"
+  ],
+  "output": "{\"status\": \"PASS\", \"created\": \"2026-11-22T10:26:18.891757+00:00\", \"started\": \"2026-11-22T10:26:18.177359+00:00\", \"duration\": 0.7030000000086147, \"command\": [\"C:\\\\Users\\\\DAVID\\\\AppData\\\\Local\\\\Programs\\\\Swift\\\\Toolchains\\\\6.3.3+Asserts\\\\usr\\\\bin\\\\swiftc.EXE\", \"-frontend\", \"-parse\", \"C:\\\\Users\\\\DAVID\\\\AppData\\\\Local\\\\Temp\\\\otzaria-hanlin-fresh-read-keyboard-20261122\\\\r1\\\\HanlinConsumerAcceptanceTests.swift\"], \"ownedPID\": 9764, \"returncode\": 0, \"source\": {\"path\": \"Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift\", \"originalSha256\": \"10b913029739ae3f9f5ca94a220eaaf0329cf07c1b3bb9f62f823d833a5f7c2b\", \"previousCandidateSha256\": \"a441c24faf9783c0c643e61267c20c4979143b7ed5e05be4990d9e759a9affb4\", \"candidateSha256\": \"9413eed5741bf3fec8b6c97da86ecb6caed026c7f9e85d80219beb57d037b0a7\", \"candidateBytes\": 46831, \"candidatePatchSha256\": \"4e0dff5f128b6cce594c14029023ef433678398988e21d2b1ec25411a38912f5\", \"queryCorrectionSha256\": \"8ae936e50a728be694b23cb9fe461fc30d4b46b1d6c2d26ec796e1e3bfe40f56\", \"addedLines\": 12, \"exactInverseRestoresOriginal\": true}, \"compiler\": {\"path\": \"C:\\\\Users\\\\DAVID\\\\AppData\\\\Local\\\\Programs\\\\Swift\\\\Toolchains\\\\6.3.3+Asserts\\\\usr\\\\bin\\\\swiftc.EXE\", \"sha256\": \"e1d0a0b20d95a92b22f4906e7ca331a7c8b89be86b2d9a2d215ac24f753e945a\", \"version\": \"Swift version 6.3.3 (swift-6.3.3-RELEASE)\\nTarget: x86_64-unknown-windows-msvc\\nBuild config: +assertions\\n\"}, \"platform\": \"Windows full-file Swift syntax parse only; not Apple module typechecking or native runtime qualification.\", \"testsExecuted\": 0, \"productFilesChanged\": 0}",
+  "duration": 2.33,
+  "returncode": 0
+}

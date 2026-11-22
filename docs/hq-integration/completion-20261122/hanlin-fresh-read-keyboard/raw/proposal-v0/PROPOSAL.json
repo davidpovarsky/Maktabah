@@ -1,0 +1,41 @@
+{
+  "schema": "otzaria.fresh-read-keyboard-candidate/1",
+  "created": "2026-11-22T10:18:21.628729+00:00",
+  "base": "7eb9d2a5c8ac7ccb184e3cc50fb36b6272475ff1",
+  "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+  "originalSha256": "10b913029739ae3f9f5ca94a220eaaf0329cf07c1b3bb9f62f823d833a5f7c2b",
+  "candidateSha256": "a441c24faf9783c0c643e61267c20c4979143b7ed5e05be4990d9e759a9affb4",
+  "patchSha256": "829dcb91baf1d50c423af1e12adeaec9a8d125541deddb16c2b07ad522d8223e",
+  "addedBytes": 774,
+  "addedLines": 12,
+  "exactInverseRecoversOriginal": true,
+  "unchangedProductionFiles": true,
+  "originalAssertionsUnchanged": true,
+  "nativeEvidence": {
+    "run": 45006363282,
+    "actualCaseFailure": "HanlinConsumerAcceptanceTests.swift:294 original native consent child exists/enabled but not hittable after typing and four swipes.",
+    "axPath": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\fr450063\\captures\\visual-11-reader\\D6DD0481-8830-4F76-AD60-F2BF50762000.txt",
+    "axSha256": "3c1acd6364e664eeb40f9a8cd9e757f21b09927e909c0438c46305ae04fa0406",
+    "axOriginalKeyboardFrame": [
+      0,
+      461,
+      1210,
+      370
+    ],
+    "axNativeConsentFrame": [
+      798,
+      528.5,
+      63,
+      28
+    ],
+    "keyboardButtonLabel": "Hide keyboard",
+    "screenshotLimit": "PNG taken 0.410 seconds after the AX does not visibly display the keyboard; exact occluding pixels are not claimed."
+  },
+  "behavior": "Require one observed original Hide keyboard button, invoke ordinary native tap, wait bounded keyboard absence, retain before/after safe AX/screenshots, then execute the unchanged original consent/Connect/reopen assertions.",
+  "noCoordinateTap": true,
+  "noValueInjection": true,
+  "noPrivateInput": true,
+  "noSend": true,
+  "noSourceApplied": true,
+  "noParserOrTestsExecuted": true
+}

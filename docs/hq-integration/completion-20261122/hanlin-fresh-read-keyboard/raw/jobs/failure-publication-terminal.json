@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_3a46932b0cfe",
+    "type": "job_result",
+    "source": "script_run@host_7ec8382e82747448",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_7ec8382e82747448",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795343407.8496904,
+    "started_at": "2026-11-22T10:30:07.903219+00:00",
+    "finished_at": "2026-11-22T10:30:26.873155+00:00",
+    "duration_s": 18.97,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 360,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"schema\": \"otzaria.fresh-read-failure-publication/1\", \"status\": \"PUBLISHED_NEUTRAL_EVIDENCE\", \"base\": \"895bbcb54f86be0fc0463d7ed9d78f3599d6bdd2\", \"head\": \"ae9f63b17b6f9df91d2d125700dc8b62d2aa2cc4\", \"branch\": \"codex/otzaria-hanlin-fresh-read-keyboard-evidence-20261122\", \"path\": \"docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal\", \"rawIndexSha256\": \"20cf00a31cc7c70492380f7e4d02c0d0c8daab6d53b1760bd70385032940699a\", \"frozenPayloadCount\": 83, \"actualGitFiles\": 91, \"sourceTreesUnchanged\": {\"Source\": \"91c1adf6c97cd8676e8b2c76860a40f78924b1ec\", \"Vendor\": \"4065c0e62af325e83a65fe0c70270985229807ae\", \"Maktabah.xcodeproj\": \"8c0fa1ccfbcfae01fae3c267512864e00efcf078\", \"Maktabah-iOSUITests\": \"e4f67f6fc7cd0a4242d4ed5277490acad3464ec1\"}, \"testsExecuted\": 0, \"originalRawWhitespaceFailureRetained\": true, \"created\": \"2026-11-22T10:30:16.170086+00:00\", \"push\": {\"command\": [\"git\", \"push\", \"origin\", \"HEAD:refs/heads/codex/otzaria-hanlin-fresh-read-keyboard-evidence-20261122\"], \"returncode\": 0, \"duration\": 9.65700000000652}, \"remoteHead\": \"ae9f63b17b6f9df91d2d125700dc8b62d2aa2cc4\"}"
+  }
+}

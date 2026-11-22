@@ -1,0 +1,36 @@
+{
+  "schema": "otzaria.fresh-read-keyboard-source-binding/1",
+  "status": "FROZEN_NOT_DISPATCHED",
+  "created": "2026-11-22T10:32:43.279202+00:00",
+  "base": "ae9f63b17b6f9df91d2d125700dc8b62d2aa2cc4",
+  "applicationSource": "d49cedb3d5c163b7a008248d94b80a2eda28e3ce",
+  "checkout": "aec8162c34598c859c9dc61b6e8b298b5d5d36e6",
+  "applicationTrees": {
+    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "86f07db3f58fe6d73c063b02ae3c1d31ae2d2468"
+  },
+  "neutralBranch": "codex/otzaria-hanlin-fresh-read-keyboard-evidence-20261122",
+  "triggerBranch": "codex/otzaria-hanlin-fresh-read-keyboard-native-20261122",
+  "selector": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
+  "source": {
+    "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+    "sha256": "9413eed5741bf3fec8b6c97da86ecb6caed026c7f9e85d80219beb57d037b0a7",
+    "bytes": 46831,
+    "addedLines": 12,
+    "priorAllAssertionsUnchanged": true
+  },
+  "bindingOnlyPaths": [
+    "Scripts/CI/completion-focused-native.py",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+    ".github/workflows/otzaria-completion-focused-native.yml"
+  ],
+  "workflowSha256": "e2306ded02ab66b6c9d0acbaa144c630cbc7d5b44d5230a604241fb521a91b4c",
+  "driverSha256": "a355447144d28a0f6bc09def3a3b8bb1cfd055a2b9f383cb2b275e5579342fea",
+  "hqInputsSha256": "587938b3f8e4c64de5ccc2819aa9251323dfcad70f8828304b810ee8bcbb72fe",
+  "sourceDiffSha256": "ea5183970a8b9ddc737396758baabd8b74b1097ee4ba2bc332153e8bfb3afea3",
+  "bindingDiffSha256": "0a8e529a9ded1ebccd6572f48273cca401c167d8296113b3ca21668d17127b51",
+  "testsExecuted": 0,
+  "pushed": false
+}

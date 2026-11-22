@@ -1,0 +1,579 @@
+{
+  "schema": "otzaria.fresh-read-failure-publication/1",
+  "status": "PUBLISHED_NEUTRAL_EVIDENCE",
+  "base": "895bbcb54f86be0fc0463d7ed9d78f3599d6bdd2",
+  "head": "ae9f63b17b6f9df91d2d125700dc8b62d2aa2cc4",
+  "branch": "codex/otzaria-hanlin-fresh-read-keyboard-evidence-20261122",
+  "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal",
+  "rawIndexSha256": "20cf00a31cc7c70492380f7e4d02c0d0c8daab6d53b1760bd70385032940699a",
+  "frozenPayloadCount": 83,
+  "actualGitFiles": 91,
+  "sourceTreesUnchanged": {
+    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "e4f67f6fc7cd0a4242d4ed5277490acad3464ec1"
+  },
+  "files": [
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/.gitattributes",
+      "bytes": 271,
+      "sha256": "20682c453f083da3e00b590d25ab7f2f19ed0c13a9a6cd364bc150271bf4e365",
+      "gitBlob": "a283abe59101d3411f2ed08cb302efa96ff93f46"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/packaging/ATTRIBUTES_CORRECTION.json",
+      "bytes": 527,
+      "sha256": "4ccdf688a68b7bcef58d86e7df11aa2e60ae7d15cef951be28f1221e8b16593f",
+      "gitBlob": "b291b2d3db8afaa8c69f610d8d99b66414cbf8f2"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/packaging/check.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/packaging/check.stdout",
+      "bytes": 192980,
+      "sha256": "8d3f5d088b67e8d6c4366ea946809902a89aee990240e30ebb23a7b0240955e9",
+      "gitBlob": "bc18d7c9644bb3caf70bde825e8cac4cd350dcff"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/packaging/first-issued.py",
+      "bytes": 3607,
+      "sha256": "b9cb953771fb334a7a57972faa3a83cd06014178e4e6409a4cc357b322816a44",
+      "gitBlob": "204930e787aca583a37d55faad567629e487725d"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/packaging/first-terminal.json",
+      "bytes": 3852,
+      "sha256": "2189097e1c034a7dbc22f6708234d525cf4026433db9e06804f1d66d4f58e43e",
+      "gitBlob": "a8dc4cf8f2afb8349f7d6ecc2af3bb5c02a2ffca"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/packaging/original.gitattributes",
+      "bytes": 62,
+      "sha256": "124fdd3922e1972bf1e8f354a05cde309884c9140a8a3f2ea06583bf294d09d4",
+      "gitBlob": "02c858f8aebac5c50c8028f86e429745f47c82fa"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/FILE_INDEX.json",
+      "bytes": 15813,
+      "sha256": "20cf00a31cc7c70492380f7e4d02c0d0c8daab6d53b1760bd70385032940699a",
+      "gitBlob": "69a352cdf70ce9ae62d8b0f87c3de9d22875b769"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/README.md",
+      "bytes": 5460,
+      "sha256": "f4d8ab2b4913394a65acdbfd40fe1ef10d88d65bd2f0423b60ae2585ffa09ee6",
+      "gitBlob": "6f8927fe6387d76cabc99e16e2502ad37900bea9"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/archive/RESULT.json",
+      "bytes": 1462,
+      "sha256": "8f9128d5933e0da6bb255a453304fa44c9637576f976363f4d75473f27d9e901",
+      "gitBlob": "621fd8082a520ed861eb503f71b682e670549e9c"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/archive/captures.FILES.json",
+      "bytes": 365014,
+      "sha256": "cebd2e487a0312a88663cf007c3a435e8a5e20fc4703d80cba9eca82aadb61a5",
+      "gitBlob": "d9b24047fc528ed0ec2cea903696bf49fb3a0e4a"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/archive/captures.download.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/archive/evidence.FILES.json",
+      "bytes": 11421,
+      "sha256": "dfa3070efd547a07ee210aded9eccdfbf25a52ca400cf79d8c0e9a299cf07295",
+      "gitBlob": "36e8f72773385d4ef505ec1b150cc836aed79d2e"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/archive/evidence.download.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/captures/visual-11-reader/5A18E3D2-AFFA-4A2A-A6D0-2CDBFA03A39B.png",
+      "bytes": 669592,
+      "sha256": "1aafa4275f4e050ef57a2374268e80aae163c97fbfcf668a9d8d0c2bc804c5d7",
+      "gitBlob": "7a3134eb42d750d94bdca2681215ba2797b6058c"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/captures/visual-11-reader/D6DD0481-8830-4F76-AD60-F2BF50762000.txt",
+      "bytes": 44694,
+      "sha256": "3c1acd6364e664eeb40f9a8cd9e757f21b09927e909c0438c46305ae04fa0406",
+      "gitBlob": "46f2b2205efbaeefb510a8d3e0aaaa0dd8d9ad09"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/captures/visual-11-reader/manifest.json",
+      "bytes": 12000,
+      "sha256": "2a83cc98721924c895322774fb8b93c5abbef2556c0be670cd69916b5850072c",
+      "gitBlob": "98778fadb133da38d4bf148c4314ef90ecca6698"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/jobs/artifact-intake-issued.py",
+      "bytes": 3240,
+      "sha256": "1a9a12e6167ab5bccb2e367fef4e8e9d2da9a1eca3a375f5dd1069205aa88255",
+      "gitBlob": "173de7ee3de7135a6a4437a65c1b497ec682fd6e"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/jobs/artifact-intake-terminal.json",
+      "bytes": 1923,
+      "sha256": "240c663266d0ac511a3f3b393a000e4068710d3a2d603f80ef91519d8baf51c6",
+      "gitBlob": "820618c13ee94ad584c4e7eb746c2d1e80130f7a"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/jobs/generated-privacy-continuation-issued.py",
+      "bytes": 9017,
+      "sha256": "96e09dc6e6ca360c6ff5052866119a21b21c651fda7ef09e14ad6160fc59a29a",
+      "gitBlob": "bcea3c1c392fa0d5460707256499755d2157a20e"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/jobs/generated-privacy-continuation-terminal.json",
+      "bytes": 988,
+      "sha256": "1ef49e09609d1ec01f97b0d41253bbfa50e7aaad80321bab0752151e52bd2329",
+      "gitBlob": "4da2609a9ddf3add08e546fd6858fac9349f788a"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/jobs/native-observer-terminal.json",
+      "bytes": 3726,
+      "sha256": "61945f677b2ed67671b9d703f32425ee92617718c82bf99f0b850d3e03f1b8e9",
+      "gitBlob": "703d49db1c8dca3af1d7f9bef88032c8150ce999"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/continuation-focused/Maktabah-iOS_iphonesimulator27.2-arm64.xctestrun",
+      "bytes": 4992,
+      "sha256": "e8074d3ac6336b468191ea466f66df6801df09f3c04dfeba3a819d27a0389277",
+      "gitBlob": "4f8e1df2d54b1ee23dcd251d1d211dc3c5e61bea"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/continuation-focused/built-binaries.json",
+      "bytes": 497,
+      "sha256": "5e5c28c1813960334a5fd8261e5c8f5bc5743f15a3f254990ef5628dbaa3d407",
+      "gitBlob": "206b71a44dc29103656a72311a77e0f2a9d4f101"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/continuation-focused/declarations.json",
+      "bytes": 378,
+      "sha256": "4258b384e1ed10009ef15f8ff7ccf7423fc58be3b33b1fe6c11fb90b7156f6d5",
+      "gitBlob": "5d6f961333347fa7acc966464c26bc6ff91d0996"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/continuation-focused/original-post-ui-input-audit.json",
+      "bytes": 88197,
+      "sha256": "3e7ad483cefeefe089d14871e3f49d44977876c2cbcf705faab76da03b87e755",
+      "gitBlob": "c3a2b5a29325478205d8b299977514744c61ac97"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/continuation-focused/result.json",
+      "bytes": 65874,
+      "sha256": "457d67c51d16ff012a98725ebd898d8ac3531156e073583b9ce9cfc03ee2fb9e",
+      "gitBlob": "0e3d5c9b4bb7d3116bcd76df22805875b19bbfd4"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/continuation-focused/selection.json",
+      "bytes": 177957,
+      "sha256": "093ee7b48f3af0b2f4901f214102d83255bba0789702df7b32ff6c14cfb10528",
+      "gitBlob": "4ccc28ef468c132990f8b870975061dbd73f832d"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/continuation-focused/source-before.json",
+      "bytes": 62663,
+      "sha256": "b316f237b876b761ba6facaa19c87d19a2f6fabc873850d0abc2762b904b806b",
+      "gitBlob": "710bbd90639d218b33beedc51215130ccf781eb2"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/continuation-host48-reuse/result.json",
+      "bytes": 1235,
+      "sha256": "f9de892975e8d5d7e3cabc9dc6c5978abf672791d6e3416d2f20ee7cc522e500",
+      "gitBlob": "26dd66ff3ecb1792dec426a53839e417d9ae4237"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/faithful-ipad-matrix.json",
+      "bytes": 23055,
+      "sha256": "c2902fc56f1f6ed717ce21a44a6427ab01696c5ce1ca5d31baee5f947401df90",
+      "gitBlob": "79cc53b1caf44ca9ea99714812b4a74c880b2dd4"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/miniTest10-native-fixture-install-11-reader.json",
+      "bytes": 1791,
+      "sha256": "f476abc1d1a8964005445133d27c4bbc4161d357b9ca24c62a98041efe8b47c3",
+      "gitBlob": "b9b77bbc2b71e208197b62756ecccfc6e462cbc5"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/runtime27/cases.html",
+      "bytes": 375,
+      "sha256": "3585dcf2ce70f6dd10ea26f8ee4b9397babe906c6b2567df9acc4f1585829d69",
+      "gitBlob": "b5b2773c47936c6bbedec1d0193639c14b09dc8b"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/runtime27/continuation-focused-matrix.log",
+      "bytes": 26608,
+      "sha256": "f69c42600e37e567569aa85986e328dea6e3890b97bf5be9a7f2edd1466acbf3",
+      "gitBlob": "a25ef74cfa5545c6c810d4d5ef7b5843d8aa4301"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/runtime27/fixture-oracle-11-reader.json",
+      "bytes": 1071,
+      "sha256": "e37fc54fb9a264b743636528b56140494f4c2e40e965a7e398d95c3be2c1b54b",
+      "gitBlob": "4851efd9a52c8b29857fc74730fd3fa18d197401"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/runtime27/junit.xml",
+      "bytes": 453,
+      "sha256": "ac0aee23af556488188f814dac6e2ddb4e8fbb1eb4a0f8932155866a5ac43926",
+      "gitBlob": "34c4c04d57ddd91338bb5dde08787c617dde4506"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/runtime27/palette-compiled-images.json",
+      "bytes": 70627,
+      "sha256": "0ce7d4bac4b021b8dddd39de3386a635c2d56a68c14f5f4c5ee820320676a7b6",
+      "gitBlob": "b5b6c2e464b3eb69ffd0d3de97ba11d5bad6bc38"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/runtime27/recording-11-reader.log",
+      "bytes": 270,
+      "sha256": "0d3b39da7453fb927822b1a79bcd60f5d7224d0943569834a458b32054e6e981",
+      "gitBlob": "7ee8b95f45177ae691d3098448aa155510b875aa"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/runtime27/toolchain-selection.json",
+      "bytes": 13019,
+      "sha256": "716f94f17e004ad825f0f684a7920ab5daad0af7fd49f3d8903f3205c9aad774",
+      "gitBlob": "1bbf2fa322161039584b2eacd2e722d673668f09"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/runtime27/verified-11-reader.json",
+      "bytes": 316,
+      "sha256": "32108c5d37303c06da924cd415486651c1e0b7d5e1de7268ef62ab9b752577bb",
+      "gitBlob": "0634fafeda461a473369cb02b4a6c581bfae1e33"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/runtime27/verified-11-reader.summary.json",
+      "bytes": 1542,
+      "sha256": "ab61aeaceb3e0bd61237f8b070025fcb3c68fa72e16b1593dc71d858a4a48c57",
+      "gitBlob": "e825d4487aeb4ec636f5aa3f425f4fb49dddf6a3"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/runtime27/verified-11-reader.tests.json",
+      "bytes": 2283,
+      "sha256": "7809e714de212178f0299cc7193755307878b9b9134362552922a9dae4c98b7a",
+      "gitBlob": "9b2e00a544f9c616459390e1fd216da5bd623777"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/simulator-failure-11-reader-devices.log",
+      "bytes": 22711,
+      "sha256": "c32f8274fa88a21812a9fe9ad45aed5cc8033ecca4c992fae5c4cc6e397dcfbd",
+      "gitBlob": "a2b46e87930dcab823d8e54c869171b294b53b92"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/simulator-failure-11-reader-screenshot.log",
+      "bytes": 258,
+      "sha256": "c676647abf64cb34ce898d60874bd18645149fa4e3e9a00f841fa47f71593fe8",
+      "gitBlob": "376320e26178360c68c61639e1599f1596f73c75"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/simulator-failure-11-reader-services.log",
+      "bytes": 1016744,
+      "sha256": "d2f5b16c443058ee6700ce804a3e47efa57116fb1b0b93f8533819264263a8cd",
+      "gitBlob": "c66e3415406abf0798027aa2a340e09c0a90dfcd"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/simulator-failure-11-reader.png",
+      "bytes": 4710597,
+      "sha256": "556017da585e402f07d2fc59138b53bdb0603d129db72764fe092ccaf8ad1158",
+      "gitBlob": "79abb1b13a4d9ff9e57e9c74ee67ff1dbfdc7a76"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/test-case-execution-11-reader.json",
+      "bytes": 566,
+      "sha256": "0c7feee80717461d503c15191ef01aa2a68f2347fdedf031144a2d3aaafe793d",
+      "gitBlob": "5d3343adfaf94039a566b27586a28035484609ed"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/test-simulator-11-reader.log",
+      "bytes": 21264,
+      "sha256": "53d07157ab1ef2b4f0480c4cc65b6f0a27acac889154a7ac07a97e3049787d5d",
+      "gitBlob": "28163302587a763b0eb009f4155b7882fa87764a"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/ui-acceptance-typecheck.json",
+      "bytes": 4042,
+      "sha256": "a6f6f40bd0cf6ba11185cea811d26f621e416cba8cf26c248f70eb369fdb40bb",
+      "gitBlob": "a909dc48386fed4aab11dc88fa2172ab969550cf"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/ui-acceptance-typecheck.log",
+      "bytes": 2105957,
+      "sha256": "d577c76e9b8f1327594c0fa55ab945e0414728786a16a95aeb297ef35e1f034d",
+      "gitBlob": "fefb727062e42b2567efabf5d023bc0e40d6b58f"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/artifacts/xcuiautomation-voiceover-sdk.txt",
+      "bytes": 13992,
+      "sha256": "a67c1b7395766d301e65f88ed64c1424a2e707fca4ddd3a6d50e1bb7d072cb67",
+      "gitBlob": "c15ac97422d015a066493658ef67eb50eccb7fe2"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/ExpoModulesProvider.swift",
+      "bytes": 1246,
+      "sha256": "c6ec625de1af66d390d35bfb43e4d69508597cfa246f3c939428c77295b017e1",
+      "gitBlob": "5c6cf8dfa5c00a6b83ff1a95bc4a03e86159bd37"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/actual-source-inputs.json",
+      "bytes": 115282,
+      "sha256": "5ab1b5b4d73c37f9edc4b03e03a6b013283ef2a060464a961a804ac45f942060",
+      "gitBlob": "bd65d26b27ab689dbe37248f028f2d780055bc45"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/generated-Maktabah-project.pbxproj",
+      "bytes": 620777,
+      "sha256": "09597c64ef3fa739572f57fb5a7af478638195b583754c30e322fec2649484c7",
+      "gitBlob": "0b1d2f6b3d45a47dff6c7bfc1124a0e5a547b05f"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/generated-pods-project.diff",
+      "bytes": 425846,
+      "sha256": "6b30b36433c896c9214f2191041aba48b965f9652fb59fd880c58987cfaf9c77",
+      "gitBlob": "ba473fc036cceaeebcfad7984b52181884a6556e"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/generated-privacy.diff",
+      "bytes": 2618,
+      "sha256": "2f496cd81580a43548668ef59cbaa0510222396bbb6c978ce0919c0faf41ae4e",
+      "gitBlob": "a4e625a6136a43bc8cf2103aa2256a18f2d1b40a"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/hanlin-sdk-after.log",
+      "bytes": 679,
+      "sha256": "baca24125ae53ea60324b2491d0150e52d5c02edae797fb114e68d35dbc52d25",
+      "gitBlob": "0deeacca66d14caa57b41543aaf6bb38002bd64f"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/hanlin-sdk-inputs-after.json",
+      "bytes": 61045,
+      "sha256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118",
+      "gitBlob": "9ecec8cb935e91af0ece2a8ac621270718e77ceb"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/hanlin-sdk-inputs.json",
+      "bytes": 61045,
+      "sha256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118",
+      "gitBlob": "9ecec8cb935e91af0ece2a8ac621270718e77ceb"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/hanlin-sdk.log",
+      "bytes": 679,
+      "sha256": "baca24125ae53ea60324b2491d0150e52d5c02edae797fb114e68d35dbc52d25",
+      "gitBlob": "0deeacca66d14caa57b41543aaf6bb38002bd64f"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/maktabah_zayit_search.h.log",
+      "bytes": 300,
+      "sha256": "87b20fd3d731cc694a3b004a15f295a72a38e5df7f98e837dc0c0985aa184aea",
+      "gitBlob": "228501de4cd373431f547615362dbc8fc7f23aae"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/matching-embedded-bundle.log",
+      "bytes": 741,
+      "sha256": "29e34f5a221dbe07dfb7ef9fb331dda2800bf2d7e16ee02b9031012ff5922482",
+      "gitBlob": "79b69d06ef29bcb46a812684fc0fb2d33fa15fda"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/native-script-permissions.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/npm-ci.log",
+      "bytes": 3331,
+      "sha256": "8445224310ae5178292f311d51656443a5c63832acaf7ef0be336d3c00be0132",
+      "gitBlob": "3c0ec88f948ebeeab928ccfb612bab892f552597"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/otzaria_search_engine.h.log",
+      "bytes": 304,
+      "sha256": "15648f23bbe5f5f15ae65af39bbabc45ce85e2c62b7786375e77c01f6246eab6",
+      "gitBlob": "0f2e5139fa7c4bc10606a5f0a7c9a27404dd599d"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/pinned-sharp-inputs.log",
+      "bytes": 991,
+      "sha256": "78560d94294e7adc970a8f8eb5ffee5288bdf8f10e966c59249bbe32e9ff5c45",
+      "gitBlob": "7bb1f476d27ff639feed906b3c7d234e2cdd623e"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/pod-install.log",
+      "bytes": 31807,
+      "sha256": "525fb33d1f225143d7042068cfb7c02036bfae410b203d742fc2ded75abc975a",
+      "gitBlob": "3d91bbe5de589a96e30f5a49f8a36c409e5240de"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+      "bytes": 877,
+      "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+      "gitBlob": "2557cc1f2237302b347fa647c469efe3b95b08a2"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+      "bytes": 855,
+      "sha256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef",
+      "gitBlob": "3fb515ffdd361e014cba009168ecaafe047a8785"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+      "bytes": 1482,
+      "sha256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38",
+      "gitBlob": "719a06f493768df37d940734526bfcb5319190f8"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+      "bytes": 776,
+      "sha256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d",
+      "gitBlob": "572d50a92d41193b2d0b1e425009f58d694ad49c"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+      "bytes": 1233,
+      "sha256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c",
+      "gitBlob": "1c9e1a6644ec0ad3cb7dff7dc9fa5163f0e5863f"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/privacy-generated.xcprivacy",
+      "bytes": 1386,
+      "sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5",
+      "gitBlob": "af80d26d37547b62412f5922bfd9cc601a7e9344"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/privacy-original.xcprivacy",
+      "bytes": 1132,
+      "sha256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1",
+      "gitBlob": "c86c62cc12e3ceadea279ff9948a8891a0860577"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/react-source-checkout.log",
+      "bytes": 453,
+      "sha256": "b278da59b8bfd20172192fee69776965913a069701ec217aba71aa99075b6248",
+      "gitBlob": "d64b3e7762df8295dc8871066a822618bdd749f3"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/resolve-packages.log",
+      "bytes": 4898,
+      "sha256": "d0e7d07897bbedbf609765c52752417893e2556b6e8bc215f47eecb6d7d05569",
+      "gitBlob": "356467133b1e9099d54d03ad699f5836e5e5b4df"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/resolved-Package.resolved",
+      "bytes": 4432,
+      "sha256": "722609bb6b71362aee5e7f401246edcd037a2d1815c2fc4704bf93830d9f5530",
+      "gitBlob": "99a5b952aab40cb3d5ffe03153c9cf8c07ed341b"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/resolved-Podfile.lock",
+      "bytes": 100298,
+      "sha256": "9a7f88b1d9ebbf4d14f8b6f1efd1fb2d15ac63983bf16ffd3e9ea011f9a55ce7",
+      "gitBlob": "7329f8d2440030267bcc181c271d8f8a9fc23808"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/result.json",
+      "bytes": 83531,
+      "sha256": "249a3af90a89d9e15df332090f66fcead2ff12632acd66b17971d1def46f6050",
+      "gitBlob": "ec566acf6c084b45ff78da0f33152e9c2ea3ce80"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/simulator-build-for-testing.log",
+      "bytes": 22053349,
+      "sha256": "25761acade8cf242f2f18cd0037032b75889d7b79966bb92a37383f2fbf63bd6",
+      "gitBlob": "cca0ad34552f9c048c5fa5ccca3ee4443beb8ae5"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/target-membership.log",
+      "bytes": 130,
+      "sha256": "eb1ed33822080468fc3cc73faa487cc02c8a1bed4564287c6cbc07eeddcbf043",
+      "gitBlob": "cf884a1b023e8c7dd1bb6400f74980c392f44c7a"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/primary/hq-stage2/workspace-Package.resolved",
+      "bytes": 4432,
+      "sha256": "722609bb6b71362aee5e7f401246edcd037a2d1815c2fc4704bf93830d9f5530",
+      "gitBlob": "99a5b952aab40cb3d5ffe03153c9cf8c07ed341b"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/source/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "bytes": 204965,
+      "sha256": "8b9973dd2742dab3840361da27492b41752d26954cd7f3081d6d1ee20ed6f03b",
+      "gitBlob": "d363e9091cd00d8b76cb8506a4f4017ee35780c9"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/source/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+      "bytes": 46033,
+      "sha256": "10b913029739ae3f9f5ca94a220eaaf0329cf07c1b3bb9f62f823d833a5f7c2b",
+      "gitBlob": "51cbc099c13288f706de001e3327abc1e98af655"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/source/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "bytes": 30127,
+      "sha256": "7439fd761e6661db719259bdf1e32eb59bb9dbdf084747849b92147e7702e004",
+      "gitBlob": "f9a5d33d3c76113357257a86fd28d22531b9a3a7"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/source/SOURCE_INDEX.json",
+      "bytes": 897,
+      "sha256": "701eda242d3187e21c2a1db71f51812794c0c4cde6f40d0e7a8e9e9cc8419894",
+      "gitBlob": "e8e9b7e74a44e7c1c3dec08b7c0693fb1c271bfa"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/source/capture-source-read.json",
+      "bytes": 7726,
+      "sha256": "4a15da2d59249daca61bee1efb06f457f401af4342ad5379fbde242a74d84f5e",
+      "gitBlob": "5c1cac2471098fc4487922324b8223988ae9fd78"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/verification/first-verification-failure/actual-terminal.json",
+      "bytes": 998,
+      "sha256": "365cb6c38afe9322367e8d5ddd56cfa78e7824e148a7f53ae633a9f6915424dd",
+      "gitBlob": "d9f5093493e8932acc86683207f435cf111a854c"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/verification/first-verification-failure/issued-verification.py",
+      "bytes": 6634,
+      "sha256": "c4fb3f229115be7e9493ba828dd81d21fd32b8e85d3b6003d950923707d90177",
+      "gitBlob": "9fc01a4f03bb431115baf0e11332b5eebf4208b8"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/verification/generated-privacy-continuation/BUILD_POST_UI_DIFF.json",
+      "bytes": 20930,
+      "sha256": "64b6ca22cf55b2a8743fd908802a695ddd0e0ad2e145543209f9f99f17319238",
+      "gitBlob": "bf85263dbf69c0cc7a160999d8e9f63aaa066d9d"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-terminal/raw/verification/generated-privacy-continuation/VERIFICATION.json",
+      "bytes": 6749,
+      "sha256": "a8e32ac75ce80a6490806eda6a0ea70f7c937cef36545bf922fd3a3149ac2d87",
+      "gitBlob": "1dd54df92ee1b535006ccbf6b31643cfea6afc39"
+    }
+  ],
+  "testsExecuted": 0,
+  "originalRawWhitespaceFailureRetained": true,
+  "created": "2026-11-22T10:30:16.170086+00:00",
+  "push": {
+    "command": [
+      "git",
+      "push",
+      "origin",
+      "HEAD:refs/heads/codex/otzaria-hanlin-fresh-read-keyboard-evidence-20261122"
+    ],
+    "returncode": 0,
+    "duration": 9.65700000000652
+  },
+  "remoteHead": "ae9f63b17b6f9df91d2d125700dc8b62d2aa2cc4"
+}
