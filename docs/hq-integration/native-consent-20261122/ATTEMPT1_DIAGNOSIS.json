@@ -1,0 +1,55 @@
+{
+  "head": "64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b",
+  "status": " M .github/workflows/live-activity-bridge.yml\n M Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift\n M Scripts/CI/hq-stage2-focused-apple.inputs.json\n M Scripts/CI/runtime27-hanlin-live.py\n M Scripts/CI/runtime27-original-editor-native.py\n",
+  "raw_diff": "",
+  "diff": "",
+  "untracked": [],
+  "details": [],
+  "canonicalization": {
+    "inputs": 276,
+    "changes": [
+      {
+        "path": ".github/workflows/live-activity-bridge.yml",
+        "reason": "EXACT_CRLF_ONLY_TO_GIT_BYTES",
+        "before_bytes": 1977,
+        "before_sha256": "24716d3eb29cc30316188d8192736d4947ae339f3e6f1a9364884958c012cddb",
+        "after_bytes": 1923,
+        "after_sha256": "427678d3ae83c659912b2b009d0c8a5aed72027e6fd9f35ce300370a1690f4f6"
+      },
+      {
+        "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+        "reason": "EXACT_CRLF_ONLY_TO_GIT_BYTES",
+        "before_bytes": 42498,
+        "before_sha256": "a1de5ba5f7d2c9f354f2e54b77e4e277ab62f5f71342b0294fe043860d49dde2",
+        "after_bytes": 41808,
+        "after_sha256": "4c04dae91ed4d1d0efcc04284ede6192d8914f744254aae81a60bb720cd930c3"
+      },
+      {
+        "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "reason": "EXACT_CRLF_ONLY_TO_GIT_BYTES",
+        "before_bytes": 4442,
+        "before_sha256": "52c17b043abda2b20eca0a14d8a98a8192f02cab1a891b7fc3814d8eb59db6c4",
+        "after_bytes": 4333,
+        "after_sha256": "c6810fdb940727b4b77183b1e591974a10308fb30ba43dcd659f7f2d56565e95"
+      },
+      {
+        "path": "Scripts/CI/runtime27-hanlin-live.py",
+        "reason": "EXACT_CRLF_ONLY_TO_GIT_BYTES",
+        "before_bytes": 30427,
+        "before_sha256": "cbc8eaa52af22ffa66d8fef530f24de9af2e398dba938482d64269e06195b9a1",
+        "after_bytes": 29901,
+        "after_sha256": "a23383137ac9b52398a75ae50098411422958c6090a97bb0889a1440edbd9aff"
+      },
+      {
+        "path": "Scripts/CI/runtime27-original-editor-native.py",
+        "reason": "EXACT_CRLF_ONLY_TO_GIT_BYTES",
+        "before_bytes": 29048,
+        "before_sha256": "5a477687ad6c2c262408b090a6d9d3af18e45027b4597b1ee63e635bc3b60174",
+        "after_bytes": 28579,
+        "after_sha256": "f86f6fd744381a733fd5f9d933568b55be92adc8da4b1ac160773ab4631f3d01"
+      }
+    ],
+    "no_index_or_git_config_changes": true
+  },
+  "commands_file_exists": false
+}

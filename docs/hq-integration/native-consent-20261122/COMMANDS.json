@@ -1,0 +1,37 @@
+[
+  {
+    "label": "focused-prepare",
+    "argv": [
+      "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+      "Scripts/CI/completion-focused-native.py",
+      "prepare"
+    ],
+    "returncode": 0,
+    "elapsed_s": 23.0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "ordinary-source-preflight",
+    "argv": [
+      "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+      "Scripts/CI/hq-stage2-focused-apple.py",
+      "--preflight-only"
+    ],
+    "returncode": 0,
+    "elapsed_s": 8.234,
+    "stdout_sha256": "9326d1c7afc32cde40633289fbeab39ac46bed487d5d7b2f2251ba94f85938c8",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "host48-exact-reuse",
+    "argv": [
+      "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+      "Scripts/CI/reuse-host48.py"
+    ],
+    "returncode": 0,
+    "elapsed_s": 14.187,
+    "stdout_sha256": "77b9848ddba60ff991194d1fa81919f3aee455943f016b319c1a581a5b9c0865",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]
