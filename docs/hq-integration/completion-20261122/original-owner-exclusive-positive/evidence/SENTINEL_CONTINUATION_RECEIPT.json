@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_8806499ddc44",
+    "type": "job_result",
+    "source": "script_run@host_7ec8382e82747448",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_7ec8382e82747448",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795325321.016545,
+    "started_at": "2026-11-22T05:28:41.046772+00:00",
+    "finished_at": "2026-11-22T05:29:28.360819+00:00",
+    "duration_s": 47.31,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 850,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\r\n  \"head\": \"558fdd787b26b6c9dc33b6fb59da7c080fa2671c\",\r\n  \"command\": [\r\n    \"C:\\\\ProgramData\\\\SentinelX\\\\.venv\\\\Scripts\\\\python.exe\",\r\n    \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-original-owner-sqlite-controls-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\original-owner-exclusive-positive\\\\run-positive-only.py\",\r\n    \"--result-dir\",\r\n    \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-original-owner-sqlite-controls-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\original-owner-exclusive-positive\\\\validation\\\\p2\"\r\n  ],\r\n  \"exit_code\": 0,\r\n  \"seconds\": 45.17199999999866,\r\n  \"runner_pid\": 21744,\r\n  \"stdout_sha256\": \"99413ac928c78898574ef39ce215a02eab7a77b646d76aa5c1c128983cbb4eef\",\r\n  \"stderr_sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\r\n  \"result_exists\": true,\r\n  \"status\": \"PASS_POSITIVE_AND_REUSED_NEGATIVE_WITH_DISTINCT_PROCESS_READBACKS\",\r\n  \"result_sha256\": \"853aa6e450e4d3ed21c0e989c7744420a58635894308b19f870485c2b03417e5\",\r\n  \"executable_sha256\": \"b3e22ff147caee60f5088a29e92b19f64d6b89cf66e31999c9f67e49a1f46aba\",\r\n  \"cases\": [\r\n    {\r\n      \"durableRows\": 1,\r\n      \"events\": [\r\n        \"original_exclusive_read_entered\",\r\n        \"sqlite_serialized_lock_acquired_inside_read\",\r\n        \"explicit_read_scope_local_body_admitted\",\r\n        \"local_outer_commit_inside_exclusive_read\",\r\n        \"explicit_child_read_returned_before_capture_release\",\r\n        \"sqlite_serialized_lock_returned_before_capture_release\",\r\n        \"original_exclusive_read_returned\",\r\n        \"owner_onDrained\"\r\n      ],\r\n      \"facts\": {\r\n        \"awaitInsideSQLiteLockOrTransaction\": \"false\",\r\n        \"bodyExecutions\": \"1\",\r\n        \"lockOrder\": \"exclusiveRead_then_SQLiteSerialized_then_childRead_then_outerCommit\",\r\n        \"nativeMutationAuthorityUpgrade\": \"false\",\r\n        \"nativeRPCDispatched\": \"0\",\r\n        \"originalReadBarrierHeldAtCommit\": \"true\",\r\n        \"outerCommit\": \"true\",\r\n        \"publishedCurrentSuccess\": \"true\",\r\n        \"requiresEditing\": \"false\"\r\n      },\r\n      \"name\": \"exclusive_read_allows_explicit_local_read_scope_commit\",\r\n      \"ownerOutcome\": \"current_owner_explicit_read_scope_success\",\r\n      \"status\": \"PASS\"\r\n    }\r\n  ],\r\n  \"writer\": {\r\n    \"ACK\": \"0\",\r\n    \"cases\": \"1\",\r\n    \"nativeRPC\": \"0\",\r\n    \"nativeReceipts\": \"0\",\r\n    \"pid\": \"4968\",\r\n    \"productionIdentityWrites\": \"0\",\r\n    \"scope\": \"unchanged positive assertion only; passing negative not compiled or executed\",\r\n    \"sqlite\": \"3.53.4\"\r\n  },\r\n  \"positive_reopen\": {\r\n    \"ACK\": \"0\",\r\n    \"durableRows\": \"1\",\r\n    \"nativeRPC\": \"0\",\r\n    \"nativeReceipts\": \"0\",\r\n    \"pid\": \"20488\",\r\n    \"productionIdentityWrites\": \"0\",\r\n    \"sqlite\": \"3.53.4\",\r\n    \"status\": \"PASS\",\r\n    \"writerPID\": \"4968\"\r\n  },\r\n  \"negative_reopen\": {\r\n    \"ACK\": \"0\",\r\n    \"durableRows\": \"0\",\r\n    \"nativeRPC\": \"0\",\r\n    \"nativeReceipts\": \"0\",\r\n    \"originalNegativeControlReexecuted\": \"false\",\r\n    \"pid\": \"32180\",\r\n    \"productionIdentityWrites\": \"0\",\r\n    \"readOnlyOriginalSQLiteConnection\": \"true\",\r\n    \"sqlite\": \"3.53.4\",\r\n    \"status\": \"PASS_REOPEN_OF_RETAINED_NEGATIVE\",\r\n    \"writerPID\": \"20252\"\r\n  },\r\n  \"prior_writer\": {\r\n    \"ACK\": \"0\",\r\n    \"cases\": \"2\",\r\n    \"fixtureOnlyTables\": \"true\",\r\n    \"nativeRPC\": \"0\",\r\n    \"nativeReceipts\": \"0\",\r\n    \"pid\": \"20252\",\r\n    \"productionIdentityWrites\": \"0\",\r\n    \"scope\": \"two new exclusive-read combinations; six original controls not executed\",\r\n    \"sourceOwner\": \"553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2\",\r\n    \"sqlite\": \"3.53.4\"\r\n  },\r\n  \"error\": null\r\n}"
+  }
+}

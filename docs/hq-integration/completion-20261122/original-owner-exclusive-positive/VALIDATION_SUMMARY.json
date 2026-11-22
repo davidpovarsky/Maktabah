@@ -1,0 +1,177 @@
+{
+  "status": "PASS_POSITIVE_AND_REUSED_NEGATIVE_WITH_DISTINCT_PROCESS_READBACKS",
+  "source_candidate": "558fdd787b26b6c9dc33b6fb59da7c080fa2671c",
+  "initial_assertions_source": "f81213dc5bba73272c9d0aa9873a7ef1e05e1528",
+  "initial_red_evidence": "d8b0b6ae2a69eb0049bbfa524a2f34f878109dbf",
+  "initial_red_packet_unchanged": true,
+  "original_six_packet_unchanged": true,
+  "actual_new_positive_controls": 1,
+  "retained_negative_controls": 1,
+  "negative_control_reexecuted": false,
+  "source_verification_inputs": 15,
+  "historical_receipt_inputs": 5,
+  "compiled_sources": 10,
+  "all20_tracked_inputs_git_verified": true,
+  "compiled_sources_and_binary_verified": true,
+  "original_owner_source": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+  "application_source": "67518e8df6975c976e8f1cd9e622328dc45985fc",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "swift": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "sqlite": "3.53.4",
+  "compiler_evidence": "executable path and reported version, not compiler executable hash",
+  "executable_sha256": "b3e22ff147caee60f5088a29e92b19f64d6b89cf66e31999c9f67e49a1f46aba",
+  "derivation": {
+    "helper_prefix_bytes": 6694,
+    "helper_prefix_sha256": "e70be884090dd1f52bdc63a7ffe0a3b527d059e67cb1b960671114687c3a30ff",
+    "observation_bytes": 158,
+    "observation_sha256": "e4a892bcec41d87846ccb32b0594d45ad7ff1c7d86fe48981e05822f7eed31d4",
+    "unchanged_positive_function_bytes": 4824,
+    "unchanged_positive_function_sha256": "1dd7cfa4f7cf13b559b51a6ce6cb38a02893199a880dd9f0d4819ccc1171a162",
+    "retained_negative_function_sha256": "e5c82b131fcbb523aa908d7c5f80aa0c4dea7365c28cb63a56570ecb64ed59fb",
+    "entrypoint_sha256": "3b7982e006d48e85d3281a4b04f96291ade1a543aa125db37ab688a2ea981383",
+    "combined_sha256": "971cc4ce7bebe197161fba9ed4545cfefb8b042492863316e3013fb1b10e49e8",
+    "negative_assertion_compiled": false,
+    "prior_six_assertions_compiled": false
+  },
+  "new_positive": {
+    "durableRows": 1,
+    "events": [
+      "original_exclusive_read_entered",
+      "sqlite_serialized_lock_acquired_inside_read",
+      "explicit_read_scope_local_body_admitted",
+      "local_outer_commit_inside_exclusive_read",
+      "explicit_child_read_returned_before_capture_release",
+      "sqlite_serialized_lock_returned_before_capture_release",
+      "original_exclusive_read_returned",
+      "owner_onDrained"
+    ],
+    "facts": {
+      "awaitInsideSQLiteLockOrTransaction": "false",
+      "bodyExecutions": "1",
+      "lockOrder": "exclusiveRead_then_SQLiteSerialized_then_childRead_then_outerCommit",
+      "nativeMutationAuthorityUpgrade": "false",
+      "nativeRPCDispatched": "0",
+      "originalReadBarrierHeldAtCommit": "true",
+      "outerCommit": "true",
+      "publishedCurrentSuccess": "true",
+      "requiresEditing": "false"
+    },
+    "name": "exclusive_read_allows_explicit_local_read_scope_commit",
+    "ownerOutcome": "current_owner_explicit_read_scope_success",
+    "status": "PASS"
+  },
+  "retained_negative": {
+    "durableRows": 0,
+    "events": [
+      "original_exclusive_read_entered",
+      "sqlite_serialized_lock_acquired_inside_read",
+      "default_mutation_rejected_before_fixture_sql",
+      "sqlite_serialized_lock_returned_before_capture_release",
+      "original_exclusive_read_failed_write_latched",
+      "owner_onDrained"
+    ],
+    "facts": {
+      "SQLTransactionStarted": "false",
+      "SQLiteSerializedLockHeldAtRejection": "true",
+      "awaitInsideSQLiteLockOrTransaction": "false",
+      "bodyExecutions": "0",
+      "innerRejection": "unqualifiedDispatch",
+      "nativeRPCDispatched": "0",
+      "outerCommit": "false",
+      "outerRejection": "failedWrite",
+      "publishedCurrentSuccess": "false",
+      "requiresEditing": "true_default"
+    },
+    "name": "exclusive_read_refuses_default_mutation_before_sql",
+    "ownerOutcome": "rejected_unqualified_dispatch_and_failed_write_latched",
+    "status": "PASS"
+  },
+  "positive_writer": {
+    "ACK": "0",
+    "cases": "1",
+    "nativeRPC": "0",
+    "nativeReceipts": "0",
+    "pid": "4968",
+    "productionIdentityWrites": "0",
+    "scope": "unchanged positive assertion only; passing negative not compiled or executed",
+    "sqlite": "3.53.4"
+  },
+  "positive_reopen": {
+    "ACK": "0",
+    "durableRows": "1",
+    "nativeRPC": "0",
+    "nativeReceipts": "0",
+    "pid": "20488",
+    "productionIdentityWrites": "0",
+    "sqlite": "3.53.4",
+    "status": "PASS",
+    "writerPID": "4968"
+  },
+  "original_negative_writer": {
+    "ACK": "0",
+    "cases": "2",
+    "fixtureOnlyTables": "true",
+    "nativeRPC": "0",
+    "nativeReceipts": "0",
+    "pid": "20252",
+    "productionIdentityWrites": "0",
+    "scope": "two new exclusive-read combinations; six original controls not executed",
+    "sourceOwner": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+    "sqlite": "3.53.4"
+  },
+  "negative_readonly_reopen": {
+    "ACK": "0",
+    "durableRows": "0",
+    "nativeRPC": "0",
+    "nativeReceipts": "0",
+    "originalNegativeControlReexecuted": "false",
+    "pid": "32180",
+    "productionIdentityWrites": "0",
+    "readOnlyOriginalSQLiteConnection": "true",
+    "sqlite": "3.53.4",
+    "status": "PASS_REOPEN_OF_RETAINED_NEGATIVE",
+    "writerPID": "20252"
+  },
+  "original_negative_database": {
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\validation\\windows-exclusive-two-20261122\\fixtures\\exclusive_read_refuses_default_mutation_before_sql.sqlite",
+    "sha256": "e0c5b9d088647eab4ff31754c2e079237ea8fb3f6644028fa0d249ffc8279c68",
+    "bytes": 20480
+  },
+  "original_negative_database_unchanged_after_readback": true,
+  "commands": [
+    {
+      "label": "compile",
+      "exit": 0,
+      "seconds": 36.5
+    },
+    {
+      "label": "positive",
+      "exit": 0,
+      "seconds": 0.8119999999980791
+    },
+    {
+      "label": "reopen-positive",
+      "exit": 0,
+      "seconds": 0.17199999999866122
+    },
+    {
+      "label": "reopen-retained-negative",
+      "exit": 0,
+      "seconds": 0.18800000000192085
+    }
+  ],
+  "path_resolution": {
+    "initial_positive_filename_characters": 253,
+    "initial_positive_journal_characters": 261,
+    "new_positive_filename_characters": 227,
+    "new_positive_journal_characters": 235,
+    "explanation": "The unchanged original positive assertion and fixture now pass at the shorter owned path. The initial pre-Owner setup failure and successful negative remain retained; no product SQLite or Owner change was required."
+  },
+  "proof_limits": [
+    "Windows actual-original Owner/SQLite composition with disposable document/permission values and fixture-only tables.",
+    "Only the unresolved positive assertion executed in the continuation; the negative was reused from its exact source and actual raw result, then its original DB reopened read-only.",
+    "No native ObjectShow RPC, engine run, schema/identity/body proof, opaque native receipt, production identity writer or ACK.",
+    "Standalone six-case retirement/COMMIT-failure evidence is not transferred to the held-read path.",
+    "No old-six, OwnerModal14, Core194, exchange28, Cloud48, Native or Live suite replay."
+  ]
+}

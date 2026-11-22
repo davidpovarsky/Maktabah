@@ -1,0 +1,13 @@
+{
+  "ACK" : "0",
+  "durableRows" : "0",
+  "nativeRPC" : "0",
+  "nativeReceipts" : "0",
+  "originalNegativeControlReexecuted" : "false",
+  "pid" : "32180",
+  "productionIdentityWrites" : "0",
+  "readOnlyOriginalSQLiteConnection" : "true",
+  "sqlite" : "3.53.4",
+  "status" : "PASS_REOPEN_OF_RETAINED_NEGATIVE",
+  "writerPID" : "20252"
+}

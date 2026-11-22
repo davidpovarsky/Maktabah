@@ -1,0 +1,15 @@
+{
+  "head": "558fdd787b26b6c9dc33b6fb59da7c080fa2671c",
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-positive\\run-positive-only.py",
+    "--result-dir",
+    "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-positive\\validation\\p2"
+  ],
+  "exit_code": 0,
+  "seconds": 45.17199999999866,
+  "runner_pid": 21744,
+  "stdout_sha256": "99413ac928c78898574ef39ce215a02eab7a77b646d76aa5c1c128983cbb4eef",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "result_exists": true
+}

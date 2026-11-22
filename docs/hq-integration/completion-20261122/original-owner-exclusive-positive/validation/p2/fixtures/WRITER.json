@@ -1,0 +1,10 @@
+{
+  "ACK" : "0",
+  "cases" : "1",
+  "nativeRPC" : "0",
+  "nativeReceipts" : "0",
+  "pid" : "4968",
+  "productionIdentityWrites" : "0",
+  "scope" : "unchanged positive assertion only; passing negative not compiled or executed",
+  "sqlite" : "3.53.4"
+}
