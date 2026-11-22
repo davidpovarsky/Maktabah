@@ -2,9 +2,9 @@ name: "Upstream Boundary Guard"
 
 on:
   pull_request:
-    branches: [ "main", "sync/**" ]
+    branches: [ "main", "dev", "sync/**" ]
   push:
-    branches: [ "main", "sync/**" ]
+    branches: [ "main", "dev", "sync/**" ]
   workflow_dispatch:
     inputs:
       base_ref:
@@ -46,11 +46,12 @@ jobs:
           INPUT_BASE_REF: ${{ github.event.inputs.base_ref }}
           MAKTABAH_OWNER_VERIFICATION_KEY: ${{ secrets.MAKTABAH_OWNER_VERIFICATION_KEY || vars.MAKTABAH_OWNER_VERIFICATION_KEY }}
         run: |
+          set -euo pipefail
           if [ "$EVENT_NAME" = "pull_request" ]; then
-            git fetch origin "$GITHUB_BASE_REF" --depth=100 || true
-            BASE_REF=$(git merge-base "origin/$GITHUB_BASE_REF" "$PR_HEAD_SHA" || echo "$PR_BASE_SHA")
+            git fetch --no-tags origin "refs/heads/$GITHUB_BASE_REF:refs/remotes/origin/$GITHUB_BASE_REF"
+            BASE_REF=$(git merge-base "origin/$GITHUB_BASE_REF" "$PR_HEAD_SHA")
             HEAD_REF="$PR_HEAD_SHA"
-            git checkout "origin/$GITHUB_BASE_REF" -- Scripts/CI/verify-upstream-boundary.py || true
+            git checkout "origin/$GITHUB_BASE_REF" -- Scripts/CI/verify-upstream-boundary.py
           elif [ "$EVENT_NAME" = "workflow_dispatch" ] && [ -n "$INPUT_BASE_REF" ]; then
             BASE_REF="$INPUT_BASE_REF"
             HEAD_REF="$EVENT_SHA"

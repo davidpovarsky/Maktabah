@@ -1,0 +1,37 @@
+{
+  "observed_at": "2026-11-22T02:20:20.563163+00:00",
+  "reviewed_candidate": "9c66b4ccc06340a04de53a4c3370182873ed18bc",
+  "base": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+  "upstream": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "verifier_sha256": "9733798a242382f59da99cb999a169e2c69c59010b336742e9a8fa151e837676",
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\upstream-trust-audit-20261122\\pinned-verifier.py",
+    "--repo",
+    "C:\\Users\\DAVID\\Code\\Maktabah-completion-20261122",
+    "--base",
+    "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+    "--head",
+    "9c66b4ccc06340a04de53a4c3370182873ed18bc",
+    "--upstream-ref",
+    "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+    "--report-json",
+    "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\upstream-trust-audit-20261122\\boundary-report.json"
+  ],
+  "returncode": 1,
+  "status": "FAIL",
+  "counts": {
+    "UNAUTHORIZED_UPSTREAM_MODIFICATION": 30,
+    "PENDING_UPSTREAM_APPROVAL": 19,
+    "UNAUTHORIZED_POLICY_BYPASS_ATTEMPT": 1
+  },
+  "warnings": 0,
+  "policy_files_changed": [
+    "Scripts/CI/verify-upstream-boundary.py"
+  ],
+  "protected_files_count": 49,
+  "native_tests_executed": 0,
+  "manifests_generated": 0,
+  "registry_modified": false,
+  "signing_performed": false
+}

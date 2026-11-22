@@ -1,0 +1,13 @@
+{
+  "source_commit": "5255c96ae9cdd02fb661ec2fc8801e33125b09b8",
+  "exit_code": 1,
+  "wrapper_status": "FAILED",
+  "verifier_status": "FAIL",
+  "protected_paths": 49,
+  "verified_approvals": 0,
+  "error": "ApprovalError: External MAKTABAH_OWNER_VERIFICATION_KEY is not configured",
+  "receipt_sha256": "cd903153ebaa5f770be0ae680e62b27940a3ef56af3c09644e4b605f2604d65d",
+  "report_sha256": "66b3d148e49c849ca8dc529676fd5d6d0afbba7cf32f72cc9a3a7694b8f7abff",
+  "signing_performed": false,
+  "native_tests_executed": 0
+}
