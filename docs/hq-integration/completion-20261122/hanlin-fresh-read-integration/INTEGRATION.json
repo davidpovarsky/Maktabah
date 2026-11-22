@@ -1,0 +1,45 @@
+{
+  "schema": "otzaria.fresh-read-root-integration/1",
+  "utc": "2026-11-22T09:19:50.139054+00:00",
+  "status": "SOURCE_AND_EVIDENCE_INTEGRATED_NATIVE_OUTCOME_PENDING",
+  "before": "3889c5c037f6d5a2e7b7ea33deb8e4569f410ca7",
+  "incoming": "997bc6872fed666daef8f720ddd1f847647be80c",
+  "merge": "3f044b6990b02e5b760c3a7f861a83e2e42b1b98",
+  "parents": [
+    "3889c5c037f6d5a2e7b7ea33deb8e4569f410ca7",
+    "997bc6872fed666daef8f720ddd1f847647be80c"
+  ],
+  "applicationSource": "7eb9d2a5c8ac7ccb184e3cc50fb36b6272475ff1",
+  "applicationTrees": {
+    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "e4f67f6fc7cd0a4242d4ed5277490acad3464ec1"
+  },
+  "threeProductionTreesUnchanged": true,
+  "packetPayloads": 88,
+  "packetBytes": 1063935,
+  "exactPacketGitBlobs": 89,
+  "packetIndexSHA256": "0de80f647fbc1b6d128f82cbf27564c7e6979ac54b6edc2bf273d7682126044e",
+  "admissionResultSHA256": "0d2d338f1e7252aeff635899d0b8d504ca640d44854ffd6bbfed98bb39e0cd06",
+  "sourceReviewSHA256": "85a7a20c05818af511c25492f92083eb6cf47aac65a8112fdb31344ab57a0ef8",
+  "executionGitInputsVerified": 279,
+  "changedNonDocumentationPaths": [
+    ".github/workflows/otzaria-completion-focused-native.yml",
+    "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+    "Scripts/CI/completion-focused-native.py",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json"
+  ],
+  "oneNewCase": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
+  "nativeRun": 45006363282,
+  "nativeRunOwner": "/root/native_completion",
+  "soleObserver": "job_d061e56c2cea",
+  "newTestExecutionsForMerge": 0,
+  "newArtifactDownloadsForMerge": 0,
+  "newProviderKeys": 0,
+  "limits": [
+    "One syntax parse and source-only admission; no new Native pass is claimed before actual result.",
+    "Existing Live8 failure and completed204/404 cleanup remain unchanged.",
+    "Static no-send constructor audit is not an instrumented whole-application network silence claim."
+  ]
+}
