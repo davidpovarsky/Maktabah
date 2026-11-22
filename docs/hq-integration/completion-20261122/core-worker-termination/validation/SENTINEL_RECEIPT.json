@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_437e4ca0eede",
+    "type": "job_result",
+    "source": "script_run@host_7ec8382e82747448",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_7ec8382e82747448",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795316628.7403345,
+    "started_at": "2026-11-22T03:03:48.786326+00:00",
+    "finished_at": "2026-11-22T03:04:13.442126+00:00",
+    "duration_s": 24.66,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 300,
+    "read": true,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\r\n  \"status\": \"PASS_EXACT_TERMINATION_CALLBACK_WIRING\",\r\n  \"commands\": [\r\n    {\r\n      \"label\": \"compile\",\r\n      \"command\": [\r\n        \"swiftc\",\r\n        \"-swift-version\",\r\n        \"6\",\r\n        \"-j\",\r\n        \"1\",\r\n        \"-parse-as-library\",\r\n        \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-original-editor-lifecycle-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\local-cloud-worker-response\\\\WorkerResponse.swift\",\r\n        \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-original-editor-lifecycle-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\core-worker-termination\\\\ExactCallbacks.swift\",\r\n        \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-original-editor-lifecycle-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\core-worker-termination\\\\controls.swift\",\r\n        \"-o\",\r\n        \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-original-editor-lifecycle-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\core-worker-termination\\\\build\\\\core-worker-callback.exe\"\r\n      ],\r\n      \"exit\": 0,\r\n      \"seconds\": 21.235000000000582\r\n    },\r\n    {\r\n      \"label\": \"run\",\r\n      \"command\": [\r\n        \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-original-editor-lifecycle-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\core-worker-termination\\\\build\\\\core-worker-callback.exe\"\r\n      ],\r\n      \"exit\": 0,\r\n      \"seconds\": 0.5619999999980791\r\n    }\r\n  ],\r\n  \"network_requests\": 0,\r\n  \"cloudkit_runtime_executed\": 0,\r\n  \"native_ui_executed\": 0,\r\n  \"prior_classifier16_reexecuted\": false,\r\n  \"toolchain\": \"Swift version 6.3.3 (swift-6.3.3-RELEASE)\\nTarget: x86_64-unknown-windows-msvc\\nBuild config: +assertions\",\r\n  \"controls\": {\r\n    \"baseline\": \"HTTP_503_WRONG_SUCCESS_REPRODUCED\",\r\n    \"cases\": [\r\n      \"http_rejection_enters_original_error_state_once\",\r\n      \"accepted_response_preserves_original_completion_once\",\r\n      \"missing_response_enters_original_error_state_once\",\r\n      \"transport_error_identity_and_signal_preserved\"\r\n    ],\r\n    \"cloudkit_runtime_executed\": 0,\r\n    \"native_ui_executed\": 0,\r\n    \"network_requests\": 0,\r\n    \"passed\": 4,\r\n    \"scope\": \"Exact original/candidate @Sendable callback closures; actual Mutex/DispatchSemaphore/Foundation responses; unchanged classifier reused\",\r\n    \"status\": \"PASS_EXACT_TERMINATION_CALLBACK_WIRING\"\r\n  },\r\n  \"executable_sha256\": \"b17599cd1697b9334c1e0161181821a3f12b821ac69332b476a558099b34c2ad\",\r\n  \"source_unchanged\": true\r\n}"
+  }
+}
