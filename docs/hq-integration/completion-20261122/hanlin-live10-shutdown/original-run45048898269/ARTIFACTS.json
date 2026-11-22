@@ -1,0 +1,25 @@
+{
+  "total_count": 1,
+  "artifacts": [
+    {
+      "id": 14767750188,
+      "node_id": "MDg6QXJ0aWZhY3QxNDc2Nzc1MDE4OA==",
+      "name": "otzaria-hanlin-live-native-evidence",
+      "size_in_bytes": 79158,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14767750188",
+      "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14767750188/zip",
+      "expired": false,
+      "digest": "sha256:110b05a270e90ac63706c58cdedab6816b2a94bc06c320b7fbea3a8ba5b2fec1",
+      "created_at": "2026-11-22T18:32:43Z",
+      "updated_at": "2026-11-22T18:32:43Z",
+      "expires_at": "2027-02-20T17:20:36Z",
+      "workflow_run": {
+        "id": 45048898269,
+        "repository_id": 1280062128,
+        "head_repository_id": 1280062128,
+        "head_branch": "codex/otzaria-hanlin-live-20261121",
+        "head_sha": "4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1"
+      }
+    }
+  ]
+}

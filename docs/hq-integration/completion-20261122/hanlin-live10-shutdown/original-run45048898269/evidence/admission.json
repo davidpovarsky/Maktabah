@@ -1,0 +1,65 @@
+{
+  "files": {
+    "app-group-resolver-interface.json": {
+      "bytes": 678,
+      "sha256": "8854e1f916fbcbde204c22f40d46714951bb6a4e2fa67efe08d3daf014da75c8"
+    },
+    "artifact-isolation.json": {
+      "bytes": 257,
+      "sha256": "f7d90d5746bcfe8ea54ea605fa521d34580b18cc750922adea7598d88da967c1"
+    },
+    "declarations.json": {
+      "bytes": 378,
+      "sha256": "0fed38adfa5d55010a9ff2993f6c83a6705e3bddb17eebe69f2461c277136a77"
+    },
+    "faithful-ipad-matrix.json": {
+      "bytes": 22802,
+      "sha256": "cdbae6b95d8817696803ab814e44438c0e77af0acdbcb9f81d0f6c77bd90da18"
+    },
+    "miniTest10-native-fixture-install-11-before-reboot.json": {
+      "bytes": 1788,
+      "sha256": "f0711472f87adf93eafb8738493f9a3e13d08f9307d0ef4584eee1375ff976c2"
+    },
+    "miniTest10-native-fixture-install-11.json": {
+      "bytes": 1788,
+      "sha256": "f0711472f87adf93eafb8738493f9a3e13d08f9307d0ef4584eee1375ff976c2"
+    },
+    "miniTest10-native-fixture-termination-11-before-reboot.json": {
+      "bytes": 228,
+      "sha256": "ec96236db5fe5a21d51ba63f3492d648655100ce4459b9841750ec889cac1b9d"
+    },
+    "miniTest10-native-fixture-termination-11.json": {
+      "bytes": 228,
+      "sha256": "ec96236db5fe5a21d51ba63f3492d648655100ce4459b9841750ec889cac1b9d"
+    },
+    "original-build-result.json": {
+      "bytes": 83603,
+      "sha256": "3b3a4e5ec21c54774746789e24ca70086c4b1f33066bf830ddab6d4ed57ddd62"
+    },
+    "python-oracle-environment.json": {
+      "bytes": 654,
+      "sha256": "77d23e83351b75870dc60ce65ab1eb712b91cda9fa31044314d588316aecef92"
+    },
+    "result.json": {
+      "bytes": 1222,
+      "sha256": "0e86545f5eee38d85c3a2596df5b131f79e072162cebdfeede8e09d224e0f04b"
+    },
+    "selection.json": {
+      "bytes": 642,
+      "sha256": "2ee3649a010b596b1cfea694455fde5e511de3eac55704a8892d37789a1e6cea"
+    },
+    "source-after.json": {
+      "bytes": 64054,
+      "sha256": "ec96e3bb47b50577b197fc5bd0caaea331434096606330a6edc005014e433212"
+    },
+    "source-before.json": {
+      "bytes": 64054,
+      "sha256": "ec96e3bb47b50577b197fc5bd0caaea331434096606330a6edc005014e433212"
+    }
+  },
+  "private_input_removed": false,
+  "provider_file_excluded": true,
+  "raw_video_excluded": true,
+  "raw_xcresult_and_attachments_excluded": true,
+  "status": "SCANNED_ALLOWLIST_ONLY"
+}

@@ -1,0 +1,751 @@
+#!/usr/bin/env python3
+"""Real black-box acceptance on disposable 11/13-inch iPadOS 27 simulators."""
+import json
+import hashlib
+import os
+import re
+import runpy
+import shutil
+from pathlib import Path
+import subprocess
+import sys
+import time
+import uuid
+import signal
+from datetime import datetime, timezone
+
+_SCRIPTS_CI_DIR = str(Path(__file__).resolve().parent)
+if _SCRIPTS_CI_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPTS_CI_DIR)
+
+import runtime27_interruption
+import runtime27_release_handoff
+
+
+def requires_native_log_collection(selection):
+    """Retain the original log for routing and explicit Escape/font diagnostics."""
+    for case in selection:
+        suite, separator, method = case.partition("/")
+        if suite in ("NativeRoutingAcceptanceTests", "NativeRoutingPhoneAcceptanceTests"):
+            return True
+        if suite == "FaithfulReaderUIAcceptanceTests" and (
+                not separator or method == "testPointerHoverClickAndHardwareKeyboardDismissal"):
+            return True
+        if suite == "GlobalSearchNativeAcceptanceTests" and (
+                not separator or method == "testHeaderAndHistoryNativeAccessibilityAudit"):
+            return True
+    return False
+
+
+def main(live_provider=None):
+    root = Path.cwd()
+    artifacts = root / "build/artifacts"
+    artifacts.mkdir(parents=True, exist_ok=True)
+    app = root / "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+    prototype = root / "build/SafariPrototypeReference/DerivedData/Build/Products/Debug-iphonesimulator/SafariPrototypeReference.app"
+    if not app.is_dir():
+        raise SystemExit("The actual built app is missing")
+
+    controller = runtime27_interruption.InterruptController().install()
+    report = None
+    try:
+        def sim_json(*args):
+            return json.loads(subprocess.check_output(["xcrun", "simctl", *args, "-j"], text=True, timeout=60))
+
+        runtimes = [runtime for runtime in sim_json("list", "runtimes", "available")["runtimes"]
+                    if runtime.get("isAvailable") and runtime["identifier"].startswith("com.apple.CoreSimulator.SimRuntime.iOS")
+                    and runtime["version"].split(".")[0] == "27"]
+        if not runtimes:
+            raise SystemExit("Required iPadOS 27 runtime is unavailable; older Simulator results cannot satisfy this gate")
+        # Prefer the installed SDK's matching runtime before a newer installed runtime.
+        # The 27.x gate and exact supported-device checks below remain mandatory.
+        # Record this choice rather than silently selecting a newer runtime variant.
+        sdk_version = subprocess.check_output(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-version"],
+                                              text=True, timeout=60).strip()
+        sdk_major_minor = tuple(map(int, sdk_version.split(".")[:2]))
+        runtimes.sort(key=lambda value: (
+            tuple(map(int, value["version"].split(".")[:2])) == sdk_major_minor,
+            tuple(map(int, value["version"].split(".")))
+        ), reverse=True)
+        selected_runtime = os.environ.get("FAITHFUL_RUNTIME27_IDENTIFIER")
+        if selected_runtime:
+            runtimes = [runtime for runtime in runtimes
+                        if runtime["identifier"] == selected_runtime
+                        and tuple(map(int, runtime["version"].split(".")[:2])) == sdk_major_minor]
+            if not runtimes:
+                raise SystemExit("The selected SDK-matched runtime is unavailable; no cross-version fallback")
+        device_types = sim_json("list", "devicetypes")["devicetypes"]
+        baseline = os.environ.get("VALIDATING_BASELINE") == "true"
+        diagnostic_cases = [item.strip() for item in os.environ.get("FAITHFUL_DIAGNOSTIC_CASES", "").split(",") if item.strip()]
+        release_manifest = None
+        release_configurations = {}
+        if os.environ.get("FAITHFUL_RUNTIME27_RELEASE_MANIFEST"):
+            if baseline or diagnostic_cases or os.environ.get("FAITHFUL_RUNTIME27_MANIFEST"):
+                raise SystemExit("Full release configurations cannot mix with baseline or scoped diagnostics")
+            expected_manifest = root / "Scripts/CI/runtime27-release-manifest.json"
+            if Path(os.environ["FAITHFUL_RUNTIME27_RELEASE_MANIFEST"]).resolve() != expected_manifest.resolve():
+                raise SystemExit("Unexpected release manifest path")
+            release_manifest = runpy.run_path("Scripts/CI/runtime27-release.py")["load_manifest"](root)
+            release_configurations = {
+                row["device_size"]: row for row in release_manifest["configurations"]
+                if row["data_profile"] == "miniTest10" and "content_size" not in row
+            }
+        original_test_run = None
+        if os.environ.get("FAITHFUL_RELEASE_XCTESTRUN"):
+            if not release_manifest:
+                raise SystemExit("Transferred test products require the full original Release manifest")
+            receipt = runtime27_release_handoff.read_json(root / "build/runtime27-handoff/imported-build.json")
+            runtime27_release_handoff.validate_receipt(
+                receipt, runtime27_release_handoff.context(root), "build")
+            original_test_run = runtime27_release_handoff.original_xctestrun(root, receipt)
+            if Path(os.environ["FAITHFUL_RELEASE_XCTESTRUN"]).resolve() != original_test_run.resolve():
+                raise SystemExit("Cannot substitute a different test-run file")
+        runtime27_contract = None
+        runtime27_groups = None
+        if os.environ.get("FAITHFUL_RUNTIME27_MANIFEST"):
+            runtime27_contract = json.loads(Path(os.environ["FAITHFUL_RUNTIME27_MANIFEST"]).read_text())
+            runtime27_groups = runpy.run_path("Scripts/CI/runtime27.py")["execution_groups"](runtime27_contract)
+            diagnostic_cases = [value for group in runtime27_groups for value in group["case_ids"]]
+        if diagnostic_cases:
+            selection = runpy.run_path("Scripts/CI/verify-faithful-xctest.py")["validate_selections"](diagnostic_cases)
+            if (selection["status"] != "DECLARATIONS_MATCH"
+                    or len(set(diagnostic_cases)) != len(diagnostic_cases)
+                    or any(not re.fullmatch(r"\w+/test\w+", item) for item in diagnostic_cases)
+                    or any(len(value["expected"]) != 1 for value in selection["suites"])):
+                raise SystemExit("Every diagnostic selection must name one declared, unique Suite/testMethod: "
+                                 + json.dumps(selection))
+        if live_provider is not None:
+            live_provider.validate_selection(baseline, release_manifest, diagnostic_cases)
+        app_sha = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+        report = {"appSHA": app_sha, "testSHA": os.environ.get("GITHUB_SHA"), "baseline": baseline,
+                  "configuration": "Debug", "dataProfile": "miniTest10", "devices": [],
+                  "fullMatrixAcceptance": not bool(diagnostic_cases), "diagnosticCases": diagnostic_cases,
+                  "simulatorSDKVersion": sdk_version,
+                  "runtimePreference": "explicit-SDK-matched-pair" if selected_runtime else "matching-installed-SDK-then-newest-available-27.x",
+                  "selectedRuntimeIdentifier": selected_runtime,
+                  "releaseManifestSHA256": hashlib.sha256((root / "Scripts/CI/runtime27-release-manifest.json").read_bytes()).hexdigest() if release_manifest else None}
+
+        def write_matrix_report():
+            if report is not None:
+                runtime27_interruption.write_json_atomic(artifacts / "faithful-ipad-matrix.json", report)
+
+        def create_compatible_ipad(size, on_created=None):
+            candidates = [value for value in device_types if
+                          (bool(re.search(r"iPhone-[0-9]+(?:-|$)", value["identifier"])) if size == "phone" else "iPad Pro" in value["name"] and f"{size}-inch" in value["name"])]
+            # Use a numbered conventional iPhone for the existing compact-phone gate.
+            # The SDK-matched runtime exposed only iPhone Duo in run42510775166;
+            # its different native size classes/toolbars do not test this gate's
+            # conventional portrait-phone contract. Record the exact selected device.
+            # Some installed device profiles (e.g. RAM variants) are incompatible with
+            # an otherwise available runtime. Let CoreSimulator verify each exact pair.
+            def preference(value):
+                generation = re.search(r"(?:-M|iPhone-)([0-9]+)", value["identifier"])
+                return ("16GB" in value["identifier"], -int(generation[1]) if generation else 0, value["identifier"])
+            candidates.sort(key=preference)
+            failures = []
+            for runtime in runtimes:
+                supported = {value["identifier"] for value in runtime.get("supportedDeviceTypes", [])}
+                for device_type in candidates:
+                    if device_type["identifier"] not in supported:
+                        continue
+                    result = subprocess.run(["xcrun", "simctl", "create", f"Faithful {size}-inch {uuid.uuid4().hex[:8]}",
+                                             device_type["identifier"], runtime["identifier"]], text=True, capture_output=True, timeout=90)
+                    if result.returncode == 0:
+                        created_udid = result.stdout.strip()
+                        if created_udid and on_created is not None:
+                            on_created(created_udid)
+                        return created_udid, device_type, runtime, failures
+                    failures.append({"deviceType": device_type["identifier"], "runtime": runtime["identifier"], "error": result.stderr.strip()})
+            raise SystemExit(f"No compatible {size}-inch iPad Pro / iPadOS 27 pair: {json.dumps(failures)}")
+
+        phone_case_prefix = ("FaithfulReaderIPhoneTests/", "R27NativePhoneTests/", "NativeRoutingPhoneAcceptanceTests/")
+        diagnostic_sizes = (["11"] if any(not case.startswith(phone_case_prefix) for case in diagnostic_cases) else [])
+        diagnostic_sizes += ["phone"] if any(case.startswith(phone_case_prefix) for case in diagnostic_cases) else []
+        scenarios = runtime27_groups or [{"size": size, "label": size} for size in (diagnostic_sizes if diagnostic_cases else ["11", "13", "phone"])]
+        for index, scenario in enumerate(scenarios):
+            if controller.interrupted:
+                break
+            size, label = scenario["size"], scenario["label"]
+            udid = None
+            device = None
+            recording = None
+            recording_log = None
+            palette_log_stream = None
+            hid_comparison = None
+            native_url_delivery = None
+            active_xcodebuild = None
+
+            def _record_created_udid(value):
+                nonlocal udid
+                udid = value
+
+            def phase(name, **details):
+                device["phase"] = name
+                device["phaseStartedAt"] = datetime.now(timezone.utc).isoformat()
+                device["phaseDetails"] = details
+                write_matrix_report()
+                print(f"Faithful {label}-inch: {name} {json.dumps(details)}", flush=True)
+
+            def install_owned_app(path, bundle, timeout):
+                """Recover only a timed-out Simulator installation, never an XCTest."""
+                assert device["udid"] == udid
+                attempts = device.setdefault("installationAttempts", [])
+                for attempt in range(2):
+                    record = {"bundle": bundle, "attempt": attempt + 1, "status": "STARTED"}
+                    attempts.append(record)
+                    try:
+                        phase("INSTALLING", bundle=bundle, attempt=attempt + 1, timeoutSeconds=timeout)
+                        subprocess.run(["xcrun", "simctl", "install", udid, str(path)], check=True, timeout=timeout)
+                        phase("VERIFYING_APP_CONTAINER", bundle=bundle, attempt=attempt + 1)
+                        installed = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, bundle, "app"],
+                                                            text=True, timeout=45).strip()
+                        if not installed or not Path(installed).is_dir():
+                            raise RuntimeError(f"Native installer did not expose the actual {bundle} application container")
+                        record.update(status="INSTALLED", appContainer=installed)
+                        phase("INSTALLED", bundle=bundle, attempt=attempt + 1)
+                        return
+                    except subprocess.TimeoutExpired as error:
+                        record["timedOutPhase"] = device.get("phase")
+                        record.update(status="INSTALL_TIMEOUT", error=str(error))
+                        phase("INSTALL_TIMEOUT", bundle=bundle, attempt=attempt + 1)
+                        if attempt:
+                            raise
+                        # Preserve the first timeout and exact native service evidence.
+                        phase("COLLECTING_INSTALL_DIAGNOSTICS", bundle=bundle)
+                        try:
+                            subprocess.run([sys.executable, "Scripts/CI/collect-faithful-simulator-failure.py", udid, label],
+                                           check=False, timeout=150)
+                        except subprocess.TimeoutExpired:
+                            # Run 42014227785 showed diagnostics itself timing out and
+                            # aborting the single authorized install recovery. Retain
+                            # partial evidence and the timeout; actual reinstall, launch
+                            # and every native XCTest remain required for acceptance.
+                            record["diagnostics"] = "TIMEOUT"
+                            phase("INSTALL_DIAGNOSTICS_TIMEOUT", bundle=bundle)
+                        for diagnostic in artifacts.glob(f"simulator-failure-{label}*"):
+                            diagnostic.rename(diagnostic.with_name(diagnostic.name.replace(
+                                f"simulator-failure-{label}", f"simulator-install-recovery-{label}-{bundle}", 1)))
+                        phase("RESTARTING_OWNED_SIMULATOR", bundle=bundle)
+                        subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=240)
+                        subprocess.run(["xcrun", "simctl", "boot", udid], check=True, timeout=90)
+                        subprocess.run(["xcrun", "simctl", "bootstatus", udid, "-b"], check=True, timeout=900)
+
+            def mark_device_interrupted(error):
+                controller.mark_interrupted(error)
+                if device is not None:
+                    if device.get("status") != "INTERRUPTED":
+                        device["interruptedPhase"] = device.get("phase")
+                    device["status"] = "INTERRUPTED"
+                    device["error"] = f"{type(error).__name__}: {error}"
+                    if isinstance(device.get("largeText"), dict) and device["largeText"].get("status") != "EXECUTED_PASS":
+                        device["largeText"]["status"] = "INTERRUPTED"
+                else:
+                    report.setdefault("interruptedPhase", "BEFORE_SIMULATOR_CREATED" if udid is None else "AFTER_SIMULATOR_CREATED")
+                    report["error"] = f"{type(error).__name__}: {error}"
+                report["status"] = "INTERRUPTED_UI_UNVERIFIED"
+                report["interrupted"] = True
+
+            def run_interrupted_cleanup():
+                nonlocal device, active_xcodebuild, native_url_delivery, hid_comparison, palette_log_stream, recording, recording_log
+                with controller.cleanup_scope():
+                    if udid is not None and device is None:
+                        device = {
+                            "size": size,
+                            "label": label,
+                            "udid": udid,
+                            "status": "INTERRUPTED",
+                            "interruptedPhase": "AFTER_SIMULATOR_CREATED",
+                        }
+                        report["devices"].append(device)
+                    if device is not None:
+                        device["status"] = "INTERRUPTED"
+                        if isinstance(device.get("largeText"), dict) and device["largeText"].get("status") != "EXECUTED_PASS":
+                            device["largeText"]["status"] = "INTERRUPTED"
+                        device.setdefault("ownedSimulatorCleanup", "PENDING")
+                    elif udid is None:
+                        report.setdefault("interruptedPhase", "BEFORE_SIMULATOR_CREATED")
+                    report["status"] = "INTERRUPTED_UI_UNVERIFIED"
+                    report["interrupted"] = True
+                    try:
+                        write_matrix_report()
+                    except OSError:
+                        pass
+
+                    cleanup_errors = {}
+                    if active_xcodebuild is not None:
+                        runtime27_interruption.run_isolated_cleanup_step(
+                            "xcodebuild",
+                            lambda: runtime27_interruption.stop_owned_subprocess(active_xcodebuild, prefer_sigint=True),
+                            cleanup_errors,
+                        )
+                        active_xcodebuild = None
+                    if live_provider is not None and udid is not None:
+                        runtime27_interruption.run_isolated_cleanup_step(
+                            "live_private_input", lambda: live_provider.cleanup(udid), cleanup_errors
+                        )
+                    if native_url_delivery is not None:
+                        runtime27_interruption.run_isolated_cleanup_step(
+                            "native_url_delivery", native_url_delivery.stop, cleanup_errors
+                        )
+                        native_url_delivery = None
+                    if hid_comparison is not None:
+                        runtime27_interruption.run_isolated_cleanup_step(
+                            "hid_comparison", hid_comparison.stop, cleanup_errors
+                        )
+                        hid_comparison = None
+                    if palette_log_stream is not None:
+                        stream_report = runtime27_interruption.run_isolated_cleanup_step(
+                            "palette_log_stream", palette_log_stream.stop, cleanup_errors
+                        )
+                        palette_log_stream = None
+                        if stream_report is not None and device is not None:
+                            device["paletteInputStream"] = stream_report
+                    if recording is not None:
+                        runtime27_interruption.run_isolated_cleanup_step(
+                            "recording",
+                            lambda: runtime27_interruption.stop_owned_subprocess(recording, prefer_sigint=True),
+                            cleanup_errors,
+                        )
+                        recording = None
+                    if recording_log is not None:
+                        runtime27_interruption.run_isolated_cleanup_step("recording_log", recording_log.close, cleanup_errors)
+                        recording_log = None
+                    if device is not None:
+                        if runtime27_contract and label == "11-window":
+                            device.setdefault("paletteInputDiagnosticExitCode", "SKIPPED_ON_INTERRUPTION")
+                        if cleanup_errors:
+                            device["cleanupErrors"] = cleanup_errors
+                    try:
+                        write_matrix_report()
+                    except OSError:
+                        pass
+
+                    if udid is not None and (device is None or device.get("ownedSimulatorCleanup") != "PASS"):
+                        try:
+                            subprocess.run(
+                                [sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid],
+                                check=True,
+                                timeout=runtime27_interruption.INTERRUPTED_SIM_SHUTDOWN_TIMEOUT,
+                            )
+                            # Delete only the disposable simulator created above, never a user's/default device.
+                            subprocess.run(
+                                ["xcrun", "simctl", "delete", udid],
+                                check=True,
+                                capture_output=True,
+                                timeout=runtime27_interruption.INTERRUPTED_SIM_DELETE_TIMEOUT,
+                            )
+                            if device is not None:
+                                device["ownedSimulatorCleanup"] = "PASS"
+                        except (subprocess.SubprocessError, OSError, KeyboardInterrupt) as cleanup_error:
+                            if device is not None:
+                                device["ownedSimulatorCleanup"] = "FAIL"
+                                device["ownedSimulatorCleanupError"] = type(cleanup_error).__name__
+                        finally:
+                            try:
+                                write_matrix_report()
+                            except OSError:
+                                pass
+
+            try:
+                udid, device_type, runtime, failures = create_compatible_ipad(size, on_created=_record_created_udid)
+                device = {"size": size, "label": label, "type": device_type, "runtime": runtime, "udid": udid, "status": "NOT_RUN", "incompatiblePairs": failures}
+                report["devices"].append(device)
+                phase("BOOTING", udid=udid)
+                subprocess.run(["xcrun", "simctl", "boot", udid], check=True, timeout=90)
+                subprocess.run(["xcrun", "simctl", "bootstatus", udid, "-b"], check=True, timeout=900)
+                # Verify the small independent oracle first, before the large app's
+                # installation/indexing. Both iPad sizes previously timed out installing
+                # this oracle after Maktabah, for baseline and candidate alike.
+                if size != "phone" and (not diagnostic_cases or any(case.startswith("SafariPrototypeReferenceTests/") for case in diagnostic_cases)):
+                    install_owned_app(prototype, "com.example.safaritoolbarsearch", 180)
+                    phase("VERIFYING_ORACLE_LAUNCH")
+                    subprocess.run(["xcrun", "simctl", "launch", udid, "com.example.safaritoolbarsearch"], check=True, timeout=90)
+                    subprocess.run(["xcrun", "simctl", "terminate", udid, "com.example.safaritoolbarsearch"], check=True, timeout=60)
+                install_owned_app(app, "com.davidpovarsky.chavrusatext", 600)
+                (root / "sim_udid.txt").write_text(udid)
+                phase("PROVISIONING_NATIVE_FIXTURES")
+                for fixture_attempt in range(2):
+                    try:
+                        subprocess.run([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py", "--artifact-label", label],
+                                       check=True, timeout=720)
+                        break
+                    except subprocess.CalledProcessError:
+                        fixture_report = artifacts / f"miniTest10-native-fixture-install-{label}.json"
+                        failure = json.loads(fixture_report.read_text()) if fixture_report.is_file() else {}
+                        termination_report = artifacts / f"miniTest10-native-fixture-termination-{label}.json"
+                        termination = json.loads(termination_report.read_text()) if termination_report.is_file() else {}
+                        recover_cleanup = runpy.run_path("Scripts/CI/runtime27-fixture-recovery.py")["verified_fixture_cleanup_timeout"]
+                        if recover_cleanup(failure, termination, fixture_attempt):
+                            # Run43750733453 installed the genuine hashed fixture, then
+                            # simctl terminate timed out. Preserve that failure and
+                            # prove the exact owned simulator is idle before reboot.
+                            # No failed installer/test is retried or counted as passed.
+                            shutil.copyfile(fixture_report, artifacts / f"miniTest10-native-fixture-install-{label}-before-reboot.json")
+                            shutil.copyfile(termination_report, artifacts / f"miniTest10-native-fixture-termination-{label}-before-reboot.json")
+                            phase("RECOVERING_VERIFIED_FIXTURE_CLEANUP_TIMEOUT", udid=udid)
+                            assert device["udid"] == udid
+                            subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=240)
+                            subprocess.run(["xcrun", "simctl", "boot", udid], check=True, timeout=90)
+                            subprocess.run(["xcrun", "simctl", "bootstatus", udid, "-b"], check=True, timeout=900)
+                            device["fixtureCleanupRecovery"] = "OWNED_SHUTDOWN_VERIFIED_AND_REBOOTED; ALL_UI_STILL_REQUIRED"
+                            break
+                        retry_download = runpy.run_path("Scripts/CI/runtime27-fixture-recovery.py")["transient_fixture_download_failure"]
+                        if not retry_download(failure, fixture_attempt):
+                            raise
+                        # Preserve the real failed report. Relaunch the same native
+                        # installer once; every data/profile/hash check remains intact.
+                        shutil.copyfile(fixture_report, artifacts / f"miniTest10-native-fixture-install-{label}-attempt-1.json")
+                        phase("RETRYING_TRANSIENT_FIXTURE_DOWNLOAD", attempt=2)
+                        time.sleep(5)
+                selection = ["SafariPrototypeReferenceTests", "FaithfulReaderVisualBaselineTests"]
+                if size == "phone":
+                    selection = ["FaithfulReaderIPhoneTests"]
+                elif not baseline:
+                    selection.append("FaithfulReaderUIAcceptanceTests")
+                    if index == 0:
+                        selection.extend(["SefariaEmbeddedAcceptanceTests", "Build8401SevenDefectsAcceptanceTests", "PullNavigationAcceptanceTests"])
+                if diagnostic_cases:
+                    selection = [case for case in diagnostic_cases
+                                 if case.startswith(phone_case_prefix) == (size == "phone")]
+                if runtime27_groups:
+                    selection = scenario["case_ids"]
+                if release_manifest:
+                    required = release_configurations[size]
+                    selection = required["required_ui_cases"] + required.get("required_oracle_cases", [])
+                result = artifacts / f"result-{label}.xcresult"
+                command = ["xcodebuild", "test-without-building", "-workspace", "Maktabah.xcworkspace", "-scheme", "Maktabah-iOS",
+                           "-clonedSourcePackagesDirPath", "build/SourcePackages",
+                           "-disableAutomaticPackageResolution",
+                           "-parallel-testing-enabled", "NO",
+                           "-destination", f"platform=iOS Simulator,id={udid}", "-derivedDataPath", "build/DerivedData",
+                           "-resultBundlePath", str(result)]
+                if original_test_run:
+                    # Only the separate Release continuation uses this unchanged
+                    # original generated plist; the same-job command stays intact.
+                    command = ["xcodebuild", "test-without-building", "-xctestrun", str(original_test_run),
+                               "-parallel-testing-enabled", "NO", "-destination", f"platform=iOS Simulator,id={udid}",
+                               "-resultBundlePath", str(result)]
+                if runtime27_contract or release_manifest:
+                    # A stalled AX query consumed68 minutes in run44207959071.
+                    # Native XCTest must fail and retain that case, then permit
+                    # later required cases to execute; never retry to obtainPASS.
+                    command.extend(["-test-timeouts-enabled", "YES",
+                                    "-default-test-execution-time-allowance", "600",
+                                    "-maximum-test-execution-time-allowance", "600"])
+                command.extend(f"-only-testing:Maktabah-iOSUITests/{suite}" for suite in selection)
+                environment = os.environ.copy()
+                if release_manifest:
+                    environment["TEST_RUNNER_RUNTIME27_RECORD_CONFIGURATION"] = "1"
+                container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True, timeout=45).strip()
+                environment["TEST_RUNNER_FAITHFUL_VIEWPORT_DIRECTORY"] = str(Path(container) / "Documents")
+                if any(case.startswith("GlobalSearchNativeAcceptanceTests/testZayit") for case in selection):
+                    environment["TEST_RUNNER_GLOBAL_SEARCH_ZAYIT_CANONICAL_FIXTURE"] = (
+                        "test-bundle:canonical-miniTest10-metadata.json")
+                    device["canonicalZayitMetadataDelivery"] = "test-bundle; native read attachment required"
+                if any(case.startswith(("NativeRoutingAcceptanceTests/", "NativeRoutingPhoneAcceptanceTests/")) for case in selection):
+                    native_url_delivery = runpy.run_path("Scripts/CI/runtime27-url-delivery.py")["NativeURLDelivery"](
+                        udid, container, label, artifacts / "runtime27")
+                    environment.update(native_url_delivery.start())
+                if ((runtime27_contract and runtime27_contract.get("hid_comparison") and scenario.get("hid_comparison", True))
+                        or (release_manifest and runpy.run_path("Scripts/CI/runtime27-release.py")["requires_native_hid"](selection))):
+                    tools = json.loads((artifacts / "runtime27/hid-tools.json").read_text())
+                    hid_comparison = runpy.run_path("Scripts/CI/runtime27-hid.py")["HIDComparison"](
+                        udid, container, label, tools, artifacts / "runtime27")
+                    environment.update(hid_comparison.start())
+                if runtime27_contract or release_manifest:
+                    environment.update(runpy.run_path("Scripts/CI/runtime27-fixture-oracle.py")["derive_oracle"](
+                        udid, label,
+                        include_sidebar=any(case.startswith("Sidebar11201AcceptanceTests/") for case in selection),
+                        include_search=any(case.startswith((
+                            "GlobalSearchNativeAcceptanceTests/",
+                            "NativeRoutingAcceptanceTests/testCoreSearchOpenResults",
+                            "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResults"
+                        )) for case in selection)))
+                    if live_provider is not None:
+                        environment.update(live_provider.stage(udid, container, label, selection))
+                    else:
+                        recording_log = (artifacts / f"runtime27/recording-{label}.log").open("w")
+                        recording = subprocess.Popen(["xcrun", "simctl", "io", udid, "recordVideo", str(artifacts / f"runtime27/native-{label}.mp4")],
+                                                     stdout=recording_log, stderr=subprocess.STDOUT)
+                if runtime27_contract and label == "11-window":
+                    palette_log_stream = runpy.run_path("Scripts/CI/collect-runtime27-palette-log.py")["PaletteLogStream"](udid, label).start()
+                phase("RUNNING_NATIVE_XCTEST", suites=selection)
+                with (artifacts / f"test-simulator-{label}.log").open("w") as log:
+                    process = subprocess.Popen(command, env=environment, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
+                    active_xcodebuild = process
+                    for line in process.stdout:
+                        if live_provider is not None:
+                            line = live_provider.redact_evidence(line)
+                        if hid_comparison is not None:
+                            line = hid_comparison.redact_evidence(line)
+                        if native_url_delivery is not None:
+                            line = native_url_delivery.redact_evidence(line)
+                        log.write(line)
+                        log.flush()
+                        print(line, end="", flush=True)
+                    code = process.wait()
+                    active_xcodebuild = None
+                device["xcodebuildExitCode"] = code
+                log_text = (artifacts / f"test-simulator-{label}.log").read_text()
+                missing_suites = [suite for suite in sorted({item.split("/")[0] for item in selection}) if not re.search(
+                    r"Test Suite '(?:[^']*\.)?" + re.escape(suite) + r"' passed", log_text)]
+                device["requiredSuites"] = selection
+                device["missingOrFailedSuites"] = missing_suites
+                if code == 0 and missing_suites:
+                    code = 1
+                verification = subprocess.run([sys.executable, "Scripts/CI/verify-faithful-xctest.py",
+                                               "--log", str(artifacts / f"test-simulator-{label}.log"),
+                                               "--out", str(artifacts / f"test-case-execution-{label}.json"), *selection])
+                if verification.returncode:
+                    code = code or 1
+                # Consume actual xcresult, not merely Xcode's textual summaries. Exact
+                # named methods are required for the reviewed R27 subset; default full
+                # suite selections expand through the existing declaration verifier.
+                declared = runpy.run_path("Scripts/CI/verify-faithful-xctest.py")["verify"]("", selection)
+                required = [row["suite"] + "/" + method for row in declared["suites"] for method in row["expected"]]
+                strict = [sys.executable, "tools/verify_xcresult_zero_skips.py", "--xcresult", str(result),
+                          "--log", str(artifacts / f"test-simulator-{label}.log"), "--scope", "focused-ui",
+                          "--expected-device", udid, "--expected-os-major", "27",
+                          "--min-tests", str(len(required)), "--out", str(artifacts / f"runtime27/verified-{label}.json")]
+                for identity in required:
+                    strict.extend(["--required-case", identity])
+                if subprocess.run(strict).returncode:
+                    code = code or 1
+                # Runner restarts produce several partial textual suite totals.
+                # Run44559352638 had 34 Reader results but max(Executed N) was
+                # only 16. Report actual xcresult counts even when acceptance fails.
+                result_guard = runpy.run_path("tools/verify_xcresult_zero_skips.py")
+                try:
+                    summary_path = artifacts / f"runtime27/verified-{label}.summary.json"
+                    device.update(result_guard["xcresult_counts"](json.loads(summary_path.read_text())))
+                except (ValueError, OSError) as error:
+                    device.update(executedXCTestCount=None, xctestCountError=str(error))
+                    code = code or 1
+                minimum_count = len(selection) if diagnostic_cases else (1 if baseline or size == "phone" else 6)
+                if code == 0 and device["executedXCTestCount"] < minimum_count:
+                    raise SystemExit("Expected black-box XCTest cases were not actually executed")
+                device["status"] = "EXECUTED_PASS" if code == 0 else "FAIL"
+                if live_provider is not None:
+                    live_provider.capture(udid, label)
+                if requires_native_log_collection(selection):
+                    native_dir = artifacts / f"native-routing-logs-{label}"
+                    native_dir.mkdir(parents=True, exist_ok=True)
+                    native_log_report = {"udid": udid, "label": label, "bundleID": "com.davidpovarsky.chavrusatext",
+                                         "collectedAt": datetime.now(timezone.utc).isoformat(), "status": "MISSING"}
+                    try:
+                        actual_container = Path(subprocess.check_output(
+                            ["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"],
+                            text=True, timeout=45).strip())
+                        actual_log = actual_container / "Documents/OtzariaLogs/otzaria-reader.log"
+                        native_log_report["actualContainer"] = str(actual_container)
+                        if actual_log.is_file():
+                            retained_log = native_dir / "otzaria-reader.log"
+                            shutil.copyfile(actual_log, retained_log)
+                            native_log_report.update(status="RETAINED", bytes=retained_log.stat().st_size,
+                                                     sha256=hashlib.sha256(retained_log.read_bytes()).hexdigest(),
+                                                     artifact=str(retained_log.relative_to(artifacts)))
+                    except Exception as error:
+                        native_log_report.update(status="COLLECTION_ERROR", error=str(error))
+                    (native_dir / "collection.json").write_text(json.dumps(native_log_report, indent=2) + "\n")
+                    device["nativeRoutingLog"] = native_log_report
+                viewport_reports = artifacts / f"viewport-reports-{label}"
+                viewport_reports.mkdir(parents=True, exist_ok=True)
+                # XCTest can relocate the installed data container. Collect only the
+                # explicitly UUID-named read-only viewport reports from native app data.
+                for candidate in Path(container).parent.iterdir():
+                    for source in (candidate / "Documents").glob("faithful-*.viewport.json"):
+                        shutil.copyfile(source, viewport_reports / source.name)
+                # Attachments are exported even after a failing test for honest diagnosis.
+                if result.is_dir() and live_provider is None:
+                    subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(result),
+                                    "--output-path", str(artifacts / f"visual-{label}")], check=True)
+                if size == "13" and not runtime27_contract:
+                    help_result = subprocess.run(["xcrun", "simctl", "help", "ui"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=True)
+                    (artifacts / "simctl-ui-help.txt").write_text(help_result.stdout)
+                    requested_size = "accessibility-extra-extra-extra-large"
+                    if "content_size" not in help_result.stdout or requested_size not in help_result.stdout:
+                        raise SystemExit("Installed simctl cannot verify the required accessibility text-size configuration")
+                    device["largeText"] = {"status": "NOT_RUN", "requested": requested_size}
+                    try:
+                        subprocess.run(["xcrun", "simctl", "ui", udid, "content_size", requested_size], check=True)
+                        actual_size = subprocess.check_output(["xcrun", "simctl", "ui", udid, "content_size"], text=True).strip()
+                        device["largeText"]["actual"] = actual_size
+                        if requested_size not in actual_size:
+                            raise SystemExit("The requested system text-size setting was not actually applied")
+                        large_result = artifacts / "result-13-large-text.xcresult"
+                        large_command = [value for value in command if not value.startswith("-only-testing:")]
+                        large_command[large_command.index("-resultBundlePath") + 1] = str(large_result)
+                        large_selection = (next(row for row in release_manifest["configurations"] if row["id"] == "ipad13-largest-text")["required_ui_cases"]
+                                           if release_manifest else ["FaithfulReaderLargeTextTests"])
+                        large_command.extend("-only-testing:Maktabah-iOSUITests/" + case for case in large_selection)
+                        environment["TEST_RUNNER_FAITHFUL_BASELINE"] = str(baseline).lower()
+                        log_path = artifacts / "test-simulator-13-large-text.log"
+                        phase("RUNNING_LARGEST_TEXT_XCTEST", ordinarySuitesStatus=device["status"])
+                        with log_path.open("w") as log:
+                            large_proc = subprocess.run(large_command, env=environment, stdout=log, stderr=subprocess.STDOUT, text=True)
+                        verification = subprocess.run([sys.executable, "Scripts/CI/verify-faithful-xctest.py",
+                                                       "--log", str(log_path), "--out", str(artifacts / "test-case-execution-13-large-text.json"),
+                                                       *large_selection])
+                        if release_manifest:
+                            strict_large = [sys.executable, "tools/verify_xcresult_zero_skips.py",
+                                            "--xcresult", str(large_result), "--log", str(log_path),
+                                            "--scope", "focused-ui", "--expected-device", udid,
+                                            "--expected-os-major", "27", "--min-tests", str(len(large_selection)),
+                                            "--out", str(artifacts / "runtime27/verified-13-large-text.json")]
+                            for identity in large_selection:
+                                strict_large.extend(["--required-case", identity])
+                            large_verified = subprocess.run(strict_large).returncode == 0
+                        else:
+                            large_verified = True
+                        try:
+                            summary = result_guard["read_xcresult"](large_result, "summary")
+                            device["largeText"].update(result_guard["xcresult_counts"](summary))
+                            (artifacts / "runtime27/verified-13-large-text.summary.json").write_text(json.dumps(summary, indent=2) + "\n")
+                        except (ValueError, OSError, subprocess.SubprocessError) as error:
+                            device["largeText"].update(executedXCTestCount=None, xctestCountError=str(error))
+                            large_verified = False
+                        if large_result.is_dir():
+                            subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(large_result),
+                                            "--output-path", str(artifacts / "visual-13-large-text")], check=True)
+                        if large_proc.returncode or not device["largeText"]["executedXCTestCount"] or verification.returncode or not large_verified:
+                            device["largeText"]["status"] = "FAIL"
+                            raise SystemExit("Largest-text real UI acceptance failed or did not execute")
+                        device["largeText"]["status"] = "EXECUTED_PASS"
+                    finally:
+                        if controller.interrupted:
+                            if device["largeText"].get("status") != "EXECUTED_PASS":
+                                device["largeText"]["status"] = "INTERRUPTED"
+                        else:
+                            subprocess.run(["xcrun", "simctl", "ui", udid, "content_size", "large"], check=True)
+                if code:
+                    raise SystemExit(f"Native UI acceptance failed: {missing_suites}; acceptance status {code}; actual xcodebuild status {device['xcodebuildExitCode']}")
+            except KeyboardInterrupt as error:
+                mark_device_interrupted(error)
+                if device is not None:
+                    try:
+                        phase("INTERRUPTED", error=device["error"])
+                    except OSError:
+                        pass
+            except (Exception, SystemExit) as error:
+                if device is None:
+                    raise
+                device["status"] = "FAIL"
+                device["error"] = f"{type(error).__name__}: {error}"
+                device["failedPhase"] = device.get("phase")
+                try:
+                    phase("FAILED", error=device["error"])
+                except OSError as write_error:
+                    device["matrixReportWriteError"] = f"{type(write_error).__name__}: {write_error}"
+                try:
+                    if live_provider is None:
+                        subprocess.run([sys.executable, "Scripts/CI/collect-faithful-simulator-failure.py", udid, label], check=False, timeout=150)
+                except subprocess.TimeoutExpired:
+                    device["diagnostics"] = "TIMEOUT"
+                # Retain a hard failure, but still execute the other required native
+                # configurations so one device does not hide the iPhone/13-inch result.
+            finally:
+                if controller.interrupted:
+                    run_interrupted_cleanup()
+                elif udid is not None:
+                    try:
+                        if live_provider is not None:
+                            live_cleanup_errors = {}
+                            runtime27_interruption.run_isolated_cleanup_step(
+                                "live_private_input", lambda: live_provider.cleanup(udid), live_cleanup_errors
+                            )
+                            if live_cleanup_errors:
+                                device["status"] = "FAIL"
+                                device["livePrivateInputCleanup"] = live_cleanup_errors
+                        if native_url_delivery is not None:
+                            native_url_delivery.stop()
+                            native_url_delivery = None
+                        if hid_comparison is not None:
+                            hid_comparison.stop()
+                            hid_comparison = None
+                        if palette_log_stream is not None:
+                            device["paletteInputStream"] = palette_log_stream.stop()
+                            palette_log_stream = None
+                        if recording is not None:
+                            recording.send_signal(signal.SIGINT)
+                            try:
+                                recording.wait(timeout=30)
+                            except subprocess.TimeoutExpired:
+                                recording.terminate()
+                                recording.wait(timeout=15)
+                            recording = None
+                        if recording_log is not None:
+                            recording_log.close()
+                            recording_log = None
+                        if runtime27_contract and label == "11-window":
+                            try:
+                                diagnostic = subprocess.run([sys.executable, "Scripts/CI/collect-runtime27-palette-log.py", udid, label],
+                                                            check=False, timeout=60)
+                                device["paletteInputDiagnosticExitCode"] = diagnostic.returncode
+                            except subprocess.TimeoutExpired:
+                                device["paletteInputDiagnosticExitCode"] = "TIMEOUT; no handler-delivery inference"
+                        report_write_error = None
+                        try:
+                            write_matrix_report()
+                        except OSError as write_error:
+                            report_write_error = write_error
+                            device["status"] = "FAIL"
+                            device["matrixReportWriteError"] = f"{type(write_error).__name__}: {write_error}"
+                        try:
+                            subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=300)
+                            # Delete only the disposable simulator created above, never a user's/default device.
+                            subprocess.run(["xcrun", "simctl", "delete", udid], check=True, capture_output=True, timeout=120)
+                            device["ownedSimulatorCleanup"] = "PASS"
+                        except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as error:
+                            device["ownedSimulatorCleanup"] = "FAIL"
+                            device["ownedSimulatorCleanupError"] = type(error).__name__
+                            # Retain the failure and simulator, and attempt the remaining
+                            # independent configurations. Cleanup must not hide phone cases.
+                        write_matrix_report()
+                        if report_write_error is not None:
+                            raise report_write_error
+                    except KeyboardInterrupt as error:
+                        mark_device_interrupted(error)
+                        run_interrupted_cleanup()
+            if controller.interrupted:
+                break
+
+        if controller.interrupted:
+            report["status"] = "INTERRUPTED_UI_UNVERIFIED"
+            report["interrupted"] = True
+            try:
+                write_matrix_report()
+            except OSError:
+                pass
+            return 130
+
+        failed = [device["label"] for device in report["devices"]
+                  if device["status"] != "EXECUTED_PASS" or device.get("ownedSimulatorCleanup") != "PASS"]
+        if failed:
+            raise SystemExit(f"Native acceptance failed for {failed}; see per-device logs and the complete matrix. Release is prohibited.")
+        if diagnostic_cases:
+            print("Selected 11-inch diagnostics completed. Full matrix, largest text, iPhone and Release acceptance remain NOT_RUN.")
+        else:
+            print("Required iPad sizes, largest text configuration and iPhone completed; production/Release and physical-device gates are separate.")
+        return 0
+    except KeyboardInterrupt as error:
+        controller.mark_interrupted(error)
+        payload = report if report is not None else {
+            "status": "INTERRUPTED_UI_UNVERIFIED",
+            "interrupted": True,
+            "interruptedPhase": "PRE_REPORT_SETUP",
+            "devices": [],
+        }
+        payload["status"] = "INTERRUPTED_UI_UNVERIFIED"
+        payload["interrupted"] = True
+        payload["error"] = f"{type(error).__name__}: {error}"
+        try:
+            runtime27_interruption.write_json_atomic(artifacts / "faithful-ipad-matrix.json", payload)
+        except OSError as write_error:
+            print(f"Failed writing interrupted matrix report: {write_error}", file=sys.stderr)
+        return 130
+    finally:
+        controller.restore()
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

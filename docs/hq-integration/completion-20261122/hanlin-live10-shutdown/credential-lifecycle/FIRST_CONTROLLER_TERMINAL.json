@@ -1,0 +1,82 @@
+{
+  "job_id": "job_cac67a7fd3cb",
+  "status": "succeeded",
+  "exit_code": 0,
+  "finished_at": "2026-11-22T18:15:45.580610+00:00",
+  "timeout_seconds": 3600,
+  "terminal_lifecycle": {
+    "repository": "davidpovarsky/Maktabah",
+    "secret_name": "OTZARIA_LIVE_GEMINI_API_KEY",
+    "source_environment_name": "GEMINI_API_KEY",
+    "checkout_sha": "4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1",
+    "application_source_sha": "3b4345bd0ae33b83c2ff4ae7697164343f0792b8",
+    "trigger_branch": "codex/otzaria-hanlin-live-20261121",
+    "started_utc": "2026-11-22T17:19:27.467988+00:00",
+    "credential_in_argv": false,
+    "credential_value_written_to_evidence": false,
+    "secret_cleanup_required": true,
+    "controller_sha256": "9718a5eb04e50f83df9cc83f7c8b284e251ddefbd12ad20fd6ea646bfd4ff93a",
+    "native_prerequisite": {
+      "id": 45041601629,
+      "head_sha": "6591bba49d2b5a28d02b763c4360406843fce4cf",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "updated_at": "2026-11-22T17:01:04Z",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45041601629"
+    },
+    "native_prerequisite_application_source": "3b4345bd0ae33b83c2ff4ae7697164343f0792b8",
+    "native_prerequisite_raw": {
+      "artifact_id": 14763633318,
+      "archive_sha256": "e86d64c98c774b3e6e01611d46b2ab753c7c8b145643d6b654abfc6c2fb1b2b6",
+      "summary_sha256": "a9835434a6c0885a028fb0154f34e7b60873cb3d4651bc512837fd691d605979",
+      "case_tree_sha256": "94d1d080d6fac749561d00ac181bcb49d17c778258a146cb65db38509f41aa29",
+      "actual_cases": 1,
+      "pass": 1,
+      "fail": 0,
+      "skip": 0,
+      "additional_artifact_downloads": 0
+    },
+    "native_prerequisite_scope": "Actual original fresh current-work read connection without Send, on the same application/test product trees",
+    "execution_reason": "One failed Live8 selector with reviewed accessibility correction and actually available replacement model; passing Native/component cases are not replayed",
+    "diagnostic_source_review": {
+      "source": "6aa953048453b64a0013621ce76e095770eb7e7d",
+      "scope": "Historical exact-source control evidence; new complete product trees require the actual Native prerequisite",
+      "evidence_payloads_verified": 82,
+      "root_review_sha256": "960d439df6f9d0dd775fbf2f89e44d1066f47bf21024fee21fb70ccf607c5649",
+      "python_controls": 34,
+      "swift_syntax_only_files": 4
+    },
+    "provider_availability": {
+      "model": "gemini-3.5-flash-lite",
+      "result_sha256": "18fd35c6c6976b11c4ae10ec6579e1f89c9a5ca5ee1921e5616c6f6d8bc0e91d",
+      "scope": "Separate actual availability probe, not native app acceptance",
+      "additional_requests": 0
+    },
+    "prior_absent": true,
+    "execution_inputs_verified": 281,
+    "state": "OBSERVER_WINDOW_ENDED_CI_STILL_ACTIVE",
+    "secret_set_started_utc": "2026-11-22T17:20:26.059788+00:00",
+    "metadata": {
+      "name": "OTZARIA_LIVE_GEMINI_API_KEY",
+      "created_at": "2026-11-22T17:20:27Z",
+      "updated_at": "2026-11-22T17:20:27Z"
+    },
+    "push_started_utc": "2026-11-22T17:20:28.469204+00:00",
+    "push_exit_code": 0,
+    "dispatch_started_utc": "2026-11-22T17:20:34.861669+00:00",
+    "run_id": 45048898269,
+    "run_attempt": 1,
+    "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45048898269",
+    "watch_timed_out": true,
+    "observed_run": {
+      "id": 45048898269,
+      "head_sha": "4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1",
+      "run_attempt": 1,
+      "status": "in_progress",
+      "conclusion": null,
+      "updated_at": "2026-11-22T17:39:25Z",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45048898269"
+    }
+  }
+}

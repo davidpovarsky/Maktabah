@@ -1,0 +1,1356 @@
+﻿2026-11-22T17:39:26.1330980Z Current runner version: '2.338.2'
+2026-11-22T17:39:26.1366290Z ##[group]Runner Image Provisioner
+2026-11-22T17:39:26.1367480Z Hosted Compute Agent
+2026-11-22T17:39:26.1367910Z Version: 20261103.629
+2026-11-22T17:39:26.1368390Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-22T17:39:26.1368950Z Build Date: 2026-11-03T17:26:59Z
+2026-11-22T17:39:26.1369410Z Worker ID: {037a3711-3512-4103-a7fe-5b919ffedf1d}
+2026-11-22T17:39:26.1369880Z Region: westus
+2026-11-22T17:39:26.1370840Z Cloud: MacCloud
+2026-11-22T17:39:26.1371220Z ##[endgroup]
+2026-11-22T17:39:26.1372670Z ##[group]Operating System
+2026-11-22T17:39:26.1373320Z macOS
+2026-11-22T17:39:26.1377940Z 27.0.1
+2026-11-22T17:39:26.1378430Z 26A434
+2026-11-22T17:39:26.1378810Z ##[endgroup]
+2026-11-22T17:39:26.1380010Z ##[group]Runner Image
+2026-11-22T17:39:26.1380510Z Image: xcode-27-arm64
+2026-11-22T17:39:26.1380950Z Version: 20261104.0337.1
+2026-11-22T17:39:26.1382180Z Included Software: https://github.com/actions/runner-images/blob/xcode-27-arm64/20261104.0337/images/macos/xcode-27-arm64-Readme.md
+2026-11-22T17:39:26.1383780Z Image Release: https://github.com/actions/runner-images/releases/tag/xcode-27-arm64%2F20261104.0337
+2026-11-22T17:39:26.1384730Z ##[endgroup]
+2026-11-22T17:39:26.1385970Z ##[group]GITHUB_TOKEN Permissions
+2026-11-22T17:39:26.1388030Z Actions: read
+2026-11-22T17:39:26.1388420Z Contents: read
+2026-11-22T17:39:26.1388790Z Metadata: read
+2026-11-22T17:39:26.1389270Z ##[endgroup]
+2026-11-22T17:39:26.1391270Z Secret source: Actions
+2026-11-22T17:39:26.1393230Z Cache mode: write
+2026-11-22T17:39:26.1394750Z Prepare workflow directory
+2026-11-22T17:39:26.2018710Z Prepare all required actions
+2026-11-22T17:39:26.2070320Z Getting action download info
+2026-11-22T17:39:26.6564270Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-22T17:39:27.1225090Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-22T17:39:27.3149140Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-11-22T17:39:27.5325450Z Download action repository 'ruby/setup-ruby@v1' (SHA:be3c7df29b3349ec6bcfc6b4792f1cf9f5237d18)
+2026-11-22T17:39:28.1202240Z Download action repository 'dtolnay/rust-toolchain@stable' (SHA:39008827e6b4319a349e9a42dfc90579dd25f1ca)
+2026-11-22T17:39:28.4271970Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2026-11-22T17:39:28.5831990Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-22T17:39:29.0621080Z Complete job name: Original app, live provider, canonical Core and native source return
+2026-11-22T17:39:29.1697500Z ##[group]Run actions/checkout@v4
+2026-11-22T17:39:29.1698770Z with:
+2026-11-22T17:39:29.1699470Z   ref: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T17:39:29.1700280Z   fetch-depth: 0
+2026-11-22T17:39:29.1700830Z   repository: davidpovarsky/Maktabah
+2026-11-22T17:39:29.1706860Z   token: ***
+2026-11-22T17:39:29.1707370Z   ssh-strict: true
+2026-11-22T17:39:29.1708180Z   ssh-user: git
+2026-11-22T17:39:29.1708770Z   persist-credentials: true
+2026-11-22T17:39:29.1709360Z   clean: true
+2026-11-22T17:39:29.1709910Z   sparse-checkout-cone-mode: true
+2026-11-22T17:39:29.1710630Z   fetch-tags: false
+2026-11-22T17:39:29.1711230Z   show-progress: true
+2026-11-22T17:39:29.1711790Z   lfs: false
+2026-11-22T17:39:29.1712290Z   submodules: false
+2026-11-22T17:39:29.1712940Z   set-safe-directory: true
+2026-11-22T17:39:29.1713650Z   allow-unsafe-pr-checkout: false
+2026-11-22T17:39:29.1714560Z env:
+2026-11-22T17:39:29.1715220Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T17:39:29.1716060Z ##[endgroup]
+2026-11-22T17:39:29.8776560Z Syncing repository: davidpovarsky/Maktabah
+2026-11-22T17:39:29.8783130Z ##[group]Getting Git version info
+2026-11-22T17:39:29.8784230Z Working directory is '/Users/runner/work/Maktabah/Maktabah'
+2026-11-22T17:39:29.8786250Z [command]/opt/homebrew/bin/git version
+2026-11-22T17:39:29.9521170Z git version 2.56.0
+2026-11-22T17:39:29.9541070Z ##[endgroup]
+2026-11-22T17:39:29.9558710Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/6285471d-72c4-42c2-88d5-ce1ef4739cc4/.gitconfig'
+2026-11-22T17:39:29.9566780Z Temporarily overriding HOME='/Users/runner/work/_temp/6285471d-72c4-42c2-88d5-ce1ef4739cc4' before making global git config changes
+2026-11-22T17:39:29.9568770Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-22T17:39:29.9575160Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/Maktabah/Maktabah
+2026-11-22T17:39:29.9756220Z Deleting the contents of '/Users/runner/work/Maktabah/Maktabah'
+2026-11-22T17:39:29.9765240Z ##[group]Initializing the repository
+2026-11-22T17:39:29.9768200Z [command]/opt/homebrew/bin/git init /Users/runner/work/Maktabah/Maktabah
+2026-11-22T17:39:30.0183140Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-22T17:39:30.0185880Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-22T17:39:30.0189100Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-22T17:39:30.0192200Z hint: call:
+2026-11-22T17:39:30.0193580Z hint:
+2026-11-22T17:39:30.0195370Z hint: 	git config --global init.defaultBranch <name>
+2026-11-22T17:39:30.0197480Z hint:
+2026-11-22T17:39:30.0199370Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-22T17:39:30.0202280Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-22T17:39:30.0204680Z hint:
+2026-11-22T17:39:30.0206420Z hint: 	git branch -m <name>
+2026-11-22T17:39:30.0208090Z hint:
+2026-11-22T17:39:30.0210260Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-22T17:39:30.0213500Z Initialized empty Git repository in /Users/runner/work/Maktabah/Maktabah/.git/
+2026-11-22T17:39:30.0216160Z [command]/opt/homebrew/bin/git remote add origin https://github.com/davidpovarsky/Maktabah
+2026-11-22T17:39:30.0327430Z ##[endgroup]
+2026-11-22T17:39:30.0328460Z ##[group]Disabling automatic garbage collection
+2026-11-22T17:39:30.0333200Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-11-22T17:39:30.0506950Z ##[endgroup]
+2026-11-22T17:39:30.0510190Z ##[group]Setting up auth
+2026-11-22T17:39:30.0513250Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-22T17:39:30.0630940Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-22T17:39:30.2979920Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-22T17:39:30.3131780Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-22T17:39:30.5110760Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-22T17:39:30.5447510Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-22T17:39:30.8086690Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-22T17:39:30.8389910Z ##[endgroup]
+2026-11-22T17:39:30.8492610Z ##[group]Fetching the repository
+2026-11-22T17:39:30.8596250Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-11-22T17:39:49.9991210Z From https://github.com/davidpovarsky/Maktabah
+2026-11-22T17:39:49.9992880Z  * [new branch]        agent/team-orchestration-20261018 -> origin/agent/team-orchestration-20261018
+2026-11-22T17:39:49.9996910Z  * [new branch]        backup/main-before-upstream-reset-20260707 -> origin/backup/main-before-upstream-reset-20260707
+2026-11-22T17:39:49.9998570Z  * [new branch]        backup/otzaria-clean-pinned-build-ok-before-main-sync-20260707 -> origin/backup/otzaria-clean-pinned-build-ok-before-main-sync-20260707
+2026-11-22T17:39:49.9999720Z  * [new branch]        backup/otzaria-reader-ui-units-logs-20260630-before-reorg -> origin/backup/otzaria-reader-ui-units-logs-20260630-before-reorg
+2026-11-22T17:39:50.0000890Z  * [new branch]        codex/local-backup-20261109/codex/shared-torah-inspector -> origin/codex/local-backup-20261109/codex/shared-torah-inspector
+2026-11-22T17:39:50.0002450Z  * [new branch]        codex/mini-test10-data-profile -> origin/codex/mini-test10-data-profile
+2026-11-22T17:39:50.0003760Z  * [new branch]        codex/mini-test10-wip-snapshot-2026-09-05 -> origin/codex/mini-test10-wip-snapshot-2026-09-05
+2026-11-22T17:39:50.0004750Z  * [new branch]        codex/otzaria-acceptance-reconciliation-20261120 -> origin/codex/otzaria-acceptance-reconciliation-20261120
+2026-11-22T17:39:50.0073310Z  * [new branch]        codex/otzaria-actioncore-platform-20261120 -> origin/codex/otzaria-actioncore-platform-20261120
+2026-11-22T17:39:50.0074460Z  * [new branch]        codex/otzaria-actions-completion-20261120 -> origin/codex/otzaria-actions-completion-20261120
+2026-11-22T17:39:50.0075190Z  * [new branch]        codex/otzaria-actions-native-20261120 -> origin/codex/otzaria-actions-native-20261120
+2026-11-22T17:39:50.0076140Z  * [new branch]        codex/otzaria-annotation-core194-combined-apple-20261120 -> origin/codex/otzaria-annotation-core194-combined-apple-20261120
+2026-11-22T17:39:50.0077380Z  * [new branch]        codex/otzaria-annotation-core194-combined-apple-v2-20261120 -> origin/codex/otzaria-annotation-core194-combined-apple-v2-20261120
+2026-11-22T17:39:50.0078610Z  * [new branch]        codex/otzaria-annotation-core194-combined-apple-v3-20261120 -> origin/codex/otzaria-annotation-core194-combined-apple-v3-20261120
+2026-11-22T17:39:50.0079680Z  * [new branch]        codex/otzaria-annotation-disconnect-apple-reviewed-20261120 -> origin/codex/otzaria-annotation-disconnect-apple-reviewed-20261120
+2026-11-22T17:39:50.0080890Z  * [new branch]        codex/otzaria-annotation-disconnect-apple-v2-reviewed-20261120 -> origin/codex/otzaria-annotation-disconnect-apple-v2-reviewed-20261120
+2026-11-22T17:39:50.0081860Z  * [new branch]        codex/otzaria-annotation-disconnect-apple-v3-reviewed-20261120 -> origin/codex/otzaria-annotation-disconnect-apple-v3-reviewed-20261120
+2026-11-22T17:39:50.0084100Z  * [new branch]        codex/otzaria-annotation-disconnect-apple-v4-reviewed-20261120 -> origin/codex/otzaria-annotation-disconnect-apple-v4-reviewed-20261120
+2026-11-22T17:39:50.0085750Z  * [new branch]        codex/otzaria-annotation-exchange-20261120 -> origin/codex/otzaria-annotation-exchange-20261120
+2026-11-22T17:39:50.0086910Z  * [new branch]        codex/otzaria-annotation-native-ledger-20261122 -> origin/codex/otzaria-annotation-native-ledger-20261122
+2026-11-22T17:39:50.0087890Z  * [new branch]        codex/otzaria-apple55-native116-gates-20261120 -> origin/codex/otzaria-apple55-native116-gates-20261120
+2026-11-22T17:39:50.0088610Z  * [new branch]        codex/otzaria-cache-budget-20261120 -> origin/codex/otzaria-cache-budget-20261120
+2026-11-22T17:39:50.0089520Z  * [new branch]        codex/otzaria-cloud-import-identity-apple-20261122 -> origin/codex/otzaria-cloud-import-identity-apple-20261122
+2026-11-22T17:39:50.0090420Z  * [new branch]        codex/otzaria-cloud48-44792622640-evidence-20261120 -> origin/codex/otzaria-cloud48-44792622640-evidence-20261120
+2026-11-22T17:39:50.0091300Z  * [new branch]        codex/otzaria-cold-search-core-apple-20261120 -> origin/codex/otzaria-cold-search-core-apple-20261120
+2026-11-22T17:39:50.0092110Z  * [new branch]        codex/otzaria-cold-search-core-apple-v2-20261120 -> origin/codex/otzaria-cold-search-core-apple-v2-20261120
+2026-11-22T17:39:50.0093120Z  * [new branch]        codex/otzaria-cold-search-core-results-20261120 -> origin/codex/otzaria-cold-search-core-results-20261120
+2026-11-22T17:39:50.0094570Z  * [new branch]        codex/otzaria-cold-search-ownership-apple-20261120 -> origin/codex/otzaria-cold-search-ownership-apple-20261120
+2026-11-22T17:39:50.0095480Z  * [new branch]        codex/otzaria-cold-search-ownership-v2-20261120 -> origin/codex/otzaria-cold-search-ownership-v2-20261120
+2026-11-22T17:39:50.0096260Z  * [new branch]        codex/otzaria-cold-search-ownership-v3-20261120 -> origin/codex/otzaria-cold-search-ownership-v3-20261120
+2026-11-22T17:39:50.0097040Z  * [new branch]        codex/otzaria-complete-phases-20261117 -> origin/codex/otzaria-complete-phases-20261117
+2026-11-22T17:39:50.0098190Z  * [new branch]        codex/otzaria-completion-20261120 -> origin/codex/otzaria-completion-20261120
+2026-11-22T17:39:50.0099030Z  * [new branch]        codex/otzaria-completion-20261121 -> origin/codex/otzaria-completion-20261121
+2026-11-22T17:39:50.0100120Z  * [new branch]        codex/otzaria-completion-20261122 -> origin/codex/otzaria-completion-20261122
+2026-11-22T17:39:50.0100870Z  * [new branch]        codex/otzaria-completion-consent-native-20261122 -> origin/codex/otzaria-completion-consent-native-20261122
+2026-11-22T17:39:50.0102180Z  * [new branch]        codex/otzaria-completion-focused-native-20261121 -> origin/codex/otzaria-completion-focused-native-20261121
+2026-11-22T17:39:50.0104160Z  * [new branch]        codex/otzaria-completion-focused-native-20261122 -> origin/codex/otzaria-completion-focused-native-20261122
+2026-11-22T17:39:50.0105240Z  * [new branch]        codex/otzaria-continuation-evidence-20261122 -> origin/codex/otzaria-continuation-evidence-20261122
+2026-11-22T17:39:50.0106210Z  * [new branch]        codex/otzaria-cross-app-stage-a-20261120 -> origin/codex/otzaria-cross-app-stage-a-20261120
+2026-11-22T17:39:50.0107200Z  * [new branch]        codex/otzaria-d5-prebuilt-binding-20261120 -> origin/codex/otzaria-d5-prebuilt-binding-20261120
+2026-11-22T17:39:50.0108120Z  * [new branch]        codex/otzaria-feature-off-20261120 -> origin/codex/otzaria-feature-off-20261120
+2026-11-22T17:39:50.0108920Z  * [new branch]        codex/otzaria-global-search-native-20261115 -> origin/codex/otzaria-global-search-native-20261115
+2026-11-22T17:39:50.0109840Z  * [new branch]        codex/otzaria-global-search-swift6-fix-20261115 -> origin/codex/otzaria-global-search-swift6-fix-20261115
+2026-11-22T17:39:50.0111020Z  * [new branch]        codex/otzaria-global-tab-ownership-native-20261120 -> origin/codex/otzaria-global-tab-ownership-native-20261120
+2026-11-22T17:39:50.0112980Z  * [new branch]        codex/otzaria-global-tab-ownership-native-v2-20261120 -> origin/codex/otzaria-global-tab-ownership-native-v2-20261120
+2026-11-22T17:39:50.0113990Z  * [new branch]        codex/otzaria-groups-100-native-20261120 -> origin/codex/otzaria-groups-100-native-20261120
+2026-11-22T17:39:50.0115000Z  * [new branch]        codex/otzaria-groups100-performance-20261120 -> origin/codex/otzaria-groups100-performance-20261120
+2026-11-22T17:39:50.0116310Z  * [new branch]        codex/otzaria-guided-tours-research-20261120 -> origin/codex/otzaria-guided-tours-research-20261120
+2026-11-22T17:39:50.0117160Z  * [new branch]        codex/otzaria-hanlin-api12-20261120 -> origin/codex/otzaria-hanlin-api12-20261120
+2026-11-22T17:39:50.0117880Z  * [new branch]        codex/otzaria-hanlin-app-group-20261121 -> origin/codex/otzaria-hanlin-app-group-20261121
+2026-11-22T17:39:50.0118760Z  * [new branch]        codex/otzaria-hanlin-consent-native-20261120 -> origin/codex/otzaria-hanlin-consent-native-20261120
+2026-11-22T17:39:50.0119470Z  * [new branch]        codex/otzaria-hanlin-consent-sdk-20261120 -> origin/codex/otzaria-hanlin-consent-sdk-20261120
+2026-11-22T17:39:50.0120190Z  * [new branch]        codex/otzaria-hanlin-consumer-20261119 -> origin/codex/otzaria-hanlin-consumer-20261119
+2026-11-22T17:39:50.0120910Z  * [new branch]        codex/otzaria-hanlin-consumer-sdk-f423a0d5 -> origin/codex/otzaria-hanlin-consumer-sdk-f423a0d5
+2026-11-22T17:39:50.0122150Z  * [new branch]        codex/otzaria-hanlin-fresh-read-diagnostic-20261122 -> origin/codex/otzaria-hanlin-fresh-read-diagnostic-20261122
+2026-11-22T17:39:50.0123190Z  * [new branch]        codex/otzaria-hanlin-fresh-read-keyboard-evidence-20261122 -> origin/codex/otzaria-hanlin-fresh-read-keyboard-evidence-20261122
+2026-11-22T17:39:50.0124210Z  * [new branch]        codex/otzaria-hanlin-fresh-read-keyboard-native-20261122 -> origin/codex/otzaria-hanlin-fresh-read-keyboard-native-20261122
+2026-11-22T17:39:50.0126920Z  * [new branch]        codex/otzaria-hanlin-live-20261121 -> origin/codex/otzaria-hanlin-live-20261121
+2026-11-22T17:39:50.0129100Z  * [new branch]        codex/otzaria-hanlin-native-completion-20261119 -> origin/codex/otzaria-hanlin-native-completion-20261119
+2026-11-22T17:39:50.0130530Z  * [new branch]        codex/otzaria-hanlin-python-dependency-20261122 -> origin/codex/otzaria-hanlin-python-dependency-20261122
+2026-11-22T17:39:50.0131460Z  * [new branch]        codex/otzaria-hanlin-read-actions-20261120 -> origin/codex/otzaria-hanlin-read-actions-20261120
+2026-11-22T17:39:50.0132300Z  * [new branch]        codex/otzaria-history-isolation-20261120 -> origin/codex/otzaria-history-isolation-20261120
+2026-11-22T17:39:50.0133050Z  * [new branch]        codex/otzaria-history-submit-20261120 -> origin/codex/otzaria-history-submit-20261120
+2026-11-22T17:39:50.0133870Z  * [new branch]        codex/otzaria-index-read-compatibility-20261120 -> origin/codex/otzaria-index-read-compatibility-20261120
+2026-11-22T17:39:50.0135060Z  * [new branch]        codex/otzaria-inspector-binding-20261120 -> origin/codex/otzaria-inspector-binding-20261120
+2026-11-22T17:39:50.0135890Z  * [new branch]        codex/otzaria-inspector-harness-20261120 -> origin/codex/otzaria-inspector-harness-20261120
+2026-11-22T17:39:50.0136840Z  * [new branch]        codex/otzaria-inspector-trimmed-headings-20261120 -> origin/codex/otzaria-inspector-trimmed-headings-20261120
+2026-11-22T17:39:50.0137760Z  * [new branch]        codex/otzaria-integrated-native-20261119 -> origin/codex/otzaria-integrated-native-20261119
+2026-11-22T17:39:50.0138770Z  * [new branch]        codex/otzaria-integration-20261115 -> origin/codex/otzaria-integration-20261115
+2026-11-22T17:39:50.0139600Z  * [new branch]        codex/otzaria-intent-background-20261120 -> origin/codex/otzaria-intent-background-20261120
+2026-11-22T17:39:50.0140280Z  * [new branch]        codex/otzaria-ios-build-hanlin-20261120 -> origin/codex/otzaria-ios-build-hanlin-20261120
+2026-11-22T17:39:50.0140990Z  * [new branch]        codex/otzaria-ios-reviewed-20261120 -> origin/codex/otzaria-ios-reviewed-20261120
+2026-11-22T17:39:50.0142410Z  * [new branch]        codex/otzaria-keyboard-global-focused-native-20261120 -> origin/codex/otzaria-keyboard-global-focused-native-20261120
+2026-11-22T17:39:50.0143540Z  * [new branch]        codex/otzaria-keyboard-two-native-retry-20261120 -> origin/codex/otzaria-keyboard-two-native-retry-20261120
+2026-11-22T17:39:50.0144640Z  * [new branch]        codex/otzaria-local-annotation-apple-v2-result-20261120 -> origin/codex/otzaria-local-annotation-apple-v2-result-20261120
+2026-11-22T17:39:50.0145700Z  * [new branch]        codex/otzaria-local-annotation-cloud-apple-reviewed-20261120 -> origin/codex/otzaria-local-annotation-cloud-apple-reviewed-20261120
+2026-11-22T17:39:50.0146760Z  * [new branch]        codex/otzaria-local-annotation-cloud-observer-20261120 -> origin/codex/otzaria-local-annotation-cloud-observer-20261120
+2026-11-22T17:39:50.0147860Z  * [new branch]        codex/otzaria-local-annotation-cloudkit-owner-20261120 -> origin/codex/otzaria-local-annotation-cloudkit-owner-20261120
+2026-11-22T17:39:50.0148790Z  * [new branch]        codex/otzaria-local-annotation-editor-20261120 -> origin/codex/otzaria-local-annotation-editor-20261120
+2026-11-22T17:39:50.0150160Z  * [new branch]        codex/otzaria-local-annotation-editor-apple-ci-20261120 -> origin/codex/otzaria-local-annotation-editor-apple-ci-20261120
+2026-11-22T17:39:50.0151860Z  * [new branch]        codex/otzaria-local-annotation-editor-apple-ci-v2-20261120 -> origin/codex/otzaria-local-annotation-editor-apple-ci-v2-20261120
+2026-11-22T17:39:50.0153000Z  * [new branch]        codex/otzaria-local-annotation-editor-apple-reviewed-20261120 -> origin/codex/otzaria-local-annotation-editor-apple-reviewed-20261120
+2026-11-22T17:39:50.0156510Z  * [new branch]        codex/otzaria-local-annotation-editor-apple-reviewed-v2-20261120 -> origin/codex/otzaria-local-annotation-editor-apple-reviewed-v2-20261120
+2026-11-22T17:39:50.0159040Z  * [new branch]        codex/otzaria-native-binding-integration-20261115 -> origin/codex/otzaria-native-binding-integration-20261115
+2026-11-22T17:39:50.0161220Z  * [new branch]        codex/otzaria-native-consent-wrapper-20261122 -> origin/codex/otzaria-native-consent-wrapper-20261122
+2026-11-22T17:39:50.0163270Z  * [new branch]        codex/otzaria-native-core-repairs-20261120 -> origin/codex/otzaria-native-core-repairs-20261120
+2026-11-22T17:39:50.0165530Z  * [new branch]        codex/otzaria-native-creation-apple-evidence-20261122 -> origin/codex/otzaria-native-creation-apple-evidence-20261122
+2026-11-22T17:39:50.0168190Z  * [new branch]        codex/otzaria-native-creation-fence-apple-20261122 -> origin/codex/otzaria-native-creation-fence-apple-20261122
+2026-11-22T17:39:50.0170250Z  * [new branch]        codex/otzaria-native-followup-20261122 -> origin/codex/otzaria-native-followup-20261122
+2026-11-22T17:39:50.0172040Z  * [new branch]        codex/otzaria-native-four-wrapper-20261122 -> origin/codex/otzaria-native-four-wrapper-20261122
+2026-11-22T17:39:50.0174130Z  * [new branch]        codex/otzaria-native-identity-commit-audit-20261122 -> origin/codex/otzaria-native-identity-commit-audit-20261122
+2026-11-22T17:39:50.0176620Z  * [new branch]        codex/otzaria-native-note-commentary-20261120 -> origin/codex/otzaria-native-note-commentary-20261120
+2026-11-22T17:39:50.0177550Z  * [new branch]        codex/otzaria-native-package-cache-20261122 -> origin/codex/otzaria-native-package-cache-20261122
+2026-11-22T17:39:50.0178380Z  * [new branch]        codex/otzaria-native-release-final-20261120 -> origin/codex/otzaria-native-release-final-20261120
+2026-11-22T17:39:50.0179150Z  * [new branch]        codex/otzaria-native-release-repairs-20261120 -> origin/codex/otzaria-native-release-repairs-20261120
+2026-11-22T17:39:50.0179880Z  * [new branch]        codex/otzaria-native-repair-20261120 -> origin/codex/otzaria-native-repair-20261120
+2026-11-22T17:39:50.0180620Z  * [new branch]        codex/otzaria-native-repair12-20261120 -> origin/codex/otzaria-native-repair12-20261120
+2026-11-22T17:39:50.0182080Z  * [new branch]        codex/otzaria-native-search-repairs-20261120 -> origin/codex/otzaria-native-search-repairs-20261120
+2026-11-22T17:39:50.0184480Z  * [new branch]        codex/otzaria-native-six-repair-20261121 -> origin/codex/otzaria-native-six-repair-20261121
+2026-11-22T17:39:50.0185420Z  * [new branch]        codex/otzaria-native-study-sheet-capture-evidence-20261120 -> origin/codex/otzaria-native-study-sheet-capture-evidence-20261120
+2026-11-22T17:39:50.0186370Z  * [new branch]        codex/otzaria-native-study-sheet-native-20261120 -> origin/codex/otzaria-native-study-sheet-native-20261120
+2026-11-22T17:39:50.0187270Z  * [new branch]        codex/otzaria-native-study-sheet-native-v2-20261120 -> origin/codex/otzaria-native-study-sheet-native-v2-20261120
+2026-11-22T17:39:50.0188110Z  * [new branch]        codex/otzaria-native-wait-overhead-20261120 -> origin/codex/otzaria-native-wait-overhead-20261120
+2026-11-22T17:39:50.0189000Z  * [new branch]        codex/otzaria-native-window-geometry-20261120 -> origin/codex/otzaria-native-window-geometry-20261120
+2026-11-22T17:39:50.0189900Z  * [new branch]        codex/otzaria-native-window-inspector-20261120 -> origin/codex/otzaria-native-window-inspector-20261120
+2026-11-22T17:39:50.0190950Z  * [new branch]        codex/otzaria-native38-release-repairs-20261120 -> origin/codex/otzaria-native38-release-repairs-20261120
+2026-11-22T17:39:50.0192480Z  * [new branch]        codex/otzaria-native88-harness-repairs-20261120 -> origin/codex/otzaria-native88-harness-repairs-20261120
+2026-11-22T17:39:50.0193420Z  * [new branch]        codex/otzaria-native88-repair13-20261120 -> origin/codex/otzaria-native88-repair13-20261120
+2026-11-22T17:39:50.0194300Z  * [new branch]        codex/otzaria-native98-commentary-evidence-20261120 -> origin/codex/otzaria-native98-commentary-evidence-20261120
+2026-11-22T17:39:50.0195210Z  * [new branch]        codex/otzaria-native98-foundation-signature-20261120 -> origin/codex/otzaria-native98-foundation-signature-20261120
+2026-11-22T17:39:50.0196070Z  * [new branch]        codex/otzaria-native98-groups-snapshot-20261120 -> origin/codex/otzaria-native98-groups-snapshot-20261120
+2026-11-22T17:39:50.0196880Z  * [new branch]        codex/otzaria-native98-hanlin-consent-20261120 -> origin/codex/otzaria-native98-hanlin-consent-20261120
+2026-11-22T17:39:50.0197600Z  * [new branch]        codex/otzaria-native98-hanlin-label-20261120 -> origin/codex/otzaria-native98-hanlin-label-20261120
+2026-11-22T17:39:50.0198490Z  * [new branch]        codex/otzaria-native98-history-diagnostics-20261120 -> origin/codex/otzaria-native98-history-diagnostics-20261120
+2026-11-22T17:39:50.0199420Z  * [new branch]        codex/otzaria-native98-index-metadata-20261120 -> origin/codex/otzaria-native98-index-metadata-20261120
+2026-11-22T17:39:50.0200360Z  * [new branch]        codex/otzaria-native98-observed-summary-20261120 -> origin/codex/otzaria-native98-observed-summary-20261120
+2026-11-22T17:39:50.0203710Z  * [new branch]        codex/otzaria-native98-profile-value-20261120 -> origin/codex/otzaria-native98-profile-value-20261120
+2026-11-22T17:39:50.0205870Z  * [new branch]        codex/otzaria-native98-raw-supplement-20261120 -> origin/codex/otzaria-native98-raw-supplement-20261120
+2026-11-22T17:39:50.0208330Z  * [new branch]        codex/otzaria-native98-reviewed-20261120 -> origin/codex/otzaria-native98-reviewed-20261120
+2026-11-22T17:39:50.0210050Z  * [new branch]        codex/otzaria-native98-signature-refreeze-20261120 -> origin/codex/otzaria-native98-signature-refreeze-20261120
+2026-11-22T17:39:50.0211130Z  * [new branch]        codex/otzaria-native98-signature-reviewed-20261120 -> origin/codex/otzaria-native98-signature-reviewed-20261120
+2026-11-22T17:39:50.0212050Z  * [new branch]        codex/otzaria-normal-ios-dependencies-20261120 -> origin/codex/otzaria-normal-ios-dependencies-20261120
+2026-11-22T17:39:50.0213100Z  * [new branch]        codex/otzaria-normal-ios-raw-capture-20261120 -> origin/codex/otzaria-normal-ios-raw-capture-20261120
+2026-11-22T17:39:50.0215120Z  * [new branch]        codex/otzaria-normalios-toolchain-20261120 -> origin/codex/otzaria-normalios-toolchain-20261120
+2026-11-22T17:39:50.0216080Z  * [new branch]        codex/otzaria-note-editor-lifecycle-20261120 -> origin/codex/otzaria-note-editor-lifecycle-20261120
+2026-11-22T17:39:50.0217030Z  * [new branch]        codex/otzaria-notes-draft-20261120 -> origin/codex/otzaria-notes-draft-20261120
+2026-11-22T17:39:50.0217700Z  * [new branch]        codex/otzaria-occurrence-app-20261120 -> origin/codex/otzaria-occurrence-app-20261120
+2026-11-22T17:39:50.0218490Z  * [new branch]        codex/otzaria-occurrence-app-tests-20261120 -> origin/codex/otzaria-occurrence-app-tests-20261120
+2026-11-22T17:39:50.0219200Z  * [new branch]        codex/otzaria-occurrence-bridge-20261120 -> origin/codex/otzaria-occurrence-bridge-20261120
+2026-11-22T17:39:50.0219970Z  * [new branch]        codex/otzaria-occurrence-compile-20261120 -> origin/codex/otzaria-occurrence-compile-20261120
+2026-11-22T17:39:50.0220850Z  * [new branch]        codex/otzaria-occurrence-core-20261120 -> origin/codex/otzaria-occurrence-core-20261120
+2026-11-22T17:39:50.0221730Z  * [new branch]        codex/otzaria-occurrence-framework-20261120 -> origin/codex/otzaria-occurrence-framework-20261120
+2026-11-22T17:39:50.0222600Z  * [new branch]        codex/otzaria-original-editor-consumer-draft-20261121 -> origin/codex/otzaria-original-editor-consumer-draft-20261121
+2026-11-22T17:39:50.0224260Z  * [new branch]        codex/otzaria-original-editor-lifecycle-20261122 -> origin/codex/otzaria-original-editor-lifecycle-20261122
+2026-11-22T17:39:50.0225210Z  * [new branch]        codex/otzaria-original-editor-schema2-reviewed-20261122 -> origin/codex/otzaria-original-editor-schema2-reviewed-20261122
+2026-11-22T17:39:50.0226290Z  * [new branch]        codex/otzaria-original-editor-selector-schema2-20261122 -> origin/codex/otzaria-original-editor-selector-schema2-20261122
+2026-11-22T17:39:50.0227520Z  * [new branch]        codex/otzaria-original-owner-exclusive-sqlite-20261122 -> origin/codex/otzaria-original-owner-exclusive-sqlite-20261122
+2026-11-22T17:39:50.0228590Z  * [new branch]        codex/otzaria-original-owner-sqlite-controls-20261122 -> origin/codex/otzaria-original-owner-sqlite-controls-20261122
+2026-11-22T17:39:50.0229710Z  * [new branch]        codex/otzaria-overview-single-book-fixture-20261120 -> origin/codex/otzaria-overview-single-book-fixture-20261120
+2026-11-22T17:39:50.0230820Z  * [new branch]        codex/otzaria-palette-escape-diagnostics-20261120 -> origin/codex/otzaria-palette-escape-diagnostics-20261120
+2026-11-22T17:39:50.0231780Z  * [new branch]        codex/otzaria-perf02-completion-20261120 -> origin/codex/otzaria-perf02-completion-20261120
+2026-11-22T17:39:50.0232670Z  * [new branch]        codex/otzaria-phase1-consolidated-20261116 -> origin/codex/otzaria-phase1-consolidated-20261116
+2026-11-22T17:39:50.0233520Z  * [new branch]        codex/otzaria-phase2-apple88-20261120 -> origin/codex/otzaria-phase2-apple88-20261120
+2026-11-22T17:39:50.0234380Z  * [new branch]        codex/otzaria-phase3-native88-20261120 -> origin/codex/otzaria-phase3-native88-20261120
+2026-11-22T17:39:50.0235110Z  * [new branch]        codex/otzaria-phase3-release-20261120 -> origin/codex/otzaria-phase3-release-20261120
+2026-11-22T17:39:50.0236090Z  * [new branch]        codex/otzaria-phase3-release-sourcefix-20261120 -> origin/codex/otzaria-phase3-release-sourcefix-20261120
+2026-11-22T17:39:50.0236890Z  * [new branch]        codex/otzaria-phase3-sdk-20261120 -> origin/codex/otzaria-phase3-sdk-20261120
+2026-11-22T17:39:50.0237770Z  * [new branch]        codex/otzaria-phase3-sdk-sqlitefix-20261120 -> origin/codex/otzaria-phase3-sdk-sqlitefix-20261120
+2026-11-22T17:39:50.0238680Z  * [new branch]        codex/otzaria-qualified-native92-20261120 -> origin/codex/otzaria-qualified-native92-20261120
+2026-11-22T17:39:50.0239610Z  * [new branch]        codex/otzaria-qualified-read-candidate-20261120 -> origin/codex/otzaria-qualified-read-candidate-20261120
+2026-11-22T17:39:50.0241080Z  * [new branch]        codex/otzaria-qualified-release96-20261120 -> origin/codex/otzaria-qualified-release96-20261120
+2026-11-22T17:39:50.0242160Z  * [new branch]        codex/otzaria-qualified-sdk-20261120 -> origin/codex/otzaria-qualified-sdk-20261120
+2026-11-22T17:39:50.0243020Z  * [new branch]        codex/otzaria-qualified-v32-d5-20261120 -> origin/codex/otzaria-qualified-v32-d5-20261120
+2026-11-22T17:39:50.0243890Z  * [new branch]        codex/otzaria-r27-escape-dispatch-20261115 -> origin/codex/otzaria-r27-escape-dispatch-20261115
+2026-11-22T17:39:50.0244830Z  * [new branch]        codex/otzaria-reader-inspector-focused-native-20261120 -> origin/codex/otzaria-reader-inspector-focused-native-20261120
+2026-11-22T17:39:50.0247210Z  * [new branch]        codex/otzaria-reader-inspector-focused-native-v2-20261120 -> origin/codex/otzaria-reader-inspector-focused-native-v2-20261120
+2026-11-22T17:39:50.0248390Z  * [new branch]        codex/otzaria-reader-inspector-focused-native-v3-20261120 -> origin/codex/otzaria-reader-inspector-focused-native-v3-20261120
+2026-11-22T17:39:50.0249570Z  * [new branch]        codex/otzaria-reduce-motion-original-switch-20261120 -> origin/codex/otzaria-reduce-motion-original-switch-20261120
+2026-11-22T17:39:50.0250640Z  * [new branch]        codex/otzaria-release-library-admission-20261120 -> origin/codex/otzaria-release-library-admission-20261120
+2026-11-22T17:39:50.0252210Z  * [new branch]        codex/otzaria-release-push-consumer-20261122 -> origin/codex/otzaria-release-push-consumer-20261122
+2026-11-22T17:39:50.0253190Z  * [new branch]        codex/otzaria-release-stage-split-20261120 -> origin/codex/otzaria-release-stage-split-20261120
+2026-11-22T17:39:50.0254130Z  * [new branch]        codex/otzaria-release-ui-selectors-20261120 -> origin/codex/otzaria-release-ui-selectors-20261120
+2026-11-22T17:39:50.0254920Z  * [new branch]        codex/otzaria-release8401-setup-20261120 -> origin/codex/otzaria-release8401-setup-20261120
+2026-11-22T17:39:50.0256490Z  * [new branch]        codex/otzaria-release96-capture-evidence-20261120 -> origin/codex/otzaria-release96-capture-evidence-20261120
+2026-11-22T17:39:50.0257310Z  * [new branch]        codex/otzaria-release96-reviewed-20261120 -> origin/codex/otzaria-release96-reviewed-20261120
+2026-11-22T17:39:50.0258190Z  * [new branch]        codex/otzaria-release96-signature-reviewed-20261120 -> origin/codex/otzaria-release96-signature-reviewed-20261120
+2026-11-22T17:39:50.0259040Z  * [new branch]        codex/otzaria-routing-repair12-20261120 -> origin/codex/otzaria-routing-repair12-20261120
+2026-11-22T17:39:50.0259730Z  * [new branch]        codex/otzaria-runtime27-20261115 -> origin/codex/otzaria-runtime27-20261115
+2026-11-22T17:39:50.0260480Z  * [new branch]        codex/otzaria-search-data-native-20261120 -> origin/codex/otzaria-search-data-native-20261120
+2026-11-22T17:39:50.0261280Z  * [new branch]        codex/otzaria-search-openresults-20261120 -> origin/codex/otzaria-search-openresults-20261120
+2026-11-22T17:39:50.0261990Z  * [new branch]        codex/otzaria-search-upgrade-clean -> origin/codex/otzaria-search-upgrade-clean
+2026-11-22T17:39:50.0262860Z  * [new branch]        codex/otzaria-sefaria-apple55-reviewed-20261120 -> origin/codex/otzaria-sefaria-apple55-reviewed-20261120
+2026-11-22T17:39:50.0265580Z  * [new branch]        codex/otzaria-sefaria-l10n-20261120 -> origin/codex/otzaria-sefaria-l10n-20261120
+2026-11-22T17:39:50.0266550Z  * [new branch]        codex/otzaria-sefaria-native-acceptance-20261120 -> origin/codex/otzaria-sefaria-native-acceptance-20261120
+2026-11-22T17:39:50.0267540Z  * [new branch]        codex/otzaria-semantic-app-intent-20261120 -> origin/codex/otzaria-semantic-app-intent-20261120
+2026-11-22T17:39:50.0268350Z  * [new branch]        codex/otzaria-semantic-compound-20261120 -> origin/codex/otzaria-semantic-compound-20261120
+2026-11-22T17:39:50.0269130Z  * [new branch]        codex/otzaria-semantic-native-20261120 -> origin/codex/otzaria-semantic-native-20261120
+2026-11-22T17:39:50.0270410Z  * [new branch]        codex/otzaria-sqlite-async-fixture-20261120 -> origin/codex/otzaria-sqlite-async-fixture-20261120
+2026-11-22T17:39:50.0271240Z  * [new branch]        codex/otzaria-stageb-consumer-ready-20261122 -> origin/codex/otzaria-stageb-consumer-ready-20261122
+2026-11-22T17:39:50.0272130Z  * [new branch]        codex/otzaria-stageb-source-reviewed-20261122 -> origin/codex/otzaria-stageb-source-reviewed-20261122
+2026-11-22T17:39:50.0273050Z  * [new branch]        codex/otzaria-team-validation-waxqv0pw-20261122 -> origin/codex/otzaria-team-validation-waxqv0pw-20261122
+2026-11-22T17:39:50.0274010Z  * [new branch]        codex/otzaria-toc-visibility-20261120 -> origin/codex/otzaria-toc-visibility-20261120
+2026-11-22T17:39:50.0274720Z  * [new branch]        codex/otzaria-ui-navigation-20261115 -> origin/codex/otzaria-ui-navigation-20261115
+2026-11-22T17:39:50.0275400Z  * [new branch]        codex/otzaria-ui-sdk-intermediate-20261120 -> origin/codex/otzaria-ui-sdk-intermediate-20261120
+2026-11-22T17:39:50.0277290Z  * [new branch]        codex/otzaria-ui-surface-reconciliation-20261120 -> origin/codex/otzaria-ui-surface-reconciliation-20261120
+2026-11-22T17:39:50.0278160Z  * [new branch]        codex/otzaria-updates-20261115 -> origin/codex/otzaria-updates-20261115
+2026-11-22T17:39:50.0278880Z  * [new branch]        codex/otzaria-url-ack-diagnostics-20261120 -> origin/codex/otzaria-url-ack-diagnostics-20261120
+2026-11-22T17:39:50.0280080Z  * [new branch]        codex/otzaria-v32-containerfix-20261120 -> origin/codex/otzaria-v32-containerfix-20261120
+2026-11-22T17:39:50.0280860Z  * [new branch]        codex/otzaria-v32-continuation-20261121 -> origin/codex/otzaria-v32-continuation-20261121
+2026-11-22T17:39:50.0281740Z  * [new branch]        codex/otzaria-v32-d5-evidence-gate-20261120 -> origin/codex/otzaria-v32-d5-evidence-gate-20261120
+2026-11-22T17:39:50.0282400Z  * [new branch]        codex/otzaria-v32-native-20261119 -> origin/codex/otzaria-v32-native-20261119
+2026-11-22T17:39:50.0283140Z  * [new branch]        codex/otzaria-v32-occurrence-probe-20261120 -> origin/codex/otzaria-v32-occurrence-probe-20261120
+2026-11-22T17:39:50.0284020Z  * [new branch]        codex/otzaria-v32-resume-repair-20261120 -> origin/codex/otzaria-v32-resume-repair-20261120
+2026-11-22T17:39:50.0284750Z  * [new branch]        codex/otzaria-wave-native-coherent-20261115 -> origin/codex/otzaria-wave-native-coherent-20261115
+2026-11-22T17:39:50.0285630Z  * [new branch]        codex/prototype-embedded-ai-social-chat-20260724 -> origin/codex/prototype-embedded-ai-social-chat-20260724
+2026-11-22T17:39:50.0286460Z  * [new branch]        codex/search-data-unification-parity -> origin/codex/search-data-unification-parity
+2026-11-22T17:39:50.0287270Z  * [new branch]        codex/sefaria-native-hybrid-backend -> origin/codex/sefaria-native-hybrid-backend
+2026-11-22T17:39:50.0288310Z  * [new branch]        codex/shared-torah-inspector-maktabah -> origin/codex/shared-torah-inspector-maktabah
+2026-11-22T17:39:50.0289080Z  * [new branch]        codex/swift-playgrounds-shared-ui-poc -> origin/codex/swift-playgrounds-shared-ui-poc
+2026-11-22T17:39:50.0289950Z  * [new branch]        codex/unified-production-mini-data-profiles -> origin/codex/unified-production-mini-data-profiles
+2026-11-22T17:39:50.0291520Z  * [new branch]        codex/upstream-main-sync-2026-09-04 -> origin/codex/upstream-main-sync-2026-09-04
+2026-11-22T17:39:50.0293560Z  * [new branch]        codex/upstream-main-sync-2026-09-04-mergework -> origin/codex/upstream-main-sync-2026-09-04-mergework
+2026-11-22T17:39:50.0295230Z  * [new branch]        codex/upstream-main-sync-2026-09-04-resolved -> origin/codex/upstream-main-sync-2026-09-04-resolved
+2026-11-22T17:39:50.0296020Z  * [new branch]        demo/native-sheet-lab-ipa-20261119 -> origin/demo/native-sheet-lab-ipa-20261119
+2026-11-22T17:39:50.0296580Z  * [new branch]        dev                   -> origin/dev
+2026-11-22T17:39:50.0297780Z  * [new branch]        diagnostic/disable-otzaria-inspector-cache-build-20260708 -> origin/diagnostic/disable-otzaria-inspector-cache-build-20260708
+2026-11-22T17:39:50.0299790Z  * [new branch]        experiment/crest-reader-playground -> origin/experiment/crest-reader-playground
+2026-11-22T17:39:50.0300650Z  * [new branch]        experiment/embedded-ai-social-chat-ui-20260724 -> origin/experiment/embedded-ai-social-chat-ui-20260724
+2026-11-22T17:39:50.0301340Z  * [new branch]        experiment/ipad-ui-10601-strict-repair -> origin/experiment/ipad-ui-10601-strict-repair
+2026-11-22T17:39:50.0302010Z  * [new branch]        experiment/ipad-ui-9401-native-sidebar-toc-fix -> origin/experiment/ipad-ui-9401-native-sidebar-toc-fix
+2026-11-22T17:39:50.0302700Z  * [new branch]        experiment/ipad-ui-exact-9401-restore -> origin/experiment/ipad-ui-exact-9401-restore
+2026-11-22T17:39:50.0303930Z  * [new branch]        experiment/ipad-ui-faithful-from-9401 -> origin/experiment/ipad-ui-faithful-from-9401
+2026-11-22T17:39:50.0305060Z  * [new branch]        experiment/otzaria-sources-navigation-split-detail-20260708 -> origin/experiment/otzaria-sources-navigation-split-detail-20260708
+2026-11-22T17:39:50.0305980Z  * [new branch]        experiment/sefaria-mobile-original-embedded-20261029 -> origin/experiment/sefaria-mobile-original-embedded-20261029
+2026-11-22T17:39:50.0306740Z  * [new branch]        feat/torah-photo-study-bridge -> origin/feat/torah-photo-study-bridge
+2026-11-22T17:39:50.0307920Z  * [new branch]        fix/build-8601-ipad-backend-toc-otzaria-index-20261027 -> origin/fix/build-8601-ipad-backend-toc-otzaria-index-20261027
+2026-11-22T17:39:50.0308810Z  * [new branch]        fix/ipad-manual-sidebar-toggle-keep-inspector-cache-20260708 -> origin/fix/ipad-manual-sidebar-toggle-keep-inspector-cache-20260708
+2026-11-22T17:39:50.0309640Z  * [new branch]        fix/ipad-sidebar-inspector-placement-20260708 -> origin/fix/ipad-sidebar-inspector-placement-20260708
+2026-11-22T17:39:50.0310320Z  * [new branch]        fix/maktabah-search-detail-unification -> origin/fix/maktabah-search-detail-unification
+2026-11-22T17:39:50.0311040Z  * [new branch]        integration/sefaria-otzaria-20261108 -> origin/integration/sefaria-otzaria-20261108
+2026-11-22T17:39:50.0311630Z  * [new branch]        main                  -> origin/main
+2026-11-22T17:39:50.0312080Z  * [new branch]        otsaria-phase1        -> origin/otsaria-phase1
+2026-11-22T17:39:50.0312600Z  * [new branch]        otzaria-log-fix-20260628 -> origin/otzaria-log-fix-20260628
+2026-11-22T17:39:50.0313610Z  * [new branch]        otzaria-reader-ui-units-logs-20260630 -> origin/otzaria-reader-ui-units-logs-20260630
+2026-11-22T17:39:50.0314460Z  * [new branch]        otzaria/reorganized-adapter-20260707 -> origin/otzaria/reorganized-adapter-20260707
+2026-11-22T17:39:50.0315270Z  * [new branch]        rc/maktabah-batch-b-xcode27-20261025 -> origin/rc/maktabah-batch-b-xcode27-20261025
+2026-11-22T17:39:50.0316230Z  * [new branch]        refactor/otzaria-layer-cleanup-pinned-engine-20260707 -> origin/refactor/otzaria-layer-cleanup-pinned-engine-20260707
+2026-11-22T17:39:50.0317150Z  * [new branch]        repair/shared-library-core-20260915 -> origin/repair/shared-library-core-20260915
+2026-11-22T17:39:50.0318040Z  * [new branch]        safe-otzaria-before-reorg-20260707 -> origin/safe-otzaria-before-reorg-20260707
+2026-11-22T17:39:50.0318820Z  * [new branch]        sync/main-into-otzaria-pinned-20260707 -> origin/sync/main-into-otzaria-pinned-20260707
+2026-11-22T17:39:50.0319720Z  * [new branch]        sync/upstream-v42-full-integration -> origin/sync/upstream-v42-full-integration
+2026-11-22T17:39:50.0320320Z  * [new branch]        upstream/main-2026-09-04 -> origin/upstream/main-2026-09-04
+2026-11-22T17:39:50.0321070Z  * [new branch]        validation/maktabah-batch-b-xcode27-20261025 -> origin/validation/maktabah-batch-b-xcode27-20261025
+2026-11-22T17:39:50.0322020Z  * [new branch]        validation/maktabah-build-8401-repair-production-20261025 -> origin/validation/maktabah-build-8401-repair-production-20261025
+2026-11-22T17:39:50.0322700Z  * [new tag]           otzaria-miniTest10-v1 -> otzaria-miniTest10-v1
+2026-11-22T17:39:50.0323640Z  * [new tag]           otzaria-miniTest10-v2 -> otzaria-miniTest10-v2
+2026-11-22T17:39:50.0324200Z  * [new tag]           otzaria-miniTest10-v3 -> otzaria-miniTest10-v3
+2026-11-22T17:39:50.0324740Z  * [new tag]           otzaria-miniTest10-v4 -> otzaria-miniTest10-v4
+2026-11-22T17:39:50.0325120Z  * [new tag]           otzaria-miniTest10-v5 -> otzaria-miniTest10-v5
+2026-11-22T17:39:50.0325570Z  * [new tag]           otzaria-miniTest10-v6 -> otzaria-miniTest10-v6
+2026-11-22T17:39:50.0327850Z  * [new tag]           otzaria-miniTest10-v7 -> otzaria-miniTest10-v7
+2026-11-22T17:39:50.0329150Z  * [new tag]           otzaria-miniTest10-v8 -> otzaria-miniTest10-v8
+2026-11-22T17:39:50.0330200Z  * [new tag]           otzaria-miniTest10-v9 -> otzaria-miniTest10-v9
+2026-11-22T17:39:50.0331860Z  * [new tag]           otzaria-search-data-v22-20260821152805-38472bbf000c -> otzaria-search-data-v22-20260821152805-38472bbf000c
+2026-11-22T17:39:50.0333860Z  * [new tag]           otzaria-search-data-v22-20260821152805-d16fd3c7cab5 -> otzaria-search-data-v22-20260821152805-d16fd3c7cab5
+2026-11-22T17:39:50.0344280Z  * [new tag]           otzaria-search-data-v32-20261010190601-102293b3a63c -> otzaria-search-data-v32-20261010190601-102293b3a63c
+2026-11-22T17:39:50.0345120Z  * [new tag]           otzaria-search-data-v36-20261101064231-71132342fc33 -> otzaria-search-data-v36-20261101064231-71132342fc33
+2026-11-22T17:39:50.0346360Z  * [new tag]           zayit-search-data-v22-20260821152805-5fb76b102875 -> zayit-search-data-v22-20260821152805-5fb76b102875
+2026-11-22T17:39:50.0347330Z  * [new tag]           zayit-search-data-v32-20261010190601-81cc25fa8fc3 -> zayit-search-data-v32-20261010190601-81cc25fa8fc3
+2026-11-22T17:39:50.0350180Z [command]/opt/homebrew/bin/git rev-parse --verify --quiet 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1^{object}
+2026-11-22T17:39:50.0350790Z 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T17:39:50.0353990Z ##[endgroup]
+2026-11-22T17:39:50.0354370Z ##[group]Determining the checkout info
+2026-11-22T17:39:50.0354750Z ##[endgroup]
+2026-11-22T17:39:50.0355050Z [command]/opt/homebrew/bin/git sparse-checkout disable
+2026-11-22T17:39:50.0381280Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-22T17:39:50.0478250Z ##[group]Checking out the ref
+2026-11-22T17:39:50.0486750Z [command]/opt/homebrew/bin/git checkout --progress --force 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T17:39:51.1149060Z Updating files:  40% (3645/8897)
+2026-11-22T17:39:51.1374450Z Updating files:  41% (3648/8897)
+2026-11-22T17:39:51.1621590Z Updating files:  42% (3737/8897)
+2026-11-22T17:39:51.2433000Z Updating files:  43% (3826/8897)
+2026-11-22T17:39:51.2691300Z Updating files:  44% (3915/8897)
+2026-11-22T17:39:51.2920040Z Updating files:  45% (4004/8897)
+2026-11-22T17:39:51.3118450Z Updating files:  46% (4093/8897)
+2026-11-22T17:39:51.3314150Z Updating files:  47% (4182/8897)
+2026-11-22T17:39:51.3667000Z Updating files:  48% (4271/8897)
+2026-11-22T17:39:51.3922410Z Updating files:  49% (4360/8897)
+2026-11-22T17:39:51.5304190Z Updating files:  50% (4449/8897)
+2026-11-22T17:39:51.5972660Z Updating files:  51% (4538/8897)
+2026-11-22T17:39:51.6641110Z Updating files:  52% (4627/8897)
+2026-11-22T17:39:51.6957880Z Updating files:  53% (4716/8897)
+2026-11-22T17:39:51.7344500Z Updating files:  54% (4805/8897)
+2026-11-22T17:39:51.7824430Z Updating files:  55% (4894/8897)
+2026-11-22T17:39:51.8191520Z Updating files:  56% (4983/8897)
+2026-11-22T17:39:51.8539260Z Updating files:  57% (5072/8897)
+2026-11-22T17:39:52.0101170Z Updating files:  58% (5161/8897)
+2026-11-22T17:39:52.0441030Z Updating files:  59% (5250/8897)
+2026-11-22T17:39:52.0749880Z Updating files:  60% (5339/8897)
+2026-11-22T17:39:52.0846250Z Updating files:  61% (5428/8897)
+2026-11-22T17:39:52.1239290Z Updating files:  61% (5429/8897)
+2026-11-22T17:39:52.1638550Z Updating files:  62% (5517/8897)
+2026-11-22T17:39:52.2028670Z Updating files:  63% (5606/8897)
+2026-11-22T17:39:52.2186850Z Updating files:  64% (5695/8897)
+2026-11-22T17:39:52.5177890Z Updating files:  65% (5784/8897)
+2026-11-22T17:39:52.5486160Z Updating files:  66% (5873/8897)
+2026-11-22T17:39:52.6147000Z Updating files:  67% (5961/8897)
+2026-11-22T17:39:52.6447020Z Updating files:  68% (6050/8897)
+2026-11-22T17:39:52.6752600Z Updating files:  69% (6139/8897)
+2026-11-22T17:39:52.6852590Z Updating files:  70% (6228/8897)
+2026-11-22T17:39:52.6955220Z Updating files:  71% (6317/8897)
+2026-11-22T17:39:52.7118680Z Updating files:  72% (6406/8897)
+2026-11-22T17:39:52.7287780Z Updating files:  73% (6495/8897)
+2026-11-22T17:39:52.7553540Z Updating files:  74% (6584/8897)
+2026-11-22T17:39:52.7919730Z Updating files:  75% (6673/8897)
+2026-11-22T17:39:52.8411130Z Updating files:  76% (6762/8897)
+2026-11-22T17:39:52.8720620Z Updating files:  77% (6851/8897)
+2026-11-22T17:39:52.9238950Z Updating files:  78% (6940/8897)
+2026-11-22T17:39:53.0198880Z Updating files:  79% (7029/8897)
+2026-11-22T17:39:53.0940360Z Updating files:  80% (7118/8897)
+2026-11-22T17:39:53.1095400Z Updating files:  80% (7154/8897)
+2026-11-22T17:39:53.2016880Z Updating files:  81% (7207/8897)
+2026-11-22T17:39:53.2328880Z Updating files:  82% (7296/8897)
+2026-11-22T17:39:53.2665820Z Updating files:  83% (7385/8897)
+2026-11-22T17:39:53.3037280Z Updating files:  84% (7474/8897)
+2026-11-22T17:39:53.3367180Z Updating files:  85% (7563/8897)
+2026-11-22T17:39:53.3692370Z Updating files:  86% (7652/8897)
+2026-11-22T17:39:53.3998470Z Updating files:  87% (7741/8897)
+2026-11-22T17:39:53.4203440Z Updating files:  88% (7830/8897)
+2026-11-22T17:39:53.4574340Z Updating files:  89% (7919/8897)
+2026-11-22T17:39:53.4714160Z Updating files:  90% (8008/8897)
+2026-11-22T17:39:53.4909120Z Updating files:  91% (8097/8897)
+2026-11-22T17:39:53.7991670Z Updating files:  92% (8186/8897)
+2026-11-22T17:39:53.8220840Z Updating files:  93% (8275/8897)
+2026-11-22T17:39:53.8392440Z Updating files:  94% (8364/8897)
+2026-11-22T17:39:54.0368150Z Updating files:  95% (8453/8897)
+2026-11-22T17:39:54.0713880Z Updating files:  96% (8542/8897)
+2026-11-22T17:39:54.0777150Z Updating files:  97% (8631/8897)
+2026-11-22T17:39:54.1213780Z Updating files:  97% (8651/8897)
+2026-11-22T17:39:54.1503130Z Updating files:  98% (8720/8897)
+2026-11-22T17:39:54.1798220Z Updating files:  99% (8809/8897)
+2026-11-22T17:39:54.1798910Z Updating files: 100% (8897/8897)
+2026-11-22T17:39:54.1799540Z Updating files: 100% (8897/8897), done.
+2026-11-22T17:39:54.2142820Z HEAD is now at 4624635d ci: bind Live to reviewed accessibility source and available provider model
+2026-11-22T17:39:54.2365030Z ##[endgroup]
+2026-11-22T17:39:54.2721350Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-11-22T17:39:54.2927300Z 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T17:39:54.3962170Z ##[group]Run python3 - <<'PYCONFIG'
+2026-11-22T17:39:54.3963440Z [36;1mpython3 - <<'PYCONFIG'[0m
+2026-11-22T17:39:54.3964050Z [36;1mimport os[0m
+2026-11-22T17:39:54.3964900Z [36;1mconfigured = os.environ['LIVE_KEY_CONFIGURED'] == 'true'[0m
+2026-11-22T17:39:54.3965970Z [36;1mwith open(os.environ['GITHUB_OUTPUT'], 'a') as output:[0m
+2026-11-22T17:39:54.3968710Z [36;1m    output.write('configured=' + str(configured).lower() + '\n')[0m
+2026-11-22T17:39:54.3970070Z [36;1massert configured, 'The reviewed temporary live credential is not configured'[0m
+2026-11-22T17:39:54.3971040Z [36;1mPYCONFIG[0m
+2026-11-22T17:39:54.4088330Z shell: /bin/bash -e {0}
+2026-11-22T17:39:54.4088790Z env:
+2026-11-22T17:39:54.4089160Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T17:39:54.4089590Z   LIVE_KEY_CONFIGURED: true
+2026-11-22T17:39:54.4089820Z ##[endgroup]
+2026-11-22T17:39:54.7413080Z ##[group]Run python3 Scripts/CI/select-runtime27-toolchain.py --github-env
+2026-11-22T17:39:54.7414290Z [36;1mpython3 Scripts/CI/select-runtime27-toolchain.py --github-env[0m
+2026-11-22T17:39:54.7486320Z shell: /bin/bash -e {0}
+2026-11-22T17:39:54.7486860Z env:
+2026-11-22T17:39:54.7487490Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T17:39:54.7488620Z ##[endgroup]
+2026-11-22T17:40:48.5035620Z {
+2026-11-22T17:40:48.5037680Z   "status": "MATCHED_MATRIX_PAIR_SELECTED",
+2026-11-22T17:40:48.5038760Z   "selected": {
+2026-11-22T17:40:48.5039620Z     "developer_dir": "/Applications/Xcode_27.2.app/Contents/Developer",
+2026-11-22T17:40:48.5040820Z     "xcode": "Xcode 27.2\nBuild version 27B52",
+2026-11-22T17:40:48.5042110Z     "xcode_version": "27.2",
+2026-11-22T17:40:48.5042840Z     "sdk_version": "27.2",
+2026-11-22T17:40:48.5045890Z     "app_intents_testing": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/AppIntentsTesting.framework/AppIntentsTesting",
+2026-11-22T17:40:48.5050270Z     "runtime_identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2"
+2026-11-22T17:40:48.5050820Z   },
+2026-11-22T17:40:48.5051030Z   "native_ui_executed": 0
+2026-11-22T17:40:48.5051380Z }
+2026-11-22T17:40:48.5361840Z ##[group]Run python3 - <<'PYGROUP'
+2026-11-22T17:40:48.5362390Z [36;1mpython3 - <<'PYGROUP'[0m
+2026-11-22T17:40:48.5362760Z [36;1mimport hashlib, json, pathlib, subprocess[0m
+2026-11-22T17:40:48.5363150Z [36;1mcommand = ['xcrun', 'simctl', 'help', 'get_app_container'][0m
+2026-11-22T17:40:48.5363670Z [36;1mresult = subprocess.run(command, capture_output=True, timeout=45)[0m
+2026-11-22T17:40:48.5364100Z [36;1mraw = result.stdout + result.stderr[0m
+2026-11-22T17:40:48.5370310Z [36;1mtext = raw.decode('utf-8', errors='strict')[0m
+2026-11-22T17:40:48.5371690Z [36;1mpath = pathlib.Path('build/hanlin-live-preflight/app-group-resolver-interface.json')[0m
+2026-11-22T17:40:48.5372950Z [36;1mpath.parent.mkdir(parents=True, exist_ok=False)[0m
+2026-11-22T17:40:48.5374100Z [36;1mreport = {'command': command, 'exit_code': result.returncode,[0m
+2026-11-22T17:40:48.5375210Z [36;1m          'help_sha256': hashlib.sha256(raw).hexdigest(), 'help': text,[0m
+2026-11-22T17:40:48.5376830Z [36;1m          'actual_installed_container_resolution': 'DEFERRED_TO_OWNED_NATIVE_FIXTURE'}[0m
+2026-11-22T17:40:48.5378050Z [36;1mpath.write_text(json.dumps(report, indent=2) + '\n')[0m
+2026-11-22T17:40:48.5379120Z [36;1massert result.returncode == 0 and len(raw) <= 65536[0m
+2026-11-22T17:40:48.5380530Z [36;1massert 'get_app_container' in text and 'group' in text.lower(), 'Actual simctl group selector interface unavailable'[0m
+2026-11-22T17:40:48.5381970Z [36;1mPYGROUP[0m
+2026-11-22T17:40:48.5828210Z shell: /bin/bash -e {0}
+2026-11-22T17:40:48.5828490Z env:
+2026-11-22T17:40:48.5828860Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T17:40:48.5829280Z   DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+2026-11-22T17:40:48.5829840Z   FAITHFUL_RUNTIME27_IDENTIFIER: com.apple.CoreSimulator.SimRuntime.iOS-27-2
+2026-11-22T17:40:48.5830280Z ##[endgroup]
+2026-11-22T17:40:49.0537340Z ##[group]Run actions/setup-python@v5
+2026-11-22T17:40:49.0537650Z with:
+2026-11-22T17:40:49.0537930Z   python-version: 3.12
+2026-11-22T17:40:49.0538170Z   architecture: arm64
+2026-11-22T17:40:49.0538340Z   check-latest: false
+2026-11-22T17:40:49.0540420Z   token: ***
+2026-11-22T17:40:49.0540640Z   update-environment: true
+2026-11-22T17:40:49.0540980Z   allow-prereleases: false
+2026-11-22T17:40:49.0541280Z   freethreaded: false
+2026-11-22T17:40:49.0541500Z env:
+2026-11-22T17:40:49.0541870Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T17:40:49.0542320Z   DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+2026-11-22T17:40:49.0542780Z   FAITHFUL_RUNTIME27_IDENTIFIER: com.apple.CoreSimulator.SimRuntime.iOS-27-2
+2026-11-22T17:40:49.0543210Z ##[endgroup]
+2026-11-22T17:40:49.6183760Z ##[group]Installed versions
+2026-11-22T17:40:49.6445130Z (node:5274) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-22T17:40:49.6446630Z Successfully set up CPython (3.12.10)
+2026-11-22T17:40:49.6447800Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-22T17:40:49.6448520Z ##[endgroup]
+2026-11-22T17:40:49.6612900Z ##[group]Run python3 - <<'PYENV'
+2026-11-22T17:40:49.6613300Z [36;1mpython3 - <<'PYENV'[0m
+2026-11-22T17:40:49.6613540Z [36;1mimport json, pathlib, platform, sys, venv[0m
+2026-11-22T17:40:49.6614030Z [36;1mselected = {'python_executable': sys.executable, 'python_version': sys.version,[0m
+2026-11-22T17:40:49.6614620Z [36;1m            'implementation': sys.implementation.name, 'system': platform.system(),[0m
+2026-11-22T17:40:49.6615060Z [36;1m            'machine': platform.machine()}[0m
+2026-11-22T17:40:49.6615350Z [36;1mprint(json.dumps(selected), flush=True)[0m
+2026-11-22T17:40:49.6615810Z [36;1massert sys.implementation.name == 'cpython' and sys.version_info[:2] == (3, 12)[0m
+2026-11-22T17:40:49.6616380Z [36;1massert platform.system() == 'Darwin' and platform.machine() == 'arm64'[0m
+2026-11-22T17:40:49.6616820Z [36;1menvironment = pathlib.Path('build/hanlin-live-python')[0m
+2026-11-22T17:40:49.6617460Z [36;1massert not environment.exists() and not environment.is_symlink(), 'Preserve an existing Python environment'[0m
+2026-11-22T17:40:49.6618060Z [36;1mvenv.EnvBuilder(with_pip=True).create(environment)[0m
+2026-11-22T17:40:49.6618390Z [36;1mPYENV[0m
+2026-11-22T17:40:49.6618690Z [36;1mbuild/hanlin-live-python/bin/python -m pip --version[0m
+2026-11-22T17:40:49.6619260Z [36;1mbuild/hanlin-live-python/bin/python -m pip install --disable-pip-version-check --only-binary=:all: zstandard==0.25.0[0m
+2026-11-22T17:40:49.6620190Z [36;1mbuild/hanlin-live-python/bin/python - <<'PYDECODER'[0m
+2026-11-22T17:40:49.6620640Z [36;1mimport hashlib, importlib.metadata, json, pathlib, runpy, sqlite3, sys[0m
+2026-11-22T17:40:49.6620970Z [36;1mimport zstandard[0m
+2026-11-22T17:40:49.6621330Z [36;1msource = pathlib.Path('Scripts/verify-otzaria-mini-parity.py')[0m
+2026-11-22T17:40:49.6621740Z [36;1moriginal = runpy.run_path(str(source))['decoder'][0m
+2026-11-22T17:40:49.6622210Z [36;1msample = 'Original SQL decoder dependency preflight — מקור'.encode('utf-8')[0m
+2026-11-22T17:40:49.6622730Z [36;1mcompressed = zstandard.ZstdCompressor().compress(sample)[0m
+2026-11-22T17:40:49.6623130Z [36;1mwith sqlite3.connect(':memory:') as connection:[0m
+2026-11-22T17:40:49.6623660Z [36;1m    connection.execute('CREATE TABLE zstd_dict (id INTEGER PRIMARY KEY, dict BLOB NOT NULL)')[0m
+2026-11-22T17:40:49.6624180Z [36;1m    assert original(connection)(compressed).encode('utf-8') == sample[0m
+2026-11-22T17:40:49.6624610Z [36;1mreport = {'status': 'ORIGINAL_DECODER_DEPENDENCY_SMOKE_PASS',[0m
+2026-11-22T17:40:49.6625090Z [36;1m          'python_executable': sys.executable, 'python_version': sys.version,[0m
+2026-11-22T17:40:49.6626440Z [36;1m          'zstandard_version': importlib.metadata.version('zstandard'),[0m
+2026-11-22T17:40:49.6626980Z [36;1m          'original_decoder_sha256': hashlib.sha256(source.read_bytes()).hexdigest(),[0m
+2026-11-22T17:40:49.6627470Z [36;1m          'compressed_sample_sha256': hashlib.sha256(compressed).hexdigest(),[0m
+2026-11-22T17:40:49.6627890Z [36;1m          'sample_sha256': hashlib.sha256(sample).hexdigest(),[0m
+2026-11-22T17:40:49.6629300Z [36;1m          'actual_native_fixture_checked': False, 'provider_called': False}[0m
+2026-11-22T17:40:49.6630270Z [36;1massert report['zstandard_version'] == '0.25.0'[0m
+2026-11-22T17:40:49.6631690Z [36;1mpathlib.Path('build/hanlin-live-preflight/python-oracle-environment.json').write_text(json.dumps(report, indent=2) + '\n')[0m
+2026-11-22T17:40:49.6633030Z [36;1mPYDECODER[0m
+2026-11-22T17:40:49.6729850Z shell: /bin/bash -e {0}
+2026-11-22T17:40:49.6730120Z env:
+2026-11-22T17:40:49.6730430Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T17:40:49.6730870Z   DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+2026-11-22T17:40:49.6731270Z   FAITHFUL_RUNTIME27_IDENTIFIER: com.apple.CoreSimulator.SimRuntime.iOS-27-2
+2026-11-22T17:40:49.6731800Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:49.6732980Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-11-22T17:40:49.6733470Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:49.6733940Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:49.6734950Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:49.6735300Z ##[endgroup]
+2026-11-22T17:40:50.1360020Z {"python_executable": "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "python_version": "3.12.10 (v3.12.10:0cc81280367, Apr  8 2025, 08:46:59) [Clang 13.0.0 (clang-1300.0.29.30)]", "implementation": "cpython", "system": "Darwin", "machine": "arm64"}
+2026-11-22T17:40:53.8465540Z pip 25.0.1 from /Users/runner/work/Maktabah/Maktabah/build/hanlin-live-python/lib/python3.12/site-packages/pip (python 3.12)
+2026-11-22T17:40:54.4776310Z Collecting zstandard==0.25.0
+2026-11-22T17:40:54.5298330Z   Downloading zstandard-0.25.0-cp312-cp312-macosx_11_0_arm64.whl.metadata (3.3 kB)
+2026-11-22T17:40:54.5406630Z Downloading zstandard-0.25.0-cp312-cp312-macosx_11_0_arm64.whl (640 kB)
+2026-11-22T17:40:54.5556370Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 640.4/640.4 kB 50.0 MB/s eta 0:00:00
+2026-11-22T17:40:54.5595440Z Installing collected packages: zstandard
+2026-11-22T17:40:54.5835430Z Successfully installed zstandard-0.25.0
+2026-11-22T17:40:54.7801300Z ##[group]Run actions/setup-node@v4
+2026-11-22T17:40:54.7801650Z with:
+2026-11-22T17:40:54.7801830Z   node-version: 22
+2026-11-22T17:40:54.7802070Z   always-auth: false
+2026-11-22T17:40:54.7802220Z   check-latest: false
+2026-11-22T17:40:54.7804780Z   token: ***
+2026-11-22T17:40:54.7804940Z env:
+2026-11-22T17:40:54.7805160Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T17:40:54.7805530Z   DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+2026-11-22T17:40:54.7806040Z   FAITHFUL_RUNTIME27_IDENTIFIER: com.apple.CoreSimulator.SimRuntime.iOS-27-2
+2026-11-22T17:40:54.7806500Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:54.7806980Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-11-22T17:40:54.7807490Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:54.7808150Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:54.7808610Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:54.7808980Z ##[endgroup]
+2026-11-22T17:40:54.9713160Z (node:5293) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-22T17:40:54.9715240Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-22T17:40:54.9716470Z Found in cache @ /Users/runner/hostedtoolcache/node/22.23.4/arm64
+2026-11-22T17:40:54.9717050Z ##[group]Environment details
+2026-11-22T17:40:56.1432700Z node: v22.23.4
+2026-11-22T17:40:56.1436370Z npm: 10.9.9
+2026-11-22T17:40:56.1436880Z yarn: 1.22.22
+2026-11-22T17:40:56.1443560Z ##[endgroup]
+2026-11-22T17:40:56.1945800Z ##[group]Run ruby/setup-ruby@v1
+2026-11-22T17:40:56.1946040Z with:
+2026-11-22T17:40:56.1946790Z   ruby-version: 3.3
+2026-11-22T17:40:56.1947500Z   bundler-cache: false
+2026-11-22T17:40:56.1950110Z   token: ***
+2026-11-22T17:40:56.1950370Z env:
+2026-11-22T17:40:56.1950660Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T17:40:56.1951240Z   DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+2026-11-22T17:40:56.1951700Z   FAITHFUL_RUNTIME27_IDENTIFIER: com.apple.CoreSimulator.SimRuntime.iOS-27-2
+2026-11-22T17:40:56.1952170Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:56.1952700Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-11-22T17:40:56.1953190Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:56.1953610Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:56.1954000Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:56.1954270Z ##[endgroup]
+2026-11-22T17:40:56.4898690Z ##[group]Modifying PATH
+2026-11-22T17:40:56.4908510Z Entries removed from PATH to avoid conflicts with default Ruby:
+2026-11-22T17:40:56.4909200Z   /opt/homebrew/lib/ruby/gems/3.4.0/bin
+2026-11-22T17:40:56.4909660Z   /opt/homebrew/opt/ruby@3.4/bin
+2026-11-22T17:40:56.4910180Z Entries added to PATH to use selected Ruby:
+2026-11-22T17:40:56.4910700Z   /Users/runner/hostedtoolcache/Ruby/3.3.14/arm64/bin
+2026-11-22T17:40:56.4916050Z ##[endgroup]
+2026-11-22T17:40:56.4927200Z ##[group]Downloading Ruby
+2026-11-22T17:40:56.4928230Z https://github.com/ruby/ruby-builder/releases/download/ruby-3.3.14/ruby-3.3.14-darwin-arm64.tar.gz
+2026-11-22T17:40:56.9581460Z Took   0.46 seconds
+2026-11-22T17:40:56.9586670Z ##[endgroup]
+2026-11-22T17:40:56.9595010Z ##[group]Extracting  Ruby
+2026-11-22T17:40:56.9627820Z [command]/usr/bin/tar -xz -C /Users/runner/hostedtoolcache/Ruby/3.3.14 -f /Users/runner/work/_temp/5d1ddb3d-f846-42c2-bd9a-25e10b9313a1
+2026-11-22T17:40:57.7643840Z Took   0.81 seconds
+2026-11-22T17:40:57.7645890Z ##[endgroup]
+2026-11-22T17:40:57.7647610Z ##[group]Print Ruby version
+2026-11-22T17:40:57.7673430Z [command]/Users/runner/hostedtoolcache/Ruby/3.3.14/arm64/bin/ruby --version
+2026-11-22T17:40:57.7907840Z ruby 3.3.14 (2026-11-19 revision f4c37f481b) [arm64-darwin24]
+2026-11-22T17:40:57.7913990Z Took   0.03 seconds
+2026-11-22T17:40:57.7915540Z ##[endgroup]
+2026-11-22T17:40:57.7917240Z ##[group]Installing Bundler
+2026-11-22T17:40:57.7929790Z Using Bundler shipped with ruby-3.3.14
+2026-11-22T17:40:57.7931130Z Took   0.00 seconds
+2026-11-22T17:40:57.7933140Z ##[endgroup]
+2026-11-22T17:40:57.8016250Z ##[group]Run python3 - <<'PY'
+2026-11-22T17:40:57.8016580Z [36;1mpython3 - <<'PY'[0m
+2026-11-22T17:40:57.8016800Z [36;1mimport json, os, pathlib[0m
+2026-11-22T17:40:57.8017360Z [36;1mrebuild = json.loads(pathlib.Path('Scripts/CI/hq-stage2-focused-apple.inputs.json').read_text()).get('rebuild_zayit_framework', False)[0m
+2026-11-22T17:40:57.8017860Z [36;1massert type(rebuild) is bool[0m
+2026-11-22T17:40:57.8018230Z [36;1mwith open(os.environ['GITHUB_OUTPUT'], 'a') as output:[0m
+2026-11-22T17:40:57.8018570Z [36;1m    output.write('rebuild=' + str(rebuild).lower() + '\n')[0m
+2026-11-22T17:40:57.8018860Z [36;1mPY[0m
+2026-11-22T17:40:57.8264040Z shell: /bin/bash -e {0}
+2026-11-22T17:40:57.8264310Z env:
+2026-11-22T17:40:57.8264620Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T17:40:57.8266080Z   DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+2026-11-22T17:40:57.8266750Z   FAITHFUL_RUNTIME27_IDENTIFIER: com.apple.CoreSimulator.SimRuntime.iOS-27-2
+2026-11-22T17:40:57.8267340Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:57.8267830Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-11-22T17:40:57.8268300Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:57.8268980Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:57.8269500Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:57.8273460Z   PATH: /Users/runner/hostedtoolcache/node/22.23.4/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64:/opt/homebrew/opt/rustup/bin:/Users/runner/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Library/Frameworks/Python.framework/Versions/Current/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools
+2026-11-22T17:40:57.8279240Z ##[endgroup]
+2026-11-22T17:40:57.9482830Z ##[group]Run python3 - <<'PY'
+2026-11-22T17:40:57.9483200Z [36;1mpython3 - <<'PY'[0m
+2026-11-22T17:40:57.9483460Z [36;1mimport hashlib, json, os, pathlib, subprocess[0m
+2026-11-22T17:40:57.9483810Z [36;1mdef git(path):[0m
+2026-11-22T17:40:57.9484140Z [36;1m    return subprocess.check_output(['git', 'rev-parse', 'HEAD:' + path])[0m
+2026-11-22T17:40:57.9484750Z [36;1minputs = json.loads(pathlib.Path('Scripts/CI/hq-stage2-focused-apple.inputs.json').read_text())[0m
+2026-11-22T17:40:57.9485310Z [36;1minputs.pop('application_source_sha')[0m
+2026-11-22T17:40:57.9485620Z [36;1minputs.pop('application_trees')[0m
+2026-11-22T17:40:57.9486000Z [36;1m# A package resource-layout change must not restore an older copied[0m
+2026-11-22T17:40:57.9486430Z [36;1m# Resources directory into a newly processed/signable bundle.[0m
+2026-11-22T17:40:57.9486950Z [36;1mpackage_manifests = subprocess.check_output(['git', 'ls-files', '-z', 'Source/**/Package.swift']).decode().split('\0')[0m
+2026-11-22T17:40:57.9487530Z [36;1mpackage_layout = b''.join(git(path) for path in package_manifests if path)[0m
+2026-11-22T17:40:57.9488050Z [36;1mrust = subprocess.check_output(['rustc', '-Vv']) if inputs.get('rebuild_zayit_framework') else b''[0m
+2026-11-22T17:40:57.9488630Z [36;1mnative = (subprocess.check_output(['xcodebuild', '-version']) + git('Vendor') + git('Maktabah.xcodeproj')[0m
+2026-11-22T17:40:57.9489540Z [36;1m          + pathlib.Path('Podfile').read_bytes() + json.dumps(inputs, sort_keys=True).encode() + package_layout + rust)[0m
+2026-11-22T17:40:57.9490110Z [36;1mprefix = 'runtime27-derived-v2-' + hashlib.sha256(native).hexdigest() + '-'[0m
+2026-11-22T17:40:57.9490640Z [36;1mkey = prefix + hashlib.sha256(git('Source') + git('Maktabah-iOSUITests')).hexdigest()[0m
+2026-11-22T17:40:57.9491120Z [36;1mwith open(os.environ['GITHUB_OUTPUT'], 'a') as output:[0m
+2026-11-22T17:40:57.9491480Z [36;1m    output.write('prefix=' + prefix + '\nkey=' + key + '\n')[0m
+2026-11-22T17:40:57.9491760Z [36;1mPY[0m
+2026-11-22T17:40:57.9540460Z shell: /bin/bash -e {0}
+2026-11-22T17:40:57.9540740Z env:
+2026-11-22T17:40:57.9541100Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T17:40:57.9541560Z   DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+2026-11-22T17:40:57.9542010Z   FAITHFUL_RUNTIME27_IDENTIFIER: com.apple.CoreSimulator.SimRuntime.iOS-27-2
+2026-11-22T17:40:57.9542540Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:57.9542950Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-11-22T17:40:57.9543350Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:57.9543970Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:57.9544350Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:57.9546640Z   PATH: /Users/runner/hostedtoolcache/node/22.23.4/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64:/opt/homebrew/opt/rustup/bin:/Users/runner/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Library/Frameworks/Python.framework/Versions/Current/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools
+2026-11-22T17:40:57.9548680Z ##[endgroup]
+2026-11-22T17:40:58.6425140Z ##[group]Run actions/cache/restore@v4
+2026-11-22T17:40:58.6425470Z with:
+2026-11-22T17:40:58.6425670Z   path: build/DerivedData
+2026-11-22T17:40:58.6426420Z   key: runtime27-derived-v2-3d7c036c896a93d3c441896a98f3a1a3469f3355eb1ace8386e6b5df27a43084-618bdc01dfb418c1ef602dda52c93e2fa231d55f45f61b1fe4764ad92eff15ec
+2026-11-22T17:40:58.6427310Z   restore-keys: runtime27-derived-v2-3d7c036c896a93d3c441896a98f3a1a3469f3355eb1ace8386e6b5df27a43084-
+2026-11-22T17:40:58.6427820Z   enableCrossOsArchive: false
+2026-11-22T17:40:58.6428040Z   fail-on-cache-miss: false
+2026-11-22T17:40:58.6428220Z   lookup-only: false
+2026-11-22T17:40:58.6428410Z env:
+2026-11-22T17:40:58.6428640Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T17:40:58.6429000Z   DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+2026-11-22T17:40:58.6429470Z   FAITHFUL_RUNTIME27_IDENTIFIER: com.apple.CoreSimulator.SimRuntime.iOS-27-2
+2026-11-22T17:40:58.6429930Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:58.6430340Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-11-22T17:40:58.6430750Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:58.6431110Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:58.6431490Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:40:58.6433410Z   PATH: /Users/runner/hostedtoolcache/node/22.23.4/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64:/opt/homebrew/opt/rustup/bin:/Users/runner/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Library/Frameworks/Python.framework/Versions/Current/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools
+2026-11-22T17:40:58.6439080Z ##[endgroup]
+2026-11-22T17:40:58.9021650Z (node:5574) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-22T17:40:58.9024150Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-22T17:40:59.2038790Z Cache hit for restore-key: runtime27-derived-v2-3d7c036c896a93d3c441896a98f3a1a3469f3355eb1ace8386e6b5df27a43084-e30dfba9de3b07f3164e4739ca9f37ae8dccaf28b89e566119b9e4deb1a55631
+2026-11-22T17:40:59.2175490Z (node:5574) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-22T17:41:00.5122510Z Received 0 of 1604997677 (0.0%), 0.0 MBs/sec
+2026-11-22T17:41:01.5134770Z Received 41943040 of 1604997677 (2.6%), 20.0 MBs/sec
+2026-11-22T17:41:02.5179740Z Received 96468992 of 1604997677 (6.0%), 30.6 MBs/sec
+2026-11-22T17:41:03.5197380Z Received 130023424 of 1604997677 (8.1%), 30.9 MBs/sec
+2026-11-22T17:41:04.5212760Z Received 130023424 of 1604997677 (8.1%), 24.7 MBs/sec
+2026-11-22T17:41:05.5223100Z Received 130023424 of 1604997677 (8.1%), 20.6 MBs/sec
+2026-11-22T17:41:06.5382920Z Received 159383552 of 1604997677 (9.9%), 21.6 MBs/sec
+2026-11-22T17:41:07.5336710Z Received 218103808 of 1604997677 (13.6%), 25.9 MBs/sec
+2026-11-22T17:41:08.5354840Z Received 264241152 of 1604997677 (16.5%), 27.9 MBs/sec
+2026-11-22T17:41:09.5386420Z Received 264241152 of 1604997677 (16.5%), 25.1 MBs/sec
+2026-11-22T17:41:10.6017220Z Received 272629760 of 1604997677 (17.0%), 23.4 MBs/sec
+2026-11-22T17:41:11.6228110Z Received 314572800 of 1604997677 (19.6%), 24.8 MBs/sec
+2026-11-22T17:41:12.6177010Z Received 364904448 of 1604997677 (22.7%), 26.6 MBs/sec
+2026-11-22T17:41:13.6126760Z Received 398458880 of 1604997677 (24.8%), 26.9 MBs/sec
+2026-11-22T17:41:14.6238240Z Received 402653184 of 1604997677 (25.1%), 25.4 MBs/sec
+2026-11-22T17:41:15.6587470Z Received 440401920 of 1604997677 (27.4%), 26.0 MBs/sec
+2026-11-22T17:41:16.6653790Z Received 507510784 of 1604997677 (31.6%), 28.2 MBs/sec
+2026-11-22T17:41:18.0617120Z Received 536870912 of 1604997677 (33.4%), 27.6 MBs/sec
+2026-11-22T17:41:19.0699730Z Received 566231040 of 1604997677 (35.3%), 27.6 MBs/sec
+2026-11-22T17:41:20.0662860Z Received 633339904 of 1604997677 (39.5%), 29.4 MBs/sec
+2026-11-22T17:41:21.0649660Z Received 671088640 of 1604997677 (41.8%), 29.7 MBs/sec
+2026-11-22T17:41:22.0687370Z Received 717225984 of 1604997677 (44.7%), 30.3 MBs/sec
+2026-11-22T17:41:23.1088200Z Received 771751936 of 1604997677 (48.1%), 31.2 MBs/sec
+2026-11-22T17:41:24.1843590Z Received 805306368 of 1604997677 (50.2%), 31.1 MBs/sec
+2026-11-22T17:41:25.1906900Z Received 859832320 of 1604997677 (53.6%), 31.9 MBs/sec
+2026-11-22T17:41:26.1975420Z Received 926941184 of 1604997677 (57.8%), 33.1 MBs/sec
+2026-11-22T17:41:27.1844630Z Received 952107008 of 1604997677 (59.3%), 32.8 MBs/sec
+2026-11-22T17:41:28.2148530Z Received 1027604480 of 1604997677 (64.0%), 34.2 MBs/sec
+2026-11-22T17:41:29.8377250Z Received 1073741824 of 1604997677 (66.9%), 33.8 MBs/sec
+2026-11-22T17:41:30.8504350Z Received 1124073472 of 1604997677 (70.0%), 34.2 MBs/sec
+2026-11-22T17:41:31.8304470Z Received 1186988032 of 1604997677 (74.0%), 35.0 MBs/sec
+2026-11-22T17:41:33.6482500Z Received 1207959552 of 1604997677 (75.3%), 33.8 MBs/sec
+2026-11-22T17:41:34.6423490Z Received 1241513984 of 1604997677 (77.4%), 33.7 MBs/sec
+2026-11-22T17:41:35.7190730Z Received 1304428544 of 1604997677 (81.3%), 34.4 MBs/sec
+2026-11-22T17:41:36.6653410Z Received 1342177280 of 1604997677 (83.6%), 34.5 MBs/sec
+2026-11-22T17:41:37.6602520Z Received 1384120320 of 1604997677 (86.2%), 34.6 MBs/sec
+2026-11-22T17:41:38.6725570Z Received 1459617792 of 1604997677 (90.9%), 35.5 MBs/sec
+2026-11-22T17:41:39.6904300Z Received 1497366528 of 1604997677 (93.3%), 35.5 MBs/sec
+2026-11-22T17:41:40.6816630Z Received 1568669696 of 1604997677 (97.7%), 36.3 MBs/sec
+2026-11-22T17:41:41.4038380Z Received 1604997677 of 1604997677 (100.0%), 36.5 MBs/sec
+2026-11-22T17:41:41.4163290Z Cache Size: ~1531 MB (1604997677 B)
+2026-11-22T17:41:41.5693930Z [command]/opt/homebrew/bin/gtar -xf /Users/runner/work/_temp/f162a2e2-933b-40d5-ad25-0441e7730654/cache.tzst -P -C /Users/runner/work/Maktabah/Maktabah --delay-directory-restore --use-compress-program unzstd
+2026-11-22T17:42:21.3610440Z Cache restored successfully
+2026-11-22T17:42:21.4920060Z Cache restored from key: runtime27-derived-v2-3d7c036c896a93d3c441896a98f3a1a3469f3355eb1ace8386e6b5df27a43084-e30dfba9de3b07f3164e4739ca9f37ae8dccaf28b89e566119b9e4deb1a55631
+2026-11-22T17:42:21.5851670Z ##[group]Run python3 Scripts/CI/hq-stage2-focused-apple.py --build-for-testing --derived-data build/DerivedData
+2026-11-22T17:42:21.5853570Z [36;1mpython3 Scripts/CI/hq-stage2-focused-apple.py --build-for-testing --derived-data build/DerivedData[0m
+2026-11-22T17:42:21.9839480Z shell: /bin/bash -e {0}
+2026-11-22T17:42:21.9839830Z env:
+2026-11-22T17:42:21.9840870Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T17:42:21.9841670Z   DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+2026-11-22T17:42:21.9842200Z   FAITHFUL_RUNTIME27_IDENTIFIER: com.apple.CoreSimulator.SimRuntime.iOS-27-2
+2026-11-22T17:42:21.9842730Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:42:21.9843260Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-11-22T17:42:21.9844050Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:42:21.9845030Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:42:21.9845650Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T17:42:21.9848800Z   PATH: /Users/runner/hostedtoolcache/node/22.23.4/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64:/opt/homebrew/opt/rustup/bin:/Users/runner/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Library/Frameworks/Python.framework/Versions/Current/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools
+2026-11-22T17:42:21.9855510Z   GH_TOKEN: ***
+2026-11-22T17:42:21.9856190Z ##[endgroup]
+2026-11-22T17:42:34.9639880Z command_exit=0 log=build/hq-stage2/hanlin-sdk.log
+2026-11-22T17:42:34.9644930Z {"repository": "https://github.com/davidpovarsky/hanlin-ai.git", "sha": "e00498e33f106cc43be0476ffa2e09329c8ca300", "layout": ["Packages/HanlinAgentSDK", "Packages/HanlinPlatform", "Packages/HanlinPresentationSDK"], "verified_files": 424, "manifest_sha256": {"Packages/HanlinAgentSDK": "9af2a15811e934e4082360e46f368ea2b0d5ba5d97a77d8bb0ddb34d48e0666b", "Packages/HanlinPlatform": "e9ea19d4bc3fe3873137e0c2e32cda50892ecd39103f3a63250acaa8f373e458", "Packages/HanlinPresentationSDK": "59272c233aca8fbf72f50a9296539b2ed55b33f625ce34d208a2b1c4e3d569b8"}, "boundary": "Original source identity/layout only; package resolution, Apple build and native acceptance are separate gates."}
+2026-11-22T17:42:38.2248560Z command_exit=0 log=build/hq-stage2/react-source-checkout.log
+2026-11-22T17:42:38.2257120Z Submodule 'Vendor/SefariaMobile/Upstream' (https://github.com/Sefaria/Sefaria-Mobile.git) registered for path 'Vendor/SefariaMobile/Upstream'
+2026-11-22T17:42:38.2260420Z Cloning into '/Users/runner/work/Maktabah/Maktabah/Vendor/SefariaMobile/Upstream'...
+2026-11-22T17:42:38.2277160Z From https://github.com/Sefaria/Sefaria-Mobile
+2026-11-22T17:42:38.2289300Z  * branch            2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c -> FETCH_HEAD
+2026-11-22T17:42:38.2307230Z Submodule path 'Vendor/SefariaMobile/Upstream': checked out '2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c'
+2026-11-22T17:42:45.0421900Z command_exit=0 log=build/hq-stage2/pinned-sharp-inputs.log
+2026-11-22T17:42:45.0424080Z {
+2026-11-22T17:42:45.0424770Z   "sharpVersion": "0.32.6",
+2026-11-22T17:42:45.0426710Z   "archive": "libvips-8.14.5-darwin-arm64v8.tar.br",
+2026-11-22T17:42:45.0428330Z   "sourceRepository": "lovell/sharp-libvips",
+2026-11-22T17:42:45.0429450Z   "releaseTag": "v8.14.5",
+2026-11-22T17:42:45.0430810Z   "transport": "original GitHub release API",
+2026-11-22T17:42:45.0432180Z   "originalSHA512Matched": true,
+2026-11-22T17:42:45.0434010Z   "sha512": "sha512-1QZzICfCJd4wAO0P6qmYI5e5VFMt9iCE4QgefI8VMMbdSzjIXA9L/ARN6pkMQPZ3h20Y9RtJ2W1skgCsvCIccw==",
+2026-11-22T17:42:45.0437310Z   "reusedVerifiedCache": false,
+2026-11-22T17:42:45.0438000Z   "normalNpmInstallAndIntegrityCheckUnchanged": true
+2026-11-22T17:42:45.0438870Z }
+2026-11-22T17:42:45.0439170Z {
+2026-11-22T17:42:45.0439480Z   "sharpVersion": "0.32.6",
+2026-11-22T17:42:45.0439870Z   "prebuildInstallVersion": "7.1.3",
+2026-11-22T17:42:45.0440860Z   "archive": "sharp-v0.32.6-napi-v7-darwin-arm64.tar.gz",
+2026-11-22T17:42:45.0441460Z   "sourceRepository": "lovell/sharp",
+2026-11-22T17:42:45.0441780Z   "releaseTag": "v0.32.6",
+2026-11-22T17:42:45.0442380Z   "provenanceAssetID": 126626443,
+2026-11-22T17:42:45.0442890Z   "transport": "original GitHub release API",
+2026-11-22T17:42:45.0443390Z   "pinnedArchiveSHA256Matched": true,
+2026-11-22T17:42:45.0443980Z   "sha256": "8004e60c1161f65977dd45455a8fa22687c0c387e1b57ef64b44bce2baf0085a",
+2026-11-22T17:42:45.0445170Z   "digestProvenance": "observed from the original API asset; not a publisher-provided digest",
+2026-11-22T17:42:45.0445690Z   "reusedVerifiedCache": false,
+2026-11-22T17:42:45.0446410Z   "normalPrebuildInstallUnchanged": true
+2026-11-22T17:42:45.0446940Z }
+2026-11-22T17:43:27.3337920Z command_exit=0 log=build/hq-stage2/npm-ci.log
+2026-11-22T17:43:27.3452980Z npm warn EBADENGINE Unsupported engine {
+2026-11-22T17:43:27.3560490Z npm warn EBADENGINE   package: 'link@0.1.5',
+2026-11-22T17:43:27.3673550Z npm warn EBADENGINE   required: { node: '> 0.4.x < 0.9.0' },
+2026-11-22T17:43:27.3726590Z npm warn EBADENGINE   current: { node: 'v22.23.4', npm: '10.9.9' }
+2026-11-22T17:43:27.3727590Z npm warn EBADENGINE }
+2026-11-22T17:43:27.3728670Z npm warn deprecated urix@0.1.0: Please see https://github.com/lydell/urix#deprecated
+2026-11-22T17:43:27.3729730Z npm warn deprecated source-map-url@0.4.1: See https://github.com/lydell/source-map-url#deprecated
+2026-11-22T17:43:27.3730640Z npm warn deprecated source-map-resolve@0.5.3: See https://github.com/lydell/source-map-resolve#deprecated
+2026-11-22T17:43:27.3731830Z npm warn deprecated resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated
+2026-11-22T17:43:27.3732700Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2026-11-22T17:43:27.3733540Z npm warn deprecated xmldom@0.1.31: Deprecated due to CVE-2021-21366 resolved in 0.5.0
+2026-11-22T17:43:27.3739290Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2026-11-22T17:43:27.3747420Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2026-11-22T17:43:27.3751060Z npm warn deprecated text-encoding@0.7.0: no longer maintained
+2026-11-22T17:43:27.3755160Z npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+2026-11-22T17:43:27.3760110Z npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+2026-11-22T17:43:27.3765740Z npm warn deprecated @babel/plugin-proposal-nullish-coalescing-operator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
+2026-11-22T17:43:27.3777040Z npm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+2026-11-22T17:43:27.3779860Z npm warn deprecated @babel/plugin-proposal-optional-chaining@7.21.0: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
+2026-11-22T17:43:27.3784280Z npm warn deprecated rimraf@2.6.3: Rimraf versions prior to v4 are no longer supported
+2026-11-22T17:43:27.3793030Z npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+2026-11-22T17:43:27.3795780Z npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+2026-11-22T17:43:27.3798650Z npm warn deprecated core-js@2.6.12: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+2026-11-22T17:43:27.3800440Z 
+2026-11-22T17:43:27.3800800Z > ReaderApp@0.0.1 postinstall
+2026-11-22T17:43:27.3801280Z > patch-package
+2026-11-22T17:43:27.3801530Z 
+2026-11-22T17:43:27.3801840Z patch-package 6.5.1
+2026-11-22T17:43:27.3802480Z Applying patches...
+2026-11-22T17:43:27.3810580Z react-native@0.81.6 ✔
+2026-11-22T17:43:27.3813350Z 
+2026-11-22T17:43:27.3814640Z added 1782 packages, and audited 1783 packages in 42s
+2026-11-22T17:43:27.3815310Z 
+2026-11-22T17:43:27.3815680Z 245 packages are looking for funding
+2026-11-22T17:43:27.3817410Z   run `npm fund` for details
+2026-11-22T17:43:27.3817800Z 
+2026-11-22T17:43:27.3818250Z 84 vulnerabilities (5 low, 19 moderate, 35 high, 25 critical)
+2026-11-22T17:43:27.3818550Z 
+2026-11-22T17:43:27.3818810Z To address issues that do not require attention, run:
+2026-11-22T17:43:27.3819190Z   npm audit fix
+2026-11-22T17:43:27.3819360Z 
+2026-11-22T17:43:27.3820290Z To address all issues possible (including breaking changes), run:
+2026-11-22T17:43:27.3820870Z   npm audit fix --force
+2026-11-22T17:43:27.3821080Z 
+2026-11-22T17:43:27.3821330Z Some issues need review, and may require choosing
+2026-11-22T17:43:27.3821740Z a different dependency.
+2026-11-22T17:43:27.3821920Z 
+2026-11-22T17:43:27.3822030Z Run `npm audit` for details.
+2026-11-22T17:43:27.3928540Z command_exit=0 log=build/hq-stage2/native-script-permissions.log
+2026-11-22T17:43:27.3938150Z 
+2026-11-22T17:45:25.9182510Z command_exit=0 log=build/hq-stage2/matching-embedded-bundle.log
+2026-11-22T17:45:25.9256350Z =================================================================================================
+2026-11-22T17:45:25.9262310Z From React Native 0.73, your project's Metro config should extend '@react-native/metro-config'
+2026-11-22T17:45:25.9270970Z or it will fail to build. Please copy the template at:
+2026-11-22T17:45:25.9271780Z https://github.com/react-native-community/template/blob/main/template/metro.config.js
+2026-11-22T17:45:25.9272780Z This warning will be removed in future (https://github.com/facebook/metro/issues/1018).
+2026-11-22T17:45:25.9274840Z =================================================================================================
+2026-11-22T17:45:25.9284550Z ● Validation Warning:
+2026-11-22T17:45:25.9284810Z 
+2026-11-22T17:45:25.9285130Z   Unknown option "watcher.unstable_workerThreads" with value false was found.
+2026-11-22T17:45:25.9285910Z   This is probably a typing mistake. Fixing it will remove this message.
+2026-11-22T17:45:25.9286220Z 
+2026-11-22T17:45:25.9286400Z Copying 257 asset files
+2026-11-22T17:45:25.9286760Z Done copying assets
+2026-11-22T17:48:45.5198110Z command_exit=0 log=build/hq-stage2/pod-install.log
+2026-11-22T17:48:45.5241210Z Installing React-debug (0.81.6)
+2026-11-22T17:48:45.5242790Z Installing React-defaultsnativemodule (0.81.6)
+2026-11-22T17:48:45.5243730Z Installing React-domnativemodule (0.81.6)
+2026-11-22T17:48:45.5244460Z Installing React-featureflags (0.81.6)
+2026-11-22T17:48:45.5245450Z Installing React-featureflagsnativemodule (0.81.6)
+2026-11-22T17:48:45.5246320Z Installing React-graphics (0.81.6)
+2026-11-22T17:48:45.5247090Z Installing React-hermes (0.81.6)
+2026-11-22T17:48:45.5247760Z Installing React-idlecallbacksnativemodule (0.81.6)
+2026-11-22T17:48:45.5248680Z Installing React-jserrorhandler (0.81.6)
+2026-11-22T17:48:45.5250250Z Installing React-jsi (0.81.6)
+2026-11-22T17:48:45.5252110Z Installing React-jsiexecutor (0.81.6)
+2026-11-22T17:48:45.5254080Z Installing React-jsinspector (0.81.6)
+2026-11-22T17:48:45.5269260Z Installing React-jsinspectorcdp (0.81.6)
+2026-11-22T17:48:45.5271250Z Installing React-jsinspectornetwork (0.81.6)
+2026-11-22T17:48:45.5272310Z Installing React-jsinspectortracing (0.81.6)
+2026-11-22T17:48:45.5273470Z Installing React-jsitooling (0.81.6)
+2026-11-22T17:48:45.5274570Z Installing React-jsitracing (0.81.6)
+2026-11-22T17:48:45.5275480Z Installing React-logger (0.81.6)
+2026-11-22T17:48:45.5276580Z Installing React-microtasksnativemodule (0.81.6)
+2026-11-22T17:48:45.5277590Z Installing React-oscompat (0.81.6)
+2026-11-22T17:48:45.5278460Z Installing React-perflogger (0.81.6)
+2026-11-22T17:48:45.5279450Z Installing React-performancetimeline (0.81.6)
+2026-11-22T17:48:45.5280550Z Installing React-rendererconsistency (0.81.6)
+2026-11-22T17:48:45.5281670Z Installing React-renderercss (0.81.6)
+2026-11-22T17:48:45.5283310Z Installing React-rendererdebug (0.81.6)
+2026-11-22T17:48:45.5283820Z Installing React-runtimeexecutor (0.81.6)
+2026-11-22T17:48:45.5284960Z Installing React-runtimescheduler (0.81.6)
+2026-11-22T17:48:45.5285520Z Installing React-timing (0.81.6)
+2026-11-22T17:48:45.5286150Z Installing React-utils (0.81.6)
+2026-11-22T17:48:45.5286490Z Installing ReactAppDependencyProvider (0.81.6)
+2026-11-22T17:48:45.5286930Z Installing ReactCodegen (0.81.6)
+2026-11-22T17:48:45.5287420Z Installing ReactCommon (0.81.6)
+2026-11-22T17:48:45.5290820Z Installing ReactNativeLocalization (2.3.2)
+2026-11-22T17:48:45.5337490Z Installing RecaptchaInterop (101.0.0)
+2026-11-22T17:48:45.5338640Z Installing SSZipArchive (2.5.5)
+2026-11-22T17:48:45.5339690Z Installing SocketRocket (0.7.1)
+2026-11-22T17:48:45.5340610Z Installing Yoga (0.0.0)
+2026-11-22T17:48:45.5341740Z Installing boost (1.84.0)
+2026-11-22T17:48:45.5350110Z Installing fast_float (8.0.0)
+2026-11-22T17:48:45.5350660Z Installing fmt (12.1.0)
+2026-11-22T17:48:45.5351080Z Installing glog (0.3.5)
+2026-11-22T17:48:45.5351400Z Installing hermes-engine (0.81.6)
+2026-11-22T17:48:45.5353090Z Installing nanopb (3.30910.0)
+2026-11-22T17:48:45.5353660Z Installing react-native-config (1.5.5)
+2026-11-22T17:48:45.5354000Z Installing react-native-netinfo (12.0.1)
+2026-11-22T17:48:45.5354450Z Installing react-native-render-html (6.3.4)
+2026-11-22T17:48:45.5355030Z Installing react-native-safe-area-context (5.7.0)
+2026-11-22T17:48:45.5355990Z Installing react-native-shake (6.8.5)
+2026-11-22T17:48:45.5356460Z Installing react-native-version-number (0.3.6)
+2026-11-22T17:48:45.5356990Z Installing react-native-webview (13.16.1)
+2026-11-22T17:48:45.5357500Z Generating Pods project
+2026-11-22T17:48:45.5361830Z Setting USE_HERMES build settings
+2026-11-22T17:48:45.5362350Z Setting REACT_NATIVE_PATH build settings
+2026-11-22T17:48:45.5362840Z Setting SWIFT_ACTIVE_COMPILATION_CONDITIONS build settings
+2026-11-22T17:48:45.5363480Z [Ccache]: Removing Ccache from CC, LD, CXX & LDPLUSPLUS build settings
+2026-11-22T17:48:45.5364040Z [SPM] Cleaning old SPM dependencies from Pods project
+2026-11-22T17:48:45.5364500Z [SPM] Adding SPM dependencies to Pods project
+2026-11-22T17:48:45.5365170Z [Privacy Manifest Aggregation] Appending aggregated reasons to existing PrivacyInfo.xcprivacy file.
+2026-11-22T17:48:45.5366010Z [Privacy Manifest Aggregation] Reading .xcprivacy files to aggregate all used Required Reason APIs.
+2026-11-22T17:48:45.5367790Z Setting CLANG_CXX_LANGUAGE_STANDARD to c++20 on /Users/runner/work/Maktabah/Maktabah/Maktabah.xcodeproj
+2026-11-22T17:48:45.5368230Z 
+2026-11-22T17:48:45.5369160Z ==================== DEPRECATION NOTICE =====================
+2026-11-22T17:48:45.5369700Z Calling `pod install` directly is deprecated in React Native
+2026-11-22T17:48:45.5370280Z because we are moving away from Cocoapods toward alternative
+2026-11-22T17:48:45.5370990Z solutions to build the project.
+2026-11-22T17:48:45.5371390Z * If you are using Expo, please run:
+2026-11-22T17:48:45.5371740Z `npx expo run:ios`
+2026-11-22T17:48:45.5372400Z * If you are using the Community CLI, please run:
+2026-11-22T17:48:45.5372750Z `yarn ios`
+2026-11-22T17:48:45.5373590Z =============================================================
+2026-11-22T17:48:45.5373880Z 
+2026-11-22T17:48:45.5374050Z Pod install took 192 [s] to run
+2026-11-22T17:48:45.5374310Z Integrating client project
+2026-11-22T17:48:45.5374590Z 
+2026-11-22T17:48:45.5375120Z [!] Please close any current Xcode sessions and use `Maktabah.xcworkspace` for this project from now on.
+2026-11-22T17:48:45.5375820Z [Expo] Installing the build script for target Maktabah-iOS
+2026-11-22T17:48:45.5377370Z Pod installation complete! There are 120 dependencies from the Podfile and 131 total pods installed.
+2026-11-22T17:48:45.5378210Z [Expo] Adding '[Expo Autolinking] Run Codegen with autolinking' build phase to ReactCodegen
+2026-11-22T17:48:45.5378750Z 
+2026-11-22T17:48:45.5379320Z [!] [!] Xcodeproj doesn't know about the following attributes {"dstSubfolder" => "PlugIns"} for the 'PBXCopyFilesBuildPhase' isa.
+2026-11-22T17:48:45.5380410Z If this attribute was generated by Xcode please file an issue: https://github.com/CocoaPods/Xcodeproj/issues/new
+2026-11-22T17:48:45.5380790Z 
+2026-11-22T17:48:45.5381430Z [!] [!] Xcodeproj doesn't know about the following attributes {"dstSubfolder" => "PlugIns"} for the 'PBXCopyFilesBuildPhase' isa.
+2026-11-22T17:48:45.5382440Z If this attribute was generated by Xcode please file an issue: https://github.com/CocoaPods/Xcodeproj/issues/new
+2026-11-22T17:48:45.5382910Z 
+2026-11-22T17:48:45.5388400Z [!] The `Maktabah-iOS [Debug]` target overrides the `OTHER_CFLAGS` build setting defined in `Pods/Target Support Files/Pods-Maktabah-iOS/Pods-Maktabah-iOS.debug.xcconfig'. This can lead to problems with the CocoaPods installation
+2026-11-22T17:48:45.5389280Z 
+2026-11-22T17:48:45.5390620Z [!] The `Maktabah-iOS [Release]` target overrides the `OTHER_CFLAGS` build setting defined in `Pods/Target Support Files/Pods-Maktabah-iOS/Pods-Maktabah-iOS.release.xcconfig'. This can lead to problems with the CocoaPods installation
+2026-11-22T17:48:45.5391410Z 
+2026-11-22T17:48:45.5391630Z [!] AppAuth has been deprecated
+2026-11-22T17:48:45.5391850Z 
+2026-11-22T17:48:45.5392080Z [!] GTMAppAuth has been deprecated
+2026-11-22T17:48:45.5392390Z 
+2026-11-22T17:48:45.5392560Z [!] GoogleSignIn has been deprecated
+2026-11-22T17:48:45.5392810Z 
+2026-11-22T17:48:45.5393640Z [!] hermes-engine has added 1 script phase. Please inspect before executing a build. See `https://guides.cocoapods.org/syntax/podspec.html#script_phases` for more information.
+2026-11-22T17:48:45.5395860Z     - Use the `$(inherited)` flag, or
+2026-11-22T17:48:45.5398390Z     - Remove the build settings from the target.
+2026-11-22T17:48:45.5399470Z     - Use the `$(inherited)` flag, or
+2026-11-22T17:48:45.5400300Z     - Remove the build settings from the target.
+2026-11-22T17:48:47.9697920Z command_exit=0 log=build/hq-stage2/otzaria_search_engine.h.log
+2026-11-22T17:48:47.9699360Z Architectures in the fat file: Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework/ios-arm64_x86_64-simulator/libotzaria_search_engine_ios.a are: x86_64 arm64 
+2026-11-22T17:48:47.9700950Z Non-fat file: Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework/ios-arm64/libotzaria_search_engine_ios.a is architecture: arm64
+2026-11-22T17:48:48.0867990Z command_exit=0 log=build/hq-stage2/maktabah_zayit_search.h.log
+2026-11-22T17:48:48.0870090Z Architectures in the fat file: Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework/ios-arm64_x86_64-simulator/libmaktabah_zayit_search.a are: x86_64 arm64 
+2026-11-22T17:48:48.0871730Z Non-fat file: Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework/ios-arm64/libmaktabah_zayit_search.a is architecture: arm64
+2026-11-22T17:48:48.3671030Z command_exit=0 log=build/hq-stage2/target-membership.log
+2026-11-22T17:48:48.3674690Z Verified Maktabah-iOS app/package source ownership for 162 Otzaria Swift files, both search frameworks, and required dictionaries
+2026-11-22T17:49:53.4454360Z command_exit=0 log=build/hq-stage2/resolve-packages.log
+2026-11-22T17:49:53.4527590Z Fetching from https://github.com/markiv/SwiftUI-Shimmer
+2026-11-22T17:49:53.4529300Z 
+2026-11-22T17:49:53.4563920Z Fetching from https://github.com/ordo-one/equatable
+2026-11-22T17:49:53.4565690Z 
+2026-11-22T17:49:53.4566070Z Fetching from https://github.com/swiftlang/swift-syntax.git
+2026-11-22T17:49:53.4575090Z 
+2026-11-22T17:49:53.4575510Z Fetching from https://github.com/davidpovarsky/swift-ai-sdk.git
+2026-11-22T17:49:53.4576200Z 
+2026-11-22T17:49:53.4576520Z Fetching from https://github.com/davidpovarsky/hanlin-streaming-markdown
+2026-11-22T17:49:53.4577150Z 
+2026-11-22T17:49:53.4620990Z Fetching from https://github.com/appstefan/highlightswift
+2026-11-22T17:49:53.4621650Z 
+2026-11-22T17:49:53.4622060Z Fetching from https://github.com/swiftlang/swift-cmark
+2026-11-22T17:49:53.4622300Z 
+2026-11-22T17:49:53.4622660Z Fetching from https://github.com/apple/swift-argument-parser
+2026-11-22T17:49:53.4622880Z 
+2026-11-22T17:49:53.4623910Z Updating from https://github.com/davidpovarsky/TorahInspectorKit.git
+2026-11-22T17:49:53.4624280Z 
+2026-11-22T17:49:53.4624520Z Fetching from https://github.com/junyan72/iosMath
+2026-11-22T17:49:53.4624860Z 
+2026-11-22T17:49:53.4625240Z Fetching from https://github.com/SwiftyJSON/SwiftyJSON.git
+2026-11-22T17:49:53.4625640Z 
+2026-11-22T17:49:53.4626010Z Fetching from https://github.com/swiftlang/swift-markdown.git
+2026-11-22T17:49:53.4626250Z 
+2026-11-22T17:49:53.4668590Z Checking out 23db0f84e88d9ee9c7053c49de86903fc7bb5785 of package ‘TorahInspectorKit’
+2026-11-22T17:49:53.4671280Z 
+2026-11-22T17:49:53.4672090Z Creating working copy of package ‘equatable’
+2026-11-22T17:49:53.4673080Z 
+2026-11-22T17:49:53.4673800Z Creating working copy of package ‘SwiftUI-Shimmer’
+2026-11-22T17:49:53.4674130Z 
+2026-11-22T17:49:53.4674360Z Checking out 1.5.1 of package ‘SwiftUI-Shimmer’
+2026-11-22T17:49:53.4674750Z 
+2026-11-22T17:49:53.4675120Z Checking out 1.4.1 of package ‘equatable’
+2026-11-22T17:49:53.4675440Z 
+2026-11-22T17:49:53.4675770Z Creating working copy of package ‘swift-ai-sdk’
+2026-11-22T17:49:53.4676170Z 
+2026-11-22T17:49:53.4677180Z Creating working copy of package ‘swift-syntax’
+2026-11-22T17:49:53.4677430Z 
+2026-11-22T17:49:53.4677710Z Creating working copy of package ‘highlightswift’
+2026-11-22T17:49:53.4678030Z 
+2026-11-22T17:49:53.4678900Z Checking out e7bf34111e603ca977becd007dd4e5bb109af857 of package ‘swift-ai-sdk’
+2026-11-22T17:49:53.4679270Z 
+2026-11-22T17:49:53.4679690Z Checking out 99c431b38a1444a5fd6a4978307fbbefe3a7af53 of package ‘highlightswift’
+2026-11-22T17:49:53.4680140Z 
+2026-11-22T17:49:53.4680340Z Checking out 603.0.2 of package ‘swift-syntax’
+2026-11-22T17:49:53.4680670Z 
+2026-11-22T17:49:53.4686150Z Creating working copy of package ‘hanlin-streaming-markdown’
+2026-11-22T17:49:53.4686600Z 
+2026-11-22T17:49:53.4687050Z Checking out 6bde022876ef4af738c154b3d5c871984ef76195 of package ‘hanlin-streaming-markdown’
+2026-11-22T17:49:53.4688060Z 
+2026-11-22T17:49:53.4688410Z Creating working copy of package ‘swift-cmark’
+2026-11-22T17:49:53.4688700Z 
+2026-11-22T17:49:53.4689130Z Checking out 0.9.0 of package ‘swift-cmark’
+2026-11-22T17:49:53.4689440Z 
+2026-11-22T17:49:53.4689860Z Creating working copy of package ‘swift-argument-parser’
+2026-11-22T17:49:53.4690880Z 
+2026-11-22T17:49:53.4692040Z Creating working copy of package ‘iosMath’
+2026-11-22T17:49:53.4694110Z 
+2026-11-22T17:49:53.4694520Z Checking out 1.8.2 of package ‘swift-argument-parser’
+2026-11-22T17:49:53.4694930Z 
+2026-11-22T17:49:53.4695470Z Creating working copy of package ‘SwiftyJSON’
+2026-11-22T17:49:53.4696100Z 
+2026-11-22T17:49:53.4696540Z Checking out ba9ab7729b151329c54fd895a7c1859981d9484c of package ‘iosMath’
+2026-11-22T17:49:53.4697760Z 
+2026-11-22T17:49:53.4698930Z Checking out 5.0.1 of package ‘SwiftyJSON’
+2026-11-22T17:49:53.4714050Z 
+2026-11-22T17:49:53.4714820Z Creating working copy of package ‘swift-markdown’
+2026-11-22T17:49:53.4715200Z 
+2026-11-22T17:49:53.4715700Z Checking out 0.7.3 of package ‘swift-markdown’
+2026-11-22T17:49:53.4715900Z 
+2026-11-22T17:49:53.4716790Z Downloading package prebuilt https://download.swift.org/prebuilts/swift-syntax/603.0.2/swiftlang-6.4.2.1.9-macosx27.2-MacroSupport.zip
+2026-11-22T17:49:53.4719300Z 
+2026-11-22T17:49:53.4719340Z 
+2026-11-22T17:49:53.4719850Z Resolved source packages:
+2026-11-22T17:49:53.4720740Z   Sparkle: https://github.com/sparkle-project/Sparkle @ 2.9.1
+2026-11-22T17:49:53.4721500Z   cmark-gfm: https://github.com/swiftlang/swift-cmark @ 0.9.0
+2026-11-22T17:49:53.4722790Z   HanlinAgentSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinAgentSDK @ local
+2026-11-22T17:49:53.4724510Z   FloatingPanel: https://github.com/scenee/FloatingPanel.git @ 3.2.4
+2026-11-22T17:49:53.4732560Z   ChavrusaUIRoutingHost: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/UIRoutingHost @ local
+2026-11-22T17:49:53.4733720Z   HanlinPresentationSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPresentationSDK @ local
+2026-11-22T17:49:53.4735440Z   swift-syntax: https://github.com/swiftlang/swift-syntax.git @ 603.0.2
+2026-11-22T17:49:53.4736360Z   ZIPFoundation: https://github.com/weichsel/ZIPFoundation.git @ 0.9.20
+2026-11-22T17:49:53.4737470Z   SwiftStreamingMarkdown: https://github.com/davidpovarsky/hanlin-streaming-markdown @ 6bde022
+2026-11-22T17:49:53.4738620Z   swift-markdown: https://github.com/swiftlang/swift-markdown.git @ 0.7.3
+2026-11-22T17:49:53.4739560Z   SwiftUI-Shimmer: https://github.com/markiv/SwiftUI-Shimmer @ 1.5.1
+2026-11-22T17:49:53.4740650Z   OtzariaActionCore: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Actions @ local
+2026-11-22T17:49:53.4741540Z   HighlightSwift: https://github.com/appstefan/highlightswift @ 99c431b
+2026-11-22T17:49:53.4742310Z   AnchoredPopup: https://github.com/exyte/AnchoredPopup.git @ 1.3.1
+2026-11-22T17:49:53.4743720Z   HanlinPlatform: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPlatform @ local
+2026-11-22T17:49:53.4745590Z   CommandPalette: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette @ local
+2026-11-22T17:49:53.4749100Z   TorahInspectorKit: https://github.com/davidpovarsky/TorahInspectorKit.git @ 23db0f8
+2026-11-22T17:49:53.4753380Z   SwiftAISDK: https://github.com/davidpovarsky/swift-ai-sdk.git @ e7bf341
+2026-11-22T17:49:53.4754120Z   Equatable: https://github.com/ordo-one/equatable @ 1.4.1
+2026-11-22T17:49:53.4754740Z   iosMath: https://github.com/junyan72/iosMath @ ba9ab77
+2026-11-22T17:49:53.4757700Z   OtzariaUIRouting: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/UIRouting @ local
+2026-11-22T17:49:53.4763010Z   zstd: https://github.com/facebook/zstd.git @ 1.5.7
+2026-11-22T17:49:53.4763870Z   SwiftyJSON: https://github.com/SwiftyJSON/SwiftyJSON.git @ 5.0.1
+2026-11-22T17:49:53.4764750Z   swift-argument-parser: https://github.com/apple/swift-argument-parser @ 1.8.2
+2026-11-22T17:49:53.4765360Z 
+2026-11-22T17:49:53.4773020Z resolved source packages: Sparkle, cmark-gfm, HanlinAgentSDK, FloatingPanel, ChavrusaUIRoutingHost, HanlinPresentationSDK, swift-syntax, ZIPFoundation, SwiftStreamingMarkdown, swift-markdown, SwiftUI-Shimmer, OtzariaActionCore, HighlightSwift, AnchoredPopup, HanlinPlatform, CommandPalette, TorahInspectorKit, SwiftAISDK, Equatable, iosMath, OtzariaUIRouting, zstd, SwiftyJSON, swift-argument-parser
+2026-11-22T18:20:07.4008770Z command_exit=0 log=build/hq-stage2/simulator-build-for-testing.log
+2026-11-22T18:20:07.6666330Z CopyStringsFile (57 tasks) | 0.180 seconds
+2026-11-22T18:20:07.6768180Z 
+2026-11-22T18:20:07.6870020Z SwiftDriver Compilation Requirements (54 tasks) | 0.176 seconds
+2026-11-22T18:20:07.6971880Z 
+2026-11-22T18:20:07.7075030Z LinkStoryboards (1 task) | 0.064 seconds
+2026-11-22T18:20:07.7177090Z 
+2026-11-22T18:20:07.7227090Z RegisterExecutionPolicyException (1 task) | 0.033 seconds
+2026-11-22T18:20:07.7228000Z 
+2026-11-22T18:20:07.7229000Z ProcessProductPackagingDER (2 tasks) | 0.022 seconds
+2026-11-22T18:20:07.7229660Z 
+2026-11-22T18:20:07.7230100Z WriteAuxiliaryFile (10 tasks) | 0.021 seconds
+2026-11-22T18:20:07.7230480Z 
+2026-11-22T18:20:07.7230850Z LinkAssetCatalog (2 tasks) | 0.016 seconds
+2026-11-22T18:20:07.7231200Z 
+2026-11-22T18:20:07.7429430Z ProcessProductPackaging (2 tasks) | 0.010 seconds
+2026-11-22T18:20:07.7431310Z 
+2026-11-22T18:20:07.7432910Z Validate (1 task) | 0.007 seconds
+2026-11-22T18:20:07.7433630Z 
+2026-11-22T18:20:07.7434240Z CopyPlistFile (1 task) | 0.004 seconds
+2026-11-22T18:20:07.7434880Z 
+2026-11-22T18:20:07.7449400Z note: Removed stale file '/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Maktabah.build/Debug-iphonesimulator/Maktabah-iOS.build/InputFileList-2943A6D386CE99ACB99D794C-Pods-Maktabah-iOS-frameworks-Debug-input-files-6681f662c27494ad748c38ed824fc9d1-resolved.xcfilelist'
+2026-11-22T18:20:07.7453760Z 
+2026-11-22T18:20:07.7455430Z note: Removed stale file '/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Maktabah.build/Debug-iphonesimulator/Maktabah-iOS.build/InputFileList-F678B9D90C661138699C527D-Pods-Maktabah-iOS-resources-Debug-input-files-980402feae68b238eddcd8238dd659f3-resolved.xcfilelist'
+2026-11-22T18:20:07.7456550Z 
+2026-11-22T18:20:07.7458370Z note: Removed stale file '/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Maktabah.build/Debug-iphonesimulator/Maktabah-iOS.build/OutputFileList-2943A6D386CE99ACB99D794C-Pods-Maktabah-iOS-frameworks-Debug-output-files-ebadce282213a0145564bec7f0ae7e00-resolved.xcfilelist'
+2026-11-22T18:20:07.7459600Z 
+2026-11-22T18:20:07.7461230Z note: Removed stale file '/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Maktabah.build/Debug-iphonesimulator/Maktabah-iOS.build/OutputFileList-F678B9D90C661138699C527D-Pods-Maktabah-iOS-resources-Debug-output-files-1c3e57c02b826b4560c5ad0a99c4da66-resolved.xcfilelist'
+2026-11-22T18:20:07.7462410Z 
+2026-11-22T18:20:07.7463390Z note: Removed stale file '/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Maktabah.build/Debug-iphonesimulator/Maktabah-iOS.build/Script-1B87143D83F278DCA2CCC43F.sh'
+2026-11-22T18:20:07.7464160Z 
+2026-11-22T18:20:07.7465120Z note: Removed stale file '/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Maktabah.build/Debug-iphonesimulator/Maktabah-iOS.build/Script-25A350FA67D058DB89D8942E.sh'
+2026-11-22T18:20:07.7465820Z 
+2026-11-22T18:20:07.7466800Z note: Removed stale file '/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Maktabah.build/Debug-iphonesimulator/Maktabah-iOS.build/Script-2943A6D386CE99ACB99D794C.sh'
+2026-11-22T18:20:07.7467480Z 
+2026-11-22T18:20:07.7468430Z note: Removed stale file '/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Maktabah.build/Debug-iphonesimulator/Maktabah-iOS.build/Script-5DD3EB12874F97C82FDBAF1C.sh'
+2026-11-22T18:20:07.7469320Z 
+2026-11-22T18:20:07.7470390Z note: Removed stale file '/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Maktabah.build/Debug-iphonesimulator/Maktabah-iOS.build/Script-A7FE848320A3ADE897623998.sh'
+2026-11-22T18:20:07.7471170Z 
+2026-11-22T18:20:07.7472200Z note: Removed stale file '/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Maktabah.build/Debug-iphonesimulator/Maktabah-iOS.build/Script-F678B9D90C661138699C527D.sh'
+2026-11-22T18:20:07.7473800Z 
+2026-11-22T18:20:07.7475800Z warning: Run script build phase '[CP-User] [Hermes] Replace Hermes for the right configuration, if needed' will be run during every build because it does not specify any outputs. To address this issue, either add output dependencies to the script phase, or configure it to run in every build by unchecking "Based on dependency analysis" in the script phase. (in target 'hermes-engine' from project 'Pods')
+2026-11-22T18:20:07.7478600Z note: Run script build phase '[Expo] Configure project' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7481630Z warning: Run script build phase '[ChavrusaText] Copy Sefaria Bundle Resources' will be run during every build because it does not specify any outputs. To address this issue, either add output dependencies to the script phase, or configure it to run in every build by unchecking "Based on dependency analysis" in the script phase. (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7485470Z warning: Run script build phase '[CP-User] [RNFB] Core Configuration' will be run during every build because it does not specify any outputs. To address this issue, either add output dependencies to the script phase, or configure it to run in every build by unchecking "Based on dependency analysis" in the script phase. (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7488550Z warning: Run script build phase '[CP-User] [RNFB] Crashlytics Configuration' will be run during every build because it does not specify any outputs. To address this issue, either add output dependencies to the script phase, or configure it to run in every build by unchecking "Based on dependency analysis" in the script phase. (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7491050Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/App/OtzariaAppContainer.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7498110Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/App/OtzariaIntegratedLibraryView.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7502710Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/App/OtzariaIntegratedNavigationState.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7505590Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/App/OtzariaIntegratedReaderDetailView.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7507450Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/App/OtzariaRootSplitView.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7510250Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7513990Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Compatibility/OtzariaBookConnectionAdapter.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7518620Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Compatibility/OtzariaDatabaseManagerAdapter.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7525990Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Compatibility/OtzariaLibraryDataAdapter.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7532510Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Compatibility/OtzariaLibraryImportActions.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7538180Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Compatibility/OtzariaLibraryPolicy.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7543410Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Compatibility/OtzariaSearchResultResolver.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7549800Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Core/OtzariaSQLiteConnection.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7555070Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Core/OtzariaSQLiteError.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7561020Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Core/OtzariaSQLiteStatement.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7563840Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Core/OtzariaSecurityScopedAccess.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7566330Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Core/OtzariaSecurityScopedBookmarkStore.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7568420Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Core/String+OtzariaText.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7570480Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Data/OtzariaSQLiteBookTextRepository.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7572640Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Data/OtzariaSQLiteLibraryRepository.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7574430Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Data/OtzariaSQLiteSourceRepository.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7576290Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Data/OtzariaSchema.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7578580Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Debug/OtzariaFileLogger.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7580550Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Domain/OtzariaModels.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7582180Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Domain/OtzariaRepositories.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7584050Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Features/Authors/OtzariaAuthorsModeView.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7587280Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Features/Authors/OtzariaAuthorsViewModel.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7589550Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Features/Library/OtzariaLibraryView.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7591490Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Features/Library/OtzariaLibraryViewModel.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7594340Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Features/Reader/OtzariaReaderView.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7596530Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Features/Reader/OtzariaReaderViewModel.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7598670Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Features/Settings/OtzariaReaderSettingsView.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7707520Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Features/Sources/OtzariaSourcesView.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7709820Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Features/Sources/OtzariaSourcesViewModel.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7714700Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Navigation/OtzariaNavigationAdapter.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7718960Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaCategoryPathResolver.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7720710Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaLineAnchor.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7734840Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaLineSourcesInspectorView.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7738520Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaLineSourcesService.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7741060Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaLinkedSourceGrouping.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7743330Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaLinkedSourcePreview.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7745360Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaMaktabahBridge+LineAnchors.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7747640Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaMaktabahBridge+ReadingUnits.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7750400Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7752320Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaReadingUnit.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7754130Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaReadingUnitService.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7756750Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaTextViewLineSelectionAdapter.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7758670Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/ReaderViewModel+OtzariaLineSources.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7760720Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/iOSNavigationManager+OtzariaLinkedSource.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7762530Z warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/SharedUI/OtzariaStateViews.swift (in target 'Maktabah-iOS' from project 'Maktabah')
+2026-11-22T18:20:07.7764580Z note: Run script build phase '[CP-User] Config codegen' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'react-native-config' from project 'Pods')
+2026-11-22T18:20:07.7771260Z note: Run script build phase '[CP-User] [RN]Check FBReactNativeSpec' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'React-RCTFBReactNativeSpec' from project 'Pods')
+2026-11-22T18:20:07.7776460Z note: Run script build phase '[CP-User] Generate app.config for prebuilt Constants.manifest' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'EXConstants' from project 'Pods')
+2026-11-22T18:20:07.7779530Z ** TEST BUILD SUCCEEDED **
+2026-11-22T18:20:07.7779870Z 
+2026-11-22T18:20:08.5111930Z command_exit=0 log=build/hq-stage2/hanlin-sdk-after.log
+2026-11-22T18:20:08.5131180Z {"repository": "https://github.com/davidpovarsky/hanlin-ai.git", "sha": "e00498e33f106cc43be0476ffa2e09329c8ca300", "layout": ["Packages/HanlinAgentSDK", "Packages/HanlinPlatform", "Packages/HanlinPresentationSDK"], "verified_files": 424, "manifest_sha256": {"Packages/HanlinAgentSDK": "9af2a15811e934e4082360e46f368ea2b0d5ba5d97a77d8bb0ddb34d48e0666b", "Packages/HanlinPlatform": "e9ea19d4bc3fe3873137e0c2e32cda50892ecd39103f3a63250acaa8f373e458", "Packages/HanlinPresentationSDK": "59272c233aca8fbf72f50a9296539b2ed55b33f625ce34d208a2b1c4e3d569b8"}, "boundary": "Original source identity/layout only; package resolution, Apple build and native acceptance are separate gates."}
+2026-11-22T18:20:08.5316310Z {
+2026-11-22T18:20:08.5316890Z   "status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+2026-11-22T18:20:08.5318310Z   "checkout_sha": "4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1",
+2026-11-22T18:20:08.5319170Z   "sdk_version": "27.2",
+2026-11-22T18:20:08.5319710Z   "xcode": "Xcode 27.2\nBuild version 27B52",
+2026-11-22T18:20:08.5320160Z   "error": null
+2026-11-22T18:20:08.5320610Z }
+2026-11-22T18:20:08.6465800Z swift-driver version: 1.168.6 
+2026-11-22T18:20:08.6978740Z ##[group]Run python3 - <<'PY'
+2026-11-22T18:20:08.6981740Z [36;1mpython3 - <<'PY'[0m
+2026-11-22T18:20:08.6982590Z [36;1mimport json, os, pathlib[0m
+2026-11-22T18:20:08.6983730Z [36;1mpath = pathlib.Path('build/hq-stage2/result.json')[0m
+2026-11-22T18:20:08.6985100Z [36;1mreport = json.loads(path.read_text()) if path.is_file() else {}[0m
+2026-11-22T18:20:08.6986980Z [36;1mready = report.get('status') == 'SIMULATOR_BUILD_FOR_REAL_UI_PASS' and report.get('checkout_sha') == os.environ['EXPECTED_CHECKOUT_SHA'][0m
+2026-11-22T18:20:08.6989060Z [36;1mwith open(os.environ['GITHUB_OUTPUT'], 'a') as output:[0m
+2026-11-22T18:20:08.6991230Z [36;1m    output.write('ready=' + str(ready).lower() + '\n')[0m
+2026-11-22T18:20:08.6992620Z [36;1mPY[0m
+2026-11-22T18:20:09.1669320Z shell: /bin/bash -e {0}
+2026-11-22T18:20:09.1670260Z env:
+2026-11-22T18:20:09.1670910Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T18:20:09.1671840Z   DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+2026-11-22T18:20:09.1672750Z   FAITHFUL_RUNTIME27_IDENTIFIER: com.apple.CoreSimulator.SimRuntime.iOS-27-2
+2026-11-22T18:20:09.1673850Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:20:09.1674730Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-11-22T18:20:09.1675550Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:20:09.1679770Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:20:09.1680410Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:20:09.1682540Z   PATH: /Users/runner/hostedtoolcache/node/22.23.4/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64:/opt/homebrew/opt/rustup/bin:/Users/runner/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Library/Frameworks/Python.framework/Versions/Current/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools
+2026-11-22T18:20:09.1684650Z ##[endgroup]
+2026-11-22T18:20:09.5807310Z ##[group]Run actions/cache/save@v4
+2026-11-22T18:20:09.5808200Z with:
+2026-11-22T18:20:09.5808680Z   path: build/DerivedData
+2026-11-22T18:20:09.5810400Z   key: runtime27-derived-v2-3d7c036c896a93d3c441896a98f3a1a3469f3355eb1ace8386e6b5df27a43084-618bdc01dfb418c1ef602dda52c93e2fa231d55f45f61b1fe4764ad92eff15ec
+2026-11-22T18:20:09.5812300Z   enableCrossOsArchive: false
+2026-11-22T18:20:09.5812880Z env:
+2026-11-22T18:20:09.5813470Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T18:20:09.5814750Z   DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+2026-11-22T18:20:09.5848860Z   FAITHFUL_RUNTIME27_IDENTIFIER: com.apple.CoreSimulator.SimRuntime.iOS-27-2
+2026-11-22T18:20:09.5851400Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:20:09.5853050Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-11-22T18:20:09.5854270Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:20:09.5855300Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:20:09.5856350Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:20:09.5862010Z   PATH: /Users/runner/hostedtoolcache/node/22.23.4/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64:/opt/homebrew/opt/rustup/bin:/Users/runner/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Library/Frameworks/Python.framework/Versions/Current/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools
+2026-11-22T18:20:09.5864830Z ##[endgroup]
+2026-11-22T18:20:10.3715390Z (node:95681) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-22T18:20:10.3716350Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-22T18:20:10.4207310Z [command]/opt/homebrew/bin/gtar --posix -cf cache.tzst --exclude cache.tzst -P -C /Users/runner/work/Maktabah/Maktabah --files-from manifest.txt --delay-directory-restore --use-compress-program zstdmt
+2026-11-22T18:21:15.5355090Z (node:95681) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-22T18:21:16.5021590Z Sent 0 of 1608405305 (0.0%), 0.0 MBs/sec
+2026-11-22T18:21:17.5045460Z Sent 0 of 1608405305 (0.0%), 0.0 MBs/sec
+2026-11-22T18:21:18.5036990Z Sent 0 of 1608405305 (0.0%), 0.0 MBs/sec
+2026-11-22T18:21:19.5061940Z Sent 0 of 1608405305 (0.0%), 0.0 MBs/sec
+2026-11-22T18:21:20.5059750Z Sent 268435456 of 1608405305 (16.7%), 51.2 MBs/sec
+2026-11-22T18:21:21.5221640Z Sent 536870912 of 1608405305 (33.4%), 85.2 MBs/sec
+2026-11-22T18:21:22.5160440Z Sent 536870912 of 1608405305 (33.4%), 73.0 MBs/sec
+2026-11-22T18:21:23.5284040Z Sent 536870912 of 1608405305 (33.4%), 63.9 MBs/sec
+2026-11-22T18:21:24.5226770Z Sent 536870912 of 1608405305 (33.4%), 56.8 MBs/sec
+2026-11-22T18:21:25.5244060Z Sent 671088640 of 1608405305 (41.7%), 63.9 MBs/sec
+2026-11-22T18:21:26.5295900Z Sent 1073741824 of 1608405305 (66.8%), 92.9 MBs/sec
+2026-11-22T18:21:27.5360240Z Sent 1073741824 of 1608405305 (66.8%), 85.2 MBs/sec
+2026-11-22T18:21:28.5300120Z Sent 1073741824 of 1608405305 (66.8%), 78.6 MBs/sec
+2026-11-22T18:21:29.5533990Z Sent 1073741824 of 1608405305 (66.8%), 73.0 MBs/sec
+2026-11-22T18:21:30.5307930Z Sent 1207959552 of 1608405305 (75.1%), 76.7 MBs/sec
+2026-11-22T18:21:31.5314540Z Sent 1474187577 of 1608405305 (91.7%), 87.7 MBs/sec
+2026-11-22T18:21:32.2541420Z Sent 1608405305 of 1608405305 (100.0%), 91.6 MBs/sec
+2026-11-22T18:21:32.6126290Z Cache saved with key: runtime27-derived-v2-3d7c036c896a93d3c441896a98f3a1a3469f3355eb1ace8386e6b5df27a43084-618bdc01dfb418c1ef602dda52c93e2fa231d55f45f61b1fe4764ad92eff15ec
+2026-11-22T18:21:32.6340380Z ##[group]Run build/hanlin-live-python/bin/python Scripts/CI/runtime27-hanlin-live.py
+2026-11-22T18:21:32.6341530Z [36;1mbuild/hanlin-live-python/bin/python Scripts/CI/runtime27-hanlin-live.py[0m
+2026-11-22T18:21:32.7392000Z shell: /bin/bash -e {0}
+2026-11-22T18:21:32.7392990Z env:
+2026-11-22T18:21:32.7393860Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T18:21:32.7395120Z   DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+2026-11-22T18:21:32.7396580Z   FAITHFUL_RUNTIME27_IDENTIFIER: com.apple.CoreSimulator.SimRuntime.iOS-27-2
+2026-11-22T18:21:32.7398150Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:21:32.7399290Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-11-22T18:21:32.7485480Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:21:32.7486100Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:21:32.7486770Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:21:32.7488960Z   PATH: /Users/runner/hostedtoolcache/node/22.23.4/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64:/opt/homebrew/opt/rustup/bin:/Users/runner/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Library/Frameworks/Python.framework/Versions/Current/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools
+2026-11-22T18:21:32.7498820Z   GH_TOKEN: ***
+2026-11-22T18:21:32.7499880Z   OTZARIA_HANLIN_LIVE_API_KEY: ***
+2026-11-22T18:21:32.7500780Z ##[endgroup]
+2026-11-22T18:21:39.4373500Z command_exit=0 log=build/hq-stage2/hanlin-sdk-after.log
+2026-11-22T18:21:39.4377650Z {"repository": "https://github.com/davidpovarsky/hanlin-ai.git", "sha": "e00498e33f106cc43be0476ffa2e09329c8ca300", "layout": ["Packages/HanlinAgentSDK", "Packages/HanlinPlatform", "Packages/HanlinPresentationSDK"], "verified_files": 424, "manifest_sha256": {"Packages/HanlinAgentSDK": "9af2a15811e934e4082360e46f368ea2b0d5ba5d97a77d8bb0ddb34d48e0666b", "Packages/HanlinPlatform": "e9ea19d4bc3fe3873137e0c2e32cda50892ecd39103f3a63250acaa8f373e458", "Packages/HanlinPresentationSDK": "59272c233aca8fbf72f50a9296539b2ed55b33f625ce34d208a2b1c4e3d569b8"}, "boundary": "Original source identity/layout only; package resolution, Apple build and native acceptance are separate gates."}
+2026-11-22T18:21:59.3613760Z Faithful 11-inch: BOOTING {"udid": "06C41237-CB8E-455E-BF1A-B7777EBE53F9"}
+2026-11-22T18:23:48.5310780Z Monitoring boot status for Faithful 11-inch b904d8f4 (06C41237-CB8E-455E-BF1A-B7777EBE53F9).
+2026-11-22T18:23:48.7828840Z Device already booted, nothing to do.
+2026-11-22T18:23:48.8655650Z 
+2026-11-22T18:23:48.9481840Z Faithful 11-inch: INSTALLING {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1, "timeoutSeconds": 600}
+2026-11-22T18:25:15.2588260Z Faithful 11-inch: VERIFYING_APP_CONTAINER {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1}
+2026-11-22T18:25:56.8433480Z Faithful 11-inch: INSTALLED {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1}
+2026-11-22T18:25:56.8572710Z Faithful 11-inch: PROVISIONING_NATIVE_FIXTURES {}
+2026-11-22T18:26:19.8050420Z com.davidpovarsky.chavrusatext: 3085
+2026-11-22T18:28:12.6673200Z Traceback (most recent call last):
+2026-11-22T18:28:12.6698550Z   File "/Users/runner/work/Maktabah/Maktabah/Scripts/CI/prepare-faithful-ipad-fixtures.py", line 60, in <module>
+2026-11-22T18:28:12.7478500Z Native UI fixture ready: {'passed': True, 'profileID': 'miniTest10', 'profileVersion': 6, 'bookCount': 10, 'shaMatched': True}
+2026-11-22T18:28:12.8371370Z     subprocess.run(["xcrun", "simctl", "terminate", udid, bundle], check=False, capture_output=True, timeout=60)
+2026-11-22T18:28:14.0290800Z   File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/subprocess.py", line 550, in run
+2026-11-22T18:28:14.3672380Z     stdout, stderr = process.communicate(input, timeout=timeout)
+2026-11-22T18:28:14.4475900Z                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-22T18:28:14.5305810Z   File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/subprocess.py", line 1209, in communicate
+2026-11-22T18:28:14.8596150Z     stdout, stderr = self._communicate(input, endtime, timeout)
+2026-11-22T18:28:15.4731610Z                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-22T18:28:15.6428920Z   File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/subprocess.py", line 2116, in _communicate
+2026-11-22T18:28:15.7257580Z     self._check_timeout(endtime, orig_timeout, stdout, stderr)
+2026-11-22T18:28:15.8924710Z   File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/subprocess.py", line 1253, in _check_timeout
+2026-11-22T18:28:16.1438690Z     raise TimeoutExpired(
+2026-11-22T18:28:16.3086150Z subprocess.TimeoutExpired: Command '['xcrun', 'simctl', 'terminate', '06C41237-CB8E-455E-BF1A-B7777EBE53F9', 'com.davidpovarsky.chavrusatext']' timed out after 60 seconds
+2026-11-22T18:28:18.6060370Z Faithful 11-inch: RECOVERING_VERIFIED_FIXTURE_CLEANUP_TIMEOUT {"udid": "06C41237-CB8E-455E-BF1A-B7777EBE53F9"}
+2026-11-22T18:32:20.4811410Z Faithful 11-inch: FAILED {"error": "TimeoutExpired: Command '['/Users/runner/work/Maktabah/Maktabah/build/hanlin-live-python/bin/python', 'Scripts/CI/shutdown-faithful-simulator.py', '06C41237-CB8E-455E-BF1A-B7777EBE53F9']' timed out after 239.9204655829999 seconds"}
+2026-11-22T18:32:40.8249490Z command_exit=0 log=build/hq-stage2/hanlin-sdk-after.log
+2026-11-22T18:32:40.8253780Z {"repository": "https://github.com/davidpovarsky/hanlin-ai.git", "sha": "e00498e33f106cc43be0476ffa2e09329c8ca300", "layout": ["Packages/HanlinAgentSDK", "Packages/HanlinPlatform", "Packages/HanlinPresentationSDK"], "verified_files": 424, "manifest_sha256": {"Packages/HanlinAgentSDK": "9af2a15811e934e4082360e46f368ea2b0d5ba5d97a77d8bb0ddb34d48e0666b", "Packages/HanlinPlatform": "e9ea19d4bc3fe3873137e0c2e32cda50892ecd39103f3a63250acaa8f373e458", "Packages/HanlinPresentationSDK": "59272c233aca8fbf72f50a9296539b2ed55b33f625ce34d208a2b1c4e3d569b8"}, "boundary": "Original source identity/layout only; package resolution, Apple build and native acceptance are separate gates."}
+2026-11-22T18:32:41.1718320Z {"status": "FAIL", "selector": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent", "model": "gemini-3.5-flash-lite", "failure_phase": "NATIVE_MATRIX", "artifact_admitted": true}
+2026-11-22T18:32:41.2100300Z ##[error]Process completed with exit code 1.
+2026-11-22T18:32:41.2327190Z ##[group]Run python3 Scripts/CI/runtime27-hanlin-live.py cleanup
+2026-11-22T18:32:41.2328410Z [36;1mpython3 Scripts/CI/runtime27-hanlin-live.py cleanup[0m
+2026-11-22T18:32:41.4495500Z shell: /bin/bash -e {0}
+2026-11-22T18:32:41.4496020Z env:
+2026-11-22T18:32:41.4496430Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T18:32:41.4502440Z   DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+2026-11-22T18:32:41.4503130Z   FAITHFUL_RUNTIME27_IDENTIFIER: com.apple.CoreSimulator.SimRuntime.iOS-27-2
+2026-11-22T18:32:41.4503730Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:32:41.4511560Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-11-22T18:32:41.4512380Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:32:41.4517460Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:32:41.4521210Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:32:41.4523260Z   PATH: /Users/runner/hostedtoolcache/node/22.23.4/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64:/opt/homebrew/opt/rustup/bin:/Users/runner/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Library/Frameworks/Python.framework/Versions/Current/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools
+2026-11-22T18:32:41.4525310Z ##[endgroup]
+2026-11-22T18:32:41.9805990Z No live private input was staged
+2026-11-22T18:32:41.9807040Z {"cleanup": "PASS", "errors": []}
+2026-11-22T18:32:42.3822770Z ##[group]Run actions/upload-artifact@v4
+2026-11-22T18:32:42.3823150Z with:
+2026-11-22T18:32:42.3823360Z   name: otzaria-hanlin-live-native-evidence
+2026-11-22T18:32:42.3823600Z   path: build/hanlin-live-evidence/
+2026-11-22T18:32:42.3823810Z   if-no-files-found: error
+2026-11-22T18:32:42.3823990Z   compression-level: 6
+2026-11-22T18:32:42.3824160Z   overwrite: false
+2026-11-22T18:32:42.3824340Z   include-hidden-files: false
+2026-11-22T18:32:42.3824530Z env:
+2026-11-22T18:32:42.3824760Z   EXPECTED_CHECKOUT_SHA: 4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1
+2026-11-22T18:32:42.3825130Z   DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+2026-11-22T18:32:42.3825530Z   FAITHFUL_RUNTIME27_IDENTIFIER: com.apple.CoreSimulator.SimRuntime.iOS-27-2
+2026-11-22T18:32:42.3825930Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:32:42.3826340Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+2026-11-22T18:32:42.4009730Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:32:42.4010130Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:32:42.4010550Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+2026-11-22T18:32:42.4012600Z   PATH: /Users/runner/hostedtoolcache/node/22.23.4/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64/bin:/Users/runner/hostedtoolcache/Python/3.12.10/arm64:/opt/homebrew/opt/rustup/bin:/Users/runner/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Library/Frameworks/Python.framework/Versions/Current/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools
+2026-11-22T18:32:42.4014420Z ##[endgroup]
+2026-11-22T18:32:42.5490260Z (node:4622) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-22T18:32:42.5491000Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-22T18:32:42.5540630Z With the provided path, there will be 15 files uploaded
+2026-11-22T18:32:42.5543530Z Artifact name is valid!
+2026-11-22T18:32:42.5543930Z Root directory input is valid!
+2026-11-22T18:32:42.9492750Z Beginning upload of artifact content to blob storage
+2026-11-22T18:32:42.9787330Z (node:4622) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-22T18:32:43.3799850Z Uploaded bytes 79158
+2026-11-22T18:32:43.4543980Z Finished uploading artifact content to blob storage!
+2026-11-22T18:32:43.4544790Z SHA256 digest of uploaded artifact zip is 110b05a270e90ac63706c58cdedab6816b2a94bc06c320b7fbea3a8ba5b2fec1
+2026-11-22T18:32:43.4545390Z Finalizing artifact upload
+2026-11-22T18:32:43.8377670Z Artifact otzaria-hanlin-live-native-evidence.zip successfully finalized. Artifact ID 14767750188
+2026-11-22T18:32:43.8379060Z Artifact otzaria-hanlin-live-native-evidence has been successfully uploaded! Final size is 79158 bytes. Artifact ID is 14767750188
+2026-11-22T18:32:43.8582780Z Artifact download URL: https://github.com/davidpovarsky/Maktabah/actions/runs/45048898269/artifacts/14767750188
+2026-11-22T18:32:43.8944910Z Post job cleanup.
+2026-11-22T18:32:44.0798380Z [command]/opt/homebrew/bin/git version
+2026-11-22T18:32:44.0962250Z git version 2.56.0
+2026-11-22T18:32:44.0989610Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/7a7ab2c4-0938-4aad-ad54-c1d0f5d587cc/.gitconfig'
+2026-11-22T18:32:44.1059360Z Temporarily overriding HOME='/Users/runner/work/_temp/7a7ab2c4-0938-4aad-ad54-c1d0f5d587cc' before making global git config changes
+2026-11-22T18:32:44.1060590Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-22T18:32:44.1064950Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/Maktabah/Maktabah
+2026-11-22T18:32:44.1150470Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-22T18:32:44.1228530Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-22T18:32:44.2321690Z Entering 'Vendor/HanlinSDK'
+2026-11-22T18:32:44.2606500Z Entering 'Vendor/SefariaMobile/Upstream'
+2026-11-22T18:32:44.2898680Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-22T18:32:44.2972530Z http.https://github.com/.extraheader
+2026-11-22T18:32:44.2979260Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-22T18:32:44.3063510Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-22T18:32:44.4015600Z Entering 'Vendor/HanlinSDK'
+2026-11-22T18:32:44.4295320Z Entering 'Vendor/SefariaMobile/Upstream'
+2026-11-22T18:32:44.4825360Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-22T18:32:44.4899450Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-22T18:32:44.5948370Z Entering 'Vendor/HanlinSDK'
+2026-11-22T18:32:44.6165230Z file:/Users/runner/work/Maktabah/Maktabah/.git/modules/Vendor/HanlinSDK/config	remote.origin.url
+2026-11-22T18:32:44.6250150Z Entering 'Vendor/SefariaMobile/Upstream'
+2026-11-22T18:32:44.6368500Z file:/Users/runner/work/Maktabah/Maktabah/.git/modules/Vendor/SefariaMobile/Upstream/config	remote.origin.url
+2026-11-22T18:32:44.6459380Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/Maktabah/Maktabah/.git/modules/Vendor/HanlinSDK/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-22T18:32:44.6535130Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/Maktabah/Maktabah/.git/modules/Vendor/SefariaMobile/Upstream/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-22T18:32:44.6689140Z Cleaning up orphan processes
+2026-11-22T18:32:48.5686220Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache/restore@v4, actions/cache/save@v4, actions/checkout@v4, actions/setup-node@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

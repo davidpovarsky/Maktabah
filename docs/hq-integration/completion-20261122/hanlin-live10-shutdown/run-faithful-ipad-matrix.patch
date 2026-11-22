@@ -1,0 +1,20 @@
+--- a/Scripts/CI/run-faithful-ipad-matrix.py
++++ b/Scripts/CI/run-faithful-ipad-matrix.py
+@@ -226,7 +226,7 @@
+                             diagnostic.rename(diagnostic.with_name(diagnostic.name.replace(
+                                 f"simulator-failure-{label}", f"simulator-install-recovery-{label}-{bundle}", 1)))
+                         phase("RESTARTING_OWNED_SIMULATOR", bundle=bundle)
+-                        subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=240)
++                        subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=300)
+                         subprocess.run(["xcrun", "simctl", "boot", udid], check=True, timeout=90)
+                         subprocess.run(["xcrun", "simctl", "bootstatus", udid, "-b"], check=True, timeout=900)
+ 
+@@ -384,7 +384,7 @@
+                             shutil.copyfile(termination_report, artifacts / f"miniTest10-native-fixture-termination-{label}-before-reboot.json")
+                             phase("RECOVERING_VERIFIED_FIXTURE_CLEANUP_TIMEOUT", udid=udid)
+                             assert device["udid"] == udid
+-                            subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=240)
++                            subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=300)
+                             subprocess.run(["xcrun", "simctl", "boot", udid], check=True, timeout=90)
+                             subprocess.run(["xcrun", "simctl", "bootstatus", udid, "-b"], check=True, timeout=900)
+                             device["fixtureCleanupRecovery"] = "OWNED_SHUTDOWN_VERIFIED_AND_REBOOTED; ALL_UI_STILL_REQUIRED"

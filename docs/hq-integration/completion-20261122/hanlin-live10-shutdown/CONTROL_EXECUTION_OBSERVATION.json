@@ -1,0 +1,35 @@
+{
+  "status": "PASS_FOUR_NEW_BUDGET_AND_PHASE_CONTROLS",
+  "source_files": [
+    {
+      "path": "candidate/Scripts/CI/run-faithful-ipad-matrix.py",
+      "bytes": 51505,
+      "sha256": "90e54a9a60010fdb33c2ac070c8b21ba119d7096f979ecf89603d4418f61fb5c",
+      "git_blob": "90d6572c34c8a6cbf9f12f1a0d2fca51786ed63b"
+    },
+    {
+      "path": "candidate/Scripts/CI/shutdown-faithful-simulator.py",
+      "bytes": 2814,
+      "sha256": "da381cad8763c864fabcf68164504be8ca8ddbc19839e4007347ae9e24f93192",
+      "git_blob": "612904d55dc57dcaef3579e40e4259902d57984c"
+    },
+    {
+      "path": "test_shutdown_budget_diagnostics.py",
+      "bytes": 5518,
+      "sha256": "ec9d54210710c073b244610d0a0be386ddc7b99f39330ad44c42df02b0b64112",
+      "git_blob": "8524bdbe8950002c185ec753217101d7bb1e2c4c"
+    }
+  ],
+  "command": "python live_shutdown_budget_fix/test_shutdown_budget_diagnostics.py",
+  "exit_code": 0,
+  "cases": 4,
+  "reported_case_duration_seconds": 0.023,
+  "tool_wall_seconds": 0.060301496,
+  "tool_chunk_id": "7953ac",
+  "evidence_kind": "Exact decoded output retained from exec_command tool return; no separate raw stdout/stderr files were captured",
+  "tool_output_sha256": "2dd5551ff8ee8daa4df3fcd0e3fb383b9ccc8bfa9114229305f42e21b55707c7",
+  "scope": "Python source and explicit subprocess fixtures; no Apple Simulator execution",
+  "old_controls_replayed": 0,
+  "new_control_execution_count": 1,
+  "recorded_at": "2026-11-22T18:56:01.915816+00:00"
+}

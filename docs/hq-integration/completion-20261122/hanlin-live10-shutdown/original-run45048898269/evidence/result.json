@@ -1,0 +1,29 @@
+{
+  "connection_diagnostic_status": "NOT_CAPTURED",
+  "credential_in_child_environment": false,
+  "credential_in_test_arguments": false,
+  "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/",
+  "error_kind": "ValueError",
+  "failure_phase": "NATIVE_MATRIX",
+  "log_redactions": 0,
+  "matrix_exit_code": 1,
+  "matrix_failures": [
+    {
+      "error": "TimeoutExpired: Command '['/Users/runner/work/Maktabah/Maktabah/build/hanlin-live-python/bin/python', 'Scripts/CI/shutdown-faithful-simulator.py', '06C41237-CB8E-455E-BF1A-B7777EBE53F9']' timed out after 239.9204655829999 seconds",
+      "failedPhase": "RECOVERING_VERIFIED_FIXTURE_CLEANUP_TIMEOUT",
+      "ownedSimulatorCleanup": "PASS",
+      "status": "FAIL"
+    }
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "native116_acceptance": false,
+  "prior_artifacts_restored": true,
+  "private_input_consumed": false,
+  "private_input_removed": false,
+  "private_input_staged": false,
+  "raw_container_or_result_bundle_published": false,
+  "release114_acceptance": false,
+  "selector": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+  "status": "FAIL",
+  "verified_completed_provider_conversations": 0
+}
