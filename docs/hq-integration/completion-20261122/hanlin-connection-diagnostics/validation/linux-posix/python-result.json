@@ -1,0 +1,877 @@
+{
+  "startedUTC": "2026-11-22T07:30:45.928083+00:00",
+  "pid": 5,
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "pythonExecutable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+  "executableResolved": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+  "executableSHA256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+  "completeCandidateAST": "PASS",
+  "inputs": [
+    {
+      "path": "inputs/Scripts/CI/runtime27-hanlin-live.py",
+      "bytes": 35180,
+      "sha256": "e0792b38284dd517551c2312455904a3ef849269f3790953b38d8a9e16ff7a75"
+    },
+    {
+      "path": "inputs/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "bytes": 28736,
+      "sha256": "6cb67796a458fba8bbfee94d584b30744fb57b246d679aa4b909c2216ccd4c15"
+    },
+    {
+      "path": "preimage/Scripts/CI/runtime27-hanlin-live.py",
+      "bytes": 29901,
+      "sha256": "a23383137ac9b52398a75ae50098411422958c6090a97bb0889a1440edbd9aff"
+    },
+    {
+      "path": "diagnostic_boundary_controls.py",
+      "bytes": 27241,
+      "sha256": "04f61d1e321d5107263282f572a88663ed86c674d81ce94642ea61382c7c1371"
+    },
+    {
+      "path": "run_diagnostic_controls.py",
+      "bytes": 4507,
+      "sha256": "3d8fa8b00fd0d26144ba659cf46c9dccb529014b4e2707c0675ab101250a937e"
+    }
+  ],
+  "status": "PASS",
+  "elapsedSeconds": 0.05486700099572772,
+  "namedTests": 34,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "cases": [
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_01_actual_swift_python_enum_parity_and_all_declared_values",
+      "status": "PASS",
+      "elapsedSeconds": 0.001413477999449242
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_02_minimum_and_exact_maximum_byte_bound",
+      "status": "PASS",
+      "elapsedSeconds": 0.0007494769961340353
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_03_exact_top_level_schema_and_version_kind",
+      "status": "PASS",
+      "elapsedSeconds": 0.0009447150005144067
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_04_boolean_kinds_are_not_integers_or_strings",
+      "status": "PASS",
+      "elapsedSeconds": 0.0006872149970149621
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_05_exact_event_schema",
+      "status": "PASS",
+      "elapsedSeconds": 0.0006242919989745133
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_06_unknown_enum_values_and_wrong_kinds",
+      "status": "PASS",
+      "elapsedSeconds": 0.0007469430056517012
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_07_duplicate_keys_at_each_object_level",
+      "status": "PASS",
+      "elapsedSeconds": 0.0004569649972836487
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_08_invalid_utf8_json_and_nonfinite_numbers",
+      "status": "PASS",
+      "elapsedSeconds": 0.000664901002892293
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_09_event_count_and_list_bound",
+      "status": "PASS",
+      "elapsedSeconds": 0.0008663789994898252
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_10_flags_count_bound",
+      "status": "PASS",
+      "elapsedSeconds": 0.0010067259936477058
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_11_sequence_is_contiguous_exact_integer",
+      "status": "PASS",
+      "elapsedSeconds": 0.0006290889941737987
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_12_exact_single_input_consumption_anchor",
+      "status": "PASS",
+      "elapsedSeconds": 0.0005393470055423677
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_13_nonce_is_original_canonical_uuid_and_new_instance_is_distinct",
+      "status": "PASS",
+      "elapsedSeconds": 0.00038099199446151033
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_14_real_private_file_capture_and_exact_admission",
+      "status": "PASS",
+      "elapsedSeconds": 0.0010975909972330555
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_15_missing_and_wrong_nonce_journals_are_not_observed",
+      "status": "PASS",
+      "elapsedSeconds": 0.0006600350025109947
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_16_stale_exact_nonce_stops_stage_before_input_or_ownership_write",
+      "status": "PASS",
+      "elapsedSeconds": 0.0007149860030040145
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_17_ambiguous_container_match_refused",
+      "status": "PASS",
+      "elapsedSeconds": 0.0008001410024007782
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_18_symlink_file_refused",
+      "status": "PASS",
+      "elapsedSeconds": 0.0007233180003822781
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_19_symlink_parent_escape_refused",
+      "status": "PASS",
+      "elapsedSeconds": 0.0010126060005859472
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_20_nonprivate_mode_refused",
+      "status": "PASS",
+      "elapsedSeconds": 0.0006660930012003519
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_21_nonregular_matching_path_refused",
+      "status": "PASS",
+      "elapsedSeconds": 0.0004922369989799336
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_22_oversized_private_file_refused_before_scanning",
+      "status": "PASS",
+      "elapsedSeconds": 0.0006979399986448698
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_23_invalid_typed_payload_is_never_copied",
+      "status": "PASS",
+      "elapsedSeconds": 0.0007559860023320653
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_24_raw_credential_is_refused_before_decoder",
+      "status": "PASS",
+      "elapsedSeconds": 0.0011083659992436878
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_25_base64_credential_is_refused_before_decoder",
+      "status": "PASS",
+      "elapsedSeconds": 0.0008245579956565052
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_26_fixture_token_and_encoded_token_are_refused",
+      "status": "PASS",
+      "elapsedSeconds": 0.0008030360040720552
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_27_already_retained_journal_is_preserved",
+      "status": "PASS",
+      "elapsedSeconds": 0.0008531299972673878
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_28_overflow_reports_incompleteness_without_witness",
+      "status": "PASS",
+      "elapsedSeconds": 0.0008513070060871542
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_29_capture_precedes_required_final_witness_on_real_failure_path",
+      "status": "PASS",
+      "elapsedSeconds": 0.0009474289981881157
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_30_wrong_capture_device_or_label_cannot_collect",
+      "status": "PASS",
+      "elapsedSeconds": 0.0004537899949355051
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_31_failed_case_admits_diagnostic_but_stays_fail",
+      "status": "PASS",
+      "elapsedSeconds": 0.004480635994696058
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_32_observed_journal_cannot_replace_witness_even_if_external_matrix_claims_pass",
+      "status": "PASS",
+      "elapsedSeconds": 0.0032689569998183288
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_33_final_allowlist_scan_failure_removes_partial_upload",
+      "status": "PASS",
+      "elapsedSeconds": 0.0027268479971098714
+    },
+    {
+      "name": "new_live_diagnostic_controls.DiagnosticBoundaryTests.test_34_old_cleanup_scanner_witness_and_success_gates_are_unchanged",
+      "status": "PASS",
+      "elapsedSeconds": 0.020143596004345454
+    }
+  ],
+  "observations": [
+    {
+      "case": "test_01_actual_swift_python_enum_parity_and_all_declared_values",
+      "kind": "accepted",
+      "detail": "all actual Swift and Python enum values, both boolean values",
+      "bytes": 7740,
+      "sha256": "2c52fa086b4d7a5242277b7684696907c16a948b22e0c160569d0bd11a77097e"
+    },
+    {
+      "case": "test_02_minimum_and_exact_maximum_byte_bound",
+      "kind": "accepted",
+      "detail": "65536 bytes including legal JSON trailing whitespace",
+      "bytes": 65536,
+      "sha256": "2f81fc8a8fdcfa75ad45474f8d3485567d443031071e831c58c0635eee465960"
+    },
+    {
+      "case": "test_02_minimum_and_exact_maximum_byte_bound",
+      "kind": "rejected",
+      "detail": "empty",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "test_02_minimum_and_exact_maximum_byte_bound",
+      "kind": "rejected",
+      "detail": "65537 bytes",
+      "bytes": 65537,
+      "sha256": "30ca23b3bd012808aaaa5404ba7ee5b897eb479148071aab13bf8a10a48f4201"
+    },
+    {
+      "case": "test_02_minimum_and_exact_maximum_byte_bound",
+      "kind": "rejected",
+      "detail": "text not bytes"
+    },
+    {
+      "case": "test_02_minimum_and_exact_maximum_byte_bound",
+      "kind": "rejected",
+      "detail": "bytearray not bytes"
+    },
+    {
+      "case": "test_03_exact_top_level_schema_and_version_kind",
+      "kind": "rejected",
+      "detail": "missing-schemaVersion",
+      "bytes": 95,
+      "sha256": "5f3835cf7bcf9c0302c4eab7ea32480e8fdee890340ff002e4a2b5005a5ada4e"
+    },
+    {
+      "case": "test_03_exact_top_level_schema_and_version_kind",
+      "kind": "rejected",
+      "detail": "missing-overflow",
+      "bytes": 96,
+      "sha256": "17943183d9b8258ccbeaabb943149069a978ffeb00498bf78a1537d08f847707"
+    },
+    {
+      "case": "test_03_exact_top_level_schema_and_version_kind",
+      "kind": "rejected",
+      "detail": "missing-events",
+      "bytes": 36,
+      "sha256": "6035857cbe7863f91e6ec6bae0474bfe68e598d341c86ea6017361bd59fe65d8"
+    },
+    {
+      "case": "test_03_exact_top_level_schema_and_version_kind",
+      "kind": "rejected",
+      "detail": "unknown field",
+      "bytes": 143,
+      "sha256": "b7a6f271f4c6c4e136b55937fefe1738377b99c2aab891509419b25b4ab1fac9"
+    },
+    {
+      "case": "test_03_exact_top_level_schema_and_version_kind",
+      "kind": "rejected",
+      "detail": "bool version",
+      "bytes": 116,
+      "sha256": "ec6c8a299f9fadab85090a9455a10ed919ac2716636590f1f194907c9abf544b"
+    },
+    {
+      "case": "test_03_exact_top_level_schema_and_version_kind",
+      "kind": "rejected",
+      "detail": "float version",
+      "bytes": 115,
+      "sha256": "ece38649959ec0e5a63518245e924ccd7f87252644c251b4cc6d4d63dfe9b7ed"
+    },
+    {
+      "case": "test_03_exact_top_level_schema_and_version_kind",
+      "kind": "rejected",
+      "detail": "wrong version",
+      "bytes": 113,
+      "sha256": "99b6ecf21b4ef33feab78c8e748aa469b856c2eef1745260efbb95afc8836e6a"
+    },
+    {
+      "case": "test_03_exact_top_level_schema_and_version_kind",
+      "kind": "rejected",
+      "detail": "string version",
+      "bytes": 115,
+      "sha256": "fec9fdd5140736676e660056152d96b21336dbe3b22f972d94132adf57d103a7"
+    },
+    {
+      "case": "test_03_exact_top_level_schema_and_version_kind",
+      "kind": "rejected",
+      "detail": "top-level-list",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "case": "test_03_exact_top_level_schema_and_version_kind",
+      "kind": "rejected",
+      "detail": "top-level-NoneType",
+      "bytes": 4,
+      "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+    },
+    {
+      "case": "test_03_exact_top_level_schema_and_version_kind",
+      "kind": "rejected",
+      "detail": "top-level-bool",
+      "bytes": 5,
+      "sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+    },
+    {
+      "case": "test_03_exact_top_level_schema_and_version_kind",
+      "kind": "rejected",
+      "detail": "top-level-int",
+      "bytes": 1,
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "case": "test_03_exact_top_level_schema_and_version_kind",
+      "kind": "rejected",
+      "detail": "top-level-str",
+      "bytes": 9,
+      "sha256": "6b53b8079bacd772318e881d1b3f2d1176c5ee7809e52f74586adceafff3a27d"
+    },
+    {
+      "case": "test_04_boolean_kinds_are_not_integers_or_strings",
+      "kind": "rejected",
+      "detail": "overflow-0",
+      "bytes": 109,
+      "sha256": "26a3fced02a976017a9b5eccc487703ad00f21971f1e9b5f39dfce4f38147453"
+    },
+    {
+      "case": "test_04_boolean_kinds_are_not_integers_or_strings",
+      "kind": "rejected",
+      "detail": "flag-0",
+      "bytes": 190,
+      "sha256": "3732b2c8c5e65b6ded0704c4139bc6dd9fd313dc28331e0c893ccb8f15c767a3"
+    },
+    {
+      "case": "test_04_boolean_kinds_are_not_integers_or_strings",
+      "kind": "rejected",
+      "detail": "overflow-1",
+      "bytes": 109,
+      "sha256": "80609519b1f4c1a6a2ff44724c9f8dd2458e3d58f5eb10e92be636351eeb3d35"
+    },
+    {
+      "case": "test_04_boolean_kinds_are_not_integers_or_strings",
+      "kind": "rejected",
+      "detail": "flag-1",
+      "bytes": 190,
+      "sha256": "828b8da9099ee27d53ecf8550e3eb1be41a1efa595a5fcff334687da9d15a4d8"
+    },
+    {
+      "case": "test_04_boolean_kinds_are_not_integers_or_strings",
+      "kind": "rejected",
+      "detail": "overflow-'true'",
+      "bytes": 114,
+      "sha256": "821ae2f494c5a7bfae4b1120125c86cf2e56ee71b9cd4fdba3ad4730683c30c3"
+    },
+    {
+      "case": "test_04_boolean_kinds_are_not_integers_or_strings",
+      "kind": "rejected",
+      "detail": "flag-'true'",
+      "bytes": 195,
+      "sha256": "22f1a8a6ed092dfb151e01cb19d56437f0d37c649866afb5ce14b4ea0f95f384"
+    },
+    {
+      "case": "test_04_boolean_kinds_are_not_integers_or_strings",
+      "kind": "rejected",
+      "detail": "overflow-None",
+      "bytes": 112,
+      "sha256": "2fc7aa1624dd1c693d8354e36acc70a0964419a1f15d36ac0a015d052b594768"
+    },
+    {
+      "case": "test_04_boolean_kinds_are_not_integers_or_strings",
+      "kind": "rejected",
+      "detail": "flag-None",
+      "bytes": 193,
+      "sha256": "155a7c4eba63c8cc7ec6718c7ac8caff576fe2e2f2e759312347308c99889ae6"
+    },
+    {
+      "case": "test_04_boolean_kinds_are_not_integers_or_strings",
+      "kind": "rejected",
+      "detail": "overflow-[]",
+      "bytes": 110,
+      "sha256": "b7c0294f5d54619f1f7eab078b967d8a8ffdb5ffed8b74e6b95156f31dcffcb0"
+    },
+    {
+      "case": "test_04_boolean_kinds_are_not_integers_or_strings",
+      "kind": "rejected",
+      "detail": "flag-[]",
+      "bytes": 191,
+      "sha256": "aa0dd7c59ed904ba787475480f1f40936cb771e9af1e7396c776c7daf7167376"
+    },
+    {
+      "case": "test_04_boolean_kinds_are_not_integers_or_strings",
+      "kind": "rejected",
+      "detail": "overflow-{}",
+      "bytes": 110,
+      "sha256": "dbb99607ac6a8e53447aa93a0a95bb6c9503d2dff87f18d6994acc5fc39fc37e"
+    },
+    {
+      "case": "test_04_boolean_kinds_are_not_integers_or_strings",
+      "kind": "rejected",
+      "detail": "flag-{}",
+      "bytes": 191,
+      "sha256": "93d16f4e285695ca684f1052a80a35f2c3958c649469641d13a8e32805f7e8af"
+    },
+    {
+      "case": "test_05_exact_event_schema",
+      "kind": "rejected",
+      "detail": "missing-sequence",
+      "bytes": 167,
+      "sha256": "4ff83bb2348352facbf0de3260312fd10cf5a84f8220c78d752232c2c1093256"
+    },
+    {
+      "case": "test_05_exact_event_schema",
+      "kind": "rejected",
+      "detail": "missing-stage",
+      "bytes": 155,
+      "sha256": "05a866bf4565b6b284a3e4d164dbdecefff8f153bcd76bf5c0b12edea11c97f9"
+    },
+    {
+      "case": "test_05_exact_event_schema",
+      "kind": "rejected",
+      "detail": "missing-reason",
+      "bytes": 164,
+      "sha256": "cc08893a3b1fd4ee6c279be0d5cdc4f97317a67754b0767cbfdf68318bc6f82e"
+    },
+    {
+      "case": "test_05_exact_event_schema",
+      "kind": "rejected",
+      "detail": "missing-flags",
+      "bytes": 169,
+      "sha256": "af131c8349dddfe777880787e7c43b292448b12e183d7a85d6466447a7736df0"
+    },
+    {
+      "case": "test_05_exact_event_schema",
+      "kind": "rejected",
+      "detail": "unknown event field",
+      "bytes": 207,
+      "sha256": "fe88fd8192c5217d14f495ea6e837dbba29bfbca96e8dcdd511d5265ddb2ea81"
+    },
+    {
+      "case": "test_05_exact_event_schema",
+      "kind": "rejected",
+      "detail": "non-object-event-None",
+      "bytes": 118,
+      "sha256": "d18d5fb29945bf5f6b4b1b0ae73e26bd28ec28b20700cca8c0e6ae21891eea30"
+    },
+    {
+      "case": "test_05_exact_event_schema",
+      "kind": "rejected",
+      "detail": "non-object-event-[]",
+      "bytes": 116,
+      "sha256": "79d88703f5b9e830a213273980bda5f0878b41e17b19c15bc66f700723890690"
+    },
+    {
+      "case": "test_05_exact_event_schema",
+      "kind": "rejected",
+      "detail": "non-object-event-True",
+      "bytes": 118,
+      "sha256": "f3ac6c609dbc703e6502681a7d6486bc4e2f73c8cbd1d7cd37339fcdd21560e2"
+    },
+    {
+      "case": "test_05_exact_event_schema",
+      "kind": "rejected",
+      "detail": "non-object-event-'event'",
+      "bytes": 121,
+      "sha256": "c5c7b8c80cdd76db570ca164b10df642f267552164a884aca343d247854cf4af"
+    },
+    {
+      "case": "test_06_unknown_enum_values_and_wrong_kinds",
+      "kind": "rejected",
+      "detail": "stage-'unboundedFreeText'",
+      "bytes": 183,
+      "sha256": "1c6d3eb99c5c8e5594aed4e2b40584b451caaafb34dd5fa0e92826c648beb509"
+    },
+    {
+      "case": "test_06_unknown_enum_values_and_wrong_kinds",
+      "kind": "rejected",
+      "detail": "stage-2",
+      "bytes": 165,
+      "sha256": "e0daaf1775213fc1ca5c816b3e0fd4abebe2dfac35a20cb85512f60bca9ff5e6"
+    },
+    {
+      "case": "test_06_unknown_enum_values_and_wrong_kinds",
+      "kind": "rejected",
+      "detail": "stage-None",
+      "bytes": 168,
+      "sha256": "7fb9707b931a9e340251e9d2508893b53aa25b0b3829bbec760aa92fcc3993e3"
+    },
+    {
+      "case": "test_06_unknown_enum_values_and_wrong_kinds",
+      "kind": "rejected",
+      "detail": "stage-False",
+      "bytes": 169,
+      "sha256": "f2a9f2f3912d3e5523949e67c2c5390e241d50351a1254ef3e3a0208ef7eff27"
+    },
+    {
+      "case": "test_06_unknown_enum_values_and_wrong_kinds",
+      "kind": "rejected",
+      "detail": "reason-'customErrorText'",
+      "bytes": 191,
+      "sha256": "154be044bca3f8cd58e1d40d1a47d5fc2270225e1503f57b7c8ed7614f964185"
+    },
+    {
+      "case": "test_06_unknown_enum_values_and_wrong_kinds",
+      "kind": "rejected",
+      "detail": "reason-2",
+      "bytes": 175,
+      "sha256": "bd3116e523057f3e0097f1d55f8a8a19182886697be74981771dc1eb3d3259be"
+    },
+    {
+      "case": "test_06_unknown_enum_values_and_wrong_kinds",
+      "kind": "rejected",
+      "detail": "reason-None",
+      "bytes": 178,
+      "sha256": "aaa23821316d0fd7c51f4bb7e81bb96c613da96b4535d9f29c18464ab94c64d3"
+    },
+    {
+      "case": "test_06_unknown_enum_values_and_wrong_kinds",
+      "kind": "rejected",
+      "detail": "reason-False",
+      "bytes": 179,
+      "sha256": "a2b89240214d4c128848cc5580683d46f0208d1bf0fb881961e361e4262d259b"
+    },
+    {
+      "case": "test_06_unknown_enum_values_and_wrong_kinds",
+      "kind": "rejected",
+      "detail": "unknown flag",
+      "bytes": 202,
+      "sha256": "7d28562efddcc8c28b899d7989abc76f77005bd3734e9f0d1519c3cf4660035a"
+    },
+    {
+      "case": "test_06_unknown_enum_values_and_wrong_kinds",
+      "kind": "rejected",
+      "detail": "flags-container-[]",
+      "bytes": 180,
+      "sha256": "89988f81e8f7537447a4a2a00fe3f7766a0e14fa5ccb46fb34928e80371f5586"
+    },
+    {
+      "case": "test_06_unknown_enum_values_and_wrong_kinds",
+      "kind": "rejected",
+      "detail": "flags-container-None",
+      "bytes": 182,
+      "sha256": "6bbbd735b3024f4e5bc7acdd3953605fab27b010a854ae23623bffd571c701cd"
+    },
+    {
+      "case": "test_06_unknown_enum_values_and_wrong_kinds",
+      "kind": "rejected",
+      "detail": "flags-container-True",
+      "bytes": 182,
+      "sha256": "cab24c7202c231b7d80c765c9a36e1df1e0ceeb354acec4ed729803aaa52ef47"
+    },
+    {
+      "case": "test_06_unknown_enum_values_and_wrong_kinds",
+      "kind": "rejected",
+      "detail": "flags-container-1",
+      "bytes": 179,
+      "sha256": "8fcb9bc45e1e9d599cc15f7e4ae6bfac8e4fc78795bba111856fbed0bad04a2e"
+    },
+    {
+      "case": "test_06_unknown_enum_values_and_wrong_kinds",
+      "kind": "rejected",
+      "detail": "flags-container-'flags'",
+      "bytes": 185,
+      "sha256": "c9e7d255b1079affb46c700441fc79cd835cff18d5e08699d5be441858044992"
+    },
+    {
+      "case": "test_07_duplicate_keys_at_each_object_level",
+      "kind": "rejected",
+      "detail": "top-level",
+      "bytes": 212,
+      "sha256": "6a74c5d23c48ba6cdc21406d260a04b04af03dd1601d926dbfb122f829d6e83e"
+    },
+    {
+      "case": "test_07_duplicate_keys_at_each_object_level",
+      "kind": "rejected",
+      "detail": "event",
+      "bytes": 207,
+      "sha256": "439b5efc628c48f6817a6c74704711ab885d53816df0a37dfa8465f76ebc1799"
+    },
+    {
+      "case": "test_07_duplicate_keys_at_each_object_level",
+      "kind": "rejected",
+      "detail": "flag",
+      "bytes": 208,
+      "sha256": "d83ecd101be6a8c23a8e8bfa337fef527230c10bf81930144028510bbe970cd5"
+    },
+    {
+      "case": "test_08_invalid_utf8_json_and_nonfinite_numbers",
+      "kind": "rejected",
+      "detail": "invalid UTF8",
+      "bytes": 1,
+      "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89"
+    },
+    {
+      "case": "test_08_invalid_utf8_json_and_nonfinite_numbers",
+      "kind": "rejected",
+      "detail": "incomplete JSON",
+      "bytes": 1,
+      "sha256": "021fb596db81e6d02bf3d2586ee3981fe519f275c0ac9ca76bbcf2ebb4097d96"
+    },
+    {
+      "case": "test_08_invalid_utf8_json_and_nonfinite_numbers",
+      "kind": "rejected",
+      "detail": "trailing object",
+      "bytes": 115,
+      "sha256": "29fb08d3eb12a487584cc8920e5199b724bc0742ed2e04cd502a019da9064dda"
+    },
+    {
+      "case": "test_08_invalid_utf8_json_and_nonfinite_numbers",
+      "kind": "rejected",
+      "detail": "UTF8 BOM",
+      "bytes": 116,
+      "sha256": "ba73a5460ac5fcadfb0344b54b7136fec4bb056f225465557bab784193fee565"
+    },
+    {
+      "case": "test_08_invalid_utf8_json_and_nonfinite_numbers",
+      "kind": "rejected",
+      "detail": "NaN",
+      "bytes": 111,
+      "sha256": "04357f57622060e6c3c7fd804794f59ae657e99b5a6612a3c72132359231b8cc"
+    },
+    {
+      "case": "test_08_invalid_utf8_json_and_nonfinite_numbers",
+      "kind": "rejected",
+      "detail": "Infinity",
+      "bytes": 116,
+      "sha256": "213f9024dd6798f8edc2cc4f311a0a5d5a0bb4df0131c1745f44753bd8690746"
+    },
+    {
+      "case": "test_08_invalid_utf8_json_and_nonfinite_numbers",
+      "kind": "rejected",
+      "detail": "-Infinity",
+      "bytes": 117,
+      "sha256": "0e9691d5282f6d320af83fdb0acc2bfc04b0e4b18c5ec81dfe0e4c5b45285269"
+    },
+    {
+      "case": "test_09_event_count_and_list_bound",
+      "kind": "rejected",
+      "detail": "97 events",
+      "bytes": 6633,
+      "sha256": "4700297b423ed413d72e8f6f8a994455c2499bd48229457b5140e5a6c3807e2d"
+    },
+    {
+      "case": "test_09_event_count_and_list_bound",
+      "kind": "rejected",
+      "detail": "event-container-[]",
+      "bytes": 48,
+      "sha256": "b4a225dccbc426e345c33368ce00ed95490076badd5b6a04c899880cb98e08fd"
+    },
+    {
+      "case": "test_09_event_count_and_list_bound",
+      "kind": "rejected",
+      "detail": "event-container-{}",
+      "bytes": 48,
+      "sha256": "bed1a517d178264e34bf9dc80e163d968ebeac2a1c39f77c5b8ab5d739be2b70"
+    },
+    {
+      "case": "test_09_event_count_and_list_bound",
+      "kind": "rejected",
+      "detail": "event-container-None",
+      "bytes": 50,
+      "sha256": "956175e90d21563c4ef5e6141735ec807db47c0f97021ac72c24e26d73b7e862"
+    },
+    {
+      "case": "test_09_event_count_and_list_bound",
+      "kind": "rejected",
+      "detail": "event-container-'events'",
+      "bytes": 54,
+      "sha256": "b97613a247562132cbc52dd19edc1a2553639b9244afba34d4cd956dc2e41d31"
+    },
+    {
+      "case": "test_09_event_count_and_list_bound",
+      "kind": "rejected",
+      "detail": "event-container-True",
+      "bytes": 50,
+      "sha256": "1414ff5168587054e85690f8e1548f426801e050d5184654807f9670d6597570"
+    },
+    {
+      "case": "test_10_flags_count_bound",
+      "kind": "rejected",
+      "detail": "10 flags",
+      "bytes": 377,
+      "sha256": "6265cc59c7493d385b5bc16191ce867ad6cac19c17508d4886e7cb9b7367d9c1"
+    },
+    {
+      "case": "test_11_sequence_is_contiguous_exact_integer",
+      "kind": "rejected",
+      "detail": "second-sequence-True",
+      "bytes": 183,
+      "sha256": "23f04c2628eed0489f12331c7ea9f041676bd13ca1d3ad952e5b4eff38c45b76"
+    },
+    {
+      "case": "test_11_sequence_is_contiguous_exact_integer",
+      "kind": "rejected",
+      "detail": "second-sequence-1",
+      "bytes": 180,
+      "sha256": "7d5c77399a2234fd11546cd5863db12a8383017a2cff96113b358e5edb0016a6"
+    },
+    {
+      "case": "test_11_sequence_is_contiguous_exact_integer",
+      "kind": "rejected",
+      "detail": "second-sequence-3",
+      "bytes": 180,
+      "sha256": "56ab7d1fb293ddbc4ba6e0a30e1a94655052447a64200af4794f826a33a52f49"
+    },
+    {
+      "case": "test_11_sequence_is_contiguous_exact_integer",
+      "kind": "rejected",
+      "detail": "second-sequence-2.0",
+      "bytes": 182,
+      "sha256": "a475b0378241fd08c8acf02478fc21a97954397632e0d3aceec4491f0ce30f61"
+    },
+    {
+      "case": "test_11_sequence_is_contiguous_exact_integer",
+      "kind": "rejected",
+      "detail": "second-sequence-'2'",
+      "bytes": 182,
+      "sha256": "8db46f5ccc86cf1d7a074bed03570d970226f737dfee2b583b8b5256c56cb79a"
+    },
+    {
+      "case": "test_11_sequence_is_contiguous_exact_integer",
+      "kind": "rejected",
+      "detail": "second-sequence--2",
+      "bytes": 181,
+      "sha256": "2d320f13ab91e0415c55c5d401ea06f0ece0d100a6708a64f2926bf9fe0b5039"
+    },
+    {
+      "case": "test_11_sequence_is_contiguous_exact_integer",
+      "kind": "rejected",
+      "detail": "second-sequence-None",
+      "bytes": 183,
+      "sha256": "ec31293645c2bbc387d04f7b2a7840e21a958f60d05f30945a9275bd2f65e8f5"
+    },
+    {
+      "case": "test_11_sequence_is_contiguous_exact_integer",
+      "kind": "rejected",
+      "detail": "first bool sequence",
+      "bytes": 116,
+      "sha256": "451db542786bf4db5fa0b7313022151c86abfbdab964ec3f2553a2ec93bfdb0e"
+    },
+    {
+      "case": "test_11_sequence_is_contiguous_exact_integer",
+      "kind": "rejected",
+      "detail": "repeated sequence",
+      "bytes": 247,
+      "sha256": "e38e0acbc8efacb807bbae3ac60c54b3b9f812373b89682a2ec122e548e273d5"
+    },
+    {
+      "case": "test_12_exact_single_input_consumption_anchor",
+      "kind": "rejected",
+      "detail": "wrong first stage",
+      "bytes": 114,
+      "sha256": "57054e74f87a4929189ef41443172f3d33c22f6f829de1aeeeb24b8d7d8f2e56"
+    },
+    {
+      "case": "test_12_exact_single_input_consumption_anchor",
+      "kind": "rejected",
+      "detail": "repeated anchor",
+      "bytes": 179,
+      "sha256": "2cb68e2b66b95ca2b5f674fc79e3b81d2523eca9536682559975c88c3057e7d3"
+    },
+    {
+      "case": "test_12_exact_single_input_consumption_anchor",
+      "kind": "rejected",
+      "detail": "noncanonical anchor reason",
+      "bytes": 118,
+      "sha256": "73e9663c2fd78048f1d69a469353e7796b30a39f4ff6a02a67469c7ac8ffe9cd"
+    },
+    {
+      "case": "test_12_exact_single_input_consumption_anchor",
+      "kind": "rejected",
+      "detail": "noncanonical anchor flags",
+      "bytes": 127,
+      "sha256": "62447d9152036149767077d4835a0ccaf512923d60e861e33109263b90438a81"
+    },
+    {
+      "case": "test_14_real_private_file_capture_and_exact_admission",
+      "kind": "real-posix-admitted",
+      "detail": "regular mode0600 exact nonce filename; unchanged typed bytes",
+      "bytes": 204,
+      "sha256": "eed290ddcba24636184075d1cd84e84cbe0a0ea66ed64a4e72d24a3db43ea011"
+    },
+    {
+      "case": "test_17_ambiguous_container_match_refused",
+      "kind": "capture-rejected",
+      "detail": "Ambiguous original connection diagnostic"
+    },
+    {
+      "case": "test_18_symlink_file_refused",
+      "kind": "capture-rejected",
+      "detail": "Invalid original connection diagnostic file"
+    },
+    {
+      "case": "test_19_symlink_parent_escape_refused",
+      "kind": "capture-rejected",
+      "detail": "Invalid original connection diagnostic file"
+    },
+    {
+      "case": "test_20_nonprivate_mode_refused",
+      "kind": "capture-rejected",
+      "detail": "Invalid original connection diagnostic file"
+    },
+    {
+      "case": "test_21_nonregular_matching_path_refused",
+      "kind": "capture-rejected",
+      "detail": "Invalid original connection diagnostic file"
+    },
+    {
+      "case": "test_22_oversized_private_file_refused_before_scanning",
+      "kind": "capture-rejected",
+      "detail": "Invalid original connection diagnostic file"
+    },
+    {
+      "case": "test_23_invalid_typed_payload_is_never_copied",
+      "kind": "capture-rejected",
+      "detail": "Unexpected connection diagnostic event"
+    },
+    {
+      "case": "test_24_raw_credential_is_refused_before_decoder",
+      "kind": "capture-rejected",
+      "detail": "Credential detected"
+    },
+    {
+      "case": "test_25_base64_credential_is_refused_before_decoder",
+      "kind": "capture-rejected",
+      "detail": "Credential detected"
+    },
+    {
+      "case": "test_26_fixture_token_and_encoded_token_are_refused",
+      "kind": "capture-rejected",
+      "detail": "Credential detected"
+    },
+    {
+      "case": "test_26_fixture_token_and_encoded_token_are_refused",
+      "kind": "capture-rejected",
+      "detail": "Credential detected"
+    },
+    {
+      "case": "test_31_failed_case_admits_diagnostic_but_stays_fail",
+      "kind": "real-main-failure-decision",
+      "detail": "complete main with explicit external-only probes; no Native qualification"
+    }
+  ],
+  "unchangedInputs": [
+    "inputs/Scripts/CI/runtime27-hanlin-live.py",
+    "inputs/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+    "preimage/Scripts/CI/runtime27-hanlin-live.py",
+    "diagnostic_boundary_controls.py",
+    "run_diagnostic_controls.py"
+  ],
+  "scope": "Real complete candidate Python validator/capture/admission and POSIX filesystem boundaries. Synthetic public canaries only. Three complete-main cases use explicit external source/matrix probes. No source checkout edits, original Native tests, Simulator, UI, provider, credential, CI, network or RPC execution.",
+  "completedUTC": "2026-11-22T07:30:46.188950+00:00"
+}

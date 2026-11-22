@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "/workspace/scratch/30fcb225a423/hanlin_diagnostic_validation_20261122/run_diagnostic_controls.py"
+  ],
+  "cwd": "/workspace/scratch/30fcb225a423/hanlin_diagnostic_validation_20261122",
+  "supervisorPID": 2,
+  "childPID": 5,
+  "startedUTC": "2026-11-22T07:30:45.844388+00:00",
+  "elapsedSeconds": 0.3806797760043992,
+  "timeoutSeconds": 60,
+  "timedOut": false,
+  "exitCode": 0,
+  "stdoutBytes": 150,
+  "stdoutSHA256": "f963c80313bef9acfeecc195c9309751d1f01e7449d98338950b66fbb052c8ad",
+  "stderrBytes": 5605,
+  "stderrSHA256": "e0274174c8144ab1b66543f438a16c471581ecd900eacf7161d4455718c65955",
+  "launcherSHA256": "d71066a209f3b54ebf4afdb5df9de2ca4e18e22560d3ad50788250c79dd740df"
+}

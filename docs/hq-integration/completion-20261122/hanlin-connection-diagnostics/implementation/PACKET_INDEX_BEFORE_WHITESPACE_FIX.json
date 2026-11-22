@@ -1,0 +1,368 @@
+{
+  "schemaVersion": 1,
+  "applicationSource": "6aa953048453b64a0013621ce76e095770eb7e7d",
+  "bindingCommit": "966f180d8ba2c2eb0f72624be76a99222f45371b",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 76,
+      "sha256": "ac0d66dfcaedc862b1729b6bfdf1e7abdf8f615e376f91ecd00267f372a1d338"
+    },
+    {
+      "path": "implementation/binding-evidence-runner.py",
+      "bytes": 12486,
+      "sha256": "3e5cc4d3e44c569597b2e3046f7a104f1dd92c5c5ba994babb1840e07d333445"
+    },
+    {
+      "path": "implementation/BINDING_COMMANDS_UNTIL_FREEZE.json",
+      "bytes": 19712,
+      "sha256": "1b91c0643a044945c348b63798ae5910bbf1a5179fb6a8ee71cf226bf8e737ef"
+    },
+    {
+      "path": "implementation/BINDING_RECEIPT.json",
+      "bytes": 1569,
+      "sha256": "4352282a8ba1cd59e1bdc7a1deed81af6675a006959a6184afcbc730fd7f08d4"
+    },
+    {
+      "path": "implementation/BINDINGS.diff",
+      "bytes": 1406,
+      "sha256": "b2aad7ea7ccc0a75eb5a635ed8f8c67e90175ead9afb11456449329788bacdfb"
+    },
+    {
+      "path": "implementation/CHECKOUT_EOL_DIAGNOSIS.json",
+      "bytes": 2771,
+      "sha256": "d29594424c5eb9c5334951d75be56cfeccefdb55ff85fc0464cf486c632a0f5a"
+    },
+    {
+      "path": "implementation/FIRST_ATTEMPT_FAILURE.json",
+      "bytes": 966,
+      "sha256": "b3348b224255e57ea14340942dc0629a7e87cd211c35f9bb4cf3c2c8e2803951"
+    },
+    {
+      "path": "implementation/source-continuation-runner.py",
+      "bytes": 5578,
+      "sha256": "5263bec1036a6b96a7abb5b1621ae0f444f9f28f1996eb0763863abfd82cad08"
+    },
+    {
+      "path": "implementation/source-implementation-runner.py",
+      "bytes": 4394,
+      "sha256": "935128dc108c0640ee98a7ff95ba9b8c3b1be0f10f955959b82e9493e3c56c39"
+    },
+    {
+      "path": "implementation/SOURCE.diff",
+      "bytes": 30302,
+      "sha256": "2bc44daf98395f0dd901f161ec80d5e2f9bf77e366ab703b05fa2f879966f920"
+    },
+    {
+      "path": "implementation/SOURCE_COMMANDS.json",
+      "bytes": 29037,
+      "sha256": "c7198a3b091663a27a83a5e4f9b249ec9e5c89bb62ff412971bf506451ee780a"
+    },
+    {
+      "path": "implementation/SOURCE_CONTINUATION_COMMANDS.json",
+      "bytes": 827812,
+      "sha256": "68024f315ab833e560f36ae644ade58b9f1b1e48fe5e80944d03568a3176ea7c"
+    },
+    {
+      "path": "implementation/SOURCE_RECEIPT.json",
+      "bytes": 3384,
+      "sha256": "c8c74189a14ab4920be9a7e798e92282fb9325574f9e5b75691d0c84b2fd1c27"
+    },
+    {
+      "path": "proposal/candidate/Scripts/CI/runtime27-hanlin-live.py",
+      "bytes": 35180,
+      "sha256": "e0792b38284dd517551c2312455904a3ef849269f3790953b38d8a9e16ff7a75"
+    },
+    {
+      "path": "proposal/candidate/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift",
+      "bytes": 20221,
+      "sha256": "2fbf538c29d4c243e455cd7e126f9676d9a3ae84879764706284f8e2e7742706"
+    },
+    {
+      "path": "proposal/candidate/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "bytes": 28736,
+      "sha256": "6cb67796a458fba8bbfee94d584b30744fb57b246d679aa4b909c2216ccd4c15"
+    },
+    {
+      "path": "proposal/candidate/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+      "bytes": 22729,
+      "sha256": "4786980d957ca3b0a5dce6f80f5eed64b7b374178ad38c4d0d3ae3e2ed12ab18"
+    },
+    {
+      "path": "proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 152357,
+      "sha256": "89a4a7dd90d458dfc91e69c9d840530372b42702182a77864487a5eb30fde93d"
+    },
+    {
+      "path": "proposal/DIAGNOSTIC_PROPOSAL.patch",
+      "bytes": 28443,
+      "sha256": "dbc19b2b105a969fb5c8126abe2e3d8f8222d2c9c9cc276cc5a9c7dc0185b672"
+    },
+    {
+      "path": "proposal/FILE_INDEX.json",
+      "bytes": 2804,
+      "sha256": "d776979563668e1766a3e94377a0b1880ce6d954019ae462a392aa9cf1999193"
+    },
+    {
+      "path": "proposal/preimage/Scripts/CI/runtime27-hanlin-live.py",
+      "bytes": 29901,
+      "sha256": "a23383137ac9b52398a75ae50098411422958c6090a97bb0889a1440edbd9aff"
+    },
+    {
+      "path": "proposal/preimage/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift",
+      "bytes": 18119,
+      "sha256": "9a4bf8f574a9a4b3c523f8445b338b02443dd9e4c76631fa6d159b080f3faf49"
+    },
+    {
+      "path": "proposal/preimage/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "bytes": 21382,
+      "sha256": "01e7fd67955b102c8716a96223ee041cd9d7be4bd5b9b616163f1a5baee4b5a0"
+    },
+    {
+      "path": "proposal/preimage/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+      "bytes": 22649,
+      "sha256": "8dedebec659b00dd86bf72c681944bdeb1bda0a28dfeda95b7a84a05c9a13905"
+    },
+    {
+      "path": "proposal/preimage/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 151190,
+      "sha256": "636c62c721335caa85a8225b91bc9880fd50cdd270b044cc93d852156bf737f9"
+    },
+    {
+      "path": "proposal/PROPOSAL_RECEIPT.json",
+      "bytes": 5319,
+      "sha256": "b1043dc0f5f2bf50bbc359cc5b0009ac2aebef6fd9db62b9dfc4e423c4b755cf"
+    },
+    {
+      "path": "proposal/REPLACEMENTS.json",
+      "bytes": 29116,
+      "sha256": "dd32dade0b5d6bacc7d1d6314abe5a6ee1c5c0ba487a35c26e2ea8f017aa7d5e"
+    },
+    {
+      "path": "proposal/REVIEW.md",
+      "bytes": 6680,
+      "sha256": "58047e84f4ae32416529a9fddc2de75dd8049e462e3c1c7a72b9b241b2db6401"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4000,
+      "sha256": "7699f3e733358faefbb495d978effd5d41ad827edd967cbe1dd20309a19d3152"
+    },
+    {
+      "path": "validation/FILE_INDEX.json",
+      "bytes": 7510,
+      "sha256": "e4d3bd2d017f9ba74c9f7eddaff5415918255b2f69b6d44882278892e8773c98"
+    },
+    {
+      "path": "validation/INDEPENDENT_REVIEW.json",
+      "bytes": 4557,
+      "sha256": "265156d363d2e4d9bb4f9b1a762b5421b06a7167be1aab71a493b187a6526397"
+    },
+    {
+      "path": "validation/inputs/Scripts/CI/runtime27-hanlin-live.py",
+      "bytes": 35180,
+      "sha256": "e0792b38284dd517551c2312455904a3ef849269f3790953b38d8a9e16ff7a75"
+    },
+    {
+      "path": "validation/inputs/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift",
+      "bytes": 20221,
+      "sha256": "2fbf538c29d4c243e455cd7e126f9676d9a3ae84879764706284f8e2e7742706"
+    },
+    {
+      "path": "validation/inputs/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "bytes": 28736,
+      "sha256": "6cb67796a458fba8bbfee94d584b30744fb57b246d679aa4b909c2216ccd4c15"
+    },
+    {
+      "path": "validation/inputs/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+      "bytes": 22729,
+      "sha256": "4786980d957ca3b0a5dce6f80f5eed64b7b374178ad38c4d0d3ae3e2ed12ab18"
+    },
+    {
+      "path": "validation/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 152357,
+      "sha256": "89a4a7dd90d458dfc91e69c9d840530372b42702182a77864487a5eb30fde93d"
+    },
+    {
+      "path": "validation/INPUTS.json",
+      "bytes": 1857,
+      "sha256": "2432645bd31015e41dd2cc0f3e0109e197f1043aaa761cdf9533510432e3560c"
+    },
+    {
+      "path": "validation/linux-posix/diagnostic_boundary_controls.py",
+      "bytes": 27241,
+      "sha256": "04f61d1e321d5107263282f572a88663ed86c674d81ce94642ea61382c7c1371"
+    },
+    {
+      "path": "validation/linux-posix/execute_once.py",
+      "bytes": 1389,
+      "sha256": "d71066a209f3b54ebf4afdb5df9de2ca4e18e22560d3ad50788250c79dd740df"
+    },
+    {
+      "path": "validation/linux-posix/inputs/Scripts/CI/runtime27-hanlin-live.py",
+      "bytes": 35180,
+      "sha256": "e0792b38284dd517551c2312455904a3ef849269f3790953b38d8a9e16ff7a75"
+    },
+    {
+      "path": "validation/linux-posix/inputs/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "bytes": 28736,
+      "sha256": "6cb67796a458fba8bbfee94d584b30744fb57b246d679aa4b909c2216ccd4c15"
+    },
+    {
+      "path": "validation/linux-posix/INPUTS.json",
+      "bytes": 1818,
+      "sha256": "e2306eebf2e79d61a7a252807b07bc897a76c505363b1599a2ce562b95fafa8b"
+    },
+    {
+      "path": "validation/linux-posix/LINUX_FILE_INDEX.json",
+      "bytes": 2126,
+      "sha256": "6cc97fade193349139945cc9611bdb227852515bfddaf58c14ae9a9b19528559"
+    },
+    {
+      "path": "validation/linux-posix/preimage/Scripts/CI/runtime27-hanlin-live.py",
+      "bytes": 29901,
+      "sha256": "a23383137ac9b52398a75ae50098411422958c6090a97bb0889a1440edbd9aff"
+    },
+    {
+      "path": "validation/linux-posix/python-result.json",
+      "bytes": 31226,
+      "sha256": "36d44ba62583c3cc88512407be850c50b8f596a3784c8c9fe1e5fafe91113899"
+    },
+    {
+      "path": "validation/linux-posix/python.stderr",
+      "bytes": 5605,
+      "sha256": "e0274174c8144ab1b66543f438a16c471581ecd900eacf7161d4455718c65955"
+    },
+    {
+      "path": "validation/linux-posix/python.stdout",
+      "bytes": 150,
+      "sha256": "f963c80313bef9acfeecc195c9309751d1f01e7449d98338950b66fbb052c8ad"
+    },
+    {
+      "path": "validation/linux-posix/PYTHON_EXECUTION.json",
+      "bytes": 818,
+      "sha256": "ea22832ee9b276d5bfb1d162f831d7d296a664abe158232e61c2f8370b6889c4"
+    },
+    {
+      "path": "validation/linux-posix/PYTHON_INPUTS.json",
+      "bytes": 940,
+      "sha256": "edc89230e024860e5774d0671712b81a666823c9b2a7c92ea768fd08ea5435d4"
+    },
+    {
+      "path": "validation/linux-posix/run_diagnostic_controls.py",
+      "bytes": 4507,
+      "sha256": "3d8fa8b00fd0d26144ba659cf46c9dccb529014b4e2707c0675ab101250a937e"
+    },
+    {
+      "path": "validation/linux-posix-evidence.zip",
+      "bytes": 48389,
+      "sha256": "6e3de983c85a77905b944e155c03fef97f02bd5798ac85dbe335d1a0c5457df7"
+    },
+    {
+      "path": "validation/PASSIVE_OPERANDS_REVIEW.json",
+      "bytes": 5119,
+      "sha256": "1a35c4fc7748bbc5e1ddb7ba0d0849d21d2c9973d881f74bb92dcb96c9d1a904"
+    },
+    {
+      "path": "validation/proposal-DIAGNOSTIC_PROPOSAL.patch",
+      "bytes": 28443,
+      "sha256": "dbc19b2b105a969fb5c8126abe2e3d8f8222d2c9c9cc276cc5a9c7dc0185b672"
+    },
+    {
+      "path": "validation/proposal-FILE_INDEX.json",
+      "bytes": 2804,
+      "sha256": "d776979563668e1766a3e94377a0b1880ce6d954019ae462a392aa9cf1999193"
+    },
+    {
+      "path": "validation/proposal-PROPOSAL_RECEIPT.json",
+      "bytes": 5319,
+      "sha256": "b1043dc0f5f2bf50bbc359cc5b0009ac2aebef6fd9db62b9dfc4e423c4b755cf"
+    },
+    {
+      "path": "validation/proposal-REPLACEMENTS.json",
+      "bytes": 29116,
+      "sha256": "dd32dade0b5d6bacc7d1d6314abe5a6ee1c5c0ba487a35c26e2ea8f017aa7d5e"
+    },
+    {
+      "path": "validation/proposal-REVIEW.md",
+      "bytes": 6680,
+      "sha256": "58047e84f4ae32416529a9fddc2de75dd8049e462e3c1c7a72b9b241b2db6401"
+    },
+    {
+      "path": "validation/README.md",
+      "bytes": 5124,
+      "sha256": "05fbfc051b1464dd09353b890e11bca52d5c87e84f8f9a681b15b0750f2aa306"
+    },
+    {
+      "path": "validation/SUMMARY.json",
+      "bytes": 1132,
+      "sha256": "75b22c25e41b52b4735c613f4a0751745cd8af25c916c4b1ec72db10e55be242"
+    },
+    {
+      "path": "validation/windows-syntax/EXECUTION.json",
+      "bytes": 5177,
+      "sha256": "35543debe8a3d1f1fd0678d79fc7e0d0ccbb3624c811a48686e1a177370f486e"
+    },
+    {
+      "path": "validation/windows-syntax/issued-normalized-runner.py",
+      "bytes": 2770,
+      "sha256": "1a68d55498f85318f5658cd50e0d8fe03bdd63579de66d5658e21a7f40ffb94b"
+    },
+    {
+      "path": "validation/windows-syntax/parse-1.stderr",
+      "bytes": 165,
+      "sha256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539"
+    },
+    {
+      "path": "validation/windows-syntax/parse-1.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/windows-syntax/parse-2.stderr",
+      "bytes": 165,
+      "sha256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539"
+    },
+    {
+      "path": "validation/windows-syntax/parse-2.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/windows-syntax/parse-3.stderr",
+      "bytes": 165,
+      "sha256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539"
+    },
+    {
+      "path": "validation/windows-syntax/parse-3.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/windows-syntax/parse-4.stderr",
+      "bytes": 165,
+      "sha256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539"
+    },
+    {
+      "path": "validation/windows-syntax/parse-4.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/windows-syntax/RESULT.json",
+      "bytes": 4613,
+      "sha256": "78f61a64372e7c53e05b7a7f51a8c0f6db94b9f9449921f10165b8e303325f95"
+    },
+    {
+      "path": "validation/windows-syntax/swift-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/windows-syntax/swift-version.stdout",
+      "bytes": 104,
+      "sha256": "a2aa2d7dcd61b2f3db2c0e6ff30a1f0ab2d45f58a9542e79f6b7fa7111b09dd5"
+    }
+  ],
+  "scope": "Actual bounded diagnostic source/reviews/validation; no Native/Live acceptance"
+}

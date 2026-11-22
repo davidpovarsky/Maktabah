@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "scope": "Read-only comparison against original executed Linux files and Python executable, no tests rerun",
+  "actualInputCount": 5,
+  "inputPaths": [
+    "inputs/Scripts/CI/runtime27-hanlin-live.py",
+    "inputs/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+    "preimage/Scripts/CI/runtime27-hanlin-live.py",
+    "diagnostic_boundary_controls.py",
+    "run_diagnostic_controls.py"
+  ],
+  "pythonExecutable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+  "pythonExecutableSHA256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+  "originalResultSHA256": "36d44ba62583c3cc88512407be850c50b8f596a3784c8c9fe1e5fafe91113899"
+}

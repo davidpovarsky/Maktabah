@@ -343,6 +343,7 @@ private struct OtzariaHanlinConnectionView: View {
             endpoint = "https://generativelanguage.googleapis.com/v1beta/openai/"
             model = configuredModel
             credential = key
+            OtzariaHanlinConnectionDiagnostic.beginOwnedLiveInput(nonce: nonce)
         } catch {
             // Do not print parser errors, input bytes or account fields.
             fatalError("The private live-acceptance input could not be consumed")

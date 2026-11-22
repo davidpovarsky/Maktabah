@@ -1,0 +1,88 @@
+{
+  "schema": "hanlin-live-diagnostic-independent-source-review/1",
+  "created_utc": "2026-11-22T07:20:40.263614+00:00",
+  "reviewer": "/root/acceptance_inventory",
+  "status": "APPROVED_FOR_SCOPED_VALIDATION_SOURCE_REVIEW_ONLY",
+  "proposal_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-hanlin-live7-diagnostic-proposal-20261122",
+  "patch_sha256": "dbc19b2b105a969fb5c8126abe2e3d8f8222d2c9c9cc276cc5a9c7dc0185b672",
+  "file_index_sha256": "d776979563668e1766a3e94377a0b1880ce6d954019ae462a392aa9cf1999193",
+  "indexed_files_verified": 14,
+  "source_preimage_refs": [
+    "77c7df82ef5f822bf0b1dd7e08ff2b4b98d425d2",
+    "d14f845f2b0760ce8d3bf186ca656db57f435f9f"
+  ],
+  "all_five_preimages_independently_match_both_refs": true,
+  "inverse": [
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "replacements": 9,
+      "forward_equals_candidate": true,
+      "inverse_equals_original_bytes": true
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift",
+      "replacements": 9,
+      "forward_equals_candidate": true,
+      "inverse_equals_original_bytes": true
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+      "replacements": 1,
+      "forward_equals_candidate": true,
+      "inverse_equals_original_bytes": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "replacements": 3,
+      "forward_equals_candidate": true,
+      "inverse_equals_original_bytes": true
+    },
+    {
+      "path": "Scripts/CI/runtime27-hanlin-live.py",
+      "replacements": 8,
+      "forward_equals_candidate": true,
+      "inverse_equals_original_bytes": true
+    }
+  ],
+  "enum_parity": {
+    "Stage": {
+      "count": 29,
+      "producer_collector_exact_set_equal": true
+    },
+    "Reason": {
+      "count": 9,
+      "producer_collector_exact_set_equal": true
+    },
+    "Flag": {
+      "count": 29,
+      "producer_collector_exact_set_equal": true
+    }
+  },
+  "bounds": {
+    "maximum_raw_bytes": 65536,
+    "event_count_min": 1,
+    "event_count_max": 96,
+    "flags_per_event_max": 9
+  },
+  "reviewed_boundaries": {
+    "private_input_activation": "Original DEBUG Simulator consumer validates/removes/applies its one-use input before begin; exact canonical UUID environment nonce, one boundNonce, no existing-file overwrite. There is no reset/rebind path in the same process.",
+    "closed_schema": "Exact top-level and event key sets; strict integer/version/sequence vs Bool; strict Bool overflow and flags; finite enum values; duplicate-key/nonfinite rejection; exact first inputConsumed only once.",
+    "retention_and_scan": "Owned device/root, fresh nonce check before stage, at most one regular nonsymlink mode0600 contained file; scan real key/base64 and fixture token before typed validation/private capture. Fixed name joins original scanned allowlist.",
+    "original_cleanup": "Main/finally and owned-device cleanup are unchanged. Original matrix invokes capture after XCTest outcome even when code is nonzero; journal capture precedes required final witness.",
+    "no_business_authority": "Original whole source equality, requests, consent validation, guards, dismissal, configure outcome and XCTest assertions remain. New reason classification exposes no error text or associated values.",
+    "privacy_payload": "Only bounded sequence/version, fixed enum strings and Boolean flags. No credential/model/endpoint/source text/URLs/account/session/object IDs or nonce in admitted journal JSON."
+  },
+  "concrete_blockers": [],
+  "limits": [
+    "No candidate code or validation suite was executed; no syntax/semantic compiler or Apple/Native/Live acceptance is asserted.",
+    "Capture is for the existing post-XCTest callback, including the observed failed case. Earlier infrastructure exit or interruption can still report NOT_CAPTURED; this is not universal crash logging.",
+    "Journal correlates the owned process attempt, not a publicly exposed per-session identity. Stale same-attempt callback observations do not grant ownership.",
+    "OBSERVED/OVERFLOW are diagnostic states, not successful connection, provider conversation or acceptance.",
+    "REVIEWED_SOURCE still requires root's final integrated source binding before dispatch; no current dispatch approval follows from this review."
+  ],
+  "code_edits": 0,
+  "tests_executed": 0,
+  "candidate_executed": false,
+  "native_calls": 0,
+  "credentials_accessed": false
+}

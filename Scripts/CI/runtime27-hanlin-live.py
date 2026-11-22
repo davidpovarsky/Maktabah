@@ -18,7 +18,7 @@ import uuid
 ROOT = Path(__file__).resolve().parents[2]
 SELECTOR = "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
 MODEL = "gemini-2.5-flash-lite"
-REVIEWED_SOURCE = "0ea7218331d1441d37d06d43333e579f267056e3"
+REVIEWED_SOURCE = "6aa953048453b64a0013621ce76e095770eb7e7d"
 ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/openai/"
 BUNDLE = "com.davidpovarsky.chavrusatext"
 CANONICAL_APP_GROUP = "group.com.davidpovarsky.itorah"
@@ -26,6 +26,10 @@ FIXTURE_RELATIVE = Path("Otzaria/Profiles/miniTest10/database/seforim.db")
 PRIVATE_RELATIVE = Path("Library/Application Support/OtzariaHanlinLiveProviderAcceptance/provider.json")
 WORK = ROOT / "build/hanlin-live-private"
 OUT = ROOT / "build/hanlin-live-evidence"
+CONNECTION_DIAGNOSTIC_PREFIX = "otzaria-hanlin-connection-stages-"
+CONNECTION_DIAGNOSTIC_STAGES = frozenset(["inputConsumed","connectEntered","connectRejected","requestValidated","readRequestValidated","readRequestReturned","connectFailed","carriedConfigureEntered","carriedConfigureRejected","carriedConfigurationMismatch","engineConstructed","configurationActivated","configurationCompleted","configureFailed","openEntered","openRejected","openIssued","openFailed","mountObserved","consentCaptureEntered","consentCaptured","closeRequested","dismissObserved","dismissAccepted","readReopenEntered","consentConsumeEntered","consentConsumed","sourceComparisonRejected","sourceValidationFailed"])
+CONNECTION_DIAGNOSTIC_REASONS = frozenset(["none","cancelled","invalidArguments","invalidContext","staleContext","denied","duplicateInvocation","otherHostError","otherError"])
+CONNECTION_DIAGNOSTIC_FLAGS = frozenset(["closed","storageFailed","configured","connecting","hasOperation","allowRead","hasReadOffer","hasReadScope","credentialPresent","retired","hasPresentation","hasNativeSession","mounted","foreground","hasNavigationTask","matchingSession","isPresented","hasPendingReadReopen","preservingContinuation","hasConsent","hasConnection","sameBackend","sameMappingSource","sameMappingEpoch","sameWorkspaceProjection","sameReaderContent","sameReadSource","sameSelection","sameLocale"])
 
 
 def require(condition, message):
@@ -91,6 +95,47 @@ def restore_artifacts():
         require(evidence_identity(artifacts) == receipt["prior_identity"], "Original evidence bytes were not restored")
     receipt["restored"] = True
     write(receipt_path, receipt)
+
+
+
+def validate_connection_diagnostic(raw):
+    """Admit only the app's finite enum/boolean journal; never raw application data."""
+    require(isinstance(raw, bytes) and 0 < len(raw) <= 65536, "Invalid connection diagnostic size")
+
+    def unique_object(pairs):
+        value = {}
+        for key, item in pairs:
+            require(key not in value, "Duplicate connection diagnostic key")
+            value[key] = item
+        return value
+
+    def invalid_constant(_):
+        raise ValueError("Non-finite connection diagnostic value")
+
+    value = json.loads(raw.decode("utf-8"), object_pairs_hook=unique_object,
+                       parse_constant=invalid_constant)
+    require(type(value) is dict and set(value) == {"schemaVersion", "overflow", "events"},
+            "Unexpected connection diagnostic schema")
+    require(type(value["schemaVersion"]) is int and value["schemaVersion"] == 1
+            and type(value["overflow"]) is bool, "Invalid connection diagnostic version/overflow")
+    events = value["events"]
+    require(type(events) is list and 1 <= len(events) <= 96, "Invalid connection diagnostic event count")
+    for number, event in enumerate(events, 1):
+        require(type(event) is dict and set(event) == {"sequence", "stage", "reason", "flags"},
+                "Unexpected connection diagnostic event")
+        require(type(event["sequence"]) is int and event["sequence"] == number,
+                "Non-contiguous connection diagnostic sequence")
+        require(type(event["stage"]) is str and event["stage"] in CONNECTION_DIAGNOSTIC_STAGES
+                and type(event["reason"]) is str and event["reason"] in CONNECTION_DIAGNOSTIC_REASONS,
+                "Unexpected connection diagnostic enum")
+        fields = event["flags"]
+        require(type(fields) is dict and len(fields) <= 9 and set(fields) <= CONNECTION_DIAGNOSTIC_FLAGS
+                and all(type(item) is bool for item in fields.values()),
+                "Unexpected connection diagnostic flags")
+    require(events[0] == {"sequence": 1, "stage": "inputConsumed", "reason": "none", "flags": {}}
+            and all(event["stage"] != "inputConsumed" for event in events[1:]),
+            "Connection diagnostic is not bound to one original input consumption")
+    return value
 
 
 def source_context():
@@ -218,6 +263,7 @@ class LiveAcceptance:
         self.consumed = False
         self.redactions = 0
         self.witness = None
+        self.connection_diagnostic_status = "NOT_CAPTURED"
         self.database_relative = None
         self.database_sha256 = None
 
@@ -238,6 +284,8 @@ class LiveAcceptance:
         root = owned_application_root(udid).resolve(strict=True)
         data = Path(container).resolve(strict=True)
         require(data.parent == root and data.is_dir() and not Path(container).is_symlink(), "Wrong owned app container")
+        require(not list(root.glob("*/Documents/" + CONNECTION_DIAGNOSTIC_PREFIX + self.nonce + ".json")),
+                "A previous connection diagnostic already exists for this owned input")
         self.udid = udid
         write(WORK / "ownership.json", {"udid": udid, "run_id": os.environ["GITHUB_RUN_ID"],
               "run_attempt": os.environ["GITHUB_RUN_ATTEMPT"], "nonce": self.nonce, "private_relative": PRIVATE_RELATIVE.as_posix()})
@@ -289,9 +337,33 @@ class LiveAcceptance:
                 "TEST_RUNNER_OTZARIA_HANLIN_LIVE_MODEL": MODEL, "TEST_RUNNER_OTZARIA_HANLIN_LIVE_QUERY": query,
                 "TEST_RUNNER_OTZARIA_HANLIN_LIVE_SECTION": str(paragraph["start_line_index"])}
 
+
+    def capture_connection_diagnostic(self, root):
+        candidates = list(root.glob("*/Documents/" + CONNECTION_DIAGNOSTIC_PREFIX + self.nonce + ".json"))
+        require(len(candidates) <= 1, "Ambiguous original connection diagnostic")
+        if not candidates:
+            self.connection_diagnostic_status = "NOT_OBSERVED"
+            return
+        file = candidates[0]
+        require(file.is_file() and not file.is_symlink() and file.stat().st_size <= 65536
+                and file.resolve(strict=True).is_relative_to(root)
+                and file.stat().st_mode & 0o777 == 0o600,
+                "Invalid original connection diagnostic file")
+        raw = file.read_bytes()
+        self.scan(raw)
+        proof = validate_connection_diagnostic(raw)
+        target = WORK / "connection-stages.json"
+        require(not target.exists(), "Preserve an already captured connection diagnostic")
+        target.write_bytes(raw)
+        self.connection_diagnostic_status = "OVERFLOW" if proof["overflow"] else "OBSERVED"
+
+
     def capture(self, udid, label):
         require(udid == self.udid and label == "11", "Wrong live witness device")
         root = owned_application_root(udid).resolve(strict=True)
+        # Capture this finite diagnostic even when the final native witness is
+        # absent. The existing private-input cleanup and success checks stay intact.
+        self.capture_connection_diagnostic(root)
         candidates = list(root.glob("*/Documents/otzaria-hanlin-live-" + self.nonce + ".json"))
         require(len(candidates) == 1, "The original native live witness did not complete")
         file = candidates[0]
@@ -465,7 +537,7 @@ def main():
             raw = WORK / "artifacts"
             for name in ["source-before.json", "source-after.json", "selection.json", "declarations.json",
                          "ownership.json", "artifact-isolation.json", "fixture-container.json",
-                         "fixture-query.json", "fixture-after.json", "native-witness.json"]:
+                         "fixture-query.json", "fixture-after.json", "native-witness.json", "connection-stages.json"]:
                 live.admit(WORK / name, name)
             live.admit(ROOT / "build/hq-stage2/result.json", "original-build-result.json")
             live.admit(ROOT / "build/hanlin-live-preflight/app-group-resolver-interface.json",
@@ -493,7 +565,8 @@ def main():
                     live.admit(WORK / "original-test-details.json", "original-test-details.json")
                 else:
                     report.update(status="FAIL", test_details_exit_code=details.returncode)
-            report.update(private_input_staged=live.staged, private_input_consumed=live.consumed,
+            report.update(connection_diagnostic_status=live.connection_diagnostic_status,
+                          private_input_staged=live.staged, private_input_consumed=live.consumed,
                           private_input_removed=live.removed, log_redactions=live.redactions,
                           credential_in_test_arguments=False, credential_in_child_environment=False,
                           raw_container_or_result_bundle_published=False)

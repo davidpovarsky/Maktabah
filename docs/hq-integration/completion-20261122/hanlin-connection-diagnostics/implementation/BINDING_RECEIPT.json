@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "status": "BOUND_LOCAL_ONLY",
+  "applicationSource": "6aa953048453b64a0013621ce76e095770eb7e7d",
+  "bindingCommit": "966f180d8ba2c2eb0f72624be76a99222f45371b",
+  "parent": "6aa953048453b64a0013621ce76e095770eb7e7d",
+  "applicationTrees": {
+    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "24345d612f8c70398f4590977f8b4696021ae413"
+  },
+  "files": [
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "beforeBytes": 4333,
+      "beforeSHA256": "c6810fdb940727b4b77183b1e591974a10308fb30ba43dcd659f7f2d56565e95",
+      "afterBytes": 4333,
+      "afterSHA256": "ead240842eff0c5460eff05ad25ef3a220b3c87b02b677e2413c4188cc178249"
+    },
+    {
+      "path": "Scripts/CI/runtime27-hanlin-live.py",
+      "beforeBytes": 35180,
+      "beforeSHA256": "e0792b38284dd517551c2312455904a3ef849269f3790953b38d8a9e16ff7a75",
+      "afterBytes": 35180,
+      "afterSHA256": "37cf1ef54c7bce5598c0e62abee44279247fb3673c842c349d862f736fb1ebe7"
+    }
+  ],
+  "diffSHA256": "b2aad7ea7ccc0a75eb5a635ed8f8c67e90175ead9afb11456449329788bacdfb",
+  "driverOnlyDifferenceFromTestedCandidate": "REVIEWED_SOURCE immutable SHA literal",
+  "allOriginalAcceptanceRequirementsUnchanged": true,
+  "final116And114ManifestsUnchanged": true,
+  "oldConsentSelectorSourceUnchanged": true,
+  "pendingOriginalEditorRouteUnchanged": true,
+  "noKeyNoCI": true
+}

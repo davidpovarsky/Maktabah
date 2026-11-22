@@ -1,0 +1,8 @@
+* -text whitespace=cr-at-eol
+*.patch -whitespace
+*.diff -whitespace
+validation/linux-posix/diagnostic_boundary_controls.py whitespace=cr-at-eol,-blank-at-eof
+validation/linux-posix/run_diagnostic_controls.py whitespace=cr-at-eol,-blank-at-eof
+validation/linux-posix/execute_once.py whitespace=cr-at-eol,-blank-at-eof
+implementation/EVIDENCE_WHITESPACE_GATE.stdout -whitespace
+independent/ROOT_WINDOWS_REVIEW.py whitespace=cr-at-eol,-blank-at-eof

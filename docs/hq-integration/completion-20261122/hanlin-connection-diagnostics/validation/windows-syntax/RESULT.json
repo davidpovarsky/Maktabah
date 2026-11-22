@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "completeSwiftFiles": 4,
+  "commands": [
+    {
+      "name": "swift-version",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+        "--version"
+      ],
+      "cwd": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-hanlin-live7-diagnostic-validation-20261122",
+      "startedUTC": "2026-11-22T07:28:23.705759+00:00",
+      "elapsedSeconds": 0.6089999999967404,
+      "exitCode": 0,
+      "stdoutSHA256": "a2aa2d7dcd61b2f3db2c0e6ff30a1f0ab2d45f58a9542e79f6b7fa7111b09dd5",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "parse-1",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+        "-frontend",
+        "-parse",
+        "-D",
+        "DEBUG",
+        "-target",
+        "arm64-apple-ios27.2-simulator",
+        "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-hanlin-live7-diagnostic-validation-20261122\\inputs\\Source\\ChavrusaText\\HanlinHostAdapter\\OtzariaHanlinChatSession.swift"
+      ],
+      "cwd": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-hanlin-live7-diagnostic-validation-20261122",
+      "startedUTC": "2026-11-22T07:28:24.321234+00:00",
+      "elapsedSeconds": 0.5939999999973224,
+      "exitCode": 0,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539"
+    },
+    {
+      "name": "parse-2",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+        "-frontend",
+        "-parse",
+        "-D",
+        "DEBUG",
+        "-target",
+        "arm64-apple-ios27.2-simulator",
+        "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-hanlin-live7-diagnostic-validation-20261122\\inputs\\Source\\ChavrusaText\\HanlinHostAdapter\\OtzariaHanlinChatOwner.swift"
+      ],
+      "cwd": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-hanlin-live7-diagnostic-validation-20261122",
+      "startedUTC": "2026-11-22T07:28:24.918269+00:00",
+      "elapsedSeconds": 0.5160000000032596,
+      "exitCode": 0,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539"
+    },
+    {
+      "name": "parse-3",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+        "-frontend",
+        "-parse",
+        "-D",
+        "DEBUG",
+        "-target",
+        "arm64-apple-ios27.2-simulator",
+        "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-hanlin-live7-diagnostic-validation-20261122\\inputs\\Source\\ChavrusaText\\HanlinHostAdapter\\OtzariaHanlinChatView.swift"
+      ],
+      "cwd": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-hanlin-live7-diagnostic-validation-20261122",
+      "startedUTC": "2026-11-22T07:28:25.430906+00:00",
+      "elapsedSeconds": 0.5,
+      "exitCode": 0,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539"
+    },
+    {
+      "name": "parse-4",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+        "-frontend",
+        "-parse",
+        "-D",
+        "DEBUG",
+        "-target",
+        "arm64-apple-ios27.2-simulator",
+        "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-hanlin-live7-diagnostic-validation-20261122\\inputs\\Source\\ChavrusaText\\UIRoutingHost\\Integration\\MaktabahNativeRoutingComposition.swift"
+      ],
+      "cwd": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-hanlin-live7-diagnostic-validation-20261122",
+      "startedUTC": "2026-11-22T07:28:25.936622+00:00",
+      "elapsedSeconds": 0.5469999999986612,
+      "exitCode": 0,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539"
+    }
+  ],
+  "sourceUnchanged": true,
+  "scope": "Windows Swift frontend syntax parse of four complete candidates with DEBUG and iOS Simulator target flags. No Apple SDK import resolution, semantic typecheck, link, runtime, storage or Simulator qualification."
+}

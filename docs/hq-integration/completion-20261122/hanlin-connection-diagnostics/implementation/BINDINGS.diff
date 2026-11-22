@@ -1,0 +1,27 @@
+diff --git a/Scripts/CI/hq-stage2-focused-apple.inputs.json b/Scripts/CI/hq-stage2-focused-apple.inputs.json
+index 67ef5e5a..7e3e7939 100644
+--- a/Scripts/CI/hq-stage2-focused-apple.inputs.json
++++ b/Scripts/CI/hq-stage2-focused-apple.inputs.json
+@@ -1,7 +1,7 @@
+ {
+-  "application_source_sha": "0ea7218331d1441d37d06d43333e579f267056e3",
++  "application_source_sha": "6aa953048453b64a0013621ce76e095770eb7e7d",
+   "application_trees": {
+-    "Source": "ac887bdbfbfce2d30d9591bb867d61b11da31cc6",
++    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+     "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+     "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078"
+   },
+diff --git a/Scripts/CI/runtime27-hanlin-live.py b/Scripts/CI/runtime27-hanlin-live.py
+index d787af53..37b00f7c 100644
+--- a/Scripts/CI/runtime27-hanlin-live.py
++++ b/Scripts/CI/runtime27-hanlin-live.py
+@@ -18,7 +18,7 @@ import uuid
+ ROOT = Path(__file__).resolve().parents[2]
+ SELECTOR = "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
+ MODEL = "gemini-2.5-flash-lite"
+-REVIEWED_SOURCE = "0ea7218331d1441d37d06d43333e579f267056e3"
++REVIEWED_SOURCE = "6aa953048453b64a0013621ce76e095770eb7e7d"
+ ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/openai/"
+ BUNDLE = "com.davidpovarsky.chavrusatext"
+ CANONICAL_APP_GROUP = "group.com.davidpovarsky.itorah"

@@ -1,0 +1,24 @@
+{
+  "id": "job_66c3ca31aff5",
+  "type": "job_result",
+  "source": "script_run@host_7ec8382e82747448",
+  "severity": "warning",
+  "tool": "script_run",
+  "host": "host_7ec8382e82747448",
+  "status": "failed",
+  "exit_code": 1,
+  "created_at": 1795332885.3999093,
+  "started_at": "2026-11-22T07:34:45.468813+00:00",
+  "finished_at": "2026-11-22T07:35:39.108080+00:00",
+  "duration_s": 53.64,
+  "error": null,
+  "output_truncated": false,
+  "timeout_s": 300,
+  "read": false,
+  "notified": {
+    "telegram": null,
+    "resend": null
+  },
+  "notify_spec": {},
+  "output": "Traceback (most recent call last):\r\n  File \"C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_fad31bb83e404a42a1ce126627635b36\\script.py\", line 40, in <module>\r\n    assert (work/path).read_bytes()==before,path\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift"
+}

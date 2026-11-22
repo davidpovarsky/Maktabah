@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "status": "SOURCE_COMMITTED_LOCAL_ONLY",
+  "createdUTC": "2026-11-22T07:37:50.825153+00:00",
+  "base": "4287063689fb2f17ea9a8fcd436ed98e6985f21f",
+  "source": "6aa953048453b64a0013621ce76e095770eb7e7d",
+  "branch": "codex/otzaria-hanlin-connection-diagnostics-20261122",
+  "worktree": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+  "changedFiles": [
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "preimageBytes": 21382,
+      "preimageSHA256": "01e7fd67955b102c8716a96223ee041cd9d7be4bd5b9b616163f1a5baee4b5a0",
+      "candidateBytes": 28736,
+      "candidateSHA256": "6cb67796a458fba8bbfee94d584b30744fb57b246d679aa4b909c2216ccd4c15",
+      "replacements": 9,
+      "exactInverseOriginalBytes": true
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift",
+      "preimageBytes": 18119,
+      "preimageSHA256": "9a4bf8f574a9a4b3c523f8445b338b02443dd9e4c76631fa6d159b080f3faf49",
+      "candidateBytes": 20221,
+      "candidateSHA256": "2fbf538c29d4c243e455cd7e126f9676d9a3ae84879764706284f8e2e7742706",
+      "replacements": 9,
+      "exactInverseOriginalBytes": true
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+      "preimageBytes": 22649,
+      "preimageSHA256": "8dedebec659b00dd86bf72c681944bdeb1bda0a28dfeda95b7a84a05c9a13905",
+      "candidateBytes": 22729,
+      "candidateSHA256": "4786980d957ca3b0a5dce6f80f5eed64b7b374178ad38c4d0d3ae3e2ed12ab18",
+      "replacements": 1,
+      "exactInverseOriginalBytes": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "preimageBytes": 151190,
+      "preimageSHA256": "636c62c721335caa85a8225b91bc9880fd50cdd270b044cc93d852156bf737f9",
+      "candidateBytes": 152357,
+      "candidateSHA256": "89a4a7dd90d458dfc91e69c9d840530372b42702182a77864487a5eb30fde93d",
+      "replacements": 3,
+      "exactInverseOriginalBytes": true
+    },
+    {
+      "path": "Scripts/CI/runtime27-hanlin-live.py",
+      "preimageBytes": 29901,
+      "preimageSHA256": "a23383137ac9b52398a75ae50098411422958c6090a97bb0889a1440edbd9aff",
+      "candidateBytes": 35180,
+      "candidateSHA256": "e0792b38284dd517551c2312455904a3ef849269f3790953b38d8a9e16ff7a75",
+      "replacements": 8,
+      "exactInverseOriginalBytes": true
+    }
+  ],
+  "trees": {
+    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "24345d612f8c70398f4590977f8b4696021ae413"
+  },
+  "diffSHA256": "2bc44daf98395f0dd901f161ec80d5e2f9bf77e366ab703b05fa2f879966f920",
+  "allFiveExactReviewedCandidateBytes": true,
+  "clean": true,
+  "validationPacketIndexSHA256": "e4d3bd2d017f9ba74c9f7eddaff5415918255b2f69b6d44882278892e8773c98",
+  "originalFailedAttemptRetained": true,
+  "checkoutNormalization": "Initial clean checkout had only documented core.autocrlf=true CRLF smudging. Original Git blobs independently matched. Applied reviewed LF candidate bytes; staged with per-command core.autocrlf=false and verified every immutable blob. No global config mutation.",
+  "noPushNoSecretNoCI": true
+}
