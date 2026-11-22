@@ -39,12 +39,29 @@ end
 
 root = '$(SRCROOT)/' + plan.fetch('distribution_root')
 settings = config.build_settings
-{
+search_paths = {
   'FRAMEWORK_SEARCH_PATHS' => '/Frameworks',
   'SWIFT_INCLUDE_PATHS' => '/Modules',
   'LIBRARY_SEARCH_PATHS' => '/Libraries',
   'HEADER_SEARCH_PATHS' => '/Include'
-}.each { |key, suffix| append_settings(settings, key, [root + suffix]) }
+}
+if plan.fetch('admission_schema', 1) == 2
+  context = plan.fetch('clang_import_context')
+  raise 'Unbound original Clang context' unless context.fetch('producer_identity').fetch('source_sha') == plan.fetch('source_sha')
+  maps, headers = context.fetch('module_maps'), context.fetch('header_search_paths')
+  safe_path = lambda { |value| value.is_a?(String) && value.match?(%r{\A(?:[A-Za-z0-9_.+-]+/)*[A-Za-z0-9_.+-]+\z}) && !value.split('/').any? { |part| ['.', '..'].include?(part) } }
+  raise 'Wrong original Clang module-map closure' unless maps.is_a?(Array) && maps.length == 19 && maps.uniq == maps && maps.all? { |path| safe_path.call(path) && path.start_with?('Clang/') && path.end_with?('.modulemap') }
+  raise 'Wrong original Clang header-root closure' unless headers.is_a?(Array) && headers.length == 19 && headers.uniq == headers && headers.all? { |path| safe_path.call(path) && (path == 'Include' || path.start_with?('Clang/Packages/')) }
+  search_paths.delete('HEADER_SEARCH_PATHS')
+  append_settings(settings, 'HEADER_SEARCH_PATHS', headers.map { |path| root + '/' + path })
+  old_swift_flags = before.fetch('objects').fetch(config.uuid).fetch('buildSettings')['OTHER_SWIFT_FLAGS']
+  raise 'Unexpected original Swift flag shape' unless old_swift_flags.nil? || old_swift_flags.is_a?(Array) || old_swift_flags == '$(inherited)'
+  old_swift_flags = ['$(inherited)'] if old_swift_flags.nil? || old_swift_flags == '$(inherited)'
+  # Every module-map argument needs its own -Xcc; individual-token deduplication
+  # would silently pass later arguments to the wrong compiler frontend.
+  settings['OTHER_SWIFT_FLAGS'] = old_swift_flags.dup + maps.flat_map { |path| ['-Xcc', '-fmodule-map-file=' + root + '/' + path] }
+end
+search_paths.each { |key, suffix| append_settings(settings, key, [root + suffix]) }
 # A repeated -framework flag is semantically significant. Preserve the exact
 # original linker tokens and append each complete original dependency pair.
 old_flags = before.fetch('objects').fetch(config.uuid).fetch('buildSettings')['OTHER_LDFLAGS']

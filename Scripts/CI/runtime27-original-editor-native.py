@@ -80,6 +80,7 @@ def runtime_dependency_preflight():
                "hq-original-editor-distribution.py", "restore-original-editor-distribution.py"]]
     if json.loads(ADMISSION.read_bytes()).get("schema") == 2:
         pending.append(ci / "original_editor_continuation_admission.py")
+        pending.append(ci / "original_editor_clang_imports.py")
     checked, imported = {}, set()
     while pending:
         path = pending.pop()

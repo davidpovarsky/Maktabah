@@ -1,0 +1,32 @@
+{
+  "base": "b09c95f3eee6aa3b8fe363cfac76a89025c15abe",
+  "files": {
+    "Scripts/CI/hq-original-editor-app-target.rb": {
+      "sha256": "094f10867cb070035aa7044bc94f57df712b0b8ccfdcd4cf758a75c21f455e6a",
+      "git_blob": "d33c0a4fb7812c59834aadb8c18e8b2625b09682",
+      "bytes": 8935,
+      "preimage_sha256": "9ffed86329b24750b4e2abf1872e79907eb22803042a4a98fa2b2d72f9f19c96"
+    },
+    "Scripts/CI/hq-original-editor-distribution.py": {
+      "sha256": "6ebfeab1fbc1c8568734a8a36016885e6454eef73940020b3db6986140022bf5",
+      "git_blob": "d6769323f457a0adce428399b79a09d9afdc0a1a",
+      "bytes": 36227,
+      "preimage_sha256": "4711f3089b9a214923a0ccc36808b6efbfbef7250646db0915006e3e01736d3d"
+    },
+    "Scripts/CI/original_editor_clang_imports.py": {
+      "sha256": "86e2914f58d1c960a7acde1df3b1e303f898667a72dfa55eee3e439916db1812",
+      "git_blob": "f29ea1897c2ed59e37d8e5fea106f128baea8497",
+      "bytes": 9045,
+      "preimage_sha256": null
+    },
+    "Scripts/CI/runtime27-original-editor-native.py": {
+      "sha256": "6a16af944230888bb7c26e955c9917374137ead19c5a39e7de05ca9786a94de8",
+      "git_blob": "a1d283c158ce2b281abff00e33e712ff29319041",
+      "bytes": 43474,
+      "preimage_sha256": "0d4fb04c71b133ab364b313fd4d58ff2008a6518051d50d7db2e03fa98235d19"
+    }
+  },
+  "new_controls": 6,
+  "ruby_execution": false,
+  "apple_execution": false
+}

@@ -1,0 +1,54 @@
+{
+  "status": "PASS_BOUNDED_SOURCE_REVIEW_NO_EXECUTION",
+  "reviewer": "stageb_auth",
+  "at_utc": "2026-11-22T17:41:48.811572+00:00",
+  "source_files": {
+    "Scripts/CI/hq-original-editor-app-target.rb": {
+      "sha256": "094f10867cb070035aa7044bc94f57df712b0b8ccfdcd4cf758a75c21f455e6a",
+      "git_blob": "d33c0a4fb7812c59834aadb8c18e8b2625b09682",
+      "bytes": 8935,
+      "preimage_sha256": "9ffed86329b24750b4e2abf1872e79907eb22803042a4a98fa2b2d72f9f19c96"
+    },
+    "Scripts/CI/hq-original-editor-distribution.py": {
+      "sha256": "6ebfeab1fbc1c8568734a8a36016885e6454eef73940020b3db6986140022bf5",
+      "git_blob": "d6769323f457a0adce428399b79a09d9afdc0a1a",
+      "bytes": 36227,
+      "preimage_sha256": "4711f3089b9a214923a0ccc36808b6efbfbef7250646db0915006e3e01736d3d"
+    },
+    "Scripts/CI/original_editor_clang_imports.py": {
+      "sha256": "86e2914f58d1c960a7acde1df3b1e303f898667a72dfa55eee3e439916db1812",
+      "git_blob": "f29ea1897c2ed59e37d8e5fea106f128baea8497",
+      "bytes": 9045,
+      "preimage_sha256": null
+    },
+    "Scripts/CI/runtime27-original-editor-native.py": {
+      "sha256": "6a16af944230888bb7c26e955c9917374137ead19c5a39e7de05ca9786a94de8",
+      "git_blob": "a1d283c158ce2b281abff00e33e712ff29319041",
+      "bytes": 43474,
+      "preimage_sha256": "0d4fb04c71b133ab364b313fd4d58ff2008a6518051d50d7db2e03fa98235d19"
+    }
+  },
+  "copied_original_definitions_byte_identical": [
+    "relative_path",
+    "unaliased",
+    "stable_bytes",
+    "declaration_inventory",
+    "read_clang_imports",
+    "inventory"
+  ],
+  "checked": [
+    "Schema2 full admitted context binds original framework source/run/attempt/package-lock and original manifest digest after complete artifact/sidecar validation.",
+    "All 19 module maps and 19 header roots are re-read and byte-inventoried before actual Swift probe; no conventional Include fallback for schema2.",
+    "Python compiler command preserves each -Xcc pair. Ruby OTHER_SWIFT_FLAGS appends complete -Xcc/module-map pairs without per-token deduplication; header roots are app Debug HEADER_SEARCH_PATHS.",
+    "Ruby retains original target/bundle/configuration guards, exact preimage digest, complete unaffected-object equality and restore-on-rejected-save behavior. No global xcconfig or other target changes.",
+    "Unchanged schema1 probe/default paths remain behind explicit schema2 branches; selector proposal has no overlapping modified path.",
+    "Six retained new Python boundaries were read, including synthetic 19-map closure and actual prepare plumbing with explicit compiler/Ruby doubles. No previous controls replayed."
+  ],
+  "limits": [
+    "Ruby/Xcodeproj execution and actual Apple app-target compiler argument expansion have not been observed; remain real downstream gates.",
+    "SDK runtime continuation has failed before install; this source proposal does not supply missing qualification or final artifact pins."
+  ],
+  "reviewer_test_executions": 0,
+  "reviewer_source_edits": 0,
+  "artifact_downloads": 0
+}

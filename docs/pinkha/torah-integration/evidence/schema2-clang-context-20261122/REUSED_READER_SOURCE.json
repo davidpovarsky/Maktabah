@@ -1,0 +1,15 @@
+{
+  "source_repository": "davidpovarsky/anytype-swift",
+  "source_sha": "edce5b975b173059522f90adb71271fb95adf963",
+  "clang_git_blob": "ab9c1f3416f90f852d5f5484b2e544550611734c",
+  "inventory_git_blob": "21fdef2560ebdb057af48e2164ac52be89156e82",
+  "definitions": [
+    "relative_path",
+    "unaliased",
+    "stable_bytes",
+    "declaration_inventory",
+    "read_clang_imports",
+    "inventory"
+  ],
+  "scope": "Unchanged reader definitions only; no export, generation, rewrite, create or repair behavior."
+}

@@ -1,0 +1,7 @@
+{
+  "stageb-clang-context/controls/consumer_context_controls.py": "c9c50e8b4f31c5096e484bde40bf33c18f23e81967b0bf214a5fda837a9d9a70",
+  "stageb-clang-context/candidate/Scripts/CI/hq-original-editor-app-target.rb": "094f10867cb070035aa7044bc94f57df712b0b8ccfdcd4cf758a75c21f455e6a",
+  "stageb-clang-context/candidate/Scripts/CI/hq-original-editor-distribution.py": "6ebfeab1fbc1c8568734a8a36016885e6454eef73940020b3db6986140022bf5",
+  "stageb-clang-context/candidate/Scripts/CI/original_editor_clang_imports.py": "86e2914f58d1c960a7acde1df3b1e303f898667a72dfa55eee3e439916db1812",
+  "stageb-clang-context/candidate/Scripts/CI/runtime27-original-editor-native.py": "6a16af944230888bb7c26e955c9917374137ead19c5a39e7de05ca9786a94de8"
+}

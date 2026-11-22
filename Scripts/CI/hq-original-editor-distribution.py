@@ -365,6 +365,12 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
               "native_editor_ui_tests": 0, "scope": "ORIGINAL_DISTRIBUTION_PREREQUISITES_ONLY"}
     if continuation:
         result.update(schema=2, **continuation_receipt)
+        clang = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_clang_imports.py")))
+        identity = {"source_sha": config["source_sha"], "run_id": str(config["run_id"]),
+                    "run_attempt": str(config["run_attempt"]),
+                    "original_package_lock_sha256": result["original_package_lock_sha256"],
+                    "manifest_sha256": config["framework_producer"]["clang_manifest_sha256"]}
+        result["clang_import_context"] = clang["admitted_context"](distribution, identity)
     write(evidence / "distribution-admission.json", result)
     return result
 
@@ -470,8 +476,13 @@ def prepare(root, admission_path, report, out, logged):
     api_source = root / "Scripts/CI/OriginalEditorDistributionAPICheck.swift"
     api_command = ["xcrun", "swiftc", "-typecheck", "-parse-as-library", "-swift-version", "6", "-D", "DEBUG",
             "-sdk", report["sdk_path"], "-target", "arm64-apple-ios" + report["sdk_version"] + "-simulator",
-            "-F", str(distribution / "Frameworks"), "-I", str(distribution / "Modules"),
-            "-I", str(distribution / "Include"), str(api_source)]
+            "-F", str(distribution / "Frameworks"), "-I", str(distribution / "Modules")]
+    if admitted.get("schema") == 2:
+        clang = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_clang_imports.py")))
+        api_command += clang["swift_import_arguments"](distribution, admitted["clang_import_context"])
+    else:
+        api_command += ["-I", str(distribution / "Include")]
+    api_command.append(str(api_source))
     report.setdefault("commands", []).append(api_command)
     command(api_command, root=root, evidence=evidence, label="exported-api-typecheck", timeout=600)
     write(evidence / "actual-exported-api.json", {"status": "ACTUAL_EXPORTED_API_TYPECHECK_PASS",
@@ -482,6 +493,8 @@ def prepare(root, admission_path, report, out, logged):
             "dynamic_frameworks": admitted["dynamic_frameworks"], "source_sha": admitted["source_sha"],
             "evidence": evidence.relative_to(root).as_posix(), "before_project_sha256": digest(project),
             "receipt_sha256": digest(evidence / "distribution-admission.json"), "python": sys.executable}
+    if admitted.get("schema") == 2:
+        plan.update(admission_schema=2, clang_import_context=admitted["clang_import_context"])
     write(evidence / "app-target-plan.json", plan)
     logged(["ruby", "Scripts/CI/hq-original-editor-app-target.rb", str(project),
             str(evidence / "app-target-plan.json"), str(evidence / "app-target-configuration.json")],
