@@ -1,0 +1,47 @@
+{
+  "base_source": "f955a3677f70ae61a8f3f40b7c3caa73fb9a541e",
+  "files": [
+    {
+      "base_git_blob": "8c036aa5c8b493513b132f42e5569169904cc24f",
+      "base_sha256": "748a48fffbe5615db23ca9900b3802e55b5c2f2a149b6a73fcc215b86fff936f",
+      "candidate_bytes": 10102,
+      "candidate_git_blob": "8c7c5e589421cf9199e79f1b2d38d4eb752c1637",
+      "candidate_sha256": "cf2675f26984932c49014126314a45f9ce05b04c9f2286350f1ce00257685660",
+      "path": ".github/workflows/otzaria-hanlin-live-native.yml"
+    }
+  ],
+  "observed_failure": {
+    "error": "No matching distribution found for zstandard==0.25.0",
+    "exact_prior_python_version": "NOT_RECORDED; do not infer an exact cause",
+    "job": 137041552164,
+    "log_sha256": "74102ace750c9d0a1ffdbd2a7e37b71cad7c422d8ddf99d778a2b2d39b83bf67",
+    "run": 44968087855,
+    "runner_image": "xcode-27-arm64",
+    "runner_os": "macOS27.0.1"
+  },
+  "patch": {
+    "bytes": 1934,
+    "path": "hanlin-live4-python312-workflow.patch",
+    "sha256": "17cbec4c85405261853a5b469e3e3bf1e9b036ad00066e24a4dca02dd2878acc"
+  },
+  "remaining_gate": "Actual selected macOS CPython3.12 venv install and unchanged original decoder smoke must pass before any costly app build.",
+  "status": "WORKFLOW_ONLY_SOURCE_REPAIR_READY_FOR_REVIEW",
+  "validation": {
+    "checks": [
+      "explicit_cpython312_arm64_selection",
+      "selection_immediately_before_owned_venv",
+      "original_decoder_smoke_exact_bytes_unchanged",
+      "original_version_pin_and_binary_only_command_unchanged",
+      "every_other_workflow_setting_and_step_exactly_preserved",
+      "all_embedded_shell_and_python_syntax_pass",
+      "exact_patch_roundtrip_and_whitespace_check_pass"
+    ],
+    "decoder_smoke_rerun": false,
+    "dispatches": 0,
+    "macos_wheel_install": "NOT_RUN",
+    "new_apple_builds": 0,
+    "new_native_cases": 0,
+    "provider_calls": 0,
+    "secret_mutations": 0
+  }
+}

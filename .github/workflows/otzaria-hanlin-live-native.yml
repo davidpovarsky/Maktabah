@@ -56,15 +56,27 @@ jobs:
           assert result.returncode == 0 and len(raw) <= 65536
           assert 'get_app_container' in text and 'group' in text.lower(), 'Actual simctl group selector interface unavailable'
           PYGROUP
+      - name: Select CPython supported by the original decoder wheel
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: arm64
       - name: Prepare and verify the original SQL decoder dependency
         id: live_python
         run: |
           python3 - <<'PYENV'
-          import pathlib, venv
+          import json, pathlib, platform, sys, venv
+          selected = {'python_executable': sys.executable, 'python_version': sys.version,
+                      'implementation': sys.implementation.name, 'system': platform.system(),
+                      'machine': platform.machine()}
+          print(json.dumps(selected), flush=True)
+          assert sys.implementation.name == 'cpython' and sys.version_info[:2] == (3, 12)
+          assert platform.system() == 'Darwin' and platform.machine() == 'arm64'
           environment = pathlib.Path('build/hanlin-live-python')
           assert not environment.exists() and not environment.is_symlink(), 'Preserve an existing Python environment'
           venv.EnvBuilder(with_pip=True).create(environment)
           PYENV
+          build/hanlin-live-python/bin/python -m pip --version
           build/hanlin-live-python/bin/python -m pip install --disable-pip-version-check --only-binary=:all: zstandard==0.25.0
           build/hanlin-live-python/bin/python - <<'PYDECODER'
           import hashlib, importlib.metadata, json, pathlib, runpy, sqlite3, sys
