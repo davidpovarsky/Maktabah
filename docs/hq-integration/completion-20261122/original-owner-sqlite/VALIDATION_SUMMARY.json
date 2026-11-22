@@ -1,0 +1,91 @@
+{
+  "status": "PASS_ORIGINAL_OWNER_SQLITE6_DISTINCT_PROCESS_REOPEN",
+  "source_commit": "7eafe41f9229ed0ad8a040782522ca4d76b4a034",
+  "application_source": "67518e8df6975c976e8f1cd9e622328dc45985fc",
+  "original_owner_source": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+  "canonical_owner_sha256": "b0ae02be8c28c22246d29bf927cb154e10019d841f3b831771f968a8938f7d46",
+  "control_sha256": "f922db58646a0c7f5714d487df8f31bef70acdbf49902843c2ddb954a6fef7ea",
+  "runner_sha256": "aa9d670474eab4aae4e817ff115e9d51939b233587870dea4a6c3f2dbb2aeeaf",
+  "swift": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "sqlite": "3.53.4",
+  "source_inputs": 12,
+  "compiled_sources": 10,
+  "input_bytes_verified_against_git": true,
+  "sources_and_copies_unchanged": true,
+  "controls": [
+    {
+      "name": "current_owner_outer_commit_succeeds",
+      "owner_outcome": "current_owner_success",
+      "durable_rows": 1,
+      "status": "PASS"
+    },
+    {
+      "name": "retirement_before_admission_denies_body",
+      "owner_outcome": "rejected_retired",
+      "durable_rows": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "account_retirement_after_admission_commits_without_publication",
+      "owner_outcome": "completed_without_ownership_retired",
+      "durable_rows": 1,
+      "status": "PASS"
+    },
+    {
+      "name": "retirement_after_commit_preserves_durable_fact",
+      "owner_outcome": "completed_without_ownership_retired",
+      "durable_rows": 1,
+      "status": "PASS"
+    },
+    {
+      "name": "deferred_fk_commit_failure_rolls_back",
+      "owner_outcome": "sqlite_commit_failed",
+      "durable_rows": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "owner_and_account_teardown_wait_for_actual_drain",
+      "owner_outcome": "completed_without_ownership_retired",
+      "durable_rows": 1,
+      "status": "PASS"
+    }
+  ],
+  "processes": {
+    "control_pid": "25548",
+    "fresh_reopen_pid": "30036",
+    "reopen_status": "PASS"
+  },
+  "executable_sha256": "ef9c79aa8d9f025f6da8ad5c803220b9efd96acae355062481a524b9d131a05e",
+  "commands": [
+    {
+      "label": "compile",
+      "exit": 0,
+      "seconds": 41.61000000000058
+    },
+    {
+      "label": "controls",
+      "exit": 0,
+      "seconds": 1.9380000000019209
+    },
+    {
+      "label": "reopen",
+      "exit": 0,
+      "seconds": 0.25
+    }
+  ],
+  "old_suites_reexecuted": false,
+  "production_changes": 0,
+  "identity_writes": 0,
+  "native_receipts": 0,
+  "rpc": 0,
+  "ACK": 0,
+  "remaining_boundaries": [
+    "held exclusive-read nesting not covered by these six",
+    "actual native account/Space/schema readback not executed",
+    "initial creation has no document Owner yet",
+    "production identity writer remains unavailable",
+    "Apple execution of this join not performed"
+  ],
+  "scope": "Actual original Owner admission/drain with real SQLite and explicit fixture-only document values/tables; no production receipt or writer authority."
+}
