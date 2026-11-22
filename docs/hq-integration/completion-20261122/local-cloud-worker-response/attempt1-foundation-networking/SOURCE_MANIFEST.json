@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "base": "5e18f5160c919427dccbe420ee4ec111b74fd427",
+  "scope": "new downstream HTTP classifier and exact previous callback statements; real Foundation responses; zero network or CloudKit",
+  "helper_sha256": "192f26c5884bae828556cec4b6676206d6f45d9cc7b00798893d24fd4d7db73b",
+  "inputs": [
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift",
+      "sha256": "903514e8653d1833e0137e8ef4b353f31aa05d4324eda438af5c6aede63f2c94",
+      "bytes": 15705
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift",
+      "sha256": "2b0c7f737f39118dd07622d4199bac25285fd51b017af886d45d2aee013da99c",
+      "bytes": 4010
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/local-cloud-worker-response/WorkerResponse.swift",
+      "sha256": "e4f5efe0bb43b7474eb0dd9570278fbfe0796d33c36f4743ca11df7ee21f6a8d",
+      "bytes": 871
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/local-cloud-worker-response/OriginalCompletion.swift",
+      "sha256": "7bd94242c3639652caf20fcb9f73b34c337442a077c35949281046d77c3b8032",
+      "bytes": 497
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/local-cloud-worker-response/original-worker-callback.txt",
+      "sha256": "80f5aad5da8d118b17915b142f5b123d0303e220e45417d4ee54dd724e05b1e0",
+      "bytes": 261
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/local-cloud-worker-response/controls.swift",
+      "sha256": "3f8ac6ce1b269d108255db33d6ccf207a033553d329acdc602c733c58641be7a",
+      "bytes": 3801
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/local-cloud-worker-response/run-worker-response-controls.py",
+      "sha256": "94aa5f1789ccf7a5707542e641cf61fc78b33f3e815530756f17b852b650927d",
+      "bytes": 3496
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "toolchain": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions\n",
+  "compile_exit": 1,
+  "compile_seconds": 2.985000000000582,
+  "execution": "NOT_RUN",
+  "command": [
+    "swiftc",
+    "-swift-version",
+    "6",
+    "-j",
+    "1",
+    "-parse-as-library",
+    "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\local-cloud-worker-response\\WorkerResponse.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\local-cloud-worker-response\\OriginalCompletion.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\local-cloud-worker-response\\controls.swift",
+    "-o",
+    "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\local-cloud-worker-response\\validation\\worker-response-controls.exe"
+  ],
+  "syntax": [
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift",
+      "sha256": "903514e8653d1833e0137e8ef4b353f31aa05d4324eda438af5c6aede63f2c94",
+      "exit": 0
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift",
+      "sha256": "2b0c7f737f39118dd07622d4199bac25285fd51b017af886d45d2aee013da99c",
+      "exit": 0
+    }
+  ]
+}

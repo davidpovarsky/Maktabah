@@ -1,0 +1,59 @@
+{
+  "toolchain": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions\n",
+  "compile_exit": 0,
+  "compile_seconds": 15.546999999998661,
+  "execution": "PASS",
+  "command": [
+    "swiftc",
+    "-swift-version",
+    "6",
+    "-j",
+    "1",
+    "-parse-as-library",
+    "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\local-cloud-worker-response\\WorkerResponse.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\local-cloud-worker-response\\OriginalCompletion.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\local-cloud-worker-response\\controls.swift",
+    "-o",
+    "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\local-cloud-worker-response\\validation\\worker-response-controls.exe"
+  ],
+  "run_exit": 0,
+  "binary_sha256": "aeef51218052bbfacee14923bbc7f52e436e55bc48db1f48d2fd869281a4f866",
+  "controls": {
+    "after": "PASS",
+    "baseline_http500": "WRONG_SUCCESS_REPRODUCED_FROM_ORIGINAL_CALLBACK",
+    "count": 16,
+    "passed": [
+      "http_200_accepted",
+      "http_202_accepted",
+      "http_204_accepted",
+      "http_299_accepted",
+      "http_199_failure_retained",
+      "http_300_failure_retained",
+      "http_401_failure_retained",
+      "http_403_failure_retained",
+      "http_429_failure_retained",
+      "http_500_failure_retained",
+      "http_503_failure_retained",
+      "missing_response_refused",
+      "non_http_response_refused",
+      "transport_error_preserved_with_http_200",
+      "transport_error_preserved_with_http_500",
+      "original_cancellation_preserved"
+    ],
+    "schema": 1,
+    "scope": "exact extracted production classifier and real Foundation URLResponse/HTTPURLResponse; no network or CloudKit"
+  },
+  "syntax": [
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift",
+      "sha256": "903514e8653d1833e0137e8ef4b353f31aa05d4324eda438af5c6aede63f2c94",
+      "exit": 0
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift",
+      "sha256": "2b0c7f737f39118dd07622d4199bac25285fd51b017af886d45d2aee013da99c",
+      "exit": 0
+    }
+  ],
+  "syntax_reused_from": "attempt1-foundation-networking/RESULT.json; exact unchanged source bytes, zero repeated parses"
+}

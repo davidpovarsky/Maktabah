@@ -1,0 +1,98 @@
+C:\Users\DAVID\Code\Maktabah-original-editor-lifecycle-20261122\docs\hq-integration\completion-20261122\local-cloud-worker-response\WorkerResponse.swift:12:34: error: 'URLResponse' is unavailable: This type has moved to the FoundationNetworking module. Import that module to use it.
+
+10 |     }
+
+11 | 
+
+12 |     static func result(response: URLResponse?, error: (any Error)?) -> Result<Void, any Error> {
+
+   |                                  `- error: 'URLResponse' is unavailable: This type has moved to the FoundationNetworking module. Import that module to use it.
+
+13 |         if let error { return .failure(error) }
+
+14 |         guard let response = response as? HTTPURLResponse else {
+
+
+
+Foundation.URLResponse:2:18: note: 'URLResponse' has been explicitly marked unavailable here
+
+1 | @available(*, unavailable, message: "This type has moved to the FoundationNetworking module. Import that module to use it.")
+
+2 | public typealias URLResponse = AnyObject
+
+  |                  `- note: 'URLResponse' has been explicitly marked unavailable here
+
+
+
+C:\Users\DAVID\Code\Maktabah-original-editor-lifecycle-20261122\docs\hq-integration\completion-20261122\local-cloud-worker-response\WorkerResponse.swift:14:39: warning: conditional downcast from 'URLResponse?' (aka 'Optional<AnyObject>') to 'HTTPURLResponse' (aka 'AnyObject') does nothing
+
+12 |     static func result(response: URLResponse?, error: (any Error)?) -> Result<Void, any Error> {
+
+13 |         if let error { return .failure(error) }
+
+14 |         guard let response = response as? HTTPURLResponse else {
+
+   |                                       `- warning: conditional downcast from 'URLResponse?' (aka 'Optional<AnyObject>') to 'HTTPURLResponse' (aka 'AnyObject') does nothing
+
+15 |             return .failure(Failure.missingHTTPResponse)
+
+16 |         }
+
+
+
+C:\Users\DAVID\Code\Maktabah-original-editor-lifecycle-20261122\docs\hq-integration\completion-20261122\local-cloud-worker-response\WorkerResponse.swift:14:43: error: 'HTTPURLResponse' is unavailable: This type has moved to the FoundationNetworking module. Import that module to use it.
+
+12 |     static func result(response: URLResponse?, error: (any Error)?) -> Result<Void, any Error> {
+
+13 |         if let error { return .failure(error) }
+
+14 |         guard let response = response as? HTTPURLResponse else {
+
+   |                                           `- error: 'HTTPURLResponse' is unavailable: This type has moved to the FoundationNetworking module. Import that module to use it.
+
+15 |             return .failure(Failure.missingHTTPResponse)
+
+16 |         }
+
+
+
+Foundation.HTTPURLResponse:2:18: note: 'HTTPURLResponse' has been explicitly marked unavailable here
+
+1 | @available(*, unavailable, message: "This type has moved to the FoundationNetworking module. Import that module to use it.")
+
+2 | public typealias HTTPURLResponse = AnyObject
+
+  |                  `- note: 'HTTPURLResponse' has been explicitly marked unavailable here
+
+
+
+C:\Users\DAVID\Code\Maktabah-original-editor-lifecycle-20261122\docs\hq-integration\completion-20261122\local-cloud-worker-response\WorkerResponse.swift:17:45: error: value of type 'HTTPURLResponse' (aka 'AnyObject') has no member 'statusCode'
+
+15 |             return .failure(Failure.missingHTTPResponse)
+
+16 |         }
+
+17 |         guard (200..<300).contains(response.statusCode) else {
+
+   |                                             `- error: value of type 'HTTPURLResponse' (aka 'AnyObject') has no member 'statusCode'
+
+18 |             return .failure(Failure.httpStatus(response.statusCode))
+
+19 |         }
+
+
+
+C:\Users\DAVID\Code\Maktabah-original-editor-lifecycle-20261122\docs\hq-integration\completion-20261122\local-cloud-worker-response\WorkerResponse.swift:18:57: error: value of type 'HTTPURLResponse' (aka 'AnyObject') has no member 'statusCode'
+
+16 |         }
+
+17 |         guard (200..<300).contains(response.statusCode) else {
+
+18 |             return .failure(Failure.httpStatus(response.statusCode))
+
+   |                                                         `- error: value of type 'HTTPURLResponse' (aka 'AnyObject') has no member 'statusCode'
+
+19 |         }
+
+20 |         return .success(())
+

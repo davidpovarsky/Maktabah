@@ -1,0 +1,4 @@
+Source\ChavrusaText\Annotations\LocalEditor\AnnotationLocalEditorSession.swift:125:    func prepareOwnedCloudSave(_ intent: AnnotationLocalEditorIntent) async throws -> AnnotationLocalEditorCloudPreparation {
+Source\ChavrusaText\Annotations\LocalEditor\AnnotationLocalEditorSession.swift:126:        try await prepareOwnedCloudSave(intent, client: AnnotationLocalEditorCloudClient.original())
+Source\ChavrusaText\Annotations\LocalEditor\AnnotationLocalEditorSession.swift:131:    func prepareOwnedCloudSave(_ intent: AnnotationLocalEditorIntent,
+Source\ChavrusaText\Annotations\LocalEditor\AnnotationLocalEditorSession.swift:151:    func saveOwnedCloud(_ preparation: AnnotationLocalEditorCloudPreparation) async throws -> AnnotationLocalEditorCloudSaveOutcome {
