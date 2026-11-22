@@ -1653,6 +1653,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
                        "Disabled startup/shutdown must leave an existing workspace byte-identical")
     }
 
+    @MainActor
     func testPointerHoverClickAndHardwareKeyboardDismissal() throws {
         recordsPaletteEscape = true
         XCTAssertTrue(XCUIDevice.shared.supportsPointerInteraction,
@@ -1867,7 +1868,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
                 + settings.debugDescription)
             restorationWitness.name = "system-reduce-motion-after-restoration-wait"
             restorationWitness.lifetime = .keepAlways
-            add(restorationWitness)
+            self.add(restorationWitness)
             XCTAssertEqual(restored, .completed)
             settings.terminate()
         }
