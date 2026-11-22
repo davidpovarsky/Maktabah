@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "createdUTC": "2026-11-22T07:56:48.803815+00:00",
+  "reviewCopy": "ROOT_INTEGRATION.py",
+  "reviewCopyBytes": 11460,
+  "reviewCopySHA256": "c96a075c78dcf1ad2a81bd271782a8eb8b7286118fb230801047deb524ebc35d",
+  "reviewCopyLineEnding": "LF",
+  "executedWindowsScriptBytes": 11537,
+  "executedWindowsScriptSHA256": "f4355bd02b4082209cc0811bf0cc9144a6550e64e47dce8ca6fea2d913fe3acb",
+  "executedLineEnding": "CRLF",
+  "transformation": "Replace each LF byte in the review copy with CRLF; assert the complete resulting SHA256 equals the actual __file__ hash retained by INTEGRATION.json. No other byte changes.",
+  "reason": "The initial published review copy retained logical source using LF, whereas Sentinel staged and hashed the executed script with CRLF. Both identities are explicit here; no claim that the LF file is byte-identical to the staged execution file.",
+  "testsOrIntegrationReplayed": false
+}
