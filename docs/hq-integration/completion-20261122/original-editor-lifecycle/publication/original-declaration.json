@@ -1,0 +1,13 @@
+{
+  "suites": [
+    {
+      "suite": "OriginalEditorAnnotationAcceptanceTests",
+      "selection": "OriginalEditorAnnotationAcceptanceTests/testSavedBlankAnnotationUsesOriginalEditorAndDurablyReopensTwoBlocks",
+      "expected": [
+        "testSavedBlankAnnotationUsesOriginalEditorAndDurablyReopensTwoBlocks"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    }
+  ],
+  "status": "DECLARATIONS_MATCH"
+}

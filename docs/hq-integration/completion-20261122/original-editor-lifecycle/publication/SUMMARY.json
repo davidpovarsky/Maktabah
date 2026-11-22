@@ -1,0 +1,22 @@
+{
+  "checkout": "944f98a86a68a96bda010cc5d18c03332a6c5cc9",
+  "application_source": "e297a430c0e101494b6d6d5aa6723e1ff192948a",
+  "source_preflight": "PASS",
+  "exact_source_context": "PASS",
+  "declarations": {
+    "suites": [
+      {
+        "suite": "OriginalEditorAnnotationAcceptanceTests",
+        "selection": "OriginalEditorAnnotationAcceptanceTests/testSavedBlankAnnotationUsesOriginalEditorAndDurablyReopensTwoBlocks",
+        "expected": [
+          "testSavedBlankAnnotationUsesOriginalEditorAndDurablyReopensTwoBlocks"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      }
+    ],
+    "status": "DECLARATIONS_MATCH"
+  },
+  "native_executed": 0,
+  "producer_inputs": "UNFINALIZED",
+  "presentation_controls_reexecuted": false
+}
