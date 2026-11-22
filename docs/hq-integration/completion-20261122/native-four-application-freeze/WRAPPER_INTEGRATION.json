@@ -1,0 +1,21 @@
+{
+  "actual_native_run": 44980625976,
+  "additional_dispatches": 0,
+  "application_source": "385ee84a8acb3fbc3c013c0977417b61fd3d8a17",
+  "at": "2026-11-22T03:36:55.516247+00:00",
+  "frozen_workflow": "c107c8ac600de6bbe6d92571fbbbdc6349cd143a",
+  "merge": "ffb71939d694592af22e98dcb74e9ba1e6759e90",
+  "new_tests_in_integration": 0,
+  "parents": [
+    "9fcc505bc03d82db8c9eb6901ff8cce488ada7d9",
+    "39ce7c78a947916d2d490324ffd2ac3a7ef8600e"
+  ],
+  "product_trees": {
+    "Maktabah-iOSUITests": "cd108ec2cec9f8c6089a1eeff2ec77bc9372a469",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Source": "362d3336b0c11a8f428b25252edbb81f9907c2f8",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "sole_observer": "job_d3c08232bc6c",
+  "verified_incoming_payloads": 26
+}
