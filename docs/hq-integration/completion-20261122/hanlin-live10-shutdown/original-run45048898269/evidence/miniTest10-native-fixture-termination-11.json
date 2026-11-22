@@ -1,0 +1,5 @@
+{
+  "status": "TIMEOUT",
+  "error": "Command '['xcrun', 'simctl', 'terminate', '06C41237-CB8E-455E-BF1A-B7777EBE53F9', 'com.davidpovarsky.chavrusatext']' timed out after 60 seconds",
+  "nativeValidationFailurePreserved": false
+}

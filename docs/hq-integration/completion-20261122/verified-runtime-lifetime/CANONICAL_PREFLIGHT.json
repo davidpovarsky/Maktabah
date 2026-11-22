@@ -1,0 +1,23 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"ok\":true,\"interpreter\":\"python3\",\"sudo\":false,\"cwd\":null,\"cleanup\":true,\"command\":[\"C:\\\\ProgramData\\\\SentinelX\\\\.venv\\\\Scripts\\\\python.exe\",\"C:\\\\ProgramData\\\\SentinelX\\\\uploads\\\\.sentinelx_uploads\\\\script_job_581e08bdad94472eb3c5c1c2c6c3f8ee\\\\script.py\"],\"output\":\"{\\\"canonical\\\": {\\\"head\\\": \\\"fddb78addce1e886a1820b20f6d01767ef270525\\\", \\\"status\\\": \\\"\\\", \\\"branch\\\": \\\"codex/otzaria-completion-20261122\\\", \\\"files\\\": {\\\"Scripts/CI/run-faithful-ipad-matrix.py\\\": {\\\"bytes\\\": 51505, \\\"sha256\\\": \\\"84f316920e92626e2863e1893f627565a45e66a53edbeb256c3c6d4291fee2d6\\\", \\\"git_blob\\\": \\\"fc09c8277be8f20c091277766ead4506263ae246\\\"}, \\\"Scripts/CI/shutdown-faithful-simulator.py\\\": {\\\"bytes\\\": 1417, \\\"sha256\\\": \\\"6036b2210fff9fb7a70da707efb067788b3cc5b45aa0cb88017285f865139046\\\", \\\"git_blob\\\": \\\"5b6e91b26df4cb914d84edde9cdf59b86e538c5b\\\"}, \\\"docs/hq-integration/completion-20261122/CONTINUATION_STATUS.md\\\": {\\\"bytes\\\": 141725, \\\"sha256\\\": \\\"3f806e59d954065eaa6280ec2b35c56caa79ce2d205a2a5846dc03625010ee66\\\", \\\"git_blob\\\": \\\"c83c571fa89d369e637777102aa408431dd12ace\\\"}}}, \\\"composed\\\": {\\\"head\\\": \\\"b5162d777e3ebc5c4c0d044e02b52347c0c3dd6e\\\", \\\"status\\\": \\\"\\\", \\\"branch\\\": \\\"codex/otzaria-original-editor-composed-integration-20261122\\\"}}\",\"duration\":3.66,\"returncode\":0}"
+    }
+  ],
+  "structuredContent": {
+    "ok": true,
+    "interpreter": "python3",
+    "sudo": false,
+    "cwd": null,
+    "cleanup": true,
+    "command": [
+      "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+      "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_581e08bdad94472eb3c5c1c2c6c3f8ee\\script.py"
+    ],
+    "output": "{\"canonical\": {\"head\": \"fddb78addce1e886a1820b20f6d01767ef270525\", \"status\": \"\", \"branch\": \"codex/otzaria-completion-20261122\", \"files\": {\"Scripts/CI/run-faithful-ipad-matrix.py\": {\"bytes\": 51505, \"sha256\": \"84f316920e92626e2863e1893f627565a45e66a53edbeb256c3c6d4291fee2d6\", \"git_blob\": \"fc09c8277be8f20c091277766ead4506263ae246\"}, \"Scripts/CI/shutdown-faithful-simulator.py\": {\"bytes\": 1417, \"sha256\": \"6036b2210fff9fb7a70da707efb067788b3cc5b45aa0cb88017285f865139046\", \"git_blob\": \"5b6e91b26df4cb914d84edde9cdf59b86e538c5b\"}, \"docs/hq-integration/completion-20261122/CONTINUATION_STATUS.md\": {\"bytes\": 141725, \"sha256\": \"3f806e59d954065eaa6280ec2b35c56caa79ce2d205a2a5846dc03625010ee66\", \"git_blob\": \"c83c571fa89d369e637777102aa408431dd12ace\"}}}, \"composed\": {\"head\": \"b5162d777e3ebc5c4c0d044e02b52347c0c3dd6e\", \"status\": \"\", \"branch\": \"codex/otzaria-original-editor-composed-integration-20261122\"}}",
+    "duration": 3.66,
+    "returncode": 0
+  },
+  "isError": false
+}

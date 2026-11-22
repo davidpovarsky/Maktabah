@@ -1,0 +1,18 @@
+{
+  "status": "CONTROLLER_SOURCE_PREPARED_NOT_EXECUTED",
+  "source_sha": "9533a8017adadecf770b19811e72b495f32e90f7",
+  "previous_live_head": "4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1",
+  "sha256": "de31fea02d2a6d5761895a4e96de26a209f0b22d912e26c9b4b9f595b2d303cc",
+  "unchanged_six_functions": [
+    "save",
+    "command",
+    "git",
+    "api",
+    "secret_http",
+    "cleanup"
+  ],
+  "unchanged_exact_push_watch_cleanup_suffix": true,
+  "additional_provider_probes": 0,
+  "new_secrets": 0,
+  "dispatches": 0
+}

@@ -1,0 +1,25 @@
+{
+  "branch": "codex/otzaria-original-editor-install-name-reviewed-20261122",
+  "ci_activation": false,
+  "current_selected_eight_executed": false,
+  "documentation_blobs_exact": 65,
+  "final_admission_profile_afterimage_equal": true,
+  "final_profile": {
+    "bytes": 5727,
+    "git_blob": "f27f23b4e2570b4a6895028d6dcbd05bf3252b3a",
+    "sha256": "780ec33ebaca25d48f30e769ab922ff523e1b7fa6fd4fde40899cbfca5658254"
+  },
+  "frozen_source_manifest_sha256": "8c36a75eff383e23e05f0f0b0f93b3ac140d66c510c2ef6a47bf97d918260027",
+  "head_sha": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+  "historical_whole_suite_replay": false,
+  "new_controls_passed_once": 71,
+  "operational_source_blobs_exact": 10,
+  "original_product_trees_unchanged": true,
+  "packet_tree": "1cab4cc1b1134bba1b3735b36cc5d875576472fb",
+  "parent_sha": "3332fda43bbcfee222ba3521f2e96c753173c40d",
+  "schema": 1,
+  "source_parent_sha": "a45fbc0c2f9c5b04a812c2aaad6ed85a6ec1c9b5",
+  "status": "NEUTRAL_PUBLICATION_VERIFIED",
+  "tree": "f6d3c527875d6e46f892ff9d87e1ab23c5ffa305",
+  "trigger_branch_updated": false
+}

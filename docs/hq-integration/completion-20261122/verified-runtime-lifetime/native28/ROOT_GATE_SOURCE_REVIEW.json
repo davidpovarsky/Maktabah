@@ -1,0 +1,47 @@
+{
+  "status": "PASS_ROOT_ORIGINAL_APPLICATION_COMPILE_GATE_SOURCE_REVIEW",
+  "head": "afe22a1ed462b6e3601f866b582802fe514b31dd",
+  "runner": {
+    "bytes": 33111,
+    "sha256": "017778c096eca985774bd1a4f1e1e117ac3dee6ac08082c2a9793273826aa196",
+    "git_blob": "0498f13879a15dacde8b4c7575b64d6f128b9402"
+  },
+  "execution_manifest": {
+    "bytes": 33548,
+    "sha256": "ba577d1dd71e1df50e378338a4cff26865a46ac5d9b6b538e9395ac3c64d5eda",
+    "git_blob": "89e00dc425bbdd141a8e60dd235b8db7505c6f7a"
+  },
+  "source_and_evidence_inputs_hashed": 48,
+  "publication_files_hashed": 22,
+  "unchanged_full_helpers_or_classes": [
+    "digest",
+    "write_json",
+    "safe_path",
+    "check_file",
+    "git",
+    "Commands",
+    "read_json_stream",
+    "native_library_inputs"
+  ],
+  "dependency_reader_change": "Only the selected original package changes; input reader body otherwise identical.",
+  "preceding_actual_compile_run": 45056548826,
+  "preceding_exact_native_inputs_preserved": 20,
+  "additional_disjoint_native_inputs": 8,
+  "total_native_inputs_required": 28,
+  "installer_review": "Exact original Heart HEAD, previous20 afterimages, safe target paths, all8 source bytes, six original preimages and two absent targets are checked before the first write.",
+  "compile_selection": [
+    "go",
+    "test",
+    "-c",
+    "-p",
+    "2",
+    "-o",
+    "<owned-output>/original-application.test",
+    "./core/application"
+  ],
+  "owned_finite_command_lifecycle_preserved": true,
+  "source_postchecks_and_actual_go_list_input_coverage_required": 28,
+  "root_installer_compiler_or_test_executions": 0,
+  "old_controls_replayed": 0,
+  "scope": "Source review and immutable publication only. The actual original application compilation is pending; native lifetime behavior, production callsite, storage and ACK remain unqualified."
+}

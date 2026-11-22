@@ -1,0 +1,125 @@
+{
+  "status": "PASS_ROOT_IMMUTABLE_LIFETIME_COMPILE_GATE",
+  "head": "afe22a1ed462b6e3601f866b582802fe514b31dd",
+  "parent": "455e1c55d765b25f8dd63bd472964057e5cbffc7",
+  "tree": "f97ddb18628090ada835c80aa69a2b454895241b",
+  "gate_packet_tree": "3f8f6f8b6110f86dc6176bd944a4567b19dcae52",
+  "source_packet_trees": {
+    "native-import-request-compat-20261122": "75e3fae71c323ba03dbcbaf519bdb993050a5a6d",
+    "native-owned-import-20261122": "8659bdd358d0b198c6a57b68b90bf9d65dafe5d9",
+    "native-owned-import-lifetime-20261122": "46d0bd104a5ef62c7b4ff011da766d25cfd7a371"
+  },
+  "exact_new_files": [
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/EXACT_INPUT_READBACK.json",
+      "git_blob": "2307442a36089bb16174b07a0fccfea0c56e335e",
+      "bytes": 20395
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/EXECUTION_INPUTS.json",
+      "git_blob": "89e00dc425bbdd141a8e60dd235b8db7505c6f7a",
+      "bytes": 33548
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/EXECUTION_PLAN.json",
+      "git_blob": "c11ac71683360e1e35de1de3058f416c86a0f721",
+      "bytes": 3304
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/GATE_DELTA.patch",
+      "git_blob": "1e880004ddae1f097bbe2ef48f365dafde325154",
+      "bytes": 12568
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/HEART_GATE_SOURCE_REVIEW.json",
+      "git_blob": "61126c74b996ce0f09419ab64a0e04312cf154d1",
+      "bytes": 2414
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/LOCAL_PREPARATION_CHECK.json",
+      "git_blob": "491fcca45ab6df7cf806ab6e8094a7bf5b519a38",
+      "bytes": 525
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/README.md",
+      "git_blob": "571b253277b606ca86f9f8a9cd10dd9473ad15d9",
+      "bytes": 3957
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/SOURCE_PREPARATION.json",
+      "git_blob": "7da76d78e1dbf65ca55f03cc97f77d319d13174e",
+      "bytes": 1570
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/WORKFLOW_DELTA.patch",
+      "git_blob": "8587f6cdb0ac7b812692c0d5a1755e5b70ff8980",
+      "bytes": 3959
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/bootstrap/build_custom_heart.py",
+      "git_blob": "e32c935fedce5fc732240bf9b2ada21764b5add1",
+      "bytes": 12945
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/bootstrap/prepare_original_tantivy.py",
+      "git_blob": "828736cb89f212e509ba80634bf596b488c920ca",
+      "bytes": 1242
+    },
+    {
+      "path": ".github/workflows/otzaria-native-owned-import-lifetime-compile.yml",
+      "git_blob": "ef871b6c4a10c6e74934323ccb224ad7bec0ca31",
+      "bytes": 2866
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/root-review/ROOT_COMPATIBILITY_REVIEW.json",
+      "git_blob": "bee515230e2ea8b8a08cffc75c5a35defd8c2300",
+      "bytes": 839
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/root-review/ROOT_LIFETIME_CONTROL_REVIEW.json",
+      "git_blob": "07bbcce16ea620c57a554805405ad10d56d603f2",
+      "bytes": 5594
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/root-review/ROOT_OWNED_COMPILE_PASS_REVIEW.json",
+      "git_blob": "0ee0d01ce17580661464f8c9fb8e65e403af6ada",
+      "bytes": 2431
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/root-review/ROOT_PREIMAGE_COMPILE_PASS_REVIEW.json",
+      "git_blob": "3497208fdb55638fd9620d879333d72c42219c99",
+      "bytes": 1402
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/root-review/ROOT_REMOTE_BINDINGS.json",
+      "git_blob": "9b3d211062284a508ce4acc882eabead1e786362",
+      "bytes": 21563
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/root-review/ROOT_UNIT_AND_SOURCE_VERIFICATION.json",
+      "git_blob": "b92b6b0b28b09fd19a2008c17703bc58a9e919f2",
+      "bytes": 824
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/root-review/ROOT_UNIT_EVIDENCE_REVIEW.json",
+      "git_blob": "a2a42d611a5ba6050308b7af018479b0b14cad66",
+      "bytes": 2213
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/root-review/ROOT_VERIFIER_LAYOUT_CORRECTION.json",
+      "git_blob": "ec3e7701597bb1210f565868dc5c7dae81793dc2",
+      "bytes": 837
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/root-review/root_verify_origin_controls.py",
+      "git_blob": "c73ef8f116350150d5912ed5d019a9286b48f1c1",
+      "bytes": 4007
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/run_original_application_compile.py",
+      "git_blob": "0498f13879a15dacde8b4c7575b64d6f128b9402",
+      "bytes": 33111
+    }
+  ],
+  "tests_and_compilers_run_by_this_review": 0
+}

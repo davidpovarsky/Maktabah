@@ -1,0 +1,56 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"ok\":true,\"operation\":\"save\",\"created\":false,\"context_id\":\"sentinelx_context_sxc_NCA3K3YC\",\"short_id\":\"sxc_NCA3K3YC\",\"revision\":33,\"status\":\"active\",\"binding\":{\"bound\":true,\"conversation_ref\":\"conv_3193bb60809fcd314bddf7d5\"},\"relations\":{\"parent\":null,\"children\":[],\"related\":[{\"context_id\":\"sentinelx_context_sxc_WAXQV0PW\",\"short_id\":\"sxc_WAXQV0PW\",\"title\":\"אוצריא / Maktabah — coordinated development continuation\",\"status\":\"active\",\"revision\":18,\"updated_at\":\"2026-11-22T04:09:20+00:00\",\"hosts\":[\"host_7ec8382e82747448\"],\"tags\":[\"otzaria\",\"maktabah\",\"active\",\"property-add-published\",\"m17-reuse-integrated\",\"dev-history-verified\",\"coordinated-continuations\"],\"task_group\":null,\"parent_context_id\":null}]},\"stored\":{\"hub\":true,\"host_mirrors\":0,\"project_md\":false},\"resume_phrase\":\"Retoma sentinelx_context_sxc_NCA3K3YC\"}"
+    }
+  ],
+  "structuredContent": {
+    "ok": true,
+    "operation": "save",
+    "created": false,
+    "context_id": "sentinelx_context_sxc_NCA3K3YC",
+    "short_id": "sxc_NCA3K3YC",
+    "revision": 33,
+    "status": "active",
+    "binding": {
+      "bound": true,
+      "conversation_ref": "conv_3193bb60809fcd314bddf7d5"
+    },
+    "relations": {
+      "parent": null,
+      "children": [],
+      "related": [
+        {
+          "context_id": "sentinelx_context_sxc_WAXQV0PW",
+          "short_id": "sxc_WAXQV0PW",
+          "title": "אוצריא / Maktabah — coordinated development continuation",
+          "status": "active",
+          "revision": 18,
+          "updated_at": "2026-11-22T04:09:20+00:00",
+          "hosts": [
+            "host_7ec8382e82747448"
+          ],
+          "tags": [
+            "otzaria",
+            "maktabah",
+            "active",
+            "property-add-published",
+            "m17-reuse-integrated",
+            "dev-history-verified",
+            "coordinated-continuations"
+          ],
+          "task_group": null,
+          "parent_context_id": null
+        }
+      ]
+    },
+    "stored": {
+      "hub": true,
+      "host_mirrors": 0,
+      "project_md": false
+    },
+    "resume_phrase": "Retoma sentinelx_context_sxc_NCA3K3YC"
+  },
+  "isError": false
+}

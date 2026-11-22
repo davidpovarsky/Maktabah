@@ -1,0 +1,606 @@
+{
+  "status": "PASS_REMOTE_74_BYTE_EXACT_SOURCE_AND_EVIDENCE_BLOBS",
+  "commit": "455e1c55d765b25f8dd63bd472964057e5cbffc7",
+  "tree": "656caa88313d6dbaebca2b3025ffc8351b492fa4",
+  "packet_tree": "46d0bd104a5ef62c7b4ff011da766d25cfd7a371",
+  "files": 74,
+  "origin_packet_tree": "75e3fae71c323ba03dbcbaf519bdb993050a5a6d",
+  "owned_packet_tree": "8659bdd358d0b198c6a57b68b90bf9d65dafe5d9",
+  "prior_packet_trees_unchanged": true,
+  "actual_tests_replayed": 0,
+  "ci_activated": false,
+  "bindings": [
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/CLANG_SDK_SOURCE_REVIEW.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/CLANG_SDK_SOURCE_REVIEW.json",
+      "bytes": 4749,
+      "sha256": "0eb5d8f6cf57803dc114f2e18f0188acea3bace2a932570ca6d3cd2b1fe76dd5",
+      "git_blob": "8200ff4eadb68e62447f9f7ec6644cfb5b02896d",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/EXACT_LIFECYCLE_INVERSE.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/EXACT_LIFECYCLE_INVERSE.json",
+      "bytes": 1377,
+      "sha256": "e018374a6f776a62ea7d7ecdbaf4f9d6843ec403c1477964aaa366a7e3f76fdb",
+      "git_blob": "3aba0468ca70020c51400699734b6ec538fabd9d",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/FORMAT_EXECUTION.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/FORMAT_EXECUTION.json",
+      "bytes": 60951,
+      "sha256": "683d1f1061f766a3529e1e821473ca7660207d234c52402ba4eb1cb2d189016b",
+      "git_blob": "0eba99096af24a6a16f30169f53e3dad21bc3d48",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/FORMAT_INPUT.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/FORMAT_INPUT.json",
+      "bytes": 59569,
+      "sha256": "f4fe2a5b3c847b1595fb65a897f1c6fb7f9a2af4effbd60fa239cf6b9f80e4f9",
+      "git_blob": "cd60e8c6ce1e543ce0d736b0f716e562cae4e17f",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/IMMUTABLE_REGISTRY_AUDIT.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/IMMUTABLE_REGISTRY_AUDIT.json",
+      "bytes": 7233,
+      "sha256": "871a7ccc5ab6e0aed2cbca5bfedd66acf7291262a69e586ff2747576af1c07ec",
+      "git_blob": "7ec1935b493965c9761035f0b9047700e73554ea",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/LIFECYCLE_INSERTION_PREPARATION.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/LIFECYCLE_INSERTION_PREPARATION.json",
+      "bytes": 2762,
+      "sha256": "7735c1f32d707b1ce3ac1d9fbf9854802c2ec492c7e2aa0b6676bb13811b788f",
+      "git_blob": "1c59d6626fd5a2238f761b1c4864767fcdffdd84",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/PRECEDING_COMPILED_CLOSURE.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/PRECEDING_COMPILED_CLOSURE.json",
+      "bytes": 2577,
+      "sha256": "5616995716a602f947fafce2d564f338bb8a71622ea3721236999fb5c3ed5bf5",
+      "git_blob": "776dbaff5248e6fb996ac3a4445e2d7c45d11af7",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/README.md",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/README.md",
+      "bytes": 4368,
+      "sha256": "dbb66f8de184dab9f7104b9a5647d3108f6af671b5fee631146e1fa0fdfd7384",
+      "git_blob": "1c344ec96f50e2ab587f50fb3f25e2d81ff31cf4",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/SOURCE_MANIFEST.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/SOURCE_MANIFEST.json",
+      "bytes": 2967,
+      "sha256": "b346aef087de866e7b5fd862f5ee81b74a7199eb22cc1246c3f9e88ee9d882bd",
+      "git_blob": "af7cd9f70b343df8a0d5c7b68f51890d271a8c3b",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/EXECUTION_INPUTS.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/EXECUTION_INPUTS.json",
+      "bytes": 998,
+      "sha256": "86f4babe2db4bde4707f06d6213580a96fa78f887033793838e8581500f231e9",
+      "git_blob": "2d3b1226496126b659585510d4bfeb16ba8b22b6",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/HEART_LIFETIME_CONTROL_SOURCE_REVIEW.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/HEART_LIFETIME_CONTROL_SOURCE_REVIEW.json",
+      "bytes": 3137,
+      "sha256": "7848836c47eb00bb96a11f8cd85c99ba48c1a5e4f3fce49dcb085493c4ee9fc1",
+      "git_blob": "9cf1a512e8a548fd7b295ffac180ab7efb5b42ee",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/INPUT_PACKET.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/INPUT_PACKET.json",
+      "bytes": 36973,
+      "sha256": "2d8f4ca7277df4a5fbd88da398b799caa4ecc284284cae35e2f5696927dc63b0",
+      "git_blob": "546366d02e8b8d8807872799f178adae74464007",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/SOURCE.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/SOURCE.json",
+      "bytes": 13161,
+      "sha256": "ac8ad5d8488ad17cb5469c314f33e0a1e15ee7f0bfd7f397888896e03ad762b6",
+      "git_blob": "38081a487e0cf6bc73ed5f96e77e52b00167b797",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/build_controls.py",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/build_controls.py",
+      "bytes": 12723,
+      "sha256": "8a0d02dbc16a635766619d9272418b25ce1b9b9e23083c39972cba3eb686eacc",
+      "git_blob": "2067de87f676c13a784c0fb2ec5d163e481c4b50",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/evidence/attempt-v1/INTAKE.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/evidence/attempt-v1/INTAKE.json",
+      "bytes": 235,
+      "sha256": "753b6d9ee6e9649448d9a02705b81e052dfe09a475beb033bab25558e63ec60c",
+      "git_blob": "6814103312fcde22d0a494c96ae0c0d5b4f80ae9",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/evidence/attempt-v1/ROOT_LIFETIME_CONTROL_REVIEW.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/evidence/attempt-v1/ROOT_LIFETIME_CONTROL_REVIEW.json",
+      "bytes": 5594,
+      "sha256": "41ca1fc9b437e7b3d1de5297f9f5e0a3a1e4c9718df47223c21b513cd34aed86",
+      "git_blob": "07bbcce16ea620c57a554805405ad10d56d603f2",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/evidence/attempt-v1/VERIFICATION.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/evidence/attempt-v1/VERIFICATION.json",
+      "bytes": 1151,
+      "sha256": "93a61dd6d093ebc0f5c546629ab23fde18522d6ec8d5567e5cf70dae8f86c006",
+      "git_blob": "c8ce3d13e62b676f97af3b5e524b89cf9327bbf5",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/evidence/attempt-v1/WATCH_NOTIFICATION.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/evidence/attempt-v1/WATCH_NOTIFICATION.json",
+      "bytes": 1077,
+      "sha256": "150e787284ce115017a532c66a6af9294133d4c31956fae7f5ca850e589cb4b2",
+      "git_blob": "55ccd2d5c2921127cce75621016d510d8a2f115a",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/evidence/attempt-v1/lifetime-unit-evidence-v1.zip",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/evidence/attempt-v1/lifetime-unit-evidence-v1.zip",
+      "bytes": 52773,
+      "sha256": "c46d00f970709a281caab364c4ad53a3eab7457cb608ad7e388d76d55b1c704e",
+      "git_blob": "fbd8d200e881c975ee7e3f9736ad47ccccd830d8",
+      "binary": true
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/evidence/attempt-v1/retained/ARCHIVE_INDEX.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/evidence/attempt-v1/retained/ARCHIVE_INDEX.json",
+      "bytes": 5140,
+      "sha256": "4030cec2b80ff404ed3bfef8615f8aafc0da5dd48ebdba694f496cf77fdb0b52",
+      "git_blob": "1e0636487261ac2ab8ddbba161b90b88a0218be7",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/evidence/attempt-v1/retained/evidence/RESULT.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/evidence/attempt-v1/retained/evidence/RESULT.json",
+      "bytes": 27240,
+      "sha256": "4325bbe6be2344db032275f6faed8d7d9e9f98e018f9dedc42d74632217cc819",
+      "git_blob": "2cf1b6f297f5aa812719eb19bbba0639d60b108d",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/evidence/attempt-v1/retained/evidence/SOURCE.json",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/evidence/attempt-v1/retained/evidence/SOURCE.json",
+      "bytes": 13485,
+      "sha256": "a1240b0d94a6afbb06ba641e0ea492986272e29a8d6264fe9bc48e8a503cd0b0",
+      "git_blob": "558b5a57e0c935de24a80bccfddc2be277d6f8fe",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/evidence/attempt-v1/retained/evidence/compile-application.stderr.log",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/evidence/attempt-v1/retained/evidence/compile-application.stderr.log",
+      "bytes": 49886,
+      "sha256": "dd196e55263fbf08cc6e9074542fa95a4a275fa4f345d523b705bef930aa1e22",
+      "git_blob": "69afdcef668d56d4567b6fdeaa9480d1153a5ba1",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/evidence/attempt-v1/retained/evidence/compile-application.stdout.log",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/evidence/attempt-v1/retained/evidence/compile-application.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/evidence/attempt-v1/retained/evidence/compile-importer.stderr.log",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/evidence/attempt-v1/retained/evidence/compile-importer.stderr.log",
+      "bytes": 42906,
+      "sha256": "5b7fa5fdf63bc0044072d666a4de2ec54a8e85e53c7d3c7de777cc3d45395f45",
+      "git_blob": "c36f0488d153d1387220dae4676dfc3f000522ca",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/evidence/attempt-v1/retained/evidence/compile-importer.stdout.log",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/evidence/attempt-v1/retained/evidence/compile-importer.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/evidence/attempt-v1/retained/evidence/controls.stderr.log",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/evidence/attempt-v1/retained/evidence/controls.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/evidence/attempt-v1/retained/evidence/controls.stdout.log",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/evidence/attempt-v1/retained/evidence/controls.stdout.log",
+      "bytes": 22268,
+      "sha256": "089512623117969db81a070c3624609790d8eafa7bd0e8cd7f60a426f6b72b18",
+      "git_blob": "b534ab12e28792e52ca9fdde7e55adac78185af2",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/evidence/attempt-v1/retained/evidence/go-version.stderr.log",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/evidence/attempt-v1/retained/evidence/go-version.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/evidence/attempt-v1/retained/evidence/go-version.stdout.log",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/evidence/attempt-v1/retained/evidence/go-version.stdout.log",
+      "bytes": 34,
+      "sha256": "a1ae6dc6b3b40081e3c80e6066e60c64af94a96582f26ceea875c8dd0807125b",
+      "git_blob": "06f2c94cb70429a8587e4e2ef9867fcba10c963c",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/core/application/accountdirlock/fixture.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/core/application/accountdirlock/fixture.go",
+      "bytes": 420,
+      "sha256": "34a6e6fc816fd33f0da6fbf59569142ee974dac05a12e00da5e71f1b9efb377f",
+      "git_blob": "30d06c5df3871ae81b33aaef89f2755c7bb4cafe",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/core/application/actual_lifecycle.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/core/application/actual_lifecycle.go",
+      "bytes": 3818,
+      "sha256": "0475f03e336ccfb0820db2994a6e191e504932435ffd5ebf72dda7dda7162390",
+      "git_blob": "bd2e399936da621393103e07b9166981fc60c679",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/core/application/fixture.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/core/application/fixture.go",
+      "bytes": 947,
+      "sha256": "d9f6a7908eec4065fa66a812d0d8c80c11405238c21bbb2d58086dfa2f9e7205",
+      "git_blob": "f5c167188f00bcc4f46253f4b9b5e463515099e4",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/core/application/owned_admission_test.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/core/application/owned_admission_test.go",
+      "bytes": 13340,
+      "sha256": "69f74b9669e4fc9a7029397d829ce3e59b9ddd7ec2fab142d15a56b4073d4793",
+      "git_blob": "5fc32f558f2a9c7880594bf7b29f95bd268a5624",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/core/application/owned_import_admission.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/core/application/owned_import_admission.go",
+      "bytes": 5128,
+      "sha256": "3ed41b1989e03d087c393d04b5b3c3a5d6a813830e4c42bebb6f2c4d727e67ee",
+      "git_blob": "39709e4fa9a47275d7df04448c02ed115b6be283",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/core/block/import/actual_owned_context.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/core/block/import/actual_owned_context.go",
+      "bytes": 937,
+      "sha256": "89326079df2fa5daf65c7afd7ef0137e1c7a10fb5dca2d63ef86ee8b52b72118",
+      "git_blob": "5fe9bb910a1b8b587e0a6daaddaa23652839563e",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/core/block/import/actual_types.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/core/block/import/actual_types.go",
+      "bytes": 1404,
+      "sha256": "8cdc988d51dbf1ede79c4997ba012cf7a3ea57fb00846e3c91e9c8b0ff803fff",
+      "git_blob": "7e9ca7d8489f196bfb74644f5fc20388c096de60",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/core/block/import/fixture.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/core/block/import/fixture.go",
+      "bytes": 2671,
+      "sha256": "422104b682e55167ded16fdb8521e38521014487a027794f746ed051bd034ebb",
+      "git_blob": "ade8f081bccf79cd2a9f9293a5b578c0784cf5c0",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/core/block/import/mapping_observation.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/core/block/import/mapping_observation.go",
+      "bytes": 9367,
+      "sha256": "851c5ad1a2c65e3698816bf8be5ccdd85e4074d9afb3b3f3dd79d5758e6be9cf",
+      "git_blob": "663032e78e91558f614defa2a6cc55d6a7206b4c",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/core/block/import/owned_import_operation.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/core/block/import/owned_import_operation.go",
+      "bytes": 6059,
+      "sha256": "8fba0afe60bd32ed51707ca43ed0beb7a45e30470a32811e290a6aaef4073b13",
+      "git_blob": "301b0953c534fdc4a145d5bedca8978c7be6fe49",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/core/block/import/owned_operation_test.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/core/block/import/owned_operation_test.go",
+      "bytes": 9636,
+      "sha256": "6e9bdeea06647e68d324cc023e7b87000afacdfdfb95ac08d12f119fd4f96115",
+      "git_blob": "483094ca33322a2f8bf993e09d9e7bbff6d74090",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/core/block/process/fixture.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/core/block/process/fixture.go",
+      "bytes": 42,
+      "sha256": "b21ecb0168950aa89f74be869afa82bdb7a1d8f4f924df300a960df914196379",
+      "git_blob": "65b00f898fe5e87edfd0f600ae09d1a55862dbd3",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/core/domain/objectorigin/fixture.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/core/domain/objectorigin/fixture.go",
+      "bytes": 48,
+      "sha256": "336bd9d81b3c0fda3a51e73038e98e2407fa80a15472e4e0e04e1e0622611bcb",
+      "git_blob": "25a0d0daff307f635504f07af1b1d3a0422de5fb",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/core/files/fileuploader/fixture.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/core/files/fileuploader/fixture.go",
+      "bytes": 47,
+      "sha256": "b5a1b5b23f54081736ce3280b1a5553241b612e2f6f4102a20be76ea8bc4827f",
+      "git_blob": "3e0039fb838d6de56a3cf504fa5a0623a1488493",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/core/pushnotification/fixture.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/core/pushnotification/fixture.go",
+      "bytes": 137,
+      "sha256": "075c1a781e3becb5c92179ae3e3aa7d8cb738eac6ed296e4221dd771fdc4459a",
+      "git_blob": "03989e139088a801bdeb533f9c32a0db25e8dc25",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/core/wallet/fixture.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/core/wallet/fixture.go",
+      "bytes": 521,
+      "sha256": "02712711909f1a2f029f81c92dcc4f9ceed6a123441f2a130b0385caeda7c234",
+      "git_blob": "1223fe472069970669287db76f5a6ccffa23d674",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/fixture-modules/any-sync/app/fixture.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/fixture-modules/any-sync/app/fixture.go",
+      "bytes": 209,
+      "sha256": "a27686bf8964ea716978042cd6c2a43f4e3c4c5b45e67715e3609c05773a0958",
+      "git_blob": "77b980485b0604e87f96c2389db44acc9f5d49c4",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/fixture-modules/any-sync/go.mod",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/fixture-modules/any-sync/go.mod",
+      "bytes": 46,
+      "sha256": "afd675f1b5b75c8cc5d19ec97400624680ba7e2f91c3b21caaeee1b9977f6b97",
+      "git_blob": "3e0e01ac90307bfdfad0cc50df4e7301b525756a",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/go.mod",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/go.mod",
+      "bytes": 162,
+      "sha256": "35c0202ce741192b39457b9cb04693dc4729adffd57d496d34e3948dd31d51c5",
+      "git_blob": "c1067d1bae7bd2565cf83a07cdee0875d6b5d031",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/pb/fixture.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/pb/fixture.go",
+      "bytes": 119,
+      "sha256": "b1d19c51afcb1fa63e644a843d57f5ff1f859de2df33c146f923d0080064b5e8",
+      "git_blob": "2187e9bbbcd283b9dfdf94464ee1d81d53d9d506",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/pkg/lib/pb/model/fixture.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/pkg/lib/pb/model/fixture.go",
+      "bytes": 50,
+      "sha256": "5fc269c372e1cd80c2687b41a0f1390a4d8b15cee8f7a487512227f387418fb7",
+      "git_blob": "1b5bc8a8c87ac66d9c1ba670e4eef23eb08e107f",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/module/util/anyerror/fixture.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/module/util/anyerror/fixture.go",
+      "bytes": 67,
+      "sha256": "3f9ad63b1e97266ec125eaecc8e013793585f64ccfefff71cabeb7237fbb3c5f",
+      "git_blob": "71612bc6afde3b80885cd6107731056b418be771",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/owned_admission_test.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/owned_admission_test.go",
+      "bytes": 13340,
+      "sha256": "69f74b9669e4fc9a7029397d829ce3e59b9ddd7ec2fab142d15a56b4073d4793",
+      "git_blob": "5fc32f558f2a9c7880594bf7b29f95bd268a5624",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/owned_operation_test.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/owned_operation_test.go",
+      "bytes": 9636,
+      "sha256": "6e9bdeea06647e68d324cc023e7b87000afacdfdfb95ac08d12f119fd4f96115",
+      "git_blob": "483094ca33322a2f8bf993e09d9e7bbff6d74090",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/root_verify_lifetime_controls.py",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/root_verify_lifetime_controls.py",
+      "bytes": 7566,
+      "sha256": "38bdfee09306c96c3f1ef0523ae0612e6e1577b34fa400dc129064dc33f3b123",
+      "git_blob": "5d7ee5de1a17394cd2f5afee22a26144cc942c30",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/run_windows_controls.py",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/run_windows_controls.py",
+      "bytes": 6882,
+      "sha256": "2bda5203a895bca7aa73e4ff25381865f3e1d67d6e6c58adfc2c0edd009945db",
+      "git_blob": "f714b6a118280d235663546d22e1e188653d8ba7",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/controls/verify_retained_controls.py",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/controls/verify_retained_controls.py",
+      "bytes": 4081,
+      "sha256": "8aae8ea9a3ce531fbed400c79c124c7f2ee349571e6e3d07360d5fe84b07410e",
+      "git_blob": "e5a98ebdfb05a698bda631aa918ddc3bf09899ee",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/install_lifetime_sources.py",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/install_lifetime_sources.py",
+      "bytes": 4864,
+      "sha256": "5e9929000e259cceee92ab2c72ac0db545f4bbd50158cbc8ada2092904825ef5",
+      "git_blob": "22c6b5290de494e200590d017421f3d4393826db",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/native/core/application/account_create.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/native/core/application/account_create.go",
+      "bytes": 5435,
+      "sha256": "d0726be42c7f3bedb1479113ec90310296f2a551d04d64dad06d0a8a863ed4b4",
+      "git_blob": "f37d02dd21df133ed35d563e96951ebed9948786",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/native/core/application/account_create_from_export.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/native/core/application/account_create_from_export.go",
+      "bytes": 6676,
+      "sha256": "5d7f91dc44d7c04f445a3b22ccc692c525a94c8b61cc5ac696764fe03c69db21",
+      "git_blob": "22d13ce25ad689defabb53e4a7a81ef2d1bf9c4b",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/native/core/application/account_move.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/native/core/application/account_move.go",
+      "bytes": 2957,
+      "sha256": "7a0e25f0423b1304d86022e83e4b76ee259a31ab9d9aa7a056ef71d4d7bbfb6a",
+      "git_blob": "e18d6111d43c31276df511270e023ce2ef6e500b",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/native/core/application/account_select.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/native/core/application/account_select.go",
+      "bytes": 6538,
+      "sha256": "814b9c0a857df43032bf96c3fd1869570db2abfa5b25f0ceca6b798db3ed8dbd",
+      "git_blob": "2b2bfeeee3a9a37a0d7e1e72aba522c1727c08af",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/native/core/application/account_stop.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/native/core/application/account_stop.go",
+      "bytes": 4978,
+      "sha256": "fe6b79b2491996b11b2f18fe8724084bfb658926c44a4612179a79293ae53f2a",
+      "git_blob": "dd1a43aea8c64134016941fb7e8bf2289ac591cc",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/native/core/application/application.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/native/core/application/application.go",
+      "bytes": 5872,
+      "sha256": "30d0110b028f009d5b447faff657def67e2605e44bcbb85fa6ffc437b0f686f2",
+      "git_blob": "b73c36841f2aa15bb0e794c07c4f28976166c06c",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/native/core/application/owned_import_admission.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/native/core/application/owned_import_admission.go",
+      "bytes": 5128,
+      "sha256": "3ed41b1989e03d087c393d04b5b3c3a5d6a813830e4c42bebb6f2c4d727e67ee",
+      "git_blob": "39709e4fa9a47275d7df04448c02ed115b6be283",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/native/core/block/import/owned_import_operation.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/native/core/block/import/owned_import_operation.go",
+      "bytes": 6059,
+      "sha256": "8fba0afe60bd32ed51707ca43ed0beb7a45e30470a32811e290a6aaef4073b13",
+      "git_blob": "301b0953c534fdc4a145d5bedca8978c7be6fe49",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/owned-import-lifetime.patch",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/owned-import-lifetime.patch",
+      "bytes": 15099,
+      "sha256": "c3d6a93e966f49173631ff242cf37f62045a130beceae23f7d11e659dbd05d59",
+      "git_blob": "d01bc1f314cf26ad5b709a226f1072dad53d1cb2",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/prepare_lifecycle_sources.py",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/prepare_lifecycle_sources.py",
+      "bytes": 4390,
+      "sha256": "f127561c58dd6ed52bb8ccb915307d6a9a4749277d7756c194b9e2551aaef039",
+      "git_blob": "efaec63713ff4fafb19454a1e0141cd49f9cd491",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/source-preimages/core/application/account_create.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/source-preimages/core/application/account_create.go",
+      "bytes": 5286,
+      "sha256": "320baacb33c5a6db832ce507ac54747497529da735f8a4776ab9024155f7114c",
+      "git_blob": "b32972418fe1b10891d85aeec4deee8613a4c196",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/source-preimages/core/application/account_create_from_export.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/source-preimages/core/application/account_create_from_export.go",
+      "bytes": 6503,
+      "sha256": "2682d523ed12e1b34279045c73cd2eae090ec90c439b556ed0ac72d5c25216a8",
+      "git_blob": "8dedb580904a4a7d5c0ca2a7f1cf2ff4d6d8650b",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/source-preimages/core/application/account_move.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/source-preimages/core/application/account_move.go",
+      "bytes": 2813,
+      "sha256": "43ccd2ca3003fc75f4ca215a7e3021cf0c496e5ad7d47962f065086fa8cc4004",
+      "git_blob": "be7814b13841d87ef2fc7ba5261dd0d2ff690264",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/source-preimages/core/application/account_select.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/source-preimages/core/application/account_select.go",
+      "bytes": 6389,
+      "sha256": "70df8befa61075fb2fa0b4fe486a20518de418cc685db1f77d410daff9620a91",
+      "git_blob": "682ed6f92d08f959f0969e9adb695ed54a7763b9",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/source-preimages/core/application/account_stop.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/source-preimages/core/application/account_stop.go",
+      "bytes": 4690,
+      "sha256": "5675f1211e5fcb3d95d54ea1d9894a5834df27b8ab3af75d0e7d075b55f1069a",
+      "git_blob": "e2b0e222b63c733b75dc27eaf284a165cdf30219",
+      "binary": false
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-owned-import-lifetime-20261122/source-preimages/core/application/application.go",
+      "local_path": "/workspace/scratch/22d6326e1023/native-owned-import-audit/lifetime/packet/source-preimages/core/application/application.go",
+      "bytes": 5686,
+      "sha256": "e889d58b2d9afa11ba5bc8b03cbef5f58c01100a9a2faef0902ba9be2f2e3255",
+      "git_blob": "e90383d54205304ed60567689ea1d1ac713ffea2",
+      "binary": false
+    }
+  ]
+}

@@ -1,0 +1,339 @@
+{
+  "directory": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-owned-import-lifetime-compile-activation-afe22a1",
+  "receipt": {
+    "status": "ONE_NORMAL_NEW_BRANCH_PUSH_VERIFIED",
+    "head": "afe22a1ed462b6e3601f866b582802fe514b31dd",
+    "parent": "455e1c55d765b25f8dd63bd472964057e5cbffc7",
+    "tree": "f97ddb18628090ada835c80aa69a2b454895241b",
+    "branch": "codex/otzaria-native-owned-import-lifetime-compile-20261122",
+    "pushes": 1,
+    "commands": [
+      {
+        "label": "checkout-head-before",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "rev-parse",
+          "HEAD"
+        ],
+        "started_unix": 1795375429.432226,
+        "timeout_seconds": 30,
+        "pid": 18472,
+        "returncode": 0,
+        "stdout_sha256": "2647a03bf8aaa492a72558ee50c70be7dcc9a8fda88cc2465c71262585b2e395",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "checkout-status-before",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "status",
+          "--porcelain",
+          "--untracked-files=all"
+        ],
+        "started_unix": 1795375429.6855881,
+        "timeout_seconds": 30,
+        "pid": 33168,
+        "returncode": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "local-object-presence",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "cat-file",
+          "-e",
+          "afe22a1ed462b6e3601f866b582802fe514b31dd^{commit}"
+        ],
+        "started_unix": 1795375430.8386655,
+        "timeout_seconds": 30,
+        "pid": 19748,
+        "returncode": 128,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "669cbabc9cd56232114a118135f6d15aa6f06240d8a29ca36ecf0b25dcca27dd"
+      },
+      {
+        "label": "fetch-reviewed-object",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "fetch",
+          "--no-tags",
+          "--no-write-fetch-head",
+          "https://github.com/davidpovarsky/anytype-swift.git",
+          "afe22a1ed462b6e3601f866b582802fe514b31dd"
+        ],
+        "started_unix": 1795375431.0922768,
+        "timeout_seconds": 120,
+        "pid": 27148,
+        "returncode": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "exact-parent",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "rev-list",
+          "--parents",
+          "-n",
+          "1",
+          "afe22a1ed462b6e3601f866b582802fe514b31dd"
+        ],
+        "started_unix": 1795375435.4383357,
+        "timeout_seconds": 30,
+        "pid": 3336,
+        "returncode": 0,
+        "stdout_sha256": "dc5e7ed047275a2734c23c93222ee4b537e666c3366b7502087c203866a0c83e",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "exact-tree",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "rev-parse",
+          "afe22a1ed462b6e3601f866b582802fe514b31dd^{tree}"
+        ],
+        "started_unix": 1795375435.7075324,
+        "timeout_seconds": 30,
+        "pid": 4780,
+        "returncode": 0,
+        "stdout_sha256": "babfffd044118e626285163dc425e1e410f8b1a3c88a81b54edee455664d3e20",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "exact-manifest",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "show",
+          "afe22a1ed462b6e3601f866b582802fe514b31dd:docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122/EXECUTION_INPUTS.json"
+        ],
+        "started_unix": 1795375435.9465618,
+        "timeout_seconds": 30,
+        "pid": 24508,
+        "returncode": 0,
+        "stdout_sha256": "ba577d1dd71e1df50e378338a4cff26865a46ac5d9b6b538e9395ac3c64d5eda",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "exact-workflow",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "show",
+          "afe22a1ed462b6e3601f866b582802fe514b31dd:.github/workflows/otzaria-native-owned-import-lifetime-compile.yml"
+        ],
+        "started_unix": 1795375436.2172935,
+        "timeout_seconds": 30,
+        "pid": 31440,
+        "returncode": 0,
+        "stdout_sha256": "5f7b006ddc6d915f80ab45c89c69e5e3962c9460549377e74a402caeabac13e5",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "packet-tree-native-import-request-compat-20261122",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "rev-parse",
+          "afe22a1ed462b6e3601f866b582802fe514b31dd:docs/pinkha/torah-integration/native-import-request-compat-20261122"
+        ],
+        "started_unix": 1795375436.4791386,
+        "timeout_seconds": 30,
+        "pid": 24880,
+        "returncode": 0,
+        "stdout_sha256": "e5abdafe6743bd5de4bb5742ef9e823d199ccfd9da20a138395e0272e36d60a2",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "packet-tree-native-owned-import-20261122",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "rev-parse",
+          "afe22a1ed462b6e3601f866b582802fe514b31dd:docs/pinkha/torah-integration/native-owned-import-20261122"
+        ],
+        "started_unix": 1795375436.7329695,
+        "timeout_seconds": 30,
+        "pid": 4612,
+        "returncode": 0,
+        "stdout_sha256": "3d1ff44fdd7c4eb89d1d7e2fedbf308a73d025e7cc1f1d99c29bae4b00c0ccc0",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "packet-tree-native-owned-import-lifetime-20261122",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "rev-parse",
+          "afe22a1ed462b6e3601f866b582802fe514b31dd:docs/pinkha/torah-integration/native-owned-import-lifetime-20261122"
+        ],
+        "started_unix": 1795375436.983301,
+        "timeout_seconds": 30,
+        "pid": 20276,
+        "returncode": 0,
+        "stdout_sha256": "96c48c9515f3bc6ccb31d9a10c46734be17ff9758d81340f80b469f71ecdb432",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "packet-tree-native-owned-import-lifetime-module-compile-20261122",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "rev-parse",
+          "afe22a1ed462b6e3601f866b582802fe514b31dd:docs/pinkha/torah-integration/native-owned-import-lifetime-module-compile-20261122"
+        ],
+        "started_unix": 1795375437.229885,
+        "timeout_seconds": 30,
+        "pid": 7876,
+        "returncode": 0,
+        "stdout_sha256": "1cdd1aaad0c8ba8182bd6e6c5b1de9cbfdb9083cb90f23cc6dc2e5506b59146a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "branch-active-run-absence",
+        "argv": [
+          "C:\\Program Files\\GitHub CLI\\gh.EXE",
+          "api",
+          "repos/davidpovarsky/anytype-swift/actions/runs?branch=codex/otzaria-native-owned-import-lifetime-compile-20261122&event=push&per_page=100"
+        ],
+        "started_unix": 1795375437.4729838,
+        "timeout_seconds": 45,
+        "pid": 25004,
+        "returncode": 0,
+        "stdout_sha256": "a2790a384d7d281e7395679000c35d27768d89dbd7052f725b8f4688beb59915",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "activation-ref-absence",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "ls-remote",
+          "--exit-code",
+          "--heads",
+          "https://github.com/davidpovarsky/anytype-swift.git",
+          "refs/heads/codex/otzaria-native-owned-import-lifetime-compile-20261122"
+        ],
+        "started_unix": 1795375438.3700407,
+        "timeout_seconds": 45,
+        "pid": 21368,
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "exact-head-run-absence",
+        "argv": [
+          "C:\\Program Files\\GitHub CLI\\gh.EXE",
+          "api",
+          "repos/davidpovarsky/anytype-swift/actions/runs?head_sha=afe22a1ed462b6e3601f866b582802fe514b31dd&event=push&per_page=100"
+        ],
+        "started_unix": 1795375439.272308,
+        "timeout_seconds": 45,
+        "pid": 24496,
+        "returncode": 0,
+        "stdout_sha256": "a2790a384d7d281e7395679000c35d27768d89dbd7052f725b8f4688beb59915",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "single-normal-new-branch-push",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "push",
+          "--porcelain",
+          "https://github.com/davidpovarsky/anytype-swift.git",
+          "afe22a1ed462b6e3601f866b582802fe514b31dd:refs/heads/codex/otzaria-native-owned-import-lifetime-compile-20261122"
+        ],
+        "started_unix": 1795375440.171441,
+        "timeout_seconds": 90,
+        "pid": 11888,
+        "returncode": 0,
+        "stdout_sha256": "a0164e443c9e6394dbfae93e8e5f0cda54955f4941da6d736254e36b5d731c65",
+        "stderr_sha256": "9591510b1228d88cd0dc8ad79f9cc0e8a6a0dc10a9969878b0f462ab4ea1d3f0"
+      },
+      {
+        "label": "activation-ref-readback",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "ls-remote",
+          "--exit-code",
+          "--heads",
+          "https://github.com/davidpovarsky/anytype-swift.git",
+          "refs/heads/codex/otzaria-native-owned-import-lifetime-compile-20261122"
+        ],
+        "started_unix": 1795375443.7704906,
+        "timeout_seconds": 45,
+        "pid": 31100,
+        "returncode": 0,
+        "stdout_sha256": "d647c51c00e59060e828db67db4608b29b90741c0ec82df1b42b87c3b4bcdb66",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "checkout-head-after",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "rev-parse",
+          "HEAD"
+        ],
+        "started_unix": 1795375444.690606,
+        "timeout_seconds": 30,
+        "pid": 24484,
+        "returncode": 0,
+        "stdout_sha256": "2647a03bf8aaa492a72558ee50c70be7dcc9a8fda88cc2465c71262585b2e395",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "checkout-status-after",
+        "argv": [
+          "git",
+          "-C",
+          "C:\\Users\\DAVID\\Code\\anytype-original-editor-composed-integration-20261122",
+          "status",
+          "--porcelain",
+          "--untracked-files=all"
+        ],
+        "started_unix": 1795375444.8874943,
+        "timeout_seconds": 30,
+        "pid": 30056,
+        "returncode": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "root_review": "ROOT_GATE_SOURCE_REVIEW.json and ROOT_IMMUTABLE_GATE_READBACK.json; root explicit exact-head authorization",
+    "observer_started": false,
+    "artifact_downloads": 0,
+    "tests_executed": 0,
+    "started_at": "2026-11-22T19:23:49.432226+00:00",
+    "checkout_head_unchanged": "b5162d777e3ebc5c4c0d044e02b52347c0c3dd6e",
+    "checkout_status": "clean",
+    "remote_ref": "afe22a1ed462b6e3601f866b582802fe514b31dd",
+    "finished_at": "2026-11-22T19:24:05.591361+00:00"
+  }
+}

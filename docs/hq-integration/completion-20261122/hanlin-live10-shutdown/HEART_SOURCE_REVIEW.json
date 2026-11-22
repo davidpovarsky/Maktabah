@@ -1,0 +1,101 @@
+{
+  "status": "SOURCE_REVIEW_CLEAR_NO_EXECUTION",
+  "reviewer": "heart_completion",
+  "source_head": "4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1",
+  "candidate_inputs": [
+    {
+      "path": "live_shutdown_budget_fix/candidate/Scripts/CI/run-faithful-ipad-matrix.py",
+      "bytes": 51505,
+      "sha256": "90e54a9a60010fdb33c2ac070c8b21ba119d7096f979ecf89603d4418f61fb5c",
+      "git_blob": "90d6572c34c8a6cbf9f12f1a0d2fca51786ed63b"
+    },
+    {
+      "path": "live_shutdown_budget_fix/candidate/Scripts/CI/shutdown-faithful-simulator.py",
+      "bytes": 2814,
+      "sha256": "da381cad8763c864fabcf68164504be8ca8ddbc19839e4007347ae9e24f93192",
+      "git_blob": "612904d55dc57dcaef3579e40e4259902d57984c"
+    },
+    {
+      "path": "live_shutdown_budget_fix/test_shutdown_budget_diagnostics.py",
+      "bytes": 5518,
+      "sha256": "ec9d54210710c073b244610d0a0be386ddc7b99f39330ad44c42df02b0b64112",
+      "git_blob": "8524bdbe8950002c185ec753217101d7bb1e2c4c"
+    }
+  ],
+  "original_transport_files_independently_matched": [
+    {
+      "path": "live_run_45048898269/source/Scripts/CI/prepare-faithful-ipad-fixtures.py",
+      "bytes": 3752,
+      "sha256": "1aef6221d2cefe49432c859e3a483c8b6321c062e156738bca66a12c6d792dbe",
+      "git_blob": "6d0edd1148cae033344e05905843af362810f99b"
+    },
+    {
+      "path": "live_run_45048898269/source/Scripts/CI/run-faithful-ipad-matrix.py",
+      "bytes": 51505,
+      "sha256": "84f316920e92626e2863e1893f627565a45e66a53edbeb256c3c6d4291fee2d6",
+      "git_blob": "fc09c8277be8f20c091277766ead4506263ae246"
+    },
+    {
+      "path": "live_run_45048898269/source/Scripts/CI/runtime27-hanlin-live.py",
+      "bytes": 35180,
+      "sha256": "b6374eda86b58db9530850fe31ba4c9c14ad4c08dece8e92137f078e87303683",
+      "git_blob": "e24ca30dbc96333cf951a0e4bdfc9e9dbdf199e1"
+    },
+    {
+      "path": "live_run_45048898269/source/Scripts/CI/shutdown-faithful-simulator.py",
+      "bytes": 1417,
+      "sha256": "6036b2210fff9fb7a70da707efb067788b3cc5b45aa0cb88017285f865139046",
+      "git_blob": "5b6e91b26df4cb914d84edde9cdf59b86e538c5b"
+    },
+    {
+      "path": "live_run_45048898269/source/Scripts/CI/test-shutdown-faithful-simulator.py",
+      "bytes": 2259,
+      "sha256": "6423e1eeba3aeb719f7f6fd72eea200d1c97afea65ba0eaf31da5657ff5e4c03",
+      "git_blob": "af495bd83a179c4ec6682db42a8becac8a754d18"
+    },
+    {
+      "path": "live_run_45048898269/source/Scripts/CI/runtime27_interruption.py",
+      "bytes": 7650,
+      "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
+      "git_blob": "1fb612721275dc2f3109a955ec97403789e7f7c6"
+    },
+    {
+      "path": "live_run_45048898269/source/Scripts/CI/runtime27-fixture-recovery.py",
+      "bytes": 1355,
+      "sha256": "2dc5f680dde048cbb46463bcf1ca159e41ebb786c87074210175882275853c00",
+      "git_blob": "40b650adf7bc5604294f3c288fbbf18d74c37606"
+    }
+  ],
+  "matrix_delta_exact_two_recovery_timeouts_240_to_300": true,
+  "native_selection_and_acceptance_changes": false,
+  "helper_findings": [
+    "Canonical UUID remains the only shutdown mutation target; list devices is read-only and selection uses exact UUID equality.",
+    "Already-Shutdown exits without mutation, preserving original behavior.",
+    "Otherwise at most one original shutdown call runs with timeout180, followed by one fresh actual final-state inventory with timeout45.",
+    "Both returncode0 and nonzero race paths require the same final observation to equal Shutdown; missing, Booted or timed-out final state remains failure.",
+    "The maximal nominal bounded command path is45+180+45=270s; all three normal parents now allow300s, with30s nominal orchestration margin.",
+    "Initial inventory timeout keeps its original narrow recovery path; other exceptions still propagate.",
+    "Flushed JSON identifies exact owned UUID and requested/returned/failed phases and monotonic elapsed time without environment values or false success.",
+    "The separate interruption cleanup remains its existing5s bounded best-effort path; no claim that every caller waits300s or that simulator service processes fully drain."
+  ],
+  "actual_failure_read": {
+    "run_id": 45048898269,
+    "fixture_terminate_timeout_seconds": 60,
+    "recovery_parent_timeout_seconds": 240,
+    "precise_child_phase": "UNOBSERVED in original log",
+    "causality": "Budget mismatch is directly established by original source; its causal contribution to the actual timeout remains unproven."
+  },
+  "new_controls_reviewed": [
+    "test_recovery_parents_cover_complete_child_budget",
+    "test_nonzero_shutdown_race_uses_one_authoritative_postcondition",
+    "test_shutdown_timeout_leaves_flushed_failure_phase_without_acceptance",
+    "test_postcondition_timeout_keeps_failure_and_exact_phase"
+  ],
+  "new_controls_execution_by_reviewer": 0,
+  "old_controls_or_apple_replayed": 0,
+  "root_control_report": "Parent reports4/4 new explicit fixture/source controls PASS; this peer receipt does not add execution evidence.",
+  "limitations": [
+    "Source review does not establish next Apple shutdown or Live XCTest success.",
+    "One observed Shutdown state is a historical postcondition, not ongoing exclusion against later external reboot."
+  ]
+}

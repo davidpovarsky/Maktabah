@@ -1,0 +1,703 @@
+{
+  "status": "PASS_ROOT_IMMUTABLE_SDK_HEAD_AND_ALL_69_SOURCE_INPUTS",
+  "head": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+  "parent": "3332fda43bbcfee222ba3521f2e96c753173c40d",
+  "base": "a45fbc0c2f9c5b04a812c2aaad6ed85a6ec1c9b5",
+  "tree": "f6d3c527875d6e46f892ff9d87e1ab23c5ffa305",
+  "source_records": [
+    {
+      "path": ".github/workflows/pinkha-original-editor-framework.yml",
+      "git_blob": "7c207c7af0d062ddc2adc66f308d4f27e2f71001",
+      "bytes": 9284
+    },
+    {
+      "path": "Anytype.xcodeproj/project.pbxproj",
+      "git_blob": "dd6008de840bd5725e8a6650f6fbf65e0d247bbe",
+      "bytes": 151362
+    },
+    {
+      "path": "Anytype.xcodeproj/xcshareddata/xcschemes/AnytypeOriginalEditor.xcscheme",
+      "git_blob": "bd44a92536f974581cb5b1911d55ce045e8b4b4f",
+      "bytes": 813
+    },
+    {
+      "path": "LICENSE.md",
+      "git_blob": "1781d06251cf12f23221899f9b32e41b4de8107d",
+      "bytes": 2576
+    },
+    {
+      "path": "OriginalEditorFramework/AnytypeOriginalEditorHost.swift",
+      "git_blob": "4f88f355aafddd02d3dcd54a7a5c5da789eccd35",
+      "bytes": 12620
+    },
+    {
+      "path": "OriginalEditorFramework/AnytypeOriginalEditorModule.swift",
+      "git_blob": "723ac59f33c7cd7bd87aa925d247932c4217abfe",
+      "bytes": 4743
+    },
+    {
+      "path": "OriginalEditorFramework/AnytypeOriginalEditorNativeBodyReadback.swift",
+      "git_blob": "573be835265b7fb9d9ea86216b19e395f4785d35",
+      "bytes": 9440
+    },
+    {
+      "path": "OriginalEditorFramework/AnytypeOriginalEditorNativeFixture.swift",
+      "git_blob": "ae9f7fd6062603f1a52b92f30cb8abf1300d8366",
+      "bytes": 25356
+    },
+    {
+      "path": "OriginalEditorFramework/AnytypeOriginalEditorQualification.swift",
+      "git_blob": "462f6713e90eca7cbf1563929a490afc7599d007",
+      "bytes": 20135
+    },
+    {
+      "path": "OriginalEditorFramework/AnytypeOriginalEditorQualificationRuntime.swift",
+      "git_blob": "4c0bbd7eec4dc47cbf03f8537fa1d41738d855fb",
+      "bytes": 49525
+    },
+    {
+      "path": "OriginalEditorFramework/AnytypeOriginalEditorRestoreQualification.swift",
+      "git_blob": "ff3e50250254354a5b91dd3a3eb5cc7f8111eefa",
+      "bytes": 17082
+    },
+    {
+      "path": "OriginalEditorFramework/AnytypeOriginalEditorSnapshot.swift",
+      "git_blob": "cea6c015f1430257f0d5b47d1bb0b697d274cb39",
+      "bytes": 18348
+    },
+    {
+      "path": "OriginalEditorFramework/OriginalAnnotationNativeArchiveComparison.swift",
+      "git_blob": "2add3f44c6508e060726564453fb01bee39b6266",
+      "bytes": 9920
+    },
+    {
+      "path": "OriginalEditorFramework/OriginalAnnotationNativeArchiveLayout.swift",
+      "git_blob": "3cdccf777009d4e2320cb16fcea838f3b92fb88e",
+      "bytes": 8234
+    },
+    {
+      "path": "OriginalEditorFramework/OriginalAnnotationNativeMapKeyGuard.swift",
+      "git_blob": "d1b46c01dedfe1e08d0cd2b541358bdd9d7669e9",
+      "bytes": 5938
+    },
+    {
+      "path": "OriginalEditorFramework/OriginalAnnotationNativeSnapshotWire.swift",
+      "git_blob": "75bbd19e7e68975e47dc9d65f6abf62426febf20",
+      "bytes": 5320
+    },
+    {
+      "path": "Tools/Hanlin/original_editor_profile.json",
+      "git_blob": "9eb55b272a3a1b158874e610bc69225f81fef1a7",
+      "bytes": 5773
+    },
+    {
+      "path": "Tools/Hanlin/original_editor_profile.py",
+      "git_blob": "3e84bee3d28f180e122da480d0a779820508097d",
+      "bytes": 7207
+    },
+    {
+      "path": "Tools/Hanlin/prepare_original_editor_heart.py",
+      "git_blob": "14ee9e553a883872a08526e1196f61d3dd3049f0",
+      "bytes": 5637
+    },
+    {
+      "path": "Tools/Hanlin/prepare_sdk.py",
+      "git_blob": "99e1286268f7aacb5f5638cfe14633d37c04bccc",
+      "bytes": 4206
+    },
+    {
+      "path": "Tools/Hanlin/source.json",
+      "git_blob": "5b4501d4986a6c4155cc22d74bf4149c361172f2",
+      "bytes": 339
+    },
+    {
+      "path": "Tools/OriginalEditor/Consumer/ConsumerApp.swift",
+      "git_blob": "a6187a25beeebf2e95d9a76c55a2c300a2db504a",
+      "bytes": 6597
+    },
+    {
+      "path": "Tools/OriginalEditor/amplitude_simulator_signing.json",
+      "git_blob": "0a129b916508d73851f18ffdbd2eecfc357d9a2a",
+      "bytes": 3691
+    },
+    {
+      "path": "Tools/OriginalEditor/amplitude_simulator_signing.py",
+      "git_blob": "99bb8e5273335c83024dba2653cef337d3833bec",
+      "bytes": 24140
+    },
+    {
+      "path": "Tools/OriginalEditor/anycrypto_simulator_signing.py",
+      "git_blob": "5797bd8f7b5d3f02178dd6382f388db670123319",
+      "bytes": 17727
+    },
+    {
+      "path": "Tools/OriginalEditor/clang_control_fixtures.py",
+      "git_blob": "1bb5237ad540eed243bee6139f14b5d6fadaf00e",
+      "bytes": 2080
+    },
+    {
+      "path": "Tools/OriginalEditor/clang_product_closure.py",
+      "git_blob": "ab9c1f3416f90f852d5f5484b2e544550611734c",
+      "bytes": 25160
+    },
+    {
+      "path": "Tools/OriginalEditor/collect_compiler_symbolgraphs.py",
+      "git_blob": "fd525eaf3c2c694ce11d0bcc625e463e5db9d7b9",
+      "bytes": 12513
+    },
+    {
+      "path": "Tools/OriginalEditor/fixtures/v9-original-swift-driver.txt",
+      "git_blob": "727a8992d463e44f54134b577ead1f7f710546be",
+      "bytes": 14140
+    },
+    {
+      "path": "Tools/OriginalEditor/framework_products.py",
+      "git_blob": "fd06a1320dcd0032a9124b9b6585a26cac6773a2",
+      "bytes": 31219
+    },
+    {
+      "path": "Tools/OriginalEditor/framework_profile.json",
+      "git_blob": "f27f23b4e2570b4a6895028d6dcbd05bf3252b3a",
+      "bytes": 5727
+    },
+    {
+      "path": "Tools/OriginalEditor/framework_profile.py",
+      "git_blob": "af9969bdf43303eef9ca6a00129904ca5bf8e214",
+      "bytes": 12102
+    },
+    {
+      "path": "Tools/OriginalEditor/module_maps_fixture.json",
+      "git_blob": "950cfef9bb5a5e12268adc7545216be003bdea8f",
+      "bytes": 16969
+    },
+    {
+      "path": "Tools/OriginalEditor/observed_package_simulator_signing.py",
+      "git_blob": "1544b779f0dbdcf5f305c2127aca4a44f90ef488",
+      "bytes": 13456
+    },
+    {
+      "path": "Tools/OriginalEditor/original_project.pbxproj",
+      "git_blob": "1bf62787cd425001ec9b8c941aa7b7d4f9967f8f",
+      "bytes": 117644
+    },
+    {
+      "path": "Tools/OriginalEditor/pbx_source.py",
+      "git_blob": "e1f3eef060d70226b955a51166903ed7097b3910",
+      "bytes": 4635
+    },
+    {
+      "path": "Tools/OriginalEditor/prepare_reviewed_macro.py",
+      "git_blob": "9cbecdc8e5a23912c310ba4faee80bbee3f1d1b6",
+      "bytes": 12387
+    },
+    {
+      "path": "Tools/OriginalEditor/product_inventory.py",
+      "git_blob": "21fdef2560ebdb057af48e2164ac52be89156e82",
+      "bytes": 659
+    },
+    {
+      "path": "Tools/OriginalEditor/public_host_contract.json",
+      "git_blob": "635bb2107416af452b0d0f46a1bed179181d4430",
+      "bytes": 5504
+    },
+    {
+      "path": "Tools/OriginalEditor/retain_unqualified_products.py",
+      "git_blob": "1fd331cadafbdc944113677898daf4080daafcfa",
+      "bytes": 5083
+    },
+    {
+      "path": "Tools/OriginalEditor/reviewed_equatable_macro.json",
+      "git_blob": "6ef67cc060994cc770fe19a275951b69f5b3c5dd",
+      "bytes": 4906
+    },
+    {
+      "path": "Tools/OriginalEditor/run_framework_acceptance.py",
+      "git_blob": "719a1e435a7ea8827449b15c5e8f1d8c5dac1b4f",
+      "bytes": 40932
+    },
+    {
+      "path": "Tools/OriginalEditor/run_source_controls.py",
+      "git_blob": "f04455ca74f4682ad161d3f42f5104bcd55b8939",
+      "bytes": 33792
+    },
+    {
+      "path": "Tools/OriginalEditor/test_amplitude_simulator_signing.py",
+      "git_blob": "1465ce6c291edef86990d6a93472967f0da746cc",
+      "bytes": 36524
+    },
+    {
+      "path": "Tools/OriginalEditor/test_anycrypto_simulator_signing.py",
+      "git_blob": "065b596d8be3e4c7b3bcc1a9ef4bf028978e9bef",
+      "bytes": 16111
+    },
+    {
+      "path": "Tools/OriginalEditor/test_clang_product_closure.py",
+      "git_blob": "949efcced47051fcfc86656dd957275422957843",
+      "bytes": 28247
+    },
+    {
+      "path": "Tools/OriginalEditor/test_compiler_symbolgraphs.py",
+      "git_blob": "fb09f791bf6e1e7d426689b999c6714785dab882",
+      "bytes": 13369
+    },
+    {
+      "path": "Tools/OriginalEditor/test_framework.py",
+      "git_blob": "b4e6ccd39b715534c647d328abe7b2189812a1b8",
+      "bytes": 19456
+    },
+    {
+      "path": "Tools/OriginalEditor/test_framework_duplicates.py",
+      "git_blob": "4759315a22f964a17d6b32eb149e158bc8bf12d5",
+      "bytes": 14123
+    },
+    {
+      "path": "Tools/OriginalEditor/test_framework_flow.py",
+      "git_blob": "404d99f3a733b758dec8308525134098f80e4737",
+      "bytes": 17712
+    },
+    {
+      "path": "Tools/OriginalEditor/test_framework_source_retention.py",
+      "git_blob": "996bb8acc844ba365192412df40eef11aefd5b6c",
+      "bytes": 5424
+    },
+    {
+      "path": "Tools/OriginalEditor/test_framework_temporary_paths.py",
+      "git_blob": "c33c45b01c99a588f2dbcac453d1f6e72de71b01",
+      "bytes": 2609
+    },
+    {
+      "path": "Tools/OriginalEditor/test_host_framework_contract.py",
+      "git_blob": "1734f0f1b881bbfef470c9e5904887b4224fbc7e",
+      "bytes": 8824
+    },
+    {
+      "path": "Tools/OriginalEditor/test_observed_package_simulator_signing.py",
+      "git_blob": "4d797817c0d0569fb282ae202cc262b9cae779f3",
+      "bytes": 21851
+    },
+    {
+      "path": "Tools/OriginalEditor/test_symbolgraph_import_context.py",
+      "git_blob": "12b5abbc235e484d381cafc8e69a4706f5fc2a65",
+      "bytes": 5033
+    },
+    {
+      "path": "Tools/OriginalEditor/verify_reviewed_macro_controls.py",
+      "git_blob": "f96d0519ac4c9b0430c1124d776a24d4f2d20289",
+      "bytes": 9545
+    },
+    {
+      "path": "Tools/PinkhaNativeDerived/build_custom_heart.py",
+      "git_blob": "e32c935fedce5fc732240bf9b2ada21764b5add1",
+      "bytes": 12945
+    },
+    {
+      "path": "Tools/PinkhaNativeDerived/install_verified_heart.py",
+      "git_blob": "c719ae8b55349d2c8fc4e9ae560a2c436f307955",
+      "bytes": 5688
+    },
+    {
+      "path": "Tools/PinkhaNativeDerived/package_evidence.py",
+      "git_blob": "e55d2a959296630686a60aa5d927a3b4c34401f9",
+      "bytes": 1275
+    },
+    {
+      "path": "Tools/PinkhaSimulatorGate/preflight.py",
+      "git_blob": "2628b345d5743bbe1ddc0d1afaeef9fb410f3daf",
+      "bytes": 4319
+    },
+    {
+      "path": "Tools/OriginalEditor/admit_retained_source_controls.py",
+      "git_blob": "e2235916c14c6381412e0926e1c2687ff4f024b4",
+      "bytes": 11697
+    },
+    {
+      "path": "Tools/OriginalEditor/consumer_failure_capture.py",
+      "git_blob": "d328cd81b33e3780229136935d7064017240e328",
+      "bytes": 16289
+    },
+    {
+      "path": "Tools/OriginalEditor/framework_consumer_retention.py",
+      "git_blob": "f8adbaf44f9a3c4a2a6833320f0c568cfae4344e",
+      "bytes": 3938
+    },
+    {
+      "path": "Tools/OriginalEditor/framework_install_names.py",
+      "git_blob": "c75a9946ec1c78f441b5f479dc2caa34796c205f",
+      "bytes": 8845
+    },
+    {
+      "path": "Tools/OriginalEditor/run_runtime_continuation.py",
+      "git_blob": "485bd0332c70168f26fa45715b9012c0ad06d850",
+      "bytes": 40601
+    },
+    {
+      "path": "Tools/OriginalEditor/runtime_continuation_controls.py",
+      "git_blob": "3167c31041fdd8a0df9521046b64b964d3307717",
+      "bytes": 16432
+    },
+    {
+      "path": "Tools/OriginalEditor/runtime_continuation_inputs.json",
+      "git_blob": "5854508c40874f0d131933b4f3788b4957ebbabc",
+      "bytes": 6477
+    },
+    {
+      "path": "Tools/OriginalEditor/runtime_continuation_observation.py",
+      "git_blob": "2720c8a95277b904ae16e5eabe58d86ab9d28547",
+      "bytes": 14117
+    },
+    {
+      "path": "Tools/OriginalEditor/runtime_continuation_process.py",
+      "git_blob": "423ca948b785cfdf577832df4a927065882e775f",
+      "bytes": 7495
+    }
+  ],
+  "documentation_records": [
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/.github__workflows__pinkha-original-editor-framework.yml.diff",
+      "git_blob": "180e985b9024cf5c540b8b656b3aba56527bcce4",
+      "bytes": 4471
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/ADMISSION_INPUT_REBIND.diff",
+      "git_blob": "d2b680283529ac019e0356ee3d07c7ea10f61ea8",
+      "bytes": 518
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/ADMISSION_INPUT_REBIND.json",
+      "git_blob": "c971a211504553d33e73772b0155ad30b5dcd85f",
+      "bytes": 925
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/Anytype.xcodeproj__project.pbxproj.diff",
+      "git_blob": "8071efe08c86d2bf0b170568c26821b53003b0e3",
+      "bytes": 1376
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/HEART_ORIGINAL_LOAD_PREFIX_READ.json",
+      "git_blob": "3977bca524fe513d3a1e155931bdf07b3a42f1ca",
+      "bytes": 1653
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/HEART_PROJECT_TARGET_REVIEW.json",
+      "git_blob": "d6beae418e9df4ea72adae8a17c40bb29362efc8",
+      "bytes": 2658
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/HEART_SOURCE_REVIEW.json",
+      "git_blob": "972f445069b0239e8b9107f42c2fdb8863b5ccde",
+      "bytes": 4385
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/METADATA_REBIND.json",
+      "git_blob": "a0485210be8f7aed6ce3aeb7526529c7716a3132",
+      "bytes": 901
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/PROJECT_SETTING_REVIEW.json",
+      "git_blob": "2fc4309c54c7bcae92d8e9c816bb4cc41b8c16ed",
+      "bytes": 1083
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/README.md",
+      "git_blob": "de6741b96af1c1bb142ff9ef9143e815b03a693f",
+      "bytes": 6414
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/REMOTE_PREIMAGE_BINDINGS.json",
+      "git_blob": "b3312fca9933d449eed5004c40c9e0587d812b52",
+      "bytes": 1490
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/SOURCE_MANIFEST.json",
+      "git_blob": "056bb5cd0dbbac215fe9ee27681fb46e2b17a623",
+      "bytes": 5992
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/SOURCE_MANIFEST.pre-checkpoint-rebind.json",
+      "git_blob": "7a50075c4e324dbb9fe4e029ec73e6eb4fc2eb1c",
+      "bytes": 5802
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/SOURCE_PRESERVATION.json",
+      "git_blob": "0387f0800f964b2a044b69ffab6fafa1aab0753f",
+      "bytes": 4715
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/SOURCE_REMOTE_READBACK.json",
+      "git_blob": "4bf38e50539f1219061d4d35f73083c5ab3d3f0a",
+      "bytes": 2089
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/Tools__OriginalEditor__admit_retained_source_controls.py.diff",
+      "git_blob": "c44c0bceec86bd9e7d328132396803abe1006f51",
+      "bytes": 12028
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/Tools__OriginalEditor__consumer_failure_capture.py.diff",
+      "git_blob": "f5801bbd540de9a755782230d0b9ee09ee23491b",
+      "bytes": 16688
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/Tools__OriginalEditor__framework_consumer_retention.py.diff",
+      "git_blob": "c5454afd9853718d2f8da6084d20335e47589d1d",
+      "bytes": 4145
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/Tools__OriginalEditor__framework_install_names.py.diff",
+      "git_blob": "59ba0fa2dc294e80c190d652cb6d1c07ac78c0ba",
+      "bytes": 9131
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/Tools__OriginalEditor__framework_profile.json.diff",
+      "git_blob": "bd36fd11b2cd015c0f76888844f29b66edf3a381",
+      "bytes": 1129
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/Tools__OriginalEditor__framework_profile.py.diff",
+      "git_blob": "d113f420fc239cfefdc97fee88004d32d521d564",
+      "bytes": 1575
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/Tools__OriginalEditor__run_framework_acceptance.py.diff",
+      "git_blob": "63c228cd1b9dc95927f3b2babf874f36146afc43",
+      "bytes": 7631
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/Tools__OriginalEditor__test_framework_flow.py.diff",
+      "git_blob": "e6b5d8c240aa441a82795859230614f89122c925",
+      "bytes": 1365
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/admission/INPUTS.json",
+      "git_blob": "5f9eca1ab9636c465017ecdf1f24760cb9b73e7d",
+      "bytes": 9627
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/admission/ROOT_ORIGINAL_EVIDENCE_REVIEW.json",
+      "git_blob": "75339762e9096e3721bb1fe3cddb98c74e861b4d",
+      "bytes": 955
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/admission/original-source-before.json",
+      "git_blob": "d47db388a30727187cc1637ba399cab20572ad90",
+      "bytes": 248192
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/admission/original-source-controls-result.json",
+      "git_blob": "ff53c24c55f03cbb1a29ccd22937881b5eb38f67",
+      "bytes": 120857
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/controls/failure_integration_controls.py",
+      "git_blob": "f779b3a6e916a0563ccb98b4401a48fdd8e77c58",
+      "bytes": 6841
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/controls/install_name_controls.py",
+      "git_blob": "7b88993e5455df230d48bce6671c210e08a20011",
+      "bytes": 15158
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/controls/retained_admission_controls.py",
+      "git_blob": "3709697a746630778d2fe59bad22a814b26fd18f",
+      "bytes": 6332
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/controls/retention_adapter_controls.py",
+      "git_blob": "459aeaa4ab5ebd4eb67ded1029b498750a2a2826",
+      "bytes": 7298
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/controls-v1/EXECUTED_CONTROLS.py",
+      "git_blob": "0d18d94b2c490851ecac8ac027c6f05e00e917c8",
+      "bytes": 14948
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/controls-v1/EXECUTED_FLOW_FIXTURE.py",
+      "git_blob": "90dea64e9c5be7724d981bbe421ce8a118f3288f",
+      "bytes": 17528
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/controls-v1/RESULT.json",
+      "git_blob": "a0d49daa7ff5f003053e7565a2433eda9f8c454c",
+      "bytes": 8104
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/controls-v1/SOURCE_BEFORE.json",
+      "git_blob": "f05fc3929e8e147b5ede79c6fea223e16af63c49",
+      "bytes": 5989
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/controls-v1/controls.stderr",
+      "git_blob": "3e888ca4b3a90ddd05ad473d34eb19035537d709",
+      "bytes": 4017
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/controls-v1/controls.stdout",
+      "git_blob": "4e14ec8636358c69463a7540ea521c2c0d20c2df",
+      "bytes": 4786
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/diagnostic-recorder-v1/RESULT.json",
+      "git_blob": "a1c6a072d6caa09478b13015a9ddd11f8f046e7a",
+      "bytes": 1152
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/diagnostic-recorder-v1/SOURCE_BEFORE.json",
+      "git_blob": "d664f001f585c48510d08ccdcaece71d7f32701e",
+      "bytes": 518
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/diagnostic-recorder-v1/controls.stderr",
+      "git_blob": "f45b56c3509f8c38e1fe4444a665780bf9c69aa3",
+      "bytes": 268
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/diagnostic-recorder-v1/controls.stdout",
+      "git_blob": "a4455c7208e4a140c354447d967ae36de524960e",
+      "bytes": 209
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/failure-helper-19/CLANG_SDK_SOURCE_REVIEW.json",
+      "git_blob": "627f65161abe83259d0ece198935e74dac4c970a",
+      "bytes": 1047
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/failure-helper-19/ENTRY_CONTRACT.md",
+      "git_blob": "abaee8427ea92e9923ab76484fb041dca612be72",
+      "bytes": 3162
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/failure-helper-19/SOURCE_MANIFEST.json",
+      "git_blob": "4f3b09293b42cdd234b498781c725140b523a0d2",
+      "bytes": 719
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/failure-helper-19/controls/failure_capture_controls.py",
+      "git_blob": "c644c19f58afc4d83bcd46fa822de553e9cebd19",
+      "bytes": 12805
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/failure-helper-19/evidence/controls-v1/RESULT.json",
+      "git_blob": "125b32e21e6bc393274fb25ad0cc2ffc7b9606f2",
+      "bytes": 4209
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/failure-helper-19/evidence/controls-v1/SOURCE_BEFORE.json",
+      "git_blob": "4f3b09293b42cdd234b498781c725140b523a0d2",
+      "bytes": 719
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/failure-helper-19/evidence/controls-v1/controls.stderr",
+      "git_blob": "2a276a888efe7a1feebee6e8f0de6d74d9efe119",
+      "bytes": 2662
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/failure-helper-19/evidence/controls-v1/controls.stdout",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/failure-integration-v1/EXECUTED_CONTROLS.py",
+      "git_blob": "615dfde7062e5d13af157907cb573b83065368d0",
+      "bytes": 6185
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/failure-integration-v1/EXECUTED_DRIVER.py",
+      "git_blob": "527ac2afab43e11380a14611782ad7fccd6be369",
+      "bytes": 40076
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/failure-integration-v1/RESULT.json",
+      "git_blob": "0b944a7de38fbb0b875e2fb3ff918a7bab53cd27",
+      "bytes": 2030
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/failure-integration-v1/SOURCE_BEFORE.json",
+      "git_blob": "dea7e44137aeb37ec9b484fa0a4b472c490025f6",
+      "bytes": 951
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/failure-integration-v1/controls.stderr",
+      "git_blob": "d291904b02f6e19476eefed6e9587ac48abc818a",
+      "bytes": 796
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/failure-integration-v1/controls.stdout",
+      "git_blob": "1000dcc4b93ee14ab2aa22dffd745f2e187f7589",
+      "bytes": 850
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/retained-admission-v1/EXECUTED_INPUTS.json",
+      "git_blob": "978227e4e1ac145738f42649af3e92081844a181",
+      "bytes": 9627
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/retained-admission-v1/RESULT.json",
+      "git_blob": "5ba3571cd39578f73281b1e8e3c96364783b8e03",
+      "bytes": 3910
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/retained-admission-v1/SOURCE_BEFORE.json",
+      "git_blob": "7e8ff048f518d9014899303178774568c190e146",
+      "bytes": 2027
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/retained-admission-v1/controls.stderr",
+      "git_blob": "30046c7fa4bd32ec51bf7c090dcb23a8860a909a",
+      "bytes": 1747
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/retained-admission-v1/controls.stdout",
+      "git_blob": "0b00c71000540a7bd6377f5cb45cfff993613f5f",
+      "bytes": 2055
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/retention-adapter-v1/RESULT.json",
+      "git_blob": "83986761f33a3752c591283a4bb5236f4a149c38",
+      "bytes": 3167
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/retention-adapter-v1/SOURCE_BEFORE.json",
+      "git_blob": "050ffb0260fbf71ad6f3552011fb4e006637f62d",
+      "bytes": 2064
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/retention-adapter-v1/controls.stderr",
+      "git_blob": "e858e0fac4bc528a1f72d432aaecf995498cbb98",
+      "bytes": 1392
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/evidence/retention-adapter-v1/controls.stdout",
+      "git_blob": "21595fa1cfad2b656c089971e1a2bf4c6ed7694a",
+      "bytes": 1582
+    },
+    {
+      "path": "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/fixtures/INSTALL_NAME_BINARY_EVIDENCE.json",
+      "git_blob": "9ac30d4850034063e190a0df8a0e5959648f42b9",
+      "bytes": 46707
+    }
+  ],
+  "exact_total_changed_paths": 75,
+  "operational_paths": [
+    ".github/workflows/pinkha-original-editor-framework.yml",
+    "Anytype.xcodeproj/project.pbxproj",
+    "Tools/OriginalEditor/admit_retained_source_controls.py",
+    "Tools/OriginalEditor/consumer_failure_capture.py",
+    "Tools/OriginalEditor/framework_consumer_retention.py",
+    "Tools/OriginalEditor/framework_install_names.py",
+    "Tools/OriginalEditor/framework_profile.json",
+    "Tools/OriginalEditor/framework_profile.py",
+    "Tools/OriginalEditor/run_framework_acceptance.py",
+    "Tools/OriginalEditor/test_framework_flow.py"
+  ],
+  "preserved_product_trees": {
+    "Modules": "a8a4b7688ea6295ae6c6b2f3baf90e18ab268e1b",
+    "OriginalEditorFramework": "22c4db59cbdee6715fdbd5f7bb304106602386c6",
+    "Anytype/Sources": "7f60c27ac32ea66f889abd70edbb1cab1778f0a6",
+    "Anytype/Resources": "0827010674c089cfe9846e592e1d801e9d3f7a9b"
+  },
+  "unlisted_original_editor_or_facade_files": 0,
+  "tests_run_by_this_review": 0,
+  "qualification": "Immutable Git blob and size comparison; local SHA256 and raw prior results verified separately; no native/runtime qualification."
+}

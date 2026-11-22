@@ -1,0 +1,32 @@
+{
+  "at": "2026-11-22 19:22:47 UTC",
+  "branch": "codex/otzaria-original-editor-framework-v13-body-reviewed-20261122",
+  "force": false,
+  "head_sha": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+  "observer": {
+    "background_timeout_seconds": 3600,
+    "host_id": "host_7ec8382e82747448",
+    "kind": "one finite API observer and original terminal evidence intake",
+    "owner": "clang_sdk",
+    "remote_directory": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-sdk-installname-watch-45060396175",
+    "seconds": 3000,
+    "sentinel_job_id": "job_42c7c525570a",
+    "started_once": true
+  },
+  "preflight_active_runs": 0,
+  "previous_head": "edce5b975b173059522f90adb71271fb95adf963",
+  "ref_updates": 1,
+  "root_exact_head_approval": true,
+  "run_identity": {
+    "created_at": "2026-11-22T19:22:32Z",
+    "head_sha": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+    "observed_status": "in_progress",
+    "run_attempt": 1,
+    "run_id": 45060396175
+  },
+  "schema": 1,
+  "separate_workflow_dispatches": 0,
+  "source_mutations_after_review": 0,
+  "status": "ROOT_APPROVED_NORMAL_GUARDED_FAST_FORWARD_COMPLETED",
+  "watch_script_sha256": "30262e5c5d1b8bec79b9ba4fb180ef234a23815bcf0375d29772784e027bae82"
+}

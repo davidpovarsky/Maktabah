@@ -1,0 +1,11 @@
+{
+  "status": "ORIGINAL_DECODER_DEPENDENCY_SMOKE_PASS",
+  "python_executable": "/Users/runner/work/Maktabah/Maktabah/build/hanlin-live-python/bin/python",
+  "python_version": "3.12.10 (v3.12.10:0cc81280367, Apr  8 2025, 08:46:59) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "zstandard_version": "0.25.0",
+  "original_decoder_sha256": "ddc49ce62e4c2b621fb84add244d86371eb82d202e5efbddecfb145fdeb797f5",
+  "compressed_sample_sha256": "3841e17c6985c1cf4497811798be38285eaf93768f8eda410c422eff7cf4268e",
+  "sample_sha256": "67fbd5685d6857fc93895bae7f9da89bb04bb5268a66a4af83baf275db0e99cb",
+  "actual_native_fixture_checked": false,
+  "provider_called": false
+}

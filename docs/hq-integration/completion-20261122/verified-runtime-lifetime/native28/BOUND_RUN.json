@@ -1,0 +1,13 @@
+{
+  "run_id": "45060542322",
+  "attempt": 1,
+  "head": "afe22a1ed462b6e3601f866b582802fe514b31dd",
+  "branch": "codex/otzaria-native-owned-import-lifetime-compile-20261122",
+  "observer_job": "job_4c16a03ad99e",
+  "observer_status": "OBSERVING",
+  "run_status": "in_progress",
+  "run_url": "https://github.com/davidpovarsky/anytype-swift/actions/runs/45060542322",
+  "activation_finished_at": "2026-11-22T19:24:05.591361+00:00",
+  "first_observer_request_rejected_before_script_start": true,
+  "actual_observer_invocations": 1
+}

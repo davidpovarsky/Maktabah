@@ -1,0 +1,25 @@
+{
+  "status": "ROOT_REVIEW_CHILD_REMOTE_BYTES_MATCH",
+  "commit": "08ebfa77114e2f8c4efa4491b5222029eda60a3b",
+  "parent": "7ece4267fa70f312e1dbdb73dabee8930d95be57",
+  "tree": "459f2c9e8c5bf9fca9d41a733efcbb0cb7656b94",
+  "branch": "evidence/otzaria-schema-rpc-copy-45055852172",
+  "files": [
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-rpc-generation-20261122/failed-run-45055852172/ROOT_BASELINE_FAILURE_REVIEW.json",
+      "local_path": "/workspace/scratch/22d6326e1023/heart_completion/schema_rpc_copy_result_45055852172/ROOT_BASELINE_FAILURE_REVIEW.json",
+      "bytes": 2149,
+      "sha256": "3026d42fc6a5f76a008f63e2c82c59fe3055335a0b4c0f7a6f1c2753dfceb1dc",
+      "git_blob": "2703cc11173fa7417068928c489d2617d2077820"
+    },
+    {
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-rpc-generation-20261122/failed-run-45055852172/root_verify_rpc_baseline_failure.py",
+      "local_path": "/workspace/scratch/22d6326e1023/heart_completion/schema_rpc_copy_result_45055852172/root_verify_rpc_baseline_failure.py",
+      "bytes": 7130,
+      "sha256": "119795f8879b14b5e58d119c162b95b7993a4420c29d33a29fa87f52d026ffea",
+      "git_blob": "ef0aceca5f721a9acea62741e142028b411a6477"
+    }
+  ],
+  "force": false,
+  "executable_source_changed": false
+}

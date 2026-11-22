@@ -1,0 +1,26 @@
+{
+  "activations": 0,
+  "admission_only_changed_json_path": "reviewed_source_input_changes.Tools/OriginalEditor/framework_profile.json.after",
+  "after_manifest_sha256": "8c36a75eff383e23e05f0f0b0f93b3ac140d66c510c2ef6a47bf97d918260027",
+  "all_other_admission_fields_equal": true,
+  "before_manifest_sha256": "088c762fc0f489ac7b28260149cd709b20aada20ed8b11fe4b4ce15971aeef79",
+  "exact_profile_inverse_sha256": "b759e665c8da1e8ec8e8b1e62630a40e800114a24fae925a947cb8d27efae022",
+  "manifest_only_changed_fields": [
+    "product_files profile identity",
+    "admission_plan hash",
+    "product_source_commit",
+    "product_source_tree",
+    "metadata_only_rebind"
+  ],
+  "only_changed_operational_path": "Tools/OriginalEditor/framework_profile.json",
+  "prior_review_retained_unchanged": true,
+  "prior_review_sha256": "f85d7f2f4a12b5d931ee7658ef3723ab64bc209ecea6dc0246febe51357f3670",
+  "review_preparation_note": "An initial expected-hash string contained a transcription typo and stopped before writing; corrected from the observed actual hash and supplied manifest. No source or test changed.",
+  "reviewer": "heart_completion",
+  "scope": "Metadata and byte identity only; original source clearance and remaining Apple/runtime gates remain unchanged.",
+  "source_checkpoint_after": "3332fda43bbcfee222ba3521f2e96c753173c40d",
+  "source_checkpoint_before": "de6ca841b0afed07c02a61e399a1a0ca70222033",
+  "status": "METADATA_ONLY_SOURCE_REVIEW_CLEAR",
+  "tests_or_native_executions": 0,
+  "unchanged_other_operational_files": 9
+}

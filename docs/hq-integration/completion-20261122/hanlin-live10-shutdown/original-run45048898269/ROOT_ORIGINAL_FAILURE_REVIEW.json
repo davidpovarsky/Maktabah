@@ -1,0 +1,47 @@
+{
+  "status": "PASS_ORIGINAL_FAILURE_EVIDENCE_REVIEW",
+  "run_id": 45048898269,
+  "attempt": 1,
+  "head": "4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1",
+  "artifact_id": 14767750188,
+  "archive_sha256": "110b05a270e90ac63706c58cdedab6816b2a94bc06c320b7fbea3a8ba5b2fec1",
+  "archive_members_verified": 15,
+  "admitted_payloads_verified": 14,
+  "source_closure_reported_by_original_runner": 281,
+  "independently_read_source_files": [
+    "Scripts/CI/prepare-faithful-ipad-fixtures.py",
+    "Scripts/CI/run-faithful-ipad-matrix.py",
+    "Scripts/CI/runtime27-fixture-recovery.py",
+    "Scripts/CI/runtime27-hanlin-live.py",
+    "Scripts/CI/runtime27_interruption.py",
+    "Scripts/CI/shutdown-faithful-simulator.py",
+    "Scripts/CI/test-shutdown-faithful-simulator.py"
+  ],
+  "before_after_source_and_five_binaries_identical": true,
+  "actual_build_and_fixture_install": "PASS",
+  "failure": "Fixture terminate60s, then parent shutdown recovery240s timeout before Live XCTest/private staging",
+  "precise_child_shutdown_phase": "UNOBSERVED; original helper emitted no bounded phase receipt",
+  "budget_source_defect": "Original helper permits45+180+45+45=315s while recovery parent permits240s",
+  "budget_defect_causal_attribution": "Plausible contributor; original logs do not identify which child operation was active",
+  "native_case_executed": false,
+  "provider_conversations": 0,
+  "matrix_reported_owned_simulator_cleanup": "PASS; original report, not independent poststate inventory",
+  "credential_lifecycle": {
+    "state": "DELETED_AND_ABSENCE_VERIFIED",
+    "before_metadata": {
+      "name": "OTZARIA_LIVE_GEMINI_API_KEY",
+      "created_at": "2026-11-22T17:20:27Z",
+      "updated_at": "2026-11-22T17:20:27Z"
+    },
+    "delete_http_status": 204,
+    "after_http_status": 404,
+    "checkout_sha": "4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1",
+    "run_id": 45048898269,
+    "finished_at": "2026-11-22T18:33:00.610279+00:00"
+  },
+  "native116": false,
+  "release114": false,
+  "root_test_replays": 0,
+  "additional_actions_artifact_downloads": 0,
+  "local_transfer_note": "An initial local verification ran before curl had completed and reported file-not-found; the transfer then exited0 and all original bytes were verified without a second request."
+}

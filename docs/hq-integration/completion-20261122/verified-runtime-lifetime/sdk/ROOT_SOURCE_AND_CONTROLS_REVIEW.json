@@ -1,0 +1,81 @@
+{
+  "status": "PASS_ROOT_SDK_INSTALL_NAME_SOURCE_AND_RETAINED_CONTROLS_REVIEW",
+  "manifest_sha256": "8c36a75eff383e23e05f0f0b0f93b3ac140d66c510c2ef6a47bf97d918260027",
+  "operational_files": 10,
+  "project_change": "Exactly four framework-only install-name settings; whole previous project bytes recover after removal",
+  "unchanged_driver_functions": 7,
+  "unchanged_old_flow_test_bodies": 10,
+  "new_local_controls": [
+    {
+      "group": "controls-v1",
+      "count": 28,
+      "result_sha256": "a2706cf5dedadf4449a6c26fc1da5fd50af03d893c581df593a353f7c6569268",
+      "raw_start_pass_verified": true
+    },
+    {
+      "group": "failure-integration-v1",
+      "count": 4,
+      "result_sha256": "06664bac75865f3496724d4a229f72ae977037ec93828eefcd837423ee26e6cb",
+      "raw_start_pass_verified": true
+    },
+    {
+      "group": "retention-adapter-v1",
+      "count": 8,
+      "result_sha256": "b477a6e8500f670e43ac92eb033d8ae5cc2e45159e1cc4c1cbb27ddc8bd6ab71",
+      "raw_start_pass_verified": true
+    },
+    {
+      "group": "diagnostic-recorder-v1",
+      "count": 1,
+      "result_sha256": "595e53b6489e3c41899df7355693674318e60a978460a7d3214878ebbdab762d",
+      "raw_start_pass_verified": true
+    },
+    {
+      "group": "retained-admission-v1",
+      "count": 11,
+      "result_sha256": "45935d278515be6871538fbddbd8736f2ecd0817b561c0d7cd6880381b2a625a",
+      "raw_start_pass_verified": true
+    },
+    {
+      "group": "failure-helper-19",
+      "count": 19,
+      "result_sha256": "0173ef1eda2c82a348c548234eead723bea22a3a2c17425f06e202592e73aa58",
+      "raw_unittest_successes_verified": 19
+    }
+  ],
+  "new_local_total": 71,
+  "historical_control_replays": 0,
+  "historical245_exact_original_bytes_and_identity_sets_verified": true,
+  "historical38": "Original edce/450413 evidence only; new native collector remains mandatory",
+  "new_source_ledger": {
+    "original": 60,
+    "current": 69,
+    "changed": 6,
+    "added": 9,
+    "final_profile_afterimage_verified": true
+  },
+  "future_current_affected_ids": [
+    "test_framework_flow.OriginalDriverFlowControls.test_boot_command_failure_keeps_build_evidence_but_never_runs_bootstatus_or_install",
+    "test_framework_flow.OriginalDriverFlowControls.test_build_graph_consumer_and_signature_complete_before_original_boot_pair",
+    "test_framework_flow.OriginalDriverFlowControls.test_consumer_compile_failure_cannot_boot_or_install",
+    "test_framework_flow.OriginalDriverFlowControls.test_different_embedded_product_cannot_reach_boot_or_install",
+    "test_framework_flow.OriginalDriverFlowControls.test_multiple_notices_preserve_exact_contents_and_consumer_destination",
+    "test_framework_flow.OriginalDriverFlowControls.test_one_notice_preserves_selected_simulator_for_both_original_build_commands",
+    "test_framework_flow.OriginalDriverFlowControls.test_original_public_surface_tool_failure_cannot_boot_or_install",
+    "test_framework_flow.OriginalDriverFlowControls.test_same_180_second_boot_timeout_retains_partial_builds_without_runtime_credit"
+  ],
+  "future_eight_executed_by_root": 0,
+  "executed_admission_plan_later_delta": "Only current profile afterimage binding; original executed plan bytes retained and exact inverse verified",
+  "old_error_wrapper_later_delta": "Only guarded diagnostic-error recorder; inverse AST equals four previously executed paths; new failing-recorder path passed once",
+  "source_review": [
+    "Actual Mach-O gates require exact framework identity and reachable strong consumer load; neither rewrites a binary.",
+    "Signature/byte archive adapter requires original successful command and both exact streams before retaining unqualified app bytes.",
+    "Bounded exact-app output/crash capture cannot grant acceptance or hide the original launch/observation exception.",
+    "Runtime observations and original command/main remain unchanged. Single install300s and bootstatus180s retain their explicit scopes."
+  ],
+  "remaining": "One genuine producer build, actual current affected8, current public/Clang/signature/binary gates and en/he observations. Exact final Git69input/75path readback is separately PASS.",
+  "verification_notes": [
+    "The first root review attempt selected an unquoted PBX key and stopped before control verification; the reviewed file uses the quoted key. Correcting only that read-only selector yielded the exact four-line inverse. No product/control execution was replayed."
+  ],
+  "local_documentation_files_independently_hashed": 65
+}
