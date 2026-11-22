@@ -1,0 +1,8 @@
+test_exact_toolchain_cannot_bypass_distinct_finalized_runtime_validation (selector_schema2.SelectorSchema2Boundaries.test_exact_toolchain_cannot_bypass_distinct_finalized_runtime_validation) ... ok
+test_finalized_schema2_selects_original_framework_tuple_and_keeps_roles (selector_schema2.SelectorSchema2Boundaries.test_finalized_schema2_selects_original_framework_tuple_and_keeps_roles) ... ok
+test_missing_or_changed_top_level_tuple_cannot_override_retained_framework (selector_schema2.SelectorSchema2Boundaries.test_missing_or_changed_top_level_tuple_cannot_override_retained_framework) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.098s
+
+OK

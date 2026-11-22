@@ -1,0 +1,26 @@
+[
+  {
+    "path": "Scripts/CI/hq-original-editor-distribution.py",
+    "bytes": 35281,
+    "sha256": "4711f3089b9a214923a0ccc36808b6efbfbef7250646db0915006e3e01736d3d",
+    "original_git_blob": "b4e4163b869084b4cfcb12b5b9a030fb9de8dbf7"
+  },
+  {
+    "path": "Scripts/CI/original_editor_continuation_admission.py",
+    "bytes": 27570,
+    "sha256": "a8bca577b337eec3f3d6a154036c28447fce5b5dc57f83e950a74532c3446f5f",
+    "original_git_blob": null
+  },
+  {
+    "path": "Scripts/CI/restore-original-editor-distribution.py",
+    "bytes": 12482,
+    "sha256": "152a7bb8d4bb2abd5591d907453f13a859de5e9b55c13b74a0221876af8bd3d4",
+    "original_git_blob": "2ba388080aa49756e852442b2d063ccf6ee30ead"
+  },
+  {
+    "path": "Scripts/CI/runtime27-original-editor-native.py",
+    "bytes": 43410,
+    "sha256": "0d4fb04c71b133ab364b313fd4d58ff2008a6518051d50d7db2e03fa98235d19",
+    "original_git_blob": "726eb809b2543e15268c5c93b91aa90cae06f3fe"
+  }
+]

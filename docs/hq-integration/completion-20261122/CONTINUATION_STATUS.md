@@ -1,3 +1,76 @@
+# Continuation checkpoint — reviewed CI integration and original failure evidence
+
+Checkpoint prepared on 22 November 2026, after independent source and retained-result verification. The immediately preceding canonical commit is `154ba80a3a70d983fddaef1ad92096c331491381`. The previous report is retained verbatim below this section, including its correction that the canonical full Source tree is different from the focused Native application's Source tree.
+
+## What this checkpoint integrates
+
+Seven CI files compose three immutable, reviewed source packets, in dependency order:
+
+| Packet | Exact source | Independently verified changed paths | Retained new controls |
+| --- | --- | ---: | ---: |
+| Schema2 admission and restoration | `b09c95f3eee6aa3b8fe363cfac76a89025c15abe` | 27 | 20 PASS |
+| Original toolchain selector | `9e7eeebaceae5943ac4b67207e11cbddaffc1b18` | 17 | 3 PASS |
+| Original Clang consumer context | `75ea6c2fbd605623159d87a2a8dc026a432a3b75` | 19 | 6 PASS |
+
+The selector and Clang packets both descend from the schema2 packet. The final seven operational files take the schema2 helper and restorer, the selector child, and all four Clang files. The Clang distribution and native runner afterimages already include the schema2 edits. All document afterimages are retained, and duplicate paths may only agree or be these two explicitly reviewed dependent CI replacements.
+
+The schema2 path keeps the original failed framework producer separate from a later runtime qualification. It checks the exact original artifact identity, recovered original dotfiles, complete file inventory, actual qualification, cleanup and toolchain tuple. It does not rewrite the original unqualified receipt. The selector uses the same full configuration validator before accepting the fixed framework/toolchain tuple.
+
+The Clang consumer imports the actual original nineteen module maps and nineteen header roots. It no longer invents an `Include` directory for this schema2 closure, and it retains every `-Xcc` argument pair. All six original reader/inventory definitions are verbatim from SDK source `edce5b975b173059522f90adb71271fb95adf963`. A separate read of the already retained original archive verified all 1,394 declaration files, 6,484,145 bytes, nineteen roots/maps and 76 argument tokens. No new artifact download, Ruby execution, compiler invocation or runtime qualification is claimed by this adapter check. The canonical project has no existing `OTHER_SWIFT_FLAGS` setting; the reviewed nil/inherited branch therefore applies. Real Ruby project expansion and Apple compilation remain acceptance gates.
+
+All prior passing controls remain associated with their exact source or unchanged function bindings. This integration replays none of them. The commit is marked `[skip ci]` because this is the composition of already verified CI boundaries; a new original runtime or StageB run requires its separately reviewed exact source and real artifact pins.
+
+## Product identity and activation limits
+
+This checkpoint changes CI and evidence/report files only. These four canonical product trees must remain exactly:
+
+| Product path | Git tree |
+| --- | --- |
+| `Source` | `fada5ad1164ed81e248dec54e1ceedfd2741fa57` |
+| `Vendor` | `4065c0e62af325e83a65fe0c70270985229807ae` |
+| `Maktabah.xcodeproj` | `8c0fa1ccfbcfae01fae3c267512864e00efcf078` |
+| `Maktabah-iOSUITests` | `ca36ba13f1fd900adf528a3e404fed6a66290b6b` |
+
+The existing StageB input manifest is unchanged. A successful original SDK runtime qualification does not yet exist, so no success pin is fabricated and StageB is not activated. Full canonical Native116 and Release114 acceptance are still open. The focused Native1 PASS belongs to actual application source `3b4345bd0ae33b83c2ff4ae7697164343f0792b8`; only the reviewed complete ChatView afterimage has been integrated into the canonical product. The three pre-existing canonical original-editor files remain intact.
+
+## Original SDK runtime continuation — actual failure preserved
+
+Run [45048745285](https://github.com/davidpovarsky/anytype-swift/actions/runs/45048745285), attempt1, source `452032e3ae51d4dec3c91b3f14ef1d70e43f1219`, completed with failure. The original framework and its 245 source controls/38 public-SPI checks were reused; none were replayed. The 24 new continuation source controls remain valid only within their recorded source boundaries.
+
+The genuine consumer app build and signature succeeded, and the embedded framework identity and complete inventory were verified after build. The newly owned simulator was created and booted. The boot-status command then exceeded its 180-second budget with empty output. No install or native observation occurred. The shutdown command also timed out. An early shutdown guard prevented delete and post-cleanup state inspection; the owned simulator's final state is therefore unknown. The process groups were drained, which is a separate fact from device cleanup.
+
+The original outer artifact is `14764689125`, 330,477 bytes, SHA256 `085b6fc43ea91127162568cbe2c8c84907b8285f06f35d8baef0200151d24cbb`. Its inner runtime evidence is 330,297 bytes, SHA256 `9233580e1f771917bf0b4788738a11e840bff2ed12a446ea9c12751d397f2b51`, 144 members. Root independently checked the retained original archive, both evidence indexes, actual command streams and their two explicitly recorded binary-output relocations. No download or test was repeated. The immutable failure packet is `e7748857b6f9f622cf1ef13b7059ebc754e54860` in `davidpovarsky/anytype-swift`.
+
+The old and new jobs used the same image and toolchain, but a different runner. One concrete source difference is that the continuation's subprocess environment whitelist omitted normal macOS session variables. This is an investigated difference, not an established cause of the simulator hang. A separately reviewed continuation adds safe session variables and bounded diagnostics, records delete/post-state even after a drained shutdown failure, and retains the signed unqualified app before boot in a separate artifact. The 180-second boot and 300-second one-install limits remain unchanged. No new successful runtime claim exists at this checkpoint.
+
+## Original Heart schema and RPC generation
+
+The five actual schema semantic cases from run `45046749798` remain PASS, including the original previously failing child. The previous twelve cases were not replayed. That result remains separately bound to `0896ae82864142e0b633278a8c5cb718ddf66e1e` and its original archive; it does not establish the later RPC or full application integration.
+
+The first normal push of reviewed generator source `fa022fdffa25ec93d8c8c324f20889e526fdf498` created no Actions run. This condition and the original branch push were retained. An exact comment-only workflow child, `65dae331936645cf807349f1fcd10db2ba973f9b`, preserved all eleven control inputs and the source manifest, and one normal fast-forward created actual run [45052270280](https://github.com/davidpovarsky/anytype-swift/actions/runs/45052270280), attempt1.
+
+That actual run failed in command8, `baseline-clone-swift`, before any generator, download, compile or test. Local Git upload-pack could not supply omitted promisor object `aa9f7c5d1b62e822814328e66427878993025f63` from the sparse original SDK input and reported `lazy fetching disabled`. All eight owned process groups were drained and the owned work directory was removed. No generated output or protocol compilation result is claimed.
+
+The original artifact `14766048443` is 866,386 bytes, SHA256 `9e12af3ae19e07b06cc3ee4215d218b62e0092525921cece5c81759aac802b01`. Root verified its CRC, all thirty indexed payloads, Git blob identities and sixteen original command streams. The sole observer `job_771b8c66be59` completed its intake successfully at18:06:40UTC; its earlier read timeouts remain in the record. The correction is limited to preparing the two isolated original source lanes while preserving actual pinned generator/tool inputs and the reviewed compile boundary.
+
+## Owned original import — 26 new actual unit PASS
+
+The source and evidence packet is [3d58f04f938f743b9c3b737cdfedcc10610cbffc](https://github.com/davidpovarsky/anytype-swift/commit/3d58f04f938f743b9c3b737cdfedcc10610cbffc), parent `72e8154c9ad21280894d0c93f5828e33a19ed7d6`. It contains fifteen source afterimages, the strict original-preimage installer, source peer reviews and complete original unit evidence, with all105 remote publication blobs read back.
+
+The first unit attempt timed out during compilation and ran zero tests; its original evidence is retained. The explicit second continuation kept the same39 inputs and assertions, added compiler progress output and a bounded compile budget, and actually passed all26 unique tests on Windows Go1.25.6. Root independently verified112 raw Go events,26 unique starts/PASS results, four commands/eight streams, twelve complete real source files and three original fragments. The 104,611-byte archive SHA256 is `4d26475cb37b9be69ec0ef9bf0c1daf94566424f4c87dc20d04e9e34bcdf9bb0`, with all50 members/CRC verified. Previous50 mapping and7 request-compatibility controls were not replayed.
+
+The new boundaries register work before calling it, join actual worker/submission and upload completion, retain cancellation facts and preserve synchronous upload failures that an original provider fallback can otherwise hide. They compile exact production files/fragments with explicit ABI/callback fixtures. The original full importer, real storage/account/Space lifetime, complete persisted body/file readback and ACK remain open. Already executing original workers are joined; the original queued-task Execute-after-Stop race is not presented as prevented. The successful earlier original-module compile run `45047489968` remains tied to its earlier six-file source; the new twenty-file composed source needs its own focused original-module compile gate.
+
+## Live9 ownership and remaining dependency order
+
+At the last read-only host observation, 18:04:24UTC, actual Live9 run [45048898269](https://github.com/davidpovarsky/Maktabah/actions/runs/45048898269), attempt1, head `4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1`, was building the original app. Controller `job_cac67a7fd3cb` was the sole owner of the finite watch and temporary credential. The credential was absent before installation, and its created/updated metadata are retained. The original controller must verify terminal run state and its exact owned metadata before deletion and absence proof. If its watch window expires while CI is active, cleanup ownership remains explicit and only a successor observer of this same run may continue after the first observer is terminal. No additional dispatch, provider probe or artifact intake is authorized by this status entry.
+
+Continue the active run and cleanup, then review its original evidence; correct and qualify the original SDK runtime; complete generated RPC and original module compilation; integrate exact original lifetime/selection/permission admission and drain ownership; qualify the original StageB edit/save/reopen case; then freeze the resulting canonical product for full Native/Release acceptance. The genuine owner verification public key and authentic Books database/migration contract remain external prerequisites; no key, signature or database schema is invented. All82 unique Asana tasks (58open/24completed in the complete inventory) remain governed by their actual dependency and acceptance evidence.
+
+Verified milestones were recorded in main Asana task `1220763167870295`: owned26 review comment `1220770232231831` and RPC failure diagnosis `1220770343896655`. The canonical integration and publication receipt will be added after its actual normal push and clean fast-forward are verified.
+
+---
+
 # Current canonical source clarification — 22 November 2026
 
 The verified integration preserves the canonical editor work and adds exactly one tested accessibility line. The product-source commit is `dcf8885471fc066ce6ad4358c30062826f03589f`, a direct child of `b435db307bd3abe3ab25ff48b5134309fd759b04`. This final documentation child retains the source-validation stop and its read-only diagnosis. The resulting canonical Source tree is `fada5ad1164ed81e248dec54e1ceedfd2741fa57`.

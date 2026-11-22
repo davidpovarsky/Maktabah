@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "stageb-schema2/controls/run_boundary_controls.py",
+    "--output",
+    "stageb-schema2/evidence/controls-v1"
+  ],
+  "exit_code": 0,
+  "automatic_retries": 0,
+  "streams": [
+    {
+      "path": "stderr.log",
+      "bytes": 2933,
+      "sha256": "84f0c6b36ce2e53ac47306e97e6ca5e10a5c0806b87587c3b6cd33010662944f"
+    },
+    {
+      "path": "stdout.jsonl",
+      "bytes": 4494,
+      "sha256": "d0fbd3cb17953f08a25004417c5678e060da0545a0bf5e2183056331995c60e5"
+    }
+  ]
+}

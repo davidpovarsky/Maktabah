@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "stageb-clang-context/controls/consumer_context_controls.py",
+    "--result",
+    "stageb-clang-context/evidence/controls-v1/RESULT.json"
+  ],
+  "started_at": "2026-11-22T17:39:09.411653+00:00",
+  "finished_at": "2026-11-22T17:39:09.702923+00:00",
+  "returncode": 0,
+  "source_unchanged": true,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "4f833bd2f67325365fbe40141081966a93ebe88a19350d0bae8b8f0949bc1de3"
+}

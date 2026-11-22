@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "stageb-schema2/selector/run_controls.py",
+    "--output",
+    "stageb-schema2/selector/evidence/controls-v1"
+  ],
+  "started_at": "2026-11-22T17:30:11.384785+00:00",
+  "finished_at": "2026-11-22T17:30:11.614466+00:00",
+  "returncode": 0,
+  "timeout_seconds": 120,
+  "automatic_retry": false,
+  "streams": {
+    "stdout": {
+      "bytes": 863,
+      "sha256": "5f2e2853fa450610444321ca934fddb42a5413d6eb849983ce373311b2cf2466"
+    },
+    "stderr": {
+      "bytes": 694,
+      "sha256": "3e46dcb076e9add2d64ad8f0cafb6e28cd0cf849c434dcc891e7bf7cfd0a2aab"
+    }
+  }
+}

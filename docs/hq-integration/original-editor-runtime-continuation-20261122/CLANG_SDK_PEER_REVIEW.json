@@ -1,0 +1,52 @@
+{
+  "status": "PASS_BOUNDED_SOURCE_REVIEW_NO_EXECUTION",
+  "framework_producer_canonical_sha256": "4751f2745b5ff5c23574291c78107de5aeacc42c679bb41d58be8e5b1e2f839c",
+  "source_files": [
+    {
+      "path": "Scripts/CI/hq-original-editor-distribution.py",
+      "sha256": "4711f3089b9a214923a0ccc36808b6efbfbef7250646db0915006e3e01736d3d",
+      "changed_top_level_definitions": [
+        "admit",
+        "prepare",
+        "require_unchanged"
+      ]
+    },
+    {
+      "path": "Scripts/CI/original_editor_continuation_admission.py",
+      "sha256": "a8bca577b337eec3f3d6a154036c28447fce5b5dc57f83e950a74532c3446f5f",
+      "changed_top_level_definitions": []
+    },
+    {
+      "path": "Scripts/CI/restore-original-editor-distribution.py",
+      "sha256": "152a7bb8d4bb2abd5591d907453f13a859de5e9b55c13b74a0221876af8bd3d4",
+      "changed_top_level_definitions": [
+        "stage"
+      ]
+    },
+    {
+      "path": "Scripts/CI/runtime27-original-editor-native.py",
+      "sha256": "0d4fb04c71b133ab364b313fd4d58ff2008a6518051d50d7db2e03fa98235d19",
+      "changed_top_level_definitions": [
+        "execute",
+        "prepare",
+        "runtime_dependency_preflight"
+      ]
+    }
+  ],
+  "checked": [
+    "schema1 control flow preserved behind explicit schema2 branches",
+    "flat aliases remain original framework producer",
+    "role-specific exact failed framework and successful runtime API metadata plus upload windows",
+    "separate sidecar outside complete original product inventory",
+    "exact two missing dotfiles and original full manifest restored; no QUALIFICATION synthesized",
+    "unchanged existing 38 public/SPI compiled Host gate and exact actual toolchain admission",
+    "both en/he actual observation statuses and required cleanup retained",
+    "sidecar and original inventory rechecked before StageB runtime"
+  ],
+  "remaining_gates": [
+    "Real successful continuation metadata and sidecar hashes must be committed before actual admission.",
+    "Actual StageB restore/build/runtime has not executed."
+  ],
+  "new_tests_executed_by_reviewer": 0,
+  "prior_test_replays": 0
+}

@@ -1,0 +1,34 @@
+{
+  "status": "PASS_ALL_63_PACKET_BLOBS_BY_IMMUTABLE_GIT_ID_AND_FULL_CHANGE_CLOSURE",
+  "utc": "2026-11-22T18:06:58.734879+00:00",
+  "repository": "davidpovarsky/Maktabah",
+  "packets": [
+    {
+      "label": "schema2",
+      "head": "b09c95f3eee6aa3b8fe363cfac76a89025c15abe",
+      "parent": "b435db307bd3abe3ab25ff48b5134309fd759b04",
+      "tree": "e43613f0352f762f89c802c016ae1d44c5090f3d",
+      "all_changed_path_blob_ids_verified": 27
+    },
+    {
+      "label": "selector",
+      "head": "9e7eeebaceae5943ac4b67207e11cbddaffc1b18",
+      "parent": "b09c95f3eee6aa3b8fe363cfac76a89025c15abe",
+      "tree": "2fa89d308ba1e235c88dc7255d0e9bad4a72c0c8",
+      "all_changed_path_blob_ids_verified": 17
+    },
+    {
+      "label": "clang",
+      "head": "75ea6c2fbd605623159d87a2a8dc026a432a3b75",
+      "parent": "b09c95f3eee6aa3b8fe363cfac76a89025c15abe",
+      "tree": "10bb3a8027a66168745fa48374507d2866d13f8b",
+      "all_changed_path_blob_ids_verified": 19
+    }
+  ],
+  "canonical_head": "154ba80a3a70d983fddaef1ad92096c331491381",
+  "canonical_clean": true,
+  "project_other_swift_flags": [],
+  "project_blob": "3261731b3c225ec783b7f7542b53726c71f638c1",
+  "mutations": 0,
+  "new_tests": 0
+}

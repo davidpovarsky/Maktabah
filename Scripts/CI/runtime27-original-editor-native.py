@@ -78,6 +78,9 @@ def runtime_dependency_preflight():
     pending = [ci / name for name in ["runtime27.py", "run-faithful-ipad-matrix.py",
                "prepare-faithful-ipad-fixtures.py", "runtime27-fixture-oracle.py", "verify-faithful-xctest.py",
                "hq-original-editor-distribution.py", "restore-original-editor-distribution.py"]]
+    if json.loads(ADMISSION.read_bytes()).get("schema") == 2:
+        pending.append(ci / "original_editor_continuation_admission.py")
+        pending.append(ci / "original_editor_clang_imports.py")
     checked, imported = {}, set()
     while pending:
         path = pending.pop()
@@ -112,6 +115,9 @@ def prepare():
     context = source_context()
     runtime_dependency_preflight()
     sdk_input = json.loads(ADMISSION.read_text())
+    if sdk_input.get("schema") == 2:
+        continuation = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_continuation_admission.py"))
+        continuation["validate_configuration"](sdk_input)
     require(re.fullmatch(r"[a-f0-9]{40}", sdk_input.get("source_sha", ""))
             and re.fullmatch(r"[a-f0-9]{64}", sdk_input.get("archive_sha256", ""))
             and type(sdk_input.get("artifact_id")) is int and sdk_input["artifact_id"] > 0,
@@ -155,6 +161,15 @@ def execute():
             and build.get("checkout_sha") == os.environ["EXPECTED_CHECKOUT_SHA"]
             and build.get("original_editor_distribution", {}).get("admission_sha256") == digest(ADMISSION),
             "No current-source actual app build with admitted original SDK")
+    sdk_input = json.loads(ADMISSION.read_bytes())
+    if sdk_input.get("schema") == 2:
+        admitted = build["original_editor_distribution"]
+        require(admitted.get("schema") == 2
+                and admitted.get("framework_producer") == sdk_input["framework_producer"]
+                and admitted.get("runtime_qualification_producer") == sdk_input["runtime_qualification_producer"]
+                and admitted.get("qualification_sha256") == sdk_input["qualification_sha256"],
+                "Actual StageB build lost the separate producer bindings")
+        runpy.run_path(str(ROOT / "Scripts/CI/hq-original-editor-distribution.py"))["require_unchanged"](ROOT, admitted)
     write(OUT / "built-binaries-before.json", built_binaries())
     driver = runpy.run_path(str(ROOT / "Scripts/CI/runtime27.py"))
     controller = driver["runtime27_interruption"].InterruptController().install()

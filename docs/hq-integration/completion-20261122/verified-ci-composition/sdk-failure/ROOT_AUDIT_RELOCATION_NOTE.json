@@ -1,0 +1,9 @@
+{
+  "scope": "Read-only evidence reviewer correction; no runtime or product execution",
+  "initial_failure": "The reviewer initially expected every command stdout to remain at its ledger-relative path; two original artifact download stdout files were intentionally moved to owned work by the reviewed producer.",
+  "source_binding": "run_runtime_continuation.py download() records stdout_relocated_to_owned_work, stdout_bytes and stdout_sha256, verifies immutable artifact size/hash, then renames the partial download to its final owned ZIP.",
+  "correction": "Require exactly the two original artifact roles, their exact GitHub artifact endpoints, original source-bound sizes/hashes and recorded final relocation names. All other command streams must remain present and hash-identical.",
+  "evidence_modified": false,
+  "new_Actions_downloads": 0,
+  "new_native_executions": 0
+}

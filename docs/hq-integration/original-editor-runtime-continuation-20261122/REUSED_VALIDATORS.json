@@ -1,0 +1,12 @@
+{
+  "source": "sdk_runtime_continuation/candidate/Tools/OriginalEditor/run_runtime_continuation.py",
+  "source_sha256": "0cf0cd7b835579feed75ceda9f82cb8dab40eeae5ec55eb39b3d2665e818955a",
+  "functions": [
+    "require",
+    "read_json",
+    "zip_members",
+    "verify_retained_phase",
+    "extract_original_evidence"
+  ],
+  "scope": "Source copies for cross-consumer contract consistency; no execution"
+}

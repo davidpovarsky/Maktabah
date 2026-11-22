@@ -1,0 +1,61 @@
+{
+  "status": "PASS_THREE_NEW_SCHEMA2_SELECTOR_BOUNDARIES",
+  "scope": "Actual selector plus unchanged schema2 validator; committed synthetic runtime input and original framework contract. No Apple/SDK/native execution.",
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "expected_ids": [
+    "selector_schema2.SelectorSchema2Boundaries.test_exact_toolchain_cannot_bypass_distinct_finalized_runtime_validation",
+    "selector_schema2.SelectorSchema2Boundaries.test_finalized_schema2_selects_original_framework_tuple_and_keeps_roles",
+    "selector_schema2.SelectorSchema2Boundaries.test_missing_or_changed_top_level_tuple_cannot_override_retained_framework"
+  ],
+  "started_ids": [
+    "selector_schema2.SelectorSchema2Boundaries.test_exact_toolchain_cannot_bypass_distinct_finalized_runtime_validation",
+    "selector_schema2.SelectorSchema2Boundaries.test_finalized_schema2_selects_original_framework_tuple_and_keeps_roles",
+    "selector_schema2.SelectorSchema2Boundaries.test_missing_or_changed_top_level_tuple_cannot_override_retained_framework"
+  ],
+  "passed_ids": [
+    "selector_schema2.SelectorSchema2Boundaries.test_exact_toolchain_cannot_bypass_distinct_finalized_runtime_validation",
+    "selector_schema2.SelectorSchema2Boundaries.test_finalized_schema2_selects_original_framework_tuple_and_keeps_roles",
+    "selector_schema2.SelectorSchema2Boundaries.test_missing_or_changed_top_level_tuple_cannot_override_retained_framework"
+  ],
+  "tests_run": 3,
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "source_inputs": [
+    {
+      "path": "selector/candidate/Scripts/CI/select-runtime27-toolchain.py",
+      "bytes": 10936,
+      "sha256": "3e6ed97188d50f4f344dbd7f77f142a05f0a0bde1b720a0745df098f49bfcf2f"
+    },
+    {
+      "path": "selector/candidate/Scripts/CI/original_editor_continuation_admission.py",
+      "bytes": 27570,
+      "sha256": "a8bca577b337eec3f3d6a154036c28447fce5b5dc57f83e950a74532c3446f5f"
+    },
+    {
+      "path": "selector/original/select-runtime27-toolchain.py",
+      "bytes": 10525,
+      "sha256": "2a671be78550ac7e3381e533100c9ec62e55146ef3b47ada3fa77f5a149ff856"
+    },
+    {
+      "path": "selector/test_selector_schema2.py",
+      "bytes": 5349,
+      "sha256": "757cdc461e4b0cba5b99935c9d71cd32c75fed6327765b136815e077780dcafa"
+    },
+    {
+      "path": "selector/run_controls.py",
+      "bytes": 3031,
+      "sha256": "7457a86ee86eea6a6d0d70c881e44981e601223373bb4f4b955e8e2418e82357"
+    },
+    {
+      "path": "FRAMEWORK_PRODUCER.json",
+      "bytes": 5555,
+      "sha256": "9a5ae9a6196bb52bebf14c7e77508755f75f6df1c2c6ee62bbdc3cf5907c82c4"
+    }
+  ],
+  "source_unchanged": true,
+  "prior_controls_replayed": 0,
+  "native_execution": false,
+  "actual_runtime_pins_committed": false
+}

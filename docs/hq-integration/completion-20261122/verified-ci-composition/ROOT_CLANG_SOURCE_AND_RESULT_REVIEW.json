@@ -1,0 +1,47 @@
+{
+  "schema": "otzaria.root-clang-consumer-source-result-review/1",
+  "utc": "2026-11-22T18:05:28.867142+00:00",
+  "status": "PASS_REVIEWED_SOURCE_AND_RETAINED_6_NEW_BOUNDARY_RESULTS",
+  "source_sha256": {
+    "hq-original-editor-app-target.rb": "094f10867cb070035aa7044bc94f57df712b0b8ccfdcd4cf758a75c21f455e6a",
+    "hq-original-editor-distribution.py": "6ebfeab1fbc1c8568734a8a36016885e6454eef73940020b3db6986140022bf5",
+    "original_editor_clang_imports.py": "86e2914f58d1c960a7acde1df3b1e303f898667a72dfa55eee3e439916db1812",
+    "runtime27-original-editor-native.py": "6a16af944230888bb7c26e955c9917374137ead19c5a39e7de05ca9786a94de8"
+  },
+  "prior_six_reader_definitions_verbatim": true,
+  "prior_source_sha": "edce5b975b173059522f90adb71271fb95adf963",
+  "retained_unique_pass": 6,
+  "raw_streams_verified": 2,
+  "execution_inputs_verified": 5,
+  "actual_retained_declaration_adapter": {
+    "status": "ACTUAL_RETAINED_1394_DECLARATION_ADAPTER_PASS",
+    "source_sha256": "86e2914f58d1c960a7acde1df3b1e303f898667a72dfa55eee3e439916db1812",
+    "source_identity": {
+      "source_sha": "edce5b975b173059522f90adb71271fb95adf963",
+      "run_id": "45041382512",
+      "run_attempt": "1",
+      "original_package_lock_sha256": "86546dd98acc5d0414c4c10c0b79f82bda02b06c3687d64481547d9ad0368e5a",
+      "manifest_sha256": "a579907fcccffaf59bbacb6ee236b19961f31f1d937ca6c5da57d6a9b9f3a840"
+    },
+    "original_artifact_id": 14762329313,
+    "original_archive_sha256": "b0ebfc5dc9d86a6b1829aad7117ab005c8eacb019b0d37e3373f9e9df9c2a2df",
+    "declaration_files": 1394,
+    "declaration_bytes": 6484145,
+    "header_roots": 19,
+    "module_maps": 19,
+    "swift_import_argument_count": 76,
+    "separate_Xcc_count": 38,
+    "include_absent": true,
+    "new_artifact_downloads": 0,
+    "prior_test_bodies_replayed": 0,
+    "compiler_or_runtime_execution": false,
+    "scope": "New downstream reader and argument adapter, on exact already downloaded original declaration bytes; no new framework/native/Ruby qualification."
+  },
+  "adapter_raw_stdout_sha256": "ab44cbce605ddebadf1f17090ea52b8ca57e9adac517cdf901297660ba0172aa",
+  "source_review": "All four file patch and full adapter reviewed; schema1 branch retains original behavior; schema2 uses source-bound complete nineteen-map header closure and complete paired compiler arguments. Existing app target object guard retained. Ruby/native inputs in controls are explicit doubles.",
+  "tests_executed_in_this_review": 0,
+  "downloads": 0,
+  "ruby_execution": false,
+  "apple_execution": false,
+  "remaining_gate": "Actual Ruby target expansion and real Apple compile/runtime on final admitted SDK remain pending."
+}

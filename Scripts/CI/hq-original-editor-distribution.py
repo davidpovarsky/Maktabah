@@ -8,6 +8,7 @@ import os
 from pathlib import Path, PurePosixPath
 import plistlib
 import re
+import runpy
 import shutil
 import stat
 import subprocess
@@ -273,8 +274,13 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
     committed = subprocess.check_output(["git", "show", "HEAD:" + relative], cwd=root)
     require(committed == admission_path.read_bytes(), "SDK admission bytes differ from the reviewed checkout")
     config = read_json(admission_path)
-    require(config.get("schema") == 1 and config.get("repository") == "davidpovarsky/anytype-swift",
+    require(config.get("schema") in {1, 2} and config.get("repository") == "davidpovarsky/anytype-swift",
             "Wrong original SDK admission schema/repository")
+    continuation = None
+    if config["schema"] == 2:
+        continuation = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_continuation_admission.py")))
+        continuation["validate_configuration"](config)
+        continuation["validate_paths"](root, config, globals())
     require(re.fullmatch(r"[a-f0-9]{40}", config.get("source_sha", "")), "Unfinalized original SDK source")
     require(all(type(config.get(k)) is int and config[k] > 0 for k in ["run_id", "run_attempt", "artifact_id", "archive_bytes"]),
             "Missing immutable original SDK run/artifact identity")
@@ -288,20 +294,28 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
     hanlin_source_path = owned_path(root, config["hanlin_source_path"], build=True)
     require(digest(manifest_path) == config["distribution_manifest_sha256"], "Original export manifest differs")
     require(digest(hanlin_source_path) == config["hanlin_source_sha256"], "Original compiled Hanlin snapshot receipt differs")
-    qualification_path = distribution / "QUALIFICATION.json"
+    qualification_path = owned_path(root, config["qualification_path"], build=True) if continuation else distribution / "QUALIFICATION.json"
     source_path = distribution / "SourceProvenance/OriginalSource.json"
     require(digest(qualification_path) == config["qualification_sha256"]
             and digest(source_path) == config["original_source_sha256"], "SDK qualification/source receipt differs")
     qualification, provenance, exported = read_json(qualification_path), read_json(source_path), read_json(manifest_path)
-    require(qualification.get("status") == QUALIFIED and qualification.get("phase") == "COMPLETE"
-            and qualification.get("original_framework_build") == "PASS"
-            and qualification.get("external_consumer_build") == "PASS"
-            and qualification.get("same_toolchain_only") is True,
-            "SDK lacks the original framework/external consumer prerequisites")
+    if continuation:
+        continuation_receipt = continuation["validate_qualification"](config, qualification)
+    else:
+        require(qualification.get("status") == QUALIFIED and qualification.get("phase") == "COMPLETE"
+                and qualification.get("original_framework_build") == "PASS"
+                and qualification.get("external_consumer_build") == "PASS"
+                and qualification.get("same_toolchain_only") is True,
+                "SDK lacks the original framework/external consumer prerequisites")
     compiled_host_api = require_compiled_host_api(qualification)
-    require(qualification.get("source_sha") == provenance.get("application_source") == config["source_sha"]
-            and str(qualification.get("run_id")) == str(config["run_id"])
-            and str(qualification.get("run_attempt")) == str(config["run_attempt"]), "SDK source/run receipt drift")
+    if continuation:
+        require(provenance.get("application_source") == config["source_sha"]
+                and provenance.get("original_trees") == config["framework_producer"]["source_trees"],
+                "Original framework provenance changed in continuation")
+    else:
+        require(qualification.get("source_sha") == provenance.get("application_source") == config["source_sha"]
+                and str(qualification.get("run_id")) == str(config["run_id"])
+                and str(qualification.get("run_attempt")) == str(config["run_attempt"]), "SDK source/run receipt drift")
     observations = qualification.get("verified_runtime_observations", [])
     require(len(observations) == 2 and {row.get("language") for row in observations} == {"en", "he"}
             and all(row.get("status") == "ACTUAL_IMPORT_LINK_RESOURCE_RUNTIME_PASS" for row in observations),
@@ -313,7 +327,8 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
     actual = inventory(distribution)
     expected = dict(exported["files"])
     require("QUALIFICATION.json" not in expected, "Unexpected circular original qualification inventory")
-    expected["QUALIFICATION.json"] = {"bytes": qualification_path.stat().st_size, "sha256": config["qualification_sha256"]}
+    if not continuation:
+        expected["QUALIFICATION.json"] = {"bytes": qualification_path.stat().st_size, "sha256": config["qualification_sha256"]}
     require(actual == expected, "Actual SDK distribution differs from the original export closure")
     frameworks = sorted(p.name for p in (distribution / "Frameworks").iterdir())
     bundles = sorted(p.name for p in (distribution / "Bundles").iterdir())
@@ -348,6 +363,14 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
               "hanlin_source": read_json(hanlin_source_path),
               "compiled_host_api": compiled_host_api,
               "native_editor_ui_tests": 0, "scope": "ORIGINAL_DISTRIBUTION_PREREQUISITES_ONLY"}
+    if continuation:
+        result.update(schema=2, **continuation_receipt)
+        clang = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_clang_imports.py")))
+        identity = {"source_sha": config["source_sha"], "run_id": str(config["run_id"]),
+                    "run_attempt": str(config["run_attempt"]),
+                    "original_package_lock_sha256": result["original_package_lock_sha256"],
+                    "manifest_sha256": config["framework_producer"]["clang_manifest_sha256"]}
+        result["clang_import_context"] = clang["admitted_context"](distribution, identity)
     write(evidence / "distribution-admission.json", result)
     return result
 
@@ -356,6 +379,10 @@ def require_unchanged(root, admitted):
     root = Path(root)
     require(digest(root / admitted["admission_path"]) == admitted["admission_sha256"], "SDK admission changed during build")
     require(inventory(root / admitted["distribution_root"]) == admitted["distribution_files"], "SDK distribution changed during build")
+    if admitted.get("schema") == 2:
+        sidecar = owned_path(root, admitted["qualification_path"], build=True)
+        require(not sidecar.is_relative_to(owned_path(root, admitted["distribution_root"], build=True))
+                and digest(sidecar) == admitted["qualification_sha256"], "Separate runtime qualification changed during build")
 
 
 def compare_or_copy(source, target):
@@ -413,6 +440,9 @@ def prepare(root, admission_path, report, out, logged):
     evidence = out / "original-editor"
     evidence.mkdir(parents=True, exist_ok=True)
     admitted = admit(root, admission_path, evidence, swift=report["swift"], sdk=report["sdk_version"])
+    if admitted.get("schema") == 2:
+        require(report.get("xcode") == admitted["framework_producer"]["toolchain"]["xcode"],
+                "Maktabah Xcode differs from the original framework and continuation")
     policy = shared_package_policy(report["package_pins"], admitted["shared_package_revisions"])
     admitted["shared_package_policy"] = policy
     distribution = root / admitted["distribution_root"]
@@ -446,8 +476,13 @@ def prepare(root, admission_path, report, out, logged):
     api_source = root / "Scripts/CI/OriginalEditorDistributionAPICheck.swift"
     api_command = ["xcrun", "swiftc", "-typecheck", "-parse-as-library", "-swift-version", "6", "-D", "DEBUG",
             "-sdk", report["sdk_path"], "-target", "arm64-apple-ios" + report["sdk_version"] + "-simulator",
-            "-F", str(distribution / "Frameworks"), "-I", str(distribution / "Modules"),
-            "-I", str(distribution / "Include"), str(api_source)]
+            "-F", str(distribution / "Frameworks"), "-I", str(distribution / "Modules")]
+    if admitted.get("schema") == 2:
+        clang = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_clang_imports.py")))
+        api_command += clang["swift_import_arguments"](distribution, admitted["clang_import_context"])
+    else:
+        api_command += ["-I", str(distribution / "Include")]
+    api_command.append(str(api_source))
     report.setdefault("commands", []).append(api_command)
     command(api_command, root=root, evidence=evidence, label="exported-api-typecheck", timeout=600)
     write(evidence / "actual-exported-api.json", {"status": "ACTUAL_EXPORTED_API_TYPECHECK_PASS",
@@ -458,6 +493,8 @@ def prepare(root, admission_path, report, out, logged):
             "dynamic_frameworks": admitted["dynamic_frameworks"], "source_sha": admitted["source_sha"],
             "evidence": evidence.relative_to(root).as_posix(), "before_project_sha256": digest(project),
             "receipt_sha256": digest(evidence / "distribution-admission.json"), "python": sys.executable}
+    if admitted.get("schema") == 2:
+        plan.update(admission_schema=2, clang_import_context=admitted["clang_import_context"])
     write(evidence / "app-target-plan.json", plan)
     logged(["ruby", "Scripts/CI/hq-original-editor-app-target.rb", str(project),
             str(evidence / "app-target-plan.json"), str(evidence / "app-target-configuration.json")],

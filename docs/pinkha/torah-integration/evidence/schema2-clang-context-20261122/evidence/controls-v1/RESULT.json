@@ -1,0 +1,32 @@
+{
+  "errors": [],
+  "expected_ids": [
+    "test_actual_prepare_retains_the_original_schema1_probe_and_plan",
+    "test_actual_prepare_wires_schema2_maps_into_probe_and_target_plan",
+    "test_changed_admitted_map_order_cannot_reach_compiler",
+    "test_changed_header_bytes_cannot_reach_compiler",
+    "test_missing_context_has_no_conventional_include_fallback",
+    "test_nineteen_maps_and_headers_keep_all_compiler_argument_pairs"
+  ],
+  "failures": [],
+  "fixture_scope": "Synthetic19-map headers plus actual prepare function; existing native admission/package gates and Ruby invocation are explicit doubles.",
+  "passed_ids": [
+    "test_actual_prepare_retains_the_original_schema1_probe_and_plan",
+    "test_actual_prepare_wires_schema2_maps_into_probe_and_target_plan",
+    "test_changed_admitted_map_order_cannot_reach_compiler",
+    "test_changed_header_bytes_cannot_reach_compiler",
+    "test_missing_context_has_no_conventional_include_fallback",
+    "test_nineteen_maps_and_headers_keep_all_compiler_argument_pairs"
+  ],
+  "prior_test_bodies_replayed": 0,
+  "ruby_or_apple_execution": false,
+  "skipped": [],
+  "source_sha256": {
+    "hq-original-editor-app-target.rb": "094f10867cb070035aa7044bc94f57df712b0b8ccfdcd4cf758a75c21f455e6a",
+    "hq-original-editor-distribution.py": "6ebfeab1fbc1c8568734a8a36016885e6454eef73940020b3db6986140022bf5",
+    "original_editor_clang_imports.py": "86e2914f58d1c960a7acde1df3b1e303f898667a72dfa55eee3e439916db1812",
+    "runtime27-original-editor-native.py": "6a16af944230888bb7c26e955c9917374137ead19c5a39e7de05ca9786a94de8"
+  },
+  "status": "PASS_NEW_CONSUMER_CLANG_BOUNDARIES",
+  "tests_run": 6
+}

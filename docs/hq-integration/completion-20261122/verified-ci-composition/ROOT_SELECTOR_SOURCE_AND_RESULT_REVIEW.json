@@ -1,0 +1,11 @@
+{
+  "at_utc": "2026-11-22T17:39:28.627473+00:00",
+  "scope": "Exactly one schema2 selector branch delegates full frozen-role validation and binds top-level toolchain to original framework toolchain. Original schema1/default bytes restored exactly by inverse.",
+  "candidate_sha256": "3e6ed97188d50f4f344dbd7f77f142a05f0a0bde1b720a0745df098f49bfcf2f",
+  "actual_new_boundaries_pass": 3,
+  "source_input_hashes_verified": 6,
+  "new_executions": 0,
+  "prior6_plus1_plus20_replayed": 0,
+  "stageb_activation": false,
+  "remaining": "Authentic Clang context and actual successful runtime pins"
+}
