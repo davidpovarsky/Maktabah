@@ -1,0 +1,15 @@
+{
+  "frozen_six_evidence": "8894bd50ba7cc6529ecd36a053c1682b492869cf",
+  "frozen_source_candidate": "7eafe41f9229ed0ad8a040782522ca4d76b4a034",
+  "original_fixture_sha256": "f922db58646a0c7f5714d487df8f31bef70acdbf49902843c2ddb954a6fef7ea",
+  "selected_fixture_prefix_bytes": 6694,
+  "selected_fixture_prefix_sha256": "e70be884090dd1f52bdc63a7ffe0a3b527d059e67cb1b960671114687c3a30ff",
+  "new_fragment_sha256": "f894570cf9da39873b4ea152f39ccffb66409d9220bdcfbae8312365c18e5474",
+  "combined_compiler_source_sha256": "b6b45c3138e5db4611761206c08d9921ed65f44bf9eea8a64f3d42551801d6a5",
+  "new_runner_sha256": "179e4ad274200ca436134b0017153b769cc536bb04fd2f6251e22285d9d9c8b3",
+  "old_index_all_payloads_unchanged": true,
+  "old_six_assertions_compiled_or_executed": false,
+  "production_changes": 0,
+  "new_controls": 2,
+  "execution_status": "NOT_RUN"
+}
