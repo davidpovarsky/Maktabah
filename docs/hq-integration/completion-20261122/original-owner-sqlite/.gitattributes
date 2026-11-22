@@ -1,0 +1,3 @@
+* -text
+inputs/* -whitespace
+*.log -whitespace
