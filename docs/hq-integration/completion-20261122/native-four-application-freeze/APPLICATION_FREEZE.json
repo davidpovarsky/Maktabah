@@ -1,0 +1,142 @@
+{
+  "application_source": "385ee84a8acb3fbc3c013c0977417b61fd3d8a17",
+  "at": "2026-11-22T03:17:08.100831+00:00",
+  "changed_native_test_sha256": "7439fd761e6661db719259bdf1e32eb59bb9dbdf084747849b92147e7702e004",
+  "full_release_manifest_changed": false,
+  "incoming_files": {
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": {
+      "bytes": 4333,
+      "sha256": "683c46844317504a4dc38c8f0a9ee3f76e179e847b281288469ee69b3d39ade8"
+    },
+    "Scripts/CI/runtime27-original-editor-native.py": {
+      "bytes": 28579,
+      "sha256": "603c3f0031d63abe9a23fee9d219745a3be53e43f0055f686fdf44b48248f27a"
+    },
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift": {
+      "bytes": 14853,
+      "sha256": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17"
+    },
+    "Source/Core/CloudKit/CloudKitCoreManager.swift": {
+      "bytes": 14906,
+      "sha256": "1d0778f9b096983378ebc8d9ce44cb59300792b8beccf50adf46a5ee1a87ece0"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/.gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/.gitignore": {
+      "bytes": 8,
+      "sha256": "020c2606e8ed484089c2083e0be438b9d0736bee1558a6b76af0d58bd23f69cf"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/APPLICATION_SOURCE.json": {
+      "bytes": 1267,
+      "sha256": "4f6ad2108324d329e3f58440e8c58574ab4edde8f00c8910b2779221175cec7f"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/CoreManager-before.swift": {
+      "bytes": 13869,
+      "sha256": "1d9de7832d00dd566e3fb3b50214a39ce48c3fd07b8e4b0a148bfeca0916fa34"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/ExactCallbacks.swift": {
+      "bytes": 1658,
+      "sha256": "c518c6e8644c3589bb6dfe0c19356d0c09698471fbee28777e3437a8b8627b36"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/PRE_EDIT_REVIEW.json": {
+      "bytes": 1346,
+      "sha256": "8a5520a7dcf3e6af0322486abfeeccd8f7fe7864634fc2e139d6d92236ae53bf"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/README.md": {
+      "bytes": 4808,
+      "sha256": "13c8f482289b333a056564b609e5b7862a149d54dd6c842b33ceed36e14945cb"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/RELOCATION_SOURCE_MATCH.json": {
+      "bytes": 9519,
+      "sha256": "6985a8700d6de43fb4189358a45e66d038319500161ca192bac541503dfa5775"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/TARGET_MEMBERSHIP_BEFORE.json": {
+      "bytes": 6453,
+      "sha256": "fa5fb6e274d531efe363845b3b474127405d7edee1838138e04f420f1e2d341f"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/candidate-callback.txt": {
+      "bytes": 349,
+      "sha256": "c21baa23e9671560dec274d4009b78b332d75bc1476da91075d21df2e4f1416e"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/controls.swift": {
+      "bytes": 2801,
+      "sha256": "97ed5e2cb253a29c2640141203460bf60c1dde22a1e59a45b93d1bdcd443b6ee"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/original-callback.txt": {
+      "bytes": 164,
+      "sha256": "c6f1c24320ae41625a3c48e4f3cde71d1e337ca523f9ab5fca78ec7b9a7bf0f5"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/preflight-484691ec/ORDINARY_HQ_PREFLIGHT.json": {
+      "bytes": 3560,
+      "sha256": "e69898580765636aaa3b4a6ad218feb377f596878ae32912e42f42f277e52284"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/preflight-484691ec/ORIGINAL_EDITOR_SOURCE_CONTEXT.json": {
+      "bytes": 60735,
+      "sha256": "84c570d438a3e88e15f3c0730e4317e3cb7c75907e9d03a502a3959f77bc08fd"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/preflight-484691ec/RESULT.json": {
+      "bytes": 419,
+      "sha256": "179b34e5aeeb2e1e3f1c9ed4ec51d4dd1b06bd3568b679275f04039183791fe7"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/preflight-484691ec/SENTINEL_RECEIPT.json": {
+      "bytes": 1068,
+      "sha256": "14579743beca1c4c0dab2ee6cae3906e9d3d91cd207c294326c2acda7c4b15f8"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/run-callback-controls.py": {
+      "bytes": 4603,
+      "sha256": "d62d057010ad2c6464ca2c487afa4446f5906b785e2943833796299add3d77f7"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/validation/RESULT.json": {
+      "bytes": 2317,
+      "sha256": "18155c887dc996dbdd5f69bef70aa8dce81b340de0a5e63dc0e271313a54c124"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/validation/SENTINEL_RECEIPT.json": {
+      "bytes": 3313,
+      "sha256": "1964be0b04216722f747921660d3e8d8e93de52ee8dc8c16b77a06df74878b72"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/validation/SOURCE_MANIFEST.json": {
+      "bytes": 1986,
+      "sha256": "882cf1b4babe0b90a07dc212908ab6e5d8c5736ceea25ceba813bbf5a19d741b"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/validation/compile.stderr.log": {
+      "bytes": 350,
+      "sha256": "6ccae0c31ec469fb7cb1e8d29deb0dfe34d0df227c18055df9a6d0e5a626894c"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/validation/compile.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/validation/run.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/core-worker-termination/validation/run.stdout.log": {
+      "bytes": 611,
+      "sha256": "5f63587c3976d84fc45eb11e4d9a0cd522a78c2936eb3c72a2ca7b0fb501f457"
+    }
+  },
+  "merge_parents": [
+    "36fca2324d43c3cb34cf5d7d51506d7cd0dba02d",
+    "c838f470b1576b0c2ccc970f597d4f59f1bfc0ea"
+  ],
+  "new_tests_executed": 0,
+  "product_delta": [
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift",
+    "Source/Core/CloudKit/CloudKitCoreManager.swift"
+  ],
+  "product_trees": {
+    "Maktabah-iOSUITests": "cd108ec2cec9f8c6089a1eeff2ec77bc9372a469",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Source": "362d3336b0c11a8f428b25252edbb81f9907c2f8",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "reviewed_core_code": "5f862ea7d785de813fc28680cfe403a3e082ba22",
+  "scope": "Three failed original Native selectors plus isolated no-provider consent diagnostic; not final full Native116/Release114 or qualified Anytype StageB",
+  "source_bindings": [
+    "ordinary HQ",
+    "future original-editor Native",
+    "future Hanlin Live"
+  ]
+}
