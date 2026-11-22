@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-22",
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45014115643",
+  "checkout_sha": "cad3742628a37ad4f9eaa3cdbd522d70cb6d0bd1",
+  "application_source_sha": "d49cedb3d5c163b7a008248d94b80a2eda28e3ce",
+  "attempt": 1,
+  "status": "completed",
+  "conclusion": "cancelled",
+  "observed": {
+    "original_app_and_ui_runner_build": "PASS",
+    "host48": "REUSED_VERIFIED_UNCHANGED_INPUTS_NO_NEW_TEST_EXECUTION",
+    "executed_ui_pass": 0,
+    "executed_ui_fail": 0,
+    "executed_ui_skip": 0,
+    "ui_not_run": 1,
+    "cancellation_log_time_utc": "2026-11-22T11:42:08.4791570Z",
+    "matrix_xctest_phase_recorded_utc": "2026-11-22T11:44:06.893749+00:00",
+    "native_test_log": "Resolve Package Graph followed by fetching and checking out packages; no completed XCTest case",
+    "cancellation_origin": "UNKNOWN_FROM_AVAILABLE_GITHUB_LOG_AND_CHECK_ANNOTATIONS",
+    "owned_simulator_cleanup": "NOT_VERIFIED",
+    "compiler_cache_save": "FAILED_FILE_CHANGED_DURING_ARCHIVE"
+  },
+  "artifacts": [
+    {
+      "id": 14752363888,
+      "size": 1759657,
+      "sha256": "c5c51a1aa0064004dbc9e6b9a76057073329a3af4a562da5d2e568a19d5a189d",
+      "zip_crc": "PASS",
+      "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45014115643/artifacts/14752363888"
+    },
+    {
+      "id": 14752214272,
+      "size": 176,
+      "sha256": "4c58a032d3f8c6dd8fe1c0b82be5f62d62848a908c7eb0875486f9d70f4acd5f",
+      "zip_crc": "PASS",
+      "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45014115643/artifacts/14752214272",
+      "contents": "one incomplete recording; not screenshot/video acceptance"
+    }
+  ],
+  "repair": {
+    "file": "Scripts/CI/run-faithful-ipad-matrix.py",
+    "reason": "Default test-without-building did not use the build step's explicit package checkout directory or disabled automatic resolution.",
+    "arguments_added": [
+      "-clonedSourcePackagesDirPath",
+      "build/SourcePackages",
+      "-disableAutomaticPackageResolution"
+    ],
+    "scope": "Default workspace invocation only; transferred Release xctestrun path unchanged.",
+    "product_and_test_assertions": "UNCHANGED",
+    "native_selection": "ONE unresolved fresh-read case; prior passing cases excluded",
+    "python_syntax": "PASS with local Python compiler"
+  },
+  "live_secret_current_absence": {
+    "observed_via": "gh api metadata only",
+    "endpoint": "repos/davidpovarsky/Maktabah/actions/secrets/OTZARIA_LIVE_GEMINI_API_KEY",
+    "result": "HTTP404",
+    "no_secret_created": true
+  },
+  "boundary": "Source correction and cancelled-run intake only. New Native, Live, full Native116, Release114+2 and SDK acceptance remain unverified."
+}

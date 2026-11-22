@@ -414,6 +414,8 @@ def main(live_provider=None):
                     selection = required["required_ui_cases"] + required.get("required_oracle_cases", [])
                 result = artifacts / f"result-{label}.xcresult"
                 command = ["xcodebuild", "test-without-building", "-workspace", "Maktabah.xcworkspace", "-scheme", "Maktabah-iOS",
+                           "-clonedSourcePackagesDirPath", "build/SourcePackages",
+                           "-disableAutomaticPackageResolution",
                            "-parallel-testing-enabled", "NO",
                            "-destination", f"platform=iOS Simulator,id={udid}", "-derivedDataPath", "build/DerivedData",
                            "-resultBundlePath", str(result)]
