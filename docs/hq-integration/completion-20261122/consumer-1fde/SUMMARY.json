@@ -1,0 +1,11 @@
+{
+  "head": "1119c4926ddcfc442c1450d3da8986049f2ea88a",
+  "application_source": "eaa971f9a861c2b0878f4d558b606e60100ddcae",
+  "stage2_source_preflight_exit": 0,
+  "stage2_seconds": 11.93153691291809,
+  "new_native_tests_executed": 0,
+  "producer_admission": "UNFINALIZED dedicated StageB only",
+  "ordinary_build_editor_admission_optional": true,
+  "stageb_exact_source_context": "PASS",
+  "ordinary_source_preflight": "PASS"
+}

@@ -1,6 +1,6 @@
 # Otzaria continuation — 22 November 2026
 
-Snapshot: 2026-11-22 02:21 UTC. This is an execution checkpoint, not product acceptance.
+Snapshot: 2026-11-22 02:33 UTC. This is an execution checkpoint, not product acceptance.
 
 ## Integrated source
 
@@ -63,13 +63,13 @@ A new temporary secret was created only after verifying the previous name absent
 
 ## Original Anytype producer and consumer
 
-Producer run44972129359 passed all 221 declared source controls and failed before framework compilation at dependency resolution. Actual resolver evidence refined the cause: the nested PinkhaKit Inspector requirement disagreed with the Xcode project, and the lock lacked seven genuine Hanlin transitive dependencies. The source candidate `3a33d083af7a4f087b37bf910904bb817e990ee0` preserves all44 old pin records and adds the seven manifest-proven pins, total51. Apple resolution-only run44973540287 is the current evidence source; a successful resolution and strict pinned-only second pass must be inspected before accepting its lock. The production build does not drop `-onlyUsePackageVersionsFromResolvedFile`.
+Producer run44972129359 passed all 221 declared source controls and failed before framework compilation at dependency resolution. Actual resolver evidence refined the cause: the nested PinkhaKit Inspector requirement disagreed with the Xcode project, and the lock lacked seven genuine Hanlin transitive dependencies. The source candidate `3a33d083af7a4f087b37bf910904bb817e990ee0` preserves all44 old pin records and adds the seven manifest-proven pins, total51. Apple resolution run44973540287 completed actual resolution successfully with51 unchanged pin records, then its observation assertion incorrectly required an originHash change. The strict-only follow-up [44975218662](https://github.com/davidpovarsky/anytype-swift/actions/runs/44975218662) passed at02:19:56 UTC: the original -onlyUsePackageVersionsFromResolvedFile resolution exited0 in187.57seconds. It reused the prior unrestricted-resolution proof rather than repeating that operation. The real framework producer is now [44976039281](https://github.com/davidpovarsky/anytype-swift/actions/runs/44976039281), frozen wrapper fc03fcd713e2c449ad97c5d1e604a9433c2a309b. Its source admission, source controls, Hanlin verification, Xcode preflight and exact Heart checks passed; real framework compilation is in progress. The sole producer observer is job_03d696836005.
 
 Reviewed source-only followups from the parallel continuation are being reused by their exact preimage/patch/output hashes: History15, widgets4 R2, TypeProperties7 and the one-line original shake-undo reservation. Prefixes6d2f3755/6947afe4/9bebdf10/0a93b302 identify patch SHA256 values, not necessarily Git commits. The TypeProperties transfer was independently verified at its shared Windows path with ZIP SHA256 `3735f3a3359a0917b3108ec6505929df28dc58b61e555835b5ea90cfc5498c6a`. Channel-pin permission-lifetime changes have 18 portable controls and five syntax parses; their Apple/Native acceptance is still pending.
 
 The consumer branch `codex/otzaria-original-editor-lifecycle-20261122` retains source/evidence up to `5ccd0c318f0900c41302a6a27a7ab359930e424b`, application `eaa971f9`. Stage B continues to require the original framework, public/SPI API evidence, source membership, binary provenance and one real original UI case. Local opaque-body save/reopen does not demonstrate preview transport, classification, CloudKit rich-body synchronization, or bidirectional conflicts.
 
-An additional original Repository import defect is under reproduction: imported backendLocator/context may be reflected in cache without being persisted by the UPDATE, and legacy positional fallback may conflate backend identities. No fix or PASS is credited in this checkpoint.
+The original Repository import defect has been reproduced using the unchanged original Repository/Annotation/SQLite/SyncPendingStore and real Locator/lifetime, Swift6.3.3 and SQLite3.53.4, with explicit Windows logging/catalog boundaries. Six defects reproduced in both a writer process and a separate reopen process: same-UUID imports lose durable backendLocator/context, and UUID-less positional fallback can adopt another backend/work/position or malformed locator. Three original valid controls passed. A minimal isolated downstream identity helper plus original SQL binding correction is in progress; this checkpoint does not credit a fix or Apple acceptance. Schema and pending upload/delete rows are preserved.
 
 ## Acceptance still open
 
@@ -87,3 +87,7 @@ Asana handoff: [1220763167870295](https://app.asana.com/0/0/1220763167870295/f).
 Relevant current discussions are UI06 [1220542467495722](https://app.asana.com/0/0/1220542467495722/f), cross-app [1220545194715722](https://app.asana.com/0/0/1220545194715722/f), and Release [1219684630509114](https://app.asana.com/0/0/1219684630509114/f).
 
 SentinelX continuation context `sxc_NCA3K3YC` is related to preserved parallel context `sxc_WAXQV0PW`. The current team owns canonical integration, the Anytype producer, isolated consumer fixes and the single Native/Live observers. The parallel context publishes its reviewed source packets to a separate neutral branch. No existing worktree, user data, failed run or prior evidence is replaced.
+
+## Consumer integration source admission
+
+The raw [consumer-1fde/MERGE_PROOF.json](consumer-1fde/MERGE_PROOF.json) verifies merge parents and all four product trees. Existing ordinary HQ source preflight and original-editor source-context admission both passed at head1119c492, job94107d9acc37. These are source checks with zero new Apple/Native executions. Future Live binding now targets the integrated sourceeaa971f9; the running Live6 remains frozen9c66/source62095.
