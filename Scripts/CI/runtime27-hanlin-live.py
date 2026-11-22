@@ -18,7 +18,7 @@ import uuid
 ROOT = Path(__file__).resolve().parents[2]
 SELECTOR = "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
 MODEL = "gemini-2.5-flash-lite"
-REVIEWED_SOURCE = "eaa971f9a861c2b0878f4d558b606e60100ddcae"
+REVIEWED_SOURCE = "5d0a11f6a799bee9deb23dc91b29e832bec14335"
 ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/openai/"
 BUNDLE = "com.davidpovarsky.chavrusatext"
 CANONICAL_APP_GROUP = "group.com.davidpovarsky.itorah"

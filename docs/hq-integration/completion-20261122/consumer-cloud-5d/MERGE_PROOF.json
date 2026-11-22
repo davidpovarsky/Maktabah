@@ -1,0 +1,18 @@
+{
+  "apple_run_in_progress": 44977823319,
+  "application_source": "5d0a11f6a799bee9deb23dc91b29e832bec14335",
+  "at": "2026-11-22T02:58:41.536803+00:00",
+  "merge": "1bd060335717af7833eb4fba4456efe9ab900593",
+  "new_test_runs": 0,
+  "parents": [
+    "e7a91c35372c9a5a6a258691c972d396d43f17ab",
+    "52005f27433ec48c1ba0b77281d925ea6174bdf1"
+  ],
+  "product_trees": {
+    "Maktabah-iOSUITests": "f336b041f6c503a30b32edb6055f933d22ebaa3b",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Source": "bef41b66d37479516bd1b0b239dfe4335594e5a6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "retained_windows_results": "9 writer + 9 distinct-process reopen; six baseline defects; logging/catalog boundaries explicit"
+}

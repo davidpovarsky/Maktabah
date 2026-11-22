@@ -1,0 +1,13 @@
+{
+  "status": "DECLARATIONS_MATCH",
+  "suites": [
+    {
+      "expected": [
+        "testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
+      ],
+      "selection": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+      "status": "DECLARATIONS_MATCH",
+      "suite": "HanlinLiveProviderAcceptanceTests"
+    }
+  ]
+}

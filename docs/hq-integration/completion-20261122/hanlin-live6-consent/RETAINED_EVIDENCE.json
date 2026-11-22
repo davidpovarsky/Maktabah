@@ -1,0 +1,14 @@
+{
+  "admitted_files_verified": 21,
+  "application_source": "62095a46f3eda10df87fad49812083ba163ee3ef",
+  "archive_full_sha256_verified": "aac873daf6657ef014ed1c1b3db48a44162d240e95408ef39df846fbfac8e880",
+  "artifact": 14735424221,
+  "locator_assertion": "PASS",
+  "provider_conversations": 0,
+  "raw_private_inputs_retained": false,
+  "run": 44974028362,
+  "secret_deleted_and_absence_verified": "2026-11-22T02:47:33.815508+00:00",
+  "source_before_after_equal": true,
+  "status": "FAIL_NATIVE_CONSENT_VALUE_REMAINED_0_AFTER_TAP",
+  "wrapper": "9c66b4ccc06340a04de53a4c3370182873ed18bc"
+}
