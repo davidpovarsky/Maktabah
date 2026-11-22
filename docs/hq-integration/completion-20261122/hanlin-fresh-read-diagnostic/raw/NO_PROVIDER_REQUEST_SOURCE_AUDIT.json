@@ -1,0 +1,192 @@
+{
+  "schema": "otzaria.fresh-read-no-send-source-audit/1",
+  "status": "SOURCE_REVIEWED_NOT_EXECUTED",
+  "utc": "2026-11-22T08:56:18.358290+00:00",
+  "files": [
+    {
+      "repository": "Maktabah",
+      "commit": "ce5d11335c4b4769a25e0e8f48ba1d6f7efc6749",
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "gitBlob": "f09aeeb0adb0f3dd30aaa66bdc092dd91076da14",
+      "bytes": 28736,
+      "sha256": "6cb67796a458fba8bbfee94d584b30744fb57b246d679aa4b909c2216ccd4c15",
+      "retained": "source-audit/Maktabah/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift"
+    },
+    {
+      "repository": "Maktabah",
+      "commit": "ce5d11335c4b4769a25e0e8f48ba1d6f7efc6749",
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift",
+      "gitBlob": "880911a12cdbd6bec23db7f8c75c2857d60dbdbb",
+      "bytes": 20221,
+      "sha256": "2fbf538c29d4c243e455cd7e126f9676d9a3ae84879764706284f8e2e7742706",
+      "retained": "source-audit/Maktabah/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift"
+    },
+    {
+      "repository": "Maktabah",
+      "commit": "ce5d11335c4b4769a25e0e8f48ba1d6f7efc6749",
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift",
+      "gitBlob": "b47d90c5e82ebc6bcfdecf997b2d8885b5a92366",
+      "bytes": 24356,
+      "sha256": "b34abc9505a4b345c0951dad398f0d4a99f5d449b056f8ba68bd3f71a1ad502b",
+      "retained": "source-audit/Maktabah/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift"
+    },
+    {
+      "repository": "Maktabah",
+      "commit": "ce5d11335c4b4769a25e0e8f48ba1d6f7efc6749",
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+      "gitBlob": "c6b1234a9af2b4f8e187eee84f9d3a589ba44394",
+      "bytes": 22729,
+      "sha256": "4786980d957ca3b0a5dce6f80f5eed64b7b374178ad38c4d0d3ae3e2ed12ab18",
+      "retained": "source-audit/Maktabah/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift"
+    },
+    {
+      "repository": "Maktabah",
+      "commit": "ce5d11335c4b4769a25e0e8f48ba1d6f7efc6749",
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "gitBlob": "7e3e79390098632ee42fff44b6085460ce825197",
+      "bytes": 4333,
+      "sha256": "ead240842eff0c5460eff05ad25ef3a220b3c87b02b677e2413c4188cc178249",
+      "retained": "source-audit/Maktabah/Scripts/CI/hq-stage2-focused-apple.inputs.json"
+    },
+    {
+      "repository": "Hanlin",
+      "commit": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+      "path": "Packages/HanlinPlatform/Package.resolved",
+      "gitBlob": "6a996f133f2840d76de59b02036a2ca1cbe4985d",
+      "bytes": 1198,
+      "sha256": "7882ef847a4aaa1bfa2ee128122393cf718f393485d9658bb93f402f740f2c17",
+      "retained": "source-audit/Hanlin/Packages/HanlinPlatform/Package.resolved"
+    },
+    {
+      "repository": "Hanlin",
+      "commit": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+      "path": "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKAgentEngine.swift",
+      "gitBlob": "d8b353bc455addd30e850a7324127314ae935bf0",
+      "bytes": 35975,
+      "sha256": "aaf8ae687d478710c2b4388f19350164a606facd02b70375743c808629cbe524",
+      "retained": "source-audit/Hanlin/Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKAgentEngine.swift"
+    },
+    {
+      "repository": "Hanlin",
+      "commit": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+      "path": "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKProviderFactory.swift",
+      "gitBlob": "08d6e5c8a5bcf4143e9ad5f29298a353034924dd",
+      "bytes": 12237,
+      "sha256": "37040bbbf933960cb47046fbedaeaad953b59371607b0ec3062cbbefb1ee1c1a",
+      "retained": "source-audit/Hanlin/Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKProviderFactory.swift"
+    },
+    {
+      "repository": "Hanlin",
+      "commit": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+      "path": "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinNonEmptyLanguageModel.swift",
+      "gitBlob": "e4690c00af7ff565375d32c94b5bbc4342062c87",
+      "bytes": 5939,
+      "sha256": "d62ad35a0e618bbfedb56dd79a9301585725589184aaaf3a26ab870d8a17716e",
+      "retained": "source-audit/Hanlin/Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinNonEmptyLanguageModel.swift"
+    },
+    {
+      "repository": "Hanlin",
+      "commit": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+      "path": "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinAgentSession.swift",
+      "gitBlob": "2f93f21a4b49c9205ba1da60779626cebebf7512",
+      "bytes": 35047,
+      "sha256": "179e222f04e185d941c0f42416f6df6d391cf308bd79b63af341093c460d1e1b",
+      "retained": "source-audit/Hanlin/Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinAgentSession.swift"
+    },
+    {
+      "repository": "Hanlin",
+      "commit": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+      "path": "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinHostDispatcher.swift",
+      "gitBlob": "889fd8071ee18fd3fe9ccb611094e6273d54c4b9",
+      "bytes": 16079,
+      "sha256": "8c7289779a6cce63dd58bb43a3ba877abfba357680609dc38c2dbd8cd8b738a1",
+      "retained": "source-audit/Hanlin/Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinHostDispatcher.swift"
+    },
+    {
+      "repository": "Hanlin",
+      "commit": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+      "path": "Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostContext.swift",
+      "gitBlob": "4066d54a7aa9aa77ffca4db47611623c193ec30a",
+      "bytes": 8843,
+      "sha256": "fd308d1d583a0205fb1305677b87878d6e82396b21eb20082ddd335981be2f6f",
+      "retained": "source-audit/Hanlin/Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostContext.swift"
+    },
+    {
+      "repository": "SwiftAISDK",
+      "commit": "e7bf34111e603ca977becd007dd4e5bb109af857",
+      "path": "Sources/OpenAICompatibleProvider/OpenAICompatibleProvider.swift",
+      "gitBlob": "467dba877f75760da86396acdd3700359620cea8",
+      "bytes": 13915,
+      "sha256": "766a1ae8b0387bded8d8b44c848373e58c84f2570a7a4683af2113490d57ce4d",
+      "retained": "source-audit/SwiftAISDK/Sources/OpenAICompatibleProvider/OpenAICompatibleProvider.swift"
+    },
+    {
+      "repository": "SwiftAISDK",
+      "commit": "e7bf34111e603ca977becd007dd4e5bb109af857",
+      "path": "Sources/OpenAICompatibleProvider/Chat/OpenAICompatibleChatLanguageModel.swift",
+      "gitBlob": "702fc4fda2d4e662138884c35d625a27c97c9499",
+      "bytes": 63754,
+      "sha256": "61cb97e667b46d454b7aaf5000679575c965587cad37aff917cdc0f47d545365",
+      "retained": "source-audit/SwiftAISDK/Sources/OpenAICompatibleProvider/Chat/OpenAICompatibleChatLanguageModel.swift"
+    }
+  ],
+  "facts": [
+    {
+      "source": "Maktabah/OtzariaHanlinChatSession.swift",
+      "anchors": "320-375,378-387",
+      "finding": "Configure validates the original owner and immutable carried request, constructs engine, activates connection, revalidates host context and constructs AgentSession. It does not call stream, doGenerate, doStream or fetch."
+    },
+    {
+      "source": "Hanlin/HanlinAISDKAgentEngine.swift",
+      "anchors": "40-50",
+      "finding": "Constructor only stores configuration and resolves the provider/model."
+    },
+    {
+      "source": "Hanlin/HanlinAISDKProviderFactory.swift",
+      "anchors": "114-177,211-230",
+      "finding": "Google-compatible URL selects openAICompatible under app company OPENAI; resolve builds model configuration. makeFetch constructs URLSession and returns a closure; session.bytes(for:) is inside that closure, not the constructor."
+    },
+    {
+      "source": "SwiftAISDK/OpenAICompatibleProvider.swift",
+      "anchors": "55-75,147-213,300-312",
+      "finding": "Factory builds captured settings and synchronous model factory; chatModel constructs only the model/configuration."
+    },
+    {
+      "source": "SwiftAISDK/OpenAICompatibleChatLanguageModel.swift",
+      "anchors": "146-150,941-944;161-176,264-289",
+      "finding": "Initializers assign model/configuration; provider HTTP begins in async doGenerate/doStream."
+    },
+    {
+      "source": "Hanlin/HanlinNonEmptyLanguageModel.swift",
+      "anchors": "9-11",
+      "finding": "Wrapper initializer only retains its base model."
+    },
+    {
+      "source": "Hanlin/HanlinAgentSession.swift + HanlinHostDispatcher.swift",
+      "anchors": "63-73;30",
+      "finding": "Initializers retain dependencies and dispatcher host; they do not launch a producer Task or provider request."
+    },
+    {
+      "source": "Maktabah/OtzariaHanlinChatSession.swift",
+      "anchors": "390-425",
+      "finding": "App send creates streaming work and invokes agent.stream. The new diagnostic never taps Send or enters text in the composer."
+    },
+    {
+      "source": "Maktabah/OtzariaHanlinChatView.swift + OtzariaHanlinChatSession.swift",
+      "anchors": "56-65;165,198-203",
+      "finding": "End-access header is conditional only on the immutable currentWorkReadScope, outside the configured/transcript branch. Live8 proves that scope is passed to a mounted/configured reopened session but does not expose actual AX/rendering."
+    },
+    {
+      "source": "Hanlin/HanlinHostContext.swift",
+      "anchors": "93-99",
+      "finding": "Each reopened session uses a new UUID by default; conversationID reuse is distinct from presentation identity."
+    }
+  ],
+  "diagnosticScope": "One fresh original read connection using Google-compatible URL and explicit unused form model/key. No genuine provider key, private Live input, Send/history workaround, product guard/identifier change or success fallback.",
+  "limits": [
+    "Static original-source path audit only; no instrumented whole-application network-silence claim.",
+    "No native UI case has executed for this candidate.",
+    "Existing Live8 artifact remains a failure; configuration completion is not provider conversation acceptance.",
+    "No raw credentialed AX or screenshot is copied; proposed Native capture uses only nonsecret dummy values."
+  ]
+}

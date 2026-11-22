@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_31fbd1d08b8c",
+    "type": "job_result",
+    "source": "script_run@host_7ec8382e82747448",
+    "severity": "warning",
+    "tool": "script_run",
+    "host": "host_7ec8382e82747448",
+    "status": "failed",
+    "exit_code": 1,
+    "created_at": 1795338489.7577987,
+    "started_at": "2026-11-22T09:08:09.862181+00:00",
+    "finished_at": "2026-11-22T09:08:15.484878+00:00",
+    "duration_s": 5.62,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 600,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "Traceback (most recent call last):\r\n  File \"C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_41d4b35dd97f435ea7c0657afd32839b\\seal_fresh_read_source_evidence.py\", line 31, in <module>\r\n    assert set(staged)=={prefix+\"/\"+x[\"path\"] for x in allrows}\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError"
+  }
+}

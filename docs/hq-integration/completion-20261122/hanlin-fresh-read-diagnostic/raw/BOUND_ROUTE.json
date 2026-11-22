@@ -1,0 +1,45 @@
+{
+  "schema": "otzaria.fresh-read-bound-route/1",
+  "status": "FROZEN_LOCAL_CLEAN_NOT_PUSHED",
+  "applicationSource": "7eb9d2a5c8ac7ccb184e3cc50fb36b6272475ff1",
+  "binderCommit": "fac57a997da78f2588a52fa2425e0aaa7751831c",
+  "checkout": "7495ef0395f0f675d7f7fea3e22804e065aa85c8",
+  "parents": [
+    "fac57a997da78f2588a52fa2425e0aaa7751831c",
+    "3889c5c037f6d5a2e7b7ea33deb8e4569f410ca7"
+  ],
+  "integratedCanonical": "3889c5c037f6d5a2e7b7ea33deb8e4569f410ca7",
+  "selectedCases": [
+    "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+  ],
+  "declarationCount": 1,
+  "driverAST": "Passed in original binding script before final postmerge bookkeeping guard; no repeat",
+  "files": [
+    {
+      "path": "Scripts/CI/completion-focused-native.py",
+      "bytes": 10835,
+      "sha256": "3a3b0d7bd3526d361deffbf5f6ba09f4d46adef70812ea431a56d3fc7bdbd0a2",
+      "patchSHA256": "08f5223148826045702198da5deb61c714db303baf6d0114056b26f32ca66b50"
+    },
+    {
+      "path": ".github/workflows/otzaria-completion-focused-native.yml",
+      "bytes": 6648,
+      "sha256": "f725a6c23a6d9b8d89d5941aebb1ecdc7a08879eba54bb7ae2f30aa8e7a371a5",
+      "patchSHA256": "dce1616ab6bad51e3d9928c047007520b96bce78d1c1f02e326656dac4d4934b"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "bytes": 4333,
+      "sha256": "4bbf129dca75cf9a5cb3f203314779b5492d56b9121efd8878214bac40ba0716",
+      "patchSHA256": "e590bbc649ca74031a87502b9bd6ce37d8d61108b93dd3e3b5784aa0824120ba"
+    }
+  ],
+  "trees": {
+    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "e4f67f6fc7cd0a4242d4ed5277490acad3464ec1"
+  },
+  "sourceTreesUnchangedAfterMetadataMerge": true,
+  "nativeExecuted": false
+}

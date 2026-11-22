@@ -1,0 +1,26 @@
+{
+  "schema": "otzaria.fresh-read-root-source-review/1",
+  "utc": "2026-11-22T09:08:19.515611+00:00",
+  "status": "PASS_FROZEN_SOURCE_AND_ADMISSION_REVIEW_NO_NATIVE_EXECUTION",
+  "reviewedCheckout": "7495ef0395f0f675d7f7fea3e22804e065aa85c8",
+  "applicationSource": "7eb9d2a5c8ac7ccb184e3cc50fb36b6272475ff1",
+  "admissionResultSHA256": "0d2d338f1e7252aeff635899d0b8d504ca640d44854ffd6bbfed98bb39e0cd06",
+  "independentlyVerifiedExecutionInputs": 279,
+  "applicationTrees": {
+    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "e4f67f6fc7cd0a4242d4ed5277490acad3464ec1"
+  },
+  "exactOriginalTestRecovery": true,
+  "oneNewCase": [
+    "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+  ],
+  "fullWorkflowAndDriverReviewed": true,
+  "noProviderAuditRetainedFiles": 14,
+  "noProviderAuditLimit": "Source audit; not instrumented whole-app silence. Only5 Maktabah inputs independently read from Git here; external9 exact Git blob identities matched retained source audit.",
+  "nativeExecutions": 0,
+  "testsReplayed": 0,
+  "newProviderKeys": 0,
+  "next": "One exact frozen-source Native push/build/case; unchanged strict assertion and cleanup/collection"
+}

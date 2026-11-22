@@ -1,0 +1,293 @@
+import AISDKProvider
+import AISDKProviderUtils
+import AnthropicProvider
+import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
+import GoogleProvider
+import OpenAICompatibleProvider
+import OpenAIProvider
+import SwiftAISDK
+
+/// The host validates its original request lease after diagnostic suspension
+/// and immediately before the production transport starts.
+public typealias HanlinChatRequestAdmission = @Sendable (URLRequest) async throws -> Void
+
+/// One stream's transport and callbacks. Reused engines do not retain a
+/// previous turn's host or authority closure through their provider instance.
+public struct HanlinAISDKTurnTransport: Sendable {
+    let fetch: FetchFunction
+
+    public init(fetch: @escaping FetchFunction) {
+        self.fetch = fetch
+    }
+}
+
+public enum HanlinAISDKProviderFactory {
+    public static func descriptor(
+        for configuration: HanlinChatModelConfiguration
+    ) -> HanlinAISDKProviderDescriptor {
+        let company = configuration.company?.uppercased() ?? ""
+        let apiType = configuration.apiType?.lowercased() ?? ""
+        let kind: HanlinAISDKProviderKind
+
+        if company == "APPLE" || apiType == "apple-on-device" {
+            kind = .appleOnDevice
+        } else if company == "ANTHROPIC" || apiType.contains("anthropic") {
+            kind = .anthropic
+        } else if company == "GOOGLE" || company == "GEMINI" || apiType.contains("gemini") {
+            kind = .google
+        } else if company == "OPENAI" && !isOpenAICompatibleHost(configuration.endpoint.host) {
+            kind = apiType == "openai-responses" ? .openAIResponses : .openAI
+        } else {
+            kind = .openAICompatible
+        }
+
+        if kind == .appleOnDevice {
+            return HanlinAISDKProviderDescriptor(kind: kind, modelID: configuration.baseModelID, baseURL: URL(filePath: "/apple-on-device"))
+        }
+
+        var headers: [String: String] = [:]
+        if company == "OPENROUTER" || configuration.endpoint.host?.lowercased().contains("openrouter.ai") == true {
+            headers["HTTP-Referer"] = "https://hanlin.ai"
+            headers["X-Title"] = "Hanlin"
+        }
+
+        let components = URLComponents(url: configuration.endpoint, resolvingAgainstBaseURL: false)
+        let query = Dictionary(
+            uniqueKeysWithValues: (components?.queryItems ?? []).compactMap { item in
+                item.value.map { (item.name, $0) }
+            }
+        )
+
+        return HanlinAISDKProviderDescriptor(
+            kind: kind,
+            modelID: configuration.baseModelID,
+            baseURL: normalizedBaseURL(configuration.endpoint, kind: kind),
+            headers: headers,
+            queryParameters: query
+        )
+    }
+
+    private static func isOpenAICompatibleHost(_ host: String?) -> Bool {
+        guard let host = host?.lowercased() else { return true }
+        return host != "api.openai.com"
+    }
+
+    private static func normalizedBaseURL(
+        _ endpoint: URL,
+        kind: HanlinAISDKProviderKind
+    ) -> URL {
+        var components = URLComponents(url: endpoint, resolvingAgainstBaseURL: false)
+        components?.query = nil
+        components?.fragment = nil
+
+        var path = components?.path ?? endpoint.path
+        let suffixes: [String]
+        switch kind {
+        case .appleOnDevice:
+            return endpoint
+        case .openAI, .openAIResponses, .openAICompatible:
+            suffixes = ["/chat/completions", "/responses"]
+        case .anthropic:
+            suffixes = ["/messages", "/chat/completions"]
+        case .google:
+            suffixes = ["/openai/chat/completions", "/chat/completions"]
+        }
+        for suffix in suffixes where path.hasSuffix(suffix) {
+            path.removeLast(suffix.count)
+            break
+        }
+        components?.path = path.isEmpty ? "/" : path
+        return components?.url ?? endpoint
+    }
+}
+
+struct HanlinAISDKResolvedProvider: Sendable {
+    let model: LanguageModel
+    let descriptor: HanlinAISDKProviderDescriptor
+    let providerOptions: ProviderOptions?
+}
+
+extension HanlinAISDKProviderFactory {
+    static func resolve(
+        configuration: HanlinChatModelConfiguration,
+        fetch: FetchFunction? = nil
+    ) throws -> HanlinAISDKResolvedProvider {
+        let descriptor = descriptor(for: configuration)
+        let baseURL = descriptor.baseURL.absoluteString.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+        let model: any LanguageModelV3
+
+        switch descriptor.kind {
+        case .appleOnDevice:
+            throw HanlinAISDKError.nativeProviderInjectionRequired
+        case .openAI, .openAIResponses:
+            let provider = try createOpenAIProvider(settings: .init(
+                baseURL: baseURL,
+                apiKey: configuration.apiKey,
+                headers: descriptor.headers,
+                name: "hanlin-openai",
+                fetch: fetch
+            ))
+            if descriptor.kind == .openAIResponses {
+                model = provider.responses(descriptor.modelID)
+            } else {
+                model = try provider.chatModel(modelId: descriptor.modelID)
+            }
+
+        case .anthropic:
+            let provider = createAnthropicProvider(settings: .init(
+                baseURL: baseURL,
+                apiKey: configuration.apiKey,
+                headers: descriptor.headers,
+                fetch: fetch,
+                name: "hanlin-anthropic"
+            ))
+            model = try provider.chatModel(modelId: descriptor.modelID)
+
+        case .google:
+            let provider = createGoogleGenerativeAI(settings: .init(
+                baseURL: baseURL,
+                apiKey: configuration.apiKey,
+                headers: descriptor.headers,
+                fetch: fetch,
+                name: "hanlin-google"
+            ))
+            model = try provider.languageModel(modelId: descriptor.modelID)
+
+        case .openAICompatible:
+            let provider = createOpenAICompatibleProvider(settings: .init(
+                baseURL: baseURL,
+                name: "hanlin-openai-compatible",
+                apiKey: configuration.apiKey,
+                headers: descriptor.headers,
+                queryParams: descriptor.queryParameters,
+                fetch: fetch,
+                includeUsage: true
+            ))
+            model = try provider.chatModel(modelId: descriptor.modelID)
+        }
+
+        return HanlinAISDKResolvedProvider(
+            model: .v3(HanlinNonEmptyLanguageModel(base: model)),
+            descriptor: descriptor,
+            providerOptions: providerOptions(configuration: configuration, kind: descriptor.kind)
+        )
+    }
+
+    private static func providerOptions(
+        configuration: HanlinChatModelConfiguration,
+        kind: HanlinAISDKProviderKind
+    ) -> ProviderOptions? {
+        guard configuration.supportsReasoning else { return nil }
+
+        switch kind {
+        case .appleOnDevice:
+            return nil
+        case .openAI, .openAIResponses:
+            guard let effort = configuration.reasoningEffort, !effort.isEmpty else { return nil }
+            return ["openai": ["reasoningEffort": .string(effort)]]
+        case .openAICompatible:
+            guard let effort = configuration.reasoningEffort, !effort.isEmpty else { return nil }
+            return ["hanlin-openai-compatible": ["reasoningEffort": .string(effort)]]
+        case .anthropic:
+            let budget = max(configuration.thinkingLength, 1_024)
+            return ["anthropic": [
+                "thinking": .object([
+                    "type": .string("enabled"),
+                    "budgetTokens": .number(Double(budget))
+                ])
+            ]]
+        case .google:
+            var thinking: [String: JSONValue] = ["includeThoughts": .bool(true)]
+            if configuration.thinkingLength > 0 {
+                thinking["thinkingBudget"] = .number(Double(configuration.thinkingLength))
+            }
+            return ["google": ["thinkingConfig": .object(thinking)]]
+        }
+    }
+
+    public static func makeFetch(
+        sessionConfiguration: URLSessionConfiguration,
+        onRequest: (@Sendable (URLRequest) async -> Void)? = nil,
+        onResponse: (@Sendable (URLRequest, HTTPURLResponse) async -> Void)? = nil,
+        transportObserver: HanlinChatTransportObserver? = nil,
+        requestAdmission: HanlinChatRequestAdmission? = nil
+    ) -> FetchFunction {
+        let session = URLSession(configuration: sessionConfiguration)
+        return { request in
+            await onRequest?(request)
+            try Task.checkCancellation()
+            try await requestAdmission?(request)
+            try Task.checkCancellation()
+            let traceID = UUID()
+            transportObserver?(.request(id: traceID, request: request))
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
+            let bytes: URLSession.AsyncBytes
+            let response: URLResponse
+            do {
+                (bytes, response) = try await session.bytes(for: request)
+            } catch {
+                transportObserver?(.end(id: traceID, error: String(describing: error)))
+                throw error
+            }
+            if let httpResponse = response as? HTTPURLResponse {
+                transportObserver?(.response(id: traceID, response: httpResponse))
+                await onResponse?(request, httpResponse)
+            }
+            let stream = AsyncThrowingStream<Data, Error> { continuation in
+                let task = Task {
+                    var buffer = Data()
+                    buffer.reserveCapacity(16_384)
+                    do {
+                        for try await byte in bytes {
+                            buffer.append(byte)
+                            if byte == 0x0A || buffer.count >= 1024 {
+                                transportObserver?(.bytes(id: traceID, data: buffer))
+                                continuation.yield(buffer)
+                                buffer.removeAll(keepingCapacity: true)
+                            }
+                        }
+                        if !buffer.isEmpty {
+                            transportObserver?(.bytes(id: traceID, data: buffer))
+                            continuation.yield(buffer)
+                        }
+                        transportObserver?(.end(id: traceID, error: nil))
+                        continuation.finish()
+                    } catch {
+                        if !buffer.isEmpty {
+                            transportObserver?(.bytes(id: traceID, data: buffer))
+                        }
+                        transportObserver?(.end(id: traceID, error: String(describing: error)))
+                        continuation.finish(throwing: error)
+                    }
+                }
+                continuation.onTermination = { @Sendable _ in task.cancel() }
+            }
+            return FetchResponse(body: .stream(stream), urlResponse: response)
+#else
+            return try await withCheckedThrowingContinuation { continuation in
+                let task = session.dataTask(with: request) { data, response, error in
+                    if let error {
+                        transportObserver?(.end(id: traceID, error: String(describing: error)))
+                        continuation.resume(throwing: error)
+                    } else if let response {
+                        if let httpResponse = response as? HTTPURLResponse {
+                            transportObserver?(.response(id: traceID, response: httpResponse))
+                            Task { await onResponse?(request, httpResponse) }
+                        }
+                        transportObserver?(.bytes(id: traceID, data: data ?? Data()))
+                        transportObserver?(.end(id: traceID, error: nil))
+                        continuation.resume(returning: FetchResponse(body: .data(data ?? Data()), urlResponse: response))
+                    } else {
+                        transportObserver?(.end(id: traceID, error: "missing_response"))
+                        continuation.resume(throwing: URLError(.unknown))
+                    }
+                }
+                task.resume()
+            }
+#endif
+        }
+    }
+}

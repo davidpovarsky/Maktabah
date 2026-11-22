@@ -1,0 +1,22 @@
+{
+  "status": "PASS_SYNTAX_ONLY",
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+    "-frontend",
+    "-parse",
+    "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-fresh-read-diagnostic-20261122\\Maktabah-iOSUITests\\HanlinConsumerAcceptanceTests.swift"
+  ],
+  "startedAt": "2026-11-22T08:55:27.010761+00:00",
+  "finishedAt": "2026-11-22T08:55:27.604295+00:00",
+  "durationSeconds": 0.578,
+  "exitCode": 0,
+  "compiler": {
+    "path": "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+    "bytes": 41472,
+    "sha256": "e1d0a0b20d95a92b22f4906e7ca331a7c8b89be86b2d9a2d215ac24f753e945a"
+  },
+  "candidateSHA256": "10b913029739ae3f9f5ca94a220eaaf0329cf07c1b3bb9f62f823d833a5f7c2b",
+  "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "scope": "Complete Swift file parsing only; no Apple/XCTest semantic build or native execution"
+}

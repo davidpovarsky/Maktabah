@@ -1,0 +1,21 @@
+{
+  "status": "VERIFIED_REUSE_OF_PRIOR_HOST48_PASS",
+  "checkout_sha": "7495ef0395f0f675d7f7fea3e22804e065aa85c8",
+  "prior_run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44940208007",
+  "prior_checkout_sha": "3b475a8f8fd88ddfd12d0e6c891979e965cf9ce2",
+  "prior_artifact_id": 14724450161,
+  "prior_artifact_sha256": "0484d4115576cd30b6ea35ad8a32aded9bca10d12d0fcf25dd10e883702dd8de",
+  "subset_archive_sha256": "331c19caf9887172412103b65f404a74ea8e27ed469e11c065516451186c4bf2",
+  "original_tests_executed": 48,
+  "original_tests_passed": 48,
+  "new_tests_executed": 0,
+  "local_source_inputs_verified": 35,
+  "sdk_source_inputs_bound_to_unchanged_gitlink": 29,
+  "hanlin_sha": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "builder_sha256": "07b30678c06aff58b1e351a12c3a3a74056cea9322891f2253f77e37057f4626",
+  "windows_checkout_line_endings_normalized": [],
+  "builder_windows_line_endings_normalized": false,
+  "boundary": "Actual frozen SDK Contracts + complete original HostDispatcher + actual ActionCore + actual adapter; explicit backend/authority/native-receipt doubles. No AgentSession, app, provider, native UI or device acceptance.",
+  "native_ui_acceptance": false,
+  "live_provider_acceptance": false
+}

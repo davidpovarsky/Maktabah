@@ -1,0 +1,22 @@
+{
+  "schema": "otzaria.hanlin-fresh-read-diagnostic-source/1",
+  "status": "PREPARED_NOT_EXECUTED",
+  "utc": "2026-11-22T08:53:32.124832+00:00",
+  "base": "ce5d11335c4b4769a25e0e8f48ba1d6f7efc6749",
+  "worktree": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-fresh-read-diagnostic-20261122",
+  "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+  "selector": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
+  "preimageSHA256": "4c04dae91ed4d1d0efcc04284ede6192d8914f744254aae81a60bb720cd930c3",
+  "candidateSHA256": "10b913029739ae3f9f5ca94a220eaaf0329cf07c1b3bb9f62f823d833a5f7c2b",
+  "candidateBytes": 46033,
+  "additionSHA256": "61b2ebb76f44e45b2f874e0af291c2d213f0b92debc39023e30745a3a78e4ab5",
+  "additionLines": 71,
+  "patchSHA256": "0a7379e68c7e40a2d6efdbcfd23a16371f30d26278c0aebbfc49702dbe9d5f45",
+  "exactInversePreservesAllOldTests": true,
+  "productSourceChanged": false,
+  "liveCaseChanged": false,
+  "noLiveInput": true,
+  "noSendAction": true,
+  "sourceParseExecuted": false,
+  "nativeExecuted": false
+}

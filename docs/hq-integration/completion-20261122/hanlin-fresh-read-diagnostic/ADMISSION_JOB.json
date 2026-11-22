@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_a45e51c187d8",
+    "type": "job_result",
+    "source": "script_run@host_7ec8382e82747448",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_7ec8382e82747448",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795338313.760761,
+    "started_at": "2026-11-22T09:05:13.816030+00:00",
+    "finished_at": "2026-11-22T09:06:09.305706+00:00",
+    "duration_s": 55.49,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 600,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"status\": \"PASS_SOURCE_ADMISSION_ONLY\", \"resultPath\": \"C:\\\\Users\\\\DAVID\\\\AppData\\\\Local\\\\Temp\\\\otzaria-hanlin-fresh-read-diagnostic-20261122\\\\admission\\\\RESULT.json\", \"resultSHA256\": \"0d2d338f1e7252aeff635899d0b8d504ca640d44854ffd6bbfed98bb39e0cd06\", \"commands\": [{\"label\": \"focused-prepare\", \"command\": [\"C:\\\\ProgramData\\\\SentinelX\\\\.venv\\\\Scripts\\\\python.exe\", \"Scripts/CI/completion-focused-native.py\", \"prepare\"], \"timeoutSeconds\": 180, \"started\": \"2026-11-22T09:05:15.758295+00:00\", \"environmentOverrides\": {\"PYTHONUTF8\": \"1\", \"EXPECTED_CHECKOUT_SHA\": \"7495ef0395f0f675d7f7fea3e22804e065aa85c8\"}, \"returncode\": 0, \"finished\": \"2026-11-22T09:05:49.691398+00:00\", \"durationSeconds\": 33.938, \"stdout\": {\"path\": \"focused-prepare.stdout\", \"bytes\": 0, \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"stderr\": {\"path\": \"focused-prepare.stderr\", \"bytes\": 0, \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}}, {\"label\": \"hq-preflight\", \"command\": [\"C:\\\\ProgramData\\\\SentinelX\\\\.venv\\\\Scripts\\\\python.exe\", \"Scripts/CI/hq-stage2-focused-apple.py\", \"--preflight-only\"], \"timeoutSeconds\": 180, \"started\": \"2026-11-22T09:05:49.696470+00:00\", \"environmentOverrides\": {\"PYTHONUTF8\": \"1\", \"EXPECTED_CHECKOUT_SHA\": \"7495ef0395f0f675d7f7fea3e22804e065aa85c8\"}, \"returncode\": 0, \"finished\": \"2026-11-22T09:05:56.650218+00:00\", \"durationSeconds\": 6.953, \"stdout\": {\"path\": \"hq-preflight.stdout\", \"bytes\": 3625, \"sha256\": \"f139a05bab38697dba96fe7e9b29da42d5385089949fc2ad3051f4427bd649a8\"}, \"stderr\": {\"path\": \"hq-preflight.stderr\", \"bytes\": 0, \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}}, {\"label\": \"host48-reuse\", \"command\": [\"C:\\\\ProgramData\\\\SentinelX\\\\.venv\\\\Scripts\\\\python.exe\", \"Scripts/CI/reuse-host48.py\"], \"timeoutSeconds\": 180, \"started\": \"2026-11-22T09:05:56.684339+00:00\", \"environmentOverrides\": {\"PYTHONUTF8\": \"1\", \"EXPECTED_CHECKOUT_SHA\": \"7495ef0395f0f675d7f7fea3e22804e065aa85c8\"}, \"returncode\": 0, \"finished\": \"2026-11-22T09:06:08.263263+00:00\", \"durationSeconds\": 11.578, \"stdout\": {\"path\": \"host48-reuse.stdout\", \"bytes\": 1196, \"sha256\": \"0ac3cc024695c5d2cb9e9837e1dbb40675e85888091aa49747ea5c9c0717c58f\"}, \"stderr\": {\"path\": \"host48-reuse.stderr\", \"bytes\": 0, \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}}], \"executionInputCount\": 279, \"error\": null}"
+  }
+}

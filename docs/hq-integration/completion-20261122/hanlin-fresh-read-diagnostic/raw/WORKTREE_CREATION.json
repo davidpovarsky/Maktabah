@@ -1,0 +1,19 @@
+{
+  "command": [
+    "git",
+    "-c",
+    "core.autocrlf=false",
+    "worktree",
+    "add",
+    "-b",
+    "codex/otzaria-hanlin-fresh-read-diagnostic-20261122",
+    "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-fresh-read-diagnostic-20261122",
+    "ce5d11335c4b4769a25e0e8f48ba1d6f7efc6749"
+  ],
+  "started": "2026-11-22T08:52:03.679490+00:00",
+  "finished": "2026-11-22T08:52:53.470344+00:00",
+  "exitCode": 0,
+  "base": "ce5d11335c4b4769a25e0e8f48ba1d6f7efc6749",
+  "target": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-fresh-read-diagnostic-20261122",
+  "branch": "codex/otzaria-hanlin-fresh-read-diagnostic-20261122"
+}

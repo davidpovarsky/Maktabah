@@ -1,0 +1,80 @@
+--- a/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift
++++ b/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift
+@@ -271,6 +271,77 @@
+         XCTAssertEqual(try assertTarget(backend: "otzaria"), originalLocator)
+         XCTAssertTrue(try XCTUnwrap(app.textViews["reader-text"].value as? String).utf8.elementsEqual(originalText.utf8))
+         XCTAssertEqual(try originalWorkspaceOwner(), originalOwner)
++    }
++
++    @MainActor
++    func testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending() throws {
++        continueAfterFailure = false
++        executionTimeAllowance = 600
++        XCTAssertTrue(isPad, "This diagnostic requires the original declared iPad")
++        let environment = ProcessInfo.processInfo.environment
++        XCTAssertNil(environment["OTZARIA_HANLIN_LIVE_PROVIDER_CASE"])
++        XCTAssertNil(environment["OTZARIA_HANLIN_LIVE_NONCE"])
++        XCUIDevice.shared.orientation = .landscapeLeft
++        launchReader(backend: "otzaria", language: "en")
++        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
++        let originalLocator = try assertTarget(backend: "otzaria")
++        let originalOwner = try originalWorkspaceOwner()
++        let originalText = try XCTUnwrap(app.textViews["reader-text"].value as? String)
++        let expectedTitle = try XCTUnwrap(environment["R27_EXPECTED_OTZARIA_BOOK_TITLE"])
++        func tapNative(_ element: XCUIElement) {
++            XCTAssertTrue(element.waitForExistence(timeout: 30))
++            XCTAssertTrue(element.isEnabled)
++            XCTAssertTrue(element.isHittable, "Use the actual native control")
++            element.tap()
++        }
++
++        tapNative(app.buttons["otzaria-hanlin-reader-launch"])
++        let consent = app.switches["otzaria-hanlin-allow-current-book"]
++        XCTAssertTrue(consent.waitForExistence(timeout: 30))
++        XCTAssertEqual(consent.value as? String, "0")
++        XCTAssertEqual(app.staticTexts["otzaria-hanlin-consent-book-title"].label, expectedTitle)
++        let endpoint = "https://generativelanguage.googleapis.com/v1beta/openai/"
++        let service = app.textFields["otzaria-hanlin-service-address"]
++        tapNative(service)
++        service.typeKey("a", modifierFlags: .command)
++        service.typeText(endpoint)
++        XCTAssertEqual(service.value as? String, endpoint)
++        let model = app.textFields["otzaria-hanlin-model"]
++        tapNative(model)
++        model.typeText("unused-native-fresh-read-proof")
++        XCTAssertEqual(model.value as? String, "unused-native-fresh-read-proof")
++        let key = app.secureTextFields["otzaria-hanlin-api-key"]
++        tapNative(key)
++        key.typeText("ui-no-send-credential")
++        let form = app.descendants(matching: .any)["otzaria-hanlin-connection-form"].firstMatch
++        XCTAssertTrue(form.waitForExistence(timeout: 20))
++        let nativeConsent = try originalCurrentBookConsentSwitch(in: consent)
++        for _ in 0..<4 where !nativeConsent.isHittable { form.swipeUp() }
++        tapNative(nativeConsent)
++        XCTAssertEqual(consent.value as? String, "1")
++        let connect = app.buttons["otzaria-hanlin-connect"]
++        for _ in 0..<4 where !connect.isHittable { form.swipeDown() }
++        capture("hanlin-fresh-read-no-send-before-original-connect")
++        tapNative(connect)
++
++        let revoke = app.buttons["otzaria-hanlin-end-book-access"]
++        let accessAppeared = revoke.waitForExistence(timeout: 30)
++        capture("hanlin-fresh-read-no-send-after-original-dismiss-reopen")
++        XCTAssertTrue(accessAppeared, "The original native dismissal must issue the source-qualified read session")
++        XCTAssertEqual(app.buttons.matching(identifier: "otzaria-hanlin-close").count, 1)
++        XCTAssertTrue(app.textViews["otzaria-hanlin-composer"].waitForExistence(timeout: 30))
++        XCTAssertFalse(app.buttons["otzaria-hanlin-send"].isEnabled,
++                       "The untouched fresh conversation has no message to send")
++        XCTAssertFalse(app.buttons["otzaria-hanlin-stop"].exists)
++        tapNative(app.buttons["otzaria-hanlin-close"])
++        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
++            predicate: NSPredicate(format: "exists == false"),
++            object: app.buttons["otzaria-hanlin-close"]
++        )], timeout: 30), .completed)
++        XCTAssertEqual(try assertTarget(backend: "otzaria"), originalLocator)
++        XCTAssertTrue(try XCTUnwrap(app.textViews["reader-text"].value as? String).utf8.elementsEqual(originalText.utf8))
++        XCTAssertEqual(try originalWorkspaceOwner(), originalOwner)
++        capture("hanlin-fresh-read-no-send-returned-to-original-reader")
+     }
+ 
+     @MainActor

@@ -1,0 +1,71 @@
+{
+  "schema": "otzaria.fresh-read-one-case-wrapper-draft/1",
+  "status": "DRAFT_SOURCE_PLACEHOLDER_NOT_EXECUTABLE",
+  "base": "ce5d11335c4b4769a25e0e8f48ba1d6f7efc6749",
+  "branch": "codex/otzaria-hanlin-fresh-read-diagnostic-20261122",
+  "selector": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
+  "cases": 1,
+  "files": [
+    {
+      "path": "Scripts/CI/completion-focused-native.py",
+      "preimageSHA256": "422e8676c78e977940c4630d137ed3e5efe686de15aa6857d1ba1b7e0f909ae0",
+      "candidateSHA256": "689bc9f98956c6ce49b697cde2b9751ad0a36c74a666735927d49553ab159268",
+      "patchSHA256": "a161d9a836a6c60160d9f9f72f40237641c7336a6a3f0729ebf8e1964b8439b9",
+      "exactInverse": true,
+      "replacements": [
+        [
+          "\"\"\"One original consent switch diagnostic; no credentials or full-phase acceptance.\"\"\"",
+          "\"\"\"One fresh-read no-key native diagnostic; no Send or full-phase acceptance.\"\"\""
+        ],
+        [
+          "SOURCE = \"0ea7218331d1441d37d06d43333e579f267056e3\"",
+          "SOURCE = \"PENDING_FRESH_READ_TEST_SOURCE\""
+        ],
+        [
+          "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection",
+          "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+        ],
+        [
+          "One original no-credential consent switch diagnostic; the three Native4 PASS cases remain separate immutable evidence; full Native116/Release114 remain unaccepted",
+          "One original fresh empty-conversation read diagnostic with explicit unused form values and no Send; prior Native PASS cases remain separate immutable evidence and are not replayed; full Native116/Release114 remain unaccepted"
+        ],
+        [
+          "\"FOCUSED_CONSENT_ONLY\"",
+          "\"FOCUSED_FRESH_READ_NO_SEND_ONLY\""
+        ],
+        [
+          "The single original consent diagnostic must execute and pass",
+          "The single original fresh-read diagnostic must execute and pass"
+        ]
+      ]
+    },
+    {
+      "path": ".github/workflows/otzaria-completion-focused-native.yml",
+      "preimageSHA256": "7f371799b3ea568642f8882da8c7b99c8bf1b50b6d3d912e7c2d8f4ff07a5d66",
+      "candidateSHA256": "f725a6c23a6d9b8d89d5941aebb1ecdc7a08879eba54bb7ae2f30aa8e7a371a5",
+      "patchSHA256": "dce1616ab6bad51e3d9928c047007520b96bce78d1c1f02e326656dac4d4934b",
+      "exactInverse": true,
+      "replacements": [
+        [
+          "name: Original consent switch focused native diagnostic",
+          "name: Original fresh-read no-send native diagnostic"
+        ],
+        [
+          "branches: [codex/otzaria-completion-consent-native-20261122]",
+          "branches: [codex/otzaria-hanlin-fresh-read-diagnostic-20261122]"
+        ],
+        [
+          "name: One app build and one original consent diagnostic",
+          "name: One app build and one original fresh-read diagnostic"
+        ],
+        [
+          "name: Execute one original consent diagnostic without rebuilding or provider credentials",
+          "name: Execute one original fresh-read diagnostic without rebuilding or a provider key"
+        ]
+      ]
+    }
+  ],
+  "buildDriverCollectorsBinariesCleanupRetained": true,
+  "priorPassedSelectorsAbsent": true,
+  "nativeExecuted": false
+}
