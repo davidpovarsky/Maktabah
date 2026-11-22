@@ -1,0 +1,214 @@
+{
+  "status": "STOPPED_REQUIRES_INSPECTION_BEFORE_RETRY",
+  "parent": "b435db307bd3abe3ab25ff48b5134309fd759b04",
+  "started_at": "2026-11-22T17:32:43.725186+00:00",
+  "docs": 33,
+  "mutations": [
+    "created exact one-line-source and evidence tree",
+    "created verified integration child"
+  ],
+  "verified_document_blobs": [
+    {
+      "path": "docs/hq-integration/completion-20261122/CONTINUATION_STATUS.md",
+      "bytes": 127806,
+      "sha256": "2ffbd9d1f7a164c4269b4d8297102e91059891746b42719275d39d3aaca96a6c",
+      "git_blob": "5f74b06e534054c864cc2f14446a2784a35e2c2b"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/root_evidence_verification_1730.py",
+      "bytes": 8462,
+      "sha256": "e167b9821adab4eb55362a1e8b2e599625220c114a6e2b43fc73fd4817d1eae8",
+      "git_blob": "b8489fce5f39dd17a75e854b01a0b6e802f956e7"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/INTAKE_RECEIPT.json",
+      "bytes": 1539,
+      "sha256": "b5a0ed80eb84bc2990f2b549134fbc994b3d2215a7692a1630d433699eed9343",
+      "git_blob": "3d3c319c997502e5bcd754d280881ef630203108"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/INTEGRATION_PREPARATION.json",
+      "bytes": 1564,
+      "sha256": "8c57d3edc6d125ec22b3346cfadf797ce4506e37e3d9f21383299f69fecf8828",
+      "git_blob": "bc4105fccce45cf46454aaf84f0050c2fe1ca2fb"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/LIVE9_ACTIVATION_OBSERVED.json",
+      "bytes": 1018,
+      "sha256": "68795ccfa9d0e652836012935e74abbedd1523d51556410a281d35a3f2190807",
+      "git_blob": "b6eba8a0d90cf561530fabe0d16485acf2c9e80d"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/ROOT_VISUAL_REVIEW.json",
+      "bytes": 1099,
+      "sha256": "82f2e1c8b3abee9d56675e1909a8d15eaf6f2d6de7b445194f1080f0fbd0c5a1",
+      "git_blob": "c091912084f0fbdc2e4a1ede8aeb3a28f90eb5ef"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/heart_completion/schema_registration/ROOT_SEMANTIC_RESULT_REVIEW.json",
+      "bytes": 6332,
+      "sha256": "da9141ced4a233b612da4b1bc945f94d26b90c4da43283ce80921197a5f908e4",
+      "git_blob": "592779a61868aebb0df5d4d0884d8fe4ebae02f8"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/heart_completion/schema_registration/ROOT_REMOTE_EVIDENCE_REVIEW.json",
+      "bytes": 8260,
+      "sha256": "a2ef83fd8d7307fc9736838b5866433f08c89fc09ee858ec33017558569ede6c",
+      "git_blob": "ac71fd1372a7bfc824eb02103af761a02ea25036"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native-import-request-compat/evidence/run-45047489968/ROOT_COMPILE_PASS_REVIEW.json",
+      "bytes": 1402,
+      "sha256": "5d505b96dbc8db85e7c548c3b57cd3fbc4eac1774af16d77baf1f7ec3180c6a0",
+      "git_blob": "3497208fdb55638fd9620d879333d72c42219c99"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/sdk_runtime_continuation/ROOT_RUNTIME_SOURCE_REVIEW.json",
+      "bytes": 931,
+      "sha256": "51b30a09c2f80326f10825893f8882f9e0db4b57aed1ad468b23644b45101acf",
+      "git_blob": "6977a9f54d818e2dce2ed06201b054b6e393e6ad"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/sdk_runtime_continuation/ROOT_RUNTIME_REMOTE_ADMISSION.json",
+      "bytes": 11735,
+      "sha256": "026e9abb4e64ef904d83c658f4d154fd3496892b33364b98df6177b31755b207",
+      "git_blob": "4057aa4f98ef5f8cdc6a08c1ea43731f09871c73"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/sdk_runtime_continuation/omissions/ROOT_LOCAL_RECOVERY_REVIEW.json",
+      "bytes": 1568,
+      "sha256": "cd3cac909ee07d0812da0e6d8b3fdc67e3554340481375f1191ab39370c40d25",
+      "git_blob": "82c007961c64b6bd8102dfcc210bd194fb921373"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/sdk_runtime_continuation/omissions/ROOT_REMOTE_RECOVERY_REVIEW.json",
+      "bytes": 1907,
+      "sha256": "14e9304a58695822e0bf68b25faf63d05d40dbbab870651286580198cdf0b48d",
+      "git_blob": "8e02881a7d9204672700946763d9cd3e46bc1f03"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/stageb-schema2/ROOT_SCHEMA2_SCOPE_REVIEW.json",
+      "bytes": 2139,
+      "sha256": "c6aadcdf4f4971a40ee5059812b1bbc3809567aaa0205b32cc841de797d09492",
+      "git_blob": "0210cde7c68f36a33de33adb8b467d8075f7ce4a"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/live9-preparation/EXECUTED_LIVE9_CONTROLLER.py",
+      "bytes": 14779,
+      "sha256": "c83e3bf3ef37cf749d79a8e20e63d1180ce2d3fe33b4b639062b1e3bfcafb5bd",
+      "git_blob": "ba9ceb5d356f2784f17b9470c2eac87fcc971a99"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/live9-preparation/ACTUAL_WINDOWS_CONTROLLER.py",
+      "bytes": 14994,
+      "sha256": "9718a5eb04e50f83df9cc83f7c8b284e251ddefbd12ad20fd6ea646bfd4ff93a",
+      "git_blob": "52ff7ad7d1f5b61009149f67e65077c9984fbef0"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/live9-preparation/ACTUAL_WINDOWS_MATERIALIZATION.json",
+      "bytes": 372,
+      "sha256": "1ffc50df436274243d86c427b25944b21b457353d12283d9c4f2da436025b206",
+      "git_blob": "4c49208c6187ec531c09c5e1f19e0e40e2dc6f4c"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/live9-preparation/FINALIZATION.json",
+      "bytes": 1186,
+      "sha256": "684ae3efe769b0e288b4965c04513583e29b225874b261586e843ded178edef7",
+      "git_blob": "6a2861b0621c5a9563ce57d6fea503a90456b295"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/live9-preparation/FINALIZATION.diff",
+      "bytes": 616,
+      "sha256": "55334629ec93b961a3c96868cf54880526b5184a513ef3ca89bfbd33b875db8a",
+      "git_blob": "d1199ba7969d8eebf2e53b856be0525b39266e36"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/live9-preparation/HOST_TIMEOUT_VALIDATION_FAILURE.json",
+      "bytes": 318,
+      "sha256": "5367ab54a1c0ea7027550d7e297efcd74f2529d7353d10cb186e84527875bb5a",
+      "git_blob": "2219f1a306e3376fd67e82b69b0d274fe4338fd6"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/0D697DED-8AEA-436C-9583-7CEE9F53AAB8.png",
+      "bytes": 882416,
+      "sha256": "4132f0b6c575f1ede09d8e2fded25c621a3e186a2ea324eca42de62f4024e53b",
+      "git_blob": "e2280e530e6b93a1c3fd8d46a419fe56cd421c7a"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/13264832-258A-436B-98CB-1EA9016AF14F.txt",
+      "bytes": 35924,
+      "sha256": "aa2ad974ad450873351697ac1000414f33a8e6a201a5e12ccebf7cee8d0b6988",
+      "git_blob": "b06d6075d5f60ede9384fd93b212c37fb700904b"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/19C6105D-8C53-47D6-9ED0-CA1699BD38C8.txt",
+      "bytes": 31942,
+      "sha256": "65622ddff9c5c7e80aa92d9bb6d540e9ba4935970b05b1cbda3ea0eb349aafb2",
+      "git_blob": "f652dcc487e1de97d2310815b9395c4320a49c82"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/ACTUAL_CASE_EXECUTION.json",
+      "bytes": 506,
+      "sha256": "770eb33f06790c0f91a5049da74fab82a407dc9bd714b945ec3e30353000a7b1",
+      "git_blob": "373cd48643fca534a696cc902448bedf21c91b19"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/CAPTURE_SELECTION.json",
+      "bytes": 1419,
+      "sha256": "48e2b39df4103b012e554f9a4681795b286e5d27c2c48d7da6caded36fc43d58",
+      "git_blob": "d7ed441274292d2368f17442b076a0aaf67434b6"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/DEABA939-9527-4D58-B104-A7287DEEA8EF.png",
+      "bytes": 783248,
+      "sha256": "e8a58c85edd969ec6a40cd01fa9cc08f7fcd932d7c5daf7e29269e242f061a8f",
+      "git_blob": "a7efa89550c834a883ba961363f0f2bb6935526d"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/FOCUSED_RESULT.json",
+      "bytes": 65211,
+      "sha256": "bd736e95b90015f08b17e28149c38dfe3b73c02994464e8303bc7bf274b91de4",
+      "git_blob": "79f46b468e6027ebaa061a5a9cc134d2de22d1a9"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/HOST48_REUSE.json",
+      "bytes": 1235,
+      "sha256": "ad98a71b528d95e3fab2bb048b0b5625a3538619a82d3d4ea42d15b762df2fa4",
+      "git_blob": "4c32a24b1d47ee1326a02c52a542a35cb152d5e3"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/POST_UI_INPUT_AUDIT.json",
+      "bytes": 88197,
+      "sha256": "fb603711ed1bdb62f8f123825c1e95c828b40f0338f0d0a65a8d024ad8e99a45",
+      "git_blob": "67f701f045897218ff53cf295679fd7c837cca5f"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/ROOT_ACCEPTANCE.json",
+      "bytes": 4155,
+      "sha256": "461a2a0aeceb1af3da720fd9bbde206673d42adfd2bbaffbe3d5159512988ea0",
+      "git_blob": "839c06f8dad6f76f614e6db8c98f02fb4f6eb0e6"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/summary.json",
+      "bytes": 986,
+      "sha256": "a9835434a6c0885a028fb0154f34e7b60873cb3d4651bc512837fd691d605979",
+      "git_blob": "e7680db7bc14e8de3267b4abb48b8351cd2c41f8"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/tests.json",
+      "bytes": 1807,
+      "sha256": "94d1d080d6fac749561d00ac181bcb49d17c778258a146cb65db38509f41aa29",
+      "git_blob": "ef1a5d984156bd3a2807914ffdae388109dacb0c"
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/verified-native450416/native450416/evidence.zip",
+      "bytes": 1413468,
+      "sha256": "e86d64c98c774b3e6e01611d46b2ab753c7c8b145643d6b654abfc6c2fb1b2b6",
+      "git_blob": "3f0de11f9f6eb2150dbfab4420efb7a7c68fd601"
+    }
+  ],
+  "tree": "697bb9928bc15cc0a25960b40f61f43e2b591fee",
+  "commit": "dcf8885471fc066ce6ad4358c30062826f03589f",
+  "error": "AssertionError(('Source', 'fada5ad1164ed81e248dec54e1ceedfd2741fa57', '8197eab0668a42b311b7056987e54d5a973903f8'))",
+  "finished_at": "2026-11-22T17:33:33.974773+00:00"
+}

@@ -1,0 +1,19 @@
+{
+  "schema": "otzaria.native-canonical-source-validation-correction/1",
+  "initial_job": "job_bc2044d3107d",
+  "prepared_child": "dcf8885471fc066ce6ad4358c30062826f03589f",
+  "canonical_parent": "b435db307bd3abe3ab25ff48b5134309fd759b04",
+  "read_only_diagnosis_job": "job_eb636556c098",
+  "actual_source_tree": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+  "incorrect_expected_source_tree": "8197eab0668a42b311b7056987e54d5a973903f8",
+  "finding": "Only the complete OtzariaHanlinChatView.swift file matches the actual tested3b source. Canonical retains three existing annotation editor integration files. The initial stronger full Source equality expectation was incorrect and stopped before push.",
+  "retained_existing_paths": [
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift"
+  ],
+  "actual_new_product_delta": "Exactly one insertion in OtzariaHanlinChatView.swift; no deletions or other product-file changes. All33 document blobs and original retained evidence already verified; reuse existing child.",
+  "new_native_test_executions": 0,
+  "new_artifact_downloads": 0,
+  "canonical_full_source_acceptance": false
+}

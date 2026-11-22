@@ -1,3 +1,15 @@
+# Current canonical source clarification — 22 November 2026
+
+The verified integration preserves the canonical editor work and adds exactly one tested accessibility line. The product-source commit is `dcf8885471fc066ce6ad4358c30062826f03589f`, a direct child of `b435db307bd3abe3ab25ff48b5134309fd759b04`. This final documentation child retains the source-validation stop and its read-only diagnosis. The resulting canonical Source tree is `fada5ad1164ed81e248dec54e1ceedfd2741fa57`.
+
+The initial publisher stopped **before pushing** because it expected the entire Source tree to equal the Native3b tree. That expectation was too strong: canonical already contains three separate original-editor integration changes in `AnnotationOriginalEditorMount.swift`, `AnnotationOriginalEditorQualification.swift` and `AnnotationOriginalEditorQualificationUI.swift`. The read-only Git comparison confirmed those pre-existing changes are preserved. Only the entire ChatView file, blob `5f5819f67abb19eb83db8f25632cc9ee25fc1e84`, equals the file used by the actual passing Native run. The complete new product delta against canonical b435 is one insertion, zero deletions, and no other product-file edits. Vendor, project and canonical UI-test trees are unchanged.
+
+The existing source/evidence child was reused after checking all33 immutable document blobs and the complete changed-path set. A documentation-only child adds the stopped receipt, read-only diagnosis and explicit correction. The eventual normal push and clean Sentinel fast-forward are verified in the publication receipt. The Native PASS remains bound to its actual application3b/control6591; complete canonical Native116, Release114 and StageB acceptance remain pending. No test was replayed and no Actions artifact was downloaded again for this correction.
+
+Importer compile PASS is additionally recorded in main Asana `1220769992636395`, with all17 remote evidence blobs verified at Anytype `72e8154c9ad21280894d0c93f5828e33a19ed7d6`. Schema5 PASS, SDK runtime continuation and the active owned Live9 controller remain as documented below.
+
+---
+
 # Otzaria / Maktabah — verified Native source integration
 
 Snapshot prepared after the independently verified milestones of 2026-11-22 17:29 UTC. This section supersedes the older snapshots preserved verbatim below. Development, source integration and verified Asana updates remain authorized. No unfinished acceptance task is marked complete by a source or compilation prerequisite.

@@ -1,0 +1,64 @@
+{
+  "at_utc": "2026-11-22T17:36:08.448172+00:00",
+  "canonical_head": "b435db307bd3abe3ab25ff48b5134309fd759b04",
+  "remote_head": "b435db307bd3abe3ab25ff48b5134309fd759b04",
+  "working_tree": "clean",
+  "existing_child": "dcf8885471fc066ce6ad4358c30062826f03589f",
+  "child_parent": "b435db307bd3abe3ab25ff48b5134309fd759b04",
+  "child_source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+  "canonical_source_vs_tested_native": ".../AnnotationOriginalEditorMount.swift            |  28 ++-\n .../AnnotationOriginalEditorQualification.swift    | 109 +++++++++-\n .../AnnotationOriginalEditorQualificationUI.swift  | 222 ++++++++++++++++++---\n .../HanlinHostAdapter/OtzariaHanlinChatView.swift  |   1 -\n 4 files changed, 333 insertions(+), 27 deletions(-)",
+  "canonical_source_paths_vs_tested_native": "M\tSource/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift\nM\tSource/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift\nM\tSource/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift\nM\tSource/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+  "new_source_delta": "diff --git a/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift b/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift\nindex c6b1234a..5f5819f6 100644\n--- a/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift\n+++ b/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift\n@@ -62,6 +62,7 @@ private struct OtzariaHanlinChatView: View {\n                             .accessibilityIdentifier(\"otzaria-hanlin-end-book-access\")\n                     }\n                     .frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal).padding(.vertical, 8)\n+                    .accessibilityElement(children: .contain)\n                     .accessibilityIdentifier(\"otzaria-hanlin-book-access\")\n                 }\n                 if let error = session.errorMessage { HanlinChatErrorBanner(errorMessage: error) }",
+  "all_changed_paths": [
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+    "docs/hq-integration/completion-20261122/CONTINUATION_STATUS.md",
+    "docs/hq-integration/completion-20261122/verified-native450416/heart_completion/schema_registration/ROOT_REMOTE_EVIDENCE_REVIEW.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/heart_completion/schema_registration/ROOT_SEMANTIC_RESULT_REVIEW.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/live9-preparation/ACTUAL_WINDOWS_CONTROLLER.py",
+    "docs/hq-integration/completion-20261122/verified-native450416/live9-preparation/ACTUAL_WINDOWS_MATERIALIZATION.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/live9-preparation/EXECUTED_LIVE9_CONTROLLER.py",
+    "docs/hq-integration/completion-20261122/verified-native450416/live9-preparation/FINALIZATION.diff",
+    "docs/hq-integration/completion-20261122/verified-native450416/live9-preparation/FINALIZATION.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/live9-preparation/HOST_TIMEOUT_VALIDATION_FAILURE.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/native-import-request-compat/evidence/run-45047489968/ROOT_COMPILE_PASS_REVIEW.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/INTAKE_RECEIPT.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/INTEGRATION_PREPARATION.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/LIVE9_ACTIVATION_OBSERVED.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/evidence.zip",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/0D697DED-8AEA-436C-9583-7CEE9F53AAB8.png",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/13264832-258A-436B-98CB-1EA9016AF14F.txt",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/19C6105D-8C53-47D6-9ED0-CA1699BD38C8.txt",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/ACTUAL_CASE_EXECUTION.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/CAPTURE_SELECTION.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/DEABA939-9527-4D58-B104-A7287DEEA8EF.png",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/FOCUSED_RESULT.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/HOST48_REUSE.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/POST_UI_INPUT_AUDIT.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/ROOT_ACCEPTANCE.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/ROOT_VISUAL_REVIEW.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/summary.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/native450416/root-review/tests.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/root_evidence_verification_1730.py",
+    "docs/hq-integration/completion-20261122/verified-native450416/sdk_runtime_continuation/ROOT_RUNTIME_REMOTE_ADMISSION.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/sdk_runtime_continuation/ROOT_RUNTIME_SOURCE_REVIEW.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/sdk_runtime_continuation/omissions/ROOT_LOCAL_RECOVERY_REVIEW.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/sdk_runtime_continuation/omissions/ROOT_REMOTE_RECOVERY_REVIEW.json",
+    "docs/hq-integration/completion-20261122/verified-native450416/stageb-schema2/ROOT_SCHEMA2_SCOPE_REVIEW.json"
+  ],
+  "other_product_trees": {
+    "Vendor": {
+      "before": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "after": "4065c0e62af325e83a65fe0c70270985229807ae"
+    },
+    "Maktabah.xcodeproj": {
+      "before": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+      "after": "8c0fa1ccfbcfae01fae3c267512864e00efcf078"
+    },
+    "Maktabah-iOSUITests": {
+      "before": "ca36ba13f1fd900adf528a3e404fed6a66290b6b",
+      "after": "ca36ba13f1fd900adf528a3e404fed6a66290b6b"
+    }
+  },
+  "pushes": 0,
+  "new_commits": 0
+}
