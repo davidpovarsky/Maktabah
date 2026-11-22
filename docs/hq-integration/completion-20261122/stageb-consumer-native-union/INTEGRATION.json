@@ -1,0 +1,98 @@
+{
+  "verified_at_utc": "2026-11-22 13:50:23 UTC",
+  "merge_commit": "27ec864d68efd4ddb3a84f4334fc489787b8bd94",
+  "parents": [
+    "da040e8deeae1df50193bd7b79af2b658736ff79",
+    "2da49a642161ad15aee32d230ae666dfe22181bb"
+  ],
+  "base_app": "a1940076187c0c2e6047115162771f0e48e5cab8",
+  "tree": "b3c014a72a67ede3129e07126d13739749a2d113",
+  "complete_leaf_entries_verified": 8891,
+  "source_tree_invariants": {
+    "Maktabah-iOSUITests": "ca36ba13f1fd900adf528a3e404fed6a66290b6b",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Source": "f6056372f52f0425fe77a556b02d26c82188d364",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "disjoint_changed_paths": 20,
+  "stageb_incoming_paths": [
+    {
+      "path": "Maktabah-iOSUITests/OriginalEditorAnnotationAcceptanceTests.swift",
+      "sha": "6e1b283057de617c7e5dc8057ba8c312737bd31f",
+      "status": "modified"
+    },
+    {
+      "path": "Scripts/CI/OriginalEditorDistributionAPICheck.swift",
+      "sha": "2e6700b242113e0ba6efa382354de0e1b422fecd",
+      "status": "modified"
+    },
+    {
+      "path": "Scripts/CI/hq-original-editor-distribution.py",
+      "sha": "b4e4163b869084b4cfcb12b5b9a030fb9de8dbf7",
+      "status": "modified"
+    },
+    {
+      "path": "Scripts/CI/runtime27-original-editor-native.py",
+      "sha": "726eb809b2543e15268c5c93b91aa90cae06f3fe",
+      "status": "modified"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "sha": "d50041264cb539ff089c5842353d844f76848f54",
+      "status": "modified"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift",
+      "sha": "b070b807c32c47a5dbe886c71ae11ccbaef514a9",
+      "status": "modified"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift",
+      "sha": "831c8ef4ea47e7a5f09cb660647308a702d1e611",
+      "status": "modified"
+    },
+    {
+      "path": "docs/evidence/original-editor-stageb-process-resume-20261122/CONSUMER_BINDING_PLAN.json",
+      "sha": "a862d1d4b158f64095577162b43f847bce3c6a0b",
+      "status": "added"
+    },
+    {
+      "path": "docs/evidence/original-editor-stageb-process-resume-20261122/README.md",
+      "sha": "a0cb1b19bc73ec78dfd3dd6e2ac00a2578a0f6ff",
+      "status": "added"
+    },
+    {
+      "path": "docs/evidence/original-editor-stageb-process-resume-20261122/SOURCE.json",
+      "sha": "694f1cf3b45d172b2a8644cd6d65ef980160067e",
+      "status": "added"
+    },
+    {
+      "path": "docs/evidence/original-editor-stageb-process-resume-20261122/consumer-admission-controls/result.json",
+      "sha": "19b47fa3cac166512ef8b424ae11b69b5ea4b3ab",
+      "status": "added"
+    },
+    {
+      "path": "tools/verify-original-editor-process-admission-controls.py",
+      "sha": "36abc47f8b80c88587e905b41f33675190802e16",
+      "status": "added"
+    }
+  ],
+  "native_and_provider_paths": [
+    "Scripts/CI/run-faithful-ipad-matrix.py",
+    ".github/workflows/otzaria-completion-focused-native.yml",
+    "docs/hq-integration/completion-20261122/native-package-cache-resume/CANCELLED_RUN.json",
+    "docs/hq-integration/completion-20261122/native-package-cache-resume/README.md",
+    "docs/hq-integration/completion-20261122/books-provider-readonly-1344/catalog.raw",
+    "docs/hq-integration/completion-20261122/books-provider-readonly-1344/HTTP_RECEIPT.json",
+    "docs/hq-integration/completion-20261122/books-provider-readonly-1344/CATALOG_CONTRACT.json",
+    "docs/hq-integration/completion-20261122/books-provider-readonly-1344/README.md"
+  ],
+  "stageb_peer_review": "https://github.com/davidpovarsky/anytype-swift/blob/dc4929239ebd9cb199a7e0c238f5bf155305f7d8/docs/pinkha/torah-integration/evidence/stageb-source-peer-review-20261122/REVIEW.json",
+  "checks_replayed": false,
+  "apple_build_and_native_stageb": "NOT_RUN_ON_THIS_UNION",
+  "sdk_binding": "PENDING_ACTUAL_COMBINED_PRODUCER_SUCCESS",
+  "focused_native_run": "45028340249",
+  "focused_native_checkout": "6736f7a1a3eda82fd70d70d4a192c9ba15a09282",
+  "focused_native_current_result": "PENDING_SOLE_OBSERVER",
+  "source_integration_only": true
+}

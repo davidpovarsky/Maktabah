@@ -1,0 +1,3 @@
+# Reviewed StageB consumer and focused-native source union
+
+True merge `27ec864d68efd4ddb3a84f4334fc489787b8bd94` retains both original histories. The complete remote result was compared with an independently constructed leaf union: all 8,891 blob/submodule entries and modes match, with no truncated tree response or unrelated difference. The four product trees exactly equal the reviewed StageB candidate. INTEGRATION.json retains parents, source blobs, review and pending native/SDK boundaries. No tests were rerun for this merge. Final producer binding and actual Apple/native execution remain required.
