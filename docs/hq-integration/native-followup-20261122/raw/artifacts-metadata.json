@@ -1,0 +1,45 @@
+{
+  "total_count": 2,
+  "artifacts": [
+    {
+      "id": 14736147772,
+      "node_id": "MDg6QXJ0aWZhY3QxNDczNjE0Nzc3Mg==",
+      "name": "completion-focused-native-captures",
+      "size_in_bytes": 433737125,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14736147772",
+      "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14736147772/zip",
+      "expired": false,
+      "digest": "sha256:97e5a1de4128a282d631abe104fa273ad77b5b1ba010e6fbc84ef47290c0252d",
+      "created_at": "2026-11-22T02:36:36Z",
+      "updated_at": "2026-11-22T02:36:36Z",
+      "expires_at": "2027-02-20T01:00:26Z",
+      "workflow_run": {
+        "id": 44969361774,
+        "repository_id": 1280062128,
+        "head_repository_id": 1280062128,
+        "head_branch": "codex/otzaria-completion-focused-native-20261121",
+        "head_sha": "3bb181f4d3ca1bde9f1ce43de40d1f3658d821c5"
+      }
+    },
+    {
+      "id": 14735253756,
+      "node_id": "MDg6QXJ0aWZhY3QxNDczNTI1Mzc1Ng==",
+      "name": "completion-focused-native-evidence",
+      "size_in_bytes": 20480209,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14735253756",
+      "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14735253756/zip",
+      "expired": false,
+      "digest": "sha256:228e3fd02e3063afbc3cb8a59cc3d85907219399c48ab7fb870a1ff1585971a6",
+      "created_at": "2026-11-22T02:36:17Z",
+      "updated_at": "2026-11-22T02:36:17Z",
+      "expires_at": "2027-02-20T01:00:26Z",
+      "workflow_run": {
+        "id": 44969361774,
+        "repository_id": 1280062128,
+        "head_repository_id": 1280062128,
+        "head_branch": "codex/otzaria-completion-focused-native-20261121",
+        "head_sha": "3bb181f4d3ca1bde9f1ce43de40d1f3658d821c5"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "branch": "codex/otzaria-native-followup-20261122",
+  "head": "f5d53f3928e8a2319de19373103dcbe3f3153e3c",
+  "automatic_push_workflows_for_changed_paths": [],
+  "path_filtered_workflows": [
+    {
+      "workflow": ".github/workflows/zayit-search-gates.yml",
+      "paths": [
+        "Vendor/ZayitSearchPort/**",
+        ".github/workflows/zayit-search-gates.yml"
+      ],
+      "paths-ignore": null
+    }
+  ],
+  "paths": [
+    "Source/UI/iOS/Views/iOSMainView.swift",
+    "tools/test_initial_global_navigation.py"
+  ],
+  "status": ""
+}

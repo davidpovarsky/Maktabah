@@ -1,0 +1,8 @@
+C:\Users\DAVID\Code\Maktabah-native-followup-20261122\build\initial-global-navigation\restoration-controls.swift:11:5: warning: property wrapper's 'init(initialValue:)' should be renamed to 'init(wrappedValue:)'; use of 'init(initialValue:)' is deprecated [#deprecation]
+  9 | @propertyWrapper struct State<Value> {
+ 10 |     var wrappedValue: Value
+ 11 |     init(initialValue: Value) { wrappedValue = initialValue }
+    |     `- warning: property wrapper's 'init(initialValue:)' should be renamed to 'init(wrappedValue:)'; use of 'init(initialValue:)' is deprecated [#deprecation]
+ 12 | }
+ 13 | @MainActor final class UserDefaults {
+   Creating library C:\Users\DAVID\Code\Maktabah-native-followup-20261122\build\initial-global-navigation\restoration-controls.lib and object C:\Users\DAVID\Code\Maktabah-native-followup-20261122\build\initial-global-navigation\restoration-controls.exp

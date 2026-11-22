@@ -1,0 +1,19 @@
+PASS missing preference
+PASS viewer
+PASS legacy text search
+PASS legacy Zayit search
+PASS global search
+PASS authors
+PASS annotations
+PASS history
+PASS negative corrupt preference
+PASS unknown corrupt preference
+PASS unsupported legacy text search
+PASS unsupported legacy Zayit search
+PASS unsupported global search
+PASS unsupported authors
+PASS viewer with no optional capabilities
+PASS annotations with no optional capabilities
+PASS history with no optional capabilities
+PASS separate scene owners retain their own initialized destination
+PASS 18 restoration controls; Native UI acceptance is NOT_RUN by this harness

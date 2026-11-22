@@ -1,0 +1,9 @@
+{
+  "artifact_id": 14736147772,
+  "expected_bytes": 433737125,
+  "expected_sha256": "97e5a1de4128a282d631abe104fa273ad77b5b1ba010e6fbc84ef47290c0252d",
+  "initial_job": "job_a671167240d5",
+  "initial_result": "TIMEOUT_AFTER_480_SECONDS_PARTIAL_PRESERVED",
+  "resume_offset": 240009216,
+  "started_at": "2026-11-22T02:49:51.764185+00:00"
+}

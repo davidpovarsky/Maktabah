@@ -1,0 +1,230 @@
+{
+  "run": 44969361774,
+  "application_source": "62095a46f3eda10df87fad49812083ba163ee3ef",
+  "captures": [
+    {
+      "capture": "candidate-search-landscape-restored-tab-3-ui-tree_0_2F1E8BEB-4A8E-4596-8133-6313214E58A8.txt",
+      "file": "4AA34666-7112-4221-AC2D-308545744F4D.txt",
+      "sha256": "fffac08d7268632c2c4a4f5f682172251fdec1cd44c54e96aaad99d8cb1752b3",
+      "navigation_bars": [
+        {
+          "identifier": "סינון לפי ספרים",
+          "frame": "{{890.0, 86.0}, {320.0, 108.0}}"
+        },
+        {
+          "identifier": "חיפוש",
+          "frame": "{{0.0, 86.0}, {1210.0, 106.0}}"
+        }
+      ],
+      "native_tab_buttons": [
+        "Button, 0xADDR, {{731.8, 36.0}, {82.5, 36.0}}, identifier: 'books.vertical.fill', label: 'ספרייה'",
+        "Button, 0xADDR, {{656.2, 36.0}, {75.5, 36.0}}, identifier: 'magnifyingglass', label: 'חיפוש', Selected",
+        "Button, 0xADDR, {{572.8, 36.0}, {83.5, 36.0}}, identifier: 'person.text.rectangle.fill', label: 'מוסרים'",
+        "Button, 0xADDR, {{493.8, 36.0}, {79.0, 36.0}}, identifier: 'quote.closing', label: 'הערות'",
+        "Button, 0xADDR, {{395.8, 36.0}, {98.0, 36.0}}, identifier: 'clock.fill', label: 'היסטוריה'"
+      ],
+      "window": [
+        "appFrame=(0.0, 0.0, 1210.0, 834.0)",
+        "actualWindow=(0.0, 0.0, 1210.0, 834.0)",
+        "orientation=3"
+      ],
+      "global_screen": "Other, 0x11340b700, {{0.0, 32.0}, {1210.0, 802.0}}, identifier: 'global-search-screen'"
+    },
+    {
+      "capture": "candidate-flags-off-search-landscape-restored-tab-3-ui-tree_0_149C81AF-F74B-4334-93C6-B2AD2F38F002.txt",
+      "file": "117FF072-6436-4684-AE43-E5A268B030A6.txt",
+      "sha256": "03c7a6fa1cc7bac864703b105f0e490f3ce98e592b8817e2e4403ec10163acd8",
+      "navigation_bars": [
+        {
+          "identifier": "סינון לפי ספרים",
+          "frame": "{{890.0, 106.0}, {320.0, 108.0}}"
+        },
+        {
+          "identifier": "חיפוש",
+          "frame": "{{0.0, 106.0}, {1210.0, 106.0}}"
+        }
+      ],
+      "native_tab_buttons": [
+        "Button, 0xADDR, {{731.8, 36.0}, {82.5, 36.0}}, identifier: 'books.vertical.fill', label: 'ספרייה'",
+        "Button, 0xADDR, {{656.2, 36.0}, {75.5, 36.0}}, identifier: 'magnifyingglass', label: 'חיפוש', Selected",
+        "Button, 0xADDR, {{572.8, 36.0}, {83.5, 36.0}}, identifier: 'person.text.rectangle.fill', label: 'מוסרים'",
+        "Button, 0xADDR, {{493.8, 36.0}, {79.0, 36.0}}, identifier: 'quote.closing', label: 'הערות'",
+        "Button, 0xADDR, {{395.8, 36.0}, {98.0, 36.0}}, identifier: 'clock.fill', label: 'היסטוריה'"
+      ],
+      "window": [
+        "appFrame=(0.0, 0.0, 1210.0, 834.0)",
+        "actualWindow=(0.0, 0.0, 1210.0, 834.0)",
+        "orientation=3"
+      ],
+      "global_screen": "Other, 0x11323c640, {{0.0, 96.0}, {1210.0, 738.0}}, identifier: 'global-search-screen'"
+    },
+    {
+      "capture": "candidate-search-landscape-ui-tree_0_FF4B6526-8F21-4BEC-AC8E-30F3A77DC5F5.txt",
+      "file": "E0EBDD6B-2CC0-4091-8189-74D42C9F330D.txt",
+      "sha256": "b4db51d6e9a3e7d0320761dc70272aefd996d4b5185448d5b45f39ce2d777ad2",
+      "navigation_bars": [
+        {
+          "identifier": "סינון לפי ספרים",
+          "frame": "{{890.0, 106.0}, {320.0, 108.0}}"
+        },
+        {
+          "identifier": "חיפוש",
+          "frame": "{{0.0, 106.0}, {1210.0, 106.0}}"
+        }
+      ],
+      "native_tab_buttons": [
+        "Button, 0xADDR, {{731.8, 36.0}, {82.5, 36.0}}, identifier: 'books.vertical.fill', label: 'ספרייה'",
+        "Button, 0xADDR, {{656.2, 36.0}, {75.5, 36.0}}, identifier: 'magnifyingglass', label: 'חיפוש', Selected",
+        "Button, 0xADDR, {{572.8, 36.0}, {83.5, 36.0}}, identifier: 'person.text.rectangle.fill', label: 'מוסרים'",
+        "Button, 0xADDR, {{493.8, 36.0}, {79.0, 36.0}}, identifier: 'quote.closing', label: 'הערות'",
+        "Button, 0xADDR, {{395.8, 36.0}, {98.0, 36.0}}, identifier: 'clock.fill', label: 'היסטוריה'"
+      ],
+      "window": [
+        "appFrame=(0.0, 0.0, 1210.0, 834.0)",
+        "actualWindow=(0.0, 0.0, 1210.0, 834.0)",
+        "orientation=3"
+      ],
+      "global_screen": "Other, 0x1130cd2c0, {{0.0, 96.0}, {1210.0, 738.0}}, identifier: 'global-search-screen'"
+    },
+    {
+      "capture": "candidate-flags-off-search-landscape-ui-tree_0_72FFBCC5-2334-4037-AC5F-EC626D5B70FB.txt",
+      "file": "5BD2C259-3629-4C60-9464-A6ECC1874CC5.txt",
+      "sha256": "901c7150009bfce83d08e943d9b78e3cd4074a68494e6398df146879f2f41c68",
+      "navigation_bars": [
+        {
+          "identifier": "סינון לפי ספרים",
+          "frame": "{{890.0, 106.0}, {320.0, 108.0}}"
+        },
+        {
+          "identifier": "חיפוש",
+          "frame": "{{0.0, 106.0}, {1210.0, 106.0}}"
+        }
+      ],
+      "native_tab_buttons": [
+        "Button, 0xADDR, {{731.8, 36.0}, {82.5, 36.0}}, identifier: 'books.vertical.fill', label: 'ספרייה'",
+        "Button, 0xADDR, {{656.2, 36.0}, {75.5, 36.0}}, identifier: 'magnifyingglass', label: 'חיפוש', Selected",
+        "Button, 0xADDR, {{572.8, 36.0}, {83.5, 36.0}}, identifier: 'person.text.rectangle.fill', label: 'מוסרים'",
+        "Button, 0xADDR, {{493.8, 36.0}, {79.0, 36.0}}, identifier: 'quote.closing', label: 'הערות'",
+        "Button, 0xADDR, {{395.8, 36.0}, {98.0, 36.0}}, identifier: 'clock.fill', label: 'היסטוריה'"
+      ],
+      "window": [
+        "appFrame=(0.0, 0.0, 1210.0, 834.0)",
+        "actualWindow=(0.0, 0.0, 1210.0, 834.0)",
+        "orientation=3"
+      ],
+      "global_screen": "Other, 0x10917a1c0, {{0.0, 96.0}, {1210.0, 738.0}}, identifier: 'global-search-screen'"
+    },
+    {
+      "capture": "candidate-search-portrait-restored-tab-3-ui-tree_0_B71FC255-B75D-4BDC-80ED-4354BC193DEC.txt",
+      "file": "5981BBE5-170A-4B8D-9C70-F98F048AB6CD.txt",
+      "sha256": "49bbc16167fe9d6c2bd5c1fd330b2af79d28e761136d7dae216b648b1259e9ed",
+      "navigation_bars": [
+        {
+          "identifier": "סינון לפי ספרים",
+          "frame": "{{514.0, 106.0}, {320.0, 108.0}}"
+        },
+        {
+          "identifier": "חיפוש",
+          "frame": "{{0.0, 106.0}, {834.0, 106.0}}"
+        }
+      ],
+      "native_tab_buttons": [
+        "Button, 0xADDR, {{543.8, 36.0}, {82.5, 36.0}}, identifier: 'books.vertical.fill', label: 'ספרייה'",
+        "Button, 0xADDR, {{468.2, 36.0}, {75.5, 36.0}}, identifier: 'magnifyingglass', label: 'חיפוש', Selected",
+        "Button, 0xADDR, {{384.8, 36.0}, {83.5, 36.0}}, identifier: 'person.text.rectangle.fill', label: 'מוסרים'",
+        "Button, 0xADDR, {{305.8, 36.0}, {79.0, 36.0}}, identifier: 'quote.closing', label: 'הערות'",
+        "Button, 0xADDR, {{207.8, 36.0}, {98.0, 36.0}}, identifier: 'clock.fill', label: 'היסטוריה'"
+      ],
+      "window": [
+        "appFrame=(0.0, 0.0, 834.0, 1210.0)",
+        "actualWindow=(0.0, 0.0, 834.0, 1210.0)",
+        "orientation=1"
+      ],
+      "global_screen": "Other, 0x1130cfd40, {{0.0, 96.0}, {834.0, 1114.0}}, identifier: 'global-search-screen'"
+    },
+    {
+      "capture": "candidate-flags-off-search-portrait-restored-tab-3-ui-tree_0_77B70DB6-1226-4E93-97F2-48294E7A3712.txt",
+      "file": "33FCC659-0A9A-45CC-AC3C-5FA406E25A58.txt",
+      "sha256": "a458279ec860583ca90923875bd1c3bf6970f46f191d201233dbf6fb5abdbfca",
+      "navigation_bars": [
+        {
+          "identifier": "סינון לפי ספרים",
+          "frame": "{{514.0, 86.0}, {320.0, 108.0}}"
+        },
+        {
+          "identifier": "חיפוש",
+          "frame": "{{0.0, 86.0}, {834.0, 106.0}}"
+        }
+      ],
+      "native_tab_buttons": [
+        "Button, 0xADDR, {{543.8, 36.0}, {82.5, 36.0}}, identifier: 'books.vertical.fill', label: 'ספרייה'",
+        "Button, 0xADDR, {{468.2, 36.0}, {75.5, 36.0}}, identifier: 'magnifyingglass', label: 'חיפוש', Selected",
+        "Button, 0xADDR, {{384.8, 36.0}, {83.5, 36.0}}, identifier: 'person.text.rectangle.fill', label: 'מוסרים'",
+        "Button, 0xADDR, {{305.8, 36.0}, {79.0, 36.0}}, identifier: 'quote.closing', label: 'הערות'",
+        "Button, 0xADDR, {{207.8, 36.0}, {98.0, 36.0}}, identifier: 'clock.fill', label: 'היסטוריה'"
+      ],
+      "window": [
+        "appFrame=(0.0, 0.0, 834.0, 1210.0)",
+        "actualWindow=(0.0, 0.0, 834.0, 1210.0)",
+        "orientation=1"
+      ],
+      "global_screen": "Other, 0x11323cc80, {{0.0, 32.0}, {834.0, 1178.0}}, identifier: 'global-search-screen'"
+    },
+    {
+      "capture": "candidate-search-portrait-ui-tree_0_C3F19C13-A040-432F-81E8-AEE47EE8D186.txt",
+      "file": "946F2D2C-5E44-4376-8BEF-96A292B21620.txt",
+      "sha256": "fdde964e0c85bdabda78f9530a1198a81ed64918d3f7b83729ef7040914663e6",
+      "navigation_bars": [
+        {
+          "identifier": "סינון לפי ספרים",
+          "frame": "{{514.0, 106.0}, {320.0, 108.0}}"
+        },
+        {
+          "identifier": "חיפוש",
+          "frame": "{{0.0, 106.0}, {834.0, 106.0}}"
+        }
+      ],
+      "native_tab_buttons": [
+        "Button, 0xADDR, {{543.8, 36.0}, {82.5, 36.0}}, identifier: 'books.vertical.fill', label: 'ספרייה'",
+        "Button, 0xADDR, {{468.2, 36.0}, {75.5, 36.0}}, identifier: 'magnifyingglass', label: 'חיפוש', Selected",
+        "Button, 0xADDR, {{384.8, 36.0}, {83.5, 36.0}}, identifier: 'person.text.rectangle.fill', label: 'מוסרים'",
+        "Button, 0xADDR, {{305.8, 36.0}, {79.0, 36.0}}, identifier: 'quote.closing', label: 'הערות'",
+        "Button, 0xADDR, {{207.8, 36.0}, {98.0, 36.0}}, identifier: 'clock.fill', label: 'היסטוריה'"
+      ],
+      "window": [
+        "appFrame=(0.0, 0.0, 834.0, 1210.0)",
+        "actualWindow=(0.0, 0.0, 834.0, 1210.0)",
+        "orientation=1"
+      ],
+      "global_screen": "Other, 0x113401900, {{0.0, 96.0}, {834.0, 1114.0}}, identifier: 'global-search-screen'"
+    },
+    {
+      "capture": "candidate-flags-off-search-portrait-ui-tree_0_590E5771-E012-4B58-A263-7188934F038A.txt",
+      "file": "17F6BA9C-ADE5-49F4-8426-80522CB2B68B.txt",
+      "sha256": "7ee21342ee715d2199d12a58a03820e366fdacb3173bcfe0f0d1a78cb47a9578",
+      "navigation_bars": [
+        {
+          "identifier": "סינון לפי ספרים",
+          "frame": "{{514.0, 106.0}, {320.0, 108.0}}"
+        },
+        {
+          "identifier": "חיפוש",
+          "frame": "{{0.0, 106.0}, {834.0, 106.0}}"
+        }
+      ],
+      "native_tab_buttons": [
+        "Button, 0xADDR, {{543.8, 36.0}, {82.5, 36.0}}, identifier: 'books.vertical.fill', label: 'ספרייה'",
+        "Button, 0xADDR, {{468.2, 36.0}, {75.5, 36.0}}, identifier: 'magnifyingglass', label: 'חיפוש', Selected",
+        "Button, 0xADDR, {{384.8, 36.0}, {83.5, 36.0}}, identifier: 'person.text.rectangle.fill', label: 'מוסרים'",
+        "Button, 0xADDR, {{305.8, 36.0}, {79.0, 36.0}}, identifier: 'quote.closing', label: 'הערות'",
+        "Button, 0xADDR, {{207.8, 36.0}, {98.0, 36.0}}, identifier: 'clock.fill', label: 'היסטוריה'"
+      ],
+      "window": [
+        "appFrame=(0.0, 0.0, 834.0, 1210.0)",
+        "actualWindow=(0.0, 0.0, 834.0, 1210.0)",
+        "orientation=1"
+      ],
+      "global_screen": "Other, 0x1130c6940, {{0.0, 96.0}, {834.0, 1114.0}}, identifier: 'global-search-screen'"
+    }
+  ]
+}

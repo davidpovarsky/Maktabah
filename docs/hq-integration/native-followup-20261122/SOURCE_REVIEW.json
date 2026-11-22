@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "code_commit": "f5d53f3928e8a2319de19373103dcbe3f3153e3c",
+  "base": "f802143e9ec15e624f71ecd81899ad42a1217ce2",
+  "path": "Source/UI/iOS/Views/iOSMainView.swift",
+  "before_sha256": "32e6ab953ba92b747d5415798d873d166d950b4b3495c881e0b0f7cdb01d481a",
+  "after_sha256": "2f4116739648ca5fe7c0efe08888aff3494dcf4cb3405d9c0fff462e1d4fec20",
+  "source_inverse_matches_base": true,
+  "failing_native_source_same_main_view": true,
+  "unchanged_inputs": {
+    "Source/UI/iOS/Views/iPadLayout.swift": "42cbcbe5421631b3138926527040b823e0f0f727762aff0bd4301bf0857d2408",
+    "Source/UI/iOS/Views/iPhoneLayout.swift": "4516f82c4d354a4d1e5021d3855eb620c9508ac6c6b3faeb65d0bd4cbac8a05c",
+    "Source/UI/iOS/Managers/iOSNavigationManager.swift": "b8e6648cb1c6efd4942aadfe2e3aec3177fcd85fee8f502933d3f048d3311611",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "8b9973dd2742dab3840361da27492b41752d26954cd7f3081d6d1ee20ed6f03b",
+    "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift": "3f3b5380bc69ec54abc6413556c6920fb85376ae0bb404d82a1414cdbc9d0733"
+  },
+  "native_acceptance": "PENDING",
+  "owner_signature": "NOT_PRESENT_NOT_IMPLIED"
+}
