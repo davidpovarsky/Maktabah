@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-22T08:50:03.943338+00:00",
+  "parent": "a17d696da53e358d1e0e486cdfa761e3093632b5",
+  "checkout": "ce5d11335c4b4769a25e0e8f48ba1d6f7efc6749",
+  "application_source": "6aa953048453b64a0013621ce76e095770eb7e7d",
+  "run": 45000580919,
+  "attempt": 1,
+  "conclusion": "failure",
+  "original_packet_payloads": 36,
+  "original_packet_payload_bytes": 485684,
+  "original_packet_index_sha256": "919674b493ed1414774df2ec44d35e2d1b50c56f3e7d0caa20d0c46144f0006b",
+  "root_source_review_sha256": "4a7eda37f5734a4c1dcd2b996e2558f33fd94f1fdcec7879f25172f7cde27483",
+  "artifact_downloads": 1,
+  "new_test_executions": 0,
+  "product_trees_unchanged": {
+    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "24345d612f8c70398f4590977f8b4696021ae413"
+  },
+  "secret_cleanup": "DELETE204 followed by GET404 at2026-11-22T08:40:19.546333Z; independent GET404 at08:41:10.195829Z",
+  "cause_scope": "Original consent/dismiss/reopen/configuration completed according to21enum-only events; native revoke-button assertion still failed. Actual AX/rendering cause not yet established."
+}

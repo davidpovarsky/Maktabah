@@ -1,0 +1,36 @@
+{
+  "book_id": 3891,
+  "current_line_index": 522,
+  "database_sha256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "database_unchanged": true,
+  "paragraph": {
+    "book_id": 3891,
+    "canonical_locator": "otzaria|book:3891|line:522",
+    "end_line_index": 526,
+    "mode": "paragraph",
+    "parent_toc_entry_id": 642933,
+    "preceding_sibling_line_index": 1,
+    "requested_line_index": 523,
+    "root_last_line_index": 0,
+    "source_line_indices": [
+      522,
+      523,
+      524,
+      525,
+      526
+    ],
+    "sql": {
+      "membership": "SELECT l.id,l.lineIndex,(SELECT COUNT(*) FROM line_toc other WHERE other.lineId=l.id) FROM line l JOIN line_toc lt ON lt.lineId=l.id WHERE l.bookId=? AND lt.tocEntryId=? ORDER BY l.lineIndex",
+      "preceding": "SELECT MIN(l.lineIndex) FROM line l JOIN line_toc lt ON lt.lineId=l.id JOIN tocEntry t ON t.id=lt.tocEntryId AND t.bookId=l.bookId WHERE l.bookId=? AND t.parentId=? AND t.id<>?",
+      "selected": "SELECT l.id,t.id,t.parentId,t.level FROM line l JOIN line_toc lt ON lt.lineId=l.id JOIN tocEntry t ON t.id=lt.tocEntryId AND t.bookId=l.bookId WHERE l.bookId=? AND l.lineIndex=? ORDER BY t.level DESC,t.id"
+    },
+    "start_line_index": 522,
+    "toc_entry_id": 643037,
+    "ui_observation_used": false
+  },
+  "query": "מצות",
+  "query_line_id": 3121121,
+  "query_line_index": 523,
+  "requested_line_index": 523,
+  "ui_observation_used": false
+}

@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "original_job": "job_5b740ee1d64c",
+  "original_error": "KeyError nonce after original schema validation",
+  "cause": "Root intake incorrectly assumed a nonce field in the diagnostic payload. The reviewed production schema deliberately contains only schemaVersion, overflow and events; the nonce binds the private source filename, not payload.",
+  "correction": "Use the unchanged exact-source validator and preserve original source-bound private filename/ownership attestation; do not invent a payload field or weaken validation. Complete local extraction from the one already downloaded and digest-verified ZIP.",
+  "artifact_downloads_repeated": 0,
+  "CI_tests_repeated": 0,
+  "secret_deletions_repeated": 0
+}
