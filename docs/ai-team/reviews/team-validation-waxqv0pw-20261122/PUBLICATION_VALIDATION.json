@@ -1,0 +1,135 @@
+{
+  "status": "CURRENT_BASE_IDENTICAL_INPUTS_AND_CHANGED_DOCUMENTS_VERIFIED",
+  "base_commit": "70388c090af788adaa82346c94176790df2c65f0",
+  "documentation_commit": "db2241bf789a407386588fa274564dd2e443c6f1",
+  "branch": "codex/otzaria-team-validation-waxqv0pw-20261122",
+  "existing_input_proof": "DOCUMENT_COMMIT_RECEIPT.json",
+  "reused_documentary_checks": 76,
+  "reused_yaml_documents": 9,
+  "reused_toml_documents": 7,
+  "original_ensure_team_exit_code": 0,
+  "new_actual_worktree_links_verified": [
+    {
+      "source": ".agents/rules/ai-team-router.md",
+      "target": "../../docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "resolved": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "actual_worktree_file_present": true
+    },
+    {
+      "source": "GEMINI.md",
+      "target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "resolved": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "actual_worktree_file_present": true
+    },
+    {
+      "source": "docs/ai-team/BRANCH_INTEGRATION.md",
+      "target": "VALIDATION.md",
+      "resolved": "docs/ai-team/VALIDATION.md",
+      "actual_worktree_file_present": true
+    },
+    {
+      "source": "docs/ai-team/BRANCH_INTEGRATION.md",
+      "target": "../architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "resolved": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "actual_worktree_file_present": true
+    },
+    {
+      "source": "docs/ai-team/PLATFORMS.md",
+      "target": "../architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "resolved": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "actual_worktree_file_present": true
+    },
+    {
+      "source": "docs/ai-team/PROJECT_ASSIGNMENTS.md",
+      "target": "../architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "resolved": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "actual_worktree_file_present": true
+    },
+    {
+      "source": "docs/ai-team/TEAM.md",
+      "target": "../architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "resolved": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "actual_worktree_file_present": true
+    },
+    {
+      "source": "docs/ai-team/VALIDATION.md",
+      "target": "../architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "resolved": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "actual_worktree_file_present": true
+    }
+  ],
+  "patch_sha256": "92d9b70fd4ad67605bad2b723d6e2ad179756be1510686e9bbb3cb240d0f3770",
+  "native_or_product_tests": 0,
+  "personal_human_pr_review_claimed": false,
+  "review_type": "Delegated technical review under current explicit user authorization",
+  "root_review": "Root reviewed the complete six-file patch and authorized publication with only the timestamp clarification recorded in TIMESTAMP_CLARIFICATION.json",
+  "protected_trees_unchanged": [
+    {
+      "path": "Source",
+      "base": "7d3c913d8de4ff29837216003b7d71b6896a76f7",
+      "after": "7d3c913d8de4ff29837216003b7d71b6896a76f7",
+      "unchanged": true
+    },
+    {
+      "path": "Vendor",
+      "base": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "after": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah.xcodeproj",
+      "base": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
+      "after": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests",
+      "base": "196d1e1433a7e6ad3284430bc191510257daad89",
+      "after": "196d1e1433a7e6ad3284430bc191510257daad89",
+      "unchanged": true
+    },
+    {
+      "path": "MaktabahTests",
+      "base": "b4ea8d9ef86400672d68948d760d98c936efa8f7",
+      "after": "b4ea8d9ef86400672d68948d760d98c936efa8f7",
+      "unchanged": true
+    },
+    {
+      "path": "Tests",
+      "base": "71a1667bd9e871010cc74ed8554829a03639ee4f",
+      "after": "71a1667bd9e871010cc74ed8554829a03639ee4f",
+      "unchanged": true
+    },
+    {
+      "path": ".github",
+      "base": "11bad996302a64744f54882a628df0f4b2dd1e7a",
+      "after": "11bad996302a64744f54882a628df0f4b2dd1e7a",
+      "unchanged": true
+    },
+    {
+      "path": "Scripts",
+      "base": "e9ff939c4cc9a2730eda12231e4b240c49db9cda",
+      "after": "e9ff939c4cc9a2730eda12231e4b240c49db9cda",
+      "unchanged": true
+    },
+    {
+      "path": "scripts",
+      "base": "7c1c4d6e9e6025ef745e0390cebcbb9ddd534be5",
+      "after": "7c1c4d6e9e6025ef745e0390cebcbb9ddd534be5",
+      "unchanged": true
+    },
+    {
+      "path": "tools",
+      "base": "75870b155973eafdb178820e65ee5dddcbe8a82b",
+      "after": "75870b155973eafdb178820e65ee5dddcbe8a82b",
+      "unchanged": true
+    },
+    {
+      "path": ".codex",
+      "base": "bce7772eb5eb55be69f56b1cdcacc5e5a94a2075",
+      "after": "bce7772eb5eb55be69f56b1cdcacc5e5a94a2075",
+      "unchanged": true
+    }
+  ],
+  "ci_dispatch_or_asana_mutation": false
+}

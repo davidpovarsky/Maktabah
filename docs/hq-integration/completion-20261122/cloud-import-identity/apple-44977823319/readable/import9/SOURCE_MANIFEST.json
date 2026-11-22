@@ -1,0 +1,23 @@
+{
+  "head": "385fffafb5b014f0777b3100151b5b6d0e75eed9",
+  "phase": "candidate",
+  "sources": {
+    "Source/Features/Annotations/Models/Annotation.swift": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d",
+    "Source/Features/Annotations/Database/AnnotationRepository.swift": "a0f9643764f12b3be4ac0e3ac441cfbfe638d7bc1a1cbe9d25acf8265d7e358b",
+    "Source/Core/Database/SQLiteDatabase.swift": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+    "Source/Core/CloudKit/SyncPendingStore.swift": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+    "docs/hq-integration/completion-20261122/cloud-import-identity/Boundary.swift": "6599b3785ecf3db8771af57a6ada560f8251fcb099417d276b3b109e530c04c1",
+    "docs/hq-integration/completion-20261122/cloud-import-identity/OriginalLocator.swift": "1ca4d899f307e59d46b3aad96b723038630155d5c4beb5ba632f281a1e73680d",
+    "docs/hq-integration/completion-20261122/cloud-import-identity/OriginalLocalConnection.swift": "a7c33b35885a5b3c60420bf7ad29c7b142dd860ec0ad20f21ebe79d30be8146f",
+    "docs/hq-integration/completion-20261122/cloud-import-identity/CloudImportIdentityControls.swift": "03ffa5683b5b6d7284f53c1ae79f15e95953631c5ffe083475e0045683a9b89e",
+    "Source/ChavrusaText/Annotations/AnnotationCloudImportIdentity.swift": "176c9caa5780dafff2622f2e2fbf40410f66bbaab3a10bbbcfffcac80ee9c787",
+    "Source/LibraryBackend/LibraryBackendModels.swift": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb",
+    "docs/hq-integration/completion-20261122/cloud-import-identity/OSLogBoundary.swift": "4c1d18dde2d6c368e4e47b2122d3dc8c084b42dc3a55608b2b2236b76a491233",
+    "docs/hq-integration/completion-20261122/cloud-import-identity/run-import-controls.py": "a5c8eac045fc4b5406ae6cafe74bbde3a47f6191abbf1c8f50ccc4ca966b06f5"
+  },
+  "whole_original_repository_annotation_sqlite_pending": true,
+  "actual_locator_and_lifetime_declarations": true,
+  "boundary": "logging (Windows only), catalog/title/UI helpers and unused compressed-blob decoder; no Store/CloudKit/Native"
+}

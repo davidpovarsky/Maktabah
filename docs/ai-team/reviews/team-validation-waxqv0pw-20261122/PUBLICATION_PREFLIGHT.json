@@ -1,0 +1,1082 @@
+{
+  "base": "70388c090af788adaa82346c94176790df2c65f0",
+  "branch": "codex/otzaria-team-validation-waxqv0pw-20261122",
+  "target_path": "C:\\Users\\DAVID\\Code\\Maktabah-team-validation-waxqv0pw-20261122",
+  "captured_utc": "2026-11-22T02:23:48.720659+00:00",
+  "local_branch_absent": true,
+  "remote_branch_absent": true,
+  "target_path_absent": true,
+  "all_33_config_and_CLAUDE_blobs_identical": true,
+  "source_context_blobs": {
+    "PROJECT_AGENT_GUIDANCE.md": "f37b33123b66c3c473d56a876f2b7257d2f1744c",
+    "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md": "9a3a57bbfed634f2e136c608b11c781312b0e8ff"
+  },
+  "root_tree": [
+    {
+      "path": ".agents",
+      "mode": "040000",
+      "type": "tree",
+      "object": "2dc13873b5c6bd6867e685462b1289c44f94f79c"
+    },
+    {
+      "path": ".codex",
+      "mode": "040000",
+      "type": "tree",
+      "object": "bce7772eb5eb55be69f56b1cdcacc5e5a94a2075"
+    },
+    {
+      "path": ".gitattributes",
+      "mode": "100644",
+      "type": "blob",
+      "object": "a16c1454153ceaee01dbdc7f62f1c72ada757137"
+    },
+    {
+      "path": ".github",
+      "mode": "040000",
+      "type": "tree",
+      "object": "11bad996302a64744f54882a628df0f4b2dd1e7a"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100755",
+      "type": "blob",
+      "object": "13e0283e18450fefd77f87532412f30be5a3124b"
+    },
+    {
+      "path": ".gitmodules",
+      "mode": "100644",
+      "type": "blob",
+      "object": "dbefe3a99b1c267817d7e95a8979554b08d8f9a8"
+    },
+    {
+      "path": ".swiftformat",
+      "mode": "100644",
+      "type": "blob",
+      "object": "c719a9821dd6acc4f83d068ab856cd195968c3bb"
+    },
+    {
+      "path": ".swiftlint.yml",
+      "mode": "100644",
+      "type": "blob",
+      "object": "7ac6889dbdee7248e61fc71e4147f41093920a5e"
+    },
+    {
+      "path": "AGENTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "7bb033aff1bfc351ae03369667dc3c929d5226e7"
+    },
+    {
+      "path": "CLAUDE.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "b527e5f0dba1979adb32d4144b4d8c9e99163824"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "1d7e56a2bc577209712d184c3570ebfb0a7cdd3b"
+    },
+    {
+      "path": "CloudKit",
+      "mode": "040000",
+      "type": "tree",
+      "object": "cafdd94d6b16c7dcb71ef622a5aa7f2270ce2fc7"
+    },
+    {
+      "path": "DESIGN_LANGUAGE.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "4c193c2178e97201b019c065de62e0b68d2f2c91"
+    },
+    {
+      "path": "GEMINI.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "0c7d5aee54aeed25c55de6bff2cecc5fc73a3caf"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "object": "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7"
+    },
+    {
+      "path": "Maktabah-iOSUITests",
+      "mode": "040000",
+      "type": "tree",
+      "object": "196d1e1433a7e6ad3284430bc191510257daad89"
+    },
+    {
+      "path": "Maktabah.xcodeproj",
+      "mode": "040000",
+      "type": "tree",
+      "object": "0cb7fe0654ac1e601e2d88420f95cca0837e5699"
+    },
+    {
+      "path": "MaktabahTests",
+      "mode": "040000",
+      "type": "tree",
+      "object": "b4ea8d9ef86400672d68948d760d98c936efa8f7"
+    },
+    {
+      "path": "PROJECT_AGENT_GUIDANCE.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "f37b33123b66c3c473d56a876f2b7257d2f1744c"
+    },
+    {
+      "path": "PROJECT_BOARD.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "67c1c6984ab2ad7c6d3a49dc78b2ca0388632b99"
+    },
+    {
+      "path": "Podfile",
+      "mode": "100644",
+      "type": "blob",
+      "object": "4ebf2a981de4447b1ce98f885eb0a463ee75e692"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "03c10be552d73ce31cdb2e74735ed8116bde4dbd"
+    },
+    {
+      "path": "README_OTZARIA_PHASE1.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "48c1821b3c9db539c3365d4e95a99c194320b438"
+    },
+    {
+      "path": "SECURITY.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "d95d1d2bf5bf5fa433c008346b6b9e81c5d05e54"
+    },
+    {
+      "path": "SOURCE_TO_PORT_DIFF.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "85683df893fade45b36030622aa98feb5bc1e430"
+    },
+    {
+      "path": "Screenshots",
+      "mode": "040000",
+      "type": "tree",
+      "object": "283cc4d5ba67ce7b0dd59341dfed707586ebd7d1"
+    },
+    {
+      "path": "Scripts",
+      "mode": "040000",
+      "type": "tree",
+      "object": "e9ff939c4cc9a2730eda12231e4b240c49db9cda"
+    },
+    {
+      "path": "Source",
+      "mode": "040000",
+      "type": "tree",
+      "object": "7d3c913d8de4ff29837216003b7d71b6896a76f7"
+    },
+    {
+      "path": "Tests",
+      "mode": "040000",
+      "type": "tree",
+      "object": "71a1667bd9e871010cc74ed8554829a03639ee4f"
+    },
+    {
+      "path": "UPSTREAM_SYNC_2026-10-21_BASELINE.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "b19e9e90d967a30cc0177d7f8d00e398449a4cb7"
+    },
+    {
+      "path": "UPSTREAM_SYNC_CHANGE_COVERAGE.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "7d9633fea2daef74e995bf6e6c95624a70239b91"
+    },
+    {
+      "path": "UPSTREAM_SYNC_CONFLICT_LEDGER.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "13a2a0c2bf04adca517ea76ddea6326c1a979f48"
+    },
+    {
+      "path": "UPSTREAM_SYNC_DOWNSTREAM_PRESERVATION.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "61a99b6e0dcc2d6d20aac5f0a960a209f3fe4223"
+    },
+    {
+      "path": "UPSTREAM_SYNC_FINAL_REPORT.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "e01198a8a2c8393c08f24f809f9a301b77248a2b"
+    },
+    {
+      "path": "UPSTREAM_SYNC_V42_FEATURE_PARITY.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "49b89137c68f5c8e69b21da6965f89fd06030d2b"
+    },
+    {
+      "path": "UPSTREAM_SYNC_VALIDATION_MATRIX.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "60f7632e4bc75b3297e256a70f96691a041f102b"
+    },
+    {
+      "path": "Vendor",
+      "mode": "040000",
+      "type": "tree",
+      "object": "4065c0e62af325e83a65fe0c70270985229807ae"
+    },
+    {
+      "path": "ci_scripts",
+      "mode": "040000",
+      "type": "tree",
+      "object": "d8272f500d6541ef97d05903c6bda0ad48623417"
+    },
+    {
+      "path": "docs",
+      "mode": "040000",
+      "type": "tree",
+      "object": "1cea497b1c99ffa55e281b656fb5ed500b9dc76c"
+    },
+    {
+      "path": "maktabah_otsaria_phase1.zip",
+      "mode": "100644",
+      "type": "blob",
+      "object": "f042cbe6520f47ed94743122d2be35a9d64b0892"
+    },
+    {
+      "path": "mkdocs.yml",
+      "mode": "100644",
+      "type": "blob",
+      "object": "7ffdbe9817810c179af8e56d597dcc4b412e04e1"
+    },
+    {
+      "path": "scripts",
+      "mode": "040000",
+      "type": "tree",
+      "object": "7c1c4d6e9e6025ef745e0390cebcbb9ddd534be5"
+    },
+    {
+      "path": "tools",
+      "mode": "040000",
+      "type": "tree",
+      "object": "75870b155973eafdb178820e65ee5dddcbe8a82b"
+    }
+  ],
+  "yaml_available": true,
+  "workflows": [
+    {
+      "path": ".github/workflows/cloudkit-schema.yml",
+      "blob": "2642377634fd6c46718bc4e2f46b93a45fc5832b",
+      "events": {
+        "workflow_dispatch": {
+          "inputs": {
+            "operation": {
+              "description": "CloudKit schema operation",
+              "required": "true",
+              "default": "verify-production",
+              "type": "choice",
+              "options": [
+                "verify-production",
+                "import-development"
+              ]
+            }
+          }
+        }
+      },
+      "name": "Apply ChavrusaText CloudKit Schema",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/codeql.yml",
+      "blob": "c905107ea0df49a9ed8a8314156b902e1215f816",
+      "events": {
+        "workflow_dispatch": ""
+      },
+      "name": "CodeQL Advanced",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/deploy-docs.yml",
+      "blob": "d08bc0e784788e32b9d27610df6ffb94feb0984f",
+      "events": {
+        "push": {
+          "branches": [
+            "main"
+          ],
+          "paths": [
+            "docs/**",
+            "mkdocs.yml"
+          ]
+        }
+      },
+      "name": "Deploy Documentation",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/ios-build-data-profile.yml",
+      "blob": "3ea3fc59b0329b574195cfd42d39171225af8b91",
+      "events": {
+        "workflow_dispatch": {
+          "inputs": {
+            "data_profile": {
+              "description": "Data profile to embed as the app default",
+              "required": "true",
+              "default": "production",
+              "type": "choice",
+              "options": [
+                "production",
+                "miniTest10"
+              ]
+            }
+          }
+        }
+      },
+      "name": "iOS Build Data Profile IPA",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/ios-build.yml",
+      "blob": "eb7609173f03df1c765f68df9e354f7e89350bee",
+      "events": {
+        "workflow_dispatch": {
+          "inputs": {
+            "run_heavy_otzaria_acceptance": {
+              "description": "Run the real production Swift download, resume, extraction and activation acceptance",
+              "required": "false",
+              "default": "false",
+              "type": "boolean"
+            },
+            "run_corpus_acceptance": {
+              "description": "Reindex the native-downloaded corpus (only when indexing semantics changed)",
+              "required": "false",
+              "default": "false",
+              "type": "boolean"
+            },
+            "run_live_sefaria_smoke": {
+              "description": "Run live Sefaria API and real smallest-package contract smoke",
+              "required": "false",
+              "default": "false",
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "name": "iOS Build",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/ios-testflight.yml",
+      "blob": "39673d35b4b0323596349d79338bfa9b09cd3aa6",
+      "events": {
+        "workflow_dispatch": {
+          "inputs": {
+            "data_profile": {
+              "description": "Data profile to embed as the app default",
+              "required": "true",
+              "default": "production",
+              "type": "choice",
+              "options": [
+                "production",
+                "miniTest10"
+              ]
+            },
+            "upload_to_testflight": {
+              "description": "Validate and upload the exported IPA to App Store Connect/TestFlight",
+              "required": "true",
+              "type": "boolean",
+              "default": "false"
+            },
+            "expected_sha": {
+              "description": "Exact git commit SHA expected to be built and signed (fail-closed check)",
+              "required": "false",
+              "type": "string"
+            },
+            "ui_acceptance_run": {
+              "description": "Completed full R27 real UI acceptance run for this exact candidate; mandatory before signing",
+              "required": "true",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "name": "Build Signed ChavrusaText iOS IPA and Upload to TestFlight",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/maktabah-batch-b-validation.yml",
+      "blob": "5097f13bed238998953a7f1595fa5a642e2fc2ff",
+      "events": {
+        "push": {
+          "branches": [
+            "validation/maktabah-batch-b-*",
+            "validation/maktabah-build-8401-*"
+          ]
+        },
+        "workflow_dispatch": ""
+      },
+      "name": "Maktabah Batch B macOS 27 Xcode 27 Validation",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/mini-test10-data-profile.yml",
+      "blob": "477974570d10cb74bc0adeca7988a7e3ac7aa376",
+      "events": {
+        "workflow_call": {
+          "inputs": {
+            "publish_release": {
+              "description": "Publish the immutable miniTest10 release",
+              "required": "true",
+              "type": "boolean"
+            }
+          }
+        },
+        "workflow_dispatch": {
+          "inputs": {
+            "publish_release": {
+              "description": "Publish the immutable miniTest10 release",
+              "required": "true",
+              "type": "boolean",
+              "default": "true"
+            }
+          }
+        }
+      },
+      "name": "Build miniTest10 Data Profile",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/otzaria-annotation-core194-combined-apple-v3.yml",
+      "blob": "deaa00e1cfbba323ad1c553949e5abcac4a98d74",
+      "events": {
+        "push": {
+          "branches": [
+            "codex/otzaria-annotation-core194-combined-apple-v3-20261120"
+          ]
+        }
+      },
+      "name": "Combined Core194 original annotations and full app compile",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/otzaria-cold-search-core-validation.yml",
+      "blob": "7b66773995c480d72a0410a086322b8bdaf6f1e5",
+      "events": {
+        "push": {
+          "branches": [
+            "codex/otzaria-cold-search-core-apple-v2-20261120"
+          ]
+        }
+      },
+      "name": "Exact cold-search Core acceptance (isolated)",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/otzaria-cold-search-ownership-validation.yml",
+      "blob": "aa0c509cc4cacfb96e0c176ebab52c12292cdcb9",
+      "events": {
+        "push": {
+          "branches": [
+            "codex/otzaria-cold-search-ownership-v3-20261120"
+          ]
+        }
+      },
+      "name": "Exact cold-search Darwin ownership checks",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/otzaria-completion-focused-native.yml",
+      "blob": "72295e08e1c8d6d0a87210a9d7125b7cbd36546c",
+      "events": {
+        "push": {
+          "branches": [
+            "codex/otzaria-completion-focused-native-20261121"
+          ]
+        }
+      },
+      "name": "Unified source focused native continuation",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/otzaria-final-native-push.yml",
+      "blob": "05041780a0fbfcbf384a1737bd720ca606be8a72",
+      "events": {
+        "push": {
+          "branches": [
+            "codex/otzaria-final-native116-20261120"
+          ]
+        }
+      },
+      "name": "Native116 original full matrix",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/otzaria-final-release-push.yml",
+      "blob": "dcad3f8454606ce9443d12e185754cbd2a07a1de",
+      "events": {
+        "push": {
+          "branches": [
+            "codex/otzaria-final-release114-20261120"
+          ]
+        }
+      },
+      "name": "Release114 original three-stage acceptance",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/otzaria-hanlin-live-native.yml",
+      "blob": "8c7c5e589421cf9199e79f1b2d38d4eb752c1637",
+      "events": {
+        "workflow_dispatch": "",
+        "push": {
+          "branches": [
+            "codex/otzaria-hanlin-live-20261121"
+          ]
+        }
+      },
+      "name": "Original Hanlin live consumer native acceptance",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/otzaria-local-annotation-cloud-apple.yml",
+      "blob": "2b450b1adcc95d26571e103a2acad406c786b7db",
+      "events": {
+        "push": {
+          "branches": [
+            "codex/otzaria-local-annotation-cloud-apple-reviewed-20261120"
+          ]
+        }
+      },
+      "name": "Owned annotation CloudKit component 48, original local 43 and exchange 28",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/otzaria-local-annotation-editor-apple.yml",
+      "blob": "a8fd5640667f232f775d512fc66a7f9c3859dbd9",
+      "events": {
+        "push": {
+          "branches": [
+            "codex/otzaria-local-annotation-editor-apple-reviewed-v2-20261120"
+          ]
+        }
+      },
+      "name": "Local annotation Apple Foundation 43 and original exchange 28",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/otzaria-native98-commentary-evidence.yml",
+      "blob": "976839e0bad90ccca2e8947055bc8bf424200de0",
+      "events": {
+        "push": {
+          "branches": [
+            "codex/otzaria-native98-commentary-evidence-20261120"
+          ]
+        }
+      },
+      "name": "Recover original Native98 Commentary evidence",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/otzaria-release96-capture-evidence.yml",
+      "blob": "3ea7d3dc944dc0a6a9aaef8541c76a6862b5dfd0",
+      "events": {
+        "push": {
+          "branches": [
+            "codex/otzaria-release96-capture-evidence-20261120"
+          ]
+        }
+      },
+      "name": "Recover original Release96 layout and input evidence",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/otzaria-search-artifacts.yml",
+      "blob": "7295c28ce284d035136aaa81d8ecb35c54558c28",
+      "events": {
+        "workflow_call": {
+          "inputs": {
+            "native_existing_v32": {
+              "description": "Run original full v32 app installation/query/relaunch only; never publish",
+              "required": "false",
+              "type": "boolean",
+              "default": "false"
+            },
+            "native_expected_sha": {
+              "description": "Exact reviewed workflow and application checkout for native v32 mode",
+              "required": "false",
+              "type": "string",
+              "default": ""
+            },
+            "publish_release": {
+              "description": "Publish verified package as a dedicated public data release",
+              "required": "true",
+              "type": "boolean"
+            },
+            "existing_release_tag": {
+              "description": "Verify an existing artifact release without rebuilding the corpus",
+              "required": "false",
+              "type": "string",
+              "default": ""
+            },
+            "repair_manifest_layout": {
+              "description": "Republish an existing package with corrected extracted-file metadata",
+              "required": "false",
+              "type": "boolean",
+              "default": "false"
+            }
+          }
+        },
+        "workflow_dispatch": {
+          "inputs": {
+            "native_existing_v32": {
+              "description": "Run original full v32 app installation/query/relaunch only; never publish",
+              "required": "false",
+              "type": "boolean",
+              "default": "false"
+            },
+            "native_expected_sha": {
+              "description": "Exact reviewed workflow and application checkout for native v32 mode",
+              "required": "false",
+              "type": "string",
+              "default": ""
+            },
+            "publish_release": {
+              "description": "Publish verified package as a dedicated public data release",
+              "required": "true",
+              "type": "boolean",
+              "default": "false"
+            },
+            "source_release_tag": {
+              "description": "Target Otzaria/SeforimLibrary release tag (e.g. v32-20261010190601, or latest)",
+              "required": "false",
+              "type": "string",
+              "default": "v32-20261010190601"
+            },
+            "existing_release_tag": {
+              "description": "Verify an existing artifact release without rebuilding the corpus",
+              "required": "false",
+              "type": "string",
+              "default": ""
+            },
+            "repair_manifest_layout": {
+              "description": "Republish an existing package with corrected extracted-file metadata",
+              "required": "false",
+              "type": "boolean",
+              "default": "false"
+            }
+          }
+        }
+      },
+      "name": "Build Otzaria Search Artifacts",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/otzaria-search-gates.yml",
+      "blob": "5013212b8df5bb82a1e95ca23010bc6b7f27d020",
+      "events": {
+        "workflow_dispatch": {
+          "inputs": {
+            "build_search_artifacts": {
+              "description": "Run the full-corpus prebuilt search artifact workflow",
+              "required": "true",
+              "type": "boolean",
+              "default": "false"
+            },
+            "publish_release": {
+              "description": "Publish the verified artifact as a public data release",
+              "required": "true",
+              "type": "boolean",
+              "default": "true"
+            },
+            "verify_release_tag": {
+              "description": "Verify an existing prebuilt release without rebuilding the corpus",
+              "required": "false",
+              "type": "string",
+              "default": ""
+            },
+            "repair_manifest_layout": {
+              "description": "Republish an existing package with corrected extracted-file metadata",
+              "required": "false",
+              "type": "boolean",
+              "default": "false"
+            }
+          }
+        },
+        "push": {
+          "branches": [
+            "codex/otzaria-search-upgrade-clean"
+          ],
+          "paths": [
+            "Source/Otzaria/**",
+            "Source/iOS/MaktabahApp.swift",
+            "Source/iOS/Managers/BootstrapManager.swift",
+            "Source/iOS/Views/Bootstrap/BootstrapView.swift",
+            "Source/iOS/Views/iPadLayout.swift",
+            "Source/View/CoreDownloadProgressView.swift",
+            "Source/Core/Database/ZstdShim.swift",
+            "Maktabah.xcodeproj/project.pbxproj",
+            "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+            "Vendor/OtzariaSearchEngine/**",
+            "Vendor/OtzariaBootstrapTests/**",
+            "Vendor/ZayitSearchPort/**",
+            "Scripts/CI/**",
+            "Scripts/run-otzaria-corpus-acceptance.sh",
+            "Scripts/run-otzaria-native-bootstrap-acceptance.sh",
+            ".github/workflows/otzaria-search-gates.yml",
+            ".github/workflows/ios-build.yml"
+          ]
+        },
+        "pull_request": {
+          "paths": [
+            "Source/Otzaria/**",
+            "Source/iOS/MaktabahApp.swift",
+            "Source/iOS/Managers/BootstrapManager.swift",
+            "Source/iOS/Views/Bootstrap/BootstrapView.swift",
+            "Source/iOS/Views/iPadLayout.swift",
+            "Source/View/CoreDownloadProgressView.swift",
+            "Source/Core/Database/ZstdShim.swift",
+            "Maktabah.xcodeproj/project.pbxproj",
+            "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+            "Vendor/OtzariaSearchEngine/**",
+            "Vendor/OtzariaBootstrapTests/**",
+            "Vendor/ZayitSearchPort/**",
+            "Scripts/CI/**",
+            "Scripts/run-otzaria-corpus-acceptance.sh",
+            "Scripts/run-otzaria-native-bootstrap-acceptance.sh",
+            ".github/workflows/otzaria-search-gates.yml",
+            ".github/workflows/ios-build.yml"
+          ]
+        },
+        "schedule": [
+          {
+            "cron": "17 4 * * 1"
+          }
+        ]
+      },
+      "name": "Otzaria Search Gates",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/otzaria-ui-sdk-intermediate.yml",
+      "blob": "83b8b22b8183cab82b2f549649f0a75b91152fdc",
+      "events": {
+        "push": {
+          "branches": [
+            "codex/otzaria-ui-sdk-intermediate-20261120"
+          ]
+        }
+      },
+      "name": "Immutable intermediate SDK checks (no Native acceptance)",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/pr-build.yml",
+      "blob": "5cf1f20a6a686233673b3f21a9aa09d902a38058",
+      "events": {
+        "pull_request": {
+          "branches": [
+            "main"
+          ],
+          "types": [
+            "opened",
+            "synchronize",
+            "reopened"
+          ]
+        },
+        "workflow_dispatch": ""
+      },
+      "name": "PR Build Check",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/pr-review.yml",
+      "blob": "c31c1589e9560355fb050f651446dc375b6f5a3b",
+      "events": {
+        "pull_request": {
+          "types": [
+            "opened",
+            "synchronize",
+            "reopened",
+            "ready_for_review"
+          ],
+          "paths": [
+            "Source/**",
+            "Maktabah.xcodeproj/**",
+            "ci_scripts/**",
+            ".github/**",
+            "docs/**",
+            "mkdocs.yml",
+            "Package.swift"
+          ]
+        }
+      },
+      "name": "Jules PR Review",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "blob": "cad913269074c347cb51a0ef334fa556bdc80fd9",
+      "events": {
+        "push": {
+          "tags": [
+            "v*",
+            "V*"
+          ]
+        },
+        "workflow_dispatch": {
+          "inputs": {
+            "tag": {
+              "description": "Tag to release (leave blank for test build)",
+              "required": "false",
+              "type": "string"
+            },
+            "test_build_only": {
+              "description": "Test build only (skip Release and Pages deployment)",
+              "required": "false",
+              "type": "boolean",
+              "default": "false"
+            },
+            "skip_deployment": {
+              "description": "Skip deploying appcast to GitHub Pages",
+              "required": "false",
+              "type": "boolean",
+              "default": "false"
+            }
+          }
+        }
+      },
+      "name": "Release Maktabah",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/sefaria-embedded-validation.yml",
+      "blob": "51611bfd6118edadc9ff4c1eceada678e2ef8d39",
+      "events": {
+        "push": {
+          "branches": [
+            "experiment/sefaria-mobile-original-embedded-*"
+          ]
+        },
+        "workflow_dispatch": {
+          "inputs": {
+            "run_simulator_tests": {
+              "description": "Run full iPad Simulator tests",
+              "required": "true",
+              "type": "boolean",
+              "default": "true"
+            },
+            "validation_runner": {
+              "description": "Xcode 27 acceptance, or macOS 26 SDK diagnostics (cannot satisfy iPadOS 27 gate)",
+              "required": "true",
+              "type": "choice",
+              "default": "xcode-27",
+              "options": [
+                "xcode-27",
+                "macos-26"
+              ]
+            },
+            "source_ref": {
+              "description": "Optional immutable baseline SHA for original-app visual comparison; empty builds this commit",
+              "required": "false",
+              "type": "string",
+              "default": ""
+            },
+            "run_production_release": {
+              "description": "After the Debug UI matrix, validate a Release binary over the full native production corpus",
+              "required": "true",
+              "type": "boolean",
+              "default": "false"
+            },
+            "ui_sdk_check_only": {
+              "description": "Only check XCTest SDK compilation and portable workspace contracts; no app/runtime acceptance",
+              "required": "true",
+              "type": "boolean",
+              "default": "false"
+            },
+            "books_updates_check_only": {
+              "description": "Only run disposable Books Updates safety fixtures and Apple SDK typecheck; no app/device acceptance",
+              "required": "false",
+              "type": "boolean",
+              "default": "false"
+            },
+            "hq_stage2_focused": {
+              "description": "One unsigned integrated iOS app build with immutable prebuilt inputs; no runtime or data",
+              "required": "true",
+              "type": "boolean",
+              "default": "false"
+            },
+            "hq_stage2_expected_sha": {
+              "description": "Exact 40-character isolated commit required for focused app or R27 runtime mode",
+              "required": "false",
+              "type": "string",
+              "default": ""
+            },
+            "runtime27_mode": {
+              "description": "Manual R27 probe, Native/Release, or complete Apple Foundation TOC transport55 only; no distribution",
+              "required": "true",
+              "type": "choice",
+              "default": "off",
+              "options": [
+                "off",
+                "probe",
+                "ui",
+                "release",
+                "toc-transport"
+              ]
+            },
+            "ui_diagnostic_cases": {
+              "description": "Optional exact Suite/testMethod diagnostics (phone suite on iPhone, others on 11-inch); never satisfies the full matrix or Release gate",
+              "required": "false",
+              "type": "string",
+              "default": ""
+            }
+          }
+        }
+      },
+      "name": "Sefaria Embedded Real iOS Runtime Validation",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/upstream-boundary-guard.yml",
+      "blob": "174c2240ffcd081800d0970b4375b2dcfa052dcd",
+      "events": {
+        "pull_request": {
+          "branches": [
+            "main",
+            "sync/**"
+          ]
+        },
+        "push": {
+          "branches": [
+            "main",
+            "sync/**"
+          ]
+        },
+        "workflow_dispatch": {
+          "inputs": {
+            "base_ref": {
+              "description": "Approved baseline commit SHA",
+              "required": "false",
+              "default": "c8defbf812d34dd22ea1b7b63b1a356c0e96fa8f"
+            }
+          }
+        }
+      },
+      "name": "Upstream Boundary Guard",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/upstream-resolved-fast-validation-2026-09-04.yml",
+      "blob": "1d55892031d421b8693bde96939a1778b73c0295",
+      "events": {
+        "workflow_dispatch": "",
+        "push": {
+          "branches": [
+            "codex/upstream-main-sync-2026-09-04-resolved"
+          ],
+          "paths": [
+            ".github/workflows/upstream-resolved-fast-validation-2026-09-04.yml",
+            "Maktabah.xcodeproj/**",
+            "Source/**"
+          ]
+        }
+      },
+      "name": "Upstream resolved fast validation 2026-09-04",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/upstream-resolved-validation-2026-09-04.yml",
+      "blob": "0d82a42666742e55876c9af18bafc9da65d5e44d",
+      "events": {
+        "workflow_dispatch": "",
+        "push": {
+          "branches": [
+            "codex/upstream-main-sync-2026-09-04-resolved"
+          ],
+          "paths": [
+            ".github/workflows/upstream-resolved-validation-2026-09-04.yml",
+            "Maktabah.xcodeproj/**",
+            "Source/**",
+            "Vendor/**",
+            "Scripts/**"
+          ]
+        }
+      },
+      "name": "Upstream resolved full validation 2026-09-04",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/zayit-demo-data.yml",
+      "blob": "2f16c0c46fb51e38519afed877a900813717ca84",
+      "events": {
+        "workflow_dispatch": ""
+      },
+      "name": "Build Zayit Demo Data",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/zayit-production-data.yml",
+      "blob": "4bca4ad477c54aabef5a898c058a357447461c99",
+      "events": {
+        "workflow_dispatch": {
+          "inputs": {
+            "source_commit": {
+              "description": "Exact Maktabah commit containing the builder/schema",
+              "required": "true",
+              "type": "string"
+            },
+            "database_tag": {
+              "description": "Target Otzaria/SeforimLibrary release tag (e.g. v32-20261010190601, or latest)",
+              "required": "false",
+              "type": "string",
+              "default": "v32-20261010190601"
+            },
+            "publish_release": {
+              "description": "Publish the verified package as GitHub Release assets",
+              "required": "true",
+              "type": "boolean",
+              "default": "false"
+            }
+          }
+        },
+        "push": {
+          "branches": [
+            "codex/search-data-unification-parity"
+          ]
+        }
+      },
+      "name": "Build Zayit Production Search Data",
+      "parsed_with": "PyYAML BaseLoader"
+    },
+    {
+      "path": ".github/workflows/zayit-search-gates.yml",
+      "blob": "3639099e7907cf063717543862f0d6d753d8de67",
+      "events": {
+        "workflow_dispatch": "",
+        "pull_request": {
+          "paths": [
+            "Vendor/ZayitSearchPort/**",
+            ".github/workflows/zayit-search-gates.yml"
+          ]
+        },
+        "push": {
+          "paths": [
+            "Vendor/ZayitSearchPort/**",
+            ".github/workflows/zayit-search-gates.yml"
+          ]
+        }
+      },
+      "name": "Zayit Search Gates",
+      "parsed_with": "PyYAML BaseLoader"
+    }
+  ],
+  "repository_mutations": 0
+}

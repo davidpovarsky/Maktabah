@@ -1,0 +1,43 @@
+{
+  "selected_mode": "Current platform-native team execution",
+  "actual_agents_observed": [
+    {
+      "agent_name": "/root",
+      "agent_status": "running"
+    },
+    {
+      "agent_name": "/root/asana_audit",
+      "agent_status": "running"
+    },
+    {
+      "agent_name": "/root/integration_audit",
+      "agent_status": "running"
+    },
+    {
+      "agent_name": "/root/native_failures",
+      "agent_status": "running"
+    }
+  ],
+  "inventory_source": "actual collaboration.list_agents response during this audit",
+  "asana_existing_write_readback": {
+    "story_gid": "1220765488729647",
+    "created_at": "2026-11-22T01:13:28.295Z",
+    "task_gid": "1220763167870295",
+    "completed": false,
+    "notes_unchanged": true,
+    "assignee_unchanged": true,
+    "story_readback": true,
+    "task_name": "[HANDOFF][21.11.2026] אוצריא — מסירת מצב מאומתת והמשך סוכן יחיד"
+  },
+  "later_exact_story_readback": true,
+  "comment_text_sha256": "1adcc127410adc9accc04c481973caed439610ffbe8dd5db34c10cfa6a5fe580",
+  "new_asana_writes": 0,
+  "new_ci_runs": 0,
+  "not_claimed": [
+    "Personal human PR review",
+    "Seven actual agent processes or provisioned Asana users",
+    "Separate Antigravity installation smoke",
+    "NORMAL single-agent smoke",
+    "Native/product acceptance"
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "observed_at": "2026-11-22T02:51:40.620109+00:00",
+  "run": 44974028362,
+  "artifact_id": 14735424221,
+  "artifact_bytes": 83455,
+  "artifact_sha256": "aac873daf6657ef014ed1c1b3db48a44162d240e95408ef39df846fbfac8e880",
+  "zip_crc": "PASS",
+  "members": [
+    {
+      "path": "admission.json",
+      "bytes": 3207,
+      "sha256": "6e5a221434ee34a29f3c039c30b94defe79531d98662e78e1a142fe3fb77e90a"
+    },
+    {
+      "path": "app-group-resolver-interface.json",
+      "bytes": 678,
+      "sha256": "8854e1f916fbcbde204c22f40d46714951bb6a4e2fa67efe08d3daf014da75c8"
+    },
+    {
+      "path": "artifact-isolation.json",
+      "bytes": 257,
+      "sha256": "745926fb0cf85c31471382353d5798b15d0465963baea408a1e2b3ef5db2bf77"
+    },
+    {
+      "path": "declarations.json",
+      "bytes": 378,
+      "sha256": "0fed38adfa5d55010a9ff2993f6c83a6705e3bddb17eebe69f2461c277136a77"
+    },
+    {
+      "path": "faithful-ipad-matrix.json",
+      "bytes": 22906,
+      "sha256": "478abf835ef1259233f0f1ea70eeffb498da22405ad6b8d1ea586bbe8d7633a8"
+    },
+    {
+      "path": "fixture-container.json",
+      "bytes": 842,
+      "sha256": "494bfde7ee7096e575c10981d2402f1be6e0c3e56ffa41c7228da959a9c0e99d"
+    },
+    {
+      "path": "fixture-oracle-11.json",
+      "bytes": 1071,
+      "sha256": "d7b9af2556547d4046e94db8e206d7f13152207499663cbaf1c108c4471f229b"
+    },
+    {
+      "path": "fixture-query.json",
+      "bytes": 1437,
+      "sha256": "bbda89fe304eb433eb56f8a55994a59b863490d953efce7af6aea0898059575e"
+    },
+    {
+      "path": "miniTest10-native-fixture-install-11.json",
+      "bytes": 1792,
+      "sha256": "5ddcacfd2a241f6a17fc83572f34779365e4d7241a1bbf2355504f59d40a7602"
+    },
+    {
+      "path": "original-build-result.json",
+      "bytes": 83603,
+      "sha256": "40a9d74155434cb67a9968b291b56dc042a07fac434fd33a469bace6a509d67d"
+    },
+    {
+      "path": "original-test-details.json",
+      "bytes": 2768,
+      "sha256": "1510e52711f7511254501fcc6b77778679396d5d4af8c2db2e030dfaba92dba7"
+    },
+    {
+      "path": "ownership.json",
+      "bytes": 256,
+      "sha256": "b19967929ff92734d8daebcd7623e27224d1e76c218e3fdd63b1e310ac1af47c"
+    },
+    {
+      "path": "python-oracle-environment.json",
+      "bytes": 654,
+      "sha256": "77d23e83351b75870dc60ce65ab1eb712b91cda9fa31044314d588316aecef92"
+    },
+    {
+      "path": "result.json",
+      "bytes": 979,
+      "sha256": "c7a2f0f13385bb1033e7d03d7006f2975eedbbdb3a3eba7fb1804038d0cc3c5e"
+    },
+    {
+      "path": "selection.json",
+      "bytes": 642,
+      "sha256": "2ee3649a010b596b1cfea694455fde5e511de3eac55704a8892d37789a1e6cea"
+    },
+    {
+      "path": "source-after.json",
+      "bytes": 59254,
+      "sha256": "1156b0b9bafd2cb7321fac6e40346ad06e56c5fc1426050a71e611044c48ad39"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 59254,
+      "sha256": "1156b0b9bafd2cb7321fac6e40346ad06e56c5fc1426050a71e611044c48ad39"
+    },
+    {
+      "path": "test-case-execution-11.json",
+      "bytes": 570,
+      "sha256": "e8bca950cf611d236e1d651535f4cb746f93d89e72ff007e6aa3e5c27f59f5bd"
+    },
+    {
+      "path": "test-simulator-11.log",
+      "bytes": 14459,
+      "sha256": "67969e4c9b9de92806edfbd89c0531c1c2a2e9a217b04f0618e5e412afe15460"
+    },
+    {
+      "path": "verified-11.json",
+      "bytes": 316,
+      "sha256": "1f75018c27be69fdebc77bceed55f0bd43c552b74f99d18064fe462e793b9d5f"
+    },
+    {
+      "path": "verified-11.summary.json",
+      "bytes": 1574,
+      "sha256": "d1bd701357ad1deade680e962222caaf7038cfedaaa167f4b10f0af67405e124"
+    },
+    {
+      "path": "verified-11.tests.json",
+      "bytes": 2308,
+      "sha256": "379aff614a5c1f316717e414d2096af21151b739e29ed36573ed755111c73063"
+    }
+  ]
+}

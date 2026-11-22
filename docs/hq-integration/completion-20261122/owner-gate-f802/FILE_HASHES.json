@@ -1,0 +1,14 @@
+{
+  "MERGE_PROOF.json": {
+    "bytes": 1980,
+    "sha256": "afaaa633b73fd3eaab699442a91bbeb7c7214b11f753bbec0b0cb1abc5a15822"
+  },
+  "owner-approval-gate.json": {
+    "bytes": 4249,
+    "sha256": "8d6f80b00cefa6cd9dbd522197e2d31afe602c52819d9cd240ffcbe46cbd11ee"
+  },
+  "boundary-guard-report.json": {
+    "bytes": 20962,
+    "sha256": "6d47e3ec3091b3b4f000960d1270e4c98c231eb7cf2df9a50e872ccb149816ed"
+  }
+}

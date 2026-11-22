@@ -1,0 +1,20 @@
+{
+  "suites": [
+    {
+      "suite": "HanlinLiveProviderAcceptanceTests",
+      "selection": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+      "expected": [
+        "testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
+      ],
+      "passed": [],
+      "failed": [
+        "testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
+      ],
+      "missing": [
+        "testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
+      ],
+      "status": "FAIL"
+    }
+  ],
+  "status": "FAIL"
+}

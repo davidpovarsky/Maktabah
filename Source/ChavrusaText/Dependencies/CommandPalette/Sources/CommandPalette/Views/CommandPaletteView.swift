@@ -192,6 +192,7 @@ public struct CommandPaletteView: View {
                                 }
                                 .buttonStyle(.plain)
                                 .id(item.id)
+                                .accessibilityIdentifier("command-palette-row-" + item.id)
                                 .accessibilityAddTraits(item.id == selection.selectedRowID ? .isSelected : [])
                             }
                         }

@@ -1,0 +1,12 @@
+{
+  "base": "30c5292275845e619dc236863d0053b8d94b097c",
+  "protected_file": "Source/Core/CloudKit/CloudKitCoreManager.swift",
+  "before_sha256": "1d9de7832d00dd566e3fb3b50214a39ce48c3fd07b8e4b0a148bfeca0916fa34",
+  "before_blob": "6834a1beab5ffa38ddedf3404392c3be138a73c5",
+  "upstream_tip": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "upstream_blob": "4e1bddf1dda487bb68e58a044dd64473c761f52d",
+  "authorization": "User expressly authorizes necessary development. Root specifically approved minimal original Core syncWorker termination callback status classification, existing pure classifier, no 16-case rerun; preserve 3s timeout, queue and ACK.",
+  "scope": "Use unchanged AnnotationLocalEditorCloudWorkerResponse only in existing termination callback; HTTP rejection is preserved in existing errorState and original failure log. No asyncWorker behavior, retry queue, URL, request, credential, schema or ACK change.",
+  "validation": "Exact original and candidate @Sendable callback wiring using real Mutex, DispatchSemaphore and Foundation responses; no network or CloudKit execution. Reuse exact previously passed classifier16 and Apple/import proof only within unchanged dependency closure.",
+  "full_index_review": "Include this protected Core hook in final unsigned source review package. No authentic trust signature is supplied."
+}

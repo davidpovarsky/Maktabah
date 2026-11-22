@@ -1,0 +1,194 @@
+[
+  {
+    "name" : "disabled_original_client_has_no_container_or_transport",
+    "status" : "PASS"
+  },
+  {
+    "name" : "missing_client_saves_locally_and_retains_original_pending",
+    "status" : "PASS"
+  },
+  {
+    "name" : "missing_precommit_identity_never_adopts_later_account",
+    "status" : "PASS"
+  },
+  {
+    "name" : "failed_precommit_identity_never_retries_after_commit",
+    "status" : "PASS"
+  },
+  {
+    "name" : "account_notification_during_preparation_rejects_old_lookup_result",
+    "status" : "PASS"
+  },
+  {
+    "name" : "source_write_during_preparation_refuses_before_local_commit",
+    "status" : "PASS"
+  },
+  {
+    "name" : "owner_retirement_during_preparation_is_one_way",
+    "status" : "PASS"
+  },
+  {
+    "name" : "exact_success_acknowledges_once_without_legacy_upload_or_metadata_loss",
+    "status" : "PASS"
+  },
+  {
+    "name" : "original_annotation_cloud_record_mapping_preserves_uuid_zone_and_plain_note",
+    "status" : "PASS"
+  },
+  {
+    "name" : "original_two_second_debouncer_delivers_one_retained_instance",
+    "status" : "PASS"
+  },
+  {
+    "name" : "retirement_during_debounce_prevents_upload",
+    "status" : "PASS"
+  },
+  {
+    "name" : "profile_disconnect_reopen_during_debounce_never_revives_connection",
+    "status" : "PASS"
+  },
+  {
+    "name" : "account_aba_during_debounce_keeps_old_epoch_retired",
+    "status" : "PASS"
+  },
+  {
+    "name" : "permission_loss_during_debounce_prevents_upload",
+    "status" : "PASS"
+  },
+  {
+    "name" : "debounced_different_record_never_reaches_transport",
+    "status" : "PASS"
+  },
+  {
+    "name" : "admitted_remote_success_after_editor_retirement_is_retained_without_ack",
+    "status" : "PASS"
+  },
+  {
+    "name" : "admitted_remote_success_after_profile_aba_cannot_ack_captured_db",
+    "status" : "PASS"
+  },
+  {
+    "name" : "admitted_remote_success_after_account_aba_cannot_ack",
+    "status" : "PASS"
+  },
+  {
+    "name" : "admitted_remote_success_after_permission_loss_cannot_ack",
+    "status" : "PASS"
+  },
+  {
+    "name" : "new_same_uuid_revision_during_upload_preserves_newer_pending",
+    "status" : "PASS"
+  },
+  {
+    "name" : "same_connection_same_second_replacement_refuses_old_ack",
+    "status" : "PASS"
+  },
+  {
+    "name" : "foreign_original_pending_replacement_refuses_old_ack",
+    "status" : "PASS"
+  },
+  {
+    "name" : "foreign_pending_aba_with_identical_values_refuses_old_ack",
+    "status" : "PASS"
+  },
+  {
+    "name" : "unrelated_same_connection_write_conservatively_defers_ack",
+    "status" : "PASS"
+  },
+  {
+    "name" : "original_tag_write_during_upload_defers_ack_and_keeps_tags",
+    "status" : "PASS"
+  },
+  {
+    "name" : "remote_error_preserves_actual_error_and_original_pending_without_retry",
+    "status" : "PASS"
+  },
+  {
+    "name" : "remote_error_after_retirement_preserves_error_and_refuses_delivery",
+    "status" : "PASS"
+  },
+  {
+    "name" : "no_precommit_worker_request_never_adopts_later_destination",
+    "status" : "PASS"
+  },
+  {
+    "name" : "changed_worker_after_ack_keeps_actual_ack_but_refuses_new_destination",
+    "status" : "PASS"
+  },
+  {
+    "name" : "permission_loss_after_ack_defers_worker_without_rollback_claim",
+    "status" : "PASS"
+  },
+  {
+    "name" : "account_notification_after_ack_defers_worker_without_rollback_claim",
+    "status" : "PASS"
+  },
+  {
+    "name" : "editor_retirement_after_ack_defers_worker_without_rollback_claim",
+    "status" : "PASS"
+  },
+  {
+    "name" : "worker_uses_exact_captured_request_and_retains_actual_outcome",
+    "status" : "PASS"
+  },
+  {
+    "name" : "worker_failure_does_not_rewrite_remote_success_or_committed_ack",
+    "status" : "PASS"
+  },
+  {
+    "name" : "retirement_after_worker_admission_retains_actual_worker_effect",
+    "status" : "PASS"
+  },
+  {
+    "name" : "prepared_operation_is_consumed_once_with_no_duplicate_commit_or_upload",
+    "status" : "PASS"
+  },
+  {
+    "name" : "foreign_session_cannot_consume_preparation_or_steal_original_owner",
+    "status" : "PASS"
+  },
+  {
+    "name" : "retired_before_owned_save_does_not_commit_local_or_remote",
+    "status" : "PASS"
+  },
+  {
+    "name" : "durable_replay_retains_receipt_without_new_publication_witness",
+    "status" : "PASS"
+  },
+  {
+    "name" : "outer_transaction_cannot_masquerade_as_owned_durable_commit",
+    "status" : "PASS"
+  },
+  {
+    "name" : "aliased_account_lifetime_refused_without_recursive_lock_or_delete",
+    "status" : "PASS"
+  },
+  {
+    "name" : "account_retired_at_locked_entry_preserves_account_changed_category",
+    "status" : "PASS"
+  },
+  {
+    "name" : "new_pending_after_ack_prevents_late_worker_and_delivery",
+    "status" : "PASS"
+  },
+  {
+    "name" : "later_original_delete_is_never_erased_by_successful_old_upload",
+    "status" : "PASS"
+  },
+  {
+    "name" : "ambiguous_case_variant_pending_is_not_deleted_by_first_match",
+    "status" : "PASS"
+  },
+  {
+    "name" : "account_observation_is_synchronous_one_way_and_owner_scoped",
+    "status" : "PASS"
+  },
+  {
+    "name" : "source_change_during_post_upload_account_lookup_refuses_ack",
+    "status" : "PASS"
+  },
+  {
+    "name" : "busy_preparation_rejects_second_operation_without_shared_state_change",
+    "status" : "PASS"
+  }
+]

@@ -1,0 +1,132 @@
+{
+  "base_commit": "70388c090af788adaa82346c94176790df2c65f0",
+  "documentation_commit": "db2241bf789a407386588fa274564dd2e443c6f1",
+  "patch_sha256": "92d9b70fd4ad67605bad2b723d6e2ad179756be1510686e9bbb3cb240d0f3770",
+  "files": [
+    {
+      "path": "ADDITIONAL_POLICIES.json",
+      "bytes": 40878,
+      "sha256": "c18e95dca3e595ff2abe7ff6701869c43764fbbc79f625e0ce5e5bb0b964ad64"
+    },
+    {
+      "path": "ADDITIONAL_POLICIES_METADATA.json",
+      "bytes": 109,
+      "sha256": "021ae39591b352d5e5ef30e448f63f5317e1171bb7ee5a3102cd4ebbf28b2593"
+    },
+    {
+      "path": "BLOBS.json",
+      "bytes": 156957,
+      "sha256": "4af99b5c6b728ea05d70cf3267406989159c16d1b7a16cc3fedf368ff0e35b5a"
+    },
+    {
+      "path": "BLOBS_METADATA.json",
+      "bytes": 130,
+      "sha256": "535c54ebc9f468d43ea03ca97346cf3dd225d72f21d97f8aab51e79a5f1b6d02"
+    },
+    {
+      "path": "CONFIGURATION_FIX_INPUTS.json",
+      "bytes": 2325,
+      "sha256": "ea27af4cd84a35aaf30a6b22209b88208ad88fc2fbd2025d828da54995edc3df"
+    },
+    {
+      "path": "CONFIGURATION_FIX_VALIDATION.json",
+      "bytes": 3878,
+      "sha256": "f8cb35f486dc8c7236c6d7c3773ff3852a030857df00eefef43b4592bc20e328"
+    },
+    {
+      "path": "DOCUMENT_COMMIT_RECEIPT.json",
+      "bytes": 17042,
+      "sha256": "8d812582157ce18f58e89f2271ccfc0045ca78592278ff4363a27471c5ea0175"
+    },
+    {
+      "path": "EXACT_33_PATH_COMPARISON.json",
+      "bytes": 17767,
+      "sha256": "f3cce5030c445c8c4782c3569b0009340a0ab1f4235f42b8521333cd2f94943e"
+    },
+    {
+      "path": "INTRODUCTION_ANCESTRY.json",
+      "bytes": 417,
+      "sha256": "6c6e1a01b75a868ec108e62b4aabf81a73d2edbe38b52082941823634ea8d2c3"
+    },
+    {
+      "path": "LINK_TARGET_TREE_CHECK.json",
+      "bytes": 6870,
+      "sha256": "202d5fe261fd1390b0415e02fd04b3fc421e8354cd744e97617b292cd27b5456"
+    },
+    {
+      "path": "OPERATIONAL_SMOKE_EVIDENCE.json",
+      "bytes": 1324,
+      "sha256": "4300c3c04ad48ccf925abb310d666b5a72b9d50ac3031165ac56d3740a072558"
+    },
+    {
+      "path": "ORIGINAL_ENSURE_TEAM_CHECK.json",
+      "bytes": 1234,
+      "sha256": "58b0a1800e331d8eb687a245baed91a31d2c6cd266a7cf0a0d572f05393e77d7"
+    },
+    {
+      "path": "PUBLICATION_NOTE.md",
+      "bytes": 1648,
+      "sha256": "aa1ea79420f55e0ccd652b803be1ccddb6ccccf73395b5011aba3df827496ba1"
+    },
+    {
+      "path": "PUBLICATION_PREFLIGHT.json",
+      "bytes": 33842,
+      "sha256": "49c92eca4829b5e4a22fe07af24339b75f7b810c0ec71243c4c96037d07ec767"
+    },
+    {
+      "path": "PUBLICATION_VALIDATION.json",
+      "bytes": 4838,
+      "sha256": "568f775618e4046c4a84d2bfe88243fea19b17f5702a4f516925b840600373f7"
+    },
+    {
+      "path": "PUSH_TRIGGER_REVIEW.json",
+      "bytes": 10068,
+      "sha256": "4b93b44f9273b19a2ecd4e76ca4325b40d01eb3632eac60410cf7731e002f09f"
+    },
+    {
+      "path": "REFS_AND_BLOBS.json",
+      "bytes": 18093,
+      "sha256": "912504f3e20cee6bb48005f72380af8d705de4c77dee30d3d65636bb3fe46c7a"
+    },
+    {
+      "path": "REVIEW_AND_ROUTING.md",
+      "bytes": 10720,
+      "sha256": "f5aaa5bce8782b6bd3c5e24bf7bc085672c0c1ec4b19b8fd6773554c9bb5167f"
+    },
+    {
+      "path": "STATIC_CONFIG_VALIDATION.json",
+      "bytes": 17161,
+      "sha256": "0d58276b4e5ce6920541ffa123a509b2a67103a91652935aa58a326cdecc586c"
+    },
+    {
+      "path": "TASK_ACCEPTANCE_SNAPSHOT.json",
+      "bytes": 1831,
+      "sha256": "1bb49bee8e6ee9caf88242a014d1b4b756e443bbeefc7bfee5c95028da0edbbb"
+    },
+    {
+      "path": "TIMESTAMP_CLARIFICATION.json",
+      "bytes": 462,
+      "sha256": "fb200a76e30b50cccd4290070bf4e88437b3c0a68924a2e04ba4fa8c2eb01428"
+    },
+    {
+      "path": "WORKTREE_CREATION.json",
+      "bytes": 388,
+      "sha256": "afe4f8e2c7ecc0077388e6cc2cc131e78eaaee8ea75f9aeae35dc0b8d1a40187"
+    },
+    {
+      "path": "team-configuration-links-and-branch-snapshot.patch",
+      "bytes": 10923,
+      "sha256": "92d9b70fd4ad67605bad2b723d6e2ad179756be1510686e9bbb3cb240d0f3770"
+    },
+    {
+      "path": "validate_configuration.py",
+      "bytes": 6061,
+      "sha256": "1115d850b6968dd566f5d594b1d59e0395a9dd4b01b4b11df16968317fb86fc2"
+    },
+    {
+      "path": "validate_configuration_fix.py",
+      "bytes": 4113,
+      "sha256": "c361cfd82b6622d939d92f106b219cafb96e2f31d7516f28e2c16bc9bffeac2a"
+    }
+  ]
+}

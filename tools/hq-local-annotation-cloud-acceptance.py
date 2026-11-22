@@ -98,10 +98,14 @@ def source_provenance(root):
     return sorted(paths)
 
 
-def verify_copies(root, owned):
+def compiled_targets(cloud_only=False):
+    cloud = ("LocalAnnotationCloudOwnershipAcceptance", CLOUD_SOURCES)
+    return [cloud] if cloud_only else [("LocalAnnotationEditorAcceptance", SOURCES), cloud]
+
+
+def verify_copies(root, owned, cloud_only=False):
     result = {}
-    for target, inputs in (("LocalAnnotationEditorAcceptance", SOURCES),
-                           ("LocalAnnotationCloudOwnershipAcceptance", CLOUD_SOURCES)):
+    for target, inputs in compiled_targets(cloud_only):
         directory = Path(owned) / "package/Sources" / target
         names = {Path(path).name: path for path in inputs}
         if len(names) != len(inputs):
@@ -127,7 +131,11 @@ def verify_copies(root, owned):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--artifacts-dir", type=Path, required=True)
+    parser.add_argument("--cloud-only", action="store_true",
+                        help="Run the unchanged owned Cloud48 component without repeating local43/cold2")
     args = parser.parse_args()
+    success_status = ("PASS_APPLE_FOUNDATION_CLOUD48" if args.cloud_only
+                      else "PASS_APPLE_FOUNDATION_CLOUD48_LOCAL43_COLD2")
     artifacts = args.artifacts_dir.resolve()
     artifacts.mkdir(parents=True, exist_ok=True)
     if (artifacts / "RESULT.json").exists():
@@ -135,6 +143,7 @@ def main():
     report = {"status": "NOT_RUN", "scope": "APPLE_FOUNDATION_OWNED_CLOUD_COMPONENT",
         "started_at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "host": platform.platform(),
         "commands": [], "cases": [], "cloud_cases": [], "cold_processes": [],
+        "execution_selection": "cloud48" if args.cloud_only else "cloud48_local43_cold2",
         "native_ui_executed": 0, "anytype_executed": 0, "cloudkit_transport_executed": 0,
         "app_relaunch_executed": 0, "live_exchange_enabled": False,
         "boundaries": "Whole original Store/Repository/SQLite/ledger/session/Core/debouncer/CK mapping; explicit account/transport/wait and unrelated catalog/UI/localization doubles"}
@@ -159,7 +168,7 @@ def main():
         report["source_status"] = subprocess.check_output(["git", "status", "--short"], cwd=ROOT, text=True, timeout=30)
         report["swift"] = subprocess.check_output([swift, "--version"], text=True, timeout=30).strip()
         report["sdk"] = str(sdk)
-        expected = declaration_names((ROOT / SOURCES[-1]).read_text(encoding="utf-8"))
+        expected = [] if args.cloud_only else declaration_names((ROOT / SOURCES[-1]).read_text(encoding="utf-8"))
         expected_cloud = cloud_declaration_names((ROOT / CLOUD_DECLARATIONS).read_text(encoding="utf-8"))
         owned = artifacts / ("owned-" + str(uuid.uuid4()))
         package = owned / "package"
@@ -168,17 +177,16 @@ def main():
         fixtures.mkdir(parents=True)
         cloud_fixtures.mkdir()
         report["owned_directory"] = str(owned)
-        for target, sources in (("LocalAnnotationEditorAcceptance", SOURCES),
-                                ("LocalAnnotationCloudOwnershipAcceptance", CLOUD_SOURCES)):
+        for target, sources in compiled_targets(args.cloud_only):
             directory = package / "Sources" / target
             directory.mkdir(parents=True)
             for source in sources:
                 shutil.copyfile(ROOT / source, directory / Path(source).name)
             if target == "LocalAnnotationCloudOwnershipAcceptance":
                 (directory / "OriginalLocalFixture.swift").write_bytes(fixture_prefix(ROOT))
-        report["compiled_copies_before"] = verify_copies(ROOT, owned)
+        report["compiled_copies_before"] = verify_copies(ROOT, owned, args.cloud_only)
         targets = []
-        for target in ("LocalAnnotationEditorAcceptance", "LocalAnnotationCloudOwnershipAcceptance"):
+        for target, _ in compiled_targets(args.cloud_only):
             targets.append('''.executableTarget(name: NAME,
                 dependencies: [.product(name: "OtzariaActionCore", package: "actions")],
                 swiftSettings: [.unsafeFlags(["-strict-concurrency=complete"])],
@@ -196,26 +204,29 @@ let package = Package(name: "LocalAnnotationCloudOwnershipAcceptance",
         binary_path = Path(run_logged(command + ["--show-bin-path"], ROOT, artifacts, "binary-path", 30, report).strip())
         executable = binary_path / "LocalAnnotationEditorAcceptance"
         cloud_executable = binary_path / "LocalAnnotationCloudOwnershipAcceptance"
-        report["executable_sha256"] = sha(executable)
+        if not args.cloud_only:
+            report["executable_sha256"] = sha(executable)
         report["cloud_executable_sha256"] = sha(cloud_executable)
-        run_logged([str(executable), "self-tests", str(fixtures)], ROOT, artifacts, "component-cases", 180, report)
-        report["cases"] = json.loads((fixtures / "CASES.json").read_text())
-        verify_cases(report["cases"], expected)
+        if not args.cloud_only:
+            run_logged([str(executable), "self-tests", str(fixtures)], ROOT, artifacts, "component-cases", 180, report)
+            report["cases"] = json.loads((fixtures / "CASES.json").read_text())
+            verify_cases(report["cases"], expected)
         run_logged([str(cloud_executable), str(cloud_fixtures)], ROOT, artifacts, "cloud-cases", 180, report)
         report["cloud_cases"] = json.loads((cloud_fixtures / "CASES.json").read_text())
         verify_cloud_cases(report["cloud_cases"], expected_cloud)
-        for mode in COLD_MODES:
-            run_logged([str(executable), mode, str(fixtures)], ROOT, artifacts, mode, 45, report)
-            report["cold_processes"].append(json.loads((fixtures / (mode + ".json")).read_text()))
-        first = json.loads((fixtures / "cold-expected-1.json").read_text())
-        second = json.loads((fixtures / "cold-expected-2.json").read_text())
-        verify_cold(report["cold_processes"], first, second)
-        report["independent_sqlite_readback"] = verify_sqlite(fixtures, first, second)
-        report["cold_reopen_gates"] = 2
-        report["compiled_copies_after"] = verify_copies(ROOT, owned)
+        if not args.cloud_only:
+            for mode in COLD_MODES:
+                run_logged([str(executable), mode, str(fixtures)], ROOT, artifacts, mode, 45, report)
+                report["cold_processes"].append(json.loads((fixtures / (mode + ".json")).read_text()))
+            first = json.loads((fixtures / "cold-expected-1.json").read_text())
+            second = json.loads((fixtures / "cold-expected-2.json").read_text())
+            verify_cold(report["cold_processes"], first, second)
+            report["independent_sqlite_readback"] = verify_sqlite(fixtures, first, second)
+            report["cold_reopen_gates"] = 2
+        report["compiled_copies_after"] = verify_copies(ROOT, owned, args.cloud_only)
         if report["compiled_copies_before"] != report["compiled_copies_after"] or before != {path: sha(ROOT / path) for path in paths}:
             raise RuntimeError("Compiled copy or source changed during execution")
-        report["status"] = "PASS_APPLE_FOUNDATION_CLOUD48_LOCAL43_COLD2"
+        report["status"] = success_status
     except Exception as error:
         report["error"] = repr(error)
         report["status"] = "FAILED" if report["commands"] else "NOT_RUN"
@@ -240,7 +251,7 @@ let package = Package(name: "LocalAnnotationCloudOwnershipAcceptance",
         report["finished_at"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
         write_json(artifacts / "RESULT.json", report)
         print(json.dumps({key: report[key] for key in ("status", "passed_cases", "failed_cases", "cloud_passed_cases", "cloud_failed_cases")}, sort_keys=True))
-    return 0 if report["status"] == "PASS_APPLE_FOUNDATION_CLOUD48_LOCAL43_COLD2" else 1
+    return 0 if report["status"] == success_status else 1
 
 
 if __name__ == "__main__":

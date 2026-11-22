@@ -1,0 +1,38 @@
+{
+  "observed_at": "2026-11-22T02:39:01.950722+00:00",
+  "merge": "f802143e9ec15e624f71ecd81899ad42a1217ce2",
+  "parents": [
+    "9fa823c760ecfee4738b32b47b5aba4483a2c120",
+    "ea60a522b553a4dfe3077c698b674666ea211879"
+  ],
+  "reviewed_gate_source": "5255c96ae9cdd02fb661ec2fc8801e33125b09b8",
+  "evidence_manifest_files_verified": 12,
+  "application_source": "eaa971f9a861c2b0878f4d558b606e60100ddcae",
+  "unchanged_product_trees": {
+    "Source": "cbdb967e402efb6d663b0681d89b987e3e2b9905",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "b3da2d1a2b3693a3deac1a7effac1e0916118609",
+    "Maktabah-iOSUITests": "f336b041f6c503a30b32edb6055f933d22ebaa3b"
+  },
+  "changed_paths": [
+    ".github/workflows/ios-testflight.yml",
+    ".github/workflows/upstream-boundary-guard.yml",
+    "Scripts/CI/test-owner-release-approval.py",
+    "Scripts/CI/verify-owner-release-approval.py",
+    "docs/hq-integration/owner-release-gate-20261122/.gitattributes",
+    "docs/hq-integration/owner-release-gate-20261122/AUDIT.json",
+    "docs/hq-integration/owner-release-gate-20261122/FILE_HASHES.json",
+    "docs/hq-integration/owner-release-gate-20261122/README.md",
+    "docs/hq-integration/owner-release-gate-20261122/boundary-guard-report.json",
+    "docs/hq-integration/owner-release-gate-20261122/command.log",
+    "docs/hq-integration/owner-release-gate-20261122/controls.log",
+    "docs/hq-integration/owner-release-gate-20261122/execution-proof.json",
+    "docs/hq-integration/owner-release-gate-20261122/owner-approval-gate.json",
+    "docs/hq-integration/owner-release-gate-20261122/snapshot-9c66-boundary-report.json",
+    "docs/hq-integration/owner-release-gate-20261122/snapshot-9c66-boundary-report.log",
+    "docs/hq-integration/owner-release-gate-20261122/snapshot-9c66-guard-receipt.json",
+    "docs/hq-integration/owner-release-gate-20261122/source-stability-control.log"
+  ],
+  "new_tests_executed": 0,
+  "owner_signature_created": false
+}

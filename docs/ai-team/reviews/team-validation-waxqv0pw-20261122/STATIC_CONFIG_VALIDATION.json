@@ -1,0 +1,580 @@
+{
+  "status": "LOCAL_STATIC_PARSERS_AND_IDENTITY_CHECKS_COMPLETED_LINK_TARGET_TREE_READ_PENDING",
+  "source": "34d06949e7fedbda6e0d256a769b3d0b8659c211",
+  "same_configuration_on": "9c66b4ccc06340a04de53a4c3370182873ed18bc",
+  "yaml_frontmatter_documents": 9,
+  "toml_documents": 7,
+  "yaml_parser": {
+    "name": "PyYAML",
+    "version": "6.0.3"
+  },
+  "toml_parser": "Python stdlib tomllib",
+  "checks": [
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".agents/agents/dana.md",
+      "blob": "8473c1b7f1a708b34384cd08032b00a8affc6d43"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".agents/agents/eitan.md",
+      "blob": "e56ed641150f163526dfb1cc15f051efba6485d0"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".agents/agents/maya.md",
+      "blob": "f12dd2a98eb3de6c8bd39d9f61281d9b17cf4d01"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".agents/agents/noam.md",
+      "blob": "b346f34a3fd66e0c9d2e58c0383d6eeb329f89e5"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".agents/agents/roni.md",
+      "blob": "6286859146bf3cc7968bb495ed8460819b6d0708"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".agents/agents/tomer.md",
+      "blob": "a54ba5c80952803f5c36866f4f4b4a2d38951fd9"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".agents/agents/yael.md",
+      "blob": "7c45e38eb22efb4bc952c358a031e665c3e6a402"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".agents/roles/dana.md",
+      "blob": "a1f418725c068643f33b3f7ff74937c165b939a6"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".agents/roles/eitan.md",
+      "blob": "6149bc2d919e4c7180bd82189634a92452f86a7a"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".agents/roles/maya.md",
+      "blob": "bfb14e012505a523b4f88139907afd8c4d213d8b"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".agents/roles/noam.md",
+      "blob": "85365d879e87291b6888e05954d0cc6a33c15378"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".agents/roles/roni.md",
+      "blob": "dceccd2a3ff1f4e644e7c665e840ab48735d2bcb"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".agents/roles/tomer.md",
+      "blob": "909e66753bd9ef25ff9026be81181359de276ebe"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".agents/roles/yael.md",
+      "blob": "1e4fc6134fa89ae14ea087c63ccc01332630cc91"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".agents/rules/ai-team-router.md",
+      "blob": "9e881c40b4ca5c4f1ca3ef63e3c7c7cd17083128"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".agents/skills/asana-team-coordination/SKILL.md",
+      "blob": "c71d7bda2c19b900565186043f6b70f78036a64e"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".codex/agents/dana.toml",
+      "blob": "1e13c5f4d044035d1c91b6513d090feb298b7ac9"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".codex/agents/eitan.toml",
+      "blob": "23cc688112a53ef34f85873bc8c224ce09c00813"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".codex/agents/maya.toml",
+      "blob": "d9f3610fa1d93102816371a636ea3f43eadb7999"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".codex/agents/noam.toml",
+      "blob": "caf359c4ac3eaf3b5da2541f14589e7c278a6d7e"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".codex/agents/roni.toml",
+      "blob": "d2f57293442ac29143dc1f9b3ab4cae94dc1f4be"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".codex/agents/tomer.toml",
+      "blob": "29a8ea3dc17dbe36d6137f92a19d2f04068cbd2c"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": ".codex/agents/yael.toml",
+      "blob": "2e7cb806bcbd5e5a8b23743ec9c745e68f46f156"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": "AGENTS.md",
+      "blob": "7bb033aff1bfc351ae03369667dc3c929d5226e7"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": "CLAUDE.md",
+      "blob": "b527e5f0dba1979adb32d4144b4d8c9e99163824"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": "GEMINI.md",
+      "blob": "0c7d5aee54aeed25c55de6bff2cecc5fc73a3caf"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": "docs/ai-team/ASANA_POLICY.md",
+      "blob": "864a1e5b8ee8e12805da98704c44f62a69750c03"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": "docs/ai-team/BRANCH_INTEGRATION.md",
+      "blob": "3c825746bbbbffe72fece142bdd07c9321035bf9"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": "docs/ai-team/PLATFORMS.md",
+      "blob": "4153b43b09563b09d2b74f694a08d6da3c1a0345"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": "docs/ai-team/PROJECT_ASSIGNMENTS.md",
+      "blob": "608f28b72d9c0aae89178b567eb0104622eb951e"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": "docs/ai-team/TASK_HANDOFF_TEMPLATE.md",
+      "blob": "d4a323800f2e16a0a7dffff73b4d36c6e24d26c6"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": "docs/ai-team/TEAM.md",
+      "blob": "90b513d1eee097096cc986ed60a91534c9611f38"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": "docs/ai-team/VALIDATION.md",
+      "blob": "0b2c24515b77cc768acc1302e01aee18c87cb0e5"
+    },
+    {
+      "check": "captured_exact_current_blob",
+      "passed": true,
+      "path": "tools/ai-team/ensure-team.ps1",
+      "blob": "6da00b7dac0c5a564aadcc2a5d22c1a7c4a6f543"
+    },
+    {
+      "check": "yaml_frontmatter_present",
+      "passed": true,
+      "path": ".agents/agents/dana.md"
+    },
+    {
+      "check": "yaml_parse",
+      "passed": true,
+      "path": ".agents/agents/dana.md",
+      "metadata": {
+        "name": "dana",
+        "description": "דנה / Security & Privacy — Permissions, session isolation, credential handling, secrets, and entitlements.",
+        "mainAgent": true,
+        "subagent": true,
+        "model": "inherit"
+      }
+    },
+    {
+      "check": "agent_metadata_identity",
+      "passed": true,
+      "path": ".agents/agents/dana.md"
+    },
+    {
+      "check": "yaml_frontmatter_present",
+      "passed": true,
+      "path": ".agents/agents/eitan.md"
+    },
+    {
+      "check": "yaml_parse",
+      "passed": true,
+      "path": ".agents/agents/eitan.md",
+      "metadata": {
+        "name": "eitan",
+        "description": "איתן / Architecture — Principal architect for boundaries, contracts, migrations, and technical decisions.",
+        "mainAgent": true,
+        "subagent": true,
+        "model": "inherit"
+      }
+    },
+    {
+      "check": "agent_metadata_identity",
+      "passed": true,
+      "path": ".agents/agents/eitan.md"
+    },
+    {
+      "check": "yaml_frontmatter_present",
+      "passed": true,
+      "path": ".agents/agents/maya.md"
+    },
+    {
+      "check": "yaml_parse",
+      "passed": true,
+      "path": ".agents/agents/maya.md",
+      "metadata": {
+        "name": "maya",
+        "description": "מיה / Native UX — Screens, interactions, RTL layouts, accessibility, and platform HIG.",
+        "mainAgent": true,
+        "subagent": true,
+        "model": "inherit"
+      }
+    },
+    {
+      "check": "agent_metadata_identity",
+      "passed": true,
+      "path": ".agents/agents/maya.md"
+    },
+    {
+      "check": "yaml_frontmatter_present",
+      "passed": true,
+      "path": ".agents/agents/noam.md"
+    },
+    {
+      "check": "yaml_parse",
+      "passed": true,
+      "path": ".agents/agents/noam.md",
+      "metadata": {
+        "name": "noam",
+        "description": "נועם / Engineering — Scoped code implementation, focused tests, and reproducible fixes.",
+        "mainAgent": true,
+        "subagent": true,
+        "model": "inherit"
+      }
+    },
+    {
+      "check": "agent_metadata_identity",
+      "passed": true,
+      "path": ".agents/agents/noam.md"
+    },
+    {
+      "check": "yaml_frontmatter_present",
+      "passed": true,
+      "path": ".agents/agents/roni.md"
+    },
+    {
+      "check": "yaml_parse",
+      "passed": true,
+      "path": ".agents/agents/roni.md",
+      "metadata": {
+        "name": "roni",
+        "description": "רוני / QA & Evidence — Acceptance testing, adversarial verification, test artifacts, and truthful status.",
+        "mainAgent": true,
+        "subagent": true,
+        "model": "inherit"
+      }
+    },
+    {
+      "check": "agent_metadata_identity",
+      "passed": true,
+      "path": ".agents/agents/roni.md"
+    },
+    {
+      "check": "yaml_frontmatter_present",
+      "passed": true,
+      "path": ".agents/agents/tomer.md"
+    },
+    {
+      "check": "yaml_parse",
+      "passed": true,
+      "path": ".agents/agents/tomer.md",
+      "metadata": {
+        "name": "tomer",
+        "description": "תומר / Integration — Branches, dependencies, worktrees, PRs, and upstream mergeability.",
+        "mainAgent": true,
+        "subagent": true,
+        "model": "inherit"
+      }
+    },
+    {
+      "check": "agent_metadata_identity",
+      "passed": true,
+      "path": ".agents/agents/tomer.md"
+    },
+    {
+      "check": "yaml_frontmatter_present",
+      "passed": true,
+      "path": ".agents/agents/yael.md"
+    },
+    {
+      "check": "yaml_parse",
+      "passed": true,
+      "path": ".agents/agents/yael.md",
+      "metadata": {
+        "name": "yael",
+        "description": "יעל / Research — API capabilities, official Apple/upstream documentation, schemas, and unknowns.",
+        "mainAgent": true,
+        "subagent": true,
+        "model": "inherit"
+      }
+    },
+    {
+      "check": "agent_metadata_identity",
+      "passed": true,
+      "path": ".agents/agents/yael.md"
+    },
+    {
+      "check": "yaml_frontmatter_present",
+      "passed": true,
+      "path": ".agents/rules/ai-team-router.md"
+    },
+    {
+      "check": "yaml_parse",
+      "passed": true,
+      "path": ".agents/rules/ai-team-router.md",
+      "metadata": {
+        "description": "Repository router and two-tier execution policy (NORMAL vs TEAM) for the persistent named AI team across Antigravity and Codex.",
+        "trigger": "always_on"
+      }
+    },
+    {
+      "check": "router_trigger_and_size",
+      "passed": true,
+      "path": ".agents/rules/ai-team-router.md",
+      "bytes": 2810
+    },
+    {
+      "check": "yaml_frontmatter_present",
+      "passed": true,
+      "path": ".agents/skills/asana-team-coordination/SKILL.md"
+    },
+    {
+      "check": "yaml_parse",
+      "passed": true,
+      "path": ".agents/skills/asana-team-coordination/SKILL.md",
+      "metadata": {
+        "name": "asana-team-coordination",
+        "description": "Task coordination, evidence-based status updates, and verified completion across Asana projects."
+      }
+    },
+    {
+      "check": "exact_nine_frontmatter_documents",
+      "passed": true,
+      "count": 9
+    },
+    {
+      "check": "toml_parse",
+      "passed": true,
+      "path": ".codex/agents/eitan.toml"
+    },
+    {
+      "check": "logical_role_correspondence",
+      "passed": true,
+      "role": "eitan"
+    },
+    {
+      "check": "toml_parse",
+      "passed": true,
+      "path": ".codex/agents/noam.toml"
+    },
+    {
+      "check": "logical_role_correspondence",
+      "passed": true,
+      "role": "noam"
+    },
+    {
+      "check": "toml_parse",
+      "passed": true,
+      "path": ".codex/agents/maya.toml"
+    },
+    {
+      "check": "logical_role_correspondence",
+      "passed": true,
+      "role": "maya"
+    },
+    {
+      "check": "toml_parse",
+      "passed": true,
+      "path": ".codex/agents/roni.toml"
+    },
+    {
+      "check": "logical_role_correspondence",
+      "passed": true,
+      "role": "roni"
+    },
+    {
+      "check": "toml_parse",
+      "passed": true,
+      "path": ".codex/agents/tomer.toml"
+    },
+    {
+      "check": "logical_role_correspondence",
+      "passed": true,
+      "role": "tomer"
+    },
+    {
+      "check": "toml_parse",
+      "passed": true,
+      "path": ".codex/agents/yael.toml"
+    },
+    {
+      "check": "logical_role_correspondence",
+      "passed": true,
+      "role": "yael"
+    },
+    {
+      "check": "toml_parse",
+      "passed": true,
+      "path": ".codex/agents/dana.toml"
+    },
+    {
+      "check": "logical_role_correspondence",
+      "passed": true,
+      "role": "dana"
+    },
+    {
+      "check": "original_ensure_team_required_presence",
+      "passed": true,
+      "required_count": 32
+    }
+  ],
+  "all_current_checks_passed": true,
+  "markdown_links": [
+    {
+      "source": ".agents/rules/ai-team-router.md",
+      "line": 39,
+      "target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "markdown_relative_target": ".agents/rules/docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "root_interpretation_target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md"
+    },
+    {
+      "source": "GEMINI.md",
+      "line": 28,
+      "target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "markdown_relative_target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "root_interpretation_target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md"
+    },
+    {
+      "source": "docs/ai-team/BRANCH_INTEGRATION.md",
+      "line": 27,
+      "target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "markdown_relative_target": "docs/ai-team/docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "root_interpretation_target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md"
+    },
+    {
+      "source": "docs/ai-team/PLATFORMS.md",
+      "line": 30,
+      "target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "markdown_relative_target": "docs/ai-team/docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "root_interpretation_target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md"
+    },
+    {
+      "source": "docs/ai-team/PROJECT_ASSIGNMENTS.md",
+      "line": 42,
+      "target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "markdown_relative_target": "docs/ai-team/docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "root_interpretation_target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md"
+    },
+    {
+      "source": "docs/ai-team/TEAM.md",
+      "line": 82,
+      "target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "markdown_relative_target": "docs/ai-team/docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "root_interpretation_target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md"
+    },
+    {
+      "source": "docs/ai-team/VALIDATION.md",
+      "line": 33,
+      "target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "markdown_relative_target": "docs/ai-team/docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "root_interpretation_target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md"
+    }
+  ],
+  "remote_target_paths_to_check": [
+    ".agents/agents/dana.md",
+    ".agents/agents/eitan.md",
+    ".agents/agents/maya.md",
+    ".agents/agents/noam.md",
+    ".agents/agents/roni.md",
+    ".agents/agents/tomer.md",
+    ".agents/agents/yael.md",
+    ".agents/roles/dana.md",
+    ".agents/roles/eitan.md",
+    ".agents/roles/maya.md",
+    ".agents/roles/noam.md",
+    ".agents/roles/roni.md",
+    ".agents/roles/tomer.md",
+    ".agents/roles/yael.md",
+    ".agents/rules/ai-team-router.md",
+    ".agents/rules/docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+    ".agents/skills/asana-team-coordination/SKILL.md",
+    ".codex/agents/dana.toml",
+    ".codex/agents/eitan.toml",
+    ".codex/agents/maya.toml",
+    ".codex/agents/noam.toml",
+    ".codex/agents/roni.toml",
+    ".codex/agents/tomer.toml",
+    ".codex/agents/yael.toml",
+    "AGENTS.md",
+    "DESIGN_LANGUAGE.md",
+    "GEMINI.md",
+    "PROJECT_AGENT_GUIDANCE.md",
+    "PROJECT_BOARD.md",
+    "docs/ai-team/ASANA_POLICY.md",
+    "docs/ai-team/BRANCH_INTEGRATION.md",
+    "docs/ai-team/PLATFORMS.md",
+    "docs/ai-team/PROJECT_ASSIGNMENTS.md",
+    "docs/ai-team/TASK_HANDOFF_TEMPLATE.md",
+    "docs/ai-team/TEAM.md",
+    "docs/ai-team/VALIDATION.md",
+    "docs/ai-team/docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+    "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md"
+  ],
+  "runtime_or_native_tests": 0,
+  "repo_mutations": 0
+}

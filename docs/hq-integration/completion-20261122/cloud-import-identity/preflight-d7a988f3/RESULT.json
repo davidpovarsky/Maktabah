@@ -1,0 +1,14 @@
+{
+  "status": "FAILED_SOURCE_PREFLIGHT",
+  "job": "job_5ff4cd5f437b",
+  "head": "d7a988f309594f69e726b7507b36fa328332db43",
+  "apple_source_context_passed": true,
+  "ordinary_hq_preflight": "Reviewed build-exclusion input changed: Maktabah.xcodeproj/project.pbxproj",
+  "original_editor_source_context": "NOT_RUN_AFTER_FAILURE",
+  "product_tests_executed": 0,
+  "correction": "Rebind only the reviewed eight source registration lines in the existing excluded-build-input manifest; unchanged test additions and unchanged exclusion rules.",
+  "old_project_blob": "282b75da81da7ee94db39e57c861fe9a0e59e9eb",
+  "new_project_blob": "3261731b3c225ec783b7f7542b53726c71f638c1",
+  "old_test_manifest_sha256": "5baff649edf9e445921afe7b66bc104902dd59c06941e8dd39ca21197754de79",
+  "new_test_manifest_sha256": "ef5d287ee888b306fab1ddf0e75242245f756976370129c433f1276a96b5611e"
+}

@@ -198,6 +198,58 @@ final class HanlinReaderConsumerAcceptanceTests: R27NativeUIBase {
         XCTAssertTrue(app.buttons["otzaria-hanlin-reader-launch"].isHittable)
         capture("hanlin-reader-original-after-chat-dismissal")
     }
+    /// Reproduces the failed live consent interaction without creating a
+    /// connection or supplying credentials, so native AX/screens can be kept.
+    @MainActor
+    func testOriginalIPadCurrentWorkConsentToggleWithoutConnection() throws {
+        XCTAssertTrue(isPad)
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(backend: "otzaria", language: "en")
+        let originalLocator = try assertTarget(backend: "otzaria")
+        let originalOwner = try originalWorkspaceOwner()
+        let originalText = try XCTUnwrap(app.textViews["reader-text"].value as? String)
+        let expectedTitle = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_BOOK_TITLE"])
+        func tapNative(_ element: XCUIElement) {
+            XCTAssertTrue(element.waitForExistence(timeout: 30))
+            XCTAssertTrue(element.isEnabled)
+            XCTAssertTrue(element.isHittable, "Use the actual native control")
+            element.tap()
+        }
+
+        tapNative(app.buttons["otzaria-hanlin-reader-launch"])
+        let consent = app.switches["otzaria-hanlin-allow-current-book"]
+        XCTAssertTrue(consent.waitForExistence(timeout: 30))
+        XCTAssertEqual(consent.value as? String, "0")
+        XCTAssertEqual(app.staticTexts["otzaria-hanlin-consent-book-title"].label, expectedTitle)
+        let form = app.descendants(matching: .any)["otzaria-hanlin-connection-form"].firstMatch
+        XCTAssertTrue(form.waitForExistence(timeout: 20))
+        for _ in 0..<4 where !consent.isHittable { form.swipeUp() }
+        capture("hanlin-consent-no-connection-before-native-tap")
+        tapNative(consent)
+        let enabled = XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "value == %@", "1"), object: consent
+        )], timeout: 10)
+        capture("hanlin-consent-no-connection-after-native-tap")
+        XCTAssertEqual(enabled, .completed, "One actual consent switch tap must turn access ON")
+
+        tapNative(consent)
+        let disabled = XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "value == %@", "0"), object: consent
+        )], timeout: 10)
+        capture("hanlin-consent-no-connection-after-native-revoke")
+        XCTAssertEqual(disabled, .completed, "A second actual tap must turn the offer OFF")
+        XCTAssertFalse(app.buttons["otzaria-hanlin-end-book-access"].exists,
+                       "An unconnected offer must not create a source access session")
+        let close = app.buttons["otzaria-hanlin-close"]
+        tapNative(close)
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: close
+        )], timeout: 20), .completed)
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), originalLocator)
+        XCTAssertTrue(try XCTUnwrap(app.textViews["reader-text"].value as? String).utf8.elementsEqual(originalText.utf8))
+        XCTAssertEqual(try originalWorkspaceOwner(), originalOwner)
+    }
+
     @MainActor
     private func exerciseCurrentWorkReadConsent() throws {
         if isPad { XCUIDevice.shared.orientation = .landscapeLeft }

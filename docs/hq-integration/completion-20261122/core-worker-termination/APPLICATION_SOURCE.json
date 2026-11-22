@@ -1,0 +1,18 @@
+{
+  "application_source_sha": "5f862ea7d785de813fc28680cfe403a3e082ba22",
+  "previous_application_source_sha": "5d0a11f6a799bee9deb23dc91b29e832bec14335",
+  "application_trees": {
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Source": "17bac1ee9de07cc9abd0ae449ba4b8db90ba48bb",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "original_editor_native_consumer_source": "5f862ea7d785de813fc28680cfe403a3e082ba22",
+  "changed_product_files": [
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift",
+    "Source/Core/CloudKit/CloudKitCoreManager.swift"
+  ],
+  "root_authorization": "Minimal termination callback HTTP classification plus exact pure classifier relocation into existing shared Core; no logical16/four rerun.",
+  "protected_core": "Original CloudKitCoreManager.swift changed; include in final authentic trust/full-index work. This receipt is not owner attestation.",
+  "ordinary_hq_admission": "Optional original-editor admission remains disabled; ordinary source preflight does not execute StageB or assert SDK acceptance.",
+  "frozen_apple_route": "cloud-import-identity-apple.inputs.json and branch/run44977823319 retained at385fffaf/app5d; no replay on changed Core."
+}

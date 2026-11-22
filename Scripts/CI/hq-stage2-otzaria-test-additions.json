@@ -475,7 +475,7 @@
     }
   ],
   "excluded_build_inputs": {
-    "Maktabah.xcodeproj/project.pbxproj": "282b75da81da7ee94db39e57c861fe9a0e59e9eb",
+    "Maktabah.xcodeproj/project.pbxproj": "3261731b3c225ec783b7f7542b53726c71f638c1",
     "Vendor/OtzariaSearchEngine/build_xcframework.sh": "c144bfd775b393c4621b41bd2688fad16f79c315",
     "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "0d92196706d534d91041373676e9699b023c9528",
     "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "6bd9288a85e67132e9283ab7516435cfa442c74a"
