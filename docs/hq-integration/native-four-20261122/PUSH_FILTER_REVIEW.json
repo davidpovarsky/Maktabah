@@ -1,0 +1,41 @@
+{
+  "at": "2026-11-22T03:28:38.205655+00:00",
+  "branch": "codex/otzaria-completion-focused-native-20261122",
+  "branch_eligible_filters": [
+    {
+      "workflow": ".github/workflows/otzaria-completion-focused-native.yml",
+      "name": "Unified source focused native continuation",
+      "push": {
+        "branches": [
+          "codex/otzaria-completion-focused-native-20261122"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/zayit-search-gates.yml",
+      "name": "Zayit Search Gates",
+      "push": {
+        "paths": [
+          "Vendor/ZayitSearchPort/**",
+          ".github/workflows/zayit-search-gates.yml"
+        ]
+      }
+    }
+  ],
+  "excluded_tag_only_workflows": [
+    ".github/workflows/release.yml"
+  ],
+  "zayit_filtered_path_diff_vs_prior_focused_run": [],
+  "actual_all_workflow_runs_for_pushed_commit": [
+    {
+      "conclusion": "",
+      "databaseId": 44980625976,
+      "event": "push",
+      "headSha": "c107c8ac600de6bbe6d92571fbbbdc6349cd143a",
+      "status": "in_progress",
+      "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44980625976",
+      "workflowName": "Unified source focused native continuation"
+    }
+  ],
+  "note": "Path-filter candidates are conditional. Tag-only workflows do not trigger for this branch push; actual run metadata is retained separately from filter inference."
+}

@@ -2,7 +2,7 @@ name: Unified source focused native continuation
 
 on:
   push:
-    branches: [codex/otzaria-completion-focused-native-20261121]
+    branches: [codex/otzaria-completion-focused-native-20261122]
 
 permissions:
   contents: read
@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   focused-native:
-    name: One full app build and six affected original focused native cases
+    name: One app build, three repaired Native cases and isolated consent diagnostic
     runs-on: xcode-27
     timeout-minutes: 210
     env:
@@ -85,7 +85,7 @@ jobs:
         run: python3 Scripts/CI/reuse-host48.py
       - name: Prepare original native HID bridge
         run: python3 Scripts/CI/runtime27-hid.py prepare --out build/artifacts/runtime27/hid-tools.json
-      - name: Execute six exact affected original native cases without rebuilding
+      - name: Execute four selected Native cases without rebuilding or provider credentials
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 Scripts/CI/completion-focused-native.py run

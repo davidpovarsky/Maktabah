@@ -1,0 +1,138 @@
+{
+  "format": 1,
+  "source_checkout": "c107c8ac600de6bbe6d92571fbbbdc6349cd143a",
+  "application_source": "385ee84a8acb3fbc3c013c0977417b61fd3d8a17",
+  "run_id": 44980625976,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 3,
+      "sha256": "b39decba66e79d9a8ab7a89e6e3c7942c0c92f125e9ece55c45020b877170638"
+    },
+    {
+      "path": "CHECKOUT_BYTE_MATERIALIZATION.json",
+      "bytes": 14541,
+      "sha256": "0226e33bbb04d0cb7227a539226c8a33083bd4c72786127ee59278f2d2cf5ca0"
+    },
+    {
+      "path": "DECLARATIONS.json",
+      "bytes": 1306,
+      "sha256": "4e90948415c255fea6e604b0b26149bb7eb5381c96602286884ac1fdd5b54d58"
+    },
+    {
+      "path": "DISPATCHED_RUN.json",
+      "bytes": 536,
+      "sha256": "153e80c8c9b85bad680623d15ee8f35ad61f2b740bcbffd0fe7c4846b16b83ef"
+    },
+    {
+      "path": "focused-prepare.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "focused-prepare.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "FOCUSED_SELECTION.json",
+      "bytes": 182183,
+      "sha256": "846a0653958de230430782e24c14841528dd90a7ad174c7365ed325b025b2894"
+    },
+    {
+      "path": "FROZEN_PREFLIGHT.json",
+      "bytes": 8756,
+      "sha256": "139b66eccf1e8f594329156a39eb73702f042f9f9f8df1ec002911511fedab2e"
+    },
+    {
+      "path": "host48-reuse.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "host48-reuse.stdout.log",
+      "bytes": 4242,
+      "sha256": "bb43a69537e366ff678b283b8ae55335bafc56f2d996296e89c25e8cacefa049"
+    },
+    {
+      "path": "HOST48_REUSE.json",
+      "bytes": 4483,
+      "sha256": "7b4b995a72d27889d30bce802781dd8736aa2d8138d9c41be46241af636bffca"
+    },
+    {
+      "path": "ordinary-hq-preflight.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ORDINARY_HQ_PREFLIGHT.json",
+      "bytes": 3560,
+      "sha256": "3f93bd201057ce565ca42eb137daaffeacbcc4429cf99421c7b0c778e3ad04fa"
+    },
+    {
+      "path": "PREPARATION_CONTROLS.json",
+      "bytes": 975,
+      "sha256": "c3b88a34ab78763824d7acab0ac4f5b3472a2530c337445bfc706ca1aa80478a"
+    },
+    {
+      "path": "PREPUSH_REMOTE.json",
+      "bytes": 178,
+      "sha256": "11cadf0c74a840873fadf64644a66dbce60e897a38bab8453f2f97e0ec87a79e"
+    },
+    {
+      "path": "PUSH_FILTER_REVIEW.json",
+      "bytes": 1364,
+      "sha256": "847dba09de80b59fd6c6a3d3e4042b4f2dbf7cc72654f0e78b51df96c891882e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3231,
+      "sha256": "8b26884802daa8caf089805a582f1743b9509c8b8976c9677b5976a2de1ef41e"
+    },
+    {
+      "path": "SENTINEL_RECEIPTS.json",
+      "bytes": 7244,
+      "sha256": "4328b23b7d76c0cd1b07896981a133edee24622742df26443827730a7cfbf222"
+    },
+    {
+      "path": "SOURCE_CONTEXT.json",
+      "bytes": 63145,
+      "sha256": "9831deab01b2ccea1bdb12a81046b3f3654c0a1703e4236fb060e980e886706a"
+    },
+    {
+      "path": "trigger-push.stderr.log",
+      "bytes": 255,
+      "sha256": "f5ed4c46ba7831cb0b88aee77d0d01a0e44aa54c9786636b93f4671662e86bcf"
+    },
+    {
+      "path": "trigger-push.stdout.log",
+      "bytes": 170,
+      "sha256": "71dc14d87eb8436ef4b2df546b3c3c56173e7b0d20f2f6bca8f299cee5067d9a"
+    },
+    {
+      "path": "TRIGGER_PUSH.json",
+      "bytes": 1118,
+      "sha256": "c2c985c208e9138ebd0e9d034d26a828d54880ebf8ce8878847ce37e4b5a7243"
+    },
+    {
+      "path": "windows-default-encoding-attempt/focused-prepare.stderr.log",
+      "bytes": 883,
+      "sha256": "ad85229ff713d0965e05b07a087a96e2be5f36cb9883df07f59b471fd07f7041"
+    },
+    {
+      "path": "windows-default-encoding-attempt/focused-prepare.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "windows-default-encoding-attempt/FROZEN_PREFLIGHT.json",
+      "bytes": 1316,
+      "sha256": "5f8b88884e9d07e7a80cfddca461826e656ecea1c9aae0c55ad5e505c6fcb11c"
+    }
+  ]
+}

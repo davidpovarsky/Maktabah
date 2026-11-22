@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Six affected original diagnostics on one integrated app; no full-phase acceptance."""
+"""Three repaired Native cases and one isolated consent diagnostic; no full-phase acceptance."""
 import hashlib
 import json
 import os
@@ -11,23 +11,21 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = "62095a46f3eda10df87fad49812083ba163ee3ef"
+SOURCE = "385ee84a8acb3fbc3c013c0977417b61fd3d8a17"
 OUT = ROOT / "build/artifacts/continuation-focused"
 MANIFEST = OUT / "selection.json"
 FULL = ROOT / "docs/hq-integration/runtime27/R27_CASES.json"
 RELEASE = ROOT / "Scripts/CI/runtime27-release-manifest.json"
 GROUPS = [
     {"label": "11-reader", "size": "11", "hid_comparison": False, "case_ids": [
-        "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+        "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection",
     ]},
     {"label": "11-search", "size": "11", "hid_comparison": False, "case_ids": [
         "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
         "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
     ]},
     {"label": "11-window", "size": "11", "hid_comparison": True, "case_ids": [
-        "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
         "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
-        "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
     ]},
 ]
 SELECTED = [case for group in GROUPS for case in group["case_ids"]]
@@ -62,6 +60,8 @@ def exact_working_inputs(paths):
     return records
 
 def source_context():
+    if len(SOURCE) != 40 or any(c not in "0123456789abcdef" for c in SOURCE):
+        raise ValueError("Final integrated application source is not frozen")
     head = git("rev-parse", "HEAD")
     if head != os.environ["EXPECTED_CHECKOUT_SHA"]:
         raise ValueError("Wrong immutable checkout")
@@ -95,7 +95,7 @@ def prepare():
                     required_nonzero_cases=len(SELECTED), native_cases_executed=0,
                     expected_per_device={"ipad11": len(SELECTED), "ipad13": 0, "iphone": 0},
                     diagnostic_only=True, hid_comparison=True,
-                    scope="Six affected original diagnostics; three original unaffected PASS receipts remain separate historical evidence; full Native116/Release114 remain unaccepted")
+                    scope="Three repaired Native cases and one no-credential consent diagnostic; the prior three PASS receipts remain separate historical evidence; full Native116/Release114 remain unaccepted")
     driver = runpy.run_path(str(ROOT / "Scripts/CI/runtime27.py"))
     driver["execution_groups"](contract)
     declaration = runpy.run_path(str(ROOT / "Scripts/CI/verify-faithful-xctest.py"))["validate_selections"](
@@ -132,7 +132,7 @@ def execute():
         controller.restore()
 
 def collect():
-    report = {"status": "FAILED", "scope": "FOCUSED_SIX_ONLY", "full_native116_acceptance": False,
+    report = {"status": "FAILED", "scope": "FOCUSED_FOUR_ONLY", "full_native116_acceptance": False,
               "full_release114_acceptance": False, "required_case_ids": SELECTED}
     try:
         context = source_context()
@@ -173,7 +173,7 @@ def collect():
                 or any(d.get("status") != "EXECUTED_PASS" or d.get("ownedSimulatorCleanup") != "PASS" for d in devices)
                 or report.get("executed_ui_pass") != len(SELECTED)
                 or any(report.get(key, 0) for key in ["executed_ui_fail", "executed_ui_skip", "ui_not_run"])):
-            raise ValueError("Six original native cases did not all execute and pass")
+            raise ValueError("All four selected Native cases must execute and pass")
         report["status"] = "SELECTED_UI_EXECUTED_PASS"
         return 0
     except Exception as error:

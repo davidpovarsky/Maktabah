@@ -1,0 +1,110 @@
+[
+  {
+    "ok": true,
+    "job": {
+      "id": "job_39d917d8e38f",
+      "type": "job_result",
+      "source": "script_run@host_7ec8382e82747448",
+      "severity": "info",
+      "tool": "script_run",
+      "host": "host_7ec8382e82747448",
+      "status": "succeeded",
+      "exit_code": 0,
+      "created_at": 1795317765.8703034,
+      "started_at": null,
+      "finished_at": "2026-11-22T03:23:41.292905+00:00",
+      "duration_s": 100.25,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 135,
+      "read": true,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"verified_raw_files\": 279, \"index_tree_unchanged\": true, \"git_add_exit\": 0, \"status_line_count\": 0, \"status_sample\": \"\"}"
+    }
+  },
+  {
+    "ok": true,
+    "job": {
+      "id": "job_5e533dc90745",
+      "type": "job_result",
+      "source": "script_run@host_7ec8382e82747448",
+      "severity": "warning",
+      "tool": "script_run",
+      "host": "host_7ec8382e82747448",
+      "status": "failed",
+      "exit_code": 1,
+      "created_at": 1795317818.5673833,
+      "started_at": "2026-11-22T03:23:38.613538+00:00",
+      "finished_at": "2026-11-22T03:23:45.370044+00:00",
+      "duration_s": 6.76,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 600,
+      "read": true,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"status\": \"PREFLIGHT_FAILED\", \"checkout_sha\": \"c107c8ac600de6bbe6d92571fbbbdc6349cd143a\", \"commands\": [{\"name\": \"focused-prepare\", \"command\": [\"C:\\\\ProgramData\\\\SentinelX\\\\.venv\\\\Scripts\\\\python.exe\", \"Scripts/CI/completion-focused-native.py\", \"prepare\"], \"exit_code\": 1}], \"stdout\": \"\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-native-followup-20261122\\\\Scripts\\\\CI\\\\completion-focused-native.py\\\", line 190, in <module>\\n    prepare()\\n  File \\\"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-native-followup-20261122\\\\Scripts\\\\CI\\\\completion-focused-native.py\\\", line 84, in prepare\\n    contract = json.loads(FULL.read_text())\\n                          ^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\DAVID\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Lib\\\\pathlib.py\\\", line 1028, in read_text\\n    return f.read()\\n           ^^^^^^^^\\n  File \\\"C:\\\\Users\\\\DAVID\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Lib\\\\encodings\\\\cp1252.py\\\", line 23, in decode\\n    return codecs.charmap_decode(input,self.errors,decoding_table)[0]\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\nUnicodeDecodeError: 'charmap' codec can't decode byte 0x90 in position 69408: character maps to <undefined>\\n\"}"
+    }
+  },
+  {
+    "ok": true,
+    "job": {
+      "id": "job_f36ad063e74d",
+      "type": "job_result",
+      "source": "script_run@host_7ec8382e82747448",
+      "severity": "info",
+      "tool": "script_run",
+      "host": "host_7ec8382e82747448",
+      "status": "succeeded",
+      "exit_code": 0,
+      "created_at": 1795317870.1755698,
+      "started_at": "2026-11-22T03:24:30.220936+00:00",
+      "finished_at": "2026-11-22T03:25:17.001847+00:00",
+      "duration_s": 46.78,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 600,
+      "read": true,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"status\": \"FOCUSED_FOUR_SOURCE_AND_DECLARATIONS_PREFLIGHT_PASS\", \"checkout\": \"c107c8ac600de6bbe6d92571fbbbdc6349cd143a\", \"application_source\": \"385ee84a8acb3fbc3c013c0977417b61fd3d8a17\", \"execution_input_count\": 275, \"selected\": [\"HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection\", \"FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation\", \"FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation\", \"R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration\"], \"host48_status\": \"VERIFIED_REUSE_OF_PRIOR_HOST48_PASS\", \"host48_new_tests\": 0, \"commands\": [{\"name\": \"focused-prepare\", \"command\": [\"C:\\\\ProgramData\\\\SentinelX\\\\.venv\\\\Scripts\\\\python.exe\", \"Scripts/CI/completion-focused-native.py\", \"prepare\"], \"exit_code\": 0, \"process_env_overrides\": {\"EXPECTED_CHECKOUT_SHA\": \"c107c8ac600de6bbe6d92571fbbbdc6349cd143a\", \"PYTHONUTF8\": \"1\"}}, {\"name\": \"ordinary-hq-preflight\", \"command\": [\"C:\\\\ProgramData\\\\SentinelX\\\\.venv\\\\Scripts\\\\python.exe\", \"Scripts/CI/hq-stage2-focused-apple.py\", \"--preflight-only\"], \"exit_code\": 0, \"process_env_overrides\": {\"EXPECTED_CHECKOUT_SHA\": \"c107c8ac600de6bbe6d92571fbbbdc6349cd143a\", \"PYTHONUTF8\": \"1\"}}, {\"name\": \"host48-reuse\", \"command\": [\"C:\\\\ProgramData\\\\SentinelX\\\\.venv\\\\Scripts\\\\python.exe\", \"Scripts/CI/reuse-host48.py\"], \"exit_code\": 0, \"process_env_overrides\": {\"EXPECTED_CHECKOUT_SHA\": \"c107c8ac600de6bbe6d92571fbbbdc6349cd143a\", \"PYTHONUTF8\": \"1\"}}], \"receipt\": \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-native-followup-20261122\\\\build\\\\native-four-wrapper-preflight\\\\FROZEN_PREFLIGHT.json\", \"worktree_clean\": true}"
+    }
+  },
+  {
+    "ok": true,
+    "job": {
+      "id": "job_f895c965678d",
+      "type": "job_result",
+      "source": "script_run@host_7ec8382e82747448",
+      "severity": "info",
+      "tool": "script_run",
+      "host": "host_7ec8382e82747448",
+      "status": "succeeded",
+      "exit_code": 0,
+      "created_at": 1795317968.7062888,
+      "started_at": "2026-11-22T03:26:08.750358+00:00",
+      "finished_at": "2026-11-22T03:26:19.100728+00:00",
+      "duration_s": 10.35,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 600,
+      "read": true,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"at\": \"2026-11-22T03:26:16.648400+00:00\", \"command\": [\"git\", \"push\", \"--porcelain\", \"origin\", \"c107c8ac600de6bbe6d92571fbbbdc6349cd143a:refs/heads/codex/otzaria-completion-focused-native-20261122\"], \"exit_code\": 0, \"checkout_sha\": \"c107c8ac600de6bbe6d92571fbbbdc6349cd143a\", \"application_source\": \"385ee84a8acb3fbc3c013c0977417b61fd3d8a17\", \"branch\": \"codex/otzaria-completion-focused-native-20261122\", \"stdout\": \"To https://github.com/davidpovarsky/Maktabah.git\\n*\\tc107c8ac600de6bbe6d92571fbbbdc6349cd143a:refs/heads/codex/otzaria-completion-focused-native-20261122\\t[new branch]\\nDone\\n\", \"stderr\": \"remote: \\nremote: Create a pull request for 'codex/otzaria-completion-focused-native-20261122' on GitHub by visiting:        \\nremote:      https://github.com/davidpovarsky/Maktabah/pull/new/codex/otzaria-completion-focused-native-20261122        \\nremote: \\n\", \"remote_readback\": \"c107c8ac600de6bbe6d92571fbbbdc6349cd143a\\trefs/heads/codex/otzaria-completion-focused-native-20261122\", \"initial_run_list_exit\": 0, \"initial_runs\": [], \"initial_run_list_error\": \"\"}"
+    }
+  }
+]
