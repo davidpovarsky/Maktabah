@@ -1,0 +1,589 @@
+{
+  "scope": "Project members plus recursively retrieved subtasks, unique by gid",
+  "project_members": 49,
+  "project_member_open": 31,
+  "project_member_completed": 18,
+  "total_unique": 82,
+  "open": 58,
+  "completed": 24,
+  "remaining_subtask_pages": false,
+  "maximum_depth": 1,
+  "rows": [
+    {
+      "gid": "1220548969733512",
+      "name": "[HANDOFF] מנהל יחיד — עצירה מאוחדת 16.11.2026 / 7 סוכנים",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220547779919596"
+    },
+    {
+      "gid": "1220548885571611",
+      "name": "[HANDOFF] N — STOPPED / עצירת גל 2026-11-16",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": "1220547779919596"
+    },
+    {
+      "gid": "1220548822513071",
+      "name": "[HANDOFF] I — STOPPED מסירת עצירה 2026-11-16",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": "1220547779919596"
+    },
+    {
+      "gid": "1220548880392687",
+      "name": "[HANDOFF] S — STOPPED: מסירת עצירה 16.11.2026",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": "1220547779919596"
+    },
+    {
+      "gid": "1220548884382630",
+      "name": "[HANDOFF] D — STOPPED 16.11.2026 / Books Updates",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": "1220547779919596"
+    },
+    {
+      "gid": "1220548967133104",
+      "name": "[HANDOFF] U — עצירת גל 2026-11-16",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": "1220547779919596"
+    },
+    {
+      "gid": "1220548821826909",
+      "name": "[HANDOFF] R — מסירת עצירה 2026-11-16",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": "1220547779919596"
+    },
+    {
+      "gid": "1220548879767958",
+      "name": "[HANDOFF] P — STOP ומסירת עצירה 2026-11-16",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": "1220547779919596"
+    },
+    {
+      "gid": "1220548331612333",
+      "name": "[HANDOFF] U — גבול ראיות HID ללא חשיפת credential",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": "1220547779919596"
+    },
+    {
+      "gid": "1220548031990416",
+      "name": "[HANDOFF] I — מסירת metadata לרץ UITest של Zayit",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": "1220547779919596"
+    },
+    {
+      "gid": "1220120627071765",
+      "name": "[P1][OTZARIA-READER] סליידר ניווט לא יציג רמת פסקה ללא בחירה מפורשת",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1220120889353811",
+      "name": "[P1][READER-SEARCH] היסטוריית חיפוש רק בטאב החיפוש הראשי, לא בחיפוש מתוך ספר",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219702107643331",
+      "name": "[P1][READER-HEADER][נועם/מיה] לוודא שם ספר קנוני במקום מספר ניווט בקורא — בדיקת iPad",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219682272017128",
+      "name": "[P0][BOOT][נועם | DEV] אוצריא production — התקנת מסד מלא בלי חסימה מחבילות חיפוש",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219684630509114",
+      "name": "[P0][TESTFLIGHT][תומר | INT] להעלות בטא חדשה אחרי תיקוני ביצועים — ChavrusaText production",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219674938327411",
+      "name": "[P1][SEARCH-V32][תומר/נועם] חבילות חיפוש production תואמות למסד אוצריא v32",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219613714507780",
+      "name": "[P0][PERF-02][איתן/נועם] SQLite concurrency, MainActor, cancellation ומטמונים",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219613602997169",
+      "name": "[P1][PERF-04][רוני | QA] מדידות פיזיות על iPad ומסד אוצריא המלא",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219613714504405",
+      "name": "[P0][PERF-01][נועם | DEV] פתיחת מסכת/ספר אוצריא ללא חסימה — lazy reading & navigation",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219613651433098",
+      "name": "[P0][PERF-03][נועם/מיה] רינדור פרקים גדולים ב־Reader המקורי בלי hitches",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219611682682931",
+      "name": "[TEAM][SETUP] צוות הסוכנים — שיוך תפקידים ואימות מעטפת GitHub",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219602719070497",
+      "name": "סקירת מצב F01–F10 / R01–R08 — Maktabah (17.10.2026)",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219603004720303",
+      "name": "[P1][F03] להוסיף pagination אמיתי לתוצאות זית מעבר ל־50",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219602829298459",
+      "name": "[P1][R02] לבטל מזהי שורה מומצאים ב־OtzariaGenericBackendAdapter",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219602829324347",
+      "name": "[P0][R01] לתקן פתיחת תוצאת זית עם מזהה hit יציב ולא fallback עמום",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219602829324283",
+      "name": "[P0][R03] לתקן שיוך metadata לתוצאות אוצריא אחרי Load More",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219602987688812",
+      "name": "[P2][R05–R08] רגרסיות race, שפה, HTML, נתונים ואופליין",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219602987688876",
+      "name": "[P0][R04/F05] פאנל מפרשים: MainActor hangs, SQL N+1 וטעינת תוכן מוקדמת",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219614315863536",
+      "name": "[RESEARCH] מנוע פעולות אחוד לאוצריא — ארכיטקטורה וסקירת פתרונות קיימים",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219614472017979",
+      "name": "[RESEARCH] פעולות חיפוש, ספירה, פתיחת מפרשים והכנת הערות דרך API אחוד",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219614268854015",
+      "name": "[RESEARCH] איתור סמנטי של ספרים, מפרשים, פרקים ומיקומי טקסט",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219614468074332",
+      "name": "[RESEARCH] הדרכה אינטראקטיבית ואוטומציה מרובת צעדים על אותו מנוע",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219643110971002",
+      "name": "[PLANNED][UX] Maktabah — Native iPadOS 27 Side Sheet ל-TorahInspectorKit בשלושה גבהים",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1220036734107652",
+      "name": "[PLANNED][P1][UX][iPad Reader] איחוד עץ הספרים ותוכן העניינים לסיידבאר דו־מסכי (Craft-style)",
+      "completed": false,
+      "num_subtasks": 4,
+      "parent": null
+    },
+    {
+      "gid": "1220036884173010",
+      "name": "[PLANNED][P1][UX] אוצריא — Safari Toolbar וחיפוש ספרייה מתרחב עם CommandPalette + Gelatin Motion-Only",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1220103384037482",
+      "name": "[PLANNED][P1][UX][MAIN_SESSION] אוצריא — פרופילי לימוד, קבוצות כרטיסיות ו־DuckDuckGo Tab Strip",
+      "completed": false,
+      "num_subtasks": 8,
+      "parent": null
+    },
+    {
+      "gid": "1220539630830553",
+      "name": "[P0][BUILD 11201][OPEN] רגרסיות iPad — Sidebar, חיפוש זית/אוצריא, Books Updates ו-QA",
+      "completed": false,
+      "num_subtasks": 3,
+      "parent": null
+    },
+    {
+      "gid": "1220542361135050",
+      "name": "[P1][UI-AUTOMATION] חיבור מקיף של מסכים, רכיבים ומצבי ממשק ל־App Intents + Deep/Universal Links + AI",
+      "completed": false,
+      "num_subtasks": 7,
+      "parent": null
+    },
+    {
+      "gid": "1220545194715722",
+      "name": "[P1][PLANNED][CROSS-APP] אוצריא ↔ AnyTapy — הערות מקור מסווגות, עורך Anytype מוטמע וסנכרון בטוח",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1220546245946205",
+      "name": "[P1][IN_PROGRESS][GLOBAL SEARCH UX] עיצוב מחדש של החיפוש הגלובלי — Native SwiftUI/UIKit + Liquid Glass + Sidebar + סינון תוצאות",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219848733895424",
+      "name": "[P0][BATCH-B][IN_PROGRESS] Reader/Upstream — iPadOS 27 QA + TestFlight production",
+      "completed": false,
+      "num_subtasks": 10,
+      "parent": null
+    },
+    {
+      "gid": "1220547779919596",
+      "name": "📬 מסירות והחלטות הסוכנים — אוצריא | תיבת מנהל",
+      "completed": false,
+      "num_subtasks": 11,
+      "parent": null
+    },
+    {
+      "gid": "1219612074000817",
+      "name": "[P0][תומר | INT][TESTFLIGHT] העלאת ChavrusaText עם מסד אוצריא המלא (production)",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219603012547016",
+      "name": "[P1][F01/F02/F04/F08] להשלים בדיקות קבלה של חיפוש, גרסאות ופתיחת קטע",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219603004720175",
+      "name": "[P1][F05/F06/F09/F10] להשלים קבלת Inspector, מפרשים וציטוטים",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219602987688643",
+      "name": "[P1][F07] לאמת SQLite annotations ב־30 מחזורים ו־relaunch",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219603004720239",
+      "name": "[P1][CI/A32] להשיג סט בדיקות ו־IPA מאומתים על HEAD אחד",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219603012531905",
+      "name": "[P0][F07] לתקן כישלון הוספה/שמירה/רענון הערות בספריא ב־iPad",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1219718158283095",
+      "name": "[DONE][DOCS][מיה | UX] מפרט שפת העיצוב המקורית של Maktabah וחיבור מיה ב־Codex/Antigravity",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": null
+    },
+    {
+      "gid": "1220036734132868",
+      "name": "[איתן | ARCH][MAIN_SESSION] ownership וחיבור Sidebar חדש בשכבת ChavrusaText",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": "1220036734107652"
+    },
+    {
+      "gid": "1220037028795002",
+      "name": "[רוני | QA][MAIN_SESSION] XCTest/XCUITest + אימות פיזי למעבר סיידבאר דו־מסכי",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220036734107652"
+    },
+    {
+      "gid": "1220036777923344",
+      "name": "[נועם | DEV][MAIN_SESSION] לחבר פעולות TOC/Reader/Inspector ולשמר state",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220036734107652"
+    },
+    {
+      "gid": "1220036883843537",
+      "name": "[מיה | UX][נועם | DEV][MAIN_SESSION] סיידבאר אחד עם Library/TOC, swipe ושתי נקודות",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220036734107652"
+    },
+    {
+      "gid": "1220103384074498",
+      "name": "[נועם | DEV][MAIN_SESSION] DuckDuckGo Browser TabsBar — רכיב ספרים פתוחים מתואם לאוצריא",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220103384037482"
+    },
+    {
+      "gid": "1220103384074402",
+      "name": "[איתן | ARCH][MAIN_SESSION] מודל פרופיל/קבוצה/טאב, Session migration ו-ownership",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": "1220103384037482"
+    },
+    {
+      "gid": "1220103384074338",
+      "name": "[דנה | SEC][תומר | INT][MAIN_SESSION] רישיונות, APIs ציבוריים, provenance ו-feature flag",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220103384037482"
+    },
+    {
+      "gid": "1220103384074274",
+      "name": "[נועם | DEV][MAIN_SESSION] StudyGroupsOverview: Grid כל הטאבים + בורר קבוצות ScrollableTabBar",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220103384037482"
+    },
+    {
+      "gid": "1220084480574492",
+      "name": "[מיה | UX][נועם | DEV][MAIN_SESSION] תפריטי קבוצות ופרופילים, יצירה/שינוי שם/העברה/מחיקה",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220103384037482"
+    },
+    {
+      "gid": "1220107239748221",
+      "name": "[רוני | QA][MAIN_SESSION] XCTest/XCUITest + iPad פיזי — פרופילים/קבוצות/טאבים",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220103384037482"
+    },
+    {
+      "gid": "1220084480575114",
+      "name": "[מיה | UX][MAIN_SESSION] אפיון מדויק של ארבעת המסכים ו-Toolbar iPad לפי Safari",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220103384037482"
+    },
+    {
+      "gid": "1220084529541947",
+      "name": "[נועם | DEV][MAIN_SESSION] חיבור Reader, TOC/Sidebar, CommandPalette, Backends ו-per-window state",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220103384037482"
+    },
+    {
+      "gid": "1220539610434045",
+      "name": "[P0][11201][DATA-SAFETY] Books Updates — לחסום SQL/עדכונים במקור לא תואם ולתקן את מנגנון העדכון",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220539630830553"
+    },
+    {
+      "gid": "1220539465608963",
+      "name": "[P0][11201][ZAYIT] חיפוש זית לא מחזיר תוצאות — מנוע, מצב אינדקס, שגיאות ו-filters",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220539630830553"
+    },
+    {
+      "gid": "1220539645638524",
+      "name": "[P1][11201][OTZARIA-INDEX] אזהרת ״נדרש תיקון״ אף שהחיפוש עובד — לאבחן ולתקן metadata/status",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220539630830553"
+    },
+    {
+      "gid": "1220542420331748",
+      "name": "UI-04 | App Intents / Shortcuts / Siri — פתיחת DestinationState ורכיבים ספציפיים",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220542361135050"
+    },
+    {
+      "gid": "1220542467495722",
+      "name": "UI-06 | חיבור AI/MCP/Guided Tours ל־UI Registry ולמיקוד רכיבים",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220542361135050"
+    },
+    {
+      "gid": "1220542361203468",
+      "name": "UI-03 | Scene Navigation Orchestrator — פתיחת מסכים, פאנלים ורכיבים במצב מדויק",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220542361135050"
+    },
+    {
+      "gid": "1220542479938476",
+      "name": "UI-02 | חוזה RouteSpec ו־UI Destination/State Registry משותף עם ActionCore",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": "1220542361135050"
+    },
+    {
+      "gid": "1220542479938540",
+      "name": "UI-01 | אינוונטר מלא לכל המסכים, רכיבי UI ומצבי פתיחה — coverage manifest",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": "1220542361135050"
+    },
+    {
+      "gid": "1220542416158970",
+      "name": "UI-07 | QA: מטריצת כיסוי 3 Backends × מסכים × AppIntent/DeepLink, security, regression",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220542361135050"
+    },
+    {
+      "gid": "1220542420330496",
+      "name": "UI-05 | Deep Links + Universal Links — ניווט מדויק, גרסאות ושימור קישורים ישנים",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1220542361135050"
+    },
+    {
+      "gid": "1219850124442105",
+      "name": "[BUILD 8401][P0][SEFARIA] תוצאת חיפוש/רש״י — פתיחת דף או פרק מלא עם מיקוד הקטע",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1219848733895424"
+    },
+    {
+      "gid": "1219850068707719",
+      "name": "[BUILD 8401][P1][SEFARIA L10N] עברית בתוכן העניינים וטעינה/ריק אמיתיים",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1219848733895424"
+    },
+    {
+      "gid": "1219849919983208",
+      "name": "[BUILD 8401][P0][TOC] מעקב חי אחרי הדף הנוכחי — הדגשה וגלילה בתוכן העניינים",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1219848733895424"
+    },
+    {
+      "gid": "1219848733937126",
+      "name": "[BATCH-B][DONE][BUILD] אימות קומפילציית iOS משולבת ב־macOS 27 / Xcode 27.1",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": "1219848733895424"
+    },
+    {
+      "gid": "1219873565492812",
+      "name": "[BATCH-B][P0][QA] XCTest/XCUITest אמיתי על iPadOS 27 — להסיר masked failures",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1219848733895424"
+    },
+    {
+      "gid": "1219848684815072",
+      "name": "[BATCH-B][P0][CI] ריצה סופית ירוקה ב־xcode-27 על SHA אחד עם בדיקות ללא עקיפה",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1219848733895424"
+    },
+    {
+      "gid": "1219873565492748",
+      "name": "[BATCH-B][P0][READER] בדיקות 4 הבאגים ב־iPad: TabBar, pull, highlights, History",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1219848733895424"
+    },
+    {
+      "gid": "1219848601160933",
+      "name": "[BATCH-B][P0][BACKEND] ביטול שחזור חלקי וטיפול ב־late resolveBook failures",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1219848733895424"
+    },
+    {
+      "gid": "1219848552180462",
+      "name": "[BATCH-B][P0][APPROVAL] לחדש 8 חריגות upstream לפי קומיט סופי ולאמת חתימות",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1219848733895424"
+    },
+    {
+      "gid": "1219848733920053",
+      "name": "[BATCH-B][P0][RELEASE GATE] TestFlight production לאחר QA ואישור — מעקב במשימה קיימת",
+      "completed": false,
+      "num_subtasks": 0,
+      "parent": "1219848733895424"
+    },
+    {
+      "gid": "1220763167870295",
+      "name": "[HANDOFF][21.11.2026] אוצריא — מסירת מצב מאומתת והמשך סוכן יחיד",
+      "completed": true,
+      "num_subtasks": 0,
+      "parent": "1220547779919596"
+    }
+  ],
+  "acceptance": "Existing completed states preserved; no task closure inferred from source or component results",
+  "note": "The earlier 49/31/18 count describes project members, not the full recursive closure. The closure adds 33 unique subtasks (27 open, 6 completed). All previous completion states are unchanged."
+}

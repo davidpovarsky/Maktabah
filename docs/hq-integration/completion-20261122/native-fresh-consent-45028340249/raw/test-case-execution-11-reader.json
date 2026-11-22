@@ -1,0 +1,20 @@
+{
+  "suites": [
+    {
+      "suite": "HanlinReaderConsumerAcceptanceTests",
+      "selection": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
+      "expected": [
+        "testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+      ],
+      "passed": [],
+      "failed": [
+        "testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+      ],
+      "missing": [
+        "testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+      ],
+      "status": "FAIL"
+    }
+  ],
+  "status": "FAIL"
+}

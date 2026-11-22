@@ -1,5 +1,76 @@
 # Otzaria / Maktabah — current development checkpoint
 
+Snapshot: 2026-11-22 14:45:04 UTC. This section supersedes the earlier checkpoints retained below. Every result remains limited to its recorded source and execution path; no product task has been newly closed.
+
+## Current source and complete Asana inventory
+
+The canonical continuation branch remains [codex/otzaria-completion-20261122](https://github.com/davidpovarsky/Maktabah/tree/codex/otzaria-completion-20261122). Its last pre-documentation head cf57e04b73dff07f833893e3bc54d7d532dcba08 contains the independently verified true source union 27ec864d. The canonical Sentinel checkout fetched and fast-forwarded to that exact head, with clean status before and after, in completed job_8a26e0af7c5d. The documentation update containing this checkpoint changes no product tree.
+
+| Product tree | Exact Git tree |
+|---|---|
+| Source | f6056372f52f0425fe77a556b02d26c82188d364 |
+| Vendor | 4065c0e62af325e83a65fe0c70270985229807ae |
+| Maktabah.xcodeproj | 8c0fa1ccfbcfae01fae3c267512864e00efcf078 |
+| Maktabah-iOSUITests | ca36ba13f1fd900adf528a3e404fed6a66290b6b |
+
+The [complete recursive Asana inventory](RECURSIVE_ASANA_INVENTORY.json) contains **82 unique tasks: 58 open and 24 previously completed**. The earlier 49 / 31 / 18 count correctly describes project members only. Recursive expansion added 33 unique existing subtasks, of which 27 are open and 6 completed. Every returned child has zero further children; no page remains unread. No state was reopened or closed.
+
+## Actual focused Native failure and preserved build
+
+[Run 45028340249](https://github.com/davidpovarsky/Maktabah/actions/runs/45028340249), attempt 1 on 6736f7a1a3eda82fd70d70d4a192c9ba15a09282, is terminal FAILURE. Its single original fresh-read XCTest really executed: **0 PASS / 1 FAIL / 0 SKIP / 0 NOT_RUN**. The app and UI runner build passed; the unchanged Host48 result was reused without new executions; compiled code images remained unchanged; compiler cache saving and owned simulator cleanup passed.
+
+The actual failure is the original consent switch remaining OFF after one native tap, at HanlinConsumerAcceptanceTests.swift:333. The keyboard had genuinely disappeared, the contained switch was enabled/hittable, and both native and row values remained 0. Connect was never reached. No Live key or Send action was used. This failure does not qualify the fresh read connection, full Native, Live, StageB or Release.
+
+[The complete preserved intake](native-fresh-consent-45028340249/README.md) includes both archive hashes, the complete 6,472,097-byte evidence ZIP, raw case results, full original hierarchies, native touch event and screenshot. Both original archives were downloaded once and passed SHA256/CRC verification. The full 105,486,557-byte captures ZIP remains at the owned Sentinel path in RUN.json. The sole observer job_cbba0ae62796 terminated on the real failed run, unlike the earlier cancellation observer.
+
+The focused run uses the earlier d49cedb3 product closure; it is not a test of the later StageB source in the canonical union. The next reviewed diagnostic changes only this failed case's gesture to one ordinary native thumb drag inside the observed original switch, retaining its acceptance conditions and adding explicit child-state and sibling-form checks. It neither retries the tap nor assigns application consent. The cause of the original tap failure remains unproven.
+
+## Composed original SDK and Auth
+
+Auth Stop cancellation/retry corrections have **10 focused PASS** under actual Swift 6.3.3, and the subsequent explicit capture correction compiled cleanly without rerunning those ten. These are source-extracted boundary controls with controlled native callbacks, not full Auth native execution. The corrected source is retained at c689cf058cedcd683e12bd2736c196d6eda3ec17 and the composed source checkpoint at 9243500782566cd92df3a1468f460713ed8ea24b.
+
+Producer run 45030480333 stopped before executing controls because discovery found 239 tests against the obsolete expected count 237. The two added identities were exactly the new StageB contract controls; all original 237 remained present. Source fcb8fbb0610d71f78d1f5c3fcde75342d5dd08b3 corrected only that exact catalog and retained its original failure evidence.
+
+Producer run 45031200131 then executed the required 239: **238 PASS / 1 ERROR / 0 SKIP**. The error was an obsolete before/after inventory assertion in the existing Amplitude driver control: it indexed a newly exported Clang declaration in the earlier pre-signing inventory. Source [fbc47f3c10a2dfa474e3f2305bf2396ecca2868d](https://github.com/davidpovarsky/anytype-swift/commit/fbc47f3c10a2dfa474e3f2305bf2396ecca2868d) changes only that control plus evidence. It requires exactly the original inventory plus the three declared fixture additions, compares every original entry, and preserves the exact two allowed Amplitude signing changes. Only the failed control was rerun locally: 1 PASS; the prior 238 were not replayed locally.
+
+The single approved next producer, [45034016674](https://github.com/davidpovarsky/anytype-swift/actions/runs/45034016674), attempt 1 at exact fbc47f3c, is now building the genuine framework and separate consumer. The source/control gate, original Hanlin preparation, actual Xcode/runtime preflight and original Heart producer verification have passed according to job 137243636443. The terminal archive, complete 239-test receipt, framework and consumer result remain pending. Its sole bounded observer is job_0154b0adc1b8. Earlier transport-failed observers are terminal and retained; no duplicate producer was launched.
+
+StageB's original process relaunch UI run remains unexecuted. Its final SDK admission intentionally remains UNFINALIZED until this genuine producer qualifies and both artifacts are independently verified. No temporary SDK artifact IDs or success pins were invented.
+
+## New native schema milestone
+
+[Run 45032882624](https://github.com/davidpovarsky/anytype-swift/actions/runs/45032882624), attempt 1 on 50543a6a3895fb10a03e69e6a39746847b4c7336, is actual SUCCESS: **exactly 9 new native cases PASS / 0 FAIL / 0 SKIP**, each selected child started once. It compiled and executed the original disposable LocalOnly Heart runtime, with the reviewed native copyout hook and schema classifier.
+
+The actual native report contains one dedicated type, seventeen relation definitions, their persisted heads/account/Space/ACL/archive scope, original hidden attachments and one native dataview. The cases verify deep-copy isolation, conflict/changed/cancelled readback refusal, incomplete attachment handling, visible-column conflict, preserving uncertain root-only state and rejection of original durable retirement. Raw local-index lookup does not hide archived/deleted conflicts.
+
+[Immutable full evidence](https://github.com/davidpovarsky/anytype-swift/blob/3be6ecab805b17e2c90fee897fdab45a0b03bfdc/docs/pinkha/torah-integration/native-annotation-schema-readback-20261122/first-native-run-45032882624/README.md) retains the original ZIP. Root independently read the verifier and verified all 43 payload hashes, all 18 terminal command receipts, exact case starts/results, 13 compiled inputs and 11,323 declared native inputs. Artifact 14758163183 is 2,726,085 bytes with SHA256 dba227ed9f6f3116649a97af9ce0a0c840cfe2067bc76ada68bbd5281e506b7e. Original executable bytes were not uploaded; binary hash and PID remain runner observations. [Root receipt](SCHEMA_READBACK_ROOT_VERIFIED.json).
+
+The prior 2 V7, 18 V6, 13 early-rejection native and 12 strict cases were not rerun. Seven prior compiled inputs, including all four old test files, are unchanged. This milestone is a historical observation/classification capability. It supplies no production schema registration/repair, Swift composition, annotation identity/body grant, COMMIT or ACK authority. Those dependencies remain open.
+
+## Historical body comparison prerequisite
+
+The isolated candidate passed 40 new Foundation/archive-boundary/policy controls and four new-file syntax parses under actual Swift 6.3.3. Peer review then found that pinned SwiftProtobuf discards unknown fields inside map-entry wrappers. The candidate was tightened to reject unsupported map-entry fields before decoding, while preserving supported nested unknown fields. Exactly 13 additional affected controls passed; the previous 40 were not rerun.
+
+These receipts cover synthetic boundary/policy inputs only, with zero native executions. The 30-case full SwiftProtobuf/ZIP semantic integration workflow is being prepared separately against exact original dependency/model pins. Held original-owner export/readback and semantic equality remain historical observations, not an atomic graph lease, remapped import proof or ACK authority. Current v12 source is unchanged by this isolated work.
+
+## Remaining dependency order and external inputs
+
+Continue with the real SDK binary/consumer result, final StageB admission and its original process relaunch UI case, the one failed fresh-read diagnostic, genuine Live prerequisites, and then the required final-source Native/Release gates. In parallel, continue native schema registration/composition and full body/graph/file comparison before materialization/mapping/delivery/ACK.
+
+The configured Books catalog was already re-read once at 13:44:42 UTC: the same 792 bytes and SHA256 99c2cf2fb5e4d5c9f30d2d0016cd769eef2b0953642e3464619310da4710c293. It still omits the authentic backend/schema/source-database/migration contract; all original refusal paths remain. No updater or database write occurred and prior 60+37 controls were not replayed.
+
+The known Live Gemini secret was verified absent; no new key was created. Authentic owner Ed25519 keys/signatures, signed device/Release/Auth/AppGroup embedding, physical iPad QA and genuine TestFlight VALID/internal availability remain outstanding. Operational development authorization does not supply those missing technical inputs. Full Native116 and Release114 plus two independent oracles/five configurations/final-source 24-hour freshness are not complete.
+
+Sentinel context sxc_NCA3K3YC and [Asana continuation task](https://app.asana.com/0/0/1220763167870295/f) are the operational handoff records. All earlier source-bound results and failures below remain preserved.
+
+## Earlier 13:50 UTC checkpoint retained as history
+
+The following section describes the earlier observation time. Its pending states, project-only counts and pre-sync wording are superseded by the current checkpoint above.
+
+---
+
+# Otzaria / Maktabah — current development checkpoint
+
 Snapshot packaged at 2026-11-22 13:50 UTC. This section supersedes the older historical checkpoint below. Source integration, component evidence and native product acceptance are reported separately; no full-product completion is declared.
 
 ## Current Maktabah source integration

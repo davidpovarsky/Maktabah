@@ -1,0 +1,177 @@
+{
+  "path": "visual-11-reader/0F7A3238-D687-4D11-9698-C448A8CCDF70",
+  "bytes": 1905,
+  "sha256": "1f79b9bf047d234da62a447c68115ee1841535222d583dae10ab5134cd07a0ad",
+  "head": "62706c6973743030d4010203040506070a582476657273696f6e592461726368697665725424746f",
+  "plist": {
+    "$version": 100000,
+    "$archiver": "NSKeyedArchiver",
+    "$top": {
+      "root": "UID(1)"
+    },
+    "$objects": [
+      "$null",
+      {
+        "originalOffset.dx": "UID(11)",
+        "parentWindowSize": "UID(23)",
+        "orientation": "UID(3)",
+        "targetProcessID": 78545,
+        "endsPersistentState": false,
+        "$class": "UID(28)",
+        "displayID": "UID(3)",
+        "systemAutomationProperties": "UID(21)",
+        "originalOffset.dy": "UID(11)",
+        "beginsPersistentState": false,
+        "name": "UID(2)",
+        "eventPaths": "UID(4)"
+      },
+      "tap",
+      1,
+      {
+        "NS.objects": [
+          "UID(5)"
+        ],
+        "$class": "UID(19)"
+      },
+      {
+        "targetFrame.width": "UID(11)",
+        "targetFrame.x": "UID(11)",
+        "$class": "UID(20)",
+        "pathType": "UID(3)",
+        "targetFrame.y": "UID(11)",
+        "deviceID": "UID(8)",
+        "pointerEvents": "UID(6)",
+        "speedFactor": "UID(11)",
+        "eventStream": "UID(0)",
+        "targetFrame.height": "UID(11)",
+        "index": "UID(3)"
+      },
+      {
+        "NS.objects": [
+          "UID(7)",
+          "UID(14)"
+        ],
+        "$class": "UID(19)"
+      },
+      {
+        "pressure": "UID(11)",
+        "eventType": "UID(3)",
+        "clickCount": "UID(8)",
+        "duration": "UID(11)",
+        "verticalLineScroll": "UID(8)",
+        "keyCode": "UID(8)",
+        "gesturePhase": "UID(8)",
+        "deltaVector.dy": "UID(11)",
+        "$class": "UID(13)",
+        "destination.y": "UID(11)",
+        "buttonType": "UID(8)",
+        "keyModifierFlags": "UID(8)",
+        "gestureStage": "UID(8)",
+        "typingSpeed": "UID(8)",
+        "destination.x": "UID(11)",
+        "deviceID": "UID(8)",
+        "offset": "UID(11)",
+        "deltaVector.dx": "UID(11)",
+        "coordinate.y": "UID(10)",
+        "mergeModifierFlagsWithCurrentFlags": "UID(12)",
+        "coordinate.x": "UID(9)",
+        "keyPhase": "UID(8)",
+        "shouldRedact": "UID(12)",
+        "string": "UID(0)",
+        "key": "UID(0)"
+      },
+      0,
+      246.5,
+      829.5,
+      0,
+      false,
+      {
+        "$classname": "XCPointerEvent",
+        "$classes": [
+          "XCPointerEvent",
+          "NSObject"
+        ]
+      },
+      {
+        "pressure": "UID(11)",
+        "eventType": "UID(15)",
+        "clickCount": "UID(8)",
+        "duration": "UID(11)",
+        "verticalLineScroll": "UID(8)",
+        "keyCode": "UID(8)",
+        "gesturePhase": "UID(8)",
+        "deltaVector.dy": "UID(11)",
+        "$class": "UID(13)",
+        "destination.y": "UID(11)",
+        "buttonType": "UID(8)",
+        "keyModifierFlags": "UID(8)",
+        "gestureStage": "UID(8)",
+        "typingSpeed": "UID(8)",
+        "destination.x": "UID(11)",
+        "deviceID": "UID(8)",
+        "offset": "UID(18)",
+        "deltaVector.dx": "UID(11)",
+        "coordinate.y": "UID(17)",
+        "mergeModifierFlagsWithCurrentFlags": "UID(12)",
+        "coordinate.x": "UID(16)",
+        "keyPhase": "UID(8)",
+        "shouldRedact": "UID(12)",
+        "string": "UID(0)",
+        "key": "UID(0)"
+      },
+      3,
+      246.5,
+      829.5,
+      0.05,
+      {
+        "$classname": "NSMutableArray",
+        "$classes": [
+          "NSMutableArray",
+          "NSArray",
+          "NSObject"
+        ]
+      },
+      {
+        "$classname": "XCPointerEventPath",
+        "$classes": [
+          "XCPointerEventPath",
+          "NSObject"
+        ]
+      },
+      {
+        "NS.keys": [],
+        "NS.objects": [],
+        "$class": "UID(22)"
+      },
+      {
+        "$classname": "NSDictionary",
+        "$classes": [
+          "NSDictionary",
+          "NSObject"
+        ]
+      },
+      {
+        "NS.keys": [
+          "UID(24)",
+          "UID(25)"
+        ],
+        "NS.objects": [
+          "UID(26)",
+          "UID(27)"
+        ],
+        "$class": "UID(22)"
+      },
+      "Width",
+      "Height",
+      1210,
+      834,
+      {
+        "$classname": "XCSynthesizedEventRecord",
+        "$classes": [
+          "XCSynthesizedEventRecord",
+          "NSObject"
+        ]
+      }
+    ]
+  }
+}

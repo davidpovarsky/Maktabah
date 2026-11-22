@@ -1,0 +1,257 @@
+Command line invocation:
+    /Applications/Xcode_27.2.app/Contents/Developer/usr/bin/xcodebuild test-without-building -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -clonedSourcePackagesDirPath build/SourcePackages -disableAutomaticPackageResolution -parallel-testing-enabled NO -destination "platform=iOS Simulator,id=881259C6-C9D3-4075-A8EF-8333703E49B2" -derivedDataPath build/DerivedData -resultBundlePath /Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-reader.xcresult -test-timeouts-enabled YES -default-test-execution-time-allowance 600 -maximum-test-execution-time-allowance 600 "-only-testing:Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  CommandPalette: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette @ local
+  Equatable: https://github.com/ordo-one/equatable @ 1.4.1
+  OtzariaUIRouting: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/UIRouting @ local
+  TorahInspectorKit: https://github.com/davidpovarsky/TorahInspectorKit.git @ 23db0f8
+  FloatingPanel: https://github.com/scenee/FloatingPanel.git @ 3.2.4
+  cmark-gfm: https://github.com/swiftlang/swift-cmark @ 0.9.0
+  Sparkle: https://github.com/sparkle-project/Sparkle @ 2.9.1
+  zstd: https://github.com/facebook/zstd.git @ 1.5.7
+  swift-syntax: https://github.com/swiftlang/swift-syntax.git @ 603.0.2
+  SwiftUI-Shimmer: https://github.com/markiv/SwiftUI-Shimmer @ 1.5.1
+  AnchoredPopup: https://github.com/exyte/AnchoredPopup.git @ 1.3.1
+  OtzariaActionCore: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Actions @ local
+  HanlinAgentSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinAgentSDK @ local
+  SwiftAISDK: https://github.com/davidpovarsky/swift-ai-sdk.git @ e7bf341
+  ChavrusaUIRoutingHost: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/UIRoutingHost @ local
+  HanlinPresentationSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPresentationSDK @ local
+  ZIPFoundation: https://github.com/weichsel/ZIPFoundation.git @ 0.9.20
+  HanlinPlatform: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPlatform @ local
+  SwiftStreamingMarkdown: https://github.com/davidpovarsky/hanlin-streaming-markdown @ 6bde022
+  HighlightSwift: https://github.com/appstefan/highlightswift @ 99c431b
+  iosMath: https://github.com/junyan72/iosMath @ ba9ab77
+  swift-markdown: https://github.com/swiftlang/swift-markdown.git @ 0.7.3
+  SwiftyJSON: https://github.com/SwiftyJSON/SwiftyJSON.git @ 5.0.1
+  swift-argument-parser: https://github.com/apple/swift-argument-parser @ 1.8.2
+
+Writing result bundle at path:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-reader.xcresult
+
+2026-11-22 14:09:50.578017+0000 Maktabah-iOSUITests-Runner[77803:207865] [Default] Running tests...
+2026-11-22 14:09:50.656610+0000 Maktabah-iOSUITests-Runner[77803:207865] [UIKit App Config] Update the Info.plist: Launch screens will soon be required.
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-11-22 14:10:02.223.
+Test Suite 'Maktabah-iOSUITests.xctest' started at 2026-11-22 14:10:02.228.
+Test Suite 'HanlinReaderConsumerAcceptanceTests' started at 2026-11-22 14:10:02.228.
+Test Case '-[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending]' started.
+    t =     0.03s Start Test at 2026-11-22 14:10:02.253
+    t =     0.10s Set Up
+    t =     0.11s Setting device orientation to Landscape Left
+    t =     0.17s     Device orientation changed to Landscape Left
+    t =     0.29s     Interface orientation changed to Landscape Right
+    t =     0.55s     Wait for com.apple.springboard to idle
+2026-11-22 14:10:06.744 xcodebuild[75349:200452] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-22 14:10:06.744 xcodebuild[75349:200452] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.33s Open com.davidpovarsky.chavrusatext
+    t =     1.33s     Launch com.davidpovarsky.chavrusatext
+objc[77803]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.IEXawe/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x1097a8310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.IEXawe/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x1097dc398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =    10.18s         Setting up automation session
+    t =    15.76s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    21.10s Get number of matches for: Descendants matching type Alert
+    t =    21.95s Waiting 60.0s for "reader-text" TextView to exist
+    t =    22.99s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    22.99s         Checking existence of `"reader-text" TextView`
+    t =    24.31s Find the "reader-text" TextView
+    t =    24.52s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    24.68s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    26.13s Checking `Expect predicate `value MATCHES "(?s).{31,}"` for object "reader-text" TextView`
+    t =    26.13s     Find the "reader-text" TextView
+    t =    26.59s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    27.64s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    27.64s         Checking existence of `"reader-header-title" StaticText`
+    t =    27.86s Find the "reader-header-title" StaticText
+    t =    28.06s Find the "reader-text" TextView
+    t =    28.32s Waiting 15.0s for "reader-current-locator" StaticText to exist
+    t =    29.33s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-current-locator" StaticText`
+    t =    29.33s         Checking existence of `"reader-current-locator" StaticText`
+    t =    29.61s Find the "reader-current-locator" StaticText
+    t =    29.79s Find the "reader-header-title" StaticText
+    t =    30.02s Find the "reader-text" TextView
+    t =    30.21s Waiting 30.0s for "otzaria-hanlin-reader-launch" Button to exist
+    t =    31.22s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-reader-launch" Button`
+    t =    31.22s         Checking existence of `"otzaria-hanlin-reader-launch" Button`
+    t =    31.39s Find the "otzaria-hanlin-reader-launch" Button
+    t =    31.58s Find the "otzaria-hanlin-reader-launch" Button
+    t =    31.86s Tap "otzaria-hanlin-reader-launch" Button
+    t =    31.86s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    31.86s     Find the "otzaria-hanlin-reader-launch" Button
+    t =    32.03s     Check for interrupting elements affecting "otzaria-hanlin-reader-launch" Button
+    t =    32.19s         Wait for com.apple.springboard to idle
+    t =    32.26s     Synthesize event
+    t =    32.76s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    34.24s Waiting 30.0s for "otzaria-hanlin-allow-current-book" Switch to exist
+    t =    35.33s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    35.33s         Checking existence of `"otzaria-hanlin-allow-current-book" Switch`
+    t =    35.89s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    36.14s Find the "otzaria-hanlin-consent-book-title" StaticText
+    t =    36.40s Waiting 30.0s for "otzaria-hanlin-service-address" TextField to exist
+    t =    37.46s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-service-address" TextField`
+    t =    37.46s         Checking existence of `"otzaria-hanlin-service-address" TextField`
+    t =    37.67s Find the "otzaria-hanlin-service-address" TextField
+    t =    37.90s Find the "otzaria-hanlin-service-address" TextField
+    t =    38.14s Tap "otzaria-hanlin-service-address" TextField
+    t =    38.14s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    38.14s     Find the "otzaria-hanlin-service-address" TextField
+    t =    38.37s     Check for interrupting elements affecting "otzaria-hanlin-service-address" TextField
+    t =    38.55s         Wait for com.apple.springboard to idle
+    t =    38.57s     Synthesize event
+    t =    38.93s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    42.24s Type 'a' key with modifiers '⌘' (0x10)
+    t =    42.24s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    42.25s     Find the "otzaria-hanlin-service-address" TextField
+    t =    42.64s     Check for interrupting elements affecting "otzaria-hanlin-service-address" TextField
+    t =    43.03s         Wait for com.apple.springboard to idle
+    t =    43.06s     Synthesize event
+    t =    43.73s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    44.61s Type 'https://generative...' into "otzaria-hanlin-service-address" TextField
+    t =    44.61s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    45.17s     Find the "otzaria-hanlin-service-address" TextField
+    t =    46.59s     Check for interrupting elements affecting "otzaria-hanlin-service-address" TextField
+    t =    47.32s         Wait for com.apple.springboard to idle
+    t =    47.36s     Synthesize event
+    t =    48.55s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    48.55s Find the "otzaria-hanlin-service-address" TextField
+    t =    49.04s Waiting 30.0s for "otzaria-hanlin-model" TextField to exist
+    t =    50.04s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-model" TextField`
+    t =    50.05s         Checking existence of `"otzaria-hanlin-model" TextField`
+    t =    50.53s Find the "otzaria-hanlin-model" TextField
+    t =    50.87s Find the "otzaria-hanlin-model" TextField
+    t =    51.20s Tap "otzaria-hanlin-model" TextField
+    t =    51.20s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    51.25s     Find the "otzaria-hanlin-model" TextField
+    t =    52.00s     Check for interrupting elements affecting "otzaria-hanlin-model" TextField
+    t =    52.35s         Wait for com.apple.springboard to idle
+    t =    52.40s     Synthesize event
+    t =    52.75s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    54.03s Type 'unused-native-fres...' into "otzaria-hanlin-model" TextField
+    t =    54.03s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    54.11s     Find the "otzaria-hanlin-model" TextField
+    t =    54.72s     Check for interrupting elements affecting "otzaria-hanlin-model" TextField
+    t =    54.99s         Wait for com.apple.springboard to idle
+    t =    55.03s     Synthesize event
+    t =    55.75s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    55.76s Find the "otzaria-hanlin-model" TextField
+    t =    56.21s Waiting 30.0s for "otzaria-hanlin-api-key" SecureTextField to exist
+    t =    57.26s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-api-key" SecureTextField`
+    t =    57.26s         Checking existence of `"otzaria-hanlin-api-key" SecureTextField`
+    t =    57.60s Find the "otzaria-hanlin-api-key" SecureTextField
+    t =    58.11s Find the "otzaria-hanlin-api-key" SecureTextField
+    t =    58.67s Tap "otzaria-hanlin-api-key" SecureTextField
+    t =    58.67s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    58.68s     Find the "otzaria-hanlin-api-key" SecureTextField
+    t =    59.07s     Check for interrupting elements affecting "otzaria-hanlin-api-key" SecureTextField
+    t =    59.35s         Wait for com.apple.springboard to idle
+    t =    59.40s     Synthesize event
+    t =    59.71s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    60.28s Type 'ui-no-send-credent...' into "otzaria-hanlin-api-key" SecureTextField
+    t =    60.28s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    60.33s     Find the "otzaria-hanlin-api-key" SecureTextField
+    t =    60.90s     Check for interrupting elements affecting "otzaria-hanlin-api-key" SecureTextField
+    t =    61.35s         Wait for com.apple.springboard to idle
+    t =    61.39s     Synthesize event
+    t =    61.99s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    62.00s Waiting 10.0s for Keyboard (First Match) to exist
+    t =    63.01s     Checking `Expect predicate `existsNoRetry == 1` for object Keyboard (First Match)`
+    t =    63.01s         Checking existence of `Keyboard (First Match)`
+    t =    63.06s Get number of matches for: Elements matching predicate 'label == "Hide keyboard"'
+    t =    64.12s Find the Window (First Match)
+    t =    64.14s Getting device orientation
+    t =    64.14s Checking existence of `"reader-text" TextView`
+    t =    64.41s Find the "reader-text" TextView
+    t =    65.29s Added attachment named 'hanlin-fresh-read-no-send-before-native-keyboard-dismiss'
+    t =    65.29s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    65.56s Find the Window (First Match)
+    t =    65.59s Getting device orientation
+    t =    65.59s Requesting snapshot of accessibility hierarchy for app with pid 78545
+    t =    67.48s Requesting snapshot of accessibility hierarchy for app with pid 78545
+    t =    68.10s Added attachment named 'hanlin-fresh-read-no-send-before-native-keyboard-dismiss-ui-tree'
+    t =    68.10s Waiting 30.0s for Button (Element at index 0) to exist
+    t =    69.19s     Checking `Expect predicate `existsNoRetry == 1` for object Button (Element at index 0)`
+    t =    69.19s         Checking existence of `Button (Element at index 0)`
+    t =    69.26s Find the Button (Element at index 0)
+    t =    69.33s Find the "Hide keyboard" Button
+    t =    69.43s Tap "Hide keyboard" Button
+    t =    69.43s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    69.43s     Find the "Hide keyboard" Button
+    t =    69.52s     Check for interrupting elements affecting "Hide keyboard" Button
+    t =    69.87s         Wait for com.apple.springboard to idle
+    t =    69.91s     Synthesize event
+    t =    70.26s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    71.37s Checking `Expect predicate `exists == 0` for object Keyboard (First Match)`
+    t =    71.38s     Checking existence of `Keyboard (First Match)`
+    t =    73.51s Find the Window (First Match)
+    t =    73.53s Getting device orientation
+    t =    73.53s Checking existence of `"reader-text" TextView`
+    t =    73.81s Find the "reader-text" TextView
+    t =    74.59s Added attachment named 'hanlin-fresh-read-no-send-after-native-keyboard-dismiss'
+    t =    74.59s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    74.87s Find the Window (First Match)
+    t =    74.88s Getting device orientation
+    t =    74.88s Requesting snapshot of accessibility hierarchy for app with pid 78545
+    t =    76.32s Requesting snapshot of accessibility hierarchy for app with pid 78545
+    t =    76.82s Added attachment named 'hanlin-fresh-read-no-send-after-native-keyboard-dismiss-ui-tree'
+    t =    76.82s Waiting 20.0s for "otzaria-hanlin-connection-form" Any to exist
+    t =    77.84s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-connection-form" Any`
+    t =    77.84s         Checking existence of `"otzaria-hanlin-connection-form" Any`
+    t =    78.21s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    78.50s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    78.79s Get number of matches for: Descendants matching type Switch
+    t =    79.03s Find the Switch (Element at index 0)
+    t =    79.27s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    79.57s Find the "0" Switch
+    t =    79.89s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    80.14s Find the "0" Switch
+    t =    80.41s Find the "0" Switch
+    t =    80.73s Find the "0" Switch
+    t =    81.00s Find the "0" Switch
+    t =    81.32s Find the "0" Switch
+    t =    81.59s Waiting 30.0s for "0" Switch to exist
+    t =    82.64s     Checking `Expect predicate `existsNoRetry == 1` for object "0" Switch`
+    t =    82.64s         Checking existence of `"0" Switch`
+    t =    82.98s Find the "0" Switch
+    t =    83.24s Find the "0" Switch
+    t =    83.54s Tap "0" Switch
+    t =    83.54s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    83.54s     Find the "0" Switch
+    t =    83.81s     Check for interrupting elements affecting "0" Switch
+    t =    84.06s         Wait for com.apple.springboard to idle
+    t =    84.09s     Synthesize event
+    t =    84.43s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    84.44s Find the "otzaria-hanlin-allow-current-book" Switch
+/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift:333: error: -[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending] : XCTAssertEqual failed: ("Optional("0")") is not equal to ("Optional("1")")
+    t =    85.56s Tear Down
+    t =    85.56s     Requesting snapshot of accessibility hierarchy for app with pid 78545
+    t =    87.01s     Requesting snapshot of accessibility hierarchy for app with pid 78545
+    t =    87.43s     Added attachment named 'r27-final-native-hierarchy'
+    t =    87.79s     Added attachment named 'r27-final-native-screen'
+    t =    87.79s     Setting device orientation to Portrait
+    t =    87.79s         Device orientation changed to Portrait
+    t =    88.35s         Interface orientation changed to Portrait
+    t =    88.36s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    90.01s         Wait for com.apple.springboard to idle
+Test Case '-[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending]' failed (90.743 seconds).
+Test Suite 'HanlinReaderConsumerAcceptanceTests' failed at 2026-11-22 14:11:32.997.
+	 Executed 1 test, with 1 failure (0 unexpected) in 90.743 (90.769) seconds
+Test Suite 'Maktabah-iOSUITests.xctest' failed at 2026-11-22 14:11:33.006.
+	 Executed 1 test, with 1 failure (0 unexpected) in 90.743 (90.778) seconds
+Test Suite 'Selected tests' failed at 2026-11-22 14:11:33.006.
+	 Executed 1 test, with 1 failure (0 unexpected) in 90.743 (90.783) seconds
+2026-11-22 14:12:36.368 xcodebuild[75349:200452] [MT] IDETestOperationsObserverDebug: 171.159 elapsed -- Testing started completed.
+2026-11-22 14:12:36.368 xcodebuild[75349:200452] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-22 14:12:36.368 xcodebuild[75349:200452] [MT] IDETestOperationsObserverDebug: 171.159 sec, +171.159 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-reader.xcresult
+
+Failing tests:
+	HanlinReaderConsumerAcceptanceTests.testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending()
+
+** TEST EXECUTE FAILED **
+
+Testing started

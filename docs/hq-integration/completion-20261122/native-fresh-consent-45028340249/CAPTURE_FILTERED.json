@@ -1,0 +1,102 @@
+{
+  "crc": "PASS",
+  "records": [
+    {
+      "path": "visual-11-reader/08886AF6-2BDA-46DB-AA8B-7FF3CBBCD02C.txt",
+      "bytes": 42924,
+      "sha256": "6fa0f0031145b001ce7cc122bf6925cc0443de90cfb5a7264be9e773cde1169f"
+    },
+    {
+      "path": "visual-11-reader/24F54EE8-21E6-4758-9461-8CE5CA5F0E7B.txt",
+      "bytes": 42826,
+      "sha256": "5a4ff1a3dcc6408ecc9b572046a29dd1a3975297ff1f1aeaf93ded745ac812d6"
+    },
+    {
+      "path": "visual-11-reader/30CE512E-FEC3-42B9-BE57-A4256FEA8E77.png",
+      "bytes": 708499,
+      "sha256": "57fe2065609775c6e15036da3f49c9d4fb3f11b3e1694490db460680252ddb3d"
+    },
+    {
+      "path": "visual-11-reader/BFA20940-AC0C-4BBB-8BF8-6E96543009C3.png",
+      "bytes": 708499,
+      "sha256": "57fe2065609775c6e15036da3f49c9d4fb3f11b3e1694490db460680252ddb3d"
+    },
+    {
+      "path": "visual-11-reader/DCB40DF5-29BD-478D-9B09-CC0EB0ED3663.txt",
+      "bytes": 44792,
+      "sha256": "0c37437e6ddb893439b8820c7568b7ab432afb99e399a7ba82e9e76c843af2ca"
+    },
+    {
+      "path": "visual-11-reader/manifest.json",
+      "bytes": 12264,
+      "sha256": "7903f4e1e6051c78dc9cd3c680c0eb15bfbd59a9d2c867fb45d8acdcdf82b244"
+    }
+  ],
+  "hierarchy": [
+    {
+      "path": "visual-11-reader/08886AF6-2BDA-46DB-AA8B-7FF3CBBCD02C.txt",
+      "total_lines": 357,
+      "lines": [
+        "                        Other, 0x10a08e1c0, {{315.0, 87.0}, {580.0, 660.0}}",
+        "                          CollectionView, 0x10a08e300, {{315.0, 87.0}, {580.0, 660.0}}, identifier: 'otzaria-hanlin-connection-form'",
+        "                            Other, 0x10a08e440, {{299.0, -1169.0}, {612.0, 1586.0}}",
+        "                                  Other, 0x10a09ca00, {{331.0, 295.5}, {548.0, 52.0}}",
+        "                                    SecureTextField, 0x10a09cb40, {{351.0, 310.5}, {508.0, 22.0}}, identifier: 'otzaria-hanlin-api-key', placeholderValue: 'API key', value: ••••••••••••••••••...",
+        "                            Other, 0x10a09cc80, {{351.0, 294.5}, {508.0, 1.0}}",
+        "                                  Other, 0x10a09d400, {{331.0, 347.5}, {548.0, 52.0}}",
+        "                                    Button, 0x10a09d540, {{331.0, 347.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-connect', label: 'Connect'",
+        "                            Other, 0x10a09d680, {{351.0, 346.5}, {508.0, 1.0}}",
+        "                                  Other, 0x10a09f980, {{331.0, 561.5}, {548.0, 52.0}}",
+        "                                    Switch, 0x10a09fac0, {{331.0, 561.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-allow-current-book', label: 'Allow search in this book for this chat', value: 0",
+        "                                      StaticText, 0x10a09fc00, {{351.0, 577.2}, {283.5, 20.5}}, label: 'Allow search in this book for this chat'",
+        "                                      Switch, 0x10a09fd40, {{798.0, 573.5}, {63.0, 28.0}}, value: 0",
+        "                            Other, 0x10a09fe80, {{351.0, 560.5}, {508.0, 1.0}}"
+      ]
+    },
+    {
+      "path": "visual-11-reader/24F54EE8-21E6-4758-9461-8CE5CA5F0E7B.txt",
+      "total_lines": 353,
+      "lines": [
+        "                        Other, 0x115390f00, {{315.0, 87.0}, {580.0, 660.0}}",
+        "                          CollectionView, 0x115391040, {{315.0, 87.0}, {580.0, 660.0}}, identifier: 'otzaria-hanlin-connection-form'",
+        "                            Other, 0x115391180, {{299.0, -1169.0}, {612.0, 1586.0}}",
+        "                                  Other, 0x115393700, {{331.0, 295.5}, {548.0, 52.0}}",
+        "                                    SecureTextField, 0x115393840, {{351.0, 310.5}, {508.0, 22.0}}, identifier: 'otzaria-hanlin-api-key', placeholderValue: 'API key', value: ••••••••••••••••••...",
+        "                            Other, 0x115393980, {{351.0, 294.5}, {508.0, 1.0}}",
+        "                                  Other, 0x115398140, {{331.0, 347.5}, {548.0, 52.0}}",
+        "                                    Button, 0x115398280, {{331.0, 347.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-connect', label: 'Connect'",
+        "                            Other, 0x1153983c0, {{351.0, 346.5}, {508.0, 1.0}}",
+        "                                  Other, 0x11539a6c0, {{331.0, 561.5}, {548.0, 52.0}}",
+        "                                    Switch, 0x11539a800, {{331.0, 561.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-allow-current-book', label: 'Allow search in this book for this chat', value: 0",
+        "                                      StaticText, 0x11539a940, {{351.0, 577.2}, {283.5, 20.5}}, label: 'Allow search in this book for this chat'",
+        "                                      Switch, 0x11539aa80, {{798.0, 573.5}, {63.0, 28.0}}, value: 0",
+        "                            Other, 0x11539abc0, {{351.0, 560.5}, {508.0, 1.0}}"
+      ]
+    },
+    {
+      "path": "visual-11-reader/DCB40DF5-29BD-478D-9B09-CC0EB0ED3663.txt",
+      "total_lines": 400,
+      "lines": [
+        "                        Other, 0x10a09c000, {{315.0, 42.0}, {580.0, 660.0}}",
+        "                          CollectionView, 0x10a09c140, {{315.0, 42.0}, {580.0, 660.0}}, identifier: 'otzaria-hanlin-connection-form'",
+        "                            Other, 0x10a09c280, {{299.0, -1214.0}, {612.0, 1586.0}}",
+        "                                  Other, 0x10a09e800, {{331.0, 250.5}, {548.0, 52.0}}",
+        "                                    SecureTextField, 0x10a09e940, {{351.0, 265.5}, {508.0, 22.0}}, identifier: 'otzaria-hanlin-api-key', placeholderValue: 'API key', value: ••••••••••••••••••..., Keyboard Focused",
+        "                            Other, 0x10a09ea80, {{351.0, 249.5}, {508.0, 1.0}}",
+        "                                  Other, 0x10a09f200, {{331.0, 302.5}, {548.0, 52.0}}",
+        "                                    Button, 0x10a09f340, {{331.0, 302.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-connect', label: 'Connect'",
+        "                            Other, 0x10a09f480, {{351.0, 301.5}, {508.0, 1.0}}",
+        "                                  Other, 0x10a0a97c0, {{331.0, 516.5}, {548.0, 52.0}}",
+        "                                    Switch, 0x10a0a9900, {{331.0, 516.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-allow-current-book', label: 'Allow search in this book for this chat', value: 0",
+        "                                      StaticText, 0x10a0a9a40, {{351.0, 532.2}, {283.5, 20.5}}, label: 'Allow search in this book for this chat'",
+        "                                      Switch, 0x10a0a9b80, {{798.0, 528.5}, {63.0, 28.0}}, value: 0",
+        "                            Other, 0x10a0a9cc0, {{351.0, 515.5}, {508.0, 1.0}}",
+        "          Other, 0x10a0ba580, {{0.0, 461.0}, {1210.0, 370.0}}, identifier: 'inputView'",
+        "            Keyboard, 0x10a0ba6c0, {{0.0, 461.0}, {1210.0, 370.0}}",
+        "              Other, 0x10a0ba800, {{0.0, 461.0}, {1210.0, 370.0}}",
+        "                Other, 0x10a0ba940, {{0.0, 461.0}, {1210.0, 370.0}}, identifier: 'UIKeyboardLayoutStar Preview'",
+        "                  Button, 0x10a0baa80, {{12.0, 471.0}, {119.5, 86.0}}, identifier: 'tab', label: 'Tab'"
+      ]
+    }
+  ]
+}
