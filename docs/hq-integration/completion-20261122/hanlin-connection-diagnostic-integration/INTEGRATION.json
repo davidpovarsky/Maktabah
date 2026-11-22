@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "status": "VERIFIED_SOURCE_AND_BOUNDED_CONTROLS_INTEGRATION",
+  "createdUTC": "2026-11-22T07:50:44.953592+00:00",
+  "canonicalParent": "4287063689fb2f17ea9a8fcd436ed98e6985f21f",
+  "incoming": "5cd307d31b1d813f756014c9903a5808b9aacddd",
+  "applicationSource": "6aa953048453b64a0013621ce76e095770eb7e7d",
+  "binding": "966f180d8ba2c2eb0f72624be76a99222f45371b",
+  "merge": "16a2cdb03b5ca867d8029356d5cfe3f7c5e6536e",
+  "packetPayloads": 82,
+  "packetPayloadBytes": 3342664,
+  "packetIndexBytes": 15213,
+  "packetIndexSHA256": "6fe9d44ec4d6596851cdd55be689e8ab9956486a2ea15cae06e4107c49b1b748",
+  "frozenValidationIndexSHA256": "e4d3bd2d017f9ba74c9f7eddaff5415918255b2f69b6d44882278892e8773c98",
+  "productTrees": {
+    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "24345d612f8c70398f4590977f8b4696021ae413"
+  },
+  "exactWorkingExecutionInputs": 281,
+  "bindingChange": "Only HQ applicationSource/Source tree and Live REVIEWED_SOURCE; tested validator/capture/admission function bytes remain unchanged",
+  "sourceScope": "Four original Swift files add diagnostic hooks only; one existing Python driver adds strict private diagnostic admission. No guard/assertion/cleanup relaxation.",
+  "historicalNativeConsent": "44987561349/0ea remains a historical original prerequisite, not current source execution",
+  "passedNewControls": {
+    "pythonPOSIX": 34,
+    "completeSwiftSyntaxOnly": 4
+  },
+  "testsReplayed": 0,
+  "nativeOrLiveRun": false,
+  "secretCreated": false,
+  "finalNative116Release114Accepted": false,
+  "scriptSHA256": "f4355bd02b4082209cc0811bf0cc9144a6550e64e47dce8ca6fea2d913fe3acb"
+}
