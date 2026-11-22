@@ -1,0 +1,31 @@
+{
+  "suites": [
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "expected": [
+        "testCandidateGlobalSearchLandscapeMatchesOriginalNavigation"
+      ],
+      "passed": [
+        "testCandidateGlobalSearchLandscapeMatchesOriginalNavigation"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "expected": [
+        "testCandidateGlobalSearchPortraitMatchesOriginalNavigation"
+      ],
+      "passed": [
+        "testCandidateGlobalSearchPortraitMatchesOriginalNavigation"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    }
+  ],
+  "status": "EXECUTED_PASS"
+}

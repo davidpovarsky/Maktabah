@@ -1,0 +1,36 @@
+Attributes: Switch, 0x106c9bd40, {{331.0, 561.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-allow-current-book', label: 'Allow search in this book for this chat', value: 0
+Element subtree:
+ →Switch, 0x106c9bd40, {{331.0, 561.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-allow-current-book', label: 'Allow search in this book for this chat', value: 0
+Path to element:
+ →Application, 0x10327f980, pid: 68807, label: 'ChavrusaText'
+  ↳Window (Main), 0x107601180, {{0.0, 0.0}, {1210.0, 834.0}}
+   ↳Other, 0x106456940, {{0.0, 0.0}, {1210.0, 834.0}}
+    ↳Other, 0x106c9bac0, {{315.0, 87.0}, {580.0, 660.0}}
+     ↳Other, 0x106c9a940, {{315.0, 87.0}, {580.0, 660.0}}
+      ↳Other, 0x106c9aa80, {{315.0, 87.0}, {580.0, 660.0}}
+       ↳Other, 0x106c9ad00, {{315.0, 87.0}, {580.0, 660.0}}
+        ↳Other, 0x106c9ae40, {{315.0, 87.0}, {580.0, 660.0}}, identifier: 'otzaria-hanlin-chat'
+         ↳Other, 0x106c9b0c0, {{315.0, 87.0}, {580.0, 660.0}}
+          ↳Other, 0x106c9b200, {{315.0, 87.0}, {580.0, 660.0}}
+           ↳Other, 0x106c9b340, {{315.0, 87.0}, {580.0, 660.0}}
+            ↳Other, 0x106c9b480, {{315.0, 87.0}, {580.0, 660.0}}
+             ↳CollectionView, 0x106c9b5c0, {{315.0, 87.0}, {580.0, 660.0}}, identifier: 'otzaria-hanlin-connection-form'
+              ↳Cell, 0x106c9b700, {{331.0, 561.5}, {548.0, 52.0}}
+               ↳Other, 0x106c9b840, {{331.0, 561.5}, {548.0, 52.0}}
+                ↳Other, 0x106c9b980, {{331.0, 561.5}, {548.0, 52.0}}
+                 ↳Other, 0x106c9bc00, {{331.0, 561.5}, {548.0, 52.0}}
+                  ↳Switch, 0x106c9bd40, {{331.0, 561.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-allow-current-book', label: 'Allow search in this book for this chat', value: 0
+Query chain:
+ →Find: Target Application 'com.davidpovarsky.chavrusatext'
+  Output: {
+    Application, 0x111cad400, pid: 68807, label: 'ChavrusaText'
+  }
+  ↪︎Find: Descendants matching type Switch
+    Output: {
+      Switch, 0x111caa580, {{331.0, 561.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-allow-current-book', label: 'Allow search in this book for this chat', value: 0
+      Switch, 0x111caa800, {{798.0, 573.5}, {63.0, 28.0}}, value: 0
+    }
+    ↪︎Find: Elements matching predicate '"otzaria-hanlin-allow-current-book" IN identifiers'
+      Output: {
+        Switch, 0x111bbaf80, {{331.0, 561.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-allow-current-book', label: 'Allow search in this book for this chat', value: 0
+      }

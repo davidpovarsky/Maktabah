@@ -1,0 +1,251 @@
+[
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "B69063AB-DAAB-47C7-A236-1105C749DBC3.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-final-native-screen_0_96379587-6E73-4289-B8E5-3D4F6941BF53.png",
+        "timestamp" : 1795319919.991
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "82364CCB-7899-4A95-96A8-8BC24D2609AE.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-final-native-hierarchy_0_840EB484-687F-41E7-9898-68D3547696F6.txt",
+        "timestamp" : 1795319919.778
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "A23619EF-5E9A-411E-8A52-3040375248F0.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "hanlin-consent-no-connection-after-native-tap-ui-tree_0_F6B06CC8-1FBE-46E8-AB55-7778A857F48A.txt",
+        "timestamp" : 1795319917.893
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "B2F79C49-E510-4D78-8571-A95B0CF71A68.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "hanlin-consent-no-connection-after-native-tap_0_413AD0C3-4317-4A29-84F6-607875571199.png",
+        "timestamp" : 1795319916.249
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "AF321F74-381B-46E2-842A-4664A2A12412.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"otzaria-hanlin-allow-current-book\" Switch`_0_29B9A476-507C-4BAE-B44C-BE75DDEFABBA.txt",
+        "timestamp" : 1795319914.458
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "9AA8F568-4A49-4788-9545-3A57E8CCA39F",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 03.58.34 AM",
+        "timestamp" : 1795319914.458
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "AD78FBAD-0CA5-4968-A1B1-A7193DD362E9",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 03.58.33 AM",
+        "timestamp" : 1795319913.491
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "4CD8BF7B-C021-4FC4-AD54-65BD469F2AA4.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"otzaria-hanlin-allow-current-book\" Switch`_0_2CB3C946-EC13-4D6C-B475-3B2B5E229D41.txt",
+        "timestamp" : 1795319912.832
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "48EC7C2C-A0C3-4C3B-9FE8-00BB7367E96C",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 03.58.32 AM",
+        "timestamp" : 1795319912.833
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "34107436-27EA-4C61-AA90-A6540D1E72C3",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 03.58.31 AM",
+        "timestamp" : 1795319911.462
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "E5BBA829-F3A2-4B48-8D5D-46B3924D0EEB.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"otzaria-hanlin-allow-current-book\" Switch`_0_2BAD5B00-15BB-46CD-8665-CFE5992595B6.txt",
+        "timestamp" : 1795319910.728
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "9B93F813-A1A3-4AD1-B1C3-204931556127",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 03.58.30 AM",
+        "timestamp" : 1795319910.728
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "B1063B9A-CF67-45E0-A011-190335EF9B3A",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 03.58.29 AM",
+        "timestamp" : 1795319909.399
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "5FD4F0EB-2669-4765-85C6-651DAB7D1CBB.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"otzaria-hanlin-allow-current-book\" Switch`_0_12ECA8C9-059E-4073-A2E8-FDC3753C7F80.txt",
+        "timestamp" : 1795319908.785
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "9829E12E-FAF3-4C93-BA2D-86B940DF9355",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 03.58.28 AM",
+        "timestamp" : 1795319908.785
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "1FB3DE15-CD66-4006-B068-F1C9CDF51512",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 03.58.27 AM",
+        "timestamp" : 1795319907.497
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "53A2E58E-E52A-4D76-8131-D0974CF6E6B8.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"otzaria-hanlin-allow-current-book\" Switch`_0_0C6C082D-5C20-4A95-88E9-FBF7CAC86584.txt",
+        "timestamp" : 1795319906.86
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "C62A5AF3-4699-4D17-AE8C-F6881ABE509F",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 03.58.26 AM",
+        "timestamp" : 1795319906.86
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "F5EF7195-62D1-4134-87CD-4D46A0CCD92C",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 03.58.25 AM",
+        "timestamp" : 1795319905.449
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "D7A17201-3F07-4A1C-A5BF-87B42701E353",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 03.58.23 AM",
+        "timestamp" : 1795319903.829
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "DA3639BA-DC9E-409F-812D-0147764E066E",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-11-22 at 03.58.24 AM",
+        "timestamp" : 1795319904.174
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "6A7DC699-7E44-46EA-9C5B-61D84251587C.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "hanlin-consent-no-connection-before-native-tap-ui-tree_0_9B5C891E-208D-4014-AE87-1859FED3C2D7.txt",
+        "timestamp" : 1795319901.362
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "7DB119C7-A429-4A96-8F93-B8253ADFA6EA.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "hanlin-consent-no-connection-before-native-tap_0_482FF87A-6465-47E1-8C36-AB240B907A36.png",
+        "timestamp" : 1795319899.579
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "B5845C24-AE9E-4AE9-9BE7-74C200D57ECF",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 03.58.10 AM",
+        "timestamp" : 1795319890.74
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "3D2A7699-C6F9-470A-8A36-11C0B93B1214",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-11-22 at 03.58.11 AM",
+        "timestamp" : 1795319891.219
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "9D401B2B-127F-46F6-B540-EB8732A5DD55",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-11-22 at 03.58.05 AM",
+        "timestamp" : 1795319885.092
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658",
+        "deviceName" : "Faithful 11-inch 98b02e3d",
+        "exportedFileName" : "5FCE65FD-DFE4-4218-9E7B-E4157F65BA6F.mp4",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Screen Recording 2026-11-22 at 03.57.38 AM.mp4",
+        "timestamp" : 1795319858.144
+      }
+    ],
+    "testIdentifier" : "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection()",
+    "testIdentifierURL" : "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection"
+  }
+]

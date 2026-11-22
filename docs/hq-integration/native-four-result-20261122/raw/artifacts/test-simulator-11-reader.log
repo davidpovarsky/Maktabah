@@ -1,0 +1,310 @@
+Command line invocation:
+    /Applications/Xcode_27.2.app/Contents/Developer/usr/bin/xcodebuild test-without-building -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -parallel-testing-enabled NO -destination "platform=iOS Simulator,id=DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658" -derivedDataPath build/DerivedData -resultBundlePath /Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-reader.xcresult -test-timeouts-enabled YES -default-test-execution-time-allowance 600 -maximum-test-execution-time-allowance 600 "-only-testing:Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection"
+
+Resolve Package Graph
+
+Fetching from https://github.com/davidpovarsky/TorahInspectorKit.git
+
+Fetching from https://github.com/davidpovarsky/swift-ai-sdk.git (cached)
+
+Fetching from https://github.com/davidpovarsky/hanlin-streaming-markdown (cached)
+
+Fetching from https://github.com/appstefan/highlightswift (cached)
+
+Fetching from https://github.com/junyan72/iosMath (cached)
+
+Fetching from https://github.com/swiftlang/swift-markdown.git (cached)
+
+Fetching from https://github.com/SwiftyJSON/SwiftyJSON.git (cached)
+
+Fetching from https://github.com/facebook/zstd.git
+
+Fetching from https://github.com/sparkle-project/Sparkle
+
+Fetching from https://github.com/swiftlang/swift-syntax.git (cached)
+
+Fetching from https://github.com/exyte/AnchoredPopup.git
+
+Fetching from https://github.com/swiftlang/swift-cmark (cached)
+
+Fetching from https://github.com/markiv/SwiftUI-Shimmer (cached)
+
+Fetching from https://github.com/apple/swift-argument-parser (cached)
+
+Fetching from https://github.com/ordo-one/equatable (cached)
+
+Fetching from https://github.com/weichsel/ZIPFoundation.git
+
+Fetching from https://github.com/scenee/FloatingPanel.git
+
+Creating working copy of package ‘hanlin-streaming-markdown’
+
+Checking out 6bde022876ef4af738c154b3d5c871984ef76195 of package ‘hanlin-streaming-markdown’
+
+Creating working copy of package ‘swift-syntax’
+
+Checking out 603.0.2 of package ‘swift-syntax’
+
+Creating working copy of package ‘iosMath’
+
+Checking out ba9ab7729b151329c54fd895a7c1859981d9484c of package ‘iosMath’
+
+Creating working copy of package ‘equatable’
+
+Checking out 1.4.1 of package ‘equatable’
+
+Creating working copy of package ‘swift-argument-parser’
+
+Checking out 1.8.2 of package ‘swift-argument-parser’
+
+Creating working copy of package ‘swift-cmark’
+
+Checking out 0.9.0 of package ‘swift-cmark’
+
+Creating working copy of package ‘TorahInspectorKit’
+
+Checking out 23db0f84e88d9ee9c7053c49de86903fc7bb5785 of package ‘TorahInspectorKit’
+
+Creating working copy of package ‘SwiftUI-Shimmer’
+
+Checking out 1.5.1 of package ‘SwiftUI-Shimmer’
+
+Creating working copy of package ‘swift-markdown’
+
+Checking out 0.7.3 of package ‘swift-markdown’
+
+Creating working copy of package ‘ZIPFoundation’
+
+Checking out 0.9.20 of package ‘ZIPFoundation’
+
+Creating working copy of package ‘zstd’
+
+Checking out 1.5.7 of package ‘zstd’
+
+Creating working copy of package ‘FloatingPanel’
+
+Checking out 3.2.4 of package ‘FloatingPanel’
+
+Creating working copy of package ‘SwiftyJSON’
+
+Checking out 5.0.1 of package ‘SwiftyJSON’
+
+Creating working copy of package ‘Sparkle’
+
+Checking out 2.9.1 of package ‘Sparkle’
+
+Creating working copy of package ‘highlightswift’
+
+Checking out 99c431b38a1444a5fd6a4978307fbbefe3a7af53 of package ‘highlightswift’
+
+Creating working copy of package ‘AnchoredPopup’
+
+Checking out 1.3.1 of package ‘AnchoredPopup’
+
+Creating working copy of package ‘swift-ai-sdk’
+
+Checking out e7bf34111e603ca977becd007dd4e5bb109af857 of package ‘swift-ai-sdk’
+
+
+Resolved source packages:
+  swift-argument-parser: https://github.com/apple/swift-argument-parser @ 1.8.2
+  HanlinAgentSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinAgentSDK @ local
+  SwiftAISDK: https://github.com/davidpovarsky/swift-ai-sdk.git @ e7bf341
+  Sparkle: https://github.com/sparkle-project/Sparkle @ 2.9.1
+  swift-syntax: https://github.com/swiftlang/swift-syntax.git @ 603.0.2
+  CommandPalette: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette @ local
+  swift-markdown: https://github.com/swiftlang/swift-markdown.git @ 0.7.3
+  OtzariaUIRouting: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/UIRouting @ local
+  ChavrusaUIRoutingHost: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/UIRoutingHost @ local
+  iosMath: https://github.com/junyan72/iosMath @ ba9ab77
+  AnchoredPopup: https://github.com/exyte/AnchoredPopup.git @ 1.3.1
+  SwiftyJSON: https://github.com/SwiftyJSON/SwiftyJSON.git @ 5.0.1
+  OtzariaActionCore: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Actions @ local
+  SwiftUI-Shimmer: https://github.com/markiv/SwiftUI-Shimmer @ 1.5.1
+  cmark-gfm: https://github.com/swiftlang/swift-cmark @ 0.9.0
+  HanlinPresentationSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPresentationSDK @ local
+  TorahInspectorKit: https://github.com/davidpovarsky/TorahInspectorKit.git @ 23db0f8
+  Equatable: https://github.com/ordo-one/equatable @ 1.4.1
+  zstd: https://github.com/facebook/zstd.git @ 1.5.7
+  ZIPFoundation: https://github.com/weichsel/ZIPFoundation.git @ 0.9.20
+  HighlightSwift: https://github.com/appstefan/highlightswift @ 99c431b
+  FloatingPanel: https://github.com/scenee/FloatingPanel.git @ 3.2.4
+  HanlinPlatform: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPlatform @ local
+  SwiftStreamingMarkdown: https://github.com/davidpovarsky/hanlin-streaming-markdown @ 6bde022
+
+Writing result bundle at path:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-reader.xcresult
+
+2026-11-22 03:57:31.754556+0000 Maktabah-iOSUITests-Runner[68407:189359] [Default] Running tests...
+2026-11-22 03:57:31.845054+0000 Maktabah-iOSUITests-Runner[68407:189359] [UIKit App Config] Update the Info.plist: Launch screens will soon be required.
+objc[68407]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.50yShh/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x1036d8310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.50yShh/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x10372c398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-11-22 03:57:37.994.
+Test Suite 'Maktabah-iOSUITests.xctest' started at 2026-11-22 03:57:37.998.
+Test Suite 'HanlinReaderConsumerAcceptanceTests' started at 2026-11-22 03:57:37.998.
+Test Case '-[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadCurrentWorkConsentToggleWithoutConnection]' started.
+    t =     0.00s Start Test at 2026-11-22 03:57:38.002
+    t =     0.15s Set Up
+    t =     0.20s Setting device orientation to Landscape Left
+    t =     0.24s     Device orientation changed to Landscape Left
+    t =     0.61s     Interface orientation changed to Landscape Right
+    t =     0.63s     Wait for com.apple.springboard to idle
+    t =     0.98s Open com.davidpovarsky.chavrusatext
+    t =     0.98s     Launch com.davidpovarsky.chavrusatext
+2026-11-22 03:57:45.906 xcodebuild[61846:170572] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-22 03:57:45.906 xcodebuild[61846:170572] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    12.51s         Setting up automation session
+    t =    18.12s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    22.14s Get number of matches for: Descendants matching type Alert
+    t =    22.99s Waiting 60.0s for "reader-text" TextView to exist
+    t =    24.03s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    24.03s         Checking existence of `"reader-text" TextView`
+    t =    25.40s Find the "reader-text" TextView
+    t =    25.61s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    25.74s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    26.90s Checking `Expect predicate `value MATCHES "(?s).{31,}"` for object "reader-text" TextView`
+    t =    26.90s     Find the "reader-text" TextView
+    t =    27.11s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    28.12s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    28.12s         Checking existence of `"reader-header-title" StaticText`
+    t =    28.38s Find the "reader-header-title" StaticText
+    t =    28.59s Find the "reader-text" TextView
+    t =    28.79s Waiting 15.0s for "reader-current-locator" StaticText to exist
+    t =    29.83s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-current-locator" StaticText`
+    t =    29.83s         Checking existence of `"reader-current-locator" StaticText`
+    t =    30.00s Find the "reader-current-locator" StaticText
+    t =    30.18s Find the "reader-header-title" StaticText
+    t =    30.40s Find the "reader-text" TextView
+    t =    30.61s Waiting 30.0s for "otzaria-hanlin-reader-launch" Button to exist
+    t =    31.62s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-reader-launch" Button`
+    t =    31.62s         Checking existence of `"otzaria-hanlin-reader-launch" Button`
+    t =    31.91s Find the "otzaria-hanlin-reader-launch" Button
+    t =    32.08s Find the "otzaria-hanlin-reader-launch" Button
+    t =    32.34s Tap "otzaria-hanlin-reader-launch" Button
+    t =    32.34s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    32.34s     Find the "otzaria-hanlin-reader-launch" Button
+    t =    32.52s     Check for interrupting elements affecting "otzaria-hanlin-reader-launch" Button
+    t =    32.67s         Wait for com.apple.springboard to idle
+    t =    32.73s     Synthesize event
+    t =    33.22s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    34.54s Waiting 30.0s for "otzaria-hanlin-allow-current-book" Switch to exist
+    t =    35.59s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    35.59s         Checking existence of `"otzaria-hanlin-allow-current-book" Switch`
+    t =    35.85s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    36.08s Find the "otzaria-hanlin-consent-book-title" StaticText
+    t =    36.33s Waiting 20.0s for "otzaria-hanlin-connection-form" Any to exist
+    t =    37.37s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-connection-form" Any`
+    t =    37.37s         Checking existence of `"otzaria-hanlin-connection-form" Any`
+    t =    38.41s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    38.67s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    39.14s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    39.46s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    40.85s Find the Window (First Match)
+    t =    40.86s Getting device orientation
+    t =    40.86s Checking existence of `"reader-text" TextView`
+    t =    41.07s Find the "reader-text" TextView
+    t =    41.58s Added attachment named 'hanlin-consent-no-connection-before-native-tap'
+    t =    41.58s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    41.77s Find the Window (First Match)
+    t =    41.78s Getting device orientation
+    t =    41.79s Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    42.98s Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    43.36s Added attachment named 'hanlin-consent-no-connection-before-native-tap-ui-tree'
+    t =    43.37s Waiting 30.0s for "otzaria-hanlin-allow-current-book" Switch to exist
+    t =    44.37s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    44.37s         Checking existence of `"otzaria-hanlin-allow-current-book" Switch`
+    t =    44.59s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    44.84s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    45.11s Tap "otzaria-hanlin-allow-current-book" Switch
+    t =    45.11s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    45.15s     Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    45.53s     Check for interrupting elements affecting "otzaria-hanlin-allow-current-book" Switch
+    t =    45.81s         Wait for com.apple.springboard to idle
+    t =    45.83s     Synthesize event
+    t =    46.18s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    47.22s Checking `Expect predicate `value == "1"` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    47.22s     Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    47.47s     Capturing element debug description
+    t =    47.74s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    48.13s         Find: Descendants matching type Switch
+    t =    48.13s         Find: Elements matching predicate '"otzaria-hanlin-allow-current-book" IN identifiers'
+    t =    48.14s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    48.49s         Find: Descendants matching type Switch
+    t =    48.50s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    49.27s Checking `Expect predicate `value == "1"` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    49.27s     Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    49.52s     Capturing element debug description
+    t =    49.73s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    50.08s         Find: Descendants matching type Switch
+    t =    50.08s         Find: Elements matching predicate '"otzaria-hanlin-allow-current-book" IN identifiers'
+    t =    50.08s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    50.42s         Find: Descendants matching type Switch
+    t =    50.43s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    51.20s Checking `Expect predicate `value == "1"` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    51.20s     Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    51.42s     Capturing element debug description
+    t =    51.63s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    51.99s         Find: Descendants matching type Switch
+    t =    51.99s         Find: Elements matching predicate '"otzaria-hanlin-allow-current-book" IN identifiers'
+    t =    52.00s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    52.35s         Find: Descendants matching type Switch
+    t =    52.36s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    53.25s Checking `Expect predicate `value == "1"` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    53.25s     Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    53.48s     Capturing element debug description
+    t =    53.68s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    54.03s         Find: Descendants matching type Switch
+    t =    54.03s         Find: Elements matching predicate '"otzaria-hanlin-allow-current-book" IN identifiers'
+    t =    54.04s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    54.43s         Find: Descendants matching type Switch
+    t =    54.44s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    55.24s Checking `Expect predicate `value == "1"` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    55.24s     Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    55.53s     Capturing element debug description
+    t =    55.77s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    56.14s         Find: Descendants matching type Switch
+    t =    56.14s         Find: Elements matching predicate '"otzaria-hanlin-allow-current-book" IN identifiers'
+    t =    56.15s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    56.46s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    57.49s Find the Window (First Match)
+    t =    57.51s Getting device orientation
+    t =    57.51s Checking existence of `"reader-text" TextView`
+    t =    57.73s Find the "reader-text" TextView
+    t =    58.25s Added attachment named 'hanlin-consent-no-connection-after-native-tap'
+    t =    58.25s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    58.43s Find the Window (First Match)
+    t =    58.44s Getting device orientation
+    t =    58.44s Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    59.46s Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    59.89s Added attachment named 'hanlin-consent-no-connection-after-native-tap-ui-tree'
+/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift:233: error: -[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadCurrentWorkConsentToggleWithoutConnection] : XCTAssertEqual failed: ("XCTWaiterResult(rawValue: 2)") is not equal to ("XCTWaiterResult(rawValue: 1)") - One actual consent switch tap must turn access ON
+    t =    60.41s Tear Down
+    t =    60.41s     Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    61.42s     Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    61.78s     Added attachment named 'r27-final-native-hierarchy'
+    t =    61.99s     Added attachment named 'r27-final-native-screen'
+    t =    61.99s     Setting device orientation to Portrait
+    t =    62.00s         Device orientation changed to Portrait
+    t =    62.15s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    62.22s             Interface orientation changed to Portrait
+    t =    62.39s         Wait for com.apple.springboard to idle
+Test Case '-[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadCurrentWorkConsentToggleWithoutConnection]' failed (62.962 seconds).
+Test Suite 'HanlinReaderConsumerAcceptanceTests' failed at 2026-11-22 03:58:40.965.
+	 Executed 1 test, with 1 failure (0 unexpected) in 62.962 (62.967) seconds
+Test Suite 'Maktabah-iOSUITests.xctest' failed at 2026-11-22 03:58:40.966.
+	 Executed 1 test, with 1 failure (0 unexpected) in 62.962 (62.969) seconds
+Test Suite 'Selected tests' failed at 2026-11-22 03:58:40.967.
+	 Executed 1 test, with 1 failure (0 unexpected) in 62.962 (62.973) seconds
+2026-11-22 03:59:06.709 xcodebuild[61846:170572] [MT] IDETestOperationsObserverDebug: 101.313 elapsed -- Testing started completed.
+2026-11-22 03:59:06.709 xcodebuild[61846:170572] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-22 03:59:06.709 xcodebuild[61846:170572] [MT] IDETestOperationsObserverDebug: 101.313 sec, +101.313 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-reader.xcresult
+
+Failing tests:
+	HanlinReaderConsumerAcceptanceTests.testOriginalIPadCurrentWorkConsentToggleWithoutConnection()
+
+** TEST EXECUTE FAILED **
+
+Testing started

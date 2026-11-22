@@ -1,0 +1,23 @@
+{
+  "status": "EXECUTED_PASS",
+  "scope": "focused-ui",
+  "database_open": "NOT_VERIFIED_BY_TEST_COUNTS",
+  "summary_sha256": "c8f25ca11a2b68134b9f010ce0d62afe1d9ad172b57cac597a1c794072ba5ca9",
+  "tests_sha256": "30e2268d616298ce8d89776731231116a24dfa0a157d2af125803908a421ab11",
+  "target": "Maktabah-iOSUITests",
+  "executed_total": 1,
+  "required_ui_passed": 1,
+  "required_ui_cases": [
+    "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration"
+  ],
+  "cases": {
+    "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration": {
+      "status": "Passed",
+      "identifier": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration()",
+      "identifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "target": "Maktabah-iOSUITests"
+    }
+  },
+  "skipped": 0,
+  "failed": 0
+}

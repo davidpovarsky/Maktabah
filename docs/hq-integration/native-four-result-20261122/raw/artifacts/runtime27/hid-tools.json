@@ -1,0 +1,13 @@
+{
+  "version": "1.7.8",
+  "companion": "/Users/runner/work/_temp/r27-hid-tools-qijvqpcz/companion/idb_companion",
+  "python": "/Users/runner/work/_temp/r27-hid-tools-qijvqpcz/client/bin/python",
+  "asset_sha256": {
+    "idb-companion.macos-arm64.tar.gz": "44369a2df0b62e3a1764de61bd09280999c7e9b27ea8f20bff1ea3a9db0302a2",
+    "fb_idb-1.7.8-py3-none-any.whl": "ed8557a4c54ffee53006c1fe63f070cda567949312ab24be56faf987c5a3d04b"
+  },
+  "companion_version": "{\"build_date\":\"Nov 1 2026\",\"build_time\":\"15:33:23\"}\n",
+  "client_dependencies": "aiofiles==25.1.0\nfb-idb @ file:///Users/runner/work/_temp/r27-hid-tools-qijvqpcz/fb_idb-1.7.8-py3-none-any.whl#sha256=ed8557a4c54ffee53006c1fe63f070cda567949312ab24be56faf987c5a3d04b\ngrpclib==0.4.9\nh2==4.4.1\nhpack==4.2.0\nhyperframe==6.1.0\nmultidict==7.2.1\nprotobuf==7.36.2\n",
+  "registry": "NOT_USED_DIRECT_DOMAIN_SOCKET",
+  "ui_acceptance": "NOT_RUN"
+}

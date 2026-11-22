@@ -1,0 +1,62 @@
+{
+  "devices": [
+    {
+      "architecture": "arm64",
+      "deviceId": "190D2FD6-8731-4E56-9575-D5027B7D4703",
+      "deviceName": "Faithful 11-inch 8614ced6",
+      "modelName": "iPad Pro 11-inch (M5)",
+      "osBuildNumber": "24B8117",
+      "osVersion": "27.2",
+      "platform": "iOS Simulator"
+    }
+  ],
+  "testNodes": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "duration": "57s",
+                  "durationInSeconds": 57.100147008895874,
+                  "name": "testCandidateGlobalSearchLandscapeMatchesOriginalNavigation()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                },
+                {
+                  "duration": "50s",
+                  "durationInSeconds": 50.499881982803345,
+                  "name": "testCandidateGlobalSearchPortraitMatchesOriginalNavigation()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                }
+              ],
+              "name": "FaithfulReaderUIAcceptanceTests",
+              "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests",
+              "nodeType": "Test Suite",
+              "result": "Passed"
+            }
+          ],
+          "name": "Maktabah-iOSUITests",
+          "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests",
+          "nodeType": "UI test bundle",
+          "result": "Passed"
+        }
+      ],
+      "name": "Maktabah-iOS",
+      "nodeType": "Test Plan",
+      "result": "Passed"
+    }
+  ],
+  "testPlanConfigurations": [
+    {
+      "configurationId": "1",
+      "configurationName": "Test Scheme Action"
+    }
+  ]
+}

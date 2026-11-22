@@ -1,0 +1,37 @@
+{
+  "suites": [
+    {
+      "suite": "HanlinReaderConsumerAcceptanceTests",
+      "selection": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection",
+      "expected": [
+        "testOriginalIPadCurrentWorkConsentToggleWithoutConnection"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "expected": [
+        "testCandidateGlobalSearchLandscapeMatchesOriginalNavigation"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "expected": [
+        "testCandidateGlobalSearchPortraitMatchesOriginalNavigation"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "R27NativePadTests",
+      "selection": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "expected": [
+        "testNormalBootstrapPaletteKeyboardDispatchCalibration"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    }
+  ],
+  "status": "DECLARATIONS_MATCH"
+}

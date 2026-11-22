@@ -1,0 +1,53 @@
+{
+  "devices": [
+    {
+      "architecture": "arm64",
+      "deviceId": "4F27587A-00AD-40DF-8C68-A1EA7A0F402D",
+      "deviceName": "Faithful 11-inch 5a4bc146",
+      "modelName": "iPad Pro 11-inch (M5)",
+      "osBuildNumber": "24B8117",
+      "osVersion": "27.2",
+      "platform": "iOS Simulator"
+    }
+  ],
+  "testNodes": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "duration": "1m 52s",
+                  "durationInSeconds": 112.48125505447388,
+                  "name": "testNormalBootstrapPaletteKeyboardDispatchCalibration()",
+                  "nodeIdentifier": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                }
+              ],
+              "name": "R27NativePadTests",
+              "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests",
+              "nodeType": "Test Suite",
+              "result": "Passed"
+            }
+          ],
+          "name": "Maktabah-iOSUITests",
+          "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests",
+          "nodeType": "UI test bundle",
+          "result": "Passed"
+        }
+      ],
+      "name": "Maktabah-iOS",
+      "nodeType": "Test Plan",
+      "result": "Passed"
+    }
+  ],
+  "testPlanConfigurations": [
+    {
+      "configurationId": "1",
+      "configurationName": "Test Scheme Action"
+    }
+  ]
+}

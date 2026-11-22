@@ -1,0 +1,10 @@
+{
+  "status": "DOWNLOADED_HASH_BYTES_CRC_VERIFIED",
+  "run_id": 44980625976,
+  "artifact_id": 14738409302,
+  "bytes": 184151371,
+  "sha256": "666e299ed8b685ed5af7d3046727adc43fbe000de1211d65e2998cbfaf263240",
+  "members": 1601,
+  "exported_captures": 50,
+  "at": "2026-11-22T04:30:55.583744+00:00"
+}

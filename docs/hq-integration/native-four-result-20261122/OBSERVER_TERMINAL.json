@@ -1,0 +1,35 @@
+{
+  "observer_status": "TERMINAL_OBSERVED",
+  "run_id": 44980625976,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44980625976",
+  "head_sha": "c107c8ac600de6bbe6d92571fbbbdc6349cd143a",
+  "application_source": "385ee84a8acb3fbc3c013c0977417b61fd3d8a17",
+  "started_at": "2026-11-22T03:27:13.902941+00:00",
+  "pid": 28412,
+  "maximum_watch_seconds": 3350,
+  "purpose": "Observe this one existing run; no workflow dispatch or cancellation",
+  "scope": "FOCUSED_FOUR_ONLY",
+  "gh_watch_exit_code": 1,
+  "finished_at": "2026-11-22T04:22:54.603743+00:00",
+  "actual_run_status": "completed",
+  "actual_run_conclusion": "failure",
+  "actual_run_attempt": 1,
+  "actual_run_updated_at": "2026-11-22T04:22:33Z",
+  "jobs": [
+    {
+      "id": 137080119677,
+      "name": "One app build, three repaired Native cases and isolated consent diagnostic",
+      "conclusion": "failure",
+      "failed_steps": [
+        {
+          "name": "Execute four selected Native cases without rebuilding or provider credentials",
+          "conclusion": "failure"
+        },
+        {
+          "name": "Collect original raw native case outcomes including failures",
+          "conclusion": "failure"
+        }
+      ]
+    }
+  ]
+}

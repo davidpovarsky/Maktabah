@@ -1,0 +1,1409 @@
+Faithful 11-reader-inch: BOOTING {"udid": "DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658"}
+Monitoring boot status for Faithful 11-inch 98b02e3d (DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658).
+[2026-11-22 03:48:12 +0000] Status=4294967295, isTerminal=YES, Elapsed=00:50.
+	Finished
+
+Faithful 11-reader-inch: INSTALLING {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1, "timeoutSeconds": 600}
+Faithful 11-reader-inch: VERIFYING_APP_CONTAINER {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1}
+Faithful 11-reader-inch: INSTALL_TIMEOUT {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1}
+Faithful 11-reader-inch: COLLECTING_INSTALL_DIAGNOSTICS {"bundle": "com.davidpovarsky.chavrusatext"}
+Faithful 11-reader-inch: RESTARTING_OWNED_SIMULATOR {"bundle": "com.davidpovarsky.chavrusatext"}
+Monitoring boot status for Faithful 11-inch 98b02e3d (DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658).
+Device already booted, nothing to do.
+
+Faithful 11-reader-inch: INSTALLING {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 2, "timeoutSeconds": 600}
+Faithful 11-reader-inch: VERIFYING_APP_CONTAINER {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 2}
+Faithful 11-reader-inch: INSTALLED {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 2}
+Faithful 11-reader-inch: PROVISIONING_NATIVE_FIXTURES {}
+com.davidpovarsky.chavrusatext: 61505
+Native UI fixture ready: {'passed': True, 'profileID': 'miniTest10', 'profileVersion': 6, 'bookCount': 10, 'shaMatched': True}
+Faithful 11-reader-inch: RUNNING_NATIVE_XCTEST {"suites": ["HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection"]}
+Command line invocation:
+    /Applications/Xcode_27.2.app/Contents/Developer/usr/bin/xcodebuild test-without-building -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -parallel-testing-enabled NO -destination "platform=iOS Simulator,id=DA7D79D6-4EE7-4A8D-B96E-C9B33F99C658" -derivedDataPath build/DerivedData -resultBundlePath /Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-reader.xcresult -test-timeouts-enabled YES -default-test-execution-time-allowance 600 -maximum-test-execution-time-allowance 600 "-only-testing:Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection"
+
+Resolve Package Graph
+
+Fetching from https://github.com/davidpovarsky/TorahInspectorKit.git
+
+Fetching from https://github.com/davidpovarsky/swift-ai-sdk.git (cached)
+
+Fetching from https://github.com/davidpovarsky/hanlin-streaming-markdown (cached)
+
+Fetching from https://github.com/appstefan/highlightswift (cached)
+
+Fetching from https://github.com/junyan72/iosMath (cached)
+
+Fetching from https://github.com/swiftlang/swift-markdown.git (cached)
+
+Fetching from https://github.com/SwiftyJSON/SwiftyJSON.git (cached)
+
+Fetching from https://github.com/facebook/zstd.git
+
+Fetching from https://github.com/sparkle-project/Sparkle
+
+Fetching from https://github.com/swiftlang/swift-syntax.git (cached)
+
+Fetching from https://github.com/exyte/AnchoredPopup.git
+
+Fetching from https://github.com/swiftlang/swift-cmark (cached)
+
+Fetching from https://github.com/markiv/SwiftUI-Shimmer (cached)
+
+Fetching from https://github.com/apple/swift-argument-parser (cached)
+
+Fetching from https://github.com/ordo-one/equatable (cached)
+
+Fetching from https://github.com/weichsel/ZIPFoundation.git
+
+Fetching from https://github.com/scenee/FloatingPanel.git
+
+Creating working copy of package ‘hanlin-streaming-markdown’
+
+Checking out 6bde022876ef4af738c154b3d5c871984ef76195 of package ‘hanlin-streaming-markdown’
+
+Creating working copy of package ‘swift-syntax’
+
+Checking out 603.0.2 of package ‘swift-syntax’
+
+Creating working copy of package ‘iosMath’
+
+Checking out ba9ab7729b151329c54fd895a7c1859981d9484c of package ‘iosMath’
+
+Creating working copy of package ‘equatable’
+
+Checking out 1.4.1 of package ‘equatable’
+
+Creating working copy of package ‘swift-argument-parser’
+
+Checking out 1.8.2 of package ‘swift-argument-parser’
+
+Creating working copy of package ‘swift-cmark’
+
+Checking out 0.9.0 of package ‘swift-cmark’
+
+Creating working copy of package ‘TorahInspectorKit’
+
+Checking out 23db0f84e88d9ee9c7053c49de86903fc7bb5785 of package ‘TorahInspectorKit’
+
+Creating working copy of package ‘SwiftUI-Shimmer’
+
+Checking out 1.5.1 of package ‘SwiftUI-Shimmer’
+
+Creating working copy of package ‘swift-markdown’
+
+Checking out 0.7.3 of package ‘swift-markdown’
+
+Creating working copy of package ‘ZIPFoundation’
+
+Checking out 0.9.20 of package ‘ZIPFoundation’
+
+Creating working copy of package ‘zstd’
+
+Checking out 1.5.7 of package ‘zstd’
+
+Creating working copy of package ‘FloatingPanel’
+
+Checking out 3.2.4 of package ‘FloatingPanel’
+
+Creating working copy of package ‘SwiftyJSON’
+
+Checking out 5.0.1 of package ‘SwiftyJSON’
+
+Creating working copy of package ‘Sparkle’
+
+Checking out 2.9.1 of package ‘Sparkle’
+
+Creating working copy of package ‘highlightswift’
+
+Checking out 99c431b38a1444a5fd6a4978307fbbefe3a7af53 of package ‘highlightswift’
+
+Creating working copy of package ‘AnchoredPopup’
+
+Checking out 1.3.1 of package ‘AnchoredPopup’
+
+Creating working copy of package ‘swift-ai-sdk’
+
+Checking out e7bf34111e603ca977becd007dd4e5bb109af857 of package ‘swift-ai-sdk’
+
+
+Resolved source packages:
+  swift-argument-parser: https://github.com/apple/swift-argument-parser @ 1.8.2
+  HanlinAgentSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinAgentSDK @ local
+  SwiftAISDK: https://github.com/davidpovarsky/swift-ai-sdk.git @ e7bf341
+  Sparkle: https://github.com/sparkle-project/Sparkle @ 2.9.1
+  swift-syntax: https://github.com/swiftlang/swift-syntax.git @ 603.0.2
+  CommandPalette: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette @ local
+  swift-markdown: https://github.com/swiftlang/swift-markdown.git @ 0.7.3
+  OtzariaUIRouting: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/UIRouting @ local
+  ChavrusaUIRoutingHost: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/UIRoutingHost @ local
+  iosMath: https://github.com/junyan72/iosMath @ ba9ab77
+  AnchoredPopup: https://github.com/exyte/AnchoredPopup.git @ 1.3.1
+  SwiftyJSON: https://github.com/SwiftyJSON/SwiftyJSON.git @ 5.0.1
+  OtzariaActionCore: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Actions @ local
+  SwiftUI-Shimmer: https://github.com/markiv/SwiftUI-Shimmer @ 1.5.1
+  cmark-gfm: https://github.com/swiftlang/swift-cmark @ 0.9.0
+  HanlinPresentationSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPresentationSDK @ local
+  TorahInspectorKit: https://github.com/davidpovarsky/TorahInspectorKit.git @ 23db0f8
+  Equatable: https://github.com/ordo-one/equatable @ 1.4.1
+  zstd: https://github.com/facebook/zstd.git @ 1.5.7
+  ZIPFoundation: https://github.com/weichsel/ZIPFoundation.git @ 0.9.20
+  HighlightSwift: https://github.com/appstefan/highlightswift @ 99c431b
+  FloatingPanel: https://github.com/scenee/FloatingPanel.git @ 3.2.4
+  HanlinPlatform: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPlatform @ local
+  SwiftStreamingMarkdown: https://github.com/davidpovarsky/hanlin-streaming-markdown @ 6bde022
+
+Writing result bundle at path:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-reader.xcresult
+
+2026-11-22 03:57:31.754556+0000 Maktabah-iOSUITests-Runner[68407:189359] [Default] Running tests...
+2026-11-22 03:57:31.845054+0000 Maktabah-iOSUITests-Runner[68407:189359] [UIKit App Config] Update the Info.plist: Launch screens will soon be required.
+objc[68407]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.50yShh/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x1036d8310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.50yShh/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x10372c398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-11-22 03:57:37.994.
+Test Suite 'Maktabah-iOSUITests.xctest' started at 2026-11-22 03:57:37.998.
+Test Suite 'HanlinReaderConsumerAcceptanceTests' started at 2026-11-22 03:57:37.998.
+Test Case '-[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadCurrentWorkConsentToggleWithoutConnection]' started.
+    t =     0.00s Start Test at 2026-11-22 03:57:38.002
+    t =     0.15s Set Up
+    t =     0.20s Setting device orientation to Landscape Left
+    t =     0.24s     Device orientation changed to Landscape Left
+    t =     0.61s     Interface orientation changed to Landscape Right
+    t =     0.63s     Wait for com.apple.springboard to idle
+    t =     0.98s Open com.davidpovarsky.chavrusatext
+    t =     0.98s     Launch com.davidpovarsky.chavrusatext
+2026-11-22 03:57:45.906 xcodebuild[61846:170572] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-22 03:57:45.906 xcodebuild[61846:170572] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    12.51s         Setting up automation session
+    t =    18.12s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    22.14s Get number of matches for: Descendants matching type Alert
+    t =    22.99s Waiting 60.0s for "reader-text" TextView to exist
+    t =    24.03s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    24.03s         Checking existence of `"reader-text" TextView`
+    t =    25.40s Find the "reader-text" TextView
+    t =    25.61s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    25.74s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    26.90s Checking `Expect predicate `value MATCHES "(?s).{31,}"` for object "reader-text" TextView`
+    t =    26.90s     Find the "reader-text" TextView
+    t =    27.11s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    28.12s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    28.12s         Checking existence of `"reader-header-title" StaticText`
+    t =    28.38s Find the "reader-header-title" StaticText
+    t =    28.59s Find the "reader-text" TextView
+    t =    28.79s Waiting 15.0s for "reader-current-locator" StaticText to exist
+    t =    29.83s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-current-locator" StaticText`
+    t =    29.83s         Checking existence of `"reader-current-locator" StaticText`
+    t =    30.00s Find the "reader-current-locator" StaticText
+    t =    30.18s Find the "reader-header-title" StaticText
+    t =    30.40s Find the "reader-text" TextView
+    t =    30.61s Waiting 30.0s for "otzaria-hanlin-reader-launch" Button to exist
+    t =    31.62s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-reader-launch" Button`
+    t =    31.62s         Checking existence of `"otzaria-hanlin-reader-launch" Button`
+    t =    31.91s Find the "otzaria-hanlin-reader-launch" Button
+    t =    32.08s Find the "otzaria-hanlin-reader-launch" Button
+    t =    32.34s Tap "otzaria-hanlin-reader-launch" Button
+    t =    32.34s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    32.34s     Find the "otzaria-hanlin-reader-launch" Button
+    t =    32.52s     Check for interrupting elements affecting "otzaria-hanlin-reader-launch" Button
+    t =    32.67s         Wait for com.apple.springboard to idle
+    t =    32.73s     Synthesize event
+    t =    33.22s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    34.54s Waiting 30.0s for "otzaria-hanlin-allow-current-book" Switch to exist
+    t =    35.59s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    35.59s         Checking existence of `"otzaria-hanlin-allow-current-book" Switch`
+    t =    35.85s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    36.08s Find the "otzaria-hanlin-consent-book-title" StaticText
+    t =    36.33s Waiting 20.0s for "otzaria-hanlin-connection-form" Any to exist
+    t =    37.37s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-connection-form" Any`
+    t =    37.37s         Checking existence of `"otzaria-hanlin-connection-form" Any`
+    t =    38.41s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    38.67s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    39.14s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    39.46s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    40.85s Find the Window (First Match)
+    t =    40.86s Getting device orientation
+    t =    40.86s Checking existence of `"reader-text" TextView`
+    t =    41.07s Find the "reader-text" TextView
+    t =    41.58s Added attachment named 'hanlin-consent-no-connection-before-native-tap'
+    t =    41.58s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    41.77s Find the Window (First Match)
+    t =    41.78s Getting device orientation
+    t =    41.79s Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    42.98s Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    43.36s Added attachment named 'hanlin-consent-no-connection-before-native-tap-ui-tree'
+    t =    43.37s Waiting 30.0s for "otzaria-hanlin-allow-current-book" Switch to exist
+    t =    44.37s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    44.37s         Checking existence of `"otzaria-hanlin-allow-current-book" Switch`
+    t =    44.59s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    44.84s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    45.11s Tap "otzaria-hanlin-allow-current-book" Switch
+    t =    45.11s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    45.15s     Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    45.53s     Check for interrupting elements affecting "otzaria-hanlin-allow-current-book" Switch
+    t =    45.81s         Wait for com.apple.springboard to idle
+    t =    45.83s     Synthesize event
+    t =    46.18s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    47.22s Checking `Expect predicate `value == "1"` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    47.22s     Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    47.47s     Capturing element debug description
+    t =    47.74s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    48.13s         Find: Descendants matching type Switch
+    t =    48.13s         Find: Elements matching predicate '"otzaria-hanlin-allow-current-book" IN identifiers'
+    t =    48.14s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    48.49s         Find: Descendants matching type Switch
+    t =    48.50s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    49.27s Checking `Expect predicate `value == "1"` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    49.27s     Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    49.52s     Capturing element debug description
+    t =    49.73s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    50.08s         Find: Descendants matching type Switch
+    t =    50.08s         Find: Elements matching predicate '"otzaria-hanlin-allow-current-book" IN identifiers'
+    t =    50.08s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    50.42s         Find: Descendants matching type Switch
+    t =    50.43s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    51.20s Checking `Expect predicate `value == "1"` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    51.20s     Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    51.42s     Capturing element debug description
+    t =    51.63s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    51.99s         Find: Descendants matching type Switch
+    t =    51.99s         Find: Elements matching predicate '"otzaria-hanlin-allow-current-book" IN identifiers'
+    t =    52.00s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    52.35s         Find: Descendants matching type Switch
+    t =    52.36s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    53.25s Checking `Expect predicate `value == "1"` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    53.25s     Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    53.48s     Capturing element debug description
+    t =    53.68s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    54.03s         Find: Descendants matching type Switch
+    t =    54.03s         Find: Elements matching predicate '"otzaria-hanlin-allow-current-book" IN identifiers'
+    t =    54.04s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    54.43s         Find: Descendants matching type Switch
+    t =    54.44s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    55.24s Checking `Expect predicate `value == "1"` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    55.24s     Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    55.53s     Capturing element debug description
+    t =    55.77s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    56.14s         Find: Descendants matching type Switch
+    t =    56.14s         Find: Elements matching predicate '"otzaria-hanlin-allow-current-book" IN identifiers'
+    t =    56.15s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    56.46s         Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    57.49s Find the Window (First Match)
+    t =    57.51s Getting device orientation
+    t =    57.51s Checking existence of `"reader-text" TextView`
+    t =    57.73s Find the "reader-text" TextView
+    t =    58.25s Added attachment named 'hanlin-consent-no-connection-after-native-tap'
+    t =    58.25s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    58.43s Find the Window (First Match)
+    t =    58.44s Getting device orientation
+    t =    58.44s Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    59.46s Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    59.89s Added attachment named 'hanlin-consent-no-connection-after-native-tap-ui-tree'
+/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift:233: error: -[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadCurrentWorkConsentToggleWithoutConnection] : XCTAssertEqual failed: ("XCTWaiterResult(rawValue: 2)") is not equal to ("XCTWaiterResult(rawValue: 1)") - One actual consent switch tap must turn access ON
+    t =    60.41s Tear Down
+    t =    60.41s     Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    61.42s     Requesting snapshot of accessibility hierarchy for app with pid 68807
+    t =    61.78s     Added attachment named 'r27-final-native-hierarchy'
+    t =    61.99s     Added attachment named 'r27-final-native-screen'
+    t =    61.99s     Setting device orientation to Portrait
+    t =    62.00s         Device orientation changed to Portrait
+    t =    62.15s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    62.22s             Interface orientation changed to Portrait
+    t =    62.39s         Wait for com.apple.springboard to idle
+Test Case '-[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadCurrentWorkConsentToggleWithoutConnection]' failed (62.962 seconds).
+Test Suite 'HanlinReaderConsumerAcceptanceTests' failed at 2026-11-22 03:58:40.965.
+	 Executed 1 test, with 1 failure (0 unexpected) in 62.962 (62.967) seconds
+Test Suite 'Maktabah-iOSUITests.xctest' failed at 2026-11-22 03:58:40.966.
+	 Executed 1 test, with 1 failure (0 unexpected) in 62.962 (62.969) seconds
+Test Suite 'Selected tests' failed at 2026-11-22 03:58:40.967.
+	 Executed 1 test, with 1 failure (0 unexpected) in 62.962 (62.973) seconds
+2026-11-22 03:59:06.709 xcodebuild[61846:170572] [MT] IDETestOperationsObserverDebug: 101.313 elapsed -- Testing started completed.
+2026-11-22 03:59:06.709 xcodebuild[61846:170572] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-22 03:59:06.709 xcodebuild[61846:170572] [MT] IDETestOperationsObserverDebug: 101.313 sec, +101.313 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-reader.xcresult
+
+Failing tests:
+	HanlinReaderConsumerAcceptanceTests.testOriginalIPadCurrentWorkConsentToggleWithoutConnection()
+
+** TEST EXECUTE FAILED **
+
+Testing started
+{
+  "suites": [
+    {
+      "suite": "HanlinReaderConsumerAcceptanceTests",
+      "selection": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection",
+      "expected": [
+        "testOriginalIPadCurrentWorkConsentToggleWithoutConnection"
+      ],
+      "passed": [],
+      "failed": [
+        "testOriginalIPadCurrentWorkConsentToggleWithoutConnection"
+      ],
+      "missing": [
+        "testOriginalIPadCurrentWorkConsentToggleWithoutConnection"
+      ],
+      "status": "FAIL"
+    }
+  ],
+  "status": "FAIL"
+}
+::error::xcresult summary did not pass
+{
+  "status": "FAIL",
+  "scope": "focused-ui",
+  "database_open": "NOT_VERIFIED_BY_TEST_COUNTS",
+  "summary_sha256": "e62ee12c525c9fda21ee595e6073ae80e687d77e7501925406fff9819dc0233b",
+  "tests_sha256": "020325ef15ecbba3b46fd25f4429cd56bf198161345dddf178411dca79b983c3",
+  "error": "xcresult summary did not pass"
+}
+Exported 27 attachments for: HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection():
+File: B69063AB-DAAB-47C7-A236-1105C749DBC3.png, suggested name: "r27-final-native-screen_0_96379587-6E73-4289-B8E5-3D4F6941BF53.png"
+File: 82364CCB-7899-4A95-96A8-8BC24D2609AE.txt, suggested name: "r27-final-native-hierarchy_0_840EB484-687F-41E7-9898-68D3547696F6.txt"
+File: A23619EF-5E9A-411E-8A52-3040375248F0.txt, suggested name: "hanlin-consent-no-connection-after-native-tap-ui-tree_0_F6B06CC8-1FBE-46E8-AB55-7778A857F48A.txt"
+File: B2F79C49-E510-4D78-8571-A95B0CF71A68.png, suggested name: "hanlin-consent-no-connection-after-native-tap_0_413AD0C3-4317-4A29-84F6-607875571199.png"
+File: AF321F74-381B-46E2-842A-4664A2A12412.txt, suggested name: "Debug description for `"otzaria-hanlin-allow-current-book" Switch`_0_29B9A476-507C-4BAE-B44C-BE75DDEFABBA.txt"
+File: 9AA8F568-4A49-4788-9545-3A57E8CCA39F, suggested name: "UI Snapshot 2026-11-22 at 03.58.34 AM"
+File: AD78FBAD-0CA5-4968-A1B1-A7193DD362E9, suggested name: "UI Snapshot 2026-11-22 at 03.58.33 AM"
+File: 4CD8BF7B-C021-4FC4-AD54-65BD469F2AA4.txt, suggested name: "Debug description for `"otzaria-hanlin-allow-current-book" Switch`_0_2CB3C946-EC13-4D6C-B475-3B2B5E229D41.txt"
+File: 48EC7C2C-A0C3-4C3B-9FE8-00BB7367E96C, suggested name: "UI Snapshot 2026-11-22 at 03.58.32 AM"
+File: 34107436-27EA-4C61-AA90-A6540D1E72C3, suggested name: "UI Snapshot 2026-11-22 at 03.58.31 AM"
+File: E5BBA829-F3A2-4B48-8D5D-46B3924D0EEB.txt, suggested name: "Debug description for `"otzaria-hanlin-allow-current-book" Switch`_0_2BAD5B00-15BB-46CD-8665-CFE5992595B6.txt"
+File: 9B93F813-A1A3-4AD1-B1C3-204931556127, suggested name: "UI Snapshot 2026-11-22 at 03.58.30 AM"
+File: B1063B9A-CF67-45E0-A011-190335EF9B3A, suggested name: "UI Snapshot 2026-11-22 at 03.58.29 AM"
+File: 5FD4F0EB-2669-4765-85C6-651DAB7D1CBB.txt, suggested name: "Debug description for `"otzaria-hanlin-allow-current-book" Switch`_0_12ECA8C9-059E-4073-A2E8-FDC3753C7F80.txt"
+File: 9829E12E-FAF3-4C93-BA2D-86B940DF9355, suggested name: "UI Snapshot 2026-11-22 at 03.58.28 AM"
+File: 1FB3DE15-CD66-4006-B068-F1C9CDF51512, suggested name: "UI Snapshot 2026-11-22 at 03.58.27 AM"
+File: 53A2E58E-E52A-4D76-8131-D0974CF6E6B8.txt, suggested name: "Debug description for `"otzaria-hanlin-allow-current-book" Switch`_0_0C6C082D-5C20-4A95-88E9-FBF7CAC86584.txt"
+File: C62A5AF3-4699-4D17-AE8C-F6881ABE509F, suggested name: "UI Snapshot 2026-11-22 at 03.58.26 AM"
+File: F5EF7195-62D1-4134-87CD-4D46A0CCD92C, suggested name: "UI Snapshot 2026-11-22 at 03.58.25 AM"
+File: D7A17201-3F07-4A1C-A5BF-87B42701E353, suggested name: "UI Snapshot 2026-11-22 at 03.58.23 AM"
+File: DA3639BA-DC9E-409F-812D-0147764E066E, suggested name: "Synthesized Event 2026-11-22 at 03.58.24 AM"
+File: 6A7DC699-7E44-46EA-9C5B-61D84251587C.txt, suggested name: "hanlin-consent-no-connection-before-native-tap-ui-tree_0_9B5C891E-208D-4014-AE87-1859FED3C2D7.txt"
+File: 7DB119C7-A429-4A96-8F93-B8253ADFA6EA.png, suggested name: "hanlin-consent-no-connection-before-native-tap_0_482FF87A-6465-47E1-8C36-AB240B907A36.png"
+File: B5845C24-AE9E-4AE9-9BE7-74C200D57ECF, suggested name: "UI Snapshot 2026-11-22 at 03.58.10 AM"
+File: 3D2A7699-C6F9-470A-8A36-11C0B93B1214, suggested name: "Synthesized Event 2026-11-22 at 03.58.11 AM"
+File: 9D401B2B-127F-46F6-B540-EB8732A5DD55, suggested name: "UI Snapshot 2026-11-22 at 03.58.05 AM"
+File: 5FCE65FD-DFE4-4218-9E7B-E4157F65BA6F.mp4, suggested name: "Screen Recording 2026-11-22 at 03.57.38 AM.mp4"
+
+Generated manifest file with attachment details: /Users/runner/work/Maktabah/Maktabah/build/artifacts/visual-11-reader/manifest.json
+Faithful 11-reader-inch: FAILED {"error": "SystemExit: Native UI acceptance failed: ['HanlinReaderConsumerAcceptanceTests']; acceptance status 65; actual xcodebuild status 65"}
+Faithful 11-search-inch: BOOTING {"udid": "190D2FD6-8731-4E56-9575-D5027B7D4703"}
+Monitoring boot status for Faithful 11-inch 8614ced6 (190D2FD6-8731-4E56-9575-D5027B7D4703).
+[2026-11-22 03:59:54 +0000] Status=2, isTerminal=NO, Elapsed=00:24.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.-0LaunchServicesMigrator (00LaunchServicesMigrator.migrator, user-agnostic)
+		Migration Elapsed:00:08 seconds
+
+[2026-11-22 03:59:54 +0000] Status=2, isTerminal=NO, Elapsed=00:25.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.-0LaunchServicesMigrator (00LaunchServicesMigrator.migrator, user-agnostic)
+		Migration Elapsed:00:09 seconds
+
+[2026-11-22 03:59:55 +0000] Status=2, isTerminal=NO, Elapsed=00:26.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.-0LaunchServicesMigrator (00LaunchServicesMigrator.migrator, user-agnostic)
+		Migration Elapsed:00:11 seconds
+
+[2026-11-22 03:59:55 +0000] Status=2, isTerminal=NO, Elapsed=00:27.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.-0LaunchServicesMigrator (00LaunchServicesMigrator.migrator, user-agnostic)
+		Migration Elapsed:00:11 seconds
+
+[2026-11-22 03:59:57 +0000] Status=2, isTerminal=NO, Elapsed=00:28.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.-0LaunchServicesMigrator (00LaunchServicesMigrator.migrator, user-agnostic)
+		Migration Elapsed:00:13 seconds
+
+[2026-11-22 03:59:58 +0000] Status=2, isTerminal=NO, Elapsed=00:29.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.-0LaunchServicesMigrator (00LaunchServicesMigrator.migrator, user-agnostic)
+		Migration Elapsed:00:13 seconds
+
+[2026-11-22 03:59:59 +0000] Status=2, isTerminal=NO, Elapsed=00:30.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.-0LaunchServicesMigrator (00LaunchServicesMigrator.migrator, user-agnostic)
+		Migration Elapsed:00:14 seconds
+
+[2026-11-22 04:00:00 +0000] Status=2, isTerminal=NO, Elapsed=00:31.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic) (Concurrent: Running plugin com.apple.MobileSlideShow (MobileSlideShow.migrator, concurrent after com.apple.accounts.migrator))
+		Migration Elapsed:00:16 seconds
+
+[2026-11-22 04:00:01 +0000] Status=2, isTerminal=NO, Elapsed=00:32.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:16 seconds
+
+[2026-11-22 04:00:02 +0000] Status=2, isTerminal=NO, Elapsed=00:33.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:17 seconds
+
+[2026-11-22 04:00:02 +0000] Status=2, isTerminal=NO, Elapsed=00:34.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:18 seconds
+
+[2026-11-22 04:00:03 +0000] Status=2, isTerminal=NO, Elapsed=00:35.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:19 seconds
+
+[2026-11-22 04:00:04 +0000] Status=2, isTerminal=NO, Elapsed=00:36.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:20 seconds
+
+[2026-11-22 04:00:06 +0000] Status=2, isTerminal=NO, Elapsed=00:37.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:21 seconds
+
+[2026-11-22 04:00:07 +0000] Status=2, isTerminal=NO, Elapsed=00:38.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:22 seconds
+
+[2026-11-22 04:00:08 +0000] Status=2, isTerminal=NO, Elapsed=00:39.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:23 seconds
+
+[2026-11-22 04:00:09 +0000] Status=2, isTerminal=NO, Elapsed=00:40.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:25 seconds
+
+[2026-11-22 04:00:10 +0000] Status=2, isTerminal=NO, Elapsed=00:41.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.WebBookmarks.migrator (WebBookmarks.migrator)
+		Migration Elapsed:00:25 seconds
+
+[2026-11-22 04:00:11 +0000] Status=2, isTerminal=NO, Elapsed=00:42.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.MobileSafari.migrator (MobileSafari.migrator)
+		Migration Elapsed:00:26 seconds
+
+[2026-11-22 04:00:12 +0000] Status=2, isTerminal=NO, Elapsed=00:43.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.MobileSafari.migrator (MobileSafari.migrator)
+		Migration Elapsed:00:27 seconds
+
+[2026-11-22 04:00:13 +0000] Status=2, isTerminal=NO, Elapsed=00:44.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.PreferencesMigrator (PreferencesMigrator.migrator)
+		Migration Elapsed:00:28 seconds
+
+[2026-11-22 04:00:14 +0000] Status=4294967295, isTerminal=YES, Elapsed=00:45.
+	Finished
+
+Faithful 11-search-inch: INSTALLING {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1, "timeoutSeconds": 600}
+Faithful 11-search-inch: VERIFYING_APP_CONTAINER {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1}
+Faithful 11-search-inch: INSTALL_TIMEOUT {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1}
+Faithful 11-search-inch: COLLECTING_INSTALL_DIAGNOSTICS {"bundle": "com.davidpovarsky.chavrusatext"}
+Faithful 11-search-inch: RESTARTING_OWNED_SIMULATOR {"bundle": "com.davidpovarsky.chavrusatext"}
+Monitoring boot status for Faithful 11-inch 8614ced6 (190D2FD6-8731-4E56-9575-D5027B7D4703).
+[2026-11-22 04:04:19 +0000] Status=4, isTerminal=NO, Elapsed=00:26.
+	Waiting on System App
+
+[2026-11-22 04:04:20 +0000] Status=4, isTerminal=NO, Elapsed=00:27.
+	Waiting on System App
+
+[2026-11-22 04:04:23 +0000] Status=4, isTerminal=NO, Elapsed=00:30.
+	Waiting on System App
+
+[2026-11-22 04:04:24 +0000] Status=4, isTerminal=NO, Elapsed=00:32.
+	Waiting on System App
+
+[2026-11-22 04:04:26 +0000] Status=4, isTerminal=NO, Elapsed=00:34.
+	Waiting on System App
+
+[2026-11-22 04:04:26 +0000] Status=4, isTerminal=NO, Elapsed=00:34.
+	Waiting on System App
+
+[2026-11-22 04:04:27 +0000] Status=4, isTerminal=NO, Elapsed=00:35.
+	Waiting on System App
+
+[2026-11-22 04:04:29 +0000] Status=4, isTerminal=NO, Elapsed=00:36.
+	Waiting on System App
+
+[2026-11-22 04:04:29 +0000] Status=4, isTerminal=NO, Elapsed=00:37.
+	Waiting on System App
+
+[2026-11-22 04:04:31 +0000] Status=4294967295, isTerminal=YES, Elapsed=00:39.
+	Finished
+
+Faithful 11-search-inch: INSTALLING {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 2, "timeoutSeconds": 600}
+Faithful 11-search-inch: VERIFYING_APP_CONTAINER {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 2}
+Faithful 11-search-inch: INSTALLED {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 2}
+Faithful 11-search-inch: PROVISIONING_NATIVE_FIXTURES {}
+com.davidpovarsky.chavrusatext: 76368
+Native UI fixture ready: {'passed': True, 'profileID': 'miniTest10', 'profileVersion': 6, 'bookCount': 10, 'shaMatched': True}
+Faithful 11-search-inch: RUNNING_NATIVE_XCTEST {"suites": ["FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation", "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation"]}
+Command line invocation:
+    /Applications/Xcode_27.2.app/Contents/Developer/usr/bin/xcodebuild test-without-building -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -parallel-testing-enabled NO -destination "platform=iOS Simulator,id=190D2FD6-8731-4E56-9575-D5027B7D4703" -derivedDataPath build/DerivedData -resultBundlePath /Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-search.xcresult -test-timeouts-enabled YES -default-test-execution-time-allowance 600 -maximum-test-execution-time-allowance 600 "-only-testing:Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation" "-only-testing:Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation"
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  SwiftyJSON: https://github.com/SwiftyJSON/SwiftyJSON.git @ 5.0.1
+  FloatingPanel: https://github.com/scenee/FloatingPanel.git @ 3.2.4
+  swift-markdown: https://github.com/swiftlang/swift-markdown.git @ 0.7.3
+  zstd: https://github.com/facebook/zstd.git @ 1.5.7
+  HighlightSwift: https://github.com/appstefan/highlightswift @ 99c431b
+  SwiftStreamingMarkdown: https://github.com/davidpovarsky/hanlin-streaming-markdown @ 6bde022
+  AnchoredPopup: https://github.com/exyte/AnchoredPopup.git @ 1.3.1
+  Equatable: https://github.com/ordo-one/equatable @ 1.4.1
+  OtzariaActionCore: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Actions @ local
+  Sparkle: https://github.com/sparkle-project/Sparkle @ 2.9.1
+  cmark-gfm: https://github.com/swiftlang/swift-cmark @ 0.9.0
+  OtzariaUIRouting: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/UIRouting @ local
+  TorahInspectorKit: https://github.com/davidpovarsky/TorahInspectorKit.git @ 23db0f8
+  SwiftUI-Shimmer: https://github.com/markiv/SwiftUI-Shimmer @ 1.5.1
+  swift-syntax: https://github.com/swiftlang/swift-syntax.git @ 603.0.2
+  CommandPalette: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette @ local
+  iosMath: https://github.com/junyan72/iosMath @ ba9ab77
+  HanlinAgentSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinAgentSDK @ local
+  ChavrusaUIRoutingHost: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/UIRoutingHost @ local
+  ZIPFoundation: https://github.com/weichsel/ZIPFoundation.git @ 0.9.20
+  SwiftAISDK: https://github.com/davidpovarsky/swift-ai-sdk.git @ e7bf341
+  swift-argument-parser: https://github.com/apple/swift-argument-parser @ 1.8.2
+  HanlinPlatform: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPlatform @ local
+  HanlinPresentationSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPresentationSDK @ local
+
+Writing result bundle at path:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-search.xcresult
+
+2026-11-22 04:08:35.631712+0000 Maktabah-iOSUITests-Runner[77829:224340] [Default] Running tests...
+2026-11-22 04:08:35.813626+0000 Maktabah-iOSUITests-Runner[77829:224340] [UIKit App Config] Update the Info.plist: Launch screens will soon be required.
+objc[77829]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.50yShh/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x107b88310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.50yShh/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x107bbc398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-11-22 04:08:42.325.
+Test Suite 'Maktabah-iOSUITests.xctest' started at 2026-11-22 04:08:42.326.
+Test Suite 'FaithfulReaderUIAcceptanceTests' started at 2026-11-22 04:08:42.326.
+Test Case '-[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateGlobalSearchLandscapeMatchesOriginalNavigation]' started.
+    t =     0.04s Start Test at 2026-11-22 04:08:42.364
+    t =     0.17s Set Up
+    t =     0.18s Setting device orientation to Landscape Left
+    t =     0.20s     Device orientation changed to Landscape Left
+    t =     0.29s     Interface orientation changed to Landscape Right
+    t =     0.51s     Wait for com.apple.springboard to idle
+    t =     0.57s Open com.davidpovarsky.chavrusatext
+    t =     0.57s     Launch com.davidpovarsky.chavrusatext
+2026-11-22 04:08:44.923 xcodebuild[76404:217651] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-22 04:08:44.923 xcodebuild[76404:217651] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     5.43s         Setting up automation session
+    t =    10.65s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    15.23s Get number of matches for: Descendants matching type Alert
+    t =    17.03s Find the Window (First Match)
+    t =    17.05s Getting device orientation
+    t =    17.05s Checking existence of `"reader-text" TextView`
+    t =    17.50s Added attachment named 'candidate-flags-off-search-landscape'
+    t =    17.50s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    17.61s Find the Window (First Match)
+    t =    17.62s Getting device orientation
+    t =    17.62s Requesting snapshot of accessibility hierarchy for app with pid 78243
+    t =    18.13s Requesting snapshot of accessibility hierarchy for app with pid 78243
+    t =    18.33s Added attachment named 'candidate-flags-off-search-landscape-ui-tree'
+    t =    18.33s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    18.44s Find the NavigationBar (Element at index 0)
+    t =    18.54s Find the "סינון לפי ספרים" NavigationBar
+    t =    18.64s Find the NavigationBar (Element at index 1)
+    t =    18.74s Find the "חיפוש" NavigationBar
+    t =    18.84s Open com.davidpovarsky.chavrusatext
+    t =    18.84s     Launch com.davidpovarsky.chavrusatext
+    t =    18.84s         Terminate com.davidpovarsky.chavrusatext:78243
+2026-11-22 04:09:02.261 xcodebuild[76404:217651] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-22 04:09:02.261 xcodebuild[76404:217651] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    21.35s         Setting up automation session
+    t =    24.46s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    29.00s Get number of matches for: Descendants matching type Alert
+    t =    30.36s Find the Window (First Match)
+    t =    30.37s Getting device orientation
+    t =    30.37s Checking existence of `"reader-text" TextView`
+    t =    30.74s Added attachment named 'candidate-search-landscape'
+    t =    30.74s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    30.82s Find the Window (First Match)
+    t =    30.83s Getting device orientation
+    t =    30.83s Requesting snapshot of accessibility hierarchy for app with pid 78607
+    t =    31.31s Requesting snapshot of accessibility hierarchy for app with pid 78607
+    t =    31.47s Added attachment named 'candidate-search-landscape-ui-tree'
+    t =    31.47s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    31.56s Find the NavigationBar (Element at index 0)
+    t =    31.65s Find the "סינון לפי ספרים" NavigationBar
+    t =    31.74s Find the NavigationBar (Element at index 1)
+    t =    31.83s Find the "חיפוש" NavigationBar
+    t =    31.92s Open com.davidpovarsky.chavrusatext
+    t =    31.92s     Launch com.davidpovarsky.chavrusatext
+    t =    31.92s         Terminate com.davidpovarsky.chavrusatext:78607
+2026-11-22 04:09:15.326 xcodebuild[76404:217651] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-22 04:09:15.326 xcodebuild[76404:217651] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    33.29s         Setting up automation session
+    t =    37.08s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    40.48s Get number of matches for: Descendants matching type Alert
+    t =    41.78s Find the Window (First Match)
+    t =    41.79s Getting device orientation
+    t =    41.79s Checking existence of `"reader-text" TextView`
+    t =    42.13s Added attachment named 'candidate-flags-off-search-landscape-restored-tab-3'
+    t =    42.13s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    42.22s Find the Window (First Match)
+    t =    42.23s Getting device orientation
+    t =    42.23s Requesting snapshot of accessibility hierarchy for app with pid 79094
+    t =    42.63s Requesting snapshot of accessibility hierarchy for app with pid 79094
+    t =    42.81s Added attachment named 'candidate-flags-off-search-landscape-restored-tab-3-ui-tree'
+    t =    42.81s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    43.13s Find the NavigationBar (Element at index 0)
+    t =    43.38s Find the "סינון לפי ספרים" NavigationBar
+    t =    43.58s Find the NavigationBar (Element at index 1)
+    t =    43.80s Find the "חיפוש" NavigationBar
+    t =    43.98s Open com.davidpovarsky.chavrusatext
+    t =    43.98s     Launch com.davidpovarsky.chavrusatext
+    t =    43.98s         Terminate com.davidpovarsky.chavrusatext:79094
+2026-11-22 04:09:28.308 xcodebuild[76404:217651] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-22 04:09:28.308 xcodebuild[76404:217651] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    46.38s         Setting up automation session
+    t =    50.13s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    53.81s Get number of matches for: Descendants matching type Alert
+    t =    55.13s Find the Window (First Match)
+    t =    55.14s Getting device orientation
+    t =    55.14s Checking existence of `"reader-text" TextView`
+    t =    55.47s Added attachment named 'candidate-search-landscape-restored-tab-3'
+    t =    55.47s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    55.55s Find the Window (First Match)
+    t =    55.56s Getting device orientation
+    t =    55.56s Requesting snapshot of accessibility hierarchy for app with pid 80081
+    t =    56.01s Requesting snapshot of accessibility hierarchy for app with pid 80081
+    t =    56.16s Added attachment named 'candidate-search-landscape-restored-tab-3-ui-tree'
+    t =    56.16s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    56.26s Find the NavigationBar (Element at index 0)
+    t =    56.35s Find the "סינון לפי ספרים" NavigationBar
+    t =    56.44s Find the NavigationBar (Element at index 1)
+    t =    56.56s Find the "חיפוש" NavigationBar
+    t =    56.65s Tear Down
+Test Case '-[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateGlobalSearchLandscapeMatchesOriginalNavigation]' passed (57.100 seconds).
+Test Case '-[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateGlobalSearchPortraitMatchesOriginalNavigation]' started.
+    t =     0.00s Start Test at 2026-11-22 04:09:39.465
+    t =     0.02s Set Up
+    t =     0.02s Setting device orientation to Portrait
+    t =     0.03s     Device orientation changed to Portrait
+    t =     0.21s     Interface orientation changed to Portrait
+    t =     0.22s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =     0.73s     Wait for com.apple.springboard to idle
+    t =     0.88s Open com.davidpovarsky.chavrusatext
+    t =     0.88s     Launch com.davidpovarsky.chavrusatext
+    t =     0.88s         Terminate com.davidpovarsky.chavrusatext:80081
+2026-11-22 04:09:41.376 xcodebuild[76404:217651] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-22 04:09:41.376 xcodebuild[76404:217651] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     2.90s         Setting up automation session
+    t =     6.51s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =     9.81s Get number of matches for: Descendants matching type Alert
+    t =    11.26s Find the Window (First Match)
+    t =    11.31s Getting device orientation
+    t =    11.31s Checking existence of `"reader-text" TextView`
+    t =    11.65s Added attachment named 'candidate-flags-off-search-portrait'
+    t =    11.65s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    11.77s Find the Window (First Match)
+    t =    11.79s Getting device orientation
+    t =    11.79s Requesting snapshot of accessibility hierarchy for app with pid 80493
+    t =    12.27s Requesting snapshot of accessibility hierarchy for app with pid 80493
+    t =    12.46s Added attachment named 'candidate-flags-off-search-portrait-ui-tree'
+    t =    12.46s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    12.89s Find the NavigationBar (Element at index 0)
+    t =    13.02s Find the "סינון לפי ספרים" NavigationBar
+    t =    13.16s Find the NavigationBar (Element at index 1)
+    t =    13.26s Find the "חיפוש" NavigationBar
+    t =    13.36s Open com.davidpovarsky.chavrusatext
+    t =    13.36s     Launch com.davidpovarsky.chavrusatext
+    t =    13.36s         Terminate com.davidpovarsky.chavrusatext:80493
+2026-11-22 04:09:53.845 xcodebuild[76404:217651] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-22 04:09:53.845 xcodebuild[76404:217651] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    15.22s         Setting up automation session
+    t =    18.75s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    20.22s Get number of matches for: Descendants matching type Alert
+    t =    22.98s Find the Window (First Match)
+    t =    22.99s Getting device orientation
+    t =    22.99s Checking existence of `"reader-text" TextView`
+    t =    24.30s Added attachment named 'candidate-search-portrait'
+    t =    24.30s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    24.65s Find the Window (First Match)
+    t =    24.69s Getting device orientation
+    t =    24.69s Requesting snapshot of accessibility hierarchy for app with pid 80792
+    t =    25.19s Requesting snapshot of accessibility hierarchy for app with pid 80792
+    t =    25.34s Added attachment named 'candidate-search-portrait-ui-tree'
+    t =    25.35s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    25.44s Find the NavigationBar (Element at index 0)
+    t =    25.53s Find the "סינון לפי ספרים" NavigationBar
+    t =    25.72s Find the NavigationBar (Element at index 1)
+    t =    25.87s Find the "חיפוש" NavigationBar
+    t =    26.06s Open com.davidpovarsky.chavrusatext
+    t =    26.07s     Launch com.davidpovarsky.chavrusatext
+    t =    26.07s         Terminate com.davidpovarsky.chavrusatext:80792
+2026-11-22 04:10:06.542 xcodebuild[76404:217651] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-22 04:10:06.542 xcodebuild[76404:217651] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    27.46s         Setting up automation session
+    t =    31.42s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    35.19s Get number of matches for: Descendants matching type Alert
+    t =    36.49s Find the Window (First Match)
+    t =    36.51s Getting device orientation
+    t =    36.51s Checking existence of `"reader-text" TextView`
+    t =    36.83s Added attachment named 'candidate-flags-off-search-portrait-restored-tab-3'
+    t =    36.83s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    36.91s Find the Window (First Match)
+    t =    36.93s Getting device orientation
+    t =    36.93s Requesting snapshot of accessibility hierarchy for app with pid 81045
+    t =    37.41s Requesting snapshot of accessibility hierarchy for app with pid 81045
+    t =    37.58s Added attachment named 'candidate-flags-off-search-portrait-restored-tab-3-ui-tree'
+    t =    37.58s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    37.66s Find the NavigationBar (Element at index 0)
+    t =    37.77s Find the "סינון לפי ספרים" NavigationBar
+    t =    37.86s Find the NavigationBar (Element at index 1)
+    t =    37.96s Find the "חיפוש" NavigationBar
+    t =    38.05s Open com.davidpovarsky.chavrusatext
+    t =    38.05s     Launch com.davidpovarsky.chavrusatext
+    t =    38.05s         Terminate com.davidpovarsky.chavrusatext:81045
+2026-11-22 04:10:18.600 xcodebuild[76404:217651] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-22 04:10:18.600 xcodebuild[76404:217651] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    39.51s         Setting up automation session
+    t =    43.54s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    47.38s Get number of matches for: Descendants matching type Alert
+    t =    48.71s Find the Window (First Match)
+    t =    48.72s Getting device orientation
+    t =    48.72s Checking existence of `"reader-text" TextView`
+    t =    49.04s Added attachment named 'candidate-search-portrait-restored-tab-3'
+    t =    49.04s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    49.12s Find the Window (First Match)
+    t =    49.14s Getting device orientation
+    t =    49.14s Requesting snapshot of accessibility hierarchy for app with pid 81469
+    t =    49.62s Requesting snapshot of accessibility hierarchy for app with pid 81469
+    t =    49.80s Added attachment named 'candidate-search-portrait-restored-tab-3-ui-tree'
+    t =    49.80s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    49.88s Find the NavigationBar (Element at index 0)
+    t =    49.98s Find the "סינון לפי ספרים" NavigationBar
+    t =    50.07s Find the NavigationBar (Element at index 1)
+    t =    50.16s Find the "חיפוש" NavigationBar
+    t =    50.26s Tear Down
+Test Case '-[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateGlobalSearchPortraitMatchesOriginalNavigation]' passed (50.500 seconds).
+Test Suite 'FaithfulReaderUIAcceptanceTests' passed at 2026-11-22 04:10:29.965.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 107.600 (107.639) seconds
+Test Suite 'Maktabah-iOSUITests.xctest' passed at 2026-11-22 04:10:29.965.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 107.600 (107.639) seconds
+Test Suite 'Selected tests' passed at 2026-11-22 04:10:29.965.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 107.600 (107.640) seconds
+2026-11-22 04:10:30.645 xcodebuild[76404:217651] [MT] IDETestOperationsObserverDebug: 122.478 elapsed -- Testing started completed.
+2026-11-22 04:10:30.645 xcodebuild[76404:217651] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-22 04:10:30.645 xcodebuild[76404:217651] [MT] IDETestOperationsObserverDebug: 122.478 sec, +122.478 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-search.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started
+{
+  "suites": [
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "expected": [
+        "testCandidateGlobalSearchLandscapeMatchesOriginalNavigation"
+      ],
+      "passed": [
+        "testCandidateGlobalSearchLandscapeMatchesOriginalNavigation"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "expected": [
+        "testCandidateGlobalSearchPortraitMatchesOriginalNavigation"
+      ],
+      "passed": [
+        "testCandidateGlobalSearchPortraitMatchesOriginalNavigation"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    }
+  ],
+  "status": "EXECUTED_PASS"
+}
+{
+  "status": "EXECUTED_PASS",
+  "scope": "focused-ui",
+  "database_open": "NOT_VERIFIED_BY_TEST_COUNTS",
+  "summary_sha256": "5adbeec45f8a90d4b902837c2338a5a8f396a70e70c86e8af73ac3f560046f01",
+  "tests_sha256": "cd73de1923705babddeca161ecf8c5a951814c394d5fe513d4304d6fe3fe93c2",
+  "target": "Maktabah-iOSUITests",
+  "executed_total": 2,
+  "required_ui_passed": 2,
+  "required_ui_cases": [
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation"
+  ],
+  "cases": {
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation": {
+      "status": "Passed",
+      "identifier": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation()",
+      "identifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "target": "Maktabah-iOSUITests"
+    },
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation": {
+      "status": "Passed",
+      "identifier": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation()",
+      "identifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "target": "Maktabah-iOSUITests"
+    }
+  },
+  "skipped": 0,
+  "failed": 0
+}
+Exported 8 attachments for: FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation():
+File: 55338341-A972-4BD8-A521-8E1E0143C891.txt, suggested name: "candidate-search-landscape-restored-tab-3-ui-tree_0_09E730F8-C3AE-4E46-95FF-DD36A2CB5E22.txt"
+File: 3A50C73D-4CE4-4C57-93EF-5C0B29DA90BB.png, suggested name: "candidate-search-landscape-restored-tab-3_0_2AFD8C9A-2E21-4F12-A287-E86DACC4A15E.png"
+File: D0B36728-B472-47F5-9845-6B8A0DB43D4F.txt, suggested name: "candidate-flags-off-search-landscape-restored-tab-3-ui-tree_0_41390099-460D-4E8A-B2F9-92058DD62CCB.txt"
+File: 4B186216-EF26-45C7-BE58-50CE498C06AE.png, suggested name: "candidate-flags-off-search-landscape-restored-tab-3_0_49BE2F6A-4A37-48A7-BFA8-E42075C1D3FB.png"
+File: 285B8F74-71CC-4EB6-9B59-72C65B39BF85.txt, suggested name: "candidate-search-landscape-ui-tree_0_6053038E-5B25-41C2-BCDD-2EAED1C4D980.txt"
+File: 6944C976-0A0C-4AAD-AE3C-3C3574A743A5.png, suggested name: "candidate-search-landscape_0_700333B2-4F7C-4809-9CDA-2647D64BDC9A.png"
+File: 6C0B1B4D-1744-460F-8423-10BDB1B1F452.txt, suggested name: "candidate-flags-off-search-landscape-ui-tree_0_0BE2425E-CF7C-4DE1-962D-6AC8564938D3.txt"
+File: 3120B7C9-516D-41D9-AC83-651C65A38DEB.png, suggested name: "candidate-flags-off-search-landscape_0_3619F233-8B68-4F3B-BF8B-7C4FC82AE484.png"
+
+Exported 8 attachments for: FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation():
+File: 0095CB93-A46B-4298-A7F1-A706B2FF656B.txt, suggested name: "candidate-search-portrait-restored-tab-3-ui-tree_0_F7B7B3C5-6994-4CEB-A0D1-3401DAC1E6DA.txt"
+File: AAC76100-607A-46CB-8588-5AA143596EB0.png, suggested name: "candidate-search-portrait-restored-tab-3_0_6192CBA4-FDF1-45F8-94BF-05283B9F48A6.png"
+File: E96A440B-BD8A-41B1-91BA-A5764002556B.txt, suggested name: "candidate-flags-off-search-portrait-restored-tab-3-ui-tree_0_95C993EF-4093-44F2-9B22-1D6078959978.txt"
+File: A833D30A-5F0D-473C-B565-8B4D9D87A5C0.png, suggested name: "candidate-flags-off-search-portrait-restored-tab-3_0_F3456EFC-D7C0-4639-8058-150EBBECD82F.png"
+File: 7630505E-D25D-461F-A73D-E1F00161E2C9.txt, suggested name: "candidate-search-portrait-ui-tree_0_BE0C7B03-4B1A-4213-8FCF-3466A16F6EE8.txt"
+File: 67D87208-B7B0-4DF2-9A4D-DF53CCDF2F7B.png, suggested name: "candidate-search-portrait_0_90DEA253-D805-4676-980D-7D0D841D437A.png"
+File: 651BFC98-DFD9-4693-9CD2-330F70ACEBA8.txt, suggested name: "candidate-flags-off-search-portrait-ui-tree_0_D93B4478-4E58-40C1-83CA-85485E96D3EC.txt"
+File: C7D8AE66-6894-4639-8E3C-6C0AC4B959F3.png, suggested name: "candidate-flags-off-search-portrait_0_BF8830AE-16E7-4DF5-A3F2-DF0A088BA156.png"
+
+Generated manifest file with attachment details: /Users/runner/work/Maktabah/Maktabah/build/artifacts/visual-11-search/manifest.json
+Faithful 11-window-inch: BOOTING {"udid": "4F27587A-00AD-40DF-8C68-A1EA7A0F402D"}
+Monitoring boot status for Faithful 11-inch 5a4bc146 (4F27587A-00AD-40DF-8C68-A1EA7A0F402D).
+[2026-11-22 04:11:16 +0000] Status=2, isTerminal=NO, Elapsed=00:31.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:17 seconds
+
+[2026-11-22 04:11:17 +0000] Status=2, isTerminal=NO, Elapsed=00:32.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:18 seconds
+
+[2026-11-22 04:11:18 +0000] Status=2, isTerminal=NO, Elapsed=00:33.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:19 seconds
+
+[2026-11-22 04:11:19 +0000] Status=2, isTerminal=NO, Elapsed=00:34.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:20 seconds
+
+[2026-11-22 04:11:20 +0000] Status=2, isTerminal=NO, Elapsed=00:35.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:21 seconds
+
+[2026-11-22 04:11:21 +0000] Status=2, isTerminal=NO, Elapsed=00:36.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:22 seconds
+
+[2026-11-22 04:11:22 +0000] Status=2, isTerminal=NO, Elapsed=00:37.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:23 seconds
+
+[2026-11-22 04:11:23 +0000] Status=2, isTerminal=NO, Elapsed=00:38.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.migrator (MCProfile.migrator, user-agnostic)
+		Migration Elapsed:00:24 seconds
+
+[2026-11-22 04:11:24 +0000] Status=2, isTerminal=NO, Elapsed=00:39.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.MobileSafari.migrator (MobileSafari.migrator)
+		Migration Elapsed:00:25 seconds
+
+[2026-11-22 04:11:25 +0000] Status=2, isTerminal=NO, Elapsed=00:40.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.MobileSafari.migrator (MobileSafari.migrator)
+		Migration Elapsed:00:26 seconds
+
+[2026-11-22 04:11:26 +0000] Status=2, isTerminal=NO, Elapsed=00:41.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.MobileSafari.migrator (MobileSafari.migrator)
+		Migration Elapsed:00:27 seconds
+
+[2026-11-22 04:11:27 +0000] Status=2, isTerminal=NO, Elapsed=00:42.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.managedconfiguration.cleanup.migrator (MCCleanup.migrator)
+		Migration Elapsed:00:28 seconds
+
+[2026-11-22 04:11:28 +0000] Status=4294967295, isTerminal=YES, Elapsed=00:43.
+	Finished
+
+Faithful 11-window-inch: INSTALLING {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1, "timeoutSeconds": 600}
+Faithful 11-window-inch: VERIFYING_APP_CONTAINER {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1}
+Faithful 11-window-inch: INSTALL_TIMEOUT {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1}
+Faithful 11-window-inch: COLLECTING_INSTALL_DIAGNOSTICS {"bundle": "com.davidpovarsky.chavrusatext"}
+Faithful 11-window-inch: RESTARTING_OWNED_SIMULATOR {"bundle": "com.davidpovarsky.chavrusatext"}
+Monitoring boot status for Faithful 11-inch 5a4bc146 (4F27587A-00AD-40DF-8C68-A1EA7A0F402D).
+[2026-11-22 04:15:27 +0000] Status=4, isTerminal=NO, Elapsed=00:31.
+	Waiting on System App
+
+[2026-11-22 04:15:28 +0000] Status=4, isTerminal=NO, Elapsed=00:33.
+	Waiting on System App
+
+[2026-11-22 04:15:29 +0000] Status=4, isTerminal=NO, Elapsed=00:33.
+	Waiting on System App
+
+[2026-11-22 04:15:31 +0000] Status=4, isTerminal=NO, Elapsed=00:36.
+	Waiting on System App
+
+[2026-11-22 04:15:31 +0000] Status=4, isTerminal=NO, Elapsed=00:36.
+	Waiting on System App
+
+[2026-11-22 04:15:32 +0000] Status=4, isTerminal=NO, Elapsed=00:36.
+	Waiting on System App
+
+[2026-11-22 04:15:34 +0000] Status=4, isTerminal=NO, Elapsed=00:38.
+	Waiting on System App
+
+[2026-11-22 04:15:34 +0000] Status=4, isTerminal=NO, Elapsed=00:38.
+	Waiting on System App
+
+[2026-11-22 04:15:35 +0000] Status=4, isTerminal=NO, Elapsed=00:39.
+	Waiting on System App
+
+[2026-11-22 04:15:36 +0000] Status=4, isTerminal=NO, Elapsed=00:40.
+	Waiting on System App
+
+[2026-11-22 04:15:37 +0000] Status=4, isTerminal=NO, Elapsed=00:41.
+	Waiting on System App
+
+[2026-11-22 04:15:38 +0000] Status=4, isTerminal=NO, Elapsed=00:42.
+	Waiting on System App
+
+[2026-11-22 04:15:39 +0000] Status=4, isTerminal=NO, Elapsed=00:43.
+	Waiting on System App
+
+[2026-11-22 04:15:40 +0000] Status=4294967295, isTerminal=YES, Elapsed=00:44.
+	Finished
+
+Faithful 11-window-inch: INSTALLING {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 2, "timeoutSeconds": 600}
+Faithful 11-window-inch: VERIFYING_APP_CONTAINER {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 2}
+Faithful 11-window-inch: INSTALLED {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 2}
+Faithful 11-window-inch: PROVISIONING_NATIVE_FIXTURES {}
+com.davidpovarsky.chavrusatext: 86116
+Native UI fixture ready: {'passed': True, 'profileID': 'miniTest10', 'profileVersion': 6, 'bookCount': 10, 'shaMatched': True}
+Faithful 11-window-inch: RUNNING_NATIVE_XCTEST {"suites": ["R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration"]}
+Command line invocation:
+    /Applications/Xcode_27.2.app/Contents/Developer/usr/bin/xcodebuild test-without-building -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -parallel-testing-enabled NO -destination "platform=iOS Simulator,id=4F27587A-00AD-40DF-8C68-A1EA7A0F402D" -derivedDataPath build/DerivedData -resultBundlePath /Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-window.xcresult -test-timeouts-enabled YES -default-test-execution-time-allowance 600 -maximum-test-execution-time-allowance 600 "-only-testing:Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration"
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  AnchoredPopup: https://github.com/exyte/AnchoredPopup.git @ 1.3.1
+  SwiftAISDK: https://github.com/davidpovarsky/swift-ai-sdk.git @ e7bf341
+  OtzariaActionCore: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Actions @ local
+  ChavrusaUIRoutingHost: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/UIRoutingHost @ local
+  Equatable: https://github.com/ordo-one/equatable @ 1.4.1
+  cmark-gfm: https://github.com/swiftlang/swift-cmark @ 0.9.0
+  swift-markdown: https://github.com/swiftlang/swift-markdown.git @ 0.7.3
+  OtzariaUIRouting: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/UIRouting @ local
+  CommandPalette: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette @ local
+  HanlinPlatform: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPlatform @ local
+  iosMath: https://github.com/junyan72/iosMath @ ba9ab77
+  swift-argument-parser: https://github.com/apple/swift-argument-parser @ 1.8.2
+  SwiftyJSON: https://github.com/SwiftyJSON/SwiftyJSON.git @ 5.0.1
+  HighlightSwift: https://github.com/appstefan/highlightswift @ 99c431b
+  HanlinAgentSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinAgentSDK @ local
+  Sparkle: https://github.com/sparkle-project/Sparkle @ 2.9.1
+  SwiftStreamingMarkdown: https://github.com/davidpovarsky/hanlin-streaming-markdown @ 6bde022
+  swift-syntax: https://github.com/swiftlang/swift-syntax.git @ 603.0.2
+  SwiftUI-Shimmer: https://github.com/markiv/SwiftUI-Shimmer @ 1.5.1
+  zstd: https://github.com/facebook/zstd.git @ 1.5.7
+  ZIPFoundation: https://github.com/weichsel/ZIPFoundation.git @ 0.9.20
+  TorahInspectorKit: https://github.com/davidpovarsky/TorahInspectorKit.git @ 23db0f8
+  FloatingPanel: https://github.com/scenee/FloatingPanel.git @ 3.2.4
+  HanlinPresentationSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPresentationSDK @ local
+
+Writing result bundle at path:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-window.xcresult
+
+2026-11-22 04:19:00.111313+0000 Maktabah-iOSUITests-Runner[89071:262309] [Default] Running tests...
+2026-11-22 04:19:00.223699+0000 Maktabah-iOSUITests-Runner[89071:262309] [UIKit App Config] Update the Info.plist: Launch screens will soon be required.
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-11-22 04:19:10.379.
+Test Suite 'Maktabah-iOSUITests.xctest' started at 2026-11-22 04:19:10.383.
+Test Suite 'R27NativePadTests' started at 2026-11-22 04:19:10.383.
+Test Case '-[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapPaletteKeyboardDispatchCalibration]' started.
+    t =     0.01s Start Test at 2026-11-22 04:19:10.394
+2026-11-22 04:19:16.046 xcodebuild[86722:254317] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-22 04:19:16.047 xcodebuild[86722:254317] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.14s Set Up
+    t =     0.14s Setting device orientation to Landscape Left
+    t =     0.16s     Device orientation changed to Landscape Left
+    t =     0.24s     Interface orientation changed to Landscape Right
+    t =     0.47s     Wait for com.apple.springboard to idle
+    t =     0.75s Open com.davidpovarsky.chavrusatext
+    t =     0.75s     Launch com.davidpovarsky.chavrusatext
+objc[89071]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.50yShh/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x108558310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.50yShh/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x10858c398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     9.90s         Setting up automation session
+    t =    14.96s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    19.71s Get number of matches for: Descendants matching type Alert
+    t =    21.31s Waiting 60.0s for "reader-text" TextView to exist
+    t =    22.35s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    22.35s         Checking existence of `"reader-text" TextView`
+    t =    23.58s Find the "reader-text" TextView
+    t =    23.87s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    23.97s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    25.16s Checking `Expect predicate `value MATCHES "(?s).{31,}"` for object "reader-text" TextView`
+    t =    25.16s     Find the "reader-text" TextView
+    t =    25.28s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    26.34s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    26.34s         Checking existence of `"reader-header-title" StaticText`
+    t =    26.45s Find the "reader-header-title" StaticText
+    t =    26.56s Find the "reader-text" TextView
+    t =    26.69s Waiting 15.0s for "reader-current-locator" StaticText to exist
+    t =    27.71s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-current-locator" StaticText`
+    t =    27.71s         Checking existence of `"reader-current-locator" StaticText`
+    t =    27.82s Find the "reader-current-locator" StaticText
+    t =    27.93s Find the "reader-header-title" StaticText
+    t =    28.03s Waiting 15.0s for "reader-command-palette-launcher" Button to exist
+    t =    29.04s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-command-palette-launcher" Button`
+    t =    29.04s         Checking existence of `"reader-command-palette-launcher" Button`
+    t =    29.18s Find the "reader-command-palette-launcher" Button
+    t =    29.36s Find the Window (First Match)
+    t =    29.37s Find the "reader-command-palette-launcher" Button
+    t =    29.49s Tap "reader-command-palette-launcher" Button
+    t =    29.49s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    29.50s     Find the "reader-command-palette-launcher" Button
+    t =    29.61s     Check for interrupting elements affecting "reader-command-palette-launcher" Button
+    t =    29.72s         Wait for com.apple.springboard to idle
+    t =    29.77s     Synthesize event
+    t =    30.26s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    32.72s Waiting 15.0s for "reader-library-command-palette" Other to exist
+    t =    33.72s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-library-command-palette" Other`
+    t =    33.72s         Checking existence of `"reader-library-command-palette" Other`
+    t =    35.03s Get number of matches for: Elements matching predicate 'placeholderValue == "חפש ספר בספרייה…"'
+    t =    35.19s Waiting 15.0s for "command-palette-close" Button to exist
+    t =    36.22s     Checking `Expect predicate `existsNoRetry == 1` for object "command-palette-close" Button`
+    t =    36.22s         Checking existence of `"command-palette-close" Button`
+    t =    36.43s Find the "command-palette-close" Button
+    t =    36.62s Find the Window (First Match)
+    t =    36.65s Find the "command-palette-close" Button
+    t =    37.38s Tap "command-palette-close" Button
+    t =    37.38s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    37.38s     Find the "command-palette-close" Button
+    t =    37.69s     Check for interrupting elements affecting "command-palette-close" Button
+    t =    37.92s         Wait for com.apple.springboard to idle
+    t =    37.98s     Synthesize event
+    t =    38.40s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    39.51s Get number of matches for: Elements matching predicate 'placeholderValue == "חפש ספר בספרייה…"'
+    t =    39.68s Find the Window (First Match)
+    t =    39.70s Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =    40.06s Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =    40.26s Added attachment named 'r27-calibration-actual-close-button-dismissed-hierarchy'
+    t =    40.48s Added attachment named 'r27-calibration-actual-close-button-dismissed-screen'
+    t =    40.49s Waiting 60.0s for "reader-text" TextView to exist
+    t =    41.52s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    41.52s         Checking existence of `"reader-text" TextView`
+    t =    42.66s Find the "reader-text" TextView
+    t =    42.80s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    42.88s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    44.03s Checking `Expect predicate `value MATCHES "(?s).{31,}"` for object "reader-text" TextView`
+    t =    44.03s     Find the "reader-text" TextView
+    t =    44.38s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    45.45s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    45.45s         Checking existence of `"reader-header-title" StaticText`
+    t =    45.55s Find the "reader-header-title" StaticText
+    t =    45.65s Find the "reader-text" TextView
+    t =    45.75s Waiting 15.0s for "reader-current-locator" StaticText to exist
+    t =    46.79s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-current-locator" StaticText`
+    t =    46.79s         Checking existence of `"reader-current-locator" StaticText`
+    t =    46.90s Find the "reader-current-locator" StaticText
+    t =    47.02s Find the "reader-header-title" StaticText
+    t =    47.12s Waiting 15.0s for "reader-command-palette-launcher" Button to exist
+    t =    48.18s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-command-palette-launcher" Button`
+    t =    48.18s         Checking existence of `"reader-command-palette-launcher" Button`
+    t =    48.30s Find the "reader-command-palette-launcher" Button
+    t =    48.50s Find the Window (First Match)
+    t =    48.53s Find the "reader-command-palette-launcher" Button
+    t =    48.65s Tap "reader-command-palette-launcher" Button
+    t =    48.65s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    48.65s     Find the "reader-command-palette-launcher" Button
+    t =    48.77s     Check for interrupting elements affecting "reader-command-palette-launcher" Button
+    t =    48.87s         Wait for com.apple.springboard to idle
+    t =    48.89s     Synthesize event
+    t =    49.37s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    50.20s Waiting 15.0s for "reader-library-command-palette" Other to exist
+    t =    51.26s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-library-command-palette" Other`
+    t =    51.26s         Checking existence of `"reader-library-command-palette" Other`
+    t =    51.51s Get number of matches for: Elements matching predicate 'placeholderValue == "חפש ספר בספרייה…"'
+    t =    51.64s Waiting 15.0s for TextField (First Match) to exist
+    t =    52.68s     Checking `Expect predicate `existsNoRetry == 1` for object TextField (First Match)`
+    t =    52.68s         Checking existence of `TextField (First Match)`
+    t =    53.00s Find the TextField (First Match)
+    t =    53.23s Find the Window (First Match)
+    t =    53.24s Find the "חפש ספר בספרייה…" TextField
+    t =    53.58s Tap "חפש ספר בספרייה…" TextField
+    t =    53.58s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    53.59s     Find the "חפש ספר בספרייה…" TextField
+    t =    53.91s     Check for interrupting elements affecting "חפש ספר בספרייה…" TextField
+    t =    54.05s         Wait for com.apple.springboard to idle
+    t =    54.08s     Synthesize event
+    t =    54.38s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    54.39s Find the Window (First Match)
+    t =    54.50s Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =    55.44s Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =    55.72s Added attachment named 'r27-calibration-full-window-input-hierarchy'
+    t =    56.07s Added attachment named 'r27-calibration-full-window-input-screen'
+    t =    56.07s Get all elements bound by index for: Elements matching predicate 'identifier BEGINSWITH "command-palette-row-"'
+    t =    57.54s Find the Button (Element at index 0)
+    t =    58.82s Find the Button (Element at index 1)
+    t =    59.62s Find the Button (Element at index 2)
+    t =    60.37s Find the Button (Element at index 3)
+    t =    60.68s Find the Button (Element at index 4)
+    t =    60.94s Find the Button (Element at index 5)
+    t =    61.17s Find the Button (Element at index 6)
+    t =    61.39s Get number of matches for: Elements matching predicate 'isSelected == 1'
+    t =    61.59s Find the Button (First Match)
+    t =    62.52s Type '↓' key (XCUIKeyboardKeyDownArrow) with no modifiers
+    t =    62.52s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    62.52s     Find the TextField (First Match)
+    t =    63.05s     Check for interrupting elements affecting "חפש ספר בספרייה…" TextField
+    t =    63.29s         Wait for com.apple.springboard to idle
+    t =    63.32s     Synthesize event
+    t =    64.00s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    65.55s Get number of matches for: Elements matching predicate 'isSelected == 1'
+    t =    66.44s Find the Button (First Match)
+    t =    67.54s Find the Window (First Match)
+    t =    67.56s Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =    68.46s Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =    68.73s Added attachment named 'r27-calibration-keycommand-down-moved-selection-hierarchy'
+    t =    69.01s Added attachment named 'r27-calibration-keycommand-down-moved-selection-screen'
+    t =    69.01s Type '↑' key (XCUIKeyboardKeyUpArrow) with no modifiers
+    t =    69.01s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    69.02s     Find the TextField (First Match)
+    t =    69.71s     Check for interrupting elements affecting "חפש ספר בספרייה…" TextField
+    t =    69.84s         Wait for com.apple.springboard to idle
+    t =    69.89s     Synthesize event
+    t =    70.44s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    72.03s Get number of matches for: Elements matching predicate 'isSelected == 1'
+    t =    72.74s Find the Button (First Match)
+    t =    73.49s Find the Window (First Match)
+    t =    73.62s Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =    74.59s Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =    74.83s Added attachment named 'r27-calibration-keycommand-up-restored-selection-hierarchy'
+    t =    75.08s Added attachment named 'r27-calibration-keycommand-up-restored-selection-screen'
+    t =    77.19s Added attachment named 'r27-hid-transport-only-41'
+    t =    77.19s Find the Window (First Match)
+    t =    77.21s Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =    77.59s Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =    77.83s Added attachment named 'r27-calibration-full-window-after-escape-hierarchy'
+    t =    78.01s Added attachment named 'r27-calibration-full-window-after-escape-screen'
+    t =    79.06s Get number of matches for: Elements matching predicate 'placeholderValue == "חפש ספר בספרייה…"'
+    t =    79.47s Checking existence of `"reader-library-command-palette" Other`
+    t =    79.77s Find the Window (First Match)
+    t =    79.78s Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =    80.08s Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =    80.26s Added attachment named 'r27-calibration-empty-escape-dismissed-hierarchy'
+    t =    80.43s Added attachment named 'r27-calibration-empty-escape-dismissed-screen'
+    t =    80.44s Waiting 60.0s for "reader-text" TextView to exist
+    t =    81.46s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    81.46s         Checking existence of `"reader-text" TextView`
+    t =    83.01s Find the "reader-text" TextView
+    t =    83.14s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    83.22s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    84.31s Checking `Expect predicate `value MATCHES "(?s).{31,}"` for object "reader-text" TextView`
+    t =    84.31s     Find the "reader-text" TextView
+    t =    84.43s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    85.46s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    85.46s         Checking existence of `"reader-header-title" StaticText`
+    t =    85.56s Find the "reader-header-title" StaticText
+    t =    85.68s Find the "reader-text" TextView
+    t =    85.82s Waiting 15.0s for "reader-current-locator" StaticText to exist
+    t =    86.88s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-current-locator" StaticText`
+    t =    86.88s         Checking existence of `"reader-current-locator" StaticText`
+    t =    86.99s Find the "reader-current-locator" StaticText
+    t =    87.10s Find the "reader-header-title" StaticText
+    t =    87.22s Waiting 15.0s for "reader-command-palette-launcher" Button to exist
+    t =    88.23s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-command-palette-launcher" Button`
+    t =    88.23s         Checking existence of `"reader-command-palette-launcher" Button`
+    t =    88.33s Find the "reader-command-palette-launcher" Button
+    t =    88.49s Find the Window (First Match)
+    t =    88.51s Find the "reader-command-palette-launcher" Button
+    t =    88.62s Tap "reader-command-palette-launcher" Button
+    t =    88.62s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    88.63s     Find the "reader-command-palette-launcher" Button
+    t =    88.75s     Check for interrupting elements affecting "reader-command-palette-launcher" Button
+    t =    88.84s         Wait for com.apple.springboard to idle
+    t =    88.89s Ignoring failure to get hierarchy for remote element in process 91455 (Error getting main window kAXErrorServerNotFound)
+    t =    88.89s Ignoring failure to get hierarchy for remote element in process 91455 (Error getting main window kAXErrorServerNotFound)
+    t =    88.90s     Synthesize event
+    t =    89.24s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    90.24s Waiting 15.0s for "reader-library-command-palette" Other to exist
+    t =    91.25s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-library-command-palette" Other`
+    t =    91.25s         Checking existence of `"reader-library-command-palette" Other`
+    t =    91.49s Get number of matches for: Elements matching predicate 'placeholderValue == "חפש ספר בספרייה…"'
+    t =    91.64s Waiting 15.0s for TextField (First Match) to exist
+    t =    92.67s     Checking `Expect predicate `existsNoRetry == 1` for object TextField (First Match)`
+    t =    92.67s         Checking existence of `TextField (First Match)`
+    t =    93.00s Find the TextField (First Match)
+    t =    93.24s Find the Window (First Match)
+    t =    93.26s Find the "חפש ספר בספרייה…" TextField
+    t =    93.59s Tap "חפש ספר בספרייה…" TextField
+    t =    93.59s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    93.59s     Find the "חפש ספר בספרייה…" TextField
+    t =    93.88s     Check for interrupting elements affecting "חפש ספר בספרייה…" TextField
+    t =    94.00s         Wait for com.apple.springboard to idle
+    t =    94.03s Ignoring failure to get hierarchy for remote element in process 91455 (Error getting main window kAXErrorServerNotFound)
+    t =    94.03s Ignoring failure to get hierarchy for remote element in process 91455 (Error getting main window kAXErrorServerNotFound)
+    t =    94.04s     Synthesize event
+    t =    94.34s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    94.34s Type 'ספר החינוך' into TextField (First Match)
+    t =    94.34s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    94.34s     Find the TextField (First Match)
+    t =    95.26s     Check for interrupting elements affecting "חפש ספר בספרייה…" TextField
+    t =    95.41s         Wait for com.apple.springboard to idle
+    t =    95.44s Ignoring failure to get hierarchy for remote element in process 91455 (Error getting main window kAXErrorServerNotFound)
+    t =    95.44s Ignoring failure to get hierarchy for remote element in process 91455 (Error getting main window kAXErrorServerNotFound)
+    t =    95.45s     Synthesize event
+    t =    95.83s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    96.48s Find the TextField (First Match)
+    t =    96.99s Waiting 15.0s for Button (First Match) to exist
+    t =    98.11s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    98.11s         Checking existence of `Button (First Match)`
+    t =    98.66s Find the Button (First Match)
+    t =    99.28s Find the Window (First Match)
+    t =    99.30s Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =    99.92s Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =   100.18s Added attachment named 'r27-calibration-full-window-filtered-fixture-hierarchy'
+    t =   100.40s Added attachment named 'r27-calibration-full-window-filtered-fixture-screen'
+    t =   101.49s Added attachment named 'r27-hid-transport-only-41'
+    t =   102.53s Get number of matches for: Elements matching predicate 'placeholderValue == "חפש ספר בספרייה…"'
+    t =   102.65s Checking existence of `"reader-library-command-palette" Other`
+    t =   102.76s Find the Window (First Match)
+    t =   102.77s Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =   103.13s Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =   103.30s Added attachment named 'r27-calibration-filtered-escape-dismissed-hierarchy'
+    t =   103.50s Added attachment named 'r27-calibration-filtered-escape-dismissed-screen'
+    t =   103.50s Waiting 60.0s for "reader-text" TextView to exist
+    t =   104.51s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =   104.51s         Checking existence of `"reader-text" TextView`
+    t =   105.64s Find the "reader-text" TextView
+    t =   105.77s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =   105.86s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =   106.99s Checking `Expect predicate `value MATCHES "(?s).{31,}"` for object "reader-text" TextView`
+    t =   107.00s     Find the "reader-text" TextView
+    t =   107.14s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =   108.14s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =   108.14s         Checking existence of `"reader-header-title" StaticText`
+    t =   108.26s Find the "reader-header-title" StaticText
+    t =   108.37s Find the "reader-text" TextView
+    t =   108.49s Waiting 15.0s for "reader-current-locator" StaticText to exist
+    t =   109.51s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-current-locator" StaticText`
+    t =   109.51s         Checking existence of `"reader-current-locator" StaticText`
+    t =   109.63s Find the "reader-current-locator" StaticText
+    t =   109.79s Find the "reader-header-title" StaticText
+    t =   109.90s Tear Down
+    t =   109.90s     Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =   110.42s     Requesting snapshot of accessibility hierarchy for app with pid 89388
+    t =   110.59s     Added attachment named 'r27-final-native-hierarchy'
+    t =   110.77s     Added attachment named 'r27-final-native-screen'
+    t =   110.77s     Setting device orientation to Portrait
+    t =   110.78s         Device orientation changed to Portrait
+    t =   110.89s         Interface orientation changed to Portrait
+    t =   110.96s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =   111.58s         Wait for com.apple.springboard to idle
+Test Case '-[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapPaletteKeyboardDispatchCalibration]' passed (112.481 seconds).
+Test Suite 'R27NativePadTests' passed at 2026-11-22 04:21:02.875.
+	 Executed 1 test, with 0 failures (0 unexpected) in 112.481 (112.492) seconds
+Test Suite 'Maktabah-iOSUITests.xctest' passed at 2026-11-22 04:21:02.876.
+	 Executed 1 test, with 0 failures (0 unexpected) in 112.481 (112.493) seconds
+Test Suite 'Selected tests' passed at 2026-11-22 04:21:02.876.
+	 Executed 1 test, with 0 failures (0 unexpected) in 112.481 (112.497) seconds
+2026-11-22 04:21:03.953 xcodebuild[86722:254317] [MT] IDETestOperationsObserverDebug: 139.099 elapsed -- Testing started completed.
+2026-11-22 04:21:03.953 xcodebuild[86722:254317] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-22 04:21:03.953 xcodebuild[86722:254317] [MT] IDETestOperationsObserverDebug: 139.099 sec, +139.099 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-window.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started
+{
+  "suites": [
+    {
+      "suite": "R27NativePadTests",
+      "selection": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "expected": [
+        "testNormalBootstrapPaletteKeyboardDispatchCalibration"
+      ],
+      "passed": [
+        "testNormalBootstrapPaletteKeyboardDispatchCalibration"
+      ],
+      "failed": [],
+      "missing": [],
+      "status": "EXECUTED_PASS"
+    }
+  ],
+  "status": "EXECUTED_PASS"
+}
+{
+  "status": "EXECUTED_PASS",
+  "scope": "focused-ui",
+  "database_open": "NOT_VERIFIED_BY_TEST_COUNTS",
+  "summary_sha256": "c8f25ca11a2b68134b9f010ce0d62afe1d9ad172b57cac597a1c794072ba5ca9",
+  "tests_sha256": "30e2268d616298ce8d89776731231116a24dfa0a157d2af125803908a421ab11",
+  "target": "Maktabah-iOSUITests",
+  "executed_total": 1,
+  "required_ui_passed": 1,
+  "required_ui_cases": [
+    "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration"
+  ],
+  "cases": {
+    "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration": {
+      "status": "Passed",
+      "identifier": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration()",
+      "identifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "target": "Maktabah-iOSUITests"
+    }
+  },
+  "skipped": 0,
+  "failed": 0
+}
+Exported 20 attachments for: R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration():
+File: 46C4FAE0-C1A0-48A7-839A-1BACC5217A73.png, suggested name: "r27-final-native-screen_0_425ED383-5E56-4D88-B5C3-ADBA446FF35D.png"
+File: 89EC0AB9-6B1A-414F-8F2C-F7FF08F7D05E.txt, suggested name: "r27-final-native-hierarchy_0_39DF8D45-E569-4428-8DBD-60A8BDD6F65A.txt"
+File: 4B8694DC-1008-4642-BB4E-597FF9AEEEFB.png, suggested name: "r27-calibration-filtered-escape-dismissed-screen_0_B393FA55-0F97-43FA-88F4-C3A17361359D.png"
+File: AAF7F8EF-AC81-4699-8B53-97AC4A370C13.txt, suggested name: "r27-calibration-filtered-escape-dismissed-hierarchy_0_79748AA0-28D6-4464-B67B-06673C937E72.txt"
+File: 3CCA7E03-08F2-4029-8D9C-E2D824D7A8BD.json, suggested name: "r27-hid-transport-only-41_0_39715118-8067-4207-AAB0-633D570F412D.json"
+File: 4919A42F-42EE-4328-8841-2AD0BDD90028.png, suggested name: "r27-calibration-full-window-filtered-fixture-screen_0_20F90B4A-D1D9-4C41-8B16-E57BAB0B97F6.png"
+File: BFE5FD2B-7E4C-44D3-AA57-7AF4B80A87A1.txt, suggested name: "r27-calibration-full-window-filtered-fixture-hierarchy_0_6780A342-D5CC-4E83-8E17-8619AC7838CC.txt"
+File: 349247EA-A497-49C1-A773-B45B34AF1E32.png, suggested name: "r27-calibration-empty-escape-dismissed-screen_0_A8F8CCD0-6728-4221-8C2C-79BE59D4C95E.png"
+File: 23259E87-9AA9-4B1C-BE08-BF706D94BB3C.txt, suggested name: "r27-calibration-empty-escape-dismissed-hierarchy_0_21370071-7A3E-4DAE-A911-7CA50FCEA5C1.txt"
+File: 5D34795F-A8A7-4D5C-823E-531E67F76233.png, suggested name: "r27-calibration-full-window-after-escape-screen_0_572303B1-E373-4DFE-8165-AEE2601C9E40.png"
+File: 3D45AC58-C584-4994-8327-4D3AC04D4924.txt, suggested name: "r27-calibration-full-window-after-escape-hierarchy_0_C0224A06-BA1F-42C6-86FF-1D91AEB116C3.txt"
+File: B048300C-628F-4921-8FF6-09D225A9CA74.json, suggested name: "r27-hid-transport-only-41_0_756C8E35-D775-4CF3-864F-7734372EE486.json"
+File: F30B4891-9858-496C-8C70-9B546820A04C.png, suggested name: "r27-calibration-keycommand-up-restored-selection-screen_0_7C109BB1-3A2C-45E7-A93E-7C5E7A5BFE17.png"
+File: BA27E07F-2A44-4577-9DF5-B8462CE2DE56.txt, suggested name: "r27-calibration-keycommand-up-restored-selection-hierarchy_0_215C262F-0C8D-4117-BF1C-B8819013D65F.txt"
+File: 5D079FC8-239B-41F0-A147-73EA5FA8E7CE.png, suggested name: "r27-calibration-keycommand-down-moved-selection-screen_0_A9957FA0-1ED6-47C9-8F27-41098F0D4A92.png"
+File: 26813499-550F-49AA-A5E2-75585641126A.txt, suggested name: "r27-calibration-keycommand-down-moved-selection-hierarchy_0_8F1B5F53-945D-40E3-88C3-F2A90646C97A.txt"
+File: FDAEF875-65D6-4EC4-8E8D-FF646F681C04.png, suggested name: "r27-calibration-full-window-input-screen_0_BF93A6FF-5302-4197-A8C7-1D99EB6F7956.png"
+File: 74F0AF27-1649-4FB2-B88C-3F7947D3C6BC.txt, suggested name: "r27-calibration-full-window-input-hierarchy_0_214C73C5-6640-4180-B4F4-03CC87CBA7B7.txt"
+File: C03E2AD2-00DF-454B-B2A1-015803BABB1A.png, suggested name: "r27-calibration-actual-close-button-dismissed-screen_0_B21FB7B9-8E81-4833-A7F3-6817A1DCE7BB.png"
+File: AD2C1D30-2716-42FD-8A25-289DF5634419.txt, suggested name: "r27-calibration-actual-close-button-dismissed-hierarchy_0_ED5F2D22-42EB-4F38-AD1E-9D2C1AFD5112.txt"
+
+Generated manifest file with attachment details: /Users/runner/work/Maktabah/Maktabah/build/artifacts/visual-11-window/manifest.json
+{"status": "CAPTURED", "device_udid": "4F27587A-00AD-40DF-8C68-A1EA7A0F402D", "command": ["xcrun", "simctl", "spawn", "4F27587A-00AD-40DF-8C68-A1EA7A0F402D", "log", "show", "--style", "json", "--last", "15m", "--info", "--debug", "--predicate", "subsystem == \"com.davidpovarsky.chavrusatext\" AND category == \"R27PaletteInput\""], "acceptance_effect": "NONE; diagnostic capture is not a UI pass", "exit_code": 0, "truncated": false, "path": "palette-input-11-window.log", "bytes": 46, "sha256": "6e6d58451b11b191c4192fb324cbdba3cdce95725feb1ffa7a0f0469aa25c386", "matching_events": "UNPARSED; inspect retained raw diagnostics"}
+Native acceptance failed for ['11-reader']; see per-device logs and the complete matrix. Release is prohibited.
