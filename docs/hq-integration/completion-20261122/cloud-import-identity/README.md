@@ -39,3 +39,7 @@ The ordinary HQ build uses its existing source-bound inputs and optional --origi
 The initial edit script job_a1cd21e7b7f7 timed out after retaining the complete baseline source archive and before any product edits. A fresh exact-state/process audit validated all 13 archived hashes and no product change before guarded continuation job_173e87409928 applied the patch. No duplicate candidate run was spawned.
 
 PRE_EDIT_REVIEW.json records current authorization and scope. The original Repository SQL hook and Xcode target registration are protected upstream files and must be included in the final unsigned full-index review package. Authentic attestation/signature, final Native/Release/TestFlight and two-device cross-app acceptance remain separate gates.
+
+## Source publication preflight
+
+Bound checkout 385fffafb5b014f0777b3100151b5b6d0e75eed9 passed the actual ordinary HQ source preflight, all 93 reviewed Apple input hashes, and the original editor source context with 270 exact execution inputs (job_7f127a427db8). The earlier stale Project build-exclusion pin rejection on d7a988f3 is retained, together with the exact eight-line registration delta and corrected existing manifest digest. No test exclusion rule was weakened. The single dedicated Apple run is frozen at 385fffaf; later evidence-only commits preserve the same application and compiled inputs.

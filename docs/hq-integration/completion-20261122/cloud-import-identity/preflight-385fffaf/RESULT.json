@@ -1,0 +1,11 @@
+{
+  "apple_exact_inputs": 93,
+  "apple_runtime_executed": 0,
+  "application_source": "5d0a11f6a799bee9deb23dc91b29e832bec14335",
+  "head": "385fffafb5b014f0777b3100151b5b6d0e75eed9",
+  "native_runtime_executed": 0,
+  "ordinary_hq_preflight": true,
+  "original_editor_exact_execution_inputs": 270,
+  "sdk_admission_enabled": false,
+  "status": "PASS_SOURCE_CLOSURES_ONLY"
+}
