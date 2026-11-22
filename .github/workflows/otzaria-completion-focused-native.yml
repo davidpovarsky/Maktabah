@@ -28,6 +28,8 @@ jobs:
         run: python3 Scripts/CI/completion-focused-native.py prepare
       - name: Select an existing SDK-matched runtime
         run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
+      - name: Compile original UI tests with the selected Apple SDK before the full app build
+        run: python3 Scripts/CI/typecheck-faithful-ui-tests.py --ui-compile-only
       - uses: actions/setup-node@v4
         with:
           node-version: 22

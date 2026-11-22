@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
 """Cheap real-SDK compile of self-contained tests, including SIL isolation checks."""
+import argparse
 import json
 import hashlib
 import runpy
 from pathlib import Path
 import subprocess
 import sys
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--ui-compile-only", action="store_true",
+                    help="Compile the original UI test sources with the actual Apple SDK, without running other suites")
+args = parser.parse_args()
 
 membership_code = 0
 if Path("Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift").is_file():
@@ -62,6 +68,19 @@ report = {"sourceSHA": subprocess.check_output(["git", "rev-parse", "HEAD"], tex
           "warningCount": result.stdout.count("warning:"),
           "sourceHashes": {path: hashlib.sha256(Path(path).read_bytes()).hexdigest() for path in ui_sources},
           "notRuntimeAcceptance": True, "nativeUITestsExecuted": 0}
+# The focused Native continuation needs this actual Apple compiler gate before
+# its full app build. Keep unrelated, already-qualified source suites on the
+# existing default route; this early mode never grants Native execution credit.
+if args.ui_compile_only:
+    report.update({"scope": "UI_TEST_SDK_COMPILE_ONLY", "command": command,
+                   "compilerExitCode": result.returncode,
+                   "appMembershipStatus": "PASS" if membership_code == 0 else "FAIL",
+                   "aggregateSDKStatus": "PASS" if not (result.returncode or membership_code) else "FAIL"})
+    (artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    print(json.dumps(report, indent=2))
+    print(result.stdout)
+    raise SystemExit(result.returncode or membership_code)
+
 # Validate the exact selected declarations with this actual Apple Swift
 # frontend too. Syntax/declaration evidence never grants a Native execution.
 contract = json.loads(Path("docs/hq-integration/runtime27/R27_CASES.json").read_text())
