@@ -1,0 +1,64 @@
+--- a/.github/workflows/otzaria-hanlin-live-native.yml
++++ b/.github/workflows/otzaria-hanlin-live-native.yml
+@@ -56,6 +56,36 @@
+           assert result.returncode == 0 and len(raw) <= 65536
+           assert 'get_app_container' in text and 'group' in text.lower(), 'Actual simctl group selector interface unavailable'
+           PYGROUP
++      - name: Prepare and verify the original SQL decoder dependency
++        id: live_python
++        run: |
++          python3 - <<'PYENV'
++          import pathlib, venv
++          environment = pathlib.Path('build/hanlin-live-python')
++          assert not environment.exists() and not environment.is_symlink(), 'Preserve an existing Python environment'
++          venv.EnvBuilder(with_pip=True).create(environment)
++          PYENV
++          build/hanlin-live-python/bin/python -m pip install --disable-pip-version-check --only-binary=:all: zstandard==0.25.0
++          build/hanlin-live-python/bin/python - <<'PYDECODER'
++          import hashlib, importlib.metadata, json, pathlib, runpy, sqlite3, sys
++          import zstandard
++          source = pathlib.Path('Scripts/verify-otzaria-mini-parity.py')
++          original = runpy.run_path(str(source))['decoder']
++          sample = 'Original SQL decoder dependency preflight — מקור'.encode('utf-8')
++          compressed = zstandard.ZstdCompressor().compress(sample)
++          with sqlite3.connect(':memory:') as connection:
++              connection.execute('CREATE TABLE zstd_dict (id INTEGER PRIMARY KEY, dict BLOB NOT NULL)')
++              assert original(connection)(compressed).encode('utf-8') == sample
++          report = {'status': 'ORIGINAL_DECODER_DEPENDENCY_SMOKE_PASS',
++                    'python_executable': sys.executable, 'python_version': sys.version,
++                    'zstandard_version': importlib.metadata.version('zstandard'),
++                    'original_decoder_sha256': hashlib.sha256(source.read_bytes()).hexdigest(),
++                    'compressed_sample_sha256': hashlib.sha256(compressed).hexdigest(),
++                    'sample_sha256': hashlib.sha256(sample).hexdigest(),
++                    'actual_native_fixture_checked': False, 'provider_called': False}
++          assert report['zstandard_version'] == '0.25.0'
++          pathlib.Path('build/hanlin-live-preflight/python-oracle-environment.json').write_text(json.dumps(report, indent=2) + '\n')
++          PYDECODER
+       - uses: actions/setup-node@v4
+         with:
+           node-version: 22
+@@ -128,11 +158,11 @@
+           key: ${{ steps.runtime27_cache_key.outputs.key }}
+       - name: Execute one original live Native case and admit bounded evidence
+         id: live_case
+-        if: ${{ always() && steps.live_credential.outputs.configured == 'true' }}
++        if: ${{ always() && steps.live_credential.outputs.configured == 'true' && steps.live_python.outcome == 'success' && steps.runtime27_cache_ready.outputs.ready == 'true' }}
+         env:
+           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           OTZARIA_HANLIN_LIVE_API_KEY: ${{ secrets.OTZARIA_LIVE_GEMINI_API_KEY }}
+-        run: python3 Scripts/CI/runtime27-hanlin-live.py
++        run: build/hanlin-live-python/bin/python Scripts/CI/runtime27-hanlin-live.py
+       - name: Verify private input removal and original evidence restoration
+         id: live_cleanup
+         if: always()
+--- a/Scripts/CI/runtime27-hanlin-live.py
++++ b/Scripts/CI/runtime27-hanlin-live.py
+@@ -467,6 +467,8 @@
+             live.admit(ROOT / "build/hq-stage2/result.json", "original-build-result.json")
+             live.admit(ROOT / "build/hanlin-live-preflight/app-group-resolver-interface.json",
+                        "app-group-resolver-interface.json")
++            live.admit(ROOT / "build/hanlin-live-preflight/python-oracle-environment.json",
++                       "python-oracle-environment.json")
+             for name in ["faithful-ipad-matrix.json", "test-simulator-11.log", "test-case-execution-11.json"]:
+                 live.admit(raw / name, name)
+             for name in ["miniTest10-native-fixture-install-11.json", "miniTest10-native-fixture-install-11-attempt-1.json",
