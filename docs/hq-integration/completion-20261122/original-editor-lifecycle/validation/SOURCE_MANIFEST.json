@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "base": "813fbe79c1b325ee21a8c2be78bb86577f44bf6c",
+  "extraction": {
+    "presentation": "exact complete private class, including Observation annotation and isolated deinit; original wrappers excluded",
+    "lifetime": "exact complete original lifetime",
+    "error": "exact original error enum",
+    "dependencies": "explicit SDK/data/filesystem probes; no Apple/framework/SQLite/CloudKit acceptance"
+  },
+  "inputs": [
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift",
+      "sha256": "414a59be4e55a60388afeeee8253b3fbfde129c5dbd7bed108e5f1fc5adb1a93",
+      "bytes": 19746
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+      "sha256": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb",
+      "bytes": 3885
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/original-editor-lifecycle/probes.swift",
+      "sha256": "327f06e5d020ef5189a2aef2898aaf5b6e0c05521a6d4002ce8074d5d97aaccb",
+      "bytes": 8424
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/original-editor-lifecycle/controls.swift",
+      "sha256": "dc7086513472c98ce57d6bebb72c49d32b48ae2f2b1eb8f5c85c94df940dee4e",
+      "bytes": 6293
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/original-editor-lifecycle/run-presentation-controls.py",
+      "sha256": "4976e764f2c7258fd84d2d470c3865a0a5fa82c9eabca1732584a5a461ba6e20",
+      "bytes": 4873
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/original-editor-lifecycle/validation/PresentationControls.swift",
+      "sha256": "ef2cbff6c604176a3ef2bc1de0011cccc57e2d84a188add7d5f958e821f4a01d",
+      "bytes": 27094
+    }
+  ],
+  "presentation_sha256": "d685ffc964794b74c84ed0084c67a67b48aa8d46e78371fb867f7a6ac074684c",
+  "lifetime_sha256": "b5e13f21987a4fec9c90a1307d8f9597157ca113f3841d20e9c8300f297c007c"
+}

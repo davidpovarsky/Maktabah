@@ -149,6 +149,8 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
     let workspace: StudyWorkspaceNavigationAdapter
     private let store = AnnotationStore.shared
     private var qualification: AnnotationOriginalEditorQualification?
+    private let presentationLifetime = AnnotationLocalEditorLifetime()
+    private var operation: Task<Void, Never>?
     private var started = false
     private var closed = false
     private var reportDirectory: URL?
@@ -174,7 +176,8 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
                 throw AnnotationOriginalEditorQualificationUIError.closed
             }
             let opened = try await AnnotationOriginalEditorQualification.begin(
-                annotation: annotation, store: store, workspace: workspace
+                annotation: annotation, store: store, workspace: workspace,
+                presentationLifetime: presentationLifetime
             )
             guard !closed, !Task.isCancelled else {
                 opened.retire()
@@ -205,7 +208,15 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
         }
     }
 
-    func save() async {
+    func startSave() {
+        guard canSave, operation == nil else { return }
+        operation = Task { [self] in
+            defer { operation = nil }
+            await save()
+        }
+    }
+
+    private func save() async {
         guard canSave, let qualification else { return }
         stage = "saving"
         message = "Capturing the original blocks and saving this note…"
@@ -236,10 +247,7 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
             guard let capture = qualification.firstMount.retainedCapture else {
                 throw AnnotationOriginalEditorQualificationUIError.missingReceipt
             }
-            report["native_archive_sha256"] = capture.snapshot.nativeArchiveSHA256
-            report["native_body_bytes"] = capture.snapshot.bodyBytes.count
-            report["native_exported_object_count"] = capture.snapshot.exportedObjectCount
-            report["retained_capture_directory"] = capture.retainedDirectoryURL.path
+            recordCapture(capture)
             // An own commit invalidation can retire the first local owner.
             // Either receipt is durable; explicit reopen obtains a NEW source
             // and saved-row session rather than reviving this retired Host.
@@ -252,7 +260,15 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
         }
     }
 
-    func reopen() async {
+    func startReopen() {
+        guard canReopen, operation == nil else { return }
+        operation = Task { [self] in
+            defer { operation = nil }
+            await reopen()
+        }
+    }
+
+    private func reopen() async {
         guard canReopen, let qualification, let id = annotation.id else { return }
         stage = "reopening"
         message = "Importing the saved body into the original editor…"
@@ -289,7 +305,19 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
 
     func retire() {
         closed = true
+        // This authority exists before the first native await. Source callbacks
+        // refuse further native work even before begin() returns its session.
+        presentationLifetime.retire()
+        operation?.cancel()
+        operation = nil
         qualification?.retire()
+    }
+
+    private func recordCapture(_ capture: AnytypeOriginalEditorSnapshotCapture) {
+        report["native_archive_sha256"] = capture.snapshot.nativeArchiveSHA256
+        report["native_body_bytes"] = capture.snapshot.bodyBytes.count
+        report["native_exported_object_count"] = capture.snapshot.exportedObjectCount
+        report["retained_capture_directory"] = capture.retainedDirectoryURL.path
     }
 
     private func publish(stage: String, message: String) throws {
@@ -320,6 +348,11 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
         mount = nil
         report["failure_type"] = String(reflecting: type(of: error))
         report["failure"] = String(String(describing: error).prefix(1_024))
+        // Capture can succeed before the complete envelope/CAS refuses a save.
+        // Its original archive remains recoverable and must be named on failure.
+        if let capture = qualification?.firstMount.retainedCapture {
+            recordCapture(capture)
+        }
         if let directory = qualification?.firstMount.retainedFailureDirectory {
             report["retained_failure_directory"] = directory.path
         }
@@ -331,7 +364,11 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
         }
     }
 
-    isolated deinit { qualification?.retire() }
+    isolated deinit {
+        presentationLifetime.retire()
+        operation?.cancel()
+        qualification?.retire()
+    }
 }
 
 @MainActor
@@ -358,11 +395,11 @@ private struct AnnotationOriginalEditorQualificationView: View {
                     .accessibilityIdentifier("annotation-original-editor-receipt")
                     .accessibilityValue(model.reportJSON)
                 if model.canSave {
-                    Button("Capture and save original blocks") { Task { await model.save() } }
+                    Button("Capture and save original blocks") { model.startSave() }
                         .accessibilityIdentifier("annotation-original-editor-save")
                 }
                 if model.canReopen {
-                    Button("Reopen saved original blocks") { Task { await model.reopen() } }
+                    Button("Reopen saved original blocks") { model.startReopen() }
                         .accessibilityIdentifier("annotation-original-editor-reopen")
                 }
             }
@@ -379,6 +416,7 @@ private struct AnnotationOriginalEditorQualificationView: View {
             }
         }
         .task { await model.begin() }
+        .onDisappear { model.retire() }
     }
 }
 

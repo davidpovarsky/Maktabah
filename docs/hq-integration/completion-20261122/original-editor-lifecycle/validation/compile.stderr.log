@@ -1,0 +1,16 @@
+C:\Users\DAVID\Code\Maktabah-original-editor-lifecycle-20261122\docs\hq-integration\completion-20261122\original-editor-lifecycle\validation\PresentationControls.swift:186:16: warning: no calls to throwing functions occur within 'try' expression
+
+184 |         probe.reopenCalls += 1
+
+185 |         let cancellation = probe.cancelled
+
+186 |         return try await withTaskCancellationHandler {
+
+    |                `- warning: no calls to throwing functions occur within 'try' expression
+
+187 |             if probe.position == .reopen { await probe.held.wait() }
+
+188 |             // Return an already-created host deliberately, even after cancellation,
+
+   Creating library C:\Users\DAVID\Code\Maktabah-original-editor-lifecycle-20261122\docs\hq-integration\completion-20261122\original-editor-lifecycle\validation\presentation-controls.lib and object C:\Users\DAVID\Code\Maktabah-original-editor-lifecycle-20261122\docs\hq-integration\completion-20261122\original-editor-lifecycle\validation\presentation-controls.exp
+

@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "before": "813fbe79c1b325ee21a8c2be78bb86577f44bf6c",
+  "upstream_head_observed": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "merge_base": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "authorization": "Current explicit owner continuation request and root assignment; root AGENTS standing owner authorization 2026-11-19",
+  "change": "Own qualification async actions and bind source to presentation lifetime; retain already-captured recovery identity for later failure",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "origin_commit": "3566e9d09939583e8ddc4d489d44add01238d8c0",
+      "before_sha256": "8fe05dce3f997020cee3f709697313d981cd8ff419fe7e90cc38aea81790ff46",
+      "before_git_blob": "3c7617067b09b5674fbb4e96a5ed993946604825",
+      "upstream_path_present": false
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "origin_commit": "3566e9d09939583e8ddc4d489d44add01238d8c0",
+      "before_sha256": "89d8b9aa9b69d8d95e140e86b5ff59d9d980615b6fc1a4d6a32e13989fda7d40",
+      "before_git_blob": "9a84392213f489df87f58759756c7e67d608f434",
+      "upstream_path_present": false
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "origin_commit": "3566e9d09939583e8ddc4d489d44add01238d8c0",
+      "before_sha256": "1e48b127263a6993d3acc6022a0c55aef34f61466c357353f6c266264b4d57c0",
+      "before_git_blob": "2c022d61bb70c99be52a23b9a9a54e65fd347bd2",
+      "upstream_path_present": false
+    }
+  ]
+}

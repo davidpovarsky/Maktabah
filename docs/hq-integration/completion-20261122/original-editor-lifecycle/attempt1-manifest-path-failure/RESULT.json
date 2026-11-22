@@ -1,0 +1,7 @@
+{
+  "job": "job_57b633e41d58",
+  "status": "FAILED_BEFORE_COMPILATION",
+  "tests_executed": 0,
+  "reason": "Relative __file__ in manifest relative_to; use resolved runner path",
+  "application_sources_changed": false
+}

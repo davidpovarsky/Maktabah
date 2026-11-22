@@ -13,22 +13,26 @@ final class AnnotationOriginalEditorQualification {
     private let store: AnnotationStore
     private let annotationUUID: UUID
     private let profileID: UUID
+    private let presentationLifetime: AnnotationLocalEditorLifetime
     private var reopenAttempted = false
 
     private init(original: AnytypeOriginalEditorQualificationSession,
                  firstMount: AnnotationOriginalEditorMount, store: AnnotationStore,
-                 profileID: UUID) {
+                 profileID: UUID, presentationLifetime: AnnotationLocalEditorLifetime) {
         self.original = original
         self.firstMount = firstMount
         self.store = store
         annotationUUID = firstMount.snapshot.annotationUUID
         self.profileID = profileID
+        self.presentationLifetime = presentationLifetime
     }
 
     static func begin(annotation: Annotation, store: AnnotationStore,
-                      workspace: StudyWorkspaceNavigationAdapter) async throws -> AnnotationOriginalEditorQualification {
+                      workspace: StudyWorkspaceNavigationAdapter,
+                      presentationLifetime: AnnotationLocalEditorLifetime) async throws -> AnnotationOriginalEditorQualification {
         let observation = try AnnotationOriginalEditorSourceObservation(
-            annotation: annotation, store: store, workspace: workspace
+            annotation: annotation, store: store, workspace: workspace,
+            presentationLifetime: presentationLifetime
         )
         let local: AnnotationLocalEditorSession
         do {
@@ -61,7 +65,8 @@ final class AnnotationOriginalEditorQualification {
             let mount = try await AnnotationOriginalEditorMount.open(
                 local: local, snapshot: snapshot, source: observation, binding: original.binding
             )
-            return .init(original: original, firstMount: mount, store: store, profileID: observation.profileID)
+            return .init(original: original, firstMount: mount, store: store,
+                         profileID: observation.profileID, presentationLifetime: presentationLifetime)
         } catch {
             observation.retire()
             local.retire()
@@ -84,7 +89,8 @@ final class AnnotationOriginalEditorQualification {
         case .completedWithoutOwnership(let committed): receipt = committed
         }
         let observation = try AnnotationOriginalEditorSourceObservation(
-            annotation: annotation, store: store, workspace: workspace
+            annotation: annotation, store: store, workspace: workspace,
+            presentationLifetime: presentationLifetime
         )
         guard observation.annotationUUID == annotationUUID, observation.profileID == profileID else {
             observation.retire()
@@ -133,6 +139,7 @@ final class AnnotationOriginalEditorQualification {
     }
 
     func retire() {
+        presentationLifetime.retire()
         firstMount.retire()
         reopenedMount?.retire()
     }
@@ -144,6 +151,7 @@ final class AnnotationOriginalEditorQualification {
     }
 
     isolated deinit {
+        presentationLifetime.retire()
         firstMount.retire()
         reopenedMount?.retire()
     }

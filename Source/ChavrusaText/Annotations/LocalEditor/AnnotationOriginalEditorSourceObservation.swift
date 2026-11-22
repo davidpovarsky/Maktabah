@@ -12,6 +12,7 @@ final class AnnotationOriginalEditorSourceObservation {
     let annotationUUID: UUID
     let profileID: UUID
     private let lifetime = AnnotationLocalEditorLifetime()
+    private let presentationLifetime: AnnotationLocalEditorLifetime
     private let expectedMapping: StudyWorkspaceMappingObservation
     private weak var workspace: StudyWorkspaceNavigationAdapter?
     private let store: AnnotationStore
@@ -21,7 +22,8 @@ final class AnnotationOriginalEditorSourceObservation {
     private var localSession: AnnotationLocalEditorSession?
 
     init(annotation: Annotation, store: AnnotationStore,
-         workspace: StudyWorkspaceNavigationAdapter) throws {
+         workspace: StudyWorkspaceNavigationAdapter,
+         presentationLifetime: AnnotationLocalEditorLifetime) throws {
         guard let id = annotation.id, id > 0,
               let uuid = annotation.ckRecordId.flatMap(UUID.init(uuidString:)),
               let mapping = workspace.mappingOwnershipObservation(),
@@ -30,6 +32,7 @@ final class AnnotationOriginalEditorSourceObservation {
               mapping.source.event.epoch == mapping.epoch else {
             throw AnnotationLocalEditorError.wrongOwner
         }
+        self.presentationLifetime = presentationLifetime
         annotationID = id
         annotationUUID = uuid
         profileID = mapping.projection.profileID
@@ -46,7 +49,7 @@ final class AnnotationOriginalEditorSourceObservation {
     }
 
     var isCurrent: Bool {
-        guard lifetime.isCurrent,
+        guard presentationLifetime.isCurrent, lifetime.isCurrent,
               let current = workspace?.mappingOwnershipObservation(),
               current.coverage == .liveNativeSetters,
               current.source === expectedMapping.source,
