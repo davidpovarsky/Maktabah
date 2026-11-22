@@ -1,0 +1,7 @@
+# Original editor StageB process resume source
+
+This commit preserves the reviewed Maktabah v2 adapter, mount, debug UI and dedicated process-relaunch UI test, plus collector v1. The test writes mixed Hebrew/English content in two original blocks, saves/imports through the original editor, terminates the app, launches a distinct process, resumes the same owned wallet/account/Space/object/annotation, and checks the actual rendered blocks and saved local body. Resume does not create a second wallet, account, object or import.
+
+SDK source is isolated at `4cc56934121d73152a8d73f0b97cfea81ae3864b` in `davidpovarsky/anytype-swift`. Its evidence directory retains the actual four public assertions and twenty collector assertions. The collector reporting wrapper failed after its assertions while inspecting an importlib-loaded module omitted from sys.modules. Raw pass outcomes and the wrapper failure are retained separately, and no passed assertions were replayed.
+
+Swift parsing and native process-relaunch acceptance have not run. The Windows compiler version check timed out before the first source parse; the local executor has no Swift compiler. The collector producer/source admission remains explicitly pending. Bind it to the final combined SDK artifact, then run the separate process-relaunch selector on Apple. Existing Native116 and Release114 selector sets remain unchanged. No native body equality, Swift compilation, or runtime PASS is implied by this source commit.

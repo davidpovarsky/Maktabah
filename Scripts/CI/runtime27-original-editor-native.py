@@ -15,8 +15,8 @@ import sys
 import uuid
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = "0ea7218331d1441d37d06d43333e579f267056e3"
-SELECTOR = "OriginalEditorAnnotationAcceptanceTests/testSavedBlankAnnotationUsesOriginalEditorAndDurablyReopensTwoBlocks"
+SOURCE = "PENDING_REVIEWED_STAGE_B_PROCESS_SOURCE"
+SELECTOR = "OriginalEditorAnnotationAcceptanceTests/testSavedBlankAnnotationUsesOriginalEditorAndReopensMixedBlocksAfterProcessRelaunch"
 MARKER = "owned-local-only"
 BUNDLE = "com.davidpovarsky.chavrusatext"
 OUT = ROOT / "build/original-editor-native-evidence"
@@ -48,6 +48,7 @@ def git(*args):
 
 
 def source_context():
+    require(re.fullmatch(r"[a-f0-9]{40}", SOURCE), "Reviewed process-resume application source is not frozen")
     head = git("rev-parse", "HEAD")
     require(head == os.environ["EXPECTED_CHECKOUT_SHA"], "Wrong immutable qualification checkout")
     subprocess.run(["git", "merge-base", "--is-ancestor", SOURCE, head], cwd=ROOT, check=True, timeout=90)
@@ -120,7 +121,7 @@ def prepare():
     require(SELECTOR not in existing, "Dedicated original-editor case unexpectedly entered a standard catalog")
     contract.setdefault("supplemental_cases", []).append({
         "case_id": SELECTOR, "device": "ipad11", "status": "NOT_RUN",
-        "oracle": "Original saved blank annotation, two native UITextView blocks, real export/CAS/import and rendered reopen"})
+        "oracle": "Original saved blank annotation, mixed Hebrew/English native blocks, real export/CAS/import, exact owned account/object process relaunch and rendered reopen"})
     contract.update(source_test_commit=SOURCE, app_source=SOURCE, application_source_sha=SOURCE,
                     execution_case_ids=[SELECTOR], execution_groups=GROUPS, required_nonzero_cases=1,
                     native_cases_executed=0, expected_per_device={"ipad11": 1, "ipad13": 0, "iphone": 0},
@@ -242,29 +243,43 @@ class OriginalEditorEvidence:
             if presentations.exists():
                 require(not presentations.is_symlink(), "Aliased original-editor receipt directory")
                 directories = list(presentations.iterdir())
-                require(len(directories) <= 1, "More than one native original-editor presentation")
+                require(len(directories) <= 2, "More than two native original-editor process presentations")
                 for directory in directories:
                     uuid.UUID(directory.name)
                     require(directory.is_dir() and not directory.is_symlink(), "Invalid actual presentation directory")
-                    allowed = {"editing.json", "saved.json", "reopened.json", "failed.json", "committed-without-current-view.json"}
+                    allowed = {"editing.json", "saved.json", "reopened.json", "process-resume-prepared.json",
+                               "process-resumed.json", "closed.json", "credential-cleanup.json",
+                               "failed.json", "committed-without-current-view.json"}
                     for source in sorted(directory.iterdir()):
                         require(source.name in allowed, "Unexpected native qualification report")
                         retained.append(retain_file(source, OUT / "native/qualification" / directory.name / source.name,
                                                     32_768, container))
+            checkpoint_root = container / "Library/Application Support/Anytype"
+            if checkpoint_root.exists():
+                require(checkpoint_root.is_dir() and not checkpoint_root.is_symlink(),
+                        "Aliased original qualification repository parent")
+                for name in ["OriginalEditorQualificationClaim.json", "OriginalEditorQualificationResume.json",
+                             "OriginalEditorQualificationResumeAttempt.json"]:
+                    source = checkpoint_root / name
+                    if source.exists():
+                        retained.append(retain_file(source, OUT / "native/process-checkpoint" / name, 32_768, container))
             temporary = container / "tmp"
             require(temporary.is_dir() and not temporary.is_symlink(), "Invalid original app temporary directory")
             captures = [path for path in temporary.iterdir() if path.name.startswith("anytype-original-snapshot-")]
             require(len(captures) <= 4, "Unbounded original snapshot evidence")
             protobuf = {"native-export-report.pb", "before-oldAnytypeID.pb", "before-uniqueKey.pb",
                         "import-rpc-accepted-not-complete.pb", "finish-collection-query.pb",
-                        "imported-root-query.pb", "original-restored-object-show.pb"}
+                        "imported-root-query.pb", "original-restored-object-show.pb",
+                        "original-empty-page-create.pb", "original-empty-page-show.pb",
+                        "original-process-resume-object-show.pb"}
             for directory in sorted(captures):
                 uuid.UUID(directory.name.removeprefix("anytype-original-snapshot-"))
                 require(directory.is_dir() and not directory.is_symlink(), "Invalid original snapshot directory")
                 for source in sorted(directory.iterdir()):
                     name = source.name
                     if name in protobuf or re.fullmatch(r"import-event-0[0-7]\.pb", name):
-                        maximum = 1_048_576 if name == "original-restored-object-show.pb" else 262_144
+                        maximum = 1_048_576 if name in {"original-restored-object-show.pb", "original-empty-page-show.pb",
+                                                     "original-process-resume-object-show.pb"} else 262_144
                     elif name == "native-root-map.json":
                         maximum = 32_768
                     elif name.endswith(".zip"):
@@ -302,34 +317,191 @@ def matrix():
         callback.persist()
 
 
+def strict_native_json(path, maximum=32_768):
+    raw = read_regular(path, maximum, OUT)
+    def pairs(values):
+        result = {}
+        for key, value in values:
+            require(key not in result, "Duplicate original qualification JSON key")
+            result[key] = value
+        return result
+    result = json.loads(raw, object_pairs_hook=pairs,
+                        parse_constant=lambda value: (_ for _ in ()).throw(ValueError("Nonfinite native JSON")))
+    require(type(result) is dict, "Native qualification report is not an object")
+    return result
+
+
+def native_integer(value, name, minimum=0, maximum=2**63 - 1):
+    require(type(value) is int and minimum <= value <= maximum, "Invalid original integer: " + name)
+    return value
+
+
+def native_uuid(value, name):
+    require(type(value) is str and str(uuid.UUID(value)).upper() == value, "Invalid canonical UUID: " + name)
+    return value
+
+
+def native_digest(value, name):
+    require(type(value) is str and re.fullmatch(r"[a-f0-9]{64}", value), "Invalid original digest: " + name)
+    return value
+
+
+def native_identity(value, name):
+    require(type(value) is str and re.fullmatch(r"[A-Za-z0-9_.-]{1,512}", value)
+            and value not in {".", ".."}, "Invalid original identity: " + name)
+    return value
+
+
 def verify_native_receipts():
-    collection = json.loads((OUT / "native-evidence-collection.json").read_text())
-    require(collection["status"] == "NAMED_EVIDENCE_RETAINED" and collection["account_repository_collected"] is False,
+    collection = strict_native_json(OUT / "native-evidence-collection.json", 262_144)
+    require(collection["status"] == "NAMED_EVIDENCE_RETAINED"
+            and collection["account_repository_collected"] is False,
             "Named native evidence was not retained")
     presentations = list((OUT / "native/qualification").iterdir())
-    require(len(presentations) == 1, "Missing unique original native presentation")
-    reports = {stage: json.loads((presentations[0] / (stage + ".json")).read_text())
-               for stage in ["editing", "saved", "reopened"]}
-    opened, saved, reopened = (reports[key] for key in ["editing", "saved", "reopened"])
-    for report in reports.values():
-        require(report["qualification"] == MARKER and report["bundle_id"] == BUNDLE
-                and report["annotation_uuid"] == opened["annotation_uuid"]
-                and report["annotation_id"] == opened["annotation_id"]
-                and report["preview_derived_from_native_body"] is False, "Actual annotation receipt identity differs")
-    require(opened["initial_revision"] == 0 and opened["initial_note_blank"] is True
-            and opened["initial_rich_body_absent"] is True
-            and saved["commit_revision"] == 1 and saved["commit_replayed"] is False
+    require(len(presentations) == 2, "Exactly two original process presentations are required")
+    for directory in presentations:
+        native_uuid(directory.name, "presentation directory")
+        require(directory.is_dir() and not directory.is_symlink(), "Aliased native presentation")
+    first = [path for path in presentations if (path / "editing.json").is_file()]
+    second = [path for path in presentations if (path / "process-resumed.json").is_file()]
+    require(len(first) == len(second) == 1 and first[0] != second[0], "Unqualified process presentation lineage")
+    require({path.name for path in first[0].iterdir()}
+            == {"editing.json", "saved.json", "reopened.json", "process-resume-prepared.json"},
+            "First process did not end with its one prepared checkpoint")
+    require({path.name for path in second[0].iterdir()}
+            == {"process-resumed.json", "credential-cleanup.json", "closed.json"},
+            "Second process did not retain its resumed object and explicit cleanup")
+    reports = {stage: strict_native_json(first[0] / (stage + ".json"))
+               for stage in ["editing", "saved", "reopened", "process-resume-prepared"]}
+    reports.update({stage: strict_native_json(second[0] / (stage + ".json"))
+                    for stage in ["process-resumed", "closed"]})
+    opened, saved, reopened, prepared, resumed, closed = (
+        reports[key] for key in ["editing", "saved", "reopened", "process-resume-prepared", "process-resumed", "closed"]
+    )
+    annotation_uuid = native_uuid(opened["annotation_uuid"], "annotation")
+    annotation_id = native_integer(opened["annotation_id"], "annotation ID", 1)
+    profile = native_uuid(opened["profile_id"], "profile")
+    first_pid = native_integer(opened["process_id"], "first process PID", 1, 2**31 - 1)
+    second_pid = native_integer(resumed["process_id"], "second process PID", 1, 2**31 - 1)
+    require(first_pid != second_pid, "The original editor never changed process")
+    for stage, report in reports.items():
+        require(type(report["schema"]) is int and report["schema"] == 2
+                and report["stage"] == stage and report["qualification"] == MARKER
+                and report["bundle_id"] == BUNDLE
+                and report["annotation_uuid"] == annotation_uuid
+                and native_integer(report["annotation_id"], "report annotation ID", 1) == annotation_id
+                and report["profile_id"] == profile
+                and report["preview_derived_from_native_body"] is False,
+                "Actual process annotation report identity differs")
+        expected_pid = second_pid if stage in {"process-resumed", "closed"} else first_pid
+        expected_mode = "resume-owned-once" if expected_pid == second_pid else "prepare-owned-once"
+        require(native_integer(report["process_id"], "report PID", 1, 2**31 - 1) == expected_pid
+                and report["process_mode"] == expected_mode, "Wrong owned process marker or PID")
+    require(native_integer(opened["initial_revision"], "initial revision") == 0
+            and opened["initial_note_blank"] is True and opened["initial_rich_body_absent"] is True
+            and native_integer(saved["commit_revision"], "commit revision", 1) == 1
+            and saved["commit_replayed"] is False
             and saved["commit_delivery"] in {"committed", "completedWithoutOwnership"}
-            and reopened["reopened_revision"] == saved["commit_revision"]
-            and reopened["reopened_annotation_uuid"] == opened["annotation_uuid"]
-            and reopened["reopened_annotation_id"] == opened["annotation_id"]
+            and native_integer(reopened["reopened_revision"], "reopened revision", 1) == saved["commit_revision"]
+            and reopened["reopened_annotation_uuid"] == annotation_uuid
+            and native_integer(reopened["reopened_annotation_id"], "reopened annotation ID", 1) == annotation_id
             and reopened["reopened_payload_digest"] == saved["payload_digest"]
             and reopened["durable_body_verified_by_original_reopen"] is True,
             "Actual original saved-row/reopen receipt is incomplete")
+    require(resumed["initial_rich_body_absent"] is False and resumed["initial_note_blank"] is True
+            and native_integer(resumed["initial_revision"], "resumed revision", 1) == saved["commit_revision"],
+            "Second process did not read the existing rich annotation")
+    equal_fields = ["process_runtime_nonce", "process_account_id", "process_space_id", "process_object_id",
+                    "process_workspace_namespace", "process_saved_body_sha256", "process_saved_archive_sha256",
+                    "process_annotation_uuid", "process_profile_id", "process_payload_digest",
+                    "process_source_witness_sha256", "process_annotation_id", "process_revision", "process_prepared_pid"]
+    for name in equal_fields:
+        require(prepared[name] == resumed[name] == closed[name]
+                and type(prepared[name]) is type(resumed[name]) is type(closed[name]),
+                "Process checkpoint mismatch: " + name)
+    for name in ["process_runtime_nonce", "process_workspace_namespace", "process_annotation_uuid", "process_profile_id"]:
+        native_uuid(prepared[name], name)
+    for name in ["process_account_id", "process_space_id", "process_object_id"]:
+        native_identity(prepared[name], name)
+    for name in ["process_saved_body_sha256", "process_saved_archive_sha256",
+                 "process_payload_digest", "process_source_witness_sha256"]:
+        native_digest(prepared[name], name)
+    require(prepared["process_credential_consumed"] is False
+            and resumed["process_credential_consumed"] is True
+            and closed["process_credential_consumed"] is True
+            and native_integer(prepared["process_prepared_pid"], "prepared PID", 1, 2**31 - 1) == first_pid
+            and native_integer(prepared["process_current_pid"], "preparation current PID", 1, 2**31 - 1) == first_pid
+            and native_integer(resumed["process_current_pid"], "resume current PID", 1, 2**31 - 1) == second_pid
+            and native_integer(closed["process_current_pid"], "closing PID", 1, 2**31 - 1) == second_pid
+            and prepared["process_annotation_uuid"] == annotation_uuid
+            and native_integer(prepared["process_annotation_id"], "checkpoint annotation ID", 1) == annotation_id
+            and prepared["process_profile_id"] == profile
+            and native_integer(prepared["process_revision"], "checkpoint revision", 1) == saved["commit_revision"]
+            and prepared["process_payload_digest"] == saved["payload_digest"]
+            and prepared["process_saved_archive_sha256"] == saved["native_archive_sha256"]
+            and prepared["process_source_witness_sha256"] == reopened["reopened_source_witness_sha256"]
+            and prepared["process_space_id"] == reopened["reopened_space_id"] == resumed["original_space_id"]
+            and prepared["process_object_id"] == reopened["reopened_object_id"] == resumed["original_object_id"],
+            "The original checkpoint was not consumed for these exact saved identities")
+    cleanup = strict_native_json(second[0] / "credential-cleanup.json", 8_192)
+    require(set(cleanup) == {"schema", "qualification", "presentation_id", "process_id", "process_mode", "scope", "status"}
+            and type(cleanup["schema"]) is int and cleanup["schema"] == 1
+            and cleanup["qualification"] == MARKER
+            and cleanup["presentation_id"] == second[0].name
+            and cleanup["process_mode"] == "resume-owned-once"
+            and native_integer(cleanup["process_id"], "credential cleanup PID", 1, 2**31 - 1) == second_pid
+            and cleanup["scope"] == "only the original factory-owned qualification query"
+            and cleanup["status"] == "OWNED_QUERY_ABSENCE_VERIFIED"
+            and closed["credential_cleanup_status"] == cleanup["status"],
+            "The exact original qualification credential has no owned absence receipt")
+    checkpoint_dir = OUT / "native/process-checkpoint"
+    require({path.name for path in checkpoint_dir.iterdir()}
+            == {"OriginalEditorQualificationClaim.json", "OriginalEditorQualificationResume.json",
+                "OriginalEditorQualificationResumeAttempt.json"}, "Missing exact owned checkpoint files")
+    claim = strict_native_json(checkpoint_dir / "OriginalEditorQualificationClaim.json", 4_096)
+    checkpoint = strict_native_json(checkpoint_dir / "OriginalEditorQualificationResume.json")
+    attempt = strict_native_json(checkpoint_dir / "OriginalEditorQualificationResumeAttempt.json", 4_096)
+    nonce = prepared["process_runtime_nonce"]
+    require(set(claim) == {"runtimeNonce", "scope"} and claim["runtimeNonce"] == nonce
+            and claim["scope"] == "fresh local-only original editor acceptance; no account reset or repository reuse",
+            "Wrong original first-process repository claim")
+    require(set(checkpoint) == {"schema", "runtimeNonce", "bundleID", "accountID", "spaceID", "objectID",
+                               "spaceCreationResponseSHA256", "preparedProcessID", "parentIdentity",
+                               "repositoryIdentity", "accountRepositoryIdentity", "request"}
+            and checkpoint["schema"] == "original-editor-owned-process-resume/1"
+            and checkpoint["runtimeNonce"] == nonce and checkpoint["bundleID"] == BUNDLE
+            and checkpoint["accountID"] == prepared["process_account_id"]
+            and checkpoint["spaceID"] == prepared["process_space_id"]
+            and checkpoint["objectID"] == prepared["process_object_id"]
+            and native_integer(checkpoint["preparedProcessID"], "checkpoint PID", 1, 2**31 - 1) == first_pid,
+            "Actual owned native checkpoint differs from the presentation")
+    native_digest(checkpoint["spaceCreationResponseSHA256"], "original Space creation response")
+    for name in ["parentIdentity", "repositoryIdentity", "accountRepositoryIdentity"]:
+        identity = checkpoint[name]
+        require(type(identity) is dict and set(identity) == {"device", "inode"},
+                "Invalid original directory identity fields")
+        native_integer(identity["device"], "directory device", -(2**63), 2**63 - 1)
+        native_integer(identity["inode"], "directory inode", 0, 2**64 - 1)
+    request = checkpoint["request"]
+    mapping = {"workspaceNamespace": "process_workspace_namespace", "hostProfileID": "process_profile_id",
+               "annotationUUID": "process_annotation_uuid", "legacyAnnotationID": "process_annotation_id",
+               "revision": "process_revision", "sourceWitnessSHA256": "process_source_witness_sha256",
+               "payloadDigest": "process_payload_digest", "nativeArchiveSHA256": "process_saved_archive_sha256",
+               "nativeBodySHA256": "process_saved_body_sha256"}
+    require(type(request) is dict and set(request) == set(mapping), "Unqualified resume request fields")
+    for key, field in mapping.items():
+        require(request[key] == prepared[field] and type(request[key]) is type(prepared[field]),
+                "Original checkpoint request differs: " + key)
+    require(set(attempt) == {"schema", "runtimeNonce", "preparedProcessID", "resumingProcessID"}
+            and attempt["schema"] == "original-editor-owned-process-resume-attempt/1"
+            and attempt["runtimeNonce"] == nonce
+            and native_integer(attempt["preparedProcessID"], "attempt prepared PID", 1, 2**31 - 1) == first_pid
+            and native_integer(attempt["resumingProcessID"], "attempt resumed PID", 1, 2**31 - 1) == second_pid,
+            "The exclusive native resume attempt belongs to another process")
     snapshots = OUT / "native/snapshots"
     maps = list(snapshots.glob("*/native-root-map.json"))
     require(len(maps) == 1, "Missing original import completion/root-map evidence")
-    mapped = json.loads(maps[0].read_text())
+    mapped = strict_native_json(maps[0])
     require(mapped["archiveSHA256"] == saved["native_archive_sha256"]
             and mapped["sourceObjectID"] == opened["original_object_id"]
             and mapped["sourceSpaceID"] == opened["original_space_id"]
@@ -342,9 +514,21 @@ def verify_native_receipts():
     archives = list(exports[0].parent.glob("*.zip"))
     require(len(archives) == 1 and digest(archives[0]) == saved["native_archive_sha256"],
             "Original export archive does not match the durable body receipt")
-    return {"annotation_uuid": opened["annotation_uuid"], "annotation_id": opened["annotation_id"],
+    for name in ["original-empty-page-create.pb", "original-empty-page-show.pb", "original-process-resume-object-show.pb"]:
+        matches = list(snapshots.glob("*/" + name))
+        require(len(matches) == 1 and 0 < matches[0].stat().st_size <= 1_048_576,
+                "Missing exact original native response: " + name)
+    return {"annotation_uuid": annotation_uuid, "annotation_id": annotation_id,
             "revision": saved["commit_revision"], "native_archive_sha256": saved["native_archive_sha256"],
-            "payload_digest": saved["payload_digest"], "preview_derived_from_native_body": False}
+            "payload_digest": saved["payload_digest"], "preview_derived_from_native_body": False,
+            "process_ids": [first_pid, second_pid], "process_runtime_nonce": nonce,
+            "process_workspace_namespace": prepared["process_workspace_namespace"],
+            "original_account_id": prepared["process_account_id"], "original_space_id": prepared["process_space_id"],
+            "original_object_id": prepared["process_object_id"],
+            "saved_local_body_sha256": prepared["process_saved_body_sha256"],
+            "credential_cleanup_status": cleanup["status"],
+            "native_snapshot_digest": None, "body_acknowledgement_granted": False,
+            "scope": "actual process restart, exact saved local context, same original account/Space/object and rendered blocks"}
 
 
 def retain_visual_evidence(devices):
@@ -448,7 +632,9 @@ def collect():
             write(OUT / "retained-original-matrix-files.json", retained)
             visuals = retain_visual_evidence(devices)
             if exit_code == 0:
-                for name in ["original-editor-two-typed-blocks", "original-editor-imported-two-rendered-blocks"]:
+                for name in ["original-editor-two-typed-blocks", "original-editor-imported-two-rendered-blocks",
+                             "original-editor-process-resume-prepared",
+                             "original-editor-process-relaunched-two-rendered-blocks"]:
                     require(any(row["path"].endswith(".png") and row["original_attachment"]["suggestedHumanReadableName"]
                                 .startswith("DIAGNOSTIC-" + name) for row in visuals),
                             "Missing original actual native editor screenshot: " + name)

@@ -4,6 +4,7 @@ import XCTest
 /// catalogs do not select this case or create the SDK's qualification account.
 final class OriginalEditorAnnotationAcceptanceTests: FaithfulReaderUIBase {
     private let qualificationMarker = "owned-local-only"
+    private let prepareProcessMarker = "prepare-owned-once"
     override var readerTestTier: TestTier { .realUI }
 
     @discardableResult
@@ -14,13 +15,14 @@ final class OriginalEditorAnnotationAcceptanceTests: FaithfulReaderUIBase {
     ) -> XCUIApplication {
         var environment = extraEnvironment
         environment["OTZARIA_ORIGINAL_EDITOR_QUALIFICATION"] = qualificationMarker
+        environment["OTZARIA_ORIGINAL_EDITOR_PROCESS_RESUME"] = prepareProcessMarker
         return super.launchWithTier(tier, scenario: scenario, backend: backend,
             extraArgs: extraArgs, language: language, locale: locale,
             extraEnvironment: environment)
     }
 
     @MainActor
-    func testSavedBlankAnnotationUsesOriginalEditorAndDurablyReopensTwoBlocks() async throws {
+    func testSavedBlankAnnotationUsesOriginalEditorAndReopensMixedBlocksAfterProcessRelaunch() async throws {
         XCTAssertEqual(ProcessInfo.processInfo.environment["OTZARIA_ORIGINAL_EDITOR_QUALIFICATION"],
                        qualificationMarker, "The dedicated Native route must opt in explicitly")
         guard ProcessInfo.processInfo.environment["OTZARIA_ORIGINAL_EDITOR_QUALIFICATION"] == qualificationMarker else {
@@ -91,8 +93,8 @@ final class OriginalEditorAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertGreaterThan(try number(opened, "annotation_id"), 0)
         XCTAssertEqual(opened["preview_derived_from_native_body"] as? Bool, false)
 
-        let firstText = "Original body alpha " + UUID().uuidString
-        let secondText = "Original body beta " + UUID().uuidString
+        let firstText = "Original body alpha שלום " + UUID().uuidString
+        let secondText = "דברי תורה Original body beta " + UUID().uuidString
         let blank = try await uniqueBody(value: "")
         tap(blank)
         blank.typeText(firstText)
@@ -107,6 +109,9 @@ final class OriginalEditorAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let currentFirst = try await uniqueBody(value: firstText)
         XCTAssertNotEqual(currentFirst.identifier, second.identifier,
                           "Two actual block identities are required, not two lines in one renderer")
+        XCTAssertEqual(app.textViews.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@", "original-editor-block-text:"
+        )).count, 2)
         retainNativeEvidence("original-editor-two-typed-blocks")
 
         // The SDK must drain registered original UI writes and actual RPCs.
@@ -143,6 +148,98 @@ final class OriginalEditorAnnotationAcceptanceTests: FaithfulReaderUIBase {
         retainNativeEvidence("original-editor-imported-two-rendered-blocks")
         attachReceipt(reopened, named: "original-editor-original-import-reopen-receipt")
 
+        XCTAssertEqual(app.textViews.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@", "original-editor-block-text:"
+        )).count, 2)
+        tap(app.buttons["annotation-original-editor-prepare-process-resume"])
+        let prepared = try await waitForStage("process-resume-prepared", timeout: 30)
+        XCTAssertEqual(try string(prepared, "process_mode"), prepareProcessMarker)
+        XCTAssertEqual(try string(prepared, "process_workspace_namespace"), workspaceNamespace)
+        XCTAssertEqual(try string(prepared, "process_annotation_uuid"), try string(saved, "annotation_uuid"))
+        XCTAssertEqual(try number(prepared, "process_annotation_id"), try number(saved, "annotation_id"))
+        XCTAssertEqual(try number(prepared, "process_revision"), try number(saved, "commit_revision"))
+        XCTAssertEqual(try string(prepared, "process_payload_digest"), try string(saved, "payload_digest"))
+        XCTAssertEqual(try string(prepared, "process_saved_archive_sha256"), try string(saved, "native_archive_sha256"))
+        XCTAssertEqual(try string(prepared, "process_space_id"), try string(reopened, "reopened_space_id"))
+        XCTAssertEqual(try string(prepared, "process_object_id"), try string(reopened, "reopened_object_id"))
+        XCTAssertEqual(prepared["process_credential_consumed"] as? Bool, false)
+        let originalPID = try number(prepared, "process_current_pid")
+        XCTAssertGreaterThan(originalPID, 0)
+        XCTAssertEqual(originalPID, try number(prepared, "process_prepared_pid"))
+        XCTAssertEqual(originalPID, try number(opened, "process_id"))
+        let savedRowIdentifier = savedRow.identifier
+        let originalArguments = app.launchArguments
+        let originalEnvironment = app.launchEnvironment
+        XCTAssertEqual(originalEnvironment["OTZARIA_ORIGINAL_EDITOR_PROCESS_RESUME"], prepareProcessMarker)
+        retainNativeEvidence("original-editor-process-resume-prepared")
+        attachReceipt(prepared, named: "original-editor-process-resume-checkpoint")
+        app.terminate()
+        XCTAssertTrue(app.wait(for: .notRunning, timeout: 15))
+        let terminatedState = app.state.rawValue
+        var resumedEnvironment = originalEnvironment
+        resumedEnvironment["OTZARIA_ORIGINAL_EDITOR_PROCESS_RESUME"] = "resume-owned-once"
+        app.launchEnvironment = resumedEnvironment
+        app.launch()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
+        XCTAssertEqual(app.launchArguments, originalArguments)
+        XCTAssertEqual(app.launchEnvironment, resumedEnvironment)
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        assertReaderHasText()
+        let resumedViewport = try viewport()
+        XCTAssertEqual(resumedViewport.source, beforeViewport.source)
+        XCTAssertEqual(resumedViewport.object, beforeViewport.object)
+        XCTAssertEqual(resumedViewport.offset, beforeViewport.offset, accuracy: 1)
+        try attachWorkspaceSnapshot("original-editor-workspace-after-process-launch")
+        try await openOriginalBookAnnotations()
+        XCTAssertEqual(Set(originalBookAnnotationRows().allElementsBoundByIndex.map(\.identifier)),
+                       previousRows.union([savedRowIdentifier]))
+        let resumedRows = app.buttons.matching(identifier: savedRowIdentifier)
+        XCTAssertEqual(resumedRows.count, 1)
+        let resumedRow = resumedRows.element(boundBy: 0)
+        try editOriginalBookAnnotation(resumedRow)
+        XCTAssertTrue(quickNote.waitForExistence(timeout: 15))
+        XCTAssertEqual(quickNote.value as? String ?? "", "")
+        XCTAssertTrue(entry.isEnabled)
+        tap(entry)
+        let resumed = try await waitForStage("process-resumed", timeout: 120)
+        XCTAssertEqual(try string(resumed, "process_mode"), "resume-owned-once")
+        XCTAssertEqual(resumed["initial_rich_body_absent"] as? Bool, false)
+        XCTAssertEqual(resumed["initial_note_blank"] as? Bool, true)
+        XCTAssertEqual(resumed["process_credential_consumed"] as? Bool, true)
+        for key in ["process_runtime_nonce", "process_account_id", "process_space_id", "process_object_id",
+                    "process_workspace_namespace", "process_saved_body_sha256", "process_saved_archive_sha256",
+                    "process_annotation_uuid", "process_profile_id", "process_payload_digest",
+                    "process_source_witness_sha256"] {
+            XCTAssertEqual(try string(resumed, key), try string(prepared, key), key)
+        }
+        for key in ["process_prepared_pid", "process_annotation_id", "process_revision"] {
+            XCTAssertEqual(try number(resumed, key), try number(prepared, key), key)
+        }
+        let resumedPID = try number(resumed, "process_current_pid")
+        XCTAssertGreaterThan(resumedPID, 0)
+        XCTAssertNotEqual(resumedPID, originalPID)
+        XCTAssertEqual(resumedPID, try number(resumed, "process_id"))
+        XCTAssertEqual(try number(resumed, "initial_revision"), try number(saved, "commit_revision"))
+        XCTAssertEqual(try string(resumed, "original_space_id"), try string(prepared, "process_space_id"))
+        XCTAssertEqual(try string(resumed, "original_object_id"), try string(prepared, "process_object_id"))
+        let relaunchedFirst = try await uniqueBody(value: firstText)
+        let relaunchedSecond = try await uniqueBody(value: secondText)
+        XCTAssertNotEqual(relaunchedFirst.identifier, relaunchedSecond.identifier)
+        XCTAssertTrue(relaunchedFirst.isHittable && relaunchedSecond.isHittable)
+        XCTAssertEqual(app.textViews.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@", "original-editor-block-text:"
+        )).count, 2)
+        XCTAssertFalse(app.buttons["annotation-original-editor-save"].exists)
+        XCTAssertFalse(app.buttons["annotation-original-editor-reopen"].exists)
+        XCTAssertFalse(app.buttons["annotation-original-editor-prepare-process-resume"].exists)
+        retainNativeEvidence("original-editor-process-relaunched-two-rendered-blocks")
+        attachReceipt(resumed, named: "original-editor-process-relaunched-same-object-receipt")
+        attachReceipt(["preparedPID": originalPID, "resumedPID": resumedPID,
+                       "terminatedState": terminatedState, "runningState": app.state.rawValue,
+                       "workspaceNamespace": workspaceNamespace, "launchArguments": originalArguments,
+                       "sameAnnotationRow": savedRowIdentifier, "resumeRoute": "existing-owned-account-space-object"],
+                      named: "original-editor-actual-process-transition")
+
         tap(app.buttons["annotation-original-editor-close"])
         let gone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"),
                                              object: app.buttons["annotation-save-toolbar"])
@@ -151,7 +248,7 @@ final class OriginalEditorAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertFalse(app.buttons["annotation-original-editor-save"].exists)
         XCTAssertFalse(app.textViews["annotation-note-text"].exists,
                        "Closing the native journey must also close the stale quick-note sheet")
-        XCTAssertTrue(savedRow.waitForExistence(timeout: 15), "The original saved annotation row remains")
+        XCTAssertTrue(resumedRow.waitForExistence(timeout: 15), "The original saved annotation row remains")
         tap(app.navigationBars["Annotations"].buttons["Close"])
         let afterViewport = try viewport()
         XCTAssertEqual(afterViewport.source, beforeViewport.source)

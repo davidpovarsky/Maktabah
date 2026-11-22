@@ -3,7 +3,7 @@ import Foundation
 import SwiftUI
 import Observation
 #if canImport(AnytypeOriginalEditor)
-import AnytypeOriginalEditor
+@_spi(OriginalEditorQualification) import AnytypeOriginalEditor
 #endif
 
 /// This entry is confined to the SDK's explicit, owned simulator qualification.
@@ -11,6 +11,9 @@ import AnytypeOriginalEditor
 @MainActor
 struct AnnotationOriginalEditorQualificationEntry: View {
     static let marker = "owned-local-only"
+    static var processResumeMode: String? {
+        ProcessInfo.processInfo.environment["OTZARIA_ORIGINAL_EDITOR_PROCESS_RESUME"]
+    }
     static var isRequested: Bool {
         ProcessInfo.processInfo.environment["OTZARIA_ORIGINAL_EDITOR_QUALIFICATION"] == marker
     }
@@ -154,6 +157,8 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
     private var started = false
     private var closed = false
     private var reportDirectory: URL?
+    private var credentialCleanup: Task<Bool, any Error>?
+    private var closeAttempted = false
     private(set) var mount: AnnotationOriginalEditorMount?
     private(set) var stage = "preparing"
     private(set) var message = "Opening the original editor…"
@@ -167,6 +172,10 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
 
     var canSave: Bool { stage == "editing" && !closed }
     var canReopen: Bool { stage == "saved" && !closed }
+    var canPrepareProcessResume: Bool {
+        stage == "reopened" && !closed
+            && AnnotationOriginalEditorQualificationEntry.processResumeMode == "prepare-owned-once"
+    }
 
     func begin() async {
         guard !started, !closed else { return }
@@ -175,10 +184,19 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
             guard AnnotationOriginalEditorQualificationEntry.isRequested else {
                 throw AnnotationOriginalEditorQualificationUIError.closed
             }
-            let opened = try await AnnotationOriginalEditorQualification.begin(
-                annotation: annotation, store: store, workspace: workspace,
-                presentationLifetime: presentationLifetime
-            )
+            let resuming = AnnotationOriginalEditorQualificationEntry.processResumeMode == "resume-owned-once"
+            let opened: AnnotationOriginalEditorQualification
+            if resuming {
+                opened = try await AnnotationOriginalEditorQualification.resume(
+                    annotation: annotation, store: store, workspace: workspace,
+                    presentationLifetime: presentationLifetime
+                )
+            } else {
+                opened = try await AnnotationOriginalEditorQualification.begin(
+                    annotation: annotation, store: store, workspace: workspace,
+                    presentationLifetime: presentationLifetime
+                )
+            }
             guard !closed, !Task.isCancelled else {
                 opened.retire()
                 throw AnnotationOriginalEditorQualificationUIError.closed
@@ -202,9 +220,23 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
                 "preview_derived_from_native_body": false,
                 "preview_qualification": "not-derived; original blank quick-note preview preserved"
             ]
-            try publish(stage: "editing", message: "Type in the original editor, then capture and save.")
+            if let mode = AnnotationOriginalEditorQualificationEntry.processResumeMode {
+                report["schema"] = 2
+                report["process_mode"] = mode
+                report["process_id"] = ProcessInfo.processInfo.processIdentifier
+            }
+            if resuming {
+                guard let receipt = opened.processResumeReceipt, receipt.credentialConsumed else {
+                    throw AnnotationOriginalEditorQualificationUIError.missingReceipt
+                }
+                try recordProcessResume(receipt, qualification: opened, mount: opened.firstMount)
+                try publish(stage: "process-resumed",
+                            message: "The original saved blocks are open after the process restart.")
+            } else {
+                try publish(stage: "editing", message: "Type in the original editor, then capture and save.")
+            }
         } catch {
-            fail(error)
+            await fail(error)
         }
     }
 
@@ -256,7 +288,7 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
                         message: deliverable ? "The original body was saved. Reopen it through the current saved note to verify the blocks."
                             : "The body was saved. This editor no longer owns the source; close this sheet.")
         } catch {
-            fail(error)
+            await fail(error)
         }
     }
 
@@ -299,11 +331,74 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
             report["durable_body_verified_by_original_reopen"] = true
             try publish(stage: "reopened", message: "The original editor has reopened the saved blocks.")
         } catch {
-            fail(error)
+            await fail(error)
         }
     }
 
+
+    func startPrepareProcessResume() {
+        guard canPrepareProcessResume, operation == nil else { return }
+        operation = Task { [self] in
+            defer { operation = nil }
+            await prepareProcessResume()
+        }
+    }
+
+    private func prepareProcessResume() async {
+        guard canPrepareProcessResume, let qualification, let mount else { return }
+        stage = "preparing-process-resume"
+        message = "Retaining the original account and saved object for one process restart…"
+        do {
+            let receipt = try await qualification.prepareProcessResume()
+            guard !closed, !Task.isCancelled else {
+                throw AnnotationOriginalEditorQualificationUIError.closed
+            }
+            try recordProcessResume(receipt, qualification: qualification, mount: mount)
+            try publish(stage: "process-resume-prepared",
+                        message: "The original saved object is ready for one process restart.")
+        } catch {
+            await fail(error)
+        }
+    }
+
+    private func recordProcessResume(
+        _ receipt: AnytypeOriginalEditorProcessResumeReceipt,
+        qualification: AnnotationOriginalEditorQualification,
+        mount: AnnotationOriginalEditorMount
+    ) throws {
+        let snapshot = mount.snapshot
+        guard receipt.accountID.utf8.elementsEqual(mount.binding.accountID.utf8),
+              receipt.spaceID.utf8.elementsEqual(mount.binding.spaceID.utf8),
+              receipt.objectID.utf8.elementsEqual(mount.binding.objectID.utf8),
+              receipt.currentProcessID == ProcessInfo.processInfo.processIdentifier,
+              let namespace = qualification.processResumeWorkspaceNamespace,
+              let bodySHA256 = qualification.processResumeSavedBodySHA256,
+              let archiveSHA256 = qualification.processResumeArchiveSHA256,
+              let annotationID = snapshot.annotation.id,
+              let payloadDigest = snapshot.version?.payloadDigest else {
+            throw AnnotationOriginalEditorQualificationUIError.missingReceipt
+        }
+        report["schema"] = 2
+        report["process_runtime_nonce"] = receipt.runtimeNonce.uuidString
+        report["process_account_id"] = receipt.accountID
+        report["process_space_id"] = receipt.spaceID
+        report["process_object_id"] = receipt.objectID
+        report["process_prepared_pid"] = receipt.preparedProcessID
+        report["process_current_pid"] = receipt.currentProcessID
+        report["process_credential_consumed"] = receipt.credentialConsumed
+        report["process_workspace_namespace"] = namespace.uuidString
+        report["process_saved_body_sha256"] = bodySHA256
+        report["process_saved_archive_sha256"] = archiveSHA256
+        report["process_annotation_id"] = annotationID
+        report["process_annotation_uuid"] = snapshot.annotationUUID.uuidString
+        report["process_profile_id"] = mount.binding.hostProfileID
+        report["process_revision"] = snapshot.revision
+        report["process_payload_digest"] = payloadDigest
+        report["process_source_witness_sha256"] = snapshot.source.digest
+    }
+
     func retire() {
+        let preparedForRestart = stage == "process-resume-prepared"
         closed = true
         // This authority exists before the first native await. Source callbacks
         // refuse further native work even before begin() returns its session.
@@ -311,7 +406,84 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
         operation?.cancel()
         operation = nil
         qualification?.retire()
+        if !preparedForRestart { startCredentialCleanup() }
     }
+
+    private func startCredentialCleanup() {
+        guard credentialCleanup == nil,
+              ["prepare-owned-once", "resume-owned-once"].contains(
+                AnnotationOriginalEditorQualificationEntry.processResumeMode ?? ""
+              ) else { return }
+        credentialCleanup = Task { [self] in
+            let result: Result<Bool, any Error>
+            do {
+                result = .success(try await AnytypeOriginalEditorModule.cleanupOwnedProcessResumeCredential())
+            } catch {
+                result = .failure(error)
+            }
+            var evidence: [String: Any] = [
+                "schema": 1, "qualification": AnnotationOriginalEditorQualificationEntry.marker,
+                "presentation_id": id.uuidString, "process_id": ProcessInfo.processInfo.processIdentifier,
+                "process_mode": AnnotationOriginalEditorQualificationEntry.processResumeMode ?? "",
+                "scope": "only the original factory-owned qualification query"
+            ]
+            switch result {
+            case .success(let verified):
+                let status = verified ? "OWNED_QUERY_ABSENCE_VERIFIED" : "NO_OWNED_QUERY"
+                evidence["status"] = status
+                report["credential_cleanup_status"] = status
+            case .failure(let error):
+                evidence["status"] = "FAILED"
+                evidence["error_type"] = String(reflecting: type(of: error))
+                evidence["error"] = String(String(describing: error).prefix(1_024))
+                report["credential_cleanup_status"] = "FAILED"
+                report["credential_cleanup_failure_type"] = evidence["error_type"]
+                report["credential_cleanup_failure"] = evidence["error"]
+            }
+            do {
+                let bytes = try JSONSerialization.data(
+                    withJSONObject: evidence, options: [.sortedKeys, .withoutEscapingSlashes]
+                )
+                guard bytes.count <= 8_192 else { throw AnnotationLocalEditorError.invalidIntent }
+                try bytes.write(to: ownedReportDirectory().appendingPathComponent("credential-cleanup.json"),
+                                options: .withoutOverwriting)
+            } catch {
+                report["credential_cleanup_evidence_failure"] = String(String(describing: error).prefix(1_024))
+                if case .success = result { throw error }
+            }
+            return try result.get()
+        }
+    }
+
+    func close() async -> Bool {
+        guard !closeAttempted else { return false }
+        closeAttempted = true
+        retire()
+        startCredentialCleanup()
+        do {
+            if let credentialCleanup {
+                _ = try await credentialCleanup.value
+                try publish(stage: "closed", message: "The owned qualification credential has been cleaned up.")
+            }
+            return true
+        } catch {
+            await fail(error)
+            return false
+        }
+    }
+
+    private func ownedReportDirectory() throws -> URL {
+        if let reportDirectory { return reportDirectory }
+        let documents = try FileManager.default.url(for: .documentDirectory,
+            in: .userDomainMask, appropriateFor: nil, create: true)
+        let root = documents.appendingPathComponent("original-editor-qualification", isDirectory: true)
+        try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
+        let owned = root.appendingPathComponent(id.uuidString, isDirectory: true)
+        try FileManager.default.createDirectory(at: owned, withIntermediateDirectories: false)
+        reportDirectory = owned
+        return owned
+    }
+
 
     private func recordCapture(_ capture: AnytypeOriginalEditorSnapshotCapture) {
         report["native_archive_sha256"] = capture.snapshot.nativeArchiveSHA256
@@ -328,22 +500,11 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
         guard bytes.count <= 32_768, let json = String(data: bytes, encoding: .utf8) else {
             throw AnnotationLocalEditorError.invalidIntent
         }
-        if reportDirectory == nil {
-            let documents = try FileManager.default.url(for: .documentDirectory,
-                in: .userDomainMask, appropriateFor: nil, create: true)
-            let root = documents.appendingPathComponent("original-editor-qualification", isDirectory: true)
-            try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
-            let owned = root.appendingPathComponent(id.uuidString, isDirectory: true)
-            try FileManager.default.createDirectory(at: owned, withIntermediateDirectories: false)
-            reportDirectory = owned
-        }
-        if let reportDirectory {
-            try bytes.write(to: reportDirectory.appendingPathComponent(stage + ".json"), options: .atomic)
-        }
+        try bytes.write(to: ownedReportDirectory().appendingPathComponent(stage + ".json"), options: .atomic)
         reportJSON = json
     }
 
-    private func fail(_ error: any Error) {
+    private func fail(_ error: any Error) async {
         qualification?.retire()
         mount = nil
         report["failure_type"] = String(reflecting: type(of: error))
@@ -355,6 +516,14 @@ private final class AnnotationOriginalEditorQualificationPresentation: Identifia
         }
         if let directory = qualification?.firstMount.retainedFailureDirectory {
             report["retained_failure_directory"] = directory.path
+        }
+        startCredentialCleanup()
+        if let credentialCleanup {
+            do { _ = try await credentialCleanup.value } catch {
+                report["credential_cleanup_status"] = "FAILED"
+                report["credential_cleanup_failure_type"] = String(reflecting: type(of: error))
+                report["credential_cleanup_failure"] = String(String(describing: error).prefix(1_024))
+            }
         }
         do {
             try publish(stage: "failed", message: "Original editor qualification failed. Any captured evidence is retained.")
@@ -402,14 +571,19 @@ private struct AnnotationOriginalEditorQualificationView: View {
                     Button("Reopen saved original blocks") { model.startReopen() }
                         .accessibilityIdentifier("annotation-original-editor-reopen")
                 }
+                if model.canPrepareProcessResume {
+                    Button("Prepare one process restart") { model.startPrepareProcessResume() }
+                        .accessibilityIdentifier("annotation-original-editor-prepare-process-resume")
+                }
             }
             .padding(.bottom, 8)
             .navigationTitle("Original editor")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Close") {
-                        model.retire()
-                        dismiss()
+                        Task {
+                            if await model.close() { dismiss() }
+                        }
                     }
                     .accessibilityIdentifier("annotation-original-editor-close")
                 }

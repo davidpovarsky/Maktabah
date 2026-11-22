@@ -1,7 +1,7 @@
 #if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
 import Foundation
 import UIKit
-import AnytypeOriginalEditor
+@_spi(OriginalEditorQualification) import AnytypeOriginalEditor
 
 /// A thin consumer of the original SDK and original annotation persistence.
 /// The SDK owns native editing/export. AnnotationLocalEditorSession owns the
@@ -124,6 +124,32 @@ final class AnnotationOriginalEditorMount {
             }
             retire()
             throw error
+        }
+    }
+
+
+    func readCurrentSnapshot() async throws -> AnnotationLocalEditorSnapshot {
+        try source.requireCurrent()
+        guard local.isCurrent else { throw AnnotationLocalEditorError.retired }
+        let actual = try await local.read()
+        try source.requireCurrent()
+        try Self.assertUnchanged(snapshot, actual)
+        return actual
+    }
+
+
+    func prepareProcessResume(
+        session: AnytypeOriginalEditorQualificationSession,
+        snapshot native: AnytypeOriginalEditorSnapshot,
+        currentSource: AnytypeOriginalEditorQualificationSource,
+        context: AnytypeOriginalEditorProcessResumeContext
+    ) async throws -> AnytypeOriginalEditorProcessResumeReceipt {
+        try source.requireCurrent()
+        guard local.isCurrent else { throw AnnotationLocalEditorError.retired }
+        return try await session.prepareProcessResume(
+            host: host, snapshot: native, currentSource: currentSource, context: context
+        ) { [source, local] candidate in
+            candidate == currentSource && source.isCurrent && local.isCurrent
         }
     }
 
