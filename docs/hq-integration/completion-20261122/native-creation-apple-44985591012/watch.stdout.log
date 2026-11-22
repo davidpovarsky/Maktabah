@@ -1,0 +1,49 @@
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-creation-fence-apple-20261122 Native annotation creation fence Apple persistence · 44985591012
+Triggered via push about 1 minute ago
+
+JOBS
+* Original SQLite and CryptoKit 24 controls plus three crash reopen pairs (ID 137095324706)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Verify exact original source and control closure
+  ✓ Select the existing Apple toolchain
+  * Execute all 24 original component controls and real process crash reopen
+  * Verify raw assertions processes and unchanged inputs
+  * Preserve actual source outcomes and failure logs
+  * Post Run actions/checkout@v4
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-creation-fence-apple-20261122 Native annotation creation fence Apple persistence · 44985591012
+Triggered via push about 1 minute ago
+
+JOBS
+* Original SQLite and CryptoKit 24 controls plus three crash reopen pairs (ID 137095324706)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Verify exact original source and control closure
+  ✓ Select the existing Apple toolchain
+  ✓ Execute all 24 original component controls and real process crash reopen
+  ✓ Verify raw assertions processes and unchanged inputs
+  * Preserve actual source outcomes and failure logs
+  * Post Run actions/checkout@v4
+✓ codex/otzaria-native-creation-fence-apple-20261122 Native annotation creation fence Apple persistence · 44985591012
+Triggered via push about 2 minutes ago
+
+JOBS
+✓ Original SQLite and CryptoKit 24 controls plus three crash reopen pairs in 1m44s (ID 137095324706)
+  ✓ Set up job
+  ✓ Run actions/checkout@v4
+  ✓ Verify exact original source and control closure
+  ✓ Select the existing Apple toolchain
+  ✓ Execute all 24 original component controls and real process crash reopen
+  ✓ Verify raw assertions processes and unchanged inputs
+  ✓ Preserve actual source outcomes and failure logs
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Original SQLite and CryptoKit 24 controls plus three crash reopen pairs: .github#2
+

@@ -1,0 +1,36 @@
+{
+  "ack_from_new_component": 0,
+  "application_source": "67518e8df6975c976e8f1cd9e622328dc45985fc",
+  "checkout_sha": "d2c63c336f8c07602871283c26bfb89468d97901",
+  "cloud48_executed": 0,
+  "controls_passed": 24,
+  "core194_executed": 0,
+  "crash_reopen_pairs": 3,
+  "digest": "Original AnnotationExchangePlatformDigest / CryptoKit",
+  "executed_binary_sha256": "8b854df03aaa3bba2b281f8b628cc00483a22d1213b9465e967ff2502b908413",
+  "identity_production_write": 0,
+  "native_sdk": 0,
+  "native_ui_executed": 0,
+  "original_exchange28_executed": 0,
+  "process_pairs": [
+    {
+      "phase": "prepared",
+      "reopen": "13922",
+      "writer": "13921"
+    },
+    {
+      "phase": "marked",
+      "reopen": "13924",
+      "writer": "13923"
+    },
+    {
+      "phase": "nested",
+      "reopen": "13926",
+      "writer": "13925"
+    }
+  ],
+  "rpc": 0,
+  "sqlite": "3.54.0",
+  "status": "PASS_APPLE_NATIVE_CREATION_FENCE24_CRASH3",
+  "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0"
+}

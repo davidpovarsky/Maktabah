@@ -1,0 +1,105 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 137095324706,
+      "run_id": 44985591012,
+      "workflow_name": "Native annotation creation fence Apple persistence",
+      "head_branch": "codex/otzaria-native-creation-fence-apple-20261122",
+      "run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/runs/44985591012",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTEwysM8AAAAf64SkIg",
+      "head_sha": "d2c63c336f8c07602871283c26bfb89468d97901",
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/jobs/137095324706",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44985591012/job/137095324706",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-22T04:33:39Z",
+      "started_at": "2026-11-22T04:33:41Z",
+      "completed_at": "2026-11-22T04:35:25Z",
+      "name": "Original SQLite and CryptoKit 24 controls plus three crash reopen pairs",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-22T04:33:42Z",
+          "completed_at": "2026-11-22T04:33:43Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-22T04:33:43Z",
+          "completed_at": "2026-11-22T04:33:53Z"
+        },
+        {
+          "name": "Verify exact original source and control closure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-22T04:33:53Z",
+          "completed_at": "2026-11-22T04:33:54Z"
+        },
+        {
+          "name": "Select the existing Apple toolchain",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-22T04:33:54Z",
+          "completed_at": "2026-11-22T04:34:34Z"
+        },
+        {
+          "name": "Execute all 24 original component controls and real process crash reopen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-22T04:34:34Z",
+          "completed_at": "2026-11-22T04:35:18Z"
+        },
+        {
+          "name": "Verify raw assertions processes and unchanged inputs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-22T04:35:18Z",
+          "completed_at": "2026-11-22T04:35:19Z"
+        },
+        {
+          "name": "Preserve actual source outcomes and failure logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-22T04:35:19Z",
+          "completed_at": "2026-11-22T04:35:21Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-22T04:35:21Z",
+          "completed_at": "2026-11-22T04:35:21Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-22T04:35:21Z",
+          "completed_at": "2026-11-22T04:35:22Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/check-runs/137095324706",
+      "labels": [
+        "xcode-27"
+      ],
+      "runner_id": 1000023045,
+      "runner_name": "GitHub Actions 1000023045",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

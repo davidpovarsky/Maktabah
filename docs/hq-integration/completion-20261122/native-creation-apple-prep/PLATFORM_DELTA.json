@@ -1,0 +1,20 @@
+{
+  "base": "0cdb968f2c1330e7235c22304ca982b532a78a60",
+  "component_application_source": "e78ddef1cd156bd2118e1ed23eb56376e65d0a7c",
+  "all_24_control_methods_and_crash_helpers_byte_identical": true,
+  "swift_entrypoint_only_delta": "Added all-controls selector calling the existing 18 controls then existing 6 UUID controls.",
+  "original_source_and_fixture_changes": 0,
+  "default_selector": "controls (18)",
+  "apple_selector": "all-controls (24)",
+  "darwin_sqlite": "Existing Apple SDK SQLite3, no systemLibrary shim",
+  "darwin_digest": "Unchanged original AnnotationExchangePlatformDigest / CryptoKit",
+  "darwin_crash": "Unchanged original _exit(73), separate executable reopen process",
+  "ci_dispatches": 0,
+  "windows_tests_rerun": 0,
+  "canonical_mutations": 0,
+  "actual_apple_status": "NOT_RUN",
+  "before_control_sha256": "9da7319d1af72b526fe57125e15f269a33bcf33eb8a9e50a92d850522bfda751",
+  "after_control_sha256": "e199216100e2549720d67ca20780b2d60b15bf5f62bd8137dadd713ffb184bb0",
+  "before_runner_sha256": "dda2e2b84c67a7fa22d5b95e7b2ad44a107c054afd7c57b8df6a83f95bdb8d7a",
+  "after_runner_sha256": "6ae6449caf126c0b5abeab467c541b02c08e22656feda34011e3716252fa2534"
+}

@@ -1,0 +1,25 @@
+{
+  "total_count": 1,
+  "artifacts": [
+    {
+      "id": 14739304841,
+      "node_id": "MDg6QXJ0aWZhY3QxNDczOTMwNDg0MQ==",
+      "name": "native-creation-fence-apple-evidence",
+      "size_in_bytes": 138656,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14739304841",
+      "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14739304841/zip",
+      "expired": false,
+      "digest": "sha256:e24da784d58f06acc3e34d45a44afadb1a31e297e3ba9f7a933e44e43304f7d0",
+      "created_at": "2026-11-22T04:35:21Z",
+      "updated_at": "2026-11-22T04:35:21Z",
+      "expires_at": "2027-02-20T04:33:38Z",
+      "workflow_run": {
+        "id": 44985591012,
+        "repository_id": 1280062128,
+        "head_repository_id": 1280062128,
+        "head_branch": "codex/otzaria-native-creation-fence-apple-20261122",
+        "head_sha": "d2c63c336f8c07602871283c26bfb89468d97901"
+      }
+    }
+  ]
+}

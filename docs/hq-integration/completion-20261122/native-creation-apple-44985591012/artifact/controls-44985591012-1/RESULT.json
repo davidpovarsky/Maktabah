@@ -1,0 +1,304 @@
+{
+  "status": "PASS_NEW_NATIVE_CREATION_FENCE_SQLITE",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "commands": [
+    {
+      "label": "compile",
+      "command": [
+        "swift",
+        "build",
+        "--package-path",
+        "/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/native-creation-fence/build/controls-44985591012-1/package",
+        "--scratch-path",
+        "/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/native-creation-fence/build/controls-44985591012-1/swift-build",
+        "-j",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 34.686687833000065
+    },
+    {
+      "label": "binary-path",
+      "command": [
+        "swift",
+        "build",
+        "--package-path",
+        "/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/native-creation-fence/build/controls-44985591012-1/package",
+        "--scratch-path",
+        "/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/native-creation-fence/build/controls-44985591012-1/swift-build",
+        "-j",
+        "2",
+        "--show-bin-path"
+      ],
+      "exit": 0,
+      "seconds": 5.371452208999926
+    },
+    {
+      "label": "controls",
+      "command": [
+        "/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/native-creation-fence/build/controls-44985591012-1/swift-build/out/Products/Debug/NativeCreationFenceAcceptance",
+        "all-controls",
+        "/Users/runner/work/Maktabah/Maktabah/build/native-creation-fence-apple/44985591012-1/controls-44985591012-1/fixtures"
+      ],
+      "exit": 0,
+      "seconds": 0.3033573330000081
+    },
+    {
+      "label": "crash-prepared",
+      "command": [
+        "/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/native-creation-fence/build/controls-44985591012-1/swift-build/out/Products/Debug/NativeCreationFenceAcceptance",
+        "crash-prepared",
+        "/Users/runner/work/Maktabah/Maktabah/build/native-creation-fence-apple/44985591012-1/controls-44985591012-1/fixtures"
+      ],
+      "exit": 73,
+      "seconds": 0.019762874999969426
+    },
+    {
+      "label": "reopen-prepared",
+      "command": [
+        "/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/native-creation-fence/build/controls-44985591012-1/swift-build/out/Products/Debug/NativeCreationFenceAcceptance",
+        "reopen-prepared",
+        "/Users/runner/work/Maktabah/Maktabah/build/native-creation-fence-apple/44985591012-1/controls-44985591012-1/fixtures"
+      ],
+      "exit": 0,
+      "seconds": 0.014461207999943326
+    },
+    {
+      "label": "crash-marked",
+      "command": [
+        "/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/native-creation-fence/build/controls-44985591012-1/swift-build/out/Products/Debug/NativeCreationFenceAcceptance",
+        "crash-marked",
+        "/Users/runner/work/Maktabah/Maktabah/build/native-creation-fence-apple/44985591012-1/controls-44985591012-1/fixtures"
+      ],
+      "exit": 73,
+      "seconds": 0.02041183300002558
+    },
+    {
+      "label": "reopen-marked",
+      "command": [
+        "/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/native-creation-fence/build/controls-44985591012-1/swift-build/out/Products/Debug/NativeCreationFenceAcceptance",
+        "reopen-marked",
+        "/Users/runner/work/Maktabah/Maktabah/build/native-creation-fence-apple/44985591012-1/controls-44985591012-1/fixtures"
+      ],
+      "exit": 0,
+      "seconds": 0.01404291699998339
+    },
+    {
+      "label": "crash-nested",
+      "command": [
+        "/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/native-creation-fence/build/controls-44985591012-1/swift-build/out/Products/Debug/NativeCreationFenceAcceptance",
+        "crash-nested",
+        "/Users/runner/work/Maktabah/Maktabah/build/native-creation-fence-apple/44985591012-1/controls-44985591012-1/fixtures"
+      ],
+      "exit": 73,
+      "seconds": 0.01800975000003291
+    },
+    {
+      "label": "reopen-nested",
+      "command": [
+        "/Users/runner/work/Maktabah/Maktabah/docs/hq-integration/completion-20261122/native-creation-fence/build/controls-44985591012-1/swift-build/out/Products/Debug/NativeCreationFenceAcceptance",
+        "reopen-nested",
+        "/Users/runner/work/Maktabah/Maktabah/build/native-creation-fence-apple/44985591012-1/controls-44985591012-1/fixtures"
+      ],
+      "exit": 0,
+      "seconds": 0.02279950000001918
+    }
+  ],
+  "original_suites_reexecuted": false,
+  "native_sdk": 0,
+  "rpc": 0,
+  "transport": 0,
+  "cloudkit_network": 0,
+  "identity_production_write": 0,
+  "ack_from_new_component": 0,
+  "crash_processes": [
+    {
+      "phase": "prepared",
+      "writer": {
+        "pid": "13921",
+        "sqlite": "3.54.0",
+        "phase": "prepared"
+      },
+      "reopen": {
+        "identityWrite": "0",
+        "sqlite": "3.54.0",
+        "phase": "prepared",
+        "status": "PASS",
+        "pid": "13922",
+        "nativeRPC": "0",
+        "payloadDigest": "8da39a9fab7a4c223c77eda2cfb33c976eac4ed90991280cca9ca9107275822f",
+        "ACK": "0"
+      },
+      "abrupt_exit": 73
+    },
+    {
+      "phase": "marked",
+      "writer": {
+        "phase": "marked",
+        "pid": "13923",
+        "sqlite": "3.54.0"
+      },
+      "reopen": {
+        "status": "PASS",
+        "identityWrite": "0",
+        "ACK": "0",
+        "sqlite": "3.54.0",
+        "nativeRPC": "0",
+        "pid": "13924",
+        "phase": "marked",
+        "payloadDigest": "8da39a9fab7a4c223c77eda2cfb33c976eac4ed90991280cca9ca9107275822f"
+      },
+      "abrupt_exit": 73
+    },
+    {
+      "phase": "nested",
+      "writer": {
+        "phase": "nested",
+        "pid": "13925",
+        "sqlite": "3.54.0"
+      },
+      "reopen": {
+        "sqlite": "3.54.0",
+        "status": "PASS",
+        "pid": "13926",
+        "payloadDigest": "8da39a9fab7a4c223c77eda2cfb33c976eac4ed90991280cca9ca9107275822f",
+        "phase": "nested",
+        "identityWrite": "0",
+        "nativeRPC": "0",
+        "ACK": "0"
+      },
+      "abrupt_exit": 73
+    }
+  ],
+  "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+  "reused_owned_build": false,
+  "suite": "all-controls",
+  "selected_cases": [
+    "explicit_native_install_requires_original_base",
+    "opt_in_idempotence_preserves_v1_and_user_version",
+    "partial_schema_is_refused_without_repair",
+    "future_schema_is_refused_without_mutation",
+    "foreign_trigger_cannot_turn_prepare_into_ack",
+    "prepared_replay_retains_one_exact_pending_commitment",
+    "dispatch_requires_prepared_intent",
+    "dispatch_transition_is_one_way_and_visible_to_new_handle",
+    "forged_pending_commitments_are_refused",
+    "source_change_blocks_dispatch_and_retains_preparation",
+    "new_revision_cannot_bypass_earlier_uncertain_create",
+    "destination_account_and_space_scopes_are_independent",
+    "highlight_only_and_tombstone_never_prepare_creation",
+    "acknowledged_delivery_cannot_begin_or_dispatch_creation",
+    "nested_dispatch_refusal_preserves_outer_rollback",
+    "two_original_connections_allow_one_dispatch_transition",
+    "identity_storage_uniqueness_and_reads_are_not_receipts",
+    "cancellation_at_actual_sql_update_rolls_back_dispatch",
+    "lowercase_uncertain_uuid_cannot_hide_from_new_revision",
+    "mixed_case_prepared_uuid_refuses_all_fence_operations",
+    "case_colliding_attempt_rows_refuse_read_prepare_and_dispatch",
+    "noncanonical_identity_uuid_refuses_read_and_creation",
+    "case_colliding_identity_rows_refuse_read_and_creation",
+    "non_uuid_scope_and_native_identifiers_remain_case_sensitive"
+  ],
+  "copied_input_deltas": [],
+  "executable_sha256": "8b854df03aaa3bba2b281f8b628cc00483a22d1213b9465e967ff2502b908413",
+  "cases": [
+    {
+      "status": "PASS",
+      "name": "explicit_native_install_requires_original_base"
+    },
+    {
+      "status": "PASS",
+      "name": "opt_in_idempotence_preserves_v1_and_user_version"
+    },
+    {
+      "status": "PASS",
+      "name": "partial_schema_is_refused_without_repair"
+    },
+    {
+      "status": "PASS",
+      "name": "future_schema_is_refused_without_mutation"
+    },
+    {
+      "status": "PASS",
+      "name": "foreign_trigger_cannot_turn_prepare_into_ack"
+    },
+    {
+      "status": "PASS",
+      "name": "prepared_replay_retains_one_exact_pending_commitment"
+    },
+    {
+      "status": "PASS",
+      "name": "dispatch_requires_prepared_intent"
+    },
+    {
+      "status": "PASS",
+      "name": "dispatch_transition_is_one_way_and_visible_to_new_handle"
+    },
+    {
+      "status": "PASS",
+      "name": "forged_pending_commitments_are_refused"
+    },
+    {
+      "status": "PASS",
+      "name": "source_change_blocks_dispatch_and_retains_preparation"
+    },
+    {
+      "status": "PASS",
+      "name": "new_revision_cannot_bypass_earlier_uncertain_create"
+    },
+    {
+      "status": "PASS",
+      "name": "destination_account_and_space_scopes_are_independent"
+    },
+    {
+      "status": "PASS",
+      "name": "highlight_only_and_tombstone_never_prepare_creation"
+    },
+    {
+      "status": "PASS",
+      "name": "acknowledged_delivery_cannot_begin_or_dispatch_creation"
+    },
+    {
+      "status": "PASS",
+      "name": "nested_dispatch_refusal_preserves_outer_rollback"
+    },
+    {
+      "status": "PASS",
+      "name": "two_original_connections_allow_one_dispatch_transition"
+    },
+    {
+      "status": "PASS",
+      "name": "identity_storage_uniqueness_and_reads_are_not_receipts"
+    },
+    {
+      "status": "PASS",
+      "name": "cancellation_at_actual_sql_update_rolls_back_dispatch"
+    },
+    {
+      "status": "PASS",
+      "name": "lowercase_uncertain_uuid_cannot_hide_from_new_revision"
+    },
+    {
+      "status": "PASS",
+      "name": "mixed_case_prepared_uuid_refuses_all_fence_operations"
+    },
+    {
+      "status": "PASS",
+      "name": "case_colliding_attempt_rows_refuse_read_prepare_and_dispatch"
+    },
+    {
+      "status": "PASS",
+      "name": "noncanonical_identity_uuid_refuses_read_and_creation"
+    },
+    {
+      "status": "PASS",
+      "name": "case_colliding_identity_rows_refuse_read_and_creation"
+    },
+    {
+      "status": "PASS",
+      "name": "non_uuid_scope_and_native_identifiers_remain_case_sensitive"
+    }
+  ],
+  "sources_unchanged": true,
+  "copied_sources_unchanged": true
+}

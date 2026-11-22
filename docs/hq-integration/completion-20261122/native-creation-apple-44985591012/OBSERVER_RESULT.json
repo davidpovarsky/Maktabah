@@ -1,0 +1,113 @@
+{
+  "run_id": "44985591012",
+  "head": "d2c63c336f8c07602871283c26bfb89468d97901",
+  "conclusion": "success",
+  "watch_exit": 0,
+  "run_attempt": 1,
+  "artifact_count": 1,
+  "artifacts": [
+    {
+      "id": 14739304841,
+      "name": "native-creation-fence-apple-evidence",
+      "api_size": 138656,
+      "downloaded_bytes": 138656,
+      "sha256": "e24da784d58f06acc3e34d45a44afadb1a31e297e3ba9f7a933e44e43304f7d0"
+    }
+  ],
+  "results": [
+    {
+      "path": "artifacts/14739304841/44985591012-1/RESULT.json",
+      "status": "PASS_APPLE_NATIVE_CREATION_FENCE24_CRASH3",
+      "keys": [
+        "ack_from_new_component",
+        "application_source",
+        "checkout_sha",
+        "cloud48_executed",
+        "controls_passed",
+        "core194_executed",
+        "crash_reopen_pairs",
+        "digest",
+        "executed_binary_sha256",
+        "identity_production_write",
+        "native_sdk",
+        "native_ui_executed",
+        "original_exchange28_executed",
+        "process_pairs",
+        "rpc",
+        "sqlite",
+        "status",
+        "swift"
+      ]
+    },
+    {
+      "path": "artifacts/14739304841/44985591012-1/controls-44985591012-1/RESULT.json",
+      "status": "PASS_NEW_NATIVE_CREATION_FENCE_SQLITE",
+      "keys": [
+        "status",
+        "platform",
+        "commands",
+        "original_suites_reexecuted",
+        "native_sdk",
+        "rpc",
+        "transport",
+        "cloudkit_network",
+        "identity_production_write",
+        "ack_from_new_component",
+        "crash_processes",
+        "swift",
+        "reused_owned_build",
+        "suite",
+        "selected_cases",
+        "copied_input_deltas",
+        "executable_sha256",
+        "cases",
+        "sources_unchanged",
+        "copied_sources_unchanged"
+      ]
+    },
+    {
+      "path": "artifacts/14739304841/44985591012-1/controls-44985591012-1/fixtures/reopen-marked.json",
+      "status": "PASS",
+      "keys": [
+        "status",
+        "identityWrite",
+        "ACK",
+        "sqlite",
+        "nativeRPC",
+        "pid",
+        "phase",
+        "payloadDigest"
+      ]
+    },
+    {
+      "path": "artifacts/14739304841/44985591012-1/controls-44985591012-1/fixtures/reopen-nested.json",
+      "status": "PASS",
+      "keys": [
+        "sqlite",
+        "status",
+        "pid",
+        "payloadDigest",
+        "phase",
+        "identityWrite",
+        "nativeRPC",
+        "ACK"
+      ]
+    },
+    {
+      "path": "artifacts/14739304841/44985591012-1/controls-44985591012-1/fixtures/reopen-prepared.json",
+      "status": "PASS",
+      "keys": [
+        "identityWrite",
+        "sqlite",
+        "phase",
+        "status",
+        "pid",
+        "nativeRPC",
+        "payloadDigest",
+        "ACK"
+      ]
+    }
+  ],
+  "evidence_directory": "C:\\Users\\DAVID\\Code\\Maktabah-native-creation-apple-prep-20261122\\build\\native-creation-fence-apple-44985591012-observer",
+  "ci_dispatches": 0
+}

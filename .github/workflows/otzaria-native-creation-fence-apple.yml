@@ -1,0 +1,46 @@
+name: Native annotation creation fence Apple persistence
+
+on:
+  push:
+    branches: [codex/otzaria-native-creation-fence-apple-20261122]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: native-creation-fence-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  native-creation-fence:
+    name: Original SQLite and CryptoKit 24 controls plus three crash reopen pairs
+    runs-on: xcode-27
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Verify exact original source and control closure
+        run: python3 Scripts/CI/native-creation-fence-apple.py prepare
+      - name: Select the existing Apple toolchain
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
+      - name: Execute all 24 original component controls and real process crash reopen
+        run: >-
+          python3 docs/hq-integration/completion-20261122/native-creation-fence/run-native-creation-controls.py
+          --suite all-controls
+          --compile-timeout 900
+          --result-dir build/native-creation-fence-apple/${{ github.run_id }}-${{ github.run_attempt }}/controls-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Verify raw assertions processes and unchanged inputs
+        if: always()
+        run: python3 Scripts/CI/native-creation-fence-apple.py collect
+      - name: Preserve actual source outcomes and failure logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-creation-fence-apple-evidence
+          path: |
+            build/native-creation-fence-apple/
+            !build/native-creation-fence-apple/**/fixtures/*.sqlite
+            !build/native-creation-fence-apple/**/fixtures/*.sqlite-*
+          if-no-files-found: error

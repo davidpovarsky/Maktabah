@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_49238ff992a8",
+    "type": "job_result",
+    "source": "script_run@host_7ec8382e82747448",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_7ec8382e82747448",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795321622.7537196,
+    "started_at": "2026-11-22T04:27:02.790329+00:00",
+    "finished_at": "2026-11-22T04:27:12.679033+00:00",
+    "duration_s": 9.89,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 120,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"status\": \"PASS_CANONICAL_SOURCE_ADMISSION_ONLY\", \"checkout_sha\": \"e60d2d6e1c7007ded4063fa656e53b687f994dc7\", \"command\": [\"C:\\\\ProgramData\\\\SentinelX\\\\.venv\\\\Scripts\\\\python.exe\", \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-native-creation-apple-prep-20261122\\\\Scripts\\\\CI\\\\native-creation-fence-apple.py\", \"source-check\"], \"exit\": 0, \"seconds\": 8.296999999998661, \"stdout_sha256\": \"d3369eb5317dc74fdf4beedd6ec2c7a9e0c62e45a8d486039ebefb38b6404021\", \"stderr_sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"swift_tests_executed\": 0, \"ci_dispatches\": 0, \"actual_apple_execution\": \"NOT_RUN\", \"application_source\": \"67518e8df6975c976e8f1cd9e622328dc45985fc\", \"application_trees\": {\"Source\": \"ac887bdbfbfce2d30d9591bb867d61b11da31cc6\", \"Vendor\": \"4065c0e62af325e83a65fe0c70270985229807ae\", \"Maktabah.xcodeproj\": \"8c0fa1ccfbcfae01fae3c267512864e00efcf078\", \"Maktabah-iOSUITests\": \"cd108ec2cec9f8c6089a1eeff2ec77bc9372a469\"}, \"execution_inputs\": 47, \"compiler_inputs\": 42, \"declared_controls\": 24, \"closure_source\": \"2f8a8b978bf331fc0d8754b44da986aacc40d4d0\"}"
+  }
+}

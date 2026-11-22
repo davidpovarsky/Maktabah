@@ -1,0 +1,3 @@
+* -text
+*.log -whitespace
+source-admission-e60d2d6e/* -whitespace
