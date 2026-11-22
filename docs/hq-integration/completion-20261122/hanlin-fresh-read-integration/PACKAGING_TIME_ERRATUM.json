@@ -1,0 +1,16 @@
+{
+  "schema": "otzaria.fresh-read-observation-time-erratum/1",
+  "recorded_at": "2026-11-22T09:25:04.500670+00:00",
+  "prior_commit": "263373a818f865bf9ff7ffdf91fd7bb327c5f6fc",
+  "original_sha256": "cc8289b895aafc2fd9f9fcc0910a079ee1baf725fc008c055fa022626f3f48eb",
+  "removed_field": "observedAt",
+  "reason": "Estimated precision was not supported by an observed retrieval clock.",
+  "authoritative_times": {
+    "created_at": "2026-11-22T09:12:00Z",
+    "updated_at": "2026-11-22T09:12:03Z"
+  },
+  "changed_product_files": 0,
+  "new_tests": 0,
+  "new_api_requests": 0,
+  "new_downloads": 0
+}

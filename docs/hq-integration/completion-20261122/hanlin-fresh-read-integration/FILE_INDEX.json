@@ -1,6 +1,6 @@
 {
   "schema": "otzaria.fresh-read-root-integration-evidence/1",
-  "payloadCount": 6,
+  "payloadCount": 10,
   "payloads": [
     {
       "path": ".gitattributes",
@@ -8,12 +8,27 @@
       "sha256": "41d02b992dc561cc5165c92345cf3d2b88dea8c6b16e741b5c9d590b7bb91580"
     },
     {
+      "path": "ACTUAL_REPORT_AND_TIME_CORRECTION.py",
+      "bytes": 46452,
+      "sha256": "75d2145e2899f7a83646d35ab387fe9e6dbbefc7c1b161d30af1d47ab4e22094"
+    },
+    {
       "path": "ACTUAL_ROOT_INTEGRATION.py",
       "bytes": 9882,
       "sha256": "36924eee4bb89afae8ddcf46f896e4161fd78af51eddf06a5fa2a33992999608"
     },
     {
+      "path": "GITHUB_RUN_API_RESPONSE.json",
+      "bytes": 12757,
+      "sha256": "95640ed6757d47b082f4b1d9bed0678f612bf97c0cc3afdfaf68aabeb15035a2"
+    },
+    {
       "path": "GITHUB_RUN_OBSERVATION.json",
+      "bytes": 934,
+      "sha256": "6c1943225dd7e2b118eb398ab876dabec5ea48ea14f04023c0088cee87d97863"
+    },
+    {
+      "path": "GITHUB_RUN_OBSERVATION_ORIGINAL.json",
       "bytes": 422,
       "sha256": "cc8289b895aafc2fd9f9fcc0910a079ee1baf725fc008c055fa022626f3f48eb"
     },
@@ -21,6 +36,11 @@
       "path": "INTEGRATION.json",
       "bytes": 2134,
       "sha256": "4ec23380efb9f395885658ab8c7e90717b1ee0802813a17506438a77d571871b"
+    },
+    {
+      "path": "PACKAGING_TIME_ERRATUM.json",
+      "bytes": 596,
+      "sha256": "4db79fca4d2bd3253d3f22083b978d1cfcac96e705a90545055a40e625872c5f"
     },
     {
       "path": "README.md",
