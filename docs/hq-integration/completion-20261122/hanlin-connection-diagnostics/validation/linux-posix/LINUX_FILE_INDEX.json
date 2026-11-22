@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "files": [
+    {
+      "path": "INPUTS.json",
+      "bytes": 1818,
+      "sha256": "e2306eebf2e79d61a7a252807b07bc897a76c505363b1599a2ce562b95fafa8b"
+    },
+    {
+      "path": "PYTHON_EXECUTION.json",
+      "bytes": 818,
+      "sha256": "ea22832ee9b276d5bfb1d162f831d7d296a664abe158232e61c2f8370b6889c4"
+    },
+    {
+      "path": "PYTHON_INPUTS.json",
+      "bytes": 940,
+      "sha256": "edc89230e024860e5774d0671712b81a666823c9b2a7c92ea768fd08ea5435d4"
+    },
+    {
+      "path": "diagnostic_boundary_controls.py",
+      "bytes": 27241,
+      "sha256": "04f61d1e321d5107263282f572a88663ed86c674d81ce94642ea61382c7c1371"
+    },
+    {
+      "path": "run_diagnostic_controls.py",
+      "bytes": 4507,
+      "sha256": "3d8fa8b00fd0d26144ba659cf46c9dccb529014b4e2707c0675ab101250a937e"
+    },
+    {
+      "path": "execute_once.py",
+      "bytes": 1389,
+      "sha256": "d71066a209f3b54ebf4afdb5df9de2ca4e18e22560d3ad50788250c79dd740df"
+    },
+    {
+      "path": "python-result.json",
+      "bytes": 31226,
+      "sha256": "36d44ba62583c3cc88512407be850c50b8f596a3784c8c9fe1e5fafe91113899"
+    },
+    {
+      "path": "python.stdout",
+      "bytes": 150,
+      "sha256": "f963c80313bef9acfeecc195c9309751d1f01e7449d98338950b66fbb052c8ad"
+    },
+    {
+      "path": "python.stderr",
+      "bytes": 5605,
+      "sha256": "e0274174c8144ab1b66543f438a16c471581ecd900eacf7161d4455718c65955"
+    },
+    {
+      "path": "inputs/Scripts/CI/runtime27-hanlin-live.py",
+      "bytes": 35180,
+      "sha256": "e0792b38284dd517551c2312455904a3ef849269f3790953b38d8a9e16ff7a75"
+    },
+    {
+      "path": "inputs/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "bytes": 28736,
+      "sha256": "6cb67796a458fba8bbfee94d584b30744fb57b246d679aa4b909c2216ccd4c15"
+    },
+    {
+      "path": "preimage/Scripts/CI/runtime27-hanlin-live.py",
+      "bytes": 29901,
+      "sha256": "a23383137ac9b52398a75ae50098411422958c6090a97bb0889a1440edbd9aff"
+    }
+  ],
+  "scope": "One completed 34-case Linux POSIX diagnostic suite and full Python AST, no Native/Live execution. Index excludes itself."
+}

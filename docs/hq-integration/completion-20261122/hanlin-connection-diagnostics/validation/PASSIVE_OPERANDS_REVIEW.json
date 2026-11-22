@@ -1,0 +1,149 @@
+{
+  "schema": "otzaria.hanlin.diagnostic.passive-operands-review/1",
+  "status": "SOURCE_REVIEW_APPROVED",
+  "reviewed_patch_sha256": "dbc19b2b105a969fb5c8126abe2e3d8f8222d2c9c9cc276cc5a9c7dc0185b672",
+  "immutable_source": "d14f845f2b0760ce8d3bf186ca656db57f435f9f",
+  "parent_review_sha256": "265156d363d2e4d9bb4f9b1a762b5421b06a7167be1aab71a493b187a6526397",
+  "findings": [
+    "Native scene mounted/foreground are stored Bool properties; Owner/session control and optional presentation/readReopen fields are stored.",
+    "presentation.id is a trivial computed getter returning identity.id; credential.isEmpty is a standard String read.",
+    "All eight source facets read captured immutable HanlinSourceObservation let values, then normal value/optional equality; no new source acquisition callback.",
+    "Original hanlinSource is invoked once, followed by the same whole-observation equality. Diagnostic comparisons occur only on that mismatch.",
+    "No added operand invokes validation, consent consumption/revocation, navigation, persistence, RPC or an async operation.",
+    "Observable getters may perform normal read tracking. This is not a claim that instrumented diagnostic file I/O or runtime timing is absent."
+  ],
+  "source_inputs": [
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift",
+      "git_blob": "1e72b6c652827cae45a2c1d7ca9af2cc880e8347",
+      "sha256": "9a4bf8f574a9a4b3c523f8445b338b02443dd9e4c76631fa6d159b080f3faf49",
+      "scope": [
+        [
+          1,
+          85
+        ]
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "git_blob": "aa522b41ab6e4be36ce9a1d9850081e28481ee57",
+      "sha256": "01e7fd67955b102c8716a96223ee041cd9d7be4bd5b9b616163f1a5baee4b5a0",
+      "scope": [
+        [
+          1,
+          180
+        ]
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "git_blob": "69ab8d64bbd116609551771aecd2777095e41959",
+      "sha256": "636c62c721335caa85a8225b91bc9880fd50cdd270b044cc93d852156bf737f9",
+      "scope": [
+        [
+          1,
+          200
+        ],
+        [
+          470,
+          555
+        ]
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "git_blob": "99d267d3968f160b641a7f8138ffaefbd8ce6517",
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25",
+      "scope": [
+        [
+          122,
+          187
+        ]
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "git_blob": "753507570a4e619d504d9952ea2cfee640a65766",
+      "sha256": "02731f2a272d15ff7931c246178c069f5363010984e3e5994c734deb8ba94d24",
+      "scope": [
+        [
+          125,
+          155
+        ]
+      ]
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift",
+      "git_blob": "83bdb60b536356b034ecc71f0969777f088f56ef",
+      "sha256": "79f55666020cfdaf794f90260d600d3c2b4dbc437ccb78c48390b7ca93611cd1",
+      "scope": [
+        [
+          1,
+          100
+        ]
+      ]
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+      "git_blob": "941cd321869dcef3d5a95c1d0d5b5fb493529c53",
+      "sha256": "9629b2586f3b31db7cbe7ddcb78b836e856401abc2a5a91b3a4734c7f08d5da7",
+      "scope": [
+        [
+          1,
+          40
+        ]
+      ]
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/RouteSpec.swift",
+      "git_blob": "28c494ae62da396729bc31e18770cfa8a340aa7a",
+      "sha256": "a39499cf8a88d6c10893812941346710558125934445a629822a53a85c53e3a9",
+      "scope": [
+        [
+          1,
+          75
+        ]
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "git_blob": "da38520df403bf4331a1811529586e82d67b528e",
+      "sha256": "f163d68594c4a45c3a3f4f02f0aace306feab5cdc5b828f5e25656d7a328050f",
+      "scope": [
+        [
+          20,
+          105
+        ]
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "git_blob": "a59323cdc7def061eb6e2223a70afadaf5a9013a",
+      "sha256": "ad167b13a3bbb518ad5a0e4b521cdf00313028b7f2109a597b1bedcede3c3ed0",
+      "scope": [
+        [
+          12,
+          77
+        ]
+      ]
+    },
+    {
+      "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+      "git_blob": "fe2fbcb9f07762e0d35949b098b55d079a3c95d2",
+      "sha256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "scope": [
+        [
+          95,
+          160
+        ]
+      ]
+    }
+  ],
+  "limits": [
+    "Read-only source review; not Swift parse/typecheck/native/Live acceptance.",
+    "Only additional Boolean operand passivity was reviewed; original patch/index review was not replayed."
+  ],
+  "tests_executed": 0,
+  "parser_invocations": 0,
+  "code_edits": 0
+}

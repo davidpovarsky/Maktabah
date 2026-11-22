@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "status": "FROZEN_NOT_EXECUTED",
+  "proposalIndexSHA256": "d776979563668e1766a3e94377a0b1880ce6d954019ae462a392aa9cf1999193",
+  "independentReviewSHA256": "265156d363d2e4d9bb4f9b1a762b5421b06a7167be1aab71a493b187a6526397",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "bytes": 28736,
+      "sha256": "6cb67796a458fba8bbfee94d584b30744fb57b246d679aa4b909c2216ccd4c15",
+      "preimageSHA256": "01e7fd67955b102c8716a96223ee041cd9d7be4bd5b9b616163f1a5baee4b5a0"
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift",
+      "bytes": 20221,
+      "sha256": "2fbf538c29d4c243e455cd7e126f9676d9a3ae84879764706284f8e2e7742706",
+      "preimageSHA256": "9a4bf8f574a9a4b3c523f8445b338b02443dd9e4c76631fa6d159b080f3faf49"
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+      "bytes": 22729,
+      "sha256": "4786980d957ca3b0a5dce6f80f5eed64b7b374178ad38c4d0d3ae3e2ed12ab18",
+      "preimageSHA256": "8dedebec659b00dd86bf72c681944bdeb1bda0a28dfeda95b7a84a05c9a13905"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 152357,
+      "sha256": "89a4a7dd90d458dfc91e69c9d840530372b42702182a77864487a5eb30fde93d",
+      "preimageSHA256": "636c62c721335caa85a8225b91bc9880fd50cdd270b044cc93d852156bf737f9"
+    },
+    {
+      "path": "Scripts/CI/runtime27-hanlin-live.py",
+      "bytes": 35180,
+      "sha256": "e0792b38284dd517551c2312455904a3ef849269f3790953b38d8a9e16ff7a75",
+      "preimageSHA256": "a23383137ac9b52398a75ae50098411422958c6090a97bb0889a1440edbd9aff"
+    }
+  ],
+  "scope": "Complete candidate Python and Swift inputs only. No product or workflow edit."
+}

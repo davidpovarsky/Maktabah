@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "inputs": [
+    {
+      "path": "inputs/Scripts/CI/runtime27-hanlin-live.py",
+      "bytes": 35180,
+      "sha256": "e0792b38284dd517551c2312455904a3ef849269f3790953b38d8a9e16ff7a75"
+    },
+    {
+      "path": "inputs/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "bytes": 28736,
+      "sha256": "6cb67796a458fba8bbfee94d584b30744fb57b246d679aa4b909c2216ccd4c15"
+    },
+    {
+      "path": "preimage/Scripts/CI/runtime27-hanlin-live.py",
+      "bytes": 29901,
+      "sha256": "a23383137ac9b52398a75ae50098411422958c6090a97bb0889a1440edbd9aff"
+    },
+    {
+      "path": "diagnostic_boundary_controls.py",
+      "bytes": 27241,
+      "sha256": "04f61d1e321d5107263282f572a88663ed86c674d81ce94642ea61382c7c1371"
+    },
+    {
+      "path": "run_diagnostic_controls.py",
+      "bytes": 4507,
+      "sha256": "3d8fa8b00fd0d26144ba659cf46c9dccb529014b4e2707c0675ab101250a937e"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "job_de9bf2a0257a",
+  "type": "job_result",
+  "source": "script_run@host_7ec8382e82747448",
+  "severity": "warning",
+  "tool": "script_run",
+  "host": "host_7ec8382e82747448",
+  "status": "failed",
+  "exit_code": 1,
+  "created_at": 1795333211.3836963,
+  "started_at": "2026-11-22T07:40:11.483540+00:00",
+  "finished_at": "2026-11-22T07:41:05.088910+00:00",
+  "duration_s": 53.61,
+  "error": null,
+  "output_truncated": false,
+  "timeout_s": 240,
+  "read": false,
+  "notified": {
+    "telegram": null,
+    "resend": null
+  },
+  "notify_spec": {},
+  "output": "Traceback (most recent call last):\r\n  File \"C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_04b0451253984d1aa9d7ee17329197ab\\script.py\", line 141, in <module>\r\n    git([\"diff\",\"--cached\",\"--check\"])\r\n  File \"C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_04b0451253984d1aa9d7ee17329197ab\\script.py\", line 20, in git\r\n    assert p.returncode==0,row\r\n           ^^^^^^^^^^^^^^^\r\nAssertionError: {'command': ['git', 'diff', '--cached', '--check'], 'cwd': 'C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-hanlin-diagnostics-20261122', 'exitCode': 2, 'elapsedSeconds': 0.8280000000013388, 'stdoutBytes': 1181571, 'stdoutSHA256': 'ef9dd72ee32282f4a621f24ef7a4dcbedf8a471b798bc26aef31ecb6c504aca0', 'stderr': ''}"
+}

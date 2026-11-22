@@ -1,0 +1,262 @@
+[
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.25,
+    "stdoutBytes": 41,
+    "stdoutSHA256": "af9657f071e811bd994370bd6ad34e2410fe560d90a6d1f1ffdfa39aab95693c",
+    "stderr": "",
+    "stdout": "6aa953048453b64a0013621ce76e095770eb7e7d\n"
+  },
+  {
+    "command": [
+      "git",
+      "status",
+      "--porcelain=v1",
+      "--untracked-files=all"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.9839999999967404,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "git",
+      "show",
+      "6aa953048453b64a0013621ce76e095770eb7e7d:Scripts/CI/hq-stage2-focused-apple.inputs.json"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.3120000000053551,
+    "stdoutBytes": 4333,
+    "stdoutSHA256": "c6810fdb940727b4b77183b1e591974a10308fb30ba43dcd659f7f2d56565e95",
+    "stderr": "",
+    "stdout": "{\n  \"application_source_sha\": \"0ea7218331d1441d37d06d43333e579f267056e3\",\n  \"application_trees\": {\n    \"Source\": \"ac887bdbfbfce2d30d9591bb867d61b11da31cc6\",\n    \"Vendor\": \"4065c0e62af325e83a65fe0c70270985229807ae\",\n    \"Maktabah.xcodeproj\": \"8c0fa1ccfbcfae01fae3c267512864e00efcf078\"\n  },\n  \"artifacts\": [\n    {\n      \"destination\": \"Vendor/OtzariaSearchEngine\",\n      \"id\": 14596463166,\n      \"name\": \"ios-build-otzaria-xcframework\",\n      \"producer_attempt\": 1,\n      \"producer_job\": 136041463727,\n      \"producer_job_name\": \"Build or restore Otzaria framework\",\n      \"producer_required_steps\": [\n        \"Build Otzaria production semantic XCFramework\",\n        \"Verify Otzaria framework and semantic host build\",\n        \"Confirm exact pinned and pristine upstream checkout\",\n        \"Run actions/upload-artifact@v4\"\n      ],\n      \"producer_run\": 44661774024,\n      \"producer_run_conclusion\": \"failure\",\n      \"producer_sha\": \"99f7927e4da72f2463417f5c2de2c4d20c6aa168\",\n      \"sha256\": \"efc73de90d74fdd380ffecfa334fe9dcece38519832b89cf3fb2a5741dcc25ad\",\n      \"size_in_bytes\": 201330360,\n      \"tar\": \"OtzariaSearchEngine.xcframework.tar\"\n    },\n    {\n      \"destination\": \"Vendor/ZayitSearchPort/build\",\n      \"id\": 14595389912,\n      \"name\": \"ios-build-zayit-xcframework\",\n      \"producer_attempt\": 1,\n      \"producer_job\": 136041463406,\n      \"producer_job_name\": \"Build or restore Zayit framework\",\n      \"producer_required_steps\": [\n        \"Build Zayit XCFramework\",\n        \"Verify Zayit framework\",\n        \"Run actions/upload-artifact@v4\"\n      ],\n      \"producer_run\": 44661774024,\n      \"producer_run_conclusion\": \"failure\",\n      \"producer_sha\": \"99f7927e4da72f2463417f5c2de2c4d20c6aa168\",\n      \"sha256\": \"64f4ba7b8d6cfced525732699fd1958ca0cc5ec836369dcf839d91df855914d7\",\n      \"size_in_bytes\": 123727544,\n      \"tar\": \"MaktabahZayitSearch.xcframework.tar\"\n    },\n    {\n      \"destination\": \"build\",\n      \"id\": 12763481138,\n      \"name\": \"ios-build-swift-packages\",\n      \"producer_run\": 40566258679,\n      \"sha256\": \"9c0eb8afe950b93d40ed78507da45a7050babc39945f7fa3ae47d29db1686fdd\",\n      \"tar\": \"SourcePackages.tar\"\n    },\n    {\n      \"id\": 13658066283,\n      \"name\": \"sefaria-embedded-validation-manifests\",\n      \"producer_run\": 42577170165,\n      \"sha256\": \"12cc781436c0459acb05060211ef5f3e109791e7f5297d8bf61e1b38c74f8cda\"\n    }\n  ],\n  \"embedded_js_overlay_paths\": [\n    \"Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js\"\n  ],\n  \"engine_producer_sha\": \"99f7927e4da72f2463417f5c2de2c4d20c6aa168\",\n  \"engine_trees\": {\n    \"Vendor/OtzariaSearchEngine\": \"5a6c6501c021ffadcde31254239617f10cd1a362\",\n    \"Vendor/ZayitSearchPort\": \"a121537e72fb10ce7c710ad55f7d084a0427cf2d\",\n    \"Vendor/ZayitSearchPort/Rust\": \"13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8\",\n    \"Vendor/ZayitSearchPort/Upstream\": \"db6dc60006a51db83ec2c6feed1158e4da1a617b\"\n  },\n  \"hanlin_gitlink\": \"e00498e33f106cc43be0476ffa2e09329c8ca300\",\n  \"otzaria_test_additions_sha256\": \"ef5d287ee888b306fab1ddf0e75242245f756976370129c433f1276a96b5611e\",\n  \"rebuild_zayit_framework\": false,\n  \"resource_bundle_sha256\": \"9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530\",\n  \"resource_producer_sha\": \"70810eec46ad1fec6f30d983bf31e5f922dacb61\",\n  \"resources\": {\n    \"sources/calendar.json\": {\n      \"sha256\": \"9613a13f8ce57d20bb1b5b480dc93acca4b354956e30ac0056d617c997025ca7\",\n      \"size\": 1651059\n    },\n    \"sources/hebrew_categories.json\": {\n      \"sha256\": \"f3dd97c47a9a4dadb9d2b29d1cceeeb26d25b56b36dbf7518a1b40faaa008f1d\",\n      \"size\": 16121\n    },\n    \"sources/packages.json\": {\n      \"sha256\": \"3c472a17c8716929c6e0b941f6e2916ae798493a0f29719fd6ff47e7f5ddeaba\",\n      \"size\": 238990\n    },\n    \"sources/people.json\": {\n      \"sha256\": \"b9befdeea0c67a0a519e49e8ca108f16ab46843a238c667db665bf6095c930c4\",\n      \"size\": 52354\n    },\n    \"sources/search_toc.json\": {\n      \"sha256\": \"6d90cc6d333333f8f6bd6aeda723a3b3fb8a2733d6b3b518baa808a86c058c05\",\n      \"size\": 829599\n    },\n    \"sources/toc.json\": {\n      \"sha256\": \"0622b6567fd9e5d1950315007abd9d0e93f8716a9f8c92431b44116eb3a8a963\",\n      \"size\": 4172545\n    },\n    \"sources/topic_toc.json\": {\n      \"sha256\": \"282603e38c227de9c345c215193de2849ecf66d40c17cf874a63ac068f1a225c\",\n      \"size\": 1810962\n    }\n  },\n  \"sefaria_gitlink\": \"2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c\"\n}\n"
+  },
+  {
+    "command": [
+      "git",
+      "show",
+      "6aa953048453b64a0013621ce76e095770eb7e7d:Scripts/CI/runtime27-hanlin-live.py"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.4530000000013388,
+    "stdoutBytes": 35180,
+    "stdoutSHA256": "e0792b38284dd517551c2312455904a3ef849269f3790953b38d8a9e16ff7a75",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--name-only"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.75,
+    "stdoutBytes": 83,
+    "stdoutSHA256": "4724610d18069d549540aaaeae619ee812f5ed3a625b3be81ecb49d6ed68f534",
+    "stderr": "warning: in the working copy of 'Scripts/CI/hq-stage2-focused-apple.inputs.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Scripts/CI/runtime27-hanlin-live.py', LF will be replaced by CRLF the next time Git touches it\n",
+    "stdout": "Scripts/CI/hq-stage2-focused-apple.inputs.json\nScripts/CI/runtime27-hanlin-live.py\n"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.6719999999986612,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": "warning: in the working copy of 'Scripts/CI/hq-stage2-focused-apple.inputs.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Scripts/CI/runtime27-hanlin-live.py', LF will be replaced by CRLF the next time Git touches it\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--binary",
+      "--",
+      "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "Scripts/CI/runtime27-hanlin-live.py"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.3280000000013388,
+    "stdoutBytes": 1406,
+    "stdoutSHA256": "b2aad7ea7ccc0a75eb5a635ed8f8c67e90175ead9afb11456449329788bacdfb",
+    "stderr": "warning: in the working copy of 'Scripts/CI/hq-stage2-focused-apple.inputs.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Scripts/CI/runtime27-hanlin-live.py', LF will be replaced by CRLF the next time Git touches it\n",
+    "stdout": "diff --git a/Scripts/CI/hq-stage2-focused-apple.inputs.json b/Scripts/CI/hq-stage2-focused-apple.inputs.json\nindex 67ef5e5a..7e3e7939 100644\n--- a/Scripts/CI/hq-stage2-focused-apple.inputs.json\n+++ b/Scripts/CI/hq-stage2-focused-apple.inputs.json\n@@ -1,7 +1,7 @@\n {\n-  \"application_source_sha\": \"0ea7218331d1441d37d06d43333e579f267056e3\",\n+  \"application_source_sha\": \"6aa953048453b64a0013621ce76e095770eb7e7d\",\n   \"application_trees\": {\n-    \"Source\": \"ac887bdbfbfce2d30d9591bb867d61b11da31cc6\",\n+    \"Source\": \"91c1adf6c97cd8676e8b2c76860a40f78924b1ec\",\n     \"Vendor\": \"4065c0e62af325e83a65fe0c70270985229807ae\",\n     \"Maktabah.xcodeproj\": \"8c0fa1ccfbcfae01fae3c267512864e00efcf078\"\n   },\ndiff --git a/Scripts/CI/runtime27-hanlin-live.py b/Scripts/CI/runtime27-hanlin-live.py\nindex d787af53..37b00f7c 100644\n--- a/Scripts/CI/runtime27-hanlin-live.py\n+++ b/Scripts/CI/runtime27-hanlin-live.py\n@@ -18,7 +18,7 @@ import uuid\n ROOT = Path(__file__).resolve().parents[2]\n SELECTOR = \"HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent\"\n MODEL = \"gemini-2.5-flash-lite\"\n-REVIEWED_SOURCE = \"0ea7218331d1441d37d06d43333e579f267056e3\"\n+REVIEWED_SOURCE = \"6aa953048453b64a0013621ce76e095770eb7e7d\"\n ENDPOINT = \"https://generativelanguage.googleapis.com/v1beta/openai/\"\n BUNDLE = \"com.davidpovarsky.chavrusatext\"\n CANONICAL_APP_GROUP = \"group.com.davidpovarsky.itorah\"\n"
+  },
+  {
+    "command": [
+      "git",
+      "-c",
+      "core.autocrlf=false",
+      "add",
+      "--",
+      "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "Scripts/CI/runtime27-hanlin-live.py"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.39099999999598367,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "git",
+      "show",
+      ":Scripts/CI/hq-stage2-focused-apple.inputs.json"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.28100000000267755,
+    "stdoutBytes": 4333,
+    "stdoutSHA256": "ead240842eff0c5460eff05ad25ef3a220b3c87b02b677e2413c4188cc178249",
+    "stderr": "",
+    "stdout": "{\n  \"application_source_sha\": \"6aa953048453b64a0013621ce76e095770eb7e7d\",\n  \"application_trees\": {\n    \"Source\": \"91c1adf6c97cd8676e8b2c76860a40f78924b1ec\",\n    \"Vendor\": \"4065c0e62af325e83a65fe0c70270985229807ae\",\n    \"Maktabah.xcodeproj\": \"8c0fa1ccfbcfae01fae3c267512864e00efcf078\"\n  },\n  \"artifacts\": [\n    {\n      \"destination\": \"Vendor/OtzariaSearchEngine\",\n      \"id\": 14596463166,\n      \"name\": \"ios-build-otzaria-xcframework\",\n      \"producer_attempt\": 1,\n      \"producer_job\": 136041463727,\n      \"producer_job_name\": \"Build or restore Otzaria framework\",\n      \"producer_required_steps\": [\n        \"Build Otzaria production semantic XCFramework\",\n        \"Verify Otzaria framework and semantic host build\",\n        \"Confirm exact pinned and pristine upstream checkout\",\n        \"Run actions/upload-artifact@v4\"\n      ],\n      \"producer_run\": 44661774024,\n      \"producer_run_conclusion\": \"failure\",\n      \"producer_sha\": \"99f7927e4da72f2463417f5c2de2c4d20c6aa168\",\n      \"sha256\": \"efc73de90d74fdd380ffecfa334fe9dcece38519832b89cf3fb2a5741dcc25ad\",\n      \"size_in_bytes\": 201330360,\n      \"tar\": \"OtzariaSearchEngine.xcframework.tar\"\n    },\n    {\n      \"destination\": \"Vendor/ZayitSearchPort/build\",\n      \"id\": 14595389912,\n      \"name\": \"ios-build-zayit-xcframework\",\n      \"producer_attempt\": 1,\n      \"producer_job\": 136041463406,\n      \"producer_job_name\": \"Build or restore Zayit framework\",\n      \"producer_required_steps\": [\n        \"Build Zayit XCFramework\",\n        \"Verify Zayit framework\",\n        \"Run actions/upload-artifact@v4\"\n      ],\n      \"producer_run\": 44661774024,\n      \"producer_run_conclusion\": \"failure\",\n      \"producer_sha\": \"99f7927e4da72f2463417f5c2de2c4d20c6aa168\",\n      \"sha256\": \"64f4ba7b8d6cfced525732699fd1958ca0cc5ec836369dcf839d91df855914d7\",\n      \"size_in_bytes\": 123727544,\n      \"tar\": \"MaktabahZayitSearch.xcframework.tar\"\n    },\n    {\n      \"destination\": \"build\",\n      \"id\": 12763481138,\n      \"name\": \"ios-build-swift-packages\",\n      \"producer_run\": 40566258679,\n      \"sha256\": \"9c0eb8afe950b93d40ed78507da45a7050babc39945f7fa3ae47d29db1686fdd\",\n      \"tar\": \"SourcePackages.tar\"\n    },\n    {\n      \"id\": 13658066283,\n      \"name\": \"sefaria-embedded-validation-manifests\",\n      \"producer_run\": 42577170165,\n      \"sha256\": \"12cc781436c0459acb05060211ef5f3e109791e7f5297d8bf61e1b38c74f8cda\"\n    }\n  ],\n  \"embedded_js_overlay_paths\": [\n    \"Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js\"\n  ],\n  \"engine_producer_sha\": \"99f7927e4da72f2463417f5c2de2c4d20c6aa168\",\n  \"engine_trees\": {\n    \"Vendor/OtzariaSearchEngine\": \"5a6c6501c021ffadcde31254239617f10cd1a362\",\n    \"Vendor/ZayitSearchPort\": \"a121537e72fb10ce7c710ad55f7d084a0427cf2d\",\n    \"Vendor/ZayitSearchPort/Rust\": \"13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8\",\n    \"Vendor/ZayitSearchPort/Upstream\": \"db6dc60006a51db83ec2c6feed1158e4da1a617b\"\n  },\n  \"hanlin_gitlink\": \"e00498e33f106cc43be0476ffa2e09329c8ca300\",\n  \"otzaria_test_additions_sha256\": \"ef5d287ee888b306fab1ddf0e75242245f756976370129c433f1276a96b5611e\",\n  \"rebuild_zayit_framework\": false,\n  \"resource_bundle_sha256\": \"9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530\",\n  \"resource_producer_sha\": \"70810eec46ad1fec6f30d983bf31e5f922dacb61\",\n  \"resources\": {\n    \"sources/calendar.json\": {\n      \"sha256\": \"9613a13f8ce57d20bb1b5b480dc93acca4b354956e30ac0056d617c997025ca7\",\n      \"size\": 1651059\n    },\n    \"sources/hebrew_categories.json\": {\n      \"sha256\": \"f3dd97c47a9a4dadb9d2b29d1cceeeb26d25b56b36dbf7518a1b40faaa008f1d\",\n      \"size\": 16121\n    },\n    \"sources/packages.json\": {\n      \"sha256\": \"3c472a17c8716929c6e0b941f6e2916ae798493a0f29719fd6ff47e7f5ddeaba\",\n      \"size\": 238990\n    },\n    \"sources/people.json\": {\n      \"sha256\": \"b9befdeea0c67a0a519e49e8ca108f16ab46843a238c667db665bf6095c930c4\",\n      \"size\": 52354\n    },\n    \"sources/search_toc.json\": {\n      \"sha256\": \"6d90cc6d333333f8f6bd6aeda723a3b3fb8a2733d6b3b518baa808a86c058c05\",\n      \"size\": 829599\n    },\n    \"sources/toc.json\": {\n      \"sha256\": \"0622b6567fd9e5d1950315007abd9d0e93f8716a9f8c92431b44116eb3a8a963\",\n      \"size\": 4172545\n    },\n    \"sources/topic_toc.json\": {\n      \"sha256\": \"282603e38c227de9c345c215193de2849ecf66d40c17cf874a63ac068f1a225c\",\n      \"size\": 1810962\n    }\n  },\n  \"sefaria_gitlink\": \"2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c\"\n}\n"
+  },
+  {
+    "command": [
+      "git",
+      "show",
+      ":Scripts/CI/runtime27-hanlin-live.py"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.4219999999986612,
+    "stdoutBytes": 35180,
+    "stdoutSHA256": "37cf1ef54c7bce5598c0e62abee44279247fb3673c842c349d862f736fb1ebe7",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "commit",
+      "-m",
+      "Bind focused Hanlin diagnostics to its reviewed application source"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 1.5930000000007567,
+    "stdoutBytes": 181,
+    "stdoutSHA256": "d2bb5dcb7c0bf8631b4e9f7099ad5d2f9a177be6113a01f03b2a844ec255557d",
+    "stderr": "",
+    "stdout": "[codex/otzaria-hanlin-connection-diagnostics-20261122 966f180d] Bind focused Hanlin diagnostics to its reviewed application source\n 2 files changed, 3 insertions(+), 3 deletions(-)\n"
+  },
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.21899999999732245,
+    "stdoutBytes": 41,
+    "stdoutSHA256": "bd10eea8dc6fb538681216554f74c32bcf2a08685c1bbdae6608e232e1afc08b",
+    "stderr": "",
+    "stdout": "966f180d8ba2c2eb0f72624be76a99222f45371b\n"
+  },
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD^"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.2969999999986612,
+    "stdoutBytes": 41,
+    "stdoutSHA256": "af9657f071e811bd994370bd6ad34e2410fe560d90a6d1f1ffdfa39aab95693c",
+    "stderr": "",
+    "stdout": "6aa953048453b64a0013621ce76e095770eb7e7d\n"
+  },
+  {
+    "command": [
+      "git",
+      "status",
+      "--porcelain=v1",
+      "--untracked-files=all"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.5780000000013388,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "966f180d8ba2c2eb0f72624be76a99222f45371b:Source"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.26599999999598367,
+    "stdoutBytes": 41,
+    "stdoutSHA256": "21589b85ed77c48aa951df01d989011283859834870ba428c668e45f6c1474c9",
+    "stderr": "",
+    "stdout": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec\n"
+  },
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "966f180d8ba2c2eb0f72624be76a99222f45371b:Vendor"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.3280000000013388,
+    "stdoutBytes": 41,
+    "stdoutSHA256": "c5aa9de917230993db9be003dced34daa3d1d5a6911423535bd7b516186f6971",
+    "stderr": "",
+    "stdout": "4065c0e62af325e83a65fe0c70270985229807ae\n"
+  },
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "966f180d8ba2c2eb0f72624be76a99222f45371b:Maktabah.xcodeproj"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.25,
+    "stdoutBytes": 41,
+    "stdoutSHA256": "a2b985dcc6998a850c94b3e8e5daa678b903a34919247fce217306844d5f1c24",
+    "stderr": "",
+    "stdout": "8c0fa1ccfbcfae01fae3c267512864e00efcf078\n"
+  },
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "966f180d8ba2c2eb0f72624be76a99222f45371b:Maktabah-iOSUITests"
+    ],
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-diagnostics-20261122",
+    "exitCode": 0,
+    "elapsedSeconds": 0.23500000000058208,
+    "stdoutBytes": 41,
+    "stdoutSHA256": "7a40a1025b590651543631de6b9884a62a9b66dcd059f438e2062984b431ae12",
+    "stderr": "",
+    "stdout": "24345d612f8c70398f4590977f8b4696021ae413\n"
+  }
+]

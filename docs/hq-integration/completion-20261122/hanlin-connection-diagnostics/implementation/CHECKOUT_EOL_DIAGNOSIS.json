@@ -1,0 +1,84 @@
+{
+  "head": {
+    "exitCode": 0,
+    "stdout": "4287063689fb2f17ea9a8fcd436ed98e6985f21f\n",
+    "stderr": ""
+  },
+  "status": {
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "attributes": {
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "autocrlf": {
+    "exitCode": 0,
+    "stdout": "file:C:/Users/DAVID/Code/Maktabah/.git/config\ttrue\n",
+    "stderr": ""
+  },
+  "eol": {
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": ""
+  },
+  "files": [
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "worktreeBytes": 21766,
+      "worktreeSHA256": "d4f372eed24050f2c50dbbee67c6ec181dd1683343f2e4b84c7127c6dcd89999",
+      "gitBytes": 21382,
+      "gitSHA256": "01e7fd67955b102c8716a96223ee041cd9d7be4bd5b9b616163f1a5baee4b5a0",
+      "worktreeCRLF": 384,
+      "gitCRLF": 0,
+      "onlyCRLFCheckoutDifference": true,
+      "noLoneCR": true
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift",
+      "worktreeBytes": 18443,
+      "worktreeSHA256": "e1d7d931bab61d172f68c09901762df80db26d4bca8fba86dce8084b52b74f30",
+      "gitBytes": 18119,
+      "gitSHA256": "9a4bf8f574a9a4b3c523f8445b338b02443dd9e4c76631fa6d159b080f3faf49",
+      "worktreeCRLF": 324,
+      "gitCRLF": 0,
+      "onlyCRLFCheckoutDifference": true,
+      "noLoneCR": true
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+      "worktreeBytes": 23051,
+      "worktreeSHA256": "b96973188f6a561cc7647c24cb81820cde868c477cce0d8ac994fc2de6216fee",
+      "gitBytes": 22649,
+      "gitSHA256": "8dedebec659b00dd86bf72c681944bdeb1bda0a28dfeda95b7a84a05c9a13905",
+      "worktreeCRLF": 402,
+      "gitCRLF": 0,
+      "onlyCRLFCheckoutDifference": true,
+      "noLoneCR": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "worktreeBytes": 153470,
+      "worktreeSHA256": "fe09c69b6aa18373fb955171eba8299306c7d9cdff0815767b8c2590b28063d8",
+      "gitBytes": 151190,
+      "gitSHA256": "636c62c721335caa85a8225b91bc9880fd50cdd270b044cc93d852156bf737f9",
+      "worktreeCRLF": 2280,
+      "gitCRLF": 0,
+      "onlyCRLFCheckoutDifference": true,
+      "noLoneCR": true
+    },
+    {
+      "path": "Scripts/CI/runtime27-hanlin-live.py",
+      "worktreeBytes": 30427,
+      "worktreeSHA256": "cbc8eaa52af22ffa66d8fef530f24de9af2e398dba938482d64269e06195b9a1",
+      "gitBytes": 29901,
+      "gitSHA256": "a23383137ac9b52398a75ae50098411422958c6090a97bb0889a1440edbd9aff",
+      "worktreeCRLF": 526,
+      "gitCRLF": 0,
+      "onlyCRLFCheckoutDifference": true,
+      "noLoneCR": true
+    }
+  ]
+}

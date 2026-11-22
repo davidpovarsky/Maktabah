@@ -1,0 +1,228 @@
+{
+  "evidenceHead": "77c7df82ef5f822bf0b1dd7e08ff2b4b98d425d2",
+  "proposedBase": "d14f845f2b0760ce8d3bf186ca656db57f435f9f",
+  "changes": [
+    [
+      "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      [
+        [
+          "/// Scene-owned presentation state around the original SDK session and engine.",
+          "\n/// A bounded acceptance journal of original control flow. Every value is a fixed\n/// enum or boolean; credentials, model/source text and session identities never\n/// enter this schema. It cannot grant access or alter an original outcome.\n@MainActor\nenum OtzariaHanlinConnectionDiagnostic {\n    enum Stage: String {\n        case inputConsumed, connectEntered, connectRejected, requestValidated, readRequestValidated\n        case readRequestReturned, connectFailed\n        case carriedConfigureEntered, carriedConfigureRejected, carriedConfigurationMismatch\n        case engineConstructed, configurationActivated, configurationCompleted, configureFailed\n        case openEntered, openRejected, openIssued, openFailed, mountObserved\n        case consentCaptureEntered, consentCaptured, closeRequested\n        case dismissObserved, dismissAccepted, readReopenEntered\n        case consentConsumeEntered, consentConsumed\n        case sourceComparisonRejected, sourceValidationFailed\n    }\n    enum Reason: String {\n        case none, cancelled, invalidArguments, invalidContext, staleContext\n        case denied, duplicateInvocation, otherHostError, otherError\n    }\n    enum Flag: String {\n        case closed, storageFailed, configured, connecting, hasOperation\n        case allowRead, hasReadOffer, hasReadScope, credentialPresent\n        case retired, hasPresentation, hasNativeSession, mounted, foreground\n        case hasNavigationTask, matchingSession, isPresented, hasPendingReadReopen\n        case preservingContinuation, hasConsent, hasConnection\n        case sameBackend, sameMappingSource, sameMappingEpoch, sameWorkspaceProjection\n        case sameReaderContent, sameReadSource, sameSelection, sameLocale\n    }\n\n    #if DEBUG && targetEnvironment(simulator)\n    private static var boundNonce: String?\n    private static var destination: URL?\n    private static var events: [[String: Any]] = []\n    private static var overflow = false\n    #endif\n\n    static func reason(for error: any Error) -> Reason {\n        if error is CancellationError { return .cancelled }\n        guard let error = error as? HanlinHostError else { return .otherError }\n        switch error {\n        case .invalidArguments: return .invalidArguments\n        case .invalidContext: return .invalidContext\n        case .staleContext: return .staleContext\n        case .denied: return .denied\n        case .duplicateInvocation: return .duplicateInvocation\n        default: return .otherHostError\n        }\n    }\n\n\n    /// Only the original one-use input consumer calls this after validating,\n    /// consuming and applying that exact input. Existing evidence is preserved.\n    static func beginOwnedLiveInput(nonce: String) {\n        #if DEBUG && targetEnvironment(simulator)\n        let environment = ProcessInfo.processInfo.environment\n        guard boundNonce == nil,\n              environment[\"OTZARIA_HANLIN_LIVE_PROVIDER_CASE\"] == \"1\",\n              environment[\"OTZARIA_HANLIN_LIVE_NONCE\"] == nonce,\n              UUID(uuidString: nonce)?.uuidString == nonce else { return }\n        do {\n            let directory = try FileManager.default.url(for: .documentDirectory,\n                in: .userDomainMask, appropriateFor: nil, create: false)\n            let file = directory.appendingPathComponent(\"otzaria-hanlin-connection-stages-\" + nonce + \".json\")\n            let initial: [[String: Any]] = [[\n                \"sequence\": 1, \"stage\": Stage.inputConsumed.rawValue,\n                \"reason\": Reason.none.rawValue, \"flags\": [String: Bool](),\n            ]]\n            let data = try JSONSerialization.data(withJSONObject: [\n                \"schemaVersion\": 1, \"overflow\": false, \"events\": initial,\n            ], options: [.sortedKeys])\n            try data.write(to: file, options: .withoutOverwriting)\n            try FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: file.path)\n            events = initial\n            overflow = false\n            destination = file\n            boundNonce = nonce\n        } catch {\n            // Keep the original business flow and any preexisting evidence.\n            // A missing/incomplete journal is not diagnostic success.\n        }\n        #endif\n    }\n\n    static func record(_ stage: Stage, reason: Reason = .none, flags: [Flag: Bool] = [:]) {\n        #if DEBUG && targetEnvironment(simulator)\n        let environment = ProcessInfo.processInfo.environment\n        guard let boundNonce, let file = destination,\n              environment[\"OTZARIA_HANLIN_LIVE_PROVIDER_CASE\"] == \"1\",\n              environment[\"OTZARIA_HANLIN_LIVE_NONCE\"] == boundNonce else { return }\n        if events.count < 96 && flags.count <= 9 {\n            events.append([\n                \"sequence\": events.count + 1,\n                \"stage\": stage.rawValue,\n                \"reason\": reason.rawValue,\n                \"flags\": Dictionary(uniqueKeysWithValues: flags.map { ($0.key.rawValue, $0.value) }),\n            ])\n        } else { overflow = true }\n        do {\n            let data = try JSONSerialization.data(withJSONObject: [\n                \"schemaVersion\": 1, \"overflow\": overflow, \"events\": events,\n            ], options: [.sortedKeys])\n            try data.write(to: file, options: .atomic)\n            try FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: file.path)\n        } catch {\n            // Diagnostic I/O never changes the original action, error, guard or\n            // cleanup. The collector reports a missing journal explicitly.\n        }\n        #endif\n    }\n}\n\n/// Scene-owned presentation state around the original SDK session and engine."
+        ],
+        [
+          "    func configure(endpoint: String, modelID: String, credential: String, allowCurrentWorkRead: Bool = false) {\n        guard !closed, !storageFailed, !isConfigured, !isConnecting, operation == nil else { return }",
+          "    func configure(endpoint: String, modelID: String, credential: String, allowCurrentWorkRead: Bool = false) {\n        OtzariaHanlinConnectionDiagnostic.record(.connectEntered, flags: [\n            .closed: closed, .storageFailed: storageFailed, .configured: isConfigured,\n            .connecting: isConnecting, .hasOperation: operation != nil,\n            .allowRead: allowCurrentWorkRead, .hasReadOffer: currentWorkReadOffer != nil,\n            .hasReadScope: currentWorkReadScope != nil, .credentialPresent: !credential.isEmpty,\n        ])\n        guard !closed, !storageFailed, !isConfigured, !isConnecting, operation == nil else {\n            OtzariaHanlinConnectionDiagnostic.record(.connectRejected)\n            return\n        }"
+        ],
+        [
+          "            let request = try OtzariaHanlinConnectionRequest(endpoint: endpoint, modelID: modelID, credential: credential)\n            if allowCurrentWorkRead {",
+          "            let request = try OtzariaHanlinConnectionRequest(endpoint: endpoint, modelID: modelID, credential: credential)\n            OtzariaHanlinConnectionDiagnostic.record(.requestValidated)\n            if allowCurrentWorkRead {"
+        ],
+        [
+          "                try validateOwner()\n                try onRequestReadConnection(request, offer)\n            } else {",
+          "                try validateOwner()\n                OtzariaHanlinConnectionDiagnostic.record(.readRequestValidated)\n                try onRequestReadConnection(request, offer)\n                OtzariaHanlinConnectionDiagnostic.record(.readRequestReturned, flags: [.closed: closed])\n            } else {"
+        ],
+        [
+          "        } catch {\n            if !closed { errorMessage = String(localized: \"The connection could not be configured. Check the address, model and key.\") }\n        }\n    }",
+          "        } catch {\n            OtzariaHanlinConnectionDiagnostic.record(.connectFailed, reason: OtzariaHanlinConnectionDiagnostic.reason(for: error))\n            if !closed { errorMessage = String(localized: \"The connection could not be configured. Check the address, model and key.\") }\n        }\n    }"
+        ],
+        [
+          "    func configure(_ request: OtzariaHanlinConnectionRequest) {\n        guard !closed, !storageFailed, !isConfigured, !isConnecting, operation == nil else { return }",
+          "    func configure(_ request: OtzariaHanlinConnectionRequest) {\n        OtzariaHanlinConnectionDiagnostic.record(.carriedConfigureEntered, flags: [\n            .closed: closed, .storageFailed: storageFailed, .configured: isConfigured,\n            .connecting: isConnecting, .hasOperation: operation != nil,\n            .hasReadScope: currentWorkReadScope != nil,\n        ])\n        guard !closed, !storageFailed, !isConfigured, !isConnecting, operation == nil else {\n            OtzariaHanlinConnectionDiagnostic.record(.carriedConfigureRejected)\n            return\n        }"
+        ],
+        [
+          "        guard requiredConfigurationID == nil || requiredConfigurationID == request.id else {\n            onClose(); return\n        }",
+          "        guard requiredConfigurationID == nil || requiredConfigurationID == request.id else {\n            OtzariaHanlinConnectionDiagnostic.record(.carriedConfigurationMismatch)\n            onClose(); return\n        }"
+        ],
+        [
+          "                    fetch: HanlinAISDKProviderFactory.makeFetch(sessionConfiguration: .ephemeral))\n                try self.onConnectionConfigured(request.id)\n                try await self.requireCurrent()",
+          "                    fetch: HanlinAISDKProviderFactory.makeFetch(sessionConfiguration: .ephemeral))\n                OtzariaHanlinConnectionDiagnostic.record(.engineConstructed)\n                try self.onConnectionConfigured(request.id)\n                OtzariaHanlinConnectionDiagnostic.record(.configurationActivated)\n                try await self.requireCurrent()"
+        ],
+        [
+          "                self.isConfigured = true\n                self.errorMessage = nil\n            } catch {\n                if !self.closed {",
+          "                self.isConfigured = true\n                self.errorMessage = nil\n                OtzariaHanlinConnectionDiagnostic.record(.configurationCompleted)\n            } catch {\n                OtzariaHanlinConnectionDiagnostic.record(.configureFailed,\n                    reason: OtzariaHanlinConnectionDiagnostic.reason(for: error))\n                if !self.closed {"
+        ]
+      ]
+    ],
+    [
+      "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift",
+      [
+        [
+          "    private func openConversation(conversationID: UUID?, expectedNamespace: HanlinConversationNamespace?, readReopen: ReadReopen?) {\n        guard !retired, presentation == nil, navigationTask == nil,\n              let manager, let nativeSession, nativeSession.mounted, nativeSession.foreground else { return }",
+          "    private func openConversation(conversationID: UUID?, expectedNamespace: HanlinConversationNamespace?, readReopen: ReadReopen?) {\n        OtzariaHanlinConnectionDiagnostic.record(.openEntered, flags: [\n            .retired: retired, .hasPresentation: presentation != nil,\n            .hasNavigationTask: navigationTask != nil, .hasNativeSession: nativeSession != nil,\n            .mounted: nativeSession?.mounted == true, .foreground: nativeSession?.foreground == true,\n            .hasConsent: readReopen?.consent != nil, .hasConnection: readReopen?.connection != nil,\n        ])\n        guard !retired, presentation == nil, navigationTask == nil,\n              let manager, let nativeSession, nativeSession.mounted, nativeSession.foreground else {\n            OtzariaHanlinConnectionDiagnostic.record(.openRejected)\n            return\n        }"
+        ],
+        [
+          "            if let connection = readReopen?.connection {\n                connectionAfterMount = (sessionID, connection)\n            }\n        } catch {\n            readReopen?.consent?.revoke()",
+          "            if let connection = readReopen?.connection {\n                connectionAfterMount = (sessionID, connection)\n            }\n            OtzariaHanlinConnectionDiagnostic.record(.openIssued, flags: [.hasReadScope: readScope != nil])\n        } catch {\n            OtzariaHanlinConnectionDiagnostic.record(.openFailed,\n                reason: OtzariaHanlinConnectionDiagnostic.reason(for: error))\n            readReopen?.consent?.revoke()"
+        ],
+        [
+          "    func didMount(sceneID: String, sessionID: UUID) {\n        guard presentation?.id == sessionID, isPresented, !retired else { return }",
+          "    func didMount(sceneID: String, sessionID: UUID) {\n        OtzariaHanlinConnectionDiagnostic.record(.mountObserved, flags: [\n            .matchingSession: presentation?.id == sessionID, .isPresented: isPresented,\n            .retired: retired, .hasNativeSession: nativeSession != nil,\n        ])\n        guard presentation?.id == sessionID, isPresented, !retired else { return }"
+        ],
+        [
+          "        displayedScope: OtzariaHanlinCurrentWorkReadScope, sessionID: UUID) throws {\n        try validate(sessionID)",
+          "        displayedScope: OtzariaHanlinCurrentWorkReadScope, sessionID: UUID) throws {\n        OtzariaHanlinConnectionDiagnostic.record(.consentCaptureEntered)\n        try validate(sessionID)"
+        ],
+        [
+          "        pendingReadReopen = .init(originalSessionID: sessionID, namespace: presentation.identity.context.namespace,\n            conversationID: presentation.identity.conversationID, consent: consent, connection: request)\n        requestClose(sessionID: sessionID, preservingContinuation: true)",
+          "        pendingReadReopen = .init(originalSessionID: sessionID, namespace: presentation.identity.context.namespace,\n            conversationID: presentation.identity.conversationID, consent: consent, connection: request)\n        OtzariaHanlinConnectionDiagnostic.record(.consentCaptured)\n        requestClose(sessionID: sessionID, preservingContinuation: true)"
+        ],
+        [
+          "    func requestClose(sessionID: UUID? = nil, preservingContinuation: Bool = false) {\n        guard let presentation, sessionID == nil || presentation.id == sessionID else { return }",
+          "    func requestClose(sessionID: UUID? = nil, preservingContinuation: Bool = false) {\n        OtzariaHanlinConnectionDiagnostic.record(.closeRequested, flags: [\n            .hasPresentation: presentation != nil,\n            .matchingSession: presentation != nil && (sessionID == nil || presentation?.id == sessionID),\n            .preservingContinuation: preservingContinuation, .hasPendingReadReopen: pendingReadReopen != nil,\n        ])\n        guard let presentation, sessionID == nil || presentation.id == sessionID else { return }"
+        ],
+        [
+          "    func didDismiss(sessionID: UUID?) {\n        // A superseded SwiftUI callback has no ownership over this sheet or its",
+          "    func didDismiss(sessionID: UUID?) {\n        OtzariaHanlinConnectionDiagnostic.record(.dismissObserved, flags: [\n            .hasPresentation: presentation != nil,\n            .matchingSession: sessionID != nil && presentation?.id == sessionID,\n            .isPresented: isPresented, .hasPendingReadReopen: pendingReadReopen != nil,\n        ])\n        // A superseded SwiftUI callback has no ownership over this sheet or its"
+        ],
+        [
+          "        guard let sessionID, let current = presentation, current.id == sessionID, !isPresented else { return }\n        current.revoke()",
+          "        guard let sessionID, let current = presentation, current.id == sessionID, !isPresented else { return }\n        OtzariaHanlinConnectionDiagnostic.record(.dismissAccepted)\n        current.revoke()"
+        ],
+        [
+          "            openConversation(conversationID: readReopen.conversationID,\n                expectedNamespace: readReopen.namespace, readReopen: readReopen)",
+          "            OtzariaHanlinConnectionDiagnostic.record(.readReopenEntered, flags: [\n                .hasConsent: readReopen.consent != nil, .hasConnection: readReopen.connection != nil,\n            ])\n            openConversation(conversationID: readReopen.conversationID,\n                expectedNamespace: readReopen.namespace, readReopen: readReopen)"
+        ]
+      ]
+    ],
+    [
+      "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+      [
+        [
+          "            model = configuredModel\n            credential = key",
+          "            model = configuredModel\n            credential = key\n            OtzariaHanlinConnectionDiagnostic.beginOwnedLiveInput(nonce: nonce)"
+        ]
+      ]
+    ],
+    [
+      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      [
+        [
+          "        if let readConnection {\n            guard entry.pendingHanlinReadConsent === readConnection.consent,",
+          "        if let readConnection {\n            OtzariaHanlinConnectionDiagnostic.record(.consentConsumeEntered)\n            guard entry.pendingHanlinReadConsent === readConnection.consent,"
+        ],
+        [
+          "                namespace: namespace, configurationID: readConnection.configurationID)\n            scenes[sceneID]?.pendingHanlinReadConsent = nil",
+          "                namespace: namespace, configurationID: readConnection.configurationID)\n            OtzariaHanlinConnectionDiagnostic.record(.consentConsumed)\n            scenes[sceneID]?.pendingHanlinReadConsent = nil"
+        ],
+        [
+          "        do {\n            guard try hanlinSource(sceneID: sceneID, entry: entry, allowingHanlinSession: active.session.id) == active.observed else {\n                throw HanlinHostError.staleContext\n            }\n        } catch {\n            invalidateHanlin(sceneID: sceneID)\n            throw HanlinHostError.staleContext\n        }",
+          "        do {\n            let observed = try hanlinSource(sceneID: sceneID, entry: entry, allowingHanlinSession: active.session.id)\n            guard observed == active.observed else {\n                OtzariaHanlinConnectionDiagnostic.record(.sourceComparisonRejected, flags: [\n                    .sameBackend: observed.backend == active.observed.backend,\n                    .sameMappingSource: observed.source == active.observed.source,\n                    .sameMappingEpoch: observed.epoch == active.observed.epoch,\n                    .sameWorkspaceProjection: observed.projection == active.observed.projection,\n                    .sameReaderContent: observed.readerContent == active.observed.readerContent,\n                    .sameReadSource: observed.currentWorkReadSource == active.observed.currentWorkReadSource,\n                    .sameSelection: observed.selectedRange == active.observed.selectedRange,\n                    .sameLocale: observed.locale == active.observed.locale,\n                ])\n                throw HanlinHostError.staleContext\n            }\n        } catch {\n            OtzariaHanlinConnectionDiagnostic.record(.sourceValidationFailed,\n                reason: OtzariaHanlinConnectionDiagnostic.reason(for: error))\n            invalidateHanlin(sceneID: sceneID)\n            throw HanlinHostError.staleContext\n        }"
+        ]
+      ]
+    ],
+    [
+      "Scripts/CI/runtime27-hanlin-live.py",
+      [
+        [
+          "OUT = ROOT / \"build/hanlin-live-evidence\"\n",
+          "OUT = ROOT / \"build/hanlin-live-evidence\"\nCONNECTION_DIAGNOSTIC_PREFIX = \"otzaria-hanlin-connection-stages-\"\nCONNECTION_DIAGNOSTIC_STAGES = frozenset([\"inputConsumed\",\"connectEntered\",\"connectRejected\",\"requestValidated\",\"readRequestValidated\",\"readRequestReturned\",\"connectFailed\",\"carriedConfigureEntered\",\"carriedConfigureRejected\",\"carriedConfigurationMismatch\",\"engineConstructed\",\"configurationActivated\",\"configurationCompleted\",\"configureFailed\",\"openEntered\",\"openRejected\",\"openIssued\",\"openFailed\",\"mountObserved\",\"consentCaptureEntered\",\"consentCaptured\",\"closeRequested\",\"dismissObserved\",\"dismissAccepted\",\"readReopenEntered\",\"consentConsumeEntered\",\"consentConsumed\",\"sourceComparisonRejected\",\"sourceValidationFailed\"])\nCONNECTION_DIAGNOSTIC_REASONS = frozenset([\"none\",\"cancelled\",\"invalidArguments\",\"invalidContext\",\"staleContext\",\"denied\",\"duplicateInvocation\",\"otherHostError\",\"otherError\"])\nCONNECTION_DIAGNOSTIC_FLAGS = frozenset([\"closed\",\"storageFailed\",\"configured\",\"connecting\",\"hasOperation\",\"allowRead\",\"hasReadOffer\",\"hasReadScope\",\"credentialPresent\",\"retired\",\"hasPresentation\",\"hasNativeSession\",\"mounted\",\"foreground\",\"hasNavigationTask\",\"matchingSession\",\"isPresented\",\"hasPendingReadReopen\",\"preservingContinuation\",\"hasConsent\",\"hasConnection\",\"sameBackend\",\"sameMappingSource\",\"sameMappingEpoch\",\"sameWorkspaceProjection\",\"sameReaderContent\",\"sameReadSource\",\"sameSelection\",\"sameLocale\"])\n"
+        ],
+        [
+          "def source_context():\n",
+          "\ndef validate_connection_diagnostic(raw):\n    \"\"\"Admit only the app's finite enum/boolean journal; never raw application data.\"\"\"\n    require(isinstance(raw, bytes) and 0 < len(raw) <= 65536, \"Invalid connection diagnostic size\")\n\n    def unique_object(pairs):\n        value = {}\n        for key, item in pairs:\n            require(key not in value, \"Duplicate connection diagnostic key\")\n            value[key] = item\n        return value\n\n    def invalid_constant(_):\n        raise ValueError(\"Non-finite connection diagnostic value\")\n\n    value = json.loads(raw.decode(\"utf-8\"), object_pairs_hook=unique_object,\n                       parse_constant=invalid_constant)\n    require(type(value) is dict and set(value) == {\"schemaVersion\", \"overflow\", \"events\"},\n            \"Unexpected connection diagnostic schema\")\n    require(type(value[\"schemaVersion\"]) is int and value[\"schemaVersion\"] == 1\n            and type(value[\"overflow\"]) is bool, \"Invalid connection diagnostic version/overflow\")\n    events = value[\"events\"]\n    require(type(events) is list and 1 <= len(events) <= 96, \"Invalid connection diagnostic event count\")\n    for number, event in enumerate(events, 1):\n        require(type(event) is dict and set(event) == {\"sequence\", \"stage\", \"reason\", \"flags\"},\n                \"Unexpected connection diagnostic event\")\n        require(type(event[\"sequence\"]) is int and event[\"sequence\"] == number,\n                \"Non-contiguous connection diagnostic sequence\")\n        require(type(event[\"stage\"]) is str and event[\"stage\"] in CONNECTION_DIAGNOSTIC_STAGES\n                and type(event[\"reason\"]) is str and event[\"reason\"] in CONNECTION_DIAGNOSTIC_REASONS,\n                \"Unexpected connection diagnostic enum\")\n        fields = event[\"flags\"]\n        require(type(fields) is dict and len(fields) <= 9 and set(fields) <= CONNECTION_DIAGNOSTIC_FLAGS\n                and all(type(item) is bool for item in fields.values()),\n                \"Unexpected connection diagnostic flags\")\n    require(events[0] == {\"sequence\": 1, \"stage\": \"inputConsumed\", \"reason\": \"none\", \"flags\": {}}\n            and all(event[\"stage\"] != \"inputConsumed\" for event in events[1:]),\n            \"Connection diagnostic is not bound to one original input consumption\")\n    return value\n\n\ndef source_context():\n"
+        ],
+        [
+          "        self.witness = None\n",
+          "        self.witness = None\n        self.connection_diagnostic_status = \"NOT_CAPTURED\"\n"
+        ],
+        [
+          "        self.udid = udid\n        write(WORK / \"ownership.json\"",
+          "        require(not list(root.glob(\"*/Documents/\" + CONNECTION_DIAGNOSTIC_PREFIX + self.nonce + \".json\")),\n                \"A previous connection diagnostic already exists for this owned input\")\n        self.udid = udid\n        write(WORK / \"ownership.json\""
+        ],
+        [
+          "    def capture(self, udid, label):\n",
+          "\n    def capture_connection_diagnostic(self, root):\n        candidates = list(root.glob(\"*/Documents/\" + CONNECTION_DIAGNOSTIC_PREFIX + self.nonce + \".json\"))\n        require(len(candidates) <= 1, \"Ambiguous original connection diagnostic\")\n        if not candidates:\n            self.connection_diagnostic_status = \"NOT_OBSERVED\"\n            return\n        file = candidates[0]\n        require(file.is_file() and not file.is_symlink() and file.stat().st_size <= 65536\n                and file.resolve(strict=True).is_relative_to(root)\n                and file.stat().st_mode & 0o777 == 0o600,\n                \"Invalid original connection diagnostic file\")\n        raw = file.read_bytes()\n        self.scan(raw)\n        proof = validate_connection_diagnostic(raw)\n        target = WORK / \"connection-stages.json\"\n        require(not target.exists(), \"Preserve an already captured connection diagnostic\")\n        target.write_bytes(raw)\n        self.connection_diagnostic_status = \"OVERFLOW\" if proof[\"overflow\"] else \"OBSERVED\"\n\n\n    def capture(self, udid, label):\n"
+        ],
+        [
+          "        require(udid == self.udid and label == \"11\", \"Wrong live witness device\")\n        root = owned_application_root(udid).resolve(strict=True)\n        candidates = list(root.glob(\"*/Documents/otzaria-hanlin-live-\" + self.nonce + \".json\"))",
+          "        require(udid == self.udid and label == \"11\", \"Wrong live witness device\")\n        root = owned_application_root(udid).resolve(strict=True)\n        # Capture this finite diagnostic even when the final native witness is\n        # absent. The existing private-input cleanup and success checks stay intact.\n        self.capture_connection_diagnostic(root)\n        candidates = list(root.glob(\"*/Documents/otzaria-hanlin-live-\" + self.nonce + \".json\"))"
+        ],
+        [
+          "                         \"fixture-query.json\", \"fixture-after.json\", \"native-witness.json\"]:",
+          "                         \"fixture-query.json\", \"fixture-after.json\", \"native-witness.json\", \"connection-stages.json\"]:"
+        ],
+        [
+          "            report.update(private_input_staged=live.staged, private_input_consumed=live.consumed,",
+          "            report.update(connection_diagnostic_status=live.connection_diagnostic_status,\n                          private_input_staged=live.staged, private_input_consumed=live.consumed,"
+        ]
+      ]
+    ]
+  ],
+  "schema": {
+    "phases": [
+      "inputConsumed",
+      "connectEntered",
+      "connectRejected",
+      "requestValidated",
+      "readRequestValidated",
+      "readRequestReturned",
+      "connectFailed",
+      "carriedConfigureEntered",
+      "carriedConfigureRejected",
+      "carriedConfigurationMismatch",
+      "engineConstructed",
+      "configurationActivated",
+      "configurationCompleted",
+      "configureFailed",
+      "openEntered",
+      "openRejected",
+      "openIssued",
+      "openFailed",
+      "mountObserved",
+      "consentCaptureEntered",
+      "consentCaptured",
+      "closeRequested",
+      "dismissObserved",
+      "dismissAccepted",
+      "readReopenEntered",
+      "consentConsumeEntered",
+      "consentConsumed",
+      "sourceComparisonRejected",
+      "sourceValidationFailed"
+    ],
+    "reasons": [
+      "none",
+      "cancelled",
+      "invalidArguments",
+      "invalidContext",
+      "staleContext",
+      "denied",
+      "duplicateInvocation",
+      "otherHostError",
+      "otherError"
+    ],
+    "flags": [
+      "closed",
+      "storageFailed",
+      "configured",
+      "connecting",
+      "hasOperation",
+      "allowRead",
+      "hasReadOffer",
+      "hasReadScope",
+      "credentialPresent",
+      "retired",
+      "hasPresentation",
+      "hasNativeSession",
+      "mounted",
+      "foreground",
+      "hasNavigationTask",
+      "matchingSession",
+      "isPresented",
+      "hasPendingReadReopen",
+      "preservingContinuation",
+      "hasConsent",
+      "hasConnection",
+      "sameBackend",
+      "sameMappingSource",
+      "sameMappingEpoch",
+      "sameWorkspaceProjection",
+      "sameReaderContent",
+      "sameReadSource",
+      "sameSelection",
+      "sameLocale"
+    ],
+    "maxEvents": 96,
+    "maxBytes": 65536
+  }
+}

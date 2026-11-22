@@ -1,0 +1,475 @@
+--- a/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift
++++ b/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift
+@@ -18,6 +18,119 @@
+     init(endpoint: String, modelID: String, credential: String) throws {
+         configuration = try OtzariaHanlinChatSession.configuration(
+             endpoint: endpoint, modelID: modelID, credential: credential)
++    }
++}
++
++
++/// A bounded acceptance journal of original control flow. Every value is a fixed
++/// enum or boolean; credentials, model/source text and session identities never
++/// enter this schema. It cannot grant access or alter an original outcome.
++@MainActor
++enum OtzariaHanlinConnectionDiagnostic {
++    enum Stage: String {
++        case inputConsumed, connectEntered, connectRejected, requestValidated, readRequestValidated
++        case readRequestReturned, connectFailed
++        case carriedConfigureEntered, carriedConfigureRejected, carriedConfigurationMismatch
++        case engineConstructed, configurationActivated, configurationCompleted, configureFailed
++        case openEntered, openRejected, openIssued, openFailed, mountObserved
++        case consentCaptureEntered, consentCaptured, closeRequested
++        case dismissObserved, dismissAccepted, readReopenEntered
++        case consentConsumeEntered, consentConsumed
++        case sourceComparisonRejected, sourceValidationFailed
++    }
++    enum Reason: String {
++        case none, cancelled, invalidArguments, invalidContext, staleContext
++        case denied, duplicateInvocation, otherHostError, otherError
++    }
++    enum Flag: String {
++        case closed, storageFailed, configured, connecting, hasOperation
++        case allowRead, hasReadOffer, hasReadScope, credentialPresent
++        case retired, hasPresentation, hasNativeSession, mounted, foreground
++        case hasNavigationTask, matchingSession, isPresented, hasPendingReadReopen
++        case preservingContinuation, hasConsent, hasConnection
++        case sameBackend, sameMappingSource, sameMappingEpoch, sameWorkspaceProjection
++        case sameReaderContent, sameReadSource, sameSelection, sameLocale
++    }
++
++    #if DEBUG && targetEnvironment(simulator)
++    private static var boundNonce: String?
++    private static var destination: URL?
++    private static var events: [[String: Any]] = []
++    private static var overflow = false
++    #endif
++
++    static func reason(for error: any Error) -> Reason {
++        if error is CancellationError { return .cancelled }
++        guard let error = error as? HanlinHostError else { return .otherError }
++        switch error {
++        case .invalidArguments: return .invalidArguments
++        case .invalidContext: return .invalidContext
++        case .staleContext: return .staleContext
++        case .denied: return .denied
++        case .duplicateInvocation: return .duplicateInvocation
++        default: return .otherHostError
++        }
++    }
++
++
++    /// Only the original one-use input consumer calls this after validating,
++    /// consuming and applying that exact input. Existing evidence is preserved.
++    static func beginOwnedLiveInput(nonce: String) {
++        #if DEBUG && targetEnvironment(simulator)
++        let environment = ProcessInfo.processInfo.environment
++        guard boundNonce == nil,
++              environment["OTZARIA_HANLIN_LIVE_PROVIDER_CASE"] == "1",
++              environment["OTZARIA_HANLIN_LIVE_NONCE"] == nonce,
++              UUID(uuidString: nonce)?.uuidString == nonce else { return }
++        do {
++            let directory = try FileManager.default.url(for: .documentDirectory,
++                in: .userDomainMask, appropriateFor: nil, create: false)
++            let file = directory.appendingPathComponent("otzaria-hanlin-connection-stages-" + nonce + ".json")
++            let initial: [[String: Any]] = [[
++                "sequence": 1, "stage": Stage.inputConsumed.rawValue,
++                "reason": Reason.none.rawValue, "flags": [String: Bool](),
++            ]]
++            let data = try JSONSerialization.data(withJSONObject: [
++                "schemaVersion": 1, "overflow": false, "events": initial,
++            ], options: [.sortedKeys])
++            try data.write(to: file, options: .withoutOverwriting)
++            try FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: file.path)
++            events = initial
++            overflow = false
++            destination = file
++            boundNonce = nonce
++        } catch {
++            // Keep the original business flow and any preexisting evidence.
++            // A missing/incomplete journal is not diagnostic success.
++        }
++        #endif
++    }
++
++    static func record(_ stage: Stage, reason: Reason = .none, flags: [Flag: Bool] = [:]) {
++        #if DEBUG && targetEnvironment(simulator)
++        let environment = ProcessInfo.processInfo.environment
++        guard let boundNonce, let file = destination,
++              environment["OTZARIA_HANLIN_LIVE_PROVIDER_CASE"] == "1",
++              environment["OTZARIA_HANLIN_LIVE_NONCE"] == boundNonce else { return }
++        if events.count < 96 && flags.count <= 9 {
++            events.append([
++                "sequence": events.count + 1,
++                "stage": stage.rawValue,
++                "reason": reason.rawValue,
++                "flags": Dictionary(uniqueKeysWithValues: flags.map { ($0.key.rawValue, $0.value) }),
++            ])
++        } else { overflow = true }
++        do {
++            let data = try JSONSerialization.data(withJSONObject: [
++                "schemaVersion": 1, "overflow": overflow, "events": events,
++            ], options: [.sortedKeys])
++            try data.write(to: file, options: .atomic)
++            try FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: file.path)
++        } catch {
++            // Diagnostic I/O never changes the original action, error, guard or
++            // cleanup. The collector reports a missing journal explicitly.
++        }
++        #endif
+     }
+ }
+ 
+@@ -174,17 +287,30 @@
+     /// form action requests the displayed current work. That action only queues
+     /// a source-bound dismissal/reopen; it never sends a model message.
+     func configure(endpoint: String, modelID: String, credential: String, allowCurrentWorkRead: Bool = false) {
+-        guard !closed, !storageFailed, !isConfigured, !isConnecting, operation == nil else { return }
++        OtzariaHanlinConnectionDiagnostic.record(.connectEntered, flags: [
++            .closed: closed, .storageFailed: storageFailed, .configured: isConfigured,
++            .connecting: isConnecting, .hasOperation: operation != nil,
++            .allowRead: allowCurrentWorkRead, .hasReadOffer: currentWorkReadOffer != nil,
++            .hasReadScope: currentWorkReadScope != nil, .credentialPresent: !credential.isEmpty,
++        ])
++        guard !closed, !storageFailed, !isConfigured, !isConnecting, operation == nil else {
++            OtzariaHanlinConnectionDiagnostic.record(.connectRejected)
++            return
++        }
+         do {
+             let request = try OtzariaHanlinConnectionRequest(endpoint: endpoint, modelID: modelID, credential: credential)
++            OtzariaHanlinConnectionDiagnostic.record(.requestValidated)
+             if allowCurrentWorkRead {
+                 guard currentWorkReadScope == nil, let offer = currentWorkReadOffer else { throw HanlinHostError.denied }
+                 try validateOwner()
++                OtzariaHanlinConnectionDiagnostic.record(.readRequestValidated)
+                 try onRequestReadConnection(request, offer)
++                OtzariaHanlinConnectionDiagnostic.record(.readRequestReturned, flags: [.closed: closed])
+             } else {
+                 configure(request)
+             }
+         } catch {
++            OtzariaHanlinConnectionDiagnostic.record(.connectFailed, reason: OtzariaHanlinConnectionDiagnostic.reason(for: error))
+             if !closed { errorMessage = String(localized: "The connection could not be configured. Check the address, model and key.") }
+         }
+     }
+@@ -192,8 +318,17 @@
+     /// Only the original owner may carry the same immutable request through an
+     /// actual sheet dismissal. A different request cannot reuse its read grant.
+     func configure(_ request: OtzariaHanlinConnectionRequest) {
+-        guard !closed, !storageFailed, !isConfigured, !isConnecting, operation == nil else { return }
++        OtzariaHanlinConnectionDiagnostic.record(.carriedConfigureEntered, flags: [
++            .closed: closed, .storageFailed: storageFailed, .configured: isConfigured,
++            .connecting: isConnecting, .hasOperation: operation != nil,
++            .hasReadScope: currentWorkReadScope != nil,
++        ])
++        guard !closed, !storageFailed, !isConfigured, !isConnecting, operation == nil else {
++            OtzariaHanlinConnectionDiagnostic.record(.carriedConfigureRejected)
++            return
++        }
+         guard requiredConfigurationID == nil || requiredConfigurationID == request.id else {
++            OtzariaHanlinConnectionDiagnostic.record(.carriedConfigurationMismatch)
+             onClose(); return
+         }
+         isConnecting = true
+@@ -206,7 +341,9 @@
+                 let configuration = request.configuration
+                 let engine = try HanlinAISDKAgentEngine(configuration: configuration,
+                     fetch: HanlinAISDKProviderFactory.makeFetch(sessionConfiguration: .ephemeral))
++                OtzariaHanlinConnectionDiagnostic.record(.engineConstructed)
+                 try self.onConnectionConfigured(request.id)
++                OtzariaHanlinConnectionDiagnostic.record(.configurationActivated)
+                 try await self.requireCurrent()
+                 let session = HanlinAgentSession(identity: self.identity, host: self.host, engine: engine, store: self.store)
+                 session.onHostResult = { [weak self] event in
+@@ -224,7 +361,10 @@
+                                    modelID: configuration.baseModelID)
+                 self.isConfigured = true
+                 self.errorMessage = nil
++                OtzariaHanlinConnectionDiagnostic.record(.configurationCompleted)
+             } catch {
++                OtzariaHanlinConnectionDiagnostic.record(.configureFailed,
++                    reason: OtzariaHanlinConnectionDiagnostic.reason(for: error))
+                 if !self.closed {
+                     self.errorMessage = String(localized: "The connection could not be configured. Check the address, model and key.")
+                     // A failed granted connection cannot be retried with a new
+--- a/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift
++++ b/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift
+@@ -67,8 +67,17 @@
+     }
+ 
+     private func openConversation(conversationID: UUID?, expectedNamespace: HanlinConversationNamespace?, readReopen: ReadReopen?) {
++        OtzariaHanlinConnectionDiagnostic.record(.openEntered, flags: [
++            .retired: retired, .hasPresentation: presentation != nil,
++            .hasNavigationTask: navigationTask != nil, .hasNativeSession: nativeSession != nil,
++            .mounted: nativeSession?.mounted == true, .foreground: nativeSession?.foreground == true,
++            .hasConsent: readReopen?.consent != nil, .hasConnection: readReopen?.connection != nil,
++        ])
+         guard !retired, presentation == nil, navigationTask == nil,
+-              let manager, let nativeSession, nativeSession.mounted, nativeSession.foreground else { return }
++              let manager, let nativeSession, nativeSession.mounted, nativeSession.foreground else {
++            OtzariaHanlinConnectionDiagnostic.record(.openRejected)
++            return
++        }
+         var issued: HanlinHostSession?
+         do {
+             let readConnection: (consent: MaktabahNativeRoutingComposition.HanlinReadConsent, dismissedSessionID: UUID, configurationID: UUID)?
+@@ -124,7 +133,10 @@
+             if let connection = readReopen?.connection {
+                 connectionAfterMount = (sessionID, connection)
+             }
++            OtzariaHanlinConnectionDiagnostic.record(.openIssued, flags: [.hasReadScope: readScope != nil])
+         } catch {
++            OtzariaHanlinConnectionDiagnostic.record(.openFailed,
++                reason: OtzariaHanlinConnectionDiagnostic.reason(for: error))
+             readReopen?.consent?.revoke()
+             connectionAfterMount = nil
+             if let issued {
+@@ -137,6 +149,10 @@
+     }
+ 
+     func didMount(sceneID: String, sessionID: UUID) {
++        OtzariaHanlinConnectionDiagnostic.record(.mountObserved, flags: [
++            .matchingSession: presentation?.id == sessionID, .isPresented: isPresented,
++            .retired: retired, .hasNativeSession: nativeSession != nil,
++        ])
+         guard presentation?.id == sessionID, isPresented, !retired else { return }
+         guard let nativeSession, sceneID == nativeSession.sceneID.rawValue else {
+             requestClose(sessionID: sessionID); return
+@@ -197,6 +213,7 @@
+     /// displayed work and supplies the exact immutable model configuration.
+     private func requestReadConnection(_ request: OtzariaHanlinConnectionRequest,
+         displayedScope: OtzariaHanlinCurrentWorkReadScope, sessionID: UUID) throws {
++        OtzariaHanlinConnectionDiagnostic.record(.consentCaptureEntered)
+         try validate(sessionID)
+         guard let presentation, let manager, !presentation.isConfigured,
+               !presentation.isConnecting, !presentation.isStreaming,
+@@ -208,6 +225,7 @@
+             }
+         pendingReadReopen = .init(originalSessionID: sessionID, namespace: presentation.identity.context.namespace,
+             conversationID: presentation.identity.conversationID, consent: consent, connection: request)
++        OtzariaHanlinConnectionDiagnostic.record(.consentCaptured)
+         requestClose(sessionID: sessionID, preservingContinuation: true)
+     }
+ 
+@@ -233,6 +251,11 @@
+     }
+ 
+     func requestClose(sessionID: UUID? = nil, preservingContinuation: Bool = false) {
++        OtzariaHanlinConnectionDiagnostic.record(.closeRequested, flags: [
++            .hasPresentation: presentation != nil,
++            .matchingSession: presentation != nil && (sessionID == nil || presentation?.id == sessionID),
++            .preservingContinuation: preservingContinuation, .hasPendingReadReopen: pendingReadReopen != nil,
++        ])
+         guard let presentation, sessionID == nil || presentation.id == sessionID else { return }
+         if !preservingContinuation {
+             pendingNavigation?.cancel(); pendingNavigation = nil; pendingHistory = nil
+@@ -248,9 +271,15 @@
+     /// SwiftUI calls this after the actual owned sheet finishes dismissing.
+     /// A replacement cannot be opened while that old presentation is retained.
+     func didDismiss(sessionID: UUID?) {
++        OtzariaHanlinConnectionDiagnostic.record(.dismissObserved, flags: [
++            .hasPresentation: presentation != nil,
++            .matchingSession: sessionID != nil && presentation?.id == sessionID,
++            .isPresented: isPresented, .hasPendingReadReopen: pendingReadReopen != nil,
++        ])
+         // A superseded SwiftUI callback has no ownership over this sheet or its
+         // pending grant, even if the current sheet is itself already dismissing.
+         guard let sessionID, let current = presentation, current.id == sessionID, !isPresented else { return }
++        OtzariaHanlinConnectionDiagnostic.record(.dismissAccepted)
+         current.revoke()
+         if pendingNavigation == nil { composition.closeHanlinHostSession(current.identity) }
+         nativeSession?.finishStudyChatPresentation(sessionID)
+@@ -261,6 +290,9 @@
+             guard !retired, readReopen.originalSessionID == sessionID else {
+                 readReopen.consent?.revoke(); return
+             }
++            OtzariaHanlinConnectionDiagnostic.record(.readReopenEntered, flags: [
++                .hasConsent: readReopen.consent != nil, .hasConnection: readReopen.connection != nil,
++            ])
+             openConversation(conversationID: readReopen.conversationID,
+                 expectedNamespace: readReopen.namespace, readReopen: readReopen)
+             return
+--- a/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift
++++ b/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift
+@@ -343,6 +343,7 @@
+             endpoint = "https://generativelanguage.googleapis.com/v1beta/openai/"
+             model = configuredModel
+             credential = key
++            OtzariaHanlinConnectionDiagnostic.beginOwnedLiveInput(nonce: nonce)
+         } catch {
+             // Do not print parser errors, input bytes or account fields.
+             fatalError("The private live-acceptance input could not be consumed")
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift
+@@ -425,6 +425,7 @@
+             workspace: observed.projection.groupID.uuidString, space: observed.backend.backend.rawValue)
+         let readScope: OtzariaHanlinCurrentWorkReadScope?
+         if let readConnection {
++            OtzariaHanlinConnectionDiagnostic.record(.consentConsumeEntered)
+             guard entry.pendingHanlinReadConsent === readConnection.consent,
+                   readConnection.consent.originalSession.conversationID == conversationID,
+                   readConnection.consent.originalSession.context.sceneID == entry.hanlinSceneID else {
+@@ -434,6 +435,7 @@
+             readScope = try readConnection.consent.witness.consume(
+                 dismissedSessionID: readConnection.dismissedSessionID, currentSource: observed,
+                 namespace: namespace, configurationID: readConnection.configurationID)
++            OtzariaHanlinConnectionDiagnostic.record(.consentConsumed)
+             scenes[sceneID]?.pendingHanlinReadConsent = nil
+         } else { readScope = nil }
+         // Native UIKit identifiers remain strings. This UUID belongs only to the
+@@ -559,10 +561,23 @@
+             throw HanlinHostError.staleContext
+         }
+         do {
+-            guard try hanlinSource(sceneID: sceneID, entry: entry, allowingHanlinSession: active.session.id) == active.observed else {
++            let observed = try hanlinSource(sceneID: sceneID, entry: entry, allowingHanlinSession: active.session.id)
++            guard observed == active.observed else {
++                OtzariaHanlinConnectionDiagnostic.record(.sourceComparisonRejected, flags: [
++                    .sameBackend: observed.backend == active.observed.backend,
++                    .sameMappingSource: observed.source == active.observed.source,
++                    .sameMappingEpoch: observed.epoch == active.observed.epoch,
++                    .sameWorkspaceProjection: observed.projection == active.observed.projection,
++                    .sameReaderContent: observed.readerContent == active.observed.readerContent,
++                    .sameReadSource: observed.currentWorkReadSource == active.observed.currentWorkReadSource,
++                    .sameSelection: observed.selectedRange == active.observed.selectedRange,
++                    .sameLocale: observed.locale == active.observed.locale,
++                ])
+                 throw HanlinHostError.staleContext
+             }
+         } catch {
++            OtzariaHanlinConnectionDiagnostic.record(.sourceValidationFailed,
++                reason: OtzariaHanlinConnectionDiagnostic.reason(for: error))
+             invalidateHanlin(sceneID: sceneID)
+             throw HanlinHostError.staleContext
+         }
+--- a/Scripts/CI/runtime27-hanlin-live.py
++++ b/Scripts/CI/runtime27-hanlin-live.py
+@@ -26,6 +26,10 @@
+ PRIVATE_RELATIVE = Path("Library/Application Support/OtzariaHanlinLiveProviderAcceptance/provider.json")
+ WORK = ROOT / "build/hanlin-live-private"
+ OUT = ROOT / "build/hanlin-live-evidence"
++CONNECTION_DIAGNOSTIC_PREFIX = "otzaria-hanlin-connection-stages-"
++CONNECTION_DIAGNOSTIC_STAGES = frozenset(["inputConsumed","connectEntered","connectRejected","requestValidated","readRequestValidated","readRequestReturned","connectFailed","carriedConfigureEntered","carriedConfigureRejected","carriedConfigurationMismatch","engineConstructed","configurationActivated","configurationCompleted","configureFailed","openEntered","openRejected","openIssued","openFailed","mountObserved","consentCaptureEntered","consentCaptured","closeRequested","dismissObserved","dismissAccepted","readReopenEntered","consentConsumeEntered","consentConsumed","sourceComparisonRejected","sourceValidationFailed"])
++CONNECTION_DIAGNOSTIC_REASONS = frozenset(["none","cancelled","invalidArguments","invalidContext","staleContext","denied","duplicateInvocation","otherHostError","otherError"])
++CONNECTION_DIAGNOSTIC_FLAGS = frozenset(["closed","storageFailed","configured","connecting","hasOperation","allowRead","hasReadOffer","hasReadScope","credentialPresent","retired","hasPresentation","hasNativeSession","mounted","foreground","hasNavigationTask","matchingSession","isPresented","hasPendingReadReopen","preservingContinuation","hasConsent","hasConnection","sameBackend","sameMappingSource","sameMappingEpoch","sameWorkspaceProjection","sameReaderContent","sameReadSource","sameSelection","sameLocale"])
+ 
+ 
+ def require(condition, message):
+@@ -91,6 +95,47 @@
+         require(evidence_identity(artifacts) == receipt["prior_identity"], "Original evidence bytes were not restored")
+     receipt["restored"] = True
+     write(receipt_path, receipt)
++
++
++
++def validate_connection_diagnostic(raw):
++    """Admit only the app's finite enum/boolean journal; never raw application data."""
++    require(isinstance(raw, bytes) and 0 < len(raw) <= 65536, "Invalid connection diagnostic size")
++
++    def unique_object(pairs):
++        value = {}
++        for key, item in pairs:
++            require(key not in value, "Duplicate connection diagnostic key")
++            value[key] = item
++        return value
++
++    def invalid_constant(_):
++        raise ValueError("Non-finite connection diagnostic value")
++
++    value = json.loads(raw.decode("utf-8"), object_pairs_hook=unique_object,
++                       parse_constant=invalid_constant)
++    require(type(value) is dict and set(value) == {"schemaVersion", "overflow", "events"},
++            "Unexpected connection diagnostic schema")
++    require(type(value["schemaVersion"]) is int and value["schemaVersion"] == 1
++            and type(value["overflow"]) is bool, "Invalid connection diagnostic version/overflow")
++    events = value["events"]
++    require(type(events) is list and 1 <= len(events) <= 96, "Invalid connection diagnostic event count")
++    for number, event in enumerate(events, 1):
++        require(type(event) is dict and set(event) == {"sequence", "stage", "reason", "flags"},
++                "Unexpected connection diagnostic event")
++        require(type(event["sequence"]) is int and event["sequence"] == number,
++                "Non-contiguous connection diagnostic sequence")
++        require(type(event["stage"]) is str and event["stage"] in CONNECTION_DIAGNOSTIC_STAGES
++                and type(event["reason"]) is str and event["reason"] in CONNECTION_DIAGNOSTIC_REASONS,
++                "Unexpected connection diagnostic enum")
++        fields = event["flags"]
++        require(type(fields) is dict and len(fields) <= 9 and set(fields) <= CONNECTION_DIAGNOSTIC_FLAGS
++                and all(type(item) is bool for item in fields.values()),
++                "Unexpected connection diagnostic flags")
++    require(events[0] == {"sequence": 1, "stage": "inputConsumed", "reason": "none", "flags": {}}
++            and all(event["stage"] != "inputConsumed" for event in events[1:]),
++            "Connection diagnostic is not bound to one original input consumption")
++    return value
+ 
+ 
+ def source_context():
+@@ -218,6 +263,7 @@
+         self.consumed = False
+         self.redactions = 0
+         self.witness = None
++        self.connection_diagnostic_status = "NOT_CAPTURED"
+         self.database_relative = None
+         self.database_sha256 = None
+ 
+@@ -238,6 +284,8 @@
+         root = owned_application_root(udid).resolve(strict=True)
+         data = Path(container).resolve(strict=True)
+         require(data.parent == root and data.is_dir() and not Path(container).is_symlink(), "Wrong owned app container")
++        require(not list(root.glob("*/Documents/" + CONNECTION_DIAGNOSTIC_PREFIX + self.nonce + ".json")),
++                "A previous connection diagnostic already exists for this owned input")
+         self.udid = udid
+         write(WORK / "ownership.json", {"udid": udid, "run_id": os.environ["GITHUB_RUN_ID"],
+               "run_attempt": os.environ["GITHUB_RUN_ATTEMPT"], "nonce": self.nonce, "private_relative": PRIVATE_RELATIVE.as_posix()})
+@@ -289,9 +337,33 @@
+                 "TEST_RUNNER_OTZARIA_HANLIN_LIVE_MODEL": MODEL, "TEST_RUNNER_OTZARIA_HANLIN_LIVE_QUERY": query,
+                 "TEST_RUNNER_OTZARIA_HANLIN_LIVE_SECTION": str(paragraph["start_line_index"])}
+ 
++
++    def capture_connection_diagnostic(self, root):
++        candidates = list(root.glob("*/Documents/" + CONNECTION_DIAGNOSTIC_PREFIX + self.nonce + ".json"))
++        require(len(candidates) <= 1, "Ambiguous original connection diagnostic")
++        if not candidates:
++            self.connection_diagnostic_status = "NOT_OBSERVED"
++            return
++        file = candidates[0]
++        require(file.is_file() and not file.is_symlink() and file.stat().st_size <= 65536
++                and file.resolve(strict=True).is_relative_to(root)
++                and file.stat().st_mode & 0o777 == 0o600,
++                "Invalid original connection diagnostic file")
++        raw = file.read_bytes()
++        self.scan(raw)
++        proof = validate_connection_diagnostic(raw)
++        target = WORK / "connection-stages.json"
++        require(not target.exists(), "Preserve an already captured connection diagnostic")
++        target.write_bytes(raw)
++        self.connection_diagnostic_status = "OVERFLOW" if proof["overflow"] else "OBSERVED"
++
++
+     def capture(self, udid, label):
+         require(udid == self.udid and label == "11", "Wrong live witness device")
+         root = owned_application_root(udid).resolve(strict=True)
++        # Capture this finite diagnostic even when the final native witness is
++        # absent. The existing private-input cleanup and success checks stay intact.
++        self.capture_connection_diagnostic(root)
+         candidates = list(root.glob("*/Documents/otzaria-hanlin-live-" + self.nonce + ".json"))
+         require(len(candidates) == 1, "The original native live witness did not complete")
+         file = candidates[0]
+@@ -465,7 +537,7 @@
+             raw = WORK / "artifacts"
+             for name in ["source-before.json", "source-after.json", "selection.json", "declarations.json",
+                          "ownership.json", "artifact-isolation.json", "fixture-container.json",
+-                         "fixture-query.json", "fixture-after.json", "native-witness.json"]:
++                         "fixture-query.json", "fixture-after.json", "native-witness.json", "connection-stages.json"]:
+                 live.admit(WORK / name, name)
+             live.admit(ROOT / "build/hq-stage2/result.json", "original-build-result.json")
+             live.admit(ROOT / "build/hanlin-live-preflight/app-group-resolver-interface.json",
+@@ -493,7 +565,8 @@
+                     live.admit(WORK / "original-test-details.json", "original-test-details.json")
+                 else:
+                     report.update(status="FAIL", test_details_exit_code=details.returncode)
+-            report.update(private_input_staged=live.staged, private_input_consumed=live.consumed,
++            report.update(connection_diagnostic_status=live.connection_diagnostic_status,
++                          private_input_staged=live.staged, private_input_consumed=live.consumed,
+                           private_input_removed=live.removed, log_redactions=live.redactions,
+                           credential_in_test_arguments=False, credential_in_child_environment=False,
+                           raw_container_or_result_bundle_published=False)
