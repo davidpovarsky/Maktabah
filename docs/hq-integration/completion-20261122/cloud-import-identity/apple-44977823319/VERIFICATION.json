@@ -1,0 +1,29 @@
+{
+  "anytype_runtime_executed": 0,
+  "apple_sqlite": "3.54.0",
+  "apple_swift": "6.4.2",
+  "application_source": "5d0a11f6a799bee9deb23dc91b29e832bec14335",
+  "archive_crc_verified": true,
+  "artifact_bytes": 656371,
+  "artifact_id": 14736950047,
+  "artifact_sha256": "57d265b96541376c07c683a099b3888518d23163a508d604facf7b18a65c8844",
+  "cloud48_passed": 48,
+  "cloudkit_transport_executed": 0,
+  "complete_raw_evidence": "artifact-14736950047.zip retains exact compiled copies, source archive, owned fixture DBs, commands, stdout/stderr and cases without cache binaries.",
+  "core194_reexecuted": 0,
+  "distinct_process_reopen_passed": 9,
+  "github_artifact_digest_matched": true,
+  "head": "385fffafb5b014f0777b3100151b5b6d0e75eed9",
+  "import_passed": 9,
+  "native_ui_executed": 0,
+  "process_ids": [
+    19651,
+    19652
+  ],
+  "run_attempt": 1,
+  "run_id": 44977823319,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44977823319",
+  "source_inputs": 93,
+  "status": "VERIFIED_APPLE_PASS",
+  "xcode_sdk": "MacOSX27.2"
+}

@@ -1,0 +1,25 @@
+{
+  "artifacts": [
+    {
+      "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14736950047/zip",
+      "created_at": "2026-11-22T02:52:18Z",
+      "digest": "sha256:57d265b96541376c07c683a099b3888518d23163a508d604facf7b18a65c8844",
+      "expired": false,
+      "expires_at": "2027-02-20T02:49:13Z",
+      "id": 14736950047,
+      "name": "cloud-import-identity-apple-evidence",
+      "node_id": "MDg6QXJ0aWZhY3QxNDczNjk1MDA0Nw==",
+      "size_in_bytes": 656371,
+      "updated_at": "2026-11-22T02:52:18Z",
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14736950047",
+      "workflow_run": {
+        "head_branch": "codex/otzaria-cloud-import-identity-apple-20261122",
+        "head_repository_id": 1280062128,
+        "head_sha": "385fffafb5b014f0777b3100151b5b6d0e75eed9",
+        "id": 44977823319,
+        "repository_id": 1280062128
+      }
+    }
+  ],
+  "total_count": 1
+}

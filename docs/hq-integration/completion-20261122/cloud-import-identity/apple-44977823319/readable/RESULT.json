@@ -1,0 +1,17 @@
+{
+  "anytype_runtime_executed": 0,
+  "application_source": "5d0a11f6a799bee9deb23dc91b29e832bec14335",
+  "checkout_sha": "385fffafb5b014f0777b3100151b5b6d0e75eed9",
+  "cloud48_passed": 48,
+  "cloudkit_transport_executed": 0,
+  "core194_tests_executed": 0,
+  "import_passed": 9,
+  "live_exchange_enabled": false,
+  "native_ui_executed": 0,
+  "process_ids": [
+    19651,
+    19652
+  ],
+  "reopen_passed": 9,
+  "status": "PASS_APPLE_CLOUD48_AND_ORIGINAL_IMPORT9_REOPEN9"
+}
