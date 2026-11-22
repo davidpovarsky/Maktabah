@@ -1,6 +1,6 @@
 # Otzaria / Maktabah — current development checkpoint
 
-Snapshot: 2026-11-22T07:56:48.803815+00:00. Current run states below are observations at this checkpoint, not final acceptance.
+Snapshot: 2026-11-22T08:01:17.438347+00:00. Current run states below are observations at this checkpoint, not final acceptance.
 
 This report records executed work and its limits. It does not declare product, full Native, Release or original-editor acceptance.
 
@@ -27,9 +27,17 @@ These focused selectors are outside Native116. The two Search methods also occur
 
 ## Current diagnostic source and next focused Live execution
 
-The new private diagnostic source is integrated at6aa, with34 actual Python boundary controls and4 complete Swift syntax parses PASS. Root verified all42 frozen validation payloads, actual Linux files/interpreter, Windows compiler identities, raw results and exact source preimages. [Complete diagnostic packet](hanlin-connection-diagnostics/README.md) retains both source/evidence packaging corrections without rewriting executed inputs. No new Live secret or CI run has been created at this source-integration checkpoint. [Live8 preparation](hanlin-live8-lifecycle/PREPARATION.json) freezes the reviewable controller before its sole final-checkout binding, credential lifecycle or trigger. One subsequent failed-Live-case repetition is justified by this added diagnostic dependency; passing Native/component cases are not replayed or relabelled.
+The new private diagnostic source is integrated at6aa, with34 actual Python boundary controls and4 complete Swift syntax parses PASS. Root verified all42 frozen validation payloads, actual Linux files/interpreter, Windows compiler identities, raw results and exact source preimages. [Complete diagnostic packet](hanlin-connection-diagnostics/README.md) retains both source/evidence packaging corrections without rewriting executed inputs. At the earlier source-integration checkpoint no new Live secret or CI run had been created. The subsequent active execution is recorded below. [Live8 preparation](hanlin-live8-lifecycle/PREPARATION.json) freezes the reviewable controller before its sole final-checkout binding, credential lifecycle or trigger. One subsequent failed-Live-case repetition is justified by this added diagnostic dependency; passing Native/component cases are not replayed or relabelled.
 
 Since the preceding report checkpoint, Anytype producer44997870962/568d finished FAILURE with the single attributed Unsplash initialization diagnostic; exact two-line reorder431407 is undergoing a bounded semantic control. The separate Participant/Space composition ten new groups passed once, while its packaging correction and source seal remain in progress. Original Participant/Space plus published metadata/audit are now true-merged and published at Anytype403725a24422103b3562228a64061d24d639eabf. These remain component results. Full editor framework/runtime, native schema/transport/body/receipt/writer, Native116/Release114 and external signing/device gates remain open.
+
+## Live8 active execution and secret ownership
+
+[Hanlin Live8 run 45000580919](https://github.com/davidpovarsky/Maktabah/actions/runs/45000580919), attempt 1, began at 07:57:53 UTC on exact published checkout ce5d11335c4b4769a25e0e8f48ba1d6f7efc6749 and application source 6aa953048453b64a0013621ce76e095770eb7e7d. GitHub was independently observed in progress. This repeats only the failed Live7 case after adding private diagnostic instrumentation; the original assertions, consent/source checks and final success witness remain unchanged. Historical Native consent on 0ea is not claimed as a run on this changed application.
+
+Root's single lifecycle and finite observer is job_bdd939bdf3fa. The actual controller SHA256 is c19ccec30de01059276d16ecc621bf72f10462890ad794d550567f1d85579d41. All 82 diagnostic payloads and 281 actual execution inputs were verified before configuring the temporary secret. The exact owned metadata shows creation and update at 07:57:46 UTC. At this dispatch checkpoint secret_cleanup_required=true: terminal success/failure and cleanup are still pending. The controller requires matching owned metadata, DELETE204 and GET404 after the exact run becomes terminal. Credential contents are absent from argv and evidence.
+
+[Dispatch verification](hanlin-live8-lifecycle/DISPATCH_VERIFICATION.json), [immutable lifecycle snapshot](hanlin-live8-lifecycle/LIFECYCLE_AT_DISPATCH.json), and the exact executed controller retain the run/source/ownership binding. Earlier Live7 cleanup below remains a completed, separate lifecycle. No second observer, duplicate run, or passing test replay was introduced.
 
 ## Live7 terminal result and completed ownership
 

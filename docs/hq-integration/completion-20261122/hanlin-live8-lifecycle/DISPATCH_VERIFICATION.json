@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "capturedUTC": "2026-11-22T08:01:17.438347+00:00",
+  "checkout": "ce5d11335c4b4769a25e0e8f48ba1d6f7efc6749",
+  "applicationSource": "6aa953048453b64a0013621ce76e095770eb7e7d",
+  "run": {
+    "id": 45000580919,
+    "head_sha": "ce5d11335c4b4769a25e0e8f48ba1d6f7efc6749",
+    "head_branch": "codex/otzaria-hanlin-live-20261121",
+    "event": "push",
+    "run_attempt": 1,
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-11-22T07:57:53Z",
+    "updated_at": "2026-11-22T07:57:55Z",
+    "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45000580919"
+  },
+  "soleLifecycleObserverJob": "job_bdd939bdf3fa",
+  "controllerSHA256": "c19ccec30de01059276d16ecc621bf72f10462890ad794d550567f1d85579d41",
+  "lifecycleSnapshotSHA256": "0769e77cffe630e84db25d0ab77ccae3b588b18b3fc199eb81d84a29d8b8d238",
+  "templateSHA256": "31ebd22f0751af62844b233f83ab4019c71ab59eefc9074f655fcb1ceca79bc4",
+  "soleChangeFromTemplate": "One final checkout placeholder replaced with the verified clean published checkout SHA",
+  "temporarySecretMetadata": {
+    "name": "OTZARIA_LIVE_GEMINI_API_KEY",
+    "created_at": "2026-11-22T07:57:46Z",
+    "updated_at": "2026-11-22T07:57:46Z"
+  },
+  "cleanupRequired": true,
+  "terminalOutcome": null,
+  "cleanupClaim": null,
+  "exactExecutionInputs": 281,
+  "diagnosticPayloads": 82,
+  "testsReplayedForRecording": 0,
+  "scriptSHA256": "20251baa53878fcc428e442def69d5b832015cd6234932622c494f28cd13eea1"
+}
