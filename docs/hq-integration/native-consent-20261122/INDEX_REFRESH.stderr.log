@@ -1,0 +1,5 @@
+warning: in the working copy of '.github/workflows/live-activity-bridge.yml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/CI/hq-stage2-focused-apple.inputs.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/CI/runtime27-hanlin-live.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/CI/runtime27-original-editor-native.py', LF will be replaced by CRLF the next time Git touches it

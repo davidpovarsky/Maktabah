@@ -1,0 +1,10 @@
+{
+  "status": "RAW_WINDOWS_CRLF_RETAINED",
+  "scope": "docs/hq-integration/native-consent-20261122",
+  "cause": "The artifact-only diff check treated preserved Windows CR line endings as trailing whitespace. Source gates had already passed; no source/admission command reran.",
+  "correction": "Only this evidence directory declares cr-at-eol; raw diff/log payloads retain their existing whitespace exemption. No global Git configuration or product/workflow attribute changed.",
+  "preexisting_raw_payloads_unchanged": true,
+  "changed_existing_payloads": [
+    ".gitattributes"
+  ]
+}

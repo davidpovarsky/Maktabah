@@ -1,8 +1,8 @@
-name: Unified source focused native continuation
+name: Original consent switch focused native diagnostic
 
 on:
   push:
-    branches: [codex/otzaria-completion-focused-native-20261122]
+    branches: [codex/otzaria-completion-consent-native-20261122]
 
 permissions:
   contents: read
@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   focused-native:
-    name: One app build, three repaired Native cases and isolated consent diagnostic
+    name: One app build and one original consent diagnostic
     runs-on: xcode-27
     timeout-minutes: 210
     env:
@@ -83,9 +83,7 @@ jobs:
         run: python3 Scripts/CI/hq-stage2-focused-apple.py --build-for-testing --derived-data build/DerivedData
       - name: Verify unchanged Host48 inputs and reuse the real prior 48-test result
         run: python3 Scripts/CI/reuse-host48.py
-      - name: Prepare original native HID bridge
-        run: python3 Scripts/CI/runtime27-hid.py prepare --out build/artifacts/runtime27/hid-tools.json
-      - name: Execute four selected Native cases without rebuilding or provider credentials
+      - name: Execute one original consent diagnostic without rebuilding or provider credentials
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 Scripts/CI/completion-focused-native.py run

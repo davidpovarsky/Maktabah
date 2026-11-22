@@ -1,0 +1,41 @@
+{
+  "status": "EXACT_BLOB_AND_MODE_PRESERVED_STAT_REFRESH",
+  "before_status": " M .github/workflows/live-activity-bridge.yml\n M Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift\n M Scripts/CI/hq-stage2-focused-apple.inputs.json\n M Scripts/CI/runtime27-hanlin-live.py\n M Scripts/CI/runtime27-original-editor-native.py\n",
+  "after_status": "",
+  "paths": [
+    {
+      "path": ".github/workflows/live-activity-bridge.yml",
+      "working_equals_HEAD_equals_index": true,
+      "bytes": 1923,
+      "sha256": "427678d3ae83c659912b2b009d0c8a5aed72027e6fd9f35ce300370a1690f4f6"
+    },
+    {
+      "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+      "working_equals_HEAD_equals_index": true,
+      "bytes": 41808,
+      "sha256": "4c04dae91ed4d1d0efcc04284ede6192d8914f744254aae81a60bb720cd930c3"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "working_equals_HEAD_equals_index": true,
+      "bytes": 4333,
+      "sha256": "c6810fdb940727b4b77183b1e591974a10308fb30ba43dcd659f7f2d56565e95"
+    },
+    {
+      "path": "Scripts/CI/runtime27-hanlin-live.py",
+      "working_equals_HEAD_equals_index": true,
+      "bytes": 29901,
+      "sha256": "a23383137ac9b52398a75ae50098411422958c6090a97bb0889a1440edbd9aff"
+    },
+    {
+      "path": "Scripts/CI/runtime27-original-editor-native.py",
+      "working_equals_HEAD_equals_index": true,
+      "bytes": 28579,
+      "sha256": "f86f6fd744381a733fd5f9d933568b55be92adc8da4b1ac160773ab4631f3d01"
+    }
+  ],
+  "index_stage_listing_before_sha256": "d5abaa7fdad27ab9657aa01e5bd313d21b3a7c3eae95d82471dd13ac0927d33d",
+  "index_stage_listing_after_sha256": "d5abaa7fdad27ab9657aa01e5bd313d21b3a7c3eae95d82471dd13ac0927d33d",
+  "no_source_or_config_change": true,
+  "first_attempt_source_commands_executed": 0
+}

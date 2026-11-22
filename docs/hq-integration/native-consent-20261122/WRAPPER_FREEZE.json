@@ -1,0 +1,31 @@
+{
+  "status": "LOCAL_WRAPPER_FROZEN_NO_PUSH",
+  "utc": "2026-11-22T04:49:06.474090+00:00",
+  "head": "64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b",
+  "parent": "e40525eb9fa14bfac17d7ddc155d7989a2b064bb",
+  "branch": "codex/otzaria-native-consent-wrapper-20261122",
+  "application_source": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "product_trees": {
+    "Source": "ac887bdbfbfce2d30d9591bb867d61b11da31cc6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "24345d612f8c70398f4590977f8b4696021ae413"
+  },
+  "changed_paths": [
+    ".github/workflows/otzaria-completion-focused-native.yml",
+    "Scripts/CI/completion-focused-native.py"
+  ],
+  "groups": [
+    {
+      "label": "11-reader",
+      "size": "11",
+      "hid_comparison": false,
+      "case_ids": [
+        "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection"
+      ]
+    }
+  ],
+  "native_cases_executed": 0,
+  "trigger_pushes": 0,
+  "git_status": ""
+}

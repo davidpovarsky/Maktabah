@@ -1,0 +1,78 @@
+{
+  "status": "SOURCE_ADMISSION_AND_EXACT_REUSE_PASS",
+  "utc": "2026-11-22T04:57:11.686058+00:00",
+  "wrapper": "64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b",
+  "application_source": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "product_trees": {
+    "Source": "ac887bdbfbfce2d30d9591bb867d61b11da31cc6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "24345d612f8c70398f4590977f8b4696021ae413"
+  },
+  "commands": [
+    {
+      "label": "focused-prepare",
+      "argv": [
+        "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+        "Scripts/CI/completion-focused-native.py",
+        "prepare"
+      ],
+      "returncode": 0,
+      "elapsed_s": 23.0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "ordinary-source-preflight",
+      "argv": [
+        "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+        "Scripts/CI/hq-stage2-focused-apple.py",
+        "--preflight-only"
+      ],
+      "returncode": 0,
+      "elapsed_s": 8.234,
+      "stdout_sha256": "9326d1c7afc32cde40633289fbeab39ac46bed487d5d7b2f2251ba94f85938c8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "host48-exact-reuse",
+      "argv": [
+        "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+        "Scripts/CI/reuse-host48.py"
+      ],
+      "returncode": 0,
+      "elapsed_s": 14.187,
+      "stdout_sha256": "77b9848ddba60ff991194d1fa81919f3aee455943f016b319c1a581a5b9c0865",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "execution_input_count": 276,
+  "selected_case_ids": [
+    "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection"
+  ],
+  "execution_groups": [
+    {
+      "label": "11-reader",
+      "size": "11",
+      "hid_comparison": false,
+      "case_ids": [
+        "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection"
+      ]
+    }
+  ],
+  "required_nonzero_cases": 1,
+  "declarations_status": "DECLARATIONS_MATCH",
+  "ordinary_source_preflight": {
+    "returncode": 0,
+    "report": "ordinary-source-preflight.stdout.log",
+    "checkout_sha": "64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b",
+    "application_source_sha": "0ea7218331d1441d37d06d43333e579f267056e3"
+  },
+  "host48_reuse_status": "VERIFIED_REUSE_OF_PRIOR_HOST48_PASS",
+  "prior_host48_passed": 48,
+  "new_host48_tests_executed": 0,
+  "native_tests_executed": 0,
+  "trigger_pushes": 0,
+  "no_completed_gate_rerun": true,
+  "git_status": ""
+}

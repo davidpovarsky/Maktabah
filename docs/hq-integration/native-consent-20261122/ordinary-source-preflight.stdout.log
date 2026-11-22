@@ -1,0 +1,65 @@
+{
+  "checkout_sha": "64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b",
+  "application_source_sha": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "validator_sha256": "0dbe133b8f0ee188dc2f0d0c375972a210571498ecac928f1174730ebb0e83f5",
+  "inputs_sha256": "c6810fdb940727b4b77183b1e591974a10308fb30ba43dcd659f7f2d56565e95",
+  "workflow_sha256": "a498b99ec37f50b03348cc32b801a45bf1f50839d302702a02229fa2ccacb224",
+  "project_sha256": "0013989dc2dda8a9a6c31ea088dc901ab782b6517ad48c7554d57d1f321abf04",
+  "application_trees": {
+    "Source": "ac887bdbfbfce2d30d9591bb867d61b11da31cc6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078"
+  },
+  "otzaria_test_additions": {
+    "preserved_producer_entries": 43,
+    "reviewed_added_regular_files": 78,
+    "mode": "EXACT_NEW_TEST_FILES_ONLY",
+    "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+    "producer_whole_tree": "5a6c6501c021ffadcde31254239617f10cd1a362",
+    "current_whole_tree": "424e157913f36db2b5cc4c6204056f56c3194dd9",
+    "manifest_sha256_lf": "ef5d287ee888b306fab1ddf0e75242245f756976370129c433f1276a96b5611e",
+    "excluded_build_inputs": {
+      "Maktabah.xcodeproj/project.pbxproj": "3261731b3c225ec783b7f7542b53726c71f638c1",
+      "Vendor/OtzariaSearchEngine/build_xcframework.sh": "c144bfd775b393c4621b41bd2688fad16f79c315",
+      "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "0d92196706d534d91041373676e9699b023c9528",
+      "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "6bd9288a85e67132e9283ab7516435cfa442c74a"
+    },
+    "binary_attribution": "PRODUCER_TREE_ONLY_NOT_CURRENT_WHOLE_TREE"
+  },
+  "zayit_framework": {
+    "mode": "UNCHANGED_PRODUCTION_PREBUILT",
+    "source_tree": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8",
+    "baseline_producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+    "changed_paths": [],
+    "build_script": "Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh",
+    "build_script_git_blob": "a4f123b144b236fc1ec691060cf144e3e9da2cf9"
+  },
+  "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "embedded_bundle_build": {
+    "mode": "REBUILD_EXACT_REVIEWED_JS",
+    "overlay_paths": [
+      "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+    ],
+    "source_tree": "1a0e21666586f417186b6218049e03fc1cc232fd"
+  },
+  "package_resolved_sha256": "722609bb6b71362aee5e7f401246edcd037a2d1815c2fc4704bf93830d9f5530",
+  "package_pins": {
+    "anchoredpopup": "f93c51e75ff4e5242328ac24c8fb12f1f1e84eda",
+    "equatable": "597c2bb34af0c51331eb3b5e705f942d8ee20daa",
+    "floatingpanel": "3db567a19ff81d2d3ce00399021ee87a4fccf7e0",
+    "hanlin-streaming-markdown": "6bde022876ef4af738c154b3d5c871984ef76195",
+    "highlightswift": "99c431b38a1444a5fd6a4978307fbbefe3a7af53",
+    "iosmath": "ba9ab7729b151329c54fd895a7c1859981d9484c",
+    "sparkle": "066e75a8b3e99962685d6a90cdd5293ebffd9261",
+    "swift-ai-sdk": "e7bf34111e603ca977becd007dd4e5bb109af857",
+    "swift-argument-parser": "6a52f3251125d74daf04fcbd5e6f08a75d074382",
+    "swift-cmark": "08ddb528923cc1a6527e02b7a1aee9e516ca749a",
+    "swift-markdown": "7d9a5ce307528578dfa777d505496bd5f544ad94",
+    "swift-syntax": "79e4b74a295b6eb74a8b585e3a39d29e70c1dbd1",
+    "swiftui-shimmer": "0226e21f9bf355d40e07e5f5e1c33679d50e167f",
+    "swiftyjson": "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+    "torahinspectorkit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+    "zipfoundation": "22787ffb59de99e5dc1fbfe80b19c97a904ad48d",
+    "zstd": "f8745da6ff1ad1e7bab384bd1f9d742439278e99"
+  }
+}
