@@ -1,0 +1,17 @@
+{
+  "status": "PREFLIGHT_FAILED",
+  "checkout_sha": "c107c8ac600de6bbe6d92571fbbbdc6349cd143a",
+  "commands": [
+    {
+      "name": "focused-prepare",
+      "command": [
+        "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+        "Scripts/CI/completion-focused-native.py",
+        "prepare"
+      ],
+      "exit_code": 1
+    }
+  ],
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\DAVID\\Code\\Maktabah-native-followup-20261122\\Scripts\\CI\\completion-focused-native.py\", line 190, in <module>\n    prepare()\n  File \"C:\\Users\\DAVID\\Code\\Maktabah-native-followup-20261122\\Scripts\\CI\\completion-focused-native.py\", line 84, in prepare\n    contract = json.loads(FULL.read_text())\n                          ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\DAVID\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\pathlib.py\", line 1028, in read_text\n    return f.read()\n           ^^^^^^^^\n  File \"C:\\Users\\DAVID\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\encodings\\cp1252.py\", line 23, in decode\n    return codecs.charmap_decode(input,self.errors,decoding_table)[0]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeDecodeError: 'charmap' codec can't decode byte 0x90 in position 69408: character maps to <undefined>\n"
+}

@@ -1,0 +1,61 @@
+{
+  "files": {
+    "app-group-resolver-interface.json": {
+      "bytes": 678,
+      "sha256": "8854e1f916fbcbde204c22f40d46714951bb6a4e2fa67efe08d3daf014da75c8"
+    },
+    "artifact-isolation.json": {
+      "bytes": 257,
+      "sha256": "92750ce7a027ba45ba75ed44a66a7b4b7165ece56d748d4746d41b60ab9e7c9d"
+    },
+    "declarations.json": {
+      "bytes": 378,
+      "sha256": "0fed38adfa5d55010a9ff2993f6c83a6705e3bddb17eebe69f2461c277136a77"
+    },
+    "faithful-ipad-matrix.json": {
+      "bytes": 22429,
+      "sha256": "b83a5286d66719a066a113e5869614917eed61530cfa3fddf5408ae078837f40"
+    },
+    "fixture-container.json": {
+      "bytes": 842,
+      "sha256": "7217697a88ecd0e1cea4efe7491e956b1747c39636bdaaa14b3ad29072245f7c"
+    },
+    "fixture-oracle-11.json": {
+      "bytes": 1071,
+      "sha256": "d7d22540eca8ced5e257597a5745325e4d6dcf5da3935067b4ef634c9e6dcb60"
+    },
+    "miniTest10-native-fixture-install-11.json": {
+      "bytes": 1793,
+      "sha256": "b6e5efd7add7c16a7d4884aaaaff0ae27bd756857f7ed6ed610afa65574203f1"
+    },
+    "original-build-result.json": {
+      "bytes": 83531,
+      "sha256": "20872c77886206160888d44ba09d21ee82c0b601f193bf7df4fa4c5d4ef5131d"
+    },
+    "ownership.json": {
+      "bytes": 256,
+      "sha256": "d34b55885e61274a13a80a4264b1f041c8c3ef05303f9c7514d1533b7cc0a64c"
+    },
+    "result.json": {
+      "bytes": 977,
+      "sha256": "4909820cd94d1b5703913c514c4391daaa755d532d75e1f5bd3c5952102fd759"
+    },
+    "selection.json": {
+      "bytes": 642,
+      "sha256": "2ee3649a010b596b1cfea694455fde5e511de3eac55704a8892d37789a1e6cea"
+    },
+    "source-after.json": {
+      "bytes": 58800,
+      "sha256": "55d8cdc5626391ff266bd7c4ddf882c3489eb9e571c522786dbc331d4c36684f"
+    },
+    "source-before.json": {
+      "bytes": 58800,
+      "sha256": "55d8cdc5626391ff266bd7c4ddf882c3489eb9e571c522786dbc331d4c36684f"
+    }
+  },
+  "private_input_removed": true,
+  "provider_file_excluded": true,
+  "raw_video_excluded": true,
+  "raw_xcresult_and_attachments_excluded": true,
+  "status": "SCANNED_ALLOWLIST_ONLY"
+}

@@ -1,0 +1,103 @@
+{
+  "status": "PASS",
+  "source_commit": "9c66b4ccc06340a04de53a4c3370182873ed18bc",
+  "source_sha256_note": "The original REVIEW and PARAGRAPH_CONTROLS retain actual Windows bytes; this receipt explicitly binds those bytes to Git/CI LF bytes.",
+  "original_preflight_error": "Dirty exact execution input before secret configuration; no GitHub run or secret created",
+  "normalization": {
+    "all_normalized_original_backups": [
+      {
+        "path": ".github/workflows/otzaria-final-native-push.yml",
+        "before_sha256": "1c143726c8e3ab43db91ad5757fc3e677a46381f0cd6dd679ca6244ae69c4828",
+        "after_sha256": "089aaef1d3257fc7a58684ecc82f4c607bc6b6e351a903d82f56a4213456e84e"
+      },
+      {
+        "path": ".github/workflows/otzaria-final-release-push.yml",
+        "before_sha256": "b410a2db2f8b403f9408a9494af3c94fc6611f3d938ccb2ee6fbc57a2cc2fa81",
+        "after_sha256": "0514adaf917743a978ecee1ed7de82e0dfbbf88041ee06e484a97652019692d5"
+      },
+      {
+        "path": "Scripts/CI/runtime27-hanlin-live.py",
+        "before_sha256": "ee863f55cf4dca008b717d056f570ab941411e89d25d22d060476c1937c8b9fa",
+        "after_sha256": "a3d13463809c1fca19bc93e5f6c394fdf4f022524250629e78d2f4385b0d913f"
+      },
+      {
+        "path": "Scripts/CI/runtime27-live-paragraph-oracle.py",
+        "before_sha256": "f1316897644c586b455731f706c8bc793d640f50163046303167a20ff2389745",
+        "after_sha256": "afd366826c36cdab0d18b1d1cf091f9f4a9ca027d0a2330cdc2b4859c6786655"
+      },
+      {
+        "path": "Scripts/CI/runtime27_final_push.py",
+        "before_sha256": "e7af904f70153b9209a556b738fd278113bcf25c6553afd8ba70b91c4ad8a9e5",
+        "after_sha256": "79fe82be07636320a837ab7960192b1963be4f976866c00a09919853ab954e89"
+      },
+      {
+        "path": "Scripts/CI/test-runtime27-live-paragraph-oracle.py",
+        "before_sha256": "dd264fdea03fc4de25c49ed47d8e269ae4b139b234c7b2a069ed0047de0e73e0",
+        "after_sha256": "82862be6f49f73fed56dc59e332e47c73d5fc2295f1f115330e6d25ec249c182"
+      },
+      {
+        "path": "Scripts/CI/test-runtime27-release-gate.py",
+        "before_sha256": "817672a48ace4692a3620390e08450a81070d09ce214fafc3f7b0cc2ae1dad6b",
+        "after_sha256": "eea971e4ca0672377f4063b19950ad483c5d6ab4e4830a35851b72bafdbfff49"
+      },
+      {
+        "path": "Scripts/CI/verify-runtime27-release-gate.py",
+        "before_sha256": "891bf75de134739d581c344e12f15567f2cb6fa6d838065a168036114d424cee",
+        "after_sha256": "c181a9ddf92685e61dd5fb1ea79c82a7111f40dc55527ea740dbf79cd1348b0a"
+      }
+    ],
+    "prior_attempt": "30s command timeout; retained original bytes and resumed hash-first without redoing writes",
+    "status": "EXACT_GIT_WORKING_INPUTS_RESTORED",
+    "application_or_git_source_changed": false,
+    "preserved_original_worktree_bytes": true,
+    "normalized_files": [
+      {
+        "path": "Scripts/CI/test-runtime27-live-paragraph-oracle.py",
+        "git_blob": "ad9eac4b770f27d191d64fd0a04cfb05523fb46d",
+        "before_sha256": "dd264fdea03fc4de25c49ed47d8e269ae4b139b234c7b2a069ed0047de0e73e0",
+        "after_sha256": "82862be6f49f73fed56dc59e332e47c73d5fc2295f1f115330e6d25ec249c182",
+        "change": "PURE_CRLF_TO_EXACT_GIT_LF"
+      },
+      {
+        "path": "Scripts/CI/test-runtime27-release-gate.py",
+        "git_blob": "2bcc9b28e4ad9324a9cc0fc82b84793e8377080d",
+        "before_sha256": "817672a48ace4692a3620390e08450a81070d09ce214fafc3f7b0cc2ae1dad6b",
+        "after_sha256": "eea971e4ca0672377f4063b19950ad483c5d6ab4e4830a35851b72bafdbfff49",
+        "change": "PURE_CRLF_TO_EXACT_GIT_LF"
+      },
+      {
+        "path": "Scripts/CI/verify-runtime27-release-gate.py",
+        "git_blob": "13617d11b819fc768c373650bb1deb78dbde567e",
+        "before_sha256": "891bf75de134739d581c344e12f15567f2cb6fa6d838065a168036114d424cee",
+        "after_sha256": "c181a9ddf92685e61dd5fb1ea79c82a7111f40dc55527ea740dbf79cd1348b0a",
+        "change": "PURE_CRLF_TO_EXACT_GIT_LF"
+      }
+    ],
+    "reason": "Merge checkout obeyed inherited autocrlf; real CI needs exact execution bytes"
+  },
+  "executed_source_equivalence": [
+    {
+      "path": "Scripts/CI/runtime27-hanlin-live.py",
+      "executed_or_reviewed_windows_sha256": "ee863f55cf4dca008b717d056f570ab941411e89d25d22d060476c1937c8b9fa",
+      "committed_and_ci_sha256": "a3d13463809c1fca19bc93e5f6c394fdf4f022524250629e78d2f4385b0d913f",
+      "only_crlf_difference": true,
+      "python_ast_identical": true
+    },
+    {
+      "path": "Scripts/CI/runtime27-live-paragraph-oracle.py",
+      "executed_or_reviewed_windows_sha256": "f1316897644c586b455731f706c8bc793d640f50163046303167a20ff2389745",
+      "committed_and_ci_sha256": "afd366826c36cdab0d18b1d1cf091f9f4a9ca027d0a2330cdc2b4859c6786655",
+      "only_crlf_difference": true,
+      "python_ast_identical": true
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-live-paragraph-oracle.py",
+      "executed_or_reviewed_windows_sha256": "dd264fdea03fc4de25c49ed47d8e269ae4b139b234c7b2a069ed0047de0e73e0",
+      "committed_and_ci_sha256": "82862be6f49f73fed56dc59e332e47c73d5fc2295f1f115330e6d25ec249c182",
+      "only_crlf_difference": true,
+      "python_ast_identical": true
+    }
+  ],
+  "passing_tests_rerun": false,
+  "native_acceptance": false
+}

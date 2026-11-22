@@ -1,0 +1,36 @@
+{
+  "captured_utc": "2026-11-22T02:16:21.282561+00:00",
+  "repository": "davidpovarsky/Maktabah",
+  "default_branch": "dev",
+  "ensure_team_script_git_blob": "6da00b7dac0c5a564aadcc2a5d22c1a7c4a6f543",
+  "working_bytes_line_endings_normalized_only_for_identity": true,
+  "actual_check": {
+    "args": [
+      "C:\\Users\\DAVID\\AppData\\Local\\Microsoft\\WindowsApps\\pwsh.EXE",
+      "-NoProfile",
+      "-NonInteractive",
+      "-File",
+      "C:\\Users\\DAVID\\Code\\Maktabah-completion-20261121\\tools\\ai-team\\ensure-team.ps1",
+      "-Check"
+    ],
+    "returncode": 0,
+    "stdout": "Checking AI Team configuration in: C:\\Users\\DAVID\\Code\\Maktabah-completion-20261121\r\nPASS: All 32 team files exist.\r\n",
+    "stderr": ""
+  },
+  "introduction_history": {
+    "args": [
+      "git",
+      "log",
+      "--format=%H%x09%aI%x09%s",
+      "--diff-filter=A",
+      "34d06949e7fedbda6e0d256a769b3d0b8659c211",
+      "--",
+      ".agents/agents/eitan.md",
+      "docs/ai-team/TEAM.md"
+    ],
+    "returncode": 0,
+    "stdout": "33d65c2b32531f67e4f341eccc285eb0d1d86142\t2026-10-18T23:54:09+03:00\tdocs(ai-team): activate unified named team and verified Asana policy [skip ci]\n",
+    "stderr": ""
+  },
+  "repo_mutations": 0
+}

@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "actual_decoder_smoke": {
+    "status": "ORIGINAL_DECODER_DEPENDENCY_SMOKE_PASS",
+    "python_executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "zstandard_version": "0.25.0",
+    "original_decoder_sha256": "ddc49ce62e4c2b621fb84add244d86371eb82d202e5efbddecfb145fdeb797f5",
+    "compressed_sample_sha256": "3841e17c6985c1cf4497811798be38285eaf93768f8eda410c422eff7cf4268e",
+    "sample_sha256": "67fbd5685d6857fc93895bae7f9da89bb04bb5268a66a4af83baf275db0e99cb",
+    "actual_native_fixture_checked": false,
+    "provider_called": false
+  },
+  "workflow_yaml": "PASS",
+  "dependency_precedes_build": true,
+  "runtime_AST_unchanged_except_one_admitted_receipt": true,
+  "provider_called": false,
+  "native_xctest": "NOT_RUN",
+  "venv_installation_on_Apple": "NOT_RUN",
+  "reference": "https://pypi.org/project/zstandard/0.25.0/"
+}

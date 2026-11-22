@@ -1,0 +1,29 @@
+{
+  "base_sha": "fb6a88f4e6ac3b0bfe0adb0a8992e2b0c3af4b5d",
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "before_git_blob": "054f4c313c306ff6e7c82f66d995d3b400e826a1",
+      "before_sha256": "045704be9a6015674fbde56a245e21017783cf2201633b28f45816e7653e63d6",
+      "after_sha256": "8b9973dd2742dab3840361da27492b41752d26954cd7f3081d6d1ee20ed6f03b",
+      "after_bytes": 204965
+    },
+    {
+      "path": "Scripts/CI/typecheck-faithful-ui-tests.py",
+      "before_git_blob": "0102957b43d9e4a71cd122046418dd33b55b8210",
+      "before_sha256": "07e2c054f1c826631a946db4d868f7f1d8d85c34d5bb511feb2d5976fd5d40e4",
+      "after_sha256": "10cdd8d90719f8a74dbca11dd34265326a3f2bce5cd90e113cd090c1adfc168b",
+      "after_bytes": 25314
+    },
+    {
+      "path": ".github/workflows/otzaria-completion-focused-native.yml",
+      "before_git_blob": "1a983bbaf7f65139f7140d9a8206c609ff4e691f",
+      "before_sha256": "3dea92082e16169b6c65983acb2dc0f4bafef7086d58d761537d4469e0641574",
+      "after_sha256": "90e80272f6744197e067629dab1e8d80806cb91e331f7d46f98201fcc7940ffa",
+      "after_bytes": 6796
+    }
+  ],
+  "default_preflight_ast_preserved": true,
+  "native_executed": 0,
+  "apple_typecheck_pending": true
+}

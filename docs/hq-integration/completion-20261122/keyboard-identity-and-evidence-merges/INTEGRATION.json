@@ -1,0 +1,247 @@
+{
+  "at": "2026-11-22T03:03:50.977555+00:00",
+  "independent_review": "native_completion approved exact next/initial original row identity; existing HID/dispatch unchanged",
+  "keyboard_code_commit": "a43aa9d8a658d5afbadc66edaa3c109a28edcad8",
+  "keyboard_two_file_swift_syntax_exit": 0,
+  "merges": [
+    {
+      "head": "ae9790022b5f1c07157781d07fba6df239594a55",
+      "incoming_files": {
+        "docs/hq-integration/completion-20261122/cloud-import-identity/README.md": {
+          "bytes": 7111,
+          "sha256": "8b7cde228ed1357f8ed7001c58f0a029fbe01ac4514c06e4fe02b85e81e8dfb8"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/OBSERVER.json": {
+          "bytes": 1148,
+          "sha256": "7386b20b1e462cc4e65249a82852fdaa50fc57c1883ab8c50e09217f9921b71f"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/VERIFICATION.json": {
+          "bytes": 1047,
+          "sha256": "81299ccab2913f82ae6949e0b19c0d8f6c5fc88f752152cbbbf1acf302bb028f"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/actions-log.stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/actions.log": {
+          "bytes": 146556,
+          "sha256": "f766afbba8bd816d9a32bc9ad468631b732b4c56da2d093fd839039cb0a7153d"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/artifact-14736950047.zip": {
+          "bytes": 656371,
+          "sha256": "57d265b96541376c07c683a099b3888518d23163a508d604facf7b18a65c8844"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/artifacts.json": {
+          "bytes": 962,
+          "sha256": "2aefedd3c881f40c86f4a7d308eeb4dd19986eb693faf479188f7fdefebb5063"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/jobs.json": {
+          "bytes": 3982,
+          "sha256": "e267c44ac2f82c8edf41f8391fc135fad176dc00f50221398e3a963ed9542ed1"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/latest-run.json": {
+          "bytes": 14102,
+          "sha256": "ef75c58fd2bbf8a72f262547ab0f5af953030ecb0bdf21b1396ff3326601179c"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/observer.py": {
+          "bytes": 5551,
+          "sha256": "205c960f480fb716e35061a1ccc50c139df4478a98834ddbb7765ae5eabbc7c0"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/readable/RESULT.json": {
+          "bytes": 470,
+          "sha256": "a597ce9a3a9b3b5ec4342389b04df382d7b10779cb2a0a2d84cd5494aeb1c21a"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/readable/SOURCE_AFTER.json": {
+          "bytes": 14080,
+          "sha256": "be8538baab483f4bbccc1e15e8d75b272d71e7d17caaf044776e78d42a8d2981"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/readable/SOURCE_BEFORE.json": {
+          "bytes": 14129,
+          "sha256": "3e11360fa525c969f5da9b0293dcf96bf78a869b08eeea70232e1b3d945e547f"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/readable/cloud48/CASES.json": {
+          "bytes": 5186,
+          "sha256": "88d8aafb18a98b2119f81077e2785b9c181b6906c4f262426223b31c647172d3"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/readable/cloud48/RESULT.json": {
+          "bytes": 40568,
+          "sha256": "cdebfe1daf122fb71f26a23250803b2a22e6ebb27ed3fc75ebc7c2bd2208f145"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/readable/import9/RESULT.json": {
+          "bytes": 5601,
+          "sha256": "2c816262cd8d23f42adafd1063e7af314c0abd21d58f9e1bbac155fec4d74d79"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/readable/import9/SOURCE_MANIFEST.json": {
+          "bytes": 2346,
+          "sha256": "52f16f2daa99153d8fdeed01159d65a15db255b429b4c8d72b91b6ec702e553d"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/readable/import9/fixtures/reopen.json": {
+          "bytes": 1334,
+          "sha256": "ad0761bb77ad52a1a6cd469c4155c787bc0f47f20af7e1cb55710e1592de3181"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/readable/import9/fixtures/write.json": {
+          "bytes": 1693,
+          "sha256": "49ad7b67d6c69d80e2ab3613175c56010ece483d2322f7708dbd3a4173701d27"
+        },
+        "docs/hq-integration/completion-20261122/cloud-import-identity/apple-44977823319/run.json": {
+          "bytes": 14102,
+          "sha256": "ef75c58fd2bbf8a72f262547ab0f5af953030ecb0bdf21b1396ff3326601179c"
+        }
+      },
+      "parents": [
+        "a43aa9d8a658d5afbadc66edaa3c109a28edcad8",
+        "30c5292275845e619dc236863d0053b8d94b097c"
+      ],
+      "unchanged_product_trees": {
+        "Maktabah-iOSUITests": "d238dfd43898e0f8f1aa1ba02ea578ddfdc10d07",
+        "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+        "Source": "ce01ac67af5a20e151be4b2fc4d85d1ab80b1039",
+        "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+      }
+    },
+    {
+      "head": "5f019f29486dbe53b4b48f0773119079e536fec5",
+      "incoming_files": {
+        ".agents/rules/ai-team-router.md": {
+          "bytes": 2816,
+          "sha256": "75853a66ed7765ef02f950f75d253e24fcc5c2520b27a0b3aff93945d878f236"
+        },
+        "docs/ai-team/BRANCH_INTEGRATION.md": {
+          "bytes": 2817,
+          "sha256": "baa415086254aeccfcd46fadd04718b456d5ca4e4296e8507aed3ff7f58122ab"
+        },
+        "docs/ai-team/PLATFORMS.md": {
+          "bytes": 2803,
+          "sha256": "698a6eefc860144afa13628847438a139c73fccdccdf4982775b3d9c361caa10"
+        },
+        "docs/ai-team/PROJECT_ASSIGNMENTS.md": {
+          "bytes": 4371,
+          "sha256": "a9411f8cf9ba5988d5f0c19cd776322ac2fc638982c4ef93b8cf0587b4d6c15e"
+        },
+        "docs/ai-team/TEAM.md": {
+          "bytes": 7793,
+          "sha256": "1da27bf11201f5aef48372cd2909d661835295336a4ae7c61434d09b39278a90"
+        },
+        "docs/ai-team/VALIDATION.md": {
+          "bytes": 2515,
+          "sha256": "d04b38b831c33f83190615fe6b82b2ce172097f256c3a7bab45a027e995d8ca3"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/ADDITIONAL_POLICIES.json": {
+          "bytes": 40878,
+          "sha256": "c18e95dca3e595ff2abe7ff6701869c43764fbbc79f625e0ce5e5bb0b964ad64"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/ADDITIONAL_POLICIES_METADATA.json": {
+          "bytes": 109,
+          "sha256": "021ae39591b352d5e5ef30e448f63f5317e1171bb7ee5a3102cd4ebbf28b2593"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/BLOBS.json": {
+          "bytes": 156957,
+          "sha256": "4af99b5c6b728ea05d70cf3267406989159c16d1b7a16cc3fedf368ff0e35b5a"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/BLOBS_METADATA.json": {
+          "bytes": 130,
+          "sha256": "535c54ebc9f468d43ea03ca97346cf3dd225d72f21d97f8aab51e79a5f1b6d02"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/CONFIGURATION_FIX_INPUTS.json": {
+          "bytes": 2325,
+          "sha256": "ea27af4cd84a35aaf30a6b22209b88208ad88fc2fbd2025d828da54995edc3df"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/CONFIGURATION_FIX_VALIDATION.json": {
+          "bytes": 3878,
+          "sha256": "f8cb35f486dc8c7236c6d7c3773ff3852a030857df00eefef43b4592bc20e328"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/DOCUMENT_COMMIT_RECEIPT.json": {
+          "bytes": 17042,
+          "sha256": "8d812582157ce18f58e89f2271ccfc0045ca78592278ff4363a27471c5ea0175"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/EVIDENCE_MANIFEST.json": {
+          "bytes": 4286,
+          "sha256": "ed02520cdb182e06a1297c95e2f85a1870311f299974cd71169f4fd91f1edac4"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/EXACT_33_PATH_COMPARISON.json": {
+          "bytes": 17767,
+          "sha256": "f3cce5030c445c8c4782c3569b0009340a0ab1f4235f42b8521333cd2f94943e"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/INTRODUCTION_ANCESTRY.json": {
+          "bytes": 417,
+          "sha256": "6c6e1a01b75a868ec108e62b4aabf81a73d2edbe38b52082941823634ea8d2c3"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/LINK_TARGET_TREE_CHECK.json": {
+          "bytes": 6870,
+          "sha256": "202d5fe261fd1390b0415e02fd04b3fc421e8354cd744e97617b292cd27b5456"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/OPERATIONAL_SMOKE_EVIDENCE.json": {
+          "bytes": 1324,
+          "sha256": "4300c3c04ad48ccf925abb310d666b5a72b9d50ac3031165ac56d3740a072558"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/ORIGINAL_ENSURE_TEAM_CHECK.json": {
+          "bytes": 1234,
+          "sha256": "58b0a1800e331d8eb687a245baed91a31d2c6cd266a7cf0a0d572f05393e77d7"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/PUBLICATION_NOTE.md": {
+          "bytes": 1648,
+          "sha256": "aa1ea79420f55e0ccd652b803be1ccddb6ccccf73395b5011aba3df827496ba1"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/PUBLICATION_PREFLIGHT.json": {
+          "bytes": 33842,
+          "sha256": "49c92eca4829b5e4a22fe07af24339b75f7b810c0ec71243c4c96037d07ec767"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/PUBLICATION_VALIDATION.json": {
+          "bytes": 4838,
+          "sha256": "568f775618e4046c4a84d2bfe88243fea19b17f5702a4f516925b840600373f7"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/PUSH_TRIGGER_REVIEW.json": {
+          "bytes": 10068,
+          "sha256": "4b93b44f9273b19a2ecd4e76ca4325b40d01eb3632eac60410cf7731e002f09f"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/REFS_AND_BLOBS.json": {
+          "bytes": 18093,
+          "sha256": "912504f3e20cee6bb48005f72380af8d705de4c77dee30d3d65636bb3fe46c7a"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/REVIEW_AND_ROUTING.md": {
+          "bytes": 10720,
+          "sha256": "f5aaa5bce8782b6bd3c5e24bf7bc085672c0c1ec4b19b8fd6773554c9bb5167f"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/STATIC_CONFIG_VALIDATION.json": {
+          "bytes": 17161,
+          "sha256": "0d58276b4e5ce6920541ffa123a509b2a67103a91652935aa58a326cdecc586c"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/TASK_ACCEPTANCE_SNAPSHOT.json": {
+          "bytes": 1831,
+          "sha256": "1bb49bee8e6ee9caf88242a014d1b4b756e443bbeefc7bfee5c95028da0edbbb"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/TIMESTAMP_CLARIFICATION.json": {
+          "bytes": 462,
+          "sha256": "fb200a76e30b50cccd4290070bf4e88437b3c0a68924a2e04ba4fa8c2eb01428"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/WORKTREE_CREATION.json": {
+          "bytes": 388,
+          "sha256": "afe4f8e2c7ecc0077388e6cc2cc131e78eaaee8ea75f9aeae35dc0b8d1a40187"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/team-configuration-links-and-branch-snapshot.patch": {
+          "bytes": 10923,
+          "sha256": "92d9b70fd4ad67605bad2b723d6e2ad179756be1510686e9bbb3cb240d0f3770"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/validate_configuration.py": {
+          "bytes": 6061,
+          "sha256": "1115d850b6968dd566f5d594b1d59e0395a9dd4b01b4b11df16968317fb86fc2"
+        },
+        "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/validate_configuration_fix.py": {
+          "bytes": 4113,
+          "sha256": "c361cfd82b6622d939d92f106b219cafb96e2f31d7516f28e2c16bc9bffeac2a"
+        }
+      },
+      "parents": [
+        "ae9790022b5f1c07157781d07fba6df239594a55",
+        "a2fd638fe2256e8e0cb8e127f17e48e55f9dee42"
+      ],
+      "unchanged_product_trees": {
+        "Maktabah-iOSUITests": "d238dfd43898e0f8f1aa1ba02ea578ddfdc10d07",
+        "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+        "Source": "ce01ac67af5a20e151be4b2fc4d85d1ab80b1039",
+        "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+      }
+    }
+  ],
+  "native_ui_pass_claimed": false
+}

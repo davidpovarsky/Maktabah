@@ -1,0 +1,23 @@
+{
+  "status": "PREPARATION_CHECKS_PASS",
+  "source_freeze": "BLOCKED_PENDING_FINAL_SOURCE",
+  "native_execution": "NOT_STARTED",
+  "selected": [
+    "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection",
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+    "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration"
+  ],
+  "passed_cases_excluded": 3,
+  "unfrozen_source_refused": true,
+  "driver_inverse_exact": true,
+  "unchanged_functions": [
+    "git",
+    "write",
+    "exact_working_inputs",
+    "execute"
+  ],
+  "driver_sha256": "ba379bb4523ceff76b58ecf18a2d42d5dcd9dbb9abd67604a172d10fa8d65c96",
+  "workflow_sha256": "6bbdd3bc8e799f0004dfc8ca58434d994fe396512b422f7cf02f3c3fc530282a",
+  "base": "c729c8aec506a83f930b7b46a9be7d5d529bcdee"
+}

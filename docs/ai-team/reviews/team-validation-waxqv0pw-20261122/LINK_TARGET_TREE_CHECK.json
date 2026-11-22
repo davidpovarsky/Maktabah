@@ -1,0 +1,267 @@
+{
+  "source": "34d06949e7fedbda6e0d256a769b3d0b8659c211",
+  "captured_utc": "2026-11-22T02:15:31.249895+00:00",
+  "targets": [
+    {
+      "path": ".agents/agents/dana.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "8473c1b7f1a708b34384cd08032b00a8affc6d43"
+    },
+    {
+      "path": ".agents/agents/eitan.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "e56ed641150f163526dfb1cc15f051efba6485d0"
+    },
+    {
+      "path": ".agents/agents/maya.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "f12dd2a98eb3de6c8bd39d9f61281d9b17cf4d01"
+    },
+    {
+      "path": ".agents/agents/noam.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "b346f34a3fd66e0c9d2e58c0383d6eeb329f89e5"
+    },
+    {
+      "path": ".agents/agents/roni.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "6286859146bf3cc7968bb495ed8460819b6d0708"
+    },
+    {
+      "path": ".agents/agents/tomer.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "a54ba5c80952803f5c36866f4f4b4a2d38951fd9"
+    },
+    {
+      "path": ".agents/agents/yael.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "7c45e38eb22efb4bc952c358a031e665c3e6a402"
+    },
+    {
+      "path": ".agents/roles/dana.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "a1f418725c068643f33b3f7ff74937c165b939a6"
+    },
+    {
+      "path": ".agents/roles/eitan.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "6149bc2d919e4c7180bd82189634a92452f86a7a"
+    },
+    {
+      "path": ".agents/roles/maya.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "bfb14e012505a523b4f88139907afd8c4d213d8b"
+    },
+    {
+      "path": ".agents/roles/noam.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "85365d879e87291b6888e05954d0cc6a33c15378"
+    },
+    {
+      "path": ".agents/roles/roni.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "dceccd2a3ff1f4e644e7c665e840ab48735d2bcb"
+    },
+    {
+      "path": ".agents/roles/tomer.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "909e66753bd9ef25ff9026be81181359de276ebe"
+    },
+    {
+      "path": ".agents/roles/yael.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "1e4fc6134fa89ae14ea087c63ccc01332630cc91"
+    },
+    {
+      "path": ".agents/rules/ai-team-router.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "9e881c40b4ca5c4f1ca3ef63e3c7c7cd17083128"
+    },
+    {
+      "path": ".agents/rules/docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "exists": false
+    },
+    {
+      "path": ".agents/skills/asana-team-coordination/SKILL.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "c71d7bda2c19b900565186043f6b70f78036a64e"
+    },
+    {
+      "path": ".codex/agents/dana.toml",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "1e13c5f4d044035d1c91b6513d090feb298b7ac9"
+    },
+    {
+      "path": ".codex/agents/eitan.toml",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "23cc688112a53ef34f85873bc8c224ce09c00813"
+    },
+    {
+      "path": ".codex/agents/maya.toml",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "d9f3610fa1d93102816371a636ea3f43eadb7999"
+    },
+    {
+      "path": ".codex/agents/noam.toml",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "caf359c4ac3eaf3b5da2541f14589e7c278a6d7e"
+    },
+    {
+      "path": ".codex/agents/roni.toml",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "d2f57293442ac29143dc1f9b3ab4cae94dc1f4be"
+    },
+    {
+      "path": ".codex/agents/tomer.toml",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "29a8ea3dc17dbe36d6137f92a19d2f04068cbd2c"
+    },
+    {
+      "path": ".codex/agents/yael.toml",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "2e7cb806bcbd5e5a8b23743ec9c745e68f46f156"
+    },
+    {
+      "path": "AGENTS.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "7bb033aff1bfc351ae03369667dc3c929d5226e7"
+    },
+    {
+      "path": "DESIGN_LANGUAGE.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "4c193c2178e97201b019c065de62e0b68d2f2c91"
+    },
+    {
+      "path": "GEMINI.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "0c7d5aee54aeed25c55de6bff2cecc5fc73a3caf"
+    },
+    {
+      "path": "PROJECT_AGENT_GUIDANCE.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "f37b33123b66c3c473d56a876f2b7257d2f1744c"
+    },
+    {
+      "path": "PROJECT_BOARD.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "67c1c6984ab2ad7c6d3a49dc78b2ca0388632b99"
+    },
+    {
+      "path": "docs/ai-team/ASANA_POLICY.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "864a1e5b8ee8e12805da98704c44f62a69750c03"
+    },
+    {
+      "path": "docs/ai-team/BRANCH_INTEGRATION.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "3c825746bbbbffe72fece142bdd07c9321035bf9"
+    },
+    {
+      "path": "docs/ai-team/PLATFORMS.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "4153b43b09563b09d2b74f694a08d6da3c1a0345"
+    },
+    {
+      "path": "docs/ai-team/PROJECT_ASSIGNMENTS.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "608f28b72d9c0aae89178b567eb0104622eb951e"
+    },
+    {
+      "path": "docs/ai-team/TASK_HANDOFF_TEMPLATE.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "d4a323800f2e16a0a7dffff73b4d36c6e24d26c6"
+    },
+    {
+      "path": "docs/ai-team/TEAM.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "90b513d1eee097096cc986ed60a91534c9611f38"
+    },
+    {
+      "path": "docs/ai-team/VALIDATION.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "0b2c24515b77cc768acc1302e01aee18c87cb0e5"
+    },
+    {
+      "path": "docs/ai-team/docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "exists": false
+    },
+    {
+      "path": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "exists": true,
+      "mode": "100644",
+      "kind": "blob",
+      "blob": "9a3a57bbfed634f2e136c608b11c781312b0e8ff"
+    }
+  ],
+  "repo_mutations": 0
+}

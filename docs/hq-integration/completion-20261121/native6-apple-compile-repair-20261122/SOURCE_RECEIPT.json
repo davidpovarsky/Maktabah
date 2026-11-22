@@ -1,0 +1,65 @@
+{
+  "status": "SOURCE_COMMITTED_APPLE_VALIDATION_PENDING",
+  "base": "fb6a88f4e6ac3b0bfe0adb0a8992e2b0c3af4b5d",
+  "application_source_sha": "62095a46f3eda10df87fad49812083ba163ee3ef",
+  "application_trees": {
+    "Source": "7d3c913d8de4ff29837216003b7d71b6896a76f7",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
+    "Maktabah-iOSUITests": "196d1e1433a7e6ad3284430bc191510257daad89"
+  },
+  "branch": "codex/otzaria-native-six-repair-20261121",
+  "previous_native_run": 44962008465,
+  "native_tests_executed_in_previous_run": 0,
+  "native_tests_rerun_locally": 0,
+  "changed_swift_syntax_exit_code": 0,
+  "syntax_scope": "Windows Swift parse only; not Apple typecheck or Native",
+  "unchanged_catalogs_and_stage2_driver": {
+    "docs/hq-integration/runtime27/R27_CASES.json": "090b397087a5633bc0cf36dedecb98e31af45e4bcc0183be76229d2e2bde8f04",
+    "Scripts/CI/runtime27-release-manifest.json": "edcbeff3187c8e03b7f4b2df186b9f636404ffd07923c8cdc0debe2220e2cd1c",
+    "Scripts/CI/hq-stage2-focused-apple.py": "9314b470481538e5d88e12308583b94a708be5dd08fd9351939f86928bedcf22",
+    "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift": "37dc6ddb44477c7f3f4cdce65f7f4e0109c2450863076355fc20ca6ea4166a55"
+  },
+  "source_files": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "before_git_blob": "054f4c313c306ff6e7c82f66d995d3b400e826a1",
+      "before_sha256": "045704be9a6015674fbde56a245e21017783cf2201633b28f45816e7653e63d6",
+      "after_sha256": "8b9973dd2742dab3840361da27492b41752d26954cd7f3081d6d1ee20ed6f03b",
+      "after_bytes": 204965
+    },
+    {
+      "path": "Scripts/CI/typecheck-faithful-ui-tests.py",
+      "before_git_blob": "0102957b43d9e4a71cd122046418dd33b55b8210",
+      "before_sha256": "07e2c054f1c826631a946db4d868f7f1d8d85c34d5bb511feb2d5976fd5d40e4",
+      "after_sha256": "10cdd8d90719f8a74dbca11dd34265326a3f2bce5cd90e113cd090c1adfc168b",
+      "after_bytes": 25314
+    },
+    {
+      "path": ".github/workflows/otzaria-completion-focused-native.yml",
+      "before_git_blob": "1a983bbaf7f65139f7140d9a8206c609ff4e691f",
+      "before_sha256": "3dea92082e16169b6c65983acb2dc0f4bafef7086d58d761537d4469e0641574",
+      "after_sha256": "90e80272f6744197e067629dab1e8d80806cb91e331f7d46f98201fcc7940ffa",
+      "after_bytes": 6796
+    }
+  ],
+  "working_preimages": {
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": {
+      "raw_sha256": "b424f3e0522cecb6af41a96991e37eb899133425b0aff7e80e0bde7f57520cef",
+      "crlf": true,
+      "canonical_sha256": "045704be9a6015674fbde56a245e21017783cf2201633b28f45816e7653e63d6"
+    },
+    "Scripts/CI/typecheck-faithful-ui-tests.py": {
+      "raw_sha256": "179e1fd3128e80f805455f187a6f6a03b344630ab303a7a879b27ced541b25b4",
+      "crlf": true,
+      "canonical_sha256": "07e2c054f1c826631a946db4d868f7f1d8d85c34d5bb511feb2d5976fd5d40e4"
+    },
+    ".github/workflows/otzaria-completion-focused-native.yml": {
+      "raw_sha256": "3dea92082e16169b6c65983acb2dc0f4bafef7086d58d761537d4469e0641574",
+      "crlf": false,
+      "canonical_sha256": "3dea92082e16169b6c65983acb2dc0f4bafef7086d58d761537d4469e0641574"
+    }
+  },
+  "timestamp": "2026-11-22T00:58:13.074962+00:00",
+  "raw_patch_evidence": "Exact original patch bytes retained; ordinary added-file whitespace check excludes only this separately hash-verified artifact. Actual source patch application and production diff whitespace already passed."
+}

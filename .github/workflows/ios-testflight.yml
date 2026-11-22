@@ -45,7 +45,41 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
+  verify-owner-approval:
+    name: Require authentic owner approval before signing
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact release candidate
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Set up approval verifier Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install the existing pinned Ed25519 verifier dependency
+        run: python3 -m pip install cryptography==43.0.3
+      - name: Require verified approval for every protected source change
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha || github.sha }}
+          MAKTABAH_OWNER_VERIFICATION_KEY: ${{ secrets.MAKTABAH_OWNER_VERIFICATION_KEY || vars.MAKTABAH_OWNER_VERIFICATION_KEY }}
+        run: |
+          set -euo pipefail
+          python3 -I Scripts/CI/verify-owner-release-approval.py \
+            --expected-sha "$EXPECTED_SHA" --repository "$GITHUB_REPOSITORY" \
+            --out-dir "$GITHUB_WORKSPACE/build/owner-approval"
+      - name: Retain owner approval evidence including failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: owner-approval-evidence
+          path: build/owner-approval/
+          if-no-files-found: error
+
   build-sign-and-upload:
+    needs: [verify-owner-approval]
     name: Build, Sign, and Deliver ChavrusaText (${{ inputs.data_profile }})
     runs-on: xcode-27
     timeout-minutes: 210
@@ -62,6 +96,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.sha }}
           fetch-depth: 0
           submodules: recursive
 

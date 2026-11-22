@@ -1,0 +1,54 @@
+[
+  {
+    "path": "hq-stage2/simulator-build-for-testing.log",
+    "line": 75683,
+    "context": [
+      " 59 | /*! Waits the specified amount of time for the element's exist property to be false and returns false if the timeout expires without the element disappearing. */",
+      "",
+      "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1677:13: error: call to main actor-isolated instance method 'sendNativeHID' in a synchronous nonisolated context [#ActorIsolatedCall]",
+      " 253 | class FaithfulReaderUIBase: MaktabahUITestBase {",
+      " 254 |     @MainActor",
+      " 255 |     func sendNativeHID(_ usage: UIKeyboardHIDUsage) throws {",
+      "     |          `- note: calls to instance method 'sendNativeHID' from outside of its actor context are implicitly asynchronous"
+    ]
+  },
+  {
+    "path": "hq-stage2/simulator-build-for-testing.log",
+    "line": 75701,
+    "context": [
+      "1676 |         XCTAssertTrue(result.waitForExistence(timeout: 30))",
+      "1677 |         try sendNativeHID(.keyboardEscape)",
+      "     |             `- error: call to main actor-isolated instance method 'sendNativeHID' in a synchronous nonisolated context [#ActorIsolatedCall]",
+      "1678 |         let collapsed = XCTNSPredicateExpectation(predicate: NSPredicate(format: \"exists == false\"), object: palette)",
+      "1679 |         XCTAssertEqual(XCTWaiter.wait(for: [collapsed], timeout: 15), .completed,",
+      "",
+      "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1681:40: warning: main actor-isolated property 'frame' can not be referenced from a nonisolated context"
+    ]
+  },
+  {
+    "path": "hq-stage2/simulator-build-for-testing.log",
+    "line": 77554,
+    "context": [
+      " 56 | /*! Waits the specified amount of time for the element's exist property to be true and returns false if the timeout expires without the element coming into existence. */",
+      "",
+      "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1870:13: error: implicit use of 'self' in closure; use 'self.' to make capture semantics explicit",
+      "1868 |             restorationWitness.name = \"system-reduce-motion-after-restoration-wait\"",
+      "1869 |             restorationWitness.lifetime = .keepAlways",
+      "1870 |             add(restorationWitness)",
+      "     |             `- error: implicit use of 'self' in closure; use 'self.' to make capture semantics explicit"
+    ]
+  },
+  {
+    "path": "hq-stage2/simulator-build-for-testing.log",
+    "line": 77558,
+    "context": [
+      "1869 |             restorationWitness.lifetime = .keepAlways",
+      "1870 |             add(restorationWitness)",
+      "     |             `- error: implicit use of 'self' in closure; use 'self.' to make capture semantics explicit",
+      "1871 |             XCTAssertEqual(restored, .completed)",
+      "1872 |             settings.terminate()",
+      "",
+      "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1903:27: warning: main actor-isolated property 'orientation' can not be mutated from a nonisolated context"
+    ]
+  }
+]

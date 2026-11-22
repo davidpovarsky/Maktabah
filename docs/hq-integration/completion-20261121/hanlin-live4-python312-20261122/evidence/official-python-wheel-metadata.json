@@ -1,0 +1,66 @@
+{
+  "wheel": {
+    "package": "zstandard",
+    "version": "0.25.0",
+    "filename": "zstandard-0.25.0-cp312-cp312-macosx_11_0_arm64.whl",
+    "sha256": "913cbd31a400febff93b564a23e17c3ed2d56c064006f54efec210d586171c00",
+    "requires_python": ">=3.9",
+    "interpreter": "CPython 3.12",
+    "abi": "cp312",
+    "platform": "macOS 11.0+ ARM64",
+    "url": "https://pypi.org/project/zstandard/0.25.0/",
+    "source_ref": "turn121760196view0",
+    "wheel_download_or_execution": "NOT_RUN"
+  },
+  "setup_python": {
+    "repository": "actions/setup-python",
+    "ref": "v5",
+    "action_git_blob": "efa8de904209196588db1453bdb44079b3c393d7",
+    "documentation_git_blob": "72b350169b17234f03a1b10b847512fc781bd83d",
+    "version_input": "3.12",
+    "architecture_input": "arm64",
+    "python_versions_manifest_git_blob": "8468b3406cb309a299b2ead4109d0a2b2467153b",
+    "observed_stable_darwin_arm64_builds": [
+      {
+        "version": "3.12.10",
+        "stable": true,
+        "release_url": "https://github.com/actions/python-versions/releases/tag/3.12.10-14343898437",
+        "files": [
+          {
+            "filename": "python-3.12.10-darwin-arm64.tar.gz",
+            "arch": "arm64",
+            "platform": "darwin",
+            "download_url": "https://github.com/actions/python-versions/releases/download/3.12.10-14343898437/python-3.12.10-darwin-arm64.tar.gz"
+          }
+        ]
+      },
+      {
+        "version": "3.12.9",
+        "stable": true,
+        "release_url": "https://github.com/actions/python-versions/releases/tag/3.12.9-13149478207",
+        "files": [
+          {
+            "filename": "python-3.12.9-darwin-arm64.tar.gz",
+            "arch": "arm64",
+            "platform": "darwin",
+            "download_url": "https://github.com/actions/python-versions/releases/download/3.12.9-13149478207/python-3.12.9-darwin-arm64.tar.gz"
+          }
+        ]
+      },
+      {
+        "version": "3.12.8",
+        "stable": true,
+        "release_url": "https://github.com/actions/python-versions/releases/tag/3.12.8-12154062663",
+        "files": [
+          {
+            "filename": "python-3.12.8-darwin-arm64.tar.gz",
+            "arch": "arm64",
+            "platform": "darwin",
+            "download_url": "https://github.com/actions/python-versions/releases/download/3.12.8-12154062663/python-3.12.8-darwin-arm64.tar.gz"
+          }
+        ]
+      }
+    ],
+    "url": "https://github.com/actions/setup-python/blob/v5/action.yml"
+  }
+}

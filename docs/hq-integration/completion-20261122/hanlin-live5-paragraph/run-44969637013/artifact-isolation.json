@@ -1,0 +1,11 @@
+{
+  "had_prior": true,
+  "prior_identity": {
+    "content_sha256": "e627f8f952ab2d416ef8072f2b075686f9b8ef840a1fbc34e5c080a6f8d5204b",
+    "directory_inode": 2032653,
+    "files": 1
+  },
+  "restored": true,
+  "run_attempt": "1",
+  "run_id": "44969637013"
+}

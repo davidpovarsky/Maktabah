@@ -1,0 +1,563 @@
+{
+  "captured_utc": "2026-11-22T01:57:29.499187+00:00",
+  "pr": {
+    "number": 3,
+    "head": "bdeb71d0f5a3840750b7cf2bff2c1dc600034ac9",
+    "base": "a25b0d9a6d246565b2948b6fbeca321ab41f60c1",
+    "base_ref": "fix/maktabah-search-detail-unification",
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "updated_at": "2026-10-18T22:58:04Z"
+  },
+  "refs": [
+    {
+      "ref": "refs/heads/dev",
+      "sha": "9859c754545aed8c34b311b63490778a51db5d7e",
+      "local_object_available": true,
+      "files": {
+        "AGENTS.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "038187dcd600e05df1bff4d3981d861b92c3e315"
+        }
+      },
+      "pr_head_is_ancestor": false
+    },
+    {
+      "ref": "refs/heads/codex/otzaria-completion-20261121",
+      "sha": "34d06949e7fedbda6e0d256a769b3d0b8659c211",
+      "local_object_available": true,
+      "files": {
+        ".agents/agents/dana.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "8473c1b7f1a708b34384cd08032b00a8affc6d43"
+        },
+        ".agents/agents/eitan.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "e56ed641150f163526dfb1cc15f051efba6485d0"
+        },
+        ".agents/agents/maya.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "f12dd2a98eb3de6c8bd39d9f61281d9b17cf4d01"
+        },
+        ".agents/agents/noam.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "b346f34a3fd66e0c9d2e58c0383d6eeb329f89e5"
+        },
+        ".agents/agents/roni.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "6286859146bf3cc7968bb495ed8460819b6d0708"
+        },
+        ".agents/agents/tomer.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "a54ba5c80952803f5c36866f4f4b4a2d38951fd9"
+        },
+        ".agents/agents/yael.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "7c45e38eb22efb4bc952c358a031e665c3e6a402"
+        },
+        ".agents/roles/dana.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "a1f418725c068643f33b3f7ff74937c165b939a6"
+        },
+        ".agents/roles/eitan.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "6149bc2d919e4c7180bd82189634a92452f86a7a"
+        },
+        ".agents/roles/maya.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "bfb14e012505a523b4f88139907afd8c4d213d8b"
+        },
+        ".agents/roles/noam.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "85365d879e87291b6888e05954d0cc6a33c15378"
+        },
+        ".agents/roles/roni.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "dceccd2a3ff1f4e644e7c665e840ab48735d2bcb"
+        },
+        ".agents/roles/tomer.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "909e66753bd9ef25ff9026be81181359de276ebe"
+        },
+        ".agents/roles/yael.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "1e4fc6134fa89ae14ea087c63ccc01332630cc91"
+        },
+        ".agents/rules/ai-team-router.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "9e881c40b4ca5c4f1ca3ef63e3c7c7cd17083128"
+        },
+        ".agents/skills/asana-team-coordination/SKILL.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "c71d7bda2c19b900565186043f6b70f78036a64e"
+        },
+        ".codex/agents/dana.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "1e13c5f4d044035d1c91b6513d090feb298b7ac9"
+        },
+        ".codex/agents/eitan.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "23cc688112a53ef34f85873bc8c224ce09c00813"
+        },
+        ".codex/agents/maya.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "d9f3610fa1d93102816371a636ea3f43eadb7999"
+        },
+        ".codex/agents/noam.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "caf359c4ac3eaf3b5da2541f14589e7c278a6d7e"
+        },
+        ".codex/agents/roni.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "d2f57293442ac29143dc1f9b3ab4cae94dc1f4be"
+        },
+        ".codex/agents/tomer.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "29a8ea3dc17dbe36d6137f92a19d2f04068cbd2c"
+        },
+        ".codex/agents/yael.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "2e7cb806bcbd5e5a8b23743ec9c745e68f46f156"
+        },
+        "AGENTS.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "7bb033aff1bfc351ae03369667dc3c929d5226e7"
+        },
+        "CLAUDE.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "b527e5f0dba1979adb32d4144b4d8c9e99163824"
+        },
+        "GEMINI.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "0c7d5aee54aeed25c55de6bff2cecc5fc73a3caf"
+        },
+        "docs/ai-team/ASANA_POLICY.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "864a1e5b8ee8e12805da98704c44f62a69750c03"
+        },
+        "docs/ai-team/BRANCH_INTEGRATION.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "3c825746bbbbffe72fece142bdd07c9321035bf9"
+        },
+        "docs/ai-team/PLATFORMS.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "4153b43b09563b09d2b74f694a08d6da3c1a0345"
+        },
+        "docs/ai-team/PROJECT_ASSIGNMENTS.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "608f28b72d9c0aae89178b567eb0104622eb951e"
+        },
+        "docs/ai-team/TASK_HANDOFF_TEMPLATE.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "d4a323800f2e16a0a7dffff73b4d36c6e24d26c6"
+        },
+        "docs/ai-team/TEAM.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "90b513d1eee097096cc986ed60a91534c9611f38"
+        },
+        "docs/ai-team/VALIDATION.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "0b2c24515b77cc768acc1302e01aee18c87cb0e5"
+        },
+        "tools/ai-team/ensure-team.ps1": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "6da00b7dac0c5a564aadcc2a5d22c1a7c4a6f543"
+        }
+      },
+      "pr_head_is_ancestor": false
+    },
+    {
+      "ref": "refs/heads/codex/otzaria-completion-20261122",
+      "sha": "9c66b4ccc06340a04de53a4c3370182873ed18bc",
+      "local_object_available": true,
+      "files": {
+        ".agents/agents/dana.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "8473c1b7f1a708b34384cd08032b00a8affc6d43"
+        },
+        ".agents/agents/eitan.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "e56ed641150f163526dfb1cc15f051efba6485d0"
+        },
+        ".agents/agents/maya.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "f12dd2a98eb3de6c8bd39d9f61281d9b17cf4d01"
+        },
+        ".agents/agents/noam.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "b346f34a3fd66e0c9d2e58c0383d6eeb329f89e5"
+        },
+        ".agents/agents/roni.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "6286859146bf3cc7968bb495ed8460819b6d0708"
+        },
+        ".agents/agents/tomer.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "a54ba5c80952803f5c36866f4f4b4a2d38951fd9"
+        },
+        ".agents/agents/yael.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "7c45e38eb22efb4bc952c358a031e665c3e6a402"
+        },
+        ".agents/roles/dana.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "a1f418725c068643f33b3f7ff74937c165b939a6"
+        },
+        ".agents/roles/eitan.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "6149bc2d919e4c7180bd82189634a92452f86a7a"
+        },
+        ".agents/roles/maya.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "bfb14e012505a523b4f88139907afd8c4d213d8b"
+        },
+        ".agents/roles/noam.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "85365d879e87291b6888e05954d0cc6a33c15378"
+        },
+        ".agents/roles/roni.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "dceccd2a3ff1f4e644e7c665e840ab48735d2bcb"
+        },
+        ".agents/roles/tomer.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "909e66753bd9ef25ff9026be81181359de276ebe"
+        },
+        ".agents/roles/yael.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "1e4fc6134fa89ae14ea087c63ccc01332630cc91"
+        },
+        ".agents/rules/ai-team-router.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "9e881c40b4ca5c4f1ca3ef63e3c7c7cd17083128"
+        },
+        ".agents/skills/asana-team-coordination/SKILL.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "c71d7bda2c19b900565186043f6b70f78036a64e"
+        },
+        ".codex/agents/dana.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "1e13c5f4d044035d1c91b6513d090feb298b7ac9"
+        },
+        ".codex/agents/eitan.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "23cc688112a53ef34f85873bc8c224ce09c00813"
+        },
+        ".codex/agents/maya.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "d9f3610fa1d93102816371a636ea3f43eadb7999"
+        },
+        ".codex/agents/noam.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "caf359c4ac3eaf3b5da2541f14589e7c278a6d7e"
+        },
+        ".codex/agents/roni.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "d2f57293442ac29143dc1f9b3ab4cae94dc1f4be"
+        },
+        ".codex/agents/tomer.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "29a8ea3dc17dbe36d6137f92a19d2f04068cbd2c"
+        },
+        ".codex/agents/yael.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "2e7cb806bcbd5e5a8b23743ec9c745e68f46f156"
+        },
+        "AGENTS.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "7bb033aff1bfc351ae03369667dc3c929d5226e7"
+        },
+        "CLAUDE.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "b527e5f0dba1979adb32d4144b4d8c9e99163824"
+        },
+        "GEMINI.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "0c7d5aee54aeed25c55de6bff2cecc5fc73a3caf"
+        },
+        "docs/ai-team/ASANA_POLICY.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "864a1e5b8ee8e12805da98704c44f62a69750c03"
+        },
+        "docs/ai-team/BRANCH_INTEGRATION.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "3c825746bbbbffe72fece142bdd07c9321035bf9"
+        },
+        "docs/ai-team/PLATFORMS.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "4153b43b09563b09d2b74f694a08d6da3c1a0345"
+        },
+        "docs/ai-team/PROJECT_ASSIGNMENTS.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "608f28b72d9c0aae89178b567eb0104622eb951e"
+        },
+        "docs/ai-team/TASK_HANDOFF_TEMPLATE.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "d4a323800f2e16a0a7dffff73b4d36c6e24d26c6"
+        },
+        "docs/ai-team/TEAM.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "90b513d1eee097096cc986ed60a91534c9611f38"
+        },
+        "docs/ai-team/VALIDATION.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "0b2c24515b77cc768acc1302e01aee18c87cb0e5"
+        },
+        "tools/ai-team/ensure-team.ps1": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "6da00b7dac0c5a564aadcc2a5d22c1a7c4a6f543"
+        }
+      },
+      "pr_head_is_ancestor": false
+    },
+    {
+      "ref": "PR3",
+      "sha": "bdeb71d0f5a3840750b7cf2bff2c1dc600034ac9",
+      "local_object_available": true,
+      "files": {
+        ".agents/agents/dana.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "6e179ea234efbe179884749f5c906615060da5ed"
+        },
+        ".agents/agents/eitan.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "e18941461e40fcac7c3bfe0ade02f6eab7e8ebf0"
+        },
+        ".agents/agents/maya.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "d2e9ee3f432de13571662582c4f2ace1bce6b971"
+        },
+        ".agents/agents/noam.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "6192753368af0cceea84259a3a4ac9388fb3aff6"
+        },
+        ".agents/agents/roni.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "be66a370a1fa163b54f37aa8f6651c2703720f43"
+        },
+        ".agents/agents/tomer.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "87ef9fdcdd2e4942ca3e2b1c59bb99c41df08498"
+        },
+        ".agents/agents/yael.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "c5f8781ff56de5fed6ba003c31f8e7c99f273924"
+        },
+        ".agents/roles/dana.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "dcd9fd5d0277d3f0c16058e9b31ae966082ff77f"
+        },
+        ".agents/roles/eitan.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "7473b706c2badb392ef2419ab41b48756a5bce65"
+        },
+        ".agents/roles/maya.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "4ccd59466880a94e60e2fa7008273043b3482cf0"
+        },
+        ".agents/roles/noam.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "3be1a49a9a4f3d691a54ffa10089b78e13f7a449"
+        },
+        ".agents/roles/roni.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "820cbf129d0a60452c9429734329dccaaf852e7a"
+        },
+        ".agents/roles/tomer.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "7802249746d60227ef132508b8c0c229b13ec865"
+        },
+        ".agents/roles/yael.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "d3ba6ee80767001873a2da09fadec6e5e5f032a5"
+        },
+        ".agents/rules/ai-team-router.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "85370464d6c616ceed5132b7f96f9f78b12d2952"
+        },
+        ".agents/skills/asana-team-coordination/SKILL.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "52a6215593df1b2f9eef2fe12bcc6be1bf68f63c"
+        },
+        ".codex/agents/dana.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "2d6158f9f3331f8ad6b96c09dfb85f333a56784c"
+        },
+        ".codex/agents/eitan.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "75c7e10e34bfd171d5cc9953e59e6edb07abd58d"
+        },
+        ".codex/agents/maya.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "8f24be2e4546f3f31a32d739ecd4e5066c5f8127"
+        },
+        ".codex/agents/noam.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "73b7bcd59db2fbbfa6fe9193d9ac0c9facd9edd6"
+        },
+        ".codex/agents/roni.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "8f989fce75200797ae400ba84fe24ba682931f8b"
+        },
+        ".codex/agents/tomer.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "7ae01fafa82c988fb41770cd8f3357033b005eee"
+        },
+        ".codex/agents/yael.toml": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "154edd867b5574fed856273bd41e18a9eddb8060"
+        },
+        "AGENTS.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "3e38c4676eaa392402b5553cded2ef4381639e5d"
+        },
+        "CLAUDE.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "2c941b51825e2a0a8f894cd01fc6d0102ad90360"
+        },
+        "GEMINI.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "cff753443ec9d54de9ee93377b77f005dbdd6319"
+        },
+        "docs/ai-team/ASANA_POLICY.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "01d7b8aec78d69032942b7d5a60142a73755b0c7"
+        },
+        "docs/ai-team/BRANCH_INTEGRATION.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "c9a3e6391bd73a53cc75dd6d70a7d049a386f3ca"
+        },
+        "docs/ai-team/PLATFORMS.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "53fe52d0ceb22893ead87305cc0d99d3b1e88675"
+        },
+        "docs/ai-team/PROJECT_ASSIGNMENTS.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "5a3207ea675fafae4c8e90fc769ba9f721db6e39"
+        },
+        "docs/ai-team/TASK_HANDOFF_TEMPLATE.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "d4a323800f2e16a0a7dffff73b4d36c6e24d26c6"
+        },
+        "docs/ai-team/TEAM.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "d8737263b648ccd823aa98e70e43a74078dec18f"
+        },
+        "docs/ai-team/VALIDATION.md": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "fdada970338a1a49e342da280a00e54b923746a3"
+        },
+        "tools/ai-team/ensure-team.ps1": {
+          "mode": "100644",
+          "type": "blob",
+          "blob": "6da00b7dac0c5a564aadcc2a5d22c1a7c4a6f543"
+        }
+      },
+      "pr_head_is_ancestor": true
+    }
+  ],
+  "git_mutations": 0
+}

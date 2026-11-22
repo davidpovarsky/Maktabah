@@ -1,0 +1,50 @@
+{
+  ".gitattributes": {
+    "bytes": 9,
+    "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+  },
+  "AUDIT.json": {
+    "bytes": 991,
+    "sha256": "72a7e5fa33ca0ebedab1b43acbe33285583e2fe26a7a947e4a5be1848698017f"
+  },
+  "boundary-guard-report.json": {
+    "bytes": 20525,
+    "sha256": "66b3d148e49c849ca8dc529676fd5d6d0afbba7cf32f72cc9a3a7694b8f7abff"
+  },
+  "command.log": {
+    "bytes": 4177,
+    "sha256": "cd903153ebaa5f770be0ae680e62b27940a3ef56af3c09644e4b605f2604d65d"
+  },
+  "controls.log": {
+    "bytes": 2686,
+    "sha256": "dc2cbc34449cd20f243c937bbe33b03fc087e46acda486f1fb70ad2d9a40db99"
+  },
+  "execution-proof.json": {
+    "bytes": 531,
+    "sha256": "ad66ebb3431cebb31eab4f9b9f483af4dae0d44371d9f1bd14dd1613f0262ee5"
+  },
+  "owner-approval-gate.json": {
+    "bytes": 4177,
+    "sha256": "cd903153ebaa5f770be0ae680e62b27940a3ef56af3c09644e4b605f2604d65d"
+  },
+  "README.md": {
+    "bytes": 5460,
+    "sha256": "2b80419777156f4b90df70cf2cb93eefcffd17daee1b1acc2cd8dce924f062be"
+  },
+  "snapshot-9c66-boundary-report.json": {
+    "bytes": 20523,
+    "sha256": "edcc2333455ef319d592242d2bb8ae035660baaa90015ad328fca46ff06f2cd5"
+  },
+  "snapshot-9c66-boundary-report.log": {
+    "bytes": 12395,
+    "sha256": "003d7844892bd916ee5df85f07489f42ca6d5528c734312ed65a89bb20bc699e"
+  },
+  "snapshot-9c66-guard-receipt.json": {
+    "bytes": 1421,
+    "sha256": "afcd514a820a8e358a7dfe4d5f2c3e9aebef6dc75f1d7a9de309454e62563249"
+  },
+  "source-stability-control.log": {
+    "bytes": 278,
+    "sha256": "5c6030a4e88fcc996e7746c07c023f748936636cf05a121b8784f41449beb8ea"
+  }
+}

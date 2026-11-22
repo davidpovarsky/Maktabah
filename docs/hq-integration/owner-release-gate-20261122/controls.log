@@ -1,0 +1,23 @@
+test_absent_or_invalid_public_key_is_rejected (__main__.OwnerReleaseControls.test_absent_or_invalid_public_key_is_rejected) ... ok
+test_candidate_and_event_mismatch_stop_before_guard (__main__.OwnerReleaseControls.test_candidate_and_event_mismatch_stop_before_guard) ... ok
+test_complete_authenticated_report_contract (__main__.OwnerReleaseControls.test_complete_authenticated_report_contract) ... ok
+test_default_branch_and_trusted_base_failure_paths (__main__.OwnerReleaseControls.test_default_branch_and_trusted_base_failure_paths) ... ok
+test_exit_failure_cannot_be_relabelled_by_pass_json (__main__.OwnerReleaseControls.test_exit_failure_cannot_be_relabelled_by_pass_json) ... ok
+test_failed_json_cannot_be_relabelled_by_exit_zero (__main__.OwnerReleaseControls.test_failed_json_cannot_be_relabelled_by_exit_zero) ... ok
+test_foreign_source_bindings_are_rejected (__main__.OwnerReleaseControls.test_foreign_source_bindings_are_rejected) ... ok
+test_missing_expired_and_naive_expiration_are_rejected (__main__.OwnerReleaseControls.test_missing_expired_and_naive_expiration_are_rejected) ... ok
+test_missing_key_retains_report_and_cannot_accept_even_a_pass_fixture (__main__.OwnerReleaseControls.test_missing_key_retains_report_and_cannot_accept_even_a_pass_fixture) ... ok
+test_pinned_immutable_verifier_matches_reviewed_bytes (__main__.OwnerReleaseControls.test_pinned_immutable_verifier_matches_reviewed_bytes) ... ok
+test_release_approval_repository_must_match (__main__.OwnerReleaseControls.test_release_approval_repository_must_match) ... ok
+test_testflight_requires_gate_before_signing (__main__.OwnerReleaseControls.test_testflight_requires_gate_before_signing) ... ok
+test_unapproved_missing_extra_and_duplicate_paths_are_rejected (__main__.OwnerReleaseControls.test_unapproved_missing_extra_and_duplicate_paths_are_rejected) ... ok
+test_verifier_hash_is_checked_before_loading (__main__.OwnerReleaseControls.test_verifier_hash_is_checked_before_loading) ... ok
+test_violations_cannot_hide_under_pass_status (__main__.OwnerReleaseControls.test_violations_cannot_hide_under_pass_status) ... ok
+test_warning_count_and_kind_must_be_consistent (__main__.OwnerReleaseControls.test_warning_count_and_kind_must_be_consistent) ... ok
+test_wiring_control_rejects_detached_or_failure_ignoring_signing_job (__main__.OwnerReleaseControls.test_wiring_control_rejects_detached_or_failure_ignoring_signing_job) ... ok
+test_wrong_repository_or_mutable_candidate_is_rejected (__main__.OwnerReleaseControls.test_wrong_repository_or_mutable_candidate_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.712s
+
+OK

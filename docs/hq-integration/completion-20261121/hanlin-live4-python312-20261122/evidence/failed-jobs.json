@@ -1,0 +1,193 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 137041552164,
+      "run_id": 44968087855,
+      "workflow_name": "Original Hanlin live consumer native acceptance",
+      "head_branch": "codex/otzaria-hanlin-live-20261121",
+      "run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/runs/44968087855",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTEwysM8AAAAf6FAjJA",
+      "head_sha": "f955a3677f70ae61a8f3f40b7c3caa73fb9a541e",
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/jobs/137041552164",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44968087855/job/137041552164",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-22T00:44:29Z",
+      "started_at": "2026-11-22T00:44:32Z",
+      "completed_at": "2026-11-22T00:45:55Z",
+      "name": "Original app, live provider, canonical Core and native source return",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-22T00:44:33Z",
+          "completed_at": "2026-11-22T00:44:36Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-22T00:44:36Z",
+          "completed_at": "2026-11-22T00:44:50Z"
+        },
+        {
+          "name": "Require the reviewed existing credential configuration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-22T00:44:50Z",
+          "completed_at": "2026-11-22T00:44:50Z"
+        },
+        {
+          "name": "Select an existing SDK-matched runtime",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-22T00:44:50Z",
+          "completed_at": "2026-11-22T00:45:38Z"
+        },
+        {
+          "name": "Verify the real Simulator App Group resolver interface",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-22T00:45:38Z",
+          "completed_at": "2026-11-22T00:45:38Z"
+        },
+        {
+          "name": "Prepare and verify the original SQL decoder dependency",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 6,
+          "started_at": "2026-11-22T00:45:38Z",
+          "completed_at": "2026-11-22T00:45:43Z"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7,
+          "started_at": "2026-11-22T00:45:43Z",
+          "completed_at": "2026-11-22T00:45:43Z"
+        },
+        {
+          "name": "Run ruby/setup-ruby@v1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-11-22T00:45:43Z",
+          "completed_at": "2026-11-22T00:45:43Z"
+        },
+        {
+          "name": "Read source-pinned Zayit build mode",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9,
+          "started_at": "2026-11-22T00:45:43Z",
+          "completed_at": "2026-11-22T00:45:43Z"
+        },
+        {
+          "name": "Use Rust only for the reviewed matching Zayit build",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10,
+          "started_at": "2026-11-22T00:45:43Z",
+          "completed_at": "2026-11-22T00:45:43Z"
+        },
+        {
+          "name": "Key disposable compiler cache by real SDK and native inputs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-11-22T00:45:43Z",
+          "completed_at": "2026-11-22T00:45:43Z"
+        },
+        {
+          "name": "Run actions/cache/restore@v4",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12,
+          "started_at": "2026-11-22T00:45:43Z",
+          "completed_at": "2026-11-22T00:45:43Z"
+        },
+        {
+          "name": "Build the original app and original UI test runner once",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 13,
+          "started_at": "2026-11-22T00:45:43Z",
+          "completed_at": "2026-11-22T00:45:43Z"
+        },
+        {
+          "name": "Retain compiler cache only after an actual matching test build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-22T00:45:43Z",
+          "completed_at": "2026-11-22T00:45:43Z"
+        },
+        {
+          "name": "Run actions/cache/save@v4",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 15,
+          "started_at": "2026-11-22T00:45:43Z",
+          "completed_at": "2026-11-22T00:45:43Z"
+        },
+        {
+          "name": "Execute one original live Native case and admit bounded evidence",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16,
+          "started_at": "2026-11-22T00:45:43Z",
+          "completed_at": "2026-11-22T00:45:43Z"
+        },
+        {
+          "name": "Verify private input removal and original evidence restoration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-22T00:45:43Z",
+          "completed_at": "2026-11-22T00:45:44Z"
+        },
+        {
+          "name": "Publish only admitted credential-scanned evidence",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 18,
+          "started_at": "2026-11-22T00:45:44Z",
+          "completed_at": "2026-11-22T00:45:49Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-11-22T00:45:49Z",
+          "completed_at": "2026-11-22T00:45:51Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-11-22T00:45:51Z",
+          "completed_at": "2026-11-22T00:45:53Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/check-runs/137041552164",
+      "labels": [
+        "xcode-27"
+      ],
+      "runner_id": 1000022927,
+      "runner_name": "GitHub Actions 1000022927",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

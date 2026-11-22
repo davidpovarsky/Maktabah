@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "controls": 18,
+  "full_file_swift_syntax": "PASS",
+  "native_ui_acceptance": "NOT_RUN",
+  "source_path": "Source/UI/iOS/Views/iOSMainView.swift",
+  "source_sha256": "2f4116739648ca5fe7c0efe08888aff3494dcf4cb3405d9c0fff462e1d4fec20",
+  "source_git_bytes_sha256": "2f4116739648ca5fe7c0efe08888aff3494dcf4cb3405d9c0fff462e1d4fec20",
+  "harness_sha256": "6c9e99c5d70a379d29cfe63a3d2dcd93cc7c249d604b3312e59dbae81e4e4fab",
+  "limitations": [
+    "UIKit/SwiftUI State are platform doubles",
+    "UserDefaults uses an isolated in-memory double",
+    "No native layout or persistence acceptance claimed"
+  ],
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+        "-frontend",
+        "-parse",
+        "C:\\Users\\DAVID\\Code\\Maktabah-native-followup-20261122\\Source\\UI\\iOS\\Views\\iOSMainView.swift"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+        "-swift-version",
+        "6",
+        "-parse-as-library",
+        "C:\\Users\\DAVID\\Code\\Maktabah-native-followup-20261122\\build\\initial-global-navigation\\restoration-controls.swift",
+        "-o",
+        "C:\\Users\\DAVID\\Code\\Maktabah-native-followup-20261122\\build\\initial-global-navigation\\restoration-controls.exe"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-native-followup-20261122\\build\\initial-global-navigation\\restoration-controls.exe"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

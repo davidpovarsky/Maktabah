@@ -1,0 +1,53 @@
+{
+  "devices": [
+    {
+      "architecture": "arm64",
+      "deviceId": "E674D86D-758E-44A1-B1F0-04FFE02A51B2",
+      "deviceName": "Faithful 11-inch 93f62fa5",
+      "modelName": "iPad Pro 11-inch (M5)",
+      "osBuildNumber": "24B8117",
+      "osVersion": "27.2",
+      "platform": "iOS Simulator"
+    }
+  ],
+  "testNodes": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "duration": "3m 31s",
+                  "durationInSeconds": 211.18142998218536,
+                  "name": "testSystemReduceMotionKeepsOriginalPaletteUsable()",
+                  "nodeIdentifier": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+                  "nodeType": "Test Case",
+                  "result": "Passed"
+                }
+              ],
+              "name": "FaithfulReaderUIAcceptanceTests",
+              "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests",
+              "nodeType": "Test Suite",
+              "result": "Passed"
+            }
+          ],
+          "name": "Maktabah-iOSUITests",
+          "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests",
+          "nodeType": "UI test bundle",
+          "result": "Passed"
+        }
+      ],
+      "name": "Maktabah-iOS",
+      "nodeType": "Test Plan",
+      "result": "Passed"
+    }
+  ],
+  "testPlanConfigurations": [
+    {
+      "configurationId": "1",
+      "configurationName": "Test Scheme Action"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "devices": [
+    {
+      "architecture": "arm64",
+      "deviceId": "D95F04F2-A23B-438B-8FED-765A22AF654F",
+      "deviceName": "Faithful 11-inch 620135c1",
+      "modelName": "iPad Pro 11-inch (M5)",
+      "osBuildNumber": "24B8117",
+      "osVersion": "27.2",
+      "platform": "iOS Simulator"
+    }
+  ],
+  "testNodes": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "XCTAssertEqual failed: (\"otzaria|book:3891|line:522\") is not equal to (\"otzaria|book:3891|line:523\") - The live source must resolve the independently selected current fixture line",
+                      "nodeType": "Failure Message",
+                      "sourceLocation": {
+                        "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+                        "lineNumber": 445
+                      }
+                    }
+                  ],
+                  "duration": "53s",
+                  "durationInSeconds": 53.35503792762756,
+                  "name": "testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent()",
+                  "nodeIdentifier": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent()",
+                  "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+                  "nodeType": "Test Case",
+                  "result": "Failed"
+                }
+              ],
+              "name": "HanlinLiveProviderAcceptanceTests",
+              "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinLiveProviderAcceptanceTests",
+              "nodeType": "Test Suite",
+              "result": "Failed"
+            }
+          ],
+          "name": "Maktabah-iOSUITests",
+          "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests",
+          "nodeType": "UI test bundle",
+          "result": "Failed"
+        }
+      ],
+      "name": "Maktabah-iOS",
+      "nodeType": "Test Plan",
+      "result": "Failed"
+    }
+  ],
+  "testPlanConfigurations": [
+    {
+      "configurationId": "1",
+      "configurationName": "Test Scheme Action"
+    }
+  ]
+}

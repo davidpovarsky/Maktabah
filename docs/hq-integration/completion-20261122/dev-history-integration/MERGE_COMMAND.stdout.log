@@ -1,0 +1,25 @@
+Auto-merging .github/workflows/cloudkit-schema.yml
+CONFLICT (add/add): Merge conflict in .github/workflows/cloudkit-schema.yml
+Auto-merging .github/workflows/ios-build-data-profile.yml
+Auto-merging .github/workflows/ios-build.yml
+CONFLICT (content): Merge conflict in .github/workflows/ios-build.yml
+Auto-merging .github/workflows/ios-testflight.yml
+CONFLICT (content): Merge conflict in .github/workflows/ios-testflight.yml
+Auto-merging .github/workflows/mini-test10-data-profile.yml
+CONFLICT (content): Merge conflict in .github/workflows/mini-test10-data-profile.yml
+Auto-merging .github/workflows/otzaria-search-artifacts.yml
+CONFLICT (content): Merge conflict in .github/workflows/otzaria-search-artifacts.yml
+Auto-merging .github/workflows/otzaria-search-gates.yml
+CONFLICT (content): Merge conflict in .github/workflows/otzaria-search-gates.yml
+Auto-merging .github/workflows/pr-review.yml
+Auto-merging .github/workflows/release.yml
+CONFLICT (content): Merge conflict in .github/workflows/release.yml
+Auto-merging .github/workflows/zayit-production-data.yml
+CONFLICT (content): Merge conflict in .github/workflows/zayit-production-data.yml
+Auto-merging AGENTS.md
+CONFLICT (content): Merge conflict in AGENTS.md
+Auto-merging PROJECT_AGENT_GUIDANCE.md
+CONFLICT (add/add): Merge conflict in PROJECT_AGENT_GUIDANCE.md
+Auto-merging PROJECT_BOARD.md
+CONFLICT (add/add): Merge conflict in PROJECT_BOARD.md
+Automatic merge failed; fix conflicts and then commit the result.

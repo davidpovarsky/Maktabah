@@ -265,19 +265,28 @@ final class R27NativePadTests: R27NativeUIBase {
         XCTAssertEqual(input.count, 1)
         tapInWindow(input.firstMatch)
         recordWindowEvidence("r27-calibration-full-window-input")
-        let selected = palette.buttons.matching(NSPredicate(format: "isSelected == true"))
+        let rows = palette.buttons.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@", "command-palette-row-"
+        ))
+        let rowIDs = rows.allElementsBoundByIndex.map(\.identifier)
+        XCTAssertEqual(Set(rowIDs).count, rowIDs.count, "Actual palette rows must have distinct identities")
+        let initial = try XCTUnwrap(rowIDs.first)
+        let next = try XCTUnwrap(rowIDs.dropFirst().first)
+        let selected = rows.matching(NSPredicate(format: "isSelected == true"))
         XCTAssertEqual(selected.count, 1)
-        let initial = selected.firstMatch.label
+        XCTAssertEqual(selected.firstMatch.identifier, initial)
+        // The same book can appear in Recents and its main section with the
+        // same display label. Observe the actual adjacent row, not its title.
         input.firstMatch.typeKey(XCUIKeyboardKey.downArrow, modifierFlags: [])
         let movesDown = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
-            MainActor.assumeIsolated { selected.count == 1 && selected.firstMatch.label != initial }
+            MainActor.assumeIsolated { selected.count == 1 && selected.firstMatch.identifier == next }
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [movesDown], timeout: 15), .completed,
-                       "A real field UIKeyCommand must visibly move result selection")
+                       "A real field UIKeyCommand must select the actual next result row")
         recordWindowEvidence("r27-calibration-keycommand-down-moved-selection")
         input.firstMatch.typeKey(XCUIKeyboardKey.upArrow, modifierFlags: [])
         let movesBack = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
-            MainActor.assumeIsolated { selected.count == 1 && selected.firstMatch.label == initial }
+            MainActor.assumeIsolated { selected.count == 1 && selected.firstMatch.identifier == initial }
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [movesBack], timeout: 15), .completed)
         recordWindowEvidence("r27-calibration-keycommand-up-restored-selection")

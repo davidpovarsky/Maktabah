@@ -1,0 +1,12 @@
+{
+  "command": [
+    "xcrun",
+    "simctl",
+    "help",
+    "get_app_container"
+  ],
+  "exit_code": 0,
+  "help_sha256": "62b5b30225c28644c70945a598f2385b4414e2f11c75c4ec2d134d6822f0053b",
+  "help": "Print the path of the installed app's container\nUsage: simctl get_app_container <device> <app bundle identifier> [<container>]\n\ncontainer   Optionally specify the container. Defaults to app.\n  app                 The .app bundle\n  data                The application's data container\n  groups              The App Group containers\n  <group identifier>  A specific App Group container\n\n\n",
+  "actual_installed_container_resolution": "DEFERRED_TO_OWNED_NATIVE_FIXTURE"
+}

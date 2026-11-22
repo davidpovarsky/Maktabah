@@ -1,0 +1,17 @@
+{
+  "run": 44959295674,
+  "checkout": "34d06949e7fedbda6e0d256a769b3d0b8659c211",
+  "application_source_sha": "a0781bd2628c1311394f7da6aa1e84c17f252fa4",
+  "build_status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+  "source_identity_before_after_equal": true,
+  "admitted_file_hashes_verified": 13,
+  "run_conclusion": "cancelled",
+  "native_step_outcome": "failure",
+  "failure": "Missing Python zstandard imported by original SQL oracle before Native XCTest",
+  "provider_conversations": 0,
+  "private_input_staged": false,
+  "cleanup": "PASS",
+  "build_cache": "Exact v2 key restored; save correctly skipped because cache-hit true; original app build still ran and passed",
+  "native116_acceptance": false,
+  "release114_acceptance": false
+}

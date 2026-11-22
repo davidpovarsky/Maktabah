@@ -82,10 +82,9 @@ def environment_identity(mode):
     return {"authority": expected, "checkout_sha": head, "run_id": int(run_id), "run_attempt": int(attempt)}
 
 
-def observe_source(root, mode):
+def reviewed_source(root, head):
+    """Inspect the same committed bytes for producer and later release consumer."""
     root = Path(root)
-    identity = environment_identity(mode)
-    head = identity["checkout_sha"]
     require(git(root, "rev-parse", "HEAD") == head, "Push checkout moved")
     binding_record = source_record(root, BINDING, head)
     binding = json.loads((root / BINDING).read_bytes())
@@ -143,12 +142,17 @@ def observe_source(root, mode):
     require(required <= set(expected), "Missing original runtime/declaration/authority source closure")
     records = [source_record(root, path, head) for path in sorted(expected)]
     require(all(record["git_blob"] == expected[record["path"]] for record in records), "Runtime closure changed")
-    return {**identity, "application_source_sha": application, "application_trees": trees,
+    return {"application_source_sha": application, "application_trees": trees,
             "runtime27_digest_binding": {"r27_source": r27_record, "old_digest": ORIGINAL_R27_SHA256,
                 "new_digest": r27_sha, "runtime_source": runtime_record, "whole_driver_inverse_git_blob": inverse_blob},
             "binding": binding_record, "source_pins": pins, "inputs": records,
             "source_inventory_sha256": hashlib.sha256(json.dumps(records, sort_keys=True,
                  separators=(",", ":")).encode()).hexdigest()}
+
+
+def observe_source(root, mode):
+    identity = environment_identity(mode)
+    return {**identity, **reviewed_source(root, identity["checkout_sha"])}
 
 
 def release_context(root, original_context):

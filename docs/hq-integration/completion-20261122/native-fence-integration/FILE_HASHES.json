@@ -1,0 +1,14 @@
+{
+  "files": [
+    {
+      "path": "INTEGRATION.json",
+      "bytes": 8517,
+      "sha256": "29943e9d9e3b01fd82371439cbd6a0babb7d71c66b70c5d50aeea3dfbf6c28b8"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1396,
+      "sha256": "59feaea158bf1db09718421e90c6342c77812a2bffd6f11caf4b86f27357f085"
+    }
+  ]
+}

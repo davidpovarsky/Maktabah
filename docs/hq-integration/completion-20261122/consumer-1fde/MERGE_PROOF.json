@@ -1,0 +1,62 @@
+{
+  "observed_at": "2026-11-22T02:33:10.858639+00:00",
+  "integration_head": "1119c4926ddcfc442c1450d3da8986049f2ea88a",
+  "true_merge": "1fde656921389d4bce9781cc13427fc4025297ed",
+  "parents": [
+    "70388c090af788adaa82346c94176790df2c65f0",
+    "5ccd0c318f0900c41302a6a27a7ab359930e424b"
+  ],
+  "application_source": "eaa971f9a861c2b0878f4d558b606e60100ddcae",
+  "four_tree_equivalence": {
+    "Source": {
+      "1119c4926ddcfc442c1450d3da8986049f2ea88a": "cbdb967e402efb6d663b0681d89b987e3e2b9905",
+      "1fde656921389d4bce9781cc13427fc4025297ed": "cbdb967e402efb6d663b0681d89b987e3e2b9905",
+      "eaa971f9a861c2b0878f4d558b606e60100ddcae": "cbdb967e402efb6d663b0681d89b987e3e2b9905",
+      "5ccd0c318f0900c41302a6a27a7ab359930e424b": "cbdb967e402efb6d663b0681d89b987e3e2b9905"
+    },
+    "Vendor": {
+      "1119c4926ddcfc442c1450d3da8986049f2ea88a": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "1fde656921389d4bce9781cc13427fc4025297ed": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "eaa971f9a861c2b0878f4d558b606e60100ddcae": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "5ccd0c318f0900c41302a6a27a7ab359930e424b": "4065c0e62af325e83a65fe0c70270985229807ae"
+    },
+    "Maktabah.xcodeproj": {
+      "1119c4926ddcfc442c1450d3da8986049f2ea88a": "b3da2d1a2b3693a3deac1a7effac1e0916118609",
+      "1fde656921389d4bce9781cc13427fc4025297ed": "b3da2d1a2b3693a3deac1a7effac1e0916118609",
+      "eaa971f9a861c2b0878f4d558b606e60100ddcae": "b3da2d1a2b3693a3deac1a7effac1e0916118609",
+      "5ccd0c318f0900c41302a6a27a7ab359930e424b": "b3da2d1a2b3693a3deac1a7effac1e0916118609"
+    },
+    "Maktabah-iOSUITests": {
+      "1119c4926ddcfc442c1450d3da8986049f2ea88a": "f336b041f6c503a30b32edb6055f933d22ebaa3b",
+      "1fde656921389d4bce9781cc13427fc4025297ed": "f336b041f6c503a30b32edb6055f933d22ebaa3b",
+      "eaa971f9a861c2b0878f4d558b606e60100ddcae": "f336b041f6c503a30b32edb6055f933d22ebaa3b",
+      "5ccd0c318f0900c41302a6a27a7ab359930e424b": "f336b041f6c503a30b32edb6055f933d22ebaa3b"
+    }
+  },
+  "source_preflight_job": "job_94107d9acc37",
+  "files": {
+    "SUMMARY.json": {
+      "size_bytes": 428,
+      "sha256": "40c68dafa3d43743f6bf8503e3cacd390389bd2fc132b9149e2243830a881ac7"
+    },
+    "stage2.stdout.json": {
+      "size_bytes": 3625,
+      "sha256": "6b3dd5ecf8c97004cdd28a362ed1ecae6f1544c24dc61d1f4c40bfb6d7988d75"
+    },
+    "stage2.stderr.log": {
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "original-editor-source-context.json": {
+      "size_bytes": 60502,
+      "sha256": "0b6f15acfea186c0cdf5bdc5bca3da055e875ca9bc7066e464942ded9b2e9016"
+    }
+  },
+  "native_tests_executed": 0,
+  "apple_builds_executed": 0,
+  "limits": [
+    "Existing source admission only; original framework distribution remains UNFINALIZED until real producer qualification.",
+    "Running Native44969361774 and Live44974028362 target62095a46 and cannot accept newer eaa971f9.",
+    "Existing component controls retained under their own exact source/evidence; none rerun for this merge."
+  ]
+}

@@ -1,0 +1,5 @@
+# Hanlin Live6 actual result
+Run44974028362 attempt1 finished FAILURE at02:47:08 UTC. Its real app/UI-runner build passed, and the independent paragraph oracle allowed the original exact locator assertion to pass. The original native test then failed at HanlinConsumerAcceptanceTests.swift:469: the consent switch value remained0 after one native tap. Connect, Send and provider completion were not reached; provider conversations=0.
+All21 allowlisted files are retained byte-for-byte after size/SHA256 admission checks. Full83,455-byte artifact14735424221 ZIP SHA256 and CRC were verified locally; source-before and source-after are identical. Private provider input, raw xcresult, AX attachments and video were excluded by the original policy.
+The unique lifecycle owner deleted only the secret with created_at=updated_at02:00:10Z. DELETE204 and subsequent GET404 were recorded at02:47:33.815508 UTC. This is distinct from the old44969637013 cleanup.
+No retry or passed-suite rerun is credited. The consent interaction remains under diagnosis.

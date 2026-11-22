@@ -1,0 +1,28 @@
+{
+  "observed_at": "2026-11-22T02:35:56.082682+00:00",
+  "code_commit": "5255c96ae9cdd02fb661ec2fc8801e33125b09b8",
+  "source_snapshot": "9c66b4ccc06340a04de53a4c3370182873ed18bc",
+  "metadata_scope": "Repository public-verification-key configuration only; no private-key searches or values",
+  "public_key_metadata": [
+    {
+      "endpoint": "secrets",
+      "collection_read_succeeded": true,
+      "total_count": 11,
+      "owner_public_verification_key_records": []
+    },
+    {
+      "endpoint": "variables",
+      "collection_read_succeeded": true,
+      "total_count": 0,
+      "owner_public_verification_key_records": []
+    }
+  ],
+  "control_methods_passed": 19,
+  "control_execution": "18 initial methods + 1 focused source-stability method; unchanged suites not rerun",
+  "yaml_documents_parsed": 2,
+  "native_tests_executed": 0,
+  "manifests_generated": 0,
+  "registry_modified": false,
+  "signing_performed": false,
+  "final_source_pending": true
+}

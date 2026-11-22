@@ -1,0 +1,34 @@
+{
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 29,
+      "sha256": "730a35ae3d558080083c3103d9ac8100c3f6561678092abe341701dfa331eb1d"
+    },
+    {
+      "path": "M17_REUSE_AUDIT.json",
+      "bytes": 26164,
+      "sha256": "b4eea6d69c41b87e2e8308d2a00b6d3bd5f8141d250c75743ecc0f52601654b7"
+    },
+    {
+      "path": "PACKET_MANIFEST.json",
+      "bytes": 4415,
+      "sha256": "ca4f154f35762b3fcdc40f61bc0517d37566048a40429b1d8727077a86d7d3f5"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7016,
+      "sha256": "add66ceae69e3cdce925a2cf8c8021daff4e65ea35ca822ff8cb7d7ad600160f"
+    },
+    {
+      "path": "review-packet.zip",
+      "bytes": 1420941,
+      "sha256": "9bd73752aaf5bd1587d98a57053f4b48c5281356cb68c227203b737d206b167b"
+    },
+    {
+      "path": "ROOT_REVIEW.json",
+      "bytes": 8865,
+      "sha256": "1787844e02bb4a729eba7e7d41ab5beb7793d50938e2d942432da32fe8bf223b"
+    }
+  ]
+}

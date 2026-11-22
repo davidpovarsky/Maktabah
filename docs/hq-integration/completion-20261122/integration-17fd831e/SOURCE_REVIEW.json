@@ -1,0 +1,87 @@
+{
+  "schema": "otzaria-integration-source-review-v1",
+  "recorded_at_utc": "2026-11-22T01:39:49.791342+00:00",
+  "repository": "davidpovarsky/Maktabah",
+  "branch": "codex/otzaria-completion-20261122",
+  "integration_commit": "17fd831e1a33462c3503eb59af54f8445da67641",
+  "merge_parents": [
+    "3bb181f4d3ca1bde9f1ce43de40d1f3658d821c5",
+    "b16c157f09c60599527bf67b6dc17e4ab68fd46b"
+  ],
+  "native_checkout": "3bb181f4d3ca1bde9f1ce43de40d1f3658d821c5",
+  "native_application_source": "62095a46",
+  "live_checkout": "b16c157f09c60599527bf67b6dc17e4ab68fd46b",
+  "live_application_source": "a0781bd2628c1311394f7da6aa1e84c17f252fa4",
+  "full_ancestry_retained": true,
+  "conflicts": [],
+  "native_application_tree_identity": {
+    "Source": {
+      "tree": "7d3c913d8de4ff29837216003b7d71b6896a76f7",
+      "identical_to_native_checkout": true
+    },
+    "Vendor": {
+      "tree": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "identical_to_native_checkout": true
+    },
+    "Maktabah.xcodeproj": {
+      "tree": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
+      "identical_to_native_checkout": true
+    },
+    "Maktabah-iOSUITests": {
+      "tree": "196d1e1433a7e6ad3284430bc191510257daad89",
+      "identical_to_native_checkout": true
+    }
+  },
+  "live_ci_and_decoder_identical_to_reviewed_live_checkout": true,
+  "component_review_base": "cf44ada2a47aa0abb152af1fdce4f14d5417456d",
+  "component_source_comparisons": {
+    "Source/ChavrusaText/Annotations": {
+      "changed_paths": [],
+      "source_unchanged": true
+    },
+    "Source/Core/CloudKit": {
+      "changed_paths": [],
+      "source_unchanged": true
+    },
+    "Source/Core/Database": {
+      "changed_paths": [],
+      "source_unchanged": true
+    },
+    "Source/Otzaria/Search": {
+      "changed_paths": [],
+      "source_unchanged": true
+    },
+    "Source/Otzaria/Storage": {
+      "changed_paths": [],
+      "source_unchanged": true
+    },
+    "Source/Sefaria": {
+      "changed_paths": [],
+      "source_unchanged": true
+    },
+    "Source/LibraryBackend": {
+      "changed_paths": [],
+      "source_unchanged": true
+    },
+    "Vendor": {
+      "changed_paths": [],
+      "source_unchanged": true
+    },
+    "Tests/HQ": {
+      "changed_paths": [],
+      "source_unchanged": true
+    }
+  },
+  "component_evidence_reuse": "Requires each existing verifier to confirm its complete source/dependency/driver closure. This comparison is not a new PASS.",
+  "new_tests_executed": 0,
+  "native116_acceptance": false,
+  "release114_acceptance": false,
+  "physical_ipad_acceptance": false,
+  "pending": [
+    "Observe exact Native44969361774 and Hanlin44969637013 results and secret cleanup",
+    "Qualify original Anytype producer before enabling consumer",
+    "Integrate accepted consumer and final Release route repair",
+    "Bind final source and original acceptance manifests",
+    "Generate exact final unsigned protected-source closure; authentic attestation remains separately required"
+  ]
+}

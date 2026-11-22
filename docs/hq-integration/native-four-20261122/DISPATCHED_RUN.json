@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-22T03:26:42.245966+00:00",
+  "run": {
+    "conclusion": "",
+    "createdAt": "2026-11-22T03:26:17Z",
+    "databaseId": 44980625976,
+    "event": "push",
+    "headBranch": "codex/otzaria-completion-focused-native-20261122",
+    "headSha": "c107c8ac600de6bbe6d92571fbbbdc6349cd143a",
+    "status": "in_progress",
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44980625976"
+  },
+  "workflow": "otzaria-completion-focused-native.yml",
+  "scope": "FOCUSED_FOUR_ONLY",
+  "no_duplicate_dispatch": true
+}

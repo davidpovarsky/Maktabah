@@ -1,0 +1,278 @@
+{
+  "base": "70388c090af788adaa82346c94176790df2c65f0",
+  "new_branch": "codex/otzaria-team-validation-waxqv0pw-20261122",
+  "workflows": [
+    {
+      "path": ".github/workflows/cloudkit-schema.yml",
+      "blob": "2642377634fd6c46718bc4e2f46b93a45fc5832b",
+      "can_trigger_from_this_push": false,
+      "reason": "no push event"
+    },
+    {
+      "path": ".github/workflows/codeql.yml",
+      "blob": "c905107ea0df49a9ed8a8314156b902e1215f816",
+      "can_trigger_from_this_push": false,
+      "reason": "no push event"
+    },
+    {
+      "path": ".github/workflows/deploy-docs.yml",
+      "blob": "d08bc0e784788e32b9d27610df6ffb94feb0984f",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "main"
+      ]
+    },
+    {
+      "path": ".github/workflows/ios-build-data-profile.yml",
+      "blob": "3ea3fc59b0329b574195cfd42d39171225af8b91",
+      "can_trigger_from_this_push": false,
+      "reason": "no push event"
+    },
+    {
+      "path": ".github/workflows/ios-build.yml",
+      "blob": "eb7609173f03df1c765f68df9e354f7e89350bee",
+      "can_trigger_from_this_push": false,
+      "reason": "no push event"
+    },
+    {
+      "path": ".github/workflows/ios-testflight.yml",
+      "blob": "39673d35b4b0323596349d79338bfa9b09cd3aa6",
+      "can_trigger_from_this_push": false,
+      "reason": "no push event"
+    },
+    {
+      "path": ".github/workflows/maktabah-batch-b-validation.yml",
+      "blob": "5097f13bed238998953a7f1595fa5a642e2fc2ff",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "validation/maktabah-batch-b-*",
+        "validation/maktabah-build-8401-*"
+      ]
+    },
+    {
+      "path": ".github/workflows/mini-test10-data-profile.yml",
+      "blob": "477974570d10cb74bc0adeca7988a7e3ac7aa376",
+      "can_trigger_from_this_push": false,
+      "reason": "no push event"
+    },
+    {
+      "path": ".github/workflows/otzaria-annotation-core194-combined-apple-v3.yml",
+      "blob": "deaa00e1cfbba323ad1c553949e5abcac4a98d74",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "codex/otzaria-annotation-core194-combined-apple-v3-20261120"
+      ]
+    },
+    {
+      "path": ".github/workflows/otzaria-cold-search-core-validation.yml",
+      "blob": "7b66773995c480d72a0410a086322b8bdaf6f1e5",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "codex/otzaria-cold-search-core-apple-v2-20261120"
+      ]
+    },
+    {
+      "path": ".github/workflows/otzaria-cold-search-ownership-validation.yml",
+      "blob": "aa0c509cc4cacfb96e0c176ebab52c12292cdcb9",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "codex/otzaria-cold-search-ownership-v3-20261120"
+      ]
+    },
+    {
+      "path": ".github/workflows/otzaria-completion-focused-native.yml",
+      "blob": "72295e08e1c8d6d0a87210a9d7125b7cbd36546c",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "codex/otzaria-completion-focused-native-20261121"
+      ]
+    },
+    {
+      "path": ".github/workflows/otzaria-final-native-push.yml",
+      "blob": "05041780a0fbfcbf384a1737bd720ca606be8a72",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "codex/otzaria-final-native116-20261120"
+      ]
+    },
+    {
+      "path": ".github/workflows/otzaria-final-release-push.yml",
+      "blob": "dcad3f8454606ce9443d12e185754cbd2a07a1de",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "codex/otzaria-final-release114-20261120"
+      ]
+    },
+    {
+      "path": ".github/workflows/otzaria-hanlin-live-native.yml",
+      "blob": "8c7c5e589421cf9199e79f1b2d38d4eb752c1637",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "codex/otzaria-hanlin-live-20261121"
+      ]
+    },
+    {
+      "path": ".github/workflows/otzaria-local-annotation-cloud-apple.yml",
+      "blob": "2b450b1adcc95d26571e103a2acad406c786b7db",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "codex/otzaria-local-annotation-cloud-apple-reviewed-20261120"
+      ]
+    },
+    {
+      "path": ".github/workflows/otzaria-local-annotation-editor-apple.yml",
+      "blob": "a8fd5640667f232f775d512fc66a7f9c3859dbd9",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "codex/otzaria-local-annotation-editor-apple-reviewed-v2-20261120"
+      ]
+    },
+    {
+      "path": ".github/workflows/otzaria-native98-commentary-evidence.yml",
+      "blob": "976839e0bad90ccca2e8947055bc8bf424200de0",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "codex/otzaria-native98-commentary-evidence-20261120"
+      ]
+    },
+    {
+      "path": ".github/workflows/otzaria-release96-capture-evidence.yml",
+      "blob": "3ea7d3dc944dc0a6a9aaef8541c76a6862b5dfd0",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "codex/otzaria-release96-capture-evidence-20261120"
+      ]
+    },
+    {
+      "path": ".github/workflows/otzaria-search-artifacts.yml",
+      "blob": "7295c28ce284d035136aaa81d8ecb35c54558c28",
+      "can_trigger_from_this_push": false,
+      "reason": "no push event"
+    },
+    {
+      "path": ".github/workflows/otzaria-search-gates.yml",
+      "blob": "5013212b8df5bb82a1e95ca23010bc6b7f27d020",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "codex/otzaria-search-upgrade-clean"
+      ]
+    },
+    {
+      "path": ".github/workflows/otzaria-ui-sdk-intermediate.yml",
+      "blob": "83b8b22b8183cab82b2f549649f0a75b91152fdc",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "codex/otzaria-ui-sdk-intermediate-20261120"
+      ]
+    },
+    {
+      "path": ".github/workflows/pr-build.yml",
+      "blob": "5cf1f20a6a686233673b3f21a9aa09d902a38058",
+      "can_trigger_from_this_push": false,
+      "reason": "no push event"
+    },
+    {
+      "path": ".github/workflows/pr-review.yml",
+      "blob": "c31c1589e9560355fb050f651446dc375b6f5a3b",
+      "can_trigger_from_this_push": false,
+      "reason": "no push event"
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "blob": "cad913269074c347cb51a0ef334fa556bdc80fd9",
+      "can_trigger_from_this_push": false,
+      "reason": "tag-only push; publishing branch only"
+    },
+    {
+      "path": ".github/workflows/sefaria-embedded-validation.yml",
+      "blob": "51611bfd6118edadc9ff4c1eceada678e2ef8d39",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "experiment/sefaria-mobile-original-embedded-*"
+      ]
+    },
+    {
+      "path": ".github/workflows/upstream-boundary-guard.yml",
+      "blob": "174c2240ffcd081800d0970b4375b2dcfa052dcd",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "main",
+        "sync/**"
+      ]
+    },
+    {
+      "path": ".github/workflows/upstream-resolved-fast-validation-2026-09-04.yml",
+      "blob": "1d55892031d421b8693bde96939a1778b73c0295",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "codex/upstream-main-sync-2026-09-04-resolved"
+      ]
+    },
+    {
+      "path": ".github/workflows/upstream-resolved-validation-2026-09-04.yml",
+      "blob": "0d82a42666742e55876c9af18bafc9da65d5e44d",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "codex/upstream-main-sync-2026-09-04-resolved"
+      ]
+    },
+    {
+      "path": ".github/workflows/zayit-demo-data.yml",
+      "blob": "2f16c0c46fb51e38519afed877a900813717ca84",
+      "can_trigger_from_this_push": false,
+      "reason": "no push event"
+    },
+    {
+      "path": ".github/workflows/zayit-production-data.yml",
+      "blob": "4bca4ad477c54aabef5a898c058a357447461c99",
+      "can_trigger_from_this_push": false,
+      "reason": "new neutral branch excluded by explicit branch filter",
+      "branches": [
+        "codex/search-data-unification-parity"
+      ]
+    },
+    {
+      "path": ".github/workflows/zayit-search-gates.yml",
+      "blob": "3639099e7907cf063717543862f0d6d753d8de67",
+      "can_trigger_from_this_push": false,
+      "reason": "only documentation paths change; explicit path filter excludes all allowed changes",
+      "paths": [
+        "Vendor/ZayitSearchPort/**",
+        ".github/workflows/zayit-search-gates.yml"
+      ]
+    }
+  ],
+  "workflow_count": 32,
+  "any_workflow_matches": false,
+  "allowed_changed_paths_or_prefix": [
+    ".agents/rules/ai-team-router.md",
+    "docs/ai-team/BRANCH_INTEGRATION.md",
+    "docs/ai-team/PLATFORMS.md",
+    "docs/ai-team/PROJECT_ASSIGNMENTS.md",
+    "docs/ai-team/TEAM.md",
+    "docs/ai-team/VALIDATION.md",
+    "docs/ai-team/reviews/team-validation-waxqv0pw-20261122/"
+  ],
+  "new_branch_only": true,
+  "no_tag_push_or_pr_creation": true,
+  "changed_paths_to_be_rechecked_before_push": true
+}

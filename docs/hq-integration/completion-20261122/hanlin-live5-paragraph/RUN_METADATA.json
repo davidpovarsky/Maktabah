@@ -1,0 +1,12 @@
+{
+  "id": 44969637013,
+  "run_attempt": 1,
+  "head_sha": "b16c157f09c60599527bf67b6dc17e4ab68fd46b",
+  "head_branch": "codex/otzaria-hanlin-live-20261121",
+  "event": "push",
+  "status": "completed",
+  "conclusion": "failure",
+  "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44969637013",
+  "created_at": "2026-11-22T01:03:41Z",
+  "updated_at": "2026-11-22T01:40:07Z"
+}

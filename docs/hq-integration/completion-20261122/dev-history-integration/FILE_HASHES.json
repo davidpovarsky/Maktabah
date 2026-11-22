@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 29,
+      "sha256": "730a35ae3d558080083c3103d9ac8100c3f6561678092abe341701dfa331eb1d"
+    },
+    {
+      "path": "INTEGRATION.json",
+      "bytes": 4646,
+      "sha256": "d7d8b36ba8c7b88a7bb82fe5f75e642cc75bc4f2b9f0298e47449866e519bc8c"
+    },
+    {
+      "path": "MERGE_COMMAND.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "MERGE_COMMAND.stdout.log",
+      "bytes": 1472,
+      "sha256": "24a0cb3cc839c6c0bc5eacc89ec3cf9c437a6ce8b1e8d5024c99794b4f8b2e0b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1133,
+      "sha256": "2fcaa01a9638274376ae8288c3744ef7f7e8cff0d919735bb9b6ef7978da039f"
+    }
+  ]
+}

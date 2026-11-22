@@ -1,0 +1,52 @@
+{
+  "base_commit": "34d06949e7fedbda6e0d256a769b3d0b8659c211",
+  "identical_preimages_on": "9c66b4ccc06340a04de53a4c3370182873ed18bc",
+  "files": [
+    {
+      "path": ".agents/rules/ai-team-router.md",
+      "base_blob": "9e881c40b4ca5c4f1ca3ef63e3c7c7cd17083128",
+      "base_sha256": "4a113ae0359e96e57179be249c6b5490772a26d74139241d6739b1bb84017fe0",
+      "sha256": "75853a66ed7765ef02f950f75d253e24fcc5c2520b27a0b3aff93945d878f236",
+      "bytes": 2816
+    },
+    {
+      "path": "docs/ai-team/BRANCH_INTEGRATION.md",
+      "base_blob": "3c825746bbbbffe72fece142bdd07c9321035bf9",
+      "base_sha256": "834a4409858ff7d8b204e1b45e84a0902d70fac00c57b6a2cc6f3971f58c780a",
+      "sha256": "baa415086254aeccfcd46fadd04718b456d5ca4e4296e8507aed3ff7f58122ab",
+      "bytes": 2817
+    },
+    {
+      "path": "docs/ai-team/PLATFORMS.md",
+      "base_blob": "4153b43b09563b09d2b74f694a08d6da3c1a0345",
+      "base_sha256": "c918b8ec62a9c23c145691b54df8e9d09f7565bca66f82595c35677f906b9422",
+      "sha256": "698a6eefc860144afa13628847438a139c73fccdccdf4982775b3d9c361caa10",
+      "bytes": 2803
+    },
+    {
+      "path": "docs/ai-team/PROJECT_ASSIGNMENTS.md",
+      "base_blob": "608f28b72d9c0aae89178b567eb0104622eb951e",
+      "base_sha256": "0c022e15f93aeb117b15e0751e7ee0b00018b893946123fa2bc7cae83ded1482",
+      "sha256": "a9411f8cf9ba5988d5f0c19cd776322ac2fc638982c4ef93b8cf0587b4d6c15e",
+      "bytes": 4371
+    },
+    {
+      "path": "docs/ai-team/TEAM.md",
+      "base_blob": "90b513d1eee097096cc986ed60a91534c9611f38",
+      "base_sha256": "1f9913a66019d7101ac0d1d3e1e38a3717bbb02684753cd4035c0e0658c2777d",
+      "sha256": "1da27bf11201f5aef48372cd2909d661835295336a4ae7c61434d09b39278a90",
+      "bytes": 7793
+    },
+    {
+      "path": "docs/ai-team/VALIDATION.md",
+      "base_blob": "0b2c24515b77cc768acc1302e01aee18c87cb0e5",
+      "base_sha256": "ee0eee12ba8485ccf691d1a3962730f8630d1da9101c10baa90c20741e1573b5",
+      "sha256": "d04b38b831c33f83190615fe6b82b2ce172097f256c3a7bab45a027e995d8ca3",
+      "bytes": 2515
+    }
+  ],
+  "patch_sha256": "92d9b70fd4ad67605bad2b723d6e2ad179756be1510686e9bbb3cb240d0f3770",
+  "changed_files": 6,
+  "scope": "Six existing documentation files; fix six real Markdown paths and stale branch labels; no permission or product-gate changes",
+  "runtime_or_native_tests": 0
+}
