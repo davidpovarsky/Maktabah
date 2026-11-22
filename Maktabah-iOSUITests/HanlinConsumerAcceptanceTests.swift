@@ -313,6 +313,18 @@ final class HanlinReaderConsumerAcceptanceTests: R27NativeUIBase {
         let key = app.secureTextFields["otzaria-hanlin-api-key"]
         tapNative(key)
         key.typeText("ui-no-send-credential")
+        let keyboard = app.keyboards.firstMatch
+        XCTAssertTrue(keyboard.waitForExistence(timeout: 10))
+        let hideKeyboard = keyboard.buttons.matching(NSPredicate(format: "label == %@", "Hide keyboard"))
+        XCTAssertEqual(hideKeyboard.count, 1)
+        capture("hanlin-fresh-read-no-send-before-native-keyboard-dismiss")
+        tapNative(hideKeyboard.element(boundBy: 0))
+        let keyboardDismissed = XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: keyboard
+        )], timeout: 10)
+        capture("hanlin-fresh-read-no-send-after-native-keyboard-dismiss")
+        XCTAssertEqual(keyboardDismissed, .completed,
+                       "The actual system keyboard must dismiss before current-book consent")
         let form = app.descendants(matching: .any)["otzaria-hanlin-connection-form"].firstMatch
         XCTAssertTrue(form.waitForExistence(timeout: 20))
         let nativeConsent = try originalCurrentBookConsentSwitch(in: consent)
