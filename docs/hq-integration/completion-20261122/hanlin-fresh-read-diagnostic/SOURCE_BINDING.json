@@ -1,0 +1,24 @@
+{
+  "schema": "otzaria.fresh-read-source-binding/1",
+  "applicationSource": "7eb9d2a5c8ac7ccb184e3cc50fb36b6272475ff1",
+  "binderCommit": "fac57a997da78f2588a52fa2425e0aaa7751831c",
+  "admittedCheckout": "7495ef0395f0f675d7f7fea3e22804e065aa85c8",
+  "canonicalParent": "3889c5c037f6d5a2e7b7ea33deb8e4569f410ca7",
+  "selectedCases": [
+    "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+  ],
+  "declarationCount": 1,
+  "trees": {
+    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "e4f67f6fc7cd0a4242d4ed5277490acad3464ec1"
+  },
+  "executionInputCount": 279,
+  "newTestsExecuted": 0,
+  "nativeAcceptance": false,
+  "liveAcceptance": false,
+  "triggerBranch": "codex/otzaria-hanlin-fresh-read-diagnostic-20261122",
+  "sourceAdmissionResultSHA256": "0d2d338f1e7252aeff635899d0b8d504ca640d44854ffd6bbfed98bb39e0cd06",
+  "scope": "Evidence-only child after actual source-only admission; no claim that a subsequent documentation commit itself executed tests."
+}

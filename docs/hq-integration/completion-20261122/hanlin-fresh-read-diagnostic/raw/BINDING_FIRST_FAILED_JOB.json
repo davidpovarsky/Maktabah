@@ -1,0 +1,16 @@
+{
+  "ok": false,
+  "interpreter": "python3",
+  "sudo": false,
+  "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-fresh-read-diagnostic-20261122",
+  "cleanup": true,
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_7e3dc5ca74c84c7b8453d534c401b45b\\script.py"
+  ],
+  "output": "Traceback (most recent call last):\r\n  File \"C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_7e3dc5ca74c84c7b8453d534c401b45b\\script.py\", line 56, in <module>\r\n    assert not git(\"-c\",\"core.autocrlf=false\",\"status\",\"--porcelain\").strip()\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError",
+  "duration": 13.58,
+  "returncode": 1,
+  "_notice": "You have 44 unread SentinelX notification(s) (job results and/or announcements). Call notifications_check to read them.",
+  "hub_request_id": "hreq_8d4ce804544f417c"
+}

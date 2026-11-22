@@ -1,0 +1,5 @@
+{
+  "issuedScriptRetained": true,
+  "actualHostScriptAvailable": false,
+  "reason": "Sentinel removed the failed uploaded script after execution; exact issued input is retained without claiming host-normalization identity."
+}

@@ -1,0 +1,23 @@
+{
+  "status": "PASS_BYTES_IDENTICAL_INDEX_STAT_RECORDED",
+  "head": "7495ef0395f0f675d7f7fea3e22804e065aa85c8",
+  "onlyCRLFMaterializationFiles": [
+    "docs/hq-integration/completion-20261122/CONTINUATION_STATUS.md",
+    "docs/hq-integration/completion-20261122/hanlin-live8-lifecycle/DISPATCH_VERIFICATION.json",
+    "docs/hq-integration/completion-20261122/hanlin-live8-lifecycle/EXECUTED_CONTROLLER.py",
+    "docs/hq-integration/completion-20261122/hanlin-live8-lifecycle/LIFECYCLE_AT_DISPATCH.json",
+    "docs/hq-integration/completion-20261122/hanlin-live8-lifecycle/LIFECYCLE_FINAL.json",
+    "docs/hq-integration/completion-20261122/hanlin-live8-lifecycle/README.md",
+    "docs/hq-integration/completion-20261122/hanlin-live8-lifecycle/ROOT_SECRET_ABSENCE.json",
+    "docs/hq-integration/completion-20261122/hanlin-live8-lifecycle/SECRET_CLEANUP.json",
+    "docs/hq-integration/completion-20261122/hanlin-live8-lifecycle/TERMINAL_OBSERVER_JOB.json"
+  ],
+  "rawFilesAlreadyRestoredToExactHEAD": true,
+  "addRefreshedExactUnchangedBlobStats": true,
+  "stagedDelta": false,
+  "sourceChanges": false,
+  "syntaxOrTestsReplayed": false,
+  "firstFailurePreserved": true,
+  "secondCaptureAttemptFailedBecauseSentinelRemovedUpload": true,
+  "updateIndexRefreshExit1Preserved": true
+}

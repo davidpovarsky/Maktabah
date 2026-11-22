@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One original consent switch diagnostic; no credentials or full-phase acceptance."""
+"""One fresh-read no-key native diagnostic; no Send or full-phase acceptance."""
 import hashlib
 import json
 import os
@@ -11,14 +11,14 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = "0ea7218331d1441d37d06d43333e579f267056e3"
+SOURCE = "7eb9d2a5c8ac7ccb184e3cc50fb36b6272475ff1"
 OUT = ROOT / "build/artifacts/continuation-focused"
 MANIFEST = OUT / "selection.json"
 FULL = ROOT / "docs/hq-integration/runtime27/R27_CASES.json"
 RELEASE = ROOT / "Scripts/CI/runtime27-release-manifest.json"
 GROUPS = [
     {"label": "11-reader", "size": "11", "hid_comparison": False, "case_ids": [
-        "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection",
+        "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
     ]},
 ]
 SELECTED = [case for group in GROUPS for case in group["case_ids"]]
@@ -88,7 +88,7 @@ def prepare():
                     required_nonzero_cases=len(SELECTED), native_cases_executed=0,
                     expected_per_device={"ipad11": len(SELECTED), "ipad13": 0, "iphone": 0},
                     diagnostic_only=True, hid_comparison=False,
-                    scope="One original no-credential consent switch diagnostic; the three Native4 PASS cases remain separate immutable evidence; full Native116/Release114 remain unaccepted")
+                    scope="One original fresh empty-conversation read diagnostic with explicit unused form values and no Send; prior Native PASS cases remain separate immutable evidence and are not replayed; full Native116/Release114 remain unaccepted")
     driver = runpy.run_path(str(ROOT / "Scripts/CI/runtime27.py"))
     driver["execution_groups"](contract)
     declaration = runpy.run_path(str(ROOT / "Scripts/CI/verify-faithful-xctest.py"))["validate_selections"](
@@ -125,7 +125,7 @@ def execute():
         controller.restore()
 
 def collect():
-    report = {"status": "FAILED", "scope": "FOCUSED_CONSENT_ONLY", "full_native116_acceptance": False,
+    report = {"status": "FAILED", "scope": "FOCUSED_FRESH_READ_NO_SEND_ONLY", "full_native116_acceptance": False,
               "full_release114_acceptance": False, "required_case_ids": SELECTED}
     try:
         context = source_context()
@@ -166,7 +166,7 @@ def collect():
                 or any(d.get("status") != "EXECUTED_PASS" or d.get("ownedSimulatorCleanup") != "PASS" for d in devices)
                 or report.get("executed_ui_pass") != len(SELECTED)
                 or any(report.get(key, 0) for key in ["executed_ui_fail", "executed_ui_skip", "ui_not_run"])):
-            raise ValueError("The single original consent diagnostic must execute and pass")
+            raise ValueError("The single original fresh-read diagnostic must execute and pass")
         report["status"] = "SELECTED_UI_EXECUTED_PASS"
         return 0
     except Exception as error:

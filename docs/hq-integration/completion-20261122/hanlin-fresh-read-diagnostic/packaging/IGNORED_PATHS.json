@@ -1,0 +1,87 @@
+{
+  "expectedCount": 84,
+  "stagedCount": 73,
+  "missing": [
+    "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/admission/outputs/build/artifacts/continuation-focused/declarations.json",
+    "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/admission/outputs/build/artifacts/continuation-focused/selection.json",
+    "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/admission/outputs/build/artifacts/continuation-focused/source-before.json",
+    "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/admission/outputs/build/artifacts/continuation-host48-reuse/result.json",
+    "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinAgentSession.swift",
+    "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinHostDispatcher.swift",
+    "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostContext.swift",
+    "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinPlatform/Package.resolved",
+    "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKAgentEngine.swift",
+    "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKProviderFactory.swift",
+    "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinNonEmptyLanguageModel.swift"
+  ],
+  "extra": [],
+  "head": "7495ef0395f0f675d7f7fea3e22804e065aa85c8",
+  "ignoreProof": [
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/admission/outputs/build/artifacts/continuation-focused/declarations.json",
+      "returncode": 0,
+      "stdout": ".gitignore:35:build/\tdocs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/admission/outputs/build/artifacts/continuation-focused/declarations.json\n",
+      "stderr": ""
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/admission/outputs/build/artifacts/continuation-focused/selection.json",
+      "returncode": 0,
+      "stdout": ".gitignore:35:build/\tdocs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/admission/outputs/build/artifacts/continuation-focused/selection.json\n",
+      "stderr": ""
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/admission/outputs/build/artifacts/continuation-focused/source-before.json",
+      "returncode": 0,
+      "stdout": ".gitignore:35:build/\tdocs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/admission/outputs/build/artifacts/continuation-focused/source-before.json\n",
+      "stderr": ""
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/admission/outputs/build/artifacts/continuation-host48-reuse/result.json",
+      "returncode": 0,
+      "stdout": ".gitignore:35:build/\tdocs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/admission/outputs/build/artifacts/continuation-host48-reuse/result.json\n",
+      "stderr": ""
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinAgentSession.swift",
+      "returncode": 0,
+      "stdout": ".gitignore:26:Packages/\tdocs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinAgentSession.swift\n",
+      "stderr": ""
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinHostDispatcher.swift",
+      "returncode": 0,
+      "stdout": ".gitignore:26:Packages/\tdocs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinHostDispatcher.swift\n",
+      "stderr": ""
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostContext.swift",
+      "returncode": 0,
+      "stdout": ".gitignore:26:Packages/\tdocs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostContext.swift\n",
+      "stderr": ""
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinPlatform/Package.resolved",
+      "returncode": 0,
+      "stdout": ".gitignore:26:Packages/\tdocs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinPlatform/Package.resolved\n",
+      "stderr": ""
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKAgentEngine.swift",
+      "returncode": 0,
+      "stdout": ".gitignore:26:Packages/\tdocs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKAgentEngine.swift\n",
+      "stderr": ""
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKProviderFactory.swift",
+      "returncode": 0,
+      "stdout": ".gitignore:26:Packages/\tdocs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKProviderFactory.swift\n",
+      "stderr": ""
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinNonEmptyLanguageModel.swift",
+      "returncode": 0,
+      "stdout": ".gitignore:26:Packages/\tdocs/hq-integration/completion-20261122/hanlin-fresh-read-diagnostic/raw/source-audit/Hanlin/Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinNonEmptyLanguageModel.swift\n",
+      "stderr": ""
+    }
+  ]
+}

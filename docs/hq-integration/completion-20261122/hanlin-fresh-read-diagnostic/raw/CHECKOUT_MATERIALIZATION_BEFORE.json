@@ -1,0 +1,85 @@
+{
+  "schema": "otzaria.fresh-read-postmerge-checkout-materialization/1",
+  "utc": "2026-11-22T08:59:55.732330+00:00",
+  "head": "7495ef0395f0f675d7f7fea3e22804e065aa85c8",
+  "parents": [
+    "fac57a997da78f2588a52fa2425e0aaa7751831c",
+    "3889c5c037f6d5a2e7b7ea33deb8e4569f410ca7"
+  ],
+  "incomingPathsChecked": 52,
+  "mismatches": [
+    {
+      "path": "docs/hq-integration/completion-20261122/CONTINUATION_STATUS.md",
+      "expectedSHA256": "425be9b4f8d797f49aa14f827be101ccd0bba3f5b691c90af4a7bca969d5ea07",
+      "expectedBytes": 56941,
+      "beforeSHA256": "f9696702e359fc68c1e0e4d25830f71b4edef81073de719fe9c69551b3fa8803",
+      "beforeBytes": 57185,
+      "onlyCRLFMaterialization": true
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-live8-lifecycle/DISPATCH_VERIFICATION.json",
+      "expectedSHA256": "0051fc22b88254cb7c2070230fc0902ae58460aa7c2ceb2235b9079df52ab69c",
+      "expectedBytes": 1479,
+      "beforeSHA256": "f08d809e81144b215fc5f33ea06c8797fde77af85674440fc4af09625df78417",
+      "beforeBytes": 1514,
+      "onlyCRLFMaterialization": true
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-live8-lifecycle/EXECUTED_CONTROLLER.py",
+      "expectedSHA256": "c19ccec30de01059276d16ecc621bf72f10462890ad794d550567f1d85579d41",
+      "expectedBytes": 10863,
+      "beforeSHA256": "9e71c06d3b9c080360e0f4e671f79d2da31a44b36aa26542fc6e03e9d912782a",
+      "beforeBytes": 11031,
+      "onlyCRLFMaterialization": true
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-live8-lifecycle/LIFECYCLE_AT_DISPATCH.json",
+      "expectedSHA256": "0769e77cffe630e84db25d0ab77ccae3b588b18b3fc199eb81d84a29d8b8d238",
+      "expectedBytes": 2147,
+      "beforeSHA256": "64bda3565c1551e6f0d84d98888a48d94ac5fa27c57a55d4bbcabfc76b4e2d69",
+      "beforeBytes": 2194,
+      "onlyCRLFMaterialization": true
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-live8-lifecycle/LIFECYCLE_FINAL.json",
+      "expectedSHA256": "10c4ac4487b025cafaac514b86b447db65c3ba1117d4f421e2b24e7747034ac8",
+      "expectedBytes": 2628,
+      "beforeSHA256": "62fc43de50dd9f35b00b75b61b4fb95fd8e50d1c55ad23828ea515d55751e42b",
+      "beforeBytes": 2686,
+      "onlyCRLFMaterialization": true
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-live8-lifecycle/README.md",
+      "expectedSHA256": "728e813bcf4a6cab6dcf2fa24a1f2a6cd7b49d46cf9405686c0c1c7704447082",
+      "expectedBytes": 1581,
+      "beforeSHA256": "842db4973fed738fd62c10305e71e53c5ac409a196bf680e59d701f3f2641cd2",
+      "beforeBytes": 1592,
+      "onlyCRLFMaterialization": true
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-live8-lifecycle/ROOT_SECRET_ABSENCE.json",
+      "expectedSHA256": "441756834b854f220680addfb33fee0794821529fedd850136a517fb25addd3c",
+      "expectedBytes": 203,
+      "beforeSHA256": "0085a5edd7125f9268df75596d8d809872035835f1eb0c9c221efc716260e09d",
+      "beforeBytes": 210,
+      "onlyCRLFMaterialization": true
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-live8-lifecycle/SECRET_CLEANUP.json",
+      "expectedSHA256": "ea8e7b4cb43923b62d729c3885b8ae8ea660a3843d67adfaa430c1dc8206a8c7",
+      "expectedBytes": 397,
+      "beforeSHA256": "a65aea8cfe450f2b1418d9f7dd5b0ced335ff53a822df61c03e39ead62b5ab32",
+      "beforeBytes": 410,
+      "onlyCRLFMaterialization": true
+    },
+    {
+      "path": "docs/hq-integration/completion-20261122/hanlin-live8-lifecycle/TERMINAL_OBSERVER_JOB.json",
+      "expectedSHA256": "a092766011c7e6669358c39394f8cd2c10ae4f042c19791f70a954efab50c5cd",
+      "expectedBytes": 3815,
+      "beforeSHA256": "d771ce32bde2a57bbe7bc3aff8b4b4dc55ae34d9df89b2813c022076e4011ed7",
+      "beforeBytes": 3839,
+      "onlyCRLFMaterialization": true
+    }
+  ],
+  "mutationScope": "Restore only proven CRLF-expanded owned-checkout documentation from exact already-committed Git blobs; no commit, source change, syntax or test replay"
+}

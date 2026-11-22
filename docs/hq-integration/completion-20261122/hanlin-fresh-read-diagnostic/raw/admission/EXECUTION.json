@@ -1,0 +1,123 @@
+{
+  "schema": "otzaria.fresh-read-source-admission/1",
+  "status": "RUNNING",
+  "started": "2026-11-22T09:05:14.681528+00:00",
+  "checkout": "7495ef0395f0f675d7f7fea3e22804e065aa85c8",
+  "applicationSource": "7eb9d2a5c8ac7ccb184e3cc50fb36b6272475ff1",
+  "newTestsExecuted": 0,
+  "nativeExecuted": false,
+  "providerRequests": false,
+  "commands": [
+    {
+      "label": "focused-prepare",
+      "command": [
+        "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+        "Scripts/CI/completion-focused-native.py",
+        "prepare"
+      ],
+      "timeoutSeconds": 180,
+      "started": "2026-11-22T09:05:15.758295+00:00",
+      "environmentOverrides": {
+        "PYTHONUTF8": "1",
+        "EXPECTED_CHECKOUT_SHA": "7495ef0395f0f675d7f7fea3e22804e065aa85c8"
+      },
+      "returncode": 0,
+      "finished": "2026-11-22T09:05:49.691398+00:00",
+      "durationSeconds": 33.938,
+      "stdout": {
+        "path": "focused-prepare.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "focused-prepare.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "hq-preflight",
+      "command": [
+        "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+        "Scripts/CI/hq-stage2-focused-apple.py",
+        "--preflight-only"
+      ],
+      "timeoutSeconds": 180,
+      "started": "2026-11-22T09:05:49.696470+00:00",
+      "environmentOverrides": {
+        "PYTHONUTF8": "1",
+        "EXPECTED_CHECKOUT_SHA": "7495ef0395f0f675d7f7fea3e22804e065aa85c8"
+      },
+      "returncode": 0,
+      "finished": "2026-11-22T09:05:56.650218+00:00",
+      "durationSeconds": 6.953,
+      "stdout": {
+        "path": "hq-preflight.stdout",
+        "bytes": 3625,
+        "sha256": "f139a05bab38697dba96fe7e9b29da42d5385089949fc2ad3051f4427bd649a8"
+      },
+      "stderr": {
+        "path": "hq-preflight.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "host48-reuse",
+      "command": [
+        "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+        "Scripts/CI/reuse-host48.py"
+      ],
+      "timeoutSeconds": 180,
+      "started": "2026-11-22T09:05:56.684339+00:00",
+      "environmentOverrides": {
+        "PYTHONUTF8": "1",
+        "EXPECTED_CHECKOUT_SHA": "7495ef0395f0f675d7f7fea3e22804e065aa85c8"
+      },
+      "returncode": 0,
+      "finished": "2026-11-22T09:06:08.263263+00:00",
+      "durationSeconds": 11.578,
+      "stdout": {
+        "path": "host48-reuse.stdout",
+        "bytes": 1196,
+        "sha256": "0ac3cc024695c5d2cb9e9837e1dbb40675e85888091aa49747ea5c9c0717c58f"
+      },
+      "stderr": {
+        "path": "host48-reuse.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "inputs": {
+    "Scripts/CI/completion-focused-native.py": {
+      "bytes": 10835,
+      "sha256": "3a3b0d7bd3526d361deffbf5f6ba09f4d46adef70812ea431a56d3fc7bdbd0a2"
+    },
+    ".github/workflows/otzaria-completion-focused-native.yml": {
+      "bytes": 6648,
+      "sha256": "f725a6c23a6d9b8d89d5941aebb1ecdc7a08879eba54bb7ae2f30aa8e7a371a5"
+    },
+    "Scripts/CI/hq-stage2-focused-apple.py": {
+      "bytes": 48574,
+      "sha256": "0dbe133b8f0ee188dc2f0d0c375972a210571498ecac928f1174730ebb0e83f5"
+    },
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": {
+      "bytes": 4333,
+      "sha256": "4bbf129dca75cf9a5cb3f203314779b5492d56b9121efd8878214bac40ba0716"
+    },
+    "Scripts/CI/reuse-host48.py": {
+      "bytes": 7762,
+      "sha256": "98a407dedd0da4575cee7fc70bfdb4fe5b62effd513654ea3dd7d52700ac686b"
+    },
+    "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift": {
+      "bytes": 46033,
+      "sha256": "10b913029739ae3f9f5ca94a220eaaf0329cf07c1b3bb9f62f823d833a5f7c2b"
+    }
+  },
+  "python": {
+    "path": "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "sha256": "18e806e2bfb8ffedf61274d6517694e2a52e130b22e870d38671a9c37391dd52",
+    "version": "3.12.5 (tags/v3.12.5:ff3bc82, Aug  6 2024, 20:45:27) [MSC v.1940 64 bit (AMD64)]"
+  }
+}

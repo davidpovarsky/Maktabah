@@ -1,0 +1,15 @@
+{
+  "ok": false,
+  "interpreter": "python3",
+  "sudo": false,
+  "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-fresh-read-diagnostic-20261122",
+  "cleanup": true,
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_50ae8768c560494987c49e86406cfb7b\\script.py"
+  ],
+  "output": "Traceback (most recent call last):\r\n  File \"C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_50ae8768c560494987c49e86406cfb7b\\script.py\", line 10, in <module>\r\n    assert script.is_file()\r\n           ^^^^^^^^^^^^^^^^\r\nAssertionError",
+  "duration": 0.55,
+  "returncode": 1,
+  "hub_request_id": "hreq_3e8b4068cddd4ff8"
+}
