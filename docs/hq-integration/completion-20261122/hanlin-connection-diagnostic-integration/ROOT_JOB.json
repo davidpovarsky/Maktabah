@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_c45b82c3f065",
+    "type": "job_result",
+    "source": "script_run@host_7ec8382e82747448",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_7ec8382e82747448",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795333807.3259919,
+    "started_at": "2026-11-22T07:50:07.424116+00:00",
+    "finished_at": "2026-11-22T07:50:49.035767+00:00",
+    "duration_s": 41.61,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 240,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"status\": \"PASS\", \"head\": \"e8c7713f858145f8826eb493f36b9fb7d8d24dea\", \"merge\": \"16a2cdb03b5ca867d8029356d5cfe3f7c5e6536e\", \"source\": \"6aa953048453b64a0013621ce76e095770eb7e7d\", \"binder\": \"966f180d8ba2c2eb0f72624be76a99222f45371b\", \"incoming\": \"5cd307d31b1d813f756014c9903a5808b9aacddd\", \"payloadsVerified\": 82, \"executionInputsVerified\": 281, \"fourProductTrees\": {\"Source\": \"91c1adf6c97cd8676e8b2c76860a40f78924b1ec\", \"Vendor\": \"4065c0e62af325e83a65fe0c70270985229807ae\", \"Maktabah.xcodeproj\": \"8c0fa1ccfbcfae01fae3c267512864e00efcf078\", \"Maktabah-iOSUITests\": \"24345d612f8c70398f4590977f8b4696021ae413\"}, \"testsRun\": 0, \"secretCreated\": false, \"reportSHA256\": \"d2b6306cc2ac67b1ae2ce5befc79efe02895254f6a94cd990f559b3cab5e8ccb\"}\nAutomatic merge went well; stopped before committing as requested"
+  }
+}

@@ -1,6 +1,6 @@
 # Otzaria / Maktabah — current development checkpoint
 
-Snapshot: 2026-11-22T07:28:33.464035+00:00. Current run states below are observations at this checkpoint, not final acceptance.
+Snapshot: 2026-11-22T07:55:02.130833+00:00. Current run states below are observations at this checkpoint, not final acceptance.
 
 This report records executed work and its limits. It does not declare product, full Native, Release or original-editor acceptance.
 
@@ -27,7 +27,7 @@ These focused selectors are outside Native116. The two Search methods also occur
 
 ## Current diagnostic source and next focused Live execution
 
-The new private diagnostic source is integrated at6aa, with34 actual Python boundary controls and4 complete Swift syntax parses PASS. Root verified all42 frozen validation payloads, actual Linux files/interpreter, Windows compiler identities, raw results and exact source preimages. [Complete diagnostic packet](hanlin-connection-diagnostics/README.md) retains both source/evidence packaging corrections without rewriting executed inputs. No new Live secret or CI run has been created at this source-integration checkpoint. One subsequent failed-Live-case repetition is justified by this added diagnostic dependency; passing Native/component cases are not replayed or relabelled.
+The new private diagnostic source is integrated at6aa, with34 actual Python boundary controls and4 complete Swift syntax parses PASS. Root verified all42 frozen validation payloads, actual Linux files/interpreter, Windows compiler identities, raw results and exact source preimages. [Complete diagnostic packet](hanlin-connection-diagnostics/README.md) retains both source/evidence packaging corrections without rewriting executed inputs. No new Live secret or CI run has been created at this source-integration checkpoint. [Live8 preparation](hanlin-live8-lifecycle/PREPARATION.json) freezes the reviewable controller before its sole final-checkout binding, credential lifecycle or trigger. One subsequent failed-Live-case repetition is justified by this added diagnostic dependency; passing Native/component cases are not replayed or relabelled.
 
 Since the preceding report checkpoint, Anytype producer44997870962/568d finished FAILURE with the single attributed Unsplash initialization diagnostic; exact two-line reorder431407 is undergoing a bounded semantic control. The separate Participant/Space composition ten new groups passed once, while its packaging correction and source seal remain in progress. Original Participant/Space plus published metadata/audit are now true-merged and published at Anytype403725a24422103b3562228a64061d24d639eabf. These remain component results. Full editor framework/runtime, native schema/transport/body/receipt/writer, Native116/Release114 and external signing/device gates remain open.
 

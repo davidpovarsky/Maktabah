@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "state": "PREPARED_NO_SECRET_OR_RUN_CREATED",
+  "createdUTC": "2026-11-22T07:55:02.130833+00:00",
+  "preparationParent": "e8c7713f858145f8826eb493f36b9fb7d8d24dea",
+  "applicationSource": "6aa953048453b64a0013621ce76e095770eb7e7d",
+  "liveBranch": "codex/otzaria-hanlin-live-20261121",
+  "priorLiveCheckout": "77c7df82ef5f822bf0b1dd7e08ff2b4b98d425d2",
+  "historicalNativePrerequisite": 44987561349,
+  "historicalNativeApplication": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "controllerTemplateSHA256": "31ebd22f0751af62844b233f83ab4019c71ab59eefc9074f655fcb1ceca79bc4",
+  "checkoutBinding": "Replace the single __LIVE8_CHECKOUT__ placeholder with the final clean published preparation commit; save actual controller hash in lifecycle evidence.",
+  "trigger": "One normal push after all exact source/evidence/input, inactive-run and absent-secret checks.",
+  "observer": "One finite gh run watch with owned metadata checked at terminal cleanup.",
+  "cleanup": "DELETE204 followed by GET404; no second ownership or replacement of a pre-existing secret.",
+  "reason": "Repeat only the failed Live7 case after adding independently checked private diagnostic instrumentation. No passing Native or component test replay.",
+  "testsRun": 0,
+  "secretCreated": false,
+  "finalAcceptance": false
+}
