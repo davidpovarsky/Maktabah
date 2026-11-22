@@ -1,0 +1,10 @@
+{
+  "original_job": "job_774f4545000d",
+  "original_job_terminal": "failed_after_source_commit_and_evidence_merge",
+  "cause": "Git whitespace check rejected two space-only unified-diff context lines at27/45 in the unmodified retained patch",
+  "correction": "Scoped raw .patch whitespace attribute; no patch/log/source normalization and no rerun",
+  "patch_sha256_preserved": "9f9d6ed0368e07289acf1021f5247a085aeba38a49b26ba5ebc3a80ea8b0396d",
+  "application_source": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "native_evidence_merge": "f58bef5826ba0f0df04d73e77aac4ad3ab7bffb1",
+  "recorded_at": "2026-11-22T04:46:20.116938+00:00"
+}

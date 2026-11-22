@@ -1,0 +1,113 @@
+{
+  "status": "REVIEWED_NATIVE_TARGET_CORRECTION_AWAITING_ACTUAL_EXECUTION",
+  "application_source": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "application_trees": {
+    "Source": "ac887bdbfbfce2d30d9591bb867d61b11da31cc6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "24345d612f8c70398f4590977f8b4696021ae413"
+  },
+  "prior_application": "67518e8df6975c976e8f1cd9e622328dc45985fc",
+  "source_only_commit": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "native_evidence_commit": "08a9eeaa64e05fe1cc3e0936a2193cb0f8977d8c",
+  "true_evidence_merge": "f58bef5826ba0f0df04d73e77aac4ad3ab7bffb1",
+  "merge_parents": [
+    "0ea7218331d1441d37d06d43333e579f267056e3",
+    "08a9eeaa64e05fe1cc3e0936a2193cb0f8977d8c"
+  ],
+  "verified_incoming_payloads": 106,
+  "verified_payload_bytes": 14550417,
+  "prior_run": {
+    "id": 44980625976,
+    "checkout": "c107c8ac600de6bbe6d92571fbbbdc6349cd143a",
+    "application": "385ee84a8acb3fbc3c013c0977417b61fd3d8a17",
+    "counts": {
+      "passed": 3,
+      "failed": 1,
+      "skipped": 0,
+      "not_run": 0
+    }
+  },
+  "actual_target": {
+    "identifier": "otzaria-hanlin-allow-current-book",
+    "outer_row_frame": [
+      331,
+      561.5,
+      548,
+      52
+    ],
+    "contained_switch_frame": [
+      798,
+      573.5,
+      63,
+      28
+    ],
+    "before_value": "0",
+    "after_value": "0",
+    "target_process": 68807,
+    "tap_coordinates_recorded": false
+  },
+  "raw_evidence_directory": "docs/hq-integration/native-four-result-20261122",
+  "evidence_inputs": [
+    {
+      "path": "docs/hq-integration/native-four-result-20261122/captures/visual-11-reader/6A7DC699-7E44-46EA-9C5B-61D84251587C.txt",
+      "sha256": "41073212e00ded166cd03b120d1168785d81bf3a0d582572721bc148a7dbba9b",
+      "bytes": 43576
+    },
+    {
+      "path": "docs/hq-integration/native-four-result-20261122/captures/visual-11-reader/A23619EF-5E9A-411E-8A52-3040375248F0.txt",
+      "sha256": "ffc9e61e2cea00fc3713db03edf4a4400b785f4508dfc02f754b67ac00e291ff",
+      "bytes": 43580
+    },
+    {
+      "path": "docs/hq-integration/native-four-result-20261122/captures/visual-11-reader/7DB119C7-A429-4A96-8F93-B8253ADFA6EA.png",
+      "sha256": "6d102465cae7c1dff5770d9ce857ae4bc8f2aa5665327fe2eeb586df9b6cec2a",
+      "bytes": 693507
+    },
+    {
+      "path": "docs/hq-integration/native-four-result-20261122/captures/visual-11-reader/B2F79C49-E510-4D78-8571-A95B0CF71A68.png",
+      "sha256": "6d102465cae7c1dff5770d9ce857ae4bc8f2aa5665327fe2eeb586df9b6cec2a",
+      "bytes": 693507
+    },
+    {
+      "path": "docs/hq-integration/native-four-result-20261122/captures/visual-11-reader/B69063AB-DAAB-47C7-A236-1105C749DBC3.png",
+      "sha256": "6d102465cae7c1dff5770d9ce857ae4bc8f2aa5665327fe2eeb586df9b6cec2a",
+      "bytes": 693507
+    },
+    {
+      "path": "docs/hq-integration/native-four-result-20261122/captures/visual-11-reader/AF321F74-381B-46E2-842A-4664A2A12412.txt",
+      "sha256": "5107f894ec612a9f9ddf5ef77a1750d35b99f44c82db88fa52da7aebbd4bed4f",
+      "bytes": 2159
+    }
+  ],
+  "changes": {
+    "file": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+    "new_file_sha256": "4c04dae91ed4d1d0efcc04284ede6192d8914f744254aae81a60bb720cd930c3",
+    "shared_descendant_resolver": 1,
+    "scroll_predicates": 3,
+    "tap_targets": 4,
+    "preserved_original_file_proved_by_inverse_transform": true,
+    "app_source_vendor_project_changed": false,
+    "new_native_pass_claimed": false,
+    "provider_credential_created": false
+  },
+  "binding_updates": [
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "before_sha256": "9e4af72977c3eb86abbec3fd3212bf6e784e9323446cd1e4e41145be9eeca39c",
+      "after_sha256": "c6810fdb940727b4b77183b1e591974a10308fb30ba43dcd659f7f2d56565e95"
+    },
+    {
+      "path": "Scripts/CI/runtime27-original-editor-native.py",
+      "before_sha256": "1413856ba75ce55c3a2544650c5063579360b79394e01dae90f9a566f0d52ea1",
+      "after_sha256": "f86f6fd744381a733fd5f9d933568b55be92adc8da4b1ac160773ab4631f3d01"
+    },
+    {
+      "path": "Scripts/CI/runtime27-hanlin-live.py",
+      "before_sha256": "9d8ca5c7e57755be7d161711e05f13fa86f31b382b0a3f00fdacb19ef8133ab3",
+      "after_sha256": "a23383137ac9b52398a75ae50098411422958c6090a97bb0889a1440edbd9aff"
+    }
+  ],
+  "scope": "The actual query selected the outer row; the unique contained native switch is now selected without coordinates, setValue, alternate controls or permission mutation. Native execution must still prove the correction.",
+  "recorded_at": "2026-11-22T04:43:49.972925+00:00"
+}

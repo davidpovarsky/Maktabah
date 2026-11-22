@@ -1,0 +1,21 @@
+{
+  "status": "PASS_SOURCE_PARSE_ONLY_NATIVE_PENDING",
+  "head_before": "62173629240da4bd439056ced4257633098e6f98",
+  "file": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+  "before_sha256": "d3d6924df6fee70ca97e96138cb85762ea9c947164eca897575f97dc2a65dd24",
+  "after_sha256": "4c04dae91ed4d1d0efcc04284ede6192d8914f744254aae81a60bb720cd930c3",
+  "patch_sha256": "9f9d6ed0368e07289acf1021f5247a085aeba38a49b26ba5ebc3a80ea8b0396d",
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+    "-frontend",
+    "-parse",
+    "C:\\Users\\DAVID\\Code\\Maktabah-completion-20261122\\Maktabah-iOSUITests\\HanlinConsumerAcceptanceTests.swift"
+  ],
+  "exit": 0,
+  "seconds": 1.610000000000582,
+  "original_tests_assertions_timeouts_preserved_by_exact_reversal": true,
+  "product_source_changed": false,
+  "native_executed": 0,
+  "live_provider_executed": 0,
+  "recorded_at": "2026-11-22T04:36:22.159919+00:00"
+}

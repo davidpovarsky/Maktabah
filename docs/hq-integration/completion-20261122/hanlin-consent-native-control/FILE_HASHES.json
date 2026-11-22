@@ -1,0 +1,44 @@
+{
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 72,
+      "sha256": "620979848fd51a56d60acbded6d82601935683978494e4f93dfdbec883bd955a"
+    },
+    {
+      "path": "INTEGRATION_AND_DIAGNOSIS.json",
+      "bytes": 4665,
+      "sha256": "e9501fafb601f0309af5e4abbea88494eb7ed7cb007bcbfd6275a43c1b13da9e"
+    },
+    {
+      "path": "native-consent-control.patch",
+      "bytes": 4251,
+      "sha256": "9f9d6ed0368e07289acf1021f5247a085aeba38a49b26ba5ebc3a80ea8b0396d"
+    },
+    {
+      "path": "parse.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "parse.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2224,
+      "sha256": "907869baee9e4da8a5ffd01f10c8507d0af9df5a101ab2a3e20c5ec22d67e570"
+    },
+    {
+      "path": "RETENTION_NOTE.json",
+      "bytes": 638,
+      "sha256": "6ad3764ff3a85a11878dc3a2c463bacae51cf6ee45058af6c0776aff2279cd8c"
+    },
+    {
+      "path": "SOURCE_REVIEW.json",
+      "bytes": 981,
+      "sha256": "b25401099f414859e2a8d154cc2779d001bfb51367a807d70beda6abe49913ee"
+    }
+  ]
+}

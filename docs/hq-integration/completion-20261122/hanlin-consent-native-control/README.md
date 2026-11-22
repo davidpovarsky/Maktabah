@@ -1,0 +1,11 @@
+# Original Hanlin consent control targeting
+
+Actual Native run [44980625976](https://github.com/davidpovarsky/Maktabah/actions/runs/44980625976) retains **3 PASS / 1 FAIL / 0 SKIP / 0 NOT_RUN** on application385ee. Its complete [retained evidence](../../native-four-result-20261122/README.md) is incorporated through true mergef58bef5826ba0f0df04d73e77aac4ad3ab7bffb1; all106 indexed payloads were verified against immutable incoming Git bytes.
+
+The failed diagnostic queried the labelled Form row, whose actual AX frame is (331,561.5,548,52). The same original row contains one native switch at (798,573.5,63,28). Both before/after hierarchies show the original process68807 and OFF values. The three actual PNGs are byte-identical. The diagnostic's query debug description identifies the outer row; actual tap coordinates were not recorded, so a specific injected coordinate is not asserted.
+
+Application source0ea7218331d1441d37d06d43333e579f267056e3 changes only the existing Hanlin XCTest file. One strict resolver requires the exact original row identity/type, exactly one native switch descendant, a contained nonempty frame and agreement with the actual row's0/1 value. Three existing scroll predicates and four existing tap calls target that original control. The existing native tap APIs, ON/OFF assertions, wait budgets, original Reader/owner/context checks, provider input handling, Connect/Send and app permission state are preserved. An exact inverse transformation restores every original test-file byte.
+
+The complete changed Swift file parsed successfully once in1.61seconds; the raw parser receipt is retained. **The corrected Native and Live actions have not executed yet.** No passing search/keyboard case is scheduled for repetition by this change. No application source, Vendor, Xcode project, credential or saved database was changed. The ordinary HQ/StageB/Live bindings now name the new application/test source; the frozen old four-case wrapper and unfinalized full acceptance pins are retained.
+
+Raw AX/PNG/log files are referenced from the single retained Native packet, rather than copied again. INTEGRATION_AND_DIAGNOSIS.json records the exact hashes, merge parents, scopes and binding changes.

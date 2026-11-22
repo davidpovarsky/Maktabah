@@ -1,0 +1,74 @@
+--- a/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift
++++ b/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift
+@@ -1,4 +1,26 @@
+ import XCTest
++
++/// The original SwiftUI Form exposes both a labelled row and its native switch.
++/// Act on the single contained switch; the row's centre is a label hit target.
++@MainActor
++private func originalCurrentBookConsentSwitch(in row: XCUIElement,
++                                              file: StaticString = #filePath,
++                                              line: UInt = #line) throws -> XCUIElement {
++    let controls = row.descendants(matching: .switch)
++    guard row.identifier == "otzaria-hanlin-allow-current-book",
++          row.elementType == .switch, controls.count == 1 else {
++        XCTFail("Expected the one original switch inside the exact book-consent row", file: file, line: line)
++        throw NSError(domain: "HanlinNativeConsent", code: 3)
++    }
++    let control = controls.element(boundBy: 0)
++    guard !control.frame.isEmpty, row.frame.contains(control.frame),
++          let rowValue = row.value as? String, ["0", "1"].contains(rowValue),
++          control.value as? String == rowValue else {
++        XCTFail("The original consent switch must belong to and agree with its row", file: file, line: line)
++        throw NSError(domain: "HanlinNativeConsent", code: 4)
++    }
++    return control
++}
+ 
+ /// Actual app bootstrap, native scene presentation and durable history UI.
+ /// The explicit unused credential configures the original SDK without sending
+@@ -223,16 +245,17 @@
+         XCTAssertEqual(app.staticTexts["otzaria-hanlin-consent-book-title"].label, expectedTitle)
+         let form = app.descendants(matching: .any)["otzaria-hanlin-connection-form"].firstMatch
+         XCTAssertTrue(form.waitForExistence(timeout: 20))
+-        for _ in 0..<4 where !consent.isHittable { form.swipeUp() }
++        let nativeConsent = try originalCurrentBookConsentSwitch(in: consent)
++        for _ in 0..<4 where !nativeConsent.isHittable { form.swipeUp() }
+         capture("hanlin-consent-no-connection-before-native-tap")
+-        tapNative(consent)
++        tapNative(nativeConsent)
+         let enabled = XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+             predicate: NSPredicate(format: "value == %@", "1"), object: consent
+         )], timeout: 10)
+         capture("hanlin-consent-no-connection-after-native-tap")
+         XCTAssertEqual(enabled, .completed, "One actual consent switch tap must turn access ON")
+ 
+-        tapNative(consent)
++        tapNative(nativeConsent)
+         let disabled = XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+             predicate: NSPredicate(format: "value == %@", "0"), object: consent
+         )], timeout: 10)
+@@ -348,8 +371,9 @@
+         XCTAssertEqual(consent.value as? String, "0", "History must not restore read consent")
+         let form = app.descendants(matching: .any)["otzaria-hanlin-connection-form"].firstMatch
+         XCTAssertTrue(form.waitForExistence(timeout: 20))
+-        for _ in 0..<4 where !consent.isHittable { form.swipeUp() }
+-        tap(consent)
++        let nativeConsent = try originalCurrentBookConsentSwitch(in: consent)
++        for _ in 0..<4 where !nativeConsent.isHittable { form.swipeUp() }
++        tap(nativeConsent)
+         XCTAssertEqual(consent.value as? String, "1")
+         let model = app.textFields["otzaria-hanlin-model"]
+         for _ in 0..<4 where !model.isHittable { form.swipeDown() }
+@@ -516,8 +540,9 @@
+         XCTAssertEqual(app.textFields["otzaria-hanlin-model"].value as? String, model)
+         // Never inspect, attach, type or assert the SecureField's credential value.
+         let form = app.descendants(matching: .any)["otzaria-hanlin-connection-form"].firstMatch
+-        for _ in 0..<4 where !consent.isHittable { form.swipeUp() }
+-        press(consent)
++        let nativeConsent = try originalCurrentBookConsentSwitch(in: consent)
++        for _ in 0..<4 where !nativeConsent.isHittable { form.swipeUp() }
++        press(nativeConsent)
+         XCTAssertEqual(consent.value as? String, "1")
+         let connect = app.buttons["otzaria-hanlin-connect"]
+         for _ in 0..<4 where !connect.isHittable { form.swipeDown() }

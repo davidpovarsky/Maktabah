@@ -15,7 +15,7 @@ import sys
 import uuid
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = "67518e8df6975c976e8f1cd9e622328dc45985fc"
+SOURCE = "0ea7218331d1441d37d06d43333e579f267056e3"
 SELECTOR = "OriginalEditorAnnotationAcceptanceTests/testSavedBlankAnnotationUsesOriginalEditorAndDurablyReopensTwoBlocks"
 MARKER = "owned-local-only"
 BUNDLE = "com.davidpovarsky.chavrusatext"
