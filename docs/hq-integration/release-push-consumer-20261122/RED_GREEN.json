@@ -1,0 +1,9 @@
+{
+  "case": "completed exact original final push with authentic-shape final-stage receipts",
+  "fixture_only": true,
+  "old_result": "REJECTED",
+  "old_error": "Unexpected acceptance trigger",
+  "new_result": "RELEASE_UI_GATE_PASS",
+  "new_fixture_ui_count": 1,
+  "actual_native_executions": 0
+}

@@ -1,0 +1,63 @@
+{
+  "status": "RELEASE_ROUTE_ADMISSION_REPAIRED_NATIVE_NOT_EXECUTED",
+  "base": "3bb181f4d3ca1bde9f1ce43de40d1f3658d821c5",
+  "observed_at": "2026-11-22T01:44:43.778113+00:00",
+  "changed_sources": {
+    "Scripts/CI/runtime27_final_push.py": "79fe82be07636320a837ab7960192b1963be4f976866c00a09919853ab954e89",
+    "Scripts/CI/verify-runtime27-release-gate.py": "c181a9ddf92685e61dd5fb1ea79c82a7111f40dc55527ea740dbf79cd1348b0a",
+    "Scripts/CI/test-runtime27-release-gate.py": "eea971e4ca0672377f4063b19950ad483c5d6ab4e4830a35851b72bafdbfff49",
+    ".github/workflows/otzaria-final-native-push.yml": "089aaef1d3257fc7a58684ecc82f4c607bc6b6e351a903d82f56a4213456e84e",
+    ".github/workflows/otzaria-final-release-push.yml": "0514adaf917743a978ecee1ed7de82e0dfbbf88041ee06e484a97652019692d5"
+  },
+  "gate_regression": {
+    "command": "python Scripts/CI/test-runtime27-release-gate.py",
+    "platform": "Windows",
+    "executed": 31,
+    "passed": 31,
+    "failed": 0,
+    "new_push_cases": 8,
+    "duration_seconds": 7.796,
+    "scope": "Synthetic admission fixtures; no Native UI or provider result"
+  },
+  "handoff_regression": {
+    "platform": "Linux",
+    "executed": 29,
+    "passed": 29,
+    "failed": 0,
+    "duration_seconds": 0.16,
+    "log": "linux-handoff-tests.log",
+    "windows_attempt": {
+      "passed": 26,
+      "failed": 2,
+      "error": 1,
+      "explanation": "Unchanged POSIX chmod and framework symlink semantics are not represented by this Windows filesystem. Exact tests pass on Linux."
+    }
+  },
+  "source_auditor_refactor": {
+    "original_blob": "c19b327df0f08272710f7dd2d473bbf0ee579545",
+    "inverse": "BYTE_IDENTICAL_AFTER_LINE_ENDING_NORMALIZATION",
+    "validation_removed": false
+  },
+  "Sefaria55": {
+    "status": "REUSED_VERIFIED_APPLE_FOUNDATION_55_PASS",
+    "historical_run": 44743177022,
+    "inputs": 13,
+    "historical_cases": 55,
+    "new_swift_compiles": 0,
+    "new_test_executions": 0,
+    "windows_checkout_note": "Initial normal checkout correctly rejected CRLF-transformed sealed evidence. Exact committed Git blobs were materialized in the isolated review tree; the unchanged verifier then passed."
+  },
+  "acceptance": {
+    "full_native116": false,
+    "full_release114_plus_2": false,
+    "testflight": false,
+    "physical_iPad": false
+  },
+  "unchanged": [
+    "Original Native116 and Release114 selectors and assertions",
+    "24-hour release freshness",
+    "Actual raw XCTest/data/dependency/binary checks",
+    "Original manual workflow_dispatch route",
+    "All application and Swift source trees"
+  ]
+}
