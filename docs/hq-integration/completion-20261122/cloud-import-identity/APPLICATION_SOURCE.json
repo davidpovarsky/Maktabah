@@ -1,0 +1,67 @@
+{
+  "apple_runtime_executed": 0,
+  "apple_source_inputs": 93,
+  "application_source": "5d0a11f6a799bee9deb23dc91b29e832bec14335",
+  "application_trees": {
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Source": "bef41b66d37479516bd1b0b239dfe4335594e5a6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "baseline_job": "job_0e4f705b8680",
+  "baseline_original_repository_blob": "3dedc2068864b9076d84dc7322a1e7371b7895d4",
+  "baseline_source": "5ccd0c318f0900c41302a6a27a7ab359930e424b",
+  "candidate_compiled_source_hashes_match_current_files": true,
+  "candidate_job": "job_c9510f3d31e0",
+  "candidate_repository_blob": "101c5619549996fa2a0595df68aa59f1d43d04fa",
+  "original_cloud48_assertions_unchanged": true,
+  "protected_hooks": [
+    "Source/Features/Annotations/Database/AnnotationRepository.swift",
+    "Maktabah.xcodeproj/project.pbxproj"
+  ],
+  "sdk_admission": {
+    "archive_bytes": 0,
+    "archive_path": "build/original-editor-sdk-input/framework.zip",
+    "archive_sha256": "UNFINALIZED",
+    "artifact_id": 0,
+    "distribution_manifest_path": "build/original-editor-sdk-input/framework-distribution.json",
+    "distribution_manifest_sha256": "UNFINALIZED",
+    "distribution_root": "build/original-editor-sdk-input/distribution",
+    "evidence_artifact": {
+      "id": 0,
+      "name": "UNFINALIZED",
+      "path": "build/original-editor-sdk-input/evidence.zip",
+      "sha256": "UNFINALIZED",
+      "size_in_bytes": 0,
+      "upload_step": "Upload source-bound framework acceptance evidence"
+    },
+    "framework_artifact": {
+      "id": 0,
+      "name": "UNFINALIZED",
+      "path": "build/original-editor-sdk-input/framework.zip",
+      "sha256": "UNFINALIZED",
+      "size_in_bytes": 0,
+      "upload_step": "Upload only the actually qualified simulator framework closure"
+    },
+    "hanlin_source_path": "build/original-editor-sdk-input/original-hanlin-snapshot.json",
+    "hanlin_source_sha256": "UNFINALIZED",
+    "job_id": 0,
+    "job_name": "original-editor-framework",
+    "original_source_sha256": "UNFINALIZED",
+    "qualification_sha256": "UNFINALIZED",
+    "repository": "davidpovarsky/anytype-swift",
+    "repository_id": 0,
+    "required_steps": [
+      "Bind original app sources resources packages and the additive target",
+      "Prepare and verify the original SDK snapshot",
+      "Verify actual Xcode27 and create original owned OS27 simulators",
+      "Verify the recorded original Heart producer and exact binary slices",
+      "Build the genuine framework and execute the separate binary consumer"
+    ],
+    "run_attempt": 0,
+    "run_id": 0,
+    "schema": 1,
+    "source_sha": "UNFINALIZED",
+    "status": "UNFINALIZED_REQUIRES_NEW_ORIGINAL_HOST_EXPORT",
+    "workflow_path": ".github/workflows/pinkha-original-editor-framework.yml"
+  }
+}

@@ -963,12 +963,14 @@ final class AnnotationRepository: SyncPendingManaging, Sendable {
             }
             return (nil, nil)
         } else {
-            let checkSql = "SELECT \(colAnnId), \(colAnnLastModified) FROM \(annotationsTable) WHERE \(colAnnCkRecordId) IS NULL AND \(colAnnBkId) = ? AND \(colAnnContentId) = ? AND \(colAnnStart) = ? AND \(colAnnLength) = ? LIMIT 1;"
+            let checkSql = "SELECT \(colAnnId), \(colAnnLastModified), \(colAnnBackendLocator) FROM \(annotationsTable) WHERE \(colAnnCkRecordId) IS NULL AND \(colAnnBkId) = ? AND \(colAnnContentId) = ? AND \(colAnnStart) = ? AND \(colAnnLength) = ?;"
             let existingByPos = try db.fetch(
                 query: checkSql,
                 parameters: [ann.bkId, ann.contentId, ann.range.location, ann.range.length],
-                mapping: { ($0.int64(at: 0), $0.int64(at: 1)) }
-            ).first
+                mapping: { ($0.int64(at: 0), $0.int64(at: 1), $0.string(at: 2)) }
+            ).first {
+                AnnotationCloudImportIdentity.matchesLegacy(storedLocatorJSON: $0.2, incoming: ann)
+            }
 
             if let existingByPos {
                 let updated = try updateCloudKitAnnotation(db: db, ann: ann, existingId: existingByPos.0)
@@ -987,7 +989,7 @@ final class AnnotationRepository: SyncPendingManaging, Sendable {
     ) throws -> Annotation {
         var annCopy = ann
         annCopy.id = existingId
-        let updateSql = "UPDATE \(annotationsTable) SET \(colAnnBkId) = ?, \(colAnnContentId) = ?, \(colAnnStart) = ?, \(colAnnLength) = ?, \(colAnnStartDiac) = ?, \(colAnnLengthDiac) = ?, \(colAnnColor) = ?, \(colAnnType) = ?, \(colAnnNote) = ?, \(colAnnLastModified) = ?, \(colAnnPart) = ?, \(colAnnPage) = ?, \(colAnnCkRecordId) = ? WHERE \(colAnnId) = ?;"
+        let updateSql = "UPDATE \(annotationsTable) SET \(colAnnBkId) = ?, \(colAnnContentId) = ?, \(colAnnStart) = ?, \(colAnnLength) = ?, \(colAnnStartDiac) = ?, \(colAnnLengthDiac) = ?, \(colAnnColor) = ?, \(colAnnType) = ?, \(colAnnNote) = ?, \(colAnnLastModified) = ?, \(colAnnPart) = ?, \(colAnnPage) = ?, \(colAnnCkRecordId) = ?, \(colAnnContext) = ?, \(colAnnBackendLocator) = ? WHERE \(colAnnId) = ?;"
 
         let params: [Any] = [
             annCopy.bkId,
@@ -1003,6 +1005,9 @@ final class AnnotationRepository: SyncPendingManaging, Sendable {
             annCopy.part,
             annCopy.page,
             annCopy.ckRecordId ?? NSNull(),
+            annCopy.context,
+            annCopy.backendLocator.flatMap { try? JSONEncoder().encode($0) }
+                .flatMap { String(data: $0, encoding: .utf8) } ?? NSNull(),
             existingId,
         ]
 

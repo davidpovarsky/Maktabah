@@ -1,0 +1,290 @@
+{
+  "phase": "baseline",
+  "status": "BASELINE_DEFECTS_REPRODUCED",
+  "commands": [
+    {
+      "label": "compile-oslog-boundary",
+      "command": [
+        "swiftc",
+        "-swift-version",
+        "6",
+        "-parse-as-library",
+        "-emit-library",
+        "-emit-module",
+        "-module-name",
+        "OSLog",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\OSLogBoundary.swift",
+        "-emit-module-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\build\\support\\OSLog.swiftmodule",
+        "-o",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\build\\support\\OSLog.dll"
+      ],
+      "exit": 0,
+      "seconds": 18.828999999997905
+    },
+    {
+      "label": "compile-original-repository",
+      "command": [
+        "swiftc",
+        "-swift-version",
+        "6",
+        "-j",
+        "1",
+        "-parse-as-library",
+        "-I",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\build\\support",
+        "-I",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\build\\support\\SQLite3",
+        "-L",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\build\\support",
+        "-lOSLog",
+        "-L",
+        "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.26100.0\\um\\x64",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\Source\\Features\\Annotations\\Models\\Annotation.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\Source\\Features\\Annotations\\Database\\AnnotationRepository.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\Source\\Core\\Database\\SQLiteDatabase.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\Source\\Core\\CloudKit\\SyncPendingStore.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\Tests\\HQ\\sqlite\\UnusedZstdBoundary.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\Boundary.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\OriginalLocator.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\OriginalLocalConnection.swift",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\CloudImportIdentityControls.swift",
+        "-o",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\build\\baseline\\cloud-import-controls.exe"
+      ],
+      "exit": 0,
+      "seconds": 191.14100000000326
+    },
+    {
+      "label": "write",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\build\\baseline\\cloud-import-controls.exe",
+        "write",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\baseline\\fixtures"
+      ],
+      "exit": 0,
+      "seconds": 2.375
+    },
+    {
+      "label": "reopen",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\build\\baseline\\cloud-import-controls.exe",
+        "reopen",
+        "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\docs\\hq-integration\\completion-20261122\\cloud-import-identity\\baseline\\fixtures"
+      ],
+      "exit": 0,
+      "seconds": 0.43699999999807915
+    }
+  ],
+  "native_executed": 0,
+  "cloudkit_transport_executed": 0,
+  "sqlite_header": {
+    "path": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\um\\winsqlite\\winsqlite3.h",
+    "sha256": "27382a4a73e9dfb7ad71c99725015e0113d2a0d1e0e4917d2a9d0a173700bcb1"
+  },
+  "logging": "explicit Windows OSLog boundary; original Repository source untouched",
+  "toolchain": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "executable_sha256": "96d1fd9df980304cb4ae48b575a3b239573869a4d6c2ae13535fdc0fb0cb637e",
+  "write": {
+    "process_id": 18948,
+    "sqlite_version": "3.53.4",
+    "passed": 3,
+    "failed": 6,
+    "cases": [
+      {
+        "added": 0,
+        "failures": [
+          "durable_backend_locator",
+          "durable_context",
+          "cache_database_source_divergence"
+        ],
+        "name": "same_uuid_locator_and_context",
+        "status": "FAIL",
+        "updated": 1
+      },
+      {
+        "added": 0,
+        "failures": [
+          "annotation_count",
+          "row_identity",
+          "durable_backend_locator",
+          "unrelated_legacy_source_modified",
+          "original_tags_modified",
+          "original_import_result",
+          "cache_database_source_divergence"
+        ],
+        "name": "legacy_different_backend",
+        "status": "FAIL",
+        "updated": 1
+      },
+      {
+        "added": 0,
+        "failures": [
+          "annotation_count",
+          "row_identity",
+          "durable_backend_locator",
+          "unrelated_legacy_source_modified",
+          "original_tags_modified",
+          "original_import_result",
+          "cache_database_source_divergence"
+        ],
+        "name": "legacy_different_work",
+        "status": "FAIL",
+        "updated": 1
+      },
+      {
+        "added": 0,
+        "failures": [
+          "annotation_count",
+          "row_identity",
+          "durable_backend_locator",
+          "unrelated_legacy_source_modified",
+          "original_tags_modified",
+          "original_import_result",
+          "cache_database_source_divergence"
+        ],
+        "name": "legacy_different_position",
+        "status": "FAIL",
+        "updated": 1
+      },
+      {
+        "added": 0,
+        "failures": [],
+        "name": "legacy_equal_locator_reordered_json",
+        "status": "PASS",
+        "updated": 1
+      },
+      {
+        "added": 0,
+        "failures": [],
+        "name": "legacy_positive_original_identity",
+        "status": "PASS",
+        "updated": 1
+      },
+      {
+        "added": 0,
+        "failures": [
+          "annotation_count",
+          "row_identity",
+          "durable_backend_locator",
+          "unrelated_legacy_source_modified",
+          "original_tags_modified",
+          "original_import_result",
+          "cache_database_source_divergence"
+        ],
+        "name": "legacy_negative_missing_locator",
+        "status": "FAIL",
+        "updated": 1
+      },
+      {
+        "added": 0,
+        "failures": [
+          "annotation_count",
+          "row_identity",
+          "durable_backend_locator",
+          "unrelated_legacy_source_modified",
+          "original_tags_modified",
+          "original_import_result",
+          "cache_database_source_divergence"
+        ],
+        "name": "legacy_malformed_locator",
+        "status": "FAIL",
+        "updated": 1
+      },
+      {
+        "added": 0,
+        "failures": [],
+        "name": "same_uuid_older_remote_preserved",
+        "status": "PASS",
+        "updated": 0
+      }
+    ]
+  },
+  "fresh_process_reopen": {
+    "process_id": 21940,
+    "sqlite_version": "3.53.4",
+    "passed": 3,
+    "failed": 6,
+    "cases": [
+      {
+        "failures": [
+          "durable_backend_locator",
+          "durable_context"
+        ],
+        "name": "same_uuid_locator_and_context",
+        "status": "FAIL"
+      },
+      {
+        "failures": [
+          "annotation_count",
+          "row_identity",
+          "durable_backend_locator",
+          "unrelated_legacy_source_modified",
+          "original_tags_modified"
+        ],
+        "name": "legacy_different_backend",
+        "status": "FAIL"
+      },
+      {
+        "failures": [
+          "annotation_count",
+          "row_identity",
+          "durable_backend_locator",
+          "unrelated_legacy_source_modified",
+          "original_tags_modified"
+        ],
+        "name": "legacy_different_work",
+        "status": "FAIL"
+      },
+      {
+        "failures": [
+          "annotation_count",
+          "row_identity",
+          "durable_backend_locator",
+          "unrelated_legacy_source_modified",
+          "original_tags_modified"
+        ],
+        "name": "legacy_different_position",
+        "status": "FAIL"
+      },
+      {
+        "failures": [],
+        "name": "legacy_equal_locator_reordered_json",
+        "status": "PASS"
+      },
+      {
+        "failures": [],
+        "name": "legacy_positive_original_identity",
+        "status": "PASS"
+      },
+      {
+        "failures": [
+          "annotation_count",
+          "row_identity",
+          "durable_backend_locator",
+          "unrelated_legacy_source_modified",
+          "original_tags_modified"
+        ],
+        "name": "legacy_negative_missing_locator",
+        "status": "FAIL"
+      },
+      {
+        "failures": [
+          "annotation_count",
+          "row_identity",
+          "durable_backend_locator",
+          "unrelated_legacy_source_modified",
+          "original_tags_modified"
+        ],
+        "name": "legacy_malformed_locator",
+        "status": "FAIL"
+      },
+      {
+        "failures": [],
+        "name": "same_uuid_older_remote_preserved",
+        "status": "PASS"
+      }
+    ]
+  },
+  "source_unchanged": true
+}

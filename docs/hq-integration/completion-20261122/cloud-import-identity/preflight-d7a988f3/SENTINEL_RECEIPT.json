@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_5ff4cd5f437b",
+    "type": "job_result",
+    "source": "script_run@host_7ec8382e82747448",
+    "severity": "warning",
+    "tool": "script_run",
+    "host": "host_7ec8382e82747448",
+    "status": "failed",
+    "exit_code": 1,
+    "created_at": 1795315456.9792254,
+    "started_at": "2026-11-22T02:44:17.021376+00:00",
+    "finished_at": "2026-11-22T02:44:22.709324+00:00",
+    "duration_s": 5.69,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 420,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "Traceback (most recent call last):\r\n  File \"C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_93b8dad0643a4e4189439938066a7ba7\\script.py\", line 14, in <module>\r\n    preflight=hq.preflight(config)\r\n              ^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\Scripts\\CI\\hq-stage2-focused-apple.py\", line 231, in preflight\r\n    result[\"otzaria_test_additions\"] = verify_otzaria_test_additions(config)\r\n                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\Scripts\\CI\\hq-stage2-focused-apple.py\", line 112, in verify_otzaria_test_additions\r\n    require(capture(\"git\", \"rev-parse\", \"HEAD:\" + path) == blob, \"Reviewed build-exclusion input changed: \" + path)\r\n  File \"C:\\Users\\DAVID\\Code\\Maktabah-original-editor-lifecycle-20261122\\Scripts\\CI\\hq-stage2-focused-apple.py\", line 46, in require\r\n    raise RuntimeError(message)\r\nRuntimeError: Reviewed build-exclusion input changed: Maktabah.xcodeproj/project.pbxproj"
+  }
+}

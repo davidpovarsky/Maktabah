@@ -29,6 +29,7 @@ SOURCES = [
     "Source/Features/Annotations/Models/AnnotationChangeTypes.swift",
     "Source/Features/Annotations/Models/AnnotationEvent.swift",
     "Source/Features/Annotations/Database/AnnotationRepository.swift",
+    "Source/ChavrusaText/Annotations/AnnotationCloudImportIdentity.swift",
     "Source/Features/Annotations/Database/AnnotationStore.swift",
     "Source/Core/Database/SQLiteDatabase.swift",
     "Source/Core/CloudKit/SyncPendingStore.swift",
