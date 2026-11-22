@@ -21,3 +21,38 @@ private func requireOriginalStageBAPI(
         snapshot: capture.snapshot, currentSource: source, sourceIsCurrent: sourceIsCurrent)
     host.retire()
 }
+
+// Compile the new process-resume SPI against the actual distribution as well.
+// Inputs belong to the existing persistence owner; this function is never run.
+@MainActor
+private func requireOriginalProcessResumeAPI(
+    session: AnytypeOriginalEditorQualificationSession,
+    host: AnytypeOriginalEditorHost,
+    snapshot: AnytypeOriginalEditorSnapshot,
+    source: AnytypeOriginalEditorQualificationSource,
+    workspaceNamespace: UUID,
+    legacyAnnotationID: Int64,
+    payloadDigest: String,
+    sourceIsCurrent: @escaping @MainActor (AnytypeOriginalEditorQualificationSource) -> Bool
+) async throws {
+    let context = try AnytypeOriginalEditorProcessResumeContext(
+        workspaceNamespace: workspaceNamespace,
+        legacyAnnotationID: legacyAnnotationID,
+        payloadDigest: payloadDigest)
+    let prepared = try await session.prepareProcessResume(
+        host: host, snapshot: snapshot, currentSource: source,
+        context: context, sourceIsCurrent: sourceIsCurrent)
+    let _: UUID = prepared.runtimeNonce
+    let _: String = prepared.accountID
+    let _: String = prepared.spaceID
+    let _: String = prepared.objectID
+    let _: Int32 = prepared.preparedProcessID
+    let _: Int32 = prepared.currentProcessID
+    let _: Bool = prepared.credentialConsumed
+    let resumed = try await AnytypeOriginalEditorModule.resumeEditableAcceptance(
+        source: source, snapshot: snapshot, context: context,
+        sourceIsCurrent: sourceIsCurrent)
+    let _: AnytypeOriginalEditorProcessResumeReceipt? = resumed.processResumeReceipt
+    let _: Bool = try await AnytypeOriginalEditorModule.cleanupOwnedProcessResumeCredential()
+}
+
