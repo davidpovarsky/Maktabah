@@ -1,0 +1,6 @@
+{"event": "start", "id": "selector_schema2.SelectorSchema2Boundaries.test_exact_toolchain_cannot_bypass_distinct_finalized_runtime_validation"}
+{"event": "pass", "id": "selector_schema2.SelectorSchema2Boundaries.test_exact_toolchain_cannot_bypass_distinct_finalized_runtime_validation"}
+{"event": "start", "id": "selector_schema2.SelectorSchema2Boundaries.test_finalized_schema2_selects_original_framework_tuple_and_keeps_roles"}
+{"event": "pass", "id": "selector_schema2.SelectorSchema2Boundaries.test_finalized_schema2_selects_original_framework_tuple_and_keeps_roles"}
+{"event": "start", "id": "selector_schema2.SelectorSchema2Boundaries.test_missing_or_changed_top_level_tuple_cannot_override_retained_framework"}
+{"event": "pass", "id": "selector_schema2.SelectorSchema2Boundaries.test_missing_or_changed_top_level_tuple_cannot_override_retained_framework"}

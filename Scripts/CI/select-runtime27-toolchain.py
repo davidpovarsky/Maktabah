@@ -48,7 +48,13 @@ def original_editor_toolchain(admission, repo):
     if raw != committed:
         raise RuntimeError("Original SDK toolchain input differs from the reviewed checkout")
     config = json.loads(raw)
-    if (config.get("schema") != 1 or config.get("repository") != "davidpovarsky/anytype-swift"
+    if config.get("schema") == 2:
+        import runpy
+        continuation = runpy.run_path(str(Path(__file__).with_name("original_editor_continuation_admission.py")))
+        framework, _ = continuation["validate_configuration"](config)
+        if config.get("toolchain") != framework["toolchain"]:
+            raise RuntimeError("Original SDK toolchain differs from the exact retained framework producer")
+    elif (config.get("schema") != 1 or config.get("repository") != "davidpovarsky/anytype-swift"
             or not re.fullmatch(r"[a-f0-9]{40}", config.get("source_sha", ""))
             or any(type(config.get(key)) is not int or config[key] <= 0 for key in ("run_id", "run_attempt", "artifact_id"))
             or not re.fullmatch(r"[a-f0-9]{64}", config.get("qualification_sha256", ""))):

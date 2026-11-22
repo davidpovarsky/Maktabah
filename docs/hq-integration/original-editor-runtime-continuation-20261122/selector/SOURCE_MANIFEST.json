@@ -1,0 +1,30 @@
+{
+  "base": "b09c95f3eee6aa3b8fe363cfac76a89025c15abe",
+  "original": {
+    "path": "original/select-runtime27-toolchain.py",
+    "bytes": 10525,
+    "sha256": "2a671be78550ac7e3381e533100c9ec62e55146ef3b47ada3fa77f5a149ff856",
+    "git_blob": "670b5462928640a20e60373d8cbf5bbfca448d9a"
+  },
+  "candidate": {
+    "path": "candidate/Scripts/CI/select-runtime27-toolchain.py",
+    "bytes": 10936,
+    "sha256": "3e6ed97188d50f4f344dbd7f77f142a05f0a0bde1b720a0745df098f49bfcf2f",
+    "git_blob": "463e204cd327254b6d1670223d6169beb376a303"
+  },
+  "unchanged_helper": {
+    "path": "candidate/Scripts/CI/original_editor_continuation_admission.py",
+    "bytes": 27570,
+    "sha256": "a8bca577b337eec3f3d6a154036c28447fce5b5dc57f83e950a74532c3446f5f",
+    "git_blob": "3bc6604d879a8fbe00ffa5f89c9e721a6a88b0d7"
+  },
+  "changed_functions": [
+    "original_editor_toolchain"
+  ],
+  "exact_delta_inverse": true,
+  "prior_six_selector_controls_replayed": 0,
+  "prior_version_stream_control_replayed": 0,
+  "prior_twenty_schema2_controls_replayed": 0,
+  "runtime_input_manifest_changed": false,
+  "scope": "Schema 2 selector admission only. Schema 1 and optional default control flow remain byte-identical after inverting the one guarded branch."
+}
