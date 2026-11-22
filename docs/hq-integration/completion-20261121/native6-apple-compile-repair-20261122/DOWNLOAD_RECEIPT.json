@@ -1,0 +1,179 @@
+{
+  "run": 44962008465,
+  "artifact": 14732320891,
+  "zip_bytes": 1209140,
+  "zip_sha256": "4839413ed695b395aa8b3255a4a0ca56f786be76360665a9896e5a56e69ea7bc",
+  "crc": "PASS",
+  "files": [
+    {
+      "path": "artifacts/continuation-focused/declarations.json",
+      "bytes": 1781,
+      "sha256": "a38249b8c619beeeae801ec500ac49fb61e00611d620d72091381396fd9c7844"
+    },
+    {
+      "path": "artifacts/continuation-focused/selection.json",
+      "bytes": 180186,
+      "sha256": "f10e968977656462832477636c3fb1a361f9334a4ec20cc00c2d3d1936aea4ac"
+    },
+    {
+      "path": "artifacts/continuation-focused/result.json",
+      "bytes": 58153,
+      "sha256": "0a9beb97e3369e1b1ebb195e545f630ca578c4cdc474c8dc2a7f94dfb25676dd"
+    },
+    {
+      "path": "artifacts/continuation-focused/source-before.json",
+      "bytes": 57409,
+      "sha256": "3a427001391c839f36aca4e589176aadfff24ecc5e51d456dd23afe55e488879"
+    },
+    {
+      "path": "artifacts/runtime27/toolchain-selection.json",
+      "bytes": 13019,
+      "sha256": "77e75de1d631024afb99658c1401e555e9811d86d11096fe8a95ca9e650c65a0"
+    },
+    {
+      "path": "hq-stage2/ExpoModulesProvider.swift",
+      "bytes": 1246,
+      "sha256": "c6ec625de1af66d390d35bfb43e4d69508597cfa246f3c939428c77295b017e1"
+    },
+    {
+      "path": "hq-stage2/actual-source-inputs.json",
+      "bytes": 114619,
+      "sha256": "39ea95471f39d785c4933b49a29a2b3d743131c2ecda4d8a78173683c39b77c6"
+    },
+    {
+      "path": "hq-stage2/generated-Maktabah-project.pbxproj",
+      "bytes": 617235,
+      "sha256": "35c0a4362eca03db6205829692b7627026a4d99db4c5efcbc04d84d4666ca83f"
+    },
+    {
+      "path": "hq-stage2/generated-pods-project.diff",
+      "bytes": 415504,
+      "sha256": "88c5200308adcff779b3524b87dcf2781359ebd50d1dbf6ff61f43273b4f7a4c"
+    },
+    {
+      "path": "hq-stage2/generated-privacy.diff",
+      "bytes": 2618,
+      "sha256": "2f496cd81580a43548668ef59cbaa0510222396bbb6c978ce0919c0faf41ae4e"
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk-inputs.json",
+      "bytes": 61045,
+      "sha256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118"
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk.log",
+      "bytes": 679,
+      "sha256": "baca24125ae53ea60324b2491d0150e52d5c02edae797fb114e68d35dbc52d25"
+    },
+    {
+      "path": "hq-stage2/maktabah_zayit_search.h.log",
+      "bytes": 300,
+      "sha256": "87b20fd3d731cc694a3b004a15f295a72a38e5df7f98e837dc0c0985aa184aea"
+    },
+    {
+      "path": "hq-stage2/matching-embedded-bundle.log",
+      "bytes": 741,
+      "sha256": "29e34f5a221dbe07dfb7ef9fb331dda2800bf2d7e16ee02b9031012ff5922482"
+    },
+    {
+      "path": "hq-stage2/native-script-permissions.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "hq-stage2/npm-ci.log",
+      "bytes": 3331,
+      "sha256": "415d08707cf061e20b0319e51e805d7bd93bcf4834e2297e0b68872fec66a6fc"
+    },
+    {
+      "path": "hq-stage2/otzaria_search_engine.h.log",
+      "bytes": 304,
+      "sha256": "15648f23bbe5f5f15ae65af39bbabc45ce85e2c62b7786375e77c01f6246eab6"
+    },
+    {
+      "path": "hq-stage2/pinned-sharp-inputs.log",
+      "bytes": 991,
+      "sha256": "78560d94294e7adc970a8f8eb5ffee5288bdf8f10e966c59249bbe32e9ff5c45"
+    },
+    {
+      "path": "hq-stage2/pod-install.log",
+      "bytes": 31886,
+      "sha256": "c7d4db19173e9f62a75024322b8b67bad8520b60e93db7391a397e78a6441bba"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+      "bytes": 877,
+      "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+      "bytes": 855,
+      "sha256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+      "bytes": 1482,
+      "sha256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+      "bytes": 1233,
+      "sha256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+      "bytes": 776,
+      "sha256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d"
+    },
+    {
+      "path": "hq-stage2/privacy-generated.xcprivacy",
+      "bytes": 1386,
+      "sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5"
+    },
+    {
+      "path": "hq-stage2/react-source-checkout.log",
+      "bytes": 453,
+      "sha256": "b278da59b8bfd20172192fee69776965913a069701ec217aba71aa99075b6248"
+    },
+    {
+      "path": "hq-stage2/resolve-packages.log",
+      "bytes": 4898,
+      "sha256": "0b6223acd63eb560d356fda26ccb27cdeb4251a9f18e06501e21559cf19ce7ac"
+    },
+    {
+      "path": "hq-stage2/privacy-original.xcprivacy",
+      "bytes": 1132,
+      "sha256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1"
+    },
+    {
+      "path": "hq-stage2/resolved-Package.resolved",
+      "bytes": 4432,
+      "sha256": "e8442e70806c4a7109302ace87e041a499f28f0bf5b70a223cca5a09d5da661c"
+    },
+    {
+      "path": "hq-stage2/resolved-Podfile.lock",
+      "bytes": 100298,
+      "sha256": "9a7f88b1d9ebbf4d14f8b6f1efd1fb2d15ac63983bf16ffd3e9ea011f9a55ce7"
+    },
+    {
+      "path": "hq-stage2/simulator-build-for-testing.log",
+      "bytes": 17757764,
+      "sha256": "5de6f74a9aeb8eb495e220f2256fedfa951339fb95d464589f74b6cd77d2a4fc"
+    },
+    {
+      "path": "hq-stage2/result.json",
+      "bytes": 82807,
+      "sha256": "5f0a8090713daa9ed448504e6c2f2cf78d73be956b7f7350662a0e5f439e2e91"
+    },
+    {
+      "path": "hq-stage2/target-membership.log",
+      "bytes": 130,
+      "sha256": "eb1ed33822080468fc3cc73faa487cc02c8a1bed4564287c6cbc07eeddcbf043"
+    },
+    {
+      "path": "hq-stage2/workspace-Package.resolved",
+      "bytes": 4432,
+      "sha256": "e8442e70806c4a7109302ace87e041a499f28f0bf5b70a223cca5a09d5da661c"
+    }
+  ]
+}
