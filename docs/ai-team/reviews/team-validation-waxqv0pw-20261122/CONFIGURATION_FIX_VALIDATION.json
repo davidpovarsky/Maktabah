@@ -1,0 +1,119 @@
+{
+  "status": "SIX_DOCUMENT_CORRECTION_VALIDATED",
+  "patch_sha256": "92d9b70fd4ad67605bad2b723d6e2ad179756be1510686e9bbb3cb240d0f3770",
+  "source": "34d06949e7fedbda6e0d256a769b3d0b8659c211",
+  "same_preimages_on": "9c66b4ccc06340a04de53a4c3370182873ed18bc",
+  "changed_docs": [
+    {
+      "path": ".agents/rules/ai-team-router.md",
+      "preimage_and_output_hashes": "PASS",
+      "policy_body_preserved": true
+    },
+    {
+      "path": "docs/ai-team/BRANCH_INTEGRATION.md",
+      "preimage_and_output_hashes": "PASS",
+      "policy_body_preserved": false
+    },
+    {
+      "path": "docs/ai-team/PLATFORMS.md",
+      "preimage_and_output_hashes": "PASS",
+      "policy_body_preserved": true
+    },
+    {
+      "path": "docs/ai-team/PROJECT_ASSIGNMENTS.md",
+      "preimage_and_output_hashes": "PASS",
+      "policy_body_preserved": true
+    },
+    {
+      "path": "docs/ai-team/TEAM.md",
+      "preimage_and_output_hashes": "PASS",
+      "policy_body_preserved": true
+    },
+    {
+      "path": "docs/ai-team/VALIDATION.md",
+      "preimage_and_output_hashes": "PASS",
+      "policy_body_preserved": true
+    }
+  ],
+  "all_internal_markdown_links_valid": true,
+  "internal_link_count": 8,
+  "links": [
+    {
+      "source": ".agents/rules/ai-team-router.md",
+      "target": "../../docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "resolved": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "exists_in_exact_git_tree": true
+    },
+    {
+      "source": "GEMINI.md",
+      "target": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "resolved": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "exists_in_exact_git_tree": true
+    },
+    {
+      "source": "docs/ai-team/BRANCH_INTEGRATION.md",
+      "target": "VALIDATION.md",
+      "resolved": "docs/ai-team/VALIDATION.md",
+      "exists_in_exact_git_tree": true
+    },
+    {
+      "source": "docs/ai-team/BRANCH_INTEGRATION.md",
+      "target": "../architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "resolved": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "exists_in_exact_git_tree": true
+    },
+    {
+      "source": "docs/ai-team/PLATFORMS.md",
+      "target": "../architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "resolved": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "exists_in_exact_git_tree": true
+    },
+    {
+      "source": "docs/ai-team/PROJECT_ASSIGNMENTS.md",
+      "target": "../architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "resolved": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "exists_in_exact_git_tree": true
+    },
+    {
+      "source": "docs/ai-team/TEAM.md",
+      "target": "../architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "resolved": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "exists_in_exact_git_tree": true
+    },
+    {
+      "source": "docs/ai-team/VALIDATION.md",
+      "target": "../architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "resolved": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "exists_in_exact_git_tree": true
+    }
+  ],
+  "reused_yaml_parser_documents": 9,
+  "reused_toml_parser_documents": 7,
+  "prior_parser_receipt_sha256": "0d58276b4e5ce6920541ffa123a509b2a67103a91652935aa58a326cdecc586c",
+  "commands": [
+    {
+      "args": [
+        "git",
+        "apply",
+        "--check",
+        "--whitespace=error-all",
+        "/workspace/scratch/ab739d619196/team_setup_implementation_audit_20261122/team-configuration-links-and-branch-snapshot.patch"
+      ],
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "apply",
+        "--whitespace=error-all",
+        "/workspace/scratch/ab739d619196/team_setup_implementation_audit_20261122/team-configuration-links-and-branch-snapshot.patch"
+      ],
+      "returncode": 0,
+      "stderr": ""
+    }
+  ],
+  "product_source_changed": false,
+  "native_tests": 0,
+  "remote_repo_mutations": 0
+}
