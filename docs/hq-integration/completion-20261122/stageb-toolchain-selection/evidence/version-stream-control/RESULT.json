@@ -1,0 +1,32 @@
+{
+  "scope": "One new controlled subprocess stream-separation control using genuine preserved producer version streams; no Apple/native execution or SDK qualification",
+  "started_utc": "2026-11-22T15:33:48.730131+00:00",
+  "finished_utc": "2026-11-22T15:33:48.880676+00:00",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/scratch/22d6326e1023/stageb-toolchain-review/test_original_editor_toolchain.py",
+    "OriginalEditorToolchainControls.test_producer_swiftc_stdout_is_separate_from_driver_stderr"
+  ],
+  "exit": 0,
+  "seconds": 0.151,
+  "tests_executed": 1,
+  "prior_tests_replayed": 0,
+  "prior_six_input_and_log_hashes_verified": true,
+  "prior_six_assertions_and_tested_functions_unchanged": true,
+  "retained_six_test_names": [
+    "test_committed_admission_binds_tuple_and_rejects_dirty_working_file",
+    "test_default_selection_preserves_newest_matching_pair",
+    "test_exact_producer_selects_matching_older_installed_pair",
+    "test_no_matching_producer_never_falls_back",
+    "test_same_major_version_does_not_hide_build_compiler_or_sdk_drift",
+    "test_unfinalized_admission_cannot_supply_a_toolchain"
+  ],
+  "sha256": {
+    "candidate/Scripts/CI/select-runtime27-toolchain.py": "2a671be78550ac7e3381e533100c9ec62e55146ef3b47ada3fa77f5a149ff856",
+    "candidate/.github/workflows/otzaria-original-editor-stageb-native.yml": "af09cd64dd4d662239040f2662a468378734e325c2ae39cafe3a9d10d871539b",
+    "test_original_editor_toolchain.py": "28316b54b853b1bd86732a34be2ab6d5447d9935f14d4b4a30705581fb23d31d",
+    "fixtures/SDK450340_SWIFT_VERSION_STREAMS.json": "a8a8a54d9f2620e811b5a6d7b1411dfd71a15ba08c1a135210e047dce3e51008",
+    "evidence/version-stream-control/stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/version-stream-control/stderr.log": "e1ec9e5011fec0981bcc563092fb96ae2a50f90b8a51f4cb3970579f3fc14f14"
+  }
+}

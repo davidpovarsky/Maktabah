@@ -1,0 +1,26 @@
+{
+  "scope": "Raw version streams copied from already-downloaded SDK run 45034016674; used only for a controlled subprocess stream-separation test, never Apple qualification.",
+  "repository": "davidpovarsky/anytype-swift",
+  "run_id": 45034016674,
+  "run_attempt": 1,
+  "source_sha": "fbc47f3c10a2dfa474e3f2305bf2396ecca2868d",
+  "artifact_id": 14759692887,
+  "inner_archive_sha256": "b07f8466582348ab29ece849a49acb3a579207d845d7faee7254546fbb85ec84",
+  "streams": {
+    "actual-swift.stdout.log": {
+      "text": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0\n",
+      "sha256": "04630ab8fa201f57c63c59730e638135e32584a97e16e004a417eb8ed283dc83",
+      "bytes": 98
+    },
+    "actual-swift.stderr.log": {
+      "text": "swift-driver version: 1.168.6 ",
+      "sha256": "bbc8b176d3c74d4c5a7fd00b40280f98168e116d5272273bfe8e71407625540e",
+      "bytes": 30
+    },
+    "actual-swift.command.json": {
+      "text": "{\n  \"command\": [\n    \"xcrun\",\n    \"swiftc\",\n    \"--version\"\n  ],\n  \"cwd\": \"/Users/runner/work/anytype-swift/anytype-swift\",\n  \"finished_at\": \"2026-11-22T14:42:07.100866+00:00\",\n  \"returncode\": 0,\n  \"started_at\": \"2026-11-22T14:42:05.104702+00:00\",\n  \"stderr_sha256\": \"bbc8b176d3c74d4c5a7fd00b40280f98168e116d5272273bfe8e71407625540e\",\n  \"stdout_sha256\": \"04630ab8fa201f57c63c59730e638135e32584a97e16e004a417eb8ed283dc83\",\n  \"timed_out\": false,\n  \"timeout_seconds\": 30\n}\n",
+      "sha256": "47c4ea6047bb913d9ad6131106e1fb274e88052dd19a5ce23851231d896fb24a",
+      "bytes": 470
+    }
+  }
+}

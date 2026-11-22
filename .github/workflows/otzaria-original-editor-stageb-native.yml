@@ -29,7 +29,7 @@ jobs:
       - name: Verify Python dependencies and freeze the separate original saved-annotation case
         run: python3 Scripts/CI/runtime27-original-editor-native.py prepare
       - name: Select the existing SDK-matched original runtime
-        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --original-editor-admission Scripts/CI/runtime27-original-editor.inputs.json
       - name: Compile the original UI tests against the selected Apple SDK
         run: python3 Scripts/CI/typecheck-faithful-ui-tests.py --ui-compile-only
       - uses: actions/setup-node@v4

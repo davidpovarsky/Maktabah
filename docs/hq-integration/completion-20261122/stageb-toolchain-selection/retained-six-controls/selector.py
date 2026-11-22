@@ -1,0 +1,172 @@
+#!/usr/bin/env python3
+"""Select an existing Xcode/27.x runtime pair for the entire real UI matrix.
+
+No toolchain is installed, no global xcode-select state is changed, and no
+runtime is replaced. AppIntentsTesting links private OS services, so a newer
+installed runtime cannot be assumed compatible with an older SDK's test kit.
+"""
+import argparse
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import sys
+
+def version_pair(value):
+    parts = tuple(int(part) for part in value.split("."))
+    return (parts + (0, 0))[:2]
+
+def supports_matrix(runtime):
+    types = runtime.get("supportedDeviceTypes", [])
+    return (any("iPad Pro" in item["name"] and "11-inch" in item["name"] for item in types)
+            and any("iPad Pro" in item["name"] and "13-inch" in item["name"] for item in types)
+            and any(re.search(r"iPhone-[0-9]+(?:-|$)", item["identifier"]) for item in types))
+
+def matching_runtimes(sdk_version, runtimes):
+    if version_pair(sdk_version)[0] != 27:
+        return []
+    return [item for item in runtimes
+            if item.get("isAvailable")
+            and item["identifier"].startswith("com.apple.CoreSimulator.SimRuntime.iOS-")
+            and version_pair(item["version"]) == version_pair(sdk_version)
+            and supports_matrix(item)]
+
+def original_editor_toolchain(admission, repo):
+    """Read an immutable producer constraint; later SDK admission still qualifies bytes."""
+    relative = Path(admission)
+    if (relative.is_absolute() or len(relative.parts) != 3
+            or relative.parts[:2] != ("Scripts", "CI") or relative.suffix != ".json"):
+        raise RuntimeError("Original SDK toolchain input must be a committed Scripts/CI JSON file")
+    path = repo / relative
+    if path.is_symlink() or not path.resolve().is_relative_to(repo.resolve()):
+        raise RuntimeError("Original SDK toolchain input escaped its checkout")
+    raw = path.read_bytes()
+    committed = subprocess.check_output(["git", "show", "HEAD:" + relative.as_posix()], cwd=repo, timeout=60)
+    if raw != committed:
+        raise RuntimeError("Original SDK toolchain input differs from the reviewed checkout")
+    config = json.loads(raw)
+    if (config.get("schema") != 1 or config.get("repository") != "davidpovarsky/anytype-swift"
+            or not re.fullmatch(r"[a-f0-9]{40}", config.get("source_sha", ""))
+            or any(type(config.get(key)) is not int or config[key] <= 0 for key in ("run_id", "run_attempt", "artifact_id"))
+            or not re.fullmatch(r"[a-f0-9]{64}", config.get("qualification_sha256", ""))):
+        raise RuntimeError("Original SDK toolchain source/run/qualification is not finalized")
+    required = config.get("toolchain")
+    if (not isinstance(required, dict) or set(required) != {"xcode", "swift", "sdk_version"}
+            or any(not isinstance(value, str) or not value or len(value) > 2048 for value in required.values())
+            or not re.fullmatch(r"Xcode 27(?:\.\d+)*\nBuild version [A-Za-z0-9]+", required["xcode"])
+            or not required["swift"].startswith("Apple Swift version ") or "\nTarget: " not in required["swift"]
+            or not re.fullmatch(r"27(?:\.\d+){0,2}", required["sdk_version"])):
+        raise RuntimeError("Original SDK requires the complete observed Apple toolchain tuple")
+    return {"path": relative.as_posix(), "sha256": hashlib.sha256(raw).hexdigest(),
+            "source_sha": config["source_sha"], "run_id": config["run_id"], "run_attempt": config["run_attempt"],
+            "qualification_sha256": config["qualification_sha256"], "toolchain": required}
+
+def eligible_candidates(inspections, required=None):
+    candidates = [item for item in inspections if item["status"] == "MATCHED_MATRIX_PAIR"]
+    if required is not None:
+        candidates = [item for item in candidates if all(item.get(key) == value for key, value in required.items())]
+    candidates.sort(key=lambda item: (version_pair(item["sdk_version"]),
+                                     version_pair(item["xcode_version"]),
+                                     "beta" not in item["developer_dir"].lower(),
+                                     item["developer_dir"]), reverse=True)
+    return candidates
+
+def inspect_installed(developer, *, include_swift=False):
+    environment = dict(os.environ, DEVELOPER_DIR=str(developer))
+    def command(args):
+        return subprocess.check_output(args, env=environment, text=True,
+                                       stderr=subprocess.STDOUT, timeout=60).strip()
+    xcode = command(["xcodebuild", "-version"])
+    match = re.search(r"^Xcode (\d+(?:\.\d+)*)", xcode)
+    if not match or version_pair(match[1])[0] != 27:
+        return {"developer_dir": str(developer), "xcode": xcode, "status": "NOT_XCODE27"}
+    sdk = command(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-version"])
+    platform = Path(command(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-platform-path"]))
+    framework = platform / "Developer/Library/Frameworks/AppIntentsTesting.framework/AppIntentsTesting"
+    runtimes = json.loads(command(["xcrun", "simctl", "list", "runtimes", "available", "-j"]))["runtimes"]
+    matches = matching_runtimes(sdk, runtimes)
+    result = {
+        "developer_dir": str(developer), "xcode": xcode, "xcode_version": match[1],
+        "sdk_version": sdk, "app_intents_testing_exists": framework.is_file(),
+        "app_intents_testing": str(framework),
+        "runtime_inventory": [{key: item.get(key) for key in
+                              ("identifier", "version", "buildversion", "isAvailable")}
+                             | {"supports_full_device_matrix": supports_matrix(item)}
+                             for item in runtimes if ".iOS-" in item["identifier"]],
+        "matching_runtime_ids": [item["identifier"] for item in matches],
+        "status": "MATCHED_MATRIX_PAIR" if matches and framework.is_file() else "NO_MATCHED_MATRIX_PAIR",
+    }
+    if include_swift:
+        result["swift"] = command(["xcrun", "swift", "--version"])
+    return result
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--github-env", action="store_true")
+    parser.add_argument("--original-editor-admission", type=Path,
+                        help="Require the exact observed producer toolchain from the committed SDK admission")
+    parser.add_argument("--report", type=Path,
+                        default=Path("build/artifacts/runtime27/toolchain-selection.json"))
+    args = parser.parse_args()
+    if sys.platform != "darwin":
+        raise SystemExit("Real installed macOS/Xcode required")
+    contract = (original_editor_toolchain(args.original_editor_admission, Path(__file__).resolve().parents[2])
+                if args.original_editor_admission else None)
+    active = Path(os.environ.get("DEVELOPER_DIR") or
+                  subprocess.check_output(["xcode-select", "-p"], text=True).strip())
+    developers = {active, *[app / "Contents/Developer" for app in Path("/Applications").glob("Xcode*.app")]}
+    report = {"observed_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              "status": "NO_MATCHED_MATRIX_PAIR", "active_developer_dir": str(active),
+              "candidates": [], "selected": None, "native_ui_executed": 0,
+              "global_xcode_select_changed": False, "toolchains_installed": False}
+    if contract is not None:
+        report["original_editor_toolchain_admission"] = contract
+    args.report.parent.mkdir(parents=True, exist_ok=True)
+    def save():
+        args.report.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    for developer in sorted(developers, key=str):
+        if not (developer / "usr/bin/xcodebuild").is_file():
+            continue
+        try:
+            report["candidates"].append(inspect_installed(developer, include_swift=contract is not None))
+        except (subprocess.SubprocessError, OSError, ValueError) as error:
+            report["candidates"].append({"developer_dir": str(developer),
+                                         "status": "INSPECTION_FAILED", "error": str(error)})
+        save()
+    candidates = eligible_candidates(report["candidates"], contract["toolchain"] if contract else None)
+    if not candidates:
+        if contract is not None:
+            report["status"] = "NO_MATCHED_ORIGINAL_EDITOR_TOOLCHAIN"
+        save()
+        print(json.dumps(report, indent=2))
+        if contract is not None:
+            raise SystemExit("No installed complete runtime pair matches the original SDK's exact Apple toolchain")
+        raise SystemExit("No installed Xcode27 SDK/runtime pair supports the complete iPad/iPhone matrix")
+    selected = candidates[0]
+    selected = {key: selected[key] for key in
+                ("developer_dir", "xcode", "xcode_version", "sdk_version", "app_intents_testing")}
+    selected["runtime_identifier"] = candidates[0]["matching_runtime_ids"][0]
+    if contract is not None:
+        selected["swift"] = candidates[0]["swift"]
+    report.update(status="MATCHED_MATRIX_PAIR_SELECTED", selected=selected)
+    save()
+    if args.github_env:
+        path = os.environ.get("GITHUB_ENV")
+        if not path:
+            raise SystemExit("GITHUB_ENV is required for scoped job configuration")
+        values = {"DEVELOPER_DIR": selected["developer_dir"],
+                  "FAITHFUL_RUNTIME27_IDENTIFIER": selected["runtime_identifier"]}
+        if any("\n" in value or "\r" in value for value in values.values()):
+            raise SystemExit("Unexpected newline in inspected toolchain identifier")
+        with open(path, "a", encoding="utf-8") as output:
+            for key, value in values.items():
+                output.write(key + "=" + value + "\n")
+    print(json.dumps({"status": report["status"], "selected": selected,
+                      "native_ui_executed": 0}, indent=2))
+    return 0
+
+if __name__ == "__main__":
+    raise SystemExit(main())

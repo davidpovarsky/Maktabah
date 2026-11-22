@@ -1,0 +1,19 @@
+{
+  "scope": "Six new pure source/candidate-selection controls and real temporary Git input binding; no Apple/native execution or SDK qualification",
+  "observed_utc": "2026-11-22T15:25:43.287911+00:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/scratch/22d6326e1023/stageb-toolchain-review/test_original_editor_toolchain.py"
+  ],
+  "exit": 0,
+  "seconds": 0.107,
+  "prior_tests_replayed": 0,
+  "sha256": {
+    "candidate/Scripts/CI/select-runtime27-toolchain.py": "e605c162e8481fcb4b421ef8b6cb09192266fd8c3c74b24dc50812226bbbbcc3",
+    "candidate/.github/workflows/otzaria-original-editor-stageb-native.yml": "af09cd64dd4d662239040f2662a468378734e325c2ae39cafe3a9d10d871539b",
+    "test_original_editor_toolchain.py": "57e6510425588b5757361a6f848bafe3bebfe6ed8aaad8e2e363b397a078ddfe",
+    "evidence/controls.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/controls.stderr.log": "fb3230e896af697b1fe7727d7c72a7ecbe94cd6bef7bfb11227842e483d9629b"
+  }
+}

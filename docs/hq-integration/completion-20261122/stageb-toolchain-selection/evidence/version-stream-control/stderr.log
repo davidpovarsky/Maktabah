@@ -1,0 +1,6 @@
+test_producer_swiftc_stdout_is_separate_from_driver_stderr (__main__.OriginalEditorToolchainControls.test_producer_swiftc_stdout_is_separate_from_driver_stderr) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.038s
+
+OK

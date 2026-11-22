@@ -1,0 +1,11 @@
+test_committed_admission_binds_tuple_and_rejects_dirty_working_file (__main__.OriginalEditorToolchainControls.test_committed_admission_binds_tuple_and_rejects_dirty_working_file) ... ok
+test_default_selection_preserves_newest_matching_pair (__main__.OriginalEditorToolchainControls.test_default_selection_preserves_newest_matching_pair) ... ok
+test_exact_producer_selects_matching_older_installed_pair (__main__.OriginalEditorToolchainControls.test_exact_producer_selects_matching_older_installed_pair) ... ok
+test_no_matching_producer_never_falls_back (__main__.OriginalEditorToolchainControls.test_no_matching_producer_never_falls_back) ... ok
+test_same_major_version_does_not_hide_build_compiler_or_sdk_drift (__main__.OriginalEditorToolchainControls.test_same_major_version_does_not_hide_build_compiler_or_sdk_drift) ... ok
+test_unfinalized_admission_cannot_supply_a_toolchain (__main__.OriginalEditorToolchainControls.test_unfinalized_admission_cannot_supply_a_toolchain) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.027s
+
+OK
