@@ -1,23 +1,27 @@
 # Otzaria / Maktabah — current development checkpoint
 
-Snapshot: 2026-11-22T03:54:01.253454+00:00.
+Snapshot: 2026-11-22T04:22:58.713322+00:00.
 
 This report records executed work and its limits. It does not declare product, full Native, Release or original-editor acceptance.
 
 ## Current integrated application
 
-The canonical branch is [codex/otzaria-completion-20261122](https://github.com/davidpovarsky/Maktabah/tree/codex/otzaria-completion-20261122). Its application source for the next four focused Native cases is [385ee84a8acb3fbc3c013c0977417b61fd3d8a17](https://github.com/davidpovarsky/Maktabah/commit/385ee84a8acb3fbc3c013c0977417b61fd3d8a17); source-binding metadata is 46a185242b28b71d4b6d253747f2b8d46e4189a0.
+The canonical branch is [codex/otzaria-completion-20261122](https://github.com/davidpovarsky/Maktabah/tree/codex/otzaria-completion-20261122). Its current integrated application source is [67518e8df6975c976e8f1cd9e622328dc45985fc](https://github.com/davidpovarsky/Maktabah/commit/67518e8df6975c976e8f1cd9e622328dc45985fc); source-binding metadata is577ea1472da2e127a7068046e6b8c3e40293b98b. This adds the independently reviewed durable native-creation fence to the earlier application385ee84a. It is not the frozen input of the still-separate Native4 run.
 
 | Product tree | Exact Git tree |
 |---|---|
-| Source | 362d3336b0c11a8f428b25252edbb81f9907c2f8 |
+| Source | ac887bdbfbfce2d30d9591bb867d61b11da31cc6 |
 | Vendor | 4065c0e62af325e83a65fe0c70270985229807ae |
 | Maktabah.xcodeproj | 8c0fa1ccfbcfae01fae3c267512864e00efcf078 |
 | Maktabah-iOSUITests | cd108ec2cec9f8c6089a1eeff2ec77bc9372a469 |
 
-[APPLICATION_FREEZE.json](native-four-application-freeze/APPLICATION_FREEZE.json) verifies the exact merge, changed paths, payload hashes and trees. Ordinary HQ, future original-editor Native and future Hanlin Live bindings target this application. The focused wrapper is owned by native_completion. Actual [run44980625976](https://github.com/davidpovarsky/Maktabah/actions/runs/44980625976), attempt1/push at03:26:17 UTC, runs three failed original selectors plus one isolated consent diagnostic on frozen wrapperc107c8ac. The sole observer is job_d3c08232bc6c. Original focused source/declaration, ordinary HQ and exact Host48 reuse preflights passed with275 execution inputs and zero newly executed Host48 tests. The local Windows cp1252 failure and successful process-only UTF-8 correction are both retained in [native-four evidence](../native-four-20261122/). No application source changed for that encoding correction. Full Native116 and Release114 manifests have not been relabeled as accepted or silently updated.
+[Current integration proof](native-fence-integration/INTEGRATION.json) verifies the exact two-parent merge, the sole product-file delta, all107 indexed evidence payloads,42 compiled inputs and current trees. Ordinary HQ, future original-editor Native and future Hanlin Live bindings target67518. The original ordinary source-only preflight passed once on metadata577ea in7.5seconds, with no downloads/build/tests. [Raw preflight](native-fence-integration/preflight/RUN.json) records that invocation. Its native Windows CRLF stdout was retained byte-for-byte; correcting Git evidence attributes did not rerun the validation.
 
-This is a focused diagnostic source freeze. Original-editor distribution integration, production annotation work and subsequent verified corrections may require a later application freeze.
+The historical [four-case source freeze](native-four-application-freeze/APPLICATION_FREEZE.json) remains application385ee84a8acb3fbc3c013c0977417b61fd3d8a17, metadata46a18524. Actual [run44980625976](https://github.com/davidpovarsky/Maktabah/actions/runs/44980625976), attempt1/push at03:26:17 UTC, uses frozen wrapperc107c8ac. Its original app and UI-runner builds, exact Host48 reuse and HID preparation passed; actual four-case Native execution started. No final case outcome is yet credited. The sole observer is job_d3c08232bc6c. The three previously passed selectors are excluded, and no provider key, Connect or Send is supplied. [Wrapper evidence](../native-four-20261122/) retains the original275-input preflight and Windows encoding correction.
+
+Those four selectors are outside Native116. The two Search cases also occur in Release114 in both iPad configurations; focused results cannot replace its exact five-configuration aggregate. Full Native116/Release114 manifests remain pending the final qualified source. Their counts, ordering, real-execution requirements and24-hour Release freshness have not been weakened.
+
+Original-editor distribution integration, device/runtime work and later verified corrections may require another application freeze.
 
 ## Requested runs and temporary secret cleanup
 
@@ -70,7 +74,7 @@ The earlier HTTP worker correctioneaa971f9 retained16 passing Foundation respons
 
 Four new exact-callback controls reproduced the original HTTP503 false success and verified accepted204, rejected HTTP, missing response and original transport-error identity. The prior16 cases were not rerun. All three original application targets and the original local/cloud acceptance closures include the shared declaration. [Core evidence](core-worker-termination/README.md) retains source relocation, target membership, original receipts and the270-input source preflight.
 
-The original Apple import9 compiled closure is unchanged across the Core correction and remains reusable. The Cloud48 run remains an actual result for application5d; it is not claimed to have executed the later Core changes. A full app compile is included in the next Native route.
+The original Apple import9 compiled closure is unchanged across the Core correction and remains reusable. The Cloud48 run remains an actual result for application5d; it is not claimed to have executed the later Core changes. Actual original app/UI-runner compilation has now passed in Native4 on application385ee; this does not compile or execute the newly added ledger in67518 on Apple.
 
 ## Original Anytype producer
 
@@ -84,13 +88,21 @@ Both original Services repairs were reviewed in full. PublishingService preserve
 
 The completed peer property16 source388a3726/evidence06b639ff was independently reviewed against cb2: all16 preimages/outputs,80 evidence payloads,14 actual new controls and the13 intended production control inputs verified without rerunning the controls. Services commitb5b4869660415cbc5f273141162482a32f68f9fd and exact peer source cherry-pickfcdff77b3e75dd0b38cb939d15affd68cf43c180 are composed together; peer evidence is retained at2b39d5e3f0161b1a8a0b8724b43a8f5f464592fc.
 
-The repaired producer is frozen/published ata5fffd7f0ead01b3086019f4c1bef7c01f3a699d. Actual [run44982412759](https://github.com/davidpovarsky/anytype-swift/actions/runs/44982412759), attempt1, began03:50:19 UTC and was independently verified IN_PROGRESS on that exact SHA. The sole finite observer is job_e7d5048ee778. Local source/profile admission passed with the original2252 source count, unchanged51 pins and49 execution inputs. Pure CRLF checkout differences in six unchanged control sources were backed up and canonicalized to their exact Git bytes; no source semantics or global Git setting changed. No qualified framework, binary consumer or Native editor result is yet credited.
+Producera5fffd7f0ead01b3086019f4c1bef7c01f3a699d / [run44982412759](https://github.com/davidpovarsky/anytype-swift/actions/runs/44982412759) failed the actual Xcode framework build with exit65 at04:00:16 UTC, before framework success, export, consumer or runtime execution. The two reported diagnostics are ObjectSettingsViewModel.swift:399/408, where nil-tested generic multi-statement callbacks require explicit Void return inference. Earlier Publishing/Templates diagnostics are absent from this actual compile log. Artifact14738955400 was downloaded once at1,278,926 bytes, SHA25636a8977310cfa3cb1e88b754dbc3aeaef7b6813b33013e94e9a9d4fb5cfc3dee; all38 ZIP members passed CRC. Source-before/after are identical,221 source controls passed, and macro trust restoration passed.
+
+The exact two-line repair was fully reviewed and passed syntax plus four bounded extracted inference outcomes. It changes no callback body, ordering or ownership check. Sourcee084ccaa54e516cebc83821b5d576976f0be9b5a is sealed as553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2. Actual [run44983797493](https://github.com/davidpovarsky/anytype-swift/actions/runs/44983797493), attempt1, began04:09:33 UTC and was independently verified IN_PROGRESS on that exact SHA. The sole observer is job_3e7ae6631939; the a5 observer is terminal. The original2252 source count,49 execution inputs,51 package pins, resources and facades are retained. No qualified framework or binary-consumer result is yet credited.
+
+A separate reviewed six-callback type annotation patch remains unapplied to that frozen producer. It also repairs an actual nil-session legacy action suppression reproduced with exact generic semantics. It will enter the next controlled source composition; no passing original ownership suite is rerun for unchanged inputs.
 
 Ordinary HQ keeps optional original-editor admission and canImport guarding. An UNFINALIZED producer blocks dedicated StageB, not every ordinary app build. StageB still requires the genuine qualified original distribution and actual native two-block save/reopen evidence. Source-only and portable controls are not editor runtime acceptance.
 
 The new production annotation work is isolated from the frozen producer. Exact original Heart source shows that creation and indexing can diverge; a zero-result index query cannot prove no object was created. The reviewed direction preserves an uncertain create intent and permits recovery only through a positively verified original native identity. It does not issue a second create or ACK after an uncertain outcome. Dedicated annotation classification, stable destination identity, visibility and original-service integration remain unfinished.
 
 The peer continuation owns the property-modal source chain. Its files and frozen producer are not being modified by competing writers.
+
+Current original-editor consumer mount/qualification/source-observation files are DEBUG, iOS and Simulator guarded; StageB admission requires arm64 IOSSIMULATOR products. Ordinary device and TestFlight workflows do not yet restore/admit this distribution. A future StageB PASS therefore qualifies the scoped original-editor Simulator path only. Genuine device products, original production account/runtime bootstrap and device embedding remain separate requirements; those guards stay in place.
+
+The original synchronous Owner admission/drain ordering is retained for the future receipt seam. A new consumption must be admitted after the real SQLite lock is acquired, with the exact pending/source witness rechecked inside a top-level transaction. Already-admitted work may finish while retirement drains it; this is not instantaneous revocation. A COMMIT followed by retirement/postvalidation failure must be reported as durable-without-current-publication, never rollback or permission to recreate. No public receipt/writer exists until actual Owner+SQLite races, native schema and original readback establish this boundary. The local fence does not guarantee global uniqueness between two independent first writers.
 
 ## Retained dependency evidence
 
@@ -108,11 +120,17 @@ Independent post-merge review verified both actual parents, all18 retained blobs
 
 ## Durable native-creation fence work
 
-An isolated consumer extension adds explicit opt-in native-attempt/mapping tables to the original AnnotationExchangeLedger without changing original v1 tables, PRAGMA user_version, startup behavior or ACK. The dispatch uncertainty transition now refuses an enclosing transaction and holds the original SQLite connection lock through the true outermost COMMIT. A released SAVEPOINT is not accepted as durable.
+Sourcee78ddef1cd156bd2118e1ed23eb56376e65d0a7c and evidence0cdb968f2c1330e7235c22304ca982b532a78a60 are integrated by true merge67518e8df6975c976e8f1cd9e622328dc45985fc. Only AnnotationExchangeLedger.swift changes in the product:326 appended lines, with the original33,283-byte prefix unchanged. The three native tables require explicit opt-in installation and preserve original v1 tables, PRAGMA user_version, startup behavior and existing ACK.
 
-The frozen draft9ad84c76 passed18 new actual original-source SQLite controls plus3 abrupt-process-termination/distinct-process-reopen pairs on Windows Swift6.3.3/SQLite3.53.4. The first compiler timeout was preserved; its same-cache continuation executed the cases. A separately identified UUID-case ambiguity is under an actual negative reproduction before integration: a noncanonical stored UUID must fail closed instead of hiding prior uncertainty. This draft is not yet integrated or a Native result.
+The uncertainty transition rejects an enclosing transaction and holds the original SQLite connection lock through the true outermost COMMIT. A released SAVEPOINT cannot establish durability. The actual UUID-case RED showed that a lower-case stored uncertain row could otherwise hide from the next revision. Three UUID-only NOCASE predicates and strict canonical decoding now refuse noncanonical or colliding rows; destination/account/Space/namespace/native IDs remain case-sensitive. No stored row is repaired or adopted silently.
 
-The isolated SDK policy files511c648c/12beaebc passed52 new pure Swift controls and were fully reviewed. They define conservative recovery and separate identity from applied-body assessment. The durable attempt uses the existing messageID; no ID is minted during recovery. No DTO, caller boolean or metadata marker is a runtime receipt. A retained original account/Space/Owner and actual native readback must issue sealed identity/application receipts before any mapping writer or ACK can be wired. Production native schema, account bootstrap and visibility remain unfinished.
+The final ledger SHA256 is26dc7075df6d73f9dc9c5d2cc46547d9496d71c96469fe8adf3a4e779d9b53cc. On Windows Swift6.3.3/SQLite3.53.4,19 affected/new controls passed and5 unchanged schema controls are reused exactly:24 distinct new-component cases covered. Three real abrupt exit73/distinct-process reopen pairs passed on the final source. Exact payloads, source rows and CloudKit queue were preserved. The original compiler timeout,18-case earlier result, UUID RED and final GREEN all remain in [component evidence](native-creation-fence/README.md). No historical28/Core194 suite was rerun.
+
+Root and an independent reviewer read the full additive source and original SQLite/ledger dependencies. All107 indexed evidence payloads and42 compiled inputs match actual incoming Git blobs. [Merge proof](native-fence-integration/INTEGRATION.json) and [source-only admission](native-fence-integration/preflight/RUN.json) preserve the composed source. No production identity writer, native RPC, body application, transport, ACK hook or startup call is enabled.
+
+A separate Apple route is being prepared with all24 unchanged assertions and the existing actual Apple SQLite3/CryptoKit/_exit path. It has not been dispatched or credited. Windows persistence results do not establish Apple/native authority or application acceptance.
+
+The isolated SDK policy files511c648c/12beaebc passed52 pure controls and were published at53392efc0010ac0c75b9c104b51bc144b545eb5e. They separate identity recovery from body application, alias durable attempt identity to the existing messageID, and never confer authority through a DTO or caller boolean. Original native schema, held account/Space/Owner capability, body readback and actual joint commit-boundary controls remain necessary before production wiring.
 
 ## Signing and remaining external requirements
 
