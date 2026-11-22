@@ -187,6 +187,123 @@ class ReleaseGateTests(unittest.TestCase):
             gate["verify"](self.run, self.root, candidate, self.manifest, "manifest", self.trees, self.now, proof, required_inputs=self.required_inputs)
 
 
+class FinalPushGateTests(unittest.TestCase):
+    """Synthetic false-green mutations of the real push admission contract."""
+    def setUp(self):
+        ReleaseGateTests.setUp(self)
+        self.final_push = gate["verify_final_push_receipts"].__globals__["FINAL_PUSH"]
+        self.authority = self.final_push["authority"]("release")
+        repository = {"id": 1280062128, "full_name": "davidpovarsky/Maktabah"}
+        self.run.update(event="push", path=self.authority["workflow"],
+                        head_branch=self.authority["ref"].removeprefix("refs/heads/"),
+                        id=42, run_attempt=1, repository=repository, head_repository=copy.deepcopy(repository))
+        self.observed = {"application_source_sha": self.sha,
+                         "application_trees": {**self.trees, "Maktabah-iOSUITests": "tests"},
+                         "source_pins": [{"path": "Scripts/CI/runtime27-release-manifest.json", "sha256": "manifest"}],
+                         "binding": {"sha256": "synthetic-finalized-binding"},
+                         "inputs": [{"path": "synthetic-original-source", "sha256": "synthetic-bytes"}]}
+        source = {**copy.deepcopy(self.observed), "authority": self.authority,
+                  "checkout_sha": self.sha, "run_id": 42, "run_attempt": 1}
+        self.before = {"status": "FINAL_PUSH_SOURCE_BOUND", "mode": "release", "stage": "production",
+                       "phase": "before", "source": source}
+        self.after = {**copy.deepcopy(self.before), "status": "FINAL_PUSH_SOURCE_UNCHANGED", "phase": "after"}
+        self.candidate_head = self.sha
+
+    def check(self):
+        folder = self.root / "artifacts/runtime27"
+        folder.mkdir(parents=True, exist_ok=True)
+        for phase, receipt in [("before", self.before), ("after", self.after)]:
+            (folder / ("final-push-production." + phase + ".json")).write_text(json.dumps(receipt))
+        # Only the local source inventory is a fixture. Real authority checks,
+        # before/after binding, final gate and every raw UI/data check execute.
+        with patch.dict(self.final_push, git=lambda *args: self.candidate_head,
+                        reviewed_source=lambda *args: self.observed):
+            return ReleaseGateTests.check(self)
+
+    def test_completed_original_push_with_exact_receipts_reaches_full_ui_gate(self):
+        self.assertEqual(self.check()["required_ui_passed"], 1)
+
+    def test_foreign_repository_branch_workflow_or_attempt_is_rejected(self):
+        for key, replacement in [
+            ("repository", {"id": 1, "full_name": "foreign/Maktabah"}),
+            ("head_repository", {"id": 1280062128, "full_name": "foreign/Maktabah"}),
+            ("head_branch", "codex/otzaria-final-native116-20261120"),
+            ("path", ".github/workflows/otzaria-final-native-push.yml"),
+            ("id", 43), ("run_attempt", 2),
+        ]:
+            with self.subTest(key=key):
+                original = self.run[key]
+                self.run[key] = replacement
+                with self.assertRaises(ValueError):
+                    self.check()
+                self.run[key] = original
+
+    def test_missing_failed_wrong_stage_and_drifted_receipts_are_rejected(self):
+        for target, key, replacement in [
+            ("before", "status", "FINAL_PUSH_SOURCE_REJECTED"),
+            ("after", "status", "FINAL_PUSH_SOURCE_BOUND"),
+            ("before", "stage", "native"), ("after", "mode", "ui"),
+            ("after", "phase", "before"), ("after", "source", {}),
+        ]:
+            with self.subTest(target=target, key=key):
+                receipt = getattr(self, target)
+                original = receipt[key]
+                receipt[key] = replacement
+                with self.assertRaises(ValueError):
+                    self.check()
+                receipt[key] = original
+
+    def test_self_consistent_receipts_for_different_candidate_inputs_are_rejected(self):
+        self.before["source"]["binding"]["sha256"] = "foreign"
+        self.after["source"]["binding"]["sha256"] = "foreign"
+        with self.assertRaisesRegex(ValueError, "candidate inputs differ"):
+            self.check()
+
+    def test_self_consistent_foreign_authority_and_checkout_are_rejected(self):
+        for key, value in [("authority", {}), ("checkout_sha", "b" * 40)]:
+            with self.subTest(key=key):
+                original = copy.deepcopy(self.before["source"][key])
+                self.before["source"][key] = self.after["source"][key] = value
+                with self.assertRaisesRegex(ValueError, "authority or checkout"):
+                    self.check()
+                self.before["source"][key] = self.after["source"][key] = original
+
+    def test_original_full_ui_data_and_age_requirements_still_apply_to_push(self):
+        for target, key, replacement in [
+            ("result", "full_release_acceptance", False),
+            ("summary", "skippedTests", 1), ("data", "actualSHA256", "foreign"),
+            ("run", "updated_at", "2026-11-13T11:00:00Z"),
+            ("run", "conclusion", "failure"),
+        ]:
+            with self.subTest(target=target, key=key):
+                record = getattr(self, target)
+                original = record[key]
+                record[key] = replacement
+                with self.assertRaises(ValueError):
+                    self.check()
+                record[key] = original
+
+    def test_source_audit_failure_is_not_caught_as_pass(self):
+        self.check()
+        with patch.dict(self.final_push, git=lambda *args: self.sha,
+                        reviewed_source=lambda *args: (_ for _ in ()).throw(ValueError("dirty input"))):
+            with self.assertRaisesRegex(ValueError, "dirty input"):
+                gate["verify"](self.run, self.root, self.sha, self.manifest, "manifest", self.trees,
+                               self.now, required_inputs=self.required_inputs)
+
+    def test_documentation_descendant_retains_tested_push_sha_only_with_same_inputs(self):
+        self.check()
+        candidate = "b" * 40
+        proof = {"kind": "DOCUMENTATION_ONLY_DESCENDANT", "tested_sha": self.sha,
+                 "candidate_sha": candidate, "changed_paths": ["docs/hq-integration/REPORT.md"]}
+        with patch.dict(self.final_push, git=lambda *args: candidate,
+                        reviewed_source=lambda *args: self.observed):
+            result = gate["verify"](self.run, self.root, candidate, self.manifest, "manifest", self.trees,
+                                   self.now, proof, required_inputs=self.required_inputs)
+        self.assertEqual(result["tested_checkout_sha"], self.sha)
+        self.assertEqual(result["checkout_sha"], candidate)
+
+
 class EvidenceClassificationTests(unittest.TestCase):
     def test_skipped_and_expected_failure_never_become_ui_passes(self):
         original = collect.__globals__["OUT"]

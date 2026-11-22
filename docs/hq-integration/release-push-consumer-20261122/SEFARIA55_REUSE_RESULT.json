@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "status": "REUSED_VERIFIED_APPLE_FOUNDATION_55_PASS",
+  "checkout_sha": "3bb181f4d3ca1bde9f1ce43de40d1f3658d821c5",
+  "startedAt": "2026-11-22T01:43:11.208029+00:00",
+  "scope": "Reused original Apple Foundation55; exact 13-input closure only",
+  "historical_source": "ce56baedf0fec15f61a117e5649e8c6865781120",
+  "historical_run": 44743177022,
+  "historical_run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44743177022",
+  "historical_evidence_commit": "e3922797c56c3c8939ccf83486952062f265fe25",
+  "historical_manifest_sha256": "21a43fce76d0c6b63bb0b6c3f354e185ee5fb4f41508f16908a7186ef32564ff",
+  "historical_artifact_sha256": "7fc1d299c61bf9d34eb8674cf4b262f880a7189b9b0de4171d49fc66f6ad94d7",
+  "executed": 0,
+  "passed": 0,
+  "new_swift_compiles": 0,
+  "new_test_executions": 0,
+  "native": "NOT_RUN",
+  "iPadSDK": "NOT_RUN",
+  "realNetwork": "NOT_RUN",
+  "embeddedHermes": "NOT_RUN",
+  "physicalOffline": "NOT_RUN",
+  "verification_command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "-I",
+    "C:\\Users\\DAVID\\Code\\Maktabah-release-push-consumer-20261122\\build\\source55-exact-blob-check\\historical-evidence\\verify-evidence.py"
+  ],
+  "verification_returncode": 0,
+  "verified_historical_cases": 55,
+  "exact_source_inputs": 13,
+  "inputHashesUnchanged": true,
+  "original_verifier": {
+    "status": "VERIFIED_APPLE_FOUNDATION_55_PASS",
+    "source": "ce56baedf0fec15f61a117e5649e8c6865781120",
+    "cases": 55,
+    "source_inputs": 13,
+    "new_test_executions": 0,
+    "Native_UI": "NOT_RUN"
+  },
+  "finishedAt": "2026-11-22T01:43:27.237145+00:00"
+}

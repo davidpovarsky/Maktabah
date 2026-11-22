@@ -18,6 +18,7 @@ import shutil
 
 ROOT = Path(__file__).resolve().parents[2]
 GUARD = runpy.run_path(str(ROOT / "tools/verify_xcresult_zero_skips.py"))
+FINAL_PUSH = runpy.run_path(str(ROOT / "Scripts/CI/runtime27_final_push.py"))
 
 
 def require(value, reason):
@@ -33,6 +34,47 @@ def read(root, relative):
     return path
 
 
+def verify_final_push_receipts(run, root, tested_sha, manifest_sha, application_trees):
+    """Admit the original exact push route using its real final-stage receipts.
+
+    The existing producer source auditor is reused against the candidate's
+    actual checkout. An arbitrary push or locally asserted run cannot qualify.
+    """
+    prefix = "artifacts/runtime27/final-push-production."
+    before = json.loads(read(root, prefix + "before.json").read_text(encoding="utf-8"))
+    after = json.loads(read(root, prefix + "after.json").read_text(encoding="utf-8"))
+    require(before.get("status") == "FINAL_PUSH_SOURCE_BOUND"
+            and after.get("status") == "FINAL_PUSH_SOURCE_UNCHANGED"
+            and all(receipt.get("mode") == "release" and receipt.get("stage") == "production"
+                    for receipt in [before, after])
+            and before.get("phase") == "before" and after.get("phase") == "after",
+            "Missing successful final push production source receipts")
+    source = before.get("source")
+    require(isinstance(source, dict) and source == after.get("source"),
+            "Final push source changed during production acceptance")
+    authority = FINAL_PUSH["authority"]("release")
+    require(source.get("authority") == authority and source.get("checkout_sha") == tested_sha,
+            "Final push receipt has a different authority or checkout")
+    FINAL_PUSH["validate_release_run"](run, {
+        "workflow": authority["workflow"], "push_authority": authority,
+        "checkout_sha": tested_sha, "run_id": source.get("run_id"),
+        "run_attempt": source.get("run_attempt"),
+    })
+    # Documentation-only descendants can retain this proof only while the
+    # exact original application, tests, source pins and runtime closure match.
+    head = FINAL_PUSH["git"](ROOT, "rev-parse", "HEAD")
+    observed = FINAL_PUSH["reviewed_source"](ROOT, head)
+    recorded = {key: value for key, value in source.items()
+                if key not in {"authority", "checkout_sha", "run_id", "run_attempt"}}
+    require(observed == recorded, "Final push reviewed candidate inputs differ")
+    require({key: observed["application_trees"][key] for key in application_trees} == application_trees,
+            "Final push application trees differ from the candidate")
+    pins = {row["path"]: row["sha256"] for row in observed["source_pins"]}
+    require(pins.get("Scripts/CI/runtime27-release-manifest.json") == manifest_sha,
+            "Final push full Release manifest differs")
+    return authority
+
+
 def verify(run, root, expected_sha, manifest, manifest_sha, application_trees, now=None, reuse_proof=None, *, required_inputs):
     require(manifest.get("full_release_acceptance_required") is True and manifest.get("configurations"), "Missing full release requirements")
     require(re.fullmatch(r"[a-f0-9]{40}", expected_sha) is not None, "Missing exact candidate SHA")
@@ -43,8 +85,11 @@ def verify(run, root, expected_sha, manifest, manifest_sha, application_trees, n
                 and reuse_proof.get("tested_sha") == tested_sha and reuse_proof.get("candidate_sha") == expected_sha
                 and all(path.startswith("docs/hq-integration/") for path in reuse_proof.get("changed_paths", [])),
                 "Stale/different acceptance checkout without bounded input-equivalence proof")
-    require(run.get("event") == "workflow_dispatch", "Unexpected acceptance trigger")
-    require(run.get("path", "").split("@")[0] == ".github/workflows/sefaria-embedded-validation.yml", "Unexpected acceptance workflow")
+    if run.get("event") == "push":
+        verify_final_push_receipts(run, root, tested_sha, manifest_sha, application_trees)
+    else:
+        require(run.get("event") == "workflow_dispatch", "Unexpected acceptance trigger")
+        require(run.get("path", "").split("@")[0] == ".github/workflows/sefaria-embedded-validation.yml", "Unexpected acceptance workflow")
     completed = datetime.fromisoformat(run["updated_at"].replace("Z", "+00:00"))
     age = ((now or datetime.now(timezone.utc)) - completed).total_seconds()
     require(0 <= age <= manifest["max_age_hours"] * 3600, "Stale/future acceptance result")

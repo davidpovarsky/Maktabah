@@ -42,11 +42,11 @@ jobs:
         run: python3 Scripts/CI/runtime27_final_push.py --mode release --stage build --phase before
       - name: Select an existing SDK-matched runtime for the full device matrix
         run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
-      - name: Require all 55 Sefaria transport cases on actual Apple Foundation
+      - name: Verify unchanged inputs and reuse original Apple Foundation55 evidence
         if: ${{ 'release' == 'ui' || 'release' == 'release' || 'release' == 'toc-transport' }}
         env:
           EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
-        run: python3 Scripts/CI/sefaria-toc-apple55.py
+        run: python3 Scripts/CI/reuse-sefaria-toc-apple55.py
       - uses: actions/setup-node@v4
         if: ${{ ('release' == 'ui' || 'release' == 'release') }}
         with:
