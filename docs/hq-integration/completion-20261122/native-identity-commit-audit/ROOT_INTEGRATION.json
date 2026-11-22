@@ -1,0 +1,68 @@
+{
+  "status": "VERIFIED_SOURCE_AUDIT_INTEGRATION_NOT_RUNTIME_ACCEPTANCE",
+  "utc": "2026-11-22T05:52:20.701653+00:00",
+  "root_before": "1761c1d56fa6f6538f95c85130aa040dc50f9803",
+  "true_merge": "f09ae37a865cfaf19903651da5cc81b8cb18a106",
+  "evidence": "96d5955622de38828bd55db954c570a991311bb9",
+  "index_sha256": "5e2527a56d1edbcbfe9e5fb77dc1a2c3d926a451f09a9a534f3b3b9e685e2c9d",
+  "reviewed_readme_sha256": "36c88a31e5d72fff49523e46b9c74d48f659eeea717215ce47aad599f7769823",
+  "six_source_inputs": [
+    {
+      "repository": "Maktabah",
+      "commit": "0ea7218331d1441d37d06d43333e579f267056e3",
+      "path": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "git_blob": "c43eb550fabd76f05c973e81e373b0b14da2ef97",
+      "bytes": 52783,
+      "sha256": "26dc7075df6d73f9dc9c5d2cc46547d9496d71c96469fe8adf3a4e779d9b53cc"
+    },
+    {
+      "repository": "Maktabah",
+      "commit": "0ea7218331d1441d37d06d43333e579f267056e3",
+      "path": "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "git_blob": "30602a567c239852fc56de436e35f939c5486997",
+      "bytes": 8619,
+      "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f"
+    },
+    {
+      "repository": "Maktabah",
+      "commit": "0ea7218331d1441d37d06d43333e579f267056e3",
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "git_blob": "a7d7180ef1b7ba77a40a98d32592365206c1e41f",
+      "bytes": 14916,
+      "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+    },
+    {
+      "repository": "Maktabah",
+      "commit": "0ea7218331d1441d37d06d43333e579f267056e3",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "git_blob": "d4d77f1dbaa8650c5336dcc7c0483a9ef17a13e5",
+      "bytes": 25713,
+      "sha256": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972"
+    },
+    {
+      "repository": "Maktabah",
+      "commit": "0ea7218331d1441d37d06d43333e579f267056e3",
+      "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "git_blob": "101c5619549996fa2a0595df68aa59f1d43d04fa",
+      "bytes": 45760,
+      "sha256": "a0f9643764f12b3be4ac0e3ac441cfbfe638d7bc1a1cbe9d25acf8265d7e358b"
+    },
+    {
+      "repository": "anytype-swift",
+      "commit": "b854e7f3f59690134bcabdef88527b61517d5ab5",
+      "path": "docs/pinkha/torah-integration/production-annotation-20261122/CONTRACT.md",
+      "git_blob": "5e4a8a2ca373fad4f12fccdeb1ff94f890cf094e",
+      "bytes": 18917,
+      "sha256": "465c6e80a821206a8ec91ce016135b654233d0b372166b2fb00a48b997734f87"
+    }
+  ],
+  "current_product_trees_unchanged": {
+    "Source": "ac887bdbfbfce2d30d9591bb867d61b11da31cc6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "24345d612f8c70398f4590977f8b4696021ae413"
+  },
+  "tests_executed": 0,
+  "product_changes": 0,
+  "conclusion": "No confirmed defect; withdrawn NUL hypothesis not executed. Future identity recovery requires explicit R1/currentR2 policy without weakening dispatch or ACK."
+}
