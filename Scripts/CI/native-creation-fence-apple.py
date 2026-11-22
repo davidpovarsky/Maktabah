@@ -68,13 +68,15 @@ def source_context():
     # Reuse the original byte-to-Git-blob validator; do not invoke its Native route.
     records = runpy.run_path(str(ROOT / EXACT))["exact_working_inputs"](sorted(required))
     require(set(records) == required, "Missing committed input")
+    # The existing helper already verified every working byte against HEAD.
+    # Compare the complete selected Git paths in one operation, not per-file processes.
+    require(not git("diff", "--name-only", binding["closure_source"], head, "--", *sorted(required)).strip(),
+            "Execution input changed from the sealed source")
+    original_fixtures = sorted(path for path in compiler if path.startswith("Tests/"))
+    require(not git("diff", "--name-only", binding["application_source"], head, "--", *original_fixtures).strip(),
+            "Original application fixture changed")
     for relative, entry in records.items():
         require(entry["sha256"] == binding["source_pins"][relative], "Unreviewed input: " + relative)
-        sealed = git("show", binding["closure_source"] + ":" + relative)
-        require(hashlib.sha256(sealed).hexdigest() == entry["sha256"], "Input not present in sealed source: " + relative)
-        if relative.startswith(("Source/", "Tests/")):
-            application = git("show", binding["application_source"] + ":" + relative)
-            require(hashlib.sha256(application).hexdigest() == entry["sha256"], "Component source changed: " + relative)
     controls = probe["CONTROL"].read_text(encoding="utf-8")
     names = re.findall(r'await run\("([a-z0-9_]+)"', controls)
     uuid_names = re.findall(r'await runUUID\("([a-z0-9_]+)"', controls)

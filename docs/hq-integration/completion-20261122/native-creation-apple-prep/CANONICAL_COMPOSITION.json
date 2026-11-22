@@ -1,0 +1,21 @@
+{
+  "composition_sha": "80e997759adb784fa417bf5e820a834ccdfaee6f",
+  "first_parent": "9ffd1babae751d20142057439756188debfc8c9a",
+  "canonical_published_parent": "5b2e63cedf54fb839d07304526c4b2dcb97bb1b1",
+  "application_source": "67518e8df6975c976e8f1cd9e622328dc45985fc",
+  "application_trees": {
+    "Source": "ac887bdbfbfce2d30d9591bb867d61b11da31cc6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "cd108ec2cec9f8c6089a1eeff2ec77bc9372a469"
+  },
+  "true_two_parent_merge": true,
+  "route_inputs_unchanged_during_merge": {
+    "docs/hq-integration/completion-20261122/native-creation-fence/NativeCreationFenceAcceptance.swift": "e199216100e2549720d67ca20780b2d60b15bf5f62bd8137dadd713ffb184bb0",
+    "docs/hq-integration/completion-20261122/native-creation-fence/run-native-creation-controls.py": "6ae6449caf126c0b5abeab467c541b02c08e22656feda34011e3716252fa2534",
+    "Scripts/CI/native-creation-fence-apple.py": "255dbc6b15b73e12b65aaf16c1f1acd6fa529e3cd30cc38d0416d84ac9221ec4",
+    ".github/workflows/otzaria-native-creation-fence-apple.yml": "2405ecdc66c5a9e5537d2e29d5dc58978c0d30a4111da32393cd236d46d8faf7"
+  },
+  "ci_dispatches": 0,
+  "test_executions": 0
+}
