@@ -1,0 +1,142 @@
+{
+  "source_candidate": "f81213dc5bba73272c9d0aa9873a7ef1e05e1528",
+  "status": "RED_PRESERVED_NEGATIVE_PASS",
+  "payload_count": 27,
+  "payloads": [
+    {
+      "path": ".gitattributes",
+      "bytes": 68,
+      "sha256": "1deb6dc711e71fb6a8c2ba5981bd6df4bb79f6d4816cf923514bfce2c0c0b546"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 41,
+      "sha256": "58fdc9a5c955495202ab2e80ba9de8d2a07e96f0ce6cbe430a957ca09823f03f"
+    },
+    {
+      "path": "ORDERING_REVIEW.json",
+      "bytes": 671,
+      "sha256": "0e2d0b32f89eb24239a04f500f77bc19ba953f9cd2f913ca00589e24e5a782aa"
+    },
+    {
+      "path": "OriginalOwnerExclusiveSQLiteControls.swift",
+      "bytes": 14573,
+      "sha256": "5d4cb2744a4d03d8a46808618ccd78052d316ab7dedffd462cf22bdaf42066ed"
+    },
+    {
+      "path": "PREPARATION.json",
+      "bytes": 853,
+      "sha256": "69c36906b2ce583c62a17330f58f8bb979a3f42d7bc9953326529fc4ce31c1ff"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4552,
+      "sha256": "5488717a204898ee1914723ab4800c5c718b64edff0140dcad75a9021cdeb7cc"
+    },
+    {
+      "path": "evidence/EXECUTION_WRAPPER.py",
+      "bytes": 3844,
+      "sha256": "25058706261862eee8e328a9fdebf63328d94bfd18d55520034ebb5033f9e315"
+    },
+    {
+      "path": "evidence/FAILED_PATH_OBSERVATION.json",
+      "bytes": 2401,
+      "sha256": "1e35481872f1946205dcb8229af3acd22505d1b7cff530c02576ca07dea68533"
+    },
+    {
+      "path": "evidence/INDEPENDENT_SOURCE_REVIEW.json",
+      "bytes": 981,
+      "sha256": "c5e73e0c0d3c3cdf5c6d35fdf00bb77b23f2dd2c0c23fd90ea82f2927f515f2f"
+    },
+    {
+      "path": "evidence/OWNED_PROCESS.json",
+      "bytes": 570,
+      "sha256": "84a50ef696a61b614b6a958fbcda85d1ea37be8f1068a8f847d2fa958fa8c2b7"
+    },
+    {
+      "path": "evidence/RETENTION_WHITESPACE_RECEIPT.json",
+      "bytes": 11668,
+      "sha256": "70e148e894f34397809ebd654a258e42e7dfb0e4dc71ea6eb5695fcbab03adc7"
+    },
+    {
+      "path": "evidence/SENTINEL_INITIAL_EXECUTION_RECEIPT.json",
+      "bytes": 2770,
+      "sha256": "2daa24bff0759b836a504b277d2a963450dc4ffbd5b7293d2770fbaed77f269e"
+    },
+    {
+      "path": "evidence/SOURCE_FROZEN.json",
+      "bytes": 2422,
+      "sha256": "502d47843e64e4f835ca227ef44a7b2a3627dfaa9888331d1c7907629c08c63d"
+    },
+    {
+      "path": "evidence/WRAPPER_RECEIPT.json",
+      "bytes": 879,
+      "sha256": "4bd0679dba48953bee1bc676807739b25e3e70e6ac436795e534e10287c7014b"
+    },
+    {
+      "path": "evidence/WindowsSQLite3.modulemap",
+      "bytes": 150,
+      "sha256": "3abfda73dbd6208896a14028bed643a3fce985b1982bee0bc4269e728cf35b20"
+    },
+    {
+      "path": "evidence/wrapper.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/wrapper.stdout.log",
+      "bytes": 6395,
+      "sha256": "e4196f4c83764dfdb9d4ecba9597efa5074d6d685cab2149761aea15f3617385"
+    },
+    {
+      "path": "run-exclusive-owner-sqlite-controls.py",
+      "bytes": 8449,
+      "sha256": "179e4ad274200ca436134b0017153b769cc536bb04fd2f6251e22285d9d9c8b3"
+    },
+    {
+      "path": "validation/windows-exclusive-two-20261122/RESULT.json",
+      "bytes": 7568,
+      "sha256": "d3f526d50b9f99a1be3919d6276c36f2ac8dbde514e9387de16d3efb9a11eaea"
+    },
+    {
+      "path": "validation/windows-exclusive-two-20261122/SOURCE_MANIFEST.json",
+      "bytes": 11046,
+      "sha256": "ed1adccd667975f7e63b6dde9e93b20e13084292955d62a90f4e7bedc97f21e1"
+    },
+    {
+      "path": "validation/windows-exclusive-two-20261122/compile.stderr.log",
+      "bytes": 475,
+      "sha256": "cfd63b45abc2cf3ee33c11ce9b396489326d0e75242eaee8e97add31811e76d3"
+    },
+    {
+      "path": "validation/windows-exclusive-two-20261122/compile.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/windows-exclusive-two-20261122/controls.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/windows-exclusive-two-20261122/controls.stdout.log",
+      "bytes": 216,
+      "sha256": "804382b960fba11de4fb0f25bdbd04f4b627955ffc7a1f93bcbb074bcd471a97"
+    },
+    {
+      "path": "validation/windows-exclusive-two-20261122/failure.log",
+      "bytes": 633,
+      "sha256": "4312ef9aab67ab00fcec8e073eb658613fbb89c0a9483880e365242e9cf684f1"
+    },
+    {
+      "path": "validation/windows-exclusive-two-20261122/fixtures/CASES.json",
+      "bytes": 1211,
+      "sha256": "cdc294992fa34c29acce77ad2f20094bc92e2a2d5ad391e364aaefd094d495f8"
+    },
+    {
+      "path": "validation/windows-exclusive-two-20261122/fixtures/WRITER.json",
+      "bytes": 340,
+      "sha256": "09f36873840a4221bccdcdd37bdfb28112467cd4e8bf19ebb00551de74113331"
+    }
+  ]
+}

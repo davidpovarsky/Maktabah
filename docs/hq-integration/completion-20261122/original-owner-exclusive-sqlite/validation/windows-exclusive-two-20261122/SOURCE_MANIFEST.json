@@ -1,0 +1,172 @@
+{
+  "head": "f81213dc5bba73272c9d0aa9873a7ef1e05e1528",
+  "inputs": {
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/Lifetime.swift": "451054685e2ff0c30371d384904be831412eec16c2a5e16c660d2f1891921eb4",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/Operation.swift": "55804cf1a06b59dc80846ab4bc8b874a2d54ae28649288c5b49930267b9ae844",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/Binding.swift": "e304f05ed114342795dbc3a603490311142d63f9a6a156bdcdafd68743e710cb",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/Owner.swift": "5ff93fe232eaed63519ce3721bf423c777d6d0b4d312f6d48c4bf8f6ca6b1adc",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/PreparedEditorPageDocument.swift": "42e595c324e46947d4b964070994a193478d57072931b92be1451f155e2cb32e",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/RoleSource.swift": "bd497ad835574512d29d75f7285cf13e54f9353b6f62500b56655cf36a1b0951",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/OriginalTypePermissionProbe.swift": "0708d577f19f0c382cec913b990e949716c543536c4166575ed60e96f5c33f6a",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/SQLiteDatabase.swift": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+    "docs/hq-integration/completion-20261122/original-owner-exclusive-sqlite/OriginalOwnerExclusiveSQLiteControls.swift": "5d4cb2744a4d03d8a46808618ccd78052d316ab7dedffd462cf22bdaf42066ed",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/OriginalOwnerSQLiteAcceptance.swift": "f922db58646a0c7f5714d487df8f31bef70acdbf49902843c2ddb954a6fef7ea",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/PRODUCTION_INPUTS.json": "5803a514092dd84fded7dc7e93f4a2467cb3be57abfed3375ac899d9409c25d7",
+    "docs/hq-integration/completion-20261122/original-owner-exclusive-sqlite/run-exclusive-owner-sqlite-controls.py": "179e4ad274200ca436134b0017153b769cc536bb04fd2f6251e22285d9d9c8b3"
+  },
+  "compiled_copies": {
+    "Lifetime.swift": "451054685e2ff0c30371d384904be831412eec16c2a5e16c660d2f1891921eb4",
+    "Operation.swift": "55804cf1a06b59dc80846ab4bc8b874a2d54ae28649288c5b49930267b9ae844",
+    "Binding.swift": "e304f05ed114342795dbc3a603490311142d63f9a6a156bdcdafd68743e710cb",
+    "Owner.swift": "5ff93fe232eaed63519ce3721bf423c777d6d0b4d312f6d48c4bf8f6ca6b1adc",
+    "PreparedEditorPageDocument.swift": "42e595c324e46947d4b964070994a193478d57072931b92be1451f155e2cb32e",
+    "RoleSource.swift": "bd497ad835574512d29d75f7285cf13e54f9353b6f62500b56655cf36a1b0951",
+    "OriginalTypePermissionProbe.swift": "0708d577f19f0c382cec913b990e949716c543536c4166575ed60e96f5c33f6a",
+    "SQLiteDatabase.swift": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+    "UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+    "OriginalOwnerExclusiveSQLiteControls.swift": "000ee2f310ca9ac3c62072e701995597e75fa2d158a1e176a0decd5df27fe9a8"
+  },
+  "control_derivation": {
+    "frozen_fixture_source_sha256": "f922db58646a0c7f5714d487df8f31bef70acdbf49902843c2ddb954a6fef7ea",
+    "selected_prefix_bytes": 6694,
+    "selected_prefix_sha256": "e70be884090dd1f52bdc63a7ffe0a3b527d059e67cb1b960671114687c3a30ff",
+    "new_fragment_sha256": "5d4cb2744a4d03d8a46808618ccd78052d316ab7dedffd462cf22bdaf42066ed",
+    "combined_control_sha256": "000ee2f310ca9ac3c62072e701995597e75fa2d158a1e176a0decd5df27fe9a8",
+    "operation": "exact prefix before frozen @main marker concatenated with complete new fragment; no old-six assertion body included"
+  },
+  "producer_provenance": {
+    "status": "PREPARED_NOT_COMPILED_NOT_EXECUTED",
+    "mak_tabah_base": "5b2e63cedf54fb839d07304526c4b2dcb97bb1b1",
+    "application_source": "67518e8df6975c976e8f1cd9e622328dc45985fc",
+    "original_owner_source": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+    "portable_reference_zip": {
+      "path": "docs/hq-integration/completion-20261122/reviewed-followups-waxqv0pw/original-properties/new-controls/property-modal-controls.zip",
+      "sha256": "1d21d47b8cd407675265c87a82a2c6a32d1dee537b524eed6f10179ed7194514"
+    },
+    "inputs": [
+      {
+        "name": "Lifetime.swift",
+        "origin": "davidpovarsky/anytype-swift",
+        "commit": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+        "path": "Anytype/Sources/PresentationLayer/TextEditor/Assembly/Page/EditorDocumentWriteLifetime.swift",
+        "canonical_git_blob": "19f81f5e1bb51b48a7fd46d30476a99105d9aea2",
+        "canonical_sha256": "451054685e2ff0c30371d384904be831412eec16c2a5e16c660d2f1891921eb4",
+        "compiled_sha256": "451054685e2ff0c30371d384904be831412eec16c2a5e16c660d2f1891921eb4",
+        "bytes": 5574,
+        "transformation": "remove only import ProtobufMessages for same-module compilation; every other byte unchanged"
+      },
+      {
+        "name": "Operation.swift",
+        "origin": "davidpovarsky/anytype-swift",
+        "commit": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+        "path": "Anytype/Sources/PresentationLayer/TextEditor/Assembly/Page/EditorDocumentWriteOperation.swift",
+        "canonical_git_blob": "fdfa2a427044e6ea395f02dbda43d244b1fbe4af",
+        "canonical_sha256": "d6a1034809671d7550e21c5da4e46e1065d21ca6438bb66c7e1f9ea869b9dc51",
+        "compiled_sha256": "55804cf1a06b59dc80846ab4bc8b874a2d54ae28649288c5b49930267b9ae844",
+        "bytes": 2435,
+        "transformation": "remove only import ProtobufMessages for same-module compilation; every other byte unchanged"
+      },
+      {
+        "name": "Binding.swift",
+        "origin": "davidpovarsky/anytype-swift",
+        "commit": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+        "path": "Modules/ProtobufMessages/Sources/InvocationDispatchBinding.swift",
+        "canonical_git_blob": "7f6862925605de7a15220f6c44dbf4d6d884113d",
+        "canonical_sha256": "e304f05ed114342795dbc3a603490311142d63f9a6a156bdcdafd68743e710cb",
+        "compiled_sha256": "e304f05ed114342795dbc3a603490311142d63f9a6a156bdcdafd68743e710cb",
+        "bytes": 3025,
+        "transformation": "remove only import ProtobufMessages for same-module compilation; every other byte unchanged"
+      },
+      {
+        "name": "Owner.swift",
+        "origin": "davidpovarsky/anytype-swift",
+        "commit": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+        "path": "Anytype/Sources/PresentationLayer/TextEditor/Assembly/Page/EditorDocumentWriteOwner.swift",
+        "canonical_git_blob": "c90dd7f2ee0577d3496d81fd164fc238b79ea364",
+        "canonical_sha256": "b0ae02be8c28c22246d29bf927cb154e10019d841f3b831771f968a8938f7d46",
+        "compiled_sha256": "5ff93fe232eaed63519ce3721bf423c777d6d0b4d312f6d48c4bf8f6ca6b1adc",
+        "bytes": 49206,
+        "transformation": "remove only import ProtobufMessages for same-module compilation; every other byte unchanged"
+      },
+      {
+        "name": "PreparedEditorPageDocument.swift",
+        "origin": "davidpovarsky/anytype-swift",
+        "commit": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+        "path": "Anytype/Sources/PresentationLayer/TextEditor/Assembly/Page/PreparedEditorPageDocument.swift",
+        "canonical_git_blob": "37ff035f30c0b2f17c2ce75b4c7a7f1acbbb78a2",
+        "canonical_sha256": "42e595c324e46947d4b964070994a193478d57072931b92be1451f155e2cb32e",
+        "compiled_sha256": "42e595c324e46947d4b964070994a193478d57072931b92be1451f155e2cb32e",
+        "bytes": 1093,
+        "transformation": "remove only import ProtobufMessages for same-module compilation; every other byte unchanged"
+      },
+      {
+        "name": "RoleSource.swift",
+        "origin": "davidpovarsky/anytype-swift",
+        "commit": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+        "path": "Anytype/Sources/ServiceLayer/ParticipantStorage/ParticipantsStorage.swift",
+        "canonical_git_blob": "953cf70be87282dde644d0a4e4b10c1e2f04edc0",
+        "canonical_sha256": "42d619b79a0f68794163fd3cfdb1261292237b215e2554dfb35677897eb975e9",
+        "compiled_sha256": "bd497ad835574512d29d75f7285cf13e54f9353b6f62500b56655cf36a1b0951",
+        "bytes": 4634,
+        "transformation": "exact marked OriginalChannelPinPermission production region plus Foundation import only",
+        "start_byte": 110,
+        "end_byte_exclusive": 4725,
+        "region_sha256": "f40af80ab7ba4dbdc1c821498eff55a73ce13ca7075f603ad85339587a17e201"
+      },
+      {
+        "name": "OriginalTypePermissionProbe.swift",
+        "origin": "davidpovarsky/anytype-swift",
+        "commit": "553d4ae90eb8fb0ec21b5ecc319b43db40d2dba2",
+        "path": "docs/hq-integration/completion-20261122/reviewed-followups-waxqv0pw/original-properties/new-controls/property-modal-controls.zip!/OriginalTypePermissionProbe.swift",
+        "compiled_sha256": "0708d577f19f0c382cec913b990e949716c543536c4166575ed60e96f5c33f6a",
+        "bytes": 7227,
+        "transformation": "none; explicit disposable document/permission values; does not implement Owner, store, native service or RPC",
+        "production": false
+      },
+      {
+        "name": "SQLiteDatabase.swift",
+        "origin": "davidpovarsky/Maktabah",
+        "commit": "67518e8df6975c976e8f1cd9e622328dc45985fc",
+        "path": "Source/Core/Database/SQLiteDatabase.swift",
+        "canonical_git_blob": "a7d7180ef1b7ba77a40a98d32592365206c1e41f",
+        "canonical_sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+        "compiled_sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+        "bytes": 14916,
+        "transformation": "none; full original file"
+      },
+      {
+        "name": "UnusedZstdBoundary.swift",
+        "origin": "davidpovarsky/Maktabah",
+        "commit": "67518e8df6975c976e8f1cd9e622328dc45985fc",
+        "path": "Tests/HQ/sqlite/UnusedZstdBoundary.swift",
+        "canonical_git_blob": "af39c8673dcda19785f6f1259474c39941f5a5a0",
+        "canonical_sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+        "compiled_sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+        "bytes": 443,
+        "transformation": "none; full original file"
+      }
+    ],
+    "excluded_previous_controls": [
+      "OwnerModalControls.swift",
+      "CanonicalModalControls.swift",
+      "previous entrypoint"
+    ],
+    "production_changes": 0,
+    "identity_writes": 0,
+    "native_receipts": 0,
+    "native_rpc": 0,
+    "ack": 0,
+    "scope": "Actual original Owner and SQLite with explicit fixture-only document values and disposable tables."
+  },
+  "source_changes": "none; new fixture-only composition controls",
+  "unchanged_old_suites_not_executed": [
+    "OwnerSQLite6",
+    "OwnerModal14",
+    "Core194",
+    "exchange28",
+    "Cloud48",
+    "Native",
+    "Live"
+  ]
+}

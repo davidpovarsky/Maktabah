@@ -1,0 +1,17 @@
+{
+  "head": "f81213dc5bba73272c9d0aa9873a7ef1e05e1528",
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\run-exclusive-owner-sqlite-controls.py",
+    "--result-dir",
+    "C:\\Users\\DAVID\\Code\\Maktabah-original-owner-sqlite-controls-20261122\\docs\\hq-integration\\completion-20261122\\original-owner-exclusive-sqlite\\validation\\windows-exclusive-two-20261122"
+  ],
+  "exit_code": 1,
+  "seconds": 51.25,
+  "runner_pid": 25596,
+  "sources_unchanged": true,
+  "stdout_sha256": "e4196f4c83764dfdb9d4ecba9597efa5074d6d685cab2149761aea15f3617385",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "result_exists": true,
+  "old_six_packet_unchanged": true
+}

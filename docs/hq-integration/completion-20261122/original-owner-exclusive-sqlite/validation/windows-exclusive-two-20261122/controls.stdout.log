@@ -1,0 +1,3 @@
+FAIL exclusive_read_allows_explicit_local_read_scope_commit: executionFailed("unable to open database file")
+PASS exclusive_read_refuses_default_mutation_before_sql
+FAIL both new exclusive-read controls must pass

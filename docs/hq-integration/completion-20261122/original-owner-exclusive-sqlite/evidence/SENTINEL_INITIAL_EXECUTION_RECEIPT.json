@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_01bd3068eab2",
+    "type": "job_result",
+    "source": "script_run@host_7ec8382e82747448",
+    "severity": "warning",
+    "tool": "script_run",
+    "host": "host_7ec8382e82747448",
+    "status": "failed",
+    "exit_code": 1,
+    "created_at": 1795324657.8042557,
+    "started_at": "2026-11-22T05:17:37.831903+00:00",
+    "finished_at": "2026-11-22T05:18:34.987095+00:00",
+    "duration_s": 57.16,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 850,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\r\n  \"head\": \"f81213dc5bba73272c9d0aa9873a7ef1e05e1528\",\r\n  \"command\": [\r\n    \"C:\\\\ProgramData\\\\SentinelX\\\\.venv\\\\Scripts\\\\python.exe\",\r\n    \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-original-owner-sqlite-controls-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\original-owner-exclusive-sqlite\\\\run-exclusive-owner-sqlite-controls.py\",\r\n    \"--result-dir\",\r\n    \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-original-owner-sqlite-controls-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\original-owner-exclusive-sqlite\\\\validation\\\\windows-exclusive-two-20261122\"\r\n  ],\r\n  \"exit_code\": 1,\r\n  \"seconds\": 51.25,\r\n  \"runner_pid\": 25596,\r\n  \"sources_unchanged\": true,\r\n  \"stdout_sha256\": \"e4196f4c83764dfdb9d4ecba9597efa5074d6d685cab2149761aea15f3617385\",\r\n  \"stderr_sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\r\n  \"result_exists\": true,\r\n  \"old_six_packet_unchanged\": true,\r\n  \"result_sha256\": \"d3f526d50b9f99a1be3919d6276c36f2ac8dbde514e9387de16d3efb9a11eaea\",\r\n  \"status\": \"FAILED\",\r\n  \"cases\": [\r\n    {\r\n      \"name\": \"exclusive_read_allows_explicit_local_read_scope_commit\",\r\n      \"status\": \"FAIL\",\r\n      \"ownerOutcome\": \"not_verified\",\r\n      \"durableRows\": null\r\n    },\r\n    {\r\n      \"name\": \"exclusive_read_refuses_default_mutation_before_sql\",\r\n      \"status\": \"PASS\",\r\n      \"ownerOutcome\": \"rejected_unqualified_dispatch_and_failed_write_latched\",\r\n      \"durableRows\": 0\r\n    }\r\n  ],\r\n  \"writer\": null,\r\n  \"reopen\": null,\r\n  \"error\": \"AssertionError('new exclusive-read/SQLite controls failed')\"\r\n}\nTraceback (most recent call last):\r\n  File \"C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_0e70f4c828a247a78351de60acb1333a\\script.py\", line 49, in <module>\r\n    assert code==0 and receipt[\"sources_unchanged\"] and receipt[\"old_six_packet_unchanged\"]\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "head": "f81213dc5bba73272c9d0aa9873a7ef1e05e1528",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "execution_inputs": {
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/Lifetime.swift": "451054685e2ff0c30371d384904be831412eec16c2a5e16c660d2f1891921eb4",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/Operation.swift": "55804cf1a06b59dc80846ab4bc8b874a2d54ae28649288c5b49930267b9ae844",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/Binding.swift": "e304f05ed114342795dbc3a603490311142d63f9a6a156bdcdafd68743e710cb",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/Owner.swift": "5ff93fe232eaed63519ce3721bf423c777d6d0b4d312f6d48c4bf8f6ca6b1adc",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/PreparedEditorPageDocument.swift": "42e595c324e46947d4b964070994a193478d57072931b92be1451f155e2cb32e",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/RoleSource.swift": "bd497ad835574512d29d75f7285cf13e54f9353b6f62500b56655cf36a1b0951",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/OriginalTypePermissionProbe.swift": "0708d577f19f0c382cec913b990e949716c543536c4166575ed60e96f5c33f6a",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/SQLiteDatabase.swift": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/inputs/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/PRODUCTION_INPUTS.json": "5803a514092dd84fded7dc7e93f4a2467cb3be57abfed3375ac899d9409c25d7",
+    "docs/hq-integration/completion-20261122/original-owner-sqlite/OriginalOwnerSQLiteAcceptance.swift": "f922db58646a0c7f5714d487df8f31bef70acdbf49902843c2ddb954a6fef7ea",
+    "docs/hq-integration/completion-20261122/original-owner-exclusive-sqlite/OriginalOwnerExclusiveSQLiteControls.swift": "5d4cb2744a4d03d8a46808618ccd78052d316ab7dedffd462cf22bdaf42066ed",
+    "docs/hq-integration/completion-20261122/original-owner-exclusive-sqlite/run-exclusive-owner-sqlite-controls.py": "179e4ad274200ca436134b0017153b769cc536bb04fd2f6251e22285d9d9c8b3"
+  },
+  "old_six_packet_unchanged": true,
+  "selected_new_controls": 2,
+  "old_assertions_executed": false
+}
