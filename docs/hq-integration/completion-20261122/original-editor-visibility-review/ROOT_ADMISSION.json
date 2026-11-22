@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "status": "FAIL",
+  "started_at": "2026-11-22T09:57:49.919103+00:00",
+  "tests_executed": 0,
+  "artifact_downloads": 0,
+  "source_mutations": 0,
+  "error": "Traceback (most recent call last):\n  File \"C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_45e257c2e46a43259e69c31c40596a07\\script.py\", line 60, in <module>\n    assert len(matches)==1,matches\n           ^^^^^^^^^^^^^^^\nAssertionError: []\n",
+  "finished_at": "2026-11-22T09:57:53.061845+00:00"
+}

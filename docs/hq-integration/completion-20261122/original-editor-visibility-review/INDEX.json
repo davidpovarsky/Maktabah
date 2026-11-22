@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "count": 11,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "ACTUAL_REPORT_PACKAGING_SCRIPT.py",
+      "bytes": 19085,
+      "sha256": "11745566db644985719da237b6b684def0989fbf0f3201c2c56c47b1c874be5b"
+    },
+    {
+      "path": "ACTUAL_REVIEW_SCRIPT.py",
+      "bytes": 7631,
+      "sha256": "e7f4bb1be91db40e4c14ccff110d59d36c487e52377d71740e6fc28e6fc8bece"
+    },
+    {
+      "path": "diagnostic-format-continuation/ACTUAL_REVIEW_SCRIPT.py",
+      "bytes": 5143,
+      "sha256": "d7f3855bed70dfec9d86e829f765293bc33a13ebde23f84174579d1dd4c4558c"
+    },
+    {
+      "path": "diagnostic-format-continuation/ROOT_ADMISSION.json",
+      "bytes": 2000,
+      "sha256": "5adad5c948b931040c4a5f97cc3d7b7b595597f1b536d2cac7ff0456750b9967"
+    },
+    {
+      "path": "GIT_BLOB_BINDINGS.json",
+      "bytes": 22228,
+      "sha256": "911cf1c86b1e07c7370623dd2228fcf6e707dc3a631756dee7edf58595b51771"
+    },
+    {
+      "path": "path-case-continuation/ACTUAL_REVIEW_SCRIPT.py",
+      "bytes": 6310,
+      "sha256": "c54d8593c774c8d07a728cba613e2002aa19aa03a3088afb8921d0edcdc81ca0"
+    },
+    {
+      "path": "path-case-continuation/ROOT_ADMISSION.json",
+      "bytes": 890,
+      "sha256": "5c932ba45857bfe6a2af01f6bed915c67a780e314ac7846d3d417fef6e2040d3"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2224,
+      "sha256": "0cba8ada121e779fd824c438720616e3297562040c274e0622278c113b0d92d1"
+    },
+    {
+      "path": "ROOT_ADMISSION.json",
+      "bytes": 499,
+      "sha256": "4265578535bfe28e71072b5948db35cd242debb8dd6b660eb9f4e7526626486c"
+    },
+    {
+      "path": "ROOT_TOOL_RESULTS.json",
+      "bytes": 6647,
+      "sha256": "f7e8b897e02832e0e312077f0825f8244474ef9c1a316ff9b047e4e753c8f8bc"
+    }
+  ],
+  "scope": "Exact retained root review chain; index excludes itself."
+}

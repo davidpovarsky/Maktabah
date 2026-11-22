@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "started_at": "2026-11-22T09:59:01.137937+00:00",
+  "tests_executed": 0,
+  "artifact_downloads": 0,
+  "source_mutations": 0,
+  "head": "5c1d08e327bb8155248885e496cf64200932a812",
+  "payload_count": 70,
+  "exact_git_blobs": 71,
+  "payload_bytes": 16012934,
+  "index_sha256": "a58b350b7637d1c449894b4435983718ec8a55d3683605786029c22ee0523350",
+  "git_bindings_sha256": "911cf1c86b1e07c7370623dd2228fcf6e707dc3a631756dee7edf58595b51771",
+  "review_history": [
+    {
+      "receipt_sha256": "4265578535bfe28e71072b5948db35cd242debb8dd6b660eb9f4e7526626486c",
+      "completed_scope": "All70payloads+index,71Gitblobs,3originalGitinputs,exactpublic-keywordinverse and2portable-importinverses independently verified before reviewer lowercase tools path lookup failed."
+    },
+    {
+      "receipt_sha256": "5c932ba45857bfe6a2af01f6bed915c67a780e314ac7846d3d417fef6e2040d3",
+      "completed_scope": "Original uppercase Tools gate bound to retainedGitprovenance;gateunchanged,actualSwiftcompilerhash,runner/manifesthashes,3terminalcommands0/0/1 andallrawstreamhashes independently verified before reviewer counted Swift diagnostic source-line caret echo as a second error."
+    }
+  ],
+  "new_compiler_commands_verified": 3,
+  "located_expected_external_error_count": 1,
+  "diagnostic_caret_echo_count": 1,
+  "module_files_independently_rehashed": 3,
+  "raw_first_control_red_preserved": true,
+  "strict_surface_gate_unchanged": true,
+  "prior_apple_framework_build": {
+    "returncode": 0,
+    "started_at": "2026-11-22T09:10:29.948000+00:00",
+    "finished_at": "2026-11-22T09:26:35.474398+00:00"
+  },
+  "limits": [
+    "Windows projected imports use genuine Foundation types; no Apple surface/NativeUI qualification inferred.",
+    "Actual previous Apple framework build PASS had later graph failure,externalconsumerNOT_RUN.",
+    "No source/compiler/test/artifactdownload replay in these readonly reviews."
+  ],
+  "finished_at": "2026-11-22T09:59:02.105246+00:00"
+}

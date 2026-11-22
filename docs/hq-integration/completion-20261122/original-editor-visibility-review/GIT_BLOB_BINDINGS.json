@@ -1,0 +1,428 @@
+[
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/.gitattributes",
+    "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46",
+    "bytes": 8,
+    "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/ACTUAL_COMPILER_MODULE.json",
+    "git_blob": "9b611b78ecc07c85ae8c133cf1be361f052de6e5",
+    "bytes": 750,
+    "sha256": "8e3eb076cbc861cf20b8efa81ee2142fa2af334b5fc994c805815812ffc3b76d"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/BlockIndentationStyle.before.swift",
+    "git_blob": "f480686a813ff7d0014c3738aa9874268495fa4e",
+    "bytes": 615,
+    "sha256": "7fe0c774f9748899659d3062aeef5ccf759bd0655fc5a5667a08c6caae2da605"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/BlockIndentationStyle.candidate.swift",
+    "git_blob": "5311b4aef0dad8718b42505d5fc29413548638f3",
+    "bytes": 608,
+    "sha256": "fc996c217bf56e7b1f07a81c034ac966e075f8fac7daa0d5fd3d6d6905622153"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/CANDIDATE_PROVENANCE.json",
+    "git_blob": "5b6a43d0247190abaa82a82b2637d2b86ff4716e",
+    "bytes": 974,
+    "sha256": "25a3a6790128a8ae04b47f5fa0611b5a59083e948fa43e0f3ecc857360ee1f92"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/COHERENT_SOURCE_JOIN.json",
+    "git_blob": "4cb3cfe96715abca305e6e6b87713b61eb21755f",
+    "bytes": 1405,
+    "sha256": "7f926641376e742f393b8ec52a46a7d375b6debe6cf71faa2604dac988d980a1"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/COMPILER_EXECUTION.json",
+    "git_blob": "fc61920a24f996bb304f9958b11ff35190eb95da",
+    "bytes": 1870,
+    "sha256": "a459ad451eed5ec7cae42cd462b91652c5fea873217905ff95dc8ca85c554290"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/COMPILER_EXECUTION_V2.json",
+    "git_blob": "f36b8e95f4c922a2e1a78e9a96198cdd5f75d60f",
+    "bytes": 4028,
+    "sha256": "fd3970e20fcd759e951d8b41cbfad87e0b36c08410e3d7de209e86fd98d3e918"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/COMPILER_INPUTS.json",
+    "git_blob": "e1d31519039d5e092cae41b209a4d6c0a9b73512",
+    "bytes": 3248,
+    "sha256": "b03477ef6dabffbc4749571410037dd2c61873a5119cdc6c158d2d7f9c2c3beb"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/COMPILER_INPUTS_V2.json",
+    "git_blob": "c4fb7be20f5de554e8f9b373402913b479433eed",
+    "bytes": 5064,
+    "sha256": "fe33d37e071d97ac07c277a222bb42d153d07ccc523e6296ee924511d10c5f46"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/COMPILER_RESULT_V2.json",
+    "git_blob": "fb23fc966fc83774a7f78d0d854d2dc4d3ecdb42",
+    "bytes": 1597,
+    "sha256": "e7659b804adcaa479c0932951bbf546f1c37f16446a5d63766be806e6ccfaf2d"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/COMPOSITION.json",
+    "git_blob": "1cb32a984c7d3fb1c8273f7a212910d01891e250",
+    "bytes": 778,
+    "sha256": "65408765558d6e49bd94ff815f9149207a0726ef0bc53069065722a7bca0605c"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/DEPENDENCY_PROVENANCE.json",
+    "git_blob": "7418494085f4b4bfd402236532b51404f6423875",
+    "bytes": 1734,
+    "sha256": "b7dc3f2fd96f5fb9253948ec63358e9cee49305862514a120e923c5f1a1b827a"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/ExternalConsumer.swift",
+    "git_blob": "8b1ac0a76df027e9a0dad31d1eaa2a7462dafa45",
+    "bytes": 79,
+    "sha256": "e44a2ef61bcd571097329487a702773baa1b4b22fa1e2993bba19a2bfed69626"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/GRAPH_GATE_LOCATION.txt",
+    "git_blob": "1d3223df851cdc805bf655daccfbf6e761953ba6",
+    "bytes": 206,
+    "sha256": "dbf99919af26093727dd54a81bb9da8e28178193285fa39fc9865020a2da874a"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/INDEX.json",
+    "git_blob": "a4187475d4908cf11667307d0bca3449190ce301",
+    "bytes": 12031,
+    "sha256": "a58b350b7637d1c449894b4435983718ec8a55d3683605786029c22ee0523350"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/LAYOUT_DEPENDENCIES.json",
+    "git_blob": "7c0b91080bd29ced38e4d2001354376e3e95c83a",
+    "bytes": 500,
+    "sha256": "8e75b067ac338d1eab584ac6a81f964bc4a1a684abb0d6c9e6b6cbc3bed7c5e4"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/ORIGINAL_USE_SITES.txt",
+    "git_blob": "bb0cb434a38c850b038f997b23181218ed2cad03",
+    "bytes": 1358,
+    "sha256": "8b946e7d60415c5faf8471f97e9e03091bba2a0e8aadb207d560c247221471f3"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/PRE_APPLY_WORKING_BlockIndentationStyle.swift",
+    "git_blob": "e33aa73f3e7765ca1143e7ed6e47f8d7f96d60e6",
+    "bytes": 643,
+    "sha256": "21f9cd2de6fbf85934edf5361c003f239369efb3ff03b0ffec1994f537f80909"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/README.md",
+    "git_blob": "b9d07170236492968abac3eb534b8dd2cc4918cc",
+    "bytes": 4241,
+    "sha256": "1df404f9cfc31c35683cb9f9ab77106d9fa4e942cb3c8766f2b060d8aab065a2"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/SOURCE_PROVENANCE.json",
+    "git_blob": "2739532f323cb20b772601911824fef94d9219c4",
+    "bytes": 595,
+    "sha256": "1f9713fd8794b75dd0aa07dca6910c6510570da423b63ff79a77c300f828af85"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/VISIBILITY.patch",
+    "git_blob": "49b55efd1c053a5a88be6de06cea30d1c0133d43",
+    "bytes": 419,
+    "sha256": "093d406efe1b2332f33066be6e56515e061696e72b345ffbf63453647affb933"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/WORKING_BYTE_PROVENANCE.json",
+    "git_blob": "6832019f88ebee2c71ef8facd1044acd7e0b1dec",
+    "bytes": 490,
+    "sha256": "f192456fe77cca81826f3522e4a22cbe9571af0e95a9aa204738637b3b995104"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/actual-visibility-compiler-module.zip",
+    "git_blob": "59965f6659b866aff583eeeef1dff568771e27d9",
+    "bytes": 14279,
+    "sha256": "1826f33b8b9cfa5b966fcb039d4a6eb4371f8e81ea835e9490fb36aa6f2d4546"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/complete-original-candidate-module.stderr.log",
+    "git_blob": "f730d42fc30645c6aec756f363ff0794c89264ab",
+    "bytes": 328,
+    "sha256": "278993221e35da6d0b8dd26cd0edbd9315c9b30cc8cf61eb191ad6bbdb1fb332"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/complete-original-candidate-module.stdout.log",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/complete-original-candidate-syntax.stderr.log",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/complete-original-candidate-syntax.stdout.log",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/dependency-0-EditorCollectionFlowLayout+LayoutDetails.swift",
+    "git_blob": "b3e6fb1980971827b42e7e74cb57814a4a52d967",
+    "bytes": 2009,
+    "sha256": "0eb02c179c1d4ef068afbaad2a3098d4d3fa5165e597daf9102433adfcebe4ff"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/dependency-1-FlowLayoutExtensions.swift",
+    "git_blob": "80bf0d115cb25b4dd8decad09b76099aa8a565ed",
+    "bytes": 1137,
+    "sha256": "8d615da4d016d78ac2af5428e4b363dc56844e97b7ef9f46ad39ff552209741f"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/dependency-2-BlockLayoutDetails.swift",
+    "git_blob": "ef59fe48f78733f2646ee732888cd5b01e98b3a7",
+    "bytes": 191,
+    "sha256": "e15d31a90d0037fc4e26dbbb7ac7d075f4ad69cf9adf6a1eb9b7e7672adb68d1"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/dependency-3-framework_products.py",
+    "git_blob": "1ccbd49a4b349be603f3c6578d05c8da2cef1af8",
+    "bytes": 31282,
+    "sha256": "11ca6a3128fdc2c47cd9f63cd274e8896b5633af8753acfdb37fb02396fc0ebd"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/expected-external-visibility-rejection-v2.stderr.log",
+    "git_blob": "d2232a0e65ba8a13ef1fa8e77aa77fa42c5fb716",
+    "bytes": 327,
+    "sha256": "d8cd656f407213e6fb4ebfc1623b5df9f6ec5a13225589e14fa0bfe2e516b2fd"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/expected-external-visibility-rejection-v2.stdout.log",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/layout-0.swift",
+    "git_blob": "d3575732e258b2e1fd3217d98b5eb6a626979212",
+    "bytes": 211,
+    "sha256": "10820ba34a2fef386f7e686ece013e033475359825d0e802c9d2663fecb36167"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/original-enum-visibility-portable-review.json",
+    "git_blob": "f8563f0a659ddb2a157480e25aec1177d8b6ee81",
+    "bytes": 1578,
+    "sha256": "a9007fbda9bcd59f6f3e2d2bfd007c239fcd54659b2d705dab27ea6e8c2c76e4"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/original-enum-visibility-root-source-review.json",
+    "git_blob": "a47342bd1be622e4606391951ccdbc7254fe7fef",
+    "bytes": 2730,
+    "sha256": "bde02c3067e1d5d4b0eb6fdb147f0785afdf8951cc15accca61a2e71fef55db2"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/portable-BlockIndentationStyle.swift",
+    "git_blob": "c0d7e6d1a7e648344b43b36cf51e51a3dc0f8e19",
+    "bytes": 604,
+    "sha256": "0af96510df6739b2a80164f647326088af046eefd07a3ad0f0e455289990897e"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/portable-LayoutConstants.swift",
+    "git_blob": "886800b6f53862f8fafa59494c81ef6c03608bd6",
+    "bytes": 207,
+    "sha256": "12745b58a172c23e21f0c7229e02aad2bb7fad1b3ecd6f033f4d49d5417e2c80"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/portable-original-candidate-module.stderr.log",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/portable-original-candidate-module.stdout.log",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prepare_visibility_controls.py",
+    "git_blob": "f510ce0e96f353617efd7081ab4463f17692d7af",
+    "bytes": 8800,
+    "sha256": "07ea38ba1cec735cc7fbaa6292c68dcd319dec669f95bba938a0a0b474bdbbda"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prepare_visibility_controls_v2.py",
+    "git_blob": "5790f9568b7d9c90546ea558e94dc3c38d2a1d4c",
+    "bytes": 8931,
+    "sha256": "b77e22b89ddb5a12cdb43b01ea3d761a4b6282afe07a9d6a9f457e55c0552a79"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/ARTIFACT_RECEIPT.json",
+    "git_blob": "85deb4572a8cdaf54aa9c399f7475dbb2df0e463",
+    "bytes": 72034,
+    "sha256": "ce65e7855aff63e5cece670a6f7a068b175aa00a41e09928e8a6aaecdb14159f"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/FAILURE_DIAGNOSIS.json",
+    "git_blob": "36d9dd189cf81debc8d0171d1d364410351ba754",
+    "bytes": 7947,
+    "sha256": "7aebeaba7e8cdb1f4d038767d2349d029173b4f2ca6e54a429abd455b58b3b84"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/GITHUB_ARTIFACTS.json",
+    "git_blob": "826e913fa2d5db9dc9977afc90466fae218014eb",
+    "bytes": 875,
+    "sha256": "aa8379f7a5c8dcca9e83a3a56a1f3c6957bd366fa26896fa79ad7f5a2b40f62e"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/GITHUB_JOBS.json",
+    "git_blob": "84dfb20c9a4e641e0718907b6a2427540b1255b4",
+    "bytes": 4500,
+    "sha256": "3018306be02b1e3d5a6fda03fd9d8797919ad39588e676ec069ce8ed8861c24a"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/download_and_diagnose.py",
+    "git_blob": "550869649b97ec382a6d0095de2e3c626234ef54",
+    "bytes": 9849,
+    "sha256": "210b6396b8e07fc8f495d0211b82154dccd6df206aae019ecf31bf28cb7bc3be"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/github-artifact-14747819041.zip",
+    "git_blob": "05804a26aaa9eef00820b705be6a14c844684434",
+    "bytes": 14871793,
+    "sha256": "c9e75bf524bb2fc4c9ed25e16153bb494009cb9ebfb7ac824bf6009aba183c98"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/observer/OBSERVER_STARTED.json",
+    "git_blob": "b781b88a757f5757304815e3996c0d1af9fd1780",
+    "bytes": 274,
+    "sha256": "87f09856b2ed59bedea79bebddb01919a8b153e920e2ba888c89e68f952dbaef"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/observer/SUMMARY.json",
+    "git_blob": "5e407926782e4fbe05101ce2a6f66dee4ba12e2a",
+    "bytes": 516,
+    "sha256": "7445196dad52c369734ee043aa28b42afea76bc24af2b7789fda633cc7bd56f9"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/observer/terminal-artifacts.json",
+    "git_blob": "826e913fa2d5db9dc9977afc90466fae218014eb",
+    "bytes": 875,
+    "sha256": "aa8379f7a5c8dcca9e83a3a56a1f3c6957bd366fa26896fa79ad7f5a2b40f62e"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/observer/terminal-jobs.json",
+    "git_blob": "84dfb20c9a4e641e0718907b6a2427540b1255b4",
+    "bytes": 4500,
+    "sha256": "3018306be02b1e3d5a6fda03fd9d8797919ad39588e676ec069ce8ed8861c24a"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/observer/terminal-run.json",
+    "git_blob": "84ace274980d372580f547811f8eea96122264fc",
+    "bytes": 13154,
+    "sha256": "4cbab4f98fd5a9d7435fa3a8db0afb63d58354faae7e3a4f283f1eea0c10ae3a"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/selected/actual-target-public-symbol-graph.command.json",
+    "git_blob": "7bf314e68d49bdbaee2182970d708e0c094d25d8",
+    "bytes": 1203,
+    "sha256": "9bf318b62c4dfbfc6290b8f0a8c4f0eb4af054a7af205618230018e686dfafb1"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/selected/compiler-symbolgraph-collection.json",
+    "git_blob": "b063970c49987692aa2d088ea5795cc34ddf3ac6",
+    "bytes": 27764,
+    "sha256": "7b21ff2e4a7270a933e897f0491efd0cdccd2bcca95d67137fbfc00be70ab863"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/selected/execution.json",
+    "git_blob": "46bb592e564ad7f6cc857b945c219b73780bde4e",
+    "bytes": 53026,
+    "sha256": "244a9b28fe66087cc8e65b1015e912768d277b2eef27e595f63193e0589b8d6e"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/selected/framework-build.command.json",
+    "git_blob": "ea23ddbdf67834771d25a014374840a5483b7ce6",
+    "bytes": 1376,
+    "sha256": "d900aa13c72e25330850e23f38d6ecc82a8fee76315a022cd620f6df37b0bf5d"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/selected/framework-distribution-after-observed-swift-protobuf-signing.json",
+    "git_blob": "0dafb8bd605dd7214e6672d3297ac3b5d90a82f6",
+    "bytes": 209757,
+    "sha256": "2aeab01185d49224033d341461f3361fd2457242e74d0ba3db33e607bbd9fd39"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/selected/macro-trust/macro-approval.json",
+    "git_blob": "954b57f7132fa7143772dd6d569a15b034601a4f",
+    "bytes": 1162,
+    "sha256": "1292dea134d39ab97eaa82d803513b7a880b9094055bc0e85a28cf183a6c306e"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/selected/macro-trust/macro-restoration.json",
+    "git_blob": "bb0b1167002df0d831530e71ef82de6137797faf",
+    "bytes": 83,
+    "sha256": "51783b887167e7f6517ba461170742c3ba9bb8dada5b6f6644f7a27dbc2e6088"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/selected/macro-trust/owned-trust-state.json",
+    "git_blob": "05f9bac57712da07fa556c52654037c7092cbcc9",
+    "bytes": 502,
+    "sha256": "770ea5131593d725b4bbffde047ee87cba45024668ea7077aabedb28feaa0115"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/selected/owned-simulator-cleanup.json",
+    "git_blob": "bde83fb155f0d98ccd15a5ad6090c0c265a1d72f",
+    "bytes": 899,
+    "sha256": "ab1478ffc4bda96fdbd30ededbbf565d7dcfe7be6b4228606575aaf7de1219e5"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/selected/source-admission.json",
+    "git_blob": "0f8d713f7f165509b8d2ead036cabae971020074",
+    "bytes": 468,
+    "sha256": "8066de22ace37131e653a5dbecc0c2d304f84b440f99976987c39e3dd2a97fbc"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/selected/source-after.json",
+    "git_blob": "2cff280ac7e854fda8f08925f5651774fe717ead",
+    "bytes": 245009,
+    "sha256": "18d2ac72c45c2f6d54b1abccf162014ec717f0b076ba5c4b8e5cd25750434460"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/selected/source-before.json",
+    "git_blob": "2cff280ac7e854fda8f08925f5651774fe717ead",
+    "bytes": 245009,
+    "sha256": "18d2ac72c45c2f6d54b1abccf162014ec717f0b076ba5c4b8e5cd25750434460"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/prior-7b59/selected/source-controls-result.json",
+    "git_blob": "e1553814b1848e67b4c62b3d55c406e5e58a3b0c",
+    "bytes": 108105,
+    "sha256": "440047b6d2e71a3c0f3574c19f6f05ba7ddbecee9445005c640a5793760b44bd"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/read_visibility_source.py",
+    "git_blob": "458565a61ff3ab5b464cce89cdd34d53598d59e7",
+    "bytes": 1779,
+    "sha256": "94041a58b583a8b85759a5eb635d2a2ab8f8b27b9e40fd01d502c0846d0dfd71"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/run_visibility_boundary.py",
+    "git_blob": "bcaef393c364dc243cf0ff507d596db8fd6926f8",
+    "bytes": 4718,
+    "sha256": "3674646090a737e9ac6e5a03b4684917671adca90c7bb4d1b40f5eec391a4ba4"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/run_visibility_boundary_v2.py",
+    "git_blob": "ddf28e12fba07b14ff055dcffd96f64fe1d894c6",
+    "bytes": 4884,
+    "sha256": "b61ce5e74313d664a09e35d1915553598e0a0e801f9fbd045120b809e6d82225"
+  },
+  {
+    "path": "docs/pinkha/torah-integration/evidence/original-editor-indentation-visibility-20261122/seal_source_and_evidence.py",
+    "git_blob": "9e6481db457581a4c17e3d71188d390260466241",
+    "bytes": 17049,
+    "sha256": "dc85ec79492593eae31f2e7282d3c870793bcb676c8eb048d1e0791df5e34862"
+  }
+]

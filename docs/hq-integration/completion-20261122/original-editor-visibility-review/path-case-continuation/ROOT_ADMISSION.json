@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "status": "FAIL",
+  "started_at": "2026-11-22T09:58:32.934267+00:00",
+  "tests_executed": 0,
+  "artifact_downloads": 0,
+  "source_mutations": 0,
+  "error": "Traceback (most recent call last):\n  File \"C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_c472eead2d114eee985b12b589167671\\script.py\", line 44, in <module>\n    assert len(errors)==1 and \"cannot find type 'BlockIndentationStyle' in scope\" in errors[0],errors\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: [\"C:\\\\Users\\\\DAVID\\\\AppData\\\\Local\\\\Temp\\\\oe-editor-visibility-20261122\\\\ExternalConsumer.swift:3:12: error: cannot find type 'BlockIndentationStyle' in scope\", \"  |            `- error: cannot find type 'BlockIndentationStyle' in scope\"]\n",
+  "finished_at": "2026-11-22T09:58:34.343937+00:00"
+}
