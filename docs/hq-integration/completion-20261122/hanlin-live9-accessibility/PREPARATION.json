@@ -1,0 +1,68 @@
+{
+  "schema": "otzaria.live9-accessibility-source-preparation/1",
+  "status": "PREPARED_NOT_ACTIVATED_PENDING_NATIVE450416_ACTUAL_RESULT",
+  "parent": "6591bba49d2b5a28d02b763c4360406843fce4cf",
+  "application_source": "3b4345bd0ae33b83c2ff4ae7697164343f0792b8",
+  "source_fix": {
+    "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+    "change": "Add accessibilityElement(children: .contain) to preserve the original access button's own accessibility identifier.",
+    "product_commit": "3b4345bd0ae33b83c2ff4ae7697164343f0792b8",
+    "added_lines": 1,
+    "deleted_lines": 0
+  },
+  "runtime_binding_changes": 1,
+  "product_trees": {
+    "Source": "8197eab0668a42b311b7056987e54d5a973903f8",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "f480f0cd64100f752620fbb5a22a5b77fb612fae"
+  },
+  "live_acceptance_class": {
+    "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+    "historical_source": "6aa953048453b64a0013621ce76e095770eb7e7d",
+    "historical_file_blob": "54296b9ca2e168eaee832f062e71286953fe0479",
+    "current_file_blob": "a4acb5e4f57badf3b352ddedc6c797f50ef67be9",
+    "complete_live_class_equal": true,
+    "class_characters": 18166
+  },
+  "prior_actual_failure": {
+    "run": 45000580919,
+    "head": "ce5d11335c4b4769a25e0e8f48ba1d6f7efc6749",
+    "completed_provider_conversations": 0
+  },
+  "related_native_evidence": {
+    "run": 45034727427,
+    "head": "81039998e66bba1d7310455d80a3c50e59785699",
+    "actual_xctest": "FAIL",
+    "actual_connection_ax": "original chat reopened for current work; End book access button has inherited parent identifier",
+    "retained_at": "984f4cc66cd7a2c2469d40ac74c39d60cc6d2ccc"
+  },
+  "required_native_prerequisite": {
+    "run": 45041601629,
+    "attempt": 1,
+    "head": "6591bba49d2b5a28d02b763c4360406843fce4cf",
+    "required": "Actual terminal success and independently verified original selected XCTest PASS before key configuration or Live activation"
+  },
+  "credential": {
+    "existing_known_name": "GEMINI_API_KEY",
+    "value_or_hash_recorded": false,
+    "new_repository_secret_created": false
+  },
+  "activation": {
+    "trigger_branch": "codex/otzaria-hanlin-live-20261121",
+    "expected_old_head": "ce5d11335c4b4769a25e0e8f48ba1d6f7efc6749",
+    "dispatches": 0,
+    "required": "One exact expected-head push through separately reviewed owned credential lifecycle controller"
+  },
+  "model_binding_changes": 1,
+  "model": {
+    "prior": "gemini-2.5-flash-lite",
+    "next": "gemini-3.5-flash-lite",
+    "reason": "Actual configured-provider HTTP404 directs new users to the replacement; the replacement returned HTTP200 and exact constant OK using 7 total tokens.",
+    "old_request_count": 1,
+    "replacement_request_count": 1,
+    "native_acceptance_claimed": false,
+    "credential_value_or_hash_recorded": false,
+    "raw_evidence": "provider-access"
+  }
+}

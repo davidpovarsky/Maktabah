@@ -1,0 +1,17 @@
+{
+  "scope": "One direct configured-provider availability diagnostic; no native app, tool calls, source corpus or Live acceptance.",
+  "started_at": "2026-11-22T16:23:13.985317+00:00",
+  "url": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+  "model": "gemini-2.5-flash-lite",
+  "request_sha256": "6db28f0ebfac87403dc61eb4c232b116c16e6349d509baaebd9aa9e96d4ca592",
+  "http_requests": 1,
+  "credential_source": "existing process GEMINI_API_KEY",
+  "credential_value_or_hash_recorded": false,
+  "native_acceptance": false,
+  "new_repository_secret_created": false,
+  "http_status": 404,
+  "retained_response_sha256": "d3e4cc3e816e25306ad2f859a4d4dab1d1636b06752afcca67d37e44a99d94fd",
+  "status": "DIAGNOSTIC_FAILED",
+  "error_type": "AttributeError",
+  "finished_at": "2026-11-22T16:23:16.857549+00:00"
+}

@@ -1,0 +1,9 @@
+{
+  "observed_date": "2026-11-22",
+  "sources": [
+    "https://aistudio.google.com/docs/deprecations",
+    "https://aistudio.google.com/docs/openai"
+  ],
+  "scope": "Official schedule says gemini-2.5-flash-lite is not deprecated but 2.5 access is limited to prior active users. It does not establish availability for this configured credential. Actual per-model probes retained here resolve that separate question. The existing OpenAI-compatible endpoint remains documented.",
+  "native_acceptance": false
+}
