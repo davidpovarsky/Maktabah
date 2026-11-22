@@ -1,0 +1,206 @@
+{
+  "BD3887AE-1379-4B12-8E44-504B7EFF34EA.txt": {
+    "bytes": 35894,
+    "sha256": "246748e976a5192509781f0e8e4d6fbb4ecffafcc65f4dc84c3371154bafb2d7",
+    "lines": [
+      {
+        "line": 120,
+        "text": "Button, 0x10a810b40, {{82.5, 154.0}, {50.0, 36.0}}, identifier: 'otzaria-hanlin-global-launch', label: 'Study chat'"
+      },
+      {
+        "line": 144,
+        "text": "Button, 0x10c3f0f00, {{917.5, 154.0}, {50.0, 36.0}}, identifier: 'otzaria-hanlin-reader-launch', label: 'Study chat'"
+      },
+      {
+        "line": 239,
+        "text": "Other, 0x10c3ccf00, {{315.0, 87.0}, {580.0, 660.0}}, identifier: 'otzaria-hanlin-chat'"
+      },
+      {
+        "line": 243,
+        "text": "Button, 0x10c3cc280, {{329.0, 101.0}, {68.5, 36.0}}, identifier: 'otzaria-hanlin-close', label: 'Close'"
+      },
+      {
+        "line": 245,
+        "text": "Button, 0x10c3cd400, {{845.0, 101.0}, {36.0, 36.0}}, identifier: 'otzaria-hanlin-history', label: 'Conversations'"
+      },
+      {
+        "line": 250,
+        "text": "StaticText, 0x10c3ccc80, {{331.0, 159.0}, {164.5, 18.0}}, identifier: 'otzaria-hanlin-book-access', label: 'Book search: ⁨ספר החינוך⁩'"
+      },
+      {
+        "line": 251,
+        "text": "StaticText, 0x10c3cd540, {{331.0, 181.0}, {399.5, 14.5}}, identifier: 'otzaria-hanlin-book-access', label: 'Otzaria. Matching excerpts may be shared with your connected model.'"
+      },
+      {
+        "line": 252,
+        "text": "Button, 0x10c3cd7c0, {{331.0, 199.5}, {129.5, 20.5}}, identifier: 'otzaria-hanlin-book-access', label: 'End book access'"
+      },
+      {
+        "line": 260,
+        "text": "Button, 0x10c3cdf40, {{345.0, 669.0}, {52.0, 52.0}}, identifier: 'hanlin-composer-general-menu', label: 'Open action center'"
+      },
+      {
+        "line": 261,
+        "text": "TextView, 0x10c3ce1c0, {{417.0, 673.0}, {396.0, 38.0}}, identifier: 'otzaria-hanlin-composer', value: Message"
+      },
+      {
+        "line": 266,
+        "text": "Button, 0x10c1df200, {{823.0, 679.0}, {32.0, 32.0}}, identifier: 'otzaria-hanlin-send', label: 'Send', Disabled"
+      },
+      {
+        "line": 269,
+        "text": "Other, 0x10c1dcb40, {{605.0, 417.0}, {0.0, 0.0}}, identifier: 'otzaria-hanlin-chat'"
+      }
+    ]
+  },
+  "343121AD-918C-439E-9238-CB99207053FA.txt": {
+    "bytes": 43692,
+    "sha256": "07bcfca55d9501fe606830f8e89f30f87f60fe27ee65137dd753c0838d1dafc5",
+    "lines": [
+      {
+        "line": 120,
+        "text": "Button, 0x10c3e9e00, {{82.5, 154.0}, {50.0, 36.0}}, identifier: 'otzaria-hanlin-global-launch', label: 'Study chat'"
+      },
+      {
+        "line": 144,
+        "text": "Button, 0x10c3f0280, {{917.5, 154.0}, {50.0, 36.0}}, identifier: 'otzaria-hanlin-reader-launch', label: 'Study chat'"
+      },
+      {
+        "line": 239,
+        "text": "Other, 0x10c3fd180, {{315.0, 87.0}, {580.0, 660.0}}, identifier: 'otzaria-hanlin-chat'"
+      },
+      {
+        "line": 243,
+        "text": "Button, 0x10c3fd7c0, {{329.0, 101.0}, {68.5, 36.0}}, identifier: 'otzaria-hanlin-close', label: 'Close'"
+      },
+      {
+        "line": 245,
+        "text": "Button, 0x10c3fda40, {{845.0, 101.0}, {36.0, 36.0}}, identifier: 'otzaria-hanlin-history', label: 'Conversations'"
+      },
+      {
+        "line": 250,
+        "text": "CollectionView, 0x10c3ff200, {{315.0, 87.0}, {580.0, 660.0}}, identifier: 'otzaria-hanlin-connection-form'"
+      },
+      {
+        "line": 260,
+        "text": "StaticText, 0x10a80b480, {{331.0, 151.0}, {548.0, 40.5}}, label: 'Model connection'"
+      },
+      {
+        "line": 267,
+        "text": "TextField, 0x10a808640, {{351.0, 206.5}, {508.0, 22.0}}, identifier: 'otzaria-hanlin-service-address', placeholderValue: 'Service address', value: https://generative..."
+      },
+      {
+        "line": 274,
+        "text": "TextField, 0x10a808f00, {{351.0, 258.5}, {508.0, 22.0}}, identifier: 'otzaria-hanlin-model', placeholderValue: 'Model', value: unused-native-fres..."
+      },
+      {
+        "line": 282,
+        "text": "SecureTextField, 0x10a80ae40, {{351.0, 310.5}, {508.0, 22.0}}, identifier: 'otzaria-hanlin-api-key', placeholderValue: 'API key', value: ••••••••••••••••••..."
+      },
+      {
+        "line": 290,
+        "text": "Button, 0x10a072f80, {{331.0, 347.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-connect', label: 'Connect'"
+      },
+      {
+        "line": 298,
+        "text": "StaticText, 0x10a071e00, {{331.0, 417.0}, {548.0, 40.5}}, identifier: 'otzaria-hanlin-current-book-consent', label: 'Book access'"
+      },
+      {
+        "line": 305,
+        "text": "StaticText, 0x10c3ac140, {{331.0, 457.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-consent-book-title', label: 'ספר החינוך'"
+      },
+      {
+        "line": 320,
+        "text": "Switch, 0x10c3ad400, {{331.0, 561.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-allow-current-book', label: 'Allow search in this book for this chat', value: 1"
+      },
+      {
+        "line": 322,
+        "text": "Switch, 0x10c3ad680, {{798.0, 573.5}, {63.0, 28.0}}, value: 1"
+      },
+      {
+        "line": 338,
+        "text": "StaticText, 0x10c3aea80, {{331.0, 695.5}, {548.0, 64.0}}, label: 'Connecting with book access reopens this saved conversation. Your messages and draft stay saved.'"
+      },
+      {
+        "line": 353,
+        "text": "Other, 0x10c3afd40, {{605.0, 417.0}, {0.0, 0.0}}, identifier: 'otzaria-hanlin-chat'"
+      }
+    ]
+  },
+  "7AD49B7F-9783-4B88-A0B0-BC8B69FB7FD2.txt": {
+    "bytes": 43692,
+    "sha256": "74f42ef6bfdf1cc71a9c8896cb98d9cb9e6865057145ee20992d99cc03fa1838",
+    "lines": [
+      {
+        "line": 120,
+        "text": "Button, 0x10a80b340, {{82.5, 154.0}, {50.0, 36.0}}, identifier: 'otzaria-hanlin-global-launch', label: 'Study chat'"
+      },
+      {
+        "line": 144,
+        "text": "Button, 0x10c3f12c0, {{917.5, 154.0}, {50.0, 36.0}}, identifier: 'otzaria-hanlin-reader-launch', label: 'Study chat'"
+      },
+      {
+        "line": 239,
+        "text": "Other, 0x10c3ad7c0, {{315.0, 87.0}, {580.0, 660.0}}, identifier: 'otzaria-hanlin-chat'"
+      },
+      {
+        "line": 243,
+        "text": "Button, 0x10c3adcc0, {{329.0, 101.0}, {68.5, 36.0}}, identifier: 'otzaria-hanlin-close', label: 'Close'"
+      },
+      {
+        "line": 245,
+        "text": "Button, 0x10c3adf40, {{845.0, 101.0}, {36.0, 36.0}}, identifier: 'otzaria-hanlin-history', label: 'Conversations'"
+      },
+      {
+        "line": 250,
+        "text": "CollectionView, 0x10c3ae580, {{315.0, 87.0}, {580.0, 660.0}}, identifier: 'otzaria-hanlin-connection-form'"
+      },
+      {
+        "line": 260,
+        "text": "StaticText, 0x10c3af200, {{331.0, 151.0}, {548.0, 40.5}}, label: 'Model connection'"
+      },
+      {
+        "line": 267,
+        "text": "TextField, 0x10c3afac0, {{351.0, 206.5}, {508.0, 22.0}}, identifier: 'otzaria-hanlin-service-address', placeholderValue: 'Service address', value: https://generative..."
+      },
+      {
+        "line": 274,
+        "text": "TextField, 0x10c3c03c0, {{351.0, 258.5}, {508.0, 22.0}}, identifier: 'otzaria-hanlin-model', placeholderValue: 'Model', value: unused-native-fres..."
+      },
+      {
+        "line": 282,
+        "text": "SecureTextField, 0x10c3c0dc0, {{351.0, 310.5}, {508.0, 22.0}}, identifier: 'otzaria-hanlin-api-key', placeholderValue: 'API key', value: ••••••••••••••••••..."
+      },
+      {
+        "line": 290,
+        "text": "Button, 0x10c3c17c0, {{331.0, 347.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-connect', label: 'Connect'"
+      },
+      {
+        "line": 298,
+        "text": "StaticText, 0x10c3c21c0, {{331.0, 417.0}, {548.0, 40.5}}, identifier: 'otzaria-hanlin-current-book-consent', label: 'Book access'"
+      },
+      {
+        "line": 305,
+        "text": "StaticText, 0x10c3c2a80, {{331.0, 457.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-consent-book-title', label: 'ספר החינוך'"
+      },
+      {
+        "line": 320,
+        "text": "Switch, 0x10c3c3d40, {{331.0, 561.5}, {548.0, 52.0}}, identifier: 'otzaria-hanlin-allow-current-book', label: 'Allow search in this book for this chat', value: 1"
+      },
+      {
+        "line": 322,
+        "text": "Switch, 0x10c3cc000, {{798.0, 573.5}, {63.0, 28.0}}, value: 1"
+      },
+      {
+        "line": 338,
+        "text": "StaticText, 0x10c3cd400, {{331.0, 695.5}, {548.0, 64.0}}, label: 'Connecting with book access reopens this saved conversation. Your messages and draft stay saved.'"
+      },
+      {
+        "line": 353,
+        "text": "Other, 0x10c3ce6c0, {{605.0, 417.0}, {0.0, 0.0}}, identifier: 'otzaria-hanlin-chat'"
+      }
+    ]
+  },
+  "manifest_type": "list",
+  "manifest_keys_or_count": 1
+}

@@ -1,0 +1,20 @@
+{
+  "parent": "a2c960b3cafa02be9cec8f01aebba893ad67cd47",
+  "commit": "2cd73aeacbcb870131abe721b60633e79817d5d5",
+  "tree": "f00f6814239cf951c0dfc2fae99a1facd6f4df7e",
+  "branch": "codex/otzaria-completion-20261122",
+  "files_verified": 22,
+  "operational_paths": [
+    ".github/workflows/otzaria-original-editor-stageb-native.yml",
+    "Scripts/CI/select-runtime27-toolchain.py"
+  ],
+  "all_original_product_trees_unchanged": true,
+  "new_controls": 7,
+  "executions": [
+    6,
+    1
+  ],
+  "prior_controls_replayed": 0,
+  "artifact_admitted": false,
+  "workflow_activated": false
+}

@@ -1,5 +1,89 @@
 # Otzaria / Maktabah — current development checkpoint
 
+Snapshot: 2026-11-22 16:13:29 UTC. This section supersedes the earlier checkpoints preserved verbatim below. Outcomes remain bound to their exact source and execution path. No product task has been closed without its required acceptance.
+
+## Canonical source, authorization and preserved work
+
+The canonical continuation branch is [codex/otzaria-completion-20261122](https://github.com/davidpovarsky/Maktabah/tree/codex/otzaria-completion-20261122). Before this documentation-only checkpoint its exact head is `2cd73aeacbcb870131abe721b60633e79817d5d5`, parent `a2c960b3cafa02be9cec8f01aebba893ad67cd47`. It contains the independently verified27ec864d product union and the optional exact-toolchain selector for StageB. All22 files in2cd73 were independently reconciled with their Git blobs. Its four product trees remain:
+
+| Product tree | Exact Git tree |
+|---|---|
+| Source | f6056372f52f0425fe77a556b02d26c82188d364 |
+| Vendor | 4065c0e62af325e83a65fe0c70270985229807ae |
+| Maktabah.xcodeproj | 8c0fa1ccfbcfae01fae3c267512864e00efcf078 |
+| Maktabah-iOSUITests | ca36ba13f1fd900adf528a3e404fed6a66290b6b |
+
+The canonical Sentinel checkout was last verified clean at a2c960b3; the post-publication clean fast-forward is recorded separately with its actual outcome. The other dedicated Anytype composed and original-native worktrees were verified at b5162d77 and c81f758e, respectively, without changing unrelated user worktrees. Current user authorization covers required development and Asana updates. It does not supply or replace a cryptographic release signature.
+
+[The recursive Asana inventory](RECURSIVE_ASANA_INVENTORY.json) remains82unique tasks:58open and24previously completed, including all33nested subtasks beyond the49project members. All returned pages/children were read. No task state has been changed merely because an intermediate source gate passed.
+
+## Actual Native connection and accessibility correction
+
+[45034727427](https://github.com/davidpovarsky/Maktabah/actions/runs/45034727427), attempt1 at81039998e66bba1d7310455d80a3c50e59785699, is terminal FAILURE: **0PASS / 1FAIL / 0SKIP / 0NOT_RUN**,213.80960595607758seconds. App/UI builds, exact historical Host48 reuse, cache saving and simulator cleanup passed. The ordinary consent-thumb drag worked. Both native switch/row values became1, sibling form values were unchanged, original Connect completed, and the chat reopened for ספר החינוך.
+
+The actual original AX and screenshot show End book access, the disclosure and disabled Send. The button inherited its parent `otzaria-hanlin-book-access` identifier, hiding `otzaria-hanlin-end-book-access`; the original XCTest therefore failed waiting for its exact child identifier at line361. This is direct evidence of an accessibility identifier collision, rather than evidence that connection did not occur. The failed XCTest remains FAIL.
+
+[Full retained evidence](native-fresh-read-45034727427/README.md) includes the complete original10,898,591-byte evidence ZIP, both archive inventories and hashes, original raw AX/PNGs, intake and both observer receipts. Captures ZIP130,386,192bytes is retained at the owned Sentinel path; every selected raw capture was checked against its original member. Both archives were downloaded from GitHub once. The first observer's TLS transport failure is preserved separately from the actual result; the finite successor terminated on the real completion.
+
+Reviewed source `3b4345bd0ae33b83c2ff4ae7697164343f0792b8` adds exactly one line, `.accessibilityElement(children: .contain)`, to the access-section group. Product actions, permissions and every test file remain unchanged from450347. Bound head `6591bba49d2b5a28d02b763c4360406843fce4cf` activated [45041601629](https://github.com/davidpovarsky/Maktabah/actions/runs/45041601629), attempt1, by one expected-head fast-forward. **Sole observer: job_2f400520baa8**, finite2700-second window with at most3transport errors. The current result is pending. This Native source uses the earlier focused product closure and is not a test of the canonical StageB product tree. The one-line fix will need exact-path integration after its actual result.
+
+## Original SDK: framework/public gates passed; package correction active
+
+[45034016674](https://github.com/davidpovarsky/anytype-swift/actions/runs/45034016674) genuinely passed239source controls but failed Apple framework compilation on6ordinary-actor LoginStateService isolation diagnostics. LoginStateService is an ordinary actor, not MainActor. Sourceab6992d6 moves the existing stop/drain/optional-clear sequence into a private actor method, called with await from the existing task. Swift6.3.3 in **Swift6 language mode**, strict complete concurrency, typechecked this correction successfully. The earlier10Auth controls used Swift6.3.3 in **Swift5 language mode** with strict concurrency; those valid results remain unchanged and were not replayed locally.
+
+[45037511015](https://github.com/davidpovarsky/anytype-swift/actions/runs/45037511015), attempt1 on `a9aa64bb8556ba5504ed0f5fe528cd1ce5f91efc`, is terminal FAILURE at packaging. Its actual239/239source controls, real Apple framework build and all38public/SPI contract gates passed. The raw framework stdout SHA256 is5bb07a89a21a160cab1f510063e7d3972081b193f4e2daa9d86721fc81eb05ee and includes BUILD SUCCEEDED. Its source-control raw report remains83e9f4fd2d890548adaa3f51f990b0279f234084c2ae6240bf4dc275b6f2fd94. Public-surface inspection counted652own symbols separately from26020imported dependency symbols and found no exposed editor/writer leakage. Packaging then raised “Original product include directory was not exported”. External consumer compilation/runtime were NOT_RUN, and there is no qualified SDK artifact.
+
+The root independently verified the retained original evidence archive, all545members, exact command/raw stream bindings and38outcomes. Inner ZIP15,226,371bytes SHA256d6555af2541be09872b7b61afc38b000376404e9a521c1130b859ffec421899c is retained in sourceedce5b97, blob924688c35717474129c29d472327733ccbc142d2. The explicitly unqualified358,281,254-byte artifact was not downloaded or used to bypass export checks. Missing original generated checkout/module inputs prevent a complete packaging-only continuation from those unqualified bytes.
+
+The reviewed include correction accepts only genuine absence of the conventional optional include directory. Existing paths must still be authentic directories; aliases/files fail, module-map targets still require exported originals, and a root that appears between inventories fails. Six new real filesystem/Git controls passed, while the original16Clang control bodies and239catalog identities remain unchanged. The producer's exact discovery requirement is now245.
+
+The30-case body source was composed into the SDK with an exact two-parent merge and an independently checked project delta: five new facade file references/build entries,12facades total; original application target unchanged. Removing the exact10new PBX objects restores the original project structure. Original2254Swift files,51package pins and38public contracts remain bound. Final combined source `edce5b975b173059522f90adb71271fb95adf963` changes only3operational tooling files plus31evidence files after the body composition.
+
+[Current producer45041382512](https://github.com/davidpovarsky/anytype-swift/actions/runs/45041382512), attempt1, exactedce5b97, was activated once on codex/otzaria-original-editor-framework-v13-body-reviewed-20261122. Required source/control admission and original Hanlin, Xcode/runtime, r14 Heart and macro prerequisites passed; genuine framework/external-consumer step began16:02:31UTC. Full245raw outcomes, packaging and external consumer remain pending. **Sole observer: clang_sdk/job_2b0fc8a0980d**. Do not duplicate its producer, observer or archive intake.
+
+## StageB source ready; genuine SDK admission remains pending
+
+Canonical2cd73 retains six selector controls PASS plus one separate stdout/stderr subprocess control PASS. The first six were preserved without replay. StageB alone opts into exact producer toolchain matching using the committed runtime27-original-editor.inputs.json; default Native/Live behavior remains unchanged. Selection must find a complete installed Xcode/Swift/SDK tuple, using the producer's exact `xcrun swiftc --version` stdout. It installs nothing and changes no global toolchain. Missing/mismatched qualification fails rather than falls back.
+
+Final StageB admission remains UNFINALIZED until a genuine qualified SDK's actual run/attempt/source/artifact/digests/toolchain are available. Application freeze is `cdc8cbb3b0fa9ea428b0367d764fe82ac6c5899a`, Sourcef6056372. Strict38contract collection and actual process-resume/credential-cleanup checks are preserved. The one planned original-editor test must establish a changed native PID, the same account/Space/object UUID, mixed Hebrew/English blocks, no second import, and owned credential cleanup. No StageB native execution has been claimed.
+
+## Native annotation schema and source-body/import observations
+
+The prior actual9schema-readback cases and12V7R1original-engine controls remain valid at their immutable sources. [Registration45038140322](https://github.com/davidpovarsky/anytype-swift/actions/runs/45038140322), attempt1, source60b8300c3506e53638c8ca883f82484de073fae8, actually compiled and executed13uniquechildren: **12PASS / 1FAIL / 0SKIP**. Root independently verified the original44payload archive,18raw commands,19source inputs and every child event. Passed cases include exact18creates plus oneApply across four explicit readiness phases, idempotence, Reader refusal, both collision forms and all3queued lifecycle cases. The failed MissingAttachmentUsesOneNativeApply encountered a complete loaded/persisted mismatch before repair; the strict guard remains intact. Evidence-only child `e725050d9463b6786b8b54421b4a279daa116878` retains the full original ZIP SHA25650ac79ce2728afa86feeff3c86ead0bdf21f9fec7ace16a743f6a451370c74ee.
+
+Diagnostic source `b93b7b351cfeb625607b5b7d86aef7c29fe78b0b` adds exactly11new workflow/packet paths, with all11Git blobs independently reconciled. It selects only the failed child, adds six read-only complete loaded/persisted captures and leaves all4product sources, the original setup writes/assertions and12passing bodies unchanged. Semantic equality remains proto.Equal; serialization hashes are integrity evidence only. Actual WindowsGo1.25.6 formatting preserved both reviewed files byte for byte; the earlier formatter timeout is retained. The pinned macOSGo1.26.5 equality gate remains required.
+
+[Diagnostic45042110729](https://github.com/davidpovarsky/anytype-swift/actions/runs/45042110729), attempt1 at exactb93b7b35, was activated once. **Sole observer: heart_completion/job_6fdc32065bdf**,3300-second internal window. Native compile/outcome and the six pairs are pending. Diagnostic completeness alone cannot change the case's FAIL to PASS.
+
+[Body45037906356](https://github.com/davidpovarsky/anytype-swift/actions/runs/45037906356) is actual **30/30PASS** on source4d73ccd6c0ff2e744c3abdf0b138779c17e45163, with retained evidence-only childf9cf2a5a48315d11c9e9d7cc53f1bd075171623d. Root independently matched203Git inputs including198unchanged generated models,6raw commands and30once-only case outcomes. Swift6.4.2Linux, pinned SwiftProtobuf/ZIPFoundation and synthetic archives establish portable native-archive semantics; they do not prove an engine write, Owner admission, atomicity, durable mapping or ACK. The earlier40+13controls and both zero-case compiler failures remain preserved.
+
+New source `20cb8998211eaefa5ddb00ef60ff2462dd3271e9` is a94-file documentation/source packet againstb5162d77. Its six Go files capture original protobuf source/member IDs before normalization, exact original converter/native assignment and alias values, then copy private observations only after every successful original worker drain. Failure/partial results cannot claim completeness; legacy JSON shape is preserved. Actual50newleafcontrols passed on Go1.25.6Windows, with0native imports and0prior suite replays; raw RESULTcdd51f4581c2d78bacc072cf81956b51f94a8370c3e1d57f22e95ee2fd8d1cfb. Root independently checked all94remote blobs,15compiled inputs,6product hashes, all50once-only raw starts/passes and the exact r14 composition inverse. Integrators must use composition/r14/native: its processor preserves original torahtransport.RemapObjects before the assignment-completion flag. Full original-module compile-only gate is being prepared; authentic archive/account binding, cancellation/failure drain, shared-converter admission, extra file remaps, actual native import/readback and durable consumer remain open. No production mapping route or ACK was enabled.
+
+## Live, genuine Owner verifier and Books
+
+The known existing GEMINI_API_KEY process value was confirmed **available** at14:56UTC without printing, hashing or using it. Do not report Live blocked on a missing provider key. No new GitHub temporary Live secret has been created. Prior Live8 failed waiting for the access button, after21actual events reached configuration completion/read scope; the new Native AX finding now supplies a concrete related product defect. After actual Native validation, prepare one exact-source Live run with an owned secret lifecycle: known key only through stdin, exact metadata ownership, one push/run, finite observation, terminal run before owned DELETE204/GET404. Do not remove a secret still needed by an active run.
+
+The genuine owner public verifier MAKTABAH_OWNER_VERIFICATION_KEY was absent in the process at15:08 and in the exact GitHub repository secret/variable reads (HTTP404) at15:09. No private key was sought or created. Operational development authorization does not fabricate an Ed25519 release signature. The immutable protected50path/verifier requirements remain intact; final full-index approval material must use the eventual final source.
+
+The configured Books endpoint was actually read once: HTTP200,792bytes, seven semicolon-delimited rows with six columns, SHA25699c2cf… as retained earlier. The authoritative database backend/schema/source/migration contract is still missing. No speculative updater/database writes were made;60+37passing tests remain preserved.
+
+## Next work in dependency order
+
+1. Resolve the three existing owned runs at their exact heads; intake original artifacts once, preserving actual failures and all earlier passing results. Do not start parallel observers for those runs.
+2. Integrate the one-line Native fix by exact source path after actual acceptance, then execute the reviewed Live path with its owned secret lifecycle. Preserve canonical StageB product/UI additions when composing.
+3. On genuine SDK qualification, independently verify both artifacts and bind the original StageB consumer to actual245/38/consumer/manifest/toolchain facts. Run the one original process-relaunch test.
+4. Use the paired native schema evidence to fix only the proven loaded/persisted issue; preserve the12passing cases. Continue the original generated Heart/Swift RPC bridge only with its genuine protoc/gogofaster/gomobile and Swift generation source closure.
+5. Compile the original import observation source in the native module, then close real ownership/drain/archive/account/remap/native-readback dependencies before enabling a durable map consumer.
+6. Continue remaining Native/Release/Owner/Books/transport acceptance from the complete recursive inventory. Genuine externally missing verifier/database material remains explicit; no task is closed by an intermediate count.
+
+Asana milestone comments are preserved on main1220763167870295 and cross-app1220545194715722, including main1220769564787871 (actual created_at16:07:15UTC) and schema1220769198647649 (actual created_at15:51:59UTC). The new pinned checkpoint will point to this exact documentation commit after remote and clean Sentinel readback.
+
+---
+
+## Historical checkpoint preserved verbatim
+
+# Otzaria / Maktabah — current development checkpoint
+
 Snapshot: 2026-11-22 14:45:04 UTC. This section supersedes the earlier checkpoints retained below. Every result remains limited to its recorded source and execution path; no product task has been newly closed.
 
 ## Current source and complete Asana inventory

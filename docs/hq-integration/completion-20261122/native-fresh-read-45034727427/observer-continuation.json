@@ -1,0 +1,32 @@
+{
+  "run_id": 45034727427,
+  "expected_head": "81039998e66bba1d7310455d80a3c50e59785699",
+  "run_attempt": 1,
+  "owner": "/root",
+  "previous_observer": "job_7dbb19c2f56b",
+  "previous_observer_finished_at": "2026-11-22T15:33:54.248809+00:00",
+  "previous_exit": 1,
+  "previous_exit_reason": "TLS handshake timeout; CI remained active",
+  "started_at": "2026-11-22T15:38:24.683059+00:00",
+  "observer_invocations": 1,
+  "gh_watch_invocations": 0,
+  "status_polls": 5,
+  "transport_errors": 0,
+  "max_seconds": 1800,
+  "status": "TERMINAL",
+  "new_dispatches": 0,
+  "artifact_downloads": 0,
+  "last": {
+    "id": 45034727427,
+    "head_sha": "81039998e66bba1d7310455d80a3c50e59785699",
+    "head_branch": "codex/otzaria-native-package-cache-20261122",
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "updated_at": "2026-11-22T15:41:05Z",
+    "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45034727427"
+  },
+  "last_observed_at": "2026-11-22T15:41:29.913175+00:00",
+  "conclusion": "failure",
+  "finished_at": "2026-11-22T15:41:29.916207+00:00"
+}

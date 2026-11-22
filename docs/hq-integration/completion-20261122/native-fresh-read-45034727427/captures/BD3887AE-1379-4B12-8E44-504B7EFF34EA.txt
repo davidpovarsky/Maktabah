@@ -1,0 +1,280 @@
+appFrame=(0.0, 0.0, 1210.0, 834.0)
+actualWindow=(0.0, 0.0, 1210.0, 834.0)
+orientation=3
+Optional(Attributes: Application, 0x10a071400, pid: 5505, label: 'ChavrusaText'
+Element subtree:
+ →Application, 0x10a071400, pid: 5505, label: 'ChavrusaText'
+    Window (Main), 0x10a071680, {{0.0, 0.0}, {1210.0, 834.0}}
+      Other, 0x10a070a00, {{0.0, 0.0}, {1210.0, 834.0}}
+      Other, 0x10a072580, {{0.0, 0.0}, {1210.0, 834.0}}
+        Other, 0x10a071a40, {{0.0, 0.0}, {1210.0, 834.0}}
+          Other, 0x10a071900, {{-1210.0, -834.0}, {3630.0, 2502.0}}, identifier: 'PopoverDismissRegion', label: 'dismiss popup'
+          Other, 0x10a071cc0, {{0.0, 0.0}, {1210.0, 834.0}}
+            Other, 0x10a071f40, {{0.0, 0.0}, {1210.0, 834.0}}
+              Other, 0x10a071e00, {{0.0, 0.0}, {1210.0, 834.0}}
+                Other, 0x10a0717c0, {{0.0, 0.0}, {1210.0, 834.0}}
+                  Other, 0x10a071040, {{0.0, 0.0}, {1210.0, 834.0}}
+                    Other, 0x10a071540, {{0.0, 0.0}, {1210.0, 834.0}}
+                      Other, 0x10a0726c0, {{0.0, 0.0}, {1210.0, 834.0}}
+                        Other, 0x10a073200, {{0.0, 0.0}, {1210.0, 834.0}}
+                          Other, 0x10a072e40, {{0.0, 96.0}, {1210.0, 718.0}}
+                          Other, 0x10a070280, {{0.0, 96.0}, {1210.0, 738.0}}
+                            Other, 0x10a072f80, {{0.0, 96.0}, {1210.0, 738.0}}
+                              Other, 0x10a072bc0, {{0.0, 96.0}, {1210.0, 738.0}}
+                                Other, 0x10a073c00, {{0.0, 96.0}, {320.0, 738.0}}
+                                  Other, 0x10c3c3480, {{0.0, 96.0}, {320.0, 738.0}}
+                                    Other, 0x10c3c03c0, {{0.0, 96.0}, {320.0, 738.0}}
+                                      Other, 0x10c3c0780, {{0.0, 96.0}, {320.0, 738.0}}
+                                        Other, 0x10c3c0a00, {{0.0, 96.0}, {320.0, 738.0}}
+                                          Other, 0x10c3c0c80, {{0.0, 96.0}, {320.0, 738.0}}
+                                            Other, 0x10c3c0dc0, {{0.0, 258.0}, {320.0, 512.0}}
+                                            Other, 0x10c3c0f00, {{0.0, 258.0}, {320.0, 512.0}}, identifier: 'reader-sidebar-pager'
+                                              CollectionView, 0x10c3c1040, {{0.0, 258.0}, {320.0, 512.0}}
+                                                Cell, 0x10c3c1180, {{0.0, 258.0}, {320.0, 512.0}}
+                                                  Other, 0x10c3c12c0, {{0.0, 258.0}, {320.0, 512.0}}
+                                                    Other, 0x10c3c1540, {{0.0, 258.0}, {320.0, 512.0}}
+                                                      Other, 0x10c3c1680, {{0.0, 258.0}, {320.0, 512.0}}
+                                                        Other, 0x10c3c1900, {{0.0, 258.0}, {320.0, 512.0}}
+                                                          Other, 0x10c3c1a40, {{0.0, 258.0}, {320.0, 512.0}}
+                                                          Other, 0x10c3c35c0, {{0.0, 258.0}, {320.0, 512.0}}, identifier: 'library-column'
+                                                            Other, 0x10c3c3ac0, {{0.0, 258.0}, {320.0, 512.0}}
+                                                              CollectionView, 0x10c3c3980, {{0.0, 258.0}, {320.0, 512.0}}
+                                                                Other, 0x10c3c3700, {{-16.0, -766.0}, {352.0, 2403.0}}
+                                                                Cell, 0x10c3c3840, {{16.0, 293.0}, {288.0, 50.0}}, identifier: 'library-tree-path-W1siY2F0ZWdvcnkiLCLXqtec157XldeTINeR15HXnNeZIiwiMCJdXQ=='
+                                                                  Other, 0x10c3c3200, {{16.0, 293.0}, {288.0, 50.0}}
+                                                                    Other, 0x10c3c3340, {{16.0, 293.0}, {288.0, 50.0}}
+                                                                  Other, 0x10c3c2a80, {{16.0, 293.0}, {288.0, 50.0}}
+                                                                    Other, 0x10c3c2080, {{32.0, 293.0}, {256.0, 50.0}}
+                                                                      Other, 0x10c3c1400, {{234.0, 303.0}, {30.0, 30.0}}
+                                                                        Image, 0x10c3c08c0, {{234.0, 303.5}, {30.0, 28.5}}, identifier: 'folder.fill', label: 'move'
+                                                                      Image, 0x10c3c0500, {{272.0, 310.5}, {16.0, 14.5}}, identifier: 'chevron.forward', label: 'Forward'
+                                                                      StaticText, 0x10c3c2f80, {{32.0, 306.0}, {194.0, 24.0}}, label: 'תלמוד בבלי'
+                                                                Cell, 0x10c3c17c0, {{16.0, 343.0}, {288.0, 50.0}}, identifier: 'library-tree-path-W1siY2F0ZWdvcnkiLCLXqteg17TXmiIsIjAiXV0='
+                                                                  Other, 0x10c3c0b40, {{16.0, 343.0}, {288.0, 50.0}}
+                                                                    Other, 0x10c3c0640, {{16.0, 343.0}, {288.0, 50.0}}
+                                                                  Other, 0x10c3c0000, {{16.0, 343.0}, {288.0, 50.0}}
+                                                                    Other, 0x10c3c0140, {{32.0, 343.0}, {256.0, 50.0}}
+                                                                      Other, 0x10c3fdf40, {{234.0, 353.0}, {30.0, 30.0}}
+                                                                        Image, 0x10c3fe1c0, {{234.0, 353.5}, {30.0, 28.5}}, identifier: 'folder.fill', label: 'move'
+                                                                      Image, 0x10c3fe440, {{272.0, 360.5}, {16.0, 14.5}}, identifier: 'chevron.forward', label: 'Forward'
+                                                                      StaticText, 0x10c3fcf00, {{32.0, 356.0}, {194.0, 24.0}}, label: 'תנ״ך'
+                                                                Other, 0x10c3fd040, {{32.0, 342.0}, {194.0, 1.0}}
+                                                                Cell, 0x10c3fd180, {{16.0, 393.0}, {288.0, 50.0}}, identifier: 'library-tree-path-W1siY2F0ZWdvcnkiLCLXntep16DXlCIsIjAiXV0='
+                                                                  Other, 0x10c3fdb80, {{16.0, 393.0}, {288.0, 50.0}}
+                                                                    Other, 0x10c3fd400, {{16.0, 393.0}, {288.0, 50.0}}
+                                                                  Other, 0x10c3fde00, {{16.0, 393.0}, {288.0, 50.0}}
+                                                                    Other, 0x10c3ff5c0, {{32.0, 393.0}, {256.0, 50.0}}
+                                                                      Other, 0x10c3ff200, {{234.0, 403.0}, {30.0, 30.0}}
+                                                                        Image, 0x10c3fd2c0, {{234.0, 403.5}, {30.0, 28.5}}, identifier: 'folder.fill', label: 'move'
+                                                                      Image, 0x10c3fda40, {{272.0, 410.5}, {16.0, 14.5}}, identifier: 'chevron.forward', label: 'Forward'
+                                                                      StaticText, 0x10c3fd900, {{32.0, 406.0}, {194.0, 24.0}}, label: 'משנה'
+                                                                Other, 0x10c3fd540, {{32.0, 392.0}, {194.0, 1.0}}
+                                                                Cell, 0x10c3fd680, {{16.0, 443.0}, {288.0, 50.0}}, identifier: 'library-tree-path-W1siY2F0ZWdvcnkiLCLXlNec15vXlCIsIjAiXV0='
+                                                                  Other, 0x10c3fd7c0, {{16.0, 443.0}, {288.0, 50.0}}
+                                                                    Other, 0x10c3fe300, {{16.0, 443.0}, {288.0, 50.0}}
+                                                                  Other, 0x10c3fe080, {{16.0, 443.0}, {288.0, 50.0}}
+                                                                    Other, 0x10c3fdcc0, {{32.0, 443.0}, {256.0, 50.0}}
+                                                                      Other, 0x10c3ffe80, {{234.0, 453.0}, {30.0, 30.0}}
+                                                                        Image, 0x10c3ffd40, {{234.0, 453.5}, {30.0, 28.5}}, identifier: 'folder.fill', label: 'move'
+                                                                      Image, 0x10c3ffc00, {{272.0, 460.5}, {16.0, 14.5}}, identifier: 'chevron.forward', label: 'Forward'
+                                                                      StaticText, 0x10c3ffac0, {{32.0, 456.0}, {194.0, 24.0}}, label: 'הלכה'
+                                                                Other, 0x10c3ff840, {{32.0, 442.0}, {194.0, 1.0}}
+                                                                Cell, 0x10c3ff980, {{16.0, 493.0}, {288.0, 50.0}}, identifier: 'library-tree-path-W1siY2F0ZWdvcnkiLCLXnteX16nXkdeqINeZ16nXqNeQ15wiLCIwIl1d'
+                                                                  Other, 0x10c3ff480, {{16.0, 493.0}, {288.0, 50.0}}
+                                                                    Other, 0x10c3ff700, {{16.0, 493.0}, {288.0, 50.0}}
+                                                                  Other, 0x10c3ff0c0, {{16.0, 493.0}, {288.0, 50.0}}
+                                                                    Other, 0x10c3ff340, {{32.0, 493.0}, {256.0, 50.0}}
+                                                                      Other, 0x10c3fef80, {{234.0, 503.0}, {30.0, 30.0}}
+                                                                        Image, 0x10a810dc0, {{234.0, 503.5}, {30.0, 28.5}}, identifier: 'folder.fill', label: 'move'
+                                                                      Image, 0x10a812080, {{272.0, 510.5}, {16.0, 14.5}}, identifier: 'chevron.forward', label: 'Forward'
+                                                                      StaticText, 0x10a8135c0, {{32.0, 506.0}, {194.0, 24.0}}, label: 'מחשבת ישראל'
+                                                                Other, 0x10a813340, {{32.0, 492.0}, {194.0, 1.0}}
+                                                                Cell, 0x10a810640, {{16.0, 543.0}, {288.0, 50.0}}, identifier: 'library-tree-path-W1siY2F0ZWdvcnkiLCLXodek16jXmSDXnteV16HXqCIsIjAiXV0='
+                                                                  Other, 0x10a811900, {{16.0, 543.0}, {288.0, 50.0}}
+                                                                    Other, 0x10a811e00, {{16.0, 543.0}, {288.0, 50.0}}
+                                                                  Other, 0x10a811f40, {{16.0, 543.0}, {288.0, 50.0}}
+                                                                    Other, 0x10a810140, {{32.0, 543.0}, {256.0, 50.0}}
+                                                                      Other, 0x10a813e80, {{234.0, 553.0}, {30.0, 30.0}}
+                                                                        Image, 0x10a810a00, {{234.0, 553.5}, {30.0, 28.5}}, identifier: 'folder.fill', label: 'move'
+                                                                      Image, 0x10a810500, {{272.0, 560.5}, {16.0, 14.5}}, identifier: 'chevron.forward', label: 'Forward'
+                                                                      StaticText, 0x10a810280, {{32.0, 556.0}, {194.0, 24.0}}, label: 'ספרי מוסר'
+                                                                Other, 0x10a811400, {{32.0, 542.0}, {194.0, 1.0}}
+                                                                Other, 0x10a811b80, {{287.0, 258.0}, {30.0, 512.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                                                  Other, 0x10a811040, {{314.0, 219.0}, {3.0, 36.0}}
+                                                                Other, 0x10a810f00, {{0.0, 737.0}, {320.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                                  Other, 0x10a8117c0, {{-39.0, 764.0}, {36.0, 3.0}}
+                                                                Other, 0x10a812580, {{287.0, 258.0}, {30.0, 512.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                                                  Other, 0x10a811540, {{314.0, 219.0}, {3.0, 36.0}}
+                                                                Other, 0x10a812440, {{0.0, 737.0}, {320.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                                  Other, 0x10a8121c0, {{-39.0, 764.0}, {36.0, 3.0}}
+                                                Other, 0x10a812800, {{287.0, 258.0}, {30.0, 512.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                                  Other, 0x10a812d00, {{314.0, 760.0}, {3.0, 7.0}}
+                                                Other, 0x10a8112c0, {{287.0, 258.0}, {30.0, 512.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                                  Other, 0x10a8126c0, {{314.0, 760.0}, {3.0, 7.0}}
+                                            Button, 0x10a811680, {{116.0, 770.0}, {44.0, 44.0}}, identifier: 'reader-sidebar-page-0', label: 'Library', Selected
+                                            Button, 0x10a811a40, {{160.0, 770.0}, {44.0, 44.0}}, identifier: 'reader-sidebar-page-1', label: 'Table of Contents'
+                                    NavigationBar, 0x10a813840, {{0.0, 150.0}, {320.0, 108.0}}, identifier: 'Library'
+                                      Other, 0x10a811180, {{14.0, 154.0}, {36.0, 36.0}}
+                                        Other, 0x10a812e40, {{14.0, 154.0}, {36.0, 36.0}}
+                                          Button, 0x10a810c80, {{15.5, 154.0}, {33.0, 36.0}}, identifier: 'main-settings-button', label: 'Settings'
+                                      Button, 0x10a810b40, {{82.5, 154.0}, {50.0, 36.0}}, identifier: 'otzaria-hanlin-global-launch', label: 'Study chat'
+                                      Button, 0x10a812940, {{148.5, 154.0}, {43.5, 36.0}}, label: 'Group By'
+                                      Button, 0x10a812bc0, {{212.0, 154.0}, {38.0, 36.0}}, identifier: 'TopOverflowBarButtonItem', label: 'More'
+                                      Button, 0x10a8130c0, {{270.0, 154.0}, {36.0, 36.0}}, label: 'Hide Sidebar'
+                                      SearchField, 0x10a813ac0, {{16.0, 204.0}, {288.0, 44.0}}, label: 'Search Library', placeholderValue: 'Search Library'
+                                        Image, 0x10a813c00, {{28.0, 215.5}, {20.5, 20.0}}, identifier: 'magnifyingglass', label: 'Search'
+                                    Toolbar, 0x10a813700, {{0.0, 96.0}, {320.0, 738.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                                      Other, 0x10a813980, {{0.0, 96.0}, {320.0, 738.0}}
+                                  Other, 0x10a811cc0, {{0.0, 96.0}, {320.0, 738.0}}
+                                    Other, 0x10a810000, {{0.0, 96.0}, {320.0, 738.0}}
+                                      Other, 0x10a8103c0, {{0.0, 96.0}, {320.0, 738.0}}
+                                        Other, 0x10a812f80, {{0.0, 96.0}, {320.0, 738.0}}
+                                          Other, 0x10a813200, {{0.0, 96.0}, {320.0, 738.0}}
+                                            Other, 0x10a813480, {{0.0, 96.0}, {320.0, 738.0}}
+                                        Other, 0x10a813d40, {{0.0, 96.0}, {320.0, 738.0}}
+                                          Other, 0x10a812a80, {{0.0, 96.0}, {320.0, 738.0}}
+                                Other, 0x10a8108c0, {{0.0, 96.0}, {1210.0, 738.0}}
+                                  Other, 0x10a810780, {{0.0, 96.0}, {1210.0, 738.0}}
+                                    NavigationBar, 0x10725bd40, {{0.0, 150.0}, {1210.0, 54.0}}, identifier: 'ספר החינוך'
+                                      StaticText, 0x10725bac0, {{719.0, 154.5}, {92.0, 35.0}}, label: 'ספר החינוך'
+                                        Other, 0x107259f40, {{719.0, 154.5}, {92.0, 35.0}}
+                                          StaticText, 0x10c3f0500, {{723.8, 154.5}, {82.5, 20.5}}, identifier: 'reader-header-visible-title', label: 'ספר החינוך'
+                                          StaticText, 0x10c3f0640, {{719.0, 176.0}, {92.0, 13.5}}, identifier: 'reader-header-subtitle', label: 'ספר החינוך,  קב, א'
+                                      Button, 0x10c3f1040, {{859.5, 154.0}, {42.0, 36.0}}, identifier: 'reader-tabs-overview', label: 'כל הכרטיסיות'
+                                      Button, 0x10c3f0f00, {{917.5, 154.0}, {50.0, 36.0}}, identifier: 'otzaria-hanlin-reader-launch', label: 'Study chat'
+                                      Button, 0x10c3f0dc0, {{983.5, 154.0}, {40.0, 36.0}}, identifier: 'reader-command-palette-launcher', label: 'חיפוש מהיר בספרייה'
+                                      Button, 0x10c3f0a00, {{1039.5, 154.0}, {40.0, 36.0}}, identifier: 'study-profile-menu', label: 'פרופיל לימוד'
+                                      Button, 0x10c3f12c0, {{1095.5, 154.0}, {44.5, 36.0}}, identifier: 'reader-study-toggle', label: 'Open Study Tools'
+                                      Button, 0x10c3f1680, {{1160.0, 154.0}, {36.0, 36.0}}, label: 'Book Info'
+                                    Other, 0x10c3f17c0, {{0.0, 96.0}, {1210.0, 738.0}}
+                                      Other, 0x10c3f21c0, {{0.0, 96.0}, {1210.0, 738.0}}
+                                        Other, 0x10c3f26c0, {{0.0, 96.0}, {1210.0, 738.0}}
+                                          Other, 0x10c3f2440, {{0.0, 96.0}, {1210.0, 738.0}}
+                                            Other, 0x10c3f2080, {{0.0, 96.0}, {1210.0, 738.0}}, identifier: 'reader-detail-column'
+                                              Other, 0x10c3f1f40, {{320.0, 96.0}, {890.0, 738.0}}
+                                                TextView, 0x10c3f2580, {{320.0, 96.0}, {890.0, 738.0}}, identifier: 'reader-text', value: ‫מצוה קב‬
+
+‫מִצְוַ...
+                                                  Other, 0x10c3f1a40, {{320.0, 96.0}, {1.0, 1.0}}, identifier: 'reader-rendered-highlight-diagnostics', label: 'searchHighlights:0', value: {"annotationHighli...
+                                                  TextView, 0x10c3f1540, {{1133.9, 106.0}, {61.1, 32.0}}, label: '‫מצוה קב‬'
+                                                  TextView, 0x10c3f1900, {{336.4, 174.0}, {858.6, 256.1}}, label: '‫מִצְוַת אֲכִילַת בְּשַׂר חַטָּאת וְאָשָׁם – שֶׁנִּצְטַוּוּ הַכֹּהֲנִים לֶאֱכֹל בְּשַׂר קְצָת מִן הַקָּרְבָּנוֹת, כְּגוֹן הַחַטָּאת וְהָאָשָׁם, שֶׁנֶּאֱמַר עֲלֵיהֶם (שמות כט לג) וְאָכְלוּ אֹתָם אֲשֶׁר כֻּפַּר בָּהֶם, וְאָמְרוּ זִכְרוֹנָם לִבְרָכָה (פסחים נט ב) כֹּהֲנִים אוֹכְלִים וּבְעָלִים מִתְכַּפְּרִים. וְעִנְיַן מַעֲשֵׂה הַחַטָּאת וְהָאָשָׁם אֵיךְ הָיוּ עוֹשִׂין אוֹתָן וּמְקוֹם וּזְמַן אֲכִילָתָן כְּסֵדֶר שֶׁלָּהֶם, נִכְתְּבֶנּוּ בְּעֶזְרַת הַשֵּׁם, וּכְלַל הַדָּבָר, שֶׁכָּל בְּשַׂר קָרְבַּן הַחַטָּאת וְהָאָשָׁם הָיָה נֶאֱכָל לְזִכְרֵי כְּהֻנָּה בָּעֲזָרָה חוּץ מִן הָאֵמוּרִין שֶׁבָּהֶן, וְאֵין לַבְּעָלִים בָּהֶם כְּלוּם, וְשָׁם יִתְפָּרֵשׁ גַּם כֵּן מָה הֵן הָאֵמוּרִין וּבִכְלַל מִצְוַת עֲשֵׂה זֶה גַּם כֵּן שֶׁיֹּאכְלוּ חֶלְקָם הַמַּגִּיעַ אֲלֵיהֶם מִכְּלַל הַקָּרְבָּנוֹת שֶׁנִּקְרָאִין קָדָשִׁים קַלִּים, וְכֵן אֲכִילַת הַתְּרוּמָה בִּכְלַל הַמִּצְוָה. וְאוּלָם אֵין אֲכִילַת קָדָשִׁים קַלִּים וּתְרוּמָה כְּמוֹ אֲכִילַת בְּשַׂר חַטָּאת וְאָשָׁם, שֶׁבַּאֲכִילַת חַטָּאת וְאָשָׁם, תִּשְׁלַם כַּפָּרַת הַמִּתְכַּפֵּר, כְּמוֹ שֶׁאָמְרוּ זִכְרוֹנָם לִבְרָכָה (פסחים שם) כֹּהֲנִים אוֹכְלִים וּבְעָלִים מִתְכַּפְּרִים, וַאֲכִילַת קָדָשִׁים קַלִּים וּתְרוּמָה, לֹא יוֹסִיף וְלֹא יִגְרַע בְּמִצְוַת הַמַּקְרִיב וְהַנּוֹתֵן.‬'
+                                                  TextView, 0x10c3f3e80, {{338.1, 466.1}, {856.9, 192.0}}, label: '‫מִשָּׁרְשֵׁי הַמִּצְוָה. הַיְּסוֹד הַקָּבוּעַ אֶצְלֵנוּ כִּי כָּל פְּעֻלּוֹת הַקָּרְבָּנוֹת לְהַכְשִׁיר מַחְשַׁבְתֵּנוּ וְכַוָּנָתֵנוּ לְטוֹב, וּלְהַשְׁפִּיל הַנֶּפֶשׁ הַמִּתְאַוָּה אֲשֶׁר בָּנוּ וּלְהַגְדִּיל וּלְחַזֵּק נֶפֶשׁ הַשֵּׂכֶל אֶל הַמִּצְוֹת. וְעַל כֵּן נִצְטַוִּינוּ לְהִתְנַהֵג בְּכָל עִנְיְנֵי הַבַּיִת וְהַקָּרְבָּנוֹת דֶּרֶךְ מַעֲלָה וּגְדֻלָּה וְכָבוֹד לְמַעַן תָּנוּחַ בִּלְבָבֵנוּ יִרְאָה וַעֲנָוָה וְשִׁפְלוּת הָרוּחַ בִּהְיוֹתֵנוּ שָׁם, גַּם בְּזָכְרֵנוּ אוֹתוֹ מִמְּקוֹמֵנוּ. וּבֶאֱמֶת כִּי מִן הַנְהָגַת הַכָּבוֹד אֶל הַקָּרְבָּן שֶׁהַכַּפָּרָה תְּלוּיָה בּוֹ, לִהְיוֹתוֹ נֶאֱכָל אֶל הַמְּשָׁרְתִים בְּעַצְמָם וְלֹא שֶׁיִּתְּנוּהוּ לְעַבְדֵיהֶם וּלְכַלְבָּם אוֹ יִמְכְּרוּהוּ לְכָל קוֹנֶה, וְכֵן מִן הַכָּבוֹד הוּא שֶׁיֵּאָכֵל בְּמָקוֹם קָדוֹשׁ. וְכֵן שֶׁלֹּא יַשְׁהוּ אֲכִילָתוֹ הַרְבֵּה כְּדֵי שֶׁלֹּא יַסְרִיחַ וְתִהְיֶה הַנֶּפֶשׁ קָצָה בּוֹ, הֲלֹא כָּל זֶה מַרְאֶה בָּעִנְיָן גְּדֻלָּה וַחֲשִׁיבוּת.‬'
+                                                  TextView, 0x10c3f1400, {{880.8, 694.1}, {314.2, 32.0}}, label: '‫דִּינֵי הַמִּצְוָה. בִּמְקוֹמָן נַאֲרִיךְ בָּהֶן קְצָת כְּמִנְהָגֵנוּ.‬'
+                                                  TextView, 0x10c3f0780, {{344.2, 762.1}, {850.8, 96.0}}, label: '‫וְנוֹהֶגֶת מִצְוָה זוֹ בִּזְמַן הַבַּיִת בְּזִכְרֵי כְּהֻנָּה. וְהָעוֹבֵר עָלֶיהָ וְלֹא אָכַל חֶלְקוֹ הַמַּגִּיעַ מֵהֶן בַּזְּמַן הַמֻּגְבָּל לוֹ, בִּטֵּל עֲשֵׂה וְנֶעֱנָשׁ עוֹד מִצַּד כַּפָּרַת הַבְּעָלִים שֶׁתְּלוּיָה בּוֹ, כְּמוֹ שֶׁאָמַרְנוּ. וְהָרַמְבַּ"ן זִכְרוֹנוֹ לִבְרָכָה (בספר המצות שרש יב) לֹא יִמְנֶה מִצְוָה זוֹ, כִּי אָמַר שֶׁזֶּה חֵלֶק מֵחֶלְקֵי מִצְוַת הַקָּרְבָּנוֹת הוּא שֶׁצִּוָּה הַשֵּׁם יִתְבָּרַךְ בָּהֶם מִי יֹאכְלֵם וּלְמִי יִהְיוּ, וְהָאֱמֶת שֶׁהַכַּפָּרָה תְּלוּיָה בָּזֶה.‬'
+                                                  Other, 0x10c3f0140, {{287.0, 96.0}, {30.0, 738.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                                    Other, 0x10c3f3ac0, {{314.0, 57.0}, {3.0, 36.0}}
+                                                  Other, 0x10c3f0280, {{320.0, 801.0}, {860.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                    Other, 0x10c3f0c80, {{281.0, 828.0}, {36.0, 3.0}}
+                                              StaticText, 0x10c3f2f80, {{764.5, 194.2}, {1.0, 20.5}}, identifier: 'reader-header-title', label: 'ספר החינוך'
+                                              StaticText, 0x10c3f2300, {{764.5, 195.2}, {1.0, 20.5}}, identifier: 'reader-current-locator', label: 'otzaria|book:3891|line:522', value: otzaria|book:3891|...
+                                    Toolbar, 0x10c3f1b80, {{0.0, 96.0}, {1210.0, 738.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                                      Other, 0x10c3f2800, {{0.0, 96.0}, {1210.0, 738.0}}
+                                Toolbar, 0x10c3f1e00, {{0.0, 96.0}, {1210.0, 738.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                                  Other, 0x10c3f1180, {{0.0, 96.0}, {1210.0, 738.0}}
+                                    Other, 0x10c3f0b40, {{0.0, 96.0}, {1210.0, 738.0}}
+                                      Other, 0x10c3f3d40, {{0.0, 96.0}, {1210.0, 738.0}}
+                                        Other, 0x10c3f3c00, {{0.0, 96.0}, {0.0, 0.0}}
+                                          Other, 0x10c3f08c0, {{330.0, 770.0}, {113.0, 44.0}}
+                                            Other, 0x10c3f0000, {{330.0, 770.0}, {113.0, 44.0}}
+                                              Other, 0x10c3f03c0, {{334.0, 774.0}, {105.0, 36.0}}
+                                                Other, 0x10c3f1cc0, {{334.0, 774.0}, {105.0, 36.0}}
+                                                  Other, 0x10c3ea6c0, {{334.0, 774.0}, {105.0, 36.0}}
+                                                    Other, 0x10c3e8dc0, {{334.0, 774.0}, {105.0, 36.0}}
+                                                      Button, 0x10c3e9a40, {{334.0, 774.0}, {105.0, 36.0}}, label: 'ספר החינוך'
+                                          Other, 0x10c3ea580, {{722.5, 770.0}, {96.0, 44.0}}
+                                            Other, 0x10c3e9900, {{722.5, 770.0}, {44.0, 44.0}}
+                                              Other, 0x10c3e97c0, {{726.5, 774.0}, {36.0, 36.0}}
+                                                Other, 0x10c3e9400, {{726.5, 774.0}, {36.0, 36.0}}
+                                                  Other, 0x10c3e9e00, {{726.5, 774.0}, {36.0, 36.0}}
+                                                    Other, 0x10c3e8f00, {{726.5, 774.0}, {36.0, 36.0}}
+                                                      Button, 0x10c3ea080, {{729.5, 774.0}, {30.5, 36.0}}, identifier: 'chevron.left', label: 'Next Page'
+                                            Other, 0x10c3e9cc0, {{774.5, 770.0}, {44.0, 44.0}}
+                                              Other, 0x10c3e8a00, {{778.5, 774.0}, {36.0, 36.0}}
+                                                Other, 0x10c3e92c0, {{778.5, 774.0}, {36.0, 36.0}}
+                                                  Other, 0x10c3e9540, {{778.5, 774.0}, {36.0, 36.0}}
+                                                    Other, 0x10c3e9680, {{778.5, 774.0}, {36.0, 36.0}}
+                                                      Button, 0x10c3e88c0, {{781.5, 774.0}, {30.5, 36.0}}, identifier: 'chevron.right', label: 'Previous Page'
+                                          Other, 0x10c3e8000, {{1098.0, 770.0}, {102.0, 44.0}}
+                                            Other, 0x10c3e8b40, {{1098.0, 770.0}, {48.0, 44.0}}
+                                              Other, 0x10c3e8c80, {{1102.0, 774.0}, {40.0, 36.0}}
+                                                Other, 0x10c3e9040, {{1102.0, 774.0}, {40.0, 36.0}}
+                                                  Other, 0x10c3e9180, {{1102.0, 774.0}, {40.0, 36.0}}
+                                                    Other, 0x10c3eb480, {{1102.0, 774.0}, {40.0, 36.0}}
+                                                      Button, 0x10c3e9b80, {{1102.0, 774.0}, {40.0, 36.0}}, identifier: 'magnifyingglass', label: 'Search'
+                                            Other, 0x10c3e8140, {{1154.0, 770.0}, {46.0, 44.0}}
+                                              Other, 0x10c3e8280, {{1158.0, 774.0}, {38.0, 36.0}}
+                                                Other, 0x10c3e8780, {{1158.0, 774.0}, {38.0, 36.0}}
+                                                  Other, 0x10c3eb700, {{1158.0, 774.0}, {38.0, 36.0}}
+                                                    Other, 0x10c3ebc00, {{1158.0, 774.0}, {38.0, 36.0}}
+                                                      Button, 0x10c3ebd40, {{1158.0, 774.0}, {38.0, 36.0}}, identifier: 'reader-more-menu', label: 'More Reader Actions'
+                                                        Button, 0x10c3e8640, {{1158.0, 774.0}, {38.0, 36.0}}
+                                                          Image, 0x10c3e8500, {{1167.0, 790.0}, {20.0, 4.5}}, identifier: 'ellipsis', label: 'More'
+                            Other, 0x10c3ebe80, {{0.0, 96.0}, {1210.0, 738.0}}
+                              Other, 0x10c3ebac0, {{0.0, 96.0}, {1210.0, 738.0}}
+                          Other, 0x10c3eb840, {{605.0, 455.0}, {0.0, 0.0}}
+                Other, 0x10c3eb980, {{0.0, 0.0}, {1210.0, 834.0}}
+                  Other, 0x10c3eb5c0, {{0.0, 32.0}, {1210.0, 44.0}}
+                    Button, 0x10c3eaa80, {{357.2, 36.0}, {87.0, 36.0}}, identifier: 'books.vertical.fill', label: 'Library', Selected
+                      Button, 0x10c3ea800, {{357.2, 36.0}, {87.0, 36.0}}, identifier: 'books.vertical.fill', label: 'Library', Selected
+                    Button, 0x10c3ea440, {{444.2, 36.0}, {87.0, 36.0}}, identifier: 'magnifyingglass', label: 'Search'
+                      Button, 0x10c3e83c0, {{444.2, 36.0}, {87.0, 36.0}}, identifier: 'magnifyingglass', label: 'Search'
+                    Button, 0x10c3e9f40, {{531.2, 36.0}, {106.5, 36.0}}, identifier: 'person.text.rectangle.fill', label: 'Narrators'
+                      Button, 0x10c3ea1c0, {{531.2, 36.0}, {106.5, 36.0}}, identifier: 'person.text.rectangle.fill', label: 'Narrators'
+                    Button, 0x10c3ea300, {{637.8, 36.0}, {126.5, 36.0}}, identifier: 'quote.closing', label: 'Annotations'
+                      Button, 0x10c3eaf80, {{637.8, 36.0}, {126.5, 36.0}}, identifier: 'quote.closing', label: 'Annotations'
+                    Button, 0x10c3eabc0, {{764.2, 36.0}, {88.5, 36.0}}, identifier: 'clock.fill', label: 'History'
+                      Button, 0x10c3eb200, {{764.2, 36.0}, {88.5, 36.0}}, identifier: 'clock.fill', label: 'History'
+              Other, 0x10c3eb0c0, {{0.0, 32.0}, {1210.0, 782.0}}
+              Other, 0x10c3eb340, {{605.0, 423.0}, {0.0, 0.0}}
+              Other, 0x10c3ead00, {{605.0, 423.0}, {0.0, 0.0}}
+              Other, 0x10c3eae40, {{605.0, 423.0}, {0.0, 0.0}}
+              StaticText, 0x10c3cca00, {{1208.0, 808.0}, {2.0, 10.0}}, identifier: 'sefaria-embedded-acceptance-result', label: 'PENDING', value: PENDING
+      Other, 0x10c3cc140, {{0.0, 0.0}, {1210.0, 834.0}}
+        Other, 0x10c3cc000, {{-1210.0, -834.0}, {3630.0, 2502.0}}, identifier: 'PopoverDismissRegion', label: 'dismiss popup'
+        Other, 0x10c3cc3c0, {{315.0, 87.0}, {580.0, 660.0}}
+          Image, 0x10c3cc500, {{165.0, -63.0}, {880.0, 960.0}}
+          Other, 0x10c3cc8c0, {{315.0, 87.0}, {580.0, 660.0}}
+            Other, 0x10c3cd180, {{315.0, 87.0}, {580.0, 660.0}}
+              Other, 0x10c3ccdc0, {{315.0, 87.0}, {580.0, 660.0}}
+                Other, 0x10c3ccf00, {{315.0, 87.0}, {580.0, 660.0}}, identifier: 'otzaria-hanlin-chat'
+                  NavigationBar, 0x10c3cc780, {{315.0, 97.0}, {580.0, 54.0}}, identifier: 'Study chat'
+                    Other, 0x10c3cc640, {{329.0, 101.0}, {68.5, 36.0}}
+                      Other, 0x10c3ccb40, {{329.0, 101.0}, {68.5, 36.0}}
+                        Button, 0x10c3cc280, {{329.0, 101.0}, {68.5, 36.0}}, identifier: 'otzaria-hanlin-close', label: 'Close'
+                    StaticText, 0x10c3cd2c0, {{562.0, 108.5}, {86.0, 21.0}}, label: 'Study chat'
+                    Button, 0x10c3cd400, {{845.0, 101.0}, {36.0, 36.0}}, identifier: 'otzaria-hanlin-history', label: 'Conversations'
+                  Other, 0x10c3cd040, {{315.0, 87.0}, {580.0, 660.0}}
+                    Other, 0x10c3cd680, {{315.0, 87.0}, {580.0, 660.0}}
+                      Other, 0x10c3cdcc0, {{315.0, 87.0}, {580.0, 660.0}}
+                        Other, 0x10c3cde00, {{315.0, 87.0}, {580.0, 660.0}}
+                          StaticText, 0x10c3ccc80, {{331.0, 159.0}, {164.5, 18.0}}, identifier: 'otzaria-hanlin-book-access', label: 'Book search: ⁨ספר החינוך⁩'
+                          StaticText, 0x10c3cd540, {{331.0, 181.0}, {399.5, 14.5}}, identifier: 'otzaria-hanlin-book-access', label: 'Otzaria. Matching excerpts may be shared with your connected model.'
+                          Button, 0x10c3cd7c0, {{331.0, 199.5}, {129.5, 20.5}}, identifier: 'otzaria-hanlin-book-access', label: 'End book access'
+                          ScrollView, 0x10c3cd900, {{315.0, 228.0}, {580.0, 519.0}}
+                            Other, 0x10c3cda40, {{315.0, 228.0}, {580.0, 140.0}}
+                              Other, 0x10c3cdb80, {{0.0, 0.0}, {0.0, 0.0}}
+                            Other, 0x10c3ce940, {{862.0, 228.0}, {30.0, 487.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                              Other, 0x10c3ce440, {{889.0, 705.0}, {3.0, 7.0}}
+                            Other, 0x10c3ce580, {{862.0, 228.0}, {30.0, 487.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                              Other, 0x10c3ce080, {{889.0, 705.0}, {3.0, 7.0}}
+                          Button, 0x10c3cdf40, {{345.0, 669.0}, {52.0, 52.0}}, identifier: 'hanlin-composer-general-menu', label: 'Open action center'
+                          TextView, 0x10c3ce1c0, {{417.0, 673.0}, {396.0, 38.0}}, identifier: 'otzaria-hanlin-composer', value: Message
+                            Other, 0x10c3ce300, {{780.0, 673.0}, {30.0, 38.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                              Other, 0x10c3cea80, {{807.0, 672.0}, {3.0, 36.0}}
+                            Other, 0x10c3ce6c0, {{417.0, 689.0}, {396.0, 19.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                              Other, 0x10c3ce800, {{420.0, 705.0}, {390.0, 3.0}}
+                          Button, 0x10c1df200, {{823.0, 679.0}, {32.0, 32.0}}, identifier: 'otzaria-hanlin-send', label: 'Send', Disabled
+                  Toolbar, 0x10c1dd2c0, {{315.0, 87.0}, {580.0, 660.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                    Other, 0x10c1dc640, {{315.0, 87.0}, {580.0, 660.0}}
+                Other, 0x10c1dcb40, {{605.0, 417.0}, {0.0, 0.0}}, identifier: 'otzaria-hanlin-chat'
+    Window, 0x10c1dd040, {{0.0, 0.0}, {1210.0, 834.0}}
+      Other, 0x10c1dd400, {{0.0, 0.0}, {1210.0, 834.0}}
+        Other, 0x10c1dcf00, {{0.0, 0.0}, {1210.0, 834.0}}
+Path to element:
+ →Application, 0x10a071400, pid: 5505, label: 'ChavrusaText'
+Query chain:
+ →Find: Target Application 'com.davidpovarsky.chavrusatext'
+  Output: {
+    Application, 0x10c1dd7c0, pid: 5505, label: 'ChavrusaText'
+  }
+)

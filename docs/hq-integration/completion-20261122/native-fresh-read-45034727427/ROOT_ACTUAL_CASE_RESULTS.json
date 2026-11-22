@@ -1,0 +1,402 @@
+{
+  "artifacts/runtime27/verified-11-reader.summary.json": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "D1AC8499-0722-423F-BDA1-CDFA98145726",
+          "deviceName": "Faithful 11-inch 05a0e9f2",
+          "modelName": "iPad Pro 11-inch (M5)",
+          "osBuildNumber": "24B8117",
+          "osVersion": "27.2",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 0,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "Maktabah-iOS · Built with macOS 27.0.1",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1795361954.383,
+    "passedTests": 0,
+    "result": "Failed",
+    "runtimeWarnings": [],
+    "skippedTests": 0,
+    "startTime": 1795361476.413,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "XCTAssertTrue failed - The original native dismissal must issue the source-qualified read session",
+        "targetName": "Maktabah-iOSUITests",
+        "testIdentifier": 1,
+        "testIdentifierString": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending()",
+        "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
+        "testName": "testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending()"
+      }
+    ],
+    "title": "Test - Maktabah-iOS",
+    "topInsights": [],
+    "totalTestCount": 1
+  },
+  "artifacts/runtime27/verified-11-reader.tests.json": {
+    "devices": [
+      {
+        "architecture": "arm64",
+        "deviceId": "D1AC8499-0722-423F-BDA1-CDFA98145726",
+        "deviceName": "Faithful 11-inch 05a0e9f2",
+        "modelName": "iPad Pro 11-inch (M5)",
+        "osBuildNumber": "24B8117",
+        "osVersion": "27.2",
+        "platform": "iOS Simulator"
+      }
+    ],
+    "testNodes": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "name": "XCTAssertTrue failed - The original native dismissal must issue the source-qualified read session",
+                        "nodeType": "Failure Message",
+                        "sourceLocation": {
+                          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+                          "lineNumber": 361
+                        }
+                      }
+                    ],
+                    "duration": "3m 33s",
+                    "durationInSeconds": 213.80960595607758,
+                    "name": "testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending()",
+                    "nodeIdentifier": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending()",
+                    "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
+                    "nodeType": "Test Case",
+                    "result": "Failed"
+                  }
+                ],
+                "name": "HanlinReaderConsumerAcceptanceTests",
+                "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests",
+                "nodeType": "Test Suite",
+                "result": "Failed"
+              }
+            ],
+            "name": "Maktabah-iOSUITests",
+            "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests",
+            "nodeType": "UI test bundle",
+            "result": "Failed"
+          }
+        ],
+        "name": "Maktabah-iOS",
+        "nodeType": "Test Plan",
+        "result": "Failed"
+      }
+    ],
+    "testPlanConfigurations": [
+      {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    ]
+  },
+  "artifacts/test-case-execution-11-reader.json": {
+    "suites": [
+      {
+        "suite": "HanlinReaderConsumerAcceptanceTests",
+        "selection": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
+        "expected": [
+          "testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+        ],
+        "passed": [],
+        "failed": [
+          "testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+        ],
+        "missing": [
+          "testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+        ],
+        "status": "FAIL"
+      }
+    ],
+    "status": "FAIL"
+  },
+  "artifacts/continuation-host48-reuse/result.json": {
+    "status": "VERIFIED_REUSE_OF_PRIOR_HOST48_PASS",
+    "checkout_sha": "81039998e66bba1d7310455d80a3c50e59785699",
+    "prior_run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44940208007",
+    "prior_checkout_sha": "3b475a8f8fd88ddfd12d0e6c891979e965cf9ce2",
+    "prior_artifact_id": 14724450161,
+    "prior_artifact_sha256": "0484d4115576cd30b6ea35ad8a32aded9bca10d12d0fcf25dd10e883702dd8de",
+    "subset_archive_sha256": "331c19caf9887172412103b65f404a74ea8e27ed469e11c065516451186c4bf2",
+    "original_tests_executed": 48,
+    "original_tests_passed": 48,
+    "new_tests_executed": 0,
+    "local_source_inputs_verified": 35,
+    "sdk_source_inputs_bound_to_unchanged_gitlink": 29,
+    "hanlin_sha": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+    "builder_sha256": "07b30678c06aff58b1e351a12c3a3a74056cea9322891f2253f77e37057f4626",
+    "windows_checkout_line_endings_normalized": [],
+    "builder_windows_line_endings_normalized": false,
+    "boundary": "Actual frozen SDK Contracts + complete original HostDispatcher + actual ActionCore + actual adapter; explicit backend/authority/native-receipt doubles. No AgentSession, app, provider, native UI or device acceptance.",
+    "native_ui_acceptance": false,
+    "live_provider_acceptance": false
+  },
+  "focused_keys": [
+    "status",
+    "scope",
+    "full_native116_acceptance",
+    "full_release114_acceptance",
+    "required_case_ids",
+    "checkout_sha",
+    "application_source_sha",
+    "application_trees",
+    "native116_catalog_sha256",
+    "release114_manifest_sha256",
+    "execution_inputs",
+    "built_binary_sha256",
+    "compiled_image_bytes_unchanged",
+    "actual_counts_by_device",
+    "case_outcomes",
+    "executed_ui_pass",
+    "executed_ui_fail",
+    "executed_ui_skip",
+    "ui_not_run",
+    "error"
+  ],
+  "focused_small": {
+    "status": "FAILED",
+    "scope": "FOCUSED_FRESH_READ_NO_SEND_ONLY",
+    "full_native116_acceptance": false,
+    "full_release114_acceptance": false,
+    "required_case_ids": [
+      "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+    ],
+    "checkout_sha": "81039998e66bba1d7310455d80a3c50e59785699",
+    "application_source_sha": "783c908b3c09940039d46a45c82aa732d487ba44",
+    "application_trees": {
+      "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+      "Maktabah-iOSUITests": "f480f0cd64100f752620fbb5a22a5b77fb612fae"
+    },
+    "native116_catalog_sha256": "17794127a5cf50501f120652bbb2ad7cc26d9a95573b9134ef1ff9a56b2eed49",
+    "release114_manifest_sha256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f",
+    "built_binary_sha256": {
+      "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app": "fe44d97f2868e49d866b0a0b542c804adb8ebf15caeab150e4196b8477449a4b",
+      "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app": "e122aa8d400c7328e71c0b6aff9bb866b81c975472e614d89079b1563e687717",
+      "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest": "36493f0530ca8f981859318da614094727009316cd8fc03aea3f16093a7d3b29"
+    },
+    "compiled_image_bytes_unchanged": true,
+    "actual_counts_by_device": {
+      "11-reader": {
+        "devicesAndConfigurations": [
+          {
+            "device": {
+              "architecture": "arm64",
+              "deviceId": "D1AC8499-0722-423F-BDA1-CDFA98145726",
+              "deviceName": "Faithful 11-inch 05a0e9f2",
+              "modelName": "iPad Pro 11-inch (M5)",
+              "osBuildNumber": "24B8117",
+              "osVersion": "27.2",
+              "platform": "iOS Simulator"
+            },
+            "expectedFailures": 0,
+            "failedTests": 1,
+            "passedTests": 0,
+            "skippedTests": 0,
+            "testPlanConfiguration": {
+              "configurationId": "1",
+              "configurationName": "Test Scheme Action"
+            }
+          }
+        ],
+        "environmentDescription": "Maktabah-iOS Â· Built with macOS 27.0.1",
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "finishTime": 1795361954.383,
+        "passedTests": 0,
+        "result": "Failed",
+        "runtimeWarnings": [],
+        "skippedTests": 0,
+        "startTime": 1795361476.413,
+        "statistics": [],
+        "testFailures": [
+          {
+            "failureText": "XCTAssertTrue failed - The original native dismissal must issue the source-qualified read session",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 1,
+            "testIdentifierString": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
+            "testName": "testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending()"
+          }
+        ],
+        "title": "Test - Maktabah-iOS",
+        "topInsights": [],
+        "totalTestCount": 1
+      }
+    },
+    "case_outcomes": [
+      {
+        "case_id": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
+        "device": "ipad11",
+        "expected": "Original XCTest assertions retained in HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending",
+        "configuration_label": "11-reader",
+        "actual": "Failed"
+      }
+    ],
+    "executed_ui_pass": 0,
+    "executed_ui_fail": 1,
+    "executed_ui_skip": 0,
+    "ui_not_run": 0,
+    "error": "ValueError: The single original fresh-read diagnostic must execute and pass"
+  },
+  "logs": [
+    {
+      "path": "artifacts/runtime27/continuation-focused-matrix.log",
+      "bytes": 45865,
+      "compressed_bytes": 9203,
+      "crc": 3057701303
+    },
+    {
+      "path": "artifacts/runtime27/recording-11-reader.log",
+      "bytes": 270,
+      "compressed_bytes": 204,
+      "crc": 1925117929
+    },
+    {
+      "path": "artifacts/simulator-failure-11-reader-devices.log",
+      "bytes": 22711,
+      "compressed_bytes": 2213,
+      "crc": 1344498145
+    },
+    {
+      "path": "artifacts/simulator-failure-11-reader-screenshot.log",
+      "bytes": 258,
+      "compressed_bytes": 204,
+      "crc": 2750387863
+    },
+    {
+      "path": "artifacts/simulator-failure-11-reader-services.log",
+      "bytes": 427339,
+      "compressed_bytes": 21512,
+      "crc": 491071907
+    },
+    {
+      "path": "artifacts/simulator-install-recovery-11-reader-com.davidpovarsky.chavrusatext-devices.log",
+      "bytes": 22711,
+      "compressed_bytes": 2213,
+      "crc": 379987218
+    },
+    {
+      "path": "artifacts/simulator-install-recovery-11-reader-com.davidpovarsky.chavrusatext-screenshot.log",
+      "bytes": 258,
+      "compressed_bytes": 203,
+      "crc": 1817751697
+    },
+    {
+      "path": "artifacts/simulator-install-recovery-11-reader-com.davidpovarsky.chavrusatext-services.log",
+      "bytes": 647945,
+      "compressed_bytes": 25412,
+      "crc": 279652033
+    },
+    {
+      "path": "artifacts/test-simulator-11-reader.log",
+      "bytes": 32694,
+      "compressed_bytes": 5039,
+      "crc": 2055904700
+    },
+    {
+      "path": "artifacts/ui-acceptance-typecheck.log",
+      "bytes": 2105957,
+      "compressed_bytes": 117146,
+      "crc": 2141794345
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk-after.log",
+      "bytes": 679,
+      "compressed_bytes": 416,
+      "crc": 1750068523
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk.log",
+      "bytes": 679,
+      "compressed_bytes": 416,
+      "crc": 1750068523
+    },
+    {
+      "path": "hq-stage2/maktabah_zayit_search.h.log",
+      "bytes": 300,
+      "compressed_bytes": 148,
+      "crc": 4252009905
+    },
+    {
+      "path": "hq-stage2/matching-embedded-bundle.log",
+      "bytes": 741,
+      "compressed_bytes": 365,
+      "crc": 2197235807
+    },
+    {
+      "path": "hq-stage2/native-script-permissions.log",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc": 0
+    },
+    {
+      "path": "hq-stage2/npm-ci.log",
+      "bytes": 3331,
+      "compressed_bytes": 1242,
+      "crc": 259196859
+    },
+    {
+      "path": "hq-stage2/otzaria_search_engine.h.log",
+      "bytes": 304,
+      "compressed_bytes": 143,
+      "crc": 370763151
+    },
+    {
+      "path": "hq-stage2/pinned-sharp-inputs.log",
+      "bytes": 991,
+      "compressed_bytes": 509,
+      "crc": 3024443772
+    },
+    {
+      "path": "hq-stage2/pod-install.log",
+      "bytes": 31886,
+      "compressed_bytes": 5138,
+      "crc": 1290294585
+    },
+    {
+      "path": "hq-stage2/react-source-checkout.log",
+      "bytes": 453,
+      "compressed_bytes": 220,
+      "crc": 1784428531
+    },
+    {
+      "path": "hq-stage2/resolve-packages.log",
+      "bytes": 4898,
+      "compressed_bytes": 1345,
+      "crc": 3047339251
+    },
+    {
+      "path": "hq-stage2/simulator-build-for-testing.log",
+      "bytes": 17885668,
+      "compressed_bytes": 878811,
+      "crc": 1773900754
+    },
+    {
+      "path": "hq-stage2/target-membership.log",
+      "bytes": 130,
+      "compressed_bytes": 109,
+      "crc": 4001235518
+    }
+  ],
+  "captures_bytes_so_far": 85622784
+}

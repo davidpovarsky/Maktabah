@@ -1,0 +1,33 @@
+{
+  "run_id": 45034727427,
+  "expected_head": "81039998e66bba1d7310455d80a3c50e59785699",
+  "attempt": 1,
+  "started_at": "2026-11-22T14:49:06.562730+00:00",
+  "prior_owned_observer": "job_cbba0ae62796 terminal on previous run",
+  "before": {
+    "id": 45034727427,
+    "head_sha": "81039998e66bba1d7310455d80a3c50e59785699",
+    "head_branch": "codex/otzaria-native-package-cache-20261122",
+    "run_attempt": 1,
+    "status": "in_progress",
+    "conclusion": null,
+    "updated_at": "2026-11-22T14:47:33Z",
+    "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45034727427"
+  },
+  "watch_invocations": 1,
+  "watch_exit": 1,
+  "watch_timeout": false,
+  "watch.stdout.log_sha256": "ef7f27a23f54ee3debce52b529f98211baa6bde3b43366712642b64fcd27d5aa",
+  "watch.stderr.log_sha256": "dfac7ef96567fab9ab0b4b410c1e126f8fc2308d5a84a0a10612bb4086b568fc",
+  "after": {
+    "id": 45034727427,
+    "head_sha": "81039998e66bba1d7310455d80a3c50e59785699",
+    "head_branch": "codex/otzaria-native-package-cache-20261122",
+    "run_attempt": 1,
+    "status": "in_progress",
+    "conclusion": null,
+    "updated_at": "2026-11-22T14:47:33Z",
+    "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45034727427"
+  },
+  "finished_at": "2026-11-22T15:33:54.248809+00:00"
+}

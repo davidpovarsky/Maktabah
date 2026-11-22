@@ -1,0 +1,65 @@
+{
+  "snapshot_utc": "2026-11-22 16:13:29 UTC",
+  "canonical_base": "2cd73aeacbcb870131abe721b60633e79817d5d5",
+  "tasks": {
+    "unique": 82,
+    "open": 58,
+    "completed": 24,
+    "states_changed": 0
+  },
+  "active_runs": [
+    {
+      "lane": "native",
+      "repo": "davidpovarsky/Maktabah",
+      "run_id": 45041601629,
+      "attempt": 1,
+      "head": "6591bba49d2b5a28d02b763c4360406843fce4cf",
+      "observer": "job_2f400520baa8",
+      "owner": "/root"
+    },
+    {
+      "lane": "sdk",
+      "repo": "davidpovarsky/anytype-swift",
+      "run_id": 45041382512,
+      "attempt": 1,
+      "head": "edce5b975b173059522f90adb71271fb95adf963",
+      "observer": "job_2b0fc8a0980d",
+      "owner": "/root/clang_sdk"
+    },
+    {
+      "lane": "schema_missing_attachment",
+      "repo": "davidpovarsky/anytype-swift",
+      "run_id": 45042110729,
+      "attempt": 1,
+      "head": "b93b7b351cfeb625607b5b7d86aef7c29fe78b0b",
+      "observer": "job_6fdc32065bdf",
+      "owner": "/root/heart_completion"
+    }
+  ],
+  "preserved_results": {
+    "body_new": 30,
+    "origin_new": 50,
+    "schema_registration": {
+      "pass": 12,
+      "fail": 1
+    },
+    "sdk450375": {
+      "source": 239,
+      "public_spi": 38,
+      "framework": "PASS",
+      "packaging": "FAIL",
+      "consumer": "NOT_RUN"
+    },
+    "native450347": {
+      "pass": 0,
+      "fail": 1,
+      "connection_ax": "observed",
+      "button_identifier": "inherited_parent_identifier"
+    }
+  },
+  "key_inventory": {
+    "live_existing_known_key_available": true,
+    "live_new_repository_secret_created": false,
+    "owner_public_verifier_available": false
+  }
+}

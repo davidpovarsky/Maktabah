@@ -1,0 +1,113 @@
+{
+  "schema": "otzaria.existing-native-evidence-git-retention/1",
+  "run_id": 45034727427,
+  "run_attempt": 1,
+  "source_head": "81039998e66bba1d7310455d80a3c50e59785699",
+  "repository": "davidpovarsky/Maktabah",
+  "new_github_artifact_downloads": 0,
+  "archive_bytes_preserved": true,
+  "selected_capture_bytes_match_original_archive": true,
+  "started_at": "2026-11-22T16:08:55.548174+00:00",
+  "files": [
+    {
+      "path": "original-evidence.zip",
+      "source_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-continuation-root-20261122\\native450347\\evidence.zip",
+      "bytes": 10898591,
+      "sha256": "25c24bcdf22efb89313fca1e0824f78d650071b8f55314739e6f440ca3f791c2",
+      "git_blob": "20f0a1bc3fb09fa039df9af6ff21a4e7da81be00"
+    },
+    {
+      "path": "INTAKE.json",
+      "source_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-continuation-root-20261122\\native450347\\INTAKE.json",
+      "bytes": 1584,
+      "sha256": "640196f1c9b669578974ae302662bceccdff66df019eb9ce0a07f00d9bb08b17",
+      "git_blob": "a63d76b1d221ef2f305d90bf6af8bec392fe7136"
+    },
+    {
+      "path": "RUN.json",
+      "source_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-continuation-root-20261122\\native450347\\RUN.json",
+      "bytes": 14332,
+      "sha256": "269dc85736eee6d5048e290d54b7e851aab7d9aecc4e18adcf0850639d674ee5",
+      "git_blob": "0c4cdd25acaee79da9e4d36c860865e30f1fe281"
+    },
+    {
+      "path": "evidence.inventory.json",
+      "source_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-continuation-root-20261122\\native450347\\evidence.zip.inventory.json",
+      "bytes": 9628,
+      "sha256": "8eea06ff6b9578a1b1432a5c5fdfc9d69ee1050e12f65dd5298d95cacf41d7ae",
+      "git_blob": "d81d7fb1d59e4fca88a6cb21240f89accd034ffe"
+    },
+    {
+      "path": "captures.inventory.json",
+      "source_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-continuation-root-20261122\\native450347\\captures.zip.inventory.json",
+      "bytes": 323196,
+      "sha256": "e038336a478997b54637ca77f72d0cc3233939fc2a4b02c2264246b55ab05f91",
+      "git_blob": "2e3e3974e78987fd49f717a5b50325fcb4cb2e25"
+    },
+    {
+      "path": "captures/manifest.json",
+      "source_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-continuation-root-20261122\\native450347\\selected-captures\\manifest.json",
+      "bytes": 32433,
+      "sha256": "cdcaa66ad06e7be313288b69f6618c9ed898329f4f7b3cf0a11c18e04e5b3318",
+      "git_blob": "01e0ab4082f61014b41e3a21838d8590d7c096a1"
+    },
+    {
+      "path": "captures/BD3887AE-1379-4B12-8E44-504B7EFF34EA.txt",
+      "source_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-continuation-root-20261122\\native450347\\selected-captures\\BD3887AE-1379-4B12-8E44-504B7EFF34EA.txt",
+      "bytes": 35894,
+      "sha256": "246748e976a5192509781f0e8e4d6fbb4ecffafcc65f4dc84c3371154bafb2d7",
+      "git_blob": "ca236f75463a52f39975ca4b5e01d0ce9df86d8b"
+    },
+    {
+      "path": "captures/B1F44DD3-678D-4E7A-8D93-8F4AFC6EF496.png",
+      "source_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-continuation-root-20261122\\native450347\\selected-captures\\B1F44DD3-678D-4E7A-8D93-8F4AFC6EF496.png",
+      "bytes": 758960,
+      "sha256": "69a1353f9debaa6f98113b433f30e6fe7c04a3816599cb1747ae26c3cf8297f2",
+      "git_blob": "8b97b9584aad1bea1ffe327307ca4d01b363a121"
+    },
+    {
+      "path": "captures/343121AD-918C-439E-9238-CB99207053FA.txt",
+      "source_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-continuation-root-20261122\\native450347\\selected-captures\\343121AD-918C-439E-9238-CB99207053FA.txt",
+      "bytes": 43692,
+      "sha256": "07bcfca55d9501fe606830f8e89f30f87f60fe27ee65137dd753c0838d1dafc5",
+      "git_blob": "6761e872568b8fc8be28323d2196b14f67bbfb8c"
+    },
+    {
+      "path": "captures/8333B8C3-43F0-49B1-962B-98222CFDA84E.png",
+      "source_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-continuation-root-20261122\\native450347\\selected-captures\\8333B8C3-43F0-49B1-962B-98222CFDA84E.png",
+      "bytes": 679382,
+      "sha256": "de82c8d45d14f576b1ff28bd8f7265ab56e69bfd16ab8b04e878d5807eebc977",
+      "git_blob": "185785b42c4efbeeac77e1e7f3bb03fd4967d22d"
+    },
+    {
+      "path": "captures/7AD49B7F-9783-4B88-A0B0-BC8B69FB7FD2.txt",
+      "source_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-continuation-root-20261122\\native450347\\selected-captures\\7AD49B7F-9783-4B88-A0B0-BC8B69FB7FD2.txt",
+      "bytes": 43692,
+      "sha256": "74f42ef6bfdf1cc71a9c8896cb98d9cb9e6865057145ee20992d99cc03fa1838",
+      "git_blob": "da19b15f2baf8a6f50d1e6e4ebfd3bea55bbb789"
+    },
+    {
+      "path": "captures/7E6CE380-4047-42DA-B15B-D0EC514B5648.png",
+      "source_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-continuation-root-20261122\\native450347\\selected-captures\\7E6CE380-4047-42DA-B15B-D0EC514B5648.png",
+      "bytes": 679382,
+      "sha256": "de82c8d45d14f576b1ff28bd8f7265ab56e69bfd16ab8b04e878d5807eebc977",
+      "git_blob": "185785b42c4efbeeac77e1e7f3bb03fd4967d22d"
+    },
+    {
+      "path": "observer-initial.json",
+      "source_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-continuation-root-20261122\\native450347-watch\\WATCH.json",
+      "bytes": 1318,
+      "sha256": "bac2e2800aab09ed0f7835309d763987721db25cc325e715e17c36c9cc5e0c47",
+      "git_blob": "61d3dfe4d26a83ea56202b24205c4f22130352ac"
+    },
+    {
+      "path": "observer-continuation.json",
+      "source_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-continuation-root-20261122\\native450347-watch\\continuation-1\\WATCH.json",
+      "bytes": 1132,
+      "sha256": "33967825425551fa82ad8558a7796c7a5fc5fef03cc077526b3a69e18844d580",
+      "git_blob": "8cd8d42fb1dc14f5e541af02ebf5133eef1c42f4"
+    }
+  ],
+  "finished_at": "2026-11-22T16:09:33.675922+00:00",
+  "status": "ALL_BLOBS_PUBLISHED_WITH_EXACT_CONTENT_IDENTITIES"
+}

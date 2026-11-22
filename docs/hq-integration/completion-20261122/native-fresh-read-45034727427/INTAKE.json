@@ -1,0 +1,44 @@
+{
+  "run_id": 45034727427,
+  "head": "81039998e66bba1d7310455d80a3c50e59785699",
+  "attempt": 1,
+  "owner": "/root",
+  "observer": "job_ffe0441b6683 terminal on actual failed run",
+  "started_at": "2026-11-22T15:46:48.678076+00:00",
+  "status": "BOTH_ORIGINAL_ARCHIVES_RETAINED_AND_VERIFIED",
+  "downloads": [
+    {
+      "id": 14761420336,
+      "name": "completion-focused-native-evidence",
+      "bytes": 10898591,
+      "sha256": "25c24bcdf22efb89313fca1e0824f78d650071b8f55314739e6f440ca3f791c2",
+      "file": "evidence.zip",
+      "started_at": "2026-11-22T15:46:54.366029+00:00",
+      "download_invocations": 1,
+      "status": "VERIFIED",
+      "exit": 0,
+      "actual_bytes": 10898591,
+      "actual_sha256": "25c24bcdf22efb89313fca1e0824f78d650071b8f55314739e6f440ca3f791c2",
+      "members": 64,
+      "crc": "PASS",
+      "finished_at": "2026-11-22T15:47:44.485091+00:00"
+    },
+    {
+      "id": 14761187084,
+      "name": "completion-focused-native-captures",
+      "bytes": 130386192,
+      "sha256": "dc2aa8d14000c55be8b0a4e12c3b6e40bdcc5b4bc3faa5ef80a6caaf8648f936",
+      "file": "captures.zip",
+      "started_at": "2026-11-22T15:47:44.494436+00:00",
+      "download_invocations": 1,
+      "status": "VERIFIED",
+      "exit": 0,
+      "actual_bytes": 130386192,
+      "actual_sha256": "dc2aa8d14000c55be8b0a4e12c3b6e40bdcc5b4bc3faa5ef80a6caaf8648f936",
+      "members": 1460,
+      "crc": "PASS",
+      "finished_at": "2026-11-22T15:52:12.474286+00:00"
+    }
+  ],
+  "finished_at": "2026-11-22T15:52:12.482989+00:00"
+}
