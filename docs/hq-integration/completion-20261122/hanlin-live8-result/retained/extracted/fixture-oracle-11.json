@@ -1,0 +1,19 @@
+{
+  "database_path": "/Users/runner/Library/Developer/CoreSimulator/Devices/521DFC80-C03A-498D-A13E-A6673FE36AAB/data/Containers/Shared/AppGroup/4ED60A44-521E-46FC-B9B2-726A4ABCD5BC/Otzaria/Profiles/miniTest10/database/seforim.db",
+  "database_sha256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "schema": 0,
+  "native_installation_report_sha256": "99f93b15d42297eb82f97683df4084a8c41d083de608008a1108a0c3bb2a0553",
+  "profileID": "miniTest10",
+  "profileVersion": 6,
+  "expected_compressed_sha256": "e9e6dedd2ceaadbe46234612c359e5bd8add00c348be8eaeba85cf029fa5c4d3",
+  "sql": "SELECT l.sourceBookId, sourceLine.lineIndex, b.title FROM link l JOIN line sourceLine ON sourceLine.id=l.sourceLineId JOIN book b ON b.id=l.sourceBookId ORDER BY l.id LIMIT 1",
+  "selected": {
+    "sourceBookId": 3891,
+    "lineIndex": 523,
+    "title": "\u05e1\u05e4\u05e8 \u05d4\u05d7\u05d9\u05e0\u05d5\u05da"
+  },
+  "fallback_book1_because_no_link": false,
+  "ui_observation_used": false,
+  "sidebar_catalog_paths": null,
+  "search_query_source_evidence": null
+}

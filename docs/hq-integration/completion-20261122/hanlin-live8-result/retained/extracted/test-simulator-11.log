@@ -1,0 +1,356 @@
+Command line invocation:
+    /Applications/Xcode_27.2.app/Contents/Developer/usr/bin/xcodebuild test-without-building -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -parallel-testing-enabled NO -destination "platform=iOS Simulator,id=521DFC80-C03A-498D-A13E-A6673FE36AAB" -derivedDataPath build/DerivedData -resultBundlePath /Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11.xcresult -test-timeouts-enabled YES -default-test-execution-time-allowance 600 -maximum-test-execution-time-allowance 600 "-only-testing:Maktabah-iOSUITests/HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
+
+Resolve Package Graph
+
+Fetching from https://github.com/davidpovarsky/TorahInspectorKit.git
+
+Fetching from https://github.com/davidpovarsky/swift-ai-sdk.git (cached)
+
+Fetching from https://github.com/davidpovarsky/hanlin-streaming-markdown (cached)
+
+Fetching from https://github.com/appstefan/highlightswift (cached)
+
+Fetching from https://github.com/junyan72/iosMath (cached)
+
+Fetching from https://github.com/scenee/FloatingPanel.git
+
+Fetching from https://github.com/swiftlang/swift-syntax.git (cached)
+
+Fetching from https://github.com/weichsel/ZIPFoundation.git
+
+Fetching from https://github.com/swiftlang/swift-cmark (cached)
+
+Fetching from https://github.com/sparkle-project/Sparkle
+
+Fetching from https://github.com/swiftlang/swift-markdown.git (cached)
+
+Fetching from https://github.com/SwiftyJSON/SwiftyJSON.git (cached)
+
+Fetching from https://github.com/facebook/zstd.git
+
+Fetching from https://github.com/apple/swift-argument-parser (cached)
+
+Fetching from https://github.com/exyte/AnchoredPopup.git
+
+Fetching from https://github.com/markiv/SwiftUI-Shimmer (cached)
+
+Fetching from https://github.com/ordo-one/equatable (cached)
+
+Creating working copy of package ‘swift-syntax’
+
+Checking out 603.0.2 of package ‘swift-syntax’
+
+Creating working copy of package ‘highlightswift’
+
+Checking out 99c431b38a1444a5fd6a4978307fbbefe3a7af53 of package ‘highlightswift’
+
+Creating working copy of package ‘swift-argument-parser’
+
+Checking out 1.8.2 of package ‘swift-argument-parser’
+
+Creating working copy of package ‘swift-ai-sdk’
+
+Checking out e7bf34111e603ca977becd007dd4e5bb109af857 of package ‘swift-ai-sdk’
+
+Creating working copy of package ‘ZIPFoundation’
+
+Checking out 0.9.20 of package ‘ZIPFoundation’
+
+Creating working copy of package ‘TorahInspectorKit’
+
+Checking out 23db0f84e88d9ee9c7053c49de86903fc7bb5785 of package ‘TorahInspectorKit’
+
+Creating working copy of package ‘SwiftUI-Shimmer’
+
+Checking out 1.5.1 of package ‘SwiftUI-Shimmer’
+
+Creating working copy of package ‘FloatingPanel’
+
+Checking out 3.2.4 of package ‘FloatingPanel’
+
+Creating working copy of package ‘hanlin-streaming-markdown’
+
+Checking out 6bde022876ef4af738c154b3d5c871984ef76195 of package ‘hanlin-streaming-markdown’
+
+Creating working copy of package ‘swift-cmark’
+
+Checking out 0.9.0 of package ‘swift-cmark’
+
+Creating working copy of package ‘Sparkle’
+
+Checking out 2.9.1 of package ‘Sparkle’
+
+Creating working copy of package ‘iosMath’
+
+Checking out ba9ab7729b151329c54fd895a7c1859981d9484c of package ‘iosMath’
+
+Creating working copy of package ‘swift-markdown’
+
+Checking out 0.7.3 of package ‘swift-markdown’
+
+Creating working copy of package ‘SwiftyJSON’
+
+Checking out 5.0.1 of package ‘SwiftyJSON’
+
+Creating working copy of package ‘AnchoredPopup’
+
+Checking out 1.3.1 of package ‘AnchoredPopup’
+
+Creating working copy of package ‘equatable’
+
+Checking out 1.4.1 of package ‘equatable’
+
+Creating working copy of package ‘zstd’
+
+Checking out 1.5.7 of package ‘zstd’
+
+
+Resolved source packages:
+  Equatable: https://github.com/ordo-one/equatable @ 1.4.1
+  ZIPFoundation: https://github.com/weichsel/ZIPFoundation.git @ 0.9.20
+  iosMath: https://github.com/junyan72/iosMath @ ba9ab77
+  SwiftUI-Shimmer: https://github.com/markiv/SwiftUI-Shimmer @ 1.5.1
+  HanlinAgentSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinAgentSDK @ local
+  Sparkle: https://github.com/sparkle-project/Sparkle @ 2.9.1
+  zstd: https://github.com/facebook/zstd.git @ 1.5.7
+  SwiftStreamingMarkdown: https://github.com/davidpovarsky/hanlin-streaming-markdown @ 6bde022
+  FloatingPanel: https://github.com/scenee/FloatingPanel.git @ 3.2.4
+  swift-syntax: https://github.com/swiftlang/swift-syntax.git @ 603.0.2
+  AnchoredPopup: https://github.com/exyte/AnchoredPopup.git @ 1.3.1
+  SwiftAISDK: https://github.com/davidpovarsky/swift-ai-sdk.git @ e7bf341
+  swift-argument-parser: https://github.com/apple/swift-argument-parser @ 1.8.2
+  TorahInspectorKit: https://github.com/davidpovarsky/TorahInspectorKit.git @ 23db0f8
+  OtzariaActionCore: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Actions @ local
+  SwiftyJSON: https://github.com/SwiftyJSON/SwiftyJSON.git @ 5.0.1
+  cmark-gfm: https://github.com/swiftlang/swift-cmark @ 0.9.0
+  OtzariaUIRouting: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/UIRouting @ local
+  HighlightSwift: https://github.com/appstefan/highlightswift @ 99c431b
+  HanlinPresentationSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPresentationSDK @ local
+  swift-markdown: https://github.com/swiftlang/swift-markdown.git @ 0.7.3
+  HanlinPlatform: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPlatform @ local
+  CommandPalette: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette @ local
+  ChavrusaUIRoutingHost: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/UIRoutingHost @ local
+
+Writing result bundle at path:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11.xcresult
+
+2026-11-22 08:35:53.829100+0000 Maktabah-iOSUITests-Runner[75341:200032] [Default] Running tests...
+2026-11-22 08:35:54.118803+0000 Maktabah-iOSUITests-Runner[75341:200032] [UIKit App Config] Update the Info.plist: Launch screens will soon be required.
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-11-22 08:36:08.311.
+Test Suite 'Maktabah-iOSUITests.xctest' started at 2026-11-22 08:36:08.312.
+Test Suite 'HanlinLiveProviderAcceptanceTests' started at 2026-11-22 08:36:08.312.
+Test Case '-[Maktabah_iOSUITests.HanlinLiveProviderAcceptanceTests testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent]' started.
+    t =     0.01s Start Test at 2026-11-22 08:36:08.321
+objc[75341]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.lmEsBe/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x1061b8310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.lmEsBe/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x1061ec398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     0.93s Set Up
+    t =     0.96s Setting device orientation to Landscape Left
+    t =     0.98s     Device orientation changed to Landscape Left
+    t =     1.38s     Interface orientation changed to Landscape Right
+    t =     2.16s     Wait for com.apple.springboard to idle
+    t =     2.48s Open com.davidpovarsky.chavrusatext
+    t =     2.48s     Launch com.davidpovarsky.chavrusatext
+2026-11-22 08:36:16.607 xcodebuild[65994:173715] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-22 08:36:16.607 xcodebuild[65994:173715] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    19.55s         Setting up automation session
+    t =    26.49s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    31.87s Get number of matches for: Descendants matching type Alert
+    t =    32.69s Waiting 60.0s for "reader-text" TextView to exist
+    t =    33.73s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    33.73s         Checking existence of `"reader-text" TextView`
+    t =    35.53s Find the "reader-text" TextView
+    t =    35.82s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    36.07s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    37.33s Checking `Expect predicate `value MATCHES "(?s).{31,}"` for object "reader-text" TextView`
+    t =    37.33s     Find the "reader-text" TextView
+    t =    37.63s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    38.72s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    38.72s         Checking existence of `"reader-header-title" StaticText`
+    t =    39.01s Find the "reader-header-title" StaticText
+    t =    39.29s Find the "reader-text" TextView
+    t =    39.61s Waiting 15.0s for "reader-current-locator" StaticText to exist
+    t =    40.67s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-current-locator" StaticText`
+    t =    40.68s         Checking existence of `"reader-current-locator" StaticText`
+    t =    40.96s Find the "reader-current-locator" StaticText
+    t =    41.26s Find the "reader-header-title" StaticText
+    t =    41.60s Find the "reader-text" TextView
+    t =    42.02s Waiting 30.0s for "otzaria-hanlin-reader-launch" Button to exist
+    t =    43.08s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-reader-launch" Button`
+    t =    43.08s         Checking existence of `"otzaria-hanlin-reader-launch" Button`
+    t =    43.50s Find the "otzaria-hanlin-reader-launch" Button
+    t =    43.93s Tap "otzaria-hanlin-reader-launch" Button
+    t =    43.93s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    43.94s     Find the "otzaria-hanlin-reader-launch" Button
+    t =    44.24s     Check for interrupting elements affecting "otzaria-hanlin-reader-launch" Button
+    t =    44.59s         Wait for com.apple.springboard to idle
+    t =    44.70s     Synthesize event
+    t =    45.26s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    46.77s Waiting 30.0s for "otzaria-hanlin-allow-current-book" Switch to exist
+    t =    47.79s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    47.79s         Checking existence of `"otzaria-hanlin-allow-current-book" Switch`
+    t =    48.60s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    49.08s Find the "otzaria-hanlin-consent-book-title" StaticText
+    t =    49.52s Find the "otzaria-hanlin-service-address" TextField
+    t =    49.96s Find the "otzaria-hanlin-model" TextField
+    t =    50.42s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    50.80s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    51.40s Get number of matches for: Descendants matching type Switch
+    t =    52.33s Find the Switch (Element at index 0)
+    t =    53.27s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    53.75s Find the "0" Switch
+    t =    54.27s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    54.75s Find the "0" Switch
+    t =    55.27s Find the "0" Switch
+    t =    55.75s Find the "0" Switch
+    t =    56.35s Find the "0" Switch
+    t =    56.83s Find the "0" Switch
+    t =    57.34s Waiting 30.0s for "0" Switch to exist
+    t =    58.39s     Checking `Expect predicate `existsNoRetry == 1` for object "0" Switch`
+    t =    58.40s         Checking existence of `"0" Switch`
+    t =    58.97s Find the "0" Switch
+    t =    59.47s Tap "0" Switch
+    t =    59.47s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    59.48s     Find the "0" Switch
+    t =    60.05s     Check for interrupting elements affecting "0" Switch
+    t =    60.46s         Wait for com.apple.springboard to idle
+    t =    60.52s     Synthesize event
+    t =    60.89s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    62.28s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    62.94s Find the "otzaria-hanlin-connect" Button
+    t =    63.45s Find the "otzaria-hanlin-connect" Button
+    t =    63.92s Find the "otzaria-hanlin-connect" Button
+    t =    64.45s Find the "otzaria-hanlin-connect" Button
+    t =    65.01s Waiting 30.0s for "otzaria-hanlin-connect" Button to exist
+    t =    66.06s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-connect" Button`
+    t =    66.06s         Checking existence of `"otzaria-hanlin-connect" Button`
+    t =    66.49s Find the "otzaria-hanlin-connect" Button
+    t =    66.89s Tap "otzaria-hanlin-connect" Button
+    t =    66.89s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    66.90s     Find the "otzaria-hanlin-connect" Button
+    t =    67.38s     Check for interrupting elements affecting "otzaria-hanlin-connect" Button
+    t =    67.82s         Wait for com.apple.springboard to idle
+    t =    67.87s     Synthesize event
+    t =    68.21s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    68.97s Waiting 30.0s for "otzaria-hanlin-end-book-access" Button to exist
+    t =    70.00s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    70.00s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    71.30s         Capturing element debug description
+    t =    71.97s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    71.98s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    72.51s         Capturing element debug description
+    t =    73.02s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    73.02s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    73.45s         Capturing element debug description
+    t =    74.05s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    74.05s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    74.49s         Capturing element debug description
+    t =    74.99s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    74.99s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    75.39s         Capturing element debug description
+    t =    76.01s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    76.01s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    76.44s         Capturing element debug description
+    t =    77.06s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    77.06s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    77.40s         Capturing element debug description
+    t =    78.02s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    78.02s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    78.48s         Capturing element debug description
+    t =    78.99s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    78.99s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    79.42s         Capturing element debug description
+    t =    80.05s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    80.05s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    80.44s         Capturing element debug description
+    t =    80.97s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    80.97s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    81.47s         Capturing element debug description
+    t =    81.97s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    81.97s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    82.46s         Capturing element debug description
+    t =    82.98s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    82.98s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    83.43s         Capturing element debug description
+    t =    84.06s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    84.06s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    84.59s         Capturing element debug description
+    t =    85.01s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    85.01s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    85.40s         Capturing element debug description
+    t =    86.04s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    86.05s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    86.55s         Capturing element debug description
+    t =    86.97s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    86.97s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    87.41s         Capturing element debug description
+    t =    88.04s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    88.04s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    88.46s         Capturing element debug description
+    t =    88.98s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    88.98s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    89.45s         Capturing element debug description
+    t =    89.97s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    89.97s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    90.51s         Capturing element debug description
+    t =    91.06s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    91.06s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    91.50s         Capturing element debug description
+    t =    92.05s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    92.05s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    92.46s         Capturing element debug description
+    t =    93.00s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    93.00s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    93.51s         Capturing element debug description
+    t =    94.05s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    94.05s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    94.55s         Capturing element debug description
+    t =    94.97s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    94.97s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    95.36s         Capturing element debug description
+    t =    95.97s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    95.97s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    96.52s         Capturing element debug description
+    t =    97.07s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    97.07s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    97.62s         Capturing element debug description
+    t =    98.03s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    98.03s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    98.46s         Capturing element debug description
+    t =    98.98s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-end-book-access" Button`
+    t =    98.98s         Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =    99.30s         Capturing element debug description
+    t =    99.30s     Checking existence of `"otzaria-hanlin-end-book-access" Button`
+    t =   100.01s Collecting debug information to assist test failure triage
+    t =   100.01s     Requesting snapshot of accessibility hierarchy for app with pid 75920
+/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift:551: error: -[Maktabah_iOSUITests.HanlinLiveProviderAcceptanceTests testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent] : XCTAssertTrue failed - The original native dismissal must issue the source-qualified read session
+    t =   102.69s Tear Down
+    t =   102.69s     Requesting snapshot of accessibility hierarchy for app with pid 75920
+    t =   106.25s     Requesting snapshot of accessibility hierarchy for app with pid 75920
+    t =   107.16s     Added attachment named 'r27-final-native-hierarchy'
+    t =   107.75s     Added attachment named 'r27-final-native-screen'
+    t =   107.76s     Setting device orientation to Portrait
+    t =   107.78s         Device orientation changed to Portrait
+    t =   108.23s         Interface orientation changed to Portrait
+    t =   108.36s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =   110.49s         Wait for com.apple.springboard to idle
+Test Case '-[Maktabah_iOSUITests.HanlinLiveProviderAcceptanceTests testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent]' failed (114.739 seconds).
+Test Suite 'HanlinLiveProviderAcceptanceTests' failed at 2026-11-22 08:38:03.061.
+	 Executed 1 test, with 1 failure (0 unexpected) in 114.739 (114.749) seconds
+Test Suite 'Maktabah-iOSUITests.xctest' failed at 2026-11-22 08:38:03.062.
+	 Executed 1 test, with 1 failure (0 unexpected) in 114.739 (114.750) seconds
+Test Suite 'Selected tests' failed at 2026-11-22 08:38:03.063.
+	 Executed 1 test, with 1 failure (0 unexpected) in 114.739 (114.751) seconds
+2026-11-22 08:38:58.913 xcodebuild[65994:173715] [MT] IDETestOperationsObserverDebug: 200.676 elapsed -- Testing started completed.
+2026-11-22 08:38:58.914 xcodebuild[65994:173715] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-22 08:38:58.914 xcodebuild[65994:173715] [MT] IDETestOperationsObserverDebug: 200.676 sec, +200.676 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11.xcresult
+
+Failing tests:
+	HanlinLiveProviderAcceptanceTests.testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent()
+
+** TEST EXECUTE FAILED **
+
+Testing started

@@ -1,0 +1,29 @@
+{
+  "connection_diagnostic_status": "OBSERVED",
+  "credential_in_child_environment": false,
+  "credential_in_test_arguments": false,
+  "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/",
+  "error_kind": "ValueError",
+  "failure_phase": "NATIVE_MATRIX",
+  "log_redactions": 0,
+  "matrix_exit_code": 1,
+  "matrix_failures": [
+    {
+      "error": "ValueError: The original native live witness did not complete",
+      "failedPhase": "RUNNING_NATIVE_XCTEST",
+      "ownedSimulatorCleanup": "PASS",
+      "status": "FAIL"
+    }
+  ],
+  "model": "gemini-2.5-flash-lite",
+  "native116_acceptance": false,
+  "prior_artifacts_restored": true,
+  "private_input_consumed": true,
+  "private_input_removed": true,
+  "private_input_staged": true,
+  "raw_container_or_result_bundle_published": false,
+  "release114_acceptance": false,
+  "selector": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+  "status": "FAIL",
+  "verified_completed_provider_conversations": 0
+}

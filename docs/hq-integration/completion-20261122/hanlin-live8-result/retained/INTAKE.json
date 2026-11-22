@@ -1,0 +1,236 @@
+{
+  "schema": 1,
+  "status": "ADMITTED_EXACT_FAILED_LIVE8_ARTIFACT_NO_ACCEPTANCE",
+  "run": 45000580919,
+  "attempt": 1,
+  "checkout": "ce5d11335c4b4769a25e0e8f48ba1d6f7efc6749",
+  "application_source": "6aa953048453b64a0013621ce76e095770eb7e7d",
+  "artifact_id": 14746509686,
+  "artifact_sha256": "6e2ab18309e97d12791db2d2ccafafb320c38ca549db7a6c76008741a4e859f4",
+  "artifact_bytes": 88435,
+  "download_count": 1,
+  "zip_crc_members": 23,
+  "admitted_payloads": 22,
+  "source_before_after_byte_identical": true,
+  "recorded_execution_inputs": 281,
+  "execution_inputs_independent_git_verification": 281,
+  "secret_cleanup_delete_http_status": 204,
+  "secret_absence_http_status": 404,
+  "private_input_removed": true,
+  "producer_credential_scan": "Original exact-source allowlist and credential/canary scanner; root does not claim an independent credential-value rescan",
+  "original_connection_diagnostic_validated": true,
+  "result": {
+    "connection_diagnostic_status": "OBSERVED",
+    "credential_in_child_environment": false,
+    "credential_in_test_arguments": false,
+    "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/",
+    "error_kind": "ValueError",
+    "failure_phase": "NATIVE_MATRIX",
+    "log_redactions": 0,
+    "matrix_exit_code": 1,
+    "matrix_failures": [
+      {
+        "error": "ValueError: The original native live witness did not complete",
+        "failedPhase": "RUNNING_NATIVE_XCTEST",
+        "ownedSimulatorCleanup": "PASS",
+        "status": "FAIL"
+      }
+    ],
+    "model": "gemini-2.5-flash-lite",
+    "native116_acceptance": false,
+    "prior_artifacts_restored": true,
+    "private_input_consumed": true,
+    "private_input_removed": true,
+    "private_input_staged": true,
+    "raw_container_or_result_bundle_published": false,
+    "release114_acceptance": false,
+    "selector": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+    "status": "FAIL",
+    "verified_completed_provider_conversations": 0
+  },
+  "diagnostic": {
+    "events": [
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 1,
+        "stage": "inputConsumed"
+      },
+      {
+        "flags": {
+          "hasNativeSession": true,
+          "isPresented": true,
+          "matchingSession": true,
+          "retired": false
+        },
+        "reason": "none",
+        "sequence": 2,
+        "stage": "mountObserved"
+      },
+      {
+        "flags": {
+          "allowRead": true,
+          "closed": false,
+          "configured": false,
+          "connecting": false,
+          "credentialPresent": true,
+          "hasOperation": false,
+          "hasReadOffer": true,
+          "hasReadScope": false,
+          "storageFailed": false
+        },
+        "reason": "none",
+        "sequence": 3,
+        "stage": "connectEntered"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 4,
+        "stage": "requestValidated"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 5,
+        "stage": "readRequestValidated"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 6,
+        "stage": "consentCaptureEntered"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 7,
+        "stage": "consentCaptured"
+      },
+      {
+        "flags": {
+          "hasPendingReadReopen": true,
+          "hasPresentation": true,
+          "matchingSession": true,
+          "preservingContinuation": true
+        },
+        "reason": "none",
+        "sequence": 8,
+        "stage": "closeRequested"
+      },
+      {
+        "flags": {
+          "closed": true
+        },
+        "reason": "none",
+        "sequence": 9,
+        "stage": "readRequestReturned"
+      },
+      {
+        "flags": {
+          "hasPendingReadReopen": true,
+          "hasPresentation": true,
+          "isPresented": false,
+          "matchingSession": true
+        },
+        "reason": "none",
+        "sequence": 10,
+        "stage": "dismissObserved"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 11,
+        "stage": "dismissAccepted"
+      },
+      {
+        "flags": {
+          "hasConnection": true,
+          "hasConsent": true
+        },
+        "reason": "none",
+        "sequence": 12,
+        "stage": "readReopenEntered"
+      },
+      {
+        "flags": {
+          "foreground": true,
+          "hasConnection": true,
+          "hasConsent": true,
+          "hasNativeSession": true,
+          "hasNavigationTask": false,
+          "hasPresentation": false,
+          "mounted": true,
+          "retired": false
+        },
+        "reason": "none",
+        "sequence": 13,
+        "stage": "openEntered"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 14,
+        "stage": "consentConsumeEntered"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 15,
+        "stage": "consentConsumed"
+      },
+      {
+        "flags": {
+          "hasReadScope": true
+        },
+        "reason": "none",
+        "sequence": 16,
+        "stage": "openIssued"
+      },
+      {
+        "flags": {
+          "hasNativeSession": true,
+          "isPresented": true,
+          "matchingSession": true,
+          "retired": false
+        },
+        "reason": "none",
+        "sequence": 17,
+        "stage": "mountObserved"
+      },
+      {
+        "flags": {
+          "closed": false,
+          "configured": false,
+          "connecting": false,
+          "hasOperation": false,
+          "hasReadScope": true,
+          "storageFailed": false
+        },
+        "reason": "none",
+        "sequence": 18,
+        "stage": "carriedConfigureEntered"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 19,
+        "stage": "engineConstructed"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 20,
+        "stage": "configurationActivated"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 21,
+        "stage": "configurationCompleted"
+      }
+    ],
+    "overflow": false,
+    "schemaVersion": 1
+  }
+}
