@@ -1,0 +1,2 @@
+Architectures in the fat file: Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework/ios-arm64_x86_64-simulator/libotzaria_search_engine_ios.a are: x86_64 arm64 
+Non-fat file: Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework/ios-arm64/libotzaria_search_engine_ios.a is architecture: arm64

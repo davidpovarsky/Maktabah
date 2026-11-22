@@ -1,0 +1,22 @@
+{
+  "at": "2026-11-22T05:59:02.220490+00:00",
+  "run_id": 44987561349,
+  "head": "64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b",
+  "application_source": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "actual_conclusion": "success",
+  "artifacts": [
+    {
+      "id": 14742311290,
+      "name": "completion-focused-native-captures",
+      "bytes": 28485905,
+      "digest": "sha256:a7ea12c937ce782bd76176b61ab28180142688cba3545f3497e1fb33c61492a0"
+    },
+    {
+      "id": 14742146824,
+      "name": "completion-focused-native-evidence",
+      "bytes": 6363659,
+      "digest": "sha256:096c6d6b92744e246de0b4092d6df82369d5c4369a939dbaf27b881aeb86faff"
+    }
+  ],
+  "new_tests_executed": 0
+}

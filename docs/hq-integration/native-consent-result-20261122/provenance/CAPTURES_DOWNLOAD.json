@@ -1,0 +1,14 @@
+{
+  "status": "DOWNLOADED_ONCE_HASH_AND_CRC_VERIFIED",
+  "at": "2026-11-22T06:00:07.517392+00:00",
+  "run_id": 44987561349,
+  "head": "64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b",
+  "application_source": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "id": 14742311290,
+  "name": "completion-focused-native-captures",
+  "bytes": 28485905,
+  "sha256": "a7ea12c937ce782bd76176b61ab28180142688cba3545f3497e1fb33c61492a0",
+  "crc_entries": 58,
+  "extracted_files": 9,
+  "original_full_archive": "C:\\Users\\DAVID\\Code\\Maktabah-native-followup-20261122\\build\\native-consent-result-44987561349\\captures.zip"
+}

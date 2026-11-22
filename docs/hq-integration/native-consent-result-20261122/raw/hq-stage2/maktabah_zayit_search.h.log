@@ -1,0 +1,2 @@
+Architectures in the fat file: Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework/ios-arm64_x86_64-simulator/libmaktabah_zayit_search.a are: x86_64 arm64 
+Non-fat file: Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework/ios-arm64/libmaktabah_zayit_search.a is architecture: arm64

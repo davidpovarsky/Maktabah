@@ -1,0 +1,119 @@
+NOTICES_JSON = "{\"native_one_notice_near_limit\":{\"ok\":true,\"job\":{\"id\":\"job_bdac3aaf7e59\",\"type\":\"job_result\",\"source\":\"script_run@host_7ec8382e82747448\",\"severity\":\"info\",\"tool\":\"script_run\",\"host\":\"host_7ec8382e82747448\",\"status\":\"succeeded\",\"exit_code\":0,\"created_at\":1795323770.4901233,\"started_at\":\"2026-11-22T05:02:50.536872+00:00\",\"finished_at\":\"2026-11-22T05:57:08.248697+00:00\",\"duration_s\":3257.71,\"error\":null,\"output_truncated\":false,\"timeout_s\":3600,\"read\":true,\"notified\":{\"telegram\":null,\"resend\":null},\"notify_spec\":{},\"output\":\"{\\\"observer_status\\\": \\\"TERMINAL_OBSERVED\\\", \\\"run_id\\\": 44987561349, \\\"run_url\\\": \\\"https://github.com/davidpovarsky/Maktabah/actions/runs/44987561349\\\", \\\"head_sha\\\": \\\"64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b\\\", \\\"application_source\\\": \\\"0ea7218331d1441d37d06d43333e579f267056e3\\\", \\\"started_at\\\": \\\"2026-11-22T05:02:54.544539+00:00\\\", \\\"pid\\\": 31492, \\\"maximum_watch_seconds\\\": 3350, \\\"purpose\\\": \\\"Observe this one existing run; no workflow dispatch or cancellation\\\", \\\"scope\\\": \\\"FOCUSED_CONSENT_ONLY\\\", \\\"gh_watch_exit_code\\\": 0, \\\"finished_at\\\": \\\"2026-11-22T05:57:07.205948+00:00\\\", \\\"actual_run_status\\\": \\\"completed\\\", \\\"actual_run_conclusion\\\": \\\"success\\\", \\\"actual_run_attempt\\\": 1, \\\"actual_run_updated_at\\\": \\\"2026-11-22T05:56:40Z\\\", \\\"jobs\\\": [{\\\"id\\\": 137101359693, \\\"name\\\": \\\"One app build and one original consent diagnostic\\\", \\\"conclusion\\\": \\\"success\\\", \\\"failed_steps\\\": []}]}\"}},\"native_one_evidence_download_notice\":{\"ok\":true,\"job\":{\"id\":\"job_e067bd63ae9c\",\"type\":\"job_result\",\"source\":\"script_run@host_7ec8382e82747448\",\"severity\":\"info\",\"tool\":\"script_run\",\"host\":\"host_7ec8382e82747448\",\"status\":\"succeeded\",\"exit_code\":0,\"created_at\":1795327156.202467,\"started_at\":\"2026-11-22T05:59:16.237889+00:00\",\"finished_at\":\"2026-11-22T05:59:31.341969+00:00\",\"duration_s\":15.1,\"error\":null,\"output_truncated\":false,\"timeout_s\":1700,\"read\":false,\"notified\":{\"telegram\":null,\"resend\":null},\"notify_spec\":{},\"output\":\"{\\\"status\\\": \\\"DOWNLOADED_ONCE_HASH_AND_CRC_VERIFIED\\\", \\\"at\\\": \\\"2026-11-22T05:59:31.246456+00:00\\\", \\\"run_id\\\": 44987561349, \\\"head\\\": \\\"64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b\\\", \\\"application_source\\\": \\\"0ea7218331d1441d37d06d43333e579f267056e3\\\", \\\"id\\\": 14742146824, \\\"name\\\": \\\"completion-focused-native-evidence\\\", \\\"bytes\\\": 6363659, \\\"sha256\\\": \\\"096c6d6b92744e246de0b4092d6df82369d5c4369a939dbaf27b881aeb86faff\\\", \\\"crc_entries\\\": 60, \\\"extracted_files\\\": 60, \\\"original_full_archive\\\": \\\"C:\\\\\\\\Users\\\\\\\\DAVID\\\\\\\\Code\\\\\\\\Maktabah-native-followup-20261122\\\\\\\\build\\\\\\\\native-consent-result-44987561349\\\\\\\\evidence.zip\\\"}\"}},\"native_one_captures_final_notice\":{\"ok\":true,\"job\":{\"id\":\"job_8af13c913636\",\"type\":\"job_result\",\"source\":\"script_run@host_7ec8382e82747448\",\"severity\":\"info\",\"tool\":\"script_run\",\"host\":\"host_7ec8382e82747448\",\"status\":\"succeeded\",\"exit_code\":0,\"created_at\":1795327159.0048158,\"started_at\":\"2026-11-22T05:59:19.040609+00:00\",\"finished_at\":\"2026-11-22T06:00:07.621398+00:00\",\"duration_s\":48.58,\"error\":null,\"output_truncated\":false,\"timeout_s\":1700,\"read\":false,\"notified\":{\"telegram\":null,\"resend\":null},\"notify_spec\":{},\"output\":\"{\\\"status\\\": \\\"DOWNLOADED_ONCE_HASH_AND_CRC_VERIFIED\\\", \\\"at\\\": \\\"2026-11-22T06:00:07.517392+00:00\\\", \\\"run_id\\\": 44987561349, \\\"head\\\": \\\"64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b\\\", \\\"application_source\\\": \\\"0ea7218331d1441d37d06d43333e579f267056e3\\\", \\\"id\\\": 14742311290, \\\"name\\\": \\\"completion-focused-native-captures\\\", \\\"bytes\\\": 28485905, \\\"sha256\\\": \\\"a7ea12c937ce782bd76176b61ab28180142688cba3545f3497e1fb33c61492a0\\\", \\\"crc_entries\\\": 58, \\\"extracted_files\\\": 9, \\\"original_full_archive\\\": \\\"C:\\\\\\\\Users\\\\\\\\DAVID\\\\\\\\Code\\\\\\\\Maktabah-native-followup-20261122\\\\\\\\build\\\\\\\\native-consent-result-44987561349\\\\\\\\captures.zip\\\"}\"}},\"native_one_verification_final_notice\":{\"ok\":true,\"job\":{\"id\":\"job_641855fda1a7\",\"type\":\"job_result\",\"source\":\"script_run@host_7ec8382e82747448\",\"severity\":\"info\",\"tool\":\"script_run\",\"host\":\"host_7ec8382e82747448\",\"status\":\"succeeded\",\"exit_code\":0,\"created_at\":1795327359.2034988,\"started_at\":\"2026-11-22T06:02:39.243170+00:00\",\"finished_at\":\"2026-11-22T06:02:50.762956+00:00\",\"duration_s\":11.52,\"error\":null,\"output_truncated\":false,\"timeout_s\":240,\"read\":false,\"notified\":{\"telegram\":null,\"resend\":null},\"notify_spec\":{},\"output\":\"{\\\"status\\\": \\\"INDEPENDENT_SOURCE_AND_SINGLE_XCRESULT_PASS_VERIFIED\\\", \\\"at\\\": \\\"2026-11-22T06:02:50.690229+00:00\\\", \\\"run_id\\\": 44987561349, \\\"checkout_sha\\\": \\\"64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b\\\", \\\"application_source_sha\\\": \\\"0ea7218331d1441d37d06d43333e579f267056e3\\\", \\\"application_trees\\\": {\\\"Source\\\": \\\"ac887bdbfbfce2d30d9591bb867d61b11da31cc6\\\", \\\"Vendor\\\": \\\"4065c0e62af325e83a65fe0c70270985229807ae\\\", \\\"Maktabah.xcodeproj\\\": \\\"8c0fa1ccfbcfae01fae3c267512864e00efcf078\\\", \\\"Maktabah-iOSUITests\\\": \\\"24345d612f8c70398f4590977f8b4696021ae413\\\"}, \\\"execution_input_git_blobs_independently_verified\\\": 276, \\\"original_auditor_actual_source_inputs_verified\\\": 1012, \\\"build_status\\\": \\\"SIMULATOR_BUILD_FOR_REAL_UI_PASS\\\", \\\"compiled_images_unchanged\\\": true, \\\"build_and_post_UI_source_fields_equal\\\": true, \\\"post_UI_only_additions\\\": [\\\"Exact original Hanlin --verify-only command\\\", \\\"Byte-identical privacy aggregation receipt repeated\\\"], \\\"strict_status\\\": \\\"EXECUTED_PASS\\\", \\\"summary_canonical_sha256\\\": \\\"8b2b4447300e25cf162eaa59cfdd924453efacbd2d5599b0d6a6a8476f62bf65\\\", \\\"tests_canonical_sha256\\\": \\\"4a7c155389ff177020dd2aa4c022fe0d2bac608b44aa7f46c9a1d3461d1bd44e\\\", \\\"counts\\\": {\\\"passed\\\": 1, \\\"failed\\\": 0, \\\"skipped\\\": 0, \\\"not_run\\\": 0}, \\\"case\\\": {\\\"duration\\\": \\\"1m 39s\\\", \\\"durationInSeconds\\\": 99.83200895786285, \\\"name\\\": \\\"testOriginalIPadCurrentWorkConsentToggleWithoutConnection()\\\", \\\"nodeIdentifier\\\": \\\"HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection()\\\", \\\"nodeIdentifierURL\\\": \\\"test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection\\\", \\\"nodeType\\\": \\\"Test Case\\\", \\\"result\\\": \\\"Passed\\\"}, \\\"device\\\": {\\\"architecture\\\": \\\"arm64\\\", \\\"deviceId\\\": \\\"CC708E22-FBF9-46B8-99BF-B31EB2FC4853\\\", \\\"deviceName\\\": \\\"Faithful 11-inch 8ee52763\\\", \\\"modelName\\\": \\\"iPad Pro 11-inch (M5)\\\", \\\"osBuildNumber\\\": \\\"24B8117\\\", \\\"osVersion\\\": \\\"27.2\\\", \\\"platform\\\": \\\"iOS Simulator\\\"}, \\\"cleanup\\\": \\\"PASS\\\", \\\"installation_attempts\\\": [{\\\"bundle\\\": \\\"com.davidpovarsky.chavrusatext\\\", \\\"attempt\\\": 1, \\\"status\\\": \\\"INSTALL_TIMEOUT\\\", \\\"timedOutPhase\\\": \\\"VERIFYING_APP_CONTAINER\\\", \\\"error\\\": \\\"Command '['xcrun', 'simctl', 'get_app_container', 'CC708E22-FBF9-46B8-99BF-B31EB2FC4853', 'com.davidpovarsky.chavrusatext', 'app']' timed out after 45 seconds\\\"}, {\\\"bundle\\\": \\\"com.davidpovarsky.chavrusatext\\\", \\\"attempt\\\": 2, \\\"status\\\": \\\"INSTALLED\\\", \\\"appContainer\\\": \\\"/Users/runner/Library/Developer/CoreSimulator/Devices/CC708E22-FBF9-46B8-99BF-B31EB2FC4853/data/Containers/Bundle/Application/C5FA0D11-A5E2-45FD-8EA3-278F131B8A13/Maktabah.app\\\"}], \\\"matrix_running_native_phase_at\\\": \\\"2026-11-22T05:46:53.379206+00:00\\\", \\\"summary_started_at\\\": \\\"2026-11-22T05:52:35.229000+00:00\\\", \\\"summary_finished_at\\\": \\\"2026-11-22T05:54:41.741000+00:00\\\", \\\"xcode\\\": \\\"Xcode 27.2\\\\nBuild version 27B52\\\", \\\"swift\\\": \\\"Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\\\\nTarget: arm64-apple-macosx27.0.0\\\", \\\"full_native116_acceptance\\\": false, \\\"full_release114_acceptance\\\": false, \\\"live_provider_acceptance\\\": false, \\\"verification_reexecuted_tests\\\": false}\"}}}"
+README_TEXT = "# Original iPad consent: verified Native acceptance\n\nRun [44987561349](https://github.com/davidpovarsky/Maktabah/actions/runs/44987561349), attempt 1, completed successfully on 2026-11-22 at 05:56:40 UTC. Exactly one original XCTest case passed; zero failed, skipped, or not-run cases were reported. This packet retains the actual run evidence and an independent source/xcresult audit. Packaging did not execute tests.\n\n## Immutable scope\n\n| Item | Exact binding |\n| --- | --- |\n| Workflow checkout | `64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b` |\n| Application and UI test source | `0ea7218331d1441d37d06d43333e579f267056e3` |\n| Case | `HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection` |\n| Result | 1 PASS, 0 FAIL, 0 SKIP, 0 NOT_RUN |\n| Actual case duration | 99.83200895786285 seconds |\n| Device | iPad Pro 11-inch (M5), iOS Simulator 27.2 (24B8117), arm64 |\n| Simulator | `CC708E22-FBF9-46B8-99BF-B31EB2FC4853` |\n| Toolchain | Xcode 27.2 (27B52); Apple Swift 6.4.2 |\n| Owned simulator cleanup | PASS |\n\nThe case opened the original book reader and chat, verified initial consent OFF and the original book/workspace identity, tapped the exact original switch child, observed ON, revoked with a second native tap, observed OFF, and closed chat back to the original reader. Raw accessibility trees show both the outer row and its native switch at 0, then 1, then 0. Screenshots and the final reader hierarchy are retained in `raw/captures/visual-11-reader`; `AX_STATE_REVIEW.json` maps each stage to its original exports. The test uses no credentials, provider connection, Connect or Send action. It does not establish Live-provider acceptance.\n\nThe preceding failure identified selection of the outer switch row. Its actual injected event coordinate was not captured. The earlier immutable wrapper packet's phrase “row-center tap” is therefore too specific; the supported description is “outer-row target observed, actual event coordinate unmeasured.” This packet preserves that distinction and does not alter the preceding raw evidence.\n\n## Source and binary proof\n\n`provenance/INDEPENDENT_VERIFICATION.json` records independent verification of all 276 execution input Git blobs and raw SHA-256 values against the frozen source. The original post-UI auditor verified 1,012 actual source inputs. All four product trees match application source 0ea72183; their exact tree IDs are in `FILE_HASHES.json`.\n\nThe app and UI runner were built successfully. Native binary/code image hashes remained unchanged during UI execution. Build and post-UI source fields match exactly, apart from the original additional Hanlin verify-only command and one repeated byte-identical privacy-aggregation receipt. The strict xcresult proof admits the one declared case and actual device; canonical summary/tests digests are retained with the original JSON.\n\nThe original Host48 proof was reused from run 44940208007/artifact 14724450161 after exact checks of 35 local source inputs and 29 SDK inputs. It records 48 historical PASS cases and zero newly executed Host48 tests. The three selectors that had already passed in Native4—landscape search, portrait search and keyboard dispatch calibration—were absent from this run.\n\n## Installation recovery and actual timing\n\nThe GitHub execution wrapper step began at 05:34:40 UTC. That step includes simulator setup, installation, fixtures and Xcode startup. Its elapsed duration is not the XCTest case duration.\n\nThe first application installation's subsequent `simctl get_app_container` verification timed out after 45 seconds. The existing install-only recovery collected diagnostics, restarted the owned simulator, and completed its second installation/container verification. This was not an XCTest retry. The matrix entered its RUNNING_NATIVE_XCTEST phase at 05:46:53.379206 UTC. The xcresult session began at 05:52:35.229; the raw test suite began at 05:53:00.194 and passed at 05:54:40.064. The sole case ran once for 99.832 seconds, within the unchanged 600-second per-case timeout. The original matrix receipt retains both install attempts and final cleanup.\n\n## Retained raw evidence\n\nAll 60 primary artifact files (31,583,236 uncompressed bytes) and all nine exported visual files are copied byte-for-byte. Full original archive downloads remain in the owned checkout's `build/native-consent-result-44987561349` directory. The captures archive includes the original xcresult and video; these are not duplicated in Git. The GitHub artifact IDs, download metadata, CRC inventories and full archive hashes are retained.\n\n| Artifact | ID | Archive bytes | SHA-256 |\n| --- | --- | ---: | --- |\n| completion-focused-native-evidence | 14742146824 | 6,363,659 | `096c6d6b92744e246de0b4092d6df82369d5c4369a939dbaf27b881aeb86faff` |\n| completion-focused-native-captures | 14742311290 | 28,485,905 | `a7ea12c937ce782bd76176b61ab28180142688cba3545f3497e1fb33c61492a0` |\n\nPrimary entry points:\n\n- `raw/artifacts/continuation-focused/result.json`: final outcome and source after UI.\n- `raw/artifacts/continuation-focused/source-before.json` and `built-binaries.json`: frozen inputs and native images.\n- `raw/artifacts/runtime27/verified-11-reader.json`, `.summary.json` and `.tests.json`: strict receipt and original xcresult exports.\n- `raw/artifacts/faithful-ipad-matrix.json`: installation attempts, actual phases and owned cleanup.\n- `raw/artifacts/test-simulator-11-reader.log`: actual single-case execution.\n- `raw/hq-stage2/result.json` and `actual-source-inputs.json`: original source/build audit.\n- `provenance/INDEPENDENT_VERIFICATION.json`: independent 276-input and one-case verification.\n- `COPY_RECEIPT.json` and `FILE_HASHES.json`: byte-preserving copy and complete packet index.\n\nThe sole finite Native observer, both sole artifact downloads and the independent verification are terminal. No Native watcher remains. This result closes the focused no-key consent diagnostic on source 0ea72183. Full Native116, Release114, original-editor admission and Hanlin Live remain separate acceptance scopes; this packet does not mark them complete.\n"
+import os, sys, json, hashlib, pathlib, shutil, subprocess, datetime
+repo=pathlib.Path(r"C:\Users\DAVID\Code\Maktabah-native-followup-20261122")
+src=repo/"build/native-consent-result-44987561349"
+rel="docs/hq-integration/native-consent-result-20261122"
+dest=repo/rel
+expected="2619546cffe5fc22fb86f87d1afdc5c91565eb6e"
+branch="codex/otzaria-native-consent-wrapper-20261122"
+application="0ea7218331d1441d37d06d43333e579f267056e3"
+wrapper="64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b"
+trees={"Source":"ac887bdbfbfce2d30d9591bb867d61b11da31cc6","Vendor":"4065c0e62af325e83a65fe0c70270985229807ae","Maktabah.xcodeproj":"8c0fa1ccfbcfae01fae3c267512864e00efcf078","Maktabah-iOSUITests":"24345d612f8c70398f4590977f8b4696021ae413"}
+env=dict(os.environ, PYTHONUTF8="1")
+def run(args,timeout=120):
+    p=subprocess.run(args,cwd=repo,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=timeout)
+    if p.returncode:
+        raise RuntimeError({"args":args,"exit":p.returncode,"stdout":p.stdout.decode("utf-8","replace")[-4000:],"stderr":p.stderr.decode("utf-8","replace")[-4000:]})
+    return p.stdout
+def git(*a): return run(["git",*a])
+def sha(b): return hashlib.sha256(b).hexdigest()
+def putjson(p,obj):
+    p.parent.mkdir(parents=True,exist_ok=True)
+    p.write_bytes((json.dumps(obj,ensure_ascii=False,indent=2)+"\n").encode("utf-8"))
+def currenttrees(): return {p:git("rev-parse","HEAD:"+p).decode().strip() for p in trees}
+assert git("rev-parse","HEAD").decode().strip()==expected
+assert git("branch","--show-current").decode().strip()==branch
+assert not git("status","--porcelain")
+assert currenttrees()==trees
+assert not dest.exists(), "Fresh destination required; inspect any prior attempt before continuing"
+receipt=json.loads((src/"INDEPENDENT_VERIFICATION.json").read_bytes())
+assert receipt["status"]=="INDEPENDENT_SOURCE_AND_SINGLE_XCRESULT_PASS_VERIFIED"
+assert sha((src/"INDEPENDENT_VERIFICATION.json").read_bytes())=="c4d787293b397e0174bee72a7e068d3ee29f501c59cd634f78c15c425ed12641"
+assert receipt["counts"]=={"passed":1,"failed":0,"skipped":0,"not_run":0}
+assert receipt["cleanup"]=="PASS" and receipt["execution_input_git_blobs_independently_verified"]==276
+assert receipt["application_source_sha"]==application and receipt["checkout_sha"]==wrapper
+for name,size,digest in [
+ ("evidence.zip",6363659,"096c6d6b92744e246de0b4092d6df82369d5c4369a939dbaf27b881aeb86faff"),
+ ("captures.zip",28485905,"a7ea12c937ce782bd76176b61ab28180142688cba3545f3497e1fb33c61492a0")]:
+    p=src/name
+    assert p.stat().st_size==size and sha(p.read_bytes())==digest
+raws=sorted(p for p in (src/"evidence").rglob("*") if p.is_file())
+captures=sorted(p for p in (src/"captures").rglob("*") if p.is_file())
+assert len(raws)==60 and sum(p.stat().st_size for p in raws)==31583236
+assert len(captures)==9
+dest.mkdir(parents=True)
+copied=[]
+def copy(p,q):
+    q.parent.mkdir(parents=True,exist_ok=True)
+    shutil.copyfile(p,q)
+    assert p.read_bytes()==q.read_bytes()
+    copied.append({"source":str(p),"retained":q.relative_to(dest).as_posix(),"bytes":q.stat().st_size,"sha256":sha(q.read_bytes())})
+for p in raws: copy(p,dest/"raw"/p.relative_to(src/"evidence"))
+for p in captures: copy(p,dest/"raw/captures"/p.relative_to(src/"captures"))
+metadata=["ARTIFACTS.json","INTAKE.json","OBSERVER.json","final-run.stdout.json","final-run.stderr.log","final-jobs.json","final-jobs.stderr.log","artifacts.stderr.log","EVIDENCE_DOWNLOAD.json","EVIDENCE_INVENTORY.json","EVIDENCE_EXTRACTED.json","CAPTURES_DOWNLOAD.json","CAPTURES_INVENTORY.json","CAPTURES_EXTRACTED.json","INDEPENDENT_VERIFICATION.json","independent-verification.py"]
+for name in metadata: copy(src/name,dest/"provenance"/name)
+watch=repo/"build/native-consent-observer-44987561349/gh-watch.log"
+if watch.is_file(): copy(watch,dest/"raw/observer/gh-watch.log")
+putjson(dest/"COPY_RECEIPT.json",{"source_root":str(src),"raw_primary_files":60,"visual_exports":9,"copied":copied,"tests_executed_by_copy":0})
+notices=json.loads(NOTICES_JSON)
+putjson(dest/"provenance/SENTINEL_TERMINAL_NOTICES.json",notices)
+capturemap=[
+ ("before_native_tap",0,"E1444A32-5A6B-4CDE-9CD2-B271F3288FEC.txt","939A958E-01D8-4B1C-987A-047836AA27A7.png"),
+ ("after_native_tap",1,"11D71C53-0D47-4874-B0D5-91DD41A6B8D9.txt","5C812184-6119-42E1-83B2-E751835AE097.png"),
+ ("after_native_revoke",0,"CE9022AF-A123-4586-9AAD-61328E4F421D.txt","A02E68AD-7248-4E4E-ACD2-664400BD1AD5.png")]
+ax=[]
+for stage,value,txt,png in capturemap:
+    content=(src/"captures/visual-11-reader"/txt).read_text(encoding="utf-8")
+    lines=[s for s in content.splitlines() if "Switch," in s]
+    assert len(lines)>=2
+    row=[s for s in lines if "otzaria-hanlin-allow-current-book" in s]
+    child=[s for s in lines if "{{798" in s and "{63, 28}" in s]
+    assert len(row)==len(child)==1, {"stage":stage,"switches":lines}
+    assert all("value: "+str(value) in s for s in row+child)
+    ax.append({"stage":stage,"expected_and_observed_value":value,"hierarchy":"raw/captures/visual-11-reader/"+txt,"screenshot":"raw/captures/visual-11-reader/"+png,"original_switch_lines":row+child})
+finaltext=(src/"captures/visual-11-reader/DE0F6204-2D8B-42DA-983D-2E0B2494FEEE.txt").read_text(encoding="utf-8")
+assert "Switch," not in finaltext
+putjson(dest/"AX_STATE_REVIEW.json",{"run_id":44987561349,"application_source":application,"review":"Raw AX outer row and its native switch agree at all three stages; screenshots are retained separately.","states":ax,"final_original_reader":{"hierarchy":"raw/captures/visual-11-reader/DE0F6204-2D8B-42DA-983D-2E0B2494FEEE.txt","screenshot":"raw/captures/visual-11-reader/E4115EA1-EBE8-424D-8843-90075CBCC953.png","no_switch_after_chat_closed":True},"actual_injected_tap_coordinate_measured":False,"reexecuted_tests":False})
+(dest/".gitattributes").write_bytes(b"* -text whitespace=cr-at-eol\nraw/** -whitespace\nprovenance/*.log -whitespace\n")
+readme=README_TEXT
+(dest/"README.md").write_bytes(readme.encode("utf-8"))
+indexed=[]
+for p in sorted(dest.rglob("*")):
+    if p.is_file(): indexed.append({"path":p.relative_to(dest).as_posix(),"bytes":p.stat().st_size,"sha256":sha(p.read_bytes())})
+putjson(dest/"FILE_HASHES.json",{"schema":1,"run_id":44987561349,"run_attempt":1,"wrapper_source":wrapper,"application_source":application,"application_trees":trees,"index_excludes":"FILE_HASHES.json","files":indexed})
+git("add","--",rel)
+changed=git("diff","--cached","--name-only","-z").split(b"\0")
+changed=[s.decode("utf-8") for s in changed if s]
+assert changed and all(p.startswith(rel+"/") for p in changed)
+git("diff","--cached","--check")
+files=[*indexed,{"path":"FILE_HASHES.json","bytes":(dest/"FILE_HASHES.json").stat().st_size,"sha256":sha((dest/"FILE_HASHES.json").read_bytes())}]
+request=b"".join((":"+rel+"/"+f["path"]+"\n").encode() for f in files)
+proc=subprocess.run(["git","cat-file","--batch"],input=request,cwd=repo,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=120)
+assert proc.returncode==0,proc.stderr.decode("utf-8","replace")
+offset=0
+for f in files:
+    e=proc.stdout.index(b"\n",offset); header=proc.stdout[offset:e].split()
+    assert len(header)==3 and header[1]==b"blob",header
+    size=int(header[2]); offset=e+1
+    data=proc.stdout[offset:offset+size]; offset+=size
+    assert proc.stdout[offset:offset+1]==b"\n";offset+=1
+    assert size==f["bytes"] and sha(data)==f["sha256"],f["path"]
+assert offset==len(proc.stdout)
+assert currenttrees()==trees
+print(json.dumps({"stage":"STAGED_RAW_BYTE_PROOF_PASS","files":len(files),"indexed_bytes":sum(x["bytes"] for x in files),"manifest_sha256":sha((dest/"FILE_HASHES.json").read_bytes())}),flush=True)
+git("commit","-m","docs: retain verified no-key native consent acceptance")
+head=git("rev-parse","HEAD").decode().strip()
+assert git("rev-parse","HEAD^").decode().strip()==expected
+assert currenttrees()==trees and not git("status","--porcelain")
+actual=git("diff-tree","--no-commit-id","--name-only","-r","HEAD").decode().splitlines()
+assert set(actual)==set(changed)
+remote=git("ls-remote","origin","refs/heads/"+branch).decode().strip().split()
+assert remote and remote[0]==expected,remote
+push=run(["git","push","origin","HEAD:refs/heads/"+branch],timeout=240).decode("utf-8","replace")
+published=git("ls-remote","origin","refs/heads/"+branch).decode().strip().split()
+assert published and published[0]==head,published
+assert not git("status","--porcelain")
+publication={"status":"PUBLISHED_NEUTRAL_NATIVE_CONSENT_EVIDENCE","at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"head":head,"parent":expected,"branch":branch,"packet":rel,"manifest_sha256":sha((dest/"FILE_HASHES.json").read_bytes()),"indexed_payloads":len(indexed),"total_files":len(files),"total_bytes":sum(x["bytes"] for x in files),"source_trees_unchanged":trees,"remote_head":published[0],"run_id":44987561349,"application_source":application,"wrapper_source":wrapper,"case_counts":receipt["counts"],"cleanup":receipt["cleanup"],"trigger_ref_mutated":False,"new_tests_executed":0}
+putjson(src/"PUBLICATION.json",publication)
+print(json.dumps(publication),flush=True)

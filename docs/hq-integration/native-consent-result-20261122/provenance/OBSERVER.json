@@ -1,0 +1,26 @@
+{
+  "observer_status": "TERMINAL_OBSERVED",
+  "run_id": 44987561349,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44987561349",
+  "head_sha": "64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b",
+  "application_source": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "started_at": "2026-11-22T05:02:54.544539+00:00",
+  "pid": 31492,
+  "maximum_watch_seconds": 3350,
+  "purpose": "Observe this one existing run; no workflow dispatch or cancellation",
+  "scope": "FOCUSED_CONSENT_ONLY",
+  "gh_watch_exit_code": 0,
+  "finished_at": "2026-11-22T05:57:07.205948+00:00",
+  "actual_run_status": "completed",
+  "actual_run_conclusion": "success",
+  "actual_run_attempt": 1,
+  "actual_run_updated_at": "2026-11-22T05:56:40Z",
+  "jobs": [
+    {
+      "id": 137101359693,
+      "name": "One app build and one original consent diagnostic",
+      "conclusion": "success",
+      "failed_steps": []
+    }
+  ]
+}

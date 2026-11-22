@@ -1,0 +1,80 @@
+[
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CC708E22-FBF9-46B8-99BF-B31EB2FC4853",
+        "deviceName" : "Faithful 11-inch 8ee52763",
+        "exportedFileName" : "E4115EA1-EBE8-424D-8843-90075CBCC953.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-final-native-screen_0_A1BEA010-B5C0-49E6-8D7E-DEFD81751D82.png",
+        "timestamp" : 1795326877.554
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CC708E22-FBF9-46B8-99BF-B31EB2FC4853",
+        "deviceName" : "Faithful 11-inch 8ee52763",
+        "exportedFileName" : "DE0F6204-2D8B-42DA-983D-2E0B2494FEEE.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "r27-final-native-hierarchy_0_F8069760-7160-48B6-AC51-89DD360D90C6.txt",
+        "timestamp" : 1795326877.07
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CC708E22-FBF9-46B8-99BF-B31EB2FC4853",
+        "deviceName" : "Faithful 11-inch 8ee52763",
+        "exportedFileName" : "CE9022AF-A123-4586-9AAD-61328E4F421D.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "hanlin-consent-no-connection-after-native-revoke-ui-tree_0_62395CE5-8CAC-4FC7-B473-EE0E47FD1030.txt",
+        "timestamp" : 1795326852.35
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CC708E22-FBF9-46B8-99BF-B31EB2FC4853",
+        "deviceName" : "Faithful 11-inch 8ee52763",
+        "exportedFileName" : "A02E68AD-7248-4E4E-ACD2-664400BD1AD5.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "hanlin-consent-no-connection-after-native-revoke_0_6A74F0F1-BE06-49BD-AD3B-DAF561C71D9F.png",
+        "timestamp" : 1795326850.309
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CC708E22-FBF9-46B8-99BF-B31EB2FC4853",
+        "deviceName" : "Faithful 11-inch 8ee52763",
+        "exportedFileName" : "11D71C53-0D47-4874-B0D5-91DD41A6B8D9.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "hanlin-consent-no-connection-after-native-tap-ui-tree_0_3F25C902-C36A-4074-A1E5-CB301D301337.txt",
+        "timestamp" : 1795326843.223
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CC708E22-FBF9-46B8-99BF-B31EB2FC4853",
+        "deviceName" : "Faithful 11-inch 8ee52763",
+        "exportedFileName" : "5C812184-6119-42E1-83B2-E751835AE097.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "hanlin-consent-no-connection-after-native-tap_0_21FC4FD7-6F9C-4304-821F-BCCD5E367DD9.png",
+        "timestamp" : 1795326840.673
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CC708E22-FBF9-46B8-99BF-B31EB2FC4853",
+        "deviceName" : "Faithful 11-inch 8ee52763",
+        "exportedFileName" : "E1444A32-5A6B-4CDE-9CD2-B271F3288FEC.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "hanlin-consent-no-connection-before-native-tap-ui-tree_0_748A2DB2-0781-4718-B9B0-80CE82D57420.txt",
+        "timestamp" : 1795326832.223
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CC708E22-FBF9-46B8-99BF-B31EB2FC4853",
+        "deviceName" : "Faithful 11-inch 8ee52763",
+        "exportedFileName" : "939A958E-01D8-4B1C-987A-047836AA27A7.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "hanlin-consent-no-connection-before-native-tap_0_A80582BC-59C6-4A0B-8E5F-7744E647C1BE.png",
+        "timestamp" : 1795326830.282
+      }
+    ],
+    "testIdentifier" : "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection()",
+    "testIdentifierURL" : "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection"
+  }
+]
