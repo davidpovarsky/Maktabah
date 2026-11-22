@@ -1,0 +1,2 @@
+[{"status":"FAIL","error":"noncanonical uncertain row was bypassed: returned a new creation intent; native intents=2","name":"lowercase_uncertain_uuid_cannot_hide_from_new_revision"}]
+FAILED: UUID storage invariant failed

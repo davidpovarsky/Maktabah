@@ -1,0 +1,79 @@
+{
+  "status": "FAILED",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "commands": [
+    {
+      "label": "compile",
+      "command": [
+        "swift",
+        "build",
+        "--package-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\package",
+        "--scratch-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\swift-build",
+        "-j",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 39.57800000000134
+    },
+    {
+      "label": "binary-path",
+      "command": [
+        "swift",
+        "build",
+        "--package-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\package",
+        "--scratch-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\swift-build",
+        "-j",
+        "2",
+        "--show-bin-path"
+      ],
+      "exit": 0,
+      "seconds": 1.9069999999992433
+    },
+    {
+      "label": "controls",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\swift-build\\x86_64-unknown-windows-msvc\\debug\\NativeCreationFenceAcceptance.exe",
+        "uuid-red",
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\attempt-03-uuid-red\\fixtures"
+      ],
+      "exit": 1,
+      "seconds": 0.7189999999973224
+    }
+  ],
+  "original_suites_reexecuted": false,
+  "native_sdk": 0,
+  "rpc": 0,
+  "transport": 0,
+  "cloudkit_network": 0,
+  "identity_production_write": 0,
+  "ack_from_new_component": 0,
+  "crash_processes": [],
+  "swift": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "reused_owned_build": true,
+  "suite": "uuid-red",
+  "selected_cases": [
+    "lowercase_uncertain_uuid_cannot_hide_from_new_revision"
+  ],
+  "copied_input_deltas": [
+    {
+      "path": "docs/hq-integration/completion-20261122/native-creation-fence/NativeCreationFenceAcceptance.swift",
+      "before": "e43697980f28385f1217b3871e497bd681b14be87a906a6b863277e9843aae82",
+      "after": "9da7319d1af72b526fe57125e15f269a33bcf33eb8a9e50a92d850522bfda751"
+    }
+  ],
+  "executable_sha256": "0a0963644653b68e7243215564118329de80b9b94a630f1f51abc75aeee8ae54",
+  "cases": [
+    {
+      "status": "FAIL",
+      "error": "noncanonical uncertain row was bypassed: returned a new creation intent; native intents=2",
+      "name": "lowercase_uncertain_uuid_cannot_hide_from_new_revision"
+    }
+  ],
+  "error": "AssertionError('new SQLite controls failed')",
+  "sources_unchanged": true,
+  "copied_sources_unchanged": true
+}

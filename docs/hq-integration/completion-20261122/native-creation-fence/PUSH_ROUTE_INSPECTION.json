@@ -1,0 +1,146 @@
+[
+  {
+    "workflow": "deploy-docs.yml",
+    "push": [
+      "  push:\n    branches:\n      - main\n    paths:\n      - 'docs/**'\n      - 'mkdocs.yml'\n"
+    ]
+  },
+  {
+    "workflow": "maktabah-batch-b-validation.yml",
+    "push": [
+      "  push:\n    branches:\n      - \"validation/maktabah-batch-b-*\"\n      - \"validation/maktabah-build-8401-*\""
+    ]
+  },
+  {
+    "workflow": "otzaria-annotation-core194-combined-apple-v3.yml",
+    "push": [
+      "  push:\n    branches:\n      - codex/otzaria-annotation-core194-combined-apple-v3-20261120\n"
+    ]
+  },
+  {
+    "workflow": "otzaria-cloud-import-identity-apple.yml",
+    "push": [
+      "  push:\n    branches: [codex/otzaria-cloud-import-identity-apple-20261122]\n"
+    ]
+  },
+  {
+    "workflow": "otzaria-cold-search-core-validation.yml",
+    "push": [
+      "  push:\n    branches:\n      - codex/otzaria-cold-search-core-apple-v2-20261120\n"
+    ]
+  },
+  {
+    "workflow": "otzaria-cold-search-ownership-validation.yml",
+    "push": [
+      "  push:\n    branches:\n      - codex/otzaria-cold-search-ownership-v3-20261120\n"
+    ]
+  },
+  {
+    "workflow": "otzaria-completion-focused-native.yml",
+    "push": [
+      "  push:\n    branches: [codex/otzaria-completion-focused-native-20261121]\n"
+    ]
+  },
+  {
+    "workflow": "otzaria-final-native-push.yml",
+    "push": [
+      "  push:\n    branches:\n      - codex/otzaria-final-native116-20261120\n"
+    ]
+  },
+  {
+    "workflow": "otzaria-final-release-push.yml",
+    "push": [
+      "  push:\n    branches:\n      - codex/otzaria-final-release114-20261120\n"
+    ]
+  },
+  {
+    "workflow": "otzaria-hanlin-live-native.yml",
+    "push": [
+      "  push:\n    branches: [codex/otzaria-hanlin-live-20261121]\n"
+    ]
+  },
+  {
+    "workflow": "otzaria-local-annotation-cloud-apple.yml",
+    "push": [
+      "  push:\n    branches:\n      - codex/otzaria-local-annotation-cloud-apple-reviewed-20261120\n"
+    ]
+  },
+  {
+    "workflow": "otzaria-local-annotation-editor-apple.yml",
+    "push": [
+      "  push:\n    branches:\n      - codex/otzaria-local-annotation-editor-apple-reviewed-v2-20261120\n"
+    ]
+  },
+  {
+    "workflow": "otzaria-native98-commentary-evidence.yml",
+    "push": [
+      "  push:\n    branches: [codex/otzaria-native98-commentary-evidence-20261120]\n"
+    ]
+  },
+  {
+    "workflow": "otzaria-original-editor-stageb-native.yml",
+    "push": [
+      "  push:\n    branches: [codex/otzaria-original-editor-stageb-native-20261122]\n"
+    ]
+  },
+  {
+    "workflow": "otzaria-release96-capture-evidence.yml",
+    "push": [
+      "  push:\n    branches: [codex/otzaria-release96-capture-evidence-20261120]\n"
+    ]
+  },
+  {
+    "workflow": "otzaria-search-gates.yml",
+    "push": [
+      "  push:\n    branches:\n      - \"codex/otzaria-search-upgrade-clean\"\n    paths: &otzaria_paths\n      - \"Source/Otzaria/**\"\n      - \"Source/iOS/MaktabahApp.swift\"\n      - \"Source/iOS/Managers/BootstrapManager.swift\"\n      - \"Source/iOS/Views/Bootstrap/BootstrapView.swift\"\n      - \"Source/iOS/Views/iPadLayout.swift\"\n      - \"Source/View/CoreDownloadProgressView.swift\"\n      - \"Source/Core/Database/ZstdShim.swift\"\n      - \"Maktabah.xcodeproj/project.pbxproj\"\n      - \"Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved\"\n      - \"Vendor/OtzariaSearchEngine/**\"\n      - \"Vendor/OtzariaBootstrapTests/**\"\n      - \"Vendor/ZayitSearchPort/**\"\n      - \"Scripts/CI/**\"\n      - \"Scripts/run-otzaria-corpus-acceptance.sh\"\n      - \"Scripts/run-otzaria-native-bootstrap-acceptance.sh\"\n      - \".github/workflows/otzaria-search-gates.yml\"\n      - \".github/workflows/ios-build.yml\""
+    ]
+  },
+  {
+    "workflow": "otzaria-ui-sdk-intermediate.yml",
+    "push": [
+      "  push:\n    branches:\n      - codex/otzaria-ui-sdk-intermediate-20261120\n"
+    ]
+  },
+  {
+    "workflow": "release.yml",
+    "push": [
+      "  push:\n    tags:\n      - \"v*\"\n      - \"V*\""
+    ]
+  },
+  {
+    "workflow": "sefaria-embedded-validation.yml",
+    "push": [
+      "  push:\n    branches:\n      - \"experiment/sefaria-mobile-original-embedded-*\""
+    ]
+  },
+  {
+    "workflow": "upstream-boundary-guard.yml",
+    "push": [
+      "  push:\n    branches: [ \"main\", \"sync/**\" ]"
+    ]
+  },
+  {
+    "workflow": "upstream-resolved-fast-validation-2026-09-04.yml",
+    "push": [
+      "  push:\n    branches:\n      - codex/upstream-main-sync-2026-09-04-resolved\n    paths:\n      - .github/workflows/upstream-resolved-fast-validation-2026-09-04.yml\n      - Maktabah.xcodeproj/**\n      - Source/**\n"
+    ]
+  },
+  {
+    "workflow": "upstream-resolved-validation-2026-09-04.yml",
+    "push": [
+      "  push:\n    branches:\n      - codex/upstream-main-sync-2026-09-04-resolved\n    paths:\n      - .github/workflows/upstream-resolved-validation-2026-09-04.yml\n      - Maktabah.xcodeproj/**\n      - Source/**\n      - Vendor/**\n      - Scripts/**\n"
+    ]
+  },
+  {
+    "workflow": "zayit-production-data.yml",
+    "push": [
+      "  push:\n    branches:\n      - codex/search-data-unification-parity\n"
+    ]
+  },
+  {
+    "workflow": "zayit-search-gates.yml",
+    "push": [
+      "  push:\n    paths:\n      - \"Vendor/ZayitSearchPort/**\"\n      - \".github/workflows/zayit-search-gates.yml\"\n"
+    ]
+  }
+]

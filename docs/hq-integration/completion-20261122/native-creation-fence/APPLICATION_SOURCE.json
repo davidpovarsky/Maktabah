@@ -1,0 +1,17 @@
+{
+  "application_source_sha": "e78ddef1cd156bd2118e1ed23eb56376e65d0a7c",
+  "parent": "c838f470b1576b0c2ccc970f597d4f59f1bfc0ea",
+  "product_file": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+  "product_sha256": "26dc7075df6d73f9dc9c5d2cc46547d9496d71c96469fe8adf3a4e779d9b53cc",
+  "application_trees": {
+    "Source": "7cb3a3b6bf2be898ee507f8ae59222b7bd1eebf4",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "f336b041f6c503a30b32edb6055f933d22ebaa3b"
+  },
+  "whole_source_current_controls": "attempt-04-uuid-green",
+  "unchanged_schema_control_evidence": "attempt-02-resume",
+  "production_identity_writer": false,
+  "native_rpc": false,
+  "ack_integration": false
+}

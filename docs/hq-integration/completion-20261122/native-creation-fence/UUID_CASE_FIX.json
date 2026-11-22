@@ -1,0 +1,12 @@
+{
+  "before_sha256": "9ad84c76b77b6819df4e0ae2fc45c72079d269b98b69cc0a7693bc2c0da88636",
+  "after_sha256": "26dc7075df6d73f9dc9c5d2cc46547d9496d71c96469fe8adf3a4e779d9b53cc",
+  "original_prefix_bytes": 33283,
+  "original_prefix_unchanged": true,
+  "native_ddl_unchanged": true,
+  "no_case_predicates_added": 3,
+  "strict_uuid_reader_guards_added": 2,
+  "other_scope_identifier_collation_changes": 0,
+  "red_repro": "attempt-03-uuid-red/fixtures/UUID_CASE_REPRO.json",
+  "invariant": "Find UUID case variants, then refuse noncanonical or multiple stored rows; never silently hide, adopt or repair them."
+}

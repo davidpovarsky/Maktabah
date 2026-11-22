@@ -1,0 +1,56 @@
+--- reviewed-draft/AnnotationExchangeLedger.swift
++++ fixed-draft/AnnotationExchangeLedger.swift
+@@ -696,7 +696,7 @@
+                 guard prior.dispatchState == .prepared else { throw AnnotationExchangeNativeCreationError.dispatchMayHaveOccurred }
+                 try database.execute(query: """
+                     UPDATE \(NativeCreationTables.attempts) SET dispatch_state = 'dispatch_may_have_occurred'
+-                    WHERE destination = ? AND account_id = ? AND space_id = ? AND namespace = ? AND annotation_uuid = ?
++                    WHERE destination = ? AND account_id = ? AND space_id = ? AND namespace = ? AND annotation_uuid COLLATE NOCASE = ?
+                         AND message_id = ? AND dispatch_state = 'prepared';
+                     """, parameters: try nativeScope(actual.destination, actual.namespace, actual.annotationUUID) + [actual.messageID.uuidString])
+                 result = try nativeCreationFenceLocked(destination: actual.destination, namespace: actual.namespace,
+@@ -760,15 +760,19 @@
+ 
+     private func nativeCreationFenceLocked(destination: AnnotationExchangeDestination, namespace: String,
+                                           annotationUUID: UUID) throws -> AnnotationExchangeNativeCreationFence? {
++        // Find UUID case variants before validating canonical stored text.
++        // Otherwise an earlier uncertain row could disappear from this scope.
+         let rows = try database.fetch(query: """
+-            SELECT message_id, dispatch_state FROM \(NativeCreationTables.attempts)
+-            WHERE destination = ? AND account_id = ? AND space_id = ? AND namespace = ? AND annotation_uuid = ?;
++            SELECT message_id, dispatch_state, annotation_uuid FROM \(NativeCreationTables.attempts)
++            WHERE destination = ? AND account_id = ? AND space_id = ? AND namespace = ? AND annotation_uuid COLLATE NOCASE = ?;
+             """, parameters: try nativeScope(destination, namespace, annotationUUID)) { row in
+-                (try Self.nativeText(row, 0), try Self.nativeText(row, 1))
++                (try Self.nativeText(row, 0), try Self.nativeText(row, 1), try Self.nativeText(row, 2))
+             }
+         guard rows.count <= 1 else { throw AnnotationExchangeError.corruptRecord }
+         guard let row = rows.first else { return nil }
+-        guard let message = UUID(uuidString: row.0), message.uuidString == row.0,
++        guard let storedAnnotation = UUID(uuidString: row.2), storedAnnotation == annotationUUID,
++              storedAnnotation.uuidString == row.2,
++              let message = UUID(uuidString: row.0), message.uuidString == row.0,
+               let state = AnnotationExchangeNativeCreationFence.DispatchState(rawValue: row.1) else {
+             throw AnnotationExchangeError.corruptRecord
+         }
+@@ -783,14 +787,16 @@
+     private func nativeIdentityLocked(destination: AnnotationExchangeDestination, namespace: String,
+                                       annotationUUID: UUID) throws -> AnnotationExchangeNativeIdentityRecord? {
+         let rows = try database.fetch(query: """
+-            SELECT message_id, native_object_id FROM \(NativeCreationTables.identities)
+-            WHERE destination = ? AND account_id = ? AND space_id = ? AND namespace = ? AND annotation_uuid = ?;
++            SELECT message_id, native_object_id, annotation_uuid FROM \(NativeCreationTables.identities)
++            WHERE destination = ? AND account_id = ? AND space_id = ? AND namespace = ? AND annotation_uuid COLLATE NOCASE = ?;
+             """, parameters: try nativeScope(destination, namespace, annotationUUID)) { row in
+-                (try Self.nativeText(row, 0), try Self.nativeText(row, 1))
++                (try Self.nativeText(row, 0), try Self.nativeText(row, 1), try Self.nativeText(row, 2))
+             }
+         guard rows.count <= 1 else { throw AnnotationExchangeError.corruptRecord }
+         guard let row = rows.first else { return nil }
+-        guard let message = UUID(uuidString: row.0), message.uuidString == row.0,
++        guard let storedAnnotation = UUID(uuidString: row.2), storedAnnotation == annotationUUID,
++              storedAnnotation.uuidString == row.2,
++              let message = UUID(uuidString: row.0), message.uuidString == row.0,
+               AnnotationExchangeValidation.identifier(row.1),
+               let fence = try nativeCreationFenceLocked(destination: destination, namespace: namespace, annotationUUID: annotationUUID),
+               fence.delivery.messageID == message else {

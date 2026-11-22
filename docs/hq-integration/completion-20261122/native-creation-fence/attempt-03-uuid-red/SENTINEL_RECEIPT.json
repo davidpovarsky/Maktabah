@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_9b88cc76b9d7",
+    "type": "job_result",
+    "source": "script_run@host_7ec8382e82747448",
+    "severity": "warning",
+    "tool": "script_run",
+    "host": "host_7ec8382e82747448",
+    "status": "failed",
+    "exit_code": 1,
+    "created_at": 1795319558.304799,
+    "started_at": "2026-11-22T03:52:38.345422+00:00",
+    "finished_at": "2026-11-22T03:53:23.411662+00:00",
+    "duration_s": 45.07,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 1200,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\r\n  \"status\": \"FAILED\",\r\n  \"platform\": \"Windows-11-10.0.26300-SP0\",\r\n  \"commands\": [\r\n    {\r\n      \"label\": \"compile\",\r\n      \"command\": [\r\n        \"swift\",\r\n        \"build\",\r\n        \"--package-path\",\r\n        \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-annotation-native-ledger-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\native-creation-fence\\\\build\\\\attempt-01\\\\package\",\r\n        \"--scratch-path\",\r\n        \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-annotation-native-ledger-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\native-creation-fence\\\\build\\\\attempt-01\\\\swift-build\",\r\n        \"-j\",\r\n        \"2\"\r\n      ],\r\n      \"exit\": 0,\r\n      \"seconds\": 39.57800000000134\r\n    },\r\n    {\r\n      \"label\": \"binary-path\",\r\n      \"command\": [\r\n        \"swift\",\r\n        \"build\",\r\n        \"--package-path\",\r\n        \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-annotation-native-ledger-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\native-creation-fence\\\\build\\\\attempt-01\\\\package\",\r\n        \"--scratch-path\",\r\n        \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-annotation-native-ledger-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\native-creation-fence\\\\build\\\\attempt-01\\\\swift-build\",\r\n        \"-j\",\r\n        \"2\",\r\n        \"--show-bin-path\"\r\n      ],\r\n      \"exit\": 0,\r\n      \"seconds\": 1.9069999999992433\r\n    },\r\n    {\r\n      \"label\": \"controls\",\r\n      \"command\": [\r\n        \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-annotation-native-ledger-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\native-creation-fence\\\\build\\\\attempt-01\\\\swift-build\\\\x86_64-unknown-windows-msvc\\\\debug\\\\NativeCreationFenceAcceptance.exe\",\r\n        \"uuid-red\",\r\n        \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-annotation-native-ledger-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\native-creation-fence\\\\attempt-03-uuid-red\\\\fixtures\"\r\n      ],\r\n      \"exit\": 1,\r\n      \"seconds\": 0.7189999999973224\r\n    }\r\n  ],\r\n  \"original_suites_reexecuted\": false,\r\n  \"native_sdk\": 0,\r\n  \"rpc\": 0,\r\n  \"transport\": 0,\r\n  \"cloudkit_network\": 0,\r\n  \"identity_production_write\": 0,\r\n  \"ack_from_new_component\": 0,\r\n  \"crash_processes\": [],\r\n  \"swift\": \"Swift version 6.3.3 (swift-6.3.3-RELEASE)\\nTarget: x86_64-unknown-windows-msvc\\nBuild config: +assertions\",\r\n  \"reused_owned_build\": true,\r\n  \"suite\": \"uuid-red\",\r\n  \"selected_cases\": [\r\n    \"lowercase_uncertain_uuid_cannot_hide_from_new_revision\"\r\n  ],\r\n  \"copied_input_deltas\": [\r\n    {\r\n      \"path\": \"docs/hq-integration/completion-20261122/native-creation-fence/NativeCreationFenceAcceptance.swift\",\r\n      \"before\": \"e43697980f28385f1217b3871e497bd681b14be87a906a6b863277e9843aae82\",\r\n      \"after\": \"9da7319d1af72b526fe57125e15f269a33bcf33eb8a9e50a92d850522bfda751\"\r\n    }\r\n  ],\r\n  \"executable_sha256\": \"0a0963644653b68e7243215564118329de80b9b94a630f1f51abc75aeee8ae54\",\r\n  \"error\": \"AssertionError('new SQLite controls failed')\",\r\n  \"sources_unchanged\": true,\r\n  \"copied_sources_unchanged\": true\r\n}"
+  }
+}

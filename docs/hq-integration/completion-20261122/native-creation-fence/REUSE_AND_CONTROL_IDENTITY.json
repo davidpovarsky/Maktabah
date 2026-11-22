@@ -1,0 +1,55 @@
+{
+  "status": "EXACT_REUSE_5_SCHEMA_CONTROLS_ONLY",
+  "evidence": "attempt-02-resume",
+  "reused_cases": [
+    "explicit_native_install_requires_original_base",
+    "opt_in_idempotence_preserves_v1_and_user_version",
+    "partial_schema_is_refused_without_repair",
+    "future_schema_is_refused_without_mutation",
+    "foreign_trigger_cannot_turn_prepare_into_ack"
+  ],
+  "all_18_original_new_control_bodies_byte_identical": true,
+  "control_body_sha256": {
+    "explicit_native_install_requires_original_base": "84b7ad62202a94e9f1b9b1ee7aaf3be2b277a3ec1d0bf50b7d7535ebba75bde6",
+    "opt_in_idempotence_preserves_v1_and_user_version": "3728ef65e35d796d4ca59068247d61ff532e1581a090fed0b2e5d5807fde6cbf",
+    "partial_schema_is_refused_without_repair": "094e7e274279bd4763059d1d3f59dabcad84bc292b56d9b64ac18a258fda76f6",
+    "future_schema_is_refused_without_mutation": "15d8176a98cc135757d3b7947c62f86504e6513708b12b7bc5f9cb6513ed4603",
+    "foreign_trigger_cannot_turn_prepare_into_ack": "0b2fd5f535150cccf26291772d1086e97da93a75f7439f308b4f5464e69a1f8f",
+    "prepared_replay_retains_one_exact_pending_commitment": "9ce4d4406e4224f222d8edb2a00dbd9cc9e67156e5447057e82966ef39ec04d9",
+    "dispatch_requires_prepared_intent": "ca90de175bdb5e354e548580a125fdc111b738e31e23701e5ba41442c1c89619",
+    "dispatch_transition_is_one_way_and_visible_to_new_handle": "255a1573ff0ad3662a7a7cab04a20da4fc2f7ffdfcf3a253f78acdb4347736d3",
+    "forged_pending_commitments_are_refused": "edea9dd20d764a45dae83f02e6da45a14491d0ce275bdfee8a004c1da37fd32d",
+    "source_change_blocks_dispatch_and_retains_preparation": "8106b13c56b10a31c2de7b47bea6a947f8289e26090d30c3cd3ca09523640852",
+    "new_revision_cannot_bypass_earlier_uncertain_create": "e57afdbc8c26b2eea594f69db42d56d8411fd1bda2852ff3cd457365839901c2",
+    "destination_account_and_space_scopes_are_independent": "62c4d4d2c8a19a8c947c3b49a9277373a138c7238999711403ac2542be4251da",
+    "highlight_only_and_tombstone_never_prepare_creation": "6a257e2a585854d4b9ee514c5bd8143e1d7f4c3621050e2ee268a79f19ab0dfb",
+    "acknowledged_delivery_cannot_begin_or_dispatch_creation": "4d6bf3bbb1897f8c5c174ebe96b0e5140d7d4a2b1a230c847873cf2b98dd08d4",
+    "nested_dispatch_refusal_preserves_outer_rollback": "ac7439114db783b2df753ea1c73c6b4062e9e49d2b1a8dd0ca25650bb5f9f876",
+    "two_original_connections_allow_one_dispatch_transition": "8871f26ded12bbb9ad75aae1aca4c1ca2e9fb28fb8e76262c1f619d640fb27ec",
+    "identity_storage_uniqueness_and_reads_are_not_receipts": "f826cbb75d6638af8a621fb5a95cc001fed7823d815a34d6c88aa1d85559245e",
+    "cancellation_at_actual_sql_update_rolls_back_dispatch": "9aca0bc750534c578585a90e5694f33744c5bcb2cd0ede43e320c2a98040a04d"
+  },
+  "unchanged_schema_source_sections": {
+    "owned_tables_and_ddl": "2024900e288a7e8b764a773966b6d66e364a1678ddaa5fe64bac1b3f959df6db",
+    "explicit_schema_install_and_read": "6bf5ff5f8bae3610db6bb57ea02c37d2c6d342569382bfe81157fb9525bddc4f",
+    "schema_validation_and_raw_reader": "f87618982fecc8e0770f4c12ec7180c6e8d9dc31688144559b156d07d12f4ff1"
+  },
+  "original_ledger_prefix_sha256": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918",
+  "original_ledger_prefix_bytes": 33283,
+  "all_other_compiler_inputs_unchanged": true,
+  "input_deltas": {
+    "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift": {
+      "before": "9ad84c76b77b6819df4e0ae2fc45c72079d269b98b69cc0a7693bc2c0da88636",
+      "after": "26dc7075df6d73f9dc9c5d2cc46547d9496d71c96469fe8adf3a4e779d9b53cc"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/NativeCreationFenceAcceptance.swift": {
+      "before": "e43697980f28385f1217b3871e497bd681b14be87a906a6b863277e9843aae82",
+      "after": "9da7319d1af72b526fe57125e15f269a33bcf33eb8a9e50a92d850522bfda751"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/run-native-creation-controls.py": {
+      "before": "79e06fefcf1a43819815715a214f8e7a04d2361b3a75e50e573023fad492808d",
+      "after": "dda2e2b84c67a7fa22d5b95e7b2ad44a107c054afd7c57b8df6a83f95bdb8d7a"
+    }
+  },
+  "reachability": "The five reused controls stop in unchanged base/native schema installation or validation. The foreign-trigger case fails strict schema validation before either modified UUID reader can run. All thirteen controls reaching the modified scope readers were executed on fixed source."
+}

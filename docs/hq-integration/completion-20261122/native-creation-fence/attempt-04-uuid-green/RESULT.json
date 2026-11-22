@@ -1,0 +1,285 @@
+{
+  "status": "PASS_NEW_NATIVE_CREATION_FENCE_SQLITE",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "commands": [
+    {
+      "label": "compile",
+      "command": [
+        "swift",
+        "build",
+        "--package-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\package",
+        "--scratch-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\swift-build",
+        "-j",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 36.07800000000134
+    },
+    {
+      "label": "binary-path",
+      "command": [
+        "swift",
+        "build",
+        "--package-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\package",
+        "--scratch-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\swift-build",
+        "-j",
+        "2",
+        "--show-bin-path"
+      ],
+      "exit": 0,
+      "seconds": 2.0319999999992433
+    },
+    {
+      "label": "controls",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\swift-build\\x86_64-unknown-windows-msvc\\debug\\NativeCreationFenceAcceptance.exe",
+        "uuid-affected",
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\attempt-04-uuid-green\\fixtures"
+      ],
+      "exit": 0,
+      "seconds": 7.421999999998661
+    },
+    {
+      "label": "crash-prepared",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\swift-build\\x86_64-unknown-windows-msvc\\debug\\NativeCreationFenceAcceptance.exe",
+        "crash-prepared",
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\attempt-04-uuid-green\\fixtures"
+      ],
+      "exit": 73,
+      "seconds": 0.39100000000325963
+    },
+    {
+      "label": "reopen-prepared",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\swift-build\\x86_64-unknown-windows-msvc\\debug\\NativeCreationFenceAcceptance.exe",
+        "reopen-prepared",
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\attempt-04-uuid-green\\fixtures"
+      ],
+      "exit": 0,
+      "seconds": 0.3280000000013388
+    },
+    {
+      "label": "crash-marked",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\swift-build\\x86_64-unknown-windows-msvc\\debug\\NativeCreationFenceAcceptance.exe",
+        "crash-marked",
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\attempt-04-uuid-green\\fixtures"
+      ],
+      "exit": 73,
+      "seconds": 0.48399999999674037
+    },
+    {
+      "label": "reopen-marked",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\swift-build\\x86_64-unknown-windows-msvc\\debug\\NativeCreationFenceAcceptance.exe",
+        "reopen-marked",
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\attempt-04-uuid-green\\fixtures"
+      ],
+      "exit": 0,
+      "seconds": 0.28100000000267755
+    },
+    {
+      "label": "crash-nested",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\swift-build\\x86_64-unknown-windows-msvc\\debug\\NativeCreationFenceAcceptance.exe",
+        "crash-nested",
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\attempt-04-uuid-green\\fixtures"
+      ],
+      "exit": 73,
+      "seconds": 0.4379999999946449
+    },
+    {
+      "label": "reopen-nested",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\swift-build\\x86_64-unknown-windows-msvc\\debug\\NativeCreationFenceAcceptance.exe",
+        "reopen-nested",
+        "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\attempt-04-uuid-green\\fixtures"
+      ],
+      "exit": 0,
+      "seconds": 0.28100000000267755
+    }
+  ],
+  "original_suites_reexecuted": false,
+  "native_sdk": 0,
+  "rpc": 0,
+  "transport": 0,
+  "cloudkit_network": 0,
+  "identity_production_write": 0,
+  "ack_from_new_component": 0,
+  "crash_processes": [
+    {
+      "phase": "prepared",
+      "writer": {
+        "sqlite": "3.53.4",
+        "phase": "prepared",
+        "pid": "11268"
+      },
+      "reopen": {
+        "ACK": "0",
+        "status": "PASS",
+        "nativeRPC": "0",
+        "phase": "prepared",
+        "identityWrite": "0",
+        "payloadDigest": "8da39a9fab7a4c223c77eda2cfb33c976eac4ed90991280cca9ca9107275822f",
+        "pid": "4208",
+        "sqlite": "3.53.4"
+      },
+      "abrupt_exit": 73
+    },
+    {
+      "phase": "marked",
+      "writer": {
+        "pid": "22752",
+        "sqlite": "3.53.4",
+        "phase": "marked"
+      },
+      "reopen": {
+        "status": "PASS",
+        "phase": "marked",
+        "pid": "31588",
+        "sqlite": "3.53.4",
+        "nativeRPC": "0",
+        "ACK": "0",
+        "identityWrite": "0",
+        "payloadDigest": "8da39a9fab7a4c223c77eda2cfb33c976eac4ed90991280cca9ca9107275822f"
+      },
+      "abrupt_exit": 73
+    },
+    {
+      "phase": "nested",
+      "writer": {
+        "pid": "33828",
+        "phase": "nested",
+        "sqlite": "3.53.4"
+      },
+      "reopen": {
+        "phase": "nested",
+        "payloadDigest": "8da39a9fab7a4c223c77eda2cfb33c976eac4ed90991280cca9ca9107275822f",
+        "sqlite": "3.53.4",
+        "ACK": "0",
+        "identityWrite": "0",
+        "status": "PASS",
+        "pid": "27080",
+        "nativeRPC": "0"
+      },
+      "abrupt_exit": 73
+    }
+  ],
+  "swift": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "reused_owned_build": true,
+  "suite": "uuid-affected",
+  "selected_cases": [
+    "prepared_replay_retains_one_exact_pending_commitment",
+    "dispatch_requires_prepared_intent",
+    "dispatch_transition_is_one_way_and_visible_to_new_handle",
+    "forged_pending_commitments_are_refused",
+    "source_change_blocks_dispatch_and_retains_preparation",
+    "new_revision_cannot_bypass_earlier_uncertain_create",
+    "destination_account_and_space_scopes_are_independent",
+    "highlight_only_and_tombstone_never_prepare_creation",
+    "acknowledged_delivery_cannot_begin_or_dispatch_creation",
+    "nested_dispatch_refusal_preserves_outer_rollback",
+    "two_original_connections_allow_one_dispatch_transition",
+    "identity_storage_uniqueness_and_reads_are_not_receipts",
+    "cancellation_at_actual_sql_update_rolls_back_dispatch",
+    "lowercase_uncertain_uuid_cannot_hide_from_new_revision",
+    "mixed_case_prepared_uuid_refuses_all_fence_operations",
+    "case_colliding_attempt_rows_refuse_read_prepare_and_dispatch",
+    "noncanonical_identity_uuid_refuses_read_and_creation",
+    "case_colliding_identity_rows_refuse_read_and_creation",
+    "non_uuid_scope_and_native_identifiers_remain_case_sensitive"
+  ],
+  "copied_input_deltas": [
+    {
+      "path": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "before": "9ad84c76b77b6819df4e0ae2fc45c72079d269b98b69cc0a7693bc2c0da88636",
+      "after": "26dc7075df6d73f9dc9c5d2cc46547d9496d71c96469fe8adf3a4e779d9b53cc"
+    }
+  ],
+  "executable_sha256": "a9e9e5695f9ea146c48e3c94d5bb250bf8391bc8fac3ce787ae938d49824f5e4",
+  "cases": [
+    {
+      "status": "PASS",
+      "name": "prepared_replay_retains_one_exact_pending_commitment"
+    },
+    {
+      "name": "dispatch_requires_prepared_intent",
+      "status": "PASS"
+    },
+    {
+      "status": "PASS",
+      "name": "dispatch_transition_is_one_way_and_visible_to_new_handle"
+    },
+    {
+      "status": "PASS",
+      "name": "forged_pending_commitments_are_refused"
+    },
+    {
+      "status": "PASS",
+      "name": "source_change_blocks_dispatch_and_retains_preparation"
+    },
+    {
+      "status": "PASS",
+      "name": "new_revision_cannot_bypass_earlier_uncertain_create"
+    },
+    {
+      "status": "PASS",
+      "name": "destination_account_and_space_scopes_are_independent"
+    },
+    {
+      "status": "PASS",
+      "name": "highlight_only_and_tombstone_never_prepare_creation"
+    },
+    {
+      "status": "PASS",
+      "name": "acknowledged_delivery_cannot_begin_or_dispatch_creation"
+    },
+    {
+      "name": "nested_dispatch_refusal_preserves_outer_rollback",
+      "status": "PASS"
+    },
+    {
+      "name": "two_original_connections_allow_one_dispatch_transition",
+      "status": "PASS"
+    },
+    {
+      "name": "identity_storage_uniqueness_and_reads_are_not_receipts",
+      "status": "PASS"
+    },
+    {
+      "status": "PASS",
+      "name": "cancellation_at_actual_sql_update_rolls_back_dispatch"
+    },
+    {
+      "status": "PASS",
+      "name": "lowercase_uncertain_uuid_cannot_hide_from_new_revision"
+    },
+    {
+      "status": "PASS",
+      "name": "mixed_case_prepared_uuid_refuses_all_fence_operations"
+    },
+    {
+      "status": "PASS",
+      "name": "case_colliding_attempt_rows_refuse_read_prepare_and_dispatch"
+    },
+    {
+      "status": "PASS",
+      "name": "noncanonical_identity_uuid_refuses_read_and_creation"
+    },
+    {
+      "status": "PASS",
+      "name": "case_colliding_identity_rows_refuse_read_and_creation"
+    },
+    {
+      "name": "non_uuid_scope_and_native_identifiers_remain_case_sensitive",
+      "status": "PASS"
+    }
+  ],
+  "sources_unchanged": true,
+  "copied_sources_unchanged": true
+}
