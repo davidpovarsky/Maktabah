@@ -1,0 +1,87 @@
+{
+  "status": "PASS",
+  "oracle_sha256": "f1316897644c586b455731f706c8bc793d640f50163046303167a20ff2389745",
+  "controls": [
+    {
+      "control": "interior requested line has exact independently derived paragraph start",
+      "status": "PASS",
+      "synthetic_fixture": true
+    },
+    {
+      "control": "last member still selects the same exact paragraph",
+      "status": "PASS",
+      "synthetic_fixture": true
+    },
+    {
+      "control": "actual discontiguous membership is preserved",
+      "status": "PASS",
+      "synthetic_fixture": true
+    },
+    {
+      "control": "missing requested line fails closed",
+      "status": "PASS",
+      "synthetic_fixture": true
+    },
+    {
+      "control": "duplicate source mapping fails closed",
+      "status": "PASS",
+      "synthetic_fixture": true
+    },
+    {
+      "control": "foreign book mapping fails closed",
+      "status": "PASS",
+      "synthetic_fixture": true
+    },
+    {
+      "control": "non-leaf selected entry fails closed",
+      "status": "PASS",
+      "synthetic_fixture": true
+    },
+    {
+      "control": "ambiguous other member fails closed",
+      "status": "PASS",
+      "synthetic_fixture": true
+    },
+    {
+      "control": "first-unit title ambiguity fails closed",
+      "status": "PASS",
+      "synthetic_fixture": true
+    },
+    {
+      "control": "interleaved root title fails closed",
+      "status": "PASS",
+      "synthetic_fixture": true
+    }
+  ],
+  "synthetic_controls_passed": 10,
+  "actual_original_fixture": {
+    "mode": "paragraph",
+    "book_id": 3891,
+    "requested_line_index": 523,
+    "toc_entry_id": 643037,
+    "parent_toc_entry_id": 642933,
+    "source_line_indices": [
+      522,
+      523,
+      524,
+      525,
+      526
+    ],
+    "start_line_index": 522,
+    "end_line_index": 526,
+    "canonical_locator": "otzaria|book:3891|line:522",
+    "preceding_sibling_line_index": 1,
+    "root_last_line_index": 0,
+    "sql": {
+      "selected": "SELECT l.id,t.id,t.parentId,t.level FROM line l JOIN line_toc lt ON lt.lineId=l.id JOIN tocEntry t ON t.id=lt.tocEntryId AND t.bookId=l.bookId WHERE l.bookId=? AND l.lineIndex=? ORDER BY t.level DESC,t.id",
+      "membership": "SELECT l.id,l.lineIndex,(SELECT COUNT(*) FROM line_toc other WHERE other.lineId=l.id) FROM line l JOIN line_toc lt ON lt.lineId=l.id WHERE l.bookId=? AND lt.tocEntryId=? ORDER BY l.lineIndex",
+      "preceding": "SELECT MIN(l.lineIndex) FROM line l JOIN line_toc lt ON lt.lineId=l.id JOIN tocEntry t ON t.id=lt.tocEntryId AND t.bookId=l.bookId WHERE l.bookId=? AND t.parentId=? AND t.id<>?"
+    },
+    "ui_observation_used": false,
+    "database_sha256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+    "database_unchanged": true
+  },
+  "native_tests_executed": 0,
+  "provider_requests": 0,
+  "real_credentials_read": false
+}

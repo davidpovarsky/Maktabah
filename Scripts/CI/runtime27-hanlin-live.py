@@ -18,7 +18,7 @@ import uuid
 ROOT = Path(__file__).resolve().parents[2]
 SELECTOR = "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
 MODEL = "gemini-2.5-flash-lite"
-REVIEWED_SOURCE = "a0781bd2628c1311394f7da6aa1e84c17f252fa4"
+REVIEWED_SOURCE = "62095a46f3eda10df87fad49812083ba163ee3ef"
 ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/openai/"
 BUNDLE = "com.davidpovarsky.chavrusatext"
 CANONICAL_APP_GROUP = "group.com.davidpovarsky.itorah"
@@ -256,6 +256,8 @@ class LiveAcceptance:
         require(isinstance(selected["lineIndex"], int), "No original current fixture line")
         text_oracle = runpy.run_path(str(ROOT / "tools/otzaria_original_sql_oracle.py"))
         with closing(sqlite3.connect(database.as_uri() + "?mode=ro&immutable=1", uri=True)) as connection:
+            paragraph = runpy.run_path(str(ROOT / "Scripts/CI/runtime27-live-paragraph-oracle.py"))["derive_live_paragraph"](
+                connection, selected["sourceBookId"], selected["lineIndex"])
             decode = runpy.run_path(str(ROOT / "Scripts/verify-otzaria-mini-parity.py"))["decoder"](connection)
             rows = connection.execute("SELECT l.id,l.lineIndex,lc.content FROM line l JOIN line_content lc ON lc.id=l.id "
                                       "WHERE l.bookId=? ORDER BY (l.lineIndex=? ) DESC,l.lineIndex LIMIT 128",
@@ -273,7 +275,8 @@ class LiveAcceptance:
                     break
         require(query is not None and digest(database) == oracle["database_sha256"], "No unchanged public query source")
         write(WORK / "fixture-query.json", {"database_sha256": oracle["database_sha256"], "book_id": selected["sourceBookId"],
-              "current_line_index": selected["lineIndex"], "query_line_id": query_row[0], "query_line_index": query_row[1],
+              "current_line_index": paragraph["start_line_index"], "requested_line_index": selected["lineIndex"],
+              "paragraph": paragraph, "query_line_id": query_row[0], "query_line_index": query_row[1],
               "query": query, "ui_observation_used": False, "database_unchanged": True})
         target = data / PRIVATE_RELATIVE
         target.parent.mkdir(mode=0o700, parents=True, exist_ok=False)
@@ -284,7 +287,7 @@ class LiveAcceptance:
         self.staged = True
         return {"TEST_RUNNER_OTZARIA_HANLIN_LIVE_PROVIDER_CASE": "1", "TEST_RUNNER_OTZARIA_HANLIN_LIVE_NONCE": self.nonce,
                 "TEST_RUNNER_OTZARIA_HANLIN_LIVE_MODEL": MODEL, "TEST_RUNNER_OTZARIA_HANLIN_LIVE_QUERY": query,
-                "TEST_RUNNER_OTZARIA_HANLIN_LIVE_SECTION": str(selected["lineIndex"])}
+                "TEST_RUNNER_OTZARIA_HANLIN_LIVE_SECTION": str(paragraph["start_line_index"])}
 
     def capture(self, udid, label):
         require(udid == self.udid and label == "11", "Wrong live witness device")
