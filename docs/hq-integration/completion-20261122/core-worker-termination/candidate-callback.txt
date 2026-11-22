@@ -1,0 +1,8 @@
+        URLSession.shared.dataTask(with: request) { _, response, error in
+            if case .failure(let failure) = AnnotationLocalEditorCloudWorkerResponse.result(
+                response: response, error: error
+            ) {
+                errorState.withLock { $0 = failure }
+            }
+            semaphore.signal()
+        }.resume()
