@@ -1,0 +1,7 @@
+# Held original read and local SQLite commit: bounded integration
+
+Root independently verified all57 indexed payloads across59 new tracked files, all20 source/historical inputs, all10 compiled copies, the actual executed binary, the exact unchanged positive function and the retained negative database. The original six-case packet and initial partial-RED packet remain byte-identical to their published trees. No tests ran during integration.
+
+The original first run remains FAILED because positive fixture setup could not open its database before any Owner event. Its negative case passed and remains reused. The unchanged positive function subsequently passed at a shorter owned Windows path. Actual fresh processes4968->20488 preserved one committed row; the original negative writer20252->readonly32180 preserved zero rows and the original database hash. The negative assertion and earlier six assertions were absent from the continuation binary.
+
+The two cases cover original exclusiveRead, then actual SQLite serialization, then nested requiresEditing:false local admission and real outerCOMMIT without await under the database lock; default mutation admission is refused before SQL and latches failedWrite. They use fixture document/permission values. They do not create native authority, identity/body receipts, writer or ACK, and do not transfer standalone retirement/failure evidence into this held-read seam. Application, Vendor, project and UI-test trees remain unchanged.
