@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\DAVID\Code\Maktabah-annotation-native-ledger-20261122\docs\hq-integration\completion-20261122\native-creation-fence\run-native-creation-controls.py", line 106, in main
+    assert p.returncode==0 and len(cases)==len(expected) and {x["name"] for x in cases}==set(expected) and all(x["status"]=="PASS" and x.get("error") is None for x in cases),"new SQLite controls failed"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: new SQLite controls failed

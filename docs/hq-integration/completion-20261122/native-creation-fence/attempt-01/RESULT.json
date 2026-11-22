@@ -1,0 +1,17 @@
+{
+  "status": "FAILED",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "commands": [],
+  "original_suites_reexecuted": false,
+  "native_sdk": 0,
+  "rpc": 0,
+  "transport": 0,
+  "cloudkit_network": 0,
+  "identity_production_write": 0,
+  "ack_from_new_component": 0,
+  "crash_processes": [],
+  "swift": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "error": "TimeoutExpired(['swift', 'build', '--package-path', 'C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-annotation-native-ledger-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\native-creation-fence\\\\build\\\\attempt-01\\\\package', '--scratch-path', 'C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-annotation-native-ledger-20261122\\\\docs\\\\hq-integration\\\\completion-20261122\\\\native-creation-fence\\\\build\\\\attempt-01\\\\swift-build', '-j', '2'], 300)",
+  "sources_unchanged": true,
+  "copied_sources_unchanged": true
+}

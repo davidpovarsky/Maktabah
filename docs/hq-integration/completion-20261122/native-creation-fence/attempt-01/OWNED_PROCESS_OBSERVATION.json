@@ -1,0 +1,50 @@
+{
+  "observed_at": "2026-11-22T03:42:53.299739+00:00",
+  "owned_processes": [
+    {
+      "pid": 31092,
+      "parent_pid": 28628,
+      "name": "swift.exe",
+      "cpu_seconds": 0.53125,
+      "rss_bytes": 18665472,
+      "created": "/Date(1795318843709)/"
+    },
+    {
+      "pid": 27312,
+      "parent_pid": 31092,
+      "name": "swift-build.exe",
+      "cpu_seconds": 5.765625,
+      "rss_bytes": 66273280,
+      "created": "/Date(1795318844316)/"
+    },
+    {
+      "pid": 12888,
+      "parent_pid": 27312,
+      "name": "swiftc.exe",
+      "cpu_seconds": 1.28125,
+      "rss_bytes": 41316352,
+      "created": "/Date(1795318867643)/"
+    },
+    {
+      "pid": 33136,
+      "parent_pid": 12888,
+      "name": "swift-frontend.exe",
+      "cpu_seconds": 66.71875,
+      "rss_bytes": 206995456,
+      "created": "/Date(1795318868372)/"
+    },
+    {
+      "pid": 21944,
+      "parent_pid": 12888,
+      "name": "swift-frontend.exe",
+      "cpu_seconds": 66.765625,
+      "rss_bytes": 206557184,
+      "created": "/Date(1795318868380)/"
+    }
+  ],
+  "compiled_object_count": 0,
+  "terminal_result_exists": false,
+  "source_edited": false,
+  "duplicate_build_started": false,
+  "observation_method": "Existing Windows CIM; psutil absent, no install performed"
+}

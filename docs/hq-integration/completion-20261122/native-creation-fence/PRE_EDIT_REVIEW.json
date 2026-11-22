@@ -1,0 +1,20 @@
+{
+  "status": "DRAFT_NOT_COMMITTED_NOT_TESTED",
+  "base": "c838f470b1576b0c2ccc970f597d4f59f1bfc0ea",
+  "branch": "codex/otzaria-annotation-native-ledger-20261122",
+  "worktree": "C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122",
+  "upstream_remote_head": "ref: refs/heads/main\tHEAD\nd46af139b3a265399c16d87f5923acd8e3444024\tHEAD",
+  "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "path": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+  "ownership": "DOWNSTREAM_OWNED; absent at actual upstream SHA",
+  "original_add_commit": "f070f218c28611d93146b276a1ff77d75b7a693f",
+  "before_sha256": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918",
+  "after_sha256": "9ad84c76b77b6819df4e0ae2fc45c72079d269b98b69cc0a7693bc2c0da88636",
+  "original_file_prefix_byte_unchanged": true,
+  "original_byte_count": 33283,
+  "root_scope": "Explicit optional extension schema, durable pending-create/dispatch fence, strict identity reads only; no identity writer/ACK/transport/reset until opaque original SDK receipts exist.",
+  "tests_executed": 0,
+  "production_enablement": false,
+  "root_review_gap": "Original nested transaction returns after SAVEPOINT release, not durable COMMIT. Dispatch transition now requires autocommit under existing withSerializedAccess and verifies it restored after original transaction.",
+  "initial_gap_preserved": "SOURCE_DRAFT_INITIAL_NESTED_GAP.patch"
+}

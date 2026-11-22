@@ -1,0 +1,5 @@
+Source\ChavrusaText\Annotations\Exchange\AnnotationExchangeLedger.swift:614:    func installNativeCreationSchema() throws {
+Source\ChavrusaText\Annotations\Exchange\AnnotationExchangeLedger.swift:641:    func prepareNativeCreation(for delivery: AnnotationExchangeDelivery) throws -> AnnotationExchangeNativeCreationFence {
+Source\ChavrusaText\Annotations\Exchange\AnnotationExchangeLedger.swift:674:    func markNativeCreationMayHaveDispatched(_ delivery: AnnotationExchangeDelivery) throws -> AnnotationExchangeNativeCreationFence {
+Source\ChavrusaText\Annotations\Exchange\AnnotationExchangeLedger.swift:719:    func nativeCreationFence(destination: AnnotationExchangeDestination, namespace: String,
+Source\ChavrusaText\Annotations\Exchange\AnnotationExchangeLedger.swift:733:    func recordedNativeIdentity(destination: AnnotationExchangeDestination, namespace: String,

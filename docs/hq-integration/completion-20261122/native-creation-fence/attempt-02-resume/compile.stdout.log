@@ -1,0 +1,71 @@
+[0/1] Planning build
+Building for debugging...
+[0/13] Copying backend-capability-matrix.v1.json
+[0/13] Copying backend-acceptance-cases.v1.json
+[2/13] Copying action-result.v1.schema.json
+[2/13] Copying action-request.v1.schema.json
+[4/13] Copying examples.v1.json
+[5/13] Copying action-catalog.v1.json
+[6/13] Write sources
+[8/13] Write swift-version-2807070033DA82CF.txt
+[9/14] Wrapping AST for OtzariaActionCore for debugging
+[11/18] Compiling NativeCreationFenceAcceptance AnnotationExchangeLedger.swift
+C:\Users\DAVID\Code\Maktabah-annotation-native-ledger-20261122\docs\hq-integration\completion-20261122\native-creation-fence\build\attempt-01\package\Sources\NativeCreationFenceAcceptance\AnnotationExchangeTestSupport.swift:61:5: warning: will never be executed
+ 55 | func failAcceptance() -> Never {
+ 56 |     #if os(Windows)
+ 57 |     ExitProcess(1)
+    |     `- note: a call to a never-returning function
+ 58 |     #else
+ 59 |     exit(1)
+ 60 |     #endif
+ 61 |     fatalError("exit returned")
+    |     `- warning: will never be executed
+ 62 | }
+ 63 | 
+[12/18] Compiling NativeCreationFenceAcceptance AnnotationExchangeTestSupport.swift
+C:\Users\DAVID\Code\Maktabah-annotation-native-ledger-20261122\docs\hq-integration\completion-20261122\native-creation-fence\build\attempt-01\package\Sources\NativeCreationFenceAcceptance\AnnotationExchangeTestSupport.swift:61:5: warning: will never be executed
+ 55 | func failAcceptance() -> Never {
+ 56 |     #if os(Windows)
+ 57 |     ExitProcess(1)
+    |     `- note: a call to a never-returning function
+ 58 |     #else
+ 59 |     exit(1)
+ 60 |     #endif
+ 61 |     fatalError("exit returned")
+    |     `- warning: will never be executed
+ 62 | }
+ 63 | 
+[13/18] Compiling NativeCreationFenceAcceptance NativeCreationFenceAcceptance.swift
+C:\Users\DAVID\Code\Maktabah-annotation-native-ledger-20261122\docs\hq-integration\completion-20261122\native-creation-fence\build\attempt-01\package\Sources\NativeCreationFenceAcceptance\AnnotationExchangeTestSupport.swift:61:5: warning: will never be executed
+ 55 | func failAcceptance() -> Never {
+ 56 |     #if os(Windows)
+ 57 |     ExitProcess(1)
+    |     `- note: a call to a never-returning function
+ 58 |     #else
+ 59 |     exit(1)
+ 60 |     #endif
+ 61 |     fatalError("exit returned")
+    |     `- warning: will never be executed
+ 62 | }
+ 63 | 
+[14/18] Compiling NativeCreationFenceAcceptance SQLiteDatabase.swift
+C:\Users\DAVID\Code\Maktabah-annotation-native-ledger-20261122\docs\hq-integration\completion-20261122\native-creation-fence\build\attempt-01\package\Sources\NativeCreationFenceAcceptance\AnnotationExchangeTestSupport.swift:61:5: warning: will never be executed
+ 55 | func failAcceptance() -> Never {
+ 56 |     #if os(Windows)
+ 57 |     ExitProcess(1)
+    |     `- note: a call to a never-returning function
+ 58 |     #else
+ 59 |     exit(1)
+ 60 |     #endif
+ 61 |     fatalError("exit returned")
+    |     `- warning: will never be executed
+ 62 | }
+ 63 | 
+[15/18] Emitting module NativeCreationFenceAcceptance
+[16/21] Compiling NativeCreationFenceAcceptance SyncPendingStore.swift
+[17/21] Compiling NativeCreationFenceAcceptance TorahAnnotationEnvelope.swift
+[18/21] Compiling NativeCreationFenceAcceptance UnusedZstdBoundary.swift
+[19/22] Wrapping AST for NativeCreationFenceAcceptance for debugging
+[20/22] Write Objects.LinkFileList
+[21/22] Linking NativeCreationFenceAcceptance.exe
+Build complete! (83.06s)

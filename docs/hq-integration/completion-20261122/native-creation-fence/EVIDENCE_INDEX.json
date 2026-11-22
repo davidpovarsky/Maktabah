@@ -1,0 +1,434 @@
+{
+  "schema": 1,
+  "self_excluded": true,
+  "files": {
+    "docs/hq-integration/completion-20261122/native-creation-fence/FORMATTING_REVIEW.json": {
+      "bytes": 5781,
+      "sha256": "07d26f95caacf1a8ce1c405fff3e77fa0e555e17027baa1f42ec9e8e5d6512ad"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/.gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/.gitignore": {
+      "bytes": 52,
+      "sha256": "f0051344708d41c2ff7457dcce61c172623c20b5bcf313f140b877cf04725dc5"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/API_AND_BOUNDARY.md": {
+      "bytes": 3264,
+      "sha256": "f780ad5f9ff936fee04e897658707753b4a4f916e71177d63dded0a8bcd9f38e"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/APPLICATION_SOURCE.json": {
+      "bytes": 808,
+      "sha256": "9ffa31618ad86ab120d5946ea7ee816a18806268a89933db28975cb90710e4bd"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/ASANA_SCOPE_REVIEW.json": {
+      "bytes": 12814,
+      "sha256": "19a04c065201fa0e63f14bd4ed189d2bc124afddcadc37b89162090ffb98d1ca"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/CHANGED_PATHS.json": {
+      "bytes": 11898,
+      "sha256": "fd2b67c751e80d3a4dcf9ba248faf9c2e889ad055a027504c2d147de8bd4da4f"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/CORE194_V3_GITHUB_METADATA.json": {
+      "bytes": 6623,
+      "sha256": "a787d645de058b69857c0dc25ed4cb81f04156edcfabbd96bc6eec06bb9dde8d"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/CORE194_V3_METADATA_SENTINEL_RECEIPT.json": {
+      "bytes": 8254,
+      "sha256": "6d627a2ca11a644853dfaf8cfcfadb23bacb883b58449621fdfdd3a08adb9e4f"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/INDEPENDENT_REVIEW.json": {
+      "bytes": 969,
+      "sha256": "6ec54b6d49c6780b263638197e244da6daa7231718873f56b05e0d85afb93a21"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/NativeCreationFenceAcceptance.swift": {
+      "bytes": 36489,
+      "sha256": "9da7319d1af72b526fe57125e15f269a33bcf33eb8a9e50a92d850522bfda751"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/PRE_EDIT_REVIEW.json": {
+      "bytes": 1454,
+      "sha256": "96125245e3491862a25e93e6b71fab42ce0b9120033e53829b70d6c6d5cdbd24"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/PUSH_ROUTE_INSPECTION.json": {
+      "bytes": 5294,
+      "sha256": "d769fe4ab87faa2b0344498a3ede8ae2a44628b6e6ea5489f32585478e4e6476"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/README.md": {
+      "bytes": 10576,
+      "sha256": "4a7f6f24ad6455f155eaadc60e3721390b3f89705df9a46a665b1e00fa9cfb21"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/REUSE_AND_CONTROL_IDENTITY.json": {
+      "bytes": 4381,
+      "sha256": "bed8a112396e68988fe34bc4d1d0419e12c182b813ab02b75fb09b180fc28247"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/SOURCE_CALLSITES.txt": {
+      "bytes": 873,
+      "sha256": "8ea238d082f28a339942e49a77aa93e2ef4f844ad8e320fb83ffdae5c2bfb3bd"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/SOURCE_DRAFT.patch": {
+      "bytes": 19679,
+      "sha256": "e2ea2edc5a7c95b01d215019f19bdb438aff76cdfd458a446bc92bf1f00039da"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/SOURCE_DRAFT_INITIAL_NESTED_GAP.patch": {
+      "bytes": 18926,
+      "sha256": "95cf3cde2c8a838fff1acd5ce359941fbb2f356649ea7befbcb4903708fc3f12"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/SOURCE_FINAL.patch": {
+      "bytes": 20277,
+      "sha256": "896c4d53f9ab141dea106ad2ac71e8291157fb4ab6596c04632cf60a2d85a513"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/UUID_CASE_FIX.json": {
+      "bytes": 605,
+      "sha256": "213fdeeec2ea5e648e55bea4d22c10c6b9f059844b4014e2c6d4e7f2a710acc9"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/UUID_CASE_FIX.patch": {
+      "bytes": 4549,
+      "sha256": "2522acf4f5817d510c31332086d25b6df65ecbc42e938a089129037d3cff1823"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/VALIDATION_SUMMARY.json": {
+      "bytes": 9752,
+      "sha256": "5a3937a1eac64c3bd215b53963e58c412a28807cefece6360f57c80371a34ad7"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-01/AFTER_TIMEOUT_OWNED_STATE.json": {
+      "bytes": 2944,
+      "sha256": "55cae763498f5cda292d25900ebd42fe87f111e935e2906c0282ceb3a170038e"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-01/OWNED_PROCESS_OBSERVATION.json": {
+      "bytes": 1261,
+      "sha256": "71315ad949ed525fa7ed493e29cb16bba92ce5df17b2bcf8dd936dd74d8f8a1d"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-01/RESULT.json": {
+      "bytes": 951,
+      "sha256": "40efe6cf20fc5db3d8ce89e69de90216126d71163c6ff6d534a8544248f956dc"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-01/RUNNER_AT_TIMEOUT.py": {
+      "bytes": 7295,
+      "sha256": "b397599c423867f2d79c39d97d4ff8a2ab23258324195d2297c48ce1a3e64771"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-01/SOURCE_MANIFEST.json": {
+      "bytes": 7851,
+      "sha256": "b488773664aeea2f6785920b15c875e58f8f162711c5cd8d4efdcb938241d8ac"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-01/failure.log": {
+      "bytes": 1855,
+      "sha256": "8bd6f48fee6ee6b7eebb0a05a25547df15c1f94c72694245991b75f10f30b1b3"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/CONTROLS_AT_PASS.swift": {
+      "bytes": 26229,
+      "sha256": "e43697980f28385f1217b3871e497bd681b14be87a906a6b863277e9843aae82"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/RESULT.json": {
+      "bytes": 9040,
+      "sha256": "8669fd827d6d2c39ea964b4188e30cde263ab0ffdd98120bb7ad336c74aa6162"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/RUNNER_AT_PASS.py": {
+      "bytes": 8396,
+      "sha256": "79e06fefcf1a43819815715a214f8e7a04d2361b3a75e50e573023fad492808d"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/SENTINEL_RECEIPT.json": {
+      "bytes": 9154,
+      "sha256": "cb991a14c7bc8cb5a6a909cf99c66cbd743a13a8c5d625429ce3d25c2387ea96"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/SOURCE_MANIFEST.json": {
+      "bytes": 7851,
+      "sha256": "858d168d099ab4f5413da40543711a13e70f16feb4652dbd1c98253213dfe87a"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/binary-path.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/binary-path.stdout.log": {
+      "bytes": 189,
+      "sha256": "436115a96bbd81e7d17dab049612cb97c3b7a58b65048d912b156972ff8ea31b"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/compile.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/compile.stdout.log": {
+      "bytes": 3546,
+      "sha256": "59cfb86c58098e0450639b9ad08c8d0581d2276a4b2608f704ff96c29d0c4765"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/controls.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/controls.stdout.log": {
+      "bytes": 1375,
+      "sha256": "064fac75e09ad67eed439dddc69be25d83fd2bed8cb95a42cf624066a0ea9cdf"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/crash-marked.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/crash-marked.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/crash-nested.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/crash-nested.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/crash-prepared.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/crash-prepared.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/fixtures/CASES.json": {
+      "bytes": 1374,
+      "sha256": "16d7751ef0a4a489dc98ba2a802900eef4f24bf1ae3a8d586a65934aea1b6555"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/fixtures/crash-marked.json": {
+      "bytes": 3885,
+      "sha256": "33a7146dd3cc0e6ab949f66b7ffc6bed02d09316653af034ffcf2bfd5ec5a143"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/fixtures/crash-nested.json": {
+      "bytes": 3885,
+      "sha256": "726d54af4ebfd0207cf7bcf9d80413e56e49063a33792904e64d20a9eb016790"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/fixtures/crash-prepared.json": {
+      "bytes": 3887,
+      "sha256": "0d2fa482362b951f0bc48c9b745b2d51dedfae7c145aa81696e74b8d3e68a2a0"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/fixtures/reopen-marked.json": {
+      "bytes": 195,
+      "sha256": "275d3b8eec50598e19c101e67c0e9e039c5c50ebc4e53b1032f4732f27990926"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/fixtures/reopen-nested.json": {
+      "bytes": 194,
+      "sha256": "e3a073a8bdb194836a074c7667cc581a94505cb38e9afaa87806a4176e3c56de"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/fixtures/reopen-prepared.json": {
+      "bytes": 196,
+      "sha256": "33e9150571cccf8f5aada255422d9fcb0bde59ce064639dfc4c78a7f979f55dc"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/fixtures/writer-marked.json": {
+      "bytes": 50,
+      "sha256": "5d63377fd4d62b382f6c7d32ee93eaf5eea6c285ff2733ac3767c4cc4c4fce41"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/fixtures/writer-nested.json": {
+      "bytes": 50,
+      "sha256": "dfcee7f46a166cc11261882122a32c0db2490c5616d7e89a1d9525e194f97f16"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/fixtures/writer-prepared.json": {
+      "bytes": 52,
+      "sha256": "c5998d55be0597190bfbca73ec65f6fd66cc3ca0382660516d209867019da69d"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/reopen-marked.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/reopen-marked.stdout.log": {
+      "bytes": 196,
+      "sha256": "5bf896c88da6f5e4af7bfe4c6835882a0798ec69bad1820083ee9ab2cbd6a6e8"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/reopen-nested.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/reopen-nested.stdout.log": {
+      "bytes": 195,
+      "sha256": "7b239219227b385bda0deb7964ac592833ce12fa693351b46e948e655516d667"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/reopen-prepared.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-02-resume/reopen-prepared.stdout.log": {
+      "bytes": 197,
+      "sha256": "3bedf597fcb933250eae1fb4c9d03c66a7be79ef2b45fc6a913a767bf4830419"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-03-uuid-red/RESULT.json": {
+      "bytes": 3077,
+      "sha256": "eabe279c43991ca7279fdb54b6e19b5aaf63de5a62a4aa867c0ace25f115ad84"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-03-uuid-red/SENTINEL_RECEIPT.json": {
+      "bytes": 3976,
+      "sha256": "8a08fb383045809c323865b947cfdabf16a17426baeccf4f04665fb3ab76ddc1"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-03-uuid-red/SOURCE_MANIFEST.json": {
+      "bytes": 8249,
+      "sha256": "bf5a2bf7ece291079a7a76025bfa7666cdb5251434d2ec83da30be86c38f317d"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-03-uuid-red/binary-path.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-03-uuid-red/binary-path.stdout.log": {
+      "bytes": 189,
+      "sha256": "436115a96bbd81e7d17dab049612cb97c3b7a58b65048d912b156972ff8ea31b"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-03-uuid-red/compile.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-03-uuid-red/compile.stdout.log": {
+      "bytes": 409,
+      "sha256": "6b29f09eaef207dcf3719d6b691a900cf191d2aa4aa6914124b862a13d95976f"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-03-uuid-red/controls.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-03-uuid-red/controls.stdout.log": {
+      "bytes": 222,
+      "sha256": "db3cfd0144ad4a4d38e19490d736186e3cbd0323dbc1c5525085e07c4e415edc"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-03-uuid-red/failure.log": {
+      "bytes": 640,
+      "sha256": "e390be7575e38ce822c0b7e6c0821087180a133ed4bb925133dbb66370e87447"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-03-uuid-red/fixtures/UUID_CASES.json": {
+      "bytes": 183,
+      "sha256": "4d24dd249e1212a72c94e992649114ffcd7838cc5e60fb8108b887e4e8a43ec6"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-03-uuid-red/fixtures/UUID_CASE_REPRO.json": {
+      "bytes": 325,
+      "sha256": "b8e20efc271eba7c34f63e20b200a1bce58f97b58eee77ef9f444adbec7dc014"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/RESULT.json": {
+      "bytes": 10757,
+      "sha256": "0c313d35779cd632a91fad5e718ebe8b8c7b237bce8007c38f82c6b7bf6caa31"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/SENTINEL_RECEIPT.json": {
+      "bytes": 10848,
+      "sha256": "7316c7f4f35bf1932d33437c46a93019fddd1af202e50201019e0dd22815a474"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/SOURCE_MANIFEST.json": {
+      "bytes": 9335,
+      "sha256": "2a1c59c4d9b165f8a45ce5ce2658c86b0cc4c15ff3b2a66a905c46732603464c"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/binary-path.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/binary-path.stdout.log": {
+      "bytes": 189,
+      "sha256": "436115a96bbd81e7d17dab049612cb97c3b7a58b65048d912b156972ff8ea31b"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/compile.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/compile.stdout.log": {
+      "bytes": 336,
+      "sha256": "1acfb906dfe843389ddb03ee042912325e3c82906454cdb3f2ec30aef38c470b"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/controls.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/controls.stdout.log": {
+      "bytes": 1517,
+      "sha256": "08a444c54251aef3177907d90fd912edab3e2c0fdad5e261ed6c189bf2e1c3a1"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/crash-marked.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/crash-marked.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/crash-nested.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/crash-nested.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/crash-prepared.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/crash-prepared.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/fixtures/CASES.json": {
+      "bytes": 1015,
+      "sha256": "7b788c02338097b266888737eb4618f97a0724dd063461681a26092b0af50ae7"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/fixtures/UUID_CASES.json": {
+      "bytes": 500,
+      "sha256": "98b2a937437f0da0e050e8c69e6d7f3635c0399c81baf9c818d1fd1a66ba359d"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/fixtures/UUID_CASE_REPRO.json": {
+      "bytes": 308,
+      "sha256": "472548aa081dd6a6509103201f22e400493c8ff9b07dd212771c0af8ea05e1da"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/fixtures/crash-marked.json": {
+      "bytes": 3885,
+      "sha256": "dbe0885b1389ee235c4133b25674a24380efdd8d58fc93082a4189aca3c51c84"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/fixtures/crash-nested.json": {
+      "bytes": 3885,
+      "sha256": "5433f6ba960e44141c2d6d290e71afffab4ec53978599fd540d8ef63dc449f6c"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/fixtures/crash-prepared.json": {
+      "bytes": 3887,
+      "sha256": "58309767479dd8a4a90f7e0392a2805bfb799f74c7b8f42ac85b0fc30e7f535d"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/fixtures/reopen-marked.json": {
+      "bytes": 195,
+      "sha256": "58ef857ab4c031be86ec7b52f3d3cf7f39d590aa099f23391bf6cc29e209eb92"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/fixtures/reopen-nested.json": {
+      "bytes": 195,
+      "sha256": "f2778277504758f5d8b249bc90909f151ff582df92844dbd03a1744e7e886151"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/fixtures/reopen-prepared.json": {
+      "bytes": 196,
+      "sha256": "cdf390d358788d6678373cfeefd8092db81828eeb15cbcd6187ebdeec99b0775"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/fixtures/writer-marked.json": {
+      "bytes": 50,
+      "sha256": "1f030a841396255b9639274bdc5ffc11e4b932d367cc3b2faa026e8bb2ddce7c"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/fixtures/writer-nested.json": {
+      "bytes": 50,
+      "sha256": "20922648fa617c24f94278d11517dde0fc8c19dfdadffefc56ff49cb641f915b"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/fixtures/writer-prepared.json": {
+      "bytes": 52,
+      "sha256": "7f0ec8cd40858765be90587c88c8012679a8e42224216d6792f3112a6a5fa2fb"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/reopen-marked.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/reopen-marked.stdout.log": {
+      "bytes": 196,
+      "sha256": "61c5b2397816d43763bc11ad2f65775d8819f9b1a67198797800260ac8b083eb"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/reopen-nested.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/reopen-nested.stdout.log": {
+      "bytes": 196,
+      "sha256": "f7f0f8a4cd53903be0c5dda3a4bac38cbcdba8e42edfd74559092ed10310726f"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/reopen-prepared.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/attempt-04-uuid-green/reopen-prepared.stdout.log": {
+      "bytes": 197,
+      "sha256": "d5369b134f90e9bc2e4cb19c59674bdbe618cab8f053df23d1bd69c2bd50f514"
+    },
+    "docs/hq-integration/completion-20261122/native-creation-fence/run-native-creation-controls.py": {
+      "bytes": 9416,
+      "sha256": "dda2e2b84c67a7fa22d5b95e7b2ad44a107c054afd7c57b8df6a83f95bdb8d7a"
+    }
+  }
+}

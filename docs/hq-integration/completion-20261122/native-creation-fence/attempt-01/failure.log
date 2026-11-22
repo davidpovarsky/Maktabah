@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "C:\Users\DAVID\Code\Maktabah-annotation-native-ledger-20261122\docs\hq-integration\completion-20261122\native-creation-fence\run-native-creation-controls.py", line 71, in main
+    p=run("compile",cmd,300);assert p.returncode==0,"whole-source compilation failed"
+      ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DAVID\Code\Maktabah-annotation-native-ledger-20261122\docs\hq-integration\completion-20261122\native-creation-fence\run-native-creation-controls.py", line 63, in run
+    started=time.monotonic();p=subprocess.run(args,cwd=ROOT,text=True,capture_output=True,encoding="utf-8",timeout=timeout)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DAVID\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DAVID\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DAVID\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1630, in _communicate
+    raise TimeoutExpired(self.args, orig_timeout)
+subprocess.TimeoutExpired: Command '['swift', 'build', '--package-path', 'C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\package', '--scratch-path', 'C:\\Users\\DAVID\\Code\\Maktabah-annotation-native-ledger-20261122\\docs\\hq-integration\\completion-20261122\\native-creation-fence\\build\\attempt-01\\swift-build', '-j', '2']' timed out after 300 seconds
