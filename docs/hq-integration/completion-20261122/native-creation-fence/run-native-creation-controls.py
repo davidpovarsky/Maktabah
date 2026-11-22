@@ -17,11 +17,15 @@ SOURCES=[
 CONTROL=HERE/"NativeCreationFenceAcceptance.swift"
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def write(p,value):p.write_text(json.dumps(value,ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
+def compiler_inputs():
+ core=ROOT/"Source/Otzaria/Actions"
+ core_files=[p for p in sorted((core/"Sources").rglob("*")) if p.is_file()]+[core/"Package.swift"]
+ return [ROOT/p for p in SOURCES]+core_files+[CONTROL,Path(__file__).resolve()]
 def main():
  parser=argparse.ArgumentParser();parser.add_argument("--result-dir",type=Path,required=True)
  parser.add_argument("--reuse-build-dir",type=Path)
  parser.add_argument("--compile-timeout",type=int,default=900)
- parser.add_argument("--suite",choices=["controls","uuid-red","uuid-affected"],default="controls")
+ parser.add_argument("--suite",choices=["controls","uuid-red","uuid-affected","all-controls"],default="controls")
  parser.add_argument("--refresh-copied-inputs",action="store_true")
  args=parser.parse_args();out=args.result_dir.resolve()
  out.mkdir(parents=True,exist_ok=False)
@@ -33,14 +37,13 @@ def main():
  if not args.reuse_build_dir:target.mkdir(parents=True)
  fixtures=out/"fixtures";fixtures.mkdir()
  core=ROOT/"Source/Otzaria/Actions"
- core_files=[p for p in sorted((core/"Sources").rglob("*")) if p.is_file()]+[core/"Package.swift"]
- inputs=[ROOT/p for p in SOURCES]+core_files+[CONTROL,Path(__file__).resolve()]
+ inputs=compiler_inputs()
  before={p.relative_to(ROOT).as_posix():sha(p) for p in inputs}
  names=re.findall(r'await run\("([a-z0-9_]+)"',CONTROL.read_text(encoding="utf-8"))
  assert len(names)==18 and len(set(names))==18
  uuid_names=re.findall(r'await runUUID\("([a-z0-9_]+)"',CONTROL.read_text(encoding="utf-8"))
  assert len(uuid_names)==6 and len(set(uuid_names))==6
- expected=names if args.suite=="controls" else uuid_names[:1] if args.suite=="uuid-red" else names[5:]+uuid_names
+ expected=names if args.suite=="controls" else names+uuid_names if args.suite=="all-controls" else uuid_names[:1] if args.suite=="uuid-red" else names[5:]+uuid_names
  copied_deltas=[]
  for p in [ROOT/s for s in SOURCES]+[CONTROL]:
   if args.reuse_build_dir and sha(p)!=sha(target/p.name):
@@ -100,7 +103,7 @@ let package=Package(name:"NativeCreationFenceAcceptance",platforms:[.macOS(.v14)
   report["executable_sha256"]=sha(exe)
   p=run("controls",[str(exe),args.suite,str(fixtures)],120)
   cases=[]
-  if args.suite in ["controls","uuid-affected"]:cases+=json.loads((fixtures/"CASES.json").read_bytes())
+  if args.suite in ["controls","uuid-affected","all-controls"]:cases+=json.loads((fixtures/"CASES.json").read_bytes())
   if args.suite!="controls":cases+=json.loads((fixtures/"UUID_CASES.json").read_bytes())
   report["cases"]=cases
   assert p.returncode==0 and len(cases)==len(expected) and {x["name"] for x in cases}==set(expected) and all(x["status"]=="PASS" and x.get("error") is None for x in cases),"new SQLite controls failed"

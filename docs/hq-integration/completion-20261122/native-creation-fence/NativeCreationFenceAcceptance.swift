@@ -84,6 +84,9 @@ struct NativeCreationFenceAcceptance {
             try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
             switch args[1] {
             case "controls": try await controls(root)
+            case "all-controls":
+                try await controls(root)
+                try await uuidControls(root)
             case "uuid-red": try await uuidControls(root, redOnly: true)
             case "uuid-affected":
                 try await controls(root, affectedUUIDOnly: true)
