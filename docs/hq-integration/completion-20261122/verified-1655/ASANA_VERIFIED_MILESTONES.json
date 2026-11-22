@@ -1,0 +1,25 @@
+{
+  "main_task": "1220763167870295",
+  "cross_app_task": "1220545194715722",
+  "latest_existing_pinned": "1220769534632156",
+  "comments": [
+    {
+      "gid": "1220769748389673",
+      "task": "1220763167870295",
+      "created_at": "2026-11-22T16:50:32.782Z",
+      "phase": "SDK245/38/framework/consumer-build PASS; simulator-install timeout retained"
+    },
+    {
+      "gid": "1220769724384426",
+      "task": "1220763167870295",
+      "created_at": "2026-11-22T16:50:49.759Z",
+      "phase": "Original importer actual compile failure localized; prior50 preserved"
+    },
+    {
+      "gid": "1220769818481469",
+      "task": "1220545194715722",
+      "created_at": "2026-11-22T16:51:14.689Z",
+      "phase": "Native schema six-pair cause independently verified; semantic source reviewed"
+    }
+  ]
+}

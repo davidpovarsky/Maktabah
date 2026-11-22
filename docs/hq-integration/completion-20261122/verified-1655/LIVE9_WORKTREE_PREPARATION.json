@@ -1,0 +1,20 @@
+{
+  "status": "ISOLATED_EXACT_SOURCE_PREPARED_NO_LIVE_EXECUTION",
+  "at": "2026-11-22T16:37:40.267089+00:00",
+  "root": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-live9-20261122",
+  "head": "4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1",
+  "app_source": "3b4345bd0ae33b83c2ff4ae7697164343f0792b8",
+  "products": {
+    "Source": "8197eab0668a42b311b7056987e54d5a973903f8",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "f480f0cd64100f752620fbb5a22a5b77fb612fae"
+  },
+  "actual_execution_inputs_verified": 281,
+  "execution_inputs_sha256": "0256f59a56a019d59b19808a9141abe2fb1f247799081d517580325fa18ee882",
+  "canonical_head_unchanged": "984f4cc66cd7a2c2469d40ac74c39d60cc6d2ccc",
+  "canonical_status": "clean",
+  "worktree_status": "clean",
+  "new_repository_secret": false,
+  "live_dispatches": 0
+}

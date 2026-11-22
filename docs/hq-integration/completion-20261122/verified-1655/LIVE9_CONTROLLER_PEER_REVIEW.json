@@ -1,0 +1,29 @@
+{
+  "status": "SOURCE_REVIEW_CLEAR_NOT_EXECUTED",
+  "reviewer": "heart_completion",
+  "script_sha256": "04f7f71c56a35aace1dd2cac6753e982be2bbb0bfe30586291d0284e6ca063cc",
+  "native_binding_status": "UNFINALIZED_PENDING_ACTUAL_NATIVE_ARCHIVE",
+  "actual_native_admission": [
+    "exact expected head and attempt1",
+    "completed success run",
+    "actual artifact ID belongs to that run/head and is unexpired",
+    "artifact metadata digest and byte count equal retained ZIP",
+    "exact unique summary and raw test tree",
+    "one specified test leaf, PASS, positive duration, zero FAIL/SKIP"
+  ],
+  "ownership": [
+    "refuses preexisting observer output directory",
+    "checks exact clean execution source and product trees",
+    "checks prior branch state and absent temporary secret before creation",
+    "uses credential stdin and retains only metadata",
+    "one non-force push followed by unique exact-head push run attempt1",
+    "cleanup requires matching owned secret metadata, acknowledged deletion and verified absence",
+    "uncertain post-push failures or still-active run preserve explicit cleanup-required state for terminal inspection"
+  ],
+  "limits": [
+    "No secret, dispatch or execution performed by reviewer.",
+    "Final actual native artifact binding must be completed before activation.",
+    "The finite observer window may end while CI is still active; the explicit retained ownership then requires terminal follow-through."
+  ],
+  "source_changes_by_reviewer": 0
+}

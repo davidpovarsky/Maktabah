@@ -1,0 +1,18 @@
+{
+  "status": "SOURCE_PREPARED_NOT_EXECUTED",
+  "sha256": "04f7f71c56a35aace1dd2cac6753e982be2bbb0bfe30586291d0284e6ca063cc",
+  "exact_previous_secret_set_push_watch_cleanup_suffix_unchanged": true,
+  "unchanged_functions": {
+    "save": true,
+    "command": true,
+    "git": true,
+    "api": true,
+    "secret_http": true,
+    "cleanup": true
+  },
+  "native_archive_binding": "UNFINALIZED_PENDING_ACTUAL_NATIVE_RESULT",
+  "source_commit": "4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1",
+  "new_repository_secrets": 0,
+  "live_dispatches": 0,
+  "local_verifier_correction": "The first file-based suffix comparison failed because the candidate writer trimmed trailing newlines. The exact stored original and transformed source strings already had identical suffixes. Both local files now contain those exact UTF8 strings; no semantic normalization or gate change."
+}

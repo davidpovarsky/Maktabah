@@ -1,5 +1,79 @@
 # Otzaria / Maktabah — current development checkpoint
 
+Snapshot: 2026-11-22 16:57:10 UTC. This section supersedes the older checkpoints preserved verbatim below. It records completed phases at their actual sources and preserves unresolved failures. Required development and Asana updates are authorized; no acceptance task is closed by an intermediate source check.
+
+## Canonical source and active ownership
+
+Before this documentation-only checkpoint, `codex/otzaria-completion-20261122` is exactly `984f4cc66cd7a2c2469d40ac74c39d60cc6d2ccc`. Its clean Sentinel fast-forward was verified by `job_1ee2ab5058ab` at 16:15:28 UTC. Product trees remain Source `f6056372f52f0425fe77a556b02d26c82188d364`, Vendor `4065c0e62af325e83a65fe0c70270985229807ae`, project `8c0fa1ccfbcfae01fae3c267512864e00efcf078`, and UI tests `ca36ba13f1fd900adf528a3e404fed6a66290b6b`. The full recursive inventory remains 82 unique Asana tasks: 58 open and 24 previously completed. No task state was changed merely because a prerequisite passed.
+
+| Work | Exact execution / source | Current outcome and owner |
+|---|---|---|
+| Original fresh-read UI | Maktabah run 45041601629, attempt 1, `6591bba49d2b5a28d02b763c4360406843fce4cf` | App/UI build passed; original case still running at last observation. Root sole successor observer `job_581ca009f60f`. |
+| Original SDK v13 | Anytype run 45041382512, attempt 1, `edce5b975b173059522f90adb71271fb95adf963` | Framework and consumer build passed; simulator install timed out. Runtime continuation is being prepared by clang_sdk. |
+| Schema diagnostic | Anytype run 45042110729, attempt 1, `b93b7b351cfeb625607b5b7d86aef7c29fe78b0b` | Original selected child failed; six paired states identify one native default. Five-case repair gate is source-reviewed, not yet qualified. Owner heart_completion. |
+| Original importer compile | Anytype run 45044056210, attempt 1, `1788d475c6bcc9bf013a4898820bd039a16d3e2b` | Compile failed on original positional request literals. Compatibility correction is being prepared by stageb_auth. |
+
+## Original SDK: preserve the successful framework and resume the failed boundary
+
+[Run 45041382512](https://github.com/davidpovarsky/anytype-swift/actions/runs/45041382512) is terminal FAILURE. Independently verified completed phases are **245/245 source controls**, the real Apple Swift 6.4 framework build, all **38 public/SPI requirements**, and authentic Clang declaration export: **19 maps, 19 header roots, 1,394 files**. Thirteen maps underwent exact declaration-path relocation and six retained their original tracked bytes. Before/after source manifests are identical. The separate external consumer compiled, linked and passed strict signature verification. Owned simulator boot and bootstatus passed.
+
+The next `simctl install` reached its 60-second timeout and was terminated with the existing owned-process cleanup. No English or Hebrew runtime observations were produced. There is no qualified SDK yet. The failed attempt and all passed phases remain distinct; the prior 245 controls, framework build and 38 requirements will not be repeated just to obtain another green workflow.
+
+The complete evidence ZIP is 15,563,205 bytes, 571 members, SHA256 `a6f21a226f4cdedd60d674551c3ca3af0125f646be0d73c5ebf06d0b73f20409`, retained as Anytype Git blob `e8bf309381c6ecb133eb348f280bebe695d9f158`. Root independently verified the full original archive, CRC and every extracted member through `job_02954cf5f125`, then read and reconciled 38 compact raw evidence files, exact control identities, actual command records and the complete distribution inventory. [Root evidence review](verified-1655/SDK450413_ROOT_EVIDENCE_REVIEW.json) and [independent archive receipt](verified-1655/SDK450413_ROOT_ARCHIVE_REVIEW.json) preserve the exact scope.
+
+The sole download of explicitly unqualified product artifact 14762329313 is owned by clang_sdk (`job_bfa7794bbc8a`). Its original API-bound archive is 360,785,361 bytes. Intake found two omitted hidden `.gitattributes` files out of the original 2,528-file distribution inventory. The other 2,526 member names match, with no unexpected names. The original archive is not rewritten or described as complete. Exact source/evidence recovery of the two manifest-bound files is being investigated; the full original inventory remains required.
+
+The continuation design reuses the immutable original framework, rebuilds only the unarchived small external consumer, measures its actual app size, and performs one finite owned simulator attempt. It keeps the original framework producer and new runtime qualification producer separate. Its sidecar cannot qualify anything before actual English/Hebrew checks pass. StageB's optional schema 2 must authenticate both roles and retain the old failed-run provenance. The existing schema 1 path remains unchanged. No StageB run or final SDK artifact tuple has been invented.
+
+## Schema: proven native default and narrowly scoped repair
+
+[Diagnostic run 45042110729](https://github.com/davidpovarsky/anytype-swift/actions/runs/45042110729) really compiled and executed only `MissingAttachmentUsesOneNativeApply`, which remained FAIL. Its complete original ZIP is 2,634,204 bytes, SHA256 `270b824b9c0210cd1cd584db0315215678bfa04c29c4251692527c57e403fd6e`. Root independently verified all 48 indexed payloads, 18 terminal command streams, six complete paired snapshots, and all 21 evidence publication Git blobs at [8885a230](https://github.com/davidpovarsky/anytype-swift/tree/8885a230159570a58ab2b8de4d09df632dcfc8f1/docs/pinkha/torah-integration/native-annotation-schema-missing-attachment-20261122/native-run-45042110729).
+
+In every pair, heads and semantic details agree. The only complete block difference is the dataview block's top-level Restrictions: empty message in memory, absent in persisted replay. The loaded protobuf contains exactly `1a00` at byte offset 10; all remaining block bytes match. Original Heart `Base.Diff` allocates this empty message on both operands without emitting an event when their values agree. The diagnosis does not turn the historical failed case into a pass or claim raw wire equality.
+
+The reviewed correction deep-clones complete blocks, fills only a nil top-level Restrictions on the comparison copies, then retains full `proto.Equal`. It preserves all represented nonzero restrictions, every other field, identity/membership, original live state and unmodified raw observations. Product SHA256 is `1f50a65ff9bc3e3acccea2fcd53dce03f025f280940502b028a22d3e75b0d6ce`. Four new controls use the authentic complete captured blocks and original Dataview.Diff; the unchanged failed native child supplies actual repair acceptance. The twelve previously passed registration children are unmodified and unselected.
+
+Root reviewed the full gate delta, exact seven execution inputs, and final case/capture/cleanup path; all eleven existing helper/class bodies remain byte-identical. Current manifest `af5e099142aa6f28b43ecf64e1fdbfb3c60a6293755074ba9f440cfd55417285` and runner `aae68a25c0499d1bf61e98eca0ace9ffc48997823fdce9a775b22b239e904cdf` are source-reviewed, with the final exact generated restriction-shape check and immutable publication owned by heart_completion. Actual native execution is still required. [Root semantic review](verified-1655/SCHEMA450421_ROOT_REVIEW.json) and [remote binding](verified-1655/SCHEMA450421_REMOTE_BINDING.json) preserve the evidence.
+
+The separate typed Heart/Swift RPC proposal remains source-only. It records the actual complete response even on original RPC error or late cancellation, without creating a replacement app/account lifetime. The original protoc/gogofaster/gomobile and Swift generation route has been identified. Real generation, compilation and selected-destination composition remain dependent work after the registrar gate.
+
+## Importer: original-module compiler found a real compatibility error
+
+[Run 45044056210](https://github.com/davidpovarsky/anytype-swift/actions/runs/45044056210) passed original source preparation, r14 application, six-file observation overlay, gofmt, Tantivy setup and declared dependency capture. The actual `go test -c` failed because the extra public `CaptureMappingObservation` field changed `ImportRequest`'s layout while original tests construct it positionally. Ten explicit original test errors were emitted before the compiler's error limit. Original tests were not edited; no test binary or native import was executed.
+
+The sole observer `job_9328174be615` is terminal. Original artifact 14763082996 is 1,725,123 bytes, SHA256 `ee29a0efda10ea5ede677b0e575665ed7b8c111cef95cd3ee0b5d951ca582f7f`. [Root verification](verified-1655/IMPORT450440_ROOT_REVIEW.json) reconciled all 28 indexed payloads (29 retained files including the index), 11 raw commands, actual drain/exit statuses and compiler stderr SHA256 `ef96f2cc5e6b746110f056cfc54b702cd3381abc329bee236301d1653ac57cda`. The earlier activation at 04d8a787 produced zero runs; its terminal resolver evidence remains separate from this real compiler result.
+
+The next narrow source correction restores the original five-field public request layout, moves the diagnostic opt-in to a private processor field and separate internal construction, and preserves legacy default-off behavior, mapping/drain algorithms and r14. Fifty earlier observation controls remain valid at source 20cb8998 and are not broadly replayed. Focused compatibility controls and another full original-module compile remain required.
+
+Owned importer/file completion is a separate dependency: original import worker drain excludes asynchronous uploads, and original editor code discarded the upload completion channel. The prepared five-file source hook retains actual completion without claiming semantic body/Apply success. Cancellation may remain pending while the original SmartBlock lock is held. Lifecycle guards must precede account-lease changes; waiting under the application writer lock is unsafe. Complete native body/reference readback and durable mapping/ACK remain open.
+
+## Native fresh-read and prepared Live9
+
+The original Native app/UI build in run 45041601629 passed. The one genuine fresh-read case is still running at the last read. Its source adds only `.accessibilityElement(children: .contain)` to the access-section group, addressing the actual child-ID collision in prior run 45034727427. That previous failed run, successful original Connect, raw AX/PNGs and archives remain fully preserved in this checkpoint's historical section.
+
+The first sole finite observer `job_2f400520baa8` ended at 16:51:38 UTC after 59 polls and zero transport errors, with CI unchanged. Only after that terminal receipt was read did root start the sole 1,800-second successor `job_581ca009f60f`. [Original terminal receipt](verified-1655/NATIVE450416_FIRST_OBSERVER_TERMINAL.json) and [successor source](verified-1655/native450416_watch2.py) prevent duplicate ownership. No original Native artifacts have been downloaded yet, and no test result is inferred from a successful build.
+
+Live9 candidate `4624635d0f29e3bda7ff1f0ecd1097f8b2d37db1` pins app source 3b4345bd and changes the provider model to `gemini-3.5-flash-lite`. The old 2.5 model returned a real HTTP404 account-availability error; the actual 3.5 probe returned HTTP200 and exactly `OK`, using seven total tokens. Both different-model responses were retained without exposing the existing process key. No app/book data was sent in these minimal provider probes.
+
+The detached Sentinel worktree `C:\Users\DAVID\Code\Maktabah-hanlin-live9-20261122` is clean at the exact candidate. Preparation `job_2e66bfa9a520` verified all 281 actual working execution inputs, four product trees and unchanged clean canonical 984f. The original Live case body is byte-identical to its prior reviewed source. [Worktree receipt](verified-1655/LIVE9_WORKTREE_PREPARATION.json).
+
+The prepared owned Live controller has source SHA256 `04f7f71c56a35aace1dd2cac6753e982be2bbb0bfe30586291d0284e6ca063cc`; [independent peer review](verified-1655/LIVE9_CONTROLLER_PEER_REVIEW.json) found no new lifecycle blocker. It deliberately rejects unfinalized Native archive ID/SHA before reading or creating a secret. Final execution requires exact Native450416 success, one actual specified passing leaf with positive duration, original archive metadata/hash/size verification, and unchanged working source. Its existing key-stdin, exact metadata ownership, single push/run and terminal DELETE204/GET404 lifecycle is preserved. There has been no new repository secret or Live9 dispatch.
+
+## Asana, next actions and external prerequisites
+
+[Verified milestone receipts](verified-1655/ASANA_VERIFIED_MILESTONES.json) record main comments 1220769748389673 (SDK), 1220769724384426 (import compiler) and cross-app 1220769818481469 (schema diagnosis). The earlier pinned 1220769534632156 points to 984f. Sentinel context `sxc_NCA3K3YC` revision 29 retains current ownership and dependency order.
+
+Continue the owned Native run, then admit Live9 only after actual acceptance. In parallel complete the strict SDK runtime continuation, the five-case schema repair gate and original importer compatibility/compile. Bind StageB to genuine qualified product/runtime provenance before its single original process-relaunch case. Integrate focused app fixes by exact paths so canonical StageB product/UI additions survive. Continue generated RPC, real owned import/native readback and transport/ACK only when their actual dependencies pass.
+
+The genuine Owner public verifier remains absent from the last exact process/repository reads; development authorization does not substitute for an Ed25519 signature. The configured Books catalog was actually read and preserved, but authentic database backend/schema/source/migration material is still missing. No speculative database writes or signing substitutes were introduced; prior Books 60+37 and protected Owner evidence remain preserved. The complete remaining task inventory stays open until each required acceptance is met.
+
+---
+
+## Historical checkpoint preserved verbatim
+
+
+# Otzaria / Maktabah — current development checkpoint
+
 Snapshot: 2026-11-22 16:13:29 UTC. This section supersedes the earlier checkpoints preserved verbatim below. Outcomes remain bound to their exact source and execution path. No product task has been closed without its required acceptance.
 
 ## Canonical source, authorization and preserved work
@@ -476,3 +550,4 @@ Other requirements remain open:
 The last task inventory has49 top-level tasks:31 open and18 completed. No additional task met its actual complete definition of done. Core/API still require real client/native/live-consent evidence; ReaderHistory explicitly needs physical iPad; research-only scope was superseded by implementation acceptance. Those tasks remain open.
 
 Canonical continuation context: sxc_NCA3K3YC. Peer context: sxc_WAXQV0PW. Each run has one designated observer. Dirty legacy worktrees, original databases, failed runs and earlier raw evidence are preserved.
+

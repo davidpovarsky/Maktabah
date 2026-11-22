@@ -1,0 +1,26 @@
+{
+  "run_id": 45041601629,
+  "expected_head": "6591bba49d2b5a28d02b763c4360406843fce4cf",
+  "run_attempt": 1,
+  "owner": "/root",
+  "started_at": "2026-11-22T16:06:37.577993+00:00",
+  "observer_invocations": 1,
+  "status_polls": 59,
+  "transport_errors": 0,
+  "max_seconds": 2700,
+  "status": "FINITE_WINDOW_ENDED_CI_UNCHANGED",
+  "new_dispatches": 0,
+  "artifact_downloads": 0,
+  "last": {
+    "id": 45041601629,
+    "head_sha": "6591bba49d2b5a28d02b763c4360406843fce4cf",
+    "head_branch": "codex/otzaria-native-package-cache-20261122",
+    "run_attempt": 1,
+    "status": "in_progress",
+    "conclusion": null,
+    "updated_at": "2026-11-22T16:02:43Z",
+    "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45041601629"
+  },
+  "last_observed_at": "2026-11-22T16:51:26.681897+00:00",
+  "finished_at": "2026-11-22T16:51:37.623163+00:00"
+}

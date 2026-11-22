@@ -1,0 +1,13 @@
+{
+  "schema": "otzaria.root-sdk450413-archive-review/1",
+  "verified_at": "2026-11-22T16:40:47.010108+00:00",
+  "run": 45041382512,
+  "source": "edce5b975b173059522f90adb71271fb95adf963",
+  "archive_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-sdk-v13-watch-45041382512\\downloaded-evidence\\Pinkha-Native-Derived-Evidence.zip",
+  "bytes": 15563205,
+  "sha256": "a6f21a226f4cdedd60d674551c3ca3af0125f646be0d73c5ebf06d0b73f20409",
+  "crc": true,
+  "members": 571,
+  "all_extracted_members_identical": true,
+  "new_downloads": 0
+}
