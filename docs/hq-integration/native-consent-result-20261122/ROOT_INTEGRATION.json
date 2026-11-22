@@ -1,0 +1,48 @@
+{
+  "status": "ROOT_VERIFIED_FOCUSED_NATIVE_CONSENT_INTEGRATION",
+  "at": "2026-11-22T06:17:39.901069+00:00",
+  "root_before": "584c2a39a93f7d9f669ac19802d88244c20cb095",
+  "evidence_commit": "8a608308a76b03f8888b20f0243ce2825e0bf857",
+  "true_merge": "6f19753288839d5c8212768f96c4ef334992e86e",
+  "packet_index_sha256": "613228bde27168b031734180b009b7fc7c8bed8b648de248abac0e9a9e2817d4",
+  "indexed_payloads": 96,
+  "all_packet_files": 97,
+  "source_copies_verified": 86,
+  "raw_primary_files": 60,
+  "visual_exports": 9,
+  "execution_input_blobs_verified": 276,
+  "original_auditor_actual_source_inputs_verified": 1012,
+  "workflow_source": "64112a15b9fd1fb63d54b21b5d60cfc8bc96ba0b",
+  "application_source": "0ea7218331d1441d37d06d43333e579f267056e3",
+  "four_product_trees_unchanged": {
+    "Source": "ac887bdbfbfce2d30d9591bb867d61b11da31cc6",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "24345d612f8c70398f4590977f8b4696021ae413"
+  },
+  "strict_summary_canonical_sha256": "8b2b4447300e25cf162eaa59cfdd924453efacbd2d5599b0d6a6a8476f62bf65",
+  "strict_tests_canonical_sha256": "4a7c155389ff177020dd2aa4c022fe0d2bac608b44aa7f46c9a1d3461d1bd44e",
+  "case": {
+    "duration": "1m 39s",
+    "durationInSeconds": 99.83200895786285,
+    "name": "testOriginalIPadCurrentWorkConsentToggleWithoutConnection()",
+    "nodeIdentifier": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection()",
+    "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkConsentToggleWithoutConnection",
+    "nodeType": "Test Case",
+    "result": "Passed"
+  },
+  "counts": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "not_run": 0
+  },
+  "owned_simulator_cleanup": "PASS",
+  "compiled_images_unchanged": true,
+  "tests_executed_by_integration": 0,
+  "new_downloads": 0,
+  "secret_or_provider_used": false,
+  "full_native116_acceptance": false,
+  "full_release114_acceptance": false,
+  "live_provider_acceptance": false
+}
