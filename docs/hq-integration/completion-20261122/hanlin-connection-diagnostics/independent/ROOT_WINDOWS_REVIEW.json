@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "scope": "Read-only independent source/evidence verification. No test, parse, build, credential, download or CI replay",
+  "createdUTC": "2026-11-22T07:43:13.184510+00:00",
+  "source": "6aa953048453b64a0013621ce76e095770eb7e7d",
+  "parent": "4287063689fb2f17ea9a8fcd436ed98e6985f21f",
+  "packetIndexSHA256": "e4d3bd2d017f9ba74c9f7eddaff5415918255b2f69b6d44882278892e8773c98",
+  "payloadsVerified": 42,
+  "payloadBytes": 580724,
+  "linuxIndexedPayloads": 12,
+  "safeCRCZIPFiles": 13,
+  "pythonCasesVerified": 34,
+  "pythonFailuresErrorsSkips": 0,
+  "pythonObservations": 97,
+  "pythonWholeModuleAndRealPOSIXFiles": true,
+  "threeMainCasesBoundary": "Explicit external source/matrix dependency probes; no Native execution",
+  "swiftCompleteFileSyntaxParses": 4,
+  "swiftBoundary": "Windows frontend parse with DEBUG+Simulator target only, both sysroot warnings retained, no Apple SDK typecheck/link/runtime",
+  "currentWindowsCompilerFilesMatched": 2,
+  "fiveProductInputsExact": true,
+  "fourProductTrees": {
+    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "24345d612f8c70398f4590977f8b4696021ae413"
+  },
+  "oldSuitesReplayed": false,
+  "credentialAction": false,
+  "scriptSHA256": "710a8b16adae1fddb5570c7e184b8859abb60435a8fa50b4f0a5da67aad4dca3"
+}

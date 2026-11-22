@@ -39,3 +39,8 @@ No secret, CI or provider action was taken. The original Native/Host/component P
 ## Raw-evidence whitespace retention
 
 The first evidence staging preserved every indexed byte and then failed the formatting gate because raw Windows receipts retained CRLF and three executed Linux control files retained their original trailing blank line. The full failed output, original packet index and exact per-file diagnosis are retained. Only this packet's attributes now recognize CR at EOL; three named executed control files preserve their existing EOF, and the retained raw whitespace diagnostic output is exempt from reformatting. No source, assertion, result, prior index or compiler output was rewritten. The final changed packet metadata was rehashed and actual staged Git blobs verified before commit.
+
+
+## Coordinator's independent verification
+
+The final documentation child retains the coordinator's independent Windows review960d439d, its actual verification script710a8b16 and the shared Linux binary/source review5c32433e. The review independently matched all42 frozen validation payloads, the12-payload Linux archive,34 actual cases/97 observations, four full syntax parses and both current Windows compiler binaries, all five original/candidate Git pairs and application trees, plus the five actual Linux execution inputs and real Python executable. No control or parse was rerun. The preceding78-payload packet index is retained unchanged beside these reviews.

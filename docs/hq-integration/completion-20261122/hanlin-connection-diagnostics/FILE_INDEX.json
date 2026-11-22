@@ -5,8 +5,8 @@
   "files": [
     {
       "path": ".gitattributes",
-      "bytes": 376,
-      "sha256": "c31f1ccc773a44dae5f5f65404bda8c2436dc3e5e552895134921c7e357a4d6f"
+      "bytes": 446,
+      "sha256": "bcee633c0f1a42371db33b310efd2eda48b9d6bb1cf3c31e760c3c400573bb33"
     },
     {
       "path": "implementation/binding-evidence-runner.py",
@@ -99,6 +99,26 @@
       "sha256": "c8c74189a14ab4920be9a7e798e92282fb9325574f9e5b75691d0c84b2fd1c27"
     },
     {
+      "path": "independent/PRIOR_PACKET_INDEX.json",
+      "bytes": 14534,
+      "sha256": "2afaa03c9cb1f895a1a94c314a7d81d15a46f2cb6dd29a0408bb7c6fe08af959"
+    },
+    {
+      "path": "independent/ROOT_LINUX_REVIEW.json",
+      "bytes": 731,
+      "sha256": "5c32433e23ddbbe01a360e6993ab8b51c0cbb8c3001cb0dfa2d297a66019a8be"
+    },
+    {
+      "path": "independent/ROOT_WINDOWS_REVIEW.json",
+      "bytes": 1439,
+      "sha256": "960d439df6f9d0dd775fbf2f89e44d1066f47bf21024fee21fb70ccf607c5649"
+    },
+    {
+      "path": "independent/ROOT_WINDOWS_REVIEW.py",
+      "bytes": 6971,
+      "sha256": "710a8b16adae1fddb5570c7e184b8859abb60435a8fa50b4f0a5da67aad4dca3"
+    },
+    {
       "path": "proposal/candidate/Scripts/CI/runtime27-hanlin-live.py",
       "bytes": 35180,
       "sha256": "e0792b38284dd517551c2312455904a3ef849269f3790953b38d8a9e16ff7a75"
@@ -175,8 +195,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 4721,
-      "sha256": "4d39fddc78c0da937a959657c9280b88701d45d22b866d7ace92aba97cf6c84f"
+      "bytes": 5389,
+      "sha256": "1c016ae800f2a8a854e1656e7bed9d79765130ab7eb44f3429069722b43cf703"
     },
     {
       "path": "validation/FILE_INDEX.json",
