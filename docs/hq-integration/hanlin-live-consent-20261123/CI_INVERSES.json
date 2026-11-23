@@ -1,0 +1,18 @@
+{
+  "baseline_ci": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+  "credentials": false,
+  "hq_json_other_fields_exact": true,
+  "native_compile": "NOT_RUN",
+  "native_execution": "NOT_RUN",
+  "old_source_guards_and_evidence": "UNCHANGED_NOT_REEXECUTED",
+  "original_application_source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+  "original_three_application_trees_unchanged": true,
+  "provider": false,
+  "runtime_exact_replacement_occurrences": 1,
+  "runtime_inverse_exact": true,
+  "schema_version": 1,
+  "source_commit": "7841f4af33142f72936ca97428733b3059f806b0",
+  "source_guard": "NEW_SEPARATE_EXACT_INVERSE_ADMISSION",
+  "workflow_exact_replacement_occurrences": 1,
+  "workflow_inverse_exact": true
+}

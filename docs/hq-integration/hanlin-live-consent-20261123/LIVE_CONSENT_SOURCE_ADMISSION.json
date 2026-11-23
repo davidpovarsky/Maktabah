@@ -1,0 +1,43 @@
+{
+  "application_source_sha": "7841f4af33142f72936ca97428733b3059f806b0",
+  "application_trees": {
+    "Maktabah-iOSUITests": "442ea1cf71c846eaa131a15f2b85fa4e30e205bd",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Source": "4b2abd687328725fb7a7f0ca635b2cab9e0f0c0b",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "baseline_live13_source": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+  "branch": "codex/otzaria-hanlin-live-consent-20261123",
+  "completion_succeeded_alone_is_host_receipt": false,
+  "credential_accessed_by_preparation": false,
+  "driver_path": "Scripts/CI/runtime27-hanlin-live.py",
+  "driver_sha256": "8e8036aefb9c3e26120ae66f56808b554fe7531970c12e4484bb2a5b0218933d",
+  "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/",
+  "execution_input_count": 285,
+  "execution_inputs_path": "docs/hq-integration/hanlin-live-consent-20261123/LIVE_CONSENT_EXECUTION_INPUTS.json",
+  "execution_inputs_sha256": "73053c9206f32dab443e2c1ee4f787e024bdd35500b87fee546e832f506cd941",
+  "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "historical_passes_reused_as_current_acceptance": false,
+  "inputs_path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+  "inputs_sha256": "51d3dc3ced0144846197ba9f6f094818fb94238459d38d5b82cd2d6c5017cc98",
+  "model": "gemini-3.5-flash-lite",
+  "native_result": "NOT_RUN",
+  "original_application_source_sha": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+  "prior_actual_native_outcome": {
+    "FAIL": 1,
+    "NOT_RUN": 0,
+    "PASS": 0,
+    "SKIP": 0
+  },
+  "prior_controller_cleanup": "DELETE204_GET404_VERIFIED",
+  "prior_run": 45145388957,
+  "provider_called_by_preparation": false,
+  "repository": "davidpovarsky/Maktabah",
+  "schema_version": 1,
+  "selector": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+  "source_guard_path": "Scripts/CI/verify-hanlin-live-consent-source.py",
+  "source_guard_sha256": "46938548eed940bbe88fd8a0fe0e4d7feec1e15f49221dfe403a6bec1ceb7243",
+  "trigger": "workflow_dispatch_only_after_root_owned_controller_review_and_credential_preparation",
+  "workflow_path": ".github/workflows/otzaria-hanlin-live-native.yml",
+  "workflow_sha256": "fb52e49bdb8b993ddb7bd5c7c58ebf7148a8b791b75d0497a635873c2fdfb847"
+}

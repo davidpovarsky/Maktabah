@@ -1,0 +1,35 @@
+{
+  "application_source": "7841f4af33142f72936ca97428733b3059f806b0",
+  "baseline": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+  "paths": [
+    {
+      "after_sha256": "46938548eed940bbe88fd8a0fe0e4d7feec1e15f49221dfe403a6bec1ceb7243",
+      "before_sha256": null,
+      "bytes": 16195,
+      "kind": "ADDED",
+      "path": "Scripts/CI/verify-hanlin-live-consent-source.py"
+    },
+    {
+      "after_sha256": "8e8036aefb9c3e26120ae66f56808b554fe7531970c12e4484bb2a5b0218933d",
+      "before_sha256": "5a29cdb4ee57bc01b791827ade2486116e3a4ef85260775e7a1c510c7fc7a19c",
+      "bytes": 36614,
+      "kind": "MODIFIED",
+      "path": "Scripts/CI/runtime27-hanlin-live.py"
+    },
+    {
+      "after_sha256": "51d3dc3ced0144846197ba9f6f094818fb94238459d38d5b82cd2d6c5017cc98",
+      "before_sha256": "3e92cd67cdd10289f84468e5a24a489e5dfd381d352a7ef660ff4734851a348a",
+      "bytes": 4333,
+      "kind": "MODIFIED",
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json"
+    },
+    {
+      "after_sha256": "fb52e49bdb8b993ddb7bd5c7c58ebf7148a8b791b75d0497a635873c2fdfb847",
+      "before_sha256": "317090a06a3365885edc5f3ca500c3baaddc1ab152a6815a71b71867b56369c0",
+      "bytes": 10188,
+      "kind": "MODIFIED",
+      "path": ".github/workflows/otzaria-hanlin-live-native.yml"
+    }
+  ],
+  "schema_version": 1
+}
