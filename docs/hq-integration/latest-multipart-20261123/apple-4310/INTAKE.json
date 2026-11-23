@@ -1,0 +1,11 @@
+{
+  "run": 45261599920,
+  "source": "4310c29728de5bbba2dc6584642c6934d554e213",
+  "artifact_id": 14861468851,
+  "compressed_bytes": 401541,
+  "expanded_bytes": 1440825,
+  "archive_sha256": "0d4e9b045f3f526912108e2d0572c8abacb1f5592414d705c13d26b96f834057",
+  "crc_members": 70,
+  "verified_index_rows": 69,
+  "at_utc": "2026-11-23T20:57:53.613991+00:00"
+}

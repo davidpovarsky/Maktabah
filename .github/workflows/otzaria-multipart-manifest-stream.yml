@@ -1,0 +1,35 @@
+name: Original multipart manifest streaming continuation
+"on":
+  push:
+    branches: [codex/otzaria-multipart-manifest-stream-20261123]
+    paths:
+      - ".github/workflows/otzaria-multipart-manifest-stream.yml"
+      - "Tests/HQ/latest-multipart/**"
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: otzaria-multipart-stream-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  two-streaming-controls:
+    if: github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-multipart-manifest-stream-20261123' && github.run_attempt == 1
+    runs-on: macos-26-intel
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Authenticate35 retained passes and execute only2 streaming controls
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 Tests/HQ/latest-multipart/run_manifest_stream.py
+      - name: Preserve exact source and actual continuation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: otzaria-multipart-stream-${{ github.sha }}
+          path: build/latest-multipart-stream
+          if-no-files-found: error
+          retention-days: 30

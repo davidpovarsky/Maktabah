@@ -1,0 +1,38 @@
+{
+  "at_utc": "2026-11-23T21:09:25.055719+00:00",
+  "status": "SOURCE_PREPARATION_ONLY_NOT_ACTIVATED",
+  "source_base": "4310c29728de5bbba2dc6584642c6934d554e213",
+  "product_paths_modified": 0,
+  "all_original18_inputs_byte_equal": true,
+  "prior_actual_counts": {
+    "PASS": 35,
+    "FAIL": 2,
+    "SKIP": 0,
+    "NOT_RUN": 0
+  },
+  "prior_failure": "Two held manifest responses timed out after30s before the expected invalidAssetMetadata. No product defect or fixture-only cause yet established.",
+  "new_selected_controls": [
+    "manifest_stream_declared_length_mismatch_cancels",
+    "manifest_stream_actual_byte_overflow_cancels"
+  ],
+  "helper_prefix_sha256": "6d8750aaa8b6060260aef8a359737c31991319f45c47c5cea55109f8f98381f0",
+  "changes_to_control_conditions": [
+    "Explicit application/octet-stream MIME header on held manifest response",
+    "Require actual metadata refusal within5s, preserving distinct owned stop within5s before session invalidation",
+    "Record actual elapsed/request/stop observation"
+  ],
+  "hypothesis": "465/466-byte held response without MIME may wait for Foundation response sniffing; unproven until actual corrected control output",
+  "prior35_reexecuted": false,
+  "authentic_prior_reuse_gate": "Original complete18-file inputs,37 actual case results,full70CRC/69index artifact,original helper prefix and identical observed Apple platform/Xcode/Swift/compiler/SDK",
+  "syntax_parse": "PASS_ONLY",
+  "actual_apple_continuation": "NOT_RUN",
+  "native_application_acceptance": false,
+  "asana_failure_story": "1220828328275858",
+  "peer_review": {
+    "reviewer": "/root/stageb_repair",
+    "status": "SOURCE_ACCEPTED_NO_TEST_EXECUTION",
+    "prior_pin_sha256": "43501a7ed457e0075b4edc3cd64c5f8966dacc58121d06e4a65ac2fb2b7368cf",
+    "minor_receipt_clarification": "stop_events_after_cleanup explicitly separate from owned_stop_observed_before_cleanup, which is set only after the original requireOwnedStop returns"
+  },
+  "hypothesis_boundary": "A two-case PASS proves prompt bounded rejection with explicit MIME; it does not independently establish a512-byte buffering threshold."
+}
