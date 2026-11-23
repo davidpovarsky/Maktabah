@@ -1,0 +1,46 @@
+{
+  "scope": "Read-only existing source/receipt audit; no API, Simulator, CI, timeout or retry change",
+  "source": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+  "run": 45128868702,
+  "matrix_sha256": "fdb13fc339a2c25ff8b8ee985149013b832a8c8349960153750b14aba0067dc1",
+  "device": {
+    "size": "11",
+    "label": "11",
+    "udid": "AAA60DAF-E474-4B51-A8EA-B751E1FCD0F4",
+    "status": "FAIL",
+    "incompatiblePairs": [],
+    "phase": "FAILED",
+    "phaseStartedAt": "2026-11-23T08:21:15.867081+00:00",
+    "phaseDetails": {
+      "error": "TimeoutExpired: Command '['xcrun', 'simctl', 'get_app_container', 'AAA60DAF-E474-4B51-A8EA-B751E1FCD0F4', 'com.davidpovarsky.chavrusatext', 'app']' timed out after 45 seconds"
+    },
+    "installationAttempts": [
+      {
+        "bundle": "com.davidpovarsky.chavrusatext",
+        "attempt": 1,
+        "status": "INSTALL_TIMEOUT",
+        "timedOutPhase": "VERIFYING_APP_CONTAINER",
+        "error": "Command '['xcrun', 'simctl', 'get_app_container', 'AAA60DAF-E474-4B51-A8EA-B751E1FCD0F4', 'com.davidpovarsky.chavrusatext', 'app']' timed out after 45 seconds"
+      },
+      {
+        "bundle": "com.davidpovarsky.chavrusatext",
+        "attempt": 2,
+        "status": "INSTALL_TIMEOUT",
+        "timedOutPhase": "VERIFYING_APP_CONTAINER",
+        "error": "Command '['xcrun', 'simctl', 'get_app_container', 'AAA60DAF-E474-4B51-A8EA-B751E1FCD0F4', 'com.davidpovarsky.chavrusatext', 'app']' timed out after 45 seconds"
+      }
+    ],
+    "error": "TimeoutExpired: Command '['xcrun', 'simctl', 'get_app_container', 'AAA60DAF-E474-4B51-A8EA-B751E1FCD0F4', 'com.davidpovarsky.chavrusatext', 'app']' timed out after 45 seconds",
+    "failedPhase": "INSTALL_TIMEOUT",
+    "ownedSimulatorCleanup": "PASS"
+  },
+  "original_source_path": "Scripts/CI/run-faithful-ipad-matrix.py",
+  "source_boundaries": {
+    "initial_bootstatus": "349-355: fresh created UDID; boot then bootstatus -b,900s",
+    "install_and_container": "189-206: install timeout600 then actual app container verification45s",
+    "single_recovery": "207-231: retain timeout diagnostics, one owned shutdown/boot/bootstatus before second install",
+    "cleanup": "694-703: shutdown/delete only owned UDID; actual receipt PASS"
+  },
+  "conclusion": "Both observed timeouts are after successful simctl install and after bootstatus; no missing boot predicate or app-code failure is established. CoreSimulator administration may affect a future run, but a global outage is unproven. Retained admitted packet lacks service/device diagnostic logs from the original recovery. No source/timeout/reinstall change justified from current evidence.",
+  "combined_exposure": "Original mini cohorts use exact matrix path and new UDIDs; full-v32 original collector also bootstatus/install then real container/fixture guards. Keep authentic pre-UI NOT_RUN distinct."
+}

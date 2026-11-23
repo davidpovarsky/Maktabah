@@ -1,0 +1,27 @@
+{
+  "schema": "otzaria.library-morph.native-inputs/1",
+  "application_source_sha": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
+  "application_trees": {
+    "Source": "efdfe18a0f43a55ca19e089fdad95ed369343233",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "593efc2a78f9a721515733531db2e8da0cd89987"
+  },
+  "execution_groups": [
+    {
+      "label": "11-reader",
+      "size": "11",
+      "hid_comparison": true,
+      "case_ids": [
+        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+        "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+        "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+        "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+        "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+        "FaithfulReaderUIAcceptanceTests/testLibraryMorphOutsideDismissalPreservesCanonicalQueryAndReader",
+        "FaithfulReaderUIAcceptanceTests/testLibraryMorphRepeatedOpenCloseReleasesHiddenKeyboardFocus"
+      ]
+    }
+  ],
+  "acceptance_scope": "Affected Library morph source only. No broad suite, physical iPad, 100+ production results, Sefaria/offline or distribution acceptance."
+}

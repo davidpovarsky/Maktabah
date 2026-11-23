@@ -1,0 +1,40 @@
+{
+  "schema": "otzaria.groups100-full-v32.one-build-two-runtime/1",
+  "applicationSource": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+  "applicationTrees": {
+    "Source": "1e2df8c542c72ff4a78244b62f4daf6176e01fc4",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "ae6251c95ee382a0a8bcf6124d32375bf36b8cbe"
+  },
+  "faithfulSHA256": "7c1e4e376b5fdf965b4a799f922851e00d88c572f3102d0ad4d5d0db8bd82156",
+  "exactCases": {
+    "groups100": [
+      "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"
+    ],
+    "fullV32": [
+      "FaithfulProductionReleaseTests/testTwentyOriginalFullV32ReaderOpensAndForcedRelaunch",
+      "FaithfulProductionReleaseTests/testOriginalFullV32InspectorRelationshipScalesAndReturn"
+    ]
+  },
+  "buildCount": 1,
+  "originalBuildDriver": "Scripts/CI/hq-stage2-focused-apple.py --build-for-testing --derived-data build/DerivedData",
+  "simulators": "Original matrix owns a new11-inch miniTest10 Simulator; collector separately owns a new SDK-matched13-inch production Simulator",
+  "independentResults": true,
+  "groupsFailureDoesNotSkipFullV32AfterSuccessfulBuildAndAdmissions": true,
+  "caseTimeoutSeconds": 600,
+  "prior3And6NotReplayed": true,
+  "physicalIPad": false,
+  "fullNative116": false,
+  "fullRelease114": false,
+  "inputCount": 39,
+  "originalSDKBindings": {
+    "hanlinGitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+    "hqScriptSHA256": "0dbe133b8f0ee188dc2f0d0c375972a210571498ecac928f1174730ebb0e83f5",
+    "prepareHanlinSHA256": "7e9a303e20390b9a33ee6cddc73979dc1557741636d6e00067c55a90188af404",
+    "originalEditorAdmissionFlagUsed": false,
+    "legacyOriginalEditorDistributionScriptUnchanged": true
+  },
+  "workflowBranch": "codex/otzaria-reader-groups-full-v32-20261123",
+  "activation": "PENDING_ROOT_EXACT_PACKET_REVIEW"
+}
