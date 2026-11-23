@@ -1,0 +1,10 @@
+{
+  "compiler": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu",
+  "sourceSHA256": "c6018789ed8f324a593ca0b94cebca2c77d627ee7ac75c7a7f7b820d5dc2383b",
+  "bridgeSHA256": "f87f61bbc217263ee54eb016b01552984d971201c08507128cb278d2c07a99ac",
+  "compiler_exit": 0,
+  "runtime_exit": 0,
+  "runtime_output": "{\"status\":\"DISPATCH_MAIN_ACTOR_BRIDGE_CONTROL_PASS\",\"directMainThread\":true,\"backgroundSynchronousEntry\":true,\"sendableObserverAndString\":true,\"nativeUIKitExecuted\":0}\n",
+  "errors": "",
+  "scope": "Focused real Dispatch/MainActor control on Oracle Swift6; no Apple/UIKit typecheck or native UI acceptance"
+}

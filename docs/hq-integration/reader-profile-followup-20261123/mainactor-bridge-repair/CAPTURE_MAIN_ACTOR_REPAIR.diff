@@ -1,0 +1,48 @@
+diff --git a/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift b/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+index 9621901a..89a2c120 100644
+--- a/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
++++ b/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+@@ -44,6 +44,20 @@ private enum NativeGeometryEvidence {
+     }
+ }
+ 
++/// XCTest still invokes some legacy synchronous callers outside an actor.
++/// Establish the real main queue before entering the native observer; only
++/// Sendable observer ownership or diagnostic values cross this synchronous seam.
++private enum NativeCaptureMainActorEntry {
++    static func run<Value: Sendable>(_ operation: @MainActor () -> Value) -> Value {
++        if Thread.isMainThread {
++            return MainActor.assumeIsolated { operation() }
++        }
++        return DispatchQueue.main.sync {
++            MainActor.assumeIsolated { operation() }
++        }
++    }
++}
++
+ /// One fresh native snapshot per predicate evaluation, with current live hit
+ /// testing. No snapshot or element geometry survives into the next evaluation.
+ @MainActor
+@@ -773,13 +787,19 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
+         capture("candidate-original-bottom-toc-action")
+     }
+     func capture(_ name: String, windowed: Bool = false) {
+-        let observation = NativeCaptureSettlementObservation(application: app!, windowed: windowed)
++        let application = app!
++        let observation = NativeCaptureMainActorEntry.run {
++            NativeCaptureSettlementObservation(application: application, windowed: windowed)
++        }
+         let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+-            MainActor.assumeIsolated { observation.settled() }
++            NativeCaptureMainActorEntry.run { observation.settled() }
+         }, object: nil)
+         let settlement = XCTWaiter.wait(for: [settled], timeout: 20)
+         if settlement != .completed {
+-            let diagnostic = XCTAttachment(string: NativeGeometryEvidence.text(observation.evaluations))
++            let text = NativeCaptureMainActorEntry.run {
++                NativeGeometryEvidence.text(observation.evaluations)
++            }
++            let diagnostic = XCTAttachment(string: text)
+             diagnostic.name = name + "-actual-settlement-evaluations"
+             diagnostic.lifetime = .keepAlways
+             add(diagnostic)

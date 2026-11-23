@@ -1,0 +1,26 @@
+{
+  "base_commit": "99b71a011fa5a060f0334a5312d498830eaeda77",
+  "scope": "Only synchronous XCTest capture entry into its existing MainActor-owned observer",
+  "changed_file": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "before_sha256": "85e264835512e217bcd77cc3039f434bbf4bf411905528b571cf32c8c2d3188a",
+  "after_sha256": "b84f49a0d177b14bdd3a8eafab2b287d423c730e857540386cd8d6767b8d2712",
+  "diff_sha256": "2b740ae8ba0dffddeafb394f564be90a948462258a89cf3ef4a321d23e8aeaa2",
+  "source_vendor_project_unchanged": true,
+  "exact_inverse_check": "PASS",
+  "original_assertion_bearing_lines_unchanged": 502,
+  "original20s_capture_budget_and600s_case_deadline": "UNCHANGED",
+  "group100_transitions": "UNCHANGED",
+  "portable_dispatch_control": "Actual main-thread and Dispatch-global-to-main-sync entry; Swift6.4.3 strict complete concurrency. Compile0 execution0. Not UIKit or Apple qualification.",
+  "root_review": "Root read complete2422B source diff,2793B control and RESULT/execution logs; accepted explicit main-queue entry and Sendable value boundary before sealing.",
+  "failed_native_preparation_run": 45116660011,
+  "failed_run_counts": {
+    "pass": 0,
+    "fail": 0,
+    "skip": 0,
+    "not_run": 4
+  },
+  "current_apple_typecheck": "NOT_RUN",
+  "current_four_native_cases": "NOT_RUN",
+  "historic_six_passes_not_transferred": true,
+  "sealed_preparation_utc": "2026-11-23T06:24:43.708408+00:00"
+}
