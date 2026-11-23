@@ -1,0 +1,20 @@
+{
+  "head": "ef420abbb2d2c62940109c6ada2a3183a6ff2c41",
+  "SourceTree": "52d1803016651a6cfbd2a25c775d50e110c9327a",
+  "SourceStatus": "",
+  "projectTree": "2cee049b4cc0bda65875aa35b40391f1d8dd3d2d",
+  "previousLock": {
+    "revision": "b66aa5e0e979f36d1a34b85e08899449b72d1dc2",
+    "products": [
+      "HanlinHostContracts",
+      "HanlinAgentCore",
+      "HanlinChatCore",
+      "HanlinScriptUI",
+      "HanlinChatUI",
+      "HanlinPresentationKit",
+      "HanlinRichUI",
+      "HanlinPlatformContracts"
+    ]
+  },
+  "newRevision": "2548eac1155239e76cb1a2c6d978e00131340e1f"
+}

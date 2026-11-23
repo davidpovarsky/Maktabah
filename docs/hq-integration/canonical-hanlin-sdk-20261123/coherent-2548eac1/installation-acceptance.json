@@ -1,0 +1,44 @@
+{
+  "revision": "2548eac1155239e76cb1a2c6d978e00131340e1f",
+  "products": [
+    "HanlinHostContracts",
+    "HanlinAgentCore",
+    "HanlinChatCore",
+    "HanlinScriptUI",
+    "HanlinChatUI",
+    "HanlinPresentationKit",
+    "HanlinRichUI",
+    "HanlinPlatformContracts"
+  ],
+  "managedNativeTargets": [],
+  "sourcePaths": [
+    "Packages/HanlinAgentSDK/Sources/HanlinAgentCore",
+    "Packages/HanlinAgentSDK/Sources/HanlinHostContracts",
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSON",
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONRegexRuntime",
+    "Packages/HanlinAgentSDK/Vendor/Swift-JSON/Sources/JSONSchema",
+    "Packages/HanlinPlatform/Sources/HanlinChatCore",
+    "Packages/HanlinPlatform/Sources/HanlinPlatformContracts",
+    "Packages/HanlinPlatform/Sources/HanlinScriptContracts",
+    "Packages/HanlinPlatform/Sources/HanlinScriptUI",
+    "Packages/HanlinPresentationSDK/Sources/HanlinChatUI",
+    "Packages/HanlinPresentationSDK/Sources/HanlinLocalization",
+    "Packages/HanlinPresentationSDK/Sources/HanlinPresentationKit",
+    "Packages/HanlinPresentationSDK/Sources/HanlinRichUI"
+  ],
+  "verifiedOriginalFiles": 572,
+  "sourceProofStableBeforeAfter": true,
+  "SourceTreeBefore": "52d1803016651a6cfbd2a25c775d50e110c9327a",
+  "SourceTreeAfter": "52d1803016651a6cfbd2a25c775d50e110c9327a",
+  "hostSourceChangedPaths": [],
+  "projectChangedPaths": [],
+  "nativeRootsPresent": [],
+  "materializedFilesOutsideGit": 628,
+  "materializedBytesOutsideGit": 27297296,
+  "originalHostAPI12Declarations": [
+    "Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostNavigationTransition.swift:53:public protocol HanlinHostNavigationTransitionSource: HanlinHostIntegration {",
+    "Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostNavigationTransition.swift:54:    func openWithContextTransition(_ destination: HanlinHostDestination,"
+  ],
+  "nativeAcceptance": "NOT_RUN_BY_THIS_LANE; parent owns original focused Apple workflow",
+  "oldProofBoundary": "Original b66 receipts remain preserved; no acceptance reattributed to the new pin."
+}
