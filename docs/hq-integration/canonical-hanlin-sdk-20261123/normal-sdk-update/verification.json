@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "test_count": 2,
+  "failures": 0,
+  "errors": 0,
+  "methods": [
+    "test_original_workflow_inputs_permissions_and_sdk_are_unchanged",
+    "test_all_other_original_steps_conditions_and_timeouts_are_exact"
+  ],
+  "actual_three_workflow_blocks_identical": true,
+  "actual_lock_and_gitlink_shell_check_rc": 0,
+  "locked_revision": "d49a4fd4115b8335105d2991bf74ab4d7f6aad2d",
+  "original_source_trees": {
+    "Source": "85e1eb7a9c9ea9396464f71ec0f615e48a4ede19",
+    "Vendor": "acebe8874c8bf3f5264ef33528c1d1773091d678",
+    "Maktabah.xcodeproj": "2cee049b4cc0bda65875aa35b40391f1d8dd3d2d",
+    "Maktabah-iOSUITests": "ca36ba13f1fd900adf528a3e404fed6a66290b6b"
+  },
+  "sha256": {
+    ".github/workflows/ios-build.yml": "f8b3a2d68015d02bc3a89813cbcacde2973feffc722994354458061dc06cac80",
+    "Scripts/CI/test-normal-ios-toolchain.py": "69341245dbacb1f73e0b06de7d58fd8bace7a842d2d4abe8dbdc14b9831f5d8a",
+    "HanlinSDK.lock.json": "fcdb75284c9de198e368efb10600b76c70b453d45c76ec4970b38f33bf6123b9"
+  },
+  "apple_compiles": 0,
+  "native_tests_executed": 0,
+  "sdk_install_or_repins": 0
+}

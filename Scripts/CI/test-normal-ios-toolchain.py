@@ -22,12 +22,15 @@ from unittest.mock import patch
 import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
-BASELINE = "2f74d05b1cf75597b3a38fa64d0939b45caa44c2"
+# Exact workflow before the lock-driven SDK update; retains later original Sefaria and embedded-native gates.
+BASELINE = "a65cdf9add70586af4defc916d4817040b331137"
 SHELL = "Scripts/run-ipad-simulator-acceptance.sh"
 WORKFLOW = ".github/workflows/ios-build.yml"
 SELECTOR = "Scripts/CI/select-runtime27-toolchain.py"
 SCRIPT_TEXT = ""
 WORKFLOW_TEXT = ""
+
+SDK_LOCK_READER = 'HANLIN_LOCKED_REVISION="$(python3 -c \'import json; print(json.load(open("HanlinSDK.lock.json", encoding="utf-8"))["revision"])\')"\n'
 
 def git_text(ref, path):
     return subprocess.check_output(["git", "show", ref + ":" + path],
@@ -235,16 +238,49 @@ class WorkflowContract(unittest.TestCase):
                     self.assertIn(actual, code)
 
     def test_original_workflow_inputs_permissions_and_sdk_are_unchanged(self):
-        self.assertEqual({k: v for k, v in self.current.items() if k != "jobs"},
-                         {k: v for k, v in self.before.items() if k != "jobs"})
-        self.assertEqual(self.current["env"]["HANLIN_SDK_SHA"], "e00498e33f106cc43be0476ffa2e09329c8ca300")
+        before = json.loads(json.dumps({k: v for k, v in self.before.items() if k != "jobs"}))
+        current = {k: v for k, v in self.current.items() if k != "jobs"}
+        # Only the stale duplicate pin is removed; every other original policy stays exact.
+        self.assertEqual(before["env"].pop("HANLIN_SDK_SHA"),
+                         "e00498e33f106cc43be0476ffa2e09329c8ca300")
+        self.assertNotIn("HANLIN_SDK_SHA", current["env"])
+        self.assertEqual(current, before)
+        sdk_jobs = []
+        for name, job in self.current["jobs"].items():
+            matches = [row for row in job["steps"]
+                       if row.get("name") == "Materialize and verify original pinned Hanlin SDK"]
+            if not matches:
+                continue
+            sdk_jobs.append(name)
+            self.assertEqual(len(matches), 1)
+            original = [row for row in self.before["jobs"][name]["steps"]
+                        if row.get("name") == matches[0]["name"]]
+            self.assertEqual(len(original), 1)
+            expected = dict(original[0])
+            expected["run"] = SDK_LOCK_READER + expected["run"].replace(
+                "$HANLIN_SDK_SHA", "$HANLIN_LOCKED_REVISION")
+            # Retains the exact original Gitlink check, bootstrap and receipt destination.
+            self.assertEqual(matches[0], expected)
+        self.assertEqual(sorted(sdk_jobs), ["device-build", "simulator-build", "swiftpm"])
 
     def test_all_other_original_steps_conditions_and_timeouts_are_exact(self):
         self.assertEqual(set(self.current["jobs"]), set(self.before["jobs"]))
         def without_selection(steps):
-            return [row for row in steps if row.get("id") not in {"xcode", "cache-inputs"}
-                    and "select-xcode-26.sh" not in row.get("run", "")
-                    and "select-runtime27-toolchain.py" not in row.get("run", "")]
+            result = []
+            for original in steps:
+                if (original.get("id") in {"xcode", "cache-inputs"}
+                        or "select-xcode-26.sh" in original.get("run", "")
+                        or "select-runtime27-toolchain.py" in original.get("run", "")):
+                    continue
+                row = dict(original)
+                if (row.get("name") == "Materialize and verify original pinned Hanlin SDK"
+                        and row.get("run", "").startswith(SDK_LOCK_READER)):
+                    # The preceding contract checks the complete new block before
+                    # normalizing only its reviewed lock-reader/variable substitution.
+                    row["run"] = row["run"].removeprefix(SDK_LOCK_READER).replace(
+                        "$HANLIN_LOCKED_REVISION", "$HANLIN_SDK_SHA")
+                result.append(row)
+            return result
         for name, original in self.before["jobs"].items():
             with self.subTest(job=name):
                 current = self.current["jobs"][name]

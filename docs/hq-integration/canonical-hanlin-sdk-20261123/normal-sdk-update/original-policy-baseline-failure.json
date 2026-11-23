@@ -1,0 +1,12 @@
+{
+  "original_head": "a65cdf9add70586af4defc916d4817040b331137",
+  "unchanged_original_test": true,
+  "unchanged_original_workflow": true,
+  "tests_run": 1,
+  "failures": [
+    "original_toolchain_policy.WorkflowContract.test_all_other_original_steps_conditions_and_timeouts_are_exact (job='otzaria-framework')",
+    "original_toolchain_policy.WorkflowContract.test_all_other_original_steps_conditions_and_timeouts_are_exact (job='simulator-build')",
+    "original_toolchain_policy.WorkflowContract.test_all_other_original_steps_conditions_and_timeouts_are_exact (job='device-build')"
+  ],
+  "errors": []
+}
