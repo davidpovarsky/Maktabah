@@ -23,7 +23,13 @@ final class OtzariaMiniAppsCoordinator {
     private var editors: [UUID: EditorOwner] = [:]
     private var processing = Set<UUID>()
     private var reportedFailures = Set<UUID>()
-    private var displaying = Set<UUID>()
+    private struct QueuedPresentation {
+        let requestID: UUID
+        let show: (@escaping () -> Void) -> Void
+    }
+    private var presentationQueues: [String: [QueuedPresentation]] = [:]
+    private var presentingScenes = Set<String>()
+    private var queuedResults = Set<UUID>()
 
     static var callbackURL: URL {
         #if DEBUG
@@ -109,22 +115,17 @@ final class OtzariaMiniAppsCoordinator {
             let operation: MiniAppOperation = !document.isReaderSelection && (document.selection?.length ?? 0) > 0
                 ? .replaceSelection : .insert
             guard let presenter = presenter(in: scene, sourceView: sourceView) else { throw OtzariaMiniAppsError.unavailable }
-            weak var pickerController: UIViewController?
             let picker = MiniAppPicker(store: store, source: source,
                 inputs: [.init(kind: .text, text: inputText, typeIdentifier: "public.plain-text")],
                 operation: operation, callbacks: callbacks, onOpen: { [weak self] url in
-                    let open = {
-                        UIApplication.shared.open(url, options: [:]) { opened in
-                            if !opened {
-                                Task { @MainActor in self?.show(error: OtzariaMiniAppsError.unavailable, sourceView: sourceView) }
-                            }
+                    // The shared picker owns its dismissal before invoking onOpen.
+                    UIApplication.shared.open(url, options: [:]) { opened in
+                        if !opened {
+                            Task { @MainActor in self?.show(error: OtzariaMiniAppsError.unavailable, sourceView: sourceView) }
                         }
                     }
-                    if let pickerController { pickerController.dismiss(animated: true, completion: open) }
-                    else { open() }
                 }, onError: { [weak self] error in self?.show(error: error, sourceView: sourceView) })
             let controller = UIHostingController(rootView: picker)
-            pickerController = controller
             controller.modalPresentationStyle = .pageSheet
             controller.sheetPresentationController?.detents = [.medium(), .large()]
             presenter.present(controller, animated: true)
@@ -173,10 +174,12 @@ final class OtzariaMiniAppsCoordinator {
             // Acknowledge only after the original annotation transaction and receipt committed.
             _ = try store.acknowledgeResult(id: result.requestID, sourceAppID: Self.sourceAppID)
             if let editor { editor.didCommit(commit.annotation) }
-            else { showSavedNote(commit.annotation, manager: manager, scene: scene) }
+            else { showSavedNote(commit.annotation, requestID: result.requestID, manager: manager, scene: scene) }
         } catch {
             reportedFailures.insert(result.requestID)
-            show(error: error, sourceView: nil)
+            enqueuePresentation(requestID: result.requestID, scene: nil) { [weak self] finished in
+                self?.show(error: error, sourceView: nil, onDismiss: finished)
+            }
         }
     }
 
@@ -200,57 +203,90 @@ final class OtzariaMiniAppsCoordinator {
         return saved
     }
 
-    private func showSavedNote(_ annotation: Annotation, manager: iOSNavigationManager, scene: UIWindowScene?) {
-        if let book = manager.openTabs.first(where: { $0.book.id == annotation.bkId })?.book
-            ?? LibraryDataManager.shared.getBook([annotation.bkId]).first {
-            manager.openBook(book, options: OpenBookOptions(contentId: annotation.contentId,
-                annotationEvent: ReaderAnnotationEvent(annotation: annotation)))
+    private func enqueuePresentation(requestID: UUID, scene: UIWindowScene?,
+                                     show: @escaping (@escaping () -> Void) -> Void) {
+        guard queuedResults.insert(requestID).inserted else { return }
+        let target = scene ?? UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+            .first(where: { $0.activationState == .foregroundActive })
+        let key = target?.session.persistentIdentifier ?? "foreground"
+        presentationQueues[key, default: []].append(.init(requestID: requestID, show: show))
+        drainPresentations(key: key)
+    }
+
+    private func drainPresentations(key: String) {
+        guard !presentingScenes.contains(key), let next = presentationQueues[key]?.first else { return }
+        presentationQueues[key]?.removeFirst()
+        presentingScenes.insert(key)
+        next.show { [weak self] in
+            guard let self else { return }
+            self.queuedResults.remove(next.requestID)
+            self.presentingScenes.remove(key)
+            Task { @MainActor [weak self] in self?.drainPresentations(key: key) }
         }
-        guard let presenter = presenter(in: scene) else { return }
-        let editor = iOSAnnotationEditorSheet(annotation: annotation,
-            onSave: { try AnnotationStore.shared.updateAnnotation($0) },
-            onDelete: { try AnnotationStore.shared.deleteAnnotation(id: $0) })
-        let controller = UIHostingController(rootView: editor)
-        controller.modalPresentationStyle = .pageSheet
-        controller.sheetPresentationController?.detents = [.medium(), .large()]
-        presenter.present(controller, animated: true)
+    }
+
+    private func showSavedNote(_ annotation: Annotation, requestID: UUID,
+                               manager: iOSNavigationManager, scene: UIWindowScene?) {
+        enqueuePresentation(requestID: requestID, scene: scene) { [weak self] finished in
+            guard let self else { finished(); return }
+            if let book = manager.openTabs.first(where: { $0.book.id == annotation.bkId })?.book
+                ?? LibraryDataManager.shared.getBook([annotation.bkId]).first {
+                manager.openBook(book, options: OpenBookOptions(contentId: annotation.contentId,
+                    annotationEvent: ReaderAnnotationEvent(annotation: annotation)))
+            }
+            guard let presenter = self.presenter(in: scene) else { finished(); return }
+            let editor = iOSAnnotationEditorSheet(annotation: annotation,
+                onSave: { try AnnotationStore.shared.updateAnnotation($0) },
+                onDelete: { try AnnotationStore.shared.deleteAnnotation(id: $0) })
+            let controller = OtzariaMiniAppsResultHost(rootView: editor)
+            controller.onDismiss = finished
+            controller.modalPresentationStyle = .pageSheet
+            controller.sheetPresentationController?.detents = [.medium(), .large()]
+            presenter.present(controller, animated: true)
+        }
     }
 
     private func display(_ result: MiniAppResult, store: MiniAppBridgeStore, scene: UIWindowScene?) {
-        guard let presenter = presenter(in: scene) else { return }
-        guard displaying.insert(result.requestID).inserted else { return }
-        let files: [UUID: URL]
-        do { files = try retainAttachments(result, store: store) }
-        catch {
-            displaying.remove(result.requestID)
-            reportedFailures.insert(result.requestID)
-            show(error: error, sourceView: nil)
-            return
-        }
-        let items: [Any] = result.items.compactMap { item in
-            if let text = item.text { return text }
-            if let url = item.url { return url }
-            if let id = item.attachmentID { return files[id] }
-            return nil
-        }
-        if !files.isEmpty {
-            let activity = UIActivityViewController(activityItems: items, applicationActivities: nil)
-            if let popover = activity.popoverPresentationController {
-                popover.sourceView = presenter.view
-                popover.sourceRect = CGRect(x: presenter.view.bounds.midX, y: presenter.view.bounds.midY, width: 1, height: 1)
+        enqueuePresentation(requestID: result.requestID, scene: scene) { [weak self] finished in
+            guard let self, let presenter = self.presenter(in: scene) else { finished(); return }
+            let files: [UUID: URL]
+            do { files = try self.retainAttachments(result, store: store) }
+            catch {
+                self.reportedFailures.insert(result.requestID)
+                self.show(error: error, sourceView: presenter.view, onDismiss: finished)
+                return
             }
-            presenter.present(activity, animated: true) {
-                self.displaying.remove(result.requestID)
+            let items: [Any] = result.items.compactMap { item in
+                if let text = item.text { return text }
+                if let url = item.url { return url }
+                if let id = item.attachmentID { return files[id] }
+                return nil
+            }
+            let acknowledge = {
                 _ = try? store.acknowledgeResult(id: result.requestID, sourceAppID: Self.sourceAppID)
             }
-        } else {
-            let text = result.message ?? result.items.compactMap { $0.text ?? $0.url?.absoluteString }.joined(separator: "\n")
-            let alert = UIAlertController(title: String(localized: "Mini Apps"),
-                message: text.isEmpty ? String(localized: "Done") : text, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String(localized: "Done"), style: .default))
-            presenter.present(alert, animated: true) {
-                self.displaying.remove(result.requestID)
-                _ = try? store.acknowledgeResult(id: result.requestID, sourceAppID: Self.sourceAppID)
+            if !files.isEmpty {
+                let activity = UIActivityViewController(activityItems: items, applicationActivities: nil)
+                if let popover = activity.popoverPresentationController {
+                    popover.sourceView = presenter.view
+                    popover.sourceRect = CGRect(x: presenter.view.bounds.midX, y: presenter.view.bounds.midY, width: 1, height: 1)
+                }
+                activity.completionWithItemsHandler = { [weak activity] _, _, _, _ in
+                    acknowledge()
+                    if let activity { activity.dismiss(animated: true, completion: finished) }
+                    else { finished() }
+                }
+                presenter.present(activity, animated: true)
+            } else {
+                let text = result.message ?? result.items.compactMap { $0.text ?? $0.url?.absoluteString }.joined(separator: "\n")
+                let alert = UIAlertController(title: String(localized: "Mini Apps"),
+                    message: text.isEmpty ? String(localized: "Done") : text, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: String(localized: "Done"), style: .default) { [weak alert] _ in
+                    acknowledge()
+                    if let alert { alert.dismiss(animated: true, completion: finished) }
+                    else { finished() }
+                })
+                presenter.present(alert, animated: true)
             }
         }
     }
@@ -273,12 +309,29 @@ final class OtzariaMiniAppsCoordinator {
         return controller
     }
 
-    func show(error: Error, sourceView: UIView?) {
-        guard let presenter = presenter(in: sourceView?.window?.windowScene, sourceView: sourceView) else { return }
+    func show(error: Error, sourceView: UIView?, onDismiss: @escaping () -> Void = {}) {
+        guard let presenter = presenter(in: sourceView?.window?.windowScene, sourceView: sourceView) else { onDismiss(); return }
         let alert = UIAlertController(title: String(localized: "Mini Apps"),
             message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String(localized: "OK"), style: .default))
+        alert.addAction(UIAlertAction(title: String(localized: "OK"), style: .default) { [weak alert] _ in
+            if let alert { alert.dismiss(animated: true, completion: onDismiss) }
+            else { onDismiss() }
+        })
         presenter.present(alert, animated: true)
+    }
+}
+
+/// Programmatic Save/Cancel and interactive sheet dismissal both release the
+/// per-scene result queue after the actual original editor has disappeared.
+private final class OtzariaMiniAppsResultHost<Content: View>: UIHostingController<Content> {
+    var onDismiss: (() -> Void)?
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if presentingViewController == nil || isBeingDismissed {
+            let completion = onDismiss
+            onDismiss = nil
+            completion?()
+        }
     }
 }
 

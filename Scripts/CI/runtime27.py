@@ -252,6 +252,17 @@ def main():
             return 0
         if report["mode"] not in {"ui", "release"}:
             raise RuntimeError("Unknown runtime mode")
+        # The original source manifest already supports selected-only native
+        # acceptance. A two-app case needs its real producer install callback.
+        if report["mode"] == "ui":
+            selected_contract = json.loads((ROOT / "docs/hq-integration/runtime27/R27_CASES.json").read_text())
+            selected_ids = [case for group in execution_groups(selected_contract) for case in group["case_ids"]]
+            miniapps_case = "MiniAppsAnnotationAcceptanceTests/testOriginalNoteReturnsTextFromActualMiniAppsAndPersistsAfterRelaunch"
+            if selected_ids == [miniapps_case]:
+                if not selected_contract.get("diagnostic_only", False):
+                    raise RuntimeError("The MiniApps subset must remain separate from full native acceptance")
+                return runpy.run_path(str(ROOT / "Scripts/CI/otzaria-miniapps-native.py"))["run_from_existing_native_workflow"](
+                    report, run_logged, controller)
         if report["mode"] == "release":
             # Validate the full unchanged release contract before the expensive
             # app build. The producer validates it again against final inputs.
