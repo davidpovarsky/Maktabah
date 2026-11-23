@@ -329,8 +329,27 @@ final class HanlinReaderConsumerAcceptanceTests: R27NativeUIBase {
         XCTAssertTrue(form.waitForExistence(timeout: 20))
         let nativeConsent = try originalCurrentBookConsentSwitch(in: consent)
         for _ in 0..<4 where !nativeConsent.isHittable { form.swipeUp() }
-        tapNative(nativeConsent)
+        XCTAssertTrue(nativeConsent.isEnabled)
+        XCTAssertTrue(nativeConsent.isHittable, "Drag the actual native switch")
+        XCTAssertEqual(nativeConsent.value as? String, "0")
+        XCTAssertGreaterThan(nativeConsent.frame.width, nativeConsent.frame.height)
+        capture("hanlin-fresh-read-no-send-before-native-consent-drag")
+        // The retained native hierarchy and screenshot show the OFF thumb
+        // on the left in this English/LTR form. Use one ordinary thumb drag
+        // within that original control, without retrying or setting consent.
+        let thumb = nativeConsent.coordinate(withNormalizedOffset: CGVector(dx: 0.25, dy: 0.5))
+        let enabledSide = nativeConsent.coordinate(withNormalizedOffset: CGVector(dx: 0.75, dy: 0.5))
+        thumb.press(forDuration: 0.1, thenDragTo: enabledSide)
+        let consentEnabled = XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "value == %@", "1"), object: consent
+        )], timeout: 10)
+        capture("hanlin-fresh-read-no-send-after-native-consent-drag")
+        XCTAssertEqual(consentEnabled, .completed,
+                       "The original native gesture must enable the book-consent switch")
         XCTAssertEqual(consent.value as? String, "1")
+        XCTAssertEqual(nativeConsent.value as? String, "1")
+        XCTAssertEqual(service.value as? String, endpoint)
+        XCTAssertEqual(model.value as? String, "unused-native-fresh-read-proof")
         let connect = app.buttons["otzaria-hanlin-connect"]
         for _ in 0..<4 where !connect.isHittable { form.swipeDown() }
         capture("hanlin-fresh-read-no-send-before-original-connect")

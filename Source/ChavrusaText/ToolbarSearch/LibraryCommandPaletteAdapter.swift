@@ -3,6 +3,8 @@ import SwiftUI
 
 struct LibraryCommandPaletteAdapter: View {
     @Bindable var manager: iOSNavigationManager
+    var isActive = true
+    var drawsSurface = true
     let onDismiss: () -> Void
 
     private var commands: [Command] {
@@ -29,6 +31,8 @@ struct LibraryCommandPaletteAdapter: View {
             placeholder: "חפש ספר בספרייה…",
             initialQuery: manager.libraryViewModel.searchQuery,
             autofocus: true,
+            isActive: isActive,
+            drawsSurface: drawsSurface,
             queryBinding: Bindable(manager.libraryViewModel).searchQuery,
             onDismiss: onDismiss
         )
@@ -178,5 +182,142 @@ struct SafariLibrarySearchField: View {
         .contentShape(RoundedRectangle(cornerRadius: 26))
         .onTapGesture(perform: onExpand)
         .modifier(SafariGlass(radius: 26))
+    }
+}
+
+
+/// The owner's stable outer-shell morph, mounted over the existing whole split
+/// view. Both children keep their natural sizes; only the outer bounds/corners
+/// and child visibility change. The original native Button activates compact
+/// mode, and the original CommandPalette owns expanded input/results.
+struct ReaderLibrarySearchMorph: View {
+    let manager: iOSNavigationManager
+    @Bindable var sidebar: ReaderSidebarPageCoordinator
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.layoutDirection) private var contentLayoutDirection
+    @State private var motionOffset: CGSize = .zero
+    @State private var motionStretch = CGSize(width: 1, height: 1)
+
+    private var isExpanded: Bool { sidebar.librarySearchIsPresented }
+    private var morphAnimation: Animation? {
+        reduceMotion ? nil : .spring(response: 0.52, dampingFraction: 0.86)
+    }
+
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .topLeading) {
+                Color.clear
+                    .contentShape(Rectangle())
+                    .onTapGesture { sidebar.dismissLibrarySearch() }
+                    .allowsHitTesting(isExpanded)
+                    .accessibilityHidden(true)
+
+                if let frames = sidebar.librarySearchFrames, sidebar.navigationChrome.isVisible {
+                    let compact = frames.anchor.offsetBy(
+                        dx: -frames.container.minX, dy: -frames.container.minY)
+                    let expandedWidth = min(CGFloat(640), max(0, geometry.size.width - 24))
+                    let expandedX = min(max(12, compact.midX - expandedWidth / 2),
+                                        max(12, geometry.size.width - expandedWidth - 12))
+                    let expandedY = max(0, compact.minY)
+                    let expandedHeight = min(CGFloat(560), max(0, geometry.size.height - expandedY - 12))
+
+                    searchShell(compact: compact, expandedWidth: expandedWidth, expandedHeight: expandedHeight)
+                        // Only the positioning container uses physical left-origin
+                        // coordinates. Original content keeps its scene direction.
+                        .environment(\.layoutDirection, contentLayoutDirection)
+                        .scaleEffect(
+                            x: reduceMotion || !isExpanded ? 1 : motionStretch.width,
+                            y: reduceMotion || !isExpanded ? 1 : motionStretch.height,
+                            anchor: .top)
+                        .scaleEffect(!reduceMotion && !isExpanded && sidebar.librarySearchIsPressed ? 1.01 : 1)
+                        // UIWindow coordinates have a physical left origin.
+                        // The enclosing layout is explicitly LTR so SwiftUI
+                        // cannot mirror this measured physical window center.
+                        .position(
+                            x: (isExpanded ? expandedX + expandedWidth / 2 : compact.midX)
+                                + (reduceMotion || !isExpanded ? 0 : motionOffset.width),
+                            y: (isExpanded ? expandedY + expandedHeight / 2 : compact.midY)
+                                + (reduceMotion || !isExpanded ? 0 : motionOffset.height))
+                }
+            }
+            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .topLeading)
+            .background {
+                ReaderToolbarFrameReader(tracksPosition: isExpanded) { owner, frame, window in
+                    sidebar.observeLibrarySearchContainer(owner: owner, frame: frame, window: window)
+                }
+                .accessibilityHidden(true)
+            }
+        }
+        .environment(\.layoutDirection, .leftToRight)
+        // Include the native toolbar in this overlay's genuine hit-test bounds.
+        // Keyboard avoidance remains active; only container top safe area expands.
+        .ignoresSafeArea(.container, edges: .top)
+        .allowsHitTesting(isExpanded)
+        .animation(morphAnimation, value: isExpanded)
+        .animation(reduceMotion ? nil : .smooth(duration: 0.2), value: sidebar.librarySearchIsPressed)
+        .onChange(of: isExpanded) { _, expanded in
+            if !expanded {
+                motionOffset = .zero
+                motionStretch = CGSize(width: 1, height: 1)
+            }
+        }
+        .onChange(of: reduceMotion) { _, reduced in
+            if reduced {
+                motionOffset = .zero
+                motionStretch = CGSize(width: 1, height: 1)
+            }
+        }
+        .onDisappear { sidebar.dismissLibrarySearch() }
+    }
+
+    private func searchShell(compact: CGRect, expandedWidth: CGFloat, expandedHeight: CGFloat) -> some View {
+        let radius = isExpanded ? CGFloat(28) : compact.height / 2
+        return ZStack(alignment: .topLeading) {
+            VStack(spacing: 0) {
+                LibrarySearchMotionHandle(offset: $motionOffset, stretch: $motionStretch)
+                    .frame(height: 16)
+                LibraryCommandPaletteAdapter(manager: manager, isActive: isExpanded, drawsSurface: false) {
+                    sidebar.dismissLibrarySearch()
+                }
+                .frame(height: max(0, expandedHeight - 16), alignment: .top)
+            }
+            .frame(width: expandedWidth, height: expandedHeight, alignment: .topLeading)
+            .opacity(isExpanded ? 1 : 0)
+            .allowsHitTesting(isExpanded)
+            .accessibilityHidden(!isExpanded)
+
+            compactContents(width: compact.width)
+                .frame(width: compact.width, height: compact.height)
+                .opacity(isExpanded ? 0 : 1)
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
+        }
+        .frame(width: isExpanded ? expandedWidth : compact.width,
+               height: isExpanded ? expandedHeight : compact.height,
+               alignment: .topLeading)
+        .modifier(SafariGlass(radius: radius))
+        .clipShape(RoundedRectangle(cornerRadius: radius, style: .continuous))
+        // This visual shell has no separate semantic identity. Propagating an
+        // outer identifier overwrites the original CommandPalette container.
+        // While compact, the genuine native toolbar Button owns accessibility.
+        .accessibilityHidden(!isExpanded)
+    }
+
+    private func compactContents(width: CGFloat) -> some View {
+        HStack(spacing: 10) {
+            if width >= 140 {
+                Image(systemName: "books.vertical")
+                    .foregroundStyle(.secondary)
+                Text(manager.libraryViewModel.searchQuery.isEmpty
+                     ? "חיפוש בספרייה" : manager.libraryViewModel.searchQuery)
+                    .font(.callout.weight(.medium))
+                    .lineLimit(1)
+                    .frame(maxWidth: .infinity)
+            }
+            Image(systemName: "magnifyingglass")
+                .font(.system(size: 18))
+                .foregroundStyle(.secondary)
+        }
+        .padding(.horizontal, width >= 140 ? 16 : 0)
     }
 }

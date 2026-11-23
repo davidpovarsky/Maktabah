@@ -66,6 +66,22 @@ public extension ActionSearchExecutionPreparationPort {
     var hasSearchExecutionPreparation: Bool { true }
 }
 
+/// A read-only observation of an already installed source which explicit
+/// execution may prepare. It is deliberately separate from availableNow and
+/// carries no read grant, query result or promise that native opening succeeds.
+public enum ActionExistingSearchPreparationObservation: Sendable, Equatable {
+    case unavailable
+    case eligible(invocation: ActionPortInvocation)
+}
+
+/// Opt-in companion to the original execution-only port. Implementations must
+/// validate existing source identity, metadata, compatibility and required
+/// resources without constructing an engine, fetching, repairing or preparing.
+public protocol ActionSearchPreparationObservationPort: ActionSearchExecutionPreparationPort {
+    func observeExistingSearchPreparation(invocation: ActionPortInvocation) async throws
+        -> ActionExistingSearchPreparationObservation
+}
+
 public struct ActionOpenReaderCommand: Sendable, Equatable {
     public let destination: ActionReaderDestination
     public let sceneID: String

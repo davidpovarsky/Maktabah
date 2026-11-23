@@ -89,11 +89,117 @@ enum ActionLiveBackendBridge {
                 try await EmbeddedActionRPC.catalog(invocation: invocation)
             }, occurrenceReadiness: ActionLiveOccurrenceCounter.readiness,
                occurrenceCounter: ActionLiveOccurrenceCounter.count,
-               searchExecutionPreparation: ActionLiveSearchExecutionPreparation.make)
+               searchExecutionPreparation: ActionLiveSearchExecutionPreparation.make,
+               searchPreparationObservation: ActionLiveSearchExecutionPreparation.observe)
     }
 }
 
 private enum ActionLiveSearchExecutionPreparation {
+    /// Observe the original installed source without invoking make's returned
+    /// execution work or constructing a native engine. A cold source remains
+    /// unknown in the ordinary readiness report.
+    @MainActor static func observe(_ invocation: ActionPortInvocation) async throws
+        -> ActionExistingSearchPreparationObservation {
+        try check(invocation)
+        guard invocation.snapshot.backend == .otzaria else { return .unavailable }
+        let bridge = OtzariaMaktabahBridge.shared
+        let access = OtzariaDatabaseAccessController.shared
+        let selection = access.selectionObservation()
+        let profile = OtzariaDataProfileRegistry.activeProfileID
+        guard selection.source == .managedInternal, let path = selection.url?.path,
+              path == bridge.databasePath, let generation = bridge.tryGenerationSnapshot() else {
+            return .unavailable
+        }
+        let repository = OtzariaTantivySearchRepository.shared
+        let observation = repository.resourceObservation(databasePath: path)
+        guard let fingerprint = observation.fingerprint else { return .unavailable }
+        let validateSource: @Sendable () throws -> Void = {
+            try check(invocation)
+            guard let currentGeneration = bridge.tryGenerationSnapshot() else { throw ActionPortError.unavailable }
+            guard selection == access.selectionObservation(), generation == currentGeneration,
+                  path == bridge.databasePath, profile == OtzariaDataProfileRegistry.activeProfileID else {
+                throw ActionPortError.staleState
+            }
+        }
+        try validateSource()
+        let task = Task.detached(priority: .utility) { () throws -> ActionExistingSearchPreparationObservation in
+            try observeInstalledSource(databasePath: path, profileID: profile,
+                expectedRevision: observation.revision, expectedFingerprint: fingerprint,
+                invocation: invocation, validateSource: validateSource)
+            return .eligible(invocation: invocation)
+        }
+        return try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
+    }
+
+    private static func observeInstalledSource(databasePath path: String, profileID profile: String,
+                                                expectedRevision: UInt64, expectedFingerprint: Data,
+                                                invocation: ActionPortInvocation,
+                                                validateSource: @Sendable () throws -> Void) throws {
+        try validateSource()
+        let storage = try OtzariaDatabaseStorage(profileID: profile)
+        guard URL(fileURLWithPath: path).standardizedFileURL == storage.finalDatabaseURL.standardizedFileURL else {
+            throw ActionPortError.unavailable
+        }
+        let manager = OtzariaSearchIndexManager.shared
+        let repository = OtzariaTantivySearchRepository.shared
+        let url = manager.indexURL(for: path)
+        func validateCurrentSource() throws {
+            try validateSource()
+            let observed = repository.resourceObservation(databasePath: path)
+            guard observed.revision == expectedRevision, observed.fingerprint == expectedFingerprint,
+                  manager.indexURL(for: path) == url else { throw ActionPortError.staleState }
+            let files = FileManager.default
+            guard !files.fileExists(atPath: manager.sentinelURL(for: path).path),
+                  !files.fileExists(atPath: manager.buildingIndexURL(for: path).path),
+                  !files.fileExists(atPath: url.appendingPathExtension("installing").path) else {
+                throw ActionPortError.unavailable
+            }
+        }
+        try validateCurrentSource()
+        let current = try manager.currentFingerprint(databasePath: path)
+        guard let databaseBytes = Int64(exactly: current.fileSize) else { throw ActionPortError.unavailable }
+        let build = try OtzariaSearchEngineBridge.buildInfo()
+        let decoder = JSONDecoder(); decoder.dateDecodingStrategy = .iso8601
+        let database = try decoder.decode(OtzariaDatabaseInstallationManifest.self,
+            from: smallMetadata(at: storage.installationManifestURL, invocation: invocation))
+        let manifest = try JSONDecoder().decode(OtzariaSearchArtifactManifest.self,
+            from: smallMetadata(at: url.appendingPathComponent("otzaria_prebuilt_installation.json"), invocation: invocation))
+        let identity = try JSONDecoder().decode(OtzariaIndexBuildIdentity.self,
+            from: smallMetadata(at: manager.identityURL(indexURL: url), invocation: invocation))
+        try OtzariaSearchArtifactPolicy.validate(manifest, database: database,
+            databaseBytes: databaseBytes, build: build)
+        guard let expectedCount = UInt64(exactly: manifest.lexicalArtifact.documentCount), expectedCount > 0,
+              OtzariaSearchArtifactPolicy.managedIdentityMatchesCanonicalData(identity,
+                currentDatabase: current, build: build, trustedManifest: manifest) else {
+            throw ActionPortError.unavailable
+        }
+        let indexMetadata = try smallMetadata(at: url.appendingPathComponent("otzaria_index_meta.json"), invocation: invocation)
+        try OtzariaSearchEngineBridge.validateExistingCompatibleIndex(url)
+        let translationKey = "Vendor/OtzariaSearchEngine/Resources/dictionary.json"
+        let acronymsKey = "Vendor/OtzariaSearchEngine/Resources/Acronyms.json"
+        guard Set(build.resourceHashes.keys) == Set([translationKey, acronymsKey]),
+              let translationHash = build.resourceHashes[translationKey],
+              let acronymsHash = build.resourceHashes[acronymsKey],
+              let translation = Bundle.main.url(forResource: "dictionary", withExtension: "json"),
+              let acronyms = Bundle.main.url(forResource: "Acronyms", withExtension: "json") else {
+            throw ActionPortError.unavailable
+        }
+        try OtzariaSearchEngineBridge.validateExecutionDictionary(translation, expectedSHA256: translationHash,
+            deadline: invocation.deadlineUptimeNanoseconds)
+        try OtzariaSearchEngineBridge.validateExecutionDictionary(acronyms, expectedSHA256: acronymsHash,
+            deadline: invocation.deadlineUptimeNanoseconds)
+        // An already observed incomplete open index cannot become eligible.
+        // Nil does not prove readiness: the positive installed-source checks
+        // above only allow the original execution path to attempt preparation.
+        if let count = repository.observedOpenIndexDocumentCount(databasePath: path),
+           count == 0 || count != expectedCount { throw ActionPortError.unavailable }
+        try validateCurrentSource()
+        guard try smallMetadata(at: url.appendingPathComponent("otzaria_index_meta.json"), invocation: invocation) == indexMetadata else {
+            throw ActionPortError.staleState
+        }
+        try validateCurrentSource()
+    }
+
     /// Capture source ownership synchronously, without opening an engine. The
     /// facade rechecks its exact backend snapshot after this factory returns
     /// and before the returned work can begin on a utility executor.

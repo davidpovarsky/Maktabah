@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "state": "PARTIAL_SOURCE_COMPOSITION_UNFINALIZED_NOT_NATIVE_ACCEPTANCE",
+  "base": "f05813a80d995ba973242d1a94dcbfc099e7c622",
+  "canonical": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "branch": "codex/otzaria-final-composition-20261123",
+  "selected_files": [
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "bytes": 38814,
+      "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012",
+      "git_blob": "28167e2212c50df668df96ba8ae96fbcda69109d"
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift",
+      "source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "bytes": 24385,
+      "sha256": "7f762523d0cde1ba938e1f161309472090f804c2d8af48cdf3e02f1e998926c1",
+      "git_blob": "66bd4dabf501e26d08e6bab22657bbc562330422"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift",
+      "source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "bytes": 31084,
+      "sha256": "90916d670e0a58623bce4c60cb09ff2678bbe4f308b50201897b278cf232aaca",
+      "git_blob": "64bf41582f6a360f4aff620494fc3b71b5eefbc3"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift",
+      "source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "bytes": 28870,
+      "sha256": "b0ff33f02f65d5f0632b15a354cbe2f7dd41b548abea5d83fb20be39e7ca52c9",
+      "git_blob": "193466880eeb3f3b29e645d3634acc1a70d306ec"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+      "source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "bytes": 50933,
+      "sha256": "61d7627dd9c68513a3a6102b12154f2b11b1ffd4dab7cbfb226563b59ecf2252",
+      "git_blob": "a62aa1b847da66894cd42fea0e3b90bb948bc452"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+      "source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "bytes": 6420,
+      "sha256": "f449f5be10b1e7f43a7769fa56678e699db7bd306eafe7e1bf54d4caf17b8c23",
+      "git_blob": "786020324e2b83dad99b6201c013fb6c1506df03"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/ExistingSearchPreparationObservationTests.swift",
+      "source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "bytes": 16954,
+      "sha256": "ad24426235ea2b469c84b9b23e99309651cc27e647df9b077129379fb525fd0a",
+      "git_blob": "e9577bcf7ea8dad8aef136c2b66c0ede7e796344"
+    },
+    {
+      "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+      "source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "bytes": 48227,
+      "sha256": "9f4c35fee98102373e5961759569077833d8eb83ad427255d7f11ef2e55d5143",
+      "git_blob": "a4acb5e4f57badf3b352ddedc6c797f50ef67be9"
+    },
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+      "bytes": 21154,
+      "sha256": "07bf0af9e7b0131865d4422507aef69d7330a27ce22b8ba00297c51f5e6f0931",
+      "git_blob": "34ddb06b98e04141fccca99053ef1beb8447d8c7"
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+      "bytes": 14416,
+      "sha256": "921ba1c91af07a61e35d1d2137cdf08b36a483b201c026e7e4dfa3edf3fd8109",
+      "git_blob": "7e68dee6c06fde765e435dac838e45586625e86f"
+    },
+    {
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+      "bytes": 15646,
+      "sha256": "ec9b6510ff19fdebf3023d07029e7829b5c6639878132fa607492983868cd40c",
+      "git_blob": "9ece7492beb14af3ab94d59e0f4e328e6f7e8b53"
+    },
+    {
+      "path": "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift",
+      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+      "bytes": 5171,
+      "sha256": "dc7a693af03c2c1dc18a58b9831751a841d73d8b8c0adaca6123ea0abab333ab",
+      "git_blob": "44ea8973368367a46b098db17c3427554fa166ab"
+    },
+    {
+      "path": "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift",
+      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+      "bytes": 5993,
+      "sha256": "6feb6c2e6cb963981272a0440e03f17fcd4681247e692ae6e19d68d928a1387a",
+      "git_blob": "6f8cec48f818179fa3321e7d808127f2d6021b1f"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+      "bytes": 23378,
+      "sha256": "fae950ba2ac7d86508daaf18a7862c10486cdf11a7ec1656dea7f1a5d1d73df0",
+      "git_blob": "de46cfa4a90a8472f2c1fc5d1224eb4e8654be47"
+    }
+  ],
+  "canonical_annotation_source_and_process_resume_test_preserved": [
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift",
+    "Maktabah-iOSUITests/OriginalEditorAnnotationAcceptanceTests.swift"
+  ],
+  "pending": [
+    "Reader4/Library7/Live13 exact native outcomes",
+    "Reviewed full-v32 source and merged Faithful tests",
+    "OriginalSDK/StageB evidence correspondence",
+    "Final immutable source/gate input bindings",
+    "Native116/Release114 and real physical/signing gates"
+  ],
+  "native_passes_transferred": false,
+  "workflow_activated": false,
+  "local_materialization_note": "Initial no-checkout base index was absent; isolated worktree reconstructed from exact baseline and14 existing committed source blobs before any commit"
+}
