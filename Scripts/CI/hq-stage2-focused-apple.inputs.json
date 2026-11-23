@@ -1,9 +1,9 @@
 {
-  "application_source_sha": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "application_source_sha": "6ba33d848bda808181e6b3174c05bac5b3fd2d94",
   "application_trees": {
+    "Maktabah.xcodeproj": "f61421e8677027ffa18364226b4ee68a0937dfc5",
     "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
-    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
-    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078"
+    "Vendor": "ee5b415a5ccb9db9fda2b0e8d6ce3748cdeaea6e"
   },
   "artifacts": [
     {
@@ -70,7 +70,7 @@
     "Vendor/ZayitSearchPort/Rust": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8",
     "Vendor/ZayitSearchPort/Upstream": "db6dc60006a51db83ec2c6feed1158e4da1a617b"
   },
-  "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "hanlin_gitlink": "ca3c91f2233bf5c77990643b29a874aac8704639",
   "otzaria_test_additions_sha256": "ef5d287ee888b306fab1ddf0e75242245f756976370129c433f1276a96b5611e",
   "rebuild_zayit_framework": false,
   "resource_bundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",

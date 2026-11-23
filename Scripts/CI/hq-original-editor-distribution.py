@@ -238,8 +238,13 @@ def verify_absence_receipt(root, directory, proof, *, reused=None):
                     "Original full binary proof is missing or changed")
 
 
-def require_compiled_host_api(qualification, *, retained_original=None):
+def require_compiled_host_api(qualification, *, retained_original=None, admission_schema=1):
     """Admit the original producer's compiled API proof, never editor execution."""
+    require(type(admission_schema) is int and admission_schema in {1, 2, 3},
+            "Unsupported original SDK public contract schema")
+    require(retained_original is None or admission_schema in {1, 2},
+            "The complete shared SDK requires its own actual compiled public proof")
+    required_count = 86 if admission_schema == 3 else 38
     public_api = "EXPOSED_COMPILED_NATIVE_EDITOR_NOT_RUN"
     probe = qualification.get("compiled_consumer_api_probe_sha256")
     public_host_api = qualification.get("public_host_api")
@@ -266,12 +271,12 @@ def require_compiled_host_api(qualification, *, retained_original=None):
     require(isinstance(surface, dict) and surface.get("status") == "ACTUAL_TARGET_PUBLIC_SURFACE_INSPECTED"
             and surface.get("target") == "AnytypeOriginalEditor"
             and type(surface.get("reviewed_host_and_spi_requirements_observed")) is int
-            and surface["reviewed_host_and_spi_requirements_observed"] == 38
+            and surface["reviewed_host_and_spi_requirements_observed"] == required_count
             and surface.get("editable_mount_api") == public_api
             and surface.get("qualification_spi_scope_verified") is True
             and surface.get("public_host_scope_verified") is True
             and surface.get("public_original_editor_or_writer_declarations") == []
-            and isinstance(surface.get("own_public_symbols"), list) and len(surface["own_public_symbols"]) >= 38
+            and isinstance(surface.get("own_public_symbols"), list) and len(surface["own_public_symbols"]) >= required_count
             and all(isinstance(symbol, dict) and type(symbol.get("spi")) is bool
                     for symbol in surface["own_public_symbols"]),
             "Original full public/qualification-SPI verifier prerequisite is incomplete")
@@ -352,7 +357,7 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
                 and qualification.get("same_toolchain_only") is True,
                 "SDK lacks the original framework/external consumer prerequisites")
     compiled_host_api = (continuation["compiled_host_receipt"](root, config, qualification, globals())
-                         if continuation else require_compiled_host_api(qualification))
+                         if continuation else require_compiled_host_api(qualification, admission_schema=config["schema"]))
     if continuation:
         require(provenance.get("application_source") == config["source_sha"]
                 and provenance.get("original_trees") == config["framework_producer"]["source_trees"],
