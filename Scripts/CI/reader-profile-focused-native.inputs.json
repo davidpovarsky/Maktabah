@@ -1,11 +1,11 @@
 {
   "schema": "otzaria.reader-profile.native-inputs/1",
-  "application_source_sha": "cd1e4991253d7be0ff436e9ff51805d3539d33de",
+  "application_source_sha": "2ef81ac195c002863486e473dad95f336f3e1675",
   "application_trees": {
     "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
     "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
     "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
-    "Maktabah-iOSUITests": "c99f99a8ac221988fedb23964574cd60f5d8e7b4"
+    "Maktabah-iOSUITests": "1dcf4b77d7b8c33aaf8e27f72750430cdfe98739"
   },
   "execution_groups": [
     {

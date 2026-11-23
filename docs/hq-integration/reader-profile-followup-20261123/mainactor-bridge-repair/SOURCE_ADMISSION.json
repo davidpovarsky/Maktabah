@@ -1,0 +1,48 @@
+{
+  "status": "SOURCE_AND_FOUR_DECLARATIONS_ADMITTED_APPLE_NOT_RUN",
+  "test_source_commit": "2ef81ac195c002863486e473dad95f336f3e1675",
+  "test_source_parent": "99b71a011fa5a060f0334a5312d498830eaeda77",
+  "test_source_sha256": "b84f49a0d177b14bdd3a8eafab2b287d423c730e857540386cd8d6767b8d2712",
+  "preflight_commit": "662a9781fb701579aa35e8581ef46fce5e02a927",
+  "execution_inputs_verified": 285,
+  "selectors": [
+    "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+    "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+    "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+    "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"
+  ],
+  "source_vendor_project_unchanged": true,
+  "original_runner_blob": "229b4a15a1026ccf5f42176e195ffd141350eeb6",
+  "workflow_blob_unchanged": "0a7e73c96a656198c689497f7bc4a522b372df6f",
+  "driver_blob_unchanged": "173df8c42e987dbe406ec4edb1e61ba292746a6f",
+  "original20s_capture_600s_case_deadline_100_transitions": "UNCHANGED",
+  "original_zero_skip_binary_post_audits": "UNCHANGED",
+  "actual_controls": [
+    "Exact reviewed diff inverse recovers99b source",
+    "502 assertion-bearing lines at99b retained exactly",
+    "Actual main and background Dispatch entry strict-concurrency control PASS",
+    "285 committed actual working-byte source bindings",
+    "Four unchanged original XCTest declarations",
+    "Exact assigned branch trigger preserved",
+    "git diff --check"
+  ],
+  "native_counts_at_new_source": {
+    "pass": 0,
+    "fail": 0,
+    "skip": 0,
+    "not_run": 4
+  },
+  "failed_preparation_run": {
+    "id": 45116660011,
+    "source": "99b71a011fa5a060f0334a5312d498830eaeda77",
+    "cause": "Apple actor-isolation compilation failure before app build or UI",
+    "counts": {
+      "pass": 0,
+      "fail": 0,
+      "skip": 0,
+      "not_run": 4
+    }
+  },
+  "six_old_passes_not_replayed_or_relabelled": true,
+  "root_review": "Explicit actual-main-thread/queue entry with Sendable value boundary accepted before source seal"
+}
