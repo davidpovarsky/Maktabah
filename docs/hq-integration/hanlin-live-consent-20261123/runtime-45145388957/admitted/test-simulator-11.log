@@ -1,0 +1,148 @@
+Command line invocation:
+    /Applications/Xcode_27.2.app/Contents/Developer/usr/bin/xcodebuild test-without-building -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -clonedSourcePackagesDirPath build/SourcePackages -disableAutomaticPackageResolution -parallel-testing-enabled NO -destination "platform=iOS Simulator,id=6FFDAFFD-AB64-4DDC-9DBA-DB8B4363C70B" -derivedDataPath build/DerivedData -resultBundlePath /Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11.xcresult -test-timeouts-enabled YES -default-test-execution-time-allowance 600 -maximum-test-execution-time-allowance 600 "-only-testing:Maktabah-iOSUITests/HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  swift-markdown: https://github.com/swiftlang/swift-markdown.git @ 0.7.3
+  HanlinPresentationSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPresentationSDK @ local
+  CommandPalette: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette @ local
+  AnchoredPopup: https://github.com/exyte/AnchoredPopup.git @ 1.3.1
+  Sparkle: https://github.com/sparkle-project/Sparkle @ 2.9.1
+  OtzariaActionCore: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Actions @ local
+  SwiftUI-Shimmer: https://github.com/markiv/SwiftUI-Shimmer @ 1.5.1
+  swift-argument-parser: https://github.com/apple/swift-argument-parser @ 1.8.2
+  ChavrusaUIRoutingHost: /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/UIRoutingHost @ local
+  TorahInspectorKit: https://github.com/davidpovarsky/TorahInspectorKit.git @ 23db0f8
+  HanlinAgentSDK: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinAgentSDK @ local
+  SwiftAISDK: https://github.com/davidpovarsky/swift-ai-sdk.git @ e7bf341
+  Equatable: https://github.com/ordo-one/equatable @ 1.4.1
+  cmark-gfm: https://github.com/swiftlang/swift-cmark @ 0.9.0
+  FloatingPanel: https://github.com/scenee/FloatingPanel.git @ 3.2.4
+  swift-syntax: https://github.com/swiftlang/swift-syntax.git @ 603.0.2
+  HighlightSwift: https://github.com/appstefan/highlightswift @ 99c431b
+  zstd: https://github.com/facebook/zstd.git @ 1.5.7
+  iosMath: https://github.com/junyan72/iosMath @ ba9ab77
+  OtzariaUIRouting: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/UIRouting @ local
+  ZIPFoundation: https://github.com/weichsel/ZIPFoundation.git @ 0.9.20
+  SwiftyJSON: https://github.com/SwiftyJSON/SwiftyJSON.git @ 5.0.1
+  SwiftStreamingMarkdown: https://github.com/davidpovarsky/hanlin-streaming-markdown @ 6bde022
+  HanlinPlatform: /Users/runner/work/Maktabah/Maktabah/Vendor/HanlinSDK/Packages/HanlinPlatform @ local
+
+Writing result bundle at path:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11.xcresult
+
+2026-11-23 10:12:40.459977+0000 Maktabah-iOSUITests-Runner[91749:238517] [Default] Running tests...
+2026-11-23 10:12:40.560055+0000 Maktabah-iOSUITests-Runner[91749:238517] [UIKit App Config] Update the Info.plist: Launch screens will soon be required.
+objc[91749]: Class UIAccessibilityLoaderWebShared is implemented in both /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.UPvNQA/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x104a44310) and /private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.UPvNQA/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x104a78398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-11-23 10:12:48.765.
+Test Suite 'Maktabah-iOSUITests.xctest' started at 2026-11-23 10:12:48.766.
+Test Suite 'HanlinLiveProviderAcceptanceTests' started at 2026-11-23 10:12:48.766.
+Test Case '-[Maktabah_iOSUITests.HanlinLiveProviderAcceptanceTests testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent]' started.
+    t =     0.01s Start Test at 2026-11-23 10:12:48.772
+    t =     0.58s Set Up
+    t =     0.61s Setting device orientation to Landscape Left
+    t =     0.64s     Device orientation changed to Landscape Left
+    t =     0.95s     Interface orientation changed to Landscape Right
+    t =     0.98s     Wait for com.apple.springboard to idle
+    t =     1.12s Open com.davidpovarsky.chavrusatext
+2026-11-23 10:12:51.221 xcodebuild[88494:229468] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-23 10:12:51.221 xcodebuild[88494:229468] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.12s     Launch com.davidpovarsky.chavrusatext
+    t =     6.30s         Setting up automation session
+    t =    15.61s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    26.12s Get number of matches for: Descendants matching type Alert
+    t =    27.02s Waiting 60.0s for "reader-text" TextView to exist
+    t =    28.07s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    28.07s         Checking existence of `"reader-text" TextView`
+    t =    29.57s Find the "reader-text" TextView
+    t =    29.94s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    30.19s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    31.60s Checking `Expect predicate `value MATCHES "(?s).{31,}"` for object "reader-text" TextView`
+    t =    31.60s     Find the "reader-text" TextView
+    t =    31.99s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    33.03s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    33.03s         Checking existence of `"reader-header-title" StaticText`
+    t =    33.41s Find the "reader-header-title" StaticText
+    t =    33.82s Find the "reader-text" TextView
+    t =    34.27s Waiting 15.0s for "reader-current-locator" StaticText to exist
+    t =    35.32s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-current-locator" StaticText`
+    t =    35.32s         Checking existence of `"reader-current-locator" StaticText`
+    t =    37.51s Find the "reader-current-locator" StaticText
+    t =    38.25s Find the "reader-header-title" StaticText
+    t =    39.34s Find the "reader-text" TextView
+    t =    40.02s Waiting 30.0s for "otzaria-hanlin-reader-launch" Button to exist
+    t =    41.03s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-reader-launch" Button`
+    t =    41.03s         Checking existence of `"otzaria-hanlin-reader-launch" Button`
+    t =    41.34s Find the "otzaria-hanlin-reader-launch" Button
+    t =    41.83s Tap "otzaria-hanlin-reader-launch" Button
+    t =    41.83s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    41.84s     Find the "otzaria-hanlin-reader-launch" Button
+    t =    42.14s     Check for interrupting elements affecting "otzaria-hanlin-reader-launch" Button
+    t =    42.45s         Wait for com.apple.springboard to idle
+    t =    42.57s     Synthesize event
+    t =    43.19s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    45.02s Waiting 30.0s for "otzaria-hanlin-allow-current-book" Switch to exist
+    t =    46.07s     Checking `Expect predicate `existsNoRetry == 1` for object "otzaria-hanlin-allow-current-book" Switch`
+    t =    46.07s         Checking existence of `"otzaria-hanlin-allow-current-book" Switch`
+    t =    46.68s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    47.25s Find the "otzaria-hanlin-consent-book-title" StaticText
+    t =    47.87s Find the "otzaria-hanlin-service-address" TextField
+    t =    48.29s Find the "otzaria-hanlin-model" TextField
+    t =    48.79s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    49.32s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    49.73s Get number of matches for: Descendants matching type Switch
+    t =    50.07s Find the Switch (Element at index 0)
+    t =    50.57s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    51.07s Find the "0" Switch
+    t =    51.53s Find the "otzaria-hanlin-allow-current-book" Switch
+    t =    51.97s Find the "0" Switch
+    t =    52.45s Find the "0" Switch
+    t =    53.06s Find the "0" Switch
+    t =    53.64s Find the "0" Switch
+    t =    54.01s Find the "0" Switch
+    t =    54.50s Waiting 30.0s for "0" Switch to exist
+    t =    55.57s     Checking `Expect predicate `existsNoRetry == 1` for object "0" Switch`
+    t =    55.57s         Checking existence of `"0" Switch`
+    t =    56.02s Find the "0" Switch
+    t =    56.37s Tap "0" Switch
+    t =    56.37s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    56.38s     Find the "0" Switch
+    t =    56.82s     Check for interrupting elements affecting "0" Switch
+    t =    57.17s         Wait for com.apple.springboard to idle
+    t =    57.23s     Synthesize event
+    t =    57.59s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    57.60s Find the "otzaria-hanlin-allow-current-book" Switch
+/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift:648: error: -[Maktabah_iOSUITests.HanlinLiveProviderAcceptanceTests testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent] : XCTAssertEqual failed: ("Optional("0")") is not equal to ("Optional("1")")
+    t =    59.42s Tear Down
+    t =    59.42s     Requesting snapshot of accessibility hierarchy for app with pid 92219
+    t =    61.60s     Requesting snapshot of accessibility hierarchy for app with pid 92219
+    t =    62.44s     Added attachment named 'r27-final-native-hierarchy'
+    t =    63.12s     Added attachment named 'r27-final-native-screen'
+    t =    63.12s     Setting device orientation to Portrait
+    t =    63.14s         Device orientation changed to Portrait
+    t =    63.72s         Interface orientation changed to Portrait
+    t =    63.73s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    64.37s         Wait for com.apple.springboard to idle
+Test Case '-[Maktabah_iOSUITests.HanlinLiveProviderAcceptanceTests testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent]' failed (66.562 seconds).
+Test Suite 'HanlinLiveProviderAcceptanceTests' failed at 2026-11-23 10:13:55.335.
+	 Executed 1 test, with 1 failure (0 unexpected) in 66.562 (66.568) seconds
+Test Suite 'Maktabah-iOSUITests.xctest' failed at 2026-11-23 10:13:55.337.
+	 Executed 1 test, with 1 failure (0 unexpected) in 66.562 (66.571) seconds
+Test Suite 'Selected tests' failed at 2026-11-23 10:13:55.337.
+	 Executed 1 test, with 1 failure (0 unexpected) in 66.562 (66.572) seconds
+2026-11-23 10:15:41.695 xcodebuild[88494:229468] [MT] IDETestOperationsObserverDebug: 190.073 elapsed -- Testing started completed.
+2026-11-23 10:15:41.695 xcodebuild[88494:229468] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-23 10:15:41.695 xcodebuild[88494:229468] [MT] IDETestOperationsObserverDebug: 190.073 sec, +190.073 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11.xcresult
+
+Failing tests:
+	HanlinLiveProviderAcceptanceTests.testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent()
+
+** TEST EXECUTE FAILED **
+
+Testing started

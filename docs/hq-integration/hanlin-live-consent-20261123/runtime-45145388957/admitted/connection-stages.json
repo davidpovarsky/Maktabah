@@ -1,0 +1,1 @@
+{"events":[{"flags":{},"reason":"none","sequence":1,"stage":"inputConsumed"},{"flags":{"hasNativeSession":true,"isPresented":true,"matchingSession":true,"retired":false},"reason":"none","sequence":2,"stage":"mountObserved"}],"overflow":false,"schemaVersion":1}

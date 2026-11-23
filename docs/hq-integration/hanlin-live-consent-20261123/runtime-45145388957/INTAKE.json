@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "observed_utc": "2026-11-23T10:32:07.330472+00:00",
+  "scope": "TERMINAL_SAME_SOURCE_INFRASTRUCTURE_RETRY_INTAKE_NO_NEW_EXECUTION",
+  "run": {
+    "id": 45145388957,
+    "attempt": 1,
+    "head_sha": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+    "application_source_sha": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45145388957",
+    "status": "completed",
+    "conclusion": "failure",
+    "completed_at": "2026-11-23T10:16:52Z",
+    "job_id": 137593287132,
+    "runner_id": 1000024550
+  },
+  "outcome": {
+    "selected": 1,
+    "executed": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "not_run": 0,
+    "selector": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+    "duration_seconds": 66.56183791160583,
+    "native_acceptance": "FAIL",
+    "provider_completed_conversations_verified": 0,
+    "provider_request_started": "NOT_REACHED_BY_ORIGINAL_TEST_CONTROL_FLOW_AND_CONNECTION_JOURNAL",
+    "native116_acceptance": false,
+    "release114_acceptance": false
+  },
+  "boundary": {
+    "phase": "RUNNING_NATIVE_XCTEST",
+    "source_path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+    "source_sha256": "9f4c35fee98102373e5961759569077833d8eb83ad427255d7f11ef2e55d5143",
+    "line": 648,
+    "assertion": "XCTAssertEqual(consent.value as? String, \"1\")",
+    "actual_value": "0",
+    "expected_value": "1",
+    "native_switch_tap_elapsed_seconds": 56.37,
+    "post_tap_parent_read_elapsed_seconds": 57.6,
+    "continue_after_failure": false,
+    "connect_line": 651,
+    "send_line": 672,
+    "observed_reason": "The post-tap consent row value remained off at the original assertion.",
+    "unresolved": [
+      "The admitted artifact excludes raw AX/screenshots; exact failed-instant target geometry and underlying SwiftUI state transition are not recorded.",
+      "A hit-target, state-update timing, or product-state cause is not distinguished by the retained evidence."
+    ],
+    "prohibited_inferences": [
+      "No provider/model failure inferred.",
+      "No search-discovery/Core repair acceptance inferred.",
+      "No consent product fix or test relaxation proposed."
+    ]
+  },
+  "preconditions": {
+    "build_status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+    "actual_source_input_count_reported_by_original_builder": 1013,
+    "toolchain": {
+      "xcode": "Xcode 27.2\nBuild version 27B52",
+      "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+      "sdk_version": "27.2"
+    },
+    "installation_attempts": [
+      {
+        "bundle": "com.davidpovarsky.chavrusatext",
+        "attempt": 1,
+        "status": "INSTALLED",
+        "appContainer": "/Users/runner/Library/Developer/CoreSimulator/Devices/6FFDAFFD-AB64-4DDC-9DBA-DB8B4363C70B/data/Containers/Bundle/Application/BB1A0B0B-B0DC-4904-9715-A1CF3FDC2B83/Maktabah.app"
+      }
+    ],
+    "native_mini_fixture_passed": true,
+    "prior_install_container_timeout_recurred": false,
+    "fixture_is_production_full_v32": false
+  },
+  "source_correspondence": {
+    "all_admission_member_hashes_verified": 22,
+    "all_execution_inputs_matched_actual_git": 284,
+    "application_trees_matched_checkout_and_original_app_source": {
+      "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+      "Source": "4b2abd687328725fb7a7f0ca635b2cab9e0f0c0b",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+    },
+    "source_before_after_identical": true,
+    "retained_binary_hashes_unchanged": 5,
+    "binary_bytes_downloaded_or_reexecuted": false,
+    "receipt_path": "SOURCE_CORRESPONDENCE.json",
+    "receipt_sha256": "a5c94e62a4b89c3cd4997fbd8f30c2162a0528af6fa2c6c701df987ccb2a0370"
+  },
+  "connection_stages": {
+    "events": [
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 1,
+        "stage": "inputConsumed"
+      },
+      {
+        "flags": {
+          "hasNativeSession": true,
+          "isPresented": true,
+          "matchingSession": true,
+          "retired": false
+        },
+        "reason": "none",
+        "sequence": 2,
+        "stage": "mountObserved"
+      }
+    ],
+    "overflow": false,
+    "schemaVersion": 1
+  },
+  "cleanup": {
+    "runner_private_input_staged": true,
+    "runner_private_input_consumed": true,
+    "runner_private_input_removed": true,
+    "runner_original_artifacts_restored": true,
+    "owned_simulator": "PASS",
+    "temporary_secret": {
+      "verification_owner": "/root",
+      "source": "Parent-provided verified HTTP cleanup receipt; no duplicate cleanup/API request by intake owner.",
+      "controller_state": "DELETED_AND_ABSENCE_VERIFIED",
+      "secret_cleanup_required": false,
+      "delete_http_status": 204,
+      "absence_http_status": 404,
+      "cleanup_utc": "2026-11-23T10:18:26.790964Z",
+      "independent_oracle_absence_http_status": 404,
+      "independent_oracle_verification_utc": "2026-11-23T10:24:56Z",
+      "secret_value_or_hash_included": false
+    }
+  },
+  "artifact": {
+    "id": 14808460459,
+    "bytes": 87230,
+    "sha256": "b95abfac3016caf61dbf4f61daa397c59fba51df910d9db43e6846c498af8b30",
+    "path": "14808460459.zip",
+    "retained_original_zip": true,
+    "unique_safe_members_crc": "PASS",
+    "expanded_bytes": 267742,
+    "admission_receipt_sha256": "c54e002087816e1858ac6c12652779d5954998ec49485eeef1a625ca08ab78ef"
+  },
+  "logs_archive": {
+    "path": "attempt-1-logs.zip",
+    "bytes": 82539,
+    "sha256": "afe43961da0b02b5a662d6f9444594aa70a297682900b737b14336c25c97c888"
+  },
+  "raw_count_caveat": "The original test-case-execution file also lists the failed selector in its missing array. Actual xcresult summary/test tree and matrix establish one executed failed case, so this intake does not relabel it NOT_RUN.",
+  "earlier_failure_preserved": {
+    "run_id": 45128868702,
+    "boundary": "INSTALL_TIMEOUT before native execution; not superseded or relabeled."
+  },
+  "actions_by_intake_owner": [
+    "One terminal run/jobs/artifact metadata read.",
+    "One exact metadata-bound artifact and one original attempt log ZIP download.",
+    "Read-only safe archive/hash/CRC/source correspondence.",
+    "No dispatch, rerun, provider request, secret mutation, product edit, or control/native test."
+  ],
+  "evidence": [
+    {
+      "path": "admitted/result.json",
+      "bytes": 1025,
+      "sha256": "347b493f5a778feb38feb2d66e19fa168b3ca8cfa684a1d5dec83c1e3aae1790"
+    },
+    {
+      "path": "admitted/faithful-ipad-matrix.json",
+      "bytes": 22906,
+      "sha256": "57b3b949419238aeec9d1d1dcdd0ec602be4630c1f5dfc175ef27f548d6e5294"
+    },
+    {
+      "path": "admitted/verified-11.summary.json",
+      "bytes": 1574,
+      "sha256": "23b3643ce0c9c3425f823db305ccf0c69309eeff8b9d144aca4c2e6321319dc2"
+    },
+    {
+      "path": "admitted/verified-11.tests.json",
+      "bytes": 2310,
+      "sha256": "dcd5118eca5bb45d5052b3868f2152f987cb5009851b19b0d71d08c0bcf360b4"
+    },
+    {
+      "path": "admitted/original-test-details.json",
+      "bytes": 2781,
+      "sha256": "ec14eadc373eb80e30cfa7d019ee4c3b11b3ac1dcadaad1961f1742922db73fd"
+    },
+    {
+      "path": "admitted/test-case-execution-11.json",
+      "bytes": 570,
+      "sha256": "e8bca950cf611d236e1d651535f4cb746f93d89e72ff007e6aa3e5c27f59f5bd"
+    },
+    {
+      "path": "admitted/test-simulator-11.log",
+      "bytes": 11608,
+      "sha256": "b1d70e72e8c95b4570903571e2f6f2184096b51281babc8653e2564c325b537d"
+    },
+    {
+      "path": "admitted/connection-stages.json",
+      "bytes": 260,
+      "sha256": "a5e1f7fcf93e7b58f7be17d8b92cee8bbbfbbdb18e8dac4916eb261f16e222f4"
+    },
+    {
+      "path": "admitted/original-build-result.json",
+      "bytes": 83603,
+      "sha256": "0f1f700276cf2127fcfa66f2c0f5774098968bdb92677c1153ba3d051663d8a5"
+    },
+    {
+      "path": "admitted/miniTest10-native-fixture-install-11.json",
+      "bytes": 1792,
+      "sha256": "b0de1be6b7e05217160f39fb4b0bd1b8ebb0cf274fb5d81b2255313d57a97519"
+    },
+    {
+      "path": "admitted/source-before.json",
+      "bytes": 64716,
+      "sha256": "d47e4841f761a1c994bd985c82efb1433b3e47028460e951e4866e958c373dc1"
+    },
+    {
+      "path": "admitted/source-after.json",
+      "bytes": 64716,
+      "sha256": "d47e4841f761a1c994bd985c82efb1433b3e47028460e951e4866e958c373dc1"
+    },
+    {
+      "path": "admitted/admission.json",
+      "bytes": 3350,
+      "sha256": "4d7b4665935a49818edd9b25456adf1430fa401743fe76edcdbd7006409205d7"
+    },
+    {
+      "path": "admitted/artifact-isolation.json",
+      "bytes": 257,
+      "sha256": "15a29bcec53ccdec76e28fcb3eceadc190ea2a7528170ecc075f57c381cebadf"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "base_sha": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+  "files": [
+    {
+      "path": "PROPOSAL.diff",
+      "bytes": 3621,
+      "sha256": "f635f446622b12bf89ae2529cf9ab2fe5ab626b12acfb1e21ffa9c457fa34eea"
+    },
+    {
+      "path": "REVIEW.md",
+      "bytes": 1613,
+      "sha256": "b2c3cf4fab2c8438c78d6d53fa769eb6023aa37492d18fe470a7f731f0dfaa55"
+    },
+    {
+      "path": "SOURCE_PROPOSAL.json",
+      "bytes": 3246,
+      "sha256": "0ee61ef816d9142c36a8ba02f42c1e59a92bf85ce8da8ce9daf8be1bdb9ac24b"
+    },
+    {
+      "path": "after.swift",
+      "bytes": 51279,
+      "sha256": "c8810b3f3c9ca42e71286f75dc255825b1a107f6baaf35ca45c93e7ff126b593"
+    },
+    {
+      "path": "before.swift",
+      "bytes": 48227,
+      "sha256": "9f4c35fee98102373e5961759569077833d8eb83ad427255d7f11ef2e55d5143"
+    }
+  ]
+}

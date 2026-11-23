@@ -1,0 +1,10 @@
+{
+  "existing_worktrees_modified": false,
+  "native_or_compiler_execution": false,
+  "new_owned_no_checkout_worktree_initialization": "Initial sparse-checkout set left the new --no-checkout index empty, so an initial clean-status assertion stopped before any source write.",
+  "observed_empty_index": true,
+  "observed_only_git_pointer_before_initialization": true,
+  "post_application_format_assertion": "The afterimage was applied exactly, but a literal comparison of git diff (which includes a function-context suffix) with difflib unified_diff stopped preparation. No commit/native action occurred. Recreated difflib bytes now exactly equal the approved proposal; the whole-file inverse is independently verified.",
+  "recovery": "git read-tree -mu HEAD initialized only this new owned sparse checkout at exactaa774; clean status required before approved source application.",
+  "source_and_evidence_recovery_complete": true
+}

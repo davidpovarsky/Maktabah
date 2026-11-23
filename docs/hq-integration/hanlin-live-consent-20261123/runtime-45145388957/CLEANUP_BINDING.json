@@ -1,0 +1,41 @@
+{
+  "observed_utc": "2026-11-23T10:33:59.467516+00:00",
+  "run_id": 45145388957,
+  "original_intake_sha256": "91ee4ca0edc05ea4459d8cfaad0f975da1318796720f2289cd1d0af8a90ad32f",
+  "scope": "READ_ONLY_JOIN_TO_ROOT_VERIFIED_HTTP_RECEIPTS_NO_DUPLICATE_REQUEST",
+  "receipts": [
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-oracle-completion-20261123/docs/hq-integration/oracle-execution-20261123/checkpoint16/live13/CLEANUP_ORIGINAL_WINDOWS.json",
+      "bytes": 397,
+      "sha256": "e5beaba6748c34188ee31fb9c876cf9d9a49519c93460b7f182e1faef1c9c5be",
+      "actual_git_source": "d721a98c6ec710d41ad7c0487c473228ca5790aa",
+      "receipt": {
+        "state": "DELETED_AND_ABSENCE_VERIFIED",
+        "before_metadata": {
+          "name": "OTZARIA_LIVE_GEMINI_API_KEY",
+          "created_at": "2026-11-23T09:15:29Z",
+          "updated_at": "2026-11-23T09:15:29Z"
+        },
+        "delete_http_status": 204,
+        "after_http_status": 404,
+        "checkout_sha": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+        "run_id": 45145388957,
+        "finished_at": "2026-11-23T10:18:26.790964+00:00"
+      }
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-oracle-completion-20261123/docs/hq-integration/oracle-execution-20261123/checkpoint16/live13/ROOT_METADATA_ABSENCE.json",
+      "bytes": 198,
+      "sha256": "5655704c3791deab29b52c72862cdcb11d19a585e7ebfd71e20fc397ba2ca3e0",
+      "actual_git_source": "d721a98c6ec710d41ad7c0487c473228ca5790aa",
+      "receipt": {
+        "http_status": 404,
+        "observed_utc": "2026-11-23T10:24:56Z",
+        "metadata_only": true,
+        "returncode": 1,
+        "stderr": "gh: Not Found (HTTP 404)\n",
+        "credential_values_or_hashes_read": false
+      }
+    }
+  ]
+}

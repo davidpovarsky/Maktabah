@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "prepared_utc": "2026-11-23T10:52:56.170435+00:00",
+  "base_source": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-hanlin-live-consent-20261123",
+  "branch": "codex/otzaria-hanlin-live-consent-20261123",
+  "source_allowlist": [
+    "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift"
+  ],
+  "owned_evidence_directory": "docs/hq-integration/hanlin-live-consent-20261123",
+  "file_ownership": "DOWNSTREAM_ORIGINAL_HANLIN_ACCEPTANCE_TEST; no application Source/Vendor/project changes",
+  "original_add_history": "e75f88b9b03e3ec3835f618e2f43539f6f0b3f67 feat(hanlin): compose original scene-owned chat and durable host history",
+  "approved_diff_sha256": "f635f446622b12bf89ae2529cf9ab2fe5ab626b12acfb1e21ffa9c457fa34eea",
+  "source_before_sha256": "9f4c35fee98102373e5961759569077833d8eb83ad427255d7f11ef2e55d5143",
+  "source_after_sha256": "c8810b3f3c9ca42e71286f75dc255825b1a107f6baaf35ca45c93e7ff126b593",
+  "root_review": "Exact53-line proposal accepted by /root in current authorized session; no proven timing cause or native acceptance",
+  "old_native_result_retained": "run45145388957 0PASS/1FAIL/0SKIP/0NOT_RUN before Connect/provider",
+  "source_check": "Exact approved afterimage copied; original credential-free10s semantic wait and original completion assertion copied verbatim; whole-file inverse in reviewed-proposal retained",
+  "native_compilation": "NOT_RUN",
+  "native_execution": "NOT_RUN",
+  "provider_called": false,
+  "credentials_accessed": false,
+  "manual_workflow_activation_owner": "/root"
+}

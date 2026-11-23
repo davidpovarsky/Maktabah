@@ -1,0 +1,38 @@
+{
+  "added_lines": 53,
+  "after_sha256": "c8810b3f3c9ca42e71286f75dc255825b1a107f6baaf35ca45c93e7ff126b593",
+  "all_other_test_bytes_preserved_by_full_inverse": true,
+  "approved_diff_sha256": "f635f446622b12bf89ae2529cf9ab2fe5ab626b12acfb1e21ffa9c457fa34eea",
+  "base_source": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+  "before_sha256": "9f4c35fee98102373e5961759569077833d8eb83ad427255d7f11ef2e55d5143",
+  "credential_access": false,
+  "entire_file_inverse_exact": true,
+  "native_compile": "NOT_RUN",
+  "native_execution": "NOT_RUN",
+  "observed_utc": "2026-11-23T10:56:15.024697+00:00",
+  "old_guard_exact_conflict": "Existing guard requires all UI test bytes to match the prior original app. The approved test-only change requires a new separate inverse source guard; the old guard and its historical controls remain exact.",
+  "old_live13_guard_invoked": false,
+  "only_edit_opcode": {
+    "after_end_0": 700,
+    "after_start_0": 647,
+    "before_end_0": 647,
+    "before_start_0": 647,
+    "kind": "insert"
+  },
+  "original_application_source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+  "original_completion_assertion_copied_verbatim": true,
+  "original_product_trees": {
+    "Maktabah-iOSUITests": "f480f0cd64100f752620fbb5a22a5b77fb612fae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Source": "4b2abd687328725fb7a7f0ca635b2cab9e0f0c0b",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "original_semantic_wait_copied_verbatim": true,
+  "original_tap_count_unchanged": true,
+  "product_source_vendor_project_same_as_869": true,
+  "provider_action": false,
+  "regenerated_unified_diff_bytes_exact": true,
+  "removed_lines": 0,
+  "schema_version": 1,
+  "test_path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift"
+}

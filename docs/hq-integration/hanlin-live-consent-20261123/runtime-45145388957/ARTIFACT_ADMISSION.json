@@ -1,0 +1,257 @@
+{
+  "observed_utc": "2026-11-23T10:28:57.854407+00:00",
+  "run_id": 45145388957,
+  "attempt": 1,
+  "source_sha": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+  "free_before_bytes": 2918227968,
+  "free_after_bytes": 2917326848,
+  "archives": [
+    {
+      "archive": "14808460459.zip",
+      "bytes": 87230,
+      "sha256": "b95abfac3016caf61dbf4f61daa397c59fba51df910d9db43e6846c498af8b30",
+      "metadata_bound": true,
+      "crc": "PASS",
+      "unique_safe_paths": "PASS",
+      "expanded_bytes": 267742,
+      "files": [
+        {
+          "path": "admitted/admission.json",
+          "bytes": 3350,
+          "sha256": "4d7b4665935a49818edd9b25456adf1430fa401743fe76edcdbd7006409205d7"
+        },
+        {
+          "path": "admitted/app-group-resolver-interface.json",
+          "bytes": 678,
+          "sha256": "8854e1f916fbcbde204c22f40d46714951bb6a4e2fa67efe08d3daf014da75c8"
+        },
+        {
+          "path": "admitted/artifact-isolation.json",
+          "bytes": 257,
+          "sha256": "15a29bcec53ccdec76e28fcb3eceadc190ea2a7528170ecc075f57c381cebadf"
+        },
+        {
+          "path": "admitted/connection-stages.json",
+          "bytes": 260,
+          "sha256": "a5e1f7fcf93e7b58f7be17d8b92cee8bbbfbbdb18e8dac4916eb261f16e222f4"
+        },
+        {
+          "path": "admitted/declarations.json",
+          "bytes": 378,
+          "sha256": "0fed38adfa5d55010a9ff2993f6c83a6705e3bddb17eebe69f2461c277136a77"
+        },
+        {
+          "path": "admitted/fixture-container.json",
+          "bytes": 842,
+          "sha256": "622af5e4d4b9db6f1676993779a082a31559aff73f4e49b738bfe427a3482381"
+        },
+        {
+          "path": "admitted/faithful-ipad-matrix.json",
+          "bytes": 22906,
+          "sha256": "57b3b949419238aeec9d1d1dcdd0ec602be4630c1f5dfc175ef27f548d6e5294"
+        },
+        {
+          "path": "admitted/fixture-oracle-11.json",
+          "bytes": 1071,
+          "sha256": "52c2065316feeaf2804f4eb106f7e5d867b6403f78b24aadba815d6bf7d39c11"
+        },
+        {
+          "path": "admitted/fixture-query.json",
+          "bytes": 1437,
+          "sha256": "bbda89fe304eb433eb56f8a55994a59b863490d953efce7af6aea0898059575e"
+        },
+        {
+          "path": "admitted/miniTest10-native-fixture-install-11.json",
+          "bytes": 1792,
+          "sha256": "b0de1be6b7e05217160f39fb4b0bd1b8ebb0cf274fb5d81b2255313d57a97519"
+        },
+        {
+          "path": "admitted/original-build-result.json",
+          "bytes": 83603,
+          "sha256": "0f1f700276cf2127fcfa66f2c0f5774098968bdb92677c1153ba3d051663d8a5"
+        },
+        {
+          "path": "admitted/original-test-details.json",
+          "bytes": 2781,
+          "sha256": "ec14eadc373eb80e30cfa7d019ee4c3b11b3ac1dcadaad1961f1742922db73fd"
+        },
+        {
+          "path": "admitted/ownership.json",
+          "bytes": 256,
+          "sha256": "82cc4c770a2bea3c1d3afc2dea0801bf4c1af72ca325776f3d36bfe8701b59cc"
+        },
+        {
+          "path": "admitted/result.json",
+          "bytes": 1025,
+          "sha256": "347b493f5a778feb38feb2d66e19fa168b3ca8cfa684a1d5dec83c1e3aae1790"
+        },
+        {
+          "path": "admitted/python-oracle-environment.json",
+          "bytes": 654,
+          "sha256": "77d23e83351b75870dc60ce65ab1eb712b91cda9fa31044314d588316aecef92"
+        },
+        {
+          "path": "admitted/selection.json",
+          "bytes": 642,
+          "sha256": "2ee3649a010b596b1cfea694455fde5e511de3eac55704a8892d37789a1e6cea"
+        },
+        {
+          "path": "admitted/source-after.json",
+          "bytes": 64716,
+          "sha256": "d47e4841f761a1c994bd985c82efb1433b3e47028460e951e4866e958c373dc1"
+        },
+        {
+          "path": "admitted/source-before.json",
+          "bytes": 64716,
+          "sha256": "d47e4841f761a1c994bd985c82efb1433b3e47028460e951e4866e958c373dc1"
+        },
+        {
+          "path": "admitted/test-case-execution-11.json",
+          "bytes": 570,
+          "sha256": "e8bca950cf611d236e1d651535f4cb746f93d89e72ff007e6aa3e5c27f59f5bd"
+        },
+        {
+          "path": "admitted/test-simulator-11.log",
+          "bytes": 11608,
+          "sha256": "b1d70e72e8c95b4570903571e2f6f2184096b51281babc8653e2564c325b537d"
+        },
+        {
+          "path": "admitted/verified-11.json",
+          "bytes": 316,
+          "sha256": "a737c37bfb34a2ab5135897e99c133e31dd5c941a6cae541b2a5b93717e06162"
+        },
+        {
+          "path": "admitted/verified-11.summary.json",
+          "bytes": 1574,
+          "sha256": "23b3643ce0c9c3425f823db305ccf0c69309eeff8b9d144aca4c2e6321319dc2"
+        },
+        {
+          "path": "admitted/verified-11.tests.json",
+          "bytes": 2310,
+          "sha256": "dcd5118eca5bb45d5052b3868f2152f987cb5009851b19b0d71d08c0bcf360b4"
+        }
+      ]
+    },
+    {
+      "archive": "attempt-1-logs.zip",
+      "bytes": 82539,
+      "sha256": "afe43961da0b02b5a662d6f9444594aa70a297682900b737b14336c25c97c888",
+      "metadata_bound": false,
+      "crc": "PASS",
+      "unique_safe_paths": "PASS",
+      "expanded_bytes": 338217,
+      "files": [
+        {
+          "path": "logs/0_Original app, live provider, canonical Core and native source return.txt",
+          "bytes": 168691,
+          "sha256": "e2c2a27bd3638168419baf0af8b51a643e2a4465a35a865f4bb61aea42bca434"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/system.txt",
+          "bytes": 778,
+          "sha256": "f7f14d55f9adaab7baefb47c10aecdf2223e1c345daae1b64ad5810978cb4711"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/1_Set up job.txt",
+          "bytes": 2790,
+          "sha256": "cee40d8831bfd23884e01b040d4b184172f4d0b1ed9f07963449496b61a37356"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/2_Run actions_checkout@v4.txt",
+          "bytes": 51398,
+          "sha256": "aca5de84f3793dca5539f93884bb26a9c6bc67d4c30abaa1e8771910a3a88327"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/3_Verify the immutable Live13 cold-search repair source boundary.txt",
+          "bytes": 3715,
+          "sha256": "de9758be36a627352ebe08b7ec51518c23b16e7716bd519db8246b8a8b044a91"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/4_Require the reviewed existing credential configuration.txt",
+          "bytes": 926,
+          "sha256": "479103ac440653b03244add1dc216c7dfb20dcd31fb23bf2d87798b3934894f0"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/5_Select an existing SDK-matched runtime.txt",
+          "bytes": 1312,
+          "sha256": "71605e52ad7b614d637989f273430ef9ec76288cb5eb90ce06a0c0cde63130fe"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/6_Verify the real Simulator App Group resolver interface.txt",
+          "bytes": 1944,
+          "sha256": "e998acf0ffe5ac151d3991a023392c493b6cad03de7809d7a3e0f27f22bf6009"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/7_Select CPython supported by the original decoder wheel.txt",
+          "bytes": 1255,
+          "sha256": "656cf7059e11c8cf4995a1c5d42274c8d58cc74e8384a9878eed8264bda2d833"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/8_Prepare and verify the original SQL decoder dependency.txt",
+          "bytes": 5559,
+          "sha256": "2c8713c286b340f4eeb51b841c5699c1baee6b7c3254e145251f4d3665662558"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/9_Run actions_setup-node@v4.txt",
+          "bytes": 1752,
+          "sha256": "390fe142adf56320db548ac182c8f68c8fba9a104f1bdf2d804b1bdcdca8636a"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/10_Run ruby_setup-ruby@v1.txt",
+          "bytes": 2743,
+          "sha256": "94942f7ca149347ff0892a67ce33b5b863d85f81e3917c8bf2f13117b3e3e7e6"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/11_Read source-pinned Zayit build mode.txt",
+          "bytes": 2274,
+          "sha256": "af4a8b9ab6aa322ed4ec32a396b964c7801700d7ef2a292681d6c356003fe266"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/13_Key disposable compiler cache by real SDK and native inputs.txt",
+          "bytes": 3677,
+          "sha256": "cf28b92fd8ce199370d933274aa1fb844f7522314ec2dbff26ef291b215de9c3"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/14_Run actions_cache_restore@v4.txt",
+          "bytes": 5493,
+          "sha256": "3789b03d9d88c39908b21fa6642cd55fc3004fde28f097fbf3a26feb61c212ac"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/15_Build the original app and original UI test runner once.txt",
+          "bytes": 48064,
+          "sha256": "034bfdd557f8537179d6133febde9a31e343b5dd9a8faebe1b97b24188fcccf8"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/16_Retain compiler cache only after an actual matching test build.txt",
+          "bytes": 2398,
+          "sha256": "f4a0a408e4a57217a50e5d8d688e5b57f2379f4858c2002bd3f0fbc83aa4562a"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/18_Execute one original live Native case and admit bounded evidence.txt",
+          "bytes": 24511,
+          "sha256": "51c3c0cf97037df95cb17212ea22d27b30baafde962fd99124c038ce6725acc0"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/19_Verify private input removal and original evidence restoration.txt",
+          "bytes": 1948,
+          "sha256": "d0a4f2b309fd972e8e7b0d84ee9e35dc29cc36df5e8fe873bae14ce4012d55f5"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/20_Publish only admitted credential-scanned evidence.txt",
+          "bytes": 3558,
+          "sha256": "98503e666ccf967ad952f0818c89fbbe3da62ffc88b328c6c95771c48290273a"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/40_Post Run actions_checkout@v4.txt",
+          "bytes": 2981,
+          "sha256": "9514ae9e082b92e70ba32501d50b6a09a84b2a583eab13bdab203564ab602790"
+        },
+        {
+          "path": "logs/Original app, live provider, canonical Core and native source return/41_Complete job.txt",
+          "bytes": 450,
+          "sha256": "5dd27ad026848cb0f74f07c24a2d8f6a1b85c3014d51ec19ab671a77dbdc7670"
+        }
+      ]
+    }
+  ]
+}
