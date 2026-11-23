@@ -1,4 +1,7 @@
 import Foundation
+#if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+import AnytypeOriginalEditor
+#endif
 
 /// A local host session for an already-saved annotation, obtained from the
 /// original AnnotationStore. Mounting an original Anytype editor is a separate
@@ -255,4 +258,21 @@ extension AnnotationLocalEditorSession {
             worker.cancel()
         }
     }
+}
+
+extension AnnotationLocalEditorSession {
+    /// No SQL or asynchronous work. This observes the same private preparation
+    /// and the original captured session/database generations only.
+    func ownsNativePreparation(_ prepared: AnnotationLocalEditorNativePreparation) -> Bool {
+        persistence.ownsNativePreparation(prepared)
+    }
+
+    #if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+    func bindNativeImportRetirement(
+        _ source: AnytypeOriginalAnnotationImportSourceLifetime,
+        prepared: AnnotationLocalEditorNativePreparation
+    ) throws {
+        try persistence.bindNativeImportRetirement(source, prepared: prepared)
+    }
+    #endif
 }

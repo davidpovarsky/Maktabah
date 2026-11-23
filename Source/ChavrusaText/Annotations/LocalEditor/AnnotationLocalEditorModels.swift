@@ -1,6 +1,9 @@
 import Foundation
 import Synchronization
 import OtzariaActionCore
+#if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+import AnytypeOriginalEditor
+#endif
 
 enum AnnotationLocalEditorError: Error, Sendable, Equatable {
     case noConnection, retired, busy, wrongOwner, wrongProfile, missingAnnotation
@@ -8,26 +11,75 @@ enum AnnotationLocalEditorError: Error, Sendable, Equatable {
     case invalidPreview, invalidIntent, corruptRecord
 }
 
-/// A synchronous, one-way lifetime. Retirement never acquires another lock or
-/// calls client code. The opt-in completion's critical section is entered only
-/// after the original SQLite lock; it cannot await or call a transport/client.
+/// A synchronous, one-way lifetime. Retirement performs no I/O or client
+/// callbacks. The optional closed SDK link invalidates its exact native token
+/// before this lock is released; that SDK entry schedules observer delivery
+/// separately. It never reenters a Host lifetime, repository or SQLite lock.
 /// Reopening the same file cannot revive a retired editor.
 final class AnnotationLocalEditorLifetime: Sendable {
-    private let retired = Mutex(false)
-    func retire() { retired.withLock { $0 = true } }
-    var isCurrent: Bool { retired.withLock { !$0 } }
+    private struct State: Sendable {
+        var retired = false
+        #if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+        struct NativeImportLink: Sendable {
+            weak var source: AnytypeOriginalAnnotationImportSourceLifetime?
+        }
+        var nativeImports: [NativeImportLink] = []
+        #endif
+    }
+    private let state = Mutex(State())
+
+    func retire() {
+        #if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+        let retained = state.withLock { value -> [AnytypeOriginalAnnotationImportSourceLifetime] in
+            guard !value.retired else { return [] }
+            value.retired = true
+            let sources = value.nativeImports.compactMap { $0.source }
+            value.nativeImports.removeAll()
+            for source in sources { source.retire() }
+            return sources
+        }
+        // A last strong release/deinit must occur outside this Host lock too.
+        withExtendedLifetime(retained) {}
+        #else
+        state.withLock { $0.retired = true }
+        #endif
+    }
+
+    var isCurrent: Bool { state.withLock { !$0.retired } }
     func requireCurrent() throws {
         guard isCurrent else { throw AnnotationLocalEditorError.retired }
     }
 
     /// Internal DB completion boundary. Callers must already own their original
-    /// SQLite lock and must not reenter this lifetime from `body`.
+    /// SQLite lock and must not reenter this lifetime from body.
     func withCurrent<Value>(_ body: () throws -> Value) throws -> Value {
-        try retired.withLock { value in
-            guard !value else { throw AnnotationLocalEditorError.retired }
+        try state.withLock { value in
+            guard !value.retired else { throw AnnotationLocalEditorError.retired }
             return try body()
         }
     }
+
+    #if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+    /// Called only for a newly prepared exact saved-row owner, outside every
+    /// Host transaction/repository lock. There is no arbitrary observer closure.
+    /// An already retired parent also retires the incoming SDK token before
+    /// returning; separate parent registrations therefore have no admission gap.
+    func bindNativeImportRetirement(_ source: AnytypeOriginalAnnotationImportSourceLifetime) throws {
+        let retained = try state.withLock { value in
+            guard !value.retired, source.isCurrent else {
+                source.retire()
+                throw AnnotationLocalEditorError.retired
+            }
+            let sources = value.nativeImports.compactMap { $0.source }
+            value.nativeImports = sources.map { .init(source: $0) }
+            if !sources.contains(where: { $0 === source }) {
+                value.nativeImports.append(.init(source: source))
+            }
+            return sources
+        }
+        withExtendedLifetime(retained) {}
+    }
+    #endif
 }
 
 /// Captured together under the original repository's state lock. The mapper is

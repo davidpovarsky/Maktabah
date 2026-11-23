@@ -1,6 +1,9 @@
 import Foundation
 import SQLite3
 import OtzariaActionCore
+#if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+import AnytypeOriginalEditor
+#endif
 
 /// Local annotation persistence on the original captured handle. This is not an
 /// Anytype document store, importer, transport, or replacement editor renderer.
@@ -706,6 +709,37 @@ extension AnnotationLocalEditorPersistence {
             return receipt
         }
     }
+
+    /// Memory-only ownership of the same privately constructed preparation.
+    /// The SDK currentness callback must never call the database/CAS observer.
+    func ownsNativePreparation(_ prepared: AnnotationLocalEditorNativePreparation) -> Bool {
+        prepared.storage === self && prepared.observation.observedBy === self
+            && prepared.snapshot.sessionID == sessionID && isOwned
+    }
+
+    #if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+    func bindNativeImportRetirement(
+        _ source: AnytypeOriginalAnnotationImportSourceLifetime,
+        prepared: AnnotationLocalEditorNativePreparation
+    ) throws {
+        guard prepared.storage === self, prepared.observation.observedBy === self else {
+            source.retire()
+            throw AnnotationLocalEditorNativeAttemptError.wrongPreparation
+        }
+        do {
+            // Register separately, never from withNativeAttemptCommit/withCurrent.
+            // Either original parent can synchronously close the exact SDK token.
+            try owner.bindNativeImportRetirement(source)
+            try connection.lifetime.bindNativeImportRetirement(source)
+            guard ownsNativePreparation(prepared), source.isCurrent else {
+                throw AnnotationLocalEditorError.retired
+            }
+        } catch {
+            source.retire()
+            throw error
+        }
+    }
+    #endif
 
     /// Delivery classification cannot hide an actual committed attempt receipt.
     func canDeliverNativeSnapshot(_ snapshot: AnnotationLocalEditorSnapshot) -> Bool {

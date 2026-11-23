@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-23T18:29:56.181860+00:00",
+  "base": "539a45c1744512da600835115dace02d9ae7ac23",
+  "branch": "codex/otzaria-host-import-join-20261123",
+  "owner": "/root",
+  "sdk_dependency": {
+    "repository": "davidpovarsky/anytype-swift",
+    "source": "4fd99f19b0ec361ba84ac4b2822cae10c6818f99",
+    "public_facade_sha256": "d2bbfd5c487b98aef68a77aa357646ca8620c642264b5690b30600a294638b38",
+    "lifetime_sha256": "666a249b6efd8b6f55f95be9903495ba96cddfb311c43ba908eda233aaee3e49",
+    "component_control_receipt_sha256": "0af52086fdf827a3d163cfef19096f6a1a178c9eba2ffa25123d12d8eccebc8d",
+    "whole_sdk_acceptance": false
+  },
+  "upstream": {
+    "remote": "https://github.com/bismillah-100/Maktabah",
+    "observed_head": "eac633bc469859573fdaaf7029d0a6ae68c21817",
+    "merge_base": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+    "operation": "READ_ONLY_PROVENANCE_NO_UPSTREAM_MERGE",
+    "downstream_paths_absent_from_upstream": true
+  },
+  "authorization": "2026-11-19 standing owner authorization in AGENTS.md plus current user continuation; no additional permission request",
+  "product_files": [
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "classification": "SHARED_INTEGRATION_SEAM",
+      "sha256": "4b0e0b54ae37282dd6b9218097abcedadcafe3f29e4738cfd50017f123f098fa",
+      "bytes": 602975,
+      "change": "Four additive iOS file-membership lines only"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+      "classification": "DOWNSTREAM_OWNED",
+      "sha256": "4935e1b6cd208951cc6848e46f62b0723c4a9c835eac77229ae756ba8b747987",
+      "bytes": 6216,
+      "change": "Closed exact-source import bridge / synchronous retirement link"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "classification": "DOWNSTREAM_OWNED",
+      "sha256": "4a2b163e60a965f97033b79740d40bc3a82c7eaa8154792d38d3cbbb283a174d",
+      "bytes": 58436,
+      "change": "Closed exact-source import bridge / synchronous retirement link"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+      "classification": "DOWNSTREAM_OWNED",
+      "sha256": "5d0b7b504b0019f666c15e5dd45ef7ed46986d4648a23bf33448cd6e0b6f65a1",
+      "bytes": 14178,
+      "change": "Closed exact-source import bridge / synchronous retirement link"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift",
+      "classification": "DOWNSTREAM_OWNED",
+      "sha256": "ed35c57478d84fb892541ef2a92e34f30fc6fa5d66d13101cc08abeaedefed13",
+      "bytes": 7749,
+      "change": "Closed exact-source import bridge / synchronous retirement link"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorImport.swift",
+      "classification": "DOWNSTREAM_OWNED",
+      "sha256": "9adf1457dc15f81404892a75babd637df44e568d0ddb7b067e7a2402743fcc06",
+      "bytes": 12310,
+      "change": "Closed exact-source import bridge / synchronous retirement link"
+    }
+  ],
+  "source_checks": {
+    "project_four_line_inverse": "PASS",
+    "swift_frontend_parse": "PASS_SYNTAX_ONLY_LINUX",
+    "diff_check": "PASS",
+    "repository_setup_connect_disconnect": "UNCHANGED",
+    "existing_SQL_transactions_CAS_receipts": "UNCHANGED",
+    "existing_native_mount_save_and_UI": "UNCHANGED",
+    "no_import_from_historical_observation": "PRIVATE_PREPARATION_STORAGE_IDENTITY_REQUIRED",
+    "source_currentness": "MEMORY_ONLY_ORIGINAL_OWNERS_NO_SQL",
+    "recorded_without_ownership": "RECEIPT_RETAINED_NO_NATIVE_INVOCATION",
+    "possible_dispatch": "ORIGINAL_SQLITE_TRANSITION_BEFORE_EXACT_ONE_USE_SDK_HANDLE",
+    "retirement": "EXACT_SDK_TOKEN_INVALIDATED_UNDER_EACH_ORIGINAL_HOST_FLAG_LOCK_NO_SYNCHRONOUS_CLIENT_CALLBACK",
+    "weak_links": "UPGRADED_REFERENCES_RETAINED_UNTIL_AFTER_HOST_LOCK",
+    "full_App_SDK_typecheck": "NOT_RUN",
+    "native_runtime": "NOT_RUN",
+    "device_acceptance": "NOT_RUN"
+  },
+  "required_native_controls": [
+    "Actual SDK token is dead synchronously for session retirement and task cancellation",
+    "Actual captured DB disconnect/reopen ABA; stale teardown does not retire replacement",
+    "Late dead-parent binding and retirement between separate registrations",
+    "Wrong actual preparation storage rejected",
+    "Committed recordedWithoutOwnership retains receipt and performs no native invocation",
+    "Callback/native reentry cannot occur on locked Host stack; actual original drain once",
+    "Weak source release and stale-link pruning",
+    "Actual saved-row preparation, real selected account/Space, dispatch transition, original Import/Cancel and complete late drained history"
+  ],
+  "status": "SOURCE_CANDIDATE_NATIVE_AND_FULL_FRAMEWORK_ACCEPTANCE_PENDING",
+  "independent_source_review": {
+    "reviewer": "/root/import_rpc",
+    "sdk_source": "4fd99f19b0ec361ba84ac4b2822cae10c6818f99",
+    "scope": "Complete277-line Host join, exact typed lifetime links, minted-owner binder, source observations",
+    "result": "NO_API_MISMATCH_OR_ORDERING_DEFECT_FOUND",
+    "native_acceptance": false
+  }
+}

@@ -1408,6 +1408,7 @@
 		0A5B8A034B694C2818E41C8A /* AnnotationOriginalEditorMount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582DC05D9E1950BEEE7D085 /* AnnotationOriginalEditorMount.swift */; };
 		C618B79C91FD2056B24F707B /* AnnotationOriginalEditorQualification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E859C54909759C046AAFE93F /* AnnotationOriginalEditorQualification.swift */; };
 		99F17897FA4D1681FA1511C9 /* AnnotationOriginalEditorSourceObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E8F4C005D15A968E44F0E9 /* AnnotationOriginalEditorSourceObservation.swift */; };
+		C30699DF5D3EC650036888A0 /* AnnotationOriginalEditorImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EE8342C312244E463A7092 /* AnnotationOriginalEditorImport.swift */; };
 		072BBF47E208223DA5B0A671 /* AnnotationOriginalEditorQualificationUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463EBB14A3F80237EF0281C /* AnnotationOriginalEditorQualificationUI.swift */; };
 		D53431901967F0A4306B12C9 /* AnnotationCloudImportIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7EA042320763A3F4B6F56 /* AnnotationCloudImportIdentity.swift */; };
 		C343FB0FE023FF926FAB63EC /* AnnotationCloudImportIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7EA042320763A3F4B6F56 /* AnnotationCloudImportIdentity.swift */; };
@@ -2209,6 +2210,7 @@
 		7582DC05D9E1950BEEE7D085 /* AnnotationOriginalEditorMount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorMount.swift"; sourceTree = "<group>"; };
 		E859C54909759C046AAFE93F /* AnnotationOriginalEditorQualification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift"; sourceTree = "<group>"; };
 		96E8F4C005D15A968E44F0E9 /* AnnotationOriginalEditorSourceObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift"; sourceTree = "<group>"; };
+		62EE8342C312244E463A7092 /* AnnotationOriginalEditorImport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorImport.swift"; sourceTree = "<group>"; };
 		B463EBB14A3F80237EF0281C /* AnnotationOriginalEditorQualificationUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift"; sourceTree = "<group>"; };
 		74A7EA042320763A3F4B6F56 /* AnnotationCloudImportIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/AnnotationCloudImportIdentity.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2296,6 +2298,7 @@
 				7582DC05D9E1950BEEE7D085 /* AnnotationOriginalEditorMount.swift */,
 				E859C54909759C046AAFE93F /* AnnotationOriginalEditorQualification.swift */,
 				96E8F4C005D15A968E44F0E9 /* AnnotationOriginalEditorSourceObservation.swift */,
+				62EE8342C312244E463A7092 /* AnnotationOriginalEditorImport.swift */,
 				B463EBB14A3F80237EF0281C /* AnnotationOriginalEditorQualificationUI.swift */,
 				CF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */,
 				5C779026CC573B19C11E67E9 /* TorahAnnotationEnvelope.swift */,
@@ -5053,6 +5056,7 @@
 				0A5B8A034B694C2818E41C8A /* AnnotationOriginalEditorMount.swift in Sources */,
 				C618B79C91FD2056B24F707B /* AnnotationOriginalEditorQualification.swift in Sources */,
 				99F17897FA4D1681FA1511C9 /* AnnotationOriginalEditorSourceObservation.swift in Sources */,
+				C30699DF5D3EC650036888A0 /* AnnotationOriginalEditorImport.swift in Sources */,
 				072BBF47E208223DA5B0A671 /* AnnotationOriginalEditorQualificationUI.swift in Sources */,
 				D238792D20CAE8596B84D69F /* AnnotationExchangeLedger.swift in Sources */,
 				AB467DB193BB97E635A4C008 /* AnnotationLocalEditorModels.swift in Sources */,
