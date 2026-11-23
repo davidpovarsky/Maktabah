@@ -15,7 +15,7 @@ import sys
 import uuid
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = "PENDING_REVIEWED_STAGE_B_PROCESS_SOURCE"
+SOURCE = "1969b2065469b55e38e42cbb838a469ffa6a80f7"
 SELECTOR = "OriginalEditorAnnotationAcceptanceTests/testSavedBlankAnnotationUsesOriginalEditorAndReopensMixedBlocksAfterProcessRelaunch"
 MARKER = "owned-local-only"
 BUNDLE = "com.davidpovarsky.chavrusatext"
@@ -78,9 +78,12 @@ def runtime_dependency_preflight():
     pending = [ci / name for name in ["runtime27.py", "run-faithful-ipad-matrix.py",
                "prepare-faithful-ipad-fixtures.py", "runtime27-fixture-oracle.py", "verify-faithful-xctest.py",
                "hq-original-editor-distribution.py", "restore-original-editor-distribution.py"]]
-    if json.loads(ADMISSION.read_bytes()).get("schema") == 2:
+    sdk_input = json.loads(ADMISSION.read_bytes())
+    if sdk_input.get("schema") == 2:
         pending.append(ci / "original_editor_continuation_admission.py")
         pending.append(ci / "original_editor_clang_imports.py")
+        if sdk_input.get("continuation_kind") == "original-signed-consumer-runtime/1":
+            pending.append(ci / "original_editor_signed_consumer_admission.py")
     checked, imported = {}, set()
     while pending:
         path = pending.pop()

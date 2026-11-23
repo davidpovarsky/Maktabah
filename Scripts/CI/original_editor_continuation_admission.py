@@ -10,6 +10,7 @@ import io
 import json
 from pathlib import Path
 import re
+import runpy
 import shutil
 import stat
 import subprocess
@@ -26,6 +27,14 @@ RUNTIME_REQUIRED_STEPS = ["Verify continuation controls", "Qualify retained orig
 RUNTIME_UPLOAD_STEP = "Upload runtime continuation evidence"
 RUNTIME_WRAPPER = "runtime-continuation-evidence.zip"
 RUNTIME_IDENTITY_KEYS = ("repository", "repository_id", "control_sha", "run_id", "run_attempt", "workflow_path", "head_branch", "job_name")
+
+
+def signed_consumer_route(config):
+    """Keep the original rebuild route intact; opt into the exact retained app."""
+    if config.get("continuation_kind") == "original-signed-consumer-runtime/1":
+        return runpy.run_path(str(Path(__file__).with_name("original_editor_signed_consumer_admission.py")))
+    require("continuation_kind" not in config, "Unknown original continuation kind")
+    return None
 
 def digest(path):
     with Path(path).open("rb") as stream:
@@ -118,6 +127,9 @@ def extract_original_evidence(outer_path, work, producer):
 
 
 def validate_configuration(config):
+    signed = signed_consumer_route(config)
+    if signed:
+        return signed["validate_configuration"](config)
     require(type(config.get("schema")) is int and config["schema"] == 2 and config.get("repository") == REPOSITORY, "Wrong continuation admission schema")
     framework = config.get("framework_producer", {})
     require(hashlib.sha256(json.dumps(framework, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
@@ -163,7 +175,7 @@ def validate_configuration(config):
     return framework, runtime
 
 
-def verify_role_metadata(role, run, job, artifact, expected_artifact, *, framework):
+def verify_role_metadata(role, run, job, artifact, expected_artifact, *, framework, upload_log=None):
     head = role["source_sha"] if framework else role["control_sha"]
     conclusion = "failure" if framework else "success"
     require(run.get("id") == role["run_id"] and run.get("run_attempt") == role["run_attempt"]
@@ -197,11 +209,20 @@ def verify_role_metadata(role, run, job, artifact, expected_artifact, *, framewo
             and origin.get("head_branch") == role["head_branch"], "Artifact has the wrong producer role")
     instant = lambda value: datetime.fromisoformat(value.replace("Z", "+00:00"))
     created = instant(artifact["created_at"])
-    require(instant(upload["started_at"]) <= created <= instant(upload["completed_at"])
-            and instant(job["started_at"]) <= created <= instant(job["completed_at"]), "Artifact was not created by its declared upload")
+    require(instant(job["started_at"]) <= created <= instant(job["completed_at"]),
+            "Artifact was not created by its declared upload")
+    if upload_log is None:
+        require(instant(upload["started_at"]) <= created <= instant(upload["completed_at"]),
+                "Artifact was not created by its declared upload")
+        return None
+    signed = runpy.run_path(str(Path(__file__).with_name("original_editor_signed_consumer_admission.py")))
+    return signed["verify_exact_upload_log"](role, upload, artifact, expected_artifact, upload_log)
 
 
 def validate_qualification(config, qualification, *, surface=None):
+    signed = signed_consumer_route(config)
+    if signed:
+        return signed["validate_qualification"](config, qualification, surface=surface)
     framework, runtime = validate_configuration(config)
     require(type(qualification.get("schema")) is int and qualification["schema"] == 2 and qualification.get("kind") == "ORIGINAL_FRAMEWORK_RUNTIME_CONTINUATION"
             and qualification.get("status") == QUALIFIED and qualification.get("phase") == "COMPLETE",
@@ -246,12 +267,21 @@ def validate_paths(root, config, sdk):
     paths = [config[k] for k in ["distribution_manifest_path", "hanlin_source_path", "qualification_path"]]
     paths += [config[k]["path"] for k in ["framework_artifact", "evidence_artifact"]]
     paths += [config["runtime_qualification_producer"]["evidence_artifact"]["path"]]
+    if signed_consumer_route(config):
+        paths += [config["retained_execution_path"]]
     require(len(paths) == len(set(paths)), "Role-specific input paths alias")
     for relative in paths:
         path = sdk["owned_path"](root, relative, build=True)
         require(path != distribution and not path.is_relative_to(distribution) and not distribution.is_relative_to(path),
                 "Sidecar or archive would change the original product inventory")
     return distribution
+
+
+def compiled_host_receipt(root, config, qualification, sdk):
+    signed = signed_consumer_route(config)
+    if signed:
+        return signed["compiled_host_receipt"](root, config, qualification, sdk)
+    return sdk["require_compiled_host_api"](qualification)
 
 
 def write_exact(path, raw):
@@ -303,6 +333,9 @@ def runtime_payload(archive, config):
 
 
 def stage(root, config, evidence, sdk, download):
+    signed = signed_consumer_route(config)
+    if signed:
+        return signed["stage"](root, config, evidence, sdk, download)
     framework, runtime = validate_configuration(config)
     destination = validate_paths(root, config, sdk)
     def api(endpoint, label):

@@ -238,11 +238,25 @@ def verify_absence_receipt(root, directory, proof, *, reused=None):
                     "Original full binary proof is missing or changed")
 
 
-def require_compiled_host_api(qualification):
+def require_compiled_host_api(qualification, *, retained_original=None):
     """Admit the original producer's compiled API proof, never editor execution."""
     public_api = "EXPOSED_COMPILED_NATIVE_EDITOR_NOT_RUN"
     probe = qualification.get("compiled_consumer_api_probe_sha256")
-    require(qualification.get("public_host_api") == public_api
+    public_host_api = qualification.get("public_host_api")
+    if retained_original is not None:
+        # The new run restores the signed consumer. Its public API proof belongs
+        # to the exact successful original build, whose failed runtime is kept.
+        require(qualification.get("kind") == "ORIGINAL_SIGNED_CONSUMER_RUNTIME_CONTINUATION"
+                and hashlib.sha256(json.dumps(retained_original, sort_keys=True,
+                    separators=(",", ":")).encode()).hexdigest()
+                    == "5433db38125e3fd7827cf2694e508c44796a7b48fe532222f0f847be54f214d7"
+                and retained_original.get("original_framework_build") == "PASS"
+                and retained_original.get("external_consumer_build") == "PASS"
+                and retained_original.get("compiled_consumer_api_probe_sha256") == probe
+                and retained_original.get("actual_public_surface") == qualification.get("actual_public_surface"),
+                "Retained public Host proof differs from the original compiled producer")
+        public_host_api = retained_original.get("public_host_api")
+    require(public_host_api == public_api
             and qualification.get("editable_mount") == "API_COMPILED_NATIVE_UI_NOT_RUN"
             and type(qualification.get("native_editor_ui_tests")) is int
             and qualification["native_editor_ui_tests"] == 0
@@ -307,7 +321,8 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
                 and qualification.get("external_consumer_build") == "PASS"
                 and qualification.get("same_toolchain_only") is True,
                 "SDK lacks the original framework/external consumer prerequisites")
-    compiled_host_api = require_compiled_host_api(qualification)
+    compiled_host_api = (continuation["compiled_host_receipt"](root, config, qualification, globals())
+                         if continuation else require_compiled_host_api(qualification))
     if continuation:
         require(provenance.get("application_source") == config["source_sha"]
                 and provenance.get("original_trees") == config["framework_producer"]["source_trees"],
@@ -564,4 +579,3 @@ if __name__ == "__main__":
     checkout = Path(__file__).resolve().parents[2]
     embed(checkout, owned_path(checkout, args.receipt, build=True), args.receipt_sha256, Path(args.app),
           owned_path(checkout, args.evidence, build=True))
-
