@@ -46,7 +46,6 @@ private struct OtzariaHanlinChatView: View {
     @State private var expanded = false
     @State private var activePage: String?
     @State private var editorHeight: CGFloat = 38
-    @State private var inputHeight: CGFloat = 52
     @State private var toolbarHeight: CGFloat = 0
     @State private var composerHeight: CGFloat = 70
 
@@ -200,17 +199,19 @@ private struct OtzariaHanlinChatView: View {
     }
 
     private func composer(availableHeight: CGFloat) -> some View {
+        let inputPadding: CGFloat = 10
         let budget = max(38, HanlinMorphGeometry.editorBudget(availableHeight: availableHeight,
-            accessoryHeight: 0, inputHeight: inputHeight, editorHeight: editorHeight,
+            accessoryHeight: 0, inputHeight: editorHeight + inputPadding * 2, editorHeight: editorHeight,
             toolbarHeight: toolbarHeight, isExpanded: expanded))
+        let visibleEditorHeight = min(editorHeight, budget)
         return HanlinMorphComposer(
             isExpanded: $expanded, activePage: $activePage, availableHeight: availableHeight, accessoryHeight: 0,
+            inputHeight: visibleEditorHeight + inputPadding * 2,
             title: { _ in String(localized: "Study chat") },
             subtitle: { _ in String(localized: "Conversation appearance") },
             backIdentifier: { _ in "otzaria-hanlin-composer-back" },
             onOpen: { expanded = true },
             onBackgroundTap: { expanded = false },
-            onInputHeightChange: { inputHeight = $0 },
             onToolbarHeightChange: { toolbarHeight = $0 }) {
                 Picker(String(localized: "Appearance"), selection: $session.selectedProfile) {
                     ForEach(session.presentationDescriptor.availableProfiles, id: \.reference) { profile in
@@ -232,7 +233,7 @@ private struct OtzariaHanlinChatView: View {
                         placeholderText: String(localized: "Message"), maxHeight: budget,
                         usesAutomaticLineLimits: true, onSendMessage: session.send,
                         readCurrentTextState: { [session] in session.readCurrentDraftTextState() })
-                        .frame(height: min(editorHeight, budget))
+                        .frame(height: visibleEditorHeight)
                         .accessibilityIdentifier("otzaria-hanlin-composer")
                     if session.isStreaming {
                         Button(action: session.stop) {
@@ -246,7 +247,7 @@ private struct OtzariaHanlinChatView: View {
                             .accessibilityIdentifier("otzaria-hanlin-send")
                     }
                 }
-                .padding(10)
+                .padding(inputPadding)
             }
             .padding(12)
     }
