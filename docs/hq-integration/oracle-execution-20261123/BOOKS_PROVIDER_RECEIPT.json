@@ -1,0 +1,25 @@
+{
+  "check": "BOOKS_PROVIDER_CURRENT",
+  "time_utc": "2026-11-23T02:34:01.844733+00:00",
+  "source_sha": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "http_status": 200,
+  "size_bytes": 792,
+  "sha256": "99c2cf2fb5e4d5c9f30d2d0016cd769eef2b0953642e3464619310da4710c293",
+  "header": [
+    "bkid",
+    "cat",
+    "verName",
+    "link",
+    "size",
+    "bk"
+  ],
+  "record_count": 7,
+  "widths": [
+    6
+  ],
+  "provider_contract": "BLOCKED_EXTERNAL: no backend/schema/source digest/migration manifest",
+  "user_database_opened": false,
+  "payload_downloaded": false,
+  "updater_executed": false,
+  "repeated_prior_tests": false
+}
