@@ -1,0 +1,46 @@
+{
+  "status": "SOURCE_AND_SEVEN_ORIGINAL_DECLARATIONS_ADMITTED_APPLE_NOT_RUN",
+  "application_source_sha": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+  "preflight_commit": "fb8f6289f7e54634faadd33f886e8cb17b5e0760",
+  "source_sha256": "ec9b6510ff19fdebf3023d07029e7829b5c6639878132fa607492983868cd40c",
+  "execution_inputs_verified": 286,
+  "morph_composition_guard": "PASS_CURRENT_SOURCE_ONLY",
+  "historical_whole9401_gate_claimed": false,
+  "selectors": [
+    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+    "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+    "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+    "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+    "FaithfulReaderUIAcceptanceTests/testLibraryMorphOutsideDismissalPreservesCanonicalQueryAndReader",
+    "FaithfulReaderUIAcceptanceTests/testLibraryMorphRepeatedOpenCloseReleasesHiddenKeyboardFocus"
+  ],
+  "test_tree_unchanged": "7407753fd4811ebf3da6b2835b479786fad0ac2d",
+  "original_drivers_and_workflow_unchanged": true,
+  "original_case_deadlines_zero_skip_binary_post_guards": "UNCHANGED",
+  "new_native_counts": {
+    "pass": 0,
+    "fail": 0,
+    "skip": 0,
+    "not_run": 7
+  },
+  "prior_actual_source": "cba554ded79144d48642b12dba926a30a8eac451",
+  "prior_actual_run": 45105081309,
+  "prior_attempt": 2,
+  "prior_actual_counts": {
+    "pass": 0,
+    "fail": 7,
+    "skip": 0,
+    "not_run": 0
+  },
+  "independent_source_review": "Root and original_sdk accepted exact238b41eb diff; runtime geometry/AX not inferred from review",
+  "actual_controls": [
+    "Exact inverse to sourcecba554",
+    "Swift syntax parse only",
+    "Current original morph composition guard",
+    "286 exact committed working-byte execution inputs",
+    "Same7 original XCTest declarations",
+    "Original Source controls and unaffected test/Vendor/project trees preserved",
+    "git diff --check"
+  ]
+}
