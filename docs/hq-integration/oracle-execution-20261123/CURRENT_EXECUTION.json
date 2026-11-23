@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-11-23T17:37:51.871754+00:00",
+  "updated_at_utc": "2026-11-23T18:04:14.264339+00:00",
   "canonical_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
   "root_branch": "codex/otzaria-oracle-completion-20261123",
   "user_instruction": "בעצם, תעשה את הכל בעצמך ותשתמש עם תתי הסוכנים הזמינים לך בצ׳אט פה, בצע הכל עד להשלמה מלאה של המשימות השתמשת בכלי @SentinelX בחשבון המחובר לשרת האורקל ישירות, ועדכן ב @Asana , אחרי כל שלב שאתה מבצע",
@@ -379,12 +379,20 @@
         "actual_clang_original_red_canonical_green": true
       },
       "dependency_probe": {
-        "source": "c898ba06d1f8dc682b31d96b0c1438a4347fcc3b",
-        "run": 45228420762,
-        "status": "LAST_OBSERVED_QUEUED",
-        "owner": "/root/stageb_repair"
+        "run": 45233067261,
+        "source": "68971fe37bbbba05b89ad21ed4b0050a7bee5e4f",
+        "status": "ACTUAL_RUN_IN_PROGRESS",
+        "owner": "/root/stageb_repair",
+        "change": "Explicit real dynamic framework embedding and StageB arm64; product dependency bytes unchanged"
       },
-      "latest_boundary": "Actual SDK defines overlapping Firebase classes; unique dynamic provider/source/ABI closure must be proven. Final Hanlin closure must include accepted continuation pin on both sides."
+      "latest_boundary": "Actual SDK defines overlapping Firebase classes; unique dynamic provider/source/ABI closure must be proven. Final Hanlin closure must include accepted continuation pin on both sides.",
+      "dependency_probe_previous": {
+        "run": 45228420762,
+        "source": "c898ba06d1f8dc682b31d96b0c1438a4347fcc3b",
+        "actual_build": "REAL_DYNAMIC_FIREBASE_AND_CONSUMER_XCODE27_COMPILE_LINK_PASS",
+        "boundary": "MISSING_DYNAMIC_PRODUCT_EMBED_IN_PROBE_HARNESS",
+        "runtime_ownership": "NOT_QUALIFIED"
+      }
     },
     {
       "name": "original_heart_owned_import_lifetime",
@@ -718,7 +726,17 @@
         "new_generated_outputs": "NOT_RUN",
         "new_wire_or_interceptor_controls": "NOT_RUN"
       },
-      "native_pass_claim": false
+      "native_pass_claim": false,
+      "observer_repair": {
+        "owner": "/root/asana_inventory",
+        "base": "9934ccf396139fd8ff4367dd416b0460f23d49df",
+        "worktree": "/mnt/development/projects/worktrees/anytype-otzaria-native-schema-observer-20261123",
+        "status": "SOURCE_REPAIR_PREPARED_RUNTIME_NOT_RUN",
+        "cause": "Bundled helper incorrectly required derived/local uniqueKey in persisted raw Details",
+        "diff": "Remove that one Required field; preserve exact signed header kind/key and all persisted/body/mapping/drain gates",
+        "new_semantic_selector": "TestOwnedAnnotationBundledPersistedDefinitionContract",
+        "original_native_failure_key": "NOT_RETAINED; specific instance remains inferred, not observed"
+      }
     },
     {
       "name": "reader_source_performance",
@@ -1379,7 +1397,7 @@
     {
       "name": "combined_groups_library_full_v32",
       "owner": "/root/asana_inventory",
-      "status": "ATTEMPT3_ACTUAL_APP_BUILD_ACTIVE_UI_TEST_COMPILATION_PASS",
+      "status": "ACTUAL_ORIGINAL_BUILD_PASS_NATIVE_GROUPS100_LEAF_RUNNING",
       "source": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
       "application_source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
       "tree": "4c7c3996f30fd8b832130d1ce323ef02bf99a190",
@@ -1461,7 +1479,10 @@
       "attempt": 3,
       "actual_native_outcome": "NOT_YET_OBSERVED",
       "activation_utc": "2026-11-23T17:06:01Z",
-      "prior_attempts_preserved": true
+      "prior_attempts_preserved": true,
+      "observer_window1": "ENDED_180102_UTC_WITHOUT_CANCELLING_RUN",
+      "observer_resume": "SAME_RUN_ATTEMPT_ONLY_BY_EXISTING_OWNER",
+      "native_case_results": "PENDING_TERMINAL_INTAKE"
     },
     {
       "name": "actual_darwin_notification_sdk_probe",
@@ -1640,35 +1661,62 @@
       },
       "actual_message_typecheck": "NOT_RUN",
       "actual_rpc_controls": "NOT_RUN",
-      "next": "Inspect actual generated delta; reuse authentic generated output where source contract permits"
+      "next": "Inspect actual generated delta; reuse authentic generated output where source contract permits",
+      "continuation": {
+        "source": "e9015dc8e1f59c2b5bfaf63c84d4cfc64ac195f4",
+        "tree": "28bdf73b22a5fa6bb5f8e446ecf2d526824886d2",
+        "run": 45233570129,
+        "watcher": "job_586be9df4fa3",
+        "owner": "/root/import_rpc",
+        "status": "ACTUAL_RUNNER_ACQUIRED",
+        "swift_outputs_reused": 696,
+        "native_provenance_check": "REQUIRED_PREVIOUS_GUARD_FAILURE",
+        "new_rpc_controls": 9,
+        "controls_actual_result": "PENDING",
+        "concrete_original_generator_cause": "Original swift-protos moves exact tracked7-byte dist/ios/protobuf/.gitignore; exact restoration before strict guard, plus copied proto import .bak provenance"
+      }
     },
     {
       "name": "shared_swift_ai_tool_result_continuation",
       "owner": "/root",
       "source": "29c966696795fe1431bca7afd8cb91011c665a41",
-      "ci_source": "450b844f2cd11c9d59d73ed57ec040361e38560a",
-      "run": 45225936596,
-      "watcher": "job_bf842f6d2741",
-      "status": "APPLE_RED_GREEN_FULL_SUITE_LAST_OBSERVED_QUEUED",
+      "ci_source": "32115be05939fad026d40f0e41e479a2742c3f72",
+      "run": 45233084957,
+      "watcher": "job_897daf9e9307",
+      "status": "ACTUAL_APPLE_HOST_BASELINE_REGRESSION_STAGE_RUNNING",
       "local_linux_result": "UNRELATED_REVAI_FOUNDATIONNETWORKING_COMPILE_FAILURE_BEFORE_TESTS",
-      "native_pass_claim": false
+      "native_pass_claim": false,
+      "runner_label": "macos-26-intel",
+      "previous_arm_run": {
+        "run": 45225936596,
+        "source": "450b844f2cd11c9d59d73ed57ec040361e38560a",
+        "attempt1": "HOSTED_ALLOCATION_FAILURE_NO_RUNNER_NO_STEPS",
+        "attempt2": "QUEUED_UNSTARTED_CANCELLED_BEFORE_SUPPORTED_POOL_CHANGE",
+        "actual_tests": "NOT_RUN_BOTH"
+      },
+      "unchanged_core_and_test_bytes": true
     },
     {
       "name": "hanlin_continuation_live_preparation",
       "owner": "/root",
       "hanlin_source": "4138ad87d9dab0a8970acf3968a2af89c1c67047",
-      "application_source": "fb5abff01b1ae7958ab6c6733ff715ff615ae7b8",
-      "status": "LOCAL_SOURCE_PREPARED_PEER_REVIEWED_FINAL_CORE_EVIDENCE_AND_CI_BINDING_PENDING",
+      "application_source": "41f4242e83a17773e39a4b17ba2450f1e9b2ddfb",
+      "status": "SOURCE_CANDIDATE_PUBLISHED_PEER_REVIEWED_FINAL_CORE_AND_CI_BINDING_PENDING",
       "changed_hanlin_revision_literals": 9,
       "host_app_changed_paths": [
-        "Vendor/HanlinSDK"
+        "Vendor/HanlinSDK",
+        "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
       ],
       "execution_input_count": 286,
       "original_live_case_unchanged": true,
-      "controller_sha256": "d78f5de3fbfd4e0082a612725851fe396cd8c23859aac3899631eb11036bb452",
+      "controller_sha256": "886cec833d69090cc807eb7d821fa7760a091a96bbe8852a989e48d6dbaab910",
       "controller_synthetic_controls_passed": 13,
       "live_dispatches": 0,
-      "credential_values_recorded": false
+      "credential_values_recorded": false,
+      "sdk_adoption_parent": "fb5abff01b1ae7958ab6c6733ff715ff615ae7b8",
+      "source_candidate_published": true,
+      "host_root_lock_revision_literal_only": true,
+      "controller_preparation": "/mnt/development/projects/diagnostics/otzaria-hanlin-sdk-continuation-live-20261123/controller-finalization-app41"
     }
   ],
   "boundaries": {
@@ -1880,6 +1928,26 @@
     {
       "stage": "import_native_actual_failures_and_shared_runtime_probe",
       "comment": "1220817526329957"
+    },
+    {
+      "stage": "canonical_checkpoint_published",
+      "comment": "1220832182247187"
+    },
+    {
+      "stage": "core_arm_attempt2",
+      "comment": "1220832183830566"
+    },
+    {
+      "stage": "host_lock_and_intel_core_activation",
+      "comment": "1220823192181417"
+    },
+    {
+      "stage": "native_generator_and_dependency_diagnoses",
+      "comment": "1220820359830031"
+    },
+    {
+      "stage": "generator_continuation_activation",
+      "comment": "1220823193442480"
     }
   ],
   "inventory": {
@@ -1899,7 +1967,7 @@
     "inherited_annotation_composition": "Canonical1969 process-resume source and mixed-block/newPID test must be retained; Cold869 inherited earlier annotation files are excluded from final selected composition"
   },
   "apple_allocation": {
-    "policy": "One owner per exact source/run/attempt;120-second finite3300-second windows, no duplicate watcher or automatic replay",
+    "policy": "One owner/observer per exact source/run/attempt; finite windows with same-attempt observation continuation, no test replay. Core host-unit runner architecture is separate from iOS27 arm64 product acceptance.",
     "active": [
       {
         "name": "combined_groups_library_full_v32",
@@ -1907,22 +1975,30 @@
         "attempt": 3,
         "source": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
         "owner": "/root/asana_inventory",
-        "watcher": "job_1d6b3c00e6dd"
+        "observer": "SAME_RUN_RESUME_OWNED_BY_AGENT"
       },
       {
         "name": "shared_swift_ai_continuation",
-        "run": 45225936596,
+        "run": 45233084957,
         "attempt": 1,
-        "source": "450b844f2cd11c9d59d73ed57ec040361e38560a",
+        "source": "32115be05939fad026d40f0e41e479a2742c3f72",
         "owner": "/root",
-        "watcher": "job_bf842f6d2741"
+        "watcher": "job_897daf9e9307"
       },
       {
         "name": "original_editor_shared_firebase_runtime",
-        "run": 45228420762,
+        "run": 45233067261,
         "attempt": 1,
-        "source": "c898ba06d1f8dc682b31d96b0c1438a4347fcc3b",
+        "source": "68971fe37bbbba05b89ad21ed4b0050a7bee5e4f",
         "owner": "/root/stageb_repair"
+      },
+      {
+        "name": "import_rpc_continuation",
+        "run": 45233570129,
+        "attempt": 1,
+        "source": "e9015dc8e1f59c2b5bfaf63c84d4cfc64ac195f4",
+        "owner": "/root/import_rpc",
+        "watcher": "job_586be9df4fa3"
       }
     ],
     "completed_since_checkpoint15": [
