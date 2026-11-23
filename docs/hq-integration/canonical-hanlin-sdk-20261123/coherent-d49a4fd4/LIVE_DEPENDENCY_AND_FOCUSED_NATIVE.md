@@ -1,0 +1,13 @@
+# Observed live dependency and original focused native continuation
+
+Live run [45121359772](https://github.com/davidpovarsky/Maktabah/actions/runs/45121359772) at `e44053bfb7c6a9fdc29c64537a2bfad02e695871` failed in the first credential-configuration gate. Its actual runner received `LIVE_KEY_CONFIGURED=false`. The expected secret name was present in the earlier inventory check, but absent in the subsequent check. No secret value was accessed, no app/test build ran, and no provider call or live acceptance was executed. The requirement for an actual configured provider remains open. The guard is retained.
+
+The existing `completion-focused-native.py` route provides a separate original native check without a provider credential. Its original selector is `HanlinReaderConsumerAcceptanceTests/testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending`. That unchanged case uses explicit unused form values, never presses Send, and exercises the real reader, native current-book consent, original dismissal/reopen, fresh original Composer, close and unchanged reader owner/text/locator. It is a native UI diagnostic, not live-provider or full Native116/Release114 acceptance.
+
+The route's source constant is rebound to the same concrete reviewed application commit `aa944bd2327edca035ed9a596fa169499f922138`. Its immutable checkout, ancestor check, four original tree comparisons, strict build input binding, source-byte inventory, original XCTest declaration, source-before/after equality and built-binary identity checks remain unchanged. The workflow is to admit only this isolated SDK candidate branch in addition to its original owner branch.
+
+## Host48 scope
+
+The archived original48 PASS is authentic, but cannot be reused wholesale at the new SDK pin. `host48-source-audit.json` compares all64 original input files:60 are byte-identical and four SDK platform contract/schema files changed. The35 local host inputs are unchanged. Therefore the current native route executes the existing original48 component methods once on the locked current SDK, using `tools/hq-hanlin-host-contracts.py`; it does not disable the old strict reuse gate or relabel the old result. Its receipt retains the original boundary: real contracts, HostDispatcher, ActionCore and adapter with explicit backend/authority/native-receipt doubles, distinct from actual app UI and provider acceptance.
+
+This route retains the existing compiler-cache identity derived from actual SDK/native/application/test inputs. A later eligible live route can reuse matching compiler outputs while independently requiring a real credential and executing its original live selector. No native PASS is claimed by this preparation.

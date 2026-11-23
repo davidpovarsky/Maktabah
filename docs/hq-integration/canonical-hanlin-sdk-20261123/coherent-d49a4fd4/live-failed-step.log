@@ -1,0 +1,17 @@
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	﻿2026-11-23T06:14:19.3576440Z ##[group]Run python3 - <<'PYCONFIG'
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	2026-11-23T06:14:19.3576890Z ^[[36;1mpython3 - <<'PYCONFIG'^[[0m
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	2026-11-23T06:14:19.3577190Z ^[[36;1mimport os^[[0m
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	2026-11-23T06:14:19.3577540Z ^[[36;1mconfigured = os.environ['LIVE_KEY_CONFIGURED'] == 'true'^[[0m
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	2026-11-23T06:14:19.3578660Z ^[[36;1mwith open(os.environ['GITHUB_OUTPUT'], 'a') as output:^[[0m
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	2026-11-23T06:14:19.3579110Z ^[[36;1m    output.write('configured=' + str(configured).lower() + '\n')^[[0m
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	2026-11-23T06:14:19.3579590Z ^[[36;1massert configured, 'The reviewed temporary live credential is not configured'^[[0m
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	2026-11-23T06:14:19.3580010Z ^[[36;1mPYCONFIG^[[0m
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	2026-11-23T06:14:19.3653050Z shell: /bin/bash -e {0}
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	2026-11-23T06:14:19.3653370Z env:
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	2026-11-23T06:14:19.3653700Z   EXPECTED_CHECKOUT_SHA: e44053bfb7c6a9fdc29c64537a2bfad02e695871
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	2026-11-23T06:14:19.3654060Z   LIVE_KEY_CONFIGURED: false
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	2026-11-23T06:14:19.3654330Z ##[endgroup]
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	2026-11-23T06:14:19.8613960Z Traceback (most recent call last):
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	2026-11-23T06:14:19.8615760Z   File "<stdin>", line 5, in <module>
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	2026-11-23T06:14:19.8617580Z AssertionError: The reviewed temporary live credential is not configured
+Original app, live provider, canonical Core and native source return	Require the reviewed existing credential configuration	2026-11-23T06:14:19.8723970Z ##[error]Process completed with exit code 1.

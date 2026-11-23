@@ -1,0 +1,40 @@
+{
+  "prior_sdk": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "candidate_sdk": "d49a4fd4115b8335105d2991bf74ab4d7f6aad2d",
+  "input_count": 64,
+  "identical": 60,
+  "changed": [
+    {
+      "path": "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinDescriptors.swift",
+      "sdk": true,
+      "expected_sha": "6b4076de7b2416d108431276b147796352aa232d39507dca2f7f0b5cd5efa0d1",
+      "actual_sha": "48fe15520f4758ad6d856c2deb40b2e5437392131c16717088f32edc3d163b64",
+      "bytes": 44148,
+      "expected_bytes": 44005
+    },
+    {
+      "path": "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinPresentationContracts.swift",
+      "sdk": true,
+      "expected_sha": "e05fb0509136f303f621f292147d98db140f3e0f028e7431cc7064fb935e7a9b",
+      "actual_sha": "96cde68f978ef19a5de552835be8c6dc2c62741f4aeab38c40f27586272e99b4",
+      "bytes": 11820,
+      "expected_bytes": 10661
+    },
+    {
+      "path": "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinScriptContracts.swift",
+      "sdk": true,
+      "expected_sha": "d3af6a89f8e19dccdc17ff9f59f223875260a0b0d4d2b440e49170b599626180",
+      "actual_sha": "e92224cd4a0a1b5ed8e49bd85881c647595337b95ccbb20e6a6684110977679c",
+      "bytes": 24544,
+      "expected_bytes": 24323
+    },
+    {
+      "path": "Packages/HanlinPlatform/Sources/HanlinPlatformContracts/Resources/HanlinAppManifest.schema.json",
+      "sdk": true,
+      "expected_sha": "9443a12286831f386d9a7db06b833902d041fe46d990e2014885a10d99b612fb",
+      "actual_sha": "072a2e92842ab720db4044a3703d6b8dae8244c9854d1ceaa81a47e8e4f15b8d",
+      "bytes": 20993,
+      "expected_bytes": 20017
+    }
+  ]
+}
