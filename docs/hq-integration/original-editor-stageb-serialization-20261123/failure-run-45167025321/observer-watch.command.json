@@ -1,0 +1,33 @@
+{
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "gh",
+    "run",
+    "watch",
+    "45167025321",
+    "--repo",
+    "davidpovarsky/Maktabah",
+    "--exit-status",
+    "--compact",
+    "--interval",
+    "120"
+  ],
+  "exit": 1,
+  "timed_out": false,
+  "child_reaped": true,
+  "owned_group_drained": true,
+  "term_sent": false,
+  "kill_sent": false,
+  "elapsed_seconds": 366.248381617479,
+  "stdout": {
+    "bytes": 1887,
+    "sha256": "48582ac760428b19372e26dc17bda0e21822f4eb2ed461185d579b899d0c0539"
+  },
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "scope": "One full genuine-Xcodeproj serialization experiment with three leaves; no Apple compiler, SDK binary, embed, simulator or UI claim",
+  "started_at": "2026-11-23T12:16:25.852086+00:00",
+  "status": "PASS",
+  "baseline_source": "fa816b14d25a4ced0031b1a9c972040b89cb451e",
+  "old_controls": "Previously accepted flag/context controls retained by exact source correspondence, not rerun",
+  "finished_at": "2026-11-23T12:16:28.887979+00:00",
+  "assertions": [
+    "Authentic original generated PBX fixture",
+    "Exact failed source helper",
+    "Exact proposed candidate helper",
+    "original_failure_and_rollback: bounded command reaped and drained",
+    "original_failure_and_rollback: all nine actual exact gem versions",
+    "original_failure_and_rollback: retained actual Ruby and Xcodeproj identity",
+    "Original actual helper reproduces precise serialization refusal",
+    "Original failure leaves no success receipt and exact original rollback",
+    "original rejected project: original unrelated object count",
+    "original rejected project: every unrelated object exact",
+    "original rejected project: original project metadata exact",
+    "original rejected project: exactly one new phase object",
+    "original rejected project: phase appended after original phases",
+    "original rejected project: original target identity and dependencies exact",
+    "original rejected project: original config identity exact",
+    "Original failure differs only by the two exact serialized settings",
+    "candidate_roundtrip: bounded command reaped and drained",
+    "candidate_roundtrip: all nine actual exact gem versions",
+    "candidate_roundtrip: retained actual Ruby and Xcodeproj identity",
+    "Candidate actual helper succeeds",
+    "candidate saved project: original unrelated object count",
+    "candidate saved project: every unrelated object exact",
+    "candidate saved project: original project metadata exact",
+    "candidate saved project: exactly one new phase object",
+    "candidate saved project: phase appended after original phases",
+    "candidate saved project: original target identity and dependencies exact",
+    "candidate saved project: original config identity exact",
+    "Candidate original status retained",
+    "Both original ordered arrays retained completely",
+    "Every selected and nonselected saved setting exactly equals expected canonical full hash",
+    "All nonselected expected settings unchanged",
+    "Original complete settings retained",
+    "Actual before/after bytes bound in helper receipt",
+    "Actual saved phase identity bound",
+    "candidate_nonselected_corruption_rollback: bounded command reaped and drained",
+    "candidate_nonselected_corruption_rollback: all nine actual exact gem versions",
+    "candidate_nonselected_corruption_rollback: retained actual Ruby and Xcodeproj identity",
+    "Candidate still rejects an actually saved nonselected setting change",
+    "Adverse candidate leaves no success receipt and exact original rollback",
+    "adverse rejected project: original unrelated object count",
+    "adverse rejected project: every unrelated object exact",
+    "adverse rejected project: original project metadata exact",
+    "adverse rejected project: exactly one new phase object",
+    "adverse rejected project: phase appended after original phases",
+    "adverse rejected project: original target identity and dependencies exact",
+    "adverse rejected project: original config identity exact",
+    "Actual first save had exact candidate settings before fault",
+    "Rejected saved project preserves the exact single injected nonselected fault",
+    "Test injection changed only the chosen setting, with all other structure exact"
+  ],
+  "assertion_count": 49,
+  "cases": [
+    {
+      "name": "original_failure_and_rollback",
+      "status": "PASS"
+    },
+    {
+      "name": "candidate_roundtrip",
+      "status": "PASS"
+    },
+    {
+      "name": "candidate_nonselected_corruption_rollback",
+      "status": "PASS"
+    }
+  ],
+  "commands": [
+    {
+      "case": "original_failure_and_rollback",
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-root/usr/bin/ruby3.2",
+        "-r",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/controls/pin_actual_gems.rb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/source/hq-original-editor-app-target.before.rb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/control-results/original_failure_and_rollback/Maktabah.xcodeproj/project.pbxproj",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/45167025321/terminal/review/app-target-plan.json",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/control-results/original_failure_and_rollback/helper-receipt.json"
+      ],
+      "exit": 1,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.7664198596030474,
+      "stdout": {
+        "path": "control-results/original_failure_and_rollback/command.stdout",
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "control-results/original_failure_and_rollback/command.stderr",
+        "size": 230,
+        "sha256": "e7080314bcc1af0fd9b10348e3757891cffa6202cc6496a5347fd5e4b74484e5"
+      }
+    },
+    {
+      "case": "candidate_roundtrip",
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-root/usr/bin/ruby3.2",
+        "-r",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/controls/pin_actual_gems.rb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/source/hq-original-editor-app-target.after.rb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/control-results/candidate_roundtrip/Maktabah.xcodeproj/project.pbxproj",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/45167025321/terminal/review/app-target-plan.json",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/control-results/candidate_roundtrip/helper-receipt.json"
+      ],
+      "exit": 0,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.7662032581865788,
+      "stdout": {
+        "path": "control-results/candidate_roundtrip/command.stdout",
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "control-results/candidate_roundtrip/command.stderr",
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "case": "candidate_nonselected_corruption_rollback",
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-root/usr/bin/ruby3.2",
+        "-r",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/controls/pin_actual_gems.rb",
+        "-r",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/controls/inject_post_save_corruption.rb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/source/hq-original-editor-app-target.after.rb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/control-results/candidate_nonselected_corruption_rollback/Maktabah.xcodeproj/project.pbxproj",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/45167025321/terminal/review/app-target-plan.json",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/control-results/candidate_nonselected_corruption_rollback/helper-receipt.json"
+      ],
+      "exit": 1,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 1.1171715231612325,
+      "stdout": {
+        "path": "control-results/candidate_nonselected_corruption_rollback/command.stdout",
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "control-results/candidate_nonselected_corruption_rollback/command.stderr",
+        "size": 229,
+        "sha256": "6c912ed1180eda551ae8811f79f8b29996098075e50bb29f7965608648311907"
+      }
+    }
+  ],
+  "required_cases": 3,
+  "passed_cases": 3,
+  "fixture_sha256": "fcac6c6d17d98edf2b34712efaae5a52e5c8e3c84a3fc1fd038cfe4a9335245c",
+  "plan_sha256": "edbcfcff5faf69df62beeba48c2472ec8cf73a86a2d9c01fb2fd8da91c70eeba",
+  "helper_sha256": "ada86a8a7e4bf3f38abf7366614a341183cedaf80d1febc41f45717249ca291e",
+  "driver_sha256": "d291e314fc8534ebdeaa3b39d16ff40149ccd9036883d300e7a1690c262de9de"
+}

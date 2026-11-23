@@ -1,0 +1,64 @@
+{
+  "name": "CFPropertyList",
+  "version": "3.0.8",
+  "url": "https://rubygems.org/api/v2/rubygems/CFPropertyList/versions/3.0.8.json",
+  "retrieved_at": "2026-11-23T12:07:50.844090+00:00",
+  "status": 200,
+  "final_url": "https://rubygems.org/api/v2/rubygems/CFPropertyList/versions/3.0.8.json",
+  "headers": {
+    "Connection": "close",
+    "Content-Length": "1529",
+    "Content-Type": "application/json; charset=utf-8",
+    "x-frame-options": "SAMEORIGIN",
+    "x-xss-protection": "0",
+    "x-content-type-options": "nosniff",
+    "x-permitted-cross-domain-policies": "none",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "cross-origin-opener-policy": "same-origin",
+    "last-modified": "Wed, 19 Nov 2025 05:45:45 GMT",
+    "cache-control": "max-age=60, public",
+    "x-request-id": "7b34dacd-5000-4a7e-a3c7-63a693de983d",
+    "x-runtime": "0.010865",
+    "strict-transport-security": "max-age=31536000; includeSubDomains",
+    "X-Backend": "F_Rails 35.155.75.66:443",
+    "Accept-Ranges": "bytes",
+    "Age": "0",
+    "Date": "Mon, 23 Nov 2026 12:07:51 GMT",
+    "Via": "1.1 varnish",
+    "X-Served-By": "cache-mrs1530039-MRS",
+    "X-Cache": "MISS",
+    "X-Cache-Hits": "0",
+    "X-Timer": "S1795435671.244905,VS0,VE432",
+    "Vary": "Accept-Encoding",
+    "ETag": "\"64277ae219863fb693e361dad6d350d3\"",
+    "Server": "RubyGems.org"
+  },
+  "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/metadata/CFPropertyList-3.0.8.json",
+  "size": 1529,
+  "sha256": "9910a3ef724c53d3dbeaf0ae0d28dfb27a5a1926cb7869ff0656ce4ce3e72f98",
+  "identity_matches": true,
+  "api_sha": "2c99d0d980536d3d7ab252f7bd59ac8be50fbdd1ff487c98c949bb66bb114261",
+  "gem_uri": "https://rubygems.org/gems/CFPropertyList-3.0.8.gem",
+  "dependencies": {
+    "development": [
+      {
+        "name": "libxml-ruby",
+        "requirements": ">= 0"
+      },
+      {
+        "name": "minitest",
+        "requirements": ">= 0"
+      },
+      {
+        "name": "nokogiri",
+        "requirements": ">= 0"
+      },
+      {
+        "name": "rake",
+        "requirements": ">= 0.7.0"
+      }
+    ],
+    "runtime": []
+  },
+  "ruby_version": ">= 0"
+}

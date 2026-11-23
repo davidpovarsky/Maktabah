@@ -1,0 +1,32 @@
+Package: ruby3.2-dev
+Source: ruby3.2
+Priority: optional
+Section: ruby
+Installed-Size: 2975
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Architecture: arm64
+Version: 3.2.3-1ubuntu0.24.04.9
+Recommends: ruby3.2-doc
+Depends: libgmp-dev, libruby3.2 (= 3.2.3-1ubuntu0.24.04.9)
+Filename: pool/main/r/ruby3.2/ruby3.2-dev_3.2.3-1ubuntu0.24.04.9_arm64.deb
+Size: 404000
+MD5sum: 863209acd64c3687e30ed10a8bfc5c18
+SHA1: df36aae14c90b9ee53bc47ff831e73f3f82762c7
+SHA256: 6c65da386117a693ad38fb04602d3320f579314c83a73b3bb17b02361ef299fe
+SHA512: 8c449dcf156f318335e4bfa030ad4ba4e82fe18293ebf54722008ea799910140ffbb694f0139bbb12c7fe01a76445569ee98a8a2e449c4ff8a8a088c6b71f8c0
+Homepage: https://www.ruby-lang.org/
+Description-en: Header files for compiling extension modules for the Ruby 3.2
+ Ruby is the interpreted scripting language for quick and easy
+ object-oriented programming.  It has many features to process text
+ files and to do system management tasks (as in perl).  It is simple,
+ straight-forward, and extensible.
+ .
+ This package contains the header files and the mkmf library, necessary
+ to make extension library for Ruby 3.2. It is also required to build
+ many gems.
+Description-md5: b9161793b0f80f781e92978ae0c5b2f0
+Multi-Arch: same
+Original-Maintainer: Debian Ruby Team <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Origin: Ubuntu
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+
