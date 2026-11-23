@@ -1,0 +1,26 @@
+{
+  "scope": "Only exact previously owned prepare outputs moved; no native fixture or results removed",
+  "source_directory": "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/build/original-editor-native-evidence",
+  "files": [
+    {
+      "name": "declarations.json",
+      "size": 432,
+      "sha256": "8fa41c3ed986fef179a63e50e34a8106b95f5a46adf112dd030564569aec5c4c"
+    },
+    {
+      "name": "python-runtime-preflight.json",
+      "size": 2108,
+      "sha256": "4d19c3535e0cde8eb19f0e81ae3a7af5bc4f8baf0752f1b77e53a6ec0a7d3560"
+    },
+    {
+      "name": "selection.json",
+      "size": 177918,
+      "sha256": "f05d571be2395b258bd181d4d0330a65a108bc80e04e120c2f89b280aa947f61"
+    },
+    {
+      "name": "source-before.json",
+      "size": 64154,
+      "sha256": "98b3fd1a9d339bd669fe40c8cdb84ca6fce1e484cb59d2e4d1842210bda151c4"
+    }
+  ]
+}

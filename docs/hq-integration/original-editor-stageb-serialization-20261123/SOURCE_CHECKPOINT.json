@@ -1,0 +1,23 @@
+{
+  "prepared_source": "2abbea9f706bd77a1b7e80553141b5d1aac6b864",
+  "parent_before_repair": "fa816b14d25a4ced0031b1a9c972040b89cb451e",
+  "prepared_trees": {
+    "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "ca36ba13f1fd900adf528a3e404fed6a66290b6b",
+    "Scripts/CI": "e54f3934f65f0599c9c5231587b04009bc041351",
+    ".github/workflows": "9d1b41fb0a78788f4d1e4a6c1bcb8e542b93802f",
+    "tools": "c275775bbd8811baefa0045a6e832d0b242f0834"
+  },
+  "changed_tool_paths": [
+    "Scripts/CI/hq-original-editor-app-target.rb"
+  ],
+  "final_source_prepare": "SOURCE_PREPARE_PASS",
+  "execution_inputs": 285,
+  "new_full_helper_leaves": 3,
+  "new_assertions": 49,
+  "old_controls_replayed": false,
+  "native_or_ui_execution": false,
+  "expected_activation": "One later scoped push after independent root review; no manual dispatch"
+}

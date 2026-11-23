@@ -19,8 +19,18 @@
     },
     {
       "path": "README.md",
-      "size": 3439,
-      "sha256": "63a34066355e1b606d9206e24b9d40a13ae51990ded8730570d274e1744c3811"
+      "size": 3608,
+      "sha256": "40be87fc8c8c149c6addd56aa277a9dbebd16a6accc8ada6758b6300844f6073"
+    },
+    {
+      "path": "ROOT_SOURCE_REVIEW.json",
+      "size": 735,
+      "sha256": "81253b2682adbc6dd918bcbcb98e0ac68f50916a55ef525266fe33af18a14761"
+    },
+    {
+      "path": "SOURCE_CHECKPOINT.json",
+      "size": 990,
+      "sha256": "1b33bda2e30d4c8f8ed70ca0d705d420a57cbc88fa4c3626cfd93f6bc4a273df"
     },
     {
       "path": "SOURCE_CORRESPONDENCE.json",
@@ -296,6 +306,76 @@
       "path": "failure-run-45167025321/review/pod-ruby-context.json",
       "size": 99644,
       "sha256": "a5c9a9649dc78bf7de478461774cea486e948e7f3e725f6c14375d926b13565f"
+    },
+    {
+      "path": "final-source-admission/FINAL_INPUT_PROOF.json",
+      "size": 82613,
+      "sha256": "6dda59b815c944e8f2d4bd890a2e05acf395e9f8db13885dac7c6f914bba5d2b"
+    },
+    {
+      "path": "final-source-admission/PRIOR_OUTPUT_PRESERVATION.json",
+      "size": 878,
+      "sha256": "ce54a825e4106a13a873de2a70812e83e0007743e63abfd8cf6d2b15b1e6809d"
+    },
+    {
+      "path": "final-source-admission/RESULT.json",
+      "size": 1092,
+      "sha256": "64503c5d6a15dce52041e08fbbcda1b009ac9e457358d60350dd45ce64e7c19e"
+    },
+    {
+      "path": "final-source-admission/actual-output/declarations.json",
+      "size": 432,
+      "sha256": "8fa41c3ed986fef179a63e50e34a8106b95f5a46adf112dd030564569aec5c4c"
+    },
+    {
+      "path": "final-source-admission/actual-output/python-runtime-preflight.json",
+      "size": 2108,
+      "sha256": "4d19c3535e0cde8eb19f0e81ae3a7af5bc4f8baf0752f1b77e53a6ec0a7d3560"
+    },
+    {
+      "path": "final-source-admission/actual-output/selection.json",
+      "size": 177918,
+      "sha256": "f05d571be2395b258bd181d4d0330a65a108bc80e04e120c2f89b280aa947f61"
+    },
+    {
+      "path": "final-source-admission/actual-output/source-before.json",
+      "size": 64154,
+      "sha256": "2a3e9b80c5844e6c5d398de2c27e7523ea9e1b3e9773a3e8be8d23e0ad6d6713"
+    },
+    {
+      "path": "final-source-admission/prepare.command.json",
+      "size": 673,
+      "sha256": "098fbcfc06232f28f56d4c06b234369e2d4c19d264f6070041d31e3a6d81593f"
+    },
+    {
+      "path": "final-source-admission/prepare.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "final-source-admission/prepare.stdout",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "final-source-admission/previous-owned-prepare-output/declarations.json",
+      "size": 432,
+      "sha256": "8fa41c3ed986fef179a63e50e34a8106b95f5a46adf112dd030564569aec5c4c"
+    },
+    {
+      "path": "final-source-admission/previous-owned-prepare-output/python-runtime-preflight.json",
+      "size": 2108,
+      "sha256": "4d19c3535e0cde8eb19f0e81ae3a7af5bc4f8baf0752f1b77e53a6ec0a7d3560"
+    },
+    {
+      "path": "final-source-admission/previous-owned-prepare-output/selection.json",
+      "size": 177918,
+      "sha256": "f05d571be2395b258bd181d4d0330a65a108bc80e04e120c2f89b280aa947f61"
+    },
+    {
+      "path": "final-source-admission/previous-owned-prepare-output/source-before.json",
+      "size": 64154,
+      "sha256": "98b3fd1a9d339bd669fe40c8cdb84ca6fce1e484cb59d2e4d1842210bda151c4"
     },
     {
       "path": "gem-provenance/CI_PACKAGE_SOURCE_BINDING.json",
