@@ -1,0 +1,51 @@
+{
+  "executed": 9,
+  "passed": 9,
+  "cases": [
+    {
+      "case": "prior_same_source_run_excluded",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    },
+    {
+      "case": "new_same_source_run_selected",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    },
+    {
+      "case": "multiple_prior_same_source_runs_excluded",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    },
+    {
+      "case": "different_head_sha_excluded",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    },
+    {
+      "case": "different_head_branch_excluded",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    },
+    {
+      "case": "different_run_attempt_excluded",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    },
+    {
+      "case": "different_event_excluded",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    },
+    {
+      "case": "two_new_runs_remain_ambiguous_for_existing_exactly_one_assertion",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    },
+    {
+      "case": "binding_not_mutated",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    }
+  ]
+}

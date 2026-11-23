@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "prepared_utc": "2026-11-23T09:10:05Z",
+  "status": "READY_FOR_PEER_REVIEW_BEFORE_ONE_DISPATCH",
+  "original_controller_sha256": "a2b555d88413a93796d86d0b3c8c6e9bcdb7a2936b60b9fd2d15cdb77011c212",
+  "candidate_controller_sha256": "7fdb372e536e888f50dbb4975ccf002db8e5b8944100353feea2fd0ec3e4c65c",
+  "binding_sha256": "f07920e47876c76361284a1759bd8bf3e1158f1b247f17d6ca2dea64f8955d4a",
+  "full_source_inverse_exact": true,
+  "changed_existing_methods": [
+    "Lifecycle.configure_and_dispatch",
+    "Lifecycle.preflight"
+  ],
+  "unchanged_existing_methods": [
+    "Lifecycle.__init__",
+    "Lifecycle.acquire",
+    "Lifecycle.api",
+    "Lifecycle.cleanup",
+    "Lifecycle.command",
+    "Lifecycle.execute",
+    "Lifecycle.remote_file",
+    "Lifecycle.save",
+    "Lifecycle.secret_http",
+    "Lifecycle.watch",
+    "digest",
+    "exact_run",
+    "http_response",
+    "main",
+    "owned_metadata",
+    "utc"
+  ],
+  "added_function": "newly_dispatched_runs",
+  "actual_controller_controls": 9,
+  "control_scope": "Synthetic GitHub run metadata; no provider call, no credential value/hash, no native acceptance credit",
+  "source_binding": {
+    "ci": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+    "app": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+    "tree": "88ecb730270e6ce2553cedf67aac21f1961d2f95",
+    "unchanged_from_previous_live_run": true
+  },
+  "previous_run": {
+    "run_id": 45128868702,
+    "source": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+    "result": "INFRASTRUCTURE_FAILURE_BEFORE_NATIVE_CASE",
+    "failure_phase": "INSTALL_TIMEOUT",
+    "native_cases_executed": 0,
+    "cleanup": "DELETE204_GET404_VERIFIED",
+    "root_cleanup_receipt_sha256": "e94c5127a9d398ba164735a1efb2f9a98586bc0b25f1ee7cb2dcc82aff76176e"
+  },
+  "original_ci_app_prompt_model_endpoint_assertions_timeouts": "UNCHANGED",
+  "single_dispatch_only": true,
+  "post_dispatch_ambiguity": "Preserve lifecycle for explicit review; never redispatch",
+  "new_provider_probe_requests": 0,
+  "remote_execution_started": false,
+  "cases": [
+    {
+      "case": "prior_same_source_run_excluded",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    },
+    {
+      "case": "new_same_source_run_selected",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    },
+    {
+      "case": "multiple_prior_same_source_runs_excluded",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    },
+    {
+      "case": "different_head_sha_excluded",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    },
+    {
+      "case": "different_head_branch_excluded",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    },
+    {
+      "case": "different_run_attempt_excluded",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    },
+    {
+      "case": "different_event_excluded",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    },
+    {
+      "case": "two_new_runs_remain_ambiguous_for_existing_exactly_one_assertion",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    },
+    {
+      "case": "binding_not_mutated",
+      "result": "PASS",
+      "scope": "synthetic metadata against actual selector function"
+    }
+  ]
+}
