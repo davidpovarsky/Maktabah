@@ -7,10 +7,12 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     override var readerTestTier: TestTier { .realUI }
 
     private struct Content: Decodable { let text: String? }
+    private struct Selection: Decodable { let location: Int; let length: Int; let text: String }
     private struct Source: Decodable {
         let appID: String
         let documentID: String?
         let documentText: String?
+        let selection: Selection?
         let metadata: [String: String]
     }
     private struct Request: Decodable {
@@ -58,14 +60,13 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         producer.launch()
         XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 30))
         let catalog = shared.appendingPathComponent("catalog.json")
-        let catalogReady = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+        let catalogReady = try await waitUntil(timeout: 30) {
             guard let data = try? Data(contentsOf: catalog),
                   let value = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
                   let items = value["items"] as? [[String: Any]] else { return false }
             return items.contains { $0["id"] as? String == "nativeapp.textstudio" }
-        }, object: nil)
-        let catalogReadyOutcome = await XCTWaiter.fulfillment(of: [catalogReady], timeout: 30)
-        XCTAssertEqual(catalogReadyOutcome, .completed,
+        }
+        XCTAssertTrue(catalogReady,
                        "The actual producer must publish its TextStudio catalog")
 
         XCUIDevice.shared.orientation = .landscapeLeft
@@ -91,11 +92,10 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         tap(app.buttons["torah-inspector-close"])
         try await openAnnotations()
         let currentRows = annotationRows()
-        let additions = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+        let additions = try await waitUntil(timeout: 15) {
             currentRows.allElementsBoundByIndex.filter { !priorRows.contains($0.identifier) }.count == 1
-        }, object: nil)
-        let additionsOutcome = await XCTWaiter.fulfillment(of: [additions], timeout: 15)
-        XCTAssertEqual(additionsOutcome, .completed)
+        }
+        XCTAssertTrue(additions)
         let row = try XCTUnwrap(annotationRows().allElementsBoundByIndex.first { !priorRows.contains($0.identifier) })
         let rowIdentifier = row.identifier
         let rowID = try XCTUnwrap(Int64(rowIdentifier.dropFirst("original-book-annotation-".count)))
@@ -142,11 +142,10 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let updated = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", returnedText), object: note)
         let updatedOutcome = await XCTWaiter.fulfillment(of: [updated], timeout: 30)
         XCTAssertEqual(updatedOutcome, .completed)
-        let acknowledged = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+        let acknowledged = try await waitUntil(timeout: 15) {
             (try? self.records(in: shared).first { $0.request.id == pending.request.id }?.acknowledged) == true
-        }, object: nil)
-        let acknowledgedOutcome = await XCTWaiter.fulfillment(of: [acknowledged], timeout: 15)
-        XCTAssertEqual(acknowledgedOutcome, .completed)
+        }
+        XCTAssertTrue(acknowledged)
         let delivered = try XCTUnwrap(try records(in: shared).first { $0.request.id == pending.request.id })
         XCTAssertEqual(delivered.result?.requestID, pending.request.id)
         XCTAssertEqual(delivered.result?.status, "success")
@@ -185,6 +184,88 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertEqual(after.count, 1, "Foreground recovery must not duplicate the persisted edit")
         retainScreenshot(app, named: "otzaria-original-note-after-process-relaunch")
         attachReceipt(after, requestID: pending.request.id, name: "miniapps-original-reopened-note")
+
+
+        // A second actual invocation returns through Apple's URL delivery after
+        // the source process is gone. No launch/activate/navigation assists it.
+        let beforeCold = Set(try records(in: shared).map { $0.request.id })
+        tap(app.buttons["otzaria-note-miniapps"])
+        if !textStudio.waitForExistence(timeout: 3) { tap(app.buttons["miniapps-more"]) }
+        XCTAssertTrue(textStudio.waitForExistence(timeout: 15))
+        tap(textStudio)
+        XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 30))
+        let coldEditors = producer.textViews.matching(identifier: "miniapps.textstudio.editor")
+        XCTAssertTrue(coldEditors.firstMatch.waitForExistence(timeout: 30))
+        XCTAssertEqual(coldEditors.count, 1, "Completed invocation must release its original editor")
+        let coldEditor = coldEditors.element(boundBy: 0)
+        XCTAssertEqual(coldEditor.value as? String ?? "", "")
+        let coldPending = try XCTUnwrap(try records(in: shared).first { !beforeCold.contains($0.request.id) })
+        XCTAssertEqual(coldPending.request.operation, "insert")
+        XCTAssertEqual(coldPending.request.inputs.compactMap(\.text).joined(separator: "\n"), "")
+        XCTAssertEqual(coldPending.request.source.documentText, returnedText)
+        let coldDocument = try JSONDecoder().decode(Document.self, from:
+            Data(try XCTUnwrap(coldPending.request.source.metadata["otzaria.annotation.v1"]).utf8))
+        XCTAssertEqual(coldDocument.annotationID, rowID)
+        XCTAssertEqual(coldDocument.annotationUUID, document.annotationUUID)
+        XCTAssertEqual(coldDocument.profile, document.profile)
+        XCTAssertEqual(coldDocument.draftNote, returnedText)
+        let coldText = "MiniApps cold note שלום " + UUID().uuidString
+        let original = returnedText as NSString
+        let insertion = coldPending.request.source.selection.map { $0.location + $0.length } ?? original.length
+        XCTAssertEqual(coldPending.request.source.selection?.length ?? 0, 0)
+        XCTAssertGreaterThanOrEqual(insertion, 0)
+        XCTAssertLessThanOrEqual(insertion, original.length)
+        let expectedColdText = original.replacingCharacters(in: NSRange(location: insertion, length: 0), with: coldText)
+        coldEditor.tap()
+        coldEditor.typeText(coldText)
+        XCTAssertEqual(coldEditor.value as? String, coldText)
+        app.terminate()
+        XCTAssertTrue(app.wait(for: .notRunning, timeout: 15), "Source must really terminate before Return")
+        XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 15))
+        retainScreenshot(producer, named: "miniapps-cold-source-terminated-before-return")
+        let coldReturn = producer.buttons["miniapps.textstudio.return"]
+        XCTAssertTrue(coldReturn.waitForExistence(timeout: 15) && coldReturn.isHittable)
+        coldReturn.tap()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 60),
+                      "Only the actual producer callback may cold-launch the source")
+        XCTAssertTrue(note.waitForExistence(timeout: 60),
+                      "The original saved annotation editor must open without manual navigation")
+        let coldUpdated = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "value == %@", expectedColdText), object: note)
+        let coldUpdatedOutcome = await XCTWaiter.fulfillment(of: [coldUpdated], timeout: 30)
+        XCTAssertEqual(coldUpdatedOutcome, .completed)
+        let coldAcknowledged = try await waitUntil(timeout: 15) {
+            (try? self.records(in: shared).first { $0.request.id == coldPending.request.id }?.acknowledged) == true
+        }
+        XCTAssertTrue(coldAcknowledged)
+        let coldDelivered = try XCTUnwrap(try records(in: shared).first { $0.request.id == coldPending.request.id })
+        XCTAssertEqual(coldDelivered.result?.requestID, coldPending.request.id)
+        XCTAssertEqual(coldDelivered.result?.status, "success")
+        XCTAssertEqual(coldDelivered.result?.operation, "insert")
+        XCTAssertEqual(coldDelivered.result?.items.compactMap(\.text).joined(separator: "\n"), coldText)
+        let coldReceipt = try persistedReceipt(requestID: coldPending.request.id, databasePath: document.profile)
+        XCTAssertEqual(coldReceipt.annotationID, rowID)
+        XCTAssertEqual(coldReceipt.annotationUUID, document.annotationUUID)
+        XCTAssertEqual(coldReceipt.note, expectedColdText)
+        XCTAssertEqual(coldReceipt.count, 1)
+        let firstReceiptAfterCold = try persistedReceipt(requestID: pending.request.id, databasePath: document.profile)
+        XCTAssertEqual(firstReceiptAfterCold.annotationID, rowID)
+        XCTAssertEqual(firstReceiptAfterCold.count, 1, "Cold recovery must not replay the already acknowledged insertion")
+        XCTAssertEqual(firstReceiptAfterCold.resultJSON, receipt.resultJSON)
+        retainScreenshot(app, named: "otzaria-original-note-restored-by-cold-callback")
+        attachReceipt(coldReceipt, requestID: coldPending.request.id, name: "miniapps-original-cold-callback-note")
+    }
+
+    /// XCTest may evaluate NSPredicate blocks off the main executor. Keep
+    /// captured UI state and file observations on the test's explicit actor.
+    @MainActor
+    private func waitUntil(timeout: TimeInterval, condition: @escaping @MainActor () throws -> Bool) async throws -> Bool {
+        let deadline = Date().addingTimeInterval(timeout)
+        repeat {
+            if try condition() { return true }
+            try await Task.sleep(for: .milliseconds(100))
+        } while Date() < deadline
+        return false
     }
 
     @MainActor

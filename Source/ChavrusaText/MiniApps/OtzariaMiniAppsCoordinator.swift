@@ -69,7 +69,9 @@ final class OtzariaMiniAppsCoordinator {
         guard let id = MiniAppBridgeStore.requestID(from: url) else { return true }
         do {
             let store = try MiniAppBridgeStore()
-            guard let result = try store.result(id: id) else { return true }
+            // A repeated URL for an already acknowledged edit must be a no-op.
+            guard let result = try store.pendingResults(sourceAppID: Self.sourceAppID)
+                .first(where: { $0.requestID == id }) else { return true }
             reportedFailures.remove(id)
             consume(result, store: store, fallbackManager: manager)
         } catch { show(error: error, sourceView: nil) }
@@ -298,14 +300,20 @@ final class OtzariaMiniAppsCoordinator {
     private func presenter(in scene: UIWindowScene?, sourceView: UIView? = nil) -> UIViewController? {
         var responder: UIResponder? = sourceView
         while let current = responder {
-            if let controller = current as? UIViewController { return top(controller) }
+            if let controller = current as? UIViewController { return visiblePresenter(controller) }
             responder = current.next
         }
         let targetScene = scene ?? UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
             .first(where: { $0.activationState == .foregroundActive })
         guard let root = targetScene?.windows.first(where: \.isKeyWindow)?.rootViewController
             ?? targetScene?.windows.first?.rootViewController else { return nil }
-        return top(root)
+        return visiblePresenter(root)
+    }
+
+    private func visiblePresenter(_ controller: UIViewController) -> UIViewController? {
+        let candidate = top(controller)
+        guard candidate.viewIfLoaded?.window != nil else { return nil }
+        return candidate
     }
 
     private func top(_ controller: UIViewController) -> UIViewController {

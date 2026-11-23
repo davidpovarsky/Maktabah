@@ -88,7 +88,7 @@ def prepare():
     if SELECTOR not in {row["case_id"] for row in contract["cases"] + contract.get("supplemental_cases", [])}:
         contract.setdefault("supplemental_cases", []).append({
             "case_id": SELECTOR, "device": "ipad11", "status": "NOT_RUN",
-            "oracle": "Real original note UI, actual Hanlin TextStudio typed result and callback, same SQLite row and atomic receipt, native source process restart"})
+            "oracle": "Real original note UI, actual Hanlin TextStudio warm and cold callbacks, same SQLite row and atomic receipts, native source process restart and callback-only launch"})
     contract.update(source_test_commit=context["application_source_sha"],
                     app_source=context["application_source_sha"],
                     application_source_sha=context["application_source_sha"],
@@ -158,7 +158,7 @@ def binaries():
     for bundle in [products / "Maktabah.app", products / "Maktabah-iOSUITests-Runner.app",
                    products / "Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest"]:
         info = plistlib.loads((bundle / "Info.plist").read_bytes())
-        for path in [bundle / info["CFBundleExecutable"], *sorted(bundle.glob("*.dylib"))]:
+        for path in [bundle / "Info.plist", bundle / info["CFBundleExecutable"], *sorted(bundle.glob("*.dylib"))]:
             result[str(path.relative_to(ROOT))] = digest(path)
     return result
 
@@ -231,16 +231,39 @@ class ActualMiniAppsProducer:
                 finally:
                     connection.close()
                 result = record.get("result") or {}
-                expected = "\n".join(item["text"] for item in result.get("items", []) if item.get("text") is not None)
+                text = "\n".join(item["text"] for item in result.get("items", []) if item.get("text") is not None)
+                draft = document["draftNote"]
+                selection = document.get("selection")
+                encoded = draft.encode("utf-16-le")
+                position = ((selection["location"] + selection["length"]) * 2 if selection else len(encoded))
+                require(0 <= position <= len(encoded), "Original capture has an invalid UTF-16 insertion")
+                expected = (encoded[:position] + text.encode("utf-16-le") + encoded[position:]).decode("utf-16-le")
                 verified = (record["acknowledged"] is True and result.get("status") == "success"
                             and result.get("operation") == "insert" and len(rows) == 1
                             and rows[0][0] == document["annotationID"]
                             and rows[0][1] == rows[0][2] == document["annotationUUID"]
-                            and rows[0][3] == expected and expected.startswith("MiniApps original note שלום "))
+                            and json.loads(rows[0][4]) == result)
                 report["records"].append({"shared_record": record, "original_receipt_rows": rows,
-                                           "same_original_annotation_verified": verified})
-            require(len(report["records"]) == 1 and all(r["same_original_annotation_verified"] for r in report["records"]),
-                    "Expected one actual producer callback with the original atomic saved receipt")
+                                         "expected_note_after_this_result": expected,
+                                         "same_original_annotation_verified": verified})
+            records = report["records"]
+            require(len(records) == 2 and all(r["same_original_annotation_verified"] for r in records),
+                    "Expected warm and callback-only cold results with two original atomic receipts")
+            warm = [r for r in records if r["shared_record"]["request"]["source"].get("documentText") == ""]
+            require(len(warm) == 1, "Expected one original blank-note warm invocation")
+            warm = warm[0]
+            cold = next(r for r in records if r is not warm)
+            require(cold["shared_record"]["request"]["source"]["documentText"] == warm["expected_note_after_this_result"],
+                    "Cold invocation did not capture the actually saved warm result")
+            warm_text = warm["shared_record"]["result"]["items"][0]["text"]
+            cold_text = cold["shared_record"]["result"]["items"][0]["text"]
+            require(warm_text.startswith("MiniApps original note שלום ") and cold_text.startswith("MiniApps cold note שלום "),
+                    "Both original editor invocations must return their actual typed text")
+            identities = {tuple(r["original_receipt_rows"][0][:3]) for r in records}
+            require(len(identities) == 1 and all(r["original_receipt_rows"][0][3] == cold["expected_note_after_this_result"] for r in records),
+                    "Both callbacks must resolve to the same final original annotation row")
+            report["actual_callbacks"] = 2
+            report["cold_callback_without_manual_launch"] = "ASSERTED_BY_ACTUAL_XCTEST"
             report["status"] = "ACTUAL_SHARED_RECORD_AND_ORIGINAL_SQLITE_RECEIPT_PASS"
         except Exception as error:
             report["error"] = type(error).__name__ + ": " + str(error)
@@ -290,6 +313,11 @@ def collect():
         require(build["status"] == "SIMULATOR_BUILD_FOR_REAL_UI_PASS" and build["checkout_sha"] == context["checkout_sha"],
                 "No matching original app and UI runner build")
         require(binaries() == json.loads((OUT / "built-binaries.json").read_text()), "Actual native code images changed")
+        info = ROOT / "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Info.plist"
+        require(build.get("simulator_embedded_data_profile") == "miniTest10"
+                and digest(info) == build.get("built_app_info_sha256")
+                and plistlib.loads(info.read_bytes()).get("OtzariaDefaultDataProfile") == "miniTest10",
+                "Cold callback must use the original profile embedded at build time, with no post-build app mutation")
         hq = runpy.run_path(str(ROOT / "Scripts/CI/hq-stage2-focused-apple.py"))
         hq["verify_actual_sources"](build)
         native = build["native_context"]
@@ -357,7 +385,7 @@ def run_from_existing_native_workflow(report, run_logged, controller):
                           "miniapps-ui-sdk-compile.log", 600, interrupt_controller=controller):
                 raise RuntimeError("New real UI test did not compile against the Apple SDK")
         if run_logged([sys.executable, "Scripts/CI/hq-stage2-focused-apple.py", "--build-for-testing",
-                       "--derived-data", "build/DerivedData"],
+                       "--derived-data", "build/DerivedData", "--simulator-data-profile", "miniTest10"],
                       "miniapps-original-app-build.log", 7200, interrupt_controller=controller):
             raise RuntimeError("Original app/test build failed; new two-app UI case NOT_RUN")
         restore_producer()
