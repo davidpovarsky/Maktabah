@@ -481,6 +481,145 @@ def embed(root, admission_receipt, receipt_sha256, target, evidence):
           "products": receipts, "overwritten_products": 0, "codesign_on_copy": False, "remove_headers_on_copy": False})
 
 
+
+RUBY_CONTEXT_SOURCE_SHA256 = "2059ca905374a037ea10a7e56d3f4ae419602db77c80509376268988b505738b"
+
+
+def ruby_context_file(path):
+    path = Path(path).resolve(strict=True)
+    require(path.is_file(), "Original Ruby context input is not a file")
+    return {"path": str(path), "bytes": path.stat().st_size, "sha256": digest(path)}
+
+
+def prepare_pod_ruby_context(root, out):
+    root, out = Path(root), Path(out)
+    observer = root / "Scripts/CI/hq-original-editor-ruby-context.rb"
+    keys = ["OTZARIA_ORIGINAL_EDITOR_RUBY_REQUEST", "OTZARIA_ORIGINAL_EDITOR_RUBY_PARENT",
+            "OTZARIA_ORIGINAL_EDITOR_RUBY_PROGRAM"]
+    require(not any(key in os.environ for key in keys), "Existing original Ruby observation context")
+    program = shutil.which("pod")
+    require(program, "Original pod executable is missing")
+    program = ruby_context_file(program)
+    observer_record = ruby_context_file(observer)
+    require(observer_record['sha256'] == RUBY_CONTEXT_SOURCE_SHA256, 'Original Ruby observer source mismatch')
+    helper_record = ruby_context_file(root / 'Scripts/CI/hq-original-editor-app-target.rb')
+    require(not any(c.isspace() for c in observer_record["path"]), "Ruby preload path cannot contain whitespace")
+    evidence = out / "original-editor"
+    evidence.mkdir(parents=True, exist_ok=True)
+    request_path = evidence / "pod-ruby-request.json"
+    receipt_path = evidence / "pod-ruby-context.json"
+    require(not receipt_path.exists() and not receipt_path.is_symlink(), "Original pod Ruby receipt already exists")
+    request = {"schema": 1, "nonce": os.urandom(32).hex(), "parent_pid": os.getpid(),
+               "program": program, "observer": observer_record, "helper": helper_record,
+               "receipt_path": str(receipt_path.resolve())}
+    with request_path.open("x", encoding="utf-8") as stream:
+        stream.write(json.dumps(request, indent=2) + "\n")
+    environment = dict(os.environ)
+    inherited = environment.get("RUBYOPT", "")
+    environment["RUBYOPT"] = inherited + (" " if inherited else "") + "-r" + observer_record["path"]
+    environment.update({keys[0]: str(request_path.resolve()), keys[1]: str(os.getpid()),
+                        keys[2]: program["path"]})
+    return {"request_path": str(request_path), "request_sha256": digest(request_path),
+            "receipt_path": str(receipt_path), "environment": environment}
+
+
+def validate_pod_ruby_receipt(request, receipt):
+    require(receipt.get("schema") == 1 and receipt.get("nonce") == request["nonce"],
+            "Original pod Ruby receipt identity mismatch")
+    require(receipt.get("parent_pid") == request["parent_pid"]
+            and type(receipt.get("pid")) is int and receipt["pid"] > 0
+            and receipt["pid"] != receipt["parent_pid"], "Original pod process identity mismatch")
+    require(receipt.get("argv") == ["install"] and type(receipt.get("original_exit_code")) is int and receipt["original_exit_code"] == 0,
+            "Original pod Ruby receipt is not a successful install")
+    for key in ("program", "observer", "helper"):
+        require(receipt.get(key) == request[key]
+                and ruby_context_file(request[key]["path"]) == request[key],
+                "Original pod " + key + " changed")
+    runtime = receipt.get("ruby", {})
+    require(set(runtime) == {"executable", "engine", "version", "patchlevel", "platform"}
+            and all(isinstance(runtime.get(k), str) and runtime[k] for k in ("engine", "version", "platform"))
+            and type(runtime.get("patchlevel")) is int, "Missing original Ruby runtime identity")
+    require(ruby_context_file(runtime["executable"]["path"]) == runtime["executable"],
+            "Original Ruby executable changed")
+    paths = receipt.get("gem_paths")
+    require(isinstance(paths, list) and paths and len(paths) == len(set(paths))
+            and all(isinstance(p, str) and Path(p).is_absolute() and "\0" not in p for p in paths)
+            and isinstance(receipt.get("gem_home"), str) and Path(receipt["gem_home"]).is_absolute(),
+            "Invalid original Ruby gem search context")
+    records = receipt.get("xcodeproj_closure")
+    require(isinstance(records, list) and records, "Missing original Xcodeproj dependency closure")
+    names = [record.get("name") for record in records]
+    require(len(names) == len(set(names)) and "xcodeproj" in names, "Ambiguous Xcodeproj dependency closure")
+    activated = set()
+    for record in records:
+        require(set(record) == {"name", "version", "full_gem_path", "loaded_from", "dependencies", "files", "root_files"}
+                and isinstance(record["name"], str) and record["name"]
+                and isinstance(record["version"], str) and record["version"]
+                and Path(record["full_gem_path"]).is_absolute(), "Invalid original gem record")
+        dependencies = record["dependencies"]
+        require(isinstance(dependencies, list) and len({d["name"] for d in dependencies}) == len(dependencies)
+                and all(set(d) == {"name", "requirement"} and isinstance(d["requirement"], str)
+                        and d["name"] in activated for d in dependencies),
+                "Original gem closure is incomplete or not dependency-first")
+        require(ruby_context_file(record["loaded_from"]["path"]) == record["loaded_from"],
+                "Original gem specification changed")
+        root_files = record["root_files"]
+        require(isinstance(root_files, list) and root_files == sorted(set(root_files))
+                and all(isinstance(p, str) and Path(p).is_absolute() for p in root_files),
+                "Invalid original gem source membership")
+        files = record["files"]
+        require(isinstance(files, list) and files and len({f["path"] for f in files}) == len(files)
+                and all(ruby_context_file(f["path"]) == f for f in files), "Original gem source changed")
+        require(set(root_files).issubset({f["path"] for f in files}), "Incomplete original gem source membership")
+        activated.add(record["name"])
+    cocoapods = receipt.get("cocoapods", {})
+    require(cocoapods.get("name") == "cocoapods" and isinstance(cocoapods.get("version"), str)
+            and ruby_context_file(cocoapods["loaded_from"]["path"]) == cocoapods["loaded_from"],
+            "Original successful pod did not identify CocoaPods")
+    return receipt
+
+
+def admit_pod_ruby_context(root, context, command_returncode):
+    require(type(command_returncode) is int and command_returncode == 0,
+            "Original pod command did not exit zero")
+    request_path, receipt_path = Path(context["request_path"]), Path(context["receipt_path"])
+    require(digest(request_path) == context["request_sha256"], "Original pod Ruby request changed")
+    require(receipt_path.is_file() and not receipt_path.is_symlink()
+            and receipt_path.stat().st_size <= 8 * 1024 * 1024, "Missing or oversized original pod Ruby receipt")
+    request, receipt = read_json(request_path), read_json(receipt_path)
+    require(str(receipt_path.resolve()) == request["receipt_path"], "Original pod Ruby receipt path mismatch")
+    validate_pod_ruby_receipt(request, receipt)
+    lock = (Path(root) / "Podfile.lock").read_text()
+    versions = re.findall(r"^COCOAPODS: (\S+)$", lock, re.MULTILINE)
+    require(versions == [receipt["cocoapods"]["version"]], "CocoaPods receipt and original Pod lock differ")
+    return {"command": ["pod", "install"], "returncode": command_returncode,
+            "request_path": str(request_path), "request_sha256": digest(request_path),
+            "receipt_path": str(receipt_path), "receipt_sha256": digest(receipt_path)}
+
+
+def original_editor_ruby_launch(root, proof, helper_arguments):
+    require(proof.get("command") == ["pod", "install"] and type(proof.get("returncode")) is int
+            and proof["returncode"] == 0,
+            "Missing actual successful original pod command")
+    request_path, receipt_path = Path(proof["request_path"]), Path(proof["receipt_path"])
+    require(digest(request_path) == proof["request_sha256"]
+            and digest(receipt_path) == proof["receipt_sha256"], "Original pod context proof changed")
+    request, receipt = read_json(request_path), read_json(receipt_path)
+    require(str(receipt_path.resolve()) == request["receipt_path"], "Original pod Ruby receipt path mismatch")
+    validate_pod_ruby_receipt(request, receipt)
+    observer = Path(root) / "Scripts/CI/hq-original-editor-ruby-context.rb"
+    helper = Path(root) / "Scripts/CI/hq-original-editor-app-target.rb"
+    require(ruby_context_file(observer) == receipt["observer"]
+            and receipt["observer"]["sha256"] == RUBY_CONTEXT_SOURCE_SHA256, "Original Ruby launcher changed")
+    require(ruby_context_file(helper) == receipt["helper"], "Original project helper changed")
+    environment = dict(os.environ)
+    environment["GEM_HOME"] = receipt["gem_home"]
+    environment["GEM_PATH"] = os.pathsep.join(receipt["gem_paths"])
+    command_line = [receipt["ruby"]["executable"]["path"], str(observer), "--launch",
+                    str(receipt_path), proof["receipt_sha256"], str(helper), *map(str, helper_arguments)]
+    return command_line, environment
+
+
 def prepare(root, admission_path, report, out, logged):
     root, out = Path(root), Path(out)
     evidence = out / "original-editor"
@@ -542,9 +681,10 @@ def prepare(root, admission_path, report, out, logged):
     if admitted.get("schema") == 2:
         plan.update(admission_schema=2, clang_import_context=admitted["clang_import_context"])
     write(evidence / "app-target-plan.json", plan)
-    logged(["ruby", "Scripts/CI/hq-original-editor-app-target.rb", str(project),
-            str(evidence / "app-target-plan.json"), str(evidence / "app-target-configuration.json")],
-           "original-editor-app-target.log", report)
+    ruby_proof = report["native_context"]["original_editor_pod_ruby_context"]
+    ruby_command, ruby_environment = original_editor_ruby_launch(root, ruby_proof,
+        [project, evidence / "app-target-plan.json", evidence / "app-target-configuration.json"])
+    logged(ruby_command, "original-editor-app-target.log", report, env=ruby_environment)
     receipt = read_json(evidence / "app-target-configuration.json")
     require(receipt["before_project_sha256"] == plan["before_project_sha256"]
             and receipt["after_project_sha256"] == digest(project)

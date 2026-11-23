@@ -1,0 +1,851 @@
+{
+  "schema": 1,
+  "base": "8e9dac2d9585dd482e9ab784a65c5517b6847648",
+  "rows": [
+    {
+      "path": "README.md",
+      "bytes": 5011,
+      "sha256": "252f943fdd9bceee9a86211536ec162e8bfd117a1074188d69c79780d77353a4"
+    },
+    {
+      "path": "SOURCE_CORRESPONDENCE.json",
+      "bytes": 7873,
+      "sha256": "971e4887b25783d25d362d72f54138b6fa3903a2de398aa4f02342809c8564c0"
+    },
+    {
+      "path": "THREE_PATHS.diff",
+      "bytes": 22061,
+      "sha256": "63ad4edb92c9da289475f79bb773dbc626afc19cab72a379eb792311e60b1020"
+    },
+    {
+      "path": "after/Scripts/CI/hq-original-editor-distribution.py",
+      "bytes": 48326,
+      "sha256": "3c62064f0278502ca0ebbac64243439a6515a7a29ee29c16d0933df6b077588d"
+    },
+    {
+      "path": "after/Scripts/CI/hq-original-editor-ruby-context.rb",
+      "bytes": 7558,
+      "sha256": "2059ca905374a037ea10a7e56d3f4ae419602db77c80509376268988b505738b"
+    },
+    {
+      "path": "after/Scripts/CI/hq-stage2-focused-apple.py",
+      "bytes": 49198,
+      "sha256": "d8c317ee8fdf1fd07a2e2e604c52866379912d96705f4da9a09bcab055f8f337"
+    },
+    {
+      "path": "before/Scripts/CI/hq-original-editor-distribution.py",
+      "bytes": 39025,
+      "sha256": "84e6110e7f3b1e472c18b3913440703e221bffde2bfaaca782765697e2940e49"
+    },
+    {
+      "path": "before/Scripts/CI/hq-original-editor-ruby-context.rb",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "before/Scripts/CI/hq-stage2-focused-apple.py",
+      "bytes": 48574,
+      "sha256": "0dbe133b8f0ee188dc2f0d0c375972a210571498ecac928f1174730ebb0e83f5"
+    },
+    {
+      "path": "controls/actual-run/RESULT.json",
+      "bytes": 15117,
+      "sha256": "4afad3517623d47b5ec66dc38e8f78f40542c6b8d134ce37fae9381f9c78841a"
+    },
+    {
+      "path": "controls/actual-run/captured-not-path-ruby.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-run/captured-not-path-ruby.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-run/duplicate-receipt/Podfile.lock",
+      "bytes": 17,
+      "sha256": "113c2c62d0c45d3c53a99ffd0de01bfe9cadebaefa4e5608eecf1cd596f33856"
+    },
+    {
+      "path": "controls/actual-run/duplicate-receipt/Scripts/CI/hq-original-editor-app-target.rb",
+      "bytes": 163,
+      "sha256": "f8b5e5a8d25b821fd5f56b02b1178d2db56f64f54df96716440062a99e8740a2"
+    },
+    {
+      "path": "controls/actual-run/duplicate-receipt/Scripts/CI/hq-original-editor-ruby-context.rb",
+      "bytes": 7558,
+      "sha256": "2059ca905374a037ea10a7e56d3f4ae419602db77c80509376268988b505738b"
+    },
+    {
+      "path": "controls/actual-run/duplicate-receipt/bin/pod",
+      "bytes": 808,
+      "sha256": "df7d37884d3fc1dca904be847c48e1084a460f5c4d3cf166c4b42ea14777ad69"
+    },
+    {
+      "path": "controls/actual-run/duplicate-receipt/build/hq-stage2/original-editor/pod-ruby-context.json",
+      "bytes": 27,
+      "sha256": "9619fb2b48fa1306868626b1411997c4fa4fe0571433dd93457c2c27598aec37"
+    },
+    {
+      "path": "controls/actual-run/duplicate-receipt/build/hq-stage2/original-editor/pod-ruby-request.json",
+      "bytes": 1206,
+      "sha256": "ef7255f917b6f033d7b263f46137c00680e6275909090debd8fa4e062d44814f"
+    },
+    {
+      "path": "controls/actual-run/duplicate-receipt/gems/gems/cocoapods-0.0.1/lib/cocoapods.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-run/duplicate-receipt/gems/gems/context_dependency-0.0.1/lib/context_dependency.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-run/duplicate-receipt/gems/gems/xcodeproj-0.0.1/lib/xcodeproj.rb",
+      "bytes": 91,
+      "sha256": "c4d065e1af57a0d72dc2ffc4b4938b49133ad61993baa066c498c35995c680dd"
+    },
+    {
+      "path": "controls/actual-run/duplicate-receipt/gems/specifications/cocoapods-0.0.1.gemspec",
+      "bytes": 218,
+      "sha256": "98b605b8799a7ab94158729d45946ed2af1bcb858e5e7373fb87ac81540f2cc3"
+    },
+    {
+      "path": "controls/actual-run/duplicate-receipt/gems/specifications/context_dependency-0.0.1.gemspec",
+      "bytes": 236,
+      "sha256": "2a5b43f666c344793d18e60984754b74865876b94fee26a2af1209d67a202356"
+    },
+    {
+      "path": "controls/actual-run/duplicate-receipt/gems/specifications/xcodeproj-0.0.1.gemspec",
+      "bytes": 277,
+      "sha256": "0f72a96eed7448ec487d46061a25f357c8697814da329100d4e35df0b8b67799"
+    },
+    {
+      "path": "controls/actual-run/duplicate-receipt-pod.stderr",
+      "bytes": 1017,
+      "sha256": "aee0eabe32beac0f3ef9953e634bb2cee07bc40ec4fa356df93ea5b27d3d7657"
+    },
+    {
+      "path": "controls/actual-run/duplicate-receipt-pod.stdout",
+      "bytes": 28,
+      "sha256": "bacb48433cfd93cddd7f6aac247d91a49a32c0b2e09aac4f51024d210ea8d49c"
+    },
+    {
+      "path": "controls/actual-run/extra-gem-source-helper.stderr",
+      "bytes": 816,
+      "sha256": "d3a9801a71d9ffd887dc8aad1b7b795e681aa0e9c8ac091707f4c61144b00520"
+    },
+    {
+      "path": "controls/actual-run/extra-gem-source-helper.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-run/helper-failure/Podfile.lock",
+      "bytes": 17,
+      "sha256": "113c2c62d0c45d3c53a99ffd0de01bfe9cadebaefa4e5608eecf1cd596f33856"
+    },
+    {
+      "path": "controls/actual-run/helper-failure/Scripts/CI/hq-original-editor-app-target.rb",
+      "bytes": 163,
+      "sha256": "f8b5e5a8d25b821fd5f56b02b1178d2db56f64f54df96716440062a99e8740a2"
+    },
+    {
+      "path": "controls/actual-run/helper-failure/Scripts/CI/hq-original-editor-ruby-context.rb",
+      "bytes": 7558,
+      "sha256": "2059ca905374a037ea10a7e56d3f4ae419602db77c80509376268988b505738b"
+    },
+    {
+      "path": "controls/actual-run/helper-failure/bin/pod",
+      "bytes": 808,
+      "sha256": "df7d37884d3fc1dca904be847c48e1084a460f5c4d3cf166c4b42ea14777ad69"
+    },
+    {
+      "path": "controls/actual-run/helper-failure/build/hq-stage2/default-path.log",
+      "bytes": 24,
+      "sha256": "2962722dad3ca0e2993bd4ea09224ded1839606fc2d25bd1feeaad33b959ff25"
+    },
+    {
+      "path": "controls/actual-run/helper-failure/build/hq-stage2/original-editor/pod-ruby-context.json",
+      "bytes": 4860,
+      "sha256": "23c4a2e8fb1750515521e21f9d1e6c770999786be0456cb3e4723fa78c57dfb4"
+    },
+    {
+      "path": "controls/actual-run/helper-failure/build/hq-stage2/original-editor/pod-ruby-request.json",
+      "bytes": 1194,
+      "sha256": "af1f92392f69571c3b5f57cff8846b8f44c8000e801ee65df9d86714101ce3a4"
+    },
+    {
+      "path": "controls/actual-run/helper-failure/build/hq-stage2/original-nonzero.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-run/helper-failure/gems/gems/cocoapods-0.0.1/lib/cocoapods.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-run/helper-failure/gems/gems/context_dependency-0.0.1/lib/context_dependency.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-run/helper-failure/gems/gems/xcodeproj-0.0.1/lib/xcodeproj.rb",
+      "bytes": 91,
+      "sha256": "c4d065e1af57a0d72dc2ffc4b4938b49133ad61993baa066c498c35995c680dd"
+    },
+    {
+      "path": "controls/actual-run/helper-failure/gems/specifications/cocoapods-0.0.1.gemspec",
+      "bytes": 218,
+      "sha256": "98b605b8799a7ab94158729d45946ed2af1bcb858e5e7373fb87ac81540f2cc3"
+    },
+    {
+      "path": "controls/actual-run/helper-failure/gems/specifications/context_dependency-0.0.1.gemspec",
+      "bytes": 236,
+      "sha256": "2a5b43f666c344793d18e60984754b74865876b94fee26a2af1209d67a202356"
+    },
+    {
+      "path": "controls/actual-run/helper-failure/gems/specifications/xcodeproj-0.0.1.gemspec",
+      "bytes": 277,
+      "sha256": "0f72a96eed7448ec487d46061a25f357c8697814da329100d4e35df0b8b67799"
+    },
+    {
+      "path": "controls/actual-run/helper-failure/helper-called.json",
+      "bytes": 453,
+      "sha256": "f3109e80a6914a0ea923c19f5b3ccd881260c84ea08299f2a6957aaf500b21e2"
+    },
+    {
+      "path": "controls/actual-run/helper-failure-pod.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-run/helper-failure-pod.stdout",
+      "bytes": 28,
+      "sha256": "bacb48433cfd93cddd7f6aac247d91a49a32c0b2e09aac4f51024d210ea8d49c"
+    },
+    {
+      "path": "controls/actual-run/missing-receipt/Podfile.lock",
+      "bytes": 17,
+      "sha256": "113c2c62d0c45d3c53a99ffd0de01bfe9cadebaefa4e5608eecf1cd596f33856"
+    },
+    {
+      "path": "controls/actual-run/missing-receipt/Scripts/CI/hq-original-editor-app-target.rb",
+      "bytes": 163,
+      "sha256": "f8b5e5a8d25b821fd5f56b02b1178d2db56f64f54df96716440062a99e8740a2"
+    },
+    {
+      "path": "controls/actual-run/missing-receipt/Scripts/CI/hq-original-editor-ruby-context.rb",
+      "bytes": 7558,
+      "sha256": "2059ca905374a037ea10a7e56d3f4ae419602db77c80509376268988b505738b"
+    },
+    {
+      "path": "controls/actual-run/missing-receipt/bin/pod",
+      "bytes": 808,
+      "sha256": "df7d37884d3fc1dca904be847c48e1084a460f5c4d3cf166c4b42ea14777ad69"
+    },
+    {
+      "path": "controls/actual-run/missing-receipt/build/hq-stage2/original-editor/pod-ruby-request.json",
+      "bytes": 1198,
+      "sha256": "9623b75a559b5f543d51ddc492b3654ed9d3486c90d7f1b79531834f8d6de76b"
+    },
+    {
+      "path": "controls/actual-run/missing-receipt/gems/gems/cocoapods-0.0.1/lib/cocoapods.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-run/missing-receipt/gems/gems/context_dependency-0.0.1/lib/context_dependency.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-run/missing-receipt/gems/gems/xcodeproj-0.0.1/lib/xcodeproj.rb",
+      "bytes": 91,
+      "sha256": "c4d065e1af57a0d72dc2ffc4b4938b49133ad61993baa066c498c35995c680dd"
+    },
+    {
+      "path": "controls/actual-run/missing-receipt/gems/specifications/cocoapods-0.0.1.gemspec",
+      "bytes": 218,
+      "sha256": "98b605b8799a7ab94158729d45946ed2af1bcb858e5e7373fb87ac81540f2cc3"
+    },
+    {
+      "path": "controls/actual-run/missing-receipt/gems/specifications/context_dependency-0.0.1.gemspec",
+      "bytes": 236,
+      "sha256": "2a5b43f666c344793d18e60984754b74865876b94fee26a2af1209d67a202356"
+    },
+    {
+      "path": "controls/actual-run/missing-receipt/gems/specifications/xcodeproj-0.0.1.gemspec",
+      "bytes": 277,
+      "sha256": "0f72a96eed7448ec487d46061a25f357c8697814da329100d4e35df0b8b67799"
+    },
+    {
+      "path": "controls/actual-run/original-helper-failure.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-run/original-helper-failure.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-run/path-ruby/Podfile.lock",
+      "bytes": 17,
+      "sha256": "113c2c62d0c45d3c53a99ffd0de01bfe9cadebaefa4e5608eecf1cd596f33856"
+    },
+    {
+      "path": "controls/actual-run/path-ruby/Scripts/CI/hq-original-editor-app-target.rb",
+      "bytes": 163,
+      "sha256": "f8b5e5a8d25b821fd5f56b02b1178d2db56f64f54df96716440062a99e8740a2"
+    },
+    {
+      "path": "controls/actual-run/path-ruby/Scripts/CI/hq-original-editor-ruby-context.rb",
+      "bytes": 7558,
+      "sha256": "2059ca905374a037ea10a7e56d3f4ae419602db77c80509376268988b505738b"
+    },
+    {
+      "path": "controls/actual-run/path-ruby/bin/pod",
+      "bytes": 808,
+      "sha256": "df7d37884d3fc1dca904be847c48e1084a460f5c4d3cf166c4b42ea14777ad69"
+    },
+    {
+      "path": "controls/actual-run/path-ruby/bin/ruby",
+      "bytes": 18,
+      "sha256": "7eff4bcfa4e1285e8cd8ec1e9eb813d70292a751f9aee6d0f33c979ceb2ed0fc"
+    },
+    {
+      "path": "controls/actual-run/path-ruby/build/hq-stage2/original-editor/pod-ruby-context.json",
+      "bytes": 4785,
+      "sha256": "c7f9b9c6477017262da2e89d218125ca8031e7c80309a676087890d4015d4619"
+    },
+    {
+      "path": "controls/actual-run/path-ruby/build/hq-stage2/original-editor/pod-ruby-request.json",
+      "bytes": 1174,
+      "sha256": "9e76b8e874ca0034395feb691c8d9a6aec0b810c50a0457aea2bed9f9fcdc3dd"
+    },
+    {
+      "path": "controls/actual-run/path-ruby/gems/gems/cocoapods-0.0.1/lib/cocoapods.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-run/path-ruby/gems/gems/context_dependency-0.0.1/lib/context_dependency.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-run/path-ruby/gems/gems/xcodeproj-0.0.1/lib/xcodeproj.rb",
+      "bytes": 91,
+      "sha256": "c4d065e1af57a0d72dc2ffc4b4938b49133ad61993baa066c498c35995c680dd"
+    },
+    {
+      "path": "controls/actual-run/path-ruby/gems/specifications/cocoapods-0.0.1.gemspec",
+      "bytes": 218,
+      "sha256": "98b605b8799a7ab94158729d45946ed2af1bcb858e5e7373fb87ac81540f2cc3"
+    },
+    {
+      "path": "controls/actual-run/path-ruby/gems/specifications/context_dependency-0.0.1.gemspec",
+      "bytes": 236,
+      "sha256": "2a5b43f666c344793d18e60984754b74865876b94fee26a2af1209d67a202356"
+    },
+    {
+      "path": "controls/actual-run/path-ruby/gems/specifications/xcodeproj-0.0.1.gemspec",
+      "bytes": 277,
+      "sha256": "0f72a96eed7448ec487d46061a25f357c8697814da329100d4e35df0b8b67799"
+    },
+    {
+      "path": "controls/actual-run/path-ruby/helper-called.json",
+      "bytes": 438,
+      "sha256": "9f2010297c7fd28efb459970834d96536c406005b6ffc641458dfc9f1e8f68bb"
+    },
+    {
+      "path": "controls/actual-run/path-ruby-pod.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-run/path-ruby-pod.stdout",
+      "bytes": 28,
+      "sha256": "bacb48433cfd93cddd7f6aac247d91a49a32c0b2e09aac4f51024d210ea8d49c"
+    },
+    {
+      "path": "controls/actual-run/pod-failure/Podfile.lock",
+      "bytes": 17,
+      "sha256": "113c2c62d0c45d3c53a99ffd0de01bfe9cadebaefa4e5608eecf1cd596f33856"
+    },
+    {
+      "path": "controls/actual-run/pod-failure/Scripts/CI/hq-original-editor-app-target.rb",
+      "bytes": 163,
+      "sha256": "f8b5e5a8d25b821fd5f56b02b1178d2db56f64f54df96716440062a99e8740a2"
+    },
+    {
+      "path": "controls/actual-run/pod-failure/Scripts/CI/hq-original-editor-ruby-context.rb",
+      "bytes": 7558,
+      "sha256": "2059ca905374a037ea10a7e56d3f4ae419602db77c80509376268988b505738b"
+    },
+    {
+      "path": "controls/actual-run/pod-failure/bin/pod",
+      "bytes": 808,
+      "sha256": "df7d37884d3fc1dca904be847c48e1084a460f5c4d3cf166c4b42ea14777ad69"
+    },
+    {
+      "path": "controls/actual-run/pod-failure/build/hq-stage2/original-editor/pod-ruby-context.json",
+      "bytes": 1063,
+      "sha256": "97eadb8c2664454605b89ad75733ec0c360b761aebd1e108b93b1c6c1f94a907"
+    },
+    {
+      "path": "controls/actual-run/pod-failure/build/hq-stage2/original-editor/pod-ruby-request.json",
+      "bytes": 1182,
+      "sha256": "c02c8f42fd0a868d86bfde25dfab57d2ed5c21e9070e03052b15ec22a4133ef7"
+    },
+    {
+      "path": "controls/actual-run/pod-failure/gems/gems/cocoapods-0.0.1/lib/cocoapods.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-run/pod-failure/gems/gems/context_dependency-0.0.1/lib/context_dependency.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-run/pod-failure/gems/gems/xcodeproj-0.0.1/lib/xcodeproj.rb",
+      "bytes": 91,
+      "sha256": "c4d065e1af57a0d72dc2ffc4b4938b49133ad61993baa066c498c35995c680dd"
+    },
+    {
+      "path": "controls/actual-run/pod-failure/gems/specifications/cocoapods-0.0.1.gemspec",
+      "bytes": 218,
+      "sha256": "98b605b8799a7ab94158729d45946ed2af1bcb858e5e7373fb87ac81540f2cc3"
+    },
+    {
+      "path": "controls/actual-run/pod-failure/gems/specifications/context_dependency-0.0.1.gemspec",
+      "bytes": 236,
+      "sha256": "2a5b43f666c344793d18e60984754b74865876b94fee26a2af1209d67a202356"
+    },
+    {
+      "path": "controls/actual-run/pod-failure/gems/specifications/xcodeproj-0.0.1.gemspec",
+      "bytes": 277,
+      "sha256": "0f72a96eed7448ec487d46061a25f357c8697814da329100d4e35df0b8b67799"
+    },
+    {
+      "path": "controls/actual-run/pod-failure-pod.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-run/pod-failure-pod.stdout",
+      "bytes": 28,
+      "sha256": "bacb48433cfd93cddd7f6aac247d91a49a32c0b2e09aac4f51024d210ea8d49c"
+    },
+    {
+      "path": "controls/actual-run/ruby-whole-source-syntax.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-run/ruby-whole-source-syntax.stdout",
+      "bytes": 10,
+      "sha256": "bbafef10c22b9323fa5589564990f57fbf57f9a632381d5e765dc5a3b25b4a1b"
+    },
+    {
+      "path": "controls/actual-run/runtime-drift-helper.stderr",
+      "bytes": 418,
+      "sha256": "3f0647d841f12135ce98ad482f9b54a923f06570b014561ee0dfee60dc107069"
+    },
+    {
+      "path": "controls/actual-run/runtime-drift-helper.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-run/same-context/Podfile.lock",
+      "bytes": 17,
+      "sha256": "113c2c62d0c45d3c53a99ffd0de01bfe9cadebaefa4e5608eecf1cd596f33856"
+    },
+    {
+      "path": "controls/actual-run/same-context/Scripts/CI/hq-original-editor-app-target.rb",
+      "bytes": 163,
+      "sha256": "f8b5e5a8d25b821fd5f56b02b1178d2db56f64f54df96716440062a99e8740a2"
+    },
+    {
+      "path": "controls/actual-run/same-context/Scripts/CI/hq-original-editor-ruby-context.rb",
+      "bytes": 7558,
+      "sha256": "2059ca905374a037ea10a7e56d3f4ae419602db77c80509376268988b505738b"
+    },
+    {
+      "path": "controls/actual-run/same-context/bin/pod",
+      "bytes": 808,
+      "sha256": "df7d37884d3fc1dca904be847c48e1084a460f5c4d3cf166c4b42ea14777ad69"
+    },
+    {
+      "path": "controls/actual-run/same-context/build/hq-stage2/original-editor/pod-ruby-context.json",
+      "bytes": 4830,
+      "sha256": "b96e74eb3d965f626e7ba6c3f07639a24b3e4c6e4a72feb8937e7ca6f5f0aa96"
+    },
+    {
+      "path": "controls/actual-run/same-context/build/hq-stage2/original-editor/pod-ruby-request.json",
+      "bytes": 1186,
+      "sha256": "ed51894bce20c485bb76e7ccc6720f902ad0203b6eca8d6980c2a093164577ff"
+    },
+    {
+      "path": "controls/actual-run/same-context/child.json",
+      "bytes": 45,
+      "sha256": "5ff36aee31f986338be1b5adb3c64ae1c3def1ec4cc3096585315db26d2ee875"
+    },
+    {
+      "path": "controls/actual-run/same-context/gems/gems/cocoapods-0.0.1/lib/cocoapods.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-run/same-context/gems/gems/context_dependency-0.0.1/lib/context_dependency.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-run/same-context/gems/gems/xcodeproj-0.0.1/lib/xcodeproj.rb",
+      "bytes": 91,
+      "sha256": "c4d065e1af57a0d72dc2ffc4b4938b49133ad61993baa066c498c35995c680dd"
+    },
+    {
+      "path": "controls/actual-run/same-context/gems/specifications/cocoapods-0.0.1.gemspec",
+      "bytes": 218,
+      "sha256": "98b605b8799a7ab94158729d45946ed2af1bcb858e5e7373fb87ac81540f2cc3"
+    },
+    {
+      "path": "controls/actual-run/same-context/gems/specifications/context_dependency-0.0.1.gemspec",
+      "bytes": 236,
+      "sha256": "2a5b43f666c344793d18e60984754b74865876b94fee26a2af1209d67a202356"
+    },
+    {
+      "path": "controls/actual-run/same-context/gems/specifications/xcodeproj-0.0.1.gemspec",
+      "bytes": 277,
+      "sha256": "0f72a96eed7448ec487d46061a25f357c8697814da329100d4e35df0b8b67799"
+    },
+    {
+      "path": "controls/actual-run/same-context/helper-called.json",
+      "bytes": 447,
+      "sha256": "a7350aa22c20ebee97a2a18e4b565c340f159951801fe4fb95142ca2731d85b6"
+    },
+    {
+      "path": "controls/actual-run/same-context-helper.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-run/same-context-helper.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-run/same-context-pod.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-run/same-context-pod.stdout",
+      "bytes": 48,
+      "sha256": "6087fe3d04cc24619dbdfd67e81b150f1d2eab959ddbbb53285003a63568fb3d"
+    },
+    {
+      "path": "controls/actual-run/source-drift/Podfile.lock",
+      "bytes": 17,
+      "sha256": "113c2c62d0c45d3c53a99ffd0de01bfe9cadebaefa4e5608eecf1cd596f33856"
+    },
+    {
+      "path": "controls/actual-run/source-drift/Scripts/CI/hq-original-editor-app-target.rb",
+      "bytes": 163,
+      "sha256": "f8b5e5a8d25b821fd5f56b02b1178d2db56f64f54df96716440062a99e8740a2"
+    },
+    {
+      "path": "controls/actual-run/source-drift/Scripts/CI/hq-original-editor-ruby-context.rb",
+      "bytes": 7558,
+      "sha256": "2059ca905374a037ea10a7e56d3f4ae419602db77c80509376268988b505738b"
+    },
+    {
+      "path": "controls/actual-run/source-drift/bin/pod",
+      "bytes": 808,
+      "sha256": "df7d37884d3fc1dca904be847c48e1084a460f5c4d3cf166c4b42ea14777ad69"
+    },
+    {
+      "path": "controls/actual-run/source-drift/build/hq-stage2/original-editor/pod-ruby-context.json",
+      "bytes": 4264,
+      "sha256": "d36142b2b31c81acab21a1dd006cd8b4b9ed6862496d6046b462cbafeb9b73fb"
+    },
+    {
+      "path": "controls/actual-run/source-drift/build/hq-stage2/original-editor/pod-ruby-request.json",
+      "bytes": 1186,
+      "sha256": "5079442d8645c90efbd4d62ed4fb4382df7b1968d5cbac76651f0d76f1c4c416"
+    },
+    {
+      "path": "controls/actual-run/source-drift/gems/gems/cocoapods-0.0.1/lib/cocoapods.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-run/source-drift/gems/gems/context_dependency-0.0.1/lib/context_dependency.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-run/source-drift/gems/gems/xcodeproj-0.0.1/lib/xcodeproj.rb",
+      "bytes": 91,
+      "sha256": "c4d065e1af57a0d72dc2ffc4b4938b49133ad61993baa066c498c35995c680dd"
+    },
+    {
+      "path": "controls/actual-run/source-drift/gems/specifications/cocoapods-0.0.1.gemspec",
+      "bytes": 218,
+      "sha256": "98b605b8799a7ab94158729d45946ed2af1bcb858e5e7373fb87ac81540f2cc3"
+    },
+    {
+      "path": "controls/actual-run/source-drift/gems/specifications/context_dependency-0.0.1.gemspec",
+      "bytes": 236,
+      "sha256": "2a5b43f666c344793d18e60984754b74865876b94fee26a2af1209d67a202356"
+    },
+    {
+      "path": "controls/actual-run/source-drift/gems/specifications/xcodeproj-0.0.1.gemspec",
+      "bytes": 277,
+      "sha256": "0f72a96eed7448ec487d46061a25f357c8697814da329100d4e35df0b8b67799"
+    },
+    {
+      "path": "controls/actual-run/source-drift-pod.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-run/source-drift-pod.stdout",
+      "bytes": 28,
+      "sha256": "bacb48433cfd93cddd7f6aac247d91a49a32c0b2e09aac4f51024d210ea8d49c"
+    },
+    {
+      "path": "controls/controls-1.command.json",
+      "bytes": 786,
+      "sha256": "be562e8f1b9943274f15d7ff7c761cfcbfec65280fe0f87733720d7f6991133c"
+    },
+    {
+      "path": "controls/controls-1.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/controls-1.stdout",
+      "bytes": 390,
+      "sha256": "d6f95960cd22c6b32ef849b98d6fbcdf2f4dac5ce135d120f08e3db263297dd9"
+    },
+    {
+      "path": "controls/portable-ruby/ADMISSION.json",
+      "bytes": 4004,
+      "sha256": "16e91525bc1de9a09ce272ede6f4ca1ee3bbfa3bce5fcb221e19a2187b18cf5e"
+    },
+    {
+      "path": "controls/portable-ruby/libruby3.2.apt-metadata.txt",
+      "bytes": 3586,
+      "sha256": "978066463b794603e677ccc39031b5d2855a3c5396fc2e1be3a8c1bb7f8a37be"
+    },
+    {
+      "path": "controls/portable-ruby/libruby3.2.download.stderr",
+      "bytes": 290,
+      "sha256": "85ef7ced835d0a2766a2c7121003c716775b4840fc3ca014dad91cb78dce0591"
+    },
+    {
+      "path": "controls/portable-ruby/libruby3.2.download.stdout",
+      "bytes": 179,
+      "sha256": "8a69daa0f7ea856d4445cc02a5f11ab927cdbb58a6da4e6284e92a584ac62d48"
+    },
+    {
+      "path": "controls/portable-ruby/libruby3.2.extract.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/portable-ruby/libruby3.2.extract.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/portable-ruby/preflight.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/portable-ruby/preflight.stdout",
+      "bytes": 1248,
+      "sha256": "7c792d80eba0763330aa47e16e2a3ffd1815b7942e090a6e4324cb770cad4a75"
+    },
+    {
+      "path": "controls/portable-ruby/ruby-rubygems.apt-metadata.txt",
+      "bytes": 1400,
+      "sha256": "078124c9b5c46b56e2b4270c94fee3e93c67309afdc582c93a15108f426192b2"
+    },
+    {
+      "path": "controls/portable-ruby/ruby-rubygems.download.stderr",
+      "bytes": 277,
+      "sha256": "a6d068c9854f211d4d077b5ff4a96ed5deab3718a7cb3403f639b5c8ed33d628"
+    },
+    {
+      "path": "controls/portable-ruby/ruby-rubygems.download.stdout",
+      "bytes": 155,
+      "sha256": "b982de23a6060227f4128c2f283e4f5f01625629335a9f56cd4b7b5894b3e756"
+    },
+    {
+      "path": "controls/portable-ruby/ruby-rubygems.extract.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/portable-ruby/ruby-rubygems.extract.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/portable-ruby/ruby3.2.apt-metadata.txt",
+      "bytes": 1496,
+      "sha256": "20e406fa79a0700886be8bd020f39017c5e054ee27ed681caa4f59f73e3226a7"
+    },
+    {
+      "path": "controls/portable-ruby/ruby3.2.download.stderr",
+      "bytes": 287,
+      "sha256": "51632e2cef2ff617d1cc619a2bc353c0cb7fdfaefe392dd02837d48b55fb331b"
+    },
+    {
+      "path": "controls/portable-ruby/ruby3.2.download.stdout",
+      "bytes": 175,
+      "sha256": "9429e115e26a7cbc39d21c541f37a83457f290304867e65e947e8050b5ced5d4"
+    },
+    {
+      "path": "controls/portable-ruby/ruby3.2.extract.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/portable-ruby/ruby3.2.extract.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/run_controls.py",
+      "bytes": 15706,
+      "sha256": "4c625b0972787afb3fe624e24c23ba427b7b1e1b62416fb9c2846bfbaf41a19d"
+    },
+    {
+      "path": "failed-run-45136755585/DIAGNOSIS.md",
+      "bytes": 2458,
+      "sha256": "a6a82683632c1355d037d26f2c0da46dc67b5199864d9977462e9238101c9d54"
+    },
+    {
+      "path": "failed-run-45136755585/INTAKE.json",
+      "bytes": 13858,
+      "sha256": "ac294ec415ece884df83bb034d6bb60f57962ab1dccdcc2ce4f3458bb8de18d5"
+    },
+    {
+      "path": "failed-run-45136755585/INTAKE_INDEX.json",
+      "bytes": 3798,
+      "sha256": "509aa79a97e86f59c298e6ba2cd998f1e6dcf2f86e54d01103a9176d4f466743"
+    },
+    {
+      "path": "failed-run-45136755585/RUBY_CONTEXT_REPAIR_PROPOSAL.md",
+      "bytes": 3936,
+      "sha256": "4b7ab0bf54166eeb2606231f9033ac51cd6e7f9636ce1267ad89fbaa217cf279"
+    },
+    {
+      "path": "failed-run-45136755585/ZIP_ADMISSION.json",
+      "bytes": 48331,
+      "sha256": "12a7bd74f3e3f25e99538204c3fe887ab7e8b0f68c2aca9cd57910743cf126a1"
+    },
+    {
+      "path": "failed-run-45136755585/artifact-download.command.json",
+      "bytes": 491,
+      "sha256": "0890bd7bc32c380a87ad614b71201f4367a5dec475a53c5f39cc73a387e53dd5"
+    },
+    {
+      "path": "failed-run-45136755585/artifacts.command.json",
+      "bytes": 524,
+      "sha256": "e947b475dd46c7337f234e274300f8d7f57d9ff5b4128da95c534d29e6eb5674"
+    },
+    {
+      "path": "failed-run-45136755585/artifacts.json",
+      "bytes": 833,
+      "sha256": "3160fdb6a3c83d904f867c9a47a3cb505e33ac408a131e024bdc07732dcd47bb"
+    },
+    {
+      "path": "failed-run-45136755585/jobs.command.json",
+      "bytes": 529,
+      "sha256": "0127a2bd315526ed5ec855d02971f05dfc79c94a052095833eb8bf607c84274e"
+    },
+    {
+      "path": "failed-run-45136755585/jobs.json",
+      "bytes": 4872,
+      "sha256": "763f36c2ddf33f123278e481acd41eec052893674df8151b75babea057115d27"
+    },
+    {
+      "path": "failed-run-45136755585/review/hq-stage2/generated-Maktabah-project.pbxproj",
+      "bytes": 620777,
+      "sha256": "155bda110d9eec18b1b88e00c07df70bf5d18bb25000678d8468c20a877892ec"
+    },
+    {
+      "path": "failed-run-45136755585/review/hq-stage2/original-editor/actual-exported-api.json",
+      "bytes": 292,
+      "sha256": "9e797fff6034717d5e6a983a14a55e53f9023ad79698900341b61228a8e91e99"
+    },
+    {
+      "path": "failed-run-45136755585/review/hq-stage2/original-editor/app-target-plan.json",
+      "bytes": 4262,
+      "sha256": "ca2370843ba8d6d6ad4495479e06a2c7906dce9fdba34a0325562a88876bfedb"
+    },
+    {
+      "path": "failed-run-45136755585/review/hq-stage2/original-editor/distribution-admission.json",
+      "bytes": 931443,
+      "sha256": "47775aab656d4aeca3bd730030c9a9d29a2b12b37f5c17d18a85b5a7d27ee138"
+    },
+    {
+      "path": "failed-run-45136755585/review/hq-stage2/original-editor/exported-api-typecheck.json",
+      "bytes": 7169,
+      "sha256": "401f06c22499bf0847b8bb74456174eadcb659bb33cac7927da17d88591418bd"
+    },
+    {
+      "path": "failed-run-45136755585/review/hq-stage2/original-editor-app-target.log",
+      "bytes": 372,
+      "sha256": "f8cdccdd9d5bd37ff41b582a3fbe911649698988c618815e99ee056a34b0aaec"
+    },
+    {
+      "path": "failed-run-45136755585/review/hq-stage2/pod-install.log",
+      "bytes": 31886,
+      "sha256": "703c9410b8378bcae05a76d247c00d7af194f559bd7ae6304232b8c1041342a9"
+    },
+    {
+      "path": "failed-run-45136755585/review/hq-stage2/resolved-Podfile.lock",
+      "bytes": 100298,
+      "sha256": "9a7f88b1d9ebbf4d14f8b6f1efd1fb2d15ac63983bf16ffd3e9ea011f9a55ce7"
+    },
+    {
+      "path": "failed-run-45136755585/review/hq-stage2/result.json",
+      "bytes": 89601,
+      "sha256": "67c41f0852653906d4205765e766a6913d1372d4dede32d800d45d9bda5d73e6"
+    },
+    {
+      "path": "failed-run-45136755585/review/original-editor-native-evidence/result.json",
+      "bytes": 64453,
+      "sha256": "7df1fa38b001dd961d044bc15346b3424ba2c447fb1f5aa5e6ecb9bedfc4508c"
+    },
+    {
+      "path": "failed-run-45136755585/review/original-editor-sdk-metadata/restoration.json",
+      "bytes": 5652,
+      "sha256": "a5dd87379d12e362cb8a31b0ca255eba755b755da44682a41e56ebbe2df922ba"
+    },
+    {
+      "path": "failed-run-45136755585/watch-1.result.json",
+      "bytes": 1183,
+      "sha256": "fff704ee3aee7374310ffaefd97a0d792293b8c3196be01fe96c05fdd0272b63"
+    },
+    {
+      "path": "failed-run-45136755585/watch-1.state.json",
+      "bytes": 1183,
+      "sha256": "fff704ee3aee7374310ffaefd97a0d792293b8c3196be01fe96c05fdd0272b63"
+    }
+  ]
+}

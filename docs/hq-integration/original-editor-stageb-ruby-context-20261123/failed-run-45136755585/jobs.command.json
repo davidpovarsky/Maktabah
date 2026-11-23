@@ -1,0 +1,19 @@
+{
+  "name": "jobs",
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "gh",
+    "api",
+    "repos/davidpovarsky/Maktabah/actions/runs/45136755585/jobs?filter=latest"
+  ],
+  "started_at": "2026-11-23T08:57:00.620494+00:00",
+  "finished_at": "2026-11-23T08:57:01.239750+00:00",
+  "exit_code": 0,
+  "stdout_bytes": 4872,
+  "stdout_sha256": "763f36c2ddf33f123278e481acd41eec052893674df8151b75babea057115d27",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

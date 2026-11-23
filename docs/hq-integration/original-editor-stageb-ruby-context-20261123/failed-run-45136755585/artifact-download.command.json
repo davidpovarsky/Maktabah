@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "gh",
+    "api",
+    "repos/davidpovarsky/Maktabah/actions/artifacts/14802911519/zip"
+  ],
+  "started_at": "2026-11-23T08:58:06.727427+00:00",
+  "finished_at": "2026-11-23T08:58:16.721726+00:00",
+  "exit_code": 0,
+  "bytes": 31173031,
+  "sha256": "58a809905472f70664c7e077918ee4909fb96d5e18169ca25bafe16e8bccb130",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

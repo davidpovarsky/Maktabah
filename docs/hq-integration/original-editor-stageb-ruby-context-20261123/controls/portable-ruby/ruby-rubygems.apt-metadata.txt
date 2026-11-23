@@ -1,0 +1,31 @@
+Package: ruby-rubygems
+Architecture: all
+Version: 3.4.20-1
+Multi-Arch: foreign
+Priority: optional
+Section: ruby
+Source: rubygems
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian Ruby Team <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 1225
+Depends: ruby:any
+Breaks: ruby (<< 1:2.7+2~)
+Replaces: ruby (<< 1:2.7+2~)
+Filename: pool/main/r/rubygems/ruby-rubygems_3.4.20-1_all.deb
+Size: 238488
+MD5sum: f6aa4ee75e394388da65b2f83cac4b20
+SHA1: 6a938b7312fc3208bbf310319846ebf2a5d16a1b
+SHA256: 9cb6041d902b74fd6e9373b24922e788bc2d1ed4360705ca6b53945d67b32087
+SHA512: 9337aee07b67841dd6e0d2a5f6b542607d6a0fb52df67852d79731b9b23aec710b94d60f8c58c5eab8e9cf3a94fbc5265140f369f4aea80790c8f096985415ae
+Homepage: https://rubygems.org
+Description-en: Package management framework for Ruby
+ A package (also known as a library) contains a set of functionality that can
+ be invoked by a Ruby program, such as reading and parsing an XML file. These
+ packages are called 'gems' and RubyGems is a tool to install, create, manage
+ and load these packages in your Ruby environment. RubyGems is also a client for
+ RubyGems.org, a public repository of Gems that allows you to publish a Gem that
+ can be shared and used by other developers.
+Description-md5: 49f60a8485ed487d13a884765e0ce01a
+

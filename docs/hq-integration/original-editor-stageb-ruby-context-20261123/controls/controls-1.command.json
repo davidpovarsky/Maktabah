@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/docs/hq-integration/original-editor-stageb-ruby-context-20261123/controls/run_controls.py",
+    "--checkout",
+    "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123",
+    "--ruby-admission",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/ADMISSION.json",
+    "--output",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1"
+  ],
+  "returncode": 0,
+  "timed_out": false,
+  "child_reaped": true,
+  "owned_group_drained": true,
+  "driver_sha256": "4c625b0972787afb3fe624e24c23ba427b7b1e1b62416fb9c2846bfbaf41a19d"
+}
