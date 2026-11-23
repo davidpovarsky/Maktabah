@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-11-23T04:15:00Z",
+  "updated_at_utc": "2026-11-23T04:29:29Z",
   "canonical_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
   "root_branch": "codex/otzaria-oracle-completion-20261123",
   "user_instruction": "בעצם, תעשה את הכל בעצמך ותשתמש עם תתי הסוכנים הזמינים לך בצ׳אט פה, בצע הכל עד להשלמה מלאה של המשימות השתמשת בכלי @SentinelX בחשבון המחובר לשרת האורקל ישירות, ועדכן ב @Asana , אחרי כל שלב שאתה מבצע",
@@ -29,7 +29,7 @@
       "source": "4aa7b02b8e4cb8c124dd59ddb656746481d9aa6a",
       "run": 45106338448,
       "watcher": "job_8a1fcb32eb70",
-      "status": "ACTIVE_AT_LAST_OWNER_OBSERVATION",
+      "status": "QUEUED_FOR_XCODE27_AT_04_21_14_UTC",
       "native_acceptance": false,
       "previous_attempts": [
         {
@@ -49,7 +49,9 @@
           "artifact_sha256": "765656e3561e369ca580407e28abdc407a6dd32b946d25bc73979d013b94aafb"
         }
       ],
-      "new_affected_raw_capture_controls_passed": 2
+      "new_affected_raw_capture_controls_passed": 2,
+      "runtime_commands_started": 0,
+      "allocation": "UNKNOWN"
     },
     {
       "name": "hanlin_live11",
@@ -61,7 +63,7 @@
       "status": "ACTUAL_NATIVE_FAILURE_SOURCE_RECEIPT_NOT_OBSERVED",
       "temporary_secret_cleanup_required": false,
       "native_acceptance": false,
-      "last_observed_utc": "2026-11-23T03:43:02Z",
+      "last_observed_utc": "2026-11-23T03:57:55.549490+00:00",
       "observer_windows": 2,
       "previous_watcher": "job_04ece440ed37",
       "previous_watcher_terminal": true,
@@ -90,18 +92,21 @@
       "source_inputs_unchanged": 282,
       "binaries_unchanged": 5,
       "diagnostic_events": 27,
-      "next_step": "Diagnostic-only original event/terminal discrimination preparation; no new provider request"
+      "next_step": "Reviewed finite original-event diagnostics d4b1825; prepare exact Live12 admission; no dispatch yet"
     },
     {
       "name": "library_morph",
       "owner": "/root/original_rpc",
       "source": "cba554ded79144d48642b12dba926a30a8eac451",
-      "status": "WATCHER_ACTIVE_AT_LAST_OWNER_OBSERVATION",
+      "status": "SAME_RUN_SECOND_BOUNDED_WATCH_ACTIVE",
       "native_acceptance": false,
       "application_source": "57136023dc6bd86b9fd1ffc853d20b97611ddff4",
       "source_tree": "c51810d1199f81a59554b3c1efbcf3460db8bfcb",
       "run": 45105081309,
-      "watcher": "job_1a380aaffc60"
+      "watcher": "job_0d68d853e17c",
+      "previous_watcher": "job_1a380aaffc60",
+      "previous_watcher_terminal": true,
+      "observer_windows": 2
     },
     {
       "name": "original_editor_stageb",
@@ -122,7 +127,7 @@
       "name": "original_heart_owned_import_lifetime",
       "owner": "/root/asana_scope",
       "base": "7496e47fa4d37b0117abeae6b35ca5f4c8eaf638",
-      "status": "WATCHER_ACTIVE_AT_LAST_OWNER_OBSERVATION",
+      "status": "QUEUED_AT_FIRST_WINDOW_END_SAME_RUN_SECOND_WATCH_ACTIVE",
       "native_acceptance": false,
       "source": "54169c763c2178fc1e796dfbe92a675d9c21a0b3",
       "native_runtime_cases": 2,
@@ -131,7 +136,10 @@
       "readback_scope": "Live native object and real tree heads; durable cold reopen and full body equality remain unproven",
       "native_endpoint_acceptance": false,
       "run": 45105771388,
-      "watcher": "job_185be78cd88e"
+      "watcher": "job_92c81cdb77e9",
+      "previous_watcher": "job_185be78cd88e",
+      "previous_watcher_terminal": true,
+      "observer_windows": 2
     },
     {
       "name": "reader_profile_native10",
@@ -179,13 +187,14 @@
       "production_acceptance": false,
       "upstream_whitespace_diagnostic_retained": true,
       "follow_on_source": "89926d7839c09a629c195ec6dd9812fe56aad069",
-      "follow_on_status": "TWO_EXISTING_PATHS_SOURCE_PREPARED_ROOT_REVIEW_PENDING",
-      "follow_on_portable_controls_passed": 8
+      "follow_on_status": "TWO_EXISTING_PATHS_ROOT_SOURCE_REVIEW_ACCEPTED",
+      "follow_on_portable_controls_passed": 8,
+      "follow_on_source_controls_scope": "Portable captured-selected-Space source boundary only; no UIKit/native/account bootstrap qualification"
     },
     {
       "name": "original_owned_import_rpc_design",
       "owner": "/root/asana_scope",
-      "status": "DESIGN_PAUSED_FOR_AUTHENTIC_HANLIN_FAILURE_DIAGNOSIS_NO_PRODUCT_EDITS",
+      "status": "READ_ONLY_ORIGINAL_SOURCE_CONTRACT_PLAN_PAUSED_FOR_LIVE12_ADMISSION_PACKET_NO_PRODUCT_EDITS",
       "dependency": "Original existing ObjectImport returns before completion; requires genuine owned importer Done/Result without replacing original engine",
       "native_acceptance": false
     },
@@ -193,7 +202,7 @@
       "name": "reader_source_performance",
       "owner": "/root/original_rpc",
       "base": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
-      "status": "SOURCE_PREPARED_APPLE_HARNESS_IN_INDEPENDENT_REVIEW_NO_RUN",
+      "status": "QUEUED_AT_SOLE_RUN_DISCOVERY",
       "product_path": "Source/Otzaria/Reading/OtzariaReadingUnitService.swift",
       "scope": "Reuse one exact UTF16 length per row and reserve known array capacities; exact full-v32 component AB/BA comparison, no Reader UI/physical performance claim",
       "source_service_previous_qualified_timings_seconds": {
@@ -208,7 +217,31 @@
       },
       "baseline_source": "7b2b6a1a7067496be2a2e2f232cf91f9cd8e2478",
       "actual_new_measurements": 0,
-      "source_preparation": "141fc14ab084d1937ef2e510f985e20bb8527f64"
+      "source_preparation": "8682786e1ce776ccb0ebe6281f0e338ff67eef09",
+      "source": "84b37e29ead4bb036a251ab6d7b09fc9628006e6",
+      "tree": "ac9d1ac3d4c77af1b6ac64af3eabacec1294cb28",
+      "run": 45111657863,
+      "watcher": "job_270e41fbc05e",
+      "source_inputs": 21,
+      "independent_source_review": "ACCEPTED",
+      "original_product_preserved": "141fc14ab084d1937ef2e510f985e20bb8527f64",
+      "metadata_only_replacement": true
+    },
+    {
+      "name": "hanlin_live12_preparation",
+      "owner": "/root with /root/asana_scope source and /root/original_sdk peer review",
+      "diagnostic_source": "d4b1825bd5645f4949e4b57e48a73022c3b7cba1",
+      "source_review": "ROOT_AND_INDEPENDENT_PEER_ACCEPTED",
+      "diagnostic_controls_passed": 5,
+      "controller_sha256": "7077195cac1c5a9903451696d7095463f0448ad88654fbbe01ec8b4b7cdd0f97",
+      "controller_changed_identity_controls_passed": 3,
+      "unchanged_lifecycle_controls": "6_REUSED_WITH_EXACT_INVERSE_SOURCE_PROOF",
+      "status": "MANUAL_ONLY_SOURCE_ADMISSION_PACKET_IN_PREPARATION",
+      "native_acceptance": false,
+      "provider_called": false,
+      "credential_configured": false,
+      "dispatch_started": false,
+      "allocation_rule": "Finish reviewable preparation; require concrete Apple allocation signal before temporary credential and dispatch"
     }
   ],
   "boundaries": {
@@ -241,7 +274,9 @@
     "1220774986203997",
     "1220774956012121",
     "1220775209437682",
-    "1220775320666689"
+    "1220775320666689",
+    "1220775241693807",
+    "1220775065817013"
   ],
   "inventory": {
     "unique_tasks": 83,
@@ -257,5 +292,13 @@
     "final_push_state": "UNFINALIZED",
     "native116_run_started": false,
     "release114_run_started": false
+  },
+  "apple_allocation": {
+    "observed_utc": "2026-11-23T04:27:12.461417+00:00",
+    "status": "ALLOCATION_UNKNOWN",
+    "receipt": "APPLE_RUNNER_ALLOCATION.json",
+    "read_only_queries": 2,
+    "no_visible_repository_self_hosted_runners": true,
+    "does_not_prove_offline_or_hosted_capacity": true
   }
 }

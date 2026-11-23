@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-23T04:27:21.917223+00:00",
+  "base_controller_sha256": "56cc1d4461ed7ffe3dc4539d69a93ebbe3e8b8120f353655c02c9eb4ac302271",
+  "controller_sha256": "7077195cac1c5a9903451696d7095463f0448ad88654fbbe01ec8b4b7cdd0f97",
+  "exact_inverse_source_proof": true,
+  "only_replacements": [
+    {
+      "before": "Live11",
+      "after": "Live12",
+      "count": 1
+    },
+    {
+      "before": "codex/otzaria-hanlin-live11-20261123",
+      "after": "codex/otzaria-hanlin-live12-20261123",
+      "count": 1
+    },
+    {
+      "before": "45058647581",
+      "after": "45103578190",
+      "count": 2
+    },
+    {
+      "before": "9533a8017adadecf770b19811e72b495f32e90f7",
+      "after": "fdb78a44778c318b277506f0b09ba91c3b678e91",
+      "count": 1
+    }
+  ],
+  "exit_code": 0,
+  "result": {
+    "status": "PASS",
+    "executed": 3,
+    "failures": 0,
+    "errors": 0,
+    "scope": "OFFLINE_CHANGED_SOURCE_IDENTITY_CONSTANTS_ONLY",
+    "provider_called": false,
+    "credential_accessed": false,
+    "GitHub_called": false,
+    "unchanged_six_lifecycle_controls": "REUSED_WITH_EXACT_INVERSE_SOURCE_PROOF"
+  },
+  "stdout_sha256": "b4a9e32d8ebab70caab5426aa8436193d814ab5883e2b50edfeda04f3d584e07",
+  "stderr_sha256": "690bf1450ea00efd9fa9794d0daed5f0d39cb20f047f9ac29187ff0687fdef9a",
+  "provider_called": false,
+  "credential_accessed": false,
+  "dispatch_started": false
+}

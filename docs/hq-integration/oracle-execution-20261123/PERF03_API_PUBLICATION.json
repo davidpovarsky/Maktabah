@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "base": "8682786e1ce776ccb0ebe6281f0e338ff67eef09",
+  "api_commit": "84b37e29ead4bb036a251ab6d7b09fc9628006e6",
+  "expected_and_actual_tree": "ac9d1ac3d4c77af1b6ac64af3eabacec1294cb28",
+  "branch": "codex/otzaria-reader-perf-20261123",
+  "packet_bytes": 52075,
+  "packet_sha256": "8af573f9195388819c102518a5d30e87d83e00e3fae27f264f45eeb8aa488252",
+  "metadata_rebind_review": "Only source identity, corresponding input SHA and additive admission receipts; exact complete product tree, Swift harness, driver and workflow unchanged",
+  "run": 45111657863,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45111657863",
+  "sole_watcher": "job_270e41fbc05e",
+  "source_inputs_match": 21,
+  "status": "QUEUED_AT_DISCOVERY_NO_PERFORMANCE_CONCLUSION",
+  "ui_performance_acceptance": false,
+  "physical_device_acceptance": false
+}

@@ -1,0 +1,53 @@
+{
+  "observed_utc": "2026-11-23T04:27:12.461417+00:00",
+  "scope": "One read-only repository Actions runners query per repository; no runner mutation, job cancellation, token access or dispatch.",
+  "required_label_source": "Reviewed Maktabah Library morph, Reader/Profile and PERF dedicated workflows use xcode-27.",
+  "existing_owned_run_observations": [
+    {
+      "run_id": 45105081309,
+      "source": "cba554ded79144d48642b12dba926a30a8eac451",
+      "created_utc": "2026-11-23T03:17:19Z",
+      "sole_watcher": "job_0d68d853e17c",
+      "previous_watch": "Timed out after 3300 seconds without runtime conclusion; stopped and reattached to same run."
+    },
+    {
+      "run_id": 45107660584,
+      "source": "b85a72e409855ffdc6bed1dcef60bbf5b233cf6d",
+      "created_utc": "2026-11-23T03:43:35Z",
+      "sole_watcher": "job_c8e0566e67f8"
+    },
+    {
+      "run_id": 45111657863,
+      "source": "84b37e29ead4bb036a251ab6d7b09fc9628006e6",
+      "created_utc": "2026-11-23T04:24:25Z",
+      "discovery_status": "queued",
+      "sole_watcher": "job_270e41fbc05e"
+    }
+  ],
+  "observations": [
+    {
+      "repository": "davidpovarsky/Maktabah",
+      "api": "repos/davidpovarsky/Maktabah/actions/runners?per_page=100",
+      "exit_code": 0,
+      "total_count": 0,
+      "runners": [],
+      "required_label": "xcode-27",
+      "allocation": "NO_VISIBLE_MATCHING_LABEL_ALLOCATION_UNKNOWN",
+      "truncated": false
+    },
+    {
+      "repository": "davidpovarsky/anytype-swift",
+      "api": "repos/davidpovarsky/anytype-swift/actions/runners?per_page=100",
+      "exit_code": 0,
+      "total_count": 0,
+      "runners": [],
+      "required_label": "xcode-27",
+      "allocation": "NO_VISIBLE_MATCHING_LABEL_ALLOCATION_UNKNOWN",
+      "truncated": false
+    }
+  ],
+  "allocation_guaranteed": false,
+  "boundary": "Repository runner visibility can be permission-limited; visible online/idle does not guarantee allocation. No current run status was polled separately.",
+  "api_documentation": "https://docs.github.com/en/rest/actions/self-hosted-runners#list-self-hosted-runners-for-a-repository",
+  "api_visibility_boundary": "The endpoint lists repository self-hosted runners. A successful empty inventory does not determine hosted/provider capacity or queue allocation."
+}

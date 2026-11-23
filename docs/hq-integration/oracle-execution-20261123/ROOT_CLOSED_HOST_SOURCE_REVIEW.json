@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "source": "89926d7839c09a629c195ec6dd9812fe56aad069",
+  "parent": "205ab05033f13106f9408a09ffe7544209329ead",
+  "status": "ACCEPTED_SOURCE_PREPARATION_ONLY",
+  "root_reviewed": [
+    "Exact two-product-file diff",
+    "Eight actual portable controls and execution receipt",
+    "Exact Host factory preservation proof",
+    "Original selected capture and attempt correspondence"
+  ],
+  "product_paths": [
+    "Anytype/Sources/PresentationLayer/TextEditor/Assembly/Page/EditorDocumentWriteOwner.swift",
+    "OriginalEditorFramework/AnytypeOriginalEditorHost.swift"
+  ],
+  "preserved": [
+    "Private original account capture and generation",
+    "Original selected-Space attempt capture",
+    "Parent owner identity and intersected named-RPC restrictions",
+    "Public one-use claim, account capture and failure retirement",
+    "Original prepared-session/coordinator construction"
+  ],
+  "controls_passed": 8,
+  "new_public_API": false,
+  "native_or_UIKit_qualification": false,
+  "production_bootstrap": false
+}

@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "source": "d4b1825bd5645f4949e4b57e48a73022c3b7cba1",
+  "base": "fdb78a44778c318b277506f0b09ba91c3b678e91",
+  "status": "ROOT_AND_INDEPENDENT_SOURCE_REVIEW_ACCEPTED",
+  "root_reviewed": [
+    "Exact two-file diff",
+    "Five actual finite-schema/source controls",
+    "Exact inverse and untouched Python execution/privacy AST"
+  ],
+  "independent_reviewer": "/root/original_sdk",
+  "peer_review_scope": "Actual pinned Hanlin e00498e33f106cc43be0476ffa2e09329c8ca300 public enum payloads and MainActor Sendable completion callback; original stream and lifecycle emission paths",
+  "diagnostic_controls_passed": 5,
+  "privacy": "Finite enum and boolean observations only; no strings, IDs, arguments, provider payloads or credentials recorded; existing 96-event,9-flag,64-KiB journal gates retained",
+  "inference_boundary": "completionSucceeded alone does not establish finished event, Host result, native source receipt or live acceptance. Actual original engine supports EOF without finished.",
+  "native_result": "NOT_RUN",
+  "provider_called": false
+}
