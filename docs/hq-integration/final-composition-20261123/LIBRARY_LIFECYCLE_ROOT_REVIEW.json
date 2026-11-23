@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-23T08:42:34.439477+00:00",
+  "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+  "source_manifest_sha256": "49ae864360bb436251a4baf542436a749e7726c6b3cca5467a7fce4b5a6b31e4",
+  "complete_diff_sha256": "da555cc31b9dc246bcae36819b673f81a1bbc24be19a21737a40da589d083594",
+  "root_verified_paths": 3,
+  "root_verified_evidence": 17,
+  "root_full_inverse_exact": true,
+  "new_controls_read_not_reexecuted": 5,
+  "whole_original_case_methods_preserved": 44,
+  "images_root_visually_read": [
+    {
+      "sha256": "82dcff200acd50835b4452483f6b108499d7c9d0a4eef7dd57c981ce8ffa54f5",
+      "observed": "collapsed reader with keyboard retained after Close"
+    },
+    {
+      "sha256": "d42b7094c653f171f17c263f720a0edc3c2b10cf76723a791c017c188a365932",
+      "observed": "collapsed reader without keyboard after Escape"
+    }
+  ],
+  "later_capture_not_substituted_for_failing_instant": true,
+  "native_acceptance": false
+}

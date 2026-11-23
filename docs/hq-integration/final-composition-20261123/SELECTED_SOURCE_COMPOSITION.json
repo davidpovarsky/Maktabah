@@ -77,10 +77,17 @@
     },
     {
       "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
-      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
-      "bytes": 15646,
-      "sha256": "ec9b6510ff19fdebf3023d07029e7829b5c6639878132fa607492983868cd40c",
-      "git_blob": "9ece7492beb14af3ab94d59e0f4e328e6f7e8b53"
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 16002,
+      "sha256": "5f9a1377f1ae556430027936b3f89954f466ef650bc7da60fc8b6891b5cee124",
+      "git_blob": "b5634f205af4220e64621c0791bd1a5280fb02c5",
+      "prior_source_selection": {
+        "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+        "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+        "bytes": 15646,
+        "sha256": "ec9b6510ff19fdebf3023d07029e7829b5c6639878132fa607492983868cd40c",
+        "git_blob": "9ece7492beb14af3ab94d59e0f4e328e6f7e8b53"
+      }
     },
     {
       "path": "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift",
@@ -294,26 +301,40 @@
     },
     {
       "path": "Scripts/CI/verify-9401-exact-source.py",
-      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
-      "bytes": 37130,
-      "sha256": "5edab1310c924ee6b49e9f081185e761a57c697ec362f548945542d4ad0db561",
-      "git_blob": "21563aae5e0d107f9206954ba7c93c85049038dc"
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 37831,
+      "sha256": "2a9969ee5326224e54b24c926dfc6f7a9b212b989aec11f50109cd08e693dc50",
+      "git_blob": "52023a3208a41ffd743cd5f35cc0f17ce86dc0b3",
+      "prior_source_selection": {
+        "path": "Scripts/CI/verify-9401-exact-source.py",
+        "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+        "bytes": 37130,
+        "sha256": "5edab1310c924ee6b49e9f081185e761a57c697ec362f548945542d4ad0db561",
+        "git_blob": "21563aae5e0d107f9206954ba7c93c85049038dc"
+      }
     },
     {
       "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
-      "source": "EXACT_THREE_WAY_COMPOSITION_PLUS_REVIEWED_GROUP_INTERACTION_PATCH",
-      "bytes": 283883,
-      "sha256": "7c1e4e376b5fdf965b4a799f922851e00d88c572f3102d0ad4d5d0db8bd82156",
-      "git_blob": "06329d0f3dc9e3f64136b3d4b068bdc1076060a6",
-      "ancestor": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
-      "parents": [
-        "46321de8f26255aa1543eed69f908f93d306c6c0",
-        "efd7250b8fa8f0556683af6b50733aeccb149b61"
-      ],
-      "conflicts": 0,
-      "before_group_sha256": "92c09ee7e8227cde2a94dc26daf5e56ba6ee9268565586d877183fe64bcf9eb0",
-      "group_source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
-      "group_patch_sha256": "62271d1b3073707a28f371ff5253f399ecf51a1aa59accdf710c40e142aa4989"
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 290670,
+      "sha256": "f724b6b338c1dcbdc3285ed46386b9c51b80a5a224bec36b92cfb4fb632d72dc",
+      "git_blob": "452e628d977d542d380f8b0694b994ead9dd883b",
+      "prior_source_selection": {
+        "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+        "source": "EXACT_THREE_WAY_COMPOSITION_PLUS_REVIEWED_GROUP_INTERACTION_PATCH",
+        "bytes": 283883,
+        "sha256": "7c1e4e376b5fdf965b4a799f922851e00d88c572f3102d0ad4d5d0db8bd82156",
+        "git_blob": "06329d0f3dc9e3f64136b3d4b068bdc1076060a6",
+        "ancestor": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+        "parents": [
+          "46321de8f26255aa1543eed69f908f93d306c6c0",
+          "efd7250b8fa8f0556683af6b50733aeccb149b61"
+        ],
+        "conflicts": 0,
+        "before_group_sha256": "92c09ee7e8227cde2a94dc26daf5e56ba6ee9268565586d877183fe64bcf9eb0",
+        "group_source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+        "group_patch_sha256": "62271d1b3073707a28f371ff5253f399ecf51a1aa59accdf710c40e142aa4989"
+      }
     },
     {
       "path": "docs/hq-integration/reader-groups100-point-20261123/APPROVED_INTERACTION.diff",
@@ -377,6 +398,132 @@
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/EXACT_SCOPE_PROOF.json",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 1294,
+      "sha256": "8f4b01a2600d2599871bbaa89b4cba008b851f1de9672f922917af896c6094f3",
+      "git_blob": "41da20452be311878887689f3698326697da0c2b"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/OBSERVER.diff",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 10927,
+      "sha256": "06c302d2c8579454e381647381bc0a102b9586b938e9ba2380d59c553b4b824c",
+      "git_blob": "57c2daa6862194956328e6b6b53cc066365f3aa2"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/ORIGINAL_NATIVE_DISMANTLE.swift",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 417,
+      "sha256": "141e2fee0056de4fbfef00e808f5ecd0c9c7340e4d5b4ed7903b80d7f7f1e451",
+      "git_blob": "efffdbad187c6b1d46aeca6619105f3c20dfd310"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/ORIGINAL_SOURCE_GUARD_FAILURE.json",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 423,
+      "sha256": "dc8615dcdab8ca9514f90addcbf9e4841bfc5373a822a326503cc90765f081b5",
+      "git_blob": "ed4fe8bbcc4663b8c25f3b009b4c670e50f70c22"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/PALETTE_NATIVE_LIFECYCLE_TRACE.txt",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 14227,
+      "sha256": "64c2ae10c9c36e1b230ec7b898f9dc9038e17e90830c188138f782207e26295b",
+      "git_blob": "e07edfb46029caaa1002f47e0725fe26c7b12b52"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/PREVIOUS_NATIVE_INTAKE.json",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 15299,
+      "sha256": "49cf0ea95d618d862da8473133e941ece032a129cf962ef6918d6803e12b7894",
+      "git_blob": "99de456d6b0693da773c73a97b80f5c8da61813b"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/PRODUCT.diff",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 3013,
+      "sha256": "84820b440468b07745b0612e33cd912d55f4ef456384c60a9727633c8954341b",
+      "git_blob": "addd4752461f70d8291b44afd363c4b84593c15f"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/README.md",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 3936,
+      "sha256": "7b2edbb70af7370728f6614e9273d19a5c6ae25c5c67530fa129545a7963ddd9",
+      "git_blob": "b9936ac601ba09c1c9b5d139a176e8d18276c23f"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/SELECTED_FAILURES.json",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 14977,
+      "sha256": "955fc0560f3543581bc444711bec1635241e9517a82c42ae9749bdf39bb009c5",
+      "git_blob": "d85c73a61b9a46fbfbb03893c7977c8c92207ecd"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/SOURCE_GATE.diff",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 2011,
+      "sha256": "2d08c259192971c08e7f55f2d7c1ff4766c03a386a0bfc2495394ad78a9f023f",
+      "git_blob": "587417dbf03dac8bf3ea7a453bcd540724db0443"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/SOURCE_GATE_CONTROLS.json",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 1760,
+      "sha256": "d90ccf9388e0300c1b2f04923d66a9487d7b28368d3cd9b950faf8ca320f1863",
+      "git_blob": "e780b2129d748f951219165bdc72d51479ca8976"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/SOURCE_INVERSE.json",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 1327,
+      "sha256": "5d648eb577fdd6d100f020420edf472ddd05d0e927a9c51037f6eaf26c20f1ed",
+      "git_blob": "18c194f8ddbe92c1af2b444011f80820d53fd64a"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/SWIFT_SYNTAX.json",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 643,
+      "sha256": "c2eafd82a9e8f44a582e15c023b2ffcdb373a9df785d94d49a239ca84340c382",
+      "git_blob": "9cb4ad82e562af60f8564011d9cb4e70ff5823b4"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/source-gate-controls.stderr.log",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/source_gate_lifecycle_controls.py",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 3250,
+      "sha256": "faeec0905ed2cfac0a6ad000d378f847c56d44b074ecf7e7ad5af5d5c46dc59a",
+      "git_blob": "f0ed5018b7339625dccff7a37dd0ab1530f591e2"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/swift-syntax.stderr.log",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/swift-syntax.stdout.log",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/SOURCE_MANIFEST.json",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 3187,
+      "sha256": "49ae864360bb436251a4baf542436a749e7726c6b3cca5467a7fce4b5a6b31e4",
+      "git_blob": "13b2112f7c434f456e133e738b6315ff52de2974"
     }
   ],
   "canonical_annotation_source_and_process_resume_test_preserved": [
@@ -386,12 +533,13 @@
     "Maktabah-iOSUITests/OriginalEditorAnnotationAcceptanceTests.swift"
   ],
   "pending": [
-    "Exact integrated one-build Groups100 and full-v32 workflow/source bindings",
-    "Live13/Library7 active exact outcomes; Reader4 actual3PASS1FAIL retained separately",
-    "OriginalSDK/StageB evidence correspondence and StageB universal-slice predicate repair",
+    "Exact integrated one-build Groups100, repaired Library7 and full-v32 workflow/source bindings",
+    "Live13 build passed but native case NOT_RUN due actual two INSTALL_TIMEOUTs; temporary secret DELETE204/GET404 independently verified",
+    "Library7 previous authentic0PASS7FAIL preserved; current native lifecycle source repair not yet Apple-qualified",
+    "StageB universal-slice repair active run45136755585; native payload budget active run45139622096",
     "Full-v32 native execution on this integrated source",
-    "Final immutable source/gate input bindings",
-    "Native116/Release114 and real physical/signing gates"
+    "Original SDK/Host typed annotation budget and production account/import integration",
+    "Final immutable source/gate input bindings; Native116/Release114 and real physical/signing gates"
   ],
   "native_passes_transferred": false,
   "workflow_activated": false,
@@ -406,5 +554,14 @@
     "control_replay": false,
     "native_passes_transferred": false,
     "application_source_binding": "UNFINALIZED"
+  },
+  "library_native_lifecycle_source_review": {
+    "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+    "root_verified_code_paths": 3,
+    "root_verified_evidence_rows": 17,
+    "root_reverse_patch_exact": true,
+    "new_guard_controls": 5,
+    "existing_test_methods_unchanged": 44,
+    "native_acceptance": false
   }
 }
