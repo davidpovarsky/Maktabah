@@ -32,7 +32,6 @@ env:
   SCHEME: Maktabah-iOS
   PRODUCT_NAME: Maktabah
   CARGO_TERM_COLOR: always
-  HANLIN_SDK_SHA: e00498e33f106cc43be0476ffa2e09329c8ca300
 
 jobs:
   otzaria-framework:
@@ -405,9 +404,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Materialize and verify original pinned Hanlin SDK
         run: |
-          test "$(git rev-parse HEAD:Vendor/HanlinSDK)" = "$HANLIN_SDK_SHA"
+          HANLIN_LOCKED_REVISION="$(python3 -c 'import json; print(json.load(open("HanlinSDK.lock.json", encoding="utf-8"))["revision"])')"
+          test "$(git rev-parse HEAD:Vendor/HanlinSDK)" = "$HANLIN_LOCKED_REVISION"
           python3 Scripts/CI/prepare-hanlin-sdk.py \
-            --sha "$HANLIN_SDK_SHA" \
+            --sha "$HANLIN_LOCKED_REVISION" \
             --output build/logs/hanlin-sdk-source.json
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -507,9 +507,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Materialize and verify original pinned Hanlin SDK
         run: |
-          test "$(git rev-parse HEAD:Vendor/HanlinSDK)" = "$HANLIN_SDK_SHA"
+          HANLIN_LOCKED_REVISION="$(python3 -c 'import json; print(json.load(open("HanlinSDK.lock.json", encoding="utf-8"))["revision"])')"
+          test "$(git rev-parse HEAD:Vendor/HanlinSDK)" = "$HANLIN_LOCKED_REVISION"
           python3 Scripts/CI/prepare-hanlin-sdk.py \
-            --sha "$HANLIN_SDK_SHA" \
+            --sha "$HANLIN_LOCKED_REVISION" \
             --output build/logs/hanlin-sdk-source.json
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -792,9 +793,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Materialize and verify original pinned Hanlin SDK
         run: |
-          test "$(git rev-parse HEAD:Vendor/HanlinSDK)" = "$HANLIN_SDK_SHA"
+          HANLIN_LOCKED_REVISION="$(python3 -c 'import json; print(json.load(open("HanlinSDK.lock.json", encoding="utf-8"))["revision"])')"
+          test "$(git rev-parse HEAD:Vendor/HanlinSDK)" = "$HANLIN_LOCKED_REVISION"
           python3 Scripts/CI/prepare-hanlin-sdk.py \
-            --sha "$HANLIN_SDK_SHA" \
+            --sha "$HANLIN_LOCKED_REVISION" \
             --output build/logs/hanlin-sdk-source.json
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
