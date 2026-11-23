@@ -1,0 +1,217 @@
+{
+  "run_id": 45107660584,
+  "attempt": 1,
+  "source_sha": "b85a72e409855ffdc6bed1dcef60bbf5b233cf6d",
+  "application_source_sha": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "job_id": 137472532851,
+  "runner": "GitHub Actions 1000024394",
+  "runner_label": "xcode-27",
+  "status": "ACTUAL_NATIVE_6_PASS_4_FAIL_ZERO_SKIP",
+  "artifact_id": 14790507747,
+  "artifact_bytes": 6431097,
+  "artifact_sha256": "56eac74fc92c1334bbdd305f9f61cb38bc4513b01690326606577fa1d8f95b9c",
+  "archive": "/mnt/development/projects/diagnostics/otzaria-reader-profile-native-20261123/45107660584/terminal/reader-profile-native-evidence.zip",
+  "source_admission": {
+    "execution_input_bytes_sha256_blobs_verified": 285,
+    "actual_compiled_source_rows": 1012,
+    "direct_source_blob_matches": 1011,
+    "declared_privacy_transformation": {
+      "path": "Source/PrivacyInfo.xcprivacy",
+      "origin": "Original React Native CocoaPods privacy aggregation",
+      "original_git_blob": "c86c62cc12e3ceadea279ff9948a8891a0860577",
+      "original_sha256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1",
+      "compiled_sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5",
+      "all_other_declarations_unchanged": true,
+      "all_original_reasons_retained": true,
+      "added_reasons": [
+        {
+          "category": "NSPrivacyAccessedAPICategoryUserDefaults",
+          "reason": "1C8F.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "installed Pods",
+              "path": "Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/Resources/PrivacyInfo.xcprivacy",
+              "sha256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef",
+              "artifact_path": "privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy"
+            },
+            {
+              "pod_source": "installed Pods",
+              "path": "Pods/FirebaseRemoteConfig/FirebaseRemoteConfig/Swift/Resources/PrivacyInfo.xcprivacy",
+              "sha256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38",
+              "artifact_path": "privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy"
+            }
+          ]
+        },
+        {
+          "category": "NSPrivacyAccessedAPICategoryUserDefaults",
+          "reason": "C56D.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "installed Pods",
+              "path": "Pods/GoogleUtilities/GoogleUtilities/Privacy/Resources/PrivacyInfo.xcprivacy",
+              "sha256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c",
+              "artifact_path": "privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy"
+            }
+          ]
+        },
+        {
+          "category": "NSPrivacyAccessedAPICategoryFileTimestamp",
+          "reason": "0A2A.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "ExpoFileSystem",
+              "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+              "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+              "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+            }
+          ]
+        },
+        {
+          "category": "NSPrivacyAccessedAPICategoryDiskSpace",
+          "reason": "85F4.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "ExpoFileSystem",
+              "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+              "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+              "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+            }
+          ]
+        },
+        {
+          "category": "NSPrivacyAccessedAPICategoryDiskSpace",
+          "reason": "E174.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "ExpoFileSystem",
+              "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+              "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+              "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+            }
+          ]
+        },
+        {
+          "category": "NSPrivacyAccessedAPICategorySystemBootTime",
+          "reason": "35F9.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "React",
+              "path": "Vendor/SefariaMobile/Upstream/node_modules/react-native/third-party-podspecs/boost/PrivacyInfo.xcprivacy",
+              "sha256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d",
+              "artifact_path": "privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy"
+            }
+          ]
+        }
+      ]
+    },
+    "archived_privacy_bytes": {
+      "hq-stage2/privacy-original.xcprivacy": {
+        "sha256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1",
+        "git_blob": "c86c62cc12e3ceadea279ff9948a8891a0860577"
+      },
+      "hq-stage2/privacy-generated.xcprivacy": {
+        "sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5",
+        "git_blob": "af80d26d37547b62412f5922bfd9cc601a7e9344"
+      }
+    },
+    "canonical_product_test_trees_unchanged": true
+  },
+  "toolchain": {
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+    "sdk_version": "27.2",
+    "developer_dir": "/Applications/Xcode_27.2.app/Contents/Developer"
+  },
+  "ui_test_typecheck": "PASS",
+  "original_app_and_test_build": "PASS",
+  "miniTest10_native_install": "PASS",
+  "counts": {
+    "pass": 6,
+    "fail": 4,
+    "skip": 0,
+    "not_run": 0
+  },
+  "cases": [
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
+      "status": "PASSED",
+      "seconds": 75.766,
+      "failure_boundary": null
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
+      "status": "PASSED",
+      "seconds": 74.704,
+      "failure_boundary": null
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
+      "status": "PASSED",
+      "seconds": 160.268,
+      "failure_boundary": null
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
+      "status": "PASSED",
+      "seconds": 93.858,
+      "failure_boundary": null
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+      "status": "FAILED",
+      "seconds": 104.791,
+      "failure_boundary": "Same original before-open capture settlement failure."
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
+      "status": "PASSED",
+      "seconds": 64.93,
+      "failure_boundary": null
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
+      "status": "PASSED",
+      "seconds": 54.211,
+      "failure_boundary": null
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+      "status": "FAILED",
+      "seconds": 99.383,
+      "failure_boundary": "Original before-open capture settlement failed: actual landscape/window and unique visible original bottom toolbar predicate did not settle within unchanged 20 seconds."
+    },
+    {
+      "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+      "status": "FAILED",
+      "seconds": 91.207,
+      "failure_boundary": "After Cancel verification, reopening original editor, selecting blue and saving, profile row exists but isHittable is false at line 2697. Subsequent persisted-blue/cold-relaunch assertions were not reached."
+    },
+    {
+      "case_id": "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+      "status": "FAILED",
+      "seconds": 103.199,
+      "failure_boundary": "Setup group selection failed exact target uniqueness, positive geometry, selector containment or actual window containment at line 3399. The 100-transition loop did not complete."
+    }
+  ],
+  "original_errors": [
+    "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:605: error: -[Maktabah_iOSUITests.NativeStudySheetPadTests testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window",
+    "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:605: error: -[Maktabah_iOSUITests.NativeStudySheetPadTests testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window",
+    "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:3399: error: -[Maktabah_iOSUITests.StudyGroupStressNativeAcceptanceTests testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore] : failed - Require the exact original group button wholly inside its selector and actual window",
+    "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:2697: error: -[Maktabah_iOSUITests.StudyProfileNativeAcceptanceTests testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace] : XCTAssertTrue failed"
+  ],
+  "xcodebuild_exit": 65,
+  "cleanup": {
+    "udid": "46EDE92A-A42B-4055-B38F-AA1F75E0AF1B",
+    "status": "PASS_VERIFIED_SHUTDOWN"
+  },
+  "compiled_binary_hash_receipts_unchanged": {
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app": "aa48a641d53d5603a877e3b7417866603e9aec36b59079ae519a1acb695568ab",
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app": "ec66f5f89aa1b2b2c8bf31d87b1ef09ab3a6412c3b6ecaf91e17e7003ffbf861",
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest": "8f0fa14c03f9619ae56c64efcbeab9206b48a3e1b565156ac3e6c9466d0592e2"
+  },
+  "independent_binary_rehash": "NOT_AVAILABLE_BINARIES_NOT_IN_SMALL_ARTIFACT",
+  "scope": "Original miniTest10 simulator only; not Native116, Release114, full-v32 UI performance, or physical iPad acceptance.",
+  "capture_diagnosis": "PENDING_FOUR_RELEVANT_ORIGINAL_FAILURE_ATTACHMENTS",
+  "captures_artifact_id": 14790249039,
+  "no_retry_or_source_edit": true
+}

@@ -1,0 +1,43 @@
+{
+  "base_commit": "b85a72e409855ffdc6bed1dcef60bbf5b233cf6d",
+  "canonical_product_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "owned_branch": "codex/otzaria-reader-profile-followup-20261123",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-reader-profile-followup-20261123",
+  "changed_test_file": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "changed_test_sha256": "85e264835512e217bcd77cc3039f434bbf4bf411905528b571cf32c8c2d3188a",
+  "original_test_sha256": "8b9973dd2742dab3840361da27492b41752d26954cd7f3081d6d1ee20ed6f03b",
+  "source_vendor_project_unchanged": true,
+  "exact_inverse_of_reviewed_hunks_recovers_original_bytes": true,
+  "original_assertion_bearing_lines_retained": 500,
+  "strictness": "Finite/currentness/live-domain guards strengthen capture acceptance; predicates are not byte-identical. Original assertions, exact containment and20s budget remain. Groups100 transitions and600s case deadline remain exact.",
+  "snapshot_scope": "One fresh app geometry snapshot per evaluation plus one scoped live snapshot per toolbar candidate; no cached snapshot across evaluations. Live query cost is measured, not assumed below20s.",
+  "independent_review": {
+    "owner": "original_sdk",
+    "source_sha256": "85e264835512e217bcd77cc3039f434bbf4bf411905528b571cf32c8c2d3188a",
+    "diff_sha256": "16997d13bb2e9a12856d8da899fe84ec8b04e5a6f1863c65bbaf1c6c7000c60e",
+    "status": "ACCEPTED_FOR_BOUNDED_NATIVE_FOLLOWUP"
+  },
+  "validation": {
+    "swift_syntax_parse": "PASS",
+    "git_diff_check": "PASS",
+    "apple_typecheck": "NOT_RUN",
+    "four_native_cases": "NOT_RUN",
+    "product_performance_claim": false
+  },
+  "prior_actual_run": {
+    "run_id": 45107660584,
+    "attempt": 1,
+    "source_sha": "b85a72e409855ffdc6bed1dcef60bbf5b233cf6d",
+    "evidence_artifact": 14790507747,
+    "evidence_sha256": "56eac74fc92c1334bbdd305f9f61cb38bc4513b01690326606577fa1d8f95b9c",
+    "captures_artifact": 14790249039,
+    "captures_sha256": "229baed7362e13164943688429efe9c4f8edf05da228d022ba5846bf5084250b",
+    "counts": {
+      "pass": 6,
+      "fail": 4,
+      "skip": 0,
+      "not_run": 0
+    }
+  },
+  "old_pass_lineage": "Six passes remain authentic b85a72e source evidence. They were not executed with this changed shared capture helper and are not counted as current followup passes."
+}

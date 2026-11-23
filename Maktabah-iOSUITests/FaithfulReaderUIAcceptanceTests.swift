@@ -11,6 +11,212 @@ private final class NativeUIRestoration {
     func run() async { await restore() }
 }
 
+
+/// Retains values from the snapshot/query that actually failed. Decimal strings
+/// and IEEE-754 bits preserve coordinates that XCTest's rounded tree omits.
+@MainActor
+private enum NativeGeometryEvidence {
+    static func frame(_ frame: CGRect) -> [String: Any] {
+        let values: [String: Double] = [
+            "x": Double(frame.origin.x), "y": Double(frame.origin.y),
+            "width": Double(frame.size.width), "height": Double(frame.size.height),
+            "minX": Double(frame.minX), "minY": Double(frame.minY),
+            "maxX": Double(frame.maxX), "maxY": Double(frame.maxY)
+        ]
+        return [
+            "decimal": values.mapValues { String($0) },
+            "ieee754Hex": values.mapValues { String($0.bitPattern, radix: 16) },
+            "finitePositive": GroupStressSnapshot.finitePositive(frame),
+            "isNull": frame.isNull, "isInfinite": frame.isInfinite, "isEmpty": frame.isEmpty
+        ]
+    }
+
+    static func element(_ element: any XCUIElementSnapshot) -> [String: Any] {
+        ["identifier": element.identifier, "label": element.label,
+         "type": String(describing: element.elementType), "enabled": element.isEnabled,
+         "frame": frame(element.frame)]
+    }
+
+    static func text(_ value: Any) -> String {
+        if let data = try? JSONSerialization.data(withJSONObject: value, options: [.sortedKeys]),
+           let text = String(data: data, encoding: .utf8) { return text }
+        return String(reflecting: value)
+    }
+}
+
+/// One fresh native snapshot per predicate evaluation, with current live hit
+/// testing. No snapshot or element geometry survives into the next evaluation.
+@MainActor
+private final class NativeCaptureSettlementObservation {
+    let application: XCUIApplication
+    let windowed: Bool
+    private(set) var evaluations: [[String: Any]] = []
+    private var evaluationCount = 0
+
+    init(application: XCUIApplication, windowed: Bool) {
+        self.application = application
+        self.windowed = windowed
+    }
+
+    func settled() -> Bool {
+        let started = ProcessInfo.processInfo.systemUptime
+        evaluationCount += 1
+        var record: [String: Any] = ["evaluation": evaluationCount, "windowed": windowed]
+        var querySeconds: [String: Double] = [:]
+        var accepted = false
+        defer {
+            record["accepted"] = accepted
+            record["querySeconds"] = querySeconds
+            record["elapsedSeconds"] = ProcessInfo.processInfo.systemUptime - started
+            if evaluations.count == 32 { evaluations.removeFirst() }
+            evaluations.append(record)
+        }
+        func observed<T>(_ name: String, _ query: () -> T) -> T {
+            let start = ProcessInfo.processInfo.systemUptime
+            let value = query()
+            querySeconds[name] = ProcessInfo.processInfo.systemUptime - start
+            return value
+        }
+        let snapshotStart = ProcessInfo.processInfo.systemUptime
+        let snapshot: any XCUIElementSnapshot
+        do { snapshot = try application.snapshot() }
+        catch {
+            querySeconds["appSnapshot"] = ProcessInfo.processInfo.systemUptime - snapshotStart
+            record["gate"] = "app_snapshot_unavailable"
+            record["error"] = String(describing: error)
+            return false
+        }
+        querySeconds["appSnapshot"] = ProcessInfo.processInfo.systemUptime - snapshotStart
+        let elements = GroupStressSnapshot.descendants(of: snapshot)
+        guard let window = elements.first(where: { $0.elementType == .window }) else {
+            record["gate"] = "actual_window_missing"
+            return false
+        }
+        let frame = window.frame
+        let landscape = observed("orientation") { XCUIDevice.shared.orientation.isLandscape }
+        record["window"] = NativeGeometryEvidence.frame(frame)
+        record["landscape"] = landscape
+        record["windowFinitePositive"] = GroupStressSnapshot.finitePositive(frame)
+        record["orientationMatches"] = windowed || (frame.width > frame.height) == landscape
+        guard GroupStressSnapshot.finitePositive(frame),
+              windowed || (frame.width > frame.height) == landscape else {
+            record["gate"] = "actual_window_or_orientation"
+            return false
+        }
+
+        let reader = application.textViews["reader-text"]
+        let readerExists = observed("readerExists") { reader.exists }
+        let readerHittable = readerExists && observed("readerHittable") { reader.isHittable }
+        record["readerExists"] = readerExists
+        record["readerHittable"] = readerHittable
+        record["readerSnapshotCount"] = elements.filter {
+            $0.elementType == .textView && GroupStressSnapshot.matches($0, identifying: "reader-text")
+        }.count
+        // Preserve the original modal/non-Reader branch; do not require an
+        // obscured Reader's toolbar while another original surface owns input.
+        guard readerExists && readerHittable else {
+            let liveWindow = observed("liveWindowFrame") { application.windows.firstMatch.frame }
+            record["liveWindow"] = NativeGeometryEvidence.frame(liveWindow)
+            record["windowCurrent"] = liveWindow == frame
+            record["gate"] = "reader_absent_or_not_hittable"
+            accepted = liveWindow == frame
+            return accepted
+        }
+
+        func eligible(_ identifier: String) -> [(any XCUIElementSnapshot, XCUIElement)]? {
+            let candidates = elements.filter {
+                $0.elementType == .button && $0.identifier == identifier
+            }
+            record[identifier + "SnapshotCount"] = candidates.count
+            var observations: [[String: Any]] = []
+            defer { record[identifier + "Candidates"] = observations }
+            var result: [(any XCUIElementSnapshot, XCUIElement)] = []
+            let query = application.buttons.matching(identifier: identifier)
+            let liveCount = observed(identifier + ".liveCount") { query.count }
+            record[identifier + "LiveCount"] = liveCount
+            guard liveCount == candidates.count else {
+                record["gate"] = "toolbar_snapshot_live_count_mismatch"
+                return nil
+            }
+            for (index, candidate) in candidates.enumerated() {
+                let candidateFrame = candidate.frame
+                let finite = GroupStressSnapshot.finitePositive(candidateFrame)
+                let intersects = candidateFrame.intersects(frame)
+                var details = NativeGeometryEvidence.element(candidate)
+                details["queryIndex"] = index
+                details["intersectsWindow"] = intersects
+                details["containsInWindow"] = frame.contains(candidateFrame)
+                let live = query.element(boundBy: index)
+                let queryStart = ProcessInfo.processInfo.systemUptime
+                let current: any XCUIElementSnapshot
+                do { current = try live.snapshot() }
+                catch {
+                    querySeconds[identifier + "[\(index)].liveSnapshot"] =
+                        ProcessInfo.processInfo.systemUptime - queryStart
+                    details["liveSnapshotError"] = String(describing: error)
+                    observations.append(details)
+                    record["gate"] = "toolbar_live_snapshot_unavailable"
+                    return nil
+                }
+                querySeconds[identifier + "[\(index)].liveSnapshot"] =
+                    ProcessInfo.processInfo.systemUptime - queryStart
+                let identityMatches = current.elementType == .button
+                    && current.identifier == candidate.identifier && current.label == candidate.label
+                let frameMatches = current.frame == candidateFrame
+                details["liveSnapshot"] = NativeGeometryEvidence.element(current)
+                details["sameIdentityAtIndex"] = identityMatches
+                details["sameFrameAtIndex"] = frameMatches
+                // Count and the actual identity/frame at each query index bind
+                // the live domain to this evaluation's original app snapshot.
+                guard identityMatches && frameMatches else {
+                    observations.append(details)
+                    record["gate"] = "toolbar_snapshot_live_order_or_geometry_mismatch"
+                    return nil
+                }
+                if finite && intersects {
+                    let hittable = observed(identifier + "[\(index)].isHittable") { live.isHittable }
+                    details["liveHittable"] = hittable
+                    if hittable { result.append((candidate, live)) }
+                } else {
+                    details["liveHittable"] = "not_queried_outside_original_geometry_gate"
+                }
+                observations.append(details)
+            }
+            record[identifier + "EligibleCount"] = result.count
+            return result
+        }
+        guard let more = eligible("reader-more-menu") else { return false }
+        let actions: [(any XCUIElementSnapshot, XCUIElement)]
+        if more.isEmpty {
+            guard let overflow = eligible("BottomOverflowBarButtonItem") else { return false }
+            actions = overflow
+        } else {
+            actions = more
+        }
+        record["eligibleActionCount"] = actions.count
+        guard actions.count == 1, let (button, liveButton) = actions.first else {
+            record["gate"] = "unique_visible_original_toolbar_action"
+            return false
+        }
+        let buttonFrame = button.frame
+        let liveButtonFrame = observed("chosenLiveButtonFrame") { liveButton.frame }
+        let liveWindowFrame = observed("liveWindowFrame") { application.windows.firstMatch.frame }
+        record["chosenButton"] = NativeGeometryEvidence.element(button)
+        record["liveButton"] = NativeGeometryEvidence.frame(liveButtonFrame)
+        record["liveWindow"] = NativeGeometryEvidence.frame(liveWindowFrame)
+        record["buttonCurrent"] = liveButtonFrame == buttonFrame
+        record["windowCurrent"] = liveWindowFrame == frame
+        record["exactWindowContainsButton"] = frame.contains(buttonFrame)
+        let originalGeometry = windowed
+            ? buttonFrame.width > 0 && buttonFrame.height > 0
+            : frame.contains(buttonFrame)
+        record["originalGeometryGate"] = originalGeometry
+        record["gate"] = "current_original_toolbar_geometry"
+        accepted = liveButtonFrame == buttonFrame && liveWindowFrame == frame && originalGeometry
+        return accepted
+    }
+}
+
 /// Find only this test's unique sidecar after XCTest's app installation. The
 /// pre-install container UUID is a hint to its parent, never a durable app ID.
 private func matchingTestSidecars(in containers: URL, namespace: String) -> [URL] {
@@ -567,27 +773,17 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         capture("candidate-original-bottom-toc-action")
     }
     func capture(_ name: String, windowed: Bool = false) {
-        let application = app!
+        let observation = NativeCaptureSettlementObservation(application: app!, windowed: windowed)
         let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
-            MainActor.assumeIsolated {
-                let frame = application.windows.firstMatch.frame
-                let landscape = XCUIDevice.shared.orientation.isLandscape
-                guard frame.width > 0, frame.height > 0,
-                      (windowed || (frame.width > frame.height) == landscape) else { return false }
-                let reader = application.textViews["reader-text"]
-                guard reader.exists && reader.isHittable else { return true }
-                let more = application.buttons.matching(identifier: "reader-more-menu").allElementsBoundByIndex.filter {
-                    !$0.frame.isEmpty && $0.frame.intersects(frame) && $0.isHittable
-                }
-                let overflow = application.buttons.matching(identifier: "BottomOverflowBarButtonItem").allElementsBoundByIndex.filter {
-                    !$0.frame.isEmpty && $0.frame.intersects(frame) && $0.isHittable
-                }
-                let actions = more.isEmpty ? overflow : more
-                guard actions.count == 1, let bottomMenu = actions.first else { return false }
-                return windowed ? bottomMenu.frame.width > 0 && bottomMenu.frame.height > 0 : frame.contains(bottomMenu.frame)
-            }
+            MainActor.assumeIsolated { observation.settled() }
         }, object: nil)
         let settlement = XCTWaiter.wait(for: [settled], timeout: 20)
+        if settlement != .completed {
+            let diagnostic = XCTAttachment(string: NativeGeometryEvidence.text(observation.evaluations))
+            diagnostic.name = name + "-actual-settlement-evaluations"
+            diagnostic.lifetime = .keepAlways
+            add(diagnostic)
+        }
         // Capture the display rather than XCTest's app-rectangle crop: the
         // iPadOS 27 landscape app crop can retain portrait dimensions and clip
         // the trailing toolbar. Preserve the complete system/window chrome.
@@ -2692,8 +2888,11 @@ final class StudyProfileNativeAcceptanceTests: R27NativeUIBase {
         XCTAssertEqual(profileColorPicker().value as? String, "ברירת מחדל")
         chooseProfileColor(named: "כחול")
         tap(app.buttons["שמירה"])
-        let row = app.descendants(matching: .any).matching(identifier: "study-profile-\(profileID)").firstMatch
+        let rows = app.staticTexts.matching(identifier: "study-profile-\(profileID)")
+        let row = rows.firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10))
+        XCTAssertEqual(rows.count, 1, "The original visible text must identify exactly this profile UUID")
+        XCTAssertEqual(row.label, try XCTUnwrap(personal["name"] as? String))
         XCTAssertTrue(row.isHittable)
         XCTAssertEqual(row.value as? String, "כחול", "The original visible profile row must expose the selected color")
         capture("profile-color-original-management-blue")
@@ -3373,11 +3572,48 @@ final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
     }
 
     @MainActor
+    private func retainOriginalGroupSelectionFailure(
+        _ gate: String, expectedName: String,
+        selectors: [any XCUIElementSnapshot], targets: [any XCUIElementSnapshot],
+        window: (any XCUIElementSnapshot)?, snapshotSeconds: Double,
+        live: [String: Any] = [:]
+    ) {
+        let selector = selectors.first
+        let target = targets.first
+        var value: [String: Any] = [
+            "gate": gate, "expectedLabel": expectedName,
+            "selectorCount": selectors.count, "targetCount": targets.count,
+            "oneEnabledSelector": selectors.count == 1 && selector?.isEnabled == true,
+            "oneExactLabelTarget": targets.count == 1,
+            "windowPresent": window != nil,
+            "selectors": selectors.map { NativeGeometryEvidence.element($0) },
+            "targets": targets.map { NativeGeometryEvidence.element($0) },
+            "snapshotSeconds": snapshotSeconds, "liveQueries": live
+        ]
+        if let window { value["window"] = NativeGeometryEvidence.element(window) }
+        if let selector, let target, let window {
+            value["allFramesFinitePositive"] = [selector.frame, target.frame, window.frame]
+                .allSatisfy { GroupStressSnapshot.finitePositive($0) }
+            value["selectorContainsTarget"] = selector.frame.contains(target.frame)
+            value["windowContainsTarget"] = window.frame.contains(target.frame)
+        }
+        let attachment = XCTAttachment(string: NativeGeometryEvidence.text(value))
+        attachment.name = "groups100-original-selection-failed-snapshot"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+
+    @MainActor
     private func selectOriginalStressGroup(named name: String) {
+        let snapshotStart = ProcessInfo.processInfo.systemUptime
         guard let snapshot = try? app.snapshot() else {
+            retainOriginalGroupSelectionFailure("snapshot_unavailable", expectedName: name,
+                selectors: [], targets: [], window: nil,
+                snapshotSeconds: ProcessInfo.processInfo.systemUptime - snapshotStart)
             XCTFail("Require a fresh actual app snapshot before the original group action")
             return
         }
+        let snapshotSeconds = ProcessInfo.processInfo.systemUptime - snapshotStart
         let elements = GroupStressSnapshot.descendants(of: snapshot)
         let selectors = elements.filter {
             $0.elementType == .segmentedControl && GroupStressSnapshot.matches($0, identifying: "study-group-selector")
@@ -3385,6 +3621,10 @@ final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
         if !selectors.isEmpty {
             guard selectors.count == 1, let selectorSnapshot = selectors.first,
                   selectorSnapshot.isEnabled else {
+                retainOriginalGroupSelectionFailure("unique_enabled_selector", expectedName: name,
+                    selectors: selectors, targets: [],
+                    window: elements.first(where: { $0.elementType == .window }),
+                    snapshotSeconds: snapshotSeconds)
                 XCTFail("Require the unique enabled original segmented group selector")
                 return
             }
@@ -3396,14 +3636,45 @@ final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
                   [selectorSnapshot.frame, target.frame, windowSnapshot.frame].allSatisfy({ GroupStressSnapshot.finitePositive($0) }),
                   selectorSnapshot.frame.contains(target.frame),
                   windowSnapshot.frame.contains(target.frame) else {
+                retainOriginalGroupSelectionFailure("exact_snapshot_geometry", expectedName: name,
+                    selectors: selectors, targets: targets,
+                    window: elements.first(where: { $0.elementType == .window }),
+                    snapshotSeconds: snapshotSeconds)
                 XCTFail("Require the exact original group button wholly inside its selector and actual window")
                 return
             }
             let selector = app.segmentedControls["study-group-selector"]
             let liveTarget = selector.buttons.matching(NSPredicate(format: "label == %@", name)).element
             let window = app.windows.firstMatch
-            guard liveTarget.isHittable, liveTarget.frame == target.frame,
-                  window.frame == windowSnapshot.frame else {
+            var live: [String: Any] = [:]
+            var queryStart = ProcessInfo.processInfo.systemUptime
+            let liveHittable = liveTarget.isHittable
+            live["hittable"] = liveHittable
+            live["hittableSeconds"] = ProcessInfo.processInfo.systemUptime - queryStart
+            var targetCurrent = false
+            var windowCurrent = false
+            // Preserve the original short-circuit order and record each actual
+            // queried value once; never replace it with a later failure snapshot.
+            if liveHittable {
+                queryStart = ProcessInfo.processInfo.systemUptime
+                let frame = liveTarget.frame
+                live["targetFrame"] = NativeGeometryEvidence.frame(frame)
+                live["targetFrameSeconds"] = ProcessInfo.processInfo.systemUptime - queryStart
+                targetCurrent = frame == target.frame
+                if targetCurrent {
+                    queryStart = ProcessInfo.processInfo.systemUptime
+                    let frame = window.frame
+                    live["windowFrame"] = NativeGeometryEvidence.frame(frame)
+                    live["windowFrameSeconds"] = ProcessInfo.processInfo.systemUptime - queryStart
+                    windowCurrent = frame == windowSnapshot.frame
+                }
+            }
+            live["targetCurrent"] = targetCurrent
+            live["windowCurrent"] = windowCurrent
+            guard liveHittable, targetCurrent, windowCurrent else {
+                retainOriginalGroupSelectionFailure("current_live_target", expectedName: name,
+                    selectors: selectors, targets: targets, window: windowSnapshot,
+                    snapshotSeconds: snapshotSeconds, live: live)
                 XCTFail("The original group button and window must remain live and match the fresh snapshot")
                 return
             }
