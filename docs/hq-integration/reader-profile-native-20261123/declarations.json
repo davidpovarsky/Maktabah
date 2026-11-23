@@ -1,0 +1,85 @@
+{
+  "suites": [
+    {
+      "suite": "NativeStudySheetPadTests",
+      "selection": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
+      "expected": [
+        "testSystemStudySheetThreeDetentsPhysicallyRightRTL"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeStudySheetPadTests",
+      "selection": "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
+      "expected": [
+        "testSystemStudySheetThreeDetentsPhysicallyRightLTR"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeStudySheetPadTests",
+      "selection": "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
+      "expected": [
+        "testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeStudySheetPadTests",
+      "selection": "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
+      "expected": [
+        "testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeStudySheetPadTests",
+      "selection": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+      "expected": [
+        "testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeStudySheetPadTests",
+      "selection": "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
+      "expected": [
+        "testSystemStudySheetTOCWhileOriginalNoteChildIsVisible"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeStudySheetPadTests",
+      "selection": "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
+      "expected": [
+        "testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeStudySheetPadTests",
+      "selection": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+      "expected": [
+        "testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "StudyProfileNativeAcceptanceTests",
+      "selection": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+      "expected": [
+        "testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "StudyGroupStressNativeAcceptanceTests",
+      "selection": "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+      "expected": [
+        "testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    }
+  ],
+  "status": "DECLARATIONS_MATCH"
+}

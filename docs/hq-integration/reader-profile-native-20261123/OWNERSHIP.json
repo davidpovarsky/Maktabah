@@ -1,0 +1,26 @@
+{
+  "schema": "otzaria.reader-profile.ownership/1",
+  "owner": "/root/original_rpc",
+  "parent": "/root",
+  "base": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "branch": "codex/otzaria-reader-profile-native-20261123",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-reader-profile-native-20261123",
+  "allowlist": [
+    "Scripts/CI/reader-profile-focused-native.py",
+    "Scripts/CI/reader-profile-focused-native.inputs.json",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+    ".github/workflows/otzaria-reader-profile-native.yml",
+    "docs/hq-integration/reader-profile-native-20261123/**"
+  ],
+  "product_and_original_tests_changed": false,
+  "source_trees": {
+    "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "ca36ba13f1fd900adf528a3e404fed6a66290b6b"
+  },
+  "authorization": "Current parent assignment and standing owner authorization in canonical AGENTS.md; root owns connected API publication and Asana updates.",
+  "reuse_origin": "cba554ded79144d48642b12dba926a30a8eac451:Scripts/CI/library-morph-focused-native.py and workflow, narrowed to the ten original repaired cases",
+  "original_gates": "Exact source closure, real build, actual XCTest declarations and leaves, original source audit, compiled image stability, original per-case deadlines, owned Simulator cleanup",
+  "publication": "One owned push-triggered run; root API publication; one exact gh run watch --exit-status --compact --interval 30"
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "otzaria.reader-profile.source-admission/1",
+  "at_utc": "2026-11-23T03:42:54.022408+00:00",
+  "prepared_commit": "7284b04217e91bba80611ec0902a2c833ab2e6c7",
+  "application_source_sha": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "application_trees": {
+    "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "ca36ba13f1fd900adf528a3e404fed6a66290b6b"
+  },
+  "source_and_original_test_changes": [],
+  "python_ast_parse": "PASS",
+  "workflow_yaml_parse": "PASS",
+  "git_diff_check": "PASS",
+  "source_prepare_exit": 0,
+  "stdout_bytes": 0,
+  "stderr_bytes": 0,
+  "execution_inputs_count": 285,
+  "source_before_bytes": 64134,
+  "source_before_sha256": "38a3a24bc0e4a9f84bfff2e11a488ffd8e1f1ed717752efeb9ed6f2840d9fcda",
+  "declaration_status": "DECLARATIONS_MATCH",
+  "selected_original_cases": [
+    "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
+    "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
+    "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
+    "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
+    "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+    "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
+    "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
+    "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+    "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+    "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"
+  ],
+  "selected_count": 10,
+  "hid_comparison": false,
+  "build_input_delta": {
+    "application_source_sha": {
+      "before": "d49cedb3d5c163b7a008248d94b80a2eda28e3ce",
+      "after": "1969b2065469b55e38e42cbb838a469ffa6a80f7"
+    },
+    "Source": {
+      "before": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+      "after": "fada5ad1164ed81e248dec54e1ceedfd2741fa57"
+    },
+    "all_other_fields_unchanged": true
+  },
+  "actual_local_apple_compile": "NOT_RUN",
+  "actual_local_ui_cases_executed": 0,
+  "old_portable_suite_reexecutions": 0,
+  "final_source_admission": "CI repeats original source prepare at the immutable published checkout; receipt-only finalization preserves these exact 285 execution-input bytes.",
+  "workflow_trigger_branch_check": "PASS: actual owned branch equals push.branches exactly",
+  "trigger_correction": {
+    "previous_packet_commit": "95bf2ed612be0b7d50167b23afb90ce2073af986",
+    "previous_preparation_commit": "c4d59abeb0664d6d383b0c751377995052e6a9c2",
+    "old_trigger": "codex/otzaria-reader-profile-20261123",
+    "corrected_trigger": "codex/otzaria-reader-profile-native-20261123",
+    "reason": "Root source review found assigned branch missing native in trigger",
+    "code_delta": "One workflow string only; driver, product and tests exact",
+    "source_prepare_repeated_after_fix": true,
+    "tests_reexecuted": 0,
+    "workflow_runs_before_correction": 0
+  }
+}
