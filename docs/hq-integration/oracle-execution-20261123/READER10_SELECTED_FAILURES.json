@@ -1,0 +1,114 @@
+{
+  "run_id": 45107660584,
+  "attempt": 1,
+  "source_sha": "b85a72e409855ffdc6bed1dcef60bbf5b233cf6d",
+  "artifact_id": 14790249039,
+  "artifact_sha256": "229baed7362e13164943688429efe9c4f8edf05da228d022ba5846bf5084250b",
+  "only_failed_cases_extracted": 4,
+  "files": [
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-profile-native-20261123/45107660584/captures-intake/failures/sheet-interactive-dismiss-resize/failure.png",
+      "archive_member": "visual-11-reader/982E538E-371B-440A-B11E-56C9A3795C8A.png",
+      "original_name": "UNSETTLED-system-study-reader-before-open_0_9AD994C1-76E7-47BB-9413-67B5FC4520A8.png",
+      "timestamp": 1795408027.898,
+      "bytes": 915203,
+      "sha256": "1e325a6c811e088ac198ce81bebb4458793c8f5779b9a8c3c26d570c0e6e46d8",
+      "selected_member_crc": "PASS"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-profile-native-20261123/45107660584/captures-intake/failures/sheet-interactive-dismiss-resize/hierarchy.txt",
+      "archive_member": "visual-11-reader/214F92FD-4BF8-4D6C-B60B-5671BD64BEEB.txt",
+      "original_name": "system-study-reader-before-open-ui-tree_0_FC0E932F-9E6C-4D68-B9E1-025DC5822901.txt",
+      "timestamp": 1795408036.732,
+      "bytes": 17732,
+      "sha256": "058cbe96117893f33856ddff9dbabb9e9925d58b8bcf5a603e6ae5278e545ee7",
+      "selected_member_crc": "PASS"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-profile-native-20261123/45107660584/captures-intake/failures/sheet-interactive-dismiss-resize/native-views.json",
+      "archive_member": "visual-11-reader/DA48BD68-4569-4688-8590-5EC49166FBBD.json",
+      "original_name": "system-study-final-actual-views_0_FC1AD530-D6BE-4CDD-8DB8-118D9C46F44F.json",
+      "timestamp": 1795408039.518,
+      "bytes": 569,
+      "sha256": "8a8036b42a428ade32c5b705d0bf68b596f17a51c6abbc3e23f4ec46dc0b343f",
+      "selected_member_crc": "PASS"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-profile-native-20261123/45107660584/captures-intake/failures/sheet-parent-close-note/failure.png",
+      "archive_member": "visual-11-reader/57262F90-5D95-4BF6-B417-69517B8D2CF1.png",
+      "original_name": "UNSETTLED-system-study-reader-before-open_0_2520306E-EAF1-47A8-8F76-348986E0D24D.png",
+      "timestamp": 1795408381.655,
+      "bytes": 915423,
+      "sha256": "7d860c76b12f2788c71eefc8ccd274ec25fc3c0ba7f3754f39775a4cf7fa771d",
+      "selected_member_crc": "PASS"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-profile-native-20261123/45107660584/captures-intake/failures/sheet-parent-close-note/hierarchy.txt",
+      "archive_member": "visual-11-reader/D03958D4-062A-4A0A-BC55-D1A5E1FFCAB2.txt",
+      "original_name": "system-study-reader-before-open-ui-tree_0_41DE2419-27E9-412A-9F21-C626B44A6A9E.txt",
+      "timestamp": 1795408397.592,
+      "bytes": 17732,
+      "sha256": "5df8dfa3a8f75f10c3fee586768341cb46bc03c884281f648e4cce99e75e217f",
+      "selected_member_crc": "PASS"
+    },
+    {
+      "case_id": "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-profile-native-20261123/45107660584/captures-intake/failures/sheet-parent-close-note/native-views.json",
+      "archive_member": "visual-11-reader/ECBA6DA0-36AD-46AB-A075-941F74CD299F.json",
+      "original_name": "system-study-final-actual-views_0_26E8C481-FBF9-4D22-8125-9875F499D67E.json",
+      "timestamp": 1795408399.78,
+      "bytes": 569,
+      "sha256": "631b80ca2cb210ee8904c1ad7539725fe7f1e6b1219d03979fe050bbeeddf1a9",
+      "selected_member_crc": "PASS"
+    },
+    {
+      "case_id": "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-profile-native-20261123/45107660584/captures-intake/failures/groups100/failure.png",
+      "archive_member": "visual-11-reader/C28D046B-9473-4E18-8FA1-701D03AEED6C.png",
+      "original_name": "r27-final-native-screen_0_6F1B7DDC-87DF-42E5-98FB-53EB05F418B8.png",
+      "timestamp": 1795408775.565,
+      "bytes": 157773,
+      "sha256": "e89ee46c0a0dda651bded38ff316dc6eeaad8221f6c01c788d585328038e3387",
+      "selected_member_crc": "PASS"
+    },
+    {
+      "case_id": "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-profile-native-20261123/45107660584/captures-intake/failures/groups100/hierarchy.txt",
+      "archive_member": "visual-11-reader/6045D642-63D9-4812-AB63-D3F5DC7AE960.txt",
+      "original_name": "r27-final-native-hierarchy_0_9AA23594-EA66-44A0-8156-DE7F61585C77.txt",
+      "timestamp": 1795408775.065,
+      "bytes": 38036,
+      "sha256": "78bb3b0e6e226e7c99e0cb8af2a287bf456b442e9c62b9ed3f76e07838d30eaf",
+      "selected_member_crc": "PASS"
+    },
+    {
+      "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-profile-native-20261123/45107660584/captures-intake/failures/profile-color/failure.png",
+      "archive_member": "visual-11-reader/83E4D717-1106-4DCF-B160-6A6246B258FD.png",
+      "original_name": "r27-final-native-screen_0_FBD2F95D-4354-4903-B4F5-8EBCA204BE8F.png",
+      "timestamp": 1795408866.89,
+      "bytes": 559679,
+      "sha256": "2cc7d4822b08d9d6b4f35fd7241fa2f3b4be364ab39684edfef96a0c040777e8",
+      "selected_member_crc": "PASS"
+    },
+    {
+      "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-profile-native-20261123/45107660584/captures-intake/failures/profile-color/hierarchy.txt",
+      "archive_member": "visual-11-reader/F6601325-CF5F-4E12-9D72-4B4321378230.txt",
+      "original_name": "r27-final-native-hierarchy_0_7427F3A8-D393-40BB-A646-1E059C3FEA32.txt",
+      "timestamp": 1795408866.639,
+      "bytes": 39887,
+      "sha256": "f6d65b79b43306ef793f85bb68ebf39c4aa4ad5c5cbe6c51f3d412fb449a102e",
+      "selected_member_crc": "PASS"
+    }
+  ],
+  "total_extracted_bytes": 2662603,
+  "remaining_free_bytes": 4088918016,
+  "screenshots_unmodified": true,
+  "note": "Sheet screenshot and AX are from failed pre-open settlement; native-views JSON is the later original tearDown diagnostic. Group/profile screenshot and AX are original final failure attachments. No media transformations."
+}

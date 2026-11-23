@@ -1,0 +1,30 @@
+{
+  "run_id": 45105081309,
+  "source_sha": "cba554ded79144d48642b12dba926a30a8eac451",
+  "requested_at": "2026-11-23T05:01:13.825817+00:00",
+  "rerun_returncode": 0,
+  "before": {
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "updated_at": "2026-11-23T04:29:37Z"
+  },
+  "after": {
+    "run_attempt": 1,
+    "status": "queued",
+    "conclusion": null,
+    "updated_at": "2026-11-23T05:01:15Z",
+    "run_started_at": "2026-11-23T05:01:14Z",
+    "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45105081309"
+  },
+  "exact_source_unchanged": true,
+  "same_seven_selectors_guards_and_cache_eligibility": true,
+  "first_attempt_counts": {
+    "pass": 0,
+    "fail": 0,
+    "skip": 0,
+    "not_run": 7
+  },
+  "authorized_retry_number": 1,
+  "further_rerun_requested": false
+}

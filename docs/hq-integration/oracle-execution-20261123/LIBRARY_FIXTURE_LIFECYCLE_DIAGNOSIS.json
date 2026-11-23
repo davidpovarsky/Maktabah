@@ -1,0 +1,48 @@
+{
+  "status": "PRE_XCTEST_SIMULATOR_ADMINISTRATION_FAILURE",
+  "run_id": 45105081309,
+  "attempt": 1,
+  "source_sha": "cba554ded79144d48642b12dba926a30a8eac451",
+  "counts": {
+    "pass": 0,
+    "fail": 0,
+    "skip": 0,
+    "not_run": 7
+  },
+  "actual_sequence": [
+    "Original source checks, UI-test typecheck and full app/test build PASS",
+    "Genuine miniTest10 v6 native installer PASS",
+    "simctl terminate own app timed out60s",
+    "Existing narrowly eligible one recovery: initial owned simulator inventory timed out45s",
+    "Exact owned shutdown returned0 and verified Shutdown",
+    "Exact owned simulator bootstatus finished53s",
+    "simctl get_app_container data timed out45s",
+    "Final exact owned shutdown returned0 and verified Shutdown"
+  ],
+  "visual_observation": "Actual archived failure screenshot shows Simulator home screen after recovery; no XCTest method ran.",
+  "service_log_limit": "Archived services log is capped to later SpringBoard period; it does not contain the first stall or a decisive app/service crash. Underlying OS failure cause remains unproven.",
+  "source_review": [
+    "Scripts/CI/prepare-faithful-ipad-fixtures.py:57-69",
+    "Scripts/CI/runtime27-fixture-recovery.py:20-25"
+  ],
+  "no_product_fixture_or_timeout_change_justified": true,
+  "candidate_next_action": "One source-unchanged attempt2 of the existing7 cases, preserving exact tests and guards and matching compiler-cache eligibility. Await root authorization.",
+  "retry_requested": false,
+  "files": [
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-library-morph-20261123/45105081309/watch-2/fixture-lifecycle-review/library-morph-matrix.log",
+      "bytes": 7314,
+      "sha256": "fe268ca0fc42bcc88326809f3c0beddef9069a21ed3ff2183c49991973746863"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-library-morph-20261123/45105081309/watch-2/fixture-lifecycle-review/simulator-failure-11-reader-services.log",
+      "bytes": 1000288,
+      "sha256": "13b6560e51c8b8209bff8c2d146406e724996967f0b44a403632153b1e2b7ddf"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-library-morph-20261123/45105081309/watch-2/fixture-lifecycle-review/simulator-failure-11-reader.png",
+      "bytes": 3989546,
+      "sha256": "5e007ee1982eba49d4c4e8a5d0b4bfb5f0c15fd1bf865828d2d76db149ec0058"
+    }
+  ]
+}

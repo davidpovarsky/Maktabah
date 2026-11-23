@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-23T05:04:22Z",
+  "run": 45107660584,
+  "source": "b85a72e409855ffdc6bed1dcef60bbf5b233cf6d",
+  "root_actual_original_images_viewed": [
+    "sheet-interactive-dismiss-resize",
+    "sheet-parent-close-note",
+    "groups100",
+    "profile-color"
+  ],
+  "profile_duplicate_identifier_observed": "study-profile-297FE3A7-13EB-4CAF-806B-62E7B1299E36",
+  "profile_ax_order": [
+    "Image labelled account value blue",
+    "StaticText labelled אישי value blue"
+  ],
+  "strict_test_followup_authorized": true,
+  "product_repair_proven": false,
+  "passed_cases_reused": 6,
+  "failed_cases_to_qualify": 4,
+  "acceptance_thresholds_relaxed": false,
+  "late_ax_is_not_exact_failure_state": true
+}

@@ -1,0 +1,74 @@
+{
+  "status": "ACTUAL_FAILURE_DIAGNOSIS_NO_EDIT_OR_RERUN",
+  "run_id": 45107660584,
+  "attempt": 1,
+  "source_sha": "b85a72e409855ffdc6bed1dcef60bbf5b233cf6d",
+  "application_and_original_test_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+  "failure_source": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:2697",
+  "original_query": "app.descendants(matching: .any).matching(identifier: study-profile-UUID).firstMatch",
+  "screenshot": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-reader-profile-native-20261123/45107660584/captures-intake/failures/profile-color/failure.png",
+    "sha256": "2cc7d4822b08d9d6b4f35fd7241fa2f3b4be364ab39684edfef96a0c040777e8"
+  },
+  "hierarchy": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-reader-profile-native-20261123/45107660584/captures-intake/failures/profile-color/hierarchy.txt",
+    "sha256": "f6d65b79b43306ef793f85bb68ebf39c4aa4ad5c5cbe6c51f3d412fb449a102e"
+  },
+  "observed_exact_identifier": "study-profile-297FE3A7-13EB-4CAF-806B-62E7B1299E36",
+  "observed_elements_in_order": [
+    {
+      "type": "Image",
+      "label": "חשבון",
+      "frame": [
+        836,
+        229,
+        22,
+        22
+      ],
+      "value": "כחול",
+      "selected": true
+    },
+    {
+      "type": "StaticText",
+      "label": "אישי",
+      "frame": [
+        787.5,
+        229,
+        70.5,
+        22
+      ],
+      "value": "כחול",
+      "selected": true
+    }
+  ],
+  "observation": "Original management sheet and blue profile icon are visibly on screen. Original Label projects the same identifier/value to separate Image and StaticText children; any.firstMatch selects the first Image and isHittable fails there.",
+  "source_corroboration": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift applies accessibilityValue, accessibilityIdentifier and selected trait to Label with original Text and StudyProfileIcon children.",
+  "reached": [
+    "Original native profile creation",
+    "Original editor red selection and Cancel",
+    "Persisted Cancel equivalence",
+    "Original editor reopened with default",
+    "Original Picker blue selection and Save",
+    "Profile identifier existence"
+  ],
+  "not_reached": [
+    "Visible original text color assertion",
+    "Persisted blue profile-only invariants",
+    "Other profile/groups/scenes equality after Save",
+    "Cold relaunch color persistence",
+    "Explicit default removal"
+  ],
+  "candidate_repair": "Resolve unique original StaticText by exact existing profile UUID, assert count==1 and expected profile name, then preserve existing exists, isHittable, blue value, persistence, cold launch and default reset assertions.",
+  "candidate_file_allowlist": [
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+  ],
+  "source_product_change_justified": false,
+  "candidate_native_outcome": "NOT_RUN",
+  "primary_api_docs": [
+    "https://developer.apple.com/documentation/xcuiautomation/xcuielementtypequeryprovider/firstmatch",
+    "https://developer.apple.com/documentation/xcuiautomation/xcuielementtypequeryprovider/statictexts",
+    "https://developer.apple.com/documentation/xcuiautomation/xcuielement/ishittable"
+  ],
+  "root_review_pending": true
+}

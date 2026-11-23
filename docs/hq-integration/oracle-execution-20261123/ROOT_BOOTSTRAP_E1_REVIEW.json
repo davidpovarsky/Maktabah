@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-23T05:04:22Z",
+  "plan_source": "642a8b9cd9cd243e820db154ea2471b6882e2a94",
+  "product_base": "89926d7839c09a629c195ec6dd9812fe56aad069",
+  "plan_and_archive_audit_read_in_full": true,
+  "source_inventory_count": 62,
+  "actual_original_source_paths_read": [
+    "Modules/AnytypeCore/AnytypeCore/Utils/CoreEnvironment.swift",
+    "Modules/AnytypeCore/AnytypeCore/Utils/TargetsConstants.swift",
+    "Modules/AnytypeCore/AnytypeCore/Utils/UserDefaultWrapper/UserDefaultByAppGroupStorage.swift",
+    "Modules/AnytypeCore/AnytypeCore/Utils/UserDefaultWrapper/UserDefaultStorage.swift",
+    "Modules/AnytypeCore/AnytypeCore/Utils/UserDefaultWrapper/UserDefaultWrapper.swift"
+  ],
+  "decision": "E1_FOUR_PATHS_SOURCE_IMPLEMENTATION_ONLY",
+  "allowlist": [
+    "Modules/AnytypeCore/AnytypeCore/Utils/OriginalRuntimeEnvironment.swift",
+    "Modules/AnytypeCore/AnytypeCore/Utils/TargetsConstants.swift",
+    "Modules/AnytypeCore/AnytypeCore/Utils/UserDefaultWrapper/UserDefaultByAppGroupStorage.swift",
+    "Modules/AnytypeCore/AnytypeCore/Utils/UserDefaultWrapper/UserDefaultStorage.swift"
+  ],
+  "conditions": [
+    "Immutable fixed embedded namespace on every initial read/write/remove; no bare host-key migration",
+    "Actual app-group container validation before creating services/defaults; suite existence alone insufficient",
+    "Preserve original standalone default groups/keys/migration/cache/lock behavior",
+    "No CoreEnvironment cache override or unimplemented first-use sealing claim",
+    "No E2, wallet, login, host activation, import or new SDK qualification"
+  ],
+  "native_acceptance": false
+}
