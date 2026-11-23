@@ -42,6 +42,9 @@ enum OtzariaHanlinConnectionDiagnostic {
         case hostResultObserved, hostResultRetained, hostResultLimitReached, sessionInvalidated
         case streamToolCallObserved, streamToolResultObserved, streamToolResultUnmatched
         case sourceResultObserved, sourceLinkCreated, streamToolOutputDenied
+        case streamRunStarted, streamStepStarted, streamTextObserved, streamReasoningObserved
+        case streamToolInputStarted, streamToolInputDeltaObserved, streamApprovalRequested, streamApprovalResolved
+        case streamStepFinished, streamFinishObserved, streamCancelledObserved, runCompletionObserved
     }
     enum Reason: String {
         case none, cancelled, invalidArguments, invalidContext, staleContext
@@ -50,6 +53,7 @@ enum OtzariaHanlinConnectionDiagnostic {
         case unsupportedProviderCapability, storeConflict, invalidRecord, storageLimitExceeded
         case nativeProviderInjectionRequired, nativeUnsupportedContent, invalidProviderToolSchema
         case invalidSDKConversation, emptyProviderResponse, incompleteProviderResponse
+        case finishStop, finishToolCalls, finishLength, finishContentFilter, finishError, finishOther
     }
     enum Flag: String {
         case closed, storageFailed, configured, connecting, hasOperation
@@ -61,6 +65,9 @@ enum OtzariaHanlinConnectionDiagnostic {
         case sameReaderContent, sameReadSource, sameSelection, sameLocale
         case streaming, referenceResult, hostSucceeded, toolFailed, hasOriginalResult
         case hasSources, hasActivities
+        case hasActiveTools, searchAdvertised, referenceAdvertised, hasVisibleSchemas
+        case approvalAllowed, hasMeaningfulEvents, completionSucceeded, completionCancelled, completionFailed
+        case hasAssistantText, hasReasoning
     }
 
     #if DEBUG && targetEnvironment(simulator)
@@ -68,6 +75,7 @@ enum OtzariaHanlinConnectionDiagnostic {
     private static var destination: URL?
     private static var events: [[String: Any]] = []
     private static var overflow = false
+    private static var firstStreamObservations = Set<String>()
     #endif
 
     static func reason(for error: any Error) -> Reason {
@@ -102,6 +110,97 @@ enum OtzariaHanlinConnectionDiagnostic {
         }
     }
 
+
+
+    /// Observe only finite facts from original public stream events. Payloads,
+    /// provider strings, IDs and usage values never enter the journal.
+    static func observeStreamEvent(_ event: HanlinAISDKStreamEvent) {
+        #if DEBUG && targetEnvironment(simulator)
+        switch event {
+        case .runStarted:
+            record(.streamRunStarted)
+        case .stepStarted(_, let preparation):
+            record(.streamStepStarted, flags: [
+                .hasActiveTools: !preparation.activeToolAliases.isEmpty,
+                .searchAdvertised: preparation.activeToolAliases.contains("otzaria_search_query"),
+                .referenceAdvertised: preparation.activeToolAliases.contains("otzaria_catalog_resolve_reference"),
+                .hasVisibleSchemas: preparation.visibleSchemaBytes > 0,
+            ])
+        case .textDelta(let text):
+            if !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                recordFirst(.streamTextObserved)
+            }
+        case .reasoningDelta(let text):
+            if !text.isEmpty { recordFirst(.streamReasoningObserved) }
+        case .toolCallArgumentsStarted:
+            recordFirst(.streamToolInputStarted)
+        case .toolCallArgumentsDelta(_, let delta):
+            if !delta.isEmpty { recordFirst(.streamToolInputDeltaObserved) }
+        case .toolApprovalRequest:
+            recordFirst(.streamApprovalRequested)
+        case .toolApprovalResolved(_, let allowed):
+            recordFirst(.streamApprovalResolved, flags: [.approvalAllowed: allowed])
+        case .stepFinished(_, let reason, _, let meaningfulEventCount):
+            record(.streamStepFinished, reason: finishReason(reason), flags: [
+                .hasMeaningfulEvents: meaningfulEventCount > 0,
+            ])
+        case .finished(let reason, _):
+            record(.streamFinishObserved, reason: finishReason(reason))
+        case .cancelled:
+            record(.streamCancelledObserved)
+        default:
+            break
+        }
+        #endif
+    }
+
+    /// This callback only observes the original completion; it cannot settle,
+    /// cancel, invalidate or otherwise change the original run.
+    static func observeRunCompletion(_ completion: HanlinAgentRunCompletion, matchingSession: Bool) {
+        #if DEBUG && targetEnvironment(simulator)
+        var flags: [Flag: Bool] = [
+            .matchingSession: matchingSession,
+            .completionSucceeded: false, .completionCancelled: false, .completionFailed: false,
+        ]
+        let completionReason: Reason
+        switch completion.outcome {
+        case .completed:
+            flags[.completionSucceeded] = true
+            completionReason = .none
+        case .cancelled:
+            flags[.completionCancelled] = true
+            completionReason = .cancelled
+        case .failed(let error):
+            flags[.completionFailed] = true
+            completionReason = reason(for: error)
+        }
+        record(.runCompletionObserved, reason: completionReason, flags: flags)
+        #endif
+    }
+
+    static func beginStreamObservation() {
+        #if DEBUG && targetEnvironment(simulator)
+        firstStreamObservations.removeAll(keepingCapacity: true)
+        #endif
+    }
+
+    private static func recordFirst(_ stage: Stage, flags: [Flag: Bool] = [:]) {
+        #if DEBUG && targetEnvironment(simulator)
+        guard firstStreamObservations.insert(stage.rawValue).inserted else { return }
+        record(stage, flags: flags)
+        #endif
+    }
+
+    private static func finishReason(_ value: String) -> Reason {
+        switch value {
+        case "stop": return .finishStop
+        case "tool_calls", "tool-calls": return .finishToolCalls
+        case "length": return .finishLength
+        case "content_filter", "content-filter": return .finishContentFilter
+        case "error": return .finishError
+        default: return .finishOther
+        }
+    }
 
     /// Only the original one-use input consumer calls this after validating,
     /// consuming and applying that exact input. Existing evidence is preserved.
@@ -394,6 +493,10 @@ final class OtzariaHanlinChatSession: Identifiable {
                     self.pendingHostResults[key] = event
                     OtzariaHanlinConnectionDiagnostic.record(.hostResultRetained)
                 }
+                session.onRunCompletion = { [weak self] completion in
+                    OtzariaHanlinConnectionDiagnostic.observeRunCompletion(completion,
+                        matchingSession: self.map { completion.session == $0.identity } ?? false)
+                }
                 session.onSessionInvalidated = { [weak self] _ in
                     OtzariaHanlinConnectionDiagnostic.record(.sessionInvalidated, flags: [.closed: self?.closed ?? true])
                     guard let self, !self.closed else { return }
@@ -460,6 +563,7 @@ final class OtzariaHanlinChatSession: Identifiable {
             errorMessage = String(localized: "The message could not be saved, so it was not sent. Close and reopen this conversation.")
             return
         }
+        OtzariaHanlinConnectionDiagnostic.beginStreamObservation()
         OtzariaHanlinConnectionDiagnostic.record(.sendCheckpointed)
         pendingHostResults.removeAll()
         isStreaming = true
@@ -470,6 +574,8 @@ final class OtzariaHanlinChatSession: Identifiable {
                 self.isStreaming = false; self.operation = nil
                 OtzariaHanlinConnectionDiagnostic.record(.sendSettled, flags: [
                     .closed: self.closed, .hasSources: !self.sources.isEmpty, .hasActivities: !self.activities.isEmpty,
+                    .hasAssistantText: self.messages.first(where: { $0.id == answerID })?.content.isEmpty == false,
+                    .hasReasoning: self.reasoning[answerID]?.isEmpty == false,
                 ])
             }
             do {
@@ -510,6 +616,7 @@ final class OtzariaHanlinChatSession: Identifiable {
     }
 
     private func receive(_ event: HanlinAISDKStreamEvent, messageID: UUID, runID: UUID) throws {
+        OtzariaHanlinConnectionDiagnostic.observeStreamEvent(event)
         switch event {
         case .textDelta(let delta):
             guard let index = messages.firstIndex(where: { $0.id == messageID }),

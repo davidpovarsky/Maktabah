@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/usr/local/bin/swiftc",
+    "-frontend",
+    "-parse",
+    "-D",
+    "DEBUG",
+    "/mnt/development/projects/worktrees/Maktabah-hanlin-live11-diagnosis-20261123/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift"
+  ],
+  "compiler": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu\n",
+  "exit_code": 0,
+  "scope": "Portable syntax parse only; no imported Apple/SDK module typecheck or native runtime",
+  "source_sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012",
+  "stderr": "",
+  "stdout": ""
+}

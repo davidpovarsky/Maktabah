@@ -1,0 +1,10 @@
+test_exact_diagnostic_inverse_restores_original_two_source_files (__main__.DiagnosticControls.test_exact_diagnostic_inverse_restores_original_two_source_files) ... ok
+test_expanded_schema_still_fits_original_event_and_byte_limits (__main__.DiagnosticControls.test_expanded_schema_still_fits_original_event_and_byte_limits) ... ok
+test_new_entries_reject_dynamic_payloads_strings_and_unknown_flags (__main__.DiagnosticControls.test_new_entries_reject_dynamic_payloads_strings_and_unknown_flags) ... ok
+test_new_enums_match_actual_swift_and_admit_only_schema_values (__main__.DiagnosticControls.test_new_enums_match_actual_swift_and_admit_only_schema_values) ... ok
+test_runner_execution_and_privacy_code_is_unchanged_outside_enum_sets (__main__.DiagnosticControls.test_runner_execution_and_privacy_code_is_unchanged_outside_enum_sets) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.097s
+
+OK

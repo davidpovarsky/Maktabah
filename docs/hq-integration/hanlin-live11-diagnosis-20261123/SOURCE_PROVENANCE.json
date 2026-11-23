@@ -1,0 +1,98 @@
+{
+  "base": "fdb78a44778c318b277506f0b09ba91c3b678e91",
+  "branch": "codex/otzaria-hanlin-live11-diagnosis-20261123",
+  "live11_intake": {
+    "admission_rows_valid": 22,
+    "application_source": "438de95a675f34006bee54e339b37d88c87c032a",
+    "archive_bytes": 90039,
+    "archive_local_path": "/mnt/development/projects/diagnostics/otzaria-hanlin-live11-20261123/45103578190/otzaria-hanlin-live-native-evidence.zip",
+    "archive_sha256": "6fc18f6d96e3f12c36b888eabdefdb97cded20706f04faa7e513863dfc015b65",
+    "canonical_hashes": [
+      {
+        "canonical_json_sha256": "fb264bdb45a0267e33565bc9ba7d60e605e0432e2d2554a610b2097bf504c2ab",
+        "declared_canonical_match": true,
+        "file_sha256": "d1f7a93702215c85ca749aa34d7c374c8d0948cf404239ffd620eb410a8f53be",
+        "path": "verified-11.summary.json"
+      },
+      {
+        "canonical_json_sha256": "3770d4e59609a981a62bb17ef497156d88a278913476cc04ef54767c779343f2",
+        "declared_canonical_match": true,
+        "file_sha256": "a8a24e18d44b05471776348ce7e4b139f0a709289cdaae2baf515940aa257142",
+        "path": "verified-11.tests.json"
+      }
+    ],
+    "crc_valid_members": 23,
+    "journal_overflow": false,
+    "native_fail": 1,
+    "native_pass": 0,
+    "native_result": "FAIL",
+    "native_skip": 0,
+    "observed_journal_events": 27,
+    "raw_xcresult_bundle_verified": false,
+    "run_id": 45103578190,
+    "source": "fdb78a44778c318b277506f0b09ba91c3b678e91",
+    "source_before_after_equal": true
+  },
+  "native_qualified": false,
+  "new_apple_build": "NOT_RUN",
+  "new_live_request": false,
+  "original_sdk_source_rows": [
+    {
+      "bytes": 35047,
+      "changed": false,
+      "path": "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinAgentSession.swift",
+      "sha256": "179e222f04e185d941c0f42416f6df6d391cf308bd79b63af341093c460d1e1b",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300"
+    },
+    {
+      "bytes": 9029,
+      "changed": false,
+      "path": "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKModels.swift",
+      "sha256": "c8e0ecfdda95960195c3454f76d35fa5bd6c48c08781e920d39903157416eb92",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300"
+    },
+    {
+      "bytes": 35975,
+      "changed": false,
+      "path": "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKAgentEngine.swift",
+      "sha256": "aaf8ae687d478710c2b4388f19350164a606facd02b70375743c808629cbe524",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300"
+    }
+  ],
+  "source_rows": [
+    {
+      "base_blob": "f8ec43df71e42dc3467e36bbb86430b4ec2cec1e",
+      "base_bytes": 33575,
+      "base_sha256": "679269f6eb9c525bcbffb44530250a42f0b607e3e3ffc21fe2896364cb1e1abc",
+      "candidate_bytes": 38814,
+      "candidate_sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012",
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift"
+    },
+    {
+      "base_blob": "a5c0a0cc060e8e2bbdea5ad0449cd76b3f060248",
+      "base_bytes": 36016,
+      "base_sha256": "2208187d4b431cf2d80125bb054b25518f6f01e768acc90d54f2c89779eb2ba6",
+      "candidate_bytes": 36614,
+      "candidate_sha256": "912b3dd3dc366251fda2d1240d35e6f221e4954a253211ca6c9efab048bd2cee",
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Scripts/CI/runtime27-hanlin-live.py"
+    },
+    {
+      "base_blob": "7f3eda3e64f85f45bd6879ad867844c49a46dc6b",
+      "base_bytes": 10243,
+      "base_sha256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6",
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "tools/verify_xcresult_zero_skips.py"
+    },
+    {
+      "base_blob": "a4acb5e4f57badf3b352ddedc6c797f50ef67be9",
+      "base_bytes": 48227,
+      "base_sha256": "9f4c35fee98102373e5961759569077833d8eb83ad427255d7f11ef2e55d5143",
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift"
+    }
+  ],
+  "status": "DIAGNOSTIC_ONLY_PREPARATION",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-hanlin-live11-diagnosis-20261123"
+}
