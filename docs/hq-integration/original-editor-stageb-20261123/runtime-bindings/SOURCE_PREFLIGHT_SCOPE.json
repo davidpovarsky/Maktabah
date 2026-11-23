@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "source_commit": "d1656625f5213146238c25f714b379ad8f099016",
+  "status": "ACTUAL_UNCHANGED_PREPARE_SOURCE_ADMISSION_PASS",
+  "initial_failure": "Sparse checkout omitted an original UI test before admission. Preserved exact failure; materialized all tracked Scripts/CI, tools, workflows, Maktabah-iOSUITests and original runtime catalog.",
+  "materialized_files": 23,
+  "materialized_bytes": 1262913,
+  "second_prepare_exit": 0,
+  "original_application_and_test_trees_unchanged": true,
+  "native_builds": 0,
+  "native_UI_tests": 0,
+  "source_controls_reexecuted": 0
+}

@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "python3",
+    "Scripts/CI/runtime27-original-editor-native.py",
+    "prepare"
+  ],
+  "cwd": "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123",
+  "exit_code": 0,
+  "head": "d1656625f5213146238c25f714b379ad8f099016",
+  "native_builds": 0,
+  "native_UI_tests": 0,
+  "materialized_files": 23,
+  "materialized_bytes": 1262913
+}

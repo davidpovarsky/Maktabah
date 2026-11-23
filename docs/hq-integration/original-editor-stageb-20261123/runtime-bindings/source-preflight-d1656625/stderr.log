@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/Scripts/CI/runtime27-original-editor-native.py", line 673, in <module>
+    raise SystemExit({"prepare": prepare, "run": execute, "matrix": matrix, "collect": collect}[command]())
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/Scripts/CI/runtime27-original-editor-native.py", line 118, in prepare
+    context = source_context()
+              ^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/Scripts/CI/runtime27-original-editor-native.py", line 63, in source_context
+    execution_inputs = original["exact_working_inputs"](["Scripts/CI", ".github/workflows", "Maktabah-iOSUITests", "tools"])
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/Scripts/CI/completion-focused-native.py", line 46, in exact_working_inputs
+    actual = os.readlink(p).encode() if mode == "120000" and p.is_symlink() else p.read_bytes()
+                                                                                 ^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1021, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1015, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/Maktabah-iOSUITests/BackendTransitionAcceptanceTests.swift'
