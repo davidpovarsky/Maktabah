@@ -1,0 +1,101 @@
+{
+  "schema": "otzaria.library-morph.source-controls/1",
+  "base": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "authority": "Linux syntax parse only; NOT Apple SDK typecheck or runtime",
+  "command": [
+    "swiftc",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios27.0-simulator",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+    "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+    "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+    "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift",
+    "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift",
+    "Source/UI/iOS/Views/iPadLayout.swift"
+  ],
+  "exit_code": 0,
+  "duration_seconds": 0.485,
+  "diff_check_exit_code": 0,
+  "files": {
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": {
+      "bytes": 211980,
+      "sha256": "362305cf90284c92c3b1b2f78e096d31106e6bd2b70508b69fc372bbfaeee07a"
+    },
+    "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift": {
+      "bytes": 21154,
+      "sha256": "07bf0af9e7b0131865d4422507aef69d7330a27ce22b8ba00297c51f5e6f0931"
+    },
+    "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift": {
+      "bytes": 14416,
+      "sha256": "921ba1c91af07a61e35d1d2137cdf08b36a483b201c026e7e4dfa3edf3fd8109"
+    },
+    "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift": {
+      "bytes": 14640,
+      "sha256": "399b24a69664c7fb9e9eb5f0497496e2b433fe0007200f6706671451465c232d"
+    },
+    "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift": {
+      "bytes": 5171,
+      "sha256": "dc7a693af03c2c1dc18a58b9831751a841d73d8b8c0adaca6123ea0abab333ab"
+    },
+    "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift": {
+      "bytes": 5993,
+      "sha256": "6feb6c2e6cb963981272a0440e03f17fcd4681247e692ae6e19d68d928a1387a"
+    },
+    "Source/UI/iOS/Views/iPadLayout.swift": {
+      "bytes": 23378,
+      "sha256": "fae950ba2ac7d86508daaf18a7862c10486cdf11a7ec1656dea7f1a5d1d73df0"
+    }
+  },
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "native_runtime": "NOT_RUN",
+  "geometry_origin_correction": {
+    "command": [
+      "swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift"
+    ],
+    "exit_code": 0,
+    "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+    "sha256": "71db5c49ec448508fc685c5f760632f3dc892a1903520d5ee2fc1b70cb096b39",
+    "stdout": "",
+    "stderr": ""
+  },
+  "existing_tests_byte_preserved": true,
+  "final_files": {
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": {
+      "bytes": 211980,
+      "sha256": "362305cf90284c92c3b1b2f78e096d31106e6bd2b70508b69fc372bbfaeee07a"
+    },
+    "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift": {
+      "bytes": 21154,
+      "sha256": "07bf0af9e7b0131865d4422507aef69d7330a27ce22b8ba00297c51f5e6f0931"
+    },
+    "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift": {
+      "bytes": 14416,
+      "sha256": "921ba1c91af07a61e35d1d2137cdf08b36a483b201c026e7e4dfa3edf3fd8109"
+    },
+    "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift": {
+      "bytes": 14664,
+      "sha256": "71db5c49ec448508fc685c5f760632f3dc892a1903520d5ee2fc1b70cb096b39"
+    },
+    "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift": {
+      "bytes": 5171,
+      "sha256": "dc7a693af03c2c1dc18a58b9831751a841d73d8b8c0adaca6123ea0abab333ab"
+    },
+    "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift": {
+      "bytes": 5993,
+      "sha256": "6feb6c2e6cb963981272a0440e03f17fcd4681247e692ae6e19d68d928a1387a"
+    },
+    "Source/UI/iOS/Views/iPadLayout.swift": {
+      "bytes": 23378,
+      "sha256": "fae950ba2ac7d86508daaf18a7862c10486cdf11a7ec1656dea7f1a5d1d73df0"
+    }
+  }
+}

@@ -1386,6 +1386,127 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
             + (originalNavigationInitialTab.map { ["-lastSelectedTab", String($0)] } ?? [])
     }
 
+
+    @MainActor
+    func testLibraryMorphOutsideDismissalPreservesCanonicalQueryAndReader() throws {
+        recordsPaletteEscape = true
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(recordViewport: true)
+        assertReaderHasText()
+        let title = app.staticTexts["reader-header-title"].label
+        let locator = app.staticTexts["reader-current-locator"].label
+        let before = try viewport()
+        let launcher = readerLibraryPaletteLauncher()
+        let compactFrame = launcher.frame
+        let nativeBars = app.navigationBars.containing(.button, identifier: "reader-command-palette-launcher")
+        XCTAssertEqual(nativeBars.count, 1)
+        XCTAssertTrue(nativeBars.firstMatch.frame.insetBy(dx: -1, dy: -1).contains(compactFrame))
+        retainNativeEvidence("library-morph-compact-native-anchor")
+
+        tap(launcher)
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 15))
+        let input = palette.textFields.firstMatch
+        XCTAssertTrue(input.waitForExistence(timeout: 10))
+        XCTAssertTrue(input.isHittable)
+        input.typeText("בראשית")
+        let result = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "בראשית")).firstMatch
+        XCTAssertTrue(result.waitForExistence(timeout: 30))
+        captureOpenLibraryPalette("library-morph-expanded-real-query", palette: palette, result: result)
+
+        let window = app.windows.firstMatch
+        let windowFrame = window.frame
+        let panelFrame = palette.frame
+        let keyboardFrame = app.keyboards.firstMatch.exists ? app.keyboards.firstMatch.frame : CGRect.null
+        let candidates = [
+            CGPoint(x: windowFrame.minX + 6, y: panelFrame.midY),
+            CGPoint(x: windowFrame.maxX - 6, y: panelFrame.midY),
+            CGPoint(x: windowFrame.midX, y: panelFrame.maxY + 12)
+        ]
+        let outside = try XCTUnwrap(candidates.first {
+            windowFrame.contains($0) && !panelFrame.insetBy(dx: -4, dy: -20).contains($0)
+                && !keyboardFrame.contains($0)
+        }, "An actual visible point outside the original palette must remain inside this native window")
+        window.coordinate(withNormalizedOffset: .zero)
+            .withOffset(CGVector(dx: outside.x - windowFrame.minX, dy: outside.y - windowFrame.minY)).tap()
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: palette
+        )], timeout: 15), .completed)
+        XCTAssertEqual(palette.textFields.count, 0, "A retained collapsed field must be absent from accessibility")
+        XCTAssertEqual(app.staticTexts["reader-header-title"].label, title)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
+        let after = try viewport()
+        XCTAssertEqual(after.source, before.source)
+        XCTAssertEqual(after.object, before.object, "Closing the morph must preserve the original reader instance")
+        XCTAssertEqual(after.offset, before.offset, accuracy: 1)
+        XCTAssertEqual(launcher.frame.minX, compactFrame.minX, accuracy: 1)
+        XCTAssertEqual(launcher.frame.minY, compactFrame.minY, accuracy: 1)
+        XCTAssertEqual(launcher.frame.width, compactFrame.width, accuracy: 1)
+        XCTAssertEqual(launcher.frame.height, compactFrame.height, accuracy: 1)
+
+        tap(readerLibraryPaletteLauncher())
+        XCTAssertTrue(input.waitForExistence(timeout: 15))
+        XCTAssertEqual(input.value as? String, "בראשית",
+                       "The original LibraryViewModel query must survive outside dismissal")
+        tap(palette.buttons["command-palette-close"])
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: palette
+        )], timeout: 15), .completed)
+        retainNativeEvidence("library-morph-outside-dismissed-reader")
+    }
+
+    @MainActor
+    func testLibraryMorphRepeatedOpenCloseReleasesHiddenKeyboardFocus() throws {
+        recordsPaletteEscape = true
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        for cycle in 0..<3 {
+            tap(readerLibraryPaletteLauncher())
+            XCTAssertTrue(palette.waitForExistence(timeout: 15))
+            let input = palette.textFields.firstMatch
+            XCTAssertTrue(input.waitForExistence(timeout: 10))
+            if cycle == 0 {
+                // No input tap: a real HID keystroke proves production autofocus.
+                try sendNativeHID(.keyboardA)
+                XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                    predicate: NSPredicate { _, _ in MainActor.assumeIsolated {
+                        guard let value = input.value as? String else { return false }
+                        return !value.isEmpty && value != input.placeholderValue
+                    } }, object: nil
+                )], timeout: 10), .completed)
+                try sendNativeHID(.keyboardDeleteOrBackspace)
+                XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                    predicate: NSPredicate { _, _ in MainActor.assumeIsolated {
+                        guard let value = input.value as? String else { return false }
+                        return value.isEmpty || value == input.placeholderValue
+                    } }, object: nil
+                )], timeout: 10), .completed)
+            }
+            let emptyValue = try XCTUnwrap(input.value as? String)
+            XCTAssertTrue(emptyValue.isEmpty || emptyValue == input.placeholderValue,
+                          "The original field must be empty before this open/close cycle")
+            tap(palette.buttons["command-palette-close"])
+            XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"), object: palette
+            )], timeout: 15), .completed)
+            XCTAssertEqual(palette.textFields.count, 0)
+            try sendNativeHID(.keyboardA)
+            tap(readerLibraryPaletteLauncher())
+            XCTAssertTrue(input.waitForExistence(timeout: 15))
+            let reopenedValue = try XCTUnwrap(input.value as? String)
+            XCTAssertTrue(reopenedValue.isEmpty || reopenedValue == input.placeholderValue,
+                          "A closed retained field must not accept HID input or reclaim focus")
+            try sendNativeHID(.keyboardEscape)
+            XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"), object: palette
+            )], timeout: 15), .completed)
+        }
+        retainNativeEvidence("library-morph-repeated-native-focus-release")
+        assertReaderHasText()
+    }
+
     @MainActor
     func testSourceOverviewReplacesReaderAndRestoresViewportLandscape() throws {
         try exerciseOverviewReplacement(orientation: .landscapeLeft, phone: false)

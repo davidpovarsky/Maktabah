@@ -25,6 +25,32 @@ struct ReaderToolbarOriginReader: UIViewRepresentable {
     }
 }
 
+
+/// Full native toolbar geometry in its actual window. The toolbar and the
+/// split-level overlay have separate SwiftUI graphs; preferences cannot bridge
+/// them. Owner/window identity prevents a stale scene from supplying an anchor.
+struct ReaderToolbarFrameReader: UIViewRepresentable {
+    let tracksPosition: Bool
+    let onMeasure: (UIView, CGRect, UIWindow?) -> Void
+
+    func makeUIView(context: Context) -> ReaderToolbarOriginView {
+        let view = ReaderToolbarOriginView()
+        view.isUserInteractionEnabled = false
+        return view
+    }
+
+    func updateUIView(_ view: ReaderToolbarOriginView, context: Context) {
+        view.onMeasureFrame = onMeasure
+        view.setTracking(tracksPosition)
+    }
+
+    static func dismantleUIView(_ view: ReaderToolbarOriginView, coordinator: ()) {
+        view.onMeasureFrame?(view, .null, nil)
+        view.onMeasureFrame = nil
+        view.setTracking(false)
+    }
+}
+
 final class ReaderToolbarOriginView: UIView {
     @MainActor private final class DisplayLinkTarget {
         weak var view: ReaderToolbarOriginView?
@@ -33,7 +59,10 @@ final class ReaderToolbarOriginView: UIView {
     }
 
     var onMeasure: ((CGFloat) -> Void)?
+    var onMeasureFrame: ((UIView, CGRect, UIWindow?) -> Void)?
     private var lastY: CGFloat?
+    private var lastFrame: CGRect?
+    private weak var lastWindow: UIWindow?
     private var wantsTracking = false
     private var displayLink: CADisplayLink?
 
@@ -45,6 +74,11 @@ final class ReaderToolbarOriginView: UIView {
 
     override func didMoveToWindow() {
         super.didMoveToWindow()
+        if window == nil {
+            onMeasureFrame?(self, .null, nil)
+            lastFrame = nil
+            lastWindow = nil
+        }
         updateDisplayLink()
         scheduleReport()
     }
@@ -73,10 +107,18 @@ final class ReaderToolbarOriginView: UIView {
 
     private func reportPosition() {
         guard let window else { return }
-        let y = convert(CGPoint.zero, to: window).y
-        guard y.isFinite, lastY != y else { return }
-        lastY = y
-        onMeasure?(y)
+        let frame = convert(bounds, to: window)
+        guard frame.origin.x.isFinite, frame.origin.y.isFinite,
+              frame.width.isFinite, frame.height.isFinite else { return }
+        if lastFrame != frame || lastWindow !== window {
+            lastFrame = frame
+            lastWindow = window
+            onMeasureFrame?(self, frame, window)
+        }
+        if lastY != frame.minY {
+            lastY = frame.minY
+            onMeasure?(frame.minY)
+        }
     }
 }
 
