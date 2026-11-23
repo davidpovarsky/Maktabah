@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "status": "SOURCE_PREPARED_NOT_EXECUTED",
+  "ledger_before_sha256": "26dc7075df6d73f9dc9c5d2cc46547d9496d71c96469fe8adf3a4e779d9b53cc",
+  "ledger_after_sha256": "248d0d96806d5e6ecda4755d913d6f450732bef864bfcb6bc2d87300cee4d10b",
+  "ledger_diff_sha256": "2cf9fd7c091bb3321a90ce3871b24441e9e28958088a6ad1018f8d88dc73a604",
+  "envelope_with_storage_limit_sha256": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29",
+  "storage_schema_version": 2,
+  "maximum_stored_envelope_base64_bytes": 2796204,
+  "original_database_changed": false,
+  "tests_executed": false
+}

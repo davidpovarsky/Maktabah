@@ -1,0 +1,15 @@
+{
+  "name": "swift-version",
+  "argv": [
+    "/usr/local/bin/swift",
+    "--version"
+  ],
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 0.115,
+  "process_group_drained": true,
+  "stdout_bytes": 76,
+  "stdout_sha256": "59360730c588801a672c1118d5d1debc93581f6b74e6a82d5d8cbda1b4a729ce",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

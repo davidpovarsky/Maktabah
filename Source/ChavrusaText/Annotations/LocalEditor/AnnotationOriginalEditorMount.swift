@@ -89,7 +89,7 @@ final class AnnotationOriginalEditorMount {
             // The SDK's actual registered-write/RPC barrier is mandatory here;
             // endEditing itself and optimistic UI text are not a flush receipt.
             let capture = try await host.captureNativeSnapshot(
-                maximumBodyBytes: TorahAnnotationEnvelopeCodec.maximumBytes
+                maximumBodyBytes: TorahAnnotationPayloadLimits.maximumBodyBytes
             )
             // Preserve the original archive before any later source/CAS check.
             retainedCapture = capture
@@ -189,7 +189,7 @@ final class AnnotationOriginalEditorMount {
             throw AnnotationLocalEditorError.unsupportedBody
         }
         return try AnytypeOriginalEditorSnapshot(bodyBytes: body.bytes,
-            maximumBodyBytes: TorahAnnotationEnvelopeCodec.maximumBytes)
+            maximumBodyBytes: TorahAnnotationPayloadLimits.maximumBodyBytes)
     }
 
     isolated deinit {

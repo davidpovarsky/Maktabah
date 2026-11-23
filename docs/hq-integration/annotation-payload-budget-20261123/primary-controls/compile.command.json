@@ -1,0 +1,21 @@
+{
+  "name": "compile",
+  "argv": [
+    "/usr/local/bin/swift",
+    "build",
+    "--package-path",
+    "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1",
+    "--scratch-path",
+    "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/build",
+    "--jobs",
+    "2"
+  ],
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 21.737,
+  "process_group_drained": true,
+  "stdout_bytes": 527,
+  "stdout_sha256": "51e6f89b93e022f15eb670bb2819d60f5d89f7ac657df1412e7808c769475d69",
+  "stderr_bytes": 2468,
+  "stderr_sha256": "20a12b951c62d117a1aa8cdc40dca39c447ca23b44817c54b9ed0ee2dc284703"
+}

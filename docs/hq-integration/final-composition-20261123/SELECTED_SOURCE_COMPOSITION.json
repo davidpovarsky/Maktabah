@@ -524,21 +524,482 @@
       "bytes": 3187,
       "sha256": "49ae864360bb436251a4baf542436a749e7726c6b3cca5467a7fce4b5a6b31e4",
       "git_blob": "13b2112f7c434f456e133e738b6315ff52de2974"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 62736,
+      "sha256": "c961ed6c51a1344a19951ed2239626bfbf512707a52f841d27258633b847b4f6",
+      "git_blob": "f911919c04eea11e779ccbb171b59101681641cb"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 10075,
+      "sha256": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29",
+      "git_blob": "30d65e436e53d7520953eba3dfa87129581a5e7c"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 25753,
+      "sha256": "97c22429e8c76cf34e16b7fa9665be9aa4b84d0b29d0a43919e11cca18e39865",
+      "git_blob": "ac647984ac55dd3e5fdbcb2f5ca5ac3743863720"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 9538,
+      "sha256": "06d68fa6efb79ed534902cc3ea7ad73852f534a204059f1d1db2d9401f724b1a",
+      "git_blob": "e74b4b23a71c1bac6276af93317fc5ed859d0e68"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 9216,
+      "sha256": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab",
+      "git_blob": "3d30c8f4010fca13fff2a2c41bf0f2907d04d457"
+    },
+    {
+      "path": "Tests/HQ/annotation-payload-budget/BudgetAcceptance.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 16362,
+      "sha256": "6af96954b74bb9c4a1a1612833dac14c53eb7a2f7e92112e43f347ac5734220e",
+      "git_blob": "0be424756ffd52320a4d39415cec99c851155e4e"
+    },
+    {
+      "path": "Tests/HQ/annotation-payload-budget/BudgetDatabaseEvidence.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 3391,
+      "sha256": "f874475e92e9cd8ef1bfd30c8906bacda48c3624b3af4ac1621a2f79251658e6",
+      "git_blob": "d9a3ca4f795f4c539bc763b9f8e98c59e9a99672"
+    },
+    {
+      "path": "Tests/HQ/annotation-payload-budget/BudgetOpenSSLDigest.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 739,
+      "sha256": "103513498af5fe88cadd353b8c6219f5c54f1065e07168c4d3dadfcd8e04be3c",
+      "git_blob": "d44c92319d20b2281cd043a177a78a0fb12dc725"
+    },
+    {
+      "path": "Tests/HQ/annotation-payload-budget/FirstIncomingUpgrade.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 4382,
+      "sha256": "4ad67371ab8ecd1aade354ca79cc931b1ae835bdf159a8b077a7a8c058ccaeed",
+      "git_blob": "3e0ace0277c68e9fd0333f9cecd8ccda6b75f0f9"
+    },
+    {
+      "path": "Tests/HQ/annotation-payload-budget/LegacySeeder.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 3398,
+      "sha256": "6b29eadea3b477b224a0d5bd7eb602d0eb3e178ef74c2db90744711b4d57fd1c",
+      "git_blob": "f3a12036f3c73a788ba08d6b6cac8e7c6ce4b0fd"
+    },
+    {
+      "path": "Tests/HQ/annotation-payload-budget/PortableOriginalTestSupport.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 12074,
+      "sha256": "66885e083807c6c7c2c64130968186359c92bd16aee42fc4d982a40759f2f440",
+      "git_blob": "5455cbcaf0f1799bdcaedbf4054a1ae98b170070"
+    },
+    {
+      "path": "Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 39693,
+      "sha256": "4db8ecd15194da0cbfbe13100debd0437d6bf83fc0fbf8df5afdbe202388f355",
+      "git_blob": "377f2355b4f9844228f5e07a2e4ff0a33c8d150a"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/ANNOTATION_PAYLOAD_POLICY.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 2255,
+      "sha256": "818bd440374cd49072f018065d300209bd2dafc506ec16d8c2c686736bde7077",
+      "git_blob": "8c10d71f7ac212932df8abbc4eb969b0c76d918d"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/FINAL_PRODUCT_AND_SCHEMA_CONTROL.diff",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 34610,
+      "sha256": "a7f8d050dde564334ca72b7d897a437dea3ff5495e52d329d6db4104fa3ed877",
+      "git_blob": "cd35b3251249b798d6c74d87853efdc602c8152e"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/INDEPENDENT_SOURCE_REVIEW.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 2533,
+      "sha256": "8ca17a171a843819efee4fc94d87b9af724f58ad8a490d7876d246897536eebc",
+      "git_blob": "c61cb492fb149415e079e421ccfdb8bbf70dcd4f"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/LEDGER_SOURCE.diff",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 22773,
+      "sha256": "2cf9fd7c091bb3321a90ce3871b24441e9e28958088a6ad1018f8d88dc73a604",
+      "git_blob": "6869226d535429f269fc70658a3e72d5353d5f3d"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/LEDGER_SOURCE_PREPARATION.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 596,
+      "sha256": "85051bf8c8802030e9adb67b443cf725ed7129ea01cbe8ca896fed36851c2317",
+      "git_blob": "79b830c53405c9ff29c39c8dcec21ce77b806243"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/LEDGER_SOURCE_V2.diff",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 23072,
+      "sha256": "560227cea407f8a911d758149718922b823f057abf96dfc07c1077b2edc2ae7c",
+      "git_blob": "4c9f33a5142ef66167e06456830ec67997d4c466"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/LEDGER_SOURCE_V2_PREPARATION.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 447,
+      "sha256": "9d25e6c1ee76833a00a850fd65bb736cadfc96544af2b9d591658808d2e1c71a",
+      "git_blob": "0391d09048914c1ed629d33e3f4e5db5e15c390f"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/PACKET_INDEX.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 9400,
+      "sha256": "1d6b3b3e8c200183f0f4e94e1f28d86a1d6e8956efbf1fecaad4d8bee61b4164",
+      "git_blob": "01062388f36a09cfe50bbb99d0fdffa5ff623ee2"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/PUBLICATION_PREPARATION_FAILURE.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 348,
+      "sha256": "74194cf5487a2b9c63e3d45327ebb5b797e222ceeacfce727003ea0e85bddb12",
+      "git_blob": "8032eb31fecafa595b5770db319a80a9f7ed9858"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/README.md",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 4363,
+      "sha256": "1683784fd71a42432cd0a3e5ad5f2214c285a60ecc71ac155d712f1462cb8da7",
+      "git_blob": "ebdc5e6103b287b8f6d3aff03dafd7883ae518de"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/SOURCE.diff",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 8743,
+      "sha256": "3650427655f78a658afd9101d3e644ead71e22835a3a17c55fab11d75f262388",
+      "git_blob": "b6fb12662a689f27b820f5934ff9205a51c9e4bd"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/SOURCE_CORRESPONDENCE.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 1935,
+      "sha256": "d0f320ec53f340bc579b329087591d3bb5db243511c239c7bac990ee4e43db7f",
+      "git_blob": "a620234792edf5ff5d2dc48cf2eed382d66d5612"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/SOURCE_SEAL.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 3505,
+      "sha256": "642365c664665cbe58a4516585ba8a4db23b33bd9a430bd2128d5448fb771431",
+      "git_blob": "19f82a27da6e21b023d274b48e663908e8ccd64e"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/WHOLE_ACTION_CORE_SOURCE.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 10140,
+      "sha256": "e32b449ef46b810364d8e648c8c4ea806212bc6c08155096c7e376c1f985cc63",
+      "git_blob": "dc7f48e5741660f2ab91c10eea7b6a34df706765"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/after/Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 62736,
+      "sha256": "c961ed6c51a1344a19951ed2239626bfbf512707a52f841d27258633b847b4f6",
+      "git_blob": "f911919c04eea11e779ccbb171b59101681641cb"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/after/Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 10075,
+      "sha256": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29",
+      "git_blob": "30d65e436e53d7520953eba3dfa87129581a5e7c"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/after/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 25753,
+      "sha256": "97c22429e8c76cf34e16b7fa9665be9aa4b84d0b29d0a43919e11cca18e39865",
+      "git_blob": "ac647984ac55dd3e5fdbcb2f5ca5ac3743863720"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/after/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 9538,
+      "sha256": "06d68fa6efb79ed534902cc3ea7ad73852f534a204059f1d1db2d9401f724b1a",
+      "git_blob": "e74b4b23a71c1bac6276af93317fc5ed859d0e68"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/after/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 9216,
+      "sha256": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab",
+      "git_blob": "3d30c8f4010fca13fff2a2c41bf0f2907d04d457"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/after/Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 39693,
+      "sha256": "4db8ecd15194da0cbfbe13100debd0437d6bf83fc0fbf8df5afdbe202388f355",
+      "git_blob": "377f2355b4f9844228f5e07a2e4ff0a33c8d150a"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/before/Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 52783,
+      "sha256": "26dc7075df6d73f9dc9c5d2cc46547d9496d71c96469fe8adf3a4e779d9b53cc",
+      "git_blob": "c43eb550fabd76f05c973e81e373b0b14da2ef97"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/before/Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 8619,
+      "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+      "git_blob": "30602a567c239852fc56de436e35f939c5486997"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/before/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 25713,
+      "sha256": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972",
+      "git_blob": "d4d77f1dbaa8650c5336dcc7c0483a9ef17a13e5"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/before/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 9530,
+      "sha256": "3460e43127e69d07a917d9b28b10edd1b37046586f9d12ba91de84ab8ee4c7ca",
+      "git_blob": "d50041264cb539ff089c5842353d844f76848f54"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/before/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 8441,
+      "sha256": "a94dd85985f288edbd2e10b5a14b1731be25a8d25893e832e8515af63307cbdf",
+      "git_blob": "e7acf923928a2c041da185a38ab0ff658b66fc80"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/before/Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 39693,
+      "sha256": "130dfa7cb4e50b9a01f85c796a76b93a5bcc0b6a35fd2d23e0da593c82738b2a",
+      "git_blob": "467f45f7859ad03824d030be1855c2b27a1a98a5"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/first-incoming-control/EXECUTED_DRIVER.py",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 7438,
+      "sha256": "0df64f014e06a19d5d3ddabf25aeaeb6b168c0aa4fc65f9f9c7ccbfbc9a9a6f7",
+      "git_blob": "c80c20cea699ee4132e61684d2a0aeb04e419d74"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/first-incoming-control/RESULT.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 1977,
+      "sha256": "1d98a419a5c999c75da448fa14c451a9ea24e56928990709ae844f6a87f27b9a",
+      "git_blob": "92f8deb1d20467c4e2b1f5aecd61152510bac8d0"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/first-incoming-control/compile.command.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 649,
+      "sha256": "5ab2abb9e202c9f2b9a4efc71442e6963e8dac7184b78b74f9eb3045102ee498",
+      "git_blob": "7da5c199fe505f2173daf94317fe2afe177319b1"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/first-incoming-control/compile.stderr",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 1232,
+      "sha256": "25cffb06c21476682f1c0a7bd454ce3ee6507ffec7d6ed4c717448a346d9d2b0",
+      "git_blob": "fe68f6fc0422b3b5017b15569a83f8e04ee3f925"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/first-incoming-control/compile.stdout",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 275,
+      "sha256": "7649315cb1c0ce971078023f08ea6e0bb7a3c04ee0672f7ecf24f8bad591bcea",
+      "git_blob": "d1bb3bd07e4782c12e1ae97dde2d93cf4a15b3db"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/first-incoming-control/control.command.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 563,
+      "sha256": "c576fc93aaa7b5115de0738f4b1007aa3d442776d1b8827008da8e5415c23e2c",
+      "git_blob": "1094dfa96772111857f1e94dbc67ee46e6fe7149"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/first-incoming-control/control.stderr",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/first-incoming-control/control.stdout",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 358,
+      "sha256": "f3a219440e083310f27ee68802fe542f1482ff3cd59046c78410f12ae931f6fb",
+      "git_blob": "ef884a9ed49ea9c4f1d58db86d350eb94c5a8e72"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/EXECUTED_RUNNER.py",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 6893,
+      "sha256": "80d668a20b3a5e560f31595b78878a827d35823521e701797cd7831b6753c164",
+      "git_blob": "e53e5ca48771191eb8099ced68a14170a1ab7efd"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/RESULT.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 9567,
+      "sha256": "fea683be05b3daf8bf8f68e0325e920f9da1269858612a3d7172007ffb5c383b",
+      "git_blob": "cf807596dd7356179bc661881f7788478891355f"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/SOURCE_AFTER.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 2283,
+      "sha256": "d44b9130965c23277669052ca594abf25e0a430ca1d36691b1a3cc82b93f7ec9",
+      "git_blob": "7bf3d51c3207e8f09f30444e0a2b8db4193fc334"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/SOURCE_BEFORE.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 2283,
+      "sha256": "d44b9130965c23277669052ca594abf25e0a430ca1d36691b1a3cc82b93f7ec9",
+      "git_blob": "7bf3d51c3207e8f09f30444e0a2b8db4193fc334"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/bin-path.command.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 687,
+      "sha256": "d0e9112210ac0f158e3f295559a4446431c8fd1dd340776086fd625e59098178",
+      "git_blob": "28798f47c0c790536cf39b23d94202c8a8f661b5"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/bin-path.stderr.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/bin-path.stdout.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 138,
+      "sha256": "4bd3161a69944314d5fb139316b6a7597612023623d4215834055795f4ac27d9",
+      "git_blob": "52f5c3ee2d8e4bfcbfc4356f6473972f53eb1d8b"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/candidate-controls.command.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 651,
+      "sha256": "b136c7fee8272ef6465a42b33c7537b13870bb38518b0332581b16892b370792",
+      "git_blob": "3fd831af414056dd6f82a82f440a41f292e9f5a3"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/candidate-controls.stderr.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/candidate-controls.stdout.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 1832,
+      "sha256": "c7edf96ce897ae1fd9f33d440a2b993eec0a7f8a57eb2122ba1f4a2f91a286df",
+      "git_blob": "135c3f617a4705eb9ab588b9c7aa0460b5b8efe1"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/compile.command.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 690,
+      "sha256": "3b02158921d9fd4f32a20e34c4de98079e4545061e51909356fd9f09a7dd51da",
+      "git_blob": "01fc2705286c306a52f95d87690c0128ac163939"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/compile.stderr.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 2468,
+      "sha256": "20a12b951c62d117a1aa8cdc40dca39c447ca23b44817c54b9ed0ee2dc284703",
+      "git_blob": "cfcaaef22b983795b6d03106ad7a8927aa9d9f5d"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/compile.stdout.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 527,
+      "sha256": "51e6f89b93e022f15eb670bb2819d60f5d89f7ac657df1412e7808c769475d69",
+      "git_blob": "7bfdff4cba6541865e6bfa8d962a77fca7f64f0d"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/original-v1-seed.command.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 647,
+      "sha256": "89ca3579be512a8e57472349a80ce21b2bc5a4072481ec4f2c09aedfbb5cc19c",
+      "git_blob": "a931678b980e0708de1e6d07b0171a4ff76f7409"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/original-v1-seed.stderr.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/original-v1-seed.stdout.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 1997,
+      "sha256": "0567a403beb7feb1921d1ba1b3e9b995876f9b76d117969217465c59989282c0",
+      "git_blob": "b1329a3d08df062c157a222c6ddbde753791bcee"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/swift-version.command.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 410,
+      "sha256": "2deba7791d5bf5b06fe484f9ca4666ec3e7c4e3af08d4f03cc9b2d307e70faab",
+      "git_blob": "4756a9203719f3394aa32e20d3a46870d5840a7f"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/swift-version.stderr.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/swift-version.stdout.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 76,
+      "sha256": "59360730c588801a672c1118d5d1debc93581f6b74e6a82d5d8cbda1b4a729ce",
+      "git_blob": "062b0e447a79048ef55ad68f303ad5b56af665f8"
+    },
+    {
+      "path": "tools/hq-annotation-payload-budget-acceptance.py",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 6893,
+      "sha256": "80d668a20b3a5e560f31595b78878a827d35823521e701797cd7831b6753c164",
+      "git_blob": "e53e5ca48771191eb8099ced68a14170a1ab7efd"
     }
   ],
   "canonical_annotation_source_and_process_resume_test_preserved": [
-    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
     "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift",
     "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift",
     "Maktabah-iOSUITests/OriginalEditorAnnotationAcceptanceTests.swift"
   ],
   "pending": [
-    "Exact integrated one-build Groups100, repaired Library7 and full-v32 workflow/source bindings",
-    "Live13 build passed but native case NOT_RUN due actual two INSTALL_TIMEOUTs; temporary secret DELETE204/GET404 independently verified",
-    "Library7 previous authentic0PASS7FAIL preserved; current native lifecycle source repair not yet Apple-qualified",
-    "StageB universal-slice repair active run45136755585; native payload budget active run45139622096",
-    "Full-v32 native execution on this integrated source",
-    "Original SDK/Host typed annotation budget and production account/import integration",
+    "Combined source88977a1 native cohort workflow45143450850 failed at UI compile before all10 native cases; Darwin notification module import correction under source review",
+    "Live13 original case not run because of INSTALL_TIMEOUT; separately reviewed same-source infrastructure retry prepared; prior secret204/404",
+    "Library7 prior0PASS7FAIL retained; repaired native lifecycle source remains unqualified on Apple",
+    "StageB45136755585 passed original SDK/API admission, then Ruby xcodeproj LoadError before app build; exact existing pod runtime repair in progress",
+    "Native budget45139622096 workflow failed after actual4export and32archive leaves passed; full terminal/collector intake pending",
+    "Original SDK annotation budgeta89b443 source reviewed; its Apple build and production account/import integration pending",
     "Final immutable source/gate input bindings; Native116/Release114 and real physical/signing gates"
   ],
   "native_passes_transferred": false,
@@ -563,5 +1024,25 @@
     "new_guard_controls": 5,
     "existing_test_methods_unchanged": 44,
     "native_acceptance": false
+  },
+  "canonical_annotation_mount_budget_only_update": {
+    "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+    "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+    "scope": "Only two body limit arguments replaced with the named bounded annotation budget; existing provenance, process resume and retirement retained."
+  },
+  "host_annotation_budget_composition": {
+    "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+    "base": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+    "prior_composition": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
+    "modified_product_files": 5,
+    "modified_existing_test": 1,
+    "all_changed_source_and_evidence_paths": 66,
+    "conflicts": 0,
+    "whole_selected_source_correspondence": true,
+    "actual_new_portable_cases": 24,
+    "historical_native_passes_transferred": false,
+    "apple_application_qualified": false,
+    "sdk_budget_source": "a89b44388dbcb139dc9d6a38c2d243fd7e8ef4b1",
+    "sdk_budget_integrated_here": false
   }
 }

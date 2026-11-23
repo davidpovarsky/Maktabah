@@ -46,7 +46,7 @@ final class AnnotationLocalEditorPersistence: Sendable {
         try requireSnapshotOwner(snapshot)
         try requireEditable(snapshot)
         guard formats.contains(where: { $0.accepts(body) }),
-              body.bytes.count <= TorahAnnotationEnvelopeCodec.maximumBytes else {
+              body.bytes.count <= TorahAnnotationPayloadLimits.maximumBodyBytes else {
             throw AnnotationLocalEditorError.unsupportedBody
         }
         guard textPreview.utf8.count <= 8_192, !textPreview.utf8.contains(0), editorRevision.map({ $0.utf8.count <= 512 }) ?? true else {
@@ -213,7 +213,7 @@ final class AnnotationLocalEditorPersistence: Sendable {
         if let rich = envelope.richBody, !formats.contains(where: { $0.accepts(rich) }) {
             throw AnnotationLocalEditorError.unsupportedBody
         }
-        let fields = try ActionWireCodec.decodeObject(bytes)
+        let fields = try AnnotationEnvelopeJSONCodec.decodeObject(bytes)
         if let marker = fields[Self.intentKey] {
             guard let object = marker.object, Set(object.keys) == ["schemaVersion", "intentSHA256"],
                   object["schemaVersion"]?.integer == 1,
@@ -227,7 +227,7 @@ final class AnnotationLocalEditorPersistence: Sendable {
                                 source: AnnotationExchangeSourceWitness) throws -> Data {
         // Inherit only the fresh database version validated in this transaction,
         // never an independently supplied document field from a save request.
-        var fields: ActionObject = try inherited.map { try ActionWireCodec.decodeObject($0) } ?? [:]
+        var fields: ActionObject = try inherited.map { try AnnotationEnvelopeJSONCodec.decodeObject($0) } ?? [:]
         var rich = fields["richBody"]?.object ?? [:]
         rich["format"] = .string(intent.body.format); rich["formatVersion"] = .integer(intent.body.formatVersion)
         rich["bytesBase64"] = .string(intent.body.bytes.base64EncodedString())
@@ -245,7 +245,7 @@ final class AnnotationLocalEditorPersistence: Sendable {
     }
 
     private func replayLocked(_ version: AnnotationExchangeVersion, intent: AnnotationLocalEditorIntent) throws -> AnnotationLocalEditorCommitted {
-        let fields = try ActionWireCodec.decodeObject(version.payload)
+        let fields = try AnnotationEnvelopeJSONCodec.decodeObject(version.payload)
         guard version.namespace == Self.namespace, version.annotationUUID == annotationUUID,
               version.destinationsJSON == "[]",
               fields[Self.intentKey]?.object?["intentSHA256"]?.string == intent.intentDigest else {
