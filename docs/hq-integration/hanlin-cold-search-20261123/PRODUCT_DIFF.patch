@@ -1,0 +1,294 @@
+diff --git a/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift b/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift
+index b47d90c5..66bd4dab 100644
+--- a/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift
++++ b/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift
+@@ -175,7 +175,7 @@ public actor OtzariaHanlinHostAdapter: HanlinHostNavigationTransitionSource {
+             // Only the fixed search action may use this separately issued grant.
+             // Ask the same Core policy/readiness implementation, not a host copy.
+             actionIDs.remove("search.query")
+-            let readActions = await core.advertisedActions(for: binding.backend.backend, context: searchContext)
++            let readActions = await core.advertisedActionsWithExistingSearchPreparation(for: binding.backend.backend, context: searchContext)
+             if readActions.contains(where: { $0.id == "search.query" }) { actionIDs.insert("search.query") }
+         }
+         let catalog = try makeCatalog(binding, advertised: actionIDs)
+diff --git a/Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift b/Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift
+index 12414c2f..64bf4158 100644
+--- a/Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift
++++ b/Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift
+@@ -4,7 +4,7 @@ import OtzariaActionCore
+ /// Additive facade over the real application coordinator. No automatic backend
+ /// selection, app composition, UI command, private registration or new engine.
+ @MainActor
+-final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchExecutionPreparationPort {
++final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort {
+     typealias ReadinessProbe = @MainActor @Sendable (ActionBackendSnapshot) async throws -> ActionBackendRuntimeEvidence
+     typealias EpochProbe = @Sendable () async -> UInt64?
+     typealias EmbeddedSearch = @Sendable (ActionSearchQuery, ActionPortInvocation) async throws -> ActionSearchPage
+@@ -14,6 +14,7 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
+     typealias OccurrenceCounter = @Sendable (ActionOccurrenceQuery, ActionPortInvocation) async throws -> ActionExactOccurrenceCount
+     typealias SearchExecutionWork = @Sendable () async throws -> Void
+     typealias SearchExecutionPreparation = @MainActor @Sendable (ActionSearchQuery, ActionPortInvocation) throws -> SearchExecutionWork
++    typealias SearchPreparationObservation = @MainActor @Sendable (ActionPortInvocation) async throws -> ActionExistingSearchPreparationObservation
+     private let coordinator: BackendCoordinator
+     private let readiness: ReadinessProbe
+     private let epoch: EpochProbe
+@@ -25,6 +26,7 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
+     private let occurrenceReadiness: OccurrenceReadiness?
+     private let occurrenceCounter: OccurrenceCounter?
+     private let searchExecutionPreparation: SearchExecutionPreparation?
++    private let searchPreparationObservation: SearchPreparationObservation?
+     nonisolated let hasSearchExecutionPreparation: Bool
+ 
+     init(coordinator: BackendCoordinator, epoch: @escaping EpochProbe = { nil },
+@@ -36,13 +38,15 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
+          embeddedCatalog: EmbeddedCatalog? = nil,
+          occurrenceReadiness: OccurrenceReadiness? = nil,
+          occurrenceCounter: OccurrenceCounter? = nil,
+-         searchExecutionPreparation: SearchExecutionPreparation? = nil) {
++         searchExecutionPreparation: SearchExecutionPreparation? = nil,
++         searchPreparationObservation: SearchPreparationObservation? = nil) {
+         self.coordinator = coordinator; self.epoch = epoch; self.currentEpoch = currentEpoch; self.readiness = readiness
+         self.resourceWitness = resourceWitness
+         self.embeddedSearch = embeddedSearch; self.embeddedReferenceProof = embeddedReferenceProof
+         self.embeddedCatalog = embeddedCatalog
+         self.occurrenceReadiness = occurrenceReadiness
+         self.occurrenceCounter = occurrenceCounter
++        self.searchPreparationObservation = searchPreparationObservation
+         self.searchExecutionPreparation = searchExecutionPreparation
+         self.hasSearchExecutionPreparation = searchExecutionPreparation != nil
+     }
+@@ -213,6 +217,25 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
+         try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+     }
+ 
++
++    /// Observation only: keep execution preparation and capability assessment
++    /// untouched. No returned work is invoked and no readiness bit is promoted.
++    func observeExistingSearchPreparation(invocation: ActionPortInvocation) async throws
++        -> ActionExistingSearchPreparationObservation {
++        let backend = invocation.snapshot.backend
++        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
++        guard backend == .otzaria, searchExecutionPreparation != nil,
++              let searchPreparationObservation else { return .unavailable }
++        let evidence = try await currentEvidence(for: backend)
++        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
++        guard evidence.snapshot == invocation.snapshot, evidence.catalog.isReady,
++              evidence.registeredCapabilities.contains("search") else { return .unavailable }
++        let observed = try await searchPreparationObservation(invocation)
++        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
++        guard observed == .eligible(invocation: invocation) else { return .unavailable }
++        return observed
++    }
++
+     func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage {
+         try await require("search.query", backend: query.backend, query: query, invocation: invocation)
+         let works = try await catalogWorks(backend: query.backend, invocation: invocation)
+diff --git a/Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift b/Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift
+index fdfe92a3..19346688 100644
+--- a/Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift
++++ b/Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift
+@@ -89,11 +89,117 @@ enum ActionLiveBackendBridge {
+                 try await EmbeddedActionRPC.catalog(invocation: invocation)
+             }, occurrenceReadiness: ActionLiveOccurrenceCounter.readiness,
+                occurrenceCounter: ActionLiveOccurrenceCounter.count,
+-               searchExecutionPreparation: ActionLiveSearchExecutionPreparation.make)
++               searchExecutionPreparation: ActionLiveSearchExecutionPreparation.make,
++               searchPreparationObservation: ActionLiveSearchExecutionPreparation.observe)
+     }
+ }
+ 
+ private enum ActionLiveSearchExecutionPreparation {
++    /// Observe the original installed source without invoking make's returned
++    /// execution work or constructing a native engine. A cold source remains
++    /// unknown in the ordinary readiness report.
++    @MainActor static func observe(_ invocation: ActionPortInvocation) async throws
++        -> ActionExistingSearchPreparationObservation {
++        try check(invocation)
++        guard invocation.snapshot.backend == .otzaria else { return .unavailable }
++        let bridge = OtzariaMaktabahBridge.shared
++        let access = OtzariaDatabaseAccessController.shared
++        let selection = access.selectionObservation()
++        let profile = OtzariaDataProfileRegistry.activeProfileID
++        guard selection.source == .managedInternal, let path = selection.url?.path,
++              path == bridge.databasePath, let generation = bridge.tryGenerationSnapshot() else {
++            return .unavailable
++        }
++        let repository = OtzariaTantivySearchRepository.shared
++        let observation = repository.resourceObservation(databasePath: path)
++        guard let fingerprint = observation.fingerprint else { return .unavailable }
++        let validateSource: @Sendable () throws -> Void = {
++            try check(invocation)
++            guard let currentGeneration = bridge.tryGenerationSnapshot() else { throw ActionPortError.unavailable }
++            guard selection == access.selectionObservation(), generation == currentGeneration,
++                  path == bridge.databasePath, profile == OtzariaDataProfileRegistry.activeProfileID else {
++                throw ActionPortError.staleState
++            }
++        }
++        try validateSource()
++        let task = Task.detached(priority: .utility) { () throws -> ActionExistingSearchPreparationObservation in
++            try observeInstalledSource(databasePath: path, profileID: profile,
++                expectedRevision: observation.revision, expectedFingerprint: fingerprint,
++                invocation: invocation, validateSource: validateSource)
++            return .eligible(invocation: invocation)
++        }
++        return try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
++    }
++
++    private static func observeInstalledSource(databasePath path: String, profileID profile: String,
++                                                expectedRevision: UInt64, expectedFingerprint: Data,
++                                                invocation: ActionPortInvocation,
++                                                validateSource: @Sendable () throws -> Void) throws {
++        try validateSource()
++        let storage = try OtzariaDatabaseStorage(profileID: profile)
++        guard URL(fileURLWithPath: path).standardizedFileURL == storage.finalDatabaseURL.standardizedFileURL else {
++            throw ActionPortError.unavailable
++        }
++        let manager = OtzariaSearchIndexManager.shared
++        let repository = OtzariaTantivySearchRepository.shared
++        let url = manager.indexURL(for: path)
++        func validateCurrentSource() throws {
++            try validateSource()
++            let observed = repository.resourceObservation(databasePath: path)
++            guard observed.revision == expectedRevision, observed.fingerprint == expectedFingerprint,
++                  manager.indexURL(for: path) == url else { throw ActionPortError.staleState }
++            let files = FileManager.default
++            guard !files.fileExists(atPath: manager.sentinelURL(for: path).path),
++                  !files.fileExists(atPath: manager.buildingIndexURL(for: path).path),
++                  !files.fileExists(atPath: url.appendingPathExtension("installing").path) else {
++                throw ActionPortError.unavailable
++            }
++        }
++        try validateCurrentSource()
++        let current = try manager.currentFingerprint(databasePath: path)
++        guard let databaseBytes = Int64(exactly: current.fileSize) else { throw ActionPortError.unavailable }
++        let build = try OtzariaSearchEngineBridge.buildInfo()
++        let decoder = JSONDecoder(); decoder.dateDecodingStrategy = .iso8601
++        let database = try decoder.decode(OtzariaDatabaseInstallationManifest.self,
++            from: smallMetadata(at: storage.installationManifestURL, invocation: invocation))
++        let manifest = try JSONDecoder().decode(OtzariaSearchArtifactManifest.self,
++            from: smallMetadata(at: url.appendingPathComponent("otzaria_prebuilt_installation.json"), invocation: invocation))
++        let identity = try JSONDecoder().decode(OtzariaIndexBuildIdentity.self,
++            from: smallMetadata(at: manager.identityURL(indexURL: url), invocation: invocation))
++        try OtzariaSearchArtifactPolicy.validate(manifest, database: database,
++            databaseBytes: databaseBytes, build: build)
++        guard let expectedCount = UInt64(exactly: manifest.lexicalArtifact.documentCount), expectedCount > 0,
++              OtzariaSearchArtifactPolicy.managedIdentityMatchesCanonicalData(identity,
++                currentDatabase: current, build: build, trustedManifest: manifest) else {
++            throw ActionPortError.unavailable
++        }
++        let indexMetadata = try smallMetadata(at: url.appendingPathComponent("otzaria_index_meta.json"), invocation: invocation)
++        try OtzariaSearchEngineBridge.validateExistingCompatibleIndex(url)
++        let translationKey = "Vendor/OtzariaSearchEngine/Resources/dictionary.json"
++        let acronymsKey = "Vendor/OtzariaSearchEngine/Resources/Acronyms.json"
++        guard Set(build.resourceHashes.keys) == Set([translationKey, acronymsKey]),
++              let translationHash = build.resourceHashes[translationKey],
++              let acronymsHash = build.resourceHashes[acronymsKey],
++              let translation = Bundle.main.url(forResource: "dictionary", withExtension: "json"),
++              let acronyms = Bundle.main.url(forResource: "Acronyms", withExtension: "json") else {
++            throw ActionPortError.unavailable
++        }
++        try OtzariaSearchEngineBridge.validateExecutionDictionary(translation, expectedSHA256: translationHash,
++            deadline: invocation.deadlineUptimeNanoseconds)
++        try OtzariaSearchEngineBridge.validateExecutionDictionary(acronyms, expectedSHA256: acronymsHash,
++            deadline: invocation.deadlineUptimeNanoseconds)
++        // An already observed incomplete open index cannot become eligible.
++        // Nil does not prove readiness: the positive installed-source checks
++        // above only allow the original execution path to attempt preparation.
++        if let count = repository.observedOpenIndexDocumentCount(databasePath: path),
++           count == 0 || count != expectedCount { throw ActionPortError.unavailable }
++        try validateCurrentSource()
++        guard try smallMetadata(at: url.appendingPathComponent("otzaria_index_meta.json"), invocation: invocation) == indexMetadata else {
++            throw ActionPortError.staleState
++        }
++        try validateCurrentSource()
++    }
++
+     /// Capture source ownership synchronously, without opening an engine. The
+     /// facade rechecks its exact backend snapshot after this factory returns
+     /// and before the returned work can begin on a utility executor.
+diff --git a/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift b/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift
+index d39ae93c..a62aa1b8 100644
+--- a/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift
++++ b/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift
+@@ -602,6 +602,54 @@ public actor ActionExecutor {
+         }
+     }
+ 
++    /// Host opt-in for a cold, installed search source. The normal advertisement
++    /// and system report retain their original availableNow semantics. This
++    /// projection uses one canonical metadata request and may add only the fixed
++    /// read action after a separate positive, source-bound observation.
++    public func advertisedActionsWithExistingSearchPreparation(for backend: ActionBackendID,
++                                                               context: ActionExecutionContext) async -> [ActionDescriptor] {
++        let request = ActionRequest(action: "system.listBackends", arguments: ["includeReadiness": .bool(true)], expectedBackend: backend)
++        let result = await execute(request, context: context)
++        guard result.status == .completed, let reports = result.data?["backends"]?.array,
++              let report = reports.first(where: { $0.object?["id"] == .string(backend.rawValue) })?.object,
++              let operations = report["operations"]?.object else { return [] }
++        let available = registry.descriptors.filter { descriptor in
++            guard ActionRegistry.implemented.contains(descriptor.id), operations[descriptor.id]?.object?["availableNow"] == .bool(true) else { return false }
++            guard (try? ActionPolicy.authorize(descriptor, context: context, backend: backend)) != nil else { return false }
++            return !["reader.open", "reader.openCommentary", "notes.prepareDraft", "search.openResults"].contains(descriptor.id) || (ActionPolicy.foregroundScene(context) != nil && ui != nil)
++        }
++        guard !available.contains(where: { $0.id == "search.query" }), backend == .otzaria,
++              let descriptor = registry.descriptors.first(where: { $0.id == "search.query" }),
++              ActionRegistry.implemented.contains(descriptor.id),
++              operations[descriptor.id]?.object?["registered"] == .bool(true),
++              operations[descriptor.id]?.object?["supported"] == .bool(true),
++              (try? ActionPolicy.authorize(descriptor, context: context, backend: backend)) != nil,
++              let observationPort = search as? any ActionSearchPreparationObservationPort,
++              observationPort.hasSearchExecutionPreparation,
++              let snapshot = ledger[RequestKey(subject: context.subjectID, id: request.requestId)]?.snapshot,
++              snapshot.backend == backend, result.backendGeneration == snapshot.generation,
++              workers < maxWorkers else { return available }
++        let (sum, overflow) = clock.now().addingReportingOverflow(5_000_000_000)
++        let deadline = overflow ? UInt64.max : sum
++        let invocation = ActionPortInvocation(requestId: request.requestId, snapshot: snapshot,
++            deadlineUptimeNanoseconds: deadline)
++        do {
++            try await recheck(snapshot, deadline: deadline)
++            guard workers < maxWorkers else { return [] }
++            workers += 1
++            let observation = try await ActionDeadline.run(until: deadline, clock: clock, operation: {
++                try await observationPort.observeExistingSearchPreparation(invocation: invocation)
++            }, onWorkerFinished: { [weak self] in await self?.workerFinished() })
++            try await recheck(snapshot, deadline: deadline)
++            guard observation == .eligible(invocation: invocation) else { return available }
++            return available + [descriptor]
++        } catch {
++            // A failed/stale/cancelled observation cannot retain an earlier
++            // projection across its await, let alone advertise the cold action.
++            return []
++        }
++    }
++
+     private func equivalent(_ lhs: ActionRequest, _ rhs: ActionRequest) throws -> Bool {
+         if lhs == rhs { return true }
+         // Already-validated signed/unsigned storage for the same JSON integer
+diff --git a/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift b/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift
+index 941cd321..78602032 100644
+--- a/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift
++++ b/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift
+@@ -66,6 +66,22 @@ public extension ActionSearchExecutionPreparationPort {
+     var hasSearchExecutionPreparation: Bool { true }
+ }
+ 
++/// A read-only observation of an already installed source which explicit
++/// execution may prepare. It is deliberately separate from availableNow and
++/// carries no read grant, query result or promise that native opening succeeds.
++public enum ActionExistingSearchPreparationObservation: Sendable, Equatable {
++    case unavailable
++    case eligible(invocation: ActionPortInvocation)
++}
++
++/// Opt-in companion to the original execution-only port. Implementations must
++/// validate existing source identity, metadata, compatibility and required
++/// resources without constructing an engine, fetching, repairing or preparing.
++public protocol ActionSearchPreparationObservationPort: ActionSearchExecutionPreparationPort {
++    func observeExistingSearchPreparation(invocation: ActionPortInvocation) async throws
++        -> ActionExistingSearchPreparationObservation
++}
++
+ public struct ActionOpenReaderCommand: Sendable, Equatable {
+     public let destination: ActionReaderDestination
+     public let sceneID: String

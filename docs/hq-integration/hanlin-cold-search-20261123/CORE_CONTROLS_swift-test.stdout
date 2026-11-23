@@ -1,0 +1,40 @@
+Test Suite 'Selected tests' started at 2026-11-23 06:27:41.289
+Test Suite 'ExistingSearchPreparationObservationTests' started at 2026-11-23 06:27:41.300
+Test Case 'ExistingSearchPreparationObservationTests.testAdvertisementNeverGrantsRightsOrWorkScope' started at 2026-11-23 06:27:41.300
+Test Case 'ExistingSearchPreparationObservationTests.testAdvertisementNeverGrantsRightsOrWorkScope' passed (0.037 seconds)
+Test Case 'ExistingSearchPreparationObservationTests.testCancelledObservationReturnsWithoutPreparation' started at 2026-11-23 06:27:41.337
+Test Case 'ExistingSearchPreparationObservationTests.testCancelledObservationReturnsWithoutPreparation' passed (0.02 seconds)
+Test Case 'ExistingSearchPreparationObservationTests.testCanonicalRightsScopesAndOriginPrecedeObservation' started at 2026-11-23 06:27:41.357
+Test Case 'ExistingSearchPreparationObservationTests.testCanonicalRightsScopesAndOriginPrecedeObservation' passed (0.054 seconds)
+Test Case 'ExistingSearchPreparationObservationTests.testExecutionStillRequiresFreshActualReadiness' started at 2026-11-23 06:27:41.411
+Test Case 'ExistingSearchPreparationObservationTests.testExecutionStillRequiresFreshActualReadiness' passed (0.022 seconds)
+Test Case 'ExistingSearchPreparationObservationTests.testExplicitAuthorizedExecutionRetainsOriginalPreparationAndQuery' started at 2026-11-23 06:27:41.433
+Test Case 'ExistingSearchPreparationObservationTests.testExplicitAuthorizedExecutionRetainsOriginalPreparationAndQuery' passed (0.022 seconds)
+Test Case 'ExistingSearchPreparationObservationTests.testGenericAdvertisementAndReadinessRemainCold' started at 2026-11-23 06:27:41.455
+Test Case 'ExistingSearchPreparationObservationTests.testGenericAdvertisementAndReadinessRemainCold' passed (0.025 seconds)
+Test Case 'ExistingSearchPreparationObservationTests.testMissingObservationPortCannotPromoteUnknown' started at 2026-11-23 06:27:41.481
+Test Case 'ExistingSearchPreparationObservationTests.testMissingObservationPortCannotPromoteUnknown' passed (0.018 seconds)
+Test Case 'ExistingSearchPreparationObservationTests.testMissingRegistrationOrSupportPreventsObservation' started at 2026-11-23 06:27:41.499
+Test Case 'ExistingSearchPreparationObservationTests.testMissingRegistrationOrSupportPreventsObservation' passed (0.036 seconds)
+Test Case 'ExistingSearchPreparationObservationTests.testObservationDeadlineUsesExistingBoundedRace' started at 2026-11-23 06:27:41.535
+Test Case 'ExistingSearchPreparationObservationTests.testObservationDeadlineUsesExistingBoundedRace' passed (0.02 seconds)
+Test Case 'ExistingSearchPreparationObservationTests.testPositiveColdObservationAdvertisesOnlySearchWithoutPreparing' started at 2026-11-23 06:27:41.555
+Test Case 'ExistingSearchPreparationObservationTests.testPositiveColdObservationAdvertisesOnlySearchWithoutPreparing' passed (0.019 seconds)
+Test Case 'ExistingSearchPreparationObservationTests.testPreparationObservationMustMatchWholeInvocation' started at 2026-11-23 06:27:41.574
+Test Case 'ExistingSearchPreparationObservationTests.testPreparationObservationMustMatchWholeInvocation' passed (0.055 seconds)
+Test Case 'ExistingSearchPreparationObservationTests.testProjectionConsumesOneOriginalActionBudget' started at 2026-11-23 06:27:41.629
+Test Case 'ExistingSearchPreparationObservationTests.testProjectionConsumesOneOriginalActionBudget' passed (0.019 seconds)
+Test Case 'ExistingSearchPreparationObservationTests.testReadySearchUsesOriginalPathWithoutObservation' started at 2026-11-23 06:27:41.647
+Test Case 'ExistingSearchPreparationObservationTests.testReadySearchUsesOriginalPathWithoutObservation' passed (0.018 seconds)
+Test Case 'ExistingSearchPreparationObservationTests.testSourceSwitchAndABAInvalidateWholeProjection' started at 2026-11-23 06:27:41.666
+Test Case 'ExistingSearchPreparationObservationTests.testSourceSwitchAndABAInvalidateWholeProjection' passed (0.037 seconds)
+Test Case 'ExistingSearchPreparationObservationTests.testThrownObservationDoesNotRetainEarlierProjection' started at 2026-11-23 06:27:41.702
+Test Case 'ExistingSearchPreparationObservationTests.testThrownObservationDoesNotRetainEarlierProjection' passed (0.021 seconds)
+Test Case 'ExistingSearchPreparationObservationTests.testUnavailableObservationCannotAdvertise' started at 2026-11-23 06:27:41.723
+Test Case 'ExistingSearchPreparationObservationTests.testUnavailableObservationCannotAdvertise' passed (0.019 seconds)
+Test Case 'ExistingSearchPreparationObservationTests.testUnconfiguredExecutionCannotAdvertisePreparation' started at 2026-11-23 06:27:41.742
+Test Case 'ExistingSearchPreparationObservationTests.testUnconfiguredExecutionCannotAdvertisePreparation' passed (0.018 seconds)
+Test Suite 'ExistingSearchPreparationObservationTests' passed at 2026-11-23 06:27:41.760
+	 Executed 17 tests, with 0 failures (0 unexpected) in 0.46 (0.46) seconds
+Test Suite 'Selected tests' passed at 2026-11-23 06:27:41.760
+	 Executed 17 tests, with 0 failures (0 unexpected) in 0.46 (0.46) seconds

@@ -1,0 +1,72 @@
+{
+  "accepted_source_properties": [
+    "Authorization and search rights/scopes precede the separate observation",
+    "Only fixed search.query can be added; original availableNow and ordinary advertisement remain byte-exact",
+    "Observation binds whole original request/snapshot/deadline; source/ABA/deadline/cancellation failures discard stale projection",
+    "Worker admission is checked before and after the source await, increments without suspension, and decrements only when original ActionDeadline worker actually finishes",
+    "Facade rechecks original snapshot and catalog/provider readiness around original-source observation",
+    "Managed path/profile/selection revision, database generation and repository publication revision/fingerprint are captured and rechecked",
+    "Metadata reads and required dictionary hashes use original bounded helpers; exact original compatibility route is read-only and never constructs/repairs/fetches an engine",
+    "Original execution/preparation and subsequent actual readiness/rights/work-scope checks remain byte-exact"
+  ],
+  "base": "9bee6104e2938767b4e4e1047c56da8991d621fb",
+  "boundaries": [
+    "Core tests use explicit provider/clock doubles; Apple/native source/installed asset/provider behavior remains unqualified by this review",
+    "Eligibility is permission to attempt the existing explicitly authorized preparation path, not availableNow, a native result or a read grant",
+    "Existing C compatibility routine is cooperative; original deadline race bounds caller response and retains worker accounting until actual return, not an invented native cancellation guarantee"
+  ],
+  "files_changed_by_reviewer": 0,
+  "findings_requiring_source_change": [],
+  "focused_control_cases_read": 17,
+  "independent_inverse_source_proofs": {
+    "ActionBackendCoordinatorFacade.swift": true,
+    "ActionExecutor.swift": true,
+    "ActionLiveBackendBridge.swift": true,
+    "ActionPorts.swift": true,
+    "OtzariaHanlinHostAdapter.swift": true
+  },
+  "native_compatibility_source": "otzaria_search_engine d5d59d1269bdf87fb0a6901cf31941726a0c699b rust/src/api/search_engine.rs check_index_compatibility_path/check_sidecar_metadata; Maktabah 9bee6104 Vendor/OtzariaSearchEngine/ios_bridge/src/lib.rs unchanged FFI",
+  "product_diff_sha256": "d43daabc0faed49a63443c6be0ad6f90e8208961b0ac8981f5ac45973d424752",
+  "reviewed_rows": [
+    {
+      "after_sha256": "f449f5be10b1e7f43a7769fa56678e699db7bd306eafe7e1bf54d4caf17b8c23",
+      "base_sha256": "9629b2586f3b31db7cbe7ddcb78b836e856401abc2a5a91b3a4734c7f08d5da7",
+      "bytes": 6420,
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift"
+    },
+    {
+      "after_sha256": "61d7627dd9c68513a3a6102b12154f2b11b1ffd4dab7cbfb226563b59ecf2252",
+      "base_sha256": "56a6d646f6c570354be9dc3eecde8404765498c6e8b973874ff5c39d6817824e",
+      "bytes": 50933,
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift"
+    },
+    {
+      "after_sha256": "90916d670e0a58623bce4c60cb09ff2678bbe4f308b50201897b278cf232aaca",
+      "base_sha256": "1ad1a21996a2fd0804ae5c548f0f232dd63ca8868bcb0f11ce88275afac3196a",
+      "bytes": 31084,
+      "path": "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift"
+    },
+    {
+      "after_sha256": "b0ff33f02f65d5f0632b15a354cbe2f7dd41b548abea5d83fb20be39e7ca52c9",
+      "base_sha256": "6b244f30eed64b387c974d88ca27e01ccb2086261795e3e77b321e5db9d03d54",
+      "bytes": 28870,
+      "path": "Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift"
+    },
+    {
+      "after_sha256": "7f762523d0cde1ba938e1f161309472090f804c2d8af48cdf3e02f1e998926c1",
+      "base_sha256": "b34abc9505a4b345c0951dad398f0d4a99f5d449b056f8ba68bd3f71a1ad502b",
+      "bytes": 24385,
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift"
+    },
+    {
+      "after_sha256": "ad24426235ea2b469c84b9b23e99309651cc27e647df9b077129379fb525fd0a",
+      "base": "ABSENT",
+      "bytes": 16954,
+      "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/ExistingSearchPreparationObservationTests.swift"
+    }
+  ],
+  "reviewer": "ChatGPT subagent /root/asana_scope",
+  "schema": 1,
+  "status": "SOURCE_SCOPE_ACCEPTED",
+  "tests_executed_by_reviewer": 0
+}

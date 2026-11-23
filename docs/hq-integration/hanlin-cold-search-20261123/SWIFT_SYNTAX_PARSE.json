@@ -1,0 +1,45 @@
+{
+  "status": "SWIFT_SYNTAX_PARSE_PASS_ONLY",
+  "records": [
+    {
+      "path": "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift",
+      "source_sha256": "90916d670e0a58623bce4c60cb09ff2678bbe4f308b50201897b278cf232aaca",
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "/mnt/development/projects/worktrees/Maktabah-hanlin-cold-search-20261123/Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "path": "Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift",
+      "source_sha256": "b0ff33f02f65d5f0632b15a354cbe2f7dd41b548abea5d83fb20be39e7ca52c9",
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "/mnt/development/projects/worktrees/Maktabah-hanlin-cold-search-20261123/Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift",
+      "source_sha256": "7f762523d0cde1ba938e1f161309472090f804c2d8af48cdf3e02f1e998926c1",
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "/mnt/development/projects/worktrees/Maktabah-hanlin-cold-search-20261123/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "native_or_apple_typecheck": false
+}

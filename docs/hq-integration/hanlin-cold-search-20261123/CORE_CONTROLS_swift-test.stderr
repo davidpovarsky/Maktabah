@@ -1,0 +1,17 @@
+Building for debugging...
+[Computing dependencies]
+[Pre-planning 1 / 153]
+[Planning deferred tasks]
+[30 / 61] OtzariaActionCore
+[42 / 65] OtzariaActionCore
+[43 / 65] OtzariaActionCore
+[50 / 69] OtzariaActionCoreTests-product
+[50 / 69] OtzariaActionCore
+[53 / 70] OtzariaActionCoreTests-product
+[58 / 70] OtzariaActionCoreTests-test-runner
+[59 / 70] OtzariaActionCoreTests-product
+[63 / 71] OtzariaActionCoreTests-product
+[67 / 74] OtzariaActionCoreTests-test-runner
+[71 / 74] OtzariaActionCoreTests-test-runner
+[75 / 75] OtzariaActionCoreTests-test-runner
+Build complete! (26.16 secs)

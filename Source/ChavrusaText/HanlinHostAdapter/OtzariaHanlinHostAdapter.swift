@@ -175,7 +175,7 @@ public actor OtzariaHanlinHostAdapter: HanlinHostNavigationTransitionSource {
             // Only the fixed search action may use this separately issued grant.
             // Ask the same Core policy/readiness implementation, not a host copy.
             actionIDs.remove("search.query")
-            let readActions = await core.advertisedActions(for: binding.backend.backend, context: searchContext)
+            let readActions = await core.advertisedActionsWithExistingSearchPreparation(for: binding.backend.backend, context: searchContext)
             if readActions.contains(where: { $0.id == "search.query" }) { actionIDs.insert("search.query") }
         }
         let catalog = try makeCatalog(binding, advertised: actionIDs)

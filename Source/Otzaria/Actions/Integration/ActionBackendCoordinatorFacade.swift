@@ -4,7 +4,7 @@ import OtzariaActionCore
 /// Additive facade over the real application coordinator. No automatic backend
 /// selection, app composition, UI command, private registration or new engine.
 @MainActor
-final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchExecutionPreparationPort {
+final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort {
     typealias ReadinessProbe = @MainActor @Sendable (ActionBackendSnapshot) async throws -> ActionBackendRuntimeEvidence
     typealias EpochProbe = @Sendable () async -> UInt64?
     typealias EmbeddedSearch = @Sendable (ActionSearchQuery, ActionPortInvocation) async throws -> ActionSearchPage
@@ -14,6 +14,7 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
     typealias OccurrenceCounter = @Sendable (ActionOccurrenceQuery, ActionPortInvocation) async throws -> ActionExactOccurrenceCount
     typealias SearchExecutionWork = @Sendable () async throws -> Void
     typealias SearchExecutionPreparation = @MainActor @Sendable (ActionSearchQuery, ActionPortInvocation) throws -> SearchExecutionWork
+    typealias SearchPreparationObservation = @MainActor @Sendable (ActionPortInvocation) async throws -> ActionExistingSearchPreparationObservation
     private let coordinator: BackendCoordinator
     private let readiness: ReadinessProbe
     private let epoch: EpochProbe
@@ -25,6 +26,7 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
     private let occurrenceReadiness: OccurrenceReadiness?
     private let occurrenceCounter: OccurrenceCounter?
     private let searchExecutionPreparation: SearchExecutionPreparation?
+    private let searchPreparationObservation: SearchPreparationObservation?
     nonisolated let hasSearchExecutionPreparation: Bool
 
     init(coordinator: BackendCoordinator, epoch: @escaping EpochProbe = { nil },
@@ -36,13 +38,15 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
          embeddedCatalog: EmbeddedCatalog? = nil,
          occurrenceReadiness: OccurrenceReadiness? = nil,
          occurrenceCounter: OccurrenceCounter? = nil,
-         searchExecutionPreparation: SearchExecutionPreparation? = nil) {
+         searchExecutionPreparation: SearchExecutionPreparation? = nil,
+         searchPreparationObservation: SearchPreparationObservation? = nil) {
         self.coordinator = coordinator; self.epoch = epoch; self.currentEpoch = currentEpoch; self.readiness = readiness
         self.resourceWitness = resourceWitness
         self.embeddedSearch = embeddedSearch; self.embeddedReferenceProof = embeddedReferenceProof
         self.embeddedCatalog = embeddedCatalog
         self.occurrenceReadiness = occurrenceReadiness
         self.occurrenceCounter = occurrenceCounter
+        self.searchPreparationObservation = searchPreparationObservation
         self.searchExecutionPreparation = searchExecutionPreparation
         self.hasSearchExecutionPreparation = searchExecutionPreparation != nil
     }
@@ -211,6 +215,25 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
         do { try await work() }
         catch { throw safe(error) }
         try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+    }
+
+
+    /// Observation only: keep execution preparation and capability assessment
+    /// untouched. No returned work is invoked and no readiness bit is promoted.
+    func observeExistingSearchPreparation(invocation: ActionPortInvocation) async throws
+        -> ActionExistingSearchPreparationObservation {
+        let backend = invocation.snapshot.backend
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
+        guard backend == .otzaria, searchExecutionPreparation != nil,
+              let searchPreparationObservation else { return .unavailable }
+        let evidence = try await currentEvidence(for: backend)
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
+        guard evidence.snapshot == invocation.snapshot, evidence.catalog.isReady,
+              evidence.registeredCapabilities.contains("search") else { return .unavailable }
+        let observed = try await searchPreparationObservation(invocation)
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
+        guard observed == .eligible(invocation: invocation) else { return .unavailable }
+        return observed
     }
 
     func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage {
