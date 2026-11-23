@@ -1,6 +1,6 @@
 {
   "schema": "otzaria-final-runtime-push-v1",
-  "state": "FINALIZED",
+  "state": "UNFINALIZED",
   "reviewed_wrapper_base": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
   "application_source_sha": "a0781bd2628c1311394f7da6aa1e84c17f252fa4",
   "reviewed_r27_sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed",

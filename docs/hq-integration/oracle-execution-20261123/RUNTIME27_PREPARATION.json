@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-11-23T03:29:25.137425+00:00",
+  "base": "ebbbfb4002965eb426861eb2cb94fe69d61f7cf0",
+  "status": "SOURCE_PREPARATION_ONLY",
+  "native_execution": false,
+  "changed_runtime_literal": {
+    "old": "3f3b5380bc69ec54abc6413556c6920fb85376ae0bb404d82a1414cdbc9d0733",
+    "new": "7439fd761e6661db719259bdf1e32eb59bb9dbdf084747849b92147e7702e004"
+  },
+  "whole_driver_inverse_git_blob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+  "reviewed_test_source_change": "a43aa9d8a658d5afbadc66edaa3c109a28edcad8",
+  "retained_review": "docs/hq-integration/completion-20261122/keyboard-identity-and-evidence-merges",
+  "prior_real_calibration_run": 44980625976,
+  "prior_real_calibration_source": "c107c8ac600de6bbe6d92571fbbbdc6349cd143a",
+  "prior_calibration_credit": "Original exact row identity case only; no new Native116/Release114 acceptance",
+  "selection_and_assertions_changed": false,
+  "historical_suites_reexecuted": false,
+  "old_final_binding": {
+    "schema": "otzaria-final-runtime-push-v1",
+    "state": "FINALIZED",
+    "reviewed_wrapper_base": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+    "application_source_sha": "a0781bd2628c1311394f7da6aa1e84c17f252fa4",
+    "reviewed_r27_sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed",
+    "application_trees": {
+      "Source": "7b672630a07f6798120dea948e74c6ad1f760cb6",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "Maktabah.xcodeproj": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
+      "Maktabah-iOSUITests": "646d0593ecf5aaaa801327cece03d99a879aef04"
+    },
+    "source_pin_sha256": {
+      "Scripts/CI/hq-stage2-focused-apple.inputs.json": "61dab6cc477ec31949cb962ae18147180af2edf4a912f264844062e933057bf8",
+      "docs/hq-integration/runtime27/R27_CASES.json": "17794127a5cf50501f120652bbb2ad7cc26d9a95573b9134ef1ff9a56b2eed49",
+      "Scripts/CI/runtime27-release-manifest.json": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f",
+      "Scripts/CI/hq-v32-prebuilt-native.py": "885706e8cc843d2b6d5ba04b0752acf8e1c23c6baae5c1e9bcccc0518d0736be"
+    },
+    "selection": {
+      "native_cases": 116,
+      "release_ui_cases": 114,
+      "release_oracle_cases": 2,
+      "per_test_timeout_seconds": 600
+    },
+    "routes": {
+      "ui": {
+        "ref": "refs/heads/codex/otzaria-final-native116-20261120",
+        "workflow": ".github/workflows/otzaria-final-native-push.yml"
+      },
+      "release": {
+        "ref": "refs/heads/codex/otzaria-final-release114-20261120",
+        "workflow": ".github/workflows/otzaria-final-release-push.yml"
+      }
+    }
+  },
+  "final_binding_state": "UNFINALIZED",
+  "final_binding_reason": "Current product composition differs from historical a0781bd. Final app/test/vendor/project trees and four original source pins must be bound after integration."
+}

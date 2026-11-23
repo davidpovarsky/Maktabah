@@ -1,0 +1,853 @@
+{
+  "project": "1219602719070493",
+  "count": 83,
+  "open": 59,
+  "complete": 24,
+  "tasks": [
+    {
+      "gid": "1220769157395027",
+      "completed": false,
+      "modified_at": "2026-11-22T15:00:58.899Z",
+      "name": "[AUDIT][2026-11-22][איתן | ARCH] ביקורת נקיות מקור (Upstream) וארגון קוד — אוצריא (Maktabah)",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220769157395027"
+    },
+    {
+      "gid": "1220548969733512",
+      "completed": false,
+      "modified_at": "2026-11-15T23:26:53.070Z",
+      "name": "[HANDOFF] מנהל יחיד — עצירה מאוחדת 16.11.2026 / 7 סוכנים",
+      "parent": {
+        "gid": "1220547779919596"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220548969733512"
+    },
+    {
+      "gid": "1220548885571611",
+      "completed": true,
+      "modified_at": "2026-11-15T23:26:12.075Z",
+      "name": "[HANDOFF] N — STOPPED / עצירת גל 2026-11-16",
+      "parent": {
+        "gid": "1220547779919596"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220548885571611"
+    },
+    {
+      "gid": "1220548822513071",
+      "completed": true,
+      "modified_at": "2026-11-15T23:26:12.212Z",
+      "name": "[HANDOFF] I — STOPPED מסירת עצירה 2026-11-16",
+      "parent": {
+        "gid": "1220547779919596"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220548822513071"
+    },
+    {
+      "gid": "1220548880392687",
+      "completed": true,
+      "modified_at": "2026-11-15T23:26:12.037Z",
+      "name": "[HANDOFF] S — STOPPED: מסירת עצירה 16.11.2026",
+      "parent": {
+        "gid": "1220547779919596"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220548880392687"
+    },
+    {
+      "gid": "1220548884382630",
+      "completed": true,
+      "modified_at": "2026-11-15T23:26:12.023Z",
+      "name": "[HANDOFF] D — STOPPED 16.11.2026 / Books Updates",
+      "parent": {
+        "gid": "1220547779919596"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220548884382630"
+    },
+    {
+      "gid": "1220548967133104",
+      "completed": true,
+      "modified_at": "2026-11-15T23:26:12.064Z",
+      "name": "[HANDOFF] U — עצירת גל 2026-11-16",
+      "parent": {
+        "gid": "1220547779919596"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220548967133104"
+    },
+    {
+      "gid": "1220548821826909",
+      "completed": true,
+      "modified_at": "2026-11-15T23:26:12.013Z",
+      "name": "[HANDOFF] R — מסירת עצירה 2026-11-16",
+      "parent": {
+        "gid": "1220547779919596"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220548821826909"
+    },
+    {
+      "gid": "1220548879767958",
+      "completed": true,
+      "modified_at": "2026-11-15T23:26:12.092Z",
+      "name": "[HANDOFF] P — STOP ומסירת עצירה 2026-11-16",
+      "parent": {
+        "gid": "1220547779919596"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220548879767958"
+    },
+    {
+      "gid": "1220548331612333",
+      "completed": true,
+      "modified_at": "2026-11-16T08:43:26.810Z",
+      "name": "[HANDOFF] U — גבול ראיות HID ללא חשיפת credential",
+      "parent": {
+        "gid": "1220547779919596"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220548331612333"
+    },
+    {
+      "gid": "1220548031990416",
+      "completed": true,
+      "modified_at": "2026-11-18T14:11:25.650Z",
+      "name": "[HANDOFF] I — מסירת metadata לרץ UITest של Zayit",
+      "parent": {
+        "gid": "1220547779919596"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220548031990416"
+    },
+    {
+      "gid": "1220120627071765",
+      "completed": false,
+      "modified_at": "2026-11-15T00:35:45.183Z",
+      "name": "[P1][OTZARIA-READER] סליידר ניווט לא יציג רמת פסקה ללא בחירה מפורשת",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220120627071765"
+    },
+    {
+      "gid": "1220120889353811",
+      "completed": false,
+      "modified_at": "2026-11-20T06:03:33.025Z",
+      "name": "[P1][READER-SEARCH] היסטוריית חיפוש רק בטאב החיפוש הראשי, לא בחיפוש מתוך ספר",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220120889353811"
+    },
+    {
+      "gid": "1219702107643331",
+      "completed": false,
+      "modified_at": "2026-10-25T06:38:28.006Z",
+      "name": "[P1][READER-HEADER][נועם/מיה] לוודא שם ספר קנוני במקום מספר ניווט בקורא — בדיקת iPad",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219702107643331"
+    },
+    {
+      "gid": "1219682272017128",
+      "completed": false,
+      "modified_at": "2026-11-21T20:51:55.382Z",
+      "name": "[P0][BOOT][נועם | DEV] אוצריא production — התקנת מסד מלא בלי חסימה מחבילות חיפוש",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219682272017128"
+    },
+    {
+      "gid": "1219684630509114",
+      "completed": false,
+      "modified_at": "2026-11-22T01:46:39.035Z",
+      "name": "[P0][TESTFLIGHT][תומר | INT] להעלות בטא חדשה אחרי תיקוני ביצועים — ChavrusaText production",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219684630509114"
+    },
+    {
+      "gid": "1219674938327411",
+      "completed": false,
+      "modified_at": "2026-11-21T20:51:53.926Z",
+      "name": "[P1][SEARCH-V32][תומר/נועם] חבילות חיפוש production תואמות למסד אוצריא v32",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219674938327411"
+    },
+    {
+      "gid": "1219613714507780",
+      "completed": false,
+      "modified_at": "2026-11-20T02:36:45.149Z",
+      "name": "[P0][PERF-02][איתן/נועם] SQLite concurrency, MainActor, cancellation ומטמונים",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219613714507780"
+    },
+    {
+      "gid": "1219613602997169",
+      "completed": false,
+      "modified_at": "2026-11-22T02:52:00.189Z",
+      "name": "[P1][PERF-04][רוני | QA] מדידות פיזיות על iPad ומסד אוצריא המלא",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219613602997169"
+    },
+    {
+      "gid": "1219613714504405",
+      "completed": false,
+      "modified_at": "2026-11-19T18:29:03.257Z",
+      "name": "[P0][PERF-01][נועם | DEV] פתיחת מסכת/ספר אוצריא ללא חסימה — lazy reading & navigation",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219613714504405"
+    },
+    {
+      "gid": "1219613651433098",
+      "completed": false,
+      "modified_at": "2026-11-19T14:49:03.304Z",
+      "name": "[P0][PERF-03][נועם/מיה] רינדור פרקים גדולים ב־Reader המקורי בלי hitches",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219613651433098"
+    },
+    {
+      "gid": "1219611682682931",
+      "completed": true,
+      "modified_at": "2026-11-22T03:12:29.389Z",
+      "name": "[TEAM][SETUP] צוות הסוכנים — שיוך תפקידים ואימות מעטפת GitHub",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219611682682931"
+    },
+    {
+      "gid": "1219602719070497",
+      "completed": false,
+      "modified_at": "2026-10-25T06:38:27.990Z",
+      "name": "סקירת מצב F01–F10 / R01–R08 — Maktabah (17.10.2026)",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219602719070497"
+    },
+    {
+      "gid": "1219603004720303",
+      "completed": false,
+      "modified_at": "2026-11-19T23:01:06.367Z",
+      "name": "[P1][F03] להוסיף pagination אמיתי לתוצאות זית מעבר ל־50",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219603004720303"
+    },
+    {
+      "gid": "1219602829298459",
+      "completed": false,
+      "modified_at": "2026-11-19T23:02:54.038Z",
+      "name": "[P1][R02] לבטל מזהי שורה מומצאים ב־OtzariaGenericBackendAdapter",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219602829298459"
+    },
+    {
+      "gid": "1219602829324347",
+      "completed": false,
+      "modified_at": "2026-11-19T14:48:26.533Z",
+      "name": "[P0][R01] לתקן פתיחת תוצאת זית עם מזהה hit יציב ולא fallback עמום",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219602829324347"
+    },
+    {
+      "gid": "1219602829324283",
+      "completed": false,
+      "modified_at": "2026-11-20T04:06:50.788Z",
+      "name": "[P0][R03] לתקן שיוך metadata לתוצאות אוצריא אחרי Load More",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219602829324283"
+    },
+    {
+      "gid": "1219602987688812",
+      "completed": false,
+      "modified_at": "2026-11-22T01:02:40.606Z",
+      "name": "[P2][R05–R08] רגרסיות race, שפה, HTML, נתונים ואופליין",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219602987688812"
+    },
+    {
+      "gid": "1219602987688876",
+      "completed": false,
+      "modified_at": "2026-11-21T18:02:48.465Z",
+      "name": "[P0][R04/F05] פאנל מפרשים: MainActor hangs, SQL N+1 וטעינת תוכן מוקדמת",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219602987688876"
+    },
+    {
+      "gid": "1219614315863536",
+      "completed": false,
+      "modified_at": "2026-11-22T03:22:24.413Z",
+      "name": "[RESEARCH] מנוע פעולות אחוד לאוצריא — ארכיטקטורה וסקירת פתרונות קיימים",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219614315863536"
+    },
+    {
+      "gid": "1219614472017979",
+      "completed": false,
+      "modified_at": "2026-11-21T20:37:32.190Z",
+      "name": "[RESEARCH] פעולות חיפוש, ספירה, פתיחת מפרשים והכנת הערות דרך API אחוד",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219614472017979"
+    },
+    {
+      "gid": "1219614268854015",
+      "completed": false,
+      "modified_at": "2026-11-20T13:35:44.969Z",
+      "name": "[RESEARCH] איתור סמנטי של ספרים, מפרשים, פרקים ומיקומי טקסט",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219614268854015"
+    },
+    {
+      "gid": "1219614468074332",
+      "completed": true,
+      "modified_at": "2026-11-19T23:08:43.340Z",
+      "name": "[RESEARCH] הדרכה אינטראקטיבית ואוטומציה מרובת צעדים על אותו מנוע",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219614468074332"
+    },
+    {
+      "gid": "1219643110971002",
+      "completed": false,
+      "modified_at": "2026-11-21T21:44:00.759Z",
+      "name": "[PLANNED][UX] Maktabah — Native iPadOS 27 Side Sheet ל-TorahInspectorKit בשלושה גבהים",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219643110971002"
+    },
+    {
+      "gid": "1220036734107652",
+      "completed": false,
+      "modified_at": "2026-11-14T18:05:34.441Z",
+      "name": "[PLANNED][P1][UX][iPad Reader] איחוד עץ הספרים ותוכן העניינים לסיידבאר דו־מסכי (Craft-style)",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220036734107652"
+    },
+    {
+      "gid": "1220036884173010",
+      "completed": false,
+      "modified_at": "2026-11-23T03:03:07.517Z",
+      "name": "[PLANNED][P1][UX] אוצריא — Safari Toolbar וחיפוש ספרייה מתרחב עם CommandPalette + Gelatin Motion-Only",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220036884173010"
+    },
+    {
+      "gid": "1220103384037482",
+      "completed": false,
+      "modified_at": "2026-11-20T15:16:05.062Z",
+      "name": "[PLANNED][P1][UX][MAIN_SESSION] אוצריא — פרופילי לימוד, קבוצות כרטיסיות ו־DuckDuckGo Tab Strip",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220103384037482"
+    },
+    {
+      "gid": "1220539630830553",
+      "completed": false,
+      "modified_at": "2026-11-19T16:09:59.780Z",
+      "name": "[P0][BUILD 11201][OPEN] רגרסיות iPad — Sidebar, חיפוש זית/אוצריא, Books Updates ו-QA",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220539630830553"
+    },
+    {
+      "gid": "1220542361135050",
+      "completed": false,
+      "modified_at": "2026-11-20T01:42:24.088Z",
+      "name": "[P1][UI-AUTOMATION] חיבור מקיף של מסכים, רכיבים ומצבי ממשק ל־App Intents + Deep/Universal Links + AI",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220542361135050"
+    },
+    {
+      "gid": "1220545194715722",
+      "completed": false,
+      "modified_at": "2026-11-23T03:08:42.620Z",
+      "name": "[P1][PLANNED][CROSS-APP] אוצריא ↔ AnyTapy — הערות מקור מסווגות, עורך Anytype מוטמע וסנכרון בטוח",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220545194715722"
+    },
+    {
+      "gid": "1220546245946205",
+      "completed": false,
+      "modified_at": "2026-11-22T04:35:51.262Z",
+      "name": "[P1][IN_PROGRESS][GLOBAL SEARCH UX] עיצוב מחדש של החיפוש הגלובלי — Native SwiftUI/UIKit + Liquid Glass + Sidebar + סינון תוצאות",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220546245946205"
+    },
+    {
+      "gid": "1219848733895424",
+      "completed": false,
+      "modified_at": "2026-10-25T12:02:06.574Z",
+      "name": "[P0][BATCH-B][IN_PROGRESS] Reader/Upstream — iPadOS 27 QA + TestFlight production",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219848733895424"
+    },
+    {
+      "gid": "1220547779919596",
+      "completed": false,
+      "modified_at": "2026-11-21T18:02:36.848Z",
+      "name": "📬 מסירות והחלטות הסוכנים — אוצריא | תיבת מנהל",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220547779919596"
+    },
+    {
+      "gid": "1219612074000817",
+      "completed": true,
+      "modified_at": "2026-10-18T23:01:53.546Z",
+      "name": "[P0][תומר | INT][TESTFLIGHT] העלאת ChavrusaText עם מסד אוצריא המלא (production)",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219612074000817"
+    },
+    {
+      "gid": "1219603012547016",
+      "completed": true,
+      "modified_at": "2026-10-18T21:15:14.301Z",
+      "name": "[P1][F01/F02/F04/F08] להשלים בדיקות קבלה של חיפוש, גרסאות ופתיחת קטע",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219603012547016"
+    },
+    {
+      "gid": "1219603004720175",
+      "completed": true,
+      "modified_at": "2026-10-18T21:13:42.792Z",
+      "name": "[P1][F05/F06/F09/F10] להשלים קבלת Inspector, מפרשים וציטוטים",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219603004720175"
+    },
+    {
+      "gid": "1219602987688643",
+      "completed": true,
+      "modified_at": "2026-10-18T21:12:35.633Z",
+      "name": "[P1][F07] לאמת SQLite annotations ב־30 מחזורים ו־relaunch",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219602987688643"
+    },
+    {
+      "gid": "1219603004720239",
+      "completed": true,
+      "modified_at": "2026-10-18T21:11:27.583Z",
+      "name": "[P1][CI/A32] להשיג סט בדיקות ו־IPA מאומתים על HEAD אחד",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219603004720239"
+    },
+    {
+      "gid": "1219603012531905",
+      "completed": true,
+      "modified_at": "2026-10-18T21:10:19.042Z",
+      "name": "[P0][F07] לתקן כישלון הוספה/שמירה/רענון הערות בספריא ב־iPad",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219603012531905"
+    },
+    {
+      "gid": "1219718158283095",
+      "completed": true,
+      "modified_at": "2026-10-20T22:45:12.528Z",
+      "name": "[DONE][DOCS][מיה | UX] מפרט שפת העיצוב המקורית של Maktabah וחיבור מיה ב־Codex/Antigravity",
+      "parent": null,
+      "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219718158283095"
+    },
+    {
+      "gid": "1220542420331748",
+      "completed": false,
+      "modified_at": "2026-11-19T23:01:06.377Z",
+      "name": "UI-04 | App Intents / Shortcuts / Siri — פתיחת DestinationState ורכיבים ספציפיים",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220542361135050"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220542420331748",
+      "subtasks": []
+    },
+    {
+      "gid": "1220542467495722",
+      "completed": false,
+      "modified_at": "2026-11-23T03:03:33.551Z",
+      "name": "UI-06 | חיבור AI/MCP/Guided Tours ל־UI Registry ולמיקוד רכיבים",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220542361135050"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220542467495722",
+      "subtasks": []
+    },
+    {
+      "gid": "1220542361203468",
+      "completed": false,
+      "modified_at": "2026-11-20T14:34:31.593Z",
+      "name": "UI-03 | Scene Navigation Orchestrator — פתיחת מסכים, פאנלים ורכיבים במצב מדויק",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220542361135050"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220542361203468",
+      "subtasks": []
+    },
+    {
+      "gid": "1220542479938476",
+      "completed": true,
+      "modified_at": "2026-11-19T14:47:47.412Z",
+      "name": "UI-02 | חוזה RouteSpec ו־UI Destination/State Registry משותף עם ActionCore",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220542361135050"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220542479938476",
+      "subtasks": []
+    },
+    {
+      "gid": "1220542479938540",
+      "completed": true,
+      "modified_at": "2026-11-19T14:47:54.409Z",
+      "name": "UI-01 | אינוונטר מלא לכל המסכים, רכיבי UI ומצבי פתיחה — coverage manifest",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220542361135050"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220542479938540",
+      "subtasks": []
+    },
+    {
+      "gid": "1220542416158970",
+      "completed": false,
+      "modified_at": "2026-11-20T00:57:52.061Z",
+      "name": "UI-07 | QA: מטריצת כיסוי 3 Backends × מסכים × AppIntent/DeepLink, security, regression",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220542361135050"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "subtasks": []
+    },
+    {
+      "gid": "1220542420330496",
+      "completed": false,
+      "modified_at": "2026-11-19T23:01:06.386Z",
+      "name": "UI-05 | Deep Links + Universal Links — ניווט מדויק, גרסאות ושימור קישורים ישנים",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220542361135050"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220542420330496",
+      "subtasks": []
+    },
+    {
+      "gid": "1220036734132868",
+      "completed": true,
+      "modified_at": "2026-11-20T10:13:59.892Z",
+      "name": "[איתן | ARCH][MAIN_SESSION] ownership וחיבור Sidebar חדש בשכבת ChavrusaText",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220036734107652"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220036734132868",
+      "subtasks": []
+    },
+    {
+      "gid": "1220037028795002",
+      "completed": false,
+      "modified_at": "2026-11-20T06:03:33.047Z",
+      "name": "[רוני | QA][MAIN_SESSION] XCTest/XCUITest + אימות פיזי למעבר סיידבאר דו־מסכי",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220036734107652"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220037028795002",
+      "subtasks": []
+    },
+    {
+      "gid": "1220036777923344",
+      "completed": false,
+      "modified_at": "2026-11-20T06:05:39.831Z",
+      "name": "[נועם | DEV][MAIN_SESSION] לחבר פעולות TOC/Reader/Inspector ולשמר state",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220036734107652"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220036777923344",
+      "subtasks": []
+    },
+    {
+      "gid": "1220036883843537",
+      "completed": false,
+      "modified_at": "2026-11-15T13:04:18.199Z",
+      "name": "[מיה | UX][נועם | DEV][MAIN_SESSION] סיידבאר אחד עם Library/TOC, swipe ושתי נקודות",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220036734107652"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220036883843537",
+      "subtasks": []
+    },
+    {
+      "gid": "1220103384074498",
+      "completed": false,
+      "modified_at": "2026-10-31T21:37:14.901Z",
+      "name": "[נועם | DEV][MAIN_SESSION] DuckDuckGo Browser TabsBar — רכיב ספרים פתוחים מתואם לאוצריא",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220103384037482"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220103384074498",
+      "subtasks": []
+    },
+    {
+      "gid": "1220103384074402",
+      "completed": true,
+      "modified_at": "2026-11-20T10:13:59.826Z",
+      "name": "[איתן | ARCH][MAIN_SESSION] מודל פרופיל/קבוצה/טאב, Session migration ו-ownership",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220103384037482"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220103384074402",
+      "subtasks": []
+    },
+    {
+      "gid": "1220103384074338",
+      "completed": false,
+      "modified_at": "2026-11-20T09:37:06.875Z",
+      "name": "[דנה | SEC][תומר | INT][MAIN_SESSION] רישיונות, APIs ציבוריים, provenance ו-feature flag",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220103384037482"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220103384074338",
+      "subtasks": []
+    },
+    {
+      "gid": "1220103384074274",
+      "completed": false,
+      "modified_at": "2026-11-20T08:42:51.231Z",
+      "name": "[נועם | DEV][MAIN_SESSION] StudyGroupsOverview: Grid כל הטאבים + בורר קבוצות ScrollableTabBar",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220103384037482"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220103384074274",
+      "subtasks": []
+    },
+    {
+      "gid": "1220084480574492",
+      "completed": false,
+      "modified_at": "2026-11-20T00:23:45.191Z",
+      "name": "[מיה | UX][נועם | DEV][MAIN_SESSION] תפריטי קבוצות ופרופילים, יצירה/שינוי שם/העברה/מחיקה",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220103384037482"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220084480574492",
+      "subtasks": []
+    },
+    {
+      "gid": "1220107239748221",
+      "completed": false,
+      "modified_at": "2026-11-20T12:33:06.799Z",
+      "name": "[רוני | QA][MAIN_SESSION] XCTest/XCUITest + iPad פיזי — פרופילים/קבוצות/טאבים",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220103384037482"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220107239748221",
+      "subtasks": []
+    },
+    {
+      "gid": "1220084480575114",
+      "completed": false,
+      "modified_at": "2026-11-02T10:47:21.494Z",
+      "name": "[מיה | UX][MAIN_SESSION] אפיון מדויק של ארבעת המסכים ו-Toolbar iPad לפי Safari",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220103384037482"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220084480575114",
+      "subtasks": []
+    },
+    {
+      "gid": "1220084529541947",
+      "completed": false,
+      "modified_at": "2026-11-20T12:33:11.295Z",
+      "name": "[נועם | DEV][MAIN_SESSION] חיבור Reader, TOC/Sidebar, CommandPalette, Backends ו-per-window state",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220103384037482"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220084529541947",
+      "subtasks": []
+    },
+    {
+      "gid": "1219850124442105",
+      "completed": false,
+      "modified_at": "2026-10-25T12:00:21.839Z",
+      "name": "[BUILD 8401][P0][SEFARIA] תוצאת חיפוש/רש״י — פתיחת דף או פרק מלא עם מיקוד הקטע",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1219848733895424"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1219850124442105",
+      "subtasks": []
+    },
+    {
+      "gid": "1219850068707719",
+      "completed": false,
+      "modified_at": "2026-11-20T14:55:29.362Z",
+      "name": "[BUILD 8401][P1][SEFARIA L10N] עברית בתוכן העניינים וטעינה/ריק אמיתיים",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1219848733895424"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1219850068707719",
+      "subtasks": []
+    },
+    {
+      "gid": "1219849919983208",
+      "completed": false,
+      "modified_at": "2026-10-25T12:00:21.383Z",
+      "name": "[BUILD 8401][P0][TOC] מעקב חי אחרי הדף הנוכחי — הדגשה וגלילה בתוכן העניינים",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1219848733895424"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1219849919983208",
+      "subtasks": []
+    },
+    {
+      "gid": "1219848733937126",
+      "completed": true,
+      "modified_at": "2026-10-25T06:38:39.514Z",
+      "name": "[BATCH-B][DONE][BUILD] אימות קומפילציית iOS משולבת ב־macOS 27 / Xcode 27.1",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1219848733895424"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1219848733937126",
+      "subtasks": []
+    },
+    {
+      "gid": "1219873565492812",
+      "completed": false,
+      "modified_at": "2026-10-25T12:02:06.602Z",
+      "name": "[BATCH-B][P0][QA] XCTest/XCUITest אמיתי על iPadOS 27 — להסיר masked failures",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1219848733895424"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1219873565492812",
+      "subtasks": []
+    },
+    {
+      "gid": "1219848684815072",
+      "completed": false,
+      "modified_at": "2026-11-22T04:00:24.140Z",
+      "name": "[BATCH-B][P0][CI] ריצה סופית ירוקה ב־xcode-27 על SHA אחד עם בדיקות ללא עקיפה",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1219848733895424"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1219848684815072",
+      "subtasks": []
+    },
+    {
+      "gid": "1219873565492748",
+      "completed": false,
+      "modified_at": "2026-10-25T12:02:06.595Z",
+      "name": "[BATCH-B][P0][READER] בדיקות 4 הבאגים ב־iPad: TabBar, pull, highlights, History",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1219848733895424"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1219873565492748",
+      "subtasks": []
+    },
+    {
+      "gid": "1219848601160933",
+      "completed": false,
+      "modified_at": "2026-10-25T12:02:06.614Z",
+      "name": "[BATCH-B][P0][BACKEND] ביטול שחזור חלקי וטיפול ב־late resolveBook failures",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1219848733895424"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1219848601160933",
+      "subtasks": []
+    },
+    {
+      "gid": "1219848552180462",
+      "completed": false,
+      "modified_at": "2026-11-22T02:45:41.638Z",
+      "name": "[BATCH-B][P0][APPROVAL] לחדש 8 חריגות upstream לפי קומיט סופי ולאמת חתימות",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1219848733895424"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1219848552180462",
+      "subtasks": []
+    },
+    {
+      "gid": "1219848733920053",
+      "completed": false,
+      "modified_at": "2026-10-25T12:02:06.580Z",
+      "name": "[BATCH-B][P0][RELEASE GATE] TestFlight production לאחר QA ואישור — מעקב במשימה קיימת",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1219848733895424"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1219848733920053",
+      "subtasks": []
+    },
+    {
+      "gid": "1220539610434045",
+      "completed": false,
+      "modified_at": "2026-11-23T02:37:32.078Z",
+      "name": "[P0][11201][DATA-SAFETY] Books Updates — לחסום SQL/עדכונים במקור לא תואם ולתקן את מנגנון העדכון",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220539630830553"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220539610434045",
+      "subtasks": []
+    },
+    {
+      "gid": "1220539465608963",
+      "completed": false,
+      "modified_at": "2026-11-20T04:45:42.222Z",
+      "name": "[P0][11201][ZAYIT] חיפוש זית לא מחזיר תוצאות — מנוע, מצב אינדקס, שגיאות ו-filters",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220539630830553"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220539465608963",
+      "subtasks": []
+    },
+    {
+      "gid": "1220539645638524",
+      "completed": false,
+      "modified_at": "2026-11-20T14:32:51.702Z",
+      "name": "[P1][11201][OTZARIA-INDEX] אזהרת ״נדרש תיקון״ אף שהחיפוש עובד — לאבחן ולתקן metadata/status",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220539630830553"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220539645638524",
+      "subtasks": []
+    },
+    {
+      "gid": "1220763167870295",
+      "completed": true,
+      "modified_at": "2026-11-23T02:31:46.162Z",
+      "name": "[HANDOFF][21.11.2026] אוצריא — מסירת מצב מאומתת והמשך סוכן יחיד",
+      "num_subtasks": 0,
+      "parent": {
+        "gid": "1220547779919596"
+      },
+      "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220763167870295",
+      "subtasks": []
+    }
+  ],
+  "errors": [],
+  "verified_parent_subtask_counts": [
+    {
+      "gid": "1220036734107652",
+      "count": 4
+    },
+    {
+      "gid": "1220103384037482",
+      "count": 8
+    },
+    {
+      "gid": "1220539630830553",
+      "count": 3
+    },
+    {
+      "gid": "1220542361135050",
+      "count": 7
+    },
+    {
+      "gid": "1219848733895424",
+      "count": 10
+    },
+    {
+      "gid": "1220547779919596",
+      "count": 11
+    }
+  ],
+  "scope": "All 50 main-project members plus their recursively enumerated descendants, de-duplicated; HQ coordination project excluded",
+  "observed_at_utc": "2026-11-23T03:29:25.137425+00:00"
+}
