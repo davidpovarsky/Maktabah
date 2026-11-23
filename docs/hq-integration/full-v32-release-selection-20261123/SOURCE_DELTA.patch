@@ -1,0 +1,133 @@
+diff --git a/Scripts/CI/prepare-faithful-ipad-fixtures.py b/Scripts/CI/prepare-faithful-ipad-fixtures.py
+index 6d0edd11..4711e600 100644
+--- a/Scripts/CI/prepare-faithful-ipad-fixtures.py
++++ b/Scripts/CI/prepare-faithful-ipad-fixtures.py
+@@ -19,9 +19,13 @@ import uuid
+ 
+ parser = argparse.ArgumentParser()
+ parser.add_argument("--profile", choices=["miniTest10", "production"], default="miniTest10")
++parser.add_argument("--release-id", type=int, help="Official frozen release for a production native install observation")
+ parser.add_argument("--artifact-label", choices=["11", "13", "phone", "11-search", "11-reader", "11-sidebar", "11-window", "11-index"])
+ arguments = parser.parse_args()
+ profile = arguments.profile
++if arguments.release_id is not None:
++    if profile != "production" or not 0 < arguments.release_id <= 9_223_372_036_854_775_807:
++        parser.error("--release-id requires the production profile and a positive Int64 release ID")
+ artifact_suffix = "-" + arguments.artifact_label if arguments.artifact_label else ""
+ udid = Path("sim_udid.txt").read_text().strip()
+ bundle = "com.davidpovarsky.chavrusatext"
+@@ -29,6 +33,10 @@ container = Path(subprocess.check_output(["xcrun", "simctl", "get_app_container"
+ report = container / "Documents" / ("faithful-fixture-" + str(uuid.uuid4()) + ".json")
+ report.parent.mkdir(parents=True, exist_ok=True)
+ environment = os.environ.copy()
++release_key = "SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_RELEASE_ID"
++environment.pop(release_key, None)
++if arguments.release_id is not None:
++    environment[release_key] = str(arguments.release_id)
+ for key, value in {
+     "OTZARIA_DATA_PROFILE": profile,
+     "OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE": "install",
+diff --git a/Scripts/CI/reader-full-v32-ui-observation.py b/Scripts/CI/reader-full-v32-ui-observation.py
+index 70822a22..33657b81 100644
+--- a/Scripts/CI/reader-full-v32-ui-observation.py
++++ b/Scripts/CI/reader-full-v32-ui-observation.py
+@@ -1006,7 +1006,8 @@ def execute():
+         (ROOT / "sim_udid.txt").write_text(udid)
+         require(not (ROOT / "build/artifacts/production-native-fixture-install.json").exists(),
+                 "A retained original production installer report must not be overwritten/reused")
+-        require(bounded([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py", "--profile", "production"],
++        require(bounded([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py", "--profile", "production",
++                         "--release-id", str(config["source_database"]["releaseID"])],
+                         OUT / "original-production-install.log", 3900) == 0, "Original production native installer failed")
+         database, installation = admit_installation(config, udid)
+         catalog_dir, catalog = prepare_catalog(config, installation)
+diff --git a/Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift b/Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift
+index 3e54359c..38080ce4 100644
+--- a/Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift
++++ b/Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift
+@@ -27,6 +27,9 @@ actor OtzariaDatabaseBootstrapService {
+             fraction: 0.01,
+             detail: String(localized: "bootstrap.status.connecting")
+         ))
++        let pinnedReleaseID = try OtzariaLibraryReleaseClient.releaseLookup(
++            environment: ProcessInfo.processInfo.environment
++        ).expectedReleaseID
+         let storage = try OtzariaDatabaseStorage()
+         currentStorage = storage
+         try storage.prepareDirectories()
+@@ -34,7 +37,8 @@ actor OtzariaDatabaseBootstrapService {
+         do {
+             release = try await releaseClient.fetchLatestRelease()
+         } catch {
+-            guard OtzariaDataProfileRegistry.activeProfileID == OtzariaDataProfileRegistry.productionID,
++            guard pinnedReleaseID == nil,
++                  OtzariaDataProfileRegistry.activeProfileID == OtzariaDataProfileRegistry.productionID,
+                   let cached = try OtzariaDatabaseDownloader.resumableProductionRelease(
+                       workspaceURL: storage.downloadsRoot
+                   ) else {
+diff --git a/Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift b/Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift
+index 9a8e464e..8637aa69 100644
+--- a/Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift
++++ b/Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift
+@@ -30,7 +30,8 @@ struct OtzariaLibraryReleaseClient: Sendable {
+                 )
+             )
+         }
+-        var request = URLRequest(url: Self.latestReleaseURL)
++        let lookup = try Self.releaseLookup(environment: ProcessInfo.processInfo.environment)
++        var request = URLRequest(url: lookup.url)
+         request.timeoutInterval = 30
+         request.cachePolicy = .reloadIgnoringLocalCacheData
+         request.setValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
+@@ -45,7 +46,7 @@ struct OtzariaLibraryReleaseClient: Sendable {
+             guard http.statusCode == 200 else {
+                 throw OtzariaDatabaseBootstrapError.releaseLookupFailed("HTTP \(http.statusCode)")
+             }
+-            return try Self.parseLatestRelease(data: data)
++            return try Self.parseLatestRelease(data: data, expectedReleaseID: lookup.expectedReleaseID)
+         } catch let error as OtzariaDatabaseBootstrapError {
+             throw error
+         } catch {
+@@ -53,7 +54,29 @@ struct OtzariaLibraryReleaseClient: Sendable {
+         }
+     }
+ 
+-    static func parseLatestRelease(data: Data) throws -> OtzariaLibraryRelease {
++    /// A native install observation may explicitly request its frozen official release.
++    /// Release builds and ordinary app launches always retain the latest-release lookup.
++    static func releaseLookup(environment: [String: String]) throws -> (url: URL, expectedReleaseID: Int64?) {
++        #if DEBUG
++        if environment["OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE"] == "install",
++           let rawID = environment["OTZARIA_NATIVE_BOOTSTRAP_RELEASE_ID"] {
++            guard environment["OTZARIA_DATA_PROFILE"] == OtzariaDataProfileRegistry.productionID,
++                  let id = Int64(rawID), id > 0, String(id) == rawID else {
++                throw OtzariaDatabaseBootstrapError.invalidAssetMetadata(
++                    "native production observation requires a canonical positive release ID"
++                )
++            }
++            let url = URL(string: "https://api.github.com/repos/Otzaria/SeforimLibrary/releases/\(id)")!
++            return (url, id)
++        }
++        #endif
++        return (latestReleaseURL, nil)
++    }
++
++    static func parseLatestRelease(
++        data: Data,
++        expectedReleaseID: Int64? = nil
++    ) throws -> OtzariaLibraryRelease {
+         let payload: ReleasePayload
+         do {
+             payload = try JSONDecoder().decode(ReleasePayload.self, from: data)
+@@ -66,6 +89,11 @@ struct OtzariaLibraryReleaseClient: Sendable {
+         guard payload.id > 0, !payload.tagName.isEmpty else {
+             throw OtzariaDatabaseBootstrapError.invalidAssetMetadata("missing release ID or tag")
+         }
++        if let expectedReleaseID, payload.id != expectedReleaseID {
++            throw OtzariaDatabaseBootstrapError.invalidAssetMetadata(
++                "returned release ID differs from the frozen native observation"
++            )
++        }
+         let schemaAssets = payload.assets.compactMap { asset -> (Int, AssetPayload)? in
+             guard let version = OtzariaLibraryRelease.schemaVersion(inAssetName: asset.name) else {
+                 return nil

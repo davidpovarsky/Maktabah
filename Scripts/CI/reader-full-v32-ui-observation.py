@@ -1006,7 +1006,8 @@ def execute():
         (ROOT / "sim_udid.txt").write_text(udid)
         require(not (ROOT / "build/artifacts/production-native-fixture-install.json").exists(),
                 "A retained original production installer report must not be overwritten/reused")
-        require(bounded([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py", "--profile", "production"],
+        require(bounded([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py", "--profile", "production",
+                         "--release-id", str(config["source_database"]["releaseID"])],
                         OUT / "original-production-install.log", 3900) == 0, "Original production native installer failed")
         database, installation = admit_installation(config, udid)
         catalog_dir, catalog = prepare_catalog(config, installation)
