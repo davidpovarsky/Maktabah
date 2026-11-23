@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "status": "PROPOSED_SOURCE_ONLY",
+  "files": [
+    {
+      "path": "docs/hq-integration/local-native-attempt-20261123/CONTROLS_PLAN.md",
+      "bytes": 2657,
+      "sha256": "66516ba0aed245bd29a2846f7cb6a36c52ede4a4e8f31a456150c11a7bcd94e1"
+    },
+    {
+      "path": "docs/hq-integration/local-native-attempt-20261123/DDL_PROPOSAL.sql",
+      "bytes": 4406,
+      "sha256": "ee898978f28e007bbb12404563a253f66df4277bec255dc5c34a47468e2822b4"
+    },
+    {
+      "path": "docs/hq-integration/local-native-attempt-20261123/INTERFACE_PROPOSAL.swift.txt",
+      "bytes": 3880,
+      "sha256": "d8a8cafc34c3031561033693eed97fea13e205898b9b6b1b3f09afa74e76bf91"
+    },
+    {
+      "path": "docs/hq-integration/local-native-attempt-20261123/PROPOSAL.md",
+      "bytes": 12843,
+      "sha256": "0236686d887d9ac259cce81a223399781223591fccb2213f25e3feb4379520e7"
+    },
+    {
+      "path": "docs/hq-integration/local-native-attempt-20261123/SCOPE.json",
+      "bytes": 1422,
+      "sha256": "9e161d34f7de5506a80d0eaf92ca3dd7375acaa19c61cda8eaba50fe52f8fc72"
+    },
+    {
+      "path": "docs/hq-integration/local-native-attempt-20261123/SOURCE_BINDINGS.json",
+      "bytes": 5597,
+      "sha256": "88625045d27afee002f5829281c1bde91f9261602e4f1641e27f9bd712703aab"
+    }
+  ]
+}
