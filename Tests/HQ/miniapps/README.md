@@ -1,0 +1,68 @@
+# Otzaria MiniApps consumer checks — 2026-11-23
+
+Base: `acdf25482541199e2d7fe331cc7e557ee462cddc`; isolated branch `codex/otzaria-miniapps-bridge-20261123`.
+
+## Changes and persistence ownership
+
+The existing reader selection menu and original annotation editor toolbar invoke the shared MiniApps picker. Only the Foundation bridge and SwiftUI picker are linked; execution stays in the separate Hanlin MiniApps app. Existing URL schemes handle warm and cold return. The scene owner and original annotation identity are stored with each request. A reader quotation creates an attached note using the original annotation writer; source books remain read-only. Existing note edits use captured original SQLite ownership, original row mapping and CloudKit pending queue. An external result and its receipt commit in the same SQLite transaction before the shared transport is acknowledged. File results are copied into the host Documents/MiniApps directory before recording their URL in the original plain-text note.
+
+Original editor callers differ: some save synchronously, some catch errors, and one schedules asynchronous persistence. Therefore a generic onSave callback cannot establish a durable acknowledgement boundary. The bridge uses the original captured database connection plus row writer directly, and then refreshes the original caches, CloudKit queue, reader and open editor. No alternative note storage or editor is introduced.
+
+## Executed evidence
+
+Swift 6.4.3 on Oracle Linux aarch64 compiled the production document adapter against the already compiled real shared bridge, and the production receipt journal against the unchanged original `SQLiteDatabase.swift`. A Linux-only fail-loud Zstd symbol makes the original file linkable; these tests access TEXT columns only and deliberately do not test compressed book decoding.
+
+Document checks (10 passed, zero failed):
+
+```text
+PASS cold_capture_roundtrip_hebrew_anchor_profile
+PASS actual_note_utf16_selection_replacement
+PASS read_only_reader_selection_returns_annotation_not_book
+PASS insertion_uses_original_note_selection
+PASS empty_document_replacement_is_retained
+PASS url_result_is_preserved_in_plain_note
+PASS attachment_result_references_host_retained_file
+PASS missing_file_never_becomes_empty_note
+PASS changed_original_selection_preserved
+PASS display_operation_does_not_edit_document
+RESULT 10 PASS / 0 FAIL
+```
+
+Receipt checks (7 passed, zero failed):
+
+```text
+COMMITTED_WITHOUT_TRANSPORT_ACK
+REPLAYED_WITHOUT_SECOND_EDIT
+PASS edit_and_receipt_commit_in_original_sqlite_transaction
+PASS same_result_replay_does_not_run_edit
+PASS conflicting_callback_preserves_original_edit
+PASS profile_retirement_rolls_back_edit_and_receipt
+PASS failed_native_edit_never_leaves_ack_receipt
+PASS first_process_durably_saves_before_callback_ack
+PASS new_process_replays_saved_receipt_without_duplicate
+RESULT 7 PASS / 0 FAIL
+```
+
+The last two checks execute separate OS processes against the same real file-backed SQLite database. This proves durable host receipt replay after a commit/ack interruption; it does not assert an iOS cold-launch pass.
+
+All four additive Swift files and the three narrow native hooks passed `swiftc -frontend -parse -target arm64-apple-ios27.0`. This is syntax validation only. Project source memberships and the two lean package products were checked, both original App Groups were preserved, all 620 existing localization entries were unchanged, and `git diff --check` passed. Source and shared dependency hashes are in `evidence-20261123.json`.
+
+Initial compile setup attempts exposed the new SwiftPM products layout and Linux Foundation's lack of `String(localized:)`; the portable adapter now uses NSLocalizedString. Linking original SQLite required the explicit unreachable compression test support above. Those initial attempts did not run tests and are not counted as passes. Shared bridge acceptance owned by the SDK lane was reused, not rerun.
+
+## Reproduction
+
+The already compiled SDK products directory used in this run was:
+
+`/mnt/development/projects/worktrees/hanlin-miniapps-bridge-core-20261123/Packages/HanlinMiniAppsBridge/.build/out/Products/Debug-linux-aarch64`
+
+```sh
+python3 Tests/HQ/miniapps/run_checks.py --bridge-products /path/to/already-built/Products/Debug-linux-aarch64
+```
+
+The runner creates and removes only its own temporary binaries and SQLite module map. It does not build the shared SDK or repeat any unrelated suite.
+
+## Native acceptance still required
+
+The source at this checkpoint has not been Apple typechecked, built or exercised in Simulator/device. Scheme `Maktabah-iOS`, project `Maktabah.xcodeproj`, runner `xcode-27`, iOS 27, bundle `com.davidpovarsky.chavrusatext`, development team `NA6HPWARQ2`. Both existing Debug and Release URL schemes remain intact. Root integration owns the final HanlinSDK gitlink and provisioning for the newly appended shared group.
+
+The new native lane should reuse `Scripts/CI/hq-stage2-focused-apple.py --build-for-testing` for the real Pods/React/native graph, then run only the new reader/editor/callback cases. Existing native workflows are `otzaria-original-editor-stageb-native.yml` (Original editor saved annotation native acceptance), `otzaria-completion-focused-native.yml` (Original fresh-read no-send native diagnostic), and `otzaria-hanlin-live-native.yml` (Original Hanlin live consumer native acceptance). They are references for original build mechanics, not evidence that the new MiniApps hooks passed. Previously accepted unrelated journeys are not rerun by this change.

@@ -1297,6 +1297,16 @@ struct iOSIbarotTextView: UIViewRepresentable {
             }
 
             var actions = suggestedActions
+            let miniAppsAction = UIAction(
+                title: String(localized: "Mini Apps"),
+                image: UIImage(systemName: "square.grid.2x2"),
+                identifier: UIAction.Identifier("otzaria-reader-miniapps")
+            ) { [weak self, weak textView] _ in
+                guard let self, let textView else { return }
+                OtzariaMiniAppsCoordinator.shared.showReader(sourceText: sourceText,
+                    range: sourceRange, reader: self.parent.viewModel, textView: textView)
+            }
+            actions.insert(miniAppsAction, at: min(1, actions.count))
             if let shareContent = shareContent(sourceText: sourceText, sourceRange: sourceRange) {
                 let shareAction = UIAction(
                     title: String(localized: "Share with Reference"),

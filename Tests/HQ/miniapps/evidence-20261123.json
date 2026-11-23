@@ -1,0 +1,38 @@
+{
+  "base_sha": "acdf25482541199e2d7fe331cc7e557ee462cddc",
+  "branch": "codex/otzaria-miniapps-bridge-20261123",
+  "host": "tora-social-oracle",
+  "toolchain": "Swift 6.4.3 aarch64-unknown-linux-gnu",
+  "focused_document_checks": {
+    "passed": 10,
+    "failed": 0
+  },
+  "focused_receipt_checks": {
+    "passed": 7,
+    "failed": 0,
+    "fresh_process_receipt_replay": true
+  },
+  "apple_target_syntax_parse": "PASS (not an Apple typecheck/build)",
+  "xcode_source_membership": "PASS",
+  "entitlements": "PASS original groups preserved plus group.com.itorah.shared",
+  "original_localizations_unchanged": 620,
+  "git_diff_check": "PASS",
+  "apple_typecheck": "NOT_RUN",
+  "native_ui": "NOT_RUN",
+  "source_sha256": {
+    "Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift": "4a7f3dd4b30376d41164e3875ace5b36956dbed3ea689860a7d43ec62316fc3a",
+    "Source/ChavrusaText/MiniApps/OtzariaMiniAppsDocument.swift": "0611e2b028d9c0f44ec87a2fba0c95ac49d3fffdba173dc5e990b67207aff408",
+    "Source/ChavrusaText/MiniApps/OtzariaMiniAppsPersistence.swift": "7dd06dae8adf97758f9e17198af61b5a1121291b2c0618799fa4ca19b2dac325",
+    "Source/ChavrusaText/MiniApps/OtzariaMiniAppsReceiptJournal.swift": "cf8860ecd986d674201b6c5fa648cb1596f5ef731169cf05c4e25c53b1275adf",
+    "Source/Core/Database/SQLiteDatabase.swift": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+    "Tests/HQ/miniapps/OtzariaMiniAppsDocumentChecks.swift": "5490a89bcf698d41ce88fd6106ebb67c54de6bddd77e73d86a5385d7b3b971e8",
+    "Tests/HQ/miniapps/OtzariaMiniAppsReceiptChecks.swift": "f022385a72b980b33f4a11e7ebe3796c8d6807050568e9cf23223e72c03e3965",
+    "Tests/HQ/miniapps/SQLiteTextOnlyTestSupport.swift": "df0cee3bfd06c77d66ba3826470ac38ade6a22d779bed9c1e0503c470999ce11"
+  },
+  "shared_bridge_source_sha256": {
+    "Sources/HanlinMiniAppsBridge/MiniAppBridgeStore.swift": "a50fcd574c1716c62440ec46ed58e4576d0906c3084b9a7a0e1b3ddad97a1048",
+    "Sources/HanlinMiniAppsBridge/MiniAppContracts.swift": "f3834e432bf48097d065234c0222ca96d0bbe025c36a9491af483a9b16e39bec",
+    "Sources/HanlinMiniAppsBridge/MiniAppPreferences.swift": "8a359491aac0f7602cd5347395f7c36755e5450b16edea2388818d3aa46357d4"
+  },
+  "shared_object_sha256": "8f5f75cdb82e449987fee137d8427c1a4e69c0894697300b5f283d67e2352019"
+}

@@ -19,6 +19,7 @@ struct iOSAnnotationEditorSheet: View {
     @State private var operationErrorMessage: String?
     @State private var editorTextView: UITextView?
     @State private var hasInitialized: Bool = false
+    @State private var miniAppsEditorID = UUID()
 
     private var availableColors: [UIColor] {
         if isUnderline {
@@ -176,6 +177,18 @@ struct iOSAnnotationEditorSheet: View {
             .navigationTitle(.Annotation.editAnnotation)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        OtzariaMiniAppsCoordinator.shared.showEditor(annotation: annotation,
+                            draft: editorTextView?.text ?? noteText,
+                            selection: editorTextView?.selectedRange,
+                            editorID: miniAppsEditorID, textView: editorTextView)
+                    } label: {
+                        Image(systemName: "square.grid.2x2")
+                    }
+                    .accessibilityIdentifier("otzaria-note-miniapps")
+                    .accessibilityLabel(String(localized: "Mini Apps"))
+                }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
                         dismiss()
@@ -203,6 +216,14 @@ struct iOSAnnotationEditorSheet: View {
                 }
             }
             .onAppear {
+                OtzariaMiniAppsCoordinator.shared.registerEditor(id: miniAppsEditorID,
+                    currentText: { editorTextView?.window == nil ? nil : editorTextView?.text ?? noteText },
+                    didCommit: { saved in
+                        annotation = saved
+                        noteText = saved.note ?? ""
+                        AccessibleAutoDirectionTextView.lastEnteredText = noteText
+                        editorTextView?.text = noteText
+                    })
                 guard !hasInitialized else { return }
                 hasInitialized = true
                 noteText = annotation.note ?? ""
@@ -218,6 +239,7 @@ struct iOSAnnotationEditorSheet: View {
                 #endif
             }
             .onDisappear {
+                OtzariaMiniAppsCoordinator.shared.unregisterEditor(id: miniAppsEditorID)
                 onNativeTextView?(nil)
                 if AccessibleAutoDirectionTextView.activeInstance === editorTextView {
                     AccessibleAutoDirectionTextView.activeInstance = nil

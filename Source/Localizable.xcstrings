@@ -1,6 +1,102 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Mini Apps": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mini Apps"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מיני אפליקציות"
+          }
+        }
+      }
+    },
+    "The original note could not be found.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The original note could not be found."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההערה המקורית לא נמצאה."
+          }
+        }
+      }
+    },
+    "The note changed while the Mini App was open. Your result is kept in MiniApps.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The note changed while the Mini App was open. Your result is kept in MiniApps."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההערה השתנתה בזמן שהמיני אפליקציה הייתה פתוחה. התוצאה שלך נשמרת ב־MiniApps."
+          }
+        }
+      }
+    },
+    "Open the original library to receive this Mini App result.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open the original library to receive this Mini App result."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יש לפתוח את הספרייה המקורית כדי לקבל את תוצאת המיני אפליקציה."
+          }
+        }
+      }
+    },
+    "Hanlin MiniApps could not be opened.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hanlin MiniApps could not be opened."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן לפתוח את Hanlin MiniApps."
+          }
+        }
+      }
+    },
+    "The Mini App did not return any content.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The Mini App did not return any content."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המיני אפליקציה לא החזירה תוכן."
+          }
+        }
+      }
+    },
     "": {
       "shouldTranslate": false,
       "localizations": {}

@@ -121,6 +121,10 @@ struct iOSMainView: View {
             }
         }
         .environment(navigationManager)
+        .background(OtzariaMiniAppsSceneRegistration(manager: navigationManager).frame(width: 0, height: 0))
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+            OtzariaMiniAppsCoordinator.shared.resume(manager: navigationManager)
+        }
         .onOpenURL { url in
             handleOpenURL(url, bManager: bManager)
         }
@@ -196,6 +200,7 @@ struct iOSMainView: View {
     }
 
     private func handleOpenURL(_ url: URL, bManager: iOSNavigationManager) {
+        if OtzariaMiniAppsCoordinator.shared.receive(url, manager: bManager) { return }
         if MaktabahNativeURLHandler.handle(url, manager: bManager) { return }
         guard let deepLink = WidgetDeepLink.parse(from: url) else { return }
 
