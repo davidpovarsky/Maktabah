@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-11-23T05:04:22Z",
+  "updated_at_utc": "2026-11-23T05:30:18Z",
   "canonical_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
   "root_branch": "codex/otzaria-oracle-completion-20261123",
   "user_instruction": "בעצם, תעשה את הכל בעצמך ותשתמש עם תתי הסוכנים הזמינים לך בצ׳אט פה, בצע הכל עד להשלמה מלאה של המשימות השתמשת בכלי @SentinelX בחשבון המחובר לשרת האורקל ישירות, ועדכן ב @Asana , אחרי כל שלב שאתה מבצע",
@@ -29,7 +29,7 @@
       "source": "4aa7b02b8e4cb8c124dd59ddb656746481d9aa6a",
       "run": 45106338448,
       "watcher": "job_14238ad948f8",
-      "status": "QUEUED_AT_CENTRAL_POST_QUOTA_OBSERVATION",
+      "status": "ACTUAL_INPUT_ADMISSION_FAILURE_STATIC_FRAMEWORK_MISCLASSIFICATION",
       "native_acceptance": false,
       "previous_attempts": [
         {
@@ -51,12 +51,25 @@
       ],
       "new_affected_raw_capture_controls_passed": 2,
       "runtime_commands_started": 0,
-      "allocation": "UNKNOWN",
+      "allocation": "ACTUAL_APPLE_JOB",
       "observer_windows": 3,
       "previous_watcher": "job_62855c0dbc16",
       "previous_watcher_terminal": true,
       "watch_interval_seconds": 120,
-      "observer_quota_error_is_native_result": false
+      "observer_quota_error_is_native_result": false,
+      "watcher_terminal": true,
+      "artifact": 14791007147,
+      "artifact_bytes": 129761,
+      "artifact_sha256": "bfb33d663df5b9fd38ed890b71561e8422f4ae3251b7378980c0d81a0804521b",
+      "intake_sha256": "46cd468870576eb010eec54fecefe41f20ea225a0e67419233fa4de996877e59",
+      "failure_phase": "INPUT_ADMISSION",
+      "failure": "Retained signed consumer uses a different framework: Lib.framework",
+      "actual_signature_verify": "PASS",
+      "simulator_attempts": 0,
+      "producer_rebuilds": 0,
+      "diagnosis": "Authenticated original headers: 15 DYLIB embeds, 2 static Archive/OBJECT distribution-only products. Original producer embedded only DYLIB; continuation incorrectly compared all 17.",
+      "diagnosis_sha256": "e5901fd9794c1ae71f8357765b63177b9a014c84db920467b95e01fe3033b990",
+      "repair_state": "THREE_SOURCE_PATHS_AND_BOUNDED_FOCUSED_CONTROLS_ROOT_APPROVED_PREPARATION_ONLY"
     },
     {
       "name": "hanlin_live11",
@@ -189,7 +202,7 @@
       "passed_case": "RegisteredPreStartCancellationRequiresActualReturn",
       "failed_case": "OriginalProtobufImportAndReentrantRetirement",
       "failure_boundary": "Complete mapping assertion before actual mapped native readback and reentrant Apply",
-      "repair_status": "ONE_ORIGINAL_MAPPING_FINISH_HUNK_ROOT_APPROVED_SOURCE_PREPARATION_ONLY",
+      "repair_status": "REPAIR_SOURCE_REVIEWED_AND_PUSH_TRIGGERED_RUN45116895060",
       "repair": "Original NoOp progress ID is empty; retain that actual value without requiring nonempty progressID. Actual trace/target/eligibility/assignments/drain remain mandatory. Run only failed leaf; explain unchanged prestart route reachability."
     },
     {
@@ -220,13 +233,13 @@
       "artifact_sha256": "56eac74fc92c1334bbdd305f9f61cb38bc4513b01690326606577fa1d8f95b9c",
       "source_admission": "285_EXECUTION_INPUTS_AND_1012_COMPILED_ROWS_AUTHENTICATED",
       "failure_diagnosis": "ProfileColor any.firstMatch resolves duplicated decorative Image instead of unique original StaticText; two Sheet and Group geometry states were not fully retained at exact failure. No proven product defect for those three.",
-      "retry_started": false,
+      "retry_started": true,
       "intake_sha256": "5b0082ffd9f28c42942d435571d8066e78e62e88006096ddc22476b6e4459f18",
       "captures_artifact": 14790249039,
       "captures_sha256": "229baed7362e13164943688429efe9c4f8edf05da228d022ba5846bf5084250b",
       "selected_failure_receipt_sha256": "97a9f82242561bf99ce79e8bcfb23148d00498b26bf2679563a639c07799fd8e",
       "root_actual_failure_images_reviewed": 4,
-      "followup": "Root authorized test-only unique StaticText lookup plus strict observation at original geometry/currentness/hittability gates. Four failed leaves only; six PASS retained separately; no product change or threshold relaxation. Packet pending review."
+      "followup": "Four failed leaves followup published and active at 99b71a011fa5a060f0334a5312d498830eaeda77 / run45116660011. Six historic PASS remain tied to old b85 source and have not been replayed with the updated helper."
     },
     {
       "name": "original_generated_schema_endpoint",
@@ -268,10 +281,13 @@
     {
       "name": "original_owned_import_rpc_design",
       "owner": "/root/asana_scope",
-      "status": "SOURCE_CONTRACT_PENDING_WHOLE_GRAPH_DISPOSITION_AND_MAPPING_AWARE_BODY_PROOF",
+      "status": "DOCUMENTATION_ONLY_CONTRACT_PREPARATION_ACTIVE",
       "dependency": "Original existing ObjectImport returns before completion; requires genuine owned importer Done/Result without replacing original engine",
       "native_acceptance": false,
-      "concrete_blocker": "Original existingobject lookup precedes updateExisting flag, nested derived paths permit lookup, reused payload can reset existing objects and reset errors may be logged only. No production import activation authorized."
+      "concrete_blocker": "Whole graph reuse must bypass metadata/sync/reset paths; create races must propagate actual ErrTreeExists; file uploads precede ObjectCreator.Create; planning and live per-assignment checks are required. Native export may return nil on cancellation and default PB conversion may create a collection. Genuine exported graph and mapping-aware body proof still required.",
+      "source_base": "cfc71a30498bba772aaf33f1ac08fdf65d1e0e3a",
+      "worktree": "/mnt/development/projects/worktrees/anytype-otzaria-owned-import-contract-20261123",
+      "additional_product_edits_authorized": false
     },
     {
       "name": "reader_source_performance",
@@ -346,14 +362,15 @@
       "temporary_secret_cleanup_required": true,
       "secret_metadata_created_at": "2026-11-23T04:53:07Z",
       "binding_sha256": "f3c716700f676b62ca03286b474cb80a40ce403c872c94824be681902a1971c8",
-      "no_automatic_redispatch": true
+      "no_automatic_redispatch": true,
+      "last_observer_job_observed_utc": "2026-11-23T05:25:00Z"
     },
     {
       "name": "original_account_bootstrap_environment",
       "owner": "/root/original_sdk",
       "source_plan": "642a8b9cd9cd243e820db154ea2471b6882e2a94",
       "product_base": "89926d7839c09a629c195ec6dd9812fe56aad069",
-      "status": "E1_FOUR_PATHS_SOURCE_IMPLEMENTATION_AUTHORIZED",
+      "status": "E1_FOUR_PATHS_ROOT_REVIEWED_AND_SOURCE_ONLY_PUBLISHED",
       "source_inventory_files": 62,
       "root_original_environment_storage_sources_read": 5,
       "scope": "Immutable embedded deployment, actual app-group validation and fixed namespacing of both original defaults wrappers; original standalone behavior preserved",
@@ -361,7 +378,80 @@
       "native_acceptance": false,
       "production_bootstrap_activated": false,
       "qualification_sdk_rebuild": false,
-      "core_environment_boundary": "Direct preexisting CoreEnvironment reads cannot be claimed sealed by these four files; no cache override, fail deployment mismatch; any fifth-file hunk requires concrete scope review."
+      "core_environment_boundary": "Direct preexisting CoreEnvironment reads cannot be claimed sealed by these four files; no cache override, fail deployment mismatch; any fifth-file hunk requires concrete scope review.",
+      "source": "d1ca51352734bd21a4943e7e094ac3ae95519c1e",
+      "source_only": true,
+      "ci_activation": false,
+      "product_files": 4,
+      "packet_files": 77,
+      "indexed_files": 76,
+      "root_verified_indexed_sizes_and_digests": 76,
+      "initial_portable_controls_retained": 16,
+      "additional_final_mode_controls_passed": 4,
+      "final_runtime_source_sha256": "adbd976a8f3a83b792775e04db3bbcf524fd176a2ff4761c639599551453141f",
+      "source_proof_sha256": "b5d8fc6f681ee611bf0c09f13f33326d425ebaba305b5ae86e2738ddf3a26fff",
+      "e2_readiness_finding": "Starting AccountEventHandler does not prove the Model Passthrough consumers have demanded events. Concrete original Model readiness seam must be reviewed before E2 edits."
+    },
+    {
+      "name": "reader_profile_followup4",
+      "owner": "/root/original_rpc",
+      "source": "99b71a011fa5a060f0334a5312d498830eaeda77",
+      "test_source": "cd1e4991253d7be0ff436e9ff51805d3539d33de",
+      "tree": "dba880194d2250e6b4d78191c0be6e768122cd97",
+      "run": 45116660011,
+      "run_attempt": 1,
+      "watcher": "job_ad85e1c50e33",
+      "watch_interval_seconds": 120,
+      "watcher_terminal": false,
+      "status": "PUBLISHED_PUSH_RUN_SINGLE_OBSERVER_ACTIVE",
+      "selected_cases": 4,
+      "source_admission_inputs": 285,
+      "product_source_vendor_project_changed": false,
+      "original_case_deadline_seconds": 600,
+      "six_historical_passes_transfer_to_new_helper": false,
+      "native_acceptance": false,
+      "publication_receipt_sha256": "75f010e1c4c9b955001965196a05ce5c2e7c7c73825487973fc0b6d787701a66"
+    },
+    {
+      "name": "heart_lifetime_mapping_repair",
+      "owner": "/root/asana_scope",
+      "source": "cfc71a30498bba772aaf33f1ac08fdf65d1e0e3a",
+      "product_source": "26b7e507359dc2c6fce5dc18fb856d273723d905",
+      "tree": "80e6aed73d852c28dd6f8439ffcf41a15556870a",
+      "run": 45116895060,
+      "run_attempt": 1,
+      "watcher": "job_36005c7e554d",
+      "watch_interval_seconds": 120,
+      "watcher_terminal": false,
+      "status": "PUBLISHED_PUSH_RUN_SINGLE_OBSERVER_ACTIVE",
+      "native_cases_to_execute": 1,
+      "retained_actual_prestart_passes": 1,
+      "whole_product_tree_unchanged": false,
+      "final_source_admission": "PASS42_RETAINED6_CURRENT",
+      "final_source_admission_sha256": "329119d747afd57e1cd7697ade9f42dd1e4ae24abca6533889f6b5c7c77ae918",
+      "native_acceptance": false
+    },
+    {
+      "name": "full_v32_reader_ui_observation",
+      "owner": "/root/original_rpc",
+      "base": "99b71a011fa5a060f0334a5312d498830eaeda77",
+      "status": "BOUNDED_SOURCE_IMPLEMENTATION_ACTIVE_NOT_NATIVE_QUALIFIED",
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-reader-full-v32-ui-observation-20261123",
+      "brief_source": "e61e54cd2f98a255462aadbfa9aee8b4b4398d8b",
+      "brief_sha256": "1480c16726ed0c090c6a325151ad95f1ff5c95d317dbb32953b601682d6d0ef8",
+      "planned_reader_observations": 20,
+      "planned_inspector_populations": [
+        100,
+        500,
+        2000
+      ],
+      "additional_source_allowlist": [
+        "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift"
+      ],
+      "source_hook_scope": "Explicit opt-in DEBUG-only actual PID/systemUptime and capped composed source sample, requested outside measured epochs; no first-pixel/full-render/CPU claim from this probe",
+      "inputs": "UNFINALIZED",
+      "native_acceptance": false,
+      "ci_activation": false
     }
   ],
   "boundaries": {
@@ -407,7 +497,11 @@
     "1220775700127203",
     "1220775548597709",
     "1220775548641923",
-    "1220775700310239"
+    "1220775700310239",
+    "1220775780879400",
+    "1220775780852162",
+    "1220775780888066",
+    "1220776106711097"
   ],
   "inventory": {
     "unique_tasks": 83,

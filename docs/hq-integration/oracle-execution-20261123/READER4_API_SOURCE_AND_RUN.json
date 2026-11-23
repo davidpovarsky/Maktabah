@@ -1,0 +1,26 @@
+{
+  "api_commit": "99b71a011fa5a060f0334a5312d498830eaeda77",
+  "local_ci_preparation": "22e777e46bbd469efc824e213c23c9736fc0464e",
+  "test_source_commit": "cd1e4991253d7be0ff436e9ff51805d3539d33de",
+  "expected_tree": "dba880194d2250e6b4d78191c0be6e768122cd97",
+  "tree_equality": "PASS",
+  "api_source_admission": "PASS285_INPUTS_FOUR_DECLARATIONS",
+  "selectors": [
+    "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+    "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+    "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+    "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"
+  ],
+  "native_tests_replayed": false,
+  "run": {
+    "conclusion": "",
+    "createdAt": "2026-11-23T05:15:49Z",
+    "databaseId": 45116660011,
+    "event": "push",
+    "headBranch": "codex/otzaria-reader-profile-followup-20261123",
+    "headSha": "99b71a011fa5a060f0334a5312d498830eaeda77",
+    "status": "queued",
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45116660011",
+    "workflowName": "Reader and Profile focused native acceptance"
+  }
+}

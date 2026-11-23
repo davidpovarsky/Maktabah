@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-23T05:30:18Z",
+  "reviewer": "/root",
+  "scope": "Source and retained portable controls only",
+  "source": "d1ca51352734bd21a4943e7e094ac3ae95519c1e",
+  "reviewed": [
+    "Four complete E1 product afterimages",
+    "Mode-only diff and source inverse correspondence",
+    "Complete portable harness and driver",
+    "Final source projection admission",
+    "16 retained initial controls and four newly executed mode controls",
+    "All 76 indexed file sizes and SHA256 values"
+  ],
+  "index_sha256": "acc30acb4a9b227bfbb96b3672aec09eb706172910298ab6a1333ad9334ff17b",
+  "new_control_result_sha256": "ae5046cab32aabc4ce876d25685fda3932e310a563900bcdbe767831bb72a49f",
+  "new_control_binary_sha256": "0f1ad1a72add5f544b0729e18405cd970c944d28d12e7331f822a2e6d7315e0e",
+  "disposition": "ACCEPTED_SOURCE_ONLY_PUBLICATION",
+  "unqualified": [
+    "Apple signed AppGroup access",
+    "Apple lock implementation",
+    "Actual bundle metadata",
+    "UIKit",
+    "Native account bootstrap",
+    "Device acceptance"
+  ],
+  "e2_status": "NOT_AUTHORIZED_PENDING_ORIGINAL_PUBLISHER_DEMAND_READINESS_SEAM"
+}

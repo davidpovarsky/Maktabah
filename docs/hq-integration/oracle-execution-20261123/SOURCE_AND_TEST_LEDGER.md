@@ -39,3 +39,11 @@ The real Heart lifetime gate compiled and executed two native leaves: one presta
 Reader10 retains six PASS/four FAIL. Root viewed all four genuine selected failure images and the ProfileColor duplicate AX identifier. Followup is a unique original StaticText lookup plus exact bounded observation for three geometry boundaries, preserving every strict gate and the six separate prior passes. Library attempt1 remains seven NOT_RUN due to Simulator administrative stalls; one unchanged-source rerun was accepted.
 
 PERF checkout repair04d0257 has the exact reviewed tree and preserves all product/harness bytes; its one push run45114602342 is observed by the owner. No new timing result is claimed. Bootstrap E1 is authorized only in four original environment/storage paths after full plan/archive audit and direct wrapper source review; UIKit/account/Keychain/native bootstrap remains unqualified.
+
+## Checkpoint 8 — 2026-11-23T05:30:18Z
+
+Reader4 is published at 99b71a0 / run45116660011, Heart mapping repair at cfc71a3 / run45116895060. Both have one owner/observer; historic Reader6 and Heart prestart PASS remain source-bound and are not newly executed tests. SDK continuation3 reached actual Apple INPUT_ADMISSION and failed because static Lib/Sentry were incorrectly required as embedded frameworks. Authenticated producer headers establish the15 DYLIB/2 static partition; root approved only the bounded correction and focused controls for preparation.
+
+E1 four-file product source d1ca513 is published without CI after complete root source/control review and independent digest verification of76 indexed files. Sixteen actual initial portable controls are retained by exact source correspondence; four additional mode controls executed on the final source. No Apple/account/bootstrap claim. E2 awaits a concrete original publisher-demand readiness barrier. Full-v32 UI observation has one owner and a published9,466-byte implementation brief; one explicit opt-in DEBUG observer hunk is authorized, with all observation encoding excluded from measured epochs.
+
+Four further Asana stage updates are recorded. Live12 remains active with temporary-secret cleanup still required; root retains sole lifecycle ownership. Final four-tree composition and Native116/Release114 remain UNFINALIZED.

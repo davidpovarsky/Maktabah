@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "final_source": "cfc71a30498bba772aaf33f1ac08fdf65d1e0e3a",
+  "final_parent": "26b7e507359dc2c6fce5dc18fb856d273723d905",
+  "final_tree": "80e6aed73d852c28dd6f8439ffcf41a15556870a",
+  "remote_head_verified": "cfc71a30498bba772aaf33f1ac08fdf65d1e0e3a",
+  "source_checkout_preserved": "26b7e507359dc2c6fce5dc18fb856d273723d905",
+  "prepared_ref_preserved": "d4f3ea4c5a938274fb1aba5ce0ff0966beb704eb",
+  "source_inputs_compared_to_immutable_originals": 42,
+  "current_controls_compared": 6,
+  "source_only_packet_files_byte_identical": 20,
+  "workflow_only_child_delta": [
+    ".github/workflows/otzaria-heart-lifetime-repair.yml"
+  ],
+  "workflow_sha256": "1078d2e5df0d0255872586a95722b5fde41050dca5a41dcc6761ff970ba74712",
+  "manifest_sha256": "98385a58672ba05ca375ed351c45a9597ab41a8998fb8c1bf1175fd749bc5319",
+  "source_preflight_reused_sha256": "c357cd5450c1be0f93e0b0133c2539dd716f12cfb23d1fc26495ffc2a3ee07d6",
+  "source_preflight_replayed": false,
+  "native_runtime_replayed": false,
+  "admission": "PASS_FINAL_API_TREE_AND_EXACT_EXECUTION_INPUTS",
+  "observed_at": "2026-11-23T05:19:58.567195+00:00"
+}

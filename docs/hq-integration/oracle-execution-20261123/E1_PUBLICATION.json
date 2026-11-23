@@ -1,0 +1,21 @@
+{
+  "branch": "codex/otzaria-original-production-20261123",
+  "commit": "d1ca51352734bd21a4943e7e094ac3ae95519c1e",
+  "tree": "ca3da6d9540db1908a029c5d789812b4cc1877bf",
+  "parent": "642a8b9cd9cd243e820db154ea2471b6882e2a94",
+  "product_paths": [
+    "Modules/AnytypeCore/AnytypeCore/Utils/OriginalRuntimeEnvironment.swift",
+    "Modules/AnytypeCore/AnytypeCore/Utils/TargetsConstants.swift",
+    "Modules/AnytypeCore/AnytypeCore/Utils/UserDefaultWrapper/UserDefaultByAppGroupStorage.swift",
+    "Modules/AnytypeCore/AnytypeCore/Utils/UserDefaultWrapper/UserDefaultStorage.swift"
+  ],
+  "product_file_count": 4,
+  "owned_packet_file_count": 77,
+  "packet_indexed_entries": 76,
+  "total_changed_paths": 81,
+  "message": "[skip ci] Capture original runtime deployment and isolate embedded defaults",
+  "source_only": true,
+  "ci_activation": false,
+  "clean": true,
+  "push": "PASS"
+}

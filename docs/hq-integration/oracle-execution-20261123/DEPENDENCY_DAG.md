@@ -1,10 +1,12 @@
 # Execution dependencies
 
-1. G0 source/dirty trees/active owners/access/evidence: completed.
-2. In parallel: existing DB/reader/search safety (root), original editor runtime (original_sdk), original RPC generation (original_rpc), original Hanlin Host diagnosis (asana_scope).
-3. Successful original SDK + generated RPC permit original Heart account/selected-Space persistence/ACK integration, then actual embedded StageB edit/save/new-process reopen. Other Any-native work remains with its active owner.
-4. Independent existing-product corrections and explicitly resumed Library morph proceed without waiting on an unavailable provider contract.
-5. Integrate qualified packets in dependency order, freeze exact Source/Vendor/project/UItests and original dependency identities. Run mandatory Native116/Release114 and remaining full-v32/performance gates once per relevant frozen source.
-6. Perform eligible TestFlight delivery and actual physical-device acceptance. Keep tasks with unmet external/runtime/device criteria OPEN.
+Updated at checkpoint 8; current run identities are in CURRENT_EXECUTION.json.
 
-Known external boundaries: authentic Books Updates contract; genuine owner verification key; physical iPad access. Preserve safe refusal instead of fabricating contracts or turning failures into passes. These boundaries do not stop independent code and validation work.
+1. Source/owner/access inventory is complete. Existing read-only records and real failures remain retained.
+2. Independent active lanes: Library attempt2; Reader four failed leaves; full-v32 component AB/BA; Live12 Host diagnosis; original Heart lifetime repair; generated native endpoint5. Full-v32 UI observation code is being prepared against the accepted Reader helper while these exact-source runs remain frozen.
+3. The retained original SDK must pass authentic EN/HE consumer runtime. Its source currently needs a bounded static-versus-DYLIB admission correction. Only that real PASS permits the separately prepared mounted original StageB edit/save/new-process reopen gate.
+4. Production account/Space integration has separate sources: genuine generated RPC, native endpoint/lifetime proof, E1 immutable storage context, the reviewed E2 original-service bootstrap, the native owned-import whole-graph contract, and the actual saved local source boundary. Old retained SDK acceptance cannot qualify the later production composition. Mapping/Cancel/early ObjectImport return cannot stand in for actual Done, complete readback or Host acknowledgment.
+5. Assemble only qualified product changes, resolve their concrete intersections, and freeze exact Source/Vendor/project/UItests plus original dependency identities. Native116, Release114 and final full-v32 Reader/Inspector/performance observations must refer to that same frozen composition. Final inputs remain UNFINALIZED until this is true.
+6. Deliver a genuinely signed eligible release/TestFlight after the software gates. Record actual physical iPad acceptance separately; existing task approval does not supply missing hardware, credentials or signatures.
+
+External boundaries remain the authentic Books Updates backend/schema/source-digest/migration contract, genuine owner verification key, and actual physical iPad access. Work on independent source and native gates continues. No task is completed solely because a plan, build, mapping or source control passed.

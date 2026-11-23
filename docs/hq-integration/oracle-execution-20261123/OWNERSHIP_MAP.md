@@ -1,12 +1,14 @@
 # Active ownership — 23 November 2026
 
-| Owner | Outcome / task | Isolated source | Allowed writes |
-| --- | --- | --- | --- |
-| root (MAIN_SESSION) | Product safety, Library morph, integration, Asana | Maktabah-oracle-completion-20261123 @1969b2065469b55e38e42cbb838a469ffa6a80f7 | Downstream ToolbarSearch/ReaderHost composition, new focused UI tests/CI, this ledger; shared project edits only if necessary and recorded |
-| original_sdk (SUBAGENT) | SDK-RUNTIME-ENHE;1220545194715722 | anytype-otzaria-sdk-runtime-20261123 @de63125b97cd5b91a1fa4f4b71d03738076e735f | Tools/OriginalEditor launch/capture/continuation, dedicated signed-consumer workflow, focused controls/evidence |
-| original_rpc (SUBAGENT) | RPC-CANDIDATE;1220545194715722 | anytype-otzaria-rpc-runtime-20261123 @08ebfa77114e2f8c4efa4491b5222029eda60a3b | Downstream native-annotation-schema-rpc-generation-20261122 packet/helper/controls and otzaria-schema-rpc-generation.yml |
-| asana_scope (SUBAGENT, role now Hanlin owner) | HANLIN-LIVE-HOST;1220542467495722 | Maktabah-hanlin-host-20261123 @1969b2065469b55e38e42cbb838a469ffa6a80f7 | Source/ChavrusaText/HanlinHostAdapter/{OtzariaHanlinChatSession,OtzariaHanlinChatOwner,OtzariaHanlinHostAdapter}.swift only if evidence requires; own focused tests/evidence |
+Updated at checkpoint 8. CURRENT_EXECUTION.json carries exact source, run, artifact and watcher identities.
 
-No worker edits another's source, original dirty checkouts, dependency locks, shared SDK implementation or final acceptance controllers. The worker who changes a behavior owns its focused verification; root owns integration/release checks and Asana updates. ChatGPT canonical agent names are the available session identities; no external model/UUID is invented. Owner sends actual SHA, scope, command outcomes and retained evidence before integration.
+| Owner | Active responsibility | Owned locations and limits |
+| --- | --- | --- |
+| /root | Integration review, exact-source CI publication, Asana, final composition and Live12 credential lifecycle | Maktabah-oracle-completion-20261123; sole controller of run45114449674 and its temporary secret; no parallel worker may dispatch or delete that secret |
+| /root/original_rpc | Library attempt2, Reader4, PERF03 and full-v32 UI observation preparation | Existing isolated Library/Reader/PERF worktrees; new Maktabah-reader-full-v32-ui-observation-20261123 based on99b71a0. Additive tests/new collector/inputs/owned docs; exactly one approved opt-in DEBUG source observer hook. Original RPC generation is complete and retained. |
+| /root/original_sdk | Retained original SDK continuation repair, StageB prerequisite, original production E1/E2 preparation | anytype-otzaria-sdk-runtime-20261123; Maktabah-original-editor-stageb-20261123; anytype-otzaria-original-production-20261123. E1 published d1ca513; E2 edits await concrete consumer-readiness seam review. No StageB activation before actual SDK PASS. |
+| /root/asana_scope | Original Heart mapping repair, generated endpoint5, native owned-import contract | anytype-otzaria-heart-lifetime-repair-20261123 and endpoint worktree frozen while running; owned-import-contract worktree documentation only. Further native product files require concrete source review. |
 
-No source file is classified by directory alone. Existing downstream toolbar/reader integration files are checked against historical original upstream provenance before changes. No upstream synchronization is part of this work; minimal required original hooks remain subject to current authorization and preserved architecture.
+Each exact CI run has one named observer with a minimum 120-second cadence. Terminal artifacts belong to that lane's owner. Root may inspect retained evidence but does not launch duplicate tests or observers. Failed or old-source evidence stays identified by its actual source and attempt.
+
+Preserve unrelated dirty checkouts, active owners, original dependencies and existing qualification history. Scoped pushes disable mirror behavior per command; no global git configuration changes. Source plans and portable controls do not replace native completion, account authority, permission, signed device or full-body proof.
