@@ -1,0 +1,108 @@
+{
+  "run_id": 45150723169,
+  "run_attempt": 2,
+  "source_sha": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+  "state": "CLOSED",
+  "started_at": "2026-11-23T10:28:22.223399+00:00",
+  "interval_seconds": 120,
+  "maximum_observation_seconds": 3300,
+  "prior_attempt_retained": true,
+  "duplicate_dispatch": false,
+  "initial_metadata": {
+    "id": 45150723169,
+    "run_attempt": 2,
+    "head_sha": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+    "status": "queued",
+    "conclusion": null,
+    "updated_at": "2026-11-23T10:27:04Z",
+    "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45150723169"
+  },
+  "child_pid": 2661531,
+  "process_group": 2661531,
+  "command": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "gh",
+    "run",
+    "watch",
+    "45150723169",
+    "--repo",
+    "davidpovarsky/Maktabah",
+    "--exit-status",
+    "--compact",
+    "--interval",
+    "120"
+  ],
+  "watch": {
+    "argv": [
+      "runuser",
+      "-u",
+      "ubuntu",
+      "--",
+      "gh",
+      "run",
+      "watch",
+      "45150723169",
+      "--repo",
+      "davidpovarsky/Maktabah",
+      "--exit-status",
+      "--compact",
+      "--interval",
+      "120"
+    ],
+    "exit": 1,
+    "timed_out": false,
+    "child_reaped": true,
+    "owned_group_drained": true,
+    "term_sent": false,
+    "kill_sent": false,
+    "elapsed_seconds": 1091.4956236314029,
+    "stdout": {
+      "bytes": 3321,
+      "sha256": "bcc9e42e3a123bd111f08aca96d31a99760653e59113decff4bf7e47b448b86b"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "final_metadata_command": {
+    "argv": [
+      "runuser",
+      "-u",
+      "ubuntu",
+      "--",
+      "gh",
+      "api",
+      "repos/davidpovarsky/Maktabah/actions/runs/45150723169"
+    ],
+    "exit": 0,
+    "timed_out": false,
+    "child_reaped": true,
+    "owned_group_drained": true,
+    "term_sent": false,
+    "kill_sent": false,
+    "elapsed_seconds": 0.41606857534497976,
+    "stdout": {
+      "bytes": 12886,
+      "sha256": "8d13f3b1a1b582406bba75b425d022b78c50ccbadd8a4ea26ec0b78aa5b62e13"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "final_metadata": {
+    "id": 45150723169,
+    "head_sha": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+    "run_attempt": 2,
+    "status": "completed",
+    "conclusion": "failure",
+    "updated_at": "2026-11-23T10:44:46Z",
+    "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45150723169"
+  },
+  "final_identity_matches": true,
+  "finished_at": "2026-11-23T10:46:34.136275+00:00"
+}

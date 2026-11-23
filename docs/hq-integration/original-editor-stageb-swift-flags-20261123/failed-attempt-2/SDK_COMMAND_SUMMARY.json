@@ -1,0 +1,577 @@
+{
+  "scope": "ACTUAL_RETAINED_APP_INTEGRATION_PREREQUISITES_ONLY",
+  "commands": [
+    {
+      "path": "hq-stage2/original-editor/exported-api-typecheck.json",
+      "returncode": 0,
+      "record_sha256": "401f06c22499bf0847b8bb74456174eadcb659bb33cac7927da17d88591418bd"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-0.json",
+      "returncode": 0,
+      "record_sha256": "f953244e1226b1e7ca877950349a99c3400210af27867735e8645a9dc06abe35"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-1.json",
+      "returncode": 0,
+      "record_sha256": "7c1dee635540dd738b5ce253d01dc9798c7e6e2516f598dfef12f348291b4047"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-10.json",
+      "returncode": 0,
+      "record_sha256": "458945a8f999dc22472ffb2926f0fc5b9fc9a554fcfac023983b5da8c9b6d709"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-11.json",
+      "returncode": 0,
+      "record_sha256": "0d58b0bf228f31b531e4e1438cf6511833a85e830f31de81b68df97137c964ce"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-12.json",
+      "returncode": 0,
+      "record_sha256": "a586ada2397ffc2a597a4383b89f776ca2e23fe3b989e60adf207f33383bcfeb"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-14.json",
+      "returncode": 0,
+      "record_sha256": "2a7b178aa5084ef1c79584e342b7ffa9241ab6a81fbc21e02e0f3125188f8c89"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-15.json",
+      "returncode": 0,
+      "record_sha256": "60195c643b2c3e3dd7961abc13b785f33433188a824f2e09eecd0570574be18e"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-16.json",
+      "returncode": 0,
+      "record_sha256": "4f8ca42573baafde294b84228613cd07cfbb5135d3173e167dd0887ac558e686"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-2.json",
+      "returncode": 0,
+      "record_sha256": "70b931164a7c3d0d2a5960a30fa2fef3a73f11e0637e59de53657a47f3ed3af5"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-3.json",
+      "returncode": 0,
+      "record_sha256": "3c8d727523d4df401c345a5e6ef7fe36fdc14fb47366d6058b2067de37f7589f"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-4.json",
+      "returncode": 0,
+      "record_sha256": "6f69b44cc8306316db3d287dc5dd05937876c9d8defe65339abea835ec25be55"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-5.json",
+      "returncode": 0,
+      "record_sha256": "9d59f783e8b5b5a3fbdc345dbeddc173ac24c32e8c6ee55542afbc082773986f"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-6.json",
+      "returncode": 0,
+      "record_sha256": "06881f4c058b0edf40b0e29ac6b9863dffa04ffdae0413df6ee2bc4c2ee494eb"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-7.json",
+      "returncode": 0,
+      "record_sha256": "aa75d6daf4c1ab1785bbec7b50f19758f67c62f24874e1c21171cfe9e8573e62"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-9.json",
+      "returncode": 0,
+      "record_sha256": "c775ba1447515bc662b5f2fa9310a3930dd6f2fd8506e265d15914b8ac4495d3"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-0.json",
+      "returncode": 0,
+      "record_sha256": "3488b65799373bfb0ae30139ffcbd45694dfd3c6883665f6f74e79882f49554d"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-1.json",
+      "returncode": 0,
+      "record_sha256": "1e9f8ab7a0e0dd7a4aabb074238adcd59f2989878185e966be13704987345487"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-10.json",
+      "returncode": 0,
+      "record_sha256": "59fe535b3ba01b29624306ced31e5ce12a0da7036ca1c8d171358eb4b0c2f9bb"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-11.json",
+      "returncode": 0,
+      "record_sha256": "aa644dbc1ef56dd65866ba6c344587146ec7768f36a8cd5417d9f8024b8bd944"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-12.json",
+      "returncode": 0,
+      "record_sha256": "f49feb87be3f6aa93db6ed1059b8ef6aa3401ec81f4458441600f8e6b1420bdf"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-13.json",
+      "returncode": 0,
+      "record_sha256": "9830fe1fec6271ab1e11faaba5bb73b8ffb22deb458a469c59a80fd6caea7398"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-14.json",
+      "returncode": 0,
+      "record_sha256": "5274b563f8963866cd5e4542817295745c08830bc834f39a41a7533346b7aaea"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-15.json",
+      "returncode": 0,
+      "record_sha256": "ab73d3447be0ba22d7fba36fdae41d4227853502681be9aa952490d42c3781bf"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-16.json",
+      "returncode": 0,
+      "record_sha256": "669bdd7253de46a781297ae3c8568fab21c30e068cbd468b25f712a9d2ef580e"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-2.json",
+      "returncode": 0,
+      "record_sha256": "0e66edc5cf8de71b14c6e528614c0d4d106b06f4b900d1c51a1af05f744127ea"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-3.json",
+      "returncode": 0,
+      "record_sha256": "6064a7be55adf3e7d4b2f02bd185a736ff9a566201241b926a4455bf9ff833bf"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-4.json",
+      "returncode": 0,
+      "record_sha256": "2443842fb00797c4cedb6020eed3ff97549d61a843f571b0c3f9174ee70ebc10"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-5.json",
+      "returncode": 0,
+      "record_sha256": "dfea10ae39b4355b39d98975c20057754a16eecc24ff26ab8b5ee982313c133d"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-6.json",
+      "returncode": 0,
+      "record_sha256": "c0e8a656549bb752c47af3a44c5a5d309ce87da3b42810fd5982c4241339606f"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-7.json",
+      "returncode": 0,
+      "record_sha256": "ba121f41fbf89904b1e9f2f109d59fdefad80e0369f10c1b044d6ceb572d2953"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-8.json",
+      "returncode": 0,
+      "record_sha256": "b1ad0c15f9432d3cfbf9d163901e77bec3fa24c88aa4bd366c8296cd3f998a98"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-9.json",
+      "returncode": 0,
+      "record_sha256": "a0f959e5fcdae47aac3b855bad747c8019c9ea6fd5efa4d3378002030a52c078"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-0.json",
+      "returncode": 0,
+      "record_sha256": "cce9dc99e8fa816a9c44a59388e72db4c1210d6617b7cec549c4eb6a38fa90f8"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-1.json",
+      "returncode": 0,
+      "record_sha256": "5c708d0670a5d0e3fc25ac94111529b5ba88c29d30e3757f0a86a05b68266b7c"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-10.json",
+      "returncode": 0,
+      "record_sha256": "32c04c34b1e1b9075d7dc5d0ec9093ed0ee4358976f5069359eb1f76dffb958c"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-11.json",
+      "returncode": 0,
+      "record_sha256": "c9b19347cf71ff074c0a87eefc100ff2db32c9be0a91af4c1cc0ca547f029719"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-12.json",
+      "returncode": 0,
+      "record_sha256": "15cccd006399c48d90e06e2c8f568afbd41f264534ce996bb91c1068a0f64d88"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-14.json",
+      "returncode": 0,
+      "record_sha256": "6b9026ec47c01a04b5b750b29769c8e361556685f354a602ad41810fe99395f5"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-15.json",
+      "returncode": 0,
+      "record_sha256": "e1627424f3978dc9961d23275c3d9d5304393446b68ba3520ffc1e5ec506ebdc"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-16.json",
+      "returncode": 0,
+      "record_sha256": "4781acc8e970d76a1b36e04658f27f4d8e41eeaa1b9ca8a0357fb272c610f5b6"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-2.json",
+      "returncode": 0,
+      "record_sha256": "da7ca6feddf77e60c27ccca9ad0bf0a041d1a41cefcac2ccd2964037f7ec57d6"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-3.json",
+      "returncode": 0,
+      "record_sha256": "054dc1e7494bb0e303f47c68c3ba747c7f548334e2c693041b30c38d680dc8ab"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-4.json",
+      "returncode": 0,
+      "record_sha256": "8478f5bf694893ee878d7f4f3c7257f4a9440ea9a256addf4676abb7bfe68a2f"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-5.json",
+      "returncode": 0,
+      "record_sha256": "16584571a74d5526bf01a99df65da95990a6dd0fd3064ab3aab0af0364bf173b"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-6.json",
+      "returncode": 0,
+      "record_sha256": "6d08ff354e65568e399fee7d4ca38fb73efb07ad7c66ff1d4ac1e9dda0a8f5d4"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-7.json",
+      "returncode": 0,
+      "record_sha256": "4d2cbddcdf3ed1a9771cc50db09369061c98fde05b71f470027bcdf9b17041d1"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-9.json",
+      "returncode": 0,
+      "record_sha256": "b9709f16204aa395bcba657f930fcb322f7e805de52975e62037de38fdca1e27"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-0.json",
+      "returncode": 0,
+      "record_sha256": "030e1ad3b1dffb700466a9451187529b14f4e1e98d9c358d95da27ec65837538"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-1.json",
+      "returncode": 0,
+      "record_sha256": "737b360af51831e91996a25de0c511df2b5188c6fd92b048aaf700e40137356c"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-10.json",
+      "returncode": 0,
+      "record_sha256": "8f347d7b64bb72c3c67f10f88ea09c8aa63756b69a7769ca0f55a60e16e33785"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-11.json",
+      "returncode": 0,
+      "record_sha256": "99d32927cca27cca4f7572ef1ee73973409a7538c8362698afca11d31a16f05d"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-12.json",
+      "returncode": 0,
+      "record_sha256": "ed1efa92420c493223bc18f85e7df4cb3d55cd2e0185b0ea078ee674d1eae184"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-14.json",
+      "returncode": 0,
+      "record_sha256": "bbd0f5977379870805e7dbc8252518fac55e0fe1650816c68c06acbe9690bb57"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-15.json",
+      "returncode": 0,
+      "record_sha256": "27b9e18d18d441bec059d7e8126137eac2e55e3c9b9c91afedd0a757d718a0bc"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-16.json",
+      "returncode": 0,
+      "record_sha256": "ca54af5c301a4ccdc998131900e9ee83ccb76c3d7f6b02b84d111253992a6ffa"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-2.json",
+      "returncode": 0,
+      "record_sha256": "0f77905f8df2c7e1396bde92b993b2d0ae7fb8cfe4ba029b06f0156aa94906a0"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-3.json",
+      "returncode": 0,
+      "record_sha256": "97b58c3add924d67ca4b28f48931286634694346d17559fa1c0989dcac30eb5c"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-5.json",
+      "returncode": 0,
+      "record_sha256": "ac1dcbed5e6adf8f156bda00f0a86b7abc370381a58bf109769179d7c88c0a6d"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-4.json",
+      "returncode": 0,
+      "record_sha256": "1ca2f1981d05b1325733c81d3e4b1ead14e5cd96b30cf955f36800c94e1f1c66"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-6.json",
+      "returncode": 0,
+      "record_sha256": "f251facd1556440afa7a590198d6e0b6010b85d2f97d5eacb9cc36cc8d2cc034"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-7.json",
+      "returncode": 0,
+      "record_sha256": "463067d64f92bbee0a6c98811a77858642ee7ee37b069a7b1d2117f58ec79d9b"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-9.json",
+      "returncode": 0,
+      "record_sha256": "382704df0e4b5ab1d3711fd8993b7ef7441124313c184f98b3b3fa3392e6a5c1"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-0-imports.json",
+      "returncode": 0,
+      "record_sha256": "c7fb50aa2977b5ea8b0cbb0cbb99d3118ce3ff6584108f2dd25aa0d57766e1f2"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-0-loads.json",
+      "returncode": 0,
+      "record_sha256": "35ae69378dfdd4f16319a19a9f20857d0494812369d944683564ef81ed140898"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-0-symbols.json",
+      "returncode": 0,
+      "record_sha256": "2956886955954effed980ca313d6761edf093ebf9c1694d581967bf2ee0014e5"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-1-imports.json",
+      "returncode": 0,
+      "record_sha256": "6bc97b7d31ab5537da73bdbf5dca05f72cd3ced466f81e16b361ebf39f49b534"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-1-loads.json",
+      "returncode": 0,
+      "record_sha256": "8695075bfe3e7042e2f67b3b21285d50f49e4e35c4d3ed2aaf3caaa568a68a8b"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-1-symbols.json",
+      "returncode": 0,
+      "record_sha256": "49771589c75c3fb41e66ad96f02e31daa3c77ad46ac2b9f4ec72963f2600d955"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-10-imports.json",
+      "returncode": 0,
+      "record_sha256": "687b9c6eba859221bee51aad793f7861d056ee6254722877af9c084e4346e00e"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-10-loads.json",
+      "returncode": 0,
+      "record_sha256": "0ee4d6f66e6719e38505d02d411cb055546482d53540027dafca99d3069f3e6b"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-10-symbols.json",
+      "returncode": 0,
+      "record_sha256": "5f3e4408871d066d7b2f538ca02a2f0e06a895cf7516c2f33af50b137a4fbd43"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-11-imports.json",
+      "returncode": 0,
+      "record_sha256": "4f0d13a6c0fed8bb74e840c7a2567c511e39aa41875a2b22c69d450c035a4c98"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-11-loads.json",
+      "returncode": 0,
+      "record_sha256": "fee6ab77c8cfc35233ffa74100a00b60da3c82b3a1fec9054266609b0f86b5e8"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-11-symbols.json",
+      "returncode": 0,
+      "record_sha256": "3969d0f313e4f82d25eb0650b4d7d95d3e5f276bfebf30707f956241b140e77c"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-12-imports.json",
+      "returncode": 0,
+      "record_sha256": "126d92cc1887d124007e05bd8c1529bf92a6ba4148cf824e367bb579217e09d2"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-12-loads.json",
+      "returncode": 0,
+      "record_sha256": "dd1bdd0839235b43210c95a096d5f34dfcb678af45739019b5af306b67192207"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-12-symbols.json",
+      "returncode": 0,
+      "record_sha256": "5f6bbb5135388e775ee7c7ba6480e6488597e886cfd4381da7f024f9ee3fc5f5"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-13-imports.json",
+      "returncode": 0,
+      "record_sha256": "e4dd1cf67d8f5f588f2601168b08e95d351b9df656e34d45c37dac34d299e0a8"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-13-loads.json",
+      "returncode": 0,
+      "record_sha256": "06246f7ce33137b927f6626c423692ef8b1b12fb28d06c920222710b483033ae"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-13-symbols.json",
+      "returncode": 0,
+      "record_sha256": "3c3dde406145ce666cbafd26ce33238e8639a0bbedfff0367cf53e13f06e4122"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-14-imports.json",
+      "returncode": 0,
+      "record_sha256": "883e2cec72e87da4f199b2c8326642f1d8f56b54372b1167586b3efe6b3e2a3d"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-14-loads.json",
+      "returncode": 0,
+      "record_sha256": "d4aa931f7c969de0517bb764812a7b26240bca578dbb2815ba16915d4d2d098f"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-14-symbols.json",
+      "returncode": 0,
+      "record_sha256": "2c65db1aa4681f91cc919b3014c3c3033471003f00072ba81d952204616c0fdc"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-15-imports.json",
+      "returncode": 0,
+      "record_sha256": "146532217f2b634c5e3ecc5fcdc53471fd63e5ff5af7660e15c85cf3747211a2"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-15-loads.json",
+      "returncode": 0,
+      "record_sha256": "f1a7c72fedeb3830bc6679c4af10a8d1004bcdb334d8d72d646565a41c7f49e2"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-15-symbols.json",
+      "returncode": 0,
+      "record_sha256": "137ee4c07ee3b55e89d11cf45c73f7f8e9088f01d20e8d3cc04863563ec528e5"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-16-imports.json",
+      "returncode": 0,
+      "record_sha256": "023d28cc8390b1200f1b25d995ac43b8728856bb59c9dc8427d2c09cf2476c35"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-16-loads.json",
+      "returncode": 0,
+      "record_sha256": "c167584f7e2477635d77adf2d87e3611b3e339d459c9bbe02a8e40b6d25ea6a5"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-16-symbols.json",
+      "returncode": 0,
+      "record_sha256": "1d2da29328660cc1c373768203a069d183081cfc645f8e46393463bdb39df966"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-2-imports.json",
+      "returncode": 0,
+      "record_sha256": "fd6e35edead4821b769c67034587dd706ad41168118b13f2a712fffc61f906ad"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-2-loads.json",
+      "returncode": 0,
+      "record_sha256": "94e7e49459e8dff8a8151c6ad9157447527047d2f3bee2bc69fce32cb6da00dd"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-2-symbols.json",
+      "returncode": 0,
+      "record_sha256": "726737adc45eafab48f00615e30d2eee96efa58d1cb3f7f3c6a2a834d4e4b6fc"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-3-imports.json",
+      "returncode": 0,
+      "record_sha256": "859e3e8990e018656a1ffbc613d531d61f16c3191f684114459c0a9d4d0a4e12"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-3-loads.json",
+      "returncode": 0,
+      "record_sha256": "7e9f74ff244c06d74e85eb91eefc02c1367cdfe3433cef13c1482e2d6bd89b4a"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-3-symbols.json",
+      "returncode": 0,
+      "record_sha256": "dbc6628240b236b5ef42a142c8fb54c278287b8a92581dd4bc5d08b28fe60f9a"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-4-imports.json",
+      "returncode": 0,
+      "record_sha256": "37895666e072126a2621def19048df9eeffd505a4f4bbffa287a9497fb98e0f7"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-4-loads.json",
+      "returncode": 0,
+      "record_sha256": "2f05f7a0dfc17d4d2b13d3cb90a86c256e0253e5b7009f8471d236adaba29cc6"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-4-symbols.json",
+      "returncode": 0,
+      "record_sha256": "bb846251411e1932cceae1a61e80b6b3498e552b2fe8654ce2ba95cc37490ddc"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-5-imports.json",
+      "returncode": 0,
+      "record_sha256": "6042a0af8bced1c3142fd87925d0dc89b7c68df8d3d4c73ac142b97f4077a089"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-5-loads.json",
+      "returncode": 0,
+      "record_sha256": "e894b11e214971e615e3277ab2f02dbfded87809e73614b61dc67c0e7313f8fb"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-5-symbols.json",
+      "returncode": 0,
+      "record_sha256": "5e23fc91d9ea7423b43a4efa10ccbd175970f0f70514736cae78502da60629f0"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-6-imports.json",
+      "returncode": 0,
+      "record_sha256": "180df1378af305580399511246c540ea6b7d0af29b2a02962d49b4593fa11644"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-6-loads.json",
+      "returncode": 0,
+      "record_sha256": "54eaa2807a1c7e18c4ae6e54e819013b79b255dff92c0636c8c8829b7a33b91a"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-6-symbols.json",
+      "returncode": 0,
+      "record_sha256": "3f84c71035d0ca8b0170eee07d59eb2e2bcdc9e8f16a62f9af23622bf419c1f5"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-7-imports.json",
+      "returncode": 0,
+      "record_sha256": "5088e199e056b264da935662d2630efabf9af52d2fae0e92f93339e39d2f6a98"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-7-loads.json",
+      "returncode": 0,
+      "record_sha256": "331c849f9862ef7a6f81f2af1d60199815dffe0b05b6c74ce0c42f0734f1ea0c"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-7-symbols.json",
+      "returncode": 0,
+      "record_sha256": "abf5228b5aaea5cc8da02afadacffc2a072094fa05fdb6410b1497cba2bc2a62"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-8-loads.json",
+      "returncode": 0,
+      "record_sha256": "35544bfde5a9076d9cf5560cc2ad185189fc35819834b3c49f8cc9084256d7b6"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-8-imports.json",
+      "returncode": 0,
+      "record_sha256": "aa44eeed46d204f9a6a9826b72183dc16ecddbd2c32d0eff57a0c9a51691a2b2"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-8-symbols.json",
+      "returncode": 0,
+      "record_sha256": "41563cddc75bdc4af19d666d6c7b97583e326ed1d338738939780e3c85498114"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-9-imports.json",
+      "returncode": 0,
+      "record_sha256": "0a9ff17eb631dd0bb6d82a07db60e93c2c48ef49663ae2dd7b6d0ca0d05a3f65"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-9-loads.json",
+      "returncode": 0,
+      "record_sha256": "4da24fcca5c260da53d0553ba66fa9692544b0d95b9b90c0facf68b3b9f96a07"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-9-symbols.json",
+      "returncode": 0,
+      "record_sha256": "8b9d81157c828d4f02a11b9714d64771998f002b738ec325ab8dc980ca6797da"
+    }
+  ],
+  "all_114_returned_zero": true,
+  "native_editor_ui": "NOT_RUN"
+}

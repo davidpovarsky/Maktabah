@@ -1,0 +1,30 @@
+{
+  "actual_flags": "$(inherited) -D EXPO_CONFIGURATION_DEBUG",
+  "maps": [
+    "Clang/Packages/swift-cmark/src/include/module.modulemap",
+    "Clang/Packages/swift-cmark/extensions/include/module.modulemap",
+    "Clang/Packages/swift-markdown/Sources/CAtomic/include/module.modulemap",
+    "Clang/Packages/iosMath/iosMath/module.modulemap",
+    "Clang/Packages/promises/Sources/FBLPromises/include/module.modulemap",
+    "Clang/GeneratedModuleMaps/GoogleUtilities-UserDefaults.modulemap",
+    "Clang/GeneratedModuleMaps/GoogleUtilities-Network.modulemap",
+    "Clang/GeneratedModuleMaps/GoogleUtilities-NSData.modulemap",
+    "Clang/GeneratedModuleMaps/GoogleUtilities-AppDelegateSwizzler.modulemap",
+    "Clang/GeneratedModuleMaps/GoogleUtilities-Logger.modulemap",
+    "Clang/GeneratedModuleMaps/GoogleUtilities-Environment.modulemap",
+    "Clang/GeneratedModuleMaps/third-party-IsAppEncrypted.modulemap",
+    "Clang/GeneratedModuleMaps/GoogleUtilities-Reachability.modulemap",
+    "Clang/GeneratedModuleMaps/GoogleDataTransport.modulemap",
+    "Clang/GeneratedModuleMaps/nanopb.modulemap",
+    "Clang/GeneratedModuleMaps/FirebaseInstallations.modulemap",
+    "Clang/GeneratedModuleMaps/FirebaseCore.modulemap",
+    "Clang/Packages/firebase-ios-sdk/CoreOnly/Sources/module.modulemap",
+    "Clang/GeneratedModuleMaps/FirebaseMessaging.modulemap"
+  ],
+  "root": "$(SRCROOT)/build/original-editor-sdk-input/distribution",
+  "authentic_project_sha256": "bf0d5741cb27fc1fe619d7fb8bada82ada18a14145f2e0ecdee92551704229ec",
+  "authentic_plan_sha256": "e16522f93b7bf08205c4a2306ab3e39666e3cfe6362f0718eb32bb14e302923d",
+  "artifact_id": 14808703544,
+  "artifact_sha256": "153a4687d03719039503d1b666a8620899fa813985179d0cf0b819cf0af5bca5",
+  "source": "a3d235e821dc40687ebab9844f8ef88737f6be17"
+}

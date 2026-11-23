@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "captured_at": "2026-11-23T11:08:00.438833+00:00",
+  "repository": "davidpovarsky/Maktabah",
+  "run_id": 45150723169,
+  "attempt": 2,
+  "source_sha": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+  "job_id": 137629687598,
+  "runner_id": 1000024587,
+  "started_at": "2026-11-23T10:32:10Z",
+  "completed_at": "2026-11-23T10:44:45Z",
+  "status": "AUTHENTICATED_FAILURE_BEFORE_APP_COMPILATION",
+  "artifact": {
+    "id": 14808703544,
+    "name": "original-editor-stageb-evidence-a3d235e821dc40687ebab9844f8ef88737f6be17-45150723169-2",
+    "size_in_bytes": 31191673,
+    "digest": "sha256:153a4687d03719039503d1b666a8620899fa813985179d0cf0b819cf0af5bca5"
+  },
+  "all_223_unique_safe_zip_members_crc_verified": true,
+  "watcher_exit": 1,
+  "watcher_timed_out": false,
+  "watcher_child_reaped": true,
+  "watcher_group_drained": true,
+  "source_and_attempt_match": true,
+  "original_pod_exit": 0,
+  "ruby_executable": {
+    "path": "/opt/homebrew/Cellar/ruby@3.4/3.4.12/bin/ruby",
+    "bytes": 33968,
+    "sha256": "f8d1a4193a656a92b1b5048eb29f3dc89c341529e122737245900d26d9a8d6d5"
+  },
+  "cocoapods_version": "1.17.0",
+  "xcodeproj_version": "1.28.1",
+  "same_runtime_observer": {
+    "path": "/Users/runner/work/Maktabah/Maktabah/Scripts/CI/hq-original-editor-ruby-context.rb",
+    "bytes": 8002,
+    "sha256": "facf9c4c1fcc25d1cafbd6d532c60367a4097f16642f5fc444e2a2092d0e3f33"
+  },
+  "same_runtime_helper": {
+    "path": "/Users/runner/work/Maktabah/Maktabah/Scripts/CI/hq-original-editor-app-target.rb",
+    "bytes": 8935,
+    "sha256": "094f10867cb070035aa7044bc94f57df712b0b8ccfdcd4cf758a75c21f455e6a"
+  },
+  "actual_flags_string": "$(inherited) -D EXPO_CONFIGURATION_DEBUG",
+  "actual_app_debug_configuration_uuid": "F305776D2FA46222005732C6",
+  "actual_generated_project_sha256": "bf0d5741cb27fc1fe619d7fb8bada82ada18a14145f2e0ecdee92551704229ec",
+  "project_unchanged_at_failure": true,
+  "failure_file": "Scripts/CI/hq-original-editor-app-target.rb",
+  "failure_line": 58,
+  "failure_message": "Unexpected original Swift flag shape",
+  "sdk_distribution_files": 2528,
+  "sdk_dynamic_frameworks": 15,
+  "actual_sdk_commands": {
+    "header": 17,
+    "architecture": 15,
+    "platform": 15,
+    "signature": 15,
+    "swift_syntax_linkage": 51,
+    "exported_api_typecheck": 1
+  },
+  "app_compilation": "NOT_RUN",
+  "native_journey": "NOT_RUN",
+  "runtime_result_error": "RuntimeError: No matching original SDK/app/runner build",
+  "source_repair_or_retry_performed": false
+}

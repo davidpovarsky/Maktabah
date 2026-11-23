@@ -1,0 +1,4 @@
+/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/swift-flags-repair/before.rb:58:in `block in <main>': Unexpected original Swift flag shape (RuntimeError)
+	from /mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/swift-flags-repair/FlagControls.rb:20:in `eval'
+	from /mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/swift-flags-repair/FlagControls.rb:20:in `block in <main>'
+	from /mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/swift-flags-repair/FlagControls.rb:24:in `<main>'

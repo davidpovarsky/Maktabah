@@ -1,0 +1,106 @@
+{
+  "status": "PASS",
+  "scope": "ACTUAL_RUBY_3_2_3_EXTRACTED_ORIGINAL_FLAG_BLOCK",
+  "ruby": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/bin/ruby3.2",
+  "ruby_sha256": "bbea1a842298c961c1ad29d359f2b45eff1b25ae546d59e72590846c039efac2",
+  "prior_runtime_admission_sha256": "16e91525bc1de9a09ce272ede6f4ca1ee3bbfa3bce5fcb221e19a2187b18cf5e",
+  "source_sha256": "92a591a8b02fb1e789cdc95febcbd760451584749f4708fa723297f5c34b898a",
+  "commands": [
+    {
+      "label": "existing-genuine-xcodeproj-availability",
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/bin/ruby3.2",
+        "-e",
+        "require \"json\"; require \"rubygems\"; specs=Gem::Specification.find_all_by_name(\"xcodeproj\"); puts JSON.generate({ruby:RUBY_DESCRIPTION,xcodeproj_specs:specs.map{|s| {version:s.version.to_s,path:s.full_gem_path}},genuine_available:specs.any?{|s| s.version.to_s != \"0.0.1\"}})"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.11468154471367598,
+      "stdout_sha256": "16892925cbb53346121a8ad7e5686ccd5021fa0bc2cad372d4cafdd9b5246bc9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "whole-helper-syntax",
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/bin/ruby3.2",
+        "-c",
+        "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/Scripts/CI/hq-original-editor-app-target.rb"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.015928011387586594,
+      "stdout_sha256": "bbafef10c22b9323fa5589564990f57fbf57f9a632381d5e765dc5a3b25b4a1b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "original-authentic-flags-refusal",
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/bin/ruby3.2",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/swift-flags-repair/FlagControls.rb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/swift-flags-repair/before.rb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/swift-flags-repair/ACTUAL_INPUTS.json",
+        "--baseline-only"
+      ],
+      "returncode": 1,
+      "expected_returncode": 1,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.1143895834684372,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e37f624d5db11b3d7be59a1c75b923faea88e007205498b939f670dfa8f8de74"
+    },
+    {
+      "label": "candidate-six-focused-cases",
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/bin/ruby3.2",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/swift-flags-repair/FlagControls.rb",
+        "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/Scripts/CI/hq-original-editor-app-target.rb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/swift-flags-repair/ACTUAL_INPUTS.json"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.11430514324456453,
+      "stdout_sha256": "e73df86ce7e466e2811c60cd350e6e1f447121c07d2694e0822c26c0f3593570",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "apple_app_ui": "NOT_RUN",
+  "gem_or_runtime_install": false,
+  "existing_xcodeproj": {
+    "ruby": "ruby 3.2.3 (2024-01-18 revision 52bb2ac0a6) [aarch64-linux-gnu]",
+    "xcodeproj_specs": [],
+    "genuine_available": false
+  },
+  "controls": {
+    "status": "PASS",
+    "scope": "ACTUAL_EXTRACTED_RUBY_FLAG_BLOCK_ONLY",
+    "source_sha256": "92a591a8b02fb1e789cdc95febcbd760451584749f4708fa723297f5c34b898a",
+    "block_sha256": "84734499cf8d0a2c99f9aa83810312b752cd0bc3a5473925036e4a09debd3d9c",
+    "input_sha256": "b6f615aadd180a2d5d1466341f6f30e9d7d7c33a84cf0acb88c747ec946e701d",
+    "ruby": "ruby 3.2.3 (2024-01-18 revision 52bb2ac0a6) [aarch64-linux-gnu]",
+    "cases": [
+      "authenticated_debug_string_and_all19_pairs",
+      "legacy_array_order_duplicates_and_input_unchanged",
+      "nil_and_absent_legacy_behavior",
+      "exact_inherited_legacy_behavior",
+      "other_string_expressions_still_refused",
+      "other_nonarray_shapes_still_refused"
+    ],
+    "assertions": 19,
+    "xcodeproj_project_mutation": "NOT_RUN",
+    "apple_app_runtime": "NOT_RUN"
+  },
+  "old_baseline_refusal_retained": true,
+  "original_old_controls": "UNCHANGED_NOT_REPLAYED",
+  "full_xcodeproj_project_mutation": "NOT_RUN_NO_INSTALLED_GENUINE_XCODEPROJ"
+}

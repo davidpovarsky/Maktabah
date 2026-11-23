@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "scope": "ACTUAL_EXTRACTED_RUBY_FLAG_BLOCK_ONLY",
+  "source_sha256": "92a591a8b02fb1e789cdc95febcbd760451584749f4708fa723297f5c34b898a",
+  "block_sha256": "84734499cf8d0a2c99f9aa83810312b752cd0bc3a5473925036e4a09debd3d9c",
+  "input_sha256": "b6f615aadd180a2d5d1466341f6f30e9d7d7c33a84cf0acb88c747ec946e701d",
+  "ruby": "ruby 3.2.3 (2024-01-18 revision 52bb2ac0a6) [aarch64-linux-gnu]",
+  "cases": [
+    "authenticated_debug_string_and_all19_pairs",
+    "legacy_array_order_duplicates_and_input_unchanged",
+    "nil_and_absent_legacy_behavior",
+    "exact_inherited_legacy_behavior",
+    "other_string_expressions_still_refused",
+    "other_nonarray_shapes_still_refused"
+  ],
+  "assertions": 19,
+  "xcodeproj_project_mutation": "NOT_RUN",
+  "apple_app_runtime": "NOT_RUN"
+}

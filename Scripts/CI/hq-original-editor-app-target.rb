@@ -55,6 +55,11 @@ if plan.fetch('admission_schema', 1) == 2
   search_paths.delete('HEADER_SEARCH_PATHS')
   append_settings(settings, 'HEADER_SEARCH_PATHS', headers.map { |path| root + '/' + path })
   old_swift_flags = before.fetch('objects').fetch(config.uuid).fetch('buildSettings')['OTHER_SWIFT_FLAGS']
+  # Preserve the exact CocoaPods-generated Debug spelling observed in the
+  # authenticated app project; other string expressions remain inadmissible.
+  if old_swift_flags == '$(inherited) -D EXPO_CONFIGURATION_DEBUG'
+    old_swift_flags = ['$(inherited)', '-D', 'EXPO_CONFIGURATION_DEBUG']
+  end
   raise 'Unexpected original Swift flag shape' unless old_swift_flags.nil? || old_swift_flags.is_a?(Array) || old_swift_flags == '$(inherited)'
   old_swift_flags = ['$(inherited)'] if old_swift_flags.nil? || old_swift_flags == '$(inherited)'
   # Every module-map argument needs its own -Xcc; individual-token deduplication

@@ -1,0 +1,383 @@
+{
+  "status": "SOURCE_PREPARATION_CONTROLS_PASS_FINAL_PREPARE_PENDING",
+  "source_parent": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+  "entries": [
+    {
+      "path": "ACTUAL_INPUTS.json",
+      "bytes": 1791,
+      "sha256": "b6f615aadd180a2d5d1466341f6f30e9d7d7c33a84cf0acb88c747ec946e701d"
+    },
+    {
+      "path": "EXECUTION_DRIVER.py",
+      "bytes": 4024,
+      "sha256": "51ee687c0ccc41d7d1946cf3f97c285d2762ccafe4b8800825aa9777519145ba"
+    },
+    {
+      "path": "EXECUTION_SUBMISSION.json",
+      "bytes": 406,
+      "sha256": "47a6019efdb4202fa09e809f4fcca3d0d5bedbdb271299162fe6432e4deb44e5"
+    },
+    {
+      "path": "FlagControls.rb",
+      "bytes": 3603,
+      "sha256": "22ea294f71d3cd42318454bcf95c306208672e945b4d338dde4d29bbdb8e85e1"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1850,
+      "sha256": "0b4eaa0ae98980058f28a27043cad13a6a0bba31f15381185bdb782ab57110b2"
+    },
+    {
+      "path": "REUSED_RUNTIME_ADMISSION.json",
+      "bytes": 4004,
+      "sha256": "16e91525bc1de9a09ce272ede6f4ca1ee3bbfa3bce5fcb221e19a2187b18cf5e"
+    },
+    {
+      "path": "RUNTIME_REUSE.json",
+      "bytes": 1172,
+      "sha256": "476e6fa57a41ce2b63306fc99496e1228fa1af1bc5d6562256495d02fd44883d"
+    },
+    {
+      "path": "SOURCE_PROOF.json",
+      "bytes": 911,
+      "sha256": "028713192323c1200aa58aa9db68ff66baa8b13e83ffe52f348b5e4df143f3de"
+    },
+    {
+      "path": "SOURCE_STAGING_RECOVERY.json",
+      "bytes": 388,
+      "sha256": "b2ebe0a2211294a4a944615635250522424e92fff3bfbf1e5f0e5f7592689bf5"
+    },
+    {
+      "path": "SWIFT_FLAGS_REPAIR.diff",
+      "bytes": 995,
+      "sha256": "bc0611f951bc8ad9bc4c6747596a15bc5927c7b7f650cb994096162713e775d3"
+    },
+    {
+      "path": "UNCHANGED_SOURCE_CORRESPONDENCE.json",
+      "bytes": 3211,
+      "sha256": "4141a83371f28ba5c83ae3392c09470ae2c9a06886cdccec3d84bc6c544d745c"
+    },
+    {
+      "path": "actual-controls/RESULT.json",
+      "bytes": 5413,
+      "sha256": "e9eed6c90e5be8d83070582ed00aa59ad93de109d9b8f984e4ca58a5fb5242ba"
+    },
+    {
+      "path": "actual-controls/candidate-six-focused-cases.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "actual-controls/candidate-six-focused-cases.stdout",
+      "bytes": 798,
+      "sha256": "e73df86ce7e466e2811c60cd350e6e1f447121c07d2694e0822c26c0f3593570"
+    },
+    {
+      "path": "actual-controls/existing-genuine-xcodeproj-availability.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "actual-controls/existing-genuine-xcodeproj-availability.stdout",
+      "bytes": 122,
+      "sha256": "16892925cbb53346121a8ad7e5686ccd5021fa0bc2cad372d4cafdd9b5246bc9"
+    },
+    {
+      "path": "actual-controls/original-authentic-flags-refusal.stderr",
+      "bytes": 593,
+      "sha256": "e37f624d5db11b3d7be59a1c75b923faea88e007205498b939f670dfa8f8de74"
+    },
+    {
+      "path": "actual-controls/original-authentic-flags-refusal.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "actual-controls/whole-helper-syntax.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "actual-controls/whole-helper-syntax.stdout",
+      "bytes": 10,
+      "sha256": "bbafef10c22b9323fa5589564990f57fbf57f9a632381d5e765dc5a3b25b4a1b"
+    },
+    {
+      "path": "after.rb",
+      "bytes": 9232,
+      "sha256": "92a591a8b02fb1e789cdc95febcbd760451584749f4708fa723297f5c34b898a"
+    },
+    {
+      "path": "before.rb",
+      "bytes": 8935,
+      "sha256": "094f10867cb070035aa7044bc94f57df712b0b8ccfdcd4cf758a75c21f455e6a"
+    },
+    {
+      "path": "failed-attempt-1-allocation/DIAGNOSIS.md",
+      "bytes": 1039,
+      "sha256": "fbc2d86b5696a0eac8a0ec60ed7acbdab04a95efe64b5e391ffcce45ece72520"
+    },
+    {
+      "path": "failed-attempt-1-allocation/INTAKE.json",
+      "bytes": 898,
+      "sha256": "36c1ced944dc0315ca3bc7b5b632287e05e60e2760a6c88f255721d027af5915"
+    },
+    {
+      "path": "failed-attempt-1-allocation/PACKET_INDEX.json",
+      "bytes": 1988,
+      "sha256": "11024b06f6b9f902c630ef288cb1f71bb6b675ab38d5fdfef3bebd441d07c95d"
+    },
+    {
+      "path": "failed-attempt-1-allocation/annotations.json",
+      "bytes": 344,
+      "sha256": "e2af810c5c71636227965cf4abde7be706170726f2dd73697b75a570e482a935"
+    },
+    {
+      "path": "failed-attempt-1-allocation/annotations.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failed-attempt-1-allocation/artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+    },
+    {
+      "path": "failed-attempt-1-allocation/artifacts.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failed-attempt-1-allocation/check-run.json",
+      "bytes": 3082,
+      "sha256": "aaf6b6edd0cd965b27f70972266dbb988bc43abd7ef481a2ef6c76cb14f5a05b"
+    },
+    {
+      "path": "failed-attempt-1-allocation/check-run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failed-attempt-1-allocation/jobs.json",
+      "bytes": 967,
+      "sha256": "eef705b4c6329bbd6555ff28a893f37b22b4b73bc9bcc27d10aa3c4713f137e5"
+    },
+    {
+      "path": "failed-attempt-1-allocation/jobs.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failed-attempt-1-allocation/run.json",
+      "bytes": 12801,
+      "sha256": "848f7a8875a936debefeb0ae36a542001b49bdf9c844e5b41e49fb5d9554ed5a"
+    },
+    {
+      "path": "failed-attempt-1-allocation/run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failed-attempt-1-allocation/watch-1.state.json",
+      "bytes": 1457,
+      "sha256": "26d7715ec84244fecb663a7fa40a008f99583e8dc29a64a81ec8e359a1572211"
+    },
+    {
+      "path": "failed-attempt-2/ARCHIVE_MEMBERS.json",
+      "bytes": 54598,
+      "sha256": "00ec5415e9c8bab88772d700a2a6eb7c9ef7cb0f238bd8d001b2ee6eb7bf8e92"
+    },
+    {
+      "path": "failed-attempt-2/DIAGNOSIS.md",
+      "bytes": 1944,
+      "sha256": "2995437f01fb0e318cc4c14a85253d91b3e8da97ac457157a46f62e135440899"
+    },
+    {
+      "path": "failed-attempt-2/INTAKE.json",
+      "bytes": 2493,
+      "sha256": "5d077b20d3a85bf5b2b521bc99ecd477137278b8f9865f42733374c28b21b2b1"
+    },
+    {
+      "path": "failed-attempt-2/PACKET_INDEX.json",
+      "bytes": 5891,
+      "sha256": "19155d46af05bae9d6d1405acb8900d6be5b8ea6b645828cfd7c0543153aaf95"
+    },
+    {
+      "path": "failed-attempt-2/SDK_COMMAND_SUMMARY.json",
+      "bytes": 22679,
+      "sha256": "feb211deb21d9e8903f087618f48ba63a56cecd783019b2fe44f1675ffbb4c9f"
+    },
+    {
+      "path": "failed-attempt-2/SWIFT_FLAGS_REPAIR_PROPOSAL.md",
+      "bytes": 2152,
+      "sha256": "517cb6cde7d9e2f2b948c18bd9d05e4bd66c1b4124fc928dd528025bdc1288da"
+    },
+    {
+      "path": "failed-attempt-2/admitted/hq-stage2/actual-source-inputs.json",
+      "bytes": 115282,
+      "sha256": "6ec6a199bfd9f749339399bb5676ae765aa4da9f63e56dbadb8ba9105866b83a"
+    },
+    {
+      "path": "failed-attempt-2/admitted/hq-stage2/generated-Maktabah-project.pbxproj",
+      "bytes": 620777,
+      "sha256": "bf0d5741cb27fc1fe619d7fb8bada82ada18a14145f2e0ecdee92551704229ec"
+    },
+    {
+      "path": "failed-attempt-2/admitted/hq-stage2/original-editor/app-target-plan.json",
+      "bytes": 4262,
+      "sha256": "e16522f93b7bf08205c4a2306ab3e39666e3cfe6362f0718eb32bb14e302923d"
+    },
+    {
+      "path": "failed-attempt-2/admitted/hq-stage2/original-editor/distribution-admission.json",
+      "bytes": 931443,
+      "sha256": "47775aab656d4aeca3bd730030c9a9d29a2b12b37f5c17d18a85b5a7d27ee138"
+    },
+    {
+      "path": "failed-attempt-2/admitted/hq-stage2/original-editor/pod-ruby-context.json",
+      "bytes": 99644,
+      "sha256": "2d3357473f032b5f068730f248c1abed563cad6f213dc10fc0e6d0e41332f2e4"
+    },
+    {
+      "path": "failed-attempt-2/admitted/hq-stage2/original-editor/pod-ruby-request.json",
+      "bytes": 841,
+      "sha256": "d82790e8009dbe0ae0b9eb9f3b03e4717bdf645380cf3b2ed1ca9e7a4fd1ccaf"
+    },
+    {
+      "path": "failed-attempt-2/admitted/hq-stage2/original-editor-app-target.log",
+      "bytes": 505,
+      "sha256": "d4d3a4a9c34a86abdd2e3b285d239bda208ae31840ae0b546796f2bc101bc899"
+    },
+    {
+      "path": "failed-attempt-2/admitted/hq-stage2/resolved-Podfile.lock",
+      "bytes": 100298,
+      "sha256": "9a7f88b1d9ebbf4d14f8b6f1efd1fb2d15ac63983bf16ffd3e9ea011f9a55ce7"
+    },
+    {
+      "path": "failed-attempt-2/admitted/hq-stage2/result.json",
+      "bytes": 90511,
+      "sha256": "415b72757b54d40718fcd7fcf246dace11dcbc242445fa0bc195b1114480c93d"
+    },
+    {
+      "path": "failed-attempt-2/admitted/original-editor-native-evidence/result.json",
+      "bytes": 64677,
+      "sha256": "7ee46bc74cccf52102ef41ca2defb6d3aa23ccd36102314b9372f0798177b939"
+    },
+    {
+      "path": "failed-attempt-2/artifact-download.command.json",
+      "bytes": 589,
+      "sha256": "2c8c8941f355afda85390381108454a2ca7969b6062e29dcca562de65664561a"
+    },
+    {
+      "path": "failed-attempt-2/artifact-download.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failed-attempt-2/artifacts.command.json",
+      "bytes": 454,
+      "sha256": "05d0f2ac321a7d0e687e61bec4e4cdf241c623bbb8fefaec043cbbf6b2aa416a"
+    },
+    {
+      "path": "failed-attempt-2/artifacts.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failed-attempt-2/artifacts.stdout",
+      "bytes": 833,
+      "sha256": "29ccfb8b55564374cee40667d6a863f254b906943aed084afa502cb369fc198f"
+    },
+    {
+      "path": "failed-attempt-2/final-metadata.command.json",
+      "bytes": 562,
+      "sha256": "317ac7f7dd93a31ef1b944c51bd32d1c0856044f786b0c59858f3953743dbc58"
+    },
+    {
+      "path": "failed-attempt-2/final-metadata.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failed-attempt-2/final-metadata.stdout",
+      "bytes": 12886,
+      "sha256": "8d13f3b1a1b582406bba75b425d022b78c50ccbadd8a4ea26ec0b78aa5b62e13"
+    },
+    {
+      "path": "failed-attempt-2/job-log.command.json",
+      "bytes": 567,
+      "sha256": "16f6c43887da9686174b0e9f1d472c21cac7fc3201a2d55fe53c1e310a051538"
+    },
+    {
+      "path": "failed-attempt-2/job-log.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failed-attempt-2/jobs.command.json",
+      "bytes": 460,
+      "sha256": "2c73bf9bfa3e31a8589b9bf9a3d8d4a7efef7184f8b4c1447499eb027e80bc54"
+    },
+    {
+      "path": "failed-attempt-2/jobs.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failed-attempt-2/jobs.stdout",
+      "bytes": 4872,
+      "sha256": "6b113fd8b44990bf4b474b8fccd584879383040cdd0fcc8fc5c93eecc67e3a8d"
+    },
+    {
+      "path": "failed-attempt-2/original-app-target-helper.rb",
+      "bytes": 8935,
+      "sha256": "094f10867cb070035aa7044bc94f57df712b0b8ccfdcd4cf758a75c21f455e6a"
+    },
+    {
+      "path": "failed-attempt-2/original-editor-stageb-evidence.zip",
+      "bytes": 31191673,
+      "sha256": "153a4687d03719039503d1b666a8620899fa813985179d0cf0b819cf0af5bca5"
+    },
+    {
+      "path": "failed-attempt-2/original-job.log",
+      "bytes": 3019125,
+      "sha256": "456bb2fe90e4a52546084afe47c90b1652ae03abef4dbc2e6f502e2ce458b273"
+    },
+    {
+      "path": "failed-attempt-2/watch.command.json",
+      "bytes": 642,
+      "sha256": "e43f659496bd418bf4408ad0b239f1a9599b77f89f648d5100e69c47984cc9dc"
+    },
+    {
+      "path": "failed-attempt-2/watch.state.json",
+      "bytes": 2666,
+      "sha256": "cdbd33e748aae965a96a509a6231fd68c93d36139d49c444852b16ec3f163453"
+    },
+    {
+      "path": "failed-attempt-2/watch.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failed-attempt-2/watch.stdout",
+      "bytes": 3321,
+      "sha256": "bcc9e42e3a123bd111f08aca96d31a99760653e59113decff4bf7e47b448b86b"
+    },
+    {
+      "path": "local-xcodeproj.command.json",
+      "bytes": 546,
+      "sha256": "6bd12906ec7296e3992fd2a2d7f452327d0f610497933b09d50b349b4d6882bb"
+    },
+    {
+      "path": "local-xcodeproj.stderr",
+      "bytes": 59,
+      "sha256": "4ecc78456db18a65c3b289f59875d6aebf2957e7f6a8433172c3ef0eed4bc9f0"
+    },
+    {
+      "path": "local-xcodeproj.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "indexed_count": 75,
+  "indexed_bytes": 36436253
+}
