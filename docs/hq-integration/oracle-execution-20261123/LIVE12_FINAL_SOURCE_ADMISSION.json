@@ -1,0 +1,24 @@
+{
+  "bytes": 1074,
+  "sha256": "8ad45d0fd4c92f4128e6e62f464188b44956148014b7cd3d454664bb0ce5fe21",
+  "content": {
+    "schema_version": 1,
+    "repository": "davidpovarsky/Maktabah",
+    "branch": "codex/otzaria-hanlin-live12-20261123",
+    "remote_verified_head": "9bee6104e2938767b4e4e1047c56da8991d621fb",
+    "parent": "ece3eabb15f9dcae012ef48ee8ec4eeb8a8821f9",
+    "tree": "5ce88303f7a29a17724ae769c33ecc1a4c865e39",
+    "preserved_local_prepared_ref": "refs/heads/source/otzaria-live12-workflow-prepared-20261123",
+    "preserved_local_prepared_commit": "78c816c79b0dfa9d7f70e970c7b1d71ac96c3e32",
+    "checkout_clean": true,
+    "source_admission_exit_code": 0,
+    "source_admission_stdout": "/mnt/development/projects/worktrees/Maktabah-hanlin-live12-20261123/build/live12-preparation/source-admission-final.stdout.json",
+    "source_admission_stdout_sha256": "bba856e6e1856419640dd480f4abbad33851d21203125c7fd34b8e5de8aedf00",
+    "source_admission_stderr_bytes": 0,
+    "application_source": "d4b1825bd5645f4949e4b57e48a73022c3b7cba1",
+    "provider_called": false,
+    "credential_operation_performed": false,
+    "native_live12_status": "NOT_RUN",
+    "verified_at_utc": "2026-11-23T04:48:11.389528+00:00"
+  }
+}

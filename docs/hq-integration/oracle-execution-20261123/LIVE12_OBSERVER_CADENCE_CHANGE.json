@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "utc": "2026-11-23T04:46:25.232186+00:00",
+  "cause": "Observed shared GitHub core quota exhausted; retain same single observer with lower request cadence",
+  "old_sha256": "7077195cac1c5a9903451696d7095463f0448ad88654fbbe01ec8b4b7cdd0f97",
+  "new_sha256": "141ca43ffc25d99932fd35a32ff5ec309e56dc485f01f4ac06003cb8c21b2a22",
+  "only_change": "gh run watch --interval 30 to120",
+  "exact_inverse": true,
+  "unchanged_six_lifecycle_controls": "REUSED_EXACT_FUNCTIONAL_LOGIC",
+  "unchanged_three_identity_controls": "REUSED_EXACT_PREFLIGHT_FUNCTION",
+  "new_tests": 0,
+  "source_review": "One configuration literal; no acceptance, ownership, secret, cleanup, attempt or run identity logic changes",
+  "provider_called": false,
+  "credential_accessed": false,
+  "dispatch_started": false
+}

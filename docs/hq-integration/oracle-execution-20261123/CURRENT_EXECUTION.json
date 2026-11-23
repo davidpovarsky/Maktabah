@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-11-23T04:29:29Z",
+  "updated_at_utc": "2026-11-23T04:50:24Z",
   "canonical_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
   "root_branch": "codex/otzaria-oracle-completion-20261123",
   "user_instruction": "בעצם, תעשה את הכל בעצמך ותשתמש עם תתי הסוכנים הזמינים לך בצ׳אט פה, בצע הכל עד להשלמה מלאה של המשימות השתמשת בכלי @SentinelX בחשבון המחובר לשרת האורקל ישירות, ועדכן ב @Asana , אחרי כל שלב שאתה מבצע",
@@ -28,8 +28,8 @@
       "owner": "/root/original_sdk",
       "source": "4aa7b02b8e4cb8c124dd59ddb656746481d9aa6a",
       "run": 45106338448,
-      "watcher": "job_8a1fcb32eb70",
-      "status": "QUEUED_FOR_XCODE27_AT_04_21_14_UTC",
+      "watcher": "job_14238ad948f8",
+      "status": "QUEUED_AT_CENTRAL_POST_QUOTA_OBSERVATION",
       "native_acceptance": false,
       "previous_attempts": [
         {
@@ -51,7 +51,12 @@
       ],
       "new_affected_raw_capture_controls_passed": 2,
       "runtime_commands_started": 0,
-      "allocation": "UNKNOWN"
+      "allocation": "UNKNOWN",
+      "observer_windows": 3,
+      "previous_watcher": "job_62855c0dbc16",
+      "previous_watcher_terminal": true,
+      "watch_interval_seconds": 120,
+      "observer_quota_error_is_native_result": false
     },
     {
       "name": "hanlin_live11",
@@ -98,7 +103,7 @@
       "name": "library_morph",
       "owner": "/root/original_rpc",
       "source": "cba554ded79144d48642b12dba926a30a8eac451",
-      "status": "SAME_RUN_SECOND_BOUNDED_WATCH_ACTIVE",
+      "status": "BUILD_PASS_NATIVE_UI_NOT_RUN_SIMULATOR_ADMIN_TIMEOUT",
       "native_acceptance": false,
       "application_source": "57136023dc6bd86b9fd1ffc853d20b97611ddff4",
       "source_tree": "c51810d1199f81a59554b3c1efbcf3460db8bfcb",
@@ -106,7 +111,22 @@
       "watcher": "job_0d68d853e17c",
       "previous_watcher": "job_1a380aaffc60",
       "previous_watcher_terminal": true,
-      "observer_windows": 2
+      "observer_windows": 2,
+      "watcher_terminal": true,
+      "counts": {
+        "PASS": 0,
+        "FAIL": 0,
+        "SKIP": 0,
+        "NOT_RUN": 7
+      },
+      "artifact": 14789608520,
+      "artifact_bytes": 5656819,
+      "artifact_sha256": "390a9b182da447233bb1f8e7d4dfda601576da1be23174ba6443a415d42b1386",
+      "intake_sha256": "831bfe66cae165006d7a808034ffe0cced5ddca778cd0cdc8e99e3e313f08a5c",
+      "execution_inputs_verified": 286,
+      "compiled_source_inputs_verified": 1012,
+      "product_regression_demonstrated": false,
+      "retry_started": false
     },
     {
       "name": "original_editor_stageb",
@@ -127,7 +147,7 @@
       "name": "original_heart_owned_import_lifetime",
       "owner": "/root/asana_scope",
       "base": "7496e47fa4d37b0117abeae6b35ca5f4c8eaf638",
-      "status": "QUEUED_AT_FIRST_WINDOW_END_SAME_RUN_SECOND_WATCH_ACTIVE",
+      "status": "IN_PROGRESS_AT_04_44_05_CENTRAL_OBSERVATION",
       "native_acceptance": false,
       "source": "54169c763c2178fc1e796dfbe92a675d9c21a0b3",
       "native_runtime_cases": 2,
@@ -136,10 +156,11 @@
       "readback_scope": "Live native object and real tree heads; durable cold reopen and full body equality remain unproven",
       "native_endpoint_acceptance": false,
       "run": 45105771388,
-      "watcher": "job_92c81cdb77e9",
-      "previous_watcher": "job_185be78cd88e",
+      "watcher": "job_fbbd324f6500",
+      "previous_watcher": "job_92c81cdb77e9",
       "previous_watcher_terminal": true,
-      "observer_windows": 2
+      "observer_windows": 3,
+      "watch_interval_seconds": 120
     },
     {
       "name": "reader_profile_native10",
@@ -149,29 +170,46 @@
       "tree": "879510ccc7ec13e7733a3e5acfe34bf86fc7adf4",
       "run": 45107660584,
       "watcher": "job_c8e0566e67f8",
-      "status": "QUEUED_AT_LAST_OWNER_OBSERVATION",
+      "status": "ACTUAL_NATIVE_PARTIAL_FAILURE",
       "selected_cases": 10,
       "source_inputs": 285,
       "source_declarations": "DECLARATIONS_MATCH",
       "product_changes": 0,
       "test_changes": 0,
       "native_acceptance": false,
-      "scope": "Eight repaired system sheet cases, original profile color/cold relaunch and all 100 real group switches/cold restore"
+      "scope": "Eight repaired system sheet cases, original profile color/cold relaunch and all 100 real group switches/cold restore",
+      "watcher_terminal": true,
+      "counts": {
+        "PASS": 6,
+        "FAIL": 4,
+        "SKIP": 0,
+        "NOT_RUN": 0
+      },
+      "artifact": 14790507747,
+      "artifact_bytes": 6431097,
+      "artifact_sha256": "56eac74fc92c1334bbdd305f9f61cb38bc4513b01690326606577fa1d8f95b9c",
+      "source_admission": "OWNER_INTAKE_IN_PROGRESS",
+      "failure_diagnosis": "Original failure screenshots, exact geometry and profile assertion under review; no acceptance weakened",
+      "retry_started": false
     },
     {
       "name": "original_generated_schema_endpoint",
       "owner": "/root/asana_scope",
       "base": "7496e47fa4d37b0117abeae6b35ca5f4c8eaf638",
-      "status": "ACTIVE_AT_LAST_OWNER_DISCOVERY",
+      "status": "QUEUED_AT_04_44_05_CENTRAL_OBSERVATION",
       "planned_native_cases": 5,
       "native_acceptance": false,
       "scope": "Genuine original generated byte handler/proxy, real wallet/account/Space and signed ACL, post-Apply cancellation history, original persisted schema readback; not Swift/mobile or cold reopen",
       "source": "53b52d380c3a87d25275bb391367b37eb5428d3d",
       "tree": "231a428bddf865a5e9c230ecd1d242203068929c",
       "run": 45108043207,
-      "watcher": "job_d44e7675414e",
+      "watcher": "job_d8b99efcf9ef",
       "independent_corrected_source_review": "ACCEPTED",
-      "manifest_sha256": "2b5ef127ba205b730b4c3757c87acdd4aecc30f89bca50b629238432a79fa460"
+      "manifest_sha256": "2b5ef127ba205b730b4c3757c87acdd4aecc30f89bca50b629238432a79fa460",
+      "observer_windows": 2,
+      "watch_interval_seconds": 120,
+      "previous_watcher": "job_d44e7675414e",
+      "previous_watcher_terminal": true
     },
     {
       "name": "original_swift_schema_selection_composition",
@@ -202,7 +240,7 @@
       "name": "reader_source_performance",
       "owner": "/root/original_rpc",
       "base": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
-      "status": "QUEUED_AT_SOLE_RUN_DISCOVERY",
+      "status": "SOURCE_PREFLIGHT_FAILED_MISSING_SPARSE_WORKFLOW_INPUT",
       "product_path": "Source/Otzaria/Reading/OtzariaReadingUnitService.swift",
       "scope": "Reuse one exact UTF16 length per row and reserve known array capacities; exact full-v32 component AB/BA comparison, no Reader UI/physical performance claim",
       "source_service_previous_qualified_timings_seconds": {
@@ -225,7 +263,13 @@
       "source_inputs": 21,
       "independent_source_review": "ACCEPTED",
       "original_product_preserved": "141fc14ab084d1937ef2e510f985e20bb8527f64",
-      "metadata_only_replacement": true
+      "metadata_only_replacement": true,
+      "watcher_terminal": true,
+      "artifact": 14790332691,
+      "artifact_bytes": 1906,
+      "artifact_sha256": "b4af92d199942f5f1740cc0d8c4619413d17ed8e30af5d56819e0331368b38c1",
+      "source_repair": "Add .github/workflows to sparse checkout and retain exact baseline ancestry at fetch-depth4; product/harness unchanged; preparation only",
+      "retry_started": false
     },
     {
       "name": "hanlin_live12_preparation",
@@ -233,15 +277,21 @@
       "diagnostic_source": "d4b1825bd5645f4949e4b57e48a73022c3b7cba1",
       "source_review": "ROOT_AND_INDEPENDENT_PEER_ACCEPTED",
       "diagnostic_controls_passed": 5,
-      "controller_sha256": "7077195cac1c5a9903451696d7095463f0448ad88654fbbe01ec8b4b7cdd0f97",
+      "controller_sha256": "141ca43ffc25d99932fd35a32ff5ec309e56dc485f01f4ac06003cb8c21b2a22",
       "controller_changed_identity_controls_passed": 3,
       "unchanged_lifecycle_controls": "6_REUSED_WITH_EXACT_INVERSE_SOURCE_PROOF",
-      "status": "MANUAL_ONLY_SOURCE_ADMISSION_PACKET_IN_PREPARATION",
+      "status": "FINAL_PUBLISHED_SOURCE_ADMISSION_PASS_READY_FOR_SINGLE_CONTROLLED_DISPATCH",
       "native_acceptance": false,
       "provider_called": false,
       "credential_configured": false,
       "dispatch_started": false,
-      "allocation_rule": "Finish reviewable preparation; require concrete Apple allocation signal before temporary credential and dispatch"
+      "allocation_rule": "Concrete Apple execution established by Library/PERF/Reader results; shared core quota reset authenticated",
+      "source": "9bee6104e2938767b4e4e1047c56da8991d621fb",
+      "source_parent": "ece3eabb15f9dcae012ef48ee8ec4eeb8a8821f9",
+      "tree": "5ce88303f7a29a17724ae769c33ecc1a4c865e39",
+      "application_source": "d4b1825bd5645f4949e4b57e48a73022c3b7cba1",
+      "execution_inputs": 283,
+      "watch_interval_seconds": 120
     }
   ],
   "boundaries": {
@@ -276,7 +326,8 @@
     "1220775209437682",
     "1220775320666689",
     "1220775241693807",
-    "1220775065817013"
+    "1220775065817013",
+    "1220775317101282"
   ],
   "inventory": {
     "unique_tasks": 83,
@@ -294,11 +345,14 @@
     "release114_run_started": false
   },
   "apple_allocation": {
-    "observed_utc": "2026-11-23T04:27:12.461417+00:00",
-    "status": "ALLOCATION_UNKNOWN",
-    "receipt": "APPLE_RUNNER_ALLOCATION.json",
-    "read_only_queries": 2,
-    "no_visible_repository_self_hosted_runners": true,
-    "does_not_prove_offline_or_hosted_capacity": true
+    "status": "ACTUAL_APPLE_EXECUTION_CONFIRMED",
+    "evidence": "Library actual build/install and Reader10 ten genuine cases; PERF exact source preflight on Xcode27.2",
+    "shared_core_quota": {
+      "exhausted_at": "2026-11-23T04:39:36Z",
+      "observed_reset_utc": "2026-11-23T04:43:45Z",
+      "post_reset_observed_utc": "2026-11-23T04:44:05.457429+00:00",
+      "remaining_at_observation": 4999
+    },
+    "observation_policy": "One observer per exact run, minimum120s intervals; root coordinates any shared quota pause"
   }
 }

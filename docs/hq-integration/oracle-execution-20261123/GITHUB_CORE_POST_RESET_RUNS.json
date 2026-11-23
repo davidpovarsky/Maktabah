@@ -1,0 +1,60 @@
+{
+  "observed_utc": "2026-11-23T04:44:05.457429+00:00",
+  "rate_exit": 0,
+  "core": {
+    "limit": 5000,
+    "used": 1,
+    "remaining": 4999,
+    "reset": 1795412638
+  },
+  "runs": [
+    {
+      "repository": "davidpovarsky/anytype-swift",
+      "id": 45106338448,
+      "head_sha": "4aa7b02b8e4cb8c124dd59ddb656746481d9aa6a",
+      "head_branch": "codex/otzaria-sdk-runtime-20261123",
+      "run_attempt": 1,
+      "status": "queued",
+      "conclusion": null,
+      "created_at": "2026-11-23T03:30:05Z",
+      "updated_at": "2026-11-23T03:30:05Z",
+      "html_url": "https://github.com/davidpovarsky/anytype-swift/actions/runs/45106338448"
+    },
+    {
+      "repository": "davidpovarsky/anytype-swift",
+      "id": 45105771388,
+      "head_sha": "54169c763c2178fc1e796dfbe92a675d9c21a0b3",
+      "head_branch": "codex/otzaria-heart-native-20261123",
+      "run_attempt": 1,
+      "status": "in_progress",
+      "conclusion": null,
+      "created_at": "2026-11-23T03:24:14Z",
+      "updated_at": "2026-11-23T04:43:57Z",
+      "html_url": "https://github.com/davidpovarsky/anytype-swift/actions/runs/45105771388"
+    },
+    {
+      "repository": "davidpovarsky/anytype-swift",
+      "id": 45108043207,
+      "head_sha": "53b52d380c3a87d25275bb391367b37eb5428d3d",
+      "head_branch": "codex/otzaria-heart-endpoint-20261123",
+      "run_attempt": 1,
+      "status": "queued",
+      "conclusion": null,
+      "created_at": "2026-11-23T03:47:34Z",
+      "updated_at": "2026-11-23T03:47:34Z",
+      "html_url": "https://github.com/davidpovarsky/anytype-swift/actions/runs/45108043207"
+    },
+    {
+      "repository": "davidpovarsky/Maktabah",
+      "id": 45107660584,
+      "head_sha": "b85a72e409855ffdc6bed1dcef60bbf5b233cf6d",
+      "head_branch": "codex/otzaria-reader-profile-native-20261123",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-23T03:43:35Z",
+      "updated_at": "2026-11-23T04:43:54Z",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45107660584"
+    }
+  ]
+}

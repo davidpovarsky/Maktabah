@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "interpreter": "powershell",
+  "sudo": false,
+  "cwd": null,
+  "cleanup": true,
+  "command": [
+    "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE",
+    "-NoProfile",
+    "-NonInteractive",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_247e06b1416b44889761ea6880d4d8ed\\sentinelx_bootstrap.ps1",
+    "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_247e06b1416b44889761ea6880d4d8ed\\script.ps1"
+  ],
+  "output": "{\"controller_path\": \"C:\\\\Users\\\\DAVID\\\\AppData\\\\Local\\\\Temp\\\\otzaria-oracle-live12-20261123\\\\controller120.py\", \"bytes\": 13390, \"sha256\": \"141ca43ffc25d99932fd35a32ff5ec309e56dc485f01f4ac06003cb8c21b2a22\", \"syntax\": \"PASS\", \"preserved_initial_source\": true, \"exact_cadence_inverse\": true, \"watch_interval_seconds\": 120, \"provider_called\": false, \"credential_accessed\": false, \"dispatch_started\": false}",
+  "duration": 0.68,
+  "returncode": 0
+}

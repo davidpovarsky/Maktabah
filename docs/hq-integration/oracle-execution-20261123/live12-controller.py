@@ -198,7 +198,7 @@ class Lifecycle:
         with (self.out / ("watch-" + str(window) + ".log")).open("xb") as log:
             try:
                 result = subprocess.run(["gh", "run", "watch", str(run_id), "--repo",
-                                         REPOSITORY, "--interval", "30", "--exit-status",
+                                         REPOSITORY, "--interval", "120", "--exit-status",
                                          "--compact"], cwd=self.out, env=self.env,
                                         stdout=log, stderr=subprocess.STDOUT, timeout=seconds)
                 self.record["watch_exit_code"] = result.returncode

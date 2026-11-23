@@ -1,0 +1,21 @@
+{
+  "repository": "davidpovarsky/Maktabah",
+  "branch": "codex/otzaria-hanlin-live12-20261123",
+  "source_parent": "ece3eabb15f9dcae012ef48ee8ec4eeb8a8821f9",
+  "source_parent_tree": "cc193eca41ecaa216dca227f050e163467ce9d42",
+  "api_child": "9bee6104e2938767b4e4e1047c56da8991d621fb",
+  "expected_and_actual_full_tree": "5ce88303f7a29a17724ae769c33ecc1a4c865e39",
+  "expected_ref_head_lease": "ece3eabb15f9dcae012ef48ee8ec4eeb8a8821f9",
+  "force": false,
+  "workflow": ".github/workflows/otzaria-hanlin-live-native.yml",
+  "workflow_sha256": "8fc0e5dbfdc34f34ed5f042d5d8aee9fe61adfbaf02b69c6af019798545f36a7",
+  "admission": {
+    "bytes": 3730,
+    "git_blob": "afecd9789232fc6512b4a4297d6c0843a28143d4",
+    "path": "docs/hq-integration/hanlin-live12-20261123/LIVE12_SOURCE_ADMISSION.json",
+    "sha256": "0d2dde6d7db62afcc7fe44c46a5564674cf97d056a810fea01be4a14c7dc8569"
+  },
+  "provider_called": false,
+  "credential_configured": false,
+  "dispatch_started": false
+}

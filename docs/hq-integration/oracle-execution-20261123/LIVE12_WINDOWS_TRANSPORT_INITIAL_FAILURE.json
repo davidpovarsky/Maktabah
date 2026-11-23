@@ -1,0 +1,21 @@
+{
+  "ok": false,
+  "interpreter": "powershell",
+  "sudo": false,
+  "cwd": null,
+  "cleanup": true,
+  "command": [
+    "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE",
+    "-NoProfile",
+    "-NonInteractive",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_98a91b2c1b7e4059bac152212be1ddcb\\sentinelx_bootstrap.ps1",
+    "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_98a91b2c1b7e4059bac152212be1ddcb\\script.ps1"
+  ],
+  "output": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\nNameError: name 'controller_path' is not defined\r\nController transport verification failed\r\nAt C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_98a91b2c1b7e4059bac152212be1ddcb\\script.ps1:8 char:28\r\n+ ... TEXITCODE -ne 0) { throw 'Controller transport verification failed' }\r\n+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : OperationStopped: (Controller transport verification failed:String) [], RuntimeException\r\n    + FullyQualifiedErrorId : Controller transport verification failed",
+  "duration": 0.76,
+  "returncode": 1,
+  "hub_request_id": "hreq_ddcd5231a037476b"
+}

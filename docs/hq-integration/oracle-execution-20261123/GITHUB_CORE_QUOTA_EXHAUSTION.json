@@ -1,0 +1,123 @@
+{
+  "observed_utc": "2026-11-23T04:41:49.411381+00:00",
+  "command": [
+    "gh",
+    "api",
+    "--include",
+    "rate_limit"
+  ],
+  "exit_code": 0,
+  "http_statuses": [
+    "HTTP/2.0 200 OK"
+  ],
+  "headers": {
+    "date": "Mon, 23 Nov 2026 04:41:49 GMT",
+    "x-ratelimit-limit": "5000",
+    "x-ratelimit-remaining": "0",
+    "x-ratelimit-reset": "1795409025",
+    "x-ratelimit-resource": "core"
+  },
+  "body": {
+    "resources": {
+      "core": {
+        "limit": 5000,
+        "used": 5000,
+        "remaining": 0,
+        "reset": 1795409025
+      },
+      "search": {
+        "limit": 30,
+        "used": 0,
+        "remaining": 30,
+        "reset": 1795408969
+      },
+      "graphql": {
+        "limit": 5000,
+        "used": 9,
+        "remaining": 4991,
+        "reset": 1795409066
+      },
+      "integration_manifest": {
+        "limit": 5000,
+        "used": 0,
+        "remaining": 5000,
+        "reset": 1795412509
+      },
+      "source_import": {
+        "limit": 100,
+        "used": 0,
+        "remaining": 100,
+        "reset": 1795408969
+      },
+      "code_scanning_autofix": {
+        "limit": 10,
+        "used": 0,
+        "remaining": 10,
+        "reset": 1795408969
+      },
+      "actions_runner_registration": {
+        "limit": 10000,
+        "used": 0,
+        "remaining": 10000,
+        "reset": 1795412509
+      },
+      "scim": {
+        "limit": 15000,
+        "used": 0,
+        "remaining": 15000,
+        "reset": 1795412509
+      },
+      "dependency_snapshots": {
+        "limit": 100,
+        "used": 0,
+        "remaining": 100,
+        "reset": 1795408969
+      },
+      "dependency_sbom": {
+        "limit": 100,
+        "used": 0,
+        "remaining": 100,
+        "reset": 1795408969
+      },
+      "audit_log": {
+        "limit": 1750,
+        "used": 0,
+        "remaining": 1750,
+        "reset": 1795412509
+      },
+      "audit_log_streaming": {
+        "limit": 15,
+        "used": 0,
+        "remaining": 15,
+        "reset": 1795412509
+      },
+      "code_search": {
+        "limit": 10,
+        "used": 0,
+        "remaining": 10,
+        "reset": 1795408969
+      },
+      "copilot_usage_records": {
+        "limit": 1750,
+        "used": 0,
+        "remaining": 1750,
+        "reset": 1795412509
+      },
+      "enterprise_token_inventory": {
+        "limit": 1750,
+        "used": 0,
+        "remaining": 1750,
+        "reset": 1795412509
+      }
+    },
+    "rate": {
+      "limit": 5000,
+      "used": 5000,
+      "remaining": 0,
+      "reset": 1795409025
+    }
+  },
+  "stderr": "",
+  "polls": 1,
+  "no_credentials_recorded": true
+}
