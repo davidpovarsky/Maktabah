@@ -1,0 +1,254 @@
+[
+  {
+    "url": "https://developer.apple.com/tutorials/data/documentation/darwinnotify.json",
+    "raw_bytes": 4695,
+    "raw_sha256": "0ecf06fbc37af53950b94af34604a59902e82014e9c12ade2b7e8c28b8462c59",
+    "identifier": {
+      "interfaceLanguage": "swift",
+      "url": "doc://com.apple.darwinnotify/documentation/DarwinNotify"
+    },
+    "metadata": {
+      "availableLanguages": [
+        "de-DE",
+        "en-US",
+        "es-419",
+        "fr-FR",
+        "it-IT",
+        "ja-JP",
+        "ko-KR",
+        "pt-BR",
+        "zh-CN"
+      ],
+      "externalID": "DarwinNotify",
+      "modules": [
+        {
+          "name": "Darwin Notify"
+        }
+      ],
+      "navigatorTitle": [
+        {
+          "kind": "text",
+          "text": "Darwin Notify"
+        }
+      ],
+      "platforms": [
+        {
+          "introducedAt": "9.3",
+          "name": "iOS"
+        },
+        {
+          "introducedAt": "9.3",
+          "name": "iPadOS"
+        },
+        {
+          "introducedAt": "13.1",
+          "name": "Mac Catalyst"
+        },
+        {
+          "introducedAt": "10.14",
+          "name": "macOS"
+        },
+        {
+          "introducedAt": "9.2",
+          "name": "tvOS"
+        },
+        {
+          "introducedAt": "1.0",
+          "name": "visionOS"
+        },
+        {
+          "introducedAt": "2.2",
+          "name": "watchOS"
+        }
+      ],
+      "role": "collection",
+      "roleHeading": "Framework",
+      "symbolKind": "module",
+      "title": "Darwin Notify"
+    },
+    "declarations": []
+  },
+  {
+    "url": "https://developer.apple.com/tutorials/data/documentation/darwinnotify/notify_post(_:).json",
+    "raw_bytes": 23579,
+    "raw_sha256": "4103e2b4b1cf02c48fe4f515ab6d8e26036eef56d5e17c1b16e466f799d35351",
+    "identifier": {
+      "interfaceLanguage": "swift",
+      "url": "doc://com.apple.darwinnotify/documentation/DarwinNotify/notify_post(_:)"
+    },
+    "metadata": {
+      "availableLanguages": [
+        "de-DE",
+        "en-US",
+        "es-419",
+        "fr-FR",
+        "it-IT",
+        "ja-JP",
+        "ko-KR",
+        "pt-BR",
+        "zh-CN"
+      ],
+      "externalID": "c:@F@notify_post",
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notify_post"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "modules": [
+        {
+          "name": "Darwin Notify"
+        }
+      ],
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "notify_post"
+        }
+      ],
+      "platforms": [
+        {
+          "name": "iOS"
+        },
+        {
+          "name": "iPadOS"
+        },
+        {
+          "name": "Mac Catalyst"
+        },
+        {
+          "name": "macOS"
+        },
+        {
+          "name": "tvOS"
+        },
+        {
+          "name": "visionOS"
+        },
+        {
+          "name": "watchOS"
+        }
+      ],
+      "role": "symbol",
+      "roleHeading": "Function",
+      "symbolKind": "func",
+      "title": "notify_post(_:)"
+    },
+    "declarations": [
+      {
+        "declarations": [
+          {
+            "languages": [
+              "swift"
+            ],
+            "platforms": [
+              "iOS",
+              "iPadOS",
+              "Mac Catalyst",
+              "macOS",
+              "tvOS",
+              "visionOS",
+              "watchOS"
+            ],
+            "tokens": [
+              {
+                "kind": "keyword",
+                "text": "func"
+              },
+              {
+                "kind": "text",
+                "text": " "
+              },
+              {
+                "kind": "identifier",
+                "text": "notify_post"
+              },
+              {
+                "kind": "text",
+                "text": "("
+              },
+              {
+                "kind": "externalParam",
+                "text": "_"
+              },
+              {
+                "kind": "text",
+                "text": " "
+              },
+              {
+                "kind": "internalParam",
+                "text": "name"
+              },
+              {
+                "kind": "text",
+                "text": ": "
+              },
+              {
+                "identifier": "doc://com.apple.documentation/documentation/Swift/UnsafePointer",
+                "kind": "typeIdentifier",
+                "preciseIdentifier": "s:SP",
+                "text": "UnsafePointer"
+              },
+              {
+                "kind": "text",
+                "text": "<"
+              },
+              {
+                "identifier": "doc://com.apple.documentation/documentation/Swift/CChar",
+                "kind": "typeIdentifier",
+                "preciseIdentifier": "s:s5CChara",
+                "text": "CChar"
+              },
+              {
+                "kind": "text",
+                "text": ">!) -> "
+              },
+              {
+                "identifier": "doc://com.apple.documentation/documentation/Swift/UInt32",
+                "kind": "typeIdentifier",
+                "preciseIdentifier": "s:s6UInt32V",
+                "text": "UInt32"
+              }
+            ]
+          }
+        ],
+        "kind": "declarations"
+      }
+    ]
+  }
+]

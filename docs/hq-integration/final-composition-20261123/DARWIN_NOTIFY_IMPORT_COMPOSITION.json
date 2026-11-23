@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-23T09:22:26Z",
+  "prior_composition": "ef0b68a0250fdbee5d9488061161003000e9ad38",
+  "selected_source": "b965e741815f9033151ee45f58d744d028ba1bc2",
+  "exact_source_review": {
+    "commit": "b965e741815f9033151ee45f58d744d028ba1bc2",
+    "parent": "88977a1e19e6c205fc2e832bd79c384b1e2f70ca",
+    "tree": "14adc7b86a4c31936b1d8240958c11c985021837",
+    "changes": [
+      "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "docs/hq-integration/full-v32-darwin-notify-20261123/ACTUAL_APPLE_COMPILE_REPORT.json",
+      "docs/hq-integration/full-v32-darwin-notify-20261123/APPLE_MODULE_METADATA.json",
+      "docs/hq-integration/full-v32-darwin-notify-20261123/COMPILER_ERRORS.txt",
+      "docs/hq-integration/full-v32-darwin-notify-20261123/IMPORT_ONLY.diff",
+      "docs/hq-integration/full-v32-darwin-notify-20261123/ORIGINAL_RUN_INTAKE.json",
+      "docs/hq-integration/full-v32-darwin-notify-20261123/README.md",
+      "docs/hq-integration/full-v32-darwin-notify-20261123/SMALL_ARTIFACT_ADMISSION.json",
+      "docs/hq-integration/full-v32-darwin-notify-20261123/SOURCE_PROOF.json"
+    ],
+    "rows": [
+      {
+        "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+        "before_sha256": "f724b6b338c1dcbdc3285ed46386b9c51b80a5a224bec36b92cfb4fb632d72dc",
+        "after_sha256": "6bbb69dfe79d52f1cb1f148eb665466e7a230055bd182cca434f486d0512dcbb",
+        "full_inverse_exact": true,
+        "matches_current_final_preimage": true
+      },
+      {
+        "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+        "before_sha256": "36ca3f4863c60519d1135bf8f327a4c00a1e1bf074dd826caee7760547b18aa8",
+        "after_sha256": "1d531327634b8c72732d4618eb44220ba492af67280e408a7c775e254ffbd9c4",
+        "full_inverse_exact": true,
+        "matches_current_final_preimage": true
+      }
+    ],
+    "diff": "diff --git a/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift b/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift\nindex 452e628d..39a0c59b 100644\n--- a/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift\n+++ b/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift\n@@ -4016,6 +4016,7 @@ final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {\n \n // BEGIN ADDITIVE FULL-V32 ORIGINAL READER OBSERVATIONS\n import Darwin\n+import DarwinNotify\n \n // This Debug/production-corpus diagnostic is distinct from the existing Release\n // case and the immutable miniTest10 Native116 catalog.\ndiff --git a/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift b/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift\nindex f4b0a4cd..ce9209d4 100644\n--- a/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift\n+++ b/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift\n@@ -5,6 +5,7 @@ import TorahInspectorUI\n #if DEBUG\n import CryptoKit\n import Darwin\n+import DarwinNotify\n import UIKit\n #endif\n \n",
+    "diff_sha256": "e5f5bed7158c7a30f66062b8d573fc48690c5465c5d7cd1d5d7c190b13941d96",
+    "evidence_files": [
+      {
+        "path": "docs/hq-integration/full-v32-darwin-notify-20261123/ACTUAL_APPLE_COMPILE_REPORT.json",
+        "bytes": 4030,
+        "sha256": "44c14792bf7a2a7be8163e7058e2927cdccc415bc149080696df0529907b8b07"
+      },
+      {
+        "path": "docs/hq-integration/full-v32-darwin-notify-20261123/APPLE_MODULE_METADATA.json",
+        "bytes": 5902,
+        "sha256": "899b594f6badfc46dab274cddff3160642da14134efe7c435285635e0dd88d84"
+      },
+      {
+        "path": "docs/hq-integration/full-v32-darwin-notify-20261123/COMPILER_ERRORS.txt",
+        "bytes": 223,
+        "sha256": "09ec98dffb814debaa32a511b0fb67e92ec3dcf13ee4c92b62a4cc67d59399b7"
+      },
+      {
+        "path": "docs/hq-integration/full-v32-darwin-notify-20261123/IMPORT_ONLY.diff",
+        "bytes": 1058,
+        "sha256": "e5f5bed7158c7a30f66062b8d573fc48690c5465c5d7cd1d5d7c190b13941d96"
+      },
+      {
+        "path": "docs/hq-integration/full-v32-darwin-notify-20261123/ORIGINAL_RUN_INTAKE.json",
+        "bytes": 8283,
+        "sha256": "8135d9510b4e88af36437cc29fb805917d147b96b3002c75b7cc103b272af17b"
+      },
+      {
+        "path": "docs/hq-integration/full-v32-darwin-notify-20261123/README.md",
+        "bytes": 1359,
+        "sha256": "579f36e4475020d135499db188465d180fa05d9cde87989e06bd0717f9ee7c07"
+      },
+      {
+        "path": "docs/hq-integration/full-v32-darwin-notify-20261123/SMALL_ARTIFACT_ADMISSION.json",
+        "bytes": 6250,
+        "sha256": "0524e470bb4424cc39a5cd6dcf4cc5da15a156f8c4ad01f0d93f184c23ec875e"
+      },
+      {
+        "path": "docs/hq-integration/full-v32-darwin-notify-20261123/SOURCE_PROOF.json",
+        "bytes": 1446,
+        "sha256": "9c6cc1548932683de978a6374a5b3611bad517821a9a364a07f15eb2e055f954"
+      }
+    ]
+  },
+  "all_selected_paths_byte_identical_to_source": true,
+  "all_prior_selected_paths_preimages_verified": true,
+  "ci_workflows_or_admission_maps_copied": false,
+  "apple_compilation_qualified": false,
+  "original_methods_assertions_and_timeouts_changed": false
+}

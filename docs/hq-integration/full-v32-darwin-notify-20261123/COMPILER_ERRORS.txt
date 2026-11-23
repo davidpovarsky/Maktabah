@@ -1,0 +1,2 @@
+Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:4638:28: error: cannot find 'notify_post' in scope
+Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:4638:57: error: cannot find 'NOTIFY_STATUS_OK' in scope
