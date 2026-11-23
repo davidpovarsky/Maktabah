@@ -59,7 +59,7 @@ actor OtzariaDatabaseBootstrapService {
 
         print(
             "[OtzariaBootstrap] release tag=\(release.tag) id=\(release.id) " +
-            "assetId=\(release.asset.id) compressedSize=\(release.asset.compressedSize) " +
+            "assetId=\(release.asset.id) compressedSize=\(release.compressedSize) " +
             "resumeFrom=\(existingPart)"
         )
 
@@ -110,7 +110,7 @@ actor OtzariaDatabaseBootstrapService {
             }.value
             verificationElapsed = Date().timeIntervalSince(verificationStarted)
             print(
-                "[OtzariaBootstrap] download verified bytes=\(release.asset.compressedSize) " +
+                "[OtzariaBootstrap] download verified bytes=\(release.compressedSize) " +
                 "sha256=\(release.expectedSHA256 == nil ? "not supplied" : "matched")"
             )
         } catch let error as OtzariaDatabaseBootstrapError {

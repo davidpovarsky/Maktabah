@@ -1,0 +1,38 @@
+name: Original multipart archive component controls
+"on":
+  push:
+    branches: [codex/otzaria-latest-multipart-20261123]
+    paths:
+      - ".github/workflows/otzaria-latest-multipart-components.yml"
+      - "Tests/HQ/latest-multipart/**"
+      - "Source/Otzaria/Bootstrap/**"
+      - "Source/Otzaria/DataProfiles/**"
+      - "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: otzaria-latest-multipart-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  components:
+    if: github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-latest-multipart-20261123' && github.run_attempt == 1
+    runs-on: macos-26-intel
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Qualify exact original multipart components
+        run: python3 Tests/HQ/latest-multipart/run_apple.py
+      - name: Preserve actual source, compiler and control evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: otzaria-latest-multipart-${{ github.sha }}
+          path: build/latest-multipart
+          if-no-files-found: error
+          retention-days: 30

@@ -6,14 +6,23 @@ actor OtzariaDatabaseDownloader {
 
     static let partFileName = "seforim.db.zst.part"
     static let sidecarFileName = "seforim.db.zst.part.json"
+    static let multipartDirectoryName = "seforim.db.zst.parts"
+    static let assemblyFileName = "seforim.db.zst.assembling"
 
+    private let sessionConfiguration: @Sendable () -> URLSessionConfiguration
+    private var activeVerificationTask: Task<String?, Error>?
     private var activeTask: URLSessionDataTask?
     private var cancellationRequested = false
     private var isDownloading = false
 
+    init(sessionConfiguration: @escaping @Sendable () -> URLSessionConfiguration = { .ephemeral }) {
+        self.sessionConfiguration = sessionConfiguration
+    }
+
     func cancel() {
         cancellationRequested = true
         activeTask?.cancel()
+        activeVerificationTask?.cancel()
     }
 
     func download(
@@ -29,7 +38,23 @@ actor OtzariaDatabaseDownloader {
         isDownloading = true
         defer { isDownloading = false }
         cancellationRequested = false
+        try checkCancellation()
 
+        if let multipart = try release.validatedMultipart() {
+            return try await downloadMultipart(
+                release: release, multipart: multipart, workspaceURL: workspaceURL, progress: progress
+            )
+        }
+        try removeMultipartWorkspace(workspaceURL: workspaceURL)
+        return try await downloadSingleAsset(release: release, workspaceURL: workspaceURL, progress: progress)
+    }
+
+    /// The original per-asset Range/If-Range implementation is shared by both transports.
+    private func downloadSingleAsset(
+        release: OtzariaLibraryRelease,
+        workspaceURL: URL,
+        progress: @escaping ProgressHandler
+    ) async throws -> URL {
         let fileManager = FileManager.default
         try fileManager.createDirectory(at: workspaceURL, withIntermediateDirectories: true)
         try Self.excludeFromBackup(workspaceURL)
@@ -94,7 +119,7 @@ actor OtzariaDatabaseDownloader {
                 validator: canResume ? validator : nil
             )
 
-            let configuration = URLSessionConfiguration.ephemeral
+            let configuration = sessionConfiguration()
             configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
             configuration.timeoutIntervalForRequest = 60
             configuration.timeoutIntervalForResource = 60 * 60 * 24
@@ -164,11 +189,12 @@ actor OtzariaDatabaseDownloader {
             partURL: workspaceURL.appendingPathComponent(Self.partFileName),
             sidecarURL: workspaceURL.appendingPathComponent(Self.sidecarFileName)
         )
+        try removeMultipartWorkspace(workspaceURL: workspaceURL)
     }
 
     func cleanupAfterSuccessfulInstall(workspaceURL: URL) {
         let fileManager = FileManager.default
-        for name in [Self.partFileName, Self.sidecarFileName] {
+        for name in [Self.partFileName, Self.sidecarFileName, Self.multipartDirectoryName, Self.assemblyFileName] {
             let url = workspaceURL.appendingPathComponent(name)
             do {
                 if fileManager.fileExists(atPath: url.path) {
@@ -183,9 +209,9 @@ actor OtzariaDatabaseDownloader {
     @discardableResult
     static func verifyDownload(at url: URL, release: OtzariaLibraryRelease) throws -> String? {
         let actualSize = fileSize(at: url)
-        guard actualSize == release.asset.compressedSize else {
+        guard actualSize == release.compressedSize else {
             throw OtzariaDatabaseBootstrapError.downloadSizeMismatch(
-                expected: release.asset.compressedSize,
+                expected: release.compressedSize,
                 actual: actualSize
             )
         }
@@ -211,6 +237,17 @@ actor OtzariaDatabaseDownloader {
         let partURL = workspaceURL.appendingPathComponent(Self.partFileName)
         let sidecarURL = workspaceURL.appendingPathComponent(Self.sidecarFileName)
         let metadata = try? loadMetadata(from: sidecarURL)
+        if let multipart = release.multipart {
+            guard metadata?.matches(release) == true,
+                  (try? release.validatedMultipart()) != nil else { return 0 }
+            if fileSize(at: partURL) == release.compressedSize { return release.compressedSize }
+            return multipart.parts.enumerated().reduce(0) { total, entry in
+                let partRelease = OtzariaLibraryRelease(id: release.id, tag: release.tag, asset: entry.element)
+                return total + existingPartialSize(
+                    workspaceURL: multipartPartWorkspace(workspaceURL, index: entry.offset), release: partRelease
+                )
+            }
+        }
         return OtzariaDownloadPolicy.reusableOffset(
             metadata: metadata,
             release: release,
@@ -218,10 +255,39 @@ actor OtzariaDatabaseDownloader {
         )
     }
 
+    /// Read-only native observation of actual persisted bytes, independent of
+    /// whether the HTTP server supplied a reusable range validator.
+    static func observedDownloadedBytes(workspaceURL: URL) -> Int64 {
+        let archiveURL = workspaceURL.appendingPathComponent(partFileName)
+        let sidecarURL = workspaceURL.appendingPathComponent(sidecarFileName)
+        guard let metadata = try? loadMetadata(from: sidecarURL),
+              let multipart = metadata.multipart else { return fileSize(at: archiveURL) }
+        let release = OtzariaLibraryRelease(
+            id: metadata.releaseID, tag: metadata.releaseTag, asset: multipart.manifest, multipart: multipart
+        )
+        guard metadata.matches(release), (try? release.validatedMultipart()) != nil else { return 0 }
+        if fileSize(at: archiveURL) == release.compressedSize { return release.compressedSize }
+        return multipart.parts.enumerated().reduce(0) { total, entry in
+            let directory = multipartPartWorkspace(workspaceURL, index: entry.offset)
+            let partRelease = OtzariaLibraryRelease(id: release.id, tag: release.tag, asset: entry.element)
+            let partMetadata = try? loadMetadata(from: directory.appendingPathComponent(sidecarFileName))
+            guard partMetadata?.matches(partRelease) == true else { return total }
+            let size = fileSize(at: directory.appendingPathComponent(partFileName))
+            return total + min(max(0, size), entry.element.compressedSize)
+        }
+    }
+
     static func resumableProductionRelease(workspaceURL: URL) throws -> OtzariaLibraryRelease? {
         let partURL = workspaceURL.appendingPathComponent(Self.partFileName)
         let sidecarURL = workspaceURL.appendingPathComponent(Self.sidecarFileName)
         guard let metadata = try loadMetadata(from: sidecarURL) else { return nil }
+        if let multipart = metadata.multipart {
+            let release = OtzariaLibraryRelease(
+                id: metadata.releaseID, tag: metadata.releaseTag, asset: multipart.manifest, multipart: multipart
+            )
+            let retainedBytes = existingPartialSize(workspaceURL: workspaceURL, release: release)
+            return metadata.resumableProductionRelease(localSize: retainedBytes)
+        }
         return metadata.resumableProductionRelease(localSize: fileSize(at: partURL))
     }
 }
@@ -530,4 +596,141 @@ private final class OtzariaDownloadRoundDelegate: NSObject, URLSessionDataDelega
         return value
     }
 
+}
+
+private extension OtzariaDatabaseDownloader {
+    static func multipartPartWorkspace(_ workspaceURL: URL, index: Int) -> URL {
+        workspaceURL.appendingPathComponent(multipartDirectoryName, isDirectory: true)
+            .appendingPathComponent(String(format: "part-%03d", index), isDirectory: true)
+    }
+
+    func removeMultipartWorkspace(workspaceURL: URL) throws {
+        for name in [Self.multipartDirectoryName, Self.assemblyFileName] {
+            let url = workspaceURL.appendingPathComponent(name)
+            if FileManager.default.fileExists(atPath: url.path) {
+                try FileManager.default.removeItem(at: url)
+            }
+        }
+    }
+
+    func verifyMultipartPart(at url: URL, release: OtzariaLibraryRelease) async throws {
+        let verification = Task.detached(priority: .utility) {
+            try Self.verifyDownload(at: url, release: release)
+        }
+        activeVerificationTask = verification
+        defer { activeVerificationTask = nil }
+        do {
+            _ = try await withTaskCancellationHandler {
+                try await verification.value
+            } onCancel: {
+                verification.cancel()
+            }
+            try checkCancellation()
+        } catch is CancellationError {
+            throw OtzariaDatabaseBootstrapError.cancelled
+        }
+    }
+
+    func downloadMultipart(
+        release: OtzariaLibraryRelease,
+        multipart: OtzariaLibraryRelease.Multipart,
+        workspaceURL: URL,
+        progress: @escaping ProgressHandler
+    ) async throws -> URL {
+        let manager = FileManager.default
+        try manager.createDirectory(at: workspaceURL, withIntermediateDirectories: true)
+        try Self.excludeFromBackup(workspaceURL)
+        let archiveURL = workspaceURL.appendingPathComponent(Self.partFileName)
+        let sidecarURL = workspaceURL.appendingPathComponent(Self.sidecarFileName)
+        let assemblyURL = workspaceURL.appendingPathComponent(Self.assemblyFileName)
+        let previous = try Self.loadMetadata(from: sidecarURL)
+        if previous?.matches(release) != true {
+            try invalidateDownload(workspaceURL: workspaceURL)
+        }
+        let resumedFrom = Self.existingPartialSize(workspaceURL: workspaceURL, release: release)
+        try Self.writeMetadata(
+            OtzariaDownloadResumeMetadata(release: release, downloadedBytes: resumedFrom), to: sidecarURL
+        )
+        try checkCancellation()
+        if Self.fileSize(at: archiveURL) == release.compressedSize {
+            progress(release.compressedSize, release.compressedSize, resumedFrom)
+            return archiveURL
+        }
+        if manager.fileExists(atPath: archiveURL.path) { try manager.removeItem(at: archiveURL) }
+        if manager.fileExists(atPath: assemblyURL.path) { try manager.removeItem(at: assemblyURL) }
+
+        var retained = multipart.parts.enumerated().map { index, asset in
+            Self.existingPartialSize(
+                workspaceURL: Self.multipartPartWorkspace(workspaceURL, index: index),
+                release: .init(id: release.id, tag: release.tag, asset: asset)
+            )
+        }
+        var localParts: [URL] = []
+        progress(retained.reduce(0, +), release.compressedSize, resumedFrom)
+        for (index, asset) in multipart.parts.enumerated() {
+            try checkCancellation()
+            let partRelease = OtzariaLibraryRelease(id: release.id, tag: release.tag, asset: asset)
+            let partWorkspace = Self.multipartPartWorkspace(workspaceURL, index: index)
+            let otherBytes = retained.reduce(0, +) - retained[index]
+            let localURL = try await downloadSingleAsset(
+                release: partRelease, workspaceURL: partWorkspace
+            ) { bytes, _, _ in
+                progress(otherBytes + bytes, release.compressedSize, resumedFrom)
+            }
+            try await verifyMultipartPart(at: localURL, release: partRelease)
+            retained[index] = asset.compressedSize
+            localParts.append(localURL)
+            try Self.writeMetadata(
+                OtzariaDownloadResumeMetadata(release: release, downloadedBytes: retained.reduce(0, +)),
+                to: sidecarURL
+            )
+        }
+        try checkCancellation()
+        guard manager.createFile(atPath: assemblyURL.path, contents: nil) else {
+            throw OtzariaDatabaseBootstrapError.extractionWriteFailed("cannot create owned archive assembly")
+        }
+        var published = false
+        defer { if !published { try? manager.removeItem(at: assemblyURL) } }
+        try Self.excludeFromBackup(assemblyURL)
+        let output = try FileHandle(forWritingTo: assemblyURL)
+        defer { try? output.close() }
+        var assembled: Int64 = 0
+        for (index, localURL) in localParts.enumerated() {
+            let input = try FileHandle(forReadingFrom: localURL)
+            defer { try? input.close() }
+            var consumed: Int64 = 0
+            while true {
+                await Task.yield()
+                try checkCancellation()
+                let bytes = try input.read(upToCount: 4 * 1_024 * 1_024) ?? Data()
+                if bytes.isEmpty { break }
+                guard Int64(bytes.count) <= multipart.parts[index].compressedSize - consumed else {
+                    throw OtzariaDatabaseBootstrapError.downloadSizeMismatch(
+                        expected: multipart.parts[index].compressedSize, actual: consumed + Int64(bytes.count)
+                    )
+                }
+                try output.write(contentsOf: bytes)
+                consumed += Int64(bytes.count)
+                assembled += Int64(bytes.count)
+            }
+            guard consumed == multipart.parts[index].compressedSize else {
+                throw OtzariaDatabaseBootstrapError.downloadSizeMismatch(
+                    expected: multipart.parts[index].compressedSize, actual: consumed
+                )
+            }
+        }
+        try checkCancellation()
+        guard assembled == release.compressedSize else {
+            throw OtzariaDatabaseBootstrapError.downloadSizeMismatch(
+                expected: release.compressedSize, actual: assembled
+            )
+        }
+        try output.synchronize()
+        try output.close()
+        try manager.moveItem(at: assemblyURL, to: archiveURL)
+        published = true
+        // The existing service now verifies the entire archive digest before extraction.
+        progress(assembled, release.compressedSize, resumedFrom)
+        return archiveURL
+    }
 }

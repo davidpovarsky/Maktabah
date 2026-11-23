@@ -71,6 +71,70 @@ struct OtzariaLibraryRelease: Codable, Equatable, Sendable {
     let id: Int64
     let tag: String
     let asset: Asset
+    /// The remote asset remains the actual manifest when the archive is split.
+    /// Archive identity and ordered remote parts are represented separately.
+    var multipart: Multipart? = nil
+
+    struct Multipart: Codable, Equatable, Sendable {
+        let manifest: Asset
+        let archiveName: String
+        let compressedSize: Int64
+        let digest: String
+        let parts: [Asset]
+    }
+
+    var archiveName: String { multipart?.archiveName ?? asset.name }
+    var compressedSize: Int64 { multipart?.compressedSize ?? asset.compressedSize }
+    var archiveDigest: String? { multipart?.digest ?? asset.digest }
+
+    /// Recheck persisted plans before using their URLs or counting cached bytes.
+    func validatedMultipart() throws -> Multipart? {
+        guard let multipart else { return nil }
+        guard id > 0, !tag.isEmpty, multipart.manifest == asset,
+              Self.isProductionDatabaseAssetName(multipart.archiveName),
+              asset.name == multipart.archiveName + ".manifest.json",
+              asset.compressedSize > 0, asset.compressedSize <= 1_048_576,
+              Self.sha256Value(asset.digest) != nil,
+              Self.sha256Value(multipart.digest) != nil,
+              multipart.compressedSize > 0,
+              !multipart.parts.isEmpty, multipart.parts.count <= 1_000 else {
+            throw OtzariaDatabaseBootstrapError.invalidAssetMetadata("invalid multipart archive identity")
+        }
+        var total: Int64 = 0
+        var ids: Set<Int64> = [asset.id]
+        for (index, part) in multipart.parts.enumerated() {
+            let expectedName = multipart.archiveName + String(format: ".part-%03d", index)
+            let sum = total.addingReportingOverflow(part.compressedSize)
+            guard part.id > 0, ids.insert(part.id).inserted,
+                  part.name == expectedName, part.compressedSize > 0,
+                  Self.sha256Value(part.digest) != nil, !sum.overflow,
+                  Self.isOfficialAssetURL(part.downloadURL, tag: tag, name: part.name) else {
+                throw OtzariaDatabaseBootstrapError.invalidAssetMetadata("invalid ordered multipart asset")
+            }
+            total = sum.partialValue
+        }
+        guard asset.id > 0,
+              Self.isOfficialAssetURL(asset.downloadURL, tag: tag, name: asset.name),
+              total == multipart.compressedSize else {
+            throw OtzariaDatabaseBootstrapError.invalidAssetMetadata("multipart size or manifest URL differs")
+        }
+        return multipart
+    }
+
+    static func sha256Value(_ digest: String?) -> String? {
+        guard let digest, digest.lowercased().hasPrefix("sha256:") else { return nil }
+        let value = String(digest.dropFirst(7)).lowercased()
+        guard value.utf8.count == 64,
+              value.utf8.allSatisfy({ (48...57).contains($0) || (97...102).contains($0) }) else { return nil }
+        return value
+    }
+
+    static func isOfficialAssetURL(_ url: URL, tag: String, name: String) -> Bool {
+        url.scheme?.lowercased() == "https" && url.host?.lowercased() == "github.com"
+            && url.user == nil && url.password == nil && url.port == nil
+            && url.query == nil && url.fragment == nil
+            && url.path == "/Otzaria/SeforimLibrary/releases/download/" + tag + "/" + name
+    }
 
     struct Asset: Codable, Equatable, Sendable {
         let id: Int64
@@ -90,7 +154,13 @@ struct OtzariaLibraryRelease: Codable, Equatable, Sendable {
             asset.name,
             String(asset.compressedSize),
             asset.digest ?? "",
-        ].joined(separator: "|")
+        ].joined(separator: "|") + (multipart.map { plan in
+            "|" + [plan.archiveName, String(plan.compressedSize), plan.digest,
+                   plan.parts.map { part in
+                       [String(part.id), part.name, part.downloadURL.absoluteString,
+                        String(part.compressedSize), part.digest ?? ""].joined(separator: "|")
+                   }.joined(separator: "|")].joined(separator: "|")
+        } ?? "")
     }
 
     var expectedSHA256: String? {
@@ -102,7 +172,7 @@ struct OtzariaLibraryRelease: Codable, Equatable, Sendable {
         return value
     }
 
-    private var digest: String? { asset.digest }
+    private var digest: String? { archiveDigest }
 }
 
 struct OtzariaDownloadResumeMetadata: Codable, Equatable, Sendable {
@@ -114,6 +184,7 @@ struct OtzariaDownloadResumeMetadata: Codable, Equatable, Sendable {
     let browserDownloadURL: URL
     let expectedCompressedSize: Int64
     let digest: String?
+    let multipart: OtzariaLibraryRelease.Multipart?
     var etag: String?
     var lastModified: String?
     var downloadedBytes: Int64
@@ -128,6 +199,7 @@ struct OtzariaDownloadResumeMetadata: Codable, Equatable, Sendable {
         browserDownloadURL = release.asset.downloadURL
         expectedCompressedSize = release.asset.compressedSize
         digest = release.asset.digest
+        multipart = release.multipart
         etag = nil
         lastModified = nil
         self.downloadedBytes = downloadedBytes
@@ -142,8 +214,13 @@ struct OtzariaDownloadResumeMetadata: Codable, Equatable, Sendable {
             assetName == release.asset.name &&
             browserDownloadURL == release.asset.downloadURL &&
             expectedCompressedSize == release.asset.compressedSize &&
-            digest == release.asset.digest
+            digest == release.asset.digest &&
+            multipart == release.multipart
     }
+
+    var archiveName: String { multipart?.archiveName ?? assetName }
+    var archiveCompressedSize: Int64 { multipart?.compressedSize ?? expectedCompressedSize }
+    var archiveDigest: String? { multipart?.digest ?? digest }
 
     var resumeValidator: String? {
         if let etag, !etag.isEmpty, !etag.hasPrefix("W/") { return etag }
@@ -152,6 +229,15 @@ struct OtzariaDownloadResumeMetadata: Codable, Equatable, Sendable {
     }
 
     func resumableProductionRelease(localSize: Int64) -> OtzariaLibraryRelease? {
+        if let multipart {
+            let release = OtzariaLibraryRelease(
+                id: releaseID, tag: releaseTag, asset: multipart.manifest, multipart: multipart
+            )
+            guard repository == OtzariaLibraryRelease.repository,
+                  matches(release), localSize > 0, localSize <= release.compressedSize,
+                  (try? release.validatedMultipart()) != nil else { return nil }
+            return release
+        }
         let expectedPathPrefix = "/Otzaria/SeforimLibrary/releases/download/"
         guard repository == OtzariaLibraryRelease.repository,
               releaseID > 0,
@@ -195,6 +281,7 @@ struct OtzariaDatabaseInstallationManifest: Codable, Equatable, Sendable {
     let digest: String?
     let installedAt: Date
     let databaseFileSize: Int64
+    let multipart: OtzariaLibraryRelease.Multipart?
 
     init(release: OtzariaLibraryRelease, databaseFileSize: Int64) {
         let identity = OtzariaDataProfileRegistry.activeIdentity
@@ -211,6 +298,23 @@ struct OtzariaDatabaseInstallationManifest: Codable, Equatable, Sendable {
         digest = release.asset.digest
         installedAt = Date()
         self.databaseFileSize = databaseFileSize
+        multipart = release.multipart
+    }
+
+    var archiveName: String { multipart?.archiveName ?? assetName }
+    var archiveCompressedSize: Int64 { multipart?.compressedSize ?? compressedSize }
+    var archiveDigest: String? { multipart?.digest ?? digest }
+
+    var hasValidProductionArchiveIdentity: Bool {
+        guard let multipart else {
+            return OtzariaLibraryRelease.isProductionDatabaseAssetName(assetName)
+        }
+        let release = OtzariaLibraryRelease(
+            id: releaseID, tag: releaseTag, asset: multipart.manifest, multipart: multipart
+        )
+        return assetID == release.asset.id && assetName == release.asset.name
+            && compressedSize == release.asset.compressedSize && digest == release.asset.digest
+            && (try? release.validatedMultipart()) != nil
     }
 
     var effectiveProfileID: String { profileID ?? OtzariaDataProfileRegistry.productionID }
