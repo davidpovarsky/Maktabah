@@ -319,14 +319,43 @@ def collect():
         write(OUT / "result.json", report)
 
 
+def reuse_ui_compile():
+    """Reuse only the already executed SDK compile when every compiler input matches."""
+    proof = configuration().get("ui_compile_reuse")
+    if not proof:
+        return False
+    receipt_path = ROOT / proof["report"]
+    require(digest(receipt_path) == proof["report_sha256"], "Reviewed Apple compiler receipt changed")
+    receipt = json.loads(receipt_path.read_text())
+    require(receipt["status"] == "SDK_COMPILE_PASS" and receipt["aggregateSDKStatus"] == "PASS"
+            and receipt["compilerExitCode"] == 0 and receipt["appMembershipStatus"] == "PASS"
+            and receipt["sourceSHA"] == proof["source_sha"] and receipt["nativeUITestsExecuted"] == 0,
+            "Historical evidence is not the actual successful UI SDK compile")
+    same_sources = all(digest(ROOT / name) == expected for name, expected in receipt["sourceHashes"].items())
+    same_driver = all(git("rev-parse", "HEAD:" + name) == git("rev-parse", proof["source_sha"] + ":" + name)
+                      for name in ["Scripts/CI/typecheck-faithful-ui-tests.py", "Maktabah.xcodeproj/project.pbxproj"])
+    same_tools = (capture("xcodebuild", "-version") == receipt["xcode"]
+                  and capture("xcrun", "swift", "--version") == receipt["swift"]
+                  and capture("xcrun", "--sdk", "iphonesimulator", "--show-sdk-path") == receipt["sdk"])
+    reusable = same_sources and same_driver and same_tools
+    write(OUT / "ui-sdk-compile-reuse.json", {"status": "REUSED_EXACT_APPLE_SDK_COMPILE" if reusable else "INPUT_CHANGE_REQUIRES_NEW_COMPILE",
+          "historical_run": proof["run_id"], "historical_source": proof["source_sha"],
+          "historical_artifact_id": proof["artifact_id"], "historical_artifact_sha256": proof["artifact_sha256"],
+          "report_sha256": proof["report_sha256"], "same_source_bytes": same_sources,
+          "same_driver_and_project": same_driver, "same_apple_compiler_and_sdk": same_tools,
+          "native_tests_executed": 0, "new_standalone_swift_compiles": 0})
+    return reusable
+
+
 def run_from_existing_native_workflow(report, run_logged, controller):
     """Use the existing native subset runner without changing workflow authority."""
     code = 1
     try:
         prepare()
-        if run_logged([sys.executable, "Scripts/CI/typecheck-faithful-ui-tests.py", "--ui-compile-only"],
-                      "miniapps-ui-sdk-compile.log", 600, interrupt_controller=controller):
-            raise RuntimeError("New real UI test did not compile against the Apple SDK")
+        if not reuse_ui_compile():
+            if run_logged([sys.executable, "Scripts/CI/typecheck-faithful-ui-tests.py", "--ui-compile-only"],
+                          "miniapps-ui-sdk-compile.log", 600, interrupt_controller=controller):
+                raise RuntimeError("New real UI test did not compile against the Apple SDK")
         if run_logged([sys.executable, "Scripts/CI/hq-stage2-focused-apple.py", "--build-for-testing",
                        "--derived-data", "build/DerivedData"],
                       "miniapps-original-app-build.log", 7200, interrupt_controller=controller):

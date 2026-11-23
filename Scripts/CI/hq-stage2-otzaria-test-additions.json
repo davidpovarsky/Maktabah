@@ -475,9 +475,20 @@
     }
   ],
   "excluded_build_inputs": {
-    "Maktabah.xcodeproj/project.pbxproj": "3261731b3c225ec783b7f7542b53726c71f638c1",
+    "Maktabah.xcodeproj/project.pbxproj": "b9e30e3b2d09635a74d0e03b3aaa1998294ffde0",
     "Vendor/OtzariaSearchEngine/build_xcframework.sh": "c144bfd775b393c4621b41bd2688fad16f79c315",
     "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "0d92196706d534d91041373676e9699b023c9528",
     "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "6bd9288a85e67132e9283ab7516435cfa442c74a"
+  },
+  "miniapps_project_review": {
+    "date": "2026-11-23",
+    "previous_project_blob": "3261731b3c225ec783b7f7542b53726c71f638c1",
+    "reviewed_project_blob": "b9e30e3b2d09635a74d0e03b3aaa1998294ffde0",
+    "source_commit": "6a9e10235c73f2da7967d25e50349a4b93f03807",
+    "scope": "Four downstream iOS MiniApps adapter files and the two lean bridge/picker products only; standalone Vendor/OtzariaSearchEngine/Tests/OccurrenceSwift remains absent from app project membership. All existing project entries and three other excluded build input blobs are preserved.",
+    "added_products": [
+      "HanlinMiniAppsBridge",
+      "HanlinMiniAppsPicker"
+    ]
   }
 }

@@ -71,7 +71,7 @@
     "Vendor/ZayitSearchPort/Upstream": "db6dc60006a51db83ec2c6feed1158e4da1a617b"
   },
   "hanlin_gitlink": "c93c16a9adf513e16b176a3a1b7f99126e33a8d3",
-  "otzaria_test_additions_sha256": "ef5d287ee888b306fab1ddf0e75242245f756976370129c433f1276a96b5611e",
+  "otzaria_test_additions_sha256": "98da3a49487ddeae642be0f0d37947f1320cb864ebdfcc83dde10fe9f29e8839",
   "rebuild_zayit_framework": false,
   "resource_bundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",
   "resource_producer_sha": "70810eec46ad1fec6f30d983bf31e5f922dacb61",

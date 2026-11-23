@@ -2,5 +2,13 @@
   "producer_repository": "davidpovarsky/hanlin-ai",
   "producer_run_id": 45270839882,
   "producer_source_sha": "c93c16a9adf513e16b176a3a1b7f99126e33a8d3",
-  "producer_artifact_name": "app-split-45270839882"
+  "producer_artifact_name": "app-split-45270839882",
+  "ui_compile_reuse": {
+    "run_id": 45271246360,
+    "source_sha": "6a9e10235c73f2da7967d25e50349a4b93f03807",
+    "artifact_id": 14863904172,
+    "artifact_sha256": "ac5b8df08b9ab371bf3bd88f3ffec3508e5e50bb054c46fead6897cc3ee97ecc",
+    "report": "Tests/HQ/miniapps/apple-sdk-compile-45271246360.json",
+    "report_sha256": "672c055c636e464251b711e22d2100b68a9d59f25bbd4a9f9ca843f1e5190327"
+  }
 }
