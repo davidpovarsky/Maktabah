@@ -1,0 +1,14 @@
+test_04_original_collector_and_swift_journal_guards_are_unchanged (__main__.StreamJournalSchemaTests.test_04_original_collector_and_swift_journal_guards_are_unchanged) ... FAIL
+
+======================================================================
+FAIL: test_04_original_collector_and_swift_journal_guards_are_unchanged (__main__.StreamJournalSchemaTests.test_04_original_collector_and_swift_journal_guards_are_unchanged)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/maktabah-sdk-consumer-20261123/Tests/HQ/hanlin-host/test_stream_diagnostic_schema.py", line 73, in test_04_original_collector_and_swift_journal_guards_are_unchanged
+    self.assertEqual(normalized_driver(old_driver), normalized_driver((ROOT / DRIVER_PATH).read_text()))
+AssertionError: 'Modu[1433 chars]ue=\'6aa953048453b64a0013621ce76e095770eb7e7d\[124371 chars]=[])' != 'Modu[1433 chars]ue=\'aa944bd2327edca035ed9a596fa169499f922138\[124371 chars]=[])'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.034s
+
+FAILED (failures=1)

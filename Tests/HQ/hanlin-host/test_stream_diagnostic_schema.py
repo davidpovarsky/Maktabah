@@ -64,11 +64,24 @@ class StreamJournalSchemaTests(unittest.TestCase):
                         driver.validate_connection_diagnostic(raw(value))
 
     def test_04_original_collector_and_swift_journal_guards_are_unchanged(self):
+        # A reviewed immutable source rebinding is metadata. Verify it against
+        # the real build input and all four original application/test trees
+        # before excluding only that constant from the collector-code check.
+        inputs = json.loads((ROOT / "Scripts/CI/hq-stage2-focused-apple.inputs.json").read_text())
+        self.assertRegex(driver.REVIEWED_SOURCE, r"\A[0-9a-f]{40}\Z")
+        self.assertEqual(driver.REVIEWED_SOURCE, inputs["application_source_sha"])
+        for path in ["Source", "Vendor", "Maktabah.xcodeproj", "Maktabah-iOSUITests"]:
+            with self.subTest(reviewed_tree=path):
+                reviewed = subprocess.check_output(
+                    ["git", "rev-parse", driver.REVIEWED_SOURCE + ":" + path], cwd=ROOT)
+                current = subprocess.check_output(["git", "rev-parse", "HEAD:" + path], cwd=ROOT)
+                self.assertEqual(reviewed, current)
         def normalized_driver(source):
             tree = ast.parse(source)
             tree.body = [node for node in tree.body if not (
                 isinstance(node, ast.Assign) and len(node.targets) == 1
-                and isinstance(node.targets[0], ast.Name) and node.targets[0].id in VOCABULARY)]
+                and isinstance(node.targets[0], ast.Name)
+                and node.targets[0].id in VOCABULARY | {"REVIEWED_SOURCE"})]
             return ast.dump(tree, include_attributes=False)
         self.assertEqual(normalized_driver(old_driver), normalized_driver((ROOT / DRIVER_PATH).read_text()))
         # The actual owned-input binding, 96-event/9-flag cap, atomic private write,

@@ -1,0 +1,6 @@
+test_04_original_collector_and_swift_journal_guards_are_unchanged (__main__.StreamJournalSchemaTests.test_04_original_collector_and_swift_journal_guards_are_unchanged) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.045s
+
+OK

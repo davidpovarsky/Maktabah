@@ -1,0 +1,31 @@
+{
+  "base_commit": "e44053bfb7c6a9fdc29c64537a2bfad02e695871",
+  "application_source": "aa944bd2327edca035ed9a596fa169499f922138",
+  "native_run_unchanged": 45121359772,
+  "selector": "StreamJournalSchemaTests.test_04_original_collector_and_swift_journal_guards_are_unchanged",
+  "before": {
+    "exit": 1,
+    "tests": 1,
+    "failures": 1,
+    "cause": "original AST equality incorrectly included the legitimately rebound immutable source constant"
+  },
+  "after": {
+    "exit": 0,
+    "tests": 1,
+    "failures": 0
+  },
+  "test_source_sha256": "cc4217527e8e08f6d76088e4b1c5ffa07a108b16a40a85b8e14ca2a3fb3f0c86",
+  "logs": {
+    "binding-guard-before.log": {
+      "bytes": 1142,
+      "sha256": "063bf910c44a075a6db21f6b87b1759619160007de114e12faf787d43fb794f8"
+    },
+    "binding-guard-after.log": {
+      "bytes": 272,
+      "sha256": "893d912840e0238e6cd819dac5a6037267406a2483898c3e1819b719b6221452"
+    }
+  },
+  "change": "Validate full reviewed SHA, exact existing strict build source and all four original Git trees before excluding only REVIEWED_SOURCE plus the original vocabulary assignments from the unchanged-collector AST comparison. Swift journal guard byte identity remains unchanged.",
+  "other_three_privacy_vocabulary_methods": "unchanged; not rerun",
+  "native_execution": "not rerun; affected test is outside the live driver execution input closure"
+}
