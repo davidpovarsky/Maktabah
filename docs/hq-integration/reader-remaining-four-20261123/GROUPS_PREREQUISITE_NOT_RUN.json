@@ -1,0 +1,30 @@
+{
+  "source": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+  "run_id": 45158596483,
+  "run_attempt": 3,
+  "artifact_id": 14851598348,
+  "artifact_bytes": 8908810,
+  "artifact_sha256": "c9b623c410dd6ef2462c49db317760d6e039531e5ca2cbcc7d8857c81cc77456",
+  "case_id": "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+  "status": "NOT_RUN",
+  "original_installation_attempts": [
+    {
+      "attempt": 1,
+      "bundle": "com.davidpovarsky.chavrusatext",
+      "error": "Command '['xcrun', 'simctl', 'get_app_container', 'A445C52D-EB41-4ED2-86A6-20CD3840A680', 'com.davidpovarsky.chavrusatext', 'app']' timed out after 45 seconds",
+      "status": "INSTALL_TIMEOUT",
+      "timedOutPhase": "VERIFYING_APP_CONTAINER"
+    },
+    {
+      "attempt": 2,
+      "bundle": "com.davidpovarsky.chavrusatext",
+      "error": "Command '['xcrun', 'simctl', 'get_app_container', 'A445C52D-EB41-4ED2-86A6-20CD3840A680', 'com.davidpovarsky.chavrusatext', 'app']' timed out after 45 seconds",
+      "status": "INSTALL_TIMEOUT",
+      "timedOutPhase": "VERIFYING_APP_CONTAINER"
+    }
+  ],
+  "cleanup": "PASS",
+  "established_failure": "Original simctl get_app_container for installed app exceeded unchanged 45-second bound twice. Native XCTest did not start.",
+  "unresolved": "No unique cause or verified repair is established by retained service logs. Do not replay the Groups case or widen installation deadline.",
+  "retained_service_scope": "Original simulator-only Maktabah/SpringBoard/installd logs, last three minutes; original actual app binary succeeded on a separate Library Simulator after the identical first-query timeout."
+}

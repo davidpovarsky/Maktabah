@@ -1,4 +1,4 @@
-name: Original Groups100, Library7 and full-v32 Reader observations
+name: Original Library LTR and full-v32 continuation with Groups100 deferred
 
 on:
   push:
@@ -13,6 +13,7 @@ on:
       - 'docs/hq-integration/reader-full-v32-ui-observation-20261123/FullV32ObservationCatalog.swift'
       - 'Scripts/CI/hq-stage2-focused-apple.inputs.json'
       - '.github/workflows/otzaria-reader-groups-full-v32.yml'
+      - 'docs/hq-integration/reader-remaining-four-20261123/**'
 
 permissions:
   contents: read
@@ -24,7 +25,8 @@ concurrency:
 
 jobs:
   focused-native:
-    name: One app build and three independent original native cohorts
+    name: One app build for three remaining original native cases
+    if: ${{ github.repository == 'davidpovarsky/Maktabah' && github.event_name == 'push' && github.ref == 'refs/heads/codex/otzaria-reader-groups-full-v32-20261123' && github.run_attempt == 1 }}
     runs-on: xcode-27
     timeout-minutes: 330
     env:
@@ -39,7 +41,7 @@ jobs:
         run: |
           python3 Scripts/CI/native-cohort-artifacts.py groups100
           python3 Scripts/CI/reader-groups100-focused-native.py prepare
-      - name: Admit only the seven original Library cases against integrated source
+      - name: Admit only the original remaining English LTR Library case
         id: library_admission
         run: |
           python3 Scripts/CI/native-cohort-artifacts.py library7
@@ -113,20 +115,30 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 Scripts/CI/hq-stage2-focused-apple.py --build-for-testing --derived-data build/DerivedData
-      - name: Execute the original Groups100 leaf on its owned mini fixture Simulator
-        id: groups_native
-        if: ${{ !cancelled() && steps.native_build.outcome == 'success' && steps.groups_admission.outcome == 'success' }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Retain the unresolved Groups100 prerequisite without replay
+        id: groups_deferred
+        if: ${{ !cancelled() && steps.groups_admission.outcome == 'success' }}
         run: |
           python3 Scripts/CI/native-cohort-artifacts.py groups100
-          python3 Scripts/CI/reader-groups100-focused-native.py run
-      - name: Collect Groups100 raw outcomes and owned cleanup including failure
-        if: ${{ always() && steps.groups_admission.outcome == 'success' }}
-        run: |
-          python3 Scripts/CI/native-cohort-artifacts.py groups100
-          python3 Scripts/CI/reader-groups100-focused-native.py collect
-      - name: Execute seven original Library cases on a separate owned mini fixture Simulator
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib
+          root = pathlib.Path.cwd()
+          packet = root / 'docs/hq-integration/reader-remaining-four-20261123'
+          plan = json.loads((packet / 'CONTINUATION_PLAN.json').read_text())
+          diagnostic_bytes = (packet / 'GROUPS_PREREQUISITE_NOT_RUN.json').read_bytes()
+          assert plan['groups100']['mode'] == 'DEFERRED_UNRESOLVED_SIMCTL_CONTAINER_TIMEOUT'
+          assert hashlib.sha256(diagnostic_bytes).hexdigest() == plan['groups100']['diagnosis_sha256']
+          source = json.loads((root / 'build/artifacts/reader-groups100/source-before.json').read_text())
+          assert source['checkout_sha'] == os.environ['GITHUB_SHA']
+          assert source['application_source_sha'] == plan['application_source_sha']
+          report = dict(source, status='NOT_RUN', required_case_ids=[plan['groups100']['case_id']],
+                        executed_ui_pass=0, executed_ui_fail=0, executed_ui_skip=0, ui_not_run=1,
+                        native_execution=False, no_simulator_created=True,
+                        reason='Unresolved original simctl container prerequisite; no blind retry',
+                        original_prerequisite=json.loads(diagnostic_bytes))
+          (root / 'build/artifacts/reader-groups100/result.json').write_text(json.dumps(report, indent=2) + '\n')
+          PY
+      - name: Execute only the original English LTR case on its owned mini fixture Simulator
         id: library_native
         if: ${{ !cancelled() && steps.native_build.outcome == 'success' && steps.library_admission.outcome == 'success' }}
         env:
@@ -134,7 +146,7 @@ jobs:
         run: |
           python3 Scripts/CI/native-cohort-artifacts.py library7
           python3 Scripts/CI/library-morph-focused-native.py run
-      - name: Collect Library7 raw outcomes and owned cleanup including failure
+      - name: Collect the original LTR outcome and owned cleanup including failure
         if: ${{ always() && steps.library_admission.outcome == 'success' }}
         run: |
           python3 Scripts/CI/native-cohort-artifacts.py library7
@@ -207,22 +219,22 @@ jobs:
             build/native-cohorts/groups100/artifacts/**/*.mp4
             build/native-cohorts/groups100/artifacts/visual-*/**
           if-no-files-found: ignore
-      - name: Retain Library7 outcomes including failure
+      - name: Retain the original LTR outcome including failure
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: library7-native-evidence
+          name: library-ltr-native-evidence
           path: |
             build/native-cohorts/library7/artifacts/
             !build/native-cohorts/library7/artifacts/**/*.xcresult/**
             !build/native-cohorts/library7/artifacts/**/*.mp4
             !build/native-cohorts/library7/artifacts/visual-*/**
           if-no-files-found: error
-      - name: Retain Library7 original result bundles and captures separately
+      - name: Retain the original LTR result bundle and captures separately
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: library7-native-captures
+          name: library-ltr-native-captures
           path: |
             build/native-cohorts/library7/artifacts/**/*.xcresult/**
             build/native-cohorts/library7/artifacts/**/*.mp4

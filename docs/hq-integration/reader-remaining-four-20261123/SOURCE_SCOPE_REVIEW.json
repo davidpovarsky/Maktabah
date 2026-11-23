@@ -1,0 +1,90 @@
+{
+  "mode": "LOCAL_SOURCE_SELECTOR_AND_WIRING_CONTROLS_ONLY",
+  "native_compilation": false,
+  "native_execution": false,
+  "checks": [
+    {
+      "name": "prior_seven_cannot_replay",
+      "status": "PASS"
+    },
+    {
+      "name": "empty_selection_cannot_pass",
+      "status": "PASS"
+    },
+    {
+      "name": "exact_ltr_selector",
+      "status": "PASS"
+    },
+    {
+      "name": "original_two_full_v32_selectors",
+      "status": "PASS"
+    },
+    {
+      "name": "all_46_actual_input_hashes",
+      "status": "PASS"
+    },
+    {
+      "name": "exact_single_ltr_inverse",
+      "status": "PASS"
+    },
+    {
+      "name": "original_r27_passed_methods_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "only_two_root_optin_sources_plus_ltr_fixture",
+      "status": "PASS"
+    },
+    {
+      "name": "root_release_sources_exact",
+      "status": "PASS"
+    },
+    {
+      "name": "original_groups_driver_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "original_native_installer_and_deadlines_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "no_groups_execution_or_collect",
+      "status": "PASS"
+    },
+    {
+      "name": "one_shared_build",
+      "status": "PASS"
+    },
+    {
+      "name": "original_bounded_attempt_one",
+      "status": "PASS"
+    },
+    {
+      "name": "no_shared_helper_or_hq_driver_mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "library_driver_python_syntax",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_workflow_yaml_and_embedded_python",
+      "status": "PASS"
+    }
+  ],
+  "application_source_sha": "92e9df6e2daf64893c83ba13708fac4c670ae38f",
+  "actual_application_delta": [
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift",
+    "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift"
+  ],
+  "prior_passes_reexecuted": false,
+  "prior_passes_transferred_to_new_checkout": false,
+  "root_optin_component_review_source": "8136f2b50ea0acacc98e52bd172c73506dfa7746",
+  "retained_exact_diff": {
+    "path": "LTR_MODAL_CAPTURE.diff.gz",
+    "uncompressed_bytes": 1100,
+    "uncompressed_sha256": "0fdeaf1adefd3b542a4fb3f2c9b87f85db91092c1cdd62170c6203babc2833bb",
+    "reason": "Lossless deterministic gzip preserves exact original diff context bytes."
+  }
+}

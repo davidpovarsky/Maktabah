@@ -1,0 +1,35 @@
+{
+  "actual_capture_archive_sha256": "b1d2e564e34415cf8e7e446b72d39a5107b82e29db84c867a9d9fb66dd6aa35a",
+  "actual_capture_artifact": 14851997559,
+  "actual_evaluation_sha256": "e5a2258a0bb512f7d1388068c159b973039c7896d5297a4320e79ef8c8c05bdb",
+  "actual_hierarchy_sha256": "0c4466ee999cd0504cdc9ef1efaff27981b807713bad3a6f865d6b34fa821c9d",
+  "after": {
+    "bytes": 290867,
+    "git_blob": "f09fa4faf5d3bfd6d17cdd0309feeae8e2494058",
+    "sha256": "28d5dbc2a6672b39b4083ff9f50f25b338e177bb33ac5c32da474b2baf1b7d4a"
+  },
+  "after_text": "        let palette = app.descendants(matching: .any)[\"reader-library-command-palette\"]\n        XCTAssertTrue(palette.waitForExistence(timeout: 15))\n        let result = palette.buttons[\"command-palette-row-section:ספרים/otzaria|book:1|line:0\"]\n        captureOpenLibraryPalette(\"candidate-command-palette-en\", palette: palette, result: result)\n",
+  "base": "8136f2b50ea0acacc98e52bd172c73506dfa7746",
+  "before": {
+    "bytes": 290684,
+    "git_blob": "e91d90a25c0cbd5158a7c4dffe054f9bd2637698",
+    "sha256": "d8ae7aa91ad09866a8842684fae51b1d19e1d084b27a8a6b5d7cb45b523c091f"
+  },
+  "before_text": "        XCTAssertTrue(app.descendants(matching: .any)[\"reader-library-command-palette\"].waitForExistence(timeout: 15))\n        capture(\"candidate-command-palette-en\")\n",
+  "diff": {
+    "bytes": 1100,
+    "git_blob": "b2c72a0878bcc63983663b33e42de346d94614a8",
+    "sha256": "0fdeaf1adefd3b542a4fb3f2c9b87f85db91092c1cdd62170c6203babc2833bb"
+  },
+  "exact_inverse_to_original": true,
+  "native_execution": false,
+  "original_attempt": 3,
+  "original_run": 45158596483,
+  "original_source": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+  "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "semantic_scope": "Final empty-query English modal palette capture only; use existing strict palette observer and actual original visible Genesis row. Reader rotation captures, query, production source and deadlines unchanged.",
+  "six_prior_passes_replayed": false,
+  "source": "92e9df6e2daf64893c83ba13708fac4c670ae38f",
+  "status": "",
+  "tree": "b610a623e1c5eac9753675d70d92d3fa72c9857f"
+}

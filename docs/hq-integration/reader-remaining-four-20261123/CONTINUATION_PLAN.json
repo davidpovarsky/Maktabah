@@ -1,0 +1,62 @@
+{
+  "schema": "otzaria.remaining-original-four/1",
+  "application_source_sha": "92e9df6e2daf64893c83ba13708fac4c670ae38f",
+  "application_trees": {
+    "Source": "1b8d94e5e09e52b44b807a65759fe3dd8087c5a7",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "ae0f9d48f43bf27f9e0a14a09736667437f13b2f"
+  },
+  "prior_combined": {
+    "source": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+    "run_id": 45158596483,
+    "run_attempt": 3,
+    "receipt_sha256": "143a66f23323c4b2d12679b3e951e7aff65100385029e25c04724fec4fc1e36d"
+  },
+  "retained_prior_passes": [
+    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+    "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+    "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+    "FaithfulReaderUIAcceptanceTests/testLibraryMorphOutsideDismissalPreservesCanonicalQueryAndReader",
+    "FaithfulReaderUIAcceptanceTests/testLibraryMorphRepeatedOpenCloseReleasesHiddenKeyboardFocus"
+  ],
+  "prior_passes_reexecuted": false,
+  "prior_passes_transferred_to_new_checkout": false,
+  "groups100": {
+    "case_id": "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+    "mode": "DEFERRED_UNRESOLVED_SIMCTL_CONTAINER_TIMEOUT",
+    "current_execution": "NOT_RUN",
+    "diagnosis_sha256": "4ed788b7714d4a60b64d34dd9275989c39feecb129b7266cf62d3233d023baa0"
+  },
+  "library_ltr": {
+    "selected_case_ids": [
+      "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout"
+    ],
+    "fixture_source": "92e9df6e2daf64893c83ba13708fac4c670ae38f",
+    "scope": "Original empty-query English Reader/palette case; exact existing modal observer, original 15/20-second bounds and unchanged reader rotation captures."
+  },
+  "full_v32": {
+    "selected_case_ids": [
+      "FaithfulProductionReleaseTests/testTwentyOriginalFullV32ReaderOpensAndForcedRelaunch",
+      "FaithfulProductionReleaseTests/testOriginalFullV32InspectorRelationshipScalesAndReturn"
+    ],
+    "release_selection_source": "8136f2b50ea0acacc98e52bd172c73506dfa7746",
+    "source_database": {
+      "repository": "Otzaria/SeforimLibrary",
+      "releaseTag": "v32-20261010190601",
+      "releaseID": 409213893,
+      "assetID": 629048655,
+      "assetName": "seforim-schema6.db.zst",
+      "assetBytes": 1850679582,
+      "assetSHA256": "6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44",
+      "databaseBytes": 3821240320,
+      "databaseSHA256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765"
+    }
+  },
+  "required_remaining_count": 4,
+  "selected_native_case_count": 3,
+  "deferred_native_case_count": 1,
+  "shared_app_build_count": 1,
+  "overall_acceptance_complete": false
+}

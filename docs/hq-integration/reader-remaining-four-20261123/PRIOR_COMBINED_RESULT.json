@@ -1,0 +1,143 @@
+{
+  "application_source_sha": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+  "archive_intake": "See four API-digest-bound AUTHENTICATED_ARCHIVE_INTAKE.json receipts",
+  "attempt": 3,
+  "counts": {
+    "failed": 1,
+    "not_run": 3,
+    "passed": 6,
+    "skipped": 0
+  },
+  "full_v32": {
+    "artifact_id": 14851663251,
+    "blocker": [
+      "The latest Otzaria release does not contain a supported seforim database asset."
+    ],
+    "book_count": 0,
+    "downloaded_bytes": 0,
+    "failed": 0,
+    "not_run": 2,
+    "owned_cleanup": {
+      "delete": {
+        "exit": 0
+      },
+      "shutdown": {
+        "exit": 0
+      }
+    },
+    "passed": 0,
+    "skipped": 0
+  },
+  "git_source_inputs_verified": 311,
+  "groups100": {
+    "artifact_id": 14851598348,
+    "blocker": "TimeoutExpired: Command '['xcrun', 'simctl', 'get_app_container', 'A445C52D-EB41-4ED2-86A6-20CD3840A680', 'com.davidpovarsky.chavrusatext', 'app']' timed out after 45 seconds",
+    "case": [
+      {
+        "actual": "NOT_RUN",
+        "case_id": "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "One hundred consecutive actual original group/document UUID transitions, same scene/profile, advancing persisted revisions and selected original card/control; unchanged membership/locators and exact cold restore. Automation timings are not product p95 or memory acceptance."
+      }
+    ],
+    "failed": 0,
+    "installation_attempts": [
+      {
+        "attempt": 1,
+        "bundle": "com.davidpovarsky.chavrusatext",
+        "error": "Command '['xcrun', 'simctl', 'get_app_container', 'A445C52D-EB41-4ED2-86A6-20CD3840A680', 'com.davidpovarsky.chavrusatext', 'app']' timed out after 45 seconds",
+        "status": "INSTALL_TIMEOUT",
+        "timedOutPhase": "VERIFYING_APP_CONTAINER"
+      },
+      {
+        "attempt": 2,
+        "bundle": "com.davidpovarsky.chavrusatext",
+        "error": "Command '['xcrun', 'simctl', 'get_app_container', 'A445C52D-EB41-4ED2-86A6-20CD3840A680', 'com.davidpovarsky.chavrusatext', 'app']' timed out after 45 seconds",
+        "status": "INSTALL_TIMEOUT",
+        "timedOutPhase": "VERIFYING_APP_CONTAINER"
+      }
+    ],
+    "not_run": 1,
+    "owned_simulator_cleanup": "PASS",
+    "passed": 0,
+    "skipped": 0
+  },
+  "library": {
+    "artifact_id": 14851628171,
+    "cases": [
+      {
+        "actual": "Passed",
+        "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Actual wired native toolbar bounds; genuine resized window; real filtered fixture-book result; Escape dismissal; real Inspector open/close; exact text/locator preserved; SpringBoard semantic Window Controls and measured full-size restore"
+      },
+      {
+        "actual": "Passed",
+        "case_id": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Original XCTest assertions retained in R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration"
+      },
+      {
+        "actual": "Passed",
+        "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Original XCTest assertions retained in FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal"
+      },
+      {
+        "actual": "Failed",
+        "case_id": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Original XCTest assertions retained in FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout"
+      },
+      {
+        "actual": "Passed",
+        "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Original XCTest assertions retained in FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable"
+      },
+      {
+        "actual": "Passed",
+        "case_id": "FaithfulReaderUIAcceptanceTests/testLibraryMorphOutsideDismissalPreservesCanonicalQueryAndReader",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Original XCTest assertions retained in FaithfulReaderUIAcceptanceTests/testLibraryMorphOutsideDismissalPreservesCanonicalQueryAndReader"
+      },
+      {
+        "actual": "Passed",
+        "case_id": "FaithfulReaderUIAcceptanceTests/testLibraryMorphRepeatedOpenCloseReleasesHiddenKeyboardFocus",
+        "configuration_label": "11-reader",
+        "device": "ipad11",
+        "expected": "Original XCTest assertions retained in FaithfulReaderUIAcceptanceTests/testLibraryMorphRepeatedOpenCloseReleasesHiddenKeyboardFocus"
+      }
+    ],
+    "failed": 1,
+    "failure": [
+      {
+        "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window",
+        "targetName": "Maktabah-iOSUITests",
+        "testIdentifier": 1,
+        "testIdentifierString": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout()",
+        "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+        "testName": "testEnglishReaderAndOriginalPaletteInLeftToRightLayout()"
+      }
+    ],
+    "not_run": 0,
+    "owned_simulator_cleanup": "PASS",
+    "passed": 6,
+    "skipped": 0
+  },
+  "no_native116_release114_physical_device_or_full_performance_acceptance": true,
+  "observed_at": "2026-11-23T19:16:04.533842+00:00",
+  "run_id": 45158596483,
+  "schema": 1,
+  "shared_original_build": "PASS",
+  "source_and_built_images_unchanged": true,
+  "source_sha": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+  "status": "AUTHENTIC_SIX_PASS_ONE_FAIL_THREE_NOT_RUN"
+}

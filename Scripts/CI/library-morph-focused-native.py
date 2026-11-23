@@ -20,6 +20,9 @@ FULL = ROOT / "docs/hq-integration/runtime27/R27_CASES.json"
 RELEASE = ROOT / "Scripts/CI/runtime27-release-manifest.json"
 GROUPS = CONFIG["execution_groups"]
 SELECTED = [case for group in GROUPS for case in group["case_ids"]]
+EXPECTED_CASE_IDS = [
+    "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout"
+]
 
 def git(*args):
     return subprocess.check_output(["git", *args], cwd=ROOT, timeout=90).decode().strip()
@@ -55,6 +58,8 @@ def source_context():
         raise ValueError("Unexpected Library morph inputs schema")
     if len(SOURCE) != 40 or any(c not in "0123456789abcdef" for c in SOURCE):
         raise ValueError("Final integrated application source is not frozen")
+    if SELECTED != EXPECTED_CASE_IDS:
+        raise ValueError("Only the original English LTR failure from run45158596483 attempt3 may execute")
     gate = runpy.run_path(str(ROOT / "Scripts/CI/verify-9401-exact-source.py"))
     morph_inputs = exact_working_inputs(list(gate["MORPH_PRODUCT_PATHS"]))
     morph_issues = gate["library_morph_issues"]({path: (ROOT / path).read_bytes() for path in morph_inputs})
@@ -95,7 +100,7 @@ def prepare():
                     required_nonzero_cases=len(SELECTED), native_cases_executed=0,
                     expected_per_device={"ipad11": len(SELECTED), "ipad13": 0, "iphone": 0},
                     diagnostic_only=True, hid_comparison=True,
-                    scope="Seven source-pinned Library morph cases: genuine native window/Inspector, keyboard, pointer, LTR, Reduce Motion, outside dismissal and hidden focus. Full Native116/Release114, physical iPad and full-library/backend acceptance remain separate")
+                    scope="One original English LTR Reader/empty-query palette case. Six prior authentic Library passes retained at their original source, not replayed. Full Native116/Release114, physical iPad and full-library/backend acceptance remain separate")
     driver = runpy.run_path(str(ROOT / "Scripts/CI/runtime27.py"))
     driver["execution_groups"](contract)
     declaration = runpy.run_path(str(ROOT / "Scripts/CI/verify-faithful-xctest.py"))["validate_selections"](
