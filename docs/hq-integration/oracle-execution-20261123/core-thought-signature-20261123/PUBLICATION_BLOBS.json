@@ -1,0 +1,88 @@
+{
+  "blobs": [
+    {
+      "bytes": 1834,
+      "mode": "100644",
+      "path": ".github/workflows/otzaria-stream-continuation.yml",
+      "sha": "c4e7329f5f45f2fd04922b5dc60ac407d820c9bb",
+      "sha256": "88bf2e59aebf275c538109f6c09713f6cde0d921b9906ef8eaff6cd58dcb9819",
+      "type": "blob"
+    },
+    {
+      "bytes": 8951,
+      "mode": "100644",
+      "path": "Sources/AISDKProviderUtils/StreamingToolCallTracker.swift",
+      "sha": "a58c6ee021a13be15ae0798258c46a51a8dc6176",
+      "sha256": "7e55ac4005738d15276098d8fcd0383641b5f5cee8c0c3940734d63cf402c0c4",
+      "type": "blob"
+    },
+    {
+      "bytes": 22818,
+      "mode": "100644",
+      "path": "Sources/OpenAICompatibleProvider/Chat/ConvertToOpenAICompatibleChatMessages.swift",
+      "sha": "538a50855f39b1a97334c6181ce5af5267ae1213",
+      "sha256": "1bf69b208f148c9d2d9f0ea50f16ecf6fa6991d93d112aa69704a3177d6af49e",
+      "type": "blob"
+    },
+    {
+      "bytes": 64551,
+      "mode": "100644",
+      "path": "Sources/OpenAICompatibleProvider/Chat/OpenAICompatibleChatLanguageModel.swift",
+      "sha": "e6b193bfa7fb3a0590935c7eed7f206ec828e781",
+      "sha256": "5ba14177375c491891d344ac783e7d6504588c57f8a6fd3a80597370815f7e34",
+      "type": "blob"
+    },
+    {
+      "bytes": 18079,
+      "mode": "100644",
+      "path": "Tests/AISDKProviderUtilsTests/StreamingToolCallTrackerTests.swift",
+      "sha": "23f3c5daf491b0d576b979a915d3ceed11682f2c",
+      "sha256": "439f491e1b6ed4f37509768e5dd5064711ae48348295e5b58b6f6b2ee22b8d81",
+      "type": "blob"
+    },
+    {
+      "bytes": 10949,
+      "mode": "100644",
+      "path": "Tests/OpenAICompatibleProviderTests/OpenAICompatibleThoughtSignatureV3Tests.swift",
+      "sha": "3ad908f76fa43c821b0c52cdc2edfab14173dc96",
+      "sha256": "874f9a90a648bbaf3a4a391f218e8349863c1f2bb413cbc8dce8d348d6c2eacd",
+      "type": "blob"
+    },
+    {
+      "bytes": 9371,
+      "mode": "100644",
+      "path": "Tests/SwiftAISDKTests/GenerateText/StreamTextThoughtSignatureContinuationTests.swift",
+      "sha": "f41ec099eb399e78c15e05788b89ba16a7d6499a",
+      "sha256": "5514d88f54723ae7e6c515d67cd0494234cc942487f0a65f9a68917cb5f62d92",
+      "type": "blob"
+    },
+    {
+      "bytes": 4048,
+      "mode": "100644",
+      "path": "plan/design-decisions.md",
+      "sha": "d831d774212e0d451495918d160ba0b30f0a859e",
+      "sha256": "248be3dd536d5bd71cd6ad1f72f2e927d11584b04999e243c908a6c4a5702b28",
+      "type": "blob"
+    },
+    {
+      "bytes": 7414,
+      "mode": "100644",
+      "path": "plan/otzaria-thought-signature-inputs.json",
+      "sha": "73a75370304cba6f3bfdf7cdb016309a363795cd",
+      "sha256": "05b0ddc15ea8642e5760a727b477a0991abd7c36239e8f0c5ee0fa1dbb5bf999",
+      "type": "blob"
+    },
+    {
+      "bytes": 13751,
+      "mode": "100644",
+      "path": "scripts/otzaria-thought-signature-evidence.py",
+      "sha": "aecda29d2330a8593cc41adeb89d16a2373b567d",
+      "sha256": "10e1b92da371896c40e1e49462681a88693b45acc039ae410d369c445c34a143",
+      "type": "blob"
+    }
+  ],
+  "branch_activated": false,
+  "created_at": "2026-11-23T21:57:37.733937+00:00",
+  "source": "f354ea69d2994e6ef50a64a41a7ddeb0779206fb",
+  "tree": "aaa0512eee2676ce650baff4d0a26c5998e7d0f7"
+}

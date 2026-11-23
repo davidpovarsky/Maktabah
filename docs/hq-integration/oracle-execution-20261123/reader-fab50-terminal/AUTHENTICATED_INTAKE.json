@@ -1,0 +1,67 @@
+{
+  "status": "AUTHENTICATED_ALL_FIVE_ORIGINAL_ARTIFACTS",
+  "terminal_conclusion": "cancelled",
+  "artifacts": [
+    {
+      "id": 14863925111,
+      "name": "native-shared-build-evidence",
+      "archive_bytes": 1280210,
+      "archive_sha256": "df53749a9032a1d8bc6b07860f2aa83e89ecf2dcd81b3afcf96f897a8ac8b0f6",
+      "crc_checked_members": 44,
+      "member_hashes_complete": true,
+      "expanded_bytes": 21563992,
+      "run": 45255504303,
+      "attempt": 1,
+      "source": "fab50c9e26fe60d6eb009b34cfa23781d3bb363c"
+    },
+    {
+      "id": 14863201541,
+      "name": "full-v32-ui-observation-evidence",
+      "archive_bytes": 20917,
+      "archive_sha256": "2db6d187e0312bcf9cfa9fa31eeb6fc1302f4638b0c6a420cdb4325693eca626",
+      "crc_checked_members": 7,
+      "member_hashes_complete": true,
+      "expanded_bytes": 68098,
+      "run": 45255504303,
+      "attempt": 1,
+      "source": "fab50c9e26fe60d6eb009b34cfa23781d3bb363c"
+    },
+    {
+      "id": 14863096638,
+      "name": "groups100-native-evidence",
+      "archive_bytes": 86256,
+      "archive_sha256": "96e9d7d77a72386e8dd29591f02a832cfe86571109e32459d547eda35ae967db",
+      "crc_checked_members": 4,
+      "member_hashes_complete": true,
+      "expanded_bytes": 311420,
+      "run": 45255504303,
+      "attempt": 1,
+      "source": "fab50c9e26fe60d6eb009b34cfa23781d3bb363c"
+    },
+    {
+      "id": 14862628694,
+      "name": "library-ltr-native-evidence",
+      "archive_bytes": 134352,
+      "archive_sha256": "6886a1b255897c2921ba685bf4bc790ce251a01fa989b6a00c504c27705f4b3f",
+      "crc_checked_members": 24,
+      "member_hashes_complete": true,
+      "expanded_bytes": 532830,
+      "run": 45255504303,
+      "attempt": 1,
+      "source": "fab50c9e26fe60d6eb009b34cfa23781d3bb363c"
+    },
+    {
+      "id": 14862523959,
+      "name": "library-ltr-native-captures",
+      "archive_bytes": 33039498,
+      "archive_sha256": "bb199ffc69966d3b40724708aa72bf268a24228fa20401ae145b211937ff2d24",
+      "crc_checked_members": 58,
+      "member_hashes_complete": true,
+      "expanded_bytes": 0,
+      "run": 45255504303,
+      "attempt": 1,
+      "source": "fab50c9e26fe60d6eb009b34cfa23781d3bb363c"
+    }
+  ],
+  "test_results_not_yet_collected": true
+}

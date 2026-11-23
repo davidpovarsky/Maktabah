@@ -1,0 +1,30 @@
+{
+  "at_utc": "2026-11-23T21:52:45.049355+00:00",
+  "branch": "codex/otzaria-multipart-native-evidence-20261123",
+  "changed_paths": [
+    ".github/workflows/ios-build.yml",
+    "PROJECT_BOARD.md",
+    "Scripts/CI/otzaria_bootstrap_evidence.py",
+    "Scripts/CI/test_otzaria_bootstrap_evidence.py",
+    "Scripts/run-otzaria-native-bootstrap-acceptance.sh",
+    "docs/hq-integration/latest-multipart-20261123/native-evidence-source/ORIGINAL_10_RESULT.json",
+    "docs/hq-integration/latest-multipart-20261123/native-evidence-source/PEER_DELTA.patch.gz",
+    "docs/hq-integration/latest-multipart-20261123/native-evidence-source/PEER_DELTA_CONTROLS.json",
+    "docs/hq-integration/latest-multipart-20261123/native-evidence-source/PEER_REVIEW_DELTA.json",
+    "docs/hq-integration/latest-multipart-20261123/native-evidence-source/PLAN.json",
+    "docs/hq-integration/latest-multipart-20261123/native-evidence-source/focused-controls-driver.py",
+    "docs/hq-integration/latest-multipart-20261123/native-evidence-source/original-10-controls.log",
+    "docs/hq-integration/latest-multipart-20261123/native-evidence-source/peer-delta-controls.log"
+  ],
+  "clean": true,
+  "head": "d440fafa617f07caf25c94be1616911b6304119c",
+  "native_executed": false,
+  "new_affected_9_receipt_sha256": "4f0820995c1b48ec80f2916e2c35481fb271752644a8e523e9d0a26e49e6dcac",
+  "parent": "602659607a3a6a2586a7c4a8d7ce6114eec8cd86",
+  "peer_review_sha256": "f8adc3a78eedeea798cfa6245a3a354001725e038a7f045af04f433ac8be0328",
+  "product_delta": [],
+  "published": false,
+  "root_10_receipt_sha256": "ae41f9d0073541ff15242631efec65bd9f97490c78282cc6e6a60367ff32083a",
+  "tree": "69f54d636a200a1ca98bce0e6253bce22514e744",
+  "workflow_activated": false
+}

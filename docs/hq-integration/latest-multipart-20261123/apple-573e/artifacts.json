@@ -1,0 +1,25 @@
+{
+  "total_count": 1,
+  "artifacts": [
+    {
+      "id": 14863027597,
+      "node_id": "MDg6QXJ0aWZhY3QxNDg2MzAyNzU5Nw==",
+      "name": "otzaria-multipart-stream-573e4dc004dd61ba3d8f1ed8a42901ba1f3e956f",
+      "size_in_bytes": 704592,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14863027597",
+      "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14863027597/zip",
+      "expired": false,
+      "digest": "sha256:3b9324f56c74821945f4ecf36b5a93066b6c05019d8a7a0a15204c6e6e4a1584",
+      "created_at": "2026-11-23T21:13:53Z",
+      "updated_at": "2026-11-23T21:13:53Z",
+      "expires_at": "2026-12-23T21:13:52Z",
+      "workflow_run": {
+        "id": 45267387191,
+        "repository_id": 1280062128,
+        "head_repository_id": 1280062128,
+        "head_branch": "codex/otzaria-multipart-manifest-stream-20261123",
+        "head_sha": "573e4dc004dd61ba3d8f1ed8a42901ba1f3e956f"
+      }
+    }
+  ]
+}

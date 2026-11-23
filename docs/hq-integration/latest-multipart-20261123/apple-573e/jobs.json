@@ -1,0 +1,81 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 138017794453,
+      "run_id": 45267387191,
+      "workflow_name": "Original multipart manifest streaming continuation",
+      "head_branch": "codex/otzaria-multipart-manifest-stream-20261123",
+      "run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/runs/45267387191",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTEwysM8AAAAgIoBplQ",
+      "head_sha": "573e4dc004dd61ba3d8f1ed8a42901ba1f3e956f",
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/jobs/138017794453",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45267387191/job/138017794453",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-23T21:13:07Z",
+      "started_at": "2026-11-23T21:13:09Z",
+      "completed_at": "2026-11-23T21:13:56Z",
+      "name": "two-streaming-controls",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-23T21:13:09Z",
+          "completed_at": "2026-11-23T21:13:10Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-23T21:13:10Z",
+          "completed_at": "2026-11-23T21:13:26Z"
+        },
+        {
+          "name": "Authenticate35 retained passes and execute only2 streaming controls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-23T21:13:26Z",
+          "completed_at": "2026-11-23T21:13:52Z"
+        },
+        {
+          "name": "Preserve exact source and actual continuation evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-23T21:13:52Z",
+          "completed_at": "2026-11-23T21:13:53Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-23T21:13:53Z",
+          "completed_at": "2026-11-23T21:13:54Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-23T21:13:54Z",
+          "completed_at": "2026-11-23T21:13:54Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/check-runs/138017794453",
+      "labels": [
+        "macos-26-intel"
+      ],
+      "runner_id": 1000024952,
+      "runner_name": "GitHub Actions 1000024952",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}
