@@ -1,0 +1,21 @@
+{
+  "status": "ROOT_SOURCE_AND_ACTUAL_FULL_HELPER_CONTROLS_ACCEPTED_FINAL_BINDING_PENDING",
+  "source": "2abbea9f706bd77a1b7e80553141b5d1aac6b864",
+  "index_rows": 131,
+  "index_bytes": 39293027,
+  "index_sha256": "4306367ab7597084eba1bb50bc4ea0b8a025e3ce2781d489649849b572259e30",
+  "helper_sha256": "ada86a8a7e4bf3f38abf7366614a341183cedaf80d1febc41f45717249ca291e",
+  "full_original_inverse": true,
+  "unchanged_whole_control_files": 6,
+  "exact_official_gem_packages_verified": 9,
+  "actual_full_helper_cases": 3,
+  "actual_assertions": 49,
+  "actual_command_exits": [
+    1,
+    0,
+    1
+  ],
+  "old_controls_replayed": 0,
+  "actual_apple_app_build_or_native_journey": false,
+  "created_utc": "2026-11-23T12:22:01.403811+00:00"
+}

@@ -1,0 +1,12 @@
+{
+  "source": "539a45c1744512da600835115dace02d9ae7ac23",
+  "tree": "e0afbc8edb157770f8d6c4b141ee4bcb31d0fae7",
+  "branch": "codex/otzaria-local-native-attempt-20261123",
+  "previous_head": null,
+  "scope": "SOURCE_ONLY_NEW_SQLITE_COMPONENT_CONTROLS_NO_NATIVE_ACTIVATION",
+  "push_stdout": "To https://github.com/davidpovarsky/Maktabah.git\n*\t539a45c1744512da600835115dace02d9ae7ac23:refs/heads/codex/otzaria-local-native-attempt-20261123\t[new branch]\nDone\n",
+  "push_stderr": "remote: \nremote: Create a pull request for 'codex/otzaria-local-native-attempt-20261123' on GitHub by visiting:        \nremote:      https://github.com/davidpovarsky/Maktabah/pull/new/codex/otzaria-local-native-attempt-20261123        \nremote: \n",
+  "remote_verified": "539a45c1744512da600835115dace02d9ae7ac23\trefs/heads/codex/otzaria-local-native-attempt-20261123",
+  "clean_after": true,
+  "published_utc": "2026-11-23T12:18:24.986188+00:00"
+}

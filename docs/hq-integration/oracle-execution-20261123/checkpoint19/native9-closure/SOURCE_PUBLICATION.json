@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-23T12:15:06.030339+00:00",
+  "branch": "codex/otzaria-native-import-closure-20261123",
+  "head": "9d23a223841065c0022c0121761eb9d45e85438e",
+  "tree": "80f517f266b643444616a75884c1001c33b6f2e6",
+  "expected_remote_lease": "absent",
+  "actual_prior_remote": "",
+  "push_returncode": 0,
+  "push_stdout": "",
+  "push_stderr": "remote: \nremote: Create a pull request for 'codex/otzaria-native-import-closure-20261123' on GitHub by visiting:        \nremote:      https://github.com/davidpovarsky/anytype-swift/pull/new/codex/otzaria-native-import-closure-20261123        \nremote: \nTo https://github.com/davidpovarsky/anytype-swift.git\n * [new branch]            9d23a223841065c0022c0121761eb9d45e85438e -> codex/otzaria-native-import-closure-20261123\n",
+  "remote_verified": "9d23a223841065c0022c0121761eb9d45e85438e\trefs/heads/codex/otzaria-native-import-closure-20261123",
+  "root_review_sha256": "eebc415175e92f9f604c8663b4ca3881b3fba1bb8aef474b1224d4a76d78c775",
+  "workflow_api_child_published": false,
+  "native_run_or_observer_started": false
+}

@@ -1,0 +1,81 @@
+{
+  "parent": "fa816b14d25a4ced0031b1a9c972040b89cb451e",
+  "unchanged_whole_files": [
+    {
+      "path": "Scripts/CI/hq-original-editor-ruby-context.rb",
+      "sha256": "facf9c4c1fcc25d1cafbd6d532c60367a4097f16642f5fc444e2a2092d0e3f33",
+      "size": 8002,
+      "exact_parent_correspondence": true
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "sha256": "d8c317ee8fdf1fd07a2e2e604c52866379912d96705f4da9a09bcab055f8f337",
+      "size": 49198,
+      "exact_parent_correspondence": true
+    },
+    {
+      "path": "Scripts/CI/hq-original-editor-distribution.py",
+      "sha256": "6e462ff723b540b12155f054642a661b49610e0e71b6842c35c00c638931d114",
+      "size": 48550,
+      "exact_parent_correspondence": true
+    },
+    {
+      "path": "Scripts/CI/runtime27-original-editor-native.py",
+      "sha256": "04c61fcda3c116598086e9fdf348b30b25818c358719fb29aa0529e9efe9d70c",
+      "size": 43668,
+      "exact_parent_correspondence": true
+    },
+    {
+      "path": ".github/workflows/otzaria-original-editor-stageb-native.yml",
+      "sha256": "4b23096007c715e673c2d31297a3984ad995e77dc95754f47fa6a10e282ac146",
+      "size": 7078,
+      "exact_parent_correspondence": true
+    },
+    {
+      "path": "Scripts/CI/runtime27-original-editor.inputs.json",
+      "sha256": "2940ae140f7c4b1521d454d3e9b246f85c75b473c806d8ea68190b793601a731",
+      "size": 8097,
+      "exact_parent_correspondence": true
+    }
+  ],
+  "whole_helper_inverse": "source/SOURCE_DELTA.json",
+  "all_prior_flag_normalization_and_actual_module_linker_pair_construction_exact": true,
+  "unchanged_helper_prefix_sha256": "8e4b946fff73acbdda13d07bf024e48669f465457e1287d5e901748b6a7ca1f6",
+  "historical_controls": [
+    {
+      "path": "docs/hq-integration/original-editor-stageb-swift-flags-20261123/actual-controls/RESULT.json",
+      "source": "fa816b14d25a4ced0031b1a9c972040b89cb451e",
+      "sha256": "e9eed6c90e5be8d83070582ed00aa59ad93de109d9b8f984e4ca58a5fb5242ba",
+      "size": 5413,
+      "retained_result_fields": {
+        "status": "PASS"
+      },
+      "executed_now": false
+    },
+    {
+      "path": "docs/hq-integration/original-editor-stageb-ruby-context-20261123/controls/actual-run/RESULT.json",
+      "source": "fa816b14d25a4ced0031b1a9c972040b89cb451e",
+      "sha256": "4afad3517623d47b5ec66dc38e8f78f40542c6b8d134ce37fae9381f9c78841a",
+      "size": 15117,
+      "retained_result_fields": {
+        "status": "PASS",
+        "assertions": 42,
+        "passed": 6
+      },
+      "executed_now": false
+    },
+    {
+      "path": "docs/hq-integration/original-editor-stageb-ruby-context-20261123/controls/actual-wrapper-run/RESULT.json",
+      "source": "fa816b14d25a4ced0031b1a9c972040b89cb451e",
+      "sha256": "b33134aacd02b2a59291d173e4932990c67e4a5e9e7733f413203fa0cb06a2b1",
+      "size": 4080,
+      "retained_result_fields": {
+        "status": "PASS",
+        "passed": 1,
+        "assertions": 13
+      },
+      "executed_now": false
+    }
+  ],
+  "new_execution_scope": "actual full-helper serialized project roundtrip and concrete rollback only"
+}

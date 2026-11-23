@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "already_executed_argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "python3",
+    "-I",
+    "/mnt/development/projects/worktrees/anytype-otzaria-native-import-closure-20261123/docs/pinkha/torah-integration/native-owned-annotation-contract-20261123/bc-native-qualification-20261123/run_native_closed_import.py",
+    "--control-root",
+    "/mnt/development/projects/worktrees/anytype-otzaria-native-import-closure-20261123",
+    "--control-head",
+    "c6e99316239d6de240f279d03967500fbbbfc6e5",
+    "--execution-manifest-sha256",
+    "6598ede799ddf6a140c1d2cb90f80b32356807ddd522ec8a4b583910f7b8227f",
+    "--source-only",
+    "--original-repository",
+    "/mnt/development/projects/git-mirrors/anytype-swift.git",
+    "--original-heart-repository",
+    "/mnt/development/projects/git-mirrors/anytype-heart.git"
+  ],
+  "actual_returncode": 0,
+  "replayed_by_this_receipt": false,
+  "actual_prepared_head": "c6e99316239d6de240f279d03967500fbbbfc6e5",
+  "current_restored_source_head": "9d23a223841065c0022c0121761eb9d45e85438e",
+  "stdout_sha256": "80781db4b4024449434db0377bd89205c5899d2fbd9aaffcfa01528e1eb35a42",
+  "stderr_bytes": 0,
+  "support_source_path": "/mnt/development/projects/worktrees/anytype-otzaria-native-import-closure-20261123/docs/pinkha/torah-integration/native-owned-annotation-contract-20261123/bc-native-qualification-20261123/retained-inputs/support/run_original_application_compile.py",
+  "support_sha256": "017778c096eca985774bd1a4f1e1e117ac3dee6ac08082c2a9793273826aa196",
+  "actual_packages_row_key": "import_path",
+  "new_selection_uses_original_key": true
+}

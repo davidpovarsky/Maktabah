@@ -1,0 +1,29 @@
+{
+  "source": "64aa43a7d640a6c758f60e0f133d5c3e9d18e6f8",
+  "base": "f8bc89c6a96552582ecf070ff920cc86f92868d4",
+  "status": "ROOT_ACCEPTED_NEW_TOOLING_SCOPE_FINAL_NATIVE_AND_SWIFT_INPUTS_UNFINALIZED",
+  "proposal_sha256": "006ccaf8487a35b97d6339296a3c4feacc9b5740b0970f3d675bc477f954ce84",
+  "index_sha256": "31832cbe2c1904d830145924fab48d10b9ebc34add0d2e17390e023ebd76aaf9",
+  "root_verified_index_rows": 15,
+  "root_verified_bytes": 957368,
+  "root_verified_original_heart_inputs": 4,
+  "proposed_new_tool_paths": 10,
+  "existing_tool_changes_allowed": false,
+  "native_architectures": {
+    "ios": [
+      "arm64"
+    ],
+    "ios-simulator": [
+      "arm64",
+      "x86_64"
+    ]
+  },
+  "raw_lib_is_static_archive": true,
+  "device_sign_or_runtime_claim": false,
+  "activation_allowed_before_actual_inputs": false,
+  "source_history_dependency": "997e285617d57b31c4205976f01019819fa29a03 source-only typed history; generation not yet composed",
+  "final_closed_import_facade": "UNFINALIZED",
+  "native_and_generation_inputs": "UNFINALIZED",
+  "legacy_native_tests_replayed": 0,
+  "root_review_utc": "2026-11-23T12:06:07.605517+00:00"
+}

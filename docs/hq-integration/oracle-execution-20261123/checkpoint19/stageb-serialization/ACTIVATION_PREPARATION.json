@@ -1,0 +1,29 @@
+{
+  "status": "PREPARED_UNPUBLISHED",
+  "source": "00b30baa97fe14c0ba5be550e7a72cf64e768951",
+  "tree": "1b22bf4ec07d7d82c4001a768d64d7fff655f493",
+  "parent": "2abbea9f706bd77a1b7e80553141b5d1aac6b864",
+  "prepared_source": "2abbea9f706bd77a1b7e80553141b5d1aac6b864",
+  "branch": "codex/otzaria-original-editor-stageb-20261123",
+  "expected_remote": "fa816b14d25a4ced0031b1a9c972040b89cb451e",
+  "source_packet": "docs/hq-integration/original-editor-stageb-serialization-20261123",
+  "packet_index_sha256": "77fd05b735089279081ac23e7420ea01415c5c0b89199eb526175cd1ea009bbb",
+  "indexed_rows": 147,
+  "indexed_bytes": 39869401,
+  "unchanged_from_prepare_trees": {
+    "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "ca36ba13f1fd900adf528a3e404fed6a66290b6b",
+    "Scripts/CI": "e54f3934f65f0599c9c5231587b04009bc041351",
+    ".github/workflows": "9d1b41fb0a78788f4d1e4a6c1bcb8e542b93802f",
+    "tools": "c275775bbd8811baefa0045a6e832d0b242f0834"
+  },
+  "helper_sha256": "ada86a8a7e4bf3f38abf7366614a341183cedaf80d1febc41f45717249ca291e",
+  "input_count": 285,
+  "all_execution_inputs_identical_to_prepared_source": true,
+  "one_future_push_only": true,
+  "manual_dispatch": false,
+  "workflow_changed": false,
+  "native_runtime_pass": false
+}
