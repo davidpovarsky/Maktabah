@@ -1,6 +1,6 @@
 {
-  "status": "SOURCE_PREPARATION_CONTROLS_PASS_FINAL_PREPARE_PENDING",
-  "source_parent": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+  "status": "SOURCE_REPAIR_AND_FINAL_PREPARE_PASS_APP_UI_NOT_RUN",
+  "actual_prepared_source": "53f37ee66d0bf6ccb209eb97f0fdf8ad4b0c2ef6",
   "entries": [
     {
       "path": "ACTUAL_INPUTS.json",
@@ -24,8 +24,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 1850,
-      "sha256": "0b4eaa0ae98980058f28a27043cad13a6a0bba31f15381185bdb782ab57110b2"
+      "bytes": 1963,
+      "sha256": "de6c82f31a8cfda4c89e874c368f9878e8d639fe0318131b0cf4bd31d6bfd3a2"
     },
     {
       "path": "REUSED_RUNTIME_ADMISSION.json",
@@ -36,6 +36,11 @@
       "path": "RUNTIME_REUSE.json",
       "bytes": 1172,
       "sha256": "476e6fa57a41ce2b63306fc99496e1228fa1af1bc5d6562256495d02fd44883d"
+    },
+    {
+      "path": "SOURCE_CHECKPOINT.json",
+      "bytes": 452,
+      "sha256": "815d20b757ace6459a209a368f94ab5155a97af2806a7191f84461572edb23d9"
     },
     {
       "path": "SOURCE_PROOF.json",
@@ -363,6 +368,76 @@
       "sha256": "bcc9e42e3a123bd111f08aca96d31a99760653e59113decff4bf7e47b448b86b"
     },
     {
+      "path": "final-source-admission/FINAL_INPUT_PROOF.json",
+      "bytes": 83308,
+      "sha256": "df22b6811f4758a2ca64512ff1e20d473ae4465f53bfdde818c8fd8f53298dc5"
+    },
+    {
+      "path": "final-source-admission/PRIOR_OUTPUT_PRESERVATION.json",
+      "bytes": 865,
+      "sha256": "0f38c2f9a0fb4bc49325cedd9318f8ad275b05a092e511372b18c1d02bd530f1"
+    },
+    {
+      "path": "final-source-admission/RESULT.json",
+      "bytes": 873,
+      "sha256": "d33d6e75caed90860a6cfc654d197973e75e8bd6399253dd44c82512ad1c0432"
+    },
+    {
+      "path": "final-source-admission/actual-output/declarations.json",
+      "bytes": 432,
+      "sha256": "8fa41c3ed986fef179a63e50e34a8106b95f5a46adf112dd030564569aec5c4c"
+    },
+    {
+      "path": "final-source-admission/actual-output/python-runtime-preflight.json",
+      "bytes": 2108,
+      "sha256": "4d19c3535e0cde8eb19f0e81ae3a7af5bc4f8baf0752f1b77e53a6ec0a7d3560"
+    },
+    {
+      "path": "final-source-admission/actual-output/selection.json",
+      "bytes": 177918,
+      "sha256": "f05d571be2395b258bd181d4d0330a65a108bc80e04e120c2f89b280aa947f61"
+    },
+    {
+      "path": "final-source-admission/actual-output/source-before.json",
+      "bytes": 64154,
+      "sha256": "98b3fd1a9d339bd669fe40c8cdb84ca6fce1e484cb59d2e4d1842210bda151c4"
+    },
+    {
+      "path": "final-source-admission/prepare.command.json",
+      "bytes": 627,
+      "sha256": "1a263b6abb6ddd897b7111ab9a7c535923106eb0229d89b9632aac24ebc6f347"
+    },
+    {
+      "path": "final-source-admission/prepare.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "final-source-admission/prepare.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "final-source-admission/previous-owned-prepare-output/declarations.json",
+      "bytes": 432,
+      "sha256": "8fa41c3ed986fef179a63e50e34a8106b95f5a46adf112dd030564569aec5c4c"
+    },
+    {
+      "path": "final-source-admission/previous-owned-prepare-output/python-runtime-preflight.json",
+      "bytes": 2108,
+      "sha256": "4d19c3535e0cde8eb19f0e81ae3a7af5bc4f8baf0752f1b77e53a6ec0a7d3560"
+    },
+    {
+      "path": "final-source-admission/previous-owned-prepare-output/selection.json",
+      "bytes": 177918,
+      "sha256": "f05d571be2395b258bd181d4d0330a65a108bc80e04e120c2f89b280aa947f61"
+    },
+    {
+      "path": "final-source-admission/previous-owned-prepare-output/source-before.json",
+      "bytes": 64154,
+      "sha256": "e63cf2f774b86d2d9a80d01ab61564df32d54f3bab544db73efdbe20a71571b7"
+    },
+    {
       "path": "local-xcodeproj.command.json",
       "bytes": 546,
       "sha256": "6bd12906ec7296e3992fd2a2d7f452327d0f610497933b09d50b349b4d6882bb"
@@ -378,6 +453,6 @@
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   ],
-  "indexed_count": 75,
-  "indexed_bytes": 36436253
+  "indexed_count": 90,
+  "indexed_bytes": 37011715
 }
