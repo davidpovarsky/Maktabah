@@ -174,3 +174,85 @@ extension AnnotationLocalEditorSession {
         }
     }
 }
+
+
+// MARK: - Explicit saved-row original-native attempt bookkeeping
+
+extension AnnotationLocalEditorSession {
+    func nativeAttemptObservation() async throws -> AnnotationLocalEditorNativeAttemptObservation? {
+        guard !busy else { throw AnnotationLocalEditorError.busy }
+        guard isCurrent else { throw AnnotationLocalEditorError.retired }
+        busy = true
+        defer { busy = false }
+        let storage = persistence, owner = persistence.owner
+        let worker = Task.detached { try storage.nativeAttemptObservation() }
+        return try await withTaskCancellationHandler {
+            let observation = try await worker.value
+            try owner.requireCurrent()
+            try storage.connection.lifetime.requireCurrent()
+            try Task.checkCancellation()
+            return observation
+        } onCancel: {
+            owner.retire()
+            worker.cancel()
+        }
+    }
+
+    func prepareNativeAttempt(snapshot: AnnotationLocalEditorSnapshot,
+                              comparison: AnnotationLocalEditorNativeComparison) async throws -> AnnotationLocalEditorNativePreparationOutcome {
+        guard !busy else { throw AnnotationLocalEditorError.busy }
+        guard isCurrent else { throw AnnotationLocalEditorError.retired }
+        busy = true
+        defer { busy = false }
+        let storage = persistence, owner = persistence.owner
+        let worker = Task.detached { try storage.prepareNativeAttempt(snapshot: snapshot, comparison: comparison) }
+        return try await withTaskCancellationHandler {
+            let prepared = try await worker.value
+            guard storage.canDeliverNativeSnapshot(prepared.snapshot) else {
+                return .recordedWithoutOwnership(prepared.observation)
+            }
+            return .prepared(prepared)
+        } onCancel: {
+            owner.retire()
+            worker.cancel()
+        }
+    }
+
+    func markNativeAttemptMayHaveDispatched(_ prepared: AnnotationLocalEditorNativePreparation) async throws -> AnnotationLocalEditorNativeTransitionOutcome {
+        guard !busy else { throw AnnotationLocalEditorError.busy }
+        guard isCurrent else { throw AnnotationLocalEditorError.retired }
+        busy = true
+        defer { busy = false }
+        let storage = persistence, owner = persistence.owner
+        let worker = Task.detached { try storage.markNativeAttemptMayHaveDispatched(prepared) }
+        return try await withTaskCancellationHandler {
+            let receipt = try await worker.value
+            // Preserve the durable fact even if the original source/owner retired.
+            return storage.canDeliverNativeSnapshot(prepared.snapshot)
+                ? .recorded(receipt) : .recordedWithoutOwnership(receipt)
+        } onCancel: {
+            owner.retire()
+            worker.cancel()
+        }
+    }
+
+    func abandonPreparedNativeAttempt(_ observed: AnnotationLocalEditorNativeAttemptObservation,
+                                      currentSnapshot: AnnotationLocalEditorSnapshot) async throws -> AnnotationLocalEditorNativeTransitionOutcome {
+        guard !busy else { throw AnnotationLocalEditorError.busy }
+        guard isCurrent else { throw AnnotationLocalEditorError.retired }
+        busy = true
+        defer { busy = false }
+        let storage = persistence, owner = persistence.owner
+        let worker = Task.detached {
+            try storage.abandonPreparedNativeAttempt(observed, currentSnapshot: currentSnapshot)
+        }
+        return try await withTaskCancellationHandler {
+            let receipt = try await worker.value
+            return storage.canDeliverNativeSnapshot(currentSnapshot)
+                ? .recorded(receipt) : .recordedWithoutOwnership(receipt)
+        } onCancel: {
+            owner.retire()
+            worker.cancel()
+        }
+    }
+}

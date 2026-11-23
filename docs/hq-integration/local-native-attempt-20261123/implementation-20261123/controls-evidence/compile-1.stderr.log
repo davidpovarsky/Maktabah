@@ -1,0 +1,7 @@
+/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/AnnotationLocalEditorCloudOwnership.swift:226:29: error: binary operator '==' cannot be applied to two 'Annotation' operands
+224 |             guard let original = preparation.client else { throw AnnotationLocalEditorCloudDeferral.unavailable }
+225 |             let debounced = try await original.debounce(saved.snapshot.annotation)
+226 |             guard debounced == saved.snapshot.annotation else { throw AnnotationLocalEditorCloudDeferral.invalidRecord }
+    |                             `- error: binary operator '==' cannot be applied to two 'Annotation' operands
+227 |             client = try await preparation.requireAccount()
+228 |             try storage.requireCloudWitness(witness, account: client.account.lifetime)

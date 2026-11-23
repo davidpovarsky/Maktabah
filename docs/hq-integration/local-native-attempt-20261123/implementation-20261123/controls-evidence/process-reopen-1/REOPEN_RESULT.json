@@ -1,0 +1,16 @@
+{
+  "assertions" : 4,
+  "cases" : [
+    {
+      "assertions" : 4,
+      "detail" : "actual original SQLite component",
+      "name" : "separate_process_reopen_does_not_clear_possible_dispatch",
+      "status" : "PASS"
+    }
+  ],
+  "fail" : 0,
+  "nativeInvocationCount" : 0,
+  "pass" : 1,
+  "scope" : "NEW real original SQLite\/version\/lifetime\/persistence\/Session component controls with explicit Linux\/application adapters; no Apple UI or SDK\/native archive\/import qualification",
+  "testsReplayed" : 0
+}

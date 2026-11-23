@@ -1,0 +1,173 @@
+import Foundation
+import FoundationNetworking
+import SQLite3
+import Synchronization
+import OtzariaActionCore
+
+// Explicit platform/application adapters for the new Linux SQLite component
+// controls only. The production SQLiteDatabase, SyncPendingStore, full ledger,
+// envelope codec, lifetime, persistence and Session methods are compiled exact.
+// This value shape/row mapping is not an AnnotationRepository or Apple UI proof.
+typealias URLRequest = FoundationNetworking.URLRequest
+struct Annotation: Sendable, Equatable {
+    var id: Int64?
+    var ckRecordId: String?
+    var note: String?
+    var tags: [String]
+}
+struct NativeControlRepository: Sendable {
+    let connection: AnnotationLocalEditorConnection
+    func captureLocalEditorConnection() throws -> AnnotationLocalEditorConnection {
+        try connection.lifetime.requireCurrent()
+        return connection
+    }
+}
+enum NativeControlEvent: Sendable { case treeInvalidated }
+@MainActor final class NativeControlEvents {
+    private(set) var count = 0
+    func send(_ event: NativeControlEvent) { count += 1 }
+}
+@MainActor final class AnnotationStore {
+    let repository: NativeControlRepository
+    let events = NativeControlEvents()
+    private(set) var invalidations = 0
+    init(connection: AnnotationLocalEditorConnection) { repository = .init(connection: connection) }
+    func clearAllCaches() { invalidations += 1 }
+}
+final class CloudKitSyncManager: Sendable {
+    static let shared = CloudKitSyncManager()
+    private let calls = Mutex(0)
+    var count: Int { calls.withLock { $0 } }
+    func upload(annotations: [Annotation], trackPending: Bool = true) {
+        calls.withLock { $0 += 1 }
+    }
+}
+enum ZstdDecompressor {
+    static func decompressData(from bytes: UnsafeRawBufferPointer) -> String {
+        fatalError("Unrelated Zstd adapter must never execute in these controls")
+    }
+}
+extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        precondition(size > 0)
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
+    }
+}
+extension AnnotationLocalEditorCloudClient {
+    // The original CloudKit framework is absent on Linux. No owned-Cloud flow is
+    // selected by these controls; no remote or account success is simulated.
+    static func original() -> AnnotationLocalEditorCloudClient? { nil }
+}
+typealias AnnotationExchangePlatformDigest = BudgetOpenSSLDigest
+
+struct CheckFailure: Error, CustomStringConvertible, Sendable {
+    let description: String
+    init(_ description: String) { self.description = description }
+}
+
+struct NativeAttemptFixture: Sendable {
+    static let uuid = UUID(uuidString: "7EE4E9A0-6741-467F-A7B6-154744C275CB")!
+    static let format = "org.otzaria.native-attempt.component-opaque"
+    static let body = Data([0, 255, 7, 0] + Array("COMPONENT OPAQUE BYTES; historical capturedAgainstRevision=0; שלום".utf8))
+    let path: URL
+    let db: SQLiteDatabase
+    let pending: SyncPendingStore
+    let connection: AnnotationLocalEditorConnection
+    let storage: AnnotationLocalEditorPersistence
+
+    init(root: URL, name: String, create: Bool = true) throws {
+        path = root.appendingPathComponent(name + ".sqlite")
+        db = try SQLiteDatabase(path: path.path)
+        db.enableWALMode()
+        pending = SyncPendingStore(database: db)
+        connection = .init(database: db, syncPending: pending, databaseURL: path,
+            lifetime: AnnotationLocalEditorLifetime(),
+            mapRow: { row, tags in
+                var fields: [String: Int32] = [:]
+                for i in 0..<row.columnCount { fields[row.stmt.columnName(i)] = i }
+                return Annotation(id: row.int64(at: fields["id"]!),
+                    ckRecordId: row.string(at: fields["ckRecordId"]!),
+                    note: row.string(at: fields["note"]!), tags: tags)
+            })
+        storage = try Self.makeStorage(connection)
+        if create {
+            try db.transaction {
+                try db.execute(query: """
+                    CREATE TABLE annotations (
+                      id INTEGER PRIMARY KEY, ckRecordId TEXT, note TEXT, lastModified INTEGER,
+                      bkId INTEGER, contentId INTEGER, startIndex INTEGER, length INTEGER,
+                      backendLocator TEXT);
+                    """)
+                try db.execute(query: "CREATE TABLE tags (id INTEGER PRIMARY KEY, name TEXT, normalizedName TEXT);")
+                try db.execute(query: "CREATE TABLE annotation_tags (annotationId INTEGER, tagId INTEGER);")
+                try pending.createTable()
+                try db.execute(query: """
+                    INSERT INTO annotations VALUES(1, ?, ?, 1700000000, 2, 3, 4, 5, ?);
+                    """, parameters: [Self.uuid.uuidString, "original saved note", "{\"fixture\":\"typed SQLite source\"}"])
+                try db.execute(query: "INSERT INTO tags VALUES(1, 'עיון', 'עיון');")
+                try db.execute(query: "INSERT INTO annotation_tags VALUES(1, 1);")
+                try pending.addPendingSync(ckRecordId: Self.uuid.uuidString, operation: "upload")
+            }
+            let ledger = AnnotationExchangeLedger(database: db, digest: BudgetOpenSSLDigest())
+            try ledger.installSchema()
+            let witness = try ledger.captureSource(annotationUUID: Self.uuid)
+            let encoded = try TorahAnnotationEnvelopeCodec.encode(.init(
+                namespace: AnnotationLocalEditorPersistence.namespace, annotationUUID: Self.uuid,
+                originatingApp: "component-fixture", source: witness.metadata,
+                richBody: .init(format: Self.format, formatVersion: 1, bytes: Self.body),
+                textPreview: "original saved note", editorRevision: nil, title: nil, deletionState: .active))
+            var fields = try AnnotationEnvelopeJSONCodec.decodeObject(encoded)
+            fields["futurePrivateMetadata"] = .object(["exact": .string("נשמר unknown"), "counter": .unsigned(UInt64.max)])
+            let payload = try AnnotationExchangeValidation.canonical(.object(fields))
+            _ = try ledger.commitLocal(mutationID: UUID(), payload: payload,
+                expectedSource: witness, expectedRevision: 0)
+        }
+    }
+
+    static func makeStorage(_ connection: AnnotationLocalEditorConnection) throws -> AnnotationLocalEditorPersistence {
+        try .init(connection: connection, annotationID: 1, annotationUUID: uuid, sessionID: UUID(),
+                  owner: AnnotationLocalEditorLifetime(),
+                  formats: [try .init(identifier: format, version: 1)], digest: BudgetOpenSSLDigest())
+    }
+
+    func scalar(_ sql: String, _ parameters: [Any] = []) throws -> Int64 {
+        let rows = try db.fetch(query: sql, parameters: parameters) { $0.int64(at: 0) }
+        guard rows.count == 1, let value = rows.first else { throw CheckFailure("scalar cardinality") }
+        return value
+    }
+
+    func originals() throws -> Data {
+        let tables = ["annotations", "tags", "annotation_tags", "sync_pending",
+            "otzaria_annotation_exchange_schema", "otzaria_annotation_exchange_heads",
+            "otzaria_annotation_exchange_versions", "otzaria_annotation_exchange_outbox",
+            "otzaria_annotation_exchange_inbox"]
+        var result: [String: [[String]]] = [:]
+        for table in tables {
+            let names = try db.fetch(query: "PRAGMA main.table_info(\(table));") { $0.string(at: 1)! }
+            let projection = names.flatMap { ["typeof(\($0))", "hex(CAST(\($0) AS BLOB))"] }.joined(separator: ", ")
+            result[table] = try db.fetch(query: "SELECT \(projection) FROM main.\(table) ORDER BY rowid;") {
+                row in (0..<row.columnCount).map { row.string(at: $0) ?? "<SQL NULL>" }
+            }
+        }
+        let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
+        return try encoder.encode(result)
+    }
+}
+
+// Actual SQLite hooks used only by new controls. They exercise the original
+// transaction/cancellation boundary without modifying a production method.
+func cancelCurrentTaskAtCommit(_ context: UnsafeMutableRawPointer?) -> Int32 {
+    withUnsafeCurrentTask { $0?.cancel() }
+    return 0
+}
+func vetoActualCommit(_ context: UnsafeMutableRawPointer?) -> Int32 { 1 }
+func cancelCurrentTaskAtAttemptUpdate(_ context: UnsafeMutableRawPointer?, _ operation: Int32,
+                                     _ database: UnsafePointer<CChar>?, _ table: UnsafePointer<CChar>?,
+                                     _ rowID: sqlite3_int64) {
+    if operation == SQLITE_UPDATE, let table,
+       String(cString: table) == "otzaria_local_editor_native_attempts" {
+        withUnsafeCurrentTask { $0?.cancel() }
+    }
+}
