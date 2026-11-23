@@ -1,0 +1,1 @@
+{"status": "PASS", "executed": 3, "failures": 0, "errors": 0, "scope": "OFFLINE_CHANGED_SOURCE_IDENTITY_CONSTANTS_ONLY", "provider_called": false, "credential_accessed": false, "GitHub_called": false, "unchanged_six_lifecycle_controls": "REUSED_WITH_EXACT_INVERSE_SOURCE_PROOF"}

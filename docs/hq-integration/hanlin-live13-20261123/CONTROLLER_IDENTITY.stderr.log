@@ -1,0 +1,8 @@
+test_new_exact_prior_run_and_new_branch_are_accepted (__main__.Live13Identity.test_new_exact_prior_run_and_new_branch_are_accepted) ... ok
+test_old_live12_branch_is_rejected (__main__.Live13Identity.test_old_live12_branch_is_rejected) ... ok
+test_previous_live11_source_is_rejected (__main__.Live13Identity.test_previous_live11_source_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+OK

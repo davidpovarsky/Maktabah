@@ -1,0 +1,175 @@
+{
+  "schema": 1,
+  "status": "AUTHENTIC_NATIVE_FAILURE_REQUIRED_TOOL_NOT_ADVERTISED",
+  "checked_utc": "2026-11-23T06:01:27.389928+00:00",
+  "run_id": 45114449674,
+  "run_attempt": 1,
+  "source": "9bee6104e2938767b4e4e1047c56da8991d621fb",
+  "application_source": "d4b1825bd5645f4949e4b57e48a73022c3b7cba1",
+  "artifact": {
+    "artifact": 14792973346,
+    "bytes": 89531,
+    "sha256": "94037d1e104be031c86e8078c5115995863f867c2e369670867f68b655dc8ed1",
+    "unique_safe_crc_members": 23,
+    "expanded_bytes": 295446,
+    "files": [
+      {
+        "path": "admission.json",
+        "bytes": 3351
+      },
+      {
+        "path": "app-group-resolver-interface.json",
+        "bytes": 678
+      },
+      {
+        "path": "artifact-isolation.json",
+        "bytes": 257
+      },
+      {
+        "path": "connection-stages.json",
+        "bytes": 3685
+      },
+      {
+        "path": "declarations.json",
+        "bytes": 378
+      },
+      {
+        "path": "faithful-ipad-matrix.json",
+        "bytes": 22906
+      },
+      {
+        "path": "fixture-container.json",
+        "bytes": 842
+      },
+      {
+        "path": "fixture-oracle-11.json",
+        "bytes": 1071
+      },
+      {
+        "path": "fixture-query.json",
+        "bytes": 1437
+      },
+      {
+        "path": "miniTest10-native-fixture-install-11.json",
+        "bytes": 1792
+      },
+      {
+        "path": "original-build-result.json",
+        "bytes": 83603
+      },
+      {
+        "path": "original-test-details.json",
+        "bytes": 2801
+      },
+      {
+        "path": "ownership.json",
+        "bytes": 256
+      },
+      {
+        "path": "python-oracle-environment.json",
+        "bytes": 654
+      },
+      {
+        "path": "result.json",
+        "bytes": 1025
+      },
+      {
+        "path": "selection.json",
+        "bytes": 642
+      },
+      {
+        "path": "source-after.json",
+        "bytes": 64495
+      },
+      {
+        "path": "source-before.json",
+        "bytes": 64495
+      },
+      {
+        "path": "test-case-execution-11.json",
+        "bytes": 570
+      },
+      {
+        "path": "test-simulator-11.log",
+        "bytes": 36275
+      },
+      {
+        "path": "verified-11.json",
+        "bytes": 316
+      },
+      {
+        "path": "verified-11.summary.json",
+        "bytes": 1590
+      },
+      {
+        "path": "verified-11.tests.json",
+        "bytes": 2327
+      }
+    ]
+  },
+  "verified": {
+    "admitted_files": 22,
+    "source_inputs_exact_git_bytes": 283,
+    "source_before_after_exact": true,
+    "binary_hashes_before_after_equal": 5,
+    "actual_binaries_rehashed_by_intake": false,
+    "actual_source_inputs_verified_by_original_build": 1012,
+    "source_trees": {
+      "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+      "Source": "f5cccf82ba3e124387dfd55acbec4cdc2748fe47",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+    },
+    "build_status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS"
+  },
+  "native_cases": {
+    "PASS": 0,
+    "FAIL": 1,
+    "SKIP": 0,
+    "duration_seconds": 329.3750180006027,
+    "failed_assertion_line": 674,
+    "failed_assertion": "Only the original Host result callback may create the native source receipt"
+  },
+  "diagnostic": {
+    "events": 33,
+    "overflow": false,
+    "first_step_search_advertised": false,
+    "first_step_reference_advertised": true,
+    "original_text_observed": true,
+    "original_finish_reason": "stop",
+    "original_run_completion": "completed",
+    "tool_calls_observed": 0,
+    "tool_results_observed": 0,
+    "host_results_observed": 0,
+    "source_links_observed": 0,
+    "assistant_text_present": true
+  },
+  "toolchain": {
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+    "sdk_version": "27.2",
+    "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300"
+  },
+  "private_input_removed": true,
+  "prior_artifacts_restored": true,
+  "owned_simulator_cleanup": "PASS",
+  "temporary_secret_cleanup": {
+    "state": "DELETED_AND_ABSENCE_VERIFIED",
+    "before_metadata": {
+      "name": "OTZARIA_LIVE_GEMINI_API_KEY",
+      "created_at": "2026-11-23T04:53:07Z",
+      "updated_at": "2026-11-23T04:53:07Z"
+    },
+    "delete_http_status": 204,
+    "after_http_status": 404,
+    "checkout_sha": "9bee6104e2938767b4e4e1047c56da8991d621fb",
+    "run_id": 45114449674,
+    "finished_at": "2026-11-23T05:55:07.598743+00:00"
+  },
+  "new_provider_requests_during_intake": 0,
+  "root_source_inference": "Pinned SDK uses entire current Host catalog; cold valid installed index can have .unknown search readiness while original explicit Core execution supports prepare/reassess. This can hide the tool before it can be called. This inference is under separate source review; actual cold-readiness cause was not captured in the native journal.",
+  "acceptance": {
+    "native116": false,
+    "release114": false,
+    "live_case": false
+  }
+}
