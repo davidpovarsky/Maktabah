@@ -37,10 +37,19 @@ enum OtzariaHanlinConnectionDiagnostic {
         case dismissObserved, dismissAccepted, readReopenEntered
         case consentConsumeEntered, consentConsumed
         case sourceComparisonRejected, sourceValidationFailed
+        case sendEntered, sendRejected, sendCheckpointFailed, sendCheckpointed, sendSettled
+        case streamOpening, streamOpened, streamFinished, streamFailed
+        case hostResultObserved, hostResultRetained, hostResultLimitReached, sessionInvalidated
+        case streamToolCallObserved, streamToolResultObserved, streamToolResultUnmatched
+        case sourceResultObserved, sourceLinkCreated, streamToolOutputDenied
     }
     enum Reason: String {
         case none, cancelled, invalidArguments, invalidContext, staleContext
         case denied, duplicateInvocation, otherHostError, otherError
+        case unknownTool, deadlineExceeded, resultMismatch, outputLimitExceeded, unresolvedWrite
+        case unsupportedProviderCapability, storeConflict, invalidRecord, storageLimitExceeded
+        case nativeProviderInjectionRequired, nativeUnsupportedContent, invalidProviderToolSchema
+        case invalidSDKConversation, emptyProviderResponse, incompleteProviderResponse
     }
     enum Flag: String {
         case closed, storageFailed, configured, connecting, hasOperation
@@ -50,6 +59,8 @@ enum OtzariaHanlinConnectionDiagnostic {
         case preservingContinuation, hasConsent, hasConnection
         case sameBackend, sameMappingSource, sameMappingEpoch, sameWorkspaceProjection
         case sameReaderContent, sameReadSource, sameSelection, sameLocale
+        case streaming, referenceResult, hostSucceeded, toolFailed, hasOriginalResult
+        case hasSources, hasActivities
     }
 
     #if DEBUG && targetEnvironment(simulator)
@@ -61,6 +72,16 @@ enum OtzariaHanlinConnectionDiagnostic {
 
     static func reason(for error: any Error) -> Reason {
         if error is CancellationError { return .cancelled }
+        if let error = error as? HanlinAISDKError {
+            switch error {
+            case .nativeProviderInjectionRequired: return .nativeProviderInjectionRequired
+            case .nativeUnsupportedContent: return .nativeUnsupportedContent
+            case .invalidToolSchema(_): return .invalidProviderToolSchema
+            case .invalidConversation(_): return .invalidSDKConversation
+            case .emptyProviderResponse(_): return .emptyProviderResponse
+            case .incompleteProviderResponse(_): return .incompleteProviderResponse
+            }
+        }
         guard let error = error as? HanlinHostError else { return .otherError }
         switch error {
         case .invalidArguments: return .invalidArguments
@@ -68,6 +89,15 @@ enum OtzariaHanlinConnectionDiagnostic {
         case .staleContext: return .staleContext
         case .denied: return .denied
         case .duplicateInvocation: return .duplicateInvocation
+        case .unknownTool: return .unknownTool
+        case .deadlineExceeded: return .deadlineExceeded
+        case .resultMismatch: return .resultMismatch
+        case .outputLimitExceeded: return .outputLimitExceeded
+        case .unresolvedWrite: return .unresolvedWrite
+        case .unsupportedProviderCapability: return .unsupportedProviderCapability
+        case .storeConflict: return .storeConflict
+        case .invalidRecord: return .invalidRecord
+        case .storageLimitExceeded: return .storageLimitExceeded
         default: return .otherHostError
         }
     }
@@ -347,12 +377,25 @@ final class OtzariaHanlinChatSession: Identifiable {
                 try await self.requireCurrent()
                 let session = HanlinAgentSession(identity: self.identity, host: self.host, engine: engine, store: self.store)
                 session.onHostResult = { [weak self] event in
+                    var hostSucceeded = false
+                    if case .completed = event.result.result.outcome { hostSucceeded = true }
+                    OtzariaHanlinConnectionDiagnostic.record(.hostResultObserved, flags: [
+                        .closed: self?.closed ?? true, .streaming: self?.isStreaming ?? false,
+                        .matchingSession: self.map { event.call.session == $0.identity } ?? false,
+                        .referenceResult: event.call.logicalToolID.localToolID.rawValue == "catalog.resolve-reference",
+                        .hostSucceeded: hostSucceeded,
+                    ])
                     guard let self, !self.closed, self.isStreaming, event.call.session == self.identity else { return }
                     let key = event.call.runID.uuidString + ":" + event.call.providerCallID
-                    guard self.pendingHostResults.count < 256 else { self.operation?.cancel(); return }
+                    guard self.pendingHostResults.count < 256 else {
+                        OtzariaHanlinConnectionDiagnostic.record(.hostResultLimitReached)
+                        self.operation?.cancel(); return
+                    }
                     self.pendingHostResults[key] = event
+                    OtzariaHanlinConnectionDiagnostic.record(.hostResultRetained)
                 }
                 session.onSessionInvalidated = { [weak self] _ in
+                    OtzariaHanlinConnectionDiagnostic.record(.sessionInvalidated, flags: [.closed: self?.closed ?? true])
                     guard let self, !self.closed else { return }
                     self.onClose()
                 }
@@ -388,7 +431,14 @@ final class OtzariaHanlinChatSession: Identifiable {
     }
 
     func send() {
-        guard canSend, let agent, let model, let profile else { return }
+        OtzariaHanlinConnectionDiagnostic.record(.sendEntered, flags: [
+            .closed: closed, .storageFailed: storageFailed, .configured: isConfigured,
+            .streaming: isStreaming, .connecting: isConnecting, .hasOperation: operation != nil,
+        ])
+        guard canSend, let agent, let model, let profile else {
+            OtzariaHanlinConnectionDiagnostic.record(.sendRejected)
+            return
+        }
         let prompt = draft
         isMutatingHistory = true
         defer { isMutatingHistory = false }
@@ -403,17 +453,25 @@ final class OtzariaHanlinChatSession: Identifiable {
         if let state = messageStates[answerID] { observe(state) }
         do { try checkpoint() }
         catch {
+            OtzariaHanlinConnectionDiagnostic.record(.sendCheckpointFailed,
+                reason: OtzariaHanlinConnectionDiagnostic.reason(for: error))
             messages.removeLast(2); messageStates[answerID] = nil
             storageFailed = true; draft = prompt
             errorMessage = String(localized: "The message could not be saved, so it was not sent. Close and reopen this conversation.")
             return
         }
+        OtzariaHanlinConnectionDiagnostic.record(.sendCheckpointed)
         pendingHostResults.removeAll()
         isStreaming = true
         errorMessage = nil
         operation = Task { @MainActor [weak self] in
             guard let self else { return }
-            defer { self.isStreaming = false; self.operation = nil }
+            defer {
+                self.isStreaming = false; self.operation = nil
+                OtzariaHanlinConnectionDiagnostic.record(.sendSettled, flags: [
+                    .closed: self.closed, .hasSources: !self.sources.isEmpty, .hasActivities: !self.activities.isEmpty,
+                ])
+            }
             do {
                 try await self.requireCurrent()
                 let readInstructions = try self.currentWorkReadScope?.modelInstructions()
@@ -421,8 +479,10 @@ final class OtzariaHanlinChatSession: Identifiable {
                 let instructions = OpenUICatalogs.instructions(for: profile)
                     + "\nUse only the host's current advertised catalog. " + readInstructions
                     + " Do not invent citations or application actions."
+                OtzariaHanlinConnectionDiagnostic.record(.streamOpening)
                 let stream = try await agent.stream(messages: history, systemPrompt: instructions,
                     modelReference: model, maxSteps: 8, presentationReference: profile.profile.reference.key)
+                OtzariaHanlinConnectionDiagnostic.record(.streamOpened)
                 for try await event in stream {
                     try Task.checkCancellation()
                     try await self.requireCurrent()
@@ -430,7 +490,10 @@ final class OtzariaHanlinChatSession: Identifiable {
                     try self.receive(event.event, messageID: answerID, runID: event.runID)
                     try self.checkpoint()
                 }
+                OtzariaHanlinConnectionDiagnostic.record(.streamFinished)
             } catch {
+                OtzariaHanlinConnectionDiagnostic.record(.streamFailed,
+                    reason: OtzariaHanlinConnectionDiagnostic.reason(for: error))
                 if !self.closed {
                     self.errorMessage = Task.isCancelled
                         ? String(localized: "The response was stopped.")
@@ -457,6 +520,7 @@ final class OtzariaHanlinChatSession: Identifiable {
             guard prior.utf8.count + delta.utf8.count <= 262_144 else { throw HanlinHostError.outputLimitExceeded }
             reasoning[messageID] = prior + delta
         case .toolCall(let call):
+            OtzariaHanlinConnectionDiagnostic.record(.streamToolCallObserved)
             guard call.argumentsJSON.utf8.count <= 65_536, activities.count < 256 else { throw HanlinHostError.outputLimitExceeded }
             if let index = activities.firstIndex(where: { $0.id == call.id && $0.messageID == messageID }) {
                 activities[index].arguments = call.argumentsJSON
@@ -465,19 +529,28 @@ final class OtzariaHanlinChatSession: Identifiable {
                     status: String(localized: "Running"), arguments: call.argumentsJSON, isActive: true))
             }
         case .toolResult(let callID, let name, let text, _, let isError):
+            OtzariaHanlinConnectionDiagnostic.record(.streamToolResultObserved, flags: [.toolFailed: isError])
             guard text.utf8.count <= 262_144 else { throw HanlinHostError.outputLimitExceeded }
-            guard let index = activities.firstIndex(where: { $0.id == callID && $0.messageID == messageID }) else { return }
+            guard let index = activities.firstIndex(where: { $0.id == callID && $0.messageID == messageID }) else {
+                OtzariaHanlinConnectionDiagnostic.record(.streamToolResultUnmatched)
+                return
+            }
             activities[index].name = name
             activities[index].status = isError ? String(localized: "Failed") : String(localized: "Completed")
             activities[index].result = text
             activities[index].isActive = false
             let resultKey = runID.uuidString + ":" + callID
+            OtzariaHanlinConnectionDiagnostic.record(.sourceResultObserved, flags: [
+                .hasOriginalResult: pendingHostResults[resultKey] != nil, .toolFailed: isError,
+            ])
             if let original = pendingHostResults.removeValue(forKey: resultKey), !isError,
                let destination = try sourceDestination(original) {
                 guard sources.count < 256 else { throw HanlinHostError.outputLimitExceeded }
                 sources.append(.init(id: original.resultID, messageID: messageID, destination: destination))
+                OtzariaHanlinConnectionDiagnostic.record(.sourceLinkCreated)
             }
         case .toolOutputDenied(let callID, _):
+            OtzariaHanlinConnectionDiagnostic.record(.streamToolOutputDenied)
             if let index = activities.firstIndex(where: { $0.id == callID && $0.messageID == messageID }) {
                 activities[index].status = String(localized: "Denied"); activities[index].isActive = false
             }
