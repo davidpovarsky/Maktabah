@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "2a15c6139df60398c7b40dbf807760533d5a9b77",
+  "source_test_commit": "65d2ddfe26790ceb5b7b281a239e6a61db3c99e7",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "2a15c6139df60398c7b40dbf807760533d5a9b77",
+  "app_source": "65d2ddfe26790ceb5b7b281a239e6a61db3c99e7",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "Selected-only actual two-app MiniApps consumer native acceptance; original case catalog retained and previous unrelated passing suites are not rerun",
@@ -1320,7 +1320,7 @@
       "native": "NOT_RUN"
     }
   },
-  "application_source_sha": "2a15c6139df60398c7b40dbf807760533d5a9b77",
+  "application_source_sha": "65d2ddfe26790ceb5b7b281a239e6a61db3c99e7",
   "hanlin_source_pin_history": {
     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
