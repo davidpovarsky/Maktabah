@@ -1,0 +1,406 @@
+{
+  "actual_cases": [
+    {
+      "name": "manifest_stream_declared_length_mismatch_cancels",
+      "status": "PASS"
+    },
+    {
+      "name": "manifest_stream_actual_byte_overflow_cancels",
+      "status": "PASS"
+    }
+  ],
+  "actual_component_result": {
+    "cases": [
+      {
+        "name": "manifest_stream_declared_length_mismatch_cancels",
+        "status": "PASS"
+      },
+      {
+        "name": "manifest_stream_actual_byte_overflow_cancels",
+        "status": "PASS"
+      }
+    ],
+    "counts": {
+      "FAIL": 0,
+      "PASS": 2,
+      "SKIP": 0
+    },
+    "native_app_or_sqlite_installation_acceptance": false,
+    "observations": [
+      {
+        "case": "manifest_stream_declared_length_mismatch_cancels",
+        "elapsed_seconds": 0.009875405000002502,
+        "fixture_manifest_bytes": 465,
+        "fixture_mime": "application/octet-stream",
+        "owned_stop_observed_before_cleanup": true,
+        "requests": [
+          {
+            "range": "",
+            "url": "https://api.github.com/repos/Otzaria/SeforimLibrary/releases/latest",
+            "validator": ""
+          },
+          {
+            "range": "",
+            "url": "https://github.com/Otzaria/SeforimLibrary/releases/download/controlled-mime-manifest_stream_declared_length_mismatch_cancels/seforim-schema7.db.zst.manifest.json",
+            "validator": ""
+          }
+        ],
+        "stop_events_after_cleanup": 2
+      },
+      {
+        "case": "manifest_stream_actual_byte_overflow_cancels",
+        "elapsed_seconds": 0.004030962999991061,
+        "fixture_manifest_bytes": 465,
+        "fixture_mime": "application/octet-stream",
+        "owned_stop_observed_before_cleanup": true,
+        "requests": [
+          {
+            "range": "",
+            "url": "https://api.github.com/repos/Otzaria/SeforimLibrary/releases/latest",
+            "validator": ""
+          },
+          {
+            "range": "",
+            "url": "https://github.com/Otzaria/SeforimLibrary/releases/download/controlled-mime-manifest_stream_actual_byte_overflow_cancels/seforim-schema7.db.zst.manifest.json",
+            "validator": ""
+          }
+        ],
+        "stop_events_after_cleanup": 2
+      }
+    ],
+    "public_network_requests": 0,
+    "status": "APPLE_STREAM_CONTROLS_PASS"
+  },
+  "actual_counts": {
+    "FAIL": 0,
+    "NOT_RUN": 0,
+    "PASS": 2,
+    "SKIP": 0
+  },
+  "attempt": "1",
+  "binary": {
+    "bytes": 1075328,
+    "sha256": "926e3826c98c3d05702303990b85545402e192d4bdd69f5074a96231c63393b3"
+  },
+  "commands": [
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/davidpovarsky/Maktabah/actions/runs/45261599920"
+      ],
+      "bytes": 12804,
+      "exit_code": 0,
+      "log": "prior-run.log",
+      "name": "prior-run",
+      "sha256": "4bec1f74960e25adc8d8a44ed7fc96ccfc833863e1851409549670c09d81d672",
+      "started_at": "2026-11-23T21:13:28.966382+00:00",
+      "timed_out": false,
+      "timeout_seconds": 30
+    },
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/davidpovarsky/Maktabah/actions/artifacts/14861468851"
+      ],
+      "bytes": 772,
+      "exit_code": 0,
+      "log": "prior-artifact.log",
+      "name": "prior-artifact",
+      "sha256": "69cf0421c50e70eb1147494795ca853778f84caafe55bf87f862d647807fbab8",
+      "started_at": "2026-11-23T21:13:29.750861+00:00",
+      "timed_out": false,
+      "timeout_seconds": 30
+    },
+    {
+      "argv": [
+        "xcodebuild",
+        "-version"
+      ],
+      "bytes": 32,
+      "exit_code": 0,
+      "log": "xcode.log",
+      "name": "xcode",
+      "sha256": "18730ed2ae28a2c9cf0c2d5db549033a4f07089331391a7133b7b32187454fa9",
+      "started_at": "2026-11-23T21:13:31.048570+00:00",
+      "timed_out": false,
+      "timeout_seconds": 30
+    },
+    {
+      "argv": [
+        "xcrun",
+        "swiftc",
+        "--version"
+      ],
+      "bytes": 129,
+      "exit_code": 0,
+      "log": "swift.log",
+      "name": "swift",
+      "sha256": "e4b498768cb0753b1d57be1b40cb663221090b5531f5df9cae282ff1e6947d63",
+      "started_at": "2026-11-23T21:13:31.302705+00:00",
+      "timed_out": false,
+      "timeout_seconds": 30
+    },
+    {
+      "argv": [
+        "xcrun",
+        "--sdk",
+        "macosx",
+        "--show-sdk-path"
+      ],
+      "bytes": 104,
+      "exit_code": 0,
+      "log": "sdk.log",
+      "name": "sdk",
+      "sha256": "0f808f2e6b513e3677dcb3492d4b0577b7f2680ca95d988f4ea653b04edc4a89",
+      "started_at": "2026-11-23T21:13:37.039854+00:00",
+      "timed_out": false,
+      "timeout_seconds": 30
+    },
+    {
+      "argv": [
+        "xcrun",
+        "--find",
+        "swiftc"
+      ],
+      "bytes": 99,
+      "exit_code": 0,
+      "log": "compiler.log",
+      "name": "compiler",
+      "sha256": "4f59ef9fb9d939c2a58083df471a65bc8f0ad45239c1ab563dfbf7c239b2f03b",
+      "started_at": "2026-11-23T21:13:37.063533+00:00",
+      "timed_out": false,
+      "timeout_seconds": 30
+    },
+    {
+      "argv": [
+        "xcrun",
+        "swiftc",
+        "-sdk",
+        "/Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-swift-version",
+        "5",
+        "-parse-as-library",
+        "-Onone",
+        "-module-cache-path",
+        "/Users/runner/work/_temp/multipart-stream-modules-45267387191",
+        "/Users/runner/work/Maktabah/Maktabah/Source/Otzaria/DataProfiles/OtzariaDataProfile.swift",
+        "/Users/runner/work/Maktabah/Maktabah/Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift",
+        "/Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift",
+        "/Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Bootstrap/OtzariaDownloadPolicy.swift",
+        "/Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift",
+        "/Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Bootstrap/OtzariaDatabaseDownloader.swift",
+        "/Users/runner/work/Maktabah/Maktabah/build/latest-multipart-stream/DownloadCapacityFixture.swift",
+        "/Users/runner/work/Maktabah/Maktabah/build/latest-multipart-stream/ManifestStreamControls.swift",
+        "-o",
+        "/Users/runner/work/Maktabah/Maktabah/build/latest-multipart-stream/ManifestStreamControls"
+      ],
+      "bytes": 0,
+      "exit_code": 0,
+      "log": "compile.log",
+      "name": "compile",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "started_at": "2026-11-23T21:13:39.509466+00:00",
+      "timed_out": false,
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "/Users/runner/work/Maktabah/Maktabah/build/latest-multipart-stream/ManifestStreamControls",
+        "/Users/runner/work/Maktabah/Maktabah/build/latest-multipart-stream/controlled-state"
+      ],
+      "bytes": 104,
+      "exit_code": 0,
+      "log": "controls.log",
+      "name": "controls",
+      "sha256": "97349daa17448afa5f768008d87ab592028bfe7e2d875ba68337ad319d045103",
+      "started_at": "2026-11-23T21:13:51.821092+00:00",
+      "timed_out": false,
+      "timeout_seconds": 120
+    }
+  ],
+  "compiler_binary": {
+    "bytes": 357109680,
+    "path": "/Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+    "sha256": "8a63cc031d970b57f03741ae83becbfb26f2b913565ac212b81b80bdcb35600f"
+  },
+  "finished_at": "2026-11-23T21:13:52.349878+00:00",
+  "generated_harness": {
+    "compiled_source": {
+      "bytes": 15690,
+      "sha256": "0a33ccced9a283f7b81c4eee892ab54fcba9f0f3b0a93f545dda270f9c15a2d6"
+    },
+    "main": {
+      "bytes": 4342,
+      "sha256": "7dc5323455e153eac9bd7555bd63610f219f16493a804fc4419e63002968a221"
+    },
+    "original_prefix_sha256": "6d8750aaa8b6060260aef8a359737c31991319f45c47c5cea55109f8f98381f0"
+  },
+  "inputs_after": {
+    ".github/workflows/otzaria-latest-multipart-components.yml": {
+      "bytes": 1277,
+      "sha256": "e1c0d5ec840930a68deafd40db8b3694f8547bc63384a559776ff16930d684ff"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift": {
+      "bytes": 4740,
+      "sha256": "fe08c44f229e7df9b58a803d011989fe7c326da3a16ea423e13c534ebc72d50f"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift": {
+      "bytes": 9091,
+      "sha256": "02953786c2b5327b4cc2b83307c54ff5acf4eae7beb4e8d974c5773c0dc646b1"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift": {
+      "bytes": 17491,
+      "sha256": "bce1f3d267684384b1235a3d23b05cdcddad2ac9ea0029d55f536f9063192d9f"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloader.swift": {
+      "bytes": 31540,
+      "sha256": "6882067545a02dea765414381f2aeeb4101fee930d4237f58e44554d01c0c69a"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift": {
+      "bytes": 18852,
+      "sha256": "192dc8cb8fa041a6f3fd4760d8d2daf00cd72e05209d25ef5c6b5790430d3624"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDownloadPolicy.swift": {
+      "bytes": 2423,
+      "sha256": "d51c4bfbd4e5ba85c0bb645cafe4eeb17cf3147cdc2dee35e39da776751e3b72"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift": {
+      "bytes": 14219,
+      "sha256": "afb748bb57d9edcbd804d329f25c7b0b2263dd0a178b59979e10fb2c43ca2f45"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaNativeBootstrapAcceptanceRunner.swift": {
+      "bytes": 26088,
+      "sha256": "636beef525e91ee53d0cfdbd6ca11bf768bcbb5ed2eee2284c473f86d110a929"
+    },
+    "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift": {
+      "bytes": 12956,
+      "sha256": "d08aa05deb507b03c870d98f2b2e04197f32cf1c83920026b8336587fc09406f"
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfile.swift": {
+      "bytes": 3950,
+      "sha256": "3ac83a1f548b6ffb5a9a3a42f50cd25780c3162c077a5731ded94154e50f0348"
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift": {
+      "bytes": 2720,
+      "sha256": "b2dcb938d724eb01619e95d14a915f55de069da4b09ac007c15da92ecdd6d84d"
+    },
+    "Tests/HQ/latest-multipart/CASES.json": {
+      "bytes": 1839,
+      "sha256": "7add8791a6b082870dcb3d9ce31b944fbf6a0542e4beb0255cfb6b7769059773"
+    },
+    "Tests/HQ/latest-multipart/MultipartArchiveControls.swift": {
+      "bytes": 40348,
+      "sha256": "1486c82619248b8cea08307162af2d7df41a2aa4a26495bb02a4fdf5af8fb70a"
+    },
+    "Tests/HQ/latest-multipart/official-v32-release.json": {
+      "bytes": 24332,
+      "sha256": "ae62fa281b06801362ef93269258837c64445dff7120db6e97ee94f058175d09"
+    },
+    "Tests/HQ/latest-multipart/official-v40-manifest.json": {
+      "bytes": 589,
+      "sha256": "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3"
+    },
+    "Tests/HQ/latest-multipart/official-v40-release.json": {
+      "bytes": 1336,
+      "sha256": "afb4708bda700b5e02a1fe7dad9225877f54c15b0a11a11a4ef7e54c16be240e"
+    },
+    "Tests/HQ/latest-multipart/run_apple.py": {
+      "bytes": 11496,
+      "sha256": "c679523da215c00de78b96c748c586b9f1c0f78f9d578ba010e77ede6546f919"
+    }
+  },
+  "inputs_before": {
+    ".github/workflows/otzaria-latest-multipart-components.yml": {
+      "bytes": 1277,
+      "sha256": "e1c0d5ec840930a68deafd40db8b3694f8547bc63384a559776ff16930d684ff"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift": {
+      "bytes": 4740,
+      "sha256": "fe08c44f229e7df9b58a803d011989fe7c326da3a16ea423e13c534ebc72d50f"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift": {
+      "bytes": 9091,
+      "sha256": "02953786c2b5327b4cc2b83307c54ff5acf4eae7beb4e8d974c5773c0dc646b1"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift": {
+      "bytes": 17491,
+      "sha256": "bce1f3d267684384b1235a3d23b05cdcddad2ac9ea0029d55f536f9063192d9f"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloader.swift": {
+      "bytes": 31540,
+      "sha256": "6882067545a02dea765414381f2aeeb4101fee930d4237f58e44554d01c0c69a"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift": {
+      "bytes": 18852,
+      "sha256": "192dc8cb8fa041a6f3fd4760d8d2daf00cd72e05209d25ef5c6b5790430d3624"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDownloadPolicy.swift": {
+      "bytes": 2423,
+      "sha256": "d51c4bfbd4e5ba85c0bb645cafe4eeb17cf3147cdc2dee35e39da776751e3b72"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift": {
+      "bytes": 14219,
+      "sha256": "afb748bb57d9edcbd804d329f25c7b0b2263dd0a178b59979e10fb2c43ca2f45"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaNativeBootstrapAcceptanceRunner.swift": {
+      "bytes": 26088,
+      "sha256": "636beef525e91ee53d0cfdbd6ca11bf768bcbb5ed2eee2284c473f86d110a929"
+    },
+    "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift": {
+      "bytes": 12956,
+      "sha256": "d08aa05deb507b03c870d98f2b2e04197f32cf1c83920026b8336587fc09406f"
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfile.swift": {
+      "bytes": 3950,
+      "sha256": "3ac83a1f548b6ffb5a9a3a42f50cd25780c3162c077a5731ded94154e50f0348"
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift": {
+      "bytes": 2720,
+      "sha256": "b2dcb938d724eb01619e95d14a915f55de069da4b09ac007c15da92ecdd6d84d"
+    },
+    "Tests/HQ/latest-multipart/CASES.json": {
+      "bytes": 1839,
+      "sha256": "7add8791a6b082870dcb3d9ce31b944fbf6a0542e4beb0255cfb6b7769059773"
+    },
+    "Tests/HQ/latest-multipart/MultipartArchiveControls.swift": {
+      "bytes": 40348,
+      "sha256": "1486c82619248b8cea08307162af2d7df41a2aa4a26495bb02a4fdf5af8fb70a"
+    },
+    "Tests/HQ/latest-multipart/official-v32-release.json": {
+      "bytes": 24332,
+      "sha256": "ae62fa281b06801362ef93269258837c64445dff7120db6e97ee94f058175d09"
+    },
+    "Tests/HQ/latest-multipart/official-v40-manifest.json": {
+      "bytes": 589,
+      "sha256": "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3"
+    },
+    "Tests/HQ/latest-multipart/official-v40-release.json": {
+      "bytes": 1336,
+      "sha256": "afb4708bda700b5e02a1fe7dad9225877f54c15b0a11a11a4ef7e54c16be240e"
+    },
+    "Tests/HQ/latest-multipart/run_apple.py": {
+      "bytes": 11496,
+      "sha256": "c679523da215c00de78b96c748c586b9f1c0f78f9d578ba010e77ede6546f919"
+    }
+  },
+  "native_app_acceptance": false,
+  "platform": "macOS-26.6.1-x86_64-i386-64bit-Mach-O",
+  "replayed_previous35": 0,
+  "retained_pass_count": 35,
+  "retained_pass_source": "4310c29728de5bbba2dc6584642c6934d554e213",
+  "run_id": "45267387191",
+  "schema": 1,
+  "scope": "Two original failed Apple streaming controls",
+  "sdk": "/Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+  "selected_controls": [
+    "manifest_stream_declared_length_mismatch_cancels",
+    "manifest_stream_actual_byte_overflow_cancels"
+  ],
+  "source_commit": "573e4dc004dd61ba3d8f1ed8a42901ba1f3e956f",
+  "sqlite_installation_acceptance": false,
+  "status": "APPLE_MULTIPART37_QUALIFIED_35_RETAINED_2_EXECUTED",
+  "swift": "swift-driver version: 1.148.6 Apple Swift version 6.3.3 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)\nTarget: x86_64-apple-macosx26.0\n",
+  "xcode": "Xcode 26.6\nBuild version 17F113\n"
+}

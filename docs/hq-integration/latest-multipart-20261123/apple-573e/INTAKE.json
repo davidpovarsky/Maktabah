@@ -1,0 +1,75 @@
+{
+  "actual_counts": {
+    "FAIL": 0,
+    "NOT_RUN": 0,
+    "PASS": 2,
+    "SKIP": 0
+  },
+  "archive_bytes": 704592,
+  "archive_sha256": "3b9324f56c74821945f4ecf36b5a93066b6c05019d8a7a0a15204c6e6e4a1584",
+  "artifact_id": 14863027597,
+  "at_utc": "2026-11-23T21:19:13.845360+00:00",
+  "attempt": 1,
+  "causal_limit": "The typed held fixtures now exercise invalid metadata refusal and owned cancellation promptly. The original headerless held fixtures remain timed-out history; no internal URLSession buffering cause is asserted.",
+  "compiler_context_equal": true,
+  "crc_members_verified": 18,
+  "github_conclusion": "success",
+  "historical_failed_cases": [
+    "manifest_stream_actual_byte_overflow_cancels",
+    "manifest_stream_declared_length_mismatch_cancels"
+  ],
+  "historical_run_conclusion_still": "failure",
+  "indexed_files_verified": 17,
+  "native_app_installation_qualified": false,
+  "observations": [
+    {
+      "case": "manifest_stream_declared_length_mismatch_cancels",
+      "elapsed_seconds": 0.009875405000002502,
+      "fixture_manifest_bytes": 465,
+      "fixture_mime": "application/octet-stream",
+      "owned_stop_observed_before_cleanup": true,
+      "requests": [
+        {
+          "range": "",
+          "url": "https://api.github.com/repos/Otzaria/SeforimLibrary/releases/latest",
+          "validator": ""
+        },
+        {
+          "range": "",
+          "url": "https://github.com/Otzaria/SeforimLibrary/releases/download/controlled-mime-manifest_stream_declared_length_mismatch_cancels/seforim-schema7.db.zst.manifest.json",
+          "validator": ""
+        }
+      ],
+      "stop_events_after_cleanup": 2
+    },
+    {
+      "case": "manifest_stream_actual_byte_overflow_cancels",
+      "elapsed_seconds": 0.004030962999991061,
+      "fixture_manifest_bytes": 465,
+      "fixture_mime": "application/octet-stream",
+      "owned_stop_observed_before_cleanup": true,
+      "requests": [
+        {
+          "range": "",
+          "url": "https://api.github.com/repos/Otzaria/SeforimLibrary/releases/latest",
+          "validator": ""
+        },
+        {
+          "range": "",
+          "url": "https://github.com/Otzaria/SeforimLibrary/releases/download/controlled-mime-manifest_stream_actual_byte_overflow_cancels/seforim-schema7.db.zst.manifest.json",
+          "validator": ""
+        }
+      ],
+      "stop_events_after_cleanup": 2
+    }
+  ],
+  "original_input_files_verified": 18,
+  "prior35_replayed": 0,
+  "product_source": "4310c29728de5bbba2dc6584642c6934d554e213",
+  "retained_passes": 35,
+  "retained_prior_crc_members_verified": 70,
+  "retained_prior_indexed_files_verified": 69,
+  "run_id": 45267387191,
+  "source": "573e4dc004dd61ba3d8f1ed8a42901ba1f3e956f",
+  "source_changes": 0
+}

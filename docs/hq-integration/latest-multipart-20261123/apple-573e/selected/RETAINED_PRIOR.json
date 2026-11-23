@@ -1,0 +1,126 @@
+{
+  "archive": {
+    "bytes": 401541,
+    "sha256": "0d4e9b045f3f526912108e2d0572c8abacb1f5592414d705c13d26b96f834057"
+  },
+  "artifact": 14861468851,
+  "crc_members": 70,
+  "failed_controls_not_reused": [
+    "manifest_stream_actual_byte_overflow_cancels",
+    "manifest_stream_declared_length_mismatch_cancels"
+  ],
+  "index_rows": 69,
+  "original_inputs": {
+    ".github/workflows/otzaria-latest-multipart-components.yml": {
+      "bytes": 1277,
+      "sha256": "e1c0d5ec840930a68deafd40db8b3694f8547bc63384a559776ff16930d684ff"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift": {
+      "bytes": 4740,
+      "sha256": "fe08c44f229e7df9b58a803d011989fe7c326da3a16ea423e13c534ebc72d50f"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift": {
+      "bytes": 9091,
+      "sha256": "02953786c2b5327b4cc2b83307c54ff5acf4eae7beb4e8d974c5773c0dc646b1"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift": {
+      "bytes": 17491,
+      "sha256": "bce1f3d267684384b1235a3d23b05cdcddad2ac9ea0029d55f536f9063192d9f"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloader.swift": {
+      "bytes": 31540,
+      "sha256": "6882067545a02dea765414381f2aeeb4101fee930d4237f58e44554d01c0c69a"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift": {
+      "bytes": 18852,
+      "sha256": "192dc8cb8fa041a6f3fd4760d8d2daf00cd72e05209d25ef5c6b5790430d3624"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDownloadPolicy.swift": {
+      "bytes": 2423,
+      "sha256": "d51c4bfbd4e5ba85c0bb645cafe4eeb17cf3147cdc2dee35e39da776751e3b72"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift": {
+      "bytes": 14219,
+      "sha256": "afb748bb57d9edcbd804d329f25c7b0b2263dd0a178b59979e10fb2c43ca2f45"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaNativeBootstrapAcceptanceRunner.swift": {
+      "bytes": 26088,
+      "sha256": "636beef525e91ee53d0cfdbd6ca11bf768bcbb5ed2eee2284c473f86d110a929"
+    },
+    "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift": {
+      "bytes": 12956,
+      "sha256": "d08aa05deb507b03c870d98f2b2e04197f32cf1c83920026b8336587fc09406f"
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfile.swift": {
+      "bytes": 3950,
+      "sha256": "3ac83a1f548b6ffb5a9a3a42f50cd25780c3162c077a5731ded94154e50f0348"
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift": {
+      "bytes": 2720,
+      "sha256": "b2dcb938d724eb01619e95d14a915f55de069da4b09ac007c15da92ecdd6d84d"
+    },
+    "Tests/HQ/latest-multipart/CASES.json": {
+      "bytes": 1839,
+      "sha256": "7add8791a6b082870dcb3d9ce31b944fbf6a0542e4beb0255cfb6b7769059773"
+    },
+    "Tests/HQ/latest-multipart/MultipartArchiveControls.swift": {
+      "bytes": 40348,
+      "sha256": "1486c82619248b8cea08307162af2d7df41a2aa4a26495bb02a4fdf5af8fb70a"
+    },
+    "Tests/HQ/latest-multipart/official-v32-release.json": {
+      "bytes": 24332,
+      "sha256": "ae62fa281b06801362ef93269258837c64445dff7120db6e97ee94f058175d09"
+    },
+    "Tests/HQ/latest-multipart/official-v40-manifest.json": {
+      "bytes": 589,
+      "sha256": "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3"
+    },
+    "Tests/HQ/latest-multipart/official-v40-release.json": {
+      "bytes": 1336,
+      "sha256": "afb4708bda700b5e02a1fe7dad9225877f54c15b0a11a11a4ef7e54c16be240e"
+    },
+    "Tests/HQ/latest-multipart/run_apple.py": {
+      "bytes": 11496,
+      "sha256": "c679523da215c00de78b96c748c586b9f1c0f78f9d578ba010e77ede6546f919"
+    }
+  },
+  "retained_passes": [
+    "aggregate_size_mismatch_refused",
+    "archive_name_mismatch_refused",
+    "bad_content_range_restarts_only_current_part",
+    "cancel_then_resume_uses_same_owned_partial_parts",
+    "changed_etag_restarts_without_mixing_bytes",
+    "cleanup_removes_only_owned_download_files",
+    "corrupt_part_never_publishes_archive",
+    "cross_part_resume_preserves_complete_part_and_validator",
+    "empty_parts_refused",
+    "fresh_parts_and_verified_archive_cache",
+    "frozen_release_id_mismatch_refused",
+    "invalid_persisted_plan_refuses_before_io",
+    "legacy_metadata_without_multipart_decodes_unchanged",
+    "legacy_single_asset_range_behavior_preserved",
+    "manifest_content_digest_mismatch_refused",
+    "manifest_metadata_over_one_mib_refused",
+    "manifest_missing_bytes_refused",
+    "manifest_stream_success_and_remote_identity",
+    "manifest_stream_truncation_refused",
+    "official_v32_monolithic_identity_preserved",
+    "official_v40_manifest_and_two_same_release_parts",
+    "oversized_part_is_refused_before_assembly",
+    "part_digest_mismatch_refused",
+    "part_duplicate_name_refused",
+    "part_duplicate_remote_id_refused",
+    "part_foreign_release_url_refused",
+    "part_missing_from_same_release_refused",
+    "part_order_mismatch_refused",
+    "part_size_mismatch_refused",
+    "persisted_remote_and_archive_identities_are_separate",
+    "server_ignores_range_restarts_only_current_part",
+    "storage_budget_includes_parts_assembly_and_output",
+    "storage_budget_overflow_refuses_with_saturated_requirement",
+    "unsupported_manifest_version_refused",
+    "wrong_aggregate_digest_refused_by_original_verifier"
+  ],
+  "run": 45261599920,
+  "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+}
