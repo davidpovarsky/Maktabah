@@ -137,5 +137,10 @@
   "schema": 2,
   "source_sha": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
   "status": "AUTHENTICATED_ORIGINAL_PRODUCTS_WITH_SEPARATE_EN_HE_RUNTIME",
-  "workflow_path": ".github/workflows/pinkha-original-editor-framework.yml"
+  "workflow_path": ".github/workflows/pinkha-original-editor-framework.yml",
+  "toolchain": {
+    "sdk_version": "27.0",
+    "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+    "xcode": "Xcode 27.0\nBuild version 27A266a"
+  }
 }

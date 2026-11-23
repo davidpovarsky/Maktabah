@@ -1,0 +1,364 @@
+{
+  "schema": 1,
+  "status": "AUTHENTICATED_STAGEB_SOURCE_ADMISSION_FAILURE",
+  "observed_at": "2026-11-23T07:12:58.338654+00:00",
+  "repository": "davidpovarsky/Maktabah",
+  "repository_id": 1280062128,
+  "source_sha": "6dd57e5b7d7ffa570472d31e38881af32ff38177",
+  "source_tree": "cd105995c0102d82b48dddef82c25cc56cfac08c",
+  "run_id": 45127169339,
+  "run_attempt": 1,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45127169339",
+  "event": "push",
+  "head_branch": "codex/otzaria-original-editor-stageb-20261123",
+  "job_id": 137534067388,
+  "job_name": "original-editor-stageb",
+  "job_started_at": "2026-11-23T07:03:41Z",
+  "job_completed_at": "2026-11-23T07:04:29Z",
+  "workflow_conclusion": "failure",
+  "primary_failure": {
+    "step": {
+      "number": 4,
+      "name": "Select the existing SDK-matched original runtime",
+      "conclusion": "failure",
+      "started_at": "2026-11-23T07:04:21Z",
+      "completed_at": "2026-11-23T07:04:22Z"
+    },
+    "error": "Original SDK toolchain differs from the exact retained framework producer",
+    "cause": "The schema2 SDK input omits top-level toolchain, while the immutable selector requires exact equality with authenticated framework_producer.toolchain. Failure precedes actual installed toolchain inspection."
+  },
+  "secondary_collection_failure": {
+    "error": "FileNotFoundError: [Errno 2] No such file or directory: '/Users/runner/work/Maktabah/Maktabah/build/hq-stage2/result.json'",
+    "meaning": "No build/hq-stage2/result.json exists because build and SDK restoration were skipped; not a native test result."
+  },
+  "artifact": {
+    "id": 14796393879,
+    "name": "original-editor-stageb-evidence-6dd57e5b7d7ffa570472d31e38881af32ff38177-45127169339-1",
+    "size_in_bytes": 88573,
+    "digest": "sha256:4f58493c4b1818ca04e457f1b221094ce7418d778c29d763916fd9f0655fa8bc",
+    "expired": false,
+    "workflow_run": {
+      "id": 45127169339,
+      "repository_id": 1280062128,
+      "head_repository_id": 1280062128,
+      "head_branch": "codex/otzaria-original-editor-stageb-20261123",
+      "head_sha": "6dd57e5b7d7ffa570472d31e38881af32ff38177"
+    }
+  },
+  "archive": {
+    "path": "original-stageb-evidence.zip",
+    "bytes": 88573,
+    "sha256": "4f58493c4b1818ca04e457f1b221094ce7418d778c29d763916fd9f0655fa8bc",
+    "unique_safe_members": 6,
+    "crc_members_verified": 6,
+    "upstream_member_index_present": false,
+    "members": [
+      {
+        "path": "original-editor-native-evidence/declarations.json",
+        "bytes": 432,
+        "sha256": "8fa41c3ed986fef179a63e50e34a8106b95f5a46adf112dd030564569aec5c4c",
+        "crc32": "4eafe50a",
+        "crc_verified": true
+      },
+      {
+        "path": "original-editor-native-evidence/python-runtime-preflight.json",
+        "bytes": 2158,
+        "sha256": "7f96674efa805ff3115ef65d5a8507fafe8d7a220b4696295fb0f2e74ac69e11",
+        "crc32": "12b8b688",
+        "crc_verified": true
+      },
+      {
+        "path": "original-editor-native-evidence/result.json",
+        "bytes": 64520,
+        "sha256": "b8f0aac1c1d60233c8425236e82f39ae2e37658c736c4c050d9feda99fec3725",
+        "crc32": "3a8bb8c0",
+        "crc_verified": true
+      },
+      {
+        "path": "original-editor-native-evidence/retained-original-matrix-files.json",
+        "bytes": 3,
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "crc32": "7068d244",
+        "crc_verified": true
+      },
+      {
+        "path": "original-editor-native-evidence/selection.json",
+        "bytes": 177918,
+        "sha256": "f05d571be2395b258bd181d4d0330a65a108bc80e04e120c2f89b280aa947f61",
+        "crc32": "be18e0c6",
+        "crc_verified": true
+      },
+      {
+        "path": "original-editor-native-evidence/source-before.json",
+        "bytes": 63930,
+        "sha256": "22528421313d7d327ff008a67eba94c371fa6fa392a957d92ac911bb764a7269",
+        "crc32": "eb7804b5",
+        "crc_verified": true
+      }
+    ]
+  },
+  "steps": [
+    {
+      "number": 1,
+      "name": "Set up job",
+      "conclusion": "success",
+      "started_at": "2026-11-23T07:03:42Z",
+      "completed_at": "2026-11-23T07:03:45Z"
+    },
+    {
+      "number": 2,
+      "name": "Run actions/checkout@v4",
+      "conclusion": "success",
+      "started_at": "2026-11-23T07:03:45Z",
+      "completed_at": "2026-11-23T07:04:10Z"
+    },
+    {
+      "number": 3,
+      "name": "Verify Python dependencies and freeze the separate original saved-annotation case",
+      "conclusion": "success",
+      "started_at": "2026-11-23T07:04:10Z",
+      "completed_at": "2026-11-23T07:04:21Z"
+    },
+    {
+      "number": 4,
+      "name": "Select the existing SDK-matched original runtime",
+      "conclusion": "failure",
+      "started_at": "2026-11-23T07:04:21Z",
+      "completed_at": "2026-11-23T07:04:22Z"
+    },
+    {
+      "number": 5,
+      "name": "Compile the original UI tests against the selected Apple SDK",
+      "conclusion": "skipped",
+      "started_at": "2026-11-23T07:04:22Z",
+      "completed_at": "2026-11-23T07:04:22Z"
+    },
+    {
+      "number": 6,
+      "name": "Run actions/setup-node@v4",
+      "conclusion": "skipped",
+      "started_at": "2026-11-23T07:04:22Z",
+      "completed_at": "2026-11-23T07:04:22Z"
+    },
+    {
+      "number": 7,
+      "name": "Run ruby/setup-ruby@v1",
+      "conclusion": "skipped",
+      "started_at": "2026-11-23T07:04:22Z",
+      "completed_at": "2026-11-23T07:04:22Z"
+    },
+    {
+      "number": 8,
+      "name": "Read the original source-pinned Zayit build mode",
+      "conclusion": "skipped",
+      "started_at": "2026-11-23T07:04:22Z",
+      "completed_at": "2026-11-23T07:04:22Z"
+    },
+    {
+      "number": 9,
+      "name": "Run dtolnay/rust-toolchain@stable",
+      "conclusion": "skipped",
+      "started_at": "2026-11-23T07:04:22Z",
+      "completed_at": "2026-11-23T07:04:22Z"
+    },
+    {
+      "number": 10,
+      "name": "Restore only the exact successful original SDK export",
+      "conclusion": "skipped",
+      "started_at": "2026-11-23T07:04:22Z",
+      "completed_at": "2026-11-23T07:04:22Z"
+    },
+    {
+      "number": 11,
+      "name": "Key disposable compiler cache by actual toolchain and SDK artifact",
+      "conclusion": "skipped",
+      "started_at": "2026-11-23T07:04:22Z",
+      "completed_at": "2026-11-23T07:04:22Z"
+    },
+    {
+      "number": 12,
+      "name": "Run actions/cache/restore@v4",
+      "conclusion": "skipped",
+      "started_at": "2026-11-23T07:04:22Z",
+      "completed_at": "2026-11-23T07:04:22Z"
+    },
+    {
+      "number": 13,
+      "name": "Build the real app and UI runner once with the admitted original SDK",
+      "conclusion": "skipped",
+      "started_at": "2026-11-23T07:04:22Z",
+      "completed_at": "2026-11-23T07:04:22Z"
+    },
+    {
+      "number": 14,
+      "name": "Execute the separate original annotation editor journey",
+      "conclusion": "skipped",
+      "started_at": "2026-11-23T07:04:22Z",
+      "completed_at": "2026-11-23T07:04:22Z"
+    },
+    {
+      "number": 15,
+      "name": "Verify original native results and retain named evidence",
+      "conclusion": "failure",
+      "started_at": "2026-11-23T07:04:22Z",
+      "completed_at": "2026-11-23T07:04:22Z"
+    },
+    {
+      "number": 16,
+      "name": "Admit only actual matching build products to the compiler cache",
+      "conclusion": "success",
+      "started_at": "2026-11-23T07:04:22Z",
+      "completed_at": "2026-11-23T07:04:22Z"
+    },
+    {
+      "number": 17,
+      "name": "Run actions/cache/save@v4",
+      "conclusion": "skipped",
+      "started_at": "2026-11-23T07:04:22Z",
+      "completed_at": "2026-11-23T07:04:22Z"
+    },
+    {
+      "number": 18,
+      "name": "Retain bounded original editor qualification evidence",
+      "conclusion": "success",
+      "started_at": "2026-11-23T07:04:22Z",
+      "completed_at": "2026-11-23T07:04:24Z"
+    },
+    {
+      "number": 36,
+      "name": "Post Run actions/checkout@v4",
+      "conclusion": "success",
+      "started_at": "2026-11-23T07:04:24Z",
+      "completed_at": "2026-11-23T07:04:25Z"
+    },
+    {
+      "number": 37,
+      "name": "Complete job",
+      "conclusion": "success",
+      "started_at": "2026-11-23T07:04:25Z",
+      "completed_at": "2026-11-23T07:04:27Z"
+    }
+  ],
+  "source_proof_sha256": "865b6d07e795de1ca61749c17d6aa020d5c35f2eec62fabab16dc52988b2209f",
+  "original_product_sha": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "scope": {
+    "sdk_restored": false,
+    "ui_tests_compiled": false,
+    "app_built": false,
+    "mounted_editor_tests_executed": 0,
+    "simulator_started_by_this_gate": false,
+    "native_editor_pass": false,
+    "retry_started": false
+  },
+  "retained_files": [
+    {
+      "path": "SOURCE_PROOF.json",
+      "bytes": 1189,
+      "sha256": "865b6d07e795de1ca61749c17d6aa020d5c35f2eec62fabab16dc52988b2209f"
+    },
+    {
+      "path": "artifacts.json",
+      "bytes": 830,
+      "sha256": "b80228036996fb492d3bb7b8dc4fd86f7428fddec4c0603bf737dcdc0662ee77"
+    },
+    {
+      "path": "artifacts.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "jobs.json",
+      "bytes": 4700,
+      "sha256": "556b30160fba3660fbabceac3751e89044c0af734f646ac19d1d5c19ae652f19"
+    },
+    {
+      "path": "jobs.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "original-job.log",
+      "bytes": 64366,
+      "sha256": "d9470e11a1b7d65177b454bd62aed5e116552b8ae6d3bf1f2715a4cdf3564047"
+    },
+    {
+      "path": "original-job.log.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "original-run.json",
+      "bytes": 12829,
+      "sha256": "109af0b2f4992e87d945db4ddbbe55171c76e9022f057427d1a83ee56255ece2"
+    },
+    {
+      "path": "original-stageb-evidence.zip",
+      "bytes": 88573,
+      "sha256": "4f58493c4b1818ca04e457f1b221094ce7418d778c29d763916fd9f0655fa8bc"
+    },
+    {
+      "path": "original-stageb-evidence.zip.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "watcher": {
+    "path": "/mnt/development/projects/evidence/otzaria-original-editor-stageb-20261123/run45127169339/watch-1.result.json",
+    "sha256": "8fc1e34fc61f255765ba7ae20c188399861ba44d9a152e384f2e4711d46e2bce",
+    "result": {
+      "run_id": 45127169339,
+      "attempt": 1,
+      "head_sha": "6dd57e5b7d7ffa570472d31e38881af32ff38177",
+      "interval_seconds": 120,
+      "timeout_seconds": 3300,
+      "start_utc": "2026-11-23T06:54:28.584348+00:00",
+      "argv": [
+        "runuser",
+        "-u",
+        "ubuntu",
+        "--",
+        "gh",
+        "run",
+        "watch",
+        "45127169339",
+        "--repo",
+        "davidpovarsky/Maktabah",
+        "--exit-status",
+        "--compact",
+        "--interval",
+        "120"
+      ],
+      "watcher_python_pid": 2265245,
+      "manual_dispatches": 0,
+      "child_pid": 2265246,
+      "process_group": 2265246,
+      "finished_utc": "2026-11-23T07:04:35.306634+00:00",
+      "watch_exit_code": 1,
+      "watch_timed_out": false,
+      "child_returncode": 1,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "final_metadata_exit_code": 0,
+      "actual_status": "completed",
+      "actual_conclusion": "failure",
+      "streams": {
+        "watch-1.stdout.log": {
+          "bytes": 1653,
+          "sha256": "a45e05b58c5d7389189ad52b8977201b49855de8b4cba39165b9797d05ccde5b"
+        },
+        "watch-1.stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "watch-1.final-run.stdout.json": {
+          "bytes": 12829,
+          "sha256": "109af0b2f4992e87d945db4ddbbe55171c76e9022f057427d1a83ee56255ece2"
+        },
+        "watch-1.final-run.stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  }
+}
