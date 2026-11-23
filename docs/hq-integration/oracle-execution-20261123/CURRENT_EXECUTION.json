@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-11-23T05:54:04Z",
+  "updated_at_utc": "2026-11-23T06:01:27.389928+00:00",
   "canonical_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
   "root_branch": "codex/otzaria-oracle-completion-20261123",
   "user_instruction": "בעצם, תעשה את הכל בעצמך ותשתמש עם תתי הסוכנים הזמינים לך בצ׳אט פה, בצע הכל עד להשלמה מלאה של המשימות השתמשת בכלי @SentinelX בחשבון המחובר לשרת האורקל ישירות, ועדכן ב @Asana , אחרי כל שלב שאתה מבצע",
@@ -401,7 +401,7 @@
       "controller_sha256": "141ca43ffc25d99932fd35a32ff5ec309e56dc485f01f4ac06003cb8c21b2a22",
       "controller_changed_identity_controls_passed": 3,
       "unchanged_lifecycle_controls": "6_REUSED_WITH_EXACT_INVERSE_SOURCE_PROOF",
-      "status": "ACTIVE_SINGLE_CONTROLLED_DIAGNOSTIC_RUN",
+      "status": "AUTHENTIC_NATIVE_FAILURE_REQUIRED_TOOL_NOT_ADVERTISED",
       "native_acceptance": false,
       "provider_called": "NOT_YET_OBSERVED",
       "credential_configured": true,
@@ -416,11 +416,11 @@
       "run": 45114449674,
       "run_attempt": 1,
       "watcher": "job_d186cf62faa3",
-      "watcher_terminal": false,
+      "watcher_terminal": true,
       "observer_windows": 2,
       "observer_started_utc": "2026-11-23T04:53:13.442628+00:00",
       "observer_window_seconds": 3300,
-      "temporary_secret_cleanup_required": true,
+      "temporary_secret_cleanup_required": false,
       "secret_metadata_created_at": "2026-11-23T04:53:07Z",
       "binding_sha256": "f3c716700f676b62ca03286b474cb80a40ce403c872c94824be681902a1971c8",
       "no_automatic_redispatch": true,
@@ -432,13 +432,42 @@
         "id": 45114449674,
         "head_sha": "9bee6104e2938767b4e4e1047c56da8991d621fb",
         "run_attempt": 1,
-        "status": "in_progress",
-        "conclusion": null,
-        "updated_at": "2026-11-23T04:56:41Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "updated_at": "2026-11-23T05:53:08Z",
         "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45114449674"
       },
       "continuation_preflight": "NO_MATCHING_PROCESS_AND_EXCLUSIVE_BYTE_LOCK_RELEASE_VERIFIED",
-      "redispatches": 0
+      "redispatches": 0,
+      "native_cases": {
+        "PASS": 0,
+        "FAIL": 1,
+        "SKIP": 0,
+        "duration_seconds": 329.3750180006027,
+        "failed_assertion_line": 674,
+        "failed_assertion": "Only the original Host result callback may create the native source receipt"
+      },
+      "diagnostic": {
+        "events": 33,
+        "overflow": false,
+        "first_step_search_advertised": false,
+        "first_step_reference_advertised": true,
+        "original_text_observed": true,
+        "original_finish_reason": "stop",
+        "original_run_completion": "completed",
+        "tool_calls_observed": 0,
+        "tool_results_observed": 0,
+        "host_results_observed": 0,
+        "source_links_observed": 0,
+        "assistant_text_present": true
+      },
+      "artifact": 14792973346,
+      "artifact_bytes": 89531,
+      "artifact_sha256": "94037d1e104be031c86e8078c5115995863f867c2e369670867f68b655dc8ed1",
+      "intake_sha256": "54761f6b160f9b79a46ad4cf61e89473e21b51293efd8391ebcece8fface3d89",
+      "cleanup": "DELETE_204_GET_404_VERIFIED",
+      "cleanup_at_utc": "2026-11-23T05:55:07.598743+00:00",
+      "next_step": "SOURCE_DIAGNOSIS_MISSING_SEARCH_ADVERTISEMENT; NO_REDISPATCH"
     },
     {
       "name": "original_account_bootstrap_environment",
@@ -606,7 +635,8 @@
     "1220776135096830",
     "1220776109127692",
     "1220776069566316",
-    "1220776087764765"
+    "1220776087764765",
+    "1220776388592274"
   ],
   "inventory": {
     "unique_tasks": 83,

@@ -1,0 +1,97 @@
+{
+  "files": {
+    "app-group-resolver-interface.json": {
+      "bytes": 678,
+      "sha256": "8854e1f916fbcbde204c22f40d46714951bb6a4e2fa67efe08d3daf014da75c8"
+    },
+    "artifact-isolation.json": {
+      "bytes": 257,
+      "sha256": "fc8272a1f4517578dec0ac986ea383bcbba00c2a73eae047f9e0cf7a1e0900f7"
+    },
+    "connection-stages.json": {
+      "bytes": 3685,
+      "sha256": "df447af65b7306423d66a5090dfaae62bb787306828de284e68799a638a55c64"
+    },
+    "declarations.json": {
+      "bytes": 378,
+      "sha256": "0fed38adfa5d55010a9ff2993f6c83a6705e3bddb17eebe69f2461c277136a77"
+    },
+    "faithful-ipad-matrix.json": {
+      "bytes": 22906,
+      "sha256": "93dfd48b5e73f423bd42c2ef96e700de5c887af708a4c6fa4bd946a54a7decc3"
+    },
+    "fixture-container.json": {
+      "bytes": 842,
+      "sha256": "2461e39d4c618879755a37ae3035e2b105659706cb9816177a69cfc44d9c9c3e"
+    },
+    "fixture-oracle-11.json": {
+      "bytes": 1071,
+      "sha256": "28e9ede78fd11515fb4275a7b61eb8f74458b263b52d57094f065c6d3292b257"
+    },
+    "fixture-query.json": {
+      "bytes": 1437,
+      "sha256": "bbda89fe304eb433eb56f8a55994a59b863490d953efce7af6aea0898059575e"
+    },
+    "miniTest10-native-fixture-install-11.json": {
+      "bytes": 1792,
+      "sha256": "6b68cf09b731220b204d7e9c09f6667870fe0942fb1f87b028744ccf0f181547"
+    },
+    "original-build-result.json": {
+      "bytes": 83603,
+      "sha256": "9491e4c5840a22ae914e4de154e315683f1479749736b2b60f04d002f7a3b602"
+    },
+    "original-test-details.json": {
+      "bytes": 2801,
+      "sha256": "a642b582e69ff61a6a70082acae55ba00aa4e614e285ca3b4c7291ce007e946a"
+    },
+    "ownership.json": {
+      "bytes": 256,
+      "sha256": "3960b0c22edbdde2c3a4c3bf6fb3506fe35d45d3e4dc9f4b5776a61d7662c56b"
+    },
+    "python-oracle-environment.json": {
+      "bytes": 654,
+      "sha256": "77d23e83351b75870dc60ce65ab1eb712b91cda9fa31044314d588316aecef92"
+    },
+    "result.json": {
+      "bytes": 1025,
+      "sha256": "347b493f5a778feb38feb2d66e19fa168b3ca8cfa684a1d5dec83c1e3aae1790"
+    },
+    "selection.json": {
+      "bytes": 642,
+      "sha256": "2ee3649a010b596b1cfea694455fde5e511de3eac55704a8892d37789a1e6cea"
+    },
+    "source-after.json": {
+      "bytes": 64495,
+      "sha256": "adebe5c365f3eaf43b8a28c97b5f347fcdec13b5a4c0cc611b091b44c208d781"
+    },
+    "source-before.json": {
+      "bytes": 64495,
+      "sha256": "adebe5c365f3eaf43b8a28c97b5f347fcdec13b5a4c0cc611b091b44c208d781"
+    },
+    "test-case-execution-11.json": {
+      "bytes": 570,
+      "sha256": "e8bca950cf611d236e1d651535f4cb746f93d89e72ff007e6aa3e5c27f59f5bd"
+    },
+    "test-simulator-11.log": {
+      "bytes": 36275,
+      "sha256": "11b0ca8d54d40919715b4a744d6f4c881432dd5c02363627955fabc814975b54"
+    },
+    "verified-11.json": {
+      "bytes": 316,
+      "sha256": "299dfb30325d98e7733a0808b0825cf2f149ec0e4e3089b5b61b97fac0470b2f"
+    },
+    "verified-11.summary.json": {
+      "bytes": 1590,
+      "sha256": "a3122a72ef0405be4cdb05fa0e3556e0ba93e7a7fe0ec839446cf3456d339ae9"
+    },
+    "verified-11.tests.json": {
+      "bytes": 2327,
+      "sha256": "55737fe8d00ef37e977c902666f4c1d290361d8eb9966d0dcc897f88d1f167b1"
+    }
+  },
+  "private_input_removed": true,
+  "provider_file_excluded": true,
+  "raw_video_excluded": true,
+  "raw_xcresult_and_attachments_excluded": true,
+  "status": "SCANNED_ALLOWLIST_ONLY"
+}

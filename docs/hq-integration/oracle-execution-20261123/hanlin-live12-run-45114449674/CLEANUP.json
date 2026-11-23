@@ -1,0 +1,13 @@
+{
+  "state": "DELETED_AND_ABSENCE_VERIFIED",
+  "before_metadata": {
+    "name": "OTZARIA_LIVE_GEMINI_API_KEY",
+    "created_at": "2026-11-23T04:53:07Z",
+    "updated_at": "2026-11-23T04:53:07Z"
+  },
+  "delete_http_status": 204,
+  "after_http_status": 404,
+  "checkout_sha": "9bee6104e2938767b4e4e1047c56da8991d621fb",
+  "run_id": 45114449674,
+  "finished_at": "2026-11-23T05:55:07.598743+00:00"
+}

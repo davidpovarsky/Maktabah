@@ -1,0 +1,101 @@
+{
+  "artifact": 14792973346,
+  "bytes": 89531,
+  "sha256": "94037d1e104be031c86e8078c5115995863f867c2e369670867f68b655dc8ed1",
+  "unique_safe_crc_members": 23,
+  "expanded_bytes": 295446,
+  "files": [
+    {
+      "path": "admission.json",
+      "bytes": 3351
+    },
+    {
+      "path": "app-group-resolver-interface.json",
+      "bytes": 678
+    },
+    {
+      "path": "artifact-isolation.json",
+      "bytes": 257
+    },
+    {
+      "path": "connection-stages.json",
+      "bytes": 3685
+    },
+    {
+      "path": "declarations.json",
+      "bytes": 378
+    },
+    {
+      "path": "faithful-ipad-matrix.json",
+      "bytes": 22906
+    },
+    {
+      "path": "fixture-container.json",
+      "bytes": 842
+    },
+    {
+      "path": "fixture-oracle-11.json",
+      "bytes": 1071
+    },
+    {
+      "path": "fixture-query.json",
+      "bytes": 1437
+    },
+    {
+      "path": "miniTest10-native-fixture-install-11.json",
+      "bytes": 1792
+    },
+    {
+      "path": "original-build-result.json",
+      "bytes": 83603
+    },
+    {
+      "path": "original-test-details.json",
+      "bytes": 2801
+    },
+    {
+      "path": "ownership.json",
+      "bytes": 256
+    },
+    {
+      "path": "python-oracle-environment.json",
+      "bytes": 654
+    },
+    {
+      "path": "result.json",
+      "bytes": 1025
+    },
+    {
+      "path": "selection.json",
+      "bytes": 642
+    },
+    {
+      "path": "source-after.json",
+      "bytes": 64495
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 64495
+    },
+    {
+      "path": "test-case-execution-11.json",
+      "bytes": 570
+    },
+    {
+      "path": "test-simulator-11.log",
+      "bytes": 36275
+    },
+    {
+      "path": "verified-11.json",
+      "bytes": 316
+    },
+    {
+      "path": "verified-11.summary.json",
+      "bytes": 1590
+    },
+    {
+      "path": "verified-11.tests.json",
+      "bytes": 2327
+    }
+  ]
+}
