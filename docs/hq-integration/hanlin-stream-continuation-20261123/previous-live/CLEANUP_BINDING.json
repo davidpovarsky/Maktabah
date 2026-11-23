@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "run_id": 45168227740,
+  "run_attempt": 1,
+  "checkout_sha": "96c5b1b60c15a9a0cf1c4356f9822c64d9864c86",
+  "receipts": [
+    {
+      "source_path": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/45168227740/windows-terminal-intake/cleanup.json",
+      "bytes": 397,
+      "sha256": "bfc665842cf6ef1ca7cb839c3a753fc5a405058941716dac220eeadb003d1c18",
+      "receipt": {
+        "state": "DELETED_AND_ABSENCE_VERIFIED",
+        "before_metadata": {
+          "name": "OTZARIA_LIVE_GEMINI_API_KEY",
+          "created_at": "2026-11-23T11:46:44Z",
+          "updated_at": "2026-11-23T11:46:44Z"
+        },
+        "delete_http_status": 204,
+        "after_http_status": 404,
+        "checkout_sha": "96c5b1b60c15a9a0cf1c4356f9822c64d9864c86",
+        "run_id": 45168227740,
+        "finished_at": "2026-11-23T12:49:33.378830+00:00"
+      }
+    },
+    {
+      "source_path": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/45168227740/terminal-metadata/INDEPENDENT_SECRET_ABSENCE.json",
+      "bytes": 266,
+      "sha256": "c8b255050c9ff4a410d2ce99b64ea201e26c7459faa02fb824c42b8f06fbcd1a",
+      "receipt": {
+        "observed_utc": "2026-11-23T12:52:05.708051+00:00",
+        "repository": "davidpovarsky/Maktabah",
+        "secret_name": "OTZARIA_LIVE_GEMINI_API_KEY",
+        "actual_http": 404,
+        "observer": "INDEPENDENT_ORACLE_ROOT_READ_ONLY",
+        "credential_value_or_hash_recorded": false
+      }
+    }
+  ],
+  "credential_value_or_hash_recorded": false
+}
