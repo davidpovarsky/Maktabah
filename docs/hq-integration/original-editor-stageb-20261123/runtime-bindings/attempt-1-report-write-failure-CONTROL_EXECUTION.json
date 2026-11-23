@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "python3",
+    "tools/verify-original-editor-signed-consumer-admission-controls.py",
+    "--group",
+    "runtime",
+    "--original-evidence",
+    "/mnt/development/projects/evidence/otzaria-sdk-runtime-20261123/14768824831-original-framework-evidence.zip",
+    "--admission-json",
+    "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/Scripts/CI/runtime27-original-editor.inputs.json",
+    "--runtime-evidence",
+    "/mnt/development/projects/diagnostics/otzaria-sdk-runtime-20261123/45123300449/terminal/original-runtime-artifact.zip",
+    "--out",
+    "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/docs/hq-integration/original-editor-stageb-20261123/runtime-bindings/runtime-controls.json"
+  ],
+  "cwd": "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123",
+  "exit_code": 1,
+  "admission_sha256": "3d5e85feb0ae6ea6e60f3fa8c5506d0cafdb8c140ecd7d670ded3ad82c3701fe",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "5b181334d5c884134bbf7820f58b68abd2b7ac982a4a449703afae9fbce8a58b",
+  "original_controls_replayed": 0,
+  "native_builds": 0,
+  "native_UI_tests": 0
+}
