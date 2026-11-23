@@ -2402,8 +2402,10 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         }
         XCUIDevice.shared.orientation = .landscapeLeft
         tap(readerLibraryPaletteLauncher())
-        XCTAssertTrue(app.descendants(matching: .any)["reader-library-command-palette"].waitForExistence(timeout: 15))
-        capture("candidate-command-palette-en")
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 15))
+        let result = palette.buttons["command-palette-row-section:ספרים/otzaria|book:1|line:0"]
+        captureOpenLibraryPalette("candidate-command-palette-en", palette: palette, result: result)
     }
 
     func testCandidateGlobalSearchLandscapeMatchesOriginalNavigation() {

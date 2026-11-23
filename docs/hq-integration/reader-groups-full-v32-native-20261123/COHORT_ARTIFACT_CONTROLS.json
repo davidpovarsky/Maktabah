@@ -1,0 +1,36 @@
+{
+  "scope": "Seven synthetic output-ownership controls only; no Actions/native acceptance",
+  "helper_sha256": "cf7092191b7058041fe894673380865c9048bab15e224a027b34687123082b03",
+  "control_sha256": "1fa5ad1ce94f5156aa853bd010447df09e1ff375559fcedc49db7aeee122907b",
+  "actual_source_head_at_execution": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
+  "cases": [
+    {
+      "case": "all_four_cohorts_switch_without_overwriting_prior_bytes",
+      "result": "PASS"
+    },
+    {
+      "case": "different_attempt_owner_rejected",
+      "result": "PASS"
+    },
+    {
+      "case": "preexisting_unowned_artifacts_preserved_and_rejected",
+      "result": "PASS"
+    },
+    {
+      "case": "alias_outside_owned_cohorts_rejected",
+      "result": "PASS"
+    },
+    {
+      "case": "symlinked_cohort_directory_rejected",
+      "result": "PASS"
+    },
+    {
+      "case": "symlinked_build_directory_rejected",
+      "result": "PASS"
+    },
+    {
+      "case": "wrong_actual_git_checkout_rejected_before_actions_identity",
+      "result": "PASS"
+    }
+  ]
+}

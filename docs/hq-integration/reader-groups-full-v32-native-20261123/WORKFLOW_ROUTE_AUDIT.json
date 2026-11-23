@@ -1,0 +1,531 @@
+{
+  "baseAlreadyPublished": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+  "branch": "codex/otzaria-reader-groups-full-v32-20261123",
+  "preparedDeltaPaths": [
+    ".github/workflows/otzaria-reader-groups-full-v32.yml",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+    "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+    "Scripts/CI/reader-groups100-focused-native.inputs.json",
+    "Scripts/CI/reader-groups100-focused-native.py",
+    "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+    "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+  ],
+  "pushRoutes": [
+    {
+      "workflow": ".github/workflows/deploy-docs.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "main"
+        ],
+        "paths": [
+          "docs/**",
+          "mkdocs.yml"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/maktabah-batch-b-validation.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "validation/maktabah-batch-b-*",
+          "validation/maktabah-build-8401-*"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-annotation-core194-combined-apple-v3.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-annotation-core194-combined-apple-v3-20261120"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-cloud-import-identity-apple.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-cloud-import-identity-apple-20261122"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-cold-search-core-validation.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-cold-search-core-apple-v2-20261120"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-cold-search-ownership-validation.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-cold-search-ownership-v3-20261120"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-completion-focused-native.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-native-package-cache-20261122"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-final-native-push.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-final-native116-20261120"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-final-release-push.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-final-release114-20261120"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-hanlin-live-native.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-hanlin-live-20261121"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-local-annotation-cloud-apple.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-local-annotation-cloud-apple-reviewed-20261120"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-local-annotation-editor-apple.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-local-annotation-editor-apple-reviewed-v2-20261120"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-native-creation-fence-apple.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-native-creation-fence-apple-20261122"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-native98-commentary-evidence.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-native98-commentary-evidence-20261120"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-original-editor-stageb-native.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-original-editor-stageb-native-20261122"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-reader-groups-full-v32.yml",
+      "assignedBranchEligible": true,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py"
+      ],
+      "eligibleForThisPreparedDelta": true,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-reader-groups-full-v32-20261123"
+        ],
+        "paths": [
+          "Source/**",
+          "Maktabah-iOSUITests/**",
+          "Scripts/CI/reader-groups100-focused-native*",
+          "Scripts/CI/reader-full-v32-ui-observation*",
+          "docs/hq-integration/reader-full-v32-ui-observation-20261123/FullV32ObservationCatalog.swift",
+          "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+          ".github/workflows/otzaria-reader-groups-full-v32.yml"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-release96-capture-evidence.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-release96-capture-evidence-20261120"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-search-gates.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-search-upgrade-clean"
+        ],
+        "paths": [
+          "Source/Otzaria/**",
+          "Source/iOS/MaktabahApp.swift",
+          "Source/iOS/Managers/BootstrapManager.swift",
+          "Source/iOS/Views/Bootstrap/BootstrapView.swift",
+          "Source/iOS/Views/iPadLayout.swift",
+          "Source/View/CoreDownloadProgressView.swift",
+          "Source/Core/Database/ZstdShim.swift",
+          "Maktabah.xcodeproj/project.pbxproj",
+          "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+          "Vendor/OtzariaSearchEngine/**",
+          "Vendor/OtzariaBootstrapTests/**",
+          "Vendor/ZayitSearchPort/**",
+          "Scripts/CI/**",
+          "Scripts/run-otzaria-corpus-acceptance.sh",
+          "Scripts/run-otzaria-native-bootstrap-acceptance.sh",
+          ".github/workflows/otzaria-search-gates.yml",
+          ".github/workflows/ios-build.yml"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/otzaria-ui-sdk-intermediate.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/otzaria-ui-sdk-intermediate-20261120"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/release.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "tags": [
+          "v*",
+          "V*"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/sefaria-embedded-validation.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "experiment/sefaria-mobile-original-embedded-*"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/upstream-boundary-guard.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "main",
+          "dev",
+          "sync/**"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/upstream-resolved-fast-validation-2026-09-04.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/upstream-main-sync-2026-09-04-resolved"
+        ],
+        "paths": [
+          ".github/workflows/upstream-resolved-fast-validation-2026-09-04.yml",
+          "Maktabah.xcodeproj/**",
+          "Source/**"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/upstream-resolved-validation-2026-09-04.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/upstream-main-sync-2026-09-04-resolved"
+        ],
+        "paths": [
+          ".github/workflows/upstream-resolved-validation-2026-09-04.yml",
+          "Maktabah.xcodeproj/**",
+          "Source/**",
+          "Vendor/**",
+          "Scripts/**"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/zayit-production-data.yml",
+      "assignedBranchEligible": false,
+      "changedPathMatches": [
+        ".github/workflows/otzaria-reader-groups-full-v32.yml",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/GROUPS_DRIVER_SCOPE.diff",
+        "docs/hq-integration/reader-groups-full-v32-native-20261123/PLAN.json"
+      ],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "branches": [
+          "codex/search-data-unification-parity"
+        ]
+      }
+    },
+    {
+      "workflow": ".github/workflows/zayit-search-gates.yml",
+      "assignedBranchEligible": true,
+      "changedPathMatches": [],
+      "eligibleForThisPreparedDelta": false,
+      "trigger": {
+        "paths": [
+          "Vendor/ZayitSearchPort/**",
+          ".github/workflows/zayit-search-gates.yml"
+        ]
+      }
+    }
+  ],
+  "newBranchEventComparison": "Prepared CI delta is from already-published integrated source; retained generic Zayit path filter has no changed-path match. Actual triggered run identity still must be admitted.",
+  "sourceWorkflowUnchanged": true
+}

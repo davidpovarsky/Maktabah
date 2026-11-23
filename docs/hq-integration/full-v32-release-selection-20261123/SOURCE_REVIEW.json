@@ -1,0 +1,78 @@
+{
+  "schema": "otzaria.frozen-native-production-release/1",
+  "status": "SOURCE_AND_COMPONENT_REVIEW_ACCEPTED_NATIVE_INSTALL_PENDING",
+  "parent": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+  "recorded_at": "2026-11-23T19:30:37.294075+00:00",
+  "product_and_ci_delta": [
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift",
+      "before_bytes": 5979,
+      "before_sha256": "b58f095f3b32a94bd260254422c79699b2ea420cfae9dcf0a6465d707a3dd711",
+      "after_bytes": 7443,
+      "after_sha256": "7243943e61b04a900e1cb441e20bc8f69d82bd041c0b8b2ae1f2738ef3f9650d"
+    },
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift",
+      "before_bytes": 8895,
+      "before_sha256": "696faecac82fd6849c0c76ed9361bda31483d723e7b112e6a0d713a6bd5762d8",
+      "after_bytes": 9103,
+      "after_sha256": "88c6b179512afa48b499352cf23f595fdc6ff8b5185b0e6a3490f8b820b4151a"
+    },
+    {
+      "path": "Scripts/CI/prepare-faithful-ipad-fixtures.py",
+      "before_bytes": 3752,
+      "before_sha256": "1aef6221d2cefe49432c859e3a483c8b6321c062e156738bca66a12c6d792dbe",
+      "after_bytes": 4299,
+      "after_sha256": "a0f0ea5e71df41d25097a5434408073afd29f68180869f06d1382b0690ea13d3"
+    },
+    {
+      "path": "Scripts/CI/reader-full-v32-ui-observation.py",
+      "before_bytes": 80792,
+      "before_sha256": "d75618e44d205b1fb2843811bbff846151eef6e14ec92d9b071bdbbaafbbfca7",
+      "after_bytes": 80878,
+      "after_sha256": "cc2b877f27e2309d738287a5458e42e625861d7e30fa1487c8b1d1f50dd877b3"
+    }
+  ],
+  "delta_sha256": "676f5f812518ba570e29417fe54ffafd8bec6f5ce52912815965a37fedfa3e24",
+  "authentic_failure": {
+    "run": 45158596483,
+    "attempt": 3,
+    "profile": "production",
+    "native_cases_not_run": 2,
+    "cause": "Existing installer uses moving latest; latestv40 now publishes only multipart database assets while this qualification requires immutable v32"
+  },
+  "official_v32": {
+    "release_id": 409213893,
+    "tag": "v32-20261010190601",
+    "asset_id": 629048655,
+    "size": 1850679582,
+    "sha256": "6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44",
+    "metadata_sha256": "ae62fa281b06801362ef93269258837c64445dff7120db6e97ee94f058175d09"
+  },
+  "latest_release": {
+    "id": 455390662,
+    "tag": "v40-20261123094345",
+    "multipart_support": "SEPARATE_PRODUCT_WORK_NOT_IMPLEMENTED_HERE",
+    "metadata_sha256": "fdddc814ad744f1e02a1ba5f19b02a0736313b3a66ccbdfcef34c074665062a6"
+  },
+  "source_review": {
+    "independent_reviewer": "/root/stageb_repair",
+    "result": "ACCEPTABLE",
+    "cache_fallback_gap_found_and_fixed": true,
+    "malformed_pin_cannot_be_swallowed": true,
+    "pinned_lookup_error_cannot_resume_different_cached_release": true,
+    "unpinned_offline_resume_unchanged": true,
+    "normal_and_release_lookup": "LATEST_UNCHANGED",
+    "source_destination": "Fixed official repository API; canonical positive Int64 identifier only"
+  },
+  "validation": {
+    "actual_swift6_component_assertions_debug": 17,
+    "actual_swift6_component_assertions_release": 8,
+    "cli_invalid_scope_cases": 3,
+    "service_syntax_parse": "PASS_ONLY",
+    "service_runtime": "NOT_RUN",
+    "apple_native_install": "NOT_RUN",
+    "existing_historical_suites_reexecuted": 0
+  },
+  "activation": "Source preparation only; exact new app tree and execution byte inputs must be rebound by the four-remaining-case continuation owner before Apple dispatch."
+}

@@ -1,0 +1,25 @@
+{
+  "status": "ROOT_ACCEPTED_EXACT_SOURCE_ADMISSION_FOR_ONE_COMBINED_NATIVE_RUN",
+  "prepared_head": "7bc3b6cd623bcb7c832df9378251a559e998f710",
+  "source_application": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+  "source_admission_result_sha256": "6bcd0a63f78b287658f273a74c3df598352b22570d881efd1eed3f77ba96e424",
+  "actual_admission_commands": 4,
+  "all_command_children_reaped_groups_drained": true,
+  "groups_library_input_rows": 291,
+  "full_v32_input_rows": 42,
+  "unique_execution_inputs_git_verified": 311,
+  "selected_native_groups": {
+    "Groups100": 1,
+    "Library": 7,
+    "FullV32": 2
+  },
+  "workflow_sha256": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c",
+  "workflow_driver_assertions_timeouts_unchanged": true,
+  "prior_compiler_failures_preserved": [
+    45143450850,
+    45147566951
+  ],
+  "actual_sdk_declaration_proof_run": 45152574279,
+  "native_or_app_acceptance": false,
+  "timestamp_utc": "2026-11-23T10:42:41.337178+00:00"
+}

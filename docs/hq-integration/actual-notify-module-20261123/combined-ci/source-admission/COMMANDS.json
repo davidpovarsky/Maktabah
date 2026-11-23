@@ -1,0 +1,74 @@
+[
+  {
+    "label": "groups100",
+    "argv": [
+      "python3",
+      "Scripts/CI/reader-groups100-focused-native.py",
+      "prepare"
+    ],
+    "pid": 2667800,
+    "returncode": 0,
+    "timed_out": false,
+    "term_sent": false,
+    "kill_sent": false,
+    "child_reaped": true,
+    "owned_group_drained": true,
+    "elapsed_seconds": 1.5165464375168085,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "library7",
+    "argv": [
+      "python3",
+      "Scripts/CI/library-morph-focused-native.py",
+      "prepare"
+    ],
+    "pid": 2667874,
+    "returncode": 0,
+    "timed_out": false,
+    "term_sent": false,
+    "kill_sent": false,
+    "child_reaped": true,
+    "owned_group_drained": true,
+    "elapsed_seconds": 1.5524578848853707,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "full-v32-declarations",
+    "argv": [
+      "python3",
+      "Scripts/CI/reader-full-v32-ui-observation.py",
+      "source-check"
+    ],
+    "pid": 2667931,
+    "returncode": 0,
+    "timed_out": false,
+    "term_sent": false,
+    "kill_sent": false,
+    "child_reaped": true,
+    "owned_group_drained": true,
+    "elapsed_seconds": 1.76279126573354,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "full-v32-frozen",
+    "argv": [
+      "python3",
+      "-c",
+      "import runpy; m=runpy.run_path('Scripts/CI/reader-full-v32-ui-observation.py'); c=m['source_context'](require_frozen=True); m['write'](m['OUT']/'frozen-source-admission.json', c)"
+    ],
+    "pid": 2668192,
+    "returncode": 0,
+    "timed_out": false,
+    "term_sent": false,
+    "kill_sent": false,
+    "child_reaped": true,
+    "owned_group_drained": true,
+    "elapsed_seconds": 0.2546122372150421,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

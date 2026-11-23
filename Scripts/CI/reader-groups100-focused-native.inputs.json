@@ -1,0 +1,51 @@
+{
+  "schema": "otzaria.reader-groups100.native-inputs/1",
+  "application_source_sha": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+  "application_trees": {
+    "Source": "0e2dc5b9406ffeef95d2d75d460f1589c133129d",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "88933b92b2d7580ff082677c14670ec6c2757dec"
+  },
+  "execution_groups": [
+    {
+      "label": "11-reader",
+      "size": "11",
+      "hid_comparison": false,
+      "case_ids": [
+        "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"
+      ]
+    }
+  ],
+  "acceptance_scope": "Exactly one original Groups100 leaf with reviewed midpoint-interaction observation; actual100 transitions, identity/content/cold restore and original timeouts retained. Full-parent raw AX containment remains diagnostic. Prior3 and historical6 passes are not replayed or transferred; not Native116/Release114/physical acceptance.",
+  "earlier_reader10_evidence": {
+    "run_id": 45107660584,
+    "attempt": 1,
+    "source_sha": "b85a72e409855ffdc6bed1dcef60bbf5b233cf6d",
+    "counts": {
+      "pass": 6,
+      "fail": 4,
+      "skip": 0,
+      "not_run": 0
+    },
+    "artifact_id": 14790507747,
+    "artifact_sha256": "56eac74fc92c1334bbdd305f9f61cb38bc4513b01690326606577fa1d8f95b9c",
+    "historic_passes_counted_as_current": false
+  },
+  "prior_run_evidence": {
+    "run_id": 45124554050,
+    "attempt": 1,
+    "checkout_sha": "482b8ac3ef2935ee1127da529e5d0848efb0e2f1",
+    "application_source_sha": "2ef81ac195c002863486e473dad95f336f3e1675",
+    "counts": {
+      "pass": 3,
+      "fail": 1,
+      "skip": 0,
+      "not_run": 0
+    },
+    "artifact_id": 14798332418,
+    "artifact_sha256": "9aef172a617bf0f5b4eaa1632d97e2a29caa60fcb16e11cb1e56a1e52e1ea5a4",
+    "failed_snapshot_sha256": "beedf997d6b8f8ac3286309011c0425bb0f856417144e16f0a817d99253b63f8",
+    "historic_passes_counted_as_current": false
+  }
+}

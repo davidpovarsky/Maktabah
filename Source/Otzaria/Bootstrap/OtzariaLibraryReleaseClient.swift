@@ -30,7 +30,8 @@ struct OtzariaLibraryReleaseClient: Sendable {
                 )
             )
         }
-        var request = URLRequest(url: Self.latestReleaseURL)
+        let lookup = try Self.releaseLookup(environment: ProcessInfo.processInfo.environment)
+        var request = URLRequest(url: lookup.url)
         request.timeoutInterval = 30
         request.cachePolicy = .reloadIgnoringLocalCacheData
         request.setValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
@@ -45,7 +46,7 @@ struct OtzariaLibraryReleaseClient: Sendable {
             guard http.statusCode == 200 else {
                 throw OtzariaDatabaseBootstrapError.releaseLookupFailed("HTTP \(http.statusCode)")
             }
-            return try Self.parseLatestRelease(data: data)
+            return try Self.parseLatestRelease(data: data, expectedReleaseID: lookup.expectedReleaseID)
         } catch let error as OtzariaDatabaseBootstrapError {
             throw error
         } catch {
@@ -53,7 +54,29 @@ struct OtzariaLibraryReleaseClient: Sendable {
         }
     }
 
-    static func parseLatestRelease(data: Data) throws -> OtzariaLibraryRelease {
+    /// A native install observation may explicitly request its frozen official release.
+    /// Release builds and ordinary app launches always retain the latest-release lookup.
+    static func releaseLookup(environment: [String: String]) throws -> (url: URL, expectedReleaseID: Int64?) {
+        #if DEBUG
+        if environment["OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE"] == "install",
+           let rawID = environment["OTZARIA_NATIVE_BOOTSTRAP_RELEASE_ID"] {
+            guard environment["OTZARIA_DATA_PROFILE"] == OtzariaDataProfileRegistry.productionID,
+                  let id = Int64(rawID), id > 0, String(id) == rawID else {
+                throw OtzariaDatabaseBootstrapError.invalidAssetMetadata(
+                    "native production observation requires a canonical positive release ID"
+                )
+            }
+            let url = URL(string: "https://api.github.com/repos/Otzaria/SeforimLibrary/releases/\(id)")!
+            return (url, id)
+        }
+        #endif
+        return (latestReleaseURL, nil)
+    }
+
+    static func parseLatestRelease(
+        data: Data,
+        expectedReleaseID: Int64? = nil
+    ) throws -> OtzariaLibraryRelease {
         let payload: ReleasePayload
         do {
             payload = try JSONDecoder().decode(ReleasePayload.self, from: data)
@@ -65,6 +88,11 @@ struct OtzariaLibraryReleaseClient: Sendable {
 
         guard payload.id > 0, !payload.tagName.isEmpty else {
             throw OtzariaDatabaseBootstrapError.invalidAssetMetadata("missing release ID or tag")
+        }
+        if let expectedReleaseID, payload.id != expectedReleaseID {
+            throw OtzariaDatabaseBootstrapError.invalidAssetMetadata(
+                "returned release ID differs from the frozen native observation"
+            )
         }
         let schemaAssets = payload.assets.compactMap { asset -> (Int, AssetPayload)? in
             guard let version = OtzariaLibraryRelease.schemaVersion(inAssetName: asset.name) else {

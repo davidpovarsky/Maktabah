@@ -1,11 +1,11 @@
 {
   "schema": "otzaria.full-v32.original-ui-observation/1",
-  "application_source_sha": "UNFINALIZED",
+  "application_source_sha": "a0f9f0547e28ac89a42fce5019888222c21390cd",
   "application_trees": {
-    "Source": "UNFINALIZED",
-    "Vendor": "UNFINALIZED",
-    "Maktabah.xcodeproj": "UNFINALIZED",
-    "Maktabah-iOSUITests": "UNFINALIZED"
+    "Source": "0e2dc5b9406ffeef95d2d75d460f1589c133129d",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "88933b92b2d7580ff082677c14670ec6c2757dec"
   },
   "original_source_base": "2ef81ac195c002863486e473dad95f336f3e1675",
   "selected_case_ids": [
@@ -38,14 +38,20 @@
     "Tests/HQ/sqlite/UnusedZstdBoundary.swift"
   ],
   "execution_input_paths": [
+    ".github/workflows/otzaria-reader-groups-full-v32.yml",
     "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
     "Scripts/CI/hq-original-editor-distribution.py",
     "Scripts/CI/hq-stage2-focused-apple.inputs.json",
     "Scripts/CI/hq-stage2-focused-apple.py",
+    "Scripts/CI/library-morph-focused-native.inputs.json",
+    "Scripts/CI/library-morph-focused-native.py",
+    "Scripts/CI/native-cohort-artifacts.py",
     "Scripts/CI/prepare-faithful-ipad-fixtures.py",
     "Scripts/CI/prepare-hanlin-sdk.py",
     "Scripts/CI/prepare-pinned-sharp-libvips.py",
     "Scripts/CI/reader-full-v32-ui-observation.py",
+    "Scripts/CI/reader-groups100-focused-native.inputs.json",
+    "Scripts/CI/reader-groups100-focused-native.py",
     "Scripts/CI/runtime27-url-delivery.py",
     "Scripts/CI/runtime27_interruption.py",
     "Scripts/CI/select-runtime27-toolchain.py",
@@ -76,14 +82,20 @@
     "tools/verify_xcresult_zero_skips.py"
   ],
   "input_sha256": {
-    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "88da4560aab504034f9dc64107998097e12ecbf6798f28e25d20a6fc2aac34d0",
+    ".github/workflows/otzaria-reader-groups-full-v32.yml": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "d8ae7aa91ad09866a8842684fae51b1d19e1d084b27a8a6b5d7cb45b523c091f",
     "Scripts/CI/hq-original-editor-distribution.py": "6ebfeab1fbc1c8568734a8a36016885e6454eef73940020b3db6986140022bf5",
-    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "a564e50994558966557dfb4eea78b3040a53eb8dd16f69a2683dbf3debb253fd",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "50125ae62c92d35df3908bb30f158978d3d24e7e3fda4f468057fd55926a560a",
     "Scripts/CI/hq-stage2-focused-apple.py": "0dbe133b8f0ee188dc2f0d0c375972a210571498ecac928f1174730ebb0e83f5",
+    "Scripts/CI/library-morph-focused-native.inputs.json": "c8369b9c1758b7bb60cc9404839095f893cb03bf2a592caa9a3f6852f3e410bc",
+    "Scripts/CI/library-morph-focused-native.py": "13d9c4dbb24591b6406e6a3da5c0d619c5785c726d894182383d899ce9373fc3",
+    "Scripts/CI/native-cohort-artifacts.py": "cf7092191b7058041fe894673380865c9048bab15e224a027b34687123082b03",
     "Scripts/CI/prepare-faithful-ipad-fixtures.py": "1aef6221d2cefe49432c859e3a483c8b6321c062e156738bca66a12c6d792dbe",
     "Scripts/CI/prepare-hanlin-sdk.py": "7e9a303e20390b9a33ee6cddc73979dc1557741636d6e00067c55a90188af404",
     "Scripts/CI/prepare-pinned-sharp-libvips.py": "37a279a3ab6e1bf7ece3d92c657a8c4f5e1fcb9e5007564b4aef0408f0eee764",
     "Scripts/CI/reader-full-v32-ui-observation.py": "d75618e44d205b1fb2843811bbff846151eef6e14ec92d9b071bdbbaafbbfca7",
+    "Scripts/CI/reader-groups100-focused-native.inputs.json": "aa1a4768ad9190cb417429927f682251ffffcdba8ca7929346cf29847e0e7323",
+    "Scripts/CI/reader-groups100-focused-native.py": "27cf5dcbe51d45c804b50c9f5858161dae71762ce25ea7a113d2d6d1d2620a1b",
     "Scripts/CI/runtime27-url-delivery.py": "065c8afaed97a7974a2e8ba4c61b3077c63366e21bb8696837a00e4ab4bd17b8",
     "Scripts/CI/runtime27_interruption.py": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
     "Scripts/CI/select-runtime27-toolchain.py": "3e6ed97188d50f4f344dbd7f77f142a05f0a0bde1b720a0745df098f49bfcf2f",
@@ -105,7 +117,7 @@
     "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
     "Source/Otzaria/Reading/OtzariaLineAnchor.swift": "46c7282330eba729c77ddfbf732582bdcbfef2fcc7473b455cc5061bdd3931a6",
     "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
-    "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift": "36ca3f4863c60519d1135bf8f327a4c00a1e1bf074dd826caee7760547b18aa8",
+    "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift": "2f53c4136145100382ea86dd2b659c8457ec7b56e19173eafb8d7c0ba464fa25",
     "Source/Otzaria/Reading/OtzariaReadingUnit.swift": "a7468b783f530958641918c23e3d654a31938446f9de0bdbb7211dfc5ab39cfb",
     "Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift": "9c01b971ef6093fc7f9a2ea9680353aa9ad9f6b3bb87f7eefd4ac9a6780a4b02",
     "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
@@ -114,7 +126,7 @@
     "tools/verify_xcresult_zero_skips.py": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6"
   },
   "torah_inspector_commit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
-  "source_status": "UNFINALIZED_BEFORE_INTEGRATED_SOURCE_DEVICE_BINARY_REVIEW",
+  "source_status": "INTEGRATED_SOURCE_FROZEN_NATIVE_DEVICE_BINARY_ADMISSION_REQUIRED",
   "native_ui_executed": 0,
   "physical_device_executed": 0,
   "perf_candidate_promoted": false,
@@ -126,5 +138,17 @@
     2000
   ],
   "exact_inspector_count_policy": "Actual original counts only; natural at-least exploration does not satisfy missing exact sizes; no truncation",
-  "performance_budgets": "NONE_INVENTED; retain actual observations and missing metrics"
+  "performance_budgets": "NONE_INVENTED; retain actual observations and missing metrics",
+  "integrated_source_lineage": {
+    "composition": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
+    "full_v32_source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+    "groups100_point_source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+    "library_source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+    "reader_bridge_source": "2ef81ac195c002863486e473dad95f336f3e1675",
+    "old_passes_transferred": false,
+    "previous_composition": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+    "library_native_lifecycle_source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+    "darwin_notify_import_source": "b965e741815f9033151ee45f58d744d028ba1bc2",
+    "actual_sdk_notify_module_source": "a0f9f0547e28ac89a42fce5019888222c21390cd"
+  }
 }

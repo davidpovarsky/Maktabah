@@ -1,0 +1,39 @@
+{
+  "schema": "otzaria.groups-full-v32.ci-source-admission/1",
+  "preparedCheckout": "a1d9681575f0e7c3025a54e41564e16261d25c77",
+  "applicationSource": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+  "scope": "Actual source-only admissions; no native/runtime/build execution on Oracle",
+  "groups100": {
+    "declarations": 1,
+    "status": "DECLARATIONS_MATCH",
+    "exactExecutionInputs": 288
+  },
+  "fullV32": {
+    "declarations": 2,
+    "status": "FROZEN_SOURCE_INPUTS_AND_DECLARATIONS_PASS",
+    "exactExecutionInputs": 39
+  },
+  "originalHQSourcePreflight": "PASS",
+  "old19And10ControlsReplayed": false,
+  "nativeExecuted": 0,
+  "unchangedAcceptedCollectorSHA256": "d75618e44d205b1fb2843811bbff846151eef6e14ec92d9b071bdbbaafbbfca7",
+  "integratedFaithfulSHA256": "7c1e4e376b5fdf965b4a799f922851e00d88c572f3102d0ad4d5d0db8bd82156",
+  "originalSDKSource": {
+    "hanlinGitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+    "prepareHanlinSHA256": "7e9a303e20390b9a33ee6cddc73979dc1557741636d6e00067c55a90188af404",
+    "originalEditorAdmissionFlagUsed": false
+  },
+  "sourcePinOnlyHQChange": true,
+  "evidence": {
+    "docs/hq-integration/reader-groups-full-v32-native-20261123/evidence/full-v32-frozen-source-admission.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/hq-integration/reader-groups-full-v32-native-20261123/evidence/hq-source-preflight.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/hq-integration/reader-groups-full-v32-native-20261123/evidence/full-v32-frozen-source-admission.stdout": "918fbba7efd34566f68e80a352dc06e3add06e4c6cf48e615977841d3831ade5",
+    "docs/hq-integration/reader-groups-full-v32-native-20261123/evidence/hq-source-preflight.stdout": "2847e89e3b7bd4e7ef77678be7cab275f3cf28582c4a853a9a4b0c7110e49a52",
+    "docs/hq-integration/reader-groups-full-v32-native-20261123/evidence/groups100-source-admission.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/hq-integration/reader-groups-full-v32-native-20261123/evidence/groups100-source-admission.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/hq-integration/reader-groups-full-v32-native-20261123/evidence/groups100-source-before.json": "b2db3d63ba63354ec34b46ce63f2e02efb83407486ab230a0c6fc02b2fc7a912",
+    "docs/hq-integration/reader-groups-full-v32-native-20261123/evidence/groups100-declarations.json": "33308022384c62b07428b8b4e15716f1c90f1b5e027735eb3aa03fa52181ff23",
+    "docs/hq-integration/reader-groups-full-v32-native-20261123/evidence/full-v32-frozen-source-admission.json": "351d1fa6d0759291e09db888b2f7e5db5d83741d2a9f8f77809967f3e5e3a572"
+  },
+  "publicationCommitNote": "The final CI preparation adds only these owned source-admission receipts to this tested preparation. The native API commit will have its own checkout identity; every execution must bind github.sha and the unchanged integrated source."
+}

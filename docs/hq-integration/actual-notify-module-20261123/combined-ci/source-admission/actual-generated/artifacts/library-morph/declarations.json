@@ -1,0 +1,61 @@
+{
+  "suites": [
+    {
+      "suite": "R27NativePadTests",
+      "selection": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "expected": [
+        "testNormalBootstrapNativeWindowResizePaletteAndInspector"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "R27NativePadTests",
+      "selection": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "expected": [
+        "testNormalBootstrapPaletteKeyboardDispatchCalibration"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "expected": [
+        "testPointerHoverClickAndHardwareKeyboardDismissal"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+      "expected": [
+        "testEnglishReaderAndOriginalPaletteInLeftToRightLayout"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "expected": [
+        "testSystemReduceMotionKeepsOriginalPaletteUsable"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testLibraryMorphOutsideDismissalPreservesCanonicalQueryAndReader",
+      "expected": [
+        "testLibraryMorphOutsideDismissalPreservesCanonicalQueryAndReader"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "FaithfulReaderUIAcceptanceTests",
+      "selection": "FaithfulReaderUIAcceptanceTests/testLibraryMorphRepeatedOpenCloseReleasesHiddenKeyboardFocus",
+      "expected": [
+        "testLibraryMorphRepeatedOpenCloseReleasesHiddenKeyboardFocus"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    }
+  ],
+  "status": "DECLARATIONS_MATCH"
+}
