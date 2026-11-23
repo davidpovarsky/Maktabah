@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-11-23T11:02:42Z",
+  "updated_at_utc": "2026-11-23T11:41:28Z",
   "canonical_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
   "root_branch": "codex/otzaria-oracle-completion-20261123",
   "user_instruction": "בעצם, תעשה את הכל בעצמך ותשתמש עם תתי הסוכנים הזמינים לך בצ׳אט פה, בצע הכל עד להשלמה מלאה של המשימות השתמשת בכלי @SentinelX בחשבון המחובר לשרת האורקל ישירות, ועדכן ב @Asana , אחרי כל שלב שאתה מבצע",
@@ -224,13 +224,14 @@
       "current_combined_source": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
       "current_combined_native_executed": 0,
       "current_combined_not_run": 7,
-      "current_combined_boundary": "HOSTED_RUNNER_NOT_ALLOCATED"
+      "current_combined_boundary": "SECOND_HOSTED_RUNNER_NOT_ALLOCATED",
+      "current_combined_attempt": 2
     },
     {
       "name": "original_editor_stageb",
       "owner": "/root/original_sdk",
       "base": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
-      "status": "RUBY_REPAIR_SOURCE_ACCEPTED_ATTEMPT1_RUNNER_ALLOCATION_FAILURE_UNCHANGED_SOURCE_ATTEMPT2_ACTIVE",
+      "status": "FIVE_LINE_FLAGS_REPAIR_ROOT_ACCEPTED_OWNER_ACTIVATING",
       "native_acceptance": false,
       "source": "a3d235e821dc40687ebab9844f8ef88737f6be17",
       "implementation_source": "e9d8642dfb910f9502b7701cf22f569313cb8e2d",
@@ -246,7 +247,7 @@
       "run_attempt": 2,
       "watcher": "job_64bb3eed7ed4",
       "watch_interval_seconds": 120,
-      "watcher_terminal": false,
+      "watcher_terminal": true,
       "runtime_adverse_controls_scope": "Actual evidence admission controls only; no native acceptance",
       "original_source_controls_reexecuted": 0,
       "input_sha256": "3d5e85feb0ae6ea6e60f3fa8c5506d0cafdb8c140ecd7d670ded3ad82c3701fe",
@@ -275,7 +276,7 @@
       "artifact_sha256": "58a809905472f70664c7e077918ee4909fb96d5e18169ca25bafe16e8bccb130",
       "intake_sha256": "ac294ec415ece884df83bb034d6bb60f57962ab1dccdcc2ce4f3458bb8de18d5",
       "native_cases_executed": 0,
-      "repair_source": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+      "repair_source": "fa816b14d25a4ced0031b1a9c972040b89cb451e",
       "repair_controls": {
         "initial_cases": 6,
         "initial_assertions": 42,
@@ -319,7 +320,26 @@
         "annotation": "The job was not acquired by Runner of type hosted even after multiple attempts",
         "intake_sha256": "36c1ced944dc0315ca3bc7b5b632287e05e60e2760a6c88f255721d027af5915",
         "root_review_sha256": "0b06dd10776a4b8df3b979099d052eb773827edd3ae13c0a3be947760125408d"
-      }
+      },
+      "prior_generated_flags_failure": {
+        "source": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+        "run": 45150723169,
+        "attempt": 2,
+        "actual_runner_id": 1000024587,
+        "status": "ACTUAL_POD_PASS_HELPER_REJECTED_AUTHENTIC_GENERATED_SWIFT_FLAGS",
+        "sdk_commands_passed": 114,
+        "sdk_files": 2528,
+        "app_compile": "NOT_RUN",
+        "journey": "NOT_RUN",
+        "intake_sha256": "5d077b20d3a85bf5b2b521bc99ecd477137278b8f9865f42733374c28b21b2b1"
+      },
+      "repair_tree": "05efa75cd74723dece4046f8ba8dfeec2b95e8ef",
+      "repair_root_review_sha256": "1a9d4b7a80da34236120bdafcb17b645235d63c921df7677d87574ae902a41e4",
+      "repair_index_rows": 90,
+      "repair_actual_inputs": 285,
+      "repair_new_cases": 6,
+      "repair_new_assertions": 19,
+      "root_replayed_tests": 0
     },
     {
       "name": "original_heart_owned_import_lifetime",
@@ -516,19 +536,28 @@
         "native_compile_or_test_executed": false,
         "generated_rpc_swift_invocation_host_saved_revision": "PENDING",
         "qualification": {
-          "source": "1ec511b046fff1c46aaeb8425b98932a19400ad2",
-          "source_parent": "754de0332028a626ecd48de129c76355bf6c4491",
+          "source": "ce1e78576de6a3d586e849d5990d008944ff2777",
+          "source_parent": "1ec511b046fff1c46aaeb8425b98932a19400ad2",
           "tree": "5ad7c12f9244e168b618189682cf6413672cd312",
-          "run": 45159946802,
+          "changed_paths": 0,
+          "new_push_run": 45165374342,
+          "run": 45165374342,
           "attempt": 1,
-          "watcher": "job_876d557ec9f1",
           "owner": "/root/asana_scope",
-          "binding_sha256": "f81fe88859ad80dda74ea2c739ad2d62914448fa05c652affae735b70f9c0566",
-          "root_review_sha256": "4c35660d5546c45b96c417faff08b6091ec40586a6e17d9603e6895c72309b9d",
-          "source_admission_sha256": "f7a3832532760a9b8421cffb6f0498207a5aecd7b0181778fb305478b5e4b80b",
+          "watcher": "job_24960a8e119c",
+          "binding_sha256": "356995bea68b681f4e10c82f044725c3b0f7e6b52eb1cc07122b93d1e0ea3bd8",
+          "source_admission_sha256": "63cd7657a1fb8bcf25c84ff4368cb016d6038c1b82486ae96f02de120d09e81a",
           "native_acceptance": false
         },
-        "native_compile_or_test_outcome": "PENDING"
+        "native_compile_or_test_outcome": "PENDING",
+        "prior_native9_qualification": {
+          "source": "1ec511b046fff1c46aaeb8425b98932a19400ad2",
+          "run": 45159946802,
+          "attempt": 1,
+          "status": "HOSTED_ALLOCATION_FAILURE_ZERO_STEPS_ALL9_NOT_RUN",
+          "result_source": "a80c5ca494ba768649285ee0f2079c22cc114e8a",
+          "intake_sha256": "da43d9ccb3e0a29ff8e125af21ccb830f65c7cd64c2de6b2a4f30423fc65b11c"
+        }
       },
       "manual_dispatches": 0,
       "counts": {
@@ -600,7 +629,7 @@
         "regular_file_kind": 3,
         "native_replay": 0
       },
-      "next_rpc_binding": "Original application/IDL lifecycle contract under owner review; no new product/proto/generated edits yet."
+      "next_rpc_binding": "Original blocking AnnotationImport + concrete Cancel five-path source draft; existing owned registry and actual Done, new2MiB complete-copy cap explicitly distinct from Host cap; no generated ABI yet. Exact local saved-row same-DB durable attempt DDL proposal under review; no invented outbox delivery."
     },
     {
       "name": "reader_source_performance",
@@ -773,14 +802,14 @@
       "owner": "/root/original_sdk",
       "source_plan": "642a8b9cd9cd243e820db154ea2471b6882e2a94",
       "product_base": "89926d7839c09a629c195ec6dd9812fe56aad069",
-      "status": "E2_FACADE_SOURCE_PUBLISHED_REGISTERED_OWNER_FORWARDING_SOURCE_CONTROLS_PASS_COMPOSITION_PENDING",
+      "status": "REVIEWED_33_PATH_COMPOSITION_PUBLISHED_SOURCE_ONLY",
       "source_inventory_files": 62,
       "root_original_environment_storage_sources_read": 5,
       "scope": "Immutable embedded deployment, actual app-group validation and fixed namespacing of both original defaults wrappers; original standalone behavior preserved",
       "e2_authorized": true,
       "native_acceptance": false,
       "production_bootstrap_activated": false,
-      "qualification_sdk_rebuild": false,
+      "qualification_sdk_rebuild": "New original generated native RPC/mobile/Swift ABI and14-facade producer profile still required; legacy profile unchanged",
       "core_environment_boundary": "Direct preexisting CoreEnvironment reads cannot be claimed sealed by these four files; no cache override, fail deployment mismatch; any fifth-file hunk requires concrete scope review.",
       "source": "257c49a5871c62611d88fab00a8124c7ff072166",
       "source_only": true,
@@ -852,7 +881,7 @@
         "apple_or_lib_acceptance": false
       },
       "settings_peer_review_sha256": "e1e88c3d6707d49527fdf315832577b826a728383739eb69eb903f54614fc38d",
-      "registered_forwarding_local_checkpoint": "dbfc60976b574ce752734736f6d4eabe74578e5f",
+      "registered_forwarding_local_checkpoint": "40f2413f29a92b201b04b9745ad1f485e736522e",
       "registered_forwarding_owner_report": {
         "product_paths": 23,
         "packet_files": 189,
@@ -871,7 +900,13 @@
         "result_sha256": "7f436deead9fdacfe8640d805db5425d29fa305858a4cf806c5ec4b5c097329a",
         "scope": "Original extracted methods with explicit doubles; no real copy/Combine/UIKit/native claim"
       },
-      "facade_budget_composition": "Authorized isolated source-only 30-path product composition; Lib pins and producer profiles preserved."
+      "facade_budget_composition": "26 forwarding +3 facade/project9503 +4 typed budgeta89; all exact, published [skip ci]",
+      "current_composed_source": "f8bc89c6a96552582ecf070ff920cc86f92868d4",
+      "current_composed_tree": "2e8444b691c3b41538d9176de71769988252fe2d",
+      "current_composed_product_paths": 33,
+      "root_verified_imported_paths": 95,
+      "root_composition_review_sha256": "0cc83a9d42cd115f3f5ca73edab1dff27e0fabe17446735da8bf6f807987df27",
+      "root_composition_publication_sha256": "bb6878dd2b2aa5b0d7e9600fe029d1b1ff297c22c971e5c170885057aa9a7188"
     },
     {
       "name": "reader_profile_followup4",
@@ -1036,8 +1071,9 @@
       "current_combined_source": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
       "current_combined_native_executed": 0,
       "current_combined_not_run": 2,
-      "current_combined_boundary": "HOSTED_RUNNER_NOT_ALLOCATED",
-      "current_final_composition": "83e7e6db234117e43a5b025c0cf923aecedfaa4a"
+      "current_combined_boundary": "SECOND_HOSTED_RUNNER_NOT_ALLOCATED",
+      "current_final_composition": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "current_combined_attempt": 2
     },
     {
       "name": "hanlin_cold_search_preparation_observation",
@@ -1233,30 +1269,32 @@
       "root_intake_read": true,
       "consent_source_preparation": {
         "source": "7841f4af33142f72936ca97428733b3059f806b0",
-        "ci_source": "39b021a944245b2ab6b235dd5ef4bc6982db93ea",
+        "ci_source": "96c5b1b60c15a9a0cf1c4356f9822c64d9864c86",
         "source_admission_inputs": 285,
         "native_run_started": false,
-        "publication": false,
-        "status": "OWNER_SEALED_GUARD_PACKET_ROOT_REVIEW_PENDING",
-        "scope": "Same one native tap, existing10sec semantic state wait; bounded failure-only two-element observation; original product/provider/assertion600s unchanged"
+        "publication": true,
+        "status": "SOURCE_AND_API_TREE_ROOT_ACCEPTED_PUBLISHED_CONTROLLER_ACCEPTED",
+        "scope": "Same one native tap, existing10sec semantic state wait; bounded failure-only two-element observation; original product/provider/assertion600s unchanged",
+        "ci_tree": "d41adf7b7a773f140899a2f0efcbe83404d0eb07"
       }
     },
     {
       "name": "combined_groups_library_full_v32",
       "owner": "/root",
-      "status": "AUTHENTIC_HOSTED_RUNNER_ALLOCATION_FAILURE_ALL10_NOT_RUN",
+      "status": "SECOND_AUTHENTIC_HOSTED_ALLOCATION_FAILURE_ALL10_NOT_RUN",
       "source": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
       "application_source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
       "tree": "4c7c3996f30fd8b832130d1ce323ef02bf99a190",
       "run": 45158596483,
-      "run_attempt": 1,
-      "watcher": "job_cf3b9c43669c",
+      "run_attempt": 2,
+      "watcher": "job_e7a355349676",
       "watcher_terminal": true,
       "run_conclusion": "failure",
       "actual_runner_id": 0,
       "actual_steps": [],
       "artifact_count": 0,
       "counts": {
+        "selected": 10,
         "PASS": 0,
         "FAIL": 0,
         "SKIP": 0,
@@ -1265,8 +1303,8 @@
       "local_pre_activation_source_admission": "PASS_FOUR_ORIGINAL_COMMANDS_NO_REPLAY",
       "ci_source_or_build_or_native_executed": false,
       "native_acceptance": false,
-      "intake_sha256": "83bf7c4cc18c49c2909824622384e42c201abfe7dc706e6426082b907d0b0faa",
-      "index_sha256": "f2a6c9e4e6327f488b4cf898a915c78363a33fb573a178541286adaac1e7526a",
+      "intake_sha256": "bef04ffa09552b1f774c0c6f94e9cc615dfde6fe345d7bfebe3d9e0079155df8",
+      "index_sha256": "9df3966734c4e15f814b726abfbc81b4a993a4833920009b8e0e374fc73ebcd8",
       "previous_compiler_failure": {
         "name": "combined_groups_library_full_v32",
         "owner": "/root",
@@ -1308,9 +1346,20 @@
         },
         "terminal_evidence_source": "838d62d8086f9609429b3d62eef10b8a0cba8fca"
       },
-      "observer_failure": "Initial launch used root without gh auth and exited immediately; no remaining process/lock. Existing authenticated ubuntu read exact terminal source/attempt. No CI causal claim.",
-      "retry_started": false,
-      "next_step": "One unchanged-source retry after an owned Apple lane frees"
+      "observer_failure": null,
+      "retry_started": true,
+      "next_step": "No blind third retry while other owned Apple lanes are active; retain exact source and wait for concrete allocation evidence",
+      "prior_attempt1": {
+        "run": 45158596483,
+        "run_attempt": 1,
+        "status": "AUTHENTIC_HOSTED_RUNNER_ALLOCATION_FAILURE_ALL10_NOT_RUN",
+        "watcher": "job_cf3b9c43669c",
+        "observer_failure": "Initial launch used root without gh auth and exited immediately; no remaining process/lock. Existing authenticated ubuntu read exact terminal source/attempt. No CI causal claim.",
+        "intake_sha256": "83bf7c4cc18c49c2909824622384e42c201abfe7dc706e6426082b907d0b0faa",
+        "index_sha256": "f2a6c9e4e6327f488b4cf898a915c78363a33fb573a178541286adaac1e7526a"
+      },
+      "observer_execution_user": "ubuntu",
+      "actual_job_id": 137649119937
     },
     {
       "name": "actual_darwin_notification_sdk_probe",
@@ -1367,14 +1416,33 @@
       "native_notification_calls": 0,
       "actual_app_ui_acceptance": false,
       "source_tests_replayed": 0
+    },
+    {
+      "name": "hanlin_live_consent_observation",
+      "owner": "/root",
+      "status": "EXACT_CI_PUBLISHED_CONTROLLER_PEER_ACCEPTED_PENDING_ISOLATED_DEPLOYMENT",
+      "source": "96c5b1b60c15a9a0cf1c4356f9822c64d9864c86",
+      "application_source": "7841f4af33142f72936ca97428733b3059f806b0",
+      "tree": "d41adf7b7a773f140899a2f0efcbe83404d0eb07",
+      "controller_sha256": "ef6f1c42598f719c256e8cd45138fb6ee89aea44fab45f666f51c57a815e5c74",
+      "binding_sha256": "0ae015ba76101b13a710c0f6fd8a4cde5e4ca9ea43791c74447ddd1e04f17bf9",
+      "peer_review_sha256": "a646ea61a0ecf6cf30a8e0dcd80db529b8fcfb372ba38d88973bbeb941e44a0d",
+      "retained_initial_preflight_cases": 8,
+      "additional_attempt2_history_cases": 1,
+      "old9_lifecycle_controls_replayed": false,
+      "native_acceptance": false,
+      "manual_dispatches": 0,
+      "new_secret_configured": false,
+      "new_provider_probe_requests": 0,
+      "credential_value_or_hash_recorded": false
     }
   ],
   "boundaries": {
     "books_updates": "Live provider still lacks authentic backend/schema/source-digest/migration contract; unchanged reviewed safety path preserved; no payload or user DB mutations",
     "owner_release_verification_key": "Known required key absent from repository secrets and variables metadata",
     "physical_ipad": "No physical acceptance performed",
-    "final_frozen_composition": "Integrated83e7e6db contains the actual SDK-proven notify correction,158 selected rows, canonical process-resume and Hostbudget preserved. Separate combined fd710 had no allocated runner and10NOT_RUN. Native116/Release114 remainUNFINALIZED.",
-    "annotation_body_budget": "Root accepted B1/C62e5 exact source and repaired genuine native fixture1159 with one actual Stop task join. Native9qualification run45159946802@1ec511 singly observed; no native outcome yet. Original36 leaves retain earlier scope/workflow collector failure. New originalRPC/generatedABI/SwiftInvocation/Hostlocal saved-revision durable attempt binding still required; no invented outbox delivery."
+    "final_frozen_composition": "Integrated83e7 contains actual SDK-proven notify import. Combined fd710 attempts1+2 both lacked hosted runner and all10 NOT_RUN. Native116/Release114 remain UNFINALIZED.",
+    "annotation_body_budget": "B1C62e source accepted; genuine native9 first run had no runner, same-tree ce1 continuation now singly owned. Original36 historical leaves not replayed. Five-path nativeRPC and same-DB saved-row attempt source proposals in progress; generatedABI and originalSDK/Host join absent. No bodyACK or cold reopen acceptance."
   },
   "asana_comments": [
     "1220774175256917",
@@ -1481,6 +1549,34 @@
     {
       "stage": "checkpoint16",
       "comment": "1220784337035030"
+    },
+    {
+      "stage": "e2_final_published",
+      "comment": "1220786861451435"
+    },
+    {
+      "stage": "combined_attempt2_reader",
+      "comment": "1220787052787658"
+    },
+    {
+      "stage": "combined_attempt2_library",
+      "comment": "1220787100900185"
+    },
+    {
+      "stage": "combined_attempt2_groups",
+      "comment": "1220786885416544"
+    },
+    {
+      "stage": "native9_continuation_started",
+      "comment": "1220786760391732"
+    },
+    {
+      "stage": "stageb_flags_prepared",
+      "comment": "1220786103735566"
+    },
+    {
+      "stage": "live_ci_published",
+      "comment": "1220786032645469"
     }
   ],
   "inventory": {
@@ -1503,19 +1599,11 @@
     "policy": "One owner per exact source/run/attempt;120-second finite3300-second windows, no duplicate watcher or automatic replay",
     "active": [
       {
-        "name": "original_editor_stageb",
-        "run": 45150723169,
-        "attempt": 2,
-        "source": "a3d235e821dc40687ebab9844f8ef88737f6be17",
-        "watcher": "job_64bb3eed7ed4",
-        "owner": "/root/original_sdk"
-      },
-      {
         "name": "original_owned_import_native9",
-        "run": 45159946802,
+        "run": 45165374342,
         "attempt": 1,
-        "source": "1ec511b046fff1c46aaeb8425b98932a19400ad2",
-        "watcher": "job_876d557ec9f1",
+        "source": "ce1e78576de6a3d586e849d5990d008944ff2777",
+        "watcher": "job_24960a8e119c",
         "owner": "/root/asana_scope"
       }
     ],
@@ -1525,12 +1613,30 @@
       45152574279
     ],
     "pending": [
-      "One unchanged-source combined attempt2 after an owned Apple lane frees",
-      "One Live consent run after full guard/controller/source review and allocation",
-      "One composed original framework after actual native/mobile ABI profile exists"
+      "StageB fa816 root accepted; sole owner/root/original_sdk publishing and binding new push run",
+      "One exact Live consent manual run after isolated controller deployment; prior temporary secret absent",
+      "Composed original SDK requires actual generated new RPC/mobile/Swift ABI and new profile",
+      "Combined all10 retain NOT_RUN after two hosted allocation failures; no third retry started"
     ],
     "completed_since_checkpoint16": [
       45158596483
+    ],
+    "completed_since_checkpoint17": [
+      {
+        "run": 45158596483,
+        "attempt": 2,
+        "boundary": "ALLOCATION"
+      },
+      {
+        "run": 45159946802,
+        "attempt": 1,
+        "boundary": "ALLOCATION"
+      },
+      {
+        "run": 45150723169,
+        "attempt": 2,
+        "boundary": "GENERATED_FLAGS_HELPER"
+      }
     ]
   },
   "integrated_source_preparation": {

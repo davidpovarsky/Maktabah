@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "python3",
+    "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/check_preflight_followup.py"
+  ],
+  "returncode": 0,
+  "timeout": false,
+  "child_reaped": true,
+  "duration_seconds": 0.12327263411134481,
+  "control_source_sha256": "6da674468020bc453a1a0570de85c961ebd4222cd257a5daf9327670bcd6c657",
+  "stdout_sha256": "419d8f4e1e419d76349c1b9c26999c9f8c68d62a3e18b8694db71cbd76023312",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

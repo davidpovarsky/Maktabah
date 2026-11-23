@@ -1,0 +1,37 @@
+{
+  "status": "PROPOSED_NO_CREDENTIAL_OR_DISPATCH",
+  "prepared_utc": "2026-11-23T11:12:20.542301+00:00",
+  "base_controller_sha256": "7fdb372e536e888f50dbb4975ccf002db8e5b8944100353feea2fd0ec3e4c65c",
+  "candidate_controller_sha256": "0b377e7f03c94d41fefc252b8a0b405d4dd192cbcc7c0817d50f4d3c93643733",
+  "binding_sha256": "0ae015ba76101b13a710c0f6fd8a4cde5e4ca9ea43791c74447ddd1e04f17bf9",
+  "changed_functions": [
+    "Lifecycle.preflight"
+  ],
+  "unchanged_functions": [
+    "utc",
+    "digest",
+    "owned_metadata",
+    "exact_run",
+    "newly_dispatched_runs",
+    "http_response",
+    "Lifecycle.__init__",
+    "Lifecycle.acquire",
+    "Lifecycle.save",
+    "Lifecycle.command",
+    "Lifecycle.api",
+    "Lifecycle.secret_http",
+    "Lifecycle.remote_file",
+    "Lifecycle.configure_and_dispatch",
+    "Lifecycle.cleanup",
+    "Lifecycle.watch",
+    "Lifecycle.execute",
+    "main"
+  ],
+  "same_existing_credential_dispatch_watch_cleanup": true,
+  "source_binding": "96c5b1b60c15a9a0cf1c4356f9822c64d9864c86",
+  "prior_actual_failure": "45145388957/attempt1 native0PASS1FAIL; same-source old INSTALL_TIMEOUT is not reused.",
+  "new_preflight_controls": "PENDING",
+  "live_secret_configured": false,
+  "dispatches": 0,
+  "module_documentation": "Only first docstring line updated from infrastructure retry to consent observation follow-up."
+}

@@ -1,0 +1,32 @@
+{
+  "controller": {
+    "run_id": 45158596483,
+    "source_sha": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+    "expected_attempt": 2,
+    "window": 2,
+    "started_at": "2026-11-23T11:05:14.722399+00:00",
+    "controller_pid": 2705486,
+    "interval_seconds": 120,
+    "maximum_observation_seconds": 3300,
+    "dispatches": 0,
+    "reruns": 0,
+    "watch_pid": 2705487
+  },
+  "exclusive_lock_held": true,
+  "authenticated_user": "ubuntu",
+  "actual_expected_uid": 1001,
+  "initial_inspection_correction": "The initial process check assumed UID1000; no runtime/source action followed. Corrected check resolves ubuntu via pwd.getpwnam.",
+  "processes": [
+    {
+      "role": "controller_pid",
+      "uid": "Uid:\t1001\t1001\t1001\t1001",
+      "cmdline": "python3 /mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/watch-owned-run.py 45158596483 fd710ee3ea03a96f02de37a8fe37087874ad4f5c 2 2 "
+    },
+    {
+      "role": "watch_pid",
+      "uid": "Uid:\t1001\t1001\t1001\t1001",
+      "cmdline": "gh run watch 45158596483 --repo davidpovarsky/Maktabah --exit-status --compact --interval 120 "
+    }
+  ],
+  "log_tail": "Refreshing run status every 120 seconds. Press Ctrl+C to quit.\n\n* codex/otzaria-reader-groups-full-v32-20261123 Original Groups100, Library7 and full-v32 Reader observations \u00b7 45158596483\nTriggered via push less than a minute ago\n\nJOBS\n* One app build and three independent original native cohorts (ID 137649119937)\n"
+}

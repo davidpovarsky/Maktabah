@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "repository": "davidpovarsky/Maktabah",
+  "branch": "codex/otzaria-hanlin-live-consent-20261123",
+  "checkout_sha": "96c5b1b60c15a9a0cf1c4356f9822c64d9864c86",
+  "application_source_sha": "7841f4af33142f72936ca97428733b3059f806b0",
+  "source_review_status": "REVIEWED_SINGLE_CONSENT_OBSERVATION_FOLLOWUP",
+  "workflow": {
+    "path": ".github/workflows/otzaria-hanlin-live-native.yml",
+    "git_blob": "07b02e5aba3ecfebbfae1dde4d01559d46071642",
+    "sha256": "fb52e49bdb8b993ddb7bd5c7c58ebf7148a8b791b75d0497a635873c2fdfb847"
+  },
+  "admission": {
+    "path": "docs/hq-integration/hanlin-live-consent-20261123/LIVE_CONSENT_SOURCE_ADMISSION.json",
+    "git_blob": "f8b69ac4341b41770c4fdd1d54c1a71ef4f5e42a",
+    "sha256": "5894948186dd97ba39e4c456532f9cc8dcdb6a564ac8b19ec928881e1da54678"
+  },
+  "source_guard": {
+    "path": "Scripts/CI/verify-hanlin-live-consent-source.py",
+    "git_blob": "dc12df5c51d8032e3af902cc310aff520b3e8664",
+    "sha256": "46938548eed940bbe88fd8a0fe0e4d7feec1e15f49221dfe403a6bec1ceb7243"
+  },
+  "previous_intake": {
+    "path": "docs/hq-integration/hanlin-live-consent-20261123/runtime-45145388957/INTAKE.json",
+    "git_blob": "d61e3327eee78d1932c1fb0f6888e920ebdc6465",
+    "sha256": "91ee4ca0edc05ea4459d8cfaad0f975da1318796720f2289cd1d0af8a90ad32f"
+  },
+  "previous_cleanup": {
+    "path": "docs/hq-integration/hanlin-live-consent-20261123/runtime-45145388957/CLEANUP_BINDING.json",
+    "git_blob": "8cfe3557bf072f5a77ccee6f1e6ae850379ffa1f",
+    "sha256": "96db6e589f2744765e257fda9b4caa34e5ef88989e785089f339dfcde534d9ce"
+  },
+  "source_review_sha256": "ff6c9ef0afc6d01fe182fb2ca909dbd1f7712ef88728c64f90e826377762e7ca",
+  "expected_ci_tree": "d41adf7b7a773f140899a2f0efcbe83404d0eb07",
+  "manual_dispatches_allowed": 1,
+  "no_provider_probe": true,
+  "credential_value_or_hash_recorded": false
+}

@@ -1,0 +1,34 @@
+{
+  "status": "SEALED_PENDING_ROOT_REVIEW_NO_PUSH",
+  "repository": "davidpovarsky/Maktabah",
+  "branch": "codex/otzaria-original-editor-stageb-20261123",
+  "source_commit": "fa816b14d25a4ced0031b1a9c972040b89cb451e",
+  "tree": "05efa75cd74723dece4046f8ba8dfeec2b95e8ef",
+  "parent": "53f37ee66d0bf6ccb209eb97f0fdf8ad4b0c2ef6",
+  "expected_remote": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+  "remote_observation": "a3d235e821dc40687ebab9844f8ef88737f6be17\trefs/heads/codex/otzaria-original-editor-stageb-20261123",
+  "actual_prepare_source": "53f37ee66d0bf6ccb209eb97f0fdf8ad4b0c2ef6",
+  "all_execution_trees_identical_to_prepared_source": {
+    "Scripts": "37925c9ef7d9d3c8c50c0da64eca3dab19fdec5b",
+    "tools": "c275775bbd8811baefa0045a6e832d0b242f0834",
+    ".github": "e50a7eaa5d993a70cd01beed779fd9328f4812c1",
+    "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "ca36ba13f1fd900adf528a3e404fed6a66290b6b"
+  },
+  "actual_execution_inputs_verified": 285,
+  "helper_sha256": "92a591a8b02fb1e789cdc95febcbd760451584749f4708fa723297f5c34b898a",
+  "packet_index_sha256": "186c8e2386c48ea5ce36b3e721733f1fdbb32e0c6550f46ee1318b5d6c3216a7",
+  "packet_indexed_count": 90,
+  "packet_total_files": 91,
+  "packet_indexed_bytes": 37011715,
+  "actual_controls": {
+    "cases": 6,
+    "assertions": 19,
+    "result_sha256": "e9eed6c90e5be8d83070582ed00aa59ad93de109d9b8f984e4ca58a5fb5242ba"
+  },
+  "final_prepare_result_sha256": "d33d6e75caed90860a6cfc654d197973e75e8bd6399253dd44c82512ad1c0432",
+  "ci_activation": "NOT_PERFORMED",
+  "new_native_or_sdk_build": "NOT_RUN"
+}

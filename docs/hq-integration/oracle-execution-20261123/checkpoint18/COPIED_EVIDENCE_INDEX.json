@@ -1,0 +1,355 @@
+{
+  "files": [
+    {
+      "path": "checkpoint18/combined-attempt2/INTAKE.json",
+      "bytes": 4220,
+      "sha256": "bef04ffa09552b1f774c0c6f94e9cc615dfde6fe345d7bfebe3d9e0079155df8",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/INTAKE.json"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/PACKET_INDEX.json",
+      "bytes": 3089,
+      "sha256": "9df3966734c4e15f814b726abfbc81b4a993a4833920009b8e0e374fc73ebcd8",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/PACKET_INDEX.json"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/annotations.json",
+      "bytes": 344,
+      "sha256": "d48a6167e878c25d694b431476ac810f3cfe6d0b619e4d3323f49155c878b4d4",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/annotations.json"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/annotations.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/annotations.stderr"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/check-run.json",
+      "bytes": 3119,
+      "sha256": "94d61b1ac4be2e31fa2c232a64e4d6a4e73e04bf2804e7758f87715809eee930",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/check-run.json"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/check-run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/check-run.stderr"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/raw/attempt-2-activation/ACTIVATION.json",
+      "bytes": 1175,
+      "sha256": "0e6f54f5c44933f1a504383529b55dd3020455df5909d05ab169a981fc6a6fa2",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/raw/attempt-2-activation/ACTIVATION.json"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/raw/attempt-2-activation/ACTUAL_OBSERVER_START.json",
+      "bytes": 1491,
+      "sha256": "bc0a58d632c4a76e228f8b1f7fb10af77d28c79fe721f30fd6d5a9cb906fc900",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/raw/attempt-2-activation/ACTUAL_OBSERVER_START.json"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/raw/attempt-2-activation/RERUN_INTENT.json",
+      "bytes": 852,
+      "sha256": "4213e296880ecc119f620eb0b7afc111133a68a2acde9d7d634ed67684bd682a",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/raw/attempt-2-activation/RERUN_INTENT.json"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/raw/attempt-2-activation/RERUN_REQUEST.json",
+      "bytes": 877,
+      "sha256": "1007e2a09f97260711d5b59f391293fb5014c229b9942dd7231e282cbc2a2850",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/raw/attempt-2-activation/RERUN_REQUEST.json"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/raw/attempt-2-activation/after-0.json",
+      "bytes": 12795,
+      "sha256": "9d0acf849cd6f90891560436c8a05b976ec709870995e93f4e2015487788f8c1",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/raw/attempt-2-activation/after-0.json"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/raw/attempt-2-activation/after-1.json",
+      "bytes": 12880,
+      "sha256": "5329147ce1f6a47900a8350ab13c06264b34d2407e61b7ac1b6f3226a321df0b",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/raw/attempt-2-activation/after-1.json"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/raw/attempt-2-activation/before.json",
+      "bytes": 12803,
+      "sha256": "c8f5695a24c650d4b34327b1849fcfc71e50dc5ddb31d891dc8914879a00f3e7",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/raw/attempt-2-activation/before.json"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/raw/watch-window-2/artifacts.json",
+      "bytes": 42,
+      "sha256": "f7417e1fb877d3f5934f143cc38ad9e2905476e8f5ac6776507d09441efcd6f6",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/raw/watch-window-2/artifacts.json"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/raw/watch-window-2/gh-watch.log",
+      "bytes": 2778,
+      "sha256": "30abd29b86cf85f86c9ca43e5e9045c0a60764f751b0eab3584f73fdb5c00c31",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/raw/watch-window-2/gh-watch.log"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/raw/watch-window-2/jobs.json",
+      "bytes": 1238,
+      "sha256": "a3a2377a5e092f2969dcae45b8f463f2b6e76d7323eac53b5466b669364ac7f7",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/raw/watch-window-2/jobs.json"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/raw/watch-window-2/observer-result.json",
+      "bytes": 667,
+      "sha256": "75d7b6715e66058da4e84a319acecc46eea1be7e6ca5a0524e0aa0324f583bfe",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/raw/watch-window-2/observer-result.json"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/raw/watch-window-2/observer-start.json",
+      "bytes": 333,
+      "sha256": "881efd430ebc28a09fb1f7a30588d4354fd33bcc5258a5ace13f0cf4249ecb76",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/raw/watch-window-2/observer-start.json"
+    },
+    {
+      "path": "checkpoint18/combined-attempt2/raw/watch-window-2/run.json",
+      "bytes": 14217,
+      "sha256": "4d21293e63fd82e106b0f243c10456e902d4226dd009e69ea741786d6e8077f8",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/attempt-2-terminal/raw/watch-window-2/run.json"
+    },
+    {
+      "path": "checkpoint18/native9-prior/INTAKE.json",
+      "bytes": 3114,
+      "sha256": "da43d9ccb3e0a29ff8e125af21ccb830f65c7cd64c2de6b2a4f30423fc65b11c",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/45159946802/INTAKE.json"
+    },
+    {
+      "path": "checkpoint18/native9-prior/EVIDENCE_INDEX.json",
+      "bytes": 5600,
+      "sha256": "808700804dbae58cafce6aa8f55cdd3534c44f0a7eb0c6d345a9af665ac945ad",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/45159946802/EVIDENCE_INDEX.json"
+    },
+    {
+      "path": "checkpoint18/native9-prior/RETRY_SOURCE_POLICY.md",
+      "bytes": 2542,
+      "sha256": "3a6f4b13a8003401b534ab951a16709a79949d1565d4d129b627fd3544a2a4fa",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/45159946802/RETRY_SOURCE_POLICY.md"
+    },
+    {
+      "path": "checkpoint18/native9-prior/RETRY_ADMISSION_SOURCE.json",
+      "bytes": 4160,
+      "sha256": "019805e3b349a2a8aa98e8239e9c46ae70d0fe4f71a9ed82df50133f2bd12588",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/45159946802/RETRY_ADMISSION_SOURCE.json"
+    },
+    {
+      "path": "checkpoint18/native9-prior/PUBLICATION.json",
+      "bytes": 869,
+      "sha256": "2a5cf03d2e29ac46cbfdc444d73d286687263abab1f4294b1d5d9403f2eff0c5",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/45159946802/PUBLICATION.json"
+    },
+    {
+      "path": "checkpoint18/native9-continuation/WATCH_BINDING.json",
+      "bytes": 730,
+      "sha256": "356995bea68b681f4e10c82f044725c3b0f7e6b52eb1cc07122b93d1e0ea3bd8",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/45165374342/WATCH_BINDING.json"
+    },
+    {
+      "path": "checkpoint18/native9-continuation/FINAL_API_SOURCE_ADMISSION.json",
+      "bytes": 12295,
+      "sha256": "63cd7657a1fb8bcf25c84ff4368cb016d6038c1b82486ae96f02de120d09e81a",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/45165374342/FINAL_API_SOURCE_ADMISSION.json"
+    },
+    {
+      "path": "checkpoint18/native9-continuation/REMOTE_SOURCE.json",
+      "bytes": 418,
+      "sha256": "6ece02295a420762731a831fce3c436f9ce0dbdcf522f02d23692c33132bb259",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/45165374342/REMOTE_SOURCE.json"
+    },
+    {
+      "path": "checkpoint18/native9-continuation/WATCH_OWNER_1.json",
+      "bytes": 382,
+      "sha256": "c5332c43320ebc8341d0fd99caeca41ecb2cbe34f9c5ad2deb455575eccc612a",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/45165374342/WATCH_OWNER_1.json"
+    },
+    {
+      "path": "checkpoint18/e2/ROOT_COMPOSITION_REVIEW.json",
+      "bytes": 1552,
+      "sha256": "0cc83a9d42cd115f3f5ca73edab1dff27e0fabe17446735da8bf6f807987df27",
+      "source": "/mnt/development/projects/diagnostics/otzaria-e2-forwarding-independent-review-20261123/ROOT_COMPOSITION_REVIEW.json"
+    },
+    {
+      "path": "checkpoint18/e2/ROOT_SOURCE_PUBLICATION.json",
+      "bytes": 877,
+      "sha256": "bb6878dd2b2aa5b0d7e9600fe029d1b1ff297c22c971e5c170885057aa9a7188",
+      "source": "/mnt/development/projects/diagnostics/otzaria-e2-forwarding-independent-review-20261123/ROOT_SOURCE_PUBLICATION.json"
+    },
+    {
+      "path": "checkpoint18/e2/INDEPENDENT_SEMANTICS_REVIEW.json",
+      "bytes": 6245,
+      "sha256": "09e5d29c2690bd95b7cd04b09c373c5b8885709f5d0ffa2a340cb90183141b79",
+      "source": "/mnt/development/projects/diagnostics/otzaria-e2-forwarding-independent-review-20261123/INDEPENDENT_SEMANTICS_REVIEW.json"
+    },
+    {
+      "path": "checkpoint18/e2/FINAL_LAUNCH_SEAM_AND_33_PATH_COMPOSITION.json",
+      "bytes": 17734,
+      "sha256": "f64a648c875cffa5ad34a85b12d09193148661bfd97231d99204be9439ecbf61",
+      "source": "/mnt/development/projects/diagnostics/otzaria-e2-forwarding-independent-review-20261123/FINAL_LAUNCH_SEAM_AND_33_PATH_COMPOSITION.json"
+    },
+    {
+      "path": "checkpoint18/stageb-prior/INTAKE.json",
+      "bytes": 2493,
+      "sha256": "5d077b20d3a85bf5b2b521bc99ecd477137278b8f9865f42733374c28b21b2b1",
+      "source": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/45150723169/attempt-2/terminal/INTAKE.json"
+    },
+    {
+      "path": "checkpoint18/stageb-prior/ROOT_ATTEMPT2_REVIEW.json",
+      "bytes": 659,
+      "sha256": "1a6dffcdaa59851d4c0909e61106894422d56200de1e54cf76b131aab867b727",
+      "source": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/45150723169/attempt-2/ROOT_ATTEMPT2_REVIEW.json"
+    },
+    {
+      "path": "checkpoint18/stageb-flags/ROOT_SOURCE_REVIEW.json",
+      "bytes": 1500,
+      "sha256": "1a9d4b7a80da34236120bdafcb17b645235d63c921df7677d87574ae902a41e4",
+      "source": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/swift-flags-repair/ROOT_SOURCE_REVIEW.json"
+    },
+    {
+      "path": "checkpoint18/stageb-flags/ACTIVATION_PACKET.json",
+      "bytes": 1731,
+      "sha256": "21fdaf3b49ba63adf6993064d8a6a40933b056b69afe3b53bf21000eaec7bc42",
+      "source": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/swift-flags-repair/ACTIVATION_PACKET.json"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/ATTEMPT2_CONTROL_COMMAND.json",
+      "bytes": 527,
+      "sha256": "f4c4fec0cb1fd810c470cdaac1ed982b352556e58a208255539cd5c2a3c139f4",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/ATTEMPT2_CONTROL_COMMAND.json"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/ATTEMPT2_CONTROL_RESULT.json",
+      "bytes": 1044,
+      "sha256": "bd2ff19d1849c346b35838d15c5adb7dab7bd7ba483a716187da8c1755e161c1",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/ATTEMPT2_CONTROL_RESULT.json"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/ATTEMPT_HISTORY_DELTA.diff",
+      "bytes": 1006,
+      "sha256": "e15ee48920acc5553563d4fb8adb02c69d600f269aa8993c03bb1cc0028b20f1",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/ATTEMPT_HISTORY_DELTA.diff"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/CONTROLLER_PREFLIGHT_ONLY.diff",
+      "bytes": 5296,
+      "sha256": "5101af23d827d92942086801655579ae57950430f5056841e19e8bf25de513de",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/CONTROLLER_PREFLIGHT_ONLY.diff"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/CONTROL_COMMAND.json",
+      "bytes": 537,
+      "sha256": "669e156732f4970f1c67c45e410757e6b5a8f8eca23dcd7925b57026766c65f1",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/CONTROL_COMMAND.json"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/CONTROL_RESULT.json",
+      "bytes": 2949,
+      "sha256": "946e65f7f30dec93bacdacbb6afef22af4edbe1aaa8497f685dbf219489c740d",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/CONTROL_RESULT.json"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/SOURCE_CORRESPONDENCE.json",
+      "bytes": 1889,
+      "sha256": "b8d04854bbc79aaaad13c267005dc523cadf6109995f7b27514bb3edad86bb91",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/SOURCE_CORRESPONDENCE.json"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/attempt2-control.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/attempt2-control.stderr"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/attempt2-control.stdout",
+      "bytes": 928,
+      "sha256": "2c20e2b1a6cafedc97c8a976a7ef968478a13d4ea884eeba46e2d29f0b41fe0d",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/attempt2-control.stdout"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/binding.json",
+      "bytes": 1852,
+      "sha256": "0ae015ba76101b13a710c0f6fd8a4cde5e4ca9ea43791c74447ddd1e04f17bf9",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/binding.json"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/check_attempt2_history.py",
+      "bytes": 3299,
+      "sha256": "e5c7094f27b38c392fcebc840a09ac0906cb03989b38a001484837ad1026fb8e",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/check_attempt2_history.py"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/check_preflight_followup.py",
+      "bytes": 5687,
+      "sha256": "6da674468020bc453a1a0570de85c961ebd4222cd257a5daf9327670bcd6c657",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/check_preflight_followup.py"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/controller120.py",
+      "bytes": 16104,
+      "sha256": "ef6f1c42598f719c256e8cd45138fb6ee89aea44fab45f666f51c57a815e5c74",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/controller120.py"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/controls.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/controls.stderr"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/controls.stdout",
+      "bytes": 2499,
+      "sha256": "419d8f4e1e419d76349c1b9c26999c9f8c68d62a3e18b8694db71cbd76023312",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/controls.stdout"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/prior-controller120.py",
+      "bytes": 14161,
+      "sha256": "7fdb372e536e888f50dbb4975ccf002db8e5b8944100353feea2fd0ec3e4c65c",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/prior-controller120.py"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/superseded-0b377e7f/SOURCE_CORRESPONDENCE.json",
+      "bytes": 1349,
+      "sha256": "64f8b9f1f7c80562f0eb3d0a84c5f9438162590869045a8addc84a1273051b86",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/superseded-0b377e7f/SOURCE_CORRESPONDENCE.json"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-review/superseded-0b377e7f/controller120.py",
+      "bytes": 15905,
+      "sha256": "0b377e7f03c94d41fefc252b8a0b405d4dd192cbcc7c0817d50f4d3c93643733",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-review/superseded-0b377e7f/controller120.py"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-independent-review/INDEPENDENT_REVIEW_V1.json",
+      "bytes": 2098,
+      "sha256": "7498a589bca1635e2c0eb902e4a41e982c639b8fc6914b42e11dd639e669d347",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-independent-review/INDEPENDENT_REVIEW_V1.json"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-independent-review/INDEPENDENT_REVIEW_V2.json",
+      "bytes": 2380,
+      "sha256": "a646ea61a0ecf6cf30a8e0dcd80db529b8fcfb372ba38d88973bbeb941e44a0d",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-independent-review/INDEPENDENT_REVIEW_V2.json"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/controller-independent-review/SOURCE_AND_CONTROL_CORRESPONDENCE.json",
+      "bytes": 6701,
+      "sha256": "0f4aaee61d305b77574e31d2b8d25dbf851332f2c668c76aa02f8aaade09144f",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/controller-independent-review/SOURCE_AND_CONTROL_CORRESPONDENCE.json"
+    },
+    {
+      "path": "checkpoint18/hanlin-consent/ROOT_SOURCE_AND_API_REVIEW.json",
+      "bytes": 1665,
+      "sha256": "ff6c9ef0afc6d01fe182fb2ca909dbd1f7712ef88728c64f90e826377762e7ca",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/root-review/ROOT_SOURCE_AND_API_REVIEW.json"
+    }
+  ],
+  "count": 58,
+  "tests_replayed": 0,
+  "scope": "Exact prior artifacts and accepted source controller preserved; no execution claim beyond individual receipts."
+}

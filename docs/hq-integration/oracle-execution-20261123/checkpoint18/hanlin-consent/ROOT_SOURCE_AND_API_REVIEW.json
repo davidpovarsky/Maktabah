@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "reviewed_utc": "2026-11-23T11:06:56.474265+00:00",
+  "root_logic_review": "Full16195-byte new guard and complete53-line actual test insertion read; existing semantic10-second consent wait/assertion copied exactly after same originaltap. Fixed2-element timeout-only4096B observation preserves error/no-provider conclusions; no hierarchy/credential logging.",
+  "source": "7841f4af33142f72936ca97428733b3059f806b0",
+  "ci_preparation": "39b021a944245b2ab6b235dd5ef4bc6982db93ea",
+  "source_paths_independently_verified": 45,
+  "api_paths_independently_verified": 10,
+  "api_expected_tree_reproduced": "d41adf7b7a773f140899a2f0efcbe83404d0eb07",
+  "all_actual_execution_git_rows_independently_verified": 285,
+  "api_review_index_rows_verified_in_prior_root_read": 20,
+  "actual_source_admission_pass_sha256": "f48143f3e8c08b566d9aa947d13dc332b1a293a01153383e0af88d45e199f468",
+  "source_test_full_inverse": true,
+  "driver_full_inverse": true,
+  "workflow_full_inverse": true,
+  "hq_only_source_literal_changed": true,
+  "product_trees": {
+    "Source": "4b2abd687328725fb7a7f0ca635b2cab9e0f0c0b",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078"
+  },
+  "source_only_45_and_ci_only10_allowlists": true,
+  "old_guards_and_evidence_preserved": true,
+  "native_tests_reexecuted": 0,
+  "source_guards_reexecuted": 0,
+  "new_credentials_or_provider_calls": 0,
+  "manual_workflow_only": true,
+  "publication": "ACCEPTED_FOR_EXACT_API_CHILD_NO_RUNTIME_ACTIVATION",
+  "runtime_controller": "Separate exact source/binding/cleanup review required before one manual run"
+}

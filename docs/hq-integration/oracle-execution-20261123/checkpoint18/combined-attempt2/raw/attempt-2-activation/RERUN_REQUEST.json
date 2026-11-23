@@ -1,0 +1,21 @@
+{
+  "run": 45158596483,
+  "source": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+  "previous_attempt": 1,
+  "requested_attempt": 2,
+  "rationale": "Authenticated hosted runner allocation failure; zero steps/artifacts/native. Existing StageB observer owner reported closed attempt2 at10:46:34. No source changes or additional workflow dispatch.",
+  "source_changed": false,
+  "workflow_changed": false,
+  "request_utc": "2026-11-23T11:05:02.346274+00:00",
+  "previous_observer_terminal": true,
+  "sole_lock_verified": true,
+  "new_dispatches": 0,
+  "rerun_requests": 1,
+  "stageb_local_terminal_candidates": [
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/45150723169/attempt-2/terminal/watch.state.json",
+      "sha256": "cdbd33e748aae965a96a509a6231fd68c93d36139d49c444852b16ec3f163453"
+    }
+  ],
+  "rerun_returncode": 0
+}
