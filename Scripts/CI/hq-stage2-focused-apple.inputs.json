@@ -1,8 +1,8 @@
 {
-  "application_source_sha": "6ba33d848bda808181e6b3174c05bac5b3fd2d94",
+  "application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed",
   "application_trees": {
-    "Maktabah.xcodeproj": "f61421e8677027ffa18364226b4ee68a0937dfc5",
-    "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+    "Maktabah.xcodeproj": "30dccb2b8600715f90c41e533b4646a8523e10d1",
+    "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
     "Vendor": "ee5b415a5ccb9db9fda2b0e8d6ce3748cdeaea6e"
   },
   "artifacts": [

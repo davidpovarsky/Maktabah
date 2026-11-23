@@ -1,11 +1,11 @@
 {
   "schema": "otzaria.full-v32.original-ui-observation/1",
-  "application_source_sha": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+  "application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed",
   "application_trees": {
-    "Source": "0e2dc5b9406ffeef95d2d75d460f1589c133129d",
-    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
-    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
-    "Maktabah-iOSUITests": "88933b92b2d7580ff082677c14670ec6c2757dec"
+    "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
+    "Vendor": "ee5b415a5ccb9db9fda2b0e8d6ce3748cdeaea6e",
+    "Maktabah.xcodeproj": "30dccb2b8600715f90c41e533b4646a8523e10d1",
+    "Maktabah-iOSUITests": "ae0f9d48f43bf27f9e0a14a09736667437f13b2f"
   },
   "original_source_base": "2ef81ac195c002863486e473dad95f336f3e1675",
   "selected_case_ids": [
@@ -79,22 +79,23 @@
     "Source/Otzaria/Reading/OtzariaReadingUnitService.swift",
     "Tests/HQ/sqlite/UnusedZstdBoundary.swift",
     "docs/hq-integration/reader-full-v32-ui-observation-20261123/FullV32ObservationCatalog.swift",
-    "tools/verify_xcresult_zero_skips.py"
+    "tools/verify_xcresult_zero_skips.py",
+    "Scripts/CI/runtime27-final-source-composition.inputs.json"
   ],
   "input_sha256": {
     ".github/workflows/otzaria-reader-groups-full-v32.yml": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c",
-    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "d8ae7aa91ad09866a8842684fae51b1d19e1d084b27a8a6b5d7cb45b523c091f",
-    "Scripts/CI/hq-original-editor-distribution.py": "6ebfeab1fbc1c8568734a8a36016885e6454eef73940020b3db6986140022bf5",
-    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "50125ae62c92d35df3908bb30f158978d3d24e7e3fda4f468057fd55926a560a",
-    "Scripts/CI/hq-stage2-focused-apple.py": "0dbe133b8f0ee188dc2f0d0c375972a210571498ecac928f1174730ebb0e83f5",
-    "Scripts/CI/library-morph-focused-native.inputs.json": "c8369b9c1758b7bb60cc9404839095f893cb03bf2a592caa9a3f6852f3e410bc",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "28d5dbc2a6672b39b4083ff9f50f25b338e177bb33ac5c32da474b2baf1b7d4a",
+    "Scripts/CI/hq-original-editor-distribution.py": "a36b6a73b5b3291080556ee3c107aaf88f2c2a112d526dee0ee6f427a197e62e",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "671dea22d5654c34de5e15d2dd39054cf24f94b3a50faf5a0f9cf74d6a13b323",
+    "Scripts/CI/hq-stage2-focused-apple.py": "d8c317ee8fdf1fd07a2e2e604c52866379912d96705f4da9a09bcab055f8f337",
+    "Scripts/CI/library-morph-focused-native.inputs.json": "169a58afa943765b2083ddc404ecb348eba579966edd675c883821220f29f2fd",
     "Scripts/CI/library-morph-focused-native.py": "13d9c4dbb24591b6406e6a3da5c0d619c5785c726d894182383d899ce9373fc3",
     "Scripts/CI/native-cohort-artifacts.py": "cf7092191b7058041fe894673380865c9048bab15e224a027b34687123082b03",
-    "Scripts/CI/prepare-faithful-ipad-fixtures.py": "1aef6221d2cefe49432c859e3a483c8b6321c062e156738bca66a12c6d792dbe",
+    "Scripts/CI/prepare-faithful-ipad-fixtures.py": "a0f0ea5e71df41d25097a5434408073afd29f68180869f06d1382b0690ea13d3",
     "Scripts/CI/prepare-hanlin-sdk.py": "7e9a303e20390b9a33ee6cddc73979dc1557741636d6e00067c55a90188af404",
     "Scripts/CI/prepare-pinned-sharp-libvips.py": "37a279a3ab6e1bf7ece3d92c657a8c4f5e1fcb9e5007564b4aef0408f0eee764",
-    "Scripts/CI/reader-full-v32-ui-observation.py": "d75618e44d205b1fb2843811bbff846151eef6e14ec92d9b071bdbbaafbbfca7",
-    "Scripts/CI/reader-groups100-focused-native.inputs.json": "aa1a4768ad9190cb417429927f682251ffffcdba8ca7929346cf29847e0e7323",
+    "Scripts/CI/reader-full-v32-ui-observation.py": "cc2b877f27e2309d738287a5458e42e625861d7e30fa1487c8b1d1f50dd877b3",
+    "Scripts/CI/reader-groups100-focused-native.inputs.json": "4a9401cea7b8f6e5a035caaf6aa40458d9d3ffa2f9a30777a58778b5a3e39401",
     "Scripts/CI/reader-groups100-focused-native.py": "27cf5dcbe51d45c804b50c9f5858161dae71762ce25ea7a113d2d6d1d2620a1b",
     "Scripts/CI/runtime27-url-delivery.py": "065c8afaed97a7974a2e8ba4c61b3077c63366e21bb8696837a00e4ab4bd17b8",
     "Scripts/CI/runtime27_interruption.py": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
@@ -123,10 +124,11 @@
     "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
     "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
     "docs/hq-integration/reader-full-v32-ui-observation-20261123/FullV32ObservationCatalog.swift": "ba59641e131cc9ee625ecd5b042b516ac5d971333e635edda9b533ea29105e70",
-    "tools/verify_xcresult_zero_skips.py": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6"
+    "tools/verify_xcresult_zero_skips.py": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6",
+    "Scripts/CI/runtime27-final-source-composition.inputs.json": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0"
   },
   "torah_inspector_commit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
-  "source_status": "INTEGRATED_SOURCE_FROZEN_NATIVE_DEVICE_BINARY_ADMISSION_REQUIRED",
+  "source_status": "COMPOSED_SOURCE_FROZEN_NATIVE_SDK_AND_SAME_BUILD_INSTALL_ADMISSION_REQUIRED",
   "native_ui_executed": 0,
   "physical_device_executed": 0,
   "perf_candidate_promoted": false,
@@ -150,5 +152,21 @@
     "library_native_lifecycle_source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
     "darwin_notify_import_source": "b965e741815f9033151ee45f58d744d028ba1bc2",
     "actual_sdk_notify_module_source": "a0f9f0547e28ac89a42fce5019888222c21390cd"
+  },
+  "composition_provenance": {
+    "accepted_reader_source": "92e9df6e2daf64893c83ba13708fac4c670ae38f",
+    "active_focused_checkout_modified": false,
+    "composed_product_source": "7d5510dd29af2b66d740de136352916868c341ed",
+    "historical_passes_counted_as_current": false,
+    "manifest_path": "Scripts/CI/runtime27-final-source-composition.inputs.json",
+    "manifest_sha256": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0",
+    "previous_application_source_sha": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+    "previous_application_trees": {
+      "Maktabah-iOSUITests": "88933b92b2d7580ff082677c14670ec6c2757dec",
+      "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+      "Source": "0e2dc5b9406ffeef95d2d75d460f1589c133129d",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+    },
+    "previous_input_sha256": "41ae16010370460b0dcba2ee814ca8764219a25088deca5ae10191732041ee55"
   }
 }

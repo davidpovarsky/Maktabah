@@ -16,7 +16,11 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[2]
 ORIGINAL_SOURCE = "1969b2065469b55e38e42cbb838a469ffa6a80f7"
-SOURCE = "6ba33d848bda808181e6b3174c05bac5b3fd2d94"
+DEPENDENCY_SOURCE = "6ba33d848bda808181e6b3174c05bac5b3fd2d94"
+SOURCE = "7d5510dd29af2b66d740de136352916868c341ed"
+COMPOSITION_BASE = "83e7e6db234117e43a5b025c0cf923aecedfaa4a"
+COMPOSITION_INPUTS = ROOT / "Scripts/CI/runtime27-final-source-composition.inputs.json"
+COMPOSITION_SHA256 = "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0"
 ORIGINAL_HANLIN = "e00498e33f106cc43be0476ffa2e09329c8ca300"
 QUALIFIED_HANLIN = "ca3c91f2233bf5c77990643b29a874aac8704639"
 ORIGINAL_CORE = "e7bf34111e603ca977becd007dd4e5bb109af857"
@@ -67,7 +71,7 @@ def verify_qualified_dependency_delta(paths, before_hanlin, after_hanlin, before
             and after_lock == before_lock.replace(ORIGINAL_CORE.encode(), QUALIFIED_CORE.encode())
             and after_lock.replace(QUALIFIED_CORE.encode(), ORIGINAL_CORE.encode()) == before_lock,
             "Qualified Host lock is not the exact single-revision change with its original inverse")
-    return {"original_application_source": ORIGINAL_SOURCE, "qualified_dependency_source": SOURCE,
+    return {"original_application_source": ORIGINAL_SOURCE, "qualified_dependency_source": DEPENDENCY_SOURCE,
             "product_delta": paths, "hanlin_source": QUALIFIED_HANLIN,
             "swift_ai_sdk_source": QUALIFIED_CORE,
             "host_lock_sha256": hashlib.sha256(after_lock).hexdigest(),
@@ -75,14 +79,94 @@ def verify_qualified_dependency_delta(paths, before_hanlin, after_hanlin, before
 
 
 def qualified_dependency_source():
-    paths = git("diff", "--name-only", ORIGINAL_SOURCE, SOURCE, "--",
+    paths = git("diff", "--name-only", ORIGINAL_SOURCE, DEPENDENCY_SOURCE, "--",
                 "Source", "Vendor", "Maktabah.xcodeproj", "Maktabah-iOSUITests").splitlines()
     before_lock, after_lock = [subprocess.check_output(
         ["git", "show", source + ":" + HOST_LOCK], cwd=ROOT, timeout=90)
-        for source in [ORIGINAL_SOURCE, SOURCE]]
+        for source in [ORIGINAL_SOURCE, DEPENDENCY_SOURCE]]
     return verify_qualified_dependency_delta(
         paths, git("rev-parse", ORIGINAL_SOURCE + ":Vendor/HanlinSDK"),
-        git("rev-parse", SOURCE + ":Vendor/HanlinSDK"), before_lock, after_lock)
+        git("rev-parse", DEPENDENCY_SOURCE + ":Vendor/HanlinSDK"), before_lock, after_lock)
+
+
+def verify_composed_build_inputs(inputs, composition):
+    resolution = composition["shared_build_input_resolution"]
+    keys = resolution["resolved_fields"]
+    require(keys == ["application_source_sha", "application_trees", "hanlin_gitlink"]
+            and {key: inputs[key] for key in keys} == resolution["composed_values"],
+            "Build inputs do not bind the exact composed application and qualified Hanlin")
+    common = {key: value for key, value in inputs.items() if key not in keys}
+    identity = hashlib.sha256(json.dumps(
+        common, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+    require(identity == resolution["all_remaining_fields_canonical_sha256"],
+            "Artifact or engine/resource build inputs changed outside the source-only binding")
+    return identity
+
+
+def composed_product_source():
+    """Verify each composed product object against its accepted source ancestor."""
+    require(digest(COMPOSITION_INPUTS) == COMPOSITION_SHA256,
+            "Reviewed final source composition manifest changed")
+    config = json.loads(COMPOSITION_INPUTS.read_text())
+    require(config["schema"] == "otzaria.final-composed-product-source/1"
+            and config["base_application_source"] == COMPOSITION_BASE
+            and config["application_source_sha"] == SOURCE
+            and config["application_tree"] == git("rev-parse", SOURCE + "^{tree}"),
+            "Final composition source identity differs")
+    roots = ["Source", "Vendor", "Maktabah.xcodeproj", "Maktabah-iOSUITests"]
+    require(config["application_trees"] == {
+        path: git("rev-parse", SOURCE + ":" + path) for path in roots},
+        "Final composition product trees differ")
+    paths = git("diff", "--name-only", COMPOSITION_BASE, SOURCE, "--", *roots).splitlines()
+    rows = config["product_delta"]
+    require(len(rows) == 18 and paths == [row["path"] for row in rows],
+            "Final composition has an undeclared product delta")
+
+    def source_object(revision, path):
+        listing = git("ls-tree", revision, "--", path)
+        if not listing:
+            return None
+        meta, actual_path = listing.split("\t")
+        require(actual_path == path, "Final source object path differs")
+        mode, kind, identity = meta.split()
+        value = {"mode": mode, "kind": kind, "object": identity}
+        if kind == "blob":
+            raw = subprocess.check_output(["git", "show", revision + ":" + path],
+                                          cwd=ROOT, timeout=90)
+            value.update(bytes=len(raw), sha256=hashlib.sha256(raw).hexdigest())
+        return value
+
+    for revision in set(config["accepted_sources"].values()):
+        subprocess.run(["git", "merge-base", "--is-ancestor", revision, SOURCE],
+                       cwd=ROOT, check=True, timeout=90)
+    for row in rows:
+        path = row["path"]
+        require(row["accepted_source"] == config["accepted_sources"][row["accepted_lane"]]
+                and source_object(COMPOSITION_BASE, path) == row["before"]
+                and source_object(SOURCE, path) == row["after"]
+                and source_object(row["accepted_source"], path) == row["after"]
+                and row["accepted_source_object"] == row["after"]["object"],
+                "Composed product does not equal its accepted source: " + path)
+    subprocess.run(["git", "diff", "--quiet", SOURCE, "--", *roots],
+                   cwd=ROOT, check=True, timeout=90)
+    build_inputs = json.loads((ROOT / config["shared_build_input_resolution"]["path"]).read_text())
+    common_inputs_sha256 = verify_composed_build_inputs(build_inputs, config)
+    legacy = config["preserved_legacy_sdk_inputs"]
+    require(legacy["qualification_for_composed_expanded_sdk"] == "UNQUALIFIED"
+            and digest(ROOT / legacy["path"]) == legacy["sha256"],
+            "Preserved SDK inputs changed without a new reviewed composition binding")
+    return {"manifest_sha256": COMPOSITION_SHA256,
+            "base_application_source": COMPOSITION_BASE,
+            "application_source_sha": SOURCE, "product_paths": paths,
+            "accepted_source_objects_verified": len(rows),
+            "artifact_engine_resource_inputs_sha256": common_inputs_sha256,
+            "expanded_sdk_artifact_qualified": False,
+            "native_stageb_qualified": False}
+
+
+def require_composed_sdk_input(config):
+    require(type(config.get("schema")) is int and config["schema"] == 3,
+            "Composed full SDK requires actual schema3 producer admission; preserved legacy pins are UNQUALIFIED")
 
 
 def source_context():
@@ -91,6 +175,7 @@ def source_context():
     require(head == os.environ["EXPECTED_CHECKOUT_SHA"], "Wrong immutable qualification checkout")
     subprocess.run(["git", "merge-base", "--is-ancestor", SOURCE, head], cwd=ROOT, check=True, timeout=90)
     dependency_adoption = qualified_dependency_source()
+    composition = composed_product_source()
     trees = {path: git("rev-parse", "HEAD:" + path) for path in
              ["Source", "Vendor", "Maktabah.xcodeproj", "Maktabah-iOSUITests"]}
     require(all(value == git("rev-parse", SOURCE + ":" + path) for path, value in trees.items()),
@@ -102,7 +187,7 @@ def source_context():
     original = runpy.run_path(str(ROOT / "Scripts/CI/completion-focused-native.py"))
     execution_inputs = original["exact_working_inputs"](["Scripts/CI", ".github/workflows", "Maktabah-iOSUITests", "tools"])
     return {"checkout_sha": head, "application_source_sha": SOURCE, "application_trees": trees,
-            "qualified_dependency_adoption": dependency_adoption,
+            "qualified_dependency_adoption": dependency_adoption, "source_composition": composition,
             "execution_inputs": execution_inputs, "sdk_admission_sha256": digest(ADMISSION),
             "native116_catalog_sha256": digest(FULL), "release114_manifest_sha256": digest(RELEASE)}
 
@@ -162,9 +247,7 @@ def prepare():
     context = source_context()
     runtime_dependency_preflight()
     sdk_input = json.loads(ADMISSION.read_text())
-    if sdk_input.get("schema") == 2:
-        continuation = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_continuation_admission.py"))
-        continuation["validate_configuration"](sdk_input)
+    require_composed_sdk_input(sdk_input)
     require(re.fullmatch(r"[a-f0-9]{40}", sdk_input.get("source_sha", ""))
             and re.fullmatch(r"[a-f0-9]{64}", sdk_input.get("archive_sha256", ""))
             and type(sdk_input.get("artifact_id")) is int and sdk_input["artifact_id"] > 0,

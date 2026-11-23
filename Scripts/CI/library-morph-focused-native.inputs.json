@@ -1,11 +1,11 @@
 {
   "schema": "otzaria.library-morph.native-inputs/1",
-  "application_source_sha": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+  "application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed",
   "application_trees": {
-    "Source": "0e2dc5b9406ffeef95d2d75d460f1589c133129d",
-    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
-    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
-    "Maktabah-iOSUITests": "88933b92b2d7580ff082677c14670ec6c2757dec"
+    "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
+    "Vendor": "ee5b415a5ccb9db9fda2b0e8d6ce3748cdeaea6e",
+    "Maktabah.xcodeproj": "30dccb2b8600715f90c41e533b4646a8523e10d1",
+    "Maktabah-iOSUITests": "ae0f9d48f43bf27f9e0a14a09736667437f13b2f"
   },
   "execution_groups": [
     {
@@ -23,5 +23,21 @@
       ]
     }
   ],
-  "acceptance_scope": "Affected Library morph source only. No broad suite, physical iPad, 100+ production results, Sefaria/offline or distribution acceptance."
+  "acceptance_scope": "Affected Library morph source only. No broad suite, physical iPad, 100+ production results, Sefaria/offline or distribution acceptance.",
+  "composition_provenance": {
+    "accepted_reader_source": "92e9df6e2daf64893c83ba13708fac4c670ae38f",
+    "active_focused_checkout_modified": false,
+    "composed_product_source": "7d5510dd29af2b66d740de136352916868c341ed",
+    "historical_passes_counted_as_current": false,
+    "manifest_path": "Scripts/CI/runtime27-final-source-composition.inputs.json",
+    "manifest_sha256": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0",
+    "previous_application_source_sha": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+    "previous_application_trees": {
+      "Maktabah-iOSUITests": "88933b92b2d7580ff082677c14670ec6c2757dec",
+      "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+      "Source": "0e2dc5b9406ffeef95d2d75d460f1589c133129d",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+    },
+    "previous_input_sha256": "c8369b9c1758b7bb60cc9404839095f893cb03bf2a592caa9a3f6852f3e410bc"
+  }
 }
