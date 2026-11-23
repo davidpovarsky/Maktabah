@@ -1,0 +1,2 @@
+/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/wrapper-control/after/Scripts/CI/hq-original-editor-ruby-context.rb:133:in `launch': Actual original Ruby entry changed (RuntimeError)
+	from /mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/wrapper-control/after/Scripts/CI/hq-original-editor-ruby-context.rb:165:in `<main>'

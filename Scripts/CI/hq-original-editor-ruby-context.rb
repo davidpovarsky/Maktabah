@@ -74,12 +74,13 @@ module OriginalEditorRubyContext
     # Ruby children inherit RUBYOPT. They must remain entirely inert here:
     # no require, receipt, exit hook, changed exit status or gem activation.
     return unless Process.ppid.to_s == ENV[PARENT]
-    return unless File.realpath($PROGRAM_NAME) == ENV[PROGRAM]
     original_argv = ARGV.dup
     return unless original_argv == ['install']
     original_pid = Process.pid
     original_parent = Process.ppid
-    original_program = File.realpath($PROGRAM_NAME)
+    launched_program = ENV.fetch(PROGRAM)
+    original_entry = File.realpath($PROGRAM_NAME)
+    original_entry_bytes = File.binread(original_entry)
     at_exit do
       original_exception = $!
       original_exit = original_exception.is_a?(SystemExit) ? original_exception.status :
@@ -92,15 +93,19 @@ module OriginalEditorRubyContext
       require 'digest'
       require 'rbconfig'
       request = JSON.parse(File.read(request_path))
+      entry = { 'path' => original_entry, 'bytes' => original_entry_bytes.bytesize,
+                'sha256' => Digest::SHA256.hexdigest(original_entry_bytes) }
+      raise 'Actual original Ruby entry changed' unless file(original_entry) == entry
       raise 'Original pod request identity changed' unless
         request.fetch('parent_pid') == original_parent &&
-        request.fetch('program').fetch('path') == original_program &&
+        request.fetch('program').fetch('path') == launched_program &&
         request.fetch('observer') == file(__FILE__) &&
-        request.fetch('program') == file(original_program) &&
+        request.fetch('program') == file(launched_program) &&
         request.fetch('helper') == file(request.fetch('helper').fetch('path'))
       receipt = {
         'schema' => 1, 'nonce' => request.fetch('nonce'), 'parent_pid' => original_parent,
-        'pid' => original_pid, 'argv' => original_argv, 'program' => file(original_program),
+        'pid' => original_pid, 'argv' => original_argv, 'program' => file(launched_program),
+        'ruby_entry' => entry,
         'observer' => file(__FILE__), 'helper' => request.fetch('helper'), 'original_exit_code' => original_exit
       }
       if original_exit == 0
@@ -125,6 +130,7 @@ module OriginalEditorRubyContext
     receipt = JSON.parse(File.read(receipt_path))
     raise 'Wrong original Ruby runtime' unless receipt.fetch('ruby') == runtime
     raise 'Original pod did not return successfully' unless receipt.fetch('original_exit_code') == 0
+    raise 'Actual original Ruby entry changed' unless file(receipt.fetch('ruby_entry').fetch('path')) == receipt.fetch('ruby_entry')
     raise 'Original project helper changed' unless file(helper) == receipt.fetch('helper')
     Gem.use_paths(receipt.fetch('gem_home'), receipt.fetch('gem_paths'))
     raise 'Original Ruby gem search context differs' unless Gem.dir == receipt.fetch('gem_home') &&

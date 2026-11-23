@@ -1,11 +1,17 @@
 {
-  "schema": 1,
+  "schema": 2,
   "base": "8e9dac2d9585dd482e9ab784a65c5517b6847648",
+  "first_reviewed_source": "3d0ff5b7043b23b64110c87510ed2e76cbd371ca",
   "rows": [
     {
+      "path": "FINAL_THREE_PATHS.diff",
+      "bytes": 22738,
+      "sha256": "ad06a8b8279bbe88b163eee944ecb55a0726ffcb304665c59727903136cc9e4f"
+    },
+    {
       "path": "README.md",
-      "bytes": 5011,
-      "sha256": "252f943fdd9bceee9a86211536ec162e8bfd117a1074188d69c79780d77353a4"
+      "bytes": 6918,
+      "sha256": "b47170c156370373c16243005d8a71c7c4174c3c6a603867c4b1ab17528c911c"
     },
     {
       "path": "SOURCE_CORRESPONDENCE.json",
@@ -16,6 +22,16 @@
       "path": "THREE_PATHS.diff",
       "bytes": 22061,
       "sha256": "63ad4edb92c9da289475f79bb773dbc626afc19cab72a379eb792311e60b1020"
+    },
+    {
+      "path": "WRAPPER_CORRESPONDENCE.json",
+      "bytes": 2276,
+      "sha256": "348f18c2e1f258836be15ce571e50ea67120b29222050d16d63622bec7bde84c"
+    },
+    {
+      "path": "WRAPPER_ENTRY_DELTA.diff",
+      "bytes": 4439,
+      "sha256": "a9eda6b93b2723e964fb5ba4eadcc9be9789f0125eb351a9a876a7bb268112a9"
     },
     {
       "path": "after/Scripts/CI/hq-original-editor-distribution.py",
@@ -623,6 +639,181 @@
       "sha256": "bacb48433cfd93cddd7f6aac247d91a49a32c0b2e09aac4f51024d210ea8d49c"
     },
     {
+      "path": "controls/actual-wrapper-run/RESULT.json",
+      "bytes": 4080,
+      "sha256": "b33134aacd02b2a59291d173e4932990c67e4a5e9e7733f413203fa0cb06a2b1"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after/Podfile.lock",
+      "bytes": 17,
+      "sha256": "113c2c62d0c45d3c53a99ffd0de01bfe9cadebaefa4e5608eecf1cd596f33856"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after/Scripts/CI/hq-original-editor-app-target.rb",
+      "bytes": 163,
+      "sha256": "f8b5e5a8d25b821fd5f56b02b1178d2db56f64f54df96716440062a99e8740a2"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after/Scripts/CI/hq-original-editor-ruby-context.rb",
+      "bytes": 8002,
+      "sha256": "facf9c4c1fcc25d1cafbd6d532c60367a4097f16642f5fc444e2a2092d0e3f33"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after/bin/pod",
+      "bytes": 293,
+      "sha256": "4e702bddb359be5fb3525d545f4ff49a88dab428eda80be5857964714c263ba3"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after/build/hq-stage2/original-editor/pod-ruby-context.json",
+      "bytes": 5073,
+      "sha256": "84cf576ba9d7cda3f1983f540326b8ad955f0040e8b8ee6373a6346417d37f88"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after/build/hq-stage2/original-editor/pod-ruby-request.json",
+      "bytes": 1178,
+      "sha256": "c0b32e00d65028abd8f67ea9a97f6eec27497615f0d3bc4bac11940d9c281603"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after/gems/gems/cocoapods-0.0.1/lib/cocoapods.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after/gems/gems/context_dependency-0.0.1/lib/context_dependency.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after/gems/gems/xcodeproj-0.0.1/lib/xcodeproj.rb",
+      "bytes": 91,
+      "sha256": "c4d065e1af57a0d72dc2ffc4b4938b49133ad61993baa066c498c35995c680dd"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after/gems/specifications/cocoapods-0.0.1.gemspec",
+      "bytes": 218,
+      "sha256": "98b605b8799a7ab94158729d45946ed2af1bcb858e5e7373fb87ac81540f2cc3"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after/gems/specifications/context_dependency-0.0.1.gemspec",
+      "bytes": 236,
+      "sha256": "2a5b43f666c344793d18e60984754b74865876b94fee26a2af1209d67a202356"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after/gems/specifications/xcodeproj-0.0.1.gemspec",
+      "bytes": 277,
+      "sha256": "0f72a96eed7448ec487d46061a25f357c8697814da329100d4e35df0b8b67799"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after/libexec/bin/pod",
+      "bytes": 829,
+      "sha256": "5c85f05ab5633e7dffa45a46af7a91e6244b0e7d82dc7c272862a100f34e8204"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after-exact-runtime-helper.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after-exact-runtime-helper.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after-exec-wrapper.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-wrapper-run/after-exec-wrapper.stdout",
+      "bytes": 28,
+      "sha256": "bacb48433cfd93cddd7f6aac247d91a49a32c0b2e09aac4f51024d210ea8d49c"
+    },
+    {
+      "path": "controls/actual-wrapper-run/before/Podfile.lock",
+      "bytes": 17,
+      "sha256": "113c2c62d0c45d3c53a99ffd0de01bfe9cadebaefa4e5608eecf1cd596f33856"
+    },
+    {
+      "path": "controls/actual-wrapper-run/before/Scripts/CI/hq-original-editor-app-target.rb",
+      "bytes": 163,
+      "sha256": "f8b5e5a8d25b821fd5f56b02b1178d2db56f64f54df96716440062a99e8740a2"
+    },
+    {
+      "path": "controls/actual-wrapper-run/before/Scripts/CI/hq-original-editor-ruby-context.rb",
+      "bytes": 7558,
+      "sha256": "2059ca905374a037ea10a7e56d3f4ae419602db77c80509376268988b505738b"
+    },
+    {
+      "path": "controls/actual-wrapper-run/before/bin/pod",
+      "bytes": 294,
+      "sha256": "b5d53f5829de141158d5e13eada7162765677d7e40adf76fc050fb7203973e28"
+    },
+    {
+      "path": "controls/actual-wrapper-run/before/build/hq-stage2/original-editor/pod-ruby-request.json",
+      "bytes": 1182,
+      "sha256": "d61c6161e99fec6ea0a29bc6d02c185c5b25b49b291dba7d257d84f06115771c"
+    },
+    {
+      "path": "controls/actual-wrapper-run/before/gems/gems/cocoapods-0.0.1/lib/cocoapods.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-wrapper-run/before/gems/gems/context_dependency-0.0.1/lib/context_dependency.rb",
+      "bytes": 62,
+      "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+    },
+    {
+      "path": "controls/actual-wrapper-run/before/gems/gems/xcodeproj-0.0.1/lib/xcodeproj.rb",
+      "bytes": 91,
+      "sha256": "c4d065e1af57a0d72dc2ffc4b4938b49133ad61993baa066c498c35995c680dd"
+    },
+    {
+      "path": "controls/actual-wrapper-run/before/gems/specifications/cocoapods-0.0.1.gemspec",
+      "bytes": 218,
+      "sha256": "98b605b8799a7ab94158729d45946ed2af1bcb858e5e7373fb87ac81540f2cc3"
+    },
+    {
+      "path": "controls/actual-wrapper-run/before/gems/specifications/context_dependency-0.0.1.gemspec",
+      "bytes": 236,
+      "sha256": "2a5b43f666c344793d18e60984754b74865876b94fee26a2af1209d67a202356"
+    },
+    {
+      "path": "controls/actual-wrapper-run/before/gems/specifications/xcodeproj-0.0.1.gemspec",
+      "bytes": 277,
+      "sha256": "0f72a96eed7448ec487d46061a25f357c8697814da329100d4e35df0b8b67799"
+    },
+    {
+      "path": "controls/actual-wrapper-run/before/libexec/bin/pod",
+      "bytes": 808,
+      "sha256": "df7d37884d3fc1dca904be847c48e1084a460f5c4d3cf166c4b42ea14777ad69"
+    },
+    {
+      "path": "controls/actual-wrapper-run/before-driver.py",
+      "bytes": 48326,
+      "sha256": "3c62064f0278502ca0ebbac64243439a6515a7a29ee29c16d0933df6b077588d"
+    },
+    {
+      "path": "controls/actual-wrapper-run/before-exec-wrapper.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/actual-wrapper-run/before-exec-wrapper.stdout",
+      "bytes": 28,
+      "sha256": "bacb48433cfd93cddd7f6aac247d91a49a32c0b2e09aac4f51024d210ea8d49c"
+    },
+    {
+      "path": "controls/actual-wrapper-run/ruby-entry-drift-refusal.stderr",
+      "bytes": 421,
+      "sha256": "3984ea22e2960e9d2359bdaaf8143f5be024fa91b829efd457dd63985f08524a"
+    },
+    {
+      "path": "controls/actual-wrapper-run/ruby-entry-drift-refusal.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
       "path": "controls/controls-1.command.json",
       "bytes": 786,
       "sha256": "be562e8f1b9943274f15d7ff7c761cfcbfec65280fe0f87733720d7f6991133c"
@@ -731,6 +922,26 @@
       "path": "controls/run_controls.py",
       "bytes": 15706,
       "sha256": "4c625b0972787afb3fe624e24c23ba427b7b1e1b62416fb9c2846bfbaf41a19d"
+    },
+    {
+      "path": "controls/run_wrapper_control.py",
+      "bytes": 7227,
+      "sha256": "4d6c6f5013ee59a8e7d3f2a321dd959d16eab8730eed67e8a9d2dad110f924f4"
+    },
+    {
+      "path": "controls/wrapper-control.command.json",
+      "bytes": 629,
+      "sha256": "3a458be19a78b45f1c683fbfe23b73fc9cc20f08b92784ba7a0c317f63341c9f"
+    },
+    {
+      "path": "controls/wrapper-control.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/wrapper-control.stdout",
+      "bytes": 215,
+      "sha256": "10363fb4a9003b1d34b3a2b1c43c407e614e40e5c9c5c639b3c6560e64c0e1df"
     },
     {
       "path": "failed-run-45136755585/DIAGNOSIS.md",
@@ -846,6 +1057,91 @@
       "path": "failed-run-45136755585/watch-1.state.json",
       "bytes": 1183,
       "sha256": "fff704ee3aee7374310ffaefd97a0d792293b8c3196be01fe96c05fdd0272b63"
+    },
+    {
+      "path": "final-after/Scripts/CI/hq-original-editor-distribution.py",
+      "bytes": 48550,
+      "sha256": "6e462ff723b540b12155f054642a661b49610e0e71b6842c35c00c638931d114"
+    },
+    {
+      "path": "final-after/Scripts/CI/hq-original-editor-ruby-context.rb",
+      "bytes": 8002,
+      "sha256": "facf9c4c1fcc25d1cafbd6d532c60367a4097f16642f5fc444e2a2092d0e3f33"
+    },
+    {
+      "path": "final-after/Scripts/CI/hq-stage2-focused-apple.py",
+      "bytes": 49198,
+      "sha256": "d8c317ee8fdf1fd07a2e2e604c52866379912d96705f4da9a09bcab055f8f337"
+    },
+    {
+      "path": "source-admission-at-3d0/PRESERVED_PRIOR_OUTPUT.json",
+      "bytes": 911,
+      "sha256": "72a6b555617a680e7019d3affe8661ec6cd45434f9b6af2892782fe41a429111"
+    },
+    {
+      "path": "source-admission-at-3d0/SOURCE_ADMISSION.json",
+      "bytes": 1533,
+      "sha256": "f19efea4165630f51d4f38807af4364fad3923e178f4935747034054864edd4d"
+    },
+    {
+      "path": "source-admission-at-3d0/actual-prepare-output/declarations.json",
+      "bytes": 432,
+      "sha256": "8fa41c3ed986fef179a63e50e34a8106b95f5a46adf112dd030564569aec5c4c"
+    },
+    {
+      "path": "source-admission-at-3d0/actual-prepare-output/python-runtime-preflight.json",
+      "bytes": 2108,
+      "sha256": "938b2f2770adb6ef746de4ae27c55af5d30cfe63a971f149adab44bcff20c641"
+    },
+    {
+      "path": "source-admission-at-3d0/actual-prepare-output/selection.json",
+      "bytes": 177918,
+      "sha256": "f05d571be2395b258bd181d4d0330a65a108bc80e04e120c2f89b280aa947f61"
+    },
+    {
+      "path": "source-admission-at-3d0/actual-prepare-output/source-before.json",
+      "bytes": 64154,
+      "sha256": "61dd07ee4a4f8f931b7aabecedef3f15d74513a03bd1cc05d0ca4f1c76b90359"
+    },
+    {
+      "path": "source-admission-at-3d0/exact-zayit-block.sh",
+      "bytes": 323,
+      "sha256": "e6cdcc4780eb04552b464e0ec3ca3c4830a514fb7b6d77afc0ed79c6b9c96abb"
+    },
+    {
+      "path": "source-admission-at-3d0/prepare.command.json",
+      "bytes": 425,
+      "sha256": "7b2b7c0c68771e6a03ffb75e8012690feda2c9932b04d2e66895bbcd860dbeaf"
+    },
+    {
+      "path": "source-admission-at-3d0/prepare.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source-admission-at-3d0/prepare.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source-admission-at-3d0/zayit-config.command.json",
+      "bytes": 491,
+      "sha256": "e78e3e2bde8691f1fee731f7921b34a4cd2c3bd4d7202dbf8f0538e500056a36"
+    },
+    {
+      "path": "source-admission-at-3d0/zayit-config.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source-admission-at-3d0/zayit-config.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source-admission-at-3d0/zayit-github-output",
+      "bytes": 14,
+      "sha256": "7043355d0a504ee4a8adca320036207687b8a9a9a22b4d56b9dcbee79ab809ca"
     }
   ]
 }

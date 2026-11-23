@@ -25,3 +25,13 @@ The six groups cover: same-context capture and inherited child exit7 without a p
 SOURCE_CORRESPONDENCE.json retains every unchanged preexisting function, the bounded changed functions and exact four product trees. Before/after source and the complete three-path Git diff are included. Preparation version1 was never executed and remains only in diagnostics; no result is attributed to those bytes.
 
 The next source gate is the unchanged original runtime27-original-editor-native.py prepare against this final populated candidate source. Its actual receipt will be retained separately before activation review. Apple CocoaPods capture, the real app/runner build, edit/export/CAS/import/new-PID/reopen and production/device gates remain NOT_RUN. No retry is authorized by this packet.
+
+## Final shell-to-exec compatibility refinement
+
+The first reviewed source and six actual controls remain frozen at3d0ff5b. Their original receipts are historical evidence and were not rerun. Root identified a real supported packaging boundary: a shell launcher can exec a different Ruby binstub. The primary Homebrew formula also installs its pod binstub behind an environment wrapper; that observation corroborates the compatibility case without claiming exact prior-run packaging.
+
+FINAL_THREE_PATHS.diff and final-after/ contain the current source. It binds the original launched pod file separately from the actual Ruby entry observed before that entry body executes. The direct Python parent, unique request, original install argv and exclusive receipt still determine observation ownership. Legitimate inherited children remain inert. Both source identities and the actual loaded CocoaPods/Xcodeproj context are verified; no binstub path is guessed.
+
+The one new actual portable shell-exec control records13 assertions and four bounded/reaped/drained subprocesses, with no timeout. The old predicate demonstrably produces no receipt despite a successful original fixture body. The candidate records distinct launched/entry identities and the actual spawned command PID, runs the same-runtime helper, then rejects actual-entry drift both in Python and independently in Ruby before helper execution. These are authored mechanism fixtures, not Apple/CocoaPods qualification.
+
+WRAPPER_CORRESPONDENCE.json retains exact inverse recovery of both changed files to3d0ff5b and unchanged common logger/install/default paths. The original prepare and exact pure Zayit config block at3d0ff5b both passed and are preserved. A final source prepare for these refined source bytes will be attached before review/activation. No workflow, original project helper, SDK admission input or product/UI source was edited.

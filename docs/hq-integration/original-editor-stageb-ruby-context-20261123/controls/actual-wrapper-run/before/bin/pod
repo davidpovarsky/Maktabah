@@ -1,0 +1,2 @@
+#!/bin/sh
+exec '/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/bin/ruby3.2' '/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/wrapper-control/before/libexec/bin/pod' "$@"

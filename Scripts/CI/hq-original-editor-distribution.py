@@ -482,7 +482,7 @@ def embed(root, admission_receipt, receipt_sha256, target, evidence):
 
 
 
-RUBY_CONTEXT_SOURCE_SHA256 = "2059ca905374a037ea10a7e56d3f4ae419602db77c80509376268988b505738b"
+RUBY_CONTEXT_SOURCE_SHA256 = "facf9c4c1fcc25d1cafbd6d532c60367a4097f16642f5fc444e2a2092d0e3f33"
 
 
 def ruby_context_file(path):
@@ -535,6 +535,9 @@ def validate_pod_ruby_receipt(request, receipt):
         require(receipt.get(key) == request[key]
                 and ruby_context_file(request[key]["path"]) == request[key],
                 "Original pod " + key + " changed")
+    entry = receipt.get("ruby_entry", {})
+    require(isinstance(entry.get("path"), str) and Path(entry["path"]).is_absolute()
+            and ruby_context_file(entry["path"]) == entry, "Actual original Ruby entry changed")
     runtime = receipt.get("ruby", {})
     require(set(runtime) == {"executable", "engine", "version", "patchlevel", "platform"}
             and all(isinstance(runtime.get(k), str) and runtime[k] for k in ("engine", "version", "platform"))
