@@ -1,0 +1,46 @@
+{
+  "status": "READ_ONLY_INVENTORY",
+  "sdkSHA": "b66aa5e0e979f36d1a34b85e08899449b72d1dc2",
+  "dependencies": [
+    {
+      "identity": "hanlin-streaming-markdown",
+      "requirement": {
+        "revision": [
+          "5cbb4b6c950051f98f02a0b0ae56756f5174a9b8"
+        ]
+      },
+      "hostLock": {
+        "revision": "5cbb4b6c950051f98f02a0b0ae56756f5174a9b8"
+      },
+      "previousHostLock": {
+        "revision": "6bde022876ef4af738c154b3d5c871984ef76195"
+      },
+      "canonicalHanlinAppLock": {
+        "revision": "5cbb4b6c950051f98f02a0b0ae56756f5174a9b8"
+      },
+      "upstreamCompare": {
+        "repository": "davidpovarsky/hanlin-streaming-markdown",
+        "base": "5cbb4b6c950051f98f02a0b0ae56756f5174a9b8",
+        "head": "6bde022876ef4af738c154b3d5c871984ef76195",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 10,
+        "dependencyManifestBytesIdentical": true
+      }
+    },
+    {
+      "identity": "swift-ai-sdk",
+      "requirement": {
+        "revision": [
+          "e7bf34111e603ca977becd007dd4e5bb109af857"
+        ]
+      },
+      "hostLock": {
+        "revision": "e7bf34111e603ca977becd007dd4e5bb109af857"
+      }
+    }
+  ],
+  "resolution": "NOT_RUN",
+  "appleCompile": "NOT_RUN",
+  "allDirectCanonicalRevisionPinsMatch": true
+}

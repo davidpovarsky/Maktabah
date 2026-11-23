@@ -108,3 +108,4 @@ scratch/
 tools/test_runner.exe
 tools/test_runner.exp
 tools/test_runner.lib
+/Vendor/HanlinSDK/

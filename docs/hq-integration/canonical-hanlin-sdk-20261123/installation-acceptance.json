@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "sourceSHA": "b66aa5e0e979f36d1a34b85e08899449b72d1dc2",
+  "selectedOriginalSourceFiles": 571,
+  "selectedProducts": [
+    "HanlinHostContracts",
+    "HanlinAgentCore",
+    "HanlinChatCore",
+    "HanlinScriptUI",
+    "HanlinChatUI",
+    "HanlinPresentationKit",
+    "HanlinRichUI",
+    "HanlinPlatformContracts"
+  ],
+  "binaryTargets": [],
+  "nativeRootsPresent": [],
+  "materializedFiles": 627,
+  "materializedBytes": 27287879,
+  "guardChecks": [
+    {
+      "case": "modified original selected source",
+      "status": "PASS",
+      "observedRejection": "Actual SDK bytes differ from the original pinned monorepo"
+    },
+    {
+      "case": "changed generated manifest even with matching edited receipt hash",
+      "status": "PASS",
+      "observedRejection": "Command '['/usr/bin/python3', 'Scripts/SDK/generate_manifest.py', '--check', '--products', 'HanlinHostContracts', 'HanlinAgentCore', 'HanlinChatCore', 'HanlinScriptUI', 'HanlinChatUI', 'HanlinPresentationKit', 'HanlinRichUI', 'HanlinPlatformContracts']' returned non-zero exit status 1."
+    },
+    {
+      "case": "missing selected source hidden by externally changed sparse pattern",
+      "status": "PASS",
+      "observedRejection": "An original selected SDK source is missing: Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinConversationStore.swift"
+    }
+  ],
+  "beforeAfterSourceProofIdentical": true,
+  "nativeExecution": "NOT_RUN",
+  "visualAcceptance": "NOT_RUN"
+}

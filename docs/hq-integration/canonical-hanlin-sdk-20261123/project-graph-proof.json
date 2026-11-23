@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "base": "e7f4098e9282d58b965cc6a886b79f74ff940117",
+  "retainedProductNames": [
+    "HanlinAgentCore",
+    "HanlinChatCore",
+    "HanlinChatUI",
+    "HanlinHostContracts",
+    "HanlinPlatformContracts",
+    "HanlinPresentationKit",
+    "HanlinRichUI",
+    "HanlinScriptUI"
+  ],
+  "formerPackageReferences": 3,
+  "canonicalPackageReferences": 1,
+  "canonicalPackagePath": "Vendor/HanlinSDK",
+  "allOtherProjectObjectsIdentical": true,
+  "sourceTreeChanges": [],
+  "pythonCompile": "PASS",
+  "comparisonMethod": "Read-only semantic diff after deduplicating byte-identical pre-existing inline object entries in memory only; no project source normalization or gate modification",
+  "preExistingIdenticalDuplicateObjectsPreserved": {
+    "240682637A5169A63619E577": 1,
+    "FB254BD29A50C530E907662A": 1,
+    "FDB5242B5960EB1507BD74A6": 1,
+    "3373C7B02164CDBB77BFFF48": 1,
+    "C2CCE35AFE445BF8BEF37C5F": 1
+  },
+  "nativeBuild": "NOT_RUN",
+  "visualAcceptance": "NOT_RUN"
+}

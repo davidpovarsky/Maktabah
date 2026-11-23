@@ -4119,9 +4119,7 @@
 			mainGroup = 4B32021F2EDAFE85003B95D1;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				029CD78E719D2D8F539F1C85 /* Original HanlinAgentSDK */,
-				7E52A289619B444249DD5758 /* Original HanlinPresentationSDK */,
-				8B664D33DF7899B0EDCAB128 /* Original HanlinPlatform */,
+				029CD78E719D2D8F539F1C85 /* Canonical HanlinSDK */,
 				E10A0780E847BB0F646D6289 /* ChavrusaUIRoutingHost */,
 				66370DCD8947589AD0EB9BEB /* CommandPalette source fork */,
 				B10000000000000000000001 /* XCRemoteSwiftPackageReference "AnchoredPopup" */,
@@ -6509,9 +6507,7 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Source/ChavrusaText/UIRoutingHost;
 		};
-		029CD78E719D2D8F539F1C85 /* Original HanlinAgentSDK */ = {isa = XCLocalSwiftPackageReference; relativePath = Vendor/HanlinSDK/Packages/HanlinAgentSDK; };
-		8B664D33DF7899B0EDCAB128 /* Original HanlinPlatform */ = {isa = XCLocalSwiftPackageReference; relativePath = Vendor/HanlinSDK/Packages/HanlinPlatform; };
-		7E52A289619B444249DD5758 /* Original HanlinPresentationSDK */ = {isa = XCLocalSwiftPackageReference; relativePath = Vendor/HanlinSDK/Packages/HanlinPresentationSDK; };
+		029CD78E719D2D8F539F1C85 /* Canonical HanlinSDK */ = {isa = XCLocalSwiftPackageReference; relativePath = Vendor/HanlinSDK; };
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -6640,13 +6636,13 @@
 			productName = ChavrusaUIRoutingHost;
 		};
 		F4F6F6D782A07742DDB6DFC4 /* HanlinHostContracts */ = {isa = XCSwiftPackageProductDependency; package = 029CD78E719D2D8F539F1C85; productName = HanlinHostContracts; };
-		AB1C35328B7CAAA7507D9019 /* HanlinPlatformContracts */ = {isa = XCSwiftPackageProductDependency; package = 8B664D33DF7899B0EDCAB128; productName = HanlinPlatformContracts; };
+		AB1C35328B7CAAA7507D9019 /* HanlinPlatformContracts */ = {isa = XCSwiftPackageProductDependency; package = 029CD78E719D2D8F539F1C85; productName = HanlinPlatformContracts; };
 		97E15224BCE340983B4C2071 /* HanlinAgentCore */ = {isa = XCSwiftPackageProductDependency; package = 029CD78E719D2D8F539F1C85; productName = HanlinAgentCore; };
-		452F1A0D287FDA71D7EABF83 /* HanlinChatCore */ = {isa = XCSwiftPackageProductDependency; package = 8B664D33DF7899B0EDCAB128; productName = HanlinChatCore; };
-		C6497DADEF7A0C3C6DBF4A0F /* HanlinScriptUI */ = {isa = XCSwiftPackageProductDependency; package = 8B664D33DF7899B0EDCAB128; productName = HanlinScriptUI; };
-		61E07D48951CEA128AC5733B /* HanlinChatUI */ = {isa = XCSwiftPackageProductDependency; package = 7E52A289619B444249DD5758; productName = HanlinChatUI; };
-		B8B0F4BF32E70713AE17DB39 /* HanlinPresentationKit */ = {isa = XCSwiftPackageProductDependency; package = 7E52A289619B444249DD5758; productName = HanlinPresentationKit; };
-		D8320A0FB8BA35EB57884C8B /* HanlinRichUI */ = {isa = XCSwiftPackageProductDependency; package = 7E52A289619B444249DD5758; productName = HanlinRichUI; };
+		452F1A0D287FDA71D7EABF83 /* HanlinChatCore */ = {isa = XCSwiftPackageProductDependency; package = 029CD78E719D2D8F539F1C85; productName = HanlinChatCore; };
+		C6497DADEF7A0C3C6DBF4A0F /* HanlinScriptUI */ = {isa = XCSwiftPackageProductDependency; package = 029CD78E719D2D8F539F1C85; productName = HanlinScriptUI; };
+		61E07D48951CEA128AC5733B /* HanlinChatUI */ = {isa = XCSwiftPackageProductDependency; package = 029CD78E719D2D8F539F1C85; productName = HanlinChatUI; };
+		B8B0F4BF32E70713AE17DB39 /* HanlinPresentationKit */ = {isa = XCSwiftPackageProductDependency; package = 029CD78E719D2D8F539F1C85; productName = HanlinPresentationKit; };
+		D8320A0FB8BA35EB57884C8B /* HanlinRichUI */ = {isa = XCSwiftPackageProductDependency; package = 029CD78E719D2D8F539F1C85; productName = HanlinRichUI; };
 /* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4B3202202EDAFE85003B95D1 /* Project object */;
