@@ -45,6 +45,7 @@ implementations.
 | Modified generated manifest with a matching edited receipt hash | Rejected by regeneration check; original bytes restored |
 | Missing selected source hidden by changed sparse checkout | Rejected; original sparse profile restored |
 | Xcode registration comparison | All eight product names and all other semantic project objects preserved |
+| Original stage2 source preflight | PASS; exact current trees, SDK Gitlink and unchanged production engine artifacts |
 | Source tree | No edits |
 | Apple compile, runtime, visual and physical-device acceptance | NOT_RUN by this lane |
 
@@ -75,8 +76,16 @@ as evidence for this new SDK pin. An appropriate matching producer must pass
 before that separate distribution route can be accepted.
 
 Source-bound Apple input metadata is updated in a follow-up commit to name
-the actual preceding code commit and its Source/Vendor/project trees. This
+the actual code commit `d1fcf8d0199623de296e9914bf9d6168f63e92d9` and its Source/Vendor/project trees. This
 does not retroactively relabel an earlier native run.
+
+The exact project-blob pin in the existing Otzaria test-exclusion manifest was
+updated after reviewing the package-registration-only diff. All 78 declared
+test entries, the engine tree and its three other build-input hashes remained
+identical; all seven standalone Swift test basenames remain absent from the
+actual application project. The unchanged original stage2 preflight passed.
+See `engine-exclusion-recheck.json`, `source-bound-inputs.json` and
+`original-stage2-source-preflight.json`.
 
 ## Reproduce the prepared source check
 

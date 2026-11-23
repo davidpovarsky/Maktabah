@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "reason": "Only the existing Hanlin package-registration seam changed; standalone Otzaria test sources remain excluded from the application",
+  "previousProjectBlob": "3261731b3c225ec783b7f7542b53726c71f638c1",
+  "actualReviewedProjectBlob": "1ee24b22b6f9995b365fe65981fa0ead54cd059c",
+  "declaredTestEntriesUnchanged": 78,
+  "testSwiftBasenamesAbsentFromProject": 7,
+  "engineTreeUnchanged": "424e157913f36db2b5cc4c6204056f56c3194dd9",
+  "otherBuildInputHashesUnchanged": {
+    "Vendor/OtzariaSearchEngine/build_xcframework.sh": "c144bfd775b393c4621b41bd2688fad16f79c315",
+    "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "0d92196706d534d91041373676e9699b023c9528",
+    "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "6bd9288a85e67132e9283ab7516435cfa442c74a"
+  },
+  "manifestSHA256": "a16ea61025c17cb86bbeb22daa598533eb2e919390a4c6f8ad9c9c9f320c8950",
+  "validatorEdits": []
+}

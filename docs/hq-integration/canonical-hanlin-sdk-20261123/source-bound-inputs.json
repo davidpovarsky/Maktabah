@@ -1,0 +1,21 @@
+{
+  "status": "SOURCE_IDENTITY_VERIFIED",
+  "codeCommit": "d1fcf8d0199623de296e9914bf9d6168f63e92d9",
+  "sdkRevision": "b66aa5e0e979f36d1a34b85e08899449b72d1dc2",
+  "applicationTrees": {
+    "Source": "52d1803016651a6cfbd2a25c775d50e110c9327a",
+    "Vendor": "6d93965ceaddeb877e9f940f3aae6852344bac99",
+    "Maktabah.xcodeproj": "2cee049b4cc0bda65875aa35b40391f1d8dd3d2d"
+  },
+  "previousInputIdentity": {
+    "application_source_sha": "d49cedb3d5c163b7a008248d94b80a2eda28e3ce",
+    "application_trees": {
+      "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078"
+    },
+    "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300"
+  },
+  "metadataUpdate": "Follow-up commit; code/source trees do not change in this metadata commit",
+  "nativeRun": "NOT_DISPATCHED"
+}
