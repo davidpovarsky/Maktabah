@@ -1,6 +1,6 @@
 {
   "status": "SOURCE_ADMISSION_PASS_NATIVE_COMPARISON_NOT_RUN",
-  "prepared_commit": "d5bc3ea7d857569e0b3693d5633e256780185478",
+  "prepared_commit": "1d0c841dabe90c05868cd99bc814a29560436499",
   "baseline_sha": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
   "candidate_source_sha": "8682786e1ce776ccb0ebe6281f0e338ff67eef09",
   "source_tree": "b88ceb3ddeb0889d7910c375a7fc8544ecd9d787",
@@ -39,5 +39,29 @@
       "UI tests"
     ],
     "original_syntax_checks_retained_from": "2d4b9b990ecb8dbb5ceecc499cc2abe15c71009d"
+  },
+  "checkout_repair": {
+    "failed_run_id": 45111657863,
+    "failed_checkout_sha": "84b37e29ead4bb036a251ab6d7b09fc9628006e6",
+    "unchanged_product_commit": "8682786e1ce776ccb0ebe6281f0e338ff67eef09",
+    "cause": "Strict source admission correctly failed before native compilation because the declared workflow input was omitted by sparse checkout.",
+    "correction": "Include .github/workflows and fetch-depth 4 for repair -> failed CI -> product -> canonical baseline.",
+    "actual_sparse_worktree": "/mnt/development/projects/worktrees/Maktabah-reader-perf-sparse-admission-20261123",
+    "four_commit_ancestry": [
+      "1d0c841dabe90c05868cd99bc814a29560436499",
+      "84b37e29ead4bb036a251ab6d7b09fc9628006e6",
+      "8682786e1ce776ccb0ebe6281f0e338ff67eef09",
+      "1969b2065469b55e38e42cbb838a469ffa6a80f7"
+    ],
+    "execution_inputs_verified": 21,
+    "all_product_harness_and_fixture_config_bytes_unchanged": true,
+    "checks_rerun": [
+      "Actual local sparse-checkout projection",
+      "Source-only prepare admission of 21 exact inputs",
+      "Four-commit baseline ancestry",
+      "Final execution-input closure",
+      "git diff --check"
+    ],
+    "compilation_runtime_ui_replayed": false
   }
 }

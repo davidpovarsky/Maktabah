@@ -1,0 +1,34 @@
+{
+  "status": "ACTUAL_APPLE_SOURCE_ADMISSION_FAILURE_NO_NATIVE_MEASUREMENTS",
+  "run_id": 45111657863,
+  "attempt": 1,
+  "source_sha": "84b37e29ead4bb036a251ab6d7b09fc9628006e6",
+  "product_sha": "8682786e1ce776ccb0ebe6281f0e338ff67eef09",
+  "artifact_id": 14790332691,
+  "artifact_bytes": 1906,
+  "artifact_sha256": "b4af92d199942f5f1740cc0d8c4619413d17ed8e30af5d56819e0331368b38c1",
+  "actual_result": {
+    "status": "FAILED",
+    "ui_executed": 0,
+    "physical_device_executed": 0,
+    "failure": {
+      "type": "FileNotFoundError",
+      "message": "[Errno 2] No such file or directory: '/Users/runner/work/Maktabah/Maktabah/.github/workflows/otzaria-reader-perf.yml'"
+    },
+    "finished_utc": "2026-11-23T04:35:28.518214+00:00"
+  },
+  "failed_command": [
+    "python3",
+    "docs/hq-integration/reader-perf-20261123/run.py",
+    "execute",
+    "--expected-sha",
+    "84b37e29ead4bb036a251ab6d7b09fc9628006e6"
+  ],
+  "failed_phase": "preflight owned driver input closure before database preparation or Swift compilation",
+  "native_source_service_executed": false,
+  "timed_reader_calls": 0,
+  "ui_executed": 0,
+  "physical_device_executed": 0,
+  "source_guard_correctly_rejected_missing_workflow": true,
+  "strict_gate_preserved": true
+}
