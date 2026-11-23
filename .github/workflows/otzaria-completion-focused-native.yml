@@ -2,7 +2,7 @@ name: Original fresh-read no-send native diagnostic
 
 on:
   push:
-    branches: [codex/otzaria-native-package-cache-20261122]
+    branches: [codex/otzaria-native-package-cache-20261122, codex/otzaria-canonical-sdk-20261123]
 
 permissions:
   contents: read
@@ -81,8 +81,21 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 Scripts/CI/hq-stage2-focused-apple.py --build-for-testing --derived-data build/DerivedData
-      - name: Verify unchanged Host48 inputs and reuse the real prior 48-test result
-        run: python3 Scripts/CI/reuse-host48.py
+      - name: Execute affected original Host48 controls on the current locked SDK
+        run: |
+          python3 - <<'PYHOST'
+          import json, pathlib, subprocess
+          revision = json.loads(pathlib.Path('HanlinSDK.lock.json').read_text())['revision']
+          result_dir = pathlib.Path('build/artifacts/continuation-host48-current')
+          subprocess.run(['python3', 'tools/hq-hanlin-host-contracts.py',
+                          '--hanlin-repo', 'Vendor/HanlinSDK', '--hanlin-sha', revision,
+                          '--artifacts-dir', str(result_dir)], check=True)
+          result = json.loads((result_dir / 'result.json').read_text())
+          assert result['status'] == 'PASS' and result['exit_code'] == 0
+          assert result['hanlin_sha'] == revision and result['inputs'] == 65
+          assert result['warnings'] == 0
+          assert result['expected_tests'] == result['passed_tests'] and len(result['passed_tests']) == 48
+          PYHOST
       - name: Execute one original fresh-read diagnostic without rebuilding or a provider key
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
