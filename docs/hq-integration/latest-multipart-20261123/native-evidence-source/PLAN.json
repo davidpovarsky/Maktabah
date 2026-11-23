@@ -1,0 +1,58 @@
+{
+  "actual_resume_requirement": "Three passed original reports plus cancel>=64MiB and install resumeFromBytes>0; original product logic untouched",
+  "actual_source_controls": {
+    "affected_original_rerun": 3,
+    "current_unique": 16,
+    "native_executed": false,
+    "new_executed": 6,
+    "original_10_receipt": "ORIGINAL_10_RESULT.json",
+    "unchanged_original_retained": 7
+  },
+  "at_utc": "2026-11-23T21:39:14.061374+00:00",
+  "base": "602659607a3a6a2586a7c4a8d7ce6114eec8cd86",
+  "explicit_owned_simulator_caller_contract": "Caller creates/deletes the exact iPad; only it is passed, script validates UUID/pair and never falls back",
+  "large_payload_on_oracle": false,
+  "merge_base": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "native_executed": false,
+  "normal_simulator_selection_behavior": "Unchanged when explicit owned UDID absent",
+  "ownership": [
+    {
+      "classification": "DOWNSTREAM_OWNED",
+      "current_upstream": "ABSENT",
+      "path": "Scripts/CI/otzaria_bootstrap_evidence.py",
+      "reason": "Isolated original native report/release identity observer"
+    },
+    {
+      "classification": "DOWNSTREAM_OWNED",
+      "current_upstream": "ABSENT",
+      "path": "Scripts/CI/test_otzaria_bootstrap_evidence.py",
+      "reason": "Controlled report admission vectors; no application mocks or native execution"
+    },
+    {
+      "classification": "DOWNSTREAM_OWNED",
+      "current_upstream": "ABSENT",
+      "path": "Scripts/run-otzaria-native-bootstrap-acceptance.sh",
+      "reason": "Retain original phases; accept a caller-created matching iPad and actual original managed database path"
+    },
+    {
+      "classification": "DOWNSTREAM_OWNED",
+      "current_upstream": "ABSENT",
+      "path": ".github/workflows/ios-build.yml",
+      "reason": "Replace direct-asset-only equality with correct manifest/archive identity admission"
+    },
+    {
+      "classification": "DOWNSTREAM_OWNED",
+      "current_upstream": "ABSENT",
+      "path": "PROJECT_BOARD.md",
+      "reason": "Preserve concrete native bootstrap evidence discovery"
+    }
+  ],
+  "peer_review_delta": "PEER_REVIEW_DELTA.json",
+  "product_source": "7d5510dd29af2b66d740de136352916868c341ed",
+  "scope": "CI report identity admission and optional exact caller-owned SDK-matched iPad seam; original native runner/cancel/install/restore phase algorithms and timeouts unchanged",
+  "standing_owner_authorization": "AGENTS.md / PROJECT_AGENT_GUIDANCE.md 2026-11-19 plus current user continue-all SentinelX/Asana instruction",
+  "upstream": "eac633bc469859573fdaaf7029d0a6ae68c21817",
+  "upstream_branch": "main",
+  "whole_product_delta": [],
+  "workflow_activated": false
+}

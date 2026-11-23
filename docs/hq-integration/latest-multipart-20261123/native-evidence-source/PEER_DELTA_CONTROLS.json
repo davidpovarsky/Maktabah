@@ -1,0 +1,60 @@
+{
+  "affected_original_controls_rerun": 3,
+  "apple_toolchain_executed": false,
+  "at_utc": "2026-11-23T21:50:05.338691+00:00",
+  "diff_whitespace_returncode": 0,
+  "errors": [],
+  "expected_ids": [
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_install_final_path_must_be_absolute_and_present",
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_restore_final_path_must_be_absolute_and_present",
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_cancel_errors_are_rejected_despite_pass_boolean",
+    "actual_bootstrap_peer_delta_controls.NativeBootstrapSimulatorSelectionControls.test_empty_explicit_owned_id_never_falls_back",
+    "actual_bootstrap_peer_delta_controls.NativeBootstrapSimulatorSelectionControls.test_valid_owned_sdk_matched_ipad_is_selected",
+    "actual_bootstrap_peer_delta_controls.NativeBootstrapSimulatorSelectionControls.test_absent_owned_id_preserves_original_selection",
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_three_original_phases_require_actual_nonzero_resume",
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_restore_count_change_is_rejected",
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_native_sqlite_failure_cannot_be_relabelled_by_pass_boolean"
+  ],
+  "failures": [],
+  "historical37_component_tests_replayed": 0,
+  "inputs_stable": true,
+  "log_sha256": "e9eab6a419c764f792d901f9663c00c74beaa3cec21886877706a0ff36cf63ae",
+  "native_execution": false,
+  "new_controls": 6,
+  "passed_ids": [
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_install_final_path_must_be_absolute_and_present",
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_restore_final_path_must_be_absolute_and_present",
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_cancel_errors_are_rejected_despite_pass_boolean",
+    "actual_bootstrap_peer_delta_controls.NativeBootstrapSimulatorSelectionControls.test_empty_explicit_owned_id_never_falls_back",
+    "actual_bootstrap_peer_delta_controls.NativeBootstrapSimulatorSelectionControls.test_valid_owned_sdk_matched_ipad_is_selected",
+    "actual_bootstrap_peer_delta_controls.NativeBootstrapSimulatorSelectionControls.test_absent_owned_id_preserves_original_selection",
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_three_original_phases_require_actual_nonzero_resume",
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_restore_count_change_is_rejected",
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_native_sqlite_failure_cannot_be_relabelled_by_pass_boolean"
+  ],
+  "python_AST_parse": "PASS",
+  "schema": "otzaria.multipart-native-evidence-peer-controls/1",
+  "selector_source": "Exact embedded Python selector extracted from actual shell script; only subprocess.check_output is replaced by explicit read-only inventory fixtures. No CI environment is fabricated.",
+  "shell_syntax_returncode": 0,
+  "simctl_executed": false,
+  "skipped": [],
+  "source_inputs": {
+    ".github/workflows/ios-build.yml": "1f82805d1c0a5c0b18257397b24dca5f66eae929ad3dce8eb26609cff1258220",
+    "Scripts/CI/otzaria_bootstrap_evidence.py": "2b50c70d7a4b5c821047677f8abec6a3ef0e000ebc98038b6b42e16381c0fc43",
+    "Scripts/CI/test_otzaria_bootstrap_evidence.py": "583b61ed0425fb1ad6c5722e1c9dc130921dc7eadb605afd688ca5997d40c98d",
+    "Scripts/run-otzaria-native-bootstrap-acceptance.sh": "62d88c5c8c6ad1e2e05a290bb2d6c398db677b3389cd28edf38766ad66ae8f10"
+  },
+  "started_ids": [
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_install_final_path_must_be_absolute_and_present",
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_restore_final_path_must_be_absolute_and_present",
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_cancel_errors_are_rejected_despite_pass_boolean",
+    "actual_bootstrap_peer_delta_controls.NativeBootstrapSimulatorSelectionControls.test_empty_explicit_owned_id_never_falls_back",
+    "actual_bootstrap_peer_delta_controls.NativeBootstrapSimulatorSelectionControls.test_valid_owned_sdk_matched_ipad_is_selected",
+    "actual_bootstrap_peer_delta_controls.NativeBootstrapSimulatorSelectionControls.test_absent_owned_id_preserves_original_selection",
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_three_original_phases_require_actual_nonzero_resume",
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_restore_count_change_is_rejected",
+    "actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_native_sqlite_failure_cannot_be_relabelled_by_pass_boolean"
+  ],
+  "status": "PASS",
+  "tests_run": 9
+}

@@ -1,0 +1,57 @@
+{
+  "actual_new_report_control_cases": 10,
+  "at_utc": "2026-11-23T21:40:02.478693+00:00",
+  "commands": [
+    {
+      "argv": [
+        "bash",
+        "-n",
+        "Scripts/run-otzaria-native-bootstrap-acceptance.sh"
+      ],
+      "label": "shell-syntax",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "Scripts/CI/test_otzaria_bootstrap_evidence.py",
+        "-v"
+      ],
+      "label": "ten-new-report-controls",
+      "log_sha256": "f44f85e8543d7c1bfb07810b8405b3fe1106c723d78122601f236dd1b49c833d",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "label": "diff-whitespace",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "returncode": 0
+    }
+  ],
+  "historical_component_cases_replayed": 0,
+  "inputs": {
+    ".github/workflows/ios-build.yml": {
+      "bytes": 48509,
+      "sha256": "1f82805d1c0a5c0b18257397b24dca5f66eae929ad3dce8eb26609cff1258220"
+    },
+    "Scripts/CI/otzaria_bootstrap_evidence.py": {
+      "bytes": 13405,
+      "sha256": "cbbcb8785f3a84af8e739038bd5ae4f1786124772e1fbe177cfe0136497a69d0"
+    },
+    "Scripts/CI/test_otzaria_bootstrap_evidence.py": {
+      "bytes": 5666,
+      "sha256": "3174c1bc88239f6c8211d4784f2cc1e189bc823a4d3118d14235a21767a0a4f0"
+    },
+    "Scripts/run-otzaria-native-bootstrap-acceptance.sh": {
+      "bytes": 7602,
+      "sha256": "7a9dee904ef2bb02c054c10142920c78698366ee9d6ce4a11a6f0a7823d528f1"
+    }
+  },
+  "native_executed": false,
+  "status": "PASS"
+}
