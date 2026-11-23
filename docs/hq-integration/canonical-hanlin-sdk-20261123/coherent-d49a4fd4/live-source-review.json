@@ -1,0 +1,61 @@
+{
+  "reviewed_base": "6aa953048453b64a0013621ce76e095770eb7e7d",
+  "candidate_source": "aa944bd2327edca035ed9a596fa169499f922138",
+  "sdk": "d49a4fd4115b8335105d2991bf74ab4d7f6aad2d",
+  "changed_paths": [
+    {
+      "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+      "before_git_object": "54296b9ca2e168eaee832f062e71286953fe0479",
+      "after_git_object": "6b2271d9bda41133dfd87a315bfcc6135e18152f"
+    },
+    {
+      "path": "Maktabah-iOSUITests/OriginalEditorAnnotationAcceptanceTests.swift",
+      "before_git_object": "fbe15b062c29b8e337763a7c0c9f3d642ff8de04",
+      "after_git_object": "6e1b283057de617c7e5dc8057ba8c312737bd31f"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "before_git_object": "3261731b3c225ec783b7f7542b53726c71f638c1",
+      "after_git_object": "1ee24b22b6f9995b365fe65981fa0ead54cd059c"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "before_git_object": "99a5b952aab40cb3d5ffe03153c9cf8c07ed341b",
+      "after_git_object": "ed3eccb1a6722c35ceae346e3329804fec1d3182"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "before_git_object": "e42c29f7f39a8dc3825c14e46a9947096d14b172",
+      "after_git_object": "d50041264cb539ff089c5842353d844f76848f54"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift",
+      "before_git_object": "c2fe6458076bd5b8314504c155a6371e443b65f8",
+      "after_git_object": "b070b807c32c47a5dbe886c71ae11ccbaef514a9"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift",
+      "before_git_object": "68c77c2fcc142e6ad46b581c9bc9f76130aab072",
+      "after_git_object": "831c8ef4ea47e7a5f09cb660647308a702d1e611"
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "before_git_object": "f09aeeb0adb0f3dd30aaa66bdc092dd91076da14",
+      "after_git_object": "f8ec43df71e42dc3467e36bbb86430b4ec2cec1e"
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+      "before_git_object": "c6b1234a9af2b4f8e187eee84f9d3a589ba44394",
+      "after_git_object": "584ab7c2840b0001b5d48b632b4bc0174a2c4e61"
+    },
+    {
+      "path": "Vendor/HanlinSDK",
+      "before_git_object": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+      "after_git_object": "d49a4fd4115b8335105d2991bf74ab4d7f6aad2d"
+    }
+  ],
+  "live_selector_body_and_trailing_source_byte_identical": true,
+  "live_selector_suffix_sha256": "bf8d254820c7fb7f3e8f4a4977d20faf4c470fdeb32adb607b9de24a1dd25cf6",
+  "workflow_git_blob": "8c7c5e589421cf9199e79f1b2d38d4eb752c1637",
+  "execution_pending": true
+}
