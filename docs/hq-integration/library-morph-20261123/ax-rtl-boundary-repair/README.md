@@ -1,0 +1,9 @@
+# Library morph accessibility and physical-coordinate repair
+
+Actual run 45105081309, attempt 2, source cba554ded79144d48642b12dba926a30a8eac451 executed all seven selected native cases and failed all seven. Every failure's authentic AX tree contains the original Command palette and focused native TextField. The decorative outer shell's identifier propagated over the palette's original reader-library-command-palette identifier, so the unchanged original container lookup failed. The open calibration screenshot independently shows the actual original palette and keyboard. It was not an absent palette UI.
+
+The retained Hebrew compact screenshot and hierarchy reveal a second defect: the genuine native launcher is x=186.5,width=240 in a1210-point window, while the visible compact shell is x=783.5..1023.5, exactly1210−186.5−240. The prior physical center placement still inherited RTL layout mirroring.
+
+The one-file repair removes the decorative shell identifier, keeps the original native toolbar Button as the compact semantic target, and hides the entire decorative subtree from accessibility while collapsed. It sets the positioning container to LTR physical coordinates and restores the scene's incoming layout direction inside the original shell before its position modifier. The original palette/query/action/focus/keyboard/gesture expressions, anchor/frame calculations, native launcher and all seven original tests remain unchanged.
+
+Root and the independent SDK reviewer read the exact diff against the actual source and captures. Exact inverse and Swift syntax parsing pass. These are source controls; actual Apple AX, geometry, focus, result, outside-dismissal, keyboard and resize behavior remain unqualified until the same seven original cases execute. The old failure and administrative attempt1 are retained separately. Screenshots before opening or after teardown are labelled in the capture receipt and are not presented as failed-instant pixels.

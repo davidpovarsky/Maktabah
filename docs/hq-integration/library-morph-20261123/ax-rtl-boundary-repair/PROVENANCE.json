@@ -1,0 +1,27 @@
+{
+  "base": "cba554ded79144d48642b12dba926a30a8eac451",
+  "changed_product_file": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+  "source_sha256": "ec9b6510ff19fdebf3023d07029e7829b5c6639878132fa607492983868cd40c",
+  "diff_sha256": "238b41eb34fbc2b8f416f9369ecf994bf6af96326cb89cc0c09e0e2f7aa06bd0",
+  "native_source_of_failure": "cba554ded79144d48642b12dba926a30a8eac451",
+  "native_run": 45105081309,
+  "attempt": 2,
+  "native_counts": {
+    "pass": 0,
+    "fail": 7,
+    "skip": 0,
+    "not_run": 0
+  },
+  "exact_inverse": "PASS",
+  "swift_syntax_parse": "PASS_NOT_APPLE_TYPECHECK",
+  "native_tests_changed": false,
+  "vendor_project_unchanged": true,
+  "frame_calculations_animation_focus_gesture_query_actions_native_launcher_unchanged": true,
+  "review": {
+    "root": "Accepted complete exact diff for bounded preparation after actual screenshots and AX review",
+    "original_sdk": "Independent exact source and full shell review accepted physical-coordinate/content-direction and separate semantic ownership boundary; no runtime claim"
+  },
+  "acceptance_at_new_source": "NOT_RUN",
+  "activation": "Awaiting final source-pin review",
+  "utc": "2026-11-23T06:40:35.125455+00:00"
+}

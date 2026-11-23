@@ -194,6 +194,7 @@ struct ReaderLibrarySearchMorph: View {
     let manager: iOSNavigationManager
     @Bindable var sidebar: ReaderSidebarPageCoordinator
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.layoutDirection) private var contentLayoutDirection
     @State private var motionOffset: CGSize = .zero
     @State private var motionStretch = CGSize(width: 1, height: 1)
 
@@ -221,15 +222,17 @@ struct ReaderLibrarySearchMorph: View {
                     let expandedHeight = min(CGFloat(560), max(0, geometry.size.height - expandedY - 12))
 
                     searchShell(compact: compact, expandedWidth: expandedWidth, expandedHeight: expandedHeight)
+                        // Only the positioning container uses physical left-origin
+                        // coordinates. Original content keeps its scene direction.
+                        .environment(\.layoutDirection, contentLayoutDirection)
                         .scaleEffect(
                             x: reduceMotion || !isExpanded ? 1 : motionStretch.width,
                             y: reduceMotion || !isExpanded ? 1 : motionStretch.height,
                             anchor: .top)
                         .scaleEffect(!reduceMotion && !isExpanded && sidebar.librarySearchIsPressed ? 1.01 : 1)
                         // UIWindow coordinates have a physical left origin.
-                        // Position the center directly; a topLeading offset
-                        // would add a mirrored layout origin in Hebrew RTL.
-                        // The children retain their inherited layout direction.
+                        // The enclosing layout is explicitly LTR so SwiftUI
+                        // cannot mirror this measured physical window center.
                         .position(
                             x: (isExpanded ? expandedX + expandedWidth / 2 : compact.midX)
                                 + (reduceMotion || !isExpanded ? 0 : motionOffset.width),
@@ -245,6 +248,7 @@ struct ReaderLibrarySearchMorph: View {
                 .accessibilityHidden(true)
             }
         }
+        .environment(\.layoutDirection, .leftToRight)
         // Include the native toolbar in this overlay's genuine hit-test bounds.
         // Keyboard avoidance remains active; only container top safe area expands.
         .ignoresSafeArea(.container, edges: .top)
@@ -293,7 +297,10 @@ struct ReaderLibrarySearchMorph: View {
                alignment: .topLeading)
         .modifier(SafariGlass(radius: radius))
         .clipShape(RoundedRectangle(cornerRadius: radius, style: .continuous))
-        .accessibilityIdentifier("reader-library-search-morph-shell")
+        // This visual shell has no separate semantic identity. Propagating an
+        // outer identifier overwrites the original CommandPalette container.
+        // While compact, the genuine native toolbar Button owns accessibility.
+        .accessibilityHidden(!isExpanded)
     }
 
     private func compactContents(width: CGFloat) -> some View {
