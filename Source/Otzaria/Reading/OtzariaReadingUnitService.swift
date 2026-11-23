@@ -488,12 +488,15 @@ final class OtzariaReadingUnitService {
         guard !lines.isEmpty else { return nil }
         let html = lines.map(\.html).joined(separator: "\n")
         var plainSegments: [String] = []
+        plainSegments.reserveCapacity(lines.count)
         var lineAnchors: [OtzariaLineAnchor] = []
+        lineAnchors.reserveCapacity(lines.count)
         var currentOffset = 0
 
         for line in lines {
             try Task.checkCancellation()
             let plain = line.html.otsariaPlainText
+            let plainUTF16Length = plain.utf16.count
             plainSegments.append(plain)
             lineAnchors.append(
                 OtzariaLineAnchor(
@@ -502,10 +505,10 @@ final class OtzariaReadingUnitService {
                     lineIndex: line.lineIndex,
                     heRef: line.heRef,
                     text: plain,
-                    range: NSRange(location: currentOffset, length: plain.utf16.count)
+                    range: NSRange(location: currentOffset, length: plainUTF16Length)
                 )
             )
-            currentOffset += plain.utf16.count + 1
+            currentOffset += plainUTF16Length + 1
         }
 
         let plainText = plainSegments.joined(separator: "\n")

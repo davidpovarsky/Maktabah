@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "owner": "/root/original_rpc",
+  "branch": "codex/otzaria-reader-perf-20261123",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-reader-perf-20261123",
+  "baseline_sha": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "upstream": {
+    "repository": "bismillah-100/Maktabah",
+    "main": "6f71e4578dabe0573bf3eebd02441036661c2be2",
+    "observed_date": "2026-11-23",
+    "recursive_tree_entries": 710,
+    "truncated": false,
+    "source_otzaria_present": false
+  },
+  "product_path": "Source/Otzaria/Reading/OtzariaReadingUnitService.swift",
+  "ownership": "DOWNSTREAM_OWNED",
+  "origin_commit": "a6dc4549dfca7400e42281aaa3e9e64ec6a742f3",
+  "before_blob": "202f5d48a9f5f5dbce68657f56a827e803bbf3aa",
+  "before_sha256": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+  "allowed_product_change": [
+    "Reserve plainSegments capacity for actual source row count",
+    "Reserve lineAnchors capacity for actual source row count",
+    "Compute plain UTF16 count once and reuse for identical range length/offset"
+  ],
+  "unchanged": [
+    "All full source text and anchors",
+    "Normalization and separators",
+    "SQL and database schema",
+    "Task cancellation and generation checks",
+    "Cache budgets",
+    "Original reader/view model/renderer/UI",
+    "Vendor and Xcode project and UI tests"
+  ],
+  "authorization": "Current owner autonomous completion instruction; root bounded PERF03 approval and fixed Apple fixture/workflow scope on 2026-11-23.",
+  "apple_toolkit": {
+    "repository": "davidpovarsky/apple-devtools",
+    "sha": "76652c014888cc49aa76fb1c3354f9322e351aa0",
+    "consulted": [
+      "README.md",
+      ".agents/skills/apple-devtools/SKILL.md",
+      "src/apple_devtools.py"
+    ],
+    "limit": "Installed Oracle toolkit absent; toolkit single-file typecheck does not support this multi-file native link. Reuse repository's existing Xcode selector and original source-service compiler boundary in one owned wrapper."
+  },
+  "evidence_boundary": "Source-service comparison, no app build, XCTest or physical-device acceptance."
+}
