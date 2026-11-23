@@ -94,7 +94,7 @@ enum OtzariaBootstrapAdapter {
             release: prepared.release,
             finalURL: finalURL,
             resumeFromBytes: preparation.resumeFromBytes,
-            downloadedBytes: prepared.release.asset.compressedSize,
+            downloadedBytes: prepared.release.compressedSize,
             actualSHA256: preparation.actualSHA256,
             downloadElapsedSeconds: preparation.downloadElapsedSeconds,
             verificationElapsedSeconds: preparation.verificationElapsedSeconds,

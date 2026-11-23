@@ -1,0 +1,33 @@
+{
+  "id": 455390662,
+  "tag_name": "v40-20261123094345",
+  "assets": [
+    {
+      "browser_download_url": "https://github.com/Otzaria/SeforimLibrary/releases/download/v40-20261123094345/seforim-schema7.db.zst.manifest.json",
+      "content_type": "application/json",
+      "digest": "sha256:ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3",
+      "id": 782942035,
+      "name": "seforim-schema7.db.zst.manifest.json",
+      "size": 589,
+      "state": "uploaded"
+    },
+    {
+      "browser_download_url": "https://github.com/Otzaria/SeforimLibrary/releases/download/v40-20261123094345/seforim-schema7.db.zst.part-000",
+      "content_type": "application/octet-stream",
+      "digest": "sha256:91a9985084e5217b661664c3b53c357aaf354498752bf9f7c55d93581dcc9c33",
+      "id": 782942221,
+      "name": "seforim-schema7.db.zst.part-000",
+      "size": 1992294400,
+      "state": "uploaded"
+    },
+    {
+      "browser_download_url": "https://github.com/Otzaria/SeforimLibrary/releases/download/v40-20261123094345/seforim-schema7.db.zst.part-001",
+      "content_type": "application/octet-stream",
+      "digest": "sha256:a5469c776bae891d49dfcf33986474416b56ee739c4b0fba37ef7eb9ec53af1a",
+      "id": 782993890,
+      "name": "seforim-schema7.db.zst.part-001",
+      "size": 137608236,
+      "state": "uploaded"
+    }
+  ]
+}

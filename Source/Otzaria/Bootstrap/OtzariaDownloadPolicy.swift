@@ -40,8 +40,8 @@ enum OtzariaDownloadPolicy {
         guard let metadata,
               metadata.matches(release),
               localSize > 0,
-              localSize <= release.asset.compressedSize else { return 0 }
-        if localSize == release.asset.compressedSize { return localSize }
+              localSize <= release.compressedSize else { return 0 }
+        if localSize == release.compressedSize { return localSize }
         return metadata.resumeValidator == nil ? 0 : localSize
     }
 

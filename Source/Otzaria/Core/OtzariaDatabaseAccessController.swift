@@ -284,8 +284,8 @@ final class OtzariaDatabaseAccessController: @unchecked Sendable {
             let actualSize = (attributes[.size] as? NSNumber)?.int64Value ?? -1
             let active = OtzariaDataProfileRegistry.activeIdentity
             let profileAsset = OtzariaDataProfileRegistry.activeProfile?.databaseAssetName
-            let assetMatches = profileAsset.map { manifest.assetName == $0 }
-                ?? OtzariaLibraryRelease.isProductionDatabaseAssetName(manifest.assetName)
+            let assetMatches = profileAsset.map { manifest.multipart == nil && manifest.assetName == $0 }
+                ?? manifest.hasValidProductionArchiveIdentity
             guard manifest.repository == OtzariaLibraryRelease.repository,
                   assetMatches,
                   manifest.effectiveProfileID == active.id,

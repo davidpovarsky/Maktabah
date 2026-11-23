@@ -32,6 +32,9 @@ enum OtzariaNativeBootstrapAcceptanceRunner {
         var releaseTag: String?
         var assetID: Int64?
         var assetName: String?
+        var archiveName: String?
+        var assetBytes: Int64?
+        var assetDigest: String?
         var expectedCompressedBytes: Int64?
         var downloadedBytes: Int64 = 0
         var resumeFromBytes: Int64 = 0
@@ -132,10 +135,8 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
             var persistedBytes: Int64 = 0
             var reachedThreshold = false
             while Date() < deadline {
-                persistedBytes = OtzariaDatabaseDownloader.fileSize(
-                    at: storage.downloadsRoot.appendingPathComponent(
-                        OtzariaDatabaseDownloader.partFileName
-                    )
+                persistedBytes = OtzariaDatabaseDownloader.observedDownloadedBytes(
+                    workspaceURL: storage.downloadsRoot
                 )
                 if persistedBytes >= threshold {
                     OtzariaBootstrapAdapter.cancelManagedDatabaseDownload()
@@ -166,9 +167,6 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
                 throw cancellation
             }
 
-            let partURL = storage.downloadsRoot.appendingPathComponent(
-                OtzariaDatabaseDownloader.partFileName
-            )
             let sidecarURL = storage.downloadsRoot.appendingPathComponent(
                 OtzariaDatabaseDownloader.sidecarFileName
             )
@@ -177,12 +175,17 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
             report.releaseTag = metadata?.releaseTag
             report.assetID = metadata?.assetID
             report.assetName = metadata?.assetName
-            report.expectedCompressedBytes = metadata?.expectedCompressedSize
-            report.expectedSHA256 = metadata?.digest?.replacingOccurrences(
+            report.archiveName = metadata?.archiveName
+            report.assetBytes = metadata?.expectedCompressedSize
+            report.assetDigest = metadata?.digest
+            report.expectedCompressedBytes = metadata?.archiveCompressedSize
+            report.expectedSHA256 = metadata?.archiveDigest?.replacingOccurrences(
                 of: "sha256:",
                 with: ""
             )
-            report.downloadedBytes = OtzariaDatabaseDownloader.fileSize(at: partURL)
+            report.downloadedBytes = OtzariaDatabaseDownloader.observedDownloadedBytes(
+                workspaceURL: storage.downloadsRoot
+            )
             report.resumeFromBytes = report.downloadedBytes
             report.finalExists = FileManager.default.fileExists(
                 atPath: storage.finalDatabaseURL.path
@@ -225,7 +228,10 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
             report.releaseTag = result.release.tag
             report.assetID = result.release.asset.id
             report.assetName = result.release.asset.name
-            report.expectedCompressedBytes = result.release.asset.compressedSize
+            report.archiveName = result.release.archiveName
+            report.assetBytes = result.release.asset.compressedSize
+            report.assetDigest = result.release.asset.digest
+            report.expectedCompressedBytes = result.release.compressedSize
             report.downloadedBytes = result.downloadedBytes
             report.resumeFromBytes = result.resumeFromBytes
             report.expectedSHA256 = result.release.expectedSHA256

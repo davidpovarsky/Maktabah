@@ -1,0 +1,26 @@
+{
+  "at_utc": "2026-11-23T20:18:39.703399+00:00",
+  "stage": "SOURCE_DRAFT_WITH_PEER_FINDINGS_ADDRESSED_NATIVE_NOT_RUN",
+  "base": "8136f2b50ea0acacc98e52bd172c73506dfa7746",
+  "inputs": {
+    "Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift": "fe08c44f229e7df9b58a803d011989fe7c326da3a16ea423e13c534ebc72d50f",
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift": "02953786c2b5327b4cc2b83307c54ff5acf4eae7beb4e8d974c5773c0dc646b1",
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift": "bce1f3d267684384b1235a3d23b05cdcddad2ac9ea0029d55f536f9063192d9f",
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloader.swift": "6882067545a02dea765414381f2aeeb4101fee930d4237f58e44554d01c0c69a",
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift": "192dc8cb8fa041a6f3fd4760d8d2daf00cd72e05209d25ef5c6b5790430d3624",
+    "Source/Otzaria/Bootstrap/OtzariaDownloadPolicy.swift": "d51c4bfbd4e5ba85c0bb645cafe4eeb17cf3147cdc2dee35e39da776751e3b72",
+    "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift": "afb748bb57d9edcbd804d329f25c7b0b2263dd0a178b59979e10fb2c43ca2f45",
+    "Source/Otzaria/Bootstrap/OtzariaNativeBootstrapAcceptanceRunner.swift": "636beef525e91ee53d0cfdbd6ca11bf768bcbb5ed2eee2284c473f86d110a929",
+    "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift": "d08aa05deb507b03c870d98f2b2e04197f32cf1c83920026b8336587fc09406f"
+  },
+  "peer_findings": [
+    "bounded actual manifest stream plus expectedContentLength rejection and task cancellation",
+    "preserve real remote asset ID/name/size/digest; archive facts separate"
+  ],
+  "additional_native_observation": "Existing cancel threshold/deadline unchanged; count actual owned per-part bytes and report explicit archive identity separately.",
+  "apple_api_docs": [
+    "https://developer.apple.com/documentation/foundation/urlsession/asyncbytes.md",
+    "https://developer.apple.com/documentation/foundation/urlsession/asyncbytes/task.md"
+  ],
+  "native_app_or_archive_acceptance": false
+}

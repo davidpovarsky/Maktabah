@@ -71,15 +71,24 @@ struct OtzariaDatabaseStorage: Sendable {
     }
 
     func preflightDownload(release: OtzariaLibraryRelease, existingPart: Int64) throws {
-        let remainingDownload = max(0, release.asset.compressedSize - existingPart)
-        let outputEstimate = multipliedWithoutOverflow(
-            release.asset.compressedSize,
-            by: Self.unknownOutputMultiplier
-        )
         try requireAvailableCapacity(
-            remainingDownload + outputEstimate + Self.safetyReserve,
+            Self.requiredDownloadCapacity(release: release, existingPart: existingPart),
             at: downloadsRoot
         )
+    }
+
+    static func requiredDownloadCapacity(release: OtzariaLibraryRelease, existingPart: Int64) -> Int64 {
+        let archiveBytes = max(0, release.compressedSize)
+        let remaining = archiveBytes - min(max(0, existingPart), archiveBytes)
+        let output = archiveBytes.multipliedReportingOverflow(by: unknownOutputMultiplier)
+        guard !output.overflow else { return Int64.max }
+        // Parts remain available for resume until the assembled archive is verified
+        // and installed, so allow both copies at the peak of assembly.
+        let assembly = release.multipart == nil ? 0 : archiveBytes
+        return [remaining, output.partialValue, assembly, safetyReserve].reduce(0) { total, bytes in
+            let sum = total.addingReportingOverflow(bytes)
+            return sum.overflow ? Int64.max : sum.partialValue
+        }
     }
 
     func preflightExtraction(compressedSize: Int64, expectedOutput: Int64?) throws {
@@ -172,7 +181,7 @@ struct OtzariaDatabaseInstaller: Sendable {
 
         let expectedOutput = try extractor.frameContentSize(at: archiveURL)
         try storage.preflightExtraction(
-            compressedSize: release.asset.compressedSize,
+            compressedSize: release.compressedSize,
             expectedOutput: expectedOutput
         )
 
