@@ -1,0 +1,22 @@
+{
+  "status": "INTEGRATED_SOURCE_SEALED_NO_NATIVE_ACCEPTANCE",
+  "commit": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+  "parent": "79aff04e521e2f983ead9302213de3369638c03c",
+  "tree": "5216a13fc1f78d06e526062a42f083b7addb9cc4",
+  "application_trees": {
+    "Source": "1e2df8c542c72ff4a78244b62f4daf6176e01fc4",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "ae6251c95ee382a0a8bcf6124d32375bf36b8cbe"
+  },
+  "faithful_sha256": "7c1e4e376b5fdf965b4a799f922851e00d88c572f3102d0ad4d5d0db8bd82156",
+  "changed_file_count": 41,
+  "group_docs_imported": 9,
+  "branch": "codex/otzaria-final-composition-20261123",
+  "clean": true,
+  "workflow_activated": false,
+  "source_bindings_unfinalized": true,
+  "manifest_sha256": "e011e0b10c1f7e090ff8d3a8023f900097c61617bfafb27e6e7a93f6fae2877e",
+  "published": true,
+  "remote_verified_sha": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c"
+}

@@ -1,0 +1,141 @@
+{
+  "packet": {
+    "status": "LOCAL_SOURCE_PREPARATION_ONLY",
+    "source_sha": "8e9dac2d9585dd482e9ab784a65c5517b6847648",
+    "tree": "86741f81dd14f78066a2bd827e9ed11e5e5091c1",
+    "parent": "a0b0e12cee7260829f4cafe41fc9c4c0dfad6c44",
+    "branch": "codex/otzaria-original-editor-stageb-20261123",
+    "expected_remote": "a0b0e12cee7260829f4cafe41fc9c4c0dfad6c44",
+    "workflow_changed": false,
+    "active_source_paths": [
+      "Scripts/CI/hq-original-editor-distribution.py"
+    ],
+    "all_changed_paths": [
+      "Scripts/CI/hq-original-editor-distribution.py",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/DIAGNOSIS.md",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/INTAKE.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/PACKET_INDEX.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/SOURCE_PROOF.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/ZIP_ADMISSION.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/artifacts.command.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/artifacts.stderr",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/artifacts.stdout",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/download.command.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/download.stderr",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/job-137543753781.log",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/job-log.command.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/job-log.stderr",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/jobs.command.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/jobs.stderr",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/jobs.stdout",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/original-editor-stageb-evidence.zip",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/original-producer/framework-architecture.command.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/original-producer/framework-architecture.stderr.log",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/original-producer/framework-architecture.stdout.log",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/original-producer/framework-header-0.command.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/original-producer/framework-header-0.stderr.log",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/original-producer/framework-header-0.stdout.log",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/selected-original-members/hq-stage2/original-editor/sdk-architecture-0.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/selected-original-members/hq-stage2/original-editor/sdk-header-0.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/selected-original-members/hq-stage2/original-editor/sdk-signature-0.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/selected-original-members/hq-stage2/result.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/selected-original-members/original-editor-native-evidence/result.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/selected-original-members/original-editor-sdk-metadata/restoration.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/watch-1.final-run.stderr.log",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/watch-1.final-run.stdout.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45130214448/watch-1.result.json",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/AFTER.py",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/BEFORE.py",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/FIXTURE_INPUTS.json",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/PACKET_INDEX.json",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/README.md",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/RESULT.json",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/SOURCE.diff",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/SOURCE_CORRESPONDENCE.json",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/controls.command.json",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/controls.py",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/controls.stderr.log",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/controls.stdout.log",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/fixtures/framework-architecture.command.json",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/fixtures/framework-architecture.stderr.log",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/fixtures/framework-architecture.stdout.log",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/fixtures/framework-header-0.command.json",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/fixtures/framework-header-0.stderr.log",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/fixtures/framework-header-0.stdout.log",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/fixtures/framework-header-3.command.json",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/fixtures/framework-header-3.stderr.log",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/fixtures/framework-header-3.stdout.log",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/fixtures/sdk-architecture-0.json",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/fixtures/sdk-header-0.json",
+      "docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/fixtures/sdk-signature-0.json"
+    ],
+    "source_sha256": "84e6110e7f3b1e472c18b3913440703e221bffde2bfaaca782765697e2940e49",
+    "control_result_sha256": "c2d5301ac3bc312f089957616e9cf984e428da73ae9dc84cc6e9b55bd8eaae80",
+    "repair_index_sha256": "56f37df0c73ff8f24b4415e6de22b5555d011d20c597802d1f0dd174161aa36c",
+    "repair_indexed_files": 23,
+    "failed_run_index_sha256": "95711b90b3c8bcc8edd53860b28881f0288fe1d5a29ab7a5c1adf76f1886500c",
+    "tests": {
+      "cases": 6,
+      "assertions": 24,
+      "runtime": 0
+    },
+    "published": false,
+    "no_dispatch": true
+  },
+  "index_verified": {
+    "run-45130214448": 31,
+    "slice-admission-repair": 23
+  },
+  "full_inverse_verified": true,
+  "unchanged_functions": 21,
+  "controls": {
+    "status": "PASS",
+    "required_cases": 6,
+    "actual_cases": 6,
+    "passed": 6,
+    "assertions": 24,
+    "cases": [
+      {
+        "name": "actual_qualified_universal_sdk",
+        "status": "PASS",
+        "assertions": 3
+      },
+      {
+        "name": "actual_qualified_thin_original_framework",
+        "status": "PASS",
+        "assertions": 2
+      },
+      {
+        "name": "missing_or_empty_required_arm64",
+        "status": "PASS",
+        "assertions": 3
+      },
+      {
+        "name": "duplicate_or_unsupported_architectures",
+        "status": "PASS",
+        "assertions": 4
+      },
+      {
+        "name": "exact_cpu_column_correspondence",
+        "status": "PASS",
+        "assertions": 6
+      },
+      {
+        "name": "malformed_or_mixed_dylib_headers",
+        "status": "PASS",
+        "assertions": 6
+      }
+    ],
+    "source_sha256": "84e6110e7f3b1e472c18b3913440703e221bffde2bfaaca782765697e2940e49",
+    "exact_extracted_functions": {
+      "require": "8b14f7d5eb0d9a9cafc6d1aaa990a73bad9c261d2c3c97d6713ed7fa789c829b",
+      "require_simulator_dynamic_architectures": "8c6a509659811ae56cea8c9e6ae045aaa7ccc7772f8afe89184ad2fa81d17dc2"
+    },
+    "old_predicate_rejects_actual_qualified_universal_output": true,
+    "apple_commands_executed": 0,
+    "native_runtime_tests_executed": 0,
+    "scope": "six focused source controls over authentic retained captures and explicit adverse inputs"
+  },
+  "source_accepted": true,
+  "native_executed": 0
+}
