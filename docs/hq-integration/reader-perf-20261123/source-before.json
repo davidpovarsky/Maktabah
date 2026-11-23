@@ -1,0 +1,142 @@
+{
+  "status": "EXACT_SOURCE_ADMISSION_PASS_NOT_EXECUTION",
+  "checkout_sha": "d5bc3ea7d857569e0b3693d5633e256780185478",
+  "baseline_sha": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "candidate_source_sha": "8682786e1ce776ccb0ebe6281f0e338ff67eef09",
+  "source_tree": "b88ceb3ddeb0889d7910c375a7fc8544ecd9d787",
+  "inputs": [
+    {
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "bytes": 14916,
+      "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+      "git_blob": "a7d7180ef1b7ba77a40a98d32592365206c1e41f"
+    },
+    {
+      "path": "Source/Core/Database/ZstdShim.swift",
+      "bytes": 3213,
+      "sha256": "bfc512481130211dc1865f2334204f730512058c90e6f8706869c5965142c999",
+      "git_blob": "7020b603661ce81cb7c91616741b395d2aec60da"
+    },
+    {
+      "path": "Source/Otzaria/Core/OtzariaSQLiteError.swift",
+      "bytes": 1363,
+      "sha256": "4efcd109c42e95d78710ae031cc2ee750186691c596660542f81752807232dad",
+      "git_blob": "d7c8fd55da61a251eb175434778a6d4ff6e403ff"
+    },
+    {
+      "path": "Source/Otzaria/Core/OtzariaSQLiteStatement.swift",
+      "bytes": 2487,
+      "sha256": "c7f9baa8540c0940e93cafc3e487b0427ea9740bd738d350c4e1590e0b455307",
+      "git_blob": "fdf96bf2363cd3f5c3bdf2dbb8ec773f8ad52641"
+    },
+    {
+      "path": "Source/Otzaria/Core/String+OtzariaText.swift",
+      "bytes": 5186,
+      "sha256": "e62731fccc95328cb6284809e6e4b464ab83e064ed2117d7da1bf8c0ff9a826a",
+      "git_blob": "a51c076d0da77339a27b0a61e1be8f4ee45cb0e6"
+    },
+    {
+      "path": "Source/Otzaria/Data/OtzariaSchema.swift",
+      "bytes": 8773,
+      "sha256": "feabd62c4a170d5762bcc6bef09b27d1e736f122aa385dd5c2a148acb24829ad",
+      "git_blob": "67bf5064caff54ed5125c0328dee41f8ed1ac755"
+    },
+    {
+      "path": "Source/Otzaria/Data/OtzariaBookSchemaCompatibility.swift",
+      "bytes": 10284,
+      "sha256": "42c0f319f3483278c201d1f6a63878c0e94fd63bf30a4a1a6bd69a743aec3fc1",
+      "git_blob": "440b95a9b609efac3bc0ef5bdac63821783d4393"
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReadingUnit.swift",
+      "bytes": 3536,
+      "sha256": "a7468b783f530958641918c23e3d654a31938446f9de0bdbb7211dfc5ab39cfb",
+      "git_blob": "c863f39768256dc2f288cf3c34fd0f140bcf92fb"
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift",
+      "bytes": 2146,
+      "sha256": "9c01b971ef6093fc7f9a2ea9680353aa9ad9f6b3bb87f7eefd4ac9a6780a4b02",
+      "git_blob": "97d71f716ae34bf15e224651f9f16aca009bdda1"
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaLineAnchor.swift",
+      "bytes": 199,
+      "sha256": "46c7282330eba729c77ddfbf732582bdcbfef2fcc7473b455cc5061bdd3931a6",
+      "git_blob": "2c6c645e783c3a0c762967fa039f98c9fb020558"
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReadingUnitService.swift",
+      "bytes": 31783,
+      "sha256": "0c7075b04297304e743a72583ee2a0812ff6af77e5152c015030ccdffd41e3ca",
+      "git_blob": "fe539d7f08a451d0c754cbd25f6fb5a73499e920"
+    },
+    {
+      "path": "Tests/HQ/sqlite/UnusedZstdBoundary.swift",
+      "bytes": 443,
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+      "git_blob": "af39c8673dcda19785f6f1259474c39941f5a5a0"
+    },
+    {
+      "path": "Scripts/CI/hq-v32-prebuilt-native.py",
+      "bytes": 29386,
+      "sha256": "885706e8cc843d2b6d5ba04b0752acf8e1c23c6baae5c1e9bcccc0518d0736be",
+      "git_blob": "2bfc2c704130891d1c81535a28417c25e4500187"
+    },
+    {
+      "path": "Scripts/CI/select-runtime27-toolchain.py",
+      "bytes": 10936,
+      "sha256": "3e6ed97188d50f4f344dbd7f77f142a05f0a0bde1b720a0745df098f49bfcf2f",
+      "git_blob": "463e204cd327254b6d1670223d6169beb376a303"
+    },
+    {
+      "path": "Scripts/DataProfiles/miniTest10.seed.json",
+      "bytes": 713,
+      "sha256": "1a2ec23062eeaa877af9a43af8ffcdd7a6260232e09757abfecb54b2bdac7f17",
+      "git_blob": "f24ac133ffe2bed5fa89c9cf8a5622a267eaaa05"
+    },
+    {
+      "path": "tools/hq-full-source-reader.py",
+      "bytes": 13871,
+      "sha256": "c24c71051a9a85f011f828197d16f84e52ee2e18394e4aa7d367b8e1f217dad0",
+      "git_blob": "1351fbbc8aeea7af339dfe8d6d48af79e5a1a09b"
+    },
+    {
+      "path": "docs/hq-integration/full-v32-reader-20261119/paired-diagnostic-ab/PairedReaderTiming.swift",
+      "bytes": 3783,
+      "sha256": "c8ff9eab851fb07df54fa529e5c19adc27eac25df397882e58036d78a312ec7a",
+      "git_blob": "c3aefc375c9713399936b3114b6087aaf92c7e0c"
+    },
+    {
+      "path": "docs/hq-integration/reader-perf-20261123/run.py",
+      "bytes": 18816,
+      "sha256": "4eac04f82e9f892259f092afe3b3b2fbd633d65e0ba302be76cc9aec1a85261d",
+      "git_blob": "3047b1d56514a8d8737ec51e0287449984134126"
+    },
+    {
+      "path": "docs/hq-integration/reader-perf-20261123/inputs.json",
+      "bytes": 3972,
+      "sha256": "c91c0a74de0b153b40a806eaa720fcd5545dcf0a4af3f34b36073e371b30ea07",
+      "git_blob": "95824961a399c831cffb83ebd0e63b5badeb3dc6"
+    },
+    {
+      "path": "docs/hq-integration/reader-perf-20261123/PairedReaderTiming.swift",
+      "bytes": 12610,
+      "sha256": "a245cd2a9e71f96d56c14dfdedd81e82993713c9c5ff286d2d1bfd02bb47bcf2",
+      "git_blob": "3cc1e7029010c8d1afc80ebb6da4fc6d2b8a21dc"
+    },
+    {
+      "path": ".github/workflows/otzaria-reader-perf.yml",
+      "bytes": 1978,
+      "sha256": "8a88dcce824ccf94197eed167d00cb404f4225d594c9731eed12440533641b5e",
+      "git_blob": "422062ee22b6192ffb57315e4e177f729d472e65"
+    }
+  ],
+  "baseline_service_sha256": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+  "candidate_service_sha256": "0c7075b04297304e743a72583ee2a0812ff6af77e5152c015030ccdffd41e3ca",
+  "namespaced_baseline_sha256": "ce66cefd37e792595d706127ad55c025e8f160a48420591f107381b127873cc6",
+  "baseline_transformation_reversed_exactly": true,
+  "native_source_service_executed": false,
+  "ui_executed": 0,
+  "physical_device_executed": 0
+}

@@ -1,0 +1,43 @@
+{
+  "status": "SOURCE_ADMISSION_PASS_NATIVE_COMPARISON_NOT_RUN",
+  "prepared_commit": "d5bc3ea7d857569e0b3693d5633e256780185478",
+  "baseline_sha": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "candidate_source_sha": "8682786e1ce776ccb0ebe6281f0e338ff67eef09",
+  "source_tree": "b88ceb3ddeb0889d7910c375a7fc8544ecd9d787",
+  "bound_execution_inputs": 21,
+  "source_control_checks": [
+    "Exact product Source tree; Vendor/project/UI-test trees unchanged",
+    "12 original compiled source/boundary files; other original dependency bytes equal canonical baseline",
+    "Exact approved UTF16/capacity transform and byte-reversible baseline namespace",
+    "All 21 executed/driver/provenance input bytes match the immutable prepared Git checkout",
+    "Actual assigned branch equals workflow push trigger; existing xcode-27 runner selected",
+    "Python AST and YAML parse; Linux Swift syntax parse only; git diff --check"
+  ],
+  "runtime_executed": false,
+  "timed_reader_calls": 0,
+  "ui_executed": 0,
+  "physical_device_executed": 0,
+  "scheduled_runtime_method": "One original macOS source-service executable; AB then BA; eight real full-v32 chapter reads; exact full unit/UTF8/UTF16/navigation/SQLite-identity checks outside timers",
+  "boundary": "No portable or historical acceptance suites replayed; no corpus downloaded to Oracle; no speedup or Native/UI acceptance asserted.",
+  "metadata_rebind": {
+    "original_product_commit": "141fc14ab084d1937ef2e510f985e20bb8527f64",
+    "replacement_product_commit": "8682786e1ce776ccb0ebe6281f0e338ff67eef09",
+    "identical_complete_product_tree": "5d6702cd11b1c5af883145605c28e91530c0c476",
+    "same_product_parent": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+    "original_ci_commit": "8eb0f6ceff120ee680697f5419ae0d8a90c66178",
+    "reason": "Explicit [skip ci] on the separate product publication avoids unrelated generic push workflows; original product and CI commits remain retained under dedicated source refs.",
+    "repeated_checks": [
+      "Exact source admission for all 21 inputs",
+      "Complete product tree and three original product file bytes identical",
+      "Only owned candidate source identity and admission receipts changed",
+      "Final execution-input closure and git diff --check"
+    ],
+    "not_repeated": [
+      "Swift syntax parse",
+      "Native compilation",
+      "Runtime comparison",
+      "UI tests"
+    ],
+    "original_syntax_checks_retained_from": "2d4b9b990ecb8dbb5ceecc499cc2abe15c71009d"
+  }
+}

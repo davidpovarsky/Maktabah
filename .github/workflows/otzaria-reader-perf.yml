@@ -1,0 +1,49 @@
+name: Original full-v32 Reader assembly comparison
+on:
+  push:
+    branches: [codex/otzaria-reader-perf-20261123]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: otzaria-reader-perf-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  original-reader-source-service:
+    runs-on: xcode-27
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 3
+          sparse-checkout: |
+            Source/Core/Database
+            Source/Otzaria/Core
+            Source/Otzaria/Data
+            Source/Otzaria/Reading
+            Tests/HQ/sqlite
+            Scripts/CI
+            Scripts/DataProfiles
+            tools
+            docs/hq-integration/reader-perf-20261123
+            docs/hq-integration/full-v32-reader-20261119/paired-diagnostic-ab
+      - name: Select existing Xcode without changing global settings
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/reader-perf-native-evidence/toolchain-selection.json
+      - name: Check capacity and original native ZSTD availability
+        run: |
+          python3 -c 'import os,shutil; assert shutil.disk_usage(os.environ["RUNNER_TEMP"]).free >= 7 * 1024**3, "Need 7 GiB for the exact full-v32 fixture"'
+          command -v zstd >/dev/null || brew install zstd
+      - name: Execute exact original full-v32 baseline and candidate in one process
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+        run: python3 docs/hq-integration/reader-perf-20261123/run.py execute --expected-sha "$EXPECTED_CHECKOUT_SHA"
+      - name: Retain genuine source-service evidence on success or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reader-perf-source-service-evidence
+          path: build/reader-perf-native-evidence
+          if-no-files-found: error
+          retention-days: 30
