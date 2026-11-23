@@ -1,0 +1,147 @@
+{
+  "packet": {
+    "repository": "davidpovarsky/anytype-swift",
+    "branch": "codex/otzaria-native-archive-readiness-20261123",
+    "ref": "refs/heads/codex/otzaria-native-archive-readiness-20261123",
+    "expected_parent_sha": "45736cda1895f2f8a6fd9f8d7a5c59ee29b78fb5",
+    "base_tree_sha": "6c33551f63f3354474a5e04e1d37b2c8de7b1e06",
+    "expected_tree_sha": "c9da867e366e1f5adca235bfcc644227b63512dd",
+    "local_prepared_commit": "cffbc8163b386576b4d90dad0d150f875f5e70f7",
+    "workflow": {
+      "path": ".github/workflows/otzaria-native-archive.yml",
+      "mode": "100644",
+      "type": "blob",
+      "git_blob": "67113ed05f5b71f8e505260ba77520ff030a1b3b",
+      "bytes": 2763,
+      "sha256": "ab9419d361c791d3ebc0f1bf903a518c927e3764134b78de399740a6c990ac21",
+      "content": "name: Original native annotation archive admission\n\non:\n  push:\n    branches: [codex/otzaria-native-archive-readiness-20261123]\n\npermissions:\n  contents: read\n\nconcurrency:\n  group: otzaria-original-native-archive-${{ github.ref }}\n  cancel-in-progress: false\n\njobs:\n  original-native-archive:\n    if: github.repository == 'davidpovarsky/anytype-swift' && github.event_name == 'push' && github.ref == 'refs/heads/codex/otzaria-native-archive-readiness-20261123' && github.run_attempt == 1\n    runs-on: xcode-27\n    timeout-minutes: 120\n    env:\n      DEVELOPER_DIR: /Applications/Xcode_27.app/Contents/Developer\n    steps:\n      - name: Fix the absolute native execution deadline\n        run: |\n          echo \"OTZARIA_NATIVE_ARCHIVE_DEADLINE=$(( $(date +%s) + 6900 ))\" >> \"$GITHUB_ENV\"\n      - name: Checkout the exact isolated archive source packet\n        uses: actions/checkout@v4\n        with:\n          ref: ${{ github.sha }}\n          persist-credentials: false\n          sparse-checkout: |\n            docs/pinkha/torah-integration/native-owned-annotation-contract-20261123\n      - name: Select actual ARM64 Python\n        uses: actions/setup-python@v5\n        with:\n          python-version: '3.12'\n          architecture: arm64\n      - name: Install the exact original Go toolchain\n        uses: actions/setup-go@v5\n        with:\n          go-version: '1.26.5'\n          cache: false\n      - name: Checkout the immutable original Heart base\n        uses: actions/checkout@v4\n        with:\n          repository: anyproto/anytype-heart\n          ref: d98420b1113536afd08cde6de9a5816f6d27ffff\n          path: build/Heart-Native-Archive\n          persist-credentials: false\n      - name: Produce four actual original exports then qualify their archive admission\n        run: |\n          python3 -I docs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/run_native_archive.py \\\n            --control-root \"$GITHUB_WORKSPACE\" \\\n            --control-head \"$GITHUB_SHA\" \\\n            --execution-manifest-sha256 54b5945e160e7807a7db23550a195dbb5390c00646f174e87d938cb43b8a28db \\\n            --job-deadline-unix \"$OTZARIA_NATIVE_ARCHIVE_DEADLINE\" \\\n            --heart build/Heart-Native-Archive \\\n            --work build/Heart-Native-Archive-Owned-Work \\\n            --evidence build/Heart-Native-Archive-Evidence\n      - name: Retain actual original native specimens compiler and archive evidence including failures\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: Otzaria-Original-Native-Archive-${{ github.run_id }}-${{ github.run_attempt }}\n          path: build/Heart-Native-Archive-Evidence\n          if-no-files-found: warn\n          compression-level: 6\n          retention-days: 14\n"
+    },
+    "commit_message": "Qualify the repaired original export readiness fixture once",
+    "force": false,
+    "manual_dispatch": false,
+    "sole_push_activation": true,
+    "fixture_source": "bdcf6a310d8b29c523584f7bcddbe6d76fe5d1e1",
+    "fixture_sha256": "a59c2f6eb6424d943d238d13d47f9701c5fc7eeda0a29ddd26b428553b48c1eb",
+    "execution_manifest_sha256": "54b5945e160e7807a7db23550a195dbb5390c00646f174e87d938cb43b8a28db",
+    "source_checks_head": "1814a77f825d92950389cc82fe88f2954b31f5af",
+    "native_acceptance": "NOT_RUN",
+    "historical_tests_replayed": 0
+  },
+  "delta": {
+    "source_head": "45736cda1895f2f8a6fd9f8d7a5c59ee29b78fb5",
+    "status": "",
+    "manifest_delta": [
+      {
+        "path": "/control_inputs/3/bytes",
+        "before": 20068,
+        "after": 28935
+      },
+      {
+        "path": "/control_inputs/3/git_blob",
+        "before": "9f222ef551bf23aacc99fa72bd28e6bdfa34ed2a",
+        "after": "67f075cc14043059b50dbb2ee6b673c9bb2ea2cb"
+      },
+      {
+        "path": "/control_inputs/3/sha256",
+        "before": "b50edf3e85d315612bdd9f147ffac6979fe5b15bd1753568f78ceb4f22f48308",
+        "after": "a59c2f6eb6424d943d238d13d47f9701c5fc7eeda0a29ddd26b428553b48c1eb"
+      },
+      {
+        "path": "/control_preparation_base",
+        "before": "d9cc82a997e239700fc30e31b5e9c30c6a21e9e1",
+        "after": "bdcf6a310d8b29c523584f7bcddbe6d76fe5d1e1"
+      },
+      {
+        "path": "/fixture_readiness_repair_source_commit",
+        "before": null,
+        "after": "bdcf6a310d8b29c523584f7bcddbe6d76fe5d1e1"
+      },
+      {
+        "path": "/new_native_inputs/2/bytes",
+        "before": 20068,
+        "after": 28935
+      },
+      {
+        "path": "/new_native_inputs/2/git_blob",
+        "before": "9f222ef551bf23aacc99fa72bd28e6bdfa34ed2a",
+        "after": "67f075cc14043059b50dbb2ee6b673c9bb2ea2cb"
+      },
+      {
+        "path": "/new_native_inputs/2/sha256",
+        "before": "b50edf3e85d315612bdd9f147ffac6979fe5b15bd1753568f78ceb4f22f48308",
+        "after": "a59c2f6eb6424d943d238d13d47f9701c5fc7eeda0a29ddd26b428553b48c1eb"
+      },
+      {
+        "path": "/new_native_inputs/2/source_revision",
+        "before": "328549ab2d57aa90cf8e05039a4b494dc2d9f417",
+        "after": "bdcf6a310d8b29c523584f7bcddbe6d76fe5d1e1"
+      }
+    ],
+    "driver_sha256": "9a2b97c19bcebdbc7a3c0b4563dcade1368cab22f334f510e0364e96236ed001",
+    "workflow_diff": "--- \n+++ \n@@ -2,7 +2,7 @@\n \n on:\n   push:\n-    branches: [codex/otzaria-owned-import-contract-20261123]\n+    branches: [codex/otzaria-native-archive-readiness-20261123]\n \n permissions:\n   contents: read\n@@ -13,7 +13,7 @@\n \n jobs:\n   original-native-archive:\n-    if: github.repository == 'davidpovarsky/anytype-swift' && github.event_name == 'push' && github.ref == 'refs/heads/codex/otzaria-owned-import-contract-20261123' && github.run_attempt == 1\n+    if: github.repository == 'davidpovarsky/anytype-swift' && github.event_name == 'push' && github.ref == 'refs/heads/codex/otzaria-native-archive-readiness-20261123' && github.run_attempt == 1\n     runs-on: xcode-27\n     timeout-minutes: 120\n     env:\n@@ -51,7 +51,7 @@\n           python3 -I docs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/run_native_archive.py \\\n             --control-root \"$GITHUB_WORKSPACE\" \\\n             --control-head \"$GITHUB_SHA\" \\\n-            --execution-manifest-sha256 3e18a72e7c24c44ee37163ef4766a23d5fb15a21aeeb8fb249f6d54cd3293564 \\\n+            --execution-manifest-sha256 54b5945e160e7807a7db23550a195dbb5390c00646f174e87d938cb43b8a28db \\\n             --job-deadline-unix \"$OTZARIA_NATIVE_ARCHIVE_DEADLINE\" \\\n             --heart build/Heart-Native-Archive \\\n             --work build/Heart-Native-Archive-Owned-Work \\\n",
+    "source_diff_paths": "docs/pinkha/torah-integration/native-owned-annotation-contract-20261123/native/core/application/owned_annotation_export_native_test.go\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/EXECUTION_INPUTS.json\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/AUTHENTIC_REGISTRATION_PRECEDENT.json\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/FIXTURE_REPAIR.patch\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/FIXTURE_SOURCE_CORRESPONDENCE.json\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/GATE_SOURCE_BINDING.json\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/INSERTED_HELPERS.go.txt\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/ORIGINAL_READINESS_SOURCE.json\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/PREPARATION_NOTES.json\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/READINESS_SOURCE_PROOF.execution.json\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/READINESS_SOURCE_PROOF.stderr.log\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/READINESS_SOURCE_PROOF.stdout.json\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/README.md\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/REPAIR_REPLACEMENTS.json\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/SOURCE_ONLY_ADMISSION.execution.json\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/SOURCE_ONLY_ADMISSION.stderr.log\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/SOURCE_ONLY_ADMISSION.stdout.json\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/WORKFLOW_ONLY.patch\ndocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/readiness-repair/verify_readiness_source.py\n",
+    "original_readiness": {
+      "revision": "53b52d380c3a87d25275bb391367b37eb5428d3d",
+      "path": "docs/pinkha/torah-integration/native-schema-endpoint-runtime-20261123/native/clientlibrary/service/annotation_schema_endpoint_native_test.go",
+      "file_sha256": "8f3afe794e6c25e71d4cb0010d98c11b3ddd9f8d1ba2e2074560f039f2f15f2a",
+      "function": "(*endpointFixture).waitReadiness",
+      "raw_function_sha256": "59bf16211c97ffd0b9223976a5428131ad688f8878c7b88e6bbaa422617950cd",
+      "raw_function_bytes": 2112,
+      "transformations": [
+        "endpointFixture -> ownedExportFixture",
+        "waitReadiness -> waitSchemaReadiness",
+        "endpointNoError -> ownedExportNoError",
+        "through the endpoint -> by export setup",
+        "gofmt terminal blank-line normalization only"
+      ],
+      "native_reference_run": 45108043207,
+      "historical_reference_only": true,
+      "historical_test_reexecution": false
+    },
+    "diagnostic_files": [
+      "SOURCE_ONLY_ADMISSION.stderr.log",
+      "READINESS_SOURCE_PROOF.stdout.json",
+      "REPAIR_REPLACEMENTS.json",
+      "READINESS_SOURCE_PROOF.stderr.log",
+      "WORKFLOW_API_PACKET.json",
+      "INSERTED_HELPERS.go.txt",
+      "READINESS_SOURCE_PROOF.execution.json",
+      "SOURCE_PUBLICATION.json",
+      "SOURCE_PUBLICATION.stdout.log",
+      "ROOT_FIXTURE_REVIEW.json",
+      "SOURCE_ONLY_FINAL.stdout.json",
+      "SOURCE_PUBLICATION.stderr.log",
+      "FIXTURE_REPAIR.patch",
+      "FIXTURE_SOURCE_CORRESPONDENCE.json",
+      "SOURCE_ONLY_ADMISSION.execution.json",
+      "PREPARED_WORKFLOW.yml",
+      "PREPARATION_NOTES.json",
+      "SOURCE_ONLY_FINAL.stderr.log",
+      "SOURCE_ONLY_ADMISSION.stdout.json"
+    ]
+  },
+  "inverse": {
+    "ok": true,
+    "interpreter": "python3",
+    "sudo": false,
+    "cwd": null,
+    "cleanup": true,
+    "command": [
+      "python3",
+      "/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_ec419077b1ca4547aa87b09a246cf64b/script.py"
+    ],
+    "output": "{\"fixture_after_sha256\": \"a59c2f6eb6424d943d238d13d47f9701c5fc7eeda0a29ddd26b428553b48c1eb\", \"full_inverse_to_original_confirmed\": true, \"tests_reexecuted\": false, \"native_acceptance\": false, \"root_read_full_fixture_diff\": true}",
+    "duration": 0.06,
+    "returncode": 0,
+    "_notice": "You have 4 unread SentinelX notification(s) (job results and/or announcements). Call notifications_check to read them."
+  },
+  "api_commit": {
+    "sha": "0ab05476960c6bbc563c12e038f16c6ceb25c1cd"
+  },
+  "api_ref": {
+    "success": true
+  },
+  "run": 45130249062,
+  "watcher": "job_6b8535610196",
+  "old_native_failures_replayed": false
+}

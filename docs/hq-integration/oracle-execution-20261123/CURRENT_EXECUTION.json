@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-11-23T07:00:03.363198+00:00",
+  "updated_at_utc": "2026-11-23T07:27:41.114165+00:00",
   "canonical_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
   "root_branch": "codex/otzaria-oracle-completion-20261123",
   "user_instruction": "בעצם, תעשה את הכל בעצמך ותשתמש עם תתי הסוכנים הזמינים לך בצ׳אט פה, בצע הכל עד להשלמה מלאה של המשימות השתמשת בכלי @SentinelX בחשבון המחובר לשרת האורקל ישירות, ועדכן ב @Asana , אחרי כל שלב שאתה מבצע",
@@ -206,9 +206,9 @@
       "name": "original_editor_stageb",
       "owner": "/root/original_sdk",
       "base": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
-      "status": "EXACT_SDK_BOUND_NATIVE_RUN_STARTED",
+      "status": "EXACT_TOOLCHAIN_ALIAS_REPAIR_SINGLE_PUSH_RUN_STARTED",
       "native_acceptance": false,
-      "source": "6dd57e5b7d7ffa570472d31e38881af32ff38177",
+      "source": "a0b0e12cee7260829f4cafe41fc9c4c0dfad6c44",
       "implementation_source": "e9d8642dfb910f9502b7701cf22f569313cb8e2d",
       "source_controls_passed": 8,
       "runtime_adverse_controls_prepared": 6,
@@ -217,10 +217,10 @@
       "production_acceptance": false,
       "device_acceptance": false,
       "source_preparation": "429097b8db89cf7ff5f727c4c0a4c41d4b6225cc",
-      "tree": "cd105995c0102d82b48dddef82c25cc56cfac08c",
-      "run": 45127169339,
+      "tree": "896f897975ec710495bf481e01c814c55bb9409d",
+      "run": 45130214448,
       "run_attempt": 1,
-      "watcher": "job_86cab9825617",
+      "watcher": "job_62c71bd2f759",
       "watch_interval_seconds": 120,
       "watcher_terminal": false,
       "runtime_adverse_controls_scope": "Actual evidence admission controls only; no native acceptance",
@@ -230,7 +230,19 @@
       "root_verified_packet_rows": 26,
       "root_verified_unchanged_control_inputs": 5,
       "original_product_and_ui_trees_exact": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
-      "manual_dispatches": 0
+      "manual_dispatches": 0,
+      "previous_run": {
+        "run": 45127169339,
+        "source": "6dd57e5b7d7ffa570472d31e38881af32ff38177",
+        "conclusion": "failure",
+        "phase": "TOP_LEVEL_TOOLCHAIN_ALIAS_MISSING_BEFORE_APPLE_OR_BUILD",
+        "artifact": 14796393879,
+        "artifact_sha256": "4f58493c4b1818ca04e457f1b221094ce7418d778c29d763916fd9f0655fa8bc",
+        "native_executed": 0
+      },
+      "repair_scope": "Only top-level toolchain copied exactly from authenticated framework_producer.toolchain; original selectors/four source trees/workflow unchanged",
+      "config_functions_execution": "68d1aaa84ed37af4e83dc94ce5cb0f2a8c3f6123c55e46244e92e5fa038647d3",
+      "old_controls_replayed": false
     },
     {
       "name": "original_heart_owned_import_lifetime",
@@ -358,7 +370,7 @@
     {
       "name": "original_owned_import_rpc_design",
       "owner": "/root/asana_scope",
-      "status": "SLICE_A_NATIVE_FIXTURE_SCHEMA_SETUP_FAILED_BEFORE_EXPORTS",
+      "status": "SLICE_A_ORIGINAL_READINESS_FIXTURE_REPAIR_SINGLE_PUSH_RUN_STARTED",
       "dependency": "Original existing ObjectImport returns before completion; requires genuine owned importer Done/Result without replacing original engine",
       "native_acceptance": false,
       "concrete_blocker": "Whole graph reuse must bypass metadata/sync/reset paths; create races must propagate actual ErrTreeExists; file uploads precede ObjectCreator.Create; planning and live per-assignment checks are required. Native export may return nil on cancellation and default PB conversion may create a collection. Genuine exported graph and mapping-aware body proof still required.",
@@ -369,16 +381,16 @@
       "contract_sha256": "ed63b10109ebe7a344bc5b482285682e63b3ab68a76bc34d4f27d623fd14d98b",
       "authorized_product_scope": "Three new slice-A archive-owner and genuine-export fixture files only; no existing importer/proto/generated/RPC activation",
       "ci_activated": true,
-      "source": "fabd2fd824ce819b28dfad01fc24b204e3391bab",
-      "tree": "197f50d1b48426efd1bd328397aec2c28641f69a",
+      "source": "0ab05476960c6bbc563c12e038f16c6ceb25c1cd",
+      "tree": "c9da867e366e1f5adca235bfcc644227b63512dd",
       "authored_native_source": "328549ab2d57aa90cf8e05039a4b494dc2d9f417",
       "planned_genuine_exports": 4,
       "planned_archive_controls": 32,
       "manifest_sha256": "3e18a72e7c24c44ee37163ef4766a23d5fb15a21aeeb8fb249f6d54cd3293564",
-      "run": 45125326998,
+      "run": 45130249062,
       "run_attempt": 1,
-      "watcher": "job_88015e4de913",
-      "watcher_terminal": true,
+      "watcher": "job_6b8535610196",
+      "watcher_terminal": false,
       "run_conclusion": "failure",
       "native_application_binary_compiled": true,
       "native_export_leaves_executed": 0,
@@ -399,7 +411,23 @@
       },
       "owner_verified_original_sources": 17,
       "owner_verified_afterimages": 50,
-      "actual_compiled_inputs": "18_OF_19; ARCHIVE_TEST_NOT_COMPILED"
+      "actual_compiled_inputs": "18_OF_19; ARCHIVE_TEST_NOT_COMPILED",
+      "fixture_sha256": "a59c2f6eb6424d943d238d13d47f9701c5fc7eeda0a29ddd26b428553b48c1eb",
+      "root_original_failure_verified": true,
+      "root_inverse_to_original_verified": true,
+      "previous_run": {
+        "run": 45125326998,
+        "source": "fabd2fd824ce819b28dfad01fc24b204e3391bab",
+        "conclusion": "failure",
+        "parent_native_pass": 0,
+        "parent_native_fail": 1,
+        "exports_executed": 0,
+        "archive_leaves_executed": 0,
+        "artifact": 14796205075,
+        "artifact_sha256": "7c87d6897acf5ee454f3005e3ba4b5915324044625b5ed475c8642e0e40143d3"
+      },
+      "bc_state": "DOCUMENTATION_ONLY_ORIGINAL_EFFECT_BOUNDARY_DESIGN",
+      "manual_dispatches": 0
     },
     {
       "name": "reader_source_performance",
@@ -572,7 +600,7 @@
       "owner": "/root/original_sdk",
       "source_plan": "642a8b9cd9cd243e820db154ea2471b6882e2a94",
       "product_base": "89926d7839c09a629c195ec6dd9812fe56aad069",
-      "status": "E2_SEVEN_EXISTING_SOURCE_EDITS_PORTABLE_PASS_AUTH_OWNER_SEAM_PROPOSAL",
+      "status": "E2_SEVEN_PREREQUISITES_ACCEPTED_FOUR_AUTH_EVENT_BOUNDARY_HUNKS_AUTHORIZED",
       "source_inventory_files": 62,
       "root_original_environment_storage_sources_read": 5,
       "scope": "Immutable embedded deployment, actual app-group validation and fixed namespacing of both original defaults wrappers; original standalone behavior preserved",
@@ -606,7 +634,22 @@
       "e2_packet_index_sha256": "b7f6e8cb30deaf179aa6e3362090e1fde026293ddd76acca6e02ecd140ad303b",
       "e2_source_correspondence_sha256": "6c26d9292f60f7af79e2d6f41b29f5a206abf9a64e9198e62b3b49a53fec515d",
       "e2_new_auth_source_edits": 0,
-      "e2_pending_exact_proposal": "Frozen presentation capture at original named-RPC acquireAll; complete original UI operation drain; await real Account/File handler registration; drain real event FIFO before next presentation"
+      "e2_pending_exact_proposal": "Frozen presentation capture at original named-RPC acquireAll; complete original UI operation drain; await real Account/File handler registration; drain real event FIFO before next presentation",
+      "new_authorized_paths": [
+        "Anytype/Sources/ServiceLayer/Auth/AuthService.swift",
+        "Anytype/Sources/ServiceLayer/Account/AccountEventHandler.swift",
+        "Anytype/Sources/ServiceLayer/File/FileErrorEventHandler.swift",
+        "Modules/ProtobufMessages/Sources/ServiceMessageHandlerAdapter.swift"
+      ],
+      "new_hunk_constraints": [
+        "Use actual OriginalRuntimeEnvironment.deploymentMode",
+        "Atomic restricting captures in original auth attempt",
+        "Actual awaited handler registration",
+        "One original AsyncStream FIFO completion frontier"
+      ],
+      "wrapper_models_views_onboarding": "CONCRETE_HUNK_REVIEW_STILL_REQUIRED",
+      "apple_native_acceptance": false,
+      "new_four_source_controls_executed": false
     },
     {
       "name": "reader_profile_followup4",
@@ -683,7 +726,7 @@
       "name": "full_v32_reader_ui_observation",
       "owner": "/root/original_rpc",
       "base": "2ef81ac195c002863486e473dad95f336f3e1675",
-      "status": "BOUNDED_SOURCE_IMPLEMENTATION_ACTIVE_NOT_NATIVE_QUALIFIED",
+      "status": "FINAL_SOURCE_COLLECTOR_PACKET_AWAITING_ROOT_REVIEW",
       "worktree": "/mnt/development/projects/worktrees/Maktabah-reader-full-v32-ui-observation-20261123",
       "brief_source": "e61e54cd2f98a255462aadbfa9aee8b4b4398d8b",
       "brief_sha256": "1480c16726ed0c090c6a325151ad95f1ff5c95d317dbb32953b601682d6d0ef8",
@@ -707,7 +750,14 @@
       "draft_source": "fd5f72f7b3ccea4d6477d2ef9866a3b157015612",
       "preserved_pre_bridge_draft": "c0630297dacc7b4f8da8d8bafad8648aa6dab78c",
       "inspector_source_sha256": "348c833608d74f9e6a4f65eda2eae83ba6536287f6e59ec65d96195f06344c83",
-      "inspector_review": "EVENT_AND_BOUNDED_READ_CORRECTION_PREPARED_FINAL_REVIEW_PENDING"
+      "inspector_review": "EVENT_AND_BOUNDED_READ_CORRECTION_PREPARED_FINAL_REVIEW_PENDING",
+      "inspector_sha256": "36ca3f4863c60519d1135bf8f327a4c00a1e1bf074dd826caee7760547b18aa8",
+      "viewport_sha256": "a8773b4892ebeac2c98bc371e6ee358eb69d4085caec0ffa1aac9caa84a5c552",
+      "reported_actual_collector_controls": 19,
+      "controls_root_intake_pending": true,
+      "post_controls_collector_delta_review_pending": true,
+      "final_inputs": "UNFINALIZED",
+      "packet_index_sha256": "59ad97bdf180649a4f0f07e091849cea24583f22e585959d50f0a3b46cfa0f35"
     },
     {
       "name": "hanlin_cold_search_preparation_observation",
@@ -736,7 +786,7 @@
       "source_preparation": "98824916ec5e9b0ffae2056eb98598a44bf038c8",
       "local_reviewed_candidate": "856cc8b6cc881751a08cf8a13822c611c62be09e",
       "tree": "88ecb730270e6ce2553cedf67aac21f1961d2f95",
-      "status": "SOURCE_ADMISSION_PASS_INDEPENDENT_GATE_REVIEW_PENDING",
+      "status": "ACTUAL_SINGLE_DISPATCH_RUNNING_TEMPORARY_SECRET_CLEANUP_REQUIRED",
       "source_inputs": 284,
       "controller_sha256": "a2b555d88413a93796d86d0b3c8c6e9bcdb7a2936b60b9fd2d15cdb77011c212",
       "controller_changed_identity_controls_passed": 3,
@@ -745,7 +795,24 @@
       "dispatch_started": false,
       "native_acceptance": false,
       "temporary_secret_cleanup_required": false,
-      "original_native_prompt_model_selector_assertions_timeouts_unchanged": true
+      "original_native_prompt_model_selector_assertions_timeouts_unchanged": true,
+      "source": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+      "app_source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "run": 45128868702,
+      "run_attempt": 1,
+      "watcher": "job_46c21a478ac9",
+      "watch_interval_seconds": 120,
+      "watch_window_seconds": 3300,
+      "observer_started_utc": "2026-11-23T07:07:58.001692+00:00",
+      "secret_cleanup_required": true,
+      "source_admission_inputs": 284,
+      "binding_sha256": "c41665203c70bec4153ae5e23c5b7c19f57d0ba552153ce7b30b57a99eee8748",
+      "first_launcher": {
+        "job": "job_286e2e3208a3",
+        "status": "NO_EXECUTION_NO_LIFECYCLE_NO_DISPATCH",
+        "reason": "Get-Command python selected nonexecutable system32 placeholder"
+      },
+      "actual_python": "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
     }
   ],
   "boundaries": {
@@ -810,7 +877,11 @@
     "1220777246751567",
     "1220777246899652",
     "1220777247847901",
-    "1220777513454135"
+    "1220777513454135",
+    "1220777566570245",
+    "1220777789227874",
+    "1220778056950321",
+    "1220778061937100"
   ],
   "inventory": {
     "unique_tasks": 83,
@@ -825,7 +896,8 @@
     "r27_source_digest": "7439fd761e6661db719259bdf1e32eb59bb9dbdf084747849b92147e7702e004",
     "final_push_state": "UNFINALIZED",
     "native116_run_started": false,
-    "release114_run_started": false
+    "release114_run_started": false,
+    "inherited_annotation_composition": "Canonical1969 process-resume source and mixed-block/newPID test must be retained; Cold869 inherited earlier annotation files are excluded from final selected composition"
   },
   "apple_allocation": {
     "status": "ACTUAL_APPLE_EXECUTION_CONFIRMED",

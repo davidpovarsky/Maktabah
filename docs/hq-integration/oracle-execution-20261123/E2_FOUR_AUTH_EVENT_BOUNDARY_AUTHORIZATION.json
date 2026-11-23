@@ -1,0 +1,15 @@
+{
+  "seven_frozen_prerequisites_accepted": true,
+  "authorized_source_paths": [
+    "Anytype/Sources/ServiceLayer/Auth/AuthService.swift",
+    "Anytype/Sources/ServiceLayer/Account/AccountEventHandler.swift",
+    "Anytype/Sources/ServiceLayer/File/FileErrorEventHandler.swift",
+    "Modules/ProtobufMessages/Sources/ServiceMessageHandlerAdapter.swift"
+  ],
+  "exact_mode_property": "deploymentMode",
+  "readiness_scope": "Event registration is process-owned setup; never account authority",
+  "fifo_scope": "One existing AsyncStream, real original handler return, captured accepted frontier",
+  "file_error_stop_scope": "Original FileErrorEventHandler has no stop; process-owned readiness is not presentation-close cancellation",
+  "future_paths": "Only concrete review; no wrapper/model/view/onboarding authorization inferred",
+  "native_acceptance": false
+}

@@ -1,0 +1,138 @@
+{
+  "scope": "Root read exact original config functions and executed receipts, verified all19 failure and9 repair index entries; unchanged four source trees",
+  "verified_indices": {
+    "run-45127169339": 19,
+    "toolchain-alias-repair": 9
+  },
+  "only_exact_alias_added": true,
+  "unchanged_trees": {
+    "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "ca36ba13f1fd900adf528a3e404fed6a66290b6b"
+  },
+  "native_failure_archive": {
+    "bytes": 88573,
+    "sha256": "4f58493c4b1818ca04e457f1b221094ce7418d778c29d763916fd9f0655fa8bc",
+    "members": [
+      "original-editor-native-evidence/declarations.json",
+      "original-editor-native-evidence/python-runtime-preflight.json",
+      "original-editor-native-evidence/result.json",
+      "original-editor-native-evidence/retained-original-matrix-files.json",
+      "original-editor-native-evidence/selection.json",
+      "original-editor-native-evidence/source-before.json"
+    ]
+  },
+  "repair_packet": {
+    "status": "READY_FOR_ROOT_SOURCE_REVIEW_NO_PUSH",
+    "source_sha": "a0b0e12cee7260829f4cafe41fc9c4c0dfad6c44",
+    "tree": "896f897975ec710495bf481e01c814c55bb9409d",
+    "parent": "d8501b8363053440180f33d2e8a851ef1b8b7291",
+    "failed_parent": "6dd57e5b7d7ffa570472d31e38881af32ff38177",
+    "expected_remote": "6dd57e5b7d7ffa570472d31e38881af32ff38177",
+    "branch": "codex/otzaria-original-editor-stageb-20261123",
+    "changed_paths": [
+      "Scripts/CI/runtime27-original-editor.inputs.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/DIAGNOSIS.md",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/INTAKE.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/PACKET_INDEX.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/SOURCE_PROOF.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/artifacts.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/artifacts.stderr.log",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/jobs.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/jobs.stderr.log",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/original-job.log",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/original-job.log.stderr.log",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/original-run.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/original-stageb-evidence.zip",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/original-stageb-evidence.zip.stderr.log",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/watch-1.final-run.stderr.log",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/watch-1.final-run.stdout.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/watch-1.initial-run.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/watch-1.result.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/watch-1.state.json",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/watch-1.stderr.log",
+      "docs/hq-integration/original-editor-stageb-20261123/run-45127169339/watch-1.stdout.log",
+      "docs/hq-integration/original-editor-stageb-20261123/toolchain-alias-repair/CONFIG_CONSUMER_CORRESPONDENCE.json",
+      "docs/hq-integration/original-editor-stageb-20261123/toolchain-alias-repair/CONFIG_FUNCTIONS.py",
+      "docs/hq-integration/original-editor-stageb-20261123/toolchain-alias-repair/CONFIG_FUNCTION_EXECUTION.json",
+      "docs/hq-integration/original-editor-stageb-20261123/toolchain-alias-repair/INPUT_ALIAS.diff",
+      "docs/hq-integration/original-editor-stageb-20261123/toolchain-alias-repair/PACKET_INDEX.json",
+      "docs/hq-integration/original-editor-stageb-20261123/toolchain-alias-repair/README.md",
+      "docs/hq-integration/original-editor-stageb-20261123/toolchain-alias-repair/after-inputs.json",
+      "docs/hq-integration/original-editor-stageb-20261123/toolchain-alias-repair/before-inputs.json",
+      "docs/hq-integration/original-editor-stageb-20261123/toolchain-alias-repair/config-functions.stderr.log",
+      "docs/hq-integration/original-editor-stageb-20261123/toolchain-alias-repair/config-functions.stdout.log"
+    ],
+    "input_sha256": "2940ae140f7c4b1521d454d3e9b246f85c75b473c806d8ea68190b793601a731",
+    "workflow_sha256": "4b23096007c715e673c2d31297a3984ad995e77dc95754f47fa6a10e282ac146",
+    "source_functions_execution": {
+      "source": "d8501b8363053440180f33d2e8a851ef1b8b7291",
+      "receipt_sha256": "68d1aaa84ed37af4e83dc94ce5cb0f2a8c3f6123c55e46244e92e5fa038647d3",
+      "status": "PASS",
+      "selector_config_executions": 1,
+      "owned_paths_executions": 1,
+      "apple_or_native_executions": 0,
+      "historical_controls_reexecuted": 0
+    },
+    "failure_packet_index_sha256": "a28ec35affbdfc8953658cb54705b73ea0f5f0b9606a98b7fca57ca403982213",
+    "failure_packet_files": 20,
+    "repair_packet_index_sha256": "406c2a1310574450af30e03b4385d20268dba4980459de9633b3593aec415d48",
+    "repair_packet_files": 10,
+    "diff_sha256": "a5f871df5f6cf7db0b23767c389c9d32c7f67e2f782f26cc3630de6d32032f15",
+    "sdk_runtime_qualification_remains": "45123300449@e9504bc3622383eac99ee3aabfef89d0abade8b7",
+    "new_run_started": false
+  },
+  "config_execution": {
+    "command": [
+      "runuser",
+      "-u",
+      "ubuntu",
+      "--",
+      "env",
+      "PYTHONDONTWRITEBYTECODE=1",
+      "python3",
+      "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/docs/hq-integration/original-editor-stageb-20261123/toolchain-alias-repair/CONFIG_FUNCTIONS.py",
+      "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123"
+    ],
+    "started_at": "2026-11-23T07:16:14.516481+00:00",
+    "completed_at": "2026-11-23T07:16:14.627438+00:00",
+    "returncode": 0,
+    "timed_out": false,
+    "driver_sha256": "8aefef29a8374c80f66211719c09e6f33de4e1f659af9401ba8261fec4cbe9cc",
+    "stdout_sha256": "a4fff73d4035273ae78833f6b5af79a360a04f2a11aa1fffe873d8e8003ee09a",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "executed": 1,
+    "prior_controls_reexecuted": false,
+    "result": {
+      "status": "UNCHANGED_CONFIGURATION_FUNCTIONS_PASS",
+      "checkout_sha": "d8501b8363053440180f33d2e8a851ef1b8b7291",
+      "source_gate": {
+        "path": "Scripts/CI/runtime27-original-editor.inputs.json",
+        "sha256": "2940ae140f7c4b1521d454d3e9b246f85c75b473c806d8ea68190b793601a731",
+        "source_sha": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+        "run_id": 45060396175,
+        "run_attempt": 1,
+        "qualification_sha256": "4be85b8704bcd420f14cc9e0872ac11bba5e17075177c3cfaad6d4c3ac617544",
+        "toolchain": {
+          "sdk_version": "27.0",
+          "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+          "xcode": "Xcode 27.0\nBuild version 27A266a"
+        }
+      },
+      "owned_distribution_destination": "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/build/original-editor-sdk-input/distribution",
+      "functions_executed": [
+        "select-runtime27-toolchain.py:original_editor_toolchain",
+        "original_editor_continuation_admission.py:validate_paths"
+      ],
+      "actual_installed_toolchain_inspected": false,
+      "artifacts_downloaded": 0,
+      "sdk_distribution_restored": false,
+      "native_builds_or_tests": 0,
+      "historical_controls_reexecuted": 0
+    }
+  },
+  "source_status": "SOURCE_ACCEPTED_NOT_NATIVE_ACCEPTANCE",
+  "run": 45130214448,
+  "watcher": "job_62c71bd2f759"
+}

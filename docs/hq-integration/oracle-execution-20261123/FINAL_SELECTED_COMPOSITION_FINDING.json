@@ -1,0 +1,14 @@
+{
+  "canonical": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "cold_app": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+  "finding": "Cold branch contains earlier annotation source and shorter test without process restart; keep canonical versions in final composition",
+  "excluded_from_cold": [
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift",
+    "Maktabah-iOSUITests/OriginalEditorAnnotationAcceptanceTests.swift"
+  ],
+  "full_v32_faithful_merge_proposal_sha256": "92c09ee7e8227cde2a94dc26daf5e56ba6ee9268565586d877183fe64bcf9eb0",
+  "native_pass_transfer": false,
+  "final_state": "UNFINALIZED"
+}
