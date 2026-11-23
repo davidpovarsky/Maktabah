@@ -948,7 +948,7 @@
       "case_id": "MiniAppsAnnotationAcceptanceTests/testOriginalNoteReturnsTextFromActualMiniAppsAndPersistsAfterRelaunch",
       "device": "ipad11",
       "status": "NOT_RUN",
-      "oracle": "Actual original saved note, actual Hanlin TextStudio UI and source callback, same original SQLite row/receipt and native process reopen"
+      "oracle": "Actual original note UI, two real TextStudio results, warm callback and source-terminated callback-only launch, same original SQLite annotation and distinct atomic receipts"
     }
   ],
   "manager_native_review_history": [

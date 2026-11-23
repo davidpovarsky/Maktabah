@@ -1,8 +1,8 @@
 {
   "producer_repository": "davidpovarsky/hanlin-ai",
-  "producer_run_id": 45270839882,
-  "producer_source_sha": "c93c16a9adf513e16b176a3a1b7f99126e33a8d3",
-  "producer_artifact_name": "app-split-45270839882",
+  "producer_run_id": 45279691350,
+  "producer_source_sha": "c2791d54aba1a82ea8125a8dc26e22f2cf82bb7f",
+  "producer_artifact_name": "app-split-45279691350",
   "ui_compile_reuse": {
     "run_id": 45271246360,
     "source_sha": "6a9e10235c73f2da7967d25e50349a4b93f03807",
