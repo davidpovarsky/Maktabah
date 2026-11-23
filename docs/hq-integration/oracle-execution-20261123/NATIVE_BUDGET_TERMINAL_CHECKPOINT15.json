@@ -1,0 +1,37 @@
+{
+  "source": "2da5419fa8b3e90ecca248ee9c83fd5055d8bca6",
+  "parent": "79b9662f1b184409a32f838e5ad5e902b5eecafa",
+  "tree": "a9dfc38d55393cbfbead38d01274182801a9357a",
+  "run": 45139622096,
+  "attempt": 1,
+  "watcher": "job_6e976b8e8b50",
+  "watch_interval": 120,
+  "watch_window": 3300,
+  "workflow_sha256": "d54e3a0a87230fb7d77b073a1cbbf0163dce1179650f679aa95cad7fac266aec",
+  "manifest_sha256": "34c60165bc4f98530055b96d514a756515ac0270ca76f2abd876299eb62db61d",
+  "scope": "4 actual original exports then32archive controls; no SDK/Host/import/ACK claim",
+  "root_lease_verified": true,
+  "watcher_terminal": true,
+  "run_conclusion": "failure",
+  "terminal_utc": "2026-11-23T09:02:22Z",
+  "owner_observed_counts": {
+    "original_export": {
+      "PASS": 4,
+      "FAIL": 0,
+      "SKIP": 0
+    },
+    "archive": {
+      "PASS": 32,
+      "FAIL": 0,
+      "SKIP": 0
+    }
+  },
+  "root_terminal_intake_complete": false,
+  "failure_phase": "POST_NATIVE_SPECIMEN_EVIDENCE_COLLECTION",
+  "failure": "Finite collector allowlist omitted actual schema-registration-00.json, schema-registration-01.json and schema-registration.json.",
+  "artifact": 14802738032,
+  "artifact_bytes": 2983282,
+  "artifact_sha256": "428f7c124649d7d40067b31704b63742a9da17e35425a9f8a3b1ab89839c9df9",
+  "commands_drained_reported": 14,
+  "native_replay_planned": false
+}

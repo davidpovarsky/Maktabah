@@ -1,0 +1,17 @@
+{
+  "scope": "Independent read-only source review only; no controls executed, no provider/API/credential/Simulator operation",
+  "controller_sha256": "7fdb372e536e888f50dbb4975ccf002db8e5b8944100353feea2fd0ec3e4c65c",
+  "binding_sha256": "f07920e47876c76361284a1759bd8bf3e1158f1b247f17d6ca2dea64f8955d4a",
+  "changed_existing_methods": [
+    "Lifecycle.preflight",
+    "Lifecycle.configure_and_dispatch"
+  ],
+  "unchanged_method_count": 16,
+  "new_function": "newly_dispatched_runs",
+  "decision": "ACCEPTED for one reviewed same-source infrastructure retry; excludes observed preexisting exact run IDs before selecting exactly one new match; ambiguity remains fail-closed; original secret lifecycle, watch, cleanup, source and deadlines unchanged",
+  "root_actual_synthetic_controls": {
+    "count": 9,
+    "result_sha256": "7685d5da0933b26811e9de216fad87a58134138e95f030342174df7717f04906",
+    "replayed_by_peer": false
+  }
+}

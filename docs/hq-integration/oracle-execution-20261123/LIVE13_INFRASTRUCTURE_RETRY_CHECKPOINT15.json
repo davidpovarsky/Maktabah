@@ -1,0 +1,109 @@
+{
+  "published_preparation": {
+    "commit": "a911d64d0e58cd4fcdcc2f16ffbfc492d3642b8f",
+    "tree": "fcafbd183bbdabdaf76d33774fdf3ac058bdae36",
+    "parent": "eece919c0b52efdad8f3bcbd5c413e99bc5d88eb",
+    "published": true,
+    "clean": true,
+    "files": [
+      "docs/hq-integration/oracle-execution-20261123/live13-infrastructure-retry1/CONTROL_RESULTS.json",
+      "docs/hq-integration/oracle-execution-20261123/live13-infrastructure-retry1/PREPARATION_AND_CONTROLS.py",
+      "docs/hq-integration/oracle-execution-20261123/live13-infrastructure-retry1/ROOT_REVIEW.json",
+      "docs/hq-integration/oracle-execution-20261123/live13-infrastructure-retry1/binding.json",
+      "docs/hq-integration/oracle-execution-20261123/live13-infrastructure-retry1/controller-original.py",
+      "docs/hq-integration/oracle-execution-20261123/live13-infrastructure-retry1/controller120.py"
+    ],
+    "preparation_source_sha256": "ce40dc54a14ced7ff9d88391a0e1a37dfb31c0ac4c915b744adb49533aa0c19e",
+    "dispatch_started": false
+  },
+  "binding": {
+    "schema": 1,
+    "repository": "davidpovarsky/Maktabah",
+    "branch": "codex/otzaria-hanlin-live13-20261123",
+    "checkout_sha": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+    "application_source_sha": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+    "source_review_status": "REVIEWED_FOR_ONE_SAME_SOURCE_INFRASTRUCTURE_RETRY",
+    "workflow": {
+      "path": ".github/workflows/otzaria-hanlin-live-native.yml",
+      "git_blob": "50974d0da36b317113c8cc33db8268d507af6cdd",
+      "sha256": "317090a06a3365885edc5f3ca500c3baaddc1ab152a6815a71b71867b56369c0"
+    },
+    "admission": {
+      "path": "docs/hq-integration/hanlin-live13-20261123/LIVE13_SOURCE_ADMISSION.json",
+      "git_blob": "e3dcea6ddcb9fdf60a403c5fe97f6ff215628f52",
+      "sha256": "39ef499f1bcad7645786c55634f861e271765cc02aae52a35c261d44b56a516e"
+    },
+    "controller": {
+      "original_source": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+      "original_sha256": "a2b555d88413a93796d86d0b3c8c6e9bcdb7a2936b60b9fd2d15cdb77011c212",
+      "watch_interval_seconds": 120,
+      "sha256": "7fdb372e536e888f50dbb4975ccf002db8e5b8944100353feea2fd0ec3e4c65c",
+      "review_scope": "Only previous run identity/review token, pre-dispatch inventory and new-run exclusion; cleanup/watch/key handling byte-identical by whole-source inverse and AST comparison."
+    },
+    "previous_live_run": {
+      "run_id": 45128868702,
+      "source": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+      "result": "INFRASTRUCTURE_FAILURE_BEFORE_NATIVE_CASE",
+      "failure_phase": "INSTALL_TIMEOUT",
+      "native_cases_executed": 0,
+      "cleanup": "DELETE204_GET404_VERIFIED",
+      "root_cleanup_receipt_sha256": "e94c5127a9d398ba164735a1efb2f9a98586bc0b25f1ee7cb2dcc82aff76176e"
+    },
+    "historical_no_send_scope": "Not reused as current acceptance; current source contains separately reviewed functional cold-search eligibility changes",
+    "new_provider_probe_requests": 0,
+    "execution_input_count": 284,
+    "full_reviewed_tree": "88ecb730270e6ce2553cedf67aac21f1961d2f95",
+    "independent_peer_review_sha256": "9bf2967c8d02a87b1e06830408f31bd24ee620cbd69d3d3dc7e940a7538429df",
+    "authorization_scope": "One separately reviewed same-source infrastructure retry because the prior original case never executed; unchanged original Host assertions, prompt, model, endpoint, CI/app source and timeouts; no automatic redispatch",
+    "retry_reason": "Both prior simctl installs returned0, but app-container discovery timed out twice. The original bootstatus readiness checks already ran. No evidence supports an application or timeout change; this is one fresh owned Simulator attempt.",
+    "retry_ordinal": 1,
+    "previous_artifact_sha256": "e204466e925de636ce9a60c19b990d689ff6690a944091200c1f78ecb141fe86",
+    "same_source_run_selection": "Snapshot prior exact run IDs before dispatch; select exactly one newly observed matching run, excluding original45128868702."
+  },
+  "lifecycle_at_start": {
+    "repository": "davidpovarsky/Maktabah",
+    "secret_name": "OTZARIA_LIVE_GEMINI_API_KEY",
+    "source_environment_name": "GEMINI_API_KEY",
+    "checkout_sha": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+    "branch": "codex/otzaria-hanlin-live13-20261123",
+    "started_utc": "2026-11-23T09:15:22.338101+00:00",
+    "controller_sha256": "7fdb372e536e888f50dbb4975ccf002db8e5b8944100353feea2fd0ec3e4c65c",
+    "binding_sha256": "f07920e47876c76361284a1759bd8bf3e1158f1b247f17d6ca2dea64f8955d4a",
+    "credential_in_argv": false,
+    "credential_value_or_hash_recorded": false,
+    "secret_cleanup_required": true,
+    "new_provider_probe_requests": 0,
+    "preexisting_exact_run_ids": [
+      45128868702
+    ],
+    "preflight": {
+      "remote_exact_source": true,
+      "manual_only_workflow": true,
+      "admission_sha256": "39ef499f1bcad7645786c55634f861e271765cc02aae52a35c261d44b56a516e",
+      "previous_live_run": 45128868702,
+      "previous_conclusion": "failure",
+      "active_live_runs": 0,
+      "secret_prior_http": 404,
+      "new_provider_requests": 0
+    },
+    "state": "RUNNING",
+    "secret_set_started_utc": "2026-11-23T09:15:27.764828+00:00",
+    "metadata": {
+      "name": "OTZARIA_LIVE_GEMINI_API_KEY",
+      "created_at": "2026-11-23T09:15:29Z",
+      "updated_at": "2026-11-23T09:15:29Z"
+    },
+    "dispatch_started_utc": "2026-11-23T09:15:29.660195+00:00",
+    "dispatch_exit_code": 0,
+    "run_id": 45145388957,
+    "run_attempt": 1,
+    "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45145388957",
+    "observer_windows": 1,
+    "observer_started_utc": "2026-11-23T09:15:39.247832+00:00",
+    "watch_timed_out": false
+  },
+  "sole_watcher": "job_bd58351c19ea",
+  "peer_review_sha256": "21c65562d92053d455b324eb6a5ca1875b24efb72c5f48b41310f94d90b694f4",
+  "actual_synthetic_metadata_controls": 9,
+  "cleanup_responsibility": "/root until terminal and DELETE204/GET404"
+}
