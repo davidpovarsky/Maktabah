@@ -25,7 +25,7 @@ final class OtzariaMiniAppsCoordinator {
     private var reportedFailures = Set<UUID>()
     private struct QueuedPresentation {
         let requestID: UUID
-        let show: (@escaping () -> Void) -> Void
+        let show: (@escaping () -> Void) -> Bool
     }
     private var presentationQueues: [String: [QueuedPresentation]] = [:]
     private var presentingScenes = Set<String>()
@@ -53,6 +53,9 @@ final class OtzariaMiniAppsCoordinator {
 
     /// Foreground recovery also delivers a result after cold launch or an interrupted callback.
     func resume(manager: iOSNavigationManager) {
+        // A cold URL may arrive before a scene's root presenter is in its window.
+        // Keep its saved-note/result UI queued until scene attachment or activation.
+        for key in Array(presentationQueues.keys) { drainPresentations(key: key) }
         guard let store = try? MiniAppBridgeStore(),
               let results = try? store.pendingResults(sourceAppID: Self.sourceAppID) else { return }
         for result in results where !reportedFailures.contains(result.requestID) {
@@ -178,7 +181,7 @@ final class OtzariaMiniAppsCoordinator {
         } catch {
             reportedFailures.insert(result.requestID)
             enqueuePresentation(requestID: result.requestID, scene: nil) { [weak self] finished in
-                self?.show(error: error, sourceView: nil, onDismiss: finished)
+                self?.presentError(error, sourceView: nil, onDismiss: finished) ?? false
             }
         }
     }
@@ -204,7 +207,7 @@ final class OtzariaMiniAppsCoordinator {
     }
 
     private func enqueuePresentation(requestID: UUID, scene: UIWindowScene?,
-                                     show: @escaping (@escaping () -> Void) -> Void) {
+                                     show: @escaping (@escaping () -> Void) -> Bool) {
         guard queuedResults.insert(requestID).inserted else { return }
         let target = scene ?? UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
             .first(where: { $0.activationState == .foregroundActive })
@@ -215,26 +218,26 @@ final class OtzariaMiniAppsCoordinator {
 
     private func drainPresentations(key: String) {
         guard !presentingScenes.contains(key), let next = presentationQueues[key]?.first else { return }
-        presentationQueues[key]?.removeFirst()
         presentingScenes.insert(key)
-        next.show { [weak self] in
+        let shown = next.show { [weak self] in
             guard let self else { return }
             self.queuedResults.remove(next.requestID)
             self.presentingScenes.remove(key)
             Task { @MainActor [weak self] in self?.drainPresentations(key: key) }
         }
+        if shown { presentationQueues[key]?.removeFirst() }
+        else { presentingScenes.remove(key) }
     }
 
     private func showSavedNote(_ annotation: Annotation, requestID: UUID,
                                manager: iOSNavigationManager, scene: UIWindowScene?) {
         enqueuePresentation(requestID: requestID, scene: scene) { [weak self] finished in
-            guard let self else { finished(); return }
+            guard let self, let presenter = self.presenter(in: scene) else { return false }
             if let book = manager.openTabs.first(where: { $0.book.id == annotation.bkId })?.book
                 ?? LibraryDataManager.shared.getBook([annotation.bkId]).first {
                 manager.openBook(book, options: OpenBookOptions(contentId: annotation.contentId,
                     annotationEvent: ReaderAnnotationEvent(annotation: annotation)))
             }
-            guard let presenter = self.presenter(in: scene) else { finished(); return }
             let editor = iOSAnnotationEditorSheet(annotation: annotation,
                 onSave: { try AnnotationStore.shared.updateAnnotation($0) },
                 onDelete: { try AnnotationStore.shared.deleteAnnotation(id: $0) })
@@ -243,18 +246,18 @@ final class OtzariaMiniAppsCoordinator {
             controller.modalPresentationStyle = .pageSheet
             controller.sheetPresentationController?.detents = [.medium(), .large()]
             presenter.present(controller, animated: true)
+            return true
         }
     }
 
     private func display(_ result: MiniAppResult, store: MiniAppBridgeStore, scene: UIWindowScene?) {
         enqueuePresentation(requestID: result.requestID, scene: scene) { [weak self] finished in
-            guard let self, let presenter = self.presenter(in: scene) else { finished(); return }
+            guard let self, let presenter = self.presenter(in: scene) else { return false }
             let files: [UUID: URL]
             do { files = try self.retainAttachments(result, store: store) }
             catch {
                 self.reportedFailures.insert(result.requestID)
-                self.show(error: error, sourceView: presenter.view, onDismiss: finished)
-                return
+                return self.presentError(error, sourceView: presenter.view, onDismiss: finished)
             }
             let items: [Any] = result.items.compactMap { item in
                 if let text = item.text { return text }
@@ -288,6 +291,7 @@ final class OtzariaMiniAppsCoordinator {
                 })
                 presenter.present(alert, animated: true)
             }
+            return true
         }
     }
 
@@ -309,8 +313,12 @@ final class OtzariaMiniAppsCoordinator {
         return controller
     }
 
-    func show(error: Error, sourceView: UIView?, onDismiss: @escaping () -> Void = {}) {
-        guard let presenter = presenter(in: sourceView?.window?.windowScene, sourceView: sourceView) else { onDismiss(); return }
+    func show(error: Error, sourceView: UIView?) {
+        _ = presentError(error, sourceView: sourceView, onDismiss: {})
+    }
+
+    private func presentError(_ error: Error, sourceView: UIView?, onDismiss: @escaping () -> Void) -> Bool {
+        guard let presenter = presenter(in: sourceView?.window?.windowScene, sourceView: sourceView) else { return false }
         let alert = UIAlertController(title: String(localized: "Mini Apps"),
             message: error.localizedDescription, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String(localized: "OK"), style: .default) { [weak alert] _ in
@@ -318,6 +326,7 @@ final class OtzariaMiniAppsCoordinator {
             else { onDismiss() }
         })
         presenter.present(alert, animated: true)
+        return true
     }
 }
 
