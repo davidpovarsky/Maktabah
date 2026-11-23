@@ -1,0 +1,86 @@
+{
+  "scope": "Four new schema/privacy controls; Swift syntax only; zero native/provider executions",
+  "records": [
+    {
+      "command": [
+        "env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "python3",
+        "Tests/HQ/hanlin-host/test_stream_diagnostic_schema.py"
+      ],
+      "started_at": "2026-11-23T02:40:35.869194+00:00",
+      "returncode": 0,
+      "streams": {
+        "stdout": {
+          "file": "check-1-stdout.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "file": "check-1-stderr.log",
+          "bytes": 780,
+          "sha256": "8030a53e0f2d838fb461fed73846228557d248b94f6ae0500ebb1783d4a5b39b"
+        }
+      }
+    },
+    {
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift"
+      ],
+      "started_at": "2026-11-23T02:40:35.998266+00:00",
+      "returncode": 0,
+      "streams": {
+        "stdout": {
+          "file": "check-2-stdout.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "file": "check-2-stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "started_at": "2026-11-23T02:40:36.051066+00:00",
+      "returncode": 0,
+      "streams": {
+        "stdout": {
+          "file": "check-3-stdout.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "file": "check-3-stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "sources": {
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift": {
+      "bytes": 33575,
+      "sha256": "679269f6eb9c525bcbffb44530250a42f0b607e3e3ffc21fe2896364cb1e1abc"
+    },
+    "Scripts/CI/runtime27-hanlin-live.py": {
+      "bytes": 36016,
+      "sha256": "d6dd5bc01646f964b5f49e9ca031bdad2ad5d8a86ab951961e8f58a0d1f911fd"
+    },
+    "Tests/HQ/hanlin-host/test_stream_diagnostic_schema.py": {
+      "bytes": 4532,
+      "sha256": "30f4a4824caf74304567a38939f6b469104766526ddabde440104eb3f35423ba"
+    }
+  }
+}

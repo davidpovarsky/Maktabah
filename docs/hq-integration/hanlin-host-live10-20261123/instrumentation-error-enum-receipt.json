@@ -1,0 +1,19 @@
+{
+  "scope": "Fixed original SDK error cases only; associated values discarded",
+  "sdk_pin": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "sdk_declaration": "Packages/HanlinPlatform/Sources/HanlinChatCore/HanlinAISDKModels.swift",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "before_sha256": "264bee5831654254c6db6cc5e71cc1c385c430cb77582b63ad8d1bca0a6bf0e0",
+      "after_sha256": "679269f6eb9c525bcbffb44530250a42f0b607e3e3ffc21fe2896364cb1e1abc",
+      "inverse_exact": true
+    },
+    {
+      "path": "Scripts/CI/runtime27-hanlin-live.py",
+      "before_sha256": "671319214a468abd5f1922065d09daa764590c83d135a07ef91c9c7fe39d7fd5",
+      "after_sha256": "d6dd5bc01646f964b5f49e9ca031bdad2ad5d8a86ab951961e8f58a0d1f911fd",
+      "inverse_exact": true
+    }
+  ]
+}

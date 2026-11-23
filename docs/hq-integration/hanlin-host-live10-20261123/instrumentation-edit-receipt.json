@@ -1,0 +1,20 @@
+{
+  "base": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "scope": "Diagnostic-only additions; no provider/native execution",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "before_sha256": "6cb67796a458fba8bbfee94d584b30744fb57b246d679aa4b909c2216ccd4c15",
+      "after_sha256": "264bee5831654254c6db6cc5e71cc1c385c430cb77582b63ad8d1bca0a6bf0e0",
+      "inverse_exact": true,
+      "replacements": 17
+    },
+    {
+      "path": "Scripts/CI/runtime27-hanlin-live.py",
+      "before_sha256": "37cf1ef54c7bce5598c0e62abee44279247fb3673c842c349d862f736fb1ebe7",
+      "after_sha256": "671319214a468abd5f1922065d09daa764590c83d135a07ef91c9c7fe39d7fd5",
+      "inverse_exact": true,
+      "replacements": 3
+    }
+  ]
+}

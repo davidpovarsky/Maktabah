@@ -1,0 +1,389 @@
+{
+  "run": 45058647581,
+  "sha": "9533a8017adadecf770b19811e72b495f32e90f7",
+  "artifact": 14769219319,
+  "archive_bytes": 91105,
+  "archive_sha256": "c06f5fde77b026fcd68af1a7667bc34742becb89cdd2ed409f235495d1ddcc0d",
+  "crc_valid": true,
+  "members": [
+    {
+      "name": "admission.json",
+      "bytes": 3351
+    },
+    {
+      "name": "app-group-resolver-interface.json",
+      "bytes": 678
+    },
+    {
+      "name": "artifact-isolation.json",
+      "bytes": 257
+    },
+    {
+      "name": "connection-stages.json",
+      "bytes": 2400
+    },
+    {
+      "name": "declarations.json",
+      "bytes": 378
+    },
+    {
+      "name": "faithful-ipad-matrix.json",
+      "bytes": 22906
+    },
+    {
+      "name": "fixture-container.json",
+      "bytes": 842
+    },
+    {
+      "name": "fixture-oracle-11.json",
+      "bytes": 1071
+    },
+    {
+      "name": "fixture-query.json",
+      "bytes": 1437
+    },
+    {
+      "name": "miniTest10-native-fixture-install-11.json",
+      "bytes": 1792
+    },
+    {
+      "name": "original-build-result.json",
+      "bytes": 83603
+    },
+    {
+      "name": "original-test-details.json",
+      "bytes": 2804
+    },
+    {
+      "name": "ownership.json",
+      "bytes": 256
+    },
+    {
+      "name": "python-oracle-environment.json",
+      "bytes": 654
+    },
+    {
+      "name": "result.json",
+      "bytes": 1025
+    },
+    {
+      "name": "selection.json",
+      "bytes": 642
+    },
+    {
+      "name": "source-after.json",
+      "bytes": 64054
+    },
+    {
+      "name": "source-before.json",
+      "bytes": 64054
+    },
+    {
+      "name": "test-case-execution-11.json",
+      "bytes": 570
+    },
+    {
+      "name": "test-simulator-11.log",
+      "bytes": 77717
+    },
+    {
+      "name": "verified-11.json",
+      "bytes": 316
+    },
+    {
+      "name": "verified-11.summary.json",
+      "bytes": 1590
+    },
+    {
+      "name": "verified-11.tests.json",
+      "bytes": 2328
+    }
+  ],
+  "result": {
+    "connection_diagnostic_status": "OBSERVED",
+    "credential_in_child_environment": false,
+    "credential_in_test_arguments": false,
+    "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/",
+    "error_kind": "ValueError",
+    "failure_phase": "NATIVE_MATRIX",
+    "log_redactions": 0,
+    "matrix_exit_code": 1,
+    "matrix_failures": [
+      {
+        "error": "ValueError: The original native live witness did not complete",
+        "failedPhase": "RUNNING_NATIVE_XCTEST",
+        "ownedSimulatorCleanup": "PASS",
+        "status": "FAIL"
+      }
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "native116_acceptance": false,
+    "prior_artifacts_restored": true,
+    "private_input_consumed": true,
+    "private_input_removed": true,
+    "private_input_staged": true,
+    "raw_container_or_result_bundle_published": false,
+    "release114_acceptance": false,
+    "selector": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+    "status": "FAIL",
+    "verified_completed_provider_conversations": 0
+  },
+  "original_test_details": {
+    "devices": [
+      {
+        "architecture": "arm64",
+        "deviceId": "8CD7771E-41E4-490B-9310-4D7A7AEB7FB4",
+        "deviceName": "Faithful 11-inch 3f270087",
+        "modelName": "iPad Pro 11-inch (M5)",
+        "osBuildNumber": "24B8117",
+        "osVersion": "27.2",
+        "platform": "iOS Simulator"
+      }
+    ],
+    "duration": "Ran for 4 minutes, 15 seconds",
+    "durationInSeconds": 255.77671599388123,
+    "hasMediaAttachments": true,
+    "hasPerformanceMetrics": false,
+    "startTime": 1795375751.917,
+    "testDescription": "Test case with 1 run",
+    "testIdentifier": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent()",
+    "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+    "testName": "testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent()",
+    "testPlanConfigurations": [
+      {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    ],
+    "testResult": "Failed",
+    "testRuns": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "name": "HanlinLiveProviderAcceptanceTests.testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent()",
+                    "nodeType": "Source Code Reference",
+                    "sourceLocation": {
+                      "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+                      "lineNumber": 674
+                    }
+                  }
+                ],
+                "name": "XCTAssertTrue failed - Only the original Host result callback may create the native source receipt",
+                "nodeType": "Test Case Run",
+                "result": "Failed",
+                "sourceLocation": {
+                  "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+                  "lineNumber": 674
+                }
+              }
+            ],
+            "duration": "4m 15s",
+            "durationInSeconds": 255.77671599388123,
+            "name": "Test Scheme Action",
+            "nodeIdentifier": "1",
+            "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+            "nodeType": "Test Plan Configuration",
+            "result": "Failed"
+          }
+        ],
+        "details": "iOS Simulator 27.2",
+        "duration": "4m 15s",
+        "durationInSeconds": 255.77671599388123,
+        "name": "iPad Pro 11-inch (M5)",
+        "nodeIdentifier": "8CD7771E-41E4-490B-9310-4D7A7AEB7FB4",
+        "nodeType": "Device",
+        "result": "Failed"
+      }
+    ]
+  },
+  "connection_stages": {
+    "events": [
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 1,
+        "stage": "inputConsumed"
+      },
+      {
+        "flags": {
+          "hasNativeSession": true,
+          "isPresented": true,
+          "matchingSession": true,
+          "retired": false
+        },
+        "reason": "none",
+        "sequence": 2,
+        "stage": "mountObserved"
+      },
+      {
+        "flags": {
+          "allowRead": true,
+          "closed": false,
+          "configured": false,
+          "connecting": false,
+          "credentialPresent": true,
+          "hasOperation": false,
+          "hasReadOffer": true,
+          "hasReadScope": false,
+          "storageFailed": false
+        },
+        "reason": "none",
+        "sequence": 3,
+        "stage": "connectEntered"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 4,
+        "stage": "requestValidated"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 5,
+        "stage": "readRequestValidated"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 6,
+        "stage": "consentCaptureEntered"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 7,
+        "stage": "consentCaptured"
+      },
+      {
+        "flags": {
+          "hasPendingReadReopen": true,
+          "hasPresentation": true,
+          "matchingSession": true,
+          "preservingContinuation": true
+        },
+        "reason": "none",
+        "sequence": 8,
+        "stage": "closeRequested"
+      },
+      {
+        "flags": {
+          "closed": true
+        },
+        "reason": "none",
+        "sequence": 9,
+        "stage": "readRequestReturned"
+      },
+      {
+        "flags": {
+          "hasPendingReadReopen": true,
+          "hasPresentation": true,
+          "isPresented": false,
+          "matchingSession": true
+        },
+        "reason": "none",
+        "sequence": 10,
+        "stage": "dismissObserved"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 11,
+        "stage": "dismissAccepted"
+      },
+      {
+        "flags": {
+          "hasConnection": true,
+          "hasConsent": true
+        },
+        "reason": "none",
+        "sequence": 12,
+        "stage": "readReopenEntered"
+      },
+      {
+        "flags": {
+          "foreground": true,
+          "hasConnection": true,
+          "hasConsent": true,
+          "hasNativeSession": true,
+          "hasNavigationTask": false,
+          "hasPresentation": false,
+          "mounted": true,
+          "retired": false
+        },
+        "reason": "none",
+        "sequence": 13,
+        "stage": "openEntered"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 14,
+        "stage": "consentConsumeEntered"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 15,
+        "stage": "consentConsumed"
+      },
+      {
+        "flags": {
+          "hasReadScope": true
+        },
+        "reason": "none",
+        "sequence": 16,
+        "stage": "openIssued"
+      },
+      {
+        "flags": {
+          "hasNativeSession": true,
+          "isPresented": true,
+          "matchingSession": true,
+          "retired": false
+        },
+        "reason": "none",
+        "sequence": 17,
+        "stage": "mountObserved"
+      },
+      {
+        "flags": {
+          "closed": false,
+          "configured": false,
+          "connecting": false,
+          "hasOperation": false,
+          "hasReadScope": true,
+          "storageFailed": false
+        },
+        "reason": "none",
+        "sequence": 18,
+        "stage": "carriedConfigureEntered"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 19,
+        "stage": "engineConstructed"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 20,
+        "stage": "configurationActivated"
+      },
+      {
+        "flags": {},
+        "reason": "none",
+        "sequence": 21,
+        "stage": "configurationCompleted"
+      }
+    ],
+    "overflow": false,
+    "schemaVersion": 1
+  },
+  "screenshots_or_hierarchy_in_published_artifact": false
+}
