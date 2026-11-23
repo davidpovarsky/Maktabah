@@ -22,15 +22,23 @@ def blob(revision, path):
 def tree(revision, path):
     return git("rev-parse", revision + ":" + path).decode().strip()
 
-def literals(source, names=None):
-    if names is None:
-        names = {"MODEL", "REVIEWED_SOURCE", "SELECTOR", "ENDPOINT"}
+def literals(source):
+    names = {"MODEL", "REVIEWED_SOURCE", "SELECTOR", "ENDPOINT"}
     result = {}
     for node in ast.parse(source).body:
         if isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
             if node.targets[0].id in names:
                 result[node.targets[0].id] = ast.literal_eval(node.value)
     return result
+
+def diagnostic_tables(source):
+    names = {"CONNECTION_DIAGNOSTIC_STAGES", "CONNECTION_DIAGNOSTIC_REASONS", "CONNECTION_DIAGNOSTIC_FLAGS"}
+    return {
+        node.targets[0].id: ast.dump(node.value, include_attributes=False)
+        for node in ast.parse(source).body
+        if isinstance(node, ast.Assign) and len(node.targets) == 1
+        and isinstance(node.targets[0], ast.Name) and node.targets[0].id in names
+    }
 
 def normalize_driver(source):
     allowed = {"REVIEWED_SOURCE", "CONNECTION_DIAGNOSTIC_STAGES", "CONNECTION_DIAGNOSTIC_REASONS", "CONNECTION_DIAGNOSTIC_FLAGS"}
@@ -70,8 +78,7 @@ def verify():
     require(hashlib.sha256((ROOT / inputs_path).read_bytes()).hexdigest() == contract["inputs_sha256"], "Build input hash differs")
     current_driver = (ROOT / driver).read_bytes()
     require(hashlib.sha256(current_driver).hexdigest() == contract["driver_sha256"], "Driver hash differs")
-    diagnostic_names = {"CONNECTION_DIAGNOSTIC_STAGES", "CONNECTION_DIAGNOSTIC_REASONS", "CONNECTION_DIAGNOSTIC_FLAGS"}
-    require(literals(current_driver, diagnostic_names) == literals(blob(diagnostic, driver), diagnostic_names), "Diagnostic enum tables differ from review")
+    require(diagnostic_tables(current_driver) == diagnostic_tables(blob(diagnostic, driver)), "Diagnostic enum tables differ from review")
     require(normalize_driver(current_driver) == normalize_driver(blob(baseline, driver)), "Original live driver behavior changed")
     require(literals(current_driver) == {
         "MODEL": contract["model"], "REVIEWED_SOURCE": app,

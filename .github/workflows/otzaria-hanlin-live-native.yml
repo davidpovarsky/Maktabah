@@ -2,8 +2,6 @@ name: Original Hanlin live consumer native acceptance
 
 on:
   workflow_dispatch:
-  push:
-    branches: [codex/otzaria-hanlin-live-20261121]
 
 permissions:
   contents: read
@@ -25,6 +23,8 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
+      - name: Verify the immutable Live11 diagnostic source boundary
+        run: python3 Scripts/CI/verify-hanlin-live11-source.py
       - name: Require the reviewed existing credential configuration
         id: live_credential
         env:

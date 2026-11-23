@@ -1,0 +1,14 @@
+{
+  "application_source_sha": "438de95a675f34006bee54e339b37d88c87c032a",
+  "checkout_sha": "b1789929dd56ead4e5bfdfd30dc5e95035957ece",
+  "credential_accessed": false,
+  "current_delta": "Reviewed diagnostic-only session changes; original assertions, authority and provider behavior retained",
+  "current_source_tree_matches_historical": false,
+  "historical_no_send_run": 45041601629,
+  "historical_product_trees_match_live10": true,
+  "native_live11_result": "NOT_RUN_BY_THIS_CHECK",
+  "native_no_send_reexecuted": false,
+  "provider_called": false,
+  "source_admission_sha256": "19b418ece9c78f54667439ec9198d77c76886ba2ad729775eb9ff8f0090837d2",
+  "status": "SOURCE_ADMISSION_PASS"
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "remote_source_parent": "1303eb9f5d29c9165cf121aa4db377dd21ac8246",
+  "application_source_sha": "438de95a675f34006bee54e339b37d88c87c032a",
+  "local_reviewed_sha": "b1789929dd56ead4e5bfdfd30dc5e95035957ece",
+  "local_reviewed_tree": "a11078e6247709b5be1e06e792f1a9cd23a7a14d",
+  "source_admission_result": "SOURCE_ADMISSION_PASS",
+  "source_admission_result_sha256": "1b61b64deaad799d011629512f49f147c847c6117148efd2006c6d95e233fab2",
+  "first_attempt": {
+    "source": "b339afc96131215c9c6591a4579679e0162ff177",
+    "exit_code": 1,
+    "reason": "Preparation helper attempted ast.literal_eval on reviewed frozenset diagnostic enums; corrected to non-evaluating AST equality",
+    "raw_log_sha256": "b26fec4b5bb850606c97418aa74e3c656b760dbc1163a6173f245abd94512e94"
+  },
+  "successful_attempt": {
+    "source": "b1789929dd56ead4e5bfdfd30dc5e95035957ece",
+    "exit_code": 0,
+    "command": "python3 Scripts/CI/verify-hanlin-live11-source.py",
+    "provider_called": false,
+    "credential_accessed": false
+  },
+  "publication_rule": "Connector commit must have the exact prepared full Git tree over the published source parent; record its distinct final SHA before dispatch",
+  "workflow": "manual workflow_dispatch only; old push trigger removed",
+  "historical_no_send_reexecuted": false,
+  "historical_no_send_scope": "Run 45041601629 applies to 6591bba49d2b5a28d02b763c4360406843fce4cf. All four original product/test trees match Live10. Current Source differs by the reviewed session diagnostic only; no new no-send or post-send PASS is claimed.",
+  "prior_diagnostic_controls": "Reuse e7f4098e9282d58b965cc6a886b79f74ff940117 receipt; no replay",
+  "root_controller_review": {
+    "source": "b960fee17818698080bcf9fd54abfd136e92089a",
+    "sha256": "56cc1d4461ed7ffe3dc4539d69a93ebbe3e8b8120f353655c02c9eb4ac302271",
+    "mode": "read-only source review; tests not replayed",
+    "normal_path": "stdin-only key transfer; scrubbed child environments; exact metadata ownership before delete; one manual dispatch; exact source/branch/attempt/event; one watcher per bounded window",
+    "recovery_boundary": "Ambiguous dispatch or missing ownership metadata requires coordinator review without redispatch. A still-active run after watcher timeout retains the credential and requires continue against identical binding/controller."
+  },
+  "pending_runtime_gates": [
+    "Exact final remote checkout source admission",
+    "Original Apple app and test build",
+    "One actual native live Host/source-link and revocation case",
+    "Actual credential cleanup absence receipt"
+  ],
+  "live11_native_result": "NOT_RUN"
+}

@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-hanlin-live11-20261123/Scripts/CI/verify-hanlin-live11-source.py", line 117, in <module>
+    print(json.dumps(verify(), sort_keys=True, indent=2))
+                     ^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-hanlin-live11-20261123/Scripts/CI/verify-hanlin-live11-source.py", line 74, in verify
+    require(literals(current_driver, diagnostic_names) == literals(blob(diagnostic, driver), diagnostic_names), "Diagnostic enum tables differ from review")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-hanlin-live11-20261123/Scripts/CI/verify-hanlin-live11-source.py", line 32, in literals
+    result[node.targets[0].id] = ast.literal_eval(node.value)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ast.py", line 112, in literal_eval
+    return _convert(node_or_string)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ast.py", line 111, in _convert
+    return _convert_signed_num(node)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ast.py", line 85, in _convert_signed_num
+    return _convert_num(node)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ast.py", line 76, in _convert_num
+    _raise_malformed_node(node)
+  File "/usr/lib/python3.12/ast.py", line 73, in _raise_malformed_node
+    raise ValueError(msg + f': {node!r}')
+ValueError: malformed node or string on line 30: <ast.Call object at 0xfe19ab890790>
