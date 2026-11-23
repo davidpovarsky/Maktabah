@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "branch": "codex/otzaria-reader-profile-native-20261123",
+  "base_commit": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "local_prepared_commit": "ce98443421d137a65909125e6294a855e6fbc13f",
+  "published_commit": "b85a72e409855ffdc6bed1dcef60bbf5b233cf6d",
+  "tree": "879510ccc7ec13e7733a3e5acfe34bf86fc7adf4",
+  "packet_sha256": "3fcd50787f12deca8969913210b8a32140fbe1f00eb3c7fca84f1114dc218155",
+  "source_preparation_commit": "7284b04217e91bba80611ec0902a2c833ab2e6c7",
+  "run_id": 45107660584,
+  "watcher": "job_c8e0566e67f8",
+  "source_or_test_changes": 0,
+  "source_inputs": 285,
+  "selected_cases": 10,
+  "actual_native_result": "PENDING",
+  "prepublication_review_correction": "Exact branch trigger; original mismatched packet retained, zero native runs before correction"
+}

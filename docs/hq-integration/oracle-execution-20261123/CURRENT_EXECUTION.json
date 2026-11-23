@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-11-23T03:23:30.283271+00:00",
+  "updated_at_utc": "2026-11-23T03:45:00Z",
   "canonical_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
   "root_branch": "codex/otzaria-oracle-completion-20261123",
   "user_instruction": "בעצם, תעשה את הכל בעצמך ותשתמש עם תתי הסוכנים הזמינים לך בצ׳אט פה, בצע הכל עד להשלמה מלאה של המשימות השתמשת בכלי @SentinelX בחשבון המחובר לשרת האורקל ישירות, ועדכן ב @Asana , אחרי כל שלב שאתה מבצע",
@@ -11,25 +11,45 @@
       "source": "7496e47fa4d37b0117abeae6b35ca5f4c8eaf638",
       "run": 45101449367,
       "watcher": "job_f625c73ddf0f",
-      "status": "RUNNING_OR_QUEUED_AT_LAST_OWNER_OBSERVATION",
-      "native_acceptance": false
+      "status": "ACTUAL_ORIGINAL_CANDIDATE_GENERATION_PASS",
+      "native_acceptance": false,
+      "watcher_terminal": true,
+      "commands_executed": 35,
+      "commands_passed": 35,
+      "evidence_commit": "f9b37d7809c08a100a10417a7f699302c758ca8f",
+      "artifact": 14787700016,
+      "artifact_bytes": 10822146,
+      "artifact_sha256": "ec13df1db9405ffa42b2ef76ec1bda7988ecee8dff1c3fcb1fd01c556a7cf80e",
+      "native_endpoint_acceptance": false,
+      "swift_mobile_linkage_acceptance": false
     },
     {
       "name": "original_sdk_consumer",
       "owner": "/root/original_sdk",
-      "source": "a946dcaa6403a6f4b6b30d28fbc8d337b21cba80",
-      "run": 45105013354,
-      "watcher": "job_1e3e26007e8f",
-      "status": "QUEUED_AT_LAST_OWNER_OBSERVATION",
+      "source": "4aa7b02b8e4cb8c124dd59ddb656746481d9aa6a",
+      "run": 45106338448,
+      "watcher": "job_8a1fcb32eb70",
+      "status": "ACTIVE_AT_LAST_OWNER_OBSERVATION",
       "native_acceptance": false,
-      "previous_attempt": {
-        "run": 45102176289,
-        "source": "e827c0cc266a2d8193022b84d5da966ebe345865",
-        "status": "FAILURE",
-        "cause": "Authentic artifact API created_at was one second after the original upload step interval; exact original upload-log binding now supplies proof without an invented tolerance",
-        "artifact": 14786128868,
-        "artifact_sha256": "0cab1873b9e93099d3b87ea33455c254ca535246d1b8f60c2db5bedf1cac62c7"
-      }
+      "previous_attempts": [
+        {
+          "run": 45102176289,
+          "source": "e827c0cc266a2d8193022b84d5da966ebe345865",
+          "status": "FAILURE",
+          "cause": "Authentic artifact API created_at was one second after the original upload step interval; exact original upload-log binding now supplies proof without an invented tolerance",
+          "artifact": 14786128868,
+          "artifact_sha256": "0cab1873b9e93099d3b87ea33455c254ca535246d1b8f60c2db5bedf1cac62c7"
+        },
+        {
+          "run": 45105013354,
+          "source": "a946dcaa6403a6f4b6b30d28fbc8d337b21cba80",
+          "status": "FAILURE",
+          "cause": "gh api refused original ANSI upload job log before download or simulator; exact raw-log capture now opts into escape-sequence bytes only in owned files",
+          "artifact": 14786559413,
+          "artifact_sha256": "765656e3561e369ca580407e28abdc407a6dd32b946d25bc73979d013b94aafb"
+        }
+      ],
+      "new_affected_raw_capture_controls_passed": 2
     },
     {
       "name": "hanlin_live11",
@@ -40,13 +60,15 @@
       "watcher": "job_04ece440ed37",
       "status": "RUNNING",
       "temporary_secret_cleanup_required": true,
-      "native_acceptance": false
+      "native_acceptance": false,
+      "last_observed_utc": "2026-11-23T03:43:02Z",
+      "observer_windows": 1
     },
     {
       "name": "library_morph",
       "owner": "/root/original_rpc",
       "source": "cba554ded79144d48642b12dba926a30a8eac451",
-      "status": "QUEUED_AT_LAST_OWNER_OBSERVATION",
+      "status": "WATCHER_ACTIVE_AT_LAST_OWNER_OBSERVATION",
       "native_acceptance": false,
       "application_source": "57136023dc6bd86b9fd1ffc853d20b97611ddff4",
       "source_tree": "c51810d1199f81a59554b3c1efbcf3460db8bfcb",
@@ -57,21 +79,58 @@
       "name": "original_editor_stageb",
       "owner": "/root/original_sdk",
       "base": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
-      "status": "ADMISSION_IMPLEMENTATION_PENDING_AUTHENTIC_SDK_RESULT",
-      "native_acceptance": false
+      "status": "SOURCE_PREPARATION_REVIEWED_AWAITING_AUTHENTIC_SDK_PASS",
+      "native_acceptance": false,
+      "source": "3e7193cee9931adac1d692e80d66e84c964c123f",
+      "implementation_source": "e9d8642dfb910f9502b7701cf22f569313cb8e2d",
+      "source_controls_passed": 8,
+      "runtime_adverse_controls_prepared": 6,
+      "runtime_adverse_controls_executed": 0,
+      "production_device_audit_source_files": 15,
+      "production_acceptance": false,
+      "device_acceptance": false
     },
     {
-      "name": "original_heart_endpoint_lifetime",
+      "name": "original_heart_owned_import_lifetime",
       "owner": "/root/asana_scope",
       "base": "7496e47fa4d37b0117abeae6b35ca5f4c8eaf638",
-      "status": "SOURCE_REVIEWED_MANUAL_REGISTRATION_404_PUSH_ROUTE_PREPARATION",
+      "status": "WATCHER_ACTIVE_AT_LAST_OWNER_OBSERVATION",
       "native_acceptance": false,
-      "source": "ddf8c86a7d2be3e11da23d9d25e566a97faa8645",
+      "source": "54169c763c2178fc1e796dfbe92a675d9c21a0b3",
       "native_runtime_cases": 2,
       "source_provenance_rows": 42,
       "source_provenance_bytes": 406523,
       "readback_scope": "Live native object and real tree heads; durable cold reopen and full body equality remain unproven",
-      "native_endpoint_acceptance": false
+      "native_endpoint_acceptance": false,
+      "run": 45105771388,
+      "watcher": "job_185be78cd88e"
+    },
+    {
+      "name": "reader_profile_native10",
+      "owner": "/root/original_rpc",
+      "source": "b85a72e409855ffdc6bed1dcef60bbf5b233cf6d",
+      "application_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+      "tree": "879510ccc7ec13e7733a3e5acfe34bf86fc7adf4",
+      "run": 45107660584,
+      "watcher": "job_c8e0566e67f8",
+      "status": "QUEUED_AT_LAST_OWNER_OBSERVATION",
+      "selected_cases": 10,
+      "source_inputs": 285,
+      "source_declarations": "DECLARATIONS_MATCH",
+      "product_changes": 0,
+      "test_changes": 0,
+      "native_acceptance": false,
+      "scope": "Eight repaired system sheet cases, original profile color/cold relaunch and all 100 real group switches/cold restore"
+    },
+    {
+      "name": "original_generated_schema_endpoint",
+      "owner": "/root/asana_scope",
+      "base": "7496e47fa4d37b0117abeae6b35ca5f4c8eaf638",
+      "local_preparation": "ffe10166ff9ea2dbf1544bbc2c967f2cdaba6b03",
+      "status": "SOURCE_REVIEWED_NARROW_EVIDENCE_AND_CLEANUP_FIX_REVIEW_PENDING",
+      "planned_native_cases": 5,
+      "native_acceptance": false,
+      "scope": "Genuine original generated byte handler/proxy, real wallet/account/Space and signed ACL, post-Apply cancellation history, original persisted schema readback; not Swift/mobile or cold reopen"
     }
   ],
   "boundaries": {
@@ -91,6 +150,30 @@
     "1220774463848412",
     "1220774512145859",
     "1220774443162693",
-    "1220774792058663"
-  ]
+    "1220774792058663",
+    "1220774520226259",
+    "1220774520743566",
+    "1220774712105519",
+    "1220774712546869",
+    "1220774793989021",
+    "1220774806012619",
+    "1220774953975200",
+    "1220774954386564",
+    "1220774807847843"
+  ],
+  "inventory": {
+    "unique_tasks": 83,
+    "open": 59,
+    "completed": 24,
+    "top_level": 50,
+    "top_level_open": 32,
+    "closed_this_execution": 0
+  },
+  "final_gate_preparation": {
+    "source": "6bfb40ff6c3fb2c34c8ea2256bc3ffd46ebfc330",
+    "r27_source_digest": "7439fd761e6661db719259bdf1e32eb59bb9dbdf084747849b92147e7702e004",
+    "final_push_state": "UNFINALIZED",
+    "native116_run_started": false,
+    "release114_run_started": false
+  }
 }

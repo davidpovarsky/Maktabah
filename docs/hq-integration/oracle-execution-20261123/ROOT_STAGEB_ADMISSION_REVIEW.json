@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "reviewed_source": "e9d8642dfb910f9502b7701cf22f569313cb8e2d",
+  "current_evidence_source": "3e7193cee9931adac1d692e80d66e84c964c123f",
+  "reviewer": "/root",
+  "scope": "Full signed-consumer admission adapter and controls plus all existing-code deltas; read-only independent source review",
+  "status": "SOURCE_PREPARATION_ACCEPTED_RUNTIME_NOT_RUN",
+  "source_controls_reused": 8,
+  "new_tests_run_by_reviewer": 0,
+  "runtime_controls_prepared_not_run": 6,
+  "product_and_ui_tests_unchanged": true,
+  "reviewed_files": [
+    "Scripts/CI/original_editor_signed_consumer_admission.py",
+    "docs/hq-integration/original-editor-stageb-20261123/README.md",
+    "tools/verify-original-editor-signed-consumer-admission-controls.py"
+  ],
+  "preserved_boundaries": [
+    "Authentic failed original runtime remains failed; successful build commands retained separately",
+    "Signed consumer continuation never claims rebuild or native UI credit",
+    "Exact full2528-file distribution and original compiled Host/SPI receipts",
+    "Actual EN/HE launch/PID/nonce evidence and owned simulator cleanup",
+    "Legacy original continuation route preserved",
+    "Production selected Space/import/device qualification separate"
+  ],
+  "activation_requirement": "Actual SDK PASS and authenticated artifact intake, six actual-runtime adverse controls, finalized exact inputs before dedicated native StageB run"
+}
