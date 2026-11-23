@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-11-23T09:19:49Z",
+  "updated_at_utc": "2026-11-23T10:32:32Z",
   "canonical_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
   "root_branch": "codex/otzaria-oracle-completion-20261123",
   "user_instruction": "בעצם, תעשה את הכל בעצמך ותשתמש עם תתי הסוכנים הזמינים לך בצ׳אט פה, בצע הכל עד להשלמה מלאה של המשימות השתמשת בכלי @SentinelX בחשבון המחובר לשרת האורקל ישירות, ועדכן ב @Asana , אחרי כל שלב שאתה מבצע",
@@ -144,7 +144,7 @@
       "name": "library_morph",
       "owner": "/root/original_rpc",
       "source": "c581e8898e572f452a8ffb605f07a692ee0e7505",
-      "status": "AUTHENTIC_ZERO_OF_SEVEN_NATIVE_PASS_REPAIR_SOURCE_ROOT_ACCEPTED_INTEGRATED",
+      "status": "NATIVE7_REPAIR_SOURCE_ACCEPTED_TWO_COMBINED_COMPILER_FAILURES_ALL7_NOT_RUN",
       "native_acceptance": false,
       "application_source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
       "source_tree": "ee785b855fecd6b1808b6e24ffd1b9afce3ce7e1",
@@ -213,20 +213,21 @@
       "new_source_guard_controls_passed": 5,
       "existing_case_methods_byte_preserved": 44,
       "root_complete_inverse_verified": true,
-      "repair_run": 45143450850,
+      "repair_run": 45147566951,
       "repair_run_conclusion": "failure",
       "repair_native_cases_executed": 0,
       "repair_native_not_run": 7,
-      "repair_failure_phase": "PRE_APP_BUILD_UI_COMPILE",
-      "current_final_composition": "ef0b68a0250fdbee5d9488061161003000e9ad38"
+      "repair_failure_phase": "UI_COMPILE_NO_SUCH_MODULE_DARWINNOTIFY",
+      "current_final_composition": "58b242b77d516c99b7ecb4d24645e3359d68f531",
+      "actual_sdk_notify_repair_source": "a0f9f0547e28ac89a42fce5019888222c21390cd"
     },
     {
       "name": "original_editor_stageb",
       "owner": "/root/original_sdk",
       "base": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
-      "status": "AUTHENTIC_RUBY_XCODEPROJ_LOAD_FAILURE_BEFORE_APP_BUILD_REPAIR_IN_PROGRESS",
+      "status": "RUBY_REPAIR_SOURCE_ACCEPTED_ATTEMPT1_RUNNER_ALLOCATION_FAILURE_UNCHANGED_SOURCE_ATTEMPT2_ACTIVE",
       "native_acceptance": false,
-      "source": "8e9dac2d9585dd482e9ab784a65c5517b6847648",
+      "source": "a3d235e821dc40687ebab9844f8ef88737f6be17",
       "implementation_source": "e9d8642dfb910f9502b7701cf22f569313cb8e2d",
       "source_controls_passed": 8,
       "runtime_adverse_controls_prepared": 6,
@@ -235,12 +236,12 @@
       "production_acceptance": false,
       "device_acceptance": false,
       "source_preparation": "429097b8db89cf7ff5f727c4c0a4c41d4b6225cc",
-      "tree": "86741f81dd14f78066a2bd827e9ed11e5e5091c1",
-      "run": 45136755585,
-      "run_attempt": 1,
-      "watcher": "job_98a321a4aa98",
+      "tree": "c0b092a89286e0cbd40c36eff477a80fe98de1fe",
+      "run": 45150723169,
+      "run_attempt": 2,
+      "watcher": "job_64bb3eed7ed4",
       "watch_interval_seconds": 120,
-      "watcher_terminal": true,
+      "watcher_terminal": false,
       "runtime_adverse_controls_scope": "Actual evidence admission controls only; no native acceptance",
       "original_source_controls_reexecuted": 0,
       "input_sha256": "3d5e85feb0ae6ea6e60f3fa8c5506d0cafdb8c140ecd7d670ded3ad82c3701fe",
@@ -261,27 +262,30 @@
       "repair_scope": "Only exact supported unique simulator slices with mandatory arm64 and matching actual DYLIB CPU headers; no binary changes",
       "config_functions_execution": "68d1aaa84ed37af4e83dc94ce5cb0f2a8c3f6123c55e46244e92e5fa038647d3",
       "old_controls_replayed": false,
-      "run_conclusion": "failure",
-      "failure_phase": "PRE_APP_TARGET_RUBY_DEPENDENCY_LOAD",
-      "failure_cause": "The original pod install succeeded; later PATH Ruby3.3.14 could not require xcodeproj before project mutation or build-for-testing.",
+      "run_conclusion": null,
+      "failure_phase": null,
+      "failure_cause": null,
       "artifact": 14802911519,
       "artifact_bytes": 31173031,
       "artifact_sha256": "58a809905472f70664c7e077918ee4909fb96d5e18169ca25bafe16e8bccb130",
       "intake_sha256": "ac294ec415ece884df83bb034d6bb60f57962ab1dccdcc2ce4f3458bb8de18d5",
       "native_cases_executed": 0,
-      "repair_source": "8e9dac2d9585dd482e9ab784a65c5517b6847648",
+      "repair_source": "a3d235e821dc40687ebab9844f8ef88737f6be17",
       "repair_controls": {
-        "passed": 6,
-        "assertions": 24,
-        "scope": "source controls with authentic captures and explicit adverse inputs",
-        "replayed": false
+        "initial_cases": 6,
+        "initial_assertions": 42,
+        "additional_wrapper_cases": 1,
+        "additional_wrapper_assertions": 13,
+        "actual_source_admission_inputs": 285,
+        "scope": "Portable exact Ruby caller-context ownership; not real Apple CocoaPods/native acceptance",
+        "old_controls_replayed": 0
       },
       "root_verified_repair_index_rows": 23,
       "root_verified_failure_index_rows": 31,
       "root_full_inverse_verified": true,
       "root_unchanged_existing_functions": 21,
-      "repair_activation": true,
-      "repair_watcher": "job_98a321a4aa98",
+      "repair_activation": "1507f816a0d17c142034f2af65d1f4a2f17d2baee577f2cc054f4def276023a7",
+      "repair_watcher": "job_64bb3eed7ed4",
       "prior_terminal_attempt": {
         "run": 45130214448,
         "source": "a0b0e12cee7260829f4cafe41fc9c4c0dfad6c44",
@@ -291,14 +295,26 @@
         "artifact": 14799460254,
         "artifact_sha256": "3662b88875a2062005edcad376463761c1f4a6b300a096ab0329dc4d211affcd"
       },
-      "source_admission_sha256": "34076703e45d011017d73fea95c8806b6f673d499366d18517a369a4e0e069c7",
+      "source_admission_sha256": "eddcf9c118a1d518223e950829c8c6c6a385656cb34ba4617afcf85d7cba47b2",
       "completed_original_sdk_admission": {
         "distribution_files": 2528,
         "frameworks": 17,
         "dynamic_frameworks": 15,
         "actual_api_typecheck": "PASS"
       },
-      "next_repair": "Capture and use the actual successful original pod Ruby/Gem context; three CI-only paths; no guessed gem install, app/SDK/workflow/assertion edits."
+      "next_repair": "Await attempt2 actual original Apple build; E2 source preparation continues independently.",
+      "prior_attempt1_allocation": {
+        "run": 45150723169,
+        "attempt": 1,
+        "job": 137611120474,
+        "runner_id": 0,
+        "steps": 0,
+        "artifacts": 0,
+        "conclusion": "failure",
+        "annotation": "The job was not acquired by Runner of type hosted even after multiple attempts",
+        "intake_sha256": "36c1ced944dc0315ca3bc7b5b632287e05e60e2760a6c88f255721d027af5915",
+        "root_review_sha256": "0b06dd10776a4b8df3b979099d052eb773827edd3ae13c0a3be947760125408d"
+      }
     },
     {
       "name": "original_heart_owned_import_lifetime",
@@ -426,7 +442,7 @@
     {
       "name": "original_owned_import_rpc_design",
       "owner": "/root/asana_scope",
-      "status": "SLICE_A_REPORTED_36_NATIVE_PASSES_COLLECTOR_FAILURE_INTAKE_PENDING_BC_SOURCE_PREPARED",
+      "status": "ROOT_VERIFIED36_NATIVE_LEAVES_WORKFLOW_COLLECTOR_FAILURE_BC12_SOURCE_ROOT_ACCEPTED_QUALIFICATION_PREPARING",
       "dependency": "Original existing ObjectImport returns before completion; requires genuine owned importer Done/Result without replacing original engine",
       "native_acceptance": false,
       "concrete_blocker": "Whole graph reuse must bypass metadata/sync/reset paths; create races must propagate actual ErrTreeExists; file uploads precede ObjectCreator.Create; planning and live per-assignment checks are required. Native export may return nil on cancellation and default PB conversion may create a collection. Genuine exported graph and mapping-aware body proof still required.",
@@ -457,7 +473,7 @@
       "artifact_sha256": "ce3c5bd8b4c3869a99dda8c8d5d0811586c7b5e86cd7e53bbee22e099db69355",
       "owner_verified_members": 39,
       "owner_verified_index_rows": 38,
-      "root_terminal_intake_review": "39_OUTER_CRC_AND289_NESTED_MEMBER_HASHES_VERIFIED_NO_NATIVE_REPLAY",
+      "root_terminal_intake_review": "COMPLETE",
       "owned_native_cleanup_reported": true,
       "repair_proposal": "Compose exact type URL correction with reviewed annotation-specific body budget across native/SDK/Host; global ActionWireCodec unchanged",
       "evidence_source": "8e91cea2a09d958e83e7f7c670c82248fd87a077",
@@ -482,7 +498,19 @@
         "artifact": 14796205075,
         "artifact_sha256": "7c87d6897acf5ee454f3005e3ba4b5915324044625b5ed475c8642e0e40143d3"
       },
-      "bc_state": "Principal complete graph, converter, file uploader, creator, raw schema observer and same-owner native readback/drain/cleanup hunks prepared; cohesive symbol/inverse review pending; not compiled/activated.",
+      "bc_state": {
+        "source": "62e5f1c9d62c99cc00debfe7e1975557eeec32fa",
+        "root_whole12_source_review": "ACCEPTED_SOURCE_ONLY",
+        "independent_review_sha256": "2ef891d785c9b85f5334d1988ed0f24c0e039e4d29d555670de2e0dc027692fb",
+        "packet_index_rows": 38,
+        "retained_git_inputs": 43,
+        "ordered_overlays": 90,
+        "final_native_afterimages": 83,
+        "exact_full_inverse_paths": 12,
+        "fixture_source": "92b421e22e2ba556fe41fb6e0156acdbfae488b6",
+        "native_compile_or_test_executed": false,
+        "generated_rpc_swift_invocation_host_saved_revision": "PENDING"
+      },
       "manual_dispatches": 0,
       "counts": {
         "PASS": 0,
@@ -544,7 +572,15 @@
         "commands_drained_reported": 14,
         "native_replay_planned": false
       },
-      "policy_sha256": "818bd440374cd49072f018065d300209bd2dafc506ec16d8c2c686736bde7077"
+      "policy_sha256": "818bd440374cd49072f018065d300209bd2dafc506ec16d8c2c686736bde7077",
+      "root_native_budget_review_sha256": "0f4b91f528f4ec5d11dcfcaa57f2eff833ecb7b27cfa54d1f822e86d558e6bde",
+      "post_collector_global_stability_checks": "NOT_REACHED",
+      "collector_repair_source": "e1bd8d4db565b2f87b75504060538a669135c522",
+      "collector_new_offline_controls": {
+        "inventory": 4,
+        "regular_file_kind": 3,
+        "native_replay": 0
+      }
     },
     {
       "name": "reader_source_performance",
@@ -717,7 +753,7 @@
       "owner": "/root/original_sdk",
       "source_plan": "642a8b9cd9cd243e820db154ea2471b6882e2a94",
       "product_base": "89926d7839c09a629c195ec6dd9812fe56aad069",
-      "status": "E2_ELEVEN_PREREQUISITES_ROOT_ACCEPTED_PUBLISHED_NEXT_ORIGINAL_UI_WRAPPER_PROPOSAL",
+      "status": "E2_FACADE_SOURCE_PUBLISHED_REGISTERED_OWNER_FORWARDING_SOURCE_CONTROLS_PASS_COMPOSITION_PENDING",
       "source_inventory_files": 62,
       "root_original_environment_storage_sources_read": 5,
       "scope": "Immutable embedded deployment, actual app-group validation and fixed namespacing of both original defaults wrappers; original standalone behavior preserved",
@@ -751,7 +787,7 @@
       "e2_packet_index_sha256": "b7f6e8cb30deaf179aa6e3362090e1fde026293ddd76acca6e02ecd140ad303b",
       "e2_source_correspondence_sha256": "6c26d9292f60f7af79e2d6f41b29f5a206abf9a64e9198e62b3b49a53fec515d",
       "e2_new_auth_source_edits": 0,
-      "e2_pending_exact_proposal": "original_sdk owns immutable caller/registered auth/coordinator/auth/onboarding/Migration paths; original_rpc owns isolated two AccountSession/View facade files plus exact project membership after combined import repair; source only.",
+      "e2_pending_exact_proposal": "Final union proof and facade/budget composition review",
       "new_authorized_paths": [
         "Anytype/Sources/ServiceLayer/Auth/AuthService.swift",
         "Anytype/Sources/ServiceLayer/Account/AccountEventHandler.swift",
@@ -780,8 +816,22 @@
       },
       "full_four_inverse_verified": true,
       "seven_previous_afterimages_frozen": true,
-      "registered_original_wrapper_and_onboarding": "CONCRETE_SOURCE_IN_PROGRESS_SPLIT_WITH_ORIGINAL_RPC",
-      "native_start_retirement": "Never-admitted startup drain-only; any admitted/in-flight startup retains genuine Stop/join task. ACCOUNT_IS_NOT_RUNNING remains failure requiring same-owner explicit retry; no blind Stop loop or future-start tombstone fiction"
+      "registered_original_wrapper_and_onboarding": "Accepted immutable caller/Auth attempt/real native drain proposal applied in isolated worktree;17paths, additional7Settings proposal independently accepted; final union sealing",
+      "native_start_retirement": "Never-admitted startup drain-only; any admitted/in-flight startup retains genuine Stop/join task. ACCOUNT_IS_NOT_RUNNING remains failure requiring same-owner explicit retry; no blind Stop loop or future-start tombstone fiction",
+      "e2_facade_source": "84a023191803f58879fe29c5756612b469ff12ef",
+      "e2_facade_tree": "cd71e9c5c8109ef5ba57b21dcd14fd82e003d87a",
+      "e2_facade_root_review_sha256": "1a4539e9bbf87a8a5c1c3f2ee44aaaeef5f6ee9e08b0f6283ece568fd17bb2a2",
+      "e2_facade_product_paths": 3,
+      "e2_schema_readiness_controls": 78,
+      "e2_schema_readiness_control_scope": "Portable predicate and two-file parse only",
+      "registered_owner_controls": {
+        "cases": 12,
+        "assertions": 58,
+        "commands": 4,
+        "result_sha256": "4465059d276d0b1846ecf0d946145f79b0f9283a2f66b502b26e32431011f066",
+        "apple_or_lib_acceptance": false
+      },
+      "settings_peer_review_sha256": "e1e88c3d6707d49527fdf315832577b826a728383739eb69eb903f54614fc38d"
     },
     {
       "name": "reader_profile_followup4",
@@ -882,7 +932,7 @@
       "name": "full_v32_reader_ui_observation",
       "owner": "/root/original_rpc",
       "base": "2ef81ac195c002863486e473dad95f336f3e1675",
-      "status": "COMBINED_CI_FAILED_UI_COMPILE_BEFORE_NATIVE_MODULE_IMPORT_REPAIR_PENDING",
+      "status": "ACTUAL_SECOND_UI_COMPILE_FAILURE_ALL2_NOT_RUN_NOTIFY_SDK_EVIDENCE_CORRECTION_PUBLISHED",
       "worktree": "/mnt/development/projects/worktrees/Maktabah-reader-full-v32-ui-observation-20261123",
       "brief_source": "e61e54cd2f98a255462aadbfa9aee8b4b4398d8b",
       "brief_sha256": "1480c16726ed0c090c6a325151ad95f1ff5c95d317dbb32953b601682d6d0ef8",
@@ -925,13 +975,13 @@
       "old_controls_replayed": false,
       "root_exact_merge_sha256": "92c09ee7e8227cde2a94dc26daf5e56ba6ee9268565586d877183fe64bcf9eb0",
       "integrated_faithful_sha256": "f724b6b338c1dcbdc3285ed46386b9c51b80a5a224bec36b92cfb4fb632d72dc",
-      "native_executed": false,
+      "native_executed": 0,
       "physical_executed": 0,
       "workflow": "ONE_APP_BUILD_THREE_SEPARATE_COHORTS_GROUPS1_LIBRARY7_FULL2",
       "input_bindings": "Exact45-file API packet activated88977a1 on d6f3 product source;291Groups/Library inputs and42full inputs verified",
-      "combined_run": 45143450850,
-      "combined_source": "88977a1e19e6c205fc2e832bd79c384b1e2f70ca",
-      "combined_watcher": "job_26d08f49220c",
+      "combined_run": 45147566951,
+      "combined_source": "ad07d5a48da4b49b3085d5d88110d6043ffba1e5",
+      "combined_watcher": "job_b7f001ecba44",
       "combined_watcher_terminal": true,
       "combined_counts": {
         "PASS": 0,
@@ -939,8 +989,9 @@
         "SKIP": 0,
         "NOT_RUN": 10
       },
-      "failure_phase": "UI_COMPILE_ONLY",
-      "failure": "notify_post and NOTIFY_STATUS_OK not in scope; explicit Apple DarwinNotify imports under source review."
+      "failure_phase": "UI_COMPILE_BEFORE_APPLICATION_BUILD",
+      "failure": "No such module DarwinNotify",
+      "actual_notify_repair_source": "a0f9f0547e28ac89a42fce5019888222c21390cd"
     },
     {
       "name": "hanlin_cold_search_preparation_observation",
@@ -1082,14 +1133,14 @@
     {
       "name": "hanlin_live13_infrastructure_retry1",
       "owner": "/root",
-      "status": "EXACT_SAME_SOURCE_ONE_FRESH_INFRASTRUCTURE_RETRY_ACTIVE",
+      "status": "AUTHENTIC_NATIVE_CONSENT_SWITCH_FAILURE_PROVIDER_NOT_REACHED_INTAKE_FINISHING",
       "source": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
       "application_source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
       "run": 45145388957,
       "run_attempt": 1,
-      "watcher": "job_bd58351c19ea",
-      "watcher_terminal": false,
-      "observer_started_utc": "2026-11-23T09:15:39.247832+00:00",
+      "watcher": "job_75cf0709506d",
+      "watcher_terminal": true,
+      "observer_started_utc": "2026-11-23T10:12:17.783779+00:00",
       "watch_interval_seconds": 120,
       "watch_window_seconds": 3300,
       "source_preparation": "a911d64d0e58cd4fcdcc2f16ffbfc492d3642b8f",
@@ -1103,38 +1154,140 @@
         45128868702
       ],
       "single_dispatch_exit_code": 0,
-      "temporary_secret_cleanup_required": true,
+      "temporary_secret_cleanup_required": false,
       "credential_value_or_hash_recorded": false,
       "new_provider_probe_requests": 0,
       "original_ci_app_prompt_model_endpoint_assertions_timeouts_unchanged": true,
-      "native_acceptance": false
+      "native_acceptance": false,
+      "observer_windows": 2,
+      "observer_finished_utc": "2026-11-23T10:18:26.841351+00:00",
+      "run_conclusion": "failure",
+      "secret_cleanup_required": false,
+      "native_cases": {
+        "PASS": 0,
+        "FAIL": 1,
+        "SKIP": 0
+      },
+      "build": "PASS",
+      "initial_installation": "INSTALLED",
+      "fixture_installation": "PASS",
+      "failure": "Actual consent switch value stayed 0 after one native tap; Connect and provider completion not reached. Geometry/timing cause remains unresolved pending actual evidence.",
+      "verified_completed_provider_conversations": 0,
+      "artifact": 14808460459,
+      "artifact_bytes": 87230,
+      "artifact_sha256": "b95abfac3016caf61dbf4f61daa397c59fba51df910d9db43e6846c498af8b30",
+      "cleanup": {
+        "delete_http_status": 204,
+        "after_http_status": 404,
+        "finished_at_utc": "2026-11-23T10:18:26.790964+00:00",
+        "independent_root_metadata_get_http": 404,
+        "independent_root_observed_utc": "2026-11-23T10:24:56Z"
+      }
     },
     {
       "name": "combined_groups_library_full_v32",
-      "owner": "/root/original_rpc",
-      "status": "AUTHENTIC_PRE_APP_BUILD_UI_COMPILE_FAILURE_ALL10_NOT_RUN",
-      "source": "88977a1e19e6c205fc2e832bd79c384b1e2f70ca",
-      "application_source": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
-      "tree": "929a64a644048317111f542c1a7d172506f3a30b",
-      "run": 45143450850,
+      "owner": "/root",
+      "status": "SECOND_AUTHENTIC_UI_COMPILE_FAILURE_ALL10_NOT_RUN_ACTUAL_NOTIFY_CORRECTION_PUBLISHED",
+      "source": "ad07d5a48da4b49b3085d5d88110d6043ffba1e5",
+      "application_source": "b965e741815f9033151ee45f58d744d028ba1bc2",
+      "tree": "734fa86aa389878bd06a3fb5f64e52277d7771f2",
+      "run": 45147566951,
       "run_attempt": 1,
-      "watcher": "job_26d08f49220c",
+      "watcher": "job_b7f001ecba44",
       "watcher_terminal": true,
       "source_admission": "PASS_GROUPS_LIBRARY_FULL",
       "sdk_selection": "PASS",
       "app_build_started": false,
       "native_executed": 0,
       "not_run": 10,
-      "compiler_log_sha256": "e6cd32cdbe3d6b5d51ae9ce0eaad9e7891b5140d5544261f7a0570614a564072",
-      "repair_scope": "Two explicit DarwinNotify imports only; methods/assertions/deadlines unchanged; pending sealed source review."
+      "compiler_log_sha256": "042eac9a0665ae80eaa4cd7e0acaf5ae8426ff8c2b38a4ce2b752848d4a1c8d0",
+      "repair_scope": "Actual selected SDK declaration compile proves notify. Exact two-import correctiona0f9f054 published; next combined same tests/build pending frozen pin admission.",
+      "intake_sha256": "5e578bc889f1e6f5e3668a969d23d1078a460e347c9be8856de3b5e92a8e59f4",
+      "failure": "No such module DarwinNotify",
+      "prior_compiler_failure": {
+        "name": "combined_groups_library_full_v32",
+        "owner": "/root/original_rpc",
+        "status": "AUTHENTIC_PRE_APP_BUILD_UI_COMPILE_FAILURE_ALL10_NOT_RUN",
+        "source": "88977a1e19e6c205fc2e832bd79c384b1e2f70ca",
+        "application_source": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
+        "tree": "929a64a644048317111f542c1a7d172506f3a30b",
+        "run": 45143450850,
+        "run_attempt": 1,
+        "watcher": "job_26d08f49220c",
+        "watcher_terminal": true,
+        "source_admission": "PASS_GROUPS_LIBRARY_FULL",
+        "sdk_selection": "PASS",
+        "app_build_started": false,
+        "native_executed": 0,
+        "not_run": 10,
+        "compiler_log_sha256": "e6cd32cdbe3d6b5d51ae9ce0eaad9e7891b5140d5544261f7a0570614a564072",
+        "repair_scope": "Two explicit DarwinNotify imports only; methods/assertions/deadlines unchanged; pending sealed source review."
+      },
+      "terminal_evidence_source": "838d62d8086f9609429b3d62eef10b8a0cba8fca"
+    },
+    {
+      "name": "actual_darwin_notification_sdk_probe",
+      "owner": "/root",
+      "status": "ACTUAL_DECLARATION_COMPILE_PASS_NOTIFY_MODULE_FOUND_SOURCE_CORRECTION_PUBLISHED",
+      "source": "a85e35846804cfef26e1449c57671c319773140d",
+      "tree": "8c5513174ae5f8f36be49cf6e4d7c33179ae7645",
+      "run": 45152574279,
+      "run_attempt": 1,
+      "watcher": "job_d60b77802ee3",
+      "watcher_terminal": true,
+      "run_conclusion": "success",
+      "artifact": 14806878900,
+      "artifact_bytes": 40365,
+      "artifact_sha256": "c9d4e3082b56342e69028aa568c096fd6a6fe4e52a6d92478eccad5690fb2250",
+      "root_artifact_admission_sha256": "1646111f641b55efd4bc69cdcb01f102dfecae6247c48afece983c9a8a91a9c2",
+      "actual_result_sha256": "544e5b74ce25b0a72e30452ebf702ad94c46edf8048d09a4c634a4f18827d685",
+      "actual_modulemap_sha256": "0d3116c1a49cc6fa61381b36b2cc4056086fed47096878dd582fe7bbcc60e4f5",
+      "actual_sdk": "Xcode27.2 Build27B52 / Swift6.4.2 / iPhoneSimulator27.2 / arm64-apple-ios27.0-simulator",
+      "successful_import": "notify",
+      "source_repair": {
+        "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+        "tree": "cd40d30c939fc1b85ceed0d050cae3e12e40579d",
+        "parent": "b965e741815f9033151ee45f58d744d028ba1bc2",
+        "branch": "source/otzaria-actual-notify-module-20261123",
+        "worktree": "/mnt/development/projects/worktrees/Maktabah-actual-notify-module-20261123",
+        "source_paths": [
+          {
+            "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+            "before_bytes": 290690,
+            "before_sha256": "6bbb69dfe79d52f1cb1f148eb665466e7a230055bd182cca434f486d0512dcbb",
+            "after_bytes": 290684,
+            "after_sha256": "d8ae7aa91ad09866a8842684fae51b1d19e1d084b27a8a6b5d7cb45b523c091f",
+            "full_inverse_exact": true,
+            "changes": "One existing import declaration replaced with actual SDK-declared notify module; all bodies/conditions/notifications/assertions unchanged."
+          },
+          {
+            "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+            "before_bytes": 21727,
+            "before_sha256": "1d531327634b8c72732d4618eb44220ba492af67280e408a7c775e254ffbd9c4",
+            "after_bytes": 21721,
+            "after_sha256": "2f53c4136145100382ea86dd2b659c8457ec7b56e19173eafb8d7c0ba464fa25",
+            "full_inverse_exact": true,
+            "changes": "One existing import declaration replaced with actual SDK-declared notify module; all bodies/conditions/notifications/assertions unchanged."
+          }
+        ],
+        "root_review_sha256": "6e78293e7af6054b8fa86e675251ee49de2d53871b5900666b80c3c3f4a62e41",
+        "source_index_sha256": "f86bf91f035e94175e7e693e0f6661fc890ecd041fbc0a1eb88615dfdc30882c",
+        "push_returncode": 0,
+        "push_stdout": "To https://github.com/davidpovarsky/Maktabah.git\n*\ta0f9f0547e28ac89a42fce5019888222c21390cd:refs/heads/source/otzaria-actual-notify-module-20261123\t[new branch]\nDone\n",
+        "push_stderr": "remote: \nremote: Create a pull request for 'source/otzaria-actual-notify-module-20261123' on GitHub by visiting:        \nremote:      https://github.com/davidpovarsky/Maktabah/pull/new/source/otzaria-actual-notify-module-20261123        \nremote: \n",
+        "remote_exact_and_clean": true
+      },
+      "native_notification_calls": 0,
+      "actual_app_ui_acceptance": false,
+      "source_tests_replayed": 0
     }
   ],
   "boundaries": {
     "books_updates": "Live provider still lacks authentic backend/schema/source-digest/migration contract; unchanged reviewed safety path preserved; no payload or user DB mutations",
     "owner_release_verification_key": "Known required key absent from repository secrets and variables metadata",
     "physical_ipad": "No physical acceptance performed",
-    "final_frozen_composition": "Integrated sourceef0b68a0250fdbee5d9488061161003000e9ad38 published; final CI pins remainUNFINALIZED. Separate combined88977a1 on d6f3 failed UI compile before10cases. No Native116/Release114/physical passes transferred.",
-    "annotation_body_budget": "Shared bounded policy published; native original4export+32archive reportedPASS pending final intake, SDK10Foundation cases plus4baseline boundaries passed, Host24actualSQLite/codec cases passed and source integratedef0b68. Global64KiB ActionWireCodec unchanged; complete graphs retained. Full original SDK/Host/closed import/Apple body authority remains unqualified."
+    "final_frozen_composition": "Integrated source58b242b77d516c99b7ecb4d24645e3359d68f531 published but contains the unqualified DarwinNotify import. Actual SDK diagnostic now proves module notify; correctiona0f9f0547e28ac89a42fce5019888222c21390cd is published and awaiting exact composition/combined native retry. Native116/Release114 pins remainUNFINALIZED; no physical or historical acceptance transferred.",
+    "annotation_body_budget": "Root authenticated four genuine native exports plus32archive control passes, workflowFAIL after native leaves at evidence collector; post-collector global stability checks NOT_REACHED. Collector source repaired and seven focused offline controls retained without replaying36. Native B1/C62e5source root/independent reviewPASS; genuine closed-import fixture/gate under review. SDK14portable cases andHost24SQLite/codec cases are source-scoped prerequisites; closed import/Apple/bodyACK unqualified."
   },
   "asana_comments": [
     "1220774175256917",
@@ -1213,7 +1366,15 @@
     "1220780974653954",
     "1220781032969211",
     "1220781719149844",
-    "1220781687859295"
+    "1220781687859295",
+    {
+      "stage": "checkpoint16_e2_bc_source_acceptance",
+      "comment": "1220783939942948"
+    },
+    {
+      "stage": "stageb_attempt2_started",
+      "comment": "1220784214077391"
+    }
   ],
   "inventory": {
     "unique_tasks": 83,
@@ -1232,39 +1393,52 @@
     "inherited_annotation_composition": "Canonical1969 process-resume source and mixed-block/newPID test must be retained; Cold869 inherited earlier annotation files are excluded from final selected composition"
   },
   "apple_allocation": {
-    "status": "ACTUAL_APPLE_EXECUTION_CONFIRMED",
-    "evidence": "Library actual build/install and Reader10 ten genuine cases; PERF exact source preflight on Xcode27.2",
-    "shared_core_quota": {
-      "exhausted_at": "2026-11-23T04:39:36Z",
-      "observed_reset_utc": "2026-11-23T04:43:45Z",
-      "post_reset_observed_utc": "2026-11-23T04:44:05.457429+00:00",
-      "remaining_at_observation": 4999
-    },
-    "observation_policy": "One observer per exact run, minimum120s intervals; root coordinates any shared quota pause"
+    "policy": "One owner per exact source/run/attempt;120-second finite3300-second windows, no duplicate watcher or automatic replay",
+    "active": [
+      {
+        "name": "original_editor_stageb",
+        "run": 45150723169,
+        "attempt": 2,
+        "source": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+        "watcher": "job_64bb3eed7ed4",
+        "owner": "/root/original_sdk"
+      }
+    ],
+    "completed_since_checkpoint15": [
+      45147566951,
+      45145388957,
+      45152574279
+    ],
+    "pending": [
+      "One actual-notify combined source retry after exact pin admission",
+      "Genuine closed-import candidate native qualification after fixture/gate review",
+      "Composed original account/framework native qualification after source review"
+    ]
   },
   "integrated_source_preparation": {
-    "source": "ef0b68a0250fdbee5d9488061161003000e9ad38",
-    "tree": "ad375566c78e07007d75df2ac9b5d2bd2f5a6dc1",
+    "source": "58b242b77d516c99b7ecb4d24645e3359d68f531",
+    "tree": "61c7c80861d8d3b453b3fc017b050d0fceaf1af0",
     "product_trees": {
-      "Source": "cf3dd3b9984677e1e98d0e3cd9324eede62501ce",
+      "Source": "97e191431de9f0e541f947c160107ef1beb7f305",
       "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
       "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
-      "Maktabah-iOSUITests": "593efc2a78f9a721515733531db2e8da0cd89987"
+      "Maktabah-iOSUITests": "9adc137f6c49bca9fcc5e570f743e230bd91a4fe"
     },
     "branch": "codex/otzaria-final-composition-20261123",
     "clean": true,
     "published": true,
     "native_acceptance": false,
-    "composition_manifest_sha256": "b70ced5d068b2e88e4809c4679aae3b0c92b26b0ffac1b3af42f851d988e29f7",
-    "root_review_sha256": "8bface1c504dfb84ded49d6870060cfcbef0ac143b6e8b6ebe2eb33c044cb843",
-    "status": "EXACT_HOST_BUDGET_SOURCE_COMPOSED_NATIVE_UNQUALIFIED",
+    "composition_manifest_sha256": "2604a3ea05a0a970c7e817c22998ccfb1dba99678f11fb731c9d72615ba25bee",
+    "root_review_sha256": "ceca037736a63d435b7080e757f40075cfc6af98f1134f48bbe30835fb91cb16",
+    "status": "SOURCE_COMPOSED_PREVIOUS_DARWINNOTIFY_IMPORT_UNQUALIFIED_ACTUAL_NOTIFY_CORRECTION_PUBLISHED",
     "workflow_activated": false,
     "input_bindings_unfinalized": true,
     "parents": [
       "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
       "2a5518565c1fe4ee0a486696df0142699c766d01"
     ],
-    "prior_source": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
-    "host_budget_source": "2a5518565c1fe4ee0a486696df0142699c766d01"
+    "prior_source": "ef0b68a0250fdbee5d9488061161003000e9ad38",
+    "host_budget_source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+    "actual_notify_source": "a0f9f0547e28ac89a42fce5019888222c21390cd"
   }
 }

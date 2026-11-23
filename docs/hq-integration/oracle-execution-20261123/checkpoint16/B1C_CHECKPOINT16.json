@@ -1,0 +1,13 @@
+{
+  "source": "62e5f1c9d62c99cc00debfe7e1975557eeec32fa",
+  "root_whole12_source_review": "ACCEPTED_SOURCE_ONLY",
+  "independent_review_sha256": "2ef891d785c9b85f5334d1988ed0f24c0e039e4d29d555670de2e0dc027692fb",
+  "packet_index_rows": 38,
+  "retained_git_inputs": 43,
+  "ordered_overlays": 90,
+  "final_native_afterimages": 83,
+  "exact_full_inverse_paths": 12,
+  "fixture_source": "92b421e22e2ba556fe41fb6e0156acdbfae488b6",
+  "native_compile_or_test_executed": false,
+  "generated_rpc_swift_invocation_host_saved_revision": "PENDING"
+}

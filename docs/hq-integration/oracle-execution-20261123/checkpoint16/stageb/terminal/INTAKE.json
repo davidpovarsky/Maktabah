@@ -1,0 +1,26 @@
+{
+  "recorded_at": "2026-11-23T10:12:48.278479+00:00",
+  "repository": "davidpovarsky/Maktabah",
+  "source_sha": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+  "run_id": 45150723169,
+  "run_attempt": 1,
+  "job_id": 137611120474,
+  "run_conclusion": "failure",
+  "job_conclusion": "cancelled",
+  "phase": "HOSTED_RUNNER_ALLOCATION_FAILED_BEFORE_ANY_STEP",
+  "runner_labels": [
+    "xcode-27"
+  ],
+  "runner_id": 0,
+  "steps_count": 0,
+  "artifact_count": 0,
+  "authentic_annotation": "The job was not acquired by Runner of type hosted even after multiple attempts",
+  "source_admission_ruby_observer_pod_helper_build_simulator_ui": "NOT_RUN",
+  "original_signed_sdk_qualification": "UNCHANGED_SEPARATE_ACCEPTED_PREREQUISITE",
+  "watcher_exit": 1,
+  "watcher_timeout": false,
+  "watcher_reaped": true,
+  "watcher_group_drained": true,
+  "retry_started": false,
+  "no_product_change_diagnosed": true
+}

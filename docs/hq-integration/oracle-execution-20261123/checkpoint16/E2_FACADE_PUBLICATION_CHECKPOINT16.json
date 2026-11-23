@@ -1,0 +1,20 @@
+{
+  "receipt": {
+    "source_sha": "84a023191803f58879fe29c5756612b469ff12ef",
+    "tree": "cd71e9c5c8109ef5ba57b21dcd14fd82e003d87a",
+    "branch": "codex/otzaria-original-account-session-facade-20261123",
+    "push_exit_code": 0,
+    "push_stdout": "To https://github.com/davidpovarsky/anytype-swift.git\n*\t84a023191803f58879fe29c5756612b469ff12ef:refs/heads/codex/otzaria-original-account-session-facade-20261123\t[new branch]\nDone\n",
+    "push_stderr": "remote: \nremote: Create a pull request for 'codex/otzaria-original-account-session-facade-20261123' on GitHub by visiting:        \nremote:      https://github.com/davidpovarsky/anytype-swift/pull/new/codex/otzaria-original-account-session-facade-20261123        \nremote: \n",
+    "prepared_parent": "257c49a5871c62611d88fab00a8124c7ff072166",
+    "source_review_sha256": "1a4539e9bbf87a8a5c1c3f2ee44aaaeef5f6ee9e08b0f6283ece568fd17bb2a2",
+    "apple_qualification": false,
+    "native_activation": false,
+    "created_utc": "2026-11-23T10:24:05.845511+00:00",
+    "remote_source_exact": true,
+    "worktree_clean": true,
+    "status": "SOURCE_PUBLISHED_APPLE_PENDING"
+  },
+  "path": "/mnt/development/projects/diagnostics/otzaria-original-account-session-facade-20261123/PUBLICATION.json",
+  "sha256": "71ec34f2c617ca974aa8f7400316e815a9ee71a6603ef2f2e7746020354eb7a3"
+}

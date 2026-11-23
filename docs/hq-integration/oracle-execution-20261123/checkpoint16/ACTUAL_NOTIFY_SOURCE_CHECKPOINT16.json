@@ -1,0 +1,33 @@
+{
+  "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+  "tree": "cd40d30c939fc1b85ceed0d050cae3e12e40579d",
+  "parent": "b965e741815f9033151ee45f58d744d028ba1bc2",
+  "branch": "source/otzaria-actual-notify-module-20261123",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-actual-notify-module-20261123",
+  "source_paths": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "before_bytes": 290690,
+      "before_sha256": "6bbb69dfe79d52f1cb1f148eb665466e7a230055bd182cca434f486d0512dcbb",
+      "after_bytes": 290684,
+      "after_sha256": "d8ae7aa91ad09866a8842684fae51b1d19e1d084b27a8a6b5d7cb45b523c091f",
+      "full_inverse_exact": true,
+      "changes": "One existing import declaration replaced with actual SDK-declared notify module; all bodies/conditions/notifications/assertions unchanged."
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "before_bytes": 21727,
+      "before_sha256": "1d531327634b8c72732d4618eb44220ba492af67280e408a7c775e254ffbd9c4",
+      "after_bytes": 21721,
+      "after_sha256": "2f53c4136145100382ea86dd2b659c8457ec7b56e19173eafb8d7c0ba464fa25",
+      "full_inverse_exact": true,
+      "changes": "One existing import declaration replaced with actual SDK-declared notify module; all bodies/conditions/notifications/assertions unchanged."
+    }
+  ],
+  "root_review_sha256": "6e78293e7af6054b8fa86e675251ee49de2d53871b5900666b80c3c3f4a62e41",
+  "source_index_sha256": "f86bf91f035e94175e7e693e0f6661fc890ecd041fbc0a1eb88615dfdc30882c",
+  "push_returncode": 0,
+  "push_stdout": "To https://github.com/davidpovarsky/Maktabah.git\n*\ta0f9f0547e28ac89a42fce5019888222c21390cd:refs/heads/source/otzaria-actual-notify-module-20261123\t[new branch]\nDone\n",
+  "push_stderr": "remote: \nremote: Create a pull request for 'source/otzaria-actual-notify-module-20261123' on GitHub by visiting:        \nremote:      https://github.com/davidpovarsky/Maktabah/pull/new/source/otzaria-actual-notify-module-20261123        \nremote: \n",
+  "remote_exact_and_clean": true
+}
