@@ -1,0 +1,67 @@
+{
+  "scope": "Only the affected original source admissions were executed. No build, portable suite or native test executed.",
+  "preparation_checkout": "41eadf4471fdb3ca7ad78fb3c4a7c1442511ccdb",
+  "application_source": "b965e741815f9033151ee45f58d744d028ba1bc2",
+  "guards": [
+    {
+      "guard": "groups100",
+      "command": [
+        "python3",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "prepare"
+      ],
+      "returncode": 0,
+      "generated_path": "build/artifacts/reader-groups100/source-before.json",
+      "generated_bytes": 65488,
+      "generated_sha256": "5c8432c9ca5f1030c95a8ee3a8ce70f11bc88d4a4a9b193f5beeffc80e4c0932"
+    },
+    {
+      "guard": "library7",
+      "command": [
+        "python3",
+        "Scripts/CI/library-morph-focused-native.py",
+        "prepare"
+      ],
+      "returncode": 0,
+      "generated_path": "build/artifacts/library-morph/source-before.json",
+      "generated_bytes": 66600,
+      "generated_sha256": "960d9d6917bad41a5950c86dd24b7e15dc4462b7c844d4636a088d8b792638bc"
+    },
+    {
+      "guard": "full_v32_source_check",
+      "command": [
+        "python3",
+        "Scripts/CI/reader-full-v32-ui-observation.py",
+        "source-check"
+      ],
+      "returncode": 0,
+      "generated_path": "build/artifacts/reader-full-v32-ui-observation/source-only-admission.json",
+      "generated_bytes": 8931,
+      "generated_sha256": "6f391b3752c8866b4f7514aa7e5eab086dd51ec5d06ee8e637f606cdc31f926f"
+    },
+    {
+      "guard": "full_v32_frozen",
+      "command": [
+        "python3",
+        "-c",
+        "import runpy; m=runpy.run_path('Scripts/CI/reader-full-v32-ui-observation.py'); c=m['source_context'](require_frozen=True); m['write'](m['OUT']/'frozen-source-admission.json',c)"
+      ],
+      "returncode": 0,
+      "generated_path": "build/artifacts/reader-full-v32-ui-observation/frozen-source-admission.json",
+      "generated_bytes": 7725,
+      "generated_sha256": "ce81f9e713b7acf32cc2ab74981e87b93ef93a2099abc8ed4448a3c6e4efdca4"
+    }
+  ],
+  "group_library_execution_inputs_identical": true,
+  "group_library_execution_inputs_count": 291,
+  "full_v32_execution_input_count": 42,
+  "library_morph_issues": [],
+  "actual_native_cases_executed": 0,
+  "historical_failed_run": 45143450850,
+  "historical_failed_native_counts": {
+    "pass": 0,
+    "fail": 0,
+    "skip": 0,
+    "not_run": 10
+  }
+}

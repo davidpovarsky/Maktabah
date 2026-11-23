@@ -1,11 +1,11 @@
 {
   "schema": "otzaria.full-v32.original-ui-observation/1",
-  "application_source_sha": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
+  "application_source_sha": "b965e741815f9033151ee45f58d744d028ba1bc2",
   "application_trees": {
-    "Source": "efdfe18a0f43a55ca19e089fdad95ed369343233",
+    "Source": "531495d3dd2064fab518de4fb3962e329085b2bd",
     "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
     "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
-    "Maktabah-iOSUITests": "593efc2a78f9a721515733531db2e8da0cd89987"
+    "Maktabah-iOSUITests": "9adc137f6c49bca9fcc5e570f743e230bd91a4fe"
   },
   "original_source_base": "2ef81ac195c002863486e473dad95f336f3e1675",
   "selected_case_ids": [
@@ -83,18 +83,18 @@
   ],
   "input_sha256": {
     ".github/workflows/otzaria-reader-groups-full-v32.yml": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c",
-    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "f724b6b338c1dcbdc3285ed46386b9c51b80a5a224bec36b92cfb4fb632d72dc",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "6bbb69dfe79d52f1cb1f148eb665466e7a230055bd182cca434f486d0512dcbb",
     "Scripts/CI/hq-original-editor-distribution.py": "6ebfeab1fbc1c8568734a8a36016885e6454eef73940020b3db6986140022bf5",
-    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "fc15de1305fe71fa6d60b34c35e3cf270ce5eeec1408bc0bfd5a66eac274935a",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "e063a733fec9373ae426fd342aa9540a7a60ae813a3f3f1f4df1123bd9ceccdb",
     "Scripts/CI/hq-stage2-focused-apple.py": "0dbe133b8f0ee188dc2f0d0c375972a210571498ecac928f1174730ebb0e83f5",
-    "Scripts/CI/library-morph-focused-native.inputs.json": "29e1ff2cd25abd9a0842c0d64675b70b542447aa88530d50ac9242735bd10461",
+    "Scripts/CI/library-morph-focused-native.inputs.json": "a9c07e7c1106b38bac0ffe18c4cf9cd0c07cc2dc87219eced5a901fbd6178448",
     "Scripts/CI/library-morph-focused-native.py": "13d9c4dbb24591b6406e6a3da5c0d619c5785c726d894182383d899ce9373fc3",
     "Scripts/CI/native-cohort-artifacts.py": "cf7092191b7058041fe894673380865c9048bab15e224a027b34687123082b03",
     "Scripts/CI/prepare-faithful-ipad-fixtures.py": "1aef6221d2cefe49432c859e3a483c8b6321c062e156738bca66a12c6d792dbe",
     "Scripts/CI/prepare-hanlin-sdk.py": "7e9a303e20390b9a33ee6cddc73979dc1557741636d6e00067c55a90188af404",
     "Scripts/CI/prepare-pinned-sharp-libvips.py": "37a279a3ab6e1bf7ece3d92c657a8c4f5e1fcb9e5007564b4aef0408f0eee764",
     "Scripts/CI/reader-full-v32-ui-observation.py": "d75618e44d205b1fb2843811bbff846151eef6e14ec92d9b071bdbbaafbbfca7",
-    "Scripts/CI/reader-groups100-focused-native.inputs.json": "e4565ae3c9181b883a8a07f7407b49b60ec0278ae72e94fcd062470c0a49e153",
+    "Scripts/CI/reader-groups100-focused-native.inputs.json": "9ad953d600f358aa3f7c14f3f717725ba3ae5afe5a41fd44902f2487971912b6",
     "Scripts/CI/reader-groups100-focused-native.py": "27cf5dcbe51d45c804b50c9f5858161dae71762ce25ea7a113d2d6d1d2620a1b",
     "Scripts/CI/runtime27-url-delivery.py": "065c8afaed97a7974a2e8ba4c61b3077c63366e21bb8696837a00e4ab4bd17b8",
     "Scripts/CI/runtime27_interruption.py": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
@@ -117,7 +117,7 @@
     "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
     "Source/Otzaria/Reading/OtzariaLineAnchor.swift": "46c7282330eba729c77ddfbf732582bdcbfef2fcc7473b455cc5061bdd3931a6",
     "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
-    "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift": "36ca3f4863c60519d1135bf8f327a4c00a1e1bf074dd826caee7760547b18aa8",
+    "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift": "1d531327634b8c72732d4618eb44220ba492af67280e408a7c775e254ffbd9c4",
     "Source/Otzaria/Reading/OtzariaReadingUnit.swift": "a7468b783f530958641918c23e3d654a31938446f9de0bdbb7211dfc5ab39cfb",
     "Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift": "9c01b971ef6093fc7f9a2ea9680353aa9ad9f6b3bb87f7eefd4ac9a6780a4b02",
     "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
@@ -147,6 +147,7 @@
     "reader_bridge_source": "2ef81ac195c002863486e473dad95f336f3e1675",
     "old_passes_transferred": false,
     "previous_composition": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
-    "library_native_lifecycle_source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3"
+    "library_native_lifecycle_source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+    "darwin_notify_import_source": "b965e741815f9033151ee45f58d744d028ba1bc2"
   }
 }
