@@ -203,4 +203,4 @@ Example:
 
 Older completed/superseded items that still have historical value.
 
-- Stage B original SDK composition: reuse byte-identical SwiftPM Clang declarations through the host context; Firebase/Promises/Google/nanopb need one shared runtime product closure because the retained AnytypeOriginalEditor binary also defines their ObjC classes. Failure and focused repair evidence: docs/hq-integration/stageb-host-context-20261123. Native save/relaunch acceptance remains open.
+- Stage B original SDK composition: reuse byte-identical SwiftPM Clang declarations through the host context; Firebase/Promises/Google/nanopb need one shared runtime product closure because the retained AnytypeOriginalEditor binary also defines their ObjC classes. Failure and focused repair evidence: docs/hq-integration/stageb-host-context-20261123. Native save/relaunch acceptance remains open. The shared-provider Host route is prepared in docs/hq-integration/stageb-shared-runtime-20261123, with complete source/header/library ownership checks and generated-project inverse; final core/Hanlin/ABI and native producer/Stage B gates remain open.

@@ -190,7 +190,7 @@ if __name__ == "__main__":
     committed = subprocess.check_output(["git", "show", "HEAD:" + args.admission], cwd=ROOT, timeout=60)
     require(path.read_bytes() == committed, "SDK input manifest differs from reviewed source")
     config = SDK["read_json"](path)
-    require(config.get("schema") in {1, 2} and config.get("repository") == REPOSITORY, "Wrong SDK input contract")
+    require(config.get("schema") in {1, 2, 3} and config.get("repository") == REPOSITORY, "Wrong SDK input contract")
     evidence = ROOT / "build/original-editor-sdk-metadata"
     evidence.mkdir(parents=True, exist_ok=True)
     stage(config, evidence)

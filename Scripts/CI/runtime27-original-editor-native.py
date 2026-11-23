@@ -85,6 +85,8 @@ def runtime_dependency_preflight():
         pending.append(ci / "original_editor_host_clang_context.py")
         if sdk_input.get("continuation_kind") == "original-signed-consumer-runtime/1":
             pending.append(ci / "original_editor_signed_consumer_admission.py")
+    if sdk_input.get("schema") == 3:
+        pending.append(ci / "original_editor_shared_runtime.py")
     checked, imported = {}, set()
     while pending:
         path = pending.pop()

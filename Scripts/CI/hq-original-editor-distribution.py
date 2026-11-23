@@ -318,7 +318,7 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
     committed = subprocess.check_output(["git", "show", "HEAD:" + relative], cwd=root)
     require(committed == admission_path.read_bytes(), "SDK admission bytes differ from the reviewed checkout")
     config = read_json(admission_path)
-    require(config.get("schema") in {1, 2} and config.get("repository") == "davidpovarsky/anytype-swift",
+    require(config.get("schema") in {1, 2, 3} and config.get("repository") == "davidpovarsky/anytype-swift",
             "Wrong original SDK admission schema/repository")
     continuation = None
     if config["schema"] == 2:
@@ -417,6 +417,11 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
                     "original_package_lock_sha256": result["original_package_lock_sha256"],
                     "manifest_sha256": config["framework_producer"]["clang_manifest_sha256"]}
         result["clang_import_context"] = clang["admitted_context"](distribution, identity)
+    if config["schema"] == 3:
+        shared = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_shared_runtime.py")))
+        result.update(schema=3, toolchain=config["toolchain"],
+                      shared_runtime=shared["validate_provider"](root, config, qualification, result))
+        result["clang_import_context"] = result["shared_runtime"]["clang_context"]
     write(evidence / "distribution-admission.json", result)
     return result
 
@@ -631,10 +636,23 @@ def prepare(root, admission_path, report, out, logged):
     if admitted.get("schema") == 2:
         require(report.get("xcode") == admitted["framework_producer"]["toolchain"]["xcode"],
                 "Maktabah Xcode differs from the original framework and continuation")
+    shared = None
+    if admitted.get("schema") == 3:
+        require(report.get("xcode") == admitted["toolchain"]["xcode"],
+                "Host Xcode differs from the exact shared producer")
+        shared = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_shared_runtime.py")))
     policy = shared_package_policy(report["package_pins"], admitted["shared_package_revisions"])
     admitted["shared_package_policy"] = policy
     distribution = root / admitted["distribution_root"]
-    if admitted.get("schema") == 2:
+    if shared:
+        source_proof = shared["verify_host_sources"](root, admitted, report)
+        admitted["shared_host_sources"] = source_proof
+        composition = shared["project_clang_context"](root, distribution, admitted["clang_import_context"])
+        admitted["host_clang_context"] = composition
+        admitted["shared_pod_link_route"] = shared["plan_pod_link_route"](root, source_proof)
+        write(evidence / "host-clang-context.json", composition)
+        write(evidence / "shared-host-sources.json", source_proof)
+    elif admitted.get("schema") == 2:
         host_clang = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_host_clang_context.py")))
         composition = host_clang["project_host_context"](
             root, distribution, admitted["clang_import_context"], policy["identical_revisions"])
@@ -653,19 +671,26 @@ def prepare(root, admission_path, report, out, logged):
                       original_macro_authorization=report["compiler_macro_authorization"],
                       producer_runtime_absence=runtime_absence_proof(root, distribution, evidence / "swift-syntax-sdk"),
                       consumer_runtime_absence_required=True)
-    # The framework contains the original Hanlin modules. Equality of a remote
-    # swift-ai-sdk pin alone cannot prove equality of these local SDK sources.
-    compiled = lambda name: (name.startswith(("Packages/HanlinAgentSDK/", "Packages/HanlinPlatform/",
-                                             "Packages/HanlinPresentationSDK/"))
-                             and ("/Sources/" in name or name.endswith("/Package.swift")))
-    app_hanlin = {name for name in report["hanlin_sdk_source"]["git_blobs"] if compiled(name)}
-    sdk_hanlin = {name: value for name, value in admitted["hanlin_source"]["files"].items() if compiled(name)}
-    require(app_hanlin == sdk_hanlin.keys(), "Original SDK and Maktabah have different Hanlin source membership")
-    require(all(digest(root / "Vendor/HanlinSDK" / name) == value for name, value in sdk_hanlin.items()),
-            "Original SDK and Maktabah compile different shared Hanlin bytes")
-    admitted["shared_hanlin_source_verified"] = {"files": len(app_hanlin),
-        "maktabah_revision": report["hanlin_sdk_source"]["sha"], "framework_revision": admitted["hanlin_source"]["revision"],
-        "comparison": "EXACT_PACKAGE_MANIFEST_AND_COMPLETE_SOURCES_RESOURCE_BYTES"}
+    if shared:
+        admitted["shared_hanlin_source_verified"] = {
+            "files": admitted["shared_host_sources"]["hanlin_files"],
+            "maktabah_revision": report["hanlin_sdk_source"]["sha"],
+            "framework_revision": admitted["hanlin_source"]["revision"],
+            "comparison": "EXACT_COMPLETE_PACKAGE_SOURCES_RESOURCES_MANIFESTS_AND_OPERATIVE_LOCKS"}
+    else:
+        # The framework contains the original Hanlin modules. Equality of a remote
+        # swift-ai-sdk pin alone cannot prove equality of these local SDK sources.
+        compiled = lambda name: (name.startswith(("Packages/HanlinAgentSDK/", "Packages/HanlinPlatform/",
+                                                 "Packages/HanlinPresentationSDK/"))
+                                 and ("/Sources/" in name or name.endswith("/Package.swift")))
+        app_hanlin = {name for name in report["hanlin_sdk_source"]["git_blobs"] if compiled(name)}
+        sdk_hanlin = {name: value for name, value in admitted["hanlin_source"]["files"].items() if compiled(name)}
+        require(app_hanlin == sdk_hanlin.keys(), "Original SDK and Maktabah have different Hanlin source membership")
+        require(all(digest(root / "Vendor/HanlinSDK" / name) == value for name, value in sdk_hanlin.items()),
+                "Original SDK and Maktabah compile different shared Hanlin bytes")
+        admitted["shared_hanlin_source_verified"] = {"files": len(app_hanlin),
+            "maktabah_revision": report["hanlin_sdk_source"]["sha"], "framework_revision": admitted["hanlin_source"]["revision"],
+            "comparison": "EXACT_PACKAGE_MANIFEST_AND_COMPLETE_SOURCES_RESOURCE_BYTES"}
     write(evidence / "distribution-admission.json", admitted)
     # This is an actual compiler import of the exported binary API. A guarded
     # application source file cannot turn a missing framework into acceptance.
@@ -674,7 +699,9 @@ def prepare(root, admission_path, report, out, logged):
     api_command = ["xcrun", "swiftc", "-typecheck", "-parse-as-library", "-swift-version", "6", "-D", "DEBUG",
             "-sdk", report["sdk_path"], "-target", "arm64-apple-ios" + report["sdk_version"] + "-simulator",
             "-F", str(distribution / "Frameworks"), "-I", str(distribution / "Modules")]
-    if admitted.get("schema") == 2:
+    if shared:
+        api_command += shared["swift_import_arguments"](distribution, admitted["clang_import_context"])
+    elif admitted.get("schema") == 2:
         clang = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_clang_imports.py")))
         api_command += clang["swift_import_arguments"](distribution, admitted["clang_import_context"])
     else:
@@ -693,6 +720,12 @@ def prepare(root, admission_path, report, out, logged):
     if admitted.get("schema") == 2:
         plan.update(admission_schema=2, clang_import_context=admitted["clang_import_context"],
                     host_clang_context=admitted["host_clang_context"])
+    if shared:
+        plan.update(admission_schema=3, clang_import_context=admitted["clang_import_context"],
+                    host_clang_context=admitted["host_clang_context"],
+                    shared_runtime={"host_products": admitted["shared_runtime"]["host_products"],
+                                    "producer_identity": admitted["shared_runtime"]["producer_identity"]},
+                    shared_pod_link_route=admitted["shared_pod_link_route"])
     write(evidence / "app-target-plan.json", plan)
     ruby_proof = report["native_context"]["original_editor_pod_ruby_context"]
     ruby_command, ruby_environment = original_editor_ruby_launch(root, ruby_proof,
@@ -747,6 +780,9 @@ def verify_built_app(root, admitted, app, evidence, *, after_ui=False):
             "maktabah_revision": SYNTAX_APP, "sdk_revision": SYNTAX_SDK,
             "sdk": sdk_proof, "app": admitted["consumer_runtime_absence"],
             "new_native_execution": False, "lock_or_macro_inputs_changed": False})
+    if admitted.get("schema") == 3:
+        shared = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_shared_runtime.py")))
+        shared["verify_app_ownership"](root, admitted, app, evidence, command, after_ui=after_ui)
     write(evidence / (prefix + "built-app-distribution-verification.json"), {"status": "EXACT_ORIGINAL_DISTRIBUTION_EMBEDDED",
           "dynamic_frameworks": admitted["dynamic_frameworks"], "resource_bundles": admitted["resource_bundles"],
           "native_editor_ui_tests": 0, "production_or_device_qualification": False})
