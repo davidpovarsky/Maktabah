@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Source-pinned repaired Reader and Profile cases using the original Apple runner."""
+"""Source-pinned follow-up of four actual Reader/Profile failures using the original Apple runner."""
 import hashlib
 import json
 import os
@@ -20,6 +20,12 @@ FULL = ROOT / "docs/hq-integration/runtime27/R27_CASES.json"
 RELEASE = ROOT / "Scripts/CI/runtime27-release-manifest.json"
 GROUPS = CONFIG["execution_groups"]
 SELECTED = [case for group in GROUPS for case in group["case_ids"]]
+EXPECTED_CASE_IDS = [
+    "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+    "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+    "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+    "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"
+]
 
 def git(*args):
     return subprocess.check_output(["git", *args], cwd=ROOT, timeout=90).decode().strip()
@@ -55,8 +61,8 @@ def source_context():
         raise ValueError("Unexpected Reader/Profile inputs schema")
     if len(SOURCE) != 40 or any(c not in "0123456789abcdef" for c in SOURCE):
         raise ValueError("Final integrated application source is not frozen")
-    if len(SELECTED) != 10 or len(set(SELECTED)) != 10:
-        raise ValueError("Exactly ten unique repaired Reader/Profile cases are required")
+    if SELECTED != EXPECTED_CASE_IDS:
+        raise ValueError("Only the four exact failures from run45107660584 may execute")
     head = git("rev-parse", "HEAD")
     if head != os.environ["EXPECTED_CHECKOUT_SHA"]:
         raise ValueError("Wrong immutable checkout")
@@ -91,7 +97,7 @@ def prepare():
                     required_nonzero_cases=len(SELECTED), native_cases_executed=0,
                     expected_per_device={"ipad11": len(SELECTED), "ipad13": 0, "iphone": 0},
                     diagnostic_only=True, hid_comparison=False,
-                    scope="Ten repaired original cases only: eight system-sheet cases, ProfileColor and all 100 real group switches with cold restore. Original assertions and case deadlines are retained; full Native116/Release114 and physical iPad remain separate")
+                    scope="Four actual failures from run45107660584 only: two system-sheet leaves, ProfileColor and all100 original group switches with cold restore. Reviewed observation/query changes retain original assertions and deadlines. Six prior passes remain old-source evidence, not current execution; final Native116/Release114 and physical iPad remain separate")
     driver = runpy.run_path(str(ROOT / "Scripts/CI/runtime27.py"))
     driver["execution_groups"](contract)
     declaration = runpy.run_path(str(ROOT / "Scripts/CI/verify-faithful-xctest.py"))["validate_selections"](
@@ -121,7 +127,7 @@ def execute():
     write(OUT / "built-binaries.json", binaries)
     controller = driver["runtime27_interruption"].InterruptController().install()
     try:
-        # These ten original cases use XCTest input and their original scoped
+        # These four selected cases use XCTest input and their original scoped
         # lifecycle observation. None selects the separate hardware-Escape cases.
         return driver["run_logged"]([sys.executable, "Scripts/CI/run-faithful-ipad-matrix.py"],
                                     "reader-profile-matrix.log", 9000,
@@ -130,7 +136,7 @@ def execute():
         controller.restore()
 
 def collect():
-    report = {"status": "FAILED", "scope": "FOCUSED_READER_PROFILE_ONLY", "full_native116_acceptance": False,
+    report = {"status": "FAILED", "scope": "FOCUSED_READER_PROFILE_FOUR_FAILURES_ONLY", "full_native116_acceptance": False,
               "full_release114_acceptance": False, "physical_ipad_acceptance": False,
               "production_corpus_performance_acceptance": False, "required_case_ids": SELECTED}
     try:

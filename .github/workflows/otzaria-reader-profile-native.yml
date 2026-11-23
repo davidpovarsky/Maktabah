@@ -1,8 +1,8 @@
-name: Reader and Profile focused native acceptance
+name: Reader and Profile four-failure native follow-up
 
 on:
   push:
-    branches: [codex/otzaria-reader-profile-native-20261123]
+    branches: [codex/otzaria-reader-profile-followup-20261123]
     paths:
       - 'Source/**'
       - 'Maktabah-iOSUITests/**'
@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   focused-native:
-    name: One app build and ten repaired Reader and Profile cases
+    name: One app build and four previously failed Reader and Profile cases
     runs-on: xcode-27
     timeout-minutes: 210
     env:
@@ -87,7 +87,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 Scripts/CI/hq-stage2-focused-apple.py --build-for-testing --derived-data build/DerivedData
-      - name: Execute ten original repaired Reader and Profile cases
+      - name: Execute four previously failed original Reader and Profile cases
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 Scripts/CI/reader-profile-focused-native.py run

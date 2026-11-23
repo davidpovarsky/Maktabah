@@ -1,11 +1,11 @@
 {
   "schema": "otzaria.reader-profile.native-inputs/1",
-  "application_source_sha": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "application_source_sha": "cd1e4991253d7be0ff436e9ff51805d3539d33de",
   "application_trees": {
     "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
     "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
     "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
-    "Maktabah-iOSUITests": "ca36ba13f1fd900adf528a3e404fed6a66290b6b"
+    "Maktabah-iOSUITests": "c99f99a8ac221988fedb23964574cd60f5d8e7b4"
   },
   "execution_groups": [
     {
@@ -13,18 +13,26 @@
       "size": "11",
       "hid_comparison": false,
       "case_ids": [
-        "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
-        "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
-        "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
-        "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
         "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
-        "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
-        "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
         "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
         "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
         "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"
       ]
     }
   ],
-  "acceptance_scope": "Eight repaired original system-sheet cases plus ProfileColor and full original 100-switch/cold-restore case. Zero product/test changes. Previously passed Peek/resize/TOC/palette cases excluded. Full Native116/Release114, iPad13, physical device and production-corpus performance remain separate."
+  "acceptance_scope": "Four actual failures from run45107660584 only: two system-sheet leaves, ProfileColor and all100 original group switches with cold restore. Reviewed observation/query changes retain original assertions and deadlines. Six prior passes remain old-source evidence, not current execution; final Native116/Release114 and physical iPad remain separate",
+  "prior_run_evidence": {
+    "run_id": 45107660584,
+    "attempt": 1,
+    "source_sha": "b85a72e409855ffdc6bed1dcef60bbf5b233cf6d",
+    "counts": {
+      "pass": 6,
+      "fail": 4,
+      "skip": 0,
+      "not_run": 0
+    },
+    "artifact_id": 14790507747,
+    "artifact_sha256": "56eac74fc92c1334bbdd305f9f61cb38bc4513b01690326606577fa1d8f95b9c",
+    "historic_passes_counted_as_current": false
+  }
 }

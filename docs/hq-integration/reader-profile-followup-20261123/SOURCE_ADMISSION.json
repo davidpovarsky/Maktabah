@@ -1,0 +1,48 @@
+{
+  "status": "SOURCE_AND_FOUR_DECLARATIONS_ADMITTED_NATIVE_NOT_RUN",
+  "test_source_commit": "cd1e4991253d7be0ff436e9ff51805d3539d33de",
+  "preflight_commit": "c0cb254b1332ac0fd7d1bc40d8701f4f0b3e7bef",
+  "execution_inputs_verified": 285,
+  "selectors": [
+    "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible",
+    "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen",
+    "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+    "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"
+  ],
+  "source_vendor_project_unchanged": true,
+  "original_matrix_driver_blob": "90d6572c34c8a6cbf9f12f1a0d2fca51786ed63b",
+  "original100_transitions_and600s_deadline_preserved": true,
+  "original_zero_skip_and_binary_post_audits_preserved": true,
+  "six_historic_passes": {
+    "source": "b85a72e409855ffdc6bed1dcef60bbf5b233cf6d",
+    "run_id": 45107660584,
+    "case_ids": [
+      "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightRTL",
+      "NativeStudySheetPadTests/testSystemStudySheetThreeDetentsPhysicallyRightLTR",
+      "NativeStudySheetPadTests/testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel",
+      "NativeStudySheetPadTests/testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor",
+      "NativeStudySheetPadTests/testSystemStudySheetTOCWhileOriginalNoteChildIsVisible",
+      "NativeStudySheetPadTests/testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput"
+    ],
+    "replayed": false,
+    "attributed_to_changed_helper": false
+  },
+  "actual_checks": [
+    "Exact inverse of reviewed test hunks recovers complete original source",
+    "Swift syntax parse only",
+    "All500 original assertion-bearing lines retained",
+    "Exact four-selection original declaration registry",
+    "285 committed working-byte execution inputs",
+    "Original build/runner/collector preservation",
+    "Exact assigned workflow branch",
+    "git diff --check"
+  ],
+  "apple_typecheck": "NOT_RUN",
+  "native_cases": {
+    "pass": 0,
+    "fail": 0,
+    "skip": 0,
+    "not_run": 4
+  },
+  "independent_test_source_review": "Root and original_sdk accepted85e26483 source for bounded followup"
+}
