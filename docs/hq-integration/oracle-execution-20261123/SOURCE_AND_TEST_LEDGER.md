@@ -47,3 +47,15 @@ Reader4 is published at 99b71a0 / run45116660011, Heart mapping repair at cfc71a
 E1 four-file product source d1ca513 is published without CI after complete root source/control review and independent digest verification of76 indexed files. Sixteen actual initial portable controls are retained by exact source correspondence; four additional mode controls executed on the final source. No Apple/account/bootstrap claim. E2 awaits a concrete original publisher-demand readiness barrier. Full-v32 UI observation has one owner and a published9,466-byte implementation brief; one explicit opt-in DEBUG observer hunk is authorized, with all observation encoding excluded from measured epochs.
 
 Four further Asana stage updates are recorded. Live12 remains active with temporary-secret cleanup still required; root retains sole lifecycle ownership. Final four-tree composition and Native116/Release114 remain UNFINALIZED.
+
+
+## Checkpoint 9 — 23 November 2026
+
+- Heart repair run45116895060: authentic original import/reentrant retirement native leaf1PASS/0FAIL/0SKIP; all14commands drained; prior prestart PASS reused distinctly. Root rehashed original archive and checked39 unique safe CRC members. Body/cold/Host ACK not qualified.
+- PERF03 run45114602342: full110196source-row/UTF8/anchor/navigation parity; three faster pairs, one+4.2ms pair. Preserve candidate, no universal nonregression or UI performance claim, no component rerun.
+- SDK role correction8d175b3 reviewed with6 new focused controls and exact unchanged runtime/source correspondence. One push run45119225997 now failed; owner authenticating terminal phase/artifacts. No repeat native execution authorized.
+- E1 remains source-onlyd1ca513; E2 ten-path source implementation authorized after real original consumer-demand review. Native slice A three new archive/actual-export files authorized; later importer/proto/RPC edits remain pending.
+- Full-v32 viewport exact source hook accepted; additional passive Inspector cached-state hook narrowly allowed for preparation. Actual UI/body/CPU/footprint evidence remains required.
+- Live12 first observer ended while same run45114449674 remained active; process and byte-lock release verified. Sole continuation job_d186cf62faa3,120s/3300s, no redispatch. Temporary secret cleanup remains required at terminal state.
+- Root production native SDK build plan and exact ordered native composition input published atb1dfc494; no future framework build or CI activated.
+- Asana checkpoint9 includes actual accepted Heart milestone and mixed PERF results; no product task falsely closed.

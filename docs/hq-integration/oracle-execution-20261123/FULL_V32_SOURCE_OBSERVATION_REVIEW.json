@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-23T05:54:04Z",
+  "base": "99b71a011fa5a060f0334a5312d498830eaeda77",
+  "viewport": {
+    "path": "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift",
+    "sha256": "a8773b4892ebeac2c98bc371e6ee358eb69d4085caec0ffa1aac9caa84a5c552",
+    "diff_sha256": "f56a83fa9d05a141ccb52104f49a39e19d2a278de687d91ccc051ebb41277487",
+    "disposition": "EXACT_HUNK_ACCEPTED",
+    "opt_in": "CHAVRUSA_FULL_V32_SOURCE_OBSERVATION==1",
+    "bounds": "Requested128UTF16; composed expansion<=256 before copying; UTF8<=1024; optional JSON<=4096; explicit unavailable otherwise",
+    "measurement_order": "Request only after all timing/CPU/RSS epochs end; independently verify exact source range outside timers",
+    "original_behavior": "Without opt-in preserve original report keys/cadence100ms/window/UUID/matches guards/renderer/layout"
+  },
+  "inspector": {
+    "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+    "disposition": "NARROW_PREPARATION_AUTHORIZED_PENDING_FULL_SOURCE_REVIEW",
+    "scope": "Prepare only DEBUG explicit-opt-in request-file passive cachedLinks observation after metrics epoch; independently prove pure read, same PID/current context, bounded samples and full ordered framed digest. Source review pending."
+  },
+  "ci_activation": false,
+  "native_acceptance": false
+}

@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "reviewer": "/root",
+  "recorded_at_utc": "2026-11-23T05:54:04Z",
+  "e2": {
+    "base": "d1ca51352734bd21a4943e7e094ac3ae95519c1e",
+    "worktree": "/mnt/development/projects/worktrees/anytype-otzaria-original-production-20261123",
+    "product_paths": [
+      "OriginalEditorFramework/AnytypeOriginalEditorAccountSession.swift",
+      "OriginalEditorFramework/OriginalEditorAccountSessionView.swift",
+      "Anytype/Sources/ApplicationLayer/AppCoordinator/ApplicationCoordinatorView.swift",
+      "Anytype/Sources/ApplicationLayer/AppCoordinator/ApplicationCoordinatorViewModel.swift",
+      "Anytype/Sources/ApplicationLayer/GlobalEnv/KeyboardDismiss.swift",
+      "Anytype/Sources/ApplicationLayer/GlobalEnv/PresentedDismiss.swift",
+      "Anytype/Sources/ApplicationLayer/GlobalEnv/AppInterfaceStyle.swift",
+      "Anytype/Sources/ServiceLayer/PushNotifications/PushNotificationsPermissionService.swift/PushNotificationsPermissionService.swift",
+      "Anytype/Sources/ServiceLayer/Auth/LoginStateService.swift",
+      "Anytype.xcodeproj/project.pbxproj"
+    ],
+    "project_scope": "Two new facade file memberships only",
+    "scope": "Original auth/account/Space/runtime/task drain architecture and scoped original environment helpers. No Host/SPI/Auth/Seed/Keychain/ActiveSpace/Lib/generated changes.",
+    "readiness": "Two original Passthrough consumers transparently forward subscriptions/demand/values/completion/cancel. Ack only after first positive upstream request returns, no replay/buffer/extra demand/scheduler. End/cancel invalidates even synchronously during request; await both registrations/current demand before retained launch handler. Standalone zero-argument path and original event-handler bodies unchanged.",
+    "auth": "Use registered PinkhaHanlinAuthService(base:AuthService()); original Seed wallet recovery/select-account/native drains; identity strings supply no authority.",
+    "selection": "Neutral original QuickCaptureSpacePicker over editable regular Spaces; original setActiveSpace, private current selection and genuine SchemaRegistration precede closed ready Session.",
+    "host_boundary": "Install E1 before Factory/defaults/UIView environment access. Root-controller-scoped helpers; embedded mode excludes APNs registration/request/unregister and original StoreKit/notification badge/icon side effects. Do not run standalone AppConfigurator/full SpaceHub.",
+    "ci_activation": false,
+    "qualification": false
+  },
+  "native_slice_a": {
+    "base": "782d07668d2def4655bc519739f2d650cbfa2d1f",
+    "evidence_head": "0b0a89c7fde18d9c3ddd645c2c5a04d1d9dc466a",
+    "product_paths": [
+      "native/core/block/import/owned_annotation_archive.go",
+      "native/core/block/import/owned_annotation_archive_test.go",
+      "native/core/application/owned_annotation_export_native_test.go"
+    ],
+    "scope": "Closed native archive byte ownership and genuine original export fixtures only, within owned contract packet; no existing importer/proto/generated/public RPC activation.",
+    "limits": {
+      "compressed_bytes": 65536,
+      "members": 512,
+      "expanded_bytes": 8388608
+    },
+    "controls": "Actual generated SnapshotWithType after bounded wire ambiguity checks; genuine ZIP descriptors/CRC/framing; reject symlink/encryption/ZIP64/overlap/unsafe names; exclusive native-owned0700directory, no caller paths. Derive adverse archive specimens from actual original mixed-language/nested/attachment export and prove no import starts.",
+    "ci_activation": false,
+    "qualification": false
+  },
+  "future_native_slices_authorized": false
+}

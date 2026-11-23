@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-23T05:54:04Z",
+  "disposition": "SOURCE_AND_FOCUSED_CONTROLS_ACCEPTED_FOR_ONE_UNCHANGED_WORKFLOW_PUSH",
+  "source": "8d175b386010148706354398d8ccde39a7ec50f4",
+  "tree": "509af43371ab42fb37a48557c8127fff254f2d9b",
+  "source_correspondence": {
+    "source": "8d175b386010148706354398d8ccde39a7ec50f4",
+    "unchanged_functions": [
+      "original_upload_log_argv",
+      "extract_inventory",
+      "restore_consumer",
+      "restore_distribution",
+      "command",
+      "api",
+      "download"
+    ],
+    "unchanged_files": [
+      "Tools/OriginalEditor/run_runtime_continuation.py",
+      "Tools/OriginalEditor/runtime_continuation_process.py",
+      "Tools/OriginalEditor/test_signed_consumer_continuation.py",
+      "Tools/OriginalEditor/signed_consumer_continuation_inputs.json",
+      ".github/workflows/pinkha-original-editor-signed-consumer.yml"
+    ],
+    "read_original_evidence_only_role_derivation": true,
+    "runtime_tail_exact": true,
+    "product_paths_changed": [],
+    "tree": "509af43371ab42fb37a48557c8127fff254f2d9b",
+    "clean": true
+  },
+  "controls": {
+    "new_actual_passed": 6,
+    "prior_metadata_reused": 6,
+    "prior_raw_capture_reused": 2,
+    "native_runtime_executed_by_this_review": 0
+  },
+  "role_provenance": "Digest-authenticated original archive indexed successful otool header commands; all17 distribution inventories checked, precisely15DYLIB embeds and2static archives disjoint",
+  "packet_index_sha256": "18f3b9fddebfa2a20bb65b626d7b6986160ca58656b000d878c437082eb481f9",
+  "control_receipt_sha256": "6887b15dc43ba092ea267a7c9cb94ae7025323078d2c0aaf892be68783b7a12e",
+  "native_acceptance": false
+}

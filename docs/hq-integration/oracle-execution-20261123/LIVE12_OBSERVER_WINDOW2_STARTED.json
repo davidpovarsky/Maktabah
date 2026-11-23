@@ -1,0 +1,13 @@
+{
+  "job_id": "job_d186cf62faa3",
+  "repository": "davidpovarsky/Maktabah",
+  "run_id": 45114449674,
+  "source": "9bee6104e2938767b4e4e1047c56da8991d621fb",
+  "mode": "continue",
+  "watch_seconds": 3300,
+  "interval_seconds": 120,
+  "new_dispatches": 0,
+  "controller_sha256": "141ca43ffc25d99932fd35a32ff5ec309e56dc485f01f4ac06003cb8c21b2a22",
+  "binding_sha256": "f3c716700f676b62ca03286b474cb80a40ce403c872c94824be681902a1971c8",
+  "secret_cleanup_required": true
+}

@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "status": "AUTHENTIC_FULL_UNIT_PARITY_PASS_MIXED_COMPONENT_TIMINGS",
+  "checked_at_utc": "2026-11-23T05:40:55.129782+00:00",
+  "run_id": 45114602342,
+  "run_attempt": 1,
+  "source_sha": "04d02571919d932a71609225a0819d35bd9af5b4",
+  "candidate_source_sha": "8682786e1ce776ccb0ebe6281f0e338ff67eef09",
+  "baseline_sha": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "run_conclusion": "success",
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45114602342",
+  "artifact": {
+    "id": 14792640645,
+    "name": "reader-perf-source-service-evidence",
+    "bytes": 201984,
+    "sha256": "4ec3127959f8a13cdbf304853a3376249c97a9dad50e8e14a39af74af13fab90",
+    "path": "/mnt/development/projects/diagnostics/otzaria-reader-perf-20261123/45114602342/reader-perf-source-service-evidence.zip"
+  },
+  "verified": {
+    "archive_member_count": 12,
+    "archive_unique_safe_names_crc": true,
+    "exact_git_input_rows": 21,
+    "source_before_after_bytes_identical": true,
+    "baseline_namespacing_reversed_to_exact_canonical_bytes": true,
+    "retained_actual_executable_sha256": "710c716424441818e7050f094136ec9907609d311ff7a8e2ef18f7dcbde592ee",
+    "measurement_sha256": "a832f747244282daff68f7305a425ac1d0b932bcf22dc1e1a7bc322c1a196408",
+    "actual_compiler_exit": 0,
+    "actual_execution_exit": 0,
+    "timed_original_reader_calls": 8,
+    "same_process_orders": [
+      "AB",
+      "BA"
+    ],
+    "all_original_unit_utf8_fields_anchors_and_navigation_identical": true,
+    "source_rows_per_read": 110196,
+    "full_unit_sha256": "1011d62a8990920cdc9a80b12cce083de5a65e46139e2fb38836c3efd32b2570",
+    "anchors_sha256": "d0ab7571c177d5b8b0a75e1ad1f3d0f6daf0187530982b5d0298633d5f97de7c",
+    "navigation_sha256": "de2ba0c6dbf8a6ee12da76b2c0db10991ee7fb1a267b4e885a66607e87ad2788",
+    "database_sha256_before_after": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+    "database_bytes": 3821240320,
+    "books": 7876,
+    "lines": 7080797,
+    "database_sidecars_created": false
+  },
+  "toolchain": {
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "swift": "swift-driver version: 1.168.6 Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+    "host": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "zstd": "1.5.7",
+    "sqlite": "3.54.0"
+  },
+  "paired_measurements": [
+    {
+      "round": 0,
+      "order": "AB",
+      "mode": "cold",
+      "baseline_ms": 1844.150124999942,
+      "candidate_ms": 1346.4051666667274,
+      "candidate_minus_baseline_ms": -497.7449583332145,
+      "change_percent": -26.99047933167752
+    },
+    {
+      "round": 0,
+      "order": "AB",
+      "mode": "warm",
+      "baseline_ms": 1489.0527916666088,
+      "candidate_ms": 1354.323916666658,
+      "candidate_minus_baseline_ms": -134.72887499995068,
+      "change_percent": -9.047958256010292
+    },
+    {
+      "round": 1,
+      "order": "BA",
+      "mode": "cold",
+      "baseline_ms": 1529.5896666666522,
+      "candidate_ms": 1533.7893333332886,
+      "candidate_minus_baseline_ms": 4.1996666666364035,
+      "change_percent": 0.274561652589389
+    },
+    {
+      "round": 1,
+      "order": "BA",
+      "mode": "warm",
+      "baseline_ms": 1378.7844583333708,
+      "candidate_ms": 1318.5554166666407,
+      "candidate_minus_baseline_ms": -60.229041666730154,
+      "change_percent": -4.368271001511948
+    }
+  ],
+  "observed_nonregression_in_all_four_pairs": false,
+  "interpretation": "Three of four matched component observations were faster; the BA cold observation was 4.200 ms (0.275%) slower. One process/eight reads do not establish repeatability, statistical speedup or universal nonregression. Do not promote as a proved speedup or close PERF03.",
+  "boundaries": {
+    "service_cache_cold_only": true,
+    "os_disk_caches_flushed": false,
+    "native_app_ui_executed": 0,
+    "physical_device_executed": 0,
+    "p95_or_user_latency_claim": false,
+    "performance_acceptance": false
+  },
+  "prior_failure_preserved": {
+    "run_id": 45111657863,
+    "reason": "Strict source admission rejected omitted workflow sparse projection before DB/compiler/measurement execution"
+  }
+}

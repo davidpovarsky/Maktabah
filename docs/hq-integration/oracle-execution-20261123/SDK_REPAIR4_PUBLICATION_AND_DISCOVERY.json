@@ -1,0 +1,77 @@
+{
+  "PUSH.json": {
+    "sha256": "41efe968a31393c7ae0408b28a929e901359ef0e2d13b20f59b4be176c2d2940",
+    "size": 515,
+    "data": {
+      "source": "8d175b386010148706354398d8ccde39a7ec50f4",
+      "tree": "509af43371ab42fb37a48557c8127fff254f2d9b",
+      "branch": "codex/otzaria-sdk-runtime-20261123",
+      "exit_code": 0,
+      "utc": "2026-11-23T05:40:11.128471+00:00",
+      "workflow_sha256": "6c7353b0707611df0e73fee4fcc8d2ea26008f45e6513723d0fd705d619f72e9",
+      "manual_dispatches": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "ce8029df7e269a988cef27257a0f20a38631833ccabb304b29ac84bd4779bc8e"
+    }
+  },
+  "DISCOVERY.json": {
+    "sha256": "6aed3180b80b124350fab7c57040e5d409f9c0d277327680e43bf56eca01e8e8",
+    "size": 523,
+    "data": {
+      "observed_utc": "2026-11-23T05:40:22.863940+00:00",
+      "run": {
+        "conclusion": "",
+        "createdAt": "2026-11-23T05:40:12Z",
+        "databaseId": 45119225997,
+        "event": "push",
+        "headBranch": "codex/otzaria-sdk-runtime-20261123",
+        "headSha": "8d175b386010148706354398d8ccde39a7ec50f4",
+        "status": "queued",
+        "url": "https://github.com/davidpovarsky/anytype-swift/actions/runs/45119225997",
+        "workflowName": "Original editor exact signed consumer runtime"
+      },
+      "queries": 1,
+      "manual_dispatches": 0
+    }
+  },
+  "PREPARATION.json": {
+    "sha256": "1e9c35f309700f72a05f795e71b73604d5322af8921022620e9e249b20783999",
+    "size": 1241,
+    "data": {
+      "source_sha": "8d175b386010148706354398d8ccde39a7ec50f4",
+      "tree_sha": "509af43371ab42fb37a48557c8127fff254f2d9b",
+      "parent_sha": "4aa7b02b8e4cb8c124dd59ddb656746481d9aa6a",
+      "local_branch": "codex/otzaria-sdk-runtime-observer-20261123",
+      "publication_branch": "codex/otzaria-sdk-runtime-20261123",
+      "repository": "davidpovarsky/anytype-swift",
+      "workflow_path": ".github/workflows/pinkha-original-editor-signed-consumer.yml",
+      "workflow_sha256": "6c7353b0707611df0e73fee4fcc8d2ea26008f45e6513723d0fd705d619f72e9",
+      "workflow_bytes_changed": false,
+      "new_actual_source_controls_passed": 6,
+      "retained_metadata_controls": 6,
+      "retained_raw_capture_controls": 2,
+      "retained_controls_reexecuted": false,
+      "product_source_changed": false,
+      "framework_builds": 0,
+      "consumer_builds": 0,
+      "prior_failed_run_id": 45106338448,
+      "published": false,
+      "runtime_dispatched": false,
+      "clean": true,
+      "changed_paths": 77,
+      "activation_after_root_review_only": true,
+      "exact_scoped_push": [
+        "git",
+        "-c",
+        "remote.origin.mirror=false",
+        "-c",
+        "credential.helper=",
+        "-c",
+        "credential.helper=!gh auth git-credential",
+        "push",
+        "origin",
+        "HEAD:refs/heads/codex/otzaria-sdk-runtime-20261123"
+      ]
+    }
+  }
+}

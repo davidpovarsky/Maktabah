@@ -1,0 +1,11 @@
+{
+  "state": "PRIOR_OBSERVER_TERMINAL_AND_LOCK_RELEASED",
+  "run_id": 45114449674,
+  "prior_observer_job": "job_21c54f05ba07",
+  "prior_window_ended_utc": "2026-11-23T05:48:14.021698+00:00",
+  "matching_processes": 0,
+  "exclusive_byte_lock_available": true,
+  "controller_and_binding_sha256_verified": true,
+  "checked_utc": "2026-11-23T05:50:51.3894849Z",
+  "new_dispatches": 0
+}
