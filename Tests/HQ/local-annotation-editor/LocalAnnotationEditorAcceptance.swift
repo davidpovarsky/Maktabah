@@ -283,10 +283,10 @@ final class LocalCases {
             let f = try fixture("future-schema")
             try f.ledger.installSchema()
             try f.db.execute(query: "PRAGMA ignore_check_constraints=ON;")
-            try f.db.execute(query: "UPDATE otzaria_annotation_exchange_schema SET version=2;")
+            try f.db.execute(query: "UPDATE otzaria_annotation_exchange_schema SET version=3;")
             try f.db.execute(query: "PRAGMA ignore_check_constraints=OFF;")
             let s = try f.session(); try await rejectsAsync(AnnotationExchangeError.schemaMismatch) { _ = try await s.read() }
-            try check(try f.scalar("SELECT version FROM otzaria_annotation_exchange_schema;") == 2, "future schema changed")
+            try check(try f.scalar("SELECT version FROM otzaria_annotation_exchange_schema;") == 3, "future schema changed")
         }
         await run("partial_schema_is_not_repaired_by_read") {
             let f = try fixture("partial-schema"); try f.db.execute(query: "CREATE TABLE otzaria_annotation_exchange_heads(opaque TEXT);")

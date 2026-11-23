@@ -1,0 +1,17 @@
+Building for debugging...
+[Computing dependencies]
+[Pre-planning 1 / 127]
+[Planning deferred tasks]
+[24 / 51] OtzariaActionCore
+[40 / 55] OtzariaActionCore
+[41 / 55] OtzariaActionCore
+[48 / 59] LegacySeed-product
+[49 / 59] LegacySeed-product
+[50 / 59] LegacySeed-product
+[54 / 62] BudgetAccept-product
+[56 / 64] BudgetAccept-product
+[57 / 65] OtzariaActionCore
+[60 / 65] OtzariaActionCore
+[64 / 66] OtzariaActionCore
+[66 / 66] LegacySeed-product
+Build complete! (20.03 secs)

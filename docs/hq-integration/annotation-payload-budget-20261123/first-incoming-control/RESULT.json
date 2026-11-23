@@ -1,0 +1,49 @@
+{
+  "case": "actual_first_incoming_v1_upgrade_exact_2MiB",
+  "nativeBodyOrAppleAcceptance": false,
+  "newCases": 1,
+  "payloadBytes": 2097152,
+  "payloadSHA256": "90936b039e7d7a163077e49b02f8bb674d9613750ef5d4f1b7b3319634516ab9",
+  "primary23CasesReplayed": false,
+  "status": "PASS",
+  "storedBase64Bytes": 2796204,
+  "userDatabaseTouched": false,
+  "wholeOriginalV1FixtureReusedUnchanged": true,
+  "binary_sha256": "73e4631f2bc7be2dc6e60beaecd438211d091e78113df690ffa80c2a591b7d1c",
+  "primary_sources_unchanged": true,
+  "test_source_sha256": "4ad67371ab8ecd1aade354ca79cc931b1ae835bdf159a8b077a7a8c058ccaeed",
+  "commands": [
+    {
+      "argv": [
+        "/usr/local/bin/swift",
+        "build",
+        "--package-path",
+        "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1",
+        "--scratch-path",
+        "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/build",
+        "--jobs",
+        "2",
+        "--product",
+        "FirstInbox"
+      ],
+      "returncode": 0,
+      "seconds": 7.52,
+      "process_group_drained": true,
+      "stdout_sha256": "7649315cb1c0ce971078023f08ea6e0bb7a3c04ee0672f7ecf24f8bad591bcea",
+      "stderr_sha256": "25cffb06c21476682f1c0a7bd454ce3ee6507ffec7d6ed4c717448a346d9d2b0",
+      "stderr_bytes": 1232
+    },
+    {
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/build/out/Products/Debug-linux-aarch64/FirstInbox",
+        "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/owned-fixtures"
+      ],
+      "returncode": 0,
+      "seconds": 0.519,
+      "process_group_drained": true,
+      "stdout_sha256": "f3a219440e083310f27ee68802fe542f1482ff3cd59046c78410f12ae931f6fb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0
+    }
+  ]
+}

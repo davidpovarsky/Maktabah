@@ -35,6 +35,21 @@ public enum ActionWireCodec {
     }
 }
 
+/// Untrusted annotation-envelope JSON only. The action-request entry points
+/// above retain their original 65,536-byte ceiling. This entry shares the exact
+/// duplicate-key, Unicode, exact-number, depth and node grammar below; accepting
+/// a JSON object does not grant annotation schema, native body or write authority.
+public enum AnnotationEnvelopeJSONCodec {
+    public static let maximumBytes = 2_097_152
+
+    public static func decodeObject(_ data: Data) throws -> ActionObject {
+        guard data.count <= maximumBytes else { throw ActionContractError.inputTooLarge }
+        var parser = StrictActionJSONParser(bytes: Array(data))
+        guard let object = try parser.parse().object else { throw ActionContractError.invalid("$") }
+        return object
+    }
+}
+
 /// Small bounded JSON grammar. Decoded string keys are checked for duplicates,
 /// including escaped-equivalent spellings; Foundation handles string Unicode.
 private struct StrictActionJSONParser {

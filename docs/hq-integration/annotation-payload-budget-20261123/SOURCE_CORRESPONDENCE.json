@@ -1,0 +1,41 @@
+{
+  "base": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+  "branch": "codex/otzaria-annotation-payload-budget-20261123",
+  "status": "ROOT_SOURCE_PREPARATION_NOT_RUNTIME_ACCEPTANCE",
+  "paths": [
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+      "before_sha256": "a94dd85985f288edbd2e10b5a14b1731be25a8d25893e832e8515af63307cbdf",
+      "after_sha256": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab",
+      "before_bytes": 8441,
+      "after_bytes": 9216
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "before_sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+      "after_sha256": "f715d09bdcf731b8272c80bd79a109f1a614500640060d064dedb5d5df48e643",
+      "before_bytes": 8619,
+      "after_bytes": 9988
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "before_sha256": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972",
+      "after_sha256": "97c22429e8c76cf34e16b7fa9665be9aa4b84d0b29d0a43919e11cca18e39865",
+      "before_bytes": 25713,
+      "after_bytes": 25753
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "before_sha256": "3460e43127e69d07a917d9b28b10edd1b37046586f9d12ba91de84ab8ee4c7ca",
+      "after_sha256": "06d68fa6efb79ed534902cc3ea7ad73852f534a204059f1d1db2d9401f724b1a",
+      "before_bytes": 9530,
+      "after_bytes": 9538
+    }
+  ],
+  "original_ActionWireCodec_and_strict_parser_declarations_byte_identical": true,
+  "new_typed_entry_uses_same_file_private_parser": true,
+  "global_action_request_bytes_unchanged": 65536,
+  "policy_sha256": "818bd440374cd49072f018065d300209bd2dafc506ec16d8c2c686736bde7077",
+  "native_snapshot_or_header_constructed": false,
+  "native_runtime_executed": 0
+}
