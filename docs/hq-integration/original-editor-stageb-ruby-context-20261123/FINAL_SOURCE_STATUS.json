@@ -1,0 +1,27 @@
+{
+  "status": "SOURCE_PREPARATION_PASS_NO_CI_ACTIVATION",
+  "actual_prepare_source_sha": "0faacd1f397aac8d06947fe9211d48f4f72107b7",
+  "actual_prepare_receipt_sha256": "eddcf9c118a1d518223e950829c8c6c6a385656cb34ba4617afcf85d7cba47b2",
+  "actual_execution_inputs_count": 285,
+  "new_observer_in_actual_frozen_inputs": {
+    "blob": "667a289e22821b2574b776c4ad7e67a91902f987",
+    "bytes": 8002,
+    "sha256": "facf9c4c1fcc25d1cafbd6d532c60367a4097f16642f5fc444e2a2092d0e3f33"
+  },
+  "source_and_four_product_trees_unchanged_by_this_evidence_child": true,
+  "root_reviewed_source_sha": "0faacd1f397aac8d06947fe9211d48f4f72107b7",
+  "root_review_sha256": "38f30fdd405d3dc7095cfcd76150f68fd207d01c6d4ec555fbcf0db73e853f76",
+  "historical_controls": {
+    "source": "3d0ff5b7043b23b64110c87510ed2e76cbd371ca",
+    "cases": 6,
+    "assertions": 42,
+    "replayed": false
+  },
+  "affected_shell_exec_control": {
+    "cases": 1,
+    "assertions": 13,
+    "result_sha256": "b33134aacd02b2a59291d173e4932990c67e4a5e9e7733f413203fa0cb06a2b1"
+  },
+  "apple_cocoapods_app_ui": "NOT_RUN",
+  "active_branch_expected_remote": "8e9dac2d9585dd482e9ab784a65c5517b6847648"
+}
