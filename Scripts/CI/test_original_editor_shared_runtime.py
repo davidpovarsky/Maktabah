@@ -67,46 +67,46 @@ class CompleteHostSourceControls(unittest.TestCase):
     def test_same_revision_with_changed_resource_is_rejected(self):
         name = next(n for n in self.files if n.endswith('data.json'))
         save(self.root / 'Vendor/HanlinSDK' / name, '{"fixture":false}\n')
-        with self.assertRaisesRegex(ValueError, 'different Hanlin package bytes'):
+        with self.assertRaisesRegex(RuntimeError, 'different Hanlin package bytes'):
             self.verify()
 
     def test_extra_host_package_member_is_rejected(self):
         self.report['hanlin_sdk_source']['git_blobs'][shared.HANLIN_ROOTS[0] + 'Sources/New.swift'] = '7' * 40
-        with self.assertRaisesRegex(ValueError, 'memberships differ'):
+        with self.assertRaisesRegex(RuntimeError, 'memberships differ'):
             self.verify()
 
     def test_older_producer_missing_a_resource_is_rejected(self):
         self.owner['hanlin_package_files'].pop(next(n for n in self.files if n.endswith('data.json')))
-        with self.assertRaisesRegex(ValueError, 'memberships differ'):
+        with self.assertRaisesRegex(RuntimeError, 'memberships differ'):
             self.verify()
 
     def test_stale_generated_workspace_core_pin_is_rejected(self):
         save(self.workspace_lock, lock({**self.pins, 'swift-ai-sdk': '8' * 40}))
-        with self.assertRaisesRegex(ValueError, 'operative Host'):
+        with self.assertRaisesRegex(RuntimeError, 'operative Host'):
             self.verify()
 
     def test_package_lock_core_drift_is_rejected_even_with_matching_file_hash(self):
         path = self.root / 'Vendor/HanlinSDK' / self.hanlin_lock
         save(path, lock({**self.pins, 'swift-ai-sdk': '8' * 40}))
         self.owner['hanlin_package_files'][self.hanlin_lock] = shared.digest(path)
-        with self.assertRaisesRegex(ValueError, 'operative Hanlin'):
+        with self.assertRaisesRegex(RuntimeError, 'operative Hanlin'):
             self.verify()
 
     def test_installed_pod_lock_drift_is_rejected(self):
         save(self.root / 'Pods/Manifest.lock', (self.root / 'Podfile.lock').read_text() + '# drift\n')
-        with self.assertRaisesRegex(ValueError, 'Installed CocoaPods resolution differs'):
+        with self.assertRaisesRegex(RuntimeError, 'Installed CocoaPods resolution differs'):
             self.verify()
 
     def test_consistent_but_older_pod_version_is_rejected(self):
         raw = (self.root / 'Podfile.lock').read_text().replace('FirebaseCore (12.8.0)', 'FirebaseCore (11.8.1)')
         for path in [self.root / 'Podfile.lock', self.root / 'Pods/Manifest.lock']:
             save(path, raw)
-        with self.assertRaisesRegex(ValueError, 'provider versions differ'):
+        with self.assertRaisesRegex(RuntimeError, 'provider versions differ'):
             self.verify()
 
     def test_provider_source_revision_drift_is_rejected(self):
         self.owner['shared_dependency_sources']['promises']['revision'] = '9' * 40
-        with self.assertRaisesRegex(ValueError, 'dependency provenance differs'):
+        with self.assertRaisesRegex(RuntimeError, 'dependency provenance differs'):
             self.verify()
 
 
@@ -135,12 +135,12 @@ class ExactPodLinkControls(unittest.TestCase):
 
     def test_missing_shared_library_input_is_rejected(self):
         save(self.path, self.raw.replace(' -l"PromisesSwift"', ''))
-        with self.assertRaisesRegex(ValueError, 'Missing or repeated'):
+        with self.assertRaisesRegex(RuntimeError, 'Missing or repeated'):
             self.plan()
 
     def test_repeated_shared_library_input_is_rejected(self):
         save(self.path, self.raw.replace(' -l"nanopb"', ' -l"nanopb" -l"nanopb"'))
-        with self.assertRaisesRegex(ValueError, 'Missing or repeated'):
+        with self.assertRaisesRegex(RuntimeError, 'Missing or repeated'):
             self.plan()
 
 
@@ -187,22 +187,22 @@ class ExactClangDeclarationControls(unittest.TestCase):
 
     def test_changed_host_header_is_rejected(self):
         save(self.host_headers['FirebaseCore'], '// changed declaration\n')
-        with self.assertRaisesRegex(ValueError, 'byte-identical shared declaration'):
+        with self.assertRaisesRegex(RuntimeError, 'byte-identical shared declaration'):
             self.project()
 
     def test_missing_host_header_is_rejected(self):
         self.host_headers['FBLPromises'].unlink()
-        with self.assertRaisesRegex(ValueError, 'byte-identical shared declaration'):
+        with self.assertRaisesRegex(RuntimeError, 'byte-identical shared declaration'):
             self.project()
 
     def test_two_host_maps_for_one_module_are_rejected(self):
         save(self.root / 'Pods/Headers/Public/Extra/Other.modulemap', 'module FirebaseCore { header "Other.h" }\n')
-        with self.assertRaisesRegex(ValueError, 'Multiple CocoaPods maps'):
+        with self.assertRaisesRegex(RuntimeError, 'Multiple CocoaPods maps'):
             self.project()
 
     def test_unreviewed_additional_collision_is_rejected(self):
         save(self.root / 'Pods/Headers/Public/Extra/Unshared.modulemap', 'module Unshared { header "Unshared.h" }\n')
-        with self.assertRaisesRegex(ValueError, 'Unreviewed Host/producer Clang collision'):
+        with self.assertRaisesRegex(RuntimeError, 'Unreviewed Host/producer Clang collision'):
             self.project()
 
 
