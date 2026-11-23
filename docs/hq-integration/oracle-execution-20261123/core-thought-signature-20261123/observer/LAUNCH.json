@@ -1,0 +1,12 @@
+{
+  "branch": "codex/otzaria-tool-result-continuation-20261123",
+  "controller_sha256": "1bfbe4d8324bb93c66a33a994cb93478e545bdd666d797db0c1777dcd2d297ba",
+  "launched_at": "2026-11-23T22:02:11.760807+00:00",
+  "pid": 3277186,
+  "repo": "davidpovarsky/swift-ai-sdk",
+  "run": 45275019854,
+  "single_identity_only_controller_delta": true,
+  "source": "d4286d1afa661af930f7addd6f63fff0effe4414",
+  "source_controller_sha256": "ac1a8175ec0c4a405d6a7172f22a792ddaacdbe00a1a7758c29bd408e2def6a2",
+  "start_ticks": "699840359"
+}

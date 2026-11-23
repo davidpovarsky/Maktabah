@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "status": "AUTHENTIC_ORIGINAL_LTR_EXECUTED_PASS",
+  "run": 45255504303,
+  "attempt": 1,
+  "control_source": "fab50c9e26fe60d6eb009b34cfa23781d3bb363c",
+  "application_source": "92e9df6e2daf64893c83ba13708fac4c670ae38f",
+  "counts": {
+    "pass": 1,
+    "fail": 0,
+    "skip": 0,
+    "not_run": 0
+  },
+  "exact_case": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout()",
+  "actual_xcresult_summary_and_leaf_agree": true,
+  "source_inputs_git_verified": 291,
+  "before_after_source_equal": true,
+  "compiled_image_bytes_unchanged": true,
+  "owned_simulator_cleanup": "PASS",
+  "device": {
+    "architecture": "arm64",
+    "deviceId": "965FAE85-7C68-4EB4-B56C-DC321A0FABDC",
+    "deviceName": "Faithful 11-inch 0427f172",
+    "modelName": "iPad Pro 11-inch (M5)",
+    "osBuildNumber": "24B8117",
+    "osVersion": "27.2",
+    "platform": "iOS Simulator"
+  },
+  "artifact_id": 14862628694,
+  "artifact_sha256": "6886a1b255897c2921ba685bf4bc790ce251a01fa989b6a00c504c27705f4b3f",
+  "saved_verifier": {
+    "status": "EXECUTED_PASS",
+    "scope": "focused-ui",
+    "database_open": "NOT_VERIFIED_BY_TEST_COUNTS",
+    "summary_sha256": "39f438adf291d07c7eecc57b9e2ae7c21f931ff9227dec2163506510b1e6b507",
+    "tests_sha256": "f2a452e046525ad05ef89eda9828814b50212809c7d09a5b07244bdbcaa1de80",
+    "target": "Maktabah-iOSUITests",
+    "executed_total": 1,
+    "required_ui_passed": 1,
+    "required_ui_cases": [
+      "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout"
+    ],
+    "cases": {
+      "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout": {
+        "status": "Passed",
+        "identifier": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout()",
+        "identifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+        "target": "Maktabah-iOSUITests"
+      }
+    },
+    "skipped": 0,
+    "failed": 0
+  },
+  "canonical_xcresult_json": {
+    "summary_sha256": "39f438adf291d07c7eecc57b9e2ae7c21f931ff9227dec2163506510b1e6b507",
+    "tests_sha256": "f2a452e046525ad05ef89eda9828814b50212809c7d09a5b07244bdbcaa1de80"
+  },
+  "historic_library_six_passes": "PRESERVED_ON_PRIOR_SOURCE; NOT_REPLAYED_OR_RELABELLED",
+  "workflow_aggregate": "CANCELLED",
+  "groups_native_cases": "NOT_RUN1",
+  "full_v32_native_cases": "NOT_RUN2",
+  "full_phase_acceptance": false
+}

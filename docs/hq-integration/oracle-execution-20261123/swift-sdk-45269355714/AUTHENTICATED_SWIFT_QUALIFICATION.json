@@ -1,0 +1,186 @@
+{
+  "actual_compiler_context": {
+    "compiler_driver": {
+      "bytes": 173118384,
+      "git_blob": "92b5bc9ae52a46345d94c7db2ef05503b3075c7e",
+      "path": "swiftc",
+      "sha256": "84b410d8143298f90ab0b721d488dab90e2fdbf23577ae6186162832a1155cb7"
+    },
+    "frontend": {
+      "bytes": 173118384,
+      "git_blob": "92b5bc9ae52a46345d94c7db2ef05503b3075c7e",
+      "path": "swift-frontend",
+      "sha256": "84b410d8143298f90ab0b721d488dab90e2fdbf23577ae6186162832a1155cb7"
+    },
+    "scope": "Same original Xcode/Swift driver; explicit actual macOS SDK for direct frontend invocation",
+    "sdk_root": "/Applications/Xcode_27.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+    "sdk_settings": {
+      "bytes": 5538,
+      "git_blob": "a2bfd2811b5735bd6bedb533498aa69577560de6",
+      "path": "SDKSettings.plist",
+      "sha256": "90a738dbf3fd88e7f6d35646e19d3a8a716923b9773ce1b67260466d9ceed370"
+    },
+    "sdk_version": "27.0",
+    "target": {
+      "compilerVersion": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)",
+      "paths": {
+        "runtimeLibraryImportPaths": [
+          "/Applications/Xcode_27.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+          "/Applications/Xcode_27.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift"
+        ],
+        "runtimeLibraryPaths": [
+          "/Applications/Xcode_27.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+          "/usr/lib/swift"
+        ],
+        "runtimeResourcePath": "/Applications/Xcode_27.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift",
+        "sdkPath": "/Applications/Xcode_27.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
+      },
+      "swiftCompilerTag": "swiftlang-6.4.0.34.1",
+      "target": {
+        "arch": "arm64",
+        "compatibilityLibraries": [],
+        "librariesRequireRPath": false,
+        "moduleTriple": "arm64-apple-macos",
+        "openbsdBTCFIEnabled": false,
+        "platform": "macosx",
+        "pointerWidthInBits": 64,
+        "pointerWidthInBytes": 8,
+        "swiftRuntimeCompatibilityVersion": "6.4",
+        "triple": "arm64-apple-macosx27.0.0",
+        "unversionedTriple": "arm64-apple-macosx"
+      }
+    }
+  },
+  "actual_input_files": 689,
+  "actual_module_files": [
+    {
+      "bytes": 149,
+      "git_blob": "d2f988e4ec924df0892a68fc46dc330626c88563",
+      "path": "SwiftProtobuf.swiftmodule/arm64-apple-macos.abi.json",
+      "sha256": "4277ac6b49f8511196028a5ac20f5b1b1dfa754c24615d34068089f0b1739728"
+    },
+    {
+      "bytes": 397492,
+      "git_blob": "546551b1e2a427fd55ae01af0f5227b706cfe58a",
+      "path": "SwiftProtobuf.swiftmodule/arm64-apple-macos.swiftdoc",
+      "sha256": "2c4ce0ce201a7e4c480658f70131c37c363dc055cec1f45beb8867c140f5ac73"
+    },
+    {
+      "bytes": 2540712,
+      "git_blob": "8046d6692094696f754d5d66d25ea9237bc6b202",
+      "path": "SwiftProtobuf.swiftmodule/arm64-apple-macos.swiftmodule",
+      "sha256": "8fdae87e2a90b8d4478069fc084e46786f5ed5dce8d08731b656c6fb201d2547"
+    }
+  ],
+  "artifact": {
+    "digest": "sha256:1f4074fe76a3b77d955d749e3169e2a8f444b849be0b834a60ad1c10c5893d34",
+    "id": 14863169524,
+    "name": "Otzaria-Import-RPC-Swift-SDK-45269355714-1",
+    "size_in_bytes": 58301859
+  },
+  "command": {
+    "absolute_command_deadline_unix": 1795472260,
+    "argv": [
+      "xcrun",
+      "swiftc",
+      "-frontend",
+      "-typecheck",
+      "-module-name",
+      "OtzariaGeneratedImportProtocol",
+      "-sdk",
+      "/Applications/Xcode_27.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+      "-I",
+      "/Users/runner/work/anytype-swift/anytype-swift/build/Import-RPC-Swift-SDK-Owned-Work/module",
+      "@/Users/runner/work/anytype-swift/anytype-swift/build/Import-RPC-Swift-SDK-Owned-Work/changed-swift-primary-inputs.rsp"
+    ],
+    "child_started_unix": 1795469110.595608,
+    "cleanup": [
+      {
+        "drained": true,
+        "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+        "unix": 1795469169.921248
+      }
+    ],
+    "cwd": "/Users/runner/work/anytype-swift/anytype-swift/build/Import-RPC-Swift-SDK-Owned-Work/swift",
+    "duration_seconds": 59.357,
+    "effective_returncode": 0,
+    "effective_timeout_seconds": 1200.0,
+    "label": "typecheck-changed-original-swift-with-sdk",
+    "pid": 1593,
+    "process_group_id": 1593,
+    "requested_timeout_seconds": 1200,
+    "returncode": 0,
+    "start_new_session": true,
+    "started_unix": 1795469110.5692701,
+    "status": "TERMINAL",
+    "stderr": "10-typecheck-changed-original-swift-with-sdk.stderr",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "10-typecheck-changed-original-swift-with-sdk.stdout",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "timed_out": false
+  },
+  "commands_pass": 10,
+  "dependency_builds": 0,
+  "full_sdk_typechecked": false,
+  "generated_index_sha256": "c38fe4efadaa1c4676084b8ca6303387b0efa61fa540ba4d9af00d67c8c85070",
+  "generated_native_tree": "995327648a4e4523c37208251ba54b47bccb2ab4",
+  "generation_artifact_sha256": "1b8b5beda8e28322bc10ecebb37007b400aff2f17fa27c1e1dfc854f4c5eab2c",
+  "generation_run": 45261979047,
+  "generation_source": "af96f761efe2cb4d92f5296fec85a152fd3aef17",
+  "generator_invocations": 0,
+  "intake": {
+    "crc_members": 27,
+    "indexed_files": 26
+  },
+  "mobile_abi_built": false,
+  "native_tests": 0,
+  "owned_command_groups_drained": true,
+  "owned_work_removed": true,
+  "primary_paths": [
+    "Modules/ProtobufMessages/Sources/Protocol/Commands/Anytype_Rpc.Annotation.Import.swift",
+    "Modules/ProtobufMessages/Sources/Loc/Generated/Error+Localization.swift"
+  ],
+  "receipts": {
+    "ACTUAL_SWIFT_COMPILER_CONTEXT.json": {
+      "bytes": 2214,
+      "git_blob": "205468063946d1ee1786efe2073ba583f25ef1b8",
+      "sha256": "e0c08b35a199cc799cdfd5464ebbb79dfdc4c6f1bbbf62a0fe0fb0608ff7c9ef"
+    },
+    "ACTUAL_SWIFT_TYPECHECK_INPUTS.json": {
+      "bytes": 197332,
+      "git_blob": "e17f5142ae0715dd55caa425f70b81cd718db089",
+      "sha256": "ce5bfcecc74246a4b954c5982933900ef416b8dbe3b73a3e13530017787fd2cf"
+    },
+    "AUTHENTICATED_GENERATION.json": {
+      "bytes": 28364,
+      "git_blob": "c6f971dc9767c21b2ea3250d33eaf513f81268e1",
+      "sha256": "d7e1074b46a52d7d559304045110da3e13b40630208520566ff840bf12c357e7"
+    },
+    "COMMANDS.json": {
+      "bytes": 11159,
+      "git_blob": "82e903ce59b429cfed00f01379f4f383d46ffbb8",
+      "sha256": "c19d68ac6db5f3fa1a358ac4a82b205137ac90b129cc5fb192a5bebe1a97c29e"
+    },
+    "EVIDENCE_INDEX.json": {
+      "bytes": 6105,
+      "git_blob": "73c1bdd1c3771c696d23f0d0164db22a4fce280b",
+      "sha256": "97691c593b0308b94c6c24c6c053218493d45cd3ae3d67462c7687059ca57ed3"
+    },
+    "RESULT.json": {
+      "bytes": 3958,
+      "git_blob": "d58235a5664d35efe58cb1b3ad6da49fc1b62682",
+      "sha256": "e31b629fb8b6cd48acd2adca17aec850abd1c290de364be416696820a052e480"
+    }
+  },
+  "run": {
+    "conclusion": "success",
+    "head_sha": "fc4a84f68d26bcf36a8662367d08475b4024824a",
+    "html_url": "https://github.com/davidpovarsky/anytype-swift/actions/runs/45269355714",
+    "id": 45269355714,
+    "run_attempt": 1
+  },
+  "schema": "otzaria.authenticated-changed-swift-qualification/1",
+  "scope": "Two changed generated primary files with 689 exact real inputs and 3 original SwiftProtobuf module rows; original generation and final Native/RPC union are separately bound.",
+  "status": "PASS",
+  "swift_typecheck_invocations": 1
+}
