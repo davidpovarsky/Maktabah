@@ -1,0 +1,144 @@
+{
+  "schema": "otzaria.original-three-cohort-terminal/1",
+  "run_id": 45147566951,
+  "attempt": 1,
+  "source_sha": "ad07d5a48da4b49b3085d5d88110d6043ffba1e5",
+  "application_source_sha": "b965e741815f9033151ee45f58d744d028ba1bc2",
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45147566951",
+  "job_id": 137600554072,
+  "job_started_at": "2026-11-23T09:31:47Z",
+  "job_completed_at": "2026-11-23T09:34:22Z",
+  "workflow_conclusion": "failure",
+  "primary_failure": {
+    "step": 7,
+    "name": "Compile original UI tests with the selected Apple SDK before the full app build",
+    "command": "python3 Scripts/CI/typecheck-faithful-ui-tests.py --ui-compile-only",
+    "actual_diagnostic": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:4019:8: error: no such module 'DarwinNotify'\n4017 | // BEGIN ADDITIVE FULL-V32 ORIGINAL READER OBSERVATIONS\n4018 | import Darwin\n4019 | import DarwinNotify\n     |        `- error: no such module 'DarwinNotify'\n4020 | \n4021 | // This Debug/production-corpus diagnostic is distinct from the existing Release",
+    "log_sha256": "042eac9a0665ae80eaa4cd7e0acaf5ae8426ff8c2b38a4ce2b752848d4a1c8d0",
+    "compile_report_sha256": "ecf5c462582f066da98a0858c40d35b0d53135cc79ea8f4b9cef7eda4aa7bdd2",
+    "scope": "UI_TEST_SDK_COMPILE_ONLY",
+    "appMembershipStatus": "PASS",
+    "compilerExitCode": 1,
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+    "sdk": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.2.sdk",
+    "target": "arm64-apple-ios27.0-simulator"
+  },
+  "native_case_counts": {
+    "pass": 0,
+    "fail": 0,
+    "skip": 0,
+    "not_run": 10
+  },
+  "cohorts": {
+    "groups100": {
+      "selected": 1,
+      "not_run": 1
+    },
+    "library7": {
+      "selected": 7,
+      "not_run": 7
+    },
+    "full_v32": {
+      "selected": 2,
+      "not_run": 2
+    }
+  },
+  "app_build": "NOT_RUN",
+  "source_admission": {
+    "actual_group_library_input_count": 291,
+    "actual_full_v32_input_count": 42,
+    "all_actual_input_bytes_match_immutable_git_source": true,
+    "actual_compile_source_count": 11,
+    "all_compile_source_bytes_match_immutable_git_source": true,
+    "morph_issues": []
+  },
+  "downstream_collection_failures": {
+    "groups100": "FileNotFoundError: [Errno 2] No such file or directory: '/Users/runner/work/Maktabah/Maktabah/build/hq-stage2/result.json'",
+    "library7": "FileNotFoundError: [Errno 2] No such file or directory: '/Users/runner/work/Maktabah/Maktabah/build/hq-stage2/result.json'"
+  },
+  "artifact_admission_sha256": "80d7bb27b9229a4d78e04e2be7bb7f39915409e7c73126349d98a238424e7ddc",
+  "artifacts": [
+    {
+      "id": 14806165502,
+      "name": "native-shared-build-evidence",
+      "bytes": 10457,
+      "sha256": "815b2d20f2b90b9226c78b3d31350f21fcd6ba9fd13376135e3bf1f9f4b70652"
+    },
+    {
+      "id": 14805466510,
+      "name": "groups100-native-evidence",
+      "bytes": 85555,
+      "sha256": "7984755b537116036ccf28fe2fdc783c1a8bf94f83c9f089e2d763524f5e6c2e"
+    },
+    {
+      "id": 14805381433,
+      "name": "library7-native-evidence",
+      "bytes": 87139,
+      "sha256": "11a50b2744cea18abbc95a5a93a0746a4778f29997908efef58f2305fff15b41"
+    },
+    {
+      "id": 14804349207,
+      "name": "full-v32-ui-observation-evidence",
+      "bytes": 6705,
+      "sha256": "f22df441760d0c19beef349744e1298b8b18801fa4e2b6a6eb843782b137d3e4"
+    }
+  ],
+  "observer": {
+    "run_id": 45147566951,
+    "source_sha": "ad07d5a48da4b49b3085d5d88110d6043ffba1e5",
+    "expected_attempt": 1,
+    "window": 1,
+    "started_at": "2026-11-23T09:30:44.172826+00:00",
+    "controller_pid": 2613626,
+    "interval_seconds": 120,
+    "maximum_observation_seconds": 3300,
+    "dispatches": 0,
+    "reruns": 0,
+    "watch_pid": 2613627,
+    "watch_exit_code": 1,
+    "run_status": "completed",
+    "run_conclusion": "failure",
+    "status": "AUTHENTIC_RUN_COMPLETED",
+    "jobs_metadata": "RETAINED",
+    "artifacts_metadata": "RETAINED",
+    "artifacts": [
+      {
+        "id": 14806165502,
+        "name": "native-shared-build-evidence",
+        "size_in_bytes": 10457,
+        "digest": "sha256:815b2d20f2b90b9226c78b3d31350f21fcd6ba9fd13376135e3bf1f9f4b70652",
+        "expired": false
+      },
+      {
+        "id": 14805466510,
+        "name": "groups100-native-evidence",
+        "size_in_bytes": 85555,
+        "digest": "sha256:7984755b537116036ccf28fe2fdc783c1a8bf94f83c9f089e2d763524f5e6c2e",
+        "expired": false
+      },
+      {
+        "id": 14805381433,
+        "name": "library7-native-evidence",
+        "size_in_bytes": 87139,
+        "digest": "sha256:11a50b2744cea18abbc95a5a93a0746a4778f29997908efef58f2305fff15b41",
+        "expired": false
+      },
+      {
+        "id": 14804349207,
+        "name": "full-v32-ui-observation-evidence",
+        "size_in_bytes": 6705,
+        "digest": "sha256:f22df441760d0c19beef349744e1298b8b18801fa4e2b6a6eb843782b137d3e4",
+        "expired": false
+      }
+    ],
+    "watch_process_reaped": true,
+    "elapsed_seconds": 245.61912675574422,
+    "finished_at": "2026-11-23T09:34:49.791953+00:00"
+  },
+  "diagnosis": "Apple documentation collection/module identifier DarwinNotify does not establish an importable module in this installed iPhoneSimulator27.2 SDK. The proposed import failed. The earlier notify symbol diagnosis remains unresolved until actual SDK module/header evidence is inspected. No native behavior was exercised.",
+  "prior_run": 45143450850,
+  "prior_failure_preserved": true,
+  "new_dispatches": 0,
+  "native_reruns": 0
+}

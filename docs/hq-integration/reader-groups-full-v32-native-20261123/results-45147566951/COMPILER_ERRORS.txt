@@ -1,0 +1,7 @@
+Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:4019:8: error: no such module 'DarwinNotify'
+4017 | // BEGIN ADDITIVE FULL-V32 ORIGINAL READER OBSERVATIONS
+4018 | import Darwin
+4019 | import DarwinNotify
+     |        `- error: no such module 'DarwinNotify'
+4020 | 
+4021 | // This Debug/production-corpus diagnostic is distinct from the existing Release

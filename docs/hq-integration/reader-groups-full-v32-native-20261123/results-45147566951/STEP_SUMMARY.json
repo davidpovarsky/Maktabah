@@ -1,0 +1,219 @@
+[
+  {
+    "number": 1,
+    "name": "Set up job",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:31:48Z",
+    "completed_at": "2026-11-23T09:31:50Z"
+  },
+  {
+    "number": 2,
+    "name": "Run actions/checkout@v4",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:31:50Z",
+    "completed_at": "2026-11-23T09:32:06Z"
+  },
+  {
+    "number": 3,
+    "name": "Admit only the repaired original Groups100 leaf",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:32:06Z",
+    "completed_at": "2026-11-23T09:32:14Z"
+  },
+  {
+    "number": 4,
+    "name": "Admit only the seven original Library cases against integrated source",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:32:14Z",
+    "completed_at": "2026-11-23T09:32:17Z"
+  },
+  {
+    "number": 5,
+    "name": "Admit the exact two full-v32 cases and frozen input bytes",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:32:17Z",
+    "completed_at": "2026-11-23T09:32:22Z"
+  },
+  {
+    "number": 6,
+    "name": "Select an existing SDK-matched runtime",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:32:22Z",
+    "completed_at": "2026-11-23T09:33:27Z"
+  },
+  {
+    "number": 7,
+    "name": "Compile original UI tests with the selected Apple SDK before the full app build",
+    "conclusion": "failure",
+    "started_at": "2026-11-23T09:33:27Z",
+    "completed_at": "2026-11-23T09:34:06Z"
+  },
+  {
+    "number": 8,
+    "name": "Run actions/setup-node@v4",
+    "conclusion": "skipped",
+    "started_at": "2026-11-23T09:34:06Z",
+    "completed_at": "2026-11-23T09:34:06Z"
+  },
+  {
+    "number": 9,
+    "name": "Run ruby/setup-ruby@v1",
+    "conclusion": "skipped",
+    "started_at": "2026-11-23T09:34:06Z",
+    "completed_at": "2026-11-23T09:34:06Z"
+  },
+  {
+    "number": 10,
+    "name": "Read source-pinned Zayit build mode",
+    "conclusion": "skipped",
+    "started_at": "2026-11-23T09:34:06Z",
+    "completed_at": "2026-11-23T09:34:06Z"
+  },
+  {
+    "number": 11,
+    "name": "Use Rust only for the reviewed matching Zayit build",
+    "conclusion": "skipped",
+    "started_at": "2026-11-23T09:34:06Z",
+    "completed_at": "2026-11-23T09:34:06Z"
+  },
+  {
+    "number": 12,
+    "name": "Key disposable compiler cache by real SDK and native inputs",
+    "conclusion": "skipped",
+    "started_at": "2026-11-23T09:34:06Z",
+    "completed_at": "2026-11-23T09:34:06Z"
+  },
+  {
+    "number": 13,
+    "name": "Run actions/cache/restore@v4",
+    "conclusion": "skipped",
+    "started_at": "2026-11-23T09:34:06Z",
+    "completed_at": "2026-11-23T09:34:06Z"
+  },
+  {
+    "number": 14,
+    "name": "Build the original app and original UI test runner once",
+    "conclusion": "skipped",
+    "started_at": "2026-11-23T09:34:06Z",
+    "completed_at": "2026-11-23T09:34:06Z"
+  },
+  {
+    "number": 15,
+    "name": "Execute the original Groups100 leaf on its owned mini fixture Simulator",
+    "conclusion": "skipped",
+    "started_at": "2026-11-23T09:34:06Z",
+    "completed_at": "2026-11-23T09:34:06Z"
+  },
+  {
+    "number": 16,
+    "name": "Collect Groups100 raw outcomes and owned cleanup including failure",
+    "conclusion": "failure",
+    "started_at": "2026-11-23T09:34:06Z",
+    "completed_at": "2026-11-23T09:34:07Z"
+  },
+  {
+    "number": 17,
+    "name": "Execute seven original Library cases on a separate owned mini fixture Simulator",
+    "conclusion": "skipped",
+    "started_at": "2026-11-23T09:34:07Z",
+    "completed_at": "2026-11-23T09:34:07Z"
+  },
+  {
+    "number": 18,
+    "name": "Collect Library7 raw outcomes and owned cleanup including failure",
+    "conclusion": "failure",
+    "started_at": "2026-11-23T09:34:07Z",
+    "completed_at": "2026-11-23T09:34:08Z"
+  },
+  {
+    "number": 19,
+    "name": "Execute two original full-v32 cases on a separate owned production Simulator",
+    "conclusion": "skipped",
+    "started_at": "2026-11-23T09:34:08Z",
+    "completed_at": "2026-11-23T09:34:08Z"
+  },
+  {
+    "number": 20,
+    "name": "Retain compiler cache only after an actual matching test build",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:34:08Z",
+    "completed_at": "2026-11-23T09:34:08Z"
+  },
+  {
+    "number": 21,
+    "name": "Run actions/cache/save@v4",
+    "conclusion": "skipped",
+    "started_at": "2026-11-23T09:34:08Z",
+    "completed_at": "2026-11-23T09:34:08Z"
+  },
+  {
+    "number": 22,
+    "name": "Retain the one actual shared build and cohort ownership ledger",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:34:08Z",
+    "completed_at": "2026-11-23T09:34:09Z"
+  },
+  {
+    "number": 23,
+    "name": "Retain Groups100 outcomes including failure",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:34:09Z",
+    "completed_at": "2026-11-23T09:34:11Z"
+  },
+  {
+    "number": 24,
+    "name": "Retain Groups100 original result bundles and captures separately",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:34:11Z",
+    "completed_at": "2026-11-23T09:34:11Z"
+  },
+  {
+    "number": 25,
+    "name": "Retain Library7 outcomes including failure",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:34:11Z",
+    "completed_at": "2026-11-23T09:34:12Z"
+  },
+  {
+    "number": 26,
+    "name": "Retain Library7 original result bundles and captures separately",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:34:12Z",
+    "completed_at": "2026-11-23T09:34:13Z"
+  },
+  {
+    "number": 27,
+    "name": "Retain full-v32 source, actual observations, and failure receipts separately",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:34:13Z",
+    "completed_at": "2026-11-23T09:34:14Z"
+  },
+  {
+    "number": 28,
+    "name": "Retain original full-v32 xcresult and native captures",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:34:14Z",
+    "completed_at": "2026-11-23T09:34:14Z"
+  },
+  {
+    "number": 29,
+    "name": "Retain the genuine original Apple trace for separate coverage review",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:34:14Z",
+    "completed_at": "2026-11-23T09:34:14Z"
+  },
+  {
+    "number": 58,
+    "name": "Post Run actions/checkout@v4",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:34:14Z",
+    "completed_at": "2026-11-23T09:34:15Z"
+  },
+  {
+    "number": 59,
+    "name": "Complete job",
+    "conclusion": "success",
+    "started_at": "2026-11-23T09:34:15Z",
+    "completed_at": "2026-11-23T09:34:19Z"
+  }
+]

@@ -1,0 +1,155 @@
+{
+  "run": 45147566951,
+  "source": "ad07d5a48da4b49b3085d5d88110d6043ffba1e5",
+  "attempt": 1,
+  "disk_free_before": 2296258560,
+  "disk_free_after": 2295267328,
+  "artifacts": [
+    {
+      "id": 14806165502,
+      "name": "native-shared-build-evidence",
+      "bytes": 10457,
+      "sha256": "815b2d20f2b90b9226c78b3d31350f21fcd6ba9fd13376135e3bf1f9f4b70652",
+      "zip_path": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-20261123/45147566951/artifact-intake/14806165502-native-shared-build-evidence.zip",
+      "members": [
+        {
+          "path": "native-cohorts/selections/3c07a270afaa4fc5ba5de6e48118e82d.json",
+          "bytes": 675,
+          "sha256": "dd8eb01222c1ba53c0307d27457720694fd047efca56adc9e2fbb00a3a087c1a"
+        },
+        {
+          "path": "native-cohorts/selections/415aa187dfcd4bd8b2484a3410b9d1db.json",
+          "bytes": 748,
+          "sha256": "e09bd10c6ab5b0b9d564ab39e130fabb669366af449dc7727cfef9205fbeb518"
+        },
+        {
+          "path": "native-cohorts/selections/9da3edd83ea14bde8d2d799eff23ef21.json",
+          "bytes": 747,
+          "sha256": "e836c3cd0006081a66d0fff8129916bf77786656224432c5b0dffe02d63653fd"
+        },
+        {
+          "path": "native-cohorts/owner.json",
+          "bytes": 224,
+          "sha256": "691e12ee0c7f7632c5f28d67cfbf4654f044ef80e9ae1730b3a8342456b27b86"
+        },
+        {
+          "path": "native-cohorts/selections/c9eaac39f9d9441a8047b1ab5f258144.json",
+          "bytes": 755,
+          "sha256": "1391621f79334b6b8443c056f07f9d7e1651c084bddb4e9d059179794cc246cf"
+        },
+        {
+          "path": "native-cohorts/selections/dc19213c07d747fb892055d0f85c29de.json",
+          "bytes": 753,
+          "sha256": "cf3e9213567fe46eda55b565c320ead7c4a5434a26316ceae254e10ee35c13a3"
+        },
+        {
+          "path": "native-cohorts/selections/fcc251d15db1413b93255af18418eab9.json",
+          "bytes": 748,
+          "sha256": "35df1711f7566a536ba9b7ded0877bd4a75e4fd950f581b9f1bb039230766e6b"
+        },
+        {
+          "path": "native-cohorts/shared-build/artifacts/runtime27/toolchain-selection.json",
+          "bytes": 13019,
+          "sha256": "9e57498a70918b96668fb86ae18b33148b157657450d3c9c6272654d53a178c4"
+        },
+        {
+          "path": "native-cohorts/shared-build/artifacts/ui-acceptance-typecheck.json",
+          "bytes": 4027,
+          "sha256": "ecf5c462582f066da98a0858c40d35b0d53135cc79ea8f4b9cef7eda4aa7bdd2"
+        },
+        {
+          "path": "native-cohorts/shared-build/artifacts/ui-acceptance-typecheck.log",
+          "bytes": 364,
+          "sha256": "042eac9a0665ae80eaa4cd7e0acaf5ae8426ff8c2b38a4ce2b752848d4a1c8d0"
+        },
+        {
+          "path": "native-cohorts/shared-build/artifacts/xcuiautomation-voiceover-sdk.txt",
+          "bytes": 13992,
+          "sha256": "a67c1b7395766d301e65f88ed64c1424a2e707fca4ddd3a6d50e1bb7d072cb67"
+        }
+      ],
+      "safe_unique_members_and_whole_crc": "PASS"
+    },
+    {
+      "id": 14805466510,
+      "name": "groups100-native-evidence",
+      "bytes": 85555,
+      "sha256": "7984755b537116036ccf28fe2fdc783c1a8bf94f83c9f089e2d763524f5e6c2e",
+      "zip_path": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-20261123/45147566951/artifact-intake/14805466510-groups100-native-evidence.zip",
+      "members": [
+        {
+          "path": "reader-groups100/declarations.json",
+          "bytes": 416,
+          "sha256": "33308022384c62b07428b8b4e15716f1c90f1b5e027735eb3aa03fa52181ff23"
+        },
+        {
+          "path": "reader-groups100/result.json",
+          "bytes": 66021,
+          "sha256": "89981fa4ffd55a7773bc66be9da8a42dd000d0c09b4cdb4dc60c8adb4916f73b"
+        },
+        {
+          "path": "reader-groups100/selection.json",
+          "bytes": 177846,
+          "sha256": "49e5b86bb9e5f47bc1fae8de2491a3204f11ae124cf721d31a1205235b8c0274"
+        },
+        {
+          "path": "reader-groups100/source-before.json",
+          "bytes": 65488,
+          "sha256": "a6693e84fe3c9a2e676f76c8cfb0cc05fe92331d331cfc72003a6192e6db1630"
+        }
+      ],
+      "safe_unique_members_and_whole_crc": "PASS"
+    },
+    {
+      "id": 14805381433,
+      "name": "library7-native-evidence",
+      "bytes": 87139,
+      "sha256": "11a50b2744cea18abbc95a5a93a0746a4778f29997908efef58f2305fff15b41",
+      "zip_path": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-20261123/45147566951/artifact-intake/14805381433-library7-native-evidence.zip",
+      "members": [
+        {
+          "path": "library-morph/declarations.json",
+          "bytes": 2132,
+          "sha256": "fef512338bf85a974898616f801e91f044a85f79bd25269794fae8f69d90e0ec"
+        },
+        {
+          "path": "library-morph/result.json",
+          "bytes": 67624,
+          "sha256": "34c33a49be0931de78842d7a57df2f0a9af687e872bd4a995e764270efad470f"
+        },
+        {
+          "path": "library-morph/selection.json",
+          "bytes": 180605,
+          "sha256": "2e747387b5bec7425bcdf619f2a69acf93f102a0299733ed5a9216bc04e5b1f4"
+        },
+        {
+          "path": "library-morph/source-before.json",
+          "bytes": 66600,
+          "sha256": "23a7d0a04a08381764947595a6f2d5a0dce6ca948b2467349a85b755c7b27d36"
+        }
+      ],
+      "safe_unique_members_and_whole_crc": "PASS"
+    },
+    {
+      "id": 14804349207,
+      "name": "full-v32-ui-observation-evidence",
+      "bytes": 6705,
+      "sha256": "f22df441760d0c19beef349744e1298b8b18801fa4e2b6a6eb843782b137d3e4",
+      "zip_path": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-20261123/45147566951/artifact-intake/14804349207-full-v32-ui-observation-evidence.zip",
+      "members": [
+        {
+          "path": "reader-full-v32-ui-observation/frozen-source-admission.json",
+          "bytes": 7725,
+          "sha256": "55ea8359415d05974202859448d518a63f2fb53bfc99f19ec6dcd41ec61496cf"
+        },
+        {
+          "path": "reader-full-v32-ui-observation/source-only-admission.json",
+          "bytes": 8931,
+          "sha256": "fb3e15060b11413c895ebdff73290bc90206aa5cc6a1c0e51d5327f12ef15b73"
+        }
+      ],
+      "safe_unique_members_and_whole_crc": "PASS"
+    }
+  ],
+  "no_captures_or_video_downloaded": true
+}
