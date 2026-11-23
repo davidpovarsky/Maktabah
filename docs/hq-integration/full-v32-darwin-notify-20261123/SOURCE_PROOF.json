@@ -1,0 +1,38 @@
+{
+  "base": "88977a1e19e6c205fc2e832bd79c384b1e2f70ca",
+  "base_application_source": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
+  "source_product_trees_equal_base_application": true,
+  "original_run": 45143450850,
+  "original_native_counts": {
+    "pass": 0,
+    "fail": 0,
+    "skip": 0,
+    "not_run": 10
+  },
+  "records": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "before_bytes": 290670,
+      "before_sha256": "f724b6b338c1dcbdc3285ed46386b9c51b80a5a224bec36b92cfb4fb632d72dc",
+      "after_bytes": 290690,
+      "after_sha256": "6bbb69dfe79d52f1cb1f148eb665466e7a230055bd182cca434f486d0512dcbb",
+      "remove_exact_new_import_restores_complete_file": true
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "before_bytes": 21707,
+      "before_sha256": "36ca3f4863c60519d1135bf8f327a4c00a1e1bf074dd826caee7760547b18aa8",
+      "after_bytes": 21727,
+      "after_sha256": "1d531327634b8c72732d4618eb44220ba492af67280e408a7c775e254ffbd9c4",
+      "remove_exact_new_import_restores_complete_file": true
+    }
+  ],
+  "full_two_file_inverse_exact": true,
+  "all_source_methods_case_methods_observer_logic_assertions_and_deadlines_unchanged": true,
+  "new_imports": 2,
+  "old_Darwin_imports_preserved": true,
+  "apple_sdk_compile_after_repair": "NOT_RUN",
+  "host_budget_2a551_included": false,
+  "pins_changed": false,
+  "workflow_changed": false
+}
