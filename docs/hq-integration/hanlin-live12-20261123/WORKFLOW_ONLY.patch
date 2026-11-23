@@ -1,0 +1,15 @@
+diff --git a/.github/workflows/otzaria-hanlin-live-native.yml b/.github/workflows/otzaria-hanlin-live-native.yml
+index 2bf1a6c1..fee4609c 100644
+--- a/.github/workflows/otzaria-hanlin-live-native.yml
++++ b/.github/workflows/otzaria-hanlin-live-native.yml
+@@ -23,8 +23,8 @@ jobs:
+         with:
+           ref: ${{ github.sha }}
+           fetch-depth: 0
+-      - name: Verify the immutable Live11 diagnostic source boundary
+-        run: python3 Scripts/CI/verify-hanlin-live11-source.py
++      - name: Verify the immutable Live12 diagnostic source boundary
++        run: python3 Scripts/CI/verify-hanlin-live12-source.py
+       - name: Require the reviewed existing credential configuration
+         id: live_credential
+         env:

@@ -1,0 +1,56 @@
+{
+  "controls_reexecuted_here": false,
+  "controls_run_originally": 5,
+  "files": {
+    "docs/hq-integration/hanlin-live11-diagnosis-20261123/CONTROL.stderr.log": {
+      "blob": "b54ddaac79322353fde2cf7a0a02c80a1af779ba",
+      "bytes": 939,
+      "sha256": "06acdc7b76c1ef01b11d4155fd3e14caf1a4a6fa60dbab944d2b98731bc0f3e2"
+    },
+    "docs/hq-integration/hanlin-live11-diagnosis-20261123/CONTROL.stdout.log": {
+      "blob": "527282fb2c6632ab7200d337d1c45fc17e4393b6",
+      "bytes": 1166,
+      "sha256": "dcd18aae7a515fe1df860802c0a550b6699200781c6f4d3281d94e1b8de18ec8"
+    },
+    "docs/hq-integration/hanlin-live11-diagnosis-20261123/CONTROL_RESULT.json": {
+      "blob": "f295ee6ee1395c427368505031295851fb653c90",
+      "bytes": 1302,
+      "sha256": "31908330321c07ef916317d759e4348c584cd95fc8687c048e4f555b54d0b2e6"
+    },
+    "docs/hq-integration/hanlin-live11-diagnosis-20261123/DIAGNOSTIC_ONLY.patch": {
+      "blob": "397c70e4ced5559e6204d4a1bcaf895e3d495fe2",
+      "bytes": 14427,
+      "sha256": "ae11e2d5248486acdd5a20e3665630e37dac5546f070877e068cbd8e3af64d11"
+    },
+    "docs/hq-integration/hanlin-live11-diagnosis-20261123/DIAGNOSTIC_SOURCE_DELTA.json": {
+      "blob": "749d57a8f1c05bc7ced8d952b6f119adfc972542",
+      "bytes": 13233,
+      "sha256": "bd2c4854907434ead06d0331dc9d9f991b19fbaf318e6f8d449046d281a73958"
+    },
+    "docs/hq-integration/hanlin-live11-diagnosis-20261123/README.md": {
+      "blob": "41e8e639ce5b786ca2ace31bd968a510116c5f54",
+      "bytes": 7902,
+      "sha256": "1b1bd8d5b8638e92c5a6a859887b8e6cce3273736dd1a4887971f2cdfb71282a"
+    },
+    "docs/hq-integration/hanlin-live11-diagnosis-20261123/SOURCE_PROVENANCE.json": {
+      "blob": "5356e1a6e1d49e604ccbc2264f4a4d0b786f6746",
+      "bytes": 4089,
+      "sha256": "ae43ee649bd88371874f7a0e6d4ec40fb7932d462a84cad07b528758517a3b8a"
+    },
+    "docs/hq-integration/hanlin-live11-diagnosis-20261123/SWIFT_SYNTAX_PARSE.json": {
+      "blob": "fe938c81598e33def2e52a82c8d7a20e94991520",
+      "bytes": 591,
+      "sha256": "732b4027e2e12f705ff2072d3aea87b060b2d7f4ef00fce69a9c7c59aa162c8f"
+    },
+    "docs/hq-integration/hanlin-live11-diagnosis-20261123/diagnostic_controls.py": {
+      "blob": "f466956fb9d0235a45b04a4f81676436c912b068",
+      "bytes": 8277,
+      "sha256": "b5dc788bacbab913880117bbfccf3f5587e352e2e3272d71a7287adbc5108f5d"
+    }
+  },
+  "native_acceptance": false,
+  "peer_api_review": "Accepted actual original e00498 public event/completion APIs; no source change requested",
+  "provider_called": false,
+  "source": "d4b1825bd5645f4949e4b57e48a73022c3b7cba1",
+  "status": "REUSED_UNCHANGED_SOURCE_AND_SCHEMA_EVIDENCE"
+}

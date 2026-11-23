@@ -1,0 +1,71 @@
+{
+  "application_source_sha": "d4b1825bd5645f4949e4b57e48a73022c3b7cba1",
+  "application_trees": {
+    "Maktabah-iOSUITests": "f480f0cd64100f752620fbb5a22a5b77fb612fae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Source": "f5cccf82ba3e124387dfd55acbec4cdc2748fe47",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "baseline_live10_source": "9533a8017adadecf770b19811e72b495f32e90f7",
+  "baseline_live11_source": "fdb78a44778c318b277506f0b09ba91c3b678e91",
+  "branch": "codex/otzaria-hanlin-live12-20261123",
+  "credential_accessed_by_preparation": false,
+  "credential_name": "OTZARIA_LIVE_GEMINI_API_KEY",
+  "diagnostic_commit": "d4b1825bd5645f4949e4b57e48a73022c3b7cba1",
+  "diagnostic_parent": "fdb78a44778c318b277506f0b09ba91c3b678e91",
+  "driver_path": "Scripts/CI/runtime27-hanlin-live.py",
+  "driver_sha256": "410bb08bc0fe4d775a3f58998c134520bd9a6873ec59ab0451d2fbee6878a54d",
+  "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/",
+  "execution_inputs_path": "docs/hq-integration/hanlin-live12-20261123/LIVE12_EXECUTION_INPUTS.json",
+  "execution_inputs_sha256": "5c9e13daa00ecc4c9b4747ad2457f5badb244abe0c32191e4d2f50acf413e93d",
+  "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "historical_no_send": {
+    "artifact_id": 14763633318,
+    "artifact_sha256": "e86d64c98c774b3e6e01611d46b2ab753c7c8b145643d6b654abfc6c2fb1b2b6",
+    "current_full_source_tree_equal": false,
+    "original_result": "ONE_ACTUAL_NATIVE_CASE_PASSED",
+    "reexecuted": false,
+    "reuse_basis": "Historical product/test lineage; only reviewed fixed-enum diagnostics differ. The new complete Source tree is not equal, and no new send/provider/Host acceptance is inferred.",
+    "run_id": 45041601629,
+    "source": "6591bba49d2b5a28d02b763c4360406843fce4cf"
+  },
+  "inputs_path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+  "inputs_sha256": "05a9fe6048c2bec5d026b1f0e6b6b1cff321092d689556b1bb31c618a8eebe60",
+  "interpretation": {
+    "completion_succeeded_alone_is_host_receipt": false,
+    "finished_event_and_native_host_receipt_are_separate": true
+  },
+  "live12_native_result": "NOT_RUN",
+  "model": "gemini-3.5-flash-lite",
+  "previous_live11": {
+    "app_build": "PASS",
+    "application_source": "438de95a675f34006bee54e339b37d88c87c032a",
+    "artifact_bytes": 90039,
+    "artifact_sha256": "6fc18f6d96e3f12c36b888eabdefdb97cded20706f04faa7e513863dfc015b65",
+    "failure_scope": "Original Host source receipt assertion",
+    "native_fail": 1,
+    "native_pass": 0,
+    "native_result": "FAIL",
+    "native_skip": 0,
+    "run_id": 45103578190,
+    "source": "fdb78a44778c318b277506f0b09ba91c3b678e91"
+  },
+  "provider_called_by_preparation": false,
+  "repository": "davidpovarsky/Maktabah",
+  "reviewed_diagnostic_controls": {
+    "count": 5,
+    "native_or_provider_acceptance": false,
+    "reexecuted": false,
+    "result": "PASS_SOURCE_AND_SCHEMA_CONTROLS",
+    "source": "d4b1825bd5645f4949e4b57e48a73022c3b7cba1"
+  },
+  "schema_version": 1,
+  "selector": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+  "session_path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+  "session_sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012",
+  "source_guard_path": "Scripts/CI/verify-hanlin-live12-source.py",
+  "source_guard_sha256": "660490e0250747fd8d6b87b0d73a76a8a439eddb897cf84d33f07a7fac2aa0b9",
+  "trigger": "workflow_dispatch_only_after_coordinator_owned_credential_preparation",
+  "workflow_path": ".github/workflows/otzaria-hanlin-live-native.yml",
+  "workflow_sha256": "8fc0e5dbfdc34f34ed5f042d5d8aee9fe61adfbaf02b69c6af019798545f36a7"
+}
