@@ -1,0 +1,25 @@
+{
+  "base": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+  "complete_diff_sha256": "da555cc31b9dc246bcae36819b673f81a1bbc24be19a21737a40da589d083594",
+  "complete_file_inverse": [
+    {
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "base_sha256": "ec9b6510ff19fdebf3023d07029e7829b5c6639878132fa607492983868cd40c",
+      "candidate_sha256": "5f9a1377f1ae556430027936b3f89954f466ef650bc7da60fc8b6891b5cee124",
+      "inverse_exact": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "base_sha256": "7c1e4e376b5fdf965b4a799f922851e00d88c572f3102d0ad4d5d0db8bd82156",
+      "candidate_sha256": "f724b6b338c1dcbdc3285ed46386b9c51b80a5a224bec36b92cfb4fb632d72dc",
+      "inverse_exact": true
+    },
+    {
+      "path": "Scripts/CI/verify-9401-exact-source.py",
+      "base_sha256": "5edab1310c924ee6b49e9f081185e761a57c697ec362f548945542d4ad0db561",
+      "candidate_sha256": "2a9969ee5326224e54b24c926dfc6f7a9b212b989aec11f50109cd08e693dc50",
+      "inverse_exact": true
+    }
+  ],
+  "preservation": "Every existing case method including seven Library, English, Groups100 and both full-v32 methods is byte-identical; only captureOpenLibraryPalette plus new observer type changed in Faithful. No other Source, Vendor or project edits."
+}

@@ -1,0 +1,10 @@
+{
+  "scope": "Only library_morph_issues; no historical whole-9401 or native acceptance",
+  "base": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+  "checker_sha256": "5edab1310c924ee6b49e9f081185e761a57c697ec362f548945542d4ad0db561",
+  "base_issues": [],
+  "candidate_issues": [
+    "SINGLE_STABLE_MORPH_SURFACE_REQUIRED"
+  ],
+  "candidate_adapter_sha256": "5f9a1377f1ae556430027936b3f89954f466ef650bc7da60fc8b6891b5cee124"
+}

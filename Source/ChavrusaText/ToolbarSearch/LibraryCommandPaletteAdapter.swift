@@ -187,8 +187,8 @@ struct SafariLibrarySearchField: View {
 
 
 /// The owner's stable outer-shell morph, mounted over the existing whole split
-/// view. Both children keep their natural sizes; only the outer bounds/corners
-/// and child visibility change. The original native Button activates compact
+/// view. The outer bounds/corners morph continuously; expanded content fades
+/// out through the original native teardown. The native Button activates compact
 /// mode, and the original CommandPalette owns expanded input/results.
 struct ReaderLibrarySearchMorph: View {
     let manager: iOSNavigationManager
@@ -273,18 +273,24 @@ struct ReaderLibrarySearchMorph: View {
     private func searchShell(compact: CGRect, expandedWidth: CGFloat, expandedHeight: CGFloat) -> some View {
         let radius = isExpanded ? CGFloat(28) : compact.height / 2
         return ZStack(alignment: .topLeading) {
-            VStack(spacing: 0) {
-                LibrarySearchMotionHandle(offset: $motionOffset, stretch: $motionStretch)
-                    .frame(height: 16)
-                LibraryCommandPaletteAdapter(manager: manager, isActive: isExpanded, drawsSurface: false) {
-                    sidebar.dismissLibrarySearch()
+            // Preserve the one outer morph shell while giving the original
+            // native input a real teardown. Opacity/AX hiding alone leaves its
+            // UIKit subtree attached and discoverable after a close.
+            if isExpanded {
+                VStack(spacing: 0) {
+                    LibrarySearchMotionHandle(offset: $motionOffset, stretch: $motionStretch)
+                        .frame(height: 16)
+                    LibraryCommandPaletteAdapter(manager: manager, isActive: isExpanded, drawsSurface: false) {
+                        sidebar.dismissLibrarySearch()
+                    }
+                    .frame(height: max(0, expandedHeight - 16), alignment: .top)
                 }
-                .frame(height: max(0, expandedHeight - 16), alignment: .top)
+                .frame(width: expandedWidth, height: expandedHeight, alignment: .topLeading)
+                .opacity(isExpanded ? 1 : 0)
+                .allowsHitTesting(isExpanded)
+                .accessibilityHidden(!isExpanded)
+                .transition(.opacity)
             }
-            .frame(width: expandedWidth, height: expandedHeight, alignment: .topLeading)
-            .opacity(isExpanded ? 1 : 0)
-            .allowsHitTesting(isExpanded)
-            .accessibilityHidden(!isExpanded)
 
             compactContents(width: compact.width)
                 .frame(width: compact.width, height: compact.height)

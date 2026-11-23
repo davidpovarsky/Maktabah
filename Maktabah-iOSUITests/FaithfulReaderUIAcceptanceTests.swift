@@ -231,6 +231,142 @@ private final class NativeCaptureSettlementObservation {
     }
 }
 
+/// Retain one actual app snapshot for all geometry in an evaluation. Scoped
+/// live snapshots and real hit tests bind that same geometry to the current
+/// original palette/query domain; later screenshots never substitute for it.
+@MainActor
+private final class NativeLibraryPaletteSettlementObservation {
+    let application: XCUIApplication
+    let palette: XCUIElement
+    let result: XCUIElement
+    private(set) var evaluations: [[String: Any]] = []
+    private var evaluationCount = 0
+
+    init(application: XCUIApplication, palette: XCUIElement, result: XCUIElement) {
+        self.application = application
+        self.palette = palette
+        self.result = result
+    }
+
+    func settled() -> Bool {
+        let started = ProcessInfo.processInfo.systemUptime
+        evaluationCount += 1
+        var record: [String: Any] = ["evaluation": evaluationCount]
+        var querySeconds: [String: Double] = [:]
+        var accepted = false
+        defer {
+            record["accepted"] = accepted
+            record["querySeconds"] = querySeconds
+            record["elapsedSeconds"] = ProcessInfo.processInfo.systemUptime - started
+            if evaluations.count == 32 { evaluations.removeFirst() }
+            evaluations.append(record)
+        }
+        func observed<T>(_ name: String, _ query: () -> T) -> T {
+            let start = ProcessInfo.processInfo.systemUptime
+            let value = query()
+            querySeconds[name] = ProcessInfo.processInfo.systemUptime - start
+            return value
+        }
+        func currentSnapshot(_ name: String, of element: XCUIElement) -> (any XCUIElementSnapshot)? {
+            let start = ProcessInfo.processInfo.systemUptime
+            defer { querySeconds[name] = ProcessInfo.processInfo.systemUptime - start }
+            do { return try element.snapshot() }
+            catch {
+                record["gate"] = name + "_unavailable"
+                record["error"] = String(describing: error)
+                return nil
+            }
+        }
+        guard let snapshot = currentSnapshot("appSnapshot", of: application) else { return false }
+        let elements = GroupStressSnapshot.descendants(of: snapshot)
+        guard let window = elements.first(where: { $0.elementType == .window }) else {
+            record["gate"] = "actual_window_missing"
+            return false
+        }
+        let palettes = elements.filter { $0.identifier == "reader-library-command-palette" }
+        record["paletteSnapshotCount"] = palettes.count
+        guard palettes.count == 1, let originalPalette = palettes.first else {
+            record["gate"] = "unique_original_palette_missing"
+            return false
+        }
+        let children = GroupStressSnapshot.descendants(of: originalPalette)
+        let inputs = children.filter { $0.elementType == .textField }
+        record["inputSnapshotCount"] = inputs.count
+        guard inputs.count == 1, let originalInput = inputs.first else {
+            record["gate"] = "unique_original_input_missing"
+            return false
+        }
+        let landscape = observed("orientation") { XCUIDevice.shared.orientation.isLandscape }
+        let input = palette.textFields.firstMatch
+        // Hittability stays a real live query on the caller's original elements.
+        // Scoped snapshots below reject identity/order/geometry changes across it.
+        let inputHittable = observed("inputHittable") { input.isHittable }
+        let resultHittable = observed("resultHittable") { result.isHittable }
+        record["inputHittable"] = inputHittable
+        record["resultHittable"] = resultHittable
+        guard let livePalette = currentSnapshot("livePaletteSnapshot", of: palette),
+              let liveResult = currentSnapshot("liveResultSnapshot", of: result) else { return false }
+        record["livePalette"] = NativeGeometryEvidence.element(livePalette)
+        record["liveResult"] = NativeGeometryEvidence.element(liveResult)
+        guard liveResult.elementType == .button, !liveResult.identifier.isEmpty else {
+            record["gate"] = "actual_original_result_identity_missing"
+            return false
+        }
+        let results = children.filter {
+            $0.elementType == .button && $0.identifier == liveResult.identifier
+                && $0.label == liveResult.label
+        }
+        record["resultSnapshotCount"] = results.count
+        guard results.count == 1, let originalResult = results.first else {
+            record["gate"] = "live_result_not_unique_in_same_original_palette_snapshot"
+            return false
+        }
+        let currentInputs = GroupStressSnapshot.descendants(of: livePalette).filter {
+            $0.elementType == .textField
+        }
+        record["livePaletteInputCount"] = currentInputs.count
+        let inputCurrent = currentInputs.count == 1 && currentInputs.first.map {
+            $0.elementType == originalInput.elementType && $0.identifier == originalInput.identifier
+                && $0.label == originalInput.label && $0.frame == originalInput.frame
+        } == true
+        let paletteCurrent = livePalette.elementType == originalPalette.elementType
+            && livePalette.identifier == originalPalette.identifier && livePalette.label == originalPalette.label
+            && livePalette.frame == originalPalette.frame
+        let resultCurrent = liveResult.frame == originalResult.frame
+        let windowFrame = window.frame
+        let paletteFrame = originalPalette.frame
+        let inputFrame = originalInput.frame
+        let resultFrame = originalResult.frame
+        let liveWindowFrame = observed("liveWindowFrame") { application.windows.firstMatch.frame }
+        let finite = [windowFrame, paletteFrame, inputFrame, resultFrame]
+            .allSatisfy { GroupStressSnapshot.finitePositive($0) }
+        let orientationMatches = (windowFrame.width > windowFrame.height) == landscape
+        let windowContainsPalette = windowFrame.contains(paletteFrame)
+        let paletteContainsInput = paletteFrame.contains(inputFrame)
+        let paletteContainsResult = paletteFrame.contains(resultFrame)
+        record["window"] = NativeGeometryEvidence.frame(windowFrame)
+        record["palette"] = NativeGeometryEvidence.element(originalPalette)
+        record["input"] = NativeGeometryEvidence.element(originalInput)
+        record["result"] = NativeGeometryEvidence.element(originalResult)
+        record["liveInput"] = currentInputs.first.map { NativeGeometryEvidence.element($0) }
+        record["liveWindow"] = NativeGeometryEvidence.frame(liveWindowFrame)
+        record["allFramesFinitePositive"] = finite
+        record["orientationMatches"] = orientationMatches
+        record["windowContainsPalette"] = windowContainsPalette
+        record["paletteContainsInput"] = paletteContainsInput
+        record["paletteContainsResult"] = paletteContainsResult
+        record["paletteCurrent"] = paletteCurrent
+        record["inputCurrent"] = inputCurrent
+        record["resultCurrent"] = resultCurrent
+        record["windowCurrent"] = liveWindowFrame == windowFrame
+        record["gate"] = "same_snapshot_geometry_current_native_controls_and_live_hits"
+        accepted = finite && orientationMatches && windowContainsPalette
+            && paletteContainsInput && paletteContainsResult && inputHittable && resultHittable
+            && paletteCurrent && inputCurrent && resultCurrent && liveWindowFrame == windowFrame
+        return accepted
+    }
+}
+
 /// Find only this test's unique sidecar after XCTest's app installation. The
 /// pre-install container UUID is a hint to its parent, never a durable app ID.
 private func matchingTestSidecars(in containers: URL, namespace: String) -> [URL] {
@@ -827,30 +963,22 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
     func captureOpenLibraryPalette(_ name: String, palette: XCUIElement, result: XCUIElement) {
         retainNativeEvidence(name + "-before-settlement")
         let application = app!
+        let observation = NativeCaptureMainActorEntry.run {
+            NativeLibraryPaletteSettlementObservation(application: application, palette: palette, result: result)
+        }
         let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
-            MainActor.assumeIsolated {
-                let window = application.windows.firstMatch.frame
-                let landscape = XCUIDevice.shared.orientation.isLandscape
-                guard window.width > 0, window.height > 0,
-                      (window.width > window.height) == landscape,
-                      palette.exists, result.exists else { return false }
-                let input = palette.textFields.firstMatch
-                guard input.exists else { return false }
-                let paletteFrame = palette.frame
-                let inputFrame = input.frame
-                let resultFrame = result.frame
-                let frames = [window, paletteFrame, inputFrame, resultFrame]
-                guard frames.allSatisfy({ frame in
-                    [frame.minX, frame.minY, frame.width, frame.height].allSatisfy { $0.isFinite }
-                        && !frame.isEmpty
-                }), window.contains(paletteFrame), paletteFrame.contains(inputFrame),
-                    paletteFrame.contains(resultFrame) else { return false }
-                // The palette accessibility container groups these original controls.
-                // Require the actionable controls to be hittable inside its verified bounds.
-                return input.isHittable && result.isHittable
-            }
+            NativeCaptureMainActorEntry.run { observation.settled() }
         }, object: nil)
         let settlement = XCTWaiter.wait(for: [settled], timeout: 20)
+        if settlement != .completed {
+            let text = NativeCaptureMainActorEntry.run {
+                NativeGeometryEvidence.text(observation.evaluations)
+            }
+            let diagnostic = XCTAttachment(string: text)
+            diagnostic.name = name + "-actual-palette-settlement-evaluations"
+            diagnostic.lifetime = .keepAlways
+            add(diagnostic)
+        }
         retainNativeEvidence(name + (settlement == .completed ? "-settled" : "-UNSETTLED"))
         XCTAssertEqual(settlement, .completed,
                        "The open original palette, search input and real result must settle inside the native window")

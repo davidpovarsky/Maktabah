@@ -293,14 +293,23 @@ def library_morph_issues(files):
             or "isActive: isExpanded, drawsSurface: false" not in shell):
         issues.append("CURRENT_PALETTE_MUST_BE_REUSED")
 
+    # Only the expanded native child may be conditional: the original input
+    # must dismantle on close while the one outer morph surface stays mounted.
+    expanded = section(shell or "", "            if isExpanded {\n",
+                       "\n            }\n\n            compactContents(")
     if (shell is None or shell.count("ZStack(alignment: .topLeading)") != 1
+            or shell.count("if isExpanded") != 1 or expanded is None
+            or "return ZStack(alignment: .topLeading) {" not in shell.split("if isExpanded", 1)[0]
+            or expanded.count("LibraryCommandPaletteAdapter(") != 1
+            or expanded.count(".transition(.opacity)") != 1
+            or any(value in expanded for value in ("ZStack(", "compactContents(", ".modifier(SafariGlass(", ".clipShape("))
             or shell.count(".modifier(SafariGlass(radius: radius))") != 1
             or ".clipShape(RoundedRectangle(cornerRadius: radius" not in shell
             or ".opacity(isExpanded ? 1 : 0)" not in shell
             or ".opacity(isExpanded ? 0 : 1)" not in shell
             or ".accessibilityHidden(!isExpanded)" not in shell
             or ".allowsHitTesting(isExpanded)" not in shell
-            or any(value in shell for value in ("if isExpanded", "if !isExpanded", ".shadow(", ".gelatinMotionOnly()", ".gesture("))):
+            or any(value in shell for value in ("if !isExpanded", ".shadow(", ".gelatinMotionOnly()", ".gesture("))):
         issues.append("SINGLE_STABLE_MORPH_SURFACE_REQUIRED")
 
     # Preserve original query synchronization, result rows, recents and actions.

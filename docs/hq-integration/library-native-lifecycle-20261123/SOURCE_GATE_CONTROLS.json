@@ -1,0 +1,51 @@
+{
+  "scope": "Five new lifecycle composition controls; no native acceptance and no old suite replay",
+  "base": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+  "checker_sha256": "2a9969ee5326224e54b24c926dfc6f7a9b212b989aec11f50109cd08e693dc50",
+  "control_sha256": "faeec0905ed2cfac0a6ad000d378f847c56d44b074ecf7e7ad5af5d5c46dc59a",
+  "cases": [
+    {
+      "case": "actual_conditional_native_child_unconditional_outer_shell",
+      "expected": "accept",
+      "issues": [],
+      "adapter_sha256": "5f9a1377f1ae556430027936b3f89954f466ef650bc7da60fc8b6891b5cee124",
+      "result": "PASS"
+    },
+    {
+      "case": "unconditionally_mounted_native_child_rejected",
+      "expected": "reject",
+      "issues": [
+        "SINGLE_STABLE_MORPH_SURFACE_REQUIRED"
+      ],
+      "adapter_sha256": "4566ed2435df4246525a9438dfbef5b2e0cd24adb40670ae8903cd95e670391c",
+      "result": "PASS"
+    },
+    {
+      "case": "conditional_whole_outer_shell_rejected",
+      "expected": "reject",
+      "issues": [
+        "SINGLE_STABLE_MORPH_SURFACE_REQUIRED"
+      ],
+      "adapter_sha256": "fd1624a7b98dfd11e2ced12d23b3d8f3878605af2d025e51924523dc1d14c9a4",
+      "result": "PASS"
+    },
+    {
+      "case": "compact_child_inside_expanded_branch_rejected",
+      "expected": "reject",
+      "issues": [
+        "SINGLE_STABLE_MORPH_SURFACE_REQUIRED"
+      ],
+      "adapter_sha256": "cc25a5fb30a5ac5b1a05c1a37992a6be60fb1ed9c7b07bdfc36227d1bdd7c9cd",
+      "result": "PASS"
+    },
+    {
+      "case": "surface_inside_expanded_branch_rejected",
+      "expected": "reject",
+      "issues": [
+        "SINGLE_STABLE_MORPH_SURFACE_REQUIRED"
+      ],
+      "adapter_sha256": "72cafdacf793a67acdab9d317058b254b13e54edc9d103a37209ea03fae666d9",
+      "result": "PASS"
+    }
+  ]
+}
