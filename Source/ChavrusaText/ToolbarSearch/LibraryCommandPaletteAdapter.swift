@@ -221,14 +221,20 @@ struct ReaderLibrarySearchMorph: View {
                     let expandedHeight = min(CGFloat(560), max(0, geometry.size.height - expandedY - 12))
 
                     searchShell(compact: compact, expandedWidth: expandedWidth, expandedHeight: expandedHeight)
-                        .offset(x: isExpanded ? expandedX : compact.minX,
-                                y: isExpanded ? expandedY : compact.minY)
-                        .offset(reduceMotion || !isExpanded ? .zero : motionOffset)
                         .scaleEffect(
                             x: reduceMotion || !isExpanded ? 1 : motionStretch.width,
                             y: reduceMotion || !isExpanded ? 1 : motionStretch.height,
                             anchor: .top)
                         .scaleEffect(!reduceMotion && !isExpanded && sidebar.librarySearchIsPressed ? 1.01 : 1)
+                        // UIWindow coordinates have a physical left origin.
+                        // Position the center directly; a topLeading offset
+                        // would add a mirrored layout origin in Hebrew RTL.
+                        // The children retain their inherited layout direction.
+                        .position(
+                            x: (isExpanded ? expandedX + expandedWidth / 2 : compact.midX)
+                                + (reduceMotion || !isExpanded ? 0 : motionOffset.width),
+                            y: (isExpanded ? expandedY + expandedHeight / 2 : compact.midY)
+                                + (reduceMotion || !isExpanded ? 0 : motionOffset.height))
                 }
             }
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .topLeading)

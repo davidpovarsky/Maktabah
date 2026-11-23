@@ -1,0 +1,20 @@
+{
+  "schema": "otzaria.library-morph.rtl-placement/1",
+  "base_product_sha": "8d26ecfb3338e2a6806ba8bbffd5f6e99d763795",
+  "change": "Physical UIWindow centers use position(x:y:) instead of a layout-direction-sensitive topLeading offset. Scale applies to the shell before positioning. Child RTL environment is unchanged.",
+  "command": [
+    "swiftc",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios27.0-simulator",
+    "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift"
+  ],
+  "exit_code": 0,
+  "authority": "Linux syntax parse; Apple API typecheck and actual RTL geometry NOT_RUN",
+  "source_sha256": "a13d55ff0d985575baf57f166825d87c9c20a5c2a2703f214d3c5f6c2f6e1f68",
+  "stdout": "",
+  "stderr": "",
+  "diff": "diff --git a/Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift b/Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift\nindex d783a885..6a7991c5 100644\n--- a/Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift\n+++ b/Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift\n@@ -221,14 +221,20 @@ struct ReaderLibrarySearchMorph: View {\n                     let expandedHeight = min(CGFloat(560), max(0, geometry.size.height - expandedY - 12))\n \n                     searchShell(compact: compact, expandedWidth: expandedWidth, expandedHeight: expandedHeight)\n-                        .offset(x: isExpanded ? expandedX : compact.minX,\n-                                y: isExpanded ? expandedY : compact.minY)\n-                        .offset(reduceMotion || !isExpanded ? .zero : motionOffset)\n                         .scaleEffect(\n                             x: reduceMotion || !isExpanded ? 1 : motionStretch.width,\n                             y: reduceMotion || !isExpanded ? 1 : motionStretch.height,\n                             anchor: .top)\n                         .scaleEffect(!reduceMotion && !isExpanded && sidebar.librarySearchIsPressed ? 1.01 : 1)\n+                        // UIWindow coordinates have a physical left origin.\n+                        // Position the center directly; a topLeading offset\n+                        // would add a mirrored layout origin in Hebrew RTL.\n+                        // The children retain their inherited layout direction.\n+                        .position(\n+                            x: (isExpanded ? expandedX + expandedWidth / 2 : compact.midX)\n+                                + (reduceMotion || !isExpanded ? 0 : motionOffset.width),\n+                            y: (isExpanded ? expandedY + expandedHeight / 2 : compact.midY)\n+                                + (reduceMotion || !isExpanded ? 0 : motionOffset.height))\n                 }\n             }\n             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .topLeading)\n",
+  "native_runtime": "NOT_RUN"
+}
