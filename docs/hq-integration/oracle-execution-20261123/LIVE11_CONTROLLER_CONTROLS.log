@@ -1,0 +1,11 @@
+test_cleanup_never_deletes_changed_secret (__main__.Boundaries.test_cleanup_never_deletes_changed_secret) ... ok
+test_cleanup_requires_delete_and_absence_receipts (__main__.Boundaries.test_cleanup_requires_delete_and_absence_receipts) ... ok
+test_exact_owner_metadata (__main__.Boundaries.test_exact_owner_metadata) ... ok
+test_exclusive_observer_lock (__main__.Boundaries.test_exclusive_observer_lock) ... ok
+test_metadata_http_status_is_explicit (__main__.Boundaries.test_metadata_http_status_is_explicit) ... ok
+test_original_run_identity (__main__.Boundaries.test_original_run_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+OK

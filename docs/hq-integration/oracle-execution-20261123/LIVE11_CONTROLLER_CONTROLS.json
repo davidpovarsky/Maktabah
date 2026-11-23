@@ -1,0 +1,9 @@
+{
+  "scope": "Offline secret ownership, dispatch identity, explicit HTTP receipts and exclusive observer boundaries; no provider/GitHub mutation",
+  "returncode": 0,
+  "files": {
+    "live11-controller.py": "56cc1d4461ed7ffe3dc4539d69a93ebbe3e8b8120f353655c02c9eb4ac302271",
+    "test-live11-controller.py": "ed14768e29868c0cb9ddb689ce754147a2b8c84bf7d6878f535140c328cae03c"
+  },
+  "log_sha256": "9f6ce42b4b5c9b33bb65fe36389c5a8c8fc5373f784438bece0bfaee785713ab"
+}
