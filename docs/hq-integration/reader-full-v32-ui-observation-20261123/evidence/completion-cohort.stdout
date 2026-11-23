@@ -1,0 +1,1 @@
+{"driverSHA256": "d75618e44d205b1fb2843811bbff846151eef6e14ec92d9b071bdbbaafbbfca7", "errors": 0, "existingNineteenReplayed": false, "failures": 0, "nativeUIExecuted": 0, "productionCorpusUsed": false, "scope": "NEW synthetic completion/cohort controls only; no native acceptance artifacts emitted", "skipped": 0, "testsRun": 10}

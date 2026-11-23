@@ -77,7 +77,7 @@ struct ReaderViewportAcceptanceObserver: UIViewRepresentable {
                 if let presented = controller.presentedViewController { inspectController(presented) }
             }
             if let root = window.rootViewController { inspectController(root) }
-            let report: [String: Any] = ["source": source, "offset": offset, "object": object,
+            var report: [String: Any] = ["source": source, "offset": offset, "object": object,
                                           "overviewPresentations": presentations,
                                           "usesTextKit2BeforeObservation": usesTextKit2BeforeObservation,
                                           "usesTextKit2AfterObservation": usesTextKit2AfterObservation,
@@ -87,6 +87,49 @@ struct ReaderViewportAcceptanceObserver: UIViewRepresentable {
                                           "topInset": Double(text.adjustedContentInset.top),
                                           "bottomInset": Double(text.adjustedContentInset.bottom),
                                           "requestID": request, "capturedAt": Date().timeIntervalSince1970]
+
+            if ProcessInfo.processInfo.environment["CHAVRUSA_FULL_V32_SOURCE_OBSERVATION"] == "1" {
+                // This opt-in sample is requested only after timing/resource epochs
+                // end. It observes the original renderer; it never drives layout.
+                var sample: [String: Any] = [
+                    "schema": 1, "status": "UNAVAILABLE",
+                    "processID": ProcessInfo.processInfo.processIdentifier,
+                    "observedUptime": ProcessInfo.processInfo.systemUptime,
+                    "scope": "bounded original source sample; not first pixel or full rendered-body proof"
+                ]
+                if let rendered = text.currentRenderResult {
+                    let original = rendered.sourceText as NSString
+                    sample["sourceUTF16Length"] = original.length
+                    if source >= 0 && source < original.length {
+                        let requested = NSRange(location: source, length: min(128, original.length - source))
+                        let composed = original.rangeOfComposedCharacterSequences(for: requested)
+                        // A single pathological grapheme must not bypass the cap.
+                        // Check expansion before copying/encoding its characters.
+                        if composed.location != NSNotFound, composed.location >= 0,
+                           composed.length > 0, composed.length <= 256,
+                           composed.location <= original.length,
+                           composed.length <= original.length - composed.location {
+                            let snippet = original.substring(with: composed)
+                            if snippet.utf8.count <= 1024 {
+                                sample["status"] = "AVAILABLE"
+                                sample["rangeLocation"] = composed.location
+                                sample["rangeLength"] = composed.length
+                                sample["sourceUTF8"] = snippet
+                            } else { sample["reason"] = "encoded-source-cap" }
+                        } else { sample["reason"] = "composed-range-cap" }
+                    } else { sample["reason"] = "source-index-outside-original" }
+                } else { sample["reason"] = "original-render-result-absent" }
+                // The complete optional object is bounded, including JSON escapes.
+                if let encoded = try? JSONSerialization.data(withJSONObject: sample, options: [.sortedKeys]),
+                   encoded.count <= 4096 {
+                    report["fullV32SourceObservation"] = sample
+                } else {
+                    report["fullV32SourceObservation"] = [
+                        "schema": 1, "status": "UNAVAILABLE", "reason": "encoded-report-cap"
+                    ]
+                }
+            }
+
             do {
                 let data = try JSONSerialization.data(withJSONObject: report, options: [.sortedKeys])
                 try data.write(to: URL(fileURLWithPath: prefix + ".viewport.json"), options: .atomic)

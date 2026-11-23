@@ -3743,3 +3743,814 @@ final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
         }
     }
 }
+
+// BEGIN ADDITIVE FULL-V32 ORIGINAL READER OBSERVATIONS
+import Darwin
+
+// This Debug/production-corpus diagnostic is distinct from the existing Release
+// case and the immutable miniTest10 Native116 catalog.
+private struct FullV32ReaderTarget: Decodable {
+    let key: String
+    let bookID: Int
+    let bookTitle: String
+    let focusLineIndex: Int
+    let unitID: String
+    let unitMode: String
+    let unitStartLineIndex: Int
+    let unitEndLineIndex: Int
+    let unitRowCount: Int
+    let sourceUTF16Length: Int
+    let sourceSHA256: String
+    let sectionLocator: String
+    let focusLocator: String
+}
+private struct FullV32ReaderCatalog: Decodable {
+    let schema: Int
+    let databaseSHA256: String
+    let targets: [FullV32ReaderTarget]
+}
+private struct FullV32ObservationFailure: Error {}
+@MainActor
+private struct FullV32ProductionContext {
+    let container: URL
+    let workspace: URL
+    let groupID: UUID
+    let documentID: UUID
+    let viewportBasename: String
+    var interactionEvidence: [String: Any]? = nil
+    var documents: URL { container.appendingPathComponent("Documents") }
+    var readerLog: URL { documents.appendingPathComponent("OtzariaLogs/otzaria-reader.log") }
+    var inspectorBasename: String { viewportBasename.replacingOccurrences(of: "full-v32-reader-", with: "full-v32-inspector-") }
+}
+extension FaithfulProductionReleaseTests {
+
+    @MainActor private func fullV32BoundedData(_ url: URL, limit: Int) throws -> Data {
+        let descriptor = open(url.path, O_RDONLY | O_CLOEXEC | O_NOFOLLOW)
+        if descriptor < 0 { throw FullV32ObservationFailure() }
+        let handle = FileHandle(fileDescriptor: descriptor, closeOnDealloc: true)
+        defer { try? handle.close() }
+        var before = stat()
+        guard fstat(descriptor, &before) == 0, before.st_mode & mode_t(S_IFMT) == mode_t(S_IFREG),
+              before.st_size > 0, before.st_size <= limit,
+              let bytes = try handle.read(upToCount: limit + 1), bytes.count > 0, bytes.count <= limit
+        else { throw FullV32ObservationFailure() }
+        var after = stat()
+        var atPath = stat()
+        guard fstat(descriptor, &after) == 0, lstat(url.path, &atPath) == 0,
+              atPath.st_mode & mode_t(S_IFMT) == mode_t(S_IFREG),
+              before.st_dev == after.st_dev, before.st_ino == after.st_ino,
+              after.st_dev == atPath.st_dev, after.st_ino == atPath.st_ino,
+              before.st_size == after.st_size, after.st_size == atPath.st_size,
+              after.st_size == bytes.count,
+              before.st_mtimespec.tv_sec == after.st_mtimespec.tv_sec,
+              before.st_mtimespec.tv_nsec == after.st_mtimespec.tv_nsec,
+              after.st_mtimespec.tv_sec == atPath.st_mtimespec.tv_sec,
+              after.st_mtimespec.tv_nsec == atPath.st_mtimespec.tv_nsec
+        else { throw FullV32ObservationFailure() }
+        return bytes
+    }
+    @MainActor private func fullV32Require(_ condition: Bool, _ message: String,
+                                           file: StaticString = #filePath, line: UInt = #line) throws {
+        XCTAssertTrue(condition, message, file: file, line: line)
+        if !condition { throw FullV32ObservationFailure() }
+    }
+
+    @MainActor private func fullV32Attach(_ value: [String: Any], _ name: String) throws {
+        let bytes = try JSONSerialization.data(withJSONObject: value, options: [.sortedKeys])
+        let attachment = XCTAttachment(data: bytes, uniformTypeIdentifier: "public.json")
+        attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
+    }
+
+    @MainActor private func fullV32Catalog() throws -> FullV32ReaderCatalog {
+        let path = try XCTUnwrap(ProcessInfo.processInfo.environment["FULL_V32_CATALOG_FILE"])
+        let bytes = try fullV32BoundedData(URL(fileURLWithPath: path), limit: 131072)
+        try fullV32Require(bytes.count <= 131072, "The independently generated target catalog must be bounded")
+        let catalog = try JSONDecoder().decode(FullV32ReaderCatalog.self, from: bytes)
+        try fullV32Require(catalog.schema == 1 && catalog.targets.count == 10
+            && Set(catalog.targets.map(\.key)).count == 10
+            && catalog.databaseSHA256 == "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+            "Require the ten actual original full-v32 identities, never a mini database")
+        return catalog
+    }
+
+    @MainActor private func fullV32Launch(_ basename: String) {
+        // Ordinary production defaults and sidecar. No namespace, scenario,
+        // bootstrap bypass, feature override or forced line mode.
+        launchWithTier(.production, backend: "otzaria", extraEnvironment: [
+            "CHAVRUSA_READER_VIEWPORT_REPORT": basename,
+            "CHAVRUSA_FULL_V32_SOURCE_OBSERVATION": "1",
+            "CHAVRUSA_FULL_V32_INSPECTOR_OBSERVATION": basename.replacingOccurrences(of: "full-v32-reader-", with: "full-v32-inspector-")
+        ])
+    }
+
+    @MainActor private func fullV32Locate(_ basename: String, interactionEpoch: String? = nil,
+                                         resourceContext: FullV32ProductionContext? = nil) throws -> FullV32ProductionContext {
+        let observationStarted = ProcessInfo.processInfo.systemUptime
+        try fullV32Require((interactionEpoch == nil) == (resourceContext == nil),
+                           "The existing overview interaction must have either a complete resource owner or none")
+        var interaction: [String: Any]?
+        // Observe a genuine overview-card UUID after XCTest's installation.
+        // The pre-install path is a parent-directory hint, never the identity.
+        try fullV32Require(app.staticTexts["reader-header-title"].waitForExistence(timeout: 30)
+            && app.staticTexts["reader-current-locator"].waitForExistence(timeout: 30),
+            "The actual restored Reader identity must become available")
+        let title = app.staticTexts["reader-header-title"].label
+        let locator = app.staticTexts["reader-current-locator"].label
+        try fullV32Require(!title.isEmpty && !locator.isEmpty, "Original Reader identity must exist")
+        let actionRequested = ProcessInfo.processInfo.systemUptime
+        tap(app.buttons["reader-tabs-overview"])
+        let overview = app.descendants(matching: .any)["study-groups-overview"]
+        try fullV32Require(overview.waitForExistence(timeout: 15), "Original overview must appear")
+        let cards = overview.collectionViews.cells.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@ AND label BEGINSWITH %@", "tab-switcher-", title + ", "))
+        try fullV32Require(cards.firstMatch.waitForExistence(timeout: 15) && cards.count == 1,
+                           "Actual selected original book card must be unique")
+        let card = cards.firstMatch
+        try fullV32Require(!card.frame.isEmpty && card.frame.intersects(overview.frame),
+                           "Original document card must be genuinely visible")
+        let prefix = card.identifier.hasPrefix("tab-switcher-grid-cell-")
+            ? "tab-switcher-grid-cell-" : "tab-switcher-list-cell-"
+        let documentID = try XCTUnwrap(UUID(uuidString: String(card.identifier.dropFirst(prefix.count))))
+        let contentObserved = ProcessInfo.processInfo.systemUptime
+        if let interactionEpoch, let resourceContext {
+            let resources = try fullV32Host("end", context: resourceContext, fields: ["epoch": interactionEpoch])
+            interaction = [
+                "epoch": interactionEpoch, "observationStartedUptime": observationStarted,
+                "nativeActionRequestedUptime": actionRequested, "originalOverviewObservedUptime": contentObserved,
+                "requestToOriginalOverviewUpperBoundSeconds": contentObserved - observationStarted,
+                "nativeActionToOverviewUpperBoundSeconds": contentObserved - actionRequested,
+                "actualOverviewIdentifier": overview.identifier, "actualCardIdentifier": card.identifier,
+                "actualDocumentID": documentID.uuidString, "resources": resources,
+                "scope": "existing original post-open overview interaction; native action/query latency included; not general UI responsiveness"
+            ]
+        }
+        // Resource accounting ends before dismissal, sidecar lookup, source
+        // inspection or any full-content/identity comparison.
+        tap(overview.buttons["סיום"])
+        try fullV32Require(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: overview
+        )], timeout: 15) == .completed, "The original overview must dismiss")
+        try fullV32Require(app.staticTexts["reader-header-title"].label == title
+            && app.staticTexts["reader-current-locator"].label == locator,
+            "Observation must not navigate the original Reader")
+        let hint = try XCTUnwrap(ProcessInfo.processInfo.environment["FAITHFUL_PRODUCTION_WORKSPACE_FILE"])
+        var containers = URL(fileURLWithPath: hint)
+        for _ in 0..<6 { containers.deleteLastPathComponent() }
+        let parent = containers
+        let located = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            Self.productionWorkspaces(in: parent, containing: documentID).count == 1
+        }, object: nil)
+        try fullV32Require(XCTWaiter.wait(for: [located], timeout: 30) == .completed,
+                           "Resolve only the actual ordinary workspace containing the observed document UUID")
+        let matches = Self.productionWorkspaces(in: parent, containing: documentID)
+        try fullV32Require(matches.count == 1, "No stale or arbitrary container is eligible")
+        let match = try XCTUnwrap(matches.first)
+        var container = match.url
+        // workspace-v1.json → StudyWorkspace → ChavrusaText → Application
+        // Support → Library → actual application container (five parents).
+        for _ in 0..<5 { container.deleteLastPathComponent() }
+        return FullV32ProductionContext(container: container, workspace: match.url,
+            groupID: match.groupID, documentID: documentID, viewportBasename: basename,
+            interactionEvidence: interaction)
+    }
+
+    @MainActor private func fullV32Host(_ action: String, context: FullV32ProductionContext,
+                                       fields: [String: Any] = [:]) throws -> [String: Any] {
+        let token = try XCTUnwrap(ProcessInfo.processInfo.environment["FULL_V32_OBSERVER_TOKEN"])
+        let udid = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_URL_UDID"])
+        let nonce = UUID().uuidString
+        let prefix = context.documents.appendingPathComponent("full-v32-\(token)-\(nonce)")
+        let request = URL(fileURLWithPath: prefix.path + ".request.json")
+        let ack = URL(fileURLWithPath: prefix.path + ".ack.json")
+        var payload = fields
+        payload.merge(["schema": 1, "token": token, "nonce": nonce, "udid": udid, "action": action]) { _, new in new }
+        do {
+            let bytes = try JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys])
+            try fullV32Require(bytes.count <= 262144, "Observation IPC must remain bounded")
+            try bytes.write(to: request, options: .atomic)
+        } catch {
+            XCTFail("Could not write the owned observation request")
+            throw FullV32ObservationFailure()
+        }
+        let delivered = XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            FileManager.default.fileExists(atPath: ack.path)
+        }, object: nil)], timeout: 30)
+        try fullV32Require(delivered == .completed, "Owned observation transport must acknowledge the exact request")
+        let bytes = try fullV32BoundedData(ack, limit: 262144)
+        try fullV32Require(bytes.count <= 262144
+            && String(decoding: bytes, as: UTF8.self).range(of: token, options: .caseInsensitive) == nil,
+            "Observation response must be bounded and credential-free")
+        let result = try XCTUnwrap(JSONSerialization.jsonObject(with: bytes) as? [String: Any])
+        try fullV32Require(result["schema"] as? Int == 1 && result["nonce"] as? String == nonce
+            && result["udid"] as? String == udid && result["action"] as? String == action
+            && result["ok"] as? Bool == true, "Actual observation failed; retain the host's original receipt")
+        return result
+    }
+
+    @MainActor private func fullV32ReceiptLines(_ context: FullV32ProductionContext) throws -> [String] {
+        guard FileManager.default.fileExists(atPath: context.readerLog.path) else { return [] }
+        let data = try fullV32BoundedData(context.readerLog, limit: 33554432)
+        try fullV32Require(data.count <= 33554432, "Bound the ordinary native log without truncating receipt history")
+        return String(decoding: data, as: UTF8.self).split(separator: "\n").map(String.init)
+            .filter { $0.contains("[NativeNavigationReceipt]") && $0.contains("destination=native.reader ") }
+    }
+
+    @MainActor private func fullV32ConfirmSystemDialog(_ springboard: XCUIApplication) throws {
+        let titles: Set<String> = ["Open in \u{201C}ChavrusaText\u{201D}?", "Open in \"ChavrusaText\"?"]
+        let alerts = springboard.alerts.allElementsBoundByIndex
+        try fullV32Require(alerts.count == 1, "Exactly one genuine SpringBoard confirmation is required")
+        let alert = try XCTUnwrap(alerts.first)
+        try fullV32Require(titles.contains(alert.label) || titles.contains(where: { alert.staticTexts[$0].exists }),
+                           "Unexpected SpringBoard prompt must never be approved")
+        let buttons = alert.buttons.matching(NSPredicate(format: "label == %@", "Open"))
+        try fullV32Require(buttons.count == 1 && buttons.firstMatch.isHittable,
+                           "Require the exact original unique hittable Open action")
+        buttons.firstMatch.tap()
+        try fullV32Require(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "count == 0"), object: springboard.alerts
+        )], timeout: 10) == .completed, "Actual SpringBoard confirmation must dismiss")
+    }
+
+    @MainActor private func fullV32Open(_ target: FullV32ReaderTarget, context: FullV32ProductionContext,
+                                       deadline: TimeInterval, sectionOnly: Bool = false) throws -> [String: Any] {
+        let prior = try fullV32ReceiptLines(context)
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        try fullV32Require(springboard.alerts.count == 0, "No preexisting SpringBoard prompt may be accepted")
+        let ref: (Int) -> [String: Any] = { index in
+            ["backend": "otzaria", "workKey": "book:\(target.bookID)",
+             "position": ["kind": "legacyLine", "value": index]]
+        }
+        // Public v2 deliberately imports NO local request, scene or document ID.
+        // The one freshly issued actual Core receipt is bound after completion.
+        var content: [String: Any] = [
+            "sectionLocator": ref(target.unitStartLineIndex), "presentationMode": "sameTab"
+        ]
+        if !sectionOnly { content["focusLocator"] = ref(target.focusLineIndex) }
+        let route: [String: Any] = [
+            "version": 2, "destination": "native.reader", "backend": "otzaria",
+            "presentation": "currentTab", "content": content
+        ]
+        let routeBytes = try JSONSerialization.data(withJSONObject: route, options: [.sortedKeys])
+        let encoded = routeBytes.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        let url = "maktabah-debug://action/v2/native.reader?route=" + encoded
+        let token = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_URL_TOKEN"])
+        let udid = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_URL_UDID"])
+        let nonce = UUID().uuidString
+        let prefix = context.documents.appendingPathComponent("r27-url-\(token)-\(nonce)")
+        let request = URL(fileURLWithPath: prefix.path + ".request.json")
+        let ack = URL(fileURLWithPath: prefix.path + ".ack.json")
+        let payload = ["token": token, "nonce": nonce, "udid": udid, "url": url]
+        let requestBytes = try JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys])
+        // This upper bound includes real system transport and native receipt
+        // polling. It is not exact first pixel or a production latency budget.
+        let started = ProcessInfo.processInfo.systemUptime
+        do { try requestBytes.write(to: request, options: .atomic) }
+        catch { XCTFail("Could not write the original owned system URL request"); throw FullV32ObservationFailure() }
+        let delivery = XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            FileManager.default.fileExists(atPath: ack.path)
+        }, object: nil)], timeout: 20)
+        try fullV32Require(delivery == .completed, "Original system URL transport did not acknowledge")
+        let ackBytes = try fullV32BoundedData(ack, limit: 262144)
+        let response = try XCTUnwrap(JSONSerialization.jsonObject(with: ackBytes) as? [String: Any])
+        try fullV32Require(Set(response.keys) == ["udid", "transport", "delivered", "nonce", "time"]
+            && response["nonce"] as? String == nonce && response["udid"] as? String == udid
+            && response["transport"] as? String == "simctl-system-openurl"
+            && response["delivered"] as? Bool == true
+            && (response["time"] as? Double)?.isFinite == true
+            && String(decoding: ackBytes, as: UTF8.self).range(of: token, options: .caseInsensitive) == nil,
+            "System URL ACK proves transport only and must have the exact credential-free identity")
+        var newest: String?
+        let complete = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            NativeCaptureMainActorEntry.run {
+                do {
+                    let actual = try self.fullV32ReceiptLines(context)
+                    guard actual.count >= prior.count, Array(actual.prefix(prior.count)) == prior else { return false }
+                    if actual.count == prior.count + 1 { newest = actual.last; return true }
+                    if actual.count > prior.count + 1 { return false }
+                    if springboard.alerts.count > 0 { try self.fullV32ConfirmSystemDialog(springboard) }
+                    return false
+                } catch { return false }
+            }
+        }, object: nil)
+        let remaining = max(0, deadline - ProcessInfo.processInfo.systemUptime)
+        try fullV32Require(remaining > 0 && XCTWaiter.wait(for: [complete], timeout: remaining) == .completed,
+                           "The actual Core/glyph-visible receipt must complete within the original case deadline")
+        let observed = ProcessInfo.processInfo.systemUptime
+        let line = try XCTUnwrap(newest)
+        let parts = line.split(separator: " ", maxSplits: 2)
+        try fullV32Require(parts.count == 3, "Actual native receipt format changed")
+        var fields: [String: String] = [:]
+        for item in parts[2].split(separator: " ") {
+            let pair = item.split(separator: "=", maxSplits: 1)
+            try fullV32Require(pair.count == 2 && fields[String(pair[0])] == nil, "Native receipt fields must be unique")
+            fields[String(pair[0])] = String(pair[1])
+        }
+        try fullV32Require(Set(fields.keys) == ["request", "scene", "backend", "generation", "epoch", "revision", "destination", "presentation"]
+            && fields["request"].flatMap(UUID.init(uuidString:)) != nil
+            && fields["scene"]?.isEmpty == false && fields["backend"] == "otzaria"
+            && fields["generation"].flatMap(UInt64.init) != nil && fields["epoch"] == "none"
+            && fields["destination"] == "native.reader" && fields["presentation"] == "currentTab",
+            "Require the authentic original Core reader/glyph/scene receipt")
+        let revisions = (fields["revision"] ?? "").components(separatedBy: "->")
+        try fullV32Require(revisions.count == 2 && UInt64(revisions[0]) != nil && UInt64(revisions[1]) != nil
+            && UInt64(revisions[1])! > UInt64(revisions[0])!, "Native receipt must advance the actual revision")
+        return ["transport": response, "nativeReceipt": line, "receiptFields": fields,
+                "targetKey": target.key, "sectionLocator": target.sectionLocator,
+                "focusLocator": sectionOnly ? NSNull() : target.focusLocator as Any, "sectionOnly": sectionOnly,
+                "requestWrittenUptime": started, "nativeReceiptObservedUptime": observed,
+                "requestToNativeVisibleUpperBoundSeconds": observed - started,
+                "timingScope": "test monotonic request write to observed original Core glyph-visible receipt; transport/polling included; not exact first pixel"]
+    }
+
+    @MainActor private func fullV32PostSample(_ target: FullV32ReaderTarget, context: FullV32ProductionContext,
+                                             epoch: String?, receipt: [String: Any]?,
+                                             resourceEndAcknowledgedUptime: TimeInterval? = nil) throws -> [String: Any] {
+        // The host enforces no active CPU/RSS epoch before accepting this request.
+        _ = try fullV32Host("require_idle", context: context)
+        let requestID = UUID().uuidString
+        let prefix = context.documents.appendingPathComponent(context.viewportBasename)
+        let reportURL = URL(fileURLWithPath: prefix.path + ".viewport.json")
+        let requestedUptime = ProcessInfo.processInfo.systemUptime
+        if let resourceEndAcknowledgedUptime {
+            try fullV32Require(requestedUptime >= resourceEndAcknowledgedUptime,
+                               "Native source/report work must begin after the resource end acknowledgement")
+        }
+        try requestID.write(to: URL(fileURLWithPath: prefix.path + ".request"), atomically: true, encoding: .utf8)
+        var report: [String: Any]?
+        let observed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            NativeCaptureMainActorEntry.run {
+                guard let bytes = try? self.fullV32BoundedData(reportURL, limit: 32768), bytes.count <= 32768,
+                      let value = (try? JSONSerialization.jsonObject(with: bytes)) as? [String: Any],
+                      value["requestID"] as? String == requestID else { return false }
+                report = value; return true
+            }
+        }, object: nil)
+        try fullV32Require(XCTWaiter.wait(for: [observed], timeout: 15) == .completed,
+                           "A fresh original native source/viewport observation is required")
+        let observedUptime = ProcessInfo.processInfo.systemUptime
+        let value = try XCTUnwrap(report)
+        let sample = try XCTUnwrap(value["fullV32SourceObservation"] as? [String: Any])
+        try fullV32Require(sample["status"] as? String == "AVAILABLE",
+                           "Unavailable or over-cap source evidence must not silently pass")
+        try fullV32Require(app.staticTexts["reader-header-title"].label == target.bookTitle
+            && app.staticTexts["reader-current-locator"].label == target.sectionLocator,
+            "Actual Reader title and canonical section must match the original full-v32 catalog")
+        let workspace = try XCTUnwrap(JSONSerialization.jsonObject(with: fullV32BoundedData(context.workspace, limit: 4194304)) as? [String: Any])
+        let scenes = try XCTUnwrap(workspace["scenes"] as? [String: Any])
+        if let receipt, let fields = receipt["receiptFields"] as? [String: String] {
+            try fullV32Require(scenes[fields["scene"] ?? ""] != nil, "Receipt must belong to the actual ordinary production scene")
+        }
+        var proof: [String: Any] = ["targetKey": target.key, "viewport": value,
+            "viewportBasename": context.viewportBasename,
+            "sourceProbeRequestedUptime": requestedUptime, "sourceProbeObservedUptime": observedUptime,
+            "workspaceDocumentID": context.documentID.uuidString, "workspaceGroupID": context.groupID.uuidString]
+        if let resourceEndAcknowledgedUptime { proof["resourceEndAcknowledgedUptime"] = resourceEndAcknowledgedUptime }
+        if let epoch { proof["epoch"] = epoch }
+        if let receipt { proof["routeEvidence"] = receipt }
+        let checked = try fullV32Host("validate_source", context: context, fields: proof)
+        proof["independentSourceComparison"] = checked
+        try fullV32Attach(proof, "full-v32-source-" + target.key + "-" + (epoch ?? requestID))
+        return proof
+    }
+
+    @MainActor
+    func testTwentyOriginalFullV32ReaderOpensAndForcedRelaunch() throws {
+        let deadline = ProcessInfo.processInfo.systemUptime + 600
+        let catalog = try fullV32Catalog()
+        let basename = "full-v32-reader-" + UUID().uuidString
+        XCUIDevice.shared.orientation = .landscapeLeft
+        fullV32Launch(basename)
+        dismissAlertsIfNeeded()
+        tap(findTabButton(hebrew: "ספר", english: "Library"))
+        openProductionBook(named: catalog.targets[0].bookTitle, isFirstDocument: true)
+        tap(app.buttons["reader-more-menu"])
+        tap(app.buttons["Display by"])
+        tap(app.buttons["Chapter"])
+        var context = try fullV32Locate(basename)
+        var previousPID: Int?
+        var observations: [[String: Any]] = []
+        var forcedRestores: [[String: Any]] = []
+        for target in catalog.targets {
+            let away = try XCTUnwrap(catalog.targets.first { $0.bookID != target.bookID })
+            _ = try fullV32Open(away, context: context, deadline: deadline)
+            context = try fullV32Locate(basename)
+            let beforeCold = try fullV32Host("process", context: context)
+            app.terminate()
+            try fullV32Require(app.wait(for: .notRunning, timeout: 30), "Process-cold requires a genuine terminated app")
+            fullV32Launch(basename)
+            context = try fullV32Locate(basename)
+            let coldProcess = try fullV32Host("process", context: context)
+            let coldPID = try XCTUnwrap(coldProcess["processID"] as? Int)
+            try fullV32Require(coldPID != beforeCold["processID"] as? Int && coldPID != previousPID,
+                               "Process-cold must have an actually new native PID; OS/disk caches are not claimed cold")
+            for mode in ["process-cold", "warm"] {
+                if mode == "warm" {
+                    _ = try fullV32Open(away, context: context, deadline: deadline)
+                    context = try fullV32Locate(basename)
+                    try fullV32Require(app.staticTexts["reader-current-locator"].label != target.sectionLocator,
+                                       "Warm observation must navigate away before the real return request")
+                }
+                let epoch = UUID().uuidString
+                let started = try fullV32Host("begin", context: context,
+                    fields: ["epoch": epoch, "targetKey": target.key, "mode": mode, "kind": "reader-open"])
+                try fullV32Require(started["processID"] as? Int == coldPID,
+                                   "Both observations must target the actual same new application PID")
+                let route = try fullV32Open(target, context: context, deadline: deadline)
+                let ended = try fullV32Host("end", context: context, fields: ["epoch": epoch])
+                let resourceEndAcknowledgedUptime = ProcessInfo.processInfo.systemUptime
+                try fullV32Require(ended["processID"] as? Int == coldPID, "A measured warm route cannot restart the application")
+                let interactionEpoch = UUID().uuidString
+                _ = try fullV32Host("begin", context: context,
+                    fields: ["epoch": interactionEpoch, "targetKey": target.key, "mode": mode, "kind": "reader-overview"])
+                context = try fullV32Locate(basename, interactionEpoch: interactionEpoch, resourceContext: context)
+                let interaction = try XCTUnwrap(context.interactionEvidence)
+                let sample = try fullV32PostSample(target, context: context, epoch: epoch, receipt: route,
+                    resourceEndAcknowledgedUptime: resourceEndAcknowledgedUptime)
+                let row: [String: Any] = ["epoch": epoch, "targetKey": target.key, "mode": mode,
+                    "processID": coldPID, "route": route, "resources": ended,
+                    "firstInteraction": interaction, "postTimingSource": sample]
+                observations.append(row)
+                try fullV32Attach(row, "full-v32-open-" + target.key + "-" + mode)
+            }
+            let before = try fullV32PostSample(target, context: context, epoch: nil, receipt: nil)
+            let savedDocument = context.documentID, savedGroup = context.groupID
+            app.terminate()
+            try fullV32Require(app.wait(for: .notRunning, timeout: 30), "Forced relaunch must actually terminate the original process")
+            fullV32Launch(basename)
+            let restored = try fullV32Locate(basename)
+            try fullV32Require(restored.documentID == savedDocument && restored.groupID == savedGroup,
+                               "Forced relaunch must restore the same genuine ordinary document/group identity")
+            let after = try fullV32PostSample(target, context: restored, epoch: nil, receipt: nil)
+            let beforeView = try XCTUnwrap(before["viewport"] as? [String: Any])
+            let afterView = try XCTUnwrap(after["viewport"] as? [String: Any])
+            XCTAssertEqual(afterView["source"] as? Int, beforeView["source"] as? Int,
+                           "Forced relaunch must preserve the actual first visible source anchor")
+            XCTAssertEqual(try XCTUnwrap(afterView["offset"] as? Double),
+                           try XCTUnwrap(beforeView["offset"] as? Double), accuracy: 1,
+                           "Use the existing original Reader pixel-anchor preservation contract")
+            let restoredProcess = try fullV32Host("process", context: restored)
+            try fullV32Require(restoredProcess["processID"] as? Int != coldPID,
+                               "Cold restore must be observed in a different actual application process")
+            let restoreEvidence: [String: Any] = [
+                "targetKey": target.key, "beforeProcessID": coldPID,
+                "afterProcessID": try XCTUnwrap(restoredProcess["processID"] as? Int),
+                "documentID": savedDocument.uuidString, "groupID": savedGroup.uuidString,
+                "beforeRequestID": try XCTUnwrap(beforeView["requestID"] as? String),
+                "afterRequestID": try XCTUnwrap(afterView["requestID"] as? String),
+                "beforeSource": try XCTUnwrap(beforeView["source"] as? Int),
+                "afterSource": try XCTUnwrap(afterView["source"] as? Int),
+                "beforeOffset": try XCTUnwrap(beforeView["offset"] as? Double),
+                "afterOffset": try XCTUnwrap(afterView["offset"] as? Double)
+            ]
+            forcedRestores.append(restoreEvidence)
+            try fullV32Attach(restoreEvidence, "full-v32-forced-restore-" + target.key)
+            previousPID = restoredProcess["processID"] as? Int
+            context = restored
+        }
+        try fullV32Require(observations.count == 20
+            && observations.filter { $0["mode"] as? String == "process-cold" }.count == 10
+            && observations.filter { $0["mode"] as? String == "warm" }.count == 10,
+            "Exactly twenty original opens must complete; no discarded failures")
+        // Detailed original rows are already retained in their attachments and
+        // source-proof records. Completion sends immutable IDs/measurements,
+        // avoiding a second transfer of twenty bounded native source reports.
+        let completionRows: [[String: Any]] = try observations.map { row in
+            let sample = try XCTUnwrap(row["postTimingSource"] as? [String: Any])
+            let viewport = try XCTUnwrap(sample["viewport"] as? [String: Any])
+            return [
+                "epoch": try XCTUnwrap(row["epoch"] as? String),
+                "targetKey": try XCTUnwrap(row["targetKey"] as? String),
+                "mode": try XCTUnwrap(row["mode"] as? String),
+                "processID": try XCTUnwrap(row["processID"] as? Int),
+                "route": try XCTUnwrap(row["route"] as? [String: Any]),
+                "firstInteraction": try XCTUnwrap(row["firstInteraction"] as? [String: Any]),
+                "sourceObservationID": try XCTUnwrap(viewport["requestID"] as? String)
+            ]
+        }
+        _ = try fullV32Host("complete_reader", context: context,
+            fields: ["observations": completionRows, "forcedRelaunches": 10, "forcedRestoreEvidence": forcedRestores])
+        let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        image.name = "full-v32-original-reader-final"; image.lifetime = .keepAlways; add(image)
+    }
+
+    @MainActor private func fullV32Rect(_ frame: CGRect) throws -> [String: Double] {
+        try fullV32Require(!frame.isNull && !frame.isInfinite && !frame.isEmpty
+            && [frame.minX, frame.minY, frame.width, frame.height].allSatisfy(\.isFinite),
+            "Require the finite actual original native rectangle without rounding or inset tolerance")
+        return ["x": Double(frame.minX), "y": Double(frame.minY),
+                "width": Double(frame.width), "height": Double(frame.height)]
+    }
+
+    @MainActor private func fullV32InspectorPanel() throws -> XCUIElement {
+        let query = app.descendants(matching: .any).matching(identifier: "torah-inspector-panel")
+        try fullV32Require(query.firstMatch.waitForExistence(timeout: 30) && query.count == 1,
+                           "The actual original Inspector panel must exist uniquely")
+        return query.firstMatch
+    }
+
+    @MainActor private func fullV32InspectorTool(_ tool: String, panel: XCUIElement) throws {
+        let labels = tool == "commentaries" ? ["Commentaries", "מפרשים"] : ["Links", "קישורים"]
+        let selector = panel.descendants(matching: .any)["torah-inspector-tools"]
+        try fullV32Require(selector.waitForExistence(timeout: 15), "Require the original Inspector tool selector")
+        let matches = selector.buttons.matching(NSPredicate(format: "label IN %@", labels))
+        try fullV32Require(matches.count == 1 && matches.firstMatch.isHittable,
+                           "Require the unique genuine original relationship tool action")
+        if !matches.firstMatch.isSelected { tap(matches.firstMatch) }
+        try fullV32Require(matches.firstMatch.isSelected, "The actual original relationship tool must be selected")
+    }
+
+    @MainActor private func fullV32WaitForInspectorContent(_ panel: XCUIElement, deadline: TimeInterval) throws {
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            NativeCaptureMainActorEntry.run {
+                guard panel.exists else { return false }
+                let row = panel.buttons.matching(NSPredicate(
+                    format: "identifier BEGINSWITH %@", "torah-inspector-source-")).firstMatch
+                let group = panel.descendants(matching: .any).matching(NSPredicate(
+                    format: "identifier BEGINSWITH %@ OR identifier BEGINSWITH %@",
+                    "torah-inspector-commentary-group-", "torah-inspector-quoting-commentary-group-")).firstMatch
+                let empty = panel.staticTexts.matching(NSPredicate(format: "label IN %@", ["No results", "אין תוצאות"])).firstMatch
+                return row.exists || group.exists || empty.exists
+            }
+        }, object: nil)
+        let remaining = max(0, deadline - ProcessInfo.processInfo.systemUptime)
+        try fullV32Require(remaining > 0 && XCTWaiter.wait(for: [ready], timeout: remaining) == .completed,
+                           "Original relationship content or genuine empty state must appear within the original case deadline")
+    }
+
+    @MainActor private func fullV32InspectorRows(_ panel: XCUIElement) throws -> [[String: Any]] {
+        // This is post-resource observation. Never snapshot the Reader's full
+        // AX text body, and never enumerate every row as a latency surrogate.
+        let rows = panel.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "torah-inspector-source-"))
+        let count = rows.count
+        var observed: [[String: Any]] = []
+        let window = app.windows.firstMatch.frame
+        let panelFrame = panel.frame
+        for index in 0..<min(count, 12) {
+            let row = rows.element(boundBy: index)
+            guard row.isHittable else { continue }
+            let snapshot = try row.snapshot()
+            let identifier = snapshot.identifier
+            guard identifier.hasPrefix("torah-inspector-source-"),
+                  !identifier.hasPrefix("torah-inspector-source-expanded-"),
+                  snapshot.elementType == .button,
+                  !snapshot.frame.isEmpty && panelFrame.contains(snapshot.frame)
+                    && window.contains(snapshot.frame),
+                  panel.buttons.matching(identifier: identifier).count == 1 else { continue }
+            let id = String(identifier.dropFirst("torah-inspector-source-".count))
+            try fullV32Require(!id.isEmpty && id.utf8.count <= 4096 && snapshot.label.utf8.count <= 8192,
+                               "Actual native row metadata must fit the evidence bound")
+            observed.append([
+                "id": id, "identifier": identifier, "elementType": "button", "label": snapshot.label,
+                "value": snapshot.value as? String ?? "", "hittable": true,
+                "frame": try fullV32Rect(snapshot.frame), "panelFrame": try fullV32Rect(panelFrame),
+                "windowFrame": try fullV32Rect(window)
+            ])
+            if observed.count == 3 { break }
+        }
+        return observed
+    }
+
+    @MainActor private func fullV32RevealOriginalRows(_ panel: XCUIElement,
+                                                      deadline: TimeInterval) throws -> (String, [[String: Any]], [String: Any]?) {
+        for tool in ["commentaries", "links"] {
+            try fullV32InspectorTool(tool, panel: panel)
+            try fullV32WaitForInspectorContent(panel, deadline: deadline)
+            if tool == "commentaries" {
+                let groups = panel.descendants(matching: .any).matching(NSPredicate(
+                    format: "identifier BEGINSWITH %@ OR identifier BEGINSWITH %@",
+                    "torah-inspector-commentary-group-", "torah-inspector-quoting-commentary-group-"))
+                if groups.firstMatch.exists {
+                    let group = groups.firstMatch
+                    try fullV32Require(group.isHittable, "Expand only the real original visible commentary group")
+                    // Native disclosure action, not a model/cache mutation.
+                    tap(group)
+                    let rows = panel.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "torah-inspector-source-"))
+                    try fullV32Require(rows.firstMatch.waitForExistence(timeout: 15),
+                                       "The original disclosure must actually produce native source rows")
+                }
+            }
+            let rows = try fullV32InspectorRows(panel)
+            if !rows.isEmpty { return (tool, rows, nil) }
+        }
+        let empty = panel.staticTexts.matching(NSPredicate(format: "label IN %@", ["No results", "אין תוצאות"]))
+        try fullV32Require(empty.count == 1 && empty.firstMatch.isHittable,
+                           "An exploration with no source rows must retain the genuine original empty-state UI")
+        let snap = try empty.firstMatch.snapshot()
+        return ("links", [], [
+            "label": snap.label, "frame": try fullV32Rect(snap.frame),
+            "panelFrame": try fullV32Rect(panel.frame), "windowFrame": try fullV32Rect(app.windows.firstMatch.frame)
+        ])
+    }
+
+    @MainActor private func fullV32ObserveInspector(
+        _ target: FullV32ReaderTarget, context: FullV32ProductionContext, epoch: String,
+        route: [String: Any], selectedTool: String, rows: [[String: Any]], emptyState: [String: Any]?
+    ) throws -> [String: Any] {
+        var fields: [String: Any] = [
+            "epoch": epoch, "targetKey": target.key, "inspectorBasename": context.inspectorBasename,
+            "workspaceDocumentID": context.documentID.uuidString, "workspaceGroupID": context.groupID.uuidString,
+            "routeEvidence": route, "selectedTool": selectedTool,
+            "actualPanelIdentifier": "torah-inspector-panel", "visibleRows": rows
+        ]
+        if let emptyState { fields["emptyState"] = emptyState }
+        let armed = try fullV32Host("arm_inspector", context: context, fields: fields)
+        let requestID = try XCTUnwrap(armed["requestID"] as? String)
+        let notification = try XCTUnwrap(armed["notificationName"] as? String)
+        try fullV32Require(notification == "com.davidpovarsky.chavrusatext." + context.inspectorBasename
+            && armed["armedAfterResourceEpoch"] as? Bool == true,
+            "Only the collector's actual post-resource owned notification is eligible")
+        let responseFile = try XCTUnwrap(armed["responseFile"] as? String)
+        try fullV32Require(responseFile == context.inspectorBasename + ".observation.json",
+                           "Use only this current request's original native response file")
+        let responseURL = context.documents.appendingPathComponent(responseFile)
+        let notified = ProcessInfo.processInfo.systemUptime
+        try fullV32Require(notify_post(notification) == NOTIFY_STATUS_OK,
+                           "Actual Simulator Darwin notification delivery must succeed")
+        var native: [String: Any]?
+        let produced = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            NativeCaptureMainActorEntry.run {
+                guard let bytes = try? self.fullV32BoundedData(responseURL, limit: 65536),
+                      let result = (try? JSONSerialization.jsonObject(with: bytes)) as? [String: Any],
+                      result["requestID"] as? String == requestID else { return false }
+                native = result
+                return true
+            }
+        }, object: nil)
+        let completed = XCTWaiter.wait(for: [produced], timeout: 30)
+        let observed = ProcessInfo.processInfo.systemUptime
+        if completed != .completed {
+            _ = try? fullV32Host("fail_inspector", context: context, fields: ["requestID": requestID])
+        }
+        try fullV32Require(completed == .completed, "The actual current native Inspector observation must answer this exact UUID")
+        let report = try XCTUnwrap(native)
+        let checked = try fullV32Host("validate_inspector", context: context, fields: [
+            "requestID": requestID, "nativeReport": report,
+            "notificationPostedUptime": notified, "responseObservedUptime": observed
+        ])
+        let evidence: [String: Any] = ["targetKey": target.key, "epoch": epoch, "native": report,
+            "visibleRows": rows, "independentValidation": checked,
+            "scope": "actual original UI rows plus full passive cache count; not full rendered-body or exact-size acceptance"]
+        try fullV32Attach(evidence, "full-v32-original-inspector-" + requestID)
+        let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        image.name = "full-v32-original-inspector-" + target.key + "-" + requestID
+        image.lifetime = .keepAlways; add(image)
+        return checked
+    }
+
+    @MainActor private func fullV32CloseOriginalInspector(_ context: FullV32ProductionContext,
+                                                         target: FullV32ReaderTarget,
+                                                         before: [String: Any]) throws -> FullV32ProductionContext {
+        let close = app.buttons.matching(identifier: "torah-inspector-close")
+        try fullV32Require(close.count == 1 && close.firstMatch.isHittable,
+                           "Use the original unique visible native Inspector close action")
+        tap(close.firstMatch)
+        let panel = app.descendants(matching: .any)["torah-inspector-panel"]
+        try fullV32Require(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: panel
+        )], timeout: 15) == .completed, "Original Inspector must actually close")
+        let afterContext = try fullV32Locate(context.viewportBasename)
+        try fullV32Require(afterContext.documentID == context.documentID && afterContext.groupID == context.groupID,
+                           "Inspector interaction must preserve the actual Reader document/group")
+        let after = try fullV32PostSample(target, context: afterContext, epoch: nil, receipt: nil)
+        let left = try XCTUnwrap(before["viewport"] as? [String: Any])
+        let right = try XCTUnwrap(after["viewport"] as? [String: Any])
+        XCTAssertEqual(left["source"] as? Int, right["source"] as? Int, "Original Inspector must preserve the actual Reader source anchor")
+        XCTAssertEqual(try XCTUnwrap(left["offset"] as? Double), try XCTUnwrap(right["offset"] as? Double),
+                       accuracy: 1, "Keep the original Reader pixel-anchor preservation contract")
+        return afterContext
+    }
+
+    @MainActor
+    func testOriginalFullV32InspectorRelationshipScalesAndReturn() throws {
+        let deadline = ProcessInfo.processInfo.systemUptime + 600
+        let catalog = try fullV32Catalog()
+        let basename = "full-v32-reader-" + UUID().uuidString
+        XCUIDevice.shared.orientation = .landscapeLeft
+        fullV32Launch(basename)
+        dismissAlertsIfNeeded()
+        tap(findTabButton(hebrew: "ספר", english: "Library"))
+        openProductionBook(named: catalog.targets[0].bookTitle, isFirstDocument: true)
+        tap(app.buttons["reader-more-menu"]); tap(app.buttons["Display by"]); tap(app.buttons["Chapter"])
+        var context = try fullV32Locate(basename)
+        var exploration: [[String: Any]] = []
+        var observationIDs: [String] = []
+        // Explore the exact first/middle/last original Berakhot, Tehillim and
+        // Derashot HaRan chapters, retaining empty/over-size outcomes. The
+        // 110,196-line stress chapter belongs to the Reader-open case; it is not
+        // silently added as an unbounded Inspector relationship workload.
+        let inspectorTargets = catalog.targets.filter { [103, 28, 3152].contains($0.bookID) }
+        try fullV32Require(inspectorTargets.count == 9, "Require the original nine qualified Inspector chapter identities")
+        for target in inspectorTargets {
+            let route = try fullV32Open(target, context: context, deadline: deadline, sectionOnly: true)
+            context = try fullV32Locate(basename)
+            let before = try fullV32PostSample(target, context: context, epoch: nil, receipt: route)
+            let action = try originalStudyToolsActionInWindow()
+            let epoch = UUID().uuidString
+            _ = try fullV32Host("begin", context: context,
+                fields: ["epoch": epoch, "targetKey": target.key, "mode": "original-native", "kind": "inspector-open"])
+            let began = ProcessInfo.processInfo.systemUptime
+            tap(action)
+            let panel = try fullV32InspectorPanel()
+            try fullV32InspectorTool("commentaries", panel: panel)
+            try fullV32WaitForInspectorContent(panel, deadline: deadline)
+            let visible = ProcessInfo.processInfo.systemUptime
+            let resources = try fullV32Host("end", context: context, fields: ["epoch": epoch])
+            let (tool, rows, empty) = try fullV32RevealOriginalRows(panel, deadline: deadline)
+            let actual = try fullV32ObserveInspector(target, context: context, epoch: epoch,
+                route: route, selectedTool: tool, rows: rows, emptyState: empty)
+            let id = try XCTUnwrap(actual["requestID"] as? String)
+            observationIDs.append(id)
+            exploration.append(["targetKey": target.key, "observationID": id,
+                "actualCount": try XCTUnwrap(actual["fullCachedCount"] as? Int), "visibleRows": rows.count,
+                "openToOriginalContentUpperBoundSeconds": visible - began, "resources": resources])
+            context = try fullV32CloseOriginalInspector(context, target: target, before: before)
+        }
+        var scales: [[String: Any]] = []
+        for required in [100, 500, 2000] {
+            let eligible = exploration.filter {
+                ($0["actualCount"] as? Int ?? 0) >= required && ($0["visibleRows"] as? Int ?? 0) > 0
+            }.sorted {
+                let a = $0["actualCount"] as? Int ?? 0, b = $1["actualCount"] as? Int ?? 0
+                return a == b ? String(describing: $0["targetKey"]) < String(describing: $1["targetKey"]) : a < b
+            }
+            guard let chosen = eligible.first, let key = chosen["targetKey"] as? String,
+                  let target = catalog.targets.first(where: { $0.key == key }) else {
+                let largest = try XCTUnwrap(exploration.max {
+                    ($0["actualCount"] as? Int ?? 0) < ($1["actualCount"] as? Int ?? 0)
+                })
+                scales.append(["requestedCount": required,
+                    "actualCount": try XCTUnwrap(largest["actualCount"] as? Int),
+                    "observationID": try XCTUnwrap(largest["observationID"] as? String),
+                    "status": "REQUIRED_NATURAL_WORKLOAD_NOT_FOUND"])
+                continue
+            }
+            let route = try fullV32Open(target, context: context, deadline: deadline, sectionOnly: true)
+            context = try fullV32Locate(basename)
+            let before = try fullV32PostSample(target, context: context, epoch: nil, receipt: route)
+            let action = try originalStudyToolsActionInWindow()
+            let openEpoch = UUID().uuidString
+            _ = try fullV32Host("begin", context: context,
+                fields: ["epoch": openEpoch, "targetKey": target.key, "mode": "original-native", "kind": "inspector-open"])
+            tap(action)
+            let panel = try fullV32InspectorPanel()
+            try fullV32InspectorTool("commentaries", panel: panel)
+            try fullV32WaitForInspectorContent(panel, deadline: deadline)
+            _ = try fullV32Host("end", context: context, fields: ["epoch": openEpoch])
+            let (tool, initialRows, empty) = try fullV32RevealOriginalRows(panel, deadline: deadline)
+            try fullV32Require(!initialRows.isEmpty && empty == nil, "A qualified natural workload requires actual native source rows")
+            let reopened = try fullV32ObserveInspector(target, context: context, epoch: openEpoch,
+                route: route, selectedTool: tool, rows: initialRows, emptyState: nil)
+            observationIDs.append(try XCTUnwrap(reopened["requestID"] as? String))
+            let firstIdentifier = try XCTUnwrap(initialRows.first?["identifier"] as? String)
+            let firstRow = panel.buttons.matching(identifier: firstIdentifier)
+            try fullV32Require(firstRow.count == 1 && firstRow.firstMatch.isHittable,
+                               "Expand the actual original row identified by its independently verified source")
+            tap(firstRow.firstMatch)
+            let sourceID = String(firstIdentifier.dropFirst("torah-inspector-source-".count))
+            let expanded = panel.descendants(matching: .any)["torah-inspector-source-expanded-" + sourceID]
+            try fullV32Require(expanded.waitForExistence(timeout: 15),
+                               "The original source row expansion must produce its real native content marker")
+            let expandedImage = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+            expandedImage.name = "full-v32-original-expanded-source-" + key + "-" + String(required)
+            expandedImage.lifetime = .keepAlways; add(expandedImage)
+            try fullV32Require(firstRow.firstMatch.isHittable, "The original expanded source must remain reachable")
+            tap(firstRow.firstMatch)
+            try fullV32Require(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"), object: expanded
+            )], timeout: 15) == .completed, "The same original source row must collapse through its real action")
+            // Native scroll interaction, with actual app PID/CPU/RSS/trace
+            // accounting. Row content/identity hashing follows the ACK.
+            let scroll = panel.scrollViews.firstMatch
+            try fullV32Require(scroll.exists && scroll.isHittable, "Use the original Inspector scroll view")
+            let scrollEpoch = UUID().uuidString
+            _ = try fullV32Host("begin", context: context,
+                fields: ["epoch": scrollEpoch, "targetKey": target.key, "mode": "original-native", "kind": "inspector-scroll"])
+            let scrollStarted = ProcessInfo.processInfo.systemUptime
+            scroll.swipeUp(velocity: .slow)
+            scroll.swipeDown(velocity: .slow)
+            let scrollEnded = ProcessInfo.processInfo.systemUptime
+            let resources = try fullV32Host("end", context: context, fields: ["epoch": scrollEpoch])
+            let rows = try fullV32InspectorRows(panel)
+            try fullV32Require(!rows.isEmpty, "Original native rows must remain visible and actionable after scrolling")
+            let observed = try fullV32ObserveInspector(target, context: context, epoch: scrollEpoch,
+                route: route, selectedTool: tool, rows: rows, emptyState: nil)
+            let observationID = try XCTUnwrap(observed["requestID"] as? String)
+            observationIDs.append(observationID)
+            let scale: [String: Any] = [
+                "requestedCount": required, "actualCount": try XCTUnwrap(observed["fullCachedCount"] as? Int),
+                "observationID": observationID, "targetKey": key,
+                "scrollGestureUpperBoundSeconds": scrollEnded - scrollStarted, "resources": resources,
+                "expandedOriginalSourceID": sourceID,
+                "scope": "natural original full-cache workload and native row/scroll witnesses; exact requested size is separately reported"
+            ]
+            scales.append(scale)
+            try fullV32Attach(scale, "full-v32-inspector-natural-scale-" + String(required))
+            context = try fullV32CloseOriginalInspector(context, target: target, before: before)
+        }
+        _ = try fullV32Host("complete_inspector", context: context,
+            fields: ["observationIDs": observationIDs, "exploration": exploration, "scales": scales])
+    }
+
+}
+// END ADDITIVE FULL-V32 ORIGINAL READER OBSERVATIONS
