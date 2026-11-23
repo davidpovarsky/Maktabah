@@ -1,0 +1,1 @@
+{"driverSHA256": "2c49bbe45d56ef2793516657862831e042d32bde546e25927b38d4135b507491", "errors": 0, "failures": 0, "nativeUIExecuted": 0, "productionCorpusUsed": false, "scope": "synthetic boundary controls; no native UI/corpus/performance acceptance", "skipped": 0, "testsRun": 19}

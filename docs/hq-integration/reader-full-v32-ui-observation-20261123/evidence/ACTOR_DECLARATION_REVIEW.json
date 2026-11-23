@@ -1,0 +1,13 @@
+{
+  "scope": "read-only exact original actor declaration/default isolation check",
+  "decision": "retain exact existing productionWorkspaces callback; no speculative bridge",
+  "declarations": [
+    "FaithfulProductionReleaseTests is an unannotated subclass of FaithfulReaderUIBase",
+    "FaithfulReaderUIBase is unannotated subclass of MaktabahUITestBase",
+    "MaktabahUITestBase.swift:30 is unannotated XCTestCase subclass",
+    "productionWorkspaces at2650 is unannotated private static Foundation-only method"
+  ],
+  "defaultIsolationSearch": "git grep at exact2ef over all*.xcconfig, project, runtime27.py and focused native driver: no SWIFT_DEFAULT_ACTOR_ISOLATION or default-isolation matches",
+  "actualApplePriorEvidence": "45116660011 compiler diagnosed unannotated capture as nonisolated on this same class hierarchy; explicit MainActor observation construction was the repaired boundary",
+  "sourceChange": false
+}

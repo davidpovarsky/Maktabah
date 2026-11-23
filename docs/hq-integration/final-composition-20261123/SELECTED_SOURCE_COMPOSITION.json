@@ -102,6 +102,281 @@
       "bytes": 23378,
       "sha256": "fae950ba2ac7d86508daaf18a7862c10486cdf11a7ec1656dea7f1a5d1d73df0",
       "git_blob": "de46cfa4a90a8472f2c1fc5d1224eb4e8654be47"
+    },
+    {
+      "path": "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 8848,
+      "sha256": "a8773b4892ebeac2c98bc371e6ee358eb69d4085caec0ffa1aac9caa84a5c552",
+      "git_blob": "ba08958f3204f62ba5c6ff5bf2b069702ccb4fa7"
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 21707,
+      "sha256": "36ca3f4863c60519d1135bf8f327a4c00a1e1bf074dd826caee7760547b18aa8",
+      "git_blob": "f4b0a4cd69a5f1ca3cbd5276e4e1062e4f7f91fd"
+    },
+    {
+      "path": "Scripts/CI/reader-full-v32-ui-observation.py",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 80792,
+      "sha256": "d75618e44d205b1fb2843811bbff846151eef6e14ec92d9b071bdbbaafbbfca7",
+      "git_blob": "70822a22b03da8d88d99796a9ca7dbaa9622f5f6"
+    },
+    {
+      "path": "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 8778,
+      "sha256": "42e12cfd7bf0d251c6db4921c9b42428fb368b8474c2160018b4e895759c64d5",
+      "git_blob": "54981545a11751fd266cc4b3a656406cf979dfdd"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/CollectorBoundaryControls.py",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 9437,
+      "sha256": "5d57ae889ab516accc816f91bae263c0f599beb528ea73d8f1f76e3aa2a8c408",
+      "git_blob": "6836d5290f8aa681faf3561515f7990e19ac258e"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/CompletionCohortControls.py",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 10195,
+      "sha256": "4f0bcce3f4cf8a31d20212cd5919191fd55f4d31da0af25134ffd153fd5ae355",
+      "git_blob": "e719478ff605abce5f6357a9733133d4600e5b3f"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/FullV32ObservationCatalog.swift",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 8755,
+      "sha256": "ba59641e131cc9ee625ecd5b042b516ac5d971333e635edda9b533ea29105e70",
+      "git_blob": "d574ac5a10edec5befc4c52ddc92ece30728988a"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/PRIMARY_API_EVIDENCE.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 1079,
+      "sha256": "821a2f02f886ba6fb0b925b0a5883dad16a3a6e77695f4a0d256e4c157441def",
+      "git_blob": "03b6bfadc0982887092f5f9757da90170c9fcd33"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/README.md",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 2219,
+      "sha256": "51da92672ee4c1f0cafd90787358391fd242dd3957bcdbef03ba8c50a9a305f3",
+      "git_blob": "f94150e741b9d1216f4b3fd84064b75ab468662d"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/SOURCE_SEAL_PROVENANCE.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 5877,
+      "sha256": "c007394dab7afcd59e2478b0ea3bd2b4335d258300248c99ffabde1f6c86ea93",
+      "git_blob": "76197470b37fc97138886c63f9cda845bd4f92d2"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/ACTOR_DECLARATION_REVIEW.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 928,
+      "sha256": "fa1498caedbd5f0856779e6f13ffbdc30d9adec74a1edd8b23d85678d9d33f2b",
+      "git_blob": "a4da8cee7bd15e71973f1cbb218377b2ad9be418"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/COLLECTOR_AFTER_19_CONTROLS.diff",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 8835,
+      "sha256": "9a9eec9f9951a1df0ab69e4afa7ff424aceef82df465967d5addc64a36a0368e",
+      "git_blob": "e2e938e84988ca10b97c8cc3f9c49160dab9a3dc"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/COMPLETION_JOIN.diff",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 1139,
+      "sha256": "6b2014d5eaff99a0fe52a6dc3c766a7c584675e9033d579f711953fdd7dc56fe",
+      "git_blob": "4e08164bd3b5acd4b666bf5b3766b8906c36215e"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/INDEPENDENT_PEER_REVIEW.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 1209,
+      "sha256": "5434e0edbe7f82e38cb1d26de7a79b3a96c27fc292402e3b85271af5e6d3ae8f",
+      "git_blob": "787cad3abf2d39acc2f135139117b6ae6ec0768d"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/INSPECTOR_PASSIVE_OBSERVATION_SOURCE.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 869,
+      "sha256": "305330791ebeedbed10c40713066f51cffe8bfed5133d8598187b9ca708a71b5",
+      "git_blob": "4926f4eb12ed08f4f2df817c3453e9a11251a812"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/INSPECTOR_SAMPLE_APPEND_BOUND.diff",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 522,
+      "sha256": "e32d7b195a8ccd337586c64d4668f3b6022fb1ee7040c1051d6e4f36d2835142",
+      "git_blob": "16ca2b2e4fb8469e48b6fd80204c3d858aad39e1"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/REVIEW_INDEX_V2.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 11429,
+      "sha256": "163a1a7477f8aa27c871f44977c29bf1376795926ffeb45dfc0537263dd096c5",
+      "git_blob": "b7fe3f4fcd16a83ce8f9c24311a30be7231d53af"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/SYNTAX_ONLY.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 1786,
+      "sha256": "3fc6f0b7073fc5e0cdd20dc00cdcf8a841a2ccc44b65f314fcb09da288286802",
+      "git_blob": "a99476ac6a1841eab7c1b1ed8ea7b48f777e1201"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/collector-boundary.stderr",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 2784,
+      "sha256": "5a04c9d0421275c60aa3aca4aee6282c68e1c8fae68a24285859d0bf08a34903",
+      "git_blob": "18111eb19efa993172718cc6fcfc71627f61807b"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/collector-boundary.stdout",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 281,
+      "sha256": "985c07fd5f1ff22aa24613ff548144f5c0306d7891beaab2176f195753088eae",
+      "git_blob": "ce2477f52920430ce2069c92a64eef5ae0e1be9c"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/collector-tested-2c49bbe4.py",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 77002,
+      "sha256": "2c49bbe45d56ef2793516657862831e042d32bde546e25927b38d4135b507491",
+      "git_blob": "23b71c09824d44d0712ea98613c9d80340c0f6f1"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/completion-cohort.stderr",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 1713,
+      "sha256": "f665bff9be73dbba9fdf37ff67bbca0728dacddf7e3d13ccf5845d37aa81978b",
+      "git_blob": "ce222b04eaff51da8abb82d828ef1ff151a5eea5"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/completion-cohort.stdout",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 330,
+      "sha256": "6433dde10e7b9087c97a401745dd52220d9a848ef43efde69f98bd05c1bac912",
+      "git_blob": "40ee807bad496523ec5064e84ffc1075c74f8114"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/final-test-syntax.log",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/source-only-admission.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 7844,
+      "sha256": "4b3bc52360fd1470ab36c39a9b5e012c8cc57e7f99bc8e2ddb3986be3f36afcb",
+      "git_blob": "4a15de71cad54e67b6bbbcea195901126ea38211"
+    },
+    {
+      "path": "Scripts/CI/test-9401-exact-source.py",
+      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+      "bytes": 10626,
+      "sha256": "be4c6f2c5cb41a98fa3635e3141c959a0b52ab990c996f311d624f5323fe8c09",
+      "git_blob": "df97a3fb5e5fa7ce0978c2d44ba417047d08bad8"
+    },
+    {
+      "path": "Scripts/CI/test-library-morph-composition.py",
+      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+      "bytes": 4122,
+      "sha256": "01f1ac563d9edcc90c3131c52a6d9a36e58aaab859b36bd5f75e731510440b47",
+      "git_blob": "3e156ce206d1ca4186a60490587abaa1927d1812"
+    },
+    {
+      "path": "Scripts/CI/verify-9401-exact-source.py",
+      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+      "bytes": 37130,
+      "sha256": "5edab1310c924ee6b49e9f081185e761a57c697ec362f548945542d4ad0db561",
+      "git_blob": "21563aae5e0d107f9206954ba7c93c85049038dc"
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "source": "EXACT_THREE_WAY_COMPOSITION_PLUS_REVIEWED_GROUP_INTERACTION_PATCH",
+      "bytes": 283883,
+      "sha256": "7c1e4e376b5fdf965b4a799f922851e00d88c572f3102d0ad4d5d0db8bd82156",
+      "git_blob": "06329d0f3dc9e3f64136b3d4b068bdc1076060a6",
+      "ancestor": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+      "parents": [
+        "46321de8f26255aa1543eed69f908f93d306c6c0",
+        "efd7250b8fa8f0556683af6b50733aeccb149b61"
+      ],
+      "conflicts": 0,
+      "before_group_sha256": "92c09ee7e8227cde2a94dc26daf5e56ba6ee9268565586d877183fe64bcf9eb0",
+      "group_source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "group_patch_sha256": "62271d1b3073707a28f371ff5253f399ecf51a1aa59accdf710c40e142aa4989"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/APPROVED_INTERACTION.diff",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 6311,
+      "sha256": "62271d1b3073707a28f371ff5253f399ecf51a1aa59accdf710c40e142aa4989",
+      "git_blob": "bb45fb2eed0bfba015c176196fd861b4ce497a09"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/APPROVED_PROPOSAL.json",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 1182,
+      "sha256": "956aabfafbea449d506e69f89550b8b05d43b0deb5ffd9221b94989724484611",
+      "git_blob": "7b06315905917cbfdc5ed0a14b5d4161967bfb34"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/GROUPS100_ACTUAL_FAILURE.json",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 972,
+      "sha256": "5b3b0a262aa1f76da1b93f8c85c607a9c9f4173bfb8bc95ea2d9ae11b1742d35",
+      "git_blob": "6067fff1d35dc8aa46aca4e4858db97dd851ba13"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/GROUPS100_SELECTED_MEDIA.json",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 2436,
+      "sha256": "7c54912379c85960436041388fd5223930d61189a1d99bf40b44be3bc26e399d",
+      "git_blob": "d6e9561c2f0fdf081589869685d00e0c0442a214"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/ORIGINAL_FAILING_SNAPSHOT.json",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 1957,
+      "sha256": "beedf997d6b8f8ac3286309011c0425bb0f856417144e16f0a817d99253b63f8",
+      "git_blob": "7d60d1abaf572583b32b574903e2bc544c0c46b1"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/READER4_ACTUAL_INTAKE.json",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 8902,
+      "sha256": "5b600930e90d1162850fd381d9f6ef23f8ad7b9eb531e6963f80b62b659bc38d",
+      "git_blob": "a1e7afcf9e39f2f6ad857ad3742604239e873ccb"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/SOURCE_PROVENANCE.json",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 1849,
+      "sha256": "96fd369d0abc609b5a08f6942e04b64f4aa0f75b06f91164834e41b94778bb0e",
+      "git_blob": "9f4cf34816ee7c2ca2ee0d2bde950551cffe921b"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/syntax-only.stderr",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/syntax-only.stdout",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
     }
   ],
   "canonical_annotation_source_and_process_resume_test_preserved": [
@@ -111,13 +386,25 @@
     "Maktabah-iOSUITests/OriginalEditorAnnotationAcceptanceTests.swift"
   ],
   "pending": [
-    "Reader4/Library7/Live13 exact native outcomes",
-    "Reviewed full-v32 source and merged Faithful tests",
-    "OriginalSDK/StageB evidence correspondence",
+    "Exact integrated one-build Groups100 and full-v32 workflow/source bindings",
+    "Live13/Library7 active exact outcomes; Reader4 actual3PASS1FAIL retained separately",
+    "OriginalSDK/StageB evidence correspondence and StageB universal-slice predicate repair",
+    "Full-v32 native execution on this integrated source",
     "Final immutable source/gate input bindings",
     "Native116/Release114 and real physical/signing gates"
   ],
   "native_passes_transferred": false,
   "workflow_activated": false,
-  "local_materialization_note": "Initial no-checkout base index was absent; isolated worktree reconstructed from exact baseline and14 existing committed source blobs before any commit"
+  "local_materialization_note": "Initial no-checkout base index was absent; isolated worktree reconstructed from exact baseline and14 existing committed source blobs before any commit",
+  "full_v32_source_admission": {
+    "sealed_source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+    "collector_final_sha256": "d75618e44d205b1fb2843811bbff846151eef6e14ec92d9b071bdbbaafbbfca7",
+    "controls_historical_only": [
+      19,
+      10
+    ],
+    "control_replay": false,
+    "native_passes_transferred": false,
+    "application_source_binding": "UNFINALIZED"
+  }
 }

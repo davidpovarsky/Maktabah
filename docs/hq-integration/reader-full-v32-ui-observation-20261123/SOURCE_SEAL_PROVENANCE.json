@@ -1,0 +1,90 @@
+{
+  "schema": "otzaria.full-v32.source-seal/1",
+  "status": "SOURCE_ONLY_UNFINALIZED_NO_NATIVE_EXECUTION",
+  "parentSource": "2ef81ac195c002863486e473dad95f336f3e1675",
+  "preservedDraft": "fd5f72f7b3ccea4d6477d2ef9866a3b157015612",
+  "preservedDraftRef": "refs/heads/source/otzaria-full-v32-reviewed-draft-20261123",
+  "reviewIndexSHA256": "163a1a7477f8aa27c871f44977c29bf1376795926ffeb45dfc0537263dd096c5",
+  "reviewAcceptedBy": "root",
+  "reviewScope": "Exact V2 source bytes plus independently authenticated19 original boundary controls and10 new completion controls; no old control replay or native acceptance transfer",
+  "sourceFiles": {
+    "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift": "36ca3f4863c60519d1135bf8f327a4c00a1e1bf074dd826caee7760547b18aa8",
+    "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift": "a8773b4892ebeac2c98bc371e6ee358eb69d4085caec0ffa1aac9caa84a5c552",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "88da4560aab504034f9dc64107998097e12ecbf6798f28e25d20a6fc2aac34d0",
+    "Scripts/CI/reader-full-v32-ui-observation.py": "d75618e44d205b1fb2843811bbff846151eef6e14ec92d9b071bdbbaafbbfca7",
+    "Scripts/CI/reader-full-v32-ui-observation.inputs.json": "42e12cfd7bf0d251c6db4921c9b42428fb368b8474c2160018b4e895759c64d5",
+    "docs/hq-integration/reader-full-v32-ui-observation-20261123/FullV32ObservationCatalog.swift": "ba59641e131cc9ee625ecd5b042b516ac5d971333e635edda9b533ea29105e70",
+    "docs/hq-integration/reader-full-v32-ui-observation-20261123/CollectorBoundaryControls.py": "5d57ae889ab516accc816f91bae263c0f599beb528ea73d8f1f76e3aa2a8c408",
+    "docs/hq-integration/reader-full-v32-ui-observation-20261123/CompletionCohortControls.py": "4f0bcce3f4cf8a31d20212cd5919191fd55f4d31da0af25134ffd153fd5ae355",
+    "docs/hq-integration/reader-full-v32-ui-observation-20261123/PRIMARY_API_EVIDENCE.json": "821a2f02f886ba6fb0b925b0a5883dad16a3a6e77695f4a0d256e4c157441def"
+  },
+  "retainedEvidence": {
+    "testedCollector": {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/collector-tested-2c49bbe4.py",
+      "sha256": "2c49bbe45d56ef2793516657862831e042d32bde546e25927b38d4135b507491"
+    },
+    "actual19ControlsStdout": {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/collector-boundary.stdout",
+      "sha256": "985c07fd5f1ff22aa24613ff548144f5c0306d7891beaab2176f195753088eae"
+    },
+    "actual19ControlsStderr": {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/collector-boundary.stderr",
+      "sha256": "5a04c9d0421275c60aa3aca4aee6282c68e1c8fae68a24285859d0bf08a34903"
+    },
+    "completionControlsStdout": {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/completion-cohort.stdout",
+      "sha256": "6433dde10e7b9087c97a401745dd52220d9a848ef43efde69f98bd05c1bac912"
+    },
+    "completionControlsStderr": {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/completion-cohort.stderr",
+      "sha256": "f665bff9be73dbba9fdf37ff67bbca0728dacddf7e3d13ccf5845d37aa81978b"
+    },
+    "sourceOnlyAdmission": {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/source-only-admission.json",
+      "sha256": "4b3bc52360fd1470ab36c39a9b5e012c8cc57e7f99bc8e2ddb3986be3f36afcb"
+    },
+    "initialSyntaxReceipt": {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/SYNTAX_ONLY.json",
+      "sha256": "3fc6f0b7073fc5e0cdd20dc00cdcf8a841a2ccc44b65f314fcb09da288286802"
+    },
+    "finalTestSyntaxLog": {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/final-test-syntax.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "appendBound": {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/INSPECTOR_SAMPLE_APPEND_BOUND.diff",
+      "sha256": "e32d7b195a8ccd337586c64d4668f3b6022fb1ee7040c1051d6e4f36d2835142"
+    },
+    "inspectorBoundReceipt": {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/INSPECTOR_PASSIVE_OBSERVATION_SOURCE.json",
+      "sha256": "305330791ebeedbed10c40713066f51cffe8bfed5133d8598187b9ca708a71b5"
+    },
+    "post19CollectorDelta": {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/COLLECTOR_AFTER_19_CONTROLS.diff",
+      "sha256": "9a9eec9f9951a1df0ab69e4afa7ff424aceef82df465967d5addc64a36a0368e"
+    },
+    "completionJoinDelta": {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/COMPLETION_JOIN.diff",
+      "sha256": "6b2014d5eaff99a0fe52a6dc3c766a7c584675e9033d579f711953fdd7dc56fe"
+    },
+    "actorDeclarationReview": {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/ACTOR_DECLARATION_REVIEW.json",
+      "sha256": "fa1498caedbd5f0856779e6f13ffbdc30d9adec74a1edd8b23d85678d9d33f2b"
+    },
+    "peerReview": {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/INDEPENDENT_PEER_REVIEW.json",
+      "sha256": "5434e0edbe7f82e38cb1d26de7a79b3a96c27fc292402e3b85271af5e6d3ae8f"
+    }
+  },
+  "inputBindingState": "UNFINALIZED_BEFORE_INTEGRATED_SOURCE_DEVICE_BINARY_REVIEW",
+  "selectedCases": [
+    "FaithfulProductionReleaseTests/testTwentyOriginalFullV32ReaderOpensAndForcedRelaunch",
+    "FaithfulProductionReleaseTests/testOriginalFullV32InspectorRelationshipScalesAndReturn"
+  ],
+  "nativeUIExecuted": 0,
+  "physicalDeviceExecuted": 0,
+  "perfOptimizationPromoted": false,
+  "compositionCandidateSHA256": "92c09ee7e8227cde2a94dc26daf5e56ba6ee9268565586d877183fe64bcf9eb0",
+  "compositionCandidateStatus": "Read-only merge proposal, not an executed or accepted application",
+  "runtimeWorkflowCreated": false
+}
