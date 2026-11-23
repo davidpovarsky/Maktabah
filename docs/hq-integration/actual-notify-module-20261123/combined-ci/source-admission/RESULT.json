@@ -1,0 +1,124 @@
+{
+  "status": "ACTUAL_ORIGINAL_SOURCE_ADMISSION_PASS_NO_NATIVE_EXECUTION",
+  "prepared_head": "7bc3b6cd623bcb7c832df9378251a559e998f710",
+  "commands": [
+    {
+      "label": "groups100",
+      "argv": [
+        "python3",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "prepare"
+      ],
+      "pid": 2667800,
+      "returncode": 0,
+      "timed_out": false,
+      "term_sent": false,
+      "kill_sent": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 1.5165464375168085,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "library7",
+      "argv": [
+        "python3",
+        "Scripts/CI/library-morph-focused-native.py",
+        "prepare"
+      ],
+      "pid": 2667874,
+      "returncode": 0,
+      "timed_out": false,
+      "term_sent": false,
+      "kill_sent": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 1.5524578848853707,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "full-v32-declarations",
+      "argv": [
+        "python3",
+        "Scripts/CI/reader-full-v32-ui-observation.py",
+        "source-check"
+      ],
+      "pid": 2667931,
+      "returncode": 0,
+      "timed_out": false,
+      "term_sent": false,
+      "kill_sent": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 1.76279126573354,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "full-v32-frozen",
+      "argv": [
+        "python3",
+        "-c",
+        "import runpy; m=runpy.run_path('Scripts/CI/reader-full-v32-ui-observation.py'); c=m['source_context'](require_frozen=True); m['write'](m['OUT']/'frozen-source-admission.json', c)"
+      ],
+      "pid": 2668192,
+      "returncode": 0,
+      "timed_out": false,
+      "term_sent": false,
+      "kill_sent": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.2546122372150421,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "actual_generated": [
+    {
+      "path": "actual-generated/artifacts/library-morph/declarations.json",
+      "bytes": 2132,
+      "sha256": "fef512338bf85a974898616f801e91f044a85f79bd25269794fae8f69d90e0ec"
+    },
+    {
+      "path": "actual-generated/artifacts/library-morph/selection.json",
+      "bytes": 180605,
+      "sha256": "b1506599e4737f1c317c80c2805823ed8b97ab840c40dced99c93d2703a5d70e"
+    },
+    {
+      "path": "actual-generated/artifacts/library-morph/source-before.json",
+      "bytes": 66600,
+      "sha256": "173d52b1026bfd674a301759bb06abed87fd3b7470c218c565649896d176d80f"
+    },
+    {
+      "path": "actual-generated/artifacts/reader-full-v32-ui-observation/frozen-source-admission.json",
+      "bytes": 7725,
+      "sha256": "3e3afd6e06ea69f38b071584eabbb0a398f5802bf1c803617b3603c3a69331e1"
+    },
+    {
+      "path": "actual-generated/artifacts/reader-full-v32-ui-observation/source-only-admission.json",
+      "bytes": 8931,
+      "sha256": "a8eb9a32c76fec29d97757c8ba9e128d6d907168d4cb8f992236131f7b179c04"
+    },
+    {
+      "path": "actual-generated/artifacts/reader-groups100/declarations.json",
+      "bytes": 416,
+      "sha256": "33308022384c62b07428b8b4e15716f1c90f1b5e027735eb3aa03fa52181ff23"
+    },
+    {
+      "path": "actual-generated/artifacts/reader-groups100/selection.json",
+      "bytes": 177846,
+      "sha256": "5a4adbf76ab28a8b4b8aeae1f5510f9e65663f430b8a33a1b018e52ef3a0cd50"
+    },
+    {
+      "path": "actual-generated/artifacts/reader-groups100/source-before.json",
+      "bytes": 65488,
+      "sha256": "a54ecd97be16d6e08f736419e0c6cf72d14213b5dd0f85443efbd74976b0fc46"
+    }
+  ],
+  "native_cases_executed": 0,
+  "prior_tests_replayed": 0,
+  "source_worktree_clean_after": true,
+  "timestamp_utc": "2026-11-23T10:37:25.383639+00:00"
+}
