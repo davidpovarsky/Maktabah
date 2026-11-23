@@ -1,0 +1,19 @@
+{
+  "previousSDK": "2548eac1155239e76cb1a2c6d978e00131340e1f",
+  "targetSDK": "d49a4fd4115b8335105d2991bf74ab4d7f6aad2d",
+  "installExit": 0,
+  "completedAt": "2026-11-23T05:40:04.674012+00:00",
+  "checkExit": 0,
+  "selectedProducts": [
+    "HanlinHostContracts",
+    "HanlinAgentCore",
+    "HanlinChatCore",
+    "HanlinScriptUI",
+    "HanlinChatUI",
+    "HanlinPresentationKit",
+    "HanlinRichUI",
+    "HanlinPlatformContracts"
+  ],
+  "managedNativeTargets": [],
+  "state": "installed"
+}
