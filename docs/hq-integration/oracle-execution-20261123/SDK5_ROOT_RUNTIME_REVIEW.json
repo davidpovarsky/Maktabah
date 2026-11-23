@@ -1,0 +1,838 @@
+{
+  "outer_bytes": 163825,
+  "verified_inner_members": 97,
+  "verified_index_rows": 96,
+  "runtime_keys": [
+    "actual_public_surface",
+    "automatic_retry",
+    "compiled_consumer_api_probe_sha256",
+    "consumer_builds",
+    "device_framework_build",
+    "distribution_manifest_sha256",
+    "distribution_unchanged",
+    "editable_mount",
+    "external_consumer_build",
+    "finished_at",
+    "framework_builds",
+    "framework_producer",
+    "framework_source_sha",
+    "kind",
+    "native_editor_ui_tests",
+    "original_app_runtime",
+    "original_clang_declarations",
+    "original_framework_build",
+    "original_source_sha256",
+    "owned_simulator_cleanup",
+    "owned_simulator_cleanup_completed",
+    "phase",
+    "preflight",
+    "retained_affected_controls_passed",
+    "retained_source_controls_passed",
+    "runtime_qualification_producer",
+    "same_toolchain_only",
+    "schema",
+    "sdk",
+    "simulator_attempts",
+    "source_controls_replayed",
+    "started_at",
+    "status",
+    "swift",
+    "verified_runtime_observations"
+  ],
+  "runtime_small_fields": {
+    "automatic_retry": false,
+    "compiled_consumer_api_probe_sha256": "9aa9f4036de1f6d9b8c3b0f6670ac4008f1772535d8f8c5f958184a2cd262aff",
+    "consumer_builds": 0,
+    "device_framework_build": "NOT_RUN",
+    "distribution_manifest_sha256": "a8a0cc7a872d90ec87688729465d5ed98bbde44ed34df9b016f098b983693e30",
+    "distribution_unchanged": true,
+    "editable_mount": "API_COMPILED_NATIVE_UI_NOT_RUN",
+    "external_consumer_build": "REUSED_SUCCESSFUL_ORIGINAL_PRODUCER",
+    "finished_at": "2026-11-23T06:30:27.796331+00:00",
+    "framework_builds": 0,
+    "framework_producer": {
+      "failed_step": "Build the genuine framework and execute the separate binary consumer",
+      "head_branch": "codex/otzaria-original-editor-framework-v13-body-reviewed-20261122",
+      "job_id": 137324774911,
+      "job_name": "original-editor-framework",
+      "repository": "davidpovarsky/anytype-swift",
+      "repository_id": 1289863025,
+      "required_steps": [
+        "Bind original app sources resources packages and the additive target",
+        "Prepare and verify the original SDK snapshot",
+        "Verify actual Xcode27 and create original owned OS27 simulators",
+        "Verify the recorded original Heart producer and exact binary slices"
+      ],
+      "run_attempt": 1,
+      "run_id": 45060396175,
+      "source_sha": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+      "workflow_path": ".github/workflows/pinkha-original-editor-framework.yml"
+    },
+    "framework_source_sha": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+    "kind": "ORIGINAL_SIGNED_CONSUMER_RUNTIME_CONTINUATION",
+    "native_editor_ui_tests": 0,
+    "original_app_runtime": "NOT_RUN",
+    "original_clang_declarations": {
+      "declaration_file_count": 1394,
+      "header_root_count": 19,
+      "manifest_sha256": "8d6ec0a2cfba4506c9d2f878bb81b105f6007c020e416f99d9ad36e2c4b4b469",
+      "module_map_count": 19
+    },
+    "original_framework_build": "REUSED_SUCCESSFUL_ORIGINAL_PRODUCER",
+    "original_source_sha256": "f3d4b3f1a4d5f4fea8b5291cb652c2815e55c29706e2569f365facc88a2e14d1",
+    "owned_simulator_cleanup": {
+      "completed": true,
+      "delete": {
+        "effective_returncode": 0,
+        "timed_out": false
+      },
+      "owned_device_proven_absent": true,
+      "owned_groups_drained": true,
+      "owned_udid": "0EE975EE-03AE-466C-BE1F-079DCE1B328E",
+      "post_state": {
+        "effective_returncode": 0,
+        "timed_out": false
+      },
+      "shutdown": {
+        "effective_returncode": 0,
+        "timed_out": false
+      }
+    },
+    "owned_simulator_cleanup_completed": true,
+    "phase": "COMPLETE",
+    "preflight": {
+      "run_attempt": "1",
+      "run_id": "45123300449",
+      "selected": {
+        "ipad": {
+          "name": "Pinkha-UI27-45123300449-ipad",
+          "udid": "0EE975EE-03AE-466C-BE1F-079DCE1B328E"
+        }
+      },
+      "source_sha": "e9504bc3622383eac99ee3aabfef89d0abade8b7",
+      "status": "PREFLIGHT_PASS_UI_NOT_RUN",
+      "xcode": "Xcode 27.0\nBuild version 27A266a"
+    },
+    "retained_affected_controls_passed": 8,
+    "retained_source_controls_passed": 245,
+    "runtime_qualification_producer": {
+      "control_sha": "e9504bc3622383eac99ee3aabfef89d0abade8b7",
+      "head_branch": "codex/otzaria-sdk-runtime-20261123",
+      "job_name": "original-editor-signed-consumer",
+      "repository": "davidpovarsky/anytype-swift",
+      "repository_id": 1289863025,
+      "run_attempt": 1,
+      "run_id": 45123300449,
+      "workflow_path": ".github/workflows/pinkha-original-editor-signed-consumer.yml"
+    },
+    "same_toolchain_only": true,
+    "schema": 2,
+    "sdk": "27.0",
+    "simulator_attempts": 1,
+    "source_controls_replayed": 0,
+    "started_at": "2026-11-23T06:26:07.202530+00:00",
+    "status": "ACTUAL_ORIGINAL_FRAMEWORK_EXTERNAL_IMPORT_LINK_RESOURCES_PASS",
+    "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+    "verified_runtime_observations": [
+      {
+        "editable_mount": "NOT_EXPOSED",
+        "language": "en",
+        "native_editor_ui_tests": 0,
+        "status": "ACTUAL_IMPORT_LINK_RESOURCE_RUNTIME_PASS"
+      },
+      {
+        "editable_mount": "NOT_EXPOSED",
+        "language": "he",
+        "native_editor_ui_tests": 0,
+        "status": "ACTUAL_IMPORT_LINK_RESOURCE_RUNTIME_PASS"
+      }
+    ]
+  },
+  "consumer-en-observation.json": {
+    "inspection": {
+      "darkTextRGBA": [
+        0.9529411764705882,
+        0.9529411764705882,
+        0.9529411764705882,
+        1
+      ],
+      "fontBytes": 110308,
+      "fontName": "IBMPlexMono",
+      "fontResourceURL": "/Users/runner/Library/Developer/CoreSimulator/Devices/0EE975EE-03AE-466C-BE1F-079DCE1B328E/data/Containers/Bundle/Application/7D371B3F-C1E7-4B6E-9B8E-B425958B2CA8/OriginalEditorConsumer.app/DesignKit_DesignKit.bundle/IBMPlexMono-Regular.ttf",
+      "fontSHA256": "fe068226e163685a9f34b046dea8d049fc9802fdf54d3bdf9b1d3247860c7175",
+      "imageHeight": 24,
+      "imagePNGBytes": 1026,
+      "imagePNGSHA256": "517947773fb279db6f1706d10c2af96bb246a7d150984d055cfcb77448fb371f",
+      "imageWidth": 24,
+      "lightTextRGBA": [
+        0.1450980392156863,
+        0.1450980392156863,
+        0.1450980392156863,
+        1
+      ],
+      "localizedCancel": "Cancel",
+      "moduleBundleIdentifier": "org.otzaria.anytype.original-editor",
+      "moduleBundleURL": "/Users/runner/Library/Developer/CoreSimulator/Devices/0EE975EE-03AE-466C-BE1F-079DCE1B328E/data/Containers/Bundle/Application/7D371B3F-C1E7-4B6E-9B8E-B425958B2CA8/OriginalEditorConsumer.app/Frameworks/AnytypeOriginalEditor.framework",
+      "originalTypeNames": [
+        "AnytypeOriginalEditor.EditorPageController",
+        "AnytypeOriginalEditor.EditorPageModuleAssembly",
+        "AnytypeOriginalEditor.PreparedEditorPageSession",
+        "AnytypeOriginalEditor.EditorDocumentWriteOwner"
+      ]
+    },
+    "mainBundleIdentifier": "org.otzaria.acceptance.original-editor",
+    "mainBundleURL": "/Users/runner/Library/Developer/CoreSimulator/Devices/0EE975EE-03AE-466C-BE1F-079DCE1B328E/data/Containers/Bundle/Application/7D371B3F-C1E7-4B6E-9B8E-B425958B2CA8/OriginalEditorConsumer.app",
+    "nonce": "834A80B2-1295-4DD6-8222-B05B550F986E",
+    "preferredLanguages": [
+      "en"
+    ],
+    "schema": 1,
+    "status": "ACTUAL_EXTERNAL_CONSUMER_RESOURCE_OBSERVATION"
+  },
+  "consumer-he-observation.json": {
+    "inspection": {
+      "darkTextRGBA": [
+        0.9529411764705882,
+        0.9529411764705882,
+        0.9529411764705882,
+        1
+      ],
+      "fontBytes": 110308,
+      "fontName": "IBMPlexMono",
+      "fontResourceURL": "/Users/runner/Library/Developer/CoreSimulator/Devices/0EE975EE-03AE-466C-BE1F-079DCE1B328E/data/Containers/Bundle/Application/7D371B3F-C1E7-4B6E-9B8E-B425958B2CA8/OriginalEditorConsumer.app/DesignKit_DesignKit.bundle/IBMPlexMono-Regular.ttf",
+      "fontSHA256": "fe068226e163685a9f34b046dea8d049fc9802fdf54d3bdf9b1d3247860c7175",
+      "imageHeight": 24,
+      "imagePNGBytes": 1026,
+      "imagePNGSHA256": "517947773fb279db6f1706d10c2af96bb246a7d150984d055cfcb77448fb371f",
+      "imageWidth": 24,
+      "lightTextRGBA": [
+        0.1450980392156863,
+        0.1450980392156863,
+        0.1450980392156863,
+        1
+      ],
+      "localizedCancel": "ביטול",
+      "moduleBundleIdentifier": "org.otzaria.anytype.original-editor",
+      "moduleBundleURL": "/Users/runner/Library/Developer/CoreSimulator/Devices/0EE975EE-03AE-466C-BE1F-079DCE1B328E/data/Containers/Bundle/Application/7D371B3F-C1E7-4B6E-9B8E-B425958B2CA8/OriginalEditorConsumer.app/Frameworks/AnytypeOriginalEditor.framework",
+      "originalTypeNames": [
+        "AnytypeOriginalEditor.EditorPageController",
+        "AnytypeOriginalEditor.EditorPageModuleAssembly",
+        "AnytypeOriginalEditor.PreparedEditorPageSession",
+        "AnytypeOriginalEditor.EditorDocumentWriteOwner"
+      ]
+    },
+    "mainBundleIdentifier": "org.otzaria.acceptance.original-editor",
+    "mainBundleURL": "/Users/runner/Library/Developer/CoreSimulator/Devices/0EE975EE-03AE-466C-BE1F-079DCE1B328E/data/Containers/Bundle/Application/7D371B3F-C1E7-4B6E-9B8E-B425958B2CA8/OriginalEditorConsumer.app",
+    "nonce": "DD4E22AD-9ED2-49D4-9E4B-FDC67EB9E920",
+    "preferredLanguages": [
+      "he"
+    ],
+    "schema": 1,
+    "status": "ACTUAL_EXTERNAL_CONSUMER_RESOURCE_OBSERVATION"
+  },
+  "consumer-en-launch-result.json": {
+    "language": "en",
+    "nonce": "834A80B2-1295-4DD6-8222-B05B550F986E",
+    "pid": 6923,
+    "stdout": "org.otzaria.acceptance.original-editor: 6923"
+  },
+  "consumer-he-launch-result.json": {
+    "language": "he",
+    "nonce": "DD4E22AD-9ED2-49D4-9E4B-FDC67EB9E920",
+    "pid": 7140,
+    "stdout": "org.otzaria.acceptance.original-editor: 7140"
+  },
+  "original-dynamic-embed-binding.json": {
+    "binary_mutations": 0,
+    "complete_distribution_frameworks_checked": 17,
+    "dynamic_frameworks": {
+      "AmplitudeCore.framework": {
+        "bytes": 1132693,
+        "files": 13
+      },
+      "AnyCryptoSwift_4B7B7B8889D5B5C4_PackageProduct.framework": {
+        "bytes": 130022,
+        "files": 3
+      },
+      "AnytypeCore.framework": {
+        "bytes": 537257,
+        "files": 3
+      },
+      "AnytypeOriginalEditor.framework": {
+        "bytes": 242977752,
+        "files": 41
+      },
+      "AppTarget_-256A0C750C206F_PackageProduct.framework": {
+        "bytes": 57268,
+        "files": 3
+      },
+      "BigInt_175F1397B99A03_PackageProduct.framework": {
+        "bytes": 508728,
+        "files": 3
+      },
+      "Crypto_17A3B1FFC41E47_PackageProduct.framework": {
+        "bytes": 109989,
+        "files": 9
+      },
+      "Factory_32A9B87E1196645F_PackageProduct.framework": {
+        "bytes": 430943,
+        "files": 3
+      },
+      "Logger.framework": {
+        "bytes": 11053752,
+        "files": 3
+      },
+      "NotificationsCore_5AD5AD79262EBF4_PackageProduct.framework": {
+        "bytes": 254156,
+        "files": 3
+      },
+      "ProtobufMessages.framework": {
+        "bytes": 211157450,
+        "files": 3
+      },
+      "SecureService.framework": {
+        "bytes": 96719,
+        "files": 3
+      },
+      "Services.framework": {
+        "bytes": 5808096,
+        "files": 3
+      },
+      "SharedContentManager.framework": {
+        "bytes": 362214,
+        "files": 3
+      },
+      "SwiftProtobuf_7CEE9AB92C12BC6B_PackageProduct.framework": {
+        "bytes": 4953064,
+        "files": 9
+      }
+    },
+    "runtime_execution": false,
+    "schema": "otzaria.original-producer.dynamic-embed-binding/1",
+    "static_distribution_only": [
+      "Lib.framework",
+      "Sentry.framework"
+    ],
+    "status": "EXACT_ORIGINAL_DYNAMIC_EMBED_SET_AND_BYTES_PASS"
+  },
+  "cleanup/OWNED_SIMULATOR_CLEANUP.json": {
+    "completed": true,
+    "delete": {
+      "effective_returncode": 0,
+      "timed_out": false
+    },
+    "owned_device_proven_absent": true,
+    "owned_groups_drained": true,
+    "owned_udid": "0EE975EE-03AE-466C-BE1F-079DCE1B328E",
+    "post_state": {
+      "effective_returncode": 0,
+      "timed_out": false
+    },
+    "shutdown": {
+      "effective_returncode": 0,
+      "timed_out": false
+    }
+  },
+  "actual_commands": {
+    "commands": [
+      {
+        "label": "control-head",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415167.2105632
+          }
+        ]
+      },
+      {
+        "label": "producer-ancestor",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415167.224641
+          }
+        ]
+      },
+      {
+        "label": "control-diff",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415167.244311
+          }
+        ]
+      },
+      {
+        "label": "control-status",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415167.395251
+          }
+        ]
+      },
+      {
+        "label": "tree-Anytype-Resources",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415167.412313
+          }
+        ]
+      },
+      {
+        "label": "tree-Anytype-Sources",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415167.428213
+          }
+        ]
+      },
+      {
+        "label": "tree-Modules",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415167.44639
+          }
+        ]
+      },
+      {
+        "label": "original-Anytype.xcodeproj",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415167.464211
+          }
+        ]
+      },
+      {
+        "label": "original-OriginalEditorFramework",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415167.4822369
+          }
+        ]
+      },
+      {
+        "label": "xcode",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415169.788196
+          }
+        ]
+      },
+      {
+        "label": "swift",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415172.4691079
+          }
+        ]
+      },
+      {
+        "label": "sdk",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415174.368781
+          }
+        ]
+      },
+      {
+        "label": "consumer-signature",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415220.8146281
+          }
+        ]
+      },
+      {
+        "label": "runtimes",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415225.730985
+          }
+        ]
+      },
+      {
+        "label": "devices-before",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415225.923039
+          }
+        ]
+      },
+      {
+        "label": "create",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415226.2914271
+          }
+        ]
+      },
+      {
+        "label": "boot",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415229.871457
+          }
+        ]
+      },
+      {
+        "label": "boot-status",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415302.134412
+          }
+        ]
+      },
+      {
+        "label": "install",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415361.997024
+          }
+        ]
+      },
+      {
+        "label": "installed-app",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415374.222454
+          }
+        ]
+      },
+      {
+        "label": "installed-data",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415375.618051
+          }
+        ]
+      },
+      {
+        "label": "launch-help",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415387.874034
+          }
+        ]
+      },
+      {
+        "label": "consumer-en-launch",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415401.236804
+          }
+        ]
+      },
+      {
+        "label": "consumer-en-terminate",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415405.443939
+          }
+        ]
+      },
+      {
+        "label": "consumer-he-launch",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415406.521811
+          }
+        ]
+      },
+      {
+        "label": "consumer-he-terminate",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415409.83862
+          }
+        ]
+      }
+    ],
+    "downloads": [
+      {
+        "label": "original-run",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415175.02997
+          }
+        ]
+      },
+      {
+        "label": "original-job",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415175.481258
+          }
+        ]
+      },
+      {
+        "label": "original-job-upload-log",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415176.6664739
+          }
+        ]
+      },
+      {
+        "label": "metadata-consumer",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415176.999669
+          }
+        ]
+      },
+      {
+        "label": "metadata-evidence",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415177.340183
+          }
+        ]
+      },
+      {
+        "label": "metadata-framework",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415177.629479
+          }
+        ]
+      },
+      {
+        "label": "original-evidence",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415179.8413088
+          }
+        ]
+      },
+      {
+        "label": "signed-consumer",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415189.7668679
+          }
+        ]
+      },
+      {
+        "label": "original-framework",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415215.419028
+          }
+        ]
+      }
+    ],
+    "cleanup": [
+      {
+        "label": "shutdown-owned-simulator",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415418.786289
+          }
+        ]
+      },
+      {
+        "label": "delete-owned-simulator",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415425.787884
+          }
+        ]
+      },
+      {
+        "label": "devices-after-cleanup",
+        "returncode": 0,
+        "effective_returncode": 0,
+        "timed_out": false,
+        "cleanup": [
+          {
+            "drained": true,
+            "event": "OWNED_GROUP_ABSENT_AFTER_WAIT",
+            "unix": 1795415427.793586
+          }
+        ]
+      }
+    ]
+  }
+}

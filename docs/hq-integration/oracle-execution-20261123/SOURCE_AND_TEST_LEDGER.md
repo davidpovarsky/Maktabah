@@ -63,3 +63,19 @@ Four further Asana stage updates are recorded. Live12 remains active with tempor
 ## Checkpoint10 — 2026-11-23T06:39:14.124916+00:00
 
 Endpoint45108043207 authenticated5nativePASS; SDK45123300449 GitHubSUCCESS awaitingruntimeintake. Reader45116660011 actualpre-UIcompileFAIL0executed; exactMainActorbridge admittedandnew4-case45124554050active. Library45105081309attempt2actual7FAIL: originalpalettepresentbutAXIDoverwritten; physicalRTLmirroringobserved. Narrowadapterrepairprepared. SliceA3newfilesreviewed, source61babpublished, exactoneworkflowchildfabd2fd activatedfor4realexportsand32archivecontrols. Coldsearch5existingfilechange17newCorecontrolsPASS, originalexecution/genericdiscoveryexact, peerreviewpending. Noaggregate/production/physical/ACKacceptance.
+
+## Checkpoint 11 — authenticated SDK completion and next native gates
+
+The signed external consumer completed actual English and Hebrew runs in 45123300449. Root independently verified the outer archive, all 97 inner members and 96 indexed records, separate process identities, exact original resources and actual owned-simulator deletion. This accepts external import/link/resources on the producer toolchain; mounted editor UI, original app behavior, production ABI and physical-device qualification remain separate.
+
+The unchanged Stage B application/UI trees are now bound to that genuine SDK result. Six actual runtime-evidence admission controls passed; the old eight source controls were not replayed. Root verified all 26 packet records and five unchanged source inputs. A workflow-only child 6dd57e5b7d7ffa570472d31e38881af32ff38177 with exactly two branch substitutions started one push run 45127169339. Its sole observer is job_86cab9825617.
+
+Library source efd7250b and CI binding c581e889 started one seven-case native repair run 45126390934. The original seven failures, actual AX/pixel diagnosis and prior administrative attempt remain historical evidence. Reader4 run 45124554050 continues under its existing sole observer.
+
+Slice A run 45125326998 failed in genuine schema fixture setup after actual property creations. The application binary compiled, but no export specimen or archive-control leaf executed. The owner authenticated the full failure/cleanup and published evidence8e91cea2. Root terminal intake remains pending; no parser/export compatibility is inferred and no blind retry is authorized.
+
+Cold-search source869f6a5a contains only the five accepted product edits, one new Core test and frozen evidence. The 17 actual Core passes and independent peer review are source evidence. Live13 local candidate856cc8b6 passed its new source gate across284 actual input files. Its original workflow, runtime semantics, test, prompt/model/endpoint and timeouts remain unchanged except explicit source/admission bindings. The controller inverse restores exact previously executed lifecycle bytes; three changed-identity controls passed. Independent gate review precedes any credential staging or dispatch.
+
+Root independently read and reversed all seven E2 prerequisite edits, verifying all40 packet entries. Those prerequisites remain source-only. Newly traced original event-registration/FIFO and atomic original-auth admission boundaries are under concrete hunk preparation, with no excluded source changes or production bootstrap activation. Full-v32 Inspector correction replaces periodic reads with an explicit post-resource event and a bounded regular-file read; final source/collector/native gates remain open.
+
+Asana records actual stages without closing broad tasks. Server-created timestamps override an accidental08:54 prose heading in three comments actually created at06:52UTC.

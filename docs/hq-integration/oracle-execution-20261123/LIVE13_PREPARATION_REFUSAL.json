@@ -1,0 +1,15 @@
+{
+  "ok": false,
+  "interpreter": "python3",
+  "sudo": false,
+  "cwd": null,
+  "cleanup": true,
+  "command": [
+    "python3",
+    "/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_508105ebcd7a412d9d43522e19409c8d/script.py"
+  ],
+  "output": "Traceback (most recent call last):\n  File \"/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_508105ebcd7a412d9d43522e19409c8d/script.py\", line 25, in <module>\n    assert hashlib.sha256((d/'LIVE12_INTAKE.json').read_bytes()).hexdigest()=='54761f6b160f9b79a46ad4cf61e89473e21b51293efd8391ebcece8fface3d89'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+  "duration": 2.8,
+  "returncode": 1,
+  "hub_request_id": "hreq_a70b2677294f4e21"
+}

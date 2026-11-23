@@ -1,0 +1,44 @@
+{
+  "verified_product_rows": [
+    {
+      "path": "Anytype/Sources/ApplicationLayer/AppCoordinator/ApplicationCoordinatorView.swift",
+      "actual_after_matches_packet": true,
+      "full_inverse_recovers_original": true
+    },
+    {
+      "path": "Anytype/Sources/ApplicationLayer/AppCoordinator/ApplicationCoordinatorViewModel.swift",
+      "actual_after_matches_packet": true,
+      "full_inverse_recovers_original": true
+    },
+    {
+      "path": "Anytype/Sources/ApplicationLayer/GlobalEnv/AppInterfaceStyle.swift",
+      "actual_after_matches_packet": true,
+      "full_inverse_recovers_original": true
+    },
+    {
+      "path": "Anytype/Sources/ApplicationLayer/GlobalEnv/KeyboardDismiss.swift",
+      "actual_after_matches_packet": true,
+      "full_inverse_recovers_original": true
+    },
+    {
+      "path": "Anytype/Sources/ApplicationLayer/GlobalEnv/PresentedDismiss.swift",
+      "actual_after_matches_packet": true,
+      "full_inverse_recovers_original": true
+    },
+    {
+      "path": "Anytype/Sources/ServiceLayer/Auth/LoginStateService.swift",
+      "actual_after_matches_packet": true,
+      "full_inverse_recovers_original": true
+    },
+    {
+      "path": "Anytype/Sources/ServiceLayer/PushNotifications/PushNotificationsPermissionService.swift/PushNotificationsPermissionService.swift",
+      "actual_after_matches_packet": true,
+      "full_inverse_recovers_original": true
+    }
+  ],
+  "packet_rows_verified": 40,
+  "root_read_full_diff": true,
+  "scope": "Seven prerequisites accepted as source only; Combine/UIKit/account startup/FIFO draining still unqualified; later auth proposal needs review",
+  "portable_result_sha256": "6fdf80a3336c1b737c0ef5afd082d015c2713385c822d61915aa5088c31d2178",
+  "extraction_snapshot": "EXTRACTION.json is preexecution initial FAIL/default state; final RESULT.json and command streams show actual8PASS; do not relabel initial snapshot"
+}
