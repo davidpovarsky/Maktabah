@@ -1,0 +1,53 @@
+{
+  "base": "9bee6104e2938767b4e4e1047c56da8991d621fb",
+  "source_files": [
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+      "base_sha256": "9629b2586f3b31db7cbe7ddcb78b836e856401abc2a5a91b3a4734c7f08d5da7",
+      "after_sha256": "f449f5be10b1e7f43a7769fa56678e699db7bd306eafe7e1bf54d4caf17b8c23",
+      "bytes": 6420
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+      "base_sha256": "56a6d646f6c570354be9dc3eecde8404765498c6e8b973874ff5c39d6817824e",
+      "after_sha256": "61d7627dd9c68513a3a6102b12154f2b11b1ffd4dab7cbfb226563b59ecf2252",
+      "bytes": 50933
+    },
+    {
+      "path": "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift",
+      "base_sha256": "1ad1a21996a2fd0804ae5c548f0f232dd63ca8868bcb0f11ce88275afac3196a",
+      "after_sha256": "90916d670e0a58623bce4c60cb09ff2678bbe4f308b50201897b278cf232aaca",
+      "bytes": 31084
+    },
+    {
+      "path": "Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift",
+      "base_sha256": "6b244f30eed64b387c974d88ca27e01ccb2086261795e3e77b321e5db9d03d54",
+      "after_sha256": "b0ff33f02f65d5f0632b15a354cbe2f7dd41b548abea5d83fb20be39e7ca52c9",
+      "bytes": 28870
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift",
+      "base_sha256": "b34abc9505a4b345c0951dad398f0d4a99f5d449b056f8ba68bd3f71a1ad502b",
+      "after_sha256": "7f762523d0cde1ba938e1f161309472090f804c2d8af48cdf3e02f1e998926c1",
+      "bytes": 24385
+    },
+    {
+      "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/ExistingSearchPreparationObservationTests.swift",
+      "base": "ABSENT",
+      "after_sha256": "ad24426235ea2b469c84b9b23e99309651cc27e647df9b077129379fb525fd0a",
+      "bytes": 16954
+    }
+  ],
+  "original_generic_advertisement_and_full_execute_perform_deadline_policy_exact": true,
+  "original_live_factory_make_prepare_and_entire_readiness_proof_exact_except_new_wiring": true,
+  "original_facade_prepare_function_exact": true,
+  "host_delta_one_call_only": true,
+  "core_controls": {
+    "pass": 17,
+    "fail": 0,
+    "skip": 0,
+    "actual_result_sha256": "f000fb744a88fadeecd6be89e40ab5864be4b396f2a57c1cb76867df3c46daad"
+  },
+  "scope": "Original Core with explicit provider/clock doubles only; Apple integration, actual installed assets and provider-native acceptance NOT_RUN",
+  "product_diff_sha256": "d43daabc0faed49a63443c6be0ad6f90e8208961b0ac8981f5ac45973d424752"
+}

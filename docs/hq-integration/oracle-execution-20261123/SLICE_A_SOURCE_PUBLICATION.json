@@ -1,0 +1,16 @@
+{
+  "after": {
+    "refs/heads/codex/otzaria-owned-import-contract-20261123": "61babda5e8e2c2881b50b76328f92e220772225e",
+    "refs/heads/source/otzaria-native-archive-20261123": "61babda5e8e2c2881b50b76328f92e220772225e"
+  },
+  "atomic_two_scoped_ref_publication": true,
+  "before": {
+    "refs/heads/codex/otzaria-owned-import-contract-20261123": "d9cc82a997e239700fc30e31b5e9c30c6a21e9e1"
+  },
+  "expected_before": "d9cc82a997e239700fc30e31b5e9c30c6a21e9e1",
+  "native_execution": "NOT_RUN",
+  "source": "61babda5e8e2c2881b50b76328f92e220772225e",
+  "stderr": "To https://github.com/davidpovarsky/anytype-swift.git\n   d9cc82a997..61babda5e8  61babda5e8e2c2881b50b76328f92e220772225e -> codex/otzaria-owned-import-contract-20261123\n * [new branch]            61babda5e8e2c2881b50b76328f92e220772225e -> source/otzaria-native-archive-20261123\n",
+  "stdout": "",
+  "workflow_published": false
+}

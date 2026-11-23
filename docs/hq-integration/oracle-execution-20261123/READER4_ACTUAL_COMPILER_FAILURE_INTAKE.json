@@ -1,0 +1,47 @@
+{
+  "schema": "otzaria.reader4.terminal-intake/1",
+  "run_id": 45116660011,
+  "attempt": 1,
+  "source_sha": "99b71a011fa5a060f0334a5312d498830eaeda77",
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45116660011",
+  "artifact": {
+    "id": 14792808621,
+    "bytes": 209257,
+    "sha256": "9d1e5c345df11f01d28d2bd717a04c8542e39458437ae614e33ed99f2151a4e8"
+  },
+  "execution_inputs_independently_verified": 285,
+  "sdk_source_hashes_independently_verified": 11,
+  "application_source_sha": "cd1e4991253d7be0ff436e9ff51805d3539d33de",
+  "application_trees": {
+    "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "c99f99a8ac221988fedb23964574cd60f5d8e7b4"
+  },
+  "apple_typecheck": {
+    "status": "FAIL",
+    "includesCodeGeneration": true,
+    "compilerExitCode": 1,
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+    "sdk": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.2.sdk",
+    "target": "arm64-apple-ios27.0-simulator"
+  },
+  "primary_errors": [
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:776:27: error: call to main actor-isolated initializer 'init(application:windowed:)' in a synchronous nonisolated context [#ActorIsolatedCall]",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:782:75: error: call to main actor-isolated static method 'text' in a synchronous nonisolated context [#ActorIsolatedCall]",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:782:92: error: main actor-isolated property 'evaluations' can not be referenced from a nonisolated context"
+  ],
+  "counts": {
+    "pass": 0,
+    "fail": 0,
+    "skip": 0,
+    "not_run": 4
+  },
+  "runtime_executed": false,
+  "root_cause": "Nonisolated synchronous XCTest capture calls newly MainActor-isolated native observation constructor and diagnostic read directly. App build and native tests did not execute.",
+  "secondary_collector_error": "Missing hq-stage2/result.json after earlier compiler failure; not a separate runtime failure.",
+  "proposed_repair": "Explicit synchronous real main-queue entry for construction, evaluation and diagnostic value read; preserve20s predicate and original assertions.",
+  "native_acceptance": false,
+  "intake_utc": "2026-11-23T06:23:42.120015+00:00"
+}

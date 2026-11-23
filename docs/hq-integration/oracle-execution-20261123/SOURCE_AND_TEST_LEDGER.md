@@ -59,3 +59,7 @@ Four further Asana stage updates are recorded. Live12 remains active with tempor
 - Live12 first observer ended while same run45114449674 remained active; process and byte-lock release verified. Sole continuation job_d186cf62faa3,120s/3300s, no redispatch. Temporary secret cleanup remains required at terminal state.
 - Root production native SDK build plan and exact ordered native composition input published atb1dfc494; no future framework build or CI activated.
 - Asana checkpoint9 includes actual accepted Heart milestone and mixed PERF results; no product task falsely closed.
+
+## Checkpoint10 — 2026-11-23T06:39:14.124916+00:00
+
+Endpoint45108043207 authenticated5nativePASS; SDK45123300449 GitHubSUCCESS awaitingruntimeintake. Reader45116660011 actualpre-UIcompileFAIL0executed; exactMainActorbridge admittedandnew4-case45124554050active. Library45105081309attempt2actual7FAIL: originalpalettepresentbutAXIDoverwritten; physicalRTLmirroringobserved. Narrowadapterrepairprepared. SliceA3newfilesreviewed, source61babpublished, exactoneworkflowchildfabd2fd activatedfor4realexportsand32archivecontrols. Coldsearch5existingfilechange17newCorecontrolsPASS, originalexecution/genericdiscoveryexact, peerreviewpending. Noaggregate/production/physical/ACKacceptance.

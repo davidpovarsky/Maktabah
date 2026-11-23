@@ -1,0 +1,147 @@
+{
+  "schema": "otzaria.library-morph.terminal-intake/1",
+  "run_id": 45105081309,
+  "attempt": 2,
+  "source_sha": "cba554ded79144d48642b12dba926a30a8eac451",
+  "application_source_sha": "57136023dc6bd86b9fd1ffc853d20b97611ddff4",
+  "application_trees": {
+    "Source": "c51810d1199f81a59554b3c1efbcf3460db8bfcb",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "7407753fd4811ebf3da6b2835b479786fad0ac2d"
+  },
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45105081309/attempts/2",
+  "evidence_artifact": {
+    "id": 14792879762,
+    "bytes": 11052569,
+    "sha256": "5e1a275ebfdc3a6d712f2a781c66610ec22568751816e75090638335f7adb8b5"
+  },
+  "captures_artifact": {
+    "id": 14793159032,
+    "bytes": 598449768,
+    "sha256": "dff54ddb22d5094f788c16071386c93944de62ea2d2447c0adf5a79673f361f8"
+  },
+  "execution_inputs_independently_verified": 286,
+  "compiled_source_input_binding": {
+    "total": 1012,
+    "exact_git_blobs": 1011,
+    "declared_privacy_aggregation": "Source/PrivacyInfo.xcprivacy",
+    "generated_bytes_and_original_and_all_added_reason_dependency_bytes_independently_verified": true
+  },
+  "apple_sdk_typecheck": "PASS",
+  "app_build": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+  "counts": {
+    "pass": 0,
+    "fail": 7,
+    "skip": 0,
+    "not_run": 0
+  },
+  "case_outcomes": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "device": "ipad11",
+      "expected": "Actual wired native toolbar bounds; genuine resized window; real filtered fixture-book result; Escape dismissal; real Inspector open/close; exact text/locator preserved; SpringBoard semantic Window Controls and measured full-size restore",
+      "configuration_label": "11-reader",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "configuration_label": "11-reader",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "configuration_label": "11-reader",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+      "configuration_label": "11-reader",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "configuration_label": "11-reader",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testLibraryMorphOutsideDismissalPreservesCanonicalQueryAndReader",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in FaithfulReaderUIAcceptanceTests/testLibraryMorphOutsideDismissalPreservesCanonicalQueryAndReader",
+      "configuration_label": "11-reader",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testLibraryMorphRepeatedOpenCloseReleasesHiddenKeyboardFocus",
+      "device": "ipad11",
+      "expected": "Original XCTest assertions retained in FaithfulReaderUIAcceptanceTests/testLibraryMorphRepeatedOpenCloseReleasesHiddenKeyboardFocus",
+      "configuration_label": "11-reader",
+      "actual": "Failed"
+    }
+  ],
+  "device": {
+    "architecture": "arm64",
+    "deviceId": "A626A818-1A20-4C55-8C94-FF0FAB782E62",
+    "deviceName": "Faithful 11-inch b8435bbd",
+    "modelName": "iPad Pro 11-inch (M5)",
+    "osBuildNumber": "24B8117",
+    "osVersion": "27.2",
+    "platform": "iOS Simulator"
+  },
+  "compiled_image_bytes_unchanged": true,
+  "built_binary_sha256": {
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app": "422166efc6fd6850391122e25c08243e5dbafbe406bcbab1b5a56333c0e18b91",
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app": "c503896a111691c5df09a3dc8b761cc8c7d925264473718e6ca46ccebeee9381",
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest": "e238bc115e3cf50fc27c3fdfd62e21003d7d0f2779bbfc14fd1d87e4efd42467"
+  },
+  "primary_failure": "All seven fail the unchanged original palette-container existence lookup. Their actual failure AX trees contain the original Command palette and focused TextField, but outer shell identifier replaces reader-library-command-palette.",
+  "all_seven_ax_trees_verified": [
+    "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout()",
+    "FaithfulReaderUIAcceptanceTests/testLibraryMorphOutsideDismissalPreservesCanonicalQueryAndReader()",
+    "FaithfulReaderUIAcceptanceTests/testLibraryMorphRepeatedOpenCloseReleasesHiddenKeyboardFocus()",
+    "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal()",
+    "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable()",
+    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+    "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration()"
+  ],
+  "additional_observed_geometry": {
+    "case": "FaithfulReaderUIAcceptanceTests/testLibraryMorphOutsideDismissalPreservesCanonicalQueryAndReader",
+    "capture": "selected/02/latest-native-screen.png",
+    "hierarchy": "selected/02/compact-morph-hierarchy.txt",
+    "window_width": 1210,
+    "native_launcher_rect": [
+      186.5,
+      86,
+      240,
+      44
+    ],
+    "visible_compact_bounds_x": [
+      783.5,
+      1023.5
+    ],
+    "relation": "1210 - 186.5 - 240 = 783.5; inherited RTL mirrors physical window position",
+    "expanded_palette_failure_ax_rect": [
+      558,
+      117,
+      640,
+      267
+    ]
+  },
+  "media_boundary": "Latest PNGs for cases01/02/04 precede palette open. Case06 final PNG is later teardown after close. Case07 final PNG visibly retains open original palette and keyboard. Failure AX trees and final query records are separately timestamped. No video extracted.",
+  "capture_selection_receipt": "/mnt/development/projects/diagnostics/otzaria-library-morph-20261123/45105081309/attempt-2/captures-intake/SELECTED_FAILURES.json",
+  "capture_selection_receipt_sha256": "463ce2eba3d308a4e9d1a066cba90ad3f0e432114ee50cebd6f799839e5cf24c",
+  "selection_bytes": 8778572,
+  "downstream_query_dismiss_result_acceptance": "NOT_EXERCISED_AFTER_EARLY_ASSERTION",
+  "prior_attempt1": "Administrative failure before UI; preserved separately, not counted as seven runtime failures",
+  "retry_dispatched": false,
+  "acceptance": false,
+  "intake_utc": "2026-11-23T06:23:42.176760+00:00"
+}

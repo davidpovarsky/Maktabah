@@ -1,0 +1,132 @@
+{
+  "sdk_outer_receipt_root_independent_verification": {
+    "source": "e9504bc3622383eac99ee3aabfef89d0abade8b7",
+    "tree": "8a10921eb5cf8ebe099f4d666dbbd81916a055ee",
+    "retained_twelve_fields_exact": [
+      "tests_run",
+      "status",
+      "started_ids",
+      "passed_ids",
+      "expected_ids",
+      "errors",
+      "failures",
+      "skipped"
+    ],
+    "raw_logs_original_receipt_exact": true,
+    "two_original_source_blocks_exact": true,
+    "actual_local_command_receipts_verified": 14,
+    "indexed_file_sizes_and_hashes_verified": {
+      "framework-role-admission": 71,
+      "outer-source-admission-45119225997": 36
+    },
+    "basis": "The retained twelve selected cases execute unchanged original producer flow or combine_launch_help. The source driver change is separately bound by the six authentic role controls and prior exact metadata/raw function correspondence. Historical counts and logs remain their original executions, not a new 12/26-case execution.",
+    "root_disposition": "ACCEPT_ONE_SCOPED_PUSH_WITH_UNCHANGED_WORKFLOW_NO_MANUAL_DISPATCH"
+  },
+  "endpoint_root_index_and_native_log_verified": {
+    "indexed_members_actual_hash_and_bytes": 39,
+    "actual_leaf_outcomes": [
+      {
+        "Time": "2026-11-23T05:48:21.770393Z",
+        "Action": "pass",
+        "Package": "github.com/anyproto/anytype-heart/clientlibrary/service",
+        "Test": "TestOtzariaOriginalSchemaEndpoint/GeneratedValidationDoesNotCreateNativeRoots",
+        "Elapsed": 0
+      },
+      {
+        "Time": "2026-11-23T05:48:22.16766Z",
+        "Action": "pass",
+        "Package": "github.com/anyproto/anytype-heart/clientlibrary/service",
+        "Test": "TestOtzariaOriginalSchemaEndpoint/GeneratedRegistrationCopiesActualNativeReadback",
+        "Elapsed": 0.4
+      },
+      {
+        "Time": "2026-11-23T05:48:22.245196Z",
+        "Action": "pass",
+        "Package": "github.com/anyproto/anytype-heart/clientlibrary/service",
+        "Test": "TestOtzariaOriginalSchemaEndpoint/CanceledNativeApplyPreservesErrorPhaseHistory",
+        "Elapsed": 0.08
+      },
+      {
+        "Time": "2026-11-23T05:48:24.025306Z",
+        "Action": "pass",
+        "Package": "github.com/anyproto/anytype-heart/clientlibrary/service",
+        "Test": "TestOtzariaOriginalSchemaEndpoint/SignedNativeReaderRoleMapsPermissionDenied",
+        "Elapsed": 1.78
+      },
+      {
+        "Time": "2026-11-23T05:48:24.111686Z",
+        "Action": "pass",
+        "Package": "github.com/anyproto/anytype-heart/clientlibrary/service",
+        "Test": "TestOtzariaOriginalSchemaEndpoint/StoppedNativeRuntimeRejectsHistoricalRequest",
+        "Elapsed": 0.09
+      }
+    ],
+    "commands_verified_zero_and_drained": true,
+    "run_url": "https://github.com/davidpovarsky/anytype-swift/actions/runs/45108043207"
+  },
+  "sliceA_api_tree_created": {
+    "sha": "197f50d1b48426efd1bd328397aec2c28641f69a"
+  },
+  "sliceA_api_commit_created": {
+    "sha": "fabd2fd824ce819b28dfad01fc24b204e3391bab"
+  },
+  "sliceA_api_ref_activated": {
+    "success": true
+  },
+  "asana_endpoint_pass_sdk5_started": {
+    "data": {
+      "gid": "1220776675644027",
+      "created_at": "2026-11-23T06:21:01.290Z",
+      "is_pinned": false,
+      "text": "23.11.2026 — אימות שלב הרישום המקורי והמשך SDK (08:24, Asia/Hebron).\n\nמסלול endpoint המקורי הושלם: הרצה45108043207, ניסיון1, מקור53b52d380c3a87d25275bb391367b37eb5428d3d, חמש בדיקות native אמיתיות PASS / אפס FAIL / אפס SKIP. בדיקת קלט יצרה אפס שורשי סכימה; שתי קריאות הרישום הניבו18 הגדרות מקוריות ייחודיות ו־Apply מקורי אחד עם קריאה עצמאית מהאחסון; ביטול אחריApply שמר CANCELED ואת ההיסטוריה והשינויים שנכתבו; הרשאת reader חתומה מחשבון אחר נדחתה ללא יצירה; לאחרAccountStop המקורי הוחזרRUNTIME_UNAVAILABLE.\n\nאומת בארטיפקט המקורי14793282290: 2,452,160 בתים, SHA256 ee97925cb570ffaee7f89f6eef09ab6c907a720228a91b664bcb5c4877e20035, 40 קובצי ZIP בטוחים ותקינים, כל39 שורות האינדקס, חמש תוצאות העלים ביומן המקורי וכל11 הפקודות הסתיימו ונוקזו. חבילת הראיות פורסמה ב־d9cc82a997e239700fc30e31b5e9c30c6a21e9e1. אין העברה של התוצאה לאימות Swift/mobile, לפתיחה קרה, לשוויון גוף מלא או ל־Host ACK; אלה נשארים שערים נפרדים.\nhttps://github.com/davidpovarsky/anytype-swift/actions/runs/45108043207\n\nSDK: ההרצה הקודמת45119225997 נעצרה בשער קבלות המקור לפני כל בדיקה native. תיקון תיעודי בלבדe9504bc3622383eac99ee3aabfef89d0abade8b7 נבדק מול הלוגים והבדיקות ההיסטוריות ללא שינוי תוצאותיהן; 14 פקודות admission מקוריות עברו. דחיפה יחידה הפעילה כעת45123300449; מעקב יחיד פעיל, אין תוצאה סופית עדיין.\nhttps://github.com/davidpovarsky/anytype-swift/actions/runs/45123300449\n\nהמשך: השלמת SDK, ביקורת קוד הייבוא slice A, והשלמת מסך החשבון באמצעות בעלות הביטול המקורית. המשימה הרחבה נשארת פתוחה עד השלמת שעריה.",
+      "html_text": "<body>23.11.2026 — אימות שלב הרישום המקורי והמשך SDK (08:24, Asia/Hebron).\n\nמסלול endpoint המקורי הושלם: הרצה45108043207, ניסיון1, מקור53b52d380c3a87d25275bb391367b37eb5428d3d, חמש בדיקות native אמיתיות PASS / אפס FAIL / אפס SKIP. בדיקת קלט יצרה אפס שורשי סכימה; שתי קריאות הרישום הניבו18 הגדרות מקוריות ייחודיות ו־Apply מקורי אחד עם קריאה עצמאית מהאחסון; ביטול אחריApply שמר CANCELED ואת ההיסטוריה והשינויים שנכתבו; הרשאת reader חתומה מחשבון אחר נדחתה ללא יצירה; לאחרAccountStop המקורי הוחזרRUNTIME_UNAVAILABLE.\n\nאומת בארטיפקט המקורי14793282290: 2,452,160 בתים, SHA256 ee97925cb570ffaee7f89f6eef09ab6c907a720228a91b664bcb5c4877e20035, 40 קובצי ZIP בטוחים ותקינים, כל39 שורות האינדקס, חמש תוצאות העלים ביומן המקורי וכל11 הפקודות הסתיימו ונוקזו. חבילת הראיות פורסמה ב־d9cc82a997e239700fc30e31b5e9c30c6a21e9e1. אין העברה של התוצאה לאימות Swift/mobile, לפתיחה קרה, לשוויון גוף מלא או ל־Host ACK; אלה נשארים שערים נפרדים.\n<a href=\"https://github.com/davidpovarsky/anytype-swift/actions/runs/45108043207\">https://github.com/davidpovarsky/anytype-swift/actions/runs/45108043207</a>\n\nSDK: ההרצה הקודמת45119225997 נעצרה בשער קבלות המקור לפני כל בדיקה native. תיקון תיעודי בלבדe9504bc3622383eac99ee3aabfef89d0abade8b7 נבדק מול הלוגים והבדיקות ההיסטוריות ללא שינוי תוצאותיהן; 14 פקודות admission מקוריות עברו. דחיפה יחידה הפעילה כעת45123300449; מעקב יחיד פעיל, אין תוצאה סופית עדיין.\n<a href=\"https://github.com/davidpovarsky/anytype-swift/actions/runs/45123300449\">https://github.com/davidpovarsky/anytype-swift/actions/runs/45123300449</a>\n\nהמשך: השלמת SDK, ביקורת קוד הייבוא slice A, והשלמת מסך החשבון באמצעות בעלות הביטול המקורית. המשימה הרחבה נשארת פתוחה עד השלמת שעריה.</body>",
+      "created_by": {
+        "gid": "1219597879016933",
+        "resource_type": "user",
+        "name": "דוד פוברסקי"
+      }
+    }
+  },
+  "asana_progress_1220542467495722": {
+    "data": {
+      "gid": "1220776727636530",
+      "created_at": "2026-11-23T06:31:03.276Z",
+      "is_pinned": false,
+      "text": "23.11.2026 — תיקון ממוקד לחשיפת החיפוש במצב קר.\n\nלאחר Live12 האמיתי (45114449674, FAIL) הוכח מהאירועים שהמודל קיבל כלי הפניה אך לא את otzaria_search_query. נבדק מסלול המקור: ההכנה קיימת רק בביצוע מפורש, בעוד הגילוי הסתיר את הכלי כשמנוע החיפוש טרם נפתח.\n\nהוכן תיקון בחמישה קובצי מוצר קיימים: תצפית נפרדת וחיובית על מקור מנוהל מותקן, ללא פתיחת מנוע בזמן גילוי; אימות זהות המקור, קובצי ההתקנה, תאימות ומשאבי המילון; בדיקות ההרשאה, הביצוע וההכנה המקוריות נשמרו. השינוי ב־Host הוא קריאה אחת למסלול הגילוי החדש ורק בהקשר הרשאת החיפוש הנפרדת.\n\n17 בדיקות Core ממוקדות הורצו בפועל ועברו / אפס כשל / אפס דילוג. אלה בדיקות עם ספק ושעון מדומים מפורשים: הרשאות, תחום ספר, ביטול, deadline, החלפת מקור ו־ABA, התאמת invocation, תקציב פעולה יחיד ודרישת מוכנות אמיתית בביצוע. אין עדיין תוצאה של Apple, מנוע אמיתי או ספק AI על התיקון.\nהקוד נמצא בביקורת עמית לפני שער native. Live12 והניקוי המאומת DELETE204/GET404 נשמרו; לא הופעלה הרצה חדשה ללא תיקון.",
+      "html_text": "<body>23.11.2026 — תיקון ממוקד לחשיפת החיפוש במצב קר.\n\nלאחר Live12 האמיתי (45114449674, FAIL) הוכח מהאירועים שהמודל קיבל כלי הפניה אך לא את otzaria_search_query. נבדק מסלול המקור: ההכנה קיימת רק בביצוע מפורש, בעוד הגילוי הסתיר את הכלי כשמנוע החיפוש טרם נפתח.\n\nהוכן תיקון בחמישה קובצי מוצר קיימים: תצפית נפרדת וחיובית על מקור מנוהל מותקן, ללא פתיחת מנוע בזמן גילוי; אימות זהות המקור, קובצי ההתקנה, תאימות ומשאבי המילון; בדיקות ההרשאה, הביצוע וההכנה המקוריות נשמרו. השינוי ב־Host הוא קריאה אחת למסלול הגילוי החדש ורק בהקשר הרשאת החיפוש הנפרדת.\n\n17 בדיקות Core ממוקדות הורצו בפועל ועברו / אפס כשל / אפס דילוג. אלה בדיקות עם ספק ושעון מדומים מפורשים: הרשאות, תחום ספר, ביטול, deadline, החלפת מקור ו־ABA, התאמת invocation, תקציב פעולה יחיד ודרישת מוכנות אמיתית בביצוע. אין עדיין תוצאה של Apple, מנוע אמיתי או ספק AI על התיקון.\nהקוד נמצא בביקורת עמית לפני שער native. Live12 והניקוי המאומת DELETE204/GET404 נשמרו; לא הופעלה הרצה חדשה ללא תיקון.</body>",
+      "created_by": {
+        "gid": "1219597879016933",
+        "resource_type": "user",
+        "name": "דוד פוברסקי"
+      }
+    }
+  },
+  "asana_progress_1220036884173010": {
+    "data": {
+      "gid": "1220776727577597",
+      "created_at": "2026-11-23T06:31:05.229Z",
+      "is_pinned": false,
+      "text": "23.11.2026 — תוצאת הרצת הספרייה ואבחון מדויק.\n\nהרצה45105081309 ניסיון2 הסתיימה בפועל: 0 PASS / 7 FAIL / 0 SKIP. הבנייה, בדיקת Apple והתקנת בסיס הנתונים עברו. כל שבע הבדיקות נכשלו במציאת מזהה מכולת הפלטה; האימות שלאחר נקודה זו לא בוצע.\nhttps://github.com/davidpovarsky/Maktabah/actions/runs/45105081309/attempts/2\n\nנבדקו כל שבעת עצי הנגישות וצילומים מקוריים. הפלטה המקורית ושדה הטקסט הממוקד אכן מופיעים; מזהה המעטפת החיצונית reader-library-search-morph-shell החליף את reader-library-command-palette. נוסף לכך, מיקום החיפוש החזותי בממשק RTL משוקף ביחס לגאומטריה של הכפתור המקורי: במסגרת ברוחב1210, מלבן native ב־x186.5 ורוחב240 מוצג ב־x783.5.\n\nהוכן תיקון מצומצם בקובץ המתאם הקיים: הסרת הזהות הסמנטית מהמעטפת הדקורטיבית, הסתרתה מנגישות במצב מכווץ, ומכל מיקום פיזי LTR עם שחזור כיוון התוכן המקורי בתוכו. הבדיקות, הספים, הכפתור המקורי ופעולות הפלטה נשמרו. התיקון עובר ביקורת מקור; שבע בדיקות native עדיין פתוחות.\n\nהארטיפקט המקורי14793159032 אומת בגודל598,449,768 וב־SHA256 dff54ddb22d5094f788c16071386c93944de62ea2d2447c0adf5a79673f361f8. חולצו רק8,778,572 בתים של ראיות נבחרות. אין הרצה חוזרת עיוורת ואין החלפת FAIL ב־PASS.",
+      "created_by": {
+        "gid": "1219597879016933",
+        "resource_type": "user",
+        "name": "דוד פוברסקי"
+      },
+      "html_text": "<body>23.11.2026 — תוצאת הרצת הספרייה ואבחון מדויק.\n\nהרצה45105081309 ניסיון2 הסתיימה בפועל: 0 PASS / 7 FAIL / 0 SKIP. הבנייה, בדיקת Apple והתקנת בסיס הנתונים עברו. כל שבע הבדיקות נכשלו במציאת מזהה מכולת הפלטה; האימות שלאחר נקודה זו לא בוצע.\n<a href=\"https://github.com/davidpovarsky/Maktabah/actions/runs/45105081309/attempts/2\">https://github.com/davidpovarsky/Maktabah/actions/runs/45105081309/attempts/2</a>\n\nנבדקו כל שבעת עצי הנגישות וצילומים מקוריים. הפלטה המקורית ושדה הטקסט הממוקד אכן מופיעים; מזהה המעטפת החיצונית reader-library-search-morph-shell החליף את reader-library-command-palette. נוסף לכך, מיקום החיפוש החזותי בממשק RTL משוקף ביחס לגאומטריה של הכפתור המקורי: במסגרת ברוחב1210, מלבן native ב־x186.5 ורוחב240 מוצג ב־x783.5.\n\nהוכן תיקון מצומצם בקובץ המתאם הקיים: הסרת הזהות הסמנטית מהמעטפת הדקורטיבית, הסתרתה מנגישות במצב מכווץ, ומכל מיקום פיזי LTR עם שחזור כיוון התוכן המקורי בתוכו. הבדיקות, הספים, הכפתור המקורי ופעולות הפלטה נשמרו. התיקון עובר ביקורת מקור; שבע בדיקות native עדיין פתוחות.\n\nהארטיפקט המקורי14793159032 אומת בגודל598,449,768 וב־SHA256 dff54ddb22d5094f788c16071386c93944de62ea2d2447c0adf5a79673f361f8. חולצו רק8,778,572 בתים של ראיות נבחרות. אין הרצה חוזרת עיוורת ואין החלפת FAIL ב־PASS.</body>"
+    }
+  },
+  "asana_progress_1219643110971002": {
+    "data": {
+      "gid": "1220776946883841",
+      "created_at": "2026-11-23T06:31:07.432Z",
+      "is_pinned": false,
+      "text": "23.11.2026 — תיקון שער הקומפילציה של ארבע בדיקות הקורא.\n\nהרצה45116660011 במקור99b71a011fa5a060f0334a5312d498830eaeda77 נעצרה בשלוש שגיאות actor-isolation בקוד צילום הבדיקה, לפני בניית האפליקציה והרצת UI. הספירה המדויקת היא0 בוצעו / 4 NOT_RUN.\nhttps://github.com/davidpovarsky/Maktabah/actions/runs/45116660011\n\nתוקן רק גבול הקריאה לתור הראשי: קריאה ישירה כאשר כבר נמצאים בתור הראשי, ואחרת כניסה סינכרונית אליו לפני יצירת התצפית, בדיקתה והפקת האבחון. בדיקת Swift strict-concurrency אמיתית עברה בשני מסלולי הכניסה; היא אינה בדיקת UIKit. כל502 שורות האסרטיביות, זמן ההמתנה20שניות, תקרת600שניות,100 החלפות הקבוצות ושער אפס־דילוגים נשמרו.\n\nמקור2ef81ac195c002863486e473dad95f336f3e1675 וחבילת CI482b8ac3ef2935ee1127da529e5d0848efb0e2f1 נבדקו ואושרו להפעלת ארבעת המקרים בלבד. קובצי המוצר, Vendor והפרויקט זהים למקור הקודם. אין שיוך מחדש של שש ההצלחות ההיסטוריות למקור החדש. הפרסום והפעלת השער מבוצעים כעת.",
+      "created_by": {
+        "gid": "1219597879016933",
+        "resource_type": "user",
+        "name": "דוד פוברסקי"
+      },
+      "html_text": "<body>23.11.2026 — תיקון שער הקומפילציה של ארבע בדיקות הקורא.\n\nהרצה45116660011 במקור99b71a011fa5a060f0334a5312d498830eaeda77 נעצרה בשלוש שגיאות actor-isolation בקוד צילום הבדיקה, לפני בניית האפליקציה והרצת UI. הספירה המדויקת היא0 בוצעו / 4 NOT_RUN.\n<a href=\"https://github.com/davidpovarsky/Maktabah/actions/runs/45116660011\">https://github.com/davidpovarsky/Maktabah/actions/runs/45116660011</a>\n\nתוקן רק גבול הקריאה לתור הראשי: קריאה ישירה כאשר כבר נמצאים בתור הראשי, ואחרת כניסה סינכרונית אליו לפני יצירת התצפית, בדיקתה והפקת האבחון. בדיקת Swift strict-concurrency אמיתית עברה בשני מסלולי הכניסה; היא אינה בדיקת UIKit. כל502 שורות האסרטיביות, זמן ההמתנה20שניות, תקרת600שניות,100 החלפות הקבוצות ושער אפס־דילוגים נשמרו.\n\nמקור2ef81ac195c002863486e473dad95f336f3e1675 וחבילת CI482b8ac3ef2935ee1127da529e5d0848efb0e2f1 נבדקו ואושרו להפעלת ארבעת המקרים בלבד. קובצי המוצר, Vendor והפרויקט זהים למקור הקודם. אין שיוך מחדש של שש ההצלחות ההיסטוריות למקור החדש. הפרסום והפעלת השער מבוצעים כעת.</body>"
+    }
+  }
+}
