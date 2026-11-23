@@ -5,7 +5,7 @@ import TorahInspectorUI
 #if DEBUG
 import CryptoKit
 import Darwin
-import DarwinNotify
+import notify
 import UIKit
 #endif
 

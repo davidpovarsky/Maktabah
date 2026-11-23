@@ -4016,7 +4016,7 @@ final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
 
 // BEGIN ADDITIVE FULL-V32 ORIGINAL READER OBSERVATIONS
 import Darwin
-import DarwinNotify
+import notify
 
 // This Debug/production-corpus diagnostic is distinct from the existing Release
 // case and the immutable miniTest10 Native116 catalog.
