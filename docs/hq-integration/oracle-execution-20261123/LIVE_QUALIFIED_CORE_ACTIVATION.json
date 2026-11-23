@@ -1,0 +1,57 @@
+{
+  "repository": "davidpovarsky/Maktabah",
+  "secret_name": "OTZARIA_LIVE_GEMINI_API_KEY",
+  "source_environment_name": "GEMINI_API_KEY",
+  "checkout_sha": "0123b569d489984ade291b5c065eb5fe6500dec6",
+  "branch": "codex/otzaria-hanlin-stream-continuation-20261123",
+  "started_utc": "2026-11-23T19:53:20.186911+00:00",
+  "controller_sha256": "5a2cef943f5921d555c5d5aa946bd59903f6b12d46a271bbe92216e576635640",
+  "binding_sha256": "8848c1f495215764409ab359557894cf1efd9e34f8d4e2fc4b85599b8d280397",
+  "credential_in_argv": false,
+  "credential_value_or_hash_recorded": false,
+  "secret_cleanup_required": true,
+  "new_provider_probe_requests": 0,
+  "preexisting_exact_run_ids": [],
+  "preflight": {
+    "remote_exact_source": true,
+    "manual_only_workflow": true,
+    "admission_sha256": "0894017ad748ac4f74611864d428ab16348920b359d52ea7d1cca50fa6b1b318",
+    "swift_ai_sdk_source_sha": "07431abccbfb151ca2dab67bca6cf86fcb2bd3b8",
+    "previous_live_run": 45168227740,
+    "previous_conclusion": "failure",
+    "previous_counts": {
+      "PASS": 0,
+      "FAIL": 1,
+      "SKIP": 0,
+      "NOT_RUN": 0
+    },
+    "previous_cleanup": "DELETE204_GET404_WITH_INDEPENDENT_ABSENCE",
+    "active_live_runs": 0,
+    "secret_prior_http": 404,
+    "new_provider_requests": 0
+  },
+  "state": "RUNNING",
+  "secret_set_started_utc": "2026-11-23T19:53:26.791115+00:00",
+  "metadata": {
+    "name": "OTZARIA_LIVE_GEMINI_API_KEY",
+    "created_at": "2026-11-23T19:53:28Z",
+    "updated_at": "2026-11-23T19:53:28Z"
+  },
+  "dispatch_started_utc": "2026-11-23T19:53:28.701520+00:00",
+  "dispatch_exit_code": 0,
+  "run_id": 45253606271,
+  "run_attempt": 1,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45253606271",
+  "observer_windows": 1,
+  "observer_started_utc": "2026-11-23T19:53:38.290912+00:00",
+  "watch_timed_out": false,
+  "sentinel_owner_job": "job_4c46807ed871",
+  "controller_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-hanlin-stream-20261123-0123b569\\controller120.py",
+  "output_path": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-hanlin-stream-20261123-0123b569\\evidence",
+  "asana_story": "1220823247521707",
+  "start_request_recovery": {
+    "first_request_failed_before_execution": "missing link_id",
+    "read_only_confirmed_no_output_directory_or_owned_process": true,
+    "successful_start_requests": 1
+  }
+}
