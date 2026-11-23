@@ -1,0 +1,14 @@
+{
+  "codeCommit": "f08284dd6953fb36d96bc323087e4061349869d9",
+  "canonicalSDK": "2548eac1155239e76cb1a2c6d978e00131340e1f",
+  "configSHA256": "a261926f3ab63ae93ef7f9e64f2ec052c3a57680811b2bf4b4d86abcc34a1440",
+  "applicationTrees": {
+    "Source": "52d1803016651a6cfbd2a25c775d50e110c9327a",
+    "Vendor": "ef6a5a7147d0dad6a4310f622744d329774c4492",
+    "Maktabah.xcodeproj": "2cee049b4cc0bda65875aa35b40391f1d8dd3d2d"
+  },
+  "unchangedEngineAndArtifactConfig": true,
+  "originalPreflight": "PASS",
+  "nativeBuild": "NOT_RUN_BY_THIS_LANE",
+  "testExclusionsManifestSHA256": "a16ea61025c17cb86bbeb22daa598533eb2e919390a4c6f8ad9c9c9f320c8950"
+}
