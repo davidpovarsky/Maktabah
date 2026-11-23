@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-23T09:47:15Z",
+  "source": "0faacd1f397aac8d06947fe9211d48f4f72107b7",
+  "tree": "e204231017be219b8fc9b02142c03dbe387ddbdc",
+  "base": "8e9dac2d9585dd482e9ab784a65c5517b6847648",
+  "index_sha256": "fc7d5857fa89429b7424d22799f9a36e3525a8df3a0687760592c264a3aa7146",
+  "verified_rows": 228,
+  "verified_bytes": 2783238,
+  "all_rows_git_blob_and_working_bytes_exact": true,
+  "final_paths": {
+    "Scripts/CI/hq-stage2-focused-apple.py": {
+      "bytes": 49198,
+      "sha256": "d8c317ee8fdf1fd07a2e2e604c52866379912d96705f4da9a09bcab055f8f337"
+    },
+    "Scripts/CI/hq-original-editor-distribution.py": {
+      "bytes": 48550,
+      "sha256": "6e462ff723b540b12155f054642a661b49610e0e71b6842c35c00c638931d114"
+    },
+    "Scripts/CI/hq-original-editor-ruby-context.rb": {
+      "bytes": 8002,
+      "sha256": "facf9c4c1fcc25d1cafbd6d532c60367a4097f16642f5fc444e2a2092d0e3f33"
+    }
+  },
+  "wrapper_inverse_exact_to": "3d0ff5b7043b23b64110c87510ed2e76cbd371ca",
+  "common_driver_exact_to_first_candidate": true,
+  "function_correspondence": {
+    "Scripts/CI/hq-stage2-focused-apple.py": {
+      "original_unchanged": [
+        "capture",
+        "digest",
+        "require",
+        "pins",
+        "git_tree_entries",
+        "validate_test_additions",
+        "verify_otzaria_test_additions",
+        "validate_framework_bindings",
+        "validate_framework_metadata",
+        "framework_metadata",
+        "zayit_build_plan",
+        "preflight",
+        "prepare_original_hanlin",
+        "checked_path",
+        "restore",
+        "rebuild_matching_zayit_framework",
+        "verify_selected_zayit_files",
+        "prepare_react_sources",
+        "prepare_matching_embedded_bundle",
+        "verify_actual_sources",
+        "authorize_pinned_equatable_macro",
+        "privacy_categories",
+        "validate_privacy_delta",
+        "audit_generated_privacy",
+        "verify_zayit_test_metadata"
+      ],
+      "original_changed": [
+        "logged",
+        "install_real_pods",
+        "main"
+      ],
+      "original_removed": [],
+      "new": []
+    },
+    "Scripts/CI/hq-original-editor-distribution.py": {
+      "original_unchanged": [
+        "require",
+        "digest",
+        "write",
+        "owned_path",
+        "read_json",
+        "inventory",
+        "command",
+        "shared_package_policy",
+        "require_no_syntax_names",
+        "code_images",
+        "scan_binary_output",
+        "binary_command",
+        "runtime_absence_proof",
+        "verify_absence_receipt",
+        "require_compiled_host_api",
+        "require_simulator_dynamic_architectures",
+        "admit",
+        "require_unchanged",
+        "compare_or_copy",
+        "app_bundle",
+        "embed",
+        "verify_built_app"
+      ],
+      "original_changed": [
+        "prepare"
+      ],
+      "original_removed": [],
+      "new": [
+        "ruby_context_file",
+        "prepare_pod_ruby_context",
+        "validate_pod_ruby_receipt",
+        "admit_pod_ruby_context",
+        "original_editor_ruby_launch"
+      ]
+    }
+  },
+  "controls": {
+    "historical_cases": 6,
+    "historical_assertions": 42,
+    "historical_commands": 12,
+    "historical_source": "3d0ff5b7043b23b64110c87510ed2e76cbd371ca",
+    "new_wrapper_cases": 1,
+    "new_wrapper_assertions": 13,
+    "new_wrapper_commands": 4,
+    "new_wrapper_after_inputs_exact": true,
+    "replayed": false
+  },
+  "original_helper_workflow_and_product_unchanged": true,
+  "source_review": "PASS",
+  "apple_native_acceptance": false,
+  "final_original_prepare_gate": "OWNER_RUNNING_NOT_YET_ACCEPTED"
+}

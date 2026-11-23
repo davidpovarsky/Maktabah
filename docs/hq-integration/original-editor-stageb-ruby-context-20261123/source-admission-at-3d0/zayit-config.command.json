@@ -1,0 +1,16 @@
+{
+  "command": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "bash",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/source-gate/exact-zayit-block.sh"
+  ],
+  "returncode": 0,
+  "timed_out": false,
+  "child_reaped": true,
+  "owned_group_drained": true,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

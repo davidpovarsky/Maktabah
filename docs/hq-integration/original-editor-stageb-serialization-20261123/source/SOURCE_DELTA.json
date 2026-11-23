@@ -1,0 +1,23 @@
+{
+  "base": "fa816b14d25a4ced0031b1a9c972040b89cb451e",
+  "path": "Scripts/CI/hq-original-editor-app-target.rb",
+  "before": {
+    "size": 9232,
+    "sha256": "92a591a8b02fb1e789cdc95febcbd760451584749f4708fa723297f5c34b898a"
+  },
+  "after": {
+    "size": 9849,
+    "sha256": "ada86a8a7e4bf3f38abf7366614a341183cedaf80d1febc41f45717249ca291e"
+  },
+  "diff": {
+    "size": 1415,
+    "sha256": "854642e2871ab2690ac6860b7d40078d158e147b3debf70c15d0fe9a5e2529cc"
+  },
+  "whole_inverse_exact": true,
+  "changed_serialization_keys": [
+    "OTHER_SWIFT_FLAGS",
+    "SWIFT_INCLUDE_PATHS"
+  ],
+  "all_other_helper_bytes_preserved": true,
+  "execution": "NOT_RUN"
+}

@@ -2,7 +2,7 @@ name: Original editor saved annotation native acceptance
 
 on:
   push:
-    branches: [codex/otzaria-original-editor-stageb-native-20261122]
+    branches: [codex/otzaria-original-editor-stageb-20261123]
 
 permissions:
   contents: read
@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   original-editor-stageb:
-    if: github.repository == 'davidpovarsky/Maktabah' && github.event_name == 'push' && github.ref == 'refs/heads/codex/otzaria-original-editor-stageb-native-20261122'
+    if: github.repository == 'davidpovarsky/Maktabah' && github.event_name == 'push' && github.ref == 'refs/heads/codex/otzaria-original-editor-stageb-20261123'
     runs-on: xcode-27
     timeout-minutes: 210
     env:

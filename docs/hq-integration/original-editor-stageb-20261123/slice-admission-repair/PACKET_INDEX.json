@@ -1,0 +1,123 @@
+{
+  "files": [
+    {
+      "path": "AFTER.py",
+      "bytes": 39025,
+      "sha256": "84e6110e7f3b1e472c18b3913440703e221bffde2bfaaca782765697e2940e49"
+    },
+    {
+      "path": "BEFORE.py",
+      "bytes": 37464,
+      "sha256": "c5e933f4c5f411426d6223c6fd35b89937e5d5c02dd21a09d4ee4eab8f6e1a3d"
+    },
+    {
+      "path": "FIXTURE_INPUTS.json",
+      "bytes": 2487,
+      "sha256": "69496dc35a6e8a9ebf3502f51b0ecc24ac7bad7da36b41c7ee15245a055a8efd"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2959,
+      "sha256": "4c2217d9b1dc2f040e71cc740dd2fce41d8649f2d5942dbb45097ec288f2deff"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 1345,
+      "sha256": "c2d5301ac3bc312f089957616e9cf984e428da73ae9dc84cc6e9b55bd8eaae80"
+    },
+    {
+      "path": "SOURCE.diff",
+      "bytes": 2940,
+      "sha256": "7a6b6837a3d6a96dcdb2f87767c736a3d4351d9fdf089a47335305558fea97b9"
+    },
+    {
+      "path": "SOURCE_CORRESPONDENCE.json",
+      "bytes": 5053,
+      "sha256": "0b2950dbffb4dfadbb2764bed5760de355b30a1bcc83c226b26b2b843c8b38ef"
+    },
+    {
+      "path": "controls.command.json",
+      "bytes": 805,
+      "sha256": "3c60bfc7e5b63a142366616ce44311f24c2da2c5664b8a80c9352e42649d835b"
+    },
+    {
+      "path": "controls.py",
+      "bytes": 4927,
+      "sha256": "a576eaffd843f523f28fad94c8dd449426aba1bc5b3fcbb6f2500923d3f6c76e"
+    },
+    {
+      "path": "controls.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls.stdout.log",
+      "bytes": 1135,
+      "sha256": "ad4dc5f7481fbb676a370e5369f8dee31acaf1ab62fa972db1c4b0834867a286"
+    },
+    {
+      "path": "fixtures/framework-architecture.command.json",
+      "bytes": 630,
+      "sha256": "a435a1ed9e8c2751d2e874696a853a2ca211a28ccf9846f6466eaa8a48cda87c"
+    },
+    {
+      "path": "fixtures/framework-architecture.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fixtures/framework-architecture.stdout.log",
+      "bytes": 6,
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+    },
+    {
+      "path": "fixtures/framework-header-0.command.json",
+      "bytes": 612,
+      "sha256": "8b526ce98183698d7e646467cdb8255b5e1029a56b6a1e58a559d69caa2bc2be"
+    },
+    {
+      "path": "fixtures/framework-header-0.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fixtures/framework-header-0.stdout.log",
+      "bytes": 797,
+      "sha256": "6fad5eaeb75e6c4b45161b129a05f3e64378be793b8978cdbcae17ebde21c259"
+    },
+    {
+      "path": "fixtures/framework-header-3.command.json",
+      "bytes": 628,
+      "sha256": "d8fa560215c7afb04466eb87ea508a39dd91e28fea673323a880fdf5eb93c27d"
+    },
+    {
+      "path": "fixtures/framework-header-3.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fixtures/framework-header-3.stdout.log",
+      "bytes": 425,
+      "sha256": "c78fe9f8d67df30df201afb479ffe8e748452e191aa63ad4d413781894b15f31"
+    },
+    {
+      "path": "fixtures/sdk-architecture-0.json",
+      "bytes": 251,
+      "sha256": "f953244e1226b1e7ca877950349a99c3400210af27867735e8645a9dc06abe35"
+    },
+    {
+      "path": "fixtures/sdk-header-0.json",
+      "bytes": 992,
+      "sha256": "3488b65799373bfb0ae30139ffcbd45694dfd3c6883665f6f74e79882f49554d"
+    },
+    {
+      "path": "fixtures/sdk-signature-0.json",
+      "bytes": 245,
+      "sha256": "030e1ad3b1dffb700466a9451187529b14f4e1e98d9c358d95da27ec65837538"
+    }
+  ],
+  "indexed_files": 23,
+  "source_tests": 6,
+  "assertions": 24,
+  "apple_runtime": "NOT_RUN"
+}

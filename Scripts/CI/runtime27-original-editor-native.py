@@ -15,7 +15,13 @@ import sys
 import uuid
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = "PENDING_REVIEWED_STAGE_B_PROCESS_SOURCE"
+ORIGINAL_SOURCE = "1969b2065469b55e38e42cbb838a469ffa6a80f7"
+SOURCE = "6ba33d848bda808181e6b3174c05bac5b3fd2d94"
+ORIGINAL_HANLIN = "e00498e33f106cc43be0476ffa2e09329c8ca300"
+QUALIFIED_HANLIN = "ca3c91f2233bf5c77990643b29a874aac8704639"
+ORIGINAL_CORE = "e7bf34111e603ca977becd007dd4e5bb109af857"
+QUALIFIED_CORE = "07431abccbfb151ca2dab67bca6cf86fcb2bd3b8"
+HOST_LOCK = "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
 SELECTOR = "OriginalEditorAnnotationAcceptanceTests/testSavedBlankAnnotationUsesOriginalEditorAndReopensMixedBlocksAfterProcessRelaunch"
 MARKER = "owned-local-only"
 BUNDLE = "com.davidpovarsky.chavrusatext"
@@ -47,21 +53,56 @@ def git(*args):
     return subprocess.check_output(["git", *args], cwd=ROOT, timeout=90).decode().strip()
 
 
+def verify_qualified_dependency_delta(paths, before_hanlin, after_hanlin, before_lock, after_lock):
+    """Require the exact qualified dependency leaf without adopting another app lane."""
+    require(paths == [HOST_LOCK, "Vendor/HanlinSDK"],
+            "Qualified dependency leaf changed original application or test source")
+    require(before_hanlin == ORIGINAL_HANLIN and after_hanlin == QUALIFIED_HANLIN,
+            "Qualified dependency leaf changed the reviewed Hanlin identities")
+    require(hashlib.sha256(before_lock).hexdigest()
+                == "722609bb6b71362aee5e7f401246edcd037a2d1815c2fc4704bf93830d9f5530"
+            and hashlib.sha256(after_lock).hexdigest()
+                == "a41b340f77574fd74013ba5df160cffabab473f1941a50031d0f9025007c8c9c"
+            and before_lock.count(ORIGINAL_CORE.encode()) == 1
+            and after_lock == before_lock.replace(ORIGINAL_CORE.encode(), QUALIFIED_CORE.encode())
+            and after_lock.replace(QUALIFIED_CORE.encode(), ORIGINAL_CORE.encode()) == before_lock,
+            "Qualified Host lock is not the exact single-revision change with its original inverse")
+    return {"original_application_source": ORIGINAL_SOURCE, "qualified_dependency_source": SOURCE,
+            "product_delta": paths, "hanlin_source": QUALIFIED_HANLIN,
+            "swift_ai_sdk_source": QUALIFIED_CORE,
+            "host_lock_sha256": hashlib.sha256(after_lock).hexdigest(),
+            "original_interface_and_tests_unchanged": True, "native_stageb_qualified": False}
+
+
+def qualified_dependency_source():
+    paths = git("diff", "--name-only", ORIGINAL_SOURCE, SOURCE, "--",
+                "Source", "Vendor", "Maktabah.xcodeproj", "Maktabah-iOSUITests").splitlines()
+    before_lock, after_lock = [subprocess.check_output(
+        ["git", "show", source + ":" + HOST_LOCK], cwd=ROOT, timeout=90)
+        for source in [ORIGINAL_SOURCE, SOURCE]]
+    return verify_qualified_dependency_delta(
+        paths, git("rev-parse", ORIGINAL_SOURCE + ":Vendor/HanlinSDK"),
+        git("rev-parse", SOURCE + ":Vendor/HanlinSDK"), before_lock, after_lock)
+
+
 def source_context():
     require(re.fullmatch(r"[a-f0-9]{40}", SOURCE), "Reviewed process-resume application source is not frozen")
     head = git("rev-parse", "HEAD")
     require(head == os.environ["EXPECTED_CHECKOUT_SHA"], "Wrong immutable qualification checkout")
     subprocess.run(["git", "merge-base", "--is-ancestor", SOURCE, head], cwd=ROOT, check=True, timeout=90)
+    dependency_adoption = qualified_dependency_source()
     trees = {path: git("rev-parse", "HEAD:" + path) for path in
              ["Source", "Vendor", "Maktabah.xcodeproj", "Maktabah-iOSUITests"]}
     require(all(value == git("rev-parse", SOURCE + ":" + path) for path, value in trees.items()),
             "Reviewed original-editor consumer application or test changed")
     inputs = json.loads((ROOT / "Scripts/CI/hq-stage2-focused-apple.inputs.json").read_text())
-    require(inputs["application_source_sha"] == SOURCE and all(inputs["application_trees"][path] == trees[path]
+    require(inputs["application_source_sha"] == SOURCE and inputs["hanlin_gitlink"] == QUALIFIED_HANLIN
+            and all(inputs["application_trees"][path] == trees[path]
                 for path in ["Source", "Vendor", "Maktabah.xcodeproj"]), "Stage2 pins do not bind the reviewed consumer")
     original = runpy.run_path(str(ROOT / "Scripts/CI/completion-focused-native.py"))
     execution_inputs = original["exact_working_inputs"](["Scripts/CI", ".github/workflows", "Maktabah-iOSUITests", "tools"])
     return {"checkout_sha": head, "application_source_sha": SOURCE, "application_trees": trees,
+            "qualified_dependency_adoption": dependency_adoption,
             "execution_inputs": execution_inputs, "sdk_admission_sha256": digest(ADMISSION),
             "native116_catalog_sha256": digest(FULL), "release114_manifest_sha256": digest(RELEASE)}
 
@@ -78,9 +119,15 @@ def runtime_dependency_preflight():
     pending = [ci / name for name in ["runtime27.py", "run-faithful-ipad-matrix.py",
                "prepare-faithful-ipad-fixtures.py", "runtime27-fixture-oracle.py", "verify-faithful-xctest.py",
                "hq-original-editor-distribution.py", "restore-original-editor-distribution.py"]]
-    if json.loads(ADMISSION.read_bytes()).get("schema") == 2:
+    sdk_input = json.loads(ADMISSION.read_bytes())
+    if sdk_input.get("schema") == 2:
         pending.append(ci / "original_editor_continuation_admission.py")
         pending.append(ci / "original_editor_clang_imports.py")
+        pending.append(ci / "original_editor_host_clang_context.py")
+        if sdk_input.get("continuation_kind") == "original-signed-consumer-runtime/1":
+            pending.append(ci / "original_editor_signed_consumer_admission.py")
+    if sdk_input.get("schema") == 3:
+        pending.append(ci / "original_editor_shared_runtime.py")
     checked, imported = {}, set()
     while pending:
         path = pending.pop()

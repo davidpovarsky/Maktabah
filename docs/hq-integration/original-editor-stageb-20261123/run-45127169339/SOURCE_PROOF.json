@@ -1,0 +1,27 @@
+{
+  "status": "EXACT_FAILED_SOURCE_INSPECTED",
+  "source": "6dd57e5b7d7ffa570472d31e38881af32ff38177",
+  "input": {
+    "path": "Scripts/CI/runtime27-original-editor.inputs.json",
+    "bytes": 7884,
+    "sha256": "3d5e85feb0ae6ea6e60f3fa8c5506d0cafdb8c140ecd7d670ded3ad82c3701fe",
+    "top_level_toolchain_present": false,
+    "framework_producer_toolchain": {
+      "sdk_version": "27.0",
+      "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+      "xcode": "Xcode 27.0\nBuild version 27A266a"
+    }
+  },
+  "selector": {
+    "path": "Scripts/CI/select-runtime27-toolchain.py",
+    "bytes": 10936,
+    "sha256": "3e6ed97188d50f4f344dbd7f77f142a05f0a0bde1b720a0745df098f49bfcf2f",
+    "gate_lines": [
+      51,
+      56
+    ],
+    "main_order": "original_editor_toolchain at line131 occurs before xcode-select at134 and candidate enumeration at135/145"
+  },
+  "primary_error": "Original SDK toolchain differs from the exact retained framework producer",
+  "proposed_only": "Add exact framework_producer.toolchain as top-level alias; unchanged selector and exact match. No retry or product repair authorized by this receipt."
+}

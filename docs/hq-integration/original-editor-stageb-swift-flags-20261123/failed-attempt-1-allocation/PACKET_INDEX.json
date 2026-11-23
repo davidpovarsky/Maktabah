@@ -1,0 +1,70 @@
+{
+  "source_sha": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+  "rows": [
+    {
+      "path": "DIAGNOSIS.md",
+      "bytes": 1039,
+      "sha256": "fbc2d86b5696a0eac8a0ec60ed7acbdab04a95efe64b5e391ffcce45ece72520"
+    },
+    {
+      "path": "INTAKE.json",
+      "bytes": 898,
+      "sha256": "36c1ced944dc0315ca3bc7b5b632287e05e60e2760a6c88f255721d027af5915"
+    },
+    {
+      "path": "annotations.json",
+      "bytes": 344,
+      "sha256": "e2af810c5c71636227965cf4abde7be706170726f2dd73697b75a570e482a935"
+    },
+    {
+      "path": "annotations.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+    },
+    {
+      "path": "artifacts.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "check-run.json",
+      "bytes": 3082,
+      "sha256": "aaf6b6edd0cd965b27f70972266dbb988bc43abd7ef481a2ef6c76cb14f5a05b"
+    },
+    {
+      "path": "check-run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "jobs.json",
+      "bytes": 967,
+      "sha256": "eef705b4c6329bbd6555ff28a893f37b22b4b73bc9bcc27d10aa3c4713f137e5"
+    },
+    {
+      "path": "jobs.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run.json",
+      "bytes": 12801,
+      "sha256": "848f7a8875a936debefeb0ae36a542001b49bdf9c844e5b41e49fb5d9554ed5a"
+    },
+    {
+      "path": "run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "watch-1.state.json",
+      "bytes": 1457,
+      "sha256": "26d7715ec84244fecb663a7fa40a008f99583e8dc29a64a81ec8e359a1572211"
+    }
+  ]
+}

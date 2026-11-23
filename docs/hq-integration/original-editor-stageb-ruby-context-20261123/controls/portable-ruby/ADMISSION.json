@@ -1,0 +1,94 @@
+{
+  "scope": "OWNED_PACKAGE_EXTRACTION_ONLY_NO_SYSTEM_OR_GEM_INSTALL",
+  "started_at": "2026-11-23T09:22:31.117827+00:00",
+  "packages": [
+    {
+      "name": "ruby3.2",
+      "version": "3.2.3-1ubuntu0.24.04.9",
+      "archive": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/ruby3.2_3.2.3-1ubuntu0.24.04.9_arm64.deb",
+      "bytes": 50768,
+      "sha256": "1d784c0b03970268efb34cb7475e2839e28ab516e72e39b6380f7ec1742934d9"
+    },
+    {
+      "name": "libruby3.2",
+      "version": "3.2.3-1ubuntu0.24.04.9",
+      "archive": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/libruby3.2_3.2.3-1ubuntu0.24.04.9_arm64.deb",
+      "bytes": 5351782,
+      "sha256": "09a13f74b6ead48e05876560441587ee60f39bec0fb4ddf09e2ed6c65a0d58c4"
+    },
+    {
+      "name": "ruby-rubygems",
+      "version": "3.4.20-1",
+      "archive": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/ruby-rubygems_3.4.20-1_all.deb",
+      "bytes": 238488,
+      "sha256": "9cb6041d902b74fd6e9373b24922e788bc2d1ed4360705ca6b53945d67b32087"
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "apt-get",
+        "download",
+        "ruby3.2=3.2.3-1ubuntu0.24.04.9"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "dpkg-deb",
+        "--extract",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/ruby3.2_3.2.3-1ubuntu0.24.04.9_arm64.deb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "apt-get",
+        "download",
+        "libruby3.2=3.2.3-1ubuntu0.24.04.9"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "dpkg-deb",
+        "--extract",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/libruby3.2_3.2.3-1ubuntu0.24.04.9_arm64.deb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "apt-get",
+        "download",
+        "ruby-rubygems=3.4.20-1"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "dpkg-deb",
+        "--extract",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/ruby-rubygems_3.4.20-1_all.deb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/bin/ruby3.2",
+        "-e",
+        "require \"json\"; require \"rubygems\"; require \"rbconfig\"; puts JSON.generate({version: RUBY_VERSION, executable: RbConfig.ruby, gem_dir: Gem.dir, gem_paths: Gem.path, load_paths: $LOAD_PATH})"
+      ],
+      "returncode": 0
+    }
+  ],
+  "status": "PORTABLE_RUBY_EXECUTED",
+  "environment_overrides": {
+    "LD_LIBRARY_PATH": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/lib/aarch64-linux-gnu",
+    "RUBYLIB": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/lib/ruby/3.2.0:/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/lib/aarch64-linux-gnu/ruby/3.2.0:/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/lib/ruby/vendor_ruby"
+  },
+  "finished_at": "2026-11-23T09:22:35.773007+00:00"
+}

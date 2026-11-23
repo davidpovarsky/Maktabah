@@ -1,0 +1,30 @@
+{
+  "status": "EXISTING_OWNED_RUNTIME_REUSED",
+  "prior_source": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+  "prior_packet_path": "docs/hq-integration/original-editor-stageb-ruby-context-20261123/controls/portable-ruby/ADMISSION.json",
+  "admission_sha256": "16e91525bc1de9a09ce272ede6f4ca1ee3bbfa3bce5fcb221e19a2187b18cf5e",
+  "packages_verified_unchanged": [
+    {
+      "name": "ruby3.2",
+      "version": "3.2.3-1ubuntu0.24.04.9",
+      "bytes": 50768,
+      "sha256": "1d784c0b03970268efb34cb7475e2839e28ab516e72e39b6380f7ec1742934d9"
+    },
+    {
+      "name": "libruby3.2",
+      "version": "3.2.3-1ubuntu0.24.04.9",
+      "bytes": 5351782,
+      "sha256": "09a13f74b6ead48e05876560441587ee60f39bec0fb4ddf09e2ed6c65a0d58c4"
+    },
+    {
+      "name": "ruby-rubygems",
+      "version": "3.4.20-1",
+      "bytes": 238488,
+      "sha256": "9cb6041d902b74fd6e9373b24922e788bc2d1ed4360705ca6b53945d67b32087"
+    }
+  ],
+  "no_download_or_install": true,
+  "standard_PATH_refusal": "local-xcodeproj.command.json retained; actual owned runtime was located through historical command provenance",
+  "genuine_xcodeproj_available": false,
+  "old_controls_replayed": false
+}

@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "nonce": "de6178273cd6781a5e9f86e7f6de84ecb5560904a8a0392a8020f1999b10348c",
+  "parent_pid": 2584489,
+  "pid": 2584528,
+  "argv": [
+    "install"
+  ],
+  "program": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/bin/pod",
+    "bytes": 808,
+    "sha256": "df7d37884d3fc1dca904be847c48e1084a460f5c4d3cf166c4b42ea14777ad69"
+  },
+  "observer": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/Scripts/CI/hq-original-editor-ruby-context.rb",
+    "bytes": 7558,
+    "sha256": "2059ca905374a037ea10a7e56d3f4ae419602db77c80509376268988b505738b"
+  },
+  "helper": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/Scripts/CI/hq-original-editor-app-target.rb",
+    "bytes": 163,
+    "sha256": "f8b5e5a8d25b821fd5f56b02b1178d2db56f64f54df96716440062a99e8740a2"
+  },
+  "original_exit_code": 0,
+  "ruby": {
+    "executable": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/bin/ruby3.2",
+      "bytes": 67512,
+      "sha256": "bbea1a842298c961c1ad29d359f2b45eff1b25ae546d59e72590846c039efac2"
+    },
+    "engine": "ruby",
+    "version": "3.2.3",
+    "patchlevel": 157,
+    "platform": "aarch64-linux-gnu"
+  },
+  "gem_home": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/gems",
+  "gem_paths": [
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/gems"
+  ],
+  "cocoapods": {
+    "name": "cocoapods",
+    "version": "0.0.1",
+    "full_gem_path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/gems/gems/cocoapods-0.0.1",
+    "loaded_from": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/gems/specifications/cocoapods-0.0.1.gemspec",
+      "bytes": 218,
+      "sha256": "98b605b8799a7ab94158729d45946ed2af1bcb858e5e7373fb87ac81540f2cc3"
+    },
+    "dependencies": [
+
+    ]
+  },
+  "xcodeproj_closure": [
+    {
+      "name": "context_dependency",
+      "version": "0.0.1",
+      "full_gem_path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/gems/gems/context_dependency-0.0.1",
+      "loaded_from": {
+        "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/gems/specifications/context_dependency-0.0.1.gemspec",
+        "bytes": 236,
+        "sha256": "2a5b43f666c344793d18e60984754b74865876b94fee26a2af1209d67a202356"
+      },
+      "dependencies": [
+
+      ],
+      "root_files": [
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/gems/gems/context_dependency-0.0.1/lib/context_dependency.rb"
+      ],
+      "files": [
+        {
+          "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/gems/gems/context_dependency-0.0.1/lib/context_dependency.rb",
+          "bytes": 62,
+          "sha256": "52fe34465200743c673c0a5c70666444119b730102b3f157f6e9c137aea69d4a"
+        }
+      ]
+    },
+    {
+      "name": "xcodeproj",
+      "version": "0.0.1",
+      "full_gem_path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/gems/gems/xcodeproj-0.0.1",
+      "loaded_from": {
+        "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/gems/specifications/xcodeproj-0.0.1.gemspec",
+        "bytes": 277,
+        "sha256": "0f72a96eed7448ec487d46061a25f357c8697814da329100d4e35df0b8b67799"
+      },
+      "dependencies": [
+        {
+          "name": "context_dependency",
+          "requirement": "= 0.0.1"
+        }
+      ],
+      "root_files": [
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/gems/gems/xcodeproj-0.0.1/lib/xcodeproj.rb"
+      ],
+      "files": [
+        {
+          "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/gems/gems/xcodeproj-0.0.1/lib/xcodeproj.rb",
+          "bytes": 91,
+          "sha256": "c4d065e1af57a0d72dc2ffc4b4938b49133ad61993baa066c498c35995c680dd"
+        }
+      ]
+    }
+  ]
+}

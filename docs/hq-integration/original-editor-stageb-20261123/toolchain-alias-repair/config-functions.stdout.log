@@ -1,0 +1,27 @@
+{
+  "status": "UNCHANGED_CONFIGURATION_FUNCTIONS_PASS",
+  "checkout_sha": "d8501b8363053440180f33d2e8a851ef1b8b7291",
+  "source_gate": {
+    "path": "Scripts/CI/runtime27-original-editor.inputs.json",
+    "sha256": "2940ae140f7c4b1521d454d3e9b246f85c75b473c806d8ea68190b793601a731",
+    "source_sha": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+    "run_id": 45060396175,
+    "run_attempt": 1,
+    "qualification_sha256": "4be85b8704bcd420f14cc9e0872ac11bba5e17075177c3cfaad6d4c3ac617544",
+    "toolchain": {
+      "sdk_version": "27.0",
+      "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+      "xcode": "Xcode 27.0\nBuild version 27A266a"
+    }
+  },
+  "owned_distribution_destination": "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/build/original-editor-sdk-input/distribution",
+  "functions_executed": [
+    "select-runtime27-toolchain.py:original_editor_toolchain",
+    "original_editor_continuation_admission.py:validate_paths"
+  ],
+  "actual_installed_toolchain_inspected": false,
+  "artifacts_downloaded": 0,
+  "sdk_distribution_restored": false,
+  "native_builds_or_tests": 0,
+  "historical_controls_reexecuted": 0
+}

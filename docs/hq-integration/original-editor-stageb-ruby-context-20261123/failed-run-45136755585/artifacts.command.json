@@ -1,0 +1,19 @@
+{
+  "name": "artifacts",
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "gh",
+    "api",
+    "repos/davidpovarsky/Maktabah/actions/runs/45136755585/artifacts"
+  ],
+  "started_at": "2026-11-23T08:57:00.619938+00:00",
+  "finished_at": "2026-11-23T08:57:01.188965+00:00",
+  "exit_code": 0,
+  "stdout_bytes": 833,
+  "stdout_sha256": "3160fdb6a3c83d904f867c9a47a3cb505e33ac408a131e024bdc07732dcd47bb",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

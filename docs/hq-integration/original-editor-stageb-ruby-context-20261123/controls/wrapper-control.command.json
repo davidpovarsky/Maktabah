@@ -1,0 +1,15 @@
+{
+  "command": [
+    "python3",
+    "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/docs/hq-integration/original-editor-stageb-ruby-context-20261123/controls/run_wrapper_control.py",
+    "--checkout",
+    "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123",
+    "--diagnostics",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair"
+  ],
+  "returncode": 0,
+  "timed_out": false,
+  "child_reaped": true,
+  "owned_group_drained": true,
+  "driver_sha256": "4d6c6f5013ee59a8e7d3f2a321dd959d16eab8730eed67e8a9d2dad110f924f4"
+}

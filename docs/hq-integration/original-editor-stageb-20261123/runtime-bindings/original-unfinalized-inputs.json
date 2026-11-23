@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "status": "UNFINALIZED_REQUIRES_NEW_ORIGINAL_HOST_EXPORT",
+  "repository": "davidpovarsky/anytype-swift",
+  "repository_id": 0,
+  "source_sha": "UNFINALIZED",
+  "run_id": 0,
+  "run_attempt": 0,
+  "job_id": 0,
+  "job_name": "original-editor-framework",
+  "workflow_path": ".github/workflows/pinkha-original-editor-framework.yml",
+  "required_steps": [
+    "Bind original app sources resources packages and the additive target",
+    "Prepare and verify the original SDK snapshot",
+    "Verify actual Xcode27 and create original owned OS27 simulators",
+    "Verify the recorded original Heart producer and exact binary slices",
+    "Build the genuine framework and execute the separate binary consumer"
+  ],
+  "artifact_id": 0,
+  "archive_path": "build/original-editor-sdk-input/framework.zip",
+  "archive_bytes": 0,
+  "archive_sha256": "UNFINALIZED",
+  "distribution_root": "build/original-editor-sdk-input/distribution",
+  "distribution_manifest_path": "build/original-editor-sdk-input/framework-distribution.json",
+  "distribution_manifest_sha256": "UNFINALIZED",
+  "qualification_sha256": "UNFINALIZED",
+  "original_source_sha256": "UNFINALIZED",
+  "hanlin_source_path": "build/original-editor-sdk-input/original-hanlin-snapshot.json",
+  "hanlin_source_sha256": "UNFINALIZED",
+  "framework_artifact": {
+    "id": 0,
+    "name": "UNFINALIZED",
+    "size_in_bytes": 0,
+    "sha256": "UNFINALIZED",
+    "path": "build/original-editor-sdk-input/framework.zip",
+    "upload_step": "Upload only the actually qualified simulator framework closure"
+  },
+  "evidence_artifact": {
+    "id": 0,
+    "name": "UNFINALIZED",
+    "size_in_bytes": 0,
+    "sha256": "UNFINALIZED",
+    "path": "build/original-editor-sdk-input/evidence.zip",
+    "upload_step": "Upload source-bound framework acceptance evidence"
+  }
+}

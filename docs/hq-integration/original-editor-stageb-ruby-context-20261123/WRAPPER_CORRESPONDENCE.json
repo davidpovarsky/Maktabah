@@ -1,0 +1,49 @@
+{
+  "base": "3d0ff5b7043b23b64110c87510ed2e76cbd371ca",
+  "paths": [
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "before_sha256": "d8c317ee8fdf1fd07a2e2e604c52866379912d96705f4da9a09bcab055f8f337",
+      "after_sha256": "d8c317ee8fdf1fd07a2e2e604c52866379912d96705f4da9a09bcab055f8f337",
+      "after_bytes": 49198
+    },
+    {
+      "path": "Scripts/CI/hq-original-editor-distribution.py",
+      "before_sha256": "3c62064f0278502ca0ebbac64243439a6515a7a29ee29c16d0933df6b077588d",
+      "after_sha256": "6e462ff723b540b12155f054642a661b49610e0e71b6842c35c00c638931d114",
+      "after_bytes": 48550
+    },
+    {
+      "path": "Scripts/CI/hq-original-editor-ruby-context.rb",
+      "before_sha256": "2059ca905374a037ea10a7e56d3f4ae419602db77c80509376268988b505738b",
+      "after_sha256": "facf9c4c1fcc25d1cafbd6d532c60367a4097f16642f5fc444e2a2092d0e3f33",
+      "after_bytes": 8002
+    }
+  ],
+  "inverse_recovers_exact_original_two_files": true,
+  "common_driver_entire_file_unchanged": true,
+  "old_six_controls": {
+    "source_sha": "3d0ff5b7043b23b64110c87510ed2e76cbd371ca",
+    "result_sha256": "4afad3517623d47b5ec66dc38e8f78f40542c6b8d134ce37fae9381f9c78841a",
+    "cases": 6,
+    "assertions": 42,
+    "replayed": false
+  },
+  "new_affected_control": {
+    "scope": "PORTABLE_ACTUAL_SHELL_EXEC_RUBY_MECHANISM_ONLY",
+    "cases": 1,
+    "assertions": 13,
+    "result_sha256": "b33134aacd02b2a59291d173e4932990c67e4a5e9e7733f413203fa0cb06a2b1"
+  },
+  "unchanged_mechanisms": "Original parent guard, argv guard, delayed at_exit, exclusive write, loaded gem closure/files/runtime, context activation, helper arguments/exit and all Python original field validations are exact after inverse removal of entry observation/validation. Only the expected Ruby source digest changes transitively.",
+  "original_helper_workflow_product": "unchanged",
+  "homebrew_primary_source": {
+    "url": "https://raw.githubusercontent.com/Homebrew/homebrew-core/master/Formula/c/cocoapods.rb",
+    "observed": "2026-11-23",
+    "lines": [
+      23,
+      24
+    ],
+    "finding": "Formula installs binstub then makes environment wrapper; corroborates need for separate launcher and observed Ruby entry. It does not prove the exact prior GitHub runner packaging."
+  }
+}

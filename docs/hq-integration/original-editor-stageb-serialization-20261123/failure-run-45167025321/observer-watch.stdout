@@ -1,0 +1,42 @@
+Refreshing run status every 120 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-original-editor-stageb-20261123 Original editor saved annotation native acceptance · 45167025321
+Triggered via push about 5 minutes ago
+
+JOBS
+* original-editor-stageb (ID 137666501228)
+  * Build the real app and UI runner once with the admitted original SDK
+Refreshing run status every 120 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-original-editor-stageb-20261123 Original editor saved annotation native acceptance · 45167025321
+Triggered via push about 7 minutes ago
+
+JOBS
+* original-editor-stageb (ID 137666501228)
+  * Build the real app and UI runner once with the admitted original SDK
+Refreshing run status every 120 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-original-editor-stageb-20261123 Original editor saved annotation native acceptance · 45167025321
+Triggered via push about 9 minutes ago
+
+JOBS
+* original-editor-stageb (ID 137666501228)
+  * Build the real app and UI runner once with the admitted original SDK
+X codex/otzaria-original-editor-stageb-20261123 Original editor saved annotation native acceptance · 45167025321
+Triggered via push about 11 minutes ago
+
+JOBS
+X original-editor-stageb in 10m41s (ID 137666501228)
+  X Build the real app and UI runner once with the admitted original SDK
+  X Verify original native results and retain named evidence
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache/restore@v4, actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+original-editor-stageb: .github#2
+
+X Process completed with exit code 1.
+original-editor-stageb: .github#11
+
+X Process completed with exit code 1.
+original-editor-stageb: .github#334
+

@@ -1,0 +1,69 @@
+{
+  "original_producer_sha": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+  "original_evidence_outer_sha256": "2bb23bc491564a8fb276ceeaafb57db4b500abf0a1ae03286676cf91d12b7df7",
+  "original_evidence_inner_sha256": "81331f9bb69b1ad729b79e9f22869cb14d5b63bb8eaf73bf70aa9b8dd06a0f5e",
+  "actual_failure_run": 45130214448,
+  "actual_failure_artifact_sha256": "3662b88875a2062005edcad376463761c1f4a6b300a096ab0329dc4d211affcd",
+  "files": [
+    {
+      "path": "fixtures/framework-architecture.command.json",
+      "bytes": 630,
+      "sha256": "a435a1ed9e8c2751d2e874696a853a2ca211a28ccf9846f6466eaa8a48cda87c"
+    },
+    {
+      "path": "fixtures/framework-architecture.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fixtures/framework-architecture.stdout.log",
+      "bytes": 6,
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+    },
+    {
+      "path": "fixtures/framework-header-0.command.json",
+      "bytes": 612,
+      "sha256": "8b526ce98183698d7e646467cdb8255b5e1029a56b6a1e58a559d69caa2bc2be"
+    },
+    {
+      "path": "fixtures/framework-header-0.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fixtures/framework-header-0.stdout.log",
+      "bytes": 797,
+      "sha256": "6fad5eaeb75e6c4b45161b129a05f3e64378be793b8978cdbcae17ebde21c259"
+    },
+    {
+      "path": "fixtures/framework-header-3.command.json",
+      "bytes": 628,
+      "sha256": "d8fa560215c7afb04466eb87ea508a39dd91e28fea673323a880fdf5eb93c27d"
+    },
+    {
+      "path": "fixtures/framework-header-3.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fixtures/framework-header-3.stdout.log",
+      "bytes": 425,
+      "sha256": "c78fe9f8d67df30df201afb479ffe8e748452e191aa63ad4d413781894b15f31"
+    },
+    {
+      "path": "fixtures/sdk-architecture-0.json",
+      "bytes": 251,
+      "sha256": "f953244e1226b1e7ca877950349a99c3400210af27867735e8645a9dc06abe35"
+    },
+    {
+      "path": "fixtures/sdk-header-0.json",
+      "bytes": 992,
+      "sha256": "3488b65799373bfb0ae30139ffcbd45694dfd3c6883665f6f74e79882f49554d"
+    },
+    {
+      "path": "fixtures/sdk-signature-0.json",
+      "bytes": 245,
+      "sha256": "030e1ad3b1dffb700466a9451187529b14f4e1e98d9c358d95da27ec65837538"
+    }
+  ]
+}

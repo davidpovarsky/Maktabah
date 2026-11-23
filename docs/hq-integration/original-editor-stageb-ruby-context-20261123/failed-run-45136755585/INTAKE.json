@@ -1,0 +1,285 @@
+{
+  "schema": 1,
+  "read_at": "2026-11-23T09:11:40.760193+00:00",
+  "status": "AUTHENTIC_TERMINAL_FAILURE_ADMITTED",
+  "run": {
+    "id": 45136755585,
+    "head_sha": "8e9dac2d9585dd482e9ab784a65c5517b6847648",
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "updated_at": "2026-11-23T08:55:19Z",
+    "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45136755585"
+  },
+  "watch": {
+    "watch_returncode": 1,
+    "timed_out": false,
+    "child_reaped": true,
+    "owned_group_drained": true,
+    "remaining_owned_processes": [],
+    "final_metadata_returncode": 0
+  },
+  "artifact": {
+    "artifact_id": 14802911519,
+    "outer_bytes": 31173031,
+    "outer_sha256": "58a809905472f70664c7e077918ee4909fb96d5e18169ca25bafe16e8bccb130",
+    "unique_safe_crc_files": 221,
+    "total_expanded_bytes": 36538845,
+    "has_upstream_per_member_digest_index": false
+  },
+  "original_zip": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/45136755585/terminal/original-editor-stageb-evidence.zip",
+  "zip_admission_sha256": "12a7bd74f3e3f25e99538204c3fe887ab7e8b0f68c2aca9cd57910743cf126a1",
+  "source": {
+    "checkout_sha": "8e9dac2d9585dd482e9ab784a65c5517b6847648",
+    "application_source_sha": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+    "application_trees": {
+      "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078"
+    }
+  },
+  "completed_admission": {
+    "distribution_files": 2528,
+    "dynamic_frameworks": 15,
+    "resource_bundles": 37,
+    "actual_api": {
+      "api_probe_sha256": "5f0cca78ac048f47c55468601ecd6851683ecdf46ec3edb77722c25cb9a52b2c",
+      "native_execution": false,
+      "scope": "EXPORTED_SPI_AND_HOST_COMPILER_ADMISSION_ONLY",
+      "source_sha": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+      "status": "ACTUAL_EXPORTED_API_TYPECHECK_PASS"
+    },
+    "actual_api_command_returncode": 0,
+    "command_receipts": {
+      "mach_o_header": {
+        "commands": 17,
+        "all_returncode_zero": true,
+        "receipt_members": [
+          "hq-stage2/original-editor/sdk-header-0.json",
+          "hq-stage2/original-editor/sdk-header-1.json",
+          "hq-stage2/original-editor/sdk-header-10.json",
+          "hq-stage2/original-editor/sdk-header-12.json",
+          "hq-stage2/original-editor/sdk-header-11.json",
+          "hq-stage2/original-editor/sdk-header-13.json",
+          "hq-stage2/original-editor/sdk-header-14.json",
+          "hq-stage2/original-editor/sdk-header-15.json",
+          "hq-stage2/original-editor/sdk-header-16.json",
+          "hq-stage2/original-editor/sdk-header-2.json",
+          "hq-stage2/original-editor/sdk-header-3.json",
+          "hq-stage2/original-editor/sdk-header-4.json",
+          "hq-stage2/original-editor/sdk-header-5.json",
+          "hq-stage2/original-editor/sdk-header-6.json",
+          "hq-stage2/original-editor/sdk-header-7.json",
+          "hq-stage2/original-editor/sdk-header-9.json",
+          "hq-stage2/original-editor/sdk-header-8.json"
+        ]
+      },
+      "dynamic_cpu": {
+        "commands": 15,
+        "all_returncode_zero": true,
+        "receipt_members": [
+          "hq-stage2/original-editor/sdk-architecture-0.json",
+          "hq-stage2/original-editor/sdk-architecture-1.json",
+          "hq-stage2/original-editor/sdk-architecture-10.json",
+          "hq-stage2/original-editor/sdk-architecture-11.json",
+          "hq-stage2/original-editor/sdk-architecture-12.json",
+          "hq-stage2/original-editor/sdk-architecture-14.json",
+          "hq-stage2/original-editor/sdk-architecture-15.json",
+          "hq-stage2/original-editor/sdk-architecture-16.json",
+          "hq-stage2/original-editor/sdk-architecture-2.json",
+          "hq-stage2/original-editor/sdk-architecture-3.json",
+          "hq-stage2/original-editor/sdk-architecture-4.json",
+          "hq-stage2/original-editor/sdk-architecture-5.json",
+          "hq-stage2/original-editor/sdk-architecture-6.json",
+          "hq-stage2/original-editor/sdk-architecture-9.json",
+          "hq-stage2/original-editor/sdk-architecture-7.json"
+        ]
+      },
+      "dynamic_platform": {
+        "commands": 15,
+        "all_returncode_zero": true,
+        "receipt_members": [
+          "hq-stage2/original-editor/sdk-platform-0.json",
+          "hq-stage2/original-editor/sdk-platform-1.json",
+          "hq-stage2/original-editor/sdk-platform-10.json",
+          "hq-stage2/original-editor/sdk-platform-11.json",
+          "hq-stage2/original-editor/sdk-platform-12.json",
+          "hq-stage2/original-editor/sdk-platform-14.json",
+          "hq-stage2/original-editor/sdk-platform-15.json",
+          "hq-stage2/original-editor/sdk-platform-2.json",
+          "hq-stage2/original-editor/sdk-platform-16.json",
+          "hq-stage2/original-editor/sdk-platform-3.json",
+          "hq-stage2/original-editor/sdk-platform-4.json",
+          "hq-stage2/original-editor/sdk-platform-5.json",
+          "hq-stage2/original-editor/sdk-platform-6.json",
+          "hq-stage2/original-editor/sdk-platform-7.json",
+          "hq-stage2/original-editor/sdk-platform-9.json"
+        ]
+      },
+      "dynamic_signature": {
+        "commands": 15,
+        "all_returncode_zero": true,
+        "receipt_members": [
+          "hq-stage2/original-editor/sdk-signature-0.json",
+          "hq-stage2/original-editor/sdk-signature-1.json",
+          "hq-stage2/original-editor/sdk-signature-10.json",
+          "hq-stage2/original-editor/sdk-signature-11.json",
+          "hq-stage2/original-editor/sdk-signature-12.json",
+          "hq-stage2/original-editor/sdk-signature-14.json",
+          "hq-stage2/original-editor/sdk-signature-15.json",
+          "hq-stage2/original-editor/sdk-signature-16.json",
+          "hq-stage2/original-editor/sdk-signature-2.json",
+          "hq-stage2/original-editor/sdk-signature-3.json",
+          "hq-stage2/original-editor/sdk-signature-4.json",
+          "hq-stage2/original-editor/sdk-signature-5.json",
+          "hq-stage2/original-editor/sdk-signature-6.json",
+          "hq-stage2/original-editor/sdk-signature-7.json",
+          "hq-stage2/original-editor/sdk-signature-9.json"
+        ]
+      },
+      "swift_syntax_sdk": {
+        "commands": 51,
+        "all_returncode_zero": true,
+        "receipt_members": [
+          "hq-stage2/original-editor/swift-syntax-sdk/image-0-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-0-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-0-symbols.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-1-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-1-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-1-symbols.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-10-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-10-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-10-symbols.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-11-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-11-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-11-symbols.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-12-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-12-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-12-symbols.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-13-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-13-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-13-symbols.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-14-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-14-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-14-symbols.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-15-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-15-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-15-symbols.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-16-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-16-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-16-symbols.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-2-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-2-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-2-symbols.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-3-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-3-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-3-symbols.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-4-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-4-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-4-symbols.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-5-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-5-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-5-symbols.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-6-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-6-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-6-symbols.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-7-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-7-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-7-symbols.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-8-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-8-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-9-imports.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-8-symbols.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-9-loads.json",
+          "hq-stage2/original-editor/swift-syntax-sdk/image-9-symbols.json"
+        ]
+      }
+    }
+  },
+  "failure": {
+    "phase": "PRE_APP_TARGET_RUBY_DEPENDENCY_LOAD",
+    "command": [
+      "ruby",
+      "Scripts/CI/hq-original-editor-app-target.rb",
+      "/Users/runner/work/Maktabah/Maktabah/Maktabah.xcodeproj/project.pbxproj",
+      "/Users/runner/work/Maktabah/Maktabah/build/hq-stage2/original-editor/app-target-plan.json",
+      "/Users/runner/work/Maktabah/Maktabah/build/hq-stage2/original-editor/app-target-configuration.json"
+    ],
+    "error": "Focused command failed; inspect build/hq-stage2/original-editor-app-target.log",
+    "raw_log_member": "hq-stage2/original-editor-app-target.log",
+    "raw_log_bytes": 372,
+    "raw_log_sha256": "f8cdccdd9d5bd37ff41b582a3fbe911649698988c618815e99ee056a34b0aaec",
+    "ruby_version_from_error": "3.3.14",
+    "missing_require": "xcodeproj",
+    "require_line": 6,
+    "helper_load_precedes_project_open_or_mutation": true,
+    "generated_before_project_sha256": "155bda110d9eec18b1b88e00c07df70bf5d18bb25000678d8468c20a877892ec",
+    "matches_app_target_plan_before_sha256": true,
+    "note": "Generated project is the retained pre-helper snapshot; require aborts before project access. No post-mutation snapshot is claimed."
+  },
+  "not_run": {
+    "xcodebuild_build_for_testing": true,
+    "original_ui_test": true,
+    "edit_export_cas_process_relaunch_reopen": true,
+    "device": true,
+    "production_abi": true
+  },
+  "secondary_collection_error": "RuntimeError: No matching original SDK/app/runner build",
+  "selected_original_members": [
+    {
+      "member": "hq-stage2/result.json",
+      "bytes": 89601,
+      "sha256": "67c41f0852653906d4205765e766a6913d1372d4dede32d800d45d9bda5d73e6"
+    },
+    {
+      "member": "hq-stage2/original-editor/distribution-admission.json",
+      "bytes": 931443,
+      "sha256": "47775aab656d4aeca3bd730030c9a9d29a2b12b37f5c17d18a85b5a7d27ee138"
+    },
+    {
+      "member": "hq-stage2/original-editor/actual-exported-api.json",
+      "bytes": 292,
+      "sha256": "9e797fff6034717d5e6a983a14a55e53f9023ad79698900341b61228a8e91e99"
+    },
+    {
+      "member": "hq-stage2/original-editor/exported-api-typecheck.json",
+      "bytes": 7169,
+      "sha256": "401f06c22499bf0847b8bb74456174eadcb659bb33cac7927da17d88591418bd"
+    },
+    {
+      "member": "hq-stage2/original-editor/app-target-plan.json",
+      "bytes": 4262,
+      "sha256": "ca2370843ba8d6d6ad4495479e06a2c7906dce9fdba34a0325562a88876bfedb"
+    },
+    {
+      "member": "hq-stage2/original-editor-app-target.log",
+      "bytes": 372,
+      "sha256": "f8cdccdd9d5bd37ff41b582a3fbe911649698988c618815e99ee056a34b0aaec"
+    },
+    {
+      "member": "hq-stage2/generated-Maktabah-project.pbxproj",
+      "bytes": 620777,
+      "sha256": "155bda110d9eec18b1b88e00c07df70bf5d18bb25000678d8468c20a877892ec"
+    },
+    {
+      "member": "hq-stage2/resolved-Podfile.lock",
+      "bytes": 100298,
+      "sha256": "9a7f88b1d9ebbf4d14f8b6f1efd1fb2d15ac63983bf16ffd3e9ea011f9a55ce7"
+    },
+    {
+      "member": "hq-stage2/pod-install.log",
+      "bytes": 31886,
+      "sha256": "703c9410b8378bcae05a76d247c00d7af194f559bd7ae6304232b8c1041342a9"
+    },
+    {
+      "member": "original-editor-native-evidence/result.json",
+      "bytes": 64453,
+      "sha256": "7df1fa38b001dd961d044bc15346b3424ba2c447fb1f5aa5e6ecb9bedfc4508c"
+    },
+    {
+      "member": "original-editor-sdk-metadata/restoration.json",
+      "bytes": 5652,
+      "sha256": "a5dd87379d12e362cb8a31b0ca255eba755b755da44682a41e56ebbe2df922ba"
+    }
+  ]
+}

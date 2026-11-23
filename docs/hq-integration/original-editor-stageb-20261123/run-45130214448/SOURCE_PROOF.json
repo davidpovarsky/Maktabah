@@ -1,0 +1,377 @@
+{
+  "Scripts/CI/hq-original-editor-distribution.py": {
+    "bytes": 37464,
+    "sha256": "c5e933f4c5f411426d6223c6fd35b89937e5d5c02dd21a09d4ee4eab8f6e1a3d",
+    "git_blob": "e7ee256f30a76667067e266cbf3c5d8e48d13f0c"
+  },
+  "Scripts/CI/hq-stage2-focused-apple.py": {
+    "bytes": 48574,
+    "sha256": "0dbe133b8f0ee188dc2f0d0c375972a210571498ecac928f1174730ebb0e83f5",
+    "git_blob": "ab9164b58c3a64571590220ed8fc558e20279486"
+  },
+  "Scripts/CI/runtime27-original-editor.inputs.json": {
+    "bytes": 8097,
+    "sha256": "2940ae140f7c4b1521d454d3e9b246f85c75b473c806d8ea68190b793601a731",
+    "git_blob": "9171f651afbbd0eac02768462f62ff28db6df8ba"
+  },
+  "Scripts/CI/original_editor_continuation_admission.py": {
+    "bytes": 29084,
+    "sha256": "94e70b21fb323670e81a6903ee7a253d9b3cdf9183e9082f548905827e5d57ef",
+    "git_blob": "d290aef6e9d97911c554cacdd59128b140c92bfb"
+  },
+  "Scripts/CI/runtime27-original-editor-native.py": {
+    "bytes": 43668,
+    "sha256": "04c61fcda3c116598086e9fdf348b30b25818c358719fb29aa0529e9efe9d70c",
+    "git_blob": "b24909c45075eef11db5969da1f1c973fbef3bb2"
+  },
+  "Scripts/CI/hq-original-editor-app-target.rb": {
+    "bytes": 8935,
+    "sha256": "094f10867cb070035aa7044bc94f57df712b0b8ccfdcd4cf758a75c21f455e6a",
+    "git_blob": "d33c0a4fb7812c59834aadb8c18e8b2625b09682"
+  },
+  "Scripts/CI/OriginalEditorDistributionAPICheck.swift": {
+    "bytes": 2854,
+    "sha256": "5f0cca78ac048f47c55468601ecd6851683ecdf46ec3edb77722c25cb9a52b2c",
+    "git_blob": "2e6700b242113e0ba6efa382354de0e1b422fecd"
+  },
+  "source_sha": "a0b0e12cee7260829f4cafe41fc9c4c0dfad6c44",
+  "original_producer_sha": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+  "original_evidence_outer_sha256": "2bb23bc491564a8fb276ceeaafb57db4b500abf0a1ae03286676cf91d12b7df7",
+  "original_evidence_inner_sha256": "81331f9bb69b1ad729b79e9f22869cb14d5b63bb8eaf73bf70aa9b8dd06a0f5e",
+  "original_framework_headers": [
+    {
+      "index": 0,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/AmplitudeCore.framework/AmplitudeCore"
+      ],
+      "record_sha256": "8b526ce98183698d7e646467cdb8255b5e1029a56b6a1e58a559d69caa2bc2be",
+      "stdout_sha256": "6fad5eaeb75e6c4b45161b129a05f3e64378be793b8978cdbcae17ebde21c259",
+      "stdout_bytes": 797,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "DYLIB"
+        ],
+        [
+          "X86_64",
+          "DYLIB"
+        ]
+      ]
+    },
+    {
+      "index": 1,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/AnyCryptoSwift_4B7B7B8889D5B5C4_PackageProduct.framework/AnyCryptoSwift_4B7B7B8889D5B5C4_PackageProduct"
+      ],
+      "record_sha256": "1c2217ea381ef12732537a2a232367cf488b8fe7f9bee4fe0b3f1fc6258db5fd",
+      "stdout_sha256": "b7e80af91e4286d56f94679169b2911d26f912d470d4d4a297c68e68680c7ab6",
+      "stdout_bytes": 443,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "DYLIB"
+        ]
+      ]
+    },
+    {
+      "index": 2,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/AnytypeCore.framework/AnytypeCore"
+      ],
+      "record_sha256": "896a44deddb9eadc5ee62449dd91878e464795181aa0132edb1c4f84a07c3305",
+      "stdout_sha256": "c050ae9d772d1874d6f966905e1481c24a3e21fb96cc446bd7d98a760864f494",
+      "stdout_bytes": 359,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "DYLIB"
+        ]
+      ]
+    },
+    {
+      "index": 3,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/AnytypeOriginalEditor.framework/AnytypeOriginalEditor"
+      ],
+      "record_sha256": "d8fa560215c7afb04466eb87ea508a39dd91e28fea673323a880fdf5eb93c27d",
+      "stdout_sha256": "c78fe9f8d67df30df201afb479ffe8e748452e191aa63ad4d413781894b15f31",
+      "stdout_bytes": 425,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "DYLIB"
+        ]
+      ]
+    },
+    {
+      "index": 4,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/AppTarget_-256A0C750C206F_PackageProduct.framework/AppTarget_-256A0C750C206F_PackageProduct"
+      ],
+      "record_sha256": "468069318f00a0b9eb6f39bb7dbe5d0c4e36345981fea8cd816fd78cb26dd71c",
+      "stdout_sha256": "dc31cec5d056861b390a75b5db41f9e28f28ffba6263e60d6c3ccefae9a50b2b",
+      "stdout_bytes": 417,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "DYLIB"
+        ]
+      ]
+    },
+    {
+      "index": 5,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/BigInt_175F1397B99A03_PackageProduct.framework/BigInt_175F1397B99A03_PackageProduct"
+      ],
+      "record_sha256": "805b7c110eb5025864c99a4a0adb9ef0def7b9cb49d9dc02e915a9b857e4d420",
+      "stdout_sha256": "4ab98bc233f2bed9a9d8afe29a2a74d64a64125902fb20af5a86e93d9fc580bb",
+      "stdout_bytes": 423,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "DYLIB"
+        ]
+      ]
+    },
+    {
+      "index": 6,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/Crypto_17A3B1FFC41E47_PackageProduct.framework/Crypto_17A3B1FFC41E47_PackageProduct"
+      ],
+      "record_sha256": "01df38923991162fc30052cf958fa763a47ee22f6dceb9fa81af266529b6bc46",
+      "stdout_sha256": "89e52118a27c3402d6db3eaa5e5970b0c68fd4859c0f8dce9b0a7608cac88f6b",
+      "stdout_bytes": 423,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "DYLIB"
+        ]
+      ]
+    },
+    {
+      "index": 7,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/Factory_32A9B87E1196645F_PackageProduct.framework/Factory_32A9B87E1196645F_PackageProduct"
+      ],
+      "record_sha256": "16bc3df70ce2be7fb277f8ba2e0799f7ac1946cb91dbc87fd574d3cb3bb9ffc9",
+      "stdout_sha256": "582a131cb6d0396656d3ef43f89fd875cc011200d8bad0b95c1e207584f91dad",
+      "stdout_bytes": 429,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "DYLIB"
+        ]
+      ]
+    },
+    {
+      "index": 8,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/Lib.framework/Lib"
+      ],
+      "record_sha256": "86d364ae66ca6e3c2c4c16cd7978f953dc8dc499fbb74842434affa562db9dc9",
+      "stdout_sha256": "f87b3da8228619efdb87526e0c538889cc49622743469541921598276a176ac9",
+      "stdout_bytes": 734452,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "OBJECT"
+        ],
+        [
+          "X86_64",
+          "OBJECT"
+        ]
+      ]
+    },
+    {
+      "index": 9,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/Logger.framework/Logger"
+      ],
+      "record_sha256": "ee37ca00dc6925fa5d5ccbea882eae3330d7c8acbc59fc3437ddf6b910ad6e16",
+      "stdout_sha256": "99b351c9bcfb56273193f43d7805bbab00e5185d6276c11cfebbb18fd49151b5",
+      "stdout_bytes": 363,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "DYLIB"
+        ]
+      ]
+    },
+    {
+      "index": 10,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/NotificationsCore_5AD5AD79262EBF4_PackageProduct.framework/NotificationsCore_5AD5AD79262EBF4_PackageProduct"
+      ],
+      "record_sha256": "a1b1697c207e16c97e567a83b423dabf5503d79150be4d923e062587b7f35004",
+      "stdout_sha256": "621156ca2d6ecf2e1c0d0e97e5d8ba0473a6f78678c2ada87c09e251fe478f94",
+      "stdout_bytes": 433,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "DYLIB"
+        ]
+      ]
+    },
+    {
+      "index": 11,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/ProtobufMessages.framework/ProtobufMessages"
+      ],
+      "record_sha256": "cc1fa8c4928684f445378b93a988fb1fd3d179c3bae65491929da39b61da6c1c",
+      "stdout_sha256": "40efe6fdec2f86280efb5ad0eef979dfa5f59dea80e3e819f9ad669758966ed7",
+      "stdout_bytes": 419,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "DYLIB"
+        ]
+      ]
+    },
+    {
+      "index": 12,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/SecureService.framework/SecureService"
+      ],
+      "record_sha256": "37475582e389294ecd5661d5af8a7b05cb12c4e7c9714b240240266d69898a1d",
+      "stdout_sha256": "215cb5b415210cc27cffc9aa38bff284bc9509433fd8c76366207f7bace2ee70",
+      "stdout_bytes": 363,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "DYLIB"
+        ]
+      ]
+    },
+    {
+      "index": 13,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/Sentry.framework/Sentry"
+      ],
+      "record_sha256": "bdfa59599f0d91e7d30898e79a5fa8cd7b248e2fd46eb3e1cf184f5dae17d4dd",
+      "stdout_sha256": "1ba6e347c7f0ff1520604dc60cbd6fcd0cba08b311df648b4c03c65bfe79a851",
+      "stdout_bytes": 302779,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "OBJECT"
+        ],
+        [
+          "X86_64",
+          "OBJECT"
+        ]
+      ]
+    },
+    {
+      "index": 14,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/Services.framework/Services"
+      ],
+      "record_sha256": "7a24caee6eb19e5ba545b90f7fd42b7978414666f9025082ee2f97ecb3c77a15",
+      "stdout_sha256": "642046042b11abd00472b2555392ebd2340176137e58047b5063c5ba4489ce14",
+      "stdout_bytes": 353,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "DYLIB"
+        ]
+      ]
+    },
+    {
+      "index": 15,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/SharedContentManager.framework/SharedContentManager"
+      ],
+      "record_sha256": "67fc293d59701dd5f5f6bed83044e9c896228f846f481d619c796254dd9dfc74",
+      "stdout_sha256": "42221a27b98d483cbef85406086a808e9da57e416d352df615276124b9fa0d1f",
+      "stdout_bytes": 377,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "DYLIB"
+        ]
+      ]
+    },
+    {
+      "index": 16,
+      "command": [
+        "otool",
+        "-hv",
+        "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/SwiftProtobuf_7CEE9AB92C12BC6B_PackageProduct.framework/SwiftProtobuf_7CEE9AB92C12BC6B_PackageProduct"
+      ],
+      "record_sha256": "372436635dcbb45e7ba83eaaf68427f6a47d8de36567148cd64c87b624325234",
+      "stdout_sha256": "7b27993721c98c195460b12ece4f54a3c22abf50bcd09d973a1970b4197979a0",
+      "stdout_bytes": 441,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "header_cpu_and_kind": [
+        [
+          "ARM64",
+          "DYLIB"
+        ]
+      ]
+    }
+  ],
+  "source_cause": {
+    "path": "Scripts/CI/hq-original-editor-distribution.py",
+    "line": 367,
+    "predicate": "lipo -archs output == arm64",
+    "first_actual_binary": "AmplitudeCore.framework/AmplitudeCore",
+    "actual_architectures": [
+      "x86_64",
+      "arm64"
+    ],
+    "qualified_original_headers_same_cpu_set": true
+  },
+  "remaining_integration_review": [
+    "entire admit, prepare, require_unchanged, embed and verify_built_app read; no second single-architecture equality found",
+    "immutable distribution, strict signatures, platform, exported-API compiler, package and Hanlin source, target isolation and exact copied inventories must remain",
+    "checks after failed architecture predicate are NOT_RUN in this run"
+  ]
+}

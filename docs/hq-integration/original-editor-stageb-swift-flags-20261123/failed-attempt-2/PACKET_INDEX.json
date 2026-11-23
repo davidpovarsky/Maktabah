@@ -1,0 +1,185 @@
+{
+  "schema": 1,
+  "run_id": 45150723169,
+  "attempt": 2,
+  "source_sha": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+  "entries": [
+    {
+      "path": "ARCHIVE_MEMBERS.json",
+      "bytes": 54598,
+      "sha256": "00ec5415e9c8bab88772d700a2a6eb7c9ef7cb0f238bd8d001b2ee6eb7bf8e92"
+    },
+    {
+      "path": "DIAGNOSIS.md",
+      "bytes": 1944,
+      "sha256": "2995437f01fb0e318cc4c14a85253d91b3e8da97ac457157a46f62e135440899"
+    },
+    {
+      "path": "INTAKE.json",
+      "bytes": 2493,
+      "sha256": "5d077b20d3a85bf5b2b521bc99ecd477137278b8f9865f42733374c28b21b2b1"
+    },
+    {
+      "path": "SDK_COMMAND_SUMMARY.json",
+      "bytes": 22679,
+      "sha256": "feb211deb21d9e8903f087618f48ba63a56cecd783019b2fe44f1675ffbb4c9f"
+    },
+    {
+      "path": "SWIFT_FLAGS_REPAIR_PROPOSAL.md",
+      "bytes": 2152,
+      "sha256": "517cb6cde7d9e2f2b948c18bd9d05e4bd66c1b4124fc928dd528025bdc1288da"
+    },
+    {
+      "path": "admitted/hq-stage2/actual-source-inputs.json",
+      "bytes": 115282,
+      "sha256": "6ec6a199bfd9f749339399bb5676ae765aa4da9f63e56dbadb8ba9105866b83a"
+    },
+    {
+      "path": "admitted/hq-stage2/generated-Maktabah-project.pbxproj",
+      "bytes": 620777,
+      "sha256": "bf0d5741cb27fc1fe619d7fb8bada82ada18a14145f2e0ecdee92551704229ec"
+    },
+    {
+      "path": "admitted/hq-stage2/original-editor/app-target-plan.json",
+      "bytes": 4262,
+      "sha256": "e16522f93b7bf08205c4a2306ab3e39666e3cfe6362f0718eb32bb14e302923d"
+    },
+    {
+      "path": "admitted/hq-stage2/original-editor/distribution-admission.json",
+      "bytes": 931443,
+      "sha256": "47775aab656d4aeca3bd730030c9a9d29a2b12b37f5c17d18a85b5a7d27ee138"
+    },
+    {
+      "path": "admitted/hq-stage2/original-editor/pod-ruby-context.json",
+      "bytes": 99644,
+      "sha256": "2d3357473f032b5f068730f248c1abed563cad6f213dc10fc0e6d0e41332f2e4"
+    },
+    {
+      "path": "admitted/hq-stage2/original-editor/pod-ruby-request.json",
+      "bytes": 841,
+      "sha256": "d82790e8009dbe0ae0b9eb9f3b03e4717bdf645380cf3b2ed1ca9e7a4fd1ccaf"
+    },
+    {
+      "path": "admitted/hq-stage2/original-editor-app-target.log",
+      "bytes": 505,
+      "sha256": "d4d3a4a9c34a86abdd2e3b285d239bda208ae31840ae0b546796f2bc101bc899"
+    },
+    {
+      "path": "admitted/hq-stage2/resolved-Podfile.lock",
+      "bytes": 100298,
+      "sha256": "9a7f88b1d9ebbf4d14f8b6f1efd1fb2d15ac63983bf16ffd3e9ea011f9a55ce7"
+    },
+    {
+      "path": "admitted/hq-stage2/result.json",
+      "bytes": 90511,
+      "sha256": "415b72757b54d40718fcd7fcf246dace11dcbc242445fa0bc195b1114480c93d"
+    },
+    {
+      "path": "admitted/original-editor-native-evidence/result.json",
+      "bytes": 64677,
+      "sha256": "7ee46bc74cccf52102ef41ca2defb6d3aa23ccd36102314b9372f0798177b939"
+    },
+    {
+      "path": "artifact-download.command.json",
+      "bytes": 589,
+      "sha256": "2c8c8941f355afda85390381108454a2ca7969b6062e29dcca562de65664561a"
+    },
+    {
+      "path": "artifact-download.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts.command.json",
+      "bytes": 454,
+      "sha256": "05d0f2ac321a7d0e687e61bec4e4cdf241c623bbb8fefaec043cbbf6b2aa416a"
+    },
+    {
+      "path": "artifacts.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts.stdout",
+      "bytes": 833,
+      "sha256": "29ccfb8b55564374cee40667d6a863f254b906943aed084afa502cb369fc198f"
+    },
+    {
+      "path": "final-metadata.command.json",
+      "bytes": 562,
+      "sha256": "317ac7f7dd93a31ef1b944c51bd32d1c0856044f786b0c59858f3953743dbc58"
+    },
+    {
+      "path": "final-metadata.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "final-metadata.stdout",
+      "bytes": 12886,
+      "sha256": "8d13f3b1a1b582406bba75b425d022b78c50ccbadd8a4ea26ec0b78aa5b62e13"
+    },
+    {
+      "path": "job-log.command.json",
+      "bytes": 567,
+      "sha256": "16f6c43887da9686174b0e9f1d472c21cac7fc3201a2d55fe53c1e310a051538"
+    },
+    {
+      "path": "job-log.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "jobs.command.json",
+      "bytes": 460,
+      "sha256": "2c73bf9bfa3e31a8589b9bf9a3d8d4a7efef7184f8b4c1447499eb027e80bc54"
+    },
+    {
+      "path": "jobs.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "jobs.stdout",
+      "bytes": 4872,
+      "sha256": "6b113fd8b44990bf4b474b8fccd584879383040cdd0fcc8fc5c93eecc67e3a8d"
+    },
+    {
+      "path": "original-app-target-helper.rb",
+      "bytes": 8935,
+      "sha256": "094f10867cb070035aa7044bc94f57df712b0b8ccfdcd4cf758a75c21f455e6a"
+    },
+    {
+      "path": "original-editor-stageb-evidence.zip",
+      "bytes": 31191673,
+      "sha256": "153a4687d03719039503d1b666a8620899fa813985179d0cf0b819cf0af5bca5"
+    },
+    {
+      "path": "original-job.log",
+      "bytes": 3019125,
+      "sha256": "456bb2fe90e4a52546084afe47c90b1652ae03abef4dbc2e6f502e2ce458b273"
+    },
+    {
+      "path": "watch.command.json",
+      "bytes": 642,
+      "sha256": "e43f659496bd418bf4408ad0b239f1a9599b77f89f648d5100e69c47984cc9dc"
+    },
+    {
+      "path": "watch.state.json",
+      "bytes": 2666,
+      "sha256": "cdbd33e748aae965a96a509a6231fd68c93d36139d49c444852b16ec3f163453"
+    },
+    {
+      "path": "watch.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "watch.stdout",
+      "bytes": 3321,
+      "sha256": "bcc9e42e3a123bd111f08aca96d31a99760653e59113decff4bf7e47b448b86b"
+    }
+  ],
+  "indexed_count": 35,
+  "indexed_bytes": 36359691
+}

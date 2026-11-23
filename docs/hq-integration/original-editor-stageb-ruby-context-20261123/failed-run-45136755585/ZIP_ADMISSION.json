@@ -1,0 +1,1339 @@
+{
+  "artifact_id": 14802911519,
+  "source_sha": "8e9dac2d9585dd482e9ab784a65c5517b6847648",
+  "run_id": 45136755585,
+  "attempt": 1,
+  "outer_bytes": 31173031,
+  "outer_sha256": "58a809905472f70664c7e077918ee4909fb96d5e18169ca25bafe16e8bccb130",
+  "unique_safe_crc_files": 221,
+  "total_expanded_bytes": 36538845,
+  "files": [
+    {
+      "path": "original-editor-native-evidence/declarations.json",
+      "bytes": 432,
+      "sha256": "8fa41c3ed986fef179a63e50e34a8106b95f5a46adf112dd030564569aec5c4c",
+      "crc32": "4eafe50a"
+    },
+    {
+      "path": "original-editor-native-evidence/python-runtime-preflight.json",
+      "bytes": 2158,
+      "sha256": "d4264e7fb46130a867d533d191db77a9375150bd33dbcdff7ad593d6c8e3d1cb",
+      "crc32": "cf599de5"
+    },
+    {
+      "path": "original-editor-native-evidence/result.json",
+      "bytes": 64453,
+      "sha256": "7df1fa38b001dd961d044bc15346b3424ba2c447fb1f5aa5e6ecb9bedfc4508c",
+      "crc32": "a7aba530"
+    },
+    {
+      "path": "original-editor-native-evidence/retained-original-matrix-files.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "crc32": "7068d244"
+    },
+    {
+      "path": "original-editor-native-evidence/selection.json",
+      "bytes": 177918,
+      "sha256": "f05d571be2395b258bd181d4d0330a65a108bc80e04e120c2f89b280aa947f61",
+      "crc32": "be18e0c6"
+    },
+    {
+      "path": "original-editor-native-evidence/source-before.json",
+      "bytes": 63930,
+      "sha256": "f0c6c55347d2819249553b806ec5c81756a63d48561e72324add6b233ccdc6f6",
+      "crc32": "e23c7847"
+    },
+    {
+      "path": "original-editor-sdk-metadata/UNQUALIFIED_PRODUCER.json",
+      "bytes": 792976,
+      "sha256": "aac5f47d876d9960bda9cc95b095c95cc3d46861d43dbde10c5e1dd3ad065772",
+      "crc32": "20a5042d"
+    },
+    {
+      "path": "original-editor-sdk-metadata/original-artifact-14768824831.json",
+      "bytes": 926,
+      "sha256": "e08f0321fdd3bfb84c6c14699d52d5671bd69c252cb88d329a64bcf22c7d873c",
+      "crc32": "0bc77b5d"
+    },
+    {
+      "path": "original-editor-sdk-metadata/original-artifact-14769044048.json",
+      "bytes": 936,
+      "sha256": "549e3aaf4a2dd104d6793a70a51d5e902336974a3282dd0d35625a0145d6bc97",
+      "crc32": "cb64844d"
+    },
+    {
+      "path": "original-editor-sdk-metadata/original-artifact-14770225722.json",
+      "bytes": 929,
+      "sha256": "8ee3543347f79f9c5e39c79c6355e452b45e3a6231b87dc6f8a4778f9c98c4a0",
+      "crc32": "451045cf"
+    },
+    {
+      "path": "original-editor-sdk-metadata/original-job.json",
+      "bytes": 6671,
+      "sha256": "922c63f9e314cf6dbc9dbf1a6611b2a16fd4f50da8c63a75a7a7ec44c384d0d7",
+      "crc32": "74591fdf"
+    },
+    {
+      "path": "original-editor-sdk-metadata/original-run.json",
+      "bytes": 14941,
+      "sha256": "d636e6b0a4157948872af74e51a6aaa9fb5672f83fac3da6ce0f89b38bce5258",
+      "crc32": "a5642817"
+    },
+    {
+      "path": "original-editor-sdk-metadata/original-upload-binding-14768824831.json",
+      "bytes": 1796,
+      "sha256": "a4be7beafbe675fac953909e7d3d376a9d77f36137e46d8a0ec21c2a62ff76af",
+      "crc32": "cc13b177"
+    },
+    {
+      "path": "original-editor-sdk-metadata/original-upload-binding-14769044048.json",
+      "bytes": 1832,
+      "sha256": "ee5dd027a42e3c649cd31449bf60d42e6fc0dc1cd303a8e86d00c1a9129510bf",
+      "crc32": "f8e290d7"
+    },
+    {
+      "path": "original-editor-sdk-metadata/original-upload-binding-14770225722.json",
+      "bytes": 1813,
+      "sha256": "68b04c77cc67b570a38ef072a3fa7274b1b831708d05319350a9f0dc38e41289",
+      "crc32": "bf1c4f23"
+    },
+    {
+      "path": "original-editor-sdk-metadata/original-upload-job.log",
+      "bytes": 875111,
+      "sha256": "1807a597878b308a89308b272910960f324130e3ccb331eec8287b16784bdc6f",
+      "crc32": "6a76dd17"
+    },
+    {
+      "path": "original-editor-sdk-metadata/original-upload-job.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "original-editor-sdk-metadata/restoration.json",
+      "bytes": 5652,
+      "sha256": "a5dd87379d12e362cb8a31b0ca255eba755b755da44682a41e56ebbe2df922ba",
+      "crc32": "529d685b"
+    },
+    {
+      "path": "original-editor-sdk-metadata/runtime-artifact-14795206433.json",
+      "bytes": 897,
+      "sha256": "0548a4ec8c3c559beea16032cdaec8017e38d092fdfcff26160371f5fefb2aa4",
+      "crc32": "a05e9f2f"
+    },
+    {
+      "path": "original-editor-sdk-metadata/runtime-job.json",
+      "bytes": 3617,
+      "sha256": "046f0e4044c5c0368ea9e48c33233dd085e5f617b32030e25321915d791f18a0",
+      "crc32": "1c595d93"
+    },
+    {
+      "path": "original-editor-sdk-metadata/runtime-run.json",
+      "bytes": 14480,
+      "sha256": "3b8f13d083e596845f51a9f09d77f06645378a3dc5c53709a6d93e1d54214ece",
+      "crc32": "00f0aefd"
+    },
+    {
+      "path": "original-editor-sdk-metadata/runtime-upload-binding-14795206433.json",
+      "bytes": 1806,
+      "sha256": "f90d87bdae02be04b8f580c3cba5e02f0d26c89edb80e4ae89ed0d08711ec0b7",
+      "crc32": "de2de3f7"
+    },
+    {
+      "path": "original-editor-sdk-metadata/runtime-upload-job.log",
+      "bytes": 56971,
+      "sha256": "9e30cfeeef2fecd1096ecf57c921f11690fc683a5403adba26ea410be6104e02",
+      "crc32": "675694b2"
+    },
+    {
+      "path": "hq-stage2/ExpoModulesProvider.swift",
+      "bytes": 1246,
+      "sha256": "c6ec625de1af66d390d35bfb43e4d69508597cfa246f3c939428c77295b017e1",
+      "crc32": "497ff62d"
+    },
+    {
+      "path": "original-editor-sdk-metadata/runtime-upload-job.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "hq-stage2/actual-source-inputs.json",
+      "bytes": 115282,
+      "sha256": "6ec6a199bfd9f749339399bb5676ae765aa4da9f63e56dbadb8ba9105866b83a",
+      "crc32": "81006618"
+    },
+    {
+      "path": "hq-stage2/generated-Maktabah-project.pbxproj",
+      "bytes": 620777,
+      "sha256": "155bda110d9eec18b1b88e00c07df70bf5d18bb25000678d8468c20a877892ec",
+      "crc32": "812d973b"
+    },
+    {
+      "path": "hq-stage2/generated-pods-project.diff",
+      "bytes": 425239,
+      "sha256": "6ed8548dd1e5d204e082377112da0ce234e82092154e20afb47437bca5011a76",
+      "crc32": "b04d570b"
+    },
+    {
+      "path": "hq-stage2/generated-privacy.diff",
+      "bytes": 2618,
+      "sha256": "2f496cd81580a43548668ef59cbaa0510222396bbb6c978ce0919c0faf41ae4e",
+      "crc32": "dde2a370"
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk-inputs.json",
+      "bytes": 61045,
+      "sha256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118",
+      "crc32": "0443c256"
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk.log",
+      "bytes": 679,
+      "sha256": "baca24125ae53ea60324b2491d0150e52d5c02edae797fb114e68d35dbc52d25",
+      "crc32": "684fed2b"
+    },
+    {
+      "path": "hq-stage2/matching-embedded-bundle.log",
+      "bytes": 741,
+      "sha256": "29e34f5a221dbe07dfb7ef9fb331dda2800bf2d7e16ee02b9031012ff5922482",
+      "crc32": "82f7285f"
+    },
+    {
+      "path": "hq-stage2/maktabah_zayit_search.h.log",
+      "bytes": 300,
+      "sha256": "87b20fd3d731cc694a3b004a15f295a72a38e5df7f98e837dc0c0985aa184aea",
+      "crc32": "fd7085b1"
+    },
+    {
+      "path": "hq-stage2/native-script-permissions.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "hq-stage2/npm-ci.log",
+      "bytes": 3331,
+      "sha256": "9a3738a2d23bf875fd6808beb3e9428e499d33803cb03e47b0e3100191be651e",
+      "crc32": "153ab03b"
+    },
+    {
+      "path": "hq-stage2/original-editor/app-target-plan.json",
+      "bytes": 4262,
+      "sha256": "ca2370843ba8d6d6ad4495479e06a2c7906dce9fdba34a0325562a88876bfedb",
+      "crc32": "93e81b8e"
+    },
+    {
+      "path": "hq-stage2/original-editor/distribution-admission.json",
+      "bytes": 931443,
+      "sha256": "47775aab656d4aeca3bd730030c9a9d29a2b12b37f5c17d18a85b5a7d27ee138",
+      "crc32": "9561d14c"
+    },
+    {
+      "path": "hq-stage2/original-editor/actual-exported-api.json",
+      "bytes": 292,
+      "sha256": "9e797fff6034717d5e6a983a14a55e53f9023ad79698900341b61228a8e91e99",
+      "crc32": "bac2a51f"
+    },
+    {
+      "path": "hq-stage2/original-editor/exported-api-typecheck.json",
+      "bytes": 7169,
+      "sha256": "401f06c22499bf0847b8bb74456174eadcb659bb33cac7927da17d88591418bd",
+      "crc32": "3b8f1592"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-0.json",
+      "bytes": 251,
+      "sha256": "f953244e1226b1e7ca877950349a99c3400210af27867735e8645a9dc06abe35",
+      "crc32": "17946262"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-1.json",
+      "bytes": 310,
+      "sha256": "7c1dee635540dd738b5ce253d01dc9798c7e6e2516f598dfef12f348291b4047",
+      "crc32": "8fbce7ac"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-10.json",
+      "bytes": 314,
+      "sha256": "458945a8f999dc22472ffb2926f0fc5b9fc9a554fcfac023983b5da8c9b6d709",
+      "crc32": "e5bfc09b"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-11.json",
+      "bytes": 250,
+      "sha256": "0d58b0bf228f31b531e4e1438cf6511833a85e830f31de81b68df97137c964ce",
+      "crc32": "17b8d869"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-12.json",
+      "bytes": 244,
+      "sha256": "a586ada2397ffc2a597a4383b89f776ca2e23fe3b989e60adf207f33383bcfeb",
+      "crc32": "f4bf9479"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-14.json",
+      "bytes": 234,
+      "sha256": "2a7b178aa5084ef1c79584e342b7ffa9241ab6a81fbc21e02e0f3125188f8c89",
+      "crc32": "aca8380d"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-15.json",
+      "bytes": 258,
+      "sha256": "60195c643b2c3e3dd7961abc13b785f33433188a824f2e09eecd0570574be18e",
+      "crc32": "d8aa62c9"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-16.json",
+      "bytes": 308,
+      "sha256": "4f8ca42573baafde294b84228613cd07cfbb5135d3173e167dd0887ac558e686",
+      "crc32": "19303f96"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-2.json",
+      "bytes": 240,
+      "sha256": "70b931164a7c3d0d2a5960a30fa2fef3a73f11e0637e59de53657a47f3ed3af5",
+      "crc32": "b0c3f2c6"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-3.json",
+      "bytes": 260,
+      "sha256": "3c8d727523d4df401c345a5e6ef7fe36fdc14fb47366d6058b2067de37f7589f",
+      "crc32": "d7c941d6"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-4.json",
+      "bytes": 298,
+      "sha256": "6f69b44cc8306316db3d287dc5dd05937876c9d8defe65339abea835ec25be55",
+      "crc32": "73a519f2"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-5.json",
+      "bytes": 290,
+      "sha256": "9d59f783e8b5b5a3fbdc345dbeddc173ac24c32e8c6ee55542afbc082773986f",
+      "crc32": "87c06d01"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-6.json",
+      "bytes": 290,
+      "sha256": "06881f4c058b0edf40b0e29ac6b9863dffa04ffdae0413df6ee2bc4c2ee494eb",
+      "crc32": "1f431059"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-9.json",
+      "bytes": 230,
+      "sha256": "c775ba1447515bc662b5f2fa9310a3930dd6f2fd8506e265d15914b8ac4495d3",
+      "crc32": "00a6f69d"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-0.json",
+      "bytes": 992,
+      "sha256": "3488b65799373bfb0ae30139ffcbd45694dfd3c6883665f6f74e79882f49554d",
+      "crc32": "88897a16"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-1.json",
+      "bytes": 724,
+      "sha256": "1e9f8ab7a0e0dd7a4aabb074238adcd59f2989878185e966be13704987345487",
+      "crc32": "c3d1934e"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-architecture-7.json",
+      "bytes": 296,
+      "sha256": "aa75d6daf4c1ab1785bbec7b50f19758f67c62f24874e1c21171cfe9e8573e62",
+      "crc32": "b5edac4d"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-10.json",
+      "bytes": 718,
+      "sha256": "59fe535b3ba01b29624306ced31e5ce12a0da7036ca1c8d171358eb4b0c2f9bb",
+      "crc32": "a6fa529d"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-12.json",
+      "bytes": 578,
+      "sha256": "f49feb87be3f6aa93db6ed1059b8ef6aa3401ec81f4458441600f8e6b1420bdf",
+      "crc32": "71664cc8"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-11.json",
+      "bytes": 640,
+      "sha256": "aa644dbc1ef56dd65866ba6c344587146ec7768f36a8cd5417d9f8024b8bd944",
+      "crc32": "d93f0a3c"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-13.json",
+      "bytes": 286634,
+      "sha256": "9830fe1fec6271ab1e11faaba5bb73b8ffb22deb458a469c59a80fd6caea7398",
+      "crc32": "9b28d8bd"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-14.json",
+      "bytes": 558,
+      "sha256": "5274b563f8963866cd5e4542817295745c08830bc834f39a41a7533346b7aaea",
+      "crc32": "2456d8ab"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-15.json",
+      "bytes": 606,
+      "sha256": "ab73d3447be0ba22d7fba36fdae41d4227853502681be9aa952490d42c3781bf",
+      "crc32": "6dc36c7c"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-16.json",
+      "bytes": 720,
+      "sha256": "669bdd7253de46a781297ae3c8568fab21c30e068cbd468b25f712a9d2ef580e",
+      "crc32": "cafc45e0"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-2.json",
+      "bytes": 570,
+      "sha256": "0e66edc5cf8de71b14c6e528614c0d4d106b06f4b900d1c51a1af05f744127ea",
+      "crc32": "2b38e35c"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-3.json",
+      "bytes": 656,
+      "sha256": "6064a7be55adf3e7d4b2f02bd185a736ff9a566201241b926a4455bf9ff833bf",
+      "crc32": "27699dbd"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-4.json",
+      "bytes": 686,
+      "sha256": "2443842fb00797c4cedb6020eed3ff97549d61a843f571b0c3f9174ee70ebc10",
+      "crc32": "8d4ed05a"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-5.json",
+      "bytes": 684,
+      "sha256": "dfea10ae39b4355b39d98975c20057754a16eecc24ff26ab8b5ee982313c133d",
+      "crc32": "47aa15e8"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-6.json",
+      "bytes": 684,
+      "sha256": "c0e8a656549bb752c47af3a44c5a5d309ce87da3b42810fd5982c4241339606f",
+      "crc32": "c1f43441"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-7.json",
+      "bytes": 696,
+      "sha256": "ba121f41fbf89904b1e9f2f109d59fdefad80e0369f10c1b044d6ceb572d2953",
+      "crc32": "c1fb847b"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-9.json",
+      "bytes": 564,
+      "sha256": "a0f959e5fcdae47aac3b855bad747c8019c9ea6fd5efa4d3378002030a52c078",
+      "crc32": "bd952d52"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-header-8.json",
+      "bytes": 697441,
+      "sha256": "b1ad0c15f9432d3cfbf9d163901e77bec3fa24c88aa4bd366c8296cd3f998a98",
+      "crc32": "7bec90aa"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-0.json",
+      "bytes": 823,
+      "sha256": "cce9dc99e8fa816a9c44a59388e72db4c1210d6617b7cec549c4eb6a38fa90f8",
+      "crc32": "b8bedb55"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-1.json",
+      "bytes": 682,
+      "sha256": "5c708d0670a5d0e3fc25ac94111529b5ba88c29d30e3757f0a86a05b68266b7c",
+      "crc32": "2bef8ebc"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-10.json",
+      "bytes": 690,
+      "sha256": "32c04c34b1e1b9075d7dc5d0ec9093ed0ee4358976f5069359eb1f76dffb958c",
+      "crc32": "2aa15ac3"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-11.json",
+      "bytes": 562,
+      "sha256": "c9b19347cf71ff074c0a87eefc100ff2db32c9be0a91af4c1cc0ca547f029719",
+      "crc32": "85f65349"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-12.json",
+      "bytes": 550,
+      "sha256": "15cccd006399c48d90e06e2c8f568afbd41f264534ce996bb91c1068a0f64d88",
+      "crc32": "945eaf43"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-14.json",
+      "bytes": 530,
+      "sha256": "6b9026ec47c01a04b5b750b29769c8e361556685f354a602ad41810fe99395f5",
+      "crc32": "e8218ab3"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-15.json",
+      "bytes": 578,
+      "sha256": "e1627424f3978dc9961d23275c3d9d5304393446b68ba3520ffc1e5ec506ebdc",
+      "crc32": "82749ff3"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-2.json",
+      "bytes": 542,
+      "sha256": "da7ca6feddf77e60c27ccca9ad0bf0a041d1a41cefcac2ccd2964037f7ec57d6",
+      "crc32": "dbd6a640"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-16.json",
+      "bytes": 678,
+      "sha256": "4781acc8e970d76a1b36e04658f27f4d8e41eeaa1b9ca8a0357fb272c610f5b6",
+      "crc32": "dcb9bee1"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-3.json",
+      "bytes": 582,
+      "sha256": "054dc1e7494bb0e303f47c68c3ba747c7f548334e2c693041b30c38d680dc8ab",
+      "crc32": "75fe41b1"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-4.json",
+      "bytes": 658,
+      "sha256": "8478f5bf694893ee878d7f4f3c7257f4a9440ea9a256addf4676abb7bfe68a2f",
+      "crc32": "6dc2fab5"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-5.json",
+      "bytes": 642,
+      "sha256": "16584571a74d5526bf01a99df65da95990a6dd0fd3064ab3aab0af0364bf173b",
+      "crc32": "a2238285"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-6.json",
+      "bytes": 642,
+      "sha256": "6d08ff354e65568e399fee7d4ca38fb73efb07ad7c66ff1d4ac1e9dda0a8f5d4",
+      "crc32": "738cc04f"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-7.json",
+      "bytes": 654,
+      "sha256": "4d2cbddcdf3ed1a9771cc50db09369061c98fde05b71f470027bcdf9b17041d1",
+      "crc32": "6e516b50"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-platform-9.json",
+      "bytes": 522,
+      "sha256": "b9709f16204aa395bcba657f930fcb322f7e805de52975e62037de38fdca1e27",
+      "crc32": "99c7c2aa"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-0.json",
+      "bytes": 245,
+      "sha256": "030e1ad3b1dffb700466a9451187529b14f4e1e98d9c358d95da27ec65837538",
+      "crc32": "61d42a57"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-1.json",
+      "bytes": 278,
+      "sha256": "737b360af51831e91996a25de0c511df2b5188c6fd92b048aaf700e40137356c",
+      "crc32": "7da0994a"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-10.json",
+      "bytes": 280,
+      "sha256": "8f347d7b64bb72c3c67f10f88ea09c8aa63756b69a7769ca0f55a60e16e33785",
+      "crc32": "870eca4e"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-11.json",
+      "bytes": 248,
+      "sha256": "99d32927cca27cca4f7572ef1ee73973409a7538c8362698afca11d31a16f05d",
+      "crc32": "b731eba3"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-12.json",
+      "bytes": 245,
+      "sha256": "ed1efa92420c493223bc18f85e7df4cb3d55cd2e0185b0ea078ee674d1eae184",
+      "crc32": "925742f8"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-14.json",
+      "bytes": 240,
+      "sha256": "bbd0f5977379870805e7dbc8252518fac55e0fe1650816c68c06acbe9690bb57",
+      "crc32": "21ca9bbc"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-15.json",
+      "bytes": 252,
+      "sha256": "27b9e18d18d441bec059d7e8126137eac2e55e3c9b9c91afedd0a757d718a0bc",
+      "crc32": "07a04747"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-16.json",
+      "bytes": 277,
+      "sha256": "ca54af5c301a4ccdc998131900e9ee83ccb76c3d7f6b02b84d111253992a6ffa",
+      "crc32": "64014d4e"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-2.json",
+      "bytes": 243,
+      "sha256": "0f77905f8df2c7e1396bde92b993b2d0ae7fb8cfe4ba029b06f0156aa94906a0",
+      "crc32": "c20802c0"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-3.json",
+      "bytes": 253,
+      "sha256": "97b58c3add924d67ca4b28f48931286634694346d17559fa1c0989dcac30eb5c",
+      "crc32": "83f534bf"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-4.json",
+      "bytes": 272,
+      "sha256": "1ca2f1981d05b1325733c81d3e4b1ead14e5cd96b30cf955f36800c94e1f1c66",
+      "crc32": "1ac62ef8"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-5.json",
+      "bytes": 268,
+      "sha256": "ac1dcbed5e6adf8f156bda00f0a86b7abc370381a58bf109769179d7c88c0a6d",
+      "crc32": "50136faa"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-6.json",
+      "bytes": 268,
+      "sha256": "f251facd1556440afa7a590198d6e0b6010b85d2f97d5eacb9cc36cc8d2cc034",
+      "crc32": "61e2032b"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-7.json",
+      "bytes": 271,
+      "sha256": "463067d64f92bbee0a6c98811a77858642ee7ee37b069a7b1d2117f58ec79d9b",
+      "crc32": "a6faa7b5"
+    },
+    {
+      "path": "hq-stage2/original-editor/sdk-signature-9.json",
+      "bytes": 238,
+      "sha256": "382704df0e4b5ab1d3711fd8993b7ef7441124313c184f98b3b3fa3392e6a5c1",
+      "crc32": "7aad0c71"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-0-imports.json",
+      "bytes": 390,
+      "sha256": "c7fb50aa2977b5ea8b0cbb0cbb99d3118ce3ff6584108f2dd25aa0d57766e1f2",
+      "crc32": "bc3caf6e"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-0-loads.json",
+      "bytes": 390,
+      "sha256": "35ae69378dfdd4f16319a19a9f20857d0494812369d944683564ef81ed140898",
+      "crc32": "6eda0a5f"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-0-loads.txt.gz",
+      "bytes": 3401,
+      "sha256": "fa71d68785cbfe4ed9cfbe3ed2e788d7bc581f5cbaca67d7164bb4bd126a3f48",
+      "crc32": "2591f1d2"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-0-symbols.json",
+      "bytes": 391,
+      "sha256": "2956886955954effed980ca313d6761edf093ebf9c1694d581967bf2ee0014e5",
+      "crc32": "9dd71228"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-0-imports.txt.gz",
+      "bytes": 458,
+      "sha256": "049425a5ca92cd5182998074879b41df60219294fd70c6552610414d675f2ed0",
+      "crc32": "1243bd73"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-0-symbols.txt.gz",
+      "bytes": 24570,
+      "sha256": "b9ca28b074c59857fd736c7a91b8b6e91eb158483c5562910c46dda4d2854caa",
+      "crc32": "43d87bdb"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-1-imports.json",
+      "bytes": 456,
+      "sha256": "6bc97b7d31ab5537da73bdbf5dca05f72cd3ced466f81e16b361ebf39f49b534",
+      "crc32": "7aff55ce"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-1-imports.txt.gz",
+      "bytes": 415,
+      "sha256": "bb9eaf66aecc3bfe77549f588609b6b939941ec16d6097e730fdb71198d09c41",
+      "crc32": "fef36b43"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-1-loads.json",
+      "bytes": 456,
+      "sha256": "8695075bfe3e7042e2f67b3b21285d50f49e4e35c4d3ed2aaf3caaa568a68a8b",
+      "crc32": "3dad04a3"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-1-loads.txt.gz",
+      "bytes": 1854,
+      "sha256": "c57e5ab7f4ee28d463eeddd18ae24a4a94d98014597c0365fe38dbd09429f410",
+      "crc32": "c038800d"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-1-symbols.json",
+      "bytes": 454,
+      "sha256": "49771589c75c3fb41e66ad96f02e31daa3c77ad46ac2b9f4ec72963f2600d955",
+      "crc32": "ccbd6196"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-1-symbols.txt.gz",
+      "bytes": 7838,
+      "sha256": "48c12620bf868d46b8a997525c28b6897a1dc2d514c2b89d66ee4dfdc3c09d51",
+      "crc32": "430bc29f"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-10-imports.json",
+      "bytes": 461,
+      "sha256": "687b9c6eba859221bee51aad793f7861d056ee6254722877af9c084e4346e00e",
+      "crc32": "f7d1fde3"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-10-imports.txt.gz",
+      "bytes": 617,
+      "sha256": "487438d9da759fb289f763008b6ca4878f29252dba8aba1542cc1be142e712cb",
+      "crc32": "0f448120"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-10-loads.json",
+      "bytes": 461,
+      "sha256": "0ee4d6f66e6719e38505d02d411cb055546482d53540027dafca99d3069f3e6b",
+      "crc32": "dfd35dbc"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-10-loads.txt.gz",
+      "bytes": 2321,
+      "sha256": "dfff5f9ce66317de4c32bfd36f7ffa722d593c0ddd200d975f63ad12d57718dc",
+      "crc32": "e90c8a9b"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-10-symbols.json",
+      "bytes": 462,
+      "sha256": "5f3e4408871d066d7b2f538ca02a2f0e06a895cf7516c2f33af50b137a4fbd43",
+      "crc32": "06cd4e08"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-10-symbols.txt.gz",
+      "bytes": 19877,
+      "sha256": "7b42d181d7856d7a3e9867b07ca67ca0fab0930cf469722247e9546dbdeb42ec",
+      "crc32": "86058616"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-11-imports.json",
+      "bytes": 397,
+      "sha256": "4f0d13a6c0fed8bb74e840c7a2567c511e39aa41875a2b22c69d450c035a4c98",
+      "crc32": "80dddb41"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-11-loads.json",
+      "bytes": 397,
+      "sha256": "fee6ab77c8cfc35233ffa74100a00b60da3c82b3a1fec9054266609b0f86b5e8",
+      "crc32": "c58a0348"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-11-imports.txt.gz",
+      "bytes": 449,
+      "sha256": "f4adab1155aca6ce77d50e11060e7fae779258cad421724a222d02d6a668b917",
+      "crc32": "c24f73c5"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-11-loads.txt.gz",
+      "bytes": 2901,
+      "sha256": "4fa5f2c3efbc0cac7155083f4eade6b4b4774a4134f0483e4b99d9ee1cc86841",
+      "crc32": "09e985a6"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-11-symbols.json",
+      "bytes": 405,
+      "sha256": "3969d0f313e4f82d25eb0650b4d7d95d3e5f276bfebf30707f956241b140e77c",
+      "crc32": "25969dae"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-11-symbols.txt.gz",
+      "bytes": 9174105,
+      "sha256": "33d069e517fffb827f98297cbf71dc3847f1400ac84a9bc2dea66d8bd16de8e9",
+      "crc32": "51efb03c"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-12-imports.json",
+      "bytes": 391,
+      "sha256": "126d92cc1887d124007e05bd8c1529bf92a6ba4148cf824e367bb579217e09d2",
+      "crc32": "68906990"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-12-imports.txt.gz",
+      "bytes": 388,
+      "sha256": "2aaaafcc04cca877671b8c8cedfeb3e8449ce39292246842efe9cc8206651433",
+      "crc32": "4af3914d"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-12-loads.json",
+      "bytes": 391,
+      "sha256": "dd1bdd0839235b43210c95a096d5f34dfcb678af45739019b5af306b67192207",
+      "crc32": "49be6987"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-12-loads.txt.gz",
+      "bytes": 1922,
+      "sha256": "7200baecaae6aa36411a76f3547519f00af19dddd27ee92328cd974f4abe335c",
+      "crc32": "2dc30ced"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-12-symbols.json",
+      "bytes": 389,
+      "sha256": "5f6bbb5135388e775ee7c7ba6480e6488597e886cfd4381da7f024f9ee3fc5f5",
+      "crc32": "3413ea13"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-13-imports.json",
+      "bytes": 380,
+      "sha256": "e4dd1cf67d8f5f588f2601168b08e95d351b9df656e34d45c37dac34d299e0a8",
+      "crc32": "2ae9d88a"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-13-imports.txt.gz",
+      "bytes": 6721,
+      "sha256": "0d83894af10ce86a17eabcaa4bf9dcede67bbe0096aed2d3883f5933a64c2587",
+      "crc32": "98d156db"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-12-symbols.txt.gz",
+      "bytes": 5038,
+      "sha256": "1cd7b8e1ea20b35bf11a975576533eb1c10bbfcc31780aa98b1d5333c289b4c8",
+      "crc32": "83b88c14"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-13-loads.json",
+      "bytes": 381,
+      "sha256": "06246f7ce33137b927f6626c423692ef8b1b12fb28d06c920222710b483033ae",
+      "crc32": "5aa9b5ef"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-13-symbols.json",
+      "bytes": 381,
+      "sha256": "3c3dde406145ce666cbafd26ce33238e8639a0bbedfff0367cf53e13f06e4122",
+      "crc32": "91fb5e3e"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-13-loads.txt.gz",
+      "bytes": 299148,
+      "sha256": "95768f44597a35dd93aefc91482fcc00b9b1ec65d8c316903242196f539e7d64",
+      "crc32": "1181c242"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-13-symbols.txt.gz",
+      "bytes": 526229,
+      "sha256": "d12177508e5c74d97782c291e1a804857ebaff2a1f1f42595929213fb7b05166",
+      "crc32": "0df30211"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-14-imports.json",
+      "bytes": 381,
+      "sha256": "883e2cec72e87da4f199b2c8326642f1d8f56b54372b1167586b3efe6b3e2a3d",
+      "crc32": "29658079"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-14-imports.txt.gz",
+      "bytes": 700,
+      "sha256": "1213bddf6a267b2a06106878c8f6941eca816edf4f571767863237603f465272",
+      "crc32": "71a558c0"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-14-loads.json",
+      "bytes": 381,
+      "sha256": "d4aa931f7c969de0517bb764812a7b26240bca578dbb2815ba16915d4d2d098f",
+      "crc32": "b513786b"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-14-loads.txt.gz",
+      "bytes": 2656,
+      "sha256": "05668dd50b530be9ea787dba222ce578e314f155ca699be371eb70d10c12c598",
+      "crc32": "e93df2a3"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-14-symbols.json",
+      "bytes": 385,
+      "sha256": "2c65db1aa4681f91cc919b3014c3c3033471003f00072ba81d952204616c0fdc",
+      "crc32": "1e335ac0"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-14-symbols.txt.gz",
+      "bytes": 422546,
+      "sha256": "73b65ff8eb7df24bf9e109fad1a1befbee6800f15e913487a0de026acf9847f0",
+      "crc32": "d908c5a0"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-15-imports.json",
+      "bytes": 405,
+      "sha256": "146532217f2b634c5e3ecc5fcdc53471fd63e5ff5af7660e15c85cf3747211a2",
+      "crc32": "245d14d5"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-15-imports.txt.gz",
+      "bytes": 513,
+      "sha256": "fd905321af44588327a8365dd6c7c02fc73f64468dcc5cdb87a058b7576a9d26",
+      "crc32": "649e45f5"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-15-loads.json",
+      "bytes": 405,
+      "sha256": "f1a7c72fedeb3830bc6679c4af10a8d1004bcdb334d8d72d646565a41c7f49e2",
+      "crc32": "fe73866c"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-15-loads.txt.gz",
+      "bytes": 2361,
+      "sha256": "36b238b8447401d5c9bf1aa303e6bb5e1b9bb43615d7c0f1928ef527403b111a",
+      "crc32": "61046727"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-15-symbols.json",
+      "bytes": 406,
+      "sha256": "137ee4c07ee3b55e89d11cf45c73f7f8e9088f01d20e8d3cc04863563ec528e5",
+      "crc32": "b54d1c1d"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-15-symbols.txt.gz",
+      "bytes": 29985,
+      "sha256": "f76c886456d7284ed0d109cd1f390c2b17926b31ba78d5b886dfd12a3471af57",
+      "crc32": "4f9d23ed"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-16-imports.json",
+      "bytes": 455,
+      "sha256": "023d28cc8390b1200f1b25d995ac43b8728856bb59c9dc8427d2c09cf2476c35",
+      "crc32": "bff21e5a"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-16-imports.txt.gz",
+      "bytes": 388,
+      "sha256": "c34e48b69c30ed121c3f05afe8c45239cea40451d155092a506a69bc2a05f0a7",
+      "crc32": "5ebc12c8"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-16-loads.json",
+      "bytes": 455,
+      "sha256": "c167584f7e2477635d77adf2d87e3611b3e339d459c9bbe02a8e40b6d25ea6a5",
+      "crc32": "366b43db"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-16-loads.txt.gz",
+      "bytes": 2224,
+      "sha256": "2d8b784ffaae3ab8cdf43d3ed5127257ec148b682133ab362013aac83fae552b",
+      "crc32": "79d99a6e"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-16-symbols.json",
+      "bytes": 459,
+      "sha256": "1d2da29328660cc1c373768203a069d183081cfc645f8e46393463bdb39df966",
+      "crc32": "0fd510c5"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-2-imports.json",
+      "bytes": 386,
+      "sha256": "fd6e35edead4821b769c67034587dd706ad41168118b13f2a712fffc61f906ad",
+      "crc32": "2ab49b84"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-16-symbols.txt.gz",
+      "bytes": 378713,
+      "sha256": "703a02cb49a65c161a10ed6a18dbb677b8e6fa27bdaa07cc4a73b61aae03051d",
+      "crc32": "d2b43cf0"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-2-imports.txt.gz",
+      "bytes": 590,
+      "sha256": "c85fcdff8d27ec1ce7d3d16e09d7e2723e4c1c3e71ccbbc66ecc683e96165841",
+      "crc32": "8c5ce343"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-2-loads.json",
+      "bytes": 386,
+      "sha256": "94e7e49459e8dff8a8151c6ad9157447527047d2f3bee2bc69fce32cb6da00dd",
+      "crc32": "d3e2682c"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-2-loads.txt.gz",
+      "bytes": 2405,
+      "sha256": "d9f7cab04f5274d1b9164edb7c2c880987b1e9d4d45e8f3b4d94ce42e0aa6b20",
+      "crc32": "ab1cb372"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-2-symbols.json",
+      "bytes": 387,
+      "sha256": "726737adc45eafab48f00615e30d2eee96efa58d1cb3f7f3c6a2a834d4e4b6fc",
+      "crc32": "d8145e86"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-2-symbols.txt.gz",
+      "bytes": 48763,
+      "sha256": "1732e5b2f93073e1400939a233eb39a98ee15366dd8e1bb663e60e67671883b1",
+      "crc32": "8d53f04a"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-3-imports.json",
+      "bytes": 408,
+      "sha256": "859e3e8990e018656a1ffbc613d531d61f16c3191f684114459c0a9d4d0a4e12",
+      "crc32": "4e1a44a7"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-3-imports.txt.gz",
+      "bytes": 1593,
+      "sha256": "dff8d26d12656c60d3386aab75ad19b8ff9824d6e0fba32af75b18ef11ec97c7",
+      "crc32": "34c63451"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-3-loads.json",
+      "bytes": 406,
+      "sha256": "7e9f74ff244c06d74e85eb91eefc02c1367cdfe3433cef13c1482e2d6bd89b4a",
+      "crc32": "c8559fe2"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-3-symbols.json",
+      "bytes": 415,
+      "sha256": "dbc6628240b236b5ef42a142c8fb54c278287b8a92581dd4bc5d08b28fe60f9a",
+      "crc32": "0c6bd004"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-3-symbols.txt.gz",
+      "bytes": 15583010,
+      "sha256": "4b3289cf754fdcc18b589415ccb126c68722dbf83a423e981f05f4e4d5cceb36",
+      "crc32": "195005d6"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-4-imports.json",
+      "bytes": 443,
+      "sha256": "37895666e072126a2621def19048df9eeffd505a4f4bbffa287a9497fb98e0f7",
+      "crc32": "91ebd1a1"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-3-loads.txt.gz",
+      "bytes": 4496,
+      "sha256": "d0ac4242f39bffeaaac773503c777d9efc83db0566458ed90164ff6d0e7000e4",
+      "crc32": "22ebe2ee"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-4-imports.txt.gz",
+      "bytes": 284,
+      "sha256": "8f9a26197590471e4d7a98e2a4590281ca92dc4f1eeaee92aaae7fdae6cc7df7",
+      "crc32": "e7ceb8f9"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-4-loads.json",
+      "bytes": 443,
+      "sha256": "2f05f7a0dfc17d4d2b13d3cb90a86c256e0253e5b7009f8471d236adaba29cc6",
+      "crc32": "76f59731"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-4-loads.txt.gz",
+      "bytes": 1496,
+      "sha256": "49e2cacf89305d20924149c121ae3b1d19cfbc95d11fdfa0d749674902e8b273",
+      "crc32": "6b61a137"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-4-symbols.json",
+      "bytes": 440,
+      "sha256": "bb846251411e1932cceae1a61e80b6b3498e552b2fe8654ce2ba95cc37490ddc",
+      "crc32": "552a1f50"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-4-symbols.txt.gz",
+      "bytes": 1214,
+      "sha256": "1ad59189719a1227ec67b29bc8250ce1001cee09eed00b8a767ad08ad32dd0bf",
+      "crc32": "a8a8625f"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-5-imports.json",
+      "bytes": 436,
+      "sha256": "6042a0af8bced1c3142fd87925d0dc89b7c68df8d3d4c73ac142b97f4077a089",
+      "crc32": "0eef58b7"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-5-imports.txt.gz",
+      "bytes": 370,
+      "sha256": "edab90c41d1b1235de7addd7887e0475384045c246ffc35f6b03cd2a592bf9ad",
+      "crc32": "d044941e"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-5-loads.json",
+      "bytes": 436,
+      "sha256": "e894b11e214971e615e3277ab2f02dbfded87809e73614b61dc67c0e7313f8fb",
+      "crc32": "c117b034"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-5-loads.txt.gz",
+      "bytes": 1868,
+      "sha256": "8995b11d376304217b35da71b3fb971376269396fa4864a2fdc57556b5744d8b",
+      "crc32": "1a364dd0"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-5-symbols.json",
+      "bytes": 437,
+      "sha256": "5e23fc91d9ea7423b43a4efa10ccbd175970f0f70514736cae78502da60629f0",
+      "crc32": "057e17ff"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-5-symbols.txt.gz",
+      "bytes": 35542,
+      "sha256": "85076ea777c1d0353365a6d95389ee3deb502a8e817d706d4635b649f90ab4e4",
+      "crc32": "0143456a"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-6-imports.json",
+      "bytes": 436,
+      "sha256": "180df1378af305580399511246c540ea6b7d0af29b2a02962d49b4593fa11644",
+      "crc32": "d01eca1d"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-6-imports.txt.gz",
+      "bytes": 370,
+      "sha256": "a2ebf6a2007cc3320932d56bea4345b2e1d4c955ece77df2dd0e080c8b20dbf9",
+      "crc32": "e5f61ce9"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-6-loads.json",
+      "bytes": 436,
+      "sha256": "54eaa2807a1c7e18c4ae6e54e819013b79b255dff92c0636c8c8829b7a33b91a",
+      "crc32": "cbddff51"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-6-loads.txt.gz",
+      "bytes": 1927,
+      "sha256": "0417dfe6dcd0c4889295398d4357c888e429c706f9853df5414a4c6e8803902e",
+      "crc32": "e2ea6aad"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-6-symbols.json",
+      "bytes": 434,
+      "sha256": "3f84c71035d0ca8b0170eee07d59eb2e2bcdc9e8f16a62f9af23622bf419c1f5",
+      "crc32": "92f8e729"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-6-symbols.txt.gz",
+      "bytes": 6926,
+      "sha256": "1fab75ba712bf5b572dcfca452257ff4e91b30c0bc289fec0be9e51b8fd0df56",
+      "crc32": "cbdcb6bf"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-7-imports.json",
+      "bytes": 442,
+      "sha256": "5088e199e056b264da935662d2630efabf9af52d2fae0e92f93339e39d2f6a98",
+      "crc32": "dce755da"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-7-imports.txt.gz",
+      "bytes": 547,
+      "sha256": "0f3a9e344d13d0a3b7a6a8c1bc6ffa03d5585dba4c20dfb115cedf380bc129a8",
+      "crc32": "bab1b2ed"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-7-loads.json",
+      "bytes": 442,
+      "sha256": "331c849f9862ef7a6f81f2af1d60199815dffe0b05b6c74ce0c42f0734f1ea0c",
+      "crc32": "7c3013cd"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-7-loads.txt.gz",
+      "bytes": 2346,
+      "sha256": "1f9330d94b3c546b92914cc8daecba0b59e2e99cb0b7578ea1f506f4bbaf6457",
+      "crc32": "18bc2560"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-7-symbols.json",
+      "bytes": 443,
+      "sha256": "abf5228b5aaea5cc8da02afadacffc2a072094fa05fdb6410b1497cba2bc2a62",
+      "crc32": "e5d79eeb"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-7-symbols.txt.gz",
+      "bytes": 36573,
+      "sha256": "d0b1ec7ddf32c584b386514cc18bd2cef5cbd98ded31cac60b25d87c6d2e9247",
+      "crc32": "b61532d6"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-8-imports.json",
+      "bytes": 374,
+      "sha256": "aa44eeed46d204f9a6a9826b72183dc16ecddbd2c32d0eff57a0c9a51691a2b2",
+      "crc32": "b2d3bb5c"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-8-imports.txt.gz",
+      "bytes": 15887,
+      "sha256": "bd9efc58f9410ba52b368846c0eb50aefbb594f276d320aebc6260b99225dd3e",
+      "crc32": "33f39bb6"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-8-loads.json",
+      "bytes": 374,
+      "sha256": "35544bfde5a9076d9cf5560cc2ad185189fc35819834b3c49f8cc9084256d7b6",
+      "crc32": "ee47e365"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-8-loads.txt.gz",
+      "bytes": 329398,
+      "sha256": "0ec711ec86a4cb2394e0118f8334c6de91af4ca1f663fa2e3dda2871d68b018f",
+      "crc32": "9ba56e25"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-8-symbols.txt.gz",
+      "bytes": 3034695,
+      "sha256": "b42ac72444d5e3fa07eb89af830067901d118b243efce0aa00333a8b34462756",
+      "crc32": "5900c8d6"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-9-imports.json",
+      "bytes": 376,
+      "sha256": "0a9ff17eb631dd0bb6d82a07db60e93c2c48ef49663ae2dd7b6d0ca0d05a3f65",
+      "crc32": "c93c08d3"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-8-symbols.json",
+      "bytes": 377,
+      "sha256": "41563cddc75bdc4af19d666d6c7b97583e326ed1d338738939780e3c85498114",
+      "crc32": "93f2d678"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-9-imports.txt.gz",
+      "bytes": 701,
+      "sha256": "0f3d45a352eae9b74068f504fac5ca795c3d38333aae32b26caa94f5b961adb8",
+      "crc32": "b5039e73"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-9-loads.json",
+      "bytes": 376,
+      "sha256": "4da24fcca5c260da53d0553ba66fa9692544b0d95b9b90c0facf68b3b9f96a07",
+      "crc32": "3f2cd3ae"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-9-loads.txt.gz",
+      "bytes": 2795,
+      "sha256": "7161ef334a3714a632b7ed5bf51320126e92827cff6059f24c388066160e45ee",
+      "crc32": "5f1c2397"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-9-symbols.json",
+      "bytes": 381,
+      "sha256": "8b9d81157c828d4f02a11b9714d64771998f002b738ec325ab8dc980ca6797da",
+      "crc32": "095f3cdd"
+    },
+    {
+      "path": "hq-stage2/original-editor/swift-syntax-sdk/image-9-symbols.txt.gz",
+      "bytes": 963986,
+      "sha256": "e9e9cde08e7a2d342addd78496291a8b08cac8487efa712647739d5c4fa6a369",
+      "crc32": "a24b67ce"
+    },
+    {
+      "path": "hq-stage2/original-editor-app-target.log",
+      "bytes": 372,
+      "sha256": "f8cdccdd9d5bd37ff41b582a3fbe911649698988c618815e99ee056a34b0aaec",
+      "crc32": "145ee330"
+    },
+    {
+      "path": "hq-stage2/otzaria_search_engine.h.log",
+      "bytes": 304,
+      "sha256": "15648f23bbe5f5f15ae65af39bbabc45ce85e2c62b7786375e77c01f6246eab6",
+      "crc32": "1619658f"
+    },
+    {
+      "path": "hq-stage2/pinned-sharp-inputs.log",
+      "bytes": 991,
+      "sha256": "78560d94294e7adc970a8f8eb5ffee5288bdf8f10e966c59249bbe32e9ff5c45",
+      "crc32": "b445597c"
+    },
+    {
+      "path": "hq-stage2/pod-install.log",
+      "bytes": 31886,
+      "sha256": "703c9410b8378bcae05a76d247c00d7af194f559bd7ae6304232b8c1041342a9",
+      "crc32": "0659f11c"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+      "bytes": 877,
+      "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+      "crc32": "0cf24b94"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+      "bytes": 855,
+      "sha256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef",
+      "crc32": "10470de0"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+      "bytes": 1482,
+      "sha256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38",
+      "crc32": "ddedeecd"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+      "bytes": 776,
+      "sha256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d",
+      "crc32": "efb09f89"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+      "bytes": 1233,
+      "sha256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c",
+      "crc32": "82c8ab68"
+    },
+    {
+      "path": "hq-stage2/privacy-generated.xcprivacy",
+      "bytes": 1386,
+      "sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5",
+      "crc32": "621daac8"
+    },
+    {
+      "path": "hq-stage2/privacy-original.xcprivacy",
+      "bytes": 1132,
+      "sha256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1",
+      "crc32": "9873bf8c"
+    },
+    {
+      "path": "hq-stage2/react-source-checkout.log",
+      "bytes": 453,
+      "sha256": "b278da59b8bfd20172192fee69776965913a069701ec217aba71aa99075b6248",
+      "crc32": "6a5c37f3"
+    },
+    {
+      "path": "hq-stage2/resolve-packages.log",
+      "bytes": 4897,
+      "sha256": "bb408836b295e796664577d9b3ad61d07509ad3cd67a6e42b33fed0cce4152e6",
+      "crc32": "653a5b3f"
+    },
+    {
+      "path": "hq-stage2/resolved-Package.resolved",
+      "bytes": 4432,
+      "sha256": "722609bb6b71362aee5e7f401246edcd037a2d1815c2fc4704bf93830d9f5530",
+      "crc32": "f3bb40b4"
+    },
+    {
+      "path": "hq-stage2/resolved-Podfile.lock",
+      "bytes": 100298,
+      "sha256": "9a7f88b1d9ebbf4d14f8b6f1efd1fb2d15ac63983bf16ffd3e9ea011f9a55ce7",
+      "crc32": "b37aa330"
+    },
+    {
+      "path": "hq-stage2/result.json",
+      "bytes": 89601,
+      "sha256": "67c41f0852653906d4205765e766a6913d1372d4dede32d800d45d9bda5d73e6",
+      "crc32": "8da30019"
+    },
+    {
+      "path": "hq-stage2/target-membership.log",
+      "bytes": 130,
+      "sha256": "eb1ed33822080468fc3cc73faa487cc02c8a1bed4564287c6cbc07eeddcbf043",
+      "crc32": "ee7e023e"
+    },
+    {
+      "path": "hq-stage2/workspace-Package.resolved",
+      "bytes": 4432,
+      "sha256": "722609bb6b71362aee5e7f401246edcd037a2d1815c2fc4704bf93830d9f5530",
+      "crc32": "f3bb40b4"
+    }
+  ],
+  "has_upstream_per_member_digest_index": false
+}

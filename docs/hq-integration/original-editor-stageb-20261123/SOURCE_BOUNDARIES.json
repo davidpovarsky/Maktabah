@@ -1,0 +1,141 @@
+{
+  "schema": "otzaria.original-editor-production-device-boundaries/1",
+  "status": "READ_ONLY_SOURCE_AUDIT_NOT_PRODUCTION_OR_DEVICE_QUALIFICATION",
+  "original_framework_source": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+  "maktabah_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "inspected_source_inputs": [
+    {
+      "repository": "davidpovarsky/anytype-swift",
+      "revision": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+      "path": "OriginalEditorFramework/AnytypeOriginalEditorHost.swift",
+      "bytes": 12620,
+      "sha256": "c4f8149db47f4c915b83ec6b94ac8ae48ee3f8753993ca51c753c24412839a82",
+      "git_blob": "4f88f355aafddd02d3dcd54a7a5c5da789eccd35"
+    },
+    {
+      "repository": "davidpovarsky/anytype-swift",
+      "revision": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+      "path": "OriginalEditorFramework/AnytypeOriginalEditorSnapshot.swift",
+      "bytes": 18348,
+      "sha256": "ed135a4369313d14493b9b05f9d1efef414da21144f6119b970bc6e88a8389a2",
+      "git_blob": "cea6c015f1430257f0d5b47d1bb0b697d274cb39"
+    },
+    {
+      "repository": "davidpovarsky/anytype-swift",
+      "revision": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+      "path": "OriginalEditorFramework/AnytypeOriginalEditorQualification.swift",
+      "bytes": 20135,
+      "sha256": "9ae2c2bb71081877a22666ef30e6eb49440995c7b92f48c43057343f434b3b83",
+      "git_blob": "462f6713e90eca7cbf1563929a490afc7599d007"
+    },
+    {
+      "repository": "davidpovarsky/anytype-swift",
+      "revision": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+      "path": "OriginalEditorFramework/AnytypeOriginalEditorRestoreQualification.swift",
+      "bytes": 17082,
+      "sha256": "16abee4efc3781aa855f7da4c958e358e487b56ef15f851d679f959bb2cad589",
+      "git_blob": "ff3e50250254354a5b91dd3a3eb5cc7f8111eefa"
+    },
+    {
+      "repository": "davidpovarsky/anytype-swift",
+      "revision": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+      "path": "Anytype/Sources/ServiceLayer/ActiveSpaceManager/ActiveSpaceManager.swift",
+      "bytes": 15775,
+      "sha256": "bf33794809bff676321ae0265e0caf6539fd7feaa69edaf4d14829753c131ac1",
+      "git_blob": "66a2d5dd0237e883912b921c9fe7151df91a0d7a"
+    },
+    {
+      "repository": "davidpovarsky/anytype-swift",
+      "revision": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+      "path": "Tools/OriginalEditor/run_framework_acceptance.py",
+      "bytes": 40932,
+      "sha256": "170f1302e42f6dba47bcf0c0baed40a377849742b3e34a458e7003abc4f04679",
+      "git_blob": "719a1e435a7ea8827449b15c5e8f1d8c5dac1b4f"
+    },
+    {
+      "repository": "davidpovarsky/anytype-swift",
+      "revision": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+      "path": "Tools/OriginalEditor/framework_products.py",
+      "bytes": 31219,
+      "sha256": "25b8e16d3d10860815cff5332e36ddb06bf2a3de62acc098e1119f7f5768106f",
+      "git_blob": "fd06a1320dcd0032a9124b9b6585a26cac6773a2"
+    },
+    {
+      "repository": "davidpovarsky/Maktabah",
+      "revision": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "bytes": 9530,
+      "sha256": "3460e43127e69d07a917d9b28b10edd1b37046586f9d12ba91de84ab8ee4c7ca",
+      "git_blob": "d50041264cb539ff089c5842353d844f76848f54"
+    },
+    {
+      "repository": "davidpovarsky/Maktabah",
+      "revision": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift",
+      "bytes": 13433,
+      "sha256": "b7168a50da9f0d400b1cd83aa58bfc3eb1b13d3eb369fae5277be70667b66344",
+      "git_blob": "b070b807c32c47a5dbe886c71ae11ccbaef514a9"
+    },
+    {
+      "repository": "davidpovarsky/Maktabah",
+      "revision": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift",
+      "bytes": 6562,
+      "sha256": "c4f2349ca01c7a3a34ec6a8384ee789bc948e134385258469fbeadbed6df8065",
+      "git_blob": "c2c7109e0bb7ec6ce56e43c4b725624da98935eb"
+    },
+    {
+      "repository": "davidpovarsky/Maktabah",
+      "revision": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+      "path": "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "bytes": 8619,
+      "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+      "git_blob": "30602a567c239852fc56de436e35f939c5486997"
+    },
+    {
+      "repository": "davidpovarsky/Maktabah",
+      "revision": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "bytes": 602399,
+      "sha256": "0013989dc2dda8a9a6c31ea088dc901ab782b6517ad48c7554d57d1f321abf04",
+      "git_blob": "3261731b3c225ec783b7f7542b53726c71f638c1"
+    },
+    {
+      "repository": "davidpovarsky/Maktabah",
+      "revision": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+      "path": "Scripts/CI/hq-original-editor-app-target.rb",
+      "bytes": 8935,
+      "sha256": "094f10867cb070035aa7044bc94f57df712b0b8ccfdcd4cf758a75c21f455e6a",
+      "git_blob": "d33c0a4fb7812c59834aadb8c18e8b2625b09682"
+    },
+    {
+      "repository": "davidpovarsky/Maktabah",
+      "revision": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+      "path": "Maktabah-iOSUITests/OriginalEditorAnnotationAcceptanceTests.swift",
+      "bytes": 22385,
+      "sha256": "d02dec78c501096c82d4cf07b57c94e1844db612abb86d127ff86d3cc41e0994",
+      "git_blob": "6e1b283057de617c7e5dc8057ba8c312737bd31f"
+    },
+    {
+      "repository": "davidpovarsky/anytype-swift",
+      "revision": "4909542d29dda07985918dfbbc8761f9bda12462",
+      "path": "docs/pinkha/torah-integration/native-annotation-schema-selected-route-20261122/swift/Anytype/Sources/ServiceLayer/ActiveSpaceManager/ActiveSpaceManager.swift",
+      "bytes": 17339,
+      "sha256": "a63c93aeb4df66c5c70556f273b37a44eb6a46ebdfdcb27e1e0a649322eceeb2",
+      "git_blob": "ac6966ccf820e66b847cd2acd8c62bdb9cc9c4da"
+    }
+  ],
+  "accepted_generated_rpc_evidence": {
+    "run_id": 45101449367,
+    "attempt": 1,
+    "source_sha": "7496e47fa4d37b0117abeae6b35ca5f4c8eaf638",
+    "artifact_id": 14787700016,
+    "bytes": 10822146,
+    "sha256": "ec13df1db9405ffa42b2ef76ec1bda7988ecee8dff1c3fcb1fd01c556a7cf80e",
+    "retained_git_revision": "f9b37d7809c08a100a10417a7f699302c758ca8f",
+    "scope": "Generated message/service bytes and message compilation only; endpoint/Swift/native mobile ABI not qualified"
+  },
+  "native_execution_performed_by_audit": 0,
+  "product_changes": 0,
+  "qualification_transferred": false
+}

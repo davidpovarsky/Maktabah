@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "python3",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/controls/run_full_helper.py"
+  ],
+  "exit": 0,
+  "timed_out": false,
+  "child_reaped": true,
+  "owned_group_drained": true,
+  "elapsed_seconds": 3.125224944204092,
+  "driver_sha256": "d291e314fc8534ebdeaa3b39d16ff40149ccd9036883d300e7a1690c262de9de",
+  "stdout": {
+    "size": 252,
+    "sha256": "2cf0488f2d73f3bf39c24741ffb63d3d1fe03bef47630e93b10f46de22ae68ab"
+  },
+  "stderr": {
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

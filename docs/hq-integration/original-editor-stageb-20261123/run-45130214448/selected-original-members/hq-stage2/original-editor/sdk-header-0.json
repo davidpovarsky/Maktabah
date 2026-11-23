@@ -1,0 +1,10 @@
+{
+  "command": [
+    "otool",
+    "-hv",
+    "/Users/runner/work/Maktabah/Maktabah/build/original-editor-sdk-input/distribution/Frameworks/AmplitudeCore.framework/AmplitudeCore"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "stdout": "/Users/runner/work/Maktabah/Maktabah/build/original-editor-sdk-input/distribution/Frameworks/AmplitudeCore.framework/AmplitudeCore (architecture x86_64):\nMach header\n      magic  cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags\nMH_MAGIC_64   X86_64        ALL  0x00       DYLIB    30       4584   NOUNDEFS DYLDLINK TWOLEVEL BINDS_TO_WEAK NO_REEXPORTED_DYLIBS\n/Users/runner/work/Maktabah/Maktabah/build/original-editor-sdk-input/distribution/Frameworks/AmplitudeCore.framework/AmplitudeCore (architecture arm64):\nMach header\n      magic  cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags\nMH_MAGIC_64    ARM64        ALL  0x00       DYLIB    31       4648   NOUNDEFS DYLDLINK TWOLEVEL BINDS_TO_WEAK NO_REEXPORTED_DYLIBS\n"
+}

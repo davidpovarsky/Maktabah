@@ -1,0 +1,13 @@
+{
+  "status": "DECLARATIONS_MATCH",
+  "suites": [
+    {
+      "expected": [
+        "testSavedBlankAnnotationUsesOriginalEditorAndReopensMixedBlocksAfterProcessRelaunch"
+      ],
+      "selection": "OriginalEditorAnnotationAcceptanceTests/testSavedBlankAnnotationUsesOriginalEditorAndReopensMixedBlocksAfterProcessRelaunch",
+      "status": "DECLARATIONS_MATCH",
+      "suite": "OriginalEditorAnnotationAcceptanceTests"
+    }
+  ]
+}

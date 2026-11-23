@@ -1,0 +1,64 @@
+{
+  "name": "atomos",
+  "version": "0.1.3",
+  "url": "https://rubygems.org/api/v2/rubygems/atomos/versions/0.1.3.json",
+  "retrieved_at": "2026-11-23T12:07:50.843303+00:00",
+  "status": 200,
+  "final_url": "https://rubygems.org/api/v2/rubygems/atomos/versions/0.1.3.json",
+  "headers": {
+    "Connection": "close",
+    "Content-Length": "1284",
+    "Content-Type": "application/json; charset=utf-8",
+    "x-frame-options": "SAMEORIGIN",
+    "x-xss-protection": "0",
+    "x-content-type-options": "nosniff",
+    "x-permitted-cross-domain-policies": "none",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "cross-origin-opener-policy": "same-origin",
+    "last-modified": "Fri, 28 Feb 2025 10:24:26 GMT",
+    "cache-control": "max-age=60, public",
+    "x-request-id": "fea9494c-299b-48e6-a281-75e4e99d78ff",
+    "x-runtime": "0.014062",
+    "strict-transport-security": "max-age=31536000; includeSubDomains",
+    "X-Backend": "F_Rails 32.188.254.245:443",
+    "Accept-Ranges": "bytes",
+    "Age": "0",
+    "Date": "Mon, 23 Nov 2026 12:07:51 GMT",
+    "Via": "1.1 varnish",
+    "X-Served-By": "cache-mrs1530055-MRS",
+    "X-Cache": "MISS",
+    "X-Cache-Hits": "0",
+    "X-Timer": "S1795435671.245685,VS0,VE602",
+    "Vary": "Accept-Encoding",
+    "ETag": "\"faa31ed400874124a0df063d23268919\"",
+    "Server": "RubyGems.org"
+  },
+  "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/metadata/atomos-0.1.3.json",
+  "size": 1284,
+  "sha256": "a4f52644a0d21a135e0e840719e2a4cacbed765d4f9f89f5864c18717390ebfc",
+  "identity_matches": true,
+  "api_sha": "7d43b22f2454a36bace5532d30785b06de3711399cb1c6bf932573eda536789f",
+  "gem_uri": "https://rubygems.org/gems/atomos-0.1.3.gem",
+  "dependencies": {
+    "development": [
+      {
+        "name": "bundler",
+        "requirements": "~> 1.16"
+      },
+      {
+        "name": "rake",
+        "requirements": "~> 10.0"
+      },
+      {
+        "name": "rspec",
+        "requirements": "~> 3.0"
+      },
+      {
+        "name": "rubocop",
+        "requirements": ">= 0"
+      }
+    ],
+    "runtime": []
+  },
+  "ruby_version": ">= 2.0"
+}

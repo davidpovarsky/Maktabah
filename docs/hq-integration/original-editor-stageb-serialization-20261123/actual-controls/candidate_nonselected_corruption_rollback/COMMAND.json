@@ -1,0 +1,29 @@
+{
+  "case": "candidate_nonselected_corruption_rollback",
+  "argv": [
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-root/usr/bin/ruby3.2",
+    "-r",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/controls/pin_actual_gems.rb",
+    "-r",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/controls/inject_post_save_corruption.rb",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/source/hq-original-editor-app-target.after.rb",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/control-results/candidate_nonselected_corruption_rollback/Maktabah.xcodeproj/project.pbxproj",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/45167025321/terminal/review/app-target-plan.json",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/control-results/candidate_nonselected_corruption_rollback/helper-receipt.json"
+  ],
+  "exit": 1,
+  "timed_out": false,
+  "child_reaped": true,
+  "owned_group_drained": true,
+  "elapsed_seconds": 1.1171715231612325,
+  "stdout": {
+    "path": "control-results/candidate_nonselected_corruption_rollback/command.stdout",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "control-results/candidate_nonselected_corruption_rollback/command.stderr",
+    "size": 229,
+    "sha256": "6c912ed1180eda551ae8811f79f8b29996098075e50bb29f7965608648311907"
+  }
+}

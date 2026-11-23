@@ -1,0 +1,18 @@
+{
+  "command": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "gh",
+    "api",
+    "repos/davidpovarsky/Maktabah/actions/runs/45130214448/attempts/1/jobs"
+  ],
+  "returncode": 0,
+  "started_at": "2026-11-23T07:50:00.343149+00:00",
+  "finished_at": "2026-11-23T07:50:01.074968+00:00",
+  "stdout_sha256": "d69fb294c1970bac3433aec9b00134eb48d9a2d1da28a7ea364b2c545ea683a9",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 4872,
+  "stderr_bytes": 0
+}

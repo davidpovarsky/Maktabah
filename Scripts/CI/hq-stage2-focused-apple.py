@@ -333,14 +333,15 @@ def restore(config, report):
                                  "jsbundle_sha256": config["resource_bundle_sha256"], "no_book_database_payload": True}
 
 
-def logged(command, filename, report, cwd=None):
+def logged(command, filename, report, cwd=None, env=None):
     report.setdefault("commands", []).append(command)
     path = OUT / filename
     with path.open("w", encoding="utf-8") as log:
-        result = subprocess.run(command, cwd=cwd or ROOT, stdout=log, stderr=subprocess.STDOUT)
+        result = subprocess.run(command, cwd=cwd or ROOT, stdout=log, stderr=subprocess.STDOUT, env=env)
     print(f"command_exit={result.returncode} log={path.relative_to(ROOT)}", flush=True)
     print("\n".join(path.read_text(errors="replace").splitlines()[-100:]), flush=True)
     require(result.returncode == 0, "Focused command failed; inspect " + str(path.relative_to(ROOT)))
+    return result.returncode
 
 
 def rebuild_matching_zayit_framework(report):
@@ -417,8 +418,16 @@ def prepare_react_sources(config, report):
     logged(["chmod", "-R", "+x", str(vendor / "node_modules/.bin"), str(vendor / "node_modules/expo/bin")], "native-script-permissions.log", report)
 
 
-def install_real_pods(report):
-    logged(["pod", "install"], "pod-install.log", report)
+def install_real_pods(report, original_editor=False):
+    ruby_module = ruby_context = None
+    if original_editor:
+        ruby_module = runpy.run_path(str(ROOT / "Scripts/CI/hq-original-editor-distribution.py"))
+        ruby_context = ruby_module["prepare_pod_ruby_context"](ROOT, OUT)
+    pod_exit = logged(["pod", "install"], "pod-install.log", report,
+                      env=ruby_context["environment"] if ruby_context else None)
+    if ruby_context:
+        report["native_context"]["original_editor_pod_ruby_context"] = ruby_module["admit_pod_ruby_context"](
+            ROOT, ruby_context, pod_exit)
     require((ROOT / "Maktabah.xcworkspace/contents.xcworkspacedata").is_file(), "Real Pods workspace missing")
     require((ROOT / "Pods/Headers/Public/React-Core/React/RCTBridgeModule.h").is_file()
             or any(p.is_file() for p in (ROOT / "Pods").rglob("RCTBridgeModule.h")), "Real React header was not restored")
@@ -686,7 +695,7 @@ def main():
         restore(config, report)
         rebuild_matching_zayit_framework(report)
         prepare_matching_embedded_bundle(config, report)
-        install_real_pods(report)
+        install_real_pods(report, original_editor=bool(args.original_editor_admission))
         for framework, header in [("Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework", "otzaria_search_engine.h"),
                                   ("Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework", "maktabah_zayit_search.h")]:
             logged(["bash", "Scripts/CI/verify-xcframework.sh", framework, header], header + ".log", report)
