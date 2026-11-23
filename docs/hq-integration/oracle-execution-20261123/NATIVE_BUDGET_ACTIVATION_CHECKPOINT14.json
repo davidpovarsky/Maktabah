@@ -1,0 +1,143 @@
+{
+  "packet": {
+    "schema": 1,
+    "repository": "davidpovarsky/anytype-swift",
+    "branch": "codex/otzaria-native-annotation-budget-20261123",
+    "expected_remote_source_sha": "79b9662f1b184409a32f838e5ad5e902b5eecafa",
+    "source_parent_tree": "cd6db0e5a867aa129474154c464ba5b298da8139",
+    "local_prepared_commit": "ba5d27d0045e07638e96bdf9ea4c456d1387a950",
+    "local_prepared_ref": "prepared/otzaria-native-annotation-budget-20261123",
+    "expected_full_tree": "a9dfc38d55393cbfbead38d01274182801a9357a",
+    "workflow_path": ".github/workflows/otzaria-native-archive.yml",
+    "workflow_sha256": "d54e3a0a87230fb7d77b073a1cbbf0163dce1179650f679aa95cad7fac266aec",
+    "workflow_git_blob": "14f2aaa2e16b0968ff1c894a29f84aa110a85bc2",
+    "workflow_bytes": 2763,
+    "manifest_path": "docs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/EXECUTION_INPUTS.json",
+    "manifest_sha256": "34c60165bc4f98530055b96d514a756515ac0270ca76f2abd876299eb62db61d",
+    "policy_sha256": "818bd440374cd49072f018065d300209bd2dafc506ec16d8c2c686736bde7077",
+    "exact_delta": "Two branch substitutions and one manifest SHA only",
+    "create_tree_entries": [
+      {
+        "path": ".github/workflows/otzaria-native-archive.yml",
+        "mode": "100644",
+        "type": "blob",
+        "content": "name: Original native annotation archive admission\n\non:\n  push:\n    branches: [codex/otzaria-native-annotation-budget-20261123]\n\npermissions:\n  contents: read\n\nconcurrency:\n  group: otzaria-original-native-archive-${{ github.ref }}\n  cancel-in-progress: false\n\njobs:\n  original-native-archive:\n    if: github.repository == 'davidpovarsky/anytype-swift' && github.event_name == 'push' && github.ref == 'refs/heads/codex/otzaria-native-annotation-budget-20261123' && github.run_attempt == 1\n    runs-on: xcode-27\n    timeout-minutes: 120\n    env:\n      DEVELOPER_DIR: /Applications/Xcode_27.app/Contents/Developer\n    steps:\n      - name: Fix the absolute native execution deadline\n        run: |\n          echo \"OTZARIA_NATIVE_ARCHIVE_DEADLINE=$(( $(date +%s) + 6900 ))\" >> \"$GITHUB_ENV\"\n      - name: Checkout the exact isolated archive source packet\n        uses: actions/checkout@v4\n        with:\n          ref: ${{ github.sha }}\n          persist-credentials: false\n          sparse-checkout: |\n            docs/pinkha/torah-integration/native-owned-annotation-contract-20261123\n      - name: Select actual ARM64 Python\n        uses: actions/setup-python@v5\n        with:\n          python-version: '3.12'\n          architecture: arm64\n      - name: Install the exact original Go toolchain\n        uses: actions/setup-go@v5\n        with:\n          go-version: '1.26.5'\n          cache: false\n      - name: Checkout the immutable original Heart base\n        uses: actions/checkout@v4\n        with:\n          repository: anyproto/anytype-heart\n          ref: d98420b1113536afd08cde6de9a5816f6d27ffff\n          path: build/Heart-Native-Archive\n          persist-credentials: false\n      - name: Produce four actual original exports then qualify their archive admission\n        run: |\n          python3 -I docs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/run_native_archive.py \\\n            --control-root \"$GITHUB_WORKSPACE\" \\\n            --control-head \"$GITHUB_SHA\" \\\n            --execution-manifest-sha256 34c60165bc4f98530055b96d514a756515ac0270ca76f2abd876299eb62db61d \\\n            --job-deadline-unix \"$OTZARIA_NATIVE_ARCHIVE_DEADLINE\" \\\n            --heart build/Heart-Native-Archive \\\n            --work build/Heart-Native-Archive-Owned-Work \\\n            --evidence build/Heart-Native-Archive-Evidence\n      - name: Retain actual original native specimens compiler and archive evidence including failures\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: Otzaria-Original-Native-Archive-${{ github.run_id }}-${{ github.run_attempt }}\n          path: build/Heart-Native-Archive-Evidence\n          if-no-files-found: warn\n          compression-level: 6\n          retention-days: 14\n"
+      }
+    ],
+    "source_admission_sha256": "34e3b0427103115e1d3b33ece285e554e74c2c75c2eb0a43cec829a7bb3f91c8",
+    "runtime_steps_toolchains_deadlines_assertions_unchanged": true,
+    "sole_activation": "Root lease-checked workflow API child push; no manual dispatch",
+    "runtime_scope": "4 actual original native exports followed by32 archive controls; no SDK/Host/import/ACK claim",
+    "preparation_note": "Exact workflow required git add --sparse; checkout temporarily removed sparse-excluded retained inputs. Persisted exact retained-inputs272294B and workflow patterns only in this owned worktree, preserved failed source-only receipt; no product changes or runtime execution."
+  },
+  "review": {
+    "exact_workflow_three_replacements_only": true,
+    "manifest_sha256": "34c60165bc4f98530055b96d514a756515ac0270ca76f2abd876299eb62db61d",
+    "expected_full_tree": "a9dfc38d55393cbfbead38d01274182801a9357a",
+    "product_source_proof": {
+      "SDK_Host_policy_implementation_pending": true,
+      "archive_controls_historical_pass": false,
+      "authored_paths": [
+        {
+          "candidate_bytes": 23278,
+          "candidate_sha256": "3fb56e13a200956bb2c6db58c1f8ca2c9a0671b0bb64b1d2ad4ac318445b9066",
+          "inverse_restores_exact_source": true,
+          "patch": "owned_annotation_archive.go.patch",
+          "path": "docs/pinkha/torah-integration/native-owned-annotation-contract-20261123/native/core/block/import/owned_annotation_archive.go",
+          "preimage_revision": "9357b53ff8230128d1f3340118ec152770feb12a",
+          "preimage_sha256": "565e0b8545c4c69a48b6983793df801ef4210933bf72a2694b5311c53aced735"
+        },
+        {
+          "candidate_bytes": 21694,
+          "candidate_sha256": "4adace712198e85f389b926c218573bf73d355fb0625b6983e1a6d32ecf644a4",
+          "inverse_restores_exact_source": true,
+          "patch": "owned_annotation_archive_test.go.patch",
+          "path": "docs/pinkha/torah-integration/native-owned-annotation-contract-20261123/native/core/block/import/owned_annotation_archive_test.go",
+          "preimage_revision": "9357b53ff8230128d1f3340118ec152770feb12a",
+          "preimage_sha256": "a234e88527c590fc24cc729053b323a2a134a16f3a83e5553f798f13b91a03e3"
+        },
+        {
+          "candidate_bytes": 28932,
+          "candidate_sha256": "7a97d78db68ddedbd9555e683e5f16a18f2015f3f5894cbd14c6d97765f8ea86",
+          "inverse_restores_exact_source": true,
+          "patch": "owned_annotation_export_native_test.go.patch",
+          "path": "docs/pinkha/torah-integration/native-owned-annotation-contract-20261123/native/core/application/owned_annotation_export_native_test.go",
+          "preimage_revision": "9357b53ff8230128d1f3340118ec152770feb12a",
+          "preimage_sha256": "a59c2f6eb6424d943d238d13d47f9701c5fc7eeda0a29ddd26b428553b48c1eb"
+        }
+      ],
+      "base": "9357b53ff8230128d1f3340118ec152770feb12a",
+      "control_semantic_delta": "Existing CompressedBudget leaf tests exact inclusive limit and one-byte-over order; all other31 leaves unchanged",
+      "expected_archive_leaf_count": 32,
+      "fixture_semantic_delta": "Only original exported TypeKey.String()->TypeKey.URL() membership",
+      "go_compile_or_tests_executed": false,
+      "gofmt_pass": true,
+      "native_go_semantic_delta": "Only compressed archive ceiling65536->1048576",
+      "native_runtime_qualified": false,
+      "original_importer_changed": false,
+      "policy_sha256": "818bd440374cd49072f018065d300209bd2dafc506ec16d8c2c686736bde7077",
+      "policy_source_revision": "c067f5c5d5afc5d2679bdc371163d3018cc71a7b",
+      "preparation_note": "Initial no-checkout worktree required explicit checkout of selected six paths before edit; no source edit/commit was made by the failed pre-read attempt.",
+      "schema": 1,
+      "status": "SOURCE_PREPARED_NOT_RUN",
+      "workflow_activated": false
+    },
+    "actual_final_source_admission": {
+      "status": "SOURCE_ONLY_PASS",
+      "checkout_sha": "ba5d27d0045e07638e96bdf9ea4c456d1387a950",
+      "checkout_tree": "a9dfc38d55393cbfbead38d01274182801a9357a",
+      "immutable_source_rows": 17,
+      "control_inputs": [
+        {
+          "bytes": 31793,
+          "git_blob": "a380fe2847345369daa72981bf925e49a3910fc7",
+          "path": "slice-a/run_native_archive.py",
+          "sha256": "9a2b97c19bcebdbc7a3c0b4563dcade1368cab22f334f510e0364e96236ed001"
+        },
+        {
+          "bytes": 23278,
+          "git_blob": "c3a134d2e6dd66ef170f358e86ef9dce5883325c",
+          "path": "native/core/block/import/owned_annotation_archive.go",
+          "sha256": "3fb56e13a200956bb2c6db58c1f8ca2c9a0671b0bb64b1d2ad4ac318445b9066"
+        },
+        {
+          "bytes": 21694,
+          "git_blob": "6a361085e15e18af741da7abf2626e3cf48e9a18",
+          "path": "native/core/block/import/owned_annotation_archive_test.go",
+          "sha256": "4adace712198e85f389b926c218573bf73d355fb0625b6983e1a6d32ecf644a4"
+        },
+        {
+          "bytes": 28932,
+          "git_blob": "060b462ee4f46eb6638e8ca601ffd050ecf1bbdb",
+          "path": "native/core/application/owned_annotation_export_native_test.go",
+          "sha256": "7a97d78db68ddedbd9555e683e5f16a18f2015f3f5894cbd14c6d97765f8ea86"
+        }
+      ],
+      "original_revision_bytes_independently_checked": true,
+      "original_model_proto_rpc_rows_independently_checked": 11,
+      "authored_native_rows_independently_checked": [
+        "native/core/block/import/owned_annotation_archive.go",
+        "native/core/block/import/owned_annotation_archive_test.go",
+        "native/core/application/owned_annotation_export_native_test.go"
+      ],
+      "changes_since_preparation_base": [
+        "M\t.github/workflows/otzaria-native-archive.yml",
+        "M\tdocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/EXECUTION_INPUTS.json",
+        "A\tdocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/budget-20261123/HOST_FOUR_FILE_PEER_REVIEW.json",
+        "A\tdocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/budget-20261123/SOURCE_ADMISSION_ATTEMPT1.stderr.log",
+        "A\tdocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/budget-20261123/SOURCE_ADMISSION_ATTEMPT1.stdout.json",
+        "A\tdocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/budget-20261123/SOURCE_ADMISSION_ATTEMPT2.stderr.log",
+        "A\tdocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/budget-20261123/SOURCE_ADMISSION_ATTEMPT2.stdout.json",
+        "A\tdocs/pinkha/torah-integration/native-owned-annotation-contract-20261123/slice-a/budget-20261123/SOURCE_PREPARATION_FAILURES.json"
+      ],
+      "native_execution": false,
+      "provider_called": false,
+      "production_import_activated": false,
+      "historical_controls_replayed": false
+    },
+    "source_gate_stderr_bytes": 0
+  },
+  "activated_commit": "2da5419fa8b3e90ecca248ee9c83fd5055d8bca6",
+  "run": 45139622096,
+  "watcher": "job_6e976b8e8b50"
+}
