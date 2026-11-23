@@ -54,8 +54,13 @@ class NegativeControls(unittest.TestCase):
                       b"iOSReaderTabView(", b"iOSReaderTabView()\n iOSReaderTabView("))
 
     def test_replacement_palette(self):
-        self.assertIn("CURRENT_PALETTE_MUST_BE_REUSED", self.changed(gate.SIDEBAR,
-                      b"LibraryCommandPaletteAdapter(manager: manager)", b"ReplacementPalette(manager: manager)"))
+        if b"ReaderLibrarySearchMorph(" in self.files[gate.IPAD]:
+            self.assertIn("CURRENT_PALETTE_MUST_BE_REUSED", self.changed(gate.PALETTE,
+                          b"LibraryCommandPaletteAdapter(manager: manager, isActive:",
+                          b"ReplacementPalette(manager: manager, isActive:"))
+        else:
+            self.assertIn("CURRENT_PALETTE_MUST_BE_REUSED", self.changed(gate.SIDEBAR,
+                          b"LibraryCommandPaletteAdapter(manager: manager)", b"ReplacementPalette(manager: manager)"))
 
     def test_changed_original_inspector_toggle(self):
         self.assertIn("UNAPPROVED_WORKSPACE_BLOCK:readerSurface", self.changed(gate.WORKSPACE,

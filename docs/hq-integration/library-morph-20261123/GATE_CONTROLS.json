@@ -1,0 +1,45 @@
+{
+  "schema": "otzaria.library-morph.gate-controls/1",
+  "checkout_sha": "8f1cbc628d1ddc4d6e00c2a249b6f28fabe51813",
+  "executed_new_cases": [
+    "test_actual_source_preserves_original_semantics",
+    "test_added_shadow_rejected",
+    "test_changed_original_escape_rejected",
+    "test_changed_original_selection_rejected",
+    "test_conditional_shell_children_rejected",
+    "test_drag_across_field_results_rejected",
+    "test_duplicate_split_shell_rejected",
+    "test_hidden_field_focus_rejected",
+    "test_missing_native_launcher_rejected",
+    "test_parallel_query_binding_rejected",
+    "test_replaced_book_action_rejected",
+    "test_replacement_palette_rejected",
+    "test_shell_moved_inside_detail_rejected"
+  ],
+  "executed_original_cases": [
+    "test_removed_original_toolbar_button",
+    "test_changed_original_toc_blob",
+    "test_added_duplicate_title_bar",
+    "test_second_reader_instance",
+    "test_replacement_palette",
+    "test_changed_original_inspector_toggle",
+    "test_removed_profile_toolbar",
+    "test_changed_profile_switch_action"
+  ],
+  "tests_run": 21,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_seconds": 0.828,
+  "native_runtime": "NOT_RUN",
+  "full_historical_9401_gate": "NOT_RUN; unrelated guard bodies preserved",
+  "inputs": {
+    "Scripts/CI/verify-9401-exact-source.py": "5edab1310c924ee6b49e9f081185e761a57c697ec362f548945542d4ad0db561",
+    "Scripts/CI/test-9401-exact-source.py": "be4c6f2c5cb41a98fa3635e3141c959a0b52ab990c996f311d624f5323fe8c09",
+    "Scripts/CI/test-library-morph-composition.py": "01f1ac563d9edcc90c3131c52a6d9a36e58aaab859b36bd5f75e731510440b47"
+  },
+  "control_inputs_are_worktree_bytes": true,
+  "checked_out_commit_contains_these_control_changes": false,
+  "stdout_sha256": "143a5b1563e7fae8336385b20896e6ccb19f5dfdfb296991cebb2e758d97946c",
+  "stderr_sha256": "a723e42578d4e3aaf2fef3abd01ab68d1051d3dc3b499134b09a57a2cd3cd53f"
+}

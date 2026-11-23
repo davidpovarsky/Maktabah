@@ -1,0 +1,26 @@
+test_actual_source_preserves_original_semantics (morph_controls.LibraryMorphCompositionTests.test_actual_source_preserves_original_semantics) ... ok
+test_added_shadow_rejected (morph_controls.LibraryMorphCompositionTests.test_added_shadow_rejected) ... ok
+test_changed_original_escape_rejected (morph_controls.LibraryMorphCompositionTests.test_changed_original_escape_rejected) ... ok
+test_changed_original_selection_rejected (morph_controls.LibraryMorphCompositionTests.test_changed_original_selection_rejected) ... ok
+test_conditional_shell_children_rejected (morph_controls.LibraryMorphCompositionTests.test_conditional_shell_children_rejected) ... ok
+test_drag_across_field_results_rejected (morph_controls.LibraryMorphCompositionTests.test_drag_across_field_results_rejected) ... ok
+test_duplicate_split_shell_rejected (morph_controls.LibraryMorphCompositionTests.test_duplicate_split_shell_rejected) ... ok
+test_hidden_field_focus_rejected (morph_controls.LibraryMorphCompositionTests.test_hidden_field_focus_rejected) ... ok
+test_missing_native_launcher_rejected (morph_controls.LibraryMorphCompositionTests.test_missing_native_launcher_rejected) ... ok
+test_parallel_query_binding_rejected (morph_controls.LibraryMorphCompositionTests.test_parallel_query_binding_rejected) ... ok
+test_replaced_book_action_rejected (morph_controls.LibraryMorphCompositionTests.test_replaced_book_action_rejected) ... ok
+test_replacement_palette_rejected (morph_controls.LibraryMorphCompositionTests.test_replacement_palette_rejected) ... ok
+test_shell_moved_inside_detail_rejected (morph_controls.LibraryMorphCompositionTests.test_shell_moved_inside_detail_rejected) ... ok
+test_removed_original_toolbar_button (original_controls.NegativeControls.test_removed_original_toolbar_button) ... ok
+test_changed_original_toc_blob (original_controls.NegativeControls.test_changed_original_toc_blob) ... ok
+test_added_duplicate_title_bar (original_controls.NegativeControls.test_added_duplicate_title_bar) ... ok
+test_second_reader_instance (original_controls.NegativeControls.test_second_reader_instance) ... ok
+test_replacement_palette (original_controls.NegativeControls.test_replacement_palette) ... ok
+test_changed_original_inspector_toggle (original_controls.NegativeControls.test_changed_original_inspector_toggle) ... ok
+test_removed_profile_toolbar (original_controls.NegativeControls.test_removed_profile_toolbar) ... ok
+test_changed_profile_switch_action (original_controls.NegativeControls.test_changed_profile_switch_action) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.826s
+
+OK

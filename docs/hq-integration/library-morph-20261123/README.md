@@ -18,6 +18,8 @@ Gelatin-derived stretch/offset belongs only to a dedicated 16-point drag handle 
 
 A detail-child overlay can draw above its parent at toolbar coordinates without being hittable there. The approved split-level hook gives the surface a parent containing the real native toolbar. Both measurements use the same actual window, and the container measurement is attached to the exact positioned ZStack before safe-area expansion. The overlay includes the top container safe area while retaining keyboard avoidance. The native title keeps its original placement; the search slot reduces to a native-sized icon in narrow detail columns.
 
+Before Apple publication, review corrected placement to physical window centers with position(x:y:), so an inherited Hebrew RTL leading edge cannot add a second mirrored origin. Child RTL remains inherited. RTL_PLACEMENT.json records this precise follow-up and its syntax check; SOURCE_CONTROLS.json retains the earlier source stage.
+
 This is an implementation decision, not a runtime geometry PASS. Actual screenshots, hit targets, keyboard bounds and source-pinned XCTest outcomes determine acceptance.
 
 ## Validation prepared
