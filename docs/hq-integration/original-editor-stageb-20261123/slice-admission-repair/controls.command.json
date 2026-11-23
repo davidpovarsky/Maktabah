@@ -1,0 +1,20 @@
+{
+  "command": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "python3",
+    "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/docs/hq-integration/original-editor-stageb-20261123/slice-admission-repair/controls.py",
+    "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123"
+  ],
+  "cwd": "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123",
+  "started_at": "2026-11-23T07:58:17.967116+00:00",
+  "finished_at": "2026-11-23T07:58:18.082420+00:00",
+  "returncode": 0,
+  "timed_out": false,
+  "child_reaped": true,
+  "owned_group_drained": true,
+  "stdout_sha256": "ad4dc5f7481fbb676a370e5369f8dee31acaf1ab62fa972db1c4b0834867a286",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,21 @@
+{
+  "command": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "gh",
+    "api",
+    "repos/davidpovarsky/Maktabah/actions/artifacts/14799460254/zip"
+  ],
+  "returncode": 0,
+  "timed_out": false,
+  "child_reaped": true,
+  "started_at": "2026-11-23T07:50:32.192710+00:00",
+  "finished_at": "2026-11-23T07:50:34.412140+00:00",
+  "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/45130214448/terminal/original-editor-stageb-evidence.zip",
+  "bytes": 615683,
+  "sha256": "3662b88875a2062005edcad376463761c1f4a6b300a096ab0329dc4d211affcd",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

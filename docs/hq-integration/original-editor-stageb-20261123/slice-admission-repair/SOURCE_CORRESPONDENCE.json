@@ -1,0 +1,101 @@
+{
+  "base_sha": "a0b0e12cee7260829f4cafe41fc9c4c0dfad6c44",
+  "path": "Scripts/CI/hq-original-editor-distribution.py",
+  "before_sha256": "c5e933f4c5f411426d6223c6fd35b89937e5d5c02dd21a09d4ee4eab8f6e1a3d",
+  "after_sha256": "84e6110e7f3b1e472c18b3913440703e221bffde2bfaaca782765697e2940e49",
+  "exact_inverse_recovers_original": true,
+  "new_functions": [
+    "require_simulator_dynamic_architectures"
+  ],
+  "changed_existing_functions": [
+    "admit"
+  ],
+  "unchanged_functions": {
+    "require": "8b14f7d5eb0d9a9cafc6d1aaa990a73bad9c261d2c3c97d6713ed7fa789c829b",
+    "digest": "e993878d37d0cc8f77cb09a90ffeedff2b86da9887f66fb1976e1f8970dbfa25",
+    "write": "eb7929ec2b262a6c9864e67f06a4960422ae545cd492c7041fbd20dc1cb72345",
+    "owned_path": "27fe32c885f588ea10ad6bbcdbdd242c6c000fc93470fd15a1c275cdee6e9aa4",
+    "read_json": "62bb16351b88a852de94902da42d60dafbbd64155803075f69c8c575a1dc6493",
+    "inventory": "c199feb48e041b4263b069abb2ece5f52d57790ce8710961ffe98798c39469af",
+    "command": "c26527888715b25518a43b9ec119716fe11126d874a6e6a7fd6b45f40dbeec62",
+    "shared_package_policy": "acb093590a3e8c0854e49d64c8afc813be91ad7ebd23ab62ab02d2f4ecbf64ec",
+    "require_no_syntax_names": "f7678b4add134dcc3fe9a6e9bf95ae82c8ba6e94fba1edaac872d36ef3b9b71a",
+    "code_images": "abd6bd02f66e05753f28e3efac77d0b0b09477026ec6cd9cd9c79906c4fdc0b3",
+    "scan_binary_output": "8d9341178f7246307236f0fb6ba7a2b8035e6eab5e4be2ff7956bdc6daa7fa8f",
+    "binary_command": "ae6359968ae6eba3de7085edcf3667f2fe0a7d12aed662186cf00da80de02777",
+    "runtime_absence_proof": "098676c394639d4674126e37fbf9c6e200e7d288b54d88eb6b9425bd68d645b2",
+    "verify_absence_receipt": "ef2b53dbb39245136d29296313579bdeeba554dfdda24aa9c1c93855a37edaaf",
+    "require_compiled_host_api": "62b7998cd63523d0c6d28c4baa0ff1702f091929e80684a14a8ad899959feb0d",
+    "require_unchanged": "7822fa0e805c12c2eaa4d50c7cb445e4fb46549f860cbf02c51ec23016b03955",
+    "compare_or_copy": "74ed06bd35446b1adf25cdd0fbfb7694b7477402fe6d5a972391c2998b09deeb",
+    "app_bundle": "69dded3a5630d014a5b15cbdac18b0c9b4bc84c747ab9bd9a875f1edb6e8e800",
+    "embed": "6fbc629206c849b587125dd476f5fb0b275ce276b43e78b3fce2ba7b8e739e0f",
+    "prepare": "4a89341b1316eca7909459e36ffb6d16773a25227b941fdb7277b2a05df89cc3",
+    "verify_built_app": "6736b55221d4fd3808c9adc9e12b0385fb497f7aa161e9e11a2081c9e322edda"
+  },
+  "workflow_unchanged": true,
+  "product_and_original_ui_test_changes": 0,
+  "old_controls_reexecuted": false,
+  "framework_files_modified": 0,
+  "historical_source_controls": {
+    "count": 8,
+    "receipt_sha256": "4784003d369dab84c243b56c5a140e9d5fb40020f8e9866f0de5eead24f590fc",
+    "reexecuted": false
+  },
+  "historical_runtime_admission_controls": {
+    "count": 6,
+    "receipt_sha256": "957f82f5c858e0cec9d3b093c6f2bdfb0ff4712930268263e14f6ce23bc07e88",
+    "reexecuted": false
+  },
+  "unchanged_complete_control_inputs": [
+    {
+      "path": "Scripts/CI/original_editor_continuation_admission.py",
+      "sha256": "94e70b21fb323670e81a6903ee7a253d9b3cdf9183e9082f548905827e5d57ef",
+      "unchanged_from": "3e7193cee9931adac1d692e80d66e84c964c123f"
+    },
+    {
+      "path": "Scripts/CI/original_editor_signed_consumer_admission.py",
+      "sha256": "eca9a44d0f2b0f7872a089e640c857c3c33925684dee630ddaa1487c61fe5e16",
+      "unchanged_from": "3e7193cee9931adac1d692e80d66e84c964c123f"
+    },
+    {
+      "path": "docs/hq-integration/original-editor-stageb-20261123/retained-original-producer.json",
+      "sha256": "23a38d1a3f1a4a2d66497ed79adfb3a3c8f184b48bc4f329e64f789f7d7088b4",
+      "unchanged_from": "3e7193cee9931adac1d692e80d66e84c964c123f"
+    },
+    {
+      "path": "tools/verify-original-editor-signed-consumer-admission-controls.py",
+      "sha256": "58aa71f91c4bb469dc1c9969e1d2d8ffa29a69568253d78d6353525e0a097689",
+      "unchanged_from": "3e7193cee9931adac1d692e80d66e84c964c123f"
+    }
+  ],
+  "historical_control_sdk_function_references": [],
+  "unchanged_product_trees": {
+    "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "ca36ba13f1fd900adf528a3e404fed6a66290b6b"
+  },
+  "additional_unchanged_inputs": [
+    {
+      "path": "Scripts/CI/runtime27-original-editor.inputs.json",
+      "sha256": "2940ae140f7c4b1521d454d3e9b246f85c75b473c806d8ea68190b793601a731"
+    },
+    {
+      "path": "Scripts/CI/select-runtime27-toolchain.py",
+      "sha256": "3e6ed97188d50f4f344dbd7f77f142a05f0a0bde1b720a0745df098f49bfcf2f"
+    },
+    {
+      "path": "Scripts/CI/runtime27-original-editor-native.py",
+      "sha256": "04c61fcda3c116598086e9fdf348b30b25818c358719fb29aa0529e9efe9d70c"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "sha256": "0dbe133b8f0ee188dc2f0d0c375972a210571498ecac928f1174730ebb0e83f5"
+    },
+    {
+      "path": "Scripts/CI/hq-original-editor-app-target.rb",
+      "sha256": "094f10867cb070035aa7044bc94f57df712b0b8ccfdcd4cf758a75c21f455e6a"
+    }
+  ]
+}

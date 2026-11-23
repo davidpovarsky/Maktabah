@@ -280,6 +280,36 @@ def require_compiled_host_api(qualification, *, retained_original=None):
             "actual_public_surface": surface, "native_editor_ui_tests": 0}
 
 
+def require_simulator_dynamic_architectures(architecture_output, header):
+    # Preserve each authenticated framework byte, including an original universal
+    # Simulator slice. The consumer needs arm64; no extra architecture is inferred
+    # from a path, flag or other column in otool's output.
+    architectures = architecture_output.split()
+    supported = {"arm64", "x86_64"}
+    require(architectures and len(architectures) == len(set(architectures))
+            and "arm64" in architectures and set(architectures) <= supported,
+            "Wrong or ambiguous SDK architectures")
+    cpu_names = {"ARM64": "arm64", "X86_64": "x86_64"}
+    header_architectures = []
+    for line in header.splitlines():
+        fields = line.split()
+        if not fields or not fields[0].startswith("MH_"):
+            continue
+        require(len(fields) >= 7 and fields[0] == "MH_MAGIC_64"
+                and fields[1] in cpu_names
+                and re.fullmatch(r"0x[0-9a-fA-F]+", fields[3])
+                and fields[4] == "DYLIB"
+                and re.fullmatch(r"[0-9]+", fields[5])
+                and re.fullmatch(r"[0-9]+", fields[6]),
+                "Unsupported or ambiguous SDK Mach-O header")
+        header_architectures.append(cpu_names[fields[1]])
+    require(header_architectures
+            and len(header_architectures) == len(set(header_architectures))
+            and set(header_architectures) == set(architectures),
+            "SDK architecture and actual DYLIB CPU headers differ")
+    return tuple(sorted(architectures))
+
+
 def admit(root, admission_path, evidence, *, swift=None, sdk=None):
     root, admission_path, evidence = Path(root).resolve(), Path(admission_path), Path(evidence)
     relative = admission_path.relative_to(root).as_posix() if admission_path.is_absolute() else admission_path.as_posix()
@@ -363,8 +393,9 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
         if re.search(r"\bDYLIB\b", header):
             dynamic.append(name)
             command(["codesign", "--verify", "--strict", str(framework)], root=root, evidence=evidence, label="sdk-signature-" + str(index))
-            require(command(["lipo", "-archs", str(binary)], root=root, evidence=evidence,
-                            label="sdk-architecture-" + str(index)) == "arm64", "Wrong SDK architecture")
+            require_simulator_dynamic_architectures(
+                command(["lipo", "-archs", str(binary)], root=root, evidence=evidence,
+                        label="sdk-architecture-" + str(index)), header)
             platform = command(["xcrun", "vtool", "-show-build", str(binary)], root=root, evidence=evidence,
                                label="sdk-platform-" + str(index))
             require(re.search(r"platform\s+IOSSIMULATOR\b", platform), "Non-Simulator SDK dependency")

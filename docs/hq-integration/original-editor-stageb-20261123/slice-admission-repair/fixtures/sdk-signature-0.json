@@ -1,0 +1,11 @@
+{
+  "command": [
+    "codesign",
+    "--verify",
+    "--strict",
+    "/Users/runner/work/Maktabah/Maktabah/build/original-editor-sdk-input/distribution/Frameworks/AmplitudeCore.framework"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "stdout": ""
+}

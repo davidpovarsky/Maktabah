@@ -1,0 +1,15 @@
+{
+  "command": [
+    "lipo",
+    "-archs",
+    "/Users/runner/work/anytype-swift/anytype-swift/build/original-editor-framework-45060396175-1/distribution/Frameworks/AnytypeOriginalEditor.framework/AnytypeOriginalEditor"
+  ],
+  "cwd": "/Users/runner/work/anytype-swift/anytype-swift",
+  "finished_at": "2026-11-22T19:35:01.628950+00:00",
+  "returncode": 0,
+  "started_at": "2026-11-22T19:35:00.617034+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+  "timed_out": false,
+  "timeout_seconds": 30
+}
