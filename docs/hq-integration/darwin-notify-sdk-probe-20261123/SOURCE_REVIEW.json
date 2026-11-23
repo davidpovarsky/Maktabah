@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "purpose": "Resolve the two authentic UI compile failures using the actual selected Apple SDK before changing any product import again.",
+  "base": "ad07d5a48da4b49b3085d5d88110d6043ffba1e5",
+  "prior_runs": [
+    {
+      "run": 45143450850,
+      "source": "88977a1e19e6c205fc2e832bd79c384b1e2f70ca",
+      "failure": "notify_post and NOTIFY_STATUS_OK were out of scope."
+    },
+    {
+      "run": 45147566951,
+      "source": "ad07d5a48da4b49b3085d5d88110d6043ffba1e5",
+      "failure": "no such module 'DarwinNotify'",
+      "intake_sha256": "5e578bc889f1e6f5e3668a969d23d1078a460e347c9be8856de3b5e92a8e59f4",
+      "compiler_log_sha256": "042eac9a0665ae80eaa4cd7e0acaf5ae8426ff8c2b38a4ce2b752848d4a1c8d0"
+    }
+  ],
+  "scope": {
+    "application_builds": 0,
+    "native_notifications_executed": 0,
+    "native_tests": 0,
+    "simulator_mutations": 0,
+    "production_files_changed": 0,
+    "actual_declaration_compilation_only": true
+  },
+  "toolchain": {
+    "runner": "xcode-27",
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+    "sdk_version": "27.2",
+    "target": "arm64-apple-ios27.0-simulator",
+    "original_selector_sha256": "3e6ed97188d50f4f344dbd7f77f142a05f0a0bde1b720a0745df098f49bfcf2f"
+  },
+  "peer_review": {
+    "reviewer": "/root/asana_scope",
+    "reviewed_driver_sha256": "834cb309d4b3b7d34e58a381e468b95567b691a0eee2ad8b10ae13188166e0a3",
+    "reviewed_workflow_sha256": "04bf82da25f54beab250be3dac05efb1aaa99c3769e1ce6b26f202d2d43a96b3",
+    "findings": [
+      "Observe actual group closure again after final SIGKILL; preserve false if still present.",
+      "Bound the aggregate compile budget so a job deadline cannot preempt intended artifact retention."
+    ],
+    "corrections": [
+      "Added bounded final group observation.",
+      "600-second driver budget with25-second command cleanup reserve;25-minute job and5-minute selector step.",
+      "64MiB map-reading cap and partial compile records retained."
+    ],
+    "candidate_coverage_limit": "Raw actual module maps remain evidence; umbrella-only modules and aliases are not claimed exhaustively resolved by this narrow explicit-header parser."
+  },
+  "source": {
+    "Scripts/CI/darwin-notify-sdk-probe.py": {
+      "bytes": 14360,
+      "sha256": "613254164591bd77d0ba543cf714aba1ef553709721682b900b74bb1f371c5d7"
+    },
+    ".github/workflows/otzaria-darwin-notify-sdk-probe.yml": {
+      "bytes": 1538,
+      "sha256": "91e70e558df20d398c84b5e5464b056bda37176de9a058c192e15b83f799f534"
+    }
+  },
+  "validation": {
+    "python_syntax": "PASS",
+    "workflow_yaml": "PASS",
+    "probe_executed": false
+  }
+}

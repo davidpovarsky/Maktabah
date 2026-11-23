@@ -1,0 +1,44 @@
+name: Inspect actual selected Darwin notification SDK declarations
+
+on:
+  push:
+    branches: [codex/otzaria-darwin-notify-sdk-probe-20261123]
+    paths:
+      - 'Scripts/CI/darwin-notify-sdk-probe.py'
+      - '.github/workflows/otzaria-darwin-notify-sdk-probe.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: darwin-notify-sdk-probe-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  inspect-sdk:
+    runs-on: xcode-27
+    timeout-minutes: 25
+    env:
+      EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Scripts/CI/select-runtime27-toolchain.py
+            /Scripts/CI/darwin-notify-sdk-probe.py
+            /.github/workflows/otzaria-darwin-notify-sdk-probe.yml
+      - name: Select the unchanged original matching Apple toolchain
+        timeout-minutes: 5
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/darwin-notify-sdk-probe/toolchain-selection.json
+      - name: Inspect actual headers and compile notification declarations without execution
+        run: python3 Scripts/CI/darwin-notify-sdk-probe.py
+      - name: Retain raw SDK maps, headers and compiler diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: actual-darwin-notify-sdk-evidence
+          path: build/darwin-notify-sdk-probe/
+          if-no-files-found: error
