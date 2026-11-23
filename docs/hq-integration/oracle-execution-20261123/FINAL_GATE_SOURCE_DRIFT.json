@@ -1,0 +1,15 @@
+{
+  "canonical_head": "95594e176c3033aca1f304cf91a263893dc8458c",
+  "actual_r27_digest": "7439fd761e6661db719259bdf1e32eb59bb9dbdf084747849b92147e7702e004",
+  "old_binding_r27_digest": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed",
+  "actual_literal_count": 0,
+  "inverse_blob": "229b4a15a1026ccf5f42176e195ffd141350eeb6",
+  "expected_inverse": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+  "runtime_diff": "diff --git a/41268a7e701d9962c6e4ea3cf54764bb9213c3f4 b/Scripts/CI/runtime27.py\nindex 41268a7e..229b4a15 100644\n--- a/41268a7e701d9962c6e4ea3cf54764bb9213c3f4\n+++ b/Scripts/CI/runtime27.py\n@@ -313,7 +313,7 @@ def main():\n         report[\"full_release_acceptance\"] = False\n         report[\"scope\"] = contract[\"scope\"]\n         test_path = ROOT / \"Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift\"\n-        if hashlib.sha256(test_path.read_bytes()).hexdigest() != \"53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b\":\n+        if hashlib.sha256(test_path.read_bytes()).hexdigest() != \"3f3b5380bc69ec54abc6413556c6920fb85376ae0bb404d82a1414cdbc9d0733\":\n             raise RuntimeError(\"Reviewed test source drift\")\n         report[\"test_source_commit\"] = contract[\"source_test_commit\"]\n         subprocess.run([\"git\", \"merge-base\", \"--is-ancestor\", contract[\"source_test_commit\"], \"HEAD\"], cwd=ROOT, check=True)\n",
+  "current_four_trees": {
+    "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "ca36ba13f1fd900adf528a3e404fed6a66290b6b"
+  }
+}

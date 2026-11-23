@@ -1,0 +1,359 @@
+{
+  "scope": "Exact current main-project membership; not a recursive subtask recount",
+  "project": "1219602719070493",
+  "total": 50,
+  "open": 32,
+  "completed": 18,
+  "tasks": [
+    {
+      "gid": "1220769157395027",
+      "name": "[AUDIT][2026-11-22][איתן | ARCH] ביקורת נקיות מקור (Upstream) וארגון קוד — אוצריא (Maktabah)",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-22T15:00:58.899Z"
+    },
+    {
+      "gid": "1220548969733512",
+      "name": "[HANDOFF] מנהל יחיד — עצירה מאוחדת 16.11.2026 / 7 סוכנים",
+      "completed": false,
+      "parent_gid": "1220547779919596",
+      "modified_at": "2026-11-15T23:26:53.070Z"
+    },
+    {
+      "gid": "1220548885571611",
+      "name": "[HANDOFF] N — STOPPED / עצירת גל 2026-11-16",
+      "completed": true,
+      "parent_gid": "1220547779919596",
+      "modified_at": "2026-11-15T23:26:12.075Z"
+    },
+    {
+      "gid": "1220548822513071",
+      "name": "[HANDOFF] I — STOPPED מסירת עצירה 2026-11-16",
+      "completed": true,
+      "parent_gid": "1220547779919596",
+      "modified_at": "2026-11-15T23:26:12.212Z"
+    },
+    {
+      "gid": "1220548880392687",
+      "name": "[HANDOFF] S — STOPPED: מסירת עצירה 16.11.2026",
+      "completed": true,
+      "parent_gid": "1220547779919596",
+      "modified_at": "2026-11-15T23:26:12.037Z"
+    },
+    {
+      "gid": "1220548884382630",
+      "name": "[HANDOFF] D — STOPPED 16.11.2026 / Books Updates",
+      "completed": true,
+      "parent_gid": "1220547779919596",
+      "modified_at": "2026-11-15T23:26:12.023Z"
+    },
+    {
+      "gid": "1220548967133104",
+      "name": "[HANDOFF] U — עצירת גל 2026-11-16",
+      "completed": true,
+      "parent_gid": "1220547779919596",
+      "modified_at": "2026-11-15T23:26:12.064Z"
+    },
+    {
+      "gid": "1220548821826909",
+      "name": "[HANDOFF] R — מסירת עצירה 2026-11-16",
+      "completed": true,
+      "parent_gid": "1220547779919596",
+      "modified_at": "2026-11-15T23:26:12.013Z"
+    },
+    {
+      "gid": "1220548879767958",
+      "name": "[HANDOFF] P — STOP ומסירת עצירה 2026-11-16",
+      "completed": true,
+      "parent_gid": "1220547779919596",
+      "modified_at": "2026-11-15T23:26:12.092Z"
+    },
+    {
+      "gid": "1220548331612333",
+      "name": "[HANDOFF] U — גבול ראיות HID ללא חשיפת credential",
+      "completed": true,
+      "parent_gid": "1220547779919596",
+      "modified_at": "2026-11-16T08:43:26.810Z"
+    },
+    {
+      "gid": "1220548031990416",
+      "name": "[HANDOFF] I — מסירת metadata לרץ UITest של Zayit",
+      "completed": true,
+      "parent_gid": "1220547779919596",
+      "modified_at": "2026-11-18T14:11:25.650Z"
+    },
+    {
+      "gid": "1220120627071765",
+      "name": "[P1][OTZARIA-READER] סליידר ניווט לא יציג רמת פסקה ללא בחירה מפורשת",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-15T00:35:45.183Z"
+    },
+    {
+      "gid": "1220120889353811",
+      "name": "[P1][READER-SEARCH] היסטוריית חיפוש רק בטאב החיפוש הראשי, לא בחיפוש מתוך ספר",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-20T06:03:33.025Z"
+    },
+    {
+      "gid": "1219702107643331",
+      "name": "[P1][READER-HEADER][נועם/מיה] לוודא שם ספר קנוני במקום מספר ניווט בקורא — בדיקת iPad",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-10-25T06:38:28.006Z"
+    },
+    {
+      "gid": "1219682272017128",
+      "name": "[P0][BOOT][נועם | DEV] אוצריא production — התקנת מסד מלא בלי חסימה מחבילות חיפוש",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-21T20:51:55.382Z"
+    },
+    {
+      "gid": "1219684630509114",
+      "name": "[P0][TESTFLIGHT][תומר | INT] להעלות בטא חדשה אחרי תיקוני ביצועים — ChavrusaText production",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-22T01:46:39.035Z"
+    },
+    {
+      "gid": "1219674938327411",
+      "name": "[P1][SEARCH-V32][תומר/נועם] חבילות חיפוש production תואמות למסד אוצריא v32",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-21T20:51:53.926Z"
+    },
+    {
+      "gid": "1219613714507780",
+      "name": "[P0][PERF-02][איתן/נועם] SQLite concurrency, MainActor, cancellation ומטמונים",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-20T02:36:45.149Z"
+    },
+    {
+      "gid": "1219613602997169",
+      "name": "[P1][PERF-04][רוני | QA] מדידות פיזיות על iPad ומסד אוצריא המלא",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-22T02:52:00.189Z"
+    },
+    {
+      "gid": "1219613714504405",
+      "name": "[P0][PERF-01][נועם | DEV] פתיחת מסכת/ספר אוצריא ללא חסימה — lazy reading & navigation",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-19T18:29:03.257Z"
+    },
+    {
+      "gid": "1219613651433098",
+      "name": "[P0][PERF-03][נועם/מיה] רינדור פרקים גדולים ב־Reader המקורי בלי hitches",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-19T14:49:03.304Z"
+    },
+    {
+      "gid": "1219611682682931",
+      "name": "[TEAM][SETUP] צוות הסוכנים — שיוך תפקידים ואימות מעטפת GitHub",
+      "completed": true,
+      "parent_gid": null,
+      "modified_at": "2026-11-22T03:12:29.389Z"
+    },
+    {
+      "gid": "1219602719070497",
+      "name": "סקירת מצב F01–F10 / R01–R08 — Maktabah (17.10.2026)",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-10-25T06:38:27.990Z"
+    },
+    {
+      "gid": "1219603004720303",
+      "name": "[P1][F03] להוסיף pagination אמיתי לתוצאות זית מעבר ל־50",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-19T23:01:06.367Z"
+    },
+    {
+      "gid": "1219602829298459",
+      "name": "[P1][R02] לבטל מזהי שורה מומצאים ב־OtzariaGenericBackendAdapter",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-19T23:02:54.038Z"
+    },
+    {
+      "gid": "1219602829324347",
+      "name": "[P0][R01] לתקן פתיחת תוצאת זית עם מזהה hit יציב ולא fallback עמום",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-19T14:48:26.533Z"
+    },
+    {
+      "gid": "1219602829324283",
+      "name": "[P0][R03] לתקן שיוך metadata לתוצאות אוצריא אחרי Load More",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-20T04:06:50.788Z"
+    },
+    {
+      "gid": "1219602987688812",
+      "name": "[P2][R05–R08] רגרסיות race, שפה, HTML, נתונים ואופליין",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-22T01:02:40.606Z"
+    },
+    {
+      "gid": "1219602987688876",
+      "name": "[P0][R04/F05] פאנל מפרשים: MainActor hangs, SQL N+1 וטעינת תוכן מוקדמת",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-21T18:02:48.465Z"
+    },
+    {
+      "gid": "1219614315863536",
+      "name": "[RESEARCH] מנוע פעולות אחוד לאוצריא — ארכיטקטורה וסקירת פתרונות קיימים",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-22T03:22:24.413Z"
+    },
+    {
+      "gid": "1219614472017979",
+      "name": "[RESEARCH] פעולות חיפוש, ספירה, פתיחת מפרשים והכנת הערות דרך API אחוד",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-21T20:37:32.190Z"
+    },
+    {
+      "gid": "1219614268854015",
+      "name": "[RESEARCH] איתור סמנטי של ספרים, מפרשים, פרקים ומיקומי טקסט",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-20T13:35:44.969Z"
+    },
+    {
+      "gid": "1219614468074332",
+      "name": "[RESEARCH] הדרכה אינטראקטיבית ואוטומציה מרובת צעדים על אותו מנוע",
+      "completed": true,
+      "parent_gid": null,
+      "modified_at": "2026-11-19T23:08:43.340Z"
+    },
+    {
+      "gid": "1219643110971002",
+      "name": "[PLANNED][UX] Maktabah — Native iPadOS 27 Side Sheet ל-TorahInspectorKit בשלושה גבהים",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-21T21:44:00.759Z"
+    },
+    {
+      "gid": "1220036734107652",
+      "name": "[PLANNED][P1][UX][iPad Reader] איחוד עץ הספרים ותוכן העניינים לסיידבאר דו־מסכי (Craft-style)",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-14T18:05:34.441Z"
+    },
+    {
+      "gid": "1220036884173010",
+      "name": "[PLANNED][P1][UX] אוצריא — Safari Toolbar וחיפוש ספרייה מתרחב עם CommandPalette + Gelatin Motion-Only",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-23T03:03:07.517Z"
+    },
+    {
+      "gid": "1220103384037482",
+      "name": "[PLANNED][P1][UX][MAIN_SESSION] אוצריא — פרופילי לימוד, קבוצות כרטיסיות ו־DuckDuckGo Tab Strip",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-20T15:16:05.062Z"
+    },
+    {
+      "gid": "1220539630830553",
+      "name": "[P0][BUILD 11201][OPEN] רגרסיות iPad — Sidebar, חיפוש זית/אוצריא, Books Updates ו-QA",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-19T16:09:59.780Z"
+    },
+    {
+      "gid": "1220542361135050",
+      "name": "[P1][UI-AUTOMATION] חיבור מקיף של מסכים, רכיבים ומצבי ממשק ל־App Intents + Deep/Universal Links + AI",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-20T01:42:24.088Z"
+    },
+    {
+      "gid": "1220545194715722",
+      "name": "[P1][PLANNED][CROSS-APP] אוצריא ↔ AnyTapy — הערות מקור מסווגות, עורך Anytype מוטמע וסנכרון בטוח",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-23T03:08:42.620Z"
+    },
+    {
+      "gid": "1220546245946205",
+      "name": "[P1][IN_PROGRESS][GLOBAL SEARCH UX] עיצוב מחדש של החיפוש הגלובלי — Native SwiftUI/UIKit + Liquid Glass + Sidebar + סינון תוצאות",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-22T04:35:51.262Z"
+    },
+    {
+      "gid": "1219848733895424",
+      "name": "[P0][BATCH-B][IN_PROGRESS] Reader/Upstream — iPadOS 27 QA + TestFlight production",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-10-25T12:02:06.574Z"
+    },
+    {
+      "gid": "1220547779919596",
+      "name": "📬 מסירות והחלטות הסוכנים — אוצריא | תיבת מנהל",
+      "completed": false,
+      "parent_gid": null,
+      "modified_at": "2026-11-21T18:02:36.848Z"
+    },
+    {
+      "gid": "1219612074000817",
+      "name": "[P0][תומר | INT][TESTFLIGHT] העלאת ChavrusaText עם מסד אוצריא המלא (production)",
+      "completed": true,
+      "parent_gid": null,
+      "modified_at": "2026-10-18T23:01:53.546Z"
+    },
+    {
+      "gid": "1219603012547016",
+      "name": "[P1][F01/F02/F04/F08] להשלים בדיקות קבלה של חיפוש, גרסאות ופתיחת קטע",
+      "completed": true,
+      "parent_gid": null,
+      "modified_at": "2026-10-18T21:15:14.301Z"
+    },
+    {
+      "gid": "1219603004720175",
+      "name": "[P1][F05/F06/F09/F10] להשלים קבלת Inspector, מפרשים וציטוטים",
+      "completed": true,
+      "parent_gid": null,
+      "modified_at": "2026-10-18T21:13:42.792Z"
+    },
+    {
+      "gid": "1219602987688643",
+      "name": "[P1][F07] לאמת SQLite annotations ב־30 מחזורים ו־relaunch",
+      "completed": true,
+      "parent_gid": null,
+      "modified_at": "2026-10-18T21:12:35.633Z"
+    },
+    {
+      "gid": "1219603004720239",
+      "name": "[P1][CI/A32] להשיג סט בדיקות ו־IPA מאומתים על HEAD אחד",
+      "completed": true,
+      "parent_gid": null,
+      "modified_at": "2026-10-18T21:11:27.583Z"
+    },
+    {
+      "gid": "1219603012531905",
+      "name": "[P0][F07] לתקן כישלון הוספה/שמירה/רענון הערות בספריא ב־iPad",
+      "completed": true,
+      "parent_gid": null,
+      "modified_at": "2026-10-18T21:10:19.042Z"
+    },
+    {
+      "gid": "1219718158283095",
+      "name": "[DONE][DOCS][מיה | UX] מפרט שפת העיצוב המקורית של Maktabah וחיבור מיה ב־Codex/Antigravity",
+      "completed": true,
+      "parent_gid": null,
+      "modified_at": "2026-10-20T22:45:12.528Z"
+    }
+  ]
+}

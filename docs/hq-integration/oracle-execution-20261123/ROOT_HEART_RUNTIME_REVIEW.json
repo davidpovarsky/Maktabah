@@ -1,0 +1,228 @@
+{
+  "status": "ROOT_IMMUTABLE_PROVENANCE_REVIEW_PASS",
+  "native_execution": false,
+  "prepared_commit": "45446e5006fa1816a737c7d6ceef3ab0f36dc2a3",
+  "tree": "a88987ede7098649c5e5f2fd7e005bb8f9d12945",
+  "original_rows": 42,
+  "original_bytes": 406523,
+  "retained_rows": [
+    {
+      "path": "support/run_original_application_compile.py",
+      "bytes": 33111,
+      "git_blob": "0498f13879a15dacde8b4c7575b64d6f128b9402"
+    },
+    {
+      "path": "support/ORIGINAL_COMPILE_INPUTS.json",
+      "bytes": 33548,
+      "git_blob": "89e00dc425bbdd141a8e60dd235b8db7505c6f7a"
+    },
+    {
+      "path": "support/bootstrap/build_custom_heart.py",
+      "bytes": 12945,
+      "git_blob": "e32c935fedce5fc732240bf9b2ada21764b5add1"
+    },
+    {
+      "path": "support/bootstrap/prepare_original_tantivy.py",
+      "bytes": 1242,
+      "git_blob": "828736cb89f212e509ba80634bf596b488c920ca"
+    },
+    {
+      "path": "r14/native-heart-integration.patch",
+      "bytes": 91246,
+      "git_blob": "02b7412c24015e90a45ac17ca646dc6758841e95"
+    },
+    {
+      "path": "r14/native-heart-integration.json",
+      "bytes": 7906,
+      "git_blob": "d6302bfef08ab255f6d34d8db1f66ddcf7f8d118"
+    },
+    {
+      "path": "origin/install_native_sources.py",
+      "bytes": 2922,
+      "git_blob": "f170b0f0774f3eedeba781177b152cedf488e118"
+    },
+    {
+      "path": "origin/composition/r14/SOURCE_BINDINGS.json",
+      "bytes": 2476,
+      "git_blob": "0a69dc5f0ee8dc5aa4875232eaba14a89f724e52"
+    },
+    {
+      "path": "origin/composition/r14/native/core/block/import/common/types.go",
+      "bytes": 8403,
+      "git_blob": "8dd101aaa16fd2a582faa0686db3996f672e9af9"
+    },
+    {
+      "path": "origin/composition/r14/native/core/block/import/mapping_observation.go",
+      "bytes": 9367,
+      "git_blob": "663032e78e91558f614defa2a6cc55d6a7206b4c"
+    },
+    {
+      "path": "origin/composition/r14/native/core/block/import/mapping_observation_processor.go",
+      "bytes": 3334,
+      "git_blob": "06baf4dd209aa7fbaa576c42b79a4cc35c0b72cf"
+    },
+    {
+      "path": "origin/composition/r14/native/core/block/import/pb/converter.go",
+      "bytes": 19568,
+      "git_blob": "3d02dd5b0853b8a586bed12d98a6cd837a19a88d"
+    },
+    {
+      "path": "origin/composition/r14/native/core/block/import/processor.go",
+      "bytes": 22855,
+      "git_blob": "1ab025aceb9822925701e6e4afe11fb5b1e33f31"
+    },
+    {
+      "path": "origin/composition/r14/native/core/block/import/types.go",
+      "bytes": 3134,
+      "git_blob": "bae545906e0977dd590328d91525e6a2319a816c"
+    },
+    {
+      "path": "owned/install_owned_sources.py",
+      "bytes": 3323,
+      "git_blob": "710322d2f7dc792e69ca93dc789e330f5c38f8a9"
+    },
+    {
+      "path": "owned/composition/SOURCE_MANIFEST.json",
+      "bytes": 7278,
+      "git_blob": "cb688887acc040dcf1362a3e593073a39a076c2e"
+    },
+    {
+      "path": "owned/composition/native/core/block/editor/file/file.go",
+      "bytes": 6736,
+      "git_blob": "d70cfdf06794274d74b870a03260c941c742f519"
+    },
+    {
+      "path": "owned/composition/native/core/block/editor/file/owned_upload.go",
+      "bytes": 1771,
+      "git_blob": "c735b265136c7c694679e14045f73dc50857f300"
+    },
+    {
+      "path": "owned/composition/native/core/block/import/common/objectid/file_upload_provider.go",
+      "bytes": 1339,
+      "git_blob": "e3cbc6570691fccb9a924404a122ea38bb2d485d"
+    },
+    {
+      "path": "owned/composition/native/core/block/import/common/objectid/fileobject.go",
+      "bytes": 1511,
+      "git_blob": "53c82ce2ca3488de9e2b84475e95d95940471e64"
+    },
+    {
+      "path": "owned/composition/native/core/block/import/common/objectid/oldfile.go",
+      "bytes": 3947,
+      "git_blob": "e248bb4bfe50d2c6a47b56e34520c68a2a75752b"
+    },
+    {
+      "path": "owned/composition/native/core/block/import/common/objectid/provider.go",
+      "bytes": 4197,
+      "git_blob": "33674717512a60889ff33838d5954ec52b70f5c6"
+    },
+    {
+      "path": "owned/composition/native/core/block/import/common/syncer/syncer.go",
+      "bytes": 947,
+      "git_blob": "0ac64c2d6776a9654df20c47163d18d6b696885b"
+    },
+    {
+      "path": "owned/composition/native/core/block/import/owned_import_dependencies.go",
+      "bytes": 4632,
+      "git_blob": "900961c992b3ebb33e82514c6c3fb6a60fbe6c9b"
+    },
+    {
+      "path": "owned/composition/native/core/block/import/owned_import_drain.go",
+      "bytes": 2293,
+      "git_blob": "8fb3f3fbfdce9f8fc78cf0c0cc33d12670ae4743"
+    },
+    {
+      "path": "owned/composition/native/core/block/import/owned_import_files.go",
+      "bytes": 6041,
+      "git_blob": "646ad47a0e76690c3767896a0ce4d7d68385351c"
+    },
+    {
+      "path": "owned/composition/native/core/block/import/owned_import_finalize.go",
+      "bytes": 824,
+      "git_blob": "ca6039a681d36e82626cf7ce47a2991107438792"
+    },
+    {
+      "path": "owned/composition/native/core/block/import/processor.go",
+      "bytes": 23225,
+      "git_blob": "737eb9a88faea0c37ce4301f8fa4e0454073360d"
+    },
+    {
+      "path": "owned/composition/native/core/block/owned_file_upload.go",
+      "bytes": 1577,
+      "git_blob": "7bd9e67d513f7dea2f270e33694ec3f9a355f8a2"
+    },
+    {
+      "path": "owned/composition/native/core/files/fileuploader/owned_upload.go",
+      "bytes": 4343,
+      "git_blob": "a0b2894e378d6ff214dd69615ad28fbcba78317c"
+    },
+    {
+      "path": "owned/composition/native/core/files/fileuploader/uploader.go",
+      "bytes": 26431,
+      "git_blob": "ed2825bbf5e091aa76117ba14d3312df33fd151e"
+    },
+    {
+      "path": "lifetime/install_lifetime_sources.py",
+      "bytes": 4864,
+      "git_blob": "22c6b5290de494e200590d017421f3d4393826db"
+    },
+    {
+      "path": "lifetime/SOURCE_MANIFEST.json",
+      "bytes": 2967,
+      "git_blob": "af7cd9f70b343df8a0d5c7b68f51890d271a8c3b"
+    },
+    {
+      "path": "lifetime/PRECEDING_COMPILED_CLOSURE.json",
+      "bytes": 2577,
+      "git_blob": "776dbaff5248e6fb996ac3a4445e2d7c45d11af7"
+    },
+    {
+      "path": "lifetime/native/core/application/account_create.go",
+      "bytes": 5435,
+      "git_blob": "f37d02dd21df133ed35d563e96951ebed9948786"
+    },
+    {
+      "path": "lifetime/native/core/application/account_create_from_export.go",
+      "bytes": 6676,
+      "git_blob": "22d13ce25ad689defabb53e4a7a81ef2d1bf9c4b"
+    },
+    {
+      "path": "lifetime/native/core/application/account_move.go",
+      "bytes": 2957,
+      "git_blob": "e18d6111d43c31276df511270e023ce2ef6e500b"
+    },
+    {
+      "path": "lifetime/native/core/application/account_select.go",
+      "bytes": 6538,
+      "git_blob": "2b2bfeeee3a9a37a0d7e1e72aba522c1727c08af"
+    },
+    {
+      "path": "lifetime/native/core/application/account_stop.go",
+      "bytes": 4978,
+      "git_blob": "dd1a43aea8c64134016941fb7e8bf2289ac591cc"
+    },
+    {
+      "path": "lifetime/native/core/application/application.go",
+      "bytes": 5872,
+      "git_blob": "b73c36841f2aa15bb0e794c07c4f28976166c06c"
+    },
+    {
+      "path": "lifetime/native/core/application/owned_import_admission.go",
+      "bytes": 5128,
+      "git_blob": "39709e4fa9a47275d7df04448c02ed115b6be283"
+    },
+    {
+      "path": "lifetime/native/core/block/import/owned_import_operation.go",
+      "bytes": 6059,
+      "git_blob": "301b0953c534fdc4a145d5bedca8978c7be6fe49"
+    }
+  ],
+  "reviewed_authored_inputs_unchanged": [
+    "native/core/application/owned_import_native_test.go",
+    "run_native_lifetime.py",
+    "EXECUTION_INPUTS.json",
+    "workflow/otzaria-heart-rpc-native.yml"
+  ],
+  "published_commit": "ddf8c86a7d2be3e11da23d9d25e566a97faa8645",
+  "review": "Entire new Go fixture and bounded driver, original AccountStop/owned admission/operation and Commands process owner read by root; live-readback scope corrected before publication; no native execution"
+}
