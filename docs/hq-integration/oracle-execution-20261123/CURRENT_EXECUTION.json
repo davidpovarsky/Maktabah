@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-11-23T10:32:32Z",
+  "updated_at_utc": "2026-11-23T11:02:42Z",
   "canonical_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
   "root_branch": "codex/otzaria-oracle-completion-20261123",
   "user_instruction": "בעצם, תעשה את הכל בעצמך ותשתמש עם תתי הסוכנים הזמינים לך בצ׳אט פה, בצע הכל עד להשלמה מלאה של המשימות השתמשת בכלי @SentinelX בחשבון המחובר לשרת האורקל ישירות, ועדכן ב @Asana , אחרי כל שלב שאתה מבצע",
@@ -218,8 +218,13 @@
       "repair_native_cases_executed": 0,
       "repair_native_not_run": 7,
       "repair_failure_phase": "UI_COMPILE_NO_SUCH_MODULE_DARWINNOTIFY",
-      "current_final_composition": "58b242b77d516c99b7ecb4d24645e3359d68f531",
-      "actual_sdk_notify_repair_source": "a0f9f0547e28ac89a42fce5019888222c21390cd"
+      "current_final_composition": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "actual_sdk_notify_repair_source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "current_combined_run": 45158596483,
+      "current_combined_source": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+      "current_combined_native_executed": 0,
+      "current_combined_not_run": 7,
+      "current_combined_boundary": "HOSTED_RUNNER_NOT_ALLOCATED"
     },
     {
       "name": "original_editor_stageb",
@@ -442,7 +447,7 @@
     {
       "name": "original_owned_import_rpc_design",
       "owner": "/root/asana_scope",
-      "status": "ROOT_VERIFIED36_NATIVE_LEAVES_WORKFLOW_COLLECTOR_FAILURE_BC12_SOURCE_ROOT_ACCEPTED_QUALIFICATION_PREPARING",
+      "status": "BC12_SOURCE_ROOT_ACCEPTED_GENUINE_NATIVE9_QUALIFICATION_ACTIVE",
       "dependency": "Original existing ObjectImport returns before completion; requires genuine owned importer Done/Result without replacing original engine",
       "native_acceptance": false,
       "concrete_blocker": "Whole graph reuse must bypass metadata/sync/reset paths; create races must propagate actual ErrTreeExists; file uploads precede ObjectCreator.Create; planning and live per-assignment checks are required. Native export may return nil on cancellation and default PB conversion may create a collection. Genuine exported graph and mapping-aware body proof still required.",
@@ -507,9 +512,23 @@
         "ordered_overlays": 90,
         "final_native_afterimages": 83,
         "exact_full_inverse_paths": 12,
-        "fixture_source": "92b421e22e2ba556fe41fb6e0156acdbfae488b6",
+        "fixture_source": "1159fbaf4b223515676a95b30b3600d210b71417",
         "native_compile_or_test_executed": false,
-        "generated_rpc_swift_invocation_host_saved_revision": "PENDING"
+        "generated_rpc_swift_invocation_host_saved_revision": "PENDING",
+        "qualification": {
+          "source": "1ec511b046fff1c46aaeb8425b98932a19400ad2",
+          "source_parent": "754de0332028a626ecd48de129c76355bf6c4491",
+          "tree": "5ad7c12f9244e168b618189682cf6413672cd312",
+          "run": 45159946802,
+          "attempt": 1,
+          "watcher": "job_876d557ec9f1",
+          "owner": "/root/asana_scope",
+          "binding_sha256": "f81fe88859ad80dda74ea2c739ad2d62914448fa05c652affae735b70f9c0566",
+          "root_review_sha256": "4c35660d5546c45b96c417faff08b6091ec40586a6e17d9603e6895c72309b9d",
+          "source_admission_sha256": "f7a3832532760a9b8421cffb6f0498207a5aecd7b0181778fb305478b5e4b80b",
+          "native_acceptance": false
+        },
+        "native_compile_or_test_outcome": "PENDING"
       },
       "manual_dispatches": 0,
       "counts": {
@@ -563,7 +582,7 @@
             "SKIP": 0
           }
         },
-        "root_terminal_intake_complete": false,
+        "root_terminal_intake_complete": true,
         "failure_phase": "POST_NATIVE_SPECIMEN_EVIDENCE_COLLECTION",
         "failure": "Finite collector allowlist omitted actual schema-registration-00.json, schema-registration-01.json and schema-registration.json.",
         "artifact": 14802738032,
@@ -580,7 +599,8 @@
         "inventory": 4,
         "regular_file_kind": 3,
         "native_replay": 0
-      }
+      },
+      "next_rpc_binding": "Original application/IDL lifecycle contract under owner review; no new product/proto/generated edits yet."
     },
     {
       "name": "reader_source_performance",
@@ -831,7 +851,27 @@
         "result_sha256": "4465059d276d0b1846ecf0d946145f79b0f9283a2f66b502b26e32431011f066",
         "apple_or_lib_acceptance": false
       },
-      "settings_peer_review_sha256": "e1e88c3d6707d49527fdf315832577b826a728383739eb69eb903f54614fc38d"
+      "settings_peer_review_sha256": "e1e88c3d6707d49527fdf315832577b826a728383739eb69eb903f54614fc38d",
+      "registered_forwarding_local_checkpoint": "dbfc60976b574ce752734736f6d4eabe74578e5f",
+      "registered_forwarding_owner_report": {
+        "product_paths": 23,
+        "packet_files": 189,
+        "indexed_rows": 188,
+        "cases": 22,
+        "assertions": 91,
+        "result": "PASS_SOURCE_SCOPED_OWNER_REPORTED_ROOT_FINAL_PACKET_REVIEW_PENDING",
+        "index_sha256": "6bec62c45856c60bbd124af842cdd0db7f85223e4c91175d5f2bd4c7fe2dacde",
+        "published": false,
+        "apple_qualification": false
+      },
+      "settings_source_controls": {
+        "cases": 4,
+        "assertions": 14,
+        "commands": 4,
+        "result_sha256": "7f436deead9fdacfe8640d805db5425d29fa305858a4cf806c5ec4b5c097329a",
+        "scope": "Original extracted methods with explicit doubles; no real copy/Combine/UIKit/native claim"
+      },
+      "facade_budget_composition": "Authorized isolated source-only 30-path product composition; Lib pins and producer profiles preserved."
     },
     {
       "name": "reader_profile_followup4",
@@ -991,7 +1031,13 @@
       },
       "failure_phase": "UI_COMPILE_BEFORE_APPLICATION_BUILD",
       "failure": "No such module DarwinNotify",
-      "actual_notify_repair_source": "a0f9f0547e28ac89a42fce5019888222c21390cd"
+      "actual_notify_repair_source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "current_combined_run": 45158596483,
+      "current_combined_source": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+      "current_combined_native_executed": 0,
+      "current_combined_not_run": 2,
+      "current_combined_boundary": "HOSTED_RUNNER_NOT_ALLOCATED",
+      "current_final_composition": "83e7e6db234117e43a5b025c0cf923aecedfaa4a"
     },
     {
       "name": "hanlin_cold_search_preparation_observation",
@@ -1133,7 +1179,7 @@
     {
       "name": "hanlin_live13_infrastructure_retry1",
       "owner": "/root",
-      "status": "AUTHENTIC_NATIVE_CONSENT_SWITCH_FAILURE_PROVIDER_NOT_REACHED_INTAKE_FINISHING",
+      "status": "AUTHENTIC_NATIVE_CONSENT_FAILURE_INTAKE_COMPLETE_CLEANUP_VERIFIED",
       "source": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
       "application_source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
       "run": 45145388957,
@@ -1182,48 +1228,89 @@
         "finished_at_utc": "2026-11-23T10:18:26.790964+00:00",
         "independent_root_metadata_get_http": 404,
         "independent_root_observed_utc": "2026-11-23T10:24:56Z"
+      },
+      "intake_sha256": "91ee4ca0edc05ea4459d8cfaad0f975da1318796720f2289cd1d0af8a90ad32f",
+      "root_intake_read": true,
+      "consent_source_preparation": {
+        "source": "7841f4af33142f72936ca97428733b3059f806b0",
+        "ci_source": "39b021a944245b2ab6b235dd5ef4bc6982db93ea",
+        "source_admission_inputs": 285,
+        "native_run_started": false,
+        "publication": false,
+        "status": "OWNER_SEALED_GUARD_PACKET_ROOT_REVIEW_PENDING",
+        "scope": "Same one native tap, existing10sec semantic state wait; bounded failure-only two-element observation; original product/provider/assertion600s unchanged"
       }
     },
     {
       "name": "combined_groups_library_full_v32",
       "owner": "/root",
-      "status": "SECOND_AUTHENTIC_UI_COMPILE_FAILURE_ALL10_NOT_RUN_ACTUAL_NOTIFY_CORRECTION_PUBLISHED",
-      "source": "ad07d5a48da4b49b3085d5d88110d6043ffba1e5",
-      "application_source": "b965e741815f9033151ee45f58d744d028ba1bc2",
-      "tree": "734fa86aa389878bd06a3fb5f64e52277d7771f2",
-      "run": 45147566951,
+      "status": "AUTHENTIC_HOSTED_RUNNER_ALLOCATION_FAILURE_ALL10_NOT_RUN",
+      "source": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+      "application_source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "tree": "4c7c3996f30fd8b832130d1ce323ef02bf99a190",
+      "run": 45158596483,
       "run_attempt": 1,
-      "watcher": "job_b7f001ecba44",
+      "watcher": "job_cf3b9c43669c",
       "watcher_terminal": true,
-      "source_admission": "PASS_GROUPS_LIBRARY_FULL",
-      "sdk_selection": "PASS",
-      "app_build_started": false,
-      "native_executed": 0,
-      "not_run": 10,
-      "compiler_log_sha256": "042eac9a0665ae80eaa4cd7e0acaf5ae8426ff8c2b38a4ce2b752848d4a1c8d0",
-      "repair_scope": "Actual selected SDK declaration compile proves notify. Exact two-import correctiona0f9f054 published; next combined same tests/build pending frozen pin admission.",
-      "intake_sha256": "5e578bc889f1e6f5e3668a969d23d1078a460e347c9be8856de3b5e92a8e59f4",
-      "failure": "No such module DarwinNotify",
-      "prior_compiler_failure": {
+      "run_conclusion": "failure",
+      "actual_runner_id": 0,
+      "actual_steps": [],
+      "artifact_count": 0,
+      "counts": {
+        "PASS": 0,
+        "FAIL": 0,
+        "SKIP": 0,
+        "NOT_RUN": 10
+      },
+      "local_pre_activation_source_admission": "PASS_FOUR_ORIGINAL_COMMANDS_NO_REPLAY",
+      "ci_source_or_build_or_native_executed": false,
+      "native_acceptance": false,
+      "intake_sha256": "83bf7c4cc18c49c2909824622384e42c201abfe7dc706e6426082b907d0b0faa",
+      "index_sha256": "f2a6c9e4e6327f488b4cf898a915c78363a33fb573a178541286adaac1e7526a",
+      "previous_compiler_failure": {
         "name": "combined_groups_library_full_v32",
-        "owner": "/root/original_rpc",
-        "status": "AUTHENTIC_PRE_APP_BUILD_UI_COMPILE_FAILURE_ALL10_NOT_RUN",
-        "source": "88977a1e19e6c205fc2e832bd79c384b1e2f70ca",
-        "application_source": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
-        "tree": "929a64a644048317111f542c1a7d172506f3a30b",
-        "run": 45143450850,
+        "owner": "/root",
+        "status": "SECOND_AUTHENTIC_UI_COMPILE_FAILURE_ALL10_NOT_RUN_ACTUAL_NOTIFY_CORRECTION_PUBLISHED",
+        "source": "ad07d5a48da4b49b3085d5d88110d6043ffba1e5",
+        "application_source": "b965e741815f9033151ee45f58d744d028ba1bc2",
+        "tree": "734fa86aa389878bd06a3fb5f64e52277d7771f2",
+        "run": 45147566951,
         "run_attempt": 1,
-        "watcher": "job_26d08f49220c",
+        "watcher": "job_b7f001ecba44",
         "watcher_terminal": true,
         "source_admission": "PASS_GROUPS_LIBRARY_FULL",
         "sdk_selection": "PASS",
         "app_build_started": false,
         "native_executed": 0,
         "not_run": 10,
-        "compiler_log_sha256": "e6cd32cdbe3d6b5d51ae9ce0eaad9e7891b5140d5544261f7a0570614a564072",
-        "repair_scope": "Two explicit DarwinNotify imports only; methods/assertions/deadlines unchanged; pending sealed source review."
+        "compiler_log_sha256": "042eac9a0665ae80eaa4cd7e0acaf5ae8426ff8c2b38a4ce2b752848d4a1c8d0",
+        "repair_scope": "Actual selected SDK declaration compile proves notify. Exact two-import correctiona0f9f054 published; next combined same tests/build pending frozen pin admission.",
+        "intake_sha256": "5e578bc889f1e6f5e3668a969d23d1078a460e347c9be8856de3b5e92a8e59f4",
+        "failure": "No such module DarwinNotify",
+        "prior_compiler_failure": {
+          "name": "combined_groups_library_full_v32",
+          "owner": "/root/original_rpc",
+          "status": "AUTHENTIC_PRE_APP_BUILD_UI_COMPILE_FAILURE_ALL10_NOT_RUN",
+          "source": "88977a1e19e6c205fc2e832bd79c384b1e2f70ca",
+          "application_source": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
+          "tree": "929a64a644048317111f542c1a7d172506f3a30b",
+          "run": 45143450850,
+          "run_attempt": 1,
+          "watcher": "job_26d08f49220c",
+          "watcher_terminal": true,
+          "source_admission": "PASS_GROUPS_LIBRARY_FULL",
+          "sdk_selection": "PASS",
+          "app_build_started": false,
+          "native_executed": 0,
+          "not_run": 10,
+          "compiler_log_sha256": "e6cd32cdbe3d6b5d51ae9ce0eaad9e7891b5140d5544261f7a0570614a564072",
+          "repair_scope": "Two explicit DarwinNotify imports only; methods/assertions/deadlines unchanged; pending sealed source review."
+        },
+        "terminal_evidence_source": "838d62d8086f9609429b3d62eef10b8a0cba8fca"
       },
-      "terminal_evidence_source": "838d62d8086f9609429b3d62eef10b8a0cba8fca"
+      "observer_failure": "Initial launch used root without gh auth and exited immediately; no remaining process/lock. Existing authenticated ubuntu read exact terminal source/attempt. No CI causal claim.",
+      "retry_started": false,
+      "next_step": "One unchanged-source retry after an owned Apple lane frees"
     },
     {
       "name": "actual_darwin_notification_sdk_probe",
@@ -1286,8 +1373,8 @@
     "books_updates": "Live provider still lacks authentic backend/schema/source-digest/migration contract; unchanged reviewed safety path preserved; no payload or user DB mutations",
     "owner_release_verification_key": "Known required key absent from repository secrets and variables metadata",
     "physical_ipad": "No physical acceptance performed",
-    "final_frozen_composition": "Integrated source58b242b77d516c99b7ecb4d24645e3359d68f531 published but contains the unqualified DarwinNotify import. Actual SDK diagnostic now proves module notify; correctiona0f9f0547e28ac89a42fce5019888222c21390cd is published and awaiting exact composition/combined native retry. Native116/Release114 pins remainUNFINALIZED; no physical or historical acceptance transferred.",
-    "annotation_body_budget": "Root authenticated four genuine native exports plus32archive control passes, workflowFAIL after native leaves at evidence collector; post-collector global stability checks NOT_REACHED. Collector source repaired and seven focused offline controls retained without replaying36. Native B1/C62e5source root/independent reviewPASS; genuine closed-import fixture/gate under review. SDK14portable cases andHost24SQLite/codec cases are source-scoped prerequisites; closed import/Apple/bodyACK unqualified."
+    "final_frozen_composition": "Integrated83e7e6db contains the actual SDK-proven notify correction,158 selected rows, canonical process-resume and Hostbudget preserved. Separate combined fd710 had no allocated runner and10NOT_RUN. Native116/Release114 remainUNFINALIZED.",
+    "annotation_body_budget": "Root accepted B1/C62e5 exact source and repaired genuine native fixture1159 with one actual Stop task join. Native9qualification run45159946802@1ec511 singly observed; no native outcome yet. Original36 leaves retain earlier scope/workflow collector failure. New originalRPC/generatedABI/SwiftInvocation/Hostlocal saved-revision durable attempt binding still required; no invented outbox delivery."
   },
   "asana_comments": [
     "1220774175256917",
@@ -1374,6 +1461,26 @@
     {
       "stage": "stageb_attempt2_started",
       "comment": "1220784214077391"
+    },
+    {
+      "stage": "combined_allocation_failure_reader",
+      "comment": "1220785457866923"
+    },
+    {
+      "stage": "combined_allocation_failure_groups",
+      "comment": "1220785495784123"
+    },
+    {
+      "stage": "combined_allocation_failure_library",
+      "comment": "1220784887212927"
+    },
+    {
+      "stage": "native9_started",
+      "comment": "1220785455503119"
+    },
+    {
+      "stage": "checkpoint16",
+      "comment": "1220784337035030"
     }
   ],
   "inventory": {
@@ -1402,6 +1509,14 @@
         "source": "a3d235e821dc40687ebab9844f8ef88737f6be17",
         "watcher": "job_64bb3eed7ed4",
         "owner": "/root/original_sdk"
+      },
+      {
+        "name": "original_owned_import_native9",
+        "run": 45159946802,
+        "attempt": 1,
+        "source": "1ec511b046fff1c46aaeb8425b98932a19400ad2",
+        "watcher": "job_876d557ec9f1",
+        "owner": "/root/asana_scope"
       }
     ],
     "completed_since_checkpoint15": [
@@ -1410,35 +1525,38 @@
       45152574279
     ],
     "pending": [
-      "One actual-notify combined source retry after exact pin admission",
-      "Genuine closed-import candidate native qualification after fixture/gate review",
-      "Composed original account/framework native qualification after source review"
+      "One unchanged-source combined attempt2 after an owned Apple lane frees",
+      "One Live consent run after full guard/controller/source review and allocation",
+      "One composed original framework after actual native/mobile ABI profile exists"
+    ],
+    "completed_since_checkpoint16": [
+      45158596483
     ]
   },
   "integrated_source_preparation": {
-    "source": "58b242b77d516c99b7ecb4d24645e3359d68f531",
-    "tree": "61c7c80861d8d3b453b3fc017b050d0fceaf1af0",
+    "source": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+    "tree": "8b4c81f782ac55f1198b0ee972b69952361ed725",
     "product_trees": {
-      "Source": "97e191431de9f0e541f947c160107ef1beb7f305",
+      "Source": "eb31bd7503f6f5726deb66a3b0ec08a714e4a119",
       "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
       "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
-      "Maktabah-iOSUITests": "9adc137f6c49bca9fcc5e570f743e230bd91a4fe"
+      "Maktabah-iOSUITests": "88933b92b2d7580ff082677c14670ec6c2757dec"
     },
     "branch": "codex/otzaria-final-composition-20261123",
     "clean": true,
     "published": true,
     "native_acceptance": false,
-    "composition_manifest_sha256": "2604a3ea05a0a970c7e817c22998ccfb1dba99678f11fb731c9d72615ba25bee",
-    "root_review_sha256": "ceca037736a63d435b7080e757f40075cfc6af98f1134f48bbe30835fb91cb16",
-    "status": "SOURCE_COMPOSED_PREVIOUS_DARWINNOTIFY_IMPORT_UNQUALIFIED_ACTUAL_NOTIFY_CORRECTION_PUBLISHED",
+    "composition_manifest_sha256": "05dd8dd286804f11103d08618917a13e3e1e6fd5974385a2fa62395cf25fa9aa",
+    "root_review_sha256": "af876dd376b8cbb7661084885faa55bc276237031c645fdd4822c2ef07f78d6c",
+    "status": "EXACT_ACTUAL_NOTIFY_CORRECTION_COMPOSED_SOURCE_ONLY_NATIVE_ACCEPTANCE_PENDING",
     "workflow_activated": false,
     "input_bindings_unfinalized": true,
     "parents": [
-      "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
-      "2a5518565c1fe4ee0a486696df0142699c766d01"
+      "58b242b77d516c99b7ecb4d24645e3359d68f531"
     ],
-    "prior_source": "ef0b68a0250fdbee5d9488061161003000e9ad38",
+    "prior_source": "58b242b77d516c99b7ecb4d24645e3359d68f531",
     "host_budget_source": "2a5518565c1fe4ee0a486696df0142699c766d01",
-    "actual_notify_source": "a0f9f0547e28ac89a42fce5019888222c21390cd"
+    "actual_notify_source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+    "selected_source_rows": 158
   }
 }

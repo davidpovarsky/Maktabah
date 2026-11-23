@@ -1,0 +1,13 @@
+{
+  "run_id": 45158596483,
+  "source_sha": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+  "expected_attempt": 1,
+  "window": 1,
+  "started_at": "2026-11-23T10:43:29.391381+00:00",
+  "controller_pid": 2688895,
+  "interval_seconds": 120,
+  "maximum_observation_seconds": 3300,
+  "dispatches": 0,
+  "reruns": 0,
+  "watch_pid": 2688896
+}

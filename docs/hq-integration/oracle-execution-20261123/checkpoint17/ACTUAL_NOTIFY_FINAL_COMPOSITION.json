@@ -1,0 +1,18 @@
+{
+  "commit": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+  "parent": "58b242b77d516c99b7ecb4d24645e3359d68f531",
+  "tree": "8b4c81f782ac55f1198b0ee972b69952361ed725",
+  "source_rows": 158,
+  "manifest_sha256": "05dd8dd286804f11103d08618917a13e3e1e6fd5974385a2fa62395cf25fa9aa",
+  "review_sha256": "af876dd376b8cbb7661084885faa55bc276237031c645fdd4822c2ef07f78d6c",
+  "product_trees": {
+    "Source": "eb31bd7503f6f5726deb66a3b0ec08a714e4a119",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "88933b92b2d7580ff082677c14670ec6c2757dec"
+  },
+  "native_passes_transferred": false,
+  "push_returncode": 0,
+  "push_stdout": "To https://github.com/davidpovarsky/Maktabah.git\n \t83e7e6db234117e43a5b025c0cf923aecedfaa4a:refs/heads/codex/otzaria-final-composition-20261123\t58b242b7..83e7e6db\nDone\n",
+  "push_stderr": ""
+}
