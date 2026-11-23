@@ -1,0 +1,26 @@
+diff --git a/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift b/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+index 39a0c59b..e91d90a2 100644
+--- a/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
++++ b/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+@@ -4016,7 +4016,7 @@ final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
+ 
+ // BEGIN ADDITIVE FULL-V32 ORIGINAL READER OBSERVATIONS
+ import Darwin
+-import DarwinNotify
++import notify
+ 
+ // This Debug/production-corpus diagnostic is distinct from the existing Release
+ // case and the immutable miniTest10 Native116 catalog.
+diff --git a/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift b/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift
+index ce9209d4..b7898901 100644
+--- a/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift
++++ b/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift
+@@ -5,7 +5,7 @@ import TorahInspectorUI
+ #if DEBUG
+ import CryptoKit
+ import Darwin
+-import DarwinNotify
++import notify
+ import UIKit
+ #endif
+ 

@@ -959,47 +959,17 @@
     },
     {
       "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
-      "source": "b965e741815f9033151ee45f58d744d028ba1bc2",
-      "bytes": 290690,
-      "sha256": "6bbb69dfe79d52f1cb1f148eb665466e7a230055bd182cca434f486d0512dcbb",
-      "git_blob": "39a0c59bba9bf0c49bc2b51b58dfe2f84b5b6b9a",
-      "prior_source_selection": {
-        "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
-        "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
-        "bytes": 290670,
-        "sha256": "f724b6b338c1dcbdc3285ed46386b9c51b80a5a224bec36b92cfb4fb632d72dc",
-        "git_blob": "452e628d977d542d380f8b0694b994ead9dd883b",
-        "prior_source_selection": {
-          "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
-          "source": "EXACT_THREE_WAY_COMPOSITION_PLUS_REVIEWED_GROUP_INTERACTION_PATCH",
-          "bytes": 283883,
-          "sha256": "7c1e4e376b5fdf965b4a799f922851e00d88c572f3102d0ad4d5d0db8bd82156",
-          "git_blob": "06329d0f3dc9e3f64136b3d4b068bdc1076060a6",
-          "ancestor": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
-          "parents": [
-            "46321de8f26255aa1543eed69f908f93d306c6c0",
-            "efd7250b8fa8f0556683af6b50733aeccb149b61"
-          ],
-          "conflicts": 0,
-          "before_group_sha256": "92c09ee7e8227cde2a94dc26daf5e56ba6ee9268565586d877183fe64bcf9eb0",
-          "group_source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
-          "group_patch_sha256": "62271d1b3073707a28f371ff5253f399ecf51a1aa59accdf710c40e142aa4989"
-        }
-      }
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 290684,
+      "sha256": "d8ae7aa91ad09866a8842684fae51b1d19e1d084b27a8a6b5d7cb45b523c091f",
+      "git_blob": "e91d90a25c0cbd5158a7c4dffe054f9bd2637698"
     },
     {
       "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
-      "source": "b965e741815f9033151ee45f58d744d028ba1bc2",
-      "bytes": 21727,
-      "sha256": "1d531327634b8c72732d4618eb44220ba492af67280e408a7c775e254ffbd9c4",
-      "git_blob": "ce9209d4808e4cbaca1fd1b3a6b4c61c9c482b82",
-      "prior_source_selection": {
-        "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
-        "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
-        "bytes": 21707,
-        "sha256": "36ca3f4863c60519d1135bf8f327a4c00a1e1bf074dd826caee7760547b18aa8",
-        "git_blob": "f4b0a4cd69a5f1ca3cbd5276e4e1062e4f7f91fd"
-      }
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 21721,
+      "sha256": "2f53c4136145100382ea86dd2b659c8457ec7b56e19173eafb8d7c0ba464fa25",
+      "git_blob": "b7898901d4108b8d141e058ac97660eab7355d9b"
     },
     {
       "path": "docs/hq-integration/full-v32-darwin-notify-20261123/ACTUAL_APPLE_COMPILE_REPORT.json",
@@ -1056,6 +1026,104 @@
       "bytes": 1446,
       "sha256": "9c6cc1548932683de978a6374a5b3611bad517821a9a364a07f15eb2e055f954",
       "git_blob": "c36b17e642e5ad8dc50d7bfc31adb3db93ec397c"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ACTUAL_NOTIFY_MODULE.modulemap",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 126,
+      "sha256": "0d3116c1a49cc6fa61381b36b2cc4056086fed47096878dd582fe7bbcc60e4f5",
+      "git_blob": "8b56288938fcec240055ec69457bf9cb4ee0c43b"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ACTUAL_SDK_INDEX.json",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 5051,
+      "sha256": "8e1a2eaf03e737271d60aea00dc996bb096e60b75d9eee1dac1bc80c4989850a",
+      "git_blob": "650d1890741957ed89ef7646264ee904a1603eab"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ACTUAL_SDK_RESULT.json",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 12250,
+      "sha256": "544e5b74ce25b0a72e30452ebf702ad94c46edf8048d09a4c634a4f18827d685",
+      "git_blob": "7448c9f56969bf1e64f80ac5b4442edeea6cd872"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ACTUAL_SOURCE_ADMISSION.json",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 620,
+      "sha256": "02c888117eca1420f5e0b6ea50627e11313585980e92262b10969b32f7ec2a0c",
+      "git_blob": "c563283b0559a80b0fb5cbd81b86d9b60b96e9b6"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/COMPILED_DECLARATIONS.swift",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 438,
+      "sha256": "b10861ecdf6cc13ffdc046d27502007fcda9e6e5804f666290d54d0fc859e607",
+      "git_blob": "640ccf2ad1d19f8ddafe93323262b0e533bd17f7"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/README.md",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 961,
+      "sha256": "2763d78f7e2a93cfe64cb872c6280f746eb375ef99230d865a677c46e5320361",
+      "git_blob": "e13abfac7405f0a475fc5887ded64d4014df0885"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ROOT_ARTIFACT_ADMISSION.json",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 5621,
+      "sha256": "1646111f641b55efd4bc69cdcb01f102dfecae6247c48afece983c9a8a91a9c2",
+      "git_blob": "3d3ec6f0ff7bc160fa412c5314e9eeec073b09d7"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ROOT_REVIEW.json",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 2855,
+      "sha256": "6e78293e7af6054b8fa86e675251ee49de2d53871b5900666b80c3c3f4a62e41",
+      "git_blob": "7053ae7844e3cf2ae26597bb1a3e2ed5b24ef54f"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/SOURCE_DIFF.diff",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 1088,
+      "sha256": "446f083c7f6c9c1a53df3d6b80574fad3d9c8ebe629f9ed8db24dca3b0f6694b",
+      "git_blob": "e3908e2ffb5b4e911a531109d7b4db608e2d206e"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/SOURCE_FILES.json",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 3757,
+      "sha256": "f86bf91f035e94175e7e693e0f6661fc890ecd041fbc0a1eb88615dfdc30882c",
+      "git_blob": "de6cf1128dd0266104b9c9a6e1400bb61b5f5609"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/darwin-original.stderr",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 1817,
+      "sha256": "1f0912415c6b895214748dbbdbcaf82015a27ea41ffa6e004f67195b2787696f",
+      "git_blob": "eff74f08d9258915473b4699c9ad867bff0cb1d8"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/declared-01.stderr",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 1801,
+      "sha256": "b1af2dd003fad57dd8aa4c9c9264e9ea4a890d4de4d669dd7b6789c92b0a7f90",
+      "git_blob": "9986dd7495a29f8765b5011a01dde2e9f04607fd"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/declared-02.stderr",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 1801,
+      "sha256": "026ad591baf8e9680cd3ea2fcb6ac7667b3d7e69a5ac731fae6c55b09f1d9eab",
+      "git_blob": "38c4d891338c8f87773f643f55784d3a2c16ad31"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/declared-03.stderr",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
     }
   ],
   "canonical_annotation_source_and_process_resume_test_preserved": [
@@ -1064,13 +1132,13 @@
     "Maktabah-iOSUITests/OriginalEditorAnnotationAcceptanceTests.swift"
   ],
   "pending": [
-    "Approved two-import DarwinNotify correctionb965 composed into final; combined1+7+2 CI source-map/pin refresh pending on independent no-budget source",
-    "Live13 original case not run because of INSTALL_TIMEOUT; separately reviewed same-source infrastructure retry prepared; prior secret204/404",
-    "Library7 prior0PASS7FAIL retained; repaired native lifecycle source remains unqualified on Apple",
-    "StageB45136755585 passed original SDK/API admission, then Ruby xcodeproj LoadError before app build; exact existing pod runtime repair in progress",
-    "Native budget45139622096 workflow failed after actual4export and32archive leaves passed; full terminal/collector intake pending",
-    "Original SDK annotation budgeta89b443 source reviewed; its Apple build and production account/import integration pending",
-    "Final immutable source/gate input bindings; Native116/Release114 and real physical/signing gates"
+    "Actual notify sourcea0f9 composed. Independent original1+7+2 combined followup45158596483 atfd710 started; actual app/UI outcome pending.",
+    "Live13 retry45145388957 genuine0PASS/1FAIL at consent beforeConnect; actualcleanup204/404verified. Original semanticwait observation proposal source-reviewed, no newdispatch.",
+    "Original StageB Ruby repaira3d235 attempt1zero-step hostedallocationFAIL; unchangedsource attempt2 active. Original editor mount/body/process-reopen notyetqualified.",
+    "Genuine Native B1/C62e5 closed-import candidate accepted for source;9leaf fixture and original gate underfinal review after actualStop ownership/controlcheckouthistory fixes.",
+    "E2facade84a023 +registeredowner/auth/onboarding/Settingssource prepared; recovery/select actualcompletion ordering review and composed originalSDK build pending.",
+    "Original SDK annotation budgeta89b443 source reviewed; productiongeneratedRPC/SwiftInvocation/Hostsaved-revision integration remains pending.",
+    "Final immutable source/gate input bindings; Native116/Release114 and real physical/signing gates remain UNFINALIZED."
   ],
   "native_passes_transferred": false,
   "workflow_activated": false,
@@ -1126,5 +1194,21 @@
     "prior_native_not_run": 10,
     "new_apple_compile_qualified": false,
     "source_and_evidence_paths_selected": 10
+  },
+  "actual_sdk_notify_module_correction": {
+    "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+    "prior_composition": "58b242b77d516c99b7ecb4d24645e3359d68f531",
+    "supersedes_import_assumption": "b965e741815f9033151ee45f58d744d028ba1bc2",
+    "actual_sdk_probe_run": 45152574279,
+    "actual_sdk_probe_source": "a85e35846804cfef26e1449c57671c319773140d",
+    "actual_declared_module": "notify",
+    "actual_swift_declaration_compile_exit": 0,
+    "exact_two_import_inverse": true,
+    "source_methods_assertions_deadlines_unchanged": true,
+    "source_evidence_paths_selected": 16,
+    "combined_followup_run": 45158596483,
+    "combined_followup_ci_source": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+    "actual_full_application_or_ui_qualified": false,
+    "sdk_proof_is_not_native_runtime_acceptance": true
   }
 }

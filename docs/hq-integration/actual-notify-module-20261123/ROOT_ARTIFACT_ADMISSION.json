@@ -1,0 +1,185 @@
+{
+  "run_id": 45152574279,
+  "source_sha": "a85e35846804cfef26e1449c57671c319773140d",
+  "run_attempt": 1,
+  "artifact_id": 14806878900,
+  "artifact_name": "actual-darwin-notify-sdk-evidence",
+  "zip_bytes": 40365,
+  "zip_sha256": "c9d4e3082b56342e69028aa568c096fd6a6fe4e52a6d92478eccad5690fb2250",
+  "crc_all_entries_pass": true,
+  "files": [
+    {
+      "path": "INDEX.json",
+      "bytes": 5051,
+      "sha256": "8e1a2eaf03e737271d60aea00dc996bb096e60b75d9eee1dac1bc80c4989850a"
+    },
+    {
+      "path": "commands.json",
+      "bytes": 7672,
+      "sha256": "dea7982acd1d0f2b2ba80315fab74d7f4d32702241cc299acb9abf7b130393dd"
+    },
+    {
+      "path": "checkout.stdout",
+      "bytes": 41,
+      "sha256": "875077be6684599787250bbbfd6aab208664b2f7a6d80a7ccf8c836ba801e607"
+    },
+    {
+      "path": "checkout.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "darwin-original.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "darwin-original.swift",
+      "bytes": 438,
+      "sha256": "1ac44f859350d2a1454e3d48e51ab61a2db03c037f2594dff87648de730ead41"
+    },
+    {
+      "path": "darwin-original.stderr",
+      "bytes": 1817,
+      "sha256": "1f0912415c6b895214748dbbdbcaf82015a27ea41ffa6e004f67195b2787696f"
+    },
+    {
+      "path": "declared-01.stderr",
+      "bytes": 1801,
+      "sha256": "b1af2dd003fad57dd8aa4c9c9264e9ea4a890d4de4d669dd7b6789c92b0a7f90"
+    },
+    {
+      "path": "declared-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "declared-01.swift",
+      "bytes": 443,
+      "sha256": "0a4f481b57fab5070390a23efce69055af9384d5367bf0e006e570b21899cdc4"
+    },
+    {
+      "path": "declared-02.stderr",
+      "bytes": 1801,
+      "sha256": "026ad591baf8e9680cd3ea2fcb6ac7667b3d7e69a5ac731fae6c55b09f1d9eab"
+    },
+    {
+      "path": "declared-02.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "declared-02.swift",
+      "bytes": 450,
+      "sha256": "87e5293a3843b0c5d8aa06f94842e2a437c50b1b9165bb1430ce2e4b14709706"
+    },
+    {
+      "path": "declared-03.o",
+      "bytes": 16336,
+      "sha256": "aa3414740e0561229e38dc1cf0dbc5f896b0f5f4b401d661ffd0dff4aee394c0"
+    },
+    {
+      "path": "declared-03.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "declared-03.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "declared-03.swift",
+      "bytes": 438,
+      "sha256": "b10861ecdf6cc13ffdc046d27502007fcda9e6e5804f666290d54d0fc859e607"
+    },
+    {
+      "path": "result.json",
+      "bytes": 12250,
+      "sha256": "544e5b74ce25b0a72e30452ebf702ad94c46edf8048d09a4c634a4f18827d685"
+    },
+    {
+      "path": "sdk/module-0224.modulemap",
+      "bytes": 6023,
+      "sha256": "1a5f95967241766e0ecc7a4ec3b1d7959cbabe3a8ea118020a625b71147b4b3e"
+    },
+    {
+      "path": "sdk/module-0253.modulemap",
+      "bytes": 126,
+      "sha256": "0d3116c1a49cc6fa61381b36b2cc4056086fed47096878dd582fe7bbcc60e4f5"
+    },
+    {
+      "path": "sdk/notify-00.h",
+      "bytes": 5121,
+      "sha256": "27e62c4585f9b23413df9bf0ce50cf777d619e70d99a63f7132fedaed98b3343"
+    },
+    {
+      "path": "sdk/notify-01.h",
+      "bytes": 13197,
+      "sha256": "c7bf63e398effebe5e8895f4b89eace820437cfdd9735ffeb99ed69707dd5bb3"
+    },
+    {
+      "path": "sdk-evidence.json",
+      "bytes": 1573,
+      "sha256": "919e114c829c0e854e21f2dab62f67b74ad8fe68e5934a2d8f62ea19b32e3c4d"
+    },
+    {
+      "path": "sdk-map-inventory.json",
+      "bytes": 81662,
+      "sha256": "24747916979a92a51d6edc64a5b157937861cbaf6408b1e006c11983342247cd"
+    },
+    {
+      "path": "sdk-path.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "sdk-path.stdout",
+      "bytes": 122,
+      "sha256": "92c82fa07d52363870501f4948ecb272f58936234d562ae09569cce2c660f9fa"
+    },
+    {
+      "path": "sdk-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "sdk-version.stdout",
+      "bytes": 5,
+      "sha256": "53e1ae253beb3b8a3b99dd2d4ec1eb641d392378329fcdccb560779fdf46de0b"
+    },
+    {
+      "path": "source-admission.json",
+      "bytes": 620,
+      "sha256": "02c888117eca1420f5e0b6ea50627e11313585980e92262b10969b32f7ec2a0c"
+    },
+    {
+      "path": "swift-version.stderr",
+      "bytes": 30,
+      "sha256": "bbc8b176d3c74d4c5a7fd00b40280f98168e116d5272273bfe8e71407625540e"
+    },
+    {
+      "path": "swift-version.stdout",
+      "bytes": 98,
+      "sha256": "4b59da256292ae42e3f04ef6d06ea3e139678613a3cd3d0dc37a6757c0bd290a"
+    },
+    {
+      "path": "xcode-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "toolchain-selection.json",
+      "bytes": 13019,
+      "sha256": "1b272b683f50d3603213a428d94783153dd1c571c3cb087be2b2bbe15a3f83ed"
+    },
+    {
+      "path": "xcode-version.stdout",
+      "bytes": 31,
+      "sha256": "67c5b47bcf0e788aecae2f9b3af345813bdf7fe736faefb9666a7f4b2bf27ba7"
+    }
+  ],
+  "index_rows_exact": 33,
+  "source_tests_replayed": 0,
+  "timestamp_utc": "2026-11-23T10:25:31.338899+00:00"
+}

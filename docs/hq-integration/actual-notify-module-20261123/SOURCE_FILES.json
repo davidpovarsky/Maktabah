@@ -1,0 +1,89 @@
+{
+  "product": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "before_bytes": 290690,
+      "before_sha256": "6bbb69dfe79d52f1cb1f148eb665466e7a230055bd182cca434f486d0512dcbb",
+      "after_bytes": 290684,
+      "after_sha256": "d8ae7aa91ad09866a8842684fae51b1d19e1d084b27a8a6b5d7cb45b523c091f",
+      "full_inverse_exact": true,
+      "changes": "One existing import declaration replaced with actual SDK-declared notify module; all bodies/conditions/notifications/assertions unchanged."
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "before_bytes": 21727,
+      "before_sha256": "1d531327634b8c72732d4618eb44220ba492af67280e408a7c775e254ffbd9c4",
+      "after_bytes": 21721,
+      "after_sha256": "2f53c4136145100382ea86dd2b659c8457ec7b56e19173eafb8d7c0ba464fa25",
+      "full_inverse_exact": true,
+      "changes": "One existing import declaration replaced with actual SDK-declared notify module; all bodies/conditions/notifications/assertions unchanged."
+    }
+  ],
+  "evidence": [
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ACTUAL_NOTIFY_MODULE.modulemap",
+      "bytes": 126,
+      "sha256": "0d3116c1a49cc6fa61381b36b2cc4056086fed47096878dd582fe7bbcc60e4f5"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ACTUAL_SDK_INDEX.json",
+      "bytes": 5051,
+      "sha256": "8e1a2eaf03e737271d60aea00dc996bb096e60b75d9eee1dac1bc80c4989850a"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ACTUAL_SDK_RESULT.json",
+      "bytes": 12250,
+      "sha256": "544e5b74ce25b0a72e30452ebf702ad94c46edf8048d09a4c634a4f18827d685"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ACTUAL_SOURCE_ADMISSION.json",
+      "bytes": 620,
+      "sha256": "02c888117eca1420f5e0b6ea50627e11313585980e92262b10969b32f7ec2a0c"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/COMPILED_DECLARATIONS.swift",
+      "bytes": 438,
+      "sha256": "b10861ecdf6cc13ffdc046d27502007fcda9e6e5804f666290d54d0fc859e607"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/README.md",
+      "bytes": 961,
+      "sha256": "2763d78f7e2a93cfe64cb872c6280f746eb375ef99230d865a677c46e5320361"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ROOT_ARTIFACT_ADMISSION.json",
+      "bytes": 5621,
+      "sha256": "1646111f641b55efd4bc69cdcb01f102dfecae6247c48afece983c9a8a91a9c2"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ROOT_REVIEW.json",
+      "bytes": 2855,
+      "sha256": "6e78293e7af6054b8fa86e675251ee49de2d53871b5900666b80c3c3f4a62e41"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/SOURCE_DIFF.diff",
+      "bytes": 1088,
+      "sha256": "446f083c7f6c9c1a53df3d6b80574fad3d9c8ebe629f9ed8db24dca3b0f6694b"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/darwin-original.stderr",
+      "bytes": 1817,
+      "sha256": "1f0912415c6b895214748dbbdbcaf82015a27ea41ffa6e004f67195b2787696f"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/declared-01.stderr",
+      "bytes": 1801,
+      "sha256": "b1af2dd003fad57dd8aa4c9c9264e9ea4a890d4de4d669dd7b6789c92b0a7f90"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/declared-02.stderr",
+      "bytes": 1801,
+      "sha256": "026ad591baf8e9680cd3ea2fcb6ac7667b3d7e69a5ac731fae6c55b09f1d9eab"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/declared-03.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
