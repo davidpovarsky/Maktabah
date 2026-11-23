@@ -52,8 +52,18 @@ if plan.fetch('admission_schema', 1) == 2
   safe_path = lambda { |value| value.is_a?(String) && value.match?(%r{\A(?:[A-Za-z0-9_.+-]+/)*[A-Za-z0-9_.+-]+\z}) && !value.split('/').any? { |part| ['.', '..'].include?(part) } }
   raise 'Wrong original Clang module-map closure' unless maps.is_a?(Array) && maps.length == 19 && maps.uniq == maps && maps.all? { |path| safe_path.call(path) && path.start_with?('Clang/') && path.end_with?('.modulemap') }
   raise 'Wrong original Clang header-root closure' unless headers.is_a?(Array) && headers.length == 19 && headers.uniq == headers && headers.all? { |path| safe_path.call(path) && (path == 'Include' || path.start_with?('Clang/Packages/')) }
+  import_root = root
+  if plan.key?('host_clang_context')
+    host = plan.fetch('host_clang_context')
+    raise 'Unbound host Clang context' unless host.fetch('producer_identity') == context.fetch('producer_identity')
+    raise 'Unresolved host Clang runtime collision' unless host.fetch('status') == 'HOST_CLANG_CONTEXT_COMPOSED' && host.fetch('runtime_collisions') == []
+    maps, headers = host.fetch('module_maps'), host.fetch('header_search_paths')
+    raise 'Wrong host Clang module closure' unless maps.is_a?(Array) && maps.length == 19 && maps.uniq == maps && maps.all? { |path| safe_path.call(path) && path.start_with?('build/') && path.end_with?('.modulemap') }
+    raise 'Wrong host Clang header closure' unless headers.is_a?(Array) && headers.length == 19 && headers.uniq == headers && headers.all? { |path| safe_path.call(path) && path.start_with?('build/') }
+    import_root = '$(SRCROOT)'
+  end
   search_paths.delete('HEADER_SEARCH_PATHS')
-  append_settings(settings, 'HEADER_SEARCH_PATHS', headers.map { |path| root + '/' + path })
+  append_settings(settings, 'HEADER_SEARCH_PATHS', headers.map { |path| import_root + '/' + path })
   old_swift_flags = before.fetch('objects').fetch(config.uuid).fetch('buildSettings')['OTHER_SWIFT_FLAGS']
   # Preserve the exact CocoaPods-generated Debug spelling observed in the
   # authenticated app project; other string expressions remain inadmissible.
@@ -64,7 +74,7 @@ if plan.fetch('admission_schema', 1) == 2
   old_swift_flags = ['$(inherited)'] if old_swift_flags.nil? || old_swift_flags == '$(inherited)'
   # Every module-map argument needs its own -Xcc; individual-token deduplication
   # would silently pass later arguments to the wrong compiler frontend.
-  settings['OTHER_SWIFT_FLAGS'] = old_swift_flags.dup + maps.flat_map { |path| ['-Xcc', '-fmodule-map-file=' + root + '/' + path] }
+  settings['OTHER_SWIFT_FLAGS'] = old_swift_flags.dup + maps.flat_map { |path| ['-Xcc', '-fmodule-map-file=' + import_root + '/' + path] }
 end
 search_paths.each { |key, suffix| append_settings(settings, key, [root + suffix]) }
 # A repeated -framework flag is semantically significant. Preserve the exact

@@ -634,6 +634,15 @@ def prepare(root, admission_path, report, out, logged):
     policy = shared_package_policy(report["package_pins"], admitted["shared_package_revisions"])
     admitted["shared_package_policy"] = policy
     distribution = root / admitted["distribution_root"]
+    if admitted.get("schema") == 2:
+        host_clang = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_host_clang_context.py")))
+        composition = host_clang["project_host_context"](
+            root, distribution, admitted["clang_import_context"], policy["identical_revisions"])
+        write(evidence / "host-clang-context.json", composition)
+        require(not composition["runtime_collisions"],
+                "Original SDK and host require one shared Clang runtime product: "
+                + ", ".join(item["module"] for item in composition["runtime_collisions"]))
+        admitted["host_clang_context"] = composition
     if policy["swift_syntax_requires_actual_runtime_absence"]:
         manifest = root / "build/SourcePackages/checkouts/swift-syntax/Package.swift"
         require(digest(manifest) == SYNTAX_MANIFESTS[SYNTAX_APP]["sha256"],
@@ -682,7 +691,8 @@ def prepare(root, admission_path, report, out, logged):
             "evidence": evidence.relative_to(root).as_posix(), "before_project_sha256": digest(project),
             "receipt_sha256": digest(evidence / "distribution-admission.json"), "python": sys.executable}
     if admitted.get("schema") == 2:
-        plan.update(admission_schema=2, clang_import_context=admitted["clang_import_context"])
+        plan.update(admission_schema=2, clang_import_context=admitted["clang_import_context"],
+                    host_clang_context=admitted["host_clang_context"])
     write(evidence / "app-target-plan.json", plan)
     ruby_proof = report["native_context"]["original_editor_pod_ruby_context"]
     ruby_command, ruby_environment = original_editor_ruby_launch(root, ruby_proof,

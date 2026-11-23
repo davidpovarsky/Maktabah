@@ -82,6 +82,7 @@ def runtime_dependency_preflight():
     if sdk_input.get("schema") == 2:
         pending.append(ci / "original_editor_continuation_admission.py")
         pending.append(ci / "original_editor_clang_imports.py")
+        pending.append(ci / "original_editor_host_clang_context.py")
         if sdk_input.get("continuation_kind") == "original-signed-consumer-runtime/1":
             pending.append(ci / "original_editor_signed_consumer_admission.py")
     checked, imported = {}, set()
