@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-11-23T22:11:30.337828+00:00",
+  "updated_at_utc": "2026-11-23T22:55:14.227878+00:00",
   "canonical_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
   "root_branch": "codex/otzaria-oracle-completion-20261123",
   "user_instruction": "בעצם, תעשה את הכל בעצמך ותשתמש עם תתי הסוכנים הזמינים לך בצ׳אט פה, בצע הכל עד להשלמה מלאה של המשימות השתמשת בכלי @SentinelX בחשבון המחובר לשרת האורקל ישירות, ועדכן ב @Asana , אחרי כל שלב שאתה מבצע",
@@ -290,7 +290,18 @@
         "profile_overlay_binding": "IN_PREPARATION",
         "native_producer_activated": false
       },
-      "prepared_full_sdk_current_source": "f648a4f7bc6bb131369caf46fd35bba95302aff7"
+      "prepared_full_sdk_current_source": "f648a4f7bc6bb131369caf46fd35bba95302aff7",
+      "inactive_abi2_installer_handoff": {
+        "source": "e7066882239b7bf350da16072ecce588d7b8201b",
+        "tree": "72843531e9fc2419fea506278408b819e6a80905",
+        "installer_sha256": "f61aaee67323c0133f335f7c526eb4439652d4394082173e632b0b8b5eeae24d",
+        "owner_reported_pure_metadata_controls_passed": 29,
+        "owner_reported_control_receipt_sha256": "aa585365f2f55b535207cbb9ee3d39af6b882f1e2094fd343b1731bc4c9291a6",
+        "caller_preparation_owner": "stageb_repair",
+        "genuine_lib_produced": false,
+        "producer_activated": false,
+        "final_source_bound_schema_case_ids_required": true
+      }
     },
     {
       "name": "original_heart_owned_import_lifetime",
@@ -1382,6 +1393,17 @@
           "stored_bytes": 2733,
           "stored_sha256": "03230f40efeb1d8b7b7190e57475b773f119e65350e53a409b4194fbbb269dd5"
         }
+      },
+      "inactive_abi2_installer_handoff": {
+        "source": "e7066882239b7bf350da16072ecce588d7b8201b",
+        "tree": "72843531e9fc2419fea506278408b819e6a80905",
+        "installer_sha256": "f61aaee67323c0133f335f7c526eb4439652d4394082173e632b0b8b5eeae24d",
+        "owner_reported_pure_metadata_controls_passed": 29,
+        "owner_reported_control_receipt_sha256": "aa585365f2f55b535207cbb9ee3d39af6b882f1e2094fd343b1731bc4c9291a6",
+        "caller_preparation_owner": "stageb_repair",
+        "genuine_lib_produced": false,
+        "producer_activated": false,
+        "final_source_bound_schema_case_ids_required": true
       }
     },
     {
@@ -1775,7 +1797,25 @@
         "artifact_intake_owner": "asana_inventory"
       },
       "terminal_intake_receipt_sha256": "61dd442ef4355270c0c93e41ae0ae20c70274fb659e08c9eada64251f7de196e",
-      "ltr_receipt_sha256": "78c2814d3c093abf701c975b7ddb65c7fad69d216387b100e665b97b02b5629d"
+      "ltr_receipt_sha256": "78c2814d3c093abf701c975b7ddb65c7fad69d216387b100e665b97b02b5629d",
+      "prebuilt_source_preparation": {
+        "new_synthetic_controls": 39,
+        "result": "PASS",
+        "receipt": {
+          "path": "docs/hq-integration/oracle-execution-20261123/reader-prebuilt/source-controls39-RESULT.json",
+          "original_bytes": 50639,
+          "original_sha256": "f63a8742aee1762cf514e6934231b16bbebb44903a07ed89ee6f12d6344bf519",
+          "stored_bytes": 50639,
+          "stored_sha256": "f63a8742aee1762cf514e6934231b16bbebb44903a07ed89ee6f12d6344bf519"
+        },
+        "real_process_controls_replayed": 0,
+        "actual_cache_admitted": false,
+        "native_groups_or_fullv32_started": false,
+        "packet_preparation_owner": "stageb_repair",
+        "activation_owner": "asana_inventory",
+        "exact_cache": 10995274116,
+        "cache_scope_ref": "refs/heads/codex/otzaria-reader-groups-full-v32-20261123"
+      }
     },
     {
       "name": "latest_multipart_library_archive",
@@ -1880,16 +1920,24 @@
           "original_sha256": "f8adc3a78eedeea798cfa6245a3a354001725e038a7f045af04f433ac8be0328",
           "stored_bytes": 6632,
           "stored_sha256": "f8adc3a78eedeea798cfa6245a3a354001725e038a7f045af04f433ac8be0328"
+        },
+        "remaining_evidence_gap": {
+          "owner": "root",
+          "status": "SOURCE_FINDING_PENDING_CI_CAPTURE",
+          "finding": "Original acceptance report partCleanedAfterSuccess/sidecarCleanedAfterSuccess only checks main part and sidecar. Native same-build acceptance must also directly observe absence of the multipart directory and assembly file after install/restore.",
+          "product_unchanged": true,
+          "native_acceptance_claimed": false,
+          "historical37_component_results_remain_valid": true
         }
       }
     },
     {
       "name": "shared_swift_ai_thought_signature",
       "owner": "/root",
-      "status": "EXACT_SOURCE_PUBLISHED_ORIGINAL_FULL_APPLE_SUITE_ACTIVE",
-      "source": "d4286d1afa661af930f7addd6f63fff0effe4414",
-      "tree": "aaa0512eee2676ce650baff4d0a26c5998e7d0f7",
-      "same_tree_local_review_source": "f354ea69d2994e6ef50a64a41a7ddeb0779206fb",
+      "status": "AUTHENTIC_FULL4193_PASS_ONE_FIXTURE_FAILURE_FOCUSED_CONTINUATION_ACTIVE",
+      "source": "3f38f1302764635c9991d0d00fd7b12471a5373c",
+      "tree": "3d5f5039aeff2b862b4531131b45771ee1e44a69",
+      "same_tree_local_review_source": "9fc48f34ef8193519e0cd6fa811859fca2996428",
       "base": "07431abccbfb151ca2dab67bca6cf86fcb2bd3b8",
       "source_review_tree": "4435f7d99c0132985f08c3dc027bfb63d139ab3e",
       "reviewed_product_test_decision_paths": 7,
@@ -1898,24 +1946,139 @@
       "new_logical_methods": 9,
       "new_scenario_vectors": 18,
       "expected_original_methods": 4185,
-      "expected_total_actual_methods": 4194,
+      "expected_total_actual_methods": 1,
       "historical_results_credited_as_current_pass": false,
       "source_controls_receipt_sha256": "71466a6a9f9c44ef74bcfb8942b62a5ae19525bc13d9675aff51dd0dae9fbc8a",
-      "independent_source_and_ci_review": "ACCEPTED",
-      "run": 45275019854,
+      "independent_source_and_ci_review": "stageb_repair found no blocking evidence gate issue; no duplicate checks",
+      "run": 45281860828,
       "attempt": 1,
-      "controller_pid": 3277186,
-      "controller_start_ticks": "699840359",
-      "watcher": "job_694643c49c16",
+      "controller_pid": 3322800,
+      "controller_start_ticks": "700075674",
+      "watcher": "job_45fc8ae6f9cb",
       "waiter_is_owned_pidfd_only": true,
       "single_gh_watcher": true,
       "max_watch_seconds": 9000,
-      "observed_step": "Run the original complete package suite once",
+      "observed_step": "One exact affected method selected; CI observer remains active at last observation",
       "watcher_terminal": false,
       "qualification_result": "PENDING",
       "app_native_acceptance": false,
       "live_provider_calls": 0,
-      "actual_previous_live_http_cause_proven": false
+      "actual_previous_live_http_cause_proven": false,
+      "parent": "d4286d1afa661af930f7addd6f63fff0effe4414",
+      "first_waiter_completed": "job_37aecba83006",
+      "expected_retained_actual_passing_methods": 4193,
+      "expected_qualified_method_union": 4194,
+      "retained_passes_admitted_only_with_exact_source_and_toolchain": true,
+      "source_controls_receipt": {
+        "path": "docs/hq-integration/oracle-execution-20261123/core-thought-signature/expectation-continuation-SOURCE_CONTROLS.json",
+        "original_bytes": 1938,
+        "original_sha256": "b68692122d6afb87e530969e84e6edf93db37d255d552b6925709f25d8dbe9e7",
+        "stored_bytes": 1938,
+        "stored_sha256": "b68692122d6afb87e530969e84e6edf93db37d255d552b6925709f25d8dbe9e7"
+      },
+      "source_control_count": 7,
+      "original_full_suite": {
+        "actual_methods": 4194,
+        "aggregate_conclusion": "failure",
+        "archive_bytes": 1466569,
+        "archive_members": 26,
+        "archive_sha256": "2551d96f45597c6263af456321eec7a53a13f0093d142f9e74a4b4c9f715b5f4",
+        "artifact": 14867946517,
+        "attempt": 1,
+        "captured_at": "2026-11-23T22:34:41.714072+00:00",
+        "compiler": {
+          "bytes": 357109680,
+          "path": "/Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend",
+          "sha256": "8a63cc031d970b57f03741ae83becbfb26f2b913565ac212b81b80bdcb35600f"
+        },
+        "controller_lock_released": true,
+        "errors": 0,
+        "failed_identity": [
+          "SwiftAISDKTests.StreamTextThoughtSignatureContinuationTests",
+          "signedSequentialContinuation()"
+        ],
+        "failed_lines": [
+          190,
+          194
+        ],
+        "failed_methods": 1,
+        "failure_issues": 2,
+        "failure_reason": "The newly added test expects JSON quotation marks inside tool-result content. The actual original tool-result serializer emits the plain text content. Signature, three requests, both tool executions, and other assertions recorded no issues. Source contract validation is being completed before correcting only the expected literal values.",
+        "index_rows_verified": 25,
+        "live_provider_called": false,
+        "new_parameter_invocations": {
+          "Conflicting signatures on one streamed call fail before a completed call is emitted": 2,
+          "V3 does not coerce nonstring values into a signature": 5,
+          "V3 nonstream receipt retains only a real nonempty Google signature": 3,
+          "V3 stream receipt keeps the generic provider name independent of signature identity": 3
+        },
+        "not_run": 0,
+        "original_finish_reason_vectors_actual": [
+          ".stop",
+          ".toolCalls"
+        ],
+        "passed_methods": 4193,
+        "qualification_pass_claimed": false,
+        "run": 45275019854,
+        "schema": "otzaria.thought-signature-full-suite-authenticated-intake/1",
+        "skipped": 0,
+        "source": "d4286d1afa661af930f7addd6f63fff0effe4414",
+        "source_before_after_equal": true,
+        "source_rows_git_blob_sha_bytes_verified": 1401,
+        "test_binary_hash_absence_reason": "The original finalize helper stopped after swift exit 1 before its binary-identity collection. No binary identity is inferred.",
+        "test_binary_hash_retained": false,
+        "tree": "aaa0512eee2676ce650baff4d0a26c5998e7d0f7",
+        "xml_sha256": "89e344224390072e09dfa5eb89282a816eac570e364c21cd4da9b4a1428ce6ad"
+      },
+      "original_full_suite_receipt": {
+        "path": "docs/hq-integration/oracle-execution-20261123/core-thought-signature/full-45275019854-INTAKE.json",
+        "original_bytes": 2372,
+        "original_sha256": "60a2549b684e32e073d25d15da0f1dc4bfbf73ab0f1cd23aef540e295893526f",
+        "stored_bytes": 2372,
+        "stored_sha256": "60a2549b684e32e073d25d15da0f1dc4bfbf73ab0f1cd23aef540e295893526f"
+      },
+      "publication_receipt": {
+        "path": "docs/hq-integration/oracle-execution-20261123/core-thought-signature/expectation-continuation-PUBLICATION.json",
+        "original_bytes": 912,
+        "original_sha256": "fa17ed1d59fddc9af7ab6f32420171f3d29cef9a9ee228cdf983def5e9fc66db",
+        "stored_bytes": 912,
+        "stored_sha256": "fa17ed1d59fddc9af7ab6f32420171f3d29cef9a9ee228cdf983def5e9fc66db"
+      },
+      "launch_receipt": {
+        "path": "docs/hq-integration/oracle-execution-20261123/core-thought-signature/focused-45281860828-LAUNCH.json",
+        "original_bytes": 415,
+        "original_sha256": "81fca7dfea510ae84c2ac21a258564468712421f2e76ae8ca8d55965d5d710a7",
+        "stored_bytes": 415,
+        "stored_sha256": "81fca7dfea510ae84c2ac21a258564468712421f2e76ae8ca8d55965d5d710a7"
+      },
+      "changed_expected_text_literals": 3,
+      "product_byte_changes_after_full_suite": 0,
+      "unchanged_inputs": 1397,
+      "changed_ci_test_inputs": 4,
+      "dependency_candidates": {
+        "hanlin_source": "f8cf6ca543c5ceed05a60141644664c93e4565b4",
+        "host_source": "73cbc16722ea33f3600ba19f1ca35dbd1a4d9812",
+        "published": false,
+        "qualification_pending": true,
+        "hanlin_receipt": {
+          "path": "docs/hq-integration/oracle-execution-20261123/core-thought-signature/hanlin-f8cf-candidate.json",
+          "original_bytes": 3473,
+          "original_sha256": "cefa94f04896b74a2b72e6465d89cd5cc1485c02af30b33c87137fcd88076a4a",
+          "stored_bytes": 3473,
+          "stored_sha256": "cefa94f04896b74a2b72e6465d89cd5cc1485c02af30b33c87137fcd88076a4a"
+        },
+        "host_receipt": {
+          "path": "docs/hq-integration/oracle-execution-20261123/core-thought-signature/host-73cbc-candidate.json",
+          "original_bytes": 1476,
+          "original_sha256": "71748c98d832fa634b1c343ce0ac73672315716e668cd771593ecdccf226e1e0",
+          "stored_bytes": 1476,
+          "stored_sha256": "71748c98d832fa634b1c343ce0ac73672315716e668cd771593ecdccf226e1e0"
+        },
+        "prior_unpublished_candidates_preserved": [
+          "f1f43f9e155b2622ce0094e64b607ae043c8374c",
+          "93040a1cccb46fc54480478e845b83d1636305fc"
+        ]
+      }
     }
   ],
   "boundaries": {
@@ -2235,7 +2398,9 @@
     {
       "stage": "sdk_generated_boundary_changed_swift_binding",
       "comment": "1220846156121197"
-    }
+    },
+    "1220849080740633",
+    "1220849083185258"
   ],
   "inventory": {
     "unique_tasks": 83,
@@ -2265,13 +2430,15 @@
     "policy": "One owner/observer per exact source/run/attempt; finite windows with same-attempt observation continuation, no test replay. Core host-unit runner architecture is separate from iOS27 arm64 product acceptance.",
     "active": [
       {
-        "name": "shared_swift_ai_thought_signature",
+        "name": "shared_swift_ai_thought_signature_focused_continuation",
         "owner": "/root",
-        "source": "d4286d1afa661af930f7addd6f63fff0effe4414",
-        "run": 45275019854,
+        "source": "3f38f1302764635c9991d0d00fd7b12471a5373c",
+        "run": 45281860828,
         "attempt": 1,
-        "controller_pid": 3277186,
-        "watcher": "job_694643c49c16"
+        "controller_pid": 3322800,
+        "watcher": "job_45fc8ae6f9cb",
+        "actual_methods_selected": 1,
+        "prior_actual_passes_to_retain": 4193
       }
     ],
     "completed_since_checkpoint15": [
@@ -2281,7 +2448,7 @@
     ],
     "pending": [
       "Original Native relation/object-type export closure repair after authenticated rel-iconImage refusal (asana_inventory)",
-      "Core d428 actual full suite then all Hanlin/Host pins and original Live (root)",
+      "Core3f38 affected original method plus retained4193; publish Hanlinf8cf/Host73cbc only after actual qualified intake; original Live follows",
       "Genuine final-union Lib ABI /2 intake and complete SDK producer (import_rpc/stageb_repair)",
       "Strict prebuilt signature/resource/loader admission then original Groups/full-v32 container diagnosis (asana_inventory/stageb_repair)",
       "Same composed build v40 native cancel/install/restore (root)",
@@ -2319,8 +2486,8 @@
         "boundary": "XCODEPROJ_SETTINGS_SERIALIZATION_BEFORE_APP_COMPILATION"
       }
     ],
-    "as_of_utc": "2026-11-23T22:11:30.337828+00:00",
-    "active_scope": "One Core full-suite run and one exact owned GH watcher; finite pidfd waiter only. Native union observer terminal; no Live, SDK producer, Groups/full-v32 or v40 activation.",
+    "as_of_utc": "2026-11-23T22:55:14.227878+00:00",
+    "active_scope": "One Core focused continuation and one existing owned GH watcher; pidfd waiters observe that controller only. No new Live, Native union, SDK producer, Groups/full-v32 or v40 activation reported at this checkpoint.",
     "completed_this_checkpoint": [
       {
         "run": 45269355714,
@@ -2333,6 +2500,12 @@
         "attempt": 1,
         "conclusion": "failure",
         "actual": "11repair+6semantic+9RPC+1panic PASS; Native0PASS1FAIL8NOT_RUN"
+      },
+      {
+        "run": 45275019854,
+        "attempt": 1,
+        "conclusion": "failure",
+        "actual": "4193PASS one new fixture method FAIL with two overquoted text expectations; no missing/errored/skipped methods"
       }
     ]
   },
@@ -2368,7 +2541,7 @@
     "native_evidence_source": "d440fafa617f07caf25c94be1616911b6304119c",
     "native_evidence_source_integrated": false,
     "expanded_sdk_source": "f648a4f7bc6bb131369caf46fd35bba95302aff7",
-    "new_core_candidate": "d4286d1afa661af930f7addd6f63fff0effe4414",
+    "new_core_candidate": "3f38f1302764635c9991d0d00fd7b12471a5373c",
     "new_core_candidate_qualified_or_integrated": false
   },
   "checkpoint_history": [
@@ -7092,6 +7265,326 @@
         "legacy_sdk_inputs_qualified_for_composed_app": false,
         "current_live_gate": "ACTUAL_FAILURE_ON_0123_NOT_TRANSFERRED",
         "requires_actual_sdk_schema": 3
+      }
+    },
+    {
+      "at_utc": "2026-11-23T22:55:14.227878+00:00",
+      "previous_root_commit": "3ff067c7157694cd11b16f403f537881f00d8691",
+      "reason": "Authenticate full Core 4193PASS/one new fixture failure; preserve that failure and start one exact corrected method with retained passes. Record replacement local dependency candidates, Reader39 source-only controls and remaining multipart cleanup evidence gap.",
+      "prior_lanes": [
+        {
+          "name": "remaining_reader_cases_continuation",
+          "prior_historical_context_checkpoint_index": 7,
+          "owner": "/root/asana_inventory",
+          "status": "AUTHENTIC_LTR1_PASS_FULLV32_PREREQUISITE_TIMEOUT_TWO_NOT_RUN",
+          "application_source": "92e9df6e2daf64893c83ba13708fac4c670ae38f",
+          "source": "fab50c9e26fe60d6eb009b34cfa23781d3bb363c",
+          "run": 45255504303,
+          "run_attempt": 1,
+          "controller_pid": 3184261,
+          "watcher": "job_308af6e49268",
+          "watcher_terminal": true,
+          "native_acceptance": false,
+          "library_ltr_cases": 1,
+          "full_v32_cases": 2,
+          "selected_native_cases": 3,
+          "groups100_NOT_RUN": 1,
+          "shared_app_builds_planned": 1,
+          "prior_six_library_passes_reexecuted": false,
+          "root_full_source_review": "ACCEPTED",
+          "source_commands_passed": 4,
+          "new_selector_wiring_inverse_controls_passed": 17,
+          "ltr_diff_sha256": "0fdeaf1adefd3b542a4fb3f2c9b87f85db91092c1cdd62170c6203babc2833bb",
+          "ci_diff_sha256": "fffb361adef3bd26db025a102693998951ca86e9443bb89dd7f26ea704132d96",
+          "actual_result": "LTR1_PASS_FULLV32_2_NOT_RUN",
+          "run_conclusion": "cancelled",
+          "terminal": {
+            "ltr_counts": {
+              "PASS": 1,
+              "FAIL": 0,
+              "SKIP": 0,
+              "NOT_RUN": 0
+            },
+            "full_v32_counts": {
+              "PASS": 0,
+              "FAIL": 0,
+              "SKIP": 0,
+              "NOT_RUN": 2
+            },
+            "executed_ltr_native_acceptance": true,
+            "full_v32_native_acceptance": false,
+            "actual_shared_build": "PASS",
+            "execution_inputs_git_verified": 291,
+            "cause": "Original prepare-faithful-ipad-fixtures data-container get_app_container exceeded unchanged45s before any corpus download or original full-v32 case",
+            "owned_simulator_cleanup": "PASS",
+            "controller_pid_remaining": false,
+            "workflow_cancel_cause": "NOT_ESTABLISHED",
+            "source_and_binaries_unchanged": true,
+            "artifact_intake_owner": "asana_inventory"
+          },
+          "terminal_intake_receipt_sha256": "61dd442ef4355270c0c93e41ae0ae20c70274fb659e08c9eada64251f7de196e",
+          "ltr_receipt_sha256": "78c2814d3c093abf701c975b7ddb65c7fad69d216387b100e665b97b02b5629d"
+        },
+        {
+          "name": "latest_multipart_library_archive",
+          "prior_historical_context_checkpoint_index": 7,
+          "owner": "/root",
+          "status": "ACTUAL_APPLE_COMPONENT37_COVERED_35_RETAINED_2_EXECUTED_NATIVE_INSTALL_PENDING",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213",
+          "local_reviewed_commit": "dc97a65245d8fa33462631ec93b9793897f183a4",
+          "tree": "c1f78d69fb4a014e06e5fc67479927b078d0368b",
+          "run": 45261599920,
+          "run_attempt": 1,
+          "watcher": "job_5db72f140ebe",
+          "watcher_terminal": true,
+          "source_manifest_sha256": "4dace55506413a0079f9a4cfbc5bd4af06719e6ad4e17ef41f5e5728e23a2b88",
+          "bound_source_files": 18,
+          "changed_product_files": 9,
+          "source_controls": {
+            "syntax_files": 12,
+            "swift6_strict_model_policy_files": 4,
+            "receipt_sha256": "034f81227904b42311cba4e8cad35df33c4f46f04913b981a0cdda664e14bbc0"
+          },
+          "selected_apple_component_controls": 37,
+          "actual_apple_result": "35_PRIOR_PASS_PLUS2_CONTINUATION_PASS",
+          "native_app_acceptance": false,
+          "full_archive_install_acceptance": false,
+          "official_release": 455390662,
+          "manifest_asset": 782942035,
+          "archive_bytes": 2129902636,
+          "parts": [
+            782942221,
+            782993890
+          ],
+          "large_archive_downloaded_on_oracle": false,
+          "lookup_tool_failure": {
+            "run": 45258269649,
+            "actual_job": 137985763690,
+            "cause": "Tool argument incorrectly named URLSession.AsyncBytes as a module instead of a Foundation type",
+            "sdk_or_product_failure": false,
+            "redispatched": false
+          },
+          "peer_review": "Product, cancellation controls, driver/workflow and full18-path closure accepted by stageb_repair",
+          "original_run_terminal": {
+            "run": 45261599920,
+            "attempt": 1,
+            "conclusion": "failure",
+            "counts": {
+              "PASS": 35,
+              "FAIL": 2,
+              "SKIP": 0,
+              "NOT_RUN": 0
+            },
+            "artifact": 14861468851,
+            "archive_sha256": "0d4e9b045f3f526912108e2d0572c8abacb1f5592414d705c13d26b96f834057",
+            "history_preserved": true
+          },
+          "continuation": {
+            "source": "573e4dc004dd61ba3d8f1ed8a42901ba1f3e956f",
+            "run": 45267387191,
+            "attempt": 1,
+            "conclusion": "success",
+            "actual_counts": {
+              "PASS": 2,
+              "FAIL": 0,
+              "SKIP": 0,
+              "NOT_RUN": 0
+            },
+            "retained_passes": 35,
+            "prior35_replayed": 0,
+            "product_changes": 0,
+            "all_original18_inputs_identical": true,
+            "compiler_context_identical": true,
+            "artifact": 14863027597,
+            "bytes": 704592,
+            "archive_sha256": "3b9324f56c74821945f4ecf36b5a93066b6c05019d8a7a0a15204c6e6e4a1584",
+            "crc_members": 18,
+            "indexed_files": 17,
+            "intake_sha256": "61ed354def16f089bd4ed0c0fab7a81722497e611fe7006a316ec63c9a9bcda0",
+            "owned_request_stop_before_cleanup": [
+              true,
+              true
+            ],
+            "causal_limit": "Typed held fixtures now reach original metadata refusal promptly; original headerless fixture timeouts remain history, internal sniff/buffering mechanism unproven."
+          },
+          "native_evidence_preparation": {
+            "status": "SOURCE_REVIEW_CORRECTIONS_AND_FOCUSED_CONTROLS_PASS_NATIVE_NOT_RUN",
+            "source": "d440fafa617f07caf25c94be1616911b6304119c",
+            "tree": "69f54d636a200a1ca98bce0e6253bce22514e744",
+            "parent": "602659607a3a6a2586a7c4a8d7ce6114eec8cd86",
+            "product_source_unchanged": "7d5510dd29af2b66d740de136352916868c341ed",
+            "new_executed_controls": 6,
+            "affected_executed_controls": 3,
+            "unaffected_retained_controls": 7,
+            "total_controls": 16,
+            "historical37_components_replayed": 0,
+            "native_execution": false,
+            "workflow_activated": false,
+            "published": false,
+            "root_peer_delta_review": "ACCEPTED",
+            "receipt": {
+              "path": "docs/hq-integration/oracle-execution-20261123/v40-native-evidence-d440/PEER_REVIEW_DELTA.json",
+              "original_bytes": 6632,
+              "original_sha256": "f8adc3a78eedeea798cfa6245a3a354001725e038a7f045af04f433ac8be0328",
+              "stored_bytes": 6632,
+              "stored_sha256": "f8adc3a78eedeea798cfa6245a3a354001725e038a7f045af04f433ac8be0328"
+            }
+          }
+        },
+        {
+          "name": "shared_swift_ai_thought_signature",
+          "owner": "/root",
+          "status": "EXACT_SOURCE_PUBLISHED_ORIGINAL_FULL_APPLE_SUITE_ACTIVE",
+          "source": "d4286d1afa661af930f7addd6f63fff0effe4414",
+          "tree": "aaa0512eee2676ce650baff4d0a26c5998e7d0f7",
+          "same_tree_local_review_source": "f354ea69d2994e6ef50a64a41a7ddeb0779206fb",
+          "base": "07431abccbfb151ca2dab67bca6cf86fcb2bd3b8",
+          "source_review_tree": "4435f7d99c0132985f08c3dc027bfb63d139ab3e",
+          "reviewed_product_test_decision_paths": 7,
+          "qualification_paths": 3,
+          "exact_source_inputs": 1401,
+          "new_logical_methods": 9,
+          "new_scenario_vectors": 18,
+          "expected_original_methods": 4185,
+          "expected_total_actual_methods": 4194,
+          "historical_results_credited_as_current_pass": false,
+          "source_controls_receipt_sha256": "71466a6a9f9c44ef74bcfb8942b62a5ae19525bc13d9675aff51dd0dae9fbc8a",
+          "independent_source_and_ci_review": "ACCEPTED",
+          "run": 45275019854,
+          "attempt": 1,
+          "controller_pid": 3277186,
+          "controller_start_ticks": "699840359",
+          "watcher": "job_694643c49c16",
+          "waiter_is_owned_pidfd_only": true,
+          "single_gh_watcher": true,
+          "max_watch_seconds": 9000,
+          "observed_step": "Run the original complete package suite once",
+          "watcher_terminal": false,
+          "qualification_result": "PENDING",
+          "app_native_acceptance": false,
+          "live_provider_calls": 0,
+          "actual_previous_live_http_cause_proven": false
+        }
+      ],
+      "prior_boundaries": {
+        "books_updates": "Fresh original provider catalog2026-11-23 HTTP200: exactly792 bytes/SHA99c2cf2f...,7 rows, same six legacy fields. Authentic backend/target-schema/source-DB-digest/migration contract still absent. Legacy updater remains fail-closed for all real Otzaria/Sefaria backends. No payload/user database access.",
+        "owner_release_verification_key": "Last inspected required authentic verification key absent from repository secrets/variables metadata; no genuine owner attestation accepted.",
+        "physical_ipad": "No physical acceptance performed",
+        "final_frozen_composition": "Original final83e7 unchanged; product7d551 and reviewed bindings602659 retain18 accepted path objects. SDK source boundaryf648 and changed-Swift qualification passed; canonical Native schema repair, genuine Lib/ABI, complete SDK producer, new Core d428 qualification/pins/Live, composed app Native116/Release114/two600s/24h/owner/AppleVALID/internalbeta/physical remain open. v40 native installation still required.",
+        "annotation_body_budget": "Original generators af96 PASS and exact changed Swift fc4 PASS on real SDK. Canonical Native b892/run45270881714 has27 actual controls PASS but Native0PASS1FAIL8NOT_RUN at original rel-iconImage source-target schema semantics; no genuine Lib ABI/full SDK credit until original closure repair qualifies.",
+        "temporary_live_secret": "Run45253606271 terminal, one dispatch/two observation windows. Controller job_4c1bc592e0ae drained; owned secret DELETE204/GET404 followed independent404 at21:20:27Z. No temporary Live secret or observer remains. Credential values/hashes never recorded.",
+        "production_library_archive": "Apple component37 covered by35 retained+2 actual unchanged inputs. v40 evidence CI d440 source accepted with16 controls (9actual this delta+7retained), zero product delta. Actual same-composed-build cancel/install/restore/SQLite/count/atomic acceptance remains NOT_RUN.",
+        "books_provider_latest_receipt": "docs/hq-integration/books-provider-20261123/PROVIDER_CHECK.json SHA25695939af68666af4e0853ffbaae53ca6b9d3d6da7d6ade3800e5fb9c331627451"
+      },
+      "prior_allocation": {
+        "policy": "One owner/observer per exact source/run/attempt; finite windows with same-attempt observation continuation, no test replay. Core host-unit runner architecture is separate from iOS27 arm64 product acceptance.",
+        "active": [
+          {
+            "name": "shared_swift_ai_thought_signature",
+            "owner": "/root",
+            "source": "d4286d1afa661af930f7addd6f63fff0effe4414",
+            "run": 45275019854,
+            "attempt": 1,
+            "controller_pid": 3277186,
+            "watcher": "job_694643c49c16"
+          }
+        ],
+        "completed_since_checkpoint15": [
+          45147566951,
+          45145388957,
+          45152574279
+        ],
+        "pending": [
+          "Original Native relation/object-type export closure repair after authenticated rel-iconImage refusal (asana_inventory)",
+          "Core d428 actual full suite then all Hanlin/Host pins and original Live (root)",
+          "Genuine final-union Lib ABI /2 intake and complete SDK producer (import_rpc/stageb_repair)",
+          "Strict prebuilt signature/resource/loader admission then original Groups/full-v32 container diagnosis (asana_inventory/stageb_repair)",
+          "Same composed build v40 native cancel/install/restore (root)",
+          "Final Native116/Release114/two600s/24h/owner/AppleVALID/internalbeta followed by physicaliPad"
+        ],
+        "completed_since_checkpoint16": [
+          45158596483
+        ],
+        "completed_since_checkpoint17": [
+          {
+            "run": 45158596483,
+            "attempt": 2,
+            "boundary": "ALLOCATION"
+          },
+          {
+            "run": 45159946802,
+            "attempt": 1,
+            "boundary": "ALLOCATION"
+          },
+          {
+            "run": 45150723169,
+            "attempt": 2,
+            "boundary": "GENERATED_FLAGS_HELPER"
+          }
+        ],
+        "completed_since_checkpoint18": [
+          {
+            "run": 45165374342,
+            "attempt": 1,
+            "boundary": "DECLARED_SOURCE_CLOSURE_BEFORE_COMPILATION"
+          },
+          {
+            "run": 45167025321,
+            "attempt": 1,
+            "boundary": "XCODEPROJ_SETTINGS_SERIALIZATION_BEFORE_APP_COMPILATION"
+          }
+        ],
+        "as_of_utc": "2026-11-23T22:11:30.337828+00:00",
+        "active_scope": "One Core full-suite run and one exact owned GH watcher; finite pidfd waiter only. Native union observer terminal; no Live, SDK producer, Groups/full-v32 or v40 activation.",
+        "completed_this_checkpoint": [
+          {
+            "run": 45269355714,
+            "attempt": 1,
+            "conclusion": "success",
+            "actual": "one changed-primary Swift frontend PASS with689exact inputs; zero generator/native replay"
+          },
+          {
+            "run": 45270881714,
+            "attempt": 1,
+            "conclusion": "failure",
+            "actual": "11repair+6semantic+9RPC+1panic PASS; Native0PASS1FAIL8NOT_RUN"
+          }
+        ]
+      },
+      "prior_integrated_source_preparation": {
+        "source": "7d5510dd29af2b66d740de136352916868c341ed",
+        "tree": "ac6711ac48c60b4f40bda027cba0fda27431b426",
+        "ci_binding_source": "602659607a3a6a2586a7c4a8d7ce6114eec8cd86",
+        "ci_binding_tree": "42fe817ae4b56281378b34a4132998ebc771ba5c",
+        "product_trees": {
+          "Maktabah-iOSUITests": "ae0f9d48f43bf27f9e0a14a09736667437f13b2f",
+          "Maktabah.xcodeproj": "30dccb2b8600715f90c41e533b4646a8523e10d1",
+          "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
+          "Vendor": "ee5b415a5ccb9db9fda2b0e8d6ce3748cdeaea6e"
+        },
+        "branch": "codex/otzaria-final-source-union-20261123",
+        "clean_at_agent_checkpoint": true,
+        "published": false,
+        "native_acceptance": false,
+        "composition_manifest_sha256": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0",
+        "source_binding_receipt_sha256": "f1c1d83c95f6d7284ed235f71ae916855c73266ce734ab6071bc5bdac6773162",
+        "root_source_review": "ACCEPTED",
+        "changed_product_paths": 18,
+        "source_controls": 12,
+        "source_controls_final_receipt_sha256": "640f3022b2d10769edd4cb63b418e3e6f4b0759325ac58e09fc050917918d8d7",
+        "status": "SOURCE_COMPOSED_BINDING_REVIEWED_EXPANDED_SDK_NATIVE_AND_V40_INSTALL_GATES_OPEN",
+        "workflow_activated": false,
+        "prior_final_source": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+        "prior_final_unchanged": true,
+        "legacy_sdk_input_schema": 2,
+        "legacy_sdk_inputs_qualified_for_composed_app": false,
+        "current_live_gate": "ACTUAL_FAILURE_ON_0123_NOT_TRANSFERRED",
+        "requires_actual_sdk_schema": 3,
+        "native_evidence_source": "d440fafa617f07caf25c94be1616911b6304119c",
+        "native_evidence_source_integrated": false,
+        "expanded_sdk_source": "f648a4f7bc6bb131369caf46fd35bba95302aff7",
+        "new_core_candidate": "d4286d1afa661af930f7addd6f63fff0effe4414",
+        "new_core_candidate_qualified_or_integrated": false
       }
     }
   ],

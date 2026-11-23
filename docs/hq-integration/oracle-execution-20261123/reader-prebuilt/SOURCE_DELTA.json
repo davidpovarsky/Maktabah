@@ -1,0 +1,49 @@
+{
+  "status": "SOURCE_ONLY_TWO_FILE_PEER_DELTA",
+  "head": "fab50c9e26fe60d6eb009b34cfa23781d3bb363c",
+  "files": {
+    "Scripts/CI/prebuilt_signature_closure.py": {
+      "before_bytes": 18604,
+      "before_sha256": "338daa6d24f07a038ee1ae8ad9c27dc20e86ffd599e7e9ebbd1a67d603774f59",
+      "after_bytes": 19696,
+      "after_sha256": "f7688f5cbbb044f2a3f8c7435e7ab72d584e360335651d9932d200cc625b431c"
+    },
+    "Scripts/CI/reader_prebuilt_continuation.py": {
+      "before_bytes": 18996,
+      "before_sha256": "449086b538532118dd6e13aea930a8156cbead872ec37aabdcde349fa8e1f860",
+      "after_bytes": 22314,
+      "after_sha256": "fcb5e60c4231364218738ffc7805dd2eb08fd051960fd49d56401f67dbbe4ebe"
+    }
+  },
+  "other_dirty_files_unchanged": 23,
+  "python_ast_parse": "PASS",
+  "runtime_commands_executed": 0,
+  "tests_executed": 0,
+  "cache_restores": 0,
+  "signing_actions": 0,
+  "activation": false,
+  "created_at": "2026-11-23T22:37:30.214849+00:00",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-groups-install-observation-20261123",
+  "scope": "Only the two delegated source files; no pin/workflow/caller/product edits",
+  "diff": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/PEER_DELTA.patch",
+    "bytes": 11086,
+    "sha256": "a982a7a8d9a27dae9c924c555f8bf27986e35e5b972994dc3daf91b068dec9cc"
+  },
+  "unchanged_pin_sha256": "719be65bbbf12f38d3e56aab235d93763f974a3a9c2207ee6b4af4c4529a6a78",
+  "source_review_findings": [
+    "Compiler/debug directory labels no longer skip descendant classification.",
+    "Mapping candidates require exact original covered key sets and identities before external equality.",
+    "Derived PkgInfo requires an actual regular eight-byte file and both sealed original fields.",
+    "Exactly three original bundle anchors and retained built-binary keys, without omissions/duplicates.",
+    "All three code image anchors equal the retained compiled-images path/bytes/SHA projection.",
+    "Cached seals also enforce the historical ad-hoc anchor requirement.",
+    "Command outcome and partial output receipt is written in finally before errors propagate.",
+    "Build context reuses admitted product proof; load/admit/post-UI full verify remain unchanged."
+  ],
+  "remaining_source_limitation": "Unknown raw metadata descendants remain fail-closed; actual restored cache compatibility is not established by this source review.",
+  "acceptance": "SOURCE_PREPARATION_ONLY_NO_NATIVE_OR_CACHE_ACCEPTANCE",
+  "product_runtime_tests": "NOT_RUN",
+  "workflow_or_pin_edits": false,
+  "published": false
+}

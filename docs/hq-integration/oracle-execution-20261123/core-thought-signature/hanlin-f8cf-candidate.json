@@ -1,0 +1,77 @@
+{
+  "branch": "codex/otzaria-thought-signature-continuation-pins-20261123",
+  "core": "3f38f1302764635c9991d0d00fd7b12471a5373c",
+  "created_at": "2026-11-23T22:43:22.418861+00:00",
+  "parent": "ca3c91f2233bf5c77990643b29a874aac8704639",
+  "previous_local_candidate_preserved": "f1f43f9e155b2622ce0094e64b607ae043c8374c",
+  "published": false,
+  "rows": [
+    {
+      "after_sha256": "de2a263d5203cd65d0154b6898bfc74fc620ed3696d5a967e3760b82348feaa7",
+      "before_sha256": "e6b0a1132811da113152d523a62bec4066e59877935b4eaf35c8c1c1dfb8b141",
+      "bytes": 10451,
+      "inverse_literal_change_proven": true,
+      "path": "AI_HLY.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
+    },
+    {
+      "after_sha256": "5af1ff6de7e6acf381022cb72ce7c25656e87847c9821a11c890bb437795fdc5",
+      "before_sha256": "8f3040315aeb3f9bb2ec5fcfa157b8a7690edad9c5a467ad045cd7decd1b1817",
+      "bytes": 1198,
+      "inverse_literal_change_proven": true,
+      "path": "Packages/HanlinSefariaMiniApp/Package.resolved"
+    },
+    {
+      "after_sha256": "3361efbe824e882732d5736c3a212da5d2feb879f96e8da75b7ae055f946914c",
+      "before_sha256": "c0024cb387495e6cf71d8531e3c4ab31a1a267c02c23ab0e5623fa12ff054033",
+      "bytes": 1198,
+      "inverse_literal_change_proven": true,
+      "path": "Packages/HanlinParityMiniApp/Package.resolved"
+    },
+    {
+      "after_sha256": "24d545890f1627da44141263ef62eb065ec22b7c007fde446f16d6dd1ac6964b",
+      "before_sha256": "838bf6f92975b2c5ba65003d1dbf95a1d05c0bbd5bc76fa26bf78c77eb0de086",
+      "bytes": 9614,
+      "inverse_literal_change_proven": true,
+      "path": "Packages/HanlinPlatform/Package.swift"
+    },
+    {
+      "after_sha256": "64a09a8b7a5be058e122cf8b171a94a4541a7ff815faacdd068c753c23f9c61a",
+      "before_sha256": "8f67ee59e5ba54c1d9bdd312efff89ddc946e00443fef8faddfeb4e7eb5387c8",
+      "bytes": 1198,
+      "inverse_literal_change_proven": true,
+      "path": "Packages/HanlinPlatform/Package.resolved"
+    },
+    {
+      "after_sha256": "a7e3478fce75e9de701435f9425031233a83c623426b2a9458e45b0774343584",
+      "before_sha256": "fdbd916f9477bec043a492da7572ad9e4ad858dadf1b42428a877ebe283c4cdb",
+      "bytes": 1198,
+      "inverse_literal_change_proven": true,
+      "path": "Packages/HanlinWikipediaMiniApp/Package.resolved"
+    },
+    {
+      "after_sha256": "c3bb3448ea9982002427728db59de9ff83de7d456141c3bdf2ee7377b6c37796",
+      "before_sha256": "9373a783d26e514b2dba8e11e52b8d2ae6f3b5bb7c5edbeddd8a563c5584c4d8",
+      "bytes": 3056,
+      "inverse_literal_change_proven": true,
+      "path": "Packages/HanlinAgentSDK/Package.swift"
+    },
+    {
+      "after_sha256": "309516fa32d1cfc02a41e84e4c933a488514584ab988484125b50bd765ed0ba3",
+      "before_sha256": "b771042794841f2e759cffc68181ca37214794b4fc9c02981a1c86176a9bde83",
+      "bytes": 1198,
+      "inverse_literal_change_proven": true,
+      "path": "Packages/HanlinAgentSDK/Package.resolved"
+    },
+    {
+      "after_sha256": "650ac95aa961e167bf5aabe4049b1028973e805c8d747865914f7b579d84ba80",
+      "before_sha256": "a0ffa2ef3f7017786cb546187af1e47d0feeda8d58d47bc97d1fc10f78a71e13",
+      "bytes": 1198,
+      "inverse_literal_change_proven": true,
+      "path": "Packages/HanlinTextStudioMiniApp/Package.resolved"
+    }
+  ],
+  "source": "f8cf6ca543c5ceed05a60141644664c93e4565b4",
+  "status": "LOCAL_CANDIDATE_PENDING_ACTUAL_CORE_QUALIFICATION",
+  "tests_executed": false,
+  "tree": "28e3f2b77e5287a3c63ef491bafd5019889a571e"
+}

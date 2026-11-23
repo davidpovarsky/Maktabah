@@ -1,0 +1,1382 @@
+{
+  "actual_native_acceptance": false,
+  "cache_restores": 0,
+  "case_ids": [
+    "signature_parser.valid",
+    "signature_parser.duplicate_directory",
+    "signature_parser.wrong_hash_algorithm",
+    "signature_parser.duplicate_slot",
+    "signature_parser.disagreeing_cdhash",
+    "bundle.valid",
+    "bundle.info_slot_mismatch",
+    "bundle.resources_slot_mismatch",
+    "bundle.removed_optional_localized",
+    "bundle.changed_sealed_leaf",
+    "bundle.extra_unsealed_leaf",
+    "bundle.escaping_symlink",
+    "bundle.regular_derived_pkginfo",
+    "bundle.aliased_pkginfo",
+    "bundle.short_pkginfo",
+    "bundle.cached_nonadhoc_anchor",
+    "external_mapping.valid",
+    "external_mapping.stale_candidate_body",
+    "external_mapping.deleted_candidate_leaf",
+    "external_mapping.added_candidate_leaf",
+    "external_mapping.deleted_candidate_subtree",
+    "external_mapping.external_framework_mismatch",
+    "external_mapping.ambiguous_external_mapping",
+    "external_mapping.hidden_macho_swiftmodule",
+    "external_mapping.hidden_macho_dsym",
+    "provider_anchor.valid",
+    "provider_anchor.missing_bundle",
+    "provider_anchor.duplicate_bundle",
+    "provider_anchor.wrong_bundle_executable_path",
+    "provider_anchor.missing_image",
+    "provider_anchor.duplicate_image",
+    "provider_anchor.wrong_image_hash",
+    "provider_anchor.wrong_image_bytes",
+    "provider_anchor.wrong_image_path",
+    "provider_anchor.missing_retained_image",
+    "provider_anchor.extra_recorded_bundle",
+    "command_receipt.timeout",
+    "command_receipt.nonzero_exit",
+    "command_receipt.launch_error"
+  ],
+  "codesign_executed": 0,
+  "counts": {
+    "failed": 0,
+    "not_run": 0,
+    "passed": 39,
+    "skipped": 0
+  },
+  "created_at": "2026-11-23T22:45:40.762049+00:00",
+  "forbidden_real_process_attempts": [],
+  "gh_calls": 0,
+  "harness": {
+    "bytes": 25775,
+    "path": "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/run_controls.py",
+    "sha256": "e4e98bcd33c7c0fea876291b44fbfbd427cec3ca7cffe3c6a7b11ca1c23768bd"
+  },
+  "injected_recorded_command_callbacks": [
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-valid-lmy0c6fn/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-valid-lmy0c6fn/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-valid-lmy0c6fn/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-info_slot_mismatch-25zifvlp/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-resources_slot_mismatch-9sz8v6id/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-removed_optional_localized-lv6mioro/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-removed_optional_localized-lv6mioro/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-removed_optional_localized-lv6mioro/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-changed_sealed_leaf-851m7v_x/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-changed_sealed_leaf-851m7v_x/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-changed_sealed_leaf-851m7v_x/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-extra_unsealed_leaf-xdgcsx9v/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-extra_unsealed_leaf-xdgcsx9v/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-extra_unsealed_leaf-xdgcsx9v/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-escaping_symlink-tp3pdnzk/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-escaping_symlink-tp3pdnzk/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-escaping_symlink-tp3pdnzk/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-regular_derived_pkginfo-au451y22/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-regular_derived_pkginfo-au451y22/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-regular_derived_pkginfo-au451y22/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-aliased_pkginfo-xfv2zuli/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-aliased_pkginfo-xfv2zuli/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-aliased_pkginfo-xfv2zuli/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-short_pkginfo-iyhn8458/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-short_pkginfo-iyhn8458/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-short_pkginfo-iyhn8458/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-cached_nonadhoc_anchor-_y3a7ntx/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-cached_nonadhoc_anchor-_y3a7ntx/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-cached_nonadhoc_anchor-_y3a7ntx/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-valid-xw1q56sx/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-valid-xw1q56sx/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-valid-xw1q56sx/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-stale_candidate_body-_peh1fs9/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-stale_candidate_body-_peh1fs9/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-stale_candidate_body-_peh1fs9/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-deleted_candidate_leaf-founfs3w/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-deleted_candidate_leaf-founfs3w/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-deleted_candidate_leaf-founfs3w/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-added_candidate_leaf-nxzc1pyn/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-added_candidate_leaf-nxzc1pyn/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-added_candidate_leaf-nxzc1pyn/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-deleted_candidate_subtree-uxwqad3d/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-deleted_candidate_subtree-uxwqad3d/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-deleted_candidate_subtree-uxwqad3d/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-external_framework_mismatch-__7plx62/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-external_framework_mismatch-__7plx62/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-external_framework_mismatch-__7plx62/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-ambiguous_external_mapping-9jt5cxf9/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-ambiguous_external_mapping-9jt5cxf9/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-ambiguous_external_mapping-9jt5cxf9/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-ambiguous_external_mapping-9jt5cxf9/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app"
+      ],
+      "label": "codesign-display-6e13d1f36610bb4b",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-ambiguous_external_mapping-9jt5cxf9/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app"
+      ],
+      "label": "codesign-verify-6e13d1f36610bb4b",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-ambiguous_external_mapping-9jt5cxf9/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/Maktabah-iOSUITests-Runner"
+      ],
+      "label": "embedded-signature-13afa50b11713153",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-hidden_macho_swiftmodule-cbyebiyz/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-hidden_macho_swiftmodule-cbyebiyz/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-hidden_macho_swiftmodule-cbyebiyz/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--display",
+        "-vvvvvv",
+        "--arch",
+        "arm64",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-hidden_macho_dsym-ys1qj1je/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-display-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-hidden_macho_dsym-ys1qj1je/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+      ],
+      "label": "codesign-verify-a8ee252b5edc7798",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 120
+    },
+    {
+      "argv": [
+        "xcrun",
+        "otool",
+        "-arch",
+        "arm64",
+        "-l",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/external_mapping-hidden_macho_dsym-ys1qj1je/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah"
+      ],
+      "label": "embedded-signature-29ccb83df577bb77",
+      "mode": "INJECTED_RECORDED_OUTPUT_NO_PROCESS",
+      "timeout": 60
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/provider_anchor-valid-b5dsi08d",
+        "merge-base",
+        "--is-ancestor",
+        "fab50c9e26fe60d6eb009b34cfa23781d3bb363c",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      ],
+      "mode": "INJECTED_SOURCE_ANCESTRY_RESULT_NO_PROCESS"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/provider_anchor-missing_bundle-ato9gzuq",
+        "merge-base",
+        "--is-ancestor",
+        "fab50c9e26fe60d6eb009b34cfa23781d3bb363c",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      ],
+      "mode": "INJECTED_SOURCE_ANCESTRY_RESULT_NO_PROCESS"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/provider_anchor-duplicate_bundle-tvlf1rjg",
+        "merge-base",
+        "--is-ancestor",
+        "fab50c9e26fe60d6eb009b34cfa23781d3bb363c",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      ],
+      "mode": "INJECTED_SOURCE_ANCESTRY_RESULT_NO_PROCESS"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/provider_anchor-wrong_bundle_executable_path-zub8dm0a",
+        "merge-base",
+        "--is-ancestor",
+        "fab50c9e26fe60d6eb009b34cfa23781d3bb363c",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      ],
+      "mode": "INJECTED_SOURCE_ANCESTRY_RESULT_NO_PROCESS"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/provider_anchor-missing_image-ohx_z3m9",
+        "merge-base",
+        "--is-ancestor",
+        "fab50c9e26fe60d6eb009b34cfa23781d3bb363c",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      ],
+      "mode": "INJECTED_SOURCE_ANCESTRY_RESULT_NO_PROCESS"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/provider_anchor-duplicate_image-z3g36xyz",
+        "merge-base",
+        "--is-ancestor",
+        "fab50c9e26fe60d6eb009b34cfa23781d3bb363c",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      ],
+      "mode": "INJECTED_SOURCE_ANCESTRY_RESULT_NO_PROCESS"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/provider_anchor-wrong_image_hash-_at375o1",
+        "merge-base",
+        "--is-ancestor",
+        "fab50c9e26fe60d6eb009b34cfa23781d3bb363c",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      ],
+      "mode": "INJECTED_SOURCE_ANCESTRY_RESULT_NO_PROCESS"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/provider_anchor-wrong_image_bytes-_lwd8h97",
+        "merge-base",
+        "--is-ancestor",
+        "fab50c9e26fe60d6eb009b34cfa23781d3bb363c",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      ],
+      "mode": "INJECTED_SOURCE_ANCESTRY_RESULT_NO_PROCESS"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/provider_anchor-wrong_image_path-i7q8f7qa",
+        "merge-base",
+        "--is-ancestor",
+        "fab50c9e26fe60d6eb009b34cfa23781d3bb363c",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      ],
+      "mode": "INJECTED_SOURCE_ANCESTRY_RESULT_NO_PROCESS"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/provider_anchor-missing_retained_image-fnaymvsi",
+        "merge-base",
+        "--is-ancestor",
+        "fab50c9e26fe60d6eb009b34cfa23781d3bb363c",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      ],
+      "mode": "INJECTED_SOURCE_ANCESTRY_RESULT_NO_PROCESS"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/provider_anchor-extra_recorded_bundle-6i7hvz14",
+        "merge-base",
+        "--is-ancestor",
+        "fab50c9e26fe60d6eb009b34cfa23781d3bb363c",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      ],
+      "mode": "INJECTED_SOURCE_ANCESTRY_RESULT_NO_PROCESS"
+    },
+    {
+      "argv": [
+        "SYNTHETIC_RECORDED_COMMAND",
+        "timeout"
+      ],
+      "mode": "INJECTED_COMMAND_RESULT_NO_PROCESS"
+    },
+    {
+      "argv": [
+        "SYNTHETIC_RECORDED_COMMAND",
+        "nonzero_exit"
+      ],
+      "mode": "INJECTED_COMMAND_RESULT_NO_PROCESS"
+    },
+    {
+      "argv": [
+        "SYNTHETIC_RECORDED_COMMAND",
+        "launch_error"
+      ],
+      "mode": "INJECTED_COMMAND_RESULT_NO_PROCESS"
+    }
+  ],
+  "modeled_source_context_only": "Fixture pending flag is false only inside synthetic copies; no real Provider.admit/load invoked.",
+  "otool_executed": 0,
+  "outcomes": [
+    {
+      "duration_seconds": 0.000855,
+      "id": "signature_parser.valid",
+      "status": "PASS",
+      "witness": {
+        "parsed_special_slots": [
+          1,
+          3
+        ]
+      }
+    },
+    {
+      "duration_seconds": 0.000229,
+      "id": "signature_parser.duplicate_directory",
+      "status": "PASS",
+      "witness": {
+        "reason": "An unambiguous existing embedded CodeDirectory is required",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.00018,
+      "id": "signature_parser.wrong_hash_algorithm",
+      "status": "PASS",
+      "witness": {
+        "reason": "Unsupported or ambiguous CodeDirectory hashing",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.000234,
+      "id": "signature_parser.duplicate_slot",
+      "status": "PASS",
+      "witness": {
+        "reason": "Duplicated CodeDirectory special slot",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.000243,
+      "id": "signature_parser.disagreeing_cdhash",
+      "status": "PASS",
+      "witness": {
+        "reason": "CodeDirectory identity disagrees",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.024664,
+      "id": "bundle.valid",
+      "status": "PASS",
+      "witness": {
+        "proven_synthetic_leaves": 5
+      }
+    },
+    {
+      "duration_seconds": 0.009557,
+      "id": "bundle.info_slot_mismatch",
+      "status": "PASS",
+      "witness": {
+        "reason": "Original signature special slot does not bind its bytes: build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app slot 1",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.006069,
+      "id": "bundle.resources_slot_mismatch",
+      "status": "PASS",
+      "witness": {
+        "reason": "Original signature special slot does not bind its bytes: build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app slot 3",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.007804,
+      "id": "bundle.removed_optional_localized",
+      "status": "PASS",
+      "witness": {
+        "reason": "Recorded original resource is missing, including optional/localized entries: he.lproj/Localized.strings",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.009249,
+      "id": "bundle.changed_sealed_leaf",
+      "status": "PASS",
+      "witness": {
+        "reason": "Signed resource bytes differ: Assets/fixture.bin",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.008676,
+      "id": "bundle.extra_unsealed_leaf",
+      "status": "PASS",
+      "witness": {
+        "reason": "Unsealed original bundle content: unsealed.bin",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.007083,
+      "id": "bundle.escaping_symlink",
+      "status": "PASS",
+      "witness": {
+        "reason": "Escaping or dangling payload symlink: escape",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.012153,
+      "id": "bundle.regular_derived_pkginfo",
+      "status": "PASS",
+      "witness": {
+        "derived_pkginfo_bytes": 8
+      }
+    },
+    {
+      "duration_seconds": 0.010628,
+      "id": "bundle.aliased_pkginfo",
+      "status": "PASS",
+      "witness": {
+        "reason": "Nonregular or aliased payload: /mnt/development/projects/diagnostics/otzaria-groups-prebuilt-peer-delta-20261123/synthetic-controls/temporary-fixtures/bundle-aliased_pkginfo-xfv2zuli/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/PkgInfo",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.00866,
+      "id": "bundle.short_pkginfo",
+      "status": "PASS",
+      "witness": {
+        "reason": "PkgInfo differs from exact sealed Info.plist fields",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.010231,
+      "id": "bundle.cached_nonadhoc_anchor",
+      "status": "PASS",
+      "witness": {
+        "reason": "Historical simulator ad-hoc signature differs",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.025237,
+      "id": "external_mapping.valid",
+      "status": "PASS",
+      "witness": {
+        "complete_subtree_leaves": 3,
+        "mapped_synthetic_frameworks": 1
+      }
+    },
+    {
+      "duration_seconds": 0.019348,
+      "id": "external_mapping.stale_candidate_body",
+      "status": "PASS",
+      "witness": {
+        "reason": "Authenticated mapping candidate differs from original sealed inventory: build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Frameworks/Shared.framework",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.019603,
+      "id": "external_mapping.deleted_candidate_leaf",
+      "status": "PASS",
+      "witness": {
+        "reason": "Authenticated mapping candidate differs from original sealed inventory: build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Frameworks/Shared.framework",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.02531,
+      "id": "external_mapping.added_candidate_leaf",
+      "status": "PASS",
+      "witness": {
+        "reason": "Authenticated mapping candidate differs from original sealed inventory: build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Frameworks/Shared.framework",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.019036,
+      "id": "external_mapping.deleted_candidate_subtree",
+      "status": "PASS",
+      "witness": {
+        "reason": "Authenticated mapping candidate is absent or aliased: build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Frameworks/Shared.framework",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.053475,
+      "id": "external_mapping.external_framework_mismatch",
+      "status": "PASS",
+      "witness": {
+        "reason": "External product lacks one exact whole-subtree authenticated mapping: build/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/Shared.framework",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.046809,
+      "id": "external_mapping.ambiguous_external_mapping",
+      "status": "PASS",
+      "witness": {
+        "reason": "External product lacks one exact whole-subtree authenticated mapping: build/DerivedData/Build/Products/Debug-iphonesimulator/PackageFrameworks/Shared.framework",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.018828,
+      "id": "external_mapping.hidden_macho_swiftmodule",
+      "status": "PASS",
+      "witness": {
+        "hidden_loadable_path": "Compiler.swiftmodule/arm64.swiftdoc",
+        "reason": "External product lacks one exact whole-subtree authenticated mapping: build/DerivedData/Build/Products/Debug-iphonesimulator/Compiler.swiftmodule/arm64.swiftdoc",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.024989,
+      "id": "external_mapping.hidden_macho_dsym",
+      "status": "PASS",
+      "witness": {
+        "hidden_loadable_path": "Symbols.dSYM/Contents/Resources/DWARF/hidden-loadable",
+        "reason": "External product lacks one exact whole-subtree authenticated mapping: build/DerivedData/Build/Products/Debug-iphonesimulator/Symbols.dSYM/Contents/Resources/DWARF/hidden-loadable",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.013272,
+      "id": "provider_anchor.valid",
+      "status": "PASS",
+      "witness": {
+        "actual_producer_admission": false,
+        "modeled_bundle_anchors": 3,
+        "modeled_retained_code_image_anchors": 3
+      }
+    },
+    {
+      "duration_seconds": 0.011153,
+      "id": "provider_anchor.missing_bundle",
+      "status": "PASS",
+      "witness": {
+        "reason": "Exactly the three original bundle executable anchors are required",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.012754,
+      "id": "provider_anchor.duplicate_bundle",
+      "status": "PASS",
+      "witness": {
+        "reason": "Exactly the three original bundle executable anchors are required",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.013097,
+      "id": "provider_anchor.wrong_bundle_executable_path",
+      "status": "PASS",
+      "witness": {
+        "reason": "Full retained executable anchor differs",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.011389,
+      "id": "provider_anchor.missing_image",
+      "status": "PASS",
+      "witness": {
+        "reason": "Exactly the three original compiled code image anchors are required",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.011766,
+      "id": "provider_anchor.duplicate_image",
+      "status": "PASS",
+      "witness": {
+        "reason": "Exactly the three original compiled code image anchors are required",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.011868,
+      "id": "provider_anchor.wrong_image_hash",
+      "status": "PASS",
+      "witness": {
+        "reason": "Code image anchors differ from the retained compiled-images receipt",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.012085,
+      "id": "provider_anchor.wrong_image_bytes",
+      "status": "PASS",
+      "witness": {
+        "reason": "Code image anchors differ from the retained compiled-images receipt",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.012722,
+      "id": "provider_anchor.wrong_image_path",
+      "status": "PASS",
+      "witness": {
+        "reason": "Exactly the three original compiled code image anchors are required",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.012397,
+      "id": "provider_anchor.missing_retained_image",
+      "status": "PASS",
+      "witness": {
+        "reason": "Exactly the three original compiled code image anchors are required",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.011854,
+      "id": "provider_anchor.extra_recorded_bundle",
+      "status": "PASS",
+      "witness": {
+        "reason": "Exactly the three original bundle executable anchors are required",
+        "refused_type": "ValueError"
+      }
+    },
+    {
+      "duration_seconds": 0.002487,
+      "id": "command_receipt.timeout",
+      "status": "PASS",
+      "witness": {
+        "partial_bytes": 33,
+        "real_subprocess_executed": false,
+        "receipt_written_before_caller_observed_exception": true,
+        "recorded_command_status": "FAILED",
+        "returncode": null,
+        "timed_out": true
+      }
+    },
+    {
+      "duration_seconds": 0.002555,
+      "id": "command_receipt.nonzero_exit",
+      "status": "PASS",
+      "witness": {
+        "partial_bytes": 33,
+        "real_subprocess_executed": false,
+        "receipt_written_before_caller_observed_exception": true,
+        "recorded_command_status": "FAILED",
+        "returncode": 7,
+        "timed_out": false
+      }
+    },
+    {
+      "duration_seconds": 0.002883,
+      "id": "command_receipt.launch_error",
+      "status": "PASS",
+      "witness": {
+        "partial_bytes": 33,
+        "real_subprocess_executed": false,
+        "receipt_written_before_caller_observed_exception": true,
+        "recorded_command_status": "FAILED",
+        "returncode": null,
+        "timed_out": false
+      }
+    }
+  ],
+  "pin_or_workflow_edits": false,
+  "product_or_helper_edits": false,
+  "real_45_second_process_controls_replayed": 0,
+  "real_producer_admissions": 0,
+  "real_seed_pin_stays_pending": true,
+  "real_subprocesses_executed": 0,
+  "recorded_seed_pin_sha256": "719be65bbbf12f38d3e56aab235d93763f974a3a9c2207ee6b4af4c4529a6a78",
+  "schema": "otzaria.reader-prebuilt-synthetic-source-controls/1",
+  "scope": "Actual two helpers exercised with temporary synthetic bundles and explicitly injected recorded command/ancestry outputs.",
+  "source_files_after": {
+    "Scripts/CI/prebuilt_signature_closure.py": {
+      "bytes": 19696,
+      "sha256": "f7688f5cbbb044f2a3f8c7435e7ab72d584e360335651d9932d200cc625b431c"
+    },
+    "Scripts/CI/reader_prebuilt_continuation.py": {
+      "bytes": 22314,
+      "sha256": "fcb5e60c4231364218738ffc7805dd2eb08fd051960fd49d56401f67dbbe4ebe"
+    }
+  },
+  "source_files_before": {
+    "Scripts/CI/prebuilt_signature_closure.py": {
+      "bytes": 19696,
+      "sha256": "f7688f5cbbb044f2a3f8c7435e7ab72d584e360335651d9932d200cc625b431c"
+    },
+    "Scripts/CI/reader_prebuilt_continuation.py": {
+      "bytes": 22314,
+      "sha256": "fcb5e60c4231364218738ffc7805dd2eb08fd051960fd49d56401f67dbbe4ebe"
+    }
+  },
+  "status": "SYNTHETIC_SOURCE_COLLECTOR_CONTROLS_PASS"
+}

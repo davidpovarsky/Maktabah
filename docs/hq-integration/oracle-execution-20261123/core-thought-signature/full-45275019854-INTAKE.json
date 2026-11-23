@@ -1,0 +1,53 @@
+{
+  "actual_methods": 4194,
+  "aggregate_conclusion": "failure",
+  "archive_bytes": 1466569,
+  "archive_members": 26,
+  "archive_sha256": "2551d96f45597c6263af456321eec7a53a13f0093d142f9e74a4b4c9f715b5f4",
+  "artifact": 14867946517,
+  "attempt": 1,
+  "captured_at": "2026-11-23T22:34:41.714072+00:00",
+  "compiler": {
+    "bytes": 357109680,
+    "path": "/Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend",
+    "sha256": "8a63cc031d970b57f03741ae83becbfb26f2b913565ac212b81b80bdcb35600f"
+  },
+  "controller_lock_released": true,
+  "errors": 0,
+  "failed_identity": [
+    "SwiftAISDKTests.StreamTextThoughtSignatureContinuationTests",
+    "signedSequentialContinuation()"
+  ],
+  "failed_lines": [
+    190,
+    194
+  ],
+  "failed_methods": 1,
+  "failure_issues": 2,
+  "failure_reason": "The newly added test expects JSON quotation marks inside tool-result content. The actual original tool-result serializer emits the plain text content. Signature, three requests, both tool executions, and other assertions recorded no issues. Source contract validation is being completed before correcting only the expected literal values.",
+  "index_rows_verified": 25,
+  "live_provider_called": false,
+  "new_parameter_invocations": {
+    "Conflicting signatures on one streamed call fail before a completed call is emitted": 2,
+    "V3 does not coerce nonstring values into a signature": 5,
+    "V3 nonstream receipt retains only a real nonempty Google signature": 3,
+    "V3 stream receipt keeps the generic provider name independent of signature identity": 3
+  },
+  "not_run": 0,
+  "original_finish_reason_vectors_actual": [
+    ".stop",
+    ".toolCalls"
+  ],
+  "passed_methods": 4193,
+  "qualification_pass_claimed": false,
+  "run": 45275019854,
+  "schema": "otzaria.thought-signature-full-suite-authenticated-intake/1",
+  "skipped": 0,
+  "source": "d4286d1afa661af930f7addd6f63fff0effe4414",
+  "source_before_after_equal": true,
+  "source_rows_git_blob_sha_bytes_verified": 1401,
+  "test_binary_hash_absence_reason": "The original finalize helper stopped after swift exit 1 before its binary-identity collection. No binary identity is inferred.",
+  "test_binary_hash_retained": false,
+  "tree": "aaa0512eee2676ce650baff4d0a26c5998e7d0f7",
+  "xml_sha256": "89e344224390072e09dfa5eb89282a816eac570e364c21cd4da9b4a1428ce6ad"
+}

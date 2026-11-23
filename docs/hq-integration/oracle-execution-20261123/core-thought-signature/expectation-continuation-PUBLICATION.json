@@ -1,0 +1,23 @@
+{
+  "activation_branch": "codex/otzaria-tool-result-continuation-20261123",
+  "captured_at": "2026-11-23T22:40:30.534486+00:00",
+  "local_reviewed_commit": "9fc48f34ef8193519e0cd6fa811859fca2996428",
+  "parent": "d4286d1afa661af930f7addd6f63fff0effe4414",
+  "remote_ref_cas_completed": true,
+  "runs": [
+    {
+      "conclusion": null,
+      "created_at": "2026-11-23T22:40:09Z",
+      "head_branch": "codex/otzaria-tool-result-continuation-20261123",
+      "head_sha": "3f38f1302764635c9991d0d00fd7b12471a5373c",
+      "html_url": "https://github.com/davidpovarsky/swift-ai-sdk/actions/runs/45281860828",
+      "id": 45281860828,
+      "run_attempt": 1,
+      "status": "queued"
+    }
+  ],
+  "same_tree_verified": true,
+  "source": "3f38f1302764635c9991d0d00fd7b12471a5373c",
+  "source_branch": "codex/otzaria-thought-signature-test-expectation-20261123",
+  "tree": "3d5f5039aeff2b862b4531131b45771ee1e44a69"
+}

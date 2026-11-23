@@ -1,0 +1,58 @@
+{
+  "binding": {
+    "changed_inputs": [
+      ".github/workflows/otzaria-stream-continuation.yml",
+      "Tests/SwiftAISDKTests/GenerateText/StreamTextThoughtSignatureContinuationTests.swift",
+      "plan/otzaria-thought-signature-inputs.json",
+      "scripts/otzaria-thought-signature-evidence.py"
+    ],
+    "only_three_expected_text_literals_changed": true,
+    "product_and_all_retained_tests_unchanged": true,
+    "same_input_paths": 1401,
+    "unchanged_inputs": 1397
+  },
+  "controls": [
+    {
+      "id": "authentic-previous-full-suite-retains-exact-4193-and-preserves-one-failure",
+      "status": "PASS"
+    },
+    {
+      "id": "exact-four-path-continuation-and-three-literal-correction",
+      "status": "PASS"
+    },
+    {
+      "id": "corrupted-authentic-archive-refused",
+      "refusal": "Previous actual full-suite archive changed",
+      "status": "PASS"
+    },
+    {
+      "id": "old-4185-baseline-cannot-substitute-for-current-full-suite",
+      "refusal": "Previous actual full-suite archive changed",
+      "status": "PASS"
+    },
+    {
+      "id": "wrong-selected-failure-identity-refused",
+      "refusal": "Only the exact known new fixture expectation may have failed",
+      "status": "PASS"
+    },
+    {
+      "id": "retained-product-source-byte-change-refused",
+      "refusal": "A retained passing test or its product/dependency inputs changed",
+      "status": "PASS"
+    },
+    {
+      "id": "different-compiler-identity-refused",
+      "refusal": "Retained results cannot be reused with a different compiler/environment: COMPILER_IDENTITY.json",
+      "status": "PASS"
+    }
+  ],
+  "failed": 0,
+  "live_provider_called": false,
+  "native_executed": false,
+  "passed": 7,
+  "schema": "otzaria.thought-signature-expectation-source-controls/1",
+  "source": "9fc48f34ef8193519e0cd6fa811859fca2996428",
+  "source_rows": 1401,
+  "swift_tests_executed": 0,
+  "tree": "3d5f5039aeff2b862b4531131b45771ee1e44a69"
+}

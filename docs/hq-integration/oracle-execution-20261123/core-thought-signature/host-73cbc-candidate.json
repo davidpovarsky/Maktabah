@@ -1,0 +1,32 @@
+{
+  "branch": "codex/otzaria-hanlin-thought-signature-continuation-20261123",
+  "changed_paths": [
+    "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+    "Vendor/HanlinSDK"
+  ],
+  "core": "3f38f1302764635c9991d0d00fd7b12471a5373c",
+  "created_at": "2026-11-23T22:44:37.540688+00:00",
+  "hanlin_gitlink": "f8cf6ca543c5ceed05a60141644664c93e4565b4",
+  "live_called": false,
+  "lockfile": {
+    "after_sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28",
+    "before_sha256": "a41b340f77574fd74013ba5df160cffabab473f1941a50031d0f9025007c8c9c",
+    "bytes": 4432,
+    "inverse_literal_change_proven": true,
+    "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
+  },
+  "native_tests_executed": false,
+  "parent": "07845de8c335a975027fd375f287a85754da51ab",
+  "previous_local_candidate_preserved": "93040a1cccb46fc54480478e845b83d1636305fc",
+  "product_trees": {
+    "Maktabah-iOSUITests": "442ea1cf71c846eaa131a15f2b85fa4e30e205bd",
+    "Maktabah.xcodeproj": "e969ddd50b6b77e9c6349a9005fb35289f074179",
+    "Source": "4b2abd687328725fb7a7f0ca635b2cab9e0f0c0b",
+    "Vendor": "957773bdbf127855cbe8c16d1be50fe436564157"
+  },
+  "published": false,
+  "source": "73cbc16722ea33f3600ba19f1ca35dbd1a4d9812",
+  "sparse_missing_gitlink_flag_reapplied_without_checkout": true,
+  "status": "LOCAL_CANDIDATE_PENDING_ACTUAL_CORE_QUALIFICATION",
+  "tree": "2051c25c98023e35a0de02cb6945d9e43d5bdb56"
+}

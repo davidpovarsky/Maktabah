@@ -1,0 +1,68 @@
+{
+  "at_utc": "2026-11-23T22:55:14.227878+00:00",
+  "files": [
+    {
+      "original_bytes": 2372,
+      "original_sha256": "60a2549b684e32e073d25d15da0f1dc4bfbf73ab0f1cd23aef540e295893526f",
+      "path": "docs/hq-integration/oracle-execution-20261123/core-thought-signature/full-45275019854-INTAKE.json",
+      "stored_bytes": 2372,
+      "stored_sha256": "60a2549b684e32e073d25d15da0f1dc4bfbf73ab0f1cd23aef540e295893526f"
+    },
+    {
+      "original_bytes": 1938,
+      "original_sha256": "b68692122d6afb87e530969e84e6edf93db37d255d552b6925709f25d8dbe9e7",
+      "path": "docs/hq-integration/oracle-execution-20261123/core-thought-signature/expectation-continuation-SOURCE_CONTROLS.json",
+      "stored_bytes": 1938,
+      "stored_sha256": "b68692122d6afb87e530969e84e6edf93db37d255d552b6925709f25d8dbe9e7"
+    },
+    {
+      "original_bytes": 389798,
+      "original_sha256": "7428e2a960a23ed84ea9d8f95964c2c4cdf93354e21fa6c673b2b72451cd05b6",
+      "path": "docs/hq-integration/oracle-execution-20261123/core-thought-signature/expectation-continuation-SOURCE_INPUTS.json.gz",
+      "stored_bytes": 112866,
+      "stored_sha256": "df5c8ccdc50c556944e1f9d78ccbb8ed9379c391377754e3ae587873197f6820"
+    },
+    {
+      "original_bytes": 912,
+      "original_sha256": "fa17ed1d59fddc9af7ab6f32420171f3d29cef9a9ee228cdf983def5e9fc66db",
+      "path": "docs/hq-integration/oracle-execution-20261123/core-thought-signature/expectation-continuation-PUBLICATION.json",
+      "stored_bytes": 912,
+      "stored_sha256": "fa17ed1d59fddc9af7ab6f32420171f3d29cef9a9ee228cdf983def5e9fc66db"
+    },
+    {
+      "original_bytes": 415,
+      "original_sha256": "81fca7dfea510ae84c2ac21a258564468712421f2e76ae8ca8d55965d5d710a7",
+      "path": "docs/hq-integration/oracle-execution-20261123/core-thought-signature/focused-45281860828-LAUNCH.json",
+      "stored_bytes": 415,
+      "stored_sha256": "81fca7dfea510ae84c2ac21a258564468712421f2e76ae8ca8d55965d5d710a7"
+    },
+    {
+      "original_bytes": 3473,
+      "original_sha256": "cefa94f04896b74a2b72e6465d89cd5cc1485c02af30b33c87137fcd88076a4a",
+      "path": "docs/hq-integration/oracle-execution-20261123/core-thought-signature/hanlin-f8cf-candidate.json",
+      "stored_bytes": 3473,
+      "stored_sha256": "cefa94f04896b74a2b72e6465d89cd5cc1485c02af30b33c87137fcd88076a4a"
+    },
+    {
+      "original_bytes": 1476,
+      "original_sha256": "71748c98d832fa634b1c343ce0ac73672315716e668cd771593ecdccf226e1e0",
+      "path": "docs/hq-integration/oracle-execution-20261123/core-thought-signature/host-73cbc-candidate.json",
+      "stored_bytes": 1476,
+      "stored_sha256": "71748c98d832fa634b1c343ce0ac73672315716e668cd771593ecdccf226e1e0"
+    },
+    {
+      "original_bytes": 50639,
+      "original_sha256": "f63a8742aee1762cf514e6934231b16bbebb44903a07ed89ee6f12d6344bf519",
+      "path": "docs/hq-integration/oracle-execution-20261123/reader-prebuilt/source-controls39-RESULT.json",
+      "stored_bytes": 50639,
+      "stored_sha256": "f63a8742aee1762cf514e6934231b16bbebb44903a07ed89ee6f12d6344bf519"
+    },
+    {
+      "original_bytes": 2602,
+      "original_sha256": "a73ce6da3ef10975c0b57c91b5f1f299c0704254b356a4066668207a2836bf8a",
+      "path": "docs/hq-integration/oracle-execution-20261123/reader-prebuilt/SOURCE_DELTA.json",
+      "stored_bytes": 2602,
+      "stored_sha256": "a73ce6da3ef10975c0b57c91b5f1f299c0704254b356a4066668207a2836bf8a"
+    }
+  ]
+}

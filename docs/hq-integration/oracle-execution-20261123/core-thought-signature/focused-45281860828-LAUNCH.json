@@ -1,0 +1,10 @@
+{
+  "controller_sha256": "1bfbe4d8324bb93c66a33a994cb93478e545bdd666d797db0c1777dcd2d297ba",
+  "out": "/mnt/development/projects/diagnostics/otzaria-core-thought-signature-20261123/run-45281860828-attempt-1",
+  "pid": 3322800,
+  "run": 45281860828,
+  "single_observer": true,
+  "source": "3f38f1302764635c9991d0d00fd7b12471a5373c",
+  "start_ticks": "700075674",
+  "started_at": "2026-11-23T22:41:24.921103+00:00"
+}
