@@ -1,0 +1,63 @@
+{
+  "initial_staging": {
+    "ok": false,
+    "interpreter": "powershell",
+    "sudo": false,
+    "cwd": null,
+    "cleanup": true,
+    "command": [
+      "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE",
+      "-NoProfile",
+      "-NonInteractive",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-File",
+      "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_8541f71303d44342a04f902e3887ce2b\\sentinelx_bootstrap.ps1",
+      "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_8541f71303d44342a04f902e3887ce2b\\script.ps1"
+    ],
+    "output": "Windows observer lock control failed\r\nAt C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_8541f71303d44342a04f902e3887ce2b\\script.ps1:372 \r\nchar:25\r\n+ if($LASTEXITCODE -ne 0){throw 'Windows observer lock control failed'}\r\n+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : OperationStopped: (Windows observer lock control failed:String) [], RuntimeException\r\n    + FullyQualifiedErrorId : Windows observer lock control failed",
+    "duration": 1.03,
+    "returncode": 1,
+    "hub_request_id": "hreq_8d4c10287be849a1"
+  },
+  "actual_windows_lock": {
+    "ok": true,
+    "interpreter": "powershell",
+    "sudo": false,
+    "cwd": null,
+    "cleanup": true,
+    "command": [
+      "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE",
+      "-NoProfile",
+      "-NonInteractive",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-File",
+      "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_d431a297c963452cbc8b38d33097e52a\\sentinelx_bootstrap.ps1",
+      "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_d431a297c963452cbc8b38d33097e52a\\script.ps1"
+    ],
+    "output": "{\"sentinel_runtime_exists\":true,\"python_commands\":[{\"Name\":\"python\",\"Source\":\"C:\\\\WINDOWS\\\\system32\\\\python\"},{\"Name\":\"python3.exe\",\"Source\":\"C:\\\\Users\\\\DAVID\\\\AppData\\\\Local\\\\Microsoft\\\\WindowsApps\\\\python3.exe\"},{\"Name\":\"py.exe\",\"Source\":\"C:\\\\WINDOWS\\\\py.exe\"}]}\r\n{\"exit_code\":0,\"stdout\":\"\",\"stderr\":\"test_exclusive_observer_lock (__main__.Boundaries.test_exclusive_observer_lock) ... ok\\r\\n\\r\\n----------------------------------------------------------------------\\r\\nRan 1 test in 0.006s\\r\\n\\r\\nOK\\r\\n\",\"secret_action\":\"NOT_RUN\"}",
+    "duration": 1.02,
+    "returncode": 0
+  },
+  "binding": {
+    "ok": true,
+    "interpreter": "powershell",
+    "sudo": false,
+    "cwd": null,
+    "cleanup": true,
+    "command": [
+      "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE",
+      "-NoProfile",
+      "-NonInteractive",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-File",
+      "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_f3290cb9ad214073b803ff2f99dd8c13\\sentinelx_bootstrap.ps1",
+      "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_f3290cb9ad214073b803ff2f99dd8c13\\script.ps1"
+    ],
+    "output": "{\"binding_sha256\":\"62374b35bd3798e6fc7e5eb9f9f4b86d6f97a6763371599c542f3fa7f7993c40\",\"source\":\"fdb78a44778c318b277506f0b09ba91c3b678e91\",\"secret_action\":\"NOT_RUN\",\"ready_for_single_dispatch\":true}",
+    "duration": 0.78,
+    "returncode": 0
+  }
+}

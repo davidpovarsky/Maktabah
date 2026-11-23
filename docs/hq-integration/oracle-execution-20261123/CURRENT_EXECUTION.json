@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "updated_at_utc": "2026-11-23T03:05:00Z",
+  "canonical_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "root_branch": "codex/otzaria-oracle-completion-20261123",
+  "user_instruction": "בעצם, תעשה את הכל בעצמך ותשתמש עם תתי הסוכנים הזמינים לך בצ׳אט פה, בצע הכל עד להשלמה מלאה של המשימות השתמשת בכלי @SentinelX בחשבון המחובר לשרת האורקל ישירות, ועדכן ב @Asana , אחרי כל שלב שאתה מבצע",
+  "lanes": [
+    {
+      "name": "original_rpc_generation",
+      "owner": "/root/original_rpc",
+      "source": "7496e47fa4d37b0117abeae6b35ca5f4c8eaf638",
+      "run": 45101449367,
+      "watcher": "job_f625c73ddf0f",
+      "status": "RUNNING_OR_QUEUED_AT_LAST_OWNER_OBSERVATION",
+      "native_acceptance": false
+    },
+    {
+      "name": "original_sdk_consumer",
+      "owner": "/root/original_sdk",
+      "source": "e827c0cc266a2d8193022b84d5da966ebe345865",
+      "run": 45102176289,
+      "watcher": "job_1b3ab5c8c507",
+      "status": "IN_PROGRESS_AT_LAST_OWNER_OBSERVATION",
+      "native_acceptance": false
+    },
+    {
+      "name": "hanlin_live11",
+      "owner": "/root",
+      "source": "fdb78a44778c318b277506f0b09ba91c3b678e91",
+      "application_source": "438de95a675f34006bee54e339b37d88c87c032a",
+      "run": 45103578190,
+      "watcher": "job_04ece440ed37",
+      "status": "RUNNING",
+      "temporary_secret_cleanup_required": true,
+      "native_acceptance": false
+    },
+    {
+      "name": "library_morph",
+      "owner": "/root/original_rpc",
+      "source": "8d26ecfb3338e2a6806ba8bbffd5f6e99d763795",
+      "status": "PRODUCT_PUBLISHED_CI_SOURCE_GATE_REVIEW",
+      "native_acceptance": false
+    },
+    {
+      "name": "original_editor_stageb",
+      "owner": "/root/original_sdk",
+      "base": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+      "status": "ADMISSION_IMPLEMENTATION_PENDING_AUTHENTIC_SDK_RESULT",
+      "native_acceptance": false
+    },
+    {
+      "name": "original_heart_endpoint_lifetime",
+      "owner": "/root/asana_scope",
+      "base": "7496e47fa4d37b0117abeae6b35ca5f4c8eaf638",
+      "status": "ORIGINAL_NATIVE_RUNTIME_IMPLEMENTATION",
+      "native_acceptance": false
+    }
+  ],
+  "boundaries": {
+    "books_updates": "Live provider still lacks authentic backend/schema/source-digest/migration contract; unchanged reviewed safety path preserved; no payload or user DB mutations",
+    "owner_release_verification_key": "Known required key absent from repository secrets and variables metadata",
+    "physical_ipad": "No physical acceptance performed",
+    "final_frozen_composition": "Not yet assembled; no Native116 or Release114 transferred to changing candidate"
+  },
+  "asana_comments": [
+    "1220774175256917",
+    "1220774030259718",
+    "1220774398081259",
+    "1220774247497147",
+    "1220774399511239",
+    "1220774208187541",
+    "1220774511511447",
+    "1220774463848412"
+  ]
+}

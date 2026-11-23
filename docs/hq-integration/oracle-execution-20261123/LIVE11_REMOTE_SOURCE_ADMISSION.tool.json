@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "interpreter": "python3",
+  "sudo": false,
+  "cwd": null,
+  "cleanup": true,
+  "command": [
+    "python3",
+    "/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_9e6c30467e304adea959e6813d1bc84d/script.py"
+  ],
+  "output": "{\"remote_head\": \"fdb78a44778c318b277506f0b09ba91c3b678e91\", \"tree\": \"992cadce170b00a4220fe49625880ce199da6fa7\", \"source_guard_exit\": 0, \"source_guard_output\": \"{\\n  \\\"application_source_sha\\\": \\\"438de95a675f34006bee54e339b37d88c87c032a\\\",\\n  \\\"checkout_sha\\\": \\\"fdb78a44778c318b277506f0b09ba91c3b678e91\\\",\\n  \\\"credential_accessed\\\": false,\\n  \\\"current_delta\\\": \\\"Reviewed diagnostic-only session changes; original assertions, authority and provider behavior retained\\\",\\n  \\\"current_source_tree_matches_historical\\\": false,\\n  \\\"historical_no_send_run\\\": 45041601629,\\n  \\\"historical_product_trees_match_live10\\\": true,\\n  \\\"native_live11_result\\\": \\\"NOT_RUN_BY_THIS_CHECK\\\",\\n  \\\"native_no_send_reexecuted\\\": false,\\n  \\\"provider_called\\\": false,\\n  \\\"source_admission_sha256\\\": \\\"19b418ece9c78f54667439ec9198d77c76886ba2ad729775eb9ff8f0090837d2\\\",\\n  \\\"status\\\": \\\"SOURCE_ADMISSION_PASS\\\"\\n}\\n\", \"stderr\": \"\", \"status\": \"\"}\n{\"binding_path\": \"/mnt/development/projects/worktrees/Maktabah-oracle-completion-20261123/docs/hq-integration/oracle-execution-20261123/LIVE11_EXECUTION_BINDING.json\", \"binding_sha256\": \"62374b35bd3798e6fc7e5eb9f9f4b86d6f97a6763371599c542f3fa7f7993c40\"}",
+  "duration": 1.97,
+  "returncode": 0
+}

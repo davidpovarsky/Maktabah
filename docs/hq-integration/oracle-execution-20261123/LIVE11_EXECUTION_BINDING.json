@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "repository": "davidpovarsky/Maktabah",
+  "branch": "codex/otzaria-hanlin-live11-20261123",
+  "checkout_sha": "fdb78a44778c318b277506f0b09ba91c3b678e91",
+  "application_source_sha": "438de95a675f34006bee54e339b37d88c87c032a",
+  "source_review_status": "REVIEWED_FOR_ONE_DIAGNOSTIC_LIVE_RUN",
+  "workflow": {
+    "path": ".github/workflows/otzaria-hanlin-live-native.yml",
+    "git_blob": "2bf1a6c1ff9ceac5452221caa712add06c8dc7e9",
+    "sha256": "74709bd340e81464e3ae595eba3d552bab0eb9eef6dbccde90b923bfe197691a"
+  },
+  "admission": {
+    "path": "docs/hq-integration/hanlin-live11-20261123/LIVE11_SOURCE_ADMISSION.json",
+    "git_blob": "1b05832714235ebf8eb9529109bddbb222f63016",
+    "sha256": "19b418ece9c78f54667439ec9198d77c76886ba2ad729775eb9ff8f0090837d2"
+  },
+  "controller": {
+    "source": "b960fee17818698080bcf9fd54abfd136e92089a",
+    "sha256": "56cc1d4461ed7ffe3dc4539d69a93ebbe3e8b8120f353655c02c9eb4ac302271"
+  },
+  "historical_no_send_scope": "45041601629 on6591bba; current diagnostic-only Source delta is explicitly not a new no-send PASS",
+  "new_provider_probe_requests": 0
+}

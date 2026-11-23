@@ -96,3 +96,17 @@ See `docs/hq-integration/search-openresults-20261120/REVIEW.md` and the exact co
 ## 2026-11-20 — Typed action Native acceptance trigger
 
 Current explicit owner authorization covers the five DEBUG-only original Search view lines. The original mounted view invokes the existing Core action under miniTest10 and UUID nonce guards; no engine, renderer, receipt or annotation persistence is replaced. Exact hunk, source evidence, review, limitations and rollback: [Native action review](../hq-integration/actions-native-20261120/REVIEW.md). Four syntax parses and the independent source verifier passed; Apple SDK and all six Native cases remain NOT_RUN pending the parent integration freeze.
+
+## 2026-11-23 — Library search morph candidate under standing owner authorization
+
+The owner explicitly requested full execution with the available ChatGPT subagents, direct Oracle work through SentinelX, and Asana updates after each stage. The standing authorization recorded in AGENTS.md on 2026-11-19 applies; this entry does not claim that the owner reviewed an unseen exact diff. Current source task:1220036884173010; execution milestone comment:1220774511511447.
+
+Candidate8d26ecfb3338e2a6806ba8bbffd5f6e99d763795 is published on codex/otzaria-library-morph-20261123 from canonical1969b2065469b55e38e42cbb838a469ffa6a80f7. It is not yet integrated into this root branch. The original provenance pin remains d46af139b3a265399c16d87f5923acd8e3444024. Current upstream6069ad9068ffaabe53f5cfbab9351d5cbbb5179c was observed read-only; no upstream merge was performed.
+
+The only new upstream composition hook is the three-line split-level overlay in Source/UI/iOS/Views/iPadLayout.swift. The actual native toolbar and detail content have separate presentation graphs; the prior detail-child overlay did not provide hit-test bounds covering the toolbar. The containing NavigationSplitView is the smallest existing public SwiftUI seam that owns both compact and expanded surfaces. Root-controller child injection, a duplicate reader, and a second visible search shell were rejected. The genuine native ToolbarItem Button remains the activation target.
+
+The vendored CommandPaletteView receives default-preserving isActive/drawsSurface options so a retained palette can release real focus and accessibility and let its single outer container own the surface. Original command selection, query binding, rows and execution remain in the original palette. Remaining presentation/geometry/motion changes are downstream-owned. Detailed ownership, exact supplied references and rollback are recorded in docs/hq-integration/library-morph-20261123/ on the candidate branch.
+
+Root reviewed all six product file diffs and the additive UI tests. Existing original test bodies were preserved. Linux syntax parsing and source checks do not establish Apple typing, appearance, input, RTL, keyboard, resize, accessibility or physical-device acceptance. Those gates remain open. The historical composition checker is being updated only for the explicitly relocated shell; original reader/profile/sidebar protection and native runtime assertions remain required. Any checker delta requires a separate root diff review before its CI publication.
+
+Rollback is limited to the isolated candidate's product delta and its associated source-bound CI continuation; preserve canonical user data and all historical evidence. Re-review at the next upstream synchronization or any change to these exact composition boundaries.
