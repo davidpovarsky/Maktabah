@@ -1,0 +1,60 @@
+{
+  "source_before_after_exact": true,
+  "source_context_keys": [
+    "application_source_sha",
+    "application_trees",
+    "binaries",
+    "checkout_sha",
+    "execution_inputs",
+    "generated_project_sha256",
+    "original_build_status",
+    "reviewed_source_sha",
+    "workspace_sha256"
+  ],
+  "source_identity": {
+    "application_source_sha": "438de95a675f34006bee54e339b37d88c87c032a",
+    "checkout_sha": "fdb78a44778c318b277506f0b09ba91c3b678e91",
+    "generated_project_sha256": "841620c3fbb1210c96ee76d76e723206b8f52d82a733cc733d3bf6be3b36e7ec",
+    "original_build_status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+    "reviewed_source_sha": "438de95a675f34006bee54e339b37d88c87c032a",
+    "workspace_sha256": "d27bfdb7fb6d0dc873c287f7c4b84c161de200fec99b9a0fb11eec850896eb3f"
+  },
+  "source_input_counts": {
+    "application_trees": 3,
+    "binaries": 5,
+    "execution_inputs": 282
+  },
+  "build_identity": {
+    "status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+    "checkout_sha": "fdb78a44778c318b277506f0b09ba91c3b678e91",
+    "application_source_sha": "438de95a675f34006bee54e339b37d88c87c032a",
+    "application_trees": {
+      "Source": "4f8c8d01398bec59abd96f8021a876726ad21149",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078"
+    }
+  },
+  "hashes": {
+    "verified-11.summary.json": {
+      "artifact_member_sha256": "d1f7a93702215c85ca749aa34d7c374c8d0948cf404239ffd620eb410a8f53be",
+      "declared_semantic_json_sha256": "fb264bdb45a0267e33565bc9ba7d60e605e0432e2d2554a610b2097bf504c2ab",
+      "json_dumps_sort_keys_sha256": "fb264bdb45a0267e33565bc9ba7d60e605e0432e2d2554a610b2097bf504c2ab",
+      "canonical_match": true
+    },
+    "verified-11.tests.json": {
+      "artifact_member_sha256": "a8a24e18d44b05471776348ce7e4b139f0a709289cdaae2baf515940aa257142",
+      "declared_semantic_json_sha256": "3770d4e59609a981a62bb17ef497156d88a278913476cc04ef54767c779343f2",
+      "json_dumps_sort_keys_sha256": "3770d4e59609a981a62bb17ef497156d88a278913476cc04ef54767c779343f2",
+      "canonical_match": true
+    }
+  },
+  "actual_visual_members_present": false,
+  "raw_reference_first_check": "Direct file-byte digest differs from documented semantic JSON digest; reviewer interpretation corrected, no runtime source drift",
+  "hash_producer": {
+    "source": "fdb78a44778c318b277506f0b09ba91c3b678e91",
+    "path": "tools/verify_xcresult_zero_skips.py",
+    "sha256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6",
+    "git_blob": "7f3eda3e64f85f45bd6879ad867844c49a46dc6b",
+    "hash_producer_excerpt": "    parser.add_argument('--out', type=Path)\n    args = parser.parse_args()\n    report = {'status': 'FAIL', 'scope': args.scope, 'database_open': 'NOT_VERIFIED_BY_TEST_COUNTS'}\n    try:\n        if args.out:\n            args.out.parent.mkdir(parents=True, exist_ok=True)\n        summary = read_xcresult(args.xcresult, 'summary')\n        tree = read_xcresult(args.xcresult, 'tests')\n        for label, value in [('summary', summary), ('tests', tree)]:\n            encoded = json.dumps(value, sort_keys=True).encode()\n            report[label + '_sha256'] = hashlib.sha256(encoded).hexdigest()\n            if args.out:\n                args.out.with_suffix('.' + label + '.json').write_text(json.dumps(value, indent=2) + '\\n')\n        report.update(verify(summary, tree, args.log.read_text(encoding='utf-8'), args.required_case,\n                             args.min_tests, min_total_tests=args.min_total_tests, required_executed_cases=args.required_executed_case,\n                             expected_device=args.expected_device, expected_os_major=args.expected_os_major))\n    except (ValueError, OSError, subprocess.SubprocessError) as error:"
+  }
+}

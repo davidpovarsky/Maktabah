@@ -1,0 +1,16 @@
+{
+  "source": "59d229f2e57b6e868d817696d4609e1ed170a6c9",
+  "reviewer": "/root",
+  "actual_afterimages_equal_original_sources": 8,
+  "existing_preimages_equal_original_sources": 5,
+  "actual_generated_outputs": 5,
+  "only_approved_product_paths_changed": true,
+  "native_tests_executed": 0,
+  "qualification_transferred": false,
+  "hand_authored_diffs_reviewed": [
+    "OriginalAnnotationSchemaRegistration.swift",
+    "ActiveSpaceManager.swift",
+    "Invocation.swift"
+  ],
+  "reviewed_scope": "Original closed selection/permissions and history copyout only; native Lib/Swift/production gate not transferred"
+}

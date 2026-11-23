@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "source": "53b52d380c3a87d25275bb391367b37eb5428d3d",
+  "parent": "bde86a17ec2fbc266b7816965e3781e1eb22da3b",
+  "tree": "231a428bddf865a5e9c230ecd1d242203068929c",
+  "branch": "codex/otzaria-heart-endpoint-20261123",
+  "manifest_sha256": "2b5ef127ba205b730b4c3757c87acdd4aecc30f89bca50b629238432a79fa460",
+  "workflow_sha256": "5658b0d526e2b5c7b002727350b9ff2a7ee8988f53f871ac1c0e90688f6977bb",
+  "run_id": 45108043207,
+  "watcher": "job_d44e7675414e",
+  "scope": "Five real original native endpoint cases",
+  "actual_native_result": "PENDING"
+}

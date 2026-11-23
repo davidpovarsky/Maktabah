@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "run_id": 45103578190,
+  "attempt": 1,
+  "source": "fdb78a44778c318b277506f0b09ba91c3b678e91",
+  "application_source": "438de95a675f34006bee54e339b37d88c87c032a",
+  "status": "FAILURE",
+  "original_app_build": "PASS",
+  "native_case": {
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "duration_seconds": 323.5268449783325
+  },
+  "artifact": 14788612839,
+  "artifact_bytes": 90039,
+  "artifact_sha256": "6fc18f6d96e3f12c36b888eabdefdb97cded20706f04faa7e513863dfc015b65",
+  "zip_members": 23,
+  "admission_rows": 22,
+  "source_before_after": "EXACT_BYTES",
+  "source_inputs": 282,
+  "binaries": 5,
+  "summary_test_tree_canonical_hashes": "MATCH_ORIGINAL_VERIFIER_ENCODING",
+  "raw_xcresult_bundle_verified": false,
+  "actual_screenshots_or_hierarchy_available": false,
+  "observed_boundary": "Consent/configuration and client send/stream open/finish observed; no tool/Host event; hasActivities=false, hasSources=false",
+  "inference_limit": "Cannot distinguish text-only response, cancellation or stream end without terminal event using current journal",
+  "secret_cleanup": {
+    "deleted_http": 204,
+    "absent_http": 404
+  },
+  "new_provider_runs_started_after_failure": 0
+}
