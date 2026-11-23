@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "repository": "davidpovarsky/Maktabah",
+  "branch": "codex/otzaria-hanlin-live11-20261123",
+  "baseline_live10_source": "9533a8017adadecf770b19811e72b495f32e90f7",
+  "application_source_sha": "438de95a675f34006bee54e339b37d88c87c032a",
+  "application_trees": {
+    "Source": "4f8c8d01398bec59abd96f8021a876726ad21149",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "f480f0cd64100f752620fbb5a22a5b77fb612fae"
+  },
+  "diagnostic_commit": "e7f4098e9282d58b965cc6a886b79f74ff940117",
+  "diagnostic_parent": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "session_path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+  "session_sha256": "679269f6eb9c525bcbffb44530250a42f0b607e3e3ffc21fe2896364cb1e1abc",
+  "driver_path": "Scripts/CI/runtime27-hanlin-live.py",
+  "driver_sha256": "2208187d4b431cf2d80125bb054b25518f6f01e768acc90d54f2c89779eb2ba6",
+  "inputs_path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+  "inputs_sha256": "441929377018b6a3c586efb3958490ac490c904329ca2a53ba425e71baa5daa1",
+  "workflow_path": ".github/workflows/otzaria-hanlin-live-native.yml",
+  "workflow_sha256": "74709bd340e81464e3ae595eba3d552bab0eb9eef6dbccde90b923bfe197691a",
+  "selector": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+  "model": "gemini-3.5-flash-lite",
+  "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/",
+  "credential_name": "OTZARIA_LIVE_GEMINI_API_KEY",
+  "trigger": "workflow_dispatch_only_after_coordinator_owned_credential_preparation",
+  "historical_no_send": {
+    "run_id": 45041601629,
+    "source": "6591bba49d2b5a28d02b763c4360406843fce4cf",
+    "artifact_id": 14763633318,
+    "artifact_sha256": "e86d64c98c774b3e6e01611d46b2ab753c7c8b145643d6b654abfc6c2fb1b2b6",
+    "original_result": "ONE_ACTUAL_NATIVE_CASE_PASSED",
+    "reexecuted": false,
+    "current_full_source_tree_equal": false,
+    "reuse_basis": "All original product/test components identical except reviewed fixed-enum diagnostic additions; no Send behavior or source receipt acceptance is inferred"
+  },
+  "live11_native_result": "NOT_RUN",
+  "provider_called_by_preparation": false,
+  "credential_accessed_by_preparation": false
+}
