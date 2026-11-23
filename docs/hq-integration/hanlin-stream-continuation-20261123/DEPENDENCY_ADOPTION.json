@@ -1,0 +1,98 @@
+{
+  "apple_verification": "APPLE_THOUGHT_SIGNATURE_CONTINUATION_QUALIFIED",
+  "base": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "candidate": "f8cf6ca543c5ceed05a60141644664c93e4565b4",
+  "core_focused_run": {
+    "actual_pass": 1,
+    "artifact_bytes": 2728267,
+    "artifact_id": 14869369511,
+    "artifact_sha256": "5862195ce9de4fafac90cfe85dcbff3e4fd72c81c9286b7f8b37ce1597b8b2ae",
+    "conclusion": "success",
+    "fail": 0,
+    "not_run": 0,
+    "run_attempt": 1,
+    "run_id": 45281860828,
+    "skip": 0,
+    "source": "3f38f1302764635c9991d0d00fd7b12471a5373c",
+    "test_binary_sha256": "31ac0de618cf34dedd61a0c1d0d443d6ede4dcf5d3070969a62275b981c68f09",
+    "xml_sha256": "79c5377aef943cc1b19e0ad9cf59d3ad682f286240aaead0c55edc2048308b26"
+  },
+  "live_result": "NOT_RUN",
+  "parent": "ca3c91f2233bf5c77990643b29a874aac8704639",
+  "paths": [
+    {
+      "after_sha256": "de2a263d5203cd65d0154b6898bfc74fc620ed3696d5a967e3760b82348feaa7",
+      "before_sha256": "aabb429fa9f62273e681917748c5d4528fbac58596245216dec36f4bc27d224a",
+      "path": "AI_HLY.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "whole_inverse_exact": true
+    },
+    {
+      "after_sha256": "309516fa32d1cfc02a41e84e4c933a488514584ab988484125b50bd765ed0ba3",
+      "before_sha256": "9ed17ca6cd2647c50e17521ea6c69c326b551a1ee13f2e1f87c658f92e55d2ea",
+      "path": "Packages/HanlinAgentSDK/Package.resolved",
+      "whole_inverse_exact": true
+    },
+    {
+      "after_sha256": "c3bb3448ea9982002427728db59de9ff83de7d456141c3bdf2ee7377b6c37796",
+      "before_sha256": "9af2a15811e934e4082360e46f368ea2b0d5ba5d97a77d8bb0ddb34d48e0666b",
+      "path": "Packages/HanlinAgentSDK/Package.swift",
+      "whole_inverse_exact": true
+    },
+    {
+      "after_sha256": "3361efbe824e882732d5736c3a212da5d2feb879f96e8da75b7ae055f946914c",
+      "before_sha256": "64abcc6af574107b111a5facbc00f70259aa0a809ab2fc6a5c0a571b5b10ea04",
+      "path": "Packages/HanlinParityMiniApp/Package.resolved",
+      "whole_inverse_exact": true
+    },
+    {
+      "after_sha256": "64a09a8b7a5be058e122cf8b171a94a4541a7ff815faacdd068c753c23f9c61a",
+      "before_sha256": "7882ef847a4aaa1bfa2ee128122393cf718f393485d9658bb93f402f740f2c17",
+      "path": "Packages/HanlinPlatform/Package.resolved",
+      "whole_inverse_exact": true
+    },
+    {
+      "after_sha256": "24d545890f1627da44141263ef62eb065ec22b7c007fde446f16d6dd1ac6964b",
+      "before_sha256": "e9ea19d4bc3fe3873137e0c2e32cda50892ecd39103f3a63250acaa8f373e458",
+      "path": "Packages/HanlinPlatform/Package.swift",
+      "whole_inverse_exact": true
+    },
+    {
+      "after_sha256": "5af1ff6de7e6acf381022cb72ce7c25656e87847c9821a11c890bb437795fdc5",
+      "before_sha256": "6c7a3f29ad73f35a20ed25f838c673cf2970398c18c4b0429f55b56a98a9f3ac",
+      "path": "Packages/HanlinSefariaMiniApp/Package.resolved",
+      "whole_inverse_exact": true
+    },
+    {
+      "after_sha256": "650ac95aa961e167bf5aabe4049b1028973e805c8d747865914f7b579d84ba80",
+      "before_sha256": "402e58427b5cffccf4e2ca1cfc82785266433a62b8fbb96ba6711cff75dc2a28",
+      "path": "Packages/HanlinTextStudioMiniApp/Package.resolved",
+      "whole_inverse_exact": true
+    },
+    {
+      "after_sha256": "a7e3478fce75e9de701435f9425031233a83c623426b2a9458e45b0774343584",
+      "before_sha256": "3591fbb4df85047710671391b83116e4725b44cceebb315aadd6d08dc48c555c",
+      "path": "Packages/HanlinWikipediaMiniApp/Package.resolved",
+      "whole_inverse_exact": true
+    }
+  ],
+  "previous_full_suite": {
+    "actual_methods": 4194,
+    "artifact_id": 14867946517,
+    "artifact_sha256": "2551d96f45597c6263af456321eec7a53a13f0093d142f9e74a4b4c9f715b5f4",
+    "conclusion": "failure",
+    "expectation_failures": 2,
+    "fail": 1,
+    "not_run": 0,
+    "pass": 4193,
+    "run_attempt": 1,
+    "run_id": 45275019854,
+    "skip": 0,
+    "source": "d4286d1afa661af930f7addd6f63fff0effe4414",
+    "test_binary_hash_retained": false,
+    "xml_sha256": "89e344224390072e09dfa5eb89282a816eac570e364c21cd4da9b4a1428ce6ad"
+  },
+  "qualified_methods": 4194,
+  "remote_exact_and_clean": true,
+  "swift_ai_sdk_source": "3f38f1302764635c9991d0d00fd7b12471a5373c",
+  "tree": "28e3f2b77e5287a3c63ef491bafd5019889a571e"
+}
