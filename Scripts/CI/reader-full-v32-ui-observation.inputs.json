@@ -129,7 +129,7 @@
     "tools/verify_xcresult_zero_skips.py": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6",
     "Scripts/CI/runtime27-final-source-composition.inputs.json": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0",
     "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
-    "Scripts/CI/mac-prepared-inputs.py": "54fdda1bd8065ef150c0b3ea9fe8c82b545a854cf6ab3d15f48738eeac3fcd4a"
+    "Scripts/CI/mac-prepared-inputs.py": "38f403c94b4289ec43e13bbb97d7ce9b288a353e710e4a406a50f05dcc08a6c9"
   },
   "torah_inspector_commit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
   "source_status": "COMPOSED_SOURCE_FROZEN_NATIVE_SDK_AND_SAME_BUILD_INSTALL_ADMISSION_REQUIRED",

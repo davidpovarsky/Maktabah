@@ -154,12 +154,22 @@ def canonical_project(root):
             "bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
 
 def code_images(root):
-    result = {}
+    result, required = {}, []
+    magic = {b"\xce\xfa\xed\xfe", b"\xcf\xfa\xed\xfe", b"\xfe\xed\xfa\xce", b"\xfe\xed\xfa\xcf",
+             b"\xca\xfe\xba\xbe", b"\xbe\xba\xfe\xca", b"\xca\xfe\xba\xbf", b"\xbf\xba\xfe\xca"}
     for name in PRODUCT_PATHS:
         bundle = root / name
         info = plistlib.loads((bundle / "Info.plist").read_bytes())
-        binary = bundle / info["CFBundleExecutable"]
-        result[binary.relative_to(root).as_posix()] = record(binary)
+        required.append((bundle / info["CFBundleExecutable"]).relative_to(root).as_posix())
+        for path in bundle.rglob("*"):
+            require(not path.is_symlink(), "Prior native product contains an unexpected alias")
+            if not path.is_file():
+                continue
+            with path.open("rb") as stream:
+                header = stream.read(8)
+            if header[:4] in magic or header == b"!<arch>\n":
+                result[path.relative_to(root).as_posix()] = record(path)
+    require(all(path in result for path in required), "Prior original app/UI-runner images are absent")
     return result
 
 def assert_qualified_receipt(receipt):

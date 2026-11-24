@@ -108,6 +108,21 @@ p=subprocess.run([__import__("sys").executable, str(ROOT/"Scripts/CI/hq-stage2-f
                   "--prepared-inputs-sha256","a"*64],text=True,capture_output=True)
 assert p.returncode != 0 and "Prepared inputs may only continue into original SDK admission" in p.stderr
 results.append({"case":"resume_cannot_skip_original_sdk_admission","status":"PASS"})
-assert len(results)==13
+with tempfile.TemporaryDirectory(prefix="otzaria-debug-image-control-") as temporary:
+    import plistlib
+    root=Path(temporary)
+    for name in mod["PRODUCT_PATHS"]:
+        bundle=root/name;bundle.mkdir(parents=True,exist_ok=True)
+        (bundle/"Info.plist").write_bytes(plistlib.dumps({"CFBundleExecutable":"control-executable"}))
+        (bundle/"control-executable").write_bytes(b"\xcf\xfa\xed\xfe"+b"control image")
+    debug=root/mod["PRODUCT_PATHS"][0]/"Maktabah.debug.dylib"
+    debug.write_bytes(b"\xcf\xfa\xed\xfe"+b"actual app-code container fixture")
+    images=original_images(root)
+    assert debug.relative_to(root).as_posix() in images and len(images)==4
+    previous=images[debug.relative_to(root).as_posix()]
+    debug.write_bytes(b"\xcf\xfa\xed\xfe"+b"replaced app-code container fixture")
+    assert original_images(root)[debug.relative_to(root).as_posix()] != previous
+    results.append({"case":"debug_dylib_bytes_are_part_of_prior_image_identity","status":"PASS"})
+assert len(results)==14
 print(json.dumps({"status":"PASS","scope":"Synthetic structure and real-file/Git controls only; no SDK, app build or native tests",
                   "checks":len(results),"results":results},indent=2))
