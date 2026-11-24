@@ -241,7 +241,10 @@ def preflight(config):
     result = {"checkout_sha": capture("git", "rev-parse", "HEAD"), "application_source_sha": config["application_source_sha"],
               "validator_sha256": digest(Path(__file__)), "inputs_sha256": digest(INPUTS),
               "workflow_sha256": digest(ROOT / ".github/workflows/sefaria-embedded-validation.yml"),
-              "project_sha256": digest(ROOT / "Maktabah.xcodeproj/project.pbxproj"), "application_trees": {}}
+              "project_sha256": digest(ROOT / "Maktabah.xcodeproj/project.pbxproj"),
+              "canonical_project_sha256": hashlib.sha256(subprocess.check_output(
+                  ["git", "show", "HEAD:Maktabah.xcodeproj/project.pbxproj"], cwd=ROOT)).hexdigest(),
+              "application_trees": {}}
     expected = os.environ.get("EXPECTED_CHECKOUT_SHA")
     require(not expected or result["checkout_sha"] == expected, "Wrong immutable checkout")
     for path, expected_tree in config["application_trees"].items():
@@ -764,7 +767,15 @@ def main():
                     help="Restore and verify the original inputs for a later Release build; no Debug rebuild")
     ap.add_argument("--preparation-evidence-dir",
                     help="Separate build/ evidence directory required for input-only preparation")
+    ap.add_argument("--prepared-inputs-manifest",
+                    help="Exact local capture from an actual successful prior app/UI-runner build")
+    ap.add_argument("--prepared-inputs-sha256", help="Reviewed SHA256 of that immutable capture")
     args = ap.parse_args()
+    require(bool(args.prepared_inputs_manifest) == bool(args.prepared_inputs_sha256),
+            "Prepared input reuse requires both the capture and its reviewed SHA256")
+    require(not args.prepared_inputs_manifest or (args.original_editor_admission
+            and args.build_for_testing and not args.preflight_only and not args.prepare_inputs_only),
+            "Prepared inputs may only continue into original SDK admission and a real native build")
     require(not args.original_editor_admission or
             (args.build_for_testing and not args.preflight_only and not args.prepare_inputs_only),
             "Original editor qualification requires the real Debug Simulator test build")
@@ -794,11 +805,16 @@ def main():
         report["sdk_path"] = capture("xcrun", "--sdk", "iphonesimulator", "--show-sdk-path")
         report["sdk_version"] = capture("xcrun", "--sdk", "iphonesimulator", "--show-sdk-version")
         report["developer_dir"] = os.environ.get("DEVELOPER_DIR") or capture("xcode-select", "-p")
-        prepare_original_hanlin(config, report)
-        prepare_react_sources(config, report)
-        restore(config, report)
-        rebuild_matching_zayit_framework(report)
-        prepare_matching_embedded_bundle(config, report)
+        if args.prepared_inputs_manifest:
+            prepared = runpy.run_path(str(ROOT / "Scripts/CI/mac-prepared-inputs.py"))
+            prepared["admit"](ROOT, args.prepared_inputs_manifest, args.prepared_inputs_sha256, config, report)
+            prepare_original_hanlin(config, report, verify_only=True)
+        else:
+            prepare_original_hanlin(config, report)
+            prepare_react_sources(config, report)
+            restore(config, report)
+            rebuild_matching_zayit_framework(report)
+            prepare_matching_embedded_bundle(config, report)
         install_real_pods(report, original_editor=bool(args.original_editor_admission))
         for framework, header in [("Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework", "otzaria_search_engine.h"),
                                   ("Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework", "maktabah_zayit_search.h")]:

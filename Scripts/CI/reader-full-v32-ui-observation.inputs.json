@@ -43,6 +43,7 @@
     "Scripts/CI/hq-original-editor-distribution.py",
     "Scripts/CI/hq-stage2-focused-apple.inputs.json",
     "Scripts/CI/hq-stage2-focused-apple.py",
+    "Scripts/CI/mac-prepared-inputs.py",
     "Scripts/CI/library-morph-focused-native.inputs.json",
     "Scripts/CI/library-morph-focused-native.py",
     "Scripts/CI/native-cohort-artifacts.py",
@@ -88,7 +89,7 @@
     "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "28d5dbc2a6672b39b4083ff9f50f25b338e177bb33ac5c32da474b2baf1b7d4a",
     "Scripts/CI/hq-original-editor-distribution.py": "a36b6a73b5b3291080556ee3c107aaf88f2c2a112d526dee0ee6f427a197e62e",
     "Scripts/CI/hq-stage2-focused-apple.inputs.json": "8c3416d79efd97e73c5d840e9466deeff1601114c0d632faff255ace9aa3082c",
-    "Scripts/CI/hq-stage2-focused-apple.py": "8ba3b2e79d1ff2526fb32caae2a84efc1bd69b594dac60069d97f16e4b2208fb",
+    "Scripts/CI/hq-stage2-focused-apple.py": "21c9d04c3b08463972f1083b7dadce425bba25f72e3153ae03f5e9c881d99e7b",
     "Scripts/CI/library-morph-focused-native.inputs.json": "2e61c9a97a7cb3862fdf1c716575541d322b3ca0d0dbe381da43f32ca4071e4d",
     "Scripts/CI/library-morph-focused-native.py": "13d9c4dbb24591b6406e6a3da5c0d619c5785c726d894182383d899ce9373fc3",
     "Scripts/CI/native-cohort-artifacts.py": "cf7092191b7058041fe894673380865c9048bab15e224a027b34687123082b03",
@@ -127,7 +128,8 @@
     "docs/hq-integration/reader-full-v32-ui-observation-20261123/FullV32ObservationCatalog.swift": "ba59641e131cc9ee625ecd5b042b516ac5d971333e635edda9b533ea29105e70",
     "tools/verify_xcresult_zero_skips.py": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6",
     "Scripts/CI/runtime27-final-source-composition.inputs.json": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0",
-    "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea"
+    "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
+    "Scripts/CI/mac-prepared-inputs.py": "54fdda1bd8065ef150c0b3ea9fe8c82b545a854cf6ab3d15f48738eeac3fcd4a"
   },
   "torah_inspector_commit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
   "source_status": "COMPOSED_SOURCE_FROZEN_NATIVE_SDK_AND_SAME_BUILD_INSTALL_ADMISSION_REQUIRED",
