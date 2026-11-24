@@ -13,7 +13,8 @@ CI = ROOT / 'Scripts/CI'
 NATIVE = runpy.run_path(str(CI / 'runtime27-original-editor-native.py'))
 MAC = runpy.run_path(str(CI / 'original_editor_mac_source.py'))
 MANIFEST = CI / 'runtime27-original-editor-mac-source.inputs.json'
-CONFIG = json.loads(MANIFEST.read_bytes())
+ENVELOPE = json.loads(MANIFEST.read_bytes())
+CONFIG = ENVELOPE['retained_dependency_leaf']
 
 
 class MacSourceAdmission(unittest.TestCase):
@@ -23,25 +24,28 @@ class MacSourceAdmission(unittest.TestCase):
         current = MAC['verify'](ROOT, MANIFEST, NATIVE['MAC_SOURCE_SHA256'])
         self.assertEqual(historic['accepted_source_objects_verified'], 18)
         self.assertEqual(current['additional_product_objects_verified'], 3)
+        self.assertEqual(current['current_product_objects_verified'], 1)
+        self.assertTrue(current['new_native_build_required'])
         self.assertFalse(historic['native_stageb_qualified'])
         self.assertFalse(current['native_stageb_qualified'])
         self.assertTrue(current['new_runtime_acceptance_required'])
 
     def test_declared_leaf_cannot_replace_an_accepted_source_object(self):
-        config = copy.deepcopy(CONFIG)
-        config['product_delta'][0]['after']['object'] = '0' * 40
+        config = copy.deepcopy(ENVELOPE)
+        config['retained_dependency_leaf']['product_delta'][0]['after']['object'] = '0' * 40
         raw = (json.dumps(config) + '\n').encode()
         with tempfile.TemporaryDirectory(prefix='otzaria-mac-source-control-') as directory:
             path = Path(directory) / 'changed.json'
             path.write_bytes(raw)
-            with self.assertRaisesRegex(RuntimeError, 'exact accepted object'):
+            with self.assertRaisesRegex(RuntimeError, 'retained dependency manifest'):
                 MAC['verify'](ROOT, path, hashlib.sha256(raw).hexdigest())
 
     def test_new_leaf_rejects_undeclared_engine_or_artifact_change(self):
         binding = CONFIG['build_inputs']
         before = json.loads(subprocess.check_output([
             'git', 'show', CONFIG['historical_control_source'] + ':' + binding['path']], cwd=ROOT))
-        current = json.loads((ROOT / binding['path']).read_bytes())
+        current = json.loads(subprocess.check_output([
+            'git', 'show', MAC['CURRENT_CONTROL'] + ':' + binding['path']], cwd=ROOT))
         changed = copy.deepcopy(current)
         changed['artifacts'][0]['id'] += 1
         with self.assertRaisesRegex(RuntimeError, 'undeclared build inputs'):
@@ -51,11 +55,32 @@ class MacSourceAdmission(unittest.TestCase):
         binding = copy.deepcopy(CONFIG['build_inputs'])
         before = json.loads(subprocess.check_output([
             'git', 'show', CONFIG['historical_control_source'] + ':' + binding['path']], cwd=ROOT))
-        current = json.loads((ROOT / binding['path']).read_bytes())
+        current = json.loads(subprocess.check_output([
+            'git', 'show', MAC['CURRENT_CONTROL'] + ':' + binding['path']], cwd=ROOT))
         before['artifacts'][0]['id'] += 1
         current['artifacts'][0]['id'] += 1
         with self.assertRaisesRegex(RuntimeError, 'retained engine/resource/artifact'):
             MAC['verify_build_input_delta'](before, current, binding)
+
+
+    def test_composer_leaf_cannot_replace_its_reviewed_object(self):
+        config = copy.deepcopy(ENVELOPE)
+        config['current_product_leaf']['product_delta'][0]['after']['object'] = '0' * 40
+        raw = (json.dumps(config) + '\n').encode()
+        with tempfile.TemporaryDirectory(prefix='otzaria-composer-source-control-') as directory:
+            path = Path(directory) / 'changed.json'
+            path.write_bytes(raw)
+            with self.assertRaisesRegex(RuntimeError, 'exact reviewed source object'):
+                MAC['verify'](ROOT, path, hashlib.sha256(raw).hexdigest())
+
+    def test_composer_leaf_cannot_change_retained_artifacts(self):
+        binding = ENVELOPE['current_product_leaf']['build_inputs']
+        before = json.loads(subprocess.check_output([
+            'git', 'show', MAC['CURRENT_CONTROL'] + ':' + binding['path']], cwd=ROOT))
+        after = json.loads((ROOT / binding['path']).read_bytes())
+        after['artifacts'][0]['id'] += 1
+        with self.assertRaisesRegex(RuntimeError, 'undeclared build inputs'):
+            MAC['verify_current_build_input_delta'](before, after, binding)
 
 
 if __name__ == '__main__':

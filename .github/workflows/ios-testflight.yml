@@ -574,11 +574,15 @@ jobs:
             echo "::error::Missing one of the App Store Connect API credentials: ASC_KEY_P8, ASC_KEY_ID, ASC_ISSUER_ID"
             exit 1
           fi
-          mkdir -p "$HOME/.appstoreconnect/private_keys" "$HOME/.private_keys"
-          key_path="$HOME/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID_VALUE}.p8"
+          [[ "$ASC_KEY_ID_VALUE" =~ ^[A-Z0-9]{10}$ ]] || { echo "::error::Invalid App Store Connect key ID"; exit 1; }
+          asc_key_dir="$RUNNER_TEMP/chavrusatext-asc-keys"
+          test ! -e "$asc_key_dir" && test ! -L "$asc_key_dir"
+          mkdir -m 700 "$asc_key_dir"
+          echo "OWNED_ASC_KEY_DIR=$asc_key_dir" >> "$GITHUB_ENV"
+          key_path="$asc_key_dir/AuthKey_${ASC_KEY_ID_VALUE}.p8"
           printf '%s' "$ASC_KEY_P8" | base64 --decode > "$key_path"
-          cp "$key_path" "$HOME/.private_keys/AuthKey_${ASC_KEY_ID_VALUE}.p8"
-          chmod 600 "$key_path" "$HOME/.private_keys/AuthKey_${ASC_KEY_ID_VALUE}.p8"
+          chmod 600 "$key_path"
+          echo "API_PRIVATE_KEYS_DIR=$asc_key_dir" >> "$GITHUB_ENV"
           echo "ASC_KEY_ID=$ASC_KEY_ID_VALUE" >> "$GITHUB_ENV"
           echo "ASC_ISSUER_ID=$ASC_ISSUER_ID_VALUE" >> "$GITHUB_ENV"
           echo "ASC_KEY_PATH=$key_path" >> "$GITHUB_ENV"
@@ -668,6 +672,12 @@ jobs:
           fi
           echo "Verified release HEAD matches expected_sha: $CURRENT_SHA"
 
+      - name: Prepare reviewed original SDK routes before device builds
+        id: original_editor_routes_prepare
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+        run: python3 Scripts/CI/original-editor-build-routes.py prepare-existing --evidence build/original-editor-testflight
+
       - name: Verify prepared dependencies still match real UI acceptance
         run: |
           set -euo pipefail
@@ -696,22 +706,33 @@ jobs:
           keychain="$RUNNER_TEMP/chavrusatext-signing.keychain-db"
           keychain_password="$(openssl rand -hex 24)"
           certificate="$RUNNER_TEMP/apple-distribution.p12"
+          test ! -e "$keychain" && test ! -L "$keychain"
+          test ! -e "$certificate" && test ! -L "$certificate"
+          echo "OWNED_SIGNING_CERTIFICATE=$certificate" >> "$GITHUB_ENV"
           mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
 
+          umask 077
           printf '%s' "$APPLE_CERTIFICATE_P12_B64" | base64 --decode > "$certificate"
+          chmod 600 "$certificate"
 
           security create-keychain -p "$keychain_password" "$keychain"
+          echo "SIGNING_KEYCHAIN=$keychain" >> "$GITHUB_ENV"
           security set-keychain-settings -lut 21600 "$keychain"
           security unlock-keychain -p "$keychain_password" "$keychain"
           security import "$certificate" -P "$APPLE_CERTIFICATE_PASSWORD" -A -f pkcs12 -k "$keychain"
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$keychain_password" "$keychain"
-          security list-keychains -d user -s "$keychain"
-          security default-keychain -d user -s "$keychain"
+          # Keep the persistent Mac default and every pre-existing search entry.
+          SIGNING_KEYCHAIN_TO_ADD="$keychain" python3 - <<'PY'
+          import os, shlex, subprocess
+          owned = os.environ["SIGNING_KEYCHAIN_TO_ADD"]
+          existing = shlex.split(subprocess.check_output(["security", "list-keychains", "-d", "user"], text=True))
+          subprocess.run(["security", "list-keychains", "-d", "user", "-s", owned,
+                          *[path for path in existing if path != owned]], check=True)
+          PY
           security find-identity -v -p codesigning "$keychain" | grep 'Apple Distribution'
           distribution_cert_serial=$(security find-certificate -c 'Apple Distribution' -p "$keychain" | openssl x509 -noout -serial | cut -d= -f2)
           test -n "$distribution_cert_serial"
           echo "DISTRIBUTION_CERT_SERIAL=$distribution_cert_serial" >> "$GITHUB_ENV"
-          echo "SIGNING_KEYCHAIN=$keychain" >> "$GITHUB_ENV"
           echo "Imported Apple Distribution certificate with serial $distribution_cert_serial"
 
       - name: Live Activity · refresh
@@ -806,7 +827,16 @@ jobs:
           security cms -D -i "$generated_profile" > "$RUNNER_TEMP/generated-profile.plist"
           profile_uuid=$(/usr/libexec/PlistBuddy -c 'Print :UUID' "$RUNNER_TEMP/generated-profile.plist")
           profile_name=$(/usr/libexec/PlistBuddy -c 'Print :Name' "$RUNNER_TEMP/generated-profile.plist")
-          cp "$generated_profile" "$HOME/Library/MobileDevice/Provisioning Profiles/$profile_uuid.mobileprovision"
+          [[ "$profile_uuid" =~ ^[A-Fa-f0-9-]{36}$ ]] || { echo "::error::Invalid provisioning profile UUID"; exit 1; }
+          echo "APP_PROFILE_UUID=$profile_uuid" >> "$GITHUB_ENV"
+          profile_destination="$HOME/Library/MobileDevice/Provisioning Profiles/$profile_uuid.mobileprovision"
+          test ! -L "$profile_destination"
+          if [ -e "$profile_destination" ]; then
+            cmp "$generated_profile" "$profile_destination"
+          else
+            cp "$generated_profile" "$profile_destination"
+            echo "OWNED_APP_PROFILE_PATH=$profile_destination" >> "$GITHUB_ENV"
+          fi
 
           manual_derived="$BUILD_DIR/DerivedDataProvisioningManual"
           xcodebuild build \
@@ -834,7 +864,6 @@ jobs:
 
           echo "SIGNING_MODE=Manual" >> "$GITHUB_ENV"
           echo "APP_PROFILE_SPECIFIER=$profile_name" >> "$GITHUB_ENV"
-          echo "APP_PROFILE_UUID=$profile_uuid" >> "$GITHUB_ENV"
           echo "Provisioning method: App Store Connect API-created IOS_APP_STORE profile"
 
       - name: Live Activity · refresh
@@ -989,6 +1018,18 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
+      - name: Verify original SDK code and device signatures in archive
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+          ORIGINAL_EDITOR_ROUTES_PATH: ${{ steps.original_editor_routes_prepare.outputs.routes_path }}
+          ORIGINAL_EDITOR_ROUTES_SHA256: ${{ steps.original_editor_routes_prepare.outputs.routes_sha256 }}
+        run: >-
+          python3 Scripts/CI/original-editor-build-routes.py verify
+          --configuration Release --platform iphoneos
+          --app build/signed-ios/Maktabah-iOS.xcarchive/Products/Applications/Maktabah.app
+          --routes "$ORIGINAL_EDITOR_ROUTES_PATH" --routes-sha256 "$ORIGINAL_EDITOR_ROUTES_SHA256"
+          --after-archive
+
       - name: Export App Store Connect IPA
         shell: bash
         run: |
@@ -1241,12 +1282,50 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
+      - name: Retain original SDK route evidence including failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-editor-testflight-routes
+          path: build/original-editor-testflight/**/*.json
+          if-no-files-found: warn
+
       - name: Remove temporary signing material
         if: always()
         shell: bash
         run: |
+          set -uo pipefail
+          cleanup_status=0
           if [ -n "${SIGNING_KEYCHAIN:-}" ]; then
-            security delete-keychain "$SIGNING_KEYCHAIN" || true
+            if [ "$SIGNING_KEYCHAIN" = "$RUNNER_TEMP/chavrusatext-signing.keychain-db" ]; then
+              security delete-keychain "$SIGNING_KEYCHAIN" || cleanup_status=1
+            else
+              echo "::error::Refusing to remove a keychain outside this run"
+              cleanup_status=1
+            fi
           fi
-          rm -f "$HOME/Library/MobileDevice/Provisioning Profiles/${APP_PROFILE_UUID:-missing}.mobileprovision"
-          rm -f "${ASC_KEY_PATH:-$RUNNER_TEMP/missing-asc-key}"
+          if [ -n "${OWNED_APP_PROFILE_PATH:-}" ]; then
+            if [ "$OWNED_APP_PROFILE_PATH" = "$HOME/Library/MobileDevice/Provisioning Profiles/${APP_PROFILE_UUID:-missing}.mobileprovision" ]; then
+              rm -f -- "$OWNED_APP_PROFILE_PATH" || cleanup_status=1
+            else
+              echo "::error::Refusing to remove an unowned provisioning profile"
+              cleanup_status=1
+            fi
+          fi
+          if [ -n "${OWNED_ASC_KEY_DIR:-}" ]; then
+            if [ "$OWNED_ASC_KEY_DIR" = "$RUNNER_TEMP/chavrusatext-asc-keys" ]; then
+              rm -rf -- "$OWNED_ASC_KEY_DIR" || cleanup_status=1
+            else
+              echo "::error::Refusing to remove keys outside this run"
+              cleanup_status=1
+            fi
+          fi
+          if [ -n "${OWNED_SIGNING_CERTIFICATE:-}" ]; then
+            if [ "$OWNED_SIGNING_CERTIFICATE" = "$RUNNER_TEMP/apple-distribution.p12" ]; then
+              rm -f -- "$OWNED_SIGNING_CERTIFICATE" || cleanup_status=1
+            else
+              echo "::error::Refusing to remove an unowned signing certificate"
+              cleanup_status=1
+            fi
+          fi
+          exit "$cleanup_status"

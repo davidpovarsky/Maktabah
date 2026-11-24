@@ -1,134 +1,195 @@
 {
-  "acceptance": "SOURCE_COMPOSITION_ONLY_NOT_RUNTIME",
-  "accepted_source": "73cbc16722ea33f3600ba19f1ca35dbd1a4d9812",
-  "application_source_sha": "3c5a57bea389f6223b4636c45705bb62f502add2",
-  "application_trees": {
-    "Maktabah-iOSUITests": "776a2c129db5b60efaa17aaa3e79fbb33f28dbc5",
-    "Maktabah.xcodeproj": "4e5e8ebf269310c48497ebf4d41c516e9110af78",
-    "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
-    "Vendor": "957773bdbf127855cbe8c16d1be50fe436564157"
-  },
-  "build_inputs": {
-    "all_remaining_fields_canonical_sha256": "0b9dbeae968a6500acbd0d9127352148858b6257abdd0d91ea41c2e4c7758b50",
-    "changed_values": {
-      "application_source_sha": {
-        "after": "3c5a57bea389f6223b4636c45705bb62f502add2",
-        "before": "7d5510dd29af2b66d740de136352916868c341ed"
-      },
-      "application_trees": {
-        "after": {
-          "Maktabah.xcodeproj": "4e5e8ebf269310c48497ebf4d41c516e9110af78",
-          "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
-          "Vendor": "957773bdbf127855cbe8c16d1be50fe436564157"
+  "current_product_leaf": {
+    "acceptance": "REVIEWED_SOURCE_REQUIRES_NEW_NATIVE_BUILD_AND_UI",
+    "application_source_sha": "d3da55417a30e9a06b0255e2d0b561955034b260",
+    "application_trees": {
+      "Maktabah-iOSUITests": "776a2c129db5b60efaa17aaa3e79fbb33f28dbc5",
+      "Maktabah.xcodeproj": "4e5e8ebf269310c48497ebf4d41c516e9110af78",
+      "Source": "f8d8e60307660433e9db06ec84ff62a6b224962b",
+      "Vendor": "957773bdbf127855cbe8c16d1be50fe436564157"
+    },
+    "build_inputs": {
+      "all_remaining_fields_canonical_sha256": "9256c4a0198bc1a69e7b3020e8e0450aae364e85da996142472a1d7015f4a876",
+      "changed_values": {
+        "application_source_sha": {
+          "after": "d3da55417a30e9a06b0255e2d0b561955034b260",
+          "before": "3c5a57bea389f6223b4636c45705bb62f502add2"
         },
-        "before": {
-          "Maktabah.xcodeproj": "30dccb2b8600715f90c41e533b4646a8523e10d1",
-          "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
-          "Vendor": "ee5b415a5ccb9db9fda2b0e8d6ce3748cdeaea6e"
+        "application_trees": {
+          "after": {
+            "Maktabah.xcodeproj": "4e5e8ebf269310c48497ebf4d41c516e9110af78",
+            "Source": "f8d8e60307660433e9db06ec84ff62a6b224962b",
+            "Vendor": "957773bdbf127855cbe8c16d1be50fe436564157"
+          },
+          "before": {
+            "Maktabah.xcodeproj": "4e5e8ebf269310c48497ebf4d41c516e9110af78",
+            "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
+            "Vendor": "957773bdbf127855cbe8c16d1be50fe436564157"
+          }
         }
       },
-      "hanlin_gitlink": {
-        "after": "f8cf6ca543c5ceed05a60141644664c93e4565b4",
-        "before": "ca3c91f2233bf5c77990643b29a874aac8704639"
-      },
-      "mac_shared_composition": {
+      "current_sha256": "2f1fd584dfabc927e5b8e5eab671c8d7cf8eb2bdb918aeae19a54b874d45c3d1",
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "previous_sha256": "8c3416d79efd97e73c5d840e9466deeff1601114c0d632faff255ace9aa3082c"
+    },
+    "native_ui_qualified": false,
+    "previous_application_source": "3c5a57bea389f6223b4636c45705bb62f502add2",
+    "product_delta": [
+      {
         "after": {
-          "historic_receipts_preserved": true,
-          "manifest": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
-          "manifest_sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
-          "new_runtime_acceptance_required": true,
-          "previous_application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed"
+          "bytes": 22959,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "9956c8d5d4b9d618b9bb10e45cd347ac2dc91379",
+          "sha256": "0e0c2837474533513762d37639bd5e49a0a44eb943c03da865460546b0b24c28"
         },
-        "before": null
-      },
-      "otzaria_test_additions_sha256": {
-        "after": "b1cc80078c04ba23f0e7941f7bfbd9d28b1b0cc12e1af4bd82321f60d2238f36",
-        "before": "ef5d287ee888b306fab1ddf0e75242245f756976370129c433f1276a96b5611e"
+        "before": {
+          "bytes": 22791,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "5f5819f67abb19eb83db8f25632cc9ee25fc1e84",
+          "sha256": "5f99c1f10f5dd2046817e8eb21a12238301a1213a254c4bfdf9e8c663637e125"
+        },
+        "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift"
       }
-    },
-    "current_sha256": "8c3416d79efd97e73c5d840e9466deeff1601114c0d632faff255ace9aa3082c",
-    "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
-    "previous_sha256": "671dea22d5654c34de5e15d2dd39054cf24f94b3a50faf5a0f9cf74d6a13b323"
+    ],
+    "source_parent": "28c86f9bfcfc251816f71efac94b2ced4010f27c"
   },
-  "hanlin_source": "f8cf6ca543c5ceed05a60141644664c93e4565b4",
-  "historical_control_source": "602659607a3a6a2586a7c4a8d7ce6114eec8cd86",
-  "native_stageb_qualified": false,
-  "previous_application_source": "7d5510dd29af2b66d740de136352916868c341ed",
-  "product_delta": [
-    {
-      "accepted_source": "73cbc16722ea33f3600ba19f1ca35dbd1a4d9812",
-      "accepted_source_object": {
-        "bytes": 51279,
-        "kind": "blob",
-        "mode": "100644",
-        "object": "0ea8241d50712b3e01f2790ae7927047df0e49a4",
-        "sha256": "c8810b3f3c9ca42e71286f75dc255825b1a107f6baaf35ca45c93e7ff126b593"
-      },
-      "after": {
-        "bytes": 51279,
-        "kind": "blob",
-        "mode": "100644",
-        "object": "0ea8241d50712b3e01f2790ae7927047df0e49a4",
-        "sha256": "c8810b3f3c9ca42e71286f75dc255825b1a107f6baaf35ca45c93e7ff126b593"
-      },
-      "before": {
-        "bytes": 48227,
-        "kind": "blob",
-        "mode": "100644",
-        "object": "a4acb5e4f57badf3b352ddedc6c797f50ef67be9",
-        "sha256": "9f4c35fee98102373e5961759569077833d8eb83ad427255d7f11ef2e55d5143"
-      },
-      "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift"
+  "retained_control_source": "28c86f9bfcfc251816f71efac94b2ced4010f27c",
+  "retained_dependency_leaf": {
+    "acceptance": "SOURCE_COMPOSITION_ONLY_NOT_RUNTIME",
+    "accepted_source": "73cbc16722ea33f3600ba19f1ca35dbd1a4d9812",
+    "application_source_sha": "3c5a57bea389f6223b4636c45705bb62f502add2",
+    "application_trees": {
+      "Maktabah-iOSUITests": "776a2c129db5b60efaa17aaa3e79fbb33f28dbc5",
+      "Maktabah.xcodeproj": "4e5e8ebf269310c48497ebf4d41c516e9110af78",
+      "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
+      "Vendor": "957773bdbf127855cbe8c16d1be50fe436564157"
     },
-    {
-      "accepted_source": "73cbc16722ea33f3600ba19f1ca35dbd1a4d9812",
-      "accepted_source_object": {
-        "bytes": 4432,
-        "kind": "blob",
-        "mode": "100644",
-        "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
-        "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
+    "build_inputs": {
+      "all_remaining_fields_canonical_sha256": "0b9dbeae968a6500acbd0d9127352148858b6257abdd0d91ea41c2e4c7758b50",
+      "changed_values": {
+        "application_source_sha": {
+          "after": "3c5a57bea389f6223b4636c45705bb62f502add2",
+          "before": "7d5510dd29af2b66d740de136352916868c341ed"
+        },
+        "application_trees": {
+          "after": {
+            "Maktabah.xcodeproj": "4e5e8ebf269310c48497ebf4d41c516e9110af78",
+            "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
+            "Vendor": "957773bdbf127855cbe8c16d1be50fe436564157"
+          },
+          "before": {
+            "Maktabah.xcodeproj": "30dccb2b8600715f90c41e533b4646a8523e10d1",
+            "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
+            "Vendor": "ee5b415a5ccb9db9fda2b0e8d6ce3748cdeaea6e"
+          }
+        },
+        "hanlin_gitlink": {
+          "after": "f8cf6ca543c5ceed05a60141644664c93e4565b4",
+          "before": "ca3c91f2233bf5c77990643b29a874aac8704639"
+        },
+        "mac_shared_composition": {
+          "after": {
+            "historic_receipts_preserved": true,
+            "manifest": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
+            "manifest_sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
+            "new_runtime_acceptance_required": true,
+            "previous_application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed"
+          },
+          "before": null
+        },
+        "otzaria_test_additions_sha256": {
+          "after": "b1cc80078c04ba23f0e7941f7bfbd9d28b1b0cc12e1af4bd82321f60d2238f36",
+          "before": "ef5d287ee888b306fab1ddf0e75242245f756976370129c433f1276a96b5611e"
+        }
       },
-      "after": {
-        "bytes": 4432,
-        "kind": "blob",
-        "mode": "100644",
-        "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
-        "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
-      },
-      "before": {
-        "bytes": 4432,
-        "kind": "blob",
-        "mode": "100644",
-        "object": "9218f083dac5fa2157a83e05064ec73eb1fd154c",
-        "sha256": "a41b340f77574fd74013ba5df160cffabab473f1941a50031d0f9025007c8c9c"
-      },
-      "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
+      "current_sha256": "8c3416d79efd97e73c5d840e9466deeff1601114c0d632faff255ace9aa3082c",
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "previous_sha256": "671dea22d5654c34de5e15d2dd39054cf24f94b3a50faf5a0f9cf74d6a13b323"
     },
-    {
-      "accepted_source": "73cbc16722ea33f3600ba19f1ca35dbd1a4d9812",
-      "accepted_source_object": {
-        "kind": "commit",
-        "mode": "160000",
-        "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
+    "hanlin_source": "f8cf6ca543c5ceed05a60141644664c93e4565b4",
+    "historical_control_source": "602659607a3a6a2586a7c4a8d7ce6114eec8cd86",
+    "native_stageb_qualified": false,
+    "previous_application_source": "7d5510dd29af2b66d740de136352916868c341ed",
+    "product_delta": [
+      {
+        "accepted_source": "73cbc16722ea33f3600ba19f1ca35dbd1a4d9812",
+        "accepted_source_object": {
+          "bytes": 51279,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "0ea8241d50712b3e01f2790ae7927047df0e49a4",
+          "sha256": "c8810b3f3c9ca42e71286f75dc255825b1a107f6baaf35ca45c93e7ff126b593"
+        },
+        "after": {
+          "bytes": 51279,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "0ea8241d50712b3e01f2790ae7927047df0e49a4",
+          "sha256": "c8810b3f3c9ca42e71286f75dc255825b1a107f6baaf35ca45c93e7ff126b593"
+        },
+        "before": {
+          "bytes": 48227,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "a4acb5e4f57badf3b352ddedc6c797f50ef67be9",
+          "sha256": "9f4c35fee98102373e5961759569077833d8eb83ad427255d7f11ef2e55d5143"
+        },
+        "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift"
       },
-      "after": {
-        "kind": "commit",
-        "mode": "160000",
-        "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
+      {
+        "accepted_source": "73cbc16722ea33f3600ba19f1ca35dbd1a4d9812",
+        "accepted_source_object": {
+          "bytes": 4432,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
+          "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
+        },
+        "after": {
+          "bytes": 4432,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
+          "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
+        },
+        "before": {
+          "bytes": 4432,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "9218f083dac5fa2157a83e05064ec73eb1fd154c",
+          "sha256": "a41b340f77574fd74013ba5df160cffabab473f1941a50031d0f9025007c8c9c"
+        },
+        "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
       },
-      "before": {
-        "kind": "commit",
-        "mode": "160000",
-        "object": "ca3c91f2233bf5c77990643b29a874aac8704639"
-      },
-      "path": "Vendor/HanlinSDK"
-    }
-  ],
-  "schema": "otzaria.original-editor.mac-product-source/1",
-  "shared_manifest": {
-    "path": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
-    "sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea"
+      {
+        "accepted_source": "73cbc16722ea33f3600ba19f1ca35dbd1a4d9812",
+        "accepted_source_object": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
+        },
+        "after": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
+        },
+        "before": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "ca3c91f2233bf5c77990643b29a874aac8704639"
+        },
+        "path": "Vendor/HanlinSDK"
+      }
+    ],
+    "schema": "otzaria.original-editor.mac-product-source/1",
+    "shared_manifest": {
+      "path": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
+      "sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea"
+    },
+    "swift_ai_sdk_source": "3f38f1302764635c9991d0d00fd7b12471a5373c"
   },
-  "swift_ai_sdk_source": "3f38f1302764635c9991d0d00fd7b12471a5373c"
+  "retained_dependency_manifest_sha256": "e25bc091a1f305f3a8d88cb636b1deeb412b7476a1b6c6812fe93fd3dbb6ec87",
+  "schema": "otzaria.original-editor.mac-product-source/2"
 }
