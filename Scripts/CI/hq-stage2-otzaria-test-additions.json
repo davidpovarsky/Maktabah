@@ -475,9 +475,17 @@
     }
   ],
   "excluded_build_inputs": {
-    "Maktabah.xcodeproj/project.pbxproj": "3261731b3c225ec783b7f7542b53726c71f638c1",
+    "Maktabah.xcodeproj/project.pbxproj": "009ef4838a6a92ed1f5025f1ab510faf51ceda64",
     "Vendor/OtzariaSearchEngine/build_xcframework.sh": "c144bfd775b393c4621b41bd2688fad16f79c315",
     "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "0d92196706d534d91041373676e9699b023c9528",
     "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "6bd9288a85e67132e9283ab7516435cfa442c74a"
+  },
+  "mac_shared_project_review": {
+    "before_blob": "3261731b3c225ec783b7f7542b53726c71f638c1",
+    "after_blob": "009ef4838a6a92ed1f5025f1ab510faf51ceda64",
+    "added_lines": 4,
+    "added_original_host_file": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorImport.swift",
+    "all_other_project_bytes_equal": true,
+    "no_otzaria_test_membership_or_engine_build_change": true
   }
 }

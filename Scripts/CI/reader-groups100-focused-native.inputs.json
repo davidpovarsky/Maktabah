@@ -1,11 +1,11 @@
 {
   "schema": "otzaria.reader-groups100.native-inputs/1",
-  "application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed",
+  "application_source_sha": "3c5a57bea389f6223b4636c45705bb62f502add2",
   "application_trees": {
     "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
-    "Vendor": "ee5b415a5ccb9db9fda2b0e8d6ce3748cdeaea6e",
-    "Maktabah.xcodeproj": "30dccb2b8600715f90c41e533b4646a8523e10d1",
-    "Maktabah-iOSUITests": "ae0f9d48f43bf27f9e0a14a09736667437f13b2f"
+    "Vendor": "957773bdbf127855cbe8c16d1be50fe436564157",
+    "Maktabah.xcodeproj": "4e5e8ebf269310c48497ebf4d41c516e9110af78",
+    "Maktabah-iOSUITests": "776a2c129db5b60efaa17aaa3e79fbb33f28dbc5"
   },
   "execution_groups": [
     {
@@ -63,5 +63,12 @@
       "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
     },
     "previous_input_sha256": "aa1a4768ad9190cb417429927f682251ffffcdba8ca7929346cf29847e0e7323"
+  },
+  "mac_shared_composition": {
+    "previous_application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed",
+    "manifest": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
+    "manifest_sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
+    "historic_receipts_preserved": true,
+    "new_runtime_acceptance_required": true
   }
 }

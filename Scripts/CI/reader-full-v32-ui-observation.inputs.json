@@ -1,11 +1,11 @@
 {
   "schema": "otzaria.full-v32.original-ui-observation/1",
-  "application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed",
+  "application_source_sha": "3c5a57bea389f6223b4636c45705bb62f502add2",
   "application_trees": {
     "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
-    "Vendor": "ee5b415a5ccb9db9fda2b0e8d6ce3748cdeaea6e",
-    "Maktabah.xcodeproj": "30dccb2b8600715f90c41e533b4646a8523e10d1",
-    "Maktabah-iOSUITests": "ae0f9d48f43bf27f9e0a14a09736667437f13b2f"
+    "Vendor": "957773bdbf127855cbe8c16d1be50fe436564157",
+    "Maktabah.xcodeproj": "4e5e8ebf269310c48497ebf4d41c516e9110af78",
+    "Maktabah-iOSUITests": "776a2c129db5b60efaa17aaa3e79fbb33f28dbc5"
   },
   "original_source_base": "2ef81ac195c002863486e473dad95f336f3e1675",
   "selected_case_ids": [
@@ -80,22 +80,23 @@
     "Tests/HQ/sqlite/UnusedZstdBoundary.swift",
     "docs/hq-integration/reader-full-v32-ui-observation-20261123/FullV32ObservationCatalog.swift",
     "tools/verify_xcresult_zero_skips.py",
-    "Scripts/CI/runtime27-final-source-composition.inputs.json"
+    "Scripts/CI/runtime27-final-source-composition.inputs.json",
+    "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json"
   ],
   "input_sha256": {
     ".github/workflows/otzaria-reader-groups-full-v32.yml": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c",
     "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "28d5dbc2a6672b39b4083ff9f50f25b338e177bb33ac5c32da474b2baf1b7d4a",
     "Scripts/CI/hq-original-editor-distribution.py": "a36b6a73b5b3291080556ee3c107aaf88f2c2a112d526dee0ee6f427a197e62e",
-    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "671dea22d5654c34de5e15d2dd39054cf24f94b3a50faf5a0f9cf74d6a13b323",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "8c3416d79efd97e73c5d840e9466deeff1601114c0d632faff255ace9aa3082c",
     "Scripts/CI/hq-stage2-focused-apple.py": "d8c317ee8fdf1fd07a2e2e604c52866379912d96705f4da9a09bcab055f8f337",
-    "Scripts/CI/library-morph-focused-native.inputs.json": "169a58afa943765b2083ddc404ecb348eba579966edd675c883821220f29f2fd",
+    "Scripts/CI/library-morph-focused-native.inputs.json": "2e61c9a97a7cb3862fdf1c716575541d322b3ca0d0dbe381da43f32ca4071e4d",
     "Scripts/CI/library-morph-focused-native.py": "13d9c4dbb24591b6406e6a3da5c0d619c5785c726d894182383d899ce9373fc3",
     "Scripts/CI/native-cohort-artifacts.py": "cf7092191b7058041fe894673380865c9048bab15e224a027b34687123082b03",
     "Scripts/CI/prepare-faithful-ipad-fixtures.py": "a0f0ea5e71df41d25097a5434408073afd29f68180869f06d1382b0690ea13d3",
     "Scripts/CI/prepare-hanlin-sdk.py": "7e9a303e20390b9a33ee6cddc73979dc1557741636d6e00067c55a90188af404",
     "Scripts/CI/prepare-pinned-sharp-libvips.py": "37a279a3ab6e1bf7ece3d92c657a8c4f5e1fcb9e5007564b4aef0408f0eee764",
     "Scripts/CI/reader-full-v32-ui-observation.py": "cc2b877f27e2309d738287a5458e42e625861d7e30fa1487c8b1d1f50dd877b3",
-    "Scripts/CI/reader-groups100-focused-native.inputs.json": "4a9401cea7b8f6e5a035caaf6aa40458d9d3ffa2f9a30777a58778b5a3e39401",
+    "Scripts/CI/reader-groups100-focused-native.inputs.json": "53a03c4b74525d3055374a9239af5a564b9304232f97f42119c72c84a9f5b064",
     "Scripts/CI/reader-groups100-focused-native.py": "27cf5dcbe51d45c804b50c9f5858161dae71762ce25ea7a113d2d6d1d2620a1b",
     "Scripts/CI/runtime27-url-delivery.py": "065c8afaed97a7974a2e8ba4c61b3077c63366e21bb8696837a00e4ab4bd17b8",
     "Scripts/CI/runtime27_interruption.py": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
@@ -125,7 +126,8 @@
     "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
     "docs/hq-integration/reader-full-v32-ui-observation-20261123/FullV32ObservationCatalog.swift": "ba59641e131cc9ee625ecd5b042b516ac5d971333e635edda9b533ea29105e70",
     "tools/verify_xcresult_zero_skips.py": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6",
-    "Scripts/CI/runtime27-final-source-composition.inputs.json": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0"
+    "Scripts/CI/runtime27-final-source-composition.inputs.json": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0",
+    "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea"
   },
   "torah_inspector_commit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
   "source_status": "COMPOSED_SOURCE_FROZEN_NATIVE_SDK_AND_SAME_BUILD_INSTALL_ADMISSION_REQUIRED",
@@ -168,5 +170,12 @@
       "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
     },
     "previous_input_sha256": "41ae16010370460b0dcba2ee814ca8764219a25088deca5ae10191732041ee55"
+  },
+  "mac_shared_composition": {
+    "previous_application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed",
+    "manifest": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
+    "manifest_sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
+    "historic_receipts_preserved": true,
+    "new_runtime_acceptance_required": true
   }
 }
