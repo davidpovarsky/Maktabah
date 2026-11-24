@@ -21,6 +21,9 @@ SOURCE = "7d5510dd29af2b66d740de136352916868c341ed"
 COMPOSITION_BASE = "83e7e6db234117e43a5b025c0cf923aecedfaa4a"
 COMPOSITION_INPUTS = ROOT / "Scripts/CI/runtime27-final-source-composition.inputs.json"
 COMPOSITION_SHA256 = "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0"
+HISTORICAL_CONTROL_SOURCE = "602659607a3a6a2586a7c4a8d7ce6114eec8cd86"
+MAC_SOURCE_INPUTS = ROOT / "Scripts/CI/runtime27-original-editor-mac-source.inputs.json"
+MAC_SOURCE_SHA256 = "e25bc091a1f305f3a8d88cb636b1deeb412b7476a1b6c6812fe93fd3dbb6ec87"
 ORIGINAL_HANLIN = "e00498e33f106cc43be0476ffa2e09329c8ca300"
 QUALIFIED_HANLIN = "ca3c91f2233bf5c77990643b29a874aac8704639"
 ORIGINAL_CORE = "e7bf34111e603ca977becd007dd4e5bb109af857"
@@ -103,7 +106,7 @@ def verify_composed_build_inputs(inputs, composition):
     return identity
 
 
-def composed_product_source():
+def composed_product_source(*, historical_control_source=None):
     """Verify each composed product object against its accepted source ancestor."""
     require(digest(COMPOSITION_INPUTS) == COMPOSITION_SHA256,
             "Reviewed final source composition manifest changed")
@@ -147,13 +150,20 @@ def composed_product_source():
                 and source_object(row["accepted_source"], path) == row["after"]
                 and row["accepted_source_object"] == row["after"]["object"],
                 "Composed product does not equal its accepted source: " + path)
-    subprocess.run(["git", "diff", "--quiet", SOURCE, "--", *roots],
-                   cwd=ROOT, check=True, timeout=90)
-    build_inputs = json.loads((ROOT / config["shared_build_input_resolution"]["path"]).read_text())
+    if historical_control_source is None:
+        subprocess.run(["git", "diff", "--quiet", SOURCE, "--", *roots],
+                       cwd=ROOT, check=True, timeout=90)
+        read_input = lambda path: (ROOT / path).read_bytes()
+    else:
+        require(historical_control_source == HISTORICAL_CONTROL_SOURCE,
+                "Historical composition receipt source is not the reviewed immutable control")
+        read_input = lambda path: subprocess.check_output(
+            ["git", "show", historical_control_source + ":" + path], cwd=ROOT, timeout=90)
+    build_inputs = json.loads(read_input(config["shared_build_input_resolution"]["path"]))
     common_inputs_sha256 = verify_composed_build_inputs(build_inputs, config)
     legacy = config["preserved_legacy_sdk_inputs"]
     require(legacy["qualification_for_composed_expanded_sdk"] == "UNQUALIFIED"
-            and digest(ROOT / legacy["path"]) == legacy["sha256"],
+            and hashlib.sha256(read_input(legacy["path"])).hexdigest() == legacy["sha256"],
             "Preserved SDK inputs changed without a new reviewed composition binding")
     return {"manifest_sha256": COMPOSITION_SHA256,
             "base_application_source": COMPOSITION_BASE,
@@ -169,25 +179,42 @@ def require_composed_sdk_input(config):
             "Composed full SDK requires actual schema3 producer admission; preserved legacy pins are UNQUALIFIED")
 
 
-def source_context():
+def source_context(*, projection_output=None, require_current_build=False):
     require(re.fullmatch(r"[a-f0-9]{40}", SOURCE), "Reviewed process-resume application source is not frozen")
     head = git("rev-parse", "HEAD")
     require(head == os.environ["EXPECTED_CHECKOUT_SHA"], "Wrong immutable qualification checkout")
     subprocess.run(["git", "merge-base", "--is-ancestor", SOURCE, head], cwd=ROOT, check=True, timeout=90)
     dependency_adoption = qualified_dependency_source()
-    composition = composed_product_source()
+    sdk_input = json.loads(ADMISSION.read_bytes())
+    local = sdk_input.get("producer_kind") == "local-mac"
+    mac_source, projection = None, None
+    if local:
+        runpy.run_path(str(ROOT / "Scripts/CI/original_editor_local_admission.py"))["validate_configuration"](sdk_input)
+        composition = composed_product_source(historical_control_source=HISTORICAL_CONTROL_SOURCE)
+        mac_source = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_mac_source.py"))["verify"](
+            ROOT, MAC_SOURCE_INPUTS, MAC_SOURCE_SHA256)
+        product_source, hanlin = mac_source["application_source_sha"], mac_source["hanlin_source"]
+        projection = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_mac_projection.py"))["verify"](
+            ROOT, mac_source, ADMISSION, require_current_build=require_current_build)
+        if projection_output:
+            write(OUT / projection_output, projection)
+    else:
+        composition = composed_product_source()
+        product_source, hanlin = SOURCE, QUALIFIED_HANLIN
     trees = {path: git("rev-parse", "HEAD:" + path) for path in
              ["Source", "Vendor", "Maktabah.xcodeproj", "Maktabah-iOSUITests"]}
-    require(all(value == git("rev-parse", SOURCE + ":" + path) for path, value in trees.items()),
+    require(all(value == git("rev-parse", product_source + ":" + path) for path, value in trees.items()),
             "Reviewed original-editor consumer application or test changed")
     inputs = json.loads((ROOT / "Scripts/CI/hq-stage2-focused-apple.inputs.json").read_text())
-    require(inputs["application_source_sha"] == SOURCE and inputs["hanlin_gitlink"] == QUALIFIED_HANLIN
+    require(inputs["application_source_sha"] == product_source and inputs["hanlin_gitlink"] == hanlin
             and all(inputs["application_trees"][path] == trees[path]
                 for path in ["Source", "Vendor", "Maktabah.xcodeproj"]), "Stage2 pins do not bind the reviewed consumer")
     original = runpy.run_path(str(ROOT / "Scripts/CI/completion-focused-native.py"))
     execution_inputs = original["exact_working_inputs"](["Scripts/CI", ".github/workflows", "Maktabah-iOSUITests", "tools"])
-    return {"checkout_sha": head, "application_source_sha": SOURCE, "application_trees": trees,
+    return {"checkout_sha": head, "application_source_sha": product_source, "application_trees": trees,
             "qualified_dependency_adoption": dependency_adoption, "source_composition": composition,
+            "mac_source_composition": mac_source,
+            "generated_projection_contract": projection["binding"] if projection else None,
             "execution_inputs": execution_inputs, "sdk_admission_sha256": digest(ADMISSION),
             "native116_catalog_sha256": digest(FULL), "release114_manifest_sha256": digest(RELEASE)}
 
@@ -215,6 +242,8 @@ def runtime_dependency_preflight():
         pending.append(ci / "original_editor_shared_runtime.py")
     if sdk_input.get("producer_kind") == "local-mac":
         pending.append(ci / "original_editor_local_admission.py")
+        pending.append(ci / "original_editor_mac_source.py")
+        pending.append(ci / "original_editor_mac_projection.py")
     checked, imported = {}, set()
     while pending:
         path = pending.pop()
@@ -246,7 +275,7 @@ def runtime_dependency_preflight():
 def prepare():
     require(not (OUT / "source-before.json").exists() and not (ARTIFACTS / "faithful-ipad-matrix.json").exists(),
             "Refusing stale native qualification evidence")
-    context = source_context()
+    context = source_context(projection_output="projection-before.json")
     runtime_dependency_preflight()
     sdk_input = json.loads(ADMISSION.read_text())
     require_composed_sdk_input(sdk_input)
@@ -263,7 +292,8 @@ def prepare():
     contract.setdefault("supplemental_cases", []).append({
         "case_id": SELECTOR, "device": "ipad11", "status": "NOT_RUN",
         "oracle": "Original saved blank annotation, mixed Hebrew/English native blocks, real export/CAS/import, exact owned account/object process relaunch and rendered reopen"})
-    contract.update(source_test_commit=SOURCE, app_source=SOURCE, application_source_sha=SOURCE,
+    product_source = context["application_source_sha"]
+    contract.update(source_test_commit=product_source, app_source=product_source, application_source_sha=product_source,
                     execution_case_ids=[SELECTOR], execution_groups=GROUPS, required_nonzero_cases=1,
                     native_cases_executed=0, expected_per_device={"ipad11": 1, "ipad13": 0, "iphone": 0},
                     diagnostic_only=True, hid_comparison=False,
@@ -290,7 +320,8 @@ def built_binaries():
 
 
 def execute():
-    require(source_context() == json.loads((OUT / "source-before.json").read_text()), "Qualification inputs changed before execution")
+    require(source_context(projection_output="projection-build.json", require_current_build=True)
+            == json.loads((OUT / "source-before.json").read_text()), "Qualification inputs changed before execution")
     build = json.loads((ROOT / "build/hq-stage2/result.json").read_text())
     require(build.get("status") == "SIMULATOR_BUILD_FOR_REAL_UI_PASS"
             and build.get("checkout_sha") == os.environ["EXPECTED_CHECKOUT_SHA"]
@@ -463,7 +494,8 @@ class OriginalEditorEvidence:
 
 
 def matrix():
-    require(source_context() == json.loads((OUT / "source-before.json").read_text()), "Source changed before original matrix")
+    require(source_context(require_current_build=True) == json.loads((OUT / "source-before.json").read_text()),
+            "Source changed before original matrix")
     require(not os.environ.get("FAITHFUL_RUNTIME27_RELEASE_MANIFEST") and not os.environ.get("FAITHFUL_DIAGNOSTIC_CASES"),
             "Dedicated original-editor run cannot mix selectors or Release inputs")
     os.environ["VALIDATING_BASELINE"] = "false"
@@ -737,7 +769,7 @@ def collect():
                                           "error": row.get("error")} for row in devices if row.get("status") != "EXECUTED_PASS"]
     exit_code = 1
     try:
-        context = source_context()
+        context = source_context(projection_output="projection-after.json", require_current_build=True)
         require(context == json.loads((OUT / "source-before.json").read_text()), "Source or original catalogs changed during UI")
         report.update(context)
         build = json.loads((ROOT / "build/hq-stage2/result.json").read_text())

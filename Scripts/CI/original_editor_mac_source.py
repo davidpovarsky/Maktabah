@@ -1,0 +1,146 @@
+"""Exact Mac application leaf above the retained original StageB history.
+
+This proves source composition only. The separately produced SDK and the real
+save/export/import/process-reopen UI journey still have to qualify.
+"""
+import hashlib
+import json
+from pathlib import Path
+import subprocess
+
+HISTORICAL_CONTROL = '602659607a3a6a2586a7c4a8d7ce6114eec8cd86'
+PREVIOUS = '7d5510dd29af2b66d740de136352916868c341ed'
+SOURCE = '3c5a57bea389f6223b4636c45705bb62f502add2'
+ACCEPTED = '73cbc16722ea33f3600ba19f1ca35dbd1a4d9812'
+HANLIN = 'f8cf6ca543c5ceed05a60141644664c93e4565b4'
+CORE = '3f38f1302764635c9991d0d00fd7b12471a5373c'
+PREVIOUS_CORE = '07431abccbfb151ca2dab67bca6cf86fcb2bd3b8'
+ROOTS = ['Source', 'Vendor', 'Maktabah.xcodeproj', 'Maktabah-iOSUITests']
+LOCK = 'Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved'
+DELTA = ['Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift', LOCK, 'Vendor/HanlinSDK']
+INPUT_FIELDS = {'application_source_sha', 'application_trees', 'hanlin_gitlink',
+                'mac_shared_composition', 'otzaria_test_additions_sha256'}
+
+
+def require(value, message):
+    if not value:
+        raise RuntimeError(message)
+
+
+def sha(raw):
+    return hashlib.sha256(raw).hexdigest()
+
+
+def git(root, *args):
+    return subprocess.check_output(['git', *args], cwd=root, timeout=90)
+
+
+def text(root, *args):
+    return git(root, *args).decode().strip()
+
+
+def source_object(root, revision, path):
+    listing = text(root, 'ls-tree', revision, '--', path)
+    require(listing, 'Missing exact Mac source object: ' + path)
+    metadata, actual_path = listing.split('\t')
+    require(actual_path == path, 'Mac source object path differs')
+    mode, kind, identity = metadata.split()
+    result = {'mode': mode, 'kind': kind, 'object': identity}
+    if kind == 'blob':
+        raw = git(root, 'show', revision + ':' + path)
+        result.update(bytes=len(raw), sha256=sha(raw))
+    return result
+
+
+def verify_build_input_delta(before, after, config):
+    actual = {key: {'before': before.get(key), 'after': after.get(key)}
+              for key in sorted(before.keys() | after.keys()) if before.get(key) != after.get(key)}
+    require(set(actual) == INPUT_FIELDS and actual == config['changed_values'],
+            'Mac source binding changed undeclared build inputs')
+    require('mac_shared_composition' not in before,
+            'Historical build input unexpectedly contains the new Mac leaf')
+    for value in (before, after):
+        common = {key: item for key, item in value.items() if key not in INPUT_FIELDS}
+        require(sha(json.dumps(common, sort_keys=True, separators=(',', ':')).encode())
+                == config['all_remaining_fields_canonical_sha256'],
+                'Mac source leaf changed retained engine/resource/artifact inputs')
+
+
+def verify(root, manifest, expected_sha256):
+    root, manifest = Path(root), Path(manifest)
+    require(manifest.is_file() and not manifest.is_symlink()
+            and sha(manifest.read_bytes()) == expected_sha256,
+            'Reviewed Mac product source manifest differs')
+    config = json.loads(manifest.read_bytes())
+    require(config.get('schema') == 'otzaria.original-editor.mac-product-source/1'
+            and config.get('historical_control_source') == HISTORICAL_CONTROL
+            and config.get('previous_application_source') == PREVIOUS
+            and config.get('application_source_sha') == SOURCE
+            and config.get('accepted_source') == ACCEPTED
+            and config.get('hanlin_source') == HANLIN
+            and config.get('swift_ai_sdk_source') == CORE
+            and config.get('acceptance') == 'SOURCE_COMPOSITION_ONLY_NOT_RUNTIME'
+            and config.get('native_stageb_qualified') is False,
+            'Mac product leaf changed its exact reviewed identities or scope')
+    subprocess.run(['git', 'merge-base', '--is-ancestor', PREVIOUS, SOURCE],
+                   cwd=root, check=True, timeout=90)
+    subprocess.run(['git', 'merge-base', '--is-ancestor', SOURCE, 'HEAD'],
+                   cwd=root, check=True, timeout=90)
+    trees = {path: text(root, 'rev-parse', SOURCE + ':' + path) for path in ROOTS}
+    require(config['application_trees'] == trees
+            and trees == {path: text(root, 'rev-parse', 'HEAD:' + path) for path in ROOTS}
+            and trees['Source'] == text(root, 'rev-parse', PREVIOUS + ':Source'),
+            'Mac product leaf or current committed product trees differ')
+    paths = text(root, 'diff', '--name-only', PREVIOUS, SOURCE, '--', *ROOTS).splitlines()
+    require(paths == DELTA and [row['path'] for row in config['product_delta']] == DELTA,
+            'Mac product leaf has an undeclared application/test delta')
+    for row in config['product_delta']:
+        path = row['path']
+        require(row['accepted_source'] == ACCEPTED
+                and source_object(root, PREVIOUS, path) == row['before']
+                and source_object(root, SOURCE, path) == row['after']
+                and source_object(root, ACCEPTED, path) == row['accepted_source_object'] == row['after'],
+                'Mac product does not equal the exact accepted object: ' + path)
+    before_lock = git(root, 'show', PREVIOUS + ':' + LOCK)
+    after_lock = git(root, 'show', SOURCE + ':' + LOCK)
+    require(before_lock.count(PREVIOUS_CORE.encode()) == 1
+            and after_lock == before_lock.replace(PREVIOUS_CORE.encode(), CORE.encode())
+            and after_lock.replace(CORE.encode(), PREVIOUS_CORE.encode()) == before_lock,
+            'Mac Core pin is not the exact reviewed reversible lockfile change')
+    binding = config['build_inputs']
+    require(binding['path'] == 'Scripts/CI/hq-stage2-focused-apple.inputs.json',
+            'Mac source build input path differs')
+    before_raw = git(root, 'show', HISTORICAL_CONTROL + ':' + binding['path'])
+    after_raw = (root / binding['path']).read_bytes()
+    require(sha(before_raw) == binding['previous_sha256']
+            and sha(after_raw) == binding['current_sha256'], 'Mac build input bytes differ')
+    before, after = json.loads(before_raw), json.loads(after_raw)
+    verify_build_input_delta(before, after, binding)
+    require(after['application_source_sha'] == SOURCE and after['hanlin_gitlink'] == HANLIN
+            and after['application_trees'] == {path: trees[path] for path in ROOTS if path != 'Maktabah-iOSUITests'},
+            'Mac build inputs do not bind the reviewed current product')
+    shared = config['shared_manifest']
+    require(shared['path'] == 'docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json',
+            'Mac shared composition manifest path differs')
+    shared_path = root / shared['path']
+    shared_raw = shared_path.read_bytes()
+    require(not shared_path.is_symlink() and sha(shared_raw) == shared['sha256']
+            and git(root, 'show', 'HEAD:' + shared['path']) == shared_raw,
+            'Mac shared composition manifest differs from its committed bytes')
+    shared_value = json.loads(shared_raw)
+    require(shared_value['application_source_sha'] == SOURCE
+            and shared_value['application_trees'] == trees
+            and shared_value['retained_union_product'] == PREVIOUS
+            and shared_value['imported_source'] == ACCEPTED,
+            'Mac shared and StageB product manifests disagree')
+    return {'manifest_sha256': expected_sha256, 'historical_control_source': HISTORICAL_CONTROL,
+            'previous_application_source': PREVIOUS, 'application_source_sha': SOURCE,
+            'application_trees': trees, 'hanlin_source': HANLIN, 'swift_ai_sdk_source': CORE,
+            'additional_product_objects_verified': len(DELTA), 'product_paths': DELTA,
+            'build_input_sha256': binding['current_sha256'],
+            'preserved_build_inputs_sha256': binding['all_remaining_fields_canonical_sha256'],
+            'new_runtime_acceptance_required': True, 'native_stageb_qualified': False}
+
+
+def working_product_delta(root):
+    return text(root, 'diff', '--name-only', SOURCE, '--', *ROOTS).splitlines()

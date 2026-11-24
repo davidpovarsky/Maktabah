@@ -27,3 +27,27 @@ export/import and close/reopen journey with an actual new process ID.
 `test_original_editor_local_admission.py` tests synthetic transport metadata
 only. No test fixture in that file is runtime evidence. Simulator SDK intake
 also grants no device framework, Release, TestFlight or physical-iPad acceptance.
+
+## Current Mac product source and generated files
+
+The separate Mac source manifest binds the exact `3c5a57be` product leaf above
+the retained `7d5510dd` union. The original 18-object composition and earlier
+dependency checks still run against their immutable historical control inputs.
+The new leaf independently verifies three exact accepted objects, the reversible
+Core lock revision, all current product trees, and five declared metadata changes.
+No source-only receipt supplies SDK or native UI acceptance.
+
+When continuing from the successful shared Mac build, set
+`ORIGINAL_EDITOR_PREPARED_MANIFEST` to the same owned `build/` manifest passed to
+the original app builder and `ORIGINAL_EDITOR_PREPARED_SHA256` to its reviewed
+digest. The StageB source guard verifies exact prepared project and privacy bytes
+against the immutable prior build before compilation. Following compilation it
+requires the current successful checkout, unchanged preparation provenance,
+canonical project hash and the original SDK app-target projection proof.
+
+Only the two original generated product files are eligible for this check:
+`Maktabah.xcodeproj/project.pbxproj` and `Source/PrivacyInfo.xcprivacy`. Their
+bytes must match actual receipts, and original privacy semantics are rechecked
+against the real dependency declarations. Other working product changes fail.
+Projection receipts are retained separately before the build, after it, and after
+the UI journey, while the canonical source snapshot remains unchanged.
