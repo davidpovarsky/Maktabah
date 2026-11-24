@@ -18,7 +18,7 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[2]
 SELECTOR = "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
-MODEL = "gemini-2.5-flash-lite"
+MODEL = "gemini-3.5-flash-lite"
 REVIEWED_SOURCE = "3c5a57bea389f6223b4636c45705bb62f502add2"
 ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/openai/"
 BUNDLE = "com.davidpovarsky.chavrusatext"
@@ -28,9 +28,9 @@ PRIVATE_RELATIVE = Path("Library/Application Support/OtzariaHanlinLiveProviderAc
 WORK = ROOT / "build/hanlin-live-private"
 OUT = ROOT / "build/hanlin-live-evidence"
 CONNECTION_DIAGNOSTIC_PREFIX = "otzaria-hanlin-connection-stages-"
-CONNECTION_DIAGNOSTIC_STAGES = frozenset(["inputConsumed","connectEntered","connectRejected","requestValidated","readRequestValidated","readRequestReturned","connectFailed","carriedConfigureEntered","carriedConfigureRejected","carriedConfigurationMismatch","engineConstructed","configurationActivated","configurationCompleted","configureFailed","openEntered","openRejected","openIssued","openFailed","mountObserved","consentCaptureEntered","consentCaptured","closeRequested","dismissObserved","dismissAccepted","readReopenEntered","consentConsumeEntered","consentConsumed","sourceComparisonRejected","sourceValidationFailed"])
-CONNECTION_DIAGNOSTIC_REASONS = frozenset(["none","cancelled","invalidArguments","invalidContext","staleContext","denied","duplicateInvocation","otherHostError","otherError"])
-CONNECTION_DIAGNOSTIC_FLAGS = frozenset(["closed","storageFailed","configured","connecting","hasOperation","allowRead","hasReadOffer","hasReadScope","credentialPresent","retired","hasPresentation","hasNativeSession","mounted","foreground","hasNavigationTask","matchingSession","isPresented","hasPendingReadReopen","preservingContinuation","hasConsent","hasConnection","sameBackend","sameMappingSource","sameMappingEpoch","sameWorkspaceProjection","sameReaderContent","sameReadSource","sameSelection","sameLocale"])
+CONNECTION_DIAGNOSTIC_STAGES = frozenset(["inputConsumed","connectEntered","connectRejected","requestValidated","readRequestValidated","readRequestReturned","connectFailed","carriedConfigureEntered","carriedConfigureRejected","carriedConfigurationMismatch","engineConstructed","configurationActivated","configurationCompleted","configureFailed","openEntered","openRejected","openIssued","openFailed","mountObserved","consentCaptureEntered","consentCaptured","closeRequested","dismissObserved","dismissAccepted","readReopenEntered","consentConsumeEntered","consentConsumed","sourceComparisonRejected","sourceValidationFailed","sendEntered","sendRejected","sendCheckpointFailed","sendCheckpointed","sendSettled","streamOpening","streamOpened","streamFinished","streamFailed","hostResultObserved","hostResultRetained","hostResultLimitReached","sessionInvalidated","streamToolCallObserved","streamToolResultObserved","streamToolResultUnmatched","sourceResultObserved","sourceLinkCreated","streamToolOutputDenied","streamRunStarted","streamStepStarted","streamTextObserved","streamReasoningObserved","streamToolInputStarted","streamToolInputDeltaObserved","streamApprovalRequested","streamApprovalResolved","streamStepFinished","streamFinishObserved","streamCancelledObserved","runCompletionObserved"])
+CONNECTION_DIAGNOSTIC_REASONS = frozenset(["none","cancelled","invalidArguments","invalidContext","staleContext","denied","duplicateInvocation","otherHostError","otherError","unknownTool","deadlineExceeded","resultMismatch","outputLimitExceeded","unresolvedWrite","unsupportedProviderCapability","storeConflict","invalidRecord","storageLimitExceeded","nativeProviderInjectionRequired","nativeUnsupportedContent","invalidProviderToolSchema","invalidSDKConversation","emptyProviderResponse","incompleteProviderResponse","finishStop","finishToolCalls","finishLength","finishContentFilter","finishError","finishOther"])
+CONNECTION_DIAGNOSTIC_FLAGS = frozenset(["closed","storageFailed","configured","connecting","hasOperation","allowRead","hasReadOffer","hasReadScope","credentialPresent","retired","hasPresentation","hasNativeSession","mounted","foreground","hasNavigationTask","matchingSession","isPresented","hasPendingReadReopen","preservingContinuation","hasConsent","hasConnection","sameBackend","sameMappingSource","sameMappingEpoch","sameWorkspaceProjection","sameReaderContent","sameReadSource","sameSelection","sameLocale","streaming","referenceResult","hostSucceeded","toolFailed","hasOriginalResult","hasSources","hasActivities","hasActiveTools","searchAdvertised","referenceAdvertised","hasVisibleSchemas","approvalAllowed","hasMeaningfulEvents","completionSucceeded","completionCancelled","completionFailed","hasAssistantText","hasReasoning"])
 
 
 def require(condition, message):
@@ -161,6 +161,57 @@ def validate_connection_diagnostic(raw):
     return value
 
 
+def bind_original_build(context, build):
+    """A CI-only continuation keeps the native build's original source identity.
+
+    Changing this runner never relabels an old binary. The opt-in route requires
+    the prior admitted source proof, exact images, and only two reviewed CI paths.
+    """
+    head, built = context["checkout_sha"], build["checkout_sha"]
+    proof_name = os.environ.get("OTZARIA_HANLIN_RETAINED_SOURCE")
+    proof_sha = os.environ.get("OTZARIA_HANLIN_RETAINED_SOURCE_SHA256")
+    require(bool(proof_name) == bool(proof_sha), "Retained live build needs both proof and digest")
+    binding = {"original_build_checkout_sha": built, "native_build_reused": head != built}
+    if head == built:
+        require(not proof_name, "Same-source live build must not import a continuation")
+        return binding
+    require(proof_name and re.fullmatch(r"[a-f0-9]{64}", proof_sha or ""),
+            "No matching original build or explicit immutable continuation")
+    relative = Path(proof_name)
+    require(not relative.is_absolute() and ".." not in relative.parts
+            and relative.parts and relative.parts[0] == "build",
+            "Retained live source proof must be owned build evidence")
+    proof = ROOT / relative
+    require(proof.is_file() and proof.stat().st_size <= 8 * 1024 * 1024
+            and proof.resolve(strict=True).is_relative_to(ROOT.resolve(strict=True))
+            and not any(p.is_symlink() for p in [proof, *proof.parents] if p.is_relative_to(ROOT)),
+            "Missing or redirected retained live source proof")
+    raw = proof.read_bytes()
+    require(hashlib.sha256(raw).hexdigest() == proof_sha, "Retained live source proof changed")
+    prior = json.loads(raw)
+    require(prior.get("checkout_sha") == built and re.fullmatch(r"[a-f0-9]{40}", built),
+            "Retained source does not identify the original native build")
+    subprocess.run(["git", "merge-base", "--is-ancestor", built, head],
+                   cwd=ROOT, check=True, timeout=90)
+    allowed = {"Scripts/CI/runtime27-hanlin-live.py", "Scripts/CI/test_hanlin_live_diagnostic.py"}
+    changed = set(git("diff", "--name-only", built, head).splitlines())
+    require(changed and changed <= allowed, "Retained native build has a non-harness source delta")
+    for key in ("reviewed_source_sha", "application_source_sha", "application_trees",
+                "original_build_status", "generated_project_sha256", "workspace_sha256", "binaries"):
+        require(prior.get(key) == context.get(key), "Retained native source or image differs: " + key)
+    prior_inputs, current_inputs = prior.get("execution_inputs"), context.get("execution_inputs")
+    require(type(prior_inputs) is dict and type(current_inputs) is dict
+            and prior_inputs and current_inputs, "Empty retained execution source proof")
+    require("Scripts/CI/runtime27-hanlin-live.py" in prior_inputs.keys() & current_inputs.keys(),
+            "Original and current live runners must both be bound")
+    require({p: v for p, v in prior_inputs.items() if p not in allowed}
+            == {p: v for p, v in current_inputs.items() if p not in allowed},
+            "Unreviewed retained live execution input changed")
+    binding.update(retained_source_proof=relative.as_posix(),
+                   retained_source_sha256=proof_sha, harness_only_delta=sorted(changed))
+    return binding
+
+
 def source_context():
     head = git("rev-parse", "HEAD")
     require(head == os.environ["EXPECTED_CHECKOUT_SHA"], "Wrong immutable live checkout")
@@ -168,8 +219,8 @@ def source_context():
         require(git("rev-parse", "HEAD:" + path) == git("rev-parse", REVIEWED_SOURCE + ":" + path),
                 "Reviewed live application or test tree changed")
     build = json.loads((ROOT / "build/hq-stage2/result.json").read_text())
-    require(build.get("status") == "SIMULATOR_BUILD_FOR_REAL_UI_PASS" and build.get("checkout_sha") == head,
-            "No matching original app and original UI runner build")
+    require(build.get("status") == "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+            "No successful original app and original UI runner build")
     hq = runpy.run_path(str(ROOT / "Scripts/CI/hq-stage2-focused-apple.py"))
     hq["verify_actual_sources"](build)
     inputs = json.loads((ROOT / "Scripts/CI/hq-stage2-focused-apple.inputs.json").read_text())
@@ -206,10 +257,12 @@ def source_context():
     for path in (products / "Maktabah.app").rglob("*.dylib"):
         require(not path.is_symlink(), "Unexpected app code image symlink")
         binaries[str(path.relative_to(ROOT))] = digest(path)
-    return {"checkout_sha": head, "reviewed_source_sha": REVIEWED_SOURCE, "application_source_sha": inputs["application_source_sha"],
+    context = {"checkout_sha": head, "reviewed_source_sha": REVIEWED_SOURCE, "application_source_sha": inputs["application_source_sha"],
             "application_trees": inputs["application_trees"], "original_build_status": build["status"],
             "generated_project_sha256": native["generated_project_sha256"],
             "workspace_sha256": native["workspace_sha256"], "execution_inputs": closure, "binaries": binaries}
+    context.update(bind_original_build(context, build))
+    return context
 
 
 def owned_application_root(udid):
