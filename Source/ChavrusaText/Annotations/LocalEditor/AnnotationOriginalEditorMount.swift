@@ -177,13 +177,15 @@ final class AnnotationOriginalEditorMount {
                 snapshot: snapshot, mutationID: UUID(), body: body,
                 textPreview: originalPreview, editorRevision: capture.snapshot.nativeArchiveSHA256
             )
-            // The captured editor cannot keep accepting changes while its body
-            // is committed. The local session remains authoritative for its CAS.
-            nativeOwner.retire()
+            // The local SDK capture has already terminally retired its native
+            // editor. Keep its source token alive through the canonical CAS.
+            // The existing qualification host retains its original retirement.
+            if case .existing(let host) = nativeOwner { host.retire() }
             let outcome = try await local.save(intent)
             // A committedWithoutOwnership receipt is still an actual commit.
             // Never throw cancellation/retirement after receiving that receipt.
             committedOutcome = outcome
+            nativeOwner.retire()
             source.retire()
             local.retire()
             return outcome
