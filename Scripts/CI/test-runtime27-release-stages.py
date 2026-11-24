@@ -101,7 +101,8 @@ class PreparationControlTests(unittest.TestCase):
         overrides = {name: record(name) for name in [
             "verify_zayit_test_metadata", "prepare_original_hanlin", "prepare_react_sources", "restore",
             "rebuild_matching_zayit_framework", "prepare_matching_embedded_bundle", "install_real_pods",
-            "verify_actual_sources", "verify_selected_zayit_files", "authorize_pinned_equatable_macro"]}
+            "relocate_verified_package_alternates", "verify_actual_sources", "verify_selected_zayit_files",
+            "authorize_pinned_equatable_macro"]}
         overrides.update(ROOT=self.root, OUT=self.original_evidence.parent, INPUTS=self.inputs,
                          preflight=lambda _: {"package_pins": {"fixture": "a" * 40}},
                          capture=lambda *args: "synthetic tool response",
@@ -118,7 +119,7 @@ class PreparationControlTests(unittest.TestCase):
         names = [name for name, _ in self.calls if name != "logged"]
         self.assertEqual(names, ["verify_zayit_test_metadata", "prepare_original_hanlin", "prepare_react_sources",
                                 "restore", "rebuild_matching_zayit_framework", "prepare_matching_embedded_bundle",
-                                "install_real_pods", "verify_actual_sources", "verify_selected_zayit_files",
+                                "install_real_pods", "relocate_verified_package_alternates", "verify_actual_sources", "verify_selected_zayit_files",
                                 "authorize_pinned_equatable_macro", "prepare_original_hanlin"])
         commands = [value for name, value in self.calls if name == "logged"]
         self.assertTrue(any("-resolvePackageDependencies" in command for command in commands))
@@ -203,9 +204,16 @@ class NativeStageFixture(unittest.TestCase):
         self.write("build/runtime27-handoff/imported-build.json", {"synthetic_fixture": True})
         self.globals = stages["strict_native_configurations"].__globals__
         self.release_module = {**release, "load_manifest": lambda root: self.manifest}
+        self.sdk_calls = []
+        def sdk_observation(name):
+            def call(*args, **kwargs):
+                self.sdk_calls.append((name, args, kwargs))
+                return {"synthetic_sdk_boundary": name}
+            return call
+        self.sdk_module = {name: sdk_observation(name) for name in ("load", "restore", "verify")}
         self.addCleanup(patch.stopall)
         patch.dict(self.globals, ROOT=self.root, OUT=self.out,
-                   module=lambda _: self.release_module).start()
+                   module=lambda name: self.sdk_module if name == "original_editor_sdk_routes.py" else self.release_module).start()
 
     def write(self, name, value):
         path = self.root / name
@@ -253,7 +261,8 @@ class NativeAcceptanceBoundaryTests(NativeStageFixture):
             self.commands.append(command)
             return hid_exit_code if "Scripts/CI/runtime27-hid.py" in command else exit_code
         with patch.dict(self.globals, import_handoff=lambda *a: None,
-                        expected_build_report=lambda: (copy.deepcopy(self.report), {})), \
+                        expected_build_report=lambda: (copy.deepcopy(self.report),
+                            {"original_editor_routes": {"sha256": "d" * 64}})), \
              patch.object(stages["transfer"], "verify_products", return_value={"synthetic": True}), \
              patch.object(stages["transfer"], "original_xctestrun", return_value=self.root / "original.xctestrun"), \
              patch.dict(os.environ, {}, clear=True):
@@ -265,6 +274,20 @@ class NativeAcceptanceBoundaryTests(NativeStageFixture):
         self.assertEqual(report["status"], "RELEASE_NATIVE_MATRIX_ONLY_PASS")
         self.assertIs(report["full_release_acceptance"], False)
         self.assertEqual((report["executed_ui_pass"], report["ui_not_run"]), (113, 1))
+        self.assertEqual([row[0] for row in self.sdk_calls], ["load", "restore", "verify", "verify"])
+        self.assertTrue(all(row[2]['route_sha256'] == 'd' * 64
+                            for row in self.sdk_calls if row[0] == 'verify'))
+
+    def test_unqualified_restored_sdk_prevents_the_native_matrix(self):
+        def refuse(*args, **kwargs):
+            raise RuntimeError("Restored SDK bytes differ")
+        self.sdk_module["verify"] = refuse
+        with self.assertRaisesRegex(RuntimeError, "SDK bytes differ"):
+            self.invoke_native(0)
+        self.assertFalse(self.commands)
+        report = json.loads((self.out / "result.json").read_text())
+        self.assertEqual(report["status"], "FAIL")
+        self.assertIsNone(report["executed_ui_pass"])
 
     def test_failed_child_never_inherits_build_success_or_invents_counts(self):
         with self.assertRaisesRegex(ValueError, "matrix failed"):

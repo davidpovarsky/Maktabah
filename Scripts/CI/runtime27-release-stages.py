@@ -67,7 +67,8 @@ def build_evidence_paths():
         if path.is_file() and (path.suffix in {".json", ".log", ".diff", ".xcprivacy", ".resolved", ".swift"}
                                or path.name in {"resolved-Podfile.lock", "generated-Maktabah-project.pbxproj"}):
             paths.append(path)
-    for name in ["privacy-dependency-inputs", "rebuilt-zayit"]:
+    for name in ["privacy-dependency-inputs", "rebuilt-zayit", "original-editor",
+                 "original-editor-release-simulator", "original-editor-release-device"]:
         if (base / name).exists():
             paths.append(base / name)
     return paths
@@ -117,12 +118,18 @@ def strict_native_configurations(report, manifest):
 def native_stage(args, run_logged, controller):
     import_handoff("build", args.build_artifact, args.build_archive_sha, "native", run_logged, controller)
     build_receipt = transfer.read_json(ROOT / "build/runtime27-handoff/imported-build.json")
-    report, _ = expected_build_report()
+    report, build = expected_build_report()
     report = copy.deepcopy(report)
     report.update(status="FAIL", release_stage="native", full_release_acceptance=False,
                   executed_ui_pass=None, executed_ui_fail=None, executed_ui_skip=None, ui_not_run=None)
     try:
         report["original_products_before_native"] = transfer.verify_products(ROOT, build_receipt)
+        sdk_routes = module("original_editor_sdk_routes.py")
+        sdk_routes["restore"](ROOT, sdk_routes["load"](ROOT), OUT / "native-sdk-transport")
+        report["original_sdk_before_native"] = sdk_routes["verify"](
+            ROOT, "build/hq-stage2/original-editor-routes.json", "Debug", "iphonesimulator",
+            ROOT / "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app",
+            route_sha256=build["original_editor_routes"]["sha256"], after_ui=True)
         original_run = transfer.original_xctestrun(ROOT, build_receipt)
         set_release_environment()
         os.environ["FAITHFUL_RELEASE_XCTESTRUN"] = str(original_run)
@@ -142,6 +149,10 @@ def native_stage(args, run_logged, controller):
                           "release-native-matrix-driver.log", MATRIX_BUDGET_SECONDS,
                           interrupt_controller=controller)
         report["original_products_after_native"] = transfer.verify_products(ROOT, build_receipt)
+        report["original_sdk_after_native"] = sdk_routes["verify"](
+            ROOT, "build/hq-stage2/original-editor-routes.json", "Debug", "iphonesimulator",
+            ROOT / "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app",
+            route_sha256=build["original_editor_routes"]["sha256"], after_ui=True)
         require(code == 0, "Original full native matrix failed; production remains blocked")
         checked = strict_native_configurations(report, manifest)
         report.update(status="RELEASE_NATIVE_MATRIX_ONLY_PASS", native_predecessor_verification=checked,
@@ -186,16 +197,20 @@ def pack_native():
     return receipt
 
 
-def verify_restored_input_context(build, restored, original_sources, restored_sources):
+def verify_restored_input_context(build, restored, original_sources, restored_sources, *, sdk_evidence=None):
     require(restored.get("status") == "PREPARED_ORIGINAL_INPUTS_ONLY"
             and restored.get("app_build_executed") is False, "Unexpected Debug rebuild during Release restoration")
     for key in ["checkout_sha", "application_source_sha", "application_trees", "validator_sha256",
                 "inputs_sha256", "workflow_sha256", "package_pins", "package_resolved_sha256",
                 "hanlin_gitlink", "hanlin_sdk_source", "actual_package_checkouts", "actual_source_inputs_verified",
-                "native_context", "resource_inputs"]:
+                "resource_inputs"]:
         require(key in build and restored.get(key) == build[key], "Restored original input differs: " + key)
     require(original_sources and restored_sources == original_sources,
             "Prepared actual source bytes differ from the accepted Debug compilation")
+    if sdk_evidence is None:
+        require(restored.get("native_context") == build.get("native_context"), "Restored original input differs: native_context")
+    else:
+        return module("original_editor_sdk_routes.py")["verify_rehydrated_context"](ROOT, build, restored, sdk_evidence)
 
 
 def production_stage(args, run_logged, controller):
@@ -228,14 +243,15 @@ def production_stage(args, run_logged, controller):
         shutil.copyfile(lock, destination)
         prepared = OUT / "production-inputs"
         code = run_logged([sys.executable, "Scripts/CI/hq-stage2-focused-apple.py", "--build-for-testing",
-                           "--prepare-inputs-only", "--preparation-evidence-dir", str(prepared.relative_to(ROOT))],
+                           "--prepare-inputs-only", "--preparation-evidence-dir", str(prepared.relative_to(ROOT)),
+                           "--original-editor-routes"],
                           "release-input-restoration.log", INPUT_RESTORATION_BUDGET_SECONDS,
                           interrupt_controller=controller)
         require(code == 0, "Original Release input restoration failed")
         restored = transfer.read_json(prepared / "result.json")
-        verify_restored_input_context(build, restored,
+        report["original_sdk_input_restoration"] = verify_restored_input_context(build, restored,
                                       transfer.read_json(ROOT / "build/hq-stage2/actual-source-inputs.json"),
-                                      transfer.read_json(prepared / "actual-source-inputs.json"))
+                                      transfer.read_json(prepared / "actual-source-inputs.json"), sdk_evidence=prepared)
         report["original_products_after_restoration"] = transfer.verify_products(ROOT, build_receipt)
         report["input_restoration"] = {"status": "EXACT_ORIGINAL_INPUTS_WITHOUT_DEBUG_REBUILD",
                                        "report_sha256": transfer.digest(prepared / "result.json")}
@@ -244,7 +260,9 @@ def production_stage(args, run_logged, controller):
         upstream = ROOT / "Vendor/SefariaMobile/Upstream"
         os.environ.update(PROJECT_ROOT=str(upstream), NODE_PATH=str(upstream / "node_modules"),
                           RCT_NO_LAUNCH_PACKAGER="1", SKIP_BUNDLING="1", FAIL_ON_MISSING_BUNDLE="1",
-                          GOOGLE_SERVICES_FILE=str(ROOT / "Source/GoogleService-Info.plist"))
+                          GOOGLE_SERVICES_FILE=str(ROOT / "Source/GoogleService-Info.plist"),
+                          OTZARIA_ORIGINAL_EDITOR_ROUTES=str((prepared / "original-editor-routes.json").relative_to(ROOT)),
+                          OTZARIA_ORIGINAL_EDITOR_ROUTES_SHA256=restored["original_editor_routes"]["sha256"])
         # The original runner still independently requires the complete native
         # matrix, provisions via the exact Debug app, and upgrades its same UDID
         # and ordinary data container to the freshly built Release binary.

@@ -9,6 +9,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 import runpy
 import shutil
 import subprocess
@@ -50,6 +51,8 @@ def prepare(producer_root, evidence, abi_path, destination):
             'Actual English/Hebrew external SDK consumer observations are incomplete')
     identity = qualification.get('execution_identity', {})
     require(identity.get('producer_kind') == 'local-mac', 'This packet requires genuine local execution')
+    native_tree = qualification.get('heart', {}).get('native_qualification', {}).get('native_source_tree', '')
+    require(re.fullmatch(r'[a-f0-9]{40}', native_tree), 'Qualified original Native source tree is absent')
     source_sha = subprocess.check_output(['git', '-C', str(producer_root), 'rev-parse', 'HEAD'], text=True).strip()
     require(source_sha == qualification['source_sha'] == identity['source_sha']
             and not subprocess.check_output(['git', '-C', str(producer_root), 'diff', '--name-only', 'HEAD']),
@@ -87,6 +90,7 @@ def prepare(producer_root, evidence, abi_path, destination):
     config = {
         'schema': 3, 'producer_kind': 'local-mac', 'repository': LOCAL['REPOSITORY'],
         'source_sha': source_sha, 'run_id': identity['run_id'], 'run_attempt': 1,
+        'native_source_tree': native_tree, 'configuration': 'Debug', 'platform': 'iphonesimulator',
         'local_execution_sha256': identity['local_execution_sha256'], 'local_receipts': receipts,
         'archive_path': archive.relative_to(ROOT).as_posix(), 'archive_bytes': archive.stat().st_size,
         'archive_sha256': digest(archive),
