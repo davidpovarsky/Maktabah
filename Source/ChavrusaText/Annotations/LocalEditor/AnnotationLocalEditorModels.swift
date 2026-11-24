@@ -1,7 +1,7 @@
 import Foundation
 import Synchronization
 import OtzariaActionCore
-#if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+#if os(iOS) && canImport(AnytypeOriginalEditor)
 import AnytypeOriginalEditor
 #endif
 
@@ -19,24 +19,34 @@ enum AnnotationLocalEditorError: Error, Sendable, Equatable {
 final class AnnotationLocalEditorLifetime: Sendable {
     private struct State: Sendable {
         var retired = false
-        #if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+        #if os(iOS) && canImport(AnytypeOriginalEditor)
         struct NativeImportLink: Sendable {
             weak var source: AnytypeOriginalAnnotationImportSourceLifetime?
         }
         var nativeImports: [NativeImportLink] = []
+        struct LocalAnnotationLink: Sendable {
+            weak var source: AnytypeOriginalEditorLocalAnnotationSourceLifetime?
+        }
+        var localAnnotations: [LocalAnnotationLink] = []
         #endif
     }
     private let state = Mutex(State())
 
     func retire() {
-        #if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
-        let retained = state.withLock { value -> [AnytypeOriginalAnnotationImportSourceLifetime] in
-            guard !value.retired else { return [] }
+        #if os(iOS) && canImport(AnytypeOriginalEditor)
+        let retained = state.withLock { value -> (
+            [AnytypeOriginalAnnotationImportSourceLifetime],
+            [AnytypeOriginalEditorLocalAnnotationSourceLifetime]
+        ) in
+            guard !value.retired else { return ([], []) }
             value.retired = true
-            let sources = value.nativeImports.compactMap { $0.source }
+            let imports = value.nativeImports.compactMap { $0.source }
+            let annotations = value.localAnnotations.compactMap { $0.source }
             value.nativeImports.removeAll()
-            for source in sources { source.retire() }
-            return sources
+            value.localAnnotations.removeAll()
+            for source in imports { source.retire() }
+            for source in annotations { source.retire() }
+            return (imports, annotations)
         }
         // A last strong release/deinit must occur outside this Host lock too.
         withExtendedLifetime(retained) {}
@@ -59,7 +69,7 @@ final class AnnotationLocalEditorLifetime: Sendable {
         }
     }
 
-    #if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+    #if os(iOS) && canImport(AnytypeOriginalEditor)
     /// Called only for a newly prepared exact saved-row owner, outside every
     /// Host transaction/repository lock. There is no arbitrary observer closure.
     /// An already retired parent also retires the incoming SDK token before
@@ -74,6 +84,24 @@ final class AnnotationLocalEditorLifetime: Sendable {
             value.nativeImports = sources.map { .init(source: $0) }
             if !sources.contains(where: { $0 === source }) {
                 value.nativeImports.append(.init(source: source))
+            }
+            return sources
+        }
+        withExtendedLifetime(retained) {}
+    }
+
+    /// The local-only native editor has the same synchronous retirement fence
+    /// as an explicit import. Its SDK token cannot outlive this original owner.
+    func bindLocalAnnotationRetirement(_ source: AnytypeOriginalEditorLocalAnnotationSourceLifetime) throws {
+        let retained = try state.withLock { value in
+            guard !value.retired, source.isCurrent else {
+                source.retire()
+                throw AnnotationLocalEditorError.retired
+            }
+            let sources = value.localAnnotations.compactMap { $0.source }
+            value.localAnnotations = sources.map { .init(source: $0) }
+            if !sources.contains(where: { $0 === source }) {
+                value.localAnnotations.append(.init(source: source))
             }
             return sources
         }

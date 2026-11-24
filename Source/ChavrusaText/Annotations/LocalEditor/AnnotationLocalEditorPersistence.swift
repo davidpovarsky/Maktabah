@@ -1,7 +1,7 @@
 import Foundation
 import SQLite3
 import OtzariaActionCore
-#if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+#if os(iOS) && canImport(AnytypeOriginalEditor)
 import AnytypeOriginalEditor
 #endif
 
@@ -717,7 +717,32 @@ extension AnnotationLocalEditorPersistence {
             && prepared.snapshot.sessionID == sessionID && isOwned
     }
 
-    #if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+    #if os(iOS) && canImport(AnytypeOriginalEditor)
+    func bindLocalAnnotationRetirement(
+        _ source: AnytypeOriginalEditorLocalAnnotationSourceLifetime,
+        snapshot: AnnotationLocalEditorSnapshot
+    ) throws {
+        do {
+            guard isOwned, snapshot.sessionID == sessionID,
+                  snapshot.annotationUUID == annotationUUID,
+                  snapshot.databaseURL.absoluteString.utf8.elementsEqual(connection.databaseURL.absoluteString.utf8),
+                  source.source.annotationUUID == annotationUUID,
+                  source.source.expectedRevision == snapshot.revision,
+                  source.source.sourceWitnessSHA256 == snapshot.source.digest,
+                  source.source.payloadSHA256 == snapshot.version?.payloadDigest else {
+                throw AnnotationLocalEditorError.wrongOwner
+            }
+            // No SQL or callback is performed while either parent is linked.
+            // A retired original DB or editor immediately retires the SDK token.
+            try owner.bindLocalAnnotationRetirement(source)
+            try connection.lifetime.bindLocalAnnotationRetirement(source)
+            guard isOwned, source.isCurrent else { throw AnnotationLocalEditorError.retired }
+        } catch {
+            source.retire()
+            throw error
+        }
+    }
+
     func bindNativeImportRetirement(
         _ source: AnytypeOriginalAnnotationImportSourceLifetime,
         prepared: AnnotationLocalEditorNativePreparation

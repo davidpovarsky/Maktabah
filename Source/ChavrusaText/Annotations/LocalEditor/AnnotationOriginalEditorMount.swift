@@ -1,7 +1,11 @@
-#if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+#if os(iOS) && canImport(AnytypeOriginalEditor)
 import Foundation
 import UIKit
+#if DEBUG && targetEnvironment(simulator)
 @_spi(OriginalEditorQualification) import AnytypeOriginalEditor
+#else
+import AnytypeOriginalEditor
+#endif
 
 /// A thin consumer of the original SDK and original annotation persistence.
 /// The SDK owns native editing/export. AnnotationLocalEditorSession owns the
@@ -13,7 +17,7 @@ final class AnnotationOriginalEditorMount {
     let binding: AnytypeOriginalEditorBinding
     private let local: AnnotationLocalEditorSession
     private let source: AnnotationOriginalEditorSourceObservation
-    private let host: AnytypeOriginalEditorHost
+    private let nativeOwner: NativeOwner
     private var saveAttempted = false
     private(set) var retainedCapture: AnytypeOriginalEditorSnapshotCapture?
     private(set) var retainedFailureDirectory: URL?
@@ -28,12 +32,12 @@ final class AnnotationOriginalEditorMount {
 
     private init(local: AnnotationLocalEditorSession, snapshot: AnnotationLocalEditorSnapshot,
                  source: AnnotationOriginalEditorSourceObservation,
-                 host: AnytypeOriginalEditorHost, controller: UIViewController) {
+                 nativeOwner: NativeOwner, controller: UIViewController) {
         self.local = local
         self.snapshot = snapshot
         self.source = source
-        self.host = host
-        binding = host.binding
+        self.nativeOwner = nativeOwner
+        binding = nativeOwner.binding
         viewController = controller
     }
 
@@ -67,7 +71,7 @@ final class AnnotationOriginalEditorMount {
             try assertUnchanged(snapshot, try await local.read())
             try source.requireCurrent()
             let controller = try host.makeViewController()
-            return .init(local: local, snapshot: snapshot, source: source, host: host, controller: controller)
+            return .init(local: local, snapshot: snapshot, source: source, nativeOwner: .existing(host), controller: controller)
         } catch {
             openedHost?.retire()
             source.retire()
@@ -76,9 +80,73 @@ final class AnnotationOriginalEditorMount {
         }
     }
 
+    /// Ordinary annotation editing owns a private local-only native draft.
+    /// Canonical body bytes are always read from the original saved SQLite row.
+    static func openLocalAnnotation(
+        local: AnnotationLocalEditorSession,
+        snapshot: AnnotationLocalEditorSnapshot,
+        source: AnnotationOriginalEditorSourceObservation,
+        appGroup: String
+    ) async throws -> AnnotationOriginalEditorMount {
+        var opened: AnytypeOriginalEditorLocalAnnotationSession?
+        var nativeLifetime: AnytypeOriginalEditorLocalAnnotationSourceLifetime?
+        do {
+            try source.bindLocal(local)
+            try source.requireCurrent()
+            guard local.isCurrent,
+                  snapshot.annotationUUID == source.annotationUUID,
+                  snapshot.annotation.id == source.annotationID else {
+                throw AnnotationLocalEditorError.wrongOwner
+            }
+            try assertUnchanged(snapshot, try await local.read())
+            try source.requireCurrent()
+            let descriptor = try AnytypeOriginalEditorLocalAnnotationSource(
+                hostProfileID: source.profileID.uuidString,
+                annotationUUID: snapshot.annotationUUID,
+                expectedRevision: snapshot.revision,
+                sourceWitnessSHA256: snapshot.source.digest,
+                payloadSHA256: snapshot.version?.payloadDigest
+            )
+            let body: AnytypeOriginalEditorLocalAnnotationBody
+            if let original = try nativeBody(in: snapshot) {
+                body = .nativeSnapshot(original)
+            } else {
+                body = .plainText(snapshot.annotation.note ?? "")
+            }
+            let lifetime = AnytypeOriginalEditorLocalAnnotationSourceLifetime(source: descriptor)
+            nativeLifetime = lifetime
+            try source.bindLocalAnnotation(lifetime, local: local, snapshot: snapshot)
+            let session = try await AnytypeOriginalEditorModule.openLocalAnnotation(
+                appGroup: appGroup, sourceLifetime: lifetime, body: body
+            ) { [source, local] candidate in
+                candidate == descriptor && source.isCurrent && local.isCurrent
+            }
+            opened = session
+            // The original private runtime can suspend during auth/create/import.
+            // Never present its controller over a changed canonical saved row.
+            try assertUnchanged(snapshot, try await local.read())
+            try source.requireCurrent()
+            let binding = session.binding
+            guard binding.annotationUUID == snapshot.annotationUUID,
+                  binding.hostProfileID.utf8.elementsEqual(source.profileID.uuidString.utf8),
+                  binding.expectedRevision == snapshot.revision,
+                  binding.sourceWitnessSHA256 == snapshot.source.digest else {
+                throw AnnotationLocalEditorError.wrongOwner
+            }
+            return .init(local: local, snapshot: snapshot, source: source,
+                         nativeOwner: .local(session), controller: try session.makeViewController())
+        } catch {
+            opened?.retire()
+            nativeLifetime?.retire()
+            source.retire()
+            local.retire()
+            throw error
+        }
+    }
+
     /// One concrete save attempt. No automatic recapture/retry can silently
     /// adopt a newer row or pretend an uncertain earlier write was rolled back.
-    func save(textPreview: String) async throws -> AnnotationLocalEditorOutcome {
+    func save(textPreview: String? = nil) async throws -> AnnotationLocalEditorOutcome {
         guard !saveAttempted else { throw AnnotationLocalEditorError.busy }
         saveAttempted = true
         do {
@@ -88,8 +156,9 @@ final class AnnotationOriginalEditorMount {
             viewController.view.endEditing(true)
             // The SDK's actual registered-write/RPC barrier is mandatory here;
             // endEditing itself and optimistic UI text are not a flush receipt.
-            let capture = try await host.captureNativeSnapshot(
-                maximumBodyBytes: TorahAnnotationPayloadLimits.maximumBodyBytes
+            let (capture, originalPreview) = try await nativeOwner.capture(
+                maximumBodyBytes: TorahAnnotationPayloadLimits.maximumBodyBytes,
+                qualificationPreview: textPreview
             )
             // Preserve the original archive before any later source/CAS check.
             retainedCapture = capture
@@ -106,11 +175,11 @@ final class AnnotationOriginalEditorMount {
             )
             let intent = try local.prepareSave(
                 snapshot: snapshot, mutationID: UUID(), body: body,
-                textPreview: textPreview, editorRevision: capture.snapshot.nativeArchiveSHA256
+                textPreview: originalPreview, editorRevision: capture.snapshot.nativeArchiveSHA256
             )
             // The captured editor cannot keep accepting changes while its body
             // is committed. The local session remains authoritative for its CAS.
-            host.retire()
+            nativeOwner.retire()
             let outcome = try await local.save(intent)
             // A committedWithoutOwnership receipt is still an actual commit.
             // Never throw cancellation/retirement after receiving that receipt.
@@ -138,6 +207,7 @@ final class AnnotationOriginalEditorMount {
     }
 
 
+    #if DEBUG && targetEnvironment(simulator)
     func prepareProcessResume(
         session: AnytypeOriginalEditorQualificationSession,
         snapshot native: AnytypeOriginalEditorSnapshot,
@@ -146,15 +216,18 @@ final class AnnotationOriginalEditorMount {
     ) async throws -> AnytypeOriginalEditorProcessResumeReceipt {
         try source.requireCurrent()
         guard local.isCurrent else { throw AnnotationLocalEditorError.retired }
+        guard case .existing(let host) = nativeOwner else { throw AnnotationLocalEditorError.wrongOwner }
         return try await session.prepareProcessResume(
             host: host, snapshot: native, currentSource: currentSource, context: context
         ) { [source, local] candidate in
             candidate == currentSource && source.isCurrent && local.isCurrent
         }
     }
+    #endif
+
 
     func retire() {
-        host.retire()
+        nativeOwner.retire()
         source.retire()
         local.retire()
     }
@@ -192,8 +265,42 @@ final class AnnotationOriginalEditorMount {
             maximumBodyBytes: TorahAnnotationPayloadLimits.maximumBodyBytes)
     }
 
+    @MainActor
+    private enum NativeOwner {
+        case existing(AnytypeOriginalEditorHost)
+        case local(AnytypeOriginalEditorLocalAnnotationSession)
+
+        var binding: AnytypeOriginalEditorBinding {
+            switch self {
+            case .existing(let host): host.binding
+            case .local(let session): session.binding
+            }
+        }
+
+        func capture(maximumBodyBytes: Int, qualificationPreview: String?) async throws
+            -> (AnytypeOriginalEditorSnapshotCapture, String) {
+            switch self {
+            case .existing(let host):
+                guard let qualificationPreview else { throw AnnotationLocalEditorError.invalidPreview }
+                return (try await host.captureNativeSnapshot(maximumBodyBytes: maximumBodyBytes),
+                        qualificationPreview)
+            case .local(let session):
+                guard qualificationPreview == nil else { throw AnnotationLocalEditorError.invalidPreview }
+                let captured = try await session.captureNativeSnapshot(maximumBodyBytes: maximumBodyBytes)
+                return (captured.nativeCapture, captured.textPreview)
+            }
+        }
+
+        func retire() {
+            switch self {
+            case .existing(let host): host.retire()
+            case .local(let session): session.retire()
+            }
+        }
+    }
+
     isolated deinit {
-        host.retire()
+        nativeOwner.retire()
         source.retire()
         local.retire()
     }

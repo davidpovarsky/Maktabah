@@ -19,6 +19,18 @@ struct iOSAnnotationEditorSheet: View {
     @State private var operationErrorMessage: String?
     @State private var editorTextView: UITextView?
     @State private var hasInitialized: Bool = false
+    #if os(iOS) && canImport(AnytypeOriginalEditor)
+    @State private var originalEditorAvailability: AnnotationOriginalEditorAvailability = .checking
+    #endif
+
+    private var allowsPlainEditing: Bool {
+        #if os(iOS) && canImport(AnytypeOriginalEditor)
+        AnnotationOriginalEditorProductionEntry.qualificationOwnsEntry
+            || annotation.id == nil || originalEditorAvailability.allowsPlainEditing
+        #else
+        true
+        #endif
+    }
 
     private var availableColors: [UIColor] {
         if isUnderline {
@@ -59,6 +71,7 @@ struct iOSAnnotationEditorSheet: View {
                         onNativeTextView?($0)
                     })
                         .frame(minHeight: 80)
+                        .disabled(!allowsPlainEditing)
                 }
 
                 #if DEBUG && os(iOS) && targetEnvironment(simulator)
@@ -73,6 +86,15 @@ struct iOSAnnotationEditorSheet: View {
                 }, closeOriginalSheet: { dismiss() })
                 #endif
 
+                #if os(iOS) && canImport(AnytypeOriginalEditor)
+                AnnotationOriginalEditorProductionEntry(annotation: annotation, draft: {
+                    .init(text: noteText, nativeText: editorTextView?.text,
+                          nativeEditorIsMounted: editorTextView?.window != nil,
+                          selectedColorHex: selectedColorHex, isUnderline: isUnderline,
+                          tagsText: tagsText)
+                }, availability: $originalEditorAvailability, closeOriginalSheet: { dismiss() })
+                #endif
+
                 ThemeSection {
                     Button(action: saveAnnotation) {
                         HStack {
@@ -82,6 +104,7 @@ struct iOSAnnotationEditorSheet: View {
                             Spacer()
                         }
                     }
+                    .disabled(!allowsPlainEditing)
                     .accessibilityIdentifier("annotation-save")
                     .accessibilityLabel("Save")
 
@@ -151,12 +174,15 @@ struct iOSAnnotationEditorSheet: View {
                     }
                 }
 
+                .disabled(!allowsPlainEditing)
+
                 ThemeSection("Tags (comma separated)") {
                     let isRTL = tagsText.isParagraphRTL
                     TextField("tag1, tag2...", text: $tagsText)
                         .multilineTextAlignment(isRTL ? .trailing : .leading)
                         .environment(\.layoutDirection, isRTL ? .rightToLeft : .leftToRight)
                 }
+                .disabled(!allowsPlainEditing)
                 ThemeSection {
                     Button(role: .destructive, action: {
                         if let id = annotation.id {
@@ -198,6 +224,7 @@ struct iOSAnnotationEditorSheet: View {
                     Button("Save") {
                         saveAnnotation()
                     }
+                    .disabled(!allowsPlainEditing)
                     .accessibilityIdentifier("annotation-save-toolbar")
                     .accessibilityLabel("Save")
                 }
@@ -238,6 +265,11 @@ struct iOSAnnotationEditorSheet: View {
     }
 
     private func saveAnnotation() {
+        guard allowsPlainEditing else {
+            operationErrorMessage = String(localized: "Use the expanded editor to change this formatted note.",
+                                           table: "OriginalAnnotationEditor")
+            return
+        }
         #if DEBUG
         (AccessibleAutoDirectionTextView.activeInstance ?? editorTextView as? AccessibleAutoDirectionTextView)?.checkSmokeNoteInput()
         #endif
