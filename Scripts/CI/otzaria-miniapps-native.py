@@ -185,16 +185,31 @@ def export_built_products():
     def include_product(path):
         path = Path(path)
         require(path.is_absolute(), "Original native product reference is not absolute")
-        path = path.resolve(strict=True)
-        require(path.is_relative_to(products) and path.exists(),
+        resolved = path.resolve(strict=True)
+        require(path.is_relative_to(products) and resolved.is_relative_to(products) and resolved.exists(),
                 "An original native product reference is missing or outside Products")
-        if any(path == root or path.is_relative_to(root) for root in roots):
-            return
-        parts = path.relative_to(products).parts
-        # Include the complete referenced framework/bundle, not only one leaf.
-        whole = products.joinpath(*parts[:2]) if len(parts) > 1 else path
-        roots[:] = [root for root in roots if not root.is_relative_to(whole)]
-        roots.append(whole)
+        # Keep every lexical symlink used by the unchanged xctestrun path, as
+        # well as its resolved product. Resolving first would lose alias roots.
+        candidates = [resolved]
+        current = products
+        for part in path.relative_to(products).parts:
+            if part == "..":
+                current = current.parent
+                continue
+            current = current / part
+            require(current.is_relative_to(products),
+                    "An original native product alias is outside Products")
+            if current.is_symlink():
+                candidates.append(current)
+                current = current.resolve(strict=True)
+        for candidate in candidates:
+            if any(candidate == root or candidate.is_relative_to(root) for root in roots):
+                continue
+            parts = candidate.relative_to(products).parts
+            # Include the complete referenced framework/bundle, not only one leaf.
+            whole = products.joinpath(*parts[:2]) if len(parts) > 1 else candidate
+            roots[:] = [root for root in roots if not root.is_relative_to(whole)]
+            roots.append(whole)
 
     def reference_path(value, host):
         if value.startswith(("__PLATFORMS__/", "__DEVELOPER_DIR__/")):
@@ -207,7 +222,7 @@ def export_built_products():
         require(re.search(r"__[A-Z][A-Z0-9_]*__", value) is None, "Unresolved original XCTest product placeholder")
         path = Path(value)
         require(path.is_absolute(), "Original XCTest product reference is not absolute")
-        return path.resolve(strict=True)
+        return path
 
     product_keys = {"TestBundlePath", "TestHostPath", "UITargetAppPath",
                     "DependentProductPaths", "ProductPath"}
@@ -239,15 +254,15 @@ def export_built_products():
         require(len(roots) < 128, "Unexpectedly large native product reference closure")
         for top in pending:
             visited.add(top)
-            for path in [top, *sorted(top.rglob("*"))] if top.is_dir() else [top]:
+            for path in [top, *sorted(top.rglob("*"))] if top.is_dir() and not top.is_symlink() else [top]:
                 if path.is_symlink():
                     require(not Path(os.readlink(path)).is_absolute(),
                             "Native product has a nonportable absolute symlink")
-                    include_product(path.resolve(strict=True))
+                    include_product(path.parent / os.readlink(path))
     roots.sort()
     entries = {}
     for top in roots:
-        for path in [top, *sorted(top.rglob("*"))] if top.is_dir() else [top]:
+        for path in [top, *sorted(top.rglob("*"))] if top.is_dir() and not top.is_symlink() else [top]:
             relative = path.relative_to(products).as_posix()
             if path.is_symlink():
                 require(path.resolve(strict=True).is_relative_to(products.resolve()),

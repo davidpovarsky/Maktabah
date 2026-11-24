@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "count": 2,
+  "scope": "Only new lexical XCTest alias-chain archive controls; temporary fixtures, not native acceptance",
+  "native_tests_executed": 0,
+  "test_source_sha256": "5534d0658eee0d4cc2c62881e2636739d34caf0ac2eee3775cdca1c84578dd43",
+  "exporter_source_sha256": "694264ecd9730b6d895d5e5879398e8f2e656252b2066d5d8136f6d62326a96e",
+  "log": "test_alias_chain_cannot_depend_on_an_unexported_external_hop (__main__.NativeProductAliasClosureTests.test_alias_chain_cannot_depend_on_an_unexported_external_hop) ... ok\ntest_unchanged_xctestrun_alias_chain_is_relocatable (__main__.NativeProductAliasClosureTests.test_unchanged_xctestrun_alias_chain_is_relocatable) ... Retained original app and UI test products with complete file and archive hashes\nok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.039s\n\nOK\n",
+  "unchanged_tests_repeated": 0
+}
