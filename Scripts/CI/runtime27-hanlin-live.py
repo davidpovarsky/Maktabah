@@ -5,6 +5,7 @@ from contextlib import closing
 import hashlib
 import json
 import os
+import platform
 from pathlib import Path
 import plistlib
 import re
@@ -54,6 +55,29 @@ def git(*args):
     return subprocess.check_output(["git", *args], cwd=ROOT, timeout=90).decode().strip()
 
 
+def execution_identity():
+    """Keep local Mac runs distinct from real GitHub workflow attempts."""
+    local = os.environ.get("OTZARIA_LOCAL_RUN_ID")
+    workflow = os.environ.get("GITHUB_RUN_ID")
+    require(not (local and workflow), "Ambiguous native execution owner")
+    if workflow:
+        attempt = os.environ.get("GITHUB_RUN_ATTEMPT", "")
+        require(workflow.isdecimal() and attempt.isdecimal() and int(attempt) > 0,
+                "Invalid GitHub workflow identity")
+        return {"run_id": workflow, "run_attempt": attempt,
+                "execution_environment": "github-actions"}
+    require(platform.system() == "Darwin" and local is not None,
+            "Local native execution requires a Mac and an explicit run UUID")
+    require(str(uuid.UUID(local)) == local, "Invalid local native execution UUID")
+    return {"run_id": "local-" + local, "run_attempt": "1",
+            "execution_environment": "dedicated-mac", "host": platform.node()}
+
+
+def verify_execution_owner(receipt):
+    require(all(receipt.get(key) == value for key, value in execution_identity().items()),
+            "Wrong native execution owner for cleanup or evidence restoration")
+
+
 def evidence_identity(directory):
     require(directory.is_dir() and not directory.is_symlink(), "Invalid original evidence directory")
     rows = []
@@ -67,7 +91,7 @@ def evidence_identity(directory):
 
 def isolate_artifacts():
     artifacts = ROOT / "build/artifacts"
-    receipt = {"run_id": os.environ["GITHUB_RUN_ID"], "run_attempt": os.environ["GITHUB_RUN_ATTEMPT"],
+    receipt = {**execution_identity(),
                "had_prior": artifacts.exists(), "prior_identity": evidence_identity(artifacts) if artifacts.exists() else None}
     # Commit ownership before either rename so cancellation can restore it.
     write(WORK / "artifact-isolation.json", receipt)
@@ -81,8 +105,7 @@ def restore_artifacts():
     if not receipt_path.exists():
         return
     receipt = json.loads(receipt_path.read_text())
-    require(receipt["run_id"] == os.environ["GITHUB_RUN_ID"] and receipt["run_attempt"] == os.environ["GITHUB_RUN_ATTEMPT"],
-            "Wrong workflow attempt for original evidence restoration")
+    verify_execution_owner(receipt)
     artifacts, prior = ROOT / "build/artifacts", WORK / "prior-artifacts"
     if prior.exists() or (not receipt["had_prior"] and artifacts.exists()):
         if artifacts.exists():
@@ -287,8 +310,8 @@ class LiveAcceptance:
         require(not list(root.glob("*/Documents/" + CONNECTION_DIAGNOSTIC_PREFIX + self.nonce + ".json")),
                 "A previous connection diagnostic already exists for this owned input")
         self.udid = udid
-        write(WORK / "ownership.json", {"udid": udid, "run_id": os.environ["GITHUB_RUN_ID"],
-              "run_attempt": os.environ["GITHUB_RUN_ATTEMPT"], "nonce": self.nonce, "private_relative": PRIVATE_RELATIVE.as_posix()})
+        write(WORK / "ownership.json", {"udid": udid, **execution_identity(),
+              "nonce": self.nonce, "private_relative": PRIVATE_RELATIVE.as_posix()})
         oracle = json.loads((ROOT / f"build/artifacts/runtime27/fixture-oracle-{label}.json").read_text())
         require(oracle["profileID"] == "miniTest10" and oracle["profileVersion"] == 6,
                 "Live input requires the public original miniature fixture")
@@ -429,8 +452,7 @@ def cleanup_owned_device():
         print("No live private input was staged")
         return 0
     owner = json.loads(receipt.read_text())
-    require(owner["run_id"] == os.environ["GITHUB_RUN_ID"] and owner["run_attempt"] == os.environ["GITHUB_RUN_ATTEMPT"],
-            "Wrong workflow attempt for private-input cleanup")
+    verify_execution_owner(owner)
     errors = []
     try:
         clean_private_input(owner["udid"])
@@ -467,9 +489,14 @@ def emergency_cleanup():
     return 1 if errors else 0
 
 
-def main():
+def main(*, key_from_stdin=False):
     # No child process receives this step-only environment value, including Xcode.
     key = os.environ.pop("OTZARIA_HANLIN_LIVE_API_KEY", "")
+    if key_from_stdin:
+        require(not key, "Choose one live credential input")
+        raw = sys.stdin.buffer.read(4097)
+        require(len(raw) <= 4096, "Invalid live credential input length")
+        key = raw.decode("ascii").strip()
     for name, value in list(os.environ.items()):
         if key and value == key:
             os.environ.pop(name)
@@ -481,6 +508,7 @@ def main():
     WORK.mkdir(parents=True, mode=0o700)
     OUT.mkdir(parents=True, mode=0o700)
     report = {"status": "FAIL", "selector": SELECTOR, "model": MODEL, "endpoint": ENDPOINT,
+              "execution": execution_identity(),
               "native116_acceptance": False, "release114_acceptance": False, "verified_completed_provider_conversations": 0}
     artifacts = ROOT / "build/artifacts"
     matrix_code = None
@@ -595,5 +623,5 @@ if __name__ == "__main__":
     os.chdir(ROOT)
     if sys.argv[1:] == ["cleanup"]:
         raise SystemExit(emergency_cleanup())
-    require(not sys.argv[1:], "Unexpected live-runner arguments")
-    raise SystemExit(main())
+    require(sys.argv[1:] in ([], ["--api-key-stdin"]), "Unexpected live-runner arguments")
+    raise SystemExit(main(key_from_stdin=sys.argv[1:] == ["--api-key-stdin"]))

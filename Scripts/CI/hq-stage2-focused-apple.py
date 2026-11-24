@@ -178,10 +178,34 @@ def validate_framework_metadata(config, item, artifact, run, job):
             "scope": "EXACT_ARTIFACT_AND_SUCCESSFUL_FRAMEWORK_JOB_NOT_WHOLE_WORKFLOW"}
 
 
+def staged_input(filename):
+    """Read an optional host-transferred input, retaining exact digest checks."""
+    value = os.environ.get("OTZARIA_STAGED_INPUTS")
+    if value is None:
+        return None
+    base = Path(value)
+    require(base.is_absolute() and base.is_dir() and not base.is_symlink(),
+            "Invalid staged input directory")
+    manifest_path = base / "manifest.json"
+    require(manifest_path.is_file() and not manifest_path.is_symlink(),
+            "Missing staged input manifest")
+    manifest = json.loads(manifest_path.read_text())
+    require(manifest.get("schema_version") == 1 and manifest.get("repository") == REPOSITORY,
+            "Wrong staged input repository or schema")
+    require(PurePosixPath(filename).name == filename, "Invalid staged input filename")
+    path = base / filename
+    record = manifest.get("files", {}).get(filename, {})
+    require(path.is_file() and not path.is_symlink() and path.stat().st_size == record.get("bytes")
+            and digest(path) == record.get("sha256"), "Staged input digest mismatch: " + filename)
+    return path
+
+
 def framework_metadata(config, item, cache, metadata_cache):
     def fetch(endpoint, filename):
         if endpoint not in metadata_cache:
-            data = json.loads(capture("gh", "api", "repos/" + REPOSITORY + "/actions/" + endpoint))
+            staged = staged_input(filename)
+            data = (json.loads(staged.read_text()) if staged is not None else
+                    json.loads(capture("gh", "api", "repos/" + REPOSITORY + "/actions/" + endpoint)))
             (cache / filename).write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
             metadata_cache[endpoint] = data
         return metadata_cache[endpoint]
@@ -287,9 +311,13 @@ def restore(config, report):
         producer = (framework_metadata(config, item, cache, metadata_cache)
                     if item["name"] in FRAMEWORK_ARTIFACTS else None)
         archive = cache / (str(item["id"]) + ".zip")
-        with archive.open("wb") as output:
-            subprocess.run(["gh", "api", f"repos/davidpovarsky/Maktabah/actions/artifacts/{item['id']}/zip"],
-                           cwd=ROOT, stdout=output, check=True, timeout=600)
+        staged = staged_input(archive.name)
+        if staged is not None:
+            shutil.copyfile(staged, archive)
+        else:
+            with archive.open("wb") as output:
+                subprocess.run(["gh", "api", f"repos/davidpovarsky/Maktabah/actions/artifacts/{item['id']}/zip"],
+                               cwd=ROOT, stdout=output, check=True, timeout=600)
         actual = digest(archive)
         require(actual == item["sha256"], "Artifact ZIP digest mismatch: " + item["name"])
         role = ("BASELINE_ONLY_REBUILT_BEFORE_LINK" if item.get("destination") == "Vendor/ZayitSearchPort/build"
