@@ -88,7 +88,7 @@ def prepare():
     if SELECTOR not in {row["case_id"] for row in contract["cases"] + contract.get("supplemental_cases", [])}:
         contract.setdefault("supplemental_cases", []).append({
             "case_id": SELECTOR, "device": "ipad11", "status": "NOT_RUN",
-            "oracle": "Real original note UI, actual Hanlin TextStudio warm and cold callbacks, same SQLite row and atomic receipts, native source process restart and callback-only launch"})
+            "oracle": "Original reader selection and note toolbar, actual Hanlin TextStudio warm/cold callbacks, three atomic receipts, linked-note anchors and unchanged source corpus"})
     contract.update(source_test_commit=context["application_source_sha"],
                     app_source=context["application_source_sha"],
                     application_source_sha=context["application_source_sha"],
@@ -167,6 +167,7 @@ class ActualMiniAppsProducer:
     def __init__(self):
         self.udid = None
         self.group = None
+        self.corpus_group = None
         self.captured = False
         self.video = None
         self.video_log = None
@@ -187,14 +188,20 @@ class ActualMiniAppsProducer:
         require(Path(consumer_group).resolve() == Path(producer_group).resolve(),
                 "The two installed original apps do not resolve the same App Group")
         self.group = Path(consumer_group).resolve()
+        self.corpus_group = Path(capture("xcrun", "simctl", "get_app_container",
+                                         udid, BUNDLE, "group.com.davidpovarsky.itorah")).resolve()
+        corpus_profile = json.loads((ROOT / "Source/Otzaria/DataProfiles/miniTest10.profile.json").read_text())
         self.state.update(status="ACTUAL_PRODUCER_INSTALLED", udid=udid, group=str(self.group),
-                          consumer_bundle=BUNDLE, producer_bundle=PRODUCER, shared_group_identifier=GROUP)
+                          consumer_bundle=BUNDLE, producer_bundle=PRODUCER, shared_group_identifier=GROUP,
+                          original_corpus_group=str(self.corpus_group))
         write(OUT / "actual-two-app-stage.json", self.state)
         self.video_log = (OUT / "native-video.log").open("w")
         self.video = subprocess.Popen(["xcrun", "simctl", "io", udid, "recordVideo", str(OUT / "actual-two-app-ipad.mp4")],
                                       stdout=self.video_log, stderr=subprocess.STDOUT)
         return {"TEST_RUNNER_MINIAPPS_NATIVE_SHARED_GROUP": str(self.group),
-                "TEST_RUNNER_MINIAPPS_NATIVE_PRODUCER_BUNDLE": PRODUCER}
+                "TEST_RUNNER_MINIAPPS_NATIVE_PRODUCER_BUNDLE": PRODUCER,
+                "TEST_RUNNER_MINIAPPS_NATIVE_CORPUS_GROUP": str(self.corpus_group),
+                "TEST_RUNNER_MINIAPPS_NATIVE_CORPUS_SHA256": corpus_profile["sourceDatabase"]["databaseSHA256"]}
 
     def redact_evidence(self, line):
         return line
@@ -225,7 +232,8 @@ class ActualMiniAppsProducer:
                 connection = sqlite3.connect(database.as_uri() + "?mode=ro", uri=True)
                 try:
                     rows = connection.execute(
-                        "SELECT r.annotation_id,r.annotation_uuid,a.ckRecordId,a.note,r.result_json "
+                        "SELECT r.annotation_id,r.annotation_uuid,a.ckRecordId,a.note,r.result_json,"
+                        "a.bkId,a.contentId,a.startIndex,a.length,a.context "
                         "FROM miniapps_result_receipts r JOIN annotations a ON a.id=r.annotation_id "
                         "WHERE r.request_id=?", (request["id"],)).fetchall()
                 finally:
@@ -240,29 +248,69 @@ class ActualMiniAppsProducer:
                 expected = (encoded[:position] + text.encode("utf-16-le") + encoded[position:]).decode("utf-16-le")
                 verified = (record["acknowledged"] is True and result.get("status") == "success"
                             and result.get("operation") == "insert" and len(rows) == 1
-                            and rows[0][0] == document["annotationID"]
+                            and (rows[0][0] > 0 if document["isReaderSelection"] else rows[0][0] == document["annotationID"])
                             and rows[0][1] == rows[0][2] == document["annotationUUID"]
+                            and rows[0][5:10] == (document["bookID"], document["contentID"],
+                                document["rangeLocation"], document["rangeLength"], document["context"])
                             and json.loads(rows[0][4]) == result)
                 report["records"].append({"shared_record": record, "original_receipt_rows": rows,
                                          "expected_note_after_this_result": expected,
                                          "same_original_annotation_verified": verified})
             records = report["records"]
-            require(len(records) == 2 and all(r["same_original_annotation_verified"] for r in records),
-                    "Expected warm and callback-only cold results with two original atomic receipts")
-            warm = [r for r in records if r["shared_record"]["request"]["source"].get("documentText") == ""]
+            require(len(records) == 3 and all(r["same_original_annotation_verified"] for r in records),
+                    "Expected editor warm/cold plus reader-selection results with three original atomic receipts")
+            editor_records = [r for r in records if r["shared_record"]["request"]["source"].get("kind") == "annotation"]
+            reader_records = [r for r in records if r["shared_record"]["request"]["source"].get("kind") == "reader"]
+            require(len(editor_records) == 2 and len(reader_records) == 1, "Reader and editor entry paths must both execute")
+            warm = [r for r in editor_records if r["shared_record"]["request"]["source"].get("documentText") == ""]
             require(len(warm) == 1, "Expected one original blank-note warm invocation")
             warm = warm[0]
-            cold = next(r for r in records if r is not warm)
+            cold = next(r for r in editor_records if r is not warm)
             require(cold["shared_record"]["request"]["source"]["documentText"] == warm["expected_note_after_this_result"],
                     "Cold invocation did not capture the actually saved warm result")
             warm_text = warm["shared_record"]["result"]["items"][0]["text"]
             cold_text = cold["shared_record"]["result"]["items"][0]["text"]
             require(warm_text.startswith("MiniApps original note שלום ") and cold_text.startswith("MiniApps cold note שלום "),
                     "Both original editor invocations must return their actual typed text")
-            identities = {tuple(r["original_receipt_rows"][0][:3]) for r in records}
-            require(len(identities) == 1 and all(r["original_receipt_rows"][0][3] == cold["expected_note_after_this_result"] for r in records),
-                    "Both callbacks must resolve to the same final original annotation row")
-            report["actual_callbacks"] = 2
+            identities = {tuple(r["original_receipt_rows"][0][:3]) for r in editor_records}
+            require(len(identities) == 1 and all(r["original_receipt_rows"][0][3] == cold["expected_note_after_this_result"]
+                                               for r in editor_records),
+                    "Both editor callbacks must resolve to the same final original annotation row")
+            reader = reader_records[0]
+            request = reader["shared_record"]["request"]
+            document = json.loads(request["source"]["metadata"]["otzaria.annotation.v1"])
+            source_selection = request["source"].get("selection")
+            require(document["isReaderSelection"] and document.get("annotationID") is None
+                    and source_selection and source_selection["length"] > 0,
+                    "Reader result must originate in an actual nonempty source selection")
+            encoded = request["source"]["documentText"].encode("utf-16-le")
+            begin = source_selection["location"] * 2
+            end = begin + source_selection["length"] * 2
+            require(0 <= begin < end <= len(encoded)
+                    and encoded[begin:end].decode("utf-16-le") == source_selection["text"]
+                    and "\n".join(item["text"] for item in request["inputs"]) == source_selection["text"],
+                    "Actual reader selection and shared input do not match the original source")
+            row = reader["original_receipt_rows"][0]
+            require(tuple(row[:3]) not in identities and row[3] == reader["expected_note_after_this_result"]
+                    and row[3].startswith("MiniApps reader note שלום "),
+                    "Reader output must create its own original source-linked annotation")
+            profile = json.loads((ROOT / "Source/Otzaria/DataProfiles/miniTest10.profile.json").read_text())
+            corpus = []
+            for path in self.corpus_group.rglob("seforim.db"):
+                manifest_path = path.with_name("seforim-installation.json")
+                if manifest_path.is_file():
+                    manifest = json.loads(manifest_path.read_text())
+                    if manifest.get("profileID", manifest.get("effectiveProfileID")) == "miniTest10":
+                        corpus.append(path)
+            require(len(corpus) == 1, "Expected exactly the installed original miniTest10 corpus")
+            after_hash = digest(corpus[0])
+            require(after_hash == profile["sourceDatabase"]["databaseSHA256"],
+                    "Reader MiniApps roundtrip changed the original corpus bytes")
+            report["source_corpus"] = {"profile": "miniTest10", "path": str(corpus[0]),
+                "expected_sha256": profile["sourceDatabase"]["databaseSHA256"], "actual_after_sha256": after_hash,
+                "before_after_equal": "ASSERTED_BY_ACTUAL_XCTEST", "status": "ORIGINAL_CORPUS_BYTES_UNCHANGED"}
+            report["actual_callbacks"] = 3
+            report["actual_reader_selection_to_picker"] = "ASSERTED_AND_CAPTURED_BY_ACTUAL_XCTEST"
             report["cold_callback_without_manual_launch"] = "ASSERTED_BY_ACTUAL_XCTEST"
             report["status"] = "ACTUAL_SHARED_RECORD_AND_ORIGINAL_SQLITE_RECEIPT_PASS"
         except Exception as error:
@@ -366,12 +414,13 @@ def reuse_ui_compile():
                   and capture("xcrun", "swift", "--version") == receipt["swift"]
                   and capture("xcrun", "--sdk", "iphonesimulator", "--show-sdk-path") == receipt["sdk"])
     reusable = same_sources and same_driver and same_tools
-    write(OUT / "ui-sdk-compile-reuse.json", {"status": "REUSED_EXACT_APPLE_SDK_COMPILE" if reusable else "INPUT_CHANGE_REQUIRES_NEW_COMPILE",
+    write(OUT / "ui-sdk-compile-reuse.json", {"status": "REUSED_EXACT_APPLE_SDK_COMPILE" if reusable else "CHANGED_SOURCE_REQUIRES_ACTUAL_UI_TARGET_BUILD",
           "historical_run": proof["run_id"], "historical_source": proof["source_sha"],
           "historical_artifact_id": proof["artifact_id"], "historical_artifact_sha256": proof["artifact_sha256"],
           "report_sha256": proof["report_sha256"], "same_source_bytes": same_sources,
           "same_driver_and_project": same_driver, "same_apple_compiler_and_sdk": same_tools,
-          "native_tests_executed": 0, "new_standalone_swift_compiles": 0})
+          "native_tests_executed": 0, "new_standalone_swift_compiles": 0,
+          "current_compile_owner": "Actual Maktabah-iOS build-for-testing including its original UI target"})
     return reusable
 
 
@@ -380,10 +429,9 @@ def run_from_existing_native_workflow(report, run_logged, controller):
     code = 1
     try:
         prepare()
-        if not reuse_ui_compile():
-            if run_logged([sys.executable, "Scripts/CI/typecheck-faithful-ui-tests.py", "--ui-compile-only"],
-                          "miniapps-ui-sdk-compile.log", 600, interrupt_controller=controller):
-                raise RuntimeError("New real UI test did not compile against the Apple SDK")
+        # Preserve historical source-compile evidence honestly. Changed UI code
+        # is compiled in the real app/test target below, not a duplicate standalone suite.
+        reuse_ui_compile()
         if run_logged([sys.executable, "Scripts/CI/hq-stage2-focused-apple.py", "--build-for-testing",
                        "--derived-data", "build/DerivedData", "--simulator-data-profile", "miniTest10"],
                       "miniapps-original-app-build.log", 7200, interrupt_controller=controller):

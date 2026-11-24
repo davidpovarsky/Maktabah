@@ -1,5 +1,6 @@
 import XCTest
 import SQLite3
+import CryptoKit
 
 /// Runs only on the owned two-app simulator lane. No result or document fixture
 /// is written by this test: both apps execute their actual public UI and bridge.
@@ -12,6 +13,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let appID: String
         let documentID: String?
         let documentText: String?
+        let kind: String?
         let selection: Selection?
         let metadata: [String: String]
     }
@@ -38,6 +40,12 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let annotationID: Int64?
         let annotationUUID: String
         let draftNote: String
+        let bookID: Int
+        let contentID: Int
+        let rangeLocation: Int
+        let rangeLength: Int
+        let context: String
+        let isReaderSelection: Bool
     }
     private struct Receipt {
         let annotationID: Int64
@@ -45,6 +53,11 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let note: String
         let resultJSON: String
         let count: Int64
+        let bookID: Int
+        let contentID: Int
+        let rangeLocation: Int
+        let rangeLength: Int
+        let context: String
     }
 
     @MainActor
@@ -254,6 +267,187 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertEqual(firstReceiptAfterCold.resultJSON, receipt.resultJSON)
         retainScreenshot(app, named: "otzaria-original-note-restored-by-cold-callback")
         attachReceipt(coldReceipt, requestID: coldPending.request.id, name: "miniapps-original-cold-callback-note")
+        try await verifyReaderSelectionRoundTrip(producer: producer, shared: shared, original: document,
+            expectedRows: priorRows.union([rowIdentifier]))
+        let editorAfterReader = try persistedReceipt(requestID: coldPending.request.id, databasePath: document.profile)
+        XCTAssertEqual(editorAfterReader.note, expectedColdText, "Reader output must create its own linked note")
+    }
+
+    @MainActor
+    private func verifyReaderSelectionRoundTrip(producer: XCUIApplication, shared: URL,
+                                               original: Document, expectedRows: Set<String>) async throws {
+        let note = app.textViews["annotation-note-text"]
+        tap(app.buttons["annotation-cancel-toolbar"])
+        let originalEditorClosed = try await waitUntil(timeout: 20) { !note.exists }
+        XCTAssertTrue(originalEditorClosed)
+        let annotationsClose = app.navigationBars["Annotations"].buttons["Close"]
+        if annotationsClose.exists { tap(annotationsClose) }
+        assertReaderHasText()
+        let reader = app.textViews["reader-text"]
+        let renderedBefore = try XCTUnwrap(reader.value as? String)
+        let corpus = try sourceCorpusDatabase()
+        let beforeHash = try fileSHA256(corpus)
+        let expectedHash = try XCTUnwrap(ProcessInfo.processInfo.environment["MINIAPPS_NATIVE_CORPUS_SHA256"])
+        XCTAssertEqual(beforeHash, expectedHash, "Read the actual canonical miniTest10 corpus")
+        let beforeRequests = Set(try records(in: shared).map { $0.request.id })
+
+        try await openMiniAppsFromNativeReaderSelection(reader)
+        let studio = app.buttons["miniapps-launch-nativeapp.textstudio"]
+        if !studio.waitForExistence(timeout: 3) { tap(app.buttons["miniapps-more"]) }
+        XCTAssertTrue(studio.waitForExistence(timeout: 15))
+        retainScreenshot(app, named: "otzaria-reader-selection-miniapps-chooser")
+        tap(studio)
+        XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 30))
+        let editors = producer.textViews.matching(identifier: "miniapps.textstudio.editor")
+        XCTAssertTrue(editors.firstMatch.waitForExistence(timeout: 30))
+        XCTAssertEqual(editors.count, 1)
+        let editor = editors.element(boundBy: 0)
+        let pending = try XCTUnwrap(try records(in: shared).first { !beforeRequests.contains($0.request.id) })
+        let document = try JSONDecoder().decode(Document.self, from:
+            Data(try XCTUnwrap(pending.request.source.metadata["otzaria.annotation.v1"]).utf8))
+        let selection = try XCTUnwrap(pending.request.source.selection)
+        let sourceText = try XCTUnwrap(pending.request.source.documentText)
+        XCTAssertEqual(pending.request.source.kind, "reader")
+        XCTAssertEqual(pending.request.appID, "nativeapp.textstudio")
+        XCTAssertEqual(pending.request.operation, "insert")
+        XCTAssertTrue(document.isReaderSelection)
+        XCTAssertNil(document.annotationID)
+        XCTAssertNotEqual(document.annotationUUID, original.annotationUUID)
+        XCTAssertEqual(document.profile, original.profile)
+        XCTAssertEqual(document.bookID, original.bookID)
+        XCTAssertGreaterThan(selection.length, 0)
+        XCTAssertEqual(document.rangeLocation, selection.location)
+        XCTAssertEqual(document.rangeLength, selection.length)
+        let selectedRange = try XCTUnwrap(Range(NSRange(location: selection.location, length: selection.length),
+                                               in: sourceText))
+        XCTAssertEqual(String(sourceText[selectedRange]), selection.text)
+        XCTAssertEqual(pending.request.inputs.compactMap(\.text).joined(separator: "\n"), selection.text)
+        XCTAssertEqual(editor.value as? String, selection.text)
+        XCTAssertEqual(document.draftNote, "")
+
+        let returnedText = "MiniApps reader note שלום " + UUID().uuidString
+        editor.tap()
+        editor.typeKey("a", modifierFlags: .command)
+        editor.typeText(returnedText)
+        XCTAssertEqual(editor.value as? String, returnedText)
+        retainScreenshot(producer, named: "miniapps-reader-quotation-actual-textstudio-result")
+        let returnButton = producer.buttons["miniapps.textstudio.return"]
+        XCTAssertTrue(returnButton.waitForExistence(timeout: 15) && returnButton.isHittable)
+        returnButton.tap()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
+        XCTAssertTrue(note.waitForExistence(timeout: 30))
+        let readerNoteReturned = try await waitUntil(timeout: 30) { note.value as? String == returnedText }
+        XCTAssertTrue(readerNoteReturned)
+        let readerAcknowledged = try await waitUntil(timeout: 15) {
+            (try? self.records(in: shared).first { $0.request.id == pending.request.id }?.acknowledged) == true
+        }
+        XCTAssertTrue(readerAcknowledged)
+        let receipt = try persistedReceipt(requestID: pending.request.id, databasePath: document.profile)
+        XCTAssertGreaterThan(receipt.annotationID, 0)
+        XCTAssertNotEqual(receipt.annotationID, try XCTUnwrap(original.annotationID))
+        XCTAssertEqual(receipt.annotationUUID, document.annotationUUID)
+        XCTAssertEqual(receipt.bookID, document.bookID)
+        XCTAssertEqual(receipt.contentID, document.contentID)
+        XCTAssertEqual(receipt.rangeLocation, document.rangeLocation)
+        XCTAssertEqual(receipt.rangeLength, document.rangeLength)
+        XCTAssertEqual(receipt.context, document.context)
+        XCTAssertEqual(receipt.note, returnedText)
+        XCTAssertEqual(receipt.count, 1)
+        retainScreenshot(app, named: "otzaria-reader-result-original-linked-note")
+        attachReceipt(receipt, requestID: pending.request.id, name: "miniapps-reader-original-source-linked-receipt")
+
+        tap(app.buttons["annotation-cancel-toolbar"])
+        let readerNoteClosed = try await waitUntil(timeout: 20) { !note.exists }
+        XCTAssertTrue(readerNoteClosed)
+        assertReaderHasText()
+        let renderedAfter = try XCTUnwrap(reader.value as? String)
+        XCTAssertTrue(renderedBefore.utf8.elementsEqual(renderedAfter.utf8),
+                      "Creating the linked note must preserve the actual displayed source")
+        let afterHash = try fileSHA256(corpus)
+        XCTAssertEqual(afterHash, beforeHash, "The original corpus database must remain byte-identical")
+        let proof: [String: Any] = ["profileID": "miniTest10", "databaseName": corpus.lastPathComponent,
+            "beforeSHA256": beforeHash, "afterSHA256": afterHash, "expectedSHA256": expectedHash,
+            "readerTextUnchanged": renderedBefore.utf8.elementsEqual(renderedAfter.utf8),
+            "requestID": pending.request.id.uuidString, "annotationID": receipt.annotationID]
+        let attachment = XCTAttachment(data: try JSONSerialization.data(withJSONObject: proof, options: [.sortedKeys]),
+                                      uniformTypeIdentifier: "public.json")
+        attachment.name = "miniapps-reader-original-corpus-unchanged"; attachment.lifetime = .keepAlways; add(attachment)
+        retainScreenshot(app, named: "otzaria-reader-corpus-unchanged-after-miniapps")
+        try await openAnnotations()
+        XCTAssertEqual(Set(annotationRows().allElementsBoundByIndex.map(\.identifier)),
+                       expectedRows.union(["original-book-annotation-" + String(receipt.annotationID)]))
+        tap(app.navigationBars["Annotations"].buttons["Close"])
+    }
+
+    @MainActor
+    private func nativeSelectionMiniAppsAction() -> XCUIElement? {
+        let predicate = NSPredicate(format: "identifier == %@ OR label == %@",
+                                    "otzaria-reader-miniapps", "Mini Apps")
+        for query in [app.buttons, app.menuItems] {
+            if let action = query.matching(predicate).allElementsBoundByIndex.first(where: { $0.exists && $0.isHittable }) {
+                return action
+            }
+        }
+        return nil
+    }
+
+    @MainActor
+    private func openMiniAppsFromNativeReaderSelection(_ reader: XCUIElement) async throws {
+        // Real text gestures only: no programmatic selection or callback fixture.
+        // The visible page can begin with short headings, so use bounded visible
+        // text positions if the first long press lands in paragraph whitespace.
+        let positions = [CGVector(dx: 0.78, dy: 0.14), CGVector(dx: 0.52, dy: 0.22),
+                         CGVector(dx: 0.66, dy: 0.34)]
+        for position in positions {
+            XCTAssertTrue(reader.isHittable)
+            reader.coordinate(withNormalizedOffset: position).press(forDuration: 1.2)
+            let menuReady = try await waitUntil(timeout: 4) {
+                self.nativeSelectionMiniAppsAction() != nil
+                    || self.app.buttons["Copy"].firstMatch.exists || self.app.menuItems["Copy"].firstMatch.exists
+            }
+            if menuReady {
+                for _ in 0..<3 {
+                    if let action = nativeSelectionMiniAppsAction() {
+                        retainScreenshot(app, named: "otzaria-reader-native-selection-miniapps-action")
+                        tap(action)
+                        return
+                    }
+                    let predicate = NSPredicate(format: "label IN %@ AND NOT (identifier BEGINSWITH %@)",
+                        NSArray(array: ["More", "Show More", "Show more items", "More Actions", "Next"]), "reader-")
+                    let candidates = app.menuItems.matching(predicate).allElementsBoundByIndex
+                        + app.buttons.matching(predicate).allElementsBoundByIndex
+                    guard let more = candidates.first(where: { $0.exists && $0.isHittable }) else { break }
+                    tap(more)
+                    _ = try await waitUntil(timeout: 3) { self.nativeSelectionMiniAppsAction() != nil }
+                }
+            }
+            reader.tap()
+        }
+        retainScreenshot(app, named: "otzaria-reader-native-selection-menu-failure")
+        let tree = XCTAttachment(string: app.debugDescription)
+        tree.name = "otzaria-reader-selection-actual-accessibility-tree"; tree.lifetime = .keepAlways; add(tree)
+        throw error("The actual original reader selection menu did not expose Mini Apps")
+    }
+
+    private func sourceCorpusDatabase() throws -> URL {
+        let root = URL(fileURLWithPath: try XCTUnwrap(
+            ProcessInfo.processInfo.environment["MINIAPPS_NATIVE_CORPUS_GROUP"]))
+        let files = try XCTUnwrap(FileManager.default.enumerator(at: root,
+            includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])).allObjects.compactMap { $0 as? URL }
+        let candidates = files.filter { url in
+            guard url.lastPathComponent == "seforim.db",
+                  let data = try? Data(contentsOf: url.deletingLastPathComponent()
+                    .appendingPathComponent("seforim-installation.json")),
+                  let manifest = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else { return false }
+            return (manifest["profileID"] as? String ?? manifest["effectiveProfileID"] as? String) == "miniTest10"
+        }
+        XCTAssertEqual(candidates.count, 1, "Use exactly the installed original miniTest10 corpus")
+        return try XCTUnwrap(candidates.first)
+    }
+
+    private func fileSHA256(_ url: URL) throws -> String {
+        SHA256.hash(data: try Data(contentsOf: url, options: [.mappedIfSafe]))
+            .map { String(format: "%02x", $0) }.joined()
     }
 
     /// XCTest may evaluate NSPredicate blocks off the main executor. Keep
@@ -314,7 +508,8 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         var statement: OpaquePointer?
         let sql = """
             SELECT r.annotation_id, a.ckRecordId, a.note, r.result_json,
-                   (SELECT COUNT(*) FROM miniapps_result_receipts WHERE request_id = ?)
+                   (SELECT COUNT(*) FROM miniapps_result_receipts WHERE request_id = ?),
+                   a.bkId, a.contentId, a.startIndex, a.length, a.context
             FROM miniapps_result_receipts r JOIN annotations a ON a.id = r.annotation_id
             WHERE r.request_id = ? AND r.annotation_uuid = a.ckRecordId;
             """
@@ -330,13 +525,17 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
             sqlite3_column_text(statement, column).map { String(cString: $0) } ?? ""
         }
         return Receipt(annotationID: sqlite3_column_int64(statement, 0), annotationUUID: string(1),
-                       note: string(2), resultJSON: string(3), count: sqlite3_column_int64(statement, 4))
+                       note: string(2), resultJSON: string(3), count: sqlite3_column_int64(statement, 4),
+                       bookID: Int(sqlite3_column_int64(statement, 5)), contentID: Int(sqlite3_column_int64(statement, 6)),
+                       rangeLocation: Int(sqlite3_column_int64(statement, 7)),
+                       rangeLength: Int(sqlite3_column_int64(statement, 8)), context: string(9))
     }
 
     private func attachReceipt(_ receipt: Receipt, requestID: UUID, name: String) {
         let value: [String: Any] = ["requestID": requestID.uuidString, "annotationID": receipt.annotationID,
             "annotationUUID": receipt.annotationUUID, "note": receipt.note, "receiptCount": receipt.count,
-            "savedResultJSON": receipt.resultJSON]
+            "savedResultJSON": receipt.resultJSON, "bookID": receipt.bookID, "contentID": receipt.contentID,
+            "rangeLocation": receipt.rangeLocation, "rangeLength": receipt.rangeLength, "context": receipt.context]
         guard let data = try? JSONSerialization.data(withJSONObject: value, options: [.sortedKeys]) else {
             XCTFail("Actual receipt attachment is invalid"); return
         }
