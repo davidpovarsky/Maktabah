@@ -149,5 +149,103 @@ class DeviceSignatureControls(unittest.TestCase):
             M["same_code_and_resources"](before, {**before, "executable_mode": 420})
 
 
+class DeviceBuildProductControls(unittest.TestCase):
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name).resolve()
+        self.products = self.root / "build/DerivedData/BuildProductsPath/Release-iphoneos"
+        self.target_parent = self.root / "build/DerivedData/InstallationBuildProductsLocation/Applications"
+        self.target = self.target_parent / "Maktabah.app"
+        self.target.mkdir(parents=True)
+        self.pods = ["FirebaseCore", "nanopb"]
+        self.libraries = {}
+        for index, pod in enumerate(self.pods):
+            library = self.products / pod / ("lib" + pod + ".a")
+            library.parent.mkdir(parents=True)
+            library.write_bytes(b"!<arch>\n" + bytes([index]) * 128)
+            self.libraries[pod] = library
+        self.environment = {"ACTION": "install", "CONFIGURATION": "Release", "PLATFORM_NAME": "iphoneos",
+                            "TARGET_NAME": M["TARGET"], "PRODUCT_BUNDLE_IDENTIFIER": M["BUNDLE"], "ARCHS": "arm64",
+                            "BUILT_PRODUCTS_DIR": str(self.products), "TARGET_BUILD_DIR": str(self.target_parent),
+                            "WRAPPER_NAME": "Maktabah.app", "FULL_PRODUCT_NAME": "Maktabah.app"}
+        self.source = "a" * 40
+
+    def capture(self):
+        return M["host_products_context"](self.root, self.target, self.environment, self.pods, self.source)
+
+    def verify(self, captured):
+        return M["verify_host_products"](self.root, captured, self.pods, self.source, str(self.target))
+
+    def test_observed_products_remain_bound_after_app_moves_to_archive(self):
+        captured = self.capture()
+        archive = self.root / "build/App.xcarchive/Products/Applications"
+        archive.mkdir(parents=True)
+        self.target.rename(archive / self.target.name)
+        self.assertEqual(self.verify(captured), captured)
+        self.assertEqual(captured["host_libraries"]["FirebaseCore"]["canonical_path"], str(self.libraries["FirebaseCore"]))
+
+    def test_owned_archive_file_alias_is_recorded_and_must_not_be_retargeted(self):
+        library = self.libraries["FirebaseCore"]
+        actual = self.root / "build/DerivedData/UninstalledProducts/iphoneos/libFirebaseCore.a"
+        actual.parent.mkdir(parents=True)
+        library.rename(actual)
+        library.symlink_to("../../../UninstalledProducts/iphoneos/libFirebaseCore.a")
+        captured = self.capture()
+        self.assertEqual(self.verify(captured), captured)
+        row = captured["host_libraries"]["FirebaseCore"]
+        self.assertEqual(row["canonical_path"], str(actual))
+        self.assertEqual(len(row["observed_paths"][0]["alias_hops"]), 1)
+        same_bytes = actual.with_name("another.a")
+        same_bytes.write_bytes(actual.read_bytes())
+        library.unlink()
+        library.symlink_to(same_bytes)
+        with self.assertRaises(RuntimeError):
+            self.verify(captured)
+
+    def test_archive_alias_cannot_leave_owned_build(self):
+        library = self.libraries["FirebaseCore"]
+        outside = self.root / "external.a"
+        library.rename(outside)
+        library.symlink_to(outside)
+        with self.assertRaises(RuntimeError):
+            self.capture()
+
+    def test_parent_segments_cannot_hide_an_intermediate_escaping_alias(self):
+        library = self.libraries["FirebaseCore"]
+        actual = library.with_name("same.a")
+        library.rename(actual)
+        outside = self.root / "external-directory"
+        outside.mkdir()
+        intermediate = library.parent / "redirect"
+        intermediate.symlink_to(outside, target_is_directory=True)
+        library.symlink_to("redirect/../same.a")
+        with self.assertRaises(RuntimeError):
+            self.capture()
+
+    def test_library_byte_tamper_and_new_ambiguous_archive_are_refused(self):
+        captured = self.capture()
+        library = self.libraries["nanopb"]
+        original = library.read_bytes()
+        library.write_bytes(original[:-1] + b"x")
+        with self.assertRaises(RuntimeError):
+            self.verify(captured)
+        library.write_bytes(original)
+        duplicate = self.products / "another" / library.name
+        duplicate.parent.mkdir()
+        duplicate.write_bytes(original)
+        with self.assertRaises(RuntimeError):
+            self.capture()
+
+    def test_actual_target_configuration_and_checkout_cannot_be_rebound(self):
+        captured = self.capture()
+        for key, value in [("TARGET_BUILD_DIR", str(self.products)), ("PLATFORM_NAME", "iphonesimulator"),
+                           ("CONFIGURATION", "Debug"), ("ARCHS", "arm64 x86_64")]:
+            with self.subTest(key=key), self.assertRaises(RuntimeError):
+                M["host_products_context"](self.root, self.target, {**self.environment, key: value}, self.pods, self.source)
+        with self.assertRaises(RuntimeError):
+            M["verify_host_products"](self.root, captured, self.pods, "b" * 40, str(self.target))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

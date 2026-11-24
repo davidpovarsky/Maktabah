@@ -273,6 +273,141 @@ def signing_environment(admitted, environ):
     return identity, team
 
 
+def owned_observed_path(build, raw, *, directory):
+    """Resolve an observed Xcode path, retaining every bounded alias hop."""
+    build = Path(build)
+    require(build.is_dir() and not build.is_symlink() and build.resolve() == build,
+            "Missing canonical owned build root")
+    require(isinstance(raw, str) and raw and "\0" not in raw, "Missing observed product path")
+    path = Path(raw)
+    require(path.is_absolute() and str(path) == raw and ".." not in path.parts
+            and path.is_relative_to(build), "Observed product path leaves the owned build root")
+    pending, current, links = list(path.relative_to(build).parts), build, []
+    while pending:
+        part = pending.pop(0)
+        if part == "..":
+            current = current.parent
+            require(current.is_relative_to(build), "Product alias traverses outside its owned build root")
+            continue
+        current /= part
+        metadata = current.lstat()
+        if stat.S_ISLNK(metadata.st_mode):
+            require(len(links) < 40, "Unbounded product alias chain")
+            destination = os.readlink(current)
+            # Resolve components in filesystem order: lexical normalization
+            # would incorrectly erase an alias followed by '..'.
+            resolved = current.parent / destination
+            require(resolved.is_relative_to(build), "Product alias escapes the owned build root")
+            links.append({"path": str(current), "link": destination, "destination": str(resolved)})
+            pending = list(resolved.relative_to(build).parts) + pending
+            current = build
+        elif pending:
+            require(stat.S_ISDIR(metadata.st_mode), "Non-directory product path component")
+    require(current.is_dir() if directory else current.is_file(), "Missing actual build product")
+    require(not current.is_symlink() and current.resolve() == current and path.resolve(strict=True) == current,
+            "Unresolved or concurrently changed product alias")
+    return current, links
+
+
+def host_library_inventory(build, products, pods):
+    """Read actual Pod archives under observed BUILT_PRODUCTS_DIR only.
+
+    Archive builds expose file aliases into owned UninstalledProducts. Their
+    exact canonical bytes remain bound; directory aliases are not searched.
+    """
+    require(pods and len(set(pods)) == len(pods)
+            and all(re.fullmatch(r"[A-Za-z0-9_+-]+", pod) for pod in pods),
+            "Missing exact Host Pod identity set")
+    wanted = {"lib" + pod + ".a": pod for pod in pods}
+    found = {pod: [] for pod in pods}
+    visited = 0
+    for parent, directories, filenames in os.walk(products, followlinks=False):
+        visited += len(directories) + len(filenames)
+        require(visited <= 250000, "Unbounded observed products directory")
+        directories[:] = sorted(name for name in directories
+                                if not (Path(parent) / name).is_symlink()
+                                and not name.endswith((".app", ".framework", ".bundle", ".xcframework")))
+        for name in sorted(set(filenames) & wanted.keys()):
+            raw = str(Path(parent) / name)
+            canonical, links = owned_observed_path(build, raw, directory=False)
+            initial = canonical.stat()
+            require(stat.S_ISREG(initial.st_mode) and 8 <= initial.st_size <= 4 * 1024**3,
+                    "Invalid actual Host Pod archive")
+            with canonical.open("rb") as stream:
+                require(stream.read(8) == b"!<arch>\n", "Host Pod product is not an ar archive")
+            row = {"canonical_path": str(canonical), "bytes": initial.st_size, "sha256": digest(canonical)}
+            final = canonical.stat()
+            require((initial.st_dev, initial.st_ino, initial.st_size, initial.st_mtime_ns)
+                    == (final.st_dev, final.st_ino, final.st_size, final.st_mtime_ns),
+                    "Host Pod archive changed during observation")
+            found[wanted[name]].append({**row, "observed_raw_path": raw, "alias_hops": links})
+    result = {}
+    for pod, observations in found.items():
+        require(observations and len({(r["canonical_path"], r["bytes"], r["sha256"])
+                                      for r in observations}) == 1,
+                "Missing or ambiguous observed Host Pod library: " + pod)
+        first = observations[0]
+        result[pod] = {key: first[key] for key in ("canonical_path", "bytes", "sha256")}
+        result[pod]["observed_paths"] = [
+            {key: row[key] for key in ("observed_raw_path", "alias_hops")} for row in observations]
+    return result
+
+
+def host_products_context(root, target, environ, pods, checkout_sha):
+    """Capture real build-phase paths before Xcode relocates its archive app."""
+    root, target = Path(root).resolve(strict=True), Path(target).resolve(strict=True)
+    build = root / "build"
+    require(re.fullmatch(r"[a-f0-9]{40}", checkout_sha), "Missing exact Host checkout identity")
+    require(environ.get("TARGET_NAME") == TARGET and environ.get("PRODUCT_BUNDLE_IDENTIFIER") == BUNDLE
+            and environ.get("CONFIGURATION") == "Release" and environ.get("PLATFORM_NAME") == "iphoneos"
+            and environ.get("ACTION") in {"build", "install"} and environ.get("ARCHS", "").split() == ["arm64"],
+            "Host product observation is not the actual Release device build")
+    products, product_links = owned_observed_path(build, environ.get("BUILT_PRODUCTS_DIR"), directory=True)
+    target_parent, target_links = owned_observed_path(build, environ.get("TARGET_BUILD_DIR"), directory=True)
+    require(environ.get("WRAPPER_NAME") == environ.get("FULL_PRODUCT_NAME") == target.name
+            and target.name.endswith(".app") and target_parent / target.name == target,
+            "Observed target build directory does not own the actual app")
+    environment = {key: environ[key] for key in (
+        "ACTION", "CONFIGURATION", "PLATFORM_NAME", "TARGET_NAME", "PRODUCT_BUNDLE_IDENTIFIER", "ARCHS",
+        "BUILT_PRODUCTS_DIR", "TARGET_BUILD_DIR", "WRAPPER_NAME", "FULL_PRODUCT_NAME")}
+    return {"schema": "otzaria.original-editor.device-build-products/1", "host_checkout_sha": checkout_sha,
+            "environment": environment, "target": str(target), "canonical_products_root": str(products),
+            "products_alias_hops": product_links, "canonical_target_build_dir": str(target_parent),
+            "target_directory_alias_hops": target_links,
+            "host_libraries": host_library_inventory(build, products, pods)}
+
+
+def verify_host_products(root, saved, pods, checkout_sha, original_target):
+    """Revalidate the captured product root and actual archive bytes without guessing."""
+    root = Path(root).resolve(strict=True)
+    require(isinstance(saved, dict) and saved.get("schema") == "otzaria.original-editor.device-build-products/1"
+            and saved.get("host_checkout_sha") == checkout_sha and saved.get("target") == original_target,
+            "Device product observation belongs to a different Host build")
+    # The original app may have moved into .xcarchive; its recorded parent and
+    # Pod products remain in the owned DerivedData tree until this check ends.
+    environment = saved["environment"]
+    target_parent, target_links = owned_observed_path(root / "build", environment.get("TARGET_BUILD_DIR"), directory=True)
+    require(environment.get("TARGET_NAME") == TARGET and environment.get("PRODUCT_BUNDLE_IDENTIFIER") == BUNDLE
+            and environment.get("CONFIGURATION") == "Release" and environment.get("PLATFORM_NAME") == "iphoneos"
+            and environment.get("ACTION") in {"build", "install"} and environment.get("ARCHS", "").split() == ["arm64"]
+            and environment.get("WRAPPER_NAME") == environment.get("FULL_PRODUCT_NAME") == Path(original_target).name
+            and target_parent / Path(original_target).name == Path(original_target)
+            and saved["canonical_target_build_dir"] == str(target_parent)
+            and saved["target_directory_alias_hops"] == target_links,
+            "Recorded actual target build context changed")
+    products, product_links = owned_observed_path(root / "build", environment.get("BUILT_PRODUCTS_DIR"), directory=True)
+    require(saved["canonical_products_root"] == str(products) and saved["products_alias_hops"] == product_links
+            and saved["host_libraries"] == host_library_inventory(root / "build", products, pods),
+            "Actual Host build products or their recorded aliases changed")
+    return saved
+
+
+def host_pods_and_checkout(root):
+    shared = runpy.run_path(str(root / "Scripts/CI/original_editor_shared_runtime.py"))
+    head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True, timeout=90).strip()
+    return sorted(shared["PODS"]), head
+
+
 def framework_identity(sdk, framework):
     info = plistlib.loads((framework / "Info.plist").read_bytes())
     executable = info.get("CFBundleExecutable", "")
@@ -294,6 +429,8 @@ def embed(root, admission_receipt, receipt_sha256, target, evidence):
     root, sdk, admitted, distribution, target, evidence = context(
         root, admission_receipt, receipt_sha256, target, evidence)
     identity, team = signing_environment(admitted, os.environ)
+    pods, host_sha = host_pods_and_checkout(root)
+    host_products = host_products_context(root, target, os.environ, pods, host_sha)
     receipts = []
     for index, name in enumerate(admitted["dynamic_frameworks"]):
         source, destination = distribution / "Frameworks" / name, target / "Frameworks" / name
@@ -331,6 +468,7 @@ def embed(root, admission_receipt, receipt_sha256, target, evidence):
               "platform": "iphoneos", "signing_team_id": team, "expanded_code_sign_identity": identity,
               "source_sha": admitted["source_sha"], "control_sha": admitted["control_sha"],
               "qualification_sha256": admitted["qualification_sha256"], "frameworks": receipts,
+              "host_build_products": host_products,
               "resource_bundles": bundles, "original_distribution_unchanged": True,
               "original_code_and_non_signature_resources_unchanged": True, "source_products_overwritten": 0,
               "main_app_signing_owner": "XCODE_AFTER_OWNED_FRAMEWORK_EMBED", "device_ui_acceptance": False}
@@ -349,6 +487,9 @@ def verify(root, admission_receipt, receipt_sha256, target, evidence, *, expecte
             and team == admitted["signing_team_id"] and (expected_team is None or expected_team == team)
             and re.fullmatch(r"[A-F0-9]{40}", identity or ""), "Missing exact original device embed receipt")
     require(after_archive or embedding["target"] == str(target), "Unexpected app product relocation before archive")
+    pods, host_sha = host_pods_and_checkout(root)
+    host_products = verify_host_products(root, embedding.get("host_build_products"), pods,
+                                        host_sha, embedding["target"])
     prefix = "after-archive-" if after_archive else "built-"
     rows = []
     require([row["name"] for row in embedding["frameworks"]] == admitted["dynamic_frameworks"], "Device framework receipt list changed")
@@ -375,6 +516,7 @@ def verify(root, admission_receipt, receipt_sha256, target, evidence, *, expecte
               "target": str(target), "original_embedding_target": embedding["target"],
               "admission_receipt_sha256": receipt_sha256, "embedding_receipt_sha256": digest(evidence / "device-app-embedding.json"),
               "source_sha": admitted["source_sha"], "control_sha": admitted["control_sha"],
+              "host_build_products": host_products,
               "signing_team_id": team, "expanded_code_sign_identity": identity,
               "frameworks": rows, "resource_bundles": admitted["resource_bundles"], "app_signature": app_signature,
               "original_distribution_unchanged": True, "device_ui_acceptance": False, "testflight_acceptance": False}

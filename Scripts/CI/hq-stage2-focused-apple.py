@@ -763,6 +763,8 @@ def main():
     ap.add_argument("--derived-data", default="build/hq-stage2/DerivedData")
     ap.add_argument("--original-editor-admission",
                     help="Exact reviewed SDK distribution input; optional Debug Simulator app target only")
+    ap.add_argument("--original-editor-routes", action="store_true",
+                    help="Admit the committed Debug Simulator and both Release SDK distributions")
     ap.add_argument("--prepare-inputs-only", action="store_true",
                     help="Restore and verify the original inputs for a later Release build; no Debug rebuild")
     ap.add_argument("--preparation-evidence-dir",
@@ -773,7 +775,11 @@ def main():
     args = ap.parse_args()
     require(bool(args.prepared_inputs_manifest) == bool(args.prepared_inputs_sha256),
             "Prepared input reuse requires both the capture and its reviewed SHA256")
-    require(not args.prepared_inputs_manifest or (args.original_editor_admission
+    require(not (args.original_editor_routes and args.original_editor_admission),
+            "Select one original SDK admission mechanism")
+    require(not args.original_editor_routes or (args.build_for_testing and not args.preflight_only),
+            "Original SDK routes require native build inputs")
+    require(not args.prepared_inputs_manifest or ((args.original_editor_admission or args.original_editor_routes)
             and args.build_for_testing and not args.preflight_only and not args.prepare_inputs_only),
             "Prepared inputs may only continue into original SDK admission and a real native build")
     require(not args.original_editor_admission or
@@ -815,7 +821,7 @@ def main():
             restore(config, report)
             rebuild_matching_zayit_framework(report)
             prepare_matching_embedded_bundle(config, report)
-        install_real_pods(report, original_editor=bool(args.original_editor_admission))
+        install_real_pods(report, original_editor=bool(args.original_editor_admission or args.original_editor_routes))
         for framework, header in [("Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework", "otzaria_search_engine.h"),
                                   ("Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework", "maktabah_zayit_search.h")]:
             logged(["bash", "Scripts/CI/verify-xcframework.sh", framework, header], header + ".log", report)
@@ -833,12 +839,16 @@ def main():
         verify_actual_sources(report)
         verify_selected_zayit_files(report)
         authorize_pinned_equatable_macro(report)
+        original_editor = None
+        if args.original_editor_routes:
+            route_module = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_sdk_routes.py"))
+            original_editor = runpy.run_path(str(ROOT / "Scripts/CI/hq-original-editor-distribution.py"))
+            admitted_editor = route_module["prepare"](ROOT, report, OUT, logged)
         if args.prepare_inputs_only:
             prepare_original_hanlin(config, report, verify_only=True)
             report.update(status="PREPARED_ORIGINAL_INPUTS_ONLY", scope="RELEASE_INPUT_RESTORATION",
                           app_build_executed=False, runtime="NOT_RUN", signing=False)
             return 0
-        original_editor = None
         if args.original_editor_admission:
             original_editor = runpy.run_path(str(ROOT / "Scripts/CI/hq-original-editor-distribution.py"))
             admitted_editor = original_editor["prepare"](

@@ -196,9 +196,11 @@ def project_clang_context(root, distribution, context):
             'shared_implementation_required': True, 'native_build_or_runtime_qualified': False}
 
 
-def plan_pod_link_route(root, source_proof):
-    path = root / POD_XCCONFIG
-    require(path.is_file() and not path.is_symlink(), 'Missing generated app Debug xcconfig')
+def plan_pod_link_route(root, source_proof, *, configuration='Debug'):
+    require(configuration in {'Debug', 'Release'}, 'Unreviewed app Pod configuration')
+    relative = POD_XCCONFIG.replace('.debug.xcconfig', '.' + configuration.lower() + '.xcconfig')
+    path = root / relative
+    require(path.is_file() and not path.is_symlink(), 'Missing generated app ' + configuration + ' xcconfig')
     raw = path.read_text()
     rows = [line for line in raw.splitlines(keepends=True) if line.startswith('OTHER_LDFLAGS = ')]
     require(len(rows) == 1, 'Ambiguous generated CocoaPods linker settings')
@@ -215,7 +217,7 @@ def plan_pod_link_route(root, source_proof):
             'Shared link projection changed another linker input')
     projected = raw.replace(before, after, 1)
     require(projected.replace(after, before, 1) == raw, 'Generated linker configuration inverse differs')
-    return {'path': POD_XCCONFIG, 'before_sha256': hashlib.sha256(raw.encode()).hexdigest(),
+    return {'path': relative, 'before_sha256': hashlib.sha256(raw.encode()).hexdigest(),
             'after_sha256': hashlib.sha256(projected.encode()).hexdigest(),
             'before_line': before, 'after_line': after,
             'shared_pod_libraries': list(PODS), 'pod_source_contracts': source_proof['pod_source_contracts'],

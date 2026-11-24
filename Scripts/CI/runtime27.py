@@ -331,7 +331,7 @@ def main():
                           "hid-prepare.log", 360, interrupt_controller=controller):
                 raise RuntimeError("Isolated native HID tool preflight failed; comparison UI NOT_RUN")
             report["idb"] = "PINNED_JOB_LOCAL_HID_COMPARISON_ORIGINAL_XCTEST_CASE_RETAINED"
-        if run_logged([sys.executable, "Scripts/CI/hq-stage2-focused-apple.py", "--build-for-testing", "--derived-data", "build/DerivedData"],
+        if run_logged([sys.executable, "Scripts/CI/hq-stage2-focused-apple.py", "--build-for-testing", "--derived-data", "build/DerivedData", "--original-editor-routes"],
                       "build-for-testing-driver.log", 4200, interrupt_controller=controller):
             raise RuntimeError("Real app/test build failed; UI cases NOT_RUN")
         products = ROOT / "build/DerivedData/Build/Products/Debug-iphonesimulator"
