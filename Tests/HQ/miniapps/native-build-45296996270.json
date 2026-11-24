@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS_NATIVE_NOT_RUN",
+  "run_id": 45296996270,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45296996270",
+  "checkout_sha": "cb68dbc8719cf78d4ab630f2cb054ea5e32ae5aa",
+  "application_source_sha": "fa36a4dc95f16cfe56bd277d3ce861f4e5f678fd",
+  "hanlin_gitlink": "a774de24926ca13d563c45c42917d03b8c04296f",
+  "artifact": {
+    "id": 14882056193,
+    "name": "runtime27-evidence",
+    "bytes": 6456751,
+    "sha256": "cecb9b58d17bdec4a0112557fe644542ea9f26544a680874dc3211e08f244252"
+  },
+  "raw_reports": {
+    "hq-stage2/result.json": "d9d3e30f21fd2a432477db6460d077e54349373c6b404df80d2e54a35ebe0a45",
+    "hq-stage2/simulator-build-for-testing.log": "aade5e1c154b8f15a8c7faef6c5c908933b90f57130e780a89368ecbaa57008b",
+    "artifacts/faithful-ipad-matrix.json": "3355e8cab60755af656551f3b96d3b436067706d3dcdf886e0b0bff43736eb57",
+    "artifacts/miniapps-native/built-binaries.json": "6fbbe8e91c3b460d49efdd086d3ea39e611c977770054173f086676ddaad0448",
+    "artifacts/miniapps-native/producer-admission.json": "9183f2fa8bf914e18c4cbc3acdc02be12960c6211a3299dd2fdde58bf101a067"
+  },
+  "actual_build_status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+  "raw_build_marker": "** TEST BUILD SUCCEEDED **",
+  "original_xctest_source": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift",
+  "original_xctest_sha256": "4b43b28e5bae9e70aa41a89c21582012649e8bf178045e19799af714e8fae63b",
+  "actual_ui_counts": {
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "not_run": 1
+  },
+  "failure": {
+    "phase": "VERIFYING_APP_CONTAINER",
+    "command": "simctl get_app_container app",
+    "timeout_seconds": 45,
+    "attempts": 2,
+    "simctl_install_returncodes": [
+      0,
+      0
+    ],
+    "owned_simulator_cleanup": "PASS",
+    "observed_screenshot": "ChavrusaText icon visibly installed on responsive iPad Home Screen"
+  },
+  "compiler_cache": {
+    "status": "SAVED_AFTER_ACTUAL_BUILD_PASS",
+    "key": "runtime27-derived-v2-6dc55339a400b7c2d3af1e7b678a512d830f56b9c628eb536a1f3a57b49d19e5-b273d226f342c6d2c7246c5ede16203c04918f38e5706ff5c7f604e8470ac982",
+    "scope": "Compiler acceleration only; original evidence does not contain a full authenticated product archive"
+  },
+  "next_change_scope": "Harness-only metadata identity resolution after real native query timeout, plus early full native product export; original app, Swift test and SDK unchanged",
+  "physical_signing_status": "NOT_VALIDATED_BY_SIMULATOR",
+  "portable_17_checks": "Prior passing evidence unchanged; not rerun"
+}

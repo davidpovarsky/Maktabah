@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "FOCUSED_PRODUCT_ARCHIVE_CLOSURE_CHECKS_PASS",
+  "executed": 2,
+  "failed": 0,
+  "native_tests_executed": 0,
+  "fixture_scope": "Temporary filesystem archive closure only; no actual Apple build or XCTest run",
+  "source_sha256": {
+    "Scripts/CI/otzaria-miniapps-native.py": "a678c3e98cedf4d9a43379432d41de7a17f50eb58ef10f0cb8e257fe45c019f3",
+    "tools/test-miniapps-native-product-export.py": "d82644472f761a7467a5d28a7a83f112fa32655ac9e05eed62b98ea7d5f8e66f"
+  },
+  "export_function_ast_sha256": "0da72f08e986f7eab8ae6457a3d9dc4f30e90f67796fd4242bc63eb7a41274e4",
+  "command": "python3 -B tools/test-miniapps-native-product-export.py",
+  "output": "test_archive_includes_sibling_symlink_and_xctestrun_product_closure (__main__.NativeProductArchiveClosureTests.test_archive_includes_sibling_symlink_and_xctestrun_product_closure) ... Retained original app and UI test products with complete file and archive hashes\nok\ntest_original_test_product_parent_traversal_rejected (__main__.NativeProductArchiveClosureTests.test_original_test_product_parent_traversal_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.036s\n\nOK"
+}

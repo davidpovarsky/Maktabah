@@ -10,6 +10,7 @@ replacement, digest bypass or generated mock text is used. No token is logged.
 import argparse
 import json
 import os
+import runpy
 from pathlib import Path
 import shutil
 import subprocess
@@ -25,7 +26,8 @@ profile = arguments.profile
 artifact_suffix = "-" + arguments.artifact_label if arguments.artifact_label else ""
 udid = Path("sim_udid.txt").read_text().strip()
 bundle = "com.davidpovarsky.chavrusatext"
-container = Path(subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, bundle, "data"], text=True, timeout=45).strip())
+resolve_native_container = runpy.run_path(str(Path(__file__).resolve().parent / "miniapps-simulator-containers.py"))["resolve_container"]
+container = resolve_native_container(udid, bundle, "data", timeout=45)
 report = container / "Documents" / ("faithful-fixture-" + str(uuid.uuid4()) + ".json")
 report.parent.mkdir(parents=True, exist_ok=True)
 environment = os.environ.copy()

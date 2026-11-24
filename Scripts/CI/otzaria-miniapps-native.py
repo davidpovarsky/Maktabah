@@ -11,6 +11,7 @@ import shutil
 import sqlite3
 import subprocess
 import sys
+import tarfile
 import time
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -24,6 +25,7 @@ BUNDLE = "com.davidpovarsky.chavrusatext"
 PRODUCER = "com.itorah.hanlinminiapps"
 GROUP = "group.com.itorah.shared"
 MANIFEST = OUT / "selection.json"
+resolve_native_container = runpy.run_path(str(ROOT / "Scripts/CI/miniapps-simulator-containers.py"))["resolve_container"]
 
 
 def require(value, message):
@@ -89,6 +91,9 @@ def prepare():
         contract.setdefault("supplemental_cases", []).append({
             "case_id": SELECTOR, "device": "ipad11", "status": "NOT_RUN",
             "oracle": "Original reader selection and note toolbar, actual Hanlin TextStudio warm/cold callbacks, three atomic receipts, linked-note anchors and unchanged source corpus"})
+    for row in contract["cases"] + contract.get("supplemental_cases", []):
+        if row["case_id"] == SELECTOR:
+            row["oracle"] = "Original reader selection and note toolbar; actual TextStudio warm/cold callbacks; three atomic receipts, linked-note anchors and unchanged corpus"
     contract.update(source_test_commit=context["application_source_sha"],
                     app_source=context["application_source_sha"],
                     application_source_sha=context["application_source_sha"],
@@ -163,6 +168,121 @@ def binaries():
     return result
 
 
+def export_built_products():
+    """Retain the complete real products before a Simulator infrastructure failure."""
+    build_path = ROOT / "build/hq-stage2/result.json"
+    build = json.loads(build_path.read_text())
+    require(build["status"] == "SIMULATOR_BUILD_FOR_REAL_UI_PASS"
+            and build["checkout_sha"] == os.environ["EXPECTED_CHECKOUT_SHA"],
+            "Only the actual successful immutable native build can be exported")
+    products = ROOT / "build/DerivedData/Build/Products"
+    primary_roots = [products / "Debug-iphonesimulator/Maktabah.app",
+                     products / "Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app"]
+    test_runs = sorted(products.glob("*.xctestrun"))
+    require(all(path.is_dir() for path in primary_roots) and test_runs, "Original native products are incomplete")
+    roots = [*primary_roots, *test_runs]
+    referenced_products, platform_references = [], []
+    def include_product(path):
+        path = Path(path)
+        require(path.is_absolute(), "Original native product reference is not absolute")
+        path = path.resolve(strict=True)
+        require(path.is_relative_to(products) and path.exists(),
+                "An original native product reference is missing or outside Products")
+        if any(path == root or path.is_relative_to(root) for root in roots):
+            return
+        parts = path.relative_to(products).parts
+        # Include the complete referenced framework/bundle, not only one leaf.
+        whole = products.joinpath(*parts[:2]) if len(parts) > 1 else path
+        roots[:] = [root for root in roots if not root.is_relative_to(whole)]
+        roots.append(whole)
+
+    def reference_path(value, host):
+        if value.startswith(("__PLATFORMS__/", "__DEVELOPER_DIR__/")):
+            platform_references.append(value)
+            return None
+        if "__TESTHOST__" in value:
+            require(host is not None, "Original test-host placeholder has no host")
+            value = value.replace("__TESTHOST__", str(host))
+        value = value.replace("__TESTROOT__", str(products))
+        require(re.search(r"__[A-Z][A-Z0-9_]*__", value) is None, "Unresolved original XCTest product placeholder")
+        path = Path(value)
+        require(path.is_absolute(), "Original XCTest product reference is not absolute")
+        return path.resolve(strict=True)
+
+    product_keys = {"TestBundlePath", "TestHostPath", "UITargetAppPath",
+                    "DependentProductPaths", "ProductPath"}
+    def collect_references(value, host=None):
+        if isinstance(value, dict):
+            if isinstance(value.get("TestHostPath"), str):
+                host = reference_path(value["TestHostPath"], host)
+            for key, item in value.items():
+                if key in product_keys:
+                    for raw in item if isinstance(item, list) else [item]:
+                        if isinstance(raw, str):
+                            path = reference_path(raw, host)
+                            if path is not None:
+                                include_product(path)
+                                referenced_products.append(path.relative_to(products).as_posix())
+                else:
+                    collect_references(item, host)
+        elif isinstance(value, list):
+            for item in value:
+                collect_references(item, host)
+    for path in test_runs:
+        collect_references(plistlib.loads(path.read_bytes()))
+
+    visited = set()
+    while True:
+        pending = [root for root in roots if root not in visited]
+        if not pending:
+            break
+        require(len(roots) < 128, "Unexpectedly large native product reference closure")
+        for top in pending:
+            visited.add(top)
+            for path in [top, *sorted(top.rglob("*"))] if top.is_dir() else [top]:
+                if path.is_symlink():
+                    require(not Path(os.readlink(path)).is_absolute(),
+                            "Native product has a nonportable absolute symlink")
+                    include_product(path.resolve(strict=True))
+    roots.sort()
+    entries = {}
+    for top in roots:
+        for path in [top, *sorted(top.rglob("*"))] if top.is_dir() else [top]:
+            relative = path.relative_to(products).as_posix()
+            if path.is_symlink():
+                require(path.resolve(strict=True).is_relative_to(products.resolve()),
+                        "Native product symlink leaves the exported product root")
+                entries[relative] = {"kind": "symlink", "target": os.readlink(path)}
+            elif path.is_file():
+                entries[relative] = {"kind": "file", "bytes": path.stat().st_size,
+                                     "mode": path.stat().st_mode & 0o777, "sha256": digest(path)}
+            elif path.is_dir():
+                entries[relative] = {"kind": "directory", "mode": path.stat().st_mode & 0o777}
+            else:
+                raise RuntimeError("Unexpected native product file type")
+    archive = OUT / "Maktabah-MiniApps-native-products.tar.gz"
+    require(not archive.exists(), "An earlier authentic product archive must not be overwritten")
+    with tarfile.open(archive, "w:gz", compresslevel=1) as output:
+        for path in roots:
+            output.add(path, arcname=path.relative_to(products).as_posix(), recursive=True)
+    write(OUT / "native-products-manifest.json", {
+        "schema_version": 1, "status": "ACTUAL_BUILT_SIMULATOR_PRODUCTS_EXPORTED",
+        "checkout_sha": build["checkout_sha"], "application_source_sha": build["application_source_sha"],
+        "run_id": os.environ.get("GITHUB_RUN_ID"), "hanlin_gitlink": build["hanlin_gitlink"],
+        "application_trees": build["application_trees"], "ui_test_tree": git("rev-parse", "HEAD:Maktabah-iOSUITests"),
+        "build_status": build["status"], "build_receipt_sha256": digest(build_path),
+        "xcode": build["xcode"], "swift": build["swift"], "sdk_version": build["sdk_version"],
+        "archive_name": archive.name, "archive_bytes": archive.stat().st_size, "archive_sha256": digest(archive),
+        "product_root": "build/DerivedData/Build/Products", "files": entries,
+        "original_xctestrun": [path.relative_to(products).as_posix() for path in test_runs],
+        "exported_product_roots": [path.relative_to(products).as_posix() for path in roots],
+        "original_test_product_references": sorted(set(referenced_products)),
+        "xcode_platform_provided_references": sorted(set(platform_references)),
+        "binary_identity": binaries(), "native_ui_acceptance": "NOT_RUN_AT_EXPORT",
+        "physical_signing_status": "NOT_VALIDATED_BY_SIMULATOR"})
+    print("Retained original app and UI test products with complete file and archive hashes", flush=True)
+
+
 class ActualMiniAppsProducer:
     def __init__(self):
         self.udid = None
@@ -183,13 +303,12 @@ class ActualMiniAppsProducer:
         require((OUT / "producer-admission.json").is_file(), "Actual producer product was not admitted")
         subprocess.run(["xcrun", "simctl", "install", udid, str(producer)], check=True, timeout=180)
         subprocess.run(["xcrun", "simctl", "launch", udid, PRODUCER], check=True, timeout=60)
-        consumer_group = capture("xcrun", "simctl", "get_app_container", udid, BUNDLE, GROUP)
-        producer_group = capture("xcrun", "simctl", "get_app_container", udid, PRODUCER, GROUP)
+        consumer_group = resolve_native_container(udid, BUNDLE, GROUP)
+        producer_group = resolve_native_container(udid, PRODUCER, GROUP)
         require(Path(consumer_group).resolve() == Path(producer_group).resolve(),
                 "The two installed original apps do not resolve the same App Group")
         self.group = Path(consumer_group).resolve()
-        self.corpus_group = Path(capture("xcrun", "simctl", "get_app_container",
-                                         udid, BUNDLE, "group.com.davidpovarsky.itorah")).resolve()
+        self.corpus_group = resolve_native_container(udid, BUNDLE, "group.com.davidpovarsky.itorah").resolve()
         corpus_profile = json.loads((ROOT / "Source/Otzaria/DataProfiles/miniTest10.profile.json").read_text())
         self.state.update(status="ACTUAL_PRODUCER_INSTALLED", udid=udid, group=str(self.group),
                           consumer_bundle=BUNDLE, producer_bundle=PRODUCER, shared_group_identifier=GROUP,
@@ -344,6 +463,7 @@ def matrix():
     require(source_context() == json.loads((OUT / "source-before.json").read_text()), "Source changed before original matrix")
     require(not os.environ.get("FAITHFUL_RUNTIME27_RELEASE_MANIFEST") and not os.environ.get("FAITHFUL_DIAGNOSTIC_CASES"),
             "The MiniApps lane cannot combine unrelated native suites")
+    os.environ["OTZARIA_MINIAPPS_NATIVE_CONTAINER_RECOVERY"] = "1"
     os.environ["VALIDATING_BASELINE"] = "false"
     os.environ["FAITHFUL_RUNTIME27_MANIFEST"] = str(MANIFEST)
     return runpy.run_path(str(ROOT / "Scripts/CI/run-faithful-ipad-matrix.py"))["main"](live_provider=ActualMiniAppsProducer())
@@ -436,6 +556,7 @@ def run_from_existing_native_workflow(report, run_logged, controller):
                        "--derived-data", "build/DerivedData", "--simulator-data-profile", "miniTest10"],
                       "miniapps-original-app-build.log", 7200, interrupt_controller=controller):
             raise RuntimeError("Original app/test build failed; new two-app UI case NOT_RUN")
+        export_built_products()
         restore_producer()
         write(OUT / "built-binaries.json", binaries())
         code = run_logged([sys.executable, "Scripts/CI/otzaria-miniapps-native.py", "matrix"],
