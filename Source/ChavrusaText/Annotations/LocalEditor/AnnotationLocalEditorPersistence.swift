@@ -1016,3 +1016,63 @@ extension AnnotationLocalEditorPersistence {
         return true
     }
 }
+
+/// A plain note update has no native body replacement authority.
+enum AnnotationPlainWriteError: LocalizedError, Equatable {
+    case requiresExpandedEditor, unavailable
+
+    var errorDescription: String? {
+        switch self {
+        case .requiresExpandedEditor:
+            String(localized: "Use the expanded editor to change this formatted note.",
+                   table: "OriginalAnnotationEditor")
+        case .unavailable:
+            String(localized: "The saved note could not be checked. Close and reopen it before editing.",
+                   table: "OriginalAnnotationEditor")
+        }
+    }
+}
+
+extension AnnotationLocalEditorPersistence {
+    /// Called before the original row, tags and queue writes on that same handle.
+    /// Reads never install a schema or reinterpret an unsupported envelope.
+    static func requirePlainWrite(
+        database: SQLiteDatabase, annotationID: Int64, originalRecordID: String?
+    ) throws {
+        try database.withSerializedAccess {
+            guard sqlite3_get_autocommit(database.dbPointer) == 0 else {
+                throw AnnotationLocalEditorError.wrongOwner
+            }
+            let records: [String?] = try database.fetch(
+                query: "SELECT ckRecordId FROM annotations WHERE id = ?;",
+                parameters: [annotationID]
+            ) { row in
+                if row.type(at: 0) == SQLITE_NULL { return nil }
+                guard row.type(at: 0) == SQLITE_TEXT, let value = row.string(at: 0),
+                      value.utf8.count == Int(sqlite3_column_bytes(row.stmt, 0)) else {
+                    throw AnnotationExchangeError.corruptRecord
+                }
+                return value
+            }
+            guard records.count == 1 else { throw AnnotationLocalEditorError.missingAnnotation }
+            guard records[0].map({ Array($0.utf8) }) == originalRecordID.map({ Array($0.utf8) }) else {
+                throw AnnotationLocalEditorError.wrongOwner
+            }
+            let ledger = AnnotationExchangeLedger(database: database, digest: AnnotationExchangePlatformDigest())
+            guard try ledger.hasInstalledSchema() else { return }
+            // Legacy rows with no UUID cannot name an immutable rich version.
+            // The exact original record-ID comparison above still protects identity.
+            guard let uuid = records[0].flatMap(UUID.init(uuidString:)),
+                  let version = try ledger.currentVersion(namespace: Self.namespace, annotationUUID: uuid) else {
+                return
+            }
+            guard case .supported(let envelope, _) = try TorahAnnotationEnvelopeCodec.decode(version.payload),
+                  envelope.deletionState == .active, version.destinationsJSON == "[]" else {
+                throw AnnotationPlainWriteError.unavailable
+            }
+            guard envelope.richBody == nil else {
+                throw AnnotationPlainWriteError.requiresExpandedEditor
+            }
+        }
+    }
+}
