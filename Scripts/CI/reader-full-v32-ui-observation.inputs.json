@@ -87,7 +87,7 @@
   "input_sha256": {
     ".github/workflows/otzaria-reader-groups-full-v32.yml": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c",
     "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "28d5dbc2a6672b39b4083ff9f50f25b338e177bb33ac5c32da474b2baf1b7d4a",
-    "Scripts/CI/hq-original-editor-distribution.py": "a36b6a73b5b3291080556ee3c107aaf88f2c2a112d526dee0ee6f427a197e62e",
+    "Scripts/CI/hq-original-editor-distribution.py": "72adae820988b2ed6f6a89f129430a11499f191ebc0a1ec2b4003b8b06a5f858",
     "Scripts/CI/hq-stage2-focused-apple.inputs.json": "8c3416d79efd97e73c5d840e9466deeff1601114c0d632faff255ace9aa3082c",
     "Scripts/CI/hq-stage2-focused-apple.py": "21c9d04c3b08463972f1083b7dadce425bba25f72e3153ae03f5e9c881d99e7b",
     "Scripts/CI/library-morph-focused-native.inputs.json": "2e61c9a97a7cb3862fdf1c716575541d322b3ca0d0dbe381da43f32ca4071e4d",

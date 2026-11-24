@@ -102,6 +102,9 @@ def zip_members(zipped):
 
 
 def stage(config, evidence):
+    if config.get("producer_kind") == "local-mac":
+        local = runpy.run_path(str(owned_path(ROOT, "Scripts/CI/original_editor_local_admission.py")))
+        return local["restore"](ROOT, config, evidence, SDK, zip_members)
     if config.get("schema") == 2:
         continuation = runpy.run_path(str(owned_path(ROOT, "Scripts/CI/original_editor_continuation_admission.py")))
         return continuation["stage"](ROOT, config, evidence, SDK, download)
