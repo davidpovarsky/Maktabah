@@ -21,11 +21,8 @@ struct iOSBookAnnotationsView: View {
         NavigationStack {
             ScrollViewReader { proxy in
                 annotationLists
-                    #if DEBUG && os(iOS) && targetEnvironment(simulator)
-                    .modifier(AnnotationOriginalEditorQualificationIdentity(
-                        identifier: "original-book-annotations-list",
-                        value: viewModel.hasLoaded ? "loaded" : "loading"))
-                    #endif
+                    .accessibilityIdentifier("original-book-annotations-list")
+                    .accessibilityValue(viewModel.hasLoaded ? "loaded" : "loading")
                     .onAppear {
                         guard let targetId = viewModel.scrollPositionId else { return }
                         proxy.scrollTo(targetId, anchor: .top)
@@ -60,7 +57,7 @@ struct iOSBookAnnotationsView: View {
                 iOSAnnotationEditorSheet(
                     annotation: ann,
                     onSave: { updated in
-                        Task { await updateAnnotation(updated) }
+                        try updateAnnotation(updated)
                     },
                     onDelete: { _ in
                         Task { await deleteAnnotation(ann) }
@@ -114,20 +111,14 @@ struct iOSBookAnnotationsView: View {
                 }
                 .padding(.vertical, 4)
             }
-            #if DEBUG && os(iOS) && targetEnvironment(simulator)
-            .modifier(AnnotationOriginalEditorQualificationIdentity(
-                identifier: "original-book-annotation-" + String(ann.stableId)))
-            #endif
+            .accessibilityIdentifier("original-book-annotation-" + String(ann.stableId))
             .contextMenu {
                 Button {
                     editingAnnotation = ann
                 } label: {
                     Label(String(localized: .Annotation.editAnnotation), systemImage: "pencil")
                 }
-                #if DEBUG && os(iOS) && targetEnvironment(simulator)
-                .modifier(AnnotationOriginalEditorQualificationIdentity(
-                    identifier: "original-book-annotation-edit-" + String(ann.stableId)))
-                #endif
+                .accessibilityIdentifier("original-book-annotation-edit-" + String(ann.stableId))
 
                 Button(role: .destructive) {
                     Task { await deleteAnnotation(ann) }
@@ -141,12 +132,14 @@ struct iOSBookAnnotationsView: View {
         .scrollPosition(id: $viewModel.scrollPositionId)
     }
 
-    private func updateAnnotation(_ updated: Annotation) async {
+    private func updateAnnotation(_ updated: Annotation) throws {
         do {
-            try onUpdate?(updated)
+            guard let onUpdate else { throw AnnotationLocalEditorError.noConnection }
+            try onUpdate(updated)
             UINotificationFeedbackGenerator().notificationOccurred(.success)
         } catch {
             UINotificationFeedbackGenerator().notificationOccurred(.error)
+            throw error
         }
     }
 
