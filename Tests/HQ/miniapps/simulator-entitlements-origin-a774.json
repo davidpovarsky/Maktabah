@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "source_repository": "davidpovarsky/hanlin-ai",
+  "source_sha": "a774de24926ca13d563c45c42917d03b8c04296f",
+  "source_path": "Scripts/ProductSplit/simulator_entitlements.py",
+  "reader_sha256": "aa1cfcd4f371dd25a637bc56ab281ef94f8bcdcc2bb415b9125dd0b0aa0b27a8",
+  "copy": "EXACT_SOURCE_BYTES",
+  "scope": "Read actual Simulator executable entitlements; no app or container mutation and no physical profile claim",
+  "original_consumer_build": {
+    "run_id": 45296996270,
+    "sha": "cb68dbc8719cf78d4ab630f2cb054ea5e32ae5aa",
+    "artifact_id": 14882056193,
+    "artifact_sha256": "cecb9b58d17bdec4a0112557fe644542ea9f26544a680874dc3211e08f244252",
+    "build_status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+    "log_member": "hq-stage2/simulator-build-for-testing.log",
+    "log_sha256": "aade5e1c154b8f15a8c7faef6c5c908933b90f57130e780a89368ecbaa57008b",
+    "empty_signed_xcent_line": 72869,
+    "capability_simulated_xcent_line": 72879,
+    "main_executable_link_line": 80036,
+    "codesign_empty_xcent_line": 82472
+  },
+  "native_ui_status": "STILL_REQUIRED",
+  "unchanged_proof": "Previous17portable,8resolver,2archive checks not rerun; only this new adapter path needs focused checking"
+}

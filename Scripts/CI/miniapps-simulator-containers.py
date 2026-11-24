@@ -12,6 +12,7 @@ import os
 from pathlib import Path
 import plistlib
 import re
+import runpy
 import subprocess
 import uuid
 from datetime import datetime, timezone
@@ -112,19 +113,28 @@ def installed_app(data, bundle, source_app):
 
 
 def entitled_groups(app):
-    result = subprocess.run(["codesign", "-d", "--entitlements", ":-", str(app)],
-                            check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=45)
-    payload = result.stdout
-    if not payload.strip():
-        payload = result.stderr
-    start, end = payload.find(b"<?xml"), payload.rfind(b"</plist>")
-    require(start >= 0 and end > start, "Installed app signature did not expose XML entitlements")
-    entitlements = plistlib.loads(payload[start:end + len(b"</plist>")])
-    groups = entitlements.get("com.apple.security.application-groups", [])
+    # Xcode places Simulator capabilities in the actual executable, while its
+    # separate ad-hoc signature legitimately carries an empty entitlement plist.
+    # Validate that signature and the frozen reader; never rewrite either image.
+    subprocess.run(["codesign", "--verify", "--strict", str(app)], check=True,
+                   stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=45)
+    reader_path = Path(__file__).with_name("miniapps-simulator-entitlements.py")
+    require(digest(reader_path) == "aa1cfcd4f371dd25a637bc56ab281ef94f8bcdcc2bb415b9125dd0b0aa0b27a8",
+            "Simulator entitlement reader differs from the frozen SDK source")
+    info = plistlib.loads((app / "Info.plist").read_bytes())
+    executable = info.get("CFBundleExecutable")
+    require(isinstance(executable, str) and executable and Path(executable).name == executable,
+            "Invalid installed executable identity")
+    read = runpy.run_path(str(reader_path))["read_simulator_entitlements"]
+    proof = read(app / executable)
+    groups = proof["entitlements"].get("com.apple.security.application-groups", [])
     require(isinstance(groups, list) and all(isinstance(value, str) for value in groups),
             "Installed App Group entitlement is malformed")
+    audit({"status": "ACTUAL_SIMULATOR_ENTITLEMENTS_VERIFIED", "installed_app": str(app),
+           "signature": "AD_HOC_CODE_SIGNATURE_VERIFIED", "simulator_entitlements": proof,
+           "reader_source_sha": "a774de24926ca13d563c45c42917d03b8c04296f",
+           "physical_signing_status": "NOT_QUALIFIED_BY_SIMULATOR"})
     return groups
-
 
 def expected_app(bundle):
     if bundle == CONSUMER:

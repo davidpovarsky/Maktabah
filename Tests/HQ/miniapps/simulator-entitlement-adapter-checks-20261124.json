@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "count": 2,
+  "scope": "New entitlement-adapter filesystem checks only; signature response mocked, no Apple execution",
+  "native_tests_executed": 0,
+  "test_source_sha256": "f7292a742f053fa62a7a893bee97e8ba13671992249e08dcf87de92675d4b180",
+  "reader_sha256": "aa1cfcd4f371dd25a637bc56ab281ef94f8bcdcc2bb415b9125dd0b0aa0b27a8",
+  "resolver_sha256": "64fbcba5b642ffefc8188301abc0540e706f39d1165e98d87268a398d2472ef7",
+  "log": "test_original_image_section_and_existing_os_group_are_both_required (__main__.SimulatorEntitlementAdmissionTests.test_original_image_section_and_existing_os_group_are_both_required) ... ok\ntest_valid_embedded_groups_do_not_override_signature_failure (__main__.SimulatorEntitlementAdmissionTests.test_valid_embedded_groups_do_not_override_signature_failure) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.018s\n\nOK\n",
+  "unchanged_tests_repeated": 0
+}
