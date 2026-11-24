@@ -1,7 +1,7 @@
 import Foundation
 import SQLite3
 import OtzariaActionCore
-#if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+#if os(iOS) && canImport(AnytypeOriginalEditor)
 import AnytypeOriginalEditor
 #endif
 
@@ -717,7 +717,32 @@ extension AnnotationLocalEditorPersistence {
             && prepared.snapshot.sessionID == sessionID && isOwned
     }
 
-    #if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+    #if os(iOS) && canImport(AnytypeOriginalEditor)
+    func bindLocalAnnotationRetirement(
+        _ source: AnytypeOriginalEditorLocalAnnotationSourceLifetime,
+        snapshot: AnnotationLocalEditorSnapshot
+    ) throws {
+        do {
+            guard isOwned, snapshot.sessionID == sessionID,
+                  snapshot.annotationUUID == annotationUUID,
+                  snapshot.databaseURL.absoluteString.utf8.elementsEqual(connection.databaseURL.absoluteString.utf8),
+                  source.source.annotationUUID == annotationUUID,
+                  source.source.expectedRevision == snapshot.revision,
+                  source.source.sourceWitnessSHA256 == snapshot.source.digest,
+                  source.source.payloadSHA256 == snapshot.version?.payloadDigest else {
+                throw AnnotationLocalEditorError.wrongOwner
+            }
+            // No SQL or callback is performed while either parent is linked.
+            // A retired original DB or editor immediately retires the SDK token.
+            try owner.bindLocalAnnotationRetirement(source)
+            try connection.lifetime.bindLocalAnnotationRetirement(source)
+            guard isOwned, source.isCurrent else { throw AnnotationLocalEditorError.retired }
+        } catch {
+            source.retire()
+            throw error
+        }
+    }
+
     func bindNativeImportRetirement(
         _ source: AnytypeOriginalAnnotationImportSourceLifetime,
         prepared: AnnotationLocalEditorNativePreparation
@@ -989,5 +1014,65 @@ extension AnnotationLocalEditorPersistence {
             throw AnnotationLocalEditorNativeAttemptError.schemaMismatch
         }
         return true
+    }
+}
+
+/// A plain note update has no native body replacement authority.
+enum AnnotationPlainWriteError: LocalizedError, Equatable {
+    case requiresExpandedEditor, unavailable
+
+    var errorDescription: String? {
+        switch self {
+        case .requiresExpandedEditor:
+            String(localized: "Use the expanded editor to change this formatted note.",
+                   table: "OriginalAnnotationEditor")
+        case .unavailable:
+            String(localized: "The saved note could not be checked. Close and reopen it before editing.",
+                   table: "OriginalAnnotationEditor")
+        }
+    }
+}
+
+extension AnnotationLocalEditorPersistence {
+    /// Called before the original row, tags and queue writes on that same handle.
+    /// Reads never install a schema or reinterpret an unsupported envelope.
+    static func requirePlainWrite(
+        database: SQLiteDatabase, annotationID: Int64, originalRecordID: String?
+    ) throws {
+        try database.withSerializedAccess {
+            guard sqlite3_get_autocommit(database.dbPointer) == 0 else {
+                throw AnnotationLocalEditorError.wrongOwner
+            }
+            let records: [String?] = try database.fetch(
+                query: "SELECT ckRecordId FROM annotations WHERE id = ?;",
+                parameters: [annotationID]
+            ) { row in
+                if row.type(at: 0) == SQLITE_NULL { return nil }
+                guard row.type(at: 0) == SQLITE_TEXT, let value = row.string(at: 0),
+                      value.utf8.count == Int(sqlite3_column_bytes(row.stmt, 0)) else {
+                    throw AnnotationExchangeError.corruptRecord
+                }
+                return value
+            }
+            guard records.count == 1 else { throw AnnotationLocalEditorError.missingAnnotation }
+            guard records[0].map({ Array($0.utf8) }) == originalRecordID.map({ Array($0.utf8) }) else {
+                throw AnnotationLocalEditorError.wrongOwner
+            }
+            let ledger = AnnotationExchangeLedger(database: database, digest: AnnotationExchangePlatformDigest())
+            guard try ledger.hasInstalledSchema() else { return }
+            // Legacy rows with no UUID cannot name an immutable rich version.
+            // The exact original record-ID comparison above still protects identity.
+            guard let uuid = records[0].flatMap(UUID.init(uuidString:)),
+                  let version = try ledger.currentVersion(namespace: Self.namespace, annotationUUID: uuid) else {
+                return
+            }
+            guard case .supported(let envelope, _) = try TorahAnnotationEnvelopeCodec.decode(version.payload),
+                  envelope.deletionState == .active, version.destinationsJSON == "[]" else {
+                throw AnnotationPlainWriteError.unavailable
+            }
+            guard envelope.richBody == nil else {
+                throw AnnotationPlainWriteError.requiresExpandedEditor
+            }
+        }
     }
 }

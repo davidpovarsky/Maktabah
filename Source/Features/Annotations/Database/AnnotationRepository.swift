@@ -367,6 +367,11 @@ final class AnnotationRepository: SyncPendingManaging, Sendable {
         updatedAnnotation.lastModified = now
 
         try transaction(cleanupTags: true) {
+            // Recheck the actual current body inside this original transaction.
+            // A prior sheet inspection cannot authorize overwriting a rich note.
+            try AnnotationLocalEditorPersistence.requirePlainWrite(
+                database: _db, annotationID: id, originalRecordID: annotation.ckRecordId
+            )
             let sql = "UPDATE \(annotationsTable) SET \(colAnnColor) = ?, \(colAnnType) = ?, \(colAnnNote) = ?, \(colAnnLastModified) = ? WHERE \(colAnnId) = ?;"
             let params: [Any] = [
                 updatedAnnotation.colorHex,

@@ -1,5 +1,5 @@
 import Foundation
-#if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+#if os(iOS) && canImport(AnytypeOriginalEditor)
 import AnytypeOriginalEditor
 #endif
 
@@ -267,7 +267,15 @@ extension AnnotationLocalEditorSession {
         persistence.ownsNativePreparation(prepared)
     }
 
-    #if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+    #if os(iOS) && canImport(AnytypeOriginalEditor)
+    func bindLocalAnnotationRetirement(
+        _ source: AnytypeOriginalEditorLocalAnnotationSourceLifetime,
+        snapshot: AnnotationLocalEditorSnapshot
+    ) throws {
+        guard !busy else { source.retire(); throw AnnotationLocalEditorError.busy }
+        try persistence.bindLocalAnnotationRetirement(source, snapshot: snapshot)
+    }
+
     func bindNativeImportRetirement(
         _ source: AnytypeOriginalAnnotationImportSourceLifetime,
         prepared: AnnotationLocalEditorNativePreparation

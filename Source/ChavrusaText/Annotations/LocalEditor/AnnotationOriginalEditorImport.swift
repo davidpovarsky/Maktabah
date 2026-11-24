@@ -1,4 +1,4 @@
-#if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+#if os(iOS) && canImport(AnytypeOriginalEditor)
 import Foundation
 import AnytypeOriginalEditor
 
