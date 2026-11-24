@@ -197,7 +197,8 @@ def bind_original_build(context, build):
     changed = set(git("diff", "--name-only", built, head).splitlines())
     require(changed and changed <= allowed, "Retained native build has a non-harness source delta")
     for key in ("reviewed_source_sha", "application_source_sha", "application_trees",
-                "original_build_status", "generated_project_sha256", "workspace_sha256", "binaries"):
+                "original_build_status", "generated_project_sha256", "workspace_sha256", "binaries",
+                "original_build_receipt_sha256", "qualified_sdk_route"):
         require(prior.get(key) == context.get(key), "Retained native source or image differs: " + key)
     prior_inputs, current_inputs = prior.get("execution_inputs"), context.get("execution_inputs")
     require(type(prior_inputs) is dict and type(current_inputs) is dict
@@ -212,13 +213,27 @@ def bind_original_build(context, build):
     return binding
 
 
+def verify_qualified_sdk(build):
+    routes = build.get("original_editor_routes")
+    require(isinstance(routes, dict), "Live Host requires the final qualified original SDK routes")
+    app = ROOT / "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+    # Verify exact current code/resources/signatures against the actual build's
+    # original ownership/runtime proofs before and after this single UI journey.
+    return runpy.run_path(str(ROOT / "Scripts/CI/original_editor_sdk_routes.py"))["verify"](
+        ROOT, routes["path"], "Debug", "iphonesimulator", app,
+        route_sha256=routes["sha256"], after_ui=True)
+
+
 def source_context():
     head = git("rev-parse", "HEAD")
     require(head == os.environ["EXPECTED_CHECKOUT_SHA"], "Wrong immutable live checkout")
     for path in ["Source", "Vendor", "Maktabah.xcodeproj", "Maktabah-iOSUITests"]:
         require(git("rev-parse", "HEAD:" + path) == git("rev-parse", REVIEWED_SOURCE + ":" + path),
                 "Reviewed live application or test tree changed")
-    build = json.loads((ROOT / "build/hq-stage2/result.json").read_text())
+    build_path = ROOT / "build/hq-stage2/result.json"
+    build_raw = build_path.read_bytes()
+    build_sha256 = hashlib.sha256(build_raw).hexdigest()
+    build = json.loads(build_raw)
     require(build.get("status") == "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
             "No successful original app and original UI runner build")
     hq = runpy.run_path(str(ROOT / "Scripts/CI/hq-stage2-focused-apple.py"))
@@ -252,7 +267,9 @@ def source_context():
     context = {"checkout_sha": head, "reviewed_source_sha": REVIEWED_SOURCE, "application_source_sha": inputs["application_source_sha"],
             "application_trees": inputs["application_trees"], "original_build_status": build["status"],
             "generated_project_sha256": native["generated_project_sha256"],
-            "workspace_sha256": native["workspace_sha256"], "execution_inputs": closure, "binaries": binaries}
+            "workspace_sha256": native["workspace_sha256"], "execution_inputs": closure, "binaries": binaries,
+            "original_build_receipt_sha256": build_sha256, "qualified_sdk_route": verify_qualified_sdk(build)}
+    require(digest(build_path) == build_sha256, "Original build receipt changed during live source admission")
     context.update(bind_original_build(context, build))
     return context
 

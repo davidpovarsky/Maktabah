@@ -105,9 +105,29 @@ def prepare():
     write(MANIFEST, contract)
     write(OUT / "source-before.json", context)
 
+
+def qualified_build_context():
+    build_path = ROOT / "build/hq-stage2/result.json"
+    build = json.loads(build_path.read_bytes())
+    if build.get("status") != "SIMULATOR_BUILD_FOR_REAL_UI_PASS" or build.get("checkout_sha") != git("rev-parse", "HEAD"):
+        raise ValueError("No authentic same-checkout original SDK app/UI build")
+    routes = build.get("original_editor_routes")
+    if not isinstance(routes, dict):
+        raise ValueError("Focused Groups100 requires the final qualified original SDK routes")
+    app = ROOT / "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+    # Reuse the original real-build symbol/runtime proofs, with exact current
+    # code, resources and signatures; no native compiler or UI replay.
+    verification = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_sdk_routes.py"))["verify"](
+        ROOT, routes["path"], "Debug", "iphonesimulator", app, route_sha256=routes["sha256"], after_ui=True)
+    images = runpy.run_path(str(ROOT / "Scripts/CI/mac-prepared-inputs.py"))["code_images"](ROOT)
+    return {"build_receipt_sha256": hashlib.sha256(build_path.read_bytes()).hexdigest(),
+            "qualified_sdk_route": verification, "complete_native_images": images}
+
+
 def execute():
     if source_context() != json.loads((OUT / "source-before.json").read_text()):
         raise ValueError("Source changed after preparation")
+    write(OUT / "qualified-build-before.json", qualified_build_context())
     os.environ["VALIDATING_BASELINE"] = "false"
     os.environ["FAITHFUL_RUNTIME27_MANIFEST"] = str(MANIFEST)
     driver = runpy.run_path(str(ROOT / "Scripts/CI/runtime27.py"))
@@ -141,6 +161,12 @@ def collect():
         report.update(context)
         if context != json.loads((OUT / "source-before.json").read_text()):
             raise ValueError("Source or complete catalog changed during execution")
+        qualified = qualified_build_context()
+        if qualified != json.loads((OUT / "qualified-build-before.json").read_bytes()):
+            raise ValueError("Qualified original SDK build or complete native image closure changed during Groups100")
+        write(OUT / "qualified-build-after.json", qualified)
+        report.update(qualified_sdk_route=qualified["qualified_sdk_route"],
+                      complete_native_image_count=len(qualified["complete_native_images"]))
         build = json.loads((ROOT / "build/hq-stage2/result.json").read_text())
         if build.get("status") != "SIMULATOR_BUILD_FOR_REAL_UI_PASS" or build.get("checkout_sha") != context["checkout_sha"]:
             raise ValueError("No matching real app and UI runner build")

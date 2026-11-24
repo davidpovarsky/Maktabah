@@ -90,6 +90,8 @@ class RetainedBuildAdmission(unittest.TestCase):
         self.prior = {"checkout_sha": self.base, "reviewed_source_sha": "original",
                       "application_source_sha": "original", "application_trees": {"Source": "tree"},
                       "original_build_status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+                      "original_build_receipt_sha256": "unchanged original build receipt",
+                      "qualified_sdk_route": {"sdk_source_sha": "qualified SDK", "admission_sha256": "admitted distribution"},
                       "generated_project_sha256": "project", "workspace_sha256": "workspace",
                       "execution_inputs": {RUNNER: {"sha256": "prior"}, "tools/guard.py": {"sha256": "retained"}},
                       "binaries": {"Maktabah.app/Maktabah.debug.dylib": "unchanged image"}}
@@ -141,6 +143,13 @@ class RetainedBuildAdmission(unittest.TestCase):
             name = "Maktabah.app/Maktabah.debug.dylib" if field == "binaries" else "tools/guard.py"
             current[field][name] = "tampered"
             with self.subTest(field=field), self.assertRaises(ValueError):
+                self.call(current)
+
+    def test_retained_sdk_admission_and_build_receipt_must_be_identical(self):
+        for field in ["qualified_sdk_route", "original_build_receipt_sha256"]:
+            current = copy.deepcopy(self.current)
+            current[field] = "another SDK admission or build receipt"
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, "Retained native source or image differs"):
                 self.call(current)
 
     def test_changed_proof_or_missing_explicit_binding_refused(self):
