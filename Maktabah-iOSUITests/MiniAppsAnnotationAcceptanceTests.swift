@@ -471,10 +471,22 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     @MainActor
     private func openAnnotations() async throws {
         tap(app.buttons["reader-more-menu"])
-        let action = app.buttons.matching(NSPredicate(format: "label == %@", "Annotations"))
+        // The original iPad tab bar also exposes Annotations. Select only
+        // the reader's native Menu popover, using the same cell scope as the
+        // original study-group menu acceptance helper.
+        let action = app.collectionViews.cells.buttons.matching(
+            NSPredicate(format: "label == %@", "Annotations")
+        )
         XCTAssertTrue(action.firstMatch.waitForExistence(timeout: 15))
-        XCTAssertEqual(action.count, 1)
-        tap(action.firstMatch)
+        retainScreenshot(app, named: "miniapps-original-reader-annotations-menu")
+        let menuTree = XCTAttachment(string: app.debugDescription)
+        menuTree.name = "miniapps-original-reader-annotations-menu-ax"
+        menuTree.lifetime = .keepAlways
+        add(menuTree)
+        XCTAssertEqual(action.count, 1, "Require the unique Annotations action in the original reader popup")
+        let menuAction = try XCTUnwrap(action.count == 1 ? action.allElementsBoundByIndex.first : nil)
+        XCTAssertTrue(menuAction.isHittable)
+        tap(menuAction)
         XCTAssertTrue(app.navigationBars["Annotations"].waitForExistence(timeout: 15))
         let list = app.descendants(matching: .any)["original-book-annotations-list"]
         XCTAssertTrue(list.waitForExistence(timeout: 15))
