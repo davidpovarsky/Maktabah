@@ -44,7 +44,11 @@ def prepare(producer_root, evidence, abi_path, destination):
     owner = qualification.get('shared_runtime_ownership', {})
     require(owner.get('status') == 'PASS_OBSERVED_SINGLE_SHARED_IMPLEMENTATIONS'
             and owner.get('stageb_qualified') is False, 'Actual shared implementation qualification is incomplete')
-    API['require_compiled_host_api'](qualification, admission_schema=3)
+    source_before = read_json(evidence / 'source-before.json')
+    contract = source_before.get('public_host_contract_sha256')
+    contract = contract if contract == API['LOCAL_ANNOTATION_CONTRACT_SHA256'] else None
+    API['require_compiled_host_api'](qualification, admission_schema=3,
+                                     public_contract_sha256=contract)
     observations = qualification.get('verified_runtime_observations', [])
     require(len(observations) == 2 and {row.get('language') for row in observations} == {'en', 'he'}
             and all(row.get('status') == 'ACTUAL_IMPORT_LINK_RESOURCE_RUNTIME_PASS' for row in observations),
@@ -112,6 +116,8 @@ def prepare(producer_root, evidence, abi_path, destination):
         'status': 'QUALIFIED_LOCAL_SDK_SIMULATOR_INPUT_REQUIRES_COMMITTED_ADMISSION',
         'native_stageb_qualified': False, 'device_framework_qualified': False,
     }
+    if contract:
+        config['public_host_contract_sha256'] = contract
     LOCAL['validate_provenance'](ROOT, config, qualification, API)
     output = destination / 'admission-candidate.json'
     API['write'](output, config)

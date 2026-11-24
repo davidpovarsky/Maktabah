@@ -64,6 +64,44 @@ class LocalSDKMetadataControls(unittest.TestCase):
         self.assertEqual(proof['producer_kind'], 'local-mac')
         self.assertFalse(proof['native_stageb_qualified'])
 
+    def lifecycle_configuration(self):
+        self.config['public_host_contract_sha256'] = API['LOCAL_ANNOTATION_CONTRACT_SHA256']
+        identity = copy.deepcopy(self.qualification['execution_identity'])
+        identity['local_execution']['head_branch'] = 'codex/otzaria-local-annotation-sdk-20261124'
+        execution_row = self.write('execution', identity['local_execution'])
+        identity['local_execution_sha256'] = execution_row['sha256']
+        before = {'head_sha': self.config['source_sha'], 'execution_identity': identity,
+                  'status': 'SOURCE_BOUND_FRAMEWORK_RUNTIME_NOT_RUN',
+                  'public_host_contract_sha256': self.config['public_host_contract_sha256']}
+        abi = json.loads((self.root / self.config['local_receipts']['abi']['path']).read_text())
+        abi['local_execution_sha256'] = execution_row['sha256']
+        abi_row = self.write('abi', abi)
+        self.config.update(local_execution_sha256=execution_row['sha256'], local_receipts={
+            'execution': execution_row, 'source_before': self.write('source_before', before),
+            'source_after': self.write('source_after', before), 'abi': abi_row})
+        self.qualification['execution_identity'] = identity
+        self.qualification['heart']['receipt_sha256'] = abi_row['sha256']
+
+    def test_lifecycle_branch_requires_exact_observed_public_contract(self):
+        self.lifecycle_configuration()
+        proof = local.validate_provenance(self.root, self.config, self.qualification, API)
+        self.assertEqual(proof['public_host_contract_sha256'], API['LOCAL_ANNOTATION_CONTRACT_SHA256'])
+        self.assertFalse(proof['native_stageb_qualified'])
+        self.config['public_host_contract_sha256'] = '0' * 64
+        with self.assertRaisesRegex(RuntimeError, 'Public contract differs'):
+            local.validate_provenance(self.root, self.config, self.qualification, API)
+
+    def test_lifecycle_source_cannot_silently_use_legacy_admission(self):
+        self.lifecycle_configuration()
+        del self.config['public_host_contract_sha256']
+        with self.assertRaisesRegex(RuntimeError, 'exact committed public contract'):
+            local.validate_provenance(self.root, self.config, self.qualification, API)
+
+    def test_legacy_source_cannot_claim_lifecycle_by_adding_only_a_config_field(self):
+        self.config['public_host_contract_sha256'] = API['LOCAL_ANNOTATION_CONTRACT_SHA256']
+        with self.assertRaisesRegex(RuntimeError, 'Public contract differs'):
+            local.validate_provenance(self.root, self.config, self.qualification, API)
+
     def test_borrowed_github_artifact_or_numeric_execution_is_rejected(self):
         config = {**self.config, 'artifact_id': 123}
         with self.assertRaisesRegex(RuntimeError, 'borrow GitHub'):

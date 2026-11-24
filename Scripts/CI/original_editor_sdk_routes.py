@@ -255,9 +255,24 @@ def embed(root, route_path, route_sha256, target):
 def verify(root, route_path, configuration, platform, app, *, route_sha256, after_ui=False, after_archive=False):
     row, admitted = admitted_route(root, route_path, route_sha256, configuration, platform)
     if platform == 'iphoneos':
+        require(not after_ui, 'Device compiler/archive verification cannot claim a Simulator UI phase')
         module = runpy.run_path(str(Path(root) / 'Scripts/CI/original_editor_device_signature.py'))
-        module['verify'](root, Path(root) / row['path'], row['sha256'], app, Path(root) / row['evidence'],
-                         expected_team=admitted['signing_team_id'], after_archive=after_archive)
+        verified = module['verify'](root, Path(root) / row['path'], row['sha256'], app, Path(root) / row['evidence'],
+                                    expected_team=admitted['signing_team_id'], after_archive=after_archive)
+        directory = Path(root) / row['evidence'] / ('device-archive' if after_archive else 'device-build')
+        directory.mkdir(parents=True, exist_ok=True)
+        api = sdk_api(root)
+        shared = runpy.run_path(str(Path(root) / 'Scripts/CI/original_editor_shared_runtime.py'))
+        shared['verify_app_ownership'](Path(root), admitted, Path(app), directory, api['command'],
+            host_library_files=verified['host_build_products']['host_libraries'])
+        policy = admitted['shared_package_policy']
+        if policy['swift_syntax_requires_actual_runtime_absence']:
+            api['verify_absence_receipt'](Path(root), Path(root) / admitted['distribution_root'],
+                                         policy['producer_runtime_absence'])
+            proof = api['runtime_absence_proof'](Path(root), Path(app), directory / 'swift-syntax-app')
+            api['write'](directory / 'swift-syntax-runtime-absence.json', {
+                'status': 'EXACT_REVIEWED_BUILD_TOOL_PAIR_WITH_ACTUAL_RUNTIME_ABSENCE',
+                'sdk': policy['producer_runtime_absence'], 'app': proof, 'device_runtime': 'NOT_RUN'})
     else:
         require(not after_archive, 'Simulator route cannot grant device archive verification')
         sdk_api(root)['verify_built_app'](root, admitted, app, Path(root) / row['evidence'], after_ui=after_ui)

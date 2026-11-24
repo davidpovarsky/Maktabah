@@ -13,6 +13,7 @@ from original_editor_local_admission import validate_abi_adapter
 CI = Path(__file__).resolve().parent
 api = runpy.run_path(str(CI / 'hq-original-editor-distribution.py'))
 public_fixture = runpy.run_path(str(CI / 'test_original_editor_stageb_admission.py'))['qualification']
+shared_api = runpy.run_path(str(CI / 'original_editor_shared_runtime.py'))
 
 
 class RouteSourceControls(unittest.TestCase):
@@ -196,6 +197,40 @@ class AdapterProvenanceControls(unittest.TestCase):
         abi['schema'] = 'otzaria.original-import-local-sdk-input/1'
         with self.assertRaisesRegex(RuntimeError, 'Historical ABI'):
             validate_abi_adapter(abi, heart, 'b' * 40)
+
+
+class RecordedArchiveLibraryControls(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.root = Path(self.tmp.name).resolve()
+        folder = self.root / 'build/actual-xcode-products'
+        folder.mkdir(parents=True)
+        self.rows = {}
+        for pod in shared_api['PODS']:
+            path = folder / ('lib' + pod + '.a')
+            path.write_bytes(b'SYNTHETIC_LIB_METADATA_ONLY:' + pod.encode())
+            self.rows[pod] = {'canonical_path': str(path), **routes.record(path)}
+
+    def test_exact_observed_libraries_are_used_without_an_archive_layout_guess(self):
+        paths = shared_api['recorded_host_library_paths'](self.root, self.rows)
+        self.assertEqual(set(paths), set(shared_api['PODS']))
+        self.assertEqual(paths['FirebaseCore'], Path(self.rows['FirebaseCore']['canonical_path']))
+
+    def test_missing_changed_or_aliased_library_is_refused(self):
+        missing = copy.deepcopy(self.rows)
+        missing.pop('FirebaseCore')
+        with self.assertRaisesRegex(RuntimeError, 'Incomplete original Host library'):
+            shared_api['recorded_host_library_paths'](self.root, missing)
+        changed = copy.deepcopy(self.rows)
+        changed['FirebaseCore']['sha256'] = 'f' * 64
+        with self.assertRaisesRegex(RuntimeError, 'changed or escaped'):
+            shared_api['recorded_host_library_paths'](self.root, changed)
+        alias = self.root / 'build/alias.a'
+        alias.symlink_to(self.rows['FirebaseCore']['canonical_path'])
+        changed['FirebaseCore'] = {**self.rows['FirebaseCore'], 'canonical_path': str(alias)}
+        with self.assertRaisesRegex(RuntimeError, 'changed or escaped'):
+            shared_api['recorded_host_library_paths'](self.root, changed)
 
 
 if __name__ == '__main__':

@@ -18,6 +18,34 @@ import tempfile
 TARGET = "Maktabah-iOS"
 BUNDLE = "com.davidpovarsky.chavrusatext"
 QUALIFIED = "ACTUAL_ORIGINAL_FRAMEWORK_EXTERNAL_IMPORT_LINK_RESOURCES_PASS"
+LOCAL_ANNOTATION_CONTRACT_SHA256 = "33594f50c825c490edf5502add640fd478d3249909352e02b0e53ee23b9ee634"
+LOCAL_ANNOTATION_REQUIREMENTS = (('AnytypeOriginalEditorLocalAnnotationSource',),
+ ('AnytypeOriginalEditorLocalAnnotationSource', 'hostProfileID'),
+ ('AnytypeOriginalEditorLocalAnnotationSource', 'annotationUUID'),
+ ('AnytypeOriginalEditorLocalAnnotationSource', 'expectedRevision'),
+ ('AnytypeOriginalEditorLocalAnnotationSource', 'sourceWitnessSHA256'),
+ ('AnytypeOriginalEditorLocalAnnotationSource', 'payloadSHA256'),
+ ('AnytypeOriginalEditorLocalAnnotationSource',
+  'init(hostProfileID:annotationUUID:expectedRevision:sourceWitnessSHA256:payloadSHA256:)'),
+ ('AnytypeOriginalEditorLocalAnnotationBody',),
+ ('AnytypeOriginalEditorLocalAnnotationBody', 'plainText(_:)'),
+ ('AnytypeOriginalEditorLocalAnnotationBody', 'nativeSnapshot(_:)'),
+ ('AnytypeOriginalEditorLocalAnnotationError',),
+ ('AnytypeOriginalEditorLocalAnnotationSourceLifetime',),
+ ('AnytypeOriginalEditorLocalAnnotationSourceLifetime', 'source'),
+ ('AnytypeOriginalEditorLocalAnnotationSourceLifetime', 'init(source:)'),
+ ('AnytypeOriginalEditorLocalAnnotationSourceLifetime', 'isCurrent'),
+ ('AnytypeOriginalEditorLocalAnnotationSourceLifetime', 'retire()'),
+ ('AnytypeOriginalEditorLocalAnnotationCapture',),
+ ('AnytypeOriginalEditorLocalAnnotationCapture', 'nativeCapture'),
+ ('AnytypeOriginalEditorLocalAnnotationCapture', 'textPreview'),
+ ('AnytypeOriginalEditorLocalAnnotationSession',),
+ ('AnytypeOriginalEditorLocalAnnotationSession', 'binding'),
+ ('AnytypeOriginalEditorLocalAnnotationSession', 'makeViewController()'),
+ ('AnytypeOriginalEditorLocalAnnotationSession', 'captureNativeSnapshot(maximumBodyBytes:)'),
+ ('AnytypeOriginalEditorLocalAnnotationSession', 'retire()'),
+ ('AnytypeOriginalEditorModule', 'openLocalAnnotation(appGroup:sourceLifetime:body:sourceIsCurrent:)'))
+
 
 # One observed build-tool-only candidate, not a general package-pin exemption.
 # Names are the union of the actual products/targets in these two Package.swift
@@ -238,7 +266,8 @@ def verify_absence_receipt(root, directory, proof, *, reused=None):
                     "Original full binary proof is missing or changed")
 
 
-def require_compiled_host_api(qualification, *, retained_original=None, admission_schema=1, production=False):
+def require_compiled_host_api(qualification, *, retained_original=None, admission_schema=1, production=False,
+                              public_contract_sha256=None):
     """Admit the original producer's compiled API proof, never editor execution."""
     require(type(admission_schema) is int and admission_schema in {1, 2, 3},
             "Unsupported original SDK public contract schema")
@@ -247,6 +276,11 @@ def require_compiled_host_api(qualification, *, retained_original=None, admissio
     require(not production or (admission_schema == 3 and retained_original is None),
             "Production requires the complete SDK's own Release compiler proof")
     required_count = 64 if production else 86 if admission_schema == 3 else 38
+    if public_contract_sha256 is not None:
+        require(public_contract_sha256 == LOCAL_ANNOTATION_CONTRACT_SHA256
+                and admission_schema == 3 and retained_original is None,
+                "Unreviewed local annotation public contract")
+        required_count += len(LOCAL_ANNOTATION_REQUIREMENTS)
     public_api = "EXPOSED_COMPILED_NATIVE_EDITOR_NOT_RUN"
     probe = qualification.get("compiled_consumer_api_probe_sha256")
     public_host_api = qualification.get("public_host_api")
@@ -282,6 +316,15 @@ def require_compiled_host_api(qualification, *, retained_original=None, admissio
             and all(isinstance(symbol, dict) and type(symbol.get("spi")) is bool
                     for symbol in surface["own_public_symbols"]),
             "Original full public/qualification-SPI verifier prerequisite is incomplete")
+    if public_contract_sha256 is not None:
+        public_paths = {tuple(symbol.get("path", [])) for symbol in surface["own_public_symbols"]
+                        if symbol["spi"] is False}
+        require(set(LOCAL_ANNOTATION_REQUIREMENTS) <= public_paths,
+                "Actual public graph lacks the reviewed local annotation declarations")
+        protected = {"AnytypeOriginalEditorLocalAnnotationSession", "AnytypeOriginalEditorLocalAnnotationCapture"}
+        require(not any(path and path[0] in protected and any(part.startswith("init(") for part in path[1:])
+                        for path in public_paths),
+                "Local annotation owners must not gain public constructors")
     if production:
         require(qualification.get("configuration") == "Release-Anytype"
                 and qualification.get("platform") in {"iphonesimulator", "iphoneos"}
@@ -325,8 +368,9 @@ def require_simulator_dynamic_architectures(architecture_output, header):
     return tuple(sorted(architectures))
 
 
-def require_production_host_api(qualification):
-    return require_compiled_host_api(qualification, admission_schema=3, production=True)
+def require_production_host_api(qualification, *, public_contract_sha256=None):
+    return require_compiled_host_api(qualification, admission_schema=3, production=True,
+                                     public_contract_sha256=public_contract_sha256)
 
 
 def admit(root, admission_path, evidence, *, swift=None, sdk=None):
@@ -371,6 +415,8 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
             and digest(source_path) == config["original_source_sha256"], "SDK qualification/source receipt differs")
     qualification, provenance, exported = read_json(qualification_path), read_json(source_path), read_json(manifest_path)
     local_provenance = local["validate_provenance"](root, config, qualification, globals()) if local else None
+    require(config.get("public_host_contract_sha256") is None or local_provenance is not None,
+            "Reviewed local lifecycle requires its authenticated source-before/after observations")
     if continuation:
         continuation_receipt = continuation["validate_qualification"](config, qualification)
     elif not production:
@@ -380,10 +426,12 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
                 and qualification.get("same_toolchain_only") is True,
                 "SDK lacks the original framework/external consumer prerequisites")
     if production:
-        compiled_host_api = require_production_host_api(qualification)
+        compiled_host_api = require_production_host_api(qualification,
+            public_contract_sha256=config.get("public_host_contract_sha256"))
     else:
         compiled_host_api = (continuation["compiled_host_receipt"](root, config, qualification, globals())
-                             if continuation else require_compiled_host_api(qualification, admission_schema=config["schema"]))
+                             if continuation else require_compiled_host_api(qualification, admission_schema=config["schema"],
+                                 public_contract_sha256=config.get("public_host_contract_sha256")))
     if continuation:
         require(provenance.get("application_source") == config["source_sha"]
                 and provenance.get("original_trees") == config["framework_producer"]["source_trees"],
@@ -774,10 +822,17 @@ def prepare(root, admission_path, report, out, logged, *, variant=None, apply_pr
     else:
         api_command += ["-I", str(distribution / "Include")]
     api_command.append(str(api_source))
+    local_api_source = None
+    if admitted.get("public_host_contract_sha256") is not None:
+        require(admitted["public_host_contract_sha256"] == LOCAL_ANNOTATION_CONTRACT_SHA256,
+                "Unreviewed local annotation compiler probe")
+        local_api_source = root / "Scripts/CI/OriginalEditorLocalAnnotationAPICheck.swift"
+        api_command.append(str(local_api_source))
     report.setdefault("commands", []).append(api_command)
     command(api_command, root=root, evidence=evidence, label="exported-api-typecheck", timeout=600)
     write(evidence / "actual-exported-api.json", {"status": "ACTUAL_EXPORTED_API_TYPECHECK_PASS",
           "api_probe_sha256": digest(api_source), "source_sha": admitted["source_sha"],
+          "local_annotation_api_probe_sha256": digest(local_api_source) if local_api_source else None,
           "native_execution": False, "configuration": configuration, "platform": platform,
           "scope": "EXPORTED_PUBLIC_HOST_COMPILER_ADMISSION_ONLY" if production else "EXPORTED_SPI_AND_HOST_COMPILER_ADMISSION_ONLY"})
     project = root / "Maktabah.xcodeproj/project.pbxproj"

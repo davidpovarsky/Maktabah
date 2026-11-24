@@ -88,15 +88,29 @@ def validate_abi_adapter(abi, heart, source_sha):
             'Qualified SDK omits the exact complete pinned-wrapper ABI proof')
 
 
+def validate_public_contract(config, source_before, api):
+    contract = config.get('public_host_contract_sha256')
+    reviewed = api['LOCAL_ANNOTATION_CONTRACT_SHA256']
+    if contract is None:
+        require(source_before.get('public_host_contract_sha256') != reviewed,
+                'Local annotation source requires its exact committed public contract')
+        return None
+    require(contract == reviewed and source_before.get('public_host_contract_sha256') == contract,
+            'Public contract differs from the actual producer source observation')
+    return contract
+
+
 def validate_provenance(root, config, qualification, api):
     values = read_receipts(root, config, api)
+    contract = validate_public_contract(config, values['source_before'], api)
     execution = values['execution']
     require(execution.get('schema') == 'otzaria.original-editor.local-execution/1'
             and execution.get('repository') == REPOSITORY
             and execution.get('execution_id') == config['run_id']
             and execution.get('source_sha') == config['source_sha']
             and re.fullmatch(r'[0-9a-f]{40}', execution.get('source_tree', ''))
-            and execution.get('head_branch') == 'codex/otzaria-sdk-mac-20261124'
+            and execution.get('head_branch') == ('codex/otzaria-local-annotation-sdk-20261124'
+                if contract else 'codex/otzaria-sdk-mac-20261124')
             and execution.get('host', {}).get('system') == 'Darwin'
             and execution.get('host', {}).get('architecture') == 'arm64'
             and execution['host'].get('hostname')
@@ -131,7 +145,8 @@ def validate_provenance(root, config, qualification, api):
             'Local transport cannot qualify an unfinished framework or award editor UI credit')
     return {'producer_kind': 'local-mac', 'local_execution_sha256': config['local_execution_sha256'],
             'local_receipts': config['local_receipts'], 'native_stageb_qualified': False,
-            'scope': 'EXACT_LOCAL_PRODUCER_SOURCE_AND_ABI_PROVENANCE_ONLY'}
+            'scope': 'EXACT_LOCAL_PRODUCER_SOURCE_AND_ABI_PROVENANCE_ONLY',
+            **({'public_host_contract_sha256': contract} if contract else {})}
 
 
 def restore_archive(root, config, api, zip_members):
