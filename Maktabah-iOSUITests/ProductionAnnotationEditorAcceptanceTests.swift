@@ -74,7 +74,10 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         // The known single-line body is selected through the actual UITextView.
         // The original Return delegate creates the second native block.
         first.coordinate(withNormalizedOffset: CGVector(dx: 0.98, dy: 0.5)).tap()
-        first.typeText("\n" + secondText)
+        first.typeText("\n")
+        let secondBlank = try await blankBody(after: firstText, in: host)
+        tap(secondBlank)
+        secondBlank.typeText(secondText)
         try await assertTwoBodies(firstText, secondText, in: host)
         retainNativeEvidence("normal-editor-two-original-blocks")
         tap(app.buttons["annotation-expanded-editor-save"])
@@ -105,7 +108,7 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         let second = try await uniqueBody(secondText, in: reopened)
         second.coordinate(withNormalizedOffset: CGVector(dx: 0.98, dy: 0.5)).tap()
         second.typeText(discardSuffix)
-        _ = try await uniqueBody(secondText + discardSuffix, in: reopened)
+        try await requireTypedFragment(discardSuffix, in: reopened)
         tap(app.buttons["annotation-expanded-editor-close"])
         tap(app.buttons["Discard draft"])
         try await waitForAbsence(quick)
@@ -123,7 +126,7 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         let interrupted = try await uniqueBody(secondText, in: beforeTermination)
         interrupted.coordinate(withNormalizedOffset: CGVector(dx: 0.98, dy: 0.5)).tap()
         interrupted.typeText(interruptedSuffix)
-        _ = try await uniqueBody(secondText + interruptedSuffix, in: beforeTermination)
+        try await requireTypedFragment(interruptedSuffix, in: beforeTermination)
         let arguments = app.launchArguments
         let environment = app.launchEnvironment
         retainNativeEvidence("normal-editor-uncommitted-before-termination")
@@ -266,6 +269,41 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertEqual(host.textViews.matching(NSPredicate(format: "value IN %@", [first, second])).count, 2)
     }
 
+    @MainActor
+    private func requireTypedFragment(_ fragment: String, in host: XCUIElement) async throws {
+        // RTL insertion need not be at the visual right edge. This assertion
+        // observes the actual unsaved edit without assuming its caret position.
+        let query = host.textViews.matching(NSPredicate(format: "value CONTAINS %@", fragment))
+        let result = await XCTWaiter.fulfillment(of: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "count == 1"), object: query
+        )], timeout: 20)
+        XCTAssertEqual(result, .completed)
+        XCTAssertEqual(query.count, 1)
+        XCTAssertTrue(query.firstMatch.isHittable)
+    }
+
+    @MainActor
+    private func blankBody(after text: String, in host: XCUIElement) async throws -> XCUIElement {
+        let preceding = host.textViews.matching(NSPredicate(format: "value == %@", text))
+        let empty = host.textViews.matching(NSPredicate(format: "value == %@ OR value == nil", ""))
+        func candidates() -> [XCUIElement] {
+            guard preceding.count == 1 else { return [] }
+            let bottom = preceding.firstMatch.frame.maxY
+            return empty.allElementsBoundByIndex.filter {
+                $0.isHittable && !$0.frame.isEmpty && $0.frame.minY >= bottom - 1
+            }
+        }
+        // The normal editor may also have an empty title. Require the newly
+        // rendered body below the previous block, never the title above it.
+        let result = await XCTWaiter.fulfillment(of: [XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in candidates().count == 1 }, object: nil
+        )], timeout: 20)
+        XCTAssertEqual(result, .completed)
+        let actual = candidates()
+        XCTAssertEqual(actual.count, 1)
+        return try XCTUnwrap(actual.first)
+    }
+
     private struct CanonicalRow: Equatable {
         let id: Int64
         let uuid: UUID
@@ -278,15 +316,50 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         let sourceDigest: String?
     }
 
+    @MainActor
     private func readCanonicalRow(_ rowID: Int64) throws -> CanonicalRow {
-        let path = try XCTUnwrap(ProcessInfo.processInfo.environment["OTZARIA_ANNOTATION_ACCEPTANCE_DATABASE"])
-        XCTAssertTrue(path.hasPrefix("/"))
+        let initialPath = try XCTUnwrap(ProcessInfo.processInfo.environment["OTZARIA_ANNOTATION_ACCEPTANCE_DATABASE"])
+        XCTAssertTrue(initialPath.hasPrefix("/"))
+        let initialDatabase = URL(fileURLWithPath: initialPath)
+        let initialContainer = (0..<4).reduce(initialDatabase) { value, _ in value.deletingLastPathComponent() }
+        // XCTest can relocate the installed app's data container. Reuse the
+        // original UUID-bound workspace observer to resolve its current home.
+        let sidecar = try workspaceSidecarURL()
+        let container = (0..<6).reduce(sidecar) { value, _ in value.deletingLastPathComponent() }
+        XCTAssertEqual(container.deletingLastPathComponent(), initialContainer.deletingLastPathComponent())
+        XCTAssertEqual(container.resolvingSymlinksInPath().standardizedFileURL, container.standardizedFileURL)
+        let databaseURL = container.appendingPathComponent("Library/Application Support/Maktabah-Debug/Annotations.sqlite")
+        XCTAssertEqual(initialDatabase.lastPathComponent, databaseURL.lastPathComponent)
+        let preferences = container.appendingPathComponent("Library/Preferences/com.davidpovarsky.chavrusatext.plist")
+        if FileManager.default.fileExists(atPath: preferences.path) {
+            let values = try XCTUnwrap(PropertyListSerialization.propertyList(
+                from: Data(contentsOf: preferences), format: nil) as? [String: Any])
+            XCTAssertTrue(values["annotations_FolderPath"] == nil, "No selected-folder bookmark may be replaced")
+            XCTAssertFalse(values["use_icloud_for_annotations"] as? Bool ?? false)
+        }
+        let path = databaseURL.path
         var connection: OpaquePointer?
         XCTAssertEqual(sqlite3_open_v2(path, &connection, SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX, nil), SQLITE_OK)
         let database = try XCTUnwrap(connection)
         defer { sqlite3_close(database) }
         XCTAssertEqual(sqlite3_db_readonly(database, "main"), 1)
-        let sql = """
+        // The original read path does not create exchange tables. A newly
+        // saved plain note can therefore have no ledger until its first rich
+        // commit. Observe that absence; never install a fixture schema here.
+        var schemaStatement: OpaquePointer?
+        XCTAssertEqual(sqlite3_prepare_v2(database,
+            "SELECT count(*) FROM sqlite_master WHERE type = 'table' AND name IN ('otzaria_annotation_exchange_heads', 'otzaria_annotation_exchange_versions')",
+            -1, &schemaStatement, nil), SQLITE_OK)
+        let schema = try XCTUnwrap(schemaStatement)
+        defer { sqlite3_finalize(schema) }
+        XCTAssertEqual(sqlite3_step(schema), SQLITE_ROW)
+        let schemaCount = sqlite3_column_int(schema, 0)
+        XCTAssertTrue(schemaCount == 0 || schemaCount == 2, "Partial native ledger schema is not a plain note")
+        XCTAssertEqual(sqlite3_step(schema), SQLITE_DONE)
+        let sql = schemaCount == 0 ? """
+            SELECT id, ckRecordId, COALESCE(note, ''), NULL, NULL, NULL, NULL, NULL
+            FROM annotations WHERE id = ?
+            """ : """
             SELECT a.id, a.ckRecordId, COALESCE(a.note, ''), h.revision,
                    v.payload_digest, v.payload_base64, v.mutation_id, v.source_digest
             FROM annotations AS a
