@@ -50,7 +50,7 @@ enum OtzariaMiniAppsPersistence {
         let db = connection.database
         let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
         let identity = String(decoding: try encoder.encode(result), as: UTF8.self)
-        let committed = try OtzariaMiniAppsReceiptJournal.commit(requestID: result.requestID,
+        let committed: OtzariaMiniAppsReceiptJournal.Commit<Annotation> = try OtzariaMiniAppsReceiptJournal.commit(requestID: result.requestID,
             resultJSON: identity, documentID: document.annotationUUID, database: db,
             validate: { try connection.lifetime.requireCurrent() },
             read: { id in

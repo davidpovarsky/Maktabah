@@ -70,7 +70,7 @@
     "Vendor/ZayitSearchPort/Rust": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8",
     "Vendor/ZayitSearchPort/Upstream": "db6dc60006a51db83ec2c6feed1158e4da1a617b"
   },
-  "hanlin_gitlink": "e3d5a51f6dc7586d2271bc868928d7b76e343131",
+  "hanlin_gitlink": "e12cf1ceee0ef0dc5a5e1426f8b0dd5b5b760f5d",
   "otzaria_test_additions_sha256": "98da3a49487ddeae642be0f0d37947f1320cb864ebdfcc83dde10fe9f29e8839",
   "rebuild_zayit_framework": false,
   "resource_bundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",

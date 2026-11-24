@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-24T00:01:17.563086+00:00",
+  "run_id": 45286830629,
+  "source_sha": "e3f6945bb6dc8dbf8ddacc395cf32ce452a561c3",
+  "artifact_id": 14875350956,
+  "artifact_sha256": "31002b32ed2e7bf7f4e5cda0eaed7df8ef3bf4762a6e9b62f363dc4e4bd5ff57",
+  "app_build_status": "FAILED_AT_ACTUAL_SWIFT_COMPILATION",
+  "native_ui_executions": 0,
+  "actual_compiler_log_sha256": "472044dc9c882491c4d2a5af5a178920db37ae0298212e3cbffa8d9b32d6b57b",
+  "compiler_diagnostics": [
+    "/Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift:206:35: error: extra arguments at positions #10, #12 in call",
+    "/Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift:206:35: error: missing arguments for parameters 'inputHeight', 'home' in call",
+    "/Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift:206:16: error: generic parameter 'Home' could not be inferred",
+    "/Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/MiniApps/OtzariaMiniAppsPersistence.swift:53:59: error: generic parameter 'Value' could not be inferred"
+  ],
+  "strict_resolution": {
+    "status": "EXECUTED_PASS",
+    "resolved_pins": 21,
+    "actual_clean_package_checkouts": {
+      "a2ui": {
+        "head": "3ed9601862ecc78027e20ac80ad8b1b98a5d9079",
+        "status": "CLEAN"
+      },
+      "anchoredpopup": {
+        "head": "f93c51e75ff4e5242328ac24c8fb12f1f1e84eda",
+        "status": "CLEAN"
+      },
+      "equatable": {
+        "head": "597c2bb34af0c51331eb3b5e705f942d8ee20daa",
+        "status": "CLEAN"
+      },
+      "floatingpanel": {
+        "head": "3db567a19ff81d2d3ce00399021ee87a4fccf7e0",
+        "status": "CLEAN"
+      },
+      "hanlin-streaming-markdown": {
+        "head": "5cbb4b6c950051f98f02a0b0ae56756f5174a9b8",
+        "status": "CLEAN"
+      },
+      "highlightswift": {
+        "head": "99c431b38a1444a5fd6a4978307fbbefe3a7af53",
+        "status": "CLEAN"
+      },
+      "iosmath": {
+        "head": "ba9ab7729b151329c54fd895a7c1859981d9484c",
+        "status": "CLEAN"
+      },
+      "sparkle": {
+        "head": "066e75a8b3e99962685d6a90cdd5293ebffd9261",
+        "status": "CLEAN"
+      },
+      "swift-ai-sdk": {
+        "head": "e7bf34111e603ca977becd007dd4e5bb109af857",
+        "status": "CLEAN"
+      },
+      "swift-argument-parser": {
+        "head": "6a52f3251125d74daf04fcbd5e6f08a75d074382",
+        "status": "CLEAN"
+      },
+      "swift-cmark": {
+        "head": "08ddb528923cc1a6527e02b7a1aee9e516ca749a",
+        "status": "CLEAN"
+      },
+      "swift-collections": {
+        "head": "7b847a3b7008b2dc2f47ca3110d8c782fb2e5c7e",
+        "status": "CLEAN"
+      },
+      "swift-json-schema": {
+        "head": "c0a9375ea9cd3fd47d875c98ed7f027ea61c03cb",
+        "status": "CLEAN"
+      },
+      "swift-markdown": {
+        "head": "7d9a5ce307528578dfa777d505496bd5f544ad94",
+        "status": "CLEAN"
+      },
+      "swift-syntax": {
+        "head": "79e4b74a295b6eb74a8b585e3a39d29e70c1dbd1",
+        "status": "CLEAN"
+      },
+      "swiftsoup": {
+        "head": "bba848db50462894e7fc0891d018dfecad4ef11e",
+        "status": "CLEAN"
+      },
+      "swiftui-shimmer": {
+        "head": "0226e21f9bf355d40e07e5f5e1c33679d50e167f",
+        "status": "CLEAN"
+      },
+      "swiftyjson": {
+        "head": "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+        "status": "CLEAN"
+      },
+      "torahinspectorkit": {
+        "head": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+        "status": "CLEAN"
+      },
+      "zipfoundation": {
+        "head": "22787ffb59de99e5dc1fbfe80b19c97a904ad48d",
+        "status": "CLEAN"
+      },
+      "zstd": {
+        "head": "f8745da6ff1ad1e7bab384bd1f9d742439278e99",
+        "status": "CLEAN"
+      }
+    },
+    "package_resolved_sha256": "77588949264c8dbb694ca17681f0a318dbfcdb676ccb6b2679f7e2e3c8f6f23b"
+  },
+  "standalone_ui_source_compile": {
+    "historical_artifact_id": 14869143604,
+    "historical_artifact_sha256": "1b2d26ba0f61020f86c4be4484afe1abc05d5f70bd56a13f6de20a8de2810f31",
+    "historical_run": 45281365204,
+    "historical_source": "fb369f911d38ce7e7f10be6c2e4a68df1c875067",
+    "native_tests_executed": 0,
+    "new_standalone_swift_compiles": 0,
+    "report_sha256": "e8cc144631182606d280ad1598e3323102e30d190c012cb22b83fccdd6967f99",
+    "same_apple_compiler_and_sdk": true,
+    "same_driver_and_project": true,
+    "same_source_bytes": true,
+    "status": "REUSED_EXACT_APPLE_SDK_COMPILE"
+  },
+  "corrections": [
+    "Explicit original Annotation transaction generic type; storage/receipt algorithm unchanged.",
+    "Migrate original downstream chat host to canonical inputHeight/home composer API, retaining the same measured native editor and home/detail/input content."
+  ],
+  "corrected_files": {
+    "Source/ChavrusaText/MiniApps/OtzariaMiniAppsPersistence.swift": "f19020e5e2f354bf0b38be66060a18826ce58db41d8f2c252c9bcf33aa8b8049",
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift": "ab68c19b575d2e6089a632cdfb3de29da21071130b6161e34dbc755daebec976"
+  },
+  "apple_target_syntax_parse": "PASS_SYNTAX_ONLY",
+  "producer_before": "e3d5a51f6dc7586d2271bc868928d7b76e343131",
+  "producer_after": "e12cf1ceee0ef0dc5a5e1426f8b0dd5b5b760f5d",
+  "producer_run_after": 45292781318,
+  "unchanged_imported_sdk_package_trees": {
+    "Packages/HanlinAgentSDK": "43b32ee3f37ac1fa2becad7e36e657f104c1cd54",
+    "Packages/HanlinPlatform": "177f9937ba622a893711504e6a985d2f52570799",
+    "Packages/HanlinPresentationSDK": "2b3ce2f330b8d75226b50f22f2230f5c52bf25bb",
+    "Packages/HanlinMiniAppsBridge": "bdacb1e59af811634e67a9809b8c6b2a44e30f3f"
+  },
+  "unchanged_portable_checks": "17 previously executed checks retained; Document and ReceiptJournal source unchanged.",
+  "consumer_plugin_validation_policy_changed": false,
+  "remaining": [
+    "Actual original app build",
+    "Real TextStudio warm return and callback into terminated source",
+    "Original SQLite/receipt verification and warm/cold visual review"
+  ]
+}
