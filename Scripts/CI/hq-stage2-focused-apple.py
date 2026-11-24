@@ -497,6 +497,82 @@ def prepare_matching_embedded_bundle(config, report):
     report["resource_inputs"]["jsbundle_sha256"] = digest(bundle)
 
 
+def relocate_verified_package_alternates(report):
+    """Relocate same-artifact Git object references after pinned resolution."""
+    artifacts = [a for a in report["artifact_inputs"] if a.get("tar") == "SourcePackages.tar"]
+    require(len(artifacts) == 1 and artifacts[0]["verified_sha256"] == artifacts[0]["sha256"],
+            "Package archive was not verified before relocation")
+    packages = ROOT / "build/SourcePackages"
+    require(packages.is_dir() and not packages.is_symlink(), "Missing regular package input root")
+    base = packages.resolve(strict=True)
+    legacy = PurePosixPath("/Users/runner/work/Maktabah/Maktabah/build/SourcePackages/repositories")
+    repositories, checkouts = base / "repositories", base / "checkouts"
+
+    def owned(path):
+        require(path.is_relative_to(base), "Package Git metadata escaped its owned root")
+        require(not any(p.is_symlink() for p in [path, *path.parents] if p.is_relative_to(base)),
+                "Package Git metadata contains a symlink")
+        require(path.resolve(strict=True).is_relative_to(base), "Package Git metadata resolved outside its root")
+        return path
+
+    owned(repositories)
+    owned(checkouts)
+    rows, pending = [], []
+    for checkout in sorted(checkouts.iterdir()):
+        identity = checkout.name.casefold()
+        require(identity in report["package_pins"], "Unpinned package checkout: " + checkout.name)
+        alternate = owned(checkout / ".git/objects/info/alternates")
+        head_file = owned(checkout / ".git/HEAD")
+        original_head_bytes = head_file.read_bytes()
+        original_head = original_head_bytes.decode("ascii").strip()
+        require(re.fullmatch(r"[0-9a-f]{40}", original_head) is not None
+                and original_head == report["package_pins"][identity],
+                "Package HEAD is not the pinned detached commit: " + checkout.name)
+        raw = alternate.read_text()
+        require(raw.endswith("\n") and len(raw.splitlines()) == 1, "Ambiguous package object alternate")
+        old = PurePosixPath(raw.strip())
+        require(old.is_absolute() and ".." not in old.parts, "Unsafe package object alternate")
+        relocated = old.is_relative_to(legacy)
+        if relocated:
+            suffix = old.relative_to(legacy)
+            require(len(suffix.parts) == 2 and suffix.parts[-1] == "objects",
+                    "Unexpected legacy package repository layout")
+            target = owned(repositories / suffix)
+        else:
+            target = owned(Path(str(old)))
+        require(target.is_dir() and target.parent.parent == repositories and target.name == "objects",
+                "Package alternate does not select an extracted repository object store")
+        require(not (target / "info/alternates").exists()
+                and not any(p.is_symlink() for p in target.rglob("*")),
+                "Nested or symlinked repository object references are unsupported")
+        require(capture("git", "--git-dir", str(target.parent), "cat-file", "-t", original_head) == "commit",
+                "Pinned package object is not an extracted commit")
+        row = {"checkout": str(checkout.relative_to(base)), "old_object_path": str(old),
+               "new_object_path": str(target), "relocated": relocated, "original_head": original_head,
+               "pinned_revision": report["package_pins"][identity],
+               "alternate_before_sha256": hashlib.sha256(raw.encode()).hexdigest(),
+               "head_before_sha256": hashlib.sha256(original_head_bytes).hexdigest()}
+        rows.append(row)
+        pending.append((checkout, alternate, head_file, original_head_bytes, target, row))
+    require({p.name.casefold() for p in checkouts.iterdir()} == set(report["package_pins"]),
+            "Resolved package inventory differs from pinned identities")
+    for checkout, alternate, head_file, original_head_bytes, target, row in pending:
+        if row["relocated"]:
+            alternate.write_text(str(target) + "\n")
+        require(head_file.read_bytes() == original_head_bytes, "Relocation changed the original HEAD bytes")
+        head = capture("git", "-C", str(checkout), "rev-parse", "HEAD")
+        require(head == row["original_head"] == row["pinned_revision"],
+                "Relocated package commit differs from the original pin")
+        require(not capture("git", "-C", str(checkout), "status", "--porcelain"),
+                "Relocated package source is dirty")
+        row.update(verified_head=head, status="CLEAN", alternate_after_sha256=digest(alternate),
+                   head_after_sha256=digest(head_file))
+    report["package_alternates_relocation"] = rows
+    (OUT / "package-alternates-relocation.json").write_text(json.dumps(
+        {"status": "PASS", "source_changes": 0, "verified_packages": len(rows),
+         "relocated_alternates": sum(r["relocated"] for r in rows), "packages": rows}, indent=2) + "\n")
+
+
 def verify_actual_sources(report):
     entries = subprocess.check_output(["git", "ls-tree", "-r", "-z", "HEAD", "--", "Source", "Vendor"], cwd=ROOT)
     expected = {}
@@ -737,6 +813,7 @@ def main():
         require(pins(ROOT / "Maktabah.xcworkspace/xcshareddata/swiftpm/Package.resolved") == report["package_pins"], "Workspace changed committed package revisions")
         shutil.copyfile(lock, OUT / "resolved-Package.resolved")
         shutil.copyfile(ROOT / "Maktabah.xcworkspace/xcshareddata/swiftpm/Package.resolved", OUT / "workspace-Package.resolved")
+        relocate_verified_package_alternates(report)
         verify_actual_sources(report)
         verify_selected_zayit_files(report)
         authorize_pinned_equatable_macro(report)

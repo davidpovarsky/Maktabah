@@ -88,7 +88,7 @@
     "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "28d5dbc2a6672b39b4083ff9f50f25b338e177bb33ac5c32da474b2baf1b7d4a",
     "Scripts/CI/hq-original-editor-distribution.py": "a36b6a73b5b3291080556ee3c107aaf88f2c2a112d526dee0ee6f427a197e62e",
     "Scripts/CI/hq-stage2-focused-apple.inputs.json": "8c3416d79efd97e73c5d840e9466deeff1601114c0d632faff255ace9aa3082c",
-    "Scripts/CI/hq-stage2-focused-apple.py": "d0455df62489ac914eaa014efd3757e14109b70b816e9442992f7b4e44a06a6a",
+    "Scripts/CI/hq-stage2-focused-apple.py": "8ba3b2e79d1ff2526fb32caae2a84efc1bd69b594dac60069d97f16e4b2208fb",
     "Scripts/CI/library-morph-focused-native.inputs.json": "2e61c9a97a7cb3862fdf1c716575541d322b3ca0d0dbe381da43f32ca4071e4d",
     "Scripts/CI/library-morph-focused-native.py": "13d9c4dbb24591b6406e6a3da5c0d619c5785c726d894182383d899ce9373fc3",
     "Scripts/CI/native-cohort-artifacts.py": "cf7092191b7058041fe894673380865c9048bab15e224a027b34687123082b03",
