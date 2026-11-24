@@ -326,13 +326,18 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
     require(config.get("schema") in {1, 2, 3} and config.get("repository") == "davidpovarsky/anytype-swift",
             "Wrong original SDK admission schema/repository")
     continuation = None
+    local = None
+    if config.get("producer_kind") == "local-mac":
+        local = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_local_admission.py")))
+        local["validate_configuration"](config)
     if config["schema"] == 2:
         continuation = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_continuation_admission.py")))
         continuation["validate_configuration"](config)
         continuation["validate_paths"](root, config, globals())
     require(re.fullmatch(r"[a-f0-9]{40}", config.get("source_sha", "")), "Unfinalized original SDK source")
-    require(all(type(config.get(k)) is int and config[k] > 0 for k in ["run_id", "run_attempt", "artifact_id", "archive_bytes"]),
-            "Missing immutable original SDK run/artifact identity")
+    if local is None:
+        require(all(type(config.get(k)) is int and config[k] > 0 for k in ["run_id", "run_attempt", "artifact_id", "archive_bytes"]),
+                "Missing immutable original SDK run/artifact identity")
     for key in ["archive_sha256", "distribution_manifest_sha256", "qualification_sha256", "original_source_sha256", "hanlin_source_sha256"]:
         require(re.fullmatch(r"[a-f0-9]{64}", config.get(key, "")), "Unfinalized SDK digest: " + key)
     archive = owned_path(root, config["archive_path"], build=True)
@@ -348,6 +353,7 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
     require(digest(qualification_path) == config["qualification_sha256"]
             and digest(source_path) == config["original_source_sha256"], "SDK qualification/source receipt differs")
     qualification, provenance, exported = read_json(qualification_path), read_json(source_path), read_json(manifest_path)
+    local_provenance = local["validate_provenance"](root, config, qualification, globals()) if local else None
     if continuation:
         continuation_receipt = continuation["validate_qualification"](config, qualification)
     else:
@@ -406,7 +412,7 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
             require(re.search(r"platform\s+IOSSIMULATOR\b", platform), "Non-Simulator SDK dependency")
     require("AnytypeOriginalEditor.framework" in dynamic, "No actual original editor dynamic framework")
     result = {"admission_path": relative, "admission_sha256": digest(admission_path), "source_sha": config["source_sha"],
-              "run_id": config["run_id"], "run_attempt": config["run_attempt"], "artifact_id": config["artifact_id"],
+              "run_id": config["run_id"], "run_attempt": config["run_attempt"],
               "archive_sha256": config["archive_sha256"], "distribution_root": config["distribution_root"],
               "distribution_files": actual, "dynamic_frameworks": dynamic, "resource_bundles": bundles,
               "shared_package_revisions": provenance["dependencies"]["actual_checkout_revisions"],
@@ -414,6 +420,10 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
               "hanlin_source": read_json(hanlin_source_path),
               "compiled_host_api": compiled_host_api,
               "native_editor_ui_tests": 0, "scope": "ORIGINAL_DISTRIBUTION_PREREQUISITES_ONLY"}
+    if local:
+        result.update(local_provenance)
+    else:
+        result["artifact_id"] = config["artifact_id"]
     if continuation:
         result.update(schema=2, **continuation_receipt)
         clang = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_clang_imports.py")))
@@ -435,6 +445,11 @@ def require_unchanged(root, admitted):
     root = Path(root)
     require(digest(root / admitted["admission_path"]) == admitted["admission_sha256"], "SDK admission changed during build")
     require(inventory(root / admitted["distribution_root"]) == admitted["distribution_files"], "SDK distribution changed during build")
+    if admitted.get("producer_kind") == "local-mac":
+        config = read_json(root / admitted["admission_path"])
+        local = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_local_admission.py")))
+        qualification = read_json(root / admitted["distribution_root"] / "QUALIFICATION.json")
+        local["validate_provenance"](root, config, qualification, globals())
     if admitted.get("schema") == 2:
         sidecar = owned_path(root, admitted["qualification_path"], build=True)
         require(not sidecar.is_relative_to(owned_path(root, admitted["distribution_root"], build=True))

@@ -78,7 +78,8 @@ def read_clang_imports(exported, expected_identity):
             and set(expected_identity) == {*identity_fields, 'manifest_sha256'}
             and all(isinstance(value, str) for value in expected_identity.values())
             and re.fullmatch(r'[0-9a-f]{40}', expected_identity['source_sha'])
-            and re.fullmatch(r'[1-9][0-9]*', expected_identity['run_id'])
+            and re.fullmatch(r'(?:[1-9][0-9]*|local-[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12})',
+                             expected_identity['run_id'])
             and re.fullmatch(r'[1-9][0-9]*', expected_identity['run_attempt'])
             and re.fullmatch(r'[0-9a-f]{64}', expected_identity['original_package_lock_sha256'])
             and re.fullmatch(r'[0-9a-f]{64}', expected_identity['manifest_sha256']),
@@ -91,6 +92,10 @@ def read_clang_imports(exported, expected_identity):
             'Unsupported Clang declaration manifest')
     require(all(result.get(key) == expected_identity[key] for key in identity_fields),
             'Clang manifest producer identity differs')
+    if expected_identity['run_id'].startswith('local-'):
+        require(result.get('producer_kind') == 'local-mac'
+                and re.fullmatch(r'[0-9a-f]{64}', result.get('local_execution_sha256', '')),
+                'Local Clang declarations lack explicit Mac execution provenance')
     require(result.get('implementation_translation_units_exported_or_added') is False
             and result.get('consumer_or_native_qualification') is False,
             'Clang declarations cannot claim consumer or native qualification')

@@ -213,6 +213,8 @@ def runtime_dependency_preflight():
             pending.append(ci / "original_editor_signed_consumer_admission.py")
     if sdk_input.get("schema") == 3:
         pending.append(ci / "original_editor_shared_runtime.py")
+    if sdk_input.get("producer_kind") == "local-mac":
+        pending.append(ci / "original_editor_local_admission.py")
     checked, imported = {}, set()
     while pending:
         path = pending.pop()
@@ -248,9 +250,12 @@ def prepare():
     runtime_dependency_preflight()
     sdk_input = json.loads(ADMISSION.read_text())
     require_composed_sdk_input(sdk_input)
+    local = sdk_input.get("producer_kind") == "local-mac"
+    if local:
+        runpy.run_path(str(ROOT / "Scripts/CI/original_editor_local_admission.py"))["validate_configuration"](sdk_input)
     require(re.fullmatch(r"[a-f0-9]{40}", sdk_input.get("source_sha", ""))
             and re.fullmatch(r"[a-f0-9]{64}", sdk_input.get("archive_sha256", ""))
-            and type(sdk_input.get("artifact_id")) is int and sdk_input["artifact_id"] > 0,
+            and (local or (type(sdk_input.get("artifact_id")) is int and sdk_input["artifact_id"] > 0)),
             "Original editable SDK artifact pins are not finalized")
     contract = json.loads(FULL.read_text())
     existing = {row["case_id"] for row in contract["cases"] + contract.get("supplemental_cases", [])}
@@ -292,6 +297,14 @@ def execute():
             and build.get("original_editor_distribution", {}).get("admission_sha256") == digest(ADMISSION),
             "No current-source actual app build with admitted original SDK")
     sdk_input = json.loads(ADMISSION.read_bytes())
+    if sdk_input.get("producer_kind") == "local-mac":
+        admitted = build["original_editor_distribution"]
+        require(admitted.get("producer_kind") == "local-mac" and admitted.get("schema") == 3
+                and admitted.get("run_id") == sdk_input["run_id"]
+                and admitted.get("source_sha") == sdk_input["source_sha"]
+                and admitted.get("local_execution_sha256") == sdk_input["local_execution_sha256"],
+                "Actual StageB build lost its local SDK producer binding")
+        runpy.run_path(str(ROOT / "Scripts/CI/hq-original-editor-distribution.py"))["require_unchanged"](ROOT, admitted)
     if sdk_input.get("schema") == 2:
         admitted = build["original_editor_distribution"]
         require(admitted.get("schema") == 2
