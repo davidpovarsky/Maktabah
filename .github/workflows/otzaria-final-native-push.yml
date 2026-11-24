@@ -42,6 +42,10 @@ jobs:
         run: python3 Scripts/CI/runtime27_final_push.py --mode ui --stage native --phase before
       - name: Select an existing SDK-matched runtime for the full device matrix
         run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
+      - name: Stage exact original SDK distributions for this job
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+        run: python3 Scripts/CI/original-editor-build-routes.py stage --evidence build/original-editor-job-stage
       - name: Verify unchanged inputs and reuse original Apple Foundation55 evidence
         if: ${{ 'ui' == 'ui' || 'ui' == 'release' || 'ui' == 'toc-transport' }}
         env:
@@ -107,6 +111,22 @@ jobs:
           RUNTIME27_MODE: ${{ 'ui' }}
           RUNTIME27_RELEASE_STAGE: ${{ 'ui' == 'release' && 'build' || '' }}
         run: python3 Scripts/CI/runtime27.py
+      - name: Verify original SDK identity after Native116 UI
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os, pathlib, subprocess, sys
+          report = json.loads(pathlib.Path('build/hq-stage2/result.json').read_bytes())
+          assert report.get('status') == 'SIMULATOR_BUILD_FOR_REAL_UI_PASS'
+          assert report.get('checkout_sha') == os.environ['EXPECTED_CHECKOUT_SHA']
+          route = report['original_editor_routes']
+          subprocess.run([sys.executable, 'Scripts/CI/original-editor-build-routes.py', 'verify',
+                          '--configuration', 'Debug', '--platform', 'iphonesimulator',
+                          '--app', 'build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app',
+                          '--routes', route['path'], '--routes-sha256', route['sha256'], '--after-ui'], check=True)
+          PY
       - name: Bind exact final push source (after)
         if: always()
         env:
@@ -180,3 +200,14 @@ jobs:
             build/artifacts/**/*.mp4
             build/artifacts/visual-*/**
           if-no-files-found: ignore
+
+      - name: Retain original SDK route evidence including failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-editor-sdk-stage-native116
+          path: |
+            build/original-editor-job-stage/**/*.json
+            build/hq-stage2/original-editor*/**/*.json
+            build/hq-stage2/original-editor-routes.json
+          if-no-files-found: warn

@@ -18,6 +18,34 @@ import tempfile
 TARGET = "Maktabah-iOS"
 BUNDLE = "com.davidpovarsky.chavrusatext"
 QUALIFIED = "ACTUAL_ORIGINAL_FRAMEWORK_EXTERNAL_IMPORT_LINK_RESOURCES_PASS"
+LOCAL_ANNOTATION_CONTRACT_SHA256 = "33594f50c825c490edf5502add640fd478d3249909352e02b0e53ee23b9ee634"
+LOCAL_ANNOTATION_REQUIREMENTS = (('AnytypeOriginalEditorLocalAnnotationSource',),
+ ('AnytypeOriginalEditorLocalAnnotationSource', 'hostProfileID'),
+ ('AnytypeOriginalEditorLocalAnnotationSource', 'annotationUUID'),
+ ('AnytypeOriginalEditorLocalAnnotationSource', 'expectedRevision'),
+ ('AnytypeOriginalEditorLocalAnnotationSource', 'sourceWitnessSHA256'),
+ ('AnytypeOriginalEditorLocalAnnotationSource', 'payloadSHA256'),
+ ('AnytypeOriginalEditorLocalAnnotationSource',
+  'init(hostProfileID:annotationUUID:expectedRevision:sourceWitnessSHA256:payloadSHA256:)'),
+ ('AnytypeOriginalEditorLocalAnnotationBody',),
+ ('AnytypeOriginalEditorLocalAnnotationBody', 'plainText(_:)'),
+ ('AnytypeOriginalEditorLocalAnnotationBody', 'nativeSnapshot(_:)'),
+ ('AnytypeOriginalEditorLocalAnnotationError',),
+ ('AnytypeOriginalEditorLocalAnnotationSourceLifetime',),
+ ('AnytypeOriginalEditorLocalAnnotationSourceLifetime', 'source'),
+ ('AnytypeOriginalEditorLocalAnnotationSourceLifetime', 'init(source:)'),
+ ('AnytypeOriginalEditorLocalAnnotationSourceLifetime', 'isCurrent'),
+ ('AnytypeOriginalEditorLocalAnnotationSourceLifetime', 'retire()'),
+ ('AnytypeOriginalEditorLocalAnnotationCapture',),
+ ('AnytypeOriginalEditorLocalAnnotationCapture', 'nativeCapture'),
+ ('AnytypeOriginalEditorLocalAnnotationCapture', 'textPreview'),
+ ('AnytypeOriginalEditorLocalAnnotationSession',),
+ ('AnytypeOriginalEditorLocalAnnotationSession', 'binding'),
+ ('AnytypeOriginalEditorLocalAnnotationSession', 'makeViewController()'),
+ ('AnytypeOriginalEditorLocalAnnotationSession', 'captureNativeSnapshot(maximumBodyBytes:)'),
+ ('AnytypeOriginalEditorLocalAnnotationSession', 'retire()'),
+ ('AnytypeOriginalEditorModule', 'openLocalAnnotation(appGroup:sourceLifetime:body:sourceIsCurrent:)'))
+
 
 # One observed build-tool-only candidate, not a general package-pin exemption.
 # Names are the union of the actual products/targets in these two Package.swift
@@ -238,13 +266,21 @@ def verify_absence_receipt(root, directory, proof, *, reused=None):
                     "Original full binary proof is missing or changed")
 
 
-def require_compiled_host_api(qualification, *, retained_original=None, admission_schema=1):
+def require_compiled_host_api(qualification, *, retained_original=None, admission_schema=1, production=False,
+                              public_contract_sha256=None):
     """Admit the original producer's compiled API proof, never editor execution."""
     require(type(admission_schema) is int and admission_schema in {1, 2, 3},
             "Unsupported original SDK public contract schema")
     require(retained_original is None or admission_schema in {1, 2},
             "The complete shared SDK requires its own actual compiled public proof")
-    required_count = 86 if admission_schema == 3 else 38
+    require(not production or (admission_schema == 3 and retained_original is None),
+            "Production requires the complete SDK's own Release compiler proof")
+    required_count = 64 if production else 86 if admission_schema == 3 else 38
+    if public_contract_sha256 is not None:
+        require(public_contract_sha256 == LOCAL_ANNOTATION_CONTRACT_SHA256
+                and admission_schema == 3 and retained_original is None,
+                "Unreviewed local annotation public contract")
+        required_count += len(LOCAL_ANNOTATION_REQUIREMENTS)
     public_api = "EXPOSED_COMPILED_NATIVE_EDITOR_NOT_RUN"
     probe = qualification.get("compiled_consumer_api_probe_sha256")
     public_host_api = qualification.get("public_host_api")
@@ -280,6 +316,23 @@ def require_compiled_host_api(qualification, *, retained_original=None, admissio
             and all(isinstance(symbol, dict) and type(symbol.get("spi")) is bool
                     for symbol in surface["own_public_symbols"]),
             "Original full public/qualification-SPI verifier prerequisite is incomplete")
+    if public_contract_sha256 is not None:
+        public_paths = {tuple(symbol.get("path", [])) for symbol in surface["own_public_symbols"]
+                        if symbol["spi"] is False}
+        require(set(LOCAL_ANNOTATION_REQUIREMENTS) <= public_paths,
+                "Actual public graph lacks the reviewed local annotation declarations")
+        protected = {"AnytypeOriginalEditorLocalAnnotationSession", "AnytypeOriginalEditorLocalAnnotationCapture"}
+        require(not any(path and path[0] in protected and any(part.startswith("init(") for part in path[1:])
+                        for path in public_paths),
+                "Local annotation owners must not gain public constructors")
+    if production:
+        require(qualification.get("configuration") == "Release-Anytype"
+                and qualification.get("platform") in {"iphonesimulator", "iphoneos"}
+                and type(surface.get("debug_qualification_requirements_absent")) is int
+                and surface["debug_qualification_requirements_absent"] == 22
+                and surface.get("debug_qualification_symbols_observed") == []
+                and all(symbol["spi"] is False for symbol in surface["own_public_symbols"]),
+                "Release SDK exposes or has not checked the original Debug qualification SPI")
     return {"public_host_api": public_api, "editable_mount": qualification["editable_mount"],
             "compiled_consumer_api_probe_sha256": probe,
             "actual_public_surface": surface, "native_editor_ui_tests": 0}
@@ -315,6 +368,11 @@ def require_simulator_dynamic_architectures(architecture_output, header):
     return tuple(sorted(architectures))
 
 
+def require_production_host_api(qualification, *, public_contract_sha256=None):
+    return require_compiled_host_api(qualification, admission_schema=3, production=True,
+                                     public_contract_sha256=public_contract_sha256)
+
+
 def admit(root, admission_path, evidence, *, swift=None, sdk=None):
     root, admission_path, evidence = Path(root).resolve(), Path(admission_path), Path(evidence)
     relative = admission_path.relative_to(root).as_posix() if admission_path.is_absolute() else admission_path.as_posix()
@@ -323,12 +381,15 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
     committed = subprocess.check_output(["git", "show", "HEAD:" + relative], cwd=root)
     require(committed == admission_path.read_bytes(), "SDK admission bytes differ from the reviewed checkout")
     config = read_json(admission_path)
-    require(config.get("schema") in {1, 2, 3} and config.get("repository") == "davidpovarsky/anytype-swift",
+    production = config.get("schema") == "otzaria.original-editor.production-input/1"
+    require(config.get("schema") in {1, 2, 3, "otzaria.original-editor.production-input/1"}
+            and config.get("repository") == "davidpovarsky/anytype-swift",
             "Wrong original SDK admission schema/repository")
     continuation = None
     local = None
     if config.get("producer_kind") == "local-mac":
-        local = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_local_admission.py")))
+        helper = "original_editor_production_admission.py" if production else "original_editor_local_admission.py"
+        local = runpy.run_path(str(owned_path(root, "Scripts/CI/" + helper)))
         local["validate_configuration"](config)
     if config["schema"] == 2:
         continuation = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_continuation_admission.py")))
@@ -354,16 +415,23 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
             and digest(source_path) == config["original_source_sha256"], "SDK qualification/source receipt differs")
     qualification, provenance, exported = read_json(qualification_path), read_json(source_path), read_json(manifest_path)
     local_provenance = local["validate_provenance"](root, config, qualification, globals()) if local else None
+    require(config.get("public_host_contract_sha256") is None or local_provenance is not None,
+            "Reviewed local lifecycle requires its authenticated source-before/after observations")
     if continuation:
         continuation_receipt = continuation["validate_qualification"](config, qualification)
-    else:
+    elif not production:
         require(qualification.get("status") == QUALIFIED and qualification.get("phase") == "COMPLETE"
                 and qualification.get("original_framework_build") == "PASS"
                 and qualification.get("external_consumer_build") == "PASS"
                 and qualification.get("same_toolchain_only") is True,
                 "SDK lacks the original framework/external consumer prerequisites")
-    compiled_host_api = (continuation["compiled_host_receipt"](root, config, qualification, globals())
-                         if continuation else require_compiled_host_api(qualification, admission_schema=config["schema"]))
+    if production:
+        compiled_host_api = require_production_host_api(qualification,
+            public_contract_sha256=config.get("public_host_contract_sha256"))
+    else:
+        compiled_host_api = (continuation["compiled_host_receipt"](root, config, qualification, globals())
+                             if continuation else require_compiled_host_api(qualification, admission_schema=config["schema"],
+                                 public_contract_sha256=config.get("public_host_contract_sha256")))
     if continuation:
         require(provenance.get("application_source") == config["source_sha"]
                 and provenance.get("original_trees") == config["framework_producer"]["source_trees"],
@@ -373,9 +441,10 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
                 and str(qualification.get("run_id")) == str(config["run_id"])
                 and str(qualification.get("run_attempt")) == str(config["run_attempt"]), "SDK source/run receipt drift")
     observations = qualification.get("verified_runtime_observations", [])
-    require(len(observations) == 2 and {row.get("language") for row in observations} == {"en", "he"}
-            and all(row.get("status") == "ACTUAL_IMPORT_LINK_RESOURCE_RUNTIME_PASS" for row in observations),
-            "Original en/he external resource observations are incomplete")
+    if not production or config["platform"] == "iphonesimulator":
+        require(len(observations) == 2 and {row.get("language") for row in observations} == {"en", "he"}
+                and all(row.get("status") == "ACTUAL_IMPORT_LINK_RESOURCE_RUNTIME_PASS" for row in observations),
+                "Original en/he external resource observations are incomplete")
     if swift is not None:
         require(qualification.get("swift") == swift, "Original SDK requires the same actual Swift toolchain")
     if sdk is not None:
@@ -404,12 +473,17 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
         if re.search(r"\bDYLIB\b", header):
             dynamic.append(name)
             command(["codesign", "--verify", "--strict", str(framework)], root=root, evidence=evidence, label="sdk-signature-" + str(index))
-            require_simulator_dynamic_architectures(
+            architectures = require_simulator_dynamic_architectures(
                 command(["lipo", "-archs", str(binary)], root=root, evidence=evidence,
                         label="sdk-architecture-" + str(index)), header)
             platform = command(["xcrun", "vtool", "-show-build", str(binary)], root=root, evidence=evidence,
                                label="sdk-platform-" + str(index))
-            require(re.search(r"platform\s+IOSSIMULATOR\b", platform), "Non-Simulator SDK dependency")
+            if production and config["platform"] == "iphoneos":
+                require(architectures == ("arm64",) and re.search(r"platform\s+IOS\b", platform)
+                        and not re.search(r"platform\s+IOSSIMULATOR\b", platform),
+                        "Release device dependency is not an actual iOS arm64 image")
+            else:
+                require(re.search(r"platform\s+IOSSIMULATOR\b", platform), "Non-Simulator SDK dependency")
     require("AnytypeOriginalEditor.framework" in dynamic, "No actual original editor dynamic framework")
     result = {"admission_path": relative, "admission_sha256": digest(admission_path), "source_sha": config["source_sha"],
               "run_id": config["run_id"], "run_attempt": config["run_attempt"],
@@ -432,11 +506,14 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
                     "original_package_lock_sha256": result["original_package_lock_sha256"],
                     "manifest_sha256": config["framework_producer"]["clang_manifest_sha256"]}
         result["clang_import_context"] = clang["admitted_context"](distribution, identity)
-    if config["schema"] == 3:
+    if config["schema"] == 3 or production:
         shared = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_shared_runtime.py")))
-        result.update(schema=3, toolchain=config["toolchain"],
+        result.update(schema="otzaria.original-editor.production-admission/1" if production else 3,
+                      toolchain=config["toolchain"],
                       shared_runtime=shared["validate_provider"](root, config, qualification, result))
         result["clang_import_context"] = result["shared_runtime"]["clang_context"]
+    if production:
+        require(config.get("distribution_files") == actual, "Committed Release product inventory differs")
     write(evidence / "distribution-admission.json", result)
     return result
 
@@ -447,7 +524,10 @@ def require_unchanged(root, admitted):
     require(inventory(root / admitted["distribution_root"]) == admitted["distribution_files"], "SDK distribution changed during build")
     if admitted.get("producer_kind") == "local-mac":
         config = read_json(root / admitted["admission_path"])
-        local = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_local_admission.py")))
+        helper = ("original_editor_production_admission.py"
+                  if admitted.get("schema") == "otzaria.original-editor.production-admission/1"
+                  else "original_editor_local_admission.py")
+        local = runpy.run_path(str(owned_path(root, "Scripts/CI/" + helper)))
         qualification = read_json(root / admitted["distribution_root"] / "QUALIFICATION.json")
         local["validate_provenance"](root, config, qualification, globals())
     if admitted.get("schema") == 2:
@@ -482,14 +562,17 @@ def app_bundle(root, path):
 
 
 def embed(root, admission_receipt, receipt_sha256, target, evidence):
-    require(os.environ.get("TARGET_NAME") == TARGET and os.environ.get("CONFIGURATION") == "Debug"
-            and os.environ.get("PLATFORM_NAME") == "iphonesimulator"
-            and os.environ.get("PRODUCT_BUNDLE_IDENTIFIER") == BUNDLE,
-            "Original SDK embed is restricted to the real Maktabah Debug Simulator app")
     root, evidence = Path(root), Path(evidence)
     require(re.fullmatch(r"[a-f0-9]{64}", receipt_sha256) and digest(admission_receipt) == receipt_sha256,
             "Original SDK admission receipt changed after app-target preparation")
     admitted = read_json(admission_receipt)
+    production = admitted.get("schema") == "otzaria.original-editor.production-admission/1"
+    require(not production or (admitted.get("configuration") == "Release"
+            and admitted.get("platform") == "iphonesimulator"), "Wrong production Simulator distribution")
+    require(os.environ.get("TARGET_NAME") == TARGET and os.environ.get("CONFIGURATION") == ("Release" if production else "Debug")
+            and os.environ.get("PLATFORM_NAME") == "iphonesimulator"
+            and os.environ.get("PRODUCT_BUNDLE_IDENTIFIER") == BUNDLE,
+            "Original SDK embed is restricted to its exact real Maktabah Simulator configuration")
     require_unchanged(root, admitted)
     target = app_bundle(root, target)
     distribution = root / admitted["distribution_root"]
@@ -648,16 +731,26 @@ def original_editor_ruby_launch(root, proof, helper_arguments):
     return command_line, environment
 
 
-def prepare(root, admission_path, report, out, logged):
+def prepare(root, admission_path, report, out, logged, *, variant=None, apply_project=True):
     root, out = Path(root), Path(out)
-    evidence = out / "original-editor"
+    require(variant in {None, "debug-simulator", "release-simulator", "release-device"}, "Unreviewed SDK variant")
+    evidence = out / ("original-editor" if variant in {None, "debug-simulator"} else "original-editor-" + variant)
     evidence.mkdir(parents=True, exist_ok=True)
-    admitted = admit(root, admission_path, evidence, swift=report["swift"], sdk=report["sdk_version"])
+    platform = "iphoneos" if variant == "release-device" else "iphonesimulator"
+    sdk_path = (command(["xcrun", "--sdk", platform, "--show-sdk-path"], root=root, evidence=evidence,
+                        label="actual-platform-sdk-path").strip() if platform == "iphoneos" else report["sdk_path"])
+    sdk_version = (command(["xcrun", "--sdk", platform, "--show-sdk-version"], root=root, evidence=evidence,
+                           label="actual-platform-sdk-version").strip() if platform == "iphoneos" else report["sdk_version"])
+    admitted = admit(root, admission_path, evidence, swift=report["swift"], sdk=sdk_version)
+    production = admitted.get("schema") == "otzaria.original-editor.production-admission/1"
+    configuration = "Release" if production else "Debug"
+    require(not production or (variant in {"release-simulator", "release-device"}
+            and admitted["platform"] == platform), "Release distribution needs its exact selected platform")
     if admitted.get("schema") == 2:
         require(report.get("xcode") == admitted["framework_producer"]["toolchain"]["xcode"],
                 "Maktabah Xcode differs from the original framework and continuation")
     shared = None
-    if admitted.get("schema") == 3:
+    if admitted.get("schema") == 3 or production:
         require(report.get("xcode") == admitted["toolchain"]["xcode"],
                 "Host Xcode differs from the exact shared producer")
         shared = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_shared_runtime.py")))
@@ -669,7 +762,7 @@ def prepare(root, admission_path, report, out, logged):
         admitted["shared_host_sources"] = source_proof
         composition = shared["project_clang_context"](root, distribution, admitted["clang_import_context"])
         admitted["host_clang_context"] = composition
-        admitted["shared_pod_link_route"] = shared["plan_pod_link_route"](root, source_proof)
+        admitted["shared_pod_link_route"] = shared["plan_pod_link_route"](root, source_proof, configuration=configuration)
         write(evidence / "host-clang-context.json", composition)
         write(evidence / "shared-host-sources.json", source_proof)
     elif admitted.get("schema") == 2:
@@ -715,9 +808,11 @@ def prepare(root, admission_path, report, out, logged):
     # This is an actual compiler import of the exported binary API. A guarded
     # application source file cannot turn a missing framework into acceptance.
     distribution = root / admitted["distribution_root"]
-    api_source = root / "Scripts/CI/OriginalEditorDistributionAPICheck.swift"
-    api_command = ["xcrun", "swiftc", "-typecheck", "-parse-as-library", "-swift-version", "6", "-D", "DEBUG",
-            "-sdk", report["sdk_path"], "-target", "arm64-apple-ios" + report["sdk_version"] + "-simulator",
+    api_source = root / ("Scripts/CI/OriginalEditorProductionAPICheck.swift" if production
+                         else "Scripts/CI/OriginalEditorDistributionAPICheck.swift")
+    api_command = ["xcrun", "swiftc", "-typecheck", "-parse-as-library", "-swift-version", "6",
+            *([] if production else ["-D", "DEBUG"]),
+            "-sdk", sdk_path, "-target", "arm64-apple-ios" + sdk_version + ("-simulator" if platform == "iphonesimulator" else ""),
             "-F", str(distribution / "Frameworks"), "-I", str(distribution / "Modules")]
     if shared:
         api_command += shared["swift_import_arguments"](distribution, admitted["clang_import_context"])
@@ -727,16 +822,25 @@ def prepare(root, admission_path, report, out, logged):
     else:
         api_command += ["-I", str(distribution / "Include")]
     api_command.append(str(api_source))
+    local_api_source = None
+    if admitted.get("public_host_contract_sha256") is not None:
+        require(admitted["public_host_contract_sha256"] == LOCAL_ANNOTATION_CONTRACT_SHA256,
+                "Unreviewed local annotation compiler probe")
+        local_api_source = root / "Scripts/CI/OriginalEditorLocalAnnotationAPICheck.swift"
+        api_command.append(str(local_api_source))
     report.setdefault("commands", []).append(api_command)
     command(api_command, root=root, evidence=evidence, label="exported-api-typecheck", timeout=600)
     write(evidence / "actual-exported-api.json", {"status": "ACTUAL_EXPORTED_API_TYPECHECK_PASS",
           "api_probe_sha256": digest(api_source), "source_sha": admitted["source_sha"],
-          "native_execution": False, "scope": "EXPORTED_SPI_AND_HOST_COMPILER_ADMISSION_ONLY"})
+          "local_annotation_api_probe_sha256": digest(local_api_source) if local_api_source else None,
+          "native_execution": False, "configuration": configuration, "platform": platform,
+          "scope": "EXPORTED_PUBLIC_HOST_COMPILER_ADMISSION_ONLY" if production else "EXPORTED_SPI_AND_HOST_COMPILER_ADMISSION_ONLY"})
     project = root / "Maktabah.xcodeproj/project.pbxproj"
     plan = {"target": TARGET, "bundle": BUNDLE, "distribution_root": admitted["distribution_root"],
             "dynamic_frameworks": admitted["dynamic_frameworks"], "source_sha": admitted["source_sha"],
             "evidence": evidence.relative_to(root).as_posix(), "before_project_sha256": digest(project),
-            "receipt_sha256": digest(evidence / "distribution-admission.json"), "python": sys.executable}
+            "receipt_sha256": digest(evidence / "distribution-admission.json"), "python": sys.executable,
+            "configuration": configuration, "platform": platform}
     if admitted.get("schema") == 2:
         plan.update(admission_schema=2, clang_import_context=admitted["clang_import_context"],
                     host_clang_context=admitted["host_clang_context"])
@@ -747,6 +851,18 @@ def prepare(root, admission_path, report, out, logged):
                                     "producer_identity": admitted["shared_runtime"]["producer_identity"]},
                     shared_pod_link_route=admitted["shared_pod_link_route"])
     write(evidence / "app-target-plan.json", plan)
+    if not apply_project:
+        return admitted
+    require(not production, "Release project configuration requires the complete reviewed route set")
+    configure(root, plan, report, evidence, logged)
+    report["original_editor_distribution"] = admitted
+    return admitted
+
+
+def configure(root, plan, report, evidence, logged):
+    root, evidence = Path(root), Path(evidence)
+    project = root / "Maktabah.xcodeproj/project.pbxproj"
+    write(evidence / "app-target-plan.json", plan)
     ruby_proof = report["native_context"]["original_editor_pod_ruby_context"]
     ruby_command, ruby_environment = original_editor_ruby_launch(root, ruby_proof,
         [project, evidence / "app-target-plan.json", evidence / "app-target-configuration.json"])
@@ -756,11 +872,10 @@ def prepare(root, admission_path, report, out, logged):
             and receipt["after_project_sha256"] == digest(project)
             and receipt["all_other_objects_unchanged"] is True,
             "Original SDK integration changed an unrelated Xcode target")
-    report["original_editor_distribution"] = admitted
     report["native_context"]["pre_original_editor_project_sha256"] = plan["before_project_sha256"]
     report["native_context"]["generated_project_sha256"] = digest(project)
     shutil.copyfile(project, evidence / "generated-Maktabah-project.pbxproj")
-    return admitted
+    return receipt
 
 
 def verify_built_app(root, admitted, app, evidence, *, after_ui=False):
@@ -788,9 +903,15 @@ def verify_built_app(root, admitted, app, evidence, *, after_ui=False):
         verify_absence_receipt(root, distribution, sdk_proof)
         # This directory is Simulator-only; the original macOS macro targets
         # and their separately verified pins/authorization remain untouched.
-        require(app.parent.name == "Debug-iphonesimulator", "Wrong actual Simulator product directory")
+        expected_configuration = ("Release" if admitted.get("schema") == "otzaria.original-editor.production-admission/1" else "Debug")
+        require(app.parent.name == expected_configuration + "-iphonesimulator", "Wrong actual Simulator product directory")
         require_no_syntax_names(path.relative_to(app.parent).as_posix() for path in app.parent.rglob("*"))
         if after_ui:
+            if "consumer_runtime_absence" not in admitted:
+                retained = read_json(evidence / "swift-syntax-runtime-absence.json")
+                require(retained.get("status") == "EXACT_REVIEWED_BUILD_TOOL_PAIR_WITH_ACTUAL_RUNTIME_ABSENCE"
+                        and retained.get("sdk") == sdk_proof, "Retained built-app runtime proof differs")
+                admitted["consumer_runtime_absence"] = retained["app"]
             verify_absence_receipt(root, app, admitted["consumer_runtime_absence"], reused=sdk_proof)
         else:
             admitted["consumer_runtime_absence"] = runtime_absence_proof(
@@ -800,7 +921,7 @@ def verify_built_app(root, admitted, app, evidence, *, after_ui=False):
             "maktabah_revision": SYNTAX_APP, "sdk_revision": SYNTAX_SDK,
             "sdk": sdk_proof, "app": admitted["consumer_runtime_absence"],
             "new_native_execution": False, "lock_or_macro_inputs_changed": False})
-    if admitted.get("schema") == 3:
+    if admitted.get("schema") in {3, "otzaria.original-editor.production-admission/1"}:
         shared = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_shared_runtime.py")))
         shared["verify_app_ownership"](root, admitted, app, evidence, command, after_ui=after_ui)
     write(evidence / (prefix + "built-app-distribution-verification.json"), {"status": "EXACT_ORIGINAL_DISTRIBUTION_EMBEDDED",

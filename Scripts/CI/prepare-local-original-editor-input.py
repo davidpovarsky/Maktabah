@@ -9,6 +9,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 import runpy
 import shutil
 import subprocess
@@ -43,13 +44,19 @@ def prepare(producer_root, evidence, abi_path, destination):
     owner = qualification.get('shared_runtime_ownership', {})
     require(owner.get('status') == 'PASS_OBSERVED_SINGLE_SHARED_IMPLEMENTATIONS'
             and owner.get('stageb_qualified') is False, 'Actual shared implementation qualification is incomplete')
-    API['require_compiled_host_api'](qualification, admission_schema=3)
+    source_before = read_json(evidence / 'source-before.json')
+    contract = source_before.get('public_host_contract_sha256')
+    contract = contract if contract == API['LOCAL_ANNOTATION_CONTRACT_SHA256'] else None
+    API['require_compiled_host_api'](qualification, admission_schema=3,
+                                     public_contract_sha256=contract)
     observations = qualification.get('verified_runtime_observations', [])
     require(len(observations) == 2 and {row.get('language') for row in observations} == {'en', 'he'}
             and all(row.get('status') == 'ACTUAL_IMPORT_LINK_RESOURCE_RUNTIME_PASS' for row in observations),
             'Actual English/Hebrew external SDK consumer observations are incomplete')
     identity = qualification.get('execution_identity', {})
     require(identity.get('producer_kind') == 'local-mac', 'This packet requires genuine local execution')
+    native_tree = qualification.get('heart', {}).get('native_qualification', {}).get('native_source_tree', '')
+    require(re.fullmatch(r'[a-f0-9]{40}', native_tree), 'Qualified original Native source tree is absent')
     source_sha = subprocess.check_output(['git', '-C', str(producer_root), 'rev-parse', 'HEAD'], text=True).strip()
     require(source_sha == qualification['source_sha'] == identity['source_sha']
             and not subprocess.check_output(['git', '-C', str(producer_root), 'diff', '--name-only', 'HEAD']),
@@ -87,6 +94,7 @@ def prepare(producer_root, evidence, abi_path, destination):
     config = {
         'schema': 3, 'producer_kind': 'local-mac', 'repository': LOCAL['REPOSITORY'],
         'source_sha': source_sha, 'run_id': identity['run_id'], 'run_attempt': 1,
+        'native_source_tree': native_tree, 'configuration': 'Debug', 'platform': 'iphonesimulator',
         'local_execution_sha256': identity['local_execution_sha256'], 'local_receipts': receipts,
         'archive_path': archive.relative_to(ROOT).as_posix(), 'archive_bytes': archive.stat().st_size,
         'archive_sha256': digest(archive),
@@ -108,6 +116,8 @@ def prepare(producer_root, evidence, abi_path, destination):
         'status': 'QUALIFIED_LOCAL_SDK_SIMULATOR_INPUT_REQUIRES_COMMITTED_ADMISSION',
         'native_stageb_qualified': False, 'device_framework_qualified': False,
     }
+    if contract:
+        config['public_host_contract_sha256'] = contract
     LOCAL['validate_provenance'](ROOT, config, qualification, API)
     output = destination / 'admission-candidate.json'
     API['write'](output, config)

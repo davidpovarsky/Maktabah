@@ -39,6 +39,19 @@ def run(command, **kwargs):
 def sim_json(*args):
     return json.loads(subprocess.check_output(["xcrun", "simctl", *args, "-j"], text=True))
 
+sdk_routes = runpy.run_path(str(root / "Scripts/CI/original_editor_sdk_routes.py"))
+sdk_route_path = os.environ.get("OTZARIA_ORIGINAL_EDITOR_ROUTES", "build/hq-stage2/original-editor-routes.json")
+sdk_route_sha256 = os.environ.get("OTZARIA_ORIGINAL_EDITOR_ROUTES_SHA256")
+sdk_routes["require"](bool(os.environ.get("OTZARIA_ORIGINAL_EDITOR_ROUTES")) == bool(sdk_route_sha256),
+                      "Release route path and captured preparation digest must be supplied together")
+if sdk_route_sha256 is None:
+    prepared_routes = json.loads((root / "build/hq-stage2/result.json").read_bytes())["original_editor_routes"]
+    sdk_routes["require"](prepared_routes["path"] == sdk_route_path, "Original preparation route path differs")
+    sdk_route_sha256 = prepared_routes["sha256"]
+# Before building, require the current project preparation to select the
+# separately qualified Release Simulator SDK from the committed common source.
+sdk_routes["admitted_route"](root, sdk_route_path, sdk_route_sha256, "Release", "iphonesimulator")
+
 # Build an actual Release binary/test runner. Reuse verified dependencies and
 # production Metro resources from the already-built Debug validation checkout.
 run(["xcodebuild", "build-for-testing", "-workspace", "Maktabah.xcworkspace", "-scheme", "Maktabah-iOS",
@@ -51,8 +64,10 @@ run(["xcodebuild", "build-for-testing", "-workspace", "Maktabah.xcworkspace", "-
 products = root / "build/ReleaseDerivedData/Build/Products/Release-iphonesimulator"
 release_app = products / "Maktabah.app"
 run(["bash", "Scripts/copy-sefaria-bundle-resources.sh", str(release_app)])
-run(["codesign", "--force", "--deep", "--sign", "-", str(release_app)])
+run(["codesign", "--force", "--sign", "-", str(release_app)])
 run(["codesign", "--force", "--deep", "--sign", "-", str(products / "Maktabah-iOSUITests-Runner.app")])
+report["original_sdk_before_ui"] = sdk_routes["verify"](
+    root, sdk_route_path, "Release", "iphonesimulator", release_app, route_sha256=sdk_route_sha256)
 report["built_binary_sha256"] = {}
 for bundle in [release_app, products / "Maktabah-iOSUITests-Runner.app",
                products / "Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest"]:
@@ -146,6 +161,8 @@ try:
     suite_passed = re.search(r"Test Suite '(?:[^']*\.)?FaithfulProductionReleaseTests' passed", text) is not None
     if code or report["executedXCTestCount"] == 0 or not suite_passed or verification.returncode or not strict_passed:
         raise SystemExit("The actual full-corpus Release UI acceptance failed or did not execute")
+    report["original_sdk_after_ui"] = sdk_routes["verify"](
+        root, sdk_route_path, "Release", "iphonesimulator", release_app, route_sha256=sdk_route_sha256, after_ui=True)
     report["status"] = "EXECUTED_PASS"
 except BaseException as error:
     report["status"] = "FAIL"
