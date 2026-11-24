@@ -15,6 +15,8 @@ REPOSITORY = "davidpovarsky/Maktabah"
 REPOSITORY_ID = 1280062128
 ORIGINAL_WORKFLOW = ".github/workflows/sefaria-embedded-validation.yml"
 BINDING = "Scripts/CI/runtime27-final-push.inputs.json"
+ORIGINAL_HQ_BUILD_CALL = "        if run_logged([sys.executable, \"Scripts/CI/hq-stage2-focused-apple.py\", \"--build-for-testing\", \"--derived-data\", \"build/DerivedData\"],\n".encode('utf-8')
+SDK_HQ_BUILD_CALL = "        if run_logged([sys.executable, \"Scripts/CI/hq-stage2-focused-apple.py\", \"--build-for-testing\", \"--derived-data\", \"build/DerivedData\", \"--original-editor-routes\"],\n".encode('utf-8')
 ORIGINAL_RUNTIME_BLOB = "41268a7e701d9962c6e4ea3cf54764bb9213c3f4"
 ORIGINAL_R27_SHA256 = "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b"
 R27_SOURCE = "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"
@@ -57,6 +59,21 @@ def source_record(root, relative, head):
             "Reviewed source bytes changed: " + relative)
     return {"path": relative, "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest(),
             "git_blob": actual_blob}
+
+
+
+def reviewed_runtime_inverse(runtime_bytes, r27_sha):
+    """Remove only the reviewed SDK build argument and exact R27 digest."""
+    require(runtime_bytes.count(SDK_HQ_BUILD_CALL) == 1,
+            "Final runtime must request the exact original SDK build route")
+    inverse = runtime_bytes.replace(SDK_HQ_BUILD_CALL, ORIGINAL_HQ_BUILD_CALL, 1)
+    literal = ('"' + r27_sha + '"').encode()
+    require(inverse.count(literal) == 1, "Runtime R27 digest must be one exact literal")
+    inverse = inverse.replace(literal, ('"' + ORIGINAL_R27_SHA256 + '"').encode(), 1)
+    inverse_blob = hashlib.sha1(b"blob " + str(len(inverse)).encode() + b"\0" + inverse).hexdigest()
+    require(inverse_blob == ORIGINAL_RUNTIME_BLOB,
+            "Runtime driver changed beyond the reviewed SDK argument and R27 digest")
+    return inverse_blob
 
 
 def authority(mode):
@@ -120,11 +137,7 @@ def reviewed_source(root, head):
     require(r27_record["sha256"] == r27_sha, "Reviewed R27 source digest differs")
     runtime_record = source_record(root, "Scripts/CI/runtime27.py", head)
     runtime_bytes = (root / "Scripts/CI/runtime27.py").read_bytes()
-    literal = ('"' + r27_sha + '"').encode()
-    require(runtime_bytes.count(literal) == 1, "Runtime R27 digest must be one exact literal")
-    inverse = runtime_bytes.replace(literal, ('"' + ORIGINAL_R27_SHA256 + '"').encode(), 1)
-    inverse_blob = hashlib.sha1(b"blob " + str(len(inverse)).encode() + b"\0" + inverse).hexdigest()
-    require(inverse_blob == ORIGINAL_RUNTIME_BLOB, "Runtime driver changed beyond the reviewed single R27 digest")
+    inverse_blob = reviewed_runtime_inverse(runtime_bytes, r27_sha)
     paths = [ORIGINAL_WORKFLOW, *(route["workflow"] for route in ROUTES.values()),
              "Scripts/CI", "Maktabah-iOSUITests", "docs/hq-integration/runtime27",
              "tools/verify_xcresult_zero_skips.py"]
@@ -144,7 +157,9 @@ def reviewed_source(root, head):
     require(all(record["git_blob"] == expected[record["path"]] for record in records), "Runtime closure changed")
     return {"application_source_sha": application, "application_trees": trees,
             "runtime27_digest_binding": {"r27_source": r27_record, "old_digest": ORIGINAL_R27_SHA256,
-                "new_digest": r27_sha, "runtime_source": runtime_record, "whole_driver_inverse_git_blob": inverse_blob},
+                "new_digest": r27_sha, "runtime_source": runtime_record, "whole_driver_inverse_git_blob": inverse_blob,
+                "original_sdk_route_argument": "--original-editor-routes",
+                "original_sdk_build_call_sha256": hashlib.sha256(SDK_HQ_BUILD_CALL).hexdigest()},
             "binding": binding_record, "source_pins": pins, "inputs": records,
             "source_inventory_sha256": hashlib.sha256(json.dumps(records, sort_keys=True,
                  separators=(",", ":")).encode()).hexdigest()}
