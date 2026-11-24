@@ -168,7 +168,7 @@ struct AnnotationOriginalEditorProductionEntry: View {
                   (snapshot.annotation.note ?? "").utf8.elementsEqual((annotation.note ?? "").utf8),
                   snapshot.annotation.colorHex.utf8.elementsEqual(annotation.colorHex.utf8),
                   snapshot.annotation.type == annotation.type,
-                  snapshot.annotation.tags.map { Array($0.utf8) } == annotation.tags.map { Array($0.utf8) } else {
+                  snapshot.annotation.tags.map({ Array($0.utf8) }) == annotation.tags.map({ Array($0.utf8) }) else {
                 throw AnnotationOriginalEditorUIError.changed
             }
             let native = try AnnotationOriginalEditorMount.nativeBody(in: snapshot)
