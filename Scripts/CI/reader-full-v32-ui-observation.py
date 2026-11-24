@@ -952,6 +952,7 @@ def build_identity(context):
             and build.get("checkout_sha") == context["checkout_sha"], "No authentic same-checkout app/UI test build")
     original = runpy.run_path(str(ROOT / "Scripts/CI/hq-stage2-focused-apple.py"))
     original["verify_actual_sources"](build)
+    qualified_sdk = verify_qualified_sdk(build)
     products = ROOT / "build/DerivedData/Build/Products/Debug-iphonesimulator"
     bundles = [products / "Maktabah.app", products / "Maktabah-iOSUITests-Runner.app",
                products / "Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest"]
@@ -965,9 +966,20 @@ def build_identity(context):
     test_runs = sorted(products.parent.glob("*.xctestrun"))
     require(len(test_runs) == 1, "Exactly one original same-build xctestrun is required")
     result = {"built_binaries": binary_records, "actual_macho_dwarf_uuids": dwarf_uuids, "xctestrun": witness(test_runs[0]),
-              "build_receipt": witness(ROOT / "build/hq-stage2/result.json")}
+              "build_receipt": witness(ROOT / "build/hq-stage2/result.json"), "qualified_sdk_route": qualified_sdk,
+              "complete_native_images": runpy.run_path(str(ROOT / "Scripts/CI/mac-prepared-inputs.py"))["code_images"](ROOT)}
     write(OUT / "actual-built-inputs.json", result)
     return products, test_runs[0], result
+
+
+def verify_qualified_sdk(build):
+    routes = build.get("original_editor_routes")
+    require(isinstance(routes, dict), "Full-v32 observations require the final qualified original SDK routes")
+    app = ROOT / "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+    # The original build already executed symbol/runtime ownership checks.
+    # Revalidate their exact code/resources/signatures without recompilation.
+    return runpy.run_path(str(ROOT / "Scripts/CI/original_editor_sdk_routes.py"))["verify"](
+        ROOT, routes["path"], "Debug", "iphonesimulator", app, route_sha256=routes["sha256"], after_ui=True)
 
 
 def execute():
@@ -1105,6 +1117,14 @@ def execute():
             require(source_context(require_frozen=True) == context, "Source changed during execution")
             for record in build["built_binaries"].values():
                 require(digest(record["path"]) == record["sha256"], "Original built executable changed during execution")
+            require(witness(ROOT / "build/hq-stage2/result.json") == build["build_receipt"],
+                    "Original qualified build receipt changed during observation")
+            require(runpy.run_path(str(ROOT / "Scripts/CI/mac-prepared-inputs.py"))["code_images"](ROOT)
+                    == build["complete_native_images"], "Complete original app/SDK/UI-runner image closure changed")
+            qualified = verify_qualified_sdk(json.loads((ROOT / "build/hq-stage2/result.json").read_bytes()))
+            require(qualified == build["qualified_sdk_route"], "Qualified SDK route changed during full-v32 observations")
+            report["qualified_sdk_route"] = qualified
+            report["complete_native_image_count"] = len(build["complete_native_images"])
             report["source_and_built_binary_bytes_unchanged"] = True
         except Exception as error:
             cleanup["source_binary_verification"] = type(error).__name__
