@@ -155,15 +155,29 @@ def verify(root, product, admission, *, require_current_build=False):
                 'Generated product bytes have no current or exact retained successful build')
         return {'binding': binding, 'status': 'CANONICAL_PRODUCT_UNMODIFIED',
                 'working_product_delta': changed, 'native_stageb_qualified': False}
+    expected_source, expected_trees = product['application_source_sha'], product['application_trees']
+    if route == 'RETAINED_PRIOR_PREPARATION' and product.get('new_native_build_required'):
+        require(product['application_source_sha'] == 'd3da55417a30e9a06b0255e2d0b561955034b260'
+                and product.get('retained_dependency_application_source') == '3c5a57bea389f6223b4636c45705bb62f502add2'
+                and product.get('current_product_objects_verified') == 1
+                and product.get('current_product_paths') == ['Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift'],
+                'Retained preparation is not the exact reviewed composer source transition')
+        expected_source = product['retained_dependency_application_source']
+        expected_trees = product['retained_dependency_application_trees']
+        require(all(expected_trees[path] == product['application_trees'][path] for path in ROOTS if path != 'Source'),
+                'Composer continuation changed prepared dependency, project or XCTest source')
     require(selected.get('status') == SUCCESS and selected.get('scope') == 'SIMULATOR_BUILD_FOR_REAL_UI'
-            and selected.get('application_source_sha') == product['application_source_sha']
+            and selected.get('application_source_sha') == expected_source
             and selected.get('application_trees') == {
-                key: product['application_trees'][key] for key in ROOTS if key != 'Maktabah-iOSUITests'}
+                key: expected_trees[key] for key in ROOTS if key != 'Maktabah-iOSUITests'}
             and selected.get('hanlin_gitlink') == product['hanlin_source']
             and record(owned(root, PROJECT))['sha256'] == selected['native_context']['generated_project_sha256'],
             'Generated project bytes do not belong to the exact successful product build')
     privacy = verify_privacy(root, selected)
     return {'binding': binding, 'status': 'EXACT_GENERATED_PRODUCT_PROJECTION_VERIFIED', 'route': route,
             'build_receipt': selected_record, 'working_product_delta': changed,
+            'prepared_product_source_sha': selected['application_source_sha'],
+            'current_product_source_sha': product['application_source_sha'],
+            'current_product_build_verified': route == 'CURRENT_ORIGINAL_SDK_BUILD',
             'generated_project_sha256': selected['native_context']['generated_project_sha256'],
             'privacy': privacy, 'native_stageb_qualified': False}

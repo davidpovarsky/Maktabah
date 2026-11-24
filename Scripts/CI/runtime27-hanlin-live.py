@@ -19,7 +19,7 @@ import uuid
 ROOT = Path(__file__).resolve().parents[2]
 SELECTOR = "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
 MODEL = "gemini-3.5-flash-lite"
-REVIEWED_SOURCE = "3c5a57bea389f6223b4636c45705bb62f502add2"
+REVIEWED_SOURCE = "d3da55417a30e9a06b0255e2d0b561955034b260"
 ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/openai/"
 BUNDLE = "com.davidpovarsky.chavrusatext"
 CANONICAL_APP_GROUP = "group.com.davidpovarsky.itorah"
@@ -246,17 +246,9 @@ def source_context():
         require(actual == expected, "Dirty tracked live execution input")
         closure[name.decode()] = {"blob": actual, "sha256": hashlib.sha256(raw).hexdigest(), "bytes": len(raw)}
     require(bool(closure), "Empty source closure")
-    products = ROOT / "build/DerivedData/Build/Products/Debug-iphonesimulator"
-    bundles = [products / "Maktabah.app", products / "Maktabah-iOSUITests-Runner.app",
-               products / "Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest"]
-    binaries = {}
-    for bundle in bundles:
-        info = plistlib.loads((bundle / "Info.plist").read_bytes())
-        executable = bundle / info["CFBundleExecutable"]
-        binaries[str(executable.relative_to(ROOT))] = digest(executable)
-    for path in (products / "Maktabah.app").rglob("*.dylib"):
-        require(not path.is_symlink(), "Unexpected app code image symlink")
-        binaries[str(path.relative_to(ROOT))] = digest(path)
+    image_reader = runpy.run_path(str(ROOT / "Scripts/CI/mac-prepared-inputs.py"))["code_images"]
+    images = image_reader(ROOT)
+    binaries = {path: row["sha256"] for path, row in images.items()}
     context = {"checkout_sha": head, "reviewed_source_sha": REVIEWED_SOURCE, "application_source_sha": inputs["application_source_sha"],
             "application_trees": inputs["application_trees"], "original_build_status": build["status"],
             "generated_project_sha256": native["generated_project_sha256"],
