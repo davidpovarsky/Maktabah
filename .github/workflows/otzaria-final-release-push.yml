@@ -190,7 +190,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: original-editor-sdk-stage-release-build
-          path: build/original-editor-job-stage/**/*.json
+          path: |
+            build/original-editor-job-stage/**/*.json
+            build/hq-stage2/original-editor*/**/*.json
+            build/hq-stage2/original-editor-routes.json
           if-no-files-found: warn
 
   runtime27-release-native:
@@ -273,7 +276,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: original-editor-sdk-stage-release-native
-          path: build/original-editor-job-stage/**/*.json
+          path: |
+            build/original-editor-job-stage/**/*.json
+            build/hq-stage2/original-editor*/**/*.json
+            build/hq-stage2/original-editor-routes.json
           if-no-files-found: warn
 
   runtime27-release-production:
@@ -370,5 +376,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: original-editor-sdk-stage-release-production
-          path: build/original-editor-job-stage/**/*.json
+          path: |
+            build/original-editor-job-stage/**/*.json
+            build/hq-stage2/original-editor*/**/*.json
+            build/hq-stage2/original-editor-routes.json
           if-no-files-found: warn

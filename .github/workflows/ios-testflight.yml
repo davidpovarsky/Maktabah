@@ -673,6 +673,7 @@ jobs:
           echo "Verified release HEAD matches expected_sha: $CURRENT_SHA"
 
       - name: Prepare reviewed original SDK routes before device builds
+        id: original_editor_routes_prepare
         env:
           EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
         run: python3 Scripts/CI/original-editor-build-routes.py prepare-existing --evidence build/original-editor-testflight
@@ -1020,11 +1021,13 @@ jobs:
       - name: Verify original SDK code and device signatures in archive
         env:
           EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+          ORIGINAL_EDITOR_ROUTES_PATH: ${{ steps.original_editor_routes_prepare.outputs.routes_path }}
+          ORIGINAL_EDITOR_ROUTES_SHA256: ${{ steps.original_editor_routes_prepare.outputs.routes_sha256 }}
         run: >-
           python3 Scripts/CI/original-editor-build-routes.py verify
           --configuration Release --platform iphoneos
           --app build/signed-ios/Maktabah-iOS.xcarchive/Products/Applications/Maktabah.app
-          --routes build/original-editor-testflight/original-editor-routes.json
+          --routes "$ORIGINAL_EDITOR_ROUTES_PATH" --routes-sha256 "$ORIGINAL_EDITOR_ROUTES_SHA256"
           --after-archive
 
       - name: Export App Store Connect IPA
