@@ -143,6 +143,59 @@ class CompletePublicContractControls(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "own actual compiled public proof"):
             self.admit(qualification(86), admission_schema=3, retained_original={})
 
+    def lifecycle_qualification(self, *, production=False):
+        value = qualification(89 if production else 111)
+        required = DISTRIBUTION["LOCAL_ANNOTATION_REQUIREMENTS"]
+        value["actual_public_surface"]["own_public_symbols"][:len(required)] = [
+            {"path": list(path), "spi": False, "fixture_only": True} for path in required]
+        if production:
+            value.update(configuration="Release-Anytype", platform="iphoneos")
+            value["actual_public_surface"].update(
+                debug_qualification_requirements_absent=22, debug_qualification_symbols_observed=[])
+        return value
+
+    def test_lifecycle_requires_exact_reviewed_contract_and_keeps_legacy_counts(self):
+        value = self.lifecycle_qualification()
+        with self.assertRaisesRegex(RuntimeError, "verifier prerequisite is incomplete"):
+            self.admit(value, admission_schema=3)
+        result = self.admit(value, admission_schema=3,
+                           public_contract_sha256=DISTRIBUTION["LOCAL_ANNOTATION_CONTRACT_SHA256"])
+        self.assertEqual(result["native_editor_ui_tests"], 0)
+        for contract in ["0" * 64, True]:
+            with self.subTest(contract=contract), self.assertRaisesRegex(RuntimeError, "Unreviewed"):
+                self.admit(value, admission_schema=3, public_contract_sha256=contract)
+        with self.assertRaisesRegex(RuntimeError, "verifier prerequisite is incomplete"):
+            self.admit(qualification(86), admission_schema=3,
+                       public_contract_sha256=DISTRIBUTION["LOCAL_ANNOTATION_CONTRACT_SHA256"])
+
+    def test_lifecycle_count_alone_cannot_replace_actual_public_paths(self):
+        value = self.lifecycle_qualification()
+        value["actual_public_surface"]["own_public_symbols"][0]["path"] = ["UnrelatedFixtureSymbol"]
+        with self.assertRaisesRegex(RuntimeError, "lacks the reviewed"):
+            self.admit(value, admission_schema=3,
+                       public_contract_sha256=DISTRIBUTION["LOCAL_ANNOTATION_CONTRACT_SHA256"])
+
+    def test_lifecycle_owner_constructor_or_spi_exposure_is_rejected(self):
+        for change in ["constructor", "spi"]:
+            value = self.lifecycle_qualification()
+            if change == "constructor":
+                value["actual_public_surface"]["own_public_symbols"].append({
+                    "path": ["AnytypeOriginalEditorLocalAnnotationSession", "init()"], "spi": False})
+            else:
+                value["actual_public_surface"]["own_public_symbols"][0]["spi"] = True
+            with self.subTest(change=change), self.assertRaises(RuntimeError):
+                self.admit(value, admission_schema=3,
+                           public_contract_sha256=DISTRIBUTION["LOCAL_ANNOTATION_CONTRACT_SHA256"])
+
+    def test_release_lifecycle_requires_89_public_and_all_22_spi_absent(self):
+        value = self.lifecycle_qualification(production=True)
+        options = dict(admission_schema=3, production=True,
+                       public_contract_sha256=DISTRIBUTION["LOCAL_ANNOTATION_CONTRACT_SHA256"])
+        self.assertEqual(self.admit(value, **options)["native_editor_ui_tests"], 0)
+        value["actual_public_surface"]["debug_qualification_requirements_absent"] = 21
+        with self.assertRaisesRegex(RuntimeError, "Release SDK exposes"):
+            self.admit(value, **options)
+
     def test_actual_admission_passes_the_authenticated_schema(self):
         tree = ast.parse(DISTRIBUTION_PATH.read_bytes())
         function = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "admit")

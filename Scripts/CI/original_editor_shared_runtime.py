@@ -234,7 +234,24 @@ def swift_import_arguments(distribution, context):
             ['-Xcc', '-fmodule-map-file=' + str(distribution / path)]]
 
 
-def verify_app_ownership(root, admitted, app, evidence, command, *, after_ui=False):
+def recorded_host_library_paths(root, records):
+    """Recheck actual build-phase library observations without guessing archive paths."""
+    root = Path(root).resolve()
+    require(isinstance(records, dict) and set(records) == set(PODS),
+            'Incomplete original Host library observations')
+    result = {}
+    for pod, record in records.items():
+        path = Path(record['canonical_path'])
+        require(path.is_absolute() and path.resolve() == path
+                and path.is_relative_to(root / 'build') and path.is_file() and not path.is_symlink()
+                and type(record.get('bytes')) is int and record['bytes'] > 0
+                and path.stat().st_size == record['bytes'] and digest(path) == record['sha256'],
+                'Observed original Host library changed or escaped its owned build: ' + pod)
+        result[pod] = path
+    return result
+
+
+def verify_app_ownership(root, admitted, app, evidence, command, *, after_ui=False, host_library_files=None):
     owner = admitted['shared_runtime']['ownership']
     images = {app.name: app / plistlib.loads((app / 'Info.plist').read_bytes())['CFBundleExecutable']}
     for path in sorted(app.rglob('*.framework')):
@@ -273,8 +290,11 @@ def verify_app_ownership(root, admitted, app, evidence, command, *, after_ui=Fal
             'Built app lost a required shared Host module implementation')
     required_runtime = set()
     library_proofs = {}
+    observed_libraries = (recorded_host_library_paths(root, host_library_files)
+                          if host_library_files is not None else None)
     for pod in PODS:
-        candidates = [p for p in app.parent.rglob('lib' + pod + '.a') if p.is_file() and not p.is_symlink()]
+        candidates = ([observed_libraries[pod]] if observed_libraries is not None else
+                      [p for p in app.parent.rglob('lib' + pod + '.a') if p.is_file() and not p.is_symlink()])
         require(len(candidates) == 1, 'Missing or ambiguous actual Host Pod library: ' + pod)
         library = candidates[0]
         output = command(['xcrun', 'nm', '-gjU', str(library)], root=root, evidence=evidence,

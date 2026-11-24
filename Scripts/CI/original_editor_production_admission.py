@@ -4,7 +4,7 @@ from pathlib import Path
 import re
 import uuid
 
-from original_editor_local_admission import restore_archive, validate_abi_adapter
+from original_editor_local_admission import restore_archive, validate_abi_adapter, validate_public_contract
 
 INPUT_SCHEMA = 'otzaria.original-editor.production-input/1'
 ADMISSION_SCHEMA = 'otzaria.original-editor.production-admission/1'
@@ -66,6 +66,7 @@ def read_receipts(root, config, api):
 
 def validate_provenance(root, config, qualification, api):
     values = read_receipts(root, config, api)
+    contract = validate_public_contract(config, values['source_before'], api)
     execution = values['execution']
     require(execution.get('schema') == 'otzaria.original-editor.release-execution/1'
             and execution.get('repository') == REPOSITORY
@@ -142,7 +143,8 @@ def validate_provenance(root, config, qualification, api):
             'native_source_tree': config['native_source_tree'], 'configuration': 'Release',
             'platform': config['platform'], 'architectures': ['arm64'],
             'qualification_sha256': config['qualification_sha256'],
-            'signing_team_id': config.get('signing_team_id'), 'native_stageb_qualified': False}
+            'signing_team_id': config.get('signing_team_id'), 'native_stageb_qualified': False,
+            **({'public_host_contract_sha256': contract} if contract else {})}
 
 
 def restore(root, config, evidence, api, zip_members):
