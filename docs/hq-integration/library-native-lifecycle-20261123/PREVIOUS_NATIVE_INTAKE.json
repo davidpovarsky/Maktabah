@@ -1,0 +1,358 @@
+{
+  "schema": "otzaria.library-morph.actual-terminal-intake/1",
+  "observedAtUTC": "2026-11-23T08:18:41.445885+00:00",
+  "run": {
+    "id": 45126390934,
+    "attempt": 1,
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45126390934",
+    "checkout": "c581e8898e572f452a8ffb605f07a692ee0e7505",
+    "applicationSource": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+    "headTree": "2558b3e72320e59fcd815319a3fc7870374e0483",
+    "conclusion": "failure",
+    "job": 137531576961,
+    "completedAtUTC": "2026-11-23T07:57:42Z"
+  },
+  "artifact": {
+    "id": 14799073462,
+    "bytes": 6170315,
+    "sha256": "358db75887e7ca92be482d4c10fcb6a37529761d2980e5828b4aad8a505f8e20",
+    "path": "/mnt/development/projects/diagnostics/otzaria-library-morph-20261123/45126390934/watch-window-2/library-morph-native-evidence.zip",
+    "safeUniqueMembers": 67,
+    "wholeZipCRC": "PASS"
+  },
+  "captureArtifactMetadataOnly": {
+    "id": 14799800750,
+    "bytes": 538367003,
+    "sha256": "1d93ad0c120aa44c96513d4aff7aef58666cc22a3aa37bbf29cc546aa90553f9",
+    "downloaded": false
+  },
+  "counts": {
+    "executed_ui_pass": 0,
+    "executed_ui_fail": 7,
+    "executed_ui_skip": 0,
+    "ui_not_run": 0
+  },
+  "cases": [
+    {
+      "id": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+      "result": "Failed",
+      "seconds": 237.56632602214813,
+      "failures": [
+        {
+          "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window",
+          "nodeType": "Failure Message",
+          "sourceLocation": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+            "lineNumber": 605
+          }
+        }
+      ]
+    },
+    {
+      "id": "FaithfulReaderUIAcceptanceTests/testLibraryMorphOutsideDismissalPreservesCanonicalQueryAndReader",
+      "result": "Failed",
+      "seconds": 96.65416705608368,
+      "failures": [
+        {
+          "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The open original palette, search input and real result must settle inside the native window",
+          "nodeType": "Failure Message",
+          "sourceLocation": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+            "lineNumber": 639
+          }
+        }
+      ]
+    },
+    {
+      "id": "FaithfulReaderUIAcceptanceTests/testLibraryMorphRepeatedOpenCloseReleasesHiddenKeyboardFocus",
+      "result": "Failed",
+      "seconds": 72.11895501613617,
+      "failures": [
+        {
+          "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+          "nodeType": "Failure Message",
+          "sourceLocation": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+            "lineNumber": 1491
+          }
+        }
+      ]
+    },
+    {
+      "id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "result": "Failed",
+      "seconds": 83.61090099811554,
+      "failures": [
+        {
+          "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original palette's Escape handler must dismiss through keyboard focus",
+          "nodeType": "Failure Message",
+          "sourceLocation": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+            "lineNumber": 1801
+          }
+        }
+      ]
+    },
+    {
+      "id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "result": "Failed",
+      "seconds": 600,
+      "failures": [
+        {
+          "name": "XCTAssertFalse failed",
+          "nodeType": "Failure Message",
+          "sourceLocation": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+            "lineNumber": 2014
+          }
+        },
+        {
+          "name": "Test exceeded execution time allowance of 10 minutes",
+          "nodeType": "Failure Message"
+        }
+      ]
+    },
+    {
+      "id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "result": "Failed",
+      "seconds": 209.116770029068,
+      "failures": [
+        {
+          "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+          "nodeType": "Failure Message",
+          "sourceLocation": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+            "lineNumber": 214
+          }
+        }
+      ]
+    },
+    {
+      "id": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "result": "Failed",
+      "seconds": 86.9896320104599,
+      "failures": [
+        {
+          "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The actual native Close control must remove the real input",
+          "nodeType": "Failure Message",
+          "sourceLocation": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+            "lineNumber": 257
+          }
+        }
+      ]
+    }
+  ],
+  "applicationTrees": {
+    "Source": "ee785b855fecd6b1808b6e24ffd1b9afce3ce7e1",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "7407753fd4811ebf3da6b2835b479786fad0ac2d"
+  },
+  "executionInputsIndependentlyVerified": 286,
+  "actualCompiledSourceGitBlobMatches": 1011,
+  "originalGeneratedSourceDifferences": [
+    {
+      "path": "Source/PrivacyInfo.xcprivacy",
+      "recorded": "af80d26d37547b62412f5922bfd9cc601a7e9344",
+      "git": "c86c62cc12e3ceadea279ff9948a8891a0860577"
+    }
+  ],
+  "generatedConfigurationOriginal": [
+    {
+      "path": "Source/PrivacyInfo.xcprivacy",
+      "origin": "Original React Native CocoaPods privacy aggregation",
+      "original_git_blob": "c86c62cc12e3ceadea279ff9948a8891a0860577",
+      "original_sha256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1",
+      "compiled_sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5",
+      "all_other_declarations_unchanged": true,
+      "all_original_reasons_retained": true,
+      "added_reasons": [
+        {
+          "category": "NSPrivacyAccessedAPICategoryUserDefaults",
+          "reason": "1C8F.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "installed Pods",
+              "path": "Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/Resources/PrivacyInfo.xcprivacy",
+              "sha256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef",
+              "artifact_path": "privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy"
+            },
+            {
+              "pod_source": "installed Pods",
+              "path": "Pods/FirebaseRemoteConfig/FirebaseRemoteConfig/Swift/Resources/PrivacyInfo.xcprivacy",
+              "sha256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38",
+              "artifact_path": "privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy"
+            }
+          ]
+        },
+        {
+          "category": "NSPrivacyAccessedAPICategoryUserDefaults",
+          "reason": "C56D.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "installed Pods",
+              "path": "Pods/GoogleUtilities/GoogleUtilities/Privacy/Resources/PrivacyInfo.xcprivacy",
+              "sha256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c",
+              "artifact_path": "privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy"
+            }
+          ]
+        },
+        {
+          "category": "NSPrivacyAccessedAPICategoryFileTimestamp",
+          "reason": "0A2A.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "ExpoFileSystem",
+              "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+              "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+              "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+            }
+          ]
+        },
+        {
+          "category": "NSPrivacyAccessedAPICategoryDiskSpace",
+          "reason": "85F4.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "ExpoFileSystem",
+              "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+              "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+              "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+            }
+          ]
+        },
+        {
+          "category": "NSPrivacyAccessedAPICategoryDiskSpace",
+          "reason": "E174.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "ExpoFileSystem",
+              "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+              "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+              "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+            }
+          ]
+        },
+        {
+          "category": "NSPrivacyAccessedAPICategorySystemBootTime",
+          "reason": "35F9.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "React",
+              "path": "Vendor/SefariaMobile/Upstream/node_modules/react-native/third-party-podspecs/boost/PrivacyInfo.xcprivacy",
+              "sha256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d",
+              "artifact_path": "privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "actualSourceInputsVerifiedByBuild": 1012,
+  "binaries": {
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app": "4ab66f00680cf7a3a6dd053de9a11d8b187781f87c4f27bc2510ffcf4b0b1cba",
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app": "5fee7db0a32f24740c4256e85a84ec3d7bb16edfc602be564998767da30e0283",
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest": "fc67ad268362f6a00a35f9ed1dd6754f345efdce9fcefd200d1405730f5672bf"
+  },
+  "compiledImagesUnchangedAfterUI": true,
+  "morphCompositionSourceIssues": [],
+  "toolchain": {
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+    "sdk_version": "27.2"
+  },
+  "device": [
+    {
+      "architecture": "arm64",
+      "deviceId": "0036466B-3C8A-4466-A3C3-6AADAA42EE8D",
+      "deviceName": "Faithful 11-inch 21340580",
+      "modelName": "iPad Pro 11-inch (M5)",
+      "osBuildNumber": "24B8117",
+      "osVersion": "27.2",
+      "platform": "iOS Simulator"
+    }
+  ],
+  "fixture": {
+    "actualSHA256": "e9e6dedd2ceaadbe46234612c359e5bd8add00c348be8eaeba85cf029fa5c4d3",
+    "assetID": 6,
+    "assetName": "miniTest10-seforim.db.zst",
+    "backupExcluded": true,
+    "bookCount": 10,
+    "dictionaryConfigured": true,
+    "downloadElapsedSeconds": 1.017440915107727,
+    "downloadedBytes": 7774478,
+    "errors": [],
+    "expectedCompressedBytes": 7774478,
+    "expectedSHA256": "e9e6dedd2ceaadbe46234612c359e5bd8add00c348be8eaeba85cf029fa5c4d3",
+    "extractedBytes": 15470592,
+    "extractionElapsedSeconds": 0.14458990097045898,
+    "finalExists": true,
+    "finalPath": "/Users/runner/Library/Developer/CoreSimulator/Devices/0036466B-3C8A-4466-A3C3-6AADAA42EE8D/data/Containers/Shared/AppGroup/20AEB0E1-FBAD-4546-B38D-B7BAD43605C3/Otzaria/Profiles/miniTest10/database/seforim.db",
+    "installationManifestExists": true,
+    "lexicalReady": true,
+    "lineCount": 18879,
+    "managedWithoutSecurityScope": true,
+    "otzariaIndexDocuments": 18879,
+    "otzariaSearchResults": 131,
+    "partCleanedAfterSuccess": true,
+    "passed": true,
+    "phase": "install",
+    "previousAbsentAfterSuccess": true,
+    "profileID": "miniTest10",
+    "profileVersion": 6,
+    "quickCheck": "ok",
+    "releaseID": 409213893,
+    "releaseTag": "v32-20261010190601",
+    "requiredTables": [
+      "book",
+      "category",
+      "line"
+    ],
+    "restoreAfterRelaunch": false,
+    "resumeFromBytes": 0,
+    "searchArtifactsRequested": true,
+    "shaMatched": true,
+    "sidecarCleanedAfterSuccess": true,
+    "source": "managedInternal",
+    "stagingAbsentAfterSuccess": true,
+    "validationElapsedSeconds": 0.04973900318145752,
+    "verificationElapsedSeconds": 0.08306300640106201,
+    "zayitArtifactIdentity": "fd7a28d2287975176a330c0229e3cbe24d1da352b91017b9813f38759c973e49",
+    "zayitSearchResults": 134
+  },
+  "runtimeWarnings": [
+    {
+      "issueType": "Runtime Warning",
+      "message": "Modifying state during view update, this will cause undefined behavior."
+    },
+    {
+      "issueType": "Runtime Warning",
+      "message": "Modifying state during view update, this will cause undefined behavior."
+    },
+    {
+      "issueType": "Runtime Warning",
+      "message": "Modifying state during view update, this will cause undefined behavior."
+    }
+  ],
+  "failedSteps": [
+    {
+      "name": "Execute selected Library morph cases with real HID and original UI",
+      "number": 13,
+      "conclusion": "failure"
+    },
+    {
+      "name": "Collect original raw native case outcomes including failures",
+      "number": 14,
+      "conclusion": "failure"
+    }
+  ],
+  "sourceBuildStatus": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+  "interpretation": [
+    "All seven selected cases actually executed and failed; no skipped or not-run credit.",
+    "The old per-case text log parser missing field is not NOT_RUN: authentic xcresult records seven failures, including one 600-second ReduceMotion failure.",
+    "Passive native trace proves selected Close/Escape callbacks changed actual viewer state to false and resigned first responder; their retained native text field remained attached. Accessibility/visible lifetime requires actual capture diagnosis.",
+    "English uses pre-2ef capture helper in this source. Its failure is preserved and is not transferred to integrated00b.",
+    "No Library, full Native116/Release114, full-library100+, or physical-iPad acceptance. No retry dispatched."
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "gh",
+    "api",
+    "repos/davidpovarsky/Maktabah/actions/artifacts/14808703544/zip"
+  ],
+  "started_at": "2026-11-23T11:05:16.387679+00:00",
+  "exit": 0,
+  "timed_out": false,
+  "child_reaped": true,
+  "elapsed_seconds": 8.782866804860532,
+  "stdout_file": "original-editor-stageb-evidence.zip",
+  "stdout_bytes": 31191673,
+  "stdout_sha256": "153a4687d03719039503d1b666a8620899fa813985179d0cf0b819cf0af5bca5",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

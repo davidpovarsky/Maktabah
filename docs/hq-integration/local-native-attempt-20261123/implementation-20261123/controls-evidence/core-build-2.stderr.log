@@ -1,0 +1,2 @@
+warning: 'core': Source files for target OtzariaActionCoreTests should be located under 'Tests/OtzariaActionCoreTests', 'Tests', or a custom sources path can be set with the 'path' property in Package.swift
+warning: 'core': Source files for target OtzariaActionCoreTests should be located under 'Tests/OtzariaActionCoreTests', 'Tests', or a custom sources path can be set with the 'path' property in Package.swift

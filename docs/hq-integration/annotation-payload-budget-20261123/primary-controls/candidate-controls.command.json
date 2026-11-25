@@ -1,0 +1,15 @@
+{
+  "name": "candidate-controls",
+  "argv": [
+    "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/build/out/Products/Debug-linux-aarch64/BudgetAccept",
+    "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/owned-fixtures"
+  ],
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 1.718,
+  "process_group_drained": true,
+  "stdout_bytes": 1832,
+  "stdout_sha256": "c7edf96ce897ae1fd9f33d440a2b993eec0a7f8a57eb2122ba1f4a2f91a286df",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

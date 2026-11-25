@@ -1,0 +1,17 @@
+test_actual_18_product_paths_equal_accepted_ancestor_objects (__main__.FinalCompositionControls.test_actual_18_product_paths_equal_accepted_ancestor_objects) ... ok
+test_changed_original_preimage_is_rejected (__main__.FinalCompositionControls.test_changed_original_preimage_is_rejected) ... ok
+test_current_multipart_native_acceptance_cannot_be_replaced_by_v32_or_components (__main__.FinalCompositionControls.test_current_multipart_native_acceptance_cannot_be_replaced_by_v32_or_components) ... ok
+test_dependency_leaf_stays_separate_from_full_composition (__main__.FinalCompositionControls.test_dependency_leaf_stays_separate_from_full_composition) ... ok
+test_existing_artifact_pin_cannot_change_as_source_binding (__main__.FinalCompositionControls.test_existing_artifact_pin_cannot_change_as_source_binding) ... ok
+test_forged_owner_object_is_rejected (__main__.FinalCompositionControls.test_forged_owner_object_is_rejected) ... ok
+test_manifest_body_drift_is_rejected_before_interpretation (__main__.FinalCompositionControls.test_manifest_body_drift_is_rejected_before_interpretation) ... ok
+test_missing_product_delta_cannot_hide_a_component (__main__.FinalCompositionControls.test_missing_product_delta_cannot_hide_a_component) ... ok
+test_only_complete_schema_is_eligible_for_later_actual_admission (__main__.FinalCompositionControls.test_only_complete_schema_is_eligible_for_later_actual_admission) ... ok
+test_reader_bindings_keep_original_selectors_release_and_historical_provenance (__main__.FinalCompositionControls.test_reader_bindings_keep_original_selectors_release_and_historical_provenance) ... ok
+test_source_binding_rejects_historical_reader_hanlin (__main__.FinalCompositionControls.test_source_binding_rejects_historical_reader_hanlin) ... ok
+test_unreviewed_application_source_is_rejected (__main__.FinalCompositionControls.test_unreviewed_application_source_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.422s
+
+OK

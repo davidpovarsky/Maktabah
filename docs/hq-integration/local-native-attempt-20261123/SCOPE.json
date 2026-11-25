@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "status": "PROPOSED_NO_PRODUCT_EDIT_OR_EXECUTION",
+  "prepared_utc": "2026-11-23T11:41:04.519528+00:00",
+  "base": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-local-native-attempt-20261123",
+  "branch": "codex/otzaria-local-native-attempt-20261123",
+  "allowlist": [
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorNativeAttempt.swift (optional comparison/model only)",
+    "docs/hq-integration/local-native-attempt-20261123/**"
+  ],
+  "active_uniqueness": [
+    "same captured DB",
+    "fixed local namespace",
+    "saved annotation UUID"
+  ],
+  "not_partition_keys": [
+    "session",
+    "row ID",
+    "revision",
+    "database URL",
+    "account",
+    "Space"
+  ],
+  "earlier_account_space_partition": "proposed only; corrected before any product edit after root source-scope clarification",
+  "validation": "read-only immutable source inspection; no test/compiler/native/provider/SQL execution",
+  "preserved": "Source, Vendor, project, UI tests, old controls and current CI unchanged",
+  "initial_worktree_note": "Owned --no-checkout index was initialized then exact selected HEAD paths restored; no user work or source edits discarded."
+}

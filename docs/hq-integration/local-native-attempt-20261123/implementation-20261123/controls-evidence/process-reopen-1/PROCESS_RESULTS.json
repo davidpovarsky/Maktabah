@@ -1,0 +1,20 @@
+[
+  {
+    "mode": "crash-after-marker",
+    "pid": 2755764,
+    "returncode": 73,
+    "expected_returncode": 73,
+    "timeout": false,
+    "elapsed_seconds": 0.06284948159009218,
+    "binary_sha256": "987597eaa2c3a8e329681206167f62b575f41365b6bfc7cccd92f286a6cb03a3"
+  },
+  {
+    "mode": "verify-reopen",
+    "pid": 2755765,
+    "returncode": 0,
+    "expected_returncode": 0,
+    "timeout": false,
+    "elapsed_seconds": 0.050878613255918026,
+    "binary_sha256": "987597eaa2c3a8e329681206167f62b575f41365b6bfc7cccd92f286a6cb03a3"
+  }
+]

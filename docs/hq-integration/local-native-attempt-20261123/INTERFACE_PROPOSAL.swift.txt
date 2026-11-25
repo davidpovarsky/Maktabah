@@ -1,0 +1,78 @@
+// PROPOSED interfaces only. Not compiled, installed or added to product source.
+// These names do not denote existing SDK/native APIs. No SDK import is needed.
+
+struct AnnotationLocalEditorNativeComparison: Sendable, Equatable {
+    // Internal comparison data; nonempty/no NUL; no invented ID length cap.
+    // Equality must use exact UTF8 bytes, never synthesized String equality.
+    let accountID: String
+    let spaceID: String
+}
+
+enum AnnotationLocalEditorNativeAttemptState: String, Sendable {
+    case prepared
+    case dispatchMayHaveOccurred = "dispatch_may_have_occurred"
+    case abandonedBeforeDispatch = "abandoned_before_dispatch"
+}
+
+final class AnnotationLocalEditorNativePreparation: Sendable {
+    // Only persistence in the same source file constructs this opaque object.
+    // Retains exact persistence instance/connection/owner/session, actual full
+    // snapshot, original body bytes, comparison and immutable stored image.
+    // No initializer from historical JSON/IDs/DB observation; no native authority.
+}
+
+struct AnnotationLocalEditorNativeAttemptObservation: Sendable {
+    // Private construction from actual same-DB record. Small public/internal
+    // observation: attempt UUID, captured session, saved revision/digests/state.
+    // Historical account/body/version bytes stay retained internally/in DB;
+    // they are not dumped in diagnostics or reconstituted as a live source.
+}
+
+enum AnnotationLocalEditorNativePreparationOutcome: Sendable {
+    case prepared(AnnotationLocalEditorNativePreparation)
+    case recordedWithoutOwnership(AnnotationLocalEditorNativeAttemptObservation)
+}
+
+enum AnnotationLocalEditorNativeTransitionOutcome: Sendable {
+    // Both are actual committed facts, never an SDK dispatch authorization.
+    case recorded(AnnotationLocalEditorNativeAttemptObservation)
+    case recordedWithoutOwnership(AnnotationLocalEditorNativeAttemptObservation)
+}
+
+// Additive AnnotationLocalEditorSession entry points:
+func nativeAttemptObservation() async throws
+    -> AnnotationLocalEditorNativeAttemptObservation?
+
+func prepareNativeAttempt(
+    snapshot: AnnotationLocalEditorSnapshot,
+    comparison: AnnotationLocalEditorNativeComparison
+) async throws -> AnnotationLocalEditorNativePreparationOutcome
+
+func markNativeAttemptMayHaveDispatched(
+    _ prepared: AnnotationLocalEditorNativePreparation
+) async throws -> AnnotationLocalEditorNativeTransitionOutcome
+
+func abandonPreparedNativeAttempt(
+    _ observed: AnnotationLocalEditorNativeAttemptObservation,
+    currentSnapshot: AnnotationLocalEditorSnapshot
+) async throws -> AnnotationLocalEditorNativeTransitionOutcome
+
+// Persistence implementations are synchronous, same captured DB, no callbacks:
+// read history; prepare; mark; explicitly abandon.
+// Every durable mutation rejects an ambient outer transaction, holds original
+// DB -> editor -> connection lifetime order through actual outer COMMIT and
+// preserves receipts afterward. Existing Save/CloudKit APIs remain byte-exact.
+//
+// Mark: require original opaque preparation identity + full immutable stored
+// image + actual current saved snapshot/full version/source/body; state CAS from
+// prepared only; exactly one changed row and exact readback before COMMIT.
+// Possible dispatch has no reset/retry/automatic recovery method.
+//
+// Abandon: caller must explicitly supply the exact observed prepared attempt.
+// A current local session and freshly revalidated current snapshot are required,
+// but old session/caller identity is never adopted. In the same DB transaction,
+// only prepared -> abandoned_before_dispatch may win. Never clear possible state.
+//
+// Historical observation is not itself a preparation or a dispatcher. Any future
+// native same-attempt/result consumer requires root's separately reviewed real SDK
+// ownership and opaque result contract. No identity writer is proposed here.

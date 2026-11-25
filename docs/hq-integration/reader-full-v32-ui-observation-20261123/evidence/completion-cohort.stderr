@@ -1,0 +1,15 @@
+test_duplicated_original_inspector_exploration_outcome_is_rejected (__main__.CompletionCohortControls.test_duplicated_original_inspector_exploration_outcome_is_rejected) ... ok
+test_missing_original_inspector_exploration_outcome_is_rejected (__main__.CompletionCohortControls.test_missing_original_inspector_exploration_outcome_is_rejected) ... ok
+test_overview_overlapping_reader_resource_epoch_is_rejected (__main__.CompletionCohortControls.test_overview_overlapping_reader_resource_epoch_is_rejected) ... ok
+test_valid_nine_inspector_outcomes_remain_protocol_control_only (__main__.CompletionCohortControls.test_valid_nine_inspector_outcomes_remain_protocol_control_only) ... ok
+test_valid_twenty_opens_twenty_original_interactions_ten_restores (__main__.CompletionCohortControls.test_valid_twenty_opens_twenty_original_interactions_ten_restores) ... ok
+test_wrong_card_prefix_even_with_correct_document_is_rejected (__main__.CompletionCohortControls.test_wrong_card_prefix_even_with_correct_document_is_rejected) ... ok
+test_wrong_original_core_request_join_is_rejected (__main__.CompletionCohortControls.test_wrong_original_core_request_join_is_rejected) ... ok
+test_wrong_overview_document_even_with_matching_card_suffix_is_rejected (__main__.CompletionCohortControls.test_wrong_overview_document_even_with_matching_card_suffix_is_rejected) ... ok
+test_wrong_overview_process_is_rejected (__main__.CompletionCohortControls.test_wrong_overview_process_is_rejected) ... ok
+test_wrong_source_observation_join_is_rejected (__main__.CompletionCohortControls.test_wrong_source_observation_join_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.008s
+
+OK

@@ -1,0 +1,1 @@
+{"case":"actual_first_incoming_v1_upgrade_exact_2MiB","nativeBodyOrAppleAcceptance":false,"newCases":1,"payloadBytes":2097152,"payloadSHA256":"90936b039e7d7a163077e49b02f8bb674d9613750ef5d4f1b7b3319634516ab9","primary23CasesReplayed":false,"status":"PASS","storedBase64Bytes":2796204,"userDatabaseTouched":false,"wholeOriginalV1FixtureReusedUnchanged":true}

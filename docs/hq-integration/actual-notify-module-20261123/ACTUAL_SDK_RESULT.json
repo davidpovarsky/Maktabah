@@ -1,0 +1,354 @@
+{
+  "checkout_sha": "a85e35846804cfef26e1449c57671c319773140d",
+  "commands": [
+    {
+      "child_reaped": true,
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "elapsed_seconds": 0.03889395900000636,
+      "label": "checkout",
+      "owned_group_drained": true,
+      "pid": 2353,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "875077be6684599787250bbbfd6aab208664b2f7a6d80a7ccf8c836ba801e607",
+      "timed_out": false
+    },
+    {
+      "child_reaped": true,
+      "command": [
+        "xcodebuild",
+        "-version"
+      ],
+      "elapsed_seconds": 0.15235691699999165,
+      "label": "xcode-version",
+      "owned_group_drained": true,
+      "pid": 2376,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "67c5b47bcf0e788aecae2f9b3af345813bdf7fe736faefb9666a7f4b2bf27ba7",
+      "timed_out": false
+    },
+    {
+      "child_reaped": true,
+      "command": [
+        "xcrun",
+        "swiftc",
+        "--version"
+      ],
+      "elapsed_seconds": 3.918404625000022,
+      "label": "swift-version",
+      "owned_group_drained": true,
+      "pid": 2406,
+      "returncode": 0,
+      "stderr_sha256": "bbc8b176d3c74d4c5a7fd00b40280f98168e116d5272273bfe8e71407625540e",
+      "stdout_sha256": "4b59da256292ae42e3f04ef6d06ea3e139678613a3cd3d0dc37a6757c0bd290a",
+      "timed_out": false
+    },
+    {
+      "child_reaped": true,
+      "command": [
+        "xcrun",
+        "--sdk",
+        "iphonesimulator",
+        "--show-sdk-version"
+      ],
+      "elapsed_seconds": 0.01749562500000934,
+      "label": "sdk-version",
+      "owned_group_drained": true,
+      "pid": 2435,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "53e1ae253beb3b8a3b99dd2d4ec1eb641d392378329fcdccb560779fdf46de0b",
+      "timed_out": false
+    },
+    {
+      "child_reaped": true,
+      "command": [
+        "xcrun",
+        "--sdk",
+        "iphonesimulator",
+        "--show-sdk-path"
+      ],
+      "elapsed_seconds": 0.011980875000006108,
+      "label": "sdk-path",
+      "owned_group_drained": true,
+      "pid": 2436,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "92c82fa07d52363870501f4948ecb272f58936234d562ae09569cce2c660f9fa",
+      "timed_out": false
+    },
+    {
+      "child_reaped": true,
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-c",
+        "-whole-module-optimization",
+        "-module-name",
+        "OtzariaDarwinSDKProbe",
+        "-swift-version",
+        "6",
+        "-enable-testing",
+        "-D",
+        "DEBUG",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-sdk",
+        "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk",
+        "-module-cache-path",
+        "/Users/runner/work/Maktabah/Maktabah/build/darwin-notify-sdk-probe-cache/swift",
+        "-enable-upcoming-feature",
+        "MemberImportVisibility",
+        "-enable-upcoming-feature",
+        "InferIsolatedConformances",
+        "-enable-upcoming-feature",
+        "NonisolatedNonsendingByDefault",
+        "-o",
+        "/Users/runner/work/Maktabah/Maktabah/build/darwin-notify-sdk-probe/darwin-original.o",
+        "/Users/runner/work/Maktabah/Maktabah/build/darwin-notify-sdk-probe/darwin-original.swift"
+      ],
+      "elapsed_seconds": 2.8669105000000172,
+      "label": "darwin-original",
+      "owned_group_drained": true,
+      "pid": 2443,
+      "returncode": 1,
+      "stderr_sha256": "1f0912415c6b895214748dbbdbcaf82015a27ea41ffa6e004f67195b2787696f",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timed_out": false
+    },
+    {
+      "child_reaped": true,
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-c",
+        "-whole-module-optimization",
+        "-module-name",
+        "OtzariaDarwinSDKProbe",
+        "-swift-version",
+        "6",
+        "-enable-testing",
+        "-D",
+        "DEBUG",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-sdk",
+        "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk",
+        "-module-cache-path",
+        "/Users/runner/work/Maktabah/Maktabah/build/darwin-notify-sdk-probe-cache/swift",
+        "-enable-upcoming-feature",
+        "MemberImportVisibility",
+        "-enable-upcoming-feature",
+        "InferIsolatedConformances",
+        "-enable-upcoming-feature",
+        "NonisolatedNonsendingByDefault",
+        "-o",
+        "/Users/runner/work/Maktabah/Maktabah/build/darwin-notify-sdk-probe/declared-01.o",
+        "/Users/runner/work/Maktabah/Maktabah/build/darwin-notify-sdk-probe/declared-01.swift"
+      ],
+      "elapsed_seconds": 0.2819189170000129,
+      "label": "declared-01",
+      "owned_group_drained": true,
+      "pid": 2447,
+      "returncode": 1,
+      "stderr_sha256": "b1af2dd003fad57dd8aa4c9c9264e9ea4a890d4de4d669dd7b6789c92b0a7f90",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timed_out": false
+    },
+    {
+      "child_reaped": true,
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-c",
+        "-whole-module-optimization",
+        "-module-name",
+        "OtzariaDarwinSDKProbe",
+        "-swift-version",
+        "6",
+        "-enable-testing",
+        "-D",
+        "DEBUG",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-sdk",
+        "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk",
+        "-module-cache-path",
+        "/Users/runner/work/Maktabah/Maktabah/build/darwin-notify-sdk-probe-cache/swift",
+        "-enable-upcoming-feature",
+        "MemberImportVisibility",
+        "-enable-upcoming-feature",
+        "InferIsolatedConformances",
+        "-enable-upcoming-feature",
+        "NonisolatedNonsendingByDefault",
+        "-o",
+        "/Users/runner/work/Maktabah/Maktabah/build/darwin-notify-sdk-probe/declared-02.o",
+        "/Users/runner/work/Maktabah/Maktabah/build/darwin-notify-sdk-probe/declared-02.swift"
+      ],
+      "elapsed_seconds": 0.2723240839999903,
+      "label": "declared-02",
+      "owned_group_drained": true,
+      "pid": 2448,
+      "returncode": 1,
+      "stderr_sha256": "026ad591baf8e9680cd3ea2fcb6ac7667b3d7e69a5ac731fae6c55b09f1d9eab",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timed_out": false
+    },
+    {
+      "child_reaped": true,
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-c",
+        "-whole-module-optimization",
+        "-module-name",
+        "OtzariaDarwinSDKProbe",
+        "-swift-version",
+        "6",
+        "-enable-testing",
+        "-D",
+        "DEBUG",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-sdk",
+        "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk",
+        "-module-cache-path",
+        "/Users/runner/work/Maktabah/Maktabah/build/darwin-notify-sdk-probe-cache/swift",
+        "-enable-upcoming-feature",
+        "MemberImportVisibility",
+        "-enable-upcoming-feature",
+        "InferIsolatedConformances",
+        "-enable-upcoming-feature",
+        "NonisolatedNonsendingByDefault",
+        "-o",
+        "/Users/runner/work/Maktabah/Maktabah/build/darwin-notify-sdk-probe/declared-03.o",
+        "/Users/runner/work/Maktabah/Maktabah/build/darwin-notify-sdk-probe/declared-03.swift"
+      ],
+      "elapsed_seconds": 0.40212479100000564,
+      "label": "declared-03",
+      "owned_group_drained": true,
+      "pid": 2449,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timed_out": false
+    }
+  ],
+  "developer_dir": "/Applications/Xcode_27.2.app/Contents/Developer",
+  "examined_module_maps": 263,
+  "module_candidates": [
+    "Darwin",
+    "Darwin.Mach",
+    "Darwin.Mach.notify",
+    "notify"
+  ],
+  "native_notifications_executed": 0,
+  "native_ui_cases_executed": 0,
+  "observed_utc": "2026-11-23T10:15:56.352531+00:00",
+  "product_files_modified": false,
+  "schema": 1,
+  "sdk": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk",
+  "sdk_evidence": [
+    {
+      "bytes": 5121,
+      "kind": "header",
+      "path": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/include/mach/notify.h",
+      "retained": "sdk/notify-00.h",
+      "sha256": "27e62c4585f9b23413df9bf0ce50cf777d619e70d99a63f7132fedaed98b3343"
+    },
+    {
+      "bytes": 13197,
+      "kind": "header",
+      "path": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/include/notify.h",
+      "retained": "sdk/notify-01.h",
+      "sha256": "c7bf63e398effebe5e8895f4b89eace820437cfdd9735ffeb99ed69707dd5bb3"
+    },
+    {
+      "bytes": 6023,
+      "kind": "modulemap",
+      "notify_declarations": [
+        {
+          "excluded_header": false,
+          "module": "Darwin.Mach.notify"
+        }
+      ],
+      "path": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/include/Darwin_Mach.modulemap",
+      "retained": "sdk/module-0224.modulemap",
+      "sha256": "1a5f95967241766e0ecc7a4ec3b1d7959cbabe3a8ea118020a625b71147b4b3e"
+    },
+    {
+      "bytes": 126,
+      "kind": "modulemap",
+      "notify_declarations": [
+        {
+          "excluded_header": false,
+          "module": "notify"
+        }
+      ],
+      "path": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/include/notify.modulemap",
+      "retained": "sdk/module-0253.modulemap",
+      "sha256": "0d3116c1a49cc6fa61381b36b2cc4056086fed47096878dd582fe7bbcc60e4f5"
+    }
+  ],
+  "sdk_version": "27.2",
+  "source_inputs": [
+    {
+      "bytes": 10936,
+      "path": "Scripts/CI/select-runtime27-toolchain.py",
+      "sha256": "3e6ed97188d50f4f344dbd7f77f142a05f0a0bde1b720a0745df098f49bfcf2f"
+    },
+    {
+      "bytes": 14360,
+      "path": "Scripts/CI/darwin-notify-sdk-probe.py",
+      "sha256": "613254164591bd77d0ba543cf714aba1ef553709721682b900b74bb1f371c5d7"
+    },
+    {
+      "bytes": 1538,
+      "path": ".github/workflows/otzaria-darwin-notify-sdk-probe.yml",
+      "sha256": "91e70e558df20d398c84b5e5464b056bda37176de9a058c192e15b83f799f534"
+    }
+  ],
+  "status": "ACTUAL_SDK_EVIDENCE_CAPTURED_NOT_APP_OR_RUNTIME_ACCEPTANCE",
+  "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+  "swift_declaration_compiles": [
+    {
+      "completed": true,
+      "header": null,
+      "import": "Darwin",
+      "label": "darwin-original",
+      "returncode": 1,
+      "source_sha256": "1ac44f859350d2a1454e3d48e51ab61a2db03c037f2594dff87648de730ead41"
+    },
+    {
+      "completed": true,
+      "header": null,
+      "import": "Darwin.Mach",
+      "label": "declared-01",
+      "returncode": 1,
+      "source_sha256": "0a4f481b57fab5070390a23efce69055af9384d5367bf0e006e570b21899cdc4"
+    },
+    {
+      "completed": true,
+      "header": null,
+      "import": "Darwin.Mach.notify",
+      "label": "declared-02",
+      "returncode": 1,
+      "source_sha256": "87e5293a3843b0c5d8aa06f94842e2a437c50b1b9165bb1430ce2e4b14709706"
+    },
+    {
+      "completed": true,
+      "header": null,
+      "import": "notify",
+      "label": "declared-03",
+      "returncode": 0,
+      "source_sha256": "b10861ecdf6cc13ffdc046d27502007fcda9e6e5804f666290d54d0fc859e607"
+    }
+  ],
+  "target": "arm64-apple-ios27.0-simulator",
+  "xcode": "Xcode 27.2\nBuild version 27B52"
+}

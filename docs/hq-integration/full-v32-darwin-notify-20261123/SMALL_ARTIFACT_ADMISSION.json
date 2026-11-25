@@ -1,0 +1,156 @@
+{
+  "run_id": 45143450850,
+  "attempt": 1,
+  "source": "88977a1e19e6c205fc2e832bd79c384b1e2f70ca",
+  "artifacts": [
+    {
+      "artifact_id": 14803251827,
+      "name": "full-v32-ui-observation-evidence",
+      "zip": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-20261123/45143450850/artifact-intake/full-v32-ui-observation-evidence.zip",
+      "zip_bytes": 6698,
+      "zip_sha256": "f45f3f66608084c2f8384cbab4582064a1899db06536d3fa0d8e2752285103b5",
+      "members": 2,
+      "all_unique_safe_crc_pass": true,
+      "selected": [
+        {
+          "member": "reader-full-v32-ui-observation/frozen-source-admission.json",
+          "bytes": 7725,
+          "sha256": "5cfea1f60fa76622c3a1a758f9baa41e6e8d8db97a8c9a0d1897b8086c178732"
+        },
+        {
+          "member": "reader-full-v32-ui-observation/source-only-admission.json",
+          "bytes": 8931,
+          "sha256": "cb7db9fc0170463a7c8fa6012445d3956d5f02f014ed4f6ee230543b8fe035f9"
+        }
+      ]
+    },
+    {
+      "artifact_id": 14803151903,
+      "name": "native-shared-build-evidence",
+      "zip": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-20261123/45143450850/artifact-intake/native-shared-build-evidence.zip",
+      "zip_bytes": 128016,
+      "zip_sha256": "35399ffd9e6d4e47e01fc1a98cbcc8eb1918985355405afba2ba003ad89a381c",
+      "members": 11,
+      "all_unique_safe_crc_pass": true,
+      "selected": [
+        {
+          "member": "native-cohorts/owner.json",
+          "bytes": 224,
+          "sha256": "ea0db9a1e92c2276853f65ddb66258d81a6fdab03766438e98759e2ad8a33826"
+        },
+        {
+          "member": "native-cohorts/selections/c900821af05c4e96b658280bf9b0da27.json",
+          "bytes": 753,
+          "sha256": "072af5448827cbb84c1eb1ccbdb169c9791181ed7d7a9c06d87b5aaefc6417c6"
+        },
+        {
+          "member": "native-cohorts/selections/cb39c85f6d1c4a139280ebc5033bb105.json",
+          "bytes": 747,
+          "sha256": "6ee6e4b6308f21b44a8a9a70a57f47ad6720c3c430dc64cba9c40e9c6e413a09"
+        },
+        {
+          "member": "native-cohorts/selections/ce3efda596544910b6b90c3bd8db5538.json",
+          "bytes": 675,
+          "sha256": "a8ced5ecef1eba85cd47eed5908021f846acca142ad7ff8a5fd48fb16c3d258f"
+        },
+        {
+          "member": "native-cohorts/selections/cfc78177c81a43f08c16fd085335d87e.json",
+          "bytes": 755,
+          "sha256": "f778b21cfa70468a6ef2f4ab7f88f5efa371ebb00447c5cbcc18a65b98874192"
+        },
+        {
+          "member": "native-cohorts/selections/d0d960c97ee74d9788b6f4cf05244cb6.json",
+          "bytes": 748,
+          "sha256": "c529bb04f1740ef8c7a3635721c4b881fd117db29143982034bd2ad4f8dc85a6"
+        },
+        {
+          "member": "native-cohorts/selections/e74f0dac6e494e0ba1f0553fb31e03be.json",
+          "bytes": 748,
+          "sha256": "cfe7516268c36b854b46ddd038bcaf5ad1694676e7d38c331047fa7f33aa8ff4"
+        },
+        {
+          "member": "native-cohorts/shared-build/artifacts/runtime27/toolchain-selection.json",
+          "bytes": 13019,
+          "sha256": "e2a39b3ed3fa818a09a905b4504e8a889514c06365ce65f2247421359c462054"
+        },
+        {
+          "member": "native-cohorts/shared-build/artifacts/ui-acceptance-typecheck.json",
+          "bytes": 4030,
+          "sha256": "44c14792bf7a2a7be8163e7058e2927cdccc415bc149080696df0529907b8b07"
+        },
+        {
+          "member": "native-cohorts/shared-build/artifacts/xcuiautomation-voiceover-sdk.txt",
+          "bytes": 13992,
+          "sha256": "a67c1b7395766d301e65f88ed64c1424a2e707fca4ddd3a6d50e1bb7d072cb67"
+        },
+        {
+          "member": "native-cohorts/shared-build/artifacts/ui-acceptance-typecheck.log",
+          "bytes": 2109080,
+          "sha256": "e6cd32cdbe3d6b5d51ae9ce0eaad9e7891b5140d5544261f7a0570614a564072"
+        }
+      ]
+    },
+    {
+      "artifact_id": 14803087323,
+      "name": "library7-native-evidence",
+      "zip": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-20261123/45143450850/artifact-intake/library7-native-evidence.zip",
+      "zip_bytes": 87146,
+      "zip_sha256": "22fde0b59630207633de8c2148ce2b2c62d3759fd541baee14468084029157f4",
+      "members": 4,
+      "all_unique_safe_crc_pass": true,
+      "selected": [
+        {
+          "member": "library-morph/declarations.json",
+          "bytes": 2132,
+          "sha256": "fef512338bf85a974898616f801e91f044a85f79bd25269794fae8f69d90e0ec"
+        },
+        {
+          "member": "library-morph/result.json",
+          "bytes": 67624,
+          "sha256": "871ea4b27c9e0277120cd0cf11051101e9d90442ecae53cfee06c5e074421536"
+        },
+        {
+          "member": "library-morph/selection.json",
+          "bytes": 180605,
+          "sha256": "4044523d8480c87b84d8d358ed6d50dbe780539577eaa28b570d71996b82dcb5"
+        },
+        {
+          "member": "library-morph/source-before.json",
+          "bytes": 66600,
+          "sha256": "ccbe662404230d0b390a79b5f142068be611bd83a54fd569ff71ac4d281a94a9"
+        }
+      ]
+    },
+    {
+      "artifact_id": 14802264281,
+      "name": "groups100-native-evidence",
+      "zip": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-20261123/45143450850/artifact-intake/groups100-native-evidence.zip",
+      "zip_bytes": 85569,
+      "zip_sha256": "a5228f7471140e210878a1f12730b6dab5704c4fd0839480c730ce7902e58574",
+      "members": 4,
+      "all_unique_safe_crc_pass": true,
+      "selected": [
+        {
+          "member": "reader-groups100/declarations.json",
+          "bytes": 416,
+          "sha256": "33308022384c62b07428b8b4e15716f1c90f1b5e027735eb3aa03fa52181ff23"
+        },
+        {
+          "member": "reader-groups100/result.json",
+          "bytes": 66021,
+          "sha256": "11a329c6a22c2b62dd8093bfb8c2aaacefee24402d5ca0deb9e9d0935c3f1e67"
+        },
+        {
+          "member": "reader-groups100/selection.json",
+          "bytes": 177846,
+          "sha256": "950e27e774ed4b5b4f8905dc73612358ff0d466d903c8358f80638e2787cee29"
+        },
+        {
+          "member": "reader-groups100/source-before.json",
+          "bytes": 65488,
+          "sha256": "f587fc2f719dbdbf89c7ab2d32ffb11edb9616ee978b41dfc041fbee19d6761f"
+        }
+      ]
+    }
+  ]
+}

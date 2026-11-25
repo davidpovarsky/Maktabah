@@ -1,0 +1,90 @@
+{
+  "scope": "Source-only admission and exact pin refresh; no new native runtime or Apple compilation claimed.",
+  "source": "b965e741815f9033151ee45f58d744d028ba1bc2",
+  "source_parent": "88977a1e19e6c205fc2e832bd79c384b1e2f70ca",
+  "admission_checkout": "41eadf4471fdb3ca7ad78fb3c4a7c1442511ccdb",
+  "pin_normalization": [
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "only_source_identity_and_affected_hash_closure": true,
+      "changed_input_hashes": []
+    },
+    {
+      "path": "Scripts/CI/reader-groups100-focused-native.inputs.json",
+      "only_source_identity_and_affected_hash_closure": true,
+      "changed_input_hashes": []
+    },
+    {
+      "path": "Scripts/CI/library-morph-focused-native.inputs.json",
+      "only_source_identity_and_affected_hash_closure": true,
+      "changed_input_hashes": []
+    },
+    {
+      "path": "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+      "only_source_identity_and_affected_hash_closure": true,
+      "changed_input_hashes": [
+        "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "Scripts/CI/library-morph-focused-native.inputs.json",
+        "Scripts/CI/reader-groups100-focused-native.inputs.json",
+        "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift"
+      ]
+    }
+  ],
+  "unchanged_execution_paths": [
+    {
+      "path": ".github/workflows/otzaria-reader-groups-full-v32.yml",
+      "bytes": 12675,
+      "sha256": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c",
+      "same_as_failed_run_source": true
+    },
+    {
+      "path": "Scripts/CI/reader-groups100-focused-native.py",
+      "bytes": 11757,
+      "sha256": "27cf5dcbe51d45c804b50c9f5858161dae71762ce25ea7a113d2d6d1d2620a1b",
+      "same_as_failed_run_source": true
+    },
+    {
+      "path": "Scripts/CI/library-morph-focused-native.py",
+      "bytes": 11955,
+      "sha256": "13d9c4dbb24591b6406e6a3da5c0d619c5785c726d894182383d899ce9373fc3",
+      "same_as_failed_run_source": true
+    },
+    {
+      "path": "Scripts/CI/reader-full-v32-ui-observation.py",
+      "bytes": 80792,
+      "sha256": "d75618e44d205b1fb2843811bbff846151eef6e14ec92d9b071bdbbaafbbfca7",
+      "same_as_failed_run_source": true
+    },
+    {
+      "path": "Scripts/CI/native-cohort-artifacts.py",
+      "bytes": 4914,
+      "sha256": "cf7092191b7058041fe894673380865c9048bab15e224a027b34687123082b03",
+      "same_as_failed_run_source": true
+    },
+    {
+      "path": "Scripts/CI/verify-9401-exact-source.py",
+      "bytes": 37831,
+      "sha256": "2a9969ee5326224e54b24c926dfc6f7a9b212b989aec11f50109cd08e693dc50",
+      "same_as_failed_run_source": true
+    }
+  ],
+  "actual_group_library_inputs": 291,
+  "actual_full_v32_inputs": 42,
+  "actual_selector_counts": {
+    "groups100": 1,
+    "library": 7,
+    "full_v32": 2
+  },
+  "admission_inputs_match_current_blobs": true,
+  "original_failed_run": 45143450850,
+  "original_failed_counts": {
+    "pass": 0,
+    "native_fail": 0,
+    "skip": 0,
+    "not_run": 10
+  },
+  "Host_budget_included": false,
+  "old_control_suites_replayed": false,
+  "native_tests_executed_after_import_change": 0
+}

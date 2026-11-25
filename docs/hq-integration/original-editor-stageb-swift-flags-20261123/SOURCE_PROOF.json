@@ -1,0 +1,12 @@
+{
+  "base": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+  "path": "Scripts/CI/hq-original-editor-app-target.rb",
+  "before_sha256": "094f10867cb070035aa7044bc94f57df712b0b8ccfdcd4cf758a75c21f455e6a",
+  "after_sha256": "92a591a8b02fb1e789cdc95febcbd760451584749f4708fa723297f5c34b898a",
+  "full_inverse_restores_original": true,
+  "only_inserted_block": "  # Preserve the exact CocoaPods-generated Debug spelling observed in the\n  # authenticated app project; other string expressions remain inadmissible.\n  if old_swift_flags == '$(inherited) -D EXPO_CONFIGURATION_DEBUG'\n    old_swift_flags = ['$(inherited)', '-D', 'EXPO_CONFIGURATION_DEBUG']\n  end\n",
+  "all_original_helper_bytes_preserved": true,
+  "other_tracked_paths_unchanged": true,
+  "new_behavior": "Only exact authenticated Debug literal normalized; original old cases and all original remaining code retained",
+  "tests": "PREPARED_NOT_RUN"
+}

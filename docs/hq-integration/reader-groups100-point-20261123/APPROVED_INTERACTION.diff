@@ -1,0 +1,98 @@
+--- a/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
++++ b/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+@@ -3592,11 +3592,12 @@
+     }
+ 
+     @MainActor
+-    private func retainOriginalGroupSelectionFailure(
++    private func retainOriginalGroupSelectionObservation(
+         _ gate: String, expectedName: String,
+         selectors: [any XCUIElementSnapshot], targets: [any XCUIElementSnapshot],
+         window: (any XCUIElementSnapshot)?, snapshotSeconds: Double,
+-        live: [String: Any] = [:]
++        live: [String: Any] = [:],
++        attachmentName: String = "groups100-original-selection-failed-snapshot"
+     ) {
+         let selector = selectors.first
+         let target = targets.first
+@@ -3616,9 +3617,19 @@
+                 .allSatisfy { GroupStressSnapshot.finitePositive($0) }
+             value["selectorContainsTarget"] = selector.frame.contains(target.frame)
+             value["windowContainsTarget"] = window.frame.contains(target.frame)
++            let tapPoint = CGPoint(x: target.frame.midX, y: target.frame.midY)
++            let components = ["x": Double(tapPoint.x), "y": Double(tapPoint.y)]
++            value["requestedTapPoint"] = [
++                "decimal": components.mapValues { String($0) },
++                "ieee754Hex": components.mapValues { String($0.bitPattern, radix: 16) }
++            ]
++            value["targetEnabled"] = target.isEnabled
++            value["selectorContainsRequestedTapPoint"] = selector.frame.contains(tapPoint)
++            value["windowContainsRequestedTapPoint"] = window.frame.contains(tapPoint)
++            value["observationContract"] = "Original midpoint interaction; whole-selector AX containment remains diagnostic"
+         }
+         let attachment = XCTAttachment(string: NativeGeometryEvidence.text(value))
+-        attachment.name = "groups100-original-selection-failed-snapshot"
++        attachment.name = attachmentName
+         attachment.lifetime = .keepAlways
+         add(attachment)
+     }
+@@ -3627,7 +3638,7 @@
+     private func selectOriginalStressGroup(named name: String) {
+         let snapshotStart = ProcessInfo.processInfo.systemUptime
+         guard let snapshot = try? app.snapshot() else {
+-            retainOriginalGroupSelectionFailure("snapshot_unavailable", expectedName: name,
++            retainOriginalGroupSelectionObservation("snapshot_unavailable", expectedName: name,
+                 selectors: [], targets: [], window: nil,
+                 snapshotSeconds: ProcessInfo.processInfo.systemUptime - snapshotStart)
+             XCTFail("Require a fresh actual app snapshot before the original group action")
+@@ -3641,7 +3652,7 @@
+         if !selectors.isEmpty {
+             guard selectors.count == 1, let selectorSnapshot = selectors.first,
+                   selectorSnapshot.isEnabled else {
+-                retainOriginalGroupSelectionFailure("unique_enabled_selector", expectedName: name,
++                retainOriginalGroupSelectionObservation("unique_enabled_selector", expectedName: name,
+                     selectors: selectors, targets: [],
+                     window: elements.first(where: { $0.elementType == .window }),
+                     snapshotSeconds: snapshotSeconds)
+@@ -3653,14 +3664,17 @@
+             }
+             guard targets.count == 1, let target = targets.first,
+                   let windowSnapshot = elements.first(where: { $0.elementType == .window }),
++                  target.isEnabled,
+                   [selectorSnapshot.frame, target.frame, windowSnapshot.frame].allSatisfy({ GroupStressSnapshot.finitePositive($0) }),
+-                  selectorSnapshot.frame.contains(target.frame),
++                  target.frame.midX.isFinite, target.frame.midY.isFinite,
++                  selectorSnapshot.frame.contains(CGPoint(x: target.frame.midX, y: target.frame.midY)),
++                  windowSnapshot.frame.contains(CGPoint(x: target.frame.midX, y: target.frame.midY)),
+                   windowSnapshot.frame.contains(target.frame) else {
+-                retainOriginalGroupSelectionFailure("exact_snapshot_geometry", expectedName: name,
++                retainOriginalGroupSelectionObservation("exact_snapshot_geometry", expectedName: name,
+                     selectors: selectors, targets: targets,
+                     window: elements.first(where: { $0.elementType == .window }),
+                     snapshotSeconds: snapshotSeconds)
+-                XCTFail("Require the exact original group button wholly inside its selector and actual window")
++                XCTFail("Require the enabled original group button wholly inside the actual window and its requested midpoint inside the original selector")
+                 return
+             }
+             let selector = app.segmentedControls["study-group-selector"]
+@@ -3692,12 +3706,19 @@
+             live["targetCurrent"] = targetCurrent
+             live["windowCurrent"] = windowCurrent
+             guard liveHittable, targetCurrent, windowCurrent else {
+-                retainOriginalGroupSelectionFailure("current_live_target", expectedName: name,
++                retainOriginalGroupSelectionObservation("current_live_target", expectedName: name,
+                     selectors: selectors, targets: targets, window: windowSnapshot,
+                     snapshotSeconds: snapshotSeconds, live: live)
+                 XCTFail("The original group button and window must remain live and match the fresh snapshot")
+                 return
+             }
++            // Preserve the raw full-parent containment result, even when an
++            // AX edge differs by one representable Double. This is interaction
++            // evidence; it does not assert whole-control visual containment.
++            retainOriginalGroupSelectionObservation("validated_original_midpoint",
++                expectedName: name, selectors: selectors, targets: targets,
++                window: windowSnapshot, snapshotSeconds: snapshotSeconds, live: live,
++                attachmentName: "groups100-original-selection-observation")
+             // A real XCTest tap at the same validated button midpoint, relative
+             // to its original window. Preserve ordinary XCTest idle handling.
+             window.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))

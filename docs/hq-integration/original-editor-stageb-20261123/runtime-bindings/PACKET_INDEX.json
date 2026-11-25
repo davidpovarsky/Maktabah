@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "CONTROL_EXECUTION.json",
+      "bytes": 1495,
+      "sha256": "90471f95f4f769e6fd7a1e961a3a5feceedb565a737bae48552de7a46e27b4b9"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1991,
+      "sha256": "09547b563950ec19631edbee896adf97947efa4fa8d856fce942cc001a4a6322"
+    },
+    {
+      "path": "SDK_INTAKE.json",
+      "bytes": 7012,
+      "sha256": "bf844e03d45524064606e36dc8cae14fac01dbbae618b31717fcc4c16c886e77"
+    },
+    {
+      "path": "SOURCE_CORRESPONDENCE.json",
+      "bytes": 2829,
+      "sha256": "3594238b86a3d9fa592cc51d1ad53f41464b3245bd4480369f40c23b83bcf7b8"
+    },
+    {
+      "path": "SOURCE_PREFLIGHT_SCOPE.json",
+      "bytes": 586,
+      "sha256": "52dc92fc81e3cfbb9e0bbe73adabd7ed2ca0420cb1ed04f0f2eb920ff7caf2a5"
+    },
+    {
+      "path": "WORKFLOW_CANDIDATE.yml",
+      "bytes": 7078,
+      "sha256": "4b23096007c715e673c2d31297a3984ad995e77dc95754f47fa6a10e282ac146"
+    },
+    {
+      "path": "WORKFLOW_TRIGGER.diff",
+      "bytes": 775,
+      "sha256": "8521c9fb6130f9376e700d721a052f535a1026883c79b339968687a4d73eccdb"
+    },
+    {
+      "path": "actual-source-preflight-output/declarations.json",
+      "bytes": 432,
+      "sha256": "8fa41c3ed986fef179a63e50e34a8106b95f5a46adf112dd030564569aec5c4c"
+    },
+    {
+      "path": "actual-source-preflight-output/python-runtime-preflight.json",
+      "bytes": 2108,
+      "sha256": "372fa496026492bf90785c1d9defaa548b57b6d923672c689395921886f6a39b"
+    },
+    {
+      "path": "actual-source-preflight-output/selection.json",
+      "bytes": 177918,
+      "sha256": "f05d571be2395b258bd181d4d0330a65a108bc80e04e120c2f89b280aa947f61"
+    },
+    {
+      "path": "actual-source-preflight-output/source-before.json",
+      "bytes": 63930,
+      "sha256": "c9d60380f0e15efd52e3089bd4eb6633526250fad2006ce96d0febb880eca10b"
+    },
+    {
+      "path": "attempt-1-report-write-failure-CONTROL_EXECUTION.json",
+      "bytes": 1277,
+      "sha256": "d7bdbd330fc9a836fd583542e36c567a3422ea7aba1ca4ea8e3602cdcb9c0ed2"
+    },
+    {
+      "path": "attempt-1-report-write-failure-runtime-controls.stderr.log",
+      "bytes": 1164,
+      "sha256": "5b181334d5c884134bbf7820f58b68abd2b7ac982a4a449703afae9fbce8a58b"
+    },
+    {
+      "path": "attempt-1-report-write-failure-runtime-controls.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "candidate-inputs.json",
+      "bytes": 7884,
+      "sha256": "3d5e85feb0ae6ea6e60f3fa8c5506d0cafdb8c140ecd7d670ded3ad82c3701fe"
+    },
+    {
+      "path": "original-unfinalized-inputs.json",
+      "bytes": 1821,
+      "sha256": "e542b5429e761144b7e0a895c3bace1ccd78d442713a5a5ae442cfabb352e71c"
+    },
+    {
+      "path": "runtime-controls.json",
+      "bytes": 1646,
+      "sha256": "957f82f5c858e0cec9d3b093c6f2bdfb0ff4712930268263e14f6ce23bc07e88"
+    },
+    {
+      "path": "runtime-controls.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime-controls.stdout.log",
+      "bytes": 98,
+      "sha256": "59d26c419e188e6002a960b804dbf64e49650f91a03c5976c388944069ceedcf"
+    },
+    {
+      "path": "source-preflight-d1656625/RESULT.json",
+      "bytes": 550,
+      "sha256": "b49974e559ea1b3c089d1bd84afdb860167a56b8cdb764bb8f76ae47634ba651"
+    },
+    {
+      "path": "source-preflight-d1656625/stderr.log",
+      "bytes": 1910,
+      "sha256": "037cc70cdb3651261ed064fd8191b37bfcf792bc57b7bd4b9d90fb5bbcc4a25b"
+    },
+    {
+      "path": "source-preflight-d1656625/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source-preflight-d1656625-attempt2/MATERIALIZED.json",
+      "bytes": 2660,
+      "sha256": "7fc1945431194059c695f5dab831f86245f25e8f50e12d7de03536d6d0461a7d"
+    },
+    {
+      "path": "source-preflight-d1656625-attempt2/RESULT.json",
+      "bytes": 420,
+      "sha256": "4015e049b309a9aa7ac4905e5d6e6a7359e3366e0ed3e70d94c97972e1cc1df8"
+    },
+    {
+      "path": "source-preflight-d1656625-attempt2/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source-preflight-d1656625-attempt2/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "total_bytes": 285584
+}

@@ -1,0 +1,59 @@
+{
+  "controls": [
+    {
+      "name": "explicit_signed_route_and_unchanged_legacy_selection",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_original_build_proof_keeps_its_failed_runtime",
+      "status": "PASS"
+    },
+    {
+      "name": "original_producer_or_alias_substitution_rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "runtime_producer_must_have_distinct_finalized_identity",
+      "status": "PASS"
+    },
+    {
+      "name": "old_failed_execution_cannot_be_runtime_qualification",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_host_flag_alone_cannot_grant_compiled_runtime",
+      "status": "PASS"
+    },
+    {
+      "name": "retained_and_runtime_receipts_cannot_alias_or_enter_products",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_failed_continuation_archive_cannot_qualify",
+      "status": "PASS"
+    }
+  ],
+  "controls_failed": 0,
+  "controls_passed": 8,
+  "group": "source",
+  "native_tests_executed": 0,
+  "prior_controls_reexecuted": false,
+  "product_builds_executed": 0,
+  "raw_log_transport_source_correspondence": {
+    "change": "Capture authenticated raw job log directly to fresh owned files with documented CLI option; retain nonzero failure",
+    "only_changed_function": "stage",
+    "prior_receipt_sha256": "e2dd278c342b08cb15468f29468fdaf67dcb4f1704b031f13dfbeec5148db71d",
+    "source_controls_reexecuted": false,
+    "tested_definitions_ast_unchanged": true
+  },
+  "runtime_fixture_scope": "Parser-only in-memory identity; never written to admission inputs or used for native credit",
+  "scope": "EVIDENCE_ADMISSION_SOURCE_CONTROLS_ONLY",
+  "source_sha256": {
+    "Scripts/CI/hq-original-editor-distribution.py": "c5e933f4c5f411426d6223c6fd35b89937e5d5c02dd21a09d4ee4eab8f6e1a3d",
+    "Scripts/CI/original_editor_continuation_admission.py": "94e70b21fb323670e81a6903ee7a253d9b3cdf9183e9082f548905827e5d57ef",
+    "Scripts/CI/original_editor_signed_consumer_admission.py": "eca9a44d0f2b0f7872a089e640c857c3c33925684dee630ddaa1487c61fe5e16",
+    "docs/hq-integration/original-editor-stageb-20261123/retained-original-producer.json": "23a38d1a3f1a4a2d66497ed79adfb3a3c8f184b48bc4f329e64f789f7d7088b4",
+    "tools/verify-original-editor-signed-consumer-admission-controls.py": "58aa71f91c4bb469dc1c9969e1d2d8ffa29a69568253d78d6353525e0a097689"
+  },
+  "status": "PASS"
+}

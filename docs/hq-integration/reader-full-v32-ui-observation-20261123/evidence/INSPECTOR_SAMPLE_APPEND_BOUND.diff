@@ -1,0 +1,10 @@
+--- reviewed-348c8336
++++ bounded-before-sample-copy
+@@ -375,6 +375,7 @@
+                 let wanted = requested.contains(identity)
+                 if wanted { found.insert(identity) }
+                 if fixed.contains(ordinal) || wanted {
++                    guard samples.count < 15 else { return nil }
+                     samples.append([
+                         "ordinal": ordinal, "id": identity, "sourceRef": link.sourceRef,
+                         "sourceHebrewRef": link.sourceHebrewRef as Any? ?? NSNull(),

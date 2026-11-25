@@ -1,0 +1,103 @@
+--- tested-and-peer-reviewed-2c49bbe4
++++ root-requested-completion-joined-d75618e4
+@@ -490,14 +490,14 @@
+                 "Another resource or post-resource observation epoch is active")
+         epoch, kind = request["epoch"], request["kind"]
+         require(str(uuid.UUID(epoch)).upper() == epoch and epoch not in self.epochs, "Epoch must be fresh")
+-        require(request["targetKey"] in self.targets and kind in ("reader-open", "inspector-open", "inspector-scroll"),
++        require(request["targetKey"] in self.targets and kind in ("reader-open", "reader-overview", "inspector-open", "inspector-scroll"),
+                 "Unknown original Reader/Inspector epoch")
+-        if kind == "reader-open":
++        if kind in ("reader-open", "reader-overview"):
+             require(request["mode"] in ("process-cold", "warm")
+                     and sum(x["kind"] == kind for x in self.epochs.values()) < 20,
+-                    "The original twenty Reader epochs must retain their exact schedule")
++                    "Each original twenty-open or twenty-overview cohort must retain its exact schedule")
+         else:
+-            require(request["mode"] == "original-native" and sum(x["kind"] != "reader-open" for x in self.epochs.values()) < 30,
++            require(request["mode"] == "original-native" and sum(not x["kind"].startswith("reader-") for x in self.epochs.values()) < 30,
+                     "Bounded original Inspector observation schedule exceeded")
+         self.trace.require_running()
+         pid, executable = self.process()
+@@ -625,6 +625,8 @@
+             actual_workspace_document_id=workspace["document_id"], actual_workspace_group_id=workspace["group_id"],
+             ordinary_workspace_sha256=workspace["sha256"], scene_id=workspace["scene_id"],
+             native_core_receipt_present=route is not None, post_resource_epoch=True,
++            native_core_request_id=fields["request"] if fields else None,
++            route_visibility_upper_bound_seconds=route["requestToNativeVisibleUpperBoundSeconds"] if route else None,
+             source_index=viewport["source"], pixel_offset=viewport["offset"], native_object=viewport["object"],
+             native_report=witness(report_path), native_sample_observed_uptime=sample["observedUptime"],
+             native_probe_requested_uptime=requested, native_probe_observed_uptime=observed)
+@@ -769,14 +771,39 @@
+         require({(x["targetKey"], x["mode"]) for x in rows}
+                 == {(k, mode) for k in self.targets for mode in ("process-cold", "warm")}
+                 and {x["epoch"] for x in rows} == set(epochs), "Observed original twenty-open schedule differs")
++        interaction_epochs = {k: v for k, v in self.epochs.items() if v["kind"] == "reader-overview"}
++        require(len(interaction_epochs) == 20
++                and {r["firstInteraction"]["epoch"] for r in rows} == set(interaction_epochs),
++                "The existing twenty post-open original overview interactions are incomplete")
+         proofs = {p["request_id"]: p for p in self.source_proofs}
+         for row in rows:
+             epoch = epochs[row["epoch"]]
+             require(epoch["status"] == "OBSERVED_NOT_PERFORMANCE_ACCEPTANCE" and epoch["processID"] == row["processID"]
+                     and epoch["target_key"] == row["targetKey"] and epoch["mode"] == row["mode"],
+                     "A failed or mismatched resource epoch cannot disappear from the aggregate")
+-            require(any(p["epoch"] == row["epoch"] and p["native_core_receipt_present"] for p in proofs.values()),
+-                    "Every actual open requires independent post-timing source and original Core/glyph evidence")
++            proof = proofs.get(row["sourceObservationID"])
++            require(proof is not None and proof["epoch"] == row["epoch"] and proof["native_core_receipt_present"]
++                    and proof["native_core_request_id"] == row["route"]["receiptFields"]["request"]
++                    and proof["route_visibility_upper_bound_seconds"] == row["route"]["requestToNativeVisibleUpperBoundSeconds"],
++                    "Every actual open requires its exact independently retained post-timing source and Core/glyph evidence")
++            interaction = row["firstInteraction"]
++            observed = interaction_epochs[interaction["epoch"]]
++            require(observed["status"] == "OBSERVED_NOT_PERFORMANCE_ACCEPTANCE"
++                    and observed["processID"] == epoch["processID"] and observed["target_key"] == epoch["target_key"]
++                    and observed["mode"] == epoch["mode"]
++                    and observed["resource_start_host_monotonic"] >= epoch["resource_end_host_monotonic"]
++                    and interaction["actualOverviewIdentifier"] == "study-groups-overview"
++                    and interaction["actualDocumentID"] == proof["actual_workspace_document_id"]
++                    and interaction["actualCardIdentifier"] in (
++                        "tab-switcher-grid-cell-" + proof["actual_workspace_document_id"],
++                        "tab-switcher-list-cell-" + proof["actual_workspace_document_id"]),
++                    "Actual post-open original overview identity/resource chronology changed")
++            start, action, end = (interaction[k] for k in ("observationStartedUptime", "nativeActionRequestedUptime", "originalOverviewObservedUptime"))
++            require(all(type(v) in (int, float) and math.isfinite(v) for v in (start, action, end))
++                    and start <= action <= end
++                    and interaction["requestToOriginalOverviewUpperBoundSeconds"] == end - start
++                    and interaction["nativeActionToOverviewUpperBoundSeconds"] == end - action,
++                    "Original native overview interaction interval is malformed")
+         require({x["targetKey"] for x in restores} == set(self.targets), "Actual forced restore target set differs")
+         for row in restores:
+             before, after = proofs[row["beforeRequestID"]], proofs[row["afterRequestID"]]
+@@ -821,6 +848,17 @@
+             ids, scales = request["observationIDs"], request["scales"]
+             require(ids and len(ids) == len(set(ids)) and set(ids) == set(self.inspector_records),
+                     "Every actual Inspector observation, including failed scales, must be retained")
++            exploration = request["exploration"]
++            expected_targets = {k for k, v in self.targets.items() if v["bookID"] in (103, 28, 3152)}
++            require(len(exploration) == len(expected_targets) == 9
++                    and {r["targetKey"] for r in exploration} == expected_targets,
++                    "Original first/middle/last Inspector chapter exploration must retain all nine outcomes")
++            for row in exploration:
++                actual = self.inspector_records.get(row["observationID"])
++                require(actual is not None and actual["target_key"] == row["targetKey"]
++                        and actual["full_cached_count"] == row["actualCount"]
++                        and len(actual["actual_visible_rows"]) == row["visibleRows"],
++                        "A genuine original Inspector exploration outcome was changed or omitted")
+             require([x["requestedCount"] for x in scales] == [100, 500, 2000], "Original Inspector required scales changed")
+             for scale in scales:
+                 record = self.inspector_records.get(scale.get("observationID"))
+@@ -1029,7 +1067,11 @@
+                         report["reader_observations_by_mode"][mode] = {
+                             "visibility_upper_bound_seconds": percentiles([r["route"]["requestToNativeVisibleUpperBoundSeconds"] for r in selected_rows]),
+                             "application_cpu_seconds": percentiles([host.epochs[r["epoch"]]["app_cpu_seconds"] for r in selected_rows]),
+-                            "sampled_app_rss_bytes": percentiles([host.epochs[r["epoch"]]["sampled_max_rss_bytes"] for r in selected_rows])}
++                            "sampled_app_rss_bytes": percentiles([host.epochs[r["epoch"]]["sampled_max_rss_bytes"] for r in selected_rows]),
++                            "first_original_overview_interaction_upper_bound_seconds": percentiles(
++                                [r["firstInteraction"]["requestToOriginalOverviewUpperBoundSeconds"] for r in selected_rows]),
++                            "first_original_overview_interaction_cpu_seconds": percentiles(
++                                [host.epochs[r["firstInteraction"]["epoch"]]["app_cpu_seconds"] for r in selected_rows])}
+                 report["inspector_observation_counts"] = [v["full_cached_count"] for v in host.inspector_records.values()]
+             except Exception as error:
+                 cleanup["observation_host"] = type(error).__name__

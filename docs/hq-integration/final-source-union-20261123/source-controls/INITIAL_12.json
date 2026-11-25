@@ -1,0 +1,87 @@
+{
+  "application_product_source": "7d5510dd29af2b66d740de136352916868c341ed",
+  "at_utc": "2026-11-23T21:11:51.275336+00:00",
+  "cases": [
+    {
+      "name": "test_actual_18_product_paths_equal_accepted_ancestor_objects",
+      "status": "ok"
+    },
+    {
+      "name": "test_changed_original_preimage_is_rejected",
+      "status": "ok"
+    },
+    {
+      "name": "test_current_multipart_native_acceptance_cannot_be_replaced_by_v32_or_components",
+      "status": "ok"
+    },
+    {
+      "name": "test_dependency_leaf_stays_separate_from_full_composition",
+      "status": "ok"
+    },
+    {
+      "name": "test_existing_artifact_pin_cannot_change_as_source_binding",
+      "status": "ok"
+    },
+    {
+      "name": "test_forged_owner_object_is_rejected",
+      "status": "ok"
+    },
+    {
+      "name": "test_manifest_body_drift_is_rejected_before_interpretation",
+      "status": "ok"
+    },
+    {
+      "name": "test_missing_product_delta_cannot_hide_a_component",
+      "status": "ok"
+    },
+    {
+      "name": "test_only_complete_schema_is_eligible_for_later_actual_admission",
+      "status": "ok"
+    },
+    {
+      "name": "test_reader_bindings_keep_original_selectors_release_and_historical_provenance",
+      "status": "ok"
+    },
+    {
+      "name": "test_source_binding_rejects_historical_reader_hanlin",
+      "status": "ok"
+    },
+    {
+      "name": "test_unreviewed_application_source_is_rejected",
+      "status": "ok"
+    }
+  ],
+  "command": [
+    "sudo",
+    "-u",
+    "ubuntu",
+    "-H",
+    "python3",
+    "-B",
+    "Scripts/CI/test_final_source_composition.py",
+    "-v"
+  ],
+  "inputs_after": {
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "671dea22d5654c34de5e15d2dd39054cf24f94b3a50faf5a0f9cf74d6a13b323",
+    "Scripts/CI/library-morph-focused-native.inputs.json": "1d5c842802b89598b48c7f1262404c5cecd061711cb035d6e9ed76821fb8be15",
+    "Scripts/CI/reader-full-v32-ui-observation.inputs.json": "31c45c9b2803991d9e333cc884e7058b86bb6546f3ba25f004df59ce780d5ab9",
+    "Scripts/CI/reader-groups100-focused-native.inputs.json": "97282b13443f77a61222ccb5c03bc36e3a8e6b73a6c00cb5feff399615ad1002",
+    "Scripts/CI/runtime27-final-source-composition.inputs.json": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0",
+    "Scripts/CI/runtime27-original-editor-native.py": "3b52ba321b73003332784d7c0aaff31fb48e6e246dfa3ea2030484e88d73ecac",
+    "Scripts/CI/test_final_source_composition.py": "1b0acf75556fab6c9f0980657142412b3b47b9db2cba1989fe6c3fc70166ab1f"
+  },
+  "inputs_before": {
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "671dea22d5654c34de5e15d2dd39054cf24f94b3a50faf5a0f9cf74d6a13b323",
+    "Scripts/CI/library-morph-focused-native.inputs.json": "1d5c842802b89598b48c7f1262404c5cecd061711cb035d6e9ed76821fb8be15",
+    "Scripts/CI/reader-full-v32-ui-observation.inputs.json": "31c45c9b2803991d9e333cc884e7058b86bb6546f3ba25f004df59ce780d5ab9",
+    "Scripts/CI/reader-groups100-focused-native.inputs.json": "97282b13443f77a61222ccb5c03bc36e3a8e6b73a6c00cb5feff399615ad1002",
+    "Scripts/CI/runtime27-final-source-composition.inputs.json": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0",
+    "Scripts/CI/runtime27-original-editor-native.py": "3b52ba321b73003332784d7c0aaff31fb48e6e246dfa3ea2030484e88d73ecac",
+    "Scripts/CI/test_final_source_composition.py": "1b0acf75556fab6c9f0980657142412b3b47b9db2cba1989fe6c3fc70166ab1f"
+  },
+  "log_sha256": "6917176be629a33dcbc351d432f403fe8560b3cde7ddb25e2a2514f5f79e590d",
+  "native_executed": 0,
+  "returncode": 0,
+  "scope": "Only 12 new source composition/admission controls; no simulator, artifact qualification or prior suite replay",
+  "status": "PASS"
+}

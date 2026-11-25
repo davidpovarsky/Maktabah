@@ -1,0 +1,74 @@
+{
+  "schema": "otzaria.reader-groups100.native-inputs/1",
+  "application_source_sha": "d3da55417a30e9a06b0255e2d0b561955034b260",
+  "application_trees": {
+    "Source": "f8d8e60307660433e9db06ec84ff62a6b224962b",
+    "Vendor": "957773bdbf127855cbe8c16d1be50fe436564157",
+    "Maktabah.xcodeproj": "4e5e8ebf269310c48497ebf4d41c516e9110af78",
+    "Maktabah-iOSUITests": "776a2c129db5b60efaa17aaa3e79fbb33f28dbc5"
+  },
+  "execution_groups": [
+    {
+      "label": "11-reader",
+      "size": "11",
+      "hid_comparison": false,
+      "case_ids": [
+        "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"
+      ]
+    }
+  ],
+  "acceptance_scope": "Exactly one original Groups100 leaf with reviewed midpoint-interaction observation; actual100 transitions, identity/content/cold restore and original timeouts retained. Full-parent raw AX containment remains diagnostic. Prior3 and historical6 passes are not replayed or transferred; not Native116/Release114/physical acceptance.",
+  "earlier_reader10_evidence": {
+    "run_id": 45107660584,
+    "attempt": 1,
+    "source_sha": "b85a72e409855ffdc6bed1dcef60bbf5b233cf6d",
+    "counts": {
+      "pass": 6,
+      "fail": 4,
+      "skip": 0,
+      "not_run": 0
+    },
+    "artifact_id": 14790507747,
+    "artifact_sha256": "56eac74fc92c1334bbdd305f9f61cb38bc4513b01690326606577fa1d8f95b9c",
+    "historic_passes_counted_as_current": false
+  },
+  "prior_run_evidence": {
+    "run_id": 45124554050,
+    "attempt": 1,
+    "checkout_sha": "482b8ac3ef2935ee1127da529e5d0848efb0e2f1",
+    "application_source_sha": "2ef81ac195c002863486e473dad95f336f3e1675",
+    "counts": {
+      "pass": 3,
+      "fail": 1,
+      "skip": 0,
+      "not_run": 0
+    },
+    "artifact_id": 14798332418,
+    "artifact_sha256": "9aef172a617bf0f5b4eaa1632d97e2a29caa60fcb16e11cb1e56a1e52e1ea5a4",
+    "failed_snapshot_sha256": "beedf997d6b8f8ac3286309011c0425bb0f856417144e16f0a817d99253b63f8",
+    "historic_passes_counted_as_current": false
+  },
+  "composition_provenance": {
+    "accepted_reader_source": "92e9df6e2daf64893c83ba13708fac4c670ae38f",
+    "active_focused_checkout_modified": false,
+    "composed_product_source": "7d5510dd29af2b66d740de136352916868c341ed",
+    "historical_passes_counted_as_current": false,
+    "manifest_path": "Scripts/CI/runtime27-final-source-composition.inputs.json",
+    "manifest_sha256": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0",
+    "previous_application_source_sha": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+    "previous_application_trees": {
+      "Maktabah-iOSUITests": "88933b92b2d7580ff082677c14670ec6c2757dec",
+      "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+      "Source": "0e2dc5b9406ffeef95d2d75d460f1589c133129d",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+    },
+    "previous_input_sha256": "aa1a4768ad9190cb417429927f682251ffffcdba8ca7929346cf29847e0e7323"
+  },
+  "mac_shared_composition": {
+    "previous_application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed",
+    "manifest": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
+    "manifest_sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
+    "historic_receipts_preserved": true,
+    "new_runtime_acceptance_required": true
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "schema": "otzaria.full-v32.source-review/1",
+  "status": "SOURCE_ONLY_UNFINALIZED_NO_RUNTIME_ACTIVATION",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-reader-full-v32-ui-observation-20261123",
+  "branch": "codex/otzaria-reader-full-v32-ui-observation-20261123",
+  "base": "2ef81ac195c002863486e473dad95f336f3e1675",
+  "currentDraftHead": "fd5f72f7b3ccea4d6477d2ef9866a3b157015612",
+  "selectedCases": [
+    "FaithfulProductionReleaseTests/testTwentyOriginalFullV32ReaderOpensAndForcedRelaunch",
+    "FaithfulProductionReleaseTests/testOriginalFullV32InspectorRelationshipScalesAndReturn"
+  ],
+  "executionInputCount": 36,
+  "files": {
+    "inspector": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/OtzariaReaderSourcesInspectorHost.swift",
+      "bytes": 21707,
+      "sha256": "36ca3f4863c60519d1135bf8f327a4c00a1e1bf074dd826caee7760547b18aa8"
+    },
+    "viewport": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/ReaderViewportAcceptanceObserver.swift",
+      "bytes": 8848,
+      "sha256": "a8773b4892ebeac2c98bc371e6ee358eb69d4085caec0ffa1aac9caa84a5c552"
+    },
+    "tests": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/FaithfulReaderUIAcceptanceTests.swift",
+      "bytes": 275222,
+      "sha256": "88da4560aab504034f9dc64107998097e12ecbf6798f28e25d20a6fc2aac34d0"
+    },
+    "collector": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet-v2/reader-full-v32-ui-observation.py",
+      "bytes": 80792,
+      "sha256": "d75618e44d205b1fb2843811bbff846151eef6e14ec92d9b071bdbbaafbbfca7"
+    },
+    "inputs": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet-v2/reader-full-v32-ui-observation.inputs.json",
+      "bytes": 8778,
+      "sha256": "42e12cfd7bf0d251c6db4921c9b42428fb368b8474c2160018b4e895759c64d5"
+    },
+    "catalog": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/FullV32ObservationCatalog.swift",
+      "bytes": 8755,
+      "sha256": "ba59641e131cc9ee625ecd5b042b516ac5d971333e635edda9b533ea29105e70"
+    },
+    "controls": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/CollectorBoundaryControls.py",
+      "bytes": 9437,
+      "sha256": "5d57ae889ab516accc816f91bae263c0f599beb528ea73d8f1f76e3aa2a8c408"
+    },
+    "primaryAPI": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/PRIMARY_API_EVIDENCE.json",
+      "bytes": 1079,
+      "sha256": "821a2f02f886ba6fb0b925b0a5883dad16a3a6e77695f4a0d256e4c157441def"
+    },
+    "inspectorDiff": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/INSPECTOR_FINAL.diff",
+      "bytes": 18675,
+      "sha256": "51ef4716af288eba543d92dce9d9edfa78a1bce05be9ede570294e491d9803a0"
+    },
+    "viewportDiff": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/VIEWPORT_FINAL.diff",
+      "bytes": 4593,
+      "sha256": "f56a83fa9d05a141ccb52104f49a39e19d2a278de687d91ccc051ebb41277487"
+    },
+    "testsDiff": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/FAITHFUL_ADDITIONS.diff",
+      "bytes": 56526,
+      "sha256": "44852108c4cbf5130b71907d4e828b6dde27fac570af6ddee7da6f75bf571551"
+    },
+    "post19CollectorDelta": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet-v2/COLLECTOR_AFTER_19_CONTROLS.diff",
+      "bytes": 8835,
+      "sha256": "9a9eec9f9951a1df0ab69e4afa7ff424aceef82df465967d5addc64a36a0368e"
+    },
+    "testedCollector": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/collector-tested-2c49bbe4.py",
+      "bytes": 77002,
+      "sha256": "2c49bbe45d56ef2793516657862831e042d32bde546e25927b38d4135b507491"
+    },
+    "actual19ControlsStdout": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/collector-boundary.stdout",
+      "bytes": 281,
+      "sha256": "985c07fd5f1ff22aa24613ff548144f5c0306d7891beaab2176f195753088eae"
+    },
+    "actual19ControlsStderr": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/collector-boundary.stderr",
+      "bytes": 2784,
+      "sha256": "5a04c9d0421275c60aa3aca4aee6282c68e1c8fae68a24285859d0bf08a34903"
+    },
+    "sourceOnlyAdmission": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet-v2/source-only-admission.json",
+      "bytes": 7844,
+      "sha256": "4b3bc52360fd1470ab36c39a9b5e012c8cc57e7f99bc8e2ddb3986be3f36afcb"
+    },
+    "initialSyntaxReceipt": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/SYNTAX_ONLY.json",
+      "bytes": 1786,
+      "sha256": "3fc6f0b7073fc5e0cdd20dc00cdcf8a841a2ccc44b65f314fcb09da288286802"
+    },
+    "finalTestSyntaxLog": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/final-test-syntax.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "finalSourceAdmissionLog": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/final-source-admission.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "appendBound": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/INSPECTOR_SAMPLE_APPEND_BOUND.diff",
+      "bytes": 522,
+      "sha256": "e32d7b195a8ccd337586c64d4668f3b6022fb1ee7040c1051d6e4f36d2835142"
+    },
+    "inspectorBoundReceipt": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/INSPECTOR_PASSIVE_OBSERVATION_SOURCE.json",
+      "bytes": 869,
+      "sha256": "305330791ebeedbed10c40713066f51cffe8bfed5133d8598187b9ca708a71b5"
+    },
+    "compositionRehearsal": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/SOURCE_COMPOSITION_REHEARSAL.json",
+      "bytes": 2108,
+      "sha256": "a4ddd361b7cf1ddabee6c42991660d2db85eeb6c2ac5ba11f120f7a3ccfb54a0"
+    },
+    "compositionCandidate": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/Faithful_COMPOSITION_CANDIDATE_ONLY.swift",
+      "bytes": 282237,
+      "sha256": "92c09ee7e8227cde2a94dc26daf5e56ba6ee9268565586d877183fe64bcf9eb0"
+    },
+    "peerReview": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/INDEPENDENT_PEER_REVIEW.json",
+      "bytes": 1209,
+      "sha256": "5434e0edbe7f82e38cb1d26de7a79b3a96c27fc292402e3b85271af5e6d3ae8f"
+    },
+    "completionControls": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet-v2/CompletionCohortControls.py",
+      "bytes": 10195,
+      "sha256": "4f0bcce3f4cf8a31d20212cd5919191fd55f4d31da0af25134ffd153fd5ae355"
+    },
+    "completionControlsStdout": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet-v2/completion-cohort.stdout",
+      "bytes": 330,
+      "sha256": "6433dde10e7b9087c97a401745dd52220d9a848ef43efde69f98bd05c1bac912"
+    },
+    "completionControlsStderr": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet-v2/completion-cohort.stderr",
+      "bytes": 1713,
+      "sha256": "f665bff9be73dbba9fdf37ff67bbca0728dacddf7e3d13ccf5845d37aa81978b"
+    },
+    "completionJoinDelta": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet-v2/COMPLETION_JOIN.diff",
+      "bytes": 1139,
+      "sha256": "6b2014d5eaff99a0fe52a6dc3c766a7c584675e9033d579f711953fdd7dc56fe"
+    },
+    "actorDeclarationReview": {
+      "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet-v2/ACTOR_DECLARATION_REVIEW.json",
+      "bytes": 928,
+      "sha256": "fa1498caedbd5f0856779e6f13ffbdc30d9adec74a1edd8b23d85678d9d33f2b"
+    }
+  },
+  "actualControls": {
+    "count": 19,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "testedCollectorSHA256": "2c49bbe45d56ef2793516657862831e042d32bde546e25927b38d4135b507491",
+    "currentCollectorNotRelabeledAsTested": true,
+    "unchangedControlsReplayed": false,
+    "meaning": "synthetic evidence-boundary controls only"
+  },
+  "sourceOnlyAdmission": "2 actual additive declarations and36 exact current input byte witnesses; no app/UI execution",
+  "originalReaderPrefixExact": true,
+  "workflowReadiness": {
+    "workflowCreated": false,
+    "nativeActivationAuthorized": false,
+    "inputs": "UNFINALIZED",
+    "remainingConcreteSteps": [
+      "Root final collector/test review and any newly affected control",
+      "Source-aware integration with qualified Library/Reader source, preserving all additions",
+      "Bind actual integrated Source/Vendor/project/test trees and exact app/UI binary/toolchain/device inputs",
+      "Repin original hq-stage2 source-only binding to that integrated source without changing engine/artifact/vendor gates",
+      "Approve one dedicated original Apple workflow and source/API packet; one push run/one watcher only"
+    ]
+  },
+  "acceptanceNotClaimed": [
+    "Native116",
+    "Release114",
+    "physical iPad",
+    "exact first pixel",
+    "SQL wait",
+    "continuous main actor slices/layout hitches before actual trace review",
+    "full row body rendering",
+    "exact100/500/2000 when only natural at-least counts exist",
+    "uninstrumented production p95",
+    "PERF03 candidate speedup"
+  ],
+  "previousIndex": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/review-packet/REVIEW_INDEX.json",
+    "sha256": "59ad97bdf180649a4f0f07e091849cea24583f22e585959d50f0a3b46cfa0f35"
+  },
+  "newCompletionControls": {
+    "count": 10,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "collectorSHA256": "d75618e44d205b1fb2843811bbff846151eef6e14ec92d9b071bdbbaafbbfca7",
+    "cases": [
+      "valid20/20/10 Reader cohort",
+      "wrong source observation join",
+      "wrong original Core request join",
+      "wrong overview document with matching suffix",
+      "wrong original card prefix",
+      "wrong overview PID",
+      "overview overlapping earlier resource epoch",
+      "valid nine Inspector outcomes",
+      "missing nine-Inspector outcome",
+      "duplicated nine-Inspector outcome"
+    ],
+    "scope": "synthetic protocol controls; no native acceptance artifacts emitted",
+    "old19Replayed": false
+  }
+}

@@ -27,6 +27,9 @@ actor OtzariaDatabaseBootstrapService {
             fraction: 0.01,
             detail: String(localized: "bootstrap.status.connecting")
         ))
+        let pinnedReleaseID = try OtzariaLibraryReleaseClient.releaseLookup(
+            environment: ProcessInfo.processInfo.environment
+        ).expectedReleaseID
         let storage = try OtzariaDatabaseStorage()
         currentStorage = storage
         try storage.prepareDirectories()
@@ -34,7 +37,8 @@ actor OtzariaDatabaseBootstrapService {
         do {
             release = try await releaseClient.fetchLatestRelease()
         } catch {
-            guard OtzariaDataProfileRegistry.activeProfileID == OtzariaDataProfileRegistry.productionID,
+            guard pinnedReleaseID == nil,
+                  OtzariaDataProfileRegistry.activeProfileID == OtzariaDataProfileRegistry.productionID,
                   let cached = try OtzariaDatabaseDownloader.resumableProductionRelease(
                       workspaceURL: storage.downloadsRoot
                   ) else {
@@ -55,7 +59,7 @@ actor OtzariaDatabaseBootstrapService {
 
         print(
             "[OtzariaBootstrap] release tag=\(release.tag) id=\(release.id) " +
-            "assetId=\(release.asset.id) compressedSize=\(release.asset.compressedSize) " +
+            "assetId=\(release.asset.id) compressedSize=\(release.compressedSize) " +
             "resumeFrom=\(existingPart)"
         )
 
@@ -106,7 +110,7 @@ actor OtzariaDatabaseBootstrapService {
             }.value
             verificationElapsed = Date().timeIntervalSince(verificationStarted)
             print(
-                "[OtzariaBootstrap] download verified bytes=\(release.asset.compressedSize) " +
+                "[OtzariaBootstrap] download verified bytes=\(release.compressedSize) " +
                 "sha256=\(release.expectedSHA256 == nil ? "not supplied" : "matched")"
             )
         } catch let error as OtzariaDatabaseBootstrapError {

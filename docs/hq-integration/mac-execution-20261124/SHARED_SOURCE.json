@@ -1,0 +1,28 @@
+{
+  "schema": "otzaria.mac-shared-source/1",
+  "application_source_sha": "3c5a57bea389f6223b4636c45705bb62f502add2",
+  "application_trees": {
+    "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
+    "Vendor": "957773bdbf127855cbe8c16d1be50fe436564157",
+    "Maktabah.xcodeproj": "4e5e8ebf269310c48497ebf4d41c516e9110af78",
+    "Maktabah-iOSUITests": "776a2c129db5b60efaa17aaa3e79fbb33f28dbc5"
+  },
+  "base": "d440fafa617f07caf25c94be1616911b6304119c",
+  "retained_union_product": "7d5510dd29af2b66d740de136352916868c341ed",
+  "imported_source": "73cbc16722ea33f3600ba19f1ca35dbd1a4d9812",
+  "imported_paths": {
+    "Vendor/HanlinSDK": "f8cf6ca543c5ceed05a60141644664c93e4565b4",
+    "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
+    "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift": "0ea8241d50712b3e01f2790ae7927047df0e49a4"
+  },
+  "unchanged_source_tree": "403837f9e944b0839c7c638a40bec72a190747b4",
+  "reused_evidence": {
+    "core": "4194 component cases at3f38f130; no replay or app acceptance inferred",
+    "library": "6 retained+1 LTR pass at documented original sources; not selected",
+    "multipart": "37 retained component controls; native install still required"
+  },
+  "runtime_status": "NOT_RUN",
+  "physical_status": "NOT_RUN",
+  "release_status": "NOT_QUALIFIED",
+  "created_at": "2026-11-24T14:50:43.329292+00:00"
+}

@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "gh",
+    "api",
+    "repos/davidpovarsky/Maktabah/actions/runs/45167025321/attempts/1/jobs?per_page=100"
+  ],
+  "exit": 0,
+  "timed_out": false,
+  "child_reaped": true,
+  "owned_group_drained": true,
+  "elapsed_seconds": 0.566900790669024,
+  "stdout": {
+    "bytes": 4872,
+    "sha256": "f686cf5a8cc66be09782d580237c4df3e2634d25517260ddab6ebb65e1c23930"
+  },
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

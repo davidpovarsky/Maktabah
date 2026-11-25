@@ -324,6 +324,7 @@ private extension View {
                         UINotificationFeedbackGenerator().notificationOccurred(.success)
                     } catch {
                         UINotificationFeedbackGenerator().notificationOccurred(.error)
+                        throw error
                     }
                 },
                 onDelete: { id in

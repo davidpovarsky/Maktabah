@@ -169,6 +169,9 @@ struct iPadLayout: View {
                 .modifier(MaktabahNativeRoutingSurface(kind: .reader))
                 .modifier(Exact9401ViewerToolbar(manager: bManager))
         }
+        .overlay {
+            ReaderLibrarySearchMorph(manager: bManager, sidebar: sidebar)
+        }
         .navigationSplitViewStyle(.balanced)
         .background(Color.appBackground.ignoresSafeArea())
         .environment(\.chavrusaReaderSidebar, sidebar)

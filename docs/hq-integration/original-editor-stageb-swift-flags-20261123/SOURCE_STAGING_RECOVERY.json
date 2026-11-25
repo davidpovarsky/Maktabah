@@ -1,0 +1,9 @@
+{
+  "operation": "git add exact helper and new owned evidence directory",
+  "initial_status": "REFUSED_NEW_PACKET_OUTSIDE_SPARSE_DEFINITION",
+  "initial_product_edits_preserved": true,
+  "initial_helper_staged_only": true,
+  "recovery": "git sparse-checkout add exact new owned docs directory, then stage same allowlist",
+  "source_or_control_failure": false,
+  "tests_replayed": false
+}

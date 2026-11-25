@@ -1,0 +1,21 @@
+{
+  "status": "ROOT_SOURCE_REVIEW_ACCEPTED_NOT_NATIVE_PASS",
+  "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+  "patch_sha256": "62271d1b3073707a28f371ff5253f399ecf51a1aa59accdf710c40e142aa4989",
+  "actual_prior_failure": {
+    "run_id": 45124554050,
+    "snapshot_sha256": "beedf997d6b8f8ac3286309011c0425bb0f856417144e16f0a817d99253b63f8",
+    "full_selector_contains_target": false,
+    "selector_max_x": 925.0,
+    "target_max_x": 925.0000000000001,
+    "difference": "one representable Double ULP",
+    "window_contains_whole_target": true
+  },
+  "retained_image_sha256": "7a15ec73d19319482423674d95faa157c9f857a22ac49bfe4b23c3ac4b15d8b1",
+  "image_is_later_teardown_not_failure_geometry": true,
+  "source_contract": "Exact original midpoint interaction with unique enabled original parent/child, finite positive frames, whole target in actual window, point in selector/window, live hittability and current target/window frames",
+  "raw_whole_selector_containment_remains_diagnostic": true,
+  "visual_full_control_acceptance_claimed": false,
+  "original_100_transitions_preserved": true,
+  "runtime_replay": false
+}

@@ -178,10 +178,34 @@ def validate_framework_metadata(config, item, artifact, run, job):
             "scope": "EXACT_ARTIFACT_AND_SUCCESSFUL_FRAMEWORK_JOB_NOT_WHOLE_WORKFLOW"}
 
 
+def staged_input(filename):
+    """Read an optional host-transferred input, retaining exact digest checks."""
+    value = os.environ.get("OTZARIA_STAGED_INPUTS")
+    if value is None:
+        return None
+    base = Path(value)
+    require(base.is_absolute() and base.is_dir() and not base.is_symlink(),
+            "Invalid staged input directory")
+    manifest_path = base / "manifest.json"
+    require(manifest_path.is_file() and not manifest_path.is_symlink(),
+            "Missing staged input manifest")
+    manifest = json.loads(manifest_path.read_text())
+    require(manifest.get("schema_version") == 1 and manifest.get("repository") == REPOSITORY,
+            "Wrong staged input repository or schema")
+    require(PurePosixPath(filename).name == filename, "Invalid staged input filename")
+    path = base / filename
+    record = manifest.get("files", {}).get(filename, {})
+    require(path.is_file() and not path.is_symlink() and path.stat().st_size == record.get("bytes")
+            and digest(path) == record.get("sha256"), "Staged input digest mismatch: " + filename)
+    return path
+
+
 def framework_metadata(config, item, cache, metadata_cache):
     def fetch(endpoint, filename):
         if endpoint not in metadata_cache:
-            data = json.loads(capture("gh", "api", "repos/" + REPOSITORY + "/actions/" + endpoint))
+            staged = staged_input(filename)
+            data = (json.loads(staged.read_text()) if staged is not None else
+                    json.loads(capture("gh", "api", "repos/" + REPOSITORY + "/actions/" + endpoint)))
             (cache / filename).write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
             metadata_cache[endpoint] = data
         return metadata_cache[endpoint]
@@ -217,7 +241,10 @@ def preflight(config):
     result = {"checkout_sha": capture("git", "rev-parse", "HEAD"), "application_source_sha": config["application_source_sha"],
               "validator_sha256": digest(Path(__file__)), "inputs_sha256": digest(INPUTS),
               "workflow_sha256": digest(ROOT / ".github/workflows/sefaria-embedded-validation.yml"),
-              "project_sha256": digest(ROOT / "Maktabah.xcodeproj/project.pbxproj"), "application_trees": {}}
+              "project_sha256": digest(ROOT / "Maktabah.xcodeproj/project.pbxproj"),
+              "canonical_project_sha256": hashlib.sha256(subprocess.check_output(
+                  ["git", "show", "HEAD:Maktabah.xcodeproj/project.pbxproj"], cwd=ROOT)).hexdigest(),
+              "application_trees": {}}
     expected = os.environ.get("EXPECTED_CHECKOUT_SHA")
     require(not expected or result["checkout_sha"] == expected, "Wrong immutable checkout")
     for path, expected_tree in config["application_trees"].items():
@@ -287,9 +314,13 @@ def restore(config, report):
         producer = (framework_metadata(config, item, cache, metadata_cache)
                     if item["name"] in FRAMEWORK_ARTIFACTS else None)
         archive = cache / (str(item["id"]) + ".zip")
-        with archive.open("wb") as output:
-            subprocess.run(["gh", "api", f"repos/davidpovarsky/Maktabah/actions/artifacts/{item['id']}/zip"],
-                           cwd=ROOT, stdout=output, check=True, timeout=600)
+        staged = staged_input(archive.name)
+        if staged is not None:
+            shutil.copyfile(staged, archive)
+        else:
+            with archive.open("wb") as output:
+                subprocess.run(["gh", "api", f"repos/davidpovarsky/Maktabah/actions/artifacts/{item['id']}/zip"],
+                               cwd=ROOT, stdout=output, check=True, timeout=600)
         actual = digest(archive)
         require(actual == item["sha256"], "Artifact ZIP digest mismatch: " + item["name"])
         role = ("BASELINE_ONLY_REBUILT_BEFORE_LINK" if item.get("destination") == "Vendor/ZayitSearchPort/build"
@@ -333,14 +364,15 @@ def restore(config, report):
                                  "jsbundle_sha256": config["resource_bundle_sha256"], "no_book_database_payload": True}
 
 
-def logged(command, filename, report, cwd=None):
+def logged(command, filename, report, cwd=None, env=None):
     report.setdefault("commands", []).append(command)
     path = OUT / filename
     with path.open("w", encoding="utf-8") as log:
-        result = subprocess.run(command, cwd=cwd or ROOT, stdout=log, stderr=subprocess.STDOUT)
+        result = subprocess.run(command, cwd=cwd or ROOT, stdout=log, stderr=subprocess.STDOUT, env=env)
     print(f"command_exit={result.returncode} log={path.relative_to(ROOT)}", flush=True)
     print("\n".join(path.read_text(errors="replace").splitlines()[-100:]), flush=True)
     require(result.returncode == 0, "Focused command failed; inspect " + str(path.relative_to(ROOT)))
+    return result.returncode
 
 
 def rebuild_matching_zayit_framework(report):
@@ -417,8 +449,16 @@ def prepare_react_sources(config, report):
     logged(["chmod", "-R", "+x", str(vendor / "node_modules/.bin"), str(vendor / "node_modules/expo/bin")], "native-script-permissions.log", report)
 
 
-def install_real_pods(report):
-    logged(["pod", "install"], "pod-install.log", report)
+def install_real_pods(report, original_editor=False):
+    ruby_module = ruby_context = None
+    if original_editor:
+        ruby_module = runpy.run_path(str(ROOT / "Scripts/CI/hq-original-editor-distribution.py"))
+        ruby_context = ruby_module["prepare_pod_ruby_context"](ROOT, OUT)
+    pod_exit = logged(["pod", "install"], "pod-install.log", report,
+                      env=ruby_context["environment"] if ruby_context else None)
+    if ruby_context:
+        report["native_context"]["original_editor_pod_ruby_context"] = ruby_module["admit_pod_ruby_context"](
+            ROOT, ruby_context, pod_exit)
     require((ROOT / "Maktabah.xcworkspace/contents.xcworkspacedata").is_file(), "Real Pods workspace missing")
     require((ROOT / "Pods/Headers/Public/React-Core/React/RCTBridgeModule.h").is_file()
             or any(p.is_file() for p in (ROOT / "Pods").rglob("RCTBridgeModule.h")), "Real React header was not restored")
@@ -458,6 +498,82 @@ def prepare_matching_embedded_bundle(config, report):
     report["embedded_bundle_build"].update(historical_bundle_sha256=historical, bundle_sha256=digest(bundle),
         overlay_source_sha256={path: digest(ROOT / path) for path in config["embedded_js_overlay_paths"]})
     report["resource_inputs"]["jsbundle_sha256"] = digest(bundle)
+
+
+def relocate_verified_package_alternates(report):
+    """Relocate same-artifact Git object references after pinned resolution."""
+    artifacts = [a for a in report["artifact_inputs"] if a.get("tar") == "SourcePackages.tar"]
+    require(len(artifacts) == 1 and artifacts[0]["verified_sha256"] == artifacts[0]["sha256"],
+            "Package archive was not verified before relocation")
+    packages = ROOT / "build/SourcePackages"
+    require(packages.is_dir() and not packages.is_symlink(), "Missing regular package input root")
+    base = packages.resolve(strict=True)
+    legacy = PurePosixPath("/Users/runner/work/Maktabah/Maktabah/build/SourcePackages/repositories")
+    repositories, checkouts = base / "repositories", base / "checkouts"
+
+    def owned(path):
+        require(path.is_relative_to(base), "Package Git metadata escaped its owned root")
+        require(not any(p.is_symlink() for p in [path, *path.parents] if p.is_relative_to(base)),
+                "Package Git metadata contains a symlink")
+        require(path.resolve(strict=True).is_relative_to(base), "Package Git metadata resolved outside its root")
+        return path
+
+    owned(repositories)
+    owned(checkouts)
+    rows, pending = [], []
+    for checkout in sorted(checkouts.iterdir()):
+        identity = checkout.name.casefold()
+        require(identity in report["package_pins"], "Unpinned package checkout: " + checkout.name)
+        alternate = owned(checkout / ".git/objects/info/alternates")
+        head_file = owned(checkout / ".git/HEAD")
+        original_head_bytes = head_file.read_bytes()
+        original_head = original_head_bytes.decode("ascii").strip()
+        require(re.fullmatch(r"[0-9a-f]{40}", original_head) is not None
+                and original_head == report["package_pins"][identity],
+                "Package HEAD is not the pinned detached commit: " + checkout.name)
+        raw = alternate.read_text()
+        require(raw.endswith("\n") and len(raw.splitlines()) == 1, "Ambiguous package object alternate")
+        old = PurePosixPath(raw.strip())
+        require(old.is_absolute() and ".." not in old.parts, "Unsafe package object alternate")
+        relocated = old.is_relative_to(legacy)
+        if relocated:
+            suffix = old.relative_to(legacy)
+            require(len(suffix.parts) == 2 and suffix.parts[-1] == "objects",
+                    "Unexpected legacy package repository layout")
+            target = owned(repositories / suffix)
+        else:
+            target = owned(Path(str(old)))
+        require(target.is_dir() and target.parent.parent == repositories and target.name == "objects",
+                "Package alternate does not select an extracted repository object store")
+        require(not (target / "info/alternates").exists()
+                and not any(p.is_symlink() for p in target.rglob("*")),
+                "Nested or symlinked repository object references are unsupported")
+        require(capture("git", "--git-dir", str(target.parent), "cat-file", "-t", original_head) == "commit",
+                "Pinned package object is not an extracted commit")
+        row = {"checkout": str(checkout.relative_to(base)), "old_object_path": str(old),
+               "new_object_path": str(target), "relocated": relocated, "original_head": original_head,
+               "pinned_revision": report["package_pins"][identity],
+               "alternate_before_sha256": hashlib.sha256(raw.encode()).hexdigest(),
+               "head_before_sha256": hashlib.sha256(original_head_bytes).hexdigest()}
+        rows.append(row)
+        pending.append((checkout, alternate, head_file, original_head_bytes, target, row))
+    require({p.name.casefold() for p in checkouts.iterdir()} == set(report["package_pins"]),
+            "Resolved package inventory differs from pinned identities")
+    for checkout, alternate, head_file, original_head_bytes, target, row in pending:
+        if row["relocated"]:
+            alternate.write_text(str(target) + "\n")
+        require(head_file.read_bytes() == original_head_bytes, "Relocation changed the original HEAD bytes")
+        head = capture("git", "-C", str(checkout), "rev-parse", "HEAD")
+        require(head == row["original_head"] == row["pinned_revision"],
+                "Relocated package commit differs from the original pin")
+        require(not capture("git", "-C", str(checkout), "status", "--porcelain"),
+                "Relocated package source is dirty")
+        row.update(verified_head=head, status="CLEAN", alternate_after_sha256=digest(alternate),
+                   head_after_sha256=digest(head_file))
+    report["package_alternates_relocation"] = rows
+    (OUT / "package-alternates-relocation.json").write_text(json.dumps(
+        {"status": "PASS", "source_changes": 0, "verified_packages": len(rows),
+         "relocated_alternates": sum(r["relocated"] for r in rows), "packages": rows}, indent=2) + "\n")
 
 
 def verify_actual_sources(report):
@@ -649,14 +765,28 @@ def main():
                     help="Build-time original data profile for real cold URL Simulator acceptance")
     ap.add_argument("--original-editor-admission",
                     help="Exact reviewed SDK distribution input; optional Debug Simulator app target only")
+    ap.add_argument("--original-editor-routes", action="store_true",
+                    help="Admit the committed Debug Simulator and both Release SDK distributions")
     ap.add_argument("--prepare-inputs-only", action="store_true",
                     help="Restore and verify the original inputs for a later Release build; no Debug rebuild")
     ap.add_argument("--preparation-evidence-dir",
                     help="Separate build/ evidence directory required for input-only preparation")
+    ap.add_argument("--prepared-inputs-manifest",
+                    help="Exact local capture from an actual successful prior app/UI-runner build")
+    ap.add_argument("--prepared-inputs-sha256", help="Reviewed SHA256 of that immutable capture")
     args = ap.parse_args()
     require(not args.simulator_data_profile or
             (args.build_for_testing and not args.preflight_only and not args.prepare_inputs_only),
             "Embedded test profile requires the actual Debug Simulator test build")
+    require(bool(args.prepared_inputs_manifest) == bool(args.prepared_inputs_sha256),
+            "Prepared input reuse requires both the capture and its reviewed SHA256")
+    require(not (args.original_editor_routes and args.original_editor_admission),
+            "Select one original SDK admission mechanism")
+    require(not args.original_editor_routes or (args.build_for_testing and not args.preflight_only),
+            "Original SDK routes require native build inputs")
+    require(not args.prepared_inputs_manifest or ((args.original_editor_admission or args.original_editor_routes)
+            and args.build_for_testing and not args.preflight_only and not args.prepare_inputs_only),
+            "Prepared inputs may only continue into original SDK admission and a real native build")
     require(not args.original_editor_admission or
             (args.build_for_testing and not args.preflight_only and not args.prepare_inputs_only),
             "Original editor qualification requires the real Debug Simulator test build")
@@ -686,12 +816,17 @@ def main():
         report["sdk_path"] = capture("xcrun", "--sdk", "iphonesimulator", "--show-sdk-path")
         report["sdk_version"] = capture("xcrun", "--sdk", "iphonesimulator", "--show-sdk-version")
         report["developer_dir"] = os.environ.get("DEVELOPER_DIR") or capture("xcode-select", "-p")
-        prepare_original_hanlin(config, report)
-        prepare_react_sources(config, report)
-        restore(config, report)
-        rebuild_matching_zayit_framework(report)
-        prepare_matching_embedded_bundle(config, report)
-        install_real_pods(report)
+        if args.prepared_inputs_manifest:
+            prepared = runpy.run_path(str(ROOT / "Scripts/CI/mac-prepared-inputs.py"))
+            prepared["admit"](ROOT, args.prepared_inputs_manifest, args.prepared_inputs_sha256, config, report)
+            prepare_original_hanlin(config, report, verify_only=True)
+        else:
+            prepare_original_hanlin(config, report)
+            prepare_react_sources(config, report)
+            restore(config, report)
+            rebuild_matching_zayit_framework(report)
+            prepare_matching_embedded_bundle(config, report)
+        install_real_pods(report, original_editor=bool(args.original_editor_admission or args.original_editor_routes))
         for framework, header in [("Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework", "otzaria_search_engine.h"),
                                   ("Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework", "maktabah_zayit_search.h")]:
             logged(["bash", "Scripts/CI/verify-xcframework.sh", framework, header], header + ".log", report)
@@ -705,15 +840,20 @@ def main():
         require(pins(ROOT / "Maktabah.xcworkspace/xcshareddata/swiftpm/Package.resolved") == report["package_pins"], "Workspace changed committed package revisions")
         shutil.copyfile(lock, OUT / "resolved-Package.resolved")
         shutil.copyfile(ROOT / "Maktabah.xcworkspace/xcshareddata/swiftpm/Package.resolved", OUT / "workspace-Package.resolved")
+        relocate_verified_package_alternates(report)
         verify_actual_sources(report)
         verify_selected_zayit_files(report)
         authorize_pinned_equatable_macro(report)
+        original_editor = None
+        if args.original_editor_routes:
+            route_module = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_sdk_routes.py"))
+            original_editor = runpy.run_path(str(ROOT / "Scripts/CI/hq-original-editor-distribution.py"))
+            admitted_editor = route_module["prepare"](ROOT, report, OUT, logged)
         if args.prepare_inputs_only:
             prepare_original_hanlin(config, report, verify_only=True)
             report.update(status="PREPARED_ORIGINAL_INPUTS_ONLY", scope="RELEASE_INPUT_RESTORATION",
                           app_build_executed=False, runtime="NOT_RUN", signing=False)
             return 0
-        original_editor = None
         if args.original_editor_admission:
             original_editor = runpy.run_path(str(ROOT / "Scripts/CI/hq-original-editor-distribution.py"))
             admitted_editor = original_editor["prepare"](

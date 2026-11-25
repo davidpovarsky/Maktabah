@@ -1,10 +1,9 @@
 {
-  "application_source_sha": "8cdc0c0833154e71af5047983c47115db0005e35",
+  "application_source_sha": "d3da55417a30e9a06b0255e2d0b561955034b260",
   "application_trees": {
-    "Maktabah-iOSUITests": "a6658ba6a164c487cb8a44f08408a1f7b8671e8c",
-    "Maktabah.xcodeproj": "236144dc9ce640633fa34498019031a383b6151e",
-    "Source": "a926fe3f9bb2eeb4fef61f02f37e3e8a044a09e3",
-    "Vendor": "ec3ae609ed9117facfe4dcf7e068ef2c2d15bcf7"
+    "Maktabah.xcodeproj": "4e5e8ebf269310c48497ebf4d41c516e9110af78",
+    "Source": "f8d8e60307660433e9db06ec84ff62a6b224962b",
+    "Vendor": "957773bdbf127855cbe8c16d1be50fe436564157"
   },
   "artifacts": [
     {
@@ -71,8 +70,15 @@
     "Vendor/ZayitSearchPort/Rust": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8",
     "Vendor/ZayitSearchPort/Upstream": "db6dc60006a51db83ec2c6feed1158e4da1a617b"
   },
-  "hanlin_gitlink": "a774de24926ca13d563c45c42917d03b8c04296f",
-  "otzaria_test_additions_sha256": "98da3a49487ddeae642be0f0d37947f1320cb864ebdfcc83dde10fe9f29e8839",
+  "hanlin_gitlink": "f8cf6ca543c5ceed05a60141644664c93e4565b4",
+  "mac_shared_composition": {
+    "historic_receipts_preserved": true,
+    "manifest": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
+    "manifest_sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
+    "new_runtime_acceptance_required": true,
+    "previous_application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed"
+  },
+  "otzaria_test_additions_sha256": "b27a7af36c846e3456db28c4f430f859b55d6160516f8946539f1b823083cc0a",
   "rebuild_zayit_framework": false,
   "resource_bundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",
   "resource_producer_sha": "70810eec46ad1fec6f30d983bf31e5f922dacb61",

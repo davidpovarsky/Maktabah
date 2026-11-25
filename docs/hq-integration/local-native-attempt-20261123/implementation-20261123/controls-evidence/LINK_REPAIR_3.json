@@ -1,0 +1,5 @@
+{
+  "reason": "Installed SwiftPM produces one combined module object plus per-file intermediates. Link the actual combined product once, excluding the duplicate intermediate objects. No source edit.",
+  "actual_original_core_product": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Products/Debug-linux-aarch64/OtzariaActionCore.o",
+  "removed_duplicate_intermediates": 29
+}

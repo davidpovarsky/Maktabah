@@ -1,0 +1,7 @@
+{
+  "reason": "Peer-found fresh-install gap: reject external references and occupied rebuild names before fresh creation as well as v1 migration",
+  "original_candidate_sha256": "248d0d96806d5e6ecda4755d913d6f450732bef864bfcb6bc2d87300cee4d10b",
+  "current_sha256": "c961ed6c51a1344a19951ed2239626bfbf512707a52f841d27258633b847b4f6",
+  "diff_sha256": "560227cea407f8a911d758149718922b823f057abf96dfc07c1077b2edc2ae7c",
+  "executed_databases": 0
+}

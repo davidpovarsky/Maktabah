@@ -1,0 +1,15 @@
+test_archive_bytes_cannot_replace_manifest_asset_bytes (__main__.BootstrapEvidenceControls.test_archive_bytes_cannot_replace_manifest_asset_bytes) ... ok
+test_authentic_v32_direct_asset_keeps_equal_archive_identity (__main__.BootstrapEvidenceControls.test_authentic_v32_direct_asset_keeps_equal_archive_identity) ... ok
+test_authentic_v40_remote_manifest_is_distinct_from_full_archive (__main__.BootstrapEvidenceControls.test_authentic_v40_remote_manifest_is_distinct_from_full_archive) ... ok
+test_changed_manifest_bytes_are_rejected_before_decoding (__main__.BootstrapEvidenceControls.test_changed_manifest_bytes_are_rejected_before_decoding) ... ok
+test_different_official_release_is_rejected (__main__.BootstrapEvidenceControls.test_different_official_release_is_rejected) ... ok
+test_manifest_hash_cannot_replace_archive_hash (__main__.BootstrapEvidenceControls.test_manifest_hash_cannot_replace_archive_hash) ... ok
+test_native_sqlite_failure_cannot_be_relabelled_by_pass_boolean (__main__.BootstrapEvidenceControls.test_native_sqlite_failure_cannot_be_relabelled_by_pass_boolean) ... ok
+test_part_digest_must_match_actual_official_asset (__main__.BootstrapEvidenceControls.test_part_digest_must_match_actual_official_asset) ... ok
+test_restore_count_change_is_rejected (__main__.BootstrapEvidenceControls.test_restore_count_change_is_rejected) ... ok
+test_three_original_phases_require_actual_nonzero_resume (__main__.BootstrapEvidenceControls.test_three_original_phases_require_actual_nonzero_resume) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.002s
+
+OK

@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "base": "3e7193cee9931adac1d692e80d66e84c964c123f",
+  "old_source_controls": 8,
+  "old_source_controls_reexecuted": 0,
+  "old_source_receipt_sha256": "4784003d369dab84c243b56c5a140e9d5fb40020f8e9866f0de5eead24f590fc",
+  "unchanged_control_inputs": [
+    {
+      "path": "Scripts/CI/hq-original-editor-distribution.py",
+      "sha256": "c5e933f4c5f411426d6223c6fd35b89937e5d5c02dd21a09d4ee4eab8f6e1a3d",
+      "unchanged_from": "3e7193cee9931adac1d692e80d66e84c964c123f"
+    },
+    {
+      "path": "Scripts/CI/original_editor_continuation_admission.py",
+      "sha256": "94e70b21fb323670e81a6903ee7a253d9b3cdf9183e9082f548905827e5d57ef",
+      "unchanged_from": "3e7193cee9931adac1d692e80d66e84c964c123f"
+    },
+    {
+      "path": "Scripts/CI/original_editor_signed_consumer_admission.py",
+      "sha256": "eca9a44d0f2b0f7872a089e640c857c3c33925684dee630ddaa1487c61fe5e16",
+      "unchanged_from": "3e7193cee9931adac1d692e80d66e84c964c123f"
+    },
+    {
+      "path": "docs/hq-integration/original-editor-stageb-20261123/retained-original-producer.json",
+      "sha256": "23a38d1a3f1a4a2d66497ed79adfb3a3c8f184b48bc4f329e64f789f7d7088b4",
+      "unchanged_from": "3e7193cee9931adac1d692e80d66e84c964c123f"
+    },
+    {
+      "path": "tools/verify-original-editor-signed-consumer-admission-controls.py",
+      "sha256": "58aa71f91c4bb469dc1c9969e1d2d8ffa29a69568253d78d6353525e0a097689",
+      "unchanged_from": "3e7193cee9931adac1d692e80d66e84c964c123f"
+    }
+  ],
+  "native_runtime_admission_controls": 6,
+  "native_runtime_admission_control_result_sha256": "957f82f5c858e0cec9d3b093c6f2bdfb0ff4712930268263e14f6ce23bc07e88",
+  "bounded_local_control_invocations": 2,
+  "first_invocation": "Case results unrecorded because final report write failed on wrong owner UID; stdout/stderr/exit retained. Ownership repaired only on newly owned packet/input. Second invocation produced six authentic PASS receipts.",
+  "admission_sha256": "3d5e85feb0ae6ea6e60f3fa8c5506d0cafdb8c140ecd7d670ded3ad82c3701fe",
+  "application_and_UI_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "unchanged_product_trees": {
+    "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "ca36ba13f1fd900adf528a3e404fed6a66290b6b"
+  },
+  "active_workflow_unchanged_sha256": "af09cd64dd4d662239040f2662a468378734e325c2ae39cafe3a9d10d871539b",
+  "candidate_workflow_sha256": "4b23096007c715e673c2d31297a3984ad995e77dc95754f47fa6a10e282ac146",
+  "workflow_delta": "Only the two exact push branch and job-ref strings; no active workflow edit or dispatch.",
+  "source_typecheck_or_native_UI": "NOT_RUN",
+  "original_producer_rebuilt": false,
+  "SDK_actual_runtime_run": 45123300449
+}

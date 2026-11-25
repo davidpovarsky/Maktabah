@@ -1,0 +1,3 @@
+<internal:/Users/runner/hostedtoolcache/Ruby/3.3.14/arm64/lib/ruby/3.3.0/rubygems/core_ext/kernel_require.rb>:136:in `require': cannot load such file -- xcodeproj (LoadError)
+	from <internal:/Users/runner/hostedtoolcache/Ruby/3.3.14/arm64/lib/ruby/3.3.0/rubygems/core_ext/kernel_require.rb>:136:in `require'
+	from Scripts/CI/hq-original-editor-app-target.rb:6:in `<main>'

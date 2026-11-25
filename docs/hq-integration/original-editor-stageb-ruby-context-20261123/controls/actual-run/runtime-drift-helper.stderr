@@ -1,0 +1,2 @@
+/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/Scripts/CI/hq-original-editor-ruby-context.rb:126:in `launch': Wrong original Ruby runtime (RuntimeError)
+	from /mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/Scripts/CI/hq-original-editor-ruby-context.rb:159:in `<main>'

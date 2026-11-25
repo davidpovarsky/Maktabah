@@ -1,0 +1,13 @@
+command_exit=0 log=build/hq-stage2/default-path.log
+original-default-logger
+command_exit=23 log=build/hq-stage2/original-nonzero.log
+
+{
+  "status": "PASS",
+  "scope": "PORTABLE_RUBY_AND_PYTHON_MECHANISM_CONTROLS_ONLY",
+  "apple_cocoapods_native": "NOT_RUN",
+  "passed": 6,
+  "required": 6,
+  "assertions": 42
+}
+RESULT_SHA256 4afad3517623d47b5ec66dc38e8f78f40542c6b8d134ce37fae9381f9c78841a

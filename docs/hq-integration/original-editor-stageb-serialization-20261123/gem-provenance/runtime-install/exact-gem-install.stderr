@@ -1,0 +1,6 @@
+/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-root/usr/lib/ruby/3.2.0/rubygems/installer.rb:715:in `verify_gem_home': You don't have write permissions for the /mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/gem-home directory. (Gem::FilePermissionError)
+	from /mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-root/usr/lib/ruby/3.2.0/rubygems/installer.rb:905:in `pre_install_checks'
+	from /mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-root/usr/lib/ruby/3.2.0/rubygems/installer.rb:303:in `install'
+	from /mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-install/install_exact.rb:8:in `block in <main>'
+	from /mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-install/install_exact.rb:4:in `each'
+	from /mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-install/install_exact.rb:4:in `<main>'

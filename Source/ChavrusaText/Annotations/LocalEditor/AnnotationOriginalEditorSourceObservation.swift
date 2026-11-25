@@ -1,4 +1,4 @@
-#if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+#if os(iOS) && canImport(AnytypeOriginalEditor)
 import Foundation
 @preconcurrency import Combine
 import AnytypeOriginalEditor
@@ -19,6 +19,8 @@ final class AnnotationOriginalEditorSourceObservation {
     private var mappingSubscription: StudyWorkspaceMappingSubscription?
     private var annotationSubscription: AnyCancellable?
     private var nativeSource: AnytypeOriginalEditorSourceLifetime?
+    private var nativeImport: AnytypeOriginalAnnotationImportSourceLifetime?
+    private var localAnnotation: AnytypeOriginalEditorLocalAnnotationSourceLifetime?
     private var localSession: AnnotationLocalEditorSession?
 
     init(annotation: Annotation, store: AnnotationStore,
@@ -98,7 +100,7 @@ final class AnnotationOriginalEditorSourceObservation {
     /// handoff the two idempotent invalidation sinks overlap without a gap.
     func bind(_ source: AnytypeOriginalEditorSourceLifetime) throws {
         try requireCurrent()
-        guard nativeSource == nil, let localSession,
+        guard nativeSource == nil, nativeImport == nil, localAnnotation == nil, let localSession,
               source.binding.annotationUUID == annotationUUID,
               source.binding.hostProfileID.utf8.elementsEqual(profileID.uuidString.utf8) else {
             throw AnnotationLocalEditorError.wrongOwner
@@ -118,10 +120,71 @@ final class AnnotationOriginalEditorSourceObservation {
         try requireCurrent()
     }
 
+    /// A pre-import saved source has no existing-object binding. Link the
+    /// actual source/presentation generations before native preparation begins.
+    func bindImport(_ source: AnytypeOriginalAnnotationImportSourceLifetime,
+                    local: AnnotationLocalEditorSession) throws {
+        do {
+            try requireCurrent()
+            guard nativeSource == nil, nativeImport == nil, localAnnotation == nil,
+                  localSession === local,
+                  source.source.annotationUUID == annotationUUID,
+                  source.source.preparedSessionID == local.id else {
+                throw AnnotationLocalEditorError.wrongOwner
+            }
+            try lifetime.bindNativeImportRetirement(source)
+            try presentationLifetime.bindNativeImportRetirement(source)
+            nativeImport = source
+            try requireCurrent()
+            guard source.isCurrent else { throw AnnotationLocalEditorError.retired }
+        } catch {
+            source.retire()
+            throw error
+        }
+    }
+
+    /// Link the canonical saved row, native draft, original DB and presentation
+    /// before the factory can suspend or dispatch any native work.
+    func bindLocalAnnotation(
+        _ source: AnytypeOriginalEditorLocalAnnotationSourceLifetime,
+        local: AnnotationLocalEditorSession,
+        snapshot: AnnotationLocalEditorSnapshot
+    ) throws {
+        do {
+            try requireCurrent()
+            guard nativeSource == nil, nativeImport == nil, localAnnotation == nil,
+                  localSession === local,
+                  source.source.annotationUUID == annotationUUID,
+                  source.source.hostProfileID.utf8.elementsEqual(profileID.uuidString.utf8) else {
+                throw AnnotationLocalEditorError.wrongOwner
+            }
+            try local.bindLocalAnnotationRetirement(source, snapshot: snapshot)
+            try lifetime.bindLocalAnnotationRetirement(source)
+            try presentationLifetime.bindLocalAnnotationRetirement(source)
+            localAnnotation = source
+            let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, local, source] event in
+                if Self.affects(event, id: id, uuid: uuid) {
+                    lifetime.retire()
+                    local.retire()
+                    source.retire()
+                }
+            }
+            annotationSubscription?.cancel()
+            annotationSubscription = next
+            try requireCurrent()
+            guard source.isCurrent else { throw AnnotationLocalEditorError.retired }
+        } catch {
+            source.retire()
+            throw error
+        }
+    }
+
     func retire() {
         lifetime.retire()
         localSession?.retire()
         nativeSource?.retire()
+        nativeImport?.retire()
+        localAnnotation?.retire()
         mappingSubscription?.cancel()
         mappingSubscription = nil
         annotationSubscription?.cancel()
@@ -145,6 +208,8 @@ final class AnnotationOriginalEditorSourceObservation {
         lifetime.retire()
         localSession?.retire()
         nativeSource?.retire()
+        nativeImport?.retire()
+        localAnnotation?.retire()
         mappingSubscription?.cancel()
         annotationSubscription?.cancel()
     }

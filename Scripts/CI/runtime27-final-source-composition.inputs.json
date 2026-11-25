@@ -1,0 +1,584 @@
+{
+  "accepted_sources": {
+    "host_import": "1ef959fc3d04de77d9abffbe7931bbf7eac0550f",
+    "multipart": "4310c29728de5bbba2dc6584642c6934d554e213",
+    "reader": "92e9df6e2daf64893c83ba13708fac4c670ae38f",
+    "stageb": "13fe6436116b37ac8a3d51d6972e6412f0f30f68",
+    "stageb_dependency_leaf": "6ba33d848bda808181e6b3174c05bac5b3fd2d94",
+    "v32_selection": "8136f2b50ea0acacc98e52bd172c73506dfa7746"
+  },
+  "application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed",
+  "application_tree": "ac6711ac48c60b4f40bda027cba0fda27431b426",
+  "application_trees": {
+    "Maktabah-iOSUITests": "ae0f9d48f43bf27f9e0a14a09736667437f13b2f",
+    "Maktabah.xcodeproj": "30dccb2b8600715f90c41e533b4646a8523e10d1",
+    "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
+    "Vendor": "ee5b415a5ccb9db9fda2b0e8d6ce3748cdeaea6e"
+  },
+  "base_application_source": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+  "dependencies": {
+    "complete_sdk_product_source": "4fd99f19b0ec361ba84ac4b2822cae10c6818f99",
+    "complete_sdk_source_candidate": "7ea121d46a48e00cbcb02e91621c75947c57f6a4",
+    "future_generated_source": "REQUIRES_AUTHENTICATED_FINAL_NATIVE_RPC_UNION_POSTIMAGES",
+    "future_lib": "REQUIRES_ACTUAL_UNION_ABI_ARTIFACT",
+    "hanlin": "ca3c91f2233bf5c77990643b29a874aac8704639",
+    "host_lock_path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+    "host_lock_sha256": "a41b340f77574fd74013ba5df160cffabab473f1941a50031d0f9025007c8c9c",
+    "swift_ai_sdk": "07431abccbfb151ca2dab67bca6cf86fcb2bd3b8"
+  },
+  "gates": [
+    {
+      "composed_app_acceptance": false,
+      "id": "qualified_core",
+      "original_methods_pass": 4185,
+      "run_id": 45246940299,
+      "source": "07431abccbfb151ca2dab67bca6cf86fcb2bd3b8",
+      "status": "PASS_EXACT_DEPENDENCY_SOURCE"
+    },
+    {
+      "composed_app_acceptance": false,
+      "id": "shared_firebase_provider_runtime",
+      "run_id": 45246154996,
+      "source": "7574b9a4a9a5372fc7a9e7323e579ec3dd610e0b",
+      "status": "PASS_EXACT_RETAINED_PROVIDER_ONLY"
+    },
+    {
+      "id": "native_rpc_union",
+      "owner": "asana_inventory/import_rpc",
+      "requires": [
+        "Native9",
+        "RPC9",
+        "generated_cancel_panic",
+        "affected_schema_and_semantic_controls",
+        "exact_generated_and_native_source_tree"
+      ],
+      "status": "PENDING_AUTHENTICATED_CURRENT_UNION_EXECUTION"
+    },
+    {
+      "id": "actual_lib_abi",
+      "owner": "import_rpc",
+      "requires": [
+        "qualified_native_rpc_union",
+        "original_mobile_slices",
+        "all_three_import_exports",
+        "original_ProtobufMessages_Invocation_compile_link",
+        "committed_generated_postimage_install_receipt"
+      ],
+      "status": "NOT_BUILT"
+    },
+    {
+      "id": "complete_sdk_producer",
+      "owner": "stageb_repair",
+      "requires": [
+        "complete_source_4fd99_closure",
+        "authentic_generated_source_commit",
+        "actual_lib_abi",
+        "unique_dependency_ownership",
+        "actual_86_requirement_public_surface",
+        "native_consumer_resources_EN_HE"
+      ],
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "original_editor_stageb",
+      "owner": "stageb_repair",
+      "requires": [
+        "complete_sdk_producer",
+        "same_build_original_editor_edit_save_exit_new_PID_reopen_EN_HE"
+      ],
+      "status": "NOT_RUN_ON_COMPOSED_APP"
+    },
+    {
+      "active_focused_worktrees_modified": false,
+      "historical_acceptance_transferred": false,
+      "id": "reader_groups_library",
+      "owner": "root/asana_inventory",
+      "status": "PENDING_ON_COMPOSED_APP"
+    },
+    {
+      "accepts_current_v40": false,
+      "id": "frozen_v32_native_install_reader",
+      "owner": "root",
+      "release_id": 409213893,
+      "status": "PENDING_ON_COMPOSED_APP"
+    },
+    {
+      "id": "v40_multipart_native_install_restore",
+      "large_assets_on_oracle": false,
+      "manifest_asset_id": 782942035,
+      "owner": "root",
+      "part_asset_ids": [
+        782942221,
+        782993890
+      ],
+      "release_id": 455390662,
+      "requires": [
+        "same_composed_app_build",
+        "original_native_bootstrap_cancel",
+        "original_native_bootstrap_install",
+        "original_native_bootstrap_restore",
+        "real_remote_asset_and_archive_identities",
+        "actual_full_archive_hash",
+        "SQLite_validation_and_actual_database_counts",
+        "atomic_install_and_cancellation_resume_contracts"
+      ],
+      "status": "NOT_RUN_ON_COMPOSED_APP",
+      "v32_or_component_controls_satisfy_gate": false
+    },
+    {
+      "historical_acceptance_transferred": false,
+      "id": "native_release_physical",
+      "owner": "root",
+      "status": "PENDING_ROOT_ADMISSION_AND_ACTUAL_EXECUTION"
+    }
+  ],
+  "merge_commits": [
+    {
+      "commit": "5c69d290f85ac536f00ae11ffb007593444d8126",
+      "parents": [
+        "1ef959fc3d04de77d9abffbe7931bbf7eac0550f",
+        "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+      ],
+      "tree": "651da89ab60cecfba1b5d827c6e0eefd116bc68e"
+    },
+    {
+      "commit": "7f753bb5ee11cb835b0e6ef0f861eb5f9f918bdf",
+      "parents": [
+        "5c69d290f85ac536f00ae11ffb007593444d8126",
+        "92e9df6e2daf64893c83ba13708fac4c670ae38f"
+      ],
+      "tree": "8d3017fb4ee489e271d92ddceb25760ed3d04bd0"
+    },
+    {
+      "commit": "7d5510dd29af2b66d740de136352916868c341ed",
+      "parents": [
+        "7f753bb5ee11cb835b0e6ef0f861eb5f9f918bdf",
+        "4310c29728de5bbba2dc6584642c6934d554e213"
+      ],
+      "tree": "ac6711ac48c60b4f40bda027cba0fda27431b426"
+    }
+  ],
+  "preserved_legacy_sdk_inputs": {
+    "archive_sha256": "6778bfeb8bf8ae7e0899e7fddf5a087e69fbe31772a719e9e82c6239d62a53e5",
+    "artifact_id": 14770225722,
+    "historical_receipt_modified": false,
+    "path": "Scripts/CI/runtime27-original-editor.inputs.json",
+    "qualification_for_composed_expanded_sdk": "UNQUALIFIED",
+    "run_id": 45060396175,
+    "schema": 2,
+    "sha256": "2940ae140f7c4b1521d454d3e9b246f85c75b473c806d8ea68190b793601a731",
+    "source_sha": "de63125b97cd5b91a1fa4f4b71d03738076e735f"
+  },
+  "product_delta": [
+    {
+      "accepted_lane": "reader",
+      "accepted_source": "92e9df6e2daf64893c83ba13708fac4c670ae38f",
+      "accepted_source_object": "f09fa4faf5d3bfd6d17cdd0309feeae8e2494058",
+      "after": {
+        "bytes": 290867,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "f09fa4faf5d3bfd6d17cdd0309feeae8e2494058",
+        "sha256": "28d5dbc2a6672b39b4083ff9f50f25b338e177bb33ac5c32da474b2baf1b7d4a"
+      },
+      "before": {
+        "bytes": 290684,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "e91d90a25c0cbd5158a7c4dffe054f9bd2637698",
+        "sha256": "d8ae7aa91ad09866a8842684fae51b1d19e1d084b27a8a6b5d7cb45b523c091f"
+      },
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+    },
+    {
+      "accepted_lane": "host_import",
+      "accepted_source": "1ef959fc3d04de77d9abffbe7931bbf7eac0550f",
+      "accepted_source_object": "009ef4838a6a92ed1f5025f1ab510faf51ceda64",
+      "after": {
+        "bytes": 602975,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "009ef4838a6a92ed1f5025f1ab510faf51ceda64",
+        "sha256": "4b0e0b54ae37282dd6b9218097abcedadcafe3f29e4738cfd50017f123f098fa"
+      },
+      "before": {
+        "bytes": 602399,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "3261731b3c225ec783b7f7542b53726c71f638c1",
+        "sha256": "0013989dc2dda8a9a6c31ea088dc901ab782b6517ad48c7554d57d1f321abf04"
+      },
+      "ownership": "SHARED_INTEGRATION_SEAM",
+      "path": "Maktabah.xcodeproj/project.pbxproj"
+    },
+    {
+      "accepted_lane": "stageb",
+      "accepted_source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68",
+      "accepted_source_object": "9218f083dac5fa2157a83e05064ec73eb1fd154c",
+      "after": {
+        "bytes": 4432,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "9218f083dac5fa2157a83e05064ec73eb1fd154c",
+        "sha256": "a41b340f77574fd74013ba5df160cffabab473f1941a50031d0f9025007c8c9c"
+      },
+      "before": {
+        "bytes": 4432,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "99a5b952aab40cb3d5ffe03153c9cf8c07ed341b",
+        "sha256": "722609bb6b71362aee5e7f401246edcd037a2d1815c2fc4704bf93830d9f5530"
+      },
+      "ownership": "SHARED_INTEGRATION_SEAM",
+      "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
+    },
+    {
+      "accepted_lane": "host_import",
+      "accepted_source": "1ef959fc3d04de77d9abffbe7931bbf7eac0550f",
+      "accepted_source_object": "2f0b3c4c25e4123d604dba9d1f6ca316d66ce2d8",
+      "after": {
+        "bytes": 6216,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "2f0b3c4c25e4123d604dba9d1f6ca316d66ce2d8",
+        "sha256": "4935e1b6cd208951cc6848e46f62b0723c4a9c835eac77229ae756ba8b747987"
+      },
+      "before": {
+        "bytes": 3885,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "feffbb8b323e9ed2b1212f4d7a1adaab4f8ecca3",
+        "sha256": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb"
+      },
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift"
+    },
+    {
+      "accepted_lane": "host_import",
+      "accepted_source": "1ef959fc3d04de77d9abffbe7931bbf7eac0550f",
+      "accepted_source_object": "9741ab51c4fb6f8a3fe551bab665e4ef2795df6b",
+      "after": {
+        "bytes": 58436,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "9741ab51c4fb6f8a3fe551bab665e4ef2795df6b",
+        "sha256": "4a2b163e60a965f97033b79740d40bc3a82c7eaa8154792d38d3cbbb283a174d"
+      },
+      "before": {
+        "bytes": 25753,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "ac647984ac55dd3e5fdbcb2f5ca5ac3743863720",
+        "sha256": "97c22429e8c76cf34e16b7fa9665be9aa4b84d0b29d0a43919e11cca18e39865"
+      },
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift"
+    },
+    {
+      "accepted_lane": "host_import",
+      "accepted_source": "1ef959fc3d04de77d9abffbe7931bbf7eac0550f",
+      "accepted_source_object": "4c94af84e718647c2e5700ca33b232172a75e5cb",
+      "after": {
+        "bytes": 14178,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "4c94af84e718647c2e5700ca33b232172a75e5cb",
+        "sha256": "5d0b7b504b0019f666c15e5dd45ef7ed46986d4648a23bf33448cd6e0b6f65a1"
+      },
+      "before": {
+        "bytes": 9524,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "950e13695e35c1e3ddc6ca63b4373f2a8ac8f255",
+        "sha256": "ab12767d96243fec6e5b914c56061fcb5cfb9e1d88add827eeaf3e382592e2b3"
+      },
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift"
+    },
+    {
+      "accepted_lane": "host_import",
+      "accepted_source": "1ef959fc3d04de77d9abffbe7931bbf7eac0550f",
+      "accepted_source_object": "71006138458d7b8b07da875a944acd499c250101",
+      "after": {
+        "bytes": 12310,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "71006138458d7b8b07da875a944acd499c250101",
+        "sha256": "9adf1457dc15f81404892a75babd637df44e568d0ddb7b067e7a2402743fcc06"
+      },
+      "before": null,
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorImport.swift"
+    },
+    {
+      "accepted_lane": "host_import",
+      "accepted_source": "1ef959fc3d04de77d9abffbe7931bbf7eac0550f",
+      "accepted_source_object": "7f53004a69848410a6b13d2f1a219f4b38cd5712",
+      "after": {
+        "bytes": 7749,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "7f53004a69848410a6b13d2f1a219f4b38cd5712",
+        "sha256": "ed35c57478d84fb892541ef2a92e34f30fc6fa5d66d13101cc08abeaedefed13"
+      },
+      "before": {
+        "bytes": 6562,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "c2c7109e0bb7ec6ce56e43c4b725624da98935eb",
+        "sha256": "c4f2349ca01c7a3a34ec6a8384ee789bc948e134385258469fbeadbed6df8065"
+      },
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift"
+    },
+    {
+      "accepted_lane": "multipart",
+      "accepted_source": "4310c29728de5bbba2dc6584642c6934d554e213",
+      "accepted_source_object": "92f497af1dba7086c50e1121fe0b53ec2e720c0c",
+      "after": {
+        "bytes": 4740,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "92f497af1dba7086c50e1121fe0b53ec2e720c0c",
+        "sha256": "fe08c44f229e7df9b58a803d011989fe7c326da3a16ea423e13c534ebc72d50f"
+      },
+      "before": {
+        "bytes": 4746,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "beec770ce83d53172cf56c32a9f5a931b1b7e2f5",
+        "sha256": "09c715fc8b66ca3e31a354b6d28e2256cbeb1a8575300bb414f30861d58a4947"
+      },
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift"
+    },
+    {
+      "accepted_lane": "multipart",
+      "accepted_source": "4310c29728de5bbba2dc6584642c6934d554e213",
+      "accepted_source_object": "baca123b69f9d31f779e7bd4e024c654c6a50ea2",
+      "after": {
+        "bytes": 9091,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "baca123b69f9d31f779e7bd4e024c654c6a50ea2",
+        "sha256": "02953786c2b5327b4cc2b83307c54ff5acf4eae7beb4e8d974c5773c0dc646b1"
+      },
+      "before": {
+        "bytes": 8895,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "3e54359c96e51a0a8e5c4335ff9b342c807c5ee1",
+        "sha256": "696faecac82fd6849c0c76ed9361bda31483d723e7b112e6a0d713a6bd5762d8"
+      },
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift"
+    },
+    {
+      "accepted_lane": "multipart",
+      "accepted_source": "4310c29728de5bbba2dc6584642c6934d554e213",
+      "accepted_source_object": "98321f5c22f8755c3e49581960370692f649afa8",
+      "after": {
+        "bytes": 17491,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "98321f5c22f8755c3e49581960370692f649afa8",
+        "sha256": "bce1f3d267684384b1235a3d23b05cdcddad2ac9ea0029d55f536f9063192d9f"
+      },
+      "before": {
+        "bytes": 12084,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "bfde8639e7b7d6dcc23a48f452e6cffc599bf050",
+        "sha256": "cd20997467a5271a368f9c81e6240dc783aa2b4b903403bd49d24afe66371c27"
+      },
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift"
+    },
+    {
+      "accepted_lane": "multipart",
+      "accepted_source": "4310c29728de5bbba2dc6584642c6934d554e213",
+      "accepted_source_object": "4ce85765fbfb2ad7346ed5a8be3d0d9864c58583",
+      "after": {
+        "bytes": 31540,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "4ce85765fbfb2ad7346ed5a8be3d0d9864c58583",
+        "sha256": "6882067545a02dea765414381f2aeeb4101fee930d4237f58e44554d01c0c69a"
+      },
+      "before": {
+        "bytes": 21131,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "8837ba17fd4452c0fb7c0a1b58393a1141e7ed25",
+        "sha256": "0487a5aa18e67c5950290c14644359e77c9ceea4e2cd92f198e44f38cfcf8ac6"
+      },
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloader.swift"
+    },
+    {
+      "accepted_lane": "multipart",
+      "accepted_source": "4310c29728de5bbba2dc6584642c6934d554e213",
+      "accepted_source_object": "b008ae8bcd4bbf6d2484005fd678f11cb83435ec",
+      "after": {
+        "bytes": 18852,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "b008ae8bcd4bbf6d2484005fd678f11cb83435ec",
+        "sha256": "192dc8cb8fa041a6f3fd4760d8d2daf00cd72e05209d25ef5c6b5790430d3624"
+      },
+      "before": {
+        "bytes": 18221,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "72b085c77c66ae98849e13693a84276008bd8fe2",
+        "sha256": "80dd9e9a02db3a9313283e10fafa7c9c47ec697b2108dcd116b5a10b58e56b83"
+      },
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift"
+    },
+    {
+      "accepted_lane": "multipart",
+      "accepted_source": "4310c29728de5bbba2dc6584642c6934d554e213",
+      "accepted_source_object": "d790538a5d9f3db06fe5c709081b038516f7f789",
+      "after": {
+        "bytes": 2423,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "d790538a5d9f3db06fe5c709081b038516f7f789",
+        "sha256": "d51c4bfbd4e5ba85c0bb645cafe4eeb17cf3147cdc2dee35e39da776751e3b72"
+      },
+      "before": {
+        "bytes": 2435,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "a89094faad6ac0010a00cbba411b9a89a86f8856",
+        "sha256": "fc5c8a557c09267eec7fcc14df46843f0eac846753e23285e170e1faf371530f"
+      },
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Source/Otzaria/Bootstrap/OtzariaDownloadPolicy.swift"
+    },
+    {
+      "accepted_lane": "multipart",
+      "accepted_source": "4310c29728de5bbba2dc6584642c6934d554e213",
+      "accepted_source_object": "85abf4ecba1277474bf90aceb641fd1416f1d43a",
+      "after": {
+        "bytes": 14219,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "85abf4ecba1277474bf90aceb641fd1416f1d43a",
+        "sha256": "afb748bb57d9edcbd804d329f25c7b0b2263dd0a178b59979e10fb2c43ca2f45"
+      },
+      "before": {
+        "bytes": 5979,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "9a8e464e0b2e46302f6287fbf9fbe7942bdf4f1c",
+        "sha256": "b58f095f3b32a94bd260254422c79699b2ea420cfae9dcf0a6465d707a3dd711"
+      },
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift"
+    },
+    {
+      "accepted_lane": "multipart",
+      "accepted_source": "4310c29728de5bbba2dc6584642c6934d554e213",
+      "accepted_source_object": "cb71b12f4d68be045402f25e02eca14bb35a3cd1",
+      "after": {
+        "bytes": 26088,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "cb71b12f4d68be045402f25e02eca14bb35a3cd1",
+        "sha256": "636beef525e91ee53d0cfdbd6ca11bf768bcbb5ed2eee2284c473f86d110a929"
+      },
+      "before": {
+        "bytes": 25788,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "2768709058ed52b18a18ced49993f9af905a7f35",
+        "sha256": "7f8d37ba225a93d9260ee4bdfeac41e0028fac4d8226a326cbd41365caf60861"
+      },
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Source/Otzaria/Bootstrap/OtzariaNativeBootstrapAcceptanceRunner.swift"
+    },
+    {
+      "accepted_lane": "multipart",
+      "accepted_source": "4310c29728de5bbba2dc6584642c6934d554e213",
+      "accepted_source_object": "be4a438b05376c8d966fd6405636f6e686ba74cb",
+      "after": {
+        "bytes": 12956,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "be4a438b05376c8d966fd6405636f6e686ba74cb",
+        "sha256": "d08aa05deb507b03c870d98f2b2e04197f32cf1c83920026b8336587fc09406f"
+      },
+      "before": {
+        "bytes": 12956,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "141104d95e53e406e70610f83418373dfe19c59e",
+        "sha256": "222a3d0c156a49a5fce593013887c85f2fc9e64c7c6270de3bfa361cb4eb33bf"
+      },
+      "ownership": "DOWNSTREAM_OWNED",
+      "path": "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift"
+    },
+    {
+      "accepted_lane": "stageb",
+      "accepted_source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68",
+      "accepted_source_object": "ca3c91f2233bf5c77990643b29a874aac8704639",
+      "after": {
+        "kind": "commit",
+        "mode": "160000",
+        "object": "ca3c91f2233bf5c77990643b29a874aac8704639"
+      },
+      "before": {
+        "kind": "commit",
+        "mode": "160000",
+        "object": "e00498e33f106cc43be0476ffa2e09329c8ca300"
+      },
+      "ownership": "SHARED_INTEGRATION_SEAM",
+      "path": "Vendor/HanlinSDK"
+    }
+  ],
+  "schema": "otzaria.final-composed-product-source/1",
+  "scope": "Source composition and dependency preparation only. No native execution, final activation, artifact substitution or application behavior acceptance is asserted.",
+  "shared_build_input_resolution": {
+    "all_remaining_fields_canonical_sha256": "b1c3a0319e3697357d7a999a09f9bf725875125265fb0b46ab48d6ceb68477aa",
+    "composed_values": {
+      "application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed",
+      "application_trees": {
+        "Maktabah.xcodeproj": "30dccb2b8600715f90c41e533b4646a8523e10d1",
+        "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
+        "Vendor": "ee5b415a5ccb9db9fda2b0e8d6ce3748cdeaea6e"
+      },
+      "hanlin_gitlink": "ca3c91f2233bf5c77990643b29a874aac8704639"
+    },
+    "historical_acceptance_transferred": false,
+    "historical_reader_source": "92e9df6e2daf64893c83ba13708fac4c670ae38f",
+    "historical_reader_values": {
+      "application_source_sha": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "application_trees": {
+        "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+        "Source": "0e2dc5b9406ffeef95d2d75d460f1589c133129d",
+        "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+      },
+      "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300"
+    },
+    "historical_stageb_source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68",
+    "historical_stageb_values": {
+      "application_source_sha": "6ba33d848bda808181e6b3174c05bac5b3fd2d94",
+      "application_trees": {
+        "Maktabah.xcodeproj": "f61421e8677027ffa18364226b4ee68a0937dfc5",
+        "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+        "Vendor": "ee5b415a5ccb9db9fda2b0e8d6ce3748cdeaea6e"
+      },
+      "hanlin_gitlink": "ca3c91f2233bf5c77990643b29a874aac8704639"
+    },
+    "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+    "resolved_fields": [
+      "application_source_sha",
+      "application_trees",
+      "hanlin_gitlink"
+    ]
+  },
+  "status": "SOURCE_PREPARED_EXPANDED_SDK_ARTIFACT_UNQUALIFIED"
+}

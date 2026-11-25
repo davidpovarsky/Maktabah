@@ -1,0 +1,185 @@
+{
+  "schema": "otzaria.reader4.authentic-intake/1",
+  "runID": 45124554050,
+  "attempt": 1,
+  "checkoutSHA": "482b8ac3ef2935ee1127da529e5d0848efb0e2f1",
+  "applicationSourceSHA": "2ef81ac195c002863486e473dad95f336f3e1675",
+  "conclusion": "FAILURE",
+  "actualPass": 3,
+  "actualFail": 1,
+  "actualSkip": 0,
+  "notRun": 0,
+  "cases": {
+    "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace": "Passed",
+    "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore": "Failed",
+    "NativeStudySheetPadTests/testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible": "Passed",
+    "NativeStudySheetPadTests/testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen": "Passed"
+  },
+  "device": {
+    "architecture": "arm64",
+    "deviceId": "813420A8-CAAB-4691-A00B-C8C2E6AA2B53",
+    "deviceName": "Faithful 11-inch 948d1204",
+    "modelName": "iPad Pro 11-inch (M5)",
+    "osBuildNumber": "24B8117",
+    "osVersion": "27.2",
+    "platform": "iOS Simulator"
+  },
+  "appBuildStatus": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+  "uiSDKCompileStatus": "SDK_COMPILE_PASS",
+  "sourceAdmission": {
+    "executionInputsVerifiedBytesSHA256Blob": 285,
+    "compiledInputCount": 1012,
+    "exactGitCompiledInputs": 1011,
+    "reviewedOriginalRNPrivacyAggregation": {
+      "path": "Source/PrivacyInfo.xcprivacy",
+      "origin": "Original React Native CocoaPods privacy aggregation",
+      "original_git_blob": "c86c62cc12e3ceadea279ff9948a8891a0860577",
+      "original_sha256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1",
+      "compiled_sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5",
+      "all_other_declarations_unchanged": true,
+      "all_original_reasons_retained": true,
+      "added_reasons": [
+        {
+          "category": "NSPrivacyAccessedAPICategoryUserDefaults",
+          "reason": "1C8F.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "installed Pods",
+              "path": "Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/Resources/PrivacyInfo.xcprivacy",
+              "sha256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef",
+              "artifact_path": "privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy"
+            },
+            {
+              "pod_source": "installed Pods",
+              "path": "Pods/FirebaseRemoteConfig/FirebaseRemoteConfig/Swift/Resources/PrivacyInfo.xcprivacy",
+              "sha256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38",
+              "artifact_path": "privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy"
+            }
+          ]
+        },
+        {
+          "category": "NSPrivacyAccessedAPICategoryUserDefaults",
+          "reason": "C56D.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "installed Pods",
+              "path": "Pods/GoogleUtilities/GoogleUtilities/Privacy/Resources/PrivacyInfo.xcprivacy",
+              "sha256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c",
+              "artifact_path": "privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy"
+            }
+          ]
+        },
+        {
+          "category": "NSPrivacyAccessedAPICategoryFileTimestamp",
+          "reason": "0A2A.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "ExpoFileSystem",
+              "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+              "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+              "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+            }
+          ]
+        },
+        {
+          "category": "NSPrivacyAccessedAPICategoryDiskSpace",
+          "reason": "85F4.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "ExpoFileSystem",
+              "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+              "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+              "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+            }
+          ]
+        },
+        {
+          "category": "NSPrivacyAccessedAPICategoryDiskSpace",
+          "reason": "E174.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "ExpoFileSystem",
+              "path": "Vendor/SefariaMobile/Upstream/node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy",
+              "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+              "artifact_path": "privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy"
+            }
+          ]
+        },
+        {
+          "category": "NSPrivacyAccessedAPICategorySystemBootTime",
+          "reason": "35F9.1",
+          "dependency_inputs": [
+            {
+              "pod_source": "React",
+              "path": "Vendor/SefariaMobile/Upstream/node_modules/react-native/third-party-podspecs/boost/PrivacyInfo.xcprivacy",
+              "sha256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d",
+              "artifact_path": "privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy"
+            }
+          ]
+        }
+      ]
+    },
+    "applicationTrees": {
+      "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+      "Maktabah-iOSUITests": "1dcf4b77d7b8c33aaf8e27f72750430cdfe98739"
+    },
+    "binariesUnchanged": true
+  },
+  "binaries": {
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app": "36c6755309d99965ba31c3c6f6980a146999a2657b183de8067306530ae11248",
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app": "f247bd85a8fbd25b280e4ff1cb7286e716d2e6b0dddefb94a11ea0686259cda0",
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest": "a602df77d673dfcee2801278d5fcad3c7f4351da72db5c9c435b04ccde42fabe"
+  },
+  "fixture": {
+    "profile": "miniTest10",
+    "sha256": "e9e6dedd2ceaadbe46234612c359e5bd8add00c348be8eaeba85cf029fa5c4d3",
+    "bookCount": 10,
+    "lineCount": 18879
+  },
+  "groupFailure": {
+    "failedGate": "exact_snapshot_geometry",
+    "snapshotPath": "/mnt/development/projects/diagnostics/otzaria-reader-profile-followup-20261123/45124554050/captures-intake/selected/506F326C-BB52-4B9F-B077-1070F4997FB7.txt",
+    "snapshotSHA256": "beedf997d6b8f8ac3286309011c0425bb0f856417144e16f0a817d99253b63f8",
+    "selectorMaxX": "925.0",
+    "targetMaxX": "925.0000000000001",
+    "differencePoints": 1.1368683772161603e-13,
+    "representableDoubleSteps": 1,
+    "oneEnabledSelector": true,
+    "oneExactLabelTarget": true,
+    "allFramesFinitePositive": true,
+    "windowContainsTarget": true,
+    "rawSelectorContainsTarget": false,
+    "liveQueries": {},
+    "phase": "First preparation group selection before the100 counted transitions",
+    "countedTransitionsQualified": 0,
+    "diagnosis": "Exact raw full-parent CGRect containment rejects a one-ULP right-edge arithmetic discrepancy; no product defect or100-switch acceptance inferred",
+    "productOrTestEdits": false,
+    "rerun": false
+  },
+  "evidenceArtifact": {
+    "artifact_id": 14798332418,
+    "path": "/mnt/development/projects/diagnostics/otzaria-reader-profile-followup-20261123/45124554050/watch-window-2/reader-profile-native-evidence.zip",
+    "bytes": 11121017,
+    "sha256": "9aef172a617bf0f5b4eaa1632d97e2a29caa60fcb16e11cb1e56a1e52e1ea5a4"
+  },
+  "capturesAdmission": "/mnt/development/projects/diagnostics/otzaria-reader-profile-followup-20261123/45124554050/captures-intake/ADMISSION.json",
+  "selectedMediaReceipt": "/mnt/development/projects/diagnostics/otzaria-reader-profile-followup-20261123/45124554050/captures-intake/GROUP_SELECTION.json",
+  "jobs": [
+    {
+      "id": 137525805074,
+      "name": "One app build and four previously failed Reader and Profile cases",
+      "conclusion": "failure",
+      "failedSteps": [
+        "Execute four previously failed original Reader and Profile cases",
+        "Collect original raw native case outcomes including failures"
+      ]
+    }
+  ],
+  "oldSixPassesTransferred": false,
+  "fullNative116": false,
+  "fullRelease114": false,
+  "productionPerformance": false,
+  "physicalIPad": false
+}

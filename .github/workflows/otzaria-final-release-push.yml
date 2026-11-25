@@ -42,6 +42,10 @@ jobs:
         run: python3 Scripts/CI/runtime27_final_push.py --mode release --stage build --phase before
       - name: Select an existing SDK-matched runtime for the full device matrix
         run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
+      - name: Stage exact original SDK distributions for this job
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+        run: python3 Scripts/CI/original-editor-build-routes.py stage --evidence build/original-editor-job-stage
       - name: Verify unchanged inputs and reuse original Apple Foundation55 evidence
         if: ${{ 'release' == 'ui' || 'release' == 'release' || 'release' == 'toc-transport' }}
         env:
@@ -181,6 +185,17 @@ jobs:
             build/artifacts/visual-*/**
           if-no-files-found: ignore
 
+      - name: Retain original SDK route evidence including failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-editor-sdk-stage-release-build
+          path: |
+            build/original-editor-job-stage/**/*.json
+            build/hq-stage2/original-editor*/**/*.json
+            build/hq-stage2/original-editor-routes.json
+          if-no-files-found: warn
+
   runtime27-release-native:
     name: Release native matrix (partial acceptance)
     needs: runtime27
@@ -201,6 +216,10 @@ jobs:
         run: python3 Scripts/CI/runtime27_final_push.py --mode release --stage native --phase before
       - name: Select the identical installed SDK and runtime
         run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/artifacts/runtime27/native-toolchain-selection.json
+      - name: Stage exact original SDK distributions for this job
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+        run: python3 Scripts/CI/original-editor-build-routes.py stage --evidence build/original-editor-job-stage
       - name: Execute the complete matrix with the original Debug products
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -252,6 +271,17 @@ jobs:
             build/artifacts/visual-*/**
           if-no-files-found: ignore
 
+      - name: Retain original SDK route evidence including failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-editor-sdk-stage-release-native
+          path: |
+            build/original-editor-job-stage/**/*.json
+            build/hq-stage2/original-editor*/**/*.json
+            build/hq-stage2/original-editor-routes.json
+          if-no-files-found: warn
+
   runtime27-release-production:
     name: Release production upgrade and final acceptance
     needs: [runtime27, runtime27-release-native]
@@ -269,6 +299,10 @@ jobs:
         run: python3 Scripts/CI/runtime27_final_push.py --mode release --stage production --phase before
       - name: Select the identical installed SDK and runtime
         run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/artifacts/runtime27/production-toolchain-selection.json
+      - name: Stage exact original SDK distributions for this job
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+        run: python3 Scripts/CI/original-editor-build-routes.py stage --evidence build/original-editor-job-stage
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -336,3 +370,14 @@ jobs:
             build/artifacts/**/*.mp4
             build/artifacts/visual-*/**
           if-no-files-found: ignore
+
+      - name: Retain original SDK route evidence including failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-editor-sdk-stage-release-production
+          path: |
+            build/original-editor-job-stage/**/*.json
+            build/hq-stage2/original-editor*/**/*.json
+            build/hq-stage2/original-editor-routes.json
+          if-no-files-found: warn

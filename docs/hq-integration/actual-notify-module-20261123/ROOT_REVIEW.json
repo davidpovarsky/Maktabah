@@ -1,0 +1,64 @@
+{
+  "status": "SOURCE_CORRECTION_ACCEPTED_FROM_ACTUAL_SELECTED_SDK_COMPILE",
+  "base": "b965e741815f9033151ee45f58d744d028ba1bc2",
+  "run_id": 45152574279,
+  "run_attempt": 1,
+  "probe_checkout": "a85e35846804cfef26e1449c57671c319773140d",
+  "probe_tree": "8c5513174ae5f8f36be49cf6e4d7c33179ae7645",
+  "actual_toolchain": {
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+    "sdk": "27.2",
+    "target": "arm64-apple-ios27.0-simulator"
+  },
+  "module": "notify",
+  "modulemap_sha256": "0d3116c1a49cc6fa61381b36b2cc4056086fed47096878dd582fe7bbcc60e4f5",
+  "notification_header_sha256": "c7bf63e398effebe5e8895f4b89eace820437cfdd9735ffeb99ed69707dd5bb3",
+  "actual_declaration_compile_exit": 0,
+  "compiled_declarations": [
+    "notify_post",
+    "NOTIFY_STATUS_OK",
+    "notify_register_dispatch",
+    "notify_cancel"
+  ],
+  "object_sha256": "aa3414740e0561229e38dc1cf0dbc5f896b0f5f4b401d661ffd0dff4aee394c0",
+  "failed_original_and_other_map_controls_retained": [
+    "Darwin",
+    "Darwin.Mach",
+    "Darwin.Mach.notify"
+  ],
+  "actual_sdk_artifact_id": 14806878900,
+  "actual_sdk_artifact_sha256": "c9d4e3082b56342e69028aa568c096fd6a6fe4e52a6d92478eccad5690fb2250",
+  "actual_sdk_artifact_all_crc_and_33_index_rows_verified": true,
+  "actual_sdk_driver_inputs_git_exact": 3,
+  "actual_sdk_commands_reaped_drained": 9,
+  "source_paths": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "before_bytes": 290690,
+      "before_sha256": "6bbb69dfe79d52f1cb1f148eb665466e7a230055bd182cca434f486d0512dcbb",
+      "after_bytes": 290684,
+      "after_sha256": "d8ae7aa91ad09866a8842684fae51b1d19e1d084b27a8a6b5d7cb45b523c091f",
+      "full_inverse_exact": true,
+      "changes": "One existing import declaration replaced with actual SDK-declared notify module; all bodies/conditions/notifications/assertions unchanged."
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "before_bytes": 21727,
+      "before_sha256": "1d531327634b8c72732d4618eb44220ba492af67280e408a7c775e254ffbd9c4",
+      "after_bytes": 21721,
+      "after_sha256": "2f53c4136145100382ea86dd2b659c8457ec7b56e19173eafb8d7c0ba464fa25",
+      "full_inverse_exact": true,
+      "changes": "One existing import declaration replaced with actual SDK-declared notify module; all bodies/conditions/notifications/assertions unchanged."
+    }
+  ],
+  "diff_sha256": "446f083c7f6c9c1a53df3d6b80574fad3d9c8ebe629f9ed8db24dca3b0f6694b",
+  "source_or_native_tests_replayed": 0,
+  "native_notification_calls_executed": 0,
+  "actual_app_ui_acceptance": false,
+  "prior_two_combined_compile_failures_preserved": [
+    45143450850,
+    45147566951
+  ],
+  "timestamp_utc": "2026-11-23T10:29:07.195380+00:00"
+}

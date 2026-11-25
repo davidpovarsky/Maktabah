@@ -1,0 +1,35 @@
+{
+  "scope": "Workflow/source wiring review only, not Actions/native execution",
+  "app_source": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
+  "workflow_sha256": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c",
+  "one_original_build": true,
+  "independent_native_steps": {
+    "groups_native": "${{ !cancelled() && steps.native_build.outcome == 'success' && steps.groups_admission.outcome == 'success' }}",
+    "library_native": "${{ !cancelled() && steps.native_build.outcome == 'success' && steps.library_admission.outcome == 'success' }}",
+    "full_v32_native": "${{ !cancelled() && steps.native_build.outcome == 'success' && steps.groups_admission.outcome == 'success' && steps.full_v32_admission.outcome == 'success' }}"
+  },
+  "always_uploads": [
+    "native-shared-build-evidence",
+    "groups100-native-evidence",
+    "groups100-native-captures",
+    "library7-native-evidence",
+    "library7-native-captures",
+    "full-v32-ui-observation-evidence",
+    "full-v32-ui-observation-captures",
+    "full-v32-ui-observation-trace"
+  ],
+  "library_original_driver_sha256": "13d9c4dbb24591b6406e6a3da5c0d619c5785c726d894182383d899ce9373fc3",
+  "library_exact_original_selectors": [
+    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+    "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+    "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+    "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+    "FaithfulReaderUIAcceptanceTests/testLibraryMorphOutsideDismissalPreservesCanonicalQueryAndReader",
+    "FaithfulReaderUIAcceptanceTests/testLibraryMorphRepeatedOpenCloseReleasesHiddenKeyboardFocus"
+  ],
+  "source_closure_count": 42,
+  "case_deadlines_changed": false,
+  "collector_changed": false,
+  "original_matrix_changed": false
+}

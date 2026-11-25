@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "nonce": "14b4b8558b89ee5620a90313f39b3778ec02bcedd384008b882b22577a854612",
+  "parent_pid": 2627411,
+  "program": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/wrapper-control/before/bin/pod",
+    "bytes": 294,
+    "sha256": "b5d53f5829de141158d5e13eada7162765677d7e40adf76fc050fb7203973e28"
+  },
+  "observer": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/wrapper-control/before/Scripts/CI/hq-original-editor-ruby-context.rb",
+    "bytes": 7558,
+    "sha256": "2059ca905374a037ea10a7e56d3f4ae419602db77c80509376268988b505738b"
+  },
+  "helper": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/wrapper-control/before/Scripts/CI/hq-original-editor-app-target.rb",
+    "bytes": 163,
+    "sha256": "f8b5e5a8d25b821fd5f56b02b1178d2db56f64f54df96716440062a99e8740a2"
+  },
+  "receipt_path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/wrapper-control/before/build/hq-stage2/original-editor/pod-ruby-context.json"
+}

@@ -1,0 +1,1214 @@
+{
+  "schema": 1,
+  "state": "PARTIAL_SOURCE_COMPOSITION_UNFINALIZED_NOT_NATIVE_ACCEPTANCE",
+  "base": "f05813a80d995ba973242d1a94dcbfc099e7c622",
+  "canonical": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "branch": "codex/otzaria-final-composition-20261123",
+  "selected_files": [
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "bytes": 38814,
+      "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012",
+      "git_blob": "28167e2212c50df668df96ba8ae96fbcda69109d"
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift",
+      "source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "bytes": 24385,
+      "sha256": "7f762523d0cde1ba938e1f161309472090f804c2d8af48cdf3e02f1e998926c1",
+      "git_blob": "66bd4dabf501e26d08e6bab22657bbc562330422"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift",
+      "source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "bytes": 31084,
+      "sha256": "90916d670e0a58623bce4c60cb09ff2678bbe4f308b50201897b278cf232aaca",
+      "git_blob": "64bf41582f6a360f4aff620494fc3b71b5eefbc3"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift",
+      "source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "bytes": 28870,
+      "sha256": "b0ff33f02f65d5f0632b15a354cbe2f7dd41b548abea5d83fb20be39e7ca52c9",
+      "git_blob": "193466880eeb3f3b29e645d3634acc1a70d306ec"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+      "source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "bytes": 50933,
+      "sha256": "61d7627dd9c68513a3a6102b12154f2b11b1ffd4dab7cbfb226563b59ecf2252",
+      "git_blob": "a62aa1b847da66894cd42fea0e3b90bb948bc452"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+      "source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "bytes": 6420,
+      "sha256": "f449f5be10b1e7f43a7769fa56678e699db7bd306eafe7e1bf54d4caf17b8c23",
+      "git_blob": "786020324e2b83dad99b6201c013fb6c1506df03"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/ExistingSearchPreparationObservationTests.swift",
+      "source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "bytes": 16954,
+      "sha256": "ad24426235ea2b469c84b9b23e99309651cc27e647df9b077129379fb525fd0a",
+      "git_blob": "e9577bcf7ea8dad8aef136c2b66c0ede7e796344"
+    },
+    {
+      "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+      "source": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+      "bytes": 48227,
+      "sha256": "9f4c35fee98102373e5961759569077833d8eb83ad427255d7f11ef2e55d5143",
+      "git_blob": "a4acb5e4f57badf3b352ddedc6c797f50ef67be9"
+    },
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+      "bytes": 21154,
+      "sha256": "07bf0af9e7b0131865d4422507aef69d7330a27ce22b8ba00297c51f5e6f0931",
+      "git_blob": "34ddb06b98e04141fccca99053ef1beb8447d8c7"
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+      "bytes": 14416,
+      "sha256": "921ba1c91af07a61e35d1d2137cdf08b36a483b201c026e7e4dfa3edf3fd8109",
+      "git_blob": "7e68dee6c06fde765e435dac838e45586625e86f"
+    },
+    {
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 16002,
+      "sha256": "5f9a1377f1ae556430027936b3f89954f466ef650bc7da60fc8b6891b5cee124",
+      "git_blob": "b5634f205af4220e64621c0791bd1a5280fb02c5",
+      "prior_source_selection": {
+        "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+        "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+        "bytes": 15646,
+        "sha256": "ec9b6510ff19fdebf3023d07029e7829b5c6639878132fa607492983868cd40c",
+        "git_blob": "9ece7492beb14af3ab94d59e0f4e328e6f7e8b53"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift",
+      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+      "bytes": 5171,
+      "sha256": "dc7a693af03c2c1dc18a58b9831751a841d73d8b8c0adaca6123ea0abab333ab",
+      "git_blob": "44ea8973368367a46b098db17c3427554fa166ab"
+    },
+    {
+      "path": "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift",
+      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+      "bytes": 5993,
+      "sha256": "6feb6c2e6cb963981272a0440e03f17fcd4681247e692ae6e19d68d928a1387a",
+      "git_blob": "6f8cec48f818179fa3321e7d808127f2d6021b1f"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+      "bytes": 23378,
+      "sha256": "fae950ba2ac7d86508daaf18a7862c10486cdf11a7ec1656dea7f1a5d1d73df0",
+      "git_blob": "de46cfa4a90a8472f2c1fc5d1224eb4e8654be47"
+    },
+    {
+      "path": "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 8848,
+      "sha256": "a8773b4892ebeac2c98bc371e6ee358eb69d4085caec0ffa1aac9caa84a5c552",
+      "git_blob": "ba08958f3204f62ba5c6ff5bf2b069702ccb4fa7"
+    },
+    {
+      "path": "Scripts/CI/reader-full-v32-ui-observation.py",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 80792,
+      "sha256": "d75618e44d205b1fb2843811bbff846151eef6e14ec92d9b071bdbbaafbbfca7",
+      "git_blob": "70822a22b03da8d88d99796a9ca7dbaa9622f5f6"
+    },
+    {
+      "path": "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 8778,
+      "sha256": "42e12cfd7bf0d251c6db4921c9b42428fb368b8474c2160018b4e895759c64d5",
+      "git_blob": "54981545a11751fd266cc4b3a656406cf979dfdd"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/CollectorBoundaryControls.py",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 9437,
+      "sha256": "5d57ae889ab516accc816f91bae263c0f599beb528ea73d8f1f76e3aa2a8c408",
+      "git_blob": "6836d5290f8aa681faf3561515f7990e19ac258e"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/CompletionCohortControls.py",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 10195,
+      "sha256": "4f0bcce3f4cf8a31d20212cd5919191fd55f4d31da0af25134ffd153fd5ae355",
+      "git_blob": "e719478ff605abce5f6357a9733133d4600e5b3f"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/FullV32ObservationCatalog.swift",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 8755,
+      "sha256": "ba59641e131cc9ee625ecd5b042b516ac5d971333e635edda9b533ea29105e70",
+      "git_blob": "d574ac5a10edec5befc4c52ddc92ece30728988a"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/PRIMARY_API_EVIDENCE.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 1079,
+      "sha256": "821a2f02f886ba6fb0b925b0a5883dad16a3a6e77695f4a0d256e4c157441def",
+      "git_blob": "03b6bfadc0982887092f5f9757da90170c9fcd33"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/README.md",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 2219,
+      "sha256": "51da92672ee4c1f0cafd90787358391fd242dd3957bcdbef03ba8c50a9a305f3",
+      "git_blob": "f94150e741b9d1216f4b3fd84064b75ab468662d"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/SOURCE_SEAL_PROVENANCE.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 5877,
+      "sha256": "c007394dab7afcd59e2478b0ea3bd2b4335d258300248c99ffabde1f6c86ea93",
+      "git_blob": "76197470b37fc97138886c63f9cda845bd4f92d2"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/ACTOR_DECLARATION_REVIEW.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 928,
+      "sha256": "fa1498caedbd5f0856779e6f13ffbdc30d9adec74a1edd8b23d85678d9d33f2b",
+      "git_blob": "a4da8cee7bd15e71973f1cbb218377b2ad9be418"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/COLLECTOR_AFTER_19_CONTROLS.diff",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 8835,
+      "sha256": "9a9eec9f9951a1df0ab69e4afa7ff424aceef82df465967d5addc64a36a0368e",
+      "git_blob": "e2e938e84988ca10b97c8cc3f9c49160dab9a3dc"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/COMPLETION_JOIN.diff",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 1139,
+      "sha256": "6b2014d5eaff99a0fe52a6dc3c766a7c584675e9033d579f711953fdd7dc56fe",
+      "git_blob": "4e08164bd3b5acd4b666bf5b3766b8906c36215e"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/INDEPENDENT_PEER_REVIEW.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 1209,
+      "sha256": "5434e0edbe7f82e38cb1d26de7a79b3a96c27fc292402e3b85271af5e6d3ae8f",
+      "git_blob": "787cad3abf2d39acc2f135139117b6ae6ec0768d"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/INSPECTOR_PASSIVE_OBSERVATION_SOURCE.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 869,
+      "sha256": "305330791ebeedbed10c40713066f51cffe8bfed5133d8598187b9ca708a71b5",
+      "git_blob": "4926f4eb12ed08f4f2df817c3453e9a11251a812"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/INSPECTOR_SAMPLE_APPEND_BOUND.diff",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 522,
+      "sha256": "e32d7b195a8ccd337586c64d4668f3b6022fb1ee7040c1051d6e4f36d2835142",
+      "git_blob": "16ca2b2e4fb8469e48b6fd80204c3d858aad39e1"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/REVIEW_INDEX_V2.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 11429,
+      "sha256": "163a1a7477f8aa27c871f44977c29bf1376795926ffeb45dfc0537263dd096c5",
+      "git_blob": "b7fe3f4fcd16a83ce8f9c24311a30be7231d53af"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/SYNTAX_ONLY.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 1786,
+      "sha256": "3fc6f0b7073fc5e0cdd20dc00cdcf8a841a2ccc44b65f314fcb09da288286802",
+      "git_blob": "a99476ac6a1841eab7c1b1ed8ea7b48f777e1201"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/collector-boundary.stderr",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 2784,
+      "sha256": "5a04c9d0421275c60aa3aca4aee6282c68e1c8fae68a24285859d0bf08a34903",
+      "git_blob": "18111eb19efa993172718cc6fcfc71627f61807b"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/collector-boundary.stdout",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 281,
+      "sha256": "985c07fd5f1ff22aa24613ff548144f5c0306d7891beaab2176f195753088eae",
+      "git_blob": "ce2477f52920430ce2069c92a64eef5ae0e1be9c"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/collector-tested-2c49bbe4.py",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 77002,
+      "sha256": "2c49bbe45d56ef2793516657862831e042d32bde546e25927b38d4135b507491",
+      "git_blob": "23b71c09824d44d0712ea98613c9d80340c0f6f1"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/completion-cohort.stderr",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 1713,
+      "sha256": "f665bff9be73dbba9fdf37ff67bbca0728dacddf7e3d13ccf5845d37aa81978b",
+      "git_blob": "ce222b04eaff51da8abb82d828ef1ff151a5eea5"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/completion-cohort.stdout",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 330,
+      "sha256": "6433dde10e7b9087c97a401745dd52220d9a848ef43efde69f98bd05c1bac912",
+      "git_blob": "40ee807bad496523ec5064e84ffc1075c74f8114"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/final-test-syntax.log",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/evidence/source-only-admission.json",
+      "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+      "bytes": 7844,
+      "sha256": "4b3bc52360fd1470ab36c39a9b5e012c8cc57e7f99bc8e2ddb3986be3f36afcb",
+      "git_blob": "4a15de71cad54e67b6bbbcea195901126ea38211"
+    },
+    {
+      "path": "Scripts/CI/test-9401-exact-source.py",
+      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+      "bytes": 10626,
+      "sha256": "be4c6f2c5cb41a98fa3635e3141c959a0b52ab990c996f311d624f5323fe8c09",
+      "git_blob": "df97a3fb5e5fa7ce0978c2d44ba417047d08bad8"
+    },
+    {
+      "path": "Scripts/CI/test-library-morph-composition.py",
+      "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+      "bytes": 4122,
+      "sha256": "01f1ac563d9edcc90c3131c52a6d9a36e58aaab859b36bd5f75e731510440b47",
+      "git_blob": "3e156ce206d1ca4186a60490587abaa1927d1812"
+    },
+    {
+      "path": "Scripts/CI/verify-9401-exact-source.py",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 37831,
+      "sha256": "2a9969ee5326224e54b24c926dfc6f7a9b212b989aec11f50109cd08e693dc50",
+      "git_blob": "52023a3208a41ffd743cd5f35cc0f17ce86dc0b3",
+      "prior_source_selection": {
+        "path": "Scripts/CI/verify-9401-exact-source.py",
+        "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+        "bytes": 37130,
+        "sha256": "5edab1310c924ee6b49e9f081185e761a57c697ec362f548945542d4ad0db561",
+        "git_blob": "21563aae5e0d107f9206954ba7c93c85049038dc"
+      }
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/APPROVED_INTERACTION.diff",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 6311,
+      "sha256": "62271d1b3073707a28f371ff5253f399ecf51a1aa59accdf710c40e142aa4989",
+      "git_blob": "bb45fb2eed0bfba015c176196fd861b4ce497a09"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/APPROVED_PROPOSAL.json",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 1182,
+      "sha256": "956aabfafbea449d506e69f89550b8b05d43b0deb5ffd9221b94989724484611",
+      "git_blob": "7b06315905917cbfdc5ed0a14b5d4161967bfb34"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/GROUPS100_ACTUAL_FAILURE.json",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 972,
+      "sha256": "5b3b0a262aa1f76da1b93f8c85c607a9c9f4173bfb8bc95ea2d9ae11b1742d35",
+      "git_blob": "6067fff1d35dc8aa46aca4e4858db97dd851ba13"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/GROUPS100_SELECTED_MEDIA.json",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 2436,
+      "sha256": "7c54912379c85960436041388fd5223930d61189a1d99bf40b44be3bc26e399d",
+      "git_blob": "d6e9561c2f0fdf081589869685d00e0c0442a214"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/ORIGINAL_FAILING_SNAPSHOT.json",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 1957,
+      "sha256": "beedf997d6b8f8ac3286309011c0425bb0f856417144e16f0a817d99253b63f8",
+      "git_blob": "7d60d1abaf572583b32b574903e2bc544c0c46b1"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/READER4_ACTUAL_INTAKE.json",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 8902,
+      "sha256": "5b600930e90d1162850fd381d9f6ef23f8ad7b9eb531e6963f80b62b659bc38d",
+      "git_blob": "a1e7afcf9e39f2f6ad857ad3742604239e873ccb"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/SOURCE_PROVENANCE.json",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 1849,
+      "sha256": "96fd369d0abc609b5a08f6942e04b64f4aa0f75b06f91164834e41b94778bb0e",
+      "git_blob": "9f4cf34816ee7c2ca2ee0d2bde950551cffe921b"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/syntax-only.stderr",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/reader-groups100-point-20261123/syntax-only.stdout",
+      "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/EXACT_SCOPE_PROOF.json",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 1294,
+      "sha256": "8f4b01a2600d2599871bbaa89b4cba008b851f1de9672f922917af896c6094f3",
+      "git_blob": "41da20452be311878887689f3698326697da0c2b"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/OBSERVER.diff",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 10927,
+      "sha256": "06c302d2c8579454e381647381bc0a102b9586b938e9ba2380d59c553b4b824c",
+      "git_blob": "57c2daa6862194956328e6b6b53cc066365f3aa2"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/ORIGINAL_NATIVE_DISMANTLE.swift",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 417,
+      "sha256": "141e2fee0056de4fbfef00e808f5ecd0c9c7340e4d5b4ed7903b80d7f7f1e451",
+      "git_blob": "efffdbad187c6b1d46aeca6619105f3c20dfd310"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/ORIGINAL_SOURCE_GUARD_FAILURE.json",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 423,
+      "sha256": "dc8615dcdab8ca9514f90addcbf9e4841bfc5373a822a326503cc90765f081b5",
+      "git_blob": "ed4fe8bbcc4663b8c25f3b009b4c670e50f70c22"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/PALETTE_NATIVE_LIFECYCLE_TRACE.txt",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 14227,
+      "sha256": "64c2ae10c9c36e1b230ec7b898f9dc9038e17e90830c188138f782207e26295b",
+      "git_blob": "e07edfb46029caaa1002f47e0725fe26c7b12b52"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/PREVIOUS_NATIVE_INTAKE.json",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 15299,
+      "sha256": "49cf0ea95d618d862da8473133e941ece032a129cf962ef6918d6803e12b7894",
+      "git_blob": "99de456d6b0693da773c73a97b80f5c8da61813b"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/PRODUCT.diff",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 3013,
+      "sha256": "84820b440468b07745b0612e33cd912d55f4ef456384c60a9727633c8954341b",
+      "git_blob": "addd4752461f70d8291b44afd363c4b84593c15f"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/README.md",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 3936,
+      "sha256": "7b2edbb70af7370728f6614e9273d19a5c6ae25c5c67530fa129545a7963ddd9",
+      "git_blob": "b9936ac601ba09c1c9b5d139a176e8d18276c23f"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/SELECTED_FAILURES.json",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 14977,
+      "sha256": "955fc0560f3543581bc444711bec1635241e9517a82c42ae9749bdf39bb009c5",
+      "git_blob": "d85c73a61b9a46fbfbb03893c7977c8c92207ecd"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/SOURCE_GATE.diff",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 2011,
+      "sha256": "2d08c259192971c08e7f55f2d7c1ff4766c03a386a0bfc2495394ad78a9f023f",
+      "git_blob": "587417dbf03dac8bf3ea7a453bcd540724db0443"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/SOURCE_GATE_CONTROLS.json",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 1760,
+      "sha256": "d90ccf9388e0300c1b2f04923d66a9487d7b28368d3cd9b950faf8ca320f1863",
+      "git_blob": "e780b2129d748f951219165bdc72d51479ca8976"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/SOURCE_INVERSE.json",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 1327,
+      "sha256": "5d648eb577fdd6d100f020420edf472ddd05d0e927a9c51037f6eaf26c20f1ed",
+      "git_blob": "18c194f8ddbe92c1af2b444011f80820d53fd64a"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/SWIFT_SYNTAX.json",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 643,
+      "sha256": "c2eafd82a9e8f44a582e15c023b2ffcdb373a9df785d94d49a239ca84340c382",
+      "git_blob": "9cb4ad82e562af60f8564011d9cb4e70ff5823b4"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/source-gate-controls.stderr.log",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/source_gate_lifecycle_controls.py",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 3250,
+      "sha256": "faeec0905ed2cfac0a6ad000d378f847c56d44b074ecf7e7ad5af5d5c46dc59a",
+      "git_blob": "f0ed5018b7339625dccff7a37dd0ab1530f591e2"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/swift-syntax.stderr.log",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/swift-syntax.stdout.log",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/library-native-lifecycle-20261123/SOURCE_MANIFEST.json",
+      "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+      "bytes": 3187,
+      "sha256": "49ae864360bb436251a4baf542436a749e7726c6b3cca5467a7fce4b5a6b31e4",
+      "git_blob": "13b2112f7c434f456e133e738b6315ff52de2974"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 62736,
+      "sha256": "c961ed6c51a1344a19951ed2239626bfbf512707a52f841d27258633b847b4f6",
+      "git_blob": "f911919c04eea11e779ccbb171b59101681641cb"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 10075,
+      "sha256": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29",
+      "git_blob": "30d65e436e53d7520953eba3dfa87129581a5e7c"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 25753,
+      "sha256": "97c22429e8c76cf34e16b7fa9665be9aa4b84d0b29d0a43919e11cca18e39865",
+      "git_blob": "ac647984ac55dd3e5fdbcb2f5ca5ac3743863720"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 9538,
+      "sha256": "06d68fa6efb79ed534902cc3ea7ad73852f534a204059f1d1db2d9401f724b1a",
+      "git_blob": "e74b4b23a71c1bac6276af93317fc5ed859d0e68"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 9216,
+      "sha256": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab",
+      "git_blob": "3d30c8f4010fca13fff2a2c41bf0f2907d04d457"
+    },
+    {
+      "path": "Tests/HQ/annotation-payload-budget/BudgetAcceptance.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 16362,
+      "sha256": "6af96954b74bb9c4a1a1612833dac14c53eb7a2f7e92112e43f347ac5734220e",
+      "git_blob": "0be424756ffd52320a4d39415cec99c851155e4e"
+    },
+    {
+      "path": "Tests/HQ/annotation-payload-budget/BudgetDatabaseEvidence.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 3391,
+      "sha256": "f874475e92e9cd8ef1bfd30c8906bacda48c3624b3af4ac1621a2f79251658e6",
+      "git_blob": "d9a3ca4f795f4c539bc763b9f8e98c59e9a99672"
+    },
+    {
+      "path": "Tests/HQ/annotation-payload-budget/BudgetOpenSSLDigest.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 739,
+      "sha256": "103513498af5fe88cadd353b8c6219f5c54f1065e07168c4d3dadfcd8e04be3c",
+      "git_blob": "d44c92319d20b2281cd043a177a78a0fb12dc725"
+    },
+    {
+      "path": "Tests/HQ/annotation-payload-budget/FirstIncomingUpgrade.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 4382,
+      "sha256": "4ad67371ab8ecd1aade354ca79cc931b1ae835bdf159a8b077a7a8c058ccaeed",
+      "git_blob": "3e0ace0277c68e9fd0333f9cecd8ccda6b75f0f9"
+    },
+    {
+      "path": "Tests/HQ/annotation-payload-budget/LegacySeeder.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 3398,
+      "sha256": "6b29eadea3b477b224a0d5bd7eb602d0eb3e178ef74c2db90744711b4d57fd1c",
+      "git_blob": "f3a12036f3c73a788ba08d6b6cac8e7c6ce4b0fd"
+    },
+    {
+      "path": "Tests/HQ/annotation-payload-budget/PortableOriginalTestSupport.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 12074,
+      "sha256": "66885e083807c6c7c2c64130968186359c92bd16aee42fc4d982a40759f2f440",
+      "git_blob": "5455cbcaf0f1799bdcaedbf4054a1ae98b170070"
+    },
+    {
+      "path": "Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 39693,
+      "sha256": "4db8ecd15194da0cbfbe13100debd0437d6bf83fc0fbf8df5afdbe202388f355",
+      "git_blob": "377f2355b4f9844228f5e07a2e4ff0a33c8d150a"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/ANNOTATION_PAYLOAD_POLICY.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 2255,
+      "sha256": "818bd440374cd49072f018065d300209bd2dafc506ec16d8c2c686736bde7077",
+      "git_blob": "8c10d71f7ac212932df8abbc4eb969b0c76d918d"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/FINAL_PRODUCT_AND_SCHEMA_CONTROL.diff",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 34610,
+      "sha256": "a7f8d050dde564334ca72b7d897a437dea3ff5495e52d329d6db4104fa3ed877",
+      "git_blob": "cd35b3251249b798d6c74d87853efdc602c8152e"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/INDEPENDENT_SOURCE_REVIEW.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 2533,
+      "sha256": "8ca17a171a843819efee4fc94d87b9af724f58ad8a490d7876d246897536eebc",
+      "git_blob": "c61cb492fb149415e079e421ccfdb8bbf70dcd4f"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/LEDGER_SOURCE.diff",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 22773,
+      "sha256": "2cf9fd7c091bb3321a90ce3871b24441e9e28958088a6ad1018f8d88dc73a604",
+      "git_blob": "6869226d535429f269fc70658a3e72d5353d5f3d"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/LEDGER_SOURCE_PREPARATION.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 596,
+      "sha256": "85051bf8c8802030e9adb67b443cf725ed7129ea01cbe8ca896fed36851c2317",
+      "git_blob": "79b830c53405c9ff29c39c8dcec21ce77b806243"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/LEDGER_SOURCE_V2.diff",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 23072,
+      "sha256": "560227cea407f8a911d758149718922b823f057abf96dfc07c1077b2edc2ae7c",
+      "git_blob": "4c9f33a5142ef66167e06456830ec67997d4c466"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/LEDGER_SOURCE_V2_PREPARATION.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 447,
+      "sha256": "9d25e6c1ee76833a00a850fd65bb736cadfc96544af2b9d591658808d2e1c71a",
+      "git_blob": "0391d09048914c1ed629d33e3f4e5db5e15c390f"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/PACKET_INDEX.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 9400,
+      "sha256": "1d6b3b3e8c200183f0f4e94e1f28d86a1d6e8956efbf1fecaad4d8bee61b4164",
+      "git_blob": "01062388f36a09cfe50bbb99d0fdffa5ff623ee2"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/PUBLICATION_PREPARATION_FAILURE.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 348,
+      "sha256": "74194cf5487a2b9c63e3d45327ebb5b797e222ceeacfce727003ea0e85bddb12",
+      "git_blob": "8032eb31fecafa595b5770db319a80a9f7ed9858"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/README.md",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 4363,
+      "sha256": "1683784fd71a42432cd0a3e5ad5f2214c285a60ecc71ac155d712f1462cb8da7",
+      "git_blob": "ebdc5e6103b287b8f6d3aff03dafd7883ae518de"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/SOURCE.diff",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 8743,
+      "sha256": "3650427655f78a658afd9101d3e644ead71e22835a3a17c55fab11d75f262388",
+      "git_blob": "b6fb12662a689f27b820f5934ff9205a51c9e4bd"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/SOURCE_CORRESPONDENCE.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 1935,
+      "sha256": "d0f320ec53f340bc579b329087591d3bb5db243511c239c7bac990ee4e43db7f",
+      "git_blob": "a620234792edf5ff5d2dc48cf2eed382d66d5612"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/SOURCE_SEAL.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 3505,
+      "sha256": "642365c664665cbe58a4516585ba8a4db23b33bd9a430bd2128d5448fb771431",
+      "git_blob": "19f82a27da6e21b023d274b48e663908e8ccd64e"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/WHOLE_ACTION_CORE_SOURCE.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 10140,
+      "sha256": "e32b449ef46b810364d8e648c8c4ea806212bc6c08155096c7e376c1f985cc63",
+      "git_blob": "dc7f48e5741660f2ab91c10eea7b6a34df706765"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/after/Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 62736,
+      "sha256": "c961ed6c51a1344a19951ed2239626bfbf512707a52f841d27258633b847b4f6",
+      "git_blob": "f911919c04eea11e779ccbb171b59101681641cb"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/after/Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 10075,
+      "sha256": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29",
+      "git_blob": "30d65e436e53d7520953eba3dfa87129581a5e7c"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/after/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 25753,
+      "sha256": "97c22429e8c76cf34e16b7fa9665be9aa4b84d0b29d0a43919e11cca18e39865",
+      "git_blob": "ac647984ac55dd3e5fdbcb2f5ca5ac3743863720"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/after/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 9538,
+      "sha256": "06d68fa6efb79ed534902cc3ea7ad73852f534a204059f1d1db2d9401f724b1a",
+      "git_blob": "e74b4b23a71c1bac6276af93317fc5ed859d0e68"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/after/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 9216,
+      "sha256": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab",
+      "git_blob": "3d30c8f4010fca13fff2a2c41bf0f2907d04d457"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/after/Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 39693,
+      "sha256": "4db8ecd15194da0cbfbe13100debd0437d6bf83fc0fbf8df5afdbe202388f355",
+      "git_blob": "377f2355b4f9844228f5e07a2e4ff0a33c8d150a"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/before/Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 52783,
+      "sha256": "26dc7075df6d73f9dc9c5d2cc46547d9496d71c96469fe8adf3a4e779d9b53cc",
+      "git_blob": "c43eb550fabd76f05c973e81e373b0b14da2ef97"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/before/Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 8619,
+      "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+      "git_blob": "30602a567c239852fc56de436e35f939c5486997"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/before/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 25713,
+      "sha256": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972",
+      "git_blob": "d4d77f1dbaa8650c5336dcc7c0483a9ef17a13e5"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/before/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 9530,
+      "sha256": "3460e43127e69d07a917d9b28b10edd1b37046586f9d12ba91de84ab8ee4c7ca",
+      "git_blob": "d50041264cb539ff089c5842353d844f76848f54"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/before/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 8441,
+      "sha256": "a94dd85985f288edbd2e10b5a14b1731be25a8d25893e832e8515af63307cbdf",
+      "git_blob": "e7acf923928a2c041da185a38ab0ff658b66fc80"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/before/Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 39693,
+      "sha256": "130dfa7cb4e50b9a01f85c796a76b93a5bcc0b6a35fd2d23e0da593c82738b2a",
+      "git_blob": "467f45f7859ad03824d030be1855c2b27a1a98a5"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/first-incoming-control/EXECUTED_DRIVER.py",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 7438,
+      "sha256": "0df64f014e06a19d5d3ddabf25aeaeb6b168c0aa4fc65f9f9c7ccbfbc9a9a6f7",
+      "git_blob": "c80c20cea699ee4132e61684d2a0aeb04e419d74"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/first-incoming-control/RESULT.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 1977,
+      "sha256": "1d98a419a5c999c75da448fa14c451a9ea24e56928990709ae844f6a87f27b9a",
+      "git_blob": "92f8deb1d20467c4e2b1f5aecd61152510bac8d0"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/first-incoming-control/compile.command.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 649,
+      "sha256": "5ab2abb9e202c9f2b9a4efc71442e6963e8dac7184b78b74f9eb3045102ee498",
+      "git_blob": "7da5c199fe505f2173daf94317fe2afe177319b1"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/first-incoming-control/compile.stderr",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 1232,
+      "sha256": "25cffb06c21476682f1c0a7bd454ce3ee6507ffec7d6ed4c717448a346d9d2b0",
+      "git_blob": "fe68f6fc0422b3b5017b15569a83f8e04ee3f925"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/first-incoming-control/compile.stdout",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 275,
+      "sha256": "7649315cb1c0ce971078023f08ea6e0bb7a3c04ee0672f7ecf24f8bad591bcea",
+      "git_blob": "d1bb3bd07e4782c12e1ae97dde2d93cf4a15b3db"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/first-incoming-control/control.command.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 563,
+      "sha256": "c576fc93aaa7b5115de0738f4b1007aa3d442776d1b8827008da8e5415c23e2c",
+      "git_blob": "1094dfa96772111857f1e94dbc67ee46e6fe7149"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/first-incoming-control/control.stderr",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/first-incoming-control/control.stdout",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 358,
+      "sha256": "f3a219440e083310f27ee68802fe542f1482ff3cd59046c78410f12ae931f6fb",
+      "git_blob": "ef884a9ed49ea9c4f1d58db86d350eb94c5a8e72"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/EXECUTED_RUNNER.py",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 6893,
+      "sha256": "80d668a20b3a5e560f31595b78878a827d35823521e701797cd7831b6753c164",
+      "git_blob": "e53e5ca48771191eb8099ced68a14170a1ab7efd"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/RESULT.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 9567,
+      "sha256": "fea683be05b3daf8bf8f68e0325e920f9da1269858612a3d7172007ffb5c383b",
+      "git_blob": "cf807596dd7356179bc661881f7788478891355f"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/SOURCE_AFTER.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 2283,
+      "sha256": "d44b9130965c23277669052ca594abf25e0a430ca1d36691b1a3cc82b93f7ec9",
+      "git_blob": "7bf3d51c3207e8f09f30444e0a2b8db4193fc334"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/SOURCE_BEFORE.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 2283,
+      "sha256": "d44b9130965c23277669052ca594abf25e0a430ca1d36691b1a3cc82b93f7ec9",
+      "git_blob": "7bf3d51c3207e8f09f30444e0a2b8db4193fc334"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/bin-path.command.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 687,
+      "sha256": "d0e9112210ac0f158e3f295559a4446431c8fd1dd340776086fd625e59098178",
+      "git_blob": "28798f47c0c790536cf39b23d94202c8a8f661b5"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/bin-path.stderr.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/bin-path.stdout.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 138,
+      "sha256": "4bd3161a69944314d5fb139316b6a7597612023623d4215834055795f4ac27d9",
+      "git_blob": "52f5c3ee2d8e4bfcbfc4356f6473972f53eb1d8b"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/candidate-controls.command.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 651,
+      "sha256": "b136c7fee8272ef6465a42b33c7537b13870bb38518b0332581b16892b370792",
+      "git_blob": "3fd831af414056dd6f82a82f440a41f292e9f5a3"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/candidate-controls.stderr.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/candidate-controls.stdout.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 1832,
+      "sha256": "c7edf96ce897ae1fd9f33d440a2b993eec0a7f8a57eb2122ba1f4a2f91a286df",
+      "git_blob": "135c3f617a4705eb9ab588b9c7aa0460b5b8efe1"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/compile.command.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 690,
+      "sha256": "3b02158921d9fd4f32a20e34c4de98079e4545061e51909356fd9f09a7dd51da",
+      "git_blob": "01fc2705286c306a52f95d87690c0128ac163939"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/compile.stderr.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 2468,
+      "sha256": "20a12b951c62d117a1aa8cdc40dca39c447ca23b44817c54b9ed0ee2dc284703",
+      "git_blob": "cfcaaef22b983795b6d03106ad7a8927aa9d9f5d"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/compile.stdout.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 527,
+      "sha256": "51e6f89b93e022f15eb670bb2819d60f5d89f7ac657df1412e7808c769475d69",
+      "git_blob": "7bfdff4cba6541865e6bfa8d962a77fca7f64f0d"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/original-v1-seed.command.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 647,
+      "sha256": "89ca3579be512a8e57472349a80ce21b2bc5a4072481ec4f2c09aedfbb5cc19c",
+      "git_blob": "a931678b980e0708de1e6d07b0171a4ff76f7409"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/original-v1-seed.stderr.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/original-v1-seed.stdout.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 1997,
+      "sha256": "0567a403beb7feb1921d1ba1b3e9b995876f9b76d117969217465c59989282c0",
+      "git_blob": "b1329a3d08df062c157a222c6ddbde753791bcee"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/swift-version.command.json",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 410,
+      "sha256": "2deba7791d5bf5b06fe484f9ca4666ec3e7c4e3af08d4f03cc9b2d307e70faab",
+      "git_blob": "4756a9203719f3394aa32e20d3a46870d5840a7f"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/swift-version.stderr.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/primary-controls/swift-version.stdout.log",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 76,
+      "sha256": "59360730c588801a672c1118d5d1debc93581f6b74e6a82d5d8cbda1b4a729ce",
+      "git_blob": "062b0e447a79048ef55ad68f303ad5b56af665f8"
+    },
+    {
+      "path": "tools/hq-annotation-payload-budget-acceptance.py",
+      "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+      "bytes": 6893,
+      "sha256": "80d668a20b3a5e560f31595b78878a827d35823521e701797cd7831b6753c164",
+      "git_blob": "e53e5ca48771191eb8099ced68a14170a1ab7efd"
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 290684,
+      "sha256": "d8ae7aa91ad09866a8842684fae51b1d19e1d084b27a8a6b5d7cb45b523c091f",
+      "git_blob": "e91d90a25c0cbd5158a7c4dffe054f9bd2637698"
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 21721,
+      "sha256": "2f53c4136145100382ea86dd2b659c8457ec7b56e19173eafb8d7c0ba464fa25",
+      "git_blob": "b7898901d4108b8d141e058ac97660eab7355d9b"
+    },
+    {
+      "path": "docs/hq-integration/full-v32-darwin-notify-20261123/ACTUAL_APPLE_COMPILE_REPORT.json",
+      "source": "b965e741815f9033151ee45f58d744d028ba1bc2",
+      "bytes": 4030,
+      "sha256": "44c14792bf7a2a7be8163e7058e2927cdccc415bc149080696df0529907b8b07",
+      "git_blob": "be8994672d13af65ff940eace8f77eb2a38c45bc"
+    },
+    {
+      "path": "docs/hq-integration/full-v32-darwin-notify-20261123/APPLE_MODULE_METADATA.json",
+      "source": "b965e741815f9033151ee45f58d744d028ba1bc2",
+      "bytes": 5902,
+      "sha256": "899b594f6badfc46dab274cddff3160642da14134efe7c435285635e0dd88d84",
+      "git_blob": "9da5e89c957e57542c308bdd49346b138131b2f1"
+    },
+    {
+      "path": "docs/hq-integration/full-v32-darwin-notify-20261123/COMPILER_ERRORS.txt",
+      "source": "b965e741815f9033151ee45f58d744d028ba1bc2",
+      "bytes": 223,
+      "sha256": "09ec98dffb814debaa32a511b0fb67e92ec3dcf13ee4c92b62a4cc67d59399b7",
+      "git_blob": "bd5852acba7ead012d0a8029ea794e09bba9fd06"
+    },
+    {
+      "path": "docs/hq-integration/full-v32-darwin-notify-20261123/IMPORT_ONLY.diff",
+      "source": "b965e741815f9033151ee45f58d744d028ba1bc2",
+      "bytes": 1058,
+      "sha256": "e5f5bed7158c7a30f66062b8d573fc48690c5465c5d7cd1d5d7c190b13941d96",
+      "git_blob": "d3c6e8c75235571c5c4676b26be5a475ab63b95b"
+    },
+    {
+      "path": "docs/hq-integration/full-v32-darwin-notify-20261123/ORIGINAL_RUN_INTAKE.json",
+      "source": "b965e741815f9033151ee45f58d744d028ba1bc2",
+      "bytes": 8283,
+      "sha256": "8135d9510b4e88af36437cc29fb805917d147b96b3002c75b7cc103b272af17b",
+      "git_blob": "9d8ddc062ea76399e409cf6e9944dc49f369a720"
+    },
+    {
+      "path": "docs/hq-integration/full-v32-darwin-notify-20261123/README.md",
+      "source": "b965e741815f9033151ee45f58d744d028ba1bc2",
+      "bytes": 1359,
+      "sha256": "579f36e4475020d135499db188465d180fa05d9cde87989e06bd0717f9ee7c07",
+      "git_blob": "cc204be0d29fa71efe390b6bf0cbb59a028329d1"
+    },
+    {
+      "path": "docs/hq-integration/full-v32-darwin-notify-20261123/SMALL_ARTIFACT_ADMISSION.json",
+      "source": "b965e741815f9033151ee45f58d744d028ba1bc2",
+      "bytes": 6250,
+      "sha256": "0524e470bb4424cc39a5cd6dcf4cc5da15a156f8c4ad01f0d93f184c23ec875e",
+      "git_blob": "e332b5c80b30f6ab4c50e7d0b456c6ea256378b7"
+    },
+    {
+      "path": "docs/hq-integration/full-v32-darwin-notify-20261123/SOURCE_PROOF.json",
+      "source": "b965e741815f9033151ee45f58d744d028ba1bc2",
+      "bytes": 1446,
+      "sha256": "9c6cc1548932683de978a6374a5b3611bad517821a9a364a07f15eb2e055f954",
+      "git_blob": "c36b17e642e5ad8dc50d7bfc31adb3db93ec397c"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ACTUAL_NOTIFY_MODULE.modulemap",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 126,
+      "sha256": "0d3116c1a49cc6fa61381b36b2cc4056086fed47096878dd582fe7bbcc60e4f5",
+      "git_blob": "8b56288938fcec240055ec69457bf9cb4ee0c43b"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ACTUAL_SDK_INDEX.json",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 5051,
+      "sha256": "8e1a2eaf03e737271d60aea00dc996bb096e60b75d9eee1dac1bc80c4989850a",
+      "git_blob": "650d1890741957ed89ef7646264ee904a1603eab"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ACTUAL_SDK_RESULT.json",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 12250,
+      "sha256": "544e5b74ce25b0a72e30452ebf702ad94c46edf8048d09a4c634a4f18827d685",
+      "git_blob": "7448c9f56969bf1e64f80ac5b4442edeea6cd872"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ACTUAL_SOURCE_ADMISSION.json",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 620,
+      "sha256": "02c888117eca1420f5e0b6ea50627e11313585980e92262b10969b32f7ec2a0c",
+      "git_blob": "c563283b0559a80b0fb5cbd81b86d9b60b96e9b6"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/COMPILED_DECLARATIONS.swift",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 438,
+      "sha256": "b10861ecdf6cc13ffdc046d27502007fcda9e6e5804f666290d54d0fc859e607",
+      "git_blob": "640ccf2ad1d19f8ddafe93323262b0e533bd17f7"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/README.md",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 961,
+      "sha256": "2763d78f7e2a93cfe64cb872c6280f746eb375ef99230d865a677c46e5320361",
+      "git_blob": "e13abfac7405f0a475fc5887ded64d4014df0885"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ROOT_ARTIFACT_ADMISSION.json",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 5621,
+      "sha256": "1646111f641b55efd4bc69cdcb01f102dfecae6247c48afece983c9a8a91a9c2",
+      "git_blob": "3d3ec6f0ff7bc160fa412c5314e9eeec073b09d7"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/ROOT_REVIEW.json",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 2855,
+      "sha256": "6e78293e7af6054b8fa86e675251ee49de2d53871b5900666b80c3c3f4a62e41",
+      "git_blob": "7053ae7844e3cf2ae26597bb1a3e2ed5b24ef54f"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/SOURCE_DIFF.diff",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 1088,
+      "sha256": "446f083c7f6c9c1a53df3d6b80574fad3d9c8ebe629f9ed8db24dca3b0f6694b",
+      "git_blob": "e3908e2ffb5b4e911a531109d7b4db608e2d206e"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/SOURCE_FILES.json",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 3757,
+      "sha256": "f86bf91f035e94175e7e693e0f6661fc890ecd041fbc0a1eb88615dfdc30882c",
+      "git_blob": "de6cf1128dd0266104b9c9a6e1400bb61b5f5609"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/darwin-original.stderr",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 1817,
+      "sha256": "1f0912415c6b895214748dbbdbcaf82015a27ea41ffa6e004f67195b2787696f",
+      "git_blob": "eff74f08d9258915473b4699c9ad867bff0cb1d8"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/declared-01.stderr",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 1801,
+      "sha256": "b1af2dd003fad57dd8aa4c9c9264e9ea4a890d4de4d669dd7b6789c92b0a7f90",
+      "git_blob": "9986dd7495a29f8765b5011a01dde2e9f04607fd"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/declared-02.stderr",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 1801,
+      "sha256": "026ad591baf8e9680cd3ea2fcb6ac7667b3d7e69a5ac731fae6c55b09f1d9eab",
+      "git_blob": "38c4d891338c8f87773f643f55784d3a2c16ad31"
+    },
+    {
+      "path": "docs/hq-integration/actual-notify-module-20261123/declared-03.stderr",
+      "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    }
+  ],
+  "canonical_annotation_source_and_process_resume_test_preserved": [
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift",
+    "Maktabah-iOSUITests/OriginalEditorAnnotationAcceptanceTests.swift"
+  ],
+  "pending": [
+    "Actual notify sourcea0f9 composed. Independent original1+7+2 combined followup45158596483 atfd710 started; actual app/UI outcome pending.",
+    "Live13 retry45145388957 genuine0PASS/1FAIL at consent beforeConnect; actualcleanup204/404verified. Original semanticwait observation proposal source-reviewed, no newdispatch.",
+    "Original StageB Ruby repaira3d235 attempt1zero-step hostedallocationFAIL; unchangedsource attempt2 active. Original editor mount/body/process-reopen notyetqualified.",
+    "Genuine Native B1/C62e5 closed-import candidate accepted for source;9leaf fixture and original gate underfinal review after actualStop ownership/controlcheckouthistory fixes.",
+    "E2facade84a023 +registeredowner/auth/onboarding/Settingssource prepared; recovery/select actualcompletion ordering review and composed originalSDK build pending.",
+    "Original SDK annotation budgeta89b443 source reviewed; productiongeneratedRPC/SwiftInvocation/Hostsaved-revision integration remains pending.",
+    "Final immutable source/gate input bindings; Native116/Release114 and real physical/signing gates remain UNFINALIZED."
+  ],
+  "native_passes_transferred": false,
+  "workflow_activated": false,
+  "local_materialization_note": "Initial no-checkout base index was absent; isolated worktree reconstructed from exact baseline and14 existing committed source blobs before any commit",
+  "full_v32_source_admission": {
+    "sealed_source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+    "collector_final_sha256": "d75618e44d205b1fb2843811bbff846151eef6e14ec92d9b071bdbbaafbbfca7",
+    "controls_historical_only": [
+      19,
+      10
+    ],
+    "control_replay": false,
+    "native_passes_transferred": false,
+    "application_source_binding": "UNFINALIZED"
+  },
+  "library_native_lifecycle_source_review": {
+    "source": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+    "root_verified_code_paths": 3,
+    "root_verified_evidence_rows": 17,
+    "root_reverse_patch_exact": true,
+    "new_guard_controls": 5,
+    "existing_test_methods_unchanged": 44,
+    "native_acceptance": false
+  },
+  "canonical_annotation_mount_budget_only_update": {
+    "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+    "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+    "scope": "Only two body limit arguments replaced with the named bounded annotation budget; existing provenance, process resume and retirement retained."
+  },
+  "host_annotation_budget_composition": {
+    "source": "2a5518565c1fe4ee0a486696df0142699c766d01",
+    "base": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+    "prior_composition": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
+    "modified_product_files": 5,
+    "modified_existing_test": 1,
+    "all_changed_source_and_evidence_paths": 66,
+    "conflicts": 0,
+    "whole_selected_source_correspondence": true,
+    "actual_new_portable_cases": 24,
+    "historical_native_passes_transferred": false,
+    "apple_application_qualified": false,
+    "sdk_budget_source": "a89b44388dbcb139dc9d6a38c2d243fd7e8ef4b1",
+    "sdk_budget_integrated_here": false
+  },
+  "darwin_notify_import_composition": {
+    "source": "b965e741815f9033151ee45f58d744d028ba1bc2",
+    "prior_composition": "ef0b68a0250fdbee5d9488061161003000e9ad38",
+    "product_paths": 2,
+    "only_source_change": "One explicit import DarwinNotify after each existing import Darwin",
+    "full_two_file_inverse_exact": true,
+    "source_methods_assertions_timeouts_unchanged": true,
+    "prior_combined_run": 45143450850,
+    "prior_native_not_run": 10,
+    "new_apple_compile_qualified": false,
+    "source_and_evidence_paths_selected": 10
+  },
+  "actual_sdk_notify_module_correction": {
+    "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+    "prior_composition": "58b242b77d516c99b7ecb4d24645e3359d68f531",
+    "supersedes_import_assumption": "b965e741815f9033151ee45f58d744d028ba1bc2",
+    "actual_sdk_probe_run": 45152574279,
+    "actual_sdk_probe_source": "a85e35846804cfef26e1449c57671c319773140d",
+    "actual_declared_module": "notify",
+    "actual_swift_declaration_compile_exit": 0,
+    "exact_two_import_inverse": true,
+    "source_methods_assertions_deadlines_unchanged": true,
+    "source_evidence_paths_selected": 16,
+    "combined_followup_run": 45158596483,
+    "combined_followup_ci_source": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+    "actual_full_application_or_ui_qualified": false,
+    "sdk_proof_is_not_native_runtime_acceptance": true
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "created_utc": "2026-11-23T08:40:47.767736+00:00",
+  "base": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+  "kind": "source-only preparation; native NOT_RUN",
+  "code_paths": {
+    "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift": {
+      "bytes": 16002,
+      "sha256": "5f9a1377f1ae556430027936b3f89954f466ef650bc7da60fc8b6891b5cee124"
+    },
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": {
+      "bytes": 290670,
+      "sha256": "f724b6b338c1dcbdc3285ed46386b9c51b80a5a224bec36b92cfb4fb632d72dc"
+    },
+    "Scripts/CI/verify-9401-exact-source.py": {
+      "bytes": 37831,
+      "sha256": "2a9969ee5326224e54b24c926dfc6f7a9b212b989aec11f50109cd08e693dc50"
+    }
+  },
+  "owned_evidence_files": {
+    "EXACT_SCOPE_PROOF.json": {
+      "bytes": 1294,
+      "sha256": "8f4b01a2600d2599871bbaa89b4cba008b851f1de9672f922917af896c6094f3"
+    },
+    "OBSERVER.diff": {
+      "bytes": 10927,
+      "sha256": "06c302d2c8579454e381647381bc0a102b9586b938e9ba2380d59c553b4b824c"
+    },
+    "ORIGINAL_NATIVE_DISMANTLE.swift": {
+      "bytes": 417,
+      "sha256": "141e2fee0056de4fbfef00e808f5ecd0c9c7340e4d5b4ed7903b80d7f7f1e451"
+    },
+    "ORIGINAL_SOURCE_GUARD_FAILURE.json": {
+      "bytes": 423,
+      "sha256": "dc8615dcdab8ca9514f90addcbf9e4841bfc5373a822a326503cc90765f081b5"
+    },
+    "PALETTE_NATIVE_LIFECYCLE_TRACE.txt": {
+      "bytes": 14227,
+      "sha256": "64c2ae10c9c36e1b230ec7b898f9dc9038e17e90830c188138f782207e26295b"
+    },
+    "PREVIOUS_NATIVE_INTAKE.json": {
+      "bytes": 15299,
+      "sha256": "49cf0ea95d618d862da8473133e941ece032a129cf962ef6918d6803e12b7894"
+    },
+    "PRODUCT.diff": {
+      "bytes": 3013,
+      "sha256": "84820b440468b07745b0612e33cd912d55f4ef456384c60a9727633c8954341b"
+    },
+    "README.md": {
+      "bytes": 3936,
+      "sha256": "7b2edbb70af7370728f6614e9273d19a5c6ae25c5c67530fa129545a7963ddd9"
+    },
+    "SELECTED_FAILURES.json": {
+      "bytes": 14977,
+      "sha256": "955fc0560f3543581bc444711bec1635241e9517a82c42ae9749bdf39bb009c5"
+    },
+    "SOURCE_GATE.diff": {
+      "bytes": 2011,
+      "sha256": "2d08c259192971c08e7f55f2d7c1ff4766c03a386a0bfc2495394ad78a9f023f"
+    },
+    "SOURCE_GATE_CONTROLS.json": {
+      "bytes": 1760,
+      "sha256": "d90ccf9388e0300c1b2f04923d66a9487d7b28368d3cd9b950faf8ca320f1863"
+    },
+    "SOURCE_INVERSE.json": {
+      "bytes": 1327,
+      "sha256": "5d648eb577fdd6d100f020420edf472ddd05d0e927a9c51037f6eaf26c20f1ed"
+    },
+    "SWIFT_SYNTAX.json": {
+      "bytes": 643,
+      "sha256": "c2eafd82a9e8f44a582e15c023b2ffcdb373a9df785d94d49a239ca84340c382"
+    },
+    "source-gate-controls.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "source_gate_lifecycle_controls.py": {
+      "bytes": 3250,
+      "sha256": "faeec0905ed2cfac0a6ad000d378f847c56d44b074ecf7e7ad5af5d5c46dc59a"
+    },
+    "swift-syntax.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "swift-syntax.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

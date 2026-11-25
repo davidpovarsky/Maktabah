@@ -1,0 +1,21 @@
+/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/Sources/FirstInbox/PortableOriginalTestSupport.swift:65:5: [1;33mwarning: [1;39mwill never be executed[0;0m
+ [0;36m61 |[0;0m     ExitProcess(1)
+ [0;36m62 |[0;0m     #else
+ [0;36m63 |[0;0m     exit(1)
+    [0;36m|[0;0m     `- [1;39mnote: [1;39ma call to a never-returning function[0;0m
+ [0;36m64 |[0;0m     #endif
+ [0;36m65 |[0;0m     fatalError("exit returned")
+    [0;36m|[0;0m     `- [1;33mwarning: [1;39mwill never be executed[0;0m
+ [0;36m66 |[0;0m }
+ [0;36m67 |[0;0m 
+
+/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/Sources/FirstInbox/PortableOriginalTestSupport.swift:223:5: [1;33mwarning: [1;39mwill never be executed[0;0m
+[0;36m219 |[0;0m     TerminateProcess(GetCurrentProcess(), 73)
+[0;36m220 |[0;0m     #else
+[0;36m221 |[0;0m     _exit(73)
+    [0;36m|[0;0m     `- [1;39mnote: [1;39ma call to a never-returning function[0;0m
+[0;36m222 |[0;0m     #endif
+[0;36m223 |[0;0m     fatalError("termination returned")
+    [0;36m|[0;0m     `- [1;33mwarning: [1;39mwill never be executed[0;0m
+[0;36m224 |[0;0m }
+[0;36m225 |[0;0m 

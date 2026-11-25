@@ -18,7 +18,9 @@ mkdir -p "$REPORT_DIR"
 
 UDID="$(python3 <<'PY'
 import json
+import os
 import subprocess
+import uuid
 
 def simctl(*arguments):
     return json.loads(subprocess.check_output(["xcrun", "simctl", *arguments, "-j"]))
@@ -28,8 +30,25 @@ runtimes = {
     for runtime in simctl("list", "runtimes", "available")["runtimes"]
     if runtime.get("isAvailable") and "iOS" in runtime["identifier"]
 }
+available_devices = simctl("list", "devices", "available")["devices"]
+owned_udid = os.environ.get("OTZARIA_NATIVE_BOOTSTRAP_OWNED_UDID")
+if owned_udid is not None:
+    if str(uuid.UUID(owned_udid)).upper() != owned_udid:
+        raise SystemExit("Owned simulator identity is not a canonical UUID")
+    owned = [(runtime, device) for runtime, devices in available_devices.items()
+             for device in devices if device.get("udid") == owned_udid and device.get("isAvailable")]
+    if len(owned) != 1:
+        raise SystemExit("Exactly one available caller-owned simulator is required")
+    runtime, device = owned[0]
+    sdk = tuple(int(part) for part in subprocess.check_output(
+        ["xcrun", "--sdk", "iphonesimulator", "--show-sdk-version"], text=True).strip().split("."))
+    if (runtimes.get(runtime, ())[:2] != sdk[:2]
+            or "iPad" not in device.get("deviceTypeIdentifier", "")):
+        raise SystemExit("Caller-owned simulator must be an SDK-matched iPad")
+    print(owned_udid)
+    raise SystemExit(0)
 candidates = []
-for runtime, devices in simctl("list", "devices", "available")["devices"].items():
+for runtime, devices in available_devices.items():
     version = runtimes.get(runtime)
     if version is None:
         continue
@@ -119,6 +138,7 @@ FINAL_REPORT="$CONTAINER/Documents/otzaria-native-bootstrap-acceptance.json"
 rm -f "$CANCEL_REPORT" "$INSTALL_REPORT" "$FINAL_REPORT"
 
 cancel_started="$(date +%s)"
+SIMCTL_CHILD_GH_TOKEN="${GH_TOKEN:-${GITHUB_TOKEN:-}}" \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE=cancel \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_RESULT="$CANCEL_REPORT" \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_CANCEL_BYTES=67108864 \
@@ -132,6 +152,7 @@ xcrun simctl terminate "$UDID" "$BUNDLE_ID"
 echo "cancel_phase_seconds=$(($(date +%s) - cancel_started))"
 
 install_started="$(date +%s)"
+SIMCTL_CHILD_GH_TOKEN="${GH_TOKEN:-${GITHUB_TOKEN:-}}" \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE=install \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_RESULT="$INSTALL_REPORT" \
 SIMCTL_CHILD_OTZARIA_DATA_PROFILE="$DATA_PROFILE" \
@@ -143,6 +164,7 @@ xcrun simctl terminate "$UDID" "$BUNDLE_ID"
 echo "install_phase_seconds=$(($(date +%s) - install_started))"
 
 restore_started="$(date +%s)"
+SIMCTL_CHILD_GH_TOKEN="${GH_TOKEN:-${GITHUB_TOKEN:-}}" \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE=restore \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_RESULT="$FINAL_REPORT" \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_PRIOR_REPORT="$INSTALL_REPORT" \
@@ -153,6 +175,19 @@ cp "$FINAL_REPORT" "$REPORT_DIR/otzaria-native-bootstrap-acceptance.json"
 cat "$FINAL_REPORT"
 validate_passed "$FINAL_REPORT"
 echo "restore_phase_seconds=$(($(date +%s) - restore_started))"
-DATABASE_PATH="$CONTAINER/Library/Application Support/Maktabah/Otzaria/seforim.db"
+DATABASE_PATH="$(python3 - "$FINAL_REPORT" <<'PY'
+import json
+from pathlib import Path
+import sys
+report = json.loads(Path(sys.argv[1]).read_text())
+path = Path(report["finalPath"])
+if not path.is_absolute() or not path.is_file() or "\n" in str(path):
+    raise SystemExit("Original native report has no existing absolute managed database path")
+with path.open("rb") as stream:
+    if stream.read(16) != b"SQLite format 3\0":
+        raise SystemExit("Original native report path is not the installed SQLite database")
+print(path)
+PY
+)"
 echo "database_path=$DATABASE_PATH"
 printf 'database_path=%s\n' "$DATABASE_PATH" > "$REPORT_DIR/otzaria-native-database-path.txt"

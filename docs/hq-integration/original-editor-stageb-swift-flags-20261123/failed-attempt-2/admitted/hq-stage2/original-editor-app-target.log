@@ -1,0 +1,4 @@
+/Users/runner/work/Maktabah/Maktabah/Scripts/CI/hq-original-editor-app-target.rb:58:in '<top (required)>': Unexpected original Swift flag shape (RuntimeError)
+	from /Users/runner/work/Maktabah/Maktabah/Scripts/CI/hq-original-editor-ruby-context.rb:159:in 'Kernel#load'
+	from /Users/runner/work/Maktabah/Maktabah/Scripts/CI/hq-original-editor-ruby-context.rb:159:in 'OriginalEditorRubyContext.launch'
+	from /Users/runner/work/Maktabah/Maktabah/Scripts/CI/hq-original-editor-ruby-context.rb:165:in '<main>'

@@ -1,0 +1,29 @@
+{
+  "status": "INSTALLED",
+  "scope": "Actual exact-version install into owned isolated GEM_HOME, no system installation",
+  "prior_failure": "RUNTIME_INSTALL.json; wrong owner on newly created gem-home, corrected to actual ubuntu uid/gid only",
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-root/usr/bin/ruby3.2",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-install/install_exact.rb",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/PACKAGES_INTAKE.json"
+  ],
+  "exit": 0,
+  "timed_out": false,
+  "child_reaped": true,
+  "owned_group_drained": true,
+  "elapsed_seconds": 2.972438898868859,
+  "stdout": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-install/exact-gem-install-attempt2.stdout",
+    "size": 543,
+    "sha256": "9549f130552dec08a98bf001d8fad56fc7a0d50e00aeda40977fa124b63e2513"
+  },
+  "stderr": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-install/exact-gem-install-attempt2.stderr",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

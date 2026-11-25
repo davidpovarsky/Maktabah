@@ -1,0 +1,48 @@
+{
+  "accepted_source_properties": [
+    "Original v1 CREATE definitions are retained and exact known v1/v2 SQL plus automatic indexes are verified.",
+    "Only schema/versions/inbox reconstructed; original heads/outbox and native foreign-key target stay in place.",
+    "Original SQLiteDatabase.transaction uses nested SAVEPOINT, retaining outer payload/CAS/cancellation rollback.",
+    "Explicit rowids plus typeof and hex(CAST AS BLOB) compare in both EXCEPT directions before dropping originals.",
+    "Temporary shadows, main scratch collisions and unknown external references are rejected before relevant mutations.",
+    "No foreign_keys/writable_schema/user_version PRAGMA toggle.",
+    "Read-only schema discovery validates known versions without migration.",
+    "Encoded storage payload length is bounded before second base64 decode; typed annotation body/envelope limits remain distinct."
+  ],
+  "files": [
+    {
+      "bytes": 62736,
+      "path": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "sha256": "c961ed6c51a1344a19951ed2239626bfbf512707a52f841d27258633b847b4f6"
+    },
+    {
+      "bytes": 10075,
+      "path": "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "sha256": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29"
+    },
+    {
+      "bytes": 14916,
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+    },
+    {
+      "bytes": 23072,
+      "path": "docs/hq-integration/annotation-payload-budget-20261123/LEDGER_SOURCE_V2.diff",
+      "sha256": "560227cea407f8a911d758149718922b823f057abf96dfc07c1077b2edc2ae7c"
+    }
+  ],
+  "native_or_apple_runtime_qualified": false,
+  "remaining_source_blockers": [],
+  "resolved_finding": {
+    "finding": "Fresh install skipped the migration-only external-reference and scratch-name inspection.",
+    "first_diff_sha256": "2cf9fd7c091bb3321a90ce3871b24441e9e28958088a6ad1018f8d88dc73a604",
+    "fix": "Same requirePayloadRebuildIsolation helper now runs before fresh creation and v1 reconstruction. Existing predicate retained."
+  },
+  "reviewed_at": "2026-11-23T08:48:21.098031+00:00",
+  "reviewer": "/root/original_sdk",
+  "source_edits_by_reviewer": 0,
+  "sql_databases_opened_by_reviewer": 0,
+  "status": "SOURCE_REVIEW_ACCEPTED_WITH_RUNTIME_QUALIFICATION_PENDING",
+  "tests_by_reviewer": 0,
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-annotation-payload-budget-20261123"
+}

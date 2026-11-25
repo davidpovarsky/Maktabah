@@ -1,0 +1,69 @@
+{
+  "source_parent": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+  "unchanged_files": [
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "bytes": 49198,
+      "sha256": "d8c317ee8fdf1fd07a2e2e604c52866379912d96705f4da9a09bcab055f8f337",
+      "git_blob": "540e6bb2919a91418d99b603c4e975c24e7b546f"
+    },
+    {
+      "path": "Scripts/CI/hq-original-editor-distribution.py",
+      "bytes": 48550,
+      "sha256": "6e462ff723b540b12155f054642a661b49610e0e71b6842c35c00c638931d114",
+      "git_blob": "71afb2190a9553f4e8a747225d5d6fff544db246"
+    },
+    {
+      "path": "Scripts/CI/hq-original-editor-ruby-context.rb",
+      "bytes": 8002,
+      "sha256": "facf9c4c1fcc25d1cafbd6d532c60367a4097f16642f5fc444e2a2092d0e3f33",
+      "git_blob": "667a289e22821b2574b776c4ad7e67a91902f987"
+    },
+    {
+      "path": "Scripts/CI/runtime27-original-editor-native.py",
+      "bytes": 43668,
+      "sha256": "04c61fcda3c116598086e9fdf348b30b25818c358719fb29aa0529e9efe9d70c",
+      "git_blob": "b24909c45075eef11db5969da1f1c973fbef3bb2"
+    },
+    {
+      "path": "Scripts/CI/runtime27-original-editor.inputs.json",
+      "bytes": 8097,
+      "sha256": "2940ae140f7c4b1521d454d3e9b246f85c75b473c806d8ea68190b793601a731",
+      "git_blob": "9171f651afbbd0eac02768462f62ff28db6df8ba"
+    },
+    {
+      "path": "Scripts/CI/original_editor_continuation_admission.py",
+      "bytes": 29084,
+      "sha256": "94e70b21fb323670e81a6903ee7a253d9b3cdf9183e9082f548905827e5d57ef",
+      "git_blob": "d290aef6e9d97911c554cacdd59128b140c92bfb"
+    },
+    {
+      "path": "Scripts/CI/restore-original-editor-distribution.py",
+      "bytes": 12482,
+      "sha256": "152a7bb8d4bb2abd5591d907453f13a859de5e9b55c13b74a0221876af8bd3d4",
+      "git_blob": "23626f44c327b45e803f49ee7e23a6148659903d"
+    },
+    {
+      "path": ".github/workflows/otzaria-original-editor-stageb-native.yml",
+      "bytes": 7078,
+      "sha256": "4b23096007c715e673c2d31297a3984ad995e77dc95754f47fa6a10e282ac146",
+      "git_blob": "d09cf79dd14b5399373e3f7db8a0aa94207704cc"
+    },
+    {
+      "path": "Scripts/CI/OriginalEditorDistributionAPICheck.swift",
+      "bytes": 2854,
+      "sha256": "5f0cca78ac048f47c55468601ecd6851683ecdf46ec3edb77722c25cb9a52b2c",
+      "git_blob": "2e6700b242113e0ba6efa382354de0e1b422fecd"
+    }
+  ],
+  "whole_helper_inverse": "Removing the exact retained five-line inserted block returns all8935 original bytes",
+  "old_ruby_mechanism_controls": "6cases42assertions12commands plus wrapper13assertions4commands retained at a3d; unchanged three mechanism source files; not replayed",
+  "old_SDK_and_native_evidence": "historical source-scoped only; no new UI/full-project acceptance",
+  "automatic_final_source_binding": "Unchanged source_context calls exact_working_inputs on Scripts/CI and therefore includes current helper Git blob and SHA; workflow compiler cache integration also includes this exact helper Git blob",
+  "application_trees": {
+    "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "ca36ba13f1fd900adf528a3e404fed6a66290b6b"
+  }
+}

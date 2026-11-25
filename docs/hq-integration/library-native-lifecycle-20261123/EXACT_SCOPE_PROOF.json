@@ -1,0 +1,15 @@
+{
+  "base": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+  "faithful_normalization": "Remove exactly the new observer type/comment, restore only the existing captureOpenLibraryPalette helper from base: entire file equals base bytes.",
+  "faithful_normalized_sha256": "7c1e4e376b5fdf965b4a799f922851e00d88c572f3102d0ad4d5d0db8bd82156",
+  "original_test_method_count": 44,
+  "test_method_names_sha256": "9e79728d28386a8379b346246b8b4a1cdd78ac1167e01b761f07c4bfb607a4aa",
+  "all_existing_case_methods_byte_preserved": true,
+  "native_mainactor_bridge_byte_preserved": true,
+  "adapter_normalization": "Restore only searchShell and its type documentation comment: entire file equals base bytes.",
+  "adapter_normalized_sha256": "ec9b6510ff19fdebf3023d07029e7829b5c6639878132fa607492983868cd40c",
+  "original_component_path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+  "original_component_sha256": "07bf0af9e7b0131865d4422507aef69d7330a27ce22b8ba00297c51f5e6f0931",
+  "original_dismantle_sha256": "141e2fee0056de4fbfef00e808f5ecd0c9c7340e4d5b4ed7903b80d7f7f1e451",
+  "source_contract": "No existing case body, timeout, assertion, test selector, public production route, original action/query or native input teardown source changed."
+}

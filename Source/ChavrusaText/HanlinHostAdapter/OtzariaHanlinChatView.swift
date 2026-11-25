@@ -190,8 +190,10 @@ private struct OtzariaHanlinChatView: View {
                     }
                 }
                 .padding()
-                .padding(.bottom, composerHeight)
             }
+            // Auto-follow must place the final message above the floating input.
+            // Stack padding alone leaves source actions under the native editor.
+            .safeAreaPadding(.bottom, composerHeight)
             .scrollDismissesKeyboard(.interactively)
             .onChange(of: session.messages.last?.content) { _, _ in
                 if let last = session.messages.last { reader.scrollTo(last.id, anchor: .bottom) }

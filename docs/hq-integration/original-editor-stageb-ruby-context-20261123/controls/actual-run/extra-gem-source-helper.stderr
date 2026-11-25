@@ -1,0 +1,4 @@
+/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/Scripts/CI/hq-original-editor-ruby-context.rb:138:in `block in launch': Original gem source membership changed (RuntimeError)
+	from /mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/Scripts/CI/hq-original-editor-ruby-context.rb:133:in `each'
+	from /mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/Scripts/CI/hq-original-editor-ruby-context.rb:133:in `launch'
+	from /mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/Scripts/CI/hq-original-editor-ruby-context.rb:159:in `<main>'

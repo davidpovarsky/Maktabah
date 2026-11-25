@@ -1,0 +1,36 @@
+{
+  "source": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+  "source_parent": "b965e741815f9033151ee45f58d744d028ba1bc2",
+  "prior_final_composition": "58b242b77d516c99b7ecb4d24645e3359d68f531",
+  "source_root_review_sha256": "6e78293e7af6054b8fa86e675251ee49de2d53871b5900666b80c3c3f4a62e41",
+  "existing_144_selected_inputs_verified": true,
+  "selected_paths": [
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+    "docs/hq-integration/actual-notify-module-20261123/ACTUAL_NOTIFY_MODULE.modulemap",
+    "docs/hq-integration/actual-notify-module-20261123/ACTUAL_SDK_INDEX.json",
+    "docs/hq-integration/actual-notify-module-20261123/ACTUAL_SDK_RESULT.json",
+    "docs/hq-integration/actual-notify-module-20261123/ACTUAL_SOURCE_ADMISSION.json",
+    "docs/hq-integration/actual-notify-module-20261123/COMPILED_DECLARATIONS.swift",
+    "docs/hq-integration/actual-notify-module-20261123/README.md",
+    "docs/hq-integration/actual-notify-module-20261123/ROOT_ARTIFACT_ADMISSION.json",
+    "docs/hq-integration/actual-notify-module-20261123/ROOT_REVIEW.json",
+    "docs/hq-integration/actual-notify-module-20261123/SOURCE_DIFF.diff",
+    "docs/hq-integration/actual-notify-module-20261123/SOURCE_FILES.json",
+    "docs/hq-integration/actual-notify-module-20261123/darwin-original.stderr",
+    "docs/hq-integration/actual-notify-module-20261123/declared-01.stderr",
+    "docs/hq-integration/actual-notify-module-20261123/declared-02.stderr",
+    "docs/hq-integration/actual-notify-module-20261123/declared-03.stderr"
+  ],
+  "new_selected_rows": 158,
+  "product_paths": [
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift"
+  ],
+  "complete_two_file_inverse_exact": true,
+  "only_product_change": "Replace two earlier DarwinNotify imports with actual selected SDK module notify",
+  "actual_compile_probe": 45152574279,
+  "native_passes_transferred": false,
+  "final_workflow_activated": false,
+  "timestamp_utc": "2026-11-23T10:47:38.877034+00:00"
+}

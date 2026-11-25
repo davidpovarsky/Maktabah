@@ -18,6 +18,34 @@ import tempfile
 TARGET = "Maktabah-iOS"
 BUNDLE = "com.davidpovarsky.chavrusatext"
 QUALIFIED = "ACTUAL_ORIGINAL_FRAMEWORK_EXTERNAL_IMPORT_LINK_RESOURCES_PASS"
+LOCAL_ANNOTATION_CONTRACT_SHA256 = "33594f50c825c490edf5502add640fd478d3249909352e02b0e53ee23b9ee634"
+LOCAL_ANNOTATION_REQUIREMENTS = (('AnytypeOriginalEditorLocalAnnotationSource',),
+ ('AnytypeOriginalEditorLocalAnnotationSource', 'hostProfileID'),
+ ('AnytypeOriginalEditorLocalAnnotationSource', 'annotationUUID'),
+ ('AnytypeOriginalEditorLocalAnnotationSource', 'expectedRevision'),
+ ('AnytypeOriginalEditorLocalAnnotationSource', 'sourceWitnessSHA256'),
+ ('AnytypeOriginalEditorLocalAnnotationSource', 'payloadSHA256'),
+ ('AnytypeOriginalEditorLocalAnnotationSource',
+  'init(hostProfileID:annotationUUID:expectedRevision:sourceWitnessSHA256:payloadSHA256:)'),
+ ('AnytypeOriginalEditorLocalAnnotationBody',),
+ ('AnytypeOriginalEditorLocalAnnotationBody', 'plainText(_:)'),
+ ('AnytypeOriginalEditorLocalAnnotationBody', 'nativeSnapshot(_:)'),
+ ('AnytypeOriginalEditorLocalAnnotationError',),
+ ('AnytypeOriginalEditorLocalAnnotationSourceLifetime',),
+ ('AnytypeOriginalEditorLocalAnnotationSourceLifetime', 'source'),
+ ('AnytypeOriginalEditorLocalAnnotationSourceLifetime', 'init(source:)'),
+ ('AnytypeOriginalEditorLocalAnnotationSourceLifetime', 'isCurrent'),
+ ('AnytypeOriginalEditorLocalAnnotationSourceLifetime', 'retire()'),
+ ('AnytypeOriginalEditorLocalAnnotationCapture',),
+ ('AnytypeOriginalEditorLocalAnnotationCapture', 'nativeCapture'),
+ ('AnytypeOriginalEditorLocalAnnotationCapture', 'textPreview'),
+ ('AnytypeOriginalEditorLocalAnnotationSession',),
+ ('AnytypeOriginalEditorLocalAnnotationSession', 'binding'),
+ ('AnytypeOriginalEditorLocalAnnotationSession', 'makeViewController()'),
+ ('AnytypeOriginalEditorLocalAnnotationSession', 'captureNativeSnapshot(maximumBodyBytes:)'),
+ ('AnytypeOriginalEditorLocalAnnotationSession', 'retire()'),
+ ('AnytypeOriginalEditorModule', 'openLocalAnnotation(appGroup:sourceLifetime:body:sourceIsCurrent:)'))
+
 
 # One observed build-tool-only candidate, not a general package-pin exemption.
 # Names are the union of the actual products/targets in these two Package.swift
@@ -238,11 +266,38 @@ def verify_absence_receipt(root, directory, proof, *, reused=None):
                     "Original full binary proof is missing or changed")
 
 
-def require_compiled_host_api(qualification):
+def require_compiled_host_api(qualification, *, retained_original=None, admission_schema=1, production=False,
+                              public_contract_sha256=None):
     """Admit the original producer's compiled API proof, never editor execution."""
+    require(type(admission_schema) is int and admission_schema in {1, 2, 3},
+            "Unsupported original SDK public contract schema")
+    require(retained_original is None or admission_schema in {1, 2},
+            "The complete shared SDK requires its own actual compiled public proof")
+    require(not production or (admission_schema == 3 and retained_original is None),
+            "Production requires the complete SDK's own Release compiler proof")
+    required_count = 64 if production else 86 if admission_schema == 3 else 38
+    if public_contract_sha256 is not None:
+        require(public_contract_sha256 == LOCAL_ANNOTATION_CONTRACT_SHA256
+                and admission_schema == 3 and retained_original is None,
+                "Unreviewed local annotation public contract")
+        required_count += len(LOCAL_ANNOTATION_REQUIREMENTS)
     public_api = "EXPOSED_COMPILED_NATIVE_EDITOR_NOT_RUN"
     probe = qualification.get("compiled_consumer_api_probe_sha256")
-    require(qualification.get("public_host_api") == public_api
+    public_host_api = qualification.get("public_host_api")
+    if retained_original is not None:
+        # The new run restores the signed consumer. Its public API proof belongs
+        # to the exact successful original build, whose failed runtime is kept.
+        require(qualification.get("kind") == "ORIGINAL_SIGNED_CONSUMER_RUNTIME_CONTINUATION"
+                and hashlib.sha256(json.dumps(retained_original, sort_keys=True,
+                    separators=(",", ":")).encode()).hexdigest()
+                    == "5433db38125e3fd7827cf2694e508c44796a7b48fe532222f0f847be54f214d7"
+                and retained_original.get("original_framework_build") == "PASS"
+                and retained_original.get("external_consumer_build") == "PASS"
+                and retained_original.get("compiled_consumer_api_probe_sha256") == probe
+                and retained_original.get("actual_public_surface") == qualification.get("actual_public_surface"),
+                "Retained public Host proof differs from the original compiled producer")
+        public_host_api = retained_original.get("public_host_api")
+    require(public_host_api == public_api
             and qualification.get("editable_mount") == "API_COMPILED_NATIVE_UI_NOT_RUN"
             and type(qualification.get("native_editor_ui_tests")) is int
             and qualification["native_editor_ui_tests"] == 0
@@ -252,18 +307,70 @@ def require_compiled_host_api(qualification):
     require(isinstance(surface, dict) and surface.get("status") == "ACTUAL_TARGET_PUBLIC_SURFACE_INSPECTED"
             and surface.get("target") == "AnytypeOriginalEditor"
             and type(surface.get("reviewed_host_and_spi_requirements_observed")) is int
-            and surface["reviewed_host_and_spi_requirements_observed"] == 38
+            and surface["reviewed_host_and_spi_requirements_observed"] == required_count
             and surface.get("editable_mount_api") == public_api
             and surface.get("qualification_spi_scope_verified") is True
             and surface.get("public_host_scope_verified") is True
             and surface.get("public_original_editor_or_writer_declarations") == []
-            and isinstance(surface.get("own_public_symbols"), list) and len(surface["own_public_symbols"]) >= 38
+            and isinstance(surface.get("own_public_symbols"), list) and len(surface["own_public_symbols"]) >= required_count
             and all(isinstance(symbol, dict) and type(symbol.get("spi")) is bool
                     for symbol in surface["own_public_symbols"]),
             "Original full public/qualification-SPI verifier prerequisite is incomplete")
+    if public_contract_sha256 is not None:
+        public_paths = {tuple(symbol.get("path", [])) for symbol in surface["own_public_symbols"]
+                        if symbol["spi"] is False}
+        require(set(LOCAL_ANNOTATION_REQUIREMENTS) <= public_paths,
+                "Actual public graph lacks the reviewed local annotation declarations")
+        protected = {"AnytypeOriginalEditorLocalAnnotationSession", "AnytypeOriginalEditorLocalAnnotationCapture"}
+        require(not any(path and path[0] in protected and any(part.startswith("init(") for part in path[1:])
+                        for path in public_paths),
+                "Local annotation owners must not gain public constructors")
+    if production:
+        require(qualification.get("configuration") == "Release-Anytype"
+                and qualification.get("platform") in {"iphonesimulator", "iphoneos"}
+                and type(surface.get("debug_qualification_requirements_absent")) is int
+                and surface["debug_qualification_requirements_absent"] == 22
+                and surface.get("debug_qualification_symbols_observed") == []
+                and all(symbol["spi"] is False for symbol in surface["own_public_symbols"]),
+                "Release SDK exposes or has not checked the original Debug qualification SPI")
     return {"public_host_api": public_api, "editable_mount": qualification["editable_mount"],
             "compiled_consumer_api_probe_sha256": probe,
             "actual_public_surface": surface, "native_editor_ui_tests": 0}
+
+
+def require_simulator_dynamic_architectures(architecture_output, header):
+    # Preserve each authenticated framework byte, including an original universal
+    # Simulator slice. The consumer needs arm64; no extra architecture is inferred
+    # from a path, flag or other column in otool's output.
+    architectures = architecture_output.split()
+    supported = {"arm64", "x86_64"}
+    require(architectures and len(architectures) == len(set(architectures))
+            and "arm64" in architectures and set(architectures) <= supported,
+            "Wrong or ambiguous SDK architectures")
+    cpu_names = {"ARM64": "arm64", "X86_64": "x86_64"}
+    header_architectures = []
+    for line in header.splitlines():
+        fields = line.split()
+        if not fields or not fields[0].startswith("MH_"):
+            continue
+        require(len(fields) >= 7 and fields[0] == "MH_MAGIC_64"
+                and fields[1] in cpu_names
+                and re.fullmatch(r"0x[0-9a-fA-F]+", fields[3])
+                and fields[4] == "DYLIB"
+                and re.fullmatch(r"[0-9]+", fields[5])
+                and re.fullmatch(r"[0-9]+", fields[6]),
+                "Unsupported or ambiguous SDK Mach-O header")
+        header_architectures.append(cpu_names[fields[1]])
+    require(header_architectures
+            and len(header_architectures) == len(set(header_architectures))
+            and set(header_architectures) == set(architectures),
+            "SDK architecture and actual DYLIB CPU headers differ")
+    return tuple(sorted(architectures))
+
+
+def require_production_host_api(qualification, *, public_contract_sha256=None):
+    return require_compiled_host_api(qualification, admission_schema=3, production=True,
+                                     public_contract_sha256=public_contract_sha256)
 
 
 def admit(root, admission_path, evidence, *, swift=None, sdk=None):
@@ -274,16 +381,24 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
     committed = subprocess.check_output(["git", "show", "HEAD:" + relative], cwd=root)
     require(committed == admission_path.read_bytes(), "SDK admission bytes differ from the reviewed checkout")
     config = read_json(admission_path)
-    require(config.get("schema") in {1, 2} and config.get("repository") == "davidpovarsky/anytype-swift",
+    production = config.get("schema") == "otzaria.original-editor.production-input/1"
+    require(config.get("schema") in {1, 2, 3, "otzaria.original-editor.production-input/1"}
+            and config.get("repository") == "davidpovarsky/anytype-swift",
             "Wrong original SDK admission schema/repository")
     continuation = None
+    local = None
+    if config.get("producer_kind") == "local-mac":
+        helper = "original_editor_production_admission.py" if production else "original_editor_local_admission.py"
+        local = runpy.run_path(str(owned_path(root, "Scripts/CI/" + helper)))
+        local["validate_configuration"](config)
     if config["schema"] == 2:
         continuation = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_continuation_admission.py")))
         continuation["validate_configuration"](config)
         continuation["validate_paths"](root, config, globals())
     require(re.fullmatch(r"[a-f0-9]{40}", config.get("source_sha", "")), "Unfinalized original SDK source")
-    require(all(type(config.get(k)) is int and config[k] > 0 for k in ["run_id", "run_attempt", "artifact_id", "archive_bytes"]),
-            "Missing immutable original SDK run/artifact identity")
+    if local is None:
+        require(all(type(config.get(k)) is int and config[k] > 0 for k in ["run_id", "run_attempt", "artifact_id", "archive_bytes"]),
+                "Missing immutable original SDK run/artifact identity")
     for key in ["archive_sha256", "distribution_manifest_sha256", "qualification_sha256", "original_source_sha256", "hanlin_source_sha256"]:
         require(re.fullmatch(r"[a-f0-9]{64}", config.get(key, "")), "Unfinalized SDK digest: " + key)
     archive = owned_path(root, config["archive_path"], build=True)
@@ -299,15 +414,24 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
     require(digest(qualification_path) == config["qualification_sha256"]
             and digest(source_path) == config["original_source_sha256"], "SDK qualification/source receipt differs")
     qualification, provenance, exported = read_json(qualification_path), read_json(source_path), read_json(manifest_path)
+    local_provenance = local["validate_provenance"](root, config, qualification, globals()) if local else None
+    require(config.get("public_host_contract_sha256") is None or local_provenance is not None,
+            "Reviewed local lifecycle requires its authenticated source-before/after observations")
     if continuation:
         continuation_receipt = continuation["validate_qualification"](config, qualification)
-    else:
+    elif not production:
         require(qualification.get("status") == QUALIFIED and qualification.get("phase") == "COMPLETE"
                 and qualification.get("original_framework_build") == "PASS"
                 and qualification.get("external_consumer_build") == "PASS"
                 and qualification.get("same_toolchain_only") is True,
                 "SDK lacks the original framework/external consumer prerequisites")
-    compiled_host_api = require_compiled_host_api(qualification)
+    if production:
+        compiled_host_api = require_production_host_api(qualification,
+            public_contract_sha256=config.get("public_host_contract_sha256"))
+    else:
+        compiled_host_api = (continuation["compiled_host_receipt"](root, config, qualification, globals())
+                             if continuation else require_compiled_host_api(qualification, admission_schema=config["schema"],
+                                 public_contract_sha256=config.get("public_host_contract_sha256")))
     if continuation:
         require(provenance.get("application_source") == config["source_sha"]
                 and provenance.get("original_trees") == config["framework_producer"]["source_trees"],
@@ -317,9 +441,10 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
                 and str(qualification.get("run_id")) == str(config["run_id"])
                 and str(qualification.get("run_attempt")) == str(config["run_attempt"]), "SDK source/run receipt drift")
     observations = qualification.get("verified_runtime_observations", [])
-    require(len(observations) == 2 and {row.get("language") for row in observations} == {"en", "he"}
-            and all(row.get("status") == "ACTUAL_IMPORT_LINK_RESOURCE_RUNTIME_PASS" for row in observations),
-            "Original en/he external resource observations are incomplete")
+    if not production or config["platform"] == "iphonesimulator":
+        require(len(observations) == 2 and {row.get("language") for row in observations} == {"en", "he"}
+                and all(row.get("status") == "ACTUAL_IMPORT_LINK_RESOURCE_RUNTIME_PASS" for row in observations),
+                "Original en/he external resource observations are incomplete")
     if swift is not None:
         require(qualification.get("swift") == swift, "Original SDK requires the same actual Swift toolchain")
     if sdk is not None:
@@ -348,14 +473,20 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
         if re.search(r"\bDYLIB\b", header):
             dynamic.append(name)
             command(["codesign", "--verify", "--strict", str(framework)], root=root, evidence=evidence, label="sdk-signature-" + str(index))
-            require(command(["lipo", "-archs", str(binary)], root=root, evidence=evidence,
-                            label="sdk-architecture-" + str(index)) == "arm64", "Wrong SDK architecture")
+            architectures = require_simulator_dynamic_architectures(
+                command(["lipo", "-archs", str(binary)], root=root, evidence=evidence,
+                        label="sdk-architecture-" + str(index)), header)
             platform = command(["xcrun", "vtool", "-show-build", str(binary)], root=root, evidence=evidence,
                                label="sdk-platform-" + str(index))
-            require(re.search(r"platform\s+IOSSIMULATOR\b", platform), "Non-Simulator SDK dependency")
+            if production and config["platform"] == "iphoneos":
+                require(architectures == ("arm64",) and re.search(r"platform\s+IOS\b", platform)
+                        and not re.search(r"platform\s+IOSSIMULATOR\b", platform),
+                        "Release device dependency is not an actual iOS arm64 image")
+            else:
+                require(re.search(r"platform\s+IOSSIMULATOR\b", platform), "Non-Simulator SDK dependency")
     require("AnytypeOriginalEditor.framework" in dynamic, "No actual original editor dynamic framework")
     result = {"admission_path": relative, "admission_sha256": digest(admission_path), "source_sha": config["source_sha"],
-              "run_id": config["run_id"], "run_attempt": config["run_attempt"], "artifact_id": config["artifact_id"],
+              "run_id": config["run_id"], "run_attempt": config["run_attempt"],
               "archive_sha256": config["archive_sha256"], "distribution_root": config["distribution_root"],
               "distribution_files": actual, "dynamic_frameworks": dynamic, "resource_bundles": bundles,
               "shared_package_revisions": provenance["dependencies"]["actual_checkout_revisions"],
@@ -363,6 +494,10 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
               "hanlin_source": read_json(hanlin_source_path),
               "compiled_host_api": compiled_host_api,
               "native_editor_ui_tests": 0, "scope": "ORIGINAL_DISTRIBUTION_PREREQUISITES_ONLY"}
+    if local:
+        result.update(local_provenance)
+    else:
+        result["artifact_id"] = config["artifact_id"]
     if continuation:
         result.update(schema=2, **continuation_receipt)
         clang = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_clang_imports.py")))
@@ -371,6 +506,14 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
                     "original_package_lock_sha256": result["original_package_lock_sha256"],
                     "manifest_sha256": config["framework_producer"]["clang_manifest_sha256"]}
         result["clang_import_context"] = clang["admitted_context"](distribution, identity)
+    if config["schema"] == 3 or production:
+        shared = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_shared_runtime.py")))
+        result.update(schema="otzaria.original-editor.production-admission/1" if production else 3,
+                      toolchain=config["toolchain"],
+                      shared_runtime=shared["validate_provider"](root, config, qualification, result))
+        result["clang_import_context"] = result["shared_runtime"]["clang_context"]
+    if production:
+        require(config.get("distribution_files") == actual, "Committed Release product inventory differs")
     write(evidence / "distribution-admission.json", result)
     return result
 
@@ -379,6 +522,14 @@ def require_unchanged(root, admitted):
     root = Path(root)
     require(digest(root / admitted["admission_path"]) == admitted["admission_sha256"], "SDK admission changed during build")
     require(inventory(root / admitted["distribution_root"]) == admitted["distribution_files"], "SDK distribution changed during build")
+    if admitted.get("producer_kind") == "local-mac":
+        config = read_json(root / admitted["admission_path"])
+        helper = ("original_editor_production_admission.py"
+                  if admitted.get("schema") == "otzaria.original-editor.production-admission/1"
+                  else "original_editor_local_admission.py")
+        local = runpy.run_path(str(owned_path(root, "Scripts/CI/" + helper)))
+        qualification = read_json(root / admitted["distribution_root"] / "QUALIFICATION.json")
+        local["validate_provenance"](root, config, qualification, globals())
     if admitted.get("schema") == 2:
         sidecar = owned_path(root, admitted["qualification_path"], build=True)
         require(not sidecar.is_relative_to(owned_path(root, admitted["distribution_root"], build=True))
@@ -411,14 +562,17 @@ def app_bundle(root, path):
 
 
 def embed(root, admission_receipt, receipt_sha256, target, evidence):
-    require(os.environ.get("TARGET_NAME") == TARGET and os.environ.get("CONFIGURATION") == "Debug"
-            and os.environ.get("PLATFORM_NAME") == "iphonesimulator"
-            and os.environ.get("PRODUCT_BUNDLE_IDENTIFIER") == BUNDLE,
-            "Original SDK embed is restricted to the real Maktabah Debug Simulator app")
     root, evidence = Path(root), Path(evidence)
     require(re.fullmatch(r"[a-f0-9]{64}", receipt_sha256) and digest(admission_receipt) == receipt_sha256,
             "Original SDK admission receipt changed after app-target preparation")
     admitted = read_json(admission_receipt)
+    production = admitted.get("schema") == "otzaria.original-editor.production-admission/1"
+    require(not production or (admitted.get("configuration") == "Release"
+            and admitted.get("platform") == "iphonesimulator"), "Wrong production Simulator distribution")
+    require(os.environ.get("TARGET_NAME") == TARGET and os.environ.get("CONFIGURATION") == ("Release" if production else "Debug")
+            and os.environ.get("PLATFORM_NAME") == "iphonesimulator"
+            and os.environ.get("PRODUCT_BUNDLE_IDENTIFIER") == BUNDLE,
+            "Original SDK embed is restricted to its exact real Maktabah Simulator configuration")
     require_unchanged(root, admitted)
     target = app_bundle(root, target)
     distribution = root / admitted["distribution_root"]
@@ -435,17 +589,191 @@ def embed(root, admission_receipt, receipt_sha256, target, evidence):
           "products": receipts, "overwritten_products": 0, "codesign_on_copy": False, "remove_headers_on_copy": False})
 
 
-def prepare(root, admission_path, report, out, logged):
+
+RUBY_CONTEXT_SOURCE_SHA256 = "facf9c4c1fcc25d1cafbd6d532c60367a4097f16642f5fc444e2a2092d0e3f33"
+
+
+def ruby_context_file(path):
+    path = Path(path).resolve(strict=True)
+    require(path.is_file(), "Original Ruby context input is not a file")
+    return {"path": str(path), "bytes": path.stat().st_size, "sha256": digest(path)}
+
+
+def prepare_pod_ruby_context(root, out):
     root, out = Path(root), Path(out)
+    observer = root / "Scripts/CI/hq-original-editor-ruby-context.rb"
+    keys = ["OTZARIA_ORIGINAL_EDITOR_RUBY_REQUEST", "OTZARIA_ORIGINAL_EDITOR_RUBY_PARENT",
+            "OTZARIA_ORIGINAL_EDITOR_RUBY_PROGRAM"]
+    require(not any(key in os.environ for key in keys), "Existing original Ruby observation context")
+    program = shutil.which("pod")
+    require(program, "Original pod executable is missing")
+    program = ruby_context_file(program)
+    observer_record = ruby_context_file(observer)
+    require(observer_record['sha256'] == RUBY_CONTEXT_SOURCE_SHA256, 'Original Ruby observer source mismatch')
+    helper_record = ruby_context_file(root / 'Scripts/CI/hq-original-editor-app-target.rb')
+    require(not any(c.isspace() for c in observer_record["path"]), "Ruby preload path cannot contain whitespace")
     evidence = out / "original-editor"
     evidence.mkdir(parents=True, exist_ok=True)
-    admitted = admit(root, admission_path, evidence, swift=report["swift"], sdk=report["sdk_version"])
+    request_path = evidence / "pod-ruby-request.json"
+    receipt_path = evidence / "pod-ruby-context.json"
+    require(not receipt_path.exists() and not receipt_path.is_symlink(), "Original pod Ruby receipt already exists")
+    request = {"schema": 1, "nonce": os.urandom(32).hex(), "parent_pid": os.getpid(),
+               "program": program, "observer": observer_record, "helper": helper_record,
+               "receipt_path": str(receipt_path.resolve())}
+    with request_path.open("x", encoding="utf-8") as stream:
+        stream.write(json.dumps(request, indent=2) + "\n")
+    environment = dict(os.environ)
+    inherited = environment.get("RUBYOPT", "")
+    environment["RUBYOPT"] = inherited + (" " if inherited else "") + "-r" + observer_record["path"]
+    environment.update({keys[0]: str(request_path.resolve()), keys[1]: str(os.getpid()),
+                        keys[2]: program["path"]})
+    return {"request_path": str(request_path), "request_sha256": digest(request_path),
+            "receipt_path": str(receipt_path), "environment": environment}
+
+
+def validate_pod_ruby_receipt(request, receipt):
+    require(receipt.get("schema") == 1 and receipt.get("nonce") == request["nonce"],
+            "Original pod Ruby receipt identity mismatch")
+    require(receipt.get("parent_pid") == request["parent_pid"]
+            and type(receipt.get("pid")) is int and receipt["pid"] > 0
+            and receipt["pid"] != receipt["parent_pid"], "Original pod process identity mismatch")
+    require(receipt.get("argv") == ["install"] and type(receipt.get("original_exit_code")) is int and receipt["original_exit_code"] == 0,
+            "Original pod Ruby receipt is not a successful install")
+    for key in ("program", "observer", "helper"):
+        require(receipt.get(key) == request[key]
+                and ruby_context_file(request[key]["path"]) == request[key],
+                "Original pod " + key + " changed")
+    entry = receipt.get("ruby_entry", {})
+    require(isinstance(entry.get("path"), str) and Path(entry["path"]).is_absolute()
+            and ruby_context_file(entry["path"]) == entry, "Actual original Ruby entry changed")
+    runtime = receipt.get("ruby", {})
+    require(set(runtime) == {"executable", "engine", "version", "patchlevel", "platform"}
+            and all(isinstance(runtime.get(k), str) and runtime[k] for k in ("engine", "version", "platform"))
+            and type(runtime.get("patchlevel")) is int, "Missing original Ruby runtime identity")
+    require(ruby_context_file(runtime["executable"]["path"]) == runtime["executable"],
+            "Original Ruby executable changed")
+    paths = receipt.get("gem_paths")
+    require(isinstance(paths, list) and paths and len(paths) == len(set(paths))
+            and all(isinstance(p, str) and Path(p).is_absolute() and "\0" not in p for p in paths)
+            and isinstance(receipt.get("gem_home"), str) and Path(receipt["gem_home"]).is_absolute(),
+            "Invalid original Ruby gem search context")
+    records = receipt.get("xcodeproj_closure")
+    require(isinstance(records, list) and records, "Missing original Xcodeproj dependency closure")
+    names = [record.get("name") for record in records]
+    require(len(names) == len(set(names)) and "xcodeproj" in names, "Ambiguous Xcodeproj dependency closure")
+    activated = set()
+    for record in records:
+        require(set(record) == {"name", "version", "full_gem_path", "loaded_from", "dependencies", "files", "root_files"}
+                and isinstance(record["name"], str) and record["name"]
+                and isinstance(record["version"], str) and record["version"]
+                and Path(record["full_gem_path"]).is_absolute(), "Invalid original gem record")
+        dependencies = record["dependencies"]
+        require(isinstance(dependencies, list) and len({d["name"] for d in dependencies}) == len(dependencies)
+                and all(set(d) == {"name", "requirement"} and isinstance(d["requirement"], str)
+                        and d["name"] in activated for d in dependencies),
+                "Original gem closure is incomplete or not dependency-first")
+        require(ruby_context_file(record["loaded_from"]["path"]) == record["loaded_from"],
+                "Original gem specification changed")
+        root_files = record["root_files"]
+        require(isinstance(root_files, list) and root_files == sorted(set(root_files))
+                and all(isinstance(p, str) and Path(p).is_absolute() for p in root_files),
+                "Invalid original gem source membership")
+        files = record["files"]
+        require(isinstance(files, list) and files and len({f["path"] for f in files}) == len(files)
+                and all(ruby_context_file(f["path"]) == f for f in files), "Original gem source changed")
+        require(set(root_files).issubset({f["path"] for f in files}), "Incomplete original gem source membership")
+        activated.add(record["name"])
+    cocoapods = receipt.get("cocoapods", {})
+    require(cocoapods.get("name") == "cocoapods" and isinstance(cocoapods.get("version"), str)
+            and ruby_context_file(cocoapods["loaded_from"]["path"]) == cocoapods["loaded_from"],
+            "Original successful pod did not identify CocoaPods")
+    return receipt
+
+
+def admit_pod_ruby_context(root, context, command_returncode):
+    require(type(command_returncode) is int and command_returncode == 0,
+            "Original pod command did not exit zero")
+    request_path, receipt_path = Path(context["request_path"]), Path(context["receipt_path"])
+    require(digest(request_path) == context["request_sha256"], "Original pod Ruby request changed")
+    require(receipt_path.is_file() and not receipt_path.is_symlink()
+            and receipt_path.stat().st_size <= 8 * 1024 * 1024, "Missing or oversized original pod Ruby receipt")
+    request, receipt = read_json(request_path), read_json(receipt_path)
+    require(str(receipt_path.resolve()) == request["receipt_path"], "Original pod Ruby receipt path mismatch")
+    validate_pod_ruby_receipt(request, receipt)
+    lock = (Path(root) / "Podfile.lock").read_text()
+    versions = re.findall(r"^COCOAPODS: (\S+)$", lock, re.MULTILINE)
+    require(versions == [receipt["cocoapods"]["version"]], "CocoaPods receipt and original Pod lock differ")
+    return {"command": ["pod", "install"], "returncode": command_returncode,
+            "request_path": str(request_path), "request_sha256": digest(request_path),
+            "receipt_path": str(receipt_path), "receipt_sha256": digest(receipt_path)}
+
+
+def original_editor_ruby_launch(root, proof, helper_arguments):
+    require(proof.get("command") == ["pod", "install"] and type(proof.get("returncode")) is int
+            and proof["returncode"] == 0,
+            "Missing actual successful original pod command")
+    request_path, receipt_path = Path(proof["request_path"]), Path(proof["receipt_path"])
+    require(digest(request_path) == proof["request_sha256"]
+            and digest(receipt_path) == proof["receipt_sha256"], "Original pod context proof changed")
+    request, receipt = read_json(request_path), read_json(receipt_path)
+    require(str(receipt_path.resolve()) == request["receipt_path"], "Original pod Ruby receipt path mismatch")
+    validate_pod_ruby_receipt(request, receipt)
+    observer = Path(root) / "Scripts/CI/hq-original-editor-ruby-context.rb"
+    helper = Path(root) / "Scripts/CI/hq-original-editor-app-target.rb"
+    require(ruby_context_file(observer) == receipt["observer"]
+            and receipt["observer"]["sha256"] == RUBY_CONTEXT_SOURCE_SHA256, "Original Ruby launcher changed")
+    require(ruby_context_file(helper) == receipt["helper"], "Original project helper changed")
+    environment = dict(os.environ)
+    environment["GEM_HOME"] = receipt["gem_home"]
+    environment["GEM_PATH"] = os.pathsep.join(receipt["gem_paths"])
+    command_line = [receipt["ruby"]["executable"]["path"], str(observer), "--launch",
+                    str(receipt_path), proof["receipt_sha256"], str(helper), *map(str, helper_arguments)]
+    return command_line, environment
+
+
+def prepare(root, admission_path, report, out, logged, *, variant=None, apply_project=True):
+    root, out = Path(root), Path(out)
+    require(variant in {None, "debug-simulator", "release-simulator", "release-device"}, "Unreviewed SDK variant")
+    evidence = out / ("original-editor" if variant in {None, "debug-simulator"} else "original-editor-" + variant)
+    evidence.mkdir(parents=True, exist_ok=True)
+    platform = "iphoneos" if variant == "release-device" else "iphonesimulator"
+    sdk_path = (command(["xcrun", "--sdk", platform, "--show-sdk-path"], root=root, evidence=evidence,
+                        label="actual-platform-sdk-path").strip() if platform == "iphoneos" else report["sdk_path"])
+    sdk_version = (command(["xcrun", "--sdk", platform, "--show-sdk-version"], root=root, evidence=evidence,
+                           label="actual-platform-sdk-version").strip() if platform == "iphoneos" else report["sdk_version"])
+    admitted = admit(root, admission_path, evidence, swift=report["swift"], sdk=sdk_version)
+    production = admitted.get("schema") == "otzaria.original-editor.production-admission/1"
+    configuration = "Release" if production else "Debug"
+    require(not production or (variant in {"release-simulator", "release-device"}
+            and admitted["platform"] == platform), "Release distribution needs its exact selected platform")
     if admitted.get("schema") == 2:
         require(report.get("xcode") == admitted["framework_producer"]["toolchain"]["xcode"],
                 "Maktabah Xcode differs from the original framework and continuation")
+    shared = None
+    if admitted.get("schema") == 3 or production:
+        require(report.get("xcode") == admitted["toolchain"]["xcode"],
+                "Host Xcode differs from the exact shared producer")
+        shared = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_shared_runtime.py")))
     policy = shared_package_policy(report["package_pins"], admitted["shared_package_revisions"])
     admitted["shared_package_policy"] = policy
     distribution = root / admitted["distribution_root"]
+    if shared:
+        source_proof = shared["verify_host_sources"](root, admitted, report)
+        admitted["shared_host_sources"] = source_proof
+        composition = shared["project_clang_context"](root, distribution, admitted["clang_import_context"])
+        admitted["host_clang_context"] = composition
+        admitted["shared_pod_link_route"] = shared["plan_pod_link_route"](root, source_proof, configuration=configuration)
+        write(evidence / "host-clang-context.json", composition)
+        write(evidence / "shared-host-sources.json", source_proof)
+    elif admitted.get("schema") == 2:
+        host_clang = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_host_clang_context.py")))
+        composition = host_clang["project_host_context"](
+            root, distribution, admitted["clang_import_context"], policy["identical_revisions"])
+        write(evidence / "host-clang-context.json", composition)
+        require(not composition["runtime_collisions"],
+                "Original SDK and host require one shared Clang runtime product: "
+                + ", ".join(item["module"] for item in composition["runtime_collisions"]))
+        admitted["host_clang_context"] = composition
     if policy["swift_syntax_requires_actual_runtime_absence"]:
         manifest = root / "build/SourcePackages/checkouts/swift-syntax/Package.swift"
         require(digest(manifest) == SYNTAX_MANIFESTS[SYNTAX_APP]["sha256"],
@@ -456,59 +784,98 @@ def prepare(root, admission_path, report, out, logged):
                       original_macro_authorization=report["compiler_macro_authorization"],
                       producer_runtime_absence=runtime_absence_proof(root, distribution, evidence / "swift-syntax-sdk"),
                       consumer_runtime_absence_required=True)
-    # The framework contains the original Hanlin modules. Equality of a remote
-    # swift-ai-sdk pin alone cannot prove equality of these local SDK sources.
-    compiled = lambda name: (name.startswith(("Packages/HanlinAgentSDK/", "Packages/HanlinPlatform/",
-                                             "Packages/HanlinPresentationSDK/"))
-                             and ("/Sources/" in name or name.endswith("/Package.swift")))
-    app_hanlin = {name for name in report["hanlin_sdk_source"]["git_blobs"] if compiled(name)}
-    sdk_hanlin = {name: value for name, value in admitted["hanlin_source"]["files"].items() if compiled(name)}
-    require(app_hanlin == sdk_hanlin.keys(), "Original SDK and Maktabah have different Hanlin source membership")
-    require(all(digest(root / "Vendor/HanlinSDK" / name) == value for name, value in sdk_hanlin.items()),
-            "Original SDK and Maktabah compile different shared Hanlin bytes")
-    admitted["shared_hanlin_source_verified"] = {"files": len(app_hanlin),
-        "maktabah_revision": report["hanlin_sdk_source"]["sha"], "framework_revision": admitted["hanlin_source"]["revision"],
-        "comparison": "EXACT_PACKAGE_MANIFEST_AND_COMPLETE_SOURCES_RESOURCE_BYTES"}
+    if shared:
+        admitted["shared_hanlin_source_verified"] = {
+            "files": admitted["shared_host_sources"]["hanlin_files"],
+            "maktabah_revision": report["hanlin_sdk_source"]["sha"],
+            "framework_revision": admitted["hanlin_source"]["revision"],
+            "comparison": "EXACT_COMPLETE_PACKAGE_SOURCES_RESOURCES_MANIFESTS_AND_OPERATIVE_LOCKS"}
+    else:
+        # The framework contains the original Hanlin modules. Equality of a remote
+        # swift-ai-sdk pin alone cannot prove equality of these local SDK sources.
+        compiled = lambda name: (name.startswith(("Packages/HanlinAgentSDK/", "Packages/HanlinPlatform/",
+                                                 "Packages/HanlinPresentationSDK/"))
+                                 and ("/Sources/" in name or name.endswith("/Package.swift")))
+        app_hanlin = {name for name in report["hanlin_sdk_source"]["git_blobs"] if compiled(name)}
+        sdk_hanlin = {name: value for name, value in admitted["hanlin_source"]["files"].items() if compiled(name)}
+        require(app_hanlin == sdk_hanlin.keys(), "Original SDK and Maktabah have different Hanlin source membership")
+        require(all(digest(root / "Vendor/HanlinSDK" / name) == value for name, value in sdk_hanlin.items()),
+                "Original SDK and Maktabah compile different shared Hanlin bytes")
+        admitted["shared_hanlin_source_verified"] = {"files": len(app_hanlin),
+            "maktabah_revision": report["hanlin_sdk_source"]["sha"], "framework_revision": admitted["hanlin_source"]["revision"],
+            "comparison": "EXACT_PACKAGE_MANIFEST_AND_COMPLETE_SOURCES_RESOURCE_BYTES"}
     write(evidence / "distribution-admission.json", admitted)
     # This is an actual compiler import of the exported binary API. A guarded
     # application source file cannot turn a missing framework into acceptance.
     distribution = root / admitted["distribution_root"]
-    api_source = root / "Scripts/CI/OriginalEditorDistributionAPICheck.swift"
-    api_command = ["xcrun", "swiftc", "-typecheck", "-parse-as-library", "-swift-version", "6", "-D", "DEBUG",
-            "-sdk", report["sdk_path"], "-target", "arm64-apple-ios" + report["sdk_version"] + "-simulator",
+    api_source = root / ("Scripts/CI/OriginalEditorProductionAPICheck.swift" if production
+                         else "Scripts/CI/OriginalEditorDistributionAPICheck.swift")
+    api_command = ["xcrun", "swiftc", "-typecheck", "-parse-as-library", "-swift-version", "6",
+            *([] if production else ["-D", "DEBUG"]),
+            "-sdk", sdk_path, "-target", "arm64-apple-ios" + sdk_version + ("-simulator" if platform == "iphonesimulator" else ""),
             "-F", str(distribution / "Frameworks"), "-I", str(distribution / "Modules")]
-    if admitted.get("schema") == 2:
+    if shared:
+        api_command += shared["swift_import_arguments"](distribution, admitted["clang_import_context"])
+    elif admitted.get("schema") == 2:
         clang = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_clang_imports.py")))
         api_command += clang["swift_import_arguments"](distribution, admitted["clang_import_context"])
     else:
         api_command += ["-I", str(distribution / "Include")]
     api_command.append(str(api_source))
+    local_api_source = None
+    if admitted.get("public_host_contract_sha256") is not None:
+        require(admitted["public_host_contract_sha256"] == LOCAL_ANNOTATION_CONTRACT_SHA256,
+                "Unreviewed local annotation compiler probe")
+        local_api_source = root / "Scripts/CI/OriginalEditorLocalAnnotationAPICheck.swift"
+        api_command.append(str(local_api_source))
     report.setdefault("commands", []).append(api_command)
     command(api_command, root=root, evidence=evidence, label="exported-api-typecheck", timeout=600)
     write(evidence / "actual-exported-api.json", {"status": "ACTUAL_EXPORTED_API_TYPECHECK_PASS",
           "api_probe_sha256": digest(api_source), "source_sha": admitted["source_sha"],
-          "native_execution": False, "scope": "EXPORTED_SPI_AND_HOST_COMPILER_ADMISSION_ONLY"})
+          "local_annotation_api_probe_sha256": digest(local_api_source) if local_api_source else None,
+          "native_execution": False, "configuration": configuration, "platform": platform,
+          "scope": "EXPORTED_PUBLIC_HOST_COMPILER_ADMISSION_ONLY" if production else "EXPORTED_SPI_AND_HOST_COMPILER_ADMISSION_ONLY"})
     project = root / "Maktabah.xcodeproj/project.pbxproj"
     plan = {"target": TARGET, "bundle": BUNDLE, "distribution_root": admitted["distribution_root"],
             "dynamic_frameworks": admitted["dynamic_frameworks"], "source_sha": admitted["source_sha"],
             "evidence": evidence.relative_to(root).as_posix(), "before_project_sha256": digest(project),
-            "receipt_sha256": digest(evidence / "distribution-admission.json"), "python": sys.executable}
+            "receipt_sha256": digest(evidence / "distribution-admission.json"), "python": sys.executable,
+            "configuration": configuration, "platform": platform}
     if admitted.get("schema") == 2:
-        plan.update(admission_schema=2, clang_import_context=admitted["clang_import_context"])
+        plan.update(admission_schema=2, clang_import_context=admitted["clang_import_context"],
+                    host_clang_context=admitted["host_clang_context"])
+    if shared:
+        plan.update(admission_schema=3, clang_import_context=admitted["clang_import_context"],
+                    host_clang_context=admitted["host_clang_context"],
+                    shared_runtime={"host_products": admitted["shared_runtime"]["host_products"],
+                                    "producer_identity": admitted["shared_runtime"]["producer_identity"]},
+                    shared_pod_link_route=admitted["shared_pod_link_route"])
     write(evidence / "app-target-plan.json", plan)
-    logged(["ruby", "Scripts/CI/hq-original-editor-app-target.rb", str(project),
-            str(evidence / "app-target-plan.json"), str(evidence / "app-target-configuration.json")],
-           "original-editor-app-target.log", report)
+    if not apply_project:
+        return admitted
+    require(not production, "Release project configuration requires the complete reviewed route set")
+    configure(root, plan, report, evidence, logged)
+    report["original_editor_distribution"] = admitted
+    return admitted
+
+
+def configure(root, plan, report, evidence, logged):
+    root, evidence = Path(root), Path(evidence)
+    project = root / "Maktabah.xcodeproj/project.pbxproj"
+    write(evidence / "app-target-plan.json", plan)
+    ruby_proof = report["native_context"]["original_editor_pod_ruby_context"]
+    ruby_command, ruby_environment = original_editor_ruby_launch(root, ruby_proof,
+        [project, evidence / "app-target-plan.json", evidence / "app-target-configuration.json"])
+    logged(ruby_command, "original-editor-app-target.log", report, env=ruby_environment)
     receipt = read_json(evidence / "app-target-configuration.json")
     require(receipt["before_project_sha256"] == plan["before_project_sha256"]
             and receipt["after_project_sha256"] == digest(project)
             and receipt["all_other_objects_unchanged"] is True,
             "Original SDK integration changed an unrelated Xcode target")
-    report["original_editor_distribution"] = admitted
     report["native_context"]["pre_original_editor_project_sha256"] = plan["before_project_sha256"]
     report["native_context"]["generated_project_sha256"] = digest(project)
     shutil.copyfile(project, evidence / "generated-Maktabah-project.pbxproj")
-    return admitted
+    return receipt
 
 
 def verify_built_app(root, admitted, app, evidence, *, after_ui=False):
@@ -536,9 +903,15 @@ def verify_built_app(root, admitted, app, evidence, *, after_ui=False):
         verify_absence_receipt(root, distribution, sdk_proof)
         # This directory is Simulator-only; the original macOS macro targets
         # and their separately verified pins/authorization remain untouched.
-        require(app.parent.name == "Debug-iphonesimulator", "Wrong actual Simulator product directory")
+        expected_configuration = ("Release" if admitted.get("schema") == "otzaria.original-editor.production-admission/1" else "Debug")
+        require(app.parent.name == expected_configuration + "-iphonesimulator", "Wrong actual Simulator product directory")
         require_no_syntax_names(path.relative_to(app.parent).as_posix() for path in app.parent.rglob("*"))
         if after_ui:
+            if "consumer_runtime_absence" not in admitted:
+                retained = read_json(evidence / "swift-syntax-runtime-absence.json")
+                require(retained.get("status") == "EXACT_REVIEWED_BUILD_TOOL_PAIR_WITH_ACTUAL_RUNTIME_ABSENCE"
+                        and retained.get("sdk") == sdk_proof, "Retained built-app runtime proof differs")
+                admitted["consumer_runtime_absence"] = retained["app"]
             verify_absence_receipt(root, app, admitted["consumer_runtime_absence"], reused=sdk_proof)
         else:
             admitted["consumer_runtime_absence"] = runtime_absence_proof(
@@ -548,6 +921,9 @@ def verify_built_app(root, admitted, app, evidence, *, after_ui=False):
             "maktabah_revision": SYNTAX_APP, "sdk_revision": SYNTAX_SDK,
             "sdk": sdk_proof, "app": admitted["consumer_runtime_absence"],
             "new_native_execution": False, "lock_or_macro_inputs_changed": False})
+    if admitted.get("schema") in {3, "otzaria.original-editor.production-admission/1"}:
+        shared = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_shared_runtime.py")))
+        shared["verify_app_ownership"](root, admitted, app, evidence, command, after_ui=after_ui)
     write(evidence / (prefix + "built-app-distribution-verification.json"), {"status": "EXACT_ORIGINAL_DISTRIBUTION_EMBEDDED",
           "dynamic_frameworks": admitted["dynamic_frameworks"], "resource_bundles": admitted["resource_bundles"],
           "native_editor_ui_tests": 0, "production_or_device_qualification": False})
@@ -564,4 +940,3 @@ if __name__ == "__main__":
     checkout = Path(__file__).resolve().parents[2]
     embed(checkout, owned_path(checkout, args.receipt, build=True), args.receipt_sha256, Path(args.app),
           owned_path(checkout, args.evidence, build=True))
-

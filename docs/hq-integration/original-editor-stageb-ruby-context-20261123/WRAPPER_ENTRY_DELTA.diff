@@ -1,0 +1,74 @@
+diff --git a/Scripts/CI/hq-original-editor-distribution.py b/Scripts/CI/hq-original-editor-distribution.py
+index 21889228..71afb219 100644
+--- a/Scripts/CI/hq-original-editor-distribution.py
++++ b/Scripts/CI/hq-original-editor-distribution.py
+@@ -482,7 +482,7 @@ def embed(root, admission_receipt, receipt_sha256, target, evidence):
+ 
+ 
+ 
+-RUBY_CONTEXT_SOURCE_SHA256 = "2059ca905374a037ea10a7e56d3f4ae419602db77c80509376268988b505738b"
++RUBY_CONTEXT_SOURCE_SHA256 = "facf9c4c1fcc25d1cafbd6d532c60367a4097f16642f5fc444e2a2092d0e3f33"
+ 
+ 
+ def ruby_context_file(path):
+@@ -535,6 +535,9 @@ def validate_pod_ruby_receipt(request, receipt):
+         require(receipt.get(key) == request[key]
+                 and ruby_context_file(request[key]["path"]) == request[key],
+                 "Original pod " + key + " changed")
++    entry = receipt.get("ruby_entry", {})
++    require(isinstance(entry.get("path"), str) and Path(entry["path"]).is_absolute()
++            and ruby_context_file(entry["path"]) == entry, "Actual original Ruby entry changed")
+     runtime = receipt.get("ruby", {})
+     require(set(runtime) == {"executable", "engine", "version", "patchlevel", "platform"}
+             and all(isinstance(runtime.get(k), str) and runtime[k] for k in ("engine", "version", "platform"))
+diff --git a/Scripts/CI/hq-original-editor-ruby-context.rb b/Scripts/CI/hq-original-editor-ruby-context.rb
+index c9781da9..667a289e 100644
+--- a/Scripts/CI/hq-original-editor-ruby-context.rb
++++ b/Scripts/CI/hq-original-editor-ruby-context.rb
+@@ -74,12 +74,13 @@ module OriginalEditorRubyContext
+     # Ruby children inherit RUBYOPT. They must remain entirely inert here:
+     # no require, receipt, exit hook, changed exit status or gem activation.
+     return unless Process.ppid.to_s == ENV[PARENT]
+-    return unless File.realpath($PROGRAM_NAME) == ENV[PROGRAM]
+     original_argv = ARGV.dup
+     return unless original_argv == ['install']
+     original_pid = Process.pid
+     original_parent = Process.ppid
+-    original_program = File.realpath($PROGRAM_NAME)
++    launched_program = ENV.fetch(PROGRAM)
++    original_entry = File.realpath($PROGRAM_NAME)
++    original_entry_bytes = File.binread(original_entry)
+     at_exit do
+       original_exception = $!
+       original_exit = original_exception.is_a?(SystemExit) ? original_exception.status :
+@@ -92,15 +93,19 @@ module OriginalEditorRubyContext
+       require 'digest'
+       require 'rbconfig'
+       request = JSON.parse(File.read(request_path))
++      entry = { 'path' => original_entry, 'bytes' => original_entry_bytes.bytesize,
++                'sha256' => Digest::SHA256.hexdigest(original_entry_bytes) }
++      raise 'Actual original Ruby entry changed' unless file(original_entry) == entry
+       raise 'Original pod request identity changed' unless
+         request.fetch('parent_pid') == original_parent &&
+-        request.fetch('program').fetch('path') == original_program &&
++        request.fetch('program').fetch('path') == launched_program &&
+         request.fetch('observer') == file(__FILE__) &&
+-        request.fetch('program') == file(original_program) &&
++        request.fetch('program') == file(launched_program) &&
+         request.fetch('helper') == file(request.fetch('helper').fetch('path'))
+       receipt = {
+         'schema' => 1, 'nonce' => request.fetch('nonce'), 'parent_pid' => original_parent,
+-        'pid' => original_pid, 'argv' => original_argv, 'program' => file(original_program),
++        'pid' => original_pid, 'argv' => original_argv, 'program' => file(launched_program),
++        'ruby_entry' => entry,
+         'observer' => file(__FILE__), 'helper' => request.fetch('helper'), 'original_exit_code' => original_exit
+       }
+       if original_exit == 0
+@@ -125,6 +130,7 @@ module OriginalEditorRubyContext
+     receipt = JSON.parse(File.read(receipt_path))
+     raise 'Wrong original Ruby runtime' unless receipt.fetch('ruby') == runtime
+     raise 'Original pod did not return successfully' unless receipt.fetch('original_exit_code') == 0
++    raise 'Actual original Ruby entry changed' unless file(receipt.fetch('ruby_entry').fetch('path')) == receipt.fetch('ruby_entry')
+     raise 'Original project helper changed' unless file(helper) == receipt.fetch('helper')
+     Gem.use_paths(receipt.fetch('gem_home'), receipt.fetch('gem_paths'))
+     raise 'Original Ruby gem search context differs' unless Gem.dir == receipt.fetch('gem_home') &&

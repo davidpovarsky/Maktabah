@@ -1,0 +1,13 @@
+{
+  "source": "/mnt/development/projects/worktrees/Maktabah-reader-full-v32-ui-observation-20261123/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+  "sourceSHA256": "36ca3f4863c60519d1135bf8f327a4c00a1e1bf074dd826caee7760547b18aa8",
+  "priorReviewedSHA256": "348c833608d74f9e6a4f65eda2eae83ba6536287f6e59ec65d96195f06344c83",
+  "isolatedHunk": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/INSPECTOR_SAMPLE_APPEND_BOUND.diff",
+  "isolatedHunkSHA256": "e32d7b195a8ccd337586c64d4668f3b6022fb1ee7040c1051d6e4f36d2835142",
+  "diffSHA256": "51ef4716af288eba543d92dce9d9edfa78a1bce05be9ede570294e491d9803a0",
+  "diffBytes": 18675,
+  "base": "2ef81ac195c002863486e473dad95f336f3e1675",
+  "status": "SOURCE_PREPARATION_ONLY_UNFINALIZED",
+  "nativeQualification": false,
+  "unchangedCollectorControlsReplayed": false
+}

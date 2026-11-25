@@ -1,0 +1,15 @@
+/mnt/development/projects/worktrees/Maktabah-local-native-attempt-20261123/docs/hq-integration/local-native-attempt-20261123/controls/NativeAttemptControls.swift:88:43: error: enum case 'unsigned' cannot be used as an instance member
+ 86 |             try verify(env.richBody?.bytes == NativeAttemptFixture.body, "historical body bytes untouched")
+ 87 |             let unknown = try AnnotationEnvelopeJSONCodec.decodeObject(bytes)["futurePrivateMetadata"]?.object
+ 88 |             try verify(unknown?["counter"]?.unsigned == UInt64.max, "full-width future metadata preserved")
+    |                                           `- error: enum case 'unsigned' cannot be used as an instance member
+ 89 |             let observation = try f.storage.nativeAttemptObservation()
+ 90 |             try verify(observation?.attemptID == prepared.observation.attemptID && observation?.state == .prepared, "actual committed history readback")
+
+/mnt/development/projects/worktrees/Maktabah-local-native-attempt-20261123/docs/hq-integration/local-native-attempt-20261123/controls/NativeAttemptControls.swift:88:45: error: cannot convert value of type '(@Sendable (UInt64) -> ActionJSON)?' to expected argument type 'UInt64?'
+ 86 |             try verify(env.richBody?.bytes == NativeAttemptFixture.body, "historical body bytes untouched")
+ 87 |             let unknown = try AnnotationEnvelopeJSONCodec.decodeObject(bytes)["futurePrivateMetadata"]?.object
+ 88 |             try verify(unknown?["counter"]?.unsigned == UInt64.max, "full-width future metadata preserved")
+    |                                             `- error: cannot convert value of type '(@Sendable (UInt64) -> ActionJSON)?' to expected argument type 'UInt64?'
+ 89 |             let observation = try f.storage.nativeAttemptObservation()
+ 90 |             try verify(observation?.attemptID == prepared.observation.attemptID && observation?.state == .prepared, "actual committed history readback")

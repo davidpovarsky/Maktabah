@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "gh",
+    "api",
+    "repos/davidpovarsky/Maktabah/actions/jobs/137629687598/logs"
+  ],
+  "started_at": "2026-11-23T11:05:25.382451+00:00",
+  "exit": 0,
+  "timed_out": false,
+  "child_reaped": true,
+  "elapsed_seconds": 3.2202288024127483,
+  "stdout_file": "original-job.log",
+  "stdout_bytes": 3019125,
+  "stdout_sha256": "456bb2fe90e4a52546084afe47c90b1652ae03abef4dbc2e6f502e2ce458b273",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

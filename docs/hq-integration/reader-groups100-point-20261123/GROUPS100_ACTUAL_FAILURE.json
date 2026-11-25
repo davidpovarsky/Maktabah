@@ -1,0 +1,20 @@
+{
+  "failedGate": "exact_snapshot_geometry",
+  "snapshotPath": "/mnt/development/projects/diagnostics/otzaria-reader-profile-followup-20261123/45124554050/captures-intake/selected/506F326C-BB52-4B9F-B077-1070F4997FB7.txt",
+  "snapshotSHA256": "beedf997d6b8f8ac3286309011c0425bb0f856417144e16f0a817d99253b63f8",
+  "selectorMaxX": "925.0",
+  "targetMaxX": "925.0000000000001",
+  "differencePoints": 1.1368683772161603e-13,
+  "representableDoubleSteps": 1,
+  "oneEnabledSelector": true,
+  "oneExactLabelTarget": true,
+  "allFramesFinitePositive": true,
+  "windowContainsTarget": true,
+  "rawSelectorContainsTarget": false,
+  "liveQueries": {},
+  "phase": "First preparation group selection before the100 counted transitions",
+  "countedTransitionsQualified": 0,
+  "diagnosis": "Exact raw full-parent CGRect containment rejects a one-ULP right-edge arithmetic discrepancy; no product defect or100-switch acceptance inferred",
+  "productOrTestEdits": false,
+  "rerun": false
+}

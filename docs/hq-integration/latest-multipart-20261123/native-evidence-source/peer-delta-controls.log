@@ -1,0 +1,14 @@
+test_install_final_path_must_be_absolute_and_present (actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_install_final_path_must_be_absolute_and_present) ... ok
+test_restore_final_path_must_be_absolute_and_present (actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_restore_final_path_must_be_absolute_and_present) ... ok
+test_cancel_errors_are_rejected_despite_pass_boolean (actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_cancel_errors_are_rejected_despite_pass_boolean) ... ok
+test_empty_explicit_owned_id_never_falls_back (actual_bootstrap_peer_delta_controls.NativeBootstrapSimulatorSelectionControls.test_empty_explicit_owned_id_never_falls_back) ... ok
+test_valid_owned_sdk_matched_ipad_is_selected (actual_bootstrap_peer_delta_controls.NativeBootstrapSimulatorSelectionControls.test_valid_owned_sdk_matched_ipad_is_selected) ... ok
+test_absent_owned_id_preserves_original_selection (actual_bootstrap_peer_delta_controls.NativeBootstrapSimulatorSelectionControls.test_absent_owned_id_preserves_original_selection) ... ok
+test_three_original_phases_require_actual_nonzero_resume (actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_three_original_phases_require_actual_nonzero_resume) ... ok
+test_restore_count_change_is_rejected (actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_restore_count_change_is_rejected) ... ok
+test_native_sqlite_failure_cannot_be_relabelled_by_pass_boolean (actual_bootstrap_peer_delta_controls.BootstrapEvidenceControls.test_native_sqlite_failure_cannot_be_relabelled_by_pass_boolean) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.008s
+
+OK

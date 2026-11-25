@@ -1,0 +1,60 @@
+{
+  "name": "nanaimo",
+  "version": "0.4.0",
+  "url": "https://rubygems.org/api/v2/rubygems/nanaimo/versions/0.4.0.json",
+  "retrieved_at": "2026-11-23T12:07:51.700173+00:00",
+  "status": 200,
+  "final_url": "https://rubygems.org/api/v2/rubygems/nanaimo/versions/0.4.0.json",
+  "headers": {
+    "Connection": "close",
+    "Content-Length": "1287",
+    "Content-Type": "application/json; charset=utf-8",
+    "x-frame-options": "SAMEORIGIN",
+    "x-xss-protection": "0",
+    "x-content-type-options": "nosniff",
+    "x-permitted-cross-domain-policies": "none",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "cross-origin-opener-policy": "same-origin",
+    "last-modified": "Thu, 03 Oct 2024 02:45:33 GMT",
+    "cache-control": "max-age=60, public",
+    "x-request-id": "7da4375c-c3df-4d3d-a4f6-69df820d5c75",
+    "x-runtime": "0.010981",
+    "strict-transport-security": "max-age=31536000; includeSubDomains",
+    "X-Backend": "F_Rails 34.208.183.74:443",
+    "Accept-Ranges": "bytes",
+    "Age": "0",
+    "Date": "Mon, 23 Nov 2026 12:07:52 GMT",
+    "Via": "1.1 varnish",
+    "X-Served-By": "cache-mrs1530077-MRS",
+    "X-Cache": "HIT",
+    "X-Cache-Hits": "0",
+    "X-Timer": "S1795435672.812204,VS0,VE567",
+    "Vary": "Accept-Encoding",
+    "ETag": "\"e4f703fe75f9d71a6ab41d99b609b815\"",
+    "Server": "RubyGems.org"
+  },
+  "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/metadata/nanaimo-0.4.0.json",
+  "size": 1287,
+  "sha256": "57f283753614b928413220987c804fb23355b15e543246241d620a61a20a75a1",
+  "identity_matches": true,
+  "api_sha": "faf069551bab17f15169c1f74a1c73c220657e71b6e900919897a10d991d0723",
+  "gem_uri": "https://rubygems.org/gems/nanaimo-0.4.0.gem",
+  "dependencies": {
+    "development": [
+      {
+        "name": "bundler",
+        "requirements": "~> 2.3"
+      },
+      {
+        "name": "rake",
+        "requirements": "~> 12.3"
+      },
+      {
+        "name": "rspec",
+        "requirements": "~> 3.0"
+      }
+    ],
+    "runtime": []
+  },
+  "ruby_version": ">= 2.3.0"
+}

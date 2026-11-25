@@ -1,0 +1,85 @@
+{
+  "failed_app_source": "00b30baa97fe14c0ba5be550e7a72cf64e768951",
+  "run": 45174533607,
+  "artifact": 14822940238,
+  "artifact_sha256": "7f238c167bc76b72e7dbe78f1e53f57c3f404661ad7365728deab07b88fad678",
+  "producer_source": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+  "producer_run": 45060396175,
+  "diagnostics": [
+    {
+      "line": 73213,
+      "diagnostic": "/Users/runner/work/Maktabah/Maktabah/build/original-editor-sdk-input/distribution/Clang/Packages/swift-cmark/src/include/module.modulemap:1:8: error: Redefinition of module 'cmark_gfm'",
+      "previous_definition": "/Users/runner/work/Maktabah/Maktabah/build/SourcePackages/checkouts/swift-cmark/src/include/module.modulemap:1:8: note: Previously defined here"
+    },
+    {
+      "line": 73219,
+      "diagnostic": "/Users/runner/work/Maktabah/Maktabah/build/original-editor-sdk-input/distribution/Clang/Packages/swift-cmark/extensions/include/module.modulemap:2:8: error: Redefinition of module 'cmark_gfm_extensions'",
+      "previous_definition": "/Users/runner/work/Maktabah/Maktabah/build/SourcePackages/checkouts/swift-cmark/extensions/include/module.modulemap:2:8: note: Previously defined here"
+    },
+    {
+      "line": 73225,
+      "diagnostic": "/Users/runner/work/Maktabah/Maktabah/build/original-editor-sdk-input/distribution/Clang/Packages/swift-markdown/Sources/CAtomic/include/module.modulemap:1:8: error: Redefinition of module 'CAtomic'",
+      "previous_definition": "/Users/runner/work/Maktabah/Maktabah/build/SourcePackages/checkouts/swift-markdown/Sources/CAtomic/include/module.modulemap:1:8: note: Previously defined here"
+    },
+    {
+      "line": 73231,
+      "diagnostic": "/Users/runner/work/Maktabah/Maktabah/build/original-editor-sdk-input/distribution/Clang/Packages/iosMath/iosMath/module.modulemap:5:8: error: Redefinition of module 'iosMath'",
+      "previous_definition": "/Users/runner/work/Maktabah/Maktabah/build/SourcePackages/checkouts/iosMath/iosMath/module.modulemap:5:8: note: Previously defined here"
+    },
+    {
+      "line": 73237,
+      "diagnostic": "/Users/runner/work/Maktabah/Maktabah/build/original-editor-sdk-input/distribution/Clang/Packages/promises/Sources/FBLPromises/include/module.modulemap:1:8: error: Redefinition of module 'FBLPromises'",
+      "previous_definition": "/Users/runner/work/Maktabah/Maktabah/Pods/Headers/Public/FBLPromises/PromisesObjC.modulemap:1:8: note: Previously defined here"
+    },
+    {
+      "line": 73243,
+      "diagnostic": "/Users/runner/work/Maktabah/Maktabah/build/original-editor-sdk-input/distribution/Clang/GeneratedModuleMaps/GoogleDataTransport.modulemap:1:8: error: Redefinition of module 'GoogleDataTransport'",
+      "previous_definition": "/Users/runner/work/Maktabah/Maktabah/Pods/Headers/Public/GoogleDataTransport/GoogleDataTransport.modulemap:1:8: note: Previously defined here"
+    },
+    {
+      "line": 73249,
+      "diagnostic": "/Users/runner/work/Maktabah/Maktabah/build/original-editor-sdk-input/distribution/Clang/GeneratedModuleMaps/nanopb.modulemap:1:8: error: Redefinition of module 'nanopb'",
+      "previous_definition": "/Users/runner/work/Maktabah/Maktabah/Pods/Headers/Public/nanopb/nanopb.modulemap:1:8: note: Previously defined here"
+    },
+    {
+      "line": 73255,
+      "diagnostic": "/Users/runner/work/Maktabah/Maktabah/build/original-editor-sdk-input/distribution/Clang/GeneratedModuleMaps/FirebaseInstallations.modulemap:1:8: error: Redefinition of module 'FirebaseInstallations'",
+      "previous_definition": "/Users/runner/work/Maktabah/Maktabah/Pods/Headers/Public/FirebaseInstallations/FirebaseInstallations.modulemap:1:8: note: Previously defined here"
+    },
+    {
+      "line": 73261,
+      "diagnostic": "/Users/runner/work/Maktabah/Maktabah/build/original-editor-sdk-input/distribution/Clang/GeneratedModuleMaps/FirebaseCore.modulemap:1:8: error: Redefinition of module 'FirebaseCore'",
+      "previous_definition": "/Users/runner/work/Maktabah/Maktabah/Pods/Headers/Public/FirebaseCore/FirebaseCore.modulemap:1:8: note: Previously defined here"
+    }
+  ],
+  "dependency_versions": {
+    "Firebase": {
+      "sdk": "11.8.1",
+      "host": "12.8.0"
+    },
+    "GoogleDataTransport": {
+      "sdk": "10.1.0",
+      "host": "10.1.1"
+    },
+    "GoogleUtilities": {
+      "sdk": "8.0.2",
+      "host": "8.1.5"
+    },
+    "Promises": {
+      "sdk": "2.4.0",
+      "host": "2.4.1"
+    },
+    "nanopb": {
+      "sdk": "2.30910.0",
+      "host": "3.30910.0"
+    }
+  },
+  "defined_original_framework_objc_symbols": [
+    "_OBJC_CLASS_$_FBLPromise",
+    "_OBJC_CLASS_$_FIRApp",
+    "_OBJC_CLASS_$_FIRInstallations"
+  ],
+  "symbol_evidence": "hq-stage2/original-editor/swift-syntax-sdk/image-3-symbols.txt.gz",
+  "runtime_acceptance": "NOT_RUN",
+  "full_repair": "BLOCKED_ON_ONE_SHARED_RUNTIME_DEPENDENCY_CLOSURE"
+}

@@ -41,6 +41,84 @@ final class ReaderSidebarPageCoordinator {
         else { return false }
         return true
     }
+
+    // Presentation belongs to this reader scene; the LibraryViewModel remains
+    // the sole owner of the actual query and filtered library membership.
+    var librarySearchIsPresented = false
+    var librarySearchIsPressed = false
+    private var librarySearchAnchor = CGRect.null
+    private var librarySearchContainer = CGRect.null
+    private var librarySearchGeometryRevision = 0
+    @ObservationIgnored private weak var librarySearchAnchorOwner: UIView?
+    @ObservationIgnored private weak var librarySearchAnchorWindow: UIWindow?
+    @ObservationIgnored private weak var librarySearchContainerOwner: UIView?
+    @ObservationIgnored private weak var librarySearchContainerWindow: UIWindow?
+
+    var librarySearchFrames: (anchor: CGRect, container: CGRect)? {
+        _ = librarySearchGeometryRevision
+        guard let window = librarySearchAnchorWindow,
+              librarySearchContainerWindow === window,
+              librarySearchAnchorOwner?.window === window,
+              librarySearchContainerOwner?.window === window,
+              !librarySearchAnchor.isNull, !librarySearchContainer.isNull,
+              librarySearchAnchor.width > 0, librarySearchAnchor.height > 0,
+              librarySearchContainer.width > 0, librarySearchContainer.height > 0
+        else { return nil }
+        return (librarySearchAnchor, librarySearchContainer)
+    }
+
+    func observeLibrarySearchAnchor(owner: UIView, frame: CGRect, window: UIWindow?) {
+        if let window {
+            let changedWindow = librarySearchAnchorWindow !== window
+            librarySearchAnchorOwner = owner
+            librarySearchAnchorWindow = window
+            librarySearchAnchor = frame
+            if changedWindow { librarySearchGeometryRevision += 1 }
+        } else if librarySearchAnchorOwner === owner {
+            librarySearchAnchorOwner = nil
+            librarySearchAnchorWindow = nil
+            librarySearchAnchor = .null
+            dismissLibrarySearch()
+        }
+    }
+
+    func observeLibrarySearchContainer(owner: UIView, frame: CGRect, window: UIWindow?) {
+        if let window {
+            let changedWindow = librarySearchContainerWindow !== window
+            librarySearchContainerOwner = owner
+            librarySearchContainerWindow = window
+            librarySearchContainer = frame
+            if changedWindow { librarySearchGeometryRevision += 1 }
+        } else if librarySearchContainerOwner === owner {
+            librarySearchContainerOwner = nil
+            librarySearchContainerWindow = nil
+            librarySearchContainer = .null
+            dismissLibrarySearch()
+        }
+    }
+
+    func presentLibrarySearch() {
+        #if DEBUG
+        LibraryCommandPaletteEscapeObservation.recordHost(.viewerOpenEnter, presented: librarySearchIsPresented)
+        #endif
+        navigationChrome.reveal()
+        librarySearchIsPresented = true
+        #if DEBUG
+        LibraryCommandPaletteEscapeObservation.recordHost(.viewerOpenReturned, presented: librarySearchIsPresented)
+        #endif
+    }
+
+    func dismissLibrarySearch() {
+        #if DEBUG
+        LibraryCommandPaletteEscapeObservation.recordHost(.viewerCloseEnter, presented: librarySearchIsPresented)
+        #endif
+        librarySearchIsPresented = false
+        librarySearchIsPressed = false
+        #if DEBUG
+        LibraryCommandPaletteEscapeObservation.recordHost(.viewerCloseReturned, presented: librarySearchIsPresented)
+        #endif
+    }
+
     func showContents() { page = .contents }
     func showLibrary() { page = .library; requestsLibrary.toggle() }
 }
@@ -78,10 +156,17 @@ extension EnvironmentValues {
 /// continue to own palette commands and profile/group management behavior.
 struct Exact9401ViewerToolbar: ViewModifier {
     let manager: iOSNavigationManager
-    @State private var isPresented = false
     @State private var showsProfiles = false
+    @State private var detailWidth: CGFloat = 0
     @Environment(\.exact9401Workspace) private var workspace
     @Environment(\.chavrusaReaderSidebar) private var sidebar
+
+    private var isPresented: Bool { sidebar?.librarySearchIsPresented == true }
+    private var compactSearchWidth: CGFloat {
+        // Keep the original native title/actions usable in narrow windows.
+        // The bridge measures the final proposed Button bounds, not this ideal.
+        detailWidth >= 700 ? min(240, detailWidth * 0.28) : 44
+    }
 
     func body(content: Content) -> some View {
         content
@@ -89,7 +174,7 @@ struct Exact9401ViewerToolbar: ViewModifier {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         guard workspace?.attached == true, let sidebar else { return }
-                        isPresented = false
+                        sidebar.dismissLibrarySearch()
                         showsProfiles = false
                         sidebar.navigationChrome.reveal()
                         sidebar.overview.request()
@@ -104,51 +189,38 @@ struct Exact9401ViewerToolbar: ViewModifier {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        #if DEBUG
-                        LibraryCommandPaletteEscapeObservation.recordHost(.viewerOpenEnter, presented: isPresented)
-                        #endif
-                        sidebar?.navigationChrome.reveal()
-                        isPresented = true
-                        #if DEBUG
-                        LibraryCommandPaletteEscapeObservation.recordHost(.viewerOpenReturned, presented: isPresented)
-                        #endif
+                        sidebar?.presentLibrarySearch()
                     } label: {
-                        Label("חיפוש מהיר בספרייה", systemImage: "magnifyingglass")
+                        // The split-level morph owns the sole visible surface.
+                        // This remains the real native toolbar activation target.
+                        Color.clear
+                            .frame(minWidth: 44, idealWidth: compactSearchWidth, maxWidth: compactSearchWidth)
+                            .frame(height: 44)
+                            .contentShape(Rectangle())
                     }
+                    .buttonStyle(LibrarySearchPressStyle { sidebar?.librarySearchIsPressed = $0 })
+                    .background {
+                        ReaderToolbarFrameReader(tracksPosition: isPresented) { owner, frame, window in
+                            sidebar?.observeLibrarySearchAnchor(owner: owner, frame: frame, window: window)
+                        }
+                        .accessibilityHidden(true)
+                    }
+                    .accessibilityLabel("חיפוש מהיר בספרייה")
+                    .accessibilityValue(manager.libraryViewModel.searchQuery)
                     .accessibilityIdentifier("reader-command-palette-launcher")
                 }
+                .readerSourceGlassBackground()
                 ToolbarItem(placement: .topBarTrailing) {
                     if let workspace {
                         StudyProfileMenu(workspace: workspace, manager: manager, usesNativeToolbar: true) {
-                            isPresented = false
+                            sidebar?.dismissLibrarySearch()
                             sidebar?.navigationChrome.reveal()
                             showsProfiles = true
                         }
                     }
                 }
             }
-            .overlay(alignment: .top) {
-                if isPresented {
-                    GeometryReader { geometry in
-                        Color.black.opacity(0.13)
-                            .ignoresSafeArea()
-                            .onTapGesture { isPresented = false }
-                        LibraryCommandPaletteAdapter(manager: manager) {
-                            #if DEBUG
-                            LibraryCommandPaletteEscapeObservation.recordHost(.viewerCloseEnter, presented: isPresented)
-                            #endif
-                            isPresented = false
-                            #if DEBUG
-                            LibraryCommandPaletteEscapeObservation.recordHost(.viewerCloseReturned, presented: isPresented)
-                            #endif
-                        }
-                            .gelatinMotionOnly()
-                            .frame(maxWidth: min(CGFloat(690), max(0, geometry.size.width - 30)))
-                            .padding(.top, 6)
-                            .frame(maxWidth: .infinity)
-                    }
-                }
-            }
+            .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { detailWidth = $0 }
             .sheet(isPresented: $showsProfiles) {
                 if let workspace {
                     StudyProfileManagementView(workspace: workspace, manager: manager)
@@ -159,11 +231,11 @@ struct Exact9401ViewerToolbar: ViewModifier {
                 LibraryCommandPaletteEscapeObservation.recordHost(.viewerStateChanged, presented: presented)
             }
             #endif
-            .onChange(of: workspace?.selection?.profileID) { _, _ in isPresented = false }
+            .onChange(of: workspace?.selection?.profileID) { _, _ in sidebar?.dismissLibrarySearch() }
             .onChange(of: sidebar?.overview.requestID) { _, id in
-                if id != nil { isPresented = false; showsProfiles = false }
+                if id != nil { sidebar?.dismissLibrarySearch(); showsProfiles = false }
             }
-            .onDisappear { isPresented = false; showsProfiles = false }
+            .onDisappear { sidebar?.dismissLibrarySearch(); showsProfiles = false }
     }
 }
 

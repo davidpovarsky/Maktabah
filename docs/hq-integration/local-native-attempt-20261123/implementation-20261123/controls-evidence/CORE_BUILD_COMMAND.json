@@ -1,0 +1,14 @@
+[
+  "/usr/local/bin/swift",
+  "build",
+  "--package-path",
+  "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core",
+  "--scratch-path",
+  "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build",
+  "--target",
+  "OtzariaActionCore",
+  "-c",
+  "debug",
+  "-j",
+  "2"
+]

@@ -1,0 +1,25 @@
+{
+  "label": "ruby-dev-extract",
+  "argv": [
+    "dpkg-deb",
+    "--extract",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-install/ruby3.2-dev_3.2.3-1ubuntu0.24.04.9_arm64.deb",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-root"
+  ],
+  "cwd": null,
+  "exit": 0,
+  "timed_out": false,
+  "child_reaped": true,
+  "owned_group_drained": true,
+  "elapsed_seconds": 0.03200682532042265,
+  "stdout": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-install/ruby-dev-extract.stdout",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-install/ruby-dev-extract.stderr",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

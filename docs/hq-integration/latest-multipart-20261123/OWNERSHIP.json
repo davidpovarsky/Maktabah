@@ -1,0 +1,65 @@
+{
+  "at_utc": "2026-11-23T20:03:14.939552+00:00",
+  "branch": "codex/otzaria-latest-multipart-20261123",
+  "base": "8136f2b50ea0acacc98e52bd172c73506dfa7746",
+  "upstream": "eac633bc469859573fdaaf7029d0a6ae68c21817",
+  "merge_base": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "clean_before": true,
+  "paths": [
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "absent_from_upstream": "eac633bc469859573fdaaf7029d0a6ae68c21817",
+      "last_change": "8136f2b50ea0acacc98e52bd172c73506dfa7746"
+    },
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "absent_from_upstream": "eac633bc469859573fdaaf7029d0a6ae68c21817",
+      "last_change": "28cf3510810462601e79e19f8a83d18cc5c460c2"
+    },
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloader.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "absent_from_upstream": "eac633bc469859573fdaaf7029d0a6ae68c21817",
+      "last_change": "28cf3510810462601e79e19f8a83d18cc5c460c2"
+    },
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "absent_from_upstream": "eac633bc469859573fdaaf7029d0a6ae68c21817",
+      "last_change": "42981a0163463219d630065231cf9cb073a897ee"
+    },
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "absent_from_upstream": "eac633bc469859573fdaaf7029d0a6ae68c21817",
+      "last_change": "8136f2b50ea0acacc98e52bd172c73506dfa7746"
+    },
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaNativeBootstrapAcceptanceRunner.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "absent_from_upstream": "eac633bc469859573fdaaf7029d0a6ae68c21817",
+      "last_change": "318926482cd093dfcb4e6c4628224d4f1d2fd67b"
+    },
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "absent_from_upstream": "eac633bc469859573fdaaf7029d0a6ae68c21817",
+      "last_change": "ed273bdf6c5c8598f977cd69219994a42c7480f6"
+    },
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaDownloadPolicy.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "absent_from_upstream": "eac633bc469859573fdaaf7029d0a6ae68c21817",
+      "last_change": "90d982e04f2f743486fc4ec6ea0a6ffff9892791"
+    },
+    {
+      "path": "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "absent_from_upstream": "eac633bc469859573fdaaf7029d0a6ae68c21817",
+      "planned_edit": "Two-line restore predicate validates explicit multipart remote/archived identity while preserving SQLite checks."
+    }
+  ],
+  "scope": "Explicit multipart archive metadata, authenticated same-release parts, original resumable download per part, bounded concatenation, original final digest/SQLite/atomic installation gates. No Books Updates backend activation or schema migration authority inferred."
+}

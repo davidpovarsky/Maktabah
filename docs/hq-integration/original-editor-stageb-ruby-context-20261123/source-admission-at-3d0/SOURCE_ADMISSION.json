@@ -1,0 +1,42 @@
+{
+  "source_sha": "3d0ff5b7043b23b64110c87510ed2e76cbd371ca",
+  "status": "PASS",
+  "commands": [
+    {
+      "command": [
+        "runuser",
+        "-u",
+        "ubuntu",
+        "--",
+        "python3",
+        "Scripts/CI/runtime27-original-editor-native.py",
+        "prepare"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "runuser",
+        "-u",
+        "ubuntu",
+        "--",
+        "bash",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/source-gate/exact-zayit-block.sh"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "workflow_sha256": "4b23096007c715e673c2d31297a3984ad995e77dc95754f47fa6a10e282ac146",
+  "application_native_not_run": true,
+  "other_workflow_steps": "Select/compile/restore/cache/build/run require genuine Apple/runtime or SDK products; not executed or simulated on Oracle. Unchanged selector/config and SDK admission controls are reused through exact source correspondence."
+}

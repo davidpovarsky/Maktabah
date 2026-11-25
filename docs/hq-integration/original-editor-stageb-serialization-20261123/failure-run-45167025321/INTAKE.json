@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "status": "AUTHENTICATED_STAGEB_PREBUILD_FAILURE",
+  "recorded_at": "2026-11-23T12:09:33.444823+00:00",
+  "repository": "davidpovarsky/Maktabah",
+  "run_id": 45167025321,
+  "run_attempt": 1,
+  "source_sha": "fa816b14d25a4ced0031b1a9c972040b89cb451e",
+  "job_id": 137666501228,
+  "runner_id": 1000024628,
+  "completed_at": "2026-11-23T11:49:22Z",
+  "artifact": {
+    "id": 14816515417,
+    "size": 31287629,
+    "sha256": "7602d45b602b595de6feea5dcd95c9468ef08fb9769c74b2efe443fbbb22e5ef",
+    "unique_safe_crc_members": 224
+  },
+  "observer": {
+    "closed": true,
+    "child_reaped": true,
+    "owned_group_drained": true,
+    "watch_exit": 1,
+    "final_identity_matches": true
+  },
+  "diagnosis": {
+    "error": "SDK app settings were not retained exactly",
+    "helper": "Scripts/CI/hq-original-editor-app-target.rb",
+    "helper_sha256": "92a591a8b02fb1e789cdc95febcbd760451584749f4708fa723297f5c34b898a",
+    "phase": "Original app target Xcodeproj serialization, before compiler invocation",
+    "settings": [
+      "OTHER_SWIFT_FLAGS",
+      "SWIFT_INCLUDE_PATHS"
+    ],
+    "comparison": "Expected arrays; actual serialized strings exactly equal ordered array join with one space",
+    "other_settings_unchanged": true,
+    "unrelated_objects_unchanged": 2358,
+    "original_project_restored_sha256": "fcac6c6d17d98edf2b34712efaae5a52e5c8e3c84a3fc1fd038cfe4a9335245c",
+    "rejected_project_sha256": "5951407fc4406817189eff8cb40f2da94dc82628e0274e2d11c29ffc21a7c800",
+    "evidence_scope": "Source-level exact assignment reconstruction, not execution of Xcodeproj or a control PASS"
+  },
+  "observed_runtime": {
+    "ruby": "3.4.12",
+    "xcodeproj": "1.28.1"
+  },
+  "qualification": {
+    "app_compile": "NOT_RUN",
+    "mounted_editor_journey": "NOT_RUN",
+    "persistent_edit_reopen": "NOT_RUN",
+    "new_sdk_build": "NOT_RUN"
+  },
+  "preserved_local_transport_failure": {
+    "file": "artifact-download.command.json",
+    "reason": "Unsupported Oracle gh --raw-output flag refused locally before download",
+    "replacement": "artifact-download-supported.command.json; plain gh api binary stream, exact size/digest verified"
+  },
+  "asana_comment_id": "1220788303892173"
+}

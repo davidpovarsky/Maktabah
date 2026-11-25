@@ -1,0 +1,21 @@
+{
+  "command": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "gh",
+    "api",
+    "repos/davidpovarsky/Maktabah/actions/jobs/137543753781/logs"
+  ],
+  "returncode": 0,
+  "timed_out": false,
+  "child_reaped": true,
+  "started_at": "2026-11-23T07:50:32.192979+00:00",
+  "finished_at": "2026-11-23T07:50:35.463950+00:00",
+  "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/45130214448/terminal/job-137543753781.log",
+  "bytes": 3015790,
+  "sha256": "d3dbbf0eae9889a0285ff3d7a07a1cdfb4e2e39e2b834a2e09a0265ed3eb01d3",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

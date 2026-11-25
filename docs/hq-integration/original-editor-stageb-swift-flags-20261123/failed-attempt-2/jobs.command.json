@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "gh",
+    "api",
+    "repos/davidpovarsky/Maktabah/actions/runs/45150723169/attempts/2/jobs?per_page=100"
+  ],
+  "started_at": "2026-11-23T11:04:29.598916+00:00",
+  "exit": 0,
+  "elapsed_seconds": 0.46820878982543945,
+  "stdout_sha256": "6b113fd8b44990bf4b474b8fccd584879383040cdd0fcc8fc5c93eecc67e3a8d",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

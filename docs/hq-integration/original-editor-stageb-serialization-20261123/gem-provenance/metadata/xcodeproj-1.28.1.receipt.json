@@ -1,0 +1,80 @@
+{
+  "name": "xcodeproj",
+  "version": "1.28.1",
+  "url": "https://rubygems.org/api/v2/rubygems/xcodeproj/versions/1.28.1.json",
+  "retrieved_at": "2026-11-23T12:07:52.310675+00:00",
+  "status": 200,
+  "final_url": "https://rubygems.org/api/v2/rubygems/xcodeproj/versions/1.28.1.json",
+  "headers": {
+    "Connection": "close",
+    "Content-Length": "1891",
+    "Content-Type": "application/json; charset=utf-8",
+    "x-frame-options": "SAMEORIGIN",
+    "x-xss-protection": "0",
+    "x-content-type-options": "nosniff",
+    "x-permitted-cross-domain-policies": "none",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "cross-origin-opener-policy": "same-origin",
+    "last-modified": "Mon, 06 Jul 2026 18:05:18 GMT",
+    "cache-control": "max-age=60, public",
+    "x-request-id": "40464d04-ecb4-4c1c-b461-05d9cf731109",
+    "x-runtime": "0.011418",
+    "strict-transport-security": "max-age=31536000; includeSubDomains",
+    "X-Backend": "F_Rails 32.188.254.245:443",
+    "Accept-Ranges": "bytes",
+    "Age": "0",
+    "Date": "Mon, 23 Nov 2026 12:07:53 GMT",
+    "Via": "1.1 varnish",
+    "X-Served-By": "cache-mrs1530067-MRS",
+    "X-Cache": "MISS",
+    "X-Cache-Hits": "0",
+    "X-Timer": "S1795435672.432369,VS0,VE592",
+    "Vary": "Accept-Encoding",
+    "ETag": "\"c5020860848e994f83620c8c441685ff\"",
+    "Server": "RubyGems.org"
+  },
+  "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/metadata/xcodeproj-1.28.1.json",
+  "size": 1891,
+  "sha256": "e94cdd52ae28230f73522c2d9810772032c0597770f82c60c4946850916dc275",
+  "identity_matches": true,
+  "api_sha": "6f12670f00739d9817ca27ac89d6ef01cc86050e22a0bc08a3131487e5b5cddc",
+  "gem_uri": "https://rubygems.org/gems/xcodeproj-1.28.1.gem",
+  "dependencies": {
+    "development": [],
+    "runtime": [
+      {
+        "name": "atomos",
+        "requirements": "~> 0.1.3"
+      },
+      {
+        "name": "base64",
+        "requirements": ">= 0"
+      },
+      {
+        "name": "CFPropertyList",
+        "requirements": ">= 2.3.3, < 4.0"
+      },
+      {
+        "name": "claide",
+        "requirements": ">= 1.0.2, < 2.0"
+      },
+      {
+        "name": "colored2",
+        "requirements": "~> 3.1"
+      },
+      {
+        "name": "nanaimo",
+        "requirements": "~> 0.4.0"
+      },
+      {
+        "name": "nkf",
+        "requirements": ">= 0"
+      },
+      {
+        "name": "rexml",
+        "requirements": ">= 3.3.6, < 4.0"
+      }
+    ]
+  },
+  "ruby_version": ">= 2.6.0"
+}
