@@ -1,5 +1,6 @@
 #if os(iOS) && canImport(AnytypeOriginalEditor)
 import Foundation
+import CryptoKit
 import AnytypeOriginalEditor
 
 enum AnnotationOriginalEditorImportPreparationOutcome {
@@ -33,9 +34,15 @@ final class AnnotationOriginalEditorImportHistory {
     let preparation: AnnotationLocalEditorNativeAttemptObservation
     private(set) var dispatch: AnnotationLocalEditorNativeAttemptObservation?
     private(set) var native: AnytypeOriginalAnnotationImportHistory?
+    private let savedDatabaseURL: URL
+    private let comparison: AnnotationLocalEditorNativeComparison
+    private var durableWrite: Task<URL, Error>?
+    private var nativeWaiters: [CheckedContinuation<Void, Never>] = []
 
-    fileprivate init(preparation: AnnotationLocalEditorNativeAttemptObservation) {
-        self.preparation = preparation
+    fileprivate init(prepared: AnnotationLocalEditorNativePreparation) {
+        preparation = prepared.observation
+        savedDatabaseURL = prepared.snapshot.databaseURL
+        comparison = prepared.comparison
     }
 
     fileprivate func recordDispatch(_ receipt: AnnotationLocalEditorNativeAttemptObservation) {
@@ -46,6 +53,42 @@ final class AnnotationOriginalEditorImportHistory {
         // The concrete original native owner delivers once, after both drains.
         guard native == nil else { return }
         native = receipt
+        if let verified = receipt.verifiedNativeReceipt {
+            let expected = preparation, target = comparison, databaseURL = savedDatabaseURL
+            let dispatched = dispatch?.state == .dispatchMayHaveOccurred
+            // The actual drained callback owns this independent durable write.
+            // Dismissing or cancelling its UI never converts native effects into
+            // rollback, nor loses a late successful native readback.
+            durableWrite = Task.detached {
+                guard dispatched,
+                      verified.source.attemptID == expected.attemptID,
+                      verified.source.preparedSessionID == expected.preparedSessionID,
+                      verified.source.annotationUUID == expected.annotationUUID,
+                      verified.source.savedRevision == expected.savedRevision,
+                      verified.source.sourceDigest == expected.sourceDigest,
+                      verified.source.payloadDigest == expected.payloadDigest,
+                      verified.source.bodyDigest == expected.bodyDigest,
+                      verified.source.accountID.utf8.elementsEqual(target.accountID.utf8),
+                      verified.source.spaceID.utf8.elementsEqual(target.spaceID.utf8) else {
+                    throw AnnotationOriginalEditorReceiptError.wrongAttempt
+                }
+                return try AnnotationOriginalEditorNativeReceiptFile.persist(
+                    verified, capturedDatabaseURL: databaseURL)
+            }
+        }
+        let waiters = nativeWaiters
+        nativeWaiters.removeAll()
+        for waiter in waiters { waiter.resume() }
+    }
+
+    /// Waits for actual drain and its durable local receipt, never for an elapsed
+    /// timeout or merely a returned invocation. This is not a remote-device ACK.
+    func durableNativeReceipt() async throws -> URL {
+        if native == nil {
+            await withCheckedContinuation { nativeWaiters.append($0) }
+        }
+        guard let durableWrite else { throw AnnotationOriginalEditorReceiptError.unverifiedNativeResult }
+        return try await durableWrite.value
     }
 }
 
@@ -72,7 +115,7 @@ final class AnnotationOriginalEditorImportAttempt {
         self.prepared = prepared
         self.observation = observation
         self.sourceLifetime = sourceLifetime
-        history = .init(preparation: prepared.observation)
+        history = .init(prepared: prepared)
     }
 
     static func prepare(
@@ -274,4 +317,99 @@ extension AnnotationStore {
         }
     }
 }
+
+private enum AnnotationOriginalEditorReceiptError: Error {
+    case wrongAttempt, unverifiedNativeResult, unsafeStorage, conflictingHistory
+}
+
+/// Historical data only. It cannot be decoded into an SDK receipt, account,
+/// source lifetime or retry permit. The original immutable attempt SQL remains
+/// in dispatch_may_have_occurred, preventing duplicate native re-imports.
+private enum AnnotationOriginalEditorNativeReceiptFile {
+    private struct Record: Encodable {
+        struct Mapping: Encodable {
+            let sourceSpaceID: String
+            let sourceObjectID: String
+            let objectID: String
+        }
+        let schema = "otzaria.original.annotation.native-commit.v1"
+        let status = "LOCAL_NATIVE_IMPORT_READBACK_VERIFIED"
+        let remoteDeviceAcknowledgement = false
+        let namespace: String
+        let annotationUUID: UUID
+        let preparedSessionID: UUID
+        let attemptID: UUID
+        let savedRevision: Int64
+        let sourceDigest: String
+        let payloadDigest: String
+        let bodyDigest: String
+        let accountID: String
+        let spaceID: String
+        let objectID: String
+        let traceID: String
+        let sourceArchiveSHA256: String
+        let nativeArchiveSHA256: String
+        let nativeResponseSHA256: String
+        let nativeResponseBytes: Data
+        let objectMappings: [Mapping]
+    }
+
+    static func persist(_ receipt: AnytypeOriginalAnnotationImportReceipt,
+                        capturedDatabaseURL: URL) throws -> URL {
+        guard capturedDatabaseURL.isFileURL,
+              receipt.source.namespace == "otzaria.local.annotation",
+              !receipt.nativeResponseBytes.isEmpty,
+              receipt.nativeResponseBytes.count <= 2 * 1_024 * 1_024,
+              SHA256.hash(data: receipt.nativeResponseBytes)
+                .map({ String(format: "%02x", $0) }).joined() == receipt.nativeResponseSHA256 else {
+            throw AnnotationOriginalEditorReceiptError.wrongAttempt
+        }
+        let source = receipt.source
+        let record = Record(namespace: source.namespace, annotationUUID: source.annotationUUID,
+            preparedSessionID: source.preparedSessionID, attemptID: source.attemptID,
+            savedRevision: source.savedRevision, sourceDigest: source.sourceDigest,
+            payloadDigest: source.payloadDigest, bodyDigest: source.bodyDigest,
+            accountID: source.accountID, spaceID: source.spaceID,
+            objectID: receipt.objectID, traceID: receipt.traceID,
+            sourceArchiveSHA256: receipt.sourceArchiveSHA256,
+            nativeArchiveSHA256: receipt.nativeArchiveSHA256,
+            nativeResponseSHA256: receipt.nativeResponseSHA256,
+            nativeResponseBytes: receipt.nativeResponseBytes,
+            objectMappings: receipt.objectMappings.map {
+                .init(sourceSpaceID: $0.sourceSpaceID,
+                      sourceObjectID: $0.sourceObjectID, objectID: $0.objectID)
+            })
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+        let bytes = try encoder.encode(record)
+        let manager = FileManager.default
+        // Use the originally captured profile path. Never consult the current
+        // global profile after the native callback or reopen an unrelated DB.
+        let database = capturedDatabaseURL.standardizedFileURL.resolvingSymlinksInPath()
+        let directory = database.deletingLastPathComponent()
+            .appendingPathComponent(database.lastPathComponent + ".native-import-history", isDirectory: true)
+        try manager.createDirectory(at: directory, withIntermediateDirectories: false,
+            attributes: [.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication])
+        let values = try directory.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey])
+        guard values.isDirectory == true, values.isSymbolicLink != true else {
+            throw AnnotationOriginalEditorReceiptError.unsafeStorage
+        }
+        let url = directory.appendingPathComponent(source.attemptID.uuidString + ".json", isDirectory: false)
+        if manager.fileExists(atPath: url.path) {
+            let existing = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
+            guard existing.isRegularFile == true, existing.isSymbolicLink != true,
+                  existing.fileSize == bytes.count,
+                  try Data(contentsOf: url, options: .mappedIfSafe) == bytes else {
+                throw AnnotationOriginalEditorReceiptError.conflictingHistory
+            }
+            return url
+        }
+        try bytes.write(to: url, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
+        guard try Data(contentsOf: url, options: .mappedIfSafe) == bytes else {
+            throw AnnotationOriginalEditorReceiptError.conflictingHistory
+        }
+        return url
+    }
+}
+
 #endif

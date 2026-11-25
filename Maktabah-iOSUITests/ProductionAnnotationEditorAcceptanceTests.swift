@@ -192,6 +192,33 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         tap(app.buttons["annotation-expanded-editor-close"])
         tap(app.buttons["Discard draft"])
         try await waitForAbsence(quick)
+
+        // Opening the real account UI requires an actual native local AccountStop.
+        // Cancelling before the explicit send must preserve the saved note, then
+        // reopening native editing must recover the SAME private localOnly account.
+        try editAnnotation(resumedRows.firstMatch)
+        let share = app.buttons["annotation-anytype-share-open"]
+        try await waitForEnabled(share)
+        tap(share)
+        let originalAccount = app.descendants(matching: .any)["annotation-anytype-original-account"]
+        XCTAssertTrue(originalAccount.waitForExistence(timeout: 120))
+        XCTAssertFalse(app.buttons["annotation-anytype-share-confirm"].exists)
+        XCTAssertEqual(try readCanonicalRow(rowID), saved)
+        retainNativeEvidence("normal-local-editor-to-original-account-presentation")
+        tap(app.buttons["annotation-anytype-share-close"])
+        try await waitForAbsence(originalAccount)
+        XCTAssertTrue(resumedRows.firstMatch.waitForExistence(timeout: 120))
+        XCTAssertEqual(try readCanonicalRow(rowID), saved)
+        try editAnnotation(resumedRows.firstMatch)
+        try await waitForEnabled(entry)
+        tap(entry)
+        let afterAccountClose = try await expandedHost()
+        try await assertTwoBodies(firstText, secondText, in: afterAccountClose)
+        XCTAssertEqual(try readCanonicalRow(rowID), saved)
+        retainNativeEvidence("normal-original-account-close-to-local-editor")
+        tap(app.buttons["annotation-expanded-editor-close"])
+        tap(app.buttons["Discard draft"])
+        try await waitForAbsence(quick)
         tap(app.navigationBars["Annotations"].buttons["Close"])
         let finalViewport = try viewport()
         XCTAssertEqual(finalViewport.source, initialViewport.source)
