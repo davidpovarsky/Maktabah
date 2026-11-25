@@ -8,8 +8,8 @@
     "sha256": "e499b3ebcc720cc31e96edded148655c6db874820262da39f219c5c408db54f3"
   },
   "original_editor_debug_admission": {
-    "path": "Scripts/CI/original-editor-miniapps-debug-1f90175b.inputs.json",
-    "sha256": "fe7b0b05f9088d29ad4674b07a495c1e9761bf41c9d4be601c8059ed8e7268b4"
+    "path": "Scripts/CI/original-editor-miniapps-debug-collections13-8ae85a64.inputs.json",
+    "sha256": "23f708f080f058b62c7cc57093247501ba0dedd244a21ba432b86599f83b4ba8"
   },
   "producer_artifact_name": null,
   "producer_origin": "local-mac",

@@ -1,0 +1,22 @@
+{
+  "status": "ACTUAL_ORIGINAL_SDK292_PACKET_PASS",
+  "exit_code": 0,
+  "producer_source_sha": "8ae85a6490c4fb763fcd01d5f93345f7e071db92",
+  "qualification_sha256": "f2863945c4fd54bde8aeb4d9096a5a17e77c6afa4b3268242b1cb59b4ca53268",
+  "source_before_sha256": "d30c844a51b99f9a7e72e6d58a4bc5cb756d822db620774b0e2112501139bc70",
+  "duration_seconds": 62.894,
+  "free_after": 77946646528,
+  "finished_at": "2026-11-25T15:11:40.751029+00:00",
+  "app_build": "NOT_RUN",
+  "app_ui_tests": 0,
+  "packet": {
+    "candidate": "/Users/m1/builds/otzaria-miniapps-final-20261125/Maktabah/build/original-editor-local-sdk292-collections13-8ae85a64/admission-candidate.json",
+    "candidate_sha256": "105210c7e70bd245c39dc31bf29ae4535b80117cbc19fdf8ab96734ce48e4619",
+    "source_sha": "8ae85a6490c4fb763fcd01d5f93345f7e071db92",
+    "execution_id": "local-74fe4306-c10d-41d8-b4ea-6391d717ffad",
+    "archive_bytes": 369328420,
+    "archive_sha256": "3f4ceafe9ef865bd7249dfca9160d1be530ca9f9f3a878a6aec6a14aa64649e2",
+    "native_stageb_qualified": false,
+    "device_framework_qualified": false
+  }
+}
