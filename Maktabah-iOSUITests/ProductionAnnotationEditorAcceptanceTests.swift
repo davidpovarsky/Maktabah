@@ -303,11 +303,8 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         try revealPreparationControl(conversion)
         tap(conversion)
         let confirm = app.buttons["annotation-native-backfill-confirm"]
-        let cancel = app.buttons["annotation-native-backfill-cancel-confirmation"]
         XCTAssertTrue(confirm.waitForExistence(timeout: 15))
-        XCTAssertTrue(cancel.exists)
-        tap(cancel)
-        try await waitForAbsence(confirm)
+        try await cancelNativeBackfillConfirmation(confirm)
         XCTAssertEqual(try readCanonicalRow(rowID), before, "Cancelled confirmation must preserve the saved row and envelope")
         attachStorage(try readCanonicalRow(rowID), stage: "backfill-confirmation-cancelled")
 
@@ -413,6 +410,52 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
             if towardsBottom { app.swipeUp() } else { app.swipeDown() }
         }
         XCTAssertTrue(control.exists && control.isHittable)
+    }
+
+    @MainActor
+    private func cancelNativeBackfillConfirmation(_ confirm: XCUIElement) async throws {
+        let cancel = app.buttons["annotation-native-backfill-cancel-confirmation"]
+        if cancel.exists && cancel.isHittable {
+            tap(cancel)
+        } else {
+            // In a regular iOS size class SwiftUI omits the cancel action and
+            // presents this confirmation as a popover. Dismiss the actual
+            // presented container by a point proven outside its current frame.
+            let windows = app.windows.allElementsBoundByIndex.filter {
+                $0.exists && !$0.frame.isEmpty && $0.frame.contains(confirm.frame)
+            }
+            let window = try XCTUnwrap(windows.min { $0.frame.width * $0.frame.height < $1.frame.width * $1.frame.height })
+            let presentations = app.descendants(matching: .popover)
+                .containing(.button, identifier: "annotation-native-backfill-confirm")
+                .allElementsBoundByIndex
+                + app.sheets.containing(.button, identifier: "annotation-native-backfill-confirm")
+                .allElementsBoundByIndex
+            let frames = Set(presentations.filter {
+                $0.exists && !$0.frame.isEmpty && $0.frame.contains(confirm.frame)
+                    && $0.frame.width < window.frame.width - 32
+                    && $0.frame.height < window.frame.height - 32
+            }.map { NSValue(cgRect: $0.frame) })
+            XCTAssertEqual(frames.count, 1, "Require one actual original confirmation popover")
+            let popoverFrame = try XCTUnwrap(frames.first).cgRectValue
+            let safeBounds = window.frame.insetBy(dx: 32, dy: 32)
+            XCTAssertFalse(safeBounds.isEmpty)
+            let points = [
+                CGPoint(x: safeBounds.minX, y: safeBounds.minY),
+                CGPoint(x: safeBounds.maxX, y: safeBounds.minY),
+                CGPoint(x: safeBounds.minX, y: safeBounds.maxY),
+                CGPoint(x: safeBounds.maxX, y: safeBounds.maxY)
+            ]
+            let outside = try XCTUnwrap(points.first {
+                !popoverFrame.insetBy(dx: -16, dy: -16).contains($0)
+            }, "A visible window point must be outside the presented popover")
+            XCTAssertFalse(popoverFrame.contains(outside))
+            retainNativeEvidence("backfill-original-confirmation-before-outside-dismissal")
+            window.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(
+                dx: outside.x - window.frame.minX, dy: outside.y - window.frame.minY
+            )).tap()
+        }
+        try await waitForAbsence(confirm)
+        XCTAssertFalse(confirm.exists)
     }
 
     @MainActor
