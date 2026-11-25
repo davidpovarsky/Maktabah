@@ -13,6 +13,7 @@ import shlex
 
 from original_editor_host_clang_context import bounded_file, digest, host_module_inventory, modules, require
 from original_editor_clang_imports import read_clang_imports
+from original_editor_hanlin_equivalence import read_review, verify_hanlin_sources
 
 RUNTIME = 'OriginalEditorSharedFirebase'
 EDITOR = 'AnytypeOriginalEditor'
@@ -81,7 +82,10 @@ def validate_provider(root, config, qualification, admitted):
                       'manifest_sha256': shared['clang_manifest_sha256']}
     clang = read_clang_imports(distribution, clang_identity)
     require(clang == shared['clang_roots'], 'Reviewed complete Clang import closure differs')
+    equivalence = shared.get('host_source_equivalence')
+    equivalence = read_review(root, equivalence, shared['hanlin_revision']) if equivalence is not None else None
     return {'schema': 1, 'producer_identity': identity, 'ownership': owner,
+            **({'host_source_equivalence': equivalence} if equivalence is not None else {}),
             'host_products': PRODUCTS, 'host_pod_versions': shared['host_pod_versions'],
             'clang_context': {'producer_identity': clang_identity, **clang},
             'hanlin_revision': shared['hanlin_revision'], 'swift_ai_revision': shared['swift_ai_revision'],
@@ -91,13 +95,7 @@ def validate_provider(root, config, qualification, admitted):
 def verify_host_sources(root, admitted, report):
     shared = admitted['shared_runtime']
     owner = shared['ownership']
-    require(report['hanlin_sdk_source']['sha'] == shared['hanlin_revision'], 'Host Hanlin revision differs')
-    host_files = report['hanlin_sdk_source']['git_blobs']
-    require(host_files and all(p.startswith(HANLIN_ROOTS) for p in host_files)
-            and host_files.keys() == owner['hanlin_package_files'].keys(),
-            'Host and producer package/resource/manifest/lock memberships differ')
-    require(all(digest(root / 'Vendor/HanlinSDK' / p) == sha for p, sha in owner['hanlin_package_files'].items()),
-            'Host and producer share different Hanlin package bytes')
+    host_files, hanlin_identity = verify_hanlin_sources(root, shared, report['hanlin_sdk_source'])
     locks = {}
     for name in [
         'Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved',
@@ -133,6 +131,7 @@ def verify_host_sources(root, admitted, report):
         require(row['revision'] == owner['root_dependency_revisions'][identity]['revision']
                 and row['files'], 'Native shared dependency provenance differs')
     return {'status': 'EXACT_COMPLETE_SHARED_HOST_SOURCE_CLOSURE', 'hanlin_files': len(host_files),
+            **hanlin_identity,
             'hanlin_revision': shared['hanlin_revision'], 'swift_ai_revision': shared['swift_ai_revision'],
             'operative_lock_sha256': locks, 'podfile_lock_sha256': digest(root / 'Podfile.lock'),
             'host_pod_versions': {name: versions[name] for name in PODS},
