@@ -773,7 +773,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         tap(app.buttons["torah-inspector-add-note"])
         let quick = app.textViews["annotation-note-text"]
         XCTAssertTrue(quick.waitForExistence(timeout: 15))
-        let sourceText = "Original attachment note " + UUID().uuidString
+        let sourceText = "OriginalAttachment" + UUID().uuidString.replacingOccurrences(of: "-", with: "")
         tap(quick); quick.typeText(sourceText)
         tap(app.buttons["annotation-save-toolbar"])
         try await requireNativeCondition(timeout: 30) { !quick.exists }
@@ -799,8 +799,17 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let firstBaseline = try richState(rowID: rowID, databasePath: document.profile)
         let firstText = "NativeFile" + UUID().uuidString.replacingOccurrences(of: "-", with: "")
         let firstEditor = try await actualFileEditor(producer)
-        XCTAssertEqual(firstEditor.value as? String ?? "", "")
-        tapFileWorkshop(firstEditor, producer: producer); firstEditor.typeText(firstText)
+        XCTAssertEqual(firstEditor.value as? String, sourceText,
+            "The actual MiniApp starts the new file from the captured source text")
+        tapFileWorkshop(firstEditor, producer: producer)
+        firstEditor.doubleTap()
+        let firstMenuCut = producer.menuItems["Cut"].firstMatch
+        let firstCut = firstMenuCut.exists ? firstMenuCut : producer.buttons["Cut"].firstMatch
+        XCTAssertTrue(firstCut.waitForExistence(timeout: 10) && firstCut.isHittable)
+        retainScreenshot(producer, named: "file-workshop-source-text-native-cut")
+        tapFileWorkshop(firstCut, producer: producer)
+        try await requireNativeCondition(timeout: 15) { firstEditor.value as? String == "" }
+        firstEditor.typeText(firstText)
         XCTAssertEqual(firstEditor.value as? String, firstText)
         retainScreenshot(producer, named: "file-workshop-real-new-file-before-return")
         try await pressFileWorkshopAction("fileworkshop.return", producer: producer)
