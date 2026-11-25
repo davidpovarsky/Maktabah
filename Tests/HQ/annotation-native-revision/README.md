@@ -1,7 +1,7 @@
 # Conditional native revision: original SQLite component gate
 
 Status: **NOT RUN**. This checkpoint authors a new focused gate against root product commit
-`75058d1c1abbfb0fb37fc819dcece47b853eb4da`. It does not claim an accepted SDK, UI, live
+`ce0f62baba7360514e7fa8cad21f0caaf2d0ab8f`. It does not claim an accepted SDK, UI, live
 synchronization, or final application build.
 
 ## Source boundary
@@ -9,7 +9,7 @@ synchronization, or final application build.
 The driver imports the original 25-file local annotation editor driver source list,
 compiles its complete production Swift files and original local Actions package,
 and extracts only the byte-identical reusable fixture prefix before
-`@MainActor\nfinal class LocalCases`. It does not execute or edit the original 43 tests.
+`@MainActor\nfinal class LocalCases`. It does not execute or edit the original 43 tests. Those 43 tests must now run separately because the shared prepare/commit gained explicit long-note preservation.
 The existing explicit catalog, unrelated UI and CloudKit callback boundaries remain
 unchanged. The opaque rich-body/request fixtures are not native Anytype archives.
 
