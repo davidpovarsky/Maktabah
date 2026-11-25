@@ -1,0 +1,33 @@
+{
+  "controls": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "test_original_editor_local_admission",
+        "test_original_editor_donor_admission"
+      ],
+      "name": "historical-local-and-donor",
+      "returncode": 0,
+      "stderr": "....................\n----------------------------------------------------------------------\nRan 20 tests in 0.132s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tools/test-original-editor-fresh-abi-admission.py",
+        "--proof-json",
+        "/home/ubuntu/hanlin-delivery-evidence/anytype-fresh-abi-consumer-intake-20261125/actual-proof.json"
+      ],
+      "name": "actual-fresh-schema3",
+      "returncode": 0,
+      "stderr": "test_actual_new_native_and_swift_origins_are_preserved (__main__.FreshOriginalABI.test_actual_new_native_and_swift_origins_are_preserved) ... ok\ntest_exact_three_target_wrapper_is_required (__main__.FreshOriginalABI.test_exact_three_target_wrapper_is_required) ... ok\ntest_fresh_origin_requires_current_file_contract (__main__.FreshOriginalABI.test_fresh_origin_requires_current_file_contract) ... ok\ntest_generation_failure_remains_historical_failure (__main__.FreshOriginalABI.test_generation_failure_remains_historical_failure) ... ok\ntest_installed_native_abi_cannot_be_incomplete (__main__.FreshOriginalABI.test_installed_native_abi_cannot_be_incomplete) ... ok\ntest_legacy_route_cannot_admit_fresh_schema (__main__.FreshOriginalABI.test_legacy_route_cannot_admit_fresh_schema) ... ok\ntest_native_counts_are_exact (__main__.FreshOriginalABI.test_native_counts_are_exact) ... ok\ntest_native_origin_cannot_borrow_github_identity (__main__.FreshOriginalABI.test_native_origin_cannot_borrow_github_identity) ... ok\ntest_old_verifier_source_cannot_admit_new_route (__main__.FreshOriginalABI.test_old_verifier_source_cannot_admit_new_route) ... ok\ntest_other_sdk_source_is_rejected (__main__.FreshOriginalABI.test_other_sdk_source_is_rejected) ... ok\ntest_swift_gate_cannot_be_promoted_to_full_sdk (__main__.FreshOriginalABI.test_swift_gate_cannot_be_promoted_to_full_sdk) ... ok\ntest_swift_origin_cannot_be_relabelled_as_current_framework (__main__.FreshOriginalABI.test_swift_origin_cannot_be_relabelled_as_current_framework) ... ok\ntest_verifier_cannot_claim_native_execution (__main__.FreshOriginalABI.test_verifier_cannot_claim_native_execution) ... ok\ntest_verifier_must_bind_current_abi_bytes (__main__.FreshOriginalABI.test_verifier_must_bind_current_abi_bytes) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 0.035s\n\nOK\n",
+      "stdout": ""
+    }
+  ],
+  "native_ui_credit": 0,
+  "time": "2026-11-25T14:37:33.045022+00:00"
+}

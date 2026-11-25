@@ -32,20 +32,35 @@ def exact_producer_path(root, relative, *, build=False):
     return path
 
 
-def collect_donor_receipts(producer_root, abi_path, source_before, qualification):
+def collect_donor_receipts(producer_root, abi_path, source_before, qualification, *, observations=None):
     """Reverify the real installed ABI; retain every historical identity verbatim."""
     reference = read_json(abi_path)
     if reference.get('schema') != LOCAL['DONOR_SCHEMA']:
         return {}
-    policy_path = exact_producer_path(producer_root, LOCAL['DONOR_POLICY'])
+    source = (LOCAL['FILES_DONOR_SOURCE']
+              if reference.get('policy_sha256') == LOCAL['FILES_DONOR_POLICY_SHA256']
+              else LOCAL['DONOR_SOURCE'])
+    scope = LOCAL['donor_policy_scope'](source)
+    policy_path = exact_producer_path(producer_root, scope['path'])
     policy = read_json(policy_path)
+    require(policy.get('source_sha') == source and policy.get('schema') == scope['schema'],
+            'Donor policy is not the reviewed original producer')
+    if source == LOCAL['FILES_DONOR_SOURCE']:
+        verifier = exact_producer_path(producer_root, LOCAL['FILES_DONOR_VERIFIER'])
+        committed = subprocess.check_output(
+            ['git', '-C', str(producer_root), 'show', 'HEAD:' + LOCAL['FILES_DONOR_VERIFIER']])
+        require(digest(verifier) == hashlib.sha256(committed).hexdigest()
+                    == LOCAL['FILES_DONOR_VERIFIER_SHA256']
+                and read_json(source_before).get('source_inputs', {})
+                    .get(LOCAL['FILES_DONOR_VERIFIER'], {}).get('sha256') == digest(verifier),
+                'Fresh donor current verifier differs from its reviewed source')
     require(digest(policy_path) == reference.get('policy_sha256'),
             'Donor policy changed before packaging')
     donor_root = Path(reference['donor_root'])
     require(donor_root.is_absolute() and donor_root.resolve() == donor_root
             and donor_root != producer_root
             and subprocess.check_output(['git', '-C', str(donor_root), 'rev-parse', 'HEAD'],
-                                        text=True).strip() == LOCAL['DONOR_SOURCE'],
+                                        text=True).strip() == source,
             'Original donor checkout identity differs')
     paths = {'abi_donor_policy': policy_path}
     for role, row in policy['receipts'].items():
@@ -78,6 +93,19 @@ def collect_donor_receipts(producer_root, abi_path, source_before, qualification
          str(source_before), digest(abi_path)], text=True, timeout=600))
     require(observed == qualification.get('heart'),
             'Actual current native donor verification differs from the qualified SDK')
+    if source == LOCAL['FILES_DONOR_SOURCE']:
+        require(isinstance(observations, dict), 'Fresh donor needs its explicit original observation transport')
+        fresh_paths, fresh_observation = collect_fresh_receipts(
+            donor_root, paths['abi_donor_abi'], paths['abi_donor_source_before'],
+            read_json(paths['abi_donor_debug_qualification']))
+        for role, path in fresh_paths.items():
+            donor_role = 'abi_donor_' + role.removeprefix('abi_')
+            require(donor_role not in paths or paths[donor_role] == path,
+                    'Original fresh donor receipt role aliases another file')
+            paths[donor_role] = path
+        observations['abi_donor_fresh_verification'] = fresh_observation
+        require(set(paths) | set(observations) == LOCAL['DONOR_ROLES'] | scope['extra_roles'],
+                'Fresh donor transport omits an original native/Swift qualification')
     return paths
 
 
@@ -190,7 +218,10 @@ def prepare(producer_root, evidence, abi_path, destination):
     expected = {**exported['files'], 'QUALIFICATION.json': {
         'bytes': qualification_path.stat().st_size, 'sha256': digest(qualification_path)}}
     require(API['inventory'](distribution) == expected, 'Actual qualified SDK differs from the exported closure')
-    donor_paths = collect_donor_receipts(producer_root, abi_path, evidence / 'source-before.json', qualification)
+    donor_observations = {}
+    donor_paths = collect_donor_receipts(
+        producer_root, abi_path, evidence / 'source-before.json', qualification,
+        observations=donor_observations)
     fresh_paths, fresh_verification = collect_fresh_receipts(
         producer_root, abi_path, evidence / 'source-before.json', qualification)
     require(not (donor_paths and fresh_paths), 'Fresh ABI and historical donor routes cannot be combined')
@@ -213,10 +244,13 @@ def prepare(producer_root, evidence, abi_path, destination):
         'abi': copy(abi_path, 'qualified-import-abi.json'),
     }
     receipts.update({role: copy(path, role + '.json') for role, path in {**donor_paths, **fresh_paths}.items()})
+    observations = dict(donor_observations)
     if fresh_verification is not None:
-        target = destination / 'abi_fresh_verification.json'
-        API['write'](target, fresh_verification)
-        receipts['abi_fresh_verification'] = {'path': target.relative_to(ROOT).as_posix(),
+        observations['abi_fresh_verification'] = fresh_verification
+    for role, observation in observations.items():
+        target = destination / (role + '.json')
+        API['write'](target, observation)
+        receipts[role] = {'path': target.relative_to(ROOT).as_posix(),
             'bytes': target.stat().st_size, 'sha256': digest(target)}
     manifest = copy(evidence / 'framework-distribution.json', 'framework-distribution.json')
     hanlin = copy(evidence / 'original-hanlin-snapshot.json', 'original-hanlin-snapshot.json')
@@ -254,6 +288,9 @@ def prepare(producer_root, evidence, abi_path, destination):
     }
     if donor_paths:
         config['abi_provenance'] = LOCAL['DONOR_SCHEMA']
+        donor_source = read_json(donor_paths['abi_donor_policy'])['source_sha']
+        if donor_source == LOCAL['FILES_DONOR_SOURCE']:
+            config['abi_donor_source_sha'] = donor_source
     if fresh_verification is not None:
         config['abi_provenance'] = LOCAL['FRESH_SCHEMA']
     if contract:
