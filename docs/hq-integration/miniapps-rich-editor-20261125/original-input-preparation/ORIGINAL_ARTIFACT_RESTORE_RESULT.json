@@ -1,0 +1,237 @@
+{
+  "scope": "ORIGINAL_PINNED_ARTIFACT_RESTORATION_ONLY",
+  "app_build_executed": false,
+  "native_acceptance": "NOT_RUN",
+  "started_at": "2026-11-25T09:06:17.537503+00:00",
+  "free_before": 8230129664,
+  "checkout_sha": "55913bdd34ffe9507d96c1d11dab80b6ecc87014",
+  "application_source_sha": "a0aab23af933b7621a435f03d562271af62d00e8",
+  "validator_sha256": "d0299f83053714e7e6814fd75b3e4aa980de84e34ac7fae8d2538ec65071d4cd",
+  "inputs_sha256": "a06931b4077d052dbdfa11799578ff440e04a990f7a4b579f40cdb02a7cf3e1a",
+  "workflow_sha256": "a498b99ec37f50b03348cc32b801a45bf1f50839d302702a02229fa2ccacb224",
+  "project_sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb",
+  "canonical_project_sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb",
+  "application_trees": {
+    "Source": "865ef9c1d485e011fe34108beee7dbe126b80ca8",
+    "Vendor": "e080933608a75b0db2ed1d040a6001d9b4033ad1",
+    "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3"
+  },
+  "otzaria_test_additions": {
+    "preserved_producer_entries": 43,
+    "reviewed_added_regular_files": 78,
+    "mode": "EXACT_NEW_TEST_FILES_ONLY",
+    "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+    "producer_whole_tree": "5a6c6501c021ffadcde31254239617f10cd1a362",
+    "current_whole_tree": "424e157913f36db2b5cc4c6204056f56c3194dd9",
+    "manifest_sha256_lf": "546dc405db0cb9b409c54b6737404c4ccf67ab0767d4e1bafe2b9b9bb27bd279",
+    "excluded_build_inputs": {
+      "Maktabah.xcodeproj/project.pbxproj": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
+      "Vendor/OtzariaSearchEngine/build_xcframework.sh": "c144bfd775b393c4621b41bd2688fad16f79c315",
+      "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "0d92196706d534d91041373676e9699b023c9528",
+      "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "6bd9288a85e67132e9283ab7516435cfa442c74a"
+    },
+    "binary_attribution": "PRODUCER_TREE_ONLY_NOT_CURRENT_WHOLE_TREE"
+  },
+  "zayit_framework": {
+    "mode": "UNCHANGED_PRODUCTION_PREBUILT",
+    "source_tree": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8",
+    "baseline_producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+    "changed_paths": [],
+    "build_script": "Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh",
+    "build_script_git_blob": "a4f123b144b236fc1ec691060cf144e3e9da2cf9"
+  },
+  "hanlin_gitlink": "08ef8741ff58241a081c908536a3b4d3917cc0e8",
+  "embedded_bundle_build": {
+    "mode": "REBUILD_EXACT_REVIEWED_JS",
+    "overlay_paths": [
+      "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+    ],
+    "source_tree": "1a0e21666586f417186b6218049e03fc1cc232fd"
+  },
+  "package_resolved_sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa",
+  "package_pins": {
+    "a2ui": "3ed9601862ecc78027e20ac80ad8b1b98a5d9079",
+    "anchoredpopup": "f93c51e75ff4e5242328ac24c8fb12f1f1e84eda",
+    "equatable": "597c2bb34af0c51331eb3b5e705f942d8ee20daa",
+    "floatingpanel": "3db567a19ff81d2d3ce00399021ee87a4fccf7e0",
+    "hanlin-streaming-markdown": "5cbb4b6c950051f98f02a0b0ae56756f5174a9b8",
+    "highlightswift": "99c431b38a1444a5fd6a4978307fbbefe3a7af53",
+    "iosmath": "ba9ab7729b151329c54fd895a7c1859981d9484c",
+    "sparkle": "066e75a8b3e99962685d6a90cdd5293ebffd9261",
+    "swift-ai-sdk": "3f38f1302764635c9991d0d00fd7b12471a5373c",
+    "swift-argument-parser": "6a52f3251125d74daf04fcbd5e6f08a75d074382",
+    "swift-cmark": "08ddb528923cc1a6527e02b7a1aee9e516ca749a",
+    "swift-collections": "7b847a3b7008b2dc2f47ca3110d8c782fb2e5c7e",
+    "swift-json-schema": "c0a9375ea9cd3fd47d875c98ed7f027ea61c03cb",
+    "swift-markdown": "7d9a5ce307528578dfa777d505496bd5f544ad94",
+    "swift-syntax": "79e4b74a295b6eb74a8b585e3a39d29e70c1dbd1",
+    "swiftsoup": "bba848db50462894e7fc0891d018dfecad4ef11e",
+    "swiftui-shimmer": "0226e21f9bf355d40e07e5f5e1c33679d50e167f",
+    "swiftyjson": "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+    "torahinspectorkit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+    "zipfoundation": "22787ffb59de99e5dc1fbfe80b19c97a904ad48d",
+    "zstd": "f8745da6ff1ad1e7bab384bd1f9d742439278e99"
+  },
+  "commands": [
+    [
+      "git",
+      "submodule",
+      "update",
+      "--init",
+      "--depth",
+      "1",
+      "Vendor/SefariaMobile/Upstream"
+    ],
+    [
+      "/opt/homebrew/opt/python@3.12/bin/python3.12",
+      "Scripts/CI/prepare-pinned-sharp-libvips.py"
+    ],
+    [
+      "npm",
+      "ci",
+      "--legacy-peer-deps"
+    ],
+    [
+      "chmod",
+      "-R",
+      "+x",
+      "/Users/m1/builds/otzaria-miniapps-final-20261125/Maktabah/Vendor/SefariaMobile/Upstream/node_modules/.bin",
+      "/Users/m1/builds/otzaria-miniapps-final-20261125/Maktabah/Vendor/SefariaMobile/Upstream/node_modules/expo/bin"
+    ]
+  ],
+  "native_context": {
+    "gitlink": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+    "npm_lock_sha256": "181335ac7cc6aaa5a62cf80744bb73c6df8d384ef06654f54bfecc3e7f4a8ec2",
+    "podfile_sha256": "6a5eefdd54434e4c77fb2fe39c7f3e6362b6bc1f58ce25a921bdae00b01577bb",
+    "node": "v22.23.5",
+    "cocoapods": "1.17.0",
+    "ruby": "ruby 3.3.14 (2026-11-19 revision f4c37f481b) [arm64-darwin27]"
+  },
+  "status": "ORIGINAL_ARTIFACTS_AND_PINNED_RESOURCES_RESTORED",
+  "finished_at": "2026-11-25T09:06:28.286595+00:00",
+  "free_after": 7398969344,
+  "restore_started_at": "2026-11-25T09:34:32.938219+00:00",
+  "free_before_restore": 7822962688,
+  "artifact_inputs": [
+    {
+      "destination": "Vendor/OtzariaSearchEngine",
+      "id": 14596463166,
+      "name": "ios-build-otzaria-xcframework",
+      "producer_attempt": 1,
+      "producer_job": 136041463727,
+      "producer_job_name": "Build or restore Otzaria framework",
+      "producer_required_steps": [
+        "Build Otzaria production semantic XCFramework",
+        "Verify Otzaria framework and semantic host build",
+        "Confirm exact pinned and pristine upstream checkout",
+        "Run actions/upload-artifact@v4"
+      ],
+      "producer_run": 44661774024,
+      "producer_run_conclusion": "failure",
+      "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+      "sha256": "efc73de90d74fdd380ffecfa334fe9dcece38519832b89cf3fb2a5741dcc25ad",
+      "size_in_bytes": 201330360,
+      "tar": "OtzariaSearchEngine.xcframework.tar",
+      "verified_sha256": "efc73de90d74fdd380ffecfa334fe9dcece38519832b89cf3fb2a5741dcc25ad",
+      "role": "PINNED_INPUT",
+      "verified_producer": {
+        "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+        "producer_run": 44661774024,
+        "producer_attempt": 1,
+        "producer_run_conclusion": "failure",
+        "producer_job": 136041463727,
+        "producer_job_conclusion": "success",
+        "artifact_digest": "sha256:efc73de90d74fdd380ffecfa334fe9dcece38519832b89cf3fb2a5741dcc25ad",
+        "artifact_created_at": "2026-11-20T02:59:15Z",
+        "scope": "EXACT_ARTIFACT_AND_SUCCESSFUL_FRAMEWORK_JOB_NOT_WHOLE_WORKFLOW"
+      }
+    },
+    {
+      "destination": "Vendor/ZayitSearchPort/build",
+      "id": 14595389912,
+      "name": "ios-build-zayit-xcframework",
+      "producer_attempt": 1,
+      "producer_job": 136041463406,
+      "producer_job_name": "Build or restore Zayit framework",
+      "producer_required_steps": [
+        "Build Zayit XCFramework",
+        "Verify Zayit framework",
+        "Run actions/upload-artifact@v4"
+      ],
+      "producer_run": 44661774024,
+      "producer_run_conclusion": "failure",
+      "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+      "sha256": "64f4ba7b8d6cfced525732699fd1958ca0cc5ec836369dcf839d91df855914d7",
+      "size_in_bytes": 123727544,
+      "tar": "MaktabahZayitSearch.xcframework.tar",
+      "verified_sha256": "64f4ba7b8d6cfced525732699fd1958ca0cc5ec836369dcf839d91df855914d7",
+      "role": "PINNED_INPUT",
+      "verified_producer": {
+        "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+        "producer_run": 44661774024,
+        "producer_attempt": 1,
+        "producer_run_conclusion": "failure",
+        "producer_job": 136041463406,
+        "producer_job_conclusion": "success",
+        "artifact_digest": "sha256:64f4ba7b8d6cfced525732699fd1958ca0cc5ec836369dcf839d91df855914d7",
+        "artifact_created_at": "2026-11-20T02:42:53Z",
+        "scope": "EXACT_ARTIFACT_AND_SUCCESSFUL_FRAMEWORK_JOB_NOT_WHOLE_WORKFLOW"
+      }
+    },
+    {
+      "destination": "build",
+      "id": 12763481138,
+      "name": "ios-build-swift-packages",
+      "producer_run": 40566258679,
+      "sha256": "9c0eb8afe950b93d40ed78507da45a7050babc39945f7fa3ae47d29db1686fdd",
+      "tar": "SourcePackages.tar",
+      "verified_sha256": "9c0eb8afe950b93d40ed78507da45a7050babc39945f7fa3ae47d29db1686fdd",
+      "role": "PINNED_INPUT"
+    },
+    {
+      "id": 13658066283,
+      "name": "sefaria-embedded-validation-manifests",
+      "producer_run": 42577170165,
+      "sha256": "12cc781436c0459acb05060211ef5f3e109791e7f5297d8bf61e1b38c74f8cda",
+      "verified_sha256": "12cc781436c0459acb05060211ef5f3e109791e7f5297d8bf61e1b38c74f8cda",
+      "role": "PINNED_INPUT"
+    }
+  ],
+  "resource_inputs": {
+    "gitlink": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+    "json_files": {
+      "sources/calendar.json": {
+        "sha256": "9613a13f8ce57d20bb1b5b480dc93acca4b354956e30ac0056d617c997025ca7",
+        "size": 1651059
+      },
+      "sources/hebrew_categories.json": {
+        "sha256": "f3dd97c47a9a4dadb9d2b29d1cceeeb26d25b56b36dbf7518a1b40faaa008f1d",
+        "size": 16121
+      },
+      "sources/packages.json": {
+        "sha256": "3c472a17c8716929c6e0b941f6e2916ae798493a0f29719fd6ff47e7f5ddeaba",
+        "size": 238990
+      },
+      "sources/people.json": {
+        "sha256": "b9befdeea0c67a0a519e49e8ca108f16ab46843a238c667db665bf6095c930c4",
+        "size": 52354
+      },
+      "sources/search_toc.json": {
+        "sha256": "6d90cc6d333333f8f6bd6aeda723a3b3fb8a2733d6b3b518baa808a86c058c05",
+        "size": 829599
+      },
+      "sources/toc.json": {
+        "sha256": "0622b6567fd9e5d1950315007abd9d0e93f8716a9f8c92431b44116eb3a8a963",
+        "size": 4172545
+      },
+      "sources/topic_toc.json": {
+        "sha256": "282603e38c227de9c345c215193de2849ecf66d40c17cf874a63ac068f1a225c",
+        "size": 1810962
+      }
+    },
+    "jsbundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",
+    "no_book_database_payload": true
+  },
+  "restore_finished_at": "2026-11-25T09:34:40.815836+00:00",
+  "free_after_restore": 6136324096
+}
