@@ -3,39 +3,90 @@
 ## Current state
 
 **Development and acceptance remain in progress. No new TestFlight build has been
-uploaded, and no full release acceptance is claimed.**
+uploaded; full Native116, Release114+2, C–F and physical-device acceptance are open.**
 
 The integration branch is `codex/otzaria-final-delivery-20261125`.
-The latest tested source checkpoint is
-`820f4724908dec654cf976988fa3f9c1a59557ab`; its new product changes were committed
-at `a04c32c7284bdfb1efbd2720b56be1cf48d1dd73`. This includes:
+Product checkpoint `75058d1c1abbfb0fb37fc819dcece47b853eb4da` contains normal original
+Receive and explicit conditional native Update, independent revision persistence,
+and the unchanged permanent fresh-import uncertainty fence. Independent source
+review `a6e0344372b4232be5952f0250df4002958abc02` was merged; its two recommendations
+were already implemented in `dc6230351eaef4b9f02a5fa40a0720ad57cd7cca` and the
+captured-path syntax correction `75058d1c`. This is not an integrated app pass.
 
-- Original integration `08f50a5646b7669d15f8c53cb13c84ac504a02bd`.
-- Empty native editor input correction `6b330a2964adf30932cfb7e86fc984068c7c5d10`.
-- MiniApps source `8cdc0c0833154e71af5047983c47115db0005e35`, latest producer controls
-  `2c86aa9725a73fb2b4c6575e9c32312ec33f491b`, and the original transactional
-  requirePlainWrite guard preventing a MiniApps result from overwriting rich content.
-- Original full-snapshot Library update policy
-  `74ae9510d90b50343e961967616e5630d1682295` and strict current-build v40 wrapper
-  `387ddd7551d9ab15c36df7f75798e5f79fc62864`.
-- Original native annotation sharing
-  `82c1bc16e49b76fd1e8cb16b5be9e0d643db8b57`.
-- Explicit legacy identity mapping
-  `d0bc03f9a3767e4c14e50324a29ceb3cff38a874`, exact-source archive verification
-  `cf1314b30f8d483a2dbad3953aa6c89de2bdca45`, and complete original Foundation
-  source closure `797fd73a795517ea0a02a8651670b6c63f401864`.
-- Explicit, bounded preparation of existing notes from the normal iOS Settings
-  interface. It preserves original CloudKit names, annotation rows, tags, clocks,
-  pending uploads/deletes and saved rich bodies. It creates local preparation
-  receipts only, with no selected network destination.
+The current integration also contains:
 
-Shared Hanlin is currently `4e921b9517f2fc28fcaebcb2ba7441ab1fb46a90`, with
-Swift AI Core `3f38f1302764635c9991d0d00fd7b12471a5373c`. Newer active shared
-branches were found, including Hanlin cache integration `8ec309c0`,
-MiniApps `d4fbdf73`, and original NativeScript metadata `06b7274b`.
-Their owners are still validating native changes. Do not overwrite those
-worktrees or claim their incomplete app runs passed; review compatible completed
-changes and synchronize the final shared pin before heavy SDK/app builds.
+- Original verified base `08f50a5646b7669d15f8c53cb13c84ac504a02bd`, the normal editor
+  and Hanlin Composer fix `d3da55417a30e9a06b0255e2d0b561955034b260`.
+- Original local identity regressions and proof `9e43ccbb6db4f782027a540f5f783698770ee1b4`.
+- Explicit preparation Backfill at `820f4724908dec654cf976988fa3f9c1a59557ab`;
+  its actual 13-case and local 100/1,000/5,000 measurements are preserved below.
+- New explicit native conversion source `d5383870be0e2cf56e48f9060d7384b5a38c60c1`
+  merged at `685d3f32e45eb0efb75c1a0eaa7a2f95f75ba452`. It uses the original local
+  engine factory, actual rich snapshot capture and original atomic Save. Normal
+  configured CloudKit Save behavior remains. Existing rich/opaque bodies and
+  plain notes over8,192 UTF-8 bytes are retained with explicit reasons; they are
+  not silently truncated. Its new14 SQLite controls and real native/UI journey
+  are still pending execution.
+- Test-only conditional revision checkpoint `a547b60dc88039592a1718a3a773eead448a647e`:
+  36 original SQLite controls and six independent cold/crash processes, reviewed
+  independently; no new run is claimed yet.
+- Original Library snapshot update policy `74ae9510d90b50343e961967616e5630d1682295`
+  and current-build multipart acceptance controller `387ddd7551d9ab15c36df7f75798e5f79fc62864`.
+- Existing MiniApps native sharing and transactional rich-content guard, original
+  producer controls and exact-source archive verification; no shared implementation
+  has been copied into an alternative host editor.
+
+Shared Hanlin union `c92c3f904872b37287861dfafa9cc668d5dc44c3` (published proof
+`a2ffd059ed8120be1ad8fab255d14da95e8bd472`) binds Core
+`abf0921c6e89e6521cc2b510ff11016b45a0ef08`. Core48 historical reuse has exact
+canonical-input compatibility evidence. The actual Mac manifest check passed on
+that union; Core7 stopped on the owned storage monitor before completing tests.
+The independent C8 owner is running app04 `job_54ff344608e0` on
+`1710bc6119983799f7d22cb723659ac274fe96b1`, including fixture fix
+`4f2bc9864a4fefa62f69ca54fb9f6b33351ba1df`. Consume its compatible completed
+checkpoint before freezing the final pin. App03 genuinely failed compilation;
+zero tests from that failed job are counted.
+
+Anytype SDK integration `45633194a99b0495fd8b30a486fff21f672af459` includes product
+`a91d572cb2df2b05c7d93520732eecd7380294fd` and its 153 public +22 Debug requirements.
+Focused original-facade Apple typing passed. The changed native same-object CAS
+has compiled and reached genuine original Apply, but strict post-write readback
+still reports `applied_unconfirmed` due to native mark normalization. The original
+test failures and possible-write evidence remain retained. Revised native
+normalization controls, current ABI3 and all three full SDK configurations remain
+open; the historical 34b SDK qualifications below are not reassigned to new code.
+
+## Current completion constraints
+
+- Normal integrated editor creation/rich editing/save/cancel/reopen, update/receive,
+  identity, unsaved-draft privacy, and real remote conflict/readback must run on the
+  final original-SDK app. Source review is not UI acceptance.
+- C–F still requires genuine native promotion into the three manifest document
+  roles, annotation visibility, soft-delete/archive and restore, complete graph
+  handling, durable bidirectional delivery and actual native5,000 measurements.
+  Data-only classification/tombstone types are not writer implementation.
+- Native Backfill currently preserves long and unsupported existing notes rather
+  than claiming all notes have converted. Those remaining conversion cases stay
+  visible/open.
+- Groups100, the two remaining full-v32 UI cases, complete v40 installation and
+  interruption/recovery/reopen/integrity, Hanlin Live and the actual two-app
+  MiniApps return journey still require final matching native products.
+- Native116 selection and the exact original runtime have now been restored.
+  All116 original declarations, ordered groups and original HID selection are
+  preserved. Release114+2 is unchanged. Strict final source/SDK route bindings
+  remain UNFINALIZED. See `native116/SELECTION_RESTORATION.json`.
+- Apple API readback still reports version1.0.0/build11201 VALID, uploaded
+  2026-11-09; no later build exists in the latest upload query. All81 existing
+  AppStore profiles examined lack required App Group `group.com.itorah.shared`.
+  The existing two groups, iCloud and push requirements must also be preserved.
+  There are zero app encryption declarations in the authenticated API result;
+  the older build's exemption does not classify the new native crypto payload.
+  See the exact read-only receipts in `apple/`. No new Archive/IPA/upload or
+  compliance mutation occurred.
+- The authentic external `MAKTABAH_OWNER_VERIFICATION_KEY` and owner signing
+  material remain unavailable. Prepare the exact final reviewable proposal after
+  source freeze and use the existing independent owner mechanism. Never create an
+  agent owner identity, self-sign the proposal, or bypass the pinned verifier.
 
 ## Verified milestones
 
@@ -52,6 +103,25 @@ changes and synchronize the final shared pin before heavy SDK/app builds.
 | Backfill project and syntax | Actual Mac plist graph and iOS syntax PASS, `job_a21c9baf06cb`; 12 added PBX objects, five array extensions, all other existing objects preserved |
 | Final source admission controls | 16 tamper controls PASS for the historical3a product composition; independent review of 34 changes, historical receipts and original engine inputs |
 | Distribution identity preflight | Actual unsigned probe signed and strict-verified using the existing Apple Distribution identity through the pinned m1 SSH session; this is not an app Archive |
+
+### New source-specific regression receipts
+
+| Gate | Actual result and scope |
+| --- | --- |
+| Atomic local editor | 43/43 plus2 cold reopen, job_b4bb0942f7c1, exactfbd5e241d8924ffd1e20078cd40c4fd950f76a70; RESULT SHA256322a1c96884f24072ad8b4e2d9fa3bf427a7756b49761e4cb75a4ac313b32c93 |
+| Legacy identity | 24/24 plus cold reopen, job_c547761302a7, same exactfbd5 source; RESULT SHA256a2ec5f68741a784802885ed1eae0762ad0d245f7d2ac7981d6ed4d5cda8f0f9d |
+| Ledger identity fault/rollback | 28/28 plus2 crash/reopen cases, job_ba5459c53ee0, exactb0a89ffa103cb31e4414576236aa748a0187674e; RESULT SHA2568c0962aceb192be5d179f7f1d2ba2b9e460922aa4b8e056cd0d91698ad2d6f6c |
+| Final changed SDK primary typing | Real Apple frontend PASS job_dc3d094e7a65,2.41s, a91d572c API and42d8c3f proof; eleven-primary previous pass/full unchanged closure retained; not a full SDK qualification |
+| Hanlin current manifest | Actual Mac canonical --check passed15.09s, c92c3f union,523 original app files/114targets/zero local edges; job723e56f227ee later stopped its separate Core7 process on disk growth, exit125, zero Core test credit |
+| Native Backfill and Revision project registration | Actual Mac plutil and exact graph PASS:6 new Backfill objects,2 existing arrays extended,2393 existing objects unchanged; Revision in iOS source phase verified. No app compilation/UI acceptance |
+| Full Native116 restoration | Original declaration validator found116/116; exact original case rows/groups/HID and trusted runtime inverse verified; native executions0, final source binding UNFINALIZED |
+
+The385-file identity evidence archive (3.8MB) is verified on Mac and Oracle:
+SHA256 ae5029facb3f5359653112da5024443713548c1c5b6be920a37208598956ba1c.
+The original43 assertions were preserved. The28-case rollback fixture uses actual
+SQLite authorizer/update hooks because the original product correctly rejects
+foreign schema triggers; the rollback oracles are unchanged and require observed
+writes. Source-specific historical successes are not treated as a final app run.
 
 ### Release Simulator retained artifacts
 
