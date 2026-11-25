@@ -477,9 +477,9 @@
     "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "6bd9288a85e67132e9283ab7516435cfa442c74a"
   },
   "final_integrated_project_review": {
-    "actual_membership_receipt": "docs/hq-integration/miniapps-rich-editor-20261125/FINAL_PROJECT_MEMBERSHIP_BD5.json",
-    "actual_membership_receipt_sha256": "52ad2284e0d61689a5aa1837a969d033e1647036d5eb82f6452be7f70589c4c1",
-    "application_source_sha": "2a742f38ed149038e3ec5027643e0d4744b881ca",
+    "actual_membership_receipt": "docs/hq-integration/miniapps-rich-editor-20261125/FINAL_PROJECT_MEMBERSHIP_LOCALES.json",
+    "actual_membership_receipt_sha256": "7e7dbfb7f08f391d197528fc18dc47718dc9119a4b485e769593d36daa66a5e4",
+    "application_source_sha": "2e4e1e01610ecf3645ecf1a463cf8867ee804af9",
     "native_acceptance": "NOT_CLAIMED",
     "reviewed_project_blob": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
     "standalone_engine_tests_not_in_app_target": true
