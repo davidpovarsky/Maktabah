@@ -1,0 +1,13 @@
+test_an_existing_attempt_is_not_overwritten (__main__.FullSymbolCoverageControls.test_an_existing_attempt_is_not_overwritten) ... ok
+test_complete_stream_preserves_local_undefined_and_final_bytes (__main__.FullSymbolCoverageControls.test_complete_stream_preserves_local_undefined_and_final_bytes) ... ok
+test_deadline_also_handles_an_exited_parent_with_an_open_child_pipe (__main__.FullSymbolCoverageControls.test_deadline_also_handles_an_exited_parent_with_an_open_child_pipe) ... ok
+test_deadline_interrupts_a_process_that_never_closes_stdout (__main__.FullSymbolCoverageControls.test_deadline_interrupts_a_process_that_never_closes_stdout) ... ok
+test_empty_exports_require_exact_native_load_command_evidence (__main__.FullSymbolCoverageControls.test_empty_exports_require_exact_native_load_command_evidence) ... ok
+test_every_original_export_kind_and_export_only_engine_symbol_is_retained (__main__.FullSymbolCoverageControls.test_every_original_export_kind_and_export_only_engine_symbol_is_retained) ... ok
+test_malformed_partial_duplicate_and_wrong_slice_exports_fail_closed (__main__.FullSymbolCoverageControls.test_malformed_partial_duplicate_and_wrong_slice_exports_fail_closed) ... ok
+test_nonzero_exit_keeps_original_stderr_and_cannot_pass (__main__.FullSymbolCoverageControls.test_nonzero_exit_keeps_original_stderr_and_cannot_pass) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 2.057s
+
+OK

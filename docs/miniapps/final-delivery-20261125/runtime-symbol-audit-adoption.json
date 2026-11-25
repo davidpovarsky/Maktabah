@@ -1,0 +1,89 @@
+{
+  "consumer_before": "4ad151b5ed015e248d481ce18dcaa6fd6d738937",
+  "files": {
+    "Scripts/CI/macho_symbol_coverage.py": {
+      "bytes": 12200,
+      "gid": 1002,
+      "mode": 420,
+      "mtime_ns": 1795593516331926679,
+      "sha256": "2b82b3d30251bb07dd7fb62d4e5e6c7cb04e7ffd22cc96c6c4a00eb1507be6e8",
+      "uid": 1001
+    },
+    "Scripts/CI/miniapps-consumer-runtime-closure.py": {
+      "bytes": 14302,
+      "gid": 1001,
+      "mode": 436,
+      "mtime_ns": 1795593090864518592,
+      "sha256": "8a66495974bb07f07d7baf306234ba4c6625ce1f4b3344fd7ce94be1f5a17187",
+      "uid": 1001
+    },
+    "Scripts/CI/test_macho_symbol_coverage.py": {
+      "bytes": 7126,
+      "gid": 1002,
+      "mode": 420,
+      "mtime_ns": 1795593516334390534,
+      "sha256": "703df48969a4ed1590240dc1741cec647f8f6356f9efa70c360db07044e6fe50",
+      "uid": 1001
+    },
+    "docs/hq-integration/final-delivery-20261125/miniapps/symbol-coverage/PORTABLE_CONTROLS.json": {
+      "bytes": 1121,
+      "gid": 1002,
+      "mode": 420,
+      "mtime_ns": 1795593178161007798,
+      "sha256": "cf16e75abccfbd3f234e304b2c1150e43ddccd7319e0df96bef6d3384df6f3b5",
+      "uid": 1001
+    },
+    "docs/hq-integration/final-delivery-20261125/miniapps/symbol-coverage/PORTABLE_HEADER_CONTROLS.json": {
+      "bytes": 663,
+      "gid": 1002,
+      "mode": 420,
+      "mtime_ns": 1795593518474780873,
+      "sha256": "3e9cd641491f518993b96c991859d33e8af474da6a5110a970816e21160329db",
+      "uid": 1001
+    },
+    "docs/hq-integration/final-delivery-20261125/miniapps/symbol-coverage/bounded-coverage-controls.log": {
+      "bytes": 1450,
+      "gid": 1002,
+      "mode": 420,
+      "mtime_ns": 1795593178160226793,
+      "sha256": "7d84d81d70bcff33119d92cf1ee468881b3fa9eda6b754e40b450ff0da59fffa",
+      "uid": 1001
+    },
+    "docs/hq-integration/final-delivery-20261125/miniapps/symbol-coverage/bounded-header-coverage-controls.log": {
+      "bytes": 1639,
+      "gid": 1002,
+      "mode": 420,
+      "mtime_ns": 1795593518474318870,
+      "sha256": "fc8fdc28fea71fcb580f4aa5b3b72a80cdfafa2e3844eeceab0d5f61fe0e115c",
+      "uid": 1001
+    },
+    "docs/hq-integration/final-delivery-20261125/miniapps/symbol-coverage/original-ownership-controls.log": {
+      "bytes": 102,
+      "gid": 1002,
+      "mode": 420,
+      "mtime_ns": 1795593176021160336,
+      "sha256": "e6ec182765cd965f2837d8eeaef5a64af48a104f245cd1a0b7281559194c57c1",
+      "uid": 1001
+    }
+  },
+  "holder_check": {
+    "exit_code": 1,
+    "stderr": "",
+    "stdout": "",
+    "tool": "lsof"
+  },
+  "original_head": "705097a9834736944261f79b087e6fbe39dbedbf",
+  "original_source_unchanged": true,
+  "original_worktree": "/mnt/development/projects/worktrees/Maktabah-final-delivery-20261125",
+  "reason": "Port reviewed full per-architecture symbol/export and load-command coverage without dropping original forbidden-engine checks; actual built Maktabah closure is still required.",
+  "recorded_at": "2026-11-25T15:08:33.333076+00:00",
+  "schema": "otzaria.reviewed-source-adoption/1",
+  "scope": "EXACT_REVIEWED_BINARY_INSPECTOR_ONLY",
+  "validation": {
+    "actual_apple_product_checks": 0,
+    "actual_application_tests": 0,
+    "historical_header_controls": 9,
+    "historical_header_log_sha256": "fc8fdc28fea71fcb580f4aa5b3b72a80cdfafa2e3844eeceab0d5f61fe0e115c",
+    "unchanged_tests_rerun": false
+  }
+}
