@@ -12,6 +12,7 @@ import hashlib
 import json
 import os
 import platform
+import runpy
 import shutil
 import subprocess
 import sys
@@ -53,7 +54,7 @@ def main():
     if swift is None:
         raise RuntimeError("Existing Swift compiler required; no installation/download")
     core = ROOT / "Source/Otzaria/Actions"
-    provenance = SOURCES + ["tools/hq-annotation-exchange-acceptance.py",
+    provenance = SOURCES + ["tools/hq-annotation-exchange-acceptance.py", "tools/exact-source-archive.py",
         "Source/Features/Annotations/Database/AnnotationRepository.swift",
         "Source/Core/Configuration/ReusableFunc.swift"]
     provenance += [str(p.relative_to(ROOT)).replace("\\", "/") for p in sorted(core.rglob("*"))
@@ -107,13 +108,15 @@ let package = Package(name: "AnnotationExchangeAcceptance",
     manifest = manifest.replace("SQLITE_TARGET", sqlite_target).replace("SQLITE_DEPENDENCY", sqlite_dependency)
     (package / "Package.swift").write_text(manifest, encoding="utf-8")
     command = [swift, "build", "--package-path", str(package), "--scratch-path", str(owned / "swift-build"), "-j", "4"]
+    identity = runpy.run_path(str(ROOT / "tools/exact-source-archive.py"))["source_identity"](ROOT, provenance)
     report = {
         "observed_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "host": platform.platform(),
         "swift": subprocess.check_output([swift, "--version"], text=True, encoding="utf-8").strip(),
-        "source_sha": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+        "source_sha": identity["source_sha"],
+        "source_archive": identity["source_archive"],
         "source_files_before": before,
-        "source_status_before": subprocess.check_output(["git", "status", "--short"], cwd=ROOT, text=True, encoding="utf-8"),
+        "source_status_before": identity["source_status"],
         "build_command": command,
         "owned_directory": str(owned),
         "actual_sqlite": True,
@@ -197,6 +200,9 @@ let package = Package(name: "AnnotationExchangeAcceptance",
         print(repr(error))
         return 1
     finally:
+        final_identity = runpy.run_path(str(ROOT / "tools/exact-source-archive.py"))["source_identity"](ROOT, provenance)
+        if final_identity != identity:
+            exit_code = 1
         report["source_files_after"] = {p: sha(ROOT / p) for p in provenance}
         report["source_bytes_unchanged_during_run"] = before == report["source_files_after"]
         report["status"] = "PASS_ACTUAL_SQLITE_COMPONENT" if exit_code == 0 and report["source_bytes_unchanged_during_run"] else "FAILED"
