@@ -5,12 +5,13 @@
     "miniapps": "8cdc0c0833154e71af5047983c47115db0005e35",
     "native_share": "82c1bc16e49b76fd1e8cb16b5be9e0d643db8b57",
     "normal_editor": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
+    "original_account_exchange_ui": "7f956284abf4c07d00a2db5c91187eaca7bfdcc6",
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda"
   },
-  "application_source_sha": "2e4e1e01610ecf3645ecf1a463cf8867ee804af9",
+  "application_source_sha": "4330fe50d354e984f1f702348369aa20e0b31ec5",
   "application_trees": {
-    "Maktabah-iOSUITests": "bda2b544b2d25028efbe76c38a6b5cc1d6722639",
+    "Maktabah-iOSUITests": "cfe7104bfa89afdaf4d1b2d9c00c7a1612d3eed3",
     "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3",
     "Source": "865ef9c1d485e011fe34108beee7dbe126b80ca8",
     "Vendor": "6e58b7ac171ad91f91f0357faf8e8a894a278345"
@@ -49,6 +50,13 @@
         },
         "native_share": null,
         "normal_editor": null,
+        "original_account_exchange_ui": {
+          "bytes": 60143,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "06a2de328228edbcb737189e8d4e662f2dba8aa6",
+          "sha256": "50ef9d2848d342b0ee58d7ffc13e826e5a3fc55f31d6f21805d59bd17333db4d"
+        },
         "original_lifecycle_and_native_batch": {
           "bytes": 33785,
           "kind": "blob",
@@ -74,15 +82,16 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 40905,
+        "bytes": 70406,
         "kind": "blob",
         "mode": "100644",
-        "object": "e0354447a154806148da0823b44305c4c72d3aee",
-        "sha256": "aa37d9c35b1b8215db36479c77bf9de9722ecd42819a4281e0f59ee9fe85d532"
+        "object": "8083e07e87c528fa8e253c0bed31a51654d25568",
+        "sha256": "84c6085b3d38307c46ac96c5245e27fa959754949445885d4489d11fb5f63d29"
       },
       "before": null,
-      "component": "original_lifecycle_and_native_batch",
-      "path": "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift"
+      "component": "original_account_exchange_ui",
+      "path": "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift",
+      "reason": "Exact unchanged latest original-account UI acceptance source from7f956; previous editor and MiniApps production implementation retained."
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -424,6 +433,13 @@
           "mode": "100644",
           "object": "a79cbb5419d5ed811b9b078926ff379238bbd3ab",
           "sha256": "d8bb718cb4ea62a7d7344bdde77bb43a486da301c7b02d77dc6d5203de8506fd"
+        },
+        "original_account_exchange_ui": {
+          "bytes": 40262,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "134f34ebbb5b398b2843c99e18f63cd7b0e2da07",
+          "sha256": "d54a0f3adb317f8b1dcafb7a834045bb599d0eef238f44ed0597ceabcfaa19bb"
         },
         "original_lifecycle_and_native_batch": {
           "bytes": 36382,
@@ -886,6 +902,11 @@
           "kind": "commit",
           "mode": "160000",
           "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
+        },
+        "original_account_exchange_ui": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "9ef80a6ddfc997724360a9a34bb1d05cbf7cad40"
         },
         "original_lifecycle_and_native_batch": {
           "kind": "commit",
