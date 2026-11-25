@@ -46,7 +46,7 @@ def load_original():
 original = load_original()
 # The selected whole43 executable gets the required complete cloud dependencies.
 # The actual current Swift assertions and @main entry are copied without rewriting.
-SOURCES = original.SOURCES[:-1] + EXTRA_SOURCES + original.SOURCES[-1:]
+SOURCES = original.SOURCES[:-1] + [p for p in EXTRA_SOURCES if p not in original.SOURCES] + original.SOURCES[-1:]
 CLOUD_SOURCES = SOURCES[:-1] + [CLOUD_DECLARATIONS]
 CASE_COUNT = 43
 CLOUD_CASE_COUNT = 48
