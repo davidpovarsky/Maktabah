@@ -449,6 +449,96 @@ def prepare_react_sources(config, report):
     logged(["chmod", "-R", "+x", str(vendor / "node_modules/.bin"), str(vendor / "node_modules/expo/bin")], "native-script-permissions.log", report)
 
 
+
+def observe_generated_expo_providers(report):
+    """Bind each original Expo provider to exactly one actual native target."""
+    project = ROOT / "Maktabah.xcodeproj/project.pbxproj"
+    graph = json.loads(capture("plutil", "-convert", "json", "-o", "-", str(project)))
+    objects = graph["objects"]
+    main_group = objects[graph["rootObject"]]["mainGroup"]
+    parents = {}
+    for identifier, value in objects.items():
+        if value.get("isa") == "PBXGroup":
+            for child in value.get("children", []):
+                parents.setdefault(child, []).append(identifier)
+
+    def source_path(identifier, seen=()):
+        require(identifier not in seen, "Cyclic Expo provider source membership")
+        value = objects[identifier]
+        tree = value.get("sourceTree", "<group>")
+        require(tree in ("<group>", "SOURCE_ROOT"), "Unsupported original Expo provider source root")
+        relative = value.get("path", "")
+        require(not Path(relative).is_absolute() and ".." not in Path(relative).parts,
+                "Original Expo provider source escaped its project")
+        if identifier == main_group or tree == "SOURCE_ROOT":
+            base = ROOT
+        else:
+            owners = parents.get(identifier, [])
+            require(len(owners) == 1, "Ambiguous original Expo source group membership")
+            base = source_path(owners[0], (*seen, identifier))
+        return base / relative
+
+    providers = sorted((ROOT / "Pods").rglob("ExpoModulesProvider.swift"))
+    require(providers and all(path.is_file() and not path.is_symlink() for path in providers),
+            "Original generated Expo providers are missing or aliased")
+    actual_paths = {path.resolve(strict=True) for path in providers}
+    require(len(actual_paths) == len(providers)
+            and all(path.is_relative_to(ROOT.resolve()) for path in actual_paths),
+            "Original generated Expo providers have duplicate or external identities")
+    permitted = {
+        "Maktabah-iOS": "com.apple.product-type.application",
+        "Maktabah-iOSNativeTests": "com.apple.product-type.bundle.unit-test"}
+    members = []
+    for identifier, target in objects.items():
+        if target.get("isa") != "PBXNativeTarget":
+            continue
+        target_members = []
+        for phase_id in target.get("buildPhases", []):
+            phase = objects[phase_id]
+            if phase.get("isa") != "PBXSourcesBuildPhase":
+                continue
+            for build_file in phase.get("files", []):
+                reference = objects[build_file].get("fileRef")
+                if reference is None:
+                    continue
+                file_reference = objects[reference]
+                if Path(file_reference.get("path", "")).name != "ExpoModulesProvider.swift":
+                    continue
+                path = source_path(reference).resolve(strict=True)
+                require(path in actual_paths, "A native target compiles an unrecorded Expo provider")
+                target_members.append({"target": target["name"], "target_id": identifier,
+                    "product_type": target.get("productType"), "phase_id": phase_id,
+                    "build_file_id": build_file, "file_reference_id": reference,
+                    "path": str(path.relative_to(ROOT)), "sha256": digest(path)})
+        if target_members:
+            name = target["name"]
+            require(name in permitted and target.get("productType") == permitted[name]
+                    and len(target_members) == 1,
+                    "An original native target has missing, duplicate or foreign Expo provider membership")
+            expected = f"Pods/Target Support Files/Pods-{name}/ExpoModulesProvider.swift"
+            require(target_members[0]["path"] == expected, "Expo provider belongs to the wrong native target")
+            members.extend(target_members)
+    require({member["target"] for member in members} == set(permitted)
+            and len(members) == len(permitted)
+            and {ROOT / member["path"] for member in members} == actual_paths,
+            "The original app and NativeTests must each retain their exact generated Expo provider")
+    members.sort(key=lambda row: row["target"])
+    report["native_context"]["generated_expo_providers"] = [
+        {"path": member["path"], "sha256": member["sha256"]} for member in members]
+    for member in members:
+        # Retain the historical app evidence path and a distinct test-target path.
+        name = ("ExpoModulesProvider.swift" if member["target"] == "Maktabah-iOS"
+                else "ExpoModulesProvider-" + member["target"] + ".swift")
+        shutil.copyfile(ROOT / member["path"], OUT / name)
+        member["retained_path"] = str((OUT / name).relative_to(ROOT))
+    receipt = {"status": "EXACT_ORIGINAL_EXPO_PROVIDER_TARGET_MEMBERSHIP",
+               "project_sha256": digest(project), "targets": members}
+    write_path = OUT / "generated-expo-provider-membership.json"
+    write_path.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n")
+    report["native_context"]["expo_provider_membership"] = {
+        "path": str(write_path), "sha256": digest(write_path)}
+
+
 def install_real_pods(report, original_editor=False):
     ruby_module = ruby_context = None
     if original_editor:
@@ -459,6 +549,10 @@ def install_real_pods(report, original_editor=False):
     if ruby_context:
         report["native_context"]["original_editor_pod_ruby_context"] = ruby_module["admit_pod_ruby_context"](
             ROOT, ruby_context, pod_exit)
+    observe_installed_pods(report)
+
+
+def observe_installed_pods(report):
     require((ROOT / "Maktabah.xcworkspace/contents.xcworkspacedata").is_file(), "Real Pods workspace missing")
     require((ROOT / "Pods/Headers/Public/React-Core/React/RCTBridgeModule.h").is_file()
             or any(p.is_file() for p in (ROOT / "Pods").rglob("RCTBridgeModule.h")), "Real React header was not restored")
@@ -466,11 +560,7 @@ def install_real_pods(report, original_editor=False):
     report["native_context"]["generated_project_sha256"] = digest(ROOT / "Maktabah.xcodeproj/project.pbxproj")
     shutil.copyfile(ROOT / "Maktabah.xcodeproj/project.pbxproj", OUT / "generated-Maktabah-project.pbxproj")
     report["native_context"]["workspace_sha256"] = digest(ROOT / "Maktabah.xcworkspace/contents.xcworkspacedata")
-    report["native_context"]["generated_expo_providers"] = []
-    for provider in (ROOT / "Pods").rglob("ExpoModulesProvider.swift"):
-        report["native_context"]["generated_expo_providers"].append({"path": str(provider.relative_to(ROOT)), "sha256": digest(provider)})
-        require(len(report["native_context"]["generated_expo_providers"]) == 1, "Ambiguous generated Expo provider")
-        shutil.copyfile(provider, OUT / "ExpoModulesProvider.swift")
+    observe_generated_expo_providers(report)
     (OUT / "generated-pods-project.diff").write_text(capture("git", "diff", "--", "Maktabah.xcodeproj/project.pbxproj") + "\n")
     shutil.copyfile(ROOT / "Podfile.lock", OUT / "resolved-Podfile.lock")
     # The generated workspace has its own SwiftPM lock location. Restore the
