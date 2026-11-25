@@ -588,6 +588,8 @@
 		4BA393642EF0D30200736DFF /* ArabicFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA393632EF0D30200736DFF /* ArabicFont.swift */; };
 		4BA393722EF1E6CD00736DFF /* DSFSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA393712EF1E6CD00736DFF /* DSFSearchField.swift */; };
 		4BA53F87DF4E66AA1BC17794 /* OtzariaReaderSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A984F3D95C5DBF2C32440D /* OtzariaReaderSettingsView.swift */; };
+		50B07E421622872DA685E651 /* OtzariaLibraryUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9118CC5C78D2E8FF1484EA70 /* OtzariaLibraryUpdateView.swift */; };
+		0A6BFA2742548CFA6497577C /* OtzariaLibraryUpdatePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46F726432B5886DFA444350 /* OtzariaLibraryUpdatePolicy.swift */; };
 		4BA726922EFC714F003CA0ED /* BookInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BA726942EFC714F003CA0ED /* BookInfo.xib */; };
 		4BA726962EFC72E6003CA0ED /* LibraryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BA726982EFC72E6003CA0ED /* LibraryVC.xib */; };
 		4BA7269A2EFC760C003CA0ED /* SidebarVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BA7269C2EFC760C003CA0ED /* SidebarVC.xib */; };
@@ -1599,6 +1601,8 @@
 		E6A000000000000000000006 /* OtzariaSearchArtifactService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSearchArtifactService.swift; path = Source/Otzaria/Search/Distribution/OtzariaSearchArtifactService.swift; sourceTree = "<group>"; };
 		E6A000000000000000000007 /* OtzariaPrebuiltSearchAcceptanceRunner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaPrebuiltSearchAcceptanceRunner.swift; path = Source/Otzaria/Search/Distribution/OtzariaPrebuiltSearchAcceptanceRunner.swift; sourceTree = "<group>"; };
 		03A984F3D95C5DBF2C32440D /* OtzariaReaderSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaReaderSettingsView.swift; path = Source/Otzaria/Features/Settings/OtzariaReaderSettingsView.swift; sourceTree = "<group>"; };
+		9118CC5C78D2E8FF1484EA70 /* OtzariaLibraryUpdateView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaLibraryUpdateView.swift; path = Source/Otzaria/Features/Settings/OtzariaLibraryUpdateView.swift; sourceTree = "<group>"; };
+		A46F726432B5886DFA444350 /* OtzariaLibraryUpdatePolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaLibraryUpdatePolicy.swift; path = Source/Otzaria/Bootstrap/OtzariaLibraryUpdatePolicy.swift; sourceTree = "<group>"; };
 		077C910EADF2F817F070515C /* OtzariaSchema.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSchema.swift; path = Source/Otzaria/Data/OtzariaSchema.swift; sourceTree = "<group>"; };
 		09EF1B92A2DA781C9E871A84 /* ZayitSearchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZayitSearchView.swift; path = Vendor/ZayitSearchPort/Swift/ZayitSearchView.swift; sourceTree = "<group>"; };
 		0A7A00000000000000000001 /* OtzariaAppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/OtzariaAppContainer.swift; sourceTree = "<group>"; };
@@ -2615,6 +2619,8 @@
 				64E10CBACBB3C32833B4FC0C /* OtzariaReaderView.swift */,
 				F2E687966F83FF7CCE34EA1F /* OtzariaReaderViewModel.swift */,
 				03A984F3D95C5DBF2C32440D /* OtzariaReaderSettingsView.swift */,
+				9118CC5C78D2E8FF1484EA70 /* OtzariaLibraryUpdateView.swift */,
+				A46F726432B5886DFA444350 /* OtzariaLibraryUpdatePolicy.swift */,
 				6A73663299D0877E6E00AEE1 /* OtzariaSourcesView.swift */,
 				83ECD2364187A6F7291BFA35 /* OtzariaSourcesViewModel.swift */,
 				E77069F73897898F425880E7 /* OtzariaNavigationAdapter.swift */,
@@ -5555,6 +5561,8 @@
 				787A9AEC7A9398F138252E9C /* OtzariaReaderView.swift in Sources */,
 				2D0B7588E02BE6DBD24FD9FA /* OtzariaReaderViewModel.swift in Sources */,
 				4BA53F87DF4E66AA1BC17794 /* OtzariaReaderSettingsView.swift in Sources */,
+				50B07E421622872DA685E651 /* OtzariaLibraryUpdateView.swift in Sources */,
+				0A6BFA2742548CFA6497577C /* OtzariaLibraryUpdatePolicy.swift in Sources */,
 				06CAE0E23AF1937A55069845 /* OtzariaSourcesView.swift in Sources */,
 				E131AD45E50201736AF9830D /* OtzariaSourcesViewModel.swift in Sources */,
 				6ED48EDF05F87545909DA4D1 /* OtzariaNavigationAdapter.swift in Sources */,

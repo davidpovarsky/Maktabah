@@ -13749,6 +13749,312 @@
           }
         }
       }
+    },
+    "otzaria.update.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Library Updates"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עדכוני הספרייה"
+          }
+        }
+      }
+    },
+    "otzaria.update.explanation": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Download the latest complete Otzaria library. The current library stays available until the download and database are verified. Your notes, bookmarks and reading groups are kept."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הורדת ספריית אוצריא המלאה והעדכנית. הספרייה הנוכחית נשמרת עד לאימות ההורדה ומסד הנתונים. ההערות, הסימניות וקבוצות הלימוד שלך נשמרות."
+          }
+        }
+      }
+    },
+    "otzaria.update.installedVersion": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installed version"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "גרסה מותקנת"
+          }
+        }
+      }
+    },
+    "otzaria.update.availableVersion": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Available version"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "גרסה זמינה"
+          }
+        }
+      }
+    },
+    "otzaria.update.downloadSize": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Download size"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "גודל ההורדה"
+          }
+        }
+      }
+    },
+    "otzaria.update.checking": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking for library updates…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בודק עדכונים לספרייה…"
+          }
+        }
+      }
+    },
+    "otzaria.update.check": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check for Updates"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בדיקת עדכונים"
+          }
+        }
+      }
+    },
+    "otzaria.update.install": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Download and Update Library"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הורדה ועדכון הספרייה"
+          }
+        }
+      }
+    },
+    "otzaria.update.cancel": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause Download"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השהיית ההורדה"
+          }
+        }
+      }
+    },
+    "otzaria.update.current": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The library is up to date."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הספרייה מעודכנת."
+          }
+        }
+      }
+    },
+    "otzaria.update.completed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The library was updated successfully."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הספרייה עודכנה בהצלחה."
+          }
+        }
+      }
+    },
+    "otzaria.update.cancelled": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Download paused. You can resume it here."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההורדה הושהתה. ניתן להמשיך אותה כאן."
+          }
+        }
+      }
+    },
+    "otzaria.update.error.unverified": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The installed library could not be verified. Check its installation before trying again."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן לאמת את הספרייה המותקנת. יש לבדוק את ההתקנה לפני ניסיון נוסף."
+          }
+        }
+      }
+    },
+    "otzaria.update.error.releaseChanged": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The release metadata changed or could not be verified. Check for updates again."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פרטי הגרסה השתנו או שלא ניתן לאמת אותם. יש לבדוק שוב אם קיימים עדכונים."
+          }
+        }
+      }
+    },
+    "otzaria.update.error.selectionChanged": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The selected library changed. Check for updates again."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הספרייה שנבחרה השתנתה. יש לבדוק שוב אם קיימים עדכונים."
+          }
+        }
+      }
+    },
+    "otzaria.update.error.unmanaged": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This library was selected from Files. Update that source separately; its file will not be replaced."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ספרייה זו נבחרה מתוך קבצים. יש לעדכן את המקור שלה בנפרד; הקובץ שלה לא יוחלף."
+          }
+        }
+      }
+    },
+    "otzaria.update.error.running": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A library installation is already in progress."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "התקנת ספרייה כבר מתבצעת."
+          }
+        }
+      }
+    },
+    "otzaria.update.bookUnavailable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This book could not be reopened in the updated library. Your tab and saved position have been kept."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן לפתוח מחדש את הספר הזה בספרייה המעודכנת. הלשונית והמיקום השמור שלך נשמרו."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

@@ -1,0 +1,10 @@
+{
+  "observedAt": "2026-11-25T01:40:41.023320+00:00",
+  "transport": "pinned SSH scaleway-mac as m1",
+  "kind": "small unsigned copied Mach-O signed with existing distribution identity; not app archive acceptance",
+  "exitCode": 0,
+  "stdout": "  1) 644940FCF25D1730DBD1BF7596AEBA7229E2B8FD \"Apple Distribution: David Povarsky (NA6HPWARQ2)\"\n     1 valid identities found\n",
+  "stderr": "/Users/m1/builds/_preflight/otzaria-signing-probe-20261125/signing-probe-ssh: valid on disk\n/Users/m1/builds/_preflight/otzaria-signing-probe-20261125/signing-probe-ssh: satisfies its Designated Requirement\nExecutable=/Users/m1/builds/_preflight/otzaria-signing-probe-20261125/signing-probe-ssh\nIdentifier=signing-probe-ssh\nFormat=Mach-O universal (x86_64 arm64e arm64e.x1)\nCodeDirectory v=20400 size=245 flags=0x0(none) hashes=2+2 location=embedded\nHash type=sha256 size=32\nCandidateCDHash sha256=18c703ad6bc66a378c43a8e3c565b56ad3c77562\nCandidateCDHashFull sha256=18c703ad6bc66a378c43a8e3c565b56ad3c775623c1786eaa1eec0f8814ad308\nHash choices=sha256\nCMSDigest=18c703ad6bc66a378c43a8e3c565b56ad3c775623c1786eaa1eec0f8814ad308\nCMSDigestType=2\nCDHash=18c703ad6bc66a378c43a8e3c565b56ad3c77562\nSignature size=4786\nAuthority=Apple Distribution: David Povarsky (NA6HPWARQ2)\nAuthority=Apple Worldwide Developer Relations Certification Authority\nAuthority=Apple Root CA\nSigned Time=25 Nov 2026 at 02:40:40\nInfo.plist=not bound\nTeamIdentifier=NA6HPWARQ2\nSealed Resources=none\nInternal requirements count=1 size=184\nTotal signatures=1\nChosen signature=1\n",
+  "rootCause": "Sentinel launch daemon System bootstrap context differed from established m1 SSH security session",
+  "temporaryPublicRootImportReverted": true
+}

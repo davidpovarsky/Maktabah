@@ -342,6 +342,32 @@ final class BackendCoordinator {
         registrations[activeBackendID]?.sourceDescription ?? activeBackendID.displayName
     }
 
+    /// Keeps a same-backend resource replacement exclusive across windows.
+    /// Existing selections, saved sessions and user annotations are untouched.
+    /// Both boundaries invalidate asynchronous readers of the previous resource.
+    func withExclusiveResourceUpdate<Result>(
+        for backend: BackendID,
+        operation: @MainActor () async throws -> Result
+    ) async throws -> Result {
+        guard backend == activeBackendID, !isTransitioning else {
+            throw BackendTransitionError.transitionSuperseded
+        }
+        activeTransitionToken &+= 1
+        let token = activeTransitionToken
+        transitionPhase = .preparing(from: backend, to: backend, token: token)
+        inFlightCancellations.values.forEach { $0() }
+        inFlightCancellations.removeAll()
+        generation &+= 1
+        defer {
+            inFlightCancellations.values.forEach { $0() }
+            inFlightCancellations.removeAll()
+            generation &+= 1
+            resourceWitnesses.removeValue(forKey: backend)
+            transitionPhase = .idle
+        }
+        return try await operation()
+    }
+
     func register(_ registration: LibraryBackendRegistration) {
         registrations[registration.id] = registration
     }
