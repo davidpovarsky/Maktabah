@@ -9,11 +9,11 @@
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda"
   },
-  "application_source_sha": "9eadb82296bd5d6c13dfc7eba691e6cd7651ad60",
+  "application_source_sha": "751f8922a4a28f62f830ff77aeed3c7575d17baa",
   "application_trees": {
     "Maktabah-iOSUITests": "ab24a79e9baee44bc68d73b434e8ad8d034c9d8d",
     "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3",
-    "Source": "d4208d2c3ef11618abfc8f752b92d6ae30034fa1",
+    "Source": "d94ad7db9c87e98808611015ed5c903dd3577d1f",
     "Vendor": "ab0c8fa1ac707902552443b4b85982064534086e"
   },
   "hanlin_source": "3f5c0f37af476b377be10cf8013fedb5edf67a57",
@@ -378,11 +378,11 @@
     {
       "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
-        "bytes": 21842,
+        "bytes": 21873,
         "kind": "blob",
         "mode": "100644",
-        "object": "767f00b2189e145ff30984c008b33dc51494a459",
-        "sha256": "a709be67699b7ec5f72fafc2e95155712ea83e1f997e8ae48003979fb673fe01"
+        "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+        "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
       },
       "before": {
         "bytes": 9538,
@@ -450,11 +450,11 @@
         }
       },
       "patch": {
-        "bytes": 18937,
-        "sha256": "b34be62b336b5ea679c4f5e55832a525ed60fd3e9ba196f75ca45b79f59d7913"
+        "bytes": 18968,
+        "sha256": "7ce0d929efd55ce64e3159e5b1e974f8026287d5069fba6bfd8492f6df36a2f2"
       },
       "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
-      "reason": "Use the actual OriginalEditor file export/apply APIs with original row and lifetime checks; preserve complete native capture, original revision CAS and exact receipt transaction."
+      "reason": "Use the actual OriginalEditor file export/apply APIs with original row and lifetime checks; preserve complete native capture, original revision CAS and exact receipt transaction. Use one documented aggregate adapter budget derived from the original 8 MiB expanded archive bound; retain the original 1 MiB compressed archive and full payload gates without a new count cap."
     },
     {
       "adoption": "EXPLICIT_REVIEWED_MERGE",
@@ -605,11 +605,11 @@
     {
       "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
-        "bytes": 34212,
+        "bytes": 34709,
         "kind": "blob",
         "mode": "100644",
-        "object": "ef5ea912e6df9da664c952610773fe924453a177",
-        "sha256": "368acbf3205a071da3329badc97e2b595691bea2d7fc374dee9e0aba2e7ecc12"
+        "object": "b8efa66c8a204e41a46a54680aa61dd3077c1b94",
+        "sha256": "b04c535d3b1e7b207c7bfd097d2bd38a60aad4f7d0c0e06db14d201059a4707d"
       },
       "before": null,
       "component_objects": {
@@ -647,11 +647,11 @@
         }
       },
       "patch": {
-        "bytes": 35194,
-        "sha256": "d56602a1b7e34664de859acea22d83297c2fba1b2acfe67879ead51f0d2ac6f5"
+        "bytes": 35699,
+        "sha256": "09d6f8e69ed1818fec2511e719b3fe68f7f3baf44ec043110bf9f8cba501c468"
       },
       "path": "Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift",
-      "reason": "Transfer actual native file bytes through the shared Bridge and original native attachment API; retain bounded bytes and exact callback without replacing rich file blocks with private URL strings."
+      "reason": "Transfer actual native file bytes through the shared Bridge and original native attachment API; retain bounded bytes and exact callback without replacing rich file blocks with private URL strings. Use one documented aggregate adapter budget derived from the original 8 MiB expanded archive bound; retain the original 1 MiB compressed archive and full payload gates without a new count cap."
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
