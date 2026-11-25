@@ -700,8 +700,11 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         callback.queryItems = (callback.queryItems ?? []) + [
             .init(name: "request", value: cold.request.id.uuidString)
         ]
+        retainScreenshot(app, named: "miniapps-rich-before-duplicate-callback")
         XCUIDevice.shared.press(.home)
-        app.open(try XCTUnwrap(callback.url))
+        // Deliver through the OS. XCUIApplication.open is launch-equivalent and
+        // would replace a warm replay with an unintended process relaunch.
+        XCUIDevice.shared.system.open(try XCTUnwrap(callback.url))
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 60))
         retainScreenshot(app, named: "miniapps-rich-duplicate-callback")
         XCTAssertEqual(try richState(rowID: rowID, databasePath: coldDocument.profile), coldSaved,
