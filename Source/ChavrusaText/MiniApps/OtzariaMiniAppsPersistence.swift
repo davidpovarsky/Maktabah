@@ -67,6 +67,12 @@ enum OtzariaMiniAppsPersistence {
                       current.note == document.originalNote else {
                     throw OtzariaMiniAppsError.changedDocument
                 }
+                // The original rich body owns its preview. A MiniApps plain-text
+                // result cannot overwrite it through this direct SQLite seam.
+                // Keep this check in the same receipt/edit transaction, so a
+                // rejected result remains pending and no receipt is committed.
+                try AnnotationLocalEditorPersistence.requirePlainWrite(database: db,
+                    annotationID: id, originalRecordID: document.annotationUUID)
                 // Preserve unrelated colors, tags and source anchors changed while away.
                 current.note = text
                 current.lastModified = Int64(Date().timeIntervalSince1970)
