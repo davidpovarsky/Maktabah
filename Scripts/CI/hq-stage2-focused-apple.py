@@ -864,7 +864,12 @@ def main():
     ap.add_argument("--prepared-inputs-manifest",
                     help="Exact local capture from an actual successful prior app/UI-runner build")
     ap.add_argument("--prepared-inputs-sha256", help="Reviewed SHA256 of that immutable capture")
+    ap.add_argument("--compiler-capacity-plans",
+                    help="Append-only measured phase budgets; wait before the unchanged compiler command")
     args = ap.parse_args()
+    require(not args.compiler_capacity_plans or
+            (args.build_for_testing and not args.preflight_only and not args.prepare_inputs_only),
+            "Compiler capacity wait requires the actual native build route")
     require(bool(args.prepared_inputs_manifest) == bool(args.prepared_inputs_sha256),
             "Prepared input reuse requires both the capture and its reviewed SHA256")
     require(not (args.original_editor_routes and args.original_editor_admission),
@@ -962,6 +967,14 @@ def main():
                    "RCT_NO_LAUNCH_PACKAGER=1", "SKIP_BUNDLING=1", "FAIL_ON_MISSING_BUNDLE=1"]
         if args.simulator_data_profile:
             command.append("OTZARIA_DEFAULT_DATA_PROFILE=" + args.simulator_data_profile)
+        if args.compiler_capacity_plans:
+            before_capacity_project = digest(ROOT / "Maktabah.xcodeproj/project.pbxproj")
+            capacity = runpy.run_path(str(ROOT / "Scripts/CI/compiler_phase_capacity.py"))
+            report["compiler_capacity"] = capacity["wait_for_capacity"](
+                ROOT, OUT, report["checkout_sha"], args.compiler_capacity_plans)
+            require(capture("git", "rev-parse", "HEAD") == report["checkout_sha"] and
+                    digest(ROOT / "Maktabah.xcodeproj/project.pbxproj") == before_capacity_project,
+                    "Source/project changed during the compiler capacity wait")
         logged(command, "simulator-build-for-testing.log" if args.build_for_testing else "unsigned-app-build.log", report)
         if args.simulator_data_profile:
             built_info = derived_data / "Build/Products/Debug-iphonesimulator/Maktabah.app/Info.plist"
