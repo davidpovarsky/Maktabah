@@ -4,6 +4,9 @@ import SwiftUI
 import UIKit
 import HanlinMiniAppsBridge
 import HanlinMiniAppsPicker
+#if canImport(AnytypeOriginalEditor)
+import AnytypeOriginalEditor
+#endif
 
 /// The only MiniApps integration owner in this app. Execution remains in Hanlin MiniApps.
 @MainActor
@@ -14,11 +17,25 @@ final class OtzariaMiniAppsCoordinator {
     private struct SceneOwner {
         weak var manager: iOSNavigationManager?
         weak var scene: UIWindowScene?
+        weak var workspace: StudyWorkspaceNavigationAdapter?
     }
     private struct EditorOwner {
         let currentText: () -> String?
         let didCommit: (Annotation) -> Void
     }
+    static let originalEditorMetadataKey = "otzaria.original-editor.miniapps.v1"
+    #if canImport(AnytypeOriginalEditor)
+    private struct OriginalEditorOwner {
+        weak var model: AnnotationOriginalEditorProductionPresentation?
+    }
+    private var originalEditors: [UUID: OriginalEditorOwner] = [:]
+
+    func registerOriginalEditor(_ model: AnnotationOriginalEditorProductionPresentation) {
+        originalEditors[model.id] = .init(model: model)
+    }
+    func unregisterOriginalEditor(id: UUID) { originalEditors.removeValue(forKey: id) }
+    #endif
+
     private var scenes: [String: SceneOwner] = [:]
     private var editors: [UUID: EditorOwner] = [:]
     private var processing = Set<UUID>()
@@ -46,8 +63,9 @@ final class OtzariaMiniAppsCoordinator {
 
     func unregisterEditor(id: UUID) { editors.removeValue(forKey: id) }
 
-    func attach(manager: iOSNavigationManager, scene: UIWindowScene) {
-        scenes[scene.session.persistentIdentifier] = .init(manager: manager, scene: scene)
+    func attach(manager: iOSNavigationManager, scene: UIWindowScene,
+                workspace: StudyWorkspaceNavigationAdapter?) {
+        scenes[scene.session.persistentIdentifier] = .init(manager: manager, scene: scene, workspace: workspace)
         resume(manager: manager)
     }
 
@@ -105,20 +123,46 @@ final class OtzariaMiniAppsCoordinator {
         } catch { show(error: error, sourceView: textView) }
     }
 
+    #if canImport(AnytypeOriginalEditor)
+    func showOriginalEditor(annotation: Annotation, context: AnytypeOriginalEditorMiniAppsContext,
+                            editorID: UUID, sourceView: UIView) {
+        do {
+            var range: NSRange?
+            if let location = context.documentSelectionLocation, let length = context.selectionLength,
+               let selectedText = context.selectedText {
+                let candidate = NSRange(location: location, length: length)
+                if let swiftRange = Range(candidate, in: context.documentText),
+                   context.documentText[swiftRange].utf8.elementsEqual(selectedText.utf8) { range = candidate }
+            }
+            let document = try OtzariaMiniAppsDocument(annotation: annotation, draft: context.documentText,
+                selection: range, isReaderSelection: false, editorID: editorID, title: annotation.resolvedBookTitle)
+            let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
+            let nativeContext = String(decoding: try encoder.encode(context), as: UTF8.self)
+            present(document: document, inputText: context.selectedText ?? "", sourceText: context.documentText,
+                sourceSelection: document.selection, sourceView: sourceView,
+                additionalMetadata: [Self.originalEditorMetadataKey: nativeContext], sourceKind: "native-annotation",
+                requestedOperation: (context.selectedText?.isEmpty == false) ? .replaceSelection : .insert)
+        } catch { show(error: error, sourceView: sourceView) }
+    }
+    #endif
+
     private func present(document: OtzariaMiniAppsDocument, inputText: String, sourceText: String,
-                         sourceSelection: MiniAppTextSelection?, sourceView: UIView?) {
+                         sourceSelection: MiniAppTextSelection?, sourceView: UIView?,
+                         additionalMetadata: [String: String] = [:], sourceKind: String? = nil,
+                         requestedOperation: MiniAppOperation? = nil) {
         do {
             let store = try MiniAppBridgeStore()
             let scene = sourceView?.window?.windowScene
+            let metadata = try document.metadata.merging(additionalMetadata) { original, _ in original }
             let source = MiniAppSourceContext(appID: Self.sourceAppID, displayName: "ChavrusaText",
                 documentID: document.annotationUUID, documentTitle: document.title,
                 selection: sourceSelection,
-                documentText: sourceText, kind: document.isReaderSelection ? "reader" : "annotation",
+                documentText: sourceText, kind: sourceKind ?? (document.isReaderSelection ? "reader" : "annotation"),
                 locator: document.locatorJSON, sceneID: scene?.session.persistentIdentifier,
-                metadata: try document.metadata)
+                metadata: metadata)
             let callbacks = MiniAppCallbacks(success: Self.callbackURL, error: Self.callbackURL, cancel: Self.callbackURL)
-            let operation: MiniAppOperation = !document.isReaderSelection && (document.selection?.length ?? 0) > 0
-                ? .replaceSelection : .insert
+            let operation: MiniAppOperation = requestedOperation ??
+                (!document.isReaderSelection && (document.selection?.length ?? 0) > 0 ? .replaceSelection : .insert)
             guard let presenter = presenter(in: scene, sourceView: sourceView) else { throw OtzariaMiniAppsError.unavailable }
             let picker = MiniAppPicker(store: store, source: source,
                 inputs: [.init(kind: .text, text: inputText, typeIdentifier: "public.plain-text")],
@@ -140,7 +184,8 @@ final class OtzariaMiniAppsCoordinator {
     private func consume(_ result: MiniAppResult, store: MiniAppBridgeStore,
                          fallbackManager: iOSNavigationManager) {
         guard processing.insert(result.requestID).inserted else { return }
-        defer { processing.remove(result.requestID) }
+        var continuingAsynchronously = false
+        defer { if !continuingAsynchronously { processing.remove(result.requestID) } }
         do {
             guard let request = try store.request(id: result.requestID),
                   request.source.appID == Self.sourceAppID else { throw MiniAppBridgeError.wrongSource }
@@ -160,6 +205,20 @@ final class OtzariaMiniAppsCoordinator {
                 return
             }
             let document = try OtzariaMiniAppsDocument.restore(from: request.source)
+            if try OtzariaMiniAppsPersistence.committed(result, document: document) != nil {
+                _ = try store.acknowledgeResult(id: result.requestID, sourceAppID: Self.sourceAppID)
+                return
+            }
+            if let contextJSON = request.source.metadata[Self.originalEditorMetadataKey] {
+                #if canImport(AnytypeOriginalEditor)
+                continuingAsynchronously = true
+                receiveOriginal(result, document: document, contextJSON: contextJSON,
+                    store: store, manager: manager, scene: scene)
+                return
+                #else
+                throw OtzariaMiniAppsError.unavailable
+                #endif
+            }
             let editor = document.editorID.flatMap { editors[$0] }.flatMap {
                 $0.currentText() == nil ? nil : $0
             }
@@ -187,6 +246,97 @@ final class OtzariaMiniAppsCoordinator {
             }
         }
     }
+
+    #if canImport(AnytypeOriginalEditor)
+    private func receiveOriginal(_ result: MiniAppResult, document: OtzariaMiniAppsDocument,
+                                 contextJSON: String, store: MiniAppBridgeStore,
+                                 manager: iOSNavigationManager, scene: UIWindowScene?) {
+        if let id = document.editorID, let model = originalEditors[id]?.model {
+            applyOriginal(result, document: document, contextJSON: contextJSON, store: store, model: model, scene: scene)
+            return
+        }
+        // A cold callback must mount the original native editor against its
+        // actual saved row and the current scene's original workspace owner.
+        enqueuePresentation(requestID: result.requestID, scene: scene) { [weak self] finished in
+            guard let self, let presenter = self.presenter(in: scene) else { return false }
+            let owner = scene.flatMap { self.scenes[$0.session.persistentIdentifier] }
+                ?? self.scenes.values.first(where: { $0.manager === manager })
+            guard let workspace = owner?.workspace else { return false }
+            do {
+                let annotation = try OtzariaMiniAppsPersistence.savedAnnotation(document: document)
+                let model = AnnotationOriginalEditorProductionPresentation(
+                    annotation: annotation, inspected: nil, workspace: workspace)
+                model.onReady = { [weak self, weak model] in
+                    guard let self, let model else { return }
+                    self.applyOriginal(result, document: document, contextJSON: contextJSON,
+                        store: store, model: model, scene: scene)
+                }
+                model.onOpenFailure = { [weak self] error in
+                    self?.originalFailure(error, requestID: result.requestID, scene: scene)
+                }
+                let controller = OtzariaMiniAppsResultHost(rootView:
+                    AnnotationOriginalEditorProductionView(model: model).interactiveDismissDisabled(true))
+                controller.modalPresentationStyle = .fullScreen
+                controller.isModalInPresentation = true
+                controller.onDismiss = finished
+                presenter.present(controller, animated: true)
+                return true
+            } catch {
+                self.processing.remove(result.requestID)
+                self.reportedFailures.insert(result.requestID)
+                return self.presentError(error, sourceView: presenter.view, onDismiss: finished)
+            }
+        }
+    }
+
+    private func applyOriginal(_ result: MiniAppResult, document: OtzariaMiniAppsDocument,
+                               contextJSON: String, store: MiniAppBridgeStore,
+                               model: AnnotationOriginalEditorProductionPresentation, scene: UIWindowScene?) {
+        Task { [weak self, weak model] in
+            guard let self else { return }
+            defer { self.processing.remove(result.requestID) }
+            do {
+                guard let model,
+                      model.annotation.ckRecordId == document.annotationUUID,
+                      model.annotation.id == document.annotationID else { throw OtzariaMiniAppsError.missingDocument }
+                let files = try self.retainAttachments(result, store: store)
+                guard !result.items.isEmpty else { throw OtzariaMiniAppsError.noResult }
+                let text = try result.items.map { item -> String in
+                    if let text = item.text { return text }
+                    if let url = item.url { return url.absoluteString }
+                    if let id = item.attachmentID {
+                        guard let url = files[id] else { throw MiniAppBridgeError.invalidAttachment }
+                        return url.absoluteString
+                    }
+                    throw OtzariaMiniAppsError.noResult
+                }.joined(separator: "\n")
+                let outcome = try await model.applyMiniApps(result, contextJSON: contextJSON, text: text)
+                let receipt: AnnotationExchangeCommit
+                switch outcome {
+                case .committed(let saved): receipt = saved.receipt
+                case .completedWithoutOwnership(let committed): receipt = committed
+                }
+                guard receipt.mutationID == result.requestID,
+                      receipt.annotationUUID == UUID(uuidString: document.annotationUUID) else {
+                    throw MiniAppBridgeError.conflictingResult
+                }
+                // The native archive and exact result receipt already committed
+                // together. UI retirement cannot convert that commit into retry.
+                _ = try store.acknowledgeResult(id: result.requestID, sourceAppID: Self.sourceAppID)
+                ReaderAnnotationRefreshCoordinator.shared.notifyAnnotationMutated()
+                NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
+            } catch {
+                self.originalFailure(error, requestID: result.requestID, scene: scene)
+            }
+        }
+    }
+
+    private func originalFailure(_ error: Error, requestID: UUID, scene: UIWindowScene?) {
+        processing.remove(requestID)
+        reportedFailures.insert(requestID)
+        _ = presentError(error, sourceView: presenter(in: scene)?.view, onDismiss: {})
+    }
+    #endif
 
     private func retainAttachments(_ result: MiniAppResult, store: MiniAppBridgeStore) throws -> [UUID: URL] {
         let attachments = result.items.compactMap(\.attachmentID)
@@ -352,20 +502,57 @@ private final class OtzariaMiniAppsResultHost<Content: View>: UIHostingControlle
     }
 }
 
+/// The original Settings navigation embeds the exact shared preferences UI.
+/// It does not manufacture a source request just to edit the catalog.
+@MainActor
+struct OtzariaMiniAppsPreferences: View {
+    @State private var store: MiniAppBridgeStore?
+    @State private var errorMessage: String?
+
+    var body: some View {
+        Group {
+            if let store {
+                MiniAppPreferencesView(store: store)
+            } else if let errorMessage {
+                ContentUnavailableView {
+                    Label("Mini Apps", systemImage: "square.grid.2x2")
+                } description: { Text(errorMessage) }
+            } else {
+                ProgressView()
+            }
+        }
+        .navigationTitle("Mini Apps")
+        .task {
+            guard store == nil, errorMessage == nil else { return }
+            do { store = try MiniAppBridgeStore() }
+            catch { errorMessage = error.localizedDescription }
+        }
+    }
+}
+
 struct OtzariaMiniAppsSceneRegistration: UIViewRepresentable {
+    @Environment(\.exact9401Workspace) private var workspace
     let manager: iOSNavigationManager
     func makeUIView(context: Context) -> RegistrationView {
         let view = RegistrationView()
         view.manager = manager
+        view.workspace = workspace
         return view
     }
-    func updateUIView(_ view: RegistrationView, context: Context) { view.manager = manager; view.register() }
+    func updateUIView(_ view: RegistrationView, context: Context) {
+        view.manager = manager
+        view.workspace = workspace
+        view.register()
+    }
     final class RegistrationView: UIView {
         weak var manager: iOSNavigationManager?
+        weak var workspace: StudyWorkspaceNavigationAdapter?
         override func didMoveToWindow() { super.didMoveToWindow(); register() }
         func register() {
             guard let manager, let scene = window?.windowScene else { return }
-            Task { @MainActor in OtzariaMiniAppsCoordinator.shared.attach(manager: manager, scene: scene) }
+            Task { @MainActor [weak workspace] in
+                OtzariaMiniAppsCoordinator.shared.attach(manager: manager, scene: scene, workspace: workspace)
+            }
         }
     }
 }

@@ -105,6 +105,66 @@ enum OtzariaMiniAppsPersistence {
         return .init(annotation: committed.value, replayed: committed.replayed)
     }
 
+    /// Read the durable original-host receipt before starting native work.
+    /// A later user edit does not make an already committed result run again.
+    static func committed(_ result: MiniAppResult, document: OtzariaMiniAppsDocument,
+                          repository: AnnotationRepository = .shared) throws -> Commit? {
+        let connection = try repository.captureLocalEditorConnection()
+        guard connection.databaseURL.standardizedFileURL.resolvingSymlinksInPath().path == document.profile else {
+            throw OtzariaMiniAppsError.differentLibrary
+        }
+        let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
+        let identity = String(decoding: try encoder.encode(result), as: UTF8.self)
+        var saved: Annotation?
+        try connection.database.transaction {
+            try connection.lifetime.requireCurrent()
+            let exists = try connection.database.fetch(query:
+                "SELECT COUNT(*) FROM sqlite_master WHERE type = 'table' AND name = 'miniapps_result_receipts';"
+            ) { $0.int64(at: 0) }.first == 1
+            guard exists else { return }
+            let prior = try connection.database.fetch(query: """
+                SELECT result_json, annotation_id, annotation_uuid FROM miniapps_result_receipts WHERE request_id = ?;
+                """, parameters: [result.requestID.uuidString]) {
+                    ($0.string(at: 0) ?? "", $0.int64(at: 1), $0.string(at: 2) ?? "")
+                }.first
+            guard let prior else { return }
+            guard prior.0.utf8.elementsEqual(identity.utf8),
+                  prior.2 == document.annotationUUID,
+                  document.annotationID == nil || document.annotationID == prior.1,
+                  let annotation = try read(id: prior.1, connection: connection),
+                  annotation.ckRecordId == document.annotationUUID else {
+                throw MiniAppBridgeError.conflictingResult
+            }
+            try connection.lifetime.requireCurrent()
+            saved = annotation
+        }
+        return saved.map { .init(annotation: $0, replayed: true) }
+    }
+
+    static func savedAnnotation(document: OtzariaMiniAppsDocument,
+                                repository: AnnotationRepository = .shared) throws -> Annotation {
+        let connection = try repository.captureLocalEditorConnection()
+        guard connection.databaseURL.standardizedFileURL.resolvingSymlinksInPath().path == document.profile else {
+            throw OtzariaMiniAppsError.differentLibrary
+        }
+        var saved: Annotation?
+        try connection.database.transaction {
+            try connection.lifetime.requireCurrent()
+            guard let id = document.annotationID,
+                  let current = try read(id: id, connection: connection),
+                  current.ckRecordId == document.annotationUUID,
+                  current.bkId == document.bookID, current.contentId == document.contentID,
+                  current.createdAt == document.createdAt, current.context == document.context,
+                  current.note.map({ Array($0.utf8) }) == document.originalNote.map({ Array($0.utf8) }) else {
+                throw OtzariaMiniAppsError.changedDocument
+            }
+            try connection.lifetime.requireCurrent()
+            saved = current
+        }
+        guard let saved else { throw OtzariaMiniAppsError.missingDocument }
+        return saved
+    }
+
     private static func read(id: Int64, connection: AnnotationLocalEditorConnection) throws -> Annotation? {
         let db = connection.database
         guard var annotation = try db.fetch(query: "SELECT * FROM annotations WHERE id = ?;",
@@ -116,4 +176,45 @@ enum OtzariaMiniAppsPersistence {
         return annotation
     }
 }
+
+#if canImport(AnytypeOriginalEditor)
+extension AnnotationLocalEditorPersistence {
+    /// The native rich body, original revision CAS, pending sync entry and
+    /// exact MiniApps result receipt commit on the one captured SQLite handle.
+    /// An interrupted transport ACK can therefore never repeat a native edit.
+    func commitMiniApps(_ intent: AnnotationLocalEditorIntent,
+                        resultJSON: String) throws -> AnnotationLocalEditorCommitted {
+        let result = try JSONDecoder().decode(MiniAppResult.self, from: Data(resultJSON.utf8))
+        guard let documentID = intent.snapshot.annotation.ckRecordId,
+              UUID(uuidString: documentID) == annotationUUID,
+              result.requestID == intent.mutationID, result.status == .success,
+              result.operation == .insert || result.operation == .replaceSelection
+                || result.operation == .replaceDocument else {
+            throw MiniAppBridgeError.conflictingResult
+        }
+        let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
+        let identity = String(decoding: try encoder.encode(result), as: UTF8.self)
+        guard identity.utf8.elementsEqual(resultJSON.utf8) else {
+            throw MiniAppBridgeError.conflictingResult
+        }
+        let committed: OtzariaMiniAppsReceiptJournal.Commit<AnnotationLocalEditorCommitted> =
+            try OtzariaMiniAppsReceiptJournal.commit(requestID: intent.mutationID,
+                resultJSON: identity, documentID: documentID,
+                database: connection.database,
+                validate: { try self.connection.requireCurrent(owner: self.owner) },
+                read: { id in
+                    guard id == self.annotationID else { return nil }
+                    return try self.commit(intent)
+                }, apply: {
+                    let saved = try self.commit(intent)
+                    guard saved.snapshot.annotation.id == self.annotationID,
+                          saved.snapshot.annotationUUID == self.annotationUUID else {
+                        throw AnnotationLocalEditorError.wrongOwner
+                    }
+                    return (id: self.annotationID, value: saved)
+                })
+        return committed.value
+    }
+}
+#endif
 #endif

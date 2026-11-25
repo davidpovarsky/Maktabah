@@ -62,6 +62,30 @@ final class AnnotationLocalEditorSession {
             textPreview: textPreview, editorRevision: editorRevision)
     }
 
+    #if os(iOS) && canImport(AnytypeOriginalEditor)
+    /// Uses the same original transaction owner and publication as normal Save.
+    /// Its additional result receipt commits before transport acknowledgement.
+    func saveMiniApps(_ intent: AnnotationLocalEditorIntent,
+                      resultJSON: String) async throws -> AnnotationLocalEditorOutcome {
+        guard !busy else { throw AnnotationLocalEditorError.busy }
+        guard isCurrent else { throw AnnotationLocalEditorError.retired }
+        busy = true
+        defer { busy = false }
+        let storage = persistence, owner = persistence.owner
+        let worker = Task.detached { try storage.commitMiniApps(intent, resultJSON: resultJSON) }
+        return try await withTaskCancellationHandler {
+            let saved = try await worker.value
+            let canDeliver = storage.canDeliver(saved)
+            if !saved.receipt.replayed { didCommit(saved, canDeliver) }
+            guard canDeliver, storage.isOwned else { return .completedWithoutOwnership(saved.receipt) }
+            return .committed(saved)
+        } onCancel: {
+            owner.retire()
+            worker.cancel()
+        }
+    }
+    #endif
+
     func save(_ intent: AnnotationLocalEditorIntent) async throws -> AnnotationLocalEditorOutcome {
         guard !busy else { throw AnnotationLocalEditorError.busy }
         guard isCurrent else { throw AnnotationLocalEditorError.retired }

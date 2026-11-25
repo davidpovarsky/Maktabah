@@ -89,8 +89,12 @@ def source_context():
             "Original native build pins do not bind this source")
     require(inputs["hanlin_gitlink"] == config["producer_source_sha"], "Consumer SDK and actual producer differ")
     original = runpy.run_path(str(ROOT / "Scripts/CI/completion-focused-native.py"))
+    editor_routes = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_sdk_routes.py"))["load"](ROOT)
     return {"checkout_sha": head, "application_source_sha": source, "application_trees": trees,
             "producer_inputs": config,
+            "original_editor_routes": {
+                key: editor_routes[key] for key in
+                ("manifest_path", "manifest_sha256", "sdk_source_sha", "native_source_tree", "signing_team_id")},
             "original_case_catalog_sha256": digest(ROOT / "docs/hq-integration/runtime27/R27_CASES.json"),
             "execution_inputs": original["exact_working_inputs"](["Scripts/CI", ".github/workflows", "Maktabah-iOSUITests", "tools"])}
 
@@ -583,7 +587,8 @@ def run_from_existing_native_workflow(report, run_logged, controller):
         # is compiled in the real app/test target below, not a duplicate standalone suite.
         reuse_ui_compile()
         if run_logged([sys.executable, "Scripts/CI/hq-stage2-focused-apple.py", "--build-for-testing",
-                       "--derived-data", "build/DerivedData", "--simulator-data-profile", "miniTest10"],
+                       "--original-editor-routes", "--derived-data", "build/DerivedData",
+                       "--simulator-data-profile", "miniTest10"],
                       "miniapps-original-app-build.log", 7200, interrupt_controller=controller):
             raise RuntimeError("Original app/test build failed; new two-app UI case NOT_RUN")
         export_built_products()

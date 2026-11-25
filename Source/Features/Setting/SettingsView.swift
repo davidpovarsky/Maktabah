@@ -114,6 +114,15 @@ extension SettingsView {
                 .listRowBackground(Color.appCellBackground)
             appearanceSection
                 .listRowBackground(Color.appCellBackground)
+            Section {
+                NavigationLink {
+                    OtzariaMiniAppsPreferences()
+                } label: {
+                    Label("Mini Apps", systemImage: "square.grid.2x2")
+                }
+                .accessibilityIdentifier("settings-miniapps-preferences")
+            }
+            .listRowBackground(Color.appCellBackground)
             zayitCreditsSection
                 .listRowBackground(Color.appCellBackground)
 
