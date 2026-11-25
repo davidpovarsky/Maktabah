@@ -1,0 +1,17 @@
+test_changed_forwarding_target_is_rejected (test_original_editor_shared_runtime.ExactClangDeclarationControls.test_changed_forwarding_target_is_rejected) ... ok
+test_changed_host_header_is_rejected (test_original_editor_shared_runtime.ExactClangDeclarationControls.test_changed_host_header_is_rejected) ... ok
+test_changed_private_header_is_rejected (test_original_editor_shared_runtime.ExactClangDeclarationControls.test_changed_private_header_is_rejected) ... ok
+test_complete_matching_declarations_preserve_full_export_and_no_native_credit (test_original_editor_shared_runtime.ExactClangDeclarationControls.test_complete_matching_declarations_preserve_full_export_and_no_native_credit) ... ok
+test_forwarding_header_with_extra_code_or_another_target_is_rejected (test_original_editor_shared_runtime.ExactClangDeclarationControls.test_forwarding_header_with_extra_code_or_another_target_is_rejected) ... ok
+test_forwarding_target_may_not_escape_its_original_root (test_original_editor_shared_runtime.ExactClangDeclarationControls.test_forwarding_target_may_not_escape_its_original_root) ... ok
+test_missing_host_header_is_rejected (test_original_editor_shared_runtime.ExactClangDeclarationControls.test_missing_host_header_is_rejected) ... ok
+test_original_private_and_forwarding_layouts_preserve_all_bytes_and_public_roots (test_original_editor_shared_runtime.ExactClangDeclarationControls.test_original_private_and_forwarding_layouts_preserve_all_bytes_and_public_roots) ... ok
+test_private_header_alias_outside_the_original_pod_is_rejected (test_original_editor_shared_runtime.ExactClangDeclarationControls.test_private_header_alias_outside_the_original_pod_is_rejected) ... ok
+test_two_host_maps_for_one_module_are_rejected (test_original_editor_shared_runtime.ExactClangDeclarationControls.test_two_host_maps_for_one_module_are_rejected) ... ok
+test_unexcluded_private_header_is_rejected (test_original_editor_shared_runtime.ExactClangDeclarationControls.test_unexcluded_private_header_is_rejected) ... ok
+test_unreviewed_additional_collision_is_rejected (test_original_editor_shared_runtime.ExactClangDeclarationControls.test_unreviewed_additional_collision_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.139s
+
+OK

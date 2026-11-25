@@ -139,6 +139,41 @@ def verify_host_sources(root, admitted, report):
             'native_stageb_qualified': False}
 
 
+def shared_declaration(root, distribution, sdk_root, module, sdk_map, host_headers, path):
+    """Observe original excluded/private and forwarding layouts without exporting them."""
+    relative = path.relative_to(sdk_root).as_posix()
+    expected = digest(bounded_file(path, distribution))
+    if module == 'FBLPromises' and relative == 'FBLPromisePrivate.h':
+        # Upstream deliberately excludes this header from its public module.
+        # CocoaPods preserves the same bytes in this Pod's private source tree.
+        text = sdk_map.read_text()
+        require(sum(line.strip() == 'exclude header "FBLPromisePrivate.h"' for line in text.splitlines()) == 1
+                and text.count('"FBLPromisePrivate.h"') == 1
+                and not host_headers.get(path.name),
+                'Promises private declaration is not uniquely excluded from the public module')
+        host = root / 'Pods/Headers/Private/PromisesObjC/FBLPromisePrivate.h'
+        real = bounded_file(host, root / 'Pods/PromisesObjC')
+        require(digest(real) == expected,
+                'Excluded Promises private declaration differs from the original Pod')
+        return {'sha256': expected, 'host': host.relative_to(root).as_posix(),
+                'kind': 'excluded_private', 'exported_to_host': False}
+    if module == 'nanopb' and relative in {'pb.h', 'pb_common.h', 'pb_decode.h', 'pb_encode.h'}:
+        target = 'nanopb/' + relative
+        require(path.read_bytes() == ('#include "' + target + '"\n').encode(),
+                'Unreviewed nanopb forwarding declaration')
+        actual = bounded_file(sdk_root / target, sdk_root)
+        target_hash = digest(actual)
+        matches = [p for p, sha in host_headers.get(path.name, []) if sha == target_hash]
+        require(len(matches) == 1,
+                'Host lacks an unambiguous byte-identical nanopb forwarding target: ' + relative)
+        return {'sha256': expected, 'host': matches[0].relative_to(root).as_posix(),
+                'kind': 'transparent_forwarder', 'target': target, 'target_sha256': target_hash}
+    matches = [p for p, sha in host_headers.get(path.name, []) if sha == expected]
+    require(len(matches) == 1,
+            'Host lacks an unambiguous byte-identical shared declaration: ' + path.name)
+    return {'sha256': expected, 'host': matches[0].relative_to(root).as_posix()}
+
+
 def project_clang_context(root, distribution, context):
     host_maps = host_module_inventory(root)
     maps, reused, replacements = [], [], {}
@@ -167,11 +202,8 @@ def project_clang_context(root, distribution, context):
         for path in sorted(sdk_root.rglob('*')):
             if not path.is_file() or path.suffix not in {'.h', '.hh', '.hpp', '.hxx', '.inc', '.def'}:
                 continue
-            expected = digest(bounded_file(path, distribution))
-            matches = [p for p, sha in host_headers.get(path.name, []) if sha == expected]
-            require(len(matches) == 1, 'Host lacks an unambiguous byte-identical shared declaration: ' + path.name)
-            exact[path.relative_to(sdk_root).as_posix()] = {
-                'sha256': expected, 'host': matches[0].relative_to(root).as_posix()}
+            exact[path.relative_to(sdk_root).as_posix()] = shared_declaration(
+                root, distribution, sdk_root, name, original, host_headers, path)
         require(exact, 'Shared declaration root is empty')
         host_map = root / host_maps[name]
         bounded_file(host_map, root)
