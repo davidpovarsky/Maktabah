@@ -263,6 +263,13 @@ let package = Package(name: "LocalAnnotationEditorAcceptance",
         report["status"] = "FAILED" if report["commands"] else "NOT_RUN"
         print(repr(error))
     finally:
+        # Preserve actual partial rows even when the executable exits nonzero.
+        # Partial execution still cannot satisfy the unchanged 43-case gate.
+        if "owned_directory" in report:
+            case_file = Path(report["owned_directory"]) / "fixtures/CASES.json"
+            if case_file.is_file():
+                try: report["cases"] = json.loads(case_file.read_text())
+                except Exception as error: report["cases_read_error"] = repr(error)
         if before is not None:
             final_identity = runpy.run_path(str(ROOT / "tools/exact-source-archive.py"))["source_identity"](ROOT, provenance)
             if final_identity["source_sha"] != report["source_sha"] or final_identity["source_archive"] != report["source_archive"]:
