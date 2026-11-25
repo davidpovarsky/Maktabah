@@ -91,6 +91,9 @@ private final class AnnotationBackfillViewModel {
 @MainActor
 struct AnnotationBackfillView: View {
     @State private var model = AnnotationBackfillViewModel()
+    #if canImport(AnytypeOriginalEditor)
+    @State private var nativeConversionIsRunning = false
+    #endif
 
     var body: some View {
         Form {
@@ -155,8 +158,15 @@ struct AnnotationBackfillView: View {
                              tableName: "AnnotationBackfill")
                     }
                     .accessibilityIdentifier("annotation-backfill-start")
+                    #if canImport(AnytypeOriginalEditor)
+                    .disabled(nativeConversionIsRunning)
+                    #endif
                 }
             }
+            #if canImport(AnytypeOriginalEditor)
+            AnnotationNativeBackfillSection(preparationCompleted: model.state == .completed,
+                isRunning: $nativeConversionIsRunning)
+            #endif
         }
         .navigationTitle(Text("Prepare existing notes", tableName: "AnnotationBackfill"))
         .onDisappear { model.cancel() }
