@@ -144,7 +144,7 @@ registerWindowFactory(({ id, packageID, services }) => {
     if (!context || phase !== 'ready') return;
     ++epoch;
     const text = context.inputs.filter(item => item.kind === 'text')
-      .map(item => item.text || '').join('\n') || context.source.selection?.text || '';
+      .map(item => item.text || '').join('\n') || context.source.selection?.text || context.source.documentText || '';
     current = { item: undefined, base64: undefined, originalText: undefined, editable: true, bytes: 0 };
     prepared = undefined;
     fileName.text = 'document.txt';
