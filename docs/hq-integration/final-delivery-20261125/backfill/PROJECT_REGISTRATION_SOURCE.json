@@ -1,0 +1,66 @@
+{
+  "scope": "REGISTRATION_SOURCE_ONLY_REQUIRES_APPLE_PARSE_AND_BUILD",
+  "before_sha256": "baecccfe7115b27c248f06683999a67a38b73e2ae9f33aeb678fa17ed1fdef95",
+  "after_sha256": "8050b7cffba1a5a4532edf890110bb76f1c6ffc04e604a3af75302d6af1b9efb",
+  "new_files": [
+    [
+      "AnnotationExchangeIdentity.swift",
+      "Annotations/Exchange/AnnotationExchangeIdentity.swift",
+      "sourcecode.swift",
+      [
+        "4B3202242EDAFE85003B95D1",
+        "4B7C90A52F83494200454BE1",
+        "F30576E22FA46222005732C6"
+      ]
+    ],
+    [
+      "AnnotationBackfillPlanner.swift",
+      "Annotations/Backfill/AnnotationBackfillPlanner.swift",
+      "sourcecode.swift",
+      [
+        "4B3202242EDAFE85003B95D1",
+        "4B7C90A52F83494200454BE1",
+        "F30576E22FA46222005732C6"
+      ]
+    ],
+    [
+      "AnnotationBackfillView.swift",
+      "Annotations/Backfill/AnnotationBackfillView.swift",
+      "sourcecode.swift",
+      [
+        "F30576E22FA46222005732C6"
+      ]
+    ],
+    [
+      "AnnotationBackfill.xcstrings",
+      "Annotations/Backfill/AnnotationBackfill.xcstrings",
+      "text.json.xcstrings",
+      [
+        "F305774A2FA46222005732C6"
+      ]
+    ]
+  ],
+  "new_file_reference_ids": [
+    "DE72A20933EEE552ED6AC840",
+    "D60C725A87853F7E4416D1B6",
+    "4AEA58A22EFA5C94735F60BB",
+    "35FBD567DB60305AAA80DF3A"
+  ],
+  "new_build_file_ids": [
+    "9E22D6A1FD6AA0272AD19518",
+    "1A6FD5E39DE86FB5FCEDDD56",
+    "5AB7EAC38B502CB77986FF07",
+    "1C53D5E01559154000EB3E70",
+    "BEC609C5EB684427BF4F9F86",
+    "A5733B9DAC7104C63B1536E6",
+    "D75E8675ADC0DAF7C3E3358B",
+    "79DA4EE26773BE98954F6D4E"
+  ],
+  "changed_existing_objects": [
+    "CFEE00000000000000000001",
+    "4B3202242EDAFE85003B95D1",
+    "4B7C90A52F83494200454BE1",
+    "F30576E22FA46222005732C6",
+    "F305774A2FA46222005732C6"
+  ]
+}

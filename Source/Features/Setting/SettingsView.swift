@@ -375,6 +375,15 @@ extension SettingsView {
 
     private var annotationsSection: some View {
         Section {
+            #if os(iOS)
+            NavigationLink {
+                AnnotationBackfillView()
+            } label: {
+                Text("Prepare existing notes", tableName: "AnnotationBackfill")
+            }
+            .accessibilityIdentifier("annotation-backfill-settings")
+            #endif
+
             Toggle(isOn: $viewModel.hideMissingBookAnnotations) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(.Setting.hideMissingBookAnnotations)

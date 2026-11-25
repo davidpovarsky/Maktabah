@@ -1,0 +1,210 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "Prepare existing notes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prepare existing notes"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הכנת הערות קיימות"
+          }
+        }
+      }
+    },
+    "Prepare existing notes for expanded editing and sharing.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prepare existing notes for expanded editing and sharing."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הכנת ההערות הקיימות לעריכה מורחבת ולשיתוף."
+          }
+        }
+      }
+    },
+    "This step keeps your saved notes in the current profile. Sharing remains a separate choice in the note editor.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This step keeps your saved notes in the current profile. Sharing remains a separate choice in the note editor."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בשלב זה ההערות השמורות נשארות בפרופיל הנוכחי. השיתוף נעשה בנפרד, לפי בחירתך בעורך ההערה."
+          }
+        }
+      }
+    },
+    "%lld notes ready": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld notes ready"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld הערות מוכנות"
+          }
+        }
+      }
+    },
+    "%lld highlights kept as highlights": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld highlights kept as highlights"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld סימונים נשמרו כסימונים"
+          }
+        }
+      }
+    },
+    "%lld pending deletions kept unchanged": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld pending deletions kept unchanged"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld מחיקות ממתינות נשמרו ללא שינוי"
+          }
+        }
+      }
+    },
+    "Preparation complete": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparation complete"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההכנה הושלמה"
+          }
+        }
+      }
+    },
+    "Preparation paused. Continue whenever you are ready.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparation paused. Continue whenever you are ready."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההכנה הושהתה. אפשר להמשיך בכל עת."
+          }
+        }
+      }
+    },
+    "Preparation stopped because a saved note could not be verified. Your existing notes were kept. Reopen this page to retry.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparation stopped because a saved note could not be verified. Your existing notes were kept. Reopen this page to retry."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההכנה נעצרה כי לא ניתן היה לאמת הערה שמורה. ההערות הקיימות נשמרו. אפשר לפתוח דף זה מחדש ולנסות שוב."
+          }
+        }
+      }
+    },
+    "Pause preparation": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause preparation"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השהיית ההכנה"
+          }
+        }
+      }
+    },
+    "Prepare notes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prepare notes"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הכנת הערות"
+          }
+        }
+      }
+    },
+    "Check and continue": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check and continue"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בדיקה והמשך"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

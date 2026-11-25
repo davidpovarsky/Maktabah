@@ -1,0 +1,71 @@
+{
+  "path": "/Users/m1/builds/_preflight/otzaria-backfill-source-20261125/022500",
+  "result": {
+    "scope": "ACTUAL_MAC_PROJECT_GRAPH_AND_SWIFT_SYNTAX_ONLY",
+    "status": "PASS",
+    "observed_at_utc": "2026-11-25T02:25:01.164064+00:00",
+    "before_project_sha256": "baecccfe7115b27c248f06683999a67a38b73e2ae9f33aeb678fa17ed1fdef95",
+    "after_project_sha256": "8050b7cffba1a5a4532edf890110bb76f1c6ffc04e604a3af75302d6af1b9efb",
+    "new_objects": 12,
+    "changed_existing_objects": [
+      "4B3202242EDAFE85003B95D1",
+      "4B7C90A52F83494200454BE1",
+      "CFEE00000000000000000001",
+      "F30576E22FA46222005732C6",
+      "F305774A2FA46222005732C6"
+    ],
+    "all_other_existing_objects_unchanged": true,
+    "commands": [
+      {
+        "path": "Source/ChavrusaText/Annotations/Backfill/AnnotationBackfillPlanner.swift",
+        "sha256": "e062dab9c5f18ea76f6417fe65b8d48c2df9efc49b1d4f38d2f89b81f081914f",
+        "exit_code": 0,
+        "command": [
+          "xcrun",
+          "swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "-sdk",
+          "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+          "/Users/m1/builds/_preflight/otzaria-backfill-source-20261125/022500/AnnotationBackfillPlanner.swift"
+        ]
+      },
+      {
+        "path": "Source/ChavrusaText/Annotations/Backfill/AnnotationBackfillView.swift",
+        "sha256": "b34c2282ace2272e490fa2d327d8ab0f7a07c2dec45648210f37b693c81a50c5",
+        "exit_code": 0,
+        "command": [
+          "xcrun",
+          "swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "-sdk",
+          "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+          "/Users/m1/builds/_preflight/otzaria-backfill-source-20261125/022500/AnnotationBackfillView.swift"
+        ]
+      },
+      {
+        "path": "Source/Features/Setting/SettingsView.swift",
+        "sha256": "0b5cd61041453e448bdd60e9e19247779821042fe4623e4ef3fe3195770672fe",
+        "exit_code": 0,
+        "command": [
+          "xcrun",
+          "swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "-sdk",
+          "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+          "/Users/m1/builds/_preflight/otzaria-backfill-source-20261125/022500/SettingsView.swift"
+        ]
+      }
+    ],
+    "app_build_executed": false,
+    "native_ui_executed": 0
+  }
+}
