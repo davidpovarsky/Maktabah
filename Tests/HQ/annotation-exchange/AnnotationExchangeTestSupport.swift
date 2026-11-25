@@ -1,4 +1,5 @@
 import Foundation
+import Synchronization
 import SQLite3
 import OtzariaActionCore
 #if os(Windows)
@@ -238,4 +239,65 @@ func writeCrashReceipt(_ fixture: Fixture, phase: String, commit: AnnotationExch
     let path = root.appendingPathComponent("crash-\(phase).json")
     try JSONEncoder().encode(receipt).write(to: path, options: .atomic)
     let handle = try FileHandle(forWritingTo: path); try handle.synchronize(); try handle.close()
+}
+
+// Schema v2 correctly refuses foreign triggers. These fixture-only hooks act on
+// the actual original SQLite connection without changing its schema or SQL.
+// The observed writes prove that rollback/cancellation reached real DML.
+final class ExchangeWriteFault: Sendable {
+    enum Mode: Sendable, Equatable { case rejectOutbox, cancelAfterOutbox }
+    struct Observation: Codable, Sendable {
+        var insertedTables: [String] = []
+        var insertedRowIDs: [Int64] = []
+        var deniedOutboxAuthorizations = 0
+        var cancellationsAfterOutboxInsert = 0
+        var outboxWasAttemptedAfterVersionAndHead = false
+    }
+    let mode: Mode
+    private let state = Mutex(Observation())
+    init(_ mode: Mode) { self.mode = mode }
+    var observation: Observation { state.withLock { $0 } }
+
+    func authorize(operation: Int32, table: String?, database: String?) -> Int32 {
+        guard mode == .rejectOutbox, operation == SQLITE_INSERT,
+              table == "otzaria_annotation_exchange_outbox", database == "main" else { return SQLITE_OK }
+        state.withLock {
+            $0.deniedOutboxAuthorizations += 1
+            $0.outboxWasAttemptedAfterVersionAndHead =
+                $0.insertedTables.contains("otzaria_annotation_exchange_versions")
+                && $0.insertedTables.contains("otzaria_annotation_exchange_heads")
+        }
+        return SQLITE_DENY
+    }
+
+    func updated(operation: Int32, table: String?, database: String?, rowID: Int64) {
+        guard operation == SQLITE_INSERT, database == "main", let table else { return }
+        state.withLock {
+            $0.insertedTables.append(table)
+            $0.insertedRowIDs.append(rowID)
+        }
+        if mode == .cancelAfterOutbox, table == "otzaria_annotation_exchange_outbox" {
+            withUnsafeCurrentTask { task in
+                if let task {
+                    task.cancel()
+                    state.withLock { $0.cancellationsAfterOutboxInsert += 1 }
+                }
+            }
+        }
+    }
+}
+func authorizeExchangeWriteFault(_ context: UnsafeMutableRawPointer?, _ operation: Int32,
+                                 _ first: UnsafePointer<CChar>?, _ second: UnsafePointer<CChar>?,
+                                 _ database: UnsafePointer<CChar>?, _ trigger: UnsafePointer<CChar>?) -> Int32 {
+    guard let context else { return SQLITE_DENY }
+    let fault = Unmanaged<ExchangeWriteFault>.fromOpaque(context).takeUnretainedValue()
+    return fault.authorize(operation: operation, table: first.map { String(cString: $0) },
+                           database: database.map { String(cString: $0) })
+}
+func observeExchangeWriteFault(_ context: UnsafeMutableRawPointer?, _ operation: Int32,
+                               _ database: UnsafePointer<CChar>?, _ table: UnsafePointer<CChar>?, _ rowID: Int64) {
+    guard let context else { return }
+    let fault = Unmanaged<ExchangeWriteFault>.fromOpaque(context).takeUnretainedValue()
+    fault.updated(operation: operation, table: table.map { String(cString: $0) },
+                  database: database.map { String(cString: $0) }, rowID: rowID)
 }
