@@ -45,6 +45,8 @@ def wait_for_capacity(root, output, checkout_sha, directory, maximum_wait_second
             require(plan.get("schema") == "otzaria.compiler-capacity-plan/1" and
                     plan.get("checkout_sha") == checkout_sha and plan.get("revision") == number,
                     "Capacity plan belongs to another source or revision")
+            phase_authorized = plan.get("phase_authorized", True)
+            require(type(phase_authorized) is bool, "Compiler phase admission must be a boolean")
             own = plan.get("compiler_remaining_bytes")
             margin = plan.get("margin_bytes")
             require(type(own) is int and own > 0 and type(margin) is int and margin > 0,
@@ -70,7 +72,9 @@ def wait_for_capacity(root, output, checkout_sha, directory, maximum_wait_second
         required = own_forecast + current["margin_bytes"] + sum(
             phase["remaining_bytes"] for phase in current["other_phases"])
         observation = {
-            "status": "CAPACITY_PASS" if free >= required else "CAPACITY_WAIT",
+            "status": ("PHASE_ADMISSION_WAIT" if not current.get("phase_authorized", True) else
+                       "CAPACITY_PASS" if free >= required else "CAPACITY_WAIT"),
+            "phase_authorized": current.get("phase_authorized", True),
             "observed_at": datetime.now(timezone.utc).isoformat(),
             "checkout_sha": checkout_sha, "plan": str(paths[-1]),
             "plan_sha256": recorded[paths[-1].name], "recorded_plan_hashes": dict(recorded),
@@ -81,8 +85,10 @@ def wait_for_capacity(root, output, checkout_sha, directory, maximum_wait_second
         with observations.open("a", encoding="utf-8") as stream:
             stream.write(json.dumps(observation, sort_keys=True) + "\n")
             stream.flush()
-        if free >= required:
+        if current.get("phase_authorized", True) and free >= required:
             return observation
         require(time.monotonic() - started < maximum_wait_seconds,
-                "Measured compiler phase still does not fit; original preparation retained")
+                ("Compiler phase still awaits explicit admission; original preparation retained"
+                 if not current.get("phase_authorized", True) else
+                 "Measured compiler phase still does not fit; original preparation retained"))
         time.sleep(15)
