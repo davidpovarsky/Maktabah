@@ -1,0 +1,13 @@
+{
+  "annotationUUID" : "3408274D-F44A-4A16-9AF1-D0EB32004793",
+  "exchangeDestinations" : 0,
+  "mode" : "cold-reopen-final",
+  "originalPendingUpload" : true,
+  "payloadSHA256" : "c7f334f01aa09c61db946fd5883ed0b059a519f2032447d10c2a9a4d873e2761",
+  "priorProcessID" : 77265,
+  "processID" : 77268,
+  "revision" : 2,
+  "sourceSHA256" : "35ac180497e9af7243be45047043cf2875db7ba16bba97c03cc82fac927fa6bd",
+  "sqliteVersion" : "3.54.0",
+  "status" : "PASS_COMPONENT_COLD_PROCESS"
+}
