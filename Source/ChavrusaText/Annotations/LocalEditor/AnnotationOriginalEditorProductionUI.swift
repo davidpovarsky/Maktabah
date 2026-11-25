@@ -411,8 +411,9 @@ final class AnnotationOriginalEditorProductionPresentation: Identifiable {
                     try await open(expected: saved.snapshot)
                     guard let reopened = self.mount else { throw AnnotationOriginalEditorUIError.closed }
                     let restored = try await reopened.restoreMiniAppsContext(launch.context)
+                    let files = try await reopened.miniAppsFiles(context: restored)
                     OtzariaMiniAppsCoordinator.shared.showOriginalEditor(annotation: annotation,
-                        context: restored, editorID: id, sourceView: reopened.viewController.view)
+                        context: restored, files: files, editorID: id, sourceView: reopened.viewController.view)
                 case .completedWithoutOwnership:
                     if !closed { stage = .saved }
                 }
@@ -424,15 +425,17 @@ final class AnnotationOriginalEditorProductionPresentation: Identifiable {
         }
     }
 
-    func applyMiniApps(_ result: MiniAppResult, contextJSON: String,
-                      text: String) async throws -> AnnotationLocalEditorOutcome {
+    func applyMiniApps(_ result: MiniAppResult, contextJSON: String, text: String,
+                      attachments: [AnytypeOriginalEditorMiniAppsAttachment]) async throws
+        -> AnnotationLocalEditorOutcome {
         guard canSave, operation == nil, let mount else { throw AnnotationLocalEditorError.busy }
         let context = try JSONDecoder().decode(AnytypeOriginalEditorMiniAppsContext.self,
             from: Data(contextJSON.utf8))
         stage = .saving
         do {
             let restored = try await mount.restoreMiniAppsContext(context)
-            let outcome = try await mount.applyMiniApps(result, context: restored, text: text)
+            let outcome = try await mount.applyMiniApps(result, context: restored,
+                text: text, attachments: attachments)
             switch outcome {
             case .committed(let saved):
                 annotation = saved.snapshot.annotation

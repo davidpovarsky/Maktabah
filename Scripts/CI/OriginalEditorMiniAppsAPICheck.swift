@@ -20,6 +20,14 @@ private func requireOriginalMiniAppsLaunchAPI(
     let _: String? = context.selectedBlockText
     let _: [String] = context.blockIDs
     let _: String? = context.sceneID
+    let files: [AnytypeOriginalEditorMiniAppsFile] =
+        try await session.exportMiniAppsFiles(context: context, maximumBytes: 8 * 1_048_576)
+    for file in files {
+        let _: String = file.blockID
+        let _: Data = file.attachment.data
+        let _: String = file.attachment.name
+        let _: String = file.attachment.typeIdentifier
+    }
     let bytes = try JSONEncoder().encode(context)
     let _: AnytypeOriginalEditorMiniAppsContext =
         try JSONDecoder().decode(AnytypeOriginalEditorMiniAppsContext.self, from: bytes)
@@ -46,4 +54,20 @@ private func requireOriginalMiniAppsReturnAPI(
             text: text, maximumBodyBytes: 65_536)
     let _: AnytypeOriginalEditorSnapshotCapture = capture.nativeCapture
     let _: String = capture.textPreview
+}
+
+// A compile-only file boundary probe. Native upload, byte readback, canonical
+// save and replay must still pass the original application acceptance journey.
+@MainActor
+private func requireOriginalMiniAppsFilesAPI(
+    session: AnytypeOriginalEditorLocalAnnotationSession,
+    context: AnytypeOriginalEditorMiniAppsContext,
+    requestID: UUID,
+    bytes: Data
+) async throws {
+    let attachment = try AnytypeOriginalEditorMiniAppsAttachment(
+        data: bytes, name: "miniapps-result.txt", typeIdentifier: "public.plain-text")
+    let _: AnytypeOriginalEditorLocalAnnotationCapture =
+        try await session.applyMiniAppsResult(requestID: requestID, context: context,
+            action: .insert, text: "", attachments: [attachment], maximumBodyBytes: 65_536)
 }
