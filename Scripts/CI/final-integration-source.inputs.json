@@ -10,9 +10,9 @@
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda"
   },
-  "application_source_sha": "295449b809084859c9a524ad85a6ef98d936583c",
+  "application_source_sha": "b36a22fde37c0083a2aa080015031905ce9fa9d3",
   "application_trees": {
-    "Maktabah-iOSUITests": "4b56e75f5510d0e15d4dfa8d54703aad15a47e7e",
+    "Maktabah-iOSUITests": "133de362668771c141e6f00abc2e372e0de4708c",
     "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3",
     "Source": "b5d1519de04f59a244b68fef7ccb206b88d0224d",
     "Vendor": "ab0c8fa1ac707902552443b4b85982064534086e"
@@ -32,11 +32,11 @@
     {
       "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
-        "bytes": 71354,
+        "bytes": 89565,
         "kind": "blob",
         "mode": "100644",
-        "object": "ebf89942bdfa28d0ee96899599715fe7a5cda0dc",
-        "sha256": "d73feb470f3f9c348342598409ddf6deaa0aa84d3068ffc9ff5b0f44a164b377"
+        "object": "6c9de61204b2278860fa6796f26590c50c462578",
+        "sha256": "4246f2b25f0739c111ba9d8e556f1836a8b5f137c2f8e80f32bb76f9edb8d404"
       },
       "before": null,
       "component_objects": {
@@ -81,11 +81,11 @@
         }
       },
       "patch": {
-        "bytes": 72925,
-        "sha256": "5018982575ae6d07cf1714bd5543ee19d6be13462c0d44e7ecf94ffcc3032802"
+        "bytes": 91432,
+        "sha256": "c72880e2a82039c419c603f901d90b01d1166314d0371c69739c35697ec65f70"
       },
       "path": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift",
-      "reason": "Reviewed original real-app selector retains all five genuine plain/reader/rich callbacks, newer unsaved native-block preservation, cold remount and replay. Shared native Picker editing now also has a separate Hebrew phone/tablet selector using the real catalog, localized original controls, mirrored toolbar/reorder geometry and preferences changed only through actual UI. All22 exact current UI sources passed Apple Swift6.4 codegen. Locale/scene, screenshots and AX are retained by actual runs; zero native UI execution is claimed here. The acknowledged callback replay is delivered through XCUIDevice.system.open, preserving genuine OS URL delivery instead of XCUIApplication's launch-equivalent helper. Real cold terminations and all revision/archive/receipt assertions remain intact; exact22-source Apple codegen passed on4eec5cf3. Integrate original owner 5010787a explicit Save/Cancel before MiniApps and its no-canonical-mutation cancel assertions, keeping the native file API, Hebrew/RTL and warm OS replay changes. Historical source compile receipts are not credited to this merged source."
+      "reason": "Reviewed original real-app selector retains all five genuine plain/reader/rich callbacks, newer unsaved native-block preservation, cold remount and replay. Shared native Picker editing now also has a separate Hebrew phone/tablet selector using the real catalog, localized original controls, mirrored toolbar/reorder geometry and preferences changed only through actual UI. All22 exact current UI sources passed Apple Swift6.4 codegen. Locale/scene, screenshots and AX are retained by actual runs; zero native UI execution is claimed here. The acknowledged callback replay is delivered through XCUIDevice.system.open, preserving genuine OS URL delivery instead of XCUIApplication's launch-equivalent helper. Real cold terminations and all revision/archive/receipt assertions remain intact; exact22-source Apple codegen passed on4eec5cf3. Integrate original owner 5010787a explicit Save/Cancel before MiniApps and its no-canonical-mutation cancel assertions, keeping the native file API, Hebrew/RTL and warm OS replay changes. Historical source compile receipts are not credited to this merged source. Add a separate original-app File Workshop acceptance method using genuine UI import, nonce-bearing file edits, cold native reopen/export, original file uploads, distinct same-name blocks, cancellation and duplicate callback. Keep all original text/reader/privacy/RTL cases. This source addition has no native execution credit until the real two-app gate passes."
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
