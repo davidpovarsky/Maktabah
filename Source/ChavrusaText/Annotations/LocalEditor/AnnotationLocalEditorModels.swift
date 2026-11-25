@@ -154,6 +154,13 @@ struct AnnotationLocalEditorSnapshot: Sendable {
     let sessionID: UUID
 }
 
+/// Native Backfill may preserve the exact existing plain note while adding its
+/// first rich body. Ordinary edits continue to replace the note with preview.
+enum AnnotationLocalEditorNoteWritePolicy: String, Sendable {
+    case replaceWithPreview
+    case preserveOriginalText
+}
+
 /// One prepared save intent is reused on retry, retaining its source witness,
 /// mutation ID and expected revision. Durable replay preserves the original
 /// timestamp; a fully rolled-back attempt has no durable timestamp to preserve.
@@ -164,6 +171,20 @@ struct AnnotationLocalEditorIntent: Sendable {
     let textPreview: String
     let editorRevision: String?
     let intentDigest: String
+    let noteWritePolicy: AnnotationLocalEditorNoteWritePolicy
+
+    init(mutationID: UUID, snapshot: AnnotationLocalEditorSnapshot,
+         body: TorahAnnotationEnvelope.RichBody, textPreview: String,
+         editorRevision: String?, intentDigest: String,
+         noteWritePolicy: AnnotationLocalEditorNoteWritePolicy = .replaceWithPreview) {
+        self.mutationID = mutationID
+        self.snapshot = snapshot
+        self.body = body
+        self.textPreview = textPreview
+        self.editorRevision = editorRevision
+        self.intentDigest = intentDigest
+        self.noteWritePolicy = noteWritePolicy
+    }
 }
 
 struct AnnotationLocalEditorCommitted: Sendable {

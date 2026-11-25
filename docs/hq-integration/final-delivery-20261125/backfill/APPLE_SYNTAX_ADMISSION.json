@@ -1,0 +1,12 @@
+{
+  "status": "BLOCKED_BEFORE_SOURCE_TRANSFER_OR_SWIFT",
+  "job": "job_937fb99f26ea",
+  "job_exit": 1,
+  "finished_at": "2026-11-25T04:14:34.053077+00:00",
+  "actual_free_bytes": 5209219072,
+  "recorded_required_bytes": 8642363392,
+  "native_compiles": 0,
+  "ui_cases_executed": 0,
+  "owned_source_directory_created": false,
+  "raw_output": "ADMISSION {\"free\": 5209219072, \"external_remaining_gib\": 4, \"os_margin_gib\": 2, \"two_queued_component_slots_gib\": 2, \"own_incremental_mib\": 50, \"required\": 8642363392}\n\nTraceback (most recent call last):\n  File \"<string>\", line 5, in <module>\nAssertionError: Syntax-only admission held for current concurrent work"
+}

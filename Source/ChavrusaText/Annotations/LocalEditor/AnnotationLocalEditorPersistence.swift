@@ -45,6 +45,27 @@ final class AnnotationLocalEditorPersistence: Sendable {
     func prepare(snapshot: AnnotationLocalEditorSnapshot, mutationID: UUID,
                  body: TorahAnnotationEnvelope.RichBody, textPreview: String,
                  editorRevision: String?) throws -> AnnotationLocalEditorIntent {
+        try prepare(snapshot: snapshot, mutationID: mutationID, body: body,
+            textPreview: textPreview, editorRevision: editorRevision,
+            noteWritePolicy: .replaceWithPreview)
+    }
+
+    /// Internal storage boundary for the first original native conversion. The
+    /// iOS Session entry requires the SDK's closed, current native capture and
+    /// exact full-text equality before calling here. This boundary independently
+    /// refuses an existing rich body and keeps the actual saved note in SQLite.
+    func prepareNativeBackfill(snapshot: AnnotationLocalEditorSnapshot, mutationID: UUID,
+                               body: TorahAnnotationEnvelope.RichBody, textPreview: String,
+                               editorRevision: String?) throws -> AnnotationLocalEditorIntent {
+        try prepare(snapshot: snapshot, mutationID: mutationID, body: body,
+            textPreview: textPreview, editorRevision: editorRevision,
+            noteWritePolicy: .preserveOriginalText)
+    }
+
+    private func prepare(snapshot: AnnotationLocalEditorSnapshot, mutationID: UUID,
+                         body: TorahAnnotationEnvelope.RichBody, textPreview: String,
+                         editorRevision: String?,
+                         noteWritePolicy: AnnotationLocalEditorNoteWritePolicy) throws -> AnnotationLocalEditorIntent {
         try connection.requireCurrent(owner: owner)
         try requireSnapshotOwner(snapshot)
         try requireEditable(snapshot)
@@ -60,7 +81,19 @@ final class AnnotationLocalEditorPersistence: Sendable {
                 throw AnnotationLocalEditorError.unsupportedBody
             }
         }
-        let fields: ActionObject = [
+        if noteWritePolicy == .preserveOriginalText {
+            guard let originalText = snapshot.annotation.note, !originalText.isEmpty,
+                  !originalText.utf8.contains(0),
+                  originalText.utf8.starts(with: textPreview.utf8),
+                  originalText.utf8.count > 8_192 || originalText.utf8.elementsEqual(textPreview.utf8) else {
+                throw AnnotationLocalEditorError.invalidPreview
+            }
+            if case .supported(let existing, _)? = snapshot.document,
+               existing.richBody != nil {
+                throw AnnotationLocalEditorError.unsupportedBody
+            }
+        }
+        var fields: ActionObject = [
             "namespace": .string(Self.namespace), "annotationUUID": .string(annotationUUID.uuidString),
             "expectedRevision": .integer(snapshot.revision), "sourceSHA256": .string(snapshot.source.digest),
             "priorPayloadSHA256": snapshot.version.map { .string($0.payloadDigest) } ?? .null,
@@ -68,10 +101,19 @@ final class AnnotationLocalEditorPersistence: Sendable {
             "bytesBase64": .string(body.bytes.base64EncodedString()), "textPreview": .string(textPreview),
             "editorRevision": editorRevision.map(ActionJSON.string) ?? .null
         ]
+        if noteWritePolicy == .preserveOriginalText {
+            guard let originalText = snapshot.annotation.note else {
+                throw AnnotationLocalEditorError.invalidIntent
+            }
+            fields["savedNoteWrite"] = .string("preserve-original-text.v1")
+            fields["savedNoteSHA256"] = .string(try digest.sha256(Data(originalText.utf8)))
+        }
+        // The default edit keeps its original canonical fields and digest.
         let intentDigest = try digest.sha256(AnnotationExchangeValidation.canonical(.object(fields)))
         guard AnnotationExchangeValidation.digest(intentDigest) else { throw AnnotationLocalEditorError.corruptRecord }
         return .init(mutationID: mutationID, snapshot: snapshot, body: body, textPreview: textPreview,
-                     editorRevision: editorRevision, intentDigest: intentDigest)
+                     editorRevision: editorRevision, intentDigest: intentDigest,
+                     noteWritePolicy: noteWritePolicy)
     }
 
     func commit(_ intent: AnnotationLocalEditorIntent) throws -> AnnotationLocalEditorCommitted {
@@ -79,7 +121,8 @@ final class AnnotationLocalEditorPersistence: Sendable {
         // Recompute the command from its original snapshot, never from newer DB
         // contents. This also checks unsupported versions/formats before writes.
         let validated = try prepare(snapshot: intent.snapshot, mutationID: intent.mutationID,
-            body: intent.body, textPreview: intent.textPreview, editorRevision: intent.editorRevision)
+            body: intent.body, textPreview: intent.textPreview, editorRevision: intent.editorRevision,
+            noteWritePolicy: intent.noteWritePolicy)
         guard validated.intentDigest == intent.intentDigest else { throw AnnotationLocalEditorError.invalidIntent }
         var result: AnnotationLocalEditorCommitted?
         try connection.database.transaction {
@@ -101,11 +144,25 @@ final class AnnotationLocalEditorPersistence: Sendable {
                 SELECT COUNT(*) FROM sync_pending WHERE ck_record_id = ? COLLATE NOCASE AND operation = 'delete';
                 """, parameters: [recordID]) { $0.int64(at: 0) }.first ?? 0
             guard deleted == 0 else { throw AnnotationLocalEditorError.pendingDeletion }
+            let savedNoteText: String
+            switch intent.noteWritePolicy {
+            case .replaceWithPreview:
+                savedNoteText = intent.textPreview
+            case .preserveOriginalText:
+                guard let originalText = before.annotation.note,
+                      let capturedText = intent.snapshot.annotation.note,
+                      originalText.utf8.elementsEqual(capturedText.utf8) else {
+                    throw AnnotationExchangeError.staleSource
+                }
+                // Use the current row validated inside this same transaction.
+                // A caller-supplied snapshot cannot substitute different text.
+                savedNoteText = originalText
+            }
             try Task.checkCancellation()
             try connection.database.execute(query: """
                 UPDATE annotations SET note = ?, lastModified = ?
                 WHERE id = ? AND ckRecordId = ? COLLATE NOCASE;
-                """, parameters: [intent.textPreview, Int64(Date().timeIntervalSince1970), annotationID, recordID])
+                """, parameters: [savedNoteText, Int64(Date().timeIntervalSince1970), annotationID, recordID])
             // Same original pending queue, in the same outer transaction. No
             // exchange destination or acknowledgement is manufactured here.
             try connection.syncPending.addPendingSync(ckRecordId: recordID, operation: "upload")
@@ -116,7 +173,7 @@ final class AnnotationLocalEditorPersistence: Sendable {
             guard receipt.deliveries.isEmpty else { throw AnnotationLocalEditorError.corruptRecord }
             let after = try snapshotLocked()
             guard after.revision == receipt.revision, after.version?.payloadDigest == receipt.payloadDigest,
-                  after.annotation.note?.utf8.elementsEqual(intent.textPreview.utf8) == true else {
+                  after.annotation.note?.utf8.elementsEqual(savedNoteText.utf8) == true else {
                 throw AnnotationLocalEditorError.corruptRecord
             }
             try requireCurrent()
