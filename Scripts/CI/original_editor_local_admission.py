@@ -27,6 +27,118 @@ MINIAPPS_CONTRACT = 'b8a02497aeabab316d85daf2dab5045b1d94dac98a14b7ccc89a3b7c9a6
 FILES_MINIAPPS_CONTRACT = '6ba6e80fad98cbcf967df2866134369df3310b0b231dd462cb0a4c2e71f44141'
 
 
+
+FRESH_SCHEMA = 'otzaria.original-import-local-sdk-input/3'
+FRESH_ROLES = {'abi_generation_qualification', 'abi_changed_swift_qualification',
+               'abi_final_native_rpc_union', 'abi_pinned_wrapper', 'abi_fresh_verification'}
+FRESH_VERIFIERS = {
+    'Tools/OriginalEditor/import_abi_input.py':
+        '0cf0497de8847bc522880dd3ccd84e974770a56732ca99485574975422242f03',
+    'Tools/OriginalEditor/fresh_swift_input.py':
+        'edd9146acfb35f3b190eab88412c30b695f3befeeae5098bf8db421d8e9a1a28',
+    'Tools/OriginalEditor/ABIPinnedWrapper/pinned_wrapper.py':
+        '178262cdfd5d8b07fb0d8915bb394150ef8988de5fe2115f02bac735f6c65289',
+}
+
+
+def validate_fresh_abi(values, config, heart, before):
+    """Retain the new original native/Swift producers without rewriting history."""
+    abi, rows = values['abi'], config['local_receipts']
+    require(config.get('abi_provenance') == FRESH_SCHEMA
+            and config.get('public_host_contract_sha256') == FILES_MINIAPPS_CONTRACT
+            and abi.get('schema') == heart.get('schema') == FRESH_SCHEMA,
+            'Fresh original ABI requires its explicit complete files contract')
+    observation = values['abi_fresh_verification']
+    require(observation.get('schema') == 'otzaria.current-original-abi-verification/1'
+            and observation.get('status') == 'CURRENT_ORIGINAL_ABI_VERIFIER_PASS'
+            and observation.get('returncode') == 0
+            and observation.get('producer_source_sha') == config['source_sha']
+            and observation.get('source_observation_sha256') == rows['source_before']['sha256']
+            and observation.get('abi_sha256') == rows['abi']['sha256']
+            and observation.get('verifier_sources') == FRESH_VERIFIERS
+            and observation.get('observed_heart') == heart
+            and observation.get('new_native_tests') == 0
+            and observation.get('new_sdk_or_ui_credit') is False
+            and observation.get('source_unchanged') is True
+            and all(before.get('source_inputs', {}).get(name, {}).get('sha256') == digest
+                    for name, digest in FRESH_VERIFIERS.items()),
+            'Fresh original ABI was not reverified by its exact qualified source')
+    require(set(abi.get('qualification_receipts', {})) == {
+                'generation_qualification', 'changed_swift_qualification', 'final_native_rpc_union'},
+            'Fresh generation, Swift and native origins are incomplete')
+    for name, reference in abi['qualification_receipts'].items():
+        row = rows['abi_' + name]
+        require(reference.get('sha256') == row['sha256'] and reference.get('bytes') == row['bytes'],
+                'Fresh original qualification receipt differs: ' + name)
+    generation = values['abi_generation_qualification']
+    swift = values['abi_changed_swift_qualification']
+    native = values['abi_final_native_rpc_union']
+    require(generation.get('status') == 'PASS'
+            and generation.get('aggregate_producer_outcome') == 'FAIL'
+            and generation.get('output_counts') == {'native': 11, 'swift': 696, 'middleware': 37}
+            and generation.get('generators_replayed_by_abi') == 0
+            and generation.get('source_receipt_sha256')
+                == 'd7e1074b46a52d7d559304045110da3e13b40630208520566ff840bf12c357e7',
+            'Fresh ABI transport cannot replace the original failed generation history')
+    swift_execution = swift.get('local_execution', {})
+    require(swift.get('status') == 'PASS' and swift.get('execution_origin') == 'local-mac'
+            and swift.get('github_run_id') is None
+            and swift.get('primary_count') == 2 and swift.get('input_files') == 689
+            and swift.get('typecheck_invocations') == 1
+            and swift.get('generated_index_sha256') == generation.get('generated_index_sha256')
+            and swift.get('generation_replayed') is False and swift.get('full_sdk_typechecked') is False
+            and swift.get('historical_missing_receipts_replaced') is False
+            and swift.get('owned_command_groups_drained') is True
+            and swift.get('original_control_source') == 'fc4a84f68d26bcf36a8662367d08475b4024824a'
+            and swift.get('local_execution_sha256')
+                == '73ee9eecbf04882d4cb8803adf838ae8bd7a157dbada5bda65c4589d7e74f28e'
+            and swift_execution.get('execution_id') == 'local-580a9308-fd9a-4dc7-a2a5-aab8e73205a2'
+            and swift_execution.get('control_head') == swift['original_control_source']
+            and swift_execution.get('execution_origin') == 'local-mac'
+            and swift_execution.get('github_run_id') is None
+            and swift.get('source_receipt_sha256')
+                == '207aaabf0840383ad19453ab68e34ebc9c892f1aa0f8cae962dae23023894e5f'
+            and swift.get('raw_evidence_index_sha256')
+                == 'c51e53500db9ac57ccde6643f9f812f958f5e443616bfd1614d4212e98b9cf32',
+            'Fresh Swift origin or bounded original execution scope differs')
+    counts = {'native9': 9, 'rpc9': 9, 'cancel_panic': 1, 'bundled_semantic': 6,
+              'schema_closure': 11, 'relation_target_closure': 12,
+              'imported_creation_date': 6, 'bounded_native_metadata': 12}
+    require(native == abi.get('native_qualification') == heart.get('native_qualification')
+            and native.get('schema') == 'otzaria.fresh-native-rpc-union-qualification/1'
+            and native.get('status') == 'PASS' and native.get('execution_origin') == 'local-mac'
+            and native.get('github_run_id') is None
+            and native.get('original_control_source') == native.get('source_sha')
+                == 'c7e9935eb36a47f73d04cf72ea45472d3f2a8a70'
+            and native.get('native_source_tree') == config['native_source_tree']
+            and native.get('counts') == {name: {'passes': count, 'failures': 0, 'skipped': 0, 'not_run': 0}
+                                        for name, count in counts.items()}
+            and all(type(value) is int for group in native.get('counts', {}).values() for value in group.values())
+            and native.get('source_module_link_stability') == 'PASS'
+            and native.get('owned_command_groups_drained') is True
+            and native.get('historical_missing_receipts_replaced') is False
+            and native.get('full_sdk_accepted') is False and native.get('editor_ui_accepted') is False,
+            'Fresh native66 origin, count or source scope differs')
+    wrapper, reference, proof = values['abi_pinned_wrapper'], abi['pinned_wrapper'], heart['pinned_wrapper']
+    require(rows['abi_pinned_wrapper']['sha256'] == reference['sha256']
+            and rows['abi_pinned_wrapper']['bytes'] == reference['bytes']
+            and all(wrapper.get(key) == value for key, value in proof.items()
+                    if key not in {'receipt_sha256', 'targets'})
+            and [row.get('target') for row in wrapper.get('targets', [])] == proof['targets'],
+            'Fresh original three-target wrapper receipt differs')
+    require(abi.get('generated_files_verified') == heart.get('generated_files_verified') == 733
+            and abi.get('generated_files_written') == heart.get('generated_files_written') == 0
+            and abi.get('generators_replayed') == 0 and abi.get('source_unchanged_after_bind') is True
+            and abi.get('verified_architectures') == {'ios': ['arm64'], 'ios-simulator': ['arm64', 'x86_64']}
+            and abi.get('lib_files') == heart.get('lib_files') and len(abi.get('lib_files', [])) == 17,
+            'Fresh original generated source or installed native ABI closure differs')
+    return {'schema': FRESH_SCHEMA, 'native_control_source': native['source_sha'],
+            'changed_swift_control_source': swift['original_control_source'],
+            'changed_swift_local_execution_sha256': swift['local_execution_sha256'],
+            'native_tests_rerun_by_transport': False, 'new_sdk_or_ui_credit': False,
+            'scope': 'EXACT_FRESH_ORIGINAL_NATIVE_SWIFT_ABI_PROVENANCE_ONLY'}
+
+
 def require(value, reason):
     if not value:
         raise RuntimeError(reason)
@@ -52,8 +164,9 @@ def validate_configuration(config):
         require(re.fullmatch(r'[0-9a-f]{64}', config.get(name, '')), 'Missing local SDK digest: ' + name)
     rows = config.get('local_receipts', {})
     provenance = config.get('abi_provenance')
-    require(provenance in (None, DONOR_SCHEMA), 'Unsupported local ABI provenance route')
-    roles = ROLES | DONOR_ROLES if provenance == DONOR_SCHEMA else ROLES
+    require(provenance in (None, DONOR_SCHEMA, FRESH_SCHEMA), 'Unsupported local ABI provenance route')
+    roles = ROLES | (DONOR_ROLES if provenance == DONOR_SCHEMA else
+                     FRESH_ROLES if provenance == FRESH_SCHEMA else set())
     require(set(rows) == roles, 'Local SDK source/ABI evidence closure is incomplete')
     for role, row in rows.items():
         require(set(row) == {'path', 'bytes', 'sha256'} and type(row['bytes']) is int and row['bytes'] > 0
@@ -82,7 +195,7 @@ def validate_abi_adapter(abi, heart, source_sha):
         require('pinned_wrapper' not in abi and 'pinned_wrapper' not in heart,
                 'Historical ABI provenance cannot silently admit a wrapper adapter')
         return
-    require(schema == 'otzaria.original-import-local-sdk-input/2'
+    require(schema in ('otzaria.original-import-local-sdk-input/2', FRESH_SCHEMA)
             and heart.get('schema') == schema, 'Unsupported original Import ABI schema')
     reference, proof = abi.get('pinned_wrapper', {}), heart.get('pinned_wrapper', {})
     require(set(reference) == {'path', 'bytes', 'sha256'}
@@ -266,9 +379,10 @@ def validate_provenance(root, config, qualification, api):
     contract = validate_public_contract(config, values['source_before'], api)
     execution = values['execution']
     donor_route = config.get('abi_provenance') == DONOR_SCHEMA
+    fresh_route = config.get('abi_provenance') == FRESH_SCHEMA
     require(not donor_route or contract in (MINIAPPS_CONTRACT, FILES_MINIAPPS_CONTRACT),
             'Donor reuse requires the reviewed complete MiniApps public contract')
-    branch = ('codex/anytype-original-miniapps-facade-20261125' if donor_route else
+    branch = ('codex/anytype-original-miniapps-facade-20261125' if donor_route or fresh_route else
               'codex/otzaria-local-annotation-sdk-20261124' if contract else
               'codex/otzaria-sdk-mac-20261124')
     require(execution.get('schema') == 'otzaria.original-editor.local-execution/1'
@@ -294,11 +408,15 @@ def validate_provenance(root, config, qualification, api):
             and before.get('execution_identity') == identity
             and before.get('status') == 'SOURCE_BOUND_FRAMEWORK_RUNTIME_NOT_RUN',
             'Actual SDK source closure was not preserved through execution')
-    donor_proof = None
+    donor_proof = fresh_proof = None
+    require((abi.get('schema') == FRESH_SCHEMA) == fresh_route,
+            'Fresh original ABI cannot silently use a historical provenance route')
     if donor_route:
         donor_proof = validate_donor_abi(values, config, qualification.get('heart', {}), before)
     else:
         validate_abi_adapter(abi, qualification.get('heart', {}), config['source_sha'])
+        if fresh_route:
+            fresh_proof = validate_fresh_abi(values, config, qualification.get('heart', {}), before)
         require(abi.get('status') == 'PASS' and abi.get('producer_kind') == 'local-mac'
                 and abi.get('sdk_source_sha') == config['source_sha']
                 and abi.get('local_execution_sha256') == config['local_execution_sha256']
@@ -317,6 +435,7 @@ def validate_provenance(root, config, qualification, api):
             'local_receipts': config['local_receipts'], 'native_stageb_qualified': False,
             'scope': 'EXACT_LOCAL_PRODUCER_SOURCE_AND_ABI_PROVENANCE_ONLY',
             **({'abi_reuse': donor_proof} if donor_proof else {}),
+            **({'fresh_abi_provenance': fresh_proof} if fresh_proof else {}),
             **({'public_host_contract_sha256': contract} if contract else {})}
 
 

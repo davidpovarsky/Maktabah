@@ -81,6 +81,60 @@ def collect_donor_receipts(producer_root, abi_path, source_before, qualification
     return paths
 
 
+
+def collect_fresh_receipts(producer_root, abi_path, source_before, qualification):
+    """Run the frozen original verifier before transporting its fresh origins."""
+    abi = read_json(abi_path)
+    if abi.get('schema') != LOCAL['FRESH_SCHEMA']:
+        return {}, None
+    before = read_json(source_before)
+    for name, expected in LOCAL['FRESH_VERIFIERS'].items():
+        path = exact_producer_path(producer_root, name)
+        committed = subprocess.check_output(
+            ['git', '-C', str(producer_root), 'show', 'HEAD:' + name])
+        require(digest(path) == hashlib.sha256(committed).hexdigest() == expected
+                and before.get('source_inputs', {}).get(name, {}).get('sha256') == expected,
+                'Current original ABI verifier source differs: ' + name)
+    paths = {}
+    for name, row in abi['qualification_receipts'].items():
+        path = exact_producer_path(
+            producer_root, (abi_path.parent.relative_to(producer_root) / row['path']).as_posix(),
+            build=True)
+        require(path.stat().st_size == row['bytes'] and digest(path) == row['sha256'],
+                'Fresh original qualification bytes differ: ' + name)
+        paths['abi_' + name] = path
+    wrapper = abi['pinned_wrapper']
+    path = exact_producer_path(producer_root,
+        (abi_path.parent.relative_to(producer_root) / wrapper['path']).as_posix(), build=True)
+    require(path.stat().st_size == wrapper['bytes'] and digest(path) == wrapper['sha256'],
+            'Fresh original wrapper proof differs')
+    paths['abi_pinned_wrapper'] = path
+    source_sha = qualification['source_sha']
+    verify_code = (
+        "import json,sys;from pathlib import Path;"
+        "root=Path(sys.argv[1]);sys.path.insert(0,str(root/'Tools/OriginalEditor'));"
+        "from import_abi_input import verify;"
+        "source=json.loads(Path(sys.argv[3]).read_text());"
+        "print(json.dumps(verify(root,Path(sys.argv[2]),sys.argv[4],source)))"
+    )
+    observed = json.loads(subprocess.check_output(
+        [sys.executable, '-I', '-B', '-c', verify_code, str(producer_root), str(abi_path),
+         str(source_before), digest(abi_path)], text=True, timeout=600))
+    require(observed == qualification.get('heart')
+            and subprocess.check_output(['git', '-C', str(producer_root), 'rev-parse', 'HEAD'],
+                                        text=True).strip() == source_sha
+            and not subprocess.check_output(['git', '-C', str(producer_root), 'diff', '--name-only', 'HEAD']),
+            'Fresh original ABI verification or producer source changed')
+    return paths, {
+        'schema': 'otzaria.current-original-abi-verification/1',
+        'status': 'CURRENT_ORIGINAL_ABI_VERIFIER_PASS', 'returncode': 0,
+        'producer_source_sha': source_sha, 'source_observation_sha256': digest(source_before),
+        'abi_sha256': digest(abi_path), 'verifier_sources': LOCAL['FRESH_VERIFIERS'],
+        'observed_heart': observed, 'source_unchanged': True,
+        'new_native_tests': 0, 'new_sdk_or_ui_credit': False,
+    }
+
+
 def local_execution_receipt(producer_root, evidence, identity, *, donor=False):
     path = evidence / 'local-execution.json'
     if not path.exists() and donor:
@@ -137,6 +191,9 @@ def prepare(producer_root, evidence, abi_path, destination):
         'bytes': qualification_path.stat().st_size, 'sha256': digest(qualification_path)}}
     require(API['inventory'](distribution) == expected, 'Actual qualified SDK differs from the exported closure')
     donor_paths = collect_donor_receipts(producer_root, abi_path, evidence / 'source-before.json', qualification)
+    fresh_paths, fresh_verification = collect_fresh_receipts(
+        producer_root, abi_path, evidence / 'source-before.json', qualification)
+    require(not (donor_paths and fresh_paths), 'Fresh ABI and historical donor routes cannot be combined')
     local_execution_path = local_execution_receipt(producer_root, evidence, identity, donor=bool(donor_paths))
     destination.mkdir(parents=True)
 
@@ -155,7 +212,12 @@ def prepare(producer_root, evidence, abi_path, destination):
         'source_after': copy(evidence / 'source-after.json', 'source-after.json'),
         'abi': copy(abi_path, 'qualified-import-abi.json'),
     }
-    receipts.update({role: copy(path, role + '.json') for role, path in donor_paths.items()})
+    receipts.update({role: copy(path, role + '.json') for role, path in {**donor_paths, **fresh_paths}.items()})
+    if fresh_verification is not None:
+        target = destination / 'abi_fresh_verification.json'
+        API['write'](target, fresh_verification)
+        receipts['abi_fresh_verification'] = {'path': target.relative_to(ROOT).as_posix(),
+            'bytes': target.stat().st_size, 'sha256': digest(target)}
     manifest = copy(evidence / 'framework-distribution.json', 'framework-distribution.json')
     hanlin = copy(evidence / 'original-hanlin-snapshot.json', 'original-hanlin-snapshot.json')
     archive = destination / 'framework.zip'
@@ -192,6 +254,8 @@ def prepare(producer_root, evidence, abi_path, destination):
     }
     if donor_paths:
         config['abi_provenance'] = LOCAL['DONOR_SCHEMA']
+    if fresh_verification is not None:
+        config['abi_provenance'] = LOCAL['FRESH_SCHEMA']
     if contract:
         config['public_host_contract_sha256'] = contract
     LOCAL['validate_provenance'](ROOT, config, qualification, API)
