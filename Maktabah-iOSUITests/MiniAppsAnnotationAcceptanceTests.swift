@@ -45,35 +45,85 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         }
     }
 
+    private enum PickerLanguage {
+        case english, hebrew
+
+        var code: String { self == .hebrew ? "he" : "en" }
+        var locale: String { self == .hebrew ? "he_IL" : "en_US" }
+        var isRTL: Bool { self == .hebrew }
+        var more: String { self == .hebrew ? "עוד" : "More" }
+        var edit: String { self == .hebrew ? "עריכה" : "Edit" }
+        var done: String { self == .hebrew ? "סיום" : "Done" }
+        var addFavorite: String { self == .hebrew ? "הוספה למועדפים" : "Add to Favorites" }
+        // UIKit.axbundle/he.lproj/Accessibility.strings and UIKitCore's
+        // Localizable.strings in the installed iOS 27 runtime, not translated
+        // guesses or positional substitutes for native editing controls.
+        var reorder: String { self == .hebrew ? "שינוי הסדר" : "Reorder" }
+        var delete: String { self == .hebrew ? "מחיקה" : "Delete" }
+    }
+
     @MainActor
-    private func verifyPickerEditing(shared: URL) async throws {
+    private func verifyPickerEditing(shared: URL, language: PickerLanguage = .english) async throws {
         let original = try pickerPreferences(in: shared)
+        let suffix = (isPad ? "ipad-" : "iphone-") + language.code
+        func snapshot(_ stage: String) throws {
+            try retainPickerSnapshot(named: "otzaria-picker-" + stage + "-" + suffix, shared: shared)
+        }
+        XCTAssertEqual(app.buttons["miniapps-more"].label, language.more)
+        try snapshot("original-chooser")
+        tap(app.buttons["miniapps-more"])
+        let edit = app.buttons["miniapps-editor-edit"]
+        let dismiss = app.buttons["miniapps-editor-dismiss"]
+        XCTAssertTrue(edit.waitForExistence(timeout: 15) && dismiss.waitForExistence(timeout: 15))
+        XCTAssertEqual(edit.label, language.edit)
+        XCTAssertEqual(dismiss.label, language.done)
+        XCTAssertTrue(edit.isHittable && dismiss.isHittable)
+        if language.isRTL {
+            XCTAssertLessThan(edit.frame.midX, dismiss.frame.midX,
+                "The real Hebrew confirmation action must mirror to the left of dismissal")
+        } else {
+            XCTAssertGreaterThan(edit.frame.midX, dismiss.frame.midX)
+        }
+        let windowFrame = app.windows.firstMatch.frame
+        let localeEvidence: [String: Any] = [
+            "language": language.code, "locale": language.locale,
+            "device": isPad ? "iPad" : "iPhone", "orientation": XCUIDevice.shared.orientation.rawValue,
+            "launchArguments": app.launchArguments,
+            "windowCount": app.windows.count,
+            "windowFrame": ["x": windowFrame.minX, "y": windowFrame.minY,
+                            "width": windowFrame.width, "height": windowFrame.height],
+            "actualEditLabel": edit.label, "actualDismissLabel": dismiss.label,
+            "actualEditMidX": edit.frame.midX, "actualDismissMidX": dismiss.frame.midX,
+            "rtlToolbarGeometryObserved": edit.frame.midX < dismiss.frame.midX
+        ]
+        let localeAttachment = XCTAttachment(
+            data: try JSONSerialization.data(withJSONObject: localeEvidence, options: [.sortedKeys]),
+            uniformTypeIdentifier: "public.json")
+        localeAttachment.name = "otzaria-picker-actual-locale-scene-" + suffix
+        localeAttachment.lifetime = .keepAlways
+        add(localeAttachment)
+        try snapshot("more")
         let catalog = try XCTUnwrap(
             try JSONSerialization.jsonObject(with: Data(contentsOf: shared.appendingPathComponent("catalog.json")))
                 as? [String: Any])
         let items = try XCTUnwrap(catalog["items"] as? [[String: Any]])
         let candidates = try items.compactMap { item -> (id: String, title: String)? in
             let id = try XCTUnwrap(item["id"] as? String)
-            guard !original.favorites.contains(id), !original.hidden.contains(id) else { return nil }
+            guard !original.favorites.contains(id), !original.hidden.contains(id),
+                  app.buttons["miniapps-launch-" + id].exists else { return nil }
             let localized = item["localizedTitles"] as? [String: String] ?? [:]
-            let title = try XCTUnwrap(localized["en_US"] ?? localized["en"] ?? item["title"] as? String)
+            let title = try XCTUnwrap(localized[language.locale] ?? localized[language.code]
+                ?? item["title"] as? String)
             return (id, title)
         }
         XCTAssertGreaterThanOrEqual(candidates.count, 2,
-            "The isolated real producer catalog must provide two suggestions for native reordering")
+            "The real producer must expose two compatible suggestions through this native chooser")
         let first = try XCTUnwrap(candidates.first)
         let second = try XCTUnwrap(candidates.dropFirst().first)
-        try retainPickerSnapshot(named: "otzaria-picker-original-chooser-ipad-en", shared: shared)
-        tap(app.buttons["miniapps-more"])
-        let edit = app.buttons["miniapps-editor-edit"]
-        XCTAssertTrue(edit.waitForExistence(timeout: 15))
-        XCTAssertEqual(edit.label, "Edit")
-        try retainPickerSnapshot(named: "otzaria-picker-more-ipad-en", shared: shared)
         tap(edit)
-        XCTAssertEqual(edit.label, "Done")
-        XCTAssertFalse(app.buttons["miniapps-editor-dismiss"].exists,
-            "Edit mode has one native Done action")
-        try retainPickerSnapshot(named: "otzaria-picker-native-edit-ipad-en", shared: shared)
+        XCTAssertEqual(edit.label, language.done)
+        XCTAssertFalse(dismiss.exists, "Edit mode has one native Done action")
+        try snapshot("native-edit")
 
         let visible = app.switches["miniapps-visible-" + first.id]
         XCTAssertTrue(visible.waitForExistence(timeout: 15))
@@ -86,7 +136,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
             try self.pickerPreferences(in: shared).hidden == original.hidden
         }
         for item in [first, second] {
-            let addFavorite = app.buttons["Add to Favorites: " + item.title]
+            let addFavorite = app.buttons[language.addFavorite + ": " + item.title]
             XCTAssertTrue(addFavorite.waitForExistence(timeout: 15))
             tap(addFavorite)
             try await requireNativeCondition(timeout: 15) {
@@ -96,37 +146,49 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         for _ in 0..<3 { app.swipeDown() }
         let firstCell = app.cells.containing(.staticText, identifier: first.title).firstMatch
         let secondCell = app.cells.containing(.staticText, identifier: second.title).firstMatch
-        let reorderPredicate = NSPredicate(format: "label BEGINSWITH %@", "Reorder")
-        let firstHandle = firstCell.buttons.matching(reorderPredicate).firstMatch
-        let secondHandle = secondCell.buttons.matching(reorderPredicate).firstMatch
-        XCTAssertTrue(firstHandle.waitForExistence(timeout: 15) && firstHandle.isHittable)
-        XCTAssertTrue(secondHandle.waitForExistence(timeout: 15) && secondHandle.isHittable)
-        try retainPickerSnapshot(named: "otzaria-picker-favorites-before-native-drag", shared: shared)
+        let reorderPredicate = NSPredicate(format: "label BEGINSWITH %@", language.reorder)
+        let firstHandles = firstCell.buttons.matching(reorderPredicate)
+        let secondHandles = secondCell.buttons.matching(reorderPredicate)
+        XCTAssertTrue(firstHandles.firstMatch.waitForExistence(timeout: 15))
+        XCTAssertTrue(secondHandles.firstMatch.waitForExistence(timeout: 15))
+        XCTAssertEqual(firstHandles.count, 1)
+        XCTAssertEqual(secondHandles.count, 1)
+        let firstHandle = firstHandles.firstMatch
+        let secondHandle = secondHandles.firstMatch
+        XCTAssertTrue(firstHandle.isHittable && secondHandle.isHittable)
+        if language.isRTL {
+            XCTAssertLessThan(firstHandle.frame.midX, firstCell.frame.midX,
+                "The Hebrew native list must place its trailing reorder handle on the left")
+        } else {
+            XCTAssertGreaterThan(firstHandle.frame.midX, firstCell.frame.midX)
+        }
+        try snapshot("favorites-before-native-drag")
         secondHandle.press(forDuration: 0.7, thenDragTo: firstHandle)
         try await requireNativeCondition(timeout: 15) {
             let ordered = try self.pickerPreferences(in: shared).favorites
             guard let a = ordered.firstIndex(of: first.id), let b = ordered.firstIndex(of: second.id) else { return false }
             return b < a
         }
-        try retainPickerSnapshot(named: "otzaria-picker-favorites-after-native-drag", shared: shared)
+        try snapshot("favorites-after-native-drag")
         tap(edit)
-        XCTAssertTrue(app.buttons["miniapps-editor-dismiss"].waitForExistence(timeout: 15))
-        tap(app.buttons["miniapps-editor-dismiss"])
+        XCTAssertTrue(dismiss.waitForExistence(timeout: 15))
+        tap(dismiss)
         XCTAssertTrue(app.buttons["miniapps-more"].waitForExistence(timeout: 15))
         tap(app.buttons["miniapps-more"])
-        XCTAssertEqual(edit.label, "Edit")
-        try retainPickerSnapshot(named: "otzaria-picker-reopened-persisted-order", shared: shared)
+        XCTAssertEqual(edit.label, language.edit)
+        try snapshot("reopened-persisted-order")
         tap(edit)
         for item in [second, first] {
             let cell = app.cells.containing(.staticText, identifier: item.title).firstMatch
-            let remove = cell.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Delete")).firstMatch
-            XCTAssertTrue(remove.waitForExistence(timeout: 15))
-            tap(remove)
+            let removes = cell.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", language.delete))
+            XCTAssertTrue(removes.firstMatch.waitForExistence(timeout: 15))
+            XCTAssertEqual(removes.count, 1)
+            tap(removes.firstMatch)
             let removedImmediately = try await waitUntil(timeout: 1) {
                 try !self.pickerPreferences(in: shared).favorites.contains(item.id)
             }
             if !removedImmediately {
-                let confirm = cell.buttons["Delete"]
+                let confirm = cell.buttons[language.delete]
                 XCTAssertTrue(confirm.waitForExistence(timeout: 5))
                 tap(confirm)
             }
@@ -144,14 +206,14 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared).opensInNewWindow != original.opensInNewWindow
         }
-        try retainPickerSnapshot(named: "otzaria-picker-window-preference-changed", shared: shared)
+        try snapshot("window-preference-changed")
         tap(window)
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared) == original
         }
         tap(edit)
-        XCTAssertEqual(edit.label, "Edit")
-        tap(app.buttons["miniapps-editor-dismiss"])
+        XCTAssertEqual(edit.label, language.edit)
+        tap(dismiss)
         XCTAssertTrue(app.buttons["miniapps-more"].waitForExistence(timeout: 15))
     }
 
@@ -208,6 +270,55 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let rangeLocation: Int
         let rangeLength: Int
         let context: String
+    }
+
+    /// Run this selector with the same qualified app/test bundle on iPhone
+    /// Hebrew, then iPad Hebrew. It exercises real chooser preferences without
+    /// repeating the five independent callback/document acceptance journeys.
+    @MainActor
+    func testSharedPickerHebrewRTLUsesNativeEditingAndPersistsPreferences() async throws {
+        XCTAssertEqual(ProcessInfo.processInfo.environment["MINIAPPS_NATIVE_PRODUCER_BUNDLE"],
+                       "com.itorah.hanlinminiapps")
+        let shared = URL(fileURLWithPath: try XCTUnwrap(
+            ProcessInfo.processInfo.environment["MINIAPPS_NATIVE_SHARED_GROUP"]
+        )).appendingPathComponent("MiniAppsBridge/v1", isDirectory: true)
+        if let requiredDevice = ProcessInfo.processInfo.environment["MINIAPPS_PICKER_EXPECTED_DEVICE"] {
+            XCTAssertEqual(requiredDevice, isPad ? "ipad" : "iphone")
+        }
+        let producer = XCUIApplication(bundleIdentifier: "com.itorah.hanlinminiapps")
+        producer.launchArguments = ["-AppleLanguages", "(he)", "-AppleLocale", "he_IL"]
+        producer.launch()
+        XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 30))
+        let ready = try await waitUntil(timeout: 30) {
+            guard let data = try? Data(contentsOf: shared.appendingPathComponent("catalog.json")),
+                  let value = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let items = value["items"] as? [[String: Any]] else { return false }
+            return items.count >= 2 && items.contains { $0["id"] as? String == "nativeapp.textstudio" }
+        }
+        XCTAssertTrue(ready, "Use the installed original producer's actual catalog")
+        let before = Set(try records(in: shared).map { $0.request.id })
+        XCUIDevice.shared.orientation = isPad ? .landscapeLeft : .portrait
+        launchReader(scenario: "readerDetail", backend: "otzaria", language: "he", recordViewport: true)
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        assertReaderHasText()
+        tap(try originalStudyToolsActionInWindow())
+        let tools = app.descendants(matching: .any)["torah-inspector-tools"]
+        XCTAssertTrue(tools.waitForExistence(timeout: 15))
+        let notes = tools.buttons.matching(NSPredicate(format: "label == %@", "הערות"))
+        XCTAssertEqual(notes.count, 1, "Use the source-owned Hebrew Notes action")
+        tap(notes.firstMatch)
+        tap(app.buttons["torah-inspector-add-note"])
+        let note = app.textViews["annotation-note-text"]
+        XCTAssertTrue(note.waitForExistence(timeout: 15))
+        XCTAssertEqual(note.value as? String ?? "", "")
+        tap(app.buttons["otzaria-note-miniapps"])
+        try await verifyPickerEditing(shared: shared, language: .hebrew)
+        tap(app.buttons["miniapps-picker-dismiss"])
+        XCTAssertTrue(note.waitForExistence(timeout: 15))
+        tap(app.buttons["annotation-cancel-toolbar"])
+        try await requireNativeCondition(timeout: 15) { !note.exists }
+        XCTAssertEqual(Set(try records(in: shared).map { $0.request.id }), before,
+            "Editing and dismissing the chooser must not enqueue a MiniApp invocation")
     }
 
     @MainActor
