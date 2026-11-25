@@ -24,7 +24,7 @@ struct AnnotationOriginalEditorEntryDraft {
 
     func requireUnchanged(_ annotation: Annotation) throws {
         guard let id = annotation.id, id > 0,
-              annotation.ckRecordId.flatMap(UUID.init(uuidString:)) != nil else {
+              let recordID = annotation.ckRecordId, !recordID.isEmpty else {
             throw AnnotationOriginalEditorUIError.saveFirst
         }
         let originalColor = annotation.type == .underline
@@ -173,12 +173,16 @@ struct AnnotationOriginalEditorProductionEntry: View {
         inspected = nil
         entryMessage = nil
         guard let id = annotation.id, id > 0,
-              annotation.ckRecordId.flatMap(UUID.init(uuidString:)) != nil else {
+              let recordID = annotation.ckRecordId, !recordID.isEmpty else {
             availability = .plain
             return
         }
         availability = .checking
         do {
+            guard let uuid = try AnnotationStore.shared.resolveAnnotationExchangeIdentity(annotation: annotation) else {
+                availability = .plain
+                return
+            }
             let local = try AnnotationStore.shared.makeLocalAnnotationEditor(
                 annotation: annotation, supportedFormats: AnnotationOriginalEditorMount.supportedFormats
             )
@@ -187,7 +191,8 @@ struct AnnotationOriginalEditorProductionEntry: View {
             let snapshot = try await local.read()
             try Task.checkCancellation()
             guard snapshot.annotation.id == annotation.id,
-                  snapshot.annotationUUID == annotation.ckRecordId.flatMap(UUID.init(uuidString:)),
+                  snapshot.annotationUUID == uuid,
+                  snapshot.annotation.ckRecordId.map({ Array($0.utf8) }) == annotation.ckRecordId.map({ Array($0.utf8) }),
                   snapshot.annotation.bkId == annotation.bkId,
                   snapshot.annotation.contentId == annotation.contentId,
                   snapshot.annotation.backendLocator == annotation.backendLocator,
