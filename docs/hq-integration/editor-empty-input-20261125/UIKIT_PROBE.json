@@ -1,0 +1,59 @@
+{
+  "source_base": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
+  "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+  "toolchain": "Xcode 27.0\nBuild version 27A266a\n",
+  "runs": {
+    "baseline": {
+      "source_sha256": "33d1f5f8e07513c36aa1539d9075fc0c59c63630fe44cb1684d8cbb20b4be655",
+      "class_sha256": "f48de29020ea1e59f24d8e872d9e7dba2c4df227f8dd0fdc75021c35984356c0",
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-target",
+        "arm64-apple-ios17.0-macabi",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/iOSSupport/usr/include",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/iOSSupport/System/Library/Frameworks",
+        "-framework",
+        "UIKit",
+        "-framework",
+        "Foundation",
+        "/Users/m1/builds/otzaria-editor-empty-note-20261125/baseline-UITextViewProbe.swift",
+        "-o",
+        "/Users/m1/builds/otzaria-editor-empty-note-20261125/baseline-UITextViewProbe"
+      ],
+      "compile_exit": 1,
+      "compile_output": "/Users/m1/builds/otzaria-editor-empty-note-20261125/baseline-UITextViewProbe.swift:79:16: error: method 'accessibilitySetValue(_:forAttribute:)' with Objective-C selector 'accessibilitySetValue:forAttribute:' conflicts with method 'accessibilitySetValue(_:forAttribute:)' from superclass 'NSObject' with the same Objective-C selector\n 77 |     }\n 78 | \n 79 |     @objc func accessibilitySetValue(_ value: Any?, forAttribute attribute: Any?) {\n    |                `- error: method 'accessibilitySetValue(_:forAttribute:)' with Objective-C selector 'accessibilitySetValue:forAttribute:' conflicts with method 'accessibilitySetValue(_:forAttribute:)' from superclass 'NSObject' with the same Objective-C selector\n 80 |         let str = (value as? String) ?? (value as? NSAttributedString)?.string\n 81 |         applyNewValue(str)\n\n/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/AppKit.framework/Headers/NSAccessibility.h:34:1: note: method 'accessibilitySetValue(_:forAttribute:)' declared here\n 32 | - (nullable id)accessibilityAttributeValue:(NSAccessibilityAttributeName)attribute API_DEPRECATED(\"Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)\", macos(10.1,10.10));\n 33 | - (BOOL)accessibilityIsAttributeSettable:(NSAccessibilityAttributeName)attribute API_DEPRECATED(\"Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)\", macos(10.1,10.10));\n 34 | - (void)accessibilitySetValue:(nullable id)value forAttribute:(NSAccessibilityAttributeName)attribute API_DEPRECATED(\"Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)\", macos(10.1,10.10));\n    | `- note: method 'accessibilitySetValue(_:forAttribute:)' declared here\n 35 | \n 36 | /* Parameterized Attribute methods\n"
+    },
+    "candidate": {
+      "source_sha256": "d1ef1e89b505f8e7b5d4a4dba979933c619b4a66def5a2768a404c8835563221",
+      "class_sha256": "3e48389fac55bce999969eeff3df8deb7e138784b241d4b10c74d36b361aed79",
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-target",
+        "arm64-apple-ios17.0-macabi",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/iOSSupport/usr/include",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/iOSSupport/System/Library/Frameworks",
+        "-framework",
+        "UIKit",
+        "-framework",
+        "Foundation",
+        "/Users/m1/builds/otzaria-editor-empty-note-20261125/candidate-UITextViewProbe.swift",
+        "-o",
+        "/Users/m1/builds/otzaria-editor-empty-note-20261125/candidate-UITextViewProbe"
+      ],
+      "compile_exit": 1,
+      "compile_output": "/Users/m1/builds/otzaria-editor-empty-note-20261125/candidate-UITextViewProbe.swift:77:16: error: method 'accessibilitySetValue(_:forAttribute:)' with Objective-C selector 'accessibilitySetValue:forAttribute:' conflicts with method 'accessibilitySetValue(_:forAttribute:)' from superclass 'NSObject' with the same Objective-C selector\n 75 |     }\n 76 | \n 77 |     @objc func accessibilitySetValue(_ value: Any?, forAttribute attribute: Any?) {\n    |                `- error: method 'accessibilitySetValue(_:forAttribute:)' with Objective-C selector 'accessibilitySetValue:forAttribute:' conflicts with method 'accessibilitySetValue(_:forAttribute:)' from superclass 'NSObject' with the same Objective-C selector\n 78 |         let str = (value as? String) ?? (value as? NSAttributedString)?.string\n 79 |         applyNewValue(str)\n\n/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/AppKit.framework/Headers/NSAccessibility.h:34:1: note: method 'accessibilitySetValue(_:forAttribute:)' declared here\n 32 | - (nullable id)accessibilityAttributeValue:(NSAccessibilityAttributeName)attribute API_DEPRECATED(\"Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)\", macos(10.1,10.10));\n 33 | - (BOOL)accessibilityIsAttributeSettable:(NSAccessibilityAttributeName)attribute API_DEPRECATED(\"Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)\", macos(10.1,10.10));\n 34 | - (void)accessibilitySetValue:(nullable id)value forAttribute:(NSAccessibilityAttributeName)attribute API_DEPRECATED(\"Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)\", macos(10.1,10.10));\n    | `- note: method 'accessibilitySetValue(_:forAttribute:)' declared here\n 35 | \n 36 | /* Parameterized Attribute methods\n"
+    }
+  }
+}
