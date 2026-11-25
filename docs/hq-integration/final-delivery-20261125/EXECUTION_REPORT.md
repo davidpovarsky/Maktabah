@@ -6,7 +6,7 @@
 uploaded; full Native116, Release114+2, C–F and physical-device acceptance are open.**
 
 The integration branch is `codex/otzaria-final-delivery-20261125`.
-Product checkpoint `75058d1c1abbfb0fb37fc819dcece47b853eb4da` contains normal original
+Product checkpoint `ce0f62baba7360514e7fa8cad21f0caaf2d0ab8f` contains normal original
 Receive and explicit conditional native Update, independent revision persistence,
 and the unchanged permanent fresh-import uncertainty fence. Independent source
 review `a6e0344372b4232be5952f0250df4002958abc02` was merged; its two recommendations
@@ -36,25 +36,55 @@ The current integration also contains:
   producer controls and exact-source archive verification; no shared implementation
   has been copied into an alternative host editor.
 
-Shared Hanlin union `c92c3f904872b37287861dfafa9cc668d5dc44c3` (published proof
-`a2ffd059ed8120be1ad8fab255d14da95e8bd472`) binds Core
-`abf0921c6e89e6521cc2b510ff11016b45a0ef08`. Core48 historical reuse has exact
-canonical-input compatibility evidence. The actual Mac manifest check passed on
-that union; Core7 stopped on the owned storage monitor before completing tests.
-The independent C8 owner is running app04 `job_54ff344608e0` on
-`1710bc6119983799f7d22cb723659ac274fe96b1`, including fixture fix
-`4f2bc9864a4fefa62f69ca54fb9f6b33351ba1df`. Consume its compatible completed
-checkpoint before freezing the final pin. App03 genuinely failed compilation;
-zero tests from that failed job are counted.
+Latest qualified compatible Hanlin union
+a11c6734eba0ce9206bf80d5e981645bfbc0c73b binds original Core
+abf0921c6e89e6521cc2b510ff11016b45a0ef08. Core7 genuinely passed on the
+Mac in job_2f7821b69d94 (seven invocations of six original methods, no failures
+or skips), reusing the paid exact-source cache after the prior monitor interruption.
+The independent C8 App05 run job_6317c3c9fe03 passed all48 invocations from46
+original methods at300fe80b0927f898740fba8a926e852906f52660. Accepted proof
+bc28e07e1e76d83e1b4f9a4638f1792b1ec2874c is merged into a11; all754 canonical
+graph inputs and9 active locks remain identical to the prior compatible union.
+All49 prior evidence blobs remain retained;29 raw Mac receipt/log/result files
+were independently matched to the incoming proof. App03/App04 remain failed.
+See the shared repository's
+docs/agent-sdk/otzaria-union-20261125/upstream-app05-reuse.json.
 
-Anytype SDK integration `45633194a99b0495fd8b30a486fff21f672af459` includes product
-`a91d572cb2df2b05c7d93520732eecd7380294fd` and its 153 public +22 Debug requirements.
-Focused original-facade Apple typing passed. The changed native same-object CAS
-has compiled and reached genuine original Apply, but strict post-write readback
-still reports `applied_unconfirmed` due to native mark normalization. The original
-test failures and possible-write evidence remain retained. Revised native
-normalization controls, current ABI3 and all three full SDK configurations remain
-open; the historical 34b SDK qualifications below are not reassigned to new code.
+A real integration dependency conflict was found before final resolution:
+HanlinPlatform requires ZIPFoundation0.9.19, while the existing app and Anytype
+both require0.9.20/22787ffb59de99e5dc1fbfe80b19c97a904ad48d. Shared Hanlin
+is being aligned to the existing single native provider with bounded original
+archive regressions. OpenTelemetry2.6.0 also needs actual app resolution.
+The newer6f/C9 production delta remains under its original owner's qualification;
+its source-only changes do not inherit App05's result.
+
+Anytype native conditional revision genuinely passed at
+878f1cbd82d0e0ded5739acfeb2832e61b96952d, actual Mac job_306cc4d299da.
+Twenty-nine named strict/digest/full-mark subcases and the actual original
+application fixture verify rich Apply/readback, stable IDs, idempotence,
+stale-token conflict with no write, and concurrent same-token calls with exactly
+one Apply and one conflict. The comparator canonicalizes complete native mark
+tuples for revision-only comparison; the import-v1 comparator is untouched.
+Failed earlier normalization attempts remain retained. Published SDK/proof
+checkpoint b2ec57a5facbe9d2feace9872519cc3d72e43bb2 contains the exact receipts
+below. These tests do not grant remote ACK, cold reopen, Swift invocation, ABI3
+or complete SDK qualification.
+
+Current SDK lifecycle/archive/restore/promotion, query visibility, closed
+Backfill batch and same-capture fullPlainText changes are being completed together
+before expensive qualification. Original facade153 public +22 Debug requirements
+were Apple-typechecked at a91/42d; the expanded source must receive a new exact
+contract and full configuration evidence. Historical34b qualifications below
+remain bound to their actual source.
+
+Root checkpoint ce0f62baba7360514e7fa8cad21f0caaf2d0ab8f adds an explicit
+first-native-body Save that preserves the original full saved-note bytes while
+retaining the bounded preview. The iOS entry accepts a closed current SDK capture,
+checks exact source/profile/body/full-text binding, and calls the original atomic
+SQLite/CloudKit queue path. Ordinary edit intent fields/digest remain unchanged.
+Native Backfill consumer7323950 and its later batch/long-note integration are
+tracked separately; the prior >8192 retention has not yet been removed in the
+ordinary consumer. See backfill/LONG_NOTE_SAVE_BOUNDARY.md.
 
 ## Current completion constraints
 
@@ -191,13 +221,12 @@ outbound deliveries.
 - Source manifest SHA256:
   `a60ac4a85137908f14979a7fd049cb33d9138409e2e4fda14a56137b7476b6df`.
 
-The identity lane separately found and retained two original43 Session regressions
-and two stale trigger-based28 fixtures. A focused constructor correction
-`2651cbf51c3c75bfe8da4073796d047c54f906a3` is published and awaiting integration
-with new actual43/28/legacy receipts. Original assertions and strict schema
-ownership remain required. The backfill does not instantiate that Session
-constructor; do not rerun its 5,000-note measurement merely because that separate
-file changed. Record a source/reachability review when consuming its evidence.
+The former43 Session and28 fixture regressions were fixed and actually retested.
+Their successful source-specific receipts are listed above and preserved in9e43.
+The new long-note preservation boundary changes shared prepare/commit code, so
+original43 and36 controls will run against its final exact closure with additional
+preservation-specific SQLite checks. The unrelated planner5,000 result remains
+historical and does not claim a native5,000 conversion.
 
 ## Active owners and next steps
 
@@ -208,19 +237,20 @@ file changed. Record a source/reachability review when consuming its evidence.
    The actual ObjectTree lock must cover token validation and State/Apply with
    original restrictions. Import-v1 remains unchanged; unsupported graph changes
    must not be silently accepted.
-2. **editor_sync** owns the original Swift revision facade, native Receive and
-   conflict UI, saved-receipt mapping, original account/editor integration and
-   final normal-UI/native behavior. Reverse receipt sourcec508 and network proof72c40
+2. **editor_sync** owns the original Swift revision/lifecycle facade, query visibility,
+   closed Backfill batch/full-text capture and native conversion consumer. Reverse receipt sourcec508 and network proof72c40
    are checkpoints, not a final SDK freeze.
-3. **library_acceptance** owns identity43/28/legacy acceptance and the remaining
-   Groups100/full-v32/full-v40 native acceptance. It must use an actually current
+3. **library_acceptance** owns source-specific36/43/long-note acceptance, shared
+   Hanlin dependency/receipt synchronization and Groups100/full-v32/full-v40. It must use an actually current
    built app and all qualified SDK routes, not the historicald3 projection.
-4. **root** owns shared Hanlin synchronization, source merge/admission, final
-   app/builds, Native116/Release114+2, owner gate, signing, CI, ASC and TestFlight.
+4. **root** owns Host persistence/ordinary UI/lifecycle integration, source
+   merge/admission, final app/builds, Native116/Release114+2, owner gate, signing,
+   CI, ASC and TestFlight.
 
-The default R27 selection was narrowed by a MiniApps-only source branch. Restore
-the exact original Native116 seven-group selection from08f50 at final source
-freeze; keep the supplementary MiniApps journey separate. The original full
+The exact original Native116 seven-group selection from08f50 has been restored
+atcdff1edd, including original HID flags,116 declarations and the strict reviewed
+runtime inverse. The supplementary MiniApps journey uses its original dedicated
+controller; final source/SDK bindings still require freeze. The original full
 Release manifest still requires114 UI executions plus two distinct Safari oracles
 across five configurations. No one-case run may be reported as either full gate.
 
@@ -283,3 +313,55 @@ completion. The initial recursive Asana inventory contained59 open tasks/subtask
 Re-read the live state before each milestone update and before final delivery.
 Physical iPad checks remain separate for the owner once a qualified TestFlight
 build is actually installable.
+
+## Latest independently verified continuation
+
+| Gate | Actual result and strict scope |
+| --- | --- |
+| Native conditional revision | PASS job306cc4d299da at878f; same-object rich CAS, stale conflict and one-winner concurrent Apply; no remote ACK/cold/Swift credit |
+| Core7 continuation | PASS job2f7821b69d94,7 exact invocations/zero skips; receipt eda8713182065b994e30480d3bc9111a7048d93d0ceecd9541398f8be34a986c; unchanged Coreabf closure |
+| Hanlin App05 | PASS job6317c3c9fe03,48/48 invocations from46 methods at300f; receipt0dc0df259a384cfdffb09a93668ddfc150ea503bf2ad099d10513b11b6cb8b52; no source/lock changes |
+| Ordinary Backfill UI source | Two real-UI journeys and ten exact stages prepared; original editor case unchanged. Nine Python source/log controls pass; zero UI executions |
+| Ordinary UI syntax | Mac job45aa444e8a02, Apple frontend parse exit0 in0.096s at98f9; syntax only, no typecheck/app/UI credit |
+
+The coordinator independently read and hashed all three files published under
+docs/hq-integration/anytype-sdk-release-20261125/native-revision-878f1cbd82d0/
+at Anytype commitb2ec57a5:
+
+- SOURCE_INPUTS.json:7292a0f3384524e47031f21ede98fc5d14570e1c8d49086b791247b508a1746a.
+- RESULT.json:d18efbb560300625a9d56c55e279728cad8140024b483b06bb581f1f5377ecee.
+- ACCEPTANCE.json:a445609a19a4d58369e13f45917fa7d312f0e2bef755760fcf5fb1ff90da078a.
+
+Receipt restrictions remain remote_network_ack=false, cold_reopen_qualified=false
+and swift_invocation_qualified=false. The original application compile took20.63s;
+the conditional runner completed exit0 in6.34s.
+
+The original ordinary UI journey emitted5 observation stages but its old collector
+declared4, omitting actual native-clear. Sourcea572 now requires all5 original
+stages plus a separate5-stage real Settings/Backfill/cancel/convert/repeat/cold
+native-render journey, two distinct saved rows/UUIDs and exact read-only SQLite
+envelopes/body hashes. Independent review identified regular-width iPad popovers
+can omit the Cancel action. Fix98f9 uses a presented Cancel when available or a
+verified point outside the actual original popover; it still requires dismissal
+and the byte-identical saved row. Native116/Release114 counts and timeouts remain.
+
+### Storage and execution admission
+
+Verified failed-CAS-work retirement job543b668badba archived501,167,739 bytes
+with SHA3277cd50a29824060a805706b89ebd14020643e200f857673f29770c6cf8ef47,
+verified24 members, preserved215 source/evidence files and accepted attempt5,
+and retired only four obsolete work directories. Actual free space rose from
+5,348,614,144 to6,420,127,744 bytes. Other owners' live products are untouched.
+
+Oracle space is also constrained. The old retained-products archive is being
+copied over existing pinned SSH to the owner's established Windows HQ artifacts
+directory in job134a3af647b4, under a live remaining-bytes plus2GiB OS guard.
+Oracle's sole original is retained until the complete5,447,045,120-byte SHA,
+all42,910 member/file/mode/link records and gzip CRC are verified at destination.
+Its final relocation receipt will name the authoritative recovery path. The
+conversation download route returnedHTTP403; no bypass or remote-save claim
+was made. This is storage work, not product acceptance.
+
+SQLite36 and native Backfill14 have not executed. Prior preflight refusals are
+retained; regenerate their final source closures for the full-text/batch changes
+rather than compiling superseded product solely for a green result.

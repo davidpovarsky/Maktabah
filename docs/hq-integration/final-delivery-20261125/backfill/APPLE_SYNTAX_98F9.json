@@ -1,0 +1,16 @@
+{
+  "status": "PASS_APPLE_SYNTAX_ONLY",
+  "source_head": "98f9a121a6e24523ec88ff266bce8a1b24bfba4e",
+  "source_sha256": "aa37d9c35b1b8215db36479c77bf9de9722ecd42819a4281e0f59ee9fe85d532",
+  "exit_code": 0,
+  "seconds": 0.096124667,
+  "free_before": 5105852416,
+  "required_incremental_and_reserved": 4347396096,
+  "incremental_budget": 52428800,
+  "external_budget": 2147483648,
+  "os_margin": 2147483648,
+  "native_ui_executions": 0,
+  "typecheck_executions": 0,
+  "path": "/Users/m1/builds/_preflight/otzaria-ordinary-backfill-98f9-syntax-20261125",
+  "created_at": "2026-11-25T04:41:17.458189+00:00"
+}
