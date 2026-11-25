@@ -7,6 +7,10 @@
     "path": "Scripts/CI/miniapps-producer-preparation-27381e90.json",
     "sha256": "e59aa6519e1af916e21d8f534913a98c8f1c269fab5e76803ad78e87acc218ae"
   },
+  "original_editor_debug_admission": {
+    "path": "Scripts/CI/original-editor-miniapps-debug-1f90175b.inputs.json",
+    "sha256": "fe7b0b05f9088d29ad4674b07a495c1e9761bf41c9d4be601c8059ed8e7268b4"
+  },
   "producer_artifact_name": null,
   "producer_origin": "local-mac",
   "producer_repository": "davidpovarsky/hanlin-ai",
