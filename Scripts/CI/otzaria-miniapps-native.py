@@ -53,11 +53,23 @@ def git(*args):
 
 def configuration():
     value = json.loads(INPUTS.read_text())
-    require(type(value["producer_run_id"]) is int and value["producer_run_id"] > 0, "Producer run must be frozen")
     require(re.fullmatch(r"[a-f0-9]{40}", value["producer_source_sha"]), "Producer source must be frozen")
     require(value["producer_repository"] == "davidpovarsky/hanlin-ai", "Unexpected producer source repository")
-    require(value["producer_artifact_name"] == "app-split-" + str(value["producer_run_id"]),
-            "Unexpected producer artifact identity")
+    origin = value.get("producer_origin", "github-actions")
+    require(origin in ("github-actions", "local-mac"), "Unsupported producer execution origin")
+    if origin == "github-actions":
+        require(type(value["producer_run_id"]) is int and value["producer_run_id"] > 0, "Producer run must be frozen")
+        require(value["producer_artifact_name"] == "app-split-" + str(value["producer_run_id"]),
+                "Unexpected producer artifact identity")
+        require("local_producer_manifest" not in value, "A GitHub producer cannot silently substitute a local product")
+    else:
+        require(value.get("producer_run_id") is None and value.get("producer_artifact_name") is None,
+                "A local producer must not invent GitHub run or artifact identities")
+        local = value.get("local_producer_manifest")
+        require(isinstance(local, dict) and set(local) == {"path", "sha256"}
+                and isinstance(local["path"], str) and Path(local["path"]).is_absolute()
+                and isinstance(local["sha256"], str) and re.fullmatch(r"[a-f0-9]{64}", local["sha256"]),
+                "Local producer requires its exact manifest path and reviewed SHA256")
     return value
 
 
@@ -112,6 +124,9 @@ def prepare():
 
 def restore_producer():
     config = configuration()
+    if config.get("producer_origin") == "local-mac":
+        helper = runpy.run_path(str(ROOT / "Scripts/CI/miniapps-local-producer.py"))
+        return helper["restore"](config, PRODUCER_DIR, OUT, ROOT / "Vendor/HanlinSDK", PRODUCER)
     repository = config["producer_repository"]
     run_id = str(config["producer_run_id"])
     run = json.loads(capture("gh", "api", f"repos/{repository}/actions/runs/{run_id}"))

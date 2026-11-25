@@ -1,0 +1,14 @@
+{
+  "actual_local_producer_admission": "PENDING_REAL_PRODUCER",
+  "apple_compilation": "NOT_RUN",
+  "failed": 0,
+  "files": {
+    "Scripts/CI/miniapps-local-producer.py": "feff441347116257748319f002b436f7852f3ee79772cf4d60c0bc2dab672ea5",
+    "Scripts/CI/otzaria-miniapps-native.py": "3df1a70f22635fd2fe55521879d2c41df5cebde916d0709fd59ffc6188df46a6",
+    "tools/test-miniapps-local-producer.py": "a235f7d4ecd3a7159a5270ec33e101a353b470aca33262a878c10871cbbdd675"
+  },
+  "native_tests_executed": 0,
+  "output": "test_archive_change_is_rejected (__main__.LocalProducerAdmissionIntegrityTests.test_archive_change_is_rejected) ... ok\ntest_archive_path_escape_is_rejected_even_with_matching_digest (__main__.LocalProducerAdmissionIntegrityTests.test_archive_path_escape_is_rejected_even_with_matching_digest) ... ok\ntest_build_receipt_change_is_rejected (__main__.LocalProducerAdmissionIntegrityTests.test_build_receipt_change_is_rejected) ... ok\ntest_complete_product_inventory_detects_resource_change (__main__.LocalProducerAdmissionIntegrityTests.test_complete_product_inventory_detects_resource_change) ... ok\ntest_local_product_cannot_claim_github_run (__main__.LocalProducerAdmissionIntegrityTests.test_local_product_cannot_claim_github_run) ... ok\ntest_manifest_byte_change_is_rejected (__main__.LocalProducerAdmissionIntegrityTests.test_manifest_byte_change_is_rejected) ... ok\ntest_matching_actual_git_objects_admit_control_manifest (__main__.LocalProducerAdmissionIntegrityTests.test_matching_actual_git_objects_admit_control_manifest) ... ok\ntest_original_source_blob_change_is_rejected (__main__.LocalProducerAdmissionIntegrityTests.test_original_source_blob_change_is_rejected) ... ok\ntest_product_symlink_escape_is_rejected (__main__.LocalProducerAdmissionIntegrityTests.test_product_symlink_escape_is_rejected) ... ok\ntest_receipt_outside_export_is_rejected (__main__.LocalProducerAdmissionIntegrityTests.test_receipt_outside_export_is_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.168s\n\nOK\n",
+  "passed": 10,
+  "scope": "ADMISSION_INTEGRITY_FIXTURE_CONTROLS_ONLY"
+}

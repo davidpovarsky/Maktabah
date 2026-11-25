@@ -498,5 +498,12 @@
       "HanlinMiniAppsBridge",
       "HanlinMiniAppsPicker"
     ]
+  },
+  "miniapps_integrated_project_review": {
+    "date": "2026-11-25",
+    "miniapps_parent": "b9bd6ca191fe9ea93fd81a9964cfe3b3c0b7d1e0",
+    "original_editor_parent": "cf58e555f952f5ed19972d73e9f86fd0e9b20527",
+    "reviewed_project_blob": "57318b85b046648b3839e7d0437e30c9f2234449",
+    "scope": "Preserve four MiniApps files and two lean products together with original editor Import source membership. No engine test sources added."
   }
 }
