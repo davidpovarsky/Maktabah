@@ -72,5 +72,61 @@ class MiniAppsPublicContractControls(unittest.TestCase):
             local["validate_public_contract"]({}, source, API)
 
 
+class LifecycleMiniAppsPublicContractControls(MiniAppsPublicContractControls):
+    def qualification(self, production=False):
+        contract = API["miniapps_public_contract"](API["LIFECYCLE_MINIAPPS_PUBLIC_CONTRACT_SHA256"])
+        value = LEGACY["qualification"](260 if production else 282)
+        symbols = [{"path": list(p), "spi": False, "fixture_only": True}
+                   for p in contract["public"]]
+        if not production:
+            symbols += [{"path": list(p), "spi": True, "fixture_only": True}
+                        for p in contract["debug"]]
+        value["actual_public_surface"]["own_public_symbols"] = symbols
+        if production:
+            value.update(configuration="Release-Anytype", platform="iphoneos")
+            value["actual_public_surface"].update(
+                debug_qualification_requirements_absent=22,
+                debug_qualification_symbols_observed=[])
+        return value
+
+    def admit(self, value, production=False):
+        return API["require_compiled_host_api"](
+            value, admission_schema=3, production=production,
+            public_contract_sha256=API["LIFECYCLE_MINIAPPS_PUBLIC_CONTRACT_SHA256"])
+
+    def test_198_declaration_miniapps_graph_cannot_admit_lifecycle_host(self):
+        with self.assertRaisesRegex(RuntimeError, "verifier prerequisite"):
+            self.admit(MiniAppsPublicContractControls.qualification(self))
+
+    def test_missing_batch_lifecycle_or_fulltext_rejected_with_complete_count(self):
+        required = [
+            ("AnytypeOriginalEditorModule", "openLocalAnnotationBatch(appGroup:sourceLifetime:sourceIsCurrent:)"),
+            ("AnytypeOriginalEditorAccountSession", "preparePromotedDocumentReplacement(snapshot:observation:sourceLifetime:sourceIsCurrent:onDrained:)"),
+            ("AnytypeOriginalEditorLocalAnnotationCapture", "fullPlainText"),
+        ]
+        for missing in required:
+            value = self.qualification()
+            symbols = value["actual_public_surface"]["own_public_symbols"]
+            index = next(i for i, symbol in enumerate(symbols) if tuple(symbol["path"]) == missing)
+            symbols[index] = {"path": ["UnrelatedFixtureSymbol"], "spi": False}
+            with self.subTest(missing=missing), self.assertRaisesRegex(RuntimeError, "lacks the reviewed"):
+                self.admit(value)
+
+    def test_release_rejects_leaked_debug_spi(self):
+        value = self.qualification(production=True)
+        value["actual_public_surface"]["own_public_symbols"].append(
+            {"path": ["UnrelatedDebugSPI"], "spi": True})
+        with self.assertRaisesRegex(RuntimeError, "Debug qualification SPI"):
+            self.admit(value, production=True)
+
+    def test_lifecycle_contract_preserves_all_preceding_public_declarations(self):
+        old = API["miniapps_public_contract"]()
+        new = API["miniapps_public_contract"](API["LIFECYCLE_MINIAPPS_PUBLIC_CONTRACT_SHA256"])
+        self.assertLessEqual(set(old["public"]), set(new["public"]))
+        self.assertEqual(set(old["debug"]), set(new["debug"]))
+        self.assertEqual(len(new["public"]), 260)
+        self.assertEqual(len(new["debug"]), 22)
+
+
 if __name__ == "__main__":
     unittest.main()

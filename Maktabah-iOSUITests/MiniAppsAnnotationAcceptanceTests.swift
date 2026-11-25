@@ -7,6 +7,154 @@ import CryptoKit
 final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     override var readerTestTier: TestTier { .realUI }
 
+
+    private struct PickerPreferences: Decodable, Equatable {
+        let favorites: [String]
+        let hidden: Set<String>
+        let opensInNewWindow: Bool
+    }
+
+    private struct PickerPreferencesEnvelope: Decodable {
+        let schemaVersion: Int
+        let value: PickerPreferences
+    }
+
+    private func pickerPreferences(in shared: URL) throws -> PickerPreferences {
+        let path = shared.appendingPathComponent("preferences.json")
+        guard FileManager.default.fileExists(atPath: path.path) else {
+            return PickerPreferences(favorites: [], hidden: [], opensInNewWindow: true)
+        }
+        let envelope = try JSONDecoder().decode(PickerPreferencesEnvelope.self, from: Data(contentsOf: path))
+        XCTAssertEqual(envelope.schemaVersion, 1)
+        return envelope.value
+    }
+
+    @MainActor
+    private func retainPickerSnapshot(named name: String, shared: URL) throws {
+        retainScreenshot(app, named: name)
+        let hierarchy = XCTAttachment(string: app.debugDescription)
+        hierarchy.name = name + "-accessibility"
+        hierarchy.lifetime = .keepAlways
+        add(hierarchy)
+        let path = shared.appendingPathComponent("preferences.json")
+        if FileManager.default.fileExists(atPath: path.path) {
+            let preferences = XCTAttachment(data: try Data(contentsOf: path), uniformTypeIdentifier: "public.json")
+            preferences.name = name + "-actual-preferences"
+            preferences.lifetime = .keepAlways
+            add(preferences)
+        }
+    }
+
+    @MainActor
+    private func verifyPickerEditing(shared: URL) async throws {
+        let original = try pickerPreferences(in: shared)
+        let catalog = try XCTUnwrap(
+            try JSONSerialization.jsonObject(with: Data(contentsOf: shared.appendingPathComponent("catalog.json")))
+                as? [String: Any])
+        let items = try XCTUnwrap(catalog["items"] as? [[String: Any]])
+        let candidates = try items.compactMap { item -> (id: String, title: String)? in
+            let id = try XCTUnwrap(item["id"] as? String)
+            guard !original.favorites.contains(id), !original.hidden.contains(id) else { return nil }
+            let localized = item["localizedTitles"] as? [String: String] ?? [:]
+            let title = try XCTUnwrap(localized["en_US"] ?? localized["en"] ?? item["title"] as? String)
+            return (id, title)
+        }
+        XCTAssertGreaterThanOrEqual(candidates.count, 2,
+            "The isolated real producer catalog must provide two suggestions for native reordering")
+        let first = try XCTUnwrap(candidates.first)
+        let second = try XCTUnwrap(candidates.dropFirst().first)
+        try retainPickerSnapshot(named: "otzaria-picker-original-chooser-ipad-en", shared: shared)
+        tap(app.buttons["miniapps-more"])
+        let edit = app.buttons["miniapps-editor-edit"]
+        XCTAssertTrue(edit.waitForExistence(timeout: 15))
+        XCTAssertEqual(edit.label, "Edit")
+        try retainPickerSnapshot(named: "otzaria-picker-more-ipad-en", shared: shared)
+        tap(edit)
+        XCTAssertEqual(edit.label, "Done")
+        XCTAssertFalse(app.buttons["miniapps-editor-dismiss"].exists,
+            "Edit mode has one native Done action")
+        try retainPickerSnapshot(named: "otzaria-picker-native-edit-ipad-en", shared: shared)
+
+        let visible = app.switches["miniapps-visible-" + first.id]
+        XCTAssertTrue(visible.waitForExistence(timeout: 15))
+        tap(visible)
+        try await requireNativeCondition(timeout: 15) {
+            try self.pickerPreferences(in: shared).hidden.contains(first.id) != original.hidden.contains(first.id)
+        }
+        tap(visible)
+        try await requireNativeCondition(timeout: 15) {
+            try self.pickerPreferences(in: shared).hidden == original.hidden
+        }
+        for item in [first, second] {
+            let addFavorite = app.buttons["Add to Favorites: " + item.title]
+            XCTAssertTrue(addFavorite.waitForExistence(timeout: 15))
+            tap(addFavorite)
+            try await requireNativeCondition(timeout: 15) {
+                try self.pickerPreferences(in: shared).favorites.contains(item.id)
+            }
+        }
+        for _ in 0..<3 { app.swipeDown() }
+        let firstCell = app.cells.containing(.staticText, identifier: first.title).firstMatch
+        let secondCell = app.cells.containing(.staticText, identifier: second.title).firstMatch
+        let reorderPredicate = NSPredicate(format: "label BEGINSWITH %@", "Reorder")
+        let firstHandle = firstCell.buttons.matching(reorderPredicate).firstMatch
+        let secondHandle = secondCell.buttons.matching(reorderPredicate).firstMatch
+        XCTAssertTrue(firstHandle.waitForExistence(timeout: 15) && firstHandle.isHittable)
+        XCTAssertTrue(secondHandle.waitForExistence(timeout: 15) && secondHandle.isHittable)
+        try retainPickerSnapshot(named: "otzaria-picker-favorites-before-native-drag", shared: shared)
+        secondHandle.press(forDuration: 0.7, thenDragTo: firstHandle)
+        try await requireNativeCondition(timeout: 15) {
+            let ordered = try self.pickerPreferences(in: shared).favorites
+            guard let a = ordered.firstIndex(of: first.id), let b = ordered.firstIndex(of: second.id) else { return false }
+            return b < a
+        }
+        try retainPickerSnapshot(named: "otzaria-picker-favorites-after-native-drag", shared: shared)
+        tap(edit)
+        XCTAssertTrue(app.buttons["miniapps-editor-dismiss"].waitForExistence(timeout: 15))
+        tap(app.buttons["miniapps-editor-dismiss"])
+        XCTAssertTrue(app.buttons["miniapps-more"].waitForExistence(timeout: 15))
+        tap(app.buttons["miniapps-more"])
+        XCTAssertEqual(edit.label, "Edit")
+        try retainPickerSnapshot(named: "otzaria-picker-reopened-persisted-order", shared: shared)
+        tap(edit)
+        for item in [second, first] {
+            let cell = app.cells.containing(.staticText, identifier: item.title).firstMatch
+            let remove = cell.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Delete")).firstMatch
+            XCTAssertTrue(remove.waitForExistence(timeout: 15))
+            tap(remove)
+            let removedImmediately = try await waitUntil(timeout: 1) {
+                try !self.pickerPreferences(in: shared).favorites.contains(item.id)
+            }
+            if !removedImmediately {
+                let confirm = cell.buttons["Delete"]
+                XCTAssertTrue(confirm.waitForExistence(timeout: 5))
+                tap(confirm)
+            }
+            try await requireNativeCondition(timeout: 15) {
+                try !self.pickerPreferences(in: shared).favorites.contains(item.id)
+            }
+        }
+        let window = app.switches["miniapps-new-window"]
+        for _ in 0..<6 {
+            if window.isHittable { break }
+            app.swipeUp()
+        }
+        XCTAssertTrue(window.isHittable)
+        tap(window)
+        try await requireNativeCondition(timeout: 15) {
+            try self.pickerPreferences(in: shared).opensInNewWindow != original.opensInNewWindow
+        }
+        try retainPickerSnapshot(named: "otzaria-picker-window-preference-changed", shared: shared)
+        tap(window)
+        try await requireNativeCondition(timeout: 15) {
+            try self.pickerPreferences(in: shared) == original
+        }
+        tap(edit)
+        XCTAssertEqual(edit.label, "Edit")
+        tap(app.buttons["miniapps-editor-dismiss"])
+        XCTAssertTrue(app.buttons["miniapps-more"].waitForExistence(timeout: 15))
+    }
+
     private struct Content: Decodable { let text: String? }
     private struct Selection: Decodable { let location: Int; let length: Int; let text: String }
     private struct Source: Decodable {
@@ -120,6 +268,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
 
         let existingRequests = Set(try records(in: shared).map { $0.request.id })
         tap(app.buttons["otzaria-note-miniapps"])
+        try await verifyPickerEditing(shared: shared)
         let textStudio = app.buttons["miniapps-launch-nativeapp.textstudio"]
         if !textStudio.waitForExistence(timeout: 3) {
             tap(app.buttons["miniapps-more"])

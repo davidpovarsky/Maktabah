@@ -20,7 +20,12 @@ BUNDLE = "com.davidpovarsky.chavrusatext"
 QUALIFIED = "ACTUAL_ORIGINAL_FRAMEWORK_EXTERNAL_IMPORT_LINK_RESOURCES_PASS"
 LOCAL_ANNOTATION_CONTRACT_SHA256 = "33594f50c825c490edf5502add640fd478d3249909352e02b0e53ee23b9ee634"
 MINIAPPS_PUBLIC_CONTRACT_SHA256 = "de3d98d7c4db45a184bc40ac7d2d9ca2cb1aa534a6e917d945ca67f3cb583b0c"
-REVIEWED_PUBLIC_HOST_CONTRACTS = (LOCAL_ANNOTATION_CONTRACT_SHA256, MINIAPPS_PUBLIC_CONTRACT_SHA256)
+LIFECYCLE_MINIAPPS_PUBLIC_CONTRACT_SHA256 = "b8a02497aeabab316d85daf2dab5045b1d94dac98a14b7ccc89a3b7c9a6509c0"
+MINIAPPS_PUBLIC_CONTRACT_FILES = {
+    MINIAPPS_PUBLIC_CONTRACT_SHA256: ("original-editor-miniapps-public-contract.json", 176),
+    LIFECYCLE_MINIAPPS_PUBLIC_CONTRACT_SHA256: ("original-editor-lifecycle-miniapps-public-contract.json", 260),
+}
+REVIEWED_PUBLIC_HOST_CONTRACTS = (LOCAL_ANNOTATION_CONTRACT_SHA256, *MINIAPPS_PUBLIC_CONTRACT_FILES)
 LOCAL_ANNOTATION_REQUIREMENTS = (('AnytypeOriginalEditorLocalAnnotationSource',),
  ('AnytypeOriginalEditorLocalAnnotationSource', 'hostProfileID'),
  ('AnytypeOriginalEditorLocalAnnotationSource', 'annotationUUID'),
@@ -81,18 +86,21 @@ def require(value, message):
         raise RuntimeError(message)
 
 
-def miniapps_public_contract():
+def miniapps_public_contract(contract_sha256=MINIAPPS_PUBLIC_CONTRACT_SHA256):
     """The exact reviewed producer surface; source text is never a compiled proof."""
-    path = Path(__file__).with_name("original-editor-miniapps-public-contract.json")
+    require(contract_sha256 in MINIAPPS_PUBLIC_CONTRACT_FILES,
+            "Unreviewed MiniApps public contract identity")
+    filename, public_count = MINIAPPS_PUBLIC_CONTRACT_FILES[contract_sha256]
+    path = Path(__file__).with_name(filename)
     data = path.read_bytes()
-    require(hashlib.sha256(data).hexdigest() == MINIAPPS_PUBLIC_CONTRACT_SHA256,
+    require(hashlib.sha256(data).hexdigest() == contract_sha256,
             "Reviewed MiniApps public contract changed")
     contract = json.loads(data)
     public, debug = [], []
     for facade in contract["facades"].values():
         destination = debug if facade.get("scope") == "DEBUG_SIMULATOR_SPI_ONLY" else public
         destination.extend(tuple(row) for row in facade["required"])
-    require(len(public) == len(set(public)) == 176 and len(debug) == len(set(debug)) == 22,
+    require(len(public) == len(set(public)) == public_count and len(debug) == len(set(debug)) == 22,
             "Reviewed MiniApps public/SPI declaration closure differs")
     return {"public": tuple(public), "debug": tuple(debug),
             "nonconstructible": tuple(contract["nonconstructible_types"])}
@@ -301,8 +309,8 @@ def require_compiled_host_api(qualification, *, retained_original=None, admissio
         require(public_contract_sha256 in REVIEWED_PUBLIC_HOST_CONTRACTS
                 and admission_schema == 3 and retained_original is None,
                 "Unreviewed local annotation public contract")
-        if public_contract_sha256 == MINIAPPS_PUBLIC_CONTRACT_SHA256:
-            contract = miniapps_public_contract()
+        if public_contract_sha256 in MINIAPPS_PUBLIC_CONTRACT_FILES:
+            contract = miniapps_public_contract(public_contract_sha256)
             required_public = contract["public"]
             required_count = len(required_public) + (0 if production else len(contract["debug"]))
             protected = set(contract["nonconstructible"])
@@ -857,7 +865,7 @@ def prepare(root, admission_path, report, out, logged, *, variant=None, apply_pr
         local_api_source = root / "Scripts/CI/OriginalEditorLocalAnnotationAPICheck.swift"
         api_command.append(str(local_api_source))
     miniapps_api_source = None
-    if admitted.get("public_host_contract_sha256") == MINIAPPS_PUBLIC_CONTRACT_SHA256:
+    if admitted.get("public_host_contract_sha256") in MINIAPPS_PUBLIC_CONTRACT_FILES:
         miniapps_api_source = root / "Scripts/CI/OriginalEditorMiniAppsAPICheck.swift"
         api_command.append(str(miniapps_api_source))
     report.setdefault("commands", []).append(api_command)
