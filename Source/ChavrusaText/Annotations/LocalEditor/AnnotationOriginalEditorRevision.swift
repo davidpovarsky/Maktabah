@@ -189,12 +189,13 @@ final class AnnotationOriginalEditorRevisionAttempt {
             retire(); throw AnnotationLocalEditorError.retired
         }
         let local = self.local, lifetime = sourceLifetime
+        let databaseURL = prepared.snapshot.databaseURL
         return try await withTaskCancellationHandler {
             let transition: AnnotationLocalEditorNativeTransitionOutcome
             do {
                 try await Task.detached {
                     try AnnotationOriginalEditorRevisionFile.verifyWitness(witness, at: witnessURL,
-                        capturedDatabaseURL: prepared.snapshot.databaseURL)
+                        capturedDatabaseURL: databaseURL)
                 }.value
                 try Task.checkCancellation()
                 guard isCurrent(sourceLifetime.source) else { throw AnnotationLocalEditorError.retired }

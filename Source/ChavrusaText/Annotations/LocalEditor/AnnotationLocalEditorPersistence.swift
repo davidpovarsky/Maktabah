@@ -1095,8 +1095,8 @@ struct AnnotationLocalEditorNativeRevisionTarget: Sendable, Equatable {
               expectedHeads.allSatisfy({
                   !$0.isEmpty && $0.utf8.count <= 512 && !$0.utf8.contains(0)
               }),
-              zip(expectedHeads, expectedHeads.dropFirst()).allSatisfy({
-                  $0.utf8.lexicographicallyPrecedes($1.utf8)
+              zip(expectedHeads, expectedHeads.dropFirst()).allSatisfy({ pair in
+                  pair.0.utf8.lexicographicallyPrecedes(pair.1.utf8)
               }),
               AnnotationExchangeValidation.digest(expectedRootDigest) else {
             throw AnnotationLocalEditorNativeAttemptError.invalidComparison
