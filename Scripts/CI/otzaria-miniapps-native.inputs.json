@@ -1,19 +1,19 @@
 {
   "local_producer_manifest": {
-    "path": "/Users/m1/builds/hanlin-miniapps-final-native-20261125/build/native-final-evidence/attempt-70eb9c2d-01/consumer-build/producer-manifest.json",
-    "sha256": "350af7b55f5e981d2029778b75d61a17ea4db1b6df670ed623f630d283afb370"
+    "path": "/Users/m1/builds/hanlin-miniapps-final-native-20261125/build/native-final-evidence/attempt-fe3f75d0-ios272-01/consumer-build/producer-manifest.json",
+    "sha256": "6f19644bd0e6f44b736b4a5086c33ec65fe926b97c4b05304e8993a11f324bdb"
   },
   "local_producer_preparation": {
-    "path": "Scripts/CI/miniapps-producer-preparation-70eb9c2d.json",
-    "sha256": "e499b3ebcc720cc31e96edded148655c6db874820262da39f219c5c408db54f3"
+    "path": "Scripts/CI/miniapps-producer-preparation-fe3f75d0.json",
+    "sha256": "df774fb1bea2bb53a7c685d021bd089411dab6864994101f3b21d9078d008a2f"
   },
   "original_editor_debug_admission": {
-    "path": "Scripts/CI/original-editor-miniapps-debug-collections13-8ae85a64.inputs.json",
-    "sha256": "23f708f080f058b62c7cc57093247501ba0dedd244a21ba432b86599f83b4ba8"
+    "path": "Scripts/CI/original-editor-miniapps-debug-collections13-fe3f75d0.inputs.json",
+    "sha256": "4fb253abbe8f7b67ad517153e674affcd4b0da541e83c32354aebb87941ae12c"
   },
   "producer_artifact_name": null,
   "producer_origin": "local-mac",
   "producer_repository": "davidpovarsky/hanlin-ai",
   "producer_run_id": null,
-  "producer_source_sha": "70eb9c2d2cdfd920a65da59643dff7d4e7b775ff"
+  "producer_source_sha": "fe3f75d0638671c749225e9a8ddd487db70981cf"
 }
