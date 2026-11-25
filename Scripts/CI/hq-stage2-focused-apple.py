@@ -305,6 +305,16 @@ def checked_path(base, name):
     return target
 
 
+def verified_cached_input(path, size, expected_sha256):
+    """Retain immutable bytes only; no extraction, compiler or source gate is skipped."""
+    if not path.exists() and not path.is_symlink():
+        return False
+    require(path.is_file() and not path.is_symlink(), "Nonregular staged cache input: " + str(path))
+    require(path.stat().st_size == size and digest(path) == expected_sha256,
+            "Existing staged cache bytes differ: " + str(path))
+    return True
+
+
 def restore(config, report):
     cache = OUT / "inputs"
     cache.mkdir(parents=True, exist_ok=True)
@@ -316,7 +326,13 @@ def restore(config, report):
         archive = cache / (str(item["id"]) + ".zip")
         staged = staged_input(archive.name)
         if staged is not None:
-            shutil.copyfile(staged, archive)
+            require(digest(staged) == item["sha256"], "Staged artifact differs from the frozen input")
+            if verified_cached_input(archive, staged.stat().st_size, item["sha256"]):
+                report.setdefault("verified_input_cache_reuse", []).append({
+                    "path": str(archive.relative_to(ROOT)), "origin": "EXACT_AUTHENTICATED_STAGED_ZIP",
+                    "bytes": staged.stat().st_size, "sha256": item["sha256"]})
+            else:
+                shutil.copyfile(staged, archive)
         else:
             with archive.open("wb") as output:
                 subprocess.run(["gh", "api", f"repos/davidpovarsky/Maktabah/actions/artifacts/{item['id']}/zip"],
@@ -332,8 +348,17 @@ def restore(config, report):
                 matches = [n for n in zipped.namelist() if PurePosixPath(n).name == item["tar"]]
                 require(len(matches) == 1, "Ambiguous prebuilt archive payload")
                 payload = cache / item["tar"]
-                with zipped.open(matches[0]) as src, payload.open("wb") as dst:
-                    shutil.copyfileobj(src, dst)
+                if payload.exists() or payload.is_symlink():
+                    with zipped.open(matches[0]) as src:
+                        member_sha256 = hashlib.file_digest(src, "sha256").hexdigest()
+                    verified_cached_input(payload, zipped.getinfo(matches[0]).file_size, member_sha256)
+                    report.setdefault("verified_input_cache_reuse", []).append({
+                        "path": str(payload.relative_to(ROOT)), "origin": "EXACT_VERIFIED_ARCHIVE_MEMBER",
+                        "bytes": payload.stat().st_size, "sha256": member_sha256,
+                        "archive_sha256": actual, "archive_member": matches[0]})
+                else:
+                    with zipped.open(matches[0]) as src, payload.open("wb") as dst:
+                        shutil.copyfileobj(src, dst)
                 destination = ROOT / item["destination"]
                 destination.mkdir(parents=True, exist_ok=True)
                 with tarfile.open(payload) as packed:
