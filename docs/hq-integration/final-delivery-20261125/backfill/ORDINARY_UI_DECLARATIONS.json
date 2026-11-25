@@ -1,0 +1,21 @@
+{
+  "suites": [
+    {
+      "suite": "ProductionAnnotationEditorAcceptanceTests",
+      "selection": "ProductionAnnotationEditorAcceptanceTests/testOrdinaryEditorSavesSameAnnotationDiscardsDraftAndRecoversAfterTermination",
+      "expected": [
+        "testOrdinaryEditorSavesSameAnnotationDiscardsDraftAndRecoversAfterTermination"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "ProductionAnnotationEditorAcceptanceTests",
+      "selection": "ProductionAnnotationEditorAcceptanceTests/testOrdinaryPreparationConvertsSavedNoteOnceAndReopensNativeBodyAfterColdLaunch",
+      "expected": [
+        "testOrdinaryPreparationConvertsSavedNoteOnceAndReopensNativeBodyAfterColdLaunch"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    }
+  ],
+  "status": "DECLARATIONS_MATCH"
+}

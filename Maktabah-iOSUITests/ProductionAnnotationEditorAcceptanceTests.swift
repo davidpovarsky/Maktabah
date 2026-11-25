@@ -240,6 +240,203 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertEqual(finalViewport.offset, initialViewport.offset, accuracy: 1)
     }
 
+
+    @MainActor
+    func testOrdinaryPreparationConvertsSavedNoteOnceAndReopensNativeBodyAfterColdLaunch() async throws {
+        for key in ["OTZARIA_ORIGINAL_EDITOR_QUALIFICATION", "OTZARIA_ORIGINAL_EDITOR_PROCESS_RESUME"] {
+            XCTAssertNil(ProcessInfo.processInfo.environment[key])
+        }
+        XCTAssertTrue(isPad)
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(scenario: "readerDetail", backend: "otzaria", language: "en", recordViewport: true)
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        XCTAssertNil(app.launchEnvironment["OTZARIA_ORIGINAL_EDITOR_QUALIFICATION"])
+        XCTAssertNil(app.launchEnvironment["OTZARIA_ORIGINAL_EDITOR_PROCESS_RESUME"])
+        XCTAssertNil(app.launchEnvironment["OTZARIA_ANNOTATION_ACCEPTANCE_DATABASE"])
+        assertReaderHasText()
+        let initial = try viewport()
+
+        try await openAnnotations()
+        let previous = Set(annotationRows().allElementsBoundByIndex.map(\.identifier))
+        tap(app.navigationBars["Annotations"].buttons["Close"])
+        tap(try originalStudyToolsActionInWindow())
+        let tools = app.segmentedControls["torah-inspector-tools"]
+        XCTAssertTrue(tools.waitForExistence(timeout: 15))
+        tap(tools.buttons["Notes"])
+        tap(app.buttons["torah-inspector-add-note"])
+        let quick = app.textViews["annotation-note-text"]
+        XCTAssertTrue(quick.waitForExistence(timeout: 15))
+        let savedText = "Backfill שלום תורה " + UUID().uuidString
+        tap(quick)
+        quick.typeText(savedText)
+        XCTAssertEqual(quick.value as? String, savedText)
+        tap(app.buttons["annotation-save-toolbar"])
+        try await waitForAbsence(quick)
+        tap(app.buttons["torah-inspector-close"])
+        try await openAnnotations()
+        let row = try await newAnnotationRow(previous: previous)
+        let identifier = row.identifier
+        let rowID = try XCTUnwrap(Int64(identifier.dropFirst("original-book-annotation-".count)))
+        let before = try readCanonicalRow(rowID)
+        XCTAssertEqual(before.preview, savedText)
+        XCTAssertNil(before.body)
+        attachStorage(before, stage: "backfill-saved-plain-row")
+        tap(app.navigationBars["Annotations"].buttons["Close"])
+
+        try await openOrdinaryNotePreparation()
+        let preparation = app.buttons["annotation-backfill-start"]
+        let conversion = app.buttons["annotation-native-backfill-start"]
+        XCTAssertTrue(preparation.waitForExistence(timeout: 15))
+        try revealPreparationControl(conversion)
+        XCTAssertTrue(conversion.exists)
+        XCTAssertFalse(conversion.isEnabled, "Native conversion requires the original preparation step")
+        XCTAssertFalse(app.staticTexts["annotation-native-backfill-workspace-unavailable"].exists)
+        XCTAssertEqual(try readCanonicalRow(rowID), before, "Opening Settings must not convert notes")
+
+        try revealPreparationControl(preparation, towardsBottom: false)
+        tap(preparation)
+        XCTAssertTrue(app.descendants(matching: .any)["annotation-backfill-complete"].waitForExistence(timeout: 120))
+        XCTAssertFalse(app.staticTexts["annotation-backfill-error"].exists)
+        try revealPreparationControl(conversion)
+        try await waitForEnabled(conversion)
+        XCTAssertEqual(try readCanonicalRow(rowID), before, "Local planning must not replace a saved body")
+        try revealPreparationControl(conversion)
+        tap(conversion)
+        let confirm = app.buttons["annotation-native-backfill-confirm"]
+        let cancel = app.buttons["annotation-native-backfill-cancel-confirmation"]
+        XCTAssertTrue(confirm.waitForExistence(timeout: 15))
+        XCTAssertTrue(cancel.exists)
+        tap(cancel)
+        try await waitForAbsence(confirm)
+        XCTAssertEqual(try readCanonicalRow(rowID), before, "Cancelled confirmation must preserve the saved row and envelope")
+        attachStorage(try readCanonicalRow(rowID), stage: "backfill-confirmation-cancelled")
+
+        tap(conversion)
+        XCTAssertTrue(confirm.waitForExistence(timeout: 15))
+        tap(confirm)
+        try await waitForBackfillCompletion()
+        let saved = try readCanonicalRow(rowID)
+        XCTAssertEqual(saved.id, before.id)
+        XCTAssertEqual(saved.uuid, before.uuid)
+        XCTAssertEqual(saved.revision, before.revision + 1)
+        XCTAssertEqual(Data(saved.preview.utf8), Data(savedText.utf8))
+        XCTAssertNotNil(saved.body)
+        XCTAssertGreaterThan(saved.body?.count ?? 0, 16)
+        XCTAssertNotEqual(saved.payloadDigest, before.payloadDigest)
+        attachStorage(saved, stage: "backfill-native-body-saved")
+        retainNativeEvidence("backfill-original-conversion-and-same-saved-identity")
+
+        // A second actual scan must preserve this committed rich version. It
+        // must not issue another local Save or silently downgrade its format.
+        try revealPreparationControl(conversion)
+        tap(conversion)
+        XCTAssertTrue(confirm.waitForExistence(timeout: 15))
+        tap(confirm)
+        let convertedCount = app.staticTexts["annotation-native-backfill-converted"]
+        let repeatedScan = await XCTWaiter.fulfillment(of: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == true AND label == %@", "0 notes converted"),
+            object: convertedCount
+        )], timeout: 30)
+        XCTAssertEqual(repeatedScan, .completed)
+        try await waitForBackfillCompletion()
+        XCTAssertEqual(convertedCount.label, "0 notes converted")
+        XCTAssertTrue(app.staticTexts["annotation-native-backfill-rich"].exists)
+        XCTAssertEqual(try readCanonicalRow(rowID), saved)
+        attachStorage(try readCanonicalRow(rowID), stage: "backfill-repeat-kept-same-version")
+        try closeOrdinaryNotePreparation()
+
+        let arguments = app.launchArguments
+        let environment = app.launchEnvironment
+        app.terminate()
+        XCTAssertTrue(app.wait(for: .notRunning, timeout: 15))
+        XCTAssertEqual(try readCanonicalRow(rowID), saved)
+        app.launch()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
+        XCTAssertEqual(app.launchArguments, arguments)
+        XCTAssertEqual(app.launchEnvironment, environment)
+        assertReaderHasText()
+        let reopenedViewport = try viewport()
+        XCTAssertEqual(reopenedViewport.source, initial.source)
+        XCTAssertEqual(reopenedViewport.object, initial.object)
+        XCTAssertEqual(reopenedViewport.offset, initial.offset, accuracy: 1)
+        try await openAnnotations()
+        XCTAssertEqual(Set(annotationRows().allElementsBoundByIndex.map(\.identifier)),
+                       previous.union([identifier]))
+        let resumed = app.buttons.matching(identifier: identifier)
+        XCTAssertEqual(resumed.count, 1)
+        try editAnnotation(resumed.firstMatch)
+        XCTAssertTrue(quick.waitForExistence(timeout: 15))
+        XCTAssertFalse(app.buttons["annotation-save-toolbar"].isEnabled)
+        let entry = app.buttons["annotation-expanded-editor-open"]
+        try await waitForEnabled(entry)
+        tap(entry)
+        let host = try await expandedHost()
+        _ = try await uniqueBody(savedText, in: host)
+        XCTAssertEqual(try readCanonicalRow(rowID), saved)
+        attachStorage(try readCanonicalRow(rowID), stage: "backfill-cold-native-render-kept-body")
+        retainNativeEvidence("backfill-cold-open-original-native-body")
+        tap(app.buttons["annotation-expanded-editor-close"])
+        tap(app.buttons["Discard draft"])
+        try await waitForAbsence(quick)
+        XCTAssertEqual(try readCanonicalRow(rowID), saved)
+        tap(app.navigationBars["Annotations"].buttons["Close"])
+    }
+
+    @MainActor
+    private func openOrdinaryNotePreparation() async throws {
+        let settings = app.buttons["main-settings-button"]
+        if !settings.exists || !settings.isHittable {
+            let libraryPage = app.buttons["reader-sidebar-page-0"]
+            if !libraryPage.exists || !libraryPage.isHittable {
+                tap(readerSidebarToggle())
+            }
+            tap(libraryPage)
+        }
+        XCTAssertTrue(settings.waitForExistence(timeout: 15))
+        XCTAssertTrue(settings.isHittable)
+        tap(settings)
+        XCTAssertTrue(app.buttons["settings-done-button"].waitForExistence(timeout: 15))
+        let entry = app.buttons["annotation-backfill-settings"]
+        for _ in 0..<8 {
+            if entry.exists && entry.isHittable { break }
+            app.swipeUp()
+        }
+        XCTAssertTrue(entry.exists && entry.isHittable)
+        tap(entry)
+        XCTAssertTrue(app.buttons["annotation-backfill-start"].waitForExistence(timeout: 15))
+    }
+
+    @MainActor
+    private func revealPreparationControl(_ control: XCUIElement, towardsBottom: Bool = true) throws {
+        for _ in 0..<6 {
+            if control.exists && control.isHittable { break }
+            if towardsBottom { app.swipeUp() } else { app.swipeDown() }
+        }
+        XCTAssertTrue(control.exists && control.isHittable)
+    }
+
+    @MainActor
+    private func waitForBackfillCompletion() async throws {
+        let complete = app.descendants(matching: .any)["annotation-native-backfill-complete"]
+        XCTAssertTrue(complete.waitForExistence(timeout: 180))
+        XCTAssertFalse(app.staticTexts["annotation-native-backfill-failed"].exists)
+        XCTAssertFalse(app.staticTexts["annotation-native-backfill-close-failed"].exists)
+        XCTAssertTrue(app.staticTexts["annotation-native-backfill-converted"].exists)
+    }
+
+    @MainActor
+    private func closeOrdinaryNotePreparation() throws {
+        let done = app.buttons["settings-done-button"]
+        if !done.exists || !done.isHittable {
+            let back = app.navigationBars["Prepare existing notes"].buttons["Settings"]
+            XCTAssertTrue(back.exists && back.isHittable)
+            tap(back)
+        }
+        XCTAssertTrue(done.waitForExistence(timeout: 15))
+        tap(done)
+        assertReaderHasText()
+    }
+
     @MainActor
     private func annotationRows() -> XCUIElementQuery {
         app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@ AND NOT (identifier BEGINSWITH %@)",

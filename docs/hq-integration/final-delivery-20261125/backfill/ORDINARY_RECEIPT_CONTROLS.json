@@ -1,0 +1,19 @@
+{
+  "status": "LOG_SCHEMA_AND_ACTUAL_SWIFT_STAGE_CONTROLS_PASS",
+  "passed": 9,
+  "controls": [
+    "actual_original_and_backfill_swift_stage_contract",
+    "all_ten_declared_log_observations_are_parsed",
+    "duplicate_stage_refused_before_capture",
+    "unknown_stage_refused",
+    "qualification_mode_refused",
+    "writable_observation_refused",
+    "unexpected_private_payload_field_refused",
+    "ambiguous_prefix_refused",
+    "oversized_observation_refused"
+  ],
+  "native_tests_executed": 0,
+  "native_readback_or_ui_accepted": false,
+  "driver_sha256": "e1c20b326cbcecf0ded659baa9c53901f3bc2dbf7ea673756ef4c5e1ca57915c",
+  "actual_ui_source_sha256": "63cd2e5ae552b4ea684c04d5fe28b67891f44182b124ed55fc4acb204375efa0"
+}
