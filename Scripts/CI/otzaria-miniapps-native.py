@@ -62,7 +62,8 @@ def configuration():
         require(type(value["producer_run_id"]) is int and value["producer_run_id"] > 0, "Producer run must be frozen")
         require(value["producer_artifact_name"] == "app-split-" + str(value["producer_run_id"]),
                 "Unexpected producer artifact identity")
-        require("local_producer_manifest" not in value, "A GitHub producer cannot silently substitute a local product")
+        require("local_producer_manifest" not in value and "local_producer_preparation" not in value,
+                "A GitHub producer cannot silently substitute a local product or preparation")
     else:
         require(value.get("producer_run_id") is None and value.get("producer_artifact_name") is None,
                 "A local producer must not invent GitHub run or artifact identities")

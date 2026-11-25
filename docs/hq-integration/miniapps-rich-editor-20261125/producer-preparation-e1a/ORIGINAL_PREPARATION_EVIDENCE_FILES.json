@@ -1,0 +1,18 @@
+{
+  "source-identity.json": {
+    "bytes": 1174259,
+    "sha256": "62b73f4136bbfb19e46c3162bd927cf0b55cafe446a1273f917eb6bbb15b4851"
+  },
+  "preparation-commands.json": {
+    "bytes": 1092,
+    "sha256": "fda43794f0a73e8afcaa90ce4d34ca8f60d1591177181a3080e3afc82a2f19ea"
+  },
+  "commands.jsonl": {
+    "bytes": 12662,
+    "sha256": "e8831617bddb3a891e9b7e5e8052d9fe2ff33ed098e08caeba0ea6ba193a5f94"
+  },
+  "prepared-source-tree.txt": {
+    "bytes": 41,
+    "sha256": "7aac8b5d0bd66308c3c61a294a51d3ffb0712e1741d73a82507dfa2d9e6c2802"
+  }
+}
