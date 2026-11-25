@@ -3,7 +3,7 @@
   "status": "SOURCE_ONLY_ACTUAL_HOSTED_TYPING_AND_RUNTIME_PENDING",
   "base": "05f5697418493594589e1614e72da94ab12cf165",
   "required_sdk": "86d738c662c332cec370cee6a09dd434808dbeb9",
-  "source_sha256": "1add6c93e558a2b8b999de71a556965a8e66a963b32386f3298dce6288e1222c",
+  "source_sha256": "1ed5943902598f5e694e680924eeebbf17310d921134a02d7fefce90a672ecc3",
   "path": "Maktabah-iOSNativeTests/OriginalAnnotationBatchNativeAcceptanceTests.swift",
   "cases": [
     "test01NativeBatchCapturesFullTextWithoutMountingEditor",
@@ -16,5 +16,12 @@
   "expected_real_host": "com.davidpovarsky.chavrusatext",
   "native5000_executed": 0,
   "ui_executed": 0,
-  "remote_delivery_executed": 0
+  "remote_delivery_executed": 0,
+  "reviewed_parent": "4f03c5a308498cec3896e6f66ec95fc32139a083",
+  "scope": {
+    "pending_cancellation": "Task.cancel plus real Host run retirement",
+    "native_reopen": "AccountStop then ordinary native factory in same app PID",
+    "native_process_cold_start": false,
+    "resident_memory": "Required successful nonzero Mach observation; failure is explicit"
+  }
 }

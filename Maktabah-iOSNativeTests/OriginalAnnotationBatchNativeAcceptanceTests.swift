@@ -157,6 +157,8 @@ final class OriginalAnnotationBatchNativeAcceptanceTests: XCTestCase {
 
             // Release the genuine batch through AccountStop before reopening
             // selected immutable original exports using the ordinary factory.
+            // These are native-runtime reopens in this SAME app process, not
+            // evidence that a new operating-system process recovered the data.
             try await run.closeBatchForReopen()
             for (index, text, saved) in samples {
                 try await run.reopen(index: index, text: text, saved: saved)
@@ -215,7 +217,9 @@ final class OriginalAnnotationBatchNativeAcceptanceTests: XCTestCase {
                 try require(refusal != nil, "pending-admission-returned-an-authorized-child")
                 try run.evidence.event("pending-admission-refused", values: [
                     "control": kind.rawValue, "observedPendingBeforeRetirement": true,
-                    "publicSourceChecks": progress.sourceChecks, "error": refusal ?? ""
+                    "publicSourceChecks": progress.sourceChecks, "error": refusal ?? "",
+                    "taskCancellationRequested": kind == .cancellation,
+                    "parentRetirementRequested": true, "cancellationOnlyControl": false
                 ])
             } catch {
                 pending.cancel()
@@ -290,7 +294,7 @@ private func exactPreview(_ text: String) -> String {
     return result
 }
 
-private func residentBytes() -> UInt64 {
+private func residentBytes() throws -> UInt64 {
     var info = mach_task_basic_info()
     var count = mach_msg_type_number_t(MemoryLayout<mach_task_basic_info>.size / MemoryLayout<natural_t>.size)
     let result = withUnsafeMutablePointer(to: &info) {
@@ -298,7 +302,10 @@ private func residentBytes() -> UInt64 {
             task_info(mach_task_self_, task_flavor_t(MACH_TASK_BASIC_INFO), $0, &count)
         }
     }
-    return result == KERN_SUCCESS ? UInt64(info.resident_size) : 0
+    guard result == KERN_SUCCESS, info.resident_size > 0 else {
+        throw BatchFailure.violation("resident-memory-measurement-unavailable-kern-\(result)")
+    }
+    return UInt64(info.resident_size)
 }
 
 @MainActor
@@ -540,9 +547,11 @@ private final class BatchEvidence {
     private var captureSamples: [Double] = []
     private let began = ProcessInfo.processInfo.systemUptime
     private var peakObservedRSS: UInt64 = 0
-    private let startRSS = residentBytes()
+    private let startRSS: UInt64
 
     init(name: String) throws {
+        startRSS = try residentBytes()
+        peakObservedRSS = startRSS
         self.name = name
         let documents = try FileManager.default.url(for: .documentDirectory,
             in: .userDomainMask, appropriateFor: nil, create: true)
@@ -580,7 +589,7 @@ private final class BatchEvidence {
                  captureDirectory: String, openSeconds: Double, captureSeconds: Double) throws {
         openSamples.append(openSeconds)
         captureSamples.append(captureSeconds)
-        peakObservedRSS = max(peakObservedRSS, residentBytes())
+        peakObservedRSS = max(peakObservedRSS, try residentBytes())
         try event("actual-native-capture", values: [
             "index": index, "annotationUUID": source.annotationUUID.uuidString,
             "sourceWitnessSHA256": source.sourceWitnessSHA256,
@@ -617,9 +626,11 @@ private final class BatchEvidence {
             "runID": runID.uuidString, "mainBundleIdentifier": Bundle.main.bundleIdentifier ?? "",
             "processID": ProcessInfo.processInfo.processIdentifier,
             "captured": captured, "originalNativeReopens": reopened,
+            "nativeRuntimeReopensInSameProcess": reopened, "nativeProcessColdReopens": 0,
             "distinctNativeRoots": roots, "distinctNativeSpaces": spaces, "distinctNativeAccounts": accounts,
             "elapsedSeconds": ProcessInfo.processInfo.systemUptime - began,
             "startingResidentBytes": startRSS, "peakSampledResidentBytes": peakObservedRSS,
+            "residentMeasurementPolicy": "Require successful nonzero original Mach TASK_BASIC_INFO; otherwise fail and drain",
             "openLatencySeconds": statistics(openSamples), "captureLatencySeconds": statistics(captureSamples),
             "observationsSHA256": digest(log), "observationCount": eventCount,
             "evidenceDirectory": directory.path, "bodyError": bodyError ?? "", "stopError": stopError ?? "",
