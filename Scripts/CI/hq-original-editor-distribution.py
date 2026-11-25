@@ -628,7 +628,7 @@ def embed(root, admission_receipt, receipt_sha256, target, evidence):
 
 
 
-RUBY_CONTEXT_SOURCE_SHA256 = "facf9c4c1fcc25d1cafbd6d532c60367a4097f16642f5fc444e2a2092d0e3f33"
+RUBY_CONTEXT_SOURCE_SHA256 = "7e565a53dce6b54cde0bc097c5081c698ac661b35be57e26809ec8b8b5fae719"
 
 
 def ruby_context_file(path):
