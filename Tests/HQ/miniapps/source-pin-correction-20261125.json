@@ -1,0 +1,31 @@
+{
+  "apple_compilation": "NOT_RUN",
+  "application_source_sha": "8cdc0c0833154e71af5047983c47115db0005e35",
+  "application_trees": {
+    "Maktabah-iOSUITests": "a6658ba6a164c487cb8a44f08408a1f7b8671e8c",
+    "Maktabah.xcodeproj": "236144dc9ce640633fa34498019031a383b6151e",
+    "Source": "a926fe3f9bb2eeb4fef61f02f37e3e8a044a09e3",
+    "Vendor": "ec3ae609ed9117facfe4dcf7e068ef2c2d15bcf7"
+  },
+  "changed_original_input_paths": [
+    "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift"
+  ],
+  "explanation": "Bind the reviewed native menu selector correction to its actual immutable source; preserve exact tree matching and additionally pin the UI-test tree explicitly.",
+  "native_tests_executed": 0,
+  "previous_application_source_sha": "fa36a4dc95f16cfe56bd277d3ce861f4e5f678fd",
+  "previous_trees": {
+    "Maktabah-iOSUITests": "5b891ce6e43afe55c1f71d635efef85d2e617f56",
+    "Maktabah.xcodeproj": "236144dc9ce640633fa34498019031a383b6151e",
+    "Source": "a926fe3f9bb2eeb4fef61f02f37e3e8a044a09e3",
+    "Vendor": "ec3ae609ed9117facfe4dcf7e068ef2c2d15bcf7"
+  },
+  "producer_source_sha": "a774de24926ca13d563c45c42917d03b8c04296f",
+  "scope": "SOURCE_PIN_ADMISSION_ONLY",
+  "source_preflight": "PASS",
+  "strict_validator_changed": false,
+  "unchanged_application_paths": [
+    "Source",
+    "Vendor",
+    "Maktabah.xcodeproj"
+  ]
+}

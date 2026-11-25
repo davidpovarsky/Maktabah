@@ -1,6 +1,7 @@
 {
-  "application_source_sha": "fa36a4dc95f16cfe56bd277d3ce861f4e5f678fd",
+  "application_source_sha": "8cdc0c0833154e71af5047983c47115db0005e35",
   "application_trees": {
+    "Maktabah-iOSUITests": "a6658ba6a164c487cb8a44f08408a1f7b8671e8c",
     "Maktabah.xcodeproj": "236144dc9ce640633fa34498019031a383b6151e",
     "Source": "a926fe3f9bb2eeb4fef61f02f37e3e8a044a09e3",
     "Vendor": "ec3ae609ed9117facfe4dcf7e068ef2c2d15bcf7"
