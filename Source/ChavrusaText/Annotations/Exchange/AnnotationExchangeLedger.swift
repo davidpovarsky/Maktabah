@@ -305,9 +305,11 @@ final class AnnotationExchangeLedger: Sendable {
     }
 
     private func captureSourceLocked(annotationUUID: UUID) throws -> AnnotationExchangeSourceWitness {
-        let rows: [(Int64, ActionObject)] = try database.fetch(
-            query: "SELECT * FROM annotations WHERE ckRecordId = ? COLLATE NOCASE;",
-            parameters: [annotationUUID.uuidString]) { row in
+        let rows: [(Int64, ActionObject)]
+        if let recordID = try AnnotationExchangeIdentity.originalRecordID(database: database, annotationUUID: annotationUUID) {
+            rows = try database.fetch(
+            query: "SELECT * FROM main.annotations WHERE ckRecordId = ? COLLATE BINARY;",
+            parameters: [recordID]) { row in
                 var values: ActionObject = [:]
                 var id: Int64?
                 for index in 0..<row.columnCount {
@@ -319,6 +321,9 @@ final class AnnotationExchangeLedger: Sendable {
                 guard let id, id > 0 else { throw AnnotationExchangeError.corruptRecord }
                 return (id, values)
             }
+        } else {
+            rows = []
+        }
         guard rows.count <= 1 else { throw AnnotationExchangeError.ambiguousSource }
         let exists = !rows.isEmpty
         var canonical: ActionObject = ["annotationUUID": .string(annotationUUID.uuidString),

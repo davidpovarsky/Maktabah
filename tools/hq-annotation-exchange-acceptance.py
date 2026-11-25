@@ -24,6 +24,7 @@ SOURCES = [
     "Source/Core/CloudKit/SyncPendingStore.swift",
     "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
     "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+    "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeIdentity.swift",
     "Tests/HQ/sqlite/UnusedZstdBoundary.swift",
     "Tests/HQ/annotation-exchange/AnnotationExchangeTestSupport.swift",
     "Tests/HQ/annotation-exchange/AnnotationExchangeAcceptance.swift",

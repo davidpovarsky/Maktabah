@@ -35,6 +35,7 @@ SOURCES = [
     "Source/Core/CloudKit/SyncPendingStore.swift",
     "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
     "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+    "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeIdentity.swift",
     "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
     "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
     "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",

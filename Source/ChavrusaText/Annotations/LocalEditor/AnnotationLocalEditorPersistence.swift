@@ -185,10 +185,11 @@ final class AnnotationLocalEditorPersistence: Sendable {
     private func snapshotLocked() throws -> AnnotationLocalEditorSnapshot {
         let source = try ledger.captureSource(annotationUUID: annotationUUID)
         guard source.exists else { throw AnnotationLocalEditorError.missingAnnotation }
-        let rows = try connection.database.fetch(query: "SELECT * FROM annotations WHERE ckRecordId = ? COLLATE NOCASE;",
-            parameters: [annotationUUID.uuidString]) { connection.mapRow($0, []) }
+        let rows = try connection.database.fetch(query: "SELECT * FROM main.annotations WHERE id = ?;",
+            parameters: [annotationID]) { connection.mapRow($0, []) }
         guard rows.count == 1, var annotation = rows.first, annotation.id == annotationID,
-              annotation.ckRecordId.flatMap(UUID.init(uuidString:)) == annotationUUID else {
+              try AnnotationExchangeIdentity.resolve(database: connection.database, annotationID: annotationID,
+                  originalRecordID: annotation.ckRecordId) == annotationUUID else {
             throw AnnotationLocalEditorError.missingAnnotation
         }
         // Same query/order as the original fetchTags, on the captured handle.
@@ -1060,9 +1061,10 @@ extension AnnotationLocalEditorPersistence {
             }
             let ledger = AnnotationExchangeLedger(database: database, digest: AnnotationExchangePlatformDigest())
             guard try ledger.hasInstalledSchema() else { return }
-            // Legacy rows with no UUID cannot name an immutable rich version.
-            // The exact original record-ID comparison above still protects identity.
-            guard let uuid = records[0].flatMap(UUID.init(uuidString:)),
+            // Unregistered legacy rows cannot name an immutable rich version.
+            // Explicitly registered aliases obey the same opaque-body guard.
+            guard let uuid = try AnnotationExchangeIdentity.resolve(database: database, annotationID: annotationID,
+                  originalRecordID: records[0]),
                   let version = try ledger.currentVersion(namespace: Self.namespace, annotationUUID: uuid) else {
                 return
             }

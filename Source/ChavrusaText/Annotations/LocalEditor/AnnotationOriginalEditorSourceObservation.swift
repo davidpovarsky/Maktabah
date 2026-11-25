@@ -10,6 +10,7 @@ import AnytypeOriginalEditor
 final class AnnotationOriginalEditorSourceObservation {
     let annotationID: Int64
     let annotationUUID: UUID
+    private let originalRecordID: String
     let profileID: UUID
     private let lifetime = AnnotationLocalEditorLifetime()
     private let presentationLifetime: AnnotationLocalEditorLifetime
@@ -27,7 +28,8 @@ final class AnnotationOriginalEditorSourceObservation {
          workspace: StudyWorkspaceNavigationAdapter,
          presentationLifetime: AnnotationLocalEditorLifetime) throws {
         guard let id = annotation.id, id > 0,
-              let uuid = annotation.ckRecordId.flatMap(UUID.init(uuidString:)),
+              let recordID = annotation.ckRecordId,
+              let uuid = try store.resolveAnnotationExchangeIdentity(annotation: annotation),
               let mapping = workspace.mappingOwnershipObservation(),
               mapping.coverage == .liveNativeSetters,
               mapping.source.event.phase == .available,
@@ -37,6 +39,7 @@ final class AnnotationOriginalEditorSourceObservation {
         self.presentationLifetime = presentationLifetime
         annotationID = id
         annotationUUID = uuid
+        originalRecordID = recordID
         profileID = mapping.projection.profileID
         expectedMapping = mapping
         self.workspace = workspace
@@ -44,8 +47,8 @@ final class AnnotationOriginalEditorSourceObservation {
         mappingSubscription = mapping.source.subscribeInvalidation(owner: self) { owner, _ in
             owner.retire()
         }
-        annotationSubscription = store.events.sink { [lifetime] event in
-            if Self.affects(event, id: id, uuid: uuid) { lifetime.retire() }
+        annotationSubscription = store.events.sink { [lifetime, recordID] event in
+            if Self.affects(event, id: id, uuid: uuid, recordID: recordID) { lifetime.retire() }
         }
         try requireCurrent()
     }
@@ -84,8 +87,8 @@ final class AnnotationOriginalEditorSourceObservation {
             return
         }
         localSession = session
-        let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, session] event in
-            if Self.affects(event, id: id, uuid: uuid) {
+        let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, session] event in
+            if Self.affects(event, id: id, uuid: uuid, recordID: recordID) {
                 lifetime.retire()
                 session.retire()
             }
@@ -106,8 +109,8 @@ final class AnnotationOriginalEditorSourceObservation {
             throw AnnotationLocalEditorError.wrongOwner
         }
         nativeSource = source
-        let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, localSession, source] event in
-            if Self.affects(event, id: id, uuid: uuid) {
+        let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, localSession, source] event in
+            if Self.affects(event, id: id, uuid: uuid, recordID: recordID) {
                 lifetime.retire()
                 localSession.retire()
                 // Nonisolated SDK retirement also fences a queued native RPC
@@ -162,8 +165,8 @@ final class AnnotationOriginalEditorSourceObservation {
             try lifetime.bindLocalAnnotationRetirement(source)
             try presentationLifetime.bindLocalAnnotationRetirement(source)
             localAnnotation = source
-            let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, local, source] event in
-                if Self.affects(event, id: id, uuid: uuid) {
+            let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, local, source] event in
+                if Self.affects(event, id: id, uuid: uuid, recordID: recordID) {
                     lifetime.retire()
                     local.retire()
                     source.retire()
@@ -192,9 +195,10 @@ final class AnnotationOriginalEditorSourceObservation {
         localSession = nil
     }
 
-    private nonisolated static func affects(_ event: AnnotationEvent, id: Int64, uuid: UUID) -> Bool {
+    private nonisolated static func affects(_ event: AnnotationEvent, id: Int64, uuid: UUID, recordID: String) -> Bool {
         func matches(_ annotation: Annotation) -> Bool {
             annotation.id == id || annotation.ckRecordId.flatMap(UUID.init(uuidString:)) == uuid
+                || annotation.ckRecordId.map({ $0.utf8.elementsEqual(recordID.utf8) }) == true
         }
         switch event {
         case .added(let annotation), .updated(let annotation): return matches(annotation)
