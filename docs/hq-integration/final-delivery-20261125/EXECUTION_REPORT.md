@@ -1,6 +1,51 @@
 # Maktabah final execution continuation — 2026-11-25
 
-## Current state
+## Current state — 2026-11-25 06:52 UTC
+
+**Work remains in progress. There is no new Archive, signed IPA, Apple-processed TestFlight build, official-target merge or final acceptance.** Last verified App Store Connect build remains 1.0.0/11201. Later statements in the retained historical record apply only to their explicit source/test checkpoint.
+
+The published integration checkpoint before this source update is 2de354bf38d3db38b34a96f25aaaa10bd649558a on codex/otzaria-final-delivery-20261125. Current work preserves all prior qualified evidence and distinguishes source/parser checks from actual component, native and UI execution.
+
+### Newly integrated and verified
+
+- Actual Apple Backfill component acceptance: 17/17, job_c83f237ed359, 54.449s. Product 562b90f plus test import 6da4c21 are integrated. Full evidence df1d27a was integrated at bcb4a205. Root independently verified 73 raw files / 4,614,899 B and the byte-identical embedded index; archive 107,369 B has SHA256 cd10b5d50f3105b0b1970e548ad7fd95553bf49ccb3cca15c03b791ab6722f7f. See ../native-backfill-batch-20261125/apple-acceptance.
+- This component evidence includes full 1 MiB text, 1 MiB+1 retention, actual SQLite integrity and separate cold-rescan processes. It gives no original native batch, ordinary UI or remote transport credit.
+- The genuine Maktabah-iOSNativeTests hosted target, its original SDK import projection and six native-batch source scenarios are integrated. Review fe6bcf3 requires a successful nonzero Mach memory sample, explicitly scopes Task cancellation plus Host retirement, and labels AccountStop reopens as same-PID. Native5000 execution is pending.
+- Existing actual 36 SQLite revision controls, 43 atomic-save controls plus cold reopening, and 23 full-text Save controls remain preserved in their original proof 6913032/ integration 51597487. No unchanged suite was rerun.
+- Four ordinary original-account UI journey sources and a private evidence controller now cover Share/Update/Receive, discarded draft privacy, three promotion roles, Archive/Restore/Revert, and actual cold app reopening. Source/privacy controls passed 28 checks. Both Swift XCTest files passed the real Apple parser at job_a90f81a343de40be98466c6e2510c096 in 0.12s total / 42.1 MB peakRSS. Actual integrated typing/UI is pending. See native-exchange-ui.
+
+### Active original SDK work
+
+The original Anytype SDK union includes the 23-facade MiniApps/Backfill/lifecycle sources and 282 contract requirements (260 public + 22 Debug SPI). External 0ae997abd5184b6afb93bf41203f0559fd1e8c6a provides the current coherent source/PBX admission. The final Heart/source graph is not frozen.
+
+Real original native root+Archive CAS controls passed at 504; an Archive write succeeded but subsequent full readback failed. Diagnosis found that original export/collection.go's explicit-ID query still applies the default non-archived filter despite includeArchive. Its owner is correcting that original export route while retaining complete readback. A promotion fixture also needed the original distinction between an internal Snapshot key and its ot-unique type identity. These are active failures, not final passes. New object/file/relation graph expansion remains owned by the native lane.
+
+ActiveSpaceManager already invokes the genuine Pinkha bootstrap. AccountSession currently publishes readiness before that result is fully awaited/verified. The SDK lane is adding a closed readiness wait plus original manifest/three-role-type readback, without a parallel bootstrap UI, synthetic manifest or changed public signature.
+
+After the native graph and readiness source are complete, the final source requires new 3-architecture ABI plus Debug Simulator, Release Simulator and Release Device qualification. Historical 34b evidence, including the repaired Release symbol-ownership check, remains bound to 34b only.
+
+### Shared Hanlin and Library
+
+The current Hanlin integration candidate is 1abcc4749056d4c1c364f378732e137e7fead8b3 with Core abf0921c6e89e6521cc2b510ff11016b45a0ef08 and the original single ZIPFoundation 0.9.20/22787ffb59de99e5dc1fbfe80b19c97a904ad48d. Actual canonical generation and six original package resolutions passed; no locks were fabricated.
+
+New original Archive acceptance is not yet complete: build passed and the Compiler suite's 18 invocations passed, but the 12 dual-widget invocations reported 5 issues. Original Expo fixtures disagree with the product's strict 58.0.29 dependency, and ScriptWidget-Actions preparation also needs diagnosis. Failed evidence is retained. A narrow app consumer pin/resolver update is isolated from the root worktree.
+
+Independent review of qualified C9/App07 source 948bdb1f found no additional Composer API consumed by Maktabah. The existing d3da safe-area/hit-testing fix remains present. Actual Maktabah Hanlin Live remains required. The shared proof-only impact report e1da067 records this decision; it does not grant a Live pass.
+
+Groups100, two full-v32 UI journeys, full multipart-v40 install/resume/failure/recovery/SQLite/reopen/temp cleanup, and final Hebrew/English performance/UI remain open. Existing Library 7/7 and multipart 37/37 retain their original scope. The service update path remains the verified official snapshot route; no unverified SQL delta is enabled.
+
+### Resource and final delivery gates
+
+Native owner coordinates heavy Mac jobs. Verified cleanup job_01dc8fdfe485 removed only inactive compiler artifacts and retained qualified products, headers and proofs. Windows archive relocation job_e9ccfce2ba34 independently validated 38 data members + 3 metadata / SHA 6fbcba05b1dce1391304ca35dfe82963c2f1253f016fc7b0929650cbd7632dae. job_aff6e5241fb0 retired only the verified Oracle duplicate after rehash/inode/open-handle checks, increasing free space by 1,793,810,432 B. The authoritative Windows copy and Oracle recovery metadata remain.
+
+All 18 Apple CI compiler/simulator jobs are routed to the real Mac by 4914490, with exact publication receipt 05f569. The old intermediate workflow was cancelled, not passed. Final required CI has not run on frozen integrated source; runner admission remains controlled.
+
+Native116/Release114+2, ordinary UI, hosted native5000, revised independent peer transport, final MiniApps/Library/Live and full integrated SDK app build remain required. The genuine owner Ed25519 verification key/signature and the official provisioning profile containing all three existing AppGroups are still unresolved. Existing profiles omit group.com.itorah.shared; the verifier now checks all three and refuses incomplete profiles. Existing bundle/team/app identities are preserved.
+
+Asana main 1220763167870295 and Anytype 1220545194715722 were updated at 06:39 with the 17-test proof and remaining gates. No task was falsely completed.
+
+
+## Retained earlier execution record
 
 **Development and acceptance remain in progress. No new TestFlight build has been
 uploaded; full Native116, Release114+2, C–F and physical-device acceptance are open.**

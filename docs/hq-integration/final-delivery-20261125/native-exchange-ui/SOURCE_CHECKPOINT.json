@@ -1,0 +1,19 @@
+{
+  "after_test_sha256": "84c6085b3d38307c46ac96c5245e27fa959754949445885d4489d11fb5f63d29",
+  "base_head": "bd5df8089314fde5491cef10997d0d446cb6ca26",
+  "before_test_sha256": "aa37d9c35b1b8215db36479c77bf9de9722ecd42819a4281e0f59ee9fe85d532",
+  "clipboard": "Original UIKit Paste; localOnly, 120-second expiry, always cleared by defer",
+  "controller_sha256": "5afa10f966e4c30c963db86f858152fe367640544278ddc74425145554cb5c66",
+  "credential": "Existing dedicated test-owned default-network fixture; private file read only by XCTest, ordinary login Paste, never command arguments or app environment",
+  "existing_test_and_helper_bytes_preserved_by_exact_inverse": true,
+  "native116_or_release114_selectors_changed": false,
+  "native_or_ui_tests_executed": 0,
+  "new_ui_methods": 4,
+  "open_prerequisite": "Original ActiveSpaceManager already triggers the genuine Pinkha bootstrap; SDK AccountSession readiness must await and verify that original result before promotion",
+  "peer_review": "Editor SDK owner reviewed actual source ac3982; source-only, no runtime credit",
+  "production_code_changed": false,
+  "raw_auth_artifact_publication": "FORBIDDEN until credential redaction/secret scan; private raw evidence remains on Mac",
+  "shared_space_archive_coordination": "Do not run lifecycle UI concurrently with the independent peer CAS phase",
+  "source_controls": 28,
+  "status": "SOURCE_ONLY_NOT_TYPED_OR_EXECUTED"
+}
