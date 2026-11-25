@@ -15,6 +15,7 @@ import json
 import os
 import platform
 import re
+import runpy
 import shutil
 import sqlite3
 import subprocess
@@ -195,7 +196,7 @@ def main():
         if not (sdk / "usr/include/sqlite3.h").is_file():
             raise RuntimeError("Original Apple SDK SQLite3 module required")
         core = ROOT / "Source/Otzaria/Actions"
-        provenance = SOURCES + ["tools/hq-local-annotation-editor-acceptance.py", "Maktabah.xcodeproj/project.pbxproj",
+        provenance = SOURCES + ["tools/hq-local-annotation-editor-acceptance.py", "tools/exact-source-archive.py", "Maktabah.xcodeproj/project.pbxproj",
             "Source/Core/Database/CloudKitSyncManager.swift", "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift"]
         provenance += [str(p.relative_to(ROOT)).replace("\\", "/") for p in sorted(core.rglob("*"))
                        if p.is_file() and ".build" not in p.parts and p.suffix in (".swift", ".json", ".resolved")]
@@ -203,8 +204,7 @@ def main():
             raise RuntimeError("Whole original local Core package required")
         before = {p: sha(ROOT / p) for p in provenance}
         report["source_before"] = before
-        report["source_sha"] = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
-        report["source_status"] = subprocess.check_output(["git", "status", "--short"], cwd=ROOT, text=True)
+        report.update(runpy.run_path(str(ROOT / "tools/exact-source-archive.py"))["source_identity"](ROOT, provenance))
         report["swift"] = subprocess.check_output([swift, "--version"], text=True).strip()
         report["sdk"] = str(sdk)
         expected = declaration_names((ROOT / SOURCES[-1]).read_text(encoding="utf-8"))
@@ -257,6 +257,9 @@ let package = Package(name: "LocalAnnotationEditorAcceptance",
         print(repr(error))
     finally:
         if before is not None:
+            final_identity = runpy.run_path(str(ROOT / "tools/exact-source-archive.py"))["source_identity"](ROOT, provenance)
+            if final_identity["source_sha"] != report["source_sha"] or final_identity["source_archive"] != report["source_archive"]:
+                report["status"] = "FAILED"
             report["source_after"] = {p: sha(ROOT / p) for p in provenance}
             report["source_unchanged"] = before == report["source_after"]
             if not report["source_unchanged"]:
