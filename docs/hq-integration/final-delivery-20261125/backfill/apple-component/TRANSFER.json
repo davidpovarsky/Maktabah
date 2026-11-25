@@ -1,0 +1,14 @@
+{
+  "archive_bytes": 301069,
+  "archive_sha256": "e7757a2c128e1cf90e9954c0e34b8bf767adf403165de8fe269759ba9a3e678a",
+  "manifest_sha256": "a60ac4a85137908f14979a7fd049cb33d9138409e2e4fda14a56137b7476b6df",
+  "source_archive": {
+    "canonical_commit": "820f4724908dec654cf976988fa3f9c1a59557ab",
+    "git_history_transferred": false,
+    "manifest_sha256": "a60ac4a85137908f14979a7fd049cb33d9138409e2e4fda14a56137b7476b6df",
+    "verified_file_count": 88
+  },
+  "source_root": "/Users/m1/builds/Maktabah-820f4724-backfill-component-20261125",
+  "source_sha": "820f4724908dec654cf976988fa3f9c1a59557ab",
+  "source_status": "EXACT_COMMITTED_SOURCE_ARCHIVE_NOT_GIT_CHECKOUT"
+}
