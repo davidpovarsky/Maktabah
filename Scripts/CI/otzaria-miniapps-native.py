@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One actual Otzaria editor -> Hanlin TextStudio -> original saved-note journey."""
+"""Actual original Otzaria text and native-file journeys through standalone MiniApps."""
 import base64
 import hashlib
 import json
@@ -10,6 +10,9 @@ import re
 import runpy
 import shutil
 import sqlite3
+import stat
+import uuid
+import zipfile
 import subprocess
 import sys
 import tarfile
@@ -21,7 +24,10 @@ PRODUCER_DIR = ROOT / "build/miniapps-producer"
 INPUTS = ROOT / "Scripts/CI/otzaria-miniapps-native.inputs.json"
 BUILD_INPUTS = ROOT / "Scripts/CI/hq-stage2-focused-apple.inputs.json"
 SELECTOR = "MiniAppsAnnotationAcceptanceTests/testOriginalNoteReturnsTextFromActualMiniAppsAndPersistsAfterRelaunch"
-GROUPS = [{"label": "11-reader", "size": "11", "hid_comparison": False, "case_ids": [SELECTOR]}]
+FILE_SELECTOR = "MiniAppsAnnotationAcceptanceTests/testOriginalNativeFilesRoundTripAndReplayAfterColdReopen"
+SELECTORS = [SELECTOR, FILE_SELECTOR]
+FILE_WORKSHOP = "org.itorah.miniapps.fileworkshop"
+GROUPS = [{"label": "11-reader", "size": "11", "hid_comparison": False, "case_ids": SELECTORS}]
 BUNDLE = "com.davidpovarsky.chavrusatext"
 PRODUCER = "com.itorah.hanlinminiapps"
 GROUP = "group.com.itorah.shared"
@@ -132,30 +138,36 @@ def source_context():
             "producer_inputs": config,
             "original_editor_admission": editor_admission,
             "original_case_catalog_sha256": digest(ROOT / "docs/hq-integration/runtime27/R27_CASES.json"),
-            "execution_inputs": original["exact_working_inputs"](["Scripts/CI", ".github/workflows", "Maktabah-iOSUITests", "tools"])}
+            "execution_inputs": original["exact_working_inputs"](["Scripts/CI", ".github/workflows", "Maktabah-iOSUITests", "tools", "MiniApps/FileWorkshop"])}
 
 
 def prepare():
     require(not (OUT / "source-before.json").exists(), "Existing native evidence must not be overwritten")
     context = source_context()
     contract = json.loads((ROOT / "docs/hq-integration/runtime27/R27_CASES.json").read_text())
-    if SELECTOR not in {row["case_id"] for row in contract["cases"] + contract.get("supplemental_cases", [])}:
-        contract.setdefault("supplemental_cases", []).append({
-            "case_id": SELECTOR, "device": "ipad11", "status": "NOT_RUN",
-            "oracle": "Original reader selection and note toolbar, actual Hanlin TextStudio warm/cold callbacks, three atomic receipts, linked-note anchors and unchanged source corpus"})
-    for row in contract["cases"] + contract.get("supplemental_cases", []):
-        if row["case_id"] == SELECTOR:
-            row["oracle"] = "Original reader selection and note toolbar; actual TextStudio warm/cold callbacks; five durable SQLite result receipts, separately validated native apply and SQLite commit, native rich archive and newer-block preservation, cold native remount, duplicate callback, linked-note anchors and unchanged corpus"
+    oracles = {
+        SELECTOR: "Original reader selection and note toolbar; actual TextStudio warm/cold callbacks; five durable SQLite result receipts, separately validated native apply and SQLite commit, native rich archive and newer-block preservation, cold native remount, duplicate callback, linked-note anchors and unchanged corpus",
+        FILE_SELECTOR: "Actual UI import and execution of committed NativeScript File Workshop; original native file upload, cold native archive reopen and byte export, real readAttachment/writeAttachment/complete, UTF-8 edits, same-name distinct blocks, cold return, cancellation and replay with original SQLite receipts and unchanged corpus"}
+    catalog = contract["cases"] + contract.setdefault("supplemental_cases", [])
+    for selector in SELECTORS:
+        matches = [row for row in catalog if row["case_id"] == selector]
+        require(len(matches) <= 1, "Duplicate original native acceptance selector")
+        if not matches:
+            row = {"case_id": selector, "device": "ipad11", "status": "NOT_RUN"}
+            contract["supplemental_cases"].append(row)
+        else:
+            row = matches[0]
+        row["oracle"] = oracles[selector]
     contract.update(source_test_commit=context["application_source_sha"],
                     app_source=context["application_source_sha"],
                     application_source_sha=context["application_source_sha"],
-                    execution_case_ids=[SELECTOR], execution_groups=GROUPS, required_nonzero_cases=1,
-                    native_cases_executed=0, expected_per_device={"ipad11": 1, "ipad13": 0, "iphone": 0},
+                    execution_case_ids=SELECTORS, execution_groups=GROUPS, required_nonzero_cases=len(SELECTORS),
+                    native_cases_executed=0, expected_per_device={"ipad11": len(SELECTORS), "ipad13": 0, "iphone": 0},
                     diagnostic_only=True, hid_comparison=False,
                     scope="Actual two-app MiniApps consumer acceptance only; previously accepted unrelated suites are not replayed")
     runpy.run_path(str(ROOT / "Scripts/CI/runtime27.py"))["execution_groups"](contract)
     declarations = runpy.run_path(str(ROOT / "Scripts/CI/verify-faithful-xctest.py"))["validate_selections"](
-        [SELECTOR], ROOT / "Maktabah-iOSUITests")
+        SELECTORS, ROOT / "Maktabah-iOSUITests")
     require(declarations["status"] == "DECLARATIONS_MATCH", "The selected original XCTest is absent")
     write(OUT / "declarations.json", declarations)
     write(MANIFEST, contract)
@@ -451,6 +463,184 @@ def verify_rich_returns(records):
 
 
 
+
+def stage_file_workshop(udid):
+    """Stage only the committed installable input; XCTest performs the real import."""
+    directory = ROOT / "MiniApps/FileWorkshop"
+    paths = ["PACKAGE.json", "FileWorkshop.hanlinNativeScript", "source/script.json",
+             "source/nativescript/app/package.json", "source/nativescript/app/bundle.mjs"]
+    source_hashes = {}
+    for relative in paths:
+        path = directory / relative
+        require(path.is_file() and not path.is_symlink(), "Missing original File Workshop package source")
+        committed = subprocess.check_output(["git", "show", "HEAD:" + str(path.relative_to(ROOT))], cwd=ROOT)
+        require(path.read_bytes() == committed, "File Workshop input is not the exact committed package")
+        source_hashes[relative] = digest(path)
+    package = json.loads((directory / "PACKAGE.json").read_text())
+    archive = directory / "FileWorkshop.hanlinNativeScript"
+    with zipfile.ZipFile(archive) as bundle:
+        expected = {str(path.relative_to(directory / "source")): path.read_bytes()
+                    for path in (directory / "source").rglob("*") if path.is_file()}
+        require(len(bundle.namelist()) == len(expected) and set(bundle.namelist()) == set(expected),
+                "File Workshop archive source membership differs")
+        require(all(bundle.read(name) == value for name, value in expected.items()),
+                "File Workshop archive differs from its original committed source")
+    manifest = json.loads((directory / "source/script.json").read_text())
+    require(manifest["hanlinAppID"] == FILE_WORKSHOP
+            and package["app_id"] == FILE_WORKSHOP and package["archive"] == archive.name
+            and package["sha256"] == digest(archive) and package["bytes"] == archive.stat().st_size
+            and package["files"] == {name: hashlib.sha256(value).hexdigest() for name, value in expected.items()},
+            "Wrong or incompletely bound real file MiniApp")
+    data = resolve_native_container(udid, PRODUCER, "data").resolve(strict=True)
+    destination = data / "Documents/FileWorkshop.hanlinNativeScript"
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    require(not destination.exists() and not destination.is_symlink(), "File Workshop input is already staged")
+    with destination.open("xb") as stream:
+        stream.write(archive.read_bytes())
+    require(digest(destination) == digest(archive), "Actual producer input archive copy differs")
+    receipt = {"status": "COMMITTED_INPUT_STAGED_FOR_ACTUAL_IMPORT_UI",
+               "package_id": FILE_WORKSHOP, "checkout_sha": git("rev-parse", "HEAD"),
+               "source_hashes": source_hashes, "package_record": package,
+               "archive_path": str(destination), "archive_sha256": digest(destination),
+               "producer_data_container": str(data), "native_import_executed": False,
+               "registry_or_bridge_mutation": False}
+    write(OUT / "file-workshop-input-stage.json", receipt)
+    return receipt
+
+
+def actual_shared_file(group, item):
+    require(item.get("kind") == "file" and item.get("text") is None
+            and isinstance(item.get("name"), str) and item["name"], "Actual result is not an attached file")
+    identity = uuid.UUID(item["attachmentID"])
+    path = group / "MiniAppsBridge/v1/attachments" / str(identity)
+    descriptor = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC)
+    with os.fdopen(descriptor, "rb") as stream:
+        before = os.fstat(stream.fileno())
+        require(stat.S_ISREG(before.st_mode), "Actual shared attachment is not a regular file")
+        data = stream.read()
+        after = os.fstat(stream.fileno())
+    require((before.st_dev, before.st_ino, before.st_size, before.st_mtime_ns)
+            == (after.st_dev, after.st_ino, after.st_size, after.st_mtime_ns)
+            and len(data) == before.st_size, "Actual attachment changed during readback")
+    retained = OUT / "file-workshop-attachments" / str(identity)
+    retained.parent.mkdir(parents=True, exist_ok=True)
+    if retained.exists():
+        require(retained.read_bytes() == data, "A shared attachment identity changed its bytes")
+    else:
+        with retained.open("xb") as output:
+            output.write(data)
+    return data, {"attachment_id": str(identity), "name": item["name"],
+                  "type_identifier": item.get("typeIdentifier"), "bytes": len(data),
+                  "sha256": hashlib.sha256(data).hexdigest(),
+                  "retained_path": str(retained.relative_to(OUT))}
+
+
+def verify_file_returns(records, group):
+    require(len(records) == 3, "Two real file returns and one actual cancellation are required")
+    records = sorted(records, key=lambda row: native_context(row["shared_record"])[0]["source"]["revision"])
+    first, second, cancelled = records
+    document_ids, annotation_ids, witnesses = set(), set(), []
+    for row in records:
+        record = row["shared_record"]
+        request, result = record["request"], record.get("result") or {}
+        document = json.loads(request["source"]["metadata"]["otzaria.annotation.v1"])
+        context, _ = native_context(record)
+        require(request["appID"] == FILE_WORKSHOP and request["source"]["kind"] == "native-annotation"
+                and record["acknowledged"] is True, "File journey is not an acknowledged real native-editor request")
+        require(document["annotationUUID"].lower() == context["source"]["annotation"].lower()
+                and document["annotationID"] is not None and not document["isReaderSelection"],
+                "Native file request lost its original source-linked annotation")
+        document_ids.add(request["source"]["documentID"])
+        annotation_ids.add((document["profile"], document["annotationID"], document["annotationUUID"]))
+        input_items = [item for item in request["inputs"] if item.get("kind") == "file"]
+        mapping = json.loads(request["source"]["metadata"].get("otzaria.original-editor.files.v1", "{}"))
+        require({str(uuid.UUID(key)) for key in mapping} ==
+                {str(uuid.UUID(item["attachmentID"])) for item in input_items}
+                and len(set(mapping.values())) == len(input_items),
+                "Actual file inputs do not identify distinct original native file blocks")
+        inputs = [actual_shared_file(group, item) for item in input_items]
+        outputs = [actual_shared_file(group, item) for item in result.get("items", [])]
+        row["native_file_inputs"] = [entry for _, entry in inputs]
+        row["native_file_outputs"] = [entry for _, entry in outputs]
+        witnesses.append((context, document, inputs, outputs))
+        rows = row["original_receipt_rows"]
+        if row is cancelled:
+            require(result.get("status") == "cancelled" and not result.get("items") and not rows,
+                    "Actual file cancellation must not create a canonical result receipt")
+        else:
+            require(result.get("status") == "success" and result.get("operation") == "insert"
+                    and len(outputs) == 1 and len(rows) == 1
+                    and rows[0][0] == document["annotationID"]
+                    and rows[0][1] == rows[0][2] == document["annotationUUID"]
+                    and rows[0][5:10] == (document["bookID"], document["contentID"],
+                        document["rangeLocation"], document["rangeLength"], document["context"])
+                    and json.loads(rows[0][4]) == result,
+                    "Actual file upload lacks its exact original SQLite receipt and source anchor")
+    require(len(document_ids) == len(annotation_ids) == 1, "Actual file callbacks crossed native documents")
+    a, b, c = witnesses
+    require(not a[2] and len(b[2]) == 1 and len(c[2]) == 2,
+            "Original native file export must observe zero, one, then two saved blocks")
+    first_data, second_data = a[3][0][0], b[3][0][0]
+    require(re.fullmatch(rb"NativeFile[0-9A-F]{32}", first_data)
+            and re.fullmatch("קובץ בעברית\\n[0-9A-F-]{36}\\nNative file bytes", second_data.decode("utf-8")),
+            "The original runtime must return actual user-entered nonce-bearing UTF-8 bytes")
+    require(first["shared_record"]["result"].get("metadata", {}).get("fileMode") == "new-utf8"
+            and second["shared_record"]["result"].get("metadata", {}).get("fileMode") == "edited-utf8",
+            "The real file MiniApp did not execute both create and edit actions")
+    require(b[2][0][0] == first_data and {data for data, _ in c[2]} == {first_data, second_data},
+            "Cold native archive/FileDownload/Bridge readback does not match the actual returned file bytes")
+    require(a[3][0][1]["name"] == b[3][0][1]["name"] == "document.txt"
+            and a[3][0][1]["attachment_id"] != b[3][0][1]["attachment_id"],
+            "Distinct original file blocks must preserve the same display filename without identity collision")
+    context, document = c[:2]
+    connection = sqlite3.connect(Path(document["profile"]).as_uri() + "?mode=ro", uri=True)
+    try:
+        versions = {}
+        for row in records:
+            request = row["shared_record"]["request"]
+            actual = connection.execute(
+                "SELECT revision,payload_digest FROM otzaria_annotation_exchange_versions "
+                "WHERE lower(mutation_id)=lower(?)", (request["id"],)).fetchall()
+            if row is cancelled:
+                require(not actual, "Cancelled native file request created a canonical revision")
+            else:
+                source_context_value, _ = native_context(row["shared_record"])
+                require(len(actual) == 1 and actual[0][0] == source_context_value["source"]["revision"] + 1,
+                        "A file callback created zero, duplicate, or incorrectly based native revisions")
+                versions[request["id"]] = {"revision": actual[0][0], "payload_sha256": actual[0][1]}
+        heads = connection.execute(
+            "SELECT h.revision,v.mutation_id,v.payload_digest,v.payload_base64 "
+            "FROM otzaria_annotation_exchange_heads h JOIN otzaria_annotation_exchange_versions v "
+            "ON v.namespace=h.namespace AND v.annotation_uuid=h.annotation_uuid AND v.revision=h.revision "
+            "WHERE h.namespace='otzaria.local.annotation' AND lower(h.annotation_uuid)=lower(?)",
+            (context["source"]["annotation"],)).fetchall()
+        require(len(heads) == 1 and heads[0][0] == context["source"]["revision"],
+                "Cancellation or replay changed the final canonical native revision")
+    finally:
+        connection.close()
+    revision, mutation, payload_sha, encoded = heads[0]
+    payload = base64.b64decode(encoded, validate=True)
+    require(hashlib.sha256(payload).hexdigest() == payload_sha, "Actual native file envelope digest differs")
+    envelope = json.loads(payload)
+    rich = envelope["richBody"]
+    native_body = base64.b64decode(rich["bytesBase64"], validate=True)
+    require(rich["format"] == "anytype.native-protobuf-archive" and rich["formatVersion"] == 1
+            and native_body.startswith(b"ATOSNAP\x00"), "Files were not saved in the original native archive")
+    retained = OUT / "file-workshop-native-canonical"
+    retained.mkdir(exist_ok=False)
+    (retained / "annotation-envelope.json").write_bytes(payload)
+    (retained / "original-native-archive.bin").write_bytes(native_body)
+    return {"status": "ACTUAL_ORIGINAL_NATIVE_FILES_AND_RECEIPTS_PASS",
+            "successful_file_callbacks": 2, "cancelled_file_requests": 1,
+            "canonical_revision": revision, "canonical_mutation_id": mutation,
+            "canonical_payload_sha256": payload_sha,
+            "native_body_sha256": hashlib.sha256(native_body).hexdigest(),
+            "native_body_bytes": len(native_body), "result_revisions": versions,
+            "source_linked_annotation": list(annotation_ids)[0],
+            "cold_reopen_cold_callback_and_replay": "ASSERTED_BY_ACTUAL_XCTEST",
+            "native_upload_and_sqlite_receipt_atomic": False}
+
+
 class ActualMiniAppsProducer:
     def __init__(self):
         self.udid = None
@@ -462,10 +652,10 @@ class ActualMiniAppsProducer:
         self.state = {"status": "NOT_REACHED", "fixture_producer": False, "synthetic_results_written": False}
 
     def validate_selection(self, baseline, release_manifest, selection):
-        require(not baseline and release_manifest is None and selection == [SELECTOR], "Wrong native case selection")
+        require(not baseline and release_manifest is None and selection == SELECTORS, "Wrong native case selection")
 
     def stage(self, udid, container, label, selection):
-        require(self.udid is None and label == "11-reader" and selection == [SELECTOR], "Wrong owned simulator scope")
+        require(self.udid is None and label == "11-reader" and selection == SELECTORS, "Wrong owned simulator scope")
         self.udid = udid
         producer = PRODUCER_DIR / "HanlinMiniApps.app"
         require((OUT / "producer-admission.json").is_file(), "Actual producer product was not admitted")
@@ -477,6 +667,7 @@ class ActualMiniAppsProducer:
                 "The two installed original apps do not resolve the same App Group")
         self.group = Path(consumer_group).resolve()
         self.corpus_group = resolve_native_container(udid, BUNDLE, "group.com.davidpovarsky.itorah").resolve()
+        workshop = stage_file_workshop(udid)
         corpus_profile = json.loads((ROOT / "Source/Otzaria/DataProfiles/miniTest10.profile.json").read_text())
         self.state.update(status="ACTUAL_PRODUCER_INSTALLED", udid=udid, group=str(self.group),
                           consumer_bundle=BUNDLE, producer_bundle=PRODUCER, shared_group_identifier=GROUP,
@@ -486,6 +677,8 @@ class ActualMiniAppsProducer:
         self.video = subprocess.Popen(["xcrun", "simctl", "io", udid, "recordVideo", str(OUT / "actual-two-app-ipad.mp4")],
                                       stdout=self.video_log, stderr=subprocess.STDOUT)
         return {"TEST_RUNNER_MINIAPPS_NATIVE_SHARED_GROUP": str(self.group),
+                "TEST_RUNNER_MINIAPPS_FILE_WORKSHOP_ARCHIVE": workshop["archive_path"],
+                "TEST_RUNNER_MINIAPPS_FILE_WORKSHOP_SHA256": workshop["archive_sha256"],
                 "TEST_RUNNER_MINIAPPS_NATIVE_PRODUCER_BUNDLE": PRODUCER,
                 "TEST_RUNNER_MINIAPPS_NATIVE_CORPUS_GROUP": str(self.corpus_group),
                 "TEST_RUNNER_MINIAPPS_NATIVE_CORPUS_SHA256": corpus_profile["sourceDatabase"]["databaseSHA256"]}
@@ -506,7 +699,7 @@ class ActualMiniAppsProducer:
                 self.video.kill()
                 self.video.wait(timeout=10)
             self.video_log.close()
-        report = {"status": "INCOMPLETE", "records": [], "rich_records": [],
+        report = {"status": "INCOMPLETE", "records": [], "rich_records": [], "file_records": [],
                   "fixture_producer": False, "synthetic_results_written": False}
         try:
             for path in sorted((self.group / "MiniAppsBridge/v1/requests").glob("*.json")):
@@ -528,6 +721,9 @@ class ActualMiniAppsProducer:
                     connection.close()
                 result = record.get("result") or {}
                 text = "\n".join(item["text"] for item in result.get("items", []) if item.get("text") is not None)
+                if request["appID"] == FILE_WORKSHOP:
+                    report["file_records"].append({"shared_record": record, "original_receipt_rows": rows})
+                    continue
                 if request["source"].get("kind") == "native-annotation":
                     verified = (record["acknowledged"] is True and result.get("status") == "success"
                                 and result.get("operation") == "insert" and len(rows) == 1
@@ -614,7 +810,14 @@ class ActualMiniAppsProducer:
             require(rich_identities.isdisjoint(identities)
                     and tuple(reader["original_receipt_rows"][0][:3]) not in rich_identities,
                     "Rich editor callbacks crossed another original document")
-            report["actual_callbacks"] = 5
+            report["original_native_files"] = verify_file_returns(report["file_records"], self.group)
+            file_identities = {tuple(r["original_receipt_rows"][0][:3]) for r in report["file_records"]
+                               if r["original_receipt_rows"]}
+            require(len(file_identities) == 1 and file_identities.isdisjoint(identities | rich_identities)
+                    and tuple(reader["original_receipt_rows"][0][:3]) not in file_identities,
+                    "Native file callbacks crossed another original document")
+            report["actual_callbacks"] = 7
+            report["actual_file_cancellations"] = 1
             report["plain_editor_and_reader_callbacks"] = 3
             report["original_rich_editor_callbacks"] = 2
             report["actual_reader_selection_to_picker"] = "ASSERTED_AND_CAPTURED_BY_ACTUAL_XCTEST"
@@ -659,7 +862,7 @@ def matrix():
 
 def collect():
     report = {"status": "FAILED", "scope": "ACTUAL_TWO_APP_CONSUMER_NATIVE_ONLY",
-              "required_case_ids": [SELECTOR], "full_native116_acceptance": False,
+              "required_case_ids": SELECTORS, "full_native116_acceptance": False,
               "physical_signing_status": "NOT_TESTED_BY_SIMULATOR", "synthetic_results_written": False}
     try:
         context = source_context()
@@ -688,7 +891,7 @@ def collect():
         devices = result.get("devices", [])
         require(len(devices) == 1 and devices[0]["label"] == "11-reader"
                 and devices[0]["status"] == "EXECUTED_PASS" and devices[0]["ownedSimulatorCleanup"] == "PASS"
-                and report.get("executed_ui_pass") == 1
+                and report.get("executed_ui_pass") == len(SELECTORS)
                 and not any(report.get(key, 0) for key in ["executed_ui_fail", "executed_ui_skip", "ui_not_run"]),
                 "The original two-app XCTest did not execute and pass")
         wire = json.loads((OUT / "native-wire-evidence.json").read_text())

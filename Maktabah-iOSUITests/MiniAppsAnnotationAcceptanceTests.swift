@@ -217,7 +217,13 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(app.buttons["miniapps-more"].waitForExistence(timeout: 15))
     }
 
-    private struct Content: Decodable { let text: String? }
+    private struct Content: Decodable {
+        let text: String?
+        let kind: String?
+        let attachmentID: UUID?
+        let name: String?
+        let typeIdentifier: String?
+    }
     private struct Selection: Decodable { let location: Int; let length: Int; let text: String }
     private struct Source: Decodable {
         let appID: String
@@ -241,6 +247,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let status: String
         let operation: String
         let items: [Content]
+        let metadata: [String: String]?
     }
     private struct Record: Decodable {
         let request: Request
@@ -728,6 +735,295 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
             "A duplicate callback must not create another native revision or rewrite its archive")
         XCTAssertEqual(try persistedReceipt(requestID: cold.request.id,
             databasePath: coldDocument.profile).count, 1)
+    }
+
+
+    /// A second independent original-app selector. It imports the committed real
+    /// MiniApp through the producer UI and never writes document/result fixtures.
+    @MainActor
+    func testOriginalNativeFilesRoundTripAndReplayAfterColdReopen() async throws {
+        XCTAssertTrue(isPad)
+        executionTimeAllowance = 900
+        let shared = URL(fileURLWithPath: try XCTUnwrap(
+            ProcessInfo.processInfo.environment["MINIAPPS_NATIVE_SHARED_GROUP"]
+        )).appendingPathComponent("MiniAppsBridge/v1", isDirectory: true)
+        let archive = URL(fileURLWithPath: try XCTUnwrap(
+            ProcessInfo.processInfo.environment["MINIAPPS_FILE_WORKSHOP_ARCHIVE"]))
+        XCTAssertEqual(try fileSHA256(archive),
+            ProcessInfo.processInfo.environment["MINIAPPS_FILE_WORKSHOP_SHA256"])
+        let producer = XCUIApplication(bundleIdentifier: "com.itorah.hanlinminiapps")
+        producer.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+        producer.launch()
+        XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 30))
+        try await installActualFileWorkshop(producer)
+
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(scenario: "readerDetail", backend: "otzaria", language: "en", recordViewport: true)
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        assertReaderHasText()
+        let corpus = try sourceCorpusDatabase()
+        let originalCorpus = try fileSHA256(corpus)
+        try await openAnnotations()
+        let previous = Set(annotationRows().allElementsBoundByIndex.map(\.identifier))
+        tap(app.navigationBars["Annotations"].buttons["Close"])
+        tap(try originalStudyToolsActionInWindow())
+        let tools = app.segmentedControls["torah-inspector-tools"]
+        XCTAssertTrue(tools.waitForExistence(timeout: 15))
+        tap(tools.buttons["Notes"])
+        tap(app.buttons["torah-inspector-add-note"])
+        let quick = app.textViews["annotation-note-text"]
+        XCTAssertTrue(quick.waitForExistence(timeout: 15))
+        let sourceText = "Original attachment note " + UUID().uuidString
+        tap(quick); quick.typeText(sourceText)
+        tap(app.buttons["annotation-save-toolbar"])
+        try await requireNativeCondition(timeout: 30) { !quick.exists }
+        tap(app.buttons["torah-inspector-close"])
+        try await openAnnotations()
+        try await requireNativeCondition(timeout: 20) {
+            self.annotationRows().allElementsBoundByIndex.filter { !previous.contains($0.identifier) }.count == 1
+        }
+        let row = try XCTUnwrap(annotationRows().allElementsBoundByIndex.first { !previous.contains($0.identifier) })
+        let rowID = try XCTUnwrap(Int64(row.identifier.dropFirst("original-book-annotation-".count)))
+        let rowIdentifier = row.identifier
+        editAnnotation(row)
+        try await openActualRichEditor()
+        let fileHost = try await richHost()
+        _ = try await richBody(sourceText, host: fileHost)
+
+        // No attachment is seeded. The user creates it in the actual NativeScript editor.
+        let first = try await launchActualFileWorkshop(producer, shared: shared)
+        XCTAssertTrue(first.request.inputs.filter { $0.kind == "file" }.isEmpty)
+        let document = try JSONDecoder().decode(Document.self, from:
+            Data(try XCTUnwrap(first.request.source.metadata["otzaria.annotation.v1"]).utf8))
+        XCTAssertEqual(document.annotationID, rowID)
+        let firstBaseline = try richState(rowID: rowID, databasePath: document.profile)
+        let firstText = "NativeFile" + UUID().uuidString.replacingOccurrences(of: "-", with: "")
+        let firstEditor = try await actualFileEditor(producer)
+        XCTAssertEqual(firstEditor.value as? String ?? "", "")
+        tapFileWorkshop(firstEditor, producer: producer); firstEditor.typeText(firstText)
+        XCTAssertEqual(firstEditor.value as? String, firstText)
+        retainScreenshot(producer, named: "file-workshop-real-new-file-before-return")
+        try await pressFileWorkshopAction("fileworkshop.return", producer: producer)
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 90))
+        _ = try await richHost()
+        let firstCompleted = try await acknowledgedFileRecord(first.request.id, shared: shared)
+        let firstResult = try XCTUnwrap(firstCompleted.result)
+        XCTAssertEqual(firstResult.status, "success")
+        XCTAssertEqual(firstResult.metadata?["fileMode"], "new-utf8")
+        let firstFile = try XCTUnwrap(firstResult.items.first)
+        XCTAssertEqual(firstResult.items.count, 1)
+        XCTAssertEqual(firstFile.name, "document.txt")
+        XCTAssertEqual(try actualSharedFile(firstFile, shared: shared), Data(firstText.utf8))
+        let firstSaved = try richState(rowID: rowID, databasePath: document.profile)
+        XCTAssertEqual(firstSaved.revision, firstBaseline.revision + 1)
+        XCTAssertEqual(firstSaved.mutationID, first.request.id)
+        XCTAssertEqual(try persistedReceipt(requestID: first.request.id, databasePath: document.profile).count, 1)
+        attachRichState(firstSaved, name: "file-workshop-first-native-archive")
+
+        // Cold source reopen uses the saved native archive. The original SDK must
+        // export that native file block into a new real Bridge request.
+        app.terminate()
+        XCTAssertTrue(app.wait(for: .notRunning, timeout: 20))
+        launchReader(scenario: "readerDetail", backend: "otzaria", language: "en", recordViewport: true)
+        assertReaderHasText()
+        try await openAnnotations()
+        let reopened = annotationRows().matching(identifier: rowIdentifier).firstMatch
+        XCTAssertTrue(reopened.waitForExistence(timeout: 30))
+        editAnnotation(reopened)
+        try await openActualRichEditor()
+        let second = try await launchActualFileWorkshop(producer, shared: shared)
+        XCTAssertEqual(second.request.source.documentID, first.request.source.documentID)
+        let secondInputs = second.request.inputs.filter { $0.kind == "file" }
+        XCTAssertEqual(secondInputs.count, 1)
+        XCTAssertEqual(try actualSharedFile(XCTUnwrap(secondInputs.first), shared: shared), Data(firstText.utf8))
+        try assertOriginalFileBlockMapping(second.request, count: 1)
+        let secondEditor = try await actualFileEditor(producer)
+        try await requireNativeCondition(timeout: 30) { secondEditor.value as? String == firstText }
+        // The original first value is one complete word. UIKit's visible Cut
+        // action proves selection; Command-A alone is not selection evidence.
+        secondEditor.doubleTap()
+        let menuCut = producer.menuItems["Cut"].firstMatch
+        let cut = menuCut.exists ? menuCut : producer.buttons["Cut"].firstMatch
+        XCTAssertTrue(cut.waitForExistence(timeout: 10) && cut.isHittable)
+        retainScreenshot(producer, named: "file-workshop-original-uikit-cut")
+        tapFileWorkshop(cut, producer: producer)
+        try await requireNativeCondition(timeout: 15) { secondEditor.value as? String == "" }
+        let secondText = "קובץ בעברית\n" + UUID().uuidString + "\nNative file bytes"
+        secondEditor.typeText(secondText)
+        XCTAssertEqual(secondEditor.value as? String, secondText)
+        let secondBaseline = try richState(rowID: rowID, databasePath: document.profile)
+        app.terminate()
+        XCTAssertTrue(app.wait(for: .notRunning, timeout: 20))
+        retainScreenshot(producer, named: "file-workshop-real-utf8-file-before-cold-return")
+        try await pressFileWorkshopAction("fileworkshop.return", producer: producer)
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 90),
+            "Only the real file callback may cold launch the original source app")
+        _ = try await richHost()
+        let secondCompleted = try await acknowledgedFileRecord(second.request.id, shared: shared)
+        let secondResult = try XCTUnwrap(secondCompleted.result)
+        XCTAssertEqual(secondResult.status, "success")
+        XCTAssertEqual(secondResult.metadata?["fileMode"], "edited-utf8")
+        XCTAssertEqual(secondResult.items.count, 1)
+        let secondFile = try XCTUnwrap(secondResult.items.first)
+        XCTAssertEqual(secondFile.name, firstFile.name,
+            "Two original native blocks may have the same display filename")
+        XCTAssertNotEqual(secondFile.attachmentID, firstFile.attachmentID)
+        XCTAssertEqual(try actualSharedFile(secondFile, shared: shared), Data(secondText.utf8))
+        let secondSaved = try richState(rowID: rowID, databasePath: document.profile)
+        XCTAssertEqual(secondSaved.revision, secondBaseline.revision + 1)
+        XCTAssertEqual(secondSaved.mutationID, second.request.id)
+        XCTAssertEqual(try persistedReceipt(requestID: second.request.id, databasePath: document.profile).count, 1)
+        attachRichState(secondSaved, name: "file-workshop-second-cold-native-archive")
+
+        // Read both real native file blocks back through FileDownload + Bridge +
+        // the original runtime, then cancel without changing canonical content.
+        let third = try await launchActualFileWorkshop(producer, shared: shared)
+        let thirdFiles = third.request.inputs.filter { $0.kind == "file" }
+        XCTAssertEqual(thirdFiles.count, 2)
+        try assertOriginalFileBlockMapping(third.request, count: 2)
+        let contents = try thirdFiles.map { try actualSharedFile($0, shared: shared) }
+        XCTAssertEqual(Set(contents), Set([Data(firstText.utf8), Data(secondText.utf8)]))
+        for item in thirdFiles {
+            let identifier = try XCTUnwrap(item.attachmentID).uuidString
+            let action = producer.buttons["fileworkshop.source-" + identifier]
+            try await revealFileWorkshopElement(action, producer: producer, upwards: false)
+            tapFileWorkshop(action, producer: producer)
+            let editor = try await actualFileEditor(producer)
+            let expected = try XCTUnwrap(String(data: actualSharedFile(item, shared: shared), encoding: .utf8))
+            try await requireNativeCondition(timeout: 30) { editor.value as? String == expected }
+            retainScreenshot(producer, named: "file-workshop-native-byte-readback-" + identifier)
+        }
+        let beforeCancel = try richState(rowID: rowID, databasePath: document.profile)
+        try await pressFileWorkshopAction("fileworkshop.cancel", producer: producer)
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 90))
+        let cancelled = try await acknowledgedFileRecord(third.request.id, shared: shared)
+        XCTAssertEqual(cancelled.result?.status, "cancelled")
+        XCTAssertTrue(cancelled.result?.items.isEmpty == true)
+        XCTAssertEqual(try richState(rowID: rowID, databasePath: document.profile), beforeCancel)
+
+        var callback = try XCTUnwrap(URLComponents(url: XCTUnwrap(second.request.callbacks.success),
+            resolvingAgainstBaseURL: false))
+        callback.queryItems = (callback.queryItems ?? []) + [.init(name: "request", value: second.request.id.uuidString)]
+        XCUIDevice.shared.press(.home)
+        XCUIDevice.shared.system.open(try XCTUnwrap(callback.url))
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 60))
+        XCTAssertEqual(try richState(rowID: rowID, databasePath: document.profile), beforeCancel,
+            "A repeated file callback must not rewrite the archive or create duplicate native file blocks")
+        XCTAssertEqual(try persistedReceipt(requestID: first.request.id, databasePath: document.profile).count, 1)
+        XCTAssertEqual(try persistedReceipt(requestID: second.request.id, databasePath: document.profile).count, 1)
+        XCTAssertEqual(try fileSHA256(corpus), originalCorpus)
+        retainScreenshot(app, named: "file-workshop-original-editor-after-duplicate")
+    }
+
+    @MainActor
+    private func openActualRichEditor() async throws {
+        let open = app.buttons["annotation-expanded-editor-open"]
+        try await requireNativeCondition(timeout: 30) { open.exists && open.isEnabled }
+        tap(open)
+        _ = try await richHost()
+    }
+
+    @MainActor
+    private func tapFileWorkshop(_ element: XCUIElement, producer: XCUIApplication) {
+        XCTAssertEqual(producer.state, .runningForeground)
+        XCTAssertTrue(element.exists && element.isHittable)
+        element.tap()
+    }
+
+    @MainActor
+    private func installActualFileWorkshop(_ producer: XCUIApplication) async throws {
+        let card = producer.buttons["hanlin-package-card-File Workshop"].firstMatch
+        XCTAssertFalse(card.exists, "Use the owned fresh simulator and perform the actual import")
+        let add = producer.buttons["hanlin-apps-add"].firstMatch
+        XCTAssertTrue(add.waitForExistence(timeout: 40)); tapFileWorkshop(add, producer: producer)
+        let importPackage = producer.buttons["hanlin-import-script-package"].firstMatch
+        XCTAssertTrue(importPackage.waitForExistence(timeout: 15)); tapFileWorkshop(importPackage, producer: producer)
+        let list = producer.collectionViews["hanlin-package-import-list"].firstMatch
+        XCTAssertTrue(list.waitForExistence(timeout: 15))
+        let archive = producer.buttons["FileWorkshop"].firstMatch
+        for _ in 0..<10 { if archive.exists && archive.isHittable { break }; list.swipeUp() }
+        XCTAssertTrue(archive.exists && archive.isHittable); tapFileWorkshop(archive, producer: producer)
+        let install = producer.buttons["hanlin-package-install"].firstMatch
+        XCTAssertTrue(install.waitForExistence(timeout: 30) && install.isEnabled); tapFileWorkshop(install, producer: producer)
+        XCTAssertTrue(install.waitForNonExistence(timeout: 60))
+        let done = producer.buttons["hanlin-package-import-done"].firstMatch
+        XCTAssertTrue(done.waitForExistence(timeout: 15)); tapFileWorkshop(done, producer: producer)
+        let close = producer.buttons["hanlin-apps-add-done"].firstMatch
+        XCTAssertTrue(close.waitForExistence(timeout: 15)); tapFileWorkshop(close, producer: producer)
+        for _ in 0..<10 { if card.exists { break }; producer.swipeUp() }
+        XCTAssertTrue(card.waitForExistence(timeout: 20))
+        retainScreenshot(producer, named: "file-workshop-original-import-completed")
+    }
+
+    @MainActor
+    private func launchActualFileWorkshop(_ producer: XCUIApplication, shared: URL) async throws -> Record {
+        let before = Set(try records(in: shared).map { $0.request.id })
+        tap(app.buttons["annotation-expanded-editor-miniapps"])
+        try await confirmOriginalMiniAppsSave()
+        let launch = app.buttons["miniapps-launch-org.itorah.miniapps.fileworkshop"]
+        if !launch.waitForExistence(timeout: 3) { tap(app.buttons["miniapps-more"]) }
+        XCTAssertTrue(launch.waitForExistence(timeout: 30) && launch.isHittable); tap(launch)
+        XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 60))
+        _ = try await actualFileEditor(producer)
+        let additions = try records(in: shared).filter { !before.contains($0.request.id) }
+        XCTAssertEqual(additions.count, 1)
+        let record = try XCTUnwrap(additions.first)
+        XCTAssertEqual(record.request.appID, "org.itorah.miniapps.fileworkshop")
+        XCTAssertEqual(record.request.source.appID, "com.davidpovarsky.chavrusatext")
+        XCTAssertEqual(record.request.source.kind, "native-annotation")
+        XCTAssertNil(record.result); XCTAssertFalse(record.acknowledged)
+        return record
+    }
+
+    @MainActor
+    private func actualFileEditor(_ producer: XCUIApplication) async throws -> XCUIElement {
+        let editors = producer.textViews.matching(identifier: "fileworkshop.editor")
+        try await requireNativeCondition(timeout: 60) {
+            editors.allElementsBoundByIndex.filter { $0.isHittable }.count == 1
+        }
+        return try XCTUnwrap(editors.allElementsBoundByIndex.first { $0.isHittable })
+    }
+
+    @MainActor
+    private func revealFileWorkshopElement(_ element: XCUIElement, producer: XCUIApplication,
+                                           upwards: Bool) async throws {
+        for _ in 0..<8 {
+            if element.exists && element.isHittable { break }
+            if upwards { producer.swipeUp() } else { producer.swipeDown() }
+        }
+        XCTAssertTrue(element.exists && element.isHittable)
+    }
+
+    @MainActor
+    private func pressFileWorkshopAction(_ identifier: String, producer: XCUIApplication) async throws {
+        let action = producer.buttons[identifier]
+        try await revealFileWorkshopElement(action, producer: producer, upwards: true)
+        tapFileWorkshop(action, producer: producer)
+    }
+
+    @MainActor
+    private func acknowledgedFileRecord(_ id: UUID, shared: URL) async throws -> Record {
+        try await requireNativeCondition(timeout: 90) {
+            (try? self.records(in: shared).first { $0.request.id == id }?.acknowledged) == true
+        }
+        return try XCTUnwrap(try records(in: shared).first { $0.request.id == id })
+    }
+
+    private func actualSharedFile(_ content: Content, shared: URL) throws -> Data {
+        XCTAssertEqual(content.kind, "file")
+        XCTAssertNil(content.text)
+        let id = try XCTUnwrap(content.attachmentID)
+        return try Data(contentsOf: shared.appendingPathComponent("attachments", isDirectory: true)
+            .appendingPathComponent(id.uuidString.lowercased()))
+    }
+
+    private func assertOriginalFileBlockMapping(_ request: Request, count: Int) throws {
+        let json = try XCTUnwrap(request.source.metadata["otzaria.original-editor.files.v1"])
+        let mapping = try JSONDecoder().decode([String: String].self, from: Data(json.utf8))
+        XCTAssertEqual(mapping.count, count)
+        XCTAssertEqual(Set(mapping.values).count, count)
+        XCTAssertEqual(Set(mapping.keys.compactMap(UUID.init(uuidString:))),
+            Set(request.inputs.filter { $0.kind == "file" }.compactMap(\.attachmentID)))
     }
 
     @MainActor
