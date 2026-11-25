@@ -442,3 +442,10 @@ has been claimed.
   explicitly refused because this group is missing. This closes a validation
   omission and keeps the genuine provisioning requirement open. See
   apple/APP_GROUP_REQUIREMENT.md. No new archive, IPA, Apple mutation or upload.
+
+
+## Genuine hosted batch target checkpoint
+
+The new Maktabah-iOSNativeTests scheme loads a separate XCTest bundle inside the existing Maktabah-iOS app; it retains com.davidpovarsky.chavrusatext and the original App Group and Journal identity checks. The normal UI schemes and original Native116/Release114+2 declarations are unchanged. The nested Pod target inherits only original search paths. A reversible test-only SDK import projection uses the actual admitted Debug route and exact generated-app projection receipt; no SDK implementation is copied into the test. Source and Apple project/layout controls are preserved under backfill/hosted. Actual XCTest source, framework linkage and native batch/5,000 execution are still pending.
+
+Integration05f5697418493594589e1614e72da94ab12cf165 was published and read back. It includes actual SQLite36/43/23 proof6913032, the original closed-batch consumer562b, all18 relevant compiler/simulator jobs routed to the real Mac, and the exact workflow-capable publication receipt. Intermediate Zayit45555600296 was confirmed completed/cancelled before execution; this is not a CI pass. The third App Group verifier correction retains the real three-group requirement and correctly refuses all81 observed incomplete profiles. TestFlight, authentic owner signature, final native matrices and official merge remain open.

@@ -1,0 +1,42 @@
+{
+  "all_original_schemes_unchanged": true,
+  "app_target_unchanged": true,
+  "changed_existing_objects": [
+    "4B3202292EDAFE85003B95D1",
+    "4B32021F2EDAFE85003B95D1",
+    "4B3202202EDAFE85003B95D1"
+  ],
+  "duration_s": 0.144063167,
+  "existing_objects_unchanged": 2402,
+  "hosted_test_target": "9A7A8DF8CEC43F196DDCD80A",
+  "inputs": {
+    "Podfile": {
+      "bytes": 4089,
+      "sha256": "6a5eefdd54434e4c77fb2fe39c7f3e6362b6bc1f58ce25a921bdae00b01577bb"
+    },
+    "after.pbxproj": {
+      "bytes": 622026,
+      "sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb"
+    },
+    "before.pbxproj": {
+      "bytes": 616024,
+      "sha256": "87ec425710947f6bd7de3c484bcc2074063e88c5fdc3dce41901547992f42c32"
+    },
+    "hosted-tests.py": {
+      "bytes": 10154,
+      "sha256": "2248b76805388d5fbea919ed78325c1a08560b7bf04b8c64b89dbe76c6429e92"
+    },
+    "scheme.xcscheme": {
+      "bytes": 1976,
+      "sha256": "4459c74b79d69719568368712fe38d16b0803bd6e92befe08a281ba72be91787"
+    }
+  },
+  "native_runtime_tests_executed": 0,
+  "new_objects": 11,
+  "python_ast": "PASS",
+  "real_host_bundle": "com.davidpovarsky.chavrusatext",
+  "ruby_syntax": "Syntax OK",
+  "status": "APPLE_PROJECT_GRAPH_AND_SOURCE_PARSE_PASS",
+  "ui_tests_executed": 0,
+  "xcode_build_executed": false
+}
