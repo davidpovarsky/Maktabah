@@ -1,14 +1,15 @@
 {
   "producer_repository": "davidpovarsky/hanlin-ai",
-  "producer_run_id": 45294462656,
-  "producer_source_sha": "a774de24926ca13d563c45c42917d03b8c04296f",
-  "producer_artifact_name": "app-split-45294462656",
-  "ui_compile_reuse": {
-    "run_id": 45281365204,
-    "source_sha": "fb369f911d38ce7e7f10be6c2e4a68df1c875067",
-    "artifact_id": 14869143604,
-    "artifact_sha256": "1b2d26ba0f61020f86c4be4484afe1abc05d5f70bd56a13f6de20a8de2810f31",
-    "report": "Tests/HQ/miniapps/apple-sdk-compile-45281365204.json",
-    "report_sha256": "e8cc144631182606d280ad1598e3323102e30d190c012cb22b83fccdd6967f99"
+  "producer_origin": "local-mac",
+  "producer_run_id": null,
+  "producer_artifact_name": null,
+  "producer_source_sha": "e1a25038e55a2967b2f21c9eb48e0e29220f52fd",
+  "local_producer_manifest": {
+    "path": "/Users/m1/builds/hanlin-miniapps-final-native-20261125/build/native-final-evidence/attempt-e1a25038-01/consumer-build/producer-manifest.json",
+    "sha256": "2fd30dea93060f3fd32f6329fdeeb76d847abb9cbbaf4bb24e12eecb1f7ca5e9"
+  },
+  "local_producer_preparation": {
+    "path": "Scripts/CI/miniapps-producer-preparation-e1a25038.json",
+    "sha256": "0298f78ab08b4b2b423b27c13425036a301e0bba21963c1fffde6db2edc01e89"
   }
 }
