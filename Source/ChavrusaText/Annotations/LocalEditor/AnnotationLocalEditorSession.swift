@@ -104,8 +104,16 @@ extension AnnotationStore {
                                    supportedFormats: Set<AnnotationLocalEditorBodyFormat>) throws -> AnnotationLocalEditorSession {
         guard let id = annotation.id, id > 0 else { throw AnnotationLocalEditorError.missingAnnotation }
         let connection = try repository.captureLocalEditorConnection()
-        guard let uuid = try AnnotationExchangeIdentity.resolve(database: connection.database, annotationID: id,
-              originalRecordID: annotation.ckRecordId) else {
+        let uuid: UUID
+        if let original = annotation.ckRecordId.flatMap(UUID.init(uuidString:)) {
+            // Keep the original UUID constructor inert. The first actual read
+            // validates uniqueness and the current stored bytes; cached UUID
+            // letter case never restamps the original CloudKit record name.
+            uuid = original
+        } else if let registered = try AnnotationExchangeIdentity.resolve(
+            database: connection.database, annotationID: id, originalRecordID: annotation.ckRecordId) {
+            uuid = registered
+        } else {
             throw AnnotationLocalEditorError.missingAnnotation
         }
         let persistence = try AnnotationLocalEditorPersistence(connection: connection, annotationID: id,
