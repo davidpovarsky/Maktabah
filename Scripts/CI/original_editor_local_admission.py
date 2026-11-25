@@ -15,6 +15,15 @@ import zipfile
 REPOSITORY = 'davidpovarsky/anytype-swift'
 QUALIFIED = 'ACTUAL_ORIGINAL_FRAMEWORK_EXTERNAL_IMPORT_LINK_RESOURCES_PASS'
 ROLES = {'execution', 'source_before', 'source_after', 'abi'}
+DONOR_SCHEMA = 'otzaria.original-import-donor-sdk-input/1'
+DONOR_SOURCE = '34b8a7c5ddb34e9287acdb5c189849eeac8cff86'
+DONOR_POLICY = 'Tools/OriginalEditor/AnnotationExchange/abi_donor_policy.json'
+DONOR_ROLES = {'abi_donor_policy', 'abi_donor_execution', 'abi_donor_source_before',
+               'abi_donor_abi', 'abi_donor_debug_qualification', 'abi_donor_pinned_wrapper'}
+DONOR_INPUTS = {'Anytype/Sources', 'Anytype/Resources', 'Modules', 'Dependencies/Middleware',
+                'Tools/OriginalEditor/ABIPinnedWrapper', 'Tools/OriginalEditor/GeneratedImport',
+                'Tools/PinkhaNativeDerived', 'Tools/OriginalEditor/build_local_import_abi.py'}
+MINIAPPS_CONTRACT = 'b8a02497aeabab316d85daf2dab5045b1d94dac98a14b7ccc89a3b7c9a6509c0'
 
 
 def require(value, reason):
@@ -41,7 +50,10 @@ def validate_configuration(config):
                  'original_source_sha256', 'hanlin_source_sha256', 'local_execution_sha256'):
         require(re.fullmatch(r'[0-9a-f]{64}', config.get(name, '')), 'Missing local SDK digest: ' + name)
     rows = config.get('local_receipts', {})
-    require(set(rows) == ROLES, 'Local SDK source/ABI evidence closure is incomplete')
+    provenance = config.get('abi_provenance')
+    require(provenance in (None, DONOR_SCHEMA), 'Unsupported local ABI provenance route')
+    roles = ROLES | DONOR_ROLES if provenance == DONOR_SCHEMA else ROLES
+    require(set(rows) == roles, 'Local SDK source/ABI evidence closure is incomplete')
     for role, row in rows.items():
         require(set(row) == {'path', 'bytes', 'sha256'} and type(row['bytes']) is int and row['bytes'] > 0
                 and re.fullmatch(r'[0-9a-f]{64}', row['sha256'])
@@ -100,17 +112,170 @@ def validate_public_contract(config, source_before, api):
     return contract
 
 
+def validate_donor_abi(values, config, heart, before):
+    """Transport the original ABI chain without assigning it the new SDK identity."""
+    reference, policy = values['abi'], values['abi_donor_policy']
+    rows = config['local_receipts']
+    require(set(reference) == {'schema', 'status', 'consumer_source_sha',
+                'consumer_local_execution_sha256', 'policy_sha256', 'donor_root',
+                'new_sdk_acceptance_granted'}
+            and reference.get('schema') == DONOR_SCHEMA
+            and reference.get('status') == 'EVIDENCE_REFERENCE_ONLY_REQUIRES_VERIFICATION'
+            and reference.get('consumer_source_sha') == config['source_sha']
+            and reference.get('consumer_local_execution_sha256') == config['local_execution_sha256']
+            and reference.get('policy_sha256') == rows['abi_donor_policy']['sha256']
+            and reference.get('new_sdk_acceptance_granted') is False,
+            'Donor reference was relabelled or belongs to another SDK execution')
+    donor_root = reference.get('donor_root', '')
+    require(isinstance(donor_root, str) and Path(donor_root).is_absolute()
+            and '..' not in Path(donor_root).parts,
+            'Original donor path is not an absolute provenance identity')
+    policy_receipts = policy.get('receipts', {})
+    require(set(policy) == {'schema', 'source_sha', 'unchanged_git_inputs', 'receipts',
+                           'native_tests_rerun', 'new_sdk_acceptance_granted'}
+            and policy.get('schema') == 'otzaria.native-abi-donor-policy/1'
+            and policy.get('source_sha') == DONOR_SOURCE
+            and set(policy.get('unchanged_git_inputs', {})) == DONOR_INPUTS
+            and all(re.fullmatch(r'[0-9a-f]{40}', value)
+                    for value in policy['unchanged_git_inputs'].values())
+            and set(policy_receipts) == {'execution', 'source_before', 'abi', 'debug_qualification'}
+            and policy.get('native_tests_rerun') is False
+            and policy.get('new_sdk_acceptance_granted') is False
+            and before.get('source_inputs', {}).get(DONOR_POLICY, {}).get('sha256')
+                == rows['abi_donor_policy']['sha256'],
+            'Original native ABI donor policy is not bound to the current source')
+    for role, row in policy_receipts.items():
+        require(set(row) == {'path', 'sha256'} and isinstance(row['path'], str)
+                and row['path'].startswith('build/') and '..' not in Path(row['path']).parts
+                and row['sha256'] == rows['abi_donor_' + role]['sha256'],
+                'Original donor receipt differs from the committed policy: ' + role)
+
+    donor_execution = values['abi_donor_execution']
+    donor_before = values['abi_donor_source_before']
+    donor_abi = values['abi_donor_abi']
+    donor_qualification = values['abi_donor_debug_qualification']
+    donor_identity = donor_before.get('execution_identity', {})
+    donor_run = donor_execution.get('execution_id', '')
+    require(donor_execution.get('schema') == 'otzaria.original-editor.local-execution/1'
+            and donor_execution.get('repository') == REPOSITORY
+            and donor_execution.get('source_sha') == DONOR_SOURCE
+            and donor_execution.get('root') == donor_root
+            and donor_execution.get('head_branch') == 'codex/otzaria-local-annotation-sdk-20261124'
+            and isinstance(donor_run, str) and donor_run.startswith('local-')
+            and str(uuid.UUID(donor_run[6:])) == donor_run[6:]
+            and donor_execution.get('host', {}).get('system') == 'Darwin'
+            and donor_execution.get('host', {}).get('architecture') == 'arm64'
+            and donor_execution.get('acceptance') == 'PROVENANCE_ONLY_NOT_ACCEPTANCE'
+            and donor_identity == donor_qualification.get('execution_identity')
+            and donor_identity.get('producer_kind') == 'local-mac'
+            and donor_identity.get('source_sha') == DONOR_SOURCE
+            and donor_identity.get('run_id') == donor_run and donor_identity.get('run_attempt') == '1'
+            and donor_identity.get('local_execution') == donor_execution
+            and donor_identity.get('local_execution_sha256') == rows['abi_donor_execution']['sha256']
+            and donor_before.get('head_sha') == DONOR_SOURCE
+            and donor_before.get('status') == 'SOURCE_BOUND_FRAMEWORK_RUNTIME_NOT_RUN',
+            'Original donor execution identity was replaced by the current SDK')
+    installation = donor_qualification.get('heart', {})
+    validate_abi_adapter(donor_abi, installation, DONOR_SOURCE)
+    require(donor_qualification.get('status') == QUALIFIED
+            and donor_qualification.get('phase') == 'COMPLETE'
+            and donor_qualification.get('source_sha') == DONOR_SOURCE
+            and donor_qualification.get('original_framework_build') == 'PASS'
+            and donor_qualification.get('external_consumer_build') == 'PASS'
+            and donor_abi.get('status') == 'PASS' and donor_abi.get('producer_kind') == 'local-mac'
+            and donor_abi.get('sdk_source_sha') == DONOR_SOURCE
+            and donor_abi.get('local_execution_sha256') == rows['abi_donor_execution']['sha256']
+            and donor_abi.get('full_sdk_accepted') is False
+            and donor_abi.get('editor_ui_accepted') is False
+            and donor_abi.get('owned_command_groups_drained') is True
+            and installation.get('status') == 'PASS'
+            and installation.get('app_source_sha') == DONOR_SOURCE
+            and installation.get('receipt_sha256') == rows['abi_donor_abi']['sha256']
+            and installation.get('native_qualification') == donor_abi.get('native_qualification')
+            and installation.get('native_qualification', {}).get('status') == 'PASS',
+            'Original donor ABI installation or completed qualification differs')
+    wrapper, wrapper_proof = values['abi_donor_pinned_wrapper'], installation['pinned_wrapper']
+    wrapper_reference = donor_abi['pinned_wrapper']
+    require(rows['abi_donor_pinned_wrapper']['sha256'] == wrapper_reference['sha256']
+            and rows['abi_donor_pinned_wrapper']['bytes'] == wrapper_reference['bytes']
+            and all(wrapper.get(key) == value for key, value in wrapper_proof.items()
+                    if key not in {'receipt_sha256', 'targets'})
+            and [row.get('target') for row in wrapper.get('targets', [])] == wrapper_proof['targets'],
+            'Original pinned-wrapper receipt or three-target proof differs')
+
+    reuse = heart.get('abi_reuse', {})
+    require(heart.get('schema') == DONOR_SCHEMA and heart.get('status') == 'PASS'
+            and heart.get('receipt_sha256') == rows['abi']['sha256']
+            and heart.get('app_source_sha') == config['source_sha']
+            and heart.get('producer_kind') == 'local-mac'
+            and heart.get('original_abi_producer_identity') == donor_identity
+            and reuse.get('status') == 'EXACT_NATIVE_INPUT_AND_ARTIFACT_EQUIVALENCE'
+            and reuse.get('donor_source_sha') == DONOR_SOURCE
+            and reuse.get('donor_root') == donor_root
+            and reuse.get('donor_receipts') == policy_receipts
+            and reuse.get('unchanged_git_inputs') == policy['unchanged_git_inputs']
+            and reuse.get('original_abi_installation') == installation
+            and reuse.get('native_tests_rerun') is False
+            and reuse.get('new_sdk_acceptance_granted') is False
+            and all(heart.get(key) == installation.get(key) for key in
+                    ('lib_files', 'native_qualification', 'pinned_wrapper')),
+            'Current SDK omits the exact original donor installation and reuse scope')
+    for observation in (heart, installation):
+        require(observation.get('generated_files_verified') == 733
+                and observation.get('generated_files_written') == 0
+                and observation.get('full_sdk_accepted') is False
+                and observation.get('editor_ui_accepted') is False,
+                'Donor provenance cannot grant new native, generator or editor acceptance')
+    lib_files = installation.get('lib_files', [])
+    require(len(lib_files) == 17 and len({row.get('path') for row in lib_files}) == 17
+            and all(set(row) == {'path', 'bytes', 'sha256'}
+                    and row['path'].startswith('Dependencies/Middleware/Lib.xcframework/')
+                    and '..' not in Path(row['path']).parts
+                    and type(row['bytes']) is int and row['bytes'] > 0
+                    and re.fullmatch(r'[0-9a-f]{64}', row['sha256']) for row in lib_files),
+            'Original installed Lib closure is incomplete')
+    current_generated = before.get('generated_import_source', {})
+    old_generated = donor_before.get('generated_import_source', {})
+    generated_keys = ('generated_index_sha256', 'source_adoption_sha256', 'working_generated_files',
+                      'committed_generated_blobs', 'postimage_source', 'preimage_source')
+    require(all(key in current_generated and current_generated[key] == old_generated.get(key)
+                for key in generated_keys)
+            and current_generated.get('working_generated_files') == 733
+            and current_generated.get('committed_generated_blobs') == 733,
+            'The current 733 generated native sources differ from the original donor')
+    continuation = current_generated.get('annotation_exchange', {})
+    require(continuation.get('base_source') == DONOR_SOURCE
+            and continuation.get('native_acceptance_reused_by_this_document') is False
+            and continuation.get('sdk_compiler_and_runtime_acceptance') == 'NOT_GRANTED_BY_SOURCE_OBSERVATION'
+            and all(before.get('original_trees', {}).get(key)
+                    == continuation.get('reviewed_product_trees', {}).get(key)
+                    for key in ('Anytype/Sources', 'Anytype/Resources', 'Modules'))
+            and all(before.get('original_trees', {}).get(key) == policy['unchanged_git_inputs'][key]
+                    for key in ('Anytype/Resources', 'Modules')),
+            'Current Swift continuation exceeds its reviewed source scope')
+    return {'schema': DONOR_SCHEMA, 'donor_source_sha': DONOR_SOURCE,
+            'original_abi_producer_identity': donor_identity,
+            'donor_receipts': policy_receipts, 'native_tests_rerun': False,
+            'new_sdk_acceptance_granted': False,
+            'scope': 'EXACT_RETAINED_ORIGINAL_ABI_NOT_NEW_NATIVE_OR_EDITOR_ACCEPTANCE'}
+
+
 def validate_provenance(root, config, qualification, api):
     values = read_receipts(root, config, api)
     contract = validate_public_contract(config, values['source_before'], api)
     execution = values['execution']
+    donor_route = config.get('abi_provenance') == DONOR_SCHEMA
+    require(not donor_route or contract == MINIAPPS_CONTRACT,
+            'Donor reuse requires the reviewed complete MiniApps public contract')
+    branch = ('codex/anytype-original-miniapps-facade-20261125' if donor_route else
+              'codex/otzaria-local-annotation-sdk-20261124' if contract else
+              'codex/otzaria-sdk-mac-20261124')
     require(execution.get('schema') == 'otzaria.original-editor.local-execution/1'
             and execution.get('repository') == REPOSITORY
             and execution.get('execution_id') == config['run_id']
             and execution.get('source_sha') == config['source_sha']
             and re.fullmatch(r'[0-9a-f]{40}', execution.get('source_tree', ''))
-            and execution.get('head_branch') == ('codex/otzaria-local-annotation-sdk-20261124'
-                if contract else 'codex/otzaria-sdk-mac-20261124')
+            and execution.get('head_branch') == branch
             and execution.get('host', {}).get('system') == 'Darwin'
             and execution.get('host', {}).get('architecture') == 'arm64'
             and execution['host'].get('hostname')
@@ -128,16 +293,20 @@ def validate_provenance(root, config, qualification, api):
             and before.get('execution_identity') == identity
             and before.get('status') == 'SOURCE_BOUND_FRAMEWORK_RUNTIME_NOT_RUN',
             'Actual SDK source closure was not preserved through execution')
-    validate_abi_adapter(abi, qualification.get('heart', {}), config['source_sha'])
-    require(abi.get('status') == 'PASS' and abi.get('producer_kind') == 'local-mac'
-            and abi.get('sdk_source_sha') == config['source_sha']
-            and abi.get('local_execution_sha256') == config['local_execution_sha256']
-            and abi.get('full_sdk_accepted') is False and abi.get('editor_ui_accepted') is False
-            and abi.get('owned_command_groups_drained') is True
-            and qualification.get('heart', {}).get('receipt_sha256') == config['local_receipts']['abi']['sha256']
-            and qualification['heart'].get('native_qualification') == abi.get('native_qualification')
-            and abi.get('native_qualification', {}).get('status') == 'PASS',
-            'SDK does not consume the qualified original Import ABI')
+    donor_proof = None
+    if donor_route:
+        donor_proof = validate_donor_abi(values, config, qualification.get('heart', {}), before)
+    else:
+        validate_abi_adapter(abi, qualification.get('heart', {}), config['source_sha'])
+        require(abi.get('status') == 'PASS' and abi.get('producer_kind') == 'local-mac'
+                and abi.get('sdk_source_sha') == config['source_sha']
+                and abi.get('local_execution_sha256') == config['local_execution_sha256']
+                and abi.get('full_sdk_accepted') is False and abi.get('editor_ui_accepted') is False
+                and abi.get('owned_command_groups_drained') is True
+                and qualification.get('heart', {}).get('receipt_sha256') == config['local_receipts']['abi']['sha256']
+                and qualification['heart'].get('native_qualification') == abi.get('native_qualification')
+                and abi.get('native_qualification', {}).get('status') == 'PASS',
+                'SDK does not consume the qualified original Import ABI')
     require(qualification.get('status') == QUALIFIED and qualification.get('phase') == 'COMPLETE'
             and qualification.get('original_framework_build') == 'PASS'
             and qualification.get('external_consumer_build') == 'PASS'
@@ -146,6 +315,7 @@ def validate_provenance(root, config, qualification, api):
     return {'producer_kind': 'local-mac', 'local_execution_sha256': config['local_execution_sha256'],
             'local_receipts': config['local_receipts'], 'native_stageb_qualified': False,
             'scope': 'EXACT_LOCAL_PRODUCER_SOURCE_AND_ABI_PROVENANCE_ONLY',
+            **({'abi_reuse': donor_proof} if donor_proof else {}),
             **({'public_host_contract_sha256': contract} if contract else {})}
 
 
