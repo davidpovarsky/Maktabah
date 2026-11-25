@@ -1,0 +1,62 @@
+{
+  "archive_bytes": 5447045120,
+  "archive_sha256": "9acb16c572f787929692bd86fabd2fbb982d0d85cff682daf545f13c8998c8a3",
+  "authoritative_archive_path": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\artifacts\\otzaria-retained-20261125\\retained-products-v1\\retained-products.tar.gz",
+  "files": [
+    {
+      "bytes": 16454350,
+      "name": "MANIFEST.json",
+      "sha256": "8726cd1d47144d4e5a90ca31d24df036ba52838bb4e1195879b028ddf856dafa"
+    },
+    {
+      "bytes": 644,
+      "name": "VERIFIED.json",
+      "sha256": "3a77d16435591e729d6be602532734e4a7604832e316548311e560684931f527"
+    },
+    {
+      "bytes": 3581,
+      "name": "RETIREMENT.json",
+      "sha256": "f76870f94c99a76109ddda997552f5b4d11f84ea56f23d458879b38efa3a46c5"
+    },
+    {
+      "bytes": 539848,
+      "name": "PROTECTED_PROOFS.json",
+      "sha256": "dddc440e563d46c944a63319c03891fcad18c2c4638d7abff9dd2be9f2d5cc9f"
+    },
+    {
+      "bytes": 242,
+      "name": "TRANSFER.json",
+      "sha256": "503baeda13b4d029ec052477be1030bd3ba1c2da5f7774db9a8f149ad8a9f911"
+    },
+    {
+      "bytes": 935,
+      "name": "TARGETS.txt",
+      "sha256": "f3696caf763e001df89669838f733d48941c1bd62c42a4ebb13d3aebef64366c"
+    },
+    {
+      "bytes": 2697,
+      "name": "verify_archive.py",
+      "sha256": "a734e6d3a9a835a516210a78eecf6e896963925846315273caa9c8d9fe8bef99"
+    },
+    {
+      "bytes": 5447045120,
+      "name": "retained-products.tar.gz",
+      "sha256": "9acb16c572f787929692bd86fabd2fbb982d0d85cff682daf545f13c8998c8a3"
+    }
+  ],
+  "finished_at": "2026-11-25T04:53:40.860733+00:00",
+  "free_after": 2311041024,
+  "free_before": 8085250048,
+  "hardlinks": 0,
+  "manifest_sha256": "8726cd1d47144d4e5a90ca31d24df036ba52838bb4e1195879b028ddf856dafa",
+  "oracle_deleted": false,
+  "regular_file_members": 33066,
+  "remote_source_modified": false,
+  "schema": "otzaria.retained-products-relocation/1",
+  "source_directory": "/mnt/development/artifacts/otzaria-retained-20261125/retained-products-v1",
+  "started_at": "2026-11-25T04:34:27.847675+00:00",
+  "status": "PASS_EXACT_WINDOWS_COPY_ALL_MEMBERS_BYTES_MODES_SYMLINKS_GZIP_CRC",
+  "verification_seconds": 175.6720000000205,
+  "verified_members": 42910,
+  "verified_stored_regular_bytes": 16790725514
+}
