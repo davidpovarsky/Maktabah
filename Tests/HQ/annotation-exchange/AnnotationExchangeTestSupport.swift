@@ -1,5 +1,4 @@
 import Foundation
-import Synchronization
 import SQLite3
 import OtzariaActionCore
 #if os(Windows)
@@ -244,7 +243,7 @@ func writeCrashReceipt(_ fixture: Fixture, phase: String, commit: AnnotationExch
 // Schema v2 correctly refuses foreign triggers. These fixture-only hooks act on
 // the actual original SQLite connection without changing its schema or SQL.
 // The observed writes prove that rollback/cancellation reached real DML.
-final class ExchangeWriteFault: Sendable {
+final class ExchangeWriteFault: @unchecked Sendable {
     enum Mode: Sendable, Equatable { case rejectOutbox, cancelAfterOutbox }
     struct Observation: Codable, Sendable {
         var insertedTables: [String] = []
@@ -254,14 +253,19 @@ final class ExchangeWriteFault: Sendable {
         var outboxWasAttemptedAfterVersionAndHead = false
     }
     let mode: Mode
-    private let state = Mutex(Observation())
+    // Every mutable observation is guarded by this lock on the original macOS 14 target.
+    private let lock = NSLock()
+    private var state = Observation()
+    private func withState<T>(_ body: (inout Observation) -> T) -> T {
+        lock.lock(); defer { lock.unlock() }; return body(&state)
+    }
     init(_ mode: Mode) { self.mode = mode }
-    var observation: Observation { state.withLock { $0 } }
+    var observation: Observation { withState { $0 } }
 
     func authorize(operation: Int32, table: String?, database: String?) -> Int32 {
         guard mode == .rejectOutbox, operation == SQLITE_INSERT,
               table == "otzaria_annotation_exchange_outbox", database == "main" else { return SQLITE_OK }
-        state.withLock {
+        withState {
             $0.deniedOutboxAuthorizations += 1
             $0.outboxWasAttemptedAfterVersionAndHead =
                 $0.insertedTables.contains("otzaria_annotation_exchange_versions")
@@ -272,7 +276,7 @@ final class ExchangeWriteFault: Sendable {
 
     func updated(operation: Int32, table: String?, database: String?, rowID: Int64) {
         guard operation == SQLITE_INSERT, database == "main", let table else { return }
-        state.withLock {
+        withState {
             $0.insertedTables.append(table)
             $0.insertedRowIDs.append(rowID)
         }
@@ -280,7 +284,7 @@ final class ExchangeWriteFault: Sendable {
             withUnsafeCurrentTask { task in
                 if let task {
                     task.cancel()
-                    state.withLock { $0.cancellationsAfterOutboxInsert += 1 }
+                    withState { $0.cancellationsAfterOutboxInsert += 1 }
                 }
             }
         }
