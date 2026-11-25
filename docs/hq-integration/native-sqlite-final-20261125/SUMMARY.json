@@ -1,0 +1,172 @@
+{
+  "actual_component_cases": 102,
+  "application_acceptance_complete": false,
+  "cloudkit_transport_executed": false,
+  "cold_crash_recovery_gates": 6,
+  "gates": {
+    "long23": {
+      "cold_reopen_gates": 1,
+      "commands": [
+        {
+          "exit_code": 0,
+          "label": "swift-version",
+          "seconds": 0.386
+        },
+        {
+          "exit_code": 0,
+          "label": "sdk-path",
+          "seconds": 0.014
+        },
+        {
+          "exit_code": 0,
+          "label": "compile",
+          "seconds": 38.546
+        },
+        {
+          "exit_code": 0,
+          "label": "binary-path",
+          "seconds": 0.772
+        },
+        {
+          "exit_code": 0,
+          "label": "component-cases",
+          "seconds": 0.626
+        },
+        {
+          "exit_code": 0,
+          "label": "cold-write",
+          "seconds": 0.065
+        },
+        {
+          "exit_code": 0,
+          "label": "cold-reopen",
+          "seconds": 0.029
+        }
+      ],
+      "failed_cases": 0,
+      "job_id": "job_d5d72ef1d14f",
+      "original_status": "PASS_APPLE_FOUNDATION_ORIGINAL_SQLITE_LONG_NOTE",
+      "passed_cases": 23,
+      "raw_result": "long23/RESULT.json",
+      "raw_result_sha256": "ac9045a56e599be441937490cb7fd8a78fc71e3074fda9140fd169220f352f47",
+      "source_sha": "57a4193d1d8a684b7ae4aff6642c1d256048d151",
+      "status": "EXECUTED_PASS"
+    },
+    "original43": {
+      "cold_reopen_gates": 2,
+      "commands": [
+        {
+          "exit_code": 0,
+          "label": "compile",
+          "seconds": 152.063969
+        },
+        {
+          "exit_code": 0,
+          "label": "binary-path",
+          "seconds": 1.3187445000000082
+        },
+        {
+          "exit_code": 0,
+          "label": "component-cases",
+          "seconds": 1.808339042
+        },
+        {
+          "exit_code": 0,
+          "label": "cold-write",
+          "seconds": 0.026566625000015165
+        },
+        {
+          "exit_code": 0,
+          "label": "cold-reopen",
+          "seconds": 0.028998749999999518
+        },
+        {
+          "exit_code": 0,
+          "label": "cold-reopen-final",
+          "seconds": 0.01694441700001903
+        }
+      ],
+      "failed_cases": 0,
+      "job_id": "job_693164f0d6cc",
+      "original_status": "PASS_APPLE_FOUNDATION_COMPONENT",
+      "passed_cases": 43,
+      "raw_result": "original43/RESULT.json",
+      "raw_result_sha256": "4686298448b2cd2f9d193d5f343eba343c71f3692d209627a68f25412f2ccb78",
+      "source_sha": "57a4193d1d8a684b7ae4aff6642c1d256048d151",
+      "status": "EXECUTED_PASS"
+    },
+    "revision36": {
+      "cold_reopen_gates": 3,
+      "commands": [
+        {
+          "exit_code": 0,
+          "label": "swift-version",
+          "seconds": 0.137
+        },
+        {
+          "exit_code": 0,
+          "label": "sdk-path",
+          "seconds": 0.011
+        },
+        {
+          "exit_code": 0,
+          "label": "compile",
+          "seconds": 21.488
+        },
+        {
+          "exit_code": 0,
+          "label": "binary-path",
+          "seconds": 0.664
+        },
+        {
+          "exit_code": 0,
+          "label": "component-cases",
+          "seconds": 0.958
+        },
+        {
+          "exit_code": 0,
+          "label": "cold-write",
+          "seconds": 0.165
+        },
+        {
+          "exit_code": 0,
+          "label": "cold-reopen",
+          "seconds": 0.068
+        },
+        {
+          "exit_code": 73,
+          "label": "crash-before",
+          "seconds": 0.063
+        },
+        {
+          "exit_code": 0,
+          "label": "crash-before-reopen",
+          "seconds": 0.026
+        },
+        {
+          "exit_code": 73,
+          "label": "crash-after",
+          "seconds": 0.058
+        },
+        {
+          "exit_code": 0,
+          "label": "crash-after-reopen",
+          "seconds": 0.05
+        }
+      ],
+      "failed_cases": 0,
+      "job_id": "job_144852cddd68",
+      "original_status": "PASS_APPLE_FOUNDATION_ORIGINAL_SQLITE_REVISION",
+      "passed_cases": 36,
+      "raw_result": "revision36/RESULT.json",
+      "raw_result_sha256": "be5a8662225f971ebf8b61fac56025e8234a9f68df06dcfcca6001b222fdec13",
+      "source_sha": "57a4193d1d8a684b7ae4aff6642c1d256048d151",
+      "status": "EXECUTED_PASS"
+    }
+  },
+  "native_sdk_executed": false,
+  "native_ui_executed": false,
+  "product_core_sha": "ce0f62baba7360514e7fa8cad21f0caaf2d0ab8f",
+  "source_sha": "57a4193d1d8a684b7ae4aff6642c1d256048d151",
+  "status": "EXECUTED_PASS_SCOPED_ORIGINAL_SQLITE"
+}
