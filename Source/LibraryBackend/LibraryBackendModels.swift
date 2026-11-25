@@ -465,7 +465,9 @@ struct LibraryReaderRenderModel: Codable, Hashable, Sendable {
         try Task.checkCancellation()
         let task = Task.detached(priority: .userInitiated) {
             try Task.checkCancellation()
-            let model = LibraryReaderRenderModel(section: section, preferredMode: preferredMode)
+            let model = try LibraryReaderRenderModel(
+                section: section, preferredMode: preferredMode, checkCancellation: Task.checkCancellation
+            )
             try Task.checkCancellation()
             return model
         }
@@ -477,8 +479,20 @@ struct LibraryReaderRenderModel: Codable, Hashable, Sendable {
     }
 
     init(section: LibraryTextSection, preferredMode: LibraryReaderTextMode) {
-        let hasSource = section.segments.contains { !$0.sourceText.readerPlainText.isEmpty }
-        let hasTranslation = section.segments.contains { !($0.translation?.readerPlainText ?? "").isEmpty }
+        self.init(section: section, preferredMode: preferredMode, checkCancellation: {})
+    }
+
+    init(
+        section: LibraryTextSection, preferredMode: LibraryReaderTextMode, checkCancellation: () throws -> Void
+    ) rethrows {
+        let hasSource = try section.segments.contains {
+            try checkCancellation()
+            return !$0.sourceText.readerPlainText.isEmpty
+        }
+        let hasTranslation = try section.segments.contains {
+            try checkCancellation()
+            return !($0.translation?.readerPlainText ?? "").isEmpty
+        }
         var modes: [LibraryReaderTextMode] = []
         if hasSource { modes.append(.source) }
         if hasTranslation { modes.append(.translation) }
@@ -504,6 +518,7 @@ struct LibraryReaderRenderModel: Codable, Hashable, Sendable {
         var currentUTF16Offset = 0
         var mappings: [LibraryRenderedSegment] = []
         for segment in section.segments {
+            try checkCancellation()
             let source = segment.sourceText.readerPlainText
             let translation = segment.translation?.readerPlainText ?? ""
             let block: String

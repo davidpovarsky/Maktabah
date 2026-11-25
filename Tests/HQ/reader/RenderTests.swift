@@ -63,6 +63,40 @@ import Foundation
         } catch is CancellationError {
             print("render-async: PASS — exact parity for all modes; already-cancelled request rejected")
         }
+        let manySegments = LibraryTextSection(
+            locator: section.locator, displayRef: section.displayRef, heRef: nil,
+            segments: Array(repeating: segments[0], count: 2_000),
+            previous: nil, next: nil, versions: section.versions, links: [], origin: .offline
+        )
+        var cancellationChecks = 0
+        do {
+            // The first two checks reach the first source and translation.
+            // Cancellation on check five interrupts construction after two rendered segments.
+            _ = try LibraryReaderRenderModel(section: manySegments, preferredMode: .both) {
+                cancellationChecks += 1
+                if cancellationChecks == 5 { throw CancellationError() }
+            }
+            preconditionFailure("cancelled construction returned a reader model")
+        } catch is CancellationError {
+            precondition(cancellationChecks == 5)
+        }
+        cancellationChecks = 0
+        let noTranslations = LibraryTextSection(
+            locator: section.locator, displayRef: section.displayRef, heRef: nil,
+            segments: Array(repeating: segments[1], count: 2_000),
+            previous: nil, next: nil, versions: section.versions, links: [], origin: .offline
+        )
+        do {
+            _ = try LibraryReaderRenderModel(section: noTranslations, preferredMode: .both) {
+                cancellationChecks += 1
+                if cancellationChecks == 5 { throw CancellationError() }
+            }
+            preconditionFailure("the absent-translation scan ignored cancellation")
+        } catch is CancellationError {
+            precondition(cancellationChecks == 5)
+        }
+        print("render-cancellation: PASS - cancellation stops capability scan and segment mapping")
+
         // Fixed synthetic workload, cheap local timing only; no iPad/UI claim.
         var samples: [Double] = []
         for _ in 0..<5 {
@@ -74,7 +108,7 @@ import Foundation
             samples.append(Date().timeIntervalSince(start) * 1000)
         }
         samples.sort()
-        print("render: PASS — actual UTF16 ranges, RTL/Arabic/combining/emoji, source/translation/both; 200-segment synthetic Windows p50=\(samples[2])ms max=\(samples.last!)ms")
+        print("render: PASS — actual UTF16 ranges, RTL/Arabic/combining/emoji, source/translation/both; 200-segment synthetic p50=\(samples[2])ms max=\(samples.last!)ms")
         if CommandLine.arguments.count > 1 {
             let data = try Data(contentsOf: URL(fileURLWithPath: CommandLine.arguments[1]))
             let books = try JSONDecoder().decode([CorpusBook].self, from: data)
@@ -107,7 +141,7 @@ import Foundation
                     }
                 }
                 genuineSamples.sort()
-                print("render-corpus: PASS book=\(book.bookID) sourceRows=\(source.count) visibleSegments=\(expected.count) Windows-neutral-model-only p50=\(genuineSamples[2])ms max=\(genuineSamples.last!)ms; no TextKit/iPad/Swift-ZSTD inference")
+                print("render-corpus: PASS book=\(book.bookID) sourceRows=\(source.count) visibleSegments=\(expected.count) Foundation model only p50=\(genuineSamples[2])ms max=\(genuineSamples.last!)ms; no TextKit/iPad/Swift-ZSTD inference")
             }
         }
     }
