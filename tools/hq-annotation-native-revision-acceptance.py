@@ -329,7 +329,7 @@ def main():
                 len(sources) == 25, "Original whole-source component closure changed; review explicitly")
         core = ROOT / "Source/Otzaria/Actions"
         baseline = json.loads((ROOT / AREA / "product-inputs.json").read_text())
-        require(baseline["source_sha"] == "75058d1c1abbfb0fb37fc819dcece47b853eb4da",
+        require(baseline["source_sha"] == "ce0f62baba7360514e7fa8cad21f0caaf2d0ab8f",
                 "This checkpoint has not reviewed the changed product baseline")
         provenance = [x["path"] for x in baseline["files"]] + [
             DRIVER, HARNESS, AREA + "/case-inventory.json", AREA + "/product-inputs.json", AREA + "/README.md"]
