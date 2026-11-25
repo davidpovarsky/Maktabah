@@ -629,6 +629,422 @@
           }
         }
       }
+    },
+    "Receive saved changes from Anytype": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Receive saved changes from Anytype"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קבלת שינויים שמורים מ־Anytype"
+          }
+        }
+      }
+    },
+    "Reading the original Anytype note…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading the original Anytype note…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קורא את ההערה המקורית ב־Anytype…"
+          }
+        }
+      }
+    },
+    "Choose the shared copy": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose the shared copy"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בחירת העותק המשותף"
+          }
+        }
+      }
+    },
+    "Anytype copy": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anytype copy"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "העותק ב־Anytype"
+          }
+        }
+      }
+    },
+    "Read saved changes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read saved changes"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קריאת השינויים השמורים"
+          }
+        }
+      }
+    },
+    "The note will be read from the account and space you selected.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The note will be read from the account and space you selected."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההערה תיקרא מהחשבון ומהמרחב שבחרת."
+          }
+        }
+      }
+    },
+    "Both versions need review": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Both versions need review"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יש לבדוק את שתי הגרסאות"
+          }
+        }
+      }
+    },
+    "Your saved note changed since it was shared. Both full versions are retained. Choose explicitly which version to keep here.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your saved note changed since it was shared. Both full versions are retained. Choose explicitly which version to keep here."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההערה השמורה השתנתה מאז השיתוף. שתי הגרסאות המלאות נשמרות. יש לבחור איזו גרסה לשמור כאן."
+          }
+        }
+      }
+    },
+    "Saved on this device": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved on this device"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שמור במכשיר הזה"
+          }
+        }
+      }
+    },
+    "Read from Anytype": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read from Anytype"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נקרא מ־Anytype"
+          }
+        }
+      }
+    },
+    "Use the Anytype version here": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use the Anytype version here"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שמירת גרסת Anytype כאן"
+          }
+        }
+      }
+    },
+    "Keep the local version": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep the local version"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שמירת הגרסה המקומית"
+          }
+        }
+      }
+    },
+    "The preview is plain text. The complete original formatting, objects and files are kept when you save.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The preview is plain text. The complete original formatting, objects and files are kept when you save."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "התצוגה המקדימה היא טקסט פשוט. בשמירה נשמרים העיצוב המקורי המלא, האובייקטים והקבצים."
+          }
+        }
+      }
+    },
+    "Anytype version saved locally": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anytype version saved locally"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "גרסת Anytype נשמרה במכשיר"
+          }
+        }
+      }
+    },
+    "The same note ID and complete original body were saved. Reopen the expanded editor to continue privately.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The same note ID and complete original body were saved. Reopen the expanded editor to continue privately."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מזהה ההערה והתוכן המקורי המלא נשמרו. אפשר לפתוח שוב את העורך המורחב כדי להמשיך בעריכה פרטית."
+          }
+        }
+      }
+    },
+    "No shared copy in this space": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No shared copy in this space"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אין עותק משותף במרחב הזה"
+          }
+        }
+      }
+    },
+    "Share this saved note with Anytype first, then choose that account and space when receiving it.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Share this saved note with Anytype first, then choose that account and space when receiving it."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יש לשתף תחילה את ההערה השמורה עם Anytype, ואז לבחור את אותו חשבון ומרחב בעת קבלתה."
+          }
+        }
+      }
+    },
+    "The local note changed": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The local note changed"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההערה המקומית השתנתה"
+          }
+        }
+      }
+    },
+    "No older version was applied. The full received version is retained. Close and reopen the note to review again.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No older version was applied. The full received version is retained. Close and reopen the note to review again."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא הוחלה גרסה ישנה יותר. הגרסה המלאה שהתקבלה נשמרה. יש לסגור ולפתוח שוב את ההערה כדי לבדוק אותה מחדש."
+          }
+        }
+      }
+    },
+    "The original read could not finish": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The original read could not finish"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קריאת ההערה המקורית לא הושלמה"
+          }
+        }
+      }
+    },
+    "Receive from Anytype": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Receive from Anytype"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קבלה מ־Anytype"
+          }
+        }
+      }
+    },
+    "Replace the saved local version?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Replace the saved local version?"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "להחליף את הגרסה המקומית השמורה?"
+          }
+        }
+      }
+    },
+    "Both complete versions are retained. Your note ID, source anchor, tags and local permissions stay with this note.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Both complete versions are retained. Your note ID, source anchor, tags and local permissions stay with this note."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שתי הגרסאות המלאות נשמרות. מזהה ההערה, העוגן במקור, התגיות וההרשאות המקומיות נשארים עם ההערה."
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ביטול"
+          }
+        }
+      }
+    },
+    "Retry closing Anytype": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry closing Anytype"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ניסיון נוסף לסגירת Anytype"
+          }
+        }
+      }
+    },
+    "Retry closing the private editor": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry closing the private editor"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ניסיון נוסף לסגירת העורך הפרטי"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

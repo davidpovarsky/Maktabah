@@ -73,6 +73,7 @@ struct AnnotationOriginalEditorProductionEntry: View {
     @State private var presentation: AnnotationOriginalEditorProductionPresentation?
     @State private var entryMessage: String?
     @State private var sharePresentation: AnnotationOriginalEditorSharePresentation?
+    @State private var receivePresentation: AnnotationOriginalEditorReceivePresentation?
 
     static var qualificationOwnsEntry: Bool {
         #if DEBUG && targetEnvironment(simulator)
@@ -130,6 +131,23 @@ struct AnnotationOriginalEditorProductionEntry: View {
                     }
                     .accessibilityIdentifier("annotation-anytype-share-open")
                     .disabled(entryError != nil)
+
+                    Button {
+                        do {
+                            try draft().requireUnchanged(annotation)
+                            guard let workspace, let inspected, availability == .rich else {
+                                throw AnnotationOriginalEditorUIError.unavailable
+                            }
+                            receivePresentation = .init(annotation: annotation,
+                                inspected: inspected, workspace: workspace)
+                        } catch { entryMessage = error.localizedDescription }
+                    } label: {
+                        Label {
+                            Text("Receive saved changes from Anytype", tableName: "OriginalAnnotationEditor")
+                        } icon: { Image(systemName: "square.and.arrow.down") }
+                    }
+                    .accessibilityIdentifier("annotation-anytype-receive-open")
+                    .disabled(entryError != nil)
                 }
 
                 if availability == .checking {
@@ -150,6 +168,12 @@ struct AnnotationOriginalEditorProductionEntry: View {
             .onDisappear {
                 inspection?.retire()
                 inspection = nil
+            }
+            .fullScreenCover(item: $receivePresentation, onDismiss: {
+                closeOriginalSheet()
+            }) { model in
+                AnnotationOriginalEditorReceiveView(model: model)
+                    .interactiveDismissDisabled(true)
             }
             .fullScreenCover(item: $sharePresentation, onDismiss: {
                 closeOriginalSheet()
@@ -711,7 +735,7 @@ private struct AnnotationOriginalEditorShareView: View {
 
 /// The complete supplied controller belongs to the original native SDK.
 @MainActor
-private struct AnnotationOriginalEditorProductionController: UIViewControllerRepresentable {
+struct AnnotationOriginalEditorProductionController: UIViewControllerRepresentable {
     let controller: UIViewController
     func makeUIViewController(context: Context) -> UIViewController { controller }
     func updateUIViewController(_ controller: UIViewController, context: Context) {}
