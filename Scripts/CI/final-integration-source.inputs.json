@@ -10,11 +10,11 @@
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda"
   },
-  "application_source_sha": "1c21324cfbfa6bc4ede904b812f0f625a20f38af",
+  "application_source_sha": "6e88c9f59ff030bfa02e0c953dc95f1dc2f6dd6f",
   "application_trees": {
-    "Maktabah-iOSUITests": "705792fc84ef0c4ea7571c63262d7272e027c7ea",
+    "Maktabah-iOSUITests": "b862fc5efecb679fa3e930b4434df83ec1942666",
     "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3",
-    "Source": "b5d1519de04f59a244b68fef7ccb206b88d0224d",
+    "Source": "9214fc6357b817d3999bfbed52ef7f618ba43279",
     "Vendor": "ab0c8fa1ac707902552443b4b85982064534086e"
   },
   "hanlin_source": "3f5c0f37af476b377be10cf8013fedb5edf67a57",
@@ -32,11 +32,11 @@
     {
       "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
-        "bytes": 90196,
+        "bytes": 99229,
         "kind": "blob",
         "mode": "100644",
-        "object": "a2a98bfc29014164db2d8d32f5738c2826f806d4",
-        "sha256": "9ada1b3c7c9dcdd5e9fd913b108c2d6937cea4441b4634b290c0086e429fc7e7"
+        "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+        "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
       },
       "before": null,
       "component_objects": {
@@ -81,11 +81,11 @@
         }
       },
       "patch": {
-        "bytes": 92072,
-        "sha256": "1daebc1d878b071c6a9db38e0ab81a7ff108d9fe52074cc1655fb142a5d0a546"
+        "bytes": 101236,
+        "sha256": "861655a3ba7730857b5cb665a6edd4437a0a04179013b0984c54c92f4e3f4f15"
       },
       "path": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift",
-      "reason": "Reviewed original real-app selector retains all five genuine plain/reader/rich callbacks, newer unsaved native-block preservation, cold remount and replay. Shared native Picker editing now also has a separate Hebrew phone/tablet selector using the real catalog, localized original controls, mirrored toolbar/reorder geometry and preferences changed only through actual UI. All22 exact current UI sources passed Apple Swift6.4 codegen. Locale/scene, screenshots and AX are retained by actual runs; zero native UI execution is claimed here. The acknowledged callback replay is delivered through XCUIDevice.system.open, preserving genuine OS URL delivery instead of XCUIApplication's launch-equivalent helper. Real cold terminations and all revision/archive/receipt assertions remain intact; exact22-source Apple codegen passed on4eec5cf3. Integrate original owner 5010787a explicit Save/Cancel before MiniApps and its no-canonical-mutation cancel assertions, keeping the native file API, Hebrew/RTL and warm OS replay changes. Historical source compile receipts are not credited to this merged source. Add a separate original-app File Workshop acceptance method using genuine UI import, nonce-bearing file edits, cold native reopen/export, original file uploads, distinct same-name blocks, cancellation and duplicate callback. Keep all original text/reader/privacy/RTL cases. This source addition has no native execution credit until the real two-app gate passes. Observe the real initial new-file content from the source note, then replace it through the actual UIKit word selection and visible Cut action before typing the independent file nonce. Preserve all original input/output/reopen/replay assertions; no native execution credit is granted by this source update."
+      "reason": "Reviewed original real-app selector retains all five genuine plain/reader/rich callbacks, newer unsaved native-block preservation, cold remount and replay. Shared native Picker editing now also has a separate Hebrew phone/tablet selector using the real catalog, localized original controls, mirrored toolbar/reorder geometry and preferences changed only through actual UI. All22 exact current UI sources passed Apple Swift6.4 codegen. Locale/scene, screenshots and AX are retained by actual runs; zero native UI execution is claimed here. The acknowledged callback replay is delivered through XCUIDevice.system.open, preserving genuine OS URL delivery instead of XCUIApplication's launch-equivalent helper. Real cold terminations and all revision/archive/receipt assertions remain intact; exact22-source Apple codegen passed on4eec5cf3. Integrate original owner 5010787a explicit Save/Cancel before MiniApps and its no-canonical-mutation cancel assertions, keeping the native file API, Hebrew/RTL and warm OS replay changes. Historical source compile receipts are not credited to this merged source. Add a separate original-app File Workshop acceptance method using genuine UI import, nonce-bearing file edits, cold native reopen/export, original file uploads, distinct same-name blocks, cancellation and duplicate callback. Keep all original text/reader/privacy/RTL cases. This source addition has no native execution credit until the real two-app gate passes. Observe the real initial new-file content from the source note, then replace it through the actual UIKit word selection and visible Cut action before typing the independent file nonce. Preserve all original input/output/reopen/replay assertions; no native execution credit is granted by this source update. Extend the actual File Workshop file journey with a distinct plain note: real file creation, ACK/private bytes, cold reopen/native activity UI, unchanged legacy format and cold duplicate callback. Keep all rich-file/text/reader/privacy/RTL objectives; no native execution credit from source."
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -690,11 +690,11 @@
     {
       "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
-        "bytes": 34709,
+        "bytes": 37347,
         "kind": "blob",
         "mode": "100644",
-        "object": "b8efa66c8a204e41a46a54680aa61dd3077c1b94",
-        "sha256": "b04c535d3b1e7b207c7bfd097d2bd38a60aad4f7d0c0e06db14d201059a4707d"
+        "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+        "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
       },
       "before": null,
       "component_objects": {
@@ -739,11 +739,11 @@
         }
       },
       "patch": {
-        "bytes": 35699,
-        "sha256": "09d6f8e69ed1818fec2511e719b3fe68f7f3baf44ec043110bf9f8cba501c468"
+        "bytes": 38379,
+        "sha256": "ff1ea1fb0317bfff1cd801f3746dd43ce0e4a1f31d4744e7fcb120e31bed0ce4"
       },
       "path": "Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift",
-      "reason": "Transfer actual native file bytes through the shared Bridge and original native attachment API; retain bounded bytes and exact callback without replacing rich file blocks with private URL strings. Use one documented aggregate adapter budget derived from the original 8 MiB expanded archive bound; retain the original 1 MiB compressed archive and full payload gates without a new count cap."
+      "reason": "Transfer actual native file bytes through the shared Bridge and original native attachment API; retain bounded bytes and exact callback without replacing rich file blocks with private URL strings. Use one documented aggregate adapter budget derived from the original 8 MiB expanded archive bound; retain the original 1 MiB compressed archive and full payload gates without a new count cap. Present committed private returned files through original UIActivityViewController after ACK/relaunch, reconstructing current Documents paths and rejecting arbitrary note URLs or escaped files. Preserve legacy text format."
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -759,17 +759,62 @@
       "path": "Source/ChavrusaText/MiniApps/OtzariaMiniAppsDocument.swift"
     },
     {
-      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
-        "bytes": 12957,
+        "bytes": 15325,
         "kind": "blob",
         "mode": "100644",
-        "object": "ed7eaacdd03eca57dbc4ed6019e304c0f217f7c4",
-        "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
+        "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+        "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
       },
       "before": null,
-      "component": "original_rich_miniapps",
-      "path": "Source/ChavrusaText/MiniApps/OtzariaMiniAppsPersistence.swift"
+      "component_objects": {
+        "empty_note": null,
+        "library": null,
+        "miniapps": {
+          "bytes": 6782,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "5a9fe577d25a5755fbd01da4aa6d78977cc27cdb",
+          "sha256": "f19020e5e2f354bf0b38be66060a18826ce58db41d8f2c252c9bcf33aa8b8049"
+        },
+        "native_share": null,
+        "normal_editor": null,
+        "original_account_exchange_ui": {
+          "bytes": 12957,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ed7eaacdd03eca57dbc4ed6019e304c0f217f7c4",
+          "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
+        },
+        "original_explicit_save": {
+          "bytes": 12957,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ed7eaacdd03eca57dbc4ed6019e304c0f217f7c4",
+          "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
+        },
+        "original_lifecycle_and_native_batch": {
+          "bytes": 7188,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "25b98af821b481678b81813cd8f24a1c9c37d55c",
+          "sha256": "b045480aba915d9fb002de77e1b403700af25a0fd3200b0db72b5ca74680403d"
+        },
+        "original_rich_miniapps": {
+          "bytes": 12957,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ed7eaacdd03eca57dbc4ed6019e304c0f217f7c4",
+          "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
+        }
+      },
+      "patch": {
+        "bytes": 15938,
+        "sha256": "f2201ecf7db4bcd04394109d89db870b49c600a6300c9afd2212e463c84c8202"
+      },
+      "path": "Source/ChavrusaText/MiniApps/OtzariaMiniAppsPersistence.swift",
+      "reason": " Read only durable file receipts bound to the exact original annotation, preserving the existing archive/receipt transaction and database lifetime checks."
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -861,13 +906,13 @@
       "path": "Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift"
     },
     {
-      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
-        "bytes": 22996,
+        "bytes": 24135,
         "kind": "blob",
         "mode": "100644",
-        "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
-        "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
+        "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+        "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
       },
       "before": {
         "bytes": 21061,
@@ -876,8 +921,77 @@
         "object": "ba3b1a0bab7e08ebeebca35e18198ce0d18dbcfa",
         "sha256": "8a0efc79f67bbca9ab260beb1cb89d4c6dca12e640ff38ddbb9c88437c825ca5"
       },
-      "component": "original_lifecycle_and_native_batch",
-      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift"
+      "component_objects": {
+        "empty_note": {
+          "bytes": 21637,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74cdb0174d3903ecca6d657d436507a8dddc4d6c",
+          "sha256": "b6e0e9bc42140fd896a20a1ee6eb2f17d65d5b6dee3854a5b6869e78dcf23f1f"
+        },
+        "library": {
+          "bytes": 22603,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "8dc8b070db19569da049659a8f11e402d2fe589f",
+          "sha256": "33d1f5f8e07513c36aa1539d9075fc0c59c63630fe44cb1684d8cbb20b4be655"
+        },
+        "miniapps": {
+          "bytes": 22369,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "04c6c9851b9d656b02849e1ea4bddf06ed079a27",
+          "sha256": "a5156ef6e707e1e04d2fe4396de70710c0dffdef528e8653176e9bf736d76b39"
+        },
+        "native_share": {
+          "bytes": 21637,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74cdb0174d3903ecca6d657d436507a8dddc4d6c",
+          "sha256": "b6e0e9bc42140fd896a20a1ee6eb2f17d65d5b6dee3854a5b6869e78dcf23f1f"
+        },
+        "normal_editor": {
+          "bytes": 22603,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "8dc8b070db19569da049659a8f11e402d2fe589f",
+          "sha256": "33d1f5f8e07513c36aa1539d9075fc0c59c63630fe44cb1684d8cbb20b4be655"
+        },
+        "original_account_exchange_ui": {
+          "bytes": 22996,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
+          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
+        },
+        "original_explicit_save": {
+          "bytes": 22996,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
+          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
+        },
+        "original_lifecycle_and_native_batch": {
+          "bytes": 22996,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
+          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
+        },
+        "original_rich_miniapps": {
+          "bytes": 22996,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
+          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
+        }
+      },
+      "patch": {
+        "bytes": 11237,
+        "sha256": "1bbd5b8ad45417efb58c6291cd4271e785abb8cfab56288fdb436f19191016dd"
+      },
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "reason": " Add the original note toolbar sharing action when committed file receipts exist, refresh after actual receipt notifications, preserve Save/Cancel and original rich-body protection."
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -918,13 +1032,13 @@
       "path": "Source/LibraryBackend/BackendCoordinator.swift"
     },
     {
-      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
-        "bytes": 351650,
+        "bytes": 352039,
         "kind": "blob",
         "mode": "100644",
-        "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
-        "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
+        "object": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
+        "sha256": "39400d65b2612496c5591f8ee482ec71b52f11dd94d23f03f964ec6503c03c39"
       },
       "before": {
         "bytes": 340316,
@@ -933,8 +1047,77 @@
         "object": "511a85ca4442f82c7f9edbe5303eacf073730017",
         "sha256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46"
       },
-      "component": "original_lifecycle_and_native_batch",
-      "path": "Source/Localizable.xcstrings"
+      "component_objects": {
+        "empty_note": {
+          "bytes": 340316,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "511a85ca4442f82c7f9edbe5303eacf073730017",
+          "sha256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46"
+        },
+        "library": {
+          "bytes": 348941,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "97eca39742be7e562f954f981c7e7d62b9ed23ef",
+          "sha256": "8c38ac585548480a10ba9b25b4209e7e5304e52807c43da9ddd5851b6a6ae027"
+        },
+        "miniapps": {
+          "bytes": 343025,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "654bcb64d87fe00ea3b23ffdde11f5a158a4ee92",
+          "sha256": "f4fa1d3db652ccd8e8f359471e6cbff869b436eca779b1130588d233c07f41ff"
+        },
+        "native_share": {
+          "bytes": 340316,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "511a85ca4442f82c7f9edbe5303eacf073730017",
+          "sha256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46"
+        },
+        "normal_editor": {
+          "bytes": 340316,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "511a85ca4442f82c7f9edbe5303eacf073730017",
+          "sha256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46"
+        },
+        "original_account_exchange_ui": {
+          "bytes": 351650,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
+          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
+        },
+        "original_explicit_save": {
+          "bytes": 351650,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
+          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
+        },
+        "original_lifecycle_and_native_batch": {
+          "bytes": 351650,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
+          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
+        },
+        "original_rich_miniapps": {
+          "bytes": 351650,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
+          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
+        }
+      },
+      "patch": {
+        "bytes": 12607,
+        "sha256": "94d0d6356cf3c0477b06cdadbe4cf1be04de03b7a93ff81b1f392cfb7e5d04f7"
+      },
+      "path": "Source/Localizable.xcstrings",
+      "reason": " Add only English/Hebrew native file-sharing action label."
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
