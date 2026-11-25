@@ -288,6 +288,16 @@ extension SettingsView {
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
+            #if os(iOS)
+            if backendCoordinator.activeBackendID == .otzaria {
+                NavigationLink("otzaria.update.title") {
+                    OtzariaLibraryUpdateView()
+                }
+                .accessibilityIdentifier("settings-otzaria-library-updates")
+                .disabled(backendCoordinator.isTransitioning)
+            }
+            #endif
+
             if backendCoordinator.activeCapabilities.contains(.offlineLibrary),
                backendCoordinator.offlineProvider() != nil {
                 NavigationLink("Manage Offline Library") {

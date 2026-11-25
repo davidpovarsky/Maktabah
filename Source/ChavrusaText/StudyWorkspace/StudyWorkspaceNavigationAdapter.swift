@@ -124,6 +124,17 @@ final class StudyWorkspaceNavigationAdapter {
         mappingHookOwners[ObjectIdentifier(manager)] = .init(manager)
     }
 
+    /// Saved group documents remain authoritative; only obsolete in-memory
+    /// reader instances are discarded after a managed Otzaria snapshot update.
+    static func managedLibraryDidUpdate(_ manager: iOSNavigationManager) {
+        withMappingAdapters(manager) { adapter in
+            for id in Array(adapter.cache.keys) {
+                adapter.cache[id]?.removeValue(forKey: .otzaria)
+            }
+            adapter.synchronize(manager)
+        }
+    }
+
     static func nativeMappingOwnerWillDeinitialize(_ manager: iOSNavigationManager) {
         for adapter in mappingAdapters.values.compactMap(\.value) where adapter.mappingOwnerID == ObjectIdentifier(manager) {
             adapter.mappingOwnershipSource.retire()

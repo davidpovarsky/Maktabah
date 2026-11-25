@@ -1,0 +1,227 @@
+{
+  "base": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
+  "checked_at": "2026-11-25T01:13:21.665693+00:00",
+  "diff_check": "PASS",
+  "legacy_inputs": {
+    ".github/workflows/otzaria-latest-multipart-components.yml": {
+      "compiled_in_original_37": false,
+      "current": {
+        "bytes": 1277,
+        "sha256": "e1c0d5ec840930a68deafd40db8b3694f8547bc63384a559776ff16930d684ff"
+      },
+      "prior": {
+        "bytes": 1277,
+        "sha256": "e1c0d5ec840930a68deafd40db8b3694f8547bc63384a559776ff16930d684ff"
+      },
+      "unchanged": true
+    },
+    "Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift": {
+      "compiled_in_original_37": false,
+      "current": {
+        "bytes": 5835,
+        "sha256": "b5732598579a5dae6302032d7c5e40a3660404806996260312ba7fa1e14ff4dc"
+      },
+      "prior": {
+        "bytes": 4740,
+        "sha256": "fe08c44f229e7df9b58a803d011989fe7c326da3a16ea423e13c534ebc72d50f"
+      },
+      "unchanged": false
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift": {
+      "compiled_in_original_37": false,
+      "current": {
+        "bytes": 10810,
+        "sha256": "7fdf24f14697de9304c30a699c454c061bda8bc515f9c366c17928ef943d0274"
+      },
+      "prior": {
+        "bytes": 9091,
+        "sha256": "02953786c2b5327b4cc2b83307c54ff5acf4eae7beb4e8d974c5773c0dc646b1"
+      },
+      "unchanged": false
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift": {
+      "compiled_in_original_37": true,
+      "current": {
+        "bytes": 17491,
+        "sha256": "bce1f3d267684384b1235a3d23b05cdcddad2ac9ea0029d55f536f9063192d9f"
+      },
+      "prior": {
+        "bytes": 17491,
+        "sha256": "bce1f3d267684384b1235a3d23b05cdcddad2ac9ea0029d55f536f9063192d9f"
+      },
+      "unchanged": true
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloader.swift": {
+      "compiled_in_original_37": true,
+      "current": {
+        "bytes": 31540,
+        "sha256": "6882067545a02dea765414381f2aeeb4101fee930d4237f58e44554d01c0c69a"
+      },
+      "prior": {
+        "bytes": 31540,
+        "sha256": "6882067545a02dea765414381f2aeeb4101fee930d4237f58e44554d01c0c69a"
+      },
+      "unchanged": true
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift": {
+      "compiled_in_original_37": false,
+      "current": {
+        "bytes": 18852,
+        "sha256": "192dc8cb8fa041a6f3fd4760d8d2daf00cd72e05209d25ef5c6b5790430d3624"
+      },
+      "prior": {
+        "bytes": 18852,
+        "sha256": "192dc8cb8fa041a6f3fd4760d8d2daf00cd72e05209d25ef5c6b5790430d3624"
+      },
+      "unchanged": true
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDownloadPolicy.swift": {
+      "compiled_in_original_37": true,
+      "current": {
+        "bytes": 2423,
+        "sha256": "d51c4bfbd4e5ba85c0bb645cafe4eeb17cf3147cdc2dee35e39da776751e3b72"
+      },
+      "prior": {
+        "bytes": 2423,
+        "sha256": "d51c4bfbd4e5ba85c0bb645cafe4eeb17cf3147cdc2dee35e39da776751e3b72"
+      },
+      "unchanged": true
+    },
+    "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift": {
+      "compiled_in_original_37": true,
+      "current": {
+        "bytes": 14219,
+        "sha256": "afb748bb57d9edcbd804d329f25c7b0b2263dd0a178b59979e10fb2c43ca2f45"
+      },
+      "prior": {
+        "bytes": 14219,
+        "sha256": "afb748bb57d9edcbd804d329f25c7b0b2263dd0a178b59979e10fb2c43ca2f45"
+      },
+      "unchanged": true
+    },
+    "Source/Otzaria/Bootstrap/OtzariaNativeBootstrapAcceptanceRunner.swift": {
+      "compiled_in_original_37": false,
+      "current": {
+        "bytes": 26088,
+        "sha256": "636beef525e91ee53d0cfdbd6ca11bf768bcbb5ed2eee2284c473f86d110a929"
+      },
+      "prior": {
+        "bytes": 26088,
+        "sha256": "636beef525e91ee53d0cfdbd6ca11bf768bcbb5ed2eee2284c473f86d110a929"
+      },
+      "unchanged": true
+    },
+    "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift": {
+      "compiled_in_original_37": false,
+      "current": {
+        "bytes": 12956,
+        "sha256": "d08aa05deb507b03c870d98f2b2e04197f32cf1c83920026b8336587fc09406f"
+      },
+      "prior": {
+        "bytes": 12956,
+        "sha256": "d08aa05deb507b03c870d98f2b2e04197f32cf1c83920026b8336587fc09406f"
+      },
+      "unchanged": true
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfile.swift": {
+      "compiled_in_original_37": true,
+      "current": {
+        "bytes": 3950,
+        "sha256": "3ac83a1f548b6ffb5a9a3a42f50cd25780c3162c077a5731ded94154e50f0348"
+      },
+      "prior": {
+        "bytes": 3950,
+        "sha256": "3ac83a1f548b6ffb5a9a3a42f50cd25780c3162c077a5731ded94154e50f0348"
+      },
+      "unchanged": true
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift": {
+      "compiled_in_original_37": true,
+      "current": {
+        "bytes": 2720,
+        "sha256": "b2dcb938d724eb01619e95d14a915f55de069da4b09ac007c15da92ecdd6d84d"
+      },
+      "prior": {
+        "bytes": 2720,
+        "sha256": "b2dcb938d724eb01619e95d14a915f55de069da4b09ac007c15da92ecdd6d84d"
+      },
+      "unchanged": true
+    },
+    "Tests/HQ/latest-multipart/CASES.json": {
+      "compiled_in_original_37": false,
+      "current": {
+        "bytes": 1839,
+        "sha256": "7add8791a6b082870dcb3d9ce31b944fbf6a0542e4beb0255cfb6b7769059773"
+      },
+      "prior": {
+        "bytes": 1839,
+        "sha256": "7add8791a6b082870dcb3d9ce31b944fbf6a0542e4beb0255cfb6b7769059773"
+      },
+      "unchanged": true
+    },
+    "Tests/HQ/latest-multipart/MultipartArchiveControls.swift": {
+      "compiled_in_original_37": false,
+      "current": {
+        "bytes": 40348,
+        "sha256": "1486c82619248b8cea08307162af2d7df41a2aa4a26495bb02a4fdf5af8fb70a"
+      },
+      "prior": {
+        "bytes": 40348,
+        "sha256": "1486c82619248b8cea08307162af2d7df41a2aa4a26495bb02a4fdf5af8fb70a"
+      },
+      "unchanged": true
+    },
+    "Tests/HQ/latest-multipart/official-v32-release.json": {
+      "compiled_in_original_37": false,
+      "current": {
+        "bytes": 24332,
+        "sha256": "ae62fa281b06801362ef93269258837c64445dff7120db6e97ee94f058175d09"
+      },
+      "prior": {
+        "bytes": 24332,
+        "sha256": "ae62fa281b06801362ef93269258837c64445dff7120db6e97ee94f058175d09"
+      },
+      "unchanged": true
+    },
+    "Tests/HQ/latest-multipart/official-v40-manifest.json": {
+      "compiled_in_original_37": false,
+      "current": {
+        "bytes": 589,
+        "sha256": "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3"
+      },
+      "prior": {
+        "bytes": 589,
+        "sha256": "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3"
+      },
+      "unchanged": true
+    },
+    "Tests/HQ/latest-multipart/official-v40-release.json": {
+      "compiled_in_original_37": false,
+      "current": {
+        "bytes": 1336,
+        "sha256": "afb4708bda700b5e02a1fe7dad9225877f54c15b0a11a11a4ef7e54c16be240e"
+      },
+      "prior": {
+        "bytes": 1336,
+        "sha256": "afb4708bda700b5e02a1fe7dad9225877f54c15b0a11a11a4ef7e54c16be240e"
+      },
+      "unchanged": true
+    },
+    "Tests/HQ/latest-multipart/run_apple.py": {
+      "compiled_in_original_37": false,
+      "current": {
+        "bytes": 11496,
+        "sha256": "c679523da215c00de78b96c748c586b9f1c0f78f9d578ba010e77ede6546f919"
+      },
+      "prior": {
+        "bytes": 11496,
+        "sha256": "c679523da215c00de78b96c748c586b9f1c0f78f9d578ba010e77ede6546f919"
+      },
+      "unchanged": true
+    }
+  },
+  "native_application_update_acceptance": "NOT_RUN",
+  "new_swift_policy_controls": "PREPARED_NOT_COMPILED",
+  "source_registration": "PASS: original verify-otzaria-xcode-project.py, 165 Swift files",
+  "unchanged_compiled_product_inputs": 6
+}
