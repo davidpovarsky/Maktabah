@@ -3,13 +3,13 @@
   "producer_origin": "local-mac",
   "producer_run_id": null,
   "producer_artifact_name": null,
-  "producer_source_sha": "e1a25038e55a2967b2f21c9eb48e0e29220f52fd",
+  "producer_source_sha": "08ef8741ff58241a081c908536a3b4d3917cc0e8",
   "local_producer_manifest": {
-    "path": "/Users/m1/builds/hanlin-miniapps-final-native-20261125/build/native-final-evidence/attempt-e1a25038-01/consumer-build/producer-manifest.json",
-    "sha256": "2fd30dea93060f3fd32f6329fdeeb76d847abb9cbbaf4bb24e12eecb1f7ca5e9"
+    "path": "/Users/m1/builds/hanlin-miniapps-final-native-20261125/build/native-final-evidence/attempt-08ef8741-01/consumer-build/producer-manifest.json",
+    "sha256": "b534304681bfc58f41555db7894db88e9ff054837fb577712d7bb3dd5bdbe5ed"
   },
   "local_producer_preparation": {
-    "path": "Scripts/CI/miniapps-producer-preparation-e1a25038.json",
-    "sha256": "0298f78ab08b4b2b423b27c13425036a301e0bba21963c1fffde6db2edc01e89"
+    "path": "Scripts/CI/miniapps-producer-preparation-08ef8741.json",
+    "sha256": "85cce1ab6efcc5487af1a55939771e4f088b610f76ded3a6e4947e56893c1c1a"
   }
 }
