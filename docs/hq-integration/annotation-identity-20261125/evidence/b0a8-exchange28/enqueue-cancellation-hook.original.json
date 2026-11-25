@@ -1,0 +1,1 @@
+{"cancellationsAfterOutboxInsert":1,"insertedTables":["otzaria_annotation_exchange_versions","otzaria_annotation_exchange_heads","otzaria_annotation_exchange_outbox"],"insertedRowIDs":[1,1,1],"deniedOutboxAuthorizations":0,"outboxWasAttemptedAfterVersionAndHead":false}

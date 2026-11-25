@@ -1,0 +1,142 @@
+[
+  {
+    "milliseconds" : 0.6470680236816406,
+    "name" : "actual_platform_SHA256_known_vectors",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 45.86803913116455,
+    "name" : "constructor_is_inert_and_capability_stays_off",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 12.563943862915039,
+    "name" : "exact_rich_bytes_preview_and_unknown_fields_survive_reopen",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 6.443977355957031,
+    "name" : "unknown_version_is_exact_quarantine_without_execution",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 11.335968971252441,
+    "name" : "all_original_handles_close_before_reopen_and_retry",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 0.6539821624755859,
+    "name" : "duplicate_escaped_keys_malformed_UTF8_and_numbers_are_rejected",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 6.058096885681152,
+    "name" : "invalid_UUID_base64_types_and_scope_are_rejected",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 2.4080276489257812,
+    "name" : "oversized_payload_fails_intact_without_rows",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 6.749987602233887,
+    "name" : "schema_constraints_reject_fractional_revision_and_invalid_status",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 2.838015556335449,
+    "name" : "unknown_ledger_schema_fails_closed",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 3.8160085678100586,
+    "name" : "missing_or_ambiguous_original_UUID_is_not_backfilled",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 29.671907424926758,
+    "name" : "same_second_source_edit_rejects_stale_witness",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 19.917964935302734,
+    "name" : "tag_locator_and_embedded_NUL_each_change_source_witness",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 4.3250322341918945,
+    "name" : "source_metadata_and_revision_mismatch_do_not_write",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 4.990935325622559,
+    "name" : "dangling_original_tag_link_changes_witness_and_rejects_stale_commit",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 8.916974067687988,
+    "name" : "idempotent_retry_binds_exact_payload_and_destination_set",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 17.07303524017334,
+    "name" : "ACK_is_bound_to_destination_account_space_UUID_revision_digest_and_message",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 11.337995529174805,
+    "name" : "old_ACK_does_not_consume_newer_revision_or_account",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 42.932987213134766,
+    "name" : "nested_enqueue_failure_rolls_back_source_cloud_queue_and_ledger",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 41.970014572143555,
+    "name" : "outer_failure_after_inner_release_rolls_back_everything",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 63.54999542236328,
+    "name" : "successful_outer_transaction_preserves_original_cloud_queue_semantics",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 14.255046844482422,
+    "name" : "tombstone_requires_prior_identity_and_absent_original_source",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 8.115053176879883,
+    "name" : "known_inbox_is_review_only_exact_idempotent_and_account_scoped",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 3.8379430770874023,
+    "name" : "incoming_digest_and_identity_mismatch_are_rejected",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 7.46607780456543,
+    "name" : "corrupt_payload_and_orphan_outbox_fail_closed",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 12.0849609375,
+    "name" : "pre_cancelled_commit_and_ACK_do_not_write",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 20.905017852783203,
+    "name" : "cancellation_after_real_enqueue_rolls_back_before_commit",
+    "status" : "PASS"
+  },
+  {
+    "milliseconds" : 42.86599159240723,
+    "name" : "eight_concurrent_same_revision_writers_have_one_atomic_winner",
+    "status" : "PASS"
+  }
+]

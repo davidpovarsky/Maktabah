@@ -47,3 +47,6 @@ the existing Actions package. Its bytes are explicitly opaque component data;
 it makes no original Anytype renderer, UI, remote synchronization, TestFlight,
 or physical-device acceptance claim. Results remain pending until the actual
 Mac jobs complete. Historical failed source and receipts are retained.
+
+
+Actual Mac43/28/24 and cold/crash gates are now PASS. See ACCEPTANCE_20261125.md and original evidence; earlier pending entries remain historical.
