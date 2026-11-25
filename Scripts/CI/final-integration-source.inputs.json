@@ -9,14 +9,14 @@
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda"
   },
-  "application_source_sha": "a0aab23af933b7621a435f03d562271af62d00e8",
+  "application_source_sha": "9eadb82296bd5d6c13dfc7eba691e6cd7651ad60",
   "application_trees": {
     "Maktabah-iOSUITests": "ab24a79e9baee44bc68d73b434e8ad8d034c9d8d",
     "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3",
-    "Source": "865ef9c1d485e011fe34108beee7dbe126b80ca8",
-    "Vendor": "e080933608a75b0db2ed1d040a6001d9b4033ad1"
+    "Source": "d4208d2c3ef11618abfc8f752b92d6ae30034fa1",
+    "Vendor": "ab0c8fa1ac707902552443b4b85982064534086e"
   },
-  "hanlin_source": "08ef8741ff58241a081c908536a3b4d3917cc0e8",
+  "hanlin_source": "3f5c0f37af476b377be10cf8013fedb5edf67a57",
   "historical_application_source": "d3da55417a30e9a06b0255e2d0b561955034b260",
   "historical_control_source": "602659607a3a6a2586a7c4a8d7ce6114eec8cd86",
   "integration_base": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
@@ -376,13 +376,13 @@
       "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorLifecycleUI.swift"
     },
     {
-      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
-        "bytes": 21097,
+        "bytes": 21842,
         "kind": "blob",
         "mode": "100644",
-        "object": "f3958b83b551c6c05b6c34efbf5dc0ddf4b18f85",
-        "sha256": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f"
+        "object": "767f00b2189e145ff30984c008b33dc51494a459",
+        "sha256": "a709be67699b7ec5f72fafc2e95155712ea83e1f997e8ae48003979fb673fe01"
       },
       "before": {
         "bytes": 9538,
@@ -391,17 +391,79 @@
         "object": "e74b4b23a71c1bac6276af93317fc5ed859d0e68",
         "sha256": "06d68fa6efb79ed534902cc3ea7ad73852f534a204059f1d1db2d9401f724b1a"
       },
-      "component": "original_rich_miniapps",
-      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift"
+      "component_objects": {
+        "empty_note": {
+          "bytes": 14652,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "e13367ed199e31a5fa1a3b64fd2b7657c9510642",
+          "sha256": "10784f7c6d55fc646ce6a8d2a1e5575f8cefbf841e64c3c806eeb930511dd5c3"
+        },
+        "library": {
+          "bytes": 14652,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "e13367ed199e31a5fa1a3b64fd2b7657c9510642",
+          "sha256": "10784f7c6d55fc646ce6a8d2a1e5575f8cefbf841e64c3c806eeb930511dd5c3"
+        },
+        "miniapps": {
+          "bytes": 9530,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d50041264cb539ff089c5842353d844f76848f54",
+          "sha256": "3460e43127e69d07a917d9b28b10edd1b37046586f9d12ba91de84ab8ee4c7ca"
+        },
+        "native_share": {
+          "bytes": 14652,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "e13367ed199e31a5fa1a3b64fd2b7657c9510642",
+          "sha256": "10784f7c6d55fc646ce6a8d2a1e5575f8cefbf841e64c3c806eeb930511dd5c3"
+        },
+        "normal_editor": {
+          "bytes": 14652,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "e13367ed199e31a5fa1a3b64fd2b7657c9510642",
+          "sha256": "10784f7c6d55fc646ce6a8d2a1e5575f8cefbf841e64c3c806eeb930511dd5c3"
+        },
+        "original_account_exchange_ui": {
+          "bytes": 21097,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f3958b83b551c6c05b6c34efbf5dc0ddf4b18f85",
+          "sha256": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f"
+        },
+        "original_lifecycle_and_native_batch": {
+          "bytes": 14652,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "e13367ed199e31a5fa1a3b64fd2b7657c9510642",
+          "sha256": "10784f7c6d55fc646ce6a8d2a1e5575f8cefbf841e64c3c806eeb930511dd5c3"
+        },
+        "original_rich_miniapps": {
+          "bytes": 21097,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f3958b83b551c6c05b6c34efbf5dc0ddf4b18f85",
+          "sha256": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f"
+        }
+      },
+      "patch": {
+        "bytes": 18937,
+        "sha256": "b34be62b336b5ea679c4f5e55832a525ed60fd3e9ba196f75ca45b79f59d7913"
+      },
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "reason": "Use the actual OriginalEditor file export/apply APIs with original row and lifetime checks; preserve complete native capture, original revision CAS and exact receipt transaction."
     },
     {
       "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
-        "bytes": 40262,
+        "bytes": 40466,
         "kind": "blob",
         "mode": "100644",
-        "object": "134f34ebbb5b398b2843c99e18f63cd7b0e2da07",
-        "sha256": "d54a0f3adb317f8b1dcafb7a834045bb599d0eef238f44ed0597ceabcfaa19bb"
+        "object": "ebe8a54dcc4f323e1347292fe291a37dce75d39e",
+        "sha256": "fbc19156337813901120e251b4d572dfd97c0d4010c60d9eea6d0244cf8f0201"
       },
       "before": null,
       "component_objects": {
@@ -457,11 +519,11 @@
         }
       },
       "patch": {
-        "bytes": 41557,
-        "sha256": "c39072448517d07537ed2b7d35dd3f4b298af728e3c52fb813283679dbdb1008"
+        "bytes": 41764,
+        "sha256": "44443942eab1a93521a50d085bd7934a4d32239d846ebae72cc14f66960778a4"
       },
       "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift",
-      "reason": "Reviewed composition retains the original lifecycle promotion/revision/cancellation/recovery UI and adds the genuine MiniApps action/launch mount. The recovery path re-enables the same editor only while original owner identity and saved row still match. Apple parsed the exact merged source; original runtime acceptance remains required."
+      "reason": "Export original files only from the saved and reopened native launch baseline; retain the original fresh-private-draft failure/reopen boundary."
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -541,17 +603,55 @@
       "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift"
     },
     {
-      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
-        "bytes": 30093,
+        "bytes": 34212,
         "kind": "blob",
         "mode": "100644",
-        "object": "43d0b2a31f90da0dbf012df367e2c8394a08c355",
-        "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
+        "object": "ef5ea912e6df9da664c952610773fe924453a177",
+        "sha256": "368acbf3205a071da3329badc97e2b595691bea2d7fc374dee9e0aba2e7ecc12"
       },
       "before": null,
-      "component": "original_rich_miniapps",
-      "path": "Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift"
+      "component_objects": {
+        "empty_note": null,
+        "library": null,
+        "miniapps": {
+          "bytes": 19883,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "e274bc2da6c5bec6462a03503e8522c9f65d7e06",
+          "sha256": "1b1d8bfe4ff3c805aabbd5762e4199d81db09d651509979798b7019f80ebff8f"
+        },
+        "native_share": null,
+        "normal_editor": null,
+        "original_account_exchange_ui": {
+          "bytes": 30093,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "43d0b2a31f90da0dbf012df367e2c8394a08c355",
+          "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
+        },
+        "original_lifecycle_and_native_batch": {
+          "bytes": 19883,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "e274bc2da6c5bec6462a03503e8522c9f65d7e06",
+          "sha256": "1b1d8bfe4ff3c805aabbd5762e4199d81db09d651509979798b7019f80ebff8f"
+        },
+        "original_rich_miniapps": {
+          "bytes": 30093,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "43d0b2a31f90da0dbf012df367e2c8394a08c355",
+          "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
+        }
+      },
+      "patch": {
+        "bytes": 35194,
+        "sha256": "d56602a1b7e34664de859acea22d83297c2fba1b2acfe67879ead51f0d2ac6f5"
+      },
+      "path": "Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift",
+      "reason": "Transfer actual native file bytes through the shared Bridge and original native attachment API; retain bounded bytes and exact callback without replacing rich file blocks with private URL strings."
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -870,7 +970,7 @@
       "after": {
         "kind": "commit",
         "mode": "160000",
-        "object": "08ef8741ff58241a081c908536a3b4d3917cc0e8"
+        "object": "3f5c0f37af476b377be10cf8013fedb5edf67a57"
       },
       "before": {
         "kind": "commit",
@@ -921,10 +1021,10 @@
       },
       "patch": {
         "bytes": 323,
-        "sha256": "deb2c65bbad62b6763995ff6a0e5cb0b8cc1804872aaa430ae2f5173cdeeffa6"
+        "sha256": "d452e0d14a02c6742627581833c6a7e09524a384517614b6f92360dfecb88e3e"
       },
       "path": "Vendor/HanlinSDK",
-      "reason": "Exact actually built 08ef standalone producer pin. Complete AgentSDK, Platform and PresentationSDK trees are identical to the qualified OriginalEditor SDK producer6f; Bridge and Picker originate from the same original08ef package/module trees. The four generated audit-document preparation changes are admitted by a separate committed review. Native original consumer acceptance remains required."
+      "reason": "Use frozen actual standalone3f5 source, including corrected upstream Platform catalog/cancellation implementation; consumer Bridge/Picker remain the same single shared packages. Historical e791 SDK is not requalified by this source pin."
     }
   ],
   "product_roots": [

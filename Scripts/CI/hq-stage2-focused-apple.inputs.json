@@ -1,9 +1,9 @@
 {
-  "application_source_sha": "a0aab23af933b7621a435f03d562271af62d00e8",
+  "application_source_sha": "9eadb82296bd5d6c13dfc7eba691e6cd7651ad60",
   "application_trees": {
-    "Source": "865ef9c1d485e011fe34108beee7dbe126b80ca8",
-    "Vendor": "e080933608a75b0db2ed1d040a6001d9b4033ad1",
-    "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3"
+    "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3",
+    "Source": "d4208d2c3ef11618abfc8f752b92d6ae30034fa1",
+    "Vendor": "ab0c8fa1ac707902552443b4b85982064534086e"
   },
   "artifacts": [
     {
@@ -72,9 +72,9 @@
   },
   "final_product_source": {
     "manifest": "Scripts/CI/final-integration-source.inputs.json",
-    "sha256": "f4d07335876d9bd57d2b4ef718aa637e04ebd71ba26e942d6a9d038a3b6ab64f"
+    "sha256": "fa75db5fd47106dc804207894598454dfb49243300df36a928fb644cf0416b23"
   },
-  "hanlin_gitlink": "08ef8741ff58241a081c908536a3b4d3917cc0e8",
+  "hanlin_gitlink": "3f5c0f37af476b377be10cf8013fedb5edf67a57",
   "mac_shared_composition": {
     "historic_receipts_preserved": true,
     "manifest": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",

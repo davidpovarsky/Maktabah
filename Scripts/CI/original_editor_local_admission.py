@@ -24,6 +24,7 @@ DONOR_INPUTS = {'Anytype/Sources', 'Anytype/Resources', 'Modules', 'Dependencies
                 'Tools/OriginalEditor/ABIPinnedWrapper', 'Tools/OriginalEditor/GeneratedImport',
                 'Tools/PinkhaNativeDerived', 'Tools/OriginalEditor/build_local_import_abi.py'}
 MINIAPPS_CONTRACT = 'b8a02497aeabab316d85daf2dab5045b1d94dac98a14b7ccc89a3b7c9a6509c0'
+FILES_MINIAPPS_CONTRACT = '6ba6e80fad98cbcf967df2866134369df3310b0b231dd462cb0a4c2e71f44141'
 
 
 def require(value, reason):
@@ -265,7 +266,7 @@ def validate_provenance(root, config, qualification, api):
     contract = validate_public_contract(config, values['source_before'], api)
     execution = values['execution']
     donor_route = config.get('abi_provenance') == DONOR_SCHEMA
-    require(not donor_route or contract == MINIAPPS_CONTRACT,
+    require(not donor_route or contract in (MINIAPPS_CONTRACT, FILES_MINIAPPS_CONTRACT),
             'Donor reuse requires the reviewed complete MiniApps public contract')
     branch = ('codex/anytype-original-miniapps-facade-20261125' if donor_route else
               'codex/otzaria-local-annotation-sdk-20261124' if contract else
