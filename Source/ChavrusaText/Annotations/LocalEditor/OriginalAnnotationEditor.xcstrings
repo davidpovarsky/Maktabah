@@ -1,6 +1,57 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Save before opening Mini Apps?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save before opening Mini Apps?"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לשמור לפני פתיחת מיני אפליקציות?"
+          }
+        }
+      }
+    },
+    "Save and open Mini Apps": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save and open Mini Apps"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שמור ופתח מיני אפליקציות"
+          }
+        }
+      }
+    },
+    "Mini Apps uses the saved note. Save your current changes to continue.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mini Apps uses the saved note. Save your current changes to continue."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מיני אפליקציות משתמשות בהערה השמורה. שמור את השינויים הנוכחיים כדי להמשיך."
+          }
+        }
+      }
+    },
     "Anytype has not finished closing. Retry the original close operation before switching accounts.": {
       "extractionState": "manual",
       "localizations": {

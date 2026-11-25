@@ -422,7 +422,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
             expectedRows: priorRows.union([rowIdentifier]))
         let editorAfterReader = try persistedReceipt(requestID: coldPending.request.id, databasePath: document.profile)
         XCTAssertEqual(editorAfterReader.note, expectedColdText, "Reader output must create its own linked note")
-        try await verifyOriginalRichEditorRoundTrips(producer: producer, shared: shared)
+        try await verifyOriginalRichEditorRoundTrips(producer: producer, shared: shared, databasePath: document.profile)
         XCTAssertEqual(try persistedReceipt(requestID: coldPending.request.id,
             databasePath: document.profile).note, expectedColdText,
             "The separate rich note must not change the first original note")
@@ -448,7 +448,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     }
 
     @MainActor
-    private func verifyOriginalRichEditorRoundTrips(producer: XCUIApplication, shared: URL) async throws {
+    private func verifyOriginalRichEditorRoundTrips(producer: XCUIApplication, shared: URL, databasePath: String) async throws {
         for key in ["OTZARIA_ORIGINAL_EDITOR_QUALIFICATION", "OTZARIA_ORIGINAL_EDITOR_PROCESS_RESUME"] {
             XCTAssertNil(app.launchEnvironment[key], "Use the ordinary original editor")
         }
@@ -494,7 +494,23 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         // expected topology is derived from its actual native context below.
         tap(try await richBody(first, host: host))
         let beforeWarm = Set(try records(in: shared).map { $0.request.id })
+        let beforeChooser = try savedMiniAppsLaunchState(rowID: rowID, databasePath: databasePath)
         tap(app.buttons["annotation-expanded-editor-miniapps"])
+        let cancelLaunch = app.buttons["annotation-miniapps-save-cancel"]
+        XCTAssertTrue(cancelLaunch.waitForExistence(timeout: 15))
+        XCTAssertEqual(try savedMiniAppsLaunchState(rowID: rowID, databasePath: databasePath), beforeChooser,
+            "Opening the MiniApps confirmation must not save or publish a private native draft")
+        XCTAssertEqual(Set(try records(in: shared).map { $0.request.id }), beforeWarm,
+            "No outgoing MiniApps request exists before explicit confirmation")
+        tap(cancelLaunch)
+        try await requireNativeCondition(timeout: 15) { !cancelLaunch.exists }
+        XCTAssertEqual(try savedMiniAppsLaunchState(rowID: rowID, databasePath: databasePath), beforeChooser,
+            "Cancelling keeps the original saved note and all canonical versions unchanged")
+        host = try await richHost()
+        try await assertNativeBodies([first, second], host: host)
+        retainScreenshot(app, named: "miniapps-cancel-kept-private-native-draft")
+        tap(app.buttons["annotation-expanded-editor-miniapps"])
+        try await confirmOriginalMiniAppsSave()
         try await openActualTextStudio(producer)
         let warm = try XCTUnwrap(try records(in: shared).first { !beforeWarm.contains($0.request.id) })
         let warmDocument = try JSONDecoder().decode(Document.self,
@@ -545,6 +561,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         tap(try await richBody(expectedWarm[0], host: host))
         let beforeCold = Set(try records(in: shared).map { $0.request.id })
         tap(app.buttons["annotation-expanded-editor-miniapps"])
+        try await confirmOriginalMiniAppsSave()
         try await openActualTextStudio(producer)
         let cold = try XCTUnwrap(try records(in: shared).first { !beforeCold.contains($0.request.id) })
         let coldDocument = try JSONDecoder().decode(Document.self,
@@ -678,6 +695,69 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         for text in expected { _ = try await richBody(text, host: host) }
         XCTAssertEqual(host.textViews.matching(NSPredicate(format: "value IN %@", expected)).count, expected.count,
             "The actual original editor must retain the separate native blocks")
+    }
+
+
+    @MainActor
+    private func confirmOriginalMiniAppsSave() async throws {
+        let confirm = app.buttons["annotation-miniapps-save-confirm"]
+        try await requireNativeCondition(timeout: 15) { confirm.exists && confirm.isHittable }
+        tap(confirm)
+    }
+
+    /// Actual original saved row and immutable versions, including a first note
+    /// that has no rich version yet. This observer never creates a schema/row.
+    private func savedMiniAppsLaunchState(rowID: Int64, databasePath: String) throws -> [[String?]] {
+        var handle: OpaquePointer?
+        XCTAssertEqual(sqlite3_open_v2(databasePath, &handle,
+            SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX, nil), SQLITE_OK)
+        let database = try XCTUnwrap(handle)
+        defer { sqlite3_close(database) }
+        XCTAssertEqual(sqlite3_db_readonly(database, "main"), 1)
+
+        func rows(_ sql: String, bindRow: Bool = true) throws -> [[String?]] {
+            var raw: OpaquePointer?
+            XCTAssertEqual(sqlite3_prepare_v2(database, sql, -1, &raw, nil), SQLITE_OK)
+            let statement = try XCTUnwrap(raw)
+            defer { sqlite3_finalize(statement) }
+            if bindRow { XCTAssertEqual(sqlite3_bind_int64(statement, 1, rowID), SQLITE_OK) }
+            var result: [[String?]] = []
+            while true {
+                let status = sqlite3_step(statement)
+                if status == SQLITE_DONE { break }
+                XCTAssertEqual(status, SQLITE_ROW)
+                guard status == SQLITE_ROW else { throw NSError(domain: "OriginalMiniAppsSQLiteRead", code: Int(status)) }
+                var row: [String?] = []
+                for column in 0..<sqlite3_column_count(statement) {
+                    if sqlite3_column_type(statement, column) == SQLITE_NULL { row.append(nil); continue }
+                    let pointer = try XCTUnwrap(sqlite3_column_text(statement, column))
+                    let bytes = UnsafeBufferPointer(start: pointer, count: Int(sqlite3_column_bytes(statement, column)))
+                    row.append(String(decoding: bytes, as: UTF8.self))
+                }
+                result.append(row)
+            }
+            return result
+        }
+
+        let note = try rows("SELECT 'annotation', ckRecordId, note, lastModified FROM annotations WHERE id = ?;")
+        XCTAssertEqual(note.count, 1)
+        let schema = try rows("""
+            SELECT name FROM sqlite_master WHERE type = 'table'
+              AND name IN ('otzaria_annotation_exchange_heads', 'otzaria_annotation_exchange_versions')
+            ORDER BY name;
+            """, bindRow: false)
+        guard !schema.isEmpty else { return note }
+        XCTAssertEqual(schema.count, 2)
+        let versions = try rows("""
+            SELECT 'version', h.revision, v.revision, v.payload_digest, v.payload_base64, v.mutation_id, v.source_digest
+            FROM annotations a
+            JOIN otzaria_annotation_exchange_heads h
+              ON h.namespace = 'otzaria.local.annotation' AND lower(h.annotation_uuid) = lower(a.ckRecordId)
+            JOIN otzaria_annotation_exchange_versions v
+              ON v.namespace = h.namespace AND v.annotation_uuid = h.annotation_uuid
+            WHERE a.id = ? ORDER BY v.revision;
+            """)
+        return note + versions
     }
 
     private func richState(rowID: Int64, databasePath: String) throws -> RichState {

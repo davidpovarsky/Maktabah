@@ -299,6 +299,8 @@ final class AnnotationOriginalEditorProductionPresentation: Identifiable {
     private(set) var stage: Stage = .opening
     @ObservationIgnored var onReady: (() -> Void)?
     @ObservationIgnored var onOpenFailure: ((Error) -> Void)?
+    var isConfirmingMiniAppsLaunch = false
+    @ObservationIgnored private var pendingMiniAppsContext: AnytypeOriginalEditorMiniAppsContext?
 
     init(annotation: Annotation, inspected: AnnotationLocalEditorSnapshot?,
          workspace: StudyWorkspaceNavigationAdapter) {
@@ -369,7 +371,7 @@ final class AnnotationOriginalEditorProductionPresentation: Identifiable {
         try opened.setMiniAppsAction { [weak self] result in
             guard let self else { return }
             switch result {
-            case .success(let context): self.launchMiniApps(context: context)
+            case .success(let context): self.requestMiniApps(context: context)
             case .failure(let error):
                 OtzariaMiniAppsCoordinator.shared.show(error: error, sourceView: self.mount?.viewController.view)
             }
@@ -395,7 +397,27 @@ final class AnnotationOriginalEditorProductionPresentation: Identifiable {
         }
     }
 
-    func launchMiniApps(context supplied: AnytypeOriginalEditorMiniAppsContext? = nil) {
+
+    /// Opening a chooser does not authorize saving or syncing a private draft.
+    func requestMiniApps(context: AnytypeOriginalEditorMiniAppsContext? = nil) {
+        guard canSave, operation == nil, !isConfirmingMiniAppsLaunch else { return }
+        pendingMiniAppsContext = context
+        isConfirmingMiniAppsLaunch = true
+    }
+
+    func cancelMiniAppsLaunch() {
+        isConfirmingMiniAppsLaunch = false
+        pendingMiniAppsContext = nil
+    }
+
+    func confirmMiniAppsLaunch() {
+        let context = pendingMiniAppsContext
+        pendingMiniAppsContext = nil
+        isConfirmingMiniAppsLaunch = false
+        launchMiniApps(context: context)
+    }
+
+    private func launchMiniApps(context supplied: AnytypeOriginalEditorMiniAppsContext? = nil) {
         guard canSave, operation == nil, let mount else { return }
         stage = .saving
         operation = Task { [self] in
@@ -458,6 +480,7 @@ final class AnnotationOriginalEditorProductionPresentation: Identifiable {
     func retire() {
         guard !closed else { return }
         closed = true
+        cancelMiniAppsLaunch()
         OtzariaMiniAppsCoordinator.shared.unregisterOriginalEditor(id: id)
         presentationLifetime.retire()
         operation?.cancel()
@@ -544,11 +567,31 @@ struct AnnotationOriginalEditorProductionView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
-                    Button { model.launchMiniApps() } label: {
+                    Button { model.requestMiniApps() } label: {
                         Label("Mini Apps", systemImage: "square.grid.2x2")
                     }
                     .disabled(!model.canSave)
                     .accessibilityIdentifier("annotation-expanded-editor-miniapps")
+                    .confirmationDialog(
+                        Text("Save before opening Mini Apps?", tableName: "OriginalAnnotationEditor"),
+                        isPresented: Binding(
+                            get: { model.isConfirmingMiniAppsLaunch },
+                            set: { model.isConfirmingMiniAppsLaunch = $0 }
+                        ), titleVisibility: .visible
+                    ) {
+                        Button { model.confirmMiniAppsLaunch() } label: {
+                            Text("Save and open Mini Apps", tableName: "OriginalAnnotationEditor")
+                        }
+                        .accessibilityIdentifier("annotation-miniapps-save-confirm")
+                        Button(role: .cancel) { model.cancelMiniAppsLaunch() } label: {
+                            Text("Continue editing", tableName: "OriginalAnnotationEditor")
+                        }
+                        .accessibilityIdentifier("annotation-miniapps-save-cancel")
+                    } message: {
+                        Text("Mini Apps uses the saved note. Save your current changes to continue.",
+                             tableName: "OriginalAnnotationEditor")
+                    }
+
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button {

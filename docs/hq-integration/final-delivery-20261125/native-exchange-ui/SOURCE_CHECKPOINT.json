@@ -4,7 +4,7 @@
   "base_head": "bd5df8089314fde5491cef10997d0d446cb6ca26",
   "before_test_sha256": "aa37d9c35b1b8215db36479c77bf9de9722ecd42819a4281e0f59ee9fe85d532",
   "clipboard": "Original UIKit Paste; localOnly, 120-second expiry, always cleared by defer",
-  "controller_sha256": "b51ce71977e618c8dde0f2bef3a53e4cc01df566ce17afcd0babae46fa7c8001",
+  "controller_sha256": "8bb3aa2ea75e7e47040985f88a5ab2ff47e21338f6be96e381dcc19da5afc881",
   "credential": "Existing dedicated test-owned default-network fixture; private file read only by XCTest, ordinary login Paste, never command arguments or app environment",
   "existing_test_and_helper_bytes_preserved_by_exact_inverse": true,
   "native116_or_release114_selectors_changed": false,
