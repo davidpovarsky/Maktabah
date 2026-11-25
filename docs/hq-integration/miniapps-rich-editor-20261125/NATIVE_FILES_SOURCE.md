@@ -6,7 +6,7 @@ The rich annotation editor now exports selected original native file blocks (or 
 
 Returned file items remain attachments. The coordinator reads bounded bytes through a no-follow regular-file descriptor, rejects changed/truncated input, retains the bytes in the original application's per-request document folder, and calls the original native file import API. It does not convert a rich-editor file result into an app-private URL string. Text and URL content retain their existing text semantics. The quick plain-note path still uses its existing persisted file-link representation and is not claimed to have native file blocks.
 
-Limits: 32 files and 8 MiB aggregate file bytes. The original canonical native archive still has its own compressed/expanded bounds; satisfying the input byte cap does not guarantee that the complete rich archive fits. A failed native import or save leaves the shared callback pending.
+Limits: 8 MiB aggregate file bytes, plus the original native graph/archive constraints. No additional file-count cap is imposed. The original canonical native archive still has its own compressed/expanded bounds; satisfying the input byte cap does not guarantee that the complete rich archive fits. A failed native import or save leaves the shared callback pending.
 
 ## Replay and cancellation boundary
 

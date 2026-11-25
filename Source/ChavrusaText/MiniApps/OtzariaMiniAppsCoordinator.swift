@@ -139,7 +139,6 @@ final class OtzariaMiniAppsCoordinator {
                 selection: range, isReaderSelection: false, editorID: editorID, title: annotation.resolvedBookTitle)
             let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
             let nativeContext = String(decoding: try encoder.encode(context), as: UTF8.self)
-            guard files.count <= 32 else { throw MiniAppBridgeError.invalidAttachment }
             let store = try MiniAppBridgeStore()
             var remaining = 8 * 1_048_576
             var nativeFileBlocks: [String: String] = [:]
@@ -347,9 +346,6 @@ final class OtzariaMiniAppsCoordinator {
     private func originalEditorPayload(_ result: MiniAppResult, store: MiniAppBridgeStore) throws
         -> (text: String, attachments: [AnytypeOriginalEditorMiniAppsAttachment]) {
         guard !result.items.isEmpty else { throw OtzariaMiniAppsError.noResult }
-        guard result.items.filter({ $0.kind == .file }).count <= 32 else {
-            throw MiniAppBridgeError.invalidAttachment
-        }
         var remaining = 8 * 1_048_576
         var text: [String] = []
         var attachments: [AnytypeOriginalEditorMiniAppsAttachment] = []
