@@ -63,7 +63,8 @@ def app_inventory(app):
 
 def git_object(root, *arguments, env=None):
     result = subprocess.run(["git", "-C", str(root), "-c", "core.sparseCheckout=false",
-                             "-c", "core.splitIndex=false", *arguments],
+                             "-c", "core.splitIndex=false", "-c", "gc.auto=0",
+                             "-c", "maintenance.auto=false", *arguments],
                             stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env, timeout=120)
     require(result.returncode == 0, "Cannot verify producer preparation with Git: "
             + result.stderr.decode(errors="replace")[-2000:])
@@ -71,7 +72,7 @@ def git_object(root, *arguments, env=None):
 
 
 def prepared_source_tree(identity, sdk_root, source_sha, source_tree, review_spec,
-                         export_directory, consumer_root):
+                         export_directory, consumer_root, object_env):
     """Admit only a separately committed review of the exact generated delta."""
     status = identity.get("git_status_porcelain", "")
     require(isinstance(status, str), "Invalid producer preparation status")
@@ -135,30 +136,28 @@ def prepared_source_tree(identity, sdk_root, source_sha, source_tree, review_spe
     require(len(names) == len(set(names)), "Duplicate producer preparation change")
     require(status == "".join(" M " + path + "\n" for path in sorted(names)),
             "Producer preparation contains an unreviewed index or working-tree change")
-    with tempfile.TemporaryDirectory(prefix="miniapps-prepared-source-") as folder:
-        environment = dict(os.environ, GIT_INDEX_FILE=str(Path(folder) / "index"))
-        git_object(sdk_root, "read-tree", source_sha, env=environment)
-        git_object(sdk_root, "apply", "--cached", "--binary", "--whitespace=nowarn",
-                   str(patch), env=environment)
-        prepared = git_object(sdk_root, "write-tree", env=environment).decode().strip()
+    git_object(sdk_root, "read-tree", source_sha, env=object_env)
+    git_object(sdk_root, "apply", "--cached", "--binary", "--whitespace=nowarn",
+               str(patch), env=object_env)
+    prepared = git_object(sdk_root, "write-tree", env=object_env).decode().strip()
     require(prepared == review["prepared_tree"],
             "Reconstructed producer preparation tree differs from the reviewed tree")
     raw = git_object(sdk_root, "diff-tree", "--no-commit-id", "--name-status", "-r", "-z",
-                     "--no-renames", source_tree, prepared).decode().split("\0")
+                     "--no-renames", source_tree, prepared, env=object_env).decode().split("\0")
     require(raw[-1] == "" and len(raw) % 2 == 1, "Invalid prepared source tree delta")
     actual = list(zip(raw[0:-1:2], raw[1:-1:2]))
     require(actual == [("M", name) for name in sorted(names)],
             "Prepared source tree contains unreviewed changes")
     for change in changes:
         for phase, tree in (("before", source_tree), ("after", prepared)):
-            entry = git_object(sdk_root, "ls-tree", "-z", tree, "--", change["path"])
+            entry = git_object(sdk_root, "ls-tree", "-z", tree, "--", change["path"], env=object_env)
             require(entry.endswith(b"\0") and entry.count(b"\0") == 1,
                     "Prepared source file is absent")
             attributes, path = entry[:-1].split(b"\t", 1)
             mode, kind, blob = attributes.decode().split()
             require(path.decode() == change["path"] and kind == "blob" and mode in ("100644", "100755"),
                     "Producer preparation cannot replace a regular file with another kind")
-            content = git_object(sdk_root, "cat-file", "blob", blob)
+            content = git_object(sdk_root, "cat-file", "blob", blob, env=object_env)
             proof = {"mode": mode, "blob": blob, "bytes": len(content),
                      "sha256": hashlib.sha256(content).hexdigest()}
             require(change.get(phase) == proof, "Producer preparation " + phase + " object differs: " + change["path"])
@@ -176,33 +175,47 @@ def validate_source_identity(identity, sdk_root, source_sha, *, review_spec=None
     tree = subprocess.check_output(["git", "-C", str(sdk_root), "rev-parse", source_sha + "^{tree}"],
                                    text=True, timeout=30).strip()
     require(identity.get("tree") == tree, "Local producer source tree differs from its immutable commit")
-    admitted_tree = prepared_source_tree(identity, sdk_root, source_sha, tree, review_spec,
-                                         export_directory, consumer_root or Path(__file__).resolve().parents[2])
-    files = identity.get("tracked_file_sha256")
-    require(isinstance(files, dict) and files, "Local producer has no original source-file identity")
-    require(all(isinstance(path, str) and path and "\n" not in path and "\r" not in path
-                and not PurePosixPath(path).is_absolute() and ".." not in PurePosixPath(path).parts
-                and valid_digest(expected) for path, expected in files.items()),
-            "Invalid local producer source-file inventory")
-    names = sorted(files)
-    requested = "".join(admitted_tree + ":" + name + "\n" for name in names).encode()
-    result = subprocess.run(["git", "-C", str(sdk_root), "cat-file", "--batch"],
-                            input=requested, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=120)
-    require(result.returncode == 0, "Cannot read the exact original producer source objects")
-    cursor = 0
-    for name in names:
-        end = result.stdout.find(b"\n", cursor)
-        require(end >= cursor, "Incomplete original producer source objects")
-        header = result.stdout[cursor:end].split()
-        require(len(header) == 3 and header[1] == b"blob", "Original producer source file is missing: " + name)
-        size = int(header[2])
-        start = end + 1
-        content = result.stdout[start:start + size]
-        require(len(content) == size and result.stdout[start + size:start + size + 1] == b"\n",
-                "Incomplete original producer source file: " + name)
-        require(hashlib.sha256(content).hexdigest() == files[name], "Producer source bytes differ: " + name)
-        cursor = start + size + 1
-    require(cursor == len(result.stdout), "Unexpected extra producer source objects")
+    objects_name = git_object(sdk_root, "rev-parse", "--git-path", "objects").decode().strip()
+    objects = (sdk_root / objects_name).resolve()
+    require(objects.is_dir(), "Producer Git object store is missing")
+    # Applying a reviewed patch creates blobs and trees. Keep them private for
+    # the complete verification, including the subsequent source cat-file read.
+    # The active producer index, worktree and object store stay read-only.
+    with tempfile.TemporaryDirectory(prefix="miniapps-prepared-source-") as folder:
+        private = Path(folder)
+        (private / "objects").mkdir()
+        environment = dict(os.environ, GIT_INDEX_FILE=str(private / "index"),
+                           GIT_OBJECT_DIRECTORY=str(private / "objects"),
+                           GIT_ALTERNATE_OBJECT_DIRECTORIES=str(objects),
+                           GIT_NO_LAZY_FETCH="1", GIT_OPTIONAL_LOCKS="0")
+        admitted_tree = prepared_source_tree(identity, sdk_root, source_sha, tree, review_spec,
+                                             export_directory, consumer_root or Path(__file__).resolve().parents[2], environment)
+        files = identity.get("tracked_file_sha256")
+        require(isinstance(files, dict) and files, "Local producer has no original source-file identity")
+        require(all(isinstance(path, str) and path and "\n" not in path and "\r" not in path
+                    and not PurePosixPath(path).is_absolute() and ".." not in PurePosixPath(path).parts
+                    and valid_digest(expected) for path, expected in files.items()),
+                "Invalid local producer source-file inventory")
+        names = sorted(files)
+        requested = "".join(admitted_tree + ":" + name + "\n" for name in names).encode()
+        result = subprocess.run(["git", "-C", str(sdk_root), "cat-file", "--batch"],
+                                env=environment, input=requested, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=120)
+        require(result.returncode == 0, "Cannot read the exact original producer source objects")
+        cursor = 0
+        for name in names:
+            end = result.stdout.find(b"\n", cursor)
+            require(end >= cursor, "Incomplete original producer source objects")
+            header = result.stdout[cursor:end].split()
+            require(len(header) == 3 and header[1] == b"blob", "Original producer source file is missing: " + name)
+            size = int(header[2])
+            start = end + 1
+            content = result.stdout[start:start + size]
+            require(len(content) == size and result.stdout[start + size:start + size + 1] == b"\n",
+                    "Incomplete original producer source file: " + name)
+            require(hashlib.sha256(content).hexdigest() == files[name], "Producer source bytes differ: " + name)
+            cursor = start + size + 1
+        require(cursor == len(result.stdout), "Unexpected extra producer source objects")
+
 
 
 def validate_export(config, sdk_root, bundle_id, *, consumer_root=None):

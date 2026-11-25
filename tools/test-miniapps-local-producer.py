@@ -146,21 +146,27 @@ class LocalProducerAdmissionIntegrityTests(unittest.TestCase):
         self.patch = self.export / "source-preparation.diff"
         self.patch.write_bytes(subprocess.check_output(["git", "-C", str(self.sdk), "diff", "--binary", self.sha]))
         with tempfile.TemporaryDirectory() as temporary:
-            env = dict(os.environ, GIT_INDEX_FILE=str(Path(temporary) / "index"))
+            private = Path(temporary)
+            (private / "objects").mkdir()
+            env = dict(os.environ, GIT_INDEX_FILE=str(private / "index"),
+                       GIT_OBJECT_DIRECTORY=str(private / "objects"),
+                       GIT_ALTERNATE_OBJECT_DIRECTORIES=str(self.sdk / ".git/objects"))
             for arguments in (["read-tree", self.sha], ["apply", "--cached", "--binary", str(self.patch)]):
                 subprocess.run(["git", "-C", str(self.sdk), *arguments], check=True, env=env, capture_output=True)
             prepared = subprocess.check_output(["git", "-C", str(self.sdk), "write-tree"], env=env, text=True).strip()
-        def proof(tree):
-            row = self.run_git("ls-tree", tree, "--", "engine.js").split("\t")[0].split()
-            blob = subprocess.check_output(["git", "-C", str(self.sdk), "cat-file", "blob", row[2]])
-            return {"mode": row[0], "blob": row[2], "bytes": len(blob), "sha256": hashlib.sha256(blob).hexdigest()}
+            def proof(tree):
+                row = subprocess.check_output(["git", "-C", str(self.sdk), "ls-tree", tree, "--", "engine.js"],
+                                              env=env, text=True).split("\t")[0].split()
+                blob = subprocess.check_output(["git", "-C", str(self.sdk), "cat-file", "blob", row[2]], env=env)
+                return {"mode": row[0], "blob": row[2], "bytes": len(blob), "sha256": hashlib.sha256(blob).hexdigest()}
+            original_proof, prepared_proof = proof(original_tree), proof(prepared)
         self.review = {
             "schema": "miniapps.producer-preparation-review/1",
             "producer_sha": self.sha, "source_tree": original_tree, "prepared_tree": prepared,
             "git_status_porcelain": " M engine.js\n",
             "patch": {"name": self.patch.name, "bytes": self.patch.stat().st_size, "sha256": self.digest(self.patch)},
-            "changes": [{"path": "engine.js", "status": "M", "before": proof(original_tree),
-                         "after": proof(prepared), "reason": "Synthetic prepared-source admission control only."}],
+            "changes": [{"path": "engine.js", "status": "M", "before": original_proof,
+                         "after": prepared_proof, "reason": "Synthetic prepared-source admission control only."}],
         }
         identity = self.manifest["source_identity"]
         identity.update({"git_status_porcelain": self.review["git_status_porcelain"],
@@ -193,6 +199,22 @@ class LocalProducerAdmissionIntegrityTests(unittest.TestCase):
         self.assertEqual(manifest["source_identity"]["prepared_tree"], self.review["prepared_tree"])
         self.assertEqual(self.digest(self.sdk / ".git/index"), index)
         self.assertEqual(self.run_git("status", "--porcelain"), status)
+
+    def test_preparation_never_writes_the_actual_producer_object_store(self):
+        self.make_preparation()
+        def inventory():
+            return {str(path.relative_to(self.sdk / ".git/objects")): self.digest(path)
+                    for path in (self.sdk / ".git/objects").rglob("*") if path.is_file()}
+        generated = [self.review["prepared_tree"], self.review["changes"][0]["after"]["blob"]]
+        before = inventory()
+        for name in generated:
+            self.assertNotEqual(subprocess.run(["git", "-C", str(self.sdk), "cat-file", "-e", name],
+                capture_output=True).returncode, 0)
+        self.validate()
+        self.assertEqual(inventory(), before)
+        for name in generated:
+            self.assertNotEqual(subprocess.run(["git", "-C", str(self.sdk), "cat-file", "-e", name],
+                capture_output=True).returncode, 0)
 
     def test_dirty_preparation_without_committed_review_is_rejected(self):
         self.make_preparation()

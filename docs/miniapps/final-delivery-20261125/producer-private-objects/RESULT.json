@@ -1,0 +1,17 @@
+{
+  "failed": 0,
+  "files": {
+    "Scripts/CI/miniapps-local-producer.py": "ac786c8b14a3cb67287683d8c77621da814fde678a2ff690273767bad29259bf",
+    "tools/test-miniapps-local-producer.py": "4a53fc0f2cbc9175c12b609246753116a098eef4e86d7dfd77cc443b4f88a1ca"
+  },
+  "logs": {
+    "controls.stderr": "d340be9935b81a6710ed41928d761cf3cc83adebae0e8d929126d23c1ad78263",
+    "controls.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "native_tests_executed": 0,
+  "parent_source": "8952537d6bf1f6e148e6f3f93e33f5fe66665f0c",
+  "passed": 24,
+  "production_change": "Only private Git object/index reconstruction and source verification; all existing source/patch/blob/status/export guards retained",
+  "shared_review_origin": "anytype-swift9950cffba0258a8168bb7d5f6d3cb2456ff07cf3",
+  "status": "PASS_INTEGRITY_CONTROLS_ONLY"
+}
