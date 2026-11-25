@@ -77,7 +77,7 @@ def private_route():
             "Raw original-account authentication results must not enter automatic CI uploads")
     require(os.environ.get("OTZARIA_NATIVE_SPACE_ARCHIVE_LEASE") == "ordinary-ui-exclusive",
             "Obtain the peer CAS owner's exclusive Archive phase before this UI run")
-    for path in (OUT, ARTIFACTS):
+    for path in (OUT, ARTIFACTS, ARTIFACTS / "runtime27"):
         path.mkdir(parents=True, exist_ok=True)
         require(path.resolve() == path and path.stat().st_uid == os.getuid(),
                 "Require original owned private artifact directories")
