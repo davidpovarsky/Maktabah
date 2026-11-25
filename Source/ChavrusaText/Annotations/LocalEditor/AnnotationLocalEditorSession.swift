@@ -367,3 +367,39 @@ extension AnnotationLocalEditorSession {
     }
     #endif
 }
+
+#if os(iOS) && canImport(AnytypeOriginalEditor)
+extension AnnotationLocalEditorSession {
+    /// First native conversion only. Full original text and the bounded preview
+    /// come from the same closed SDK capture, validated against its still-current
+    /// native session. The ordinary editor save API keeps its existing behavior.
+    func prepareNativeBackfill(snapshot: AnnotationLocalEditorSnapshot, mutationID: UUID,
+                               capture: AnytypeOriginalEditorLocalAnnotationCapture,
+                               nativeSession: AnytypeOriginalEditorLocalAnnotationSession,
+                               hostProfileID: UUID) throws -> AnnotationLocalEditorIntent {
+        guard !busy else { throw AnnotationLocalEditorError.busy }
+        guard isCurrent else { throw AnnotationLocalEditorError.retired }
+        try nativeSession.validateCapturedSource(capture)
+        let binding = nativeSession.binding
+        let actual = capture.nativeCapture.snapshot
+        guard binding.hostProfileID.utf8.elementsEqual(hostProfileID.uuidString.utf8),
+              binding.annotationUUID == snapshot.annotationUUID,
+              binding.expectedRevision == snapshot.revision,
+              binding.sourceWitnessSHA256 == snapshot.source.digest,
+              actual.provenance.matchesCaptureBinding(binding),
+              let originalText = snapshot.annotation.note,
+              originalText.utf8.elementsEqual(capture.fullPlainText.utf8) else {
+            throw AnnotationLocalEditorError.wrongOwner
+        }
+        try persistence.requireUnchanged(snapshot)
+        try nativeSession.validateCapturedSource(capture)
+        let body = TorahAnnotationEnvelope.RichBody(
+            format: AnytypeOriginalEditorSnapshot.format,
+            formatVersion: AnytypeOriginalEditorSnapshot.formatVersion,
+            bytes: actual.bodyBytes)
+        return try persistence.prepareNativeBackfill(snapshot: snapshot, mutationID: mutationID,
+            body: body, textPreview: capture.textPreview,
+            editorRevision: actual.nativeArchiveSHA256)
+    }
+}
+#endif
