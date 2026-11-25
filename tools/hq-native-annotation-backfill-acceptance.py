@@ -38,7 +38,10 @@ EXPECTED_CASES = [
     "unprepared_discovery_does_not_install_schema_or_register_identity",
     "current_plan_preserves_legacy_and_uuid_original_identity",
     "utf8_8192_boundary_preserves_multibyte_and_long_note_bytes",
-    "preview_comparison_rejects_whitespace_normalization_and_long_text",
+    "capture_text_comparison_rejects_normalization_nul_and_truncation",
+    "native_seed_1mib_boundary_retains_oversize_bytes",
+    "same_preview_different_full_text_is_refused",
+    "long_preview_requires_exact_scalar_boundary",
     "saved_text_changed_after_plan_requires_new_explicit_preparation",
     "candidate_rechecks_original_metadata_and_revision_before_native_work",
     "existing_opaque_rich_body_is_preserved_without_native_decode",
@@ -59,7 +62,7 @@ def verify_cases(rows):
     if (not isinstance(rows, list) or len(rows) != len(EXPECTED_CASES)
             or [x.get("name") for x in rows] != EXPECTED_CASES
             or any(x.get("status") != "PASS" or x.get("error") is not None for x in rows)):
-        raise ValueError("All 14 exact new selection cases must execute and pass")
+        raise ValueError("All 17 exact new selection and full-text boundary cases must execute and pass")
 
 
 def readonly(database):
@@ -80,6 +83,24 @@ def verify_sqlite(fixtures):
         observation["unchanged_note_sha256"] = [hashlib.sha256(x[1]).hexdigest() for x in rows]
         if db.execute("SELECT COUNT(*) FROM otzaria_annotation_exchange_outbox").fetchone()[0] != 0:
             raise ValueError("Selection generated an Anytype destination")
+    with readonly(fixtures / "seed-limit/Annotations.sqlite") as db:
+        rows = db.execute("SELECT id,CAST(note AS BLOB) FROM annotations ORDER BY id").fetchall()
+        expected = [(1, ("א" * 524288).encode()), (2, ("א" * 524288 + "x").encode())]
+        if rows != expected or db.execute("PRAGMA integrity_check").fetchall() != [("ok",)]:
+            raise ValueError("Original 1 MiB/oversize UTF8 bytes or SQLite integrity differ")
+        if db.execute("SELECT COUNT(*) FROM otzaria_annotation_exchange_outbox").fetchone()[0] != 0:
+            raise ValueError("Native-size selection generated an Anytype destination")
+        if db.execute("SELECT COUNT(*) FROM sync_pending").fetchone()[0] != 2:
+            raise ValueError("Native-size selection changed original pending rows")
+        observation["original_seed_size_note_bytes"] = [len(x[1]) for x in rows]
+        observation["original_seed_size_note_sha256"] = [hashlib.sha256(x[1]).hexdigest() for x in rows]
+    with readonly(fixtures / "same-preview/Annotations.sqlite") as db:
+        text = ("a" * 8192 + " complete original סוף").encode()
+        if db.execute("SELECT CAST(note AS BLOB) FROM annotations").fetchone()[0] != text:
+            raise ValueError("A matching preview hid a changed complete saved note")
+        if db.execute("SELECT COUNT(*) FROM otzaria_annotation_exchange_versions WHERE namespace='otzaria.local.annotation'").fetchone()[0] != 0:
+            raise ValueError("Rejected full-text mismatch created a rich saved revision")
+        observation["full_text_mismatch_preserved_original"] = True
     with readonly(fixtures / "canonical-resume/Annotations.sqlite") as db:
         rows = db.execute("SELECT ckRecordId,note FROM annotations").fetchall()
         if rows != [("00000000-0000-4000-8000-000000000001", "saved byte-exact")]:
@@ -173,7 +194,7 @@ def main():
         report["sdk"] = str(sdk)
         declarations = re.findall(r'        run\("([a-z0-9_]+)"\)', (ROOT / SOURCES[-1]).read_text())
         if declarations != EXPECTED_CASES:
-            raise ValueError("Swift declarations do not match the fixed 14-case gate")
+            raise ValueError("Swift declarations do not match the fixed 17-case gate")
         owned = artifacts / ("owned-" + str(uuid.uuid4()))
         package = owned / "package"
         target = package / "Sources/NativeAnnotationBackfillAcceptance"
