@@ -1,0 +1,162 @@
+{
+  "evidence_path": "/Users/m1/builds/_preflight/otzaria-lifecycle-host-3a1f-syntax-20261125",
+  "receipt_sha256": "de8d0e6ed5335e271595c5391bc22f88969e94d82425e64097c426803bd169bd",
+  "report": {
+    "catalog_strings": 110,
+    "commands": [
+      {
+        "command": [
+          "xcrun",
+          "--sdk",
+          "iphonesimulator",
+          "--show-sdk-path"
+        ],
+        "exit_code": 0,
+        "label": "simulator-sdk",
+        "log_sha256": "c9c3f84ca9ecb7986b6598ea78178d67f1d9a2125dd98fe3c6e9dd4368fc02d8",
+        "seconds": 0.0122
+      },
+      {
+        "command": [
+          "xcrun",
+          "--sdk",
+          "iphonesimulator",
+          "swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios26.0-simulator",
+          "-sdk",
+          "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+          "-swift-version",
+          "6",
+          "/Users/m1/builds/_preflight/otzaria-lifecycle-host-3a1f-syntax-20261125/AnnotationOriginalEditorLifecycle.swift",
+          "/Users/m1/builds/_preflight/otzaria-lifecycle-host-3a1f-syntax-20261125/AnnotationOriginalEditorLifecycleUI.swift",
+          "/Users/m1/builds/_preflight/otzaria-lifecycle-host-3a1f-syntax-20261125/AnnotationOriginalEditorImport.swift",
+          "/Users/m1/builds/_preflight/otzaria-lifecycle-host-3a1f-syntax-20261125/AnnotationOriginalEditorProductionUI.swift"
+        ],
+        "exit_code": 0,
+        "label": "swift-parse",
+        "log_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "seconds": 0.0556
+      },
+      {
+        "command": [
+          "plutil",
+          "-lint",
+          "/Users/m1/builds/_preflight/otzaria-lifecycle-host-3a1f-syntax-20261125/project.pbxproj"
+        ],
+        "exit_code": 0,
+        "label": "project-plist-lint",
+        "log_sha256": "ab5e214aa52f07c9a28d57cd92b97ed8cbaa90129793ccf970263afd22cc6216",
+        "seconds": 0.0131
+      },
+      {
+        "command": [
+          "plutil",
+          "-convert",
+          "json",
+          "-o",
+          "-",
+          "/Users/m1/builds/_preflight/otzaria-lifecycle-host-3a1f-syntax-20261125/before.pbxproj"
+        ],
+        "exit_code": 0,
+        "label": "project-before-json",
+        "log_sha256": "5744f20be9a5f7a04865c62a52b788abf79faf4077386aede01d93f235e87efe",
+        "seconds": 0.0147
+      },
+      {
+        "command": [
+          "plutil",
+          "-convert",
+          "json",
+          "-o",
+          "-",
+          "/Users/m1/builds/_preflight/otzaria-lifecycle-host-3a1f-syntax-20261125/project.pbxproj"
+        ],
+        "exit_code": 0,
+        "label": "project-after-json",
+        "log_sha256": "7f0a446e330fbf53184d14d43324a91255ae22c48c1097f65642fc4e51b152fd",
+        "seconds": 0.015
+      }
+    ],
+    "finished_at": "2026-11-25T05:17:04.123329+00:00",
+    "free_after": 10574823424,
+    "free_before": 10577248256,
+    "native_ui_executed": 0,
+    "own_peak_disk_bytes": 52428800,
+    "pbx": {
+      "all_other_existing_objects_unchanged": true,
+      "changed_arrays": [
+        {
+          "added": [
+            "45EE1A20CB21DCE3C8E3DDCB",
+            "B547C6A610ED6B855A5FF248"
+          ],
+          "field": "children",
+          "object": "CFEE00000000000000000001"
+        },
+        {
+          "added": [
+            "EC5D1D474E6FAF12EA1BBEF9",
+            "CD52859F3FCCEF1D53B3EB3D"
+          ],
+          "field": "files",
+          "object": "F30576E22FA46222005732C6"
+        }
+      ],
+      "existing_objects": 2401,
+      "new_objects": [
+        "45EE1A20CB21DCE3C8E3DDCB",
+        "B547C6A610ED6B855A5FF248",
+        "CD52859F3FCCEF1D53B3EB3D",
+        "EC5D1D474E6FAF12EA1BBEF9"
+      ]
+    },
+    "required_free_bytes": 6226444288,
+    "schema": "otzaria.lifecycle-host-apple-syntax/1",
+    "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+    "source_commit": "3a1f559dbcf921c24d894ef53dcfbed725dc9f6f",
+    "source_inputs": [
+      {
+        "name": "AnnotationOriginalEditorLifecycle.swift",
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorLifecycle.swift",
+        "sha256": "75f79b73ac0a5a794db4ccf7b5a8ba2423930f1798c0b906844ff235abb3d4be"
+      },
+      {
+        "name": "AnnotationOriginalEditorLifecycleUI.swift",
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorLifecycleUI.swift",
+        "sha256": "4a413a4823005f5b2e3a1aec80666910b075c2074c58c4e4dd9445415df6251c"
+      },
+      {
+        "name": "AnnotationOriginalEditorImport.swift",
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorImport.swift",
+        "sha256": "b0d5569e408bc46d6459eb6d02f50c88c987a27c8cae3fec507c1eed4d2ed97a"
+      },
+      {
+        "name": "AnnotationOriginalEditorProductionUI.swift",
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift",
+        "sha256": "9737f2785d8c5027650838a45fd72bbb51f49c981350b8c604b3ce32b642a1a9"
+      },
+      {
+        "name": "OriginalAnnotationEditor.xcstrings",
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/OriginalAnnotationEditor.xcstrings",
+        "sha256": "f8b94dd8a9ef110572feee250d49eba0373d145e9aedf05b3b6933c8715bb742"
+      },
+      {
+        "name": "project.pbxproj",
+        "path": "Maktabah.xcodeproj/project.pbxproj",
+        "sha256": "87ec425710947f6bd7de3c484bcc2074063e88c5fdc3dce41901547992f42c32"
+      },
+      {
+        "name": "before.pbxproj",
+        "path": "Maktabah.xcodeproj/project.pbxproj",
+        "sha256": "155e7d2a43db05eca5cfa63bbe590e1bd90460402b24377e31d9096942b94a33"
+      }
+    ],
+    "source_unchanged": true,
+    "started_at": "2026-11-25T05:17:04.003209+00:00",
+    "status": "PASS_APPLE_SYNTAX_AND_PBX_STRUCTURE_ONLY",
+    "typecheck_executed": 0
+  }
+}

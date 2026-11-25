@@ -37,7 +37,7 @@ env:
 jobs:
   otzaria-framework:
     name: Build or restore Otzaria framework
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 90
     outputs:
       framework-cache-hit: ${{ steps.framework-valid.outputs.valid }}
@@ -232,7 +232,7 @@ jobs:
 
   zayit-framework:
     name: Build or restore Zayit framework
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 60
     outputs:
       framework-cache-hit: ${{ steps.framework-valid.outputs.valid }}
@@ -389,7 +389,7 @@ jobs:
 
   swiftpm:
     name: Resolve Swift packages once
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 30
     outputs:
       cache-hit: ${{ steps.swiftpm-cache.outputs.cache-hit }}
@@ -493,7 +493,7 @@ jobs:
   simulator-build:
     name: Build simulator app
     needs: [otzaria-framework, zayit-framework, swiftpm]
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 75
     steps:
       - name: Live Activity · refresh
@@ -778,7 +778,7 @@ jobs:
   device-build:
     name: Build unsigned device IPA
     needs: [otzaria-framework, zayit-framework, swiftpm]
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 75
     steps:
       - name: Live Activity · refresh
@@ -928,7 +928,7 @@ jobs:
     name: Real native Otzaria bootstrap acceptance
     if: ${{ inputs.run_heavy_otzaria_acceptance == true }}
     needs: simulator-build
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 240
     steps:
       - name: Live Activity · refresh

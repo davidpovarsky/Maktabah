@@ -81,7 +81,7 @@ jobs:
   build-sign-and-upload:
     needs: [verify-owner-approval]
     name: Build, Sign, and Deliver ChavrusaText (${{ inputs.data_profile }})
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 210
 
     steps:
@@ -118,7 +118,7 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Select Xcode 27
+      - name: Verify existing Xcode 27
         id: xcode
         run: |
           bash Scripts/CI/select-xcode-27.sh

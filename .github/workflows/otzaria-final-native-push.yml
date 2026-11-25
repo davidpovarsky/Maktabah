@@ -19,7 +19,7 @@ jobs:
   runtime27:
     name: ${{ 'ui' == 'toc-transport' && 'Sefaria Apple Foundation transport55 (no Native UI)' || 'ui' == 'release' && 'Release build and prototype' || 'R27 real UI environment and acceptance' }}
     if: ${{ github.repository == 'davidpovarsky/Maktabah' && github.event_name == 'push' && github.ref == 'refs/heads/codex/otzaria-final-native116-20261120' && (!false && ('ui' == 'probe' || 'ui' == 'ui' || 'ui' == 'release' || 'ui' == 'toc-transport')) }}
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: ${{ 'ui' == 'toc-transport' && 15 || 'ui' == 'release' && 210 || 'ui' == 'probe' && 300 || 360 }}
     outputs:
       release-build-artifact: ${{ steps.release_build_upload.outputs.artifact-id }}
