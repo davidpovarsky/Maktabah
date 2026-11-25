@@ -1,0 +1,16 @@
+{
+  "actual_parent_child_claim_accepted": true,
+  "actual_xctest_executed": 0,
+  "after_controller_sha256": "b51ce71977e618c8dde0f2bef3a53e4cc01df566ce17afcd0babae46fa7c8001",
+  "atomic_race": "two concurrent claimers, exactly one winner",
+  "before_controller_sha256": "5afa10f966e4c30c963db86f858152fe367640544278ddc74425145554cb5c66",
+  "checked_at": "2026-11-25T07:17:53.742673+00:00",
+  "controls": 6,
+  "direct_unowned_matrix_refused": true,
+  "native_engine_executed": 0,
+  "original_matrix_claim_bytes_retained": true,
+  "prior_claim_bytes_retained": true,
+  "prior_log_bytes_retained": true,
+  "second_actual_child_refused": true,
+  "status": "ACTUAL_ATTEMPT_RETENTION_CONTROLS_PASS"
+}

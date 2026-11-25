@@ -42,3 +42,7 @@ Never upload raw authentication artifacts or an account repository. Only indepen
 - SOURCE_CHECKPOINT.json binds the exact UI/controller source and open prerequisites.
 - SOURCE_CONTROLS.json records 28 declaration, unchanged-source and log/privacy controls. Their inputs are synthetic controls, not UI results.
 - APPLE_SYNTAX.json is the exact retained real-Mac parser result for the new ordinary UI file and hosted native-batch test file. It records zero actual XCTest/native/simulator executions.
+
+## One-use execution ownership
+
+An atomic exclusive run claim permits one execution per prepared attempt. The matrix must be the nonce-bound immediate child of that parent and creates a second exclusive claim. Existing claims and logs are never overwritten. A retry requires retention of the old attempt and a new preparation. Six focused retention controls include a real two-thread claim race, unchanged prior claim/log bytes, refusal of unowned direct matrix execution, successful real parent/child admission and refusal of its second child; they provide no UI runtime credit.

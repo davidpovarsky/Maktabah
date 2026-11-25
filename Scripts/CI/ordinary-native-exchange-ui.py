@@ -84,6 +84,39 @@ def private_route():
         path.chmod(0o700)
 
 
+
+RUN_TOKEN_ENV = "OTZARIA_ORDINARY_EXCHANGE_RUN_TOKEN"
+
+
+def claim_execution():
+    """One actual run per prepared attempt; interrupted attempts stay retained."""
+    require(not (OUT / "private-controller.log").exists()
+            and not (OUT / "matrix-claim.json").exists(), "Retain the previous attempt before another run")
+    token = str(uuid.uuid4())
+    record = {"token": token, "parent_pid": os.getpid(), "source_receipt_sha256":
+              digest(OUT / "source-before.json"), "selection_sha256": digest(SELECTION)}
+    with (OUT / "run-claim.json").open("x") as stream:
+        json.dump(record, stream, sort_keys=True)
+        stream.write("\n")
+    return token
+
+
+def claim_matrix():
+    """Direct or repeated matrix invocation cannot consume a prior attempt."""
+    token = os.environ.get(RUN_TOKEN_ENV)
+    require(isinstance(token, str) and str(uuid.UUID(token)) == token,
+            "Only the one-use original controller may start the matrix")
+    record = json.loads((OUT / "run-claim.json").read_text())
+    require(record["token"] == token and record["parent_pid"] == os.getppid()
+            and record["source_receipt_sha256"] == digest(OUT / "source-before.json")
+            and record["selection_sha256"] == digest(SELECTION),
+            "The matrix does not belong to this prepared parent execution")
+    with (OUT / "matrix-claim.json").open("x") as stream:
+        json.dump({"token": token, "pid": os.getpid(), "parent_pid": os.getppid()},
+                  stream, sort_keys=True)
+        stream.write("\n")
+
+
 def context():
     return LOCAL["source_context"]()
 
@@ -396,6 +429,7 @@ class ExchangeEvidence:
 
 def matrix():
     private_route()
+    claim_matrix()
     require(context() == json.loads((OUT / "source-before.json").read_text()), "Source changed before UI")
     require(not os.environ.get("FAITHFUL_RUNTIME27_RELEASE_MANIFEST")
             and not os.environ.get("FAITHFUL_DIAGNOSTIC_CASES"), "Dedicated selection cannot be mixed")
@@ -413,17 +447,21 @@ def execute():
     require(context() == json.loads((OUT / "source-before.json").read_text()), "Source changed before run")
     require(build_context() == json.loads((OUT / "qualified-build-before.json").read_text()),
             "Qualified actual SDK/app changed before run")
+    require(RUN_TOKEN_ENV not in os.environ, "A parent execution token cannot be inherited")
+    token = claim_execution()
     driver = runpy.run_path(str(ROOT / "Scripts/CI/runtime27.py"))
     controller = driver["runtime27_interruption"].InterruptController().install()
+    os.environ[RUN_TOKEN_ENV] = token
     try:
         # Post-test xcresult validators may print authentication failure details.
         # Keep their entire stdout/stderr private, even after line-level filtering.
-        with (OUT / "private-controller.log").open("w") as private:
+        with (OUT / "private-controller.log").open("x") as private:
             with redirect_stdout(private), redirect_stderr(private):
                 return driver["run_logged"](
                     [sys.executable, "Scripts/CI/ordinary-native-exchange-ui.py", "matrix"],
                     "ordinary-native-exchange-matrix.log", 4200, interrupt_controller=controller)
     finally:
+        os.environ.pop(RUN_TOKEN_ENV, None)
         controller.restore()
 
 
