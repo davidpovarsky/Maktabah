@@ -1,0 +1,68 @@
+{
+  "source_base": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
+  "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+  "toolchain": "Xcode 27.0\nBuild version 27A266a\n",
+  "free_bytes_before": 50512457728,
+  "runs": {
+    "baseline": {
+      "source_sha256": "33d1f5f8e07513c36aa1539d9075fc0c59c63630fe44cb1684d8cbb20b4be655",
+      "class_sha256": "f48de29020ea1e59f24d8e872d9e7dba2c4df227f8dd0fdc75021c35984356c0",
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+        "-framework",
+        "UIKit",
+        "-framework",
+        "Foundation",
+        "/Users/m1/builds/otzaria-editor-empty-note-20261125/baseline-UITextViewProbe-ios.swift",
+        "-o",
+        "/Users/m1/builds/otzaria-editor-empty-note-20261125/baseline-UITextViewProbe-ios"
+      ],
+      "compile_exit": 0,
+      "output": "clang: warning: using sysroot for 'macOS 27.0' but targeting 'arm64-apple-ios27.0.0-simulator' [-Wincompatible-sysroot]\n",
+      "binary_sha256": "ec23fb9c4380378abbb0c15efcd2b60b390f8b88b781f80015410e2bd853415a"
+    },
+    "candidate": {
+      "source_sha256": "b6e0e9bc42140fd896a20a1ee6eb2f17d65d5b6dee3854a5b6869e78dcf23f1f",
+      "class_sha256": "3e48389fac55bce999969eeff3df8deb7e138784b241d4b10c74d36b361aed79",
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+        "-framework",
+        "UIKit",
+        "-framework",
+        "Foundation",
+        "/Users/m1/builds/otzaria-editor-empty-note-20261125/candidate-UITextViewProbe-ios.swift",
+        "-o",
+        "/Users/m1/builds/otzaria-editor-empty-note-20261125/candidate-UITextViewProbe-ios"
+      ],
+      "compile_exit": 0,
+      "output": "clang: warning: using sysroot for 'macOS 27.0' but targeting 'arm64-apple-ios27.0.0-simulator' [-Wincompatible-sysroot]\n",
+      "binary_sha256": "88e28788c7ec22c4c940a48011d24b060577e4b145738989f62c29fccbd3b19d"
+    }
+  },
+  "runtime_status": "NOT_RUN; shared integrated simulator runner owns runtime acceptance",
+  "syntax": {
+    "candidate-iOSAnnotationEditorSheet.swift": {
+      "source_sha256": "b6e0e9bc42140fd896a20a1ee6eb2f17d65d5b6dee3854a5b6869e78dcf23f1f",
+      "exit_code": 0,
+      "output": ""
+    },
+    "candidate-ProductionAnnotationEditorAcceptanceTests.swift": {
+      "source_sha256": "d55bf5230450046f4784a3dfdd0236fbbbf02f8ea2750b822c3097731d3c2646",
+      "exit_code": 0,
+      "output": ""
+    }
+  },
+  "free_bytes_after": 49275600896
+}
