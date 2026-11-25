@@ -1,0 +1,13 @@
+{
+  "status": "PASS_EXACT_PREPARED_SOURCE_IDENTITY",
+  "scope": "ORIGINAL_COMMITTED_SOURCE_AND_REVIEWED_GENERATED_DOCUMENTS_ONLY",
+  "verified_at": "2026-11-25T08:48:12.963507+00:00",
+  "product_source": "a0aab23af933b7621a435f03d562271af62d00e8",
+  "producer_source": "08ef8741ff58241a081c908536a3b4d3917cc0e8",
+  "prepared_tree": "1c699855aa80e3fb8b1e3ccc5a627d03d73e360f",
+  "verified_actual_source_files": 7088,
+  "review_sha256": "85cce1ab6efcc5487af1a55939771e4f088b610f76ded3a6e4947e56893c1c1a",
+  "consumer_index_unchanged": true,
+  "native_consumer_acceptance": "NOT_RUN",
+  "producer_native_status_in_immutable_build_export": "NATIVE_ACCEPTANCE_RUNNING"
+}

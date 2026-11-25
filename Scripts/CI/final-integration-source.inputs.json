@@ -9,14 +9,14 @@
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda"
   },
-  "application_source_sha": "4eec5cf32daf7e1eeb6b1d6dcabce283989b6d3a",
+  "application_source_sha": "a0aab23af933b7621a435f03d562271af62d00e8",
   "application_trees": {
     "Maktabah-iOSUITests": "ab24a79e9baee44bc68d73b434e8ad8d034c9d8d",
     "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3",
     "Source": "865ef9c1d485e011fe34108beee7dbe126b80ca8",
-    "Vendor": "173cda4373d230d79247ba6ca8ed0db301f4e010"
+    "Vendor": "e080933608a75b0db2ed1d040a6001d9b4033ad1"
   },
-  "hanlin_source": "e1a25038e55a2967b2f21c9eb48e0e29220f52fd",
+  "hanlin_source": "08ef8741ff58241a081c908536a3b4d3917cc0e8",
   "historical_application_source": "d3da55417a30e9a06b0255e2d0b561955034b260",
   "historical_control_source": "602659607a3a6a2586a7c4a8d7ce6114eec8cd86",
   "integration_base": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
@@ -870,7 +870,7 @@
       "after": {
         "kind": "commit",
         "mode": "160000",
-        "object": "e1a25038e55a2967b2f21c9eb48e0e29220f52fd"
+        "object": "08ef8741ff58241a081c908536a3b4d3917cc0e8"
       },
       "before": {
         "kind": "commit",
@@ -921,10 +921,10 @@
       },
       "patch": {
         "bytes": 323,
-        "sha256": "7335b1339a3883647ac50f7676efa6e390a325cab17cfc8d72208d0edf668281"
+        "sha256": "deb2c65bbad62b6763995ff6a0e5cb0b8cc1804872aaa430ae2f5173cdeeffa6"
       },
       "path": "Vendor/HanlinSDK",
-      "reason": "Exact actually built e1a producer pin. AgentSDK/Platform/PresentationSDK/Bridge/Picker package contents are byte-identical to prior4b source; the actual producer preparation is admitted separately by the committed ten-path review. Full original consumer native acceptance remains required."
+      "reason": "Exact actually built 08ef standalone producer pin. Complete AgentSDK, Platform and PresentationSDK trees are identical to the qualified OriginalEditor SDK producer6f; Bridge and Picker originate from the same original08ef package/module trees. The four generated audit-document preparation changes are admitted by a separate committed review. Native original consumer acceptance remains required."
     }
   ],
   "product_roots": [
