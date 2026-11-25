@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D1A9D5FD552552489C1F551 /* AnnotationOriginalEditorReceive.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7117E78E62BEB44CF259B84 /* AnnotationOriginalEditorReceive.swift */; };
+		24DD71FD56C255F6E1ECDB6B /* AnnotationOriginalEditorRevision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0275BE1B7E407A2BF86459A8 /* AnnotationOriginalEditorRevision.swift */; };
 		3865C0F9E0544C8295042E32 /* OtzariaMiniAppsReceiptJournal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B7F90E14837B2401142E49 /* OtzariaMiniAppsReceiptJournal.swift */; };
 		60DB1F3E58098755E2F671C4 /* HanlinMiniAppsPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 976C5031FA42A812F1702310 /* HanlinMiniAppsPicker */; };
 		4BC135C049250C535F472871 /* HanlinMiniAppsBridge in Frameworks */ = {isa = PBXBuildFile; productRef = 7413321BE558BC1F71A54B4B /* HanlinMiniAppsBridge */; };
@@ -1502,6 +1504,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E7117E78E62BEB44CF259B84 /* AnnotationOriginalEditorReceive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorReceive.swift"; sourceTree = "<group>"; };
+		0275BE1B7E407A2BF86459A8 /* AnnotationOriginalEditorRevision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorRevision.swift"; sourceTree = "<group>"; };
 		C4B7F90E14837B2401142E49 /* OtzariaMiniAppsReceiptJournal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/MiniApps/OtzariaMiniAppsReceiptJournal.swift; sourceTree = SOURCE_ROOT; };
 		24AA94A8A28760FBE845CC8B /* OtzariaMiniAppsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift; sourceTree = SOURCE_ROOT; };
 		3E9DAB057834E634B0EF4FAC /* OtzariaMiniAppsPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/MiniApps/OtzariaMiniAppsPersistence.swift; sourceTree = SOURCE_ROOT; };
@@ -2327,6 +2331,8 @@
 		CFEE00000000000000000001 /* ChavrusaText */ = {
 			isa = PBXGroup;
 			children = (
+				E7117E78E62BEB44CF259B84 /* AnnotationOriginalEditorReceive.swift */,
+				0275BE1B7E407A2BF86459A8 /* AnnotationOriginalEditorRevision.swift */,
 				DE72A20933EEE552ED6AC840 /* AnnotationExchangeIdentity.swift */,
 				D60C725A87853F7E4416D1B6 /* AnnotationBackfillPlanner.swift */,
 				4AEA58A22EFA5C94735F60BB /* AnnotationBackfillView.swift */,
@@ -5106,6 +5112,8 @@
 		F30576E22FA46222005732C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				8D1A9D5FD552552489C1F551 /* AnnotationOriginalEditorReceive.swift in Sources */,
+				24DD71FD56C255F6E1ECDB6B /* AnnotationOriginalEditorRevision.swift in Sources */,
 				5AB7EAC38B502CB77986FF07 /* AnnotationExchangeIdentity.swift in Sources */,
 				A5733B9DAC7104C63B1536E6 /* AnnotationBackfillPlanner.swift in Sources */,
 				D75E8675ADC0DAF7C3E3358B /* AnnotationBackfillView.swift in Sources */,

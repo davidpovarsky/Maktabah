@@ -306,3 +306,64 @@ extension AnnotationLocalEditorSession {
     }
     #endif
 }
+
+
+// A separate conditional-update owner leaves original fresh-import history intact.
+extension AnnotationLocalEditorSession {
+    func prepareNativeRevision(
+        snapshot: AnnotationLocalEditorSnapshot,
+        comparison: AnnotationLocalEditorNativeComparison,
+        target: AnnotationLocalEditorNativeRevisionTarget
+    ) async throws -> AnnotationLocalEditorNativeRevisionPreparationOutcome {
+        guard !busy else { throw AnnotationLocalEditorError.busy }
+        guard isCurrent else { throw AnnotationLocalEditorError.retired }
+        busy = true
+        defer { busy = false }
+        let storage = persistence, owner = persistence.owner
+        let worker = Task.detached {
+            try storage.prepareNativeRevision(snapshot: snapshot, comparison: comparison, target: target)
+        }
+        return try await withTaskCancellationHandler {
+            let prepared = try await worker.value
+            return storage.canDeliverNativeSnapshot(prepared.snapshot)
+                ? .prepared(prepared) : .recordedWithoutOwnership(prepared.observation)
+        } onCancel: {
+            owner.retire(); worker.cancel()
+        }
+    }
+
+    func markNativeRevisionMayHaveDispatched(
+        _ prepared: AnnotationLocalEditorNativeRevisionPreparation,
+        requestBytes: Data, requestSHA256: String
+    ) async throws -> AnnotationLocalEditorNativeTransitionOutcome {
+        guard !busy else { throw AnnotationLocalEditorError.busy }
+        guard isCurrent else { throw AnnotationLocalEditorError.retired }
+        busy = true
+        defer { busy = false }
+        let storage = persistence, owner = persistence.owner
+        let worker = Task.detached {
+            try storage.markNativeRevisionMayHaveDispatched(prepared,
+                requestBytes: requestBytes, requestSHA256: requestSHA256)
+        }
+        return try await withTaskCancellationHandler {
+            let receipt = try await worker.value
+            return storage.canDeliverNativeSnapshot(prepared.snapshot)
+                ? .recorded(receipt) : .recordedWithoutOwnership(receipt)
+        } onCancel: {
+            owner.retire(); worker.cancel()
+        }
+    }
+
+    func ownsNativeRevisionPreparation(_ prepared: AnnotationLocalEditorNativeRevisionPreparation) -> Bool {
+        persistence.ownsNativeRevisionPreparation(prepared)
+    }
+
+    #if os(iOS) && canImport(AnytypeOriginalEditor)
+    func bindNativeRevisionRetirement(
+        _ source: AnytypeOriginalAnnotationImportSourceLifetime,
+        prepared: AnnotationLocalEditorNativeRevisionPreparation
+    ) throws {
+        try persistence.bindNativeRevisionRetirement(source, prepared: prepared)
+    }
+    #endif
+}

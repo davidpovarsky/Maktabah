@@ -9,7 +9,9 @@ import AnytypeOriginalEditor
 /// editor transaction. Historical mappings choose data, never native authority.
 @MainActor @Observable
 final class AnnotationOriginalEditorReceivePresentation: Identifiable {
-    enum Stage { case opening, authenticating, choosing, reading, reviewing, saving, saved, noMapping, changed, failed, closing, closeFailed, closed }
+    enum OperationKind { case receive, update }
+    enum Stage { case opening, authenticating, choosing, reading, reviewing, saving, saved, updating, updated, conflict, unverified, noMapping, changed, failed, closing, closeFailed, closed }
+    let operationKind: OperationKind
     let id = UUID()
     let annotation: Annotation
     private let inspected: AnnotationLocalEditorSnapshot
@@ -22,6 +24,8 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
     private var account: AnytypeOriginalEditorAccountSession?
     private var nativeSource: AnytypeOriginalEditorSourceLifetime?
     private var received: AnytypeOriginalAnnotationReadReceipt?
+    private var revisionAttempt: AnnotationOriginalEditorRevisionAttempt?
+    private(set) var revisionOutcome: AnnotationOriginalEditorRevisionOutcome?
     private var allMappings: [AnnotationOriginalEditorNativeReceiptFile.HistoricalMapping] = []
     private var operation: Task<Void, Never>?
     private var closeTask: Task<Void, Never>?
@@ -36,10 +40,11 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
     var controller: UIViewController? { presentation?.viewController }
     var remotePreview: String { received?.capture.textPreview ?? "" }
     var localPreview: String { snapshot?.annotation.note ?? "" }
-    var canClose: Bool { stage != .saving && stage != .closing && stage != .closed }
+    var canClose: Bool { stage != .saving && stage != .updating && stage != .closing && stage != .closed }
 
     init(annotation: Annotation, inspected: AnnotationLocalEditorSnapshot,
-         workspace: StudyWorkspaceNavigationAdapter) {
+         workspace: StudyWorkspaceNavigationAdapter, operationKind: OperationKind = .receive) {
+        self.operationKind = operationKind
         self.annotation = annotation; self.inspected = inspected; self.workspace = workspace
     }
 
@@ -171,7 +176,7 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
     /// on resolving a conflict. The original immutable local version remains
     /// in its ledger and in the received comparison history.
     func acceptReceivedVersion() {
-        guard stage == .reviewing, operation == nil, let actual = received,
+        guard operationKind == .receive, stage == .reviewing, operation == nil, let actual = received,
               let history = retainedHistoryURL, let local, let observation,
               let snapshot, let account else { return }
         stage = .saving
@@ -207,9 +212,59 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
         }
     }
 
+
+    /// A new explicit choice targets this observed object only. A conflict or
+    /// unknown result cannot refresh the token, create a copy or retry itself.
+    func updateExistingVersion() {
+        guard operationKind == .update, stage == .reviewing, operation == nil,
+              let actual = received, let readSource = nativeSource,
+              let historyURL = retainedHistoryURL, let local, let observation,
+              let snapshot, let account else { return }
+        stage = .updating
+        operation = Task { [self] in
+            defer { operation = nil }
+            do {
+                let prepared = try await AnnotationOriginalEditorRevisionAttempt.prepare(
+                    local: local, snapshot: snapshot, observation: observation,
+                    readSource: readSource, read: actual, retainedReadURL: historyURL, account: account)
+                switch prepared {
+                case .recordedWithoutOwnership:
+                    stage = .changed
+                case .prepared(let attempt):
+                    revisionAttempt = attempt
+                    let invoked = try await attempt.invoke()
+                    switch invoked {
+                    case .recordedWithoutOwnership:
+                        stage = .unverified
+                    case .nativeAwaitReturned:
+                        applyRevisionOutcome(try await attempt.history.durableOutcome())
+                    }
+                }
+            } catch {
+                if let attempt = revisionAttempt,
+                   let outcome = try? await attempt.history.recordedOutcomeIfDrained() {
+                    applyRevisionOutcome(outcome)
+                } else if stage != .closing && stage != .closed {
+                    stage = revisionAttempt?.history.dispatch == nil ? .changed : .unverified
+                }
+            }
+        }
+    }
+
+    private func applyRevisionOutcome(_ outcome: AnnotationOriginalEditorRevisionOutcome) {
+        revisionOutcome = outcome
+        guard stage != .closing && stage != .closed else { return }
+        switch outcome.kind {
+        case .verified: stage = .updated
+        case .conflict: stage = .conflict
+        case .unverified: stage = .unverified
+        }
+    }
+
     func close(retrying: Bool = false) {
         guard canClose || (retrying && stage == .closeFailed), closeTask == nil else { return }
         lifetime.retire(); observation?.retire(); local?.retire(); nativeSource?.retire()
+        revisionAttempt?.retire()
         operation?.cancel(); stage = .closing
         closeTask = Task { [self] in
             defer { closeTask = nil }
@@ -224,12 +279,15 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
     }
 
     func removed() {
+        revisionAttempt?.requestCancellation()
         operation?.cancel()
         if stage == .saving { stage = .changed }
+        if stage == .updating { stage = .unverified }
         close()
     }
 
     isolated deinit {
+        revisionAttempt?.retire()
         lifetime.retire(); observation?.retire(); local?.retire(); nativeSource?.retire()
     }
 }
@@ -244,8 +302,8 @@ struct AnnotationOriginalEditorReceiveView: View {
         NavigationStack {
             Group {
                 switch model.stage {
-                case .opening, .reading, .saving, .closing:
-                    ProgressView { Text("Reading the original Anytype note…", tableName: "OriginalAnnotationEditor") }
+                case .opening, .reading, .saving, .updating, .closing:
+                    ProgressView { Text("Finishing the original Anytype operation…", tableName: "OriginalAnnotationEditor") }
                 case .authenticating:
                     if let controller = model.controller {
                         AnnotationOriginalEditorProductionController(controller: controller)
@@ -284,17 +342,46 @@ struct AnnotationOriginalEditorReceiveView: View {
                             header: { Text("Read from Anytype", tableName: "OriginalAnnotationEditor") }
                         Section {
                             Button { confirmReplacement = true } label: {
-                                Text("Use the Anytype version here", tableName: "OriginalAnnotationEditor")
+                                if model.operationKind == .update {
+                                    Text("Update this copy in Anytype", tableName: "OriginalAnnotationEditor")
+                                } else {
+                                    Text("Use the Anytype version here", tableName: "OriginalAnnotationEditor")
+                                }
                             }
-                            .accessibilityIdentifier("annotation-anytype-receive-accept")
+                            .accessibilityIdentifier(model.operationKind == .update ? "annotation-anytype-update-accept" : "annotation-anytype-receive-accept")
                             Button { model.close() } label: {
-                                Text("Keep the local version", tableName: "OriginalAnnotationEditor")
+                                Text("Keep both versions unchanged", tableName: "OriginalAnnotationEditor")
                             }
                         } footer: {
                             Text("The preview is plain text. The complete original formatting, objects and files are kept when you save.", tableName: "OriginalAnnotationEditor")
                         }
                     }
                     .accessibilityIdentifier("annotation-anytype-receive-review")
+
+                case .updated:
+                    ContentUnavailableView {
+                        Label { Text("Update verified in Anytype", tableName: "OriginalAnnotationEditor") }
+                            icon: { Image(systemName: "checkmark.circle") }
+                    } description: {
+                        Text("The original engine read back the saved rich note under the same object ID. Visibility on another device is verified separately.", tableName: "OriginalAnnotationEditor")
+                    }
+                    .accessibilityIdentifier("annotation-anytype-update-verified")
+                case .conflict:
+                    ContentUnavailableView {
+                        Label { Text("The Anytype note changed", tableName: "OriginalAnnotationEditor") }
+                            icon: { Image(systemName: "arrow.triangle.branch") }
+                    } description: {
+                        Text("Anytype refused this update before writing because its saved version changed. Both reviewed versions are retained. Close and review the current versions again.", tableName: "OriginalAnnotationEditor")
+                    }
+                    .accessibilityIdentifier("annotation-anytype-update-conflict")
+                case .unverified:
+                    ContentUnavailableView {
+                        Label { Text("Check the Anytype version", tableName: "OriginalAnnotationEditor") }
+                            icon: { Image(systemName: "exclamationmark.triangle") }
+                    } description: {
+                        Text("The operation has no verified readback. A change may already be present. Its history is retained and it will not retry automatically.", tableName: "OriginalAnnotationEditor")
+                    }
+                    .accessibilityIdentifier("annotation-anytype-update-unverified")
                 case .saved:
                     ContentUnavailableView {
                         Label { Text("Anytype version saved locally", tableName: "OriginalAnnotationEditor") }
@@ -335,7 +422,9 @@ struct AnnotationOriginalEditorReceiveView: View {
                 case .closed: EmptyView()
                 }
             }
-            .navigationTitle(Text("Receive from Anytype", tableName: "OriginalAnnotationEditor"))
+            .navigationTitle(model.operationKind == .update
+                ? Text("Update in Anytype", tableName: "OriginalAnnotationEditor")
+                : Text("Receive from Anytype", tableName: "OriginalAnnotationEditor"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -344,14 +433,27 @@ struct AnnotationOriginalEditorReceiveView: View {
                         .accessibilityIdentifier("annotation-anytype-receive-close")
                 }
             }
-            .confirmationDialog(Text("Replace the saved local version?", tableName: "OriginalAnnotationEditor"),
+            .confirmationDialog(model.operationKind == .update
+                ? Text("Update this existing Anytype note?", tableName: "OriginalAnnotationEditor")
+                : Text("Replace the saved local version?", tableName: "OriginalAnnotationEditor"),
                 isPresented: $confirmReplacement, titleVisibility: .visible) {
-                Button { model.acceptReceivedVersion() } label: {
-                    Text("Use the Anytype version here", tableName: "OriginalAnnotationEditor")
+                Button {
+                    if model.operationKind == .update { model.updateExistingVersion() }
+                    else { model.acceptReceivedVersion() }
+                } label: {
+                    if model.operationKind == .update {
+                        Text("Update this copy in Anytype", tableName: "OriginalAnnotationEditor")
+                    } else {
+                        Text("Use the Anytype version here", tableName: "OriginalAnnotationEditor")
+                    }
                 }
                 Button(role: .cancel) {} label: { Text("Cancel", tableName: "OriginalAnnotationEditor") }
             } message: {
-                Text("Both complete versions are retained. Your note ID, source anchor, tags and local permissions stay with this note.", tableName: "OriginalAnnotationEditor")
+                if model.operationKind == .update {
+                    Text("Only your saved rich note will update the reviewed Anytype object. The original engine will check its version again before writing. Both full versions are retained.", tableName: "OriginalAnnotationEditor")
+                } else {
+                    Text("Both complete versions are retained. Your note ID, source anchor, tags and local permissions stay with this note.", tableName: "OriginalAnnotationEditor")
+                }
             }
         }
         .task { await model.begin() }

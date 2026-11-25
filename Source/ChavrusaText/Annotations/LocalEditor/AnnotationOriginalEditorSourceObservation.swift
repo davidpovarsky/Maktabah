@@ -146,6 +146,38 @@ final class AnnotationOriginalEditorSourceObservation {
         }
     }
 
+
+    /// Preserve the already-observed native read owner while binding the new,
+    /// separate conditional replacement owner. Both retire on the same source,
+    /// DB, presentation and scene invalidation; neither is adopted from history.
+    func bindReplacement(_ source: AnytypeOriginalAnnotationImportSourceLifetime,
+                         readSource: AnytypeOriginalEditorSourceLifetime,
+                         local: AnnotationLocalEditorSession) throws {
+        do {
+            try requireCurrent()
+            let binding = readSource.binding
+            guard nativeSource === readSource, readSource.isCurrent,
+                  nativeImport == nil, localAnnotation == nil, localSession === local,
+                  source.source.annotationUUID == annotationUUID,
+                  source.source.preparedSessionID == local.id,
+                  source.source.annotationUUID == binding.annotationUUID,
+                  source.source.savedRevision == binding.expectedRevision,
+                  source.source.sourceDigest == binding.sourceWitnessSHA256,
+                  source.source.accountID.utf8.elementsEqual(binding.accountID.utf8),
+                  source.source.spaceID.utf8.elementsEqual(binding.spaceID.utf8) else {
+                throw AnnotationLocalEditorError.wrongOwner
+            }
+            try lifetime.bindNativeImportRetirement(source)
+            try presentationLifetime.bindNativeImportRetirement(source)
+            nativeImport = source
+            try requireCurrent()
+            guard source.isCurrent else { throw AnnotationLocalEditorError.retired }
+        } catch {
+            source.retire()
+            throw error
+        }
+    }
+
     /// Link the canonical saved row, native draft, original DB and presentation
     /// before the factory can suspend or dispatch any native work.
     func bindLocalAnnotation(

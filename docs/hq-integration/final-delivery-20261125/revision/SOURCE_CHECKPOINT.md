@@ -1,0 +1,12 @@
+# Conditional native revision source checkpoint
+
+Status: SOURCE IMPLEMENTED; NOT YET ACCEPTED OR APP-BUILT.
+The SDK public contract is anytype-swift a91d572cb2df2b05c7d93520732eecd7380294fd; its source-equivalent final typecheck evidence is 42d8c3f4f2aaa68cc89fe045eca8ed4f3b0c1eda.
+
+The normal saved-note UI now offers an explicit update of the selected existing Anytype object. It reads through the actual account/Space, retains both full saved versions, and uses the exact current-session nonconstructible SDK revision token. A separate original-SQLite preparation records the complete saved source image and original target/heads/root. The immutable bounded SDK request is retained before the separate possible-dispatch CAS; its exact bytes are also stored in that SQLite commit before invocation. The one-use SDK handle is invoked only while the original source/DB/scene/presentation still owns it. Late SDK drain results remain independently retained and classify verified local readback, definite native conflict, or unknown effect; none is a remote-device acknowledgement.
+
+The pre-existing fresh-import tables, permanent possible-dispatch fence, and original import transition are unchanged. No historical import is released, adopted, relabelled or deleted. Conditional revision is a distinct operation on an existing observed root, with a distinct closed preparation type. Conflict/uncertainty never automatically retries, refreshes a token or creates a new object. Source/record files are historical data and cannot reconstruct native ownership.
+
+Receive and Update share the same original account picker, source observation and full-version comparison UI. Both ordinary entry buttons require the mounted plain editor's draft/text/style/tags to match the saved note. Updates preserve the same note ID and original saved annotation/tag/outbox rows. Newly verified revision mappings supplement historical import mappings, but every destination is read and type/UUID validated again by the SDK.
+
+Pending required evidence: focused actual SQLite regression and cold-process checks; full host typecheck against the actual new SDK; original native CAS runtime acceptance and new-dependency handling; real integrated normal UI, remote conflicts/ACK, native 5000 and complete C-F. Existing source-specific component passes are retained with their original scope. This checkpoint does not admit a Release build or final merge.

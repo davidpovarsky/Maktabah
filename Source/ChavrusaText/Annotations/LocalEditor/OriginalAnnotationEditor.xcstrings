@@ -1045,6 +1045,210 @@
           }
         }
       }
+    },
+    "Anytype refused this update before writing because its saved version changed. Both reviewed versions are retained. Close and review the current versions again." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anytype refused this update before writing because its saved version changed. Both reviewed versions are retained. Close and review the current versions again."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anytype דחה את העדכון לפני הכתיבה משום שהגרסה השמורה השתנתה. שתי הגרסאות שנבדקו נשמרות. יש לסגור ולבדוק מחדש את הגרסאות העדכניות."
+          }
+        }
+      }
+    },
+    "Check the Anytype version" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check the Anytype version"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "יש לבדוק את הגרסה ב־Anytype"
+          }
+        }
+      }
+    },
+    "Keep both versions unchanged" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep both versions unchanged"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "השארת שתי הגרסאות ללא שינוי"
+          }
+        }
+      }
+    },
+    "Only your saved rich note will update the reviewed Anytype object. The original engine will check its version again before writing. Both full versions are retained." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only your saved rich note will update the reviewed Anytype object. The original engine will check its version again before writing. Both full versions are retained."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "רק ההערה העשירה השמורה תעדכן את אובייקט Anytype שנבדק. המנוע המקורי יבדוק שוב את גרסתו לפני הכתיבה. שתי הגרסאות המלאות נשמרות."
+          }
+        }
+      }
+    },
+    "The Anytype note changed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Anytype note changed"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ההערה ב־Anytype השתנתה"
+          }
+        }
+      }
+    },
+    "The operation has no verified readback. A change may already be present. Its history is retained and it will not retry automatically." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The operation has no verified readback. A change may already be present. Its history is retained and it will not retry automatically."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "לפעולה אין קריאה חוזרת מאומתת. ייתכן שהשינוי כבר נשמר. היסטוריית הפעולה נשמרת והיא לא תבוצע שוב באופן אוטומטי."
+          }
+        }
+      }
+    },
+    "The original engine read back the saved rich note under the same object ID. Visibility on another device is verified separately." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The original engine read back the saved rich note under the same object ID. Visibility on another device is verified separately."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "המנוע המקורי קרא מחדש את ההערה העשירה השמורה עם אותו מזהה אובייקט. הופעתה במכשיר אחר נבדקת בנפרד."
+          }
+        }
+      }
+    },
+    "Update in Anytype" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update in Anytype"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "עדכון ב־Anytype"
+          }
+        }
+      }
+    },
+    "Update saved note in Anytype" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update saved note in Anytype"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "עדכון ההערה השמורה ב־Anytype"
+          }
+        }
+      }
+    },
+    "Update this copy in Anytype" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update this copy in Anytype"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "עדכון עותק זה ב־Anytype"
+          }
+        }
+      }
+    },
+    "Update this existing Anytype note?" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update this existing Anytype note?"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "לעדכן את ההערה הקיימת הזו ב־Anytype?"
+          }
+        }
+      }
+    },
+    "Update verified in Anytype" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update verified in Anytype"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "העדכון ב־Anytype אומת"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

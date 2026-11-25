@@ -139,6 +139,23 @@ struct AnnotationOriginalEditorProductionEntry: View {
                                 throw AnnotationOriginalEditorUIError.unavailable
                             }
                             receivePresentation = .init(annotation: annotation,
+                                inspected: inspected, workspace: workspace, operationKind: .update)
+                        } catch { entryMessage = error.localizedDescription }
+                    } label: {
+                        Label {
+                            Text("Update saved note in Anytype", tableName: "OriginalAnnotationEditor")
+                        } icon: { Image(systemName: "arrow.triangle.2.circlepath") }
+                    }
+                    .accessibilityIdentifier("annotation-anytype-update-open")
+                    .disabled(entryError != nil)
+
+                    Button {
+                        do {
+                            try draft().requireUnchanged(annotation)
+                            guard let workspace, let inspected, availability == .rich else {
+                                throw AnnotationOriginalEditorUIError.unavailable
+                            }
+                            receivePresentation = .init(annotation: annotation,
                                 inspected: inspected, workspace: workspace)
                         } catch { entryMessage = error.localizedDescription }
                     } label: {

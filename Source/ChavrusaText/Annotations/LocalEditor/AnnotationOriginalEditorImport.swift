@@ -441,7 +441,9 @@ enum AnnotationOriginalEditorNativeReceiptFile {
         let root = database.deletingLastPathComponent()
             .appendingPathComponent(database.lastPathComponent + ".native-import-history", isDirectory: true)
         let manager = FileManager.default
-        guard manager.fileExists(atPath: root.path) else { return [] }
+        let revisions = try AnnotationOriginalEditorRevisionFile.mappings(
+            annotationUUID: annotationUUID, capturedDatabaseURL: capturedDatabaseURL)
+        guard manager.fileExists(atPath: root.path) else { return revisions }
         func files(in directory: URL) throws -> [URL] {
             let values = try directory.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey])
             guard values.isDirectory == true, values.isSymbolicLink != true else {
@@ -485,6 +487,12 @@ enum AnnotationOriginalEditorNativeReceiptFile {
                 objectID: record.objectID, savedRevision: record.savedRevision,
                 bodyDigest: record.bodyDigest, receiptURL: url)
             if let prior = result[value.id], prior.savedRevision >= value.savedRevision { continue }
+            result[value.id] = value
+        }
+        for value in revisions {
+            if let prior = result[value.id], prior.savedRevision > value.savedRevision { continue }
+            if let prior = result[value.id], prior.savedRevision == value.savedRevision,
+               prior.bodyDigest != value.bodyDigest { throw AnnotationOriginalEditorReceiptError.conflictingHistory }
             result[value.id] = value
         }
         return result.values.sorted {
