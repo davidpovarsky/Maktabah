@@ -90,12 +90,12 @@ def validate_abi_adapter(abi, heart, source_sha):
 
 def validate_public_contract(config, source_before, api):
     contract = config.get('public_host_contract_sha256')
-    reviewed = api['LOCAL_ANNOTATION_CONTRACT_SHA256']
+    reviewed = api['REVIEWED_PUBLIC_HOST_CONTRACTS']
     if contract is None:
-        require(source_before.get('public_host_contract_sha256') != reviewed,
+        require(source_before.get('public_host_contract_sha256') not in reviewed,
                 'Local annotation source requires its exact committed public contract')
         return None
-    require(contract == reviewed and source_before.get('public_host_contract_sha256') == contract,
+    require(contract in reviewed and source_before.get('public_host_contract_sha256') == contract,
             'Public contract differs from the actual producer source observation')
     return contract
 

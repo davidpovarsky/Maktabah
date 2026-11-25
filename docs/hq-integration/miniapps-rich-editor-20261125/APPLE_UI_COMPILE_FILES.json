@@ -1,0 +1,22 @@
+{
+  "receipts": {
+    "APPLE_UI_COMPILE.json": {
+      "original_bytes": 4121,
+      "original_sha256": "2d02f206682fe342f7d11e9eb13013e570c31eb03830a842261ef17ff800ce0e",
+      "stored_sha256": "2d02f206682fe342f7d11e9eb13013e570c31eb03830a842261ef17ff800ce0e"
+    },
+    "APPLE_UI_COMPILE.stdout.log.gz": {
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    "APPLE_UI_COMPILE.stderr.log.gz": {
+      "original_bytes": 2106054,
+      "original_sha256": "98b830f2ac7dd14aa768757715cfc76020c112bacc6800c316f12ae6adcd275a",
+      "stored_sha256": "26a9a42c3148ec9bf7873795143fc8f3e3949a471fd710c7dc7b665b80ec82f1"
+    }
+  },
+  "reviewed_ui_sha256": "edd8c182207e14233f3cccb17c5b621e8451806e613949d57578d685202115ae",
+  "native_tests_executed": 0,
+  "scope": "Twelve actual UI Swift files compiled on Apple SDK; no original application or runtime acceptance claimed"
+}

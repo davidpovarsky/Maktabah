@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """One actual Otzaria editor -> Hanlin TextStudio -> original saved-note journey."""
+import base64
 import hashlib
 import json
 import os
@@ -73,6 +74,42 @@ def configuration():
     return value
 
 
+def original_editor_admission(config):
+    """Pin the existing strict Debug route without claiming Release qualification."""
+    debug = config.get("original_editor_debug_admission")
+    if debug is None:
+        routes = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_sdk_routes.py"))["load"](ROOT)
+        return {"mode": "all-configurations", **{
+            key: routes[key] for key in
+            ("manifest_path", "manifest_sha256", "sdk_source_sha", "native_source_tree", "signing_team_id")}}
+    require(isinstance(debug, dict) and set(debug) == {"path", "sha256"},
+            "Debug native SDK admission requires its exact committed configuration")
+    path = debug.get("path")
+    require(isinstance(path, str) and path.startswith("Scripts/CI/")
+            and path.endswith(".json") and not Path(path).is_absolute()
+            and ".." not in Path(path).parts
+            and re.fullmatch(r"[a-f0-9]{64}", debug.get("sha256", "")),
+            "Debug native SDK configuration path or digest is invalid")
+    target = ROOT / path
+    require(target.is_file() and not target.is_symlink() and digest(target) == debug["sha256"],
+            "Debug native SDK configuration bytes differ")
+    committed = subprocess.check_output(["git", "show", "HEAD:" + path], cwd=ROOT, timeout=90)
+    require(committed == target.read_bytes(), "Debug native SDK configuration is not committed exactly")
+    admission = json.loads(committed)
+    runpy.run_path(str(ROOT / "Scripts/CI/original_editor_local_admission.py"))["validate_configuration"](admission)
+    return {"mode": "debug-simulator", "configuration_path": path,
+            "configuration_sha256": debug["sha256"], "sdk_source_sha": admission["source_sha"],
+            "configuration_status": "PINNED_CONFIGURATION_REQUIRES_ORIGINAL_BINARY_ADMISSION",
+            "release_qualification": "NOT_CLAIMED"}
+
+
+def original_editor_build_arguments():
+    admission = original_editor_admission(configuration())
+    if admission["mode"] == "debug-simulator":
+        return ["--original-editor-admission", admission["configuration_path"]]
+    return ["--original-editor-routes"]
+
+
 def source_context():
     config = configuration()
     inputs = json.loads(BUILD_INPUTS.read_text())
@@ -89,12 +126,10 @@ def source_context():
             "Original native build pins do not bind this source")
     require(inputs["hanlin_gitlink"] == config["producer_source_sha"], "Consumer SDK and actual producer differ")
     original = runpy.run_path(str(ROOT / "Scripts/CI/completion-focused-native.py"))
-    editor_routes = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_sdk_routes.py"))["load"](ROOT)
+    editor_admission = original_editor_admission(config)
     return {"checkout_sha": head, "application_source_sha": source, "application_trees": trees,
             "producer_inputs": config,
-            "original_editor_routes": {
-                key: editor_routes[key] for key in
-                ("manifest_path", "manifest_sha256", "sdk_source_sha", "native_source_tree", "signing_team_id")},
+            "original_editor_admission": editor_admission,
             "original_case_catalog_sha256": digest(ROOT / "docs/hq-integration/runtime27/R27_CASES.json"),
             "execution_inputs": original["exact_working_inputs"](["Scripts/CI", ".github/workflows", "Maktabah-iOSUITests", "tools"])}
 
@@ -109,7 +144,7 @@ def prepare():
             "oracle": "Original reader selection and note toolbar, actual Hanlin TextStudio warm/cold callbacks, three atomic receipts, linked-note anchors and unchanged source corpus"})
     for row in contract["cases"] + contract.get("supplemental_cases", []):
         if row["case_id"] == SELECTOR:
-            row["oracle"] = "Original reader selection and note toolbar; actual TextStudio warm/cold callbacks; three atomic receipts, linked-note anchors and unchanged corpus"
+            row["oracle"] = "Original reader selection and note toolbar; actual TextStudio warm/cold callbacks; five atomic receipts, native rich archive and newer-block preservation, cold native remount, duplicate callback, linked-note anchors and unchanged corpus"
     contract.update(source_test_commit=context["application_source_sha"],
                     app_source=context["application_source_sha"],
                     application_source_sha=context["application_source_sha"],
@@ -197,6 +232,8 @@ def export_built_products():
     products = ROOT / "build/DerivedData/Build/Products"
     primary_roots = [products / "Debug-iphonesimulator/Maktabah.app",
                      products / "Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app"]
+    runtime_closure = runpy.run_path(str(ROOT / "Scripts/CI/miniapps-consumer-runtime-closure.py"))["audit"](
+        ROOT, primary_roots[0], OUT / "consumer-runtime-closure")
     test_runs = sorted(products.glob("*.xctestrun"))
     require(all(path.is_dir() for path in primary_roots) and test_runs, "Original native products are incomplete")
     roots = [*primary_roots, *test_runs]
@@ -312,9 +349,105 @@ def export_built_products():
         "exported_product_roots": [path.relative_to(products).as_posix() for path in roots],
         "original_test_product_references": sorted(set(referenced_products)),
         "xcode_platform_provided_references": sorted(set(platform_references)),
-        "binary_identity": binaries(), "native_ui_acceptance": "NOT_RUN_AT_EXPORT",
+        "binary_identity": binaries(), "consumer_runtime_closure": runtime_closure,
+        "native_ui_acceptance": "NOT_RUN_AT_EXPORT",
         "physical_signing_status": "NOT_VALIDATED_BY_SIMULATOR"})
     print("Retained original app and UI test products with complete file and archive hashes", flush=True)
+
+
+def native_context(record):
+    request = record["request"]
+    value = json.loads(request["source"]["metadata"]["otzaria.original-editor.miniapps.v1"])
+    nodes = [n for n in value["nodes"] if n.get("bodyText") is not None]
+    require(value["schema"] == "otzaria.original-miniapps-context/1"
+            and value["documentText"] == "\n".join(n["bodyText"] for n in nodes)
+            and request["source"]["documentText"] == value["documentText"],
+            "Actual original rich context is not its complete native text witness")
+    return value, nodes
+
+
+def expected_native_insert(record, overrides=None):
+    context, nodes = native_context(record)
+    overrides = overrides or {}
+    bodies = [overrides.get(n["id"], n["bodyText"]) for n in nodes]
+    text = "\n".join(i["text"] for i in record["result"]["items"] if i.get("text") is not None)
+    require(record["result"]["operation"] == "insert", "Rich insertion changed its requested operation")
+    if not context["blockIDs"]:
+        require(context.get("selectionLocation") is None and context.get("selectionLength") is None,
+                "Unselected native insertion has a forged range")
+        bodies.append(text)
+    else:
+        require(len(context["blockIDs"]) == 1 and context.get("selectionLength") == 0,
+                "Expected a single actual native caret")
+        indices = [i for i, node in enumerate(nodes) if node["id"] == context["blockIDs"][0]]
+        require(indices == [0], "The actual first original native block must own the insertion")
+        encoded = bodies[0].encode("utf-16-le")
+        offset = context["selectionLocation"] * 2
+        require(0 <= offset <= len(encoded), "Native insertion offset is outside the actual body")
+        bodies[0] = (encoded[:offset] + text.encode("utf-16-le") + encoded[offset:]).decode("utf-16-le")
+    return bodies
+
+
+def verify_rich_returns(records):
+    require(len(records) == 2, "Two actual original-rich-editor callbacks are required")
+    warm = [r for r in records if r["shared_record"]["result"]["items"][0]["text"].startswith("MiniApps rich warm שלום ")]
+    cold = [r for r in records if r["shared_record"]["result"]["items"][0]["text"].startswith("MiniApps rich cold שלום ")]
+    require(len(warm) == len(cold) == 1, "Both native original-editor results must contain actual typed nonces")
+    warm, cold = warm[0], cold[0]
+    warm_context, warm_nodes = native_context(warm["shared_record"])
+    cold_context, cold_nodes = native_context(cold["shared_record"])
+    require(len(warm_nodes) == 2 and warm_nodes[0]["bodyText"].startswith("Original rich Alpha ")
+            and warm_nodes[1]["bodyText"].startswith("Original rich Beta שלום "),
+            "The actual launch must contain two independently edited original native blocks")
+    require(len(cold_nodes) >= 2, "The real cold launch lost its independent original blocks")
+    newer = cold_nodes[1]["bodyText"]
+    require(newer.startswith("Newer unsaved rich Beta שלום ") and newer != warm_nodes[1]["bodyText"],
+            "The other native block must really have changed while the first result was pending")
+    expected_warm = expected_native_insert(warm["shared_record"], {warm_nodes[1]["id"]: newer})
+    require([n["bodyText"] for n in cold_nodes] == expected_warm,
+            "The real cold source does not preserve the prior warm result and newer original block")
+    final_bodies = expected_native_insert(cold["shared_record"])
+    require(newer in final_bodies, "Cold return lost the concurrent original native edit")
+    require(len({tuple(r["original_receipt_rows"][0][:3]) for r in records}) == 1
+            and all(r["original_receipt_rows"][0][3] == "\n".join(final_bodies) for r in records),
+            "The two rich callbacks do not resolve to one final original note")
+    document = json.loads(cold["shared_record"]["request"]["source"]["metadata"]["otzaria.annotation.v1"])
+    connection = sqlite3.connect(Path(document["profile"]).as_uri() + "?mode=ro", uri=True)
+    try:
+        rows = connection.execute("""
+            SELECT h.revision,v.mutation_id,v.payload_digest,v.payload_base64
+            FROM otzaria_annotation_exchange_heads h
+            JOIN otzaria_annotation_exchange_versions v
+              ON v.namespace=h.namespace AND v.annotation_uuid=h.annotation_uuid AND v.revision=h.revision
+            WHERE h.namespace='otzaria.local.annotation' AND lower(h.annotation_uuid)=lower(?)
+            """, (cold_context["source"]["annotation"],)).fetchall()
+        require(len(rows) == 1, "The actual native canonical head is missing or ambiguous")
+        revision, mutation, payload_hash, encoded = rows[0]
+        require(revision == cold_context["source"]["revision"] + 1
+                and mutation.lower() == cold["shared_record"]["request"]["id"].lower(),
+                "The cold native body is not the one committed with the exact callback receipt")
+        for returned in (warm, cold):
+            count = connection.execute(
+                "SELECT COUNT(*) FROM otzaria_annotation_exchange_versions WHERE lower(mutation_id)=lower(?)",
+                (returned["shared_record"]["request"]["id"],)).fetchone()[0]
+            require(count == 1, "A rich callback created zero or duplicate native revisions")
+    finally:
+        connection.close()
+    payload = base64.b64decode(encoded, validate=True)
+    require(hashlib.sha256(payload).hexdigest() == payload_hash, "Original native envelope digest differs")
+    envelope = json.loads(payload)
+    rich = envelope["richBody"]
+    native_body = base64.b64decode(rich["bytesBase64"], validate=True)
+    require(envelope["textPreview"] == "\n".join(final_bodies)
+            and rich["format"] == "anytype.native-protobuf-archive" and rich["formatVersion"] == 1
+            and native_body.startswith(b"ATOSNAP\x00"),
+            "The return must persist the actual original native archive, not only a plain preview")
+    return {"status": "ACTUAL_ORIGINAL_RICH_WARM_COLD_RECEIPTS_PASS",
+            "native_revision": revision, "mutation_id": mutation, "payload_sha256": payload_hash,
+            "native_body_sha256": hashlib.sha256(native_body).hexdigest(), "native_body_bytes": len(native_body),
+            "newer_original_block_preserved": True,
+            "native_block_topology_and_duplicate_callback": "ASSERTED_BY_ACTUAL_XCTEST"}
+
 
 
 class ActualMiniAppsProducer:
@@ -372,7 +505,8 @@ class ActualMiniAppsProducer:
                 self.video.kill()
                 self.video.wait(timeout=10)
             self.video_log.close()
-        report = {"status": "INCOMPLETE", "records": [], "fixture_producer": False, "synthetic_results_written": False}
+        report = {"status": "INCOMPLETE", "records": [], "rich_records": [],
+                  "fixture_producer": False, "synthetic_results_written": False}
         try:
             for path in sorted((self.group / "MiniAppsBridge/v1/requests").glob("*.json")):
                 record = json.loads(path.read_text())
@@ -393,6 +527,18 @@ class ActualMiniAppsProducer:
                     connection.close()
                 result = record.get("result") or {}
                 text = "\n".join(item["text"] for item in result.get("items", []) if item.get("text") is not None)
+                if request["source"].get("kind") == "native-annotation":
+                    verified = (record["acknowledged"] is True and result.get("status") == "success"
+                                and result.get("operation") == "insert" and len(rows) == 1
+                                and rows[0][0] == document["annotationID"]
+                                and rows[0][1] == rows[0][2] == document["annotationUUID"]
+                                and rows[0][5:10] == (document["bookID"], document["contentID"],
+                                    document["rangeLocation"], document["rangeLength"], document["context"])
+                                and json.loads(rows[0][4]) == result)
+                    require(verified, "An actual original-rich-editor return lacks its exact durable receipt")
+                    report["rich_records"].append({"shared_record": record, "original_receipt_rows": rows,
+                        "same_original_annotation_verified": verified})
+                    continue
                 draft = document["draftNote"]
                 selection = document.get("selection")
                 encoded = draft.encode("utf-16-le")
@@ -462,7 +608,14 @@ class ActualMiniAppsProducer:
             report["source_corpus"] = {"profile": "miniTest10", "path": str(corpus[0]),
                 "expected_sha256": profile["sourceDatabase"]["databaseSHA256"], "actual_after_sha256": after_hash,
                 "before_after_equal": "ASSERTED_BY_ACTUAL_XCTEST", "status": "ORIGINAL_CORPUS_BYTES_UNCHANGED"}
-            report["actual_callbacks"] = 3
+            report["original_rich_editor"] = verify_rich_returns(report["rich_records"])
+            rich_identities = {tuple(r["original_receipt_rows"][0][:3]) for r in report["rich_records"]}
+            require(rich_identities.isdisjoint(identities)
+                    and tuple(reader["original_receipt_rows"][0][:3]) not in rich_identities,
+                    "Rich editor callbacks crossed another original document")
+            report["actual_callbacks"] = 5
+            report["plain_editor_and_reader_callbacks"] = 3
+            report["original_rich_editor_callbacks"] = 2
             report["actual_reader_selection_to_picker"] = "ASSERTED_AND_CAPTURED_BY_ACTUAL_XCTEST"
             report["cold_callback_without_manual_launch"] = "ASSERTED_BY_ACTUAL_XCTEST"
             report["status"] = "ACTUAL_SHARED_RECORD_AND_ORIGINAL_SQLITE_RECEIPT_PASS"
@@ -587,7 +740,7 @@ def run_from_existing_native_workflow(report, run_logged, controller):
         # is compiled in the real app/test target below, not a duplicate standalone suite.
         reuse_ui_compile()
         if run_logged([sys.executable, "Scripts/CI/hq-stage2-focused-apple.py", "--build-for-testing",
-                       "--original-editor-routes", "--derived-data", "build/DerivedData",
+                       *original_editor_build_arguments(), "--derived-data", "build/DerivedData",
                        "--simulator-data-profile", "miniTest10"],
                       "miniapps-original-app-build.log", 7200, interrupt_controller=controller):
             raise RuntimeError("Original app/test build failed; new two-app UI case NOT_RUN")
