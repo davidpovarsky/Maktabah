@@ -1,0 +1,49 @@
+{
+  "compile_exit": 0,
+  "run_exit": 0,
+  "elapsed_seconds": 13.17,
+  "free_before": 43129712640,
+  "free_after": 42731876352,
+  "command": [
+    "xcrun",
+    "swiftc",
+    "-swift-version",
+    "5",
+    "/Users/m1/builds/maktabah-native-receive-20261125/component/history-component-extracted.swift",
+    "/Users/m1/builds/maktabah-native-receive-20261125/component/main.swift",
+    "-o",
+    "/Users/m1/builds/maktabah-native-receive-20261125/component/history-controls"
+  ],
+  "source_sha256": {
+    "history-component-extracted.swift": "ccf86c39731b41ff0b66331689b4abbd23deeda8f04b6d449b774ca7a9804624",
+    "main.swift": "ca8e779880af6a7b6a92bd5092b3b29fae61858b027bebbf59e298a94aa99e86"
+  },
+  "controls": {
+    "controls": [
+      "missing-history-is-read-only",
+      "per-note-history",
+      "legacy-flat-history-retained",
+      "same-destination-latest-no-rewrite",
+      "distinct-native-targets-retained",
+      "other-uuid-not-admitted",
+      "wrong-schema",
+      "await-return-is-not-receipt",
+      "wrong-namespace",
+      "response-checksum-mismatch",
+      "remote-ack-cannot-be-fabricated",
+      "negative-saved-revision",
+      "root-missing-from-native-mapping",
+      "empty-native-response",
+      "symlink-file-refused",
+      "symlink-directory-refused",
+      "non-file-database-refused",
+      "empty-history-refused",
+      "unrelated-note-archives-not-read"
+    ],
+    "passed": 19,
+    "scope": "exact production history decoder and file checks; synthetic historical files only; no native SDK/engine/UI acceptance claim",
+    "single_note_lookup_duration": "0.015887708 seconds",
+    "status": "PASSED_ACTUAL_SWIFT_HISTORY_COMPONENT_CONTROLS",
+    "unrelated_directory_count": 5000
+  }
+}

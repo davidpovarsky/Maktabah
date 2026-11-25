@@ -1,0 +1,7 @@
+{
+  "production_source": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorImport.swift",
+  "production_sha256": "48c5d416af375d5af75aaf53c3c3944d809dc32345ff2a4278d5e8f837774365",
+  "extracted_sha256": "ccf86c39731b41ff0b66331689b4abbd23deeda8f04b6d449b774ca7a9804624",
+  "extraction": "exact Record, HistoricalMapping and mappings implementation; SDK-dependent persist writer excluded",
+  "test_kind": "synthetic history decoder/filesystem controls, not native evidence"
+}

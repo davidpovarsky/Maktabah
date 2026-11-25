@@ -219,6 +219,20 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         tap(app.buttons["annotation-expanded-editor-close"])
         tap(app.buttons["Discard draft"])
         try await waitForAbsence(quick)
+
+        // Cancelled Share has no native mapping: no target/body/ACK is invented.
+        try editAnnotation(resumedRows.firstMatch)
+        let receive = app.buttons["annotation-anytype-receive-open"]
+        try await waitForEnabled(receive)
+        tap(receive)
+        XCTAssertTrue(app.staticTexts["No shared copy in this space"].waitForExistence(timeout: 30))
+        XCTAssertFalse(app.buttons["annotation-anytype-receive-read"].exists)
+        XCTAssertFalse(app.buttons["annotation-anytype-receive-accept"].exists)
+        XCTAssertEqual(try readCanonicalRow(rowID), saved)
+        retainNativeEvidence("normal-receive-without-native-mapping-preserves-body")
+        tap(app.buttons["annotation-anytype-receive-close"])
+        try await waitForAbsence(quick)
+        XCTAssertEqual(try readCanonicalRow(rowID), saved)
         tap(app.navigationBars["Annotations"].buttons["Close"])
         let finalViewport = try viewport()
         XCTAssertEqual(finalViewport.source, initialViewport.source)

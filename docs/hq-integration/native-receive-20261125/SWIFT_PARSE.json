@@ -1,0 +1,32 @@
+{
+  "status": "PASSED_REAL_IOS_PARSE",
+  "files": [
+    {
+      "file": "AnnotationOriginalEditorImport.swift",
+      "sha256": "48c5d416af375d5af75aaf53c3c3944d809dc32345ff2a4278d5e8f837774365",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "file": "AnnotationOriginalEditorProductionUI.swift",
+      "sha256": "234d64a199ae5170e4b417070edb277aefae45969fe9d542fece9bf27035b250",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "file": "AnnotationOriginalEditorReceive.swift",
+      "sha256": "d45f98fdd805b729a7e6e5a7d50a51f22ef894a47f9f616e6485bd2c196f8ddc",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "file": "ProductionAnnotationEditorAcceptanceTests.swift",
+      "sha256": "941a98ada29a216fc3aa23f5c9302312965d6a4fc3df356da0c02506d7bc15bf",
+      "exit": 0,
+      "stderr": ""
+    }
+  ],
+  "typecheck": "NOT_YET_RUN_AGAINST_NEW_SDK_BINARY",
+  "runtime": "NOT_RUN",
+  "free_after_bytes": 33116864512
+}
