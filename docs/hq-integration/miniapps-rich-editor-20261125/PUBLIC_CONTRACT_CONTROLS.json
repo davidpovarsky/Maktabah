@@ -1,0 +1,24 @@
+{
+  "observed_utc": "2026-11-25T05:46:23.003978+00:00",
+  "scope": "Portable admission controls only; zero native tests",
+  "results": [
+    {
+      "test": "test_original_editor_local_admission.py",
+      "returncode": 0,
+      "log_sha256": "e19a86747084065fc6026e9e5463e2291a2e56061843e8a27e0424f4fed284be",
+      "output": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.018s\n\nOK\n"
+    },
+    {
+      "test": "test_original_editor_stageb_admission.py",
+      "returncode": 0,
+      "log_sha256": "9e107418feaf637693a8aa33ce8db5d2eb335110e3c6a4924d0debed34dc966f",
+      "output": "......................\n----------------------------------------------------------------------\nRan 22 tests in 0.703s\n\nOK\n"
+    },
+    {
+      "test": "test_original_editor_miniapps_admission.py",
+      "returncode": 0,
+      "log_sha256": "4c979c0d06f0e9e2109df48cae7f69ac5d403754045b4cfe404fe744e7390b47",
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.011s\n\nOK\n"
+    }
+  ]
+}

@@ -7,6 +7,154 @@ import CryptoKit
 final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     override var readerTestTier: TestTier { .realUI }
 
+
+    private struct PickerPreferences: Decodable, Equatable {
+        let favorites: [String]
+        let hidden: Set<String>
+        let opensInNewWindow: Bool
+    }
+
+    private struct PickerPreferencesEnvelope: Decodable {
+        let schemaVersion: Int
+        let value: PickerPreferences
+    }
+
+    private func pickerPreferences(in shared: URL) throws -> PickerPreferences {
+        let path = shared.appendingPathComponent("preferences.json")
+        guard FileManager.default.fileExists(atPath: path.path) else {
+            return PickerPreferences(favorites: [], hidden: [], opensInNewWindow: true)
+        }
+        let envelope = try JSONDecoder().decode(PickerPreferencesEnvelope.self, from: Data(contentsOf: path))
+        XCTAssertEqual(envelope.schemaVersion, 1)
+        return envelope.value
+    }
+
+    @MainActor
+    private func retainPickerSnapshot(named name: String, shared: URL) throws {
+        retainScreenshot(app, named: name)
+        let hierarchy = XCTAttachment(string: app.debugDescription)
+        hierarchy.name = name + "-accessibility"
+        hierarchy.lifetime = .keepAlways
+        add(hierarchy)
+        let path = shared.appendingPathComponent("preferences.json")
+        if FileManager.default.fileExists(atPath: path.path) {
+            let preferences = XCTAttachment(data: try Data(contentsOf: path), uniformTypeIdentifier: "public.json")
+            preferences.name = name + "-actual-preferences"
+            preferences.lifetime = .keepAlways
+            add(preferences)
+        }
+    }
+
+    @MainActor
+    private func verifyPickerEditing(shared: URL) async throws {
+        let original = try pickerPreferences(in: shared)
+        let catalog = try XCTUnwrap(
+            try JSONSerialization.jsonObject(with: Data(contentsOf: shared.appendingPathComponent("catalog.json")))
+                as? [String: Any])
+        let items = try XCTUnwrap(catalog["items"] as? [[String: Any]])
+        let candidates = try items.compactMap { item -> (id: String, title: String)? in
+            let id = try XCTUnwrap(item["id"] as? String)
+            guard !original.favorites.contains(id), !original.hidden.contains(id) else { return nil }
+            let localized = item["localizedTitles"] as? [String: String] ?? [:]
+            let title = try XCTUnwrap(localized["en_US"] ?? localized["en"] ?? item["title"] as? String)
+            return (id, title)
+        }
+        XCTAssertGreaterThanOrEqual(candidates.count, 2,
+            "The isolated real producer catalog must provide two suggestions for native reordering")
+        let first = try XCTUnwrap(candidates.first)
+        let second = try XCTUnwrap(candidates.dropFirst().first)
+        try retainPickerSnapshot(named: "otzaria-picker-original-chooser-ipad-en", shared: shared)
+        tap(app.buttons["miniapps-more"])
+        let edit = app.buttons["miniapps-editor-edit"]
+        XCTAssertTrue(edit.waitForExistence(timeout: 15))
+        XCTAssertEqual(edit.label, "Edit")
+        try retainPickerSnapshot(named: "otzaria-picker-more-ipad-en", shared: shared)
+        tap(edit)
+        XCTAssertEqual(edit.label, "Done")
+        XCTAssertFalse(app.buttons["miniapps-editor-dismiss"].exists,
+            "Edit mode has one native Done action")
+        try retainPickerSnapshot(named: "otzaria-picker-native-edit-ipad-en", shared: shared)
+
+        let visible = app.switches["miniapps-visible-" + first.id]
+        XCTAssertTrue(visible.waitForExistence(timeout: 15))
+        tap(visible)
+        try await requireNativeCondition(timeout: 15) {
+            try self.pickerPreferences(in: shared).hidden.contains(first.id) != original.hidden.contains(first.id)
+        }
+        tap(visible)
+        try await requireNativeCondition(timeout: 15) {
+            try self.pickerPreferences(in: shared).hidden == original.hidden
+        }
+        for item in [first, second] {
+            let addFavorite = app.buttons["Add to Favorites: " + item.title]
+            XCTAssertTrue(addFavorite.waitForExistence(timeout: 15))
+            tap(addFavorite)
+            try await requireNativeCondition(timeout: 15) {
+                try self.pickerPreferences(in: shared).favorites.contains(item.id)
+            }
+        }
+        for _ in 0..<3 { app.swipeDown() }
+        let firstCell = app.cells.containing(.staticText, identifier: first.title).firstMatch
+        let secondCell = app.cells.containing(.staticText, identifier: second.title).firstMatch
+        let reorderPredicate = NSPredicate(format: "label BEGINSWITH %@", "Reorder")
+        let firstHandle = firstCell.buttons.matching(reorderPredicate).firstMatch
+        let secondHandle = secondCell.buttons.matching(reorderPredicate).firstMatch
+        XCTAssertTrue(firstHandle.waitForExistence(timeout: 15) && firstHandle.isHittable)
+        XCTAssertTrue(secondHandle.waitForExistence(timeout: 15) && secondHandle.isHittable)
+        try retainPickerSnapshot(named: "otzaria-picker-favorites-before-native-drag", shared: shared)
+        secondHandle.press(forDuration: 0.7, thenDragTo: firstHandle)
+        try await requireNativeCondition(timeout: 15) {
+            let ordered = try self.pickerPreferences(in: shared).favorites
+            guard let a = ordered.firstIndex(of: first.id), let b = ordered.firstIndex(of: second.id) else { return false }
+            return b < a
+        }
+        try retainPickerSnapshot(named: "otzaria-picker-favorites-after-native-drag", shared: shared)
+        tap(edit)
+        XCTAssertTrue(app.buttons["miniapps-editor-dismiss"].waitForExistence(timeout: 15))
+        tap(app.buttons["miniapps-editor-dismiss"])
+        XCTAssertTrue(app.buttons["miniapps-more"].waitForExistence(timeout: 15))
+        tap(app.buttons["miniapps-more"])
+        XCTAssertEqual(edit.label, "Edit")
+        try retainPickerSnapshot(named: "otzaria-picker-reopened-persisted-order", shared: shared)
+        tap(edit)
+        for item in [second, first] {
+            let cell = app.cells.containing(.staticText, identifier: item.title).firstMatch
+            let remove = cell.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Delete")).firstMatch
+            XCTAssertTrue(remove.waitForExistence(timeout: 15))
+            tap(remove)
+            let removedImmediately = try await waitUntil(timeout: 1) {
+                try !self.pickerPreferences(in: shared).favorites.contains(item.id)
+            }
+            if !removedImmediately {
+                let confirm = cell.buttons["Delete"]
+                XCTAssertTrue(confirm.waitForExistence(timeout: 5))
+                tap(confirm)
+            }
+            try await requireNativeCondition(timeout: 15) {
+                try !self.pickerPreferences(in: shared).favorites.contains(item.id)
+            }
+        }
+        let window = app.switches["miniapps-new-window"]
+        for _ in 0..<6 {
+            if window.isHittable { break }
+            app.swipeUp()
+        }
+        XCTAssertTrue(window.isHittable)
+        tap(window)
+        try await requireNativeCondition(timeout: 15) {
+            try self.pickerPreferences(in: shared).opensInNewWindow != original.opensInNewWindow
+        }
+        try retainPickerSnapshot(named: "otzaria-picker-window-preference-changed", shared: shared)
+        tap(window)
+        try await requireNativeCondition(timeout: 15) {
+            try self.pickerPreferences(in: shared) == original
+        }
+        tap(edit)
+        XCTAssertEqual(edit.label, "Edit")
+        tap(app.buttons["miniapps-editor-dismiss"])
+        XCTAssertTrue(app.buttons["miniapps-more"].waitForExistence(timeout: 15))
+    }
+
     private struct Content: Decodable { let text: String? }
     private struct Selection: Decodable { let location: Int; let length: Int; let text: String }
     private struct Source: Decodable {
@@ -17,8 +165,10 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let selection: Selection?
         let metadata: [String: String]
     }
+    private struct Callbacks: Decodable { let success: URL? }
     private struct Request: Decodable {
         let id: UUID
+        let callbacks: Callbacks
         let appID: String
         let operation: String
         let source: Source
@@ -118,6 +268,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
 
         let existingRequests = Set(try records(in: shared).map { $0.request.id })
         tap(app.buttons["otzaria-note-miniapps"])
+        try await verifyPickerEditing(shared: shared)
         let textStudio = app.buttons["miniapps-launch-nativeapp.textstudio"]
         if !textStudio.waitForExistence(timeout: 3) {
             tap(app.buttons["miniapps-more"])
@@ -271,6 +422,321 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
             expectedRows: priorRows.union([rowIdentifier]))
         let editorAfterReader = try persistedReceipt(requestID: coldPending.request.id, databasePath: document.profile)
         XCTAssertEqual(editorAfterReader.note, expectedColdText, "Reader output must create its own linked note")
+        try await verifyOriginalRichEditorRoundTrips(producer: producer, shared: shared)
+        XCTAssertEqual(try persistedReceipt(requestID: coldPending.request.id,
+            databasePath: document.profile).note, expectedColdText,
+            "The separate rich note must not change the first original note")
+    }
+
+    private struct NativeContext: Decodable {
+        struct Node: Decodable { let id: String; let bodyText: String? }
+        let documentText: String
+        let selectedText: String?
+        let selectionLocation: Int?
+        let selectionLength: Int?
+        let blockIDs: [String]
+        let nodes: [Node]
+    }
+
+    private struct RichState: Equatable {
+        let revision: Int64
+        let mutationID: UUID
+        let payloadSHA256: String
+        let bodySHA256: String
+        let bodyBytes: Int
+        let preview: String
+    }
+
+    @MainActor
+    private func verifyOriginalRichEditorRoundTrips(producer: XCUIApplication, shared: URL) async throws {
+        for key in ["OTZARIA_ORIGINAL_EDITOR_QUALIFICATION", "OTZARIA_ORIGINAL_EDITOR_PROCESS_RESUME"] {
+            XCTAssertNil(app.launchEnvironment[key], "Use the ordinary original editor")
+        }
+        try await openAnnotations()
+        let previous = Set(annotationRows().allElementsBoundByIndex.map(\.identifier))
+        tap(app.navigationBars["Annotations"].buttons["Close"])
+        tap(try originalStudyToolsActionInWindow())
+        let tools = app.segmentedControls["torah-inspector-tools"]
+        XCTAssertTrue(tools.waitForExistence(timeout: 15))
+        tap(tools.buttons["Notes"])
+        tap(app.buttons["torah-inspector-add-note"])
+        let quick = app.textViews["annotation-note-text"]
+        XCTAssertTrue(quick.waitForExistence(timeout: 15))
+        let first = "Original rich Alpha " + UUID().uuidString
+        let second = "Original rich Beta שלום " + UUID().uuidString
+        tap(quick); quick.typeText(first)
+        tap(app.buttons["annotation-save-toolbar"])
+        try await requireNativeCondition(timeout: 30) { !quick.exists }
+        tap(app.buttons["torah-inspector-close"])
+        try await openAnnotations()
+        try await requireNativeCondition(timeout: 20) {
+            self.annotationRows().allElementsBoundByIndex.filter { !previous.contains($0.identifier) }.count == 1
+        }
+        let row = try XCTUnwrap(annotationRows().allElementsBoundByIndex.first { !previous.contains($0.identifier) })
+        let rowID = try XCTUnwrap(Int64(row.identifier.dropFirst("original-book-annotation-".count)))
+        editAnnotation(row)
+        let open = app.buttons["annotation-expanded-editor-open"]
+        try await requireNativeCondition(timeout: 30) { open.exists && open.isEnabled }
+        tap(open)
+        var host = try await richHost()
+        let firstBody = try await richBody(first, host: host)
+        firstBody.coordinate(withNormalizedOffset: CGVector(dx: 0.98, dy: 0.5)).tap()
+        firstBody.typeText("\n")
+        let blanks = host.textViews.matching(NSPredicate(format: "value == %@", ""))
+        try await requireNativeCondition(timeout: 20) {
+            blanks.allElementsBoundByIndex.filter { $0.isHittable }.count == 1
+        }
+        let blank = try XCTUnwrap(blanks.allElementsBoundByIndex.first { $0.isHittable })
+        tap(blank); blank.typeText(second)
+        _ = try await richBody(second, host: host)
+        // Capture a real caret from the first native block. If the original
+        // toolbar ends focus, the SDK's no-selection insertion adds a block;
+        // expected topology is derived from its actual native context below.
+        tap(try await richBody(first, host: host))
+        let beforeWarm = Set(try records(in: shared).map { $0.request.id })
+        tap(app.buttons["annotation-expanded-editor-miniapps"])
+        try await openActualTextStudio(producer)
+        let warm = try XCTUnwrap(try records(in: shared).first { !beforeWarm.contains($0.request.id) })
+        let warmDocument = try JSONDecoder().decode(Document.self,
+            from: Data(try XCTUnwrap(warm.request.source.metadata["otzaria.annotation.v1"]).utf8))
+        XCTAssertEqual(warmDocument.annotationID, rowID)
+        XCTAssertEqual(warm.request.source.kind, "native-annotation")
+        XCTAssertEqual(warm.request.operation, "insert")
+        XCTAssertEqual(warm.request.source.documentText, first + "\n" + second)
+        let launch = try richState(rowID: rowID, databasePath: warmDocument.profile)
+        XCTAssertGreaterThan(launch.revision, 0, "Leaving the app must save the complete native launch baseline")
+
+        // Edit another real native block while the result is pending. Only
+        // application activation is assisted; the result itself returns by URL.
+        app.activate()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
+        host = try await richHost()
+        let newerSecond = "Newer unsaved rich Beta שלום " + UUID().uuidString
+        let other = try await richBody(second, host: host)
+        tap(other); other.typeKey("a", modifierFlags: .command); other.typeText(newerSecond)
+        _ = try await richBody(newerSecond, host: host)
+        XCTAssertEqual(try richState(rowID: rowID, databasePath: warmDocument.profile), launch,
+            "The newer native draft is genuinely unsaved before the callback")
+        producer.activate()
+        XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 30))
+        let warmText = "MiniApps rich warm שלום " + UUID().uuidString
+        try typeActualStudioResult(warmText, producer: producer)
+        let expectedWarm = try expectedNativeBodies(request: warm.request, text: warmText,
+            bodyOverrides: [second: newerSecond])
+        tap(producer.buttons["miniapps.textstudio.return"])
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 60))
+        host = try await richHost()
+        try await assertNativeBodies(expectedWarm, host: host)
+        try await requireNativeCondition(timeout: 60) {
+            (try? self.records(in: shared).first { $0.request.id == warm.request.id }?.acknowledged) == true
+        }
+        let warmSaved = try richState(rowID: rowID, databasePath: warmDocument.profile)
+        XCTAssertEqual(warmSaved.revision, launch.revision + 1)
+        XCTAssertEqual(warmSaved.mutationID, warm.request.id)
+        XCTAssertEqual(warmSaved.preview, expectedWarm.joined(separator: "\n"))
+        XCTAssertNotEqual(warmSaved.bodySHA256, launch.bodySHA256)
+        XCTAssertEqual(try persistedReceipt(requestID: warm.request.id,
+            databasePath: warmDocument.profile).count, 1)
+        retainScreenshot(app, named: "miniapps-rich-warm-preserved-newer-native-block")
+        attachRichState(warmSaved, name: "miniapps-rich-warm-native-archive")
+
+        // A second launch records a fresh native baseline, then the source is
+        // terminated. No manual launch assists the callback or remount.
+        tap(try await richBody(expectedWarm[0], host: host))
+        let beforeCold = Set(try records(in: shared).map { $0.request.id })
+        tap(app.buttons["annotation-expanded-editor-miniapps"])
+        try await openActualTextStudio(producer)
+        let cold = try XCTUnwrap(try records(in: shared).first { !beforeCold.contains($0.request.id) })
+        let coldDocument = try JSONDecoder().decode(Document.self,
+            from: Data(try XCTUnwrap(cold.request.source.metadata["otzaria.annotation.v1"]).utf8))
+        XCTAssertEqual(coldDocument.annotationID, rowID)
+        XCTAssertEqual(coldDocument.annotationUUID, warmDocument.annotationUUID)
+        XCTAssertEqual(coldDocument.profile, warmDocument.profile)
+        XCTAssertEqual(cold.request.source.kind, "native-annotation")
+        XCTAssertEqual(cold.request.source.documentText, expectedWarm.joined(separator: "\n"))
+        XCTAssertEqual(cold.request.operation, "insert")
+        let coldBaseline = try richState(rowID: rowID, databasePath: coldDocument.profile)
+        XCTAssertEqual(coldBaseline.revision, warmSaved.revision + 1)
+        let coldText = "MiniApps rich cold שלום " + UUID().uuidString
+        try typeActualStudioResult(coldText, producer: producer)
+        let expectedCold = try expectedNativeBodies(request: cold.request, text: coldText)
+        app.terminate()
+        XCTAssertTrue(app.wait(for: .notRunning, timeout: 20))
+        XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 15))
+        tap(producer.buttons["miniapps.textstudio.return"])
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 90),
+            "Only the actual MiniApps callback may cold-launch the original source")
+        host = try await richHost()
+        try await assertNativeBodies(expectedCold, host: host)
+        try await requireNativeCondition(timeout: 60) {
+            (try? self.records(in: shared).first { $0.request.id == cold.request.id }?.acknowledged) == true
+        }
+        let coldSaved = try richState(rowID: rowID, databasePath: coldDocument.profile)
+        XCTAssertEqual(coldSaved.revision, coldBaseline.revision + 1)
+        XCTAssertEqual(coldSaved.mutationID, cold.request.id)
+        XCTAssertEqual(coldSaved.preview, expectedCold.joined(separator: "\n"))
+        XCTAssertTrue(expectedCold.contains(newerSecond))
+        XCTAssertEqual(try persistedReceipt(requestID: cold.request.id,
+            databasePath: coldDocument.profile).count, 1)
+        XCTAssertEqual(try persistedReceipt(requestID: warm.request.id,
+            databasePath: warmDocument.profile).count, 1)
+        retainScreenshot(app, named: "miniapps-rich-cold-native-remount")
+        attachRichState(coldSaved, name: "miniapps-rich-cold-native-archive")
+
+        // Repeat the actual acknowledged callback URL; never fabricate a result.
+        var callback = try XCTUnwrap(URLComponents(url: try XCTUnwrap(cold.request.callbacks.success),
+            resolvingAgainstBaseURL: false))
+        callback.queryItems = (callback.queryItems ?? []) + [
+            .init(name: "request", value: cold.request.id.uuidString)
+        ]
+        XCUIDevice.shared.press(.home)
+        app.open(try XCTUnwrap(callback.url))
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 60))
+        retainScreenshot(app, named: "miniapps-rich-duplicate-callback")
+        XCTAssertEqual(try richState(rowID: rowID, databasePath: coldDocument.profile), coldSaved,
+            "A duplicate callback must not create another native revision or rewrite its archive")
+        XCTAssertEqual(try persistedReceipt(requestID: cold.request.id,
+            databasePath: coldDocument.profile).count, 1)
+    }
+
+    @MainActor
+    private func openActualTextStudio(_ producer: XCUIApplication) async throws {
+        let action = app.buttons["miniapps-launch-nativeapp.textstudio"]
+        if !action.waitForExistence(timeout: 3) { tap(app.buttons["miniapps-more"]) }
+        XCTAssertTrue(action.waitForExistence(timeout: 30) && action.isHittable)
+        tap(action)
+        XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 30))
+        let editors = producer.textViews.matching(identifier: "miniapps.textstudio.editor")
+        XCTAssertTrue(editors.firstMatch.waitForExistence(timeout: 30))
+        XCTAssertEqual(editors.count, 1)
+        XCTAssertEqual(editors.firstMatch.value as? String ?? "", "")
+    }
+
+    @MainActor
+    private func typeActualStudioResult(_ text: String, producer: XCUIApplication) throws {
+        let editor = producer.textViews["miniapps.textstudio.editor"]
+        XCTAssertTrue(editor.exists && editor.isHittable)
+        editor.tap(); editor.typeKey("a", modifierFlags: .command); editor.typeText(text)
+        XCTAssertEqual(editor.value as? String, text)
+        XCTAssertTrue(producer.buttons["miniapps.textstudio.return"].isHittable)
+    }
+
+    private func expectedNativeBodies(request: Request, text: String,
+                                      bodyOverrides: [String: String] = [:]) throws -> [String] {
+        let context = try JSONDecoder().decode(NativeContext.self, from:
+            Data(try XCTUnwrap(request.source.metadata["otzaria.original-editor.miniapps.v1"]).utf8))
+        let nodes = context.nodes.filter { $0.bodyText != nil }
+        XCTAssertEqual(context.documentText, nodes.compactMap(\.bodyText).joined(separator: "\n"))
+        var bodies = nodes.compactMap(\.bodyText).map { bodyOverrides[$0] ?? $0 }
+        if context.blockIDs.isEmpty {
+            XCTAssertNil(context.selectionLocation); XCTAssertNil(context.selectionLength)
+            bodies.append(text)
+        } else {
+            XCTAssertEqual(context.blockIDs.count, 1)
+            let index = try XCTUnwrap(nodes.firstIndex { $0.id == context.blockIDs.first })
+            XCTAssertEqual(index, 0, "The actual first native body owns the selected insertion")
+            let location = try XCTUnwrap(context.selectionLocation)
+            let length = try XCTUnwrap(context.selectionLength)
+            XCTAssertEqual(length, 0)
+            let range = try XCTUnwrap(Range(NSRange(location: location, length: length), in: bodies[index]))
+            bodies[index].insert(contentsOf: text, at: range.upperBound)
+        }
+        return bodies
+    }
+
+    @MainActor
+    private func requireNativeCondition(timeout: TimeInterval,
+                                        condition: @escaping @MainActor () throws -> Bool) async throws {
+        let satisfied = try await waitUntil(timeout: timeout, condition: condition)
+        XCTAssertTrue(satisfied)
+    }
+
+    @MainActor
+    private func richHost() async throws -> XCUIElement {
+        let hosts = app.descendants(matching: .any).matching(identifier: "annotation-expanded-editor-host")
+        let save = app.buttons["annotation-expanded-editor-save"]
+        try await requireNativeCondition(timeout: 120) {
+            hosts.count == 1 && save.exists && save.isEnabled
+        }
+        XCTAssertEqual(hosts.count, 1)
+        XCTAssertFalse(app.staticTexts["The editor could not finish"].exists)
+        return hosts.firstMatch
+    }
+
+    @MainActor
+    private func richBody(_ text: String, host: XCUIElement) async throws -> XCUIElement {
+        let bodies = host.textViews.matching(NSPredicate(format: "value == %@", text))
+        try await requireNativeCondition(timeout: 30) { bodies.count == 1 && bodies.firstMatch.isHittable }
+        XCTAssertEqual(bodies.count, 1)
+        XCTAssertFalse(bodies.firstMatch.frame.isEmpty)
+        return bodies.firstMatch
+    }
+
+    @MainActor
+    private func assertNativeBodies(_ expected: [String], host: XCUIElement) async throws {
+        XCTAssertEqual(Set(expected).count, expected.count)
+        for text in expected { _ = try await richBody(text, host: host) }
+        XCTAssertEqual(host.textViews.matching(NSPredicate(format: "value IN %@", expected)).count, expected.count,
+            "The actual original editor must retain the separate native blocks")
+    }
+
+    private func richState(rowID: Int64, databasePath: String) throws -> RichState {
+        var connection: OpaquePointer?
+        XCTAssertEqual(sqlite3_open_v2(databasePath, &connection,
+            SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX, nil), SQLITE_OK)
+        let database = try XCTUnwrap(connection)
+        defer { sqlite3_close(database) }
+        XCTAssertEqual(sqlite3_db_readonly(database, "main"), 1)
+        let sql = """
+            SELECT h.revision, v.mutation_id, v.payload_digest, v.payload_base64, a.note
+            FROM annotations a
+            JOIN otzaria_annotation_exchange_heads h
+              ON h.namespace = 'otzaria.local.annotation' AND lower(h.annotation_uuid) = lower(a.ckRecordId)
+            JOIN otzaria_annotation_exchange_versions v
+              ON v.namespace = h.namespace AND v.annotation_uuid = h.annotation_uuid AND v.revision = h.revision
+            WHERE a.id = ?;
+            """
+        var prepared: OpaquePointer?
+        XCTAssertEqual(sqlite3_prepare_v2(database, sql, -1, &prepared, nil), SQLITE_OK)
+        let statement = try XCTUnwrap(prepared)
+        defer { sqlite3_finalize(statement) }
+        XCTAssertEqual(sqlite3_bind_int64(statement, 1, rowID), SQLITE_OK)
+        XCTAssertEqual(sqlite3_step(statement), SQLITE_ROW)
+        func string(_ column: Int32) throws -> String {
+            XCTAssertEqual(sqlite3_column_type(statement, column), SQLITE_TEXT)
+            return String(cString: try XCTUnwrap(sqlite3_column_text(statement, column)))
+        }
+        let revision = sqlite3_column_int64(statement, 0)
+        let mutationID = try XCTUnwrap(UUID(uuidString: try string(1)))
+        let payloadDigest = try string(2)
+        let encoded = try string(3)
+        let preview = try string(4)
+        XCTAssertEqual(sqlite3_step(statement), SQLITE_DONE)
+        let payload = try XCTUnwrap(Data(base64Encoded: encoded))
+        XCTAssertEqual(payload.base64EncodedString(), encoded)
+        XCTAssertEqual(SHA256.hash(data: payload).map { String(format: "%02x", $0) }.joined(), payloadDigest)
+        let envelope = try XCTUnwrap(JSONSerialization.jsonObject(with: payload) as? [String: Any])
+        XCTAssertEqual(envelope["namespace"] as? String, "otzaria.local.annotation")
+        XCTAssertEqual(envelope["textPreview"] as? String, preview)
+        let rich = try XCTUnwrap(envelope["richBody"] as? [String: Any])
+        XCTAssertEqual(rich["format"] as? String, "anytype.native-protobuf-archive")
+        XCTAssertEqual(rich["formatVersion"] as? Int, 1)
+        let body = try XCTUnwrap(Data(base64Encoded: try XCTUnwrap(rich["bytesBase64"] as? String)))
+        XCTAssertEqual(body.prefix(8), Data([0x41, 0x54, 0x4f, 0x53, 0x4e, 0x41, 0x50, 0]))
+        return .init(revision: revision, mutationID: mutationID, payloadSHA256: payloadDigest,
+            bodySHA256: SHA256.hash(data: body).map { String(format: "%02x", $0) }.joined(),
+            bodyBytes: body.count, preview: preview)
+    }
+
+    private func attachRichState(_ state: RichState, name: String) {
+        let value: [String: Any] = ["revision": state.revision, "mutationID": state.mutationID.uuidString,
+            "payloadSHA256": state.payloadSHA256, "bodySHA256": state.bodySHA256,
+            "bodyBytes": state.bodyBytes, "preview": state.preview]
+        guard let data = try? JSONSerialization.data(withJSONObject: value, options: [.sortedKeys]) else {
+            XCTFail("Actual rich archive evidence is invalid"); return
+        }
+        let attachment = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
+        attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
     }
 
     @MainActor

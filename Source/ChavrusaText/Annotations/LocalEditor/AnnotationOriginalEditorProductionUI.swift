@@ -3,6 +3,7 @@ import Foundation
 import SwiftUI
 import Observation
 import AnytypeOriginalEditor
+import HanlinMiniAppsBridge
 
 /// Normal note editing can never replace an opaque rich body with its preview.
 enum AnnotationOriginalEditorAvailability: Equatable {
@@ -281,12 +282,12 @@ struct AnnotationOriginalEditorProductionEntry: View {
 }
 
 @MainActor @Observable
-private final class AnnotationOriginalEditorProductionPresentation: Identifiable {
+final class AnnotationOriginalEditorProductionPresentation: Identifiable {
     enum Stage { case opening, editing, saving, saved, failed, closed }
 
     let id = UUID()
-    let annotation: Annotation
-    private let inspected: AnnotationLocalEditorSnapshot
+    private(set) var annotation: Annotation
+    private var inspected: AnnotationLocalEditorSnapshot?
     private let workspace: StudyWorkspaceNavigationAdapter
     private let presentationLifetime = AnnotationLocalEditorLifetime()
     private var local: AnnotationLocalEditorSession?
@@ -296,8 +297,10 @@ private final class AnnotationOriginalEditorProductionPresentation: Identifiable
     private var closed = false
     private(set) var mount: AnnotationOriginalEditorMount?
     private(set) var stage: Stage = .opening
+    @ObservationIgnored var onReady: (() -> Void)?
+    @ObservationIgnored var onOpenFailure: ((Error) -> Void)?
 
-    init(annotation: Annotation, inspected: AnnotationLocalEditorSnapshot,
+    init(annotation: Annotation, inspected: AnnotationLocalEditorSnapshot?,
          workspace: StudyWorkspaceNavigationAdapter) {
         self.annotation = annotation
         self.inspected = inspected
@@ -311,44 +314,68 @@ private final class AnnotationOriginalEditorProductionPresentation: Identifiable
         guard !started, !closed else { return }
         started = true
         do {
-            let observation = try AnnotationOriginalEditorSourceObservation(
-                annotation: annotation, store: AnnotationStore.shared, workspace: workspace,
-                presentationLifetime: presentationLifetime
-            )
-            source = observation
-            let local = try AnnotationStore.shared.makeLocalAnnotationEditor(
-                annotation: annotation, supportedFormats: AnnotationOriginalEditorMount.supportedFormats
-            )
-            self.local = local
-            try observation.bindLocal(local)
-            let snapshot = try await local.read()
-            try observation.requireCurrent()
-            // The inspection is only a comparison witness. A fresh original
-            // session owns this operation, and never adopts a changed row.
-            guard snapshot.annotationUUID == inspected.annotationUUID,
-                  snapshot.annotation.id == inspected.annotation.id,
-                  snapshot.databaseURL.absoluteString.utf8.elementsEqual(inspected.databaseURL.absoluteString.utf8),
-                  snapshot.source == inspected.source,
-                  snapshot.revision == inspected.revision,
-                  snapshot.version == inspected.version else {
-                throw AnnotationOriginalEditorUIError.changed
-            }
-            let opened = try await AnnotationOriginalEditorMount.openLocalAnnotation(
-                local: local, snapshot: snapshot, source: observation,
-                appGroup: ITorahSharedContainer.chavrusaTextAppGroupIdentifier
-            )
-            guard !closed, !Task.isCancelled else {
-                opened.retire()
-                throw AnnotationOriginalEditorUIError.closed
-            }
-            mount = opened
-            stage = .editing
+            try await open(expected: inspected)
+            let ready = onReady
+            onReady = nil
+            ready?()
         } catch {
             mount?.retire()
             source?.retire()
             local?.retire()
             if !closed { stage = .failed }
+            let failed = onOpenFailure
+            onOpenFailure = nil
+            failed?(error)
         }
+    }
+
+    private func open(expected: AnnotationLocalEditorSnapshot?) async throws {
+        mount?.retire()
+        source?.retire()
+        local?.retire()
+        let observation = try AnnotationOriginalEditorSourceObservation(
+            annotation: annotation, store: AnnotationStore.shared, workspace: workspace,
+            presentationLifetime: presentationLifetime
+        )
+        source = observation
+        let local = try AnnotationStore.shared.makeLocalAnnotationEditor(
+            annotation: annotation, supportedFormats: AnnotationOriginalEditorMount.supportedFormats
+        )
+        self.local = local
+        try observation.bindLocal(local)
+        let snapshot = try await local.read()
+        try observation.requireCurrent()
+        if let expected {
+            guard snapshot.annotationUUID == expected.annotationUUID,
+                  snapshot.annotation.id == expected.annotation.id,
+                  snapshot.databaseURL.absoluteString.utf8.elementsEqual(expected.databaseURL.absoluteString.utf8),
+                  snapshot.source == expected.source,
+                  snapshot.revision == expected.revision,
+                  snapshot.version == expected.version else {
+                throw AnnotationOriginalEditorUIError.changed
+            }
+        }
+        let opened = try await AnnotationOriginalEditorMount.openLocalAnnotation(
+            local: local, snapshot: snapshot, source: observation,
+            appGroup: ITorahSharedContainer.chavrusaTextAppGroupIdentifier
+        )
+        guard !closed, !Task.isCancelled else {
+            opened.retire()
+            throw AnnotationOriginalEditorUIError.closed
+        }
+        mount = opened
+        annotation = snapshot.annotation
+        inspected = snapshot
+        try opened.setMiniAppsAction { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let context): self.launchMiniApps(context: context)
+            case .failure(let error):
+                OtzariaMiniAppsCoordinator.shared.show(error: error, sourceView: self.mount?.viewController.view)
+            }
+        }
+        OtzariaMiniAppsCoordinator.shared.registerOriginalEditor(self)
+        stage = .editing
     }
 
     func save() {
@@ -358,17 +385,68 @@ private final class AnnotationOriginalEditorProductionPresentation: Identifiable
             defer { operation = nil }
             do {
                 let outcome = try await mount.save()
-                // Either outcome is a real durable commit, even if its old
-                // presentation lost authority while the SQLite worker ran.
                 switch outcome {
                 case .committed, .completedWithoutOwnership:
                     if !closed { stage = .saved }
                 }
             } catch {
-                // Keep mount and its original retained capture for recovery.
-                // No automatic native recapture or uncertain commit retry.
                 if !closed { stage = .failed }
             }
+        }
+    }
+
+    func launchMiniApps(context supplied: AnytypeOriginalEditorMiniAppsContext? = nil) {
+        guard canSave, operation == nil, let mount else { return }
+        stage = .saving
+        operation = Task { [self] in
+            defer { operation = nil }
+            do {
+                let context: AnytypeOriginalEditorMiniAppsContext
+                if let supplied { context = supplied }
+                else { context = try await mount.miniAppsContext() }
+                let launch = try await mount.prepareMiniAppsLaunch(context: context)
+                switch launch.outcome {
+                case .committed(let saved):
+                    annotation = saved.snapshot.annotation
+                    try await open(expected: saved.snapshot)
+                    guard let reopened = self.mount else { throw AnnotationOriginalEditorUIError.closed }
+                    let restored = try await reopened.restoreMiniAppsContext(launch.context)
+                    OtzariaMiniAppsCoordinator.shared.showOriginalEditor(annotation: annotation,
+                        context: restored, editorID: id, sourceView: reopened.viewController.view)
+                case .completedWithoutOwnership:
+                    if !closed { stage = .saved }
+                }
+            } catch {
+                let resumed = await self.mount?.resumeMiniAppsEditingAfterConflict() ?? false
+                if !closed { stage = resumed ? .editing : .failed }
+                OtzariaMiniAppsCoordinator.shared.show(error: error, sourceView: self.mount?.viewController.view)
+            }
+        }
+    }
+
+    func applyMiniApps(_ result: MiniAppResult, contextJSON: String,
+                      text: String) async throws -> AnnotationLocalEditorOutcome {
+        guard canSave, operation == nil, let mount else { throw AnnotationLocalEditorError.busy }
+        let context = try JSONDecoder().decode(AnytypeOriginalEditorMiniAppsContext.self,
+            from: Data(contextJSON.utf8))
+        stage = .saving
+        do {
+            let restored = try await mount.restoreMiniAppsContext(context)
+            let outcome = try await mount.applyMiniApps(result, context: restored, text: text)
+            switch outcome {
+            case .committed(let saved):
+                annotation = saved.snapshot.annotation
+                do { try await open(expected: saved.snapshot) }
+                catch { if !closed { stage = .failed } }
+            case .completedWithoutOwnership:
+                if !closed { stage = .saved }
+            }
+            // Do not hide an actual commit if the presentation cannot reopen.
+            return outcome
+        } catch {
+            let resumed = await mount.resumeMiniAppsEditingAfterConflict()
+            if !closed { stage = resumed ? .editing : .failed }
+            throw error
         }
     }
 
@@ -380,6 +458,7 @@ private final class AnnotationOriginalEditorProductionPresentation: Identifiable
     func retire() {
         guard !closed else { return }
         closed = true
+        OtzariaMiniAppsCoordinator.shared.unregisterOriginalEditor(id: id)
         presentationLifetime.retire()
         operation?.cancel()
         mount?.retire()
@@ -389,6 +468,7 @@ private final class AnnotationOriginalEditorProductionPresentation: Identifiable
     }
 
     isolated deinit {
+        OtzariaMiniAppsCoordinator.shared.unregisterOriginalEditor(id: id)
         presentationLifetime.retire()
         operation?.cancel()
         mount?.retire()
@@ -398,7 +478,7 @@ private final class AnnotationOriginalEditorProductionPresentation: Identifiable
 }
 
 @MainActor
-private struct AnnotationOriginalEditorProductionView: View {
+struct AnnotationOriginalEditorProductionView: View {
     @Environment(\.dismiss) private var dismiss
     let model: AnnotationOriginalEditorProductionPresentation
     @State private var showDiscardConfirmation = false
@@ -463,6 +543,13 @@ private struct AnnotationOriginalEditorProductionView: View {
                 .background(.bar)
             }
             .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    Button { model.launchMiniApps() } label: {
+                        Label("Mini Apps", systemImage: "square.grid.2x2")
+                    }
+                    .disabled(!model.canSave)
+                    .accessibilityIdentifier("annotation-expanded-editor-miniapps")
+                }
                 ToolbarItem(placement: .cancellationAction) {
                     Button {
                         if model.canSave { showDiscardConfirmation = true }

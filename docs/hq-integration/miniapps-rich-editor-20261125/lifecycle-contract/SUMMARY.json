@@ -1,0 +1,21 @@
+{
+  "combined_public_contract_sha256": "b8a02497aeabab316d85daf2dab5045b1d94dac98a14b7ccc89a3b7c9a6509c0",
+  "native_tests_executed": 0,
+  "qualified_sdk": false,
+  "status": "PORTABLE_ADMISSION_CONTROLS_PASS",
+  "suites": [
+    {
+      "name": "local_admission",
+      "tests": 7
+    },
+    {
+      "name": "existing_stage_b",
+      "tests": 22
+    },
+    {
+      "name": "miniapps_and_lifecycle",
+      "tests": 14
+    }
+  ],
+  "total": 43
+}

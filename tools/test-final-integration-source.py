@@ -55,7 +55,11 @@ class IntegratedSourceTamperControls(unittest.TestCase):
 
     def test_component_substitution_is_rejected(self):
         value = copy.deepcopy(VALUE)
-        value["product_delta"][0]["component"] = "library"
+        row = next(row for row in value["product_delta"]
+                   if row["adoption"] == "UNCHANGED_COMPONENT_OBJECT"
+                   and row["after"] != API["source_object"](
+                       ROOT, value["accepted_components"]["library"], row["path"]))
+        row["component"] = "library"
         with self.assertRaisesRegex(RuntimeError, "Component object"):
             API["verify_rows"](ROOT, value)
 
@@ -69,7 +73,8 @@ class IntegratedSourceTamperControls(unittest.TestCase):
     def test_merge_parent_substitution_is_rejected(self):
         value = copy.deepcopy(VALUE)
         row = next(row for row in value["product_delta"] if row["adoption"] == "EXPLICIT_REVIEWED_MERGE")
-        row["component_objects"]["library"] = None
+        row["component_objects"]["library"] = {"mode": "100644", "kind": "blob",
+                                                "object": "0" * 40, "sha256": "0" * 64, "bytes": 0}
         with self.assertRaisesRegex(RuntimeError, "parent objects"):
             API["verify_rows"](ROOT, value)
 

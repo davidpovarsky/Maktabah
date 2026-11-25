@@ -1,9 +1,9 @@
 {
-  "application_source_sha": "3a7d048c02b28ef81de2e1b4824f9ea996cf54ad",
+  "application_source_sha": "25fe3014b7087b91ecb0bdded0f204d811534551",
   "application_trees": {
-    "Source": "7862a542316da1ce9465b1e6045bf565392cf0b7",
-    "Vendor": "f908b48261fd6783f210c70d7c36c47264b6040c",
-    "Maktabah.xcodeproj": "f10564b40e5e8d6c5b8c4dc780d50841654f0cff"
+    "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3",
+    "Source": "865ef9c1d485e011fe34108beee7dbe126b80ca8",
+    "Vendor": "673a6a8c66ea28350d689da3d60275b63f4d2b91"
   },
   "artifacts": [
     {
@@ -70,8 +70,19 @@
     "Vendor/ZayitSearchPort/Rust": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8",
     "Vendor/ZayitSearchPort/Upstream": "db6dc60006a51db83ec2c6feed1158e4da1a617b"
   },
-  "hanlin_gitlink": "4e921b9517f2fc28fcaebcb2ba7441ab1fb46a90",
-  "otzaria_test_additions_sha256": "bed04e41208c48888993696f5d854752475df3ee263902c4dbd63ec1a59178ae",
+  "final_product_source": {
+    "manifest": "Scripts/CI/final-integration-source.inputs.json",
+    "sha256": "66144787840e79ede839d867eb6f8b9b425065d9490650eab1880c1f5d201846"
+  },
+  "hanlin_gitlink": "9ef80a6ddfc997724360a9a34bb1d05cbf7cad40",
+  "mac_shared_composition": {
+    "historic_receipts_preserved": true,
+    "manifest": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
+    "manifest_sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
+    "new_runtime_acceptance_required": true,
+    "previous_application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed"
+  },
+  "otzaria_test_additions_sha256": "4906d6042b8e340439202e8880e4bcc42d86af3a9ebce07d78861e0dc42cf7ae",
   "rebuild_zayit_framework": false,
   "resource_bundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",
   "resource_producer_sha": "70810eec46ad1fec6f30d983bf31e5f922dacb61",
@@ -105,16 +116,5 @@
       "size": 1810962
     }
   },
-  "sefaria_gitlink": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
-  "mac_shared_composition": {
-    "previous_application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed",
-    "manifest": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
-    "manifest_sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
-    "historic_receipts_preserved": true,
-    "new_runtime_acceptance_required": true
-  },
-  "final_product_source": {
-    "manifest": "Scripts/CI/final-integration-source.inputs.json",
-    "sha256": "4d6da0883818fe730218e8f3b3222c47cb536e15b37cdf5fe5e929bfce7d1ece"
-  }
+  "sefaria_gitlink": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c"
 }

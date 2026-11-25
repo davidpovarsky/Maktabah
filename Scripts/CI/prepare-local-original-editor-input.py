@@ -46,7 +46,7 @@ def prepare(producer_root, evidence, abi_path, destination):
             and owner.get('stageb_qualified') is False, 'Actual shared implementation qualification is incomplete')
     source_before = read_json(evidence / 'source-before.json')
     contract = source_before.get('public_host_contract_sha256')
-    contract = contract if contract == API['LOCAL_ANNOTATION_CONTRACT_SHA256'] else None
+    contract = contract if contract in API['REVIEWED_PUBLIC_HOST_CONTRACTS'] else None
     API['require_compiled_host_api'](qualification, admission_schema=3,
                                      public_contract_sha256=contract)
     observations = qualification.get('verified_runtime_observations', [])

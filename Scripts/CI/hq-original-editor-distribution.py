@@ -19,6 +19,13 @@ TARGET = "Maktabah-iOS"
 BUNDLE = "com.davidpovarsky.chavrusatext"
 QUALIFIED = "ACTUAL_ORIGINAL_FRAMEWORK_EXTERNAL_IMPORT_LINK_RESOURCES_PASS"
 LOCAL_ANNOTATION_CONTRACT_SHA256 = "33594f50c825c490edf5502add640fd478d3249909352e02b0e53ee23b9ee634"
+MINIAPPS_PUBLIC_CONTRACT_SHA256 = "de3d98d7c4db45a184bc40ac7d2d9ca2cb1aa534a6e917d945ca67f3cb583b0c"
+LIFECYCLE_MINIAPPS_PUBLIC_CONTRACT_SHA256 = "b8a02497aeabab316d85daf2dab5045b1d94dac98a14b7ccc89a3b7c9a6509c0"
+MINIAPPS_PUBLIC_CONTRACT_FILES = {
+    MINIAPPS_PUBLIC_CONTRACT_SHA256: ("original-editor-miniapps-public-contract.json", 176),
+    LIFECYCLE_MINIAPPS_PUBLIC_CONTRACT_SHA256: ("original-editor-lifecycle-miniapps-public-contract.json", 260),
+}
+REVIEWED_PUBLIC_HOST_CONTRACTS = (LOCAL_ANNOTATION_CONTRACT_SHA256, *MINIAPPS_PUBLIC_CONTRACT_FILES)
 LOCAL_ANNOTATION_REQUIREMENTS = (('AnytypeOriginalEditorLocalAnnotationSource',),
  ('AnytypeOriginalEditorLocalAnnotationSource', 'hostProfileID'),
  ('AnytypeOriginalEditorLocalAnnotationSource', 'annotationUUID'),
@@ -77,6 +84,26 @@ SYNTAX_NAMES = (
 def require(value, message):
     if not value:
         raise RuntimeError(message)
+
+
+def miniapps_public_contract(contract_sha256=MINIAPPS_PUBLIC_CONTRACT_SHA256):
+    """The exact reviewed producer surface; source text is never a compiled proof."""
+    require(contract_sha256 in MINIAPPS_PUBLIC_CONTRACT_FILES,
+            "Unreviewed MiniApps public contract identity")
+    filename, public_count = MINIAPPS_PUBLIC_CONTRACT_FILES[contract_sha256]
+    path = Path(__file__).with_name(filename)
+    data = path.read_bytes()
+    require(hashlib.sha256(data).hexdigest() == contract_sha256,
+            "Reviewed MiniApps public contract changed")
+    contract = json.loads(data)
+    public, debug = [], []
+    for facade in contract["facades"].values():
+        destination = debug if facade.get("scope") == "DEBUG_SIMULATOR_SPI_ONLY" else public
+        destination.extend(tuple(row) for row in facade["required"])
+    require(len(public) == len(set(public)) == public_count and len(debug) == len(set(debug)) == 22,
+            "Reviewed MiniApps public/SPI declaration closure differs")
+    return {"public": tuple(public), "debug": tuple(debug),
+            "nonconstructible": tuple(contract["nonconstructible_types"])}
 
 
 def digest(path):
@@ -276,11 +303,21 @@ def require_compiled_host_api(qualification, *, retained_original=None, admissio
     require(not production or (admission_schema == 3 and retained_original is None),
             "Production requires the complete SDK's own Release compiler proof")
     required_count = 64 if production else 86 if admission_schema == 3 else 38
+    required_public = ()
+    protected = set()
     if public_contract_sha256 is not None:
-        require(public_contract_sha256 == LOCAL_ANNOTATION_CONTRACT_SHA256
+        require(public_contract_sha256 in REVIEWED_PUBLIC_HOST_CONTRACTS
                 and admission_schema == 3 and retained_original is None,
                 "Unreviewed local annotation public contract")
-        required_count += len(LOCAL_ANNOTATION_REQUIREMENTS)
+        if public_contract_sha256 in MINIAPPS_PUBLIC_CONTRACT_FILES:
+            contract = miniapps_public_contract(public_contract_sha256)
+            required_public = contract["public"]
+            required_count = len(required_public) + (0 if production else len(contract["debug"]))
+            protected = set(contract["nonconstructible"])
+        else:
+            required_public = LOCAL_ANNOTATION_REQUIREMENTS
+            required_count += len(required_public)
+            protected = {"AnytypeOriginalEditorLocalAnnotationSession", "AnytypeOriginalEditorLocalAnnotationCapture"}
     public_api = "EXPOSED_COMPILED_NATIVE_EDITOR_NOT_RUN"
     probe = qualification.get("compiled_consumer_api_probe_sha256")
     public_host_api = qualification.get("public_host_api")
@@ -319,9 +356,8 @@ def require_compiled_host_api(qualification, *, retained_original=None, admissio
     if public_contract_sha256 is not None:
         public_paths = {tuple(symbol.get("path", [])) for symbol in surface["own_public_symbols"]
                         if symbol["spi"] is False}
-        require(set(LOCAL_ANNOTATION_REQUIREMENTS) <= public_paths,
+        require(set(required_public) <= public_paths,
                 "Actual public graph lacks the reviewed local annotation declarations")
-        protected = {"AnytypeOriginalEditorLocalAnnotationSession", "AnytypeOriginalEditorLocalAnnotationCapture"}
         require(not any(path and path[0] in protected and any(part.startswith("init(") for part in path[1:])
                         for path in public_paths),
                 "Local annotation owners must not gain public constructors")
@@ -824,15 +860,20 @@ def prepare(root, admission_path, report, out, logged, *, variant=None, apply_pr
     api_command.append(str(api_source))
     local_api_source = None
     if admitted.get("public_host_contract_sha256") is not None:
-        require(admitted["public_host_contract_sha256"] == LOCAL_ANNOTATION_CONTRACT_SHA256,
+        require(admitted["public_host_contract_sha256"] in REVIEWED_PUBLIC_HOST_CONTRACTS,
                 "Unreviewed local annotation compiler probe")
         local_api_source = root / "Scripts/CI/OriginalEditorLocalAnnotationAPICheck.swift"
         api_command.append(str(local_api_source))
+    miniapps_api_source = None
+    if admitted.get("public_host_contract_sha256") in MINIAPPS_PUBLIC_CONTRACT_FILES:
+        miniapps_api_source = root / "Scripts/CI/OriginalEditorMiniAppsAPICheck.swift"
+        api_command.append(str(miniapps_api_source))
     report.setdefault("commands", []).append(api_command)
     command(api_command, root=root, evidence=evidence, label="exported-api-typecheck", timeout=600)
     write(evidence / "actual-exported-api.json", {"status": "ACTUAL_EXPORTED_API_TYPECHECK_PASS",
           "api_probe_sha256": digest(api_source), "source_sha": admitted["source_sha"],
           "local_annotation_api_probe_sha256": digest(local_api_source) if local_api_source else None,
+          "miniapps_api_probe_sha256": digest(miniapps_api_source) if miniapps_api_source else None,
           "native_execution": False, "configuration": configuration, "platform": platform,
           "scope": "EXPORTED_PUBLIC_HOST_COMPILER_ADMISSION_ONLY" if production else "EXPORTED_SPI_AND_HOST_COMPILER_ADMISSION_ONLY"})
     project = root / "Maktabah.xcodeproj/project.pbxproj"
