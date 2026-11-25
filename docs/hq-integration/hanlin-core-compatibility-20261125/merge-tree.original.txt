@@ -1,0 +1,57 @@
+435af19c601d12dcced2c2db35b1295b761a1868
+100644 ff73d793f68d969ff327a766d2f6c52963c1568c 1	AI_HLY.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+100644 11d7bb1c9aec193affc007cc832436a8ad6098a4 2	AI_HLY.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+100644 1338c859a6b9e41c22f8615b5f4a8949a7ccf031 3	AI_HLY.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+100644 da25326fb88a92097b4dfddbee4cf89bdfdfcb4c 1	Package.swift
+100644 035e13678e245cc2e140e57c4a24607df23762e0 2	Package.swift
+100644 99f1390a0a85a5d71aafd61c6379bfd19f1cbcdb 3	Package.swift
+100644 51efd3013b7fa45854f61e5dece0412121692ee3 1	Packages/HanlinAgentSDK/Package.resolved
+100644 6114241360293ec49bd57f5a93a76ef3d1e903f0 2	Packages/HanlinAgentSDK/Package.resolved
+100644 caef0bec59ce2c9601e77538a73fa3ca278af881 3	Packages/HanlinAgentSDK/Package.resolved
+100644 8c20b5769e1f90dda9bd8047601293fdf69f3297 1	Packages/HanlinAgentSDK/Package.swift
+100644 6a16e39e9136b507b59d0ddf8eb5d5ce2c024cb7 2	Packages/HanlinAgentSDK/Package.swift
+100644 fcf99a97a6fab9fa5885c44521e950da37467405 3	Packages/HanlinAgentSDK/Package.swift
+100644 a1271ec871dc63bfbcd722312f09d94903ab8644 1	Packages/HanlinParityMiniApp/Package.resolved
+100644 49d944fc4eef280b0f090e07695f2fa00122cb4b 2	Packages/HanlinParityMiniApp/Package.resolved
+100644 c84bc1505daba257929ba8084edad601c0be9cba 3	Packages/HanlinParityMiniApp/Package.resolved
+100644 21dcddf142e290aa1f5a89aac6fd41f27a6af36c 1	Packages/HanlinPlatform/Package.resolved
+100644 56c6308bbd6cff86540a29fb5915f3a2a2c20157 2	Packages/HanlinPlatform/Package.resolved
+100644 7633eb3afedbdef408b9aca410a15565419af06d 3	Packages/HanlinPlatform/Package.resolved
+100644 29dd85b2b24b82b00c1518786a07e4d19ccef419 1	Packages/HanlinPlatform/Package.swift
+100644 1e9bc34b7768600cee8112c8745b44b4c926e8a6 2	Packages/HanlinPlatform/Package.swift
+100644 141ae8c79f247d0fe4086a6c089c07188a01f135 3	Packages/HanlinPlatform/Package.swift
+100644 41bfe679af23ab463ccac9553a17ebf8a9984e4d 1	Packages/HanlinSefariaMiniApp/Package.resolved
+100644 ac4fedac0650491a506d602d0f333dfdf949a2ee 2	Packages/HanlinSefariaMiniApp/Package.resolved
+100644 3bf1b46a288fcd8de52b7fe505c4b990e18e3e1a 3	Packages/HanlinSefariaMiniApp/Package.resolved
+100644 e8fc6dbac0649c5a3c01db96f908b128bc5fb4ea 1	Packages/HanlinTextStudioMiniApp/Package.resolved
+100644 ec712414e7e9ec7cbe38367ca64bde1a56c8f2a2 2	Packages/HanlinTextStudioMiniApp/Package.resolved
+100644 898acc84732e41985b321d71607a31138ced99ec 3	Packages/HanlinTextStudioMiniApp/Package.resolved
+100644 48ed7243dfef77e22c4a583da7099631003a479b 1	Packages/HanlinWikipediaMiniApp/Package.resolved
+100644 7325e0763c825b5b0b8a9a33d97ec5f2765e26ed 2	Packages/HanlinWikipediaMiniApp/Package.resolved
+100644 ee2ae48eb31cfa3b713970481c07b6c683bb4f86 3	Packages/HanlinWikipediaMiniApp/Package.resolved
+100644 28f213dac85f31bb44a561207ae2d027f444ceea 1	docs/agent-sdk/unified-package-manifest.json
+100644 9cc503e14662064546fb0467371af87430377603 2	docs/agent-sdk/unified-package-manifest.json
+100644 30b9973249126a088f3e1ea0de4bd40d39d5f3ec 3	docs/agent-sdk/unified-package-manifest.json
+
+Auto-merging AI_HLY.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+CONFLICT (content): Merge conflict in AI_HLY.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+Auto-merging Package.swift
+CONFLICT (content): Merge conflict in Package.swift
+Auto-merging Packages/HanlinAgentSDK/Package.resolved
+CONFLICT (content): Merge conflict in Packages/HanlinAgentSDK/Package.resolved
+Auto-merging Packages/HanlinAgentSDK/Package.swift
+CONFLICT (content): Merge conflict in Packages/HanlinAgentSDK/Package.swift
+Auto-merging Packages/HanlinParityMiniApp/Package.resolved
+CONFLICT (content): Merge conflict in Packages/HanlinParityMiniApp/Package.resolved
+Auto-merging Packages/HanlinPlatform/Package.resolved
+CONFLICT (content): Merge conflict in Packages/HanlinPlatform/Package.resolved
+Auto-merging Packages/HanlinPlatform/Package.swift
+CONFLICT (content): Merge conflict in Packages/HanlinPlatform/Package.swift
+Auto-merging Packages/HanlinSefariaMiniApp/Package.resolved
+CONFLICT (content): Merge conflict in Packages/HanlinSefariaMiniApp/Package.resolved
+Auto-merging Packages/HanlinTextStudioMiniApp/Package.resolved
+CONFLICT (content): Merge conflict in Packages/HanlinTextStudioMiniApp/Package.resolved
+Auto-merging Packages/HanlinWikipediaMiniApp/Package.resolved
+CONFLICT (content): Merge conflict in Packages/HanlinWikipediaMiniApp/Package.resolved
+Auto-merging docs/agent-sdk/unified-package-manifest.json
+CONFLICT (content): Merge conflict in docs/agent-sdk/unified-package-manifest.json
