@@ -1476,6 +1476,13 @@
 			remoteGlobalIDString = A4F8961C86444956FF410500;
 			remoteInfo = MaktabahWidgetExtension;
 		};
+		9C01A559722E3DAD707EB015 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B3202202EDAFE85003B95D1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F30576DD2FA46222005732C6;
+			remoteInfo = "Maktabah-iOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -2257,6 +2264,7 @@
 		E98770A6E81F728898180A4A /* AnnotationNativeBackfillCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Backfill/AnnotationNativeBackfillCatalog.swift"; sourceTree = "<group>"; };
 		C0B3C959BE1BBA2AACB91DD1 /* AnnotationNativeBackfillModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Backfill/AnnotationNativeBackfillModel.swift"; sourceTree = "<group>"; };
 		A6AF032B95DC3A973A9AF429 /* AnnotationNativeBackfillSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Backfill/AnnotationNativeBackfillSection.swift"; sourceTree = "<group>"; };
+		DA0739AC20CFFFFFB5B5B372 /* Maktabah-iOSNativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Maktabah-iOSNativeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2268,6 +2276,11 @@
 		4BD8A4E8307E521A00E04BCB /* MaktabahTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = MaktabahTests;
+			sourceTree = "<group>";
+		};
+		DB44B80150B4C113F2D62723 /* Maktabah-iOSNativeTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Maktabah-iOSNativeTests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -2334,6 +2347,13 @@
 				0F6DD92722DC911905F3771D /* OtzariaActionCore in Frameworks */,
 				DCACB3D4B595024586832F5F /* OtzariaUIRouting in Frameworks */,
 			);
+		};
+		091DEDAE2623080B2ECBDAC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -2622,6 +2642,7 @@
 				4B32022A2EDAFE85003B95D1 /* Source */,
 				4BD8A4E8307E521A00E04BCB /* MaktabahTests */,
 				F30578032FA46222005732C6 /* Maktabah-iOSUITests */,
+				DB44B80150B4C113F2D62723 /* Maktabah-iOSNativeTests */,
 				4B3202292EDAFE85003B95D1 /* Products */,
 				4BA3936B2EF15F0200736DFF /* Frameworks */,
 				FA48754C89EE31B8B9B30F0F /* OtzariaAppContainer.swift */,
@@ -2713,6 +2734,7 @@
 				7CF4D3EED1CCDF5AC98A3B54 /* MaktabahWidgetExtension.appex */,
 				4BD8A4E7307E521A00E04BCB /* MaktabahTests.xctest */,
 				F30578022FA46222005732C6 /* Maktabah-iOSUITests.xctest */,
+				DA0739AC20CFFFFFB5B5B372 /* Maktabah-iOSNativeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4142,6 +4164,27 @@
 			productReference = F305776F2FA46222005732C6 /* Maktabah.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9A7A8DF8CEC43F196DDCD80A /* Maktabah-iOSNativeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBD4D979230621127E6D45EC /* Build configuration list for PBXNativeTarget "Maktabah-iOSNativeTests" */;
+			buildPhases = (
+				8E031407F5B8C0AA54243A7C /* Sources */,
+				091DEDAE2623080B2ECBDAC7 /* Frameworks */,
+				81351E17F8BFC73A4578F286 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CF544876DB8F90978BF73042 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DB44B80150B4C113F2D62723 /* Maktabah-iOSNativeTests */,
+			);
+			name = "Maktabah-iOSNativeTests";
+			productName = "Maktabah-iOSNativeTests";
+			productReference = DA0739AC20CFFFFFB5B5B372 /* Maktabah-iOSNativeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -4152,6 +4195,10 @@
 				LastSwiftUpdateCheck = 2630;
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
+					9A7A8DF8CEC43F196DDCD80A = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = F30576DD2FA46222005732C6;
+					};
 					F30578012FA46222005732C6 = {
 						CreatedOnToolsVersion = 26.3;
 						TestTargetID = F30576DD2FA46222005732C6;
@@ -4215,6 +4262,7 @@
 				A4F8961C86444956FF410500 /* MaktabahWidgetExtension */,
 				4BD8A4E6307E521A00E04BCB /* MaktabahTests */,
 				F30578012FA46222005732C6 /* Maktabah-iOSUITests */,
+				9A7A8DF8CEC43F196DDCD80A /* Maktabah-iOSNativeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -4340,6 +4388,13 @@
 				F30577662FA46222005732C6 /* Localizable.xcstrings in Resources */,
 				F3A775592FB2288E00C82F7B /* GoogleService-Info.plist in Resources */,
 			);
+		};
+		81351E17F8BFC73A4578F286 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
@@ -5698,6 +5753,13 @@
 				0D322D1D9F633A1AFE401074 /* OtzariaExactOccurrenceModels.swift in Sources */,
 			);
 		};
+		8E031407F5B8C0AA54243A7C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -5726,6 +5788,11 @@
 			isa = PBXTargetDependency;
 			target = A4F8961C86444956FF410500 /* MaktabahWidgetExtension */;
 			targetProxy = F3E054FB3042765900647936 /* PBXContainerItemProxy */;
+		};
+		CF544876DB8F90978BF73042 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F30576DD2FA46222005732C6 /* Maktabah-iOS */;
+			targetProxy = 9C01A559722E3DAD707EB015 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -6532,6 +6599,94 @@
 			};
 			name = Release;
 		};
+		F47AEF17D4EACBE870FB9727 /* Debug configuration for PBXNativeTarget "Maktabah-iOSNativeTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NA6HPWARQ2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILT_PRODUCTS_DIR)/Maktabah.app/Frameworks",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					AnytypeOriginalEditor,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.davidpovarsky.chavrusatext.Maktabah-iOSNativeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Maktabah.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Maktabah";
+				TEST_TARGET_NAME = "Maktabah-iOS";
+				USES_XCTEST = YES;
+			};
+			name = Debug;
+		};
+		576AEAC83488884DEEAEE06A /* Release configuration for PBXNativeTarget "Maktabah-iOSNativeTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NA6HPWARQ2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILT_PRODUCTS_DIR)/Maktabah.app/Frameworks",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					AnytypeOriginalEditor,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.davidpovarsky.chavrusatext.Maktabah-iOSNativeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Maktabah.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Maktabah";
+				TEST_TARGET_NAME = "Maktabah-iOS";
+				USES_XCTEST = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -6589,6 +6744,15 @@
 				F305776D2FA46222005732C6 /* Debug configuration for PBXNativeTarget "Maktabah-iOS" */,
 				F305776E2FA46222005732C6 /* Release configuration for PBXNativeTarget "Maktabah-iOS" */,
 			);
+			defaultConfigurationName = Release;
+		};
+		EBD4D979230621127E6D45EC /* Build configuration list for PBXNativeTarget "Maktabah-iOSNativeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F47AEF17D4EACBE870FB9727 /* Debug configuration for PBXNativeTarget "Maktabah-iOSNativeTests" */,
+				576AEAC83488884DEEAEE06A /* Release configuration for PBXNativeTarget "Maktabah-iOSNativeTests" */,
+			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */

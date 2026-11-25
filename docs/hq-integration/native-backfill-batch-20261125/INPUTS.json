@@ -127,9 +127,16 @@
     },
     {
       "path": "Tests/HQ/native-annotation-backfill/AnnotationNativeBackfillAcceptance.swift",
-      "sha256": "146da408c713a6f53de79f14f5a8ef17e74b91398828b92a50ce0a02c985be6f"
+      "sha256": "967ae0e0f909899e6af3d8e56f9c4166ad414844e434d4219b7c25b9d6dab552"
     }
   ],
+  "historical_compile_failure": {
+    "cases_executed": 0,
+    "cause": "Test file omitted explicit original OtzariaActionCore import for its genuine AnnotationEnvelopeJSONCodec.",
+    "job_id": "job_1142a48cc9b1",
+    "production_code_changed": false,
+    "source": "562b90f003df0bdc5fd158157feea55807989780"
+  },
   "host_batch_bridge": "6f6e3c2a3ebfcc5b8c36247e113b65306d644b7d",
   "native_5000": 0,
   "native_engine_tests": 0,
