@@ -1,9 +1,9 @@
 {
-  "application_source_sha": "d3da55417a30e9a06b0255e2d0b561955034b260",
+  "application_source_sha": "3a7d048c02b28ef81de2e1b4824f9ea996cf54ad",
   "application_trees": {
-    "Maktabah.xcodeproj": "4e5e8ebf269310c48497ebf4d41c516e9110af78",
-    "Source": "f8d8e60307660433e9db06ec84ff62a6b224962b",
-    "Vendor": "957773bdbf127855cbe8c16d1be50fe436564157"
+    "Source": "7862a542316da1ce9465b1e6045bf565392cf0b7",
+    "Vendor": "f908b48261fd6783f210c70d7c36c47264b6040c",
+    "Maktabah.xcodeproj": "f10564b40e5e8d6c5b8c4dc780d50841654f0cff"
   },
   "artifacts": [
     {
@@ -70,8 +70,8 @@
     "Vendor/ZayitSearchPort/Rust": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8",
     "Vendor/ZayitSearchPort/Upstream": "db6dc60006a51db83ec2c6feed1158e4da1a617b"
   },
-  "hanlin_gitlink": "f8cf6ca543c5ceed05a60141644664c93e4565b4",
-  "otzaria_test_additions_sha256": "b1cc80078c04ba23f0e7941f7bfbd9d28b1b0cc12e1af4bd82321f60d2238f36",
+  "hanlin_gitlink": "4e921b9517f2fc28fcaebcb2ba7441ab1fb46a90",
+  "otzaria_test_additions_sha256": "bed04e41208c48888993696f5d854752475df3ee263902c4dbd63ec1a59178ae",
   "rebuild_zayit_framework": false,
   "resource_bundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",
   "resource_producer_sha": "70810eec46ad1fec6f30d983bf31e5f922dacb61",
@@ -112,5 +112,9 @@
     "manifest_sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
     "historic_receipts_preserved": true,
     "new_runtime_acceptance_required": true
+  },
+  "final_product_source": {
+    "manifest": "Scripts/CI/final-integration-source.inputs.json",
+    "sha256": "4d6da0883818fe730218e8f3b3222c47cb536e15b37cdf5fe5e929bfce7d1ece"
   }
 }

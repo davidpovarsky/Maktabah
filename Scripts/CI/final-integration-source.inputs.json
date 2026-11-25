@@ -1,0 +1,873 @@
+{
+  "accepted_components": {
+    "empty_note": "6b330a2964adf30932cfb7e86fc984068c7c5d10",
+    "library": "74ae9510d90b50343e961967616e5630d1682295",
+    "miniapps": "8cdc0c0833154e71af5047983c47115db0005e35",
+    "native_share": "82c1bc16e49b76fd1e8cb16b5be9e0d643db8b57",
+    "normal_editor": "08f50a5646b7669d15f8c53cb13c84ac504a02bd"
+  },
+  "application_source_sha": "3a7d048c02b28ef81de2e1b4824f9ea996cf54ad",
+  "application_trees": {
+    "Maktabah-iOSUITests": "ea8f556243ad190b7807e5c8bd22e0948c44de94",
+    "Maktabah.xcodeproj": "f10564b40e5e8d6c5b8c4dc780d50841654f0cff",
+    "Source": "7862a542316da1ce9465b1e6045bf565392cf0b7",
+    "Vendor": "f908b48261fd6783f210c70d7c36c47264b6040c"
+  },
+  "hanlin_source": "4e921b9517f2fc28fcaebcb2ba7441ab1fb46a90",
+  "historical_application_source": "d3da55417a30e9a06b0255e2d0b561955034b260",
+  "historical_control_source": "602659607a3a6a2586a7c4a8d7ce6114eec8cd86",
+  "integration_base": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
+  "native_qualified": false,
+  "preserved_build_inputs_canonical_sha256": "367149f9f2410551dafb52eb7635206af559940ca77e95082b3318a569553da8",
+  "preserved_historical_receipts": {
+    "Scripts/CI/runtime27-final-source-composition.inputs.json": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0",
+    "Scripts/CI/runtime27-original-editor-mac-source.inputs.json": "f58d3421dcec46d89c7de6d2cbf58a9c2a5178990631462ac5fce2fd6f458849",
+    "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea"
+  },
+  "product_delta": [
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 33785,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "218f558c8c14b62647881355d3cdd005283ff3ef",
+        "sha256": "c1447e8f6bf9a7674b41982836af2e8cfa7aa0119b157251559e18449e74e70d"
+      },
+      "before": null,
+      "component": "miniapps",
+      "path": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 27435,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "7393bce8c2a3ff4e699af3cd0ecf5db91b4b11a7",
+        "sha256": "320739203190ba1eecbeaeaf457a24821f4ad065b59a54dbea6e2f61cf563e6e"
+      },
+      "before": null,
+      "component": "native_share",
+      "path": "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift"
+    },
+    {
+      "adoption": "EXPLICIT_REVIEWED_MERGE",
+      "after": {
+        "bytes": 608754,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "cb9c48600607150e5b26d9cb4019f2204082f113",
+        "sha256": "baecccfe7115b27c248f06683999a67a38b73e2ae9f33aeb678fa17ed1fdef95"
+      },
+      "before": {
+        "bytes": 602975,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "009ef4838a6a92ed1f5025f1ab510faf51ceda64",
+        "sha256": "4b0e0b54ae37282dd6b9218097abcedadcafe3f29e4738cfd50017f123f098fa"
+      },
+      "component_objects": {
+        "empty_note": {
+          "bytes": 604158,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ca7eded8c0e2a6aba3a90e6d92da0e88666a44e2",
+          "sha256": "cb02f97cc8c95889a7089be5df15c003eb97260fbf5a52ac329185ee79aa2ff3"
+        },
+        "library": {
+          "bytes": 605376,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "5350d7c59099f332f0bc0847658c062f28c547e4",
+          "sha256": "a9678f47f6f87ae80eb908c16033e75f956d712b0c85e9d3749263d0c607f317"
+        },
+        "miniapps": {
+          "bytes": 605777,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b9e30e3b2d09635a74d0e03b3aaa1998294ffde0",
+          "sha256": "5e7962eaf13c9a1c8199fbdbd53b7b4220cc46d5d6811c82d4c1eb8306f6744f"
+        },
+        "native_share": {
+          "bytes": 604158,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ca7eded8c0e2a6aba3a90e6d92da0e88666a44e2",
+          "sha256": "cb02f97cc8c95889a7089be5df15c003eb97260fbf5a52ac329185ee79aa2ff3"
+        },
+        "normal_editor": {
+          "bytes": 604158,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ca7eded8c0e2a6aba3a90e6d92da0e88666a44e2",
+          "sha256": "cb02f97cc8c95889a7089be5df15c003eb97260fbf5a52ac329185ee79aa2ff3"
+        }
+      },
+      "patch": {
+        "bytes": 16478,
+        "sha256": "fe3235c8a955841889b38c751d36bb30e12bd68ba0fe4e397531baf5c01e3396"
+      },
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "reason": "Preserve original editor Import membership, four shared MiniApps adapters/products, and two library update source registrations. Actual Mac plutil membership receipt retained separately."
+    },
+    {
+      "adoption": "EXPLICIT_REVIEWED_MERGE",
+      "after": {
+        "bytes": 5427,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
+        "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+      },
+      "before": {
+        "bytes": 4432,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
+        "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
+      },
+      "component_objects": {
+        "empty_note": {
+          "bytes": 4432,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
+          "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
+        },
+        "library": {
+          "bytes": 4432,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
+          "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
+        },
+        "miniapps": {
+          "bytes": 5427,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ca07d2417cf7da7c202a312e02632e4e6b8db63c",
+          "sha256": "77588949264c8dbb694ca17681f0a318dbfcdb676ccb6b2679f7e2e3c8f6f23b"
+        },
+        "native_share": {
+          "bytes": 4432,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
+          "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
+        },
+        "normal_editor": {
+          "bytes": 4432,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
+          "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
+        }
+      },
+      "patch": {
+        "bytes": 2178,
+        "sha256": "b66d2b91ddb60a8f9a9b7175d00aa27010b4b7fb21931654324f13ef36d7fe04"
+      },
+      "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "reason": "Preserve the MiniApps package closure while adopting the already-qualified shared Swift AI SDK 3f38 used by integrated Hanlin4e921."
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 992,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "66fb918165bddfd34b9867dcee8474ed0977b2ed",
+        "sha256": "bc3644771d2b7181653126c9cb29bfbade51ec152d22825e45b1659a9692f4cc"
+      },
+      "before": {
+        "bytes": 949,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "e5c758ac4be4708945e1b07706aa3813e9e05af8",
+        "sha256": "97f0dfce06f41b05055bd1e2b08c0504bd44e22cb22f28925e5a5f2f4231ef2e"
+      },
+      "component": "miniapps",
+      "path": "Source/ChavrusaText-iOS.entitlements"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 7400,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "baf85044c51fffb4a74a173f86c1809338481382",
+        "sha256": "efd039844bcb3103ccac4342ffced1c6f52959847893edf3c650c5cedcdc9515"
+      },
+      "before": {
+        "bytes": 6216,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "2f0b3c4c25e4123d604dba9d1f6ca316d66ce2d8",
+        "sha256": "4935e1b6cd208951cc6848e46f62b0723c4a9c835eac77229ae756ba8b747987"
+      },
+      "component": "normal_editor",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 62612,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "cc3b63f9af29047f77231b4b899fbee1a5e20ccf",
+        "sha256": "eaba951059cc129772c5216f158edaa7a52ed2a5d59e21dd5825606db28188c7"
+      },
+      "before": {
+        "bytes": 58436,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "9741ab51c4fb6f8a3fe551bab665e4ef2795df6b",
+        "sha256": "4a2b163e60a965f97033b79740d40bc3a82c7eaa8154792d38d3cbbb283a174d"
+      },
+      "component": "normal_editor",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 14442,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "6e3d237b09fd836b10ceee86cfd9038d1ba18e35",
+        "sha256": "ffd40cc23efba44386236bb2bb8b8f74e0e0c444b41bd3004bb3ddce0e8fe731"
+      },
+      "before": {
+        "bytes": 14178,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "4c94af84e718647c2e5700ca33b232172a75e5cb",
+        "sha256": "5d0b7b504b0019f666c15e5dd45ef7ed46986d4648a23bf33448cd6e0b6f65a1"
+      },
+      "component": "normal_editor",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 19659,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "5fb122db08c108064c31f21ac1ce7b770a19a5f9",
+        "sha256": "2377acd8064f7287126f248266cb0cf73cd88d3e327e99526d36e04c670d4123"
+      },
+      "before": {
+        "bytes": 12310,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "71006138458d7b8b07da875a944acd499c250101",
+        "sha256": "9adf1457dc15f81404892a75babd637df44e568d0ddb7b067e7a2402743fcc06"
+      },
+      "component": "native_share",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorImport.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 14652,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "e13367ed199e31a5fa1a3b64fd2b7657c9510642",
+        "sha256": "10784f7c6d55fc646ce6a8d2a1e5575f8cefbf841e64c3c806eeb930511dd5c3"
+      },
+      "before": {
+        "bytes": 9538,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "e74b4b23a71c1bac6276af93317fc5ed859d0e68",
+        "sha256": "06d68fa6efb79ed534902cc3ea7ad73852f534a204059f1d1db2d9401f724b1a"
+      },
+      "component": "normal_editor",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 32498,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "d85450e2eff7f4243a82f4027ccb8245db0df9ca",
+        "sha256": "2538e127de364edd33b7eaa25c560fa4e6d8793ba867cfc82c2077ddd0efd9cc"
+      },
+      "before": null,
+      "component": "native_share",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 9546,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "0f22137323d9bbc51cba4764110e4e29e5dd6b69",
+        "sha256": "db762fef8dfcda0ab8bdd14a3e0948509dd43d04c022862e7ab5ffb6033a03f5"
+      },
+      "before": {
+        "bytes": 7749,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "7f53004a69848410a6b13d2f1a219f4b38cd5712",
+        "sha256": "ed35c57478d84fb892541ef2a92e34f30fc6fa5d66d13101cc08abeaedefed13"
+      },
+      "component": "normal_editor",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 17378,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "30bece6fddb0c8ac0597a0e924d54b6b8ea0a906",
+        "sha256": "7d5be2c54070a3676d2cf45b2ffa6290a47ba902415450b0d0c9ba6cac918605"
+      },
+      "before": null,
+      "component": "native_share",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/OriginalAnnotationEditor.xcstrings"
+    },
+    {
+      "adoption": "EXPLICIT_REVIEWED_MERGE",
+      "after": {
+        "bytes": 23279,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "e55f071e968da05de07946e9fcc73842c19192d8",
+        "sha256": "265643c14396f1fd1794def68c9cf1aa348a14cd97a5ebe68abbe6a5938194fc"
+      },
+      "before": {
+        "bytes": 22959,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "9956c8d5d4b9d618b9bb10e45cd347ac2dc91379",
+        "sha256": "0e0c2837474533513762d37639bd5e49a0a44eb943c03da865460546b0b24c28"
+      },
+      "component_objects": {
+        "empty_note": {
+          "bytes": 22959,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "9956c8d5d4b9d618b9bb10e45cd347ac2dc91379",
+          "sha256": "0e0c2837474533513762d37639bd5e49a0a44eb943c03da865460546b0b24c28"
+        },
+        "library": {
+          "bytes": 22959,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "9956c8d5d4b9d618b9bb10e45cd347ac2dc91379",
+          "sha256": "0e0c2837474533513762d37639bd5e49a0a44eb943c03da865460546b0b24c28"
+        },
+        "miniapps": {
+          "bytes": 23111,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "955196f3b7272f38e2efc594e68916729902c895",
+          "sha256": "ab68c19b575d2e6089a632cdfb3de29da21071130b6161e34dbc755daebec976"
+        },
+        "native_share": {
+          "bytes": 22959,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "9956c8d5d4b9d618b9bb10e45cd347ac2dc91379",
+          "sha256": "0e0c2837474533513762d37639bd5e49a0a44eb943c03da865460546b0b24c28"
+        },
+        "normal_editor": {
+          "bytes": 22959,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "9956c8d5d4b9d618b9bb10e45cd347ac2dc91379",
+          "sha256": "0e0c2837474533513762d37639bd5e49a0a44eb943c03da865460546b0b24c28"
+        }
+      },
+      "patch": {
+        "bytes": 2570,
+        "sha256": "8753a5d08029862626b65bfcc3b2c7395faf2f3a2dde846af43ed02e77215080"
+      },
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+      "reason": "Retain d3da composer safe-area ownership while adding the shared MiniApps return surface."
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 19883,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "e274bc2da6c5bec6462a03503e8522c9f65d7e06",
+        "sha256": "1b1d8bfe4ff3c805aabbd5762e4199d81db09d651509979798b7019f80ebff8f"
+      },
+      "before": null,
+      "component": "miniapps",
+      "path": "Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 3596,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "9f19cba5385e8a93b9feec393113098c3832c381",
+        "sha256": "0611e2b028d9c0f44ec87a2fba0c95ac49d3fffdba173dc5e990b67207aff408"
+      },
+      "before": null,
+      "component": "miniapps",
+      "path": "Source/ChavrusaText/MiniApps/OtzariaMiniAppsDocument.swift"
+    },
+    {
+      "adoption": "EXPLICIT_REVIEWED_MERGE",
+      "after": {
+        "bytes": 7188,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "25b98af821b481678b81813cd8f24a1c9c37d55c",
+        "sha256": "b045480aba915d9fb002de77e1b403700af25a0fd3200b0db72b5ca74680403d"
+      },
+      "before": null,
+      "component_objects": {
+        "empty_note": null,
+        "library": null,
+        "miniapps": {
+          "bytes": 6782,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "5a9fe577d25a5755fbd01da4aa6d78977cc27cdb",
+          "sha256": "f19020e5e2f354bf0b38be66060a18826ce58db41d8f2c252c9bcf33aa8b8049"
+        },
+        "native_share": null,
+        "normal_editor": null
+      },
+      "patch": {
+        "bytes": 7655,
+        "sha256": "487a7c8224551f0929a3f68b697ef6e47851accabeff4c9766d7176366b87139"
+      },
+      "path": "Source/ChavrusaText/MiniApps/OtzariaMiniAppsPersistence.swift",
+      "reason": "Reuse the canonical rich-body write guard inside the same SQLite transaction before accepting a plain MiniApps result."
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 2366,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "7c541a8022d2ef7d892326479155908e2e5a40c8",
+        "sha256": "cf8860ecd986d674201b6c5fa648cb1596f5ef731169cf05c4e25c53b1275adf"
+      },
+      "before": null,
+      "component": "miniapps",
+      "path": "Source/ChavrusaText/MiniApps/OtzariaMiniAppsReceiptJournal.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 34455,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "064193da95e25f119158af13b4999c955edd54fc",
+        "sha256": "2ffe663ce8f64a435aaa88f2acab23a8869c6cadbd4af006b4bda6d74cd2db3c"
+      },
+      "before": {
+        "bytes": 33987,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "2d683e3649b1ac5b33df74019629f2ea3682d25a",
+        "sha256": "a0066002ee649927092278d906d6470e9723a10ea9ef139950605011a6d54182"
+      },
+      "component": "library",
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 46094,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "96fb9890aab0804090247c9b9f8f8700c56de892",
+        "sha256": "0e5f39c024d79eda212650cdc22b44209aa7d323966dc38106b77e8604739f6f"
+      },
+      "before": {
+        "bytes": 45760,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "101c5619549996fa2a0595df68aa59f1d43d04fa",
+        "sha256": "a0f9643764f12b3be4ac0e3ac441cfbfe638d7bc1a1cbe9d25acf8265d7e358b"
+      },
+      "component": "normal_editor",
+      "path": "Source/Features/Annotations/Database/AnnotationRepository.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 12578,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "e556b0e4a6ac3735ac86797b78c5cc43e457fc76",
+        "sha256": "0c2b5829cbaf25d9c4da9631541754e9905d774044cb3172a33a3449a849e996"
+      },
+      "before": {
+        "bytes": 12542,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "3d38295b67ebc0ab087e80e74cf7c61f39835e26",
+        "sha256": "5abf543369a471e39e33b075b45427988f4677715e606809b53681b4d60c4f95"
+      },
+      "component": "normal_editor",
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 6060,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "1c01ba601e16b4d4a05198b6d6f1fdb40dc15b28",
+        "sha256": "c2e15b55714924aed00c8c93d38ae7cca113c725b9cefc8bb854b93ee2df24a8"
+      },
+      "before": {
+        "bytes": 6423,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "ac1243294fe7efd269f0492107e596c236068386",
+        "sha256": "7c41e0296f4d3feaef87c2e9199e3d3112b17b88896fb2850d4bdd2731a08224"
+      },
+      "component": "normal_editor",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift"
+    },
+    {
+      "adoption": "EXPLICIT_REVIEWED_MERGE",
+      "after": {
+        "bytes": 22996,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
+        "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
+      },
+      "before": {
+        "bytes": 21061,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "ba3b1a0bab7e08ebeebca35e18198ce0d18dbcfa",
+        "sha256": "8a0efc79f67bbca9ab260beb1cb89d4c6dca12e640ff38ddbb9c88437c825ca5"
+      },
+      "component_objects": {
+        "empty_note": {
+          "bytes": 21637,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74cdb0174d3903ecca6d657d436507a8dddc4d6c",
+          "sha256": "b6e0e9bc42140fd896a20a1ee6eb2f17d65d5b6dee3854a5b6869e78dcf23f1f"
+        },
+        "library": {
+          "bytes": 22603,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "8dc8b070db19569da049659a8f11e402d2fe589f",
+          "sha256": "33d1f5f8e07513c36aa1539d9075fc0c59c63630fe44cb1684d8cbb20b4be655"
+        },
+        "miniapps": {
+          "bytes": 22369,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "04c6c9851b9d656b02849e1ea4bddf06ed079a27",
+          "sha256": "a5156ef6e707e1e04d2fe4396de70710c0dffdef528e8653176e9bf736d76b39"
+        },
+        "native_share": {
+          "bytes": 21637,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74cdb0174d3903ecca6d657d436507a8dddc4d6c",
+          "sha256": "b6e0e9bc42140fd896a20a1ee6eb2f17d65d5b6dee3854a5b6869e78dcf23f1f"
+        },
+        "normal_editor": {
+          "bytes": 22603,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "8dc8b070db19569da049659a8f11e402d2fe589f",
+          "sha256": "33d1f5f8e07513c36aa1539d9075fc0c59c63630fe44cb1684d8cbb20b4be655"
+        }
+      },
+      "patch": {
+        "bytes": 10080,
+        "sha256": "6839a107a8ad464cf0077769c1c1646c47add2acdd0122f22196a738500f1af7"
+      },
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "reason": "Preserve per-window intentional empty text and original rich editor ownership; add MiniApps only when plain editing is permitted."
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 19902,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "accfbbd037051facb15fc5888125cd7719002a38",
+        "sha256": "f128c523122c708081460724dbd94be28dc6956830c4583539a53f814f263fee"
+      },
+      "before": {
+        "bytes": 19519,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
+        "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5"
+      },
+      "component": "library",
+      "path": "Source/Features/Setting/SettingsView.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 33275,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "bd4fa4c47293f6d680e8bd1e73e079092ee0bdca",
+        "sha256": "c3815a44393ecec66c0ab6eece436fb763b3c4527cd7e8d9c1ce2ea9c649b0b4"
+      },
+      "before": {
+        "bytes": 32158,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "4d05fc247a4da6fbb45e4e82905e20a54c8f1ff9",
+        "sha256": "508838569fe94061c169871f74f9dcebeaa2adf7cc1b19907453b31d3d5f8332"
+      },
+      "component": "library",
+      "path": "Source/LibraryBackend/BackendCoordinator.swift"
+    },
+    {
+      "adoption": "EXPLICIT_REVIEWED_MERGE",
+      "after": {
+        "bytes": 351650,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
+        "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
+      },
+      "before": {
+        "bytes": 340316,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "511a85ca4442f82c7f9edbe5303eacf073730017",
+        "sha256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46"
+      },
+      "component_objects": {
+        "empty_note": {
+          "bytes": 340316,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "511a85ca4442f82c7f9edbe5303eacf073730017",
+          "sha256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46"
+        },
+        "library": {
+          "bytes": 348941,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "97eca39742be7e562f954f981c7e7d62b9ed23ef",
+          "sha256": "8c38ac585548480a10ba9b25b4209e7e5304e52807c43da9ddd5851b6a6ae027"
+        },
+        "miniapps": {
+          "bytes": 343025,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "654bcb64d87fe00ea3b23ffdde11f5a158a4ee92",
+          "sha256": "f4fa1d3db652ccd8e8f359471e6cbff869b436eca779b1130588d233c07f41ff"
+        },
+        "native_share": {
+          "bytes": 340316,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "511a85ca4442f82c7f9edbe5303eacf073730017",
+          "sha256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46"
+        },
+        "normal_editor": {
+          "bytes": 340316,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "511a85ca4442f82c7f9edbe5303eacf073730017",
+          "sha256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46"
+        }
+      },
+      "patch": {
+        "bytes": 12202,
+        "sha256": "ae87dc8bf99216f3a8e63c75d3d8f035a56dbc4a3a6e372fd61ca1335355a011"
+      },
+      "path": "Source/Localizable.xcstrings",
+      "reason": "Union original translations with shared MiniApps and genuine library update English/Hebrew UI strings."
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 5835,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "9ae300ef6b0002474b236d04356337846c5faa35",
+        "sha256": "b5732598579a5dae6302032d7c5e40a3660404806996260312ba7fa1e14ff4dc"
+      },
+      "before": {
+        "bytes": 4740,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "92f497af1dba7086c50e1121fe0b53ec2e720c0c",
+        "sha256": "fe08c44f229e7df9b58a803d011989fe7c326da3a16ea423e13c534ebc72d50f"
+      },
+      "component": "library",
+      "path": "Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 10810,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "1e7161ad3be532dba83c380e127bcfdea83d4be0",
+        "sha256": "7fdf24f14697de9304c30a699c454c061bda8bc515f9c366c17928ef943d0274"
+      },
+      "before": {
+        "bytes": 9091,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "baca123b69f9d31f779e7bd4e024c654c6a50ea2",
+        "sha256": "02953786c2b5327b4cc2b83307c54ff5acf4eae7beb4e8d974c5773c0dc646b1"
+      },
+      "component": "library",
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 4136,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "f5d4d95a8ace77f9fa49426db1486ff160e4ec5f",
+        "sha256": "70ae95a11fe93a1c87c1c732822e864f9b07895c3fb39873074eb6e723b8c11d"
+      },
+      "before": null,
+      "component": "library",
+      "path": "Source/Otzaria/Bootstrap/OtzariaLibraryUpdatePolicy.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 13501,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "981fa36cdb68aaf4ec88c264f83c667827879fcc",
+        "sha256": "b4b2d8ec632198f008aa94c74ede61fa1a95e20aebadcf9a5f5d4cd0bed59298"
+      },
+      "before": null,
+      "component": "library",
+      "path": "Source/Otzaria/Features/Settings/OtzariaLibraryUpdateView.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 44036,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "def39a6647946953c58d4b813fd80d53757ba22a",
+        "sha256": "d9a94e942f661fd4b48039555b0e62e74f9e7e6aa1af52f2149d2041fc38df1e"
+      },
+      "before": {
+        "bytes": 43551,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "17ac03d083571da1c5abcb033facd23140dcc8d6",
+        "sha256": "b8e6648cb1c6efd4942aadfe2e3aec3177fcd85fee8f502933d3f048d3311611"
+      },
+      "component": "library",
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 33242,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "ce413b580c80b2eadc15236f0488bba279d974c6",
+        "sha256": "68e3276192123ef08e7e2846f815be796e305c5b97c94aab572cd08d4ea0750c"
+      },
+      "before": {
+        "bytes": 32842,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "e7dacac1ef5755f921ad697ae54d2d066952b1ba",
+        "sha256": "2f4116739648ca5fe7c0efe08888aff3494dcf4cb3405d9c0fff462e1d4fec20"
+      },
+      "component": "miniapps",
+      "path": "Source/UI/iOS/Views/iOSMainView.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 60088,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "2e88624b715c3ef9e6fc8d65fbbbb77877ea1a7e",
+        "sha256": "bc2f3004194727eaf2c7e0f66f4e5055f3b6557d298e1c9f4ae9dec87eda8a2b"
+      },
+      "before": {
+        "bytes": 59483,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "48f703980f11aba3984a010cfb15f97177129f2a",
+        "sha256": "edb657fa3afc6bd27b54d0e5e82bbd78e7fede6947b00268f99e6f0470af49eb"
+      },
+      "component": "miniapps",
+      "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift"
+    },
+    {
+      "adoption": "EXPLICIT_REVIEWED_MERGE",
+      "after": {
+        "kind": "commit",
+        "mode": "160000",
+        "object": "4e921b9517f2fc28fcaebcb2ba7441ab1fb46a90"
+      },
+      "before": {
+        "kind": "commit",
+        "mode": "160000",
+        "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
+      },
+      "component_objects": {
+        "empty_note": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
+        },
+        "library": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
+        },
+        "miniapps": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "a774de24926ca13d563c45c42917d03b8c04296f"
+        },
+        "native_share": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
+        },
+        "normal_editor": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
+        }
+      },
+      "patch": {
+        "bytes": 323,
+        "sha256": "cd420ab33b794362eb839333cea607d647e8c3f544f0f3e667537bc0eb6d3371"
+      },
+      "path": "Vendor/HanlinSDK",
+      "reason": "Adopt exact shared Hanlin4e921 merge, preserving latest upstream MiniApps code and qualified Core3f38 without copying shared implementation."
+    }
+  ],
+  "product_roots": [
+    "Source",
+    "Vendor",
+    "Maktabah.xcodeproj",
+    "Maktabah-iOSUITests"
+  ],
+  "schema": "otzaria.integrated-product-source/1",
+  "scope": "SOURCE_IDENTITY_ONLY_REQUIRES_NEW_NATIVE_ACCEPTANCE",
+  "swift_ai_sdk_source": "3f38f1302764635c9991d0d00fd7b12471a5373c"
+}
