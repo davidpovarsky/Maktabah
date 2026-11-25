@@ -10,14 +10,14 @@
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda"
   },
-  "application_source_sha": "6e88c9f59ff030bfa02e0c953dc95f1dc2f6dd6f",
+  "application_source_sha": "a21a985f5d215559b362feb5e5a307112448bc28",
   "application_trees": {
     "Maktabah-iOSUITests": "b862fc5efecb679fa3e930b4434df83ec1942666",
-    "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3",
+    "Maktabah.xcodeproj": "35e9feff47092409d9ea2cccb99afa8ebc3575a4",
     "Source": "9214fc6357b817d3999bfbed52ef7f618ba43279",
-    "Vendor": "ab0c8fa1ac707902552443b4b85982064534086e"
+    "Vendor": "2645f7cbdf624ed932ba1bcd951bb5df40f0fd40"
   },
-  "hanlin_source": "3f5c0f37af476b377be10cf8013fedb5edf67a57",
+  "hanlin_source": "27381e90a11c46cf6b6864d2fb703f16f07af4ca",
   "historical_application_source": "d3da55417a30e9a06b0255e2d0b561955034b260",
   "historical_control_source": "602659607a3a6a2586a7c4a8d7ce6114eec8cd86",
   "integration_base": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
@@ -121,13 +121,13 @@
       "path": "Maktabah.xcodeproj/project.pbxproj"
     },
     {
-      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
-        "bytes": 5427,
+        "bytes": 5988,
         "kind": "blob",
         "mode": "100644",
-        "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
-        "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+        "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+        "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
       },
       "before": {
         "bytes": 4432,
@@ -136,8 +136,77 @@
         "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
         "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
       },
-      "component": "original_lifecycle_and_native_batch",
-      "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
+      "component_objects": {
+        "empty_note": {
+          "bytes": 4432,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
+          "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
+        },
+        "library": {
+          "bytes": 4432,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
+          "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
+        },
+        "miniapps": {
+          "bytes": 5427,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ca07d2417cf7da7c202a312e02632e4e6b8db63c",
+          "sha256": "77588949264c8dbb694ca17681f0a318dbfcdb676ccb6b2679f7e2e3c8f6f23b"
+        },
+        "native_share": {
+          "bytes": 4432,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
+          "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
+        },
+        "normal_editor": {
+          "bytes": 4432,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
+          "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
+        },
+        "original_account_exchange_ui": {
+          "bytes": 5427,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
+          "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+        },
+        "original_explicit_save": {
+          "bytes": 5427,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
+          "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+        },
+        "original_lifecycle_and_native_batch": {
+          "bytes": 5427,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
+          "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+        },
+        "original_rich_miniapps": {
+          "bytes": 5427,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
+          "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+        }
+      },
+      "patch": {
+        "bytes": 3374,
+        "sha256": "0522e16a697615d334a0b7c69e5568ebdbee0f4130ed6e771488362200103c91"
+      },
+      "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "reason": " Adopt exact final shared Swift AI coreabf092 plus original upstream OpenTelemetry2.6.0/Atomics1.3.1 pins from the frozen HanlinAgentSDK lock; preserve all20 other existing original pins."
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -1245,7 +1314,7 @@
       "after": {
         "kind": "commit",
         "mode": "160000",
-        "object": "3f5c0f37af476b377be10cf8013fedb5edf67a57"
+        "object": "27381e90a11c46cf6b6864d2fb703f16f07af4ca"
       },
       "before": {
         "kind": "commit",
@@ -1301,10 +1370,10 @@
       },
       "patch": {
         "bytes": 323,
-        "sha256": "d452e0d14a02c6742627581833c6a7e09524a384517614b6f92360dfecb88e3e"
+        "sha256": "74f3896c616b75b320ede150516fbc486c9b1ce75938eb9dc50fb6c7e855f77f"
       },
       "path": "Vendor/HanlinSDK",
-      "reason": "Use frozen actual standalone3f5 source, including corrected upstream Platform catalog/cancellation implementation; consumer Bridge/Picker remain the same single shared packages. Historical e791 SDK is not requalified by this source pin."
+      "reason": "Use frozen actual standalone3f5 source, including corrected upstream Platform catalog/cancellation implementation; consumer Bridge/Picker remain the same single shared packages. Historical e791 SDK is not requalified by this source pin. Adopt final integrated producer27381. Complete four consumed package trees match the actual SDK6f source exactly (959 leaves), preserving original SDK producer identity. Full native acceptance remains required."
     }
   ],
   "product_roots": [
@@ -1315,5 +1384,5 @@
   ],
   "schema": "otzaria.integrated-product-source/1",
   "scope": "SOURCE_IDENTITY_ONLY_REQUIRES_NEW_NATIVE_ACCEPTANCE",
-  "swift_ai_sdk_source": "3f38f1302764635c9991d0d00fd7b12471a5373c"
+  "swift_ai_sdk_source": "abf0921c6e89e6521cc2b510ff11016b45a0ef08"
 }
