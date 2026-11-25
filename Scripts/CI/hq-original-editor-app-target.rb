@@ -4,6 +4,7 @@ require 'json'
 require 'digest'
 require 'shellwords'
 require 'xcodeproj'
+require_relative 'original_editor_shared_product_ownership'
 
 project_file, plan_file, receipt_file = ARGV
 raise 'Expected project, exact app plan and receipt paths' unless ARGV.length == 3
@@ -32,6 +33,7 @@ removed_object_ids = []
 shared_product_ids = []
 shared_build_file_ids = []
 shared_framework_phase = nil
+preserved_shared_product_owners = {}
 pod_source_proof = {}
 pod_projection_path = nil
 pod_projection_before = nil
@@ -82,15 +84,6 @@ unless release_variants.empty?
     release_pod_after.sub(new_line, old_line) == release_pod_before && sim_route.fetch('other_linker_inputs_unchanged') == true
 end
 
-def object_mentions?(value, identifier)
-  case value
-  when String then value == identifier
-  when Array then value.any? { |item| object_mentions?(item, identifier) }
-  when Hash then value.values.any? { |item| object_mentions?(item, identifier) }
-  else false
-  end
-end
-
 if shared
   contract = plan.fetch('shared_runtime')
   raise 'Unbound native shared provider' unless contract.fetch('producer_identity').fetch('source_sha') == plan.fetch('source_sha')
@@ -108,16 +101,15 @@ if shared
   build_files = shared_framework_phase.files.select { |item| dependencies.include?(item.product_ref) }
   raise 'Missing original shared package link input' unless build_files.map { |item| item.product_ref.product_name }.sort == products.sort
   old_objects = before.fetch('objects')
-  dependencies.each do |dependency|
+  ownership_inputs = dependencies.map do |dependency|
     link = build_files.find { |item| item.product_ref == dependency }
-    referrers = old_objects.select { |_, value| object_mentions?(value, dependency.uuid) }.keys.sort
-    raise 'Shared product is owned by another target' unless referrers == [target.uuid, link.uuid].sort
-    refs = old_objects.select { |_, value| object_mentions?(value, link.uuid) }.keys
-    raise 'Shared link input is owned by another phase' unless refs == [shared_framework_phase.uuid]
+    { 'uuid' => dependency.uuid, 'name' => dependency.product_name, 'link_uuid' => link.uuid }
   end
+  preserved_shared_product_owners = OriginalEditorSharedProductOwnership.plan(
+    old_objects, target.uuid, shared_framework_phase.uuid, ownership_inputs)
   shared_product_ids = dependencies.map(&:uuid)
   shared_build_file_ids = build_files.map(&:uuid)
-  removed_object_ids = shared_product_ids + shared_build_file_ids
+  removed_object_ids = (shared_product_ids - preserved_shared_product_owners.keys) + shared_build_file_ids
 
   route = plan.fetch('shared_pod_link_route')
   expected_path = 'Pods/Target Support Files/Pods-Maktabah-iOS/Pods-Maktabah-iOS.debug.xcconfig'
@@ -172,7 +164,13 @@ if shared
   end
   raise 'Inspecting original Pod targets changed their project' unless File.binread(pod_project_file) == pod_project_before
   build_files.each(&:remove_from_project)
-  dependencies.each(&:remove_from_project)
+  dependencies.each do |dependency|
+    if preserved_shared_product_owners.key?(dependency.uuid)
+      target.package_product_dependencies.delete(dependency)
+    else
+      dependency.remove_from_project
+    end
+  end
 end
 
 def append_settings(settings, key, additions)
@@ -349,6 +347,7 @@ begin
     'shared_implementation_route' => shared,
     'reused_shared_product_ids' => shared_product_ids,
     'reused_shared_link_ids' => shared_build_file_ids,
+    'preserved_shared_product_owners' => preserved_shared_product_owners,
     'actual_pod_source_membership' => pod_source_proof,
     'generated_debug_pod_configuration' => shared ? {
       'path' => plan.fetch('shared_pod_link_route').fetch('path'),
