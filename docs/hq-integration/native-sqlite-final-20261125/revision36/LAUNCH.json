@@ -1,0 +1,11 @@
+{
+  "editor_remaining_bytes": 805306368,
+  "external_remaining_bytes": 2147483648,
+  "free_bytes": 10684755968,
+  "os_margin_bytes": 2147483648,
+  "own_remaining_peak_bytes": 1073741824,
+  "phase": "SQLITE36_EXACT57A_CE0_PRODUCT",
+  "required_free_bytes": 6226444288,
+  "root_parser_remaining_bytes": 52428800,
+  "timestamp": "2026-11-25T05:16:41.325365+00:00"
+}

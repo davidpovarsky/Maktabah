@@ -19,7 +19,7 @@ jobs:
   runtime27:
     name: ${{ 'release' == 'toc-transport' && 'Sefaria Apple Foundation transport55 (no Native UI)' || 'release' == 'release' && 'Release build and prototype' || 'R27 real UI environment and acceptance' }}
     if: ${{ github.repository == 'davidpovarsky/Maktabah' && github.event_name == 'push' && github.ref == 'refs/heads/codex/otzaria-final-release114-20261120' && (!false && ('release' == 'probe' || 'release' == 'ui' || 'release' == 'release' || 'release' == 'toc-transport')) }}
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: ${{ 'release' == 'toc-transport' && 15 || 'release' == 'release' && 210 || 'release' == 'probe' && 300 || 360 }}
     outputs:
       release-build-artifact: ${{ steps.release_build_upload.outputs.artifact-id }}
@@ -200,7 +200,7 @@ jobs:
     name: Release native matrix (partial acceptance)
     needs: runtime27
     if: ${{ github.repository == 'davidpovarsky/Maktabah' && github.event_name == 'push' && github.ref == 'refs/heads/codex/otzaria-final-release114-20261120' && ('release' == 'release' && needs.runtime27.result == 'success') }}
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 345
     outputs:
       release-native-artifact: ${{ steps.release_native_upload.outputs.artifact-id }}
@@ -286,7 +286,7 @@ jobs:
     name: Release production upgrade and final acceptance
     needs: [runtime27, runtime27-release-native]
     if: ${{ github.repository == 'davidpovarsky/Maktabah' && github.event_name == 'push' && github.ref == 'refs/heads/codex/otzaria-final-release114-20261120' && ('release' == 'release' && needs.runtime27.result == 'success' && needs.runtime27-release-native.result == 'success') }}
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 300
     steps:
       - uses: actions/checkout@v4

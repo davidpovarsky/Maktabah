@@ -72,6 +72,7 @@ def require_app_groups(label: str, entitlements: dict) -> None:
     required = {
         "group.com.davidpovarsky.chavrusatext",
         "group.com.davidpovarsky.itorah",
+        "group.com.itorah.shared",
     }
     groups = values(entitlements, "com.apple.security.application-groups")
     missing = required - groups

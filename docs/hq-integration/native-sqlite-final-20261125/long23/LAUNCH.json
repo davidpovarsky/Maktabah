@@ -1,0 +1,25 @@
+{
+  "free_bytes": 6905933824,
+  "other_remaining_and_os_bytes": 5100273664,
+  "own_remaining_peak_bytes": 1073741824,
+  "prior_actual_receipts": {
+    "original43": {
+      "passed": 43,
+      "path": "/Users/m1/builds/otzaria-sqlite-final-57a4193d-original43-attempt01-20261125/RESULT.json",
+      "sha256": "4686298448b2cd2f9d193d5f343eba343c71f3692d209627a68f25412f2ccb78",
+      "status": "PASS_APPLE_FOUNDATION_COMPONENT"
+    },
+    "revision36": {
+      "passed": 36,
+      "path": "/Users/m1/builds/otzaria-sqlite-final-57a4193d-revision36-attempt01-20261125/RESULT.json",
+      "sha256": "be5a8662225f971ebf8b61fac56025e8234a9f68df06dcfcca6001b222fdec13",
+      "status": "PASS_APPLE_FOUNDATION_ORIGINAL_SQLITE_REVISION"
+    }
+  },
+  "product_source_sha": "ce0f62baba7360514e7fa8cad21f0caaf2d0ab8f",
+  "required_free_bytes": 6174015488,
+  "scope": "LONG23_ACTUAL_ORIGINAL_SQLITE",
+  "source_manifest_sha256": "0ccb03f7eacafe06a711c21d2a2225574ec72fd41b4950a8e4e062a148bb6eb4",
+  "source_sha": "57a4193d1d8a684b7ae4aff6642c1d256048d151",
+  "started_at": "2026-11-25T05:25:08.036052+00:00"
+}

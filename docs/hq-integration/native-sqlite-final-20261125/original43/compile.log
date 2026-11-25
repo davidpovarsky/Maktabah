@@ -1,0 +1,65 @@
+Building for debugging...
+[Computing dependencies]
+[Constructing description]
+[Pre-planning 1 / 96]
+[Planning 1 / 96]
+[Planning deferred tasks]
+[Starting]
+[2 / 56]
+[12 / 56]
+[34 / 57] OtzariaActionCore_OtzariaActionCore
+[38 / 74] OtzariaActionCore_OtzariaActionCore
+[41 / 102]
+[42 / 102]
+[43 / 102]
+[44 / 102]
+[45 / 102]
+[46 / 102]
+[47 / 102]
+[48 / 102]
+[49 / 102]
+[51 / 102]
+[53 / 102]
+[54 / 102]
+[55 / 102]
+[56 / 102]
+[57 / 102]
+[58 / 102]
+[60 / 102]
+[62 / 102]
+[63 / 102]
+[64 / 102]
+[65 / 102]
+[67 / 102]
+[69 / 102]
+[70 / 102]
+[71 / 102]
+[72 / 102]
+[73 / 102]
+[75 / 102] OtzariaActionCore
+[76 / 102] OtzariaActionCore
+[78 / 102] OtzariaActionCore
+[84 / 102] OtzariaActionCore
+[85 / 102] OtzariaActionCore-product
+[86 / 102] OtzariaActionCore-product
+[87 / 102] OtzariaActionCore-product
+[89 / 102] OtzariaActionCore
+[90 / 102] OtzariaActionCore
+[90 / 102] LocalAnnotationEditorAcceptance-product
+[95 / 103] LocalAnnotationEditorAcceptance-product
+[98 / 124]
+[100 / 124]
+[102 / 124]
+[103 / 124]
+[105 / 124]
+[108 / 124] LocalAnnotationEditorAcceptance-product
+[111 / 124] LocalAnnotationEditorAcceptance-product
+[112 / 124] LocalAnnotationEditorAcceptance-product
+[113 / 124] LocalAnnotationEditorAcceptance-product
+[115 / 124] LocalAnnotationEditorAcceptance-product
+[116 / 124] LocalAnnotationEditorAcceptance-product
+[117 / 124] LocalAnnotationEditorAcceptance-product
+[118 / 124] LocalAnnotationEditorAcceptance-product
+[118 / 124] AllExcludingTests
+[122 / 124] LocalAnnotationEditorAcceptance-product
+Build complete! (114,82 secs)

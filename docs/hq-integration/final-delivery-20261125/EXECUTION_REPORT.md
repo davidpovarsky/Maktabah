@@ -365,3 +365,80 @@ was made. This is storage work, not product acceptance.
 SQLite36 and native Backfill14 have not executed. Prior preflight refusals are
 retained; regenerate their final source closures for the full-text/batch changes
 rather than compiling superseded product solely for a green result.
+
+
+## 2026-11-25 continued: protected archive recovery and lifecycle Host source
+
+**Not a final delivery.** No new TestFlight build or final native/UI acceptance
+has been claimed.
+
+- The full retained-products archive now has a verified persistent copy on the
+  existing Windows HQ host. Actual job_134a3af647b4 verified 42,910 members,
+  every regular-file SHA, mode, symlink target and gzip CRC. Archive size:
+  5,447,045,120 bytes; SHA256
+  9acb16c572f787929692bd86fabd2fbb982d0d85cff682daf545f13c8998c8a3.
+- Actual job_703fc9501b4c rehashed the Oracle original, checked its unchanged
+  identity and absence of open handles, fsynced the verified recovery receipts,
+  then removed only that duplicate archive. Oracle free bytes increased from
+  1,525,202,944 to 6,972,248,064. All manifests, test evidence and source remain.
+  See storage/WINDOWS_VERIFIED.json, WINDOWS_RELOCATION.json and RECOVERY.json.
+  Windows has only about2.31GB remaining; it is not another large-build target.
+- Independent source review accepted the23 complete-note SQLite cases and
+  independent cold readback verifier at57a4193d1d8a684b7ae4aff6642c1d256048d151.
+  They were merged at7028e8cbceed9914c51c526c680026aecbc137ca. Their exact archive
+  reached the Mac, but36/43/23 execution is held by actual shared storage growth.
+  The ce0f Models/Persistence/Session core remains unchanged by lifecycle work.
+- The original remote CAS continuation job_09fe7fb07354 compiled in27.212s and
+  then failed its actual runtime after12.08s; no resource stop occurred in that
+  continuation. The editor owner is diagnosing it. No network ACK or successful
+  new CAS roundtrip is inferred from compilation. Earlier job_89de3c31cec7 had
+  stopped at compile before any network tests and remains a separate attempt.
+- The normal Host management entry and separate durable lifecycle history are
+  now implemented in source, including original archive/restore, three promotion
+  roles, return to Annotation, and a separate promoted-document update route.
+  They retain the existing SQLite exact-source/possible-dispatch fence and
+  original SDK closed-observation requirement. See lifecycle/HOST_INTEGRATION.md.
+  This depends on the SDK owner's final typed lifecycle surface and has not
+  passed Apple typecheck or integrated runtime/UI.
+- At the latest bounded inventory the Mac had4,349,681,664 bytes free. No root
+  syntax/compiler invocation was started at this inadequate budget. The native
+  owner is preserving inactive old Maktabah Products to the recovered Oracle
+  capacity before admitting the next paid gates. Current compatible compilation
+  products, shared package caches, source and raw evidence are retained.
+
+
+## 2026-11-25 continued: focused SQLite passes and release preparation
+
+- Exact57a/ce0 SQLite gates genuinely passed on the owner's Mac:36 cases and
+  all three cold/crash pairs (job_144852cddd68, result SHA
+  be5a8662225f971ebf8b61fac56025e8234a9f68df06dcfcca6001b222fdec13);
+  original43 cases plus two reopen gates (job_693164f0d6cc, result SHA
+  4686298448b2cd2f9d193d5f343eba343c71f3692d209627a68f25412f2ccb78);
+  new23 complete-note cases plus independent cold readback (job_d5d72ef1d14f,
+  result SHA ac9045a56e599be441937490cb7fd8a78fc71e3074fda9140fd169220f352f47).
+  The latter retained all36,400UTF-8 bytes with an8192-byte preview, exactly one
+  rich version, intact original pending upload, integrity_check ok and zero
+  external outbox. The acceptance owner is preserving/publishing all raw files.
+  These are original SQLite component results, not native editor/UI/network ACK.
+- Root3a1f lifecycle source passed actual Apple syntax and PBX validation in
+  job_4d119fda66cb. Receipt SHA
+  de8d0e6ed5335e271595c5391bc22f88969e94d82425e64097c426803bd169bd.
+  All2401 prior PBX objects were preserved except the two registration arrays;
+  four new file/build objects were added. Typecheck and native UI counts are0.
+  Both independent lane owners reviewed the final typed SDK surface and Host
+  late-drain/source/witness semantics without finding a blocking source defect.
+- SDK source checkpoint6168d8b4ee875b58f534eddec190d072cfb3a5ac is published,
+  with237 public requirements plus22Debug SPI. It is not yet a qualified binary.
+  Host6f6e3c2a adds the requested closed batch retirement link to both run/DB
+  owners. Its entire active macOS Models branch remains byte-identical;
+  actual iOS typecheck/runtime is still required.
+-18 relevant CI compile/simulator jobs are routed to all five labels of the
+  existing Scaleway runner. Tests, dependencies, triggers, owner checks and
+  permissions are unchanged. The current Xcode27 helper was executed read-only
+  on the Mac in job_d4d0c0db626d and left global selection unchanged.
+  No workflow acceptance is inferred. See ci/README.md.
+- The common signing validator now requires the actual third shared App Group
+  in both profile and signed app. All81 retained authenticated profiles are
+  explicitly refused because this group is missing. This closes a validation
+  omission and keeps the genuine provisioning requirement open. See
+  apple/APP_GROUP_REQUIREMENT.md. No new archive, IPA, Apple mutation or upload.

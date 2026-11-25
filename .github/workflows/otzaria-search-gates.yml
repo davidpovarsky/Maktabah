@@ -83,7 +83,7 @@ jobs:
 
   adapter-linux:
     if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts) }}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 45
     outputs:
       cargo-registry-hit: ${{ steps.cargo-registry.outputs.cache-hit }}
@@ -119,7 +119,7 @@ jobs:
           github_token: ${{ github.token }}
       - name: Identify Rust toolchain
         id: rustc
-        run: echo "id=$(rustc -Vv | sha256sum | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+        run: echo "id=$(rustc -Vv | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true
@@ -231,7 +231,7 @@ jobs:
 
   bootstrap-tests-macos:
     if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts) }}
-    runs-on: macos-26
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 30
     steps:
       - name: Live Activity · refresh
@@ -251,8 +251,8 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Select Xcode 26
-        run: bash Scripts/CI/select-xcode-26.sh
+      - name: Verify existing Xcode 27
+        run: bash Scripts/CI/select-xcode-27.sh
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true
@@ -403,7 +403,7 @@ jobs:
 
   otzaria-framework-macos:
     if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts) }}
-    runs-on: macos-26
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 90
     outputs:
       framework-cache-hit: ${{ steps.framework-valid.outputs.valid }}
@@ -427,10 +427,10 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Select Xcode 26
+      - name: Verify existing Xcode 27
         id: xcode
         run: |
-          bash Scripts/CI/select-xcode-26.sh
+          bash Scripts/CI/select-xcode-27.sh
           echo "id=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -587,7 +587,7 @@ jobs:
 
   zayit-framework-macos:
     if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts) }}
-    runs-on: macos-26
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 60
     outputs:
       framework-cache-hit: ${{ steps.framework-valid.outputs.valid }}
@@ -611,10 +611,10 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Select Xcode 26
+      - name: Verify existing Xcode 27
         id: xcode
         run: |
-          bash Scripts/CI/select-xcode-26.sh
+          bash Scripts/CI/select-xcode-27.sh
           echo "id=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -737,7 +737,7 @@ jobs:
   app-link-macos:
     if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts) }}
     needs: [otzaria-framework-macos, zayit-framework-macos]
-    runs-on: macos-26
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 60
     outputs:
       swiftpm-cache-hit: ${{ steps.swiftpm-cache.outputs.cache-hit }}
@@ -759,10 +759,10 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Select Xcode 26 and identify SwiftPM inputs
+      - name: Verify existing Xcode 27 and identify SwiftPM inputs
         id: cache-inputs
         run: |
-          bash Scripts/CI/select-xcode-26.sh
+          bash Scripts/CI/select-xcode-27.sh
           echo "xcode=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
           echo "swiftpm=$(python3 Scripts/CI/cache-key-inputs.py swiftpm)" >> "$GITHUB_OUTPUT"
       - name: Live Activity · refresh

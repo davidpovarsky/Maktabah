@@ -1249,6 +1249,601 @@
           }
         }
       }
+    },
+    "Action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Action"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פעולה"
+          }
+        }
+      }
+    },
+    "Active": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פעיל"
+          }
+        }
+      }
+    },
+    "Annotation": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annotation"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הערה"
+          }
+        }
+      }
+    },
+    "Apply this change in Anytype?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apply this change in Anytype?"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "להחיל את השינוי ב־Anytype?"
+          }
+        }
+      }
+    },
+    "Archive this copy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archive this copy"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "העברת העותק לארכיון"
+          }
+        }
+      }
+    },
+    "Archived": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archived"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בארכיון"
+          }
+        }
+      }
+    },
+    "Archiving moves the copy to Anytype's archive. Changing its type keeps the same copy and source links. Return a document to an annotation before receiving it into this note.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archiving moves the copy to Anytype's archive. Changing its type keeps the same copy and source links. Return a document to an annotation before receiving it into this note."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "העברה לארכיון מעבירה את העותק לארכיון של Anytype. שינוי הסוג שומר על אותו עותק וקישורי המקורות. לפני קבלת מסמך לתוך הערה זו, יש להחזירו לסוג הערה."
+          }
+        }
+      }
+    },
+    "Article": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Article"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מאמר"
+          }
+        }
+      }
+    },
+    "Change verified in Anytype": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change verified in Anytype"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השינוי אומת ב־Anytype"
+          }
+        }
+      }
+    },
+    "Chiddush": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiddush"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חידוש"
+          }
+        }
+      }
+    },
+    "Choose the current type of the copy in Anytype. Its actual content, type and archive status will be checked before you confirm a change.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose the current type of the copy in Anytype. Its actual content, type and archive status will be checked before you confirm a change."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בחרו את סוג העותק הנוכחי ב־Anytype. התוכן, הסוג ומצב הארכיון שלו ייבדקו לפני אישור השינוי."
+          }
+        }
+      }
+    },
+    "Close and check the selected account, space and current type of the copy before opening it again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close and check the selected account, space and current type of the copy before opening it again."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יש לסגור ולבדוק את החשבון, המרחב וסוג העותק הנוכחי לפני פתיחתו מחדש."
+          }
+        }
+      }
+    },
+    "Close and reopen the saved note before choosing this action again. The versions already read are retained.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close and reopen the saved note before choosing this action again. The versions already read are retained."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יש לסגור ולפתוח מחדש את ההערה השמורה לפני בחירה חוזרת בפעולה. הגרסאות שכבר נקראו נשמרות."
+          }
+        }
+      }
+    },
+    "Confirm the reviewed action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm the reviewed action"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אישור הפעולה שנבדקה"
+          }
+        }
+      }
+    },
+    "Current type in Anytype": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current type in Anytype"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "סוג העותק כעת ב־Anytype"
+          }
+        }
+      }
+    },
+    "Manage the Anytype copy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage the Anytype copy"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ניהול העותק ב־Anytype"
+          }
+        }
+      }
+    },
+    "Only the saved copy you reviewed will be changed. Your local note, source anchor and unsaved drafts stay as they are.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only the saved copy you reviewed will be changed. Your local note, source anchor and unsaved drafts stay as they are."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השינוי יוחל רק על העותק השמור שבדקתם. ההערה המקומית, עוגן המקור וטיוטות שלא נשמרו יישארו כפי שהם."
+          }
+        }
+      }
+    },
+    "Read and review this copy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read and review this copy"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קריאה ובדיקה של העותק"
+          }
+        }
+      }
+    },
+    "Requested action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Requested action"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הפעולה המבוקשת"
+          }
+        }
+      }
+    },
+    "Research": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Research"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מחקר"
+          }
+        }
+      }
+    },
+    "Restore this copy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore this copy"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שחזור העותק מהארכיון"
+          }
+        }
+      }
+    },
+    "Restore this copy before changing its content or type.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore this copy before changing its content or type."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יש לשחזר את העותק מהארכיון לפני שינוי התוכן או הסוג שלו."
+          }
+        }
+      }
+    },
+    "Return to an annotation": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Return to an annotation"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "החזרה להערה"
+          }
+        }
+      }
+    },
+    "Share this saved note with Anytype first, then select that account and space to manage the copy.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Share this saved note with Anytype first, then select that account and space to manage the copy."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יש לשתף תחילה את ההערה השמורה עם Anytype, ולאחר מכן לבחור באותו חשבון ומרחב כדי לנהל את העותק."
+          }
+        }
+      }
+    },
+    "Shared copy %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shared copy %lld"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עותק משותף %lld"
+          }
+        }
+      }
+    },
+    "Status": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Status"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מצב"
+          }
+        }
+      }
+    },
+    "The Anytype copy changed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The Anytype copy changed"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "העותק ב־Anytype השתנה"
+          }
+        }
+      }
+    },
+    "The Anytype copy could not be checked": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The Anytype copy could not be checked"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן היה לבדוק את העותק ב־Anytype"
+          }
+        }
+      }
+    },
+    "The copy was read back with the requested change. Its source links and object ID were preserved. Visibility on another device is checked separately.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The copy was read back with the requested change. Its source links and object ID were preserved. Visibility on another device is checked separately."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "העותק נקרא בחזרה עם השינוי המבוקש. קישורי המקורות והמזהה שלו נשמרו. הופעת השינוי במכשיר אחר נבדקת בנפרד."
+          }
+        }
+      }
+    },
+    "The current content, archive status or type changed before this action. Nothing from this action was applied. Close and review the current copy again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The current content, archive status or type changed before this action. Nothing from this action was applied. Close and review the current copy again."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "התוכן, מצב הארכיון או סוג העותק השתנו לפני הפעולה. הפעולה לא החילה שינויים. יש לסגור ולבדוק שוב את העותק העדכני."
+          }
+        }
+      }
+    },
+    "Turn into a chiddush": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn into a chiddush"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המרה לחידוש"
+          }
+        }
+      }
+    },
+    "Turn into an article": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn into an article"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המרה למאמר"
+          }
+        }
+      }
+    },
+    "Turn into research": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn into research"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המרה למחקר"
+          }
+        }
+      }
+    },
+    "Update this document from the saved note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Update this document from the saved note"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עדכון המסמך מתוך ההערה השמורה"
+          }
+        }
+      }
+    },
+    "Your saved note changed since it was shared. Review both versions before updating this document.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your saved note changed since it was shared. Review both versions before updating this document."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההערה השמורה השתנתה מאז ששותפה. בדקו את שתי הגרסאות לפני עדכון המסמך."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

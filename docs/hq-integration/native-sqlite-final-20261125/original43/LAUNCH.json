@@ -1,0 +1,14 @@
+{
+  "exit_code": 0,
+  "free_bytes": 9769963520,
+  "free_bytes_after": 6072963072,
+  "other_remaining_and_os_bytes": 5152702464,
+  "own_remaining_peak_bytes": 1073741824,
+  "processID": 85315,
+  "product_source_sha": "ce0f62baba7360514e7fa8cad21f0caaf2d0ab8f",
+  "required_free_bytes": 6226444288,
+  "scope": "ORIGINAL43_REGRESSION_CE0_SHARED_PREPARE_COMMIT",
+  "seconds": 159.641,
+  "source_sha": "57a4193d1d8a684b7ae4aff6642c1d256048d151",
+  "started_at": "2026-11-25T05:18:40.669457+00:00"
+}

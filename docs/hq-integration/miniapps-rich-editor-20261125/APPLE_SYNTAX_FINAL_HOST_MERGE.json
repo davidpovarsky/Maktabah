@@ -1,0 +1,27 @@
+{
+  "status": "APPLE_SWIFT_PARSE_PASS",
+  "source_path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift",
+  "source_sha256": "d54a0f3adb317f8b1dcafb7a834045bb599d0eef238f44ed0597ceabcfaa19bb",
+  "source_merge_parents": [
+    "3d9d0452e7e1337b96343597c92c9af75197bbda",
+    "05f5697418493594589e1614e72da94ab12cf165"
+  ],
+  "command": [
+    "xcrun",
+    "swift-frontend",
+    "-parse",
+    "-swift-version",
+    "6",
+    "-target",
+    "arm64-apple-ios18.0-simulator",
+    "-sdk",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+    "/Users/m1/builds/_preflight/otzaria-miniapps-adapter-20261125/merge05f/AnnotationOriginalEditorProductionUI.swift"
+  ],
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0\n",
+  "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+  "native_tests_executed": 0,
+  "api_typecheck": "NOT_CLAIMED",
+  "returncode": 0,
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,135 @@
+{
+  "actions": [
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/ref/heads/codex/otzaria-final-delivery-20261125",
+      "method": "GET",
+      "sha": null
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/blobs",
+      "method": "POST",
+      "sha": "5838b3814a6723c76593c3e3f84dbcd004278d62"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/blobs",
+      "method": "POST",
+      "sha": "f132d25049882a0d83fda27edc6dc0c6e00e1869"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/blobs",
+      "method": "POST",
+      "sha": "a06e31b3101a0de0b4ed02639a6e1d76b1458731"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/blobs",
+      "method": "POST",
+      "sha": "5c7db5cd0fc721c1d28bb0effa5d7eca5fdb7a75"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/blobs",
+      "method": "POST",
+      "sha": "e49135a48ac622c55c50ac3469b663e6be057cc8"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/blobs",
+      "method": "POST",
+      "sha": "c0966d729c256a12ea0c9d1e258db31820134508"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/blobs",
+      "method": "POST",
+      "sha": "fb87c98032842f3b2f2cc489bd7cc49eaceecf91"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/blobs",
+      "method": "POST",
+      "sha": "3fc8309aa5e37e3fbfa4ea691ec11d75aab7c5ad"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/blobs",
+      "method": "POST",
+      "sha": "b4716d879495295481e3a397b3d8c1e934814fbc"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/blobs",
+      "method": "POST",
+      "sha": "664d7d29f21f7c53edc10c075711b378cc93b020"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/blobs",
+      "method": "POST",
+      "sha": "d21d1d962d47342ab0ca6d65eae892c3bebef19d"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/blobs",
+      "method": "POST",
+      "sha": "ff8812b0e99c57befb5b59da59a36e4b7cf11193"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/blobs",
+      "method": "POST",
+      "sha": "d2aabb5acc5a8905234680d4319f3e707eb50aae"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/blobs",
+      "method": "POST",
+      "sha": "6eafbd0fea3e9d842d5831f9ffbad9bb4a4e9922"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/blobs",
+      "method": "POST",
+      "sha": "d000384034c525d08c3b908ebccf315a41af6e07"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/trees",
+      "method": "POST",
+      "sha": "356177c4d12e0a4f209d1f2ae29a704304b249be"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/commits",
+      "method": "POST",
+      "sha": "491449000046b9e881b843c1883c60d919f2e5fe"
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/ref/heads/codex/otzaria-final-delivery-20261125",
+      "method": "GET",
+      "sha": null
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/refs/heads/codex/otzaria-final-delivery-20261125",
+      "method": "PATCH",
+      "sha": null
+    },
+    {
+      "endpoint": "repos/davidpovarsky/Maktabah/git/ref/heads/codex/otzaria-final-delivery-20261125",
+      "method": "GET",
+      "sha": null
+    }
+  ],
+  "existing_scope_names": [
+    "gist",
+    "read:org",
+    "repo",
+    "workflow"
+  ],
+  "file_count": 15,
+  "finished_at": "2026-11-25T05:43:57.740634+00:00",
+  "force": false,
+  "free_after": 1736925184,
+  "free_before": 1737293824,
+  "head": "491449000046b9e881b843c1883c60d919f2e5fe",
+  "official_branch_merged": false,
+  "parent": "6f6e3c2a3ebfcc5b8c36247e113b65306d644b7d",
+  "payload_sha256": "679042522c993d827b92f8f105455913025f71dc3d818464ad56122d38005508",
+  "resource_plan": {
+    "no_git_clone": true,
+    "os_margin_bytes": 1073741824,
+    "other_remaining_bytes": 536870912,
+    "own_bounded_transfer_bytes": 4194304
+  },
+  "schema": "otzaria.exact-git-object-publication-receipt/1",
+  "started_at": "2026-11-25T05:43:40.199703+00:00",
+  "status": "PASS_EXACT_BLOBS_TREE_COMMIT_FAST_FORWARD_REMOTE_VERIFIED",
+  "tests_executed": 0,
+  "tree": "356177c4d12e0a4f209d1f2ae29a704304b249be"
+}

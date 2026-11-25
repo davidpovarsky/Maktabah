@@ -75,6 +75,7 @@ struct AnnotationOriginalEditorProductionEntry: View {
     @State private var entryMessage: String?
     @State private var sharePresentation: AnnotationOriginalEditorSharePresentation?
     @State private var receivePresentation: AnnotationOriginalEditorReceivePresentation?
+    @State private var lifecyclePresentation: AnnotationOriginalEditorLifecyclePresentation?
 
     static var qualificationOwnsEntry: Bool {
         #if DEBUG && targetEnvironment(simulator)
@@ -166,6 +167,23 @@ struct AnnotationOriginalEditorProductionEntry: View {
                     }
                     .accessibilityIdentifier("annotation-anytype-receive-open")
                     .disabled(entryError != nil)
+
+                    Button {
+                        do {
+                            try draft().requireUnchanged(annotation)
+                            guard let workspace, let inspected, availability == .rich else {
+                                throw AnnotationOriginalEditorUIError.unavailable
+                            }
+                            lifecyclePresentation = .init(annotation: annotation,
+                                inspected: inspected, workspace: workspace)
+                        } catch { entryMessage = error.localizedDescription }
+                    } label: {
+                        Label {
+                            Text("Manage the Anytype copy", tableName: "OriginalAnnotationEditor")
+                        } icon: { Image(systemName: "archivebox") }
+                    }
+                    .accessibilityIdentifier("annotation-anytype-manage-open")
+                    .disabled(entryError != nil)
                 }
 
                 if availability == .checking {
@@ -186,6 +204,12 @@ struct AnnotationOriginalEditorProductionEntry: View {
             .onDisappear {
                 inspection?.retire()
                 inspection = nil
+            }
+            .fullScreenCover(item: $lifecyclePresentation, onDismiss: {
+                closeOriginalSheet()
+            }) { model in
+                AnnotationOriginalEditorLifecycleView(model: model)
+                    .interactiveDismissDisabled(true)
             }
             .fullScreenCover(item: $receivePresentation, onDismiss: {
                 closeOriginalSheet()

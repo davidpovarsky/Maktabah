@@ -1,0 +1,18 @@
+{
+  "_notice": "You have 11 unread SentinelX notification(s) (job results and/or announcements). Call notifications_check to read them.",
+  "cleanup": false,
+  "command": [
+    "python3",
+    "/Users/m1/sentinelx/uploads/.sentinelx_uploads/script_job_71aa9dfe07a64ef3ab648114cad1dd17/script.py"
+  ],
+  "cwd": null,
+  "duration": 0.59,
+  "hub_request_id": "hreq_526d76ab83d54144",
+  "interpreter": "python3",
+  "ok": false,
+  "output": "Traceback (most recent call last):\n  File \"/Users/m1/sentinelx/uploads/.sentinelx_uploads/script_job_71aa9dfe07a64ef3ab648114cad1dd17/script.py\", line 24, in <module>\n    assert len(exes)==1,(gate,exes)\nAssertionError: ('revision36', [])",
+  "returncode": 1,
+  "script_path": "/Users/m1/sentinelx/uploads/.sentinelx_uploads/script_job_71aa9dfe07a64ef3ab648114cad1dd17/script.py",
+  "sudo": false,
+  "workdir": "/Users/m1/sentinelx/uploads/.sentinelx_uploads/script_job_71aa9dfe07a64ef3ab648114cad1dd17"
+}

@@ -442,6 +442,7 @@ enum AnnotationOriginalEditorNativeReceiptFile {
             .appendingPathComponent(database.lastPathComponent + ".native-import-history", isDirectory: true)
         let manager = FileManager.default
         let revisions = try AnnotationOriginalEditorRevisionFile.mappings(
+            annotationUUID: annotationUUID, capturedDatabaseURL: capturedDatabaseURL) + AnnotationOriginalEditorLifecycleFile.mappings(
             annotationUUID: annotationUUID, capturedDatabaseURL: capturedDatabaseURL)
         guard manager.fileExists(atPath: root.path) else { return revisions }
         func files(in directory: URL) throws -> [URL] {
