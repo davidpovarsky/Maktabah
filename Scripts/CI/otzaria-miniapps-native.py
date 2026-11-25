@@ -25,9 +25,12 @@ INPUTS = ROOT / "Scripts/CI/otzaria-miniapps-native.inputs.json"
 BUILD_INPUTS = ROOT / "Scripts/CI/hq-stage2-focused-apple.inputs.json"
 SELECTOR = "MiniAppsAnnotationAcceptanceTests/testOriginalNoteReturnsTextFromActualMiniAppsAndPersistsAfterRelaunch"
 FILE_SELECTOR = "MiniAppsAnnotationAcceptanceTests/testOriginalNativeFilesRoundTripAndReplayAfterColdReopen"
-SELECTORS = [SELECTOR, FILE_SELECTOR]
+PICKER_SELECTOR = "MiniAppsAnnotationAcceptanceTests/testSharedPickerHebrewRTLUsesNativeEditingAndPersistsPreferences"
+IPAD_SELECTORS = [SELECTOR, FILE_SELECTOR]
+SELECTORS = IPAD_SELECTORS + [PICKER_SELECTOR]
 FILE_WORKSHOP = "org.itorah.miniapps.fileworkshop"
-GROUPS = [{"label": "11-reader", "size": "11", "hid_comparison": False, "case_ids": SELECTORS}]
+GROUPS = [{"label": "11-reader", "size": "11", "hid_comparison": False, "case_ids": IPAD_SELECTORS},
+          {"label": "phone", "size": "phone", "hid_comparison": False, "case_ids": [PICKER_SELECTOR]}]
 BUNDLE = "com.davidpovarsky.chavrusatext"
 PRODUCER = "com.itorah.hanlinminiapps"
 GROUP = "group.com.itorah.shared"
@@ -148,21 +151,24 @@ def prepare():
     oracles = {
         SELECTOR: "Original reader selection and note toolbar; actual TextStudio warm/cold callbacks; five durable SQLite result receipts, separately validated native apply and SQLite commit, native rich archive and newer-block preservation, cold native remount, duplicate callback, linked-note anchors and unchanged corpus",
         FILE_SELECTOR: "Actual UI import and execution of committed NativeScript File Workshop; original native file upload, cold native archive reopen and byte export, real readAttachment/writeAttachment/complete, UTF-8 edits, same-name distinct blocks, cold return, cancellation and replay with original SQLite receipts and unchanged corpus"}
+    oracles[PICKER_SELECTOR] = "Actual original iPhone Hebrew/RTL chooser and native More/Edit: favorites, drag order, visibility, Done, window preference and persistence; actual screenshots and accessibility hierarchy; no request enqueued by settings edits"
     catalog = contract["cases"] + contract.setdefault("supplemental_cases", [])
     for selector in SELECTORS:
         matches = [row for row in catalog if row["case_id"] == selector]
         require(len(matches) <= 1, "Duplicate original native acceptance selector")
         if not matches:
-            row = {"case_id": selector, "device": "ipad11", "status": "NOT_RUN"}
+            row = {"case_id": selector, "device": "iphone" if selector == PICKER_SELECTOR else "ipad11", "status": "NOT_RUN"}
             contract["supplemental_cases"].append(row)
         else:
             row = matches[0]
+        require(row["device"] == ("iphone" if selector == PICKER_SELECTOR else "ipad11"),
+                "Original MiniApps selection was assigned to the wrong native device")
         row["oracle"] = oracles[selector]
     contract.update(source_test_commit=context["application_source_sha"],
                     app_source=context["application_source_sha"],
                     application_source_sha=context["application_source_sha"],
                     execution_case_ids=SELECTORS, execution_groups=GROUPS, required_nonzero_cases=len(SELECTORS),
-                    native_cases_executed=0, expected_per_device={"ipad11": len(SELECTORS), "ipad13": 0, "iphone": 0},
+                    native_cases_executed=0, expected_per_device={"ipad11": len(IPAD_SELECTORS), "ipad13": 0, "iphone": 1},
                     diagnostic_only=True, hid_comparison=False,
                     scope="Actual two-app MiniApps consumer acceptance only; previously accepted unrelated suites are not replayed")
     runpy.run_path(str(ROOT / "Scripts/CI/runtime27.py"))["execution_groups"](contract)
@@ -644,6 +650,9 @@ def verify_file_returns(records, group):
 class ActualMiniAppsProducer:
     def __init__(self):
         self.udid = None
+        self.label = None
+        self.completed_labels = set()
+        self.before_request_ids = set()
         self.group = None
         self.corpus_group = None
         self.captured = False
@@ -655,8 +664,15 @@ class ActualMiniAppsProducer:
         require(not baseline and release_manifest is None and selection == SELECTORS, "Wrong native case selection")
 
     def stage(self, udid, container, label, selection):
-        require(self.udid is None and label == "11-reader" and selection == SELECTORS, "Wrong owned simulator scope")
+        scopes = {group["label"]: group["case_ids"] for group in GROUPS}
+        require(self.udid is None and label not in self.completed_labels and label in scopes
+                and selection == scopes[label], "Wrong owned simulator scope")
         self.udid = udid
+        self.label = label
+        self.group = None
+        self.captured = False
+        self.video = self.video_log = None
+        self.state = {"status": "NOT_REACHED", "fixture_producer": False, "synthetic_results_written": False}
         producer = PRODUCER_DIR / "HanlinMiniApps.app"
         require((OUT / "producer-admission.json").is_file(), "Actual producer product was not admitted")
         subprocess.run(["xcrun", "simctl", "install", udid, str(producer)], check=True, timeout=180)
@@ -667,27 +683,32 @@ class ActualMiniAppsProducer:
                 "The two installed original apps do not resolve the same App Group")
         self.group = Path(consumer_group).resolve()
         self.corpus_group = resolve_native_container(udid, BUNDLE, "group.com.davidpovarsky.itorah").resolve()
-        workshop = stage_file_workshop(udid)
+        workshop = stage_file_workshop(udid) if label == "11-reader" else None
+        self.before_request_ids = {path.name for path in (self.group / "MiniAppsBridge/v1/requests").glob("*.json")}
         corpus_profile = json.loads((ROOT / "Source/Otzaria/DataProfiles/miniTest10.profile.json").read_text())
         self.state.update(status="ACTUAL_PRODUCER_INSTALLED", udid=udid, group=str(self.group),
                           consumer_bundle=BUNDLE, producer_bundle=PRODUCER, shared_group_identifier=GROUP,
                           original_corpus_group=str(self.corpus_group))
-        write(OUT / "actual-two-app-stage.json", self.state)
-        self.video_log = (OUT / "native-video.log").open("w")
-        self.video = subprocess.Popen(["xcrun", "simctl", "io", udid, "recordVideo", str(OUT / "actual-two-app-ipad.mp4")],
+        write(OUT / ("actual-two-app-stage.json" if label == "11-reader" else "actual-two-app-stage-phone.json"), self.state)
+        self.video_log = (OUT / ("native-video-" + label + ".log")).open("w")
+        self.video = subprocess.Popen(["xcrun", "simctl", "io", udid, "recordVideo", str(OUT / ("actual-two-app-" + label + ".mp4"))],
                                       stdout=self.video_log, stderr=subprocess.STDOUT)
-        return {"TEST_RUNNER_MINIAPPS_NATIVE_SHARED_GROUP": str(self.group),
-                "TEST_RUNNER_MINIAPPS_FILE_WORKSHOP_ARCHIVE": workshop["archive_path"],
-                "TEST_RUNNER_MINIAPPS_FILE_WORKSHOP_SHA256": workshop["archive_sha256"],
+        environment = {"TEST_RUNNER_MINIAPPS_NATIVE_SHARED_GROUP": str(self.group),
                 "TEST_RUNNER_MINIAPPS_NATIVE_PRODUCER_BUNDLE": PRODUCER,
                 "TEST_RUNNER_MINIAPPS_NATIVE_CORPUS_GROUP": str(self.corpus_group),
                 "TEST_RUNNER_MINIAPPS_NATIVE_CORPUS_SHA256": corpus_profile["sourceDatabase"]["databaseSHA256"]}
+        if workshop is not None:
+            environment.update(TEST_RUNNER_MINIAPPS_FILE_WORKSHOP_ARCHIVE=workshop["archive_path"],
+                               TEST_RUNNER_MINIAPPS_FILE_WORKSHOP_SHA256=workshop["archive_sha256"])
+        else:
+            environment["TEST_RUNNER_MINIAPPS_PICKER_EXPECTED_DEVICE"] = "iphone"
+        return environment
 
     def redact_evidence(self, line):
         return line
 
     def capture(self, udid, label):
-        require(udid == self.udid and label == "11-reader", "Wrong producer evidence simulator")
+        require(udid == self.udid and label == self.label, "Wrong producer evidence simulator")
         if self.captured:
             return
         self.captured = True
@@ -699,6 +720,9 @@ class ActualMiniAppsProducer:
                 self.video.kill()
                 self.video.wait(timeout=10)
             self.video_log.close()
+        if label == "phone":
+            self.capture_phone_picker(udid)
+            return
         report = {"status": "INCOMPLETE", "records": [], "rich_records": [], "file_records": [],
                   "fixture_producer": False, "synthetic_results_written": False}
         try:
@@ -831,9 +855,43 @@ class ActualMiniAppsProducer:
             subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(result),
                             "--output-path", str(ROOT / "build/artifacts/visual-miniapps")], check=True, timeout=180)
 
+    def capture_phone_picker(self, udid):
+        evidence = {"status": "INCOMPLETE", "udid": udid, "device": "iphone",
+                    "language": "he", "locale": "he_IL", "actual_ui_result": "REQUIRED_SEPARATELY",
+                    "fixture_producer": False, "synthetic_results_written": False}
+        try:
+            require(self.group is not None, "The actual iPhone shared container was not resolved")
+            requests = self.group / "MiniAppsBridge/v1/requests"
+            after = {path.name for path in requests.glob("*.json")}
+            require(after == self.before_request_ids, "Editing the real picker unexpectedly enqueued a request")
+            for name in ["catalog.json", "preferences.json"]:
+                path = self.group / "MiniAppsBridge/v1" / name
+                require(path.is_file() and not path.is_symlink(), "Missing actual shared picker state")
+                destination = OUT / ("phone-actual-" + name)
+                shutil.copyfile(path, destination)
+                evidence[name] = {"path": str(destination), "sha256": digest(destination)}
+            catalog = json.loads((OUT / "phone-actual-catalog.json").read_text())
+            require(len(catalog["items"]) >= 2 and
+                    any(item["id"] == "nativeapp.textstudio" for item in catalog["items"]),
+                    "Phone picker did not consume the installed original producer catalog")
+            evidence["status"] = "ACTUAL_PHONE_PICKER_STATE_RETAINED"
+            evidence["native_editing_rtl_and_persistence"] = "ASSERTED_AND_CAPTURED_BY_ACTUAL_XCTEST"
+        except Exception as error:
+            evidence["error"] = type(error).__name__ + ": " + str(error)
+        write(OUT / "phone-picker-state.json", evidence)
+        result = ROOT / "build/artifacts/result-phone.xcresult"
+        if result.is_dir():
+            subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(result),
+                            "--output-path", str(ROOT / "build/artifacts/visual-miniapps-phone")],
+                           check=True, timeout=180)
+
     def cleanup(self, udid):
         if self.udid is not None:
-            self.capture(udid, "11-reader")
+            try:
+                self.capture(udid, self.label)
+            finally:
+                self.completed_labels.add(self.label)
+                self.udid = self.label = None
 
 
 def execute():
@@ -889,13 +947,19 @@ def collect():
         runpy.run_path(str(ROOT / "Scripts/CI/runtime27.py"))["collect_cases"](report, contract)
         result = json.loads((ROOT / "build/artifacts/faithful-ipad-matrix.json").read_text())
         devices = result.get("devices", [])
-        require(len(devices) == 1 and devices[0]["label"] == "11-reader"
-                and devices[0]["status"] == "EXECUTED_PASS" and devices[0]["ownedSimulatorCleanup"] == "PASS"
+        require(len(devices) == len(GROUPS)
+                and {device["label"] for device in devices} == {group["label"] for group in GROUPS}
+                and all(device["status"] == "EXECUTED_PASS" and device.get("ownedSimulatorCleanup") == "PASS"
+                        for device in devices)
                 and report.get("executed_ui_pass") == len(SELECTORS)
                 and not any(report.get(key, 0) for key in ["executed_ui_fail", "executed_ui_skip", "ui_not_run"]),
                 "The original two-app XCTest did not execute and pass")
         wire = json.loads((OUT / "native-wire-evidence.json").read_text())
         require(wire["status"] == "ACTUAL_SHARED_RECORD_AND_ORIGINAL_SQLITE_RECEIPT_PASS", "Original saved callback receipt is incomplete")
+        picker = json.loads((OUT / "phone-picker-state.json").read_text())
+        require(picker["status"] == "ACTUAL_PHONE_PICKER_STATE_RETAINED",
+                "Actual original iPhone picker evidence is incomplete")
+        report["iphone_hebrew_picker"] = picker
         report["producer_admission"] = json.loads((OUT / "producer-admission.json").read_text())
         report["status"] = "ACTUAL_TWO_APP_CONSUMER_UI_EXECUTED_PASS"
         return 0
