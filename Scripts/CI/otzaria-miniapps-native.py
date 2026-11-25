@@ -144,7 +144,7 @@ def prepare():
             "oracle": "Original reader selection and note toolbar, actual Hanlin TextStudio warm/cold callbacks, three atomic receipts, linked-note anchors and unchanged source corpus"})
     for row in contract["cases"] + contract.get("supplemental_cases", []):
         if row["case_id"] == SELECTOR:
-            row["oracle"] = "Original reader selection and note toolbar; actual TextStudio warm/cold callbacks; five atomic receipts, native rich archive and newer-block preservation, cold native remount, duplicate callback, linked-note anchors and unchanged corpus"
+            row["oracle"] = "Original reader selection and note toolbar; actual TextStudio warm/cold callbacks; five durable SQLite result receipts, separately validated native apply and SQLite commit, native rich archive and newer-block preservation, cold native remount, duplicate callback, linked-note anchors and unchanged corpus"
     contract.update(source_test_commit=context["application_source_sha"],
                     app_source=context["application_source_sha"],
                     application_source_sha=context["application_source_sha"],
