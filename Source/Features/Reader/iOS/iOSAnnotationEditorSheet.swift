@@ -241,7 +241,7 @@ struct iOSAnnotationEditorSheet: View {
                 tagsText = annotation.tags.joined(separator: ", ")
                 AccessibleAutoDirectionTextView.lastEnteredText = annotation.note
                 #if DEBUG
-                (AccessibleAutoDirectionTextView.activeInstance ?? editorTextView as? AccessibleAutoDirectionTextView)?.checkSmokeNoteInput()
+                (editorTextView as? AccessibleAutoDirectionTextView)?.checkSmokeNoteInput()
                 #endif
             }
             .onDisappear {
@@ -271,23 +271,13 @@ struct iOSAnnotationEditorSheet: View {
             return
         }
         #if DEBUG
-        (AccessibleAutoDirectionTextView.activeInstance ?? editorTextView as? AccessibleAutoDirectionTextView)?.checkSmokeNoteInput()
+        (editorTextView as? AccessibleAutoDirectionTextView)?.checkSmokeNoteInput()
         #endif
         var updated = annotation
-        let activeView = AccessibleAutoDirectionTextView.activeInstance ?? editorTextView
-        let lastEntered = AccessibleAutoDirectionTextView.lastEnteredText ?? ""
-        let editorText = activeView?.text ?? ""
-        let axText = activeView?.accessibilityValue ?? ""
-        var candidates = [lastEntered, editorText, axText, noteText]
-        if let active = activeView {
-            if let val = active.value(forKey: "text") as? String {
-                candidates.append(val)
-            }
-            if let val = active.value(forKey: "accessibilityValue") as? String {
-                candidates.append(val)
-            }
-        }
-        let rawCandidate = candidates.first(where: { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }) ?? ""
+        // Empty input is an intentional edit. Only this sheet's native text
+        // and binding own its draft; another window's global focus/AX state
+        // must never choose the note body that is committed here.
+        let rawCandidate = editorTextView?.text ?? noteText
         let trimmed = rawCandidate.trimmingCharacters(in: .whitespacesAndNewlines)
         updated.note = trimmed.isEmpty ? nil : rawCandidate
         let finalHex: String
@@ -379,9 +369,7 @@ final class AccessibleAutoDirectionTextView: UITextView {
 
     private func applyNewValue(_ newValue: String?) {
         let stringValue = newValue ?? ""
-        if !stringValue.isEmpty {
-            Self.lastEnteredText = stringValue
-        }
+        Self.lastEnteredText = stringValue
         if super.text != stringValue {
             super.text = stringValue
         }
@@ -401,9 +389,9 @@ final class AccessibleAutoDirectionTextView: UITextView {
             #if DEBUG
             checkSmokeNoteInput()
             #endif
-            if let t = super.text, !t.isEmpty { return t }
-            if let l = Self.lastEnteredText, !l.isEmpty { return l }
-            return super.accessibilityValue
+            // Accessibility describes this field, including a deliberate
+            // empty value. Process-global text can belong to another window.
+            return super.text ?? ""
         }
         set {
             super.accessibilityValue = newValue
@@ -506,17 +494,9 @@ struct iOSAutoDirectionTextView: UIViewRepresentable {
 
     func updateUIView(_ uiView: AccessibleAutoDirectionTextView, context: Context) {
         context.coordinator.parent = self
-        if !text.isEmpty {
-            if uiView.text != text {
-                uiView.text = text
-                AccessibleAutoDirectionTextView.lastEnteredText = text
-                context.coordinator.updateParagraphAlignments(in: uiView)
-            }
-        } else if let current = uiView.text, !current.isEmpty {
-            AccessibleAutoDirectionTextView.lastEnteredText = current
-            DispatchQueue.main.async {
-                self.text = current
-            }
+        if uiView.text != text {
+            uiView.text = text
+            context.coordinator.updateParagraphAlignments(in: uiView)
         }
     }
 
