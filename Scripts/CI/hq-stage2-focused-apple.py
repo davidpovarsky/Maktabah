@@ -11,6 +11,7 @@ import plistlib
 import re
 import runpy
 import shutil
+import stat
 import subprocess
 import sys
 import tempfile
@@ -315,6 +316,50 @@ def verified_cached_input(path, size, expected_sha256):
     return True
 
 
+
+def prepare_readonly_package_destinations(packed, destination, report):
+    """Restore verified SwiftPM checkout bytes without broad permission changes."""
+    checkout_root = ROOT / "build/SourcePackages/checkouts"
+    require(checkout_root.resolve() == ROOT.resolve() / "build/SourcePackages/checkouts",
+            "Read-only checkout restoration requires a canonical build path")
+    candidates = []
+    for member in packed.getmembers():
+        if not member.isfile():
+            continue
+        target = destination / member.name
+        if not target.is_relative_to(checkout_root) or not target.exists():
+            continue
+        state = target.lstat()
+        if not stat.S_ISREG(state.st_mode) or state.st_mode & stat.S_IWUSR:
+            continue
+        require(not any(parent.is_symlink() for parent in
+                        [target, *target.parents] if parent.is_relative_to(checkout_root)),
+                "Read-only checkout restoration cannot follow symbolic links")
+        require(state.st_uid == os.getuid() and state.st_nlink == 1,
+                "Read-only checkout restoration requires an owned regular file with one link")
+        # Run the original safe extraction filter before making any file writable.
+        require(tarfile.data_filter(member, str(destination)) is not None,
+                "Read-only checkout member was rejected by the original extraction filter")
+        with packed.extractfile(member) as source:
+            expected = hashlib.file_digest(source, "sha256").hexdigest()
+        require(state.st_size == member.size and digest(target) == expected,
+                "Read-only checkout differs from its verified archive: " + str(target))
+        candidates.append((target, state, expected))
+    for target, state, expected in candidates:
+        current = target.lstat()
+        require((current.st_dev, current.st_ino, current.st_size, current.st_mtime_ns,
+                 current.st_mode, current.st_uid, current.st_nlink) ==
+                (state.st_dev, state.st_ino, state.st_size, state.st_mtime_ns,
+                 state.st_mode, state.st_uid, state.st_nlink) and digest(target) == expected,
+                "Read-only checkout changed during restoration verification")
+        os.chmod(target, stat.S_IMODE(state.st_mode) | stat.S_IWUSR)
+        report.setdefault("verified_readonly_package_restoration", []).append({
+            "path": str(target.relative_to(ROOT)), "sha256": expected,
+            "mode_before": stat.S_IMODE(state.st_mode),
+            "mode_before_original_extraction": stat.S_IMODE(target.stat().st_mode),
+            "scope": "EXACT_OWNED_ARCHIVE_MEMBER_ORIGINAL_EXTRACTION_STILL_REQUIRED"})
+
+
 def restore(config, report):
     cache = OUT / "inputs"
     cache.mkdir(parents=True, exist_ok=True)
@@ -366,6 +411,8 @@ def restore(config, report):
                         checked_path(destination, member.name)
                         require(not member.isdev(), "Device member in input archive")
                     require("filter" in inspect.signature(packed.extractall).parameters, "Python requires safe tar extraction support")
+                    if item["name"] == "ios-build-swift-packages":
+                        prepare_readonly_package_destinations(packed, destination, report)
                     packed.extractall(destination, filter="data")
             else:
                 for entry in zipped.infolist():

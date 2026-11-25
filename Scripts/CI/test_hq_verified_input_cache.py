@@ -75,6 +75,61 @@ class VerifiedInputCacheTests(unittest.TestCase):
         self.assertEqual((self.root / "restored/original.txt").read_bytes(), b"original bytes")
         self.assertEqual(len(report["verified_input_cache_reuse"]), 2)
 
+    def readonly_checkout(self, contents=b"original bytes"):
+        self.config["artifacts"][0].update(
+            name="ios-build-swift-packages", destination="build")
+        tar = io.BytesIO()
+        with tarfile.open(fileobj=tar, mode="w") as archive:
+            member = tarfile.TarInfo("SourcePackages/checkouts/Original/PROJECT_BOARD.md")
+            member.size = 14
+            member.mode = 0o644
+            archive.addfile(member, io.BytesIO(b"original bytes"))
+        self.payload = tar.getvalue()
+        with zipfile.ZipFile(self.staged / "1.zip", "w") as zipped:
+            zipped.writestr("source.tar", self.payload)
+        self.raw = (self.staged / "1.zip").read_bytes()
+        self.sha = hashlib.sha256(self.raw).hexdigest()
+        self.config["artifacts"][0]["sha256"] = self.sha
+        self.manifest()
+        target = self.root / "build/SourcePackages/checkouts/Original/PROJECT_BOARD.md"
+        target.parent.mkdir(parents=True)
+        target.write_bytes(contents)
+        target.chmod(0o444)
+        return target
+
+    def test_exact_readonly_checkout_keeps_original_extraction(self):
+        target = self.readonly_checkout()
+        report = {}
+        self.restore(self.config, report)
+        self.assertEqual(target.read_bytes(), b"original bytes")
+        self.assertEqual(target.stat().st_mode & 0o777, 0o644)
+        self.assertEqual(report["verified_readonly_package_restoration"][0]["mode_before"], 0o444)
+        self.assertEqual(report["artifact_inputs"][0]["verified_sha256"], self.sha)
+
+    def test_changed_readonly_checkout_is_rejected_without_chmod_or_overwrite(self):
+        target = self.readonly_checkout(b"modified bytes")
+        with self.assertRaisesRegex(RuntimeError, "Read-only checkout differs"):
+            self.restore(self.config, {})
+        self.assertEqual(target.read_bytes(), b"modified bytes")
+        self.assertEqual(target.stat().st_mode & 0o777, 0o444)
+
+    def test_hardlinked_readonly_checkout_is_rejected_without_chmod(self):
+        target = self.readonly_checkout()
+        os.link(target, self.root / "other-owned-file")
+        with self.assertRaisesRegex(RuntimeError, "owned regular file with one link"):
+            self.restore(self.config, {})
+        self.assertEqual(target.stat().st_mode & 0o777, 0o444)
+
+    def test_symlinked_build_ancestor_is_rejected_without_chmod(self):
+        target = self.readonly_checkout()
+        outside = self.root / "other-owned-tree"
+        (self.root / "build").rename(outside)
+        (self.root / "build").symlink_to(outside, target_is_directory=True)
+        with self.assertRaisesRegex(RuntimeError, "canonical build path"):
+            self.restore(self.config, {})
+        self.assertEqual(target.read_bytes(), b"original bytes")
+        self.assertEqual(target.stat().st_mode & 0o777, 0o444)
+
     def test_same_size_wrong_zip_is_rejected_and_preserved(self):
         self.seeded()
         bad = b"x" + self.raw[1:]
