@@ -1,0 +1,17 @@
+#!/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/bin/ruby3.2
+require 'rubygems'
+require 'json'
+require 'rbconfig'
+Gem.use_paths(ENV.fetch('FIXTURE_GEMS'), [ENV.fetch('FIXTURE_GEMS')])
+gem 'xcodeproj', '= 0.0.1'
+require 'xcodeproj'
+gem 'cocoapods', '= 0.0.1'
+require 'cocoapods'
+if ENV['FIXTURE_CHILD'] == '1'
+  request = JSON.parse(File.read(ENV.fetch('OTZARIA_ORIGINAL_EDITOR_RUBY_REQUEST')))
+  child_code = 'puts "ordinary-child-body"; exit 7'
+  system(RbConfig.ruby, '-e', child_code)
+  File.write(ENV.fetch('FIXTURE_CHILD_MARKER'), JSON.generate({exit: $?.exitstatus, receipt_before_parent_exit: File.exist?(request.fetch('receipt_path'))}))
+end
+puts 'authored-pod-fixture-return'
+exit Integer(ENV.fetch('FIXTURE_POD_EXIT', '0'))

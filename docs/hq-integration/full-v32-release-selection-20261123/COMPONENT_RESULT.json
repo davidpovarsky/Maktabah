@@ -1,0 +1,42 @@
+{
+  "status": "SOURCE_COMPONENT_VALIDATION_PASS",
+  "native_ui_or_install_acceptance": false,
+  "actual_metadata_sha256": "ae62fa281b06801362ef93269258837c64445dff7120db6e97ee94f058175d09",
+  "controls": [
+    {
+      "configuration": "debug",
+      "result": {
+        "apple_app_or_native_install_acceptance": false,
+        "checks": 17,
+        "status": "ACTUAL_SOURCE_COMPONENT_CONTROLS_PASS"
+      },
+      "binary_sha256": "b8cdb1af5bf5eed6651fb12ba40fb3e159006491a7e28639915235743741c986",
+      "source_sha256": {
+        "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift": "cd20997467a5271a368f9c81e6240dc783aa2b4b903403bd49d24afe66371c27",
+        "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift": "7243943e61b04a900e1cb441e20bc8f69d82bd041c0b8b2ae1f2738ef3f9650d",
+        "Source/Otzaria/DataProfiles/OtzariaDataProfile.swift": "3ac83a1f548b6ffb5a9a3a42f50cd25780c3162c077a5731ded94154e50f0348",
+        "Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift": "b2dcb938d724eb01619e95d14a915f55de069da4b09ac007c15da92ecdd6d84d"
+      }
+    },
+    {
+      "configuration": "release",
+      "result": {
+        "apple_app_or_native_install_acceptance": false,
+        "checks": 8,
+        "status": "ACTUAL_SOURCE_COMPONENT_CONTROLS_PASS"
+      },
+      "binary_sha256": "f690fe68b16fba4d6d63549f6ae56b6169e24f88b4bb6e7a15695d0200cd5feb",
+      "source_sha256": {
+        "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift": "cd20997467a5271a368f9c81e6240dc783aa2b4b903403bd49d24afe66371c27",
+        "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift": "7243943e61b04a900e1cb441e20bc8f69d82bd041c0b8b2ae1f2738ef3f9650d",
+        "Source/Otzaria/DataProfiles/OtzariaDataProfile.swift": "3ac83a1f548b6ffb5a9a3a42f50cd25780c3162c077a5731ded94154e50f0348",
+        "Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift": "b2dcb938d724eb01619e95d14a915f55de069da4b09ac007c15da92ecdd6d84d"
+      }
+    },
+    {
+      "cli_invalid_scope_controls": 3,
+      "external_simulator_commands": 0,
+      "result": "PASS"
+    }
+  ]
+}

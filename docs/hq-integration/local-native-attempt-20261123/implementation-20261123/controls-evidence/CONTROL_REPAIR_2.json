@@ -1,0 +1,5 @@
+{
+  "reason": "Match actual original ActionJSON enum case; it exposes no unsigned computed property. Control-only expression; product unchanged.",
+  "before_sha256": "cf8a2cd6069783cc7e709ea0887f5d4c1cc537bfa5d4f4ea87dccd2eaac3d8d1",
+  "after_sha256": "9d328a5ec308b1ba95a96056e426985a36f1bc1d9b8070c8950e26d27eb03a70"
+}

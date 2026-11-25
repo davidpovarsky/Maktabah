@@ -2,7 +2,10 @@ import Foundation
 
 @MainActor
 enum OtzariaBootstrapAdapter {
+    private static var installationInProgress = false
     static func restoreForAppLaunch() async throws -> Bool {
+        // A second scene must not recover/finalize another scene's live commit.
+        if installationInProgress { return OtzariaMaktabahBridge.shared.isEnabled }
         let storage = try OtzariaDatabaseStorage()
         let installer = OtzariaDatabaseInstaller()
         // Ambiguous interrupted promotion may require a full SQLite scan. Keep
@@ -38,17 +41,40 @@ enum OtzariaBootstrapAdapter {
     }
 
     static func installDatabase(from url: URL) throws {
+        guard !installationInProgress else {
+            throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
+                String(localized: "otzaria.update.error.running")
+            )
+        }
         try OtzariaMaktabahBridge.shared.installDatabase(from: url)
     }
 
     @discardableResult
     static func downloadAndInstallManagedDatabase(
+        expectedRelease: OtzariaLibraryRelease? = nil,
+        beforePromotion: @MainActor () throws -> Void = {},
         progress: @escaping OtzariaDatabaseBootstrapService.ProgressHandler
     ) async throws -> OtzariaManagedDatabaseInstallResult {
+        guard !installationInProgress else {
+            throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
+                String(localized: "otzaria.update.error.running")
+            )
+        }
+        installationInProgress = true
+        defer { installationInProgress = false }
         let service = OtzariaDatabaseBootstrapService.shared
-        let preparation = try await service.prepareManagedDatabase(progress: progress)
+        let preparation = try await service.prepareManagedDatabase(
+            expectedRelease: expectedRelease, progress: progress
+        )
         let prepared = preparation.prepared
         let storage = preparation.storage
+        do {
+            try Task.checkCancellation()
+            try beforePromotion()
+        } catch {
+            await service.discardPrepared(prepared, storage: storage)
+            throw error
+        }
 
         // No active SQLite handle may survive replacement of the managed DB.
         OtzariaMaktabahBridge.shared.resetConnection()
@@ -94,7 +120,7 @@ enum OtzariaBootstrapAdapter {
             release: prepared.release,
             finalURL: finalURL,
             resumeFromBytes: preparation.resumeFromBytes,
-            downloadedBytes: prepared.release.asset.compressedSize,
+            downloadedBytes: prepared.release.compressedSize,
             actualSHA256: preparation.actualSHA256,
             downloadElapsedSeconds: preparation.downloadElapsedSeconds,
             verificationElapsedSeconds: preparation.verificationElapsedSeconds,

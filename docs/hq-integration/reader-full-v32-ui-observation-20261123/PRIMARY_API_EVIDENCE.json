@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "primary_sources": [
+    {
+      "url": "https://developer.apple.com/documentation/darwinnotify/notify_register_dispatch(_:_:_:_:)",
+      "swiftSignature": "func notify_register_dispatch(_ name: UnsafePointer<CChar>!, _ out_token: UnsafeMutablePointer<Int32>!, _ queue: dispatch_queue_t!, _ handler: notify_handler_t!) -> UInt32",
+      "reviewedSemantics": "Callback delivery uses the specified dispatch queue; cancel when the mounted original observer dismantles."
+    },
+    {
+      "url": "https://developer.apple.com/documentation/darwinnotify/notify_post(_:)",
+      "reviewedSemantics": "Actual Simulator XCTest posts the explicit UUID-scoped event only after collector resource-end and observer-arm acknowledgements."
+    },
+    {
+      "url": "https://developer.apple.com/documentation/xcode-release-notes/xcode-14-release-notes",
+      "reviewedSemantics": "xctrace exposes notify-tracing-started; check actual installed help and real Darwin ready event before measuring."
+    }
+  ],
+  "nativeQualification": false,
+  "observedDate": "2026-11-23"
+}

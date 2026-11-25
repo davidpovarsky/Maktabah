@@ -1,0 +1,269 @@
+{
+  "files": [
+    {
+      "after_sha256": "b518b98ae6123a05e0b99fe886cce5754d4b808921d109655b93d9ee926ecb84",
+      "all_assertions_triggers_dependencies_permissions_unchanged": true,
+      "before_sha256": "4681c043927f7abade9beb990aff04f9ad1b4261f4b20dedc4898afea58dae12",
+      "path": ".github/workflows/otzaria-search-gates.yml",
+      "routed_jobs": [
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "ubuntu-latest",
+          "job": "adapter-linux"
+        },
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "macos-26",
+          "job": "bootstrap-tests-macos"
+        },
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "macos-26",
+          "job": "otzaria-framework-macos"
+        },
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "macos-26",
+          "job": "zayit-framework-macos"
+        },
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "macos-26",
+          "job": "app-link-macos"
+        }
+      ]
+    },
+    {
+      "after_sha256": "e6aaf1178cdc490d6093aa6d852414e4272286233233d00b5ba8418592567f5c",
+      "all_assertions_triggers_dependencies_permissions_unchanged": true,
+      "before_sha256": "d6cf3107ded68b5fb144eb3f1d2149519cff55fd0c67a5346cff85726d19fd33",
+      "path": ".github/workflows/zayit-search-gates.yml",
+      "routed_jobs": [
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "ubuntu-latest",
+          "job": "rust"
+        },
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "macos-26",
+          "job": "xcframework"
+        }
+      ]
+    },
+    {
+      "after_sha256": "f6fec099024eaa4436ab493ddbd36ee298a20b350b75a78eba0815244560f792",
+      "all_assertions_triggers_dependencies_permissions_unchanged": true,
+      "before_sha256": "1f82805d1c0a5c0b18257397b24dca5f66eae929ad3dce8eb26609cff1258220",
+      "path": ".github/workflows/ios-build.yml",
+      "routed_jobs": [
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "xcode-27",
+          "job": "otzaria-framework"
+        },
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "xcode-27",
+          "job": "zayit-framework"
+        },
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "xcode-27",
+          "job": "swiftpm"
+        },
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "xcode-27",
+          "job": "simulator-build"
+        },
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "xcode-27",
+          "job": "device-build"
+        },
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "xcode-27",
+          "job": "native-bootstrap-heavy"
+        }
+      ]
+    },
+    {
+      "after_sha256": "0eb140364a65a8e11451a5843d437919396f0f1d6f84b6d9f23c015585f786b3",
+      "all_assertions_triggers_dependencies_permissions_unchanged": true,
+      "before_sha256": "595e624f5a02afc7606028d03a14b59ddcbb75c52792e808d3a6d7fc19a3426e",
+      "path": ".github/workflows/ios-testflight.yml",
+      "routed_jobs": [
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "xcode-27",
+          "job": "build-sign-and-upload"
+        }
+      ]
+    },
+    {
+      "after_sha256": "befbaf644b9f92fe67cb6f1357b6186c5955c5672b1787f11c774f13ef47002b",
+      "all_assertions_triggers_dependencies_permissions_unchanged": true,
+      "before_sha256": "9760d9e1ffff70033213f5ed1dfa7b57251210bcb4f8b4aef29a3799ac223569",
+      "path": ".github/workflows/otzaria-final-native-push.yml",
+      "routed_jobs": [
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "xcode-27",
+          "job": "runtime27"
+        }
+      ]
+    },
+    {
+      "after_sha256": "c88ec35d1acdd1b08568318ffd2fbf927b3aae11963b0f59c884b1553357245d",
+      "all_assertions_triggers_dependencies_permissions_unchanged": true,
+      "before_sha256": "def5f6b83f5b21faca01821a74d6b5060651cacce6cbf23e7ff1706ad8df5fa6",
+      "path": ".github/workflows/otzaria-final-release-push.yml",
+      "routed_jobs": [
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "xcode-27",
+          "job": "runtime27"
+        },
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "xcode-27",
+          "job": "runtime27-release-native"
+        },
+        {
+          "after": [
+            "self-hosted",
+            "macOS",
+            "ARM64",
+            "otzaria-final-20261124",
+            "xcode-27"
+          ],
+          "before": "xcode-27",
+          "job": "runtime27-release-production"
+        }
+      ]
+    }
+  ],
+  "labels": [
+    "self-hosted",
+    "macOS",
+    "ARM64",
+    "otzaria-final-20261124",
+    "xcode-27"
+  ],
+  "runner_id": 21,
+  "runner_name": "otzaria-native116-20261124",
+  "runtime_executed": false,
+  "schema": "otzaria.existing-mac-ci-routing-source-review/1",
+  "selector": {
+    "actual_mac_execution": "PENDING",
+    "after_sha256": "6a0c07627874ca8b8d7d1d6c562e1c820849d6576d6084c5cc02163af2ca8dc1",
+    "before_sha256": "443252b60d08daef156c4cac6bf94af6d6a11eaf694cd8139b08a0004fead282",
+    "policy": "Validate already-selected Xcode27 on Apple arm64; no global mutation or fallback"
+  },
+  "status": "PASS_SOURCE_ROUTING_AND_GATE_EQUIVALENCE_ONLY",
+  "workflow_runs_started": 0
+}

@@ -1,0 +1,19 @@
+{
+  "actual_preparation_checkout": "61669f883302e6cbf4764e021e589e7010f8adda",
+  "application_source": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
+  "group_library_same_actual_291_inputs": true,
+  "explicit_full_v32_input_count": 42,
+  "modified_source_gate": {
+    "blob": "52023a3208a41ffd743cd5f35cc0f17ce86dc0b3",
+    "bytes": 37831,
+    "sha256": "2a9969ee5326224e54b24c926dfc6f7a9b212b989aec11f50109cd08e693dc50"
+  },
+  "integrated_faithful": {
+    "blob": "452e628d977d542d380f8b0694b994ead9dd883b",
+    "bytes": 290670,
+    "sha256": "f724b6b338c1dcbdc3285ed46386b9c51b80a5a224bec36b92cfb4fb632d72dc"
+  },
+  "execution_input_blobs_unchanged_after_admission": true,
+  "source_only": true,
+  "native_cases_executed": 0
+}

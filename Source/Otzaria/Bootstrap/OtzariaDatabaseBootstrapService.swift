@@ -20,6 +20,7 @@ actor OtzariaDatabaseBootstrapService {
     }
 
     func prepareManagedDatabase(
+        expectedRelease: OtzariaLibraryRelease? = nil,
         progress: @escaping ProgressHandler
     ) async throws -> Preparation {
         progress(.init(
@@ -27,14 +28,34 @@ actor OtzariaDatabaseBootstrapService {
             fraction: 0.01,
             detail: String(localized: "bootstrap.status.connecting")
         ))
+        let pinnedReleaseID = try OtzariaLibraryReleaseClient.releaseLookup(
+            environment: ProcessInfo.processInfo.environment
+        ).expectedReleaseID
         let storage = try OtzariaDatabaseStorage()
         currentStorage = storage
         try storage.prepareDirectories()
         let release: OtzariaLibraryRelease
+        if let expectedRelease {
+            // A normal update installs the exact official snapshot the user
+            // reviewed, never a different latest/cached release after the check.
+            guard OtzariaDataProfileRegistry.activeProfileID == OtzariaDataProfileRegistry.productionID,
+                  expectedRelease.id > 0, expectedRelease.asset.id > 0,
+                  expectedRelease.compressedSize > 0, expectedRelease.expectedSHA256 != nil,
+                  OtzariaLibraryRelease.isProductionDatabaseAssetName(expectedRelease.archiveName),
+                  OtzariaLibraryRelease.isOfficialAssetURL(
+                    expectedRelease.asset.downloadURL,
+                    tag: expectedRelease.tag, name: expectedRelease.asset.name
+                  ) else {
+                throw OtzariaDatabaseBootstrapError.invalidAssetMetadata("unverified requested snapshot")
+            }
+            _ = try expectedRelease.validatedMultipart()
+            release = expectedRelease
+        } else {
         do {
             release = try await releaseClient.fetchLatestRelease()
         } catch {
-            guard OtzariaDataProfileRegistry.activeProfileID == OtzariaDataProfileRegistry.productionID,
+            guard pinnedReleaseID == nil,
+                  OtzariaDataProfileRegistry.activeProfileID == OtzariaDataProfileRegistry.productionID,
                   let cached = try OtzariaDatabaseDownloader.resumableProductionRelease(
                       workspaceURL: storage.downloadsRoot
                   ) else {
@@ -46,6 +67,7 @@ actor OtzariaDatabaseBootstrapService {
             )
             release = cached
         }
+        }
 
         let existingPart = OtzariaDatabaseDownloader.existingPartialSize(
             workspaceURL: storage.downloadsRoot,
@@ -55,7 +77,7 @@ actor OtzariaDatabaseBootstrapService {
 
         print(
             "[OtzariaBootstrap] release tag=\(release.tag) id=\(release.id) " +
-            "assetId=\(release.asset.id) compressedSize=\(release.asset.compressedSize) " +
+            "assetId=\(release.asset.id) compressedSize=\(release.compressedSize) " +
             "resumeFrom=\(existingPart)"
         )
 
@@ -106,7 +128,7 @@ actor OtzariaDatabaseBootstrapService {
             }.value
             verificationElapsed = Date().timeIntervalSince(verificationStarted)
             print(
-                "[OtzariaBootstrap] download verified bytes=\(release.asset.compressedSize) " +
+                "[OtzariaBootstrap] download verified bytes=\(release.compressedSize) " +
                 "sha256=\(release.expectedSHA256 == nil ? "not supplied" : "matched")"
             )
         } catch let error as OtzariaDatabaseBootstrapError {
@@ -204,6 +226,19 @@ actor OtzariaDatabaseBootstrapService {
         try await Task.detached(priority: .utility) { [installer] in
             try installer.rollbackPromotion(storage: storage)
         }.value
+        currentStorage = nil
+    }
+
+    func discardPrepared(
+        _ prepared: OtzariaPreparedDatabaseInstallation,
+        storage: OtzariaDatabaseStorage
+    ) async {
+        // Only this operation's unique staging file is removed. Verified
+        // archive parts remain available to the original resume downloader.
+        guard prepared.stagingURL.deletingLastPathComponent().standardizedFileURL
+                == storage.otzariaRoot.standardizedFileURL,
+              prepared.stagingURL.lastPathComponent.hasPrefix("seforim.db.installing-") else { return }
+        try? FileManager.default.removeItem(at: prepared.stagingURL)
         currentStorage = nil
     }
 

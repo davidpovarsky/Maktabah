@@ -1,0 +1,65 @@
+{
+  "status": "SOURCE_SELECTION_AND_UNCHANGED_DECLARATIONS_VERIFIED",
+  "native_tests_executed": 0,
+  "application_acceptance": "NOT_RUN",
+  "final_source_binding": "UNFINALIZED",
+  "baseline": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
+  "application_checkpoint": "75058d1c1abbfb0fb37fc819dcece47b853eb4da",
+  "previous_manifest_sha256": "c0f24e57758ee3e44ac10588b14ee107cf74cba6d370a5217a4baac7f2990068",
+  "restored_manifest_sha256": "96dbc79d1a1344a1d52748cebfd5d1086d698ccd8e0234a5df61bfa6e65b65fa",
+  "restored_runtime_sha256": "f8e908009ca9096dae19d138c7fc0c3f826c27917e8ab599a1185e3eaab3e945",
+  "reviewed_whole_driver_inverse_git_blob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+  "unchanged_r27_sha256": "7439fd761e6661db719259bdf1e32eb59bb9dbdf084747849b92147e7702e004",
+  "native_count": 116,
+  "groups": [
+    {
+      "label": "11",
+      "count": 12,
+      "hid_comparison": false
+    },
+    {
+      "label": "11-search",
+      "count": 22,
+      "hid_comparison": false
+    },
+    {
+      "label": "11-index",
+      "count": 5,
+      "hid_comparison": false
+    },
+    {
+      "label": "11-reader",
+      "count": 41,
+      "hid_comparison": false
+    },
+    {
+      "label": "11-sidebar",
+      "count": 5,
+      "hid_comparison": false
+    },
+    {
+      "label": "11-window",
+      "count": 2,
+      "hid_comparison": true
+    },
+    {
+      "label": "phone",
+      "count": 29,
+      "hid_comparison": false
+    }
+  ],
+  "expected_per_device": {
+    "ipad11": 87,
+    "iphone": 29
+  },
+  "release_counts": {
+    "ui": 114,
+    "oracle": 2
+  },
+  "full_native_case_rows_unchanged": true,
+  "group_order_and_member_order_unchanged": true,
+  "execution_catalog_order_unchanged": true,
+  "release_manifest_sha256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f",
+  "miniapps_separate_controller_retained": true,
+  "verification_note": "The first source-only checker compared group iteration order to independent declaration selection order; that overstrict checker stopped. Both original ordered lists are now independently compared to the exact baseline, plus the unchanged original partition validator. No runtime acceptance was invoked."
+}

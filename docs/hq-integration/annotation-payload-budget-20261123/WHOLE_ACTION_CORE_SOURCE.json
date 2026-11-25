@@ -1,0 +1,240 @@
+[
+  {
+    "path": "Source/Otzaria/Actions/Package.swift",
+    "git_blob_at_base": "6e0f66e23a58df559e2eccdd62c5b894437aada8",
+    "bytes": 446,
+    "sha256": "f3c61079df27e8b27ad08675db230b478995218f3f781993488a622390799944",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift",
+    "git_blob_at_base": "a36a7dfc079f6fdd2f8752b7d047aad43a2ab37c",
+    "bytes": 1618,
+    "sha256": "f1c46980c4f39d98991629f04699d6a5ddf7cd8d4f4a1db1433d86ec02bba7b1",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift",
+    "git_blob_at_base": "a558a29aeaa892c03beeeb3e66d16a26d5c2878d",
+    "bytes": 1747,
+    "sha256": "7134e762c385c6dbd4ad7ee21b0237f0ce5440943329911fe583cc1fd1684de6",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift",
+    "git_blob_at_base": "ddd6a831edb9b1956ee09396069dd2bb0dde6ef3",
+    "bytes": 4725,
+    "sha256": "d28f2578557eac47cb15864823d7727e2b10c80921e97326f9de24cf4fbd90e5",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift",
+    "git_blob_at_base": "a96c660469c7f888e7595f3c9252b57e2daa246e",
+    "bytes": 10269,
+    "sha256": "aee72c3c9d39e58b82b6eeb5939f6dcca59bcb3d8681ae087f8eef46f049c85d",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift",
+    "git_blob_at_base": "1a605f41609c49e892649179be48d86bca8bdc39",
+    "bytes": 9437,
+    "sha256": "902863b2b4ef706176ed998e29ba550199eb6fc29c7bba7497b5f85e8a02ec40",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionCommentary.swift",
+    "git_blob_at_base": "f1ede5b8fde6fd8dad93644680dac9c6f83255f3",
+    "bytes": 2249,
+    "sha256": "a0c786e172ddbb3ef2437a228f3dc77c4cef2cf06788554f9e5616f5ee4d2f73",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift",
+    "git_blob_at_base": "26c77db83fc6bf10e7edd1aeb0a95a682d246768",
+    "bytes": 2619,
+    "sha256": "86f271de67b8e7de87c98f335cb714c31583d0f881e872170e1324c979cf7c93",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNativeUIFailure.swift",
+    "git_blob_at_base": "94b347f4e0dc306527f27e68f5c5037a0e591f88",
+    "bytes": 1275,
+    "sha256": "3ab7a8fce4297ee72b16e72ae10891333bd26b00c66e6138e6b98640acd34666",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift",
+    "git_blob_at_base": "b2a58dff91dfa13ce0bb01e0a4b53eb2cb9eec28",
+    "bytes": 5097,
+    "sha256": "d63d8ad2bf2c284ec9ffb42a836d82b930c5d8eaa93c9b03cb0b424c4e3ec8f1",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOccurrenceCount.swift",
+    "git_blob_at_base": "8f25ebef32bf30ee0cb7ecd5a0ed6a49a328e819",
+    "bytes": 7473,
+    "sha256": "ecac5538a3fae48ef1d3f3682f31b3407785aa8867bcbac1e78b462972d31dd7",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift",
+    "git_blob_at_base": "83bdb60b536356b034ecc71f0969777f088f56ef",
+    "bytes": 6010,
+    "sha256": "79f55666020cfdaf794f90260d600d3c2b4dbc437ccb78c48390b7ca93611cd1",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift",
+    "git_blob_at_base": "18772cf8fe4be88b165db45434cd39af9eaa5959",
+    "bytes": 5919,
+    "sha256": "666e87a1e3e7c9d6f7b7c6ca2a8a624b5368837f2666e9bc5b541f600e3a0014",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift",
+    "git_blob_at_base": "cae77610732cc405ae8857e7c0588b45eb5ee266",
+    "bytes": 4589,
+    "sha256": "2ace2006d6aefddb6e277da24d88f95abbdebd86665e8f40e1dae7db965e4843",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift",
+    "git_blob_at_base": "4b2bf57b8be7b5cec1243809b127b3bc0a9d4e3c",
+    "bytes": 2353,
+    "sha256": "59b585db5cd4fc0f05c5774bb1cdab4b9392940683c74302154bd1c77901b43a",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift",
+    "git_blob_at_base": "41028d323eaba2d6e3a9f10865aa6c4eed0b6230",
+    "bytes": 5278,
+    "sha256": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+    "git_blob_at_base": "e7acf923928a2c041da185a38ab0ff658b66fc80",
+    "bytes": 9216,
+    "sha256": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab",
+    "changed": true
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift",
+    "git_blob_at_base": "7086ec52c7d4c35cc12b81c1bc3106b231103a23",
+    "bytes": 3154,
+    "sha256": "3cbeb8013798aba9782059e29bddf88d21a98714d6e2e342d7fc5e2257ba2c49",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+    "git_blob_at_base": "a62aa1b847da66894cd42fea0e3b90bb948bc452",
+    "bytes": 50933,
+    "sha256": "61d7627dd9c68513a3a6102b12154f2b11b1ffd4dab7cbfb226563b59ecf2252",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift",
+    "git_blob_at_base": "6ce8bb4db0122e9c74e30e68d36f6da4cb7c3201",
+    "bytes": 14414,
+    "sha256": "11267448ee64f23ccbc858a5aaf0b89ae6dda208262177a0015cca52d6ed0a03",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift",
+    "git_blob_at_base": "e307ff135859121d7f5720b52277bc2387796eb9",
+    "bytes": 1673,
+    "sha256": "aac053ac7dea75abe5eadac90f29e1605118ab20a886c9d1065f5b58d46342b9",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift",
+    "git_blob_at_base": "dcaea3c26680124f33d7a2c90c719bde4f738d67",
+    "bytes": 4844,
+    "sha256": "bc356126c53d2022323ae1983c9e4e5a2204c4a2dd16a6721f009ab31c3807b6",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift",
+    "git_blob_at_base": "67f0facd2d806ebc20160db038b3f63f98b09b6e",
+    "bytes": 7952,
+    "sha256": "1230c42e974b63bd26af3b60804d625ce9cea79cfe9b9186872ff50d0cb09086",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+    "git_blob_at_base": "faaea78e38b34e03abec768860a9c35d8838a8a8",
+    "bytes": 8269,
+    "sha256": "89af621942e11b74290633f0562f5451ae7dba73530dbc2a0b4b6b7555d182ae",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+    "git_blob_at_base": "786020324e2b83dad99b6201c013fb6c1506df03",
+    "bytes": 6420,
+    "sha256": "f449f5be10b1e7f43a7769fa56678e699db7bd306eafe7e1bf54d4caf17b8c23",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift",
+    "git_blob_at_base": "d44190d2dd6d6ed634447a094ba27c7922bbb11e",
+    "bytes": 1834,
+    "sha256": "4e175d23a23c1ecdfd2c2c466e4f658dbe62be1ec078b7c7a7fee2b9188574d8",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift",
+    "git_blob_at_base": "e1718ea08d404509008e347706b1bd34103381c6",
+    "bytes": 2922,
+    "sha256": "9e6e9c568c4927bb760b69f95d845bb095ff279baf65ab9a4197632d70eedb0d",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift",
+    "git_blob_at_base": "6c2f6cd6736eb84fcdd1cb63163169a3b5d60a19",
+    "bytes": 23818,
+    "sha256": "653e4f9245ef7d476fde62a6d6224712bd55cc0a95559bc9548761b237a62a24",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-catalog.v1.json",
+    "git_blob_at_base": "0301b404b0792df72f58b185337517b2b17c719f",
+    "bytes": 43332,
+    "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-request.v1.schema.json",
+    "git_blob_at_base": "d7061a0379b4200fad6b15d682fc5d8d7f715d40",
+    "bytes": 1510,
+    "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-result.v1.schema.json",
+    "git_blob_at_base": "7ddf4235e97f9d278b755a523a21491cbcee8742",
+    "bytes": 3669,
+    "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-acceptance-cases.v1.json",
+    "git_blob_at_base": "806d1eff72612adf2d9463028599e74993d4fe30",
+    "bytes": 95749,
+    "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-capability-matrix.v1.json",
+    "git_blob_at_base": "9494c5d5f7e7c783dd8a72ba61381e2d68919039",
+    "bytes": 36033,
+    "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+    "changed": false
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/examples.v1.json",
+    "git_blob_at_base": "0ec9c6f2fc976ee1dd868008bafb7bf43e6861c6",
+    "bytes": 10140,
+    "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+    "changed": false
+  }
+]

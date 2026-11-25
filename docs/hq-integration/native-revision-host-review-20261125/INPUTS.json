@@ -1,0 +1,48 @@
+{
+  "schema": "otzaria.host-native-revision-source-review.v1",
+  "reviewedAtUTC": "2026-11-25T03:25:15.506496+00:00",
+  "maktabahSourceCommit": "ed1fab6f1a085eb71c69fae8ec5b34e25fafce9c",
+  "maktabahBranch": "codex/otzaria-final-delivery-20261125",
+  "sdkProductCommit": "a91d572cb2df2b05c7d93520732eecd7380294fd",
+  "sdkEvidenceCommit": "42d8c3f4f2aaa68cc89fe045eca8ed4f3b0c1eda",
+  "reviewKind": "READ_ONLY_SOURCE_REVIEW",
+  "runtimeAcceptance": false,
+  "reviewedFiles": [
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorRevision.swift",
+      "sha256": "c46a496d90362d4ba02de22393cab0a71c4d6e9508aff4f2f94d1623801997ca",
+      "bytes": 26781,
+      "gitBlob": "1c213f26dfa2ba900eb3310b193de91bd79cd80a"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "sha256": "d6bd740ad8f0234fa1541f40047fea69f458e95e04e2885457c4c2c795ab9d7e",
+      "bytes": 78729,
+      "gitBlob": "36da009d72df5903409c35d44c49f0f8d2da34e4"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+      "sha256": "c77fe33a28b9854b088ea27478364c25d18d0311b67a99385b5e3e1bc5de8e9d",
+      "bytes": 18479,
+      "gitBlob": "034a0b9307385cf71ac64854121e394f10c84d70"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift",
+      "sha256": "3cf95b660be40a918da3e015f9f17b1fb4a47010dd02eceb25c0b428278280f5",
+      "bytes": 11669,
+      "gitBlob": "9e78c5ea179a980d20b0169d87871d4d512d3602"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorReceive.swift",
+      "sha256": "96fe7c7699f5666e873ac1ae9a6b91e800ff6b13d98e6bedf1207e6e4e281882",
+      "bytes": 30238,
+      "gitBlob": "d2e6bccd73c4052a50736d7fbb0a8e9f758b9e69"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorImport.swift",
+      "sha256": "67c924d38725fd84b61137adafc37418f051a45c50a3efb1d0e72bc42e344520",
+      "bytes": 25556,
+      "gitBlob": "f95098606edcaf39753706ef8d2bb3b2b1ff889f"
+    }
+  ]
+}

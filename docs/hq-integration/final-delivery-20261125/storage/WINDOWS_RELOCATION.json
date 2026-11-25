@@ -1,0 +1,19 @@
+{
+  "all_source_and_evidence_retained": true,
+  "archive_bytes": 5447045120,
+  "archive_sha256": "9acb16c572f787929692bd86fabd2fbb982d0d85cff682daf545f13c8998c8a3",
+  "authoritative_archive_path": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\artifacts\\otzaria-retained-20261125\\retained-products-v1\\retained-products.tar.gz",
+  "authoritative_host": "david-win",
+  "finished_at": "2026-11-25T05:00:18.495142+00:00",
+  "oracle_archive_exists": false,
+  "oracle_free_after": 6972248064,
+  "oracle_free_before": 1525202944,
+  "oracle_receipts_preserved": true,
+  "original_oracle_path": "/mnt/development/artifacts/otzaria-retained-20261125/retained-products-v1/retained-products.tar.gz",
+  "retired_allocated_bytes": 5447049216,
+  "schema": "otzaria.retained-products-relocation/1",
+  "sole_retirement_target": "/mnt/development/artifacts/otzaria-retained-20261125/retained-products-v1/retained-products.tar.gz",
+  "status": "PASS_VERIFIED_WINDOWS_ARCHIVE_ORACLE_DUPLICATE_RETIRED",
+  "windows_job": "job_134a3af647b4",
+  "windows_receipt_sha256": "301a4aa953ccf6d90320e5362b1db79bb6c667cd60bcfab3841b68124a290c8c"
+}

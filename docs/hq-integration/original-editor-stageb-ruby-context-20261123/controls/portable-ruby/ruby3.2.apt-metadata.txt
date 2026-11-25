@@ -1,0 +1,30 @@
+Package: ruby3.2
+Priority: optional
+Section: ruby
+Installed-Size: 192
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Architecture: arm64
+Version: 3.2.3-1ubuntu0.24.04.9
+Recommends: fonts-lato, libjs-jquery
+Depends: rubygems-integration (>= 1.17.1~), libc6 (>= 2.34), libcrypt1 (>= 1:4.1.0), libgmp10 (>= 2:6.3.0+dfsg), libruby3.2 (>= 3.2.0~preview1), zlib1g (>= 1:1.1.4)
+Filename: pool/main/r/ruby3.2/ruby3.2_3.2.3-1ubuntu0.24.04.9_arm64.deb
+Size: 50768
+MD5sum: 71ca3c1ecfcf8d5fca1c8439fd741214
+SHA1: 5ade0dca1eecfdacaf209976f6aeb27eb37c5206
+SHA256: 1d784c0b03970268efb34cb7475e2839e28ab516e72e39b6380f7ec1742934d9
+SHA512: b391f55a2b672609004c8133a836d31a6204b4505dcea5ae8315fd584d8a6f2cd948b697e8e9846ebad96b263948598d8de0d9ffb87bd781c09d28477abdb8b1
+Homepage: https://www.ruby-lang.org/
+Description-en: Interpreter of object-oriented scripting language Ruby
+ Ruby is the interpreted scripting language for quick and easy
+ object-oriented programming.  It has many features to process text
+ files and to do system management tasks (as in perl).  It is simple,
+ straight-forward, and extensible.
+ .
+ In the name of this package, `3.2' indicates the Ruby library compatibility
+ version. This package currently provides the `3.2.x' branch of Ruby.
+Description-md5: e73a45fc1bbd22255f2741293584fe57
+Multi-Arch: allowed
+Original-Maintainer: Debian Ruby Team <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Origin: Ubuntu
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+

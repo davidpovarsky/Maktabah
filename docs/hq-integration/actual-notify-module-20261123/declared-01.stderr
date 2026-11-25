@@ -1,0 +1,31 @@
+/Users/runner/work/Maktabah/Maktabah/build/darwin-notify-sdk-probe/declared-01.swift:6:37: error: cannot find 'notify_post' in scope
+ 4 | public func probeOriginalNotifyDeclarations(_ name: String) {
+ 5 |     var token: Int32 = 0
+ 6 |     let posted = name.withCString { notify_post($0) }
+   |                                     `- error: cannot find 'notify_post' in scope
+ 7 |     let matched = posted == NOTIFY_STATUS_OK
+ 8 |     let registered = name.withCString {
+
+/Users/runner/work/Maktabah/Maktabah/build/darwin-notify-sdk-probe/declared-01.swift:7:29: error: cannot find 'NOTIFY_STATUS_OK' in scope
+ 5 |     var token: Int32 = 0
+ 6 |     let posted = name.withCString { notify_post($0) }
+ 7 |     let matched = posted == NOTIFY_STATUS_OK
+   |                             `- error: cannot find 'NOTIFY_STATUS_OK' in scope
+ 8 |     let registered = name.withCString {
+ 9 |         notify_register_dispatch($0, &token, DispatchQueue.main) { _ in }
+
+/Users/runner/work/Maktabah/Maktabah/build/darwin-notify-sdk-probe/declared-01.swift:9:9: error: cannot find 'notify_register_dispatch' in scope
+ 7 |     let matched = posted == NOTIFY_STATUS_OK
+ 8 |     let registered = name.withCString {
+ 9 |         notify_register_dispatch($0, &token, DispatchQueue.main) { _ in }
+   |         `- error: cannot find 'notify_register_dispatch' in scope
+10 |     }
+11 |     let cancelled = notify_cancel(token)
+
+/Users/runner/work/Maktabah/Maktabah/build/darwin-notify-sdk-probe/declared-01.swift:11:21: error: cannot find 'notify_cancel' in scope
+ 9 |         notify_register_dispatch($0, &token, DispatchQueue.main) { _ in }
+10 |     }
+11 |     let cancelled = notify_cancel(token)
+   |                     `- error: cannot find 'notify_cancel' in scope
+12 |     _ = (matched, registered, cancelled)
+13 | }

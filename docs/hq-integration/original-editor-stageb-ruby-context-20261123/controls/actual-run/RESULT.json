@@ -1,0 +1,352 @@
+{
+  "scope": "PORTABLE_RUBY_AND_PYTHON_MECHANISM_CONTROLS_ONLY",
+  "apple_cocoapods_native": "NOT_RUN",
+  "fixture_gems_are_authored": true,
+  "status": "PASS",
+  "controls": [
+    {
+      "id": "same_context_and_inert_child",
+      "status": "PASS"
+    },
+    {
+      "id": "unrelated_path_ruby_not_selected",
+      "status": "PASS"
+    },
+    {
+      "id": "nonzero_and_missing_parent_proof",
+      "status": "PASS"
+    },
+    {
+      "id": "exclusive_parent_receipt",
+      "status": "PASS"
+    },
+    {
+      "id": "runtime_gem_membership_source_and_helper_drift",
+      "status": "PASS"
+    },
+    {
+      "id": "original_helper_exit_and_default_logger",
+      "status": "PASS"
+    }
+  ],
+  "assertions": 42,
+  "commands": [
+    {
+      "command": [
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/bin/ruby3.2",
+        "-c",
+        "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/Scripts/CI/hq-original-editor-ruby-context.rb"
+      ],
+      "label": "ruby-whole-source-syntax",
+      "returncode": 0,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.03346055094152689,
+      "stdout": {
+        "path": "ruby-whole-source-syntax.stdout",
+        "bytes": 10,
+        "sha256": "bbafef10c22b9323fa5589564990f57fbf57f9a632381d5e765dc5a3b25b4a1b"
+      },
+      "stderr": {
+        "path": "ruby-whole-source-syntax.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "command": [
+        "pod",
+        "install"
+      ],
+      "label": "same-context-pod",
+      "returncode": 0,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.618243983015418,
+      "stdout": {
+        "path": "same-context-pod.stdout",
+        "bytes": 48,
+        "sha256": "6087fe3d04cc24619dbdfd67e81b150f1d2eab959ddbbb53285003a63568fb3d"
+      },
+      "stderr": {
+        "path": "same-context-pod.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "command": [
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/bin/ruby3.2",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/Scripts/CI/hq-original-editor-ruby-context.rb",
+        "--launch",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/build/hq-stage2/original-editor/pod-ruby-context.json",
+        "b96e74eb3d965f626e7ba6c3f07639a24b3e4c6e4a72feb8937e7ca6f5f0aa96",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/Scripts/CI/hq-original-editor-app-target.rb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/project.pbxproj",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/plan.json",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/same-context/configuration.json"
+      ],
+      "label": "same-context-helper",
+      "returncode": 0,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.11546346172690392,
+      "stdout": {
+        "path": "same-context-helper.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "same-context-helper.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "command": [
+        "pod",
+        "install"
+      ],
+      "label": "path-ruby-pod",
+      "returncode": 0,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.11519362032413483,
+      "stdout": {
+        "path": "path-ruby-pod.stdout",
+        "bytes": 28,
+        "sha256": "bacb48433cfd93cddd7f6aac247d91a49a32c0b2e09aac4f51024d210ea8d49c"
+      },
+      "stderr": {
+        "path": "path-ruby-pod.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "command": [
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/bin/ruby3.2",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/path-ruby/Scripts/CI/hq-original-editor-ruby-context.rb",
+        "--launch",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/path-ruby/build/hq-stage2/original-editor/pod-ruby-context.json",
+        "c7f9b9c6477017262da2e89d218125ca8031e7c80309a676087890d4015d4619",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/path-ruby/Scripts/CI/hq-original-editor-app-target.rb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/path-ruby/project.pbxproj",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/path-ruby/plan.json",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/path-ruby/configuration.json"
+      ],
+      "label": "captured-not-path-ruby",
+      "returncode": 0,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.11564098298549652,
+      "stdout": {
+        "path": "captured-not-path-ruby.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "captured-not-path-ruby.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "command": [
+        "pod",
+        "install"
+      ],
+      "label": "pod-failure-pod",
+      "returncode": 19,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.11435717530548573,
+      "stdout": {
+        "path": "pod-failure-pod.stdout",
+        "bytes": 28,
+        "sha256": "bacb48433cfd93cddd7f6aac247d91a49a32c0b2e09aac4f51024d210ea8d49c"
+      },
+      "stderr": {
+        "path": "pod-failure-pod.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "command": [
+        "pod",
+        "install"
+      ],
+      "label": "duplicate-receipt-pod",
+      "returncode": 1,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.11546010058373213,
+      "stdout": {
+        "path": "duplicate-receipt-pod.stdout",
+        "bytes": 28,
+        "sha256": "bacb48433cfd93cddd7f6aac247d91a49a32c0b2e09aac4f51024d210ea8d49c"
+      },
+      "stderr": {
+        "path": "duplicate-receipt-pod.stderr",
+        "bytes": 1017,
+        "sha256": "aee0eabe32beac0f3ef9953e634bb2cee07bc40ec4fa356df93ea5b27d3d7657"
+      }
+    },
+    {
+      "command": [
+        "pod",
+        "install"
+      ],
+      "label": "source-drift-pod",
+      "returncode": 0,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.1153906611725688,
+      "stdout": {
+        "path": "source-drift-pod.stdout",
+        "bytes": 28,
+        "sha256": "bacb48433cfd93cddd7f6aac247d91a49a32c0b2e09aac4f51024d210ea8d49c"
+      },
+      "stderr": {
+        "path": "source-drift-pod.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "command": [
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/bin/ruby3.2",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/Scripts/CI/hq-original-editor-ruby-context.rb",
+        "--launch",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/build/hq-stage2/original-editor/pod-ruby-context.json",
+        "43f1f897ea325cc856132cb41f50600d4d8e13b6823e87c1e8bfceebb5a307a7",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/Scripts/CI/hq-original-editor-app-target.rb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/project.pbxproj",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/plan.json",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/configuration.json"
+      ],
+      "label": "runtime-drift-helper",
+      "returncode": 1,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.11673506908118725,
+      "stdout": {
+        "path": "runtime-drift-helper.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "runtime-drift-helper.stderr",
+        "bytes": 418,
+        "sha256": "3f0647d841f12135ce98ad482f9b54a923f06570b014561ee0dfee60dc107069"
+      }
+    },
+    {
+      "command": [
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/bin/ruby3.2",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/Scripts/CI/hq-original-editor-ruby-context.rb",
+        "--launch",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/build/hq-stage2/original-editor/pod-ruby-context.json",
+        "d36142b2b31c81acab21a1dd006cd8b4b9ed6862496d6046b462cbafeb9b73fb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/Scripts/CI/hq-original-editor-app-target.rb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/project.pbxproj",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/plan.json",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/source-drift/configuration.json"
+      ],
+      "label": "extra-gem-source-helper",
+      "returncode": 1,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.16572366934269667,
+      "stdout": {
+        "path": "extra-gem-source-helper.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "extra-gem-source-helper.stderr",
+        "bytes": 816,
+        "sha256": "d3a9801a71d9ffd887dc8aad1b7b795e681aa0e9c8ac091707f4c61144b00520"
+      }
+    },
+    {
+      "command": [
+        "pod",
+        "install"
+      ],
+      "label": "helper-failure-pod",
+      "returncode": 0,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.16789076197892427,
+      "stdout": {
+        "path": "helper-failure-pod.stdout",
+        "bytes": 28,
+        "sha256": "bacb48433cfd93cddd7f6aac247d91a49a32c0b2e09aac4f51024d210ea8d49c"
+      },
+      "stderr": {
+        "path": "helper-failure-pod.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "command": [
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/portable-ruby/root/usr/bin/ruby3.2",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/helper-failure/Scripts/CI/hq-original-editor-ruby-context.rb",
+        "--launch",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/helper-failure/build/hq-stage2/original-editor/pod-ruby-context.json",
+        "23c4a2e8fb1750515521e21f9d1e6c770999786be0456cb3e4723fa78c57dfb4",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/helper-failure/Scripts/CI/hq-original-editor-app-target.rb",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/helper-failure/project.pbxproj",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/helper-failure/plan.json",
+        "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/controls-1/helper-failure/configuration.json"
+      ],
+      "label": "original-helper-failure",
+      "returncode": 23,
+      "timed_out": false,
+      "child_reaped": true,
+      "owned_group_drained": true,
+      "elapsed_seconds": 0.16533434856683016,
+      "stdout": {
+        "path": "original-helper-failure.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "original-helper-failure.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "source": {
+    "Scripts/CI/hq-original-editor-distribution.py": {
+      "bytes": 48326,
+      "sha256": "3c62064f0278502ca0ebbac64243439a6515a7a29ee29c16d0933df6b077588d"
+    },
+    "Scripts/CI/hq-stage2-focused-apple.py": {
+      "bytes": 49198,
+      "sha256": "d8c317ee8fdf1fd07a2e2e604c52866379912d96705f4da9a09bcab055f8f337"
+    },
+    "Scripts/CI/hq-original-editor-ruby-context.rb": {
+      "bytes": 7558,
+      "sha256": "2059ca905374a037ea10a7e56d3f4ae419602db77c80509376268988b505738b"
+    }
+  },
+  "portable_ruby_admission_sha256": "16e91525bc1de9a09ce272ede6f4ca1ee3bbfa3bce5fcb221e19a2187b18cf5e",
+  "passed": 6,
+  "required": 6
+}

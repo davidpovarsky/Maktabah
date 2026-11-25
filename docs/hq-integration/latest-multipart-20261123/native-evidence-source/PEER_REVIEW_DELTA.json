@@ -1,0 +1,142 @@
+{
+  "all_original_10_test_method_AST_unchanged": true,
+  "all_product_working_delta": [],
+  "at_utc": "2026-11-23T21:51:39.086298+00:00",
+  "base": "602659607a3a6a2586a7c4a8d7ce6114eec8cd86",
+  "branch": "codex/otzaria-multipart-native-evidence-20261123",
+  "current_inputs": {
+    ".github/workflows/ios-build.yml": {
+      "bytes": 48509,
+      "git_blob": "03e822b78d199112abb385d397c1c73e5c70d3db",
+      "sha256": "1f82805d1c0a5c0b18257397b24dca5f66eae929ad3dce8eb26609cff1258220"
+    },
+    "PROJECT_BOARD.md": {
+      "bytes": 42646,
+      "git_blob": "32bee228d4574c2e1af3edd3acaf289cad244e56",
+      "sha256": "94fd8398241cf1b0eed6ce8d4499597fc444f7a3ea1575a013a39d928da1f55c"
+    },
+    "Scripts/CI/otzaria_bootstrap_evidence.py": {
+      "bytes": 13811,
+      "git_blob": "542cf44184d47274bca473b87ee3b1402258bb2a",
+      "sha256": "2b50c70d7a4b5c821047677f8abec6a3ef0e000ebc98038b6b42e16381c0fc43"
+    },
+    "Scripts/CI/test_otzaria_bootstrap_evidence.py": {
+      "bytes": 10201,
+      "git_blob": "1b569e68ac13b5833c4b975502e06754276356e1",
+      "sha256": "583b61ed0425fb1ad6c5722e1c9dc130921dc7eadb605afd688ca5997d40c98d"
+    },
+    "Scripts/run-otzaria-native-bootstrap-acceptance.sh": {
+      "bytes": 7614,
+      "git_blob": "9bf5aa56fa2fab1827bd2f762bf2662956fcbc88",
+      "sha256": "62d88c5c8c6ad1e2e05a290bb2d6c398db677b3389cd28edf38766ad66ae8f10"
+    }
+  },
+  "current_logical_controls": {
+    "affected_executed": 3,
+    "executed_this_delta": 9,
+    "new": [
+      "BootstrapEvidenceControls.test_cancel_errors_are_rejected_despite_pass_boolean",
+      "BootstrapEvidenceControls.test_install_final_path_must_be_absolute_and_present",
+      "BootstrapEvidenceControls.test_restore_final_path_must_be_absolute_and_present",
+      "NativeBootstrapSimulatorSelectionControls.test_absent_owned_id_preserves_original_selection",
+      "NativeBootstrapSimulatorSelectionControls.test_empty_explicit_owned_id_never_falls_back",
+      "NativeBootstrapSimulatorSelectionControls.test_valid_owned_sdk_matched_ipad_is_selected"
+    ],
+    "new_executed": 6,
+    "rerun_affected_phase": [
+      "BootstrapEvidenceControls.test_native_sqlite_failure_cannot_be_relabelled_by_pass_boolean",
+      "BootstrapEvidenceControls.test_restore_count_change_is_rejected",
+      "BootstrapEvidenceControls.test_three_original_phases_require_actual_nonzero_resume"
+    ],
+    "retained_unchanged_release_identity": [
+      "BootstrapEvidenceControls.test_archive_bytes_cannot_replace_manifest_asset_bytes",
+      "BootstrapEvidenceControls.test_authentic_v32_direct_asset_keeps_equal_archive_identity",
+      "BootstrapEvidenceControls.test_authentic_v40_remote_manifest_is_distinct_from_full_archive",
+      "BootstrapEvidenceControls.test_changed_manifest_bytes_are_rejected_before_decoding",
+      "BootstrapEvidenceControls.test_different_official_release_is_rejected",
+      "BootstrapEvidenceControls.test_manifest_hash_cannot_replace_archive_hash",
+      "BootstrapEvidenceControls.test_part_digest_must_match_actual_official_asset"
+    ],
+    "total": 16
+  },
+  "downstream_paths": [
+    ".github/workflows/ios-build.yml",
+    "PROJECT_BOARD.md",
+    "Scripts/run-otzaria-native-bootstrap-acceptance.sh",
+    "Scripts/CI/otzaria_bootstrap_evidence.py",
+    "Scripts/CI/test_otzaria_bootstrap_evidence.py"
+  ],
+  "exact_peer_delta_patch": {
+    "path": "PEER_DELTA.patch.gz",
+    "reason": "Lossless patch retention; unified-diff context spaces preserved without adding whitespace-only text lines to the source commit.",
+    "sha256": "b53d8e110d8015dc3592a4aa3552213116166953a297a2599e8835afba7bb70a",
+    "uncompressed_sha256": "c568f8b834ad2c10e9e322d33521abcbd7014923a6b2548b31f9978ad23081cc"
+  },
+  "findings": [
+    {
+      "issue": "Explicit empty owned UDID fell back to normal device selection",
+      "resolution": "Test environment key presence; empty UUID raises before fallback"
+    },
+    {
+      "issue": "Two absent finalPath fields could satisfy restore equality",
+      "resolution": "Both phases require a nonempty absolute string without newline or carriage return before comparison"
+    },
+    {
+      "issue": "Cancellation errors were not checked beside passed",
+      "resolution": "Require cancel.errors == []"
+    }
+  ],
+  "historical_37_components_replayed": 0,
+  "native_execution": false,
+  "new_and_affected_proof": {
+    "bytes": 4798,
+    "git_blob": "4e221a5b4d4a5e06691f76f28c10fd36b94668a3",
+    "sha256": "4f0820995c1b48ec80f2916e2c35481fb271752644a8e523e9d0a26e49e6dcac"
+  },
+  "only_validator_function_changed": [
+    "validate_phases"
+  ],
+  "product_source": "7d5510dd29af2b66d740de136352916868c341ed",
+  "product_trees_unchanged": {
+    "Maktabah-iOSUITests": "ae0f9d48f43bf27f9e0a14a09736667437f13b2f",
+    "Maktabah.xcodeproj": "30dccb2b8600715f90c41e533b4646a8523e10d1",
+    "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
+    "Vendor": "ee5b415a5ccb9db9fda2b0e8d6ce3748cdeaea6e"
+  },
+  "remaining_native_gate": "Real original cancel/install/restore using the same qualified composed app; source/report-vector controls do not establish native installation, restore, current schema7 product compatibility, or BooksUpdates acceptance.",
+  "retained_release_validation_function_AST_unchanged": [
+    "asset_digest",
+    "decode",
+    "fetch_manifest",
+    "main",
+    "positive",
+    "release_asset",
+    "require",
+    "selected_asset",
+    "unique_object",
+    "validate_release_report"
+  ],
+  "root_10_proof": {
+    "bytes": 1654,
+    "git_blob": "3fde5024cb0435b51cd50cdd955a2f80de4e9594",
+    "sha256": "ae41f9d0073541ff15242631efec65bd9f97490c78282cc6e6a60367ff32083a"
+  },
+  "schema": "otzaria.multipart-native-evidence-peer-review/1",
+  "selector": {
+    "absent_identity_original_selection_preserved": true,
+    "actual_embedded_source_extracted": true,
+    "empty_explicit_rejects": true,
+    "mocked_commands": "Read-only simctl inventory and SDK version fixtures only",
+    "native_commands": 0,
+    "owned_matching_ipad_selects": true
+  },
+  "status": "SOURCE_REVIEW_CORRECTIONS_AND_FOCUSED_CONTROLS_PASS_NATIVE_NOT_RUN",
+  "upstream": "eac633bc469859573fdaaf7029d0a6ae68c21817",
+  "upstream_owned_changes": [],
+  "whole_file_inverse_to_root_reviewed_preimage": {
+    "Scripts/CI/otzaria_bootstrap_evidence.py": "cbbcb8785f3a84af8e739038bd5ae4f1786124772e1fbe177cfe0136497a69d0",
+    "Scripts/CI/test_otzaria_bootstrap_evidence.py": "3174c1bc88239f6c8211d4784f2cc1e189bc823a4d3118d14235a21767a0a4f0",
+    "Scripts/run-otzaria-native-bootstrap-acceptance.sh": "7a9dee904ef2bb02c054c10142920c78698366ee9d6ce4a11a6f0a7823d528f1"
+  },
+  "workflow_activated": false
+}

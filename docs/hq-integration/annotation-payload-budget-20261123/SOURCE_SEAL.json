@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-23T08:56:59.749957+00:00",
+  "source_base": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+  "status": "SOURCE_AND_REAL_SQLITE_ENVELOPE_CONTROLS_PASS",
+  "product_paths": 5,
+  "existing_future_schema_control_delta": "Only future storage version2\u21923; original43-case Apple suite not rerun",
+  "source_records": [
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+      "before_bytes": 8441,
+      "before_sha256": "a94dd85985f288edbd2e10b5a14b1731be25a8d25893e832e8515af63307cbdf",
+      "after_bytes": 9216,
+      "after_sha256": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "before_bytes": 8619,
+      "before_sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+      "after_bytes": 10075,
+      "after_sha256": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "before_bytes": 52783,
+      "before_sha256": "26dc7075df6d73f9dc9c5d2cc46547d9496d71c96469fe8adf3a4e779d9b53cc",
+      "after_bytes": 62736,
+      "after_sha256": "c961ed6c51a1344a19951ed2239626bfbf512707a52f841d27258633b847b4f6"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "before_bytes": 25713,
+      "before_sha256": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972",
+      "after_bytes": 25753,
+      "after_sha256": "97c22429e8c76cf34e16b7fa9665be9aa4b84d0b29d0a43919e11cca18e39865"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "before_bytes": 9530,
+      "before_sha256": "3460e43127e69d07a917d9b28b10edd1b37046586f9d12ba91de84ab8ee4c7ca",
+      "after_bytes": 9538,
+      "after_sha256": "06d68fa6efb79ed534902cc3ea7ad73852f534a204059f1d1db2d9401f724b1a"
+    },
+    {
+      "path": "Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift",
+      "before_bytes": 39693,
+      "before_sha256": "130dfa7cb4e50b9a01f85c796a76b93a5bcc0b6a35fd2d23e0da593c82738b2a",
+      "after_bytes": 39693,
+      "after_sha256": "4db8ecd15194da0cbfbe13100debd0437d6bf83fc0fbf8df5afdbe202388f355"
+    }
+  ],
+  "full_six_file_reverse_matches_base": true,
+  "original_ActionWireCodec_and_complete_strict_parser_byte_identical": true,
+  "generic_action_cap": 65536,
+  "policy_sha256": "818bd440374cd49072f018065d300209bd2dafc506ec16d8c2c686736bde7077",
+  "storage_schema": 2,
+  "storage_base64_maximum": 2796204,
+  "actual_original_v1_fixtures": 16,
+  "new_primary_cases": 23,
+  "new_first_incoming_cases": 1,
+  "actual_commands": 7,
+  "all_owned_process_groups_drained": true,
+  "primary_result_sha256": "fea683be05b3daf8bf8f68e0325e920f9da1269858612a3d7172007ffb5c383b",
+  "first_incoming_result_sha256": "1d98a419a5c999c75da448fa14c451a9ea24e56928990709ae844f6a87f27b9a",
+  "product_sources_unchanged_during_execution": true,
+  "source_peer_review_sha256": "8ca17a171a843819efee4fc94d87b9af724f58ad8a490d7876d246897536eebc",
+  "native_body_or_apple_qualification": false,
+  "user_database_touched": false,
+  "unrelated_compile_diagnostics": "Original test support has unreachable fatalError after exit/_exit, retained verbatim; no production compile diagnostics",
+  "whole_core_current_rows": 34
+}

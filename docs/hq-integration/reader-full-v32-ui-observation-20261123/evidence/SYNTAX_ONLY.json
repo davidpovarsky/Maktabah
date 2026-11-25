@@ -1,0 +1,34 @@
+{
+  "pythonSHA256": "2c49bbe45d56ef2793516657862831e042d32bde546e25927b38d4135b507491",
+  "pythonSyntax": "PASS",
+  "swiftSyntax": [
+    {
+      "path": "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift",
+      "sha256": "a8773b4892ebeac2c98bc371e6ee358eb69d4085caec0ffa1aac9caa84a5c552",
+      "exit": 0,
+      "log": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/controls/parse-0.log",
+      "meaning": "syntax parse only; imports/API/actor isolation NOT Apple typechecked"
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "sha256": "348c833608d74f9e6a4f65eda2eae83ba6536287f6e59ec65d96195f06344c83",
+      "exit": 0,
+      "log": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/controls/parse-1.log",
+      "meaning": "syntax parse only; imports/API/actor isolation NOT Apple typechecked"
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "sha256": "1e4a2dd93473f54a346916012685672b5ee8c9450e58c0324138f611b54ebf0c",
+      "exit": 0,
+      "log": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/controls/parse-2.log",
+      "meaning": "syntax parse only; imports/API/actor isolation NOT Apple typechecked"
+    },
+    {
+      "path": "docs/hq-integration/reader-full-v32-ui-observation-20261123/FullV32ObservationCatalog.swift",
+      "sha256": "ba59641e131cc9ee625ecd5b042b516ac5d971333e635edda9b533ea29105e70",
+      "exit": 0,
+      "log": "/mnt/development/projects/diagnostics/otzaria-reader-full-v32-ui-observation-20261123/controls/parse-3.log",
+      "meaning": "syntax parse only; imports/API/actor isolation NOT Apple typechecked"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "scope": "Three actual source admission paths only; full-v32 source-check and frozen guard both run; no native cases/builds executed",
+  "preparation_checkout": "61669f883302e6cbf4764e021e589e7010f8adda",
+  "application_source": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
+  "guards": [
+    {
+      "guard": "groups100",
+      "command": [
+        "python3",
+        "Scripts/CI/reader-groups100-focused-native.py",
+        "prepare"
+      ],
+      "returncode": 0,
+      "generated_path": "build/artifacts/reader-groups100/source-before.json",
+      "generated_bytes": 65488,
+      "generated_sha256": "cf30916f4a55b9b41b0b49eaacd19ac5934d0a355912605dc803aba0e2455478"
+    },
+    {
+      "guard": "library7",
+      "command": [
+        "python3",
+        "Scripts/CI/library-morph-focused-native.py",
+        "prepare"
+      ],
+      "returncode": 0,
+      "generated_path": "build/artifacts/library-morph/source-before.json",
+      "generated_bytes": 66600,
+      "generated_sha256": "e4799f5d0e03e918e4beade3f74a242d6cac77068cef003024ca9a1ef238ced2"
+    },
+    {
+      "guard": "full_v32_source_check",
+      "command": [
+        "python3",
+        "Scripts/CI/reader-full-v32-ui-observation.py",
+        "source-check"
+      ],
+      "returncode": 0,
+      "generated_path": "build/artifacts/reader-full-v32-ui-observation/source-only-admission.json",
+      "generated_bytes": 8931,
+      "generated_sha256": "38829fe2e8bd410c07a5ba7004e695489f59591ee9a91215a42455f125e7ca6d"
+    },
+    {
+      "guard": "full_v32_frozen",
+      "command": [
+        "python3",
+        "-c",
+        "import runpy,json; m=runpy.run_path('Scripts/CI/reader-full-v32-ui-observation.py'); c=m['source_context'](require_frozen=True); m['write'](m['OUT']/'frozen-source-admission.json',c)"
+      ],
+      "returncode": 0,
+      "generated_bytes": 7725,
+      "generated_sha256": "4047d7b7baa28cfb3214657af121bdcecb529934ba5a13f40ebf26338bea8342"
+    }
+  ],
+  "group_library_execution_inputs_identical": true,
+  "group_library_execution_inputs_count": 291,
+  "library_morph_issues": [],
+  "full_v32_context_keys": [
+    "application_source_sha",
+    "application_trees",
+    "checkout_sha",
+    "execution_inputs",
+    "inputs_file_sha256",
+    "scope"
+  ],
+  "actual_native_cases_executed": 0
+}

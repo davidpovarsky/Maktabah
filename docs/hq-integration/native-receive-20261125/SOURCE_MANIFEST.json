@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "base": "1295fb8996aa7686a837728ca6a44ee6a38fdaf7",
+  "identity_dependency": "d0bc03f9a3767e4c14e50324a29ceb3cff38a874",
+  "source_sha256": {
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorReceive.swift": "d45f98fdd805b729a7e6e5a7d50a51f22ef894a47f9f616e6485bd2c196f8ddc",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorImport.swift": "48c5d416af375d5af75aaf53c3c3944d809dc32345ff2a4278d5e8f837774365",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift": "234d64a199ae5170e4b417070edb277aefae45969fe9d542fece9bf27035b250",
+    "Source/ChavrusaText/Annotations/LocalEditor/OriginalAnnotationEditor.xcstrings": "f3fd3fda402e79594f47653bae63144e32eaa4e8fb97e22a2e62d439a995edd1",
+    "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift": "941a98ada29a216fc3aa23f5c9302312965d6a4fc3df356da0c02506d7bc15bf"
+  },
+  "component_job": "job_8496483b7a9f",
+  "ui_test_executed": false,
+  "integrated_build_executed": false,
+  "localization": {
+    "required_locales": [
+      "he",
+      "en"
+    ],
+    "keys_checked": 48,
+    "missing": {}
+  }
+}

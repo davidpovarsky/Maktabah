@@ -1,0 +1,1522 @@
+[
+  {
+    "name": "atomos",
+    "version": "0.1.3",
+    "package_sha256": "7d43b22f2454a36bace5532d30785b06de3711399cb1c6bf932573eda536789f",
+    "members": [
+      {
+        "path": ".gitignore",
+        "size": 113,
+        "sha256": "1e152031a561398186651a06090f3b08e0c0abb486fd516524e93ec4e57c1cc3"
+      },
+      {
+        "path": ".rspec",
+        "size": 53,
+        "sha256": "06245e25d7cf46b4fbde27b5faa0df0d4110e11918eeb5848de4ab2aff897b59"
+      },
+      {
+        "path": ".rubocop.yml",
+        "size": 33,
+        "sha256": "e5fe4612442fc8f3d9ac68c736c5ddb4fd66855401823a005f8edb0a6e8e0c32"
+      },
+      {
+        "path": ".rubocop_todo.yml",
+        "size": 917,
+        "sha256": "958f3ffe21f9b3de65b7a0643b90db7af3e18d3fe09368393058ff010ec7e587"
+      },
+      {
+        "path": ".travis.yml",
+        "size": 88,
+        "sha256": "fcf4e0db9cba02e59e2fd72f58934dc6bf1faa34ad0778d62439bf68ffb1e774"
+      },
+      {
+        "path": "CODE_OF_CONDUCT.md",
+        "size": 3230,
+        "sha256": "c756f3e20c1273a05862dee0e8a531ccf8d7311e8fa2ee38fc1054fafcf39196"
+      },
+      {
+        "path": "Gemfile",
+        "size": 193,
+        "sha256": "8693251d391d760f4f39f94ef17807a5bf5a2648fdb9500069cd33ef96417c69"
+      },
+      {
+        "path": "Gemfile.lock",
+        "size": 1030,
+        "sha256": "4dc8b7c90aeca33464dd3686142a31554e5ac055484f1bd7d41e11837dd6d83b"
+      },
+      {
+        "path": "LICENSE.txt",
+        "size": 1081,
+        "sha256": "2d4ecfde4d0116e2f74b2c32e20760e86c7927f46d9f0edd6ad6b39531b14854"
+      },
+      {
+        "path": "README.md",
+        "size": 1756,
+        "sha256": "b831401acceb90ddcfe47a620f4c5c0189a5045e5b88f6ec3a575fdfd5d5e780"
+      },
+      {
+        "path": "Rakefile",
+        "size": 200,
+        "sha256": "dc47bc8680d54b066f74e4b2627a72f87247005b6436984606757bb994f4e950"
+      },
+      {
+        "path": "VERSION",
+        "size": 6,
+        "sha256": "2d2454ef0edeb462a6ce8b25d387aaa74df08093d5cea0428a10ce55510c6326"
+      },
+      {
+        "path": "atomos.gemspec",
+        "size": 917,
+        "sha256": "68c6c3b2dd7641a9b2a1f89024b219286ae30e2bb4a482efe1215fb7971ce928"
+      },
+      {
+        "path": "bin/console",
+        "size": 371,
+        "sha256": "018f35654b8b878d1006e90e8b9cf924ab0a3026dcee5edadd882f85bac1a2aa"
+      },
+      {
+        "path": "bin/rake",
+        "size": 833,
+        "sha256": "f69c23ec0dee2d321f158859f2c3e8babbea32354409d868c88cee593c73eb2e"
+      },
+      {
+        "path": "bin/rspec",
+        "size": 841,
+        "sha256": "9e93d703e4606075bbdd5a1100ee6ba51103a9bd923aaa8f0dbc5acba1730dd2"
+      },
+      {
+        "path": "bin/rubocop",
+        "size": 842,
+        "sha256": "ca994d590f83007326a7f4778c1f5c1571a4941bbd082fe9d3acab89e4dedafd"
+      },
+      {
+        "path": "bin/setup",
+        "size": 131,
+        "sha256": "e201190bc24e9f00849b3efa5fbaece2cbf069703232e50c7fa15d41c47f2ead"
+      },
+      {
+        "path": "lib/atomos.rb",
+        "size": 1069,
+        "sha256": "e41b384fde4492905c9d5e4f779d4dd49c78e6cefc77f24b1ffe997361f714cb"
+      },
+      {
+        "path": "lib/atomos/version.rb",
+        "size": 119,
+        "sha256": "f0e419c881dac80e30358bc7598fdcb8818121c0b5213421c9ecf576595b08e5"
+      }
+    ],
+    "runtime_files_shape": "list",
+    "runtime_files_example": [
+      {
+        "path": "/opt/homebrew/lib/ruby/gems/3.4.0/gems/atomos-0.1.3/.gitignore",
+        "bytes": 113,
+        "sha256": "1e152031a561398186651a06090f3b08e0c0abb486fd516524e93ec4e57c1cc3"
+      },
+      {
+        "path": "/opt/homebrew/lib/ruby/gems/3.4.0/gems/atomos-0.1.3/.rspec",
+        "bytes": 53,
+        "sha256": "06245e25d7cf46b4fbde27b5faa0df0d4110e11918eeb5848de4ab2aff897b59"
+      }
+    ]
+  },
+  {
+    "name": "CFPropertyList",
+    "version": "3.0.8",
+    "package_sha256": "2c99d0d980536d3d7ab252f7bd59ac8be50fbdd1ff487c98c949bb66bb114261",
+    "members": [
+      {
+        "path": "LICENSE",
+        "size": 1076,
+        "sha256": "84d53f670a8da583f6ca624889153c5157b727ea01ba00f347ad73071ef6d18b"
+      },
+      {
+        "path": "README.md",
+        "size": 1545,
+        "sha256": "7106e832be63b1bf04d5290016722919159ce70a4f634bf059499baef3f2417a"
+      },
+      {
+        "path": "README.rdoc",
+        "size": 1182,
+        "sha256": "80c8204e68b79c7dc57a41b0f802589ca83b63372c5c3d82fef2d8a11612d532"
+      },
+      {
+        "path": "THANKS",
+        "size": 157,
+        "sha256": "fd24633f64d49305ca0b0c8b02a35c1bef9ed30c6f6eab2feec02b96920ce5f9"
+      },
+      {
+        "path": "lib/cfpropertylist.rb",
+        "size": 75,
+        "sha256": "6a8fa3898c60a86ef5cb7bf00765745db25aaffe5e19bd1dc6276ced540bf387"
+      },
+      {
+        "path": "lib/cfpropertylist/rbBinaryCFPropertyList.rb",
+        "size": 18467,
+        "sha256": "9f6132d4392eaaab4a48ca7a1ca841df6fd6d6433d894bd2bc19736c9e0fc7b6"
+      },
+      {
+        "path": "lib/cfpropertylist/rbCFPlistError.rb",
+        "size": 567,
+        "sha256": "d9ae96a17ab286f5bd680be6ac5cd607906f54463b3ae7bb50e284ec0552b0b8"
+      },
+      {
+        "path": "lib/cfpropertylist/rbCFPropertyList.rb",
+        "size": 13635,
+        "sha256": "2691bf45a79ff13a0f09bb9e37fc7d371bb39d875feee587ada3f5d26321dd80"
+      },
+      {
+        "path": "lib/cfpropertylist/rbCFTypes.rb",
+        "size": 7993,
+        "sha256": "04f763f0d0dea798c2d94af19192fbc0c9d9e61ec0157824f6903fad3bc7cb8c"
+      },
+      {
+        "path": "lib/cfpropertylist/rbLibXMLParser.rb",
+        "size": 3719,
+        "sha256": "617bff2c8bd953e85de913c5cc29ca0771c2b187af0707cc12fa76f51ea55d1c"
+      },
+      {
+        "path": "lib/cfpropertylist/rbNokogiriParser.rb",
+        "size": 3880,
+        "sha256": "870b58ec1aac27ac8c5d85be6b81b566c475c8bd2c0d2d84528c2f52a4ec210f"
+      },
+      {
+        "path": "lib/cfpropertylist/rbPlainCFPropertyList.rb",
+        "size": 4542,
+        "sha256": "21548e91a91a94b1c113492c336b70ed53c6ecbbb7644257891bd24782106b6a"
+      },
+      {
+        "path": "lib/cfpropertylist/rbREXMLParser.rb",
+        "size": 3695,
+        "sha256": "36fcbec9174e45301332b6485b3c1efc19274fae04ccbd84a90ee2167e8c1e1d"
+      }
+    ],
+    "runtime_files_shape": "list",
+    "runtime_files_example": [
+      {
+        "path": "/opt/homebrew/lib/ruby/gems/3.4.0/gems/CFPropertyList-3.0.8/LICENSE",
+        "bytes": 1076,
+        "sha256": "84d53f670a8da583f6ca624889153c5157b727ea01ba00f347ad73071ef6d18b"
+      },
+      {
+        "path": "/opt/homebrew/lib/ruby/gems/3.4.0/gems/CFPropertyList-3.0.8/README.md",
+        "bytes": 1545,
+        "sha256": "7106e832be63b1bf04d5290016722919159ce70a4f634bf059499baef3f2417a"
+      }
+    ]
+  },
+  {
+    "name": "claide",
+    "version": "1.1.0",
+    "package_sha256": "6d3c5c089dde904d96aa30e73306d0d4bd444b1accb9b3125ce14a3c0183f82e",
+    "members": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "size": 988,
+        "sha256": "d1aa7043db5b6903a98b9096a74bd769f976b38d1b0fa77b225c4397dee75a04"
+      },
+      {
+        "path": ".gitignore",
+        "size": 147,
+        "sha256": "441026dacc6b2fc3b10f334f23e73cf00009047bf19f8a99141c2508b90a9f90"
+      },
+      {
+        "path": ".kick",
+        "size": 631,
+        "sha256": "8b54cc99db8ffdc3a3d94a7ad92bd2f0187a81b5c0b1305ded3be935059344f0"
+      },
+      {
+        "path": ".rubocop.yml",
+        "size": 97,
+        "sha256": "7fb5b3b33039a1b7c66845a5ca63c6728cce4b27997955303775d053a7f6d769"
+      },
+      {
+        "path": ".rubocop_cocoapods.yml",
+        "size": 3306,
+        "sha256": "e3bd2ebf132cfac1c2fe43261e1b5636a81ffa2f99e95a4c142ff9ff447856ac"
+      },
+      {
+        "path": ".rubocop_todo.yml",
+        "size": 1800,
+        "sha256": "47a76dedf0946c1d349c110e16c754a86e7a581ae2c9061c4f75b9ce70afa923"
+      },
+      {
+        "path": ".yardopts",
+        "size": 50,
+        "sha256": "0c851856075cfc5ecf2f11fbedf70a85dba0f19595a37f546b1b4800eb63fafb"
+      },
+      {
+        "path": "CHANGELOG.md",
+        "size": 7171,
+        "sha256": "208f0e305ecc97798ddc778c943b170144112ec08db3051651b1305a6b14e640"
+      },
+      {
+        "path": "Gemfile",
+        "size": 356,
+        "sha256": "3777091a52af10ccd367d93b07cc29d4c79a32bc1678feb3bc02aba97bc5c71f"
+      },
+      {
+        "path": "Gemfile.lock",
+        "size": 1532,
+        "sha256": "5e97dc7cdbfe0702e2be8a48871bbba12e4b6db65ed60289012d03b1d49d8c53"
+      },
+      {
+        "path": "LICENSE",
+        "size": 1154,
+        "sha256": "efb32ada97b417af934679e0ca801d40e5153ed789e98c3870154377d1b59726"
+      },
+      {
+        "path": "README.md",
+        "size": 4608,
+        "sha256": "c1c55fd958c8de6a68ea562d3ea1b68abf814249d77fa2593fd2e5e50edc88f5"
+      },
+      {
+        "path": "Rakefile",
+        "size": 1365,
+        "sha256": "d1e3ee58382f92c7ced9165272cc3cf25f5da3824571662a7ac4e4a2f3ea0f72"
+      },
+      {
+        "path": "claide.gemspec",
+        "size": 882,
+        "sha256": "d711d2eecb3920239e3672181d89722e583a897c118954db63520f3248455b7b"
+      },
+      {
+        "path": "lib/claide.rb",
+        "size": 298,
+        "sha256": "e34c0526d413689c963cc8544bbb977d75c3f6d6a0207e1c97f55894d7d988fb"
+      },
+      {
+        "path": "lib/claide/ansi.rb",
+        "size": 3263,
+        "sha256": "d276e0abf568f86a4ddb913a0d78f3aeeb1b3d5b16e60cfd8cb92a771c7c3085"
+      },
+      {
+        "path": "lib/claide/ansi/cursor.rb",
+        "size": 2072,
+        "sha256": "5ede4e196f69af107db754f1a984fe0d3177c0c82c1e41eea5d745ee987e47fd"
+      },
+      {
+        "path": "lib/claide/ansi/graphics.rb",
+        "size": 1929,
+        "sha256": "b3a1c28a9c17a32830f776b6cd062f28a23f9a3b4002f18ee2768a60f2884e89"
+      },
+      {
+        "path": "lib/claide/ansi/string_escaper.rb",
+        "size": 2410,
+        "sha256": "39eba2965a84f805b5969dc577de36834a5bab8f6f26978a0dd641d0ffa783ed"
+      },
+      {
+        "path": "lib/claide/argument.rb",
+        "size": 1898,
+        "sha256": "40fb9232f7f3fb1e0a28ca81c0d8c9e55b294b04d0f0a8262a96b8590a8afc7d"
+      },
+      {
+        "path": "lib/claide/argv.rb",
+        "size": 9998,
+        "sha256": "a854e39c152f6dac37530cb8af690852509a45a128cf614ea49144cc626c761f"
+      },
+      {
+        "path": "lib/claide/command.rb",
+        "size": 20696,
+        "sha256": "425d811351ecaa1fce3b919b0f289f964c86ea889bd877bb0eb198a5b2c1840e"
+      },
+      {
+        "path": "lib/claide/command/argument_suggester.rb",
+        "size": 3229,
+        "sha256": "b72d7778fcd00d7a6d3a678ff6099fda00867b3ef50f9c632a145f9eeaa17e01"
+      },
+      {
+        "path": "lib/claide/command/banner.rb",
+        "size": 10276,
+        "sha256": "6375d297ae85b6e6e03404cd841a565280a00eb9934729c6a8d0ac20383e48c0"
+      },
+      {
+        "path": "lib/claide/command/plugin_manager.rb",
+        "size": 4201,
+        "sha256": "dfcac89f2339ab1075559c1d4d6da42ed5a37df3bbbbdbdec977cf83a6b0e9f5"
+      },
+      {
+        "path": "lib/claide/gem_version.rb",
+        "size": 139,
+        "sha256": "f7047665425ab75cabf5a32a1ea524f7cb51668226428496d5bf08aa5441c0d0"
+      },
+      {
+        "path": "lib/claide/help.rb",
+        "size": 1635,
+        "sha256": "0dda557c84c70001fbceed86419f950c767fcc6a5215a71d27869eb8dabcfd03"
+      },
+      {
+        "path": "lib/claide/informative_error.rb",
+        "size": 612,
+        "sha256": "c25c030ed6248b1b7df124323bfab1c3babfb36e041e22a689196a63c30db141"
+      }
+    ],
+    "runtime_files_shape": "list",
+    "runtime_files_example": [
+      {
+        "path": "/opt/homebrew/lib/ruby/gems/3.4.0/gems/claide-1.1.0/.github/workflows/ci.yml",
+        "bytes": 988,
+        "sha256": "d1aa7043db5b6903a98b9096a74bd769f976b38d1b0fa77b225c4397dee75a04"
+      },
+      {
+        "path": "/opt/homebrew/lib/ruby/gems/3.4.0/gems/claide-1.1.0/.gitignore",
+        "bytes": 147,
+        "sha256": "441026dacc6b2fc3b10f334f23e73cf00009047bf19f8a99141c2508b90a9f90"
+      }
+    ]
+  },
+  {
+    "name": "colored2",
+    "version": "3.1.2",
+    "package_sha256": "b13c2bd7eeae2cf7356a62501d398e72fde78780bd26aec6a979578293c28b4a",
+    "members": [
+      {
+        "path": "LICENSE",
+        "size": 1113,
+        "sha256": "d6b4c6ff0cb445552a0e293e10c9dd3891f7ac78bd7362902f94008bd60c7056"
+      },
+      {
+        "path": "README.md",
+        "size": 3854,
+        "sha256": "66cd5508ad14fcd5cc27f362a7fdb08d4fbfd0f6cbc27171aa3cd0c7681b899f"
+      },
+      {
+        "path": "Rakefile",
+        "size": 227,
+        "sha256": "8da801762918d8fffc2ee15a9a2c4c607aee8decd6c83b69af2c88f8694a98a9"
+      },
+      {
+        "path": "lib/colored2.rb",
+        "size": 2536,
+        "sha256": "4131c24f9a90e6c895af990a5728e2e6d3d8e8ee7f47f9769a8f521cdf8be110"
+      },
+      {
+        "path": "lib/colored2/ascii_decorator.rb",
+        "size": 2136,
+        "sha256": "a331eff994c8a1403c397fe6ea83083d63efb3176869a972507475e228bb58bf"
+      },
+      {
+        "path": "lib/colored2/codes.rb",
+        "size": 1057,
+        "sha256": "5fae840f9055d032a7a51e6e562a87808a20f389769cacb44283ebc678ff790a"
+      },
+      {
+        "path": "lib/colored2/numbers.rb",
+        "size": 323,
+        "sha256": "9ac41e95dc90012f3f440580b82cd30dfb6485e66d01ecb0da3d025653ac89e1"
+      },
+      {
+        "path": "lib/colored2/object.rb",
+        "size": 106,
+        "sha256": "afb51ccdc15e9f7efe09c9ea7c9b45d7f4d791ff8b9571d6cc082755f0b7d5a5"
+      },
+      {
+        "path": "lib/colored2/strings.rb",
+        "size": 106,
+        "sha256": "b0c8c3bb2d7a0c8ea2ddc96aa3b42ed58a4b87c11d8733c004e740a352aa9b1d"
+      },
+      {
+        "path": "lib/colored2/version.rb",
+        "size": 40,
+        "sha256": "97d2a6fd5db52ca2803fdac93631a3c8b8bc2a203221074da38fdd1068257c81"
+      },
+      {
+        "path": "spec/colored2/numbers_spec.rb",
+        "size": 702,
+        "sha256": "68fd40f5b4d0da9a056c4e88e00a34d5f8a4617da73aaac4bd71fd6a653fb03e"
+      },
+      {
+        "path": "spec/colored2/object_spec.rb",
+        "size": 565,
+        "sha256": "6d1bc3e509b27468da4bef64b755d5bf3ee5ef0313fd0090b740618e18b30a05"
+      },
+      {
+        "path": "spec/colored2/strings_spec.rb",
+        "size": 2617,
+        "sha256": "9e58994c04c5f19b3262cd1ff67e9930686a7aa9bce12c600b99dbc7bbdfdca7"
+      },
+      {
+        "path": "spec/colored2_spec.rb",
+        "size": 462,
+        "sha256": "d5bb8a5949ba23381ca2570134c8a982de18dca7b0b5ea0d19435f07d877c32f"
+      },
+      {
+        "path": "spec/spec_helper.rb",
+        "size": 59,
+        "sha256": "e0549fa0ed7f50a395cb6b9d42cf5020155a95fe3f82e30ee4449f074d9f39c5"
+      }
+    ],
+    "runtime_files_shape": "list",
+    "runtime_files_example": [
+      {
+        "path": "/opt/homebrew/lib/ruby/gems/3.4.0/gems/colored2-3.1.2/LICENSE",
+        "bytes": 1113,
+        "sha256": "d6b4c6ff0cb445552a0e293e10c9dd3891f7ac78bd7362902f94008bd60c7056"
+      },
+      {
+        "path": "/opt/homebrew/lib/ruby/gems/3.4.0/gems/colored2-3.1.2/README.md",
+        "bytes": 3854,
+        "sha256": "66cd5508ad14fcd5cc27f362a7fdb08d4fbfd0f6cbc27171aa3cd0c7681b899f"
+      }
+    ]
+  },
+  {
+    "name": "nanaimo",
+    "version": "0.4.0",
+    "package_sha256": "faf069551bab17f15169c1f74a1c73c220657e71b6e900919897a10d991d0723",
+    "members": [
+      {
+        "path": ".github/dependabot.yml",
+        "size": 261,
+        "sha256": "cff46a3a6cdf0f37f07751e44e5c4aeeebfc529ee84428f718d20b5fff17fe46"
+      },
+      {
+        "path": ".github/workflows/test.yml",
+        "size": 696,
+        "sha256": "cec5645cfb207f06b175087f5eaa7782765695d4ba0bd84438de381b3ccfdc3d"
+      },
+      {
+        "path": ".gitignore",
+        "size": 73,
+        "sha256": "1c65a475b30b228a381e09190c85fa0a71b06c8f60e51f1509cfd384d199af1e"
+      },
+      {
+        "path": ".rspec",
+        "size": 31,
+        "sha256": "04ea314ec27821b7e7cf198c2b3f1dc643fbc27429e3d8eb5f6253c2104d51ca"
+      },
+      {
+        "path": ".rubocop.yml",
+        "size": 211,
+        "sha256": "7cad19183e7a09af75523af0d02cf6b49cc453c7f35a605afb257a08a8258554"
+      },
+      {
+        "path": ".rubocop_todo.yml",
+        "size": 4990,
+        "sha256": "f6ebbd2dafd9548a98b3152a40ec2e93544fdbf3d56fb45522ec7b298dc55fc3"
+      },
+      {
+        "path": "CHANGELOG.md",
+        "size": 3373,
+        "sha256": "f5cb3308449490f95c1cbfd3f0dc64828cb614ee304c9b3265e2c877451e1bd3"
+      },
+      {
+        "path": "CODE_OF_CONDUCT.md",
+        "size": 2384,
+        "sha256": "7879080e055402f1ee31ac43465b4de46accadaa03a2257ddb43f4e3f9ab5f3c"
+      },
+      {
+        "path": "Gemfile",
+        "size": 343,
+        "sha256": "a7ce8228c4e6c104f6778a15f091c85ea3947c6b3a3a03354816c901450c0611"
+      },
+      {
+        "path": "Gemfile.lock",
+        "size": 1332,
+        "sha256": "77202fb78efa68e28b789748786c1834c5a85d0933822e16de9c2ee33b0c0262"
+      },
+      {
+        "path": "LICENSE.txt",
+        "size": 1101,
+        "sha256": "7cb06b262ce740720c5bb8435f619db06426a6664a4bcea4ae1ebd86526f3af7"
+      },
+      {
+        "path": "README.md",
+        "size": 1751,
+        "sha256": "04c1e02718dd4a135343fd73193ba5887748f978126dbee110cbf9e7b0eb000f"
+      },
+      {
+        "path": "Rakefile",
+        "size": 1917,
+        "sha256": "fc2fc5cdf15160f73caeab5d2081789c553105feebea351d5a834dccac5bc485"
+      },
+      {
+        "path": "bin/console",
+        "size": 362,
+        "sha256": "5dcee68d2d2e337420d2d375864c36c73c6bc812533c93b732f610fc166c8af2"
+      },
+      {
+        "path": "bin/setup",
+        "size": 131,
+        "sha256": "e201190bc24e9f00849b3efa5fbaece2cbf069703232e50c7fa15d41c47f2ead"
+      },
+      {
+        "path": "lib/nanaimo.rb",
+        "size": 449,
+        "sha256": "ae3e77c1b97f4038aa017ee62f8546cdb018c7b6614d91b38c5a797916be6b2d"
+      },
+      {
+        "path": "lib/nanaimo/object.rb",
+        "size": 1954,
+        "sha256": "81a11fbeb50de8d499a9bc924c97ad93fb4cd272f0f35078806b120195fda0f3"
+      },
+      {
+        "path": "lib/nanaimo/plist.rb",
+        "size": 716,
+        "sha256": "4e9f497dc5e41f2dc2ad53a7c1022782a07a2ade755c253fe95c853280caa73c"
+      },
+      {
+        "path": "lib/nanaimo/reader.rb",
+        "size": 7877,
+        "sha256": "a6d3a58a0204b78208b9c67f6d8e061d69d285ae5b686d8a0d49508a4d935806"
+      },
+      {
+        "path": "lib/nanaimo/unicode.rb",
+        "size": 3288,
+        "sha256": "62f710f1545a43efb2958fb0a170d32b21c3d5425865cec0c4dcfd2d8d17a651"
+      },
+      {
+        "path": "lib/nanaimo/unicode/next_step_mapping.rb",
+        "size": 6667,
+        "sha256": "9bdcf7ccea53ea0814dee808bd9419906ccdcc268227e482d14943ac7f3d965c"
+      },
+      {
+        "path": "lib/nanaimo/unicode/quote_maps.rb",
+        "size": 1389,
+        "sha256": "50c53d06af6486f9f26d7b586b829d47ac2d64798fbcae7155e90b40b19280a9"
+      },
+      {
+        "path": "lib/nanaimo/version.rb",
+        "size": 70,
+        "sha256": "72fe5760c72e80b2fdf438ac82c0c6ad116adffe326e4a42f7b9aa9eeeb92548"
+      },
+      {
+        "path": "lib/nanaimo/writer.rb",
+        "size": 4858,
+        "sha256": "efd579cffe938c0e02b6bd392d4f976376c788c8c9ba0807a5a96e66edc22d99"
+      },
+      {
+        "path": "lib/nanaimo/writer/pbxproj.rb",
+        "size": 2306,
+        "sha256": "a203b2a5a3ce89a625d4ee9a7b6254f5bb00a9af40cdd3b90384e3a327e9848a"
+      },
+      {
+        "path": "lib/nanaimo/writer/xml.rb",
+        "size": 3170,
+        "sha256": "632d8c43a79d930320d2a2cc89fa335658d0f97514d77e9a1911e1fae8037e23"
+      },
+      {
+        "path": "nanaimo.gemspec",
+        "size": 1026,
+        "sha256": "ecad8d920128f644cbd1610251f5a4ad5b53d3d7aeea6fd509b42dc6bf76f96a"
+      }
+    ],
+    "runtime_files_shape": "list",
+    "runtime_files_example": [
+      {
+        "path": "/opt/homebrew/lib/ruby/gems/3.4.0/gems/nanaimo-0.4.0/.github/dependabot.yml",
+        "bytes": 261,
+        "sha256": "cff46a3a6cdf0f37f07751e44e5c4aeeebfc529ee84428f718d20b5fff17fe46"
+      },
+      {
+        "path": "/opt/homebrew/lib/ruby/gems/3.4.0/gems/nanaimo-0.4.0/.github/workflows/test.yml",
+        "bytes": 696,
+        "sha256": "cec5645cfb207f06b175087f5eaa7782765695d4ba0bd84438de381b3ccfdc3d"
+      }
+    ]
+  },
+  {
+    "name": "rexml",
+    "version": "3.4.4",
+    "package_sha256": "19e0a2c3425dfbf2d4fc1189747bdb2f849b6c5e74180401b15734bc97b5d142",
+    "members": [
+      {
+        "path": "LICENSE.txt",
+        "size": 1282,
+        "sha256": "a5e3042dacb53eebda91f3b1caefbfec8307711df8c4ed1ed20e4e97c43307a4"
+      },
+      {
+        "path": "NEWS.md",
+        "size": 16134,
+        "sha256": "316cbff0b4c1a102e6bce565778f05ab79ed63c45ff5617bc0a4d1d1f04e7f6a"
+      },
+      {
+        "path": "README.md",
+        "size": 2458,
+        "sha256": "9615db4c0a631194f7f234cc334d0e62343eba08b09d719ffdcd69a8bb10377e"
+      },
+      {
+        "path": "doc/rexml/context.rdoc",
+        "size": 5342,
+        "sha256": "33e49c85be4ac557d5f38296f1c96e6eb9da4ff4b8d960888b3bfd9ad2885896"
+      },
+      {
+        "path": "doc/rexml/tasks/rdoc/child.rdoc",
+        "size": 2369,
+        "sha256": "ab6d1983436b78c14b0cb81b09f3e87bf769e3da289246e159ec059e5a1e6a56"
+      },
+      {
+        "path": "doc/rexml/tasks/rdoc/document.rdoc",
+        "size": 7342,
+        "sha256": "79eec4ffa3027a5d508a5047804dce4352ae1e888af8bedd3752d79e148fe224"
+      },
+      {
+        "path": "doc/rexml/tasks/rdoc/element.rdoc",
+        "size": 16084,
+        "sha256": "22b056f6836e674c17b4d39ee6cbce522a5fd2b453e4190b371ec903419d286b"
+      },
+      {
+        "path": "doc/rexml/tasks/rdoc/node.rdoc",
+        "size": 2481,
+        "sha256": "4b9f2e75a777a81ef0c5c32dde56498692821a330d0ed9cea7e435d209ca132f"
+      },
+      {
+        "path": "doc/rexml/tasks/rdoc/parent.rdoc",
+        "size": 7797,
+        "sha256": "d18f2665e44557f37fc9eb1edba7b20f5775cbdb52517d3ddb0be9a5122f99f0"
+      },
+      {
+        "path": "doc/rexml/tasks/tocs/child_toc.rdoc",
+        "size": 548,
+        "sha256": "348735542033e282b5c45b3e2be16c8ca1251ad56c5eb6a78bdc4a5b0a8e500e"
+      },
+      {
+        "path": "doc/rexml/tasks/tocs/document_toc.rdoc",
+        "size": 1844,
+        "sha256": "05e13e735e505b2ff457e73f9952a20d6d16e508d075693e8163451656fb63c6"
+      },
+      {
+        "path": "doc/rexml/tasks/tocs/element_toc.rdoc",
+        "size": 4366,
+        "sha256": "c8783baf0c9bd866fc023cee04c8c97e6ed265c2cb75ec6f2ad1f2a9f03333a8"
+      },
+      {
+        "path": "doc/rexml/tasks/tocs/master_toc.rdoc",
+        "size": 13511,
+        "sha256": "96d4a834596c227077bbb841dfa849bfff6233848a255bf8cffef57c71073fc6"
+      },
+      {
+        "path": "doc/rexml/tasks/tocs/node_toc.rdoc",
+        "size": 808,
+        "sha256": "5a9140afe114c5469b8f6c4f6e3d784fefa4b895a252daa78a0d5dbff9e61cef"
+      },
+      {
+        "path": "doc/rexml/tasks/tocs/parent_toc.rdoc",
+        "size": 1670,
+        "sha256": "0869ceb6164308c6f3661a6db277204138ab326e7a96d44445383cc70247289b"
+      },
+      {
+        "path": "doc/rexml/tutorial.rdoc",
+        "size": 40333,
+        "sha256": "633db55424f0eeeedea9b1da721d2f0f4608cbb3953e8b494fd014351a397c7c"
+      },
+      {
+        "path": "lib/rexml.rb",
+        "size": 65,
+        "sha256": "c864b0782acc1114be3802469be6e6460e966b75ff358ca96dade429c56aa6be"
+      },
+      {
+        "path": "lib/rexml/attlistdecl.rb",
+        "size": 1970,
+        "sha256": "874947aa30a947a2c2529f4b7bf5de77cf753a284eb5c23a684f6cb9c7896064"
+      },
+      {
+        "path": "lib/rexml/attribute.rb",
+        "size": 6301,
+        "sha256": "8407971b6866aa1a28827efa44727c8eacd9a75a059e592d3e728efdb8cc7b45"
+      },
+      {
+        "path": "lib/rexml/cdata.rb",
+        "size": 1624,
+        "sha256": "26bd1699500c191c07d66515b30bdeac1fbace3b77208fe14571fe16019e24bf"
+      },
+      {
+        "path": "lib/rexml/child.rb",
+        "size": 2691,
+        "sha256": "09e3edc53560c9eedc7b899077f7b402a51a5678593372b8fd78d63013f206e6"
+      },
+      {
+        "path": "lib/rexml/comment.rb",
+        "size": 2181,
+        "sha256": "c633aed1feceed038b210324c3a7e910c0c4634343a3a3affe6ad79188e96d9c"
+      },
+      {
+        "path": "lib/rexml/doctype.rb",
+        "size": 7799,
+        "sha256": "b3104963dfed871a15e61610c77b8abe217b4b60b1f35cfdb29a07dcb9f75b85"
+      },
+      {
+        "path": "lib/rexml/document.rb",
+        "size": 15152,
+        "sha256": "97d0b6fece37abb6bcd9e8374c0921adc5b113b10b07ce66558f9b9828a0d087"
+      },
+      {
+        "path": "lib/rexml/dtd/attlistdecl.rb",
+        "size": 234,
+        "sha256": "4b25055d40f109379e9a630a1e30bfa76b993ea8316213acf6bc5a8bb82ab8a9"
+      },
+      {
+        "path": "lib/rexml/dtd/dtd.rb",
+        "size": 1238,
+        "sha256": "b06e85a02ccecc1fb986e85febbdeee19cb4828931fe86888e31d6e9e1106d8f"
+      },
+      {
+        "path": "lib/rexml/dtd/elementdecl.rb",
+        "size": 456,
+        "sha256": "f2301c19f38347c027a739cc5b133bfeb8cef4e21cd3b9794b858be268a81523"
+      },
+      {
+        "path": "lib/rexml/dtd/entitydecl.rb",
+        "size": 1702,
+        "sha256": "bfb3935e2fc7f5abeaec0fdd9149e8c13deedcbfdbdbde0144506f21833a9b04"
+      },
+      {
+        "path": "lib/rexml/dtd/notationdecl.rb",
+        "size": 1096,
+        "sha256": "60311a77e37c4ef0239b211efbb428b0ae427c1a83289fd720100b339fa4d7af"
+      },
+      {
+        "path": "lib/rexml/element.rb",
+        "size": 80552,
+        "sha256": "0f8dde1e5ce74d7e8834c6db256940796e026066f1ae17d5ef3c16fac3cb9afe"
+      },
+      {
+        "path": "lib/rexml/encoding.rb",
+        "size": 1165,
+        "sha256": "3a81359cb2d83549b526c11d16ec07daa4a9caef85632c12c91277e095600ae4"
+      },
+      {
+        "path": "lib/rexml/entity.rb",
+        "size": 4502,
+        "sha256": "aff427d29668eeebeadd01c63d5b7c5218042fcf61b1abacb4085ab130e65821"
+      },
+      {
+        "path": "lib/rexml/formatters/default.rb",
+        "size": 2920,
+        "sha256": "e991faa54c135eaee78b6ed365e451b145644002dd10de04b6905f15790a2248"
+      },
+      {
+        "path": "lib/rexml/formatters/pretty.rb",
+        "size": 4400,
+        "sha256": "9a1d7ffd28e3166d9c1280b291eb396a9d2fee21464a9b9e2f0d245039d6888c"
+      },
+      {
+        "path": "lib/rexml/formatters/transitive.rb",
+        "size": 1852,
+        "sha256": "6f4b91b5e469fde63f853268f83207852ce63d9baabc7011440d32cebbf1e9bd"
+      },
+      {
+        "path": "lib/rexml/functions.rb",
+        "size": 12521,
+        "sha256": "7c6d613d38547a2b99d361ca72e65cb5a95a69cd8df1ae552d68dad33a34f99f"
+      },
+      {
+        "path": "lib/rexml/instruction.rb",
+        "size": 2191,
+        "sha256": "73ae8dd620fb1078f0e13dbc44dea5143e5f445e842c9fb8df12b18750ffc18a"
+      },
+      {
+        "path": "lib/rexml/light/node.rb",
+        "size": 4510,
+        "sha256": "0eabb1b9bb9ed07c62ef69f64c467b207cdd25c995d00054639a711b77b3f2dc"
+      },
+      {
+        "path": "lib/rexml/namespace.rb",
+        "size": 1567,
+        "sha256": "f36e677ded9e5064c41a6c3e4c3714766488049b9c9b9a915451b15b6befe469"
+      },
+      {
+        "path": "lib/rexml/node.rb",
+        "size": 2421,
+        "sha256": "bdad5d51ea813dd8af9239f04e8793817d430414b16c734abefa73f8c61a287f"
+      },
+      {
+        "path": "lib/rexml/output.rb",
+        "size": 553,
+        "sha256": "b6b9bff7126840bf5545e38b146b2da6b630c0a25a9600bdc48bdb5a765bcacd"
+      },
+      {
+        "path": "lib/rexml/parent.rb",
+        "size": 4375,
+        "sha256": "e58da20e3a76dc54fa973c884529f90a9ecbb7d55216294a2ebc40f29c91d495"
+      },
+      {
+        "path": "lib/rexml/parseexception.rb",
+        "size": 1324,
+        "sha256": "d9c0828dad5f7270cd77f74aa48b306507da5ba3607b591ac667983955447991"
+      },
+      {
+        "path": "lib/rexml/parsers/baseparser.rb",
+        "size": 35548,
+        "sha256": "e59f4fc30a7919cf5d20ac479ae773a583e9e68214de50dc384b45fa5908423c"
+      },
+      {
+        "path": "lib/rexml/parsers/lightparser.rb",
+        "size": 1579,
+        "sha256": "482d9c5c562b9ccf7836626cad3159df5d8b841a964de1e7f945c7e35db0ebff"
+      },
+      {
+        "path": "lib/rexml/parsers/pullparser.rb",
+        "size": 5588,
+        "sha256": "b447145b4157506ce13b50d6722cebbd1a7c5c14d7847d1562e214a62cd8eab2"
+      },
+      {
+        "path": "lib/rexml/parsers/sax2parser.rb",
+        "size": 9162,
+        "sha256": "6c02b6d58a56c3ce84b4ea4a805e1f827b50ad2bc3832dbbf353a92e9889c924"
+      },
+      {
+        "path": "lib/rexml/parsers/streamparser.rb",
+        "size": 2042,
+        "sha256": "141f075d4c36bcee72c16b3c998228027eebf1f2aee65c646e49b3f9d621408c"
+      },
+      {
+        "path": "lib/rexml/parsers/treeparser.rb",
+        "size": 3119,
+        "sha256": "e059fe5c134e7eb4c0d44b0ad2a2b4f2756ac980e806d95b2419420d5c7a746a"
+      },
+      {
+        "path": "lib/rexml/parsers/ultralightparser.rb",
+        "size": 1479,
+        "sha256": "735ac4f33945875671c75a51a18384df5f0e8836f8df113e2956d9527f1eeab7"
+      },
+      {
+        "path": "lib/rexml/parsers/xpathparser.rb",
+        "size": 20868,
+        "sha256": "3505e688b36f579c1d8ea8b60a973a03d02099eb46850d21171cf8ba3745adea"
+      },
+      {
+        "path": "lib/rexml/quickpath.rb",
+        "size": 9228,
+        "sha256": "278a77ffc126251255c0eab3e84b51aac71388e5e8d5257808f2c5a4aae70b90"
+      },
+      {
+        "path": "lib/rexml/rexml.rb",
+        "size": 1139,
+        "sha256": "aa2334fd8e8821a0b0ae0558542d2f3c93a111d382ec0d7d2a24f3d1aeb4e804"
+      },
+      {
+        "path": "lib/rexml/sax2listener.rb",
+        "size": 3693,
+        "sha256": "03ffa1859923d665a1e29553bd80f5311aa562f38949a3ef0a4e8839250c4a91"
+      },
+      {
+        "path": "lib/rexml/security.rb",
+        "size": 810,
+        "sha256": "b79e4dd6521fbd3f670063d5fe79e769b3a87e33c02c7ec6d244479bb22bf06c"
+      },
+      {
+        "path": "lib/rexml/source.rb",
+        "size": 9669,
+        "sha256": "f945a31088fe28bd5f2bc7857e4690bfe49cc30cee25436d032895f50ba732b5"
+      },
+      {
+        "path": "lib/rexml/streamlistener.rb",
+        "size": 3932,
+        "sha256": "1767eca0247619db3854764df2ca8baacc2bd47c0e8c0f037e687489ca4b2475"
+      },
+      {
+        "path": "lib/rexml/text.rb",
+        "size": 14090,
+        "sha256": "fe526cfb124df1dd2cdc7b02ceca24aa799925a67f4314e218a59380297d140c"
+      },
+      {
+        "path": "lib/rexml/undefinednamespaceexception.rb",
+        "size": 244,
+        "sha256": "9c3284a443b3ff3f6f84ce6b7a5dd3437db33d4a2c724c37314104fb7f2c966f"
+      },
+      {
+        "path": "lib/rexml/validation/relaxng.rb",
+        "size": 13516,
+        "sha256": "0bc31d9957f5a796a9ab6c2c8b78b0b3c601ad93990039e5698bd1a1d7932da8"
+      },
+      {
+        "path": "lib/rexml/validation/validation.rb",
+        "size": 3558,
+        "sha256": "26c657a2613d2d774300fc019cf78d1a7717d4a6d63cfc19e8959f95cc3ffda2"
+      },
+      {
+        "path": "lib/rexml/validation/validationexception.rb",
+        "size": 176,
+        "sha256": "5cb0072fd3e037e97fe2e9b65e961019eee5ae756ec7f8455b3de40bd3736599"
+      },
+      {
+        "path": "lib/rexml/xmldecl.rb",
+        "size": 3019,
+        "sha256": "9a2efb7453f55a7b9902e5f5c1590c595d0d59d5b4b9b5f8a27177d72497a41f"
+      },
+      {
+        "path": "lib/rexml/xmltokens.rb",
+        "size": 2380,
+        "sha256": "fd10100dc8f399fab605b0add46ff3a56fca5bdae54a83d8dc3a5443fea39704"
+      },
+      {
+        "path": "lib/rexml/xpath.rb",
+        "size": 3097,
+        "sha256": "fedd6dbc92f240b84986cbd84aefdcade18b34ec6fde11ed58cdd9a65740f392"
+      },
+      {
+        "path": "lib/rexml/xpath_parser.rb",
+        "size": 30582,
+        "sha256": "8eefdd11097408335a08c560ad667cb6c5905306f9d954131a119e7d0c1926cf"
+      }
+    ],
+    "runtime_files_shape": "list",
+    "runtime_files_example": [
+      {
+        "path": "/opt/homebrew/Cellar/ruby@3.4/3.4.12/lib/ruby/gems/3.4.0/gems/rexml-3.4.4/LICENSE.txt",
+        "bytes": 1282,
+        "sha256": "a5e3042dacb53eebda91f3b1caefbfec8307711df8c4ed1ed20e4e97c43307a4"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/ruby@3.4/3.4.12/lib/ruby/gems/3.4.0/gems/rexml-3.4.4/NEWS.md",
+        "bytes": 16134,
+        "sha256": "316cbff0b4c1a102e6bce565778f05ab79ed63c45ff5617bc0a4d1d1f04e7f6a"
+      }
+    ]
+  },
+  {
+    "name": "nkf",
+    "version": "0.2.0",
+    "package_sha256": "fbc151bda025451f627fafdfcb3f4f13d0b22ae11f58c6d3a2939c76c5f5f126",
+    "members": [
+      {
+        "path": ".git-blame-ignore-revs",
+        "size": 269,
+        "sha256": "ec6f801ec069163019f2ff44363904c346bf0801009cbcdddb60bd0c8e8e2a6c"
+      },
+      {
+        "path": ".github/dependabot.yml",
+        "size": 118,
+        "sha256": "5546fd2d93c52fa6a37904f886e766cb7febad4ec538b39851bc13db1354c00f"
+      },
+      {
+        "path": ".github/workflows/test.yml",
+        "size": 708,
+        "sha256": "f917757a942930212101d6bd921acbb5555d70e3605916add3730e7479dc745a"
+      },
+      {
+        "path": ".gitignore",
+        "size": 119,
+        "sha256": "d57c8d7ea1fabca0b47376406442b47956a2c7060f6124ee2bf78356fa2847de"
+      },
+      {
+        "path": "Gemfile",
+        "size": 78,
+        "sha256": "578c06a6d88c769af5a94852be5774a6ed0a0d1b75b1733f4d1140fab5c031a2"
+      },
+      {
+        "path": "LICENSE.txt",
+        "size": 1282,
+        "sha256": "a5e3042dacb53eebda91f3b1caefbfec8307711df8c4ed1ed20e4e97c43307a4"
+      },
+      {
+        "path": "README.md",
+        "size": 1089,
+        "sha256": "6a2f5e059ab5ee8488a7b5a2a9cab45c70f69b7a27625f663356489d180a8509"
+      },
+      {
+        "path": "Rakefile",
+        "size": 503,
+        "sha256": "b9a355f2b9444c611c41251aa56a83787823ec2998cd71adbd1093e6d3a44e3e"
+      },
+      {
+        "path": "bin/console",
+        "size": 338,
+        "sha256": "9eeb44d56080f919f701a10616ed832b48ceee3abcc537340694906cb155a8b3"
+      },
+      {
+        "path": "bin/setup",
+        "size": 131,
+        "sha256": "e201190bc24e9f00849b3efa5fbaece2cbf069703232e50c7fa15d41c47f2ead"
+      },
+      {
+        "path": "ext/java/org/jruby/ext/nkf/Command.java",
+        "size": 2259,
+        "sha256": "d4fe13b42c30883b26ab088a45f33e908839abdc1ea7958bd5b3e8502e3bfb76"
+      },
+      {
+        "path": "ext/java/org/jruby/ext/nkf/CommandParser.java",
+        "size": 2828,
+        "sha256": "87fbc2774b86e9ea180111af378a39a26589c7fa4105463485485bb1bc4c188f"
+      },
+      {
+        "path": "ext/java/org/jruby/ext/nkf/NKFLibrary.java",
+        "size": 279,
+        "sha256": "16e3b33c14ef77929b7f3160f7d9b2702942f547c814f1427bf9fb416f2b5bfe"
+      },
+      {
+        "path": "ext/java/org/jruby/ext/nkf/Option.java",
+        "size": 2626,
+        "sha256": "a1045052bcbc4eae39a767647c74997ed499320d3f351c8f0672097382ff72c0"
+      },
+      {
+        "path": "ext/java/org/jruby/ext/nkf/Options.java",
+        "size": 4181,
+        "sha256": "806af45cfe81ea6268b4c54e99a51a60f586f13b6f5d9f2bc2b186f389374800"
+      },
+      {
+        "path": "ext/java/org/jruby/ext/nkf/RubyNKF.java",
+        "size": 23833,
+        "sha256": "63f73f8005cc9e879bd18dead256aeff206b06830a5925cd6b5e65afef5a1786"
+      },
+      {
+        "path": "ext/nkf/extconf.rb",
+        "size": 69,
+        "sha256": "86e42b05086746a6cb18df65f58843749a9cfac247d631eef2c7e64ddf572956"
+      },
+      {
+        "path": "ext/nkf/nkf-utf8/config.h",
+        "size": 1064,
+        "sha256": "2c2b9ab4a3d5a527934e5b6cc47c091de61237460edca80a0cd77f36a9126257"
+      },
+      {
+        "path": "ext/nkf/nkf-utf8/nkf.c",
+        "size": 174568,
+        "sha256": "41bdfc3d48c043056d55628aed487dc0c064f2c8981518e374b234993f9a8698"
+      },
+      {
+        "path": "ext/nkf/nkf-utf8/nkf.h",
+        "size": 4305,
+        "sha256": "35e759806cae307af654c633f09d20ff687581910ab84fe47126480e00417011"
+      },
+      {
+        "path": "ext/nkf/nkf-utf8/utf8tbl.c",
+        "size": 842974,
+        "sha256": "931c94a959e8f0ad83692598bda4f8d0bf4c56593d803ce60279d32378720562"
+      },
+      {
+        "path": "ext/nkf/nkf-utf8/utf8tbl.h",
+        "size": 2802,
+        "sha256": "2bfdcc92e42db331410558f944e1d0bedee80684f922bb88b85a8394b0cf9696"
+      },
+      {
+        "path": "ext/nkf/nkf.c",
+        "size": 13633,
+        "sha256": "6222388418ecc509bed67fd9b4667bda1a898a5703feb5c02e6f6f53f0bdcb9f"
+      },
+      {
+        "path": "lib/kconv.rb",
+        "size": 5861,
+        "sha256": "22e8c8bebc3bd0c692b97fb51d2057d6f7c2273e3b24e2742025f4deaad19282"
+      },
+      {
+        "path": "lib/nkf.rb",
+        "size": 129,
+        "sha256": "c95c6c427d42d29e410f7a6724ad27687842c65f1f32da87b893ff87c9a68a20"
+      },
+      {
+        "path": "nkf.gemspec",
+        "size": 1589,
+        "sha256": "afc9ed80eee64a90d042536320bea3e09db2b9f5c1aebdda481c2c0fb62e0690"
+      }
+    ],
+    "runtime_files_shape": "list",
+    "runtime_files_example": [
+      {
+        "path": "/opt/homebrew/Cellar/ruby@3.4/3.4.12/lib/ruby/gems/3.4.0/gems/nkf-0.2.0/Gemfile",
+        "bytes": 78,
+        "sha256": "578c06a6d88c769af5a94852be5774a6ed0a0d1b75b1733f4d1140fab5c031a2"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/ruby@3.4/3.4.12/lib/ruby/gems/3.4.0/gems/nkf-0.2.0/LICENSE.txt",
+        "bytes": 1282,
+        "sha256": "a5e3042dacb53eebda91f3b1caefbfec8307711df8c4ed1ed20e4e97c43307a4"
+      }
+    ]
+  },
+  {
+    "name": "base64",
+    "version": "0.2.0",
+    "package_sha256": "0f25e9b21a02a0cc0cea8ef92b2041035d39350946e8789c562b2d1a3da01507",
+    "members": [
+      {
+        "path": "LICENSE.txt",
+        "size": 1282,
+        "sha256": "a5e3042dacb53eebda91f3b1caefbfec8307711df8c4ed1ed20e4e97c43307a4"
+      },
+      {
+        "path": "README.md",
+        "size": 1429,
+        "sha256": "fcce40cf4b8979ba6be8f28297b1b7215aec9ba2ce608a69dfda86c9340f398a"
+      },
+      {
+        "path": "lib/base64.rb",
+        "size": 13537,
+        "sha256": "4f9ec2f5e19c750a029e783b365c549b08ba79d08b31a90e442fcb1d4d6a8861"
+      }
+    ],
+    "runtime_files_shape": "list",
+    "runtime_files_example": [
+      {
+        "path": "/opt/homebrew/Cellar/ruby@3.4/3.4.12/lib/ruby/gems/3.4.0/gems/base64-0.2.0/LICENSE.txt",
+        "bytes": 1282,
+        "sha256": "a5e3042dacb53eebda91f3b1caefbfec8307711df8c4ed1ed20e4e97c43307a4"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/ruby@3.4/3.4.12/lib/ruby/gems/3.4.0/gems/base64-0.2.0/README.md",
+        "bytes": 1429,
+        "sha256": "fcce40cf4b8979ba6be8f28297b1b7215aec9ba2ce608a69dfda86c9340f398a"
+      }
+    ]
+  },
+  {
+    "name": "xcodeproj",
+    "version": "1.28.1",
+    "package_sha256": "6f12670f00739d9817ca27ac89d6ef01cc86050e22a0bc08a3131487e5b5cddc",
+    "members": [
+      {
+        "path": "LICENSE",
+        "size": 1081,
+        "sha256": "b582e38711472f8870d339d88e51fc570bfb0644ede27fd97dc289ea20a3cd35"
+      },
+      {
+        "path": "README.md",
+        "size": 2893,
+        "sha256": "745f5d0e14d5ede893d519326be64292ddd0a94fc45ccd9067aa6130482b1111"
+      },
+      {
+        "path": "bin/xcodeproj",
+        "size": 201,
+        "sha256": "b7a65ef5c963b65e31bcde6fab0b70d4478094c8fdf56c1967d4a8d49805328b"
+      },
+      {
+        "path": "lib/xcodeproj.rb",
+        "size": 872,
+        "sha256": "f9ec1d59d64b5d32638a6a2210851c198c236206f8efed37878ec763724e3e69"
+      },
+      {
+        "path": "lib/xcodeproj/command.rb",
+        "size": 2088,
+        "sha256": "017ae5091d1a47123bb69c444e5cd1cf567648d6729a30cf8e2ce632e3cb53ba"
+      },
+      {
+        "path": "lib/xcodeproj/command/config_dump.rb",
+        "size": 2965,
+        "sha256": "f223286751d73547cb5f1c59f24e71fa3ac2ea542fe8dc1df96e1f1a23d2148e"
+      },
+      {
+        "path": "lib/xcodeproj/command/project_diff.rb",
+        "size": 1574,
+        "sha256": "8f3ccd17c68614f4d66ee66915905e752859435174d0b3db1a73f76261538a9f"
+      },
+      {
+        "path": "lib/xcodeproj/command/show.rb",
+        "size": 1456,
+        "sha256": "e213dda486d532d4cd1db39127a97dda90095885906bb26fb41d11b2b853336e"
+      },
+      {
+        "path": "lib/xcodeproj/command/sort.rb",
+        "size": 1170,
+        "sha256": "ab5e879fb0cb9105003495f54635324265fd955fa329415816b88c138c3b5083"
+      },
+      {
+        "path": "lib/xcodeproj/command/target_diff.rb",
+        "size": 1059,
+        "sha256": "00e2903904467c6c0c96aecf76548f05ff6d26961c825029a680aa96c8ea1513"
+      },
+      {
+        "path": "lib/xcodeproj/config.rb",
+        "size": 11608,
+        "sha256": "bbf5040fdc524657a63b21f8663df2d734c7cdab9a2a622133a9d836f01500e7"
+      },
+      {
+        "path": "lib/xcodeproj/config/other_linker_flags_parser.rb",
+        "size": 1817,
+        "sha256": "4c6233c346dfc554ffef51afd276b3c7f73e68e1fa51977ada913ad18c09476e"
+      },
+      {
+        "path": "lib/xcodeproj/constants.rb",
+        "size": 19182,
+        "sha256": "b664845eb06ded112923dfe58420e2b0d2220addcc6e8ea73fa3af6a35429c59"
+      },
+      {
+        "path": "lib/xcodeproj/differ.rb",
+        "size": 7533,
+        "sha256": "6cffe966a35391c1cf9ea7271e72b67e345a410908bc2d198d61a6dd83af05d8"
+      },
+      {
+        "path": "lib/xcodeproj/gem_version.rb",
+        "size": 126,
+        "sha256": "6d341cca49a8e4731065b05d66df94435aca143744f3b30c16f7f3a43ab5c5a1"
+      },
+      {
+        "path": "lib/xcodeproj/helper.rb",
+        "size": 1183,
+        "sha256": "ec9051f2a4462d9cd411e9d08cb4865e6670cbc16cd2f4519673d71db494093e"
+      },
+      {
+        "path": "lib/xcodeproj/plist.rb",
+        "size": 2717,
+        "sha256": "9a8acc13c8ccbfa6cd8ab21926d7dc8899baff9f3b366ed26b0eb3dacebac0ed"
+      },
+      {
+        "path": "lib/xcodeproj/project.rb",
+        "size": 30589,
+        "sha256": "5efe148d49f956cfe0ab4660527769e8b8e6870ca461fda4e995eac82e8a7fe8"
+      },
+      {
+        "path": "lib/xcodeproj/project/case_converter.rb",
+        "size": 3353,
+        "sha256": "a1cae2bdc3a2053856b6953246a768ed0aebee15dc33b2eb3948701e94db30fd"
+      },
+      {
+        "path": "lib/xcodeproj/project/object.rb",
+        "size": 18397,
+        "sha256": "f940f8ec693b1eb58ba703f1c135212bf723a26c28a1676b1d8842617d9d8ad7"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/build_configuration.rb",
+        "size": 10565,
+        "sha256": "5d9b1218fc1b005351f8dab8d00f597590c29133de0e7a028841467fb08e19b9"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/build_file.rb",
+        "size": 2426,
+        "sha256": "2b75bce8942a0b1ad616ce0f95051015b152ba4c4055407be7b5664e6f009e88"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/build_phase.rb",
+        "size": 12355,
+        "sha256": "a42277dda27dcba620c816208597b5eb39239fc60cd5db593bd1d07f55e20f1c"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/build_rule.rb",
+        "size": 3162,
+        "sha256": "ae9fc0c2d8b81398dc4210e71c4f77b2c54dfd3142bb553bc90b4b2d7f69cfcd"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/configuration_list.rb",
+        "size": 4117,
+        "sha256": "4ca1e8b167fd789a940607411cc176abc322c70dce3d6182c257932a04becce4"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/container_item_proxy.rb",
+        "size": 4377,
+        "sha256": "90b5e9afb989c6fdd01022ae700d815e7b4806874ddfeff18d785eead32d624f"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/file_reference.rb",
+        "size": 10969,
+        "sha256": "b8bb1f1b2bc1be63a63b6d09f431124876d215f757e25bfb2f7ff500e8d950de"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/file_system_synchronized_exception_set.rb",
+        "size": 2406,
+        "sha256": "27511dd770308510955e2d88bd455a233083c6262ac99e24b79199cadd8a1aef"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/file_system_synchronized_root_group.rb",
+        "size": 2389,
+        "sha256": "9e388603ac471c30e7e95660ae5ba71501698dda4086fbfc5e1d665db6ec4ae3"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/group.rb",
+        "size": 16144,
+        "sha256": "3394b84533dd738dc23426ef9926fbfe8f4b52f7da4d11a4aec675a45ddc881a"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/helpers/build_settings_array_settings_by_object_version.rb",
+        "size": 2212,
+        "sha256": "ead4ccdfc5ad88c1a004220c98ee5a61e82f3d0769de4c66f71833523bb7773d"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/helpers/file_references_factory.rb",
+        "size": 9722,
+        "sha256": "238200a7cf893f646c54b9c6642d2de03bee75ac5a28d07831a4004e9813d109"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/helpers/groupable_helper.rb",
+        "size": 9234,
+        "sha256": "4f9fdb1dfad001ad0975a7cf0c0982276e97b13593f0376add257d3c5f8aeb98"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/native_target.rb",
+        "size": 28848,
+        "sha256": "c517500fbd5fd83c110b484b2cde1b3a353a970f386cbe687b5c010d6df3e6c1"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/reference_proxy.rb",
+        "size": 2315,
+        "sha256": "2bd963816b4a687db4ef45ebc24ce1f05295c86a9b747d108ad58ca97ec1715b"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/root_object.rb",
+        "size": 3774,
+        "sha256": "d3623ec31914044b47a3047bbca91ac6111f6e8efd616ab14c3b2e43189764f9"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/swift_package_local_reference.rb",
+        "size": 930,
+        "sha256": "1ae827c88ff5a09567333f95275688bc51f1538065a7b689ef48c62cb1f2448d"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/swift_package_product_dependency.rb",
+        "size": 845,
+        "sha256": "7a46e40265a48593c222e38423c66f8701930b7666213142860fb2a5248c37dc"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/swift_package_remote_reference.rb",
+        "size": 886,
+        "sha256": "96cdf0eccf9952d113e1fc68e6840e76be657164c0724913376e9779ef42cc12"
+      },
+      {
+        "path": "lib/xcodeproj/project/object/target_dependency.rb",
+        "size": 3260,
+        "sha256": "b96eadd083844e45fdb71d60088f40f063d3cde04d381630fafd5309e06f512c"
+      },
+      {
+        "path": "lib/xcodeproj/project/object_attributes.rb",
+        "size": 18495,
+        "sha256": "324298c6445d2f80c962a44eb028ceb0da204c98d524c51af45c19f891cd28c9"
+      },
+      {
+        "path": "lib/xcodeproj/project/object_dictionary.rb",
+        "size": 6601,
+        "sha256": "ef9376c422455bfde1039621dfd202a875b43294dfa580e79bc3ec81500830e7"
+      },
+      {
+        "path": "lib/xcodeproj/project/object_list.rb",
+        "size": 6589,
+        "sha256": "992fc6eb2aa65a70d24b1d7622236c29c6bfa178b3cd03fbfbbd9843ecf72c1f"
+      },
+      {
+        "path": "lib/xcodeproj/project/project_helper.rb",
+        "size": 13229,
+        "sha256": "f3262bb2bdd2d2f7b3bba250ccfd5261f5b72837474643f4fe143786ac173d0f"
+      },
+      {
+        "path": "lib/xcodeproj/project/uuid_generator.rb",
+        "size": 4840,
+        "sha256": "18596f3b985536405ddc9b4b1e53c70ec760de9308765965d0e6b4d20de18c14"
+      },
+      {
+        "path": "lib/xcodeproj/scheme.rb",
+        "size": 12479,
+        "sha256": "011b7c61582614336a78fdedd9d174696f52b256ddba0e845fc5223bf9897a0d"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/abstract_scheme_action.rb",
+        "size": 3831,
+        "sha256": "b4a81f2a8ebadf16e030c70ce2be723c458abebda6b4c47507715e79f6b19da6"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/analyze_action.rb",
+        "size": 572,
+        "sha256": "838de3a543ab30b9f314b4795b066dac108601033bcd68e9653a5ef058554283"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/archive_action.rb",
+        "size": 2088,
+        "sha256": "2a8bb37e1563941f4e48a5b47abe4ad8f846dfcc55b392eaf2e0f853ed56ef03"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/build_action.rb",
+        "size": 11384,
+        "sha256": "f03e167c4595aebaf7d8329d9a6a7948f0a062c9f9f3a98114793acd9b41679b"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/buildable_product_runnable.rb",
+        "size": 2243,
+        "sha256": "5829b657307d986b1837afad70d2a2ba27d3df3628ba25b39782c22a09feb41f"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/buildable_reference.rb",
+        "size": 5302,
+        "sha256": "26f603e5c3146d534e6e1f343f9481bb1b79ba5f1f7823a4317cf1f82f7ba248"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/command_line_arguments.rb",
+        "size": 6787,
+        "sha256": "3d3dd391974a704c6bacd95b8d6e33be9008e7f4789e51255a0810f84d0feaa7"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/environment_variables.rb",
+        "size": 6689,
+        "sha256": "eebc82b2bf40208220e874a2ed67304c3ae28418b1698315e564fefa27386513"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/execution_action.rb",
+        "size": 3380,
+        "sha256": "9aa5db8260ee30f3ee036a48a336e250ce55cc56ceb2d270495e1654162bb4da"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/launch_action.rb",
+        "size": 7028,
+        "sha256": "92335f8a7a63909eef9a1759708da60fff19134b3cf53fea8262d78f17358452"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/location_scenario_reference.rb",
+        "size": 1639,
+        "sha256": "26a141791419eae9645cf2a4df6fd133ee994549cbf9c9c9c46880a4f4d81486"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/macro_expansion.rb",
+        "size": 1255,
+        "sha256": "dae8e068dbdc3764968bde402c104b32940601de94da7ab34c1a2d4b90f36997"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/profile_action.rb",
+        "size": 2285,
+        "sha256": "55470c2cdd7b51d201c9d576e6b25148be184783d44e61bb17d48ae889531c79"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/remote_runnable.rb",
+        "size": 3370,
+        "sha256": "132382f0133c84b310c36be9820db83f45584c3e784a042d5fd4e8f230f52665"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/send_email_action_content.rb",
+        "size": 2483,
+        "sha256": "5aedecbaed67a6b838d4517fc738ffdcdb546a506be3fe878b104af4fbfe63c8"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/shell_script_action_content.rb",
+        "size": 2407,
+        "sha256": "3a073bb9a07c90aa08bad056c72bd3e1e6b6ddb3653ca7ba2a256a98c7ea3920"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/test_action.rb",
+        "size": 14585,
+        "sha256": "e7c4a40be14ca8dc949be4dbf74508d0df4ae85c793495164dc6fed500918bae"
+      },
+      {
+        "path": "lib/xcodeproj/scheme/xml_element_wrapper.rb",
+        "size": 3095,
+        "sha256": "75ce11d69bcffc26c4ed5de8ab5138a90863454ea4792d2a156a7495c6c27480"
+      },
+      {
+        "path": "lib/xcodeproj/user_interface.rb",
+        "size": 404,
+        "sha256": "f1ceece5485270cef43c453b7d27056912263f26270fdbc692d370fa6bd8f464"
+      },
+      {
+        "path": "lib/xcodeproj/workspace.rb",
+        "size": 8905,
+        "sha256": "7cd53aee48556f69e95694c2489648bb3cb8a2ad583246f66da6135a2f2f16c6"
+      },
+      {
+        "path": "lib/xcodeproj/workspace/file_reference.rb",
+        "size": 2311,
+        "sha256": "252f5d2f6ccbb8e136a914f12d05fe5340edbf0929e68b42ba58a6f1c93bb7b2"
+      },
+      {
+        "path": "lib/xcodeproj/workspace/group_reference.rb",
+        "size": 1917,
+        "sha256": "81a40a5d8e8a99072debf602a9151e0f2f254549b14f63618fcaed1332069720"
+      },
+      {
+        "path": "lib/xcodeproj/workspace/reference.rb",
+        "size": 1142,
+        "sha256": "48d37ad306f7dcdc915ba2d83c280dbc030edf52282b020e3904a33bb45bf4a6"
+      },
+      {
+        "path": "lib/xcodeproj/xcodebuild_helper.rb",
+        "size": 3371,
+        "sha256": "4d68133afb09cb31c899b1c3448a18b3907a2b872b7799cf068f1db95c4839ee"
+      }
+    ],
+    "runtime_files_shape": "list",
+    "runtime_files_example": [
+      {
+        "path": "/opt/homebrew/lib/ruby/gems/3.4.0/gems/xcodeproj-1.28.1/LICENSE",
+        "bytes": 1081,
+        "sha256": "b582e38711472f8870d339d88e51fc570bfb0644ede27fd97dc289ea20a3cd35"
+      },
+      {
+        "path": "/opt/homebrew/lib/ruby/gems/3.4.0/gems/xcodeproj-1.28.1/README.md",
+        "bytes": 2893,
+        "sha256": "745f5d0e14d5ede893d519326be64292ddd0a94fc45ccd9067aa6130482b1111"
+      }
+    ]
+  }
+]

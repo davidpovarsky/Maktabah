@@ -1,0 +1,89 @@
+{
+  "actual_mac": {
+    "execution": "local-74fe4306-c10d-41d8-b4ea-6391d717ffad",
+    "finished_at": "2026-11-25T14:44:06.242827+00:00",
+    "new_native_or_ui_credit": false,
+    "original_verifiers_reexecuted": true,
+    "proof_bytes": 2140423,
+    "proof_sha256": "21f91cca2b7ad19fca465b5002972e2092da76021c2bb1a89e16b7909822d5a5",
+    "scope": {
+      "donor_receipts": {
+        "abi": {
+          "bytes": 9162,
+          "path": "build/ABI-Evidence/ABI_INPUT.json",
+          "sha256": "b0b0f27e426cff473d95f64e73264b3662856f4b86ffed0c0b36db17c11415c3"
+        },
+        "debug_qualification": {
+          "bytes": 1025816,
+          "path": "build/SDK-Work/distribution/QUALIFICATION.json",
+          "sha256": "bcc14c232f4b62dd2202d537bbdc6cf3a2722c629e6127943217074f5529b1eb"
+        },
+        "execution": {
+          "bytes": 957,
+          "path": "build/SDK-Evidence/local-execution.json",
+          "sha256": "eea939e5dfc701c064b5d5910057192c84e84a81037596d858994e77ccfbaf8a"
+        },
+        "source_before": {
+          "bytes": 305765,
+          "path": "build/SDK-Evidence/source-before.json",
+          "sha256": "9e959db8c7a58d1d6b570a27634513690f6fad7ca6675f8275b97fdd2a424d59"
+        }
+      },
+      "donor_source_sha": "1f90175b006be0a19a4e1804f858caaf59d6c174",
+      "native_tests_rerun": false,
+      "new_sdk_acceptance_granted": false,
+      "original_abi_producer_identity": {
+        "local_execution": {
+          "acceptance": "PROVENANCE_ONLY_NOT_ACCEPTANCE",
+          "evidence_root": "/Users/m1/builds/anytype-miniapps-sdk-final-20261125/build/SDK-Evidence",
+          "execution_id": "local-79e9bfc1-9891-418f-9a82-2a6a4a3d80c5",
+          "head_branch": "codex/anytype-original-miniapps-facade-20261125",
+          "host": {
+            "architecture": "arm64",
+            "hostname": "109bcd84-6a7a-475f-9c53-0cf427912d04",
+            "system": "Darwin"
+          },
+          "owner": "ChatGPT/anytype_resume",
+          "repository": "davidpovarsky/anytype-swift",
+          "root": "/Users/m1/builds/anytype-miniapps-sdk-final-20261125",
+          "runner_sha256": "51944452de1d5fa6ca6d6fc9a9f89097ab7c15445763d2b2d7251a198d21b8b4",
+          "schema": "otzaria.original-editor.local-execution/1",
+          "source_sha": "1f90175b006be0a19a4e1804f858caaf59d6c174",
+          "source_tree": "61281a59e5d73afdb404022217c50652d24bb1e6",
+          "started_at": "2026-11-25T12:57:12.646664+00:00",
+          "work_root": "/Users/m1/builds/anytype-miniapps-sdk-final-20261125/build/SDK-Work"
+        },
+        "local_execution_sha256": "eea939e5dfc701c064b5d5910057192c84e84a81037596d858994e77ccfbaf8a",
+        "producer_kind": "local-mac",
+        "run_attempt": "1",
+        "run_id": "local-79e9bfc1-9891-418f-9a82-2a6a4a3d80c5",
+        "source_sha": "1f90175b006be0a19a4e1804f858caaf59d6c174"
+      },
+      "original_fresh_abi_provenance": {
+        "changed_swift_control_source": "fc4a84f68d26bcf36a8662367d08475b4024824a",
+        "changed_swift_local_execution_sha256": "73ee9eecbf04882d4cb8803adf838ae8bd7a157dbada5bda65c4589d7e74f28e",
+        "native_control_source": "c7e9935eb36a47f73d04cf72ea45472d3f2a8a70",
+        "native_tests_rerun_by_transport": false,
+        "new_sdk_or_ui_credit": false,
+        "schema": "otzaria.original-import-local-sdk-input/3",
+        "scope": "EXACT_FRESH_ORIGINAL_NATIVE_SWIFT_ABI_PROVENANCE_ONLY"
+      },
+      "schema": "otzaria.original-import-donor-sdk-input/1",
+      "scope": "EXACT_RETAINED_ORIGINAL_ABI_NOT_NEW_NATIVE_OR_EDITOR_ACCEPTANCE"
+    },
+    "sdk_framework_qualified": false,
+    "source": "8ae85a6490c4fb763fcd01d5f93345f7e071db92",
+    "status": "ACTUAL_RETAINED_SCHEMA3_DONOR_METADATA_PASS"
+  },
+  "controls": {
+    "command": [
+      "python3",
+      "-B",
+      "tools/test-original-editor-files-donor-admission.py",
+      "--proof-json",
+      "/mnt/development/artifacts/otzaria-miniapps-final-20261125/sdk1f-donor-intake/actual-proof.json"
+    ],
+    "exit": 0,
+    "stderr": "test_current_installed_native_bytes_cannot_be_substituted (__main__.RetainedFilesABI.test_current_installed_native_bytes_cannot_be_substituted) ... ok\ntest_current_verifier_must_be_the_reviewed_source (__main__.RetainedFilesABI.test_current_verifier_must_be_the_reviewed_source) ... ok\ntest_donor_transport_cannot_award_new_native_execution (__main__.RetainedFilesABI.test_donor_transport_cannot_award_new_native_execution) ... ok\ntest_native66_proof_cannot_be_replaced_by_a_count_claim (__main__.RetainedFilesABI.test_native66_proof_cannot_be_replaced_by_a_count_claim) ... ok\ntest_original_34b_continuation_base_is_not_relabelled (__main__.RetainedFilesABI.test_original_34b_continuation_base_is_not_relabelled) ... ok\ntest_original_generation_failure_is_preserved (__main__.RetainedFilesABI.test_original_generation_failure_is_preserved) ... ok\ntest_original_native_source_is_not_current_framework_source (__main__.RetainedFilesABI.test_original_native_source_is_not_current_framework_source) ... ok\ntest_original_policy_is_pinned_independently (__main__.RetainedFilesABI.test_original_policy_is_pinned_independently) ... ok\ntest_real_donor_retains_fresh_native_and_swift_identity (__main__.RetainedFilesABI.test_real_donor_retains_fresh_native_and_swift_identity) ... ok\ntest_resource_tree_changes_require_new_native_source_review (__main__.RetainedFilesABI.test_resource_tree_changes_require_new_native_source_review) ... ok\ntest_unknown_donor_is_not_a_version_fallback (__main__.RetainedFilesABI.test_unknown_donor_is_not_a_version_fallback) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 0.196s\n\nOK\n"
+  }
+}

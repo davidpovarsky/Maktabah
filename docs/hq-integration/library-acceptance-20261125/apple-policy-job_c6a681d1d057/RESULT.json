@@ -1,0 +1,180 @@
+{
+  "binary": {
+    "bytes": 724392,
+    "sha256": "2ecff4b73bd162a9742e1587ed97725743d4d2746ca02f802e55b723e9fc5c56"
+  },
+  "commands": [
+    {
+      "argv": [
+        "xcodebuild",
+        "-version"
+      ],
+      "bytes": 33,
+      "exit_code": 0,
+      "log": "xcode.log",
+      "name": "xcode",
+      "sha256": "694b44731d0b415c5b11d844151e466d7f5e200a95627efda377f232f1a6ab77"
+    },
+    {
+      "argv": [
+        "xcrun",
+        "swiftc",
+        "--version"
+      ],
+      "bytes": 128,
+      "exit_code": 0,
+      "log": "swift.log",
+      "name": "swift",
+      "sha256": "30bb0d72a580e8e936ab32e24cab2876f82fa6b06d66fef876fe21a47e828acc"
+    },
+    {
+      "argv": [
+        "xcrun",
+        "--sdk",
+        "macosx",
+        "--show-sdk-path"
+      ],
+      "bytes": 99,
+      "exit_code": 0,
+      "log": "sdk.log",
+      "name": "sdk",
+      "sha256": "7da0fd6d11521838939c36a6c45bfaeb893ecd0f8db281f9093f2c93af465ed1"
+    },
+    {
+      "argv": [
+        "xcrun",
+        "swiftc",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+        "-swift-version",
+        "5",
+        "-parse-as-library",
+        "-Onone",
+        "-module-cache-path",
+        "/Users/m1/builds/Maktabah-74ae9510-library-policy-20261125/build/library-update-policy-15e70a10d0b9404891fae772d86d33ea/modules",
+        "/Users/m1/builds/Maktabah-74ae9510-library-policy-20261125/Source/Otzaria/DataProfiles/OtzariaDataProfile.swift",
+        "/Users/m1/builds/Maktabah-74ae9510-library-policy-20261125/Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift",
+        "/Users/m1/builds/Maktabah-74ae9510-library-policy-20261125/Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift",
+        "/Users/m1/builds/Maktabah-74ae9510-library-policy-20261125/Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift",
+        "/Users/m1/builds/Maktabah-74ae9510-library-policy-20261125/Source/Otzaria/Bootstrap/OtzariaLibraryUpdatePolicy.swift",
+        "/Users/m1/builds/Maktabah-74ae9510-library-policy-20261125/Tests/HQ/updates/LibraryUpdateControls.swift",
+        "-o",
+        "/Users/m1/builds/Maktabah-74ae9510-library-policy-20261125/build/library-update-policy-15e70a10d0b9404891fae772d86d33ea/LibraryUpdateControls"
+      ],
+      "bytes": 0,
+      "exit_code": 0,
+      "log": "compile.log",
+      "name": "compile",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/Users/m1/builds/Maktabah-74ae9510-library-policy-20261125/build/library-update-policy-15e70a10d0b9404891fae772d86d33ea/LibraryUpdateControls",
+        "/Users/m1/builds/Maktabah-74ae9510-library-policy-20261125/Tests/HQ/latest-multipart",
+        "/Users/m1/builds/Maktabah-74ae9510-library-policy-20261125/build/library-update-policy-15e70a10d0b9404891fae772d86d33ea/CONTROLS.json"
+      ],
+      "bytes": 665,
+      "exit_code": 0,
+      "log": "controls.log",
+      "name": "controls",
+      "sha256": "241adea7850b7f4ea587db57e7bfb3782814f1d1ad3004f4695b6c92229a3930"
+    }
+  ],
+  "counts": {
+    "FAIL": 0,
+    "PASS": 15,
+    "SKIP": 0
+  },
+  "finished_at": "2026-11-25T01:38:26.099107+00:00",
+  "inputs_after": {
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift": {
+      "bytes": 17491,
+      "sha256": "bce1f3d267684384b1235a3d23b05cdcddad2ac9ea0029d55f536f9063192d9f"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift": {
+      "bytes": 14219,
+      "sha256": "afb748bb57d9edcbd804d329f25c7b0b2263dd0a178b59979e10fb2c43ca2f45"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaLibraryUpdatePolicy.swift": {
+      "bytes": 4136,
+      "sha256": "70ae95a11fe93a1c87c1c732822e864f9b07895c3fb39873074eb6e723b8c11d"
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfile.swift": {
+      "bytes": 3950,
+      "sha256": "3ac83a1f548b6ffb5a9a3a42f50cd25780c3162c077a5731ded94154e50f0348"
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift": {
+      "bytes": 2720,
+      "sha256": "b2dcb938d724eb01619e95d14a915f55de069da4b09ac007c15da92ecdd6d84d"
+    },
+    "Tests/HQ/latest-multipart/official-v32-release.json": {
+      "bytes": 24332,
+      "sha256": "ae62fa281b06801362ef93269258837c64445dff7120db6e97ee94f058175d09"
+    },
+    "Tests/HQ/latest-multipart/official-v40-manifest.json": {
+      "bytes": 589,
+      "sha256": "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3"
+    },
+    "Tests/HQ/latest-multipart/official-v40-release.json": {
+      "bytes": 1336,
+      "sha256": "afb4708bda700b5e02a1fe7dad9225877f54c15b0a11a11a4ef7e54c16be240e"
+    },
+    "Tests/HQ/updates/LibraryUpdateControls.swift": {
+      "bytes": 7188,
+      "sha256": "d3272e95dafadb932186c2f44c66a9c493d87cdefcca492ea5fee89ee04c3521"
+    },
+    "Tests/HQ/updates/run_library_update_apple.py": {
+      "bytes": 5444,
+      "sha256": "f122fe2321aa3cd5882ec7d9e6851963de189f3e547750e6c5bd813f13d301f5"
+    }
+  },
+  "inputs_before": {
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift": {
+      "bytes": 17491,
+      "sha256": "bce1f3d267684384b1235a3d23b05cdcddad2ac9ea0029d55f536f9063192d9f"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift": {
+      "bytes": 14219,
+      "sha256": "afb748bb57d9edcbd804d329f25c7b0b2263dd0a178b59979e10fb2c43ca2f45"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaLibraryUpdatePolicy.swift": {
+      "bytes": 4136,
+      "sha256": "70ae95a11fe93a1c87c1c732822e864f9b07895c3fb39873074eb6e723b8c11d"
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfile.swift": {
+      "bytes": 3950,
+      "sha256": "3ac83a1f548b6ffb5a9a3a42f50cd25780c3162c077a5731ded94154e50f0348"
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift": {
+      "bytes": 2720,
+      "sha256": "b2dcb938d724eb01619e95d14a915f55de069da4b09ac007c15da92ecdd6d84d"
+    },
+    "Tests/HQ/latest-multipart/official-v32-release.json": {
+      "bytes": 24332,
+      "sha256": "ae62fa281b06801362ef93269258837c64445dff7120db6e97ee94f058175d09"
+    },
+    "Tests/HQ/latest-multipart/official-v40-manifest.json": {
+      "bytes": 589,
+      "sha256": "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3"
+    },
+    "Tests/HQ/latest-multipart/official-v40-release.json": {
+      "bytes": 1336,
+      "sha256": "afb4708bda700b5e02a1fe7dad9225877f54c15b0a11a11a4ef7e54c16be240e"
+    },
+    "Tests/HQ/updates/LibraryUpdateControls.swift": {
+      "bytes": 7188,
+      "sha256": "d3272e95dafadb932186c2f44c66a9c493d87cdefcca492ea5fee89ee04c3521"
+    },
+    "Tests/HQ/updates/run_library_update_apple.py": {
+      "bytes": 5444,
+      "sha256": "f122fe2321aa3cd5882ec7d9e6851963de189f3e547750e6c5bd813f13d301f5"
+    }
+  },
+  "native_app_update_acceptance": false,
+  "output": "/Users/m1/builds/Maktabah-74ae9510-library-policy-20261125/build/library-update-policy-15e70a10d0b9404891fae772d86d33ea",
+  "platform": "macOS-27.0-arm64-arm-64bit",
+  "source_commit": "74ae9510d90b50343e961967616e5630d1682295",
+  "status": "APPLE_UPDATE_POLICY_PASS",
+  "swift": "swift-driver version: 1.168.6 Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+  "xcode": "Xcode 27.0\nBuild version 27A266a"
+}

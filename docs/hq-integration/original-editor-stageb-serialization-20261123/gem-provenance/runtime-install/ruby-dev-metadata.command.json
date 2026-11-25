@@ -1,0 +1,24 @@
+{
+  "label": "ruby-dev-metadata",
+  "argv": [
+    "apt-cache",
+    "show",
+    "ruby3.2-dev=3.2.3-1ubuntu0.24.04.9"
+  ],
+  "cwd": null,
+  "exit": 0,
+  "timed_out": false,
+  "child_reaped": true,
+  "owned_group_drained": true,
+  "elapsed_seconds": 0.06428665108978748,
+  "stdout": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-install/ruby-dev-metadata.stdout",
+    "size": 1414,
+    "sha256": "74b5a3c78f7690eb08236d0015e0537d97c3ff00fab30eb4b346c0675c179162"
+  },
+  "stderr": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-install/ruby-dev-metadata.stderr",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

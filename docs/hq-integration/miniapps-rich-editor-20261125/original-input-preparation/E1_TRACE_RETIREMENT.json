@@ -1,0 +1,12 @@
+{
+  "utc": "2026-11-25T09:28:36.475504+00:00",
+  "precheck_sha256": "4ae21ea1332203d0c1169d5d1a0353c001599e1156bd0703166eb21f64d53c58",
+  "free_before": 5674741760,
+  "deleted": [
+    "/Users/m1/builds/hanlin-miniapps-final-native-20261125/build/native-final-evidence/attempt-e1a25038-01/Build.xcresult",
+    "/Users/m1/builds/hanlin-miniapps-final-native-20261125/build/native-final-evidence/attempt-e1a25038-01/MiniApps.xcresult",
+    "/Users/m1/builds/hanlin-miniapps-final-native-20261125/build/native-final-evidence/attempt-e1a25038-01/ui-attachments"
+  ],
+  "free_after": 5989711872,
+  "net_free_delta": 314970112
+}

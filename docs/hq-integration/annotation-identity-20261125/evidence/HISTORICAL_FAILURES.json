@@ -1,0 +1,39 @@
+{
+  "archive_path_mac": "/Users/m1/builds/annotation-identity-historical-failures-20261125.tar.gz",
+  "archive_path_oracle": "/mnt/development/projects/worktrees/Maktabah-annotation-identity-20261125/build/annotation-identity-historical-failures-20261125.tar.gz",
+  "archive_sha256": "e35b386b895d7361b4259145b124eb7f994172b9c6ad1bd1728606ac39526635",
+  "files_retained_in_git": [
+    "historical/797fd-local43/RESULT.original.json",
+    "historical/797fd-local43/binary-path.log.gz",
+    "historical/797fd-local43/compile.log.gz",
+    "historical/797fd-local43/component-cases.log.gz",
+    "historical/797fd-local43/CASES.original.json",
+    "historical/cf131-exchange28/RESULT.original.json",
+    "historical/cf131-exchange28/compile.log.gz",
+    "historical/cf131-exchange28/CASES.original.json",
+    "historical/cf131-exchange28/tests.log.gz",
+    "historical/cf131-local43/RESULT.original.json",
+    "historical/cf131-local43/compile.log.gz"
+  ],
+  "runs": [
+    {
+      "cases_executed": 0,
+      "job": "job_fc9d60b2b9a5",
+      "result": "compile failed; stale source closure",
+      "source": "cf1314b30f8d483a2dbad3953aa6c89de2bdca45"
+    },
+    {
+      "cases_executed": 28,
+      "job": "job_cf3d2bc5954a",
+      "result": "26 of 28; foreign trigger fixture refused by existing schema v2",
+      "source": "cf1314b30f8d483a2dbad3953aa6c89de2bdca45"
+    },
+    {
+      "cases_executed": 43,
+      "job": "job_fb392e921de3",
+      "result": "compile passed; actual CASES file 41 of 43; original driver partial-row report retained unchanged",
+      "source": "797fd73a795517ea0a02a8651670b6c63f401864"
+    }
+  ],
+  "verified_original_file_count": 176
+}

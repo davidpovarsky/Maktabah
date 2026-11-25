@@ -1,0 +1,10 @@
+{
+  "status": "PASS_SOURCE_LOCALIZATION_COMPLETENESS",
+  "literal_keys_checked": 30,
+  "languages": [
+    "en",
+    "he"
+  ],
+  "missing": [],
+  "runtime": "NOT_RUN"
+}

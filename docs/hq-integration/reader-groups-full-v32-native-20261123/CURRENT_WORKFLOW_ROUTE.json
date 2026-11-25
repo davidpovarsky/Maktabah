@@ -1,0 +1,11 @@
+{
+  "application_source": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
+  "assigned_branch": "codex/otzaria-reader-groups-full-v32-20261123",
+  "selected_workflow": ".github/workflows/otzaria-reader-groups-full-v32.yml",
+  "selected_workflow_sha256": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c",
+  "original_route_audit_retained": "WORKFLOW_ROUTE_AUDIT.json",
+  "new_driver_source": "c581e8898e572f452a8ffb605f07a692ee0e7505",
+  "new_library_driver_byte_identical": true,
+  "no_product_tree_changes_in_ci_child": true,
+  "native_activation": "PENDING_ROOT_API_PUBLICATION"
+}

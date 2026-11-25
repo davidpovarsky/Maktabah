@@ -1,0 +1,54 @@
+{
+  "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift": {
+    "bytes": 9216,
+    "sha256": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab"
+  },
+  "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift": {
+    "bytes": 10075,
+    "sha256": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29"
+  },
+  "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift": {
+    "bytes": 62736,
+    "sha256": "c961ed6c51a1344a19951ed2239626bfbf512707a52f841d27258633b847b4f6"
+  },
+  "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift": {
+    "bytes": 25753,
+    "sha256": "97c22429e8c76cf34e16b7fa9665be9aa4b84d0b29d0a43919e11cca18e39865"
+  },
+  "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift": {
+    "bytes": 9538,
+    "sha256": "06d68fa6efb79ed534902cc3ea7ad73852f534a204059f1d1db2d9401f724b1a"
+  },
+  "Source/Core/Database/SQLiteDatabase.swift": {
+    "bytes": 14916,
+    "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+  },
+  "Source/Core/CloudKit/SyncPendingStore.swift": {
+    "bytes": 3534,
+    "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14"
+  },
+  "Tests/HQ/sqlite/UnusedZstdBoundary.swift": {
+    "bytes": 443,
+    "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+  },
+  "Tests/HQ/annotation-payload-budget/LegacySeeder.swift": {
+    "bytes": 3398,
+    "sha256": "6b29eadea3b477b224a0d5bd7eb602d0eb3e178ef74c2db90744711b4d57fd1c"
+  },
+  "Tests/HQ/annotation-payload-budget/BudgetAcceptance.swift": {
+    "bytes": 16362,
+    "sha256": "6af96954b74bb9c4a1a1612833dac14c53eb7a2f7e92112e43f347ac5734220e"
+  },
+  "Tests/HQ/annotation-payload-budget/BudgetOpenSSLDigest.swift": {
+    "bytes": 739,
+    "sha256": "103513498af5fe88cadd353b8c6219f5c54f1065e07168c4d3dadfcd8e04be3c"
+  },
+  "Tests/HQ/annotation-payload-budget/PortableOriginalTestSupport.swift": {
+    "bytes": 12074,
+    "sha256": "66885e083807c6c7c2c64130968186359c92bd16aee42fc4d982a40759f2f440"
+  },
+  "Tests/HQ/annotation-payload-budget/BudgetDatabaseEvidence.swift": {
+    "bytes": 3391,
+    "sha256": "f874475e92e9cd8ef1bfd30c8906bacda48c3624b3af4ac1621a2f79251658e6"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "actual_job": "job_bf333b32e69a",
+  "all_members_verified": true,
+  "archive": "/Users/m1/builds/Maktabah-820f4724-backfill-component-20261125/build/backfill-024342-proof.tar.gz",
+  "bytes": 6411947,
+  "file_count": 90,
+  "oracle_archive": "/mnt/development/artifacts/otzaria-backfill-20261125/820f4724908d/backfill-proof.tar.gz",
+  "result_sha256": "d048263a1390f7ca74f7d78c3c13a7b502a55fff0375763a9ff55eca415595d8",
+  "sha256": "3902a912daec2774c5c7deab0a5fba1245d701ffe553edcae295fd2c2c02f5d1",
+  "source_sha": "820f4724908dec654cf976988fa3f9c1a59557ab"
+}

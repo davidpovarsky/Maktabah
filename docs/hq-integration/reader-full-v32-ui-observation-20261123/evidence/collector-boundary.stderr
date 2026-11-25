@@ -1,0 +1,24 @@
+test_bounded_read_accepts_exact_regular_file (__main__.EvidenceBoundaryControls.test_bounded_read_accepts_exact_regular_file) ... ok
+test_bounded_read_rejects_empty (__main__.EvidenceBoundaryControls.test_bounded_read_rejects_empty) ... ok
+test_bounded_read_rejects_growth_during_read (__main__.EvidenceBoundaryControls.test_bounded_read_rejects_growth_during_read) ... ok
+test_bounded_read_rejects_oversize (__main__.EvidenceBoundaryControls.test_bounded_read_rejects_oversize) ... ok
+test_bounded_read_rejects_replacement_during_read (__main__.EvidenceBoundaryControls.test_bounded_read_rejects_replacement_during_read) ... ok
+test_bounded_read_rejects_symlink (__main__.EvidenceBoundaryControls.test_bounded_read_rejects_symlink) ... ok
+test_cpu_field_preserves_actual_reported_units (__main__.EvidenceBoundaryControls.test_cpu_field_preserves_actual_reported_units) ... ok
+test_exact_source_preserves_hebrew_combining_surrogate_and_rtl_bytes (__main__.EvidenceBoundaryControls.test_exact_source_preserves_hebrew_combining_surrogate_and_rtl_bytes) ... ok
+test_exact_source_rejects_equal_length_changed_content (__main__.EvidenceBoundaryControls.test_exact_source_rejects_equal_length_changed_content) ... ok
+test_exact_source_rejects_over_cap (__main__.EvidenceBoundaryControls.test_exact_source_rejects_over_cap) ... ok
+test_exact_source_rejects_source_index_outside_sample (__main__.EvidenceBoundaryControls.test_exact_source_rejects_source_index_outside_sample) ... ok
+test_inspector_observation_rejects_active_resource_epoch (__main__.EvidenceBoundaryControls.test_inspector_observation_rejects_active_resource_epoch) ... ok
+test_native_row_containment_has_no_epsilon (__main__.EvidenceBoundaryControls.test_native_row_containment_has_no_epsilon) ... ok
+test_native_row_rect_rejects_nonfinite_and_zero (__main__.EvidenceBoundaryControls.test_native_row_rect_rejects_nonfinite_and_zero) ... ok
+test_percentiles_retain_all_individual_values (__main__.EvidenceBoundaryControls.test_percentiles_retain_all_individual_values) ... ok
+test_resource_epoch_rejects_pending_post_resource_observation (__main__.EvidenceBoundaryControls.test_resource_epoch_rejects_pending_post_resource_observation) ... ok
+test_response_rejects_unowned_uuid_without_releasing_other_fence (__main__.EvidenceBoundaryControls.test_response_rejects_unowned_uuid_without_releasing_other_fence) ... ok
+test_source_observation_rejects_active_resource_epoch (__main__.EvidenceBoundaryControls.test_source_observation_rejects_active_resource_epoch) ... ok
+test_source_observation_rejects_pending_cache_observation (__main__.EvidenceBoundaryControls.test_source_observation_rejects_pending_cache_observation) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.007s
+
+OK

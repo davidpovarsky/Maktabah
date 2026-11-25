@@ -1,0 +1,220 @@
+--- 2180 accepted workflow
++++ d6f3 three cohort candidate
+@@ -1,4 +1,4 @@
+-name: Original Groups100 and full-v32 Reader observations
++name: Original Groups100, Library7 and full-v32 Reader observations
+ 
+ on:
+   push:
+@@ -7,6 +7,8 @@
+       - 'Source/**'
+       - 'Maktabah-iOSUITests/**'
+       - 'Scripts/CI/reader-groups100-focused-native*'
++      - 'Scripts/CI/library-morph-focused-native*'
++      - 'Scripts/CI/native-cohort-artifacts.py'
+       - 'Scripts/CI/reader-full-v32-ui-observation*'
+       - 'docs/hq-integration/reader-full-v32-ui-observation-20261123/FullV32ObservationCatalog.swift'
+       - 'Scripts/CI/hq-stage2-focused-apple.inputs.json'
+@@ -22,9 +24,9 @@
+ 
+ jobs:
+   focused-native:
+-    name: One app build, original Groups100, and separate production Reader observations
++    name: One app build and three independent original native cohorts
+     runs-on: xcode-27
+-    timeout-minutes: 210
++    timeout-minutes: 330
+     env:
+       EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+     steps:
+@@ -34,10 +36,18 @@
+           fetch-depth: 0
+       - name: Admit only the repaired original Groups100 leaf
+         id: groups_admission
+-        run: python3 Scripts/CI/reader-groups100-focused-native.py prepare
++        run: |
++          python3 Scripts/CI/native-cohort-artifacts.py groups100
++          python3 Scripts/CI/reader-groups100-focused-native.py prepare
++      - name: Admit only the seven original Library cases against integrated source
++        id: library_admission
++        run: |
++          python3 Scripts/CI/native-cohort-artifacts.py library7
++          python3 Scripts/CI/library-morph-focused-native.py prepare
+       - name: Admit the exact two full-v32 cases and frozen input bytes
+         id: full_v32_admission
+         run: |
++          python3 Scripts/CI/native-cohort-artifacts.py full-v32
+           python3 Scripts/CI/reader-full-v32-ui-observation.py source-check
+           python3 - <<'PY'
+           import runpy
+@@ -46,7 +56,9 @@
+           module['write'](module['OUT'] / 'frozen-source-admission.json', context)
+           PY
+       - name: Select an existing SDK-matched runtime
+-        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
++        run: |
++          python3 Scripts/CI/native-cohort-artifacts.py shared-build
++          python3 Scripts/CI/select-runtime27-toolchain.py --github-env
+       - name: Compile original UI tests with the selected Apple SDK before the full app build
+         run: python3 Scripts/CI/typecheck-faithful-ui-tests.py --ui-compile-only
+       - uses: actions/setup-node@v4
+@@ -103,18 +115,38 @@
+         run: python3 Scripts/CI/hq-stage2-focused-apple.py --build-for-testing --derived-data build/DerivedData
+       - name: Execute the original Groups100 leaf on its owned mini fixture Simulator
+         id: groups_native
+-        env:
+-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        run: python3 Scripts/CI/reader-groups100-focused-native.py run
++        if: ${{ !cancelled() && steps.native_build.outcome == 'success' && steps.groups_admission.outcome == 'success' }}
++        env:
++          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
++        run: |
++          python3 Scripts/CI/native-cohort-artifacts.py groups100
++          python3 Scripts/CI/reader-groups100-focused-native.py run
+       - name: Collect Groups100 raw outcomes and owned cleanup including failure
+         if: ${{ always() && steps.groups_admission.outcome == 'success' }}
+-        run: python3 Scripts/CI/reader-groups100-focused-native.py collect
++        run: |
++          python3 Scripts/CI/native-cohort-artifacts.py groups100
++          python3 Scripts/CI/reader-groups100-focused-native.py collect
++      - name: Execute seven original Library cases on a separate owned mini fixture Simulator
++        id: library_native
++        if: ${{ !cancelled() && steps.native_build.outcome == 'success' && steps.library_admission.outcome == 'success' }}
++        env:
++          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
++        run: |
++          python3 Scripts/CI/native-cohort-artifacts.py library7
++          python3 Scripts/CI/library-morph-focused-native.py run
++      - name: Collect Library7 raw outcomes and owned cleanup including failure
++        if: ${{ always() && steps.library_admission.outcome == 'success' }}
++        run: |
++          python3 Scripts/CI/native-cohort-artifacts.py library7
++          python3 Scripts/CI/library-morph-focused-native.py collect
+       - name: Execute two original full-v32 cases on a separate owned production Simulator
+         id: full_v32_native
+         if: ${{ !cancelled() && steps.native_build.outcome == 'success' && steps.groups_admission.outcome == 'success' && steps.full_v32_admission.outcome == 'success' }}
+         env:
+           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        run: python3 Scripts/CI/reader-full-v32-ui-observation.py execute
++        run: |
++          python3 Scripts/CI/native-cohort-artifacts.py full-v32
++          python3 Scripts/CI/reader-full-v32-ui-observation.py execute
+       - name: Retain compiler cache only after an actual matching test build
+         id: runtime27_cache_ready
+         if: always()
+@@ -134,18 +166,15 @@
+         with:
+           path: build/DerivedData
+           key: ${{ steps.runtime27_cache_key.outputs.key }}
+-      - name: Retain real runtime evidence including failure
+-        if: always()
+-        uses: actions/upload-artifact@v4
+-        with:
+-          name: groups100-native-evidence
+-          path: |
+-            build/artifacts/
+-            !build/artifacts/**/*.xcresult/**
+-            !build/artifacts/**/*.mp4
+-            !build/artifacts/visual-*/**
+-            !build/artifacts/reader-full-v32-ui-observation/**
+-            !build/artifacts/production-native-fixture-install.json
++      - name: Retain the one actual shared build and cohort ownership ledger
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: native-shared-build-evidence
++          path: |
++            build/native-cohorts/owner.json
++            build/native-cohorts/selections/
++            build/native-cohorts/shared-build/artifacts/
+             build/hq-stage2/*.json
+             build/hq-stage2/*Package.resolved
+             build/hq-stage2/*.log
+@@ -157,16 +186,47 @@
+             build/hq-stage2/privacy-dependency-inputs/
+             build/hq-stage2/rebuilt-zayit/
+           if-no-files-found: error
+-      - name: Retain original native result bundles and visual captures separately
++      - name: Retain Groups100 outcomes including failure
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: groups100-native-evidence
++          path: |
++            build/native-cohorts/groups100/artifacts/
++            !build/native-cohorts/groups100/artifacts/**/*.xcresult/**
++            !build/native-cohorts/groups100/artifacts/**/*.mp4
++            !build/native-cohorts/groups100/artifacts/visual-*/**
++          if-no-files-found: error
++      - name: Retain Groups100 original result bundles and captures separately
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+           name: groups100-native-captures
+           path: |
+-            build/artifacts/**/*.xcresult/**
+-            build/artifacts/**/*.mp4
+-            build/artifacts/visual-*/**
+-            !build/artifacts/reader-full-v32-ui-observation/**
++            build/native-cohorts/groups100/artifacts/**/*.xcresult/**
++            build/native-cohorts/groups100/artifacts/**/*.mp4
++            build/native-cohorts/groups100/artifacts/visual-*/**
++          if-no-files-found: ignore
++      - name: Retain Library7 outcomes including failure
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: library7-native-evidence
++          path: |
++            build/native-cohorts/library7/artifacts/
++            !build/native-cohorts/library7/artifacts/**/*.xcresult/**
++            !build/native-cohorts/library7/artifacts/**/*.mp4
++            !build/native-cohorts/library7/artifacts/visual-*/**
++          if-no-files-found: error
++      - name: Retain Library7 original result bundles and captures separately
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: library7-native-captures
++          path: |
++            build/native-cohorts/library7/artifacts/**/*.xcresult/**
++            build/native-cohorts/library7/artifacts/**/*.mp4
++            build/native-cohorts/library7/artifacts/visual-*/**
+           if-no-files-found: ignore
+       - name: Retain full-v32 source, actual observations, and failure receipts separately
+         if: always()
+@@ -174,11 +234,11 @@
+         with:
+           name: full-v32-ui-observation-evidence
+           path: |
+-            build/artifacts/reader-full-v32-ui-observation/**
+-            !build/artifacts/reader-full-v32-ui-observation/**/*.xcresult/**
+-            !build/artifacts/reader-full-v32-ui-observation/captures/**
+-            !build/artifacts/reader-full-v32-ui-observation/traces/**/*.trace/**
+-            build/artifacts/production-native-fixture-install.json
++            build/native-cohorts/full-v32/artifacts/reader-full-v32-ui-observation/**
++            !build/native-cohorts/full-v32/artifacts/reader-full-v32-ui-observation/**/*.xcresult/**
++            !build/native-cohorts/full-v32/artifacts/reader-full-v32-ui-observation/captures/**
++            !build/native-cohorts/full-v32/artifacts/reader-full-v32-ui-observation/traces/**/*.trace/**
++            build/native-cohorts/full-v32/artifacts/production-native-fixture-install.json
+           if-no-files-found: error
+       - name: Retain original full-v32 xcresult and native captures
+         if: always()
+@@ -186,13 +246,13 @@
+         with:
+           name: full-v32-ui-observation-captures
+           path: |
+-            build/artifacts/reader-full-v32-ui-observation/**/*.xcresult/**
+-            build/artifacts/reader-full-v32-ui-observation/captures/**
++            build/native-cohorts/full-v32/artifacts/reader-full-v32-ui-observation/**/*.xcresult/**
++            build/native-cohorts/full-v32/artifacts/reader-full-v32-ui-observation/captures/**
+           if-no-files-found: ignore
+       - name: Retain the genuine original Apple trace for separate coverage review
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+           name: full-v32-ui-observation-trace
+-          path: build/artifacts/reader-full-v32-ui-observation/traces/**/*.trace/**
+-          if-no-files-found: ignore
++          path: build/native-cohorts/full-v32/artifacts/reader-full-v32-ui-observation/traces/**/*.trace/**
++          if-no-files-found: ignore

@@ -1,0 +1,38 @@
+[
+  {
+    "path": "AI_HLYUITests/Fixtures/ExpoSwiftUIProbe.hanlinExpo",
+    "status": "ALREADY_COMMITTED_UNCHANGED_BY_PREPARATION",
+    "bytes": 325325,
+    "sha256": "e9b662011c5ef37c2cf4491f4c6516b86886a1d0e93104cec534745395f8076a"
+  },
+  {
+    "path": "AI_HLYUITests/Fixtures/ExpoSwiftUIProbeA.hanlinExpo",
+    "status": "ALREADY_COMMITTED_UNCHANGED_BY_PREPARATION",
+    "bytes": 325325,
+    "sha256": "e9b662011c5ef37c2cf4491f4c6516b86886a1d0e93104cec534745395f8076a"
+  },
+  {
+    "path": "AI_HLYUITests/Fixtures/ExpoSwiftUIProbeB.hanlinExpo",
+    "status": "ALREADY_COMMITTED_UNCHANGED_BY_PREPARATION",
+    "bytes": 325326,
+    "sha256": "843b3147f81c4022759e01e29264f93273fbad47daad4ba45a5d1fc425d164da"
+  },
+  {
+    "path": "Fixtures/ExpoSwiftUIProbe/ExpoSwiftUIProbe.hanlinExpo",
+    "status": "ALREADY_COMMITTED_UNCHANGED_BY_PREPARATION",
+    "bytes": 325325,
+    "sha256": "e9b662011c5ef37c2cf4491f4c6516b86886a1d0e93104cec534745395f8076a"
+  },
+  {
+    "path": "Fixtures/ExpoSwiftUIProbe/ExpoSwiftUIProbeA.hanlinExpo",
+    "status": "ALREADY_COMMITTED_UNCHANGED_BY_PREPARATION",
+    "bytes": 325325,
+    "sha256": "e9b662011c5ef37c2cf4491f4c6516b86886a1d0e93104cec534745395f8076a"
+  },
+  {
+    "path": "Fixtures/ExpoSwiftUIProbe/ExpoSwiftUIProbeB.hanlinExpo",
+    "status": "ALREADY_COMMITTED_UNCHANGED_BY_PREPARATION",
+    "bytes": 325326,
+    "sha256": "843b3147f81c4022759e01e29264f93273fbad47daad4ba45a5d1fc425d164da"
+  }
+]

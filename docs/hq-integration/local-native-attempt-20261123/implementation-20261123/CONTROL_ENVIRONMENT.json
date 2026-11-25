@@ -1,0 +1,44 @@
+{
+  "swiftc_version": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu\n",
+  "sqlite_openssl_pkg_versions": "3.45.1\n3.0.13\n",
+  "actual_linked_sqlite_crypto": [
+    {
+      "path": "/usr/lib/aarch64-linux-gnu/libsqlite3.so.0.8.6",
+      "bytes": 1526192,
+      "sha256": "21d3efd971a6af4cbcb807fad8f08434f1bd942d2b2b81a8a814c5b5cd07c7a8"
+    },
+    {
+      "path": "/usr/lib/aarch64-linux-gnu/libcrypto.so.3",
+      "bytes": 4663464,
+      "sha256": "b27a2396652ee28629c94d59d667c417dbffdf2dee84e5bf140bd17d3eedb7d9"
+    }
+  ],
+  "binary_path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/native-attempt-controls",
+  "binary_sha256": "987597eaa2c3a8e329681206167f62b575f41365b6bfc7cccd92f286a6cb03a3",
+  "modulemap_bytes": [
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/cmodules/COpenSSL/module.modulemap",
+      "bytes": 88,
+      "sha256": "34e5bfe438a8221b83901735f31c7069b929fd68adc3e0be6b48234e6e52e083",
+      "text": "module COpenSSL [system] { header \"/usr/include/openssl/sha.h\" link \"crypto\" export * }\n"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/cmodules/SQLite3/module.modulemap",
+      "bytes": 84,
+      "sha256": "4a598a07687311d35727280b02d935cce65e86ebed1d2502f1ef0b2d5d19ddc2",
+      "text": "module SQLite3 [system] { header \"/usr/include/sqlite3.h\" link \"sqlite3\" export * }\n"
+    }
+  ],
+  "system_headers": [
+    {
+      "path": "/usr/include/sqlite3.h",
+      "bytes": 641556,
+      "sha256": "e4c7cbe26831b3d5f5d175a31efe50a919c2f38ce87ec85094d2ff1e729c29c8"
+    },
+    {
+      "path": "/usr/include/openssl/sha.h",
+      "bytes": 4658,
+      "sha256": "06500535b9b3d9742e745558dc02e52d0df6d75b038457d4f6c374ed68d39eaf"
+    }
+  ]
+}

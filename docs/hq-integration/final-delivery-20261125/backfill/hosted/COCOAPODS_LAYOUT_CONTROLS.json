@@ -1,0 +1,18 @@
+{
+  "actual_metadata_preserved": true,
+  "actual_project_sha256": "f40627a58b826a729b7ed97f5109d6ae8eb821341cedf61854bd7ae12db9c491",
+  "actual_read_only_project": "/Users/m1/builds/Maktabah-3c5a57be-shared-20261124/Maktabah.xcodeproj/project.pbxproj",
+  "cannot_cross_object_end": true,
+  "control_only": true,
+  "duration_s": 0.05924520800000001,
+  "helper_sha256": "a517f77dcc365e6de5913ab562bb306f7f2f454f4b39b76fcd97ce6014d8e1e8",
+  "inverse_exact": true,
+  "native_runtime_tests_executed": 0,
+  "old_faulty_pattern_refused": true,
+  "parsed_change_exactly_one_fixture_setting": true,
+  "production_project_mutated": false,
+  "sdk_projection_executed": false,
+  "status": "ACTUAL_COCOAPODS_LAYOUT_REGEX_AND_INVERSE_CONTROLS_PASS",
+  "ui_tests_executed": 0,
+  "wrong_identifier_refused": true
+}

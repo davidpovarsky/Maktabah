@@ -1,0 +1,14 @@
+--- root-reviewed-a459b20d
++++ completion-join-d75618e4
+@@ -793,7 +793,10 @@
+                     and observed["mode"] == epoch["mode"]
+                     and observed["resource_start_host_monotonic"] >= epoch["resource_end_host_monotonic"]
+                     and interaction["actualOverviewIdentifier"] == "study-groups-overview"
+-                    and interaction["actualCardIdentifier"].endswith(interaction["actualDocumentID"]),
++                    and interaction["actualDocumentID"] == proof["actual_workspace_document_id"]
++                    and interaction["actualCardIdentifier"] in (
++                        "tab-switcher-grid-cell-" + proof["actual_workspace_document_id"],
++                        "tab-switcher-list-cell-" + proof["actual_workspace_document_id"]),
+                     "Actual post-open original overview identity/resource chronology changed")
+             start, action, end = (interaction[k] for k in ("observationStartedUptime", "nativeActionRequestedUptime", "originalOverviewObservedUptime"))
+             require(all(type(v) in (int, float) and math.isfinite(v) for v in (start, action, end))

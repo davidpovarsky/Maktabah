@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "source_commit": "d8501b8363053440180f33d2e8a851ef1b8b7291",
+  "files": [
+    {
+      "path": "CONFIG_CONSUMER_CORRESPONDENCE.json",
+      "bytes": 26549,
+      "sha256": "7c05d1a72856786472d05cd41851445846647f4e088b94dbbfbbb50b6462ecee"
+    },
+    {
+      "path": "CONFIG_FUNCTIONS.py",
+      "bytes": 1222,
+      "sha256": "8aefef29a8374c80f66211719c09e6f33de4e1f659af9401ba8261fec4cbe9cc"
+    },
+    {
+      "path": "CONFIG_FUNCTION_EXECUTION.json",
+      "bytes": 2143,
+      "sha256": "68d1aaa84ed37af4e83dc94ce5cb0f2a8c3f6123c55e46244e92e5fa038647d3"
+    },
+    {
+      "path": "INPUT_ALIAS.diff",
+      "bytes": 804,
+      "sha256": "3c01730c6a827e027da42ed4094448f7effe35e81adfd93e590fe1688d34222c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1249,
+      "sha256": "742cb7958d62c066664e646fe53d70beca32c5389443ccb943b8ae4d6ee01b94"
+    },
+    {
+      "path": "after-inputs.json",
+      "bytes": 8097,
+      "sha256": "2940ae140f7c4b1521d454d3e9b246f85c75b473c806d8ea68190b793601a731"
+    },
+    {
+      "path": "before-inputs.json",
+      "bytes": 7884,
+      "sha256": "3d5e85feb0ae6ea6e60f3fa8c5506d0cafdb8c140ecd7d670ded3ad82c3701fe"
+    },
+    {
+      "path": "config-functions.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "config-functions.stdout.log",
+      "bytes": 1222,
+      "sha256": "a4fff73d4035273ae78833f6b5af79a360a04f2a11aa1fffe873d8e8003ee09a"
+    }
+  ]
+}

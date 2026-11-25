@@ -10,6 +10,7 @@ replacement, digest bypass or generated mock text is used. No token is logged.
 import argparse
 import json
 import os
+import runpy
 from pathlib import Path
 import shutil
 import subprocess
@@ -19,16 +20,25 @@ import uuid
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--profile", choices=["miniTest10", "production"], default="miniTest10")
+parser.add_argument("--release-id", type=int, help="Official frozen release for a production native install observation")
 parser.add_argument("--artifact-label", choices=["11", "13", "phone", "11-search", "11-reader", "11-sidebar", "11-window", "11-index"])
 arguments = parser.parse_args()
 profile = arguments.profile
+if arguments.release_id is not None:
+    if profile != "production" or not 0 < arguments.release_id <= 9_223_372_036_854_775_807:
+        parser.error("--release-id requires the production profile and a positive Int64 release ID")
 artifact_suffix = "-" + arguments.artifact_label if arguments.artifact_label else ""
 udid = Path("sim_udid.txt").read_text().strip()
 bundle = "com.davidpovarsky.chavrusatext"
-container = Path(subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, bundle, "data"], text=True, timeout=45).strip())
+resolve_native_container = runpy.run_path(str(Path(__file__).resolve().parent / "miniapps-simulator-containers.py"))["resolve_container"]
+container = resolve_native_container(udid, bundle, "data", timeout=45)
 report = container / "Documents" / ("faithful-fixture-" + str(uuid.uuid4()) + ".json")
 report.parent.mkdir(parents=True, exist_ok=True)
 environment = os.environ.copy()
+release_key = "SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_RELEASE_ID"
+environment.pop(release_key, None)
+if arguments.release_id is not None:
+    environment[release_key] = str(arguments.release_id)
 for key, value in {
     "OTZARIA_DATA_PROFILE": profile,
     "OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE": "install",

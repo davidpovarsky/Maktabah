@@ -1,0 +1,601 @@
+{
+  "actual_profile_receipt_sha256": "e17448d8c982b35524106d0674b9ab4c589b8aeef0751d18f68f76420f589bad",
+  "actual_profiles_refused": 81,
+  "all_other_verifier_bytes_unchanged": true,
+  "apple_mutations": 0,
+  "derived_negative_controls": [
+    {
+      "correctly_rejected": true,
+      "removed_group": "group.com.davidpovarsky.chavrusatext"
+    },
+    {
+      "correctly_rejected": true,
+      "removed_group": "group.com.davidpovarsky.itorah"
+    },
+    {
+      "correctly_rejected": true,
+      "removed_group": "group.com.itorah.shared"
+    }
+  ],
+  "profiles": [
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "MT859RH6M6",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "69FLAC5RD2",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "JA7PSNM2M8",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "86K6DRP8V3",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "N8FYG49W4U",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "GR9BRR76LV",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "A4346MJRBQ",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "7S9LXH8AWN",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "G6PA4NHARA",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "GA5QS4WQS8",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "4U9Z3K9778",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "683M2SHBUF",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "KJR6MA73R9",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "5ZT9TP3LCA",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "8W9TC892MB",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "7K2VTQ3AM6",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "226679LN7M",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "4498NKRFJT",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "86D6VCS766",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "K7L4B9JH5H",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "PPY2TP5FTQ",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "35Z4K8V43A",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "7MS5NYUZPF",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "4695GP4Z58",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "6S4GJ98D89",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "K5HHRAUMVK",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "W5BXCQQ5S2",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "T82HG7B9HP",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "T9A4Z3365U",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "FXGK47MDLX",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "M3Y8GD28LR",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "584LLNT7P2",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "CPKD299KB3",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "P32V8U9UKQ",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "H9NZMK292Y",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "T7MUZ4A748",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "U735BLT3Z4",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "S54HAK46W9",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "W93956WZ7V",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "8J82X8W79D",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "KAY5UG799M",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "7W43T7PW3N",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "7C3839QQ79",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "53ZKYP9YWW",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "Z7DJ7WP4GQ",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "2683ARSUJM",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "SW677CRD7K",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "8Q7W7A6XAT",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "ZKKLBVC85C",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "857Q2XDX7U",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "MTK5G6BBDZ",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "WUV55QNP36",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "DT9YXBKV39",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "W3R4TF48VM",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "D725DL7R3H",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "PL8G3U345R",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "SK52449HR8",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "25UUC38SXM",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "GV6FRXJGB4",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "V5S24DTDGY",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "62CUS5PKL5",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "8AB2JPHFXB",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "N2SK2W6HJA",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "KG432S77Y2",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "SSRYB6822Z",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "LKHD8CL52Q",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "3DQY4HDX28",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "83JF8D8PDH",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "34LQ88M9W6",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "53QLN2W59M",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "2K4QCV2876",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "FRJ6Y5X6LH",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "7WBSXC4H54",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "8UB268SRT2",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "PS9FFT65VG",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "AN9R6Y44DH",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "788MWJ49TX",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "8CF5L2T2SD",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "Y5MHMD7AV7",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "BZYPP436HH",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    },
+    {
+      "missing_groups": [
+        "group.com.itorah.shared"
+      ],
+      "profile_id": "QCT6Z3JYSS",
+      "validation": "REFUSED_MISSING_REQUIRED_GROUP"
+    }
+  ],
+  "qualified_profiles": 0,
+  "required_groups": [
+    "group.com.davidpovarsky.chavrusatext",
+    "group.com.davidpovarsky.itorah",
+    "group.com.itorah.shared"
+  ],
+  "schema": "otzaria.app-group-signing-guard/1",
+  "scope": "Metadata guard only; no new profile, signature, archive or upload",
+  "source_declaration_passed": true,
+  "source_entitlements_sha256": "bc3644771d2b7181653126c9cb29bfbade51ec152d22825e45b1659a9692f4cc",
+  "status": "PASS_VALIDATOR_CONTROLS_ACTUAL_PROFILES_REMAIN_UNQUALIFIED",
+  "verifier_sha256": "d1a0698cbf8eaba8f69d994f130274f5f07ecccab4415d8266f225492dcbe25a"
+}

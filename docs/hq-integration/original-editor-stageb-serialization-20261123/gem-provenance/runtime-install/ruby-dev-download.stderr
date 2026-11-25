@@ -1,0 +1,1 @@
+W: Download is performed unsandboxed as root as file '/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-install/ruby3.2-dev_3.2.3-1ubuntu0.24.04.9_arm64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)

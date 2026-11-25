@@ -1,0 +1,36 @@
+{
+  "observed_utc": "2026-11-25T05:20:24.429201+00:00",
+  "status": "SWIFT_PARSE_PASS",
+  "command": [
+    "xcrun",
+    "--sdk",
+    "iphonesimulator",
+    "swiftc",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios18.0-simulator",
+    "-sdk",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+    "-module-name",
+    "MaktabahMiniAppsSyntax",
+    "/Users/m1/builds/_preflight/otzaria-miniapps-adapter-20261125/merge7028/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+    "/Users/m1/builds/_preflight/otzaria-miniapps-adapter-20261125/merge7028/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+    "/Users/m1/builds/_preflight/otzaria-miniapps-adapter-20261125/merge7028/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift",
+    "/Users/m1/builds/_preflight/otzaria-miniapps-adapter-20261125/merge7028/Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift",
+    "/Users/m1/builds/_preflight/otzaria-miniapps-adapter-20261125/merge7028/Source/ChavrusaText/MiniApps/OtzariaMiniAppsPersistence.swift",
+    "/Users/m1/builds/_preflight/otzaria-miniapps-adapter-20261125/merge7028/Source/Features/Setting/SettingsView.swift"
+  ],
+  "source_sha256": {
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift": "fc41ed6938aa1289bf2b6aa4ab5eb5d177c6a02d0e8acb49079d53a271ec0837",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift": "5d7d2452c383029297f8c0cba868804ef89edda9ef8731293f4bac52d5da638c",
+    "Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2",
+    "Source/ChavrusaText/MiniApps/OtzariaMiniAppsPersistence.swift": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998",
+    "Source/Features/Setting/SettingsView.swift": "f11c149e2aff58116fb6d9995e887101c19354c8055c92014d3300080e032329"
+  },
+  "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+  "native_app_acceptance": "NOT_RUN",
+  "api_typecheck": "NOT_RUN",
+  "returncode": 0
+}

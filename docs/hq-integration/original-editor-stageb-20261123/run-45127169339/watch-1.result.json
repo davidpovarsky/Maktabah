@@ -1,0 +1,55 @@
+{
+  "run_id": 45127169339,
+  "attempt": 1,
+  "head_sha": "6dd57e5b7d7ffa570472d31e38881af32ff38177",
+  "interval_seconds": 120,
+  "timeout_seconds": 3300,
+  "start_utc": "2026-11-23T06:54:28.584348+00:00",
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "gh",
+    "run",
+    "watch",
+    "45127169339",
+    "--repo",
+    "davidpovarsky/Maktabah",
+    "--exit-status",
+    "--compact",
+    "--interval",
+    "120"
+  ],
+  "watcher_python_pid": 2265245,
+  "manual_dispatches": 0,
+  "child_pid": 2265246,
+  "process_group": 2265246,
+  "finished_utc": "2026-11-23T07:04:35.306634+00:00",
+  "watch_exit_code": 1,
+  "watch_timed_out": false,
+  "child_returncode": 1,
+  "child_reaped": true,
+  "owned_group_drained": true,
+  "final_metadata_exit_code": 0,
+  "actual_status": "completed",
+  "actual_conclusion": "failure",
+  "streams": {
+    "watch-1.stdout.log": {
+      "bytes": 1653,
+      "sha256": "a45e05b58c5d7389189ad52b8977201b49855de8b4cba39165b9797d05ccde5b"
+    },
+    "watch-1.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "watch-1.final-run.stdout.json": {
+      "bytes": 12829,
+      "sha256": "109af0b2f4992e87d945db4ddbbe55171c76e9022f057427d1a83ee56255ece2"
+    },
+    "watch-1.final-run.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

@@ -21,6 +21,8 @@ if _SCRIPTS_CI_DIR not in sys.path:
 import runtime27_interruption
 import runtime27_release_handoff
 
+resolve_native_container = runpy.run_path(str(Path(__file__).resolve().parent / "miniapps-simulator-containers.py"))["resolve_container"]
+
 
 def requires_native_log_collection(selection):
     """Retain the original log for routing and explicit Escape/font diagnostics."""
@@ -197,8 +199,7 @@ def main(live_provider=None):
                         phase("INSTALLING", bundle=bundle, attempt=attempt + 1, timeoutSeconds=timeout)
                         subprocess.run(["xcrun", "simctl", "install", udid, str(path)], check=True, timeout=timeout)
                         phase("VERIFYING_APP_CONTAINER", bundle=bundle, attempt=attempt + 1)
-                        installed = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, bundle, "app"],
-                                                            text=True, timeout=45).strip()
+                        installed = str(resolve_native_container(udid, bundle, "app", timeout=45, source_app=path))
                         if not installed or not Path(installed).is_dir():
                             raise RuntimeError(f"Native installer did not expose the actual {bundle} application container")
                         record.update(status="INSTALLED", appContainer=installed)
@@ -349,6 +350,8 @@ def main(live_provider=None):
             try:
                 udid, device_type, runtime, failures = create_compatible_ipad(size, on_created=_record_created_udid)
                 device = {"size": size, "label": label, "type": device_type, "runtime": runtime, "udid": udid, "status": "NOT_RUN", "incompatiblePairs": failures}
+                if os.environ.get("OTZARIA_MINIAPPS_NATIVE_CONTAINER_RECOVERY") == "1":
+                    os.environ["OTZARIA_MINIAPPS_NATIVE_OWNED_SIMULATOR"] = udid
                 report["devices"].append(device)
                 phase("BOOTING", udid=udid)
                 subprocess.run(["xcrun", "simctl", "boot", udid], check=True, timeout=90)
@@ -436,7 +439,7 @@ def main(live_provider=None):
                 environment = os.environ.copy()
                 if release_manifest:
                     environment["TEST_RUNNER_RUNTIME27_RECORD_CONFIGURATION"] = "1"
-                container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True, timeout=45).strip()
+                container = str(resolve_native_container(udid, "com.davidpovarsky.chavrusatext", "data", timeout=45))
                 environment["TEST_RUNNER_FAITHFUL_VIEWPORT_DIRECTORY"] = str(Path(container) / "Documents")
                 if any(case.startswith("GlobalSearchNativeAcceptanceTests/testZayit") for case in selection):
                     environment["TEST_RUNNER_GLOBAL_SEARCH_ZAYIT_CANONICAL_FIXTURE"] = (

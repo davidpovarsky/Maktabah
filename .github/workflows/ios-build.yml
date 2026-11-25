@@ -37,7 +37,7 @@ env:
 jobs:
   otzaria-framework:
     name: Build or restore Otzaria framework
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 90
     outputs:
       framework-cache-hit: ${{ steps.framework-valid.outputs.valid }}
@@ -232,7 +232,7 @@ jobs:
 
   zayit-framework:
     name: Build or restore Zayit framework
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 60
     outputs:
       framework-cache-hit: ${{ steps.framework-valid.outputs.valid }}
@@ -389,7 +389,7 @@ jobs:
 
   swiftpm:
     name: Resolve Swift packages once
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 30
     outputs:
       cache-hit: ${{ steps.swiftpm-cache.outputs.cache-hit }}
@@ -493,7 +493,7 @@ jobs:
   simulator-build:
     name: Build simulator app
     needs: [otzaria-framework, zayit-framework, swiftpm]
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 75
     steps:
       - name: Live Activity · refresh
@@ -778,7 +778,7 @@ jobs:
   device-build:
     name: Build unsigned device IPA
     needs: [otzaria-framework, zayit-framework, swiftpm]
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 75
     steps:
       - name: Live Activity · refresh
@@ -928,7 +928,7 @@ jobs:
     name: Real native Otzaria bootstrap acceptance
     if: ${{ inputs.run_heavy_otzaria_acceptance == true }}
     needs: simulator-build
-    runs-on: xcode-27
+    runs-on: [self-hosted, macOS, ARM64, otzaria-final-20261124, xcode-27]
     timeout-minutes: 240
     steps:
       - name: Live Activity · refresh
@@ -988,6 +988,7 @@ jobs:
           github_token: ${{ github.token }}
       - name: Run real native Otzaria bootstrap acceptance
         env:
+          GH_TOKEN: ${{ github.token }}
           OTZARIA_NATIVE_BOOTSTRAP_REPORT_DIR: ${{ github.workspace }}/build/logs
         run: bash Scripts/run-otzaria-native-bootstrap-acceptance.sh "$GITHUB_WORKSPACE/build/SimulatorApp/Maktabah.app"
       - name: Live Activity · refresh
@@ -1003,23 +1004,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh api repos/Otzaria/SeforimLibrary/releases/latest > build/logs/otzaria-latest-release.json
-          python3 - <<'PY'
-          import json
-          report = json.load(open("build/logs/otzaria-native-bootstrap-acceptance.json"))
-          release = json.load(open("build/logs/otzaria-latest-release.json"))
-          assert report["profileID"] == "production" and report["profileVersion"] == 1
-          assets = [
-              asset for asset in release["assets"]
-              if asset["id"] == report["assetID"] and asset["name"] == report["assetName"]
-          ]
-          assert len(assets) == 1
-          asset = assets[0]
-          assert report["releaseID"] == release["id"]
-          assert report["releaseTag"] == release["tag_name"]
-          assert report["assetID"] == asset["id"]
-          assert report["expectedCompressedBytes"] == asset["size"]
-          assert report.get("expectedSHA256") == (asset.get("digest") or "").removeprefix("sha256:")
-          PY
+          python3 Scripts/CI/otzaria_bootstrap_evidence.py \
+            --report build/logs/otzaria-native-bootstrap-acceptance.json \
+            --release build/logs/otzaria-latest-release.json --fetch-manifest \
+            --phases-dir build/logs --require-resume \
+            --output build/logs/otzaria-native-bootstrap-release-admission.json
       - name: Live Activity · refresh
         if: ${{ inputs.run_corpus_acceptance == true }}
         uses: davidpovarsky/github-automation/live-refresh@main

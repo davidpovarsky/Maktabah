@@ -107,15 +107,31 @@ enum TorahAnnotationEnvelopeDocument: Sendable, Equatable {
     }
 }
 
+/// Annotation-specific transport budgets. The original SDK still validates the
+/// native frame/header/archive; these ceilings never construct or attest one.
+enum TorahAnnotationPayloadLimits {
+    static let maximumArchiveBytes = 1_048_576
+    static let maximumHeaderBytes = 16_384
+    static let fixedFramingBytes = 16
+    static let maximumBodyBytes = fixedFramingBytes + maximumHeaderBytes + maximumArchiveBytes
+    static let maximumBase64Bytes = 4 * ((maximumBodyBytes + 2) / 3)
+    static let maximumEnvelopeBytes = AnnotationEnvelopeJSONCodec.maximumBytes
+    static let maximumStoredEnvelopeBase64Bytes = 4 * ((maximumEnvelopeBytes + 2) / 3)
+}
+
 enum TorahAnnotationEnvelopeCodec {
     static let schemaVersion: Int64 = 1
-    // Reuse the existing strict Core grammar/duplicate-key/exact-number bound.
-    // Oversized input is rejected intact, never truncated or converted to text.
-    static let maximumBytes = ActionWireCodec.maxRequestBytes
+    // The typed entry keeps the original strict grammar and its depth/node
+    // limits while charging the whole annotation, including unknown/private
+    // metadata, to its own bounded envelope budget.
+    static let maximumBytes = TorahAnnotationPayloadLimits.maximumEnvelopeBytes
 
     static func encode(_ envelope: TorahAnnotationEnvelope) throws -> Data {
         var body: ActionJSON = .null
         if let rich = envelope.richBody {
+            guard rich.bytes.count <= TorahAnnotationPayloadLimits.maximumBodyBytes else {
+                throw AnnotationExchangeError.payloadTooLarge
+            }
             body = .object(["format": .string(rich.format), "formatVersion": .integer(rich.formatVersion),
                             "bytesBase64": .string(rich.bytes.base64EncodedString())])
         }
@@ -133,7 +149,7 @@ enum TorahAnnotationEnvelopeCodec {
     static func decode(_ bytes: Data) throws -> TorahAnnotationEnvelopeDocument {
         guard bytes.count <= maximumBytes else { throw AnnotationExchangeError.payloadTooLarge }
         let fields: ActionObject
-        do { fields = try ActionWireCodec.decodeObject(bytes) }
+        do { fields = try AnnotationEnvelopeJSONCodec.decodeObject(bytes) }
         catch { throw AnnotationExchangeError.invalidEnvelope }
         guard let version = fields["schemaVersion"]?.integer, version > 0 else { throw AnnotationExchangeError.invalidEnvelope }
         guard version == schemaVersion else { return .unsupported(version: version, originalBytes: bytes) }
@@ -160,8 +176,17 @@ enum TorahAnnotationEnvelopeCodec {
             guard let rich = fields["richBody"]?.object,
                   let format = rich["format"]?.string, AnnotationExchangeValidation.identifier(format),
                   let formatVersion = rich["formatVersion"]?.integer, formatVersion > 0,
-                  let encoded = rich["bytesBase64"]?.string, let data = Data(base64Encoded: encoded),
+                  let encoded = rich["bytesBase64"]?.string else { throw AnnotationExchangeError.invalidEnvelope }
+            // Bound the encoded allocation before Foundation decodes it, then
+            // check the actual bytes and canonical base64 representation.
+            guard encoded.utf8.count <= TorahAnnotationPayloadLimits.maximumBase64Bytes else {
+                throw AnnotationExchangeError.payloadTooLarge
+            }
+            guard let data = Data(base64Encoded: encoded),
                   data.base64EncodedString() == encoded else { throw AnnotationExchangeError.invalidEnvelope }
+            guard data.count <= TorahAnnotationPayloadLimits.maximumBodyBytes else {
+                throw AnnotationExchangeError.payloadTooLarge
+            }
             body = .init(format: format, formatVersion: formatVersion, bytes: data)
         }
         guard (state == .active && sourceState == "present") ||

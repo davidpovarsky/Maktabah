@@ -1,0 +1,42 @@
+{
+  "caseID": "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore()",
+  "attachments": [
+    {
+      "configurationName": "Test Scheme Action",
+      "deviceId": "813420A8-CAAB-4691-A00B-C8C2E6AA2B53",
+      "deviceName": "Faithful 11-inch 948d1204",
+      "exportedFileName": "E4440267-E22D-4E18-B9D9-717BA1ECED44.png",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "r27-final-native-screen_0_66B8F7C1-DA52-4EAA-9680-E606D79C5E54.png",
+      "timestamp": 1795418805.505,
+      "retainedPath": "/mnt/development/projects/diagnostics/otzaria-reader-profile-followup-20261123/45124554050/captures-intake/selected/E4440267-E22D-4E18-B9D9-717BA1ECED44.png",
+      "sha256": "7a15ec73d19319482423674d95faa157c9f857a22ac49bfe4b23c3ac4b15d8b1",
+      "bytes": 157688
+    },
+    {
+      "configurationName": "Test Scheme Action",
+      "deviceId": "813420A8-CAAB-4691-A00B-C8C2E6AA2B53",
+      "deviceName": "Faithful 11-inch 948d1204",
+      "exportedFileName": "76BB98B5-4DB7-4EAC-AD42-2F932B6DA056.txt",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "r27-final-native-hierarchy_0_4AE9AD63-DD8B-4B21-9ECC-0CAFED9AF71E.txt",
+      "timestamp": 1795418804.84,
+      "retainedPath": "/mnt/development/projects/diagnostics/otzaria-reader-profile-followup-20261123/45124554050/captures-intake/selected/76BB98B5-4DB7-4EAC-AD42-2F932B6DA056.txt",
+      "sha256": "ade46e1f18f9ae8f071d9476f00f148c97f2afa4e34bd1585c5f83b1ec7d07af",
+      "bytes": 38036
+    },
+    {
+      "configurationName": "Test Scheme Action",
+      "deviceId": "813420A8-CAAB-4691-A00B-C8C2E6AA2B53",
+      "deviceName": "Faithful 11-inch 948d1204",
+      "exportedFileName": "506F326C-BB52-4B9F-B077-1070F4997FB7.txt",
+      "isAssociatedWithFailure": false,
+      "suggestedHumanReadableName": "groups100-original-selection-failed-snapshot_0_3106E48E-3874-4EA3-AF8C-7BBB17D7DCF9.txt",
+      "timestamp": 1795418801.574,
+      "retainedPath": "/mnt/development/projects/diagnostics/otzaria-reader-profile-followup-20261123/45124554050/captures-intake/selected/506F326C-BB52-4B9F-B077-1070F4997FB7.txt",
+      "sha256": "beedf997d6b8f8ac3286309011c0425bb0f856417144e16f0a817d99253b63f8",
+      "bytes": 1957
+    }
+  ],
+  "scope": "Original failed snapshot and later teardown image/AX; timestamps retained, later evidence is not failing-instant state"
+}

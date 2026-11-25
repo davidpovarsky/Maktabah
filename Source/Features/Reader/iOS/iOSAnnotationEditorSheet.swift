@@ -19,6 +19,20 @@ struct iOSAnnotationEditorSheet: View {
     @State private var operationErrorMessage: String?
     @State private var editorTextView: UITextView?
     @State private var hasInitialized: Bool = false
+    @State private var hasRetainedMiniAppFiles = false
+    #if os(iOS) && canImport(AnytypeOriginalEditor)
+    @State private var originalEditorAvailability: AnnotationOriginalEditorAvailability = .checking
+    #endif
+
+    private var allowsPlainEditing: Bool {
+        #if os(iOS) && canImport(AnytypeOriginalEditor)
+        AnnotationOriginalEditorProductionEntry.qualificationOwnsEntry
+            || annotation.id == nil || originalEditorAvailability.allowsPlainEditing
+        #else
+        true
+        #endif
+    }
+    @State private var miniAppsEditorID = UUID()
 
     private var availableColors: [UIColor] {
         if isUnderline {
@@ -59,6 +73,7 @@ struct iOSAnnotationEditorSheet: View {
                         onNativeTextView?($0)
                     })
                         .frame(minHeight: 80)
+                        .disabled(!allowsPlainEditing)
                 }
 
                 #if DEBUG && os(iOS) && targetEnvironment(simulator)
@@ -73,6 +88,15 @@ struct iOSAnnotationEditorSheet: View {
                 }, closeOriginalSheet: { dismiss() })
                 #endif
 
+                #if os(iOS) && canImport(AnytypeOriginalEditor)
+                AnnotationOriginalEditorProductionEntry(annotation: annotation, draft: {
+                    .init(text: noteText, nativeText: editorTextView?.text,
+                          nativeEditorIsMounted: editorTextView?.window != nil,
+                          selectedColorHex: selectedColorHex, isUnderline: isUnderline,
+                          tagsText: tagsText)
+                }, availability: $originalEditorAvailability, closeOriginalSheet: { dismiss() })
+                #endif
+
                 ThemeSection {
                     Button(action: saveAnnotation) {
                         HStack {
@@ -82,6 +106,7 @@ struct iOSAnnotationEditorSheet: View {
                             Spacer()
                         }
                     }
+                    .disabled(!allowsPlainEditing)
                     .accessibilityIdentifier("annotation-save")
                     .accessibilityLabel("Save")
 
@@ -151,12 +176,15 @@ struct iOSAnnotationEditorSheet: View {
                     }
                 }
 
+                .disabled(!allowsPlainEditing)
+
                 ThemeSection("Tags (comma separated)") {
                     let isRTL = tagsText.isParagraphRTL
                     TextField("tag1, tag2...", text: $tagsText)
                         .multilineTextAlignment(isRTL ? .trailing : .leading)
                         .environment(\.layoutDirection, isRTL ? .rightToLeft : .leftToRight)
                 }
+                .disabled(!allowsPlainEditing)
                 ThemeSection {
                     Button(role: .destructive, action: {
                         if let id = annotation.id {
@@ -176,6 +204,31 @@ struct iOSAnnotationEditorSheet: View {
             .navigationTitle(.Annotation.editAnnotation)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                if hasRetainedMiniAppFiles {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            OtzariaMiniAppsCoordinator.shared.shareRetainedFiles(
+                                for: annotation, sourceView: editorTextView)
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                        .accessibilityIdentifier("otzaria-note-share-files")
+                        .accessibilityLabel(String(localized: "Share Mini App Files"))
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        OtzariaMiniAppsCoordinator.shared.showEditor(annotation: annotation,
+                            draft: editorTextView?.text ?? noteText,
+                            selection: editorTextView?.selectedRange,
+                            editorID: miniAppsEditorID, textView: editorTextView)
+                    } label: {
+                        Image(systemName: "square.grid.2x2")
+                    }
+                    .disabled(!allowsPlainEditing)
+                    .accessibilityIdentifier("otzaria-note-miniapps")
+                    .accessibilityLabel(String(localized: "Mini Apps"))
+                }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
                         dismiss()
@@ -198,11 +251,22 @@ struct iOSAnnotationEditorSheet: View {
                     Button("Save") {
                         saveAnnotation()
                     }
+                    .disabled(!allowsPlainEditing)
                     .accessibilityIdentifier("annotation-save-toolbar")
                     .accessibilityLabel("Save")
                 }
             }
             .onAppear {
+                OtzariaMiniAppsCoordinator.shared.registerEditor(id: miniAppsEditorID,
+                    currentText: { editorTextView?.window == nil ? nil : editorTextView?.text ?? noteText },
+                    didCommit: { saved in
+                        annotation = saved
+                        hasRetainedMiniAppFiles = OtzariaMiniAppsCoordinator.shared.hasRetainedFiles(for: saved)
+                        noteText = saved.note ?? ""
+                        AccessibleAutoDirectionTextView.lastEnteredText = noteText
+                        editorTextView?.text = noteText
+                    })
+                hasRetainedMiniAppFiles = OtzariaMiniAppsCoordinator.shared.hasRetainedFiles(for: annotation)
                 guard !hasInitialized else { return }
                 hasInitialized = true
                 noteText = annotation.note ?? ""
@@ -214,10 +278,14 @@ struct iOSAnnotationEditorSheet: View {
                 tagsText = annotation.tags.joined(separator: ", ")
                 AccessibleAutoDirectionTextView.lastEnteredText = annotation.note
                 #if DEBUG
-                (AccessibleAutoDirectionTextView.activeInstance ?? editorTextView as? AccessibleAutoDirectionTextView)?.checkSmokeNoteInput()
+                (editorTextView as? AccessibleAutoDirectionTextView)?.checkSmokeNoteInput()
                 #endif
             }
+            .onReceive(NotificationCenter.default.publisher(for: .torahInspectorNotesDidChange)) { _ in
+                hasRetainedMiniAppFiles = OtzariaMiniAppsCoordinator.shared.hasRetainedFiles(for: annotation)
+            }
             .onDisappear {
+                OtzariaMiniAppsCoordinator.shared.unregisterEditor(id: miniAppsEditorID)
                 onNativeTextView?(nil)
                 if AccessibleAutoDirectionTextView.activeInstance === editorTextView {
                     AccessibleAutoDirectionTextView.activeInstance = nil
@@ -238,24 +306,19 @@ struct iOSAnnotationEditorSheet: View {
     }
 
     private func saveAnnotation() {
+        guard allowsPlainEditing else {
+            operationErrorMessage = String(localized: "Use the expanded editor to change this formatted note.",
+                                           table: "OriginalAnnotationEditor")
+            return
+        }
         #if DEBUG
-        (AccessibleAutoDirectionTextView.activeInstance ?? editorTextView as? AccessibleAutoDirectionTextView)?.checkSmokeNoteInput()
+        (editorTextView as? AccessibleAutoDirectionTextView)?.checkSmokeNoteInput()
         #endif
         var updated = annotation
-        let activeView = AccessibleAutoDirectionTextView.activeInstance ?? editorTextView
-        let lastEntered = AccessibleAutoDirectionTextView.lastEnteredText ?? ""
-        let editorText = activeView?.text ?? ""
-        let axText = activeView?.accessibilityValue ?? ""
-        var candidates = [lastEntered, editorText, axText, noteText]
-        if let active = activeView {
-            if let val = active.value(forKey: "text") as? String {
-                candidates.append(val)
-            }
-            if let val = active.value(forKey: "accessibilityValue") as? String {
-                candidates.append(val)
-            }
-        }
-        let rawCandidate = candidates.first(where: { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }) ?? ""
+        // Empty input is an intentional edit. Only this sheet's native text
+        // and binding own its draft; another window's global focus/AX state
+        // must never choose the note body that is committed here.
+        let rawCandidate = editorTextView?.text ?? noteText
         let trimmed = rawCandidate.trimmingCharacters(in: .whitespacesAndNewlines)
         updated.note = trimmed.isEmpty ? nil : rawCandidate
         let finalHex: String
@@ -347,9 +410,7 @@ final class AccessibleAutoDirectionTextView: UITextView {
 
     private func applyNewValue(_ newValue: String?) {
         let stringValue = newValue ?? ""
-        if !stringValue.isEmpty {
-            Self.lastEnteredText = stringValue
-        }
+        Self.lastEnteredText = stringValue
         if super.text != stringValue {
             super.text = stringValue
         }
@@ -369,9 +430,9 @@ final class AccessibleAutoDirectionTextView: UITextView {
             #if DEBUG
             checkSmokeNoteInput()
             #endif
-            if let t = super.text, !t.isEmpty { return t }
-            if let l = Self.lastEnteredText, !l.isEmpty { return l }
-            return super.accessibilityValue
+            // Accessibility describes this field, including a deliberate
+            // empty value. Process-global text can belong to another window.
+            return super.text ?? ""
         }
         set {
             super.accessibilityValue = newValue
@@ -474,17 +535,9 @@ struct iOSAutoDirectionTextView: UIViewRepresentable {
 
     func updateUIView(_ uiView: AccessibleAutoDirectionTextView, context: Context) {
         context.coordinator.parent = self
-        if !text.isEmpty {
-            if uiView.text != text {
-                uiView.text = text
-                AccessibleAutoDirectionTextView.lastEnteredText = text
-                context.coordinator.updateParagraphAlignments(in: uiView)
-            }
-        } else if let current = uiView.text, !current.isEmpty {
-            AccessibleAutoDirectionTextView.lastEnteredText = current
-            DispatchQueue.main.async {
-                self.text = current
-            }
+        if uiView.text != text {
+            uiView.text = text
+            context.coordinator.updateParagraphAlignments(in: uiView)
         }
     }
 

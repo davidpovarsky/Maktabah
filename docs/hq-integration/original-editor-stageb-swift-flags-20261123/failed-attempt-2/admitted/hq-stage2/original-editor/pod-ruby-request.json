@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "nonce": "c7c658c56b3d434a9878c264f13c2e2cdaa947fcfc00dc99a5ab28fee5f0bd9c",
+  "parent_pid": 5953,
+  "program": {
+    "path": "/opt/homebrew/lib/ruby/gems/3.4.0/bin/pod",
+    "bytes": 568,
+    "sha256": "053667ee2be7557170d5de7d773bee3e24557f9f34f53e8efc3b0a173c9d8c73"
+  },
+  "observer": {
+    "path": "/Users/runner/work/Maktabah/Maktabah/Scripts/CI/hq-original-editor-ruby-context.rb",
+    "bytes": 8002,
+    "sha256": "facf9c4c1fcc25d1cafbd6d532c60367a4097f16642f5fc444e2a2092d0e3f33"
+  },
+  "helper": {
+    "path": "/Users/runner/work/Maktabah/Maktabah/Scripts/CI/hq-original-editor-app-target.rb",
+    "bytes": 8935,
+    "sha256": "094f10867cb070035aa7044bc94f57df712b0b8ccfdcd4cf758a75c21f455e6a"
+  },
+  "receipt_path": "/Users/runner/work/Maktabah/Maktabah/build/hq-stage2/original-editor/pod-ruby-context.json"
+}

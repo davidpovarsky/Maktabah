@@ -1,0 +1,27 @@
+{
+  "previous_source": "0faacd1f397aac8d06947fe9211d48f4f72107b7",
+  "application_source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+  "method": "rename exact existing owned output; no deletion or content mutation",
+  "retained_files": [
+    {
+      "path": "declarations.json",
+      "bytes": 432,
+      "sha256": "8fa41c3ed986fef179a63e50e34a8106b95f5a46adf112dd030564569aec5c4c"
+    },
+    {
+      "path": "python-runtime-preflight.json",
+      "bytes": 2108,
+      "sha256": "4d19c3535e0cde8eb19f0e81ae3a7af5bc4f8baf0752f1b77e53a6ec0a7d3560"
+    },
+    {
+      "path": "selection.json",
+      "bytes": 177918,
+      "sha256": "f05d571be2395b258bd181d4d0330a65a108bc80e04e120c2f89b280aa947f61"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 64154,
+      "sha256": "e63cf2f774b86d2d9a80d01ab61564df32d54f3bab544db73efdbe20a71571b7"
+    }
+  ]
+}

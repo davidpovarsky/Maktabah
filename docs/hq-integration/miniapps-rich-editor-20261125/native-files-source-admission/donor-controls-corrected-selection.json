@@ -1,0 +1,19 @@
+{
+  "observed_at": "2026-11-25T11:06:54.063167+00:00",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "Scripts/CI",
+    "-p",
+    "test_original_editor_donor_admission.py",
+    "-v"
+  ],
+  "exit": 0,
+  "scope": "PORTABLE_DONOR_ADMISSION_ONLY",
+  "native_app_builds": 0,
+  "native_tests": 0,
+  "output_tail": ".DonorSDKMetadataControls.test_installed_native_member_cannot_be_substituted) ... ok\ntest_new_editor_credit_is_never_granted (test_original_editor_donor_admission.DonorSDKMetadataControls.test_new_editor_credit_is_never_granted) ... ok\ntest_original_raw_receipt_tampering_is_detected (test_original_editor_donor_admission.DonorSDKMetadataControls.test_original_raw_receipt_tampering_is_detected) ... ok\ntest_reference_cannot_be_relabelled_as_fresh_pass (test_original_editor_donor_admission.DonorSDKMetadataControls.test_reference_cannot_be_relabelled_as_fresh_pass) ... ok\ntest_reference_cannot_borrow_another_current_execution (test_original_editor_donor_admission.DonorSDKMetadataControls.test_reference_cannot_borrow_another_current_execution) ... ok\ntest_reference_retains_original_identity_and_no_new_native_credit (test_original_editor_donor_admission.DonorSDKMetadataControls.test_reference_retains_original_identity_and_no_new_native_credit) ... ok\ntest_rehashed_donor_receipt_still_must_match_original_policy (test_original_editor_donor_admission.DonorSDKMetadataControls.test_rehashed_donor_receipt_still_must_match_original_policy) ... ok\ntest_reuse_cannot_award_new_native_or_sdk_acceptance (test_original_editor_donor_admission.DonorSDKMetadataControls.test_reuse_cannot_award_new_native_or_sdk_acceptance) ... ok\ntest_unreviewed_swift_tree_cannot_reuse_native_abi (test_original_editor_donor_admission.DonorSDKMetadataControls.test_unreviewed_swift_tree_cannot_reuse_native_abi) ... ok\n\n----------------------------------------------------------------------\nRan 13 tests in 0.091s\n\nOK\n"
+}

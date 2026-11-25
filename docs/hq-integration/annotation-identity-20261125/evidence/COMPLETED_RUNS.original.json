@@ -1,0 +1,251 @@
+{
+  "diskFreeBytes": 30337642496,
+  "runs": [
+    {
+      "cloudkit_transport_executed": null,
+      "cold_processes": null,
+      "cold_reopen_gates": null,
+      "commands": [],
+      "executable_sha256": null,
+      "failed_cases": 0,
+      "independent_sqlite_readback": null,
+      "native_ui_executed": 0,
+      "passed_cases": 0,
+      "resultSHA256": "9595040d39e679a7d08898de035cfb8eaa5d72f89c7e208cff2d256d016aadcd",
+      "result_path": "/Users/m1/builds/Maktabah-fbd5e241-identity-component-20261125/build/exchange28/RESULT.json",
+      "scope": null,
+      "source_sha": "fbd5e241d8924ffd1e20078cd40c4fd950f76a70",
+      "source_unchanged": null,
+      "status": "FAILED",
+      "suite": "exchange28"
+    },
+    {
+      "cloudkit_transport_executed": 0,
+      "cold_processes": [
+        {
+          "annotationID": 1,
+          "annotationUUID": "FF0F372F-2139-8112-BA14-7CBF849AABF9",
+          "databasePath": "/Users/m1/builds/Maktabah-fbd5e241-identity-component-20261125/build/legacy24/owned-c1a0c9cd-8973-4a1a-8130-9a7369f5348e/fixtures/legacy-cold-profile/Annotations.sqlite",
+          "mode": "legacy-write",
+          "originalRecordID": "legacy_28_2_4_1700000001",
+          "payloadSHA256": "f5e4a3c3d9ee1ac62746748062ec29cc4d2bded4b67d676bf6ff4214441c8775",
+          "processID": 77183,
+          "revision": 1,
+          "sourceSHA256": "c18380f3c494bfa375eba72202ad812c5ae3442e4890c324c55944823df08b40"
+        },
+        {
+          "annotationID": 1,
+          "annotationUUID": "FF0F372F-2139-8112-BA14-7CBF849AABF9",
+          "databasePath": "/Users/m1/builds/Maktabah-fbd5e241-identity-component-20261125/build/legacy24/owned-c1a0c9cd-8973-4a1a-8130-9a7369f5348e/fixtures/legacy-cold-profile/Annotations.sqlite",
+          "mode": "legacy-reopen",
+          "originalRecordID": "legacy_28_2_4_1700000001",
+          "payloadSHA256": "0279f7df69a0c86dc6419d6bea0e5b61cbc9714192b2404f65dfa41b1a2a379b",
+          "priorProcessID": 77183,
+          "processID": 77185,
+          "revision": 2,
+          "sourceSHA256": "25f5a8703062bbf338b57987adce1b9d76be479e7100134678ff8ca9f2ab65ae"
+        }
+      ],
+      "cold_reopen_gates": null,
+      "commands": [
+        {
+          "exit_code": 0,
+          "label": "compile",
+          "seconds": 207.406903375
+        },
+        {
+          "exit_code": 0,
+          "label": "binary-path",
+          "seconds": 3.2426109170000075
+        },
+        {
+          "exit_code": 0,
+          "label": "component-cases",
+          "seconds": 2.2679402500000094
+        },
+        {
+          "exit_code": 0,
+          "label": "legacy-write",
+          "seconds": 0.12244816700001593
+        },
+        {
+          "exit_code": 0,
+          "label": "legacy-reopen",
+          "seconds": 0.16673099999999863
+        }
+      ],
+      "executable_sha256": "3c8c129dc59b3fd86d4549bc50db56fd3df064ff6a400570fa0f43320fa2ddfa",
+      "failed_cases": 0,
+      "independent_sqlite_readback": {
+        "database_path": "/Users/m1/builds/Maktabah-fbd5e241-identity-component-20261125/build/legacy24/owned-c1a0c9cd-8973-4a1a-8130-9a7369f5348e/fixtures/legacy-cold-profile/Annotations.sqlite",
+        "quick_check": "ok",
+        "rich_body_sha256": [
+          "1c2e7713f48c718e396dabfc7b6f10e0f3c9fd689c034b3133b47b62fb177f11",
+          "34ad4348774379f427bb59ad8d6a273d5cb9e67e931bc76a458c0f4c85a2f1da"
+        ],
+        "same_original_record_id": true,
+        "same_original_row": true,
+        "sqlite_version": "3.54.0",
+        "versions": 2,
+        "zero_external_destinations": true
+      },
+      "native_ui_executed": 0,
+      "passed_cases": 24,
+      "resultSHA256": "a2ec5f68741a784802885ed1eae0762ad0d245f7d2ac7981d6ed4d5cda8f0f9d",
+      "result_path": "/Users/m1/builds/Maktabah-fbd5e241-identity-component-20261125/build/legacy24/RESULT.json",
+      "scope": "APPLE_FOUNDATION_LEGACY_IDENTITY_COMPONENT",
+      "source_sha": "fbd5e241d8924ffd1e20078cd40c4fd950f76a70",
+      "source_unchanged": true,
+      "status": "PASS_APPLE_FOUNDATION_LEGACY_IDENTITY24_COLD",
+      "suite": "legacy24"
+    },
+    {
+      "cloudkit_transport_executed": 0,
+      "cold_processes": [
+        {
+          "annotationUUID": "3408274D-F44A-4A16-9AF1-D0EB32004793",
+          "exchangeDestinations": 0,
+          "mode": "cold-write",
+          "originalPendingUpload": true,
+          "payloadSHA256": "c3acde0b24231b7b2440fe5ee7cb621b660535b297070d5b8e5aed3639d7e831",
+          "processID": 77264,
+          "revision": 1,
+          "sourceSHA256": "6e99dc65821e3d5eb6e1c4177199bb2561e8b03c4f6ea32aedd4401d27806ceb",
+          "sqliteVersion": "3.54.0",
+          "status": "PASS_COMPONENT_COLD_PROCESS"
+        },
+        {
+          "annotationUUID": "3408274D-F44A-4A16-9AF1-D0EB32004793",
+          "exchangeDestinations": 0,
+          "mode": "cold-reopen",
+          "originalPendingUpload": true,
+          "payloadSHA256": "c7f334f01aa09c61db946fd5883ed0b059a519f2032447d10c2a9a4d873e2761",
+          "priorProcessID": 77264,
+          "processID": 77265,
+          "revision": 2,
+          "sourceSHA256": "35ac180497e9af7243be45047043cf2875db7ba16bba97c03cc82fac927fa6bd",
+          "sqliteVersion": "3.54.0",
+          "status": "PASS_COMPONENT_COLD_PROCESS"
+        },
+        {
+          "annotationUUID": "3408274D-F44A-4A16-9AF1-D0EB32004793",
+          "exchangeDestinations": 0,
+          "mode": "cold-reopen-final",
+          "originalPendingUpload": true,
+          "payloadSHA256": "c7f334f01aa09c61db946fd5883ed0b059a519f2032447d10c2a9a4d873e2761",
+          "priorProcessID": 77265,
+          "processID": 77268,
+          "revision": 2,
+          "sourceSHA256": "35ac180497e9af7243be45047043cf2875db7ba16bba97c03cc82fac927fa6bd",
+          "sqliteVersion": "3.54.0",
+          "status": "PASS_COMPONENT_COLD_PROCESS"
+        }
+      ],
+      "cold_reopen_gates": 2,
+      "commands": [
+        {
+          "exit_code": 0,
+          "label": "compile",
+          "seconds": 213.286002834
+        },
+        {
+          "exit_code": 0,
+          "label": "binary-path",
+          "seconds": 4.7287832089999995
+        },
+        {
+          "exit_code": 0,
+          "label": "component-cases",
+          "seconds": 1.7702140840000027
+        },
+        {
+          "exit_code": 0,
+          "label": "cold-write",
+          "seconds": 0.04986020799998414
+        },
+        {
+          "exit_code": 0,
+          "label": "cold-reopen",
+          "seconds": 0.06798579100001234
+        },
+        {
+          "exit_code": 0,
+          "label": "cold-reopen-final",
+          "seconds": 0.06958016699999803
+        }
+      ],
+      "executable_sha256": "55328c19417ce7c0dcfa8daa6044e49a4f521a268a6a531b1d5435af6993647f",
+      "failed_cases": 0,
+      "independent_sqlite_readback": {
+        "database_path": "/Users/m1/builds/Maktabah-fbd5e241-identity-component-20261125/build/local43/owned-f383ec1c-8939-4813-984c-efb8db95a825/fixtures/cold-profile/Annotations.sqlite",
+        "payload_hashes": [
+          "c3acde0b24231b7b2440fe5ee7cb621b660535b297070d5b8e5aed3639d7e831",
+          "c7f334f01aa09c61db946fd5883ed0b059a519f2032447d10c2a9a4d873e2761"
+        ],
+        "same_annotation_uuid": true,
+        "same_original_row": true,
+        "tags": 2,
+        "versions": 2,
+        "zero_external_destinations": true
+      },
+      "native_ui_executed": 0,
+      "passed_cases": 43,
+      "resultSHA256": "322a1c96884f24072ad8b4e2d9fa3bf427a7756b49761e4cb75a4ac313b32c93",
+      "result_path": "/Users/m1/builds/Maktabah-fbd5e241-identity-component-20261125/build/local43/RESULT.json",
+      "scope": "APPLE_FOUNDATION_ORIGINAL_STORE_COMPONENT",
+      "source_sha": "fbd5e241d8924ffd1e20078cd40c4fd950f76a70",
+      "source_unchanged": true,
+      "status": "PASS_APPLE_FOUNDATION_COMPONENT",
+      "suite": "local43"
+    },
+    {
+      "cloudkit_transport_executed": null,
+      "cold_processes": null,
+      "cold_reopen_gates": null,
+      "commands": [],
+      "enqueue-cancellation-hook.json": {
+        "cancellationsAfterOutboxInsert": 1,
+        "deniedOutboxAuthorizations": 0,
+        "insertedRowIDs": [
+          1,
+          1,
+          1
+        ],
+        "insertedTables": [
+          "otzaria_annotation_exchange_versions",
+          "otzaria_annotation_exchange_heads",
+          "otzaria_annotation_exchange_outbox"
+        ],
+        "outboxWasAttemptedAfterVersionAndHead": false
+      },
+      "enqueue-failure-hook.json": {
+        "cancellationsAfterOutboxInsert": 0,
+        "deniedOutboxAuthorizations": 1,
+        "insertedRowIDs": [
+          3,
+          1,
+          1
+        ],
+        "insertedTables": [
+          "sync_pending",
+          "otzaria_annotation_exchange_versions",
+          "otzaria_annotation_exchange_heads"
+        ],
+        "outboxWasAttemptedAfterVersionAndHead": true
+      },
+      "executable_sha256": null,
+      "failed_cases": 0,
+      "independent_sqlite_readback": null,
+      "native_ui_executed": 0,
+      "passed_cases": 28,
+      "resultSHA256": "8c0962aceb192be5d179f7f1d2ba2b9e460922aa4b8e056cd0d91698ad2d6f6c",
+      "result_path": "/Users/m1/builds/Maktabah-b0a89ffa-identity-component-20261125/build/exchange28/RESULT.json",
+      "scope": null,
+      "source_sha": "b0a89ffa103cb31e4414576236aa748a0187674e",
+      "source_unchanged": null,
+      "status": "PASS_ACTUAL_SQLITE_COMPONENT",
+      "suite": "exchange28"
+    }
+  ],
+  "xcode": "Xcode 27.0\nBuild version 27A266a\n"
+}

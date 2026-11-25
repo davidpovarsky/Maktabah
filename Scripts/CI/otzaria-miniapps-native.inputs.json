@@ -1,0 +1,19 @@
+{
+  "local_producer_manifest": {
+    "path": "/Users/m1/builds/hanlin-miniapps-final-native-20261125/build/native-final-evidence/attempt-fe3f75d0-ios272-01/consumer-build/producer-manifest.json",
+    "sha256": "6f19644bd0e6f44b736b4a5086c33ec65fe926b97c4b05304e8993a11f324bdb"
+  },
+  "local_producer_preparation": {
+    "path": "Scripts/CI/miniapps-producer-preparation-fe3f75d0.json",
+    "sha256": "df774fb1bea2bb53a7c685d021bd089411dab6864994101f3b21d9078d008a2f"
+  },
+  "original_editor_debug_admission": {
+    "path": "Scripts/CI/original-editor-miniapps-debug-collections13-fe3f75d0.inputs.json",
+    "sha256": "4fb253abbe8f7b67ad517153e674affcd4b0da541e83c32354aebb87941ae12c"
+  },
+  "producer_artifact_name": null,
+  "producer_origin": "local-mac",
+  "producer_repository": "davidpovarsky/hanlin-ai",
+  "producer_run_id": null,
+  "producer_source_sha": "fe3f75d0638671c749225e9a8ddd487db70981cf"
+}

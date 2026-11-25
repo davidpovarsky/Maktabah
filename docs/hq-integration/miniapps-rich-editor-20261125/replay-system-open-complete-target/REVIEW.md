@@ -1,0 +1,9 @@
+# Original callback delivery and compatible actual producer
+
+The original rich callback replay now uses XCUIDevice.shared.system.open, as supported by the installed Xcode 27 XCUISystem header. The previous XCUIApplication.open API is launch-equivalent. The five actual app journeys still use the real TextStudio Return button, including their deliberate source-app termination for cold launch. Full archive hashes, revision counts, the original linked annotation identity, newer native content and exactly one durable request receipt remain asserted. Before/after replay screenshots and accessibility evidence are retained.
+
+All 22 exact committed UI source files passed Apple Swift 6.4 object generation on product source 4eec5cf32daf7e1eeb6b1d6dcabce283989b6d3a. This is compile evidence with zero executed UI cases. Original unrelated actor-isolation warnings remain in the preserved compiler log.
+
+The Hanlin gitlink and actual producer input now identify e1a25038e55a2967b2f21c9eb48e0e29220f52fd. The five consumed AgentSDK/Platform/PresentationSDK/Bridge/Picker package trees were independently compared with 4b772b5a and are unchanged. The actual prepared producer has its own committed delta review and independently verified 7,088-file source inventory.
+
+The exact 47-leaf application source manifest was rebound without changing the original engine/resource/artifact requirements. PBX bytes, target source membership and all original engine-test exclusions are unchanged; the prior actual Apple PBX membership inspection remains valid for that unchanged scope. Old historical GitHub UI compile reuse is removed from current execution inputs because the test source changed. Its original evidence remains retained. OriginalEditor Debug distribution admission, full app build and actual native consumer acceptance are still required.

@@ -1,0 +1,15 @@
+{
+  "name": "original-v1-seed",
+  "argv": [
+    "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/build/out/Products/Debug-linux-aarch64/LegacySeed",
+    "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/owned-fixtures"
+  ],
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 0.866,
+  "process_group_drained": true,
+  "stdout_bytes": 1997,
+  "stdout_sha256": "0567a403beb7feb1921d1ba1b3e9b995876f9b76d117969217465c59989282c0",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

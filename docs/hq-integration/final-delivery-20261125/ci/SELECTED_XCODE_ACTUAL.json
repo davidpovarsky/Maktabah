@@ -1,0 +1,14 @@
+{
+  "compilation_executed": false,
+  "developer_after": "/Applications/Xcode.app/Contents/Developer",
+  "developer_before": "/Applications/Xcode.app/Contents/Developer",
+  "exit_code": 0,
+  "free_bytes": 9340633088,
+  "machine": "arm64",
+  "schema": "otzaria.selected-xcode-validation/1",
+  "script_sha256": "6a0c07627874ca8b8d7d1d6c562e1c820849d6576d6084c5cc02163af2ca8dc1",
+  "seconds": 0.4825,
+  "status": "PASS_SELECTED_XCODE27_NO_GLOBAL_MUTATION",
+  "stderr": "",
+  "stdout": "Xcode 27.0\nBuild version 27A266a\nDriverKit SDKs:\n\tDriverKit 27.0                \t-sdk driverkit27.0\n\niOS SDKs:\n\tiOS 27.0                      \t-sdk iphoneos27.0\n\niOS Simulator SDKs:\n\tSimulator - iOS 27.0          \t-sdk iphonesimulator27.0\n\nmacOS SDKs:\n\tmacOS 27.0                    \t-sdk macosx27.0\n\tmacOS 27.0                    \t-sdk macosx27.0\n\ntvOS SDKs:\n\ttvOS 27.0                     \t-sdk appletvos27.0\n\ntvOS Simulator SDKs:\n\tSimulator - tvOS 27.0         \t-sdk appletvsimulator27.0\n\nvisionOS SDKs:\n\tvisionOS 27.0                 \t-sdk xros27.0\n\nvisionOS Simulator SDKs:\n\tSimulator - visionOS 27.0     \t-sdk xrsimulator27.0\n\nwatchOS SDKs:\n\twatchOS 27.0                  \t-sdk watchos27.0\n\nwatchOS Simulator SDKs:\n\tSimulator - watchOS 27.0      \t-sdk watchsimulator27.0\n\n"
+}

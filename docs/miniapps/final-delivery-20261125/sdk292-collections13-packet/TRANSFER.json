@@ -1,0 +1,22 @@
+{
+  "build/miniapps-sdk292-packaging-8ae85a64/RESULT.json": {
+    "bytes": 1087,
+    "sha256": "b5f984657bd1d5535680d4211205cd5e6a86bbfcc9cccdb8cedbb8923ba83f26"
+  },
+  "build/miniapps-sdk292-packaging-8ae85a64/command.json": {
+    "bytes": 880,
+    "sha256": "d3e5e0169bc89f3175f2986b7bc9f199ac65cfba40be61862066fc2ffb1dcf93"
+  },
+  "build/miniapps-sdk292-packaging-8ae85a64/stderr.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "build/miniapps-sdk292-packaging-8ae85a64/stdout.log": {
+    "bytes": 569,
+    "sha256": "5e44700af1f22b19af475c2be136274a27691e8dc9d53e4ef2e58dfb8e633368"
+  },
+  "build/original-editor-local-sdk292-collections13-8ae85a64/admission-candidate.json": {
+    "bytes": 9510,
+    "sha256": "105210c7e70bd245c39dc31bf29ae4535b80117cbc19fdf8ab96734ce48e4619"
+  }
+}

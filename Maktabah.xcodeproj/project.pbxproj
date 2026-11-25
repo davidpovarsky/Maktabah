@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D1A9D5FD552552489C1F551 /* AnnotationOriginalEditorReceive.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7117E78E62BEB44CF259B84 /* AnnotationOriginalEditorReceive.swift */; };
+		24DD71FD56C255F6E1ECDB6B /* AnnotationOriginalEditorRevision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0275BE1B7E407A2BF86459A8 /* AnnotationOriginalEditorRevision.swift */; };
+		EC5D1D474E6FAF12EA1BBEF9 /* AnnotationOriginalEditorLifecycleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EE1A20CB21DCE3C8E3DDCB /* AnnotationOriginalEditorLifecycleUI.swift */; };
+		CD52859F3FCCEF1D53B3EB3D /* AnnotationOriginalEditorLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B547C6A610ED6B855A5FF248 /* AnnotationOriginalEditorLifecycle.swift */; };
+		3865C0F9E0544C8295042E32 /* OtzariaMiniAppsReceiptJournal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B7F90E14837B2401142E49 /* OtzariaMiniAppsReceiptJournal.swift */; };
+		60DB1F3E58098755E2F671C4 /* HanlinMiniAppsPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 976C5031FA42A812F1702310 /* HanlinMiniAppsPicker */; };
+		4BC135C049250C535F472871 /* HanlinMiniAppsBridge in Frameworks */ = {isa = PBXBuildFile; productRef = 7413321BE558BC1F71A54B4B /* HanlinMiniAppsBridge */; };
+		90B385F55E383935BEAEF25F /* OtzariaMiniAppsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AA94A8A28760FBE845CC8B /* OtzariaMiniAppsCoordinator.swift */; };
+		271517033AF3F4DB5556A1C9 /* OtzariaMiniAppsPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9DAB057834E634B0EF4FAC /* OtzariaMiniAppsPersistence.swift */; };
+		A8D0FDD98E7AC822576830D0 /* OtzariaMiniAppsDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A0930B3E2A184FCEF2375E /* OtzariaMiniAppsDocument.swift */; };
 		12625FDCCD291F169D6788B2 /* MaktabahBookUpdateSafety.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */; };
 		36A587F9D67487F899E8D564 /* MaktabahBookUpdateSafety.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */; };
 		CC37848F7DE08819914E0505 /* MaktabahBookUpdateSafety.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */; };
@@ -582,6 +592,8 @@
 		4BA393642EF0D30200736DFF /* ArabicFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA393632EF0D30200736DFF /* ArabicFont.swift */; };
 		4BA393722EF1E6CD00736DFF /* DSFSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA393712EF1E6CD00736DFF /* DSFSearchField.swift */; };
 		4BA53F87DF4E66AA1BC17794 /* OtzariaReaderSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A984F3D95C5DBF2C32440D /* OtzariaReaderSettingsView.swift */; };
+		50B07E421622872DA685E651 /* OtzariaLibraryUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9118CC5C78D2E8FF1484EA70 /* OtzariaLibraryUpdateView.swift */; };
+		0A6BFA2742548CFA6497577C /* OtzariaLibraryUpdatePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46F726432B5886DFA444350 /* OtzariaLibraryUpdatePolicy.swift */; };
 		4BA726922EFC714F003CA0ED /* BookInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BA726942EFC714F003CA0ED /* BookInfo.xib */; };
 		4BA726962EFC72E6003CA0ED /* LibraryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BA726982EFC72E6003CA0ED /* LibraryVC.xib */; };
 		4BA7269A2EFC760C003CA0ED /* SidebarVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BA7269C2EFC760C003CA0ED /* SidebarVC.xib */; };
@@ -1408,10 +1420,24 @@
 		0A5B8A034B694C2818E41C8A /* AnnotationOriginalEditorMount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582DC05D9E1950BEEE7D085 /* AnnotationOriginalEditorMount.swift */; };
 		C618B79C91FD2056B24F707B /* AnnotationOriginalEditorQualification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E859C54909759C046AAFE93F /* AnnotationOriginalEditorQualification.swift */; };
 		99F17897FA4D1681FA1511C9 /* AnnotationOriginalEditorSourceObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E8F4C005D15A968E44F0E9 /* AnnotationOriginalEditorSourceObservation.swift */; };
+		C30699DF5D3EC650036888A0 /* AnnotationOriginalEditorImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EE8342C312244E463A7092 /* AnnotationOriginalEditorImport.swift */; };
 		072BBF47E208223DA5B0A671 /* AnnotationOriginalEditorQualificationUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463EBB14A3F80237EF0281C /* AnnotationOriginalEditorQualificationUI.swift */; };
 		D53431901967F0A4306B12C9 /* AnnotationCloudImportIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7EA042320763A3F4B6F56 /* AnnotationCloudImportIdentity.swift */; };
 		C343FB0FE023FF926FAB63EC /* AnnotationCloudImportIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7EA042320763A3F4B6F56 /* AnnotationCloudImportIdentity.swift */; };
 		FAE8ADCCCB37B5DCEDA18660 /* AnnotationCloudImportIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7EA042320763A3F4B6F56 /* AnnotationCloudImportIdentity.swift */; };
+		A23C88CD6F7976C532E4814B /* AnnotationOriginalEditorProductionUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2321608E49BB0C5B98FCDC23 /* AnnotationOriginalEditorProductionUI.swift */; };
+		8E9E57F25E72945C19008FCD /* OriginalAnnotationEditor.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 87F45BE73D051C7ECDB732EA /* OriginalAnnotationEditor.xcstrings */; };
+		9E22D6A1FD6AA0272AD19518 /* AnnotationExchangeIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE72A20933EEE552ED6AC840 /* AnnotationExchangeIdentity.swift */; };
+		1A6FD5E39DE86FB5FCEDDD56 /* AnnotationExchangeIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE72A20933EEE552ED6AC840 /* AnnotationExchangeIdentity.swift */; };
+		5AB7EAC38B502CB77986FF07 /* AnnotationExchangeIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE72A20933EEE552ED6AC840 /* AnnotationExchangeIdentity.swift */; };
+		1C53D5E01559154000EB3E70 /* AnnotationBackfillPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C725A87853F7E4416D1B6 /* AnnotationBackfillPlanner.swift */; };
+		BEC609C5EB684427BF4F9F86 /* AnnotationBackfillPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C725A87853F7E4416D1B6 /* AnnotationBackfillPlanner.swift */; };
+		A5733B9DAC7104C63B1536E6 /* AnnotationBackfillPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C725A87853F7E4416D1B6 /* AnnotationBackfillPlanner.swift */; };
+		D75E8675ADC0DAF7C3E3358B /* AnnotationBackfillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA58A22EFA5C94735F60BB /* AnnotationBackfillView.swift */; };
+		79DA4EE26773BE98954F6D4E /* AnnotationBackfill.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 35FBD567DB60305AAA80DF3A /* AnnotationBackfill.xcstrings */; };
+		8B407D0966F045C9C01630E5 /* AnnotationNativeBackfillCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98770A6E81F728898180A4A /* AnnotationNativeBackfillCatalog.swift */; };
+		BA7D9899102E1442A7D6170E /* AnnotationNativeBackfillModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B3C959BE1BBA2AACB91DD1 /* AnnotationNativeBackfillModel.swift */; };
+		9B0DE0028DA57DC37A84B004 /* AnnotationNativeBackfillSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AF032B95DC3A973A9AF429 /* AnnotationNativeBackfillSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1450,6 +1476,13 @@
 			remoteGlobalIDString = A4F8961C86444956FF410500;
 			remoteInfo = MaktabahWidgetExtension;
 		};
+		9C01A559722E3DAD707EB015 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B3202202EDAFE85003B95D1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F30576DD2FA46222005732C6;
+			remoteInfo = "Maktabah-iOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1483,6 +1516,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E7117E78E62BEB44CF259B84 /* AnnotationOriginalEditorReceive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorReceive.swift"; sourceTree = "<group>"; };
+		0275BE1B7E407A2BF86459A8 /* AnnotationOriginalEditorRevision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorRevision.swift"; sourceTree = "<group>"; };
+		45EE1A20CB21DCE3C8E3DDCB /* AnnotationOriginalEditorLifecycleUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorLifecycleUI.swift"; sourceTree = "<group>"; };
+		B547C6A610ED6B855A5FF248 /* AnnotationOriginalEditorLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorLifecycle.swift"; sourceTree = "<group>"; };
+		C4B7F90E14837B2401142E49 /* OtzariaMiniAppsReceiptJournal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/MiniApps/OtzariaMiniAppsReceiptJournal.swift; sourceTree = SOURCE_ROOT; };
+		24AA94A8A28760FBE845CC8B /* OtzariaMiniAppsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift; sourceTree = SOURCE_ROOT; };
+		3E9DAB057834E634B0EF4FAC /* OtzariaMiniAppsPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/MiniApps/OtzariaMiniAppsPersistence.swift; sourceTree = SOURCE_ROOT; };
+		43A0930B3E2A184FCEF2375E /* OtzariaMiniAppsDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/MiniApps/OtzariaMiniAppsDocument.swift; sourceTree = SOURCE_ROOT; };
 		93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookUpdates/MaktabahBookUpdateSafety.swift"; sourceTree = "<group>"; };
 		F30578022FA46222005732C6 /* Maktabah-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Maktabah-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF0000000000000000000001 /* BackendAnnotationBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/BackendAnnotationBridge.swift"; sourceTree = "<group>"; };
@@ -1586,6 +1627,8 @@
 		E6A000000000000000000006 /* OtzariaSearchArtifactService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSearchArtifactService.swift; path = Source/Otzaria/Search/Distribution/OtzariaSearchArtifactService.swift; sourceTree = "<group>"; };
 		E6A000000000000000000007 /* OtzariaPrebuiltSearchAcceptanceRunner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaPrebuiltSearchAcceptanceRunner.swift; path = Source/Otzaria/Search/Distribution/OtzariaPrebuiltSearchAcceptanceRunner.swift; sourceTree = "<group>"; };
 		03A984F3D95C5DBF2C32440D /* OtzariaReaderSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaReaderSettingsView.swift; path = Source/Otzaria/Features/Settings/OtzariaReaderSettingsView.swift; sourceTree = "<group>"; };
+		9118CC5C78D2E8FF1484EA70 /* OtzariaLibraryUpdateView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaLibraryUpdateView.swift; path = Source/Otzaria/Features/Settings/OtzariaLibraryUpdateView.swift; sourceTree = "<group>"; };
+		A46F726432B5886DFA444350 /* OtzariaLibraryUpdatePolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaLibraryUpdatePolicy.swift; path = Source/Otzaria/Bootstrap/OtzariaLibraryUpdatePolicy.swift; sourceTree = "<group>"; };
 		077C910EADF2F817F070515C /* OtzariaSchema.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSchema.swift; path = Source/Otzaria/Data/OtzariaSchema.swift; sourceTree = "<group>"; };
 		09EF1B92A2DA781C9E871A84 /* ZayitSearchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZayitSearchView.swift; path = Vendor/ZayitSearchPort/Swift/ZayitSearchView.swift; sourceTree = "<group>"; };
 		0A7A00000000000000000001 /* OtzariaAppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/OtzariaAppContainer.swift; sourceTree = "<group>"; };
@@ -2209,8 +2252,19 @@
 		7582DC05D9E1950BEEE7D085 /* AnnotationOriginalEditorMount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorMount.swift"; sourceTree = "<group>"; };
 		E859C54909759C046AAFE93F /* AnnotationOriginalEditorQualification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorQualification.swift"; sourceTree = "<group>"; };
 		96E8F4C005D15A968E44F0E9 /* AnnotationOriginalEditorSourceObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift"; sourceTree = "<group>"; };
+		62EE8342C312244E463A7092 /* AnnotationOriginalEditorImport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorImport.swift"; sourceTree = "<group>"; };
 		B463EBB14A3F80237EF0281C /* AnnotationOriginalEditorQualificationUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorQualificationUI.swift"; sourceTree = "<group>"; };
 		74A7EA042320763A3F4B6F56 /* AnnotationCloudImportIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/AnnotationCloudImportIdentity.swift"; sourceTree = "<group>"; };
+		2321608E49BB0C5B98FCDC23 /* AnnotationOriginalEditorProductionUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift"; sourceTree = "<group>"; };
+		87F45BE73D051C7ECDB732EA /* OriginalAnnotationEditor.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = "Annotations/LocalEditor/OriginalAnnotationEditor.xcstrings"; sourceTree = "<group>"; };
+		DE72A20933EEE552ED6AC840 /* AnnotationExchangeIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Exchange/AnnotationExchangeIdentity.swift"; sourceTree = "<group>"; };
+		D60C725A87853F7E4416D1B6 /* AnnotationBackfillPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Backfill/AnnotationBackfillPlanner.swift"; sourceTree = "<group>"; };
+		4AEA58A22EFA5C94735F60BB /* AnnotationBackfillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Backfill/AnnotationBackfillView.swift"; sourceTree = "<group>"; };
+		35FBD567DB60305AAA80DF3A /* AnnotationBackfill.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = "Annotations/Backfill/AnnotationBackfill.xcstrings"; sourceTree = "<group>"; };
+		E98770A6E81F728898180A4A /* AnnotationNativeBackfillCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Backfill/AnnotationNativeBackfillCatalog.swift"; sourceTree = "<group>"; };
+		C0B3C959BE1BBA2AACB91DD1 /* AnnotationNativeBackfillModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Backfill/AnnotationNativeBackfillModel.swift"; sourceTree = "<group>"; };
+		A6AF032B95DC3A973A9AF429 /* AnnotationNativeBackfillSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Backfill/AnnotationNativeBackfillSection.swift"; sourceTree = "<group>"; };
+		DA0739AC20CFFFFFB5B5B372 /* Maktabah-iOSNativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Maktabah-iOSNativeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2222,6 +2276,11 @@
 		4BD8A4E8307E521A00E04BCB /* MaktabahTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = MaktabahTests;
+			sourceTree = "<group>";
+		};
+		DB44B80150B4C113F2D62723 /* Maktabah-iOSNativeTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Maktabah-iOSNativeTests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -2273,6 +2332,8 @@
 				E8AF13DBAAB27A9D851D1C51 /* HanlinPresentationKit in Frameworks */,
 				FE6A59AF7AC18FAB419866BB /* HanlinRichUI in Frameworks */,
 				FBB04E8421920F230B29069D /* HanlinPlatformContracts in Frameworks */,
+				60DB1F3E58098755E2F671C4 /* HanlinMiniAppsPicker in Frameworks */,
+				4BC135C049250C535F472871 /* HanlinMiniAppsBridge in Frameworks */,
 				0E9CF3EC22339C1D8A3C4838 /* ChavrusaUIRoutingHost in Frameworks */,
 				1C985DC975CED210B2EE1259 /* CommandPalette in Frameworks */,
 				B30000000000000000000001 /* AnchoredPopup in Frameworks */,
@@ -2287,16 +2348,37 @@
 				DCACB3D4B595024586832F5F /* OtzariaUIRouting in Frameworks */,
 			);
 		};
+		091DEDAE2623080B2ECBDAC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		CFEE00000000000000000001 /* ChavrusaText */ = {
 			isa = PBXGroup;
 			children = (
+				E7117E78E62BEB44CF259B84 /* AnnotationOriginalEditorReceive.swift */,
+				0275BE1B7E407A2BF86459A8 /* AnnotationOriginalEditorRevision.swift */,
+				45EE1A20CB21DCE3C8E3DDCB /* AnnotationOriginalEditorLifecycleUI.swift */,
+				B547C6A610ED6B855A5FF248 /* AnnotationOriginalEditorLifecycle.swift */,
+				DE72A20933EEE552ED6AC840 /* AnnotationExchangeIdentity.swift */,
+				D60C725A87853F7E4416D1B6 /* AnnotationBackfillPlanner.swift */,
+				4AEA58A22EFA5C94735F60BB /* AnnotationBackfillView.swift */,
+				A6AF032B95DC3A973A9AF429 /* AnnotationNativeBackfillSection.swift */,
+				C0B3C959BE1BBA2AACB91DD1 /* AnnotationNativeBackfillModel.swift */,
+				E98770A6E81F728898180A4A /* AnnotationNativeBackfillCatalog.swift */,
+				35FBD567DB60305AAA80DF3A /* AnnotationBackfill.xcstrings */,
 				7582DC05D9E1950BEEE7D085 /* AnnotationOriginalEditorMount.swift */,
 				E859C54909759C046AAFE93F /* AnnotationOriginalEditorQualification.swift */,
 				96E8F4C005D15A968E44F0E9 /* AnnotationOriginalEditorSourceObservation.swift */,
+				62EE8342C312244E463A7092 /* AnnotationOriginalEditorImport.swift */,
 				B463EBB14A3F80237EF0281C /* AnnotationOriginalEditorQualificationUI.swift */,
+				2321608E49BB0C5B98FCDC23 /* AnnotationOriginalEditorProductionUI.swift */,
+				87F45BE73D051C7ECDB732EA /* OriginalAnnotationEditor.xcstrings */,
 				CF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */,
 				5C779026CC573B19C11E67E9 /* TorahAnnotationEnvelope.swift */,
 				15AA5DEFA4B1E2823A7CCD9A /* AnnotationExchangeLedger.swift */,
@@ -2560,6 +2642,7 @@
 				4B32022A2EDAFE85003B95D1 /* Source */,
 				4BD8A4E8307E521A00E04BCB /* MaktabahTests */,
 				F30578032FA46222005732C6 /* Maktabah-iOSUITests */,
+				DB44B80150B4C113F2D62723 /* Maktabah-iOSNativeTests */,
 				4B3202292EDAFE85003B95D1 /* Products */,
 				4BA3936B2EF15F0200736DFF /* Frameworks */,
 				FA48754C89EE31B8B9B30F0F /* OtzariaAppContainer.swift */,
@@ -2594,6 +2677,8 @@
 				64E10CBACBB3C32833B4FC0C /* OtzariaReaderView.swift */,
 				F2E687966F83FF7CCE34EA1F /* OtzariaReaderViewModel.swift */,
 				03A984F3D95C5DBF2C32440D /* OtzariaReaderSettingsView.swift */,
+				9118CC5C78D2E8FF1484EA70 /* OtzariaLibraryUpdateView.swift */,
+				A46F726432B5886DFA444350 /* OtzariaLibraryUpdatePolicy.swift */,
 				6A73663299D0877E6E00AEE1 /* OtzariaSourcesView.swift */,
 				83ECD2364187A6F7291BFA35 /* OtzariaSourcesViewModel.swift */,
 				E77069F73897898F425880E7 /* OtzariaNavigationAdapter.swift */,
@@ -2649,6 +2734,7 @@
 				7CF4D3EED1CCDF5AC98A3B54 /* MaktabahWidgetExtension.appex */,
 				4BD8A4E7307E521A00E04BCB /* MaktabahTests.xctest */,
 				F30578022FA46222005732C6 /* Maktabah-iOSUITests.xctest */,
+				DA0739AC20CFFFFFB5B5B372 /* Maktabah-iOSNativeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3896,6 +3982,10 @@
 				F42668FE5B9E0D7D95054B2B /* OtzariaHanlinChatSession.swift */,
 				0B179A7D53E7B5E5F7920D18 /* OtzariaHanlinChatView.swift */,
 				8C3C3FCF16863769D7BE6F42 /* OtzariaHanlinConversationStore.swift */,
+				C4B7F90E14837B2401142E49 /* OtzariaMiniAppsReceiptJournal.swift */,
+				24AA94A8A28760FBE845CC8B /* OtzariaMiniAppsCoordinator.swift */,
+				3E9DAB057834E634B0EF4FAC /* OtzariaMiniAppsPersistence.swift */,
+				43A0930B3E2A184FCEF2375E /* OtzariaMiniAppsDocument.swift */,
 				211B7EF6AFB2FC51C8BCF2D4 /* MaktabahNativeRoutingComposition.swift */,
 				9DBFB4BB6059F173573A2F20 /* MaktabahNativeRoutingHost.swift */,
 				348F3CE98841B091C9694605 /* MaktabahNativeSceneBindings.swift */,
@@ -4057,6 +4147,8 @@
 				B8B0F4BF32E70713AE17DB39 /* HanlinPresentationKit */,
 				D8320A0FB8BA35EB57884C8B /* HanlinRichUI */,
 				AB1C35328B7CAAA7507D9019 /* HanlinPlatformContracts */,
+				976C5031FA42A812F1702310 /* HanlinMiniAppsPicker */,
+				7413321BE558BC1F71A54B4B /* HanlinMiniAppsBridge */,
 				051C43E6363E71B6FF327F74 /* ChavrusaUIRoutingHost */,
 				BF8626D7580C7BB2D53851F8 /* CommandPalette */,
 				B20000000000000000000001 /* AnchoredPopup */,
@@ -4072,6 +4164,27 @@
 			productReference = F305776F2FA46222005732C6 /* Maktabah.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9A7A8DF8CEC43F196DDCD80A /* Maktabah-iOSNativeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBD4D979230621127E6D45EC /* Build configuration list for PBXNativeTarget "Maktabah-iOSNativeTests" */;
+			buildPhases = (
+				8E031407F5B8C0AA54243A7C /* Sources */,
+				091DEDAE2623080B2ECBDAC7 /* Frameworks */,
+				81351E17F8BFC73A4578F286 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CF544876DB8F90978BF73042 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DB44B80150B4C113F2D62723 /* Maktabah-iOSNativeTests */,
+			);
+			name = "Maktabah-iOSNativeTests";
+			productName = "Maktabah-iOSNativeTests";
+			productReference = DA0739AC20CFFFFFB5B5B372 /* Maktabah-iOSNativeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -4082,6 +4195,10 @@
 				LastSwiftUpdateCheck = 2630;
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
+					9A7A8DF8CEC43F196DDCD80A = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = F30576DD2FA46222005732C6;
+					};
 					F30578012FA46222005732C6 = {
 						CreatedOnToolsVersion = 26.3;
 						TestTargetID = F30576DD2FA46222005732C6;
@@ -4122,6 +4239,7 @@
 				029CD78E719D2D8F539F1C85 /* Original HanlinAgentSDK */,
 				7E52A289619B444249DD5758 /* Original HanlinPresentationSDK */,
 				8B664D33DF7899B0EDCAB128 /* Original HanlinPlatform */,
+				4123546A4003B96EC4740932 /* HanlinMiniAppsBridge package */,
 				E10A0780E847BB0F646D6289 /* ChavrusaUIRoutingHost */,
 				66370DCD8947589AD0EB9BEB /* CommandPalette source fork */,
 				B10000000000000000000001 /* XCRemoteSwiftPackageReference "AnchoredPopup" */,
@@ -4144,6 +4262,7 @@
 				A4F8961C86444956FF410500 /* MaktabahWidgetExtension */,
 				4BD8A4E6307E521A00E04BCB /* MaktabahTests */,
 				F30578012FA46222005732C6 /* Maktabah-iOSUITests */,
+				9A7A8DF8CEC43F196DDCD80A /* Maktabah-iOSNativeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -4250,6 +4369,8 @@
 		F305774A2FA46222005732C6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
+				79DA4EE26773BE98954F6D4E /* AnnotationBackfill.xcstrings in Resources */,
+				8E9E57F25E72945C19008FCD /* OriginalAnnotationEditor.xcstrings in Resources */,
 				1A92E5A3C0E241A340657AD4 /* ThirdPartyNotices in Resources */,
 				DAF100000000000000000004 /* miniTest10.profile.json in Resources */,
 				E5A100000000000000000001 /* dictionary.json in Resources */,
@@ -4267,6 +4388,13 @@
 				F30577662FA46222005732C6 /* Localizable.xcstrings in Resources */,
 				F3A775592FB2288E00C82F7B /* GoogleService-Info.plist in Resources */,
 			);
+		};
+		81351E17F8BFC73A4578F286 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
@@ -4327,6 +4455,8 @@
 		4B3202242EDAFE85003B95D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				9E22D6A1FD6AA0272AD19518 /* AnnotationExchangeIdentity.swift in Sources */,
+				1C53D5E01559154000EB3E70 /* AnnotationBackfillPlanner.swift in Sources */,
 				4C4E1E4F9DC2F168D2260AC8 /* AnnotationExchangeLedger.swift in Sources */,
 				C4D9F799C43B95EC13DAFE68 /* AnnotationLocalEditorModels.swift in Sources */,
 				339269F3BD193BCD1D8B9A27 /* AnnotationLocalEditorPersistence.swift in Sources */,
@@ -4686,6 +4816,8 @@
 		4B7C90A52F83494200454BE1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				1A6FD5E39DE86FB5FCEDDD56 /* AnnotationExchangeIdentity.swift in Sources */,
+				BEC609C5EB684427BF4F9F86 /* AnnotationBackfillPlanner.swift in Sources */,
 				7CFE6AEF1FAFD68BFCEEC502 /* AnnotationExchangeLedger.swift in Sources */,
 				FDFFEE666030424CBE21238A /* AnnotationLocalEditorModels.swift in Sources */,
 				9D6C002E3485E64BCFCAB334 /* AnnotationLocalEditorPersistence.swift in Sources */,
@@ -5050,10 +5182,22 @@
 		F30576E22FA46222005732C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				8D1A9D5FD552552489C1F551 /* AnnotationOriginalEditorReceive.swift in Sources */,
+				24DD71FD56C255F6E1ECDB6B /* AnnotationOriginalEditorRevision.swift in Sources */,
+				EC5D1D474E6FAF12EA1BBEF9 /* AnnotationOriginalEditorLifecycleUI.swift in Sources */,
+				CD52859F3FCCEF1D53B3EB3D /* AnnotationOriginalEditorLifecycle.swift in Sources */,
+				5AB7EAC38B502CB77986FF07 /* AnnotationExchangeIdentity.swift in Sources */,
+				A5733B9DAC7104C63B1536E6 /* AnnotationBackfillPlanner.swift in Sources */,
+				D75E8675ADC0DAF7C3E3358B /* AnnotationBackfillView.swift in Sources */,
+				9B0DE0028DA57DC37A84B004 /* AnnotationNativeBackfillSection.swift in Sources */,
+				BA7D9899102E1442A7D6170E /* AnnotationNativeBackfillModel.swift in Sources */,
+				8B407D0966F045C9C01630E5 /* AnnotationNativeBackfillCatalog.swift in Sources */,
 				0A5B8A034B694C2818E41C8A /* AnnotationOriginalEditorMount.swift in Sources */,
 				C618B79C91FD2056B24F707B /* AnnotationOriginalEditorQualification.swift in Sources */,
 				99F17897FA4D1681FA1511C9 /* AnnotationOriginalEditorSourceObservation.swift in Sources */,
+				C30699DF5D3EC650036888A0 /* AnnotationOriginalEditorImport.swift in Sources */,
 				072BBF47E208223DA5B0A671 /* AnnotationOriginalEditorQualificationUI.swift in Sources */,
+				A23C88CD6F7976C532E4814B /* AnnotationOriginalEditorProductionUI.swift in Sources */,
 				D238792D20CAE8596B84D69F /* AnnotationExchangeLedger.swift in Sources */,
 				AB467DB193BB97E635A4C008 /* AnnotationLocalEditorModels.swift in Sources */,
 				2A81EE6B3B2514B9F4773658 /* AnnotationLocalEditorPersistence.swift in Sources */,
@@ -5068,6 +5212,10 @@
 				4ABF24C49DF9D33D87252086 /* OtzariaHanlinChatSession.swift in Sources */,
 				6D1791650F3AFF85633314E5 /* OtzariaHanlinChatView.swift in Sources */,
 				BB72DD22574E9AAA36CB64FB /* OtzariaHanlinConversationStore.swift in Sources */,
+				3865C0F9E0544C8295042E32 /* OtzariaMiniAppsReceiptJournal.swift in Sources */,
+				90B385F55E383935BEAEF25F /* OtzariaMiniAppsCoordinator.swift in Sources */,
+				271517033AF3F4DB5556A1C9 /* OtzariaMiniAppsPersistence.swift in Sources */,
+				A8D0FDD98E7AC822576830D0 /* OtzariaMiniAppsDocument.swift in Sources */,
 				00701EB57805E06E41C36D74 /* MaktabahNativeRoutingComposition.swift in Sources */,
 				BE73D8D2D661A23C82874079 /* MaktabahNativeRoutingHost.swift in Sources */,
 				272FA036D80429868E339D38 /* MaktabahNativeSceneBindings.swift in Sources */,
@@ -5520,6 +5668,8 @@
 				787A9AEC7A9398F138252E9C /* OtzariaReaderView.swift in Sources */,
 				2D0B7588E02BE6DBD24FD9FA /* OtzariaReaderViewModel.swift in Sources */,
 				4BA53F87DF4E66AA1BC17794 /* OtzariaReaderSettingsView.swift in Sources */,
+				50B07E421622872DA685E651 /* OtzariaLibraryUpdateView.swift in Sources */,
+				0A6BFA2742548CFA6497577C /* OtzariaLibraryUpdatePolicy.swift in Sources */,
 				06CAE0E23AF1937A55069845 /* OtzariaSourcesView.swift in Sources */,
 				E131AD45E50201736AF9830D /* OtzariaSourcesViewModel.swift in Sources */,
 				6ED48EDF05F87545909DA4D1 /* OtzariaNavigationAdapter.swift in Sources */,
@@ -5603,6 +5753,13 @@
 				0D322D1D9F633A1AFE401074 /* OtzariaExactOccurrenceModels.swift in Sources */,
 			);
 		};
+		8E031407F5B8C0AA54243A7C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -5631,6 +5788,11 @@
 			isa = PBXTargetDependency;
 			target = A4F8961C86444956FF410500 /* MaktabahWidgetExtension */;
 			targetProxy = F3E054FB3042765900647936 /* PBXContainerItemProxy */;
+		};
+		CF544876DB8F90978BF73042 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F30576DD2FA46222005732C6 /* Maktabah-iOS */;
+			targetProxy = 9C01A559722E3DAD707EB015 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -6437,6 +6599,94 @@
 			};
 			name = Release;
 		};
+		F47AEF17D4EACBE870FB9727 /* Debug configuration for PBXNativeTarget "Maktabah-iOSNativeTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NA6HPWARQ2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILT_PRODUCTS_DIR)/Maktabah.app/Frameworks",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					AnytypeOriginalEditor,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.davidpovarsky.chavrusatext.Maktabah-iOSNativeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Maktabah.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Maktabah";
+				TEST_TARGET_NAME = "Maktabah-iOS";
+				USES_XCTEST = YES;
+			};
+			name = Debug;
+		};
+		576AEAC83488884DEEAEE06A /* Release configuration for PBXNativeTarget "Maktabah-iOSNativeTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NA6HPWARQ2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILT_PRODUCTS_DIR)/Maktabah.app/Frameworks",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					AnytypeOriginalEditor,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.davidpovarsky.chavrusatext.Maktabah-iOSNativeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Maktabah.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Maktabah";
+				TEST_TARGET_NAME = "Maktabah-iOS";
+				USES_XCTEST = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -6496,9 +6746,19 @@
 			);
 			defaultConfigurationName = Release;
 		};
+		EBD4D979230621127E6D45EC /* Build configuration list for PBXNativeTarget "Maktabah-iOSNativeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F47AEF17D4EACBE870FB9727 /* Debug configuration for PBXNativeTarget "Maktabah-iOSNativeTests" */,
+				576AEAC83488884DEEAEE06A /* Release configuration for PBXNativeTarget "Maktabah-iOSNativeTests" */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
+		4123546A4003B96EC4740932 /* HanlinMiniAppsBridge package */ = {isa = XCLocalSwiftPackageReference; relativePath = Vendor/HanlinSDK/Packages/HanlinMiniAppsBridge; };
         66370DCD8947589AD0EB9BEB /* CommandPalette source fork */ = {
             isa = XCLocalSwiftPackageReference;
             relativePath = Source/ChavrusaText/Dependencies/CommandPalette;
@@ -6582,6 +6842,8 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		976C5031FA42A812F1702310 /* HanlinMiniAppsPicker */ = {isa = XCSwiftPackageProductDependency; package = 4123546A4003B96EC4740932; productName = HanlinMiniAppsPicker; };
+		7413321BE558BC1F71A54B4B /* HanlinMiniAppsBridge */ = {isa = XCSwiftPackageProductDependency; package = 4123546A4003B96EC4740932; productName = HanlinMiniAppsBridge; };
 		B20000000000000000000001 /* AnchoredPopup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B10000000000000000000001 /* XCRemoteSwiftPackageReference "AnchoredPopup" */;

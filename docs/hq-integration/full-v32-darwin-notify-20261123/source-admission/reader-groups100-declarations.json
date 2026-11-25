@@ -1,0 +1,13 @@
+{
+  "suites": [
+    {
+      "suite": "StudyGroupStressNativeAcceptanceTests",
+      "selection": "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+      "expected": [
+        "testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    }
+  ],
+  "status": "DECLARATIONS_MATCH"
+}

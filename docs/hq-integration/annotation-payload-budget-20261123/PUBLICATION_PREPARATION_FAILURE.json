@@ -1,0 +1,7 @@
+{
+  "stage": "git_add_before_first_commit",
+  "reason": "New owned test directory was outside current sparse patterns",
+  "source_or_test_execution_changed": false,
+  "remedy": "Persisted only Tests/HQ/annotation-payload-budget in this owned sparse checkout; retained earlier actual evidence",
+  "recorded_at": "2026-11-23T08:58:12.726590+00:00"
+}

@@ -1,0 +1,46 @@
+{
+  "files": [
+    {
+      "bytes": 70406,
+      "command": [
+        "/usr/bin/time",
+        "-lp",
+        "xcrun",
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "/Users/m1/builds/maktabah-ordinary-network-source-20261125/ProductionAnnotationEditorAcceptanceTests.swift"
+      ],
+      "name": "ProductionAnnotationEditorAcceptanceTests.swift",
+      "returncode": 0,
+      "sha256": "84c6085b3d38307c46ac96c5245e27fa959754949445885d4489d11fb5f63d29",
+      "stderr": "real 0.08\nuser 0.05\nsys 0.02\n            42074112  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                3336  page reclaims\n                 131  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  29  involuntary context switches\n           549256502  instructions retired\n           170914754  cycles elapsed\n             9585096  peak memory footprint\n",
+      "stdout": ""
+    },
+    {
+      "bytes": 32567,
+      "command": [
+        "/usr/bin/time",
+        "-lp",
+        "xcrun",
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "/Users/m1/builds/maktabah-ordinary-network-source-20261125/OriginalAnnotationBatchNativeAcceptanceTests.swift"
+      ],
+      "name": "OriginalAnnotationBatchNativeAcceptanceTests.swift",
+      "returncode": 0,
+      "sha256": "1ed5943902598f5e694e680924eeebbf17310d921134a02d7fefce90a672ecc3",
+      "stderr": "real 0.04\nuser 0.03\nsys 0.00\n            42041344  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                3331  page reclaims\n                 132  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  20  involuntary context switches\n           536067769  instructions retired\n           142033772  cycles elapsed\n             9486792  peak memory footprint\n",
+      "stdout": ""
+    }
+  ],
+  "free_after": 10419855360,
+  "free_before": 10419986432,
+  "native_engine_executed": 0,
+  "scope": "REAL_APPLE_SWIFT_SYNTAX_ONLY",
+  "simulator_executed": 0,
+  "status": "APPLE_SYNTAX_PASS_NOT_TYPED_OR_EXECUTED",
+  "time_utc": "2026-11-25T06:49:28.221092+00:00",
+  "xctest_executed": 0
+}

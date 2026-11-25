@@ -11,7 +11,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[2]
 SUBMODULE = ROOT / "Vendor/HanlinSDK"
 URL = "https://github.com/davidpovarsky/hanlin-ai.git"
-PACKAGES = ("Packages/HanlinAgentSDK", "Packages/HanlinPlatform", "Packages/HanlinPresentationSDK")
+PACKAGES = ("Packages/HanlinAgentSDK", "Packages/HanlinPlatform", "Packages/HanlinPresentationSDK", "Packages/HanlinMiniAppsBridge")
 
 
 def command(args, cwd=ROOT):

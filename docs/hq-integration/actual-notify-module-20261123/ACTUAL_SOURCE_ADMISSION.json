@@ -1,0 +1,20 @@
+{
+  "checkout_sha": "a85e35846804cfef26e1449c57671c319773140d",
+  "inputs": [
+    {
+      "bytes": 10936,
+      "path": "Scripts/CI/select-runtime27-toolchain.py",
+      "sha256": "3e6ed97188d50f4f344dbd7f77f142a05f0a0bde1b720a0745df098f49bfcf2f"
+    },
+    {
+      "bytes": 14360,
+      "path": "Scripts/CI/darwin-notify-sdk-probe.py",
+      "sha256": "613254164591bd77d0ba543cf714aba1ef553709721682b900b74bb1f371c5d7"
+    },
+    {
+      "bytes": 1538,
+      "path": ".github/workflows/otzaria-darwin-notify-sdk-probe.yml",
+      "sha256": "91e70e558df20d398c84b5e5464b056bda37176de9a058c192e15b83f799f534"
+    }
+  ]
+}

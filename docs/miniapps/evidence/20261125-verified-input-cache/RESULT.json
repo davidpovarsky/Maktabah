@@ -1,0 +1,10 @@
+{
+  "control_count": 8,
+  "exit_code": 0,
+  "helper_sha256": "b22b44425f4361cbe5b8fcb8c06fe4ad8a92b6e5782a4cd53ee0b973f8de60ac",
+  "native_app_tests": 0,
+  "status": "PASS",
+  "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.153s\n\nOK\n",
+  "stdout": "",
+  "test_sha256": "fb0d89e8777b7b4f5cb523b58a6353165ab4d39d9b7fa85ca45057cbfb6adbff"
+}

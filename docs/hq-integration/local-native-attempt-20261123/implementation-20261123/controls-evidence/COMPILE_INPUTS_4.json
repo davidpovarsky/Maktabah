@@ -1,0 +1,62 @@
+[
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/AnnotationExchangeLedger.swift",
+    "bytes": 62736,
+    "sha256": "c961ed6c51a1344a19951ed2239626bfbf512707a52f841d27258633b847b4f6"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/AnnotationLocalEditorCloudOwnership.swift",
+    "bytes": 14853,
+    "sha256": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/AnnotationLocalEditorModels.swift",
+    "bytes": 3885,
+    "sha256": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/AnnotationLocalEditorPersistence.swift",
+    "bytes": 56888,
+    "sha256": "971b28da430bb9334aa151e04d9014af462732d81fac3f726019ada3ecba930b"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/AnnotationLocalEditorSession.swift",
+    "bytes": 13345,
+    "sha256": "4335d52759540beb7fd594dc1808b09981584f09e3bf7899349f6a3c2d146d63"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/BudgetOpenSSLDigest.swift",
+    "bytes": 739,
+    "sha256": "103513498af5fe88cadd353b8c6219f5c54f1065e07168c4d3dadfcd8e04be3c"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/SQLiteDatabase.swift",
+    "bytes": 14916,
+    "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/SyncPendingStore.swift",
+    "bytes": 3534,
+    "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/TorahAnnotationEnvelope.swift",
+    "bytes": 10075,
+    "sha256": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29"
+  },
+  {
+    "path": "/mnt/development/projects/worktrees/Maktabah-local-native-attempt-20261123/docs/hq-integration/local-native-attempt-20261123/controls/NativeAttemptControlSupport.swift",
+    "bytes": 8739,
+    "sha256": "71c018d7446f06e9bd68ad52c8195b882ed006bfcc4f0da8cc891aa3af7b3547"
+  },
+  {
+    "path": "/mnt/development/projects/worktrees/Maktabah-local-native-attempt-20261123/docs/hq-integration/local-native-attempt-20261123/controls/NativeAttemptControls.swift",
+    "bytes": 29877,
+    "sha256": "9d328a5ec308b1ba95a96056e426985a36f1bc1d9b8070c8950e26d27eb03a70"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Products/Debug-linux-aarch64/OtzariaActionCore.o",
+    "bytes": 6552048,
+    "sha256": "9d0ee25f3f7c59d59c204d70e10b6067b20c7d53d2988554c834622ecfeeddee"
+  }
+]

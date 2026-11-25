@@ -1,0 +1,37 @@
+{
+  "schema": "otzaria.groups100.point-interaction-source/1",
+  "base": "2ef81ac195c002863486e473dad95f336f3e1675",
+  "sourcePath": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "sourceSHA256": "96a58eca04196c10423ca663bd8e6a6ea43cbd6aadd1bcdf7dcce88ac7ca03ee",
+  "approvedDiffSHA256": "62271d1b3073707a28f371ff5253f399ecf51a1aa59accdf710c40e142aa4989",
+  "actualFailedRun": 45124554050,
+  "actualFailedSource": "482b8ac3ef2935ee1127da529e5d0848efb0e2f1",
+  "actualFailedSnapshotSHA256": "beedf997d6b8f8ac3286309011c0425bb0f856417144e16f0a817d99253b63f8",
+  "appSourceUnchanged": true,
+  "noToleranceOrRounding": true,
+  "originalRequestedTapUnchanged": true,
+  "all100TransitionsAndColdRestoreRetained": true,
+  "wholeParentVisualAcceptanceNotClaimed": true,
+  "syntaxOnly": {
+    "command": [
+      "/usr/local/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/mnt/development/projects/worktrees/Maktabah-reader-groups100-point-20261123/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+    ],
+    "exit": 0,
+    "nativeAPITypecheck": false
+  },
+  "nativeExecution": false,
+  "priorThreePassesNotReplayed": true,
+  "retainedEvidence": {
+    "READER4_ACTUAL_INTAKE.json": "5b600930e90d1162850fd381d9f6ef23f8ad7b9eb531e6963f80b62b659bc38d",
+    "GROUPS100_ACTUAL_FAILURE.json": "5b3b0a262aa1f76da1b93f8c85c607a9c9f4173bfb8bc95ea2d9ae11b1742d35",
+    "GROUPS100_SELECTED_MEDIA.json": "7c54912379c85960436041388fd5223930d61189a1d99bf40b44be3bc26e399d",
+    "ORIGINAL_FAILING_SNAPSHOT.json": "beedf997d6b8f8ac3286309011c0425bb0f856417144e16f0a817d99253b63f8",
+    "APPROVED_INTERACTION.diff": "62271d1b3073707a28f371ff5253f399ecf51a1aa59accdf710c40e142aa4989",
+    "APPROVED_PROPOSAL.json": "956aabfafbea449d506e69f89550b8b05d43b0deb5ffd9221b94989724484611"
+  }
+}

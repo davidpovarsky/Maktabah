@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "status": "AUTHENTIC_EXPORTED_PRODUCT_CLOSURE_VERIFIED",
+  "run_id": "45314121139",
+  "artifact_id": 14886269836,
+  "artifact_sha256": "b6ca5cf82ace691d75da98fd53ffc13aaa89b10bb44f695f6f426f628f7d658c",
+  "archive_sha256": "412a25ba4c228b18fe1a714276159212981519fc661d577fe41f710c8724fc3c",
+  "archive_bytes": 94766521,
+  "verified_entries": 917,
+  "verified_symlinks": 0,
+  "verified_original_test_references": [
+    "Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app",
+    "Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest",
+    "Debug-iphonesimulator/Maktabah.app"
+  ],
+  "checkout_sha": "34d4201abe35fdedd1bd74e1009469edf791445b",
+  "app_source_unchanged": true,
+  "changed_ui_source_requires_actual_compile": true,
+  "native_ui_status": "EXECUTED_FAIL_BEFORE_FIRST_INVOCATION",
+  "native_tests": {
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0
+  },
+  "binary_reuse_executed": false,
+  "test_failure": {
+    "test_identifier": "MiniAppsAnnotationAcceptanceTests/testOriginalNoteReturnsTextFromActualMiniAppsAndPersistsAfterRelaunch",
+    "line": 476,
+    "error": "XCTAssertEqual failed: (3) is not equal to (1)",
+    "stage": "original reader popup, before any MiniApps invocation",
+    "new_requests": 0,
+    "new_callback_receipts": 0
+  },
+  "correction": {
+    "source": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift",
+    "helper": "openAnnotations",
+    "native_query": "app.collectionViews.cells.buttons",
+    "precedent": "FaithfulReaderUIAcceptanceTests.selectStudyGroup",
+    "retained_assertions": [
+      "unique exact Annotations action",
+      "hittable actual popup cell",
+      "original Annotations navigation title",
+      "original-book-annotations-list loaded"
+    ],
+    "app_source_changed": false,
+    "peer_review": "Anytype consumer: no concrete selector/API blocker; read only, no tests"
+  },
+  "capture_artifact": {
+    "id": 14886319831,
+    "bytes": 50635475,
+    "sha256": "998f1e8f790afdb34b2471df76667927e5ab182d80f418486336dcd0c9d10edf",
+    "video_member": "visual-miniapps/FF118A00-C9A5-450F-B5CE-DB1C5070E8A4.mp4",
+    "observed_frame_seconds": 59.47
+  },
+  "native_scope_pending": [
+    "original annotation warm callback",
+    "actual callback into terminated source app",
+    "original reader text selection creates linked note without corpus edit"
+  ],
+  "existing_derived_data_cache": {
+    "actual_restore_status": "PASS",
+    "original_run": "45314121139",
+    "key": "runtime27-derived-v2-6dc55339a400b7c2d3af1e7b678a512d830f56b9c628eb536a1f3a57b49d19e5-b273d226f342c6d2c7246c5ede16203c04918f38e5706ff5c7f604e8470ac982",
+    "new_ui_source_compile_required": true,
+    "new_native_execution_required": true
+  }
+}

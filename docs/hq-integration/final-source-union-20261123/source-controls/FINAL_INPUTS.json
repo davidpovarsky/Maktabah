@@ -1,0 +1,35 @@
+{
+  "11_other_controls_retained_by_same_inputs_and_exact_driver_AST": true,
+  "application_product_source": "7d5510dd29af2b66d740de136352916868c341ed",
+  "at_utc": "2026-11-23T21:13:10.986996+00:00",
+  "command": [
+    "sudo",
+    "-u",
+    "ubuntu",
+    "-H",
+    "python3",
+    "-B",
+    "Scripts/CI/test_final_source_composition.py",
+    "FinalCompositionControls.test_reader_bindings_keep_original_selectors_release_and_historical_provenance",
+    "-v"
+  ],
+  "driver_after_sha256": "59a57c0c764de306f5d896d5cb345dedadb82fc6fec73966afe7d707a05fd249",
+  "driver_ast_identical": true,
+  "driver_before_sha256": "3b52ba321b73003332784d7c0aaff31fb48e6e246dfa3ea2030484e88d73ecac",
+  "earlier_12_control_receipt_sha256": "a038c85904b51e24c6280f02e2a64cf77937ab7f291200590241100b1f83adfa",
+  "inputs": {
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "671dea22d5654c34de5e15d2dd39054cf24f94b3a50faf5a0f9cf74d6a13b323",
+    "Scripts/CI/library-morph-focused-native.inputs.json": "169a58afa943765b2083ddc404ecb348eba579966edd675c883821220f29f2fd",
+    "Scripts/CI/reader-full-v32-ui-observation.inputs.json": "fcc3558e531de98dbb4e6c2e08e530ba15a1cdac93ee5fca0eb669bf05214fc6",
+    "Scripts/CI/reader-groups100-focused-native.inputs.json": "4a9401cea7b8f6e5a035caaf6aa40458d9d3ffa2f9a30777a58778b5a3e39401",
+    "Scripts/CI/runtime27-final-source-composition.inputs.json": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0",
+    "Scripts/CI/runtime27-original-editor-native.py": "59a57c0c764de306f5d896d5cb345dedadb82fc6fec73966afe7d707a05fd249",
+    "Scripts/CI/test_final_source_composition.py": "1b0acf75556fab6c9f0980657142412b3b47b9db2cba1989fe6c3fc70166ab1f"
+  },
+  "log_sha256": "669d694bb7a0fbacda263cd2eff4d0f03b23ae32d63e7c414e5e7034d1997463",
+  "logical_controls": 12,
+  "native_executed": 0,
+  "returncode": 0,
+  "scope": "Final manifest serialization/hash refresh only; actual changed Reader binding control executed once after JSON field order preservation",
+  "status": "PASS"
+}

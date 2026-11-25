@@ -1,0 +1,27 @@
+--- a/Scripts/CI/hq-original-editor-app-target.rb
++++ b/Scripts/CI/hq-original-editor-app-target.rb
+@@ -95,6 +95,16 @@
+ 
+ begin
+   expected_settings = Marshal.load(Marshal.dump(settings))
++  # Xcodeproj 1.28.1 serializes these two observed array settings as strings.
++  # Preserve their exact tokens and compare the complete saved settings hash.
++  serialized_array_setting_tokens = {}
++  ['OTHER_SWIFT_FLAGS', 'SWIFT_INCLUDE_PATHS'].each do |key|
++    value = expected_settings[key]
++    next unless value.is_a?(Array)
++    raise "Non-string token in serialized app setting: #{key}" unless value.all? { |token| token.is_a?(String) }
++    serialized_array_setting_tokens[key] = value.dup
++    expected_settings[key] = value.join(' ')
++  end
+   project.save
+   after = Xcodeproj::Plist.read_from_path(project_file)
+   old_objects, new_objects = before.fetch('objects'), after.fetch('objects')
+@@ -117,6 +127,7 @@
+     'before_project_sha256' => Digest::SHA256.hexdigest(original_bytes),
+     'after_project_sha256' => Digest::SHA256.file(project_file).hexdigest,
+     'original_build_settings' => old_config.fetch('buildSettings'), 'app_build_settings' => expected_settings,
++    'serialized_array_setting_tokens' => serialized_array_setting_tokens,
+     'global_xcconfig' => false, 'codesign_on_copy' => false, 'remove_headers_on_copy' => false
+   }
+   File.write(receipt_file, JSON.pretty_generate(result) + "\n")

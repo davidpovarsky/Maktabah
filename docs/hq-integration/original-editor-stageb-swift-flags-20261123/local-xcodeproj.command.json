@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "ruby",
+    "-e",
+    "require \"json\"; begin; require \"xcodeproj\"; puts JSON.generate({ruby:RUBY_DESCRIPTION,xcodeproj:Xcodeproj::VERSION}); rescue LoadError => e; warn e.full_message; exit 3; end"
+  ],
+  "exit": 1,
+  "scope": "Existing dependency availability only; no install or project mutation",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "4ecc78456db18a65c3b289f59875d6aebf2957e7f6a8433172c3ef0eed4bc9f0"
+}

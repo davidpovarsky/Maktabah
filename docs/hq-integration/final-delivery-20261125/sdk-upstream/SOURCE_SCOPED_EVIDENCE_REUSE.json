@@ -1,0 +1,63 @@
+{
+  "limits": [
+    "The native proof is bound to 50426b50, not the final still-changing Heart graph.",
+    "Readiness is actual Apple typecheck, not live bootstrap or final SDK ABI/build qualification.",
+    "Private peer repositories and credential material were neither copied nor inspected."
+  ],
+  "proofs": [
+    {
+      "all_manifest_files_verified": 11,
+      "archive": "REMOTE_CAS_PUBLIC_EVIDENCE.tar.gz",
+      "archive_bytes": 24390,
+      "archive_file_count": 12,
+      "archive_sha256": "b26012263d46bb433adf4923f394278c5fba313e098fc262148fd7d5edbea1fd",
+      "embedded_manifest_byte_identical": true,
+      "manifest_sha256": "6c2300fcd94dd4f7f8f7d4dfceb3733d6990bfa69ce2be2ba4a9b9fe9085439c",
+      "observed_scope": {
+        "cold_reopen_processes": 2,
+        "final_changed_native_source_qualified": false,
+        "final_root_sha256": "68a3aeaf9d700d6501750b6fe14ef03904b9d8b463ce056c89e893d71ef45fdc",
+        "harness_source": "d436092383e2a9289760d039571c095060d262d9",
+        "independent_original_network_peer_processes": 2,
+        "native_source": "50426b5010576f6467b5a7baca0fe897447b41dd",
+        "ordinary_UI": false,
+        "same_physical_machine": true,
+        "sentinel_job": "job_7b2ad6b09e9d",
+        "six_original_restriction_controls": true
+      },
+      "proof_commit": "8645b503dc5467501155a1c9a0dc32a73703725d",
+      "proof_directory": "docs/pinkha/torah-integration/original-network-revision-20261125/archive-cas-continuation/actual-acceptance",
+      "repository": "https://github.com/davidpovarsky/anytype-swift",
+      "result_sha256": "65eae860fcef359263d5193862f035c33e728b2b2dd1bdf0637349b74d33c46a",
+      "url": "https://github.com/davidpovarsky/anytype-swift/tree/8645b503dc5467501155a1c9a0dc32a73703725d/docs/pinkha/torah-integration/original-network-revision-20261125/archive-cas-continuation/actual-acceptance"
+    },
+    {
+      "all_manifest_files_verified": 42,
+      "archive": "APPLE_TYPING_EVIDENCE.tar.gz",
+      "archive_bytes": 824031,
+      "archive_file_count": 43,
+      "archive_sha256": "fa4475c6b3f120a0122d167e7b96e7b0b62ad6ed4cf86541c0588f7b96bda673",
+      "embedded_manifest_byte_identical": true,
+      "manifest_sha256": "c945ed01253ef8a7bdf8003c00ca6fe31c71723072484c131d92a92d843657b6",
+      "observed_scope": {
+        "context_sources": 2281,
+        "elapsed_seconds": 2.689,
+        "full_sdk_product_built": false,
+        "primary": "OriginalEditorFramework/AnytypeOriginalEditorAccountSession.swift",
+        "runtime_tests_executed": 0,
+        "sentinel_job": "job_92bea857440c",
+        "source": "f8a3984aaeb927dd60668db6f187459db0051a9c",
+        "target": "arm64-apple-ios27.0-simulator"
+      },
+      "proof_commit": "03305509bbb5757fc5ec13cb6e7a14f1e5f8e092",
+      "proof_directory": "docs/pinkha/torah-integration/account-bootstrap-readiness-20261125/apple-typecheck",
+      "repository": "https://github.com/davidpovarsky/anytype-swift",
+      "result_sha256": "bd97a085b6072fcccc933d0002cb6daa5a86271a3831c8b5dcf46acce1918218",
+      "url": "https://github.com/davidpovarsky/anytype-swift/tree/03305509bbb5757fc5ec13cb6e7a14f1e5f8e092/docs/pinkha/torah-integration/account-bootstrap-readiness-20261125/apple-typecheck"
+    }
+  ],
+  "schema": "otzaria.source-scoped-upstream-evidence-reuse/1",
+  "status": "PUBLISHED_ARCHIVES_AND_SCOPED_RESULTS_VERIFIED",
+  "tests_rerun": 0,
+  "verified_utc": "2026-11-25T07:40:17.537988+00:00"
+}

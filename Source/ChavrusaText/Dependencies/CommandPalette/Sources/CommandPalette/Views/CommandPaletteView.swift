@@ -19,6 +19,8 @@ public struct CommandPaletteView: View {
     private let commands: [Command]
     private let placeholder: String
     private let autofocus: Bool
+    private let isActive: Bool
+    private let drawsSurface: Bool
     private let queryBinding: Binding<String>?
     private let onDismiss: () -> Void
 
@@ -39,6 +41,8 @@ public struct CommandPaletteView: View {
     ///   - initialQuery: Text already in the search field, for example to restore a search.
     ///   - initialSelection: The id of the command selected first; the first command when `nil`.
     ///   - autofocus: Puts the cursor in the search field when the palette appears.
+    ///   - isActive: Whether a retained palette may focus, receive input, or expose accessibility children.
+    ///   - drawsSurface: Uses the original background and shadow; disable only when an outer host owns that surface.
     ///   - onDismiss: Called when the palette should close: after ⎋ and before a command runs.
     public init(
         commands: [Command],
@@ -47,6 +51,8 @@ public struct CommandPaletteView: View {
         initialQuery: String = "",
         initialSelection: Command.ID? = nil,
         autofocus: Bool = true,
+        isActive: Bool = true,
+        drawsSurface: Bool = true,
         queryBinding: Binding<String>? = nil,
         onDismiss: @escaping () -> Void = {}
     ) {
@@ -54,6 +60,8 @@ public struct CommandPaletteView: View {
         self.commands = commands
         self.placeholder = placeholder
         self.autofocus = autofocus
+        self.isActive = isActive
+        self.drawsSurface = drawsSurface
         self.queryBinding = queryBinding
         self.onDismiss = onDismiss
         self._recents = ObservedObject(wrappedValue: store)
@@ -78,13 +86,17 @@ public struct CommandPaletteView: View {
             footer
         }
         .frame(maxWidth: 640)
-        .paletteBackground(cornerRadius: 22)
-        .shadow(color: .black.opacity(0.22), radius: 30, y: 14)
-        .task {
-            // After the palette is on screen; focus set during the first layout can be lost.
-            if autofocus {
-                isSearchFieldFocused = true
-            }
+        .modifier(CommandPaletteSurface(isEnabled: drawsSurface))
+        .allowsHitTesting(isActive)
+        .accessibilityHidden(!isActive)
+        .task(id: isActive) {
+            // A morph host retains this view while collapsed. Cancelled opens
+            // must not reclaim keyboard focus after a rapid close.
+            guard isActive else { isSearchFieldFocused = false; return }
+            guard autofocus else { return }
+            await Task.yield()
+            guard !Task.isCancelled else { return }
+            isSearchFieldFocused = true
         }
         .onChange(of: queryBinding?.wrappedValue) { _, value in
             if let value, value != query { query = value }
@@ -98,7 +110,7 @@ public struct CommandPaletteView: View {
             selection.update(rows: makeRows(), keepingSelection: true)
         }
         #if os(macOS)
-        .onExitCommand(perform: onDismiss)
+        .onExitCommand { if isActive { onDismiss() } }
         #endif
         .accessibilityElement(children: .contain)
         .accessibilityLabel(Text("Command palette"))
@@ -114,7 +126,7 @@ public struct CommandPaletteView: View {
 
             #if os(iOS)
             PaletteSearchTextField(text: $query, placeholder: placeholder,
-                wantsFocus: isSearchFieldFocused,
+                wantsFocus: isActive && isSearchFieldFocused,
                 onFocusChange: { focused in
                     if isSearchFieldFocused != focused { isSearchFieldFocused = focused }
                 },
@@ -159,9 +171,9 @@ public struct CommandPaletteView: View {
             #if os(iOS)
             // The focused UIKit field owns Escape. Keep the scene shortcut
             // available when focus leaves that field, without two owners.
-            .keyboardShortcut(isSearchFieldFocused ? nil : KeyboardShortcut.cancelAction)
+            .keyboardShortcut(isActive && !isSearchFieldFocused ? KeyboardShortcut.cancelAction : nil)
             #else
-            .keyboardShortcut(.cancelAction)
+            .keyboardShortcut(isActive ? KeyboardShortcut.cancelAction : nil)
             #endif
             .accessibilityLabel(Text("Close command palette"))
             .accessibilityIdentifier("command-palette-close")
@@ -258,16 +270,34 @@ public struct CommandPaletteView: View {
     }
 
     private func runSelection() {
+        guard isActive else { return }
         guard let item = selection.selectedItem else { return }
         run(item)
     }
 
     /// Remembers the command, closes the palette, then runs the command.
     private func run(_ item: CommandPaletteItem) {
+        guard isActive else { return }
         let command = item.command
         recents.record(command)
         onDismiss()
         command.action()
+    }
+}
+
+
+private struct CommandPaletteSurface: ViewModifier {
+    let isEnabled: Bool
+
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if isEnabled {
+            content
+                .paletteBackground(cornerRadius: 22)
+                .shadow(color: .black.opacity(0.22), radius: 30, y: 14)
+        } else {
+            content
+        }
     }
 }
 

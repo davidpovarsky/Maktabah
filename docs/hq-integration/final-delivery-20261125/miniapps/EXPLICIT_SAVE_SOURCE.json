@@ -1,0 +1,37 @@
+{
+  "apple_ui_compile_job": "job_2ec641348939",
+  "apple_ui_compile_result_sha256": "37279d8bde07b9c1f629c4101ec6032e94fea2ff400cd66ed51ec64b130c914c",
+  "changes": [
+    {
+      "after_sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d",
+      "before_sha256": "d54a0f3adb317f8b1dcafb7a834045bb599d0eef238f44ed0597ceabcfaa19bb",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift"
+    },
+    {
+      "after_sha256": "b153094431f1c601b00c576b20c9ffb670eedb45187b8d31427a89e1f24257ae",
+      "before_sha256": "50ef9d2848d342b0ee58d7ffc13e826e5a3fc55f31d6f21805d59bd17333db4d",
+      "path": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift"
+    },
+    {
+      "after_sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce",
+      "before_sha256": "f8b94dd8a9ef110572feee250d49eba0373d145e9aedf05b3b6933c8715bb742",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/OriginalAnnotationEditor.xcstrings"
+    },
+    {
+      "after_sha256": "8bb3aa2ea75e7e47040985f88a5ab2ff47e21338f6be96e381dcc19da5afc881",
+      "before_sha256": "b51ce71977e618c8dde0f2bef3a53e4cc01df566ce17afcd0babae46fa7c8001",
+      "path": "Scripts/CI/ordinary-native-exchange-ui.py"
+    }
+  ],
+  "confirmation_anchor": "original bottom toolbar MiniApps button; separate from existing Discard dialog",
+  "incoming_miniapps_source": "a4b5e0baff8df837986c19c4befaf4db7bd1391f",
+  "independent_review": "editor_sync: both original triggers route through request, private launch only called by Confirm, Cancel/retire leave persistence/dispatch unchanged",
+  "integration_parent": "7f956284abf4c07d00a2db5c91187eaca7bfdcc6",
+  "native_or_ui_tests_executed": 0,
+  "new_bilingual_entries": 3,
+  "ordinary_save_CAS_receipt_ACK_modified": false,
+  "original_localized_entries_retained": 110,
+  "source_issue": "Native MiniApps button previously persisted the private draft before chooser/explicit Save; now both toolbar and original native action require an explicit Save confirmation",
+  "status": "SOURCE_WITH_APPLE_UI_COMPILE_PASS_RUNTIME_PENDING",
+  "whole_production_target_typechecked": false
+}

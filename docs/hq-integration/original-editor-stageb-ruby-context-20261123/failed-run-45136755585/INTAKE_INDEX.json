@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "source_sha": "8e9dac2d9585dd482e9ab784a65c5517b6847648",
+  "rows": [
+    {
+      "path": "DIAGNOSIS.md",
+      "bytes": 2458,
+      "sha256": "a6a82683632c1355d037d26f2c0da46dc67b5199864d9977462e9238101c9d54"
+    },
+    {
+      "path": "INTAKE.json",
+      "bytes": 13858,
+      "sha256": "ac294ec415ece884df83bb034d6bb60f57962ab1dccdcc2ce4f3458bb8de18d5"
+    },
+    {
+      "path": "RUBY_CONTEXT_REPAIR_PROPOSAL.md",
+      "bytes": 3936,
+      "sha256": "4b7ab0bf54166eeb2606231f9033ac51cd6e7f9636ce1267ad89fbaa217cf279"
+    },
+    {
+      "path": "ZIP_ADMISSION.json",
+      "bytes": 48331,
+      "sha256": "12a7bd74f3e3f25e99538204c3fe887ab7e8b0f68c2aca9cd57910743cf126a1"
+    },
+    {
+      "path": "artifact-download.command.json",
+      "bytes": 491,
+      "sha256": "0890bd7bc32c380a87ad614b71201f4367a5dec475a53c5f39cc73a387e53dd5"
+    },
+    {
+      "path": "artifacts.command.json",
+      "bytes": 524,
+      "sha256": "e947b475dd46c7337f234e274300f8d7f57d9ff5b4128da95c534d29e6eb5674"
+    },
+    {
+      "path": "artifacts.json",
+      "bytes": 833,
+      "sha256": "3160fdb6a3c83d904f867c9a47a3cb505e33ac408a131e024bdc07732dcd47bb"
+    },
+    {
+      "path": "jobs.command.json",
+      "bytes": 529,
+      "sha256": "0127a2bd315526ed5ec855d02971f05dfc79c94a052095833eb8bf607c84274e"
+    },
+    {
+      "path": "jobs.json",
+      "bytes": 4872,
+      "sha256": "763f36c2ddf33f123278e481acd41eec052893674df8151b75babea057115d27"
+    },
+    {
+      "path": "review/hq-stage2/generated-Maktabah-project.pbxproj",
+      "bytes": 620777,
+      "sha256": "155bda110d9eec18b1b88e00c07df70bf5d18bb25000678d8468c20a877892ec"
+    },
+    {
+      "path": "review/hq-stage2/original-editor-app-target.log",
+      "bytes": 372,
+      "sha256": "f8cdccdd9d5bd37ff41b582a3fbe911649698988c618815e99ee056a34b0aaec"
+    },
+    {
+      "path": "review/hq-stage2/original-editor/actual-exported-api.json",
+      "bytes": 292,
+      "sha256": "9e797fff6034717d5e6a983a14a55e53f9023ad79698900341b61228a8e91e99"
+    },
+    {
+      "path": "review/hq-stage2/original-editor/app-target-plan.json",
+      "bytes": 4262,
+      "sha256": "ca2370843ba8d6d6ad4495479e06a2c7906dce9fdba34a0325562a88876bfedb"
+    },
+    {
+      "path": "review/hq-stage2/original-editor/distribution-admission.json",
+      "bytes": 931443,
+      "sha256": "47775aab656d4aeca3bd730030c9a9d29a2b12b37f5c17d18a85b5a7d27ee138"
+    },
+    {
+      "path": "review/hq-stage2/original-editor/exported-api-typecheck.json",
+      "bytes": 7169,
+      "sha256": "401f06c22499bf0847b8bb74456174eadcb659bb33cac7927da17d88591418bd"
+    },
+    {
+      "path": "review/hq-stage2/pod-install.log",
+      "bytes": 31886,
+      "sha256": "703c9410b8378bcae05a76d247c00d7af194f559bd7ae6304232b8c1041342a9"
+    },
+    {
+      "path": "review/hq-stage2/resolved-Podfile.lock",
+      "bytes": 100298,
+      "sha256": "9a7f88b1d9ebbf4d14f8b6f1efd1fb2d15ac63983bf16ffd3e9ea011f9a55ce7"
+    },
+    {
+      "path": "review/hq-stage2/result.json",
+      "bytes": 89601,
+      "sha256": "67c41f0852653906d4205765e766a6913d1372d4dede32d800d45d9bda5d73e6"
+    },
+    {
+      "path": "review/original-editor-native-evidence/result.json",
+      "bytes": 64453,
+      "sha256": "7df1fa38b001dd961d044bc15346b3424ba2c447fb1f5aa5e6ecb9bedfc4508c"
+    },
+    {
+      "path": "review/original-editor-sdk-metadata/restoration.json",
+      "bytes": 5652,
+      "sha256": "a5dd87379d12e362cb8a31b0ca255eba755b755da44682a41e56ebbe2df922ba"
+    },
+    {
+      "path": "watch-1.result.json",
+      "bytes": 1183,
+      "sha256": "fff704ee3aee7374310ffaefd97a0d792293b8c3196be01fe96c05fdd0272b63"
+    },
+    {
+      "path": "watch-1.state.json",
+      "bytes": 1183,
+      "sha256": "fff704ee3aee7374310ffaefd97a0d792293b8c3196be01fe96c05fdd0272b63"
+    }
+  ]
+}

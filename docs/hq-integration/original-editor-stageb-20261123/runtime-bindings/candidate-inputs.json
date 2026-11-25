@@ -1,0 +1,141 @@
+{
+  "archive_bytes": 360785369,
+  "archive_path": "build/original-editor-sdk-input/framework.zip",
+  "archive_sha256": "6778bfeb8bf8ae7e0899e7fddf5a087e69fbe31772a719e9e82c6239d62a53e5",
+  "artifact_id": 14770225722,
+  "continuation_kind": "original-signed-consumer-runtime/1",
+  "distribution_manifest_path": "build/original-editor-sdk-input/framework-distribution.json",
+  "distribution_manifest_sha256": "a8a0cc7a872d90ec87688729465d5ed98bbde44ed34df9b016f098b983693e30",
+  "distribution_root": "build/original-editor-sdk-input/distribution",
+  "evidence_artifact": {
+    "id": 14768824831,
+    "name": "Otzaria-Original-Editor-Framework-Evidence-de63125b97cd5b91a1fa4f4b71d03738076e735f-45060396175-1",
+    "path": "build/original-editor-sdk-input/evidence.zip",
+    "sha256": "2bb23bc491564a8fb276ceeaafb57db4b500abf0a1ae03286676cf91d12b7df7",
+    "size_in_bytes": 15257642,
+    "upload_step": "Upload source-bound framework acceptance evidence"
+  },
+  "framework_artifact": {
+    "id": 14770225722,
+    "name": "Otzaria-Original-Editor-Unqualified-Producer-de63125b97cd5b91a1fa4f4b71d03738076e735f-45060396175-1",
+    "path": "build/original-editor-sdk-input/framework.zip",
+    "sha256": "6778bfeb8bf8ae7e0899e7fddf5a087e69fbe31772a719e9e82c6239d62a53e5",
+    "size_in_bytes": 360785369,
+    "upload_step": "Upload unqualified producer outputs without SDK acceptance"
+  },
+  "framework_producer": {
+    "actual_public_surface_canonical_sha256": "caea55751ea92f5188bf6588e3dd9b40ea33a92eb236b3fd4895231fb99d6a55",
+    "clang_manifest_sha256": "8d6ec0a2cfba4506c9d2f878bb81b105f6007c020e416f99d9ad36e2c4b4b469",
+    "consumer_source_sha256": "9aa9f4036de1f6d9b8c3b0f6670ac4008f1772535d8f8c5f958184a2cd262aff",
+    "evidence_artifact": {
+      "id": 14768824831,
+      "name": "Otzaria-Original-Editor-Framework-Evidence-de63125b97cd5b91a1fa4f4b71d03738076e735f-45060396175-1",
+      "sha256": "2bb23bc491564a8fb276ceeaafb57db4b500abf0a1ae03286676cf91d12b7df7",
+      "size_in_bytes": 15257642,
+      "upload_step": "Upload source-bound framework acceptance evidence"
+    },
+    "execution_canonical_sha256": "5433db38125e3fd7827cf2694e508c44796a7b48fe532222f0f847be54f214d7",
+    "failed_step": "Build the genuine framework and execute the separate binary consumer",
+    "framework_artifact": {
+      "id": 14770225722,
+      "name": "Otzaria-Original-Editor-Unqualified-Producer-de63125b97cd5b91a1fa4f4b71d03738076e735f-45060396175-1",
+      "sha256": "6778bfeb8bf8ae7e0899e7fddf5a087e69fbe31772a719e9e82c6239d62a53e5",
+      "size_in_bytes": 360785369,
+      "upload_step": "Upload unqualified producer outputs without SDK acceptance"
+    },
+    "head_branch": "codex/otzaria-original-editor-framework-v13-body-reviewed-20261122",
+    "inner_evidence_bytes": 15552079,
+    "inner_evidence_sha256": "81331f9bb69b1ad729b79e9f22869cb14d5b63bb8eaf73bf70aa9b8dd06a0f5e",
+    "job_id": 137324774911,
+    "job_name": "original-editor-framework",
+    "original_source_sha256": "f3d4b3f1a4d5f4fea8b5291cb652c2815e55c29706e2569f365facc88a2e14d1",
+    "repository": "davidpovarsky/anytype-swift",
+    "repository_id": 1289863025,
+    "required_steps": [
+      "Bind original app sources resources packages and the additive target",
+      "Prepare and verify the original SDK snapshot",
+      "Verify actual Xcode27 and create original owned OS27 simulators",
+      "Verify the recorded original Heart producer and exact binary slices"
+    ],
+    "retained_input_sha256": {
+      "actual-public-surface.json": "bbce02e926a61db6b31b5b0bd28023a31320976963e8da622e85c0eb97b43e90",
+      "execution.json": "2696d71cd24e93c079ae958dbce5378bf7980e894bdcb5b9d3550c022c1619f5",
+      "framework-distribution.json": "a8a0cc7a872d90ec87688729465d5ed98bbde44ed34df9b016f098b983693e30",
+      "independent-original-resource-oracles.json": "dd7adb9167ae717ab15c1698130ff3dedc3b288e1169a459a921a4d5d80d8e3f",
+      "original-hanlin-snapshot.json": "dea97aadcf0c925d7237d48f7ea00d52f02723d4274fd663a0e2607ed92fe12f",
+      "retained-source-controls-result.json": "ee253d2b8fa2a5292492d7e1fc09aa3a6b3b05dc90bbd4bb4c007fa6cbc5ba00",
+      "source-after.json": "6414c84b1863ae735d75bd9b84d8fa17fe7133ddd85a912f4b9c260cb30ce6ad",
+      "source-before.json": "6414c84b1863ae735d75bd9b84d8fa17fe7133ddd85a912f4b9c260cb30ce6ad"
+    },
+    "run_attempt": 1,
+    "run_id": 45060396175,
+    "signed_consumer_artifact": {
+      "id": 14769044048,
+      "name": "Otzaria-Original-Editor-Signed-Consumer-Unqualified-de63125b97cd5b91a1fa4f4b71d03738076e735f-45060396175-1",
+      "sha256": "6b353a213c2e39c91093bc9c23be859d930eb1656de6b414b4fe8e6623f47e1e",
+      "size_in_bytes": 141878849,
+      "upload_step": "Upload this producer's unqualified signed consumer bytes"
+    },
+    "source_sha": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+    "source_trees": {
+      "Anytype/Resources": "0827010674c089cfe9846e592e1d801e9d3f7a9b",
+      "Anytype/Sources": "7f60c27ac32ea66f889abd70edbb1cab1778f0a6",
+      "Modules": "a8a4b7688ea6295ae6c6b2f3baf90e18ab268e1b"
+    },
+    "toolchain": {
+      "sdk_version": "27.0",
+      "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+      "xcode": "Xcode 27.0\nBuild version 27A266a"
+    },
+    "workflow_path": ".github/workflows/pinkha-original-editor-framework.yml"
+  },
+  "hanlin_source_path": "build/original-editor-sdk-input/original-hanlin-snapshot.json",
+  "hanlin_source_sha256": "dea97aadcf0c925d7237d48f7ea00d52f02723d4274fd663a0e2607ed92fe12f",
+  "job_id": 137324774911,
+  "job_name": "original-editor-framework",
+  "original_source_sha256": "f3d4b3f1a4d5f4fea8b5291cb652c2815e55c29706e2569f365facc88a2e14d1",
+  "qualification_member": "runtime-qualification.json",
+  "qualification_path": "build/original-editor-sdk-input/signed-runtime-qualification.json",
+  "qualification_sha256": "4be85b8704bcd420f14cc9e0872ac11bba5e17075177c3cfaad6d4c3ac617544",
+  "qualification_wrapper": "signed-consumer-evidence.zip",
+  "repository": "davidpovarsky/anytype-swift",
+  "repository_id": 1289863025,
+  "required_steps": [
+    "Bind original app sources resources packages and the additive target",
+    "Prepare and verify the original SDK snapshot",
+    "Verify actual Xcode27 and create original owned OS27 simulators",
+    "Verify the recorded original Heart producer and exact binary slices"
+  ],
+  "retained_execution_path": "build/original-editor-sdk-input/original-build-execution.json",
+  "run_attempt": 1,
+  "run_id": 45060396175,
+  "runtime_qualification_producer": {
+    "control_sha": "e9504bc3622383eac99ee3aabfef89d0abade8b7",
+    "evidence_artifact": {
+      "id": 14795206433,
+      "name": "Otzaria-Original-Editor-Signed-Consumer-Runtime-e9504bc3622383eac99ee3aabfef89d0abade8b7-45123300449-1",
+      "path": "build/original-editor-sdk-input/signed-runtime-evidence.zip",
+      "sha256": "8270e0bc2ba04d50a9bb3ca47124d3fcc7346efae53ca3d589a56a30d459dea1",
+      "size_in_bytes": 163825,
+      "upload_step": "Upload original signed consumer runtime evidence"
+    },
+    "head_branch": "codex/otzaria-sdk-runtime-20261123",
+    "job_id": 137521812574,
+    "job_name": "original-editor-signed-consumer",
+    "repository": "davidpovarsky/anytype-swift",
+    "repository_id": 1289863025,
+    "required_steps": [
+      "Admit already executed focused source controls",
+      "Qualify exact signed consumer in English and Hebrew",
+      "Preserve actual runtime evidence",
+      "Upload original signed consumer runtime evidence"
+    ],
+    "run_attempt": 1,
+    "run_id": 45123300449,
+    "workflow_path": ".github/workflows/pinkha-original-editor-signed-consumer.yml"
+  },
+  "schema": 2,
+  "source_sha": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+  "status": "AUTHENTICATED_ORIGINAL_PRODUCTS_WITH_SEPARATE_EN_HE_RUNTIME",
+  "workflow_path": ".github/workflows/pinkha-original-editor-framework.yml"
+}

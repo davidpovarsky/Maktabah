@@ -1,0 +1,41 @@
+{
+  "application_acceptance": "NOT_RUN",
+  "changed_existing_objects": [
+    "CFEE00000000000000000001",
+    "F30576E22FA46222005732C6"
+  ],
+  "new_objects": [
+    "8B407D0966F045C9C01630E5",
+    "9B0DE0028DA57DC37A84B004",
+    "A6AF032B95DC3A973A9AF429",
+    "BA7D9899102E1442A7D6170E",
+    "C0B3C959BE1BBA2AACB91DD1",
+    "E98770A6E81F728898180A4A"
+  ],
+  "preserved_existing_objects": 2393,
+  "records": [
+    {
+      "buildFile": "8B407D0966F045C9C01630E5",
+      "fileRef": "E98770A6E81F728898180A4A",
+      "name": "AnnotationNativeBackfillCatalog.swift",
+      "path": "Annotations/Backfill/AnnotationNativeBackfillCatalog.swift"
+    },
+    {
+      "buildFile": "BA7D9899102E1442A7D6170E",
+      "fileRef": "C0B3C959BE1BBA2AACB91DD1",
+      "name": "AnnotationNativeBackfillModel.swift",
+      "path": "Annotations/Backfill/AnnotationNativeBackfillModel.swift"
+    },
+    {
+      "buildFile": "9B0DE0028DA57DC37A84B004",
+      "fileRef": "A6AF032B95DC3A973A9AF429",
+      "name": "AnnotationNativeBackfillSection.swift",
+      "path": "Annotations/Backfill/AnnotationNativeBackfillSection.swift"
+    }
+  ],
+  "revision_file_ios_registration_verified": true,
+  "source_after_sha256": "155e7d2a43db05eca5cfa63bbe590e1bd90460402b24377e31d9096942b94a33",
+  "source_before_sha256": "462e1dd8287da751ac0c92019f44239c7b128fa4c43cc90245853076e320abab",
+  "source_builds": 0,
+  "status": "REAL_MAC_PLIST_AND_EXACT_PROJECT_GRAPH_PASS"
+}

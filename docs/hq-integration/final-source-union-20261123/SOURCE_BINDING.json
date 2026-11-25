@@ -1,0 +1,668 @@
+{
+  "active_reader_or_live_checkout_modified": false,
+  "additional_workflow_edits_by_binding": [],
+  "application_product_source": "7d5510dd29af2b66d740de136352916868c341ed",
+  "artifact_inputs": {
+    "archive_sha256": "6778bfeb8bf8ae7e0899e7fddf5a087e69fbe31772a719e9e82c6239d62a53e5",
+    "artifact_id": 14770225722,
+    "historical_receipt_modified": false,
+    "path": "Scripts/CI/runtime27-original-editor.inputs.json",
+    "qualification_for_composed_expanded_sdk": "UNQUALIFIED",
+    "run_id": 45060396175,
+    "schema": 2,
+    "sha256": "2940ae140f7c4b1521d454d3e9b246f85c75b473c806d8ea68190b793601a731",
+    "source_sha": "de63125b97cd5b91a1fa4f4b71d03738076e735f"
+  },
+  "at_utc": "2026-11-23T21:14:04.249209+00:00",
+  "binding_delta": [
+    {
+      "after": {
+        "bytes": 4333,
+        "git_blob": "2f19b774e43265c1ef930ed59e19b3aab8b250b0",
+        "sha256": "671dea22d5654c34de5e15d2dd39054cf24f94b3a50faf5a0f9cf74d6a13b323"
+      },
+      "before": {
+        "bytes": 4333,
+        "git_blob": "9ca8dd8cd14b5ad1b0f073c5a9757d264220fa01",
+        "sha256": "236cf8c843cd89e7dbb952c5a1e8c019f031d47226f3f3389579446ca27034ce"
+      },
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json"
+    },
+    {
+      "after": {
+        "bytes": 2326,
+        "git_blob": "4a5bb53a493b6b1c8a1246b5baa639ac93a8e40f",
+        "sha256": "169a58afa943765b2083ddc404ecb348eba579966edd675c883821220f29f2fd"
+      },
+      "before": {
+        "bytes": 1385,
+        "git_blob": "d5b32ca2378b0e1fa6b01e07d1d2821d29bf71c5",
+        "sha256": "c8369b9c1758b7bb60cc9404839095f893cb03bf2a592caa9a3f6852f3e410bc"
+      },
+      "path": "Scripts/CI/library-morph-focused-native.inputs.json"
+    },
+    {
+      "after": {
+        "bytes": 11879,
+        "git_blob": "5907d797d3fe6e1026606fddf50088cefce70ccb",
+        "sha256": "fcc3558e531de98dbb4e6c2e08e530ba15a1cdac93ee5fca0eb669bf05214fc6"
+      },
+      "before": {
+        "bytes": 10729,
+        "git_blob": "1305a15fbc6c691e11b62c1be5002228b20267b4",
+        "sha256": "41ae16010370460b0dcba2ee814ca8764219a25088deca5ae10191732041ee55"
+      },
+      "path": "Scripts/CI/reader-full-v32-ui-observation.inputs.json"
+    },
+    {
+      "after": {
+        "bytes": 2971,
+        "git_blob": "e3e2311b7ee1c4670e9ce0372af71176e68cedfa",
+        "sha256": "4a9401cea7b8f6e5a035caaf6aa40458d9d3ffa2f9a30777a58778b5a3e39401"
+      },
+      "before": {
+        "bytes": 2030,
+        "git_blob": "c8d5d5128745e434555d819b338e20e5e0ec55bc",
+        "sha256": "aa1a4768ad9190cb417429927f682251ffffcdba8ca7929346cf29847e0e7323"
+      },
+      "path": "Scripts/CI/reader-groups100-focused-native.inputs.json"
+    },
+    {
+      "after": {
+        "bytes": 22307,
+        "git_blob": "9e39b359957a568848202931fcfbc551d943e2c7",
+        "sha256": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0"
+      },
+      "before": null,
+      "path": "Scripts/CI/runtime27-final-source-composition.inputs.json"
+    },
+    {
+      "after": {
+        "bytes": 51339,
+        "git_blob": "3d7bc82dae855876d938a74477ae5c5e9d63b61b",
+        "sha256": "59a57c0c764de306f5d896d5cb345dedadb82fc6fec73966afe7d707a05fd249"
+      },
+      "before": {
+        "bytes": 46516,
+        "git_blob": "7c0e6f6acfe24ec0052c318b0a67c8ddd0d1dcf3",
+        "sha256": "02812375b6f02ac6da22eb297d0687ebcdef746720b4a57d30727725503750d6"
+      },
+      "path": "Scripts/CI/runtime27-original-editor-native.py"
+    },
+    {
+      "after": {
+        "bytes": 7333,
+        "git_blob": "04a43e56a20654217028baf9edfc2b5192a3b330",
+        "sha256": "1b0acf75556fab6c9f0980657142412b3b47b9db2cba1989fe6c3fc70166ab1f"
+      },
+      "before": null,
+      "path": "Scripts/CI/test_final_source_composition.py"
+    }
+  ],
+  "binding_semantics": [
+    "Separate the exact original two-path dependency leaf 6ba33 from complete application product 7d551.",
+    "Validate all 18 changed product objects, original preimages, accepted source ancestry, product trees and working tracked product bytes.",
+    "Resolve only application_source_sha/application_trees/hanlin_gitlink across the shared build inputs; preserve all artifact/engine/resource fields.",
+    "Rebind three Reader/Groups/Library source manifests in this isolated composition only. Preserve selectors, original release metadata, counts and historical evidence.",
+    "Current original-editor artifact input remains byte-exact legacy schema2 and is UNQUALIFIED for this expanded SDK. StageB preparation requires actual schema3 admission.",
+    "Genuine v40 native cancel/install/restore on the composed build remains an explicit separate gate; neither frozen v32 nor component controls satisfies it."
+  ],
+  "branch": "codex/otzaria-final-source-union-20261123",
+  "branch_published": false,
+  "composition_map": {
+    "bytes": 22307,
+    "git_blob": "9e39b359957a568848202931fcfbc551d943e2c7",
+    "path": "Scripts/CI/runtime27-final-source-composition.inputs.json",
+    "sha256": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0"
+  },
+  "controls": {
+    "historical_suites_replayed": 0,
+    "logical_cases": 12,
+    "native_executed": 0,
+    "receipts": [
+      {
+        "bytes": 3684,
+        "git_blob": "7adf1ba2ae3f7d325170239dc719cc51ab04af5c",
+        "path": "docs/hq-integration/final-source-union-20261123/source-controls/INITIAL_12.json",
+        "sha256": "a038c85904b51e24c6280f02e2a64cf77937ab7f291200590241100b1f83adfa"
+      },
+      {
+        "bytes": 2001,
+        "git_blob": "0580947feaa2c677c5f905acee7d64fab6759d68",
+        "path": "docs/hq-integration/final-source-union-20261123/source-controls/INITIAL_12.log",
+        "sha256": "6917176be629a33dcbc351d432f403fe8560b3cde7ddb25e2a2514f5f79e590d"
+      },
+      {
+        "bytes": 2012,
+        "git_blob": "837d646389f4f81a6370ce0c3d29e20b06badc46",
+        "path": "docs/hq-integration/final-source-union-20261123/source-controls/FINAL_INPUTS.json",
+        "sha256": "640f3022b2d10769edd4cb63b418e3e6f4b0759325ac58e09fc050917918d8d7"
+      },
+      {
+        "bytes": 298,
+        "git_blob": "6cf340be6015100f536b8739920780320d4fc495",
+        "path": "docs/hq-integration/final-source-union-20261123/source-controls/FINAL_INPUTS.log",
+        "sha256": "669d694bb7a0fbacda263cd2eff4d0f03b23ae32d63e7c414e5e7034d1997463"
+      }
+    ],
+    "serialization_followup": "One affected Reader manifest/hash control repeated after preserving original JSON field order; driver AST is identical. Eleven other source controls retained by exact inputs and AST proof.",
+    "status": "PASS"
+  },
+  "existing_final_branch_modified": false,
+  "final_base": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+  "free_bytes_observed": 2148282368,
+  "imported_control_provenance": [
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        }
+      ],
+      "object": "8cc81218e2640158f319571c804699acb296f3a5",
+      "path": ".github/workflows/otzaria-latest-multipart-components.yml"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        },
+        {
+          "lane": "stageb_dependency_leaf",
+          "source": "6ba33d848bda808181e6b3174c05bac5b3fd2d94"
+        }
+      ],
+      "object": "d09cf79dd14b5399373e3f7db8a0aa94207704cc",
+      "path": ".github/workflows/otzaria-original-editor-stageb-native.yml"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        },
+        {
+          "lane": "reader",
+          "source": "92e9df6e2daf64893c83ba13708fac4c670ae38f"
+        },
+        {
+          "lane": "v32_selection",
+          "source": "8136f2b50ea0acacc98e52bd172c73506dfa7746"
+        }
+      ],
+      "object": "095d64f64d1d55251bb21a23a783e2a8ed05d188",
+      "path": ".github/workflows/otzaria-reader-groups-full-v32.yml"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        },
+        {
+          "lane": "stageb_dependency_leaf",
+          "source": "6ba33d848bda808181e6b3174c05bac5b3fd2d94"
+        }
+      ],
+      "object": "5b30ea844c042f74c36a3b6a36d3ffb89f37b279",
+      "path": "Scripts/CI/hq-original-editor-app-target.rb"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        }
+      ],
+      "object": "95e1a60021c4f7051a2fe31d13f543b5f18b6fe0",
+      "path": "Scripts/CI/hq-original-editor-distribution.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        },
+        {
+          "lane": "stageb_dependency_leaf",
+          "source": "6ba33d848bda808181e6b3174c05bac5b3fd2d94"
+        }
+      ],
+      "object": "667a289e22821b2574b776c4ad7e67a91902f987",
+      "path": "Scripts/CI/hq-original-editor-ruby-context.rb"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        }
+      ],
+      "object": "9ca8dd8cd14b5ad1b0f073c5a9757d264220fa01",
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        },
+        {
+          "lane": "stageb_dependency_leaf",
+          "source": "6ba33d848bda808181e6b3174c05bac5b3fd2d94"
+        }
+      ],
+      "object": "540e6bb2919a91418d99b603c4e975c24e7b546f",
+      "path": "Scripts/CI/hq-stage2-focused-apple.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        },
+        {
+          "lane": "reader",
+          "source": "92e9df6e2daf64893c83ba13708fac4c670ae38f"
+        },
+        {
+          "lane": "v32_selection",
+          "source": "8136f2b50ea0acacc98e52bd172c73506dfa7746"
+        }
+      ],
+      "object": "d5b32ca2378b0e1fa6b01e07d1d2821d29bf71c5",
+      "path": "Scripts/CI/library-morph-focused-native.inputs.json"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        },
+        {
+          "lane": "reader",
+          "source": "92e9df6e2daf64893c83ba13708fac4c670ae38f"
+        },
+        {
+          "lane": "v32_selection",
+          "source": "8136f2b50ea0acacc98e52bd172c73506dfa7746"
+        }
+      ],
+      "object": "674434bdba1f4327af3c3c566330f477e1d92f1c",
+      "path": "Scripts/CI/library-morph-focused-native.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        },
+        {
+          "lane": "reader",
+          "source": "92e9df6e2daf64893c83ba13708fac4c670ae38f"
+        },
+        {
+          "lane": "v32_selection",
+          "source": "8136f2b50ea0acacc98e52bd172c73506dfa7746"
+        }
+      ],
+      "object": "3da8fedc0c9419751fbcfc67b15f4b802c9f0590",
+      "path": "Scripts/CI/native-cohort-artifacts.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        },
+        {
+          "lane": "stageb_dependency_leaf",
+          "source": "6ba33d848bda808181e6b3174c05bac5b3fd2d94"
+        }
+      ],
+      "object": "d290aef6e9d97911c554cacdd59128b140c92bfb",
+      "path": "Scripts/CI/original_editor_continuation_admission.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        },
+        {
+          "lane": "stageb_dependency_leaf",
+          "source": "6ba33d848bda808181e6b3174c05bac5b3fd2d94"
+        }
+      ],
+      "object": "76ee27f2c915c0c21bbad78c7304a09b3001711f",
+      "path": "Scripts/CI/original_editor_host_clang_context.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        },
+        {
+          "lane": "stageb_dependency_leaf",
+          "source": "6ba33d848bda808181e6b3174c05bac5b3fd2d94"
+        }
+      ],
+      "object": "cc081f3dd3e40f2cb022c8c77f6ea7e62d0657dc",
+      "path": "Scripts/CI/original_editor_shared_runtime.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        },
+        {
+          "lane": "stageb_dependency_leaf",
+          "source": "6ba33d848bda808181e6b3174c05bac5b3fd2d94"
+        }
+      ],
+      "object": "d3842c8854a4d91bc7fb86db33ce5f71d7e13925",
+      "path": "Scripts/CI/original_editor_signed_consumer_admission.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        },
+        {
+          "lane": "reader",
+          "source": "92e9df6e2daf64893c83ba13708fac4c670ae38f"
+        },
+        {
+          "lane": "v32_selection",
+          "source": "8136f2b50ea0acacc98e52bd172c73506dfa7746"
+        }
+      ],
+      "object": "4711e60011206b3179ec1a535750d9285e5c7a82",
+      "path": "Scripts/CI/prepare-faithful-ipad-fixtures.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        },
+        {
+          "lane": "reader",
+          "source": "92e9df6e2daf64893c83ba13708fac4c670ae38f"
+        },
+        {
+          "lane": "v32_selection",
+          "source": "8136f2b50ea0acacc98e52bd172c73506dfa7746"
+        }
+      ],
+      "object": "1305a15fbc6c691e11b62c1be5002228b20267b4",
+      "path": "Scripts/CI/reader-full-v32-ui-observation.inputs.json"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        },
+        {
+          "lane": "reader",
+          "source": "92e9df6e2daf64893c83ba13708fac4c670ae38f"
+        },
+        {
+          "lane": "v32_selection",
+          "source": "8136f2b50ea0acacc98e52bd172c73506dfa7746"
+        }
+      ],
+      "object": "33657b8152ef48f126e7d7c1a32387e2d3c0b287",
+      "path": "Scripts/CI/reader-full-v32-ui-observation.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        },
+        {
+          "lane": "reader",
+          "source": "92e9df6e2daf64893c83ba13708fac4c670ae38f"
+        },
+        {
+          "lane": "v32_selection",
+          "source": "8136f2b50ea0acacc98e52bd172c73506dfa7746"
+        }
+      ],
+      "object": "c8d5d5128745e434555d819b338e20e5e0ec55bc",
+      "path": "Scripts/CI/reader-groups100-focused-native.inputs.json"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        },
+        {
+          "lane": "reader",
+          "source": "92e9df6e2daf64893c83ba13708fac4c670ae38f"
+        },
+        {
+          "lane": "v32_selection",
+          "source": "8136f2b50ea0acacc98e52bd172c73506dfa7746"
+        }
+      ],
+      "object": "95fe60baeba5c5098640d01fa346b3c53b7d8880",
+      "path": "Scripts/CI/reader-groups100-focused-native.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        },
+        {
+          "lane": "stageb_dependency_leaf",
+          "source": "6ba33d848bda808181e6b3174c05bac5b3fd2d94"
+        }
+      ],
+      "object": "bdaed74f06a4b8d72633d639f647ba0bb7d74424",
+      "path": "Scripts/CI/restore-original-editor-distribution.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        }
+      ],
+      "object": "7c0e6f6acfe24ec0052c318b0a67c8ddd0d1dcf3",
+      "path": "Scripts/CI/runtime27-original-editor-native.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        },
+        {
+          "lane": "stageb_dependency_leaf",
+          "source": "6ba33d848bda808181e6b3174c05bac5b3fd2d94"
+        }
+      ],
+      "object": "9171f651afbbd0eac02768462f62ff28db6df8ba",
+      "path": "Scripts/CI/runtime27-original-editor.inputs.json"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        },
+        {
+          "lane": "stageb_dependency_leaf",
+          "source": "6ba33d848bda808181e6b3174c05bac5b3fd2d94"
+        }
+      ],
+      "object": "3ab46770bd8d05a17120f13e217ca15d9444cd0b",
+      "path": "Scripts/CI/test-original-editor-host-clang-context.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        },
+        {
+          "lane": "stageb_dependency_leaf",
+          "source": "6ba33d848bda808181e6b3174c05bac5b3fd2d94"
+        }
+      ],
+      "object": "49eb7cd66e2c19b62fa68b896c387f0f6e22eb6c",
+      "path": "Scripts/CI/test_original_editor_shared_runtime.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        }
+      ],
+      "object": "e20ac3a94e965730101d861444d9b60a12923691",
+      "path": "Scripts/CI/test_original_editor_stageb_admission.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        }
+      ],
+      "object": "a74e772f7c2370094da3251856dfc3da8799a733",
+      "path": "Tests/HQ/latest-multipart/CASES.json"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        }
+      ],
+      "object": "feab9fbad2a9615ef535baaf7a3b468e2021b268",
+      "path": "Tests/HQ/latest-multipart/MultipartArchiveControls.swift"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        }
+      ],
+      "object": "d3f49c631e046e4dae89097be46175bd86ab85f3",
+      "path": "Tests/HQ/latest-multipart/SOURCE_INPUTS.json"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        }
+      ],
+      "object": "40f9f26217702feaddc50a978d5395207b55577a",
+      "path": "Tests/HQ/latest-multipart/official-v32-release.json"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        }
+      ],
+      "object": "a3c5b175834abc0e7594a13ca1fb5210466a30cf",
+      "path": "Tests/HQ/latest-multipart/official-v40-manifest.json"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        }
+      ],
+      "object": "ce5b6283c53ab81e0305de1583fd4c5ec58187ea",
+      "path": "Tests/HQ/latest-multipart/official-v40-release.json"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "multipart",
+          "source": "4310c29728de5bbba2dc6584642c6934d554e213"
+        }
+      ],
+      "object": "e4b9b7b8c10cea0d61688c943871435c60883d15",
+      "path": "Tests/HQ/latest-multipart/run_apple.py"
+    },
+    {
+      "accepted_sources": [
+        {
+          "lane": "stageb",
+          "source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68"
+        },
+        {
+          "lane": "stageb_dependency_leaf",
+          "source": "6ba33d848bda808181e6b3174c05bac5b3fd2d94"
+        }
+      ],
+      "object": "bb7b6a0177683767e88563bd215f6852e9a0f91c",
+      "path": "tools/verify-original-editor-signed-consumer-admission-controls.py"
+    }
+  ],
+  "native_activation": false,
+  "next_required_admission": "After actual Native/RPC union, genuine Lib and complete SDK producer, root must bind the authenticated new artifact and replace this deliberately unqualified legacy artifact checkpoint with a new reviewed source binding.",
+  "producer_activation": false,
+  "product_bytes_changed_by_binding": 0,
+  "product_paths": 18,
+  "product_tree": "ac6711ac48c60b4f40bda027cba0fda27431b426",
+  "schema": "otzaria.final-source-composition-binding/1",
+  "shared_build_conflict": {
+    "all_remaining_fields_canonical_sha256": "b1c3a0319e3697357d7a999a09f9bf725875125265fb0b46ab48d6ceb68477aa",
+    "composed_values": {
+      "application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed",
+      "application_trees": {
+        "Maktabah.xcodeproj": "30dccb2b8600715f90c41e533b4646a8523e10d1",
+        "Source": "403837f9e944b0839c7c638a40bec72a190747b4",
+        "Vendor": "ee5b415a5ccb9db9fda2b0e8d6ce3748cdeaea6e"
+      },
+      "hanlin_gitlink": "ca3c91f2233bf5c77990643b29a874aac8704639"
+    },
+    "historical_acceptance_transferred": false,
+    "historical_reader_source": "92e9df6e2daf64893c83ba13708fac4c670ae38f",
+    "historical_reader_values": {
+      "application_source_sha": "a0f9f0547e28ac89a42fce5019888222c21390cd",
+      "application_trees": {
+        "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+        "Source": "0e2dc5b9406ffeef95d2d75d460f1589c133129d",
+        "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+      },
+      "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300"
+    },
+    "historical_stageb_source": "13fe6436116b37ac8a3d51d6972e6412f0f30f68",
+    "historical_stageb_values": {
+      "application_source_sha": "6ba33d848bda808181e6b3174c05bac5b3fd2d94",
+      "application_trees": {
+        "Maktabah.xcodeproj": "f61421e8677027ffa18364226b4ee68a0937dfc5",
+        "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+        "Vendor": "ee5b415a5ccb9db9fda2b0e8d6ce3748cdeaea6e"
+      },
+      "hanlin_gitlink": "ca3c91f2233bf5c77990643b29a874aac8704639"
+    },
+    "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+    "resolved_fields": [
+      "application_source_sha",
+      "application_trees",
+      "hanlin_gitlink"
+    ]
+  },
+  "status": "SOURCE_BOUND_12_AFFECTED_PORTABLE_CONTROLS_PASS_NATIVE_OPEN",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-final-source-union-20261123"
+}

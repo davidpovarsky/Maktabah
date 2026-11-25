@@ -1,0 +1,60 @@
+{
+  "name": "colored2",
+  "version": "3.1.2",
+  "url": "https://rubygems.org/api/v2/rubygems/colored2/versions/3.1.2.json",
+  "retrieved_at": "2026-11-23T12:07:50.845514+00:00",
+  "status": 200,
+  "final_url": "https://rubygems.org/api/v2/rubygems/colored2/versions/3.1.2.json",
+  "headers": {
+    "Connection": "close",
+    "Content-Length": "2988",
+    "Content-Type": "application/json; charset=utf-8",
+    "x-frame-options": "SAMEORIGIN",
+    "x-xss-protection": "0",
+    "x-content-type-options": "nosniff",
+    "x-permitted-cross-domain-policies": "none",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "cross-origin-opener-policy": "same-origin",
+    "last-modified": "Sat, 24 Oct 2026 02:00:21 GMT",
+    "cache-control": "max-age=60, public",
+    "x-request-id": "22da039f-5428-4921-9588-4f55f05bd174",
+    "x-runtime": "0.010508",
+    "strict-transport-security": "max-age=31536000; includeSubDomains",
+    "X-Backend": "F_Rails 35.155.75.66:443",
+    "Accept-Ranges": "bytes",
+    "Age": "0",
+    "Date": "Mon, 23 Nov 2026 12:07:51 GMT",
+    "Via": "1.1 varnish",
+    "X-Served-By": "cache-mrs1530063-MRS",
+    "X-Cache": "MISS",
+    "X-Cache-Hits": "0",
+    "X-Timer": "S1795435671.255135,VS0,VE446",
+    "Vary": "Accept-Encoding",
+    "ETag": "\"da847b87fc293894a7b1c17da724f517\"",
+    "Server": "RubyGems.org"
+  },
+  "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/metadata/colored2-3.1.2.json",
+  "size": 2988,
+  "sha256": "9f5b9315f37839d90b377fe673ca9a50442aa23b8b5267209acd1318807506f3",
+  "identity_matches": true,
+  "api_sha": "b13c2bd7eeae2cf7356a62501d398e72fde78780bd26aec6a979578293c28b4a",
+  "gem_uri": "https://rubygems.org/gems/colored2-3.1.2.gem",
+  "dependencies": {
+    "development": [
+      {
+        "name": "codeclimate-test-reporter",
+        "requirements": ">= 0"
+      },
+      {
+        "name": "rake",
+        "requirements": "~> 10.0"
+      },
+      {
+        "name": "rspec",
+        "requirements": "~> 3.4"
+      }
+    ],
+    "runtime": []
+  },
+  "ruby_version": ">= 2.0.0"
+}

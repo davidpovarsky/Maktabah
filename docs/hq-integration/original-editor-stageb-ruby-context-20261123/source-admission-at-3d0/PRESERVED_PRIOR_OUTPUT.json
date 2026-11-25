@@ -1,0 +1,26 @@
+{
+  "from": "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/build/original-editor-native-evidence",
+  "to": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/ruby-context-repair/source-gate/preserved-prior-output",
+  "rows": [
+    {
+      "path": "declarations.json",
+      "bytes": 432,
+      "sha256": "8fa41c3ed986fef179a63e50e34a8106b95f5a46adf112dd030564569aec5c4c"
+    },
+    {
+      "path": "python-runtime-preflight.json",
+      "bytes": 2108,
+      "sha256": "e188b00f4f99c6a7b3ce04cd814c82a97cf64b29d04d27f2e80be9213c746cb9"
+    },
+    {
+      "path": "selection.json",
+      "bytes": 177918,
+      "sha256": "f05d571be2395b258bd181d4d0330a65a108bc80e04e120c2f89b280aa947f61"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 63930,
+      "sha256": "f0c6c55347d2819249553b806ec5c81756a63d48561e72324add6b233ccdc6f6"
+    }
+  ]
+}

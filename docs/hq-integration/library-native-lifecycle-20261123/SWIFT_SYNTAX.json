@@ -1,0 +1,14 @@
+{
+  "scope": "Swift syntax parse only on Oracle Linux; no Apple modules/typecheck/runtime qualification",
+  "command": [
+    "/usr/local/bin/swiftc",
+    "-frontend",
+    "-parse",
+    "/mnt/development/projects/worktrees/Maktabah-library-native-lifecycle-20261123/Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+    "/mnt/development/projects/worktrees/Maktabah-library-native-lifecycle-20261123/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+  ],
+  "returncode": 0,
+  "toolchain": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu\n",
+  "stdout_bytes": 0,
+  "stderr_bytes": 0
+}

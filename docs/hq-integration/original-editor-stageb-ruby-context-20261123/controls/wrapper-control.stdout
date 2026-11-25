@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "scope": "PORTABLE_ACTUAL_SHELL_EXEC_RUBY_MECHANISM_ONLY",
+  "passed": 1,
+  "required": 1,
+  "assertions": 13
+}
+RESULT_SHA256 b33134aacd02b2a59291d173e4932990c67e4a5e9e7733f413203fa0cb06a2b1

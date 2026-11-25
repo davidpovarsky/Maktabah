@@ -1,0 +1,82 @@
+{
+  "schema": "miniapps.producer-preparation-review/1",
+  "producer_sha": "08ef8741ff58241a081c908536a3b4d3917cc0e8",
+  "source_tree": "c0ee8197cb9a1101bc5217ff3088150f516b9972",
+  "prepared_tree": "1c699855aa80e3fb8b1e3ccc5a627d03d73e360f",
+  "git_status_porcelain": " M docs/miniapp-sdk/MANIFEST_REFERENCE.md\n M docs/miniapp-sdk/extension-reachability.json\n M docs/miniapp-sdk/extension-reachability.md\n M docs/miniapp-sdk/source-inventory.json\n",
+  "patch": {
+    "name": "source-preparation.diff",
+    "bytes": 133167,
+    "sha256": "968f10b31e4d50f5d562a26097d7d4f9b11bb710389ab3bec90ed728e0de89b1"
+  },
+  "changes": [
+    {
+      "path": "docs/miniapp-sdk/MANIFEST_REFERENCE.md",
+      "status": "M",
+      "reason": "Canonical miniapp SDK source audit regenerates current source hashes, line references, target membership and explicit incomplete-evidence status from the actual 08ef producer. This is source-audit documentation and does not assert native acceptance or signing.",
+      "before": {
+        "mode": "100644",
+        "blob": "a6eaf27f0c6b1660104778c0078f2e8a352312fb",
+        "bytes": 118804,
+        "sha256": "768731f0c748276aeab4d34f57ad3ad89fd38aa30f562ff0cc9b5ad9a3767368"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "d3b207619fe1f3897029426eb1d6384bf7f9ee50",
+        "bytes": 118804,
+        "sha256": "ede1a7ed6b987c9f9900b8dbaddeadc8fa1f23e15807834a3c2d71e90d63f7af"
+      }
+    },
+    {
+      "path": "docs/miniapp-sdk/extension-reachability.json",
+      "status": "M",
+      "reason": "Canonical miniapp SDK source audit regenerates current source hashes, line references, target membership and explicit incomplete-evidence status from the actual 08ef producer. This is source-audit documentation and does not assert native acceptance or signing.",
+      "before": {
+        "mode": "100644",
+        "blob": "29cd74cdb109fc247a743467a8fe0a7cca7df0f0",
+        "bytes": 147521,
+        "sha256": "9a9843d277a3e76ad64fc7589029801960c5c98b9aba09f3ed7746552ee3d42d"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "d4310b8712e494385e06b5c2d148712e6313bb9f",
+        "bytes": 153476,
+        "sha256": "ed37f9ffbec4c70a1f3280e23931e55a21c90b50544d707726448bd7938ffe06"
+      }
+    },
+    {
+      "path": "docs/miniapp-sdk/extension-reachability.md",
+      "status": "M",
+      "reason": "Canonical miniapp SDK source audit regenerates current source hashes, line references, target membership and explicit incomplete-evidence status from the actual 08ef producer. This is source-audit documentation and does not assert native acceptance or signing.",
+      "before": {
+        "mode": "100644",
+        "blob": "3b67cac720d427736b03eec9e07fc99ed0127ddb",
+        "bytes": 21494,
+        "sha256": "cae21720cab9b31211796a5d82309d6e779f46ddb1d946d1ec1e322f4cf952cb"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "47ad123ead1ae382efabcb6547ade7dadc67c59f",
+        "bytes": 23334,
+        "sha256": "bc6e9f89eaed36017a3d2ea319d4e2cee42354693d2e49504b4d650a8ca3140f"
+      }
+    },
+    {
+      "path": "docs/miniapp-sdk/source-inventory.json",
+      "status": "M",
+      "reason": "Canonical miniapp SDK source audit regenerates current source hashes, line references, target membership and explicit incomplete-evidence status from the actual 08ef producer. This is source-audit documentation and does not assert native acceptance or signing.",
+      "before": {
+        "mode": "100644",
+        "blob": "d0c2299c281d32d4cc0b78c75438d5adfa5ae6d0",
+        "bytes": 493871,
+        "sha256": "856bc8aca1473f8f4255b324e840ef2ebcdf5eb7352d1041d2433391e9f4bfd8"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "a566111724ba54806776317ac628a8180bc6c548",
+        "bytes": 494719,
+        "sha256": "db9648169e402196dc9efc2d225cc3853f54506c674d91f9366fa4dd1021e266"
+      }
+    }
+  ]
+}

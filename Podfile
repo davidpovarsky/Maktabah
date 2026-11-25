@@ -64,6 +64,10 @@ target 'Maktabah-iOS' do
     :production => production,
     :app_path => upstream_dir
   )
+
+  target 'Maktabah-iOSNativeTests' do
+    inherit! :search_paths
+  end
 end
 
 post_install do |installer|

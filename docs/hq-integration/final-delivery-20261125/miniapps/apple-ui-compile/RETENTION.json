@@ -1,0 +1,12 @@
+{
+  "actual_ui_tests_executed": 0,
+  "archive_bytes": 344796,
+  "archive_sha256": "ca1e23b746c7ad4a6620fcbd1e046689b648c82dd6d3ef860923c666b498d89c",
+  "compiler_log_tail": "pace. */\n 38 | @property (readonly) CGRect frame;\n    |                             `- note: property declared here\n 39 | \n 40 | /*! The raw value attribute of the element. Depending on the element, the actual type can vary. */\n\n[#ActorIsolatedCall]: <https://docs.swift.org/compiler/documentation/diagnostics/actor-isolated-call>\n[#SendableClosureCaptures]: <https://docs.swift.org/compiler/documentation/diagnostics/sendable-closure-captures>\nreal 19.07\nuser 14.29\nsys 0.56\n          1256423424  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               85835  page reclaims\n                4725  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                2137  voluntary context switches\n               18545  involuntary context switches\n        142678458914  instructions retired\n         48324518204  cycles elapsed\n          1016366400  peak memory footprint\n",
+  "embedded_manifest_equal": true,
+  "mac_archive": "/Users/m1/builds/maktabah-ui-explicit-save-20261125/APPLE_UI_COMPILE_EVIDENCE.tar.gz",
+  "result_sha256": "37279d8bde07b9c1f629c4101ec6032e94fea2ff400cd66ed51ec64b130c914c",
+  "sentinel_job": "job_2ec641348939",
+  "status": "ALL_ARCHIVE_MEMBERS_AND_CURRENT_SOURCE_VERIFIED",
+  "verified_files": 30
+}

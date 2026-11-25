@@ -1,0 +1,55 @@
+{
+  "ruby_version": "3.2.3",
+  "ruby_platform": "aarch64-linux-gnu",
+  "ruby_executable": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-root/usr/bin/ruby3.2",
+  "ruby_sha256": "bbea1a842298c961c1ad29d359f2b45eff1b25ae546d59e72590846c039efac2",
+  "xcodeproj_version": "1.28.1",
+  "gems": [
+    {
+      "name": "atomos",
+      "version": "0.1.3",
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/gem-home/gems/atomos-0.1.3"
+    },
+    {
+      "name": "CFPropertyList",
+      "version": "3.0.8",
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/gem-home/gems/CFPropertyList-3.0.8"
+    },
+    {
+      "name": "claide",
+      "version": "1.1.0",
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/gem-home/gems/claide-1.1.0"
+    },
+    {
+      "name": "colored2",
+      "version": "3.1.2",
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/gem-home/gems/colored2-3.1.2"
+    },
+    {
+      "name": "nanaimo",
+      "version": "0.4.0",
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/gem-home/gems/nanaimo-0.4.0"
+    },
+    {
+      "name": "rexml",
+      "version": "3.4.4",
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/gem-home/gems/rexml-3.4.4"
+    },
+    {
+      "name": "nkf",
+      "version": "0.2.0",
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/gem-home/gems/nkf-0.2.0"
+    },
+    {
+      "name": "base64",
+      "version": "0.2.0",
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/gem-home/gems/base64-0.2.0"
+    },
+    {
+      "name": "xcodeproj",
+      "version": "1.28.1",
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/gem-home/gems/xcodeproj-1.28.1"
+    }
+  ],
+  "scope": "Exact genuine gem source on portable Linux Ruby; no Apple or binary-framework qualification"
+}

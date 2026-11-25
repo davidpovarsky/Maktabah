@@ -1,0 +1,12 @@
+test_exact_modulemap_is_required (__main__.HostClangContextTests.test_exact_modulemap_is_required) ... ok
+test_four_exact_shared_modules_use_host_paths_without_modifying_sdk (__main__.HostClangContextTests.test_four_exact_shared_modules_use_host_paths_without_modifying_sdk) ... ok
+test_host_symlink_cannot_escape_checkout (__main__.HostClangContextTests.test_host_symlink_cannot_escape_checkout) ... ok
+test_matching_bytes_do_not_override_different_source_revision (__main__.HostClangContextTests.test_matching_bytes_do_not_override_different_source_revision) ... ok
+test_real_clang_rejects_duplicate_maps_then_accepts_canonical_map (__main__.HostClangContextTests.test_real_clang_rejects_duplicate_maps_then_accepts_canonical_map) ... ok
+test_same_module_name_with_different_header_is_rejected (__main__.HostClangContextTests.test_same_module_name_with_different_header_is_rejected) ... ok
+test_separate_cocoapods_module_is_reported_not_silently_dropped (__main__.HostClangContextTests.test_separate_cocoapods_module_is_reported_not_silently_dropped) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.192s
+
+OK

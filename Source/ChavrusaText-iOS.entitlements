@@ -23,6 +23,7 @@
 	<array>
 		<string>group.com.davidpovarsky.chavrusatext</string>
 		<string>group.com.davidpovarsky.itorah</string>
+		<string>group.com.itorah.shared</string>
 	</array>
 </dict>
 </plist>

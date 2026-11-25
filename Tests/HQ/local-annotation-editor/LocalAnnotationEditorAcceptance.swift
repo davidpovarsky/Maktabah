@@ -1,6 +1,7 @@
 import Foundation
 import Combine
 import SQLite3
+import Synchronization
 import OtzariaActionCore
 
 struct LocalCheckFailure: Error, CustomStringConvertible, Sendable {
@@ -66,6 +67,31 @@ struct LocalFixture {
     func rows() throws -> Data {
         try ledger.captureSource(annotationUUID: uuid).canonicalBytes
     }
+    /// Snapshot the actual SQLite image, including rows, tags, ledger and queues.
+    func databaseImage() throws -> Data {
+        try db.withSerializedAccess {
+            var count: sqlite3_int64 = 0
+            guard let bytes = sqlite3_serialize(db.dbPointer, "main", &count, 0),
+                  count > 0, count <= Int.max else {
+                throw LocalCheckFailure("SQLite image unavailable")
+            }
+            defer { sqlite3_free(bytes) }
+            return Data(bytes: bytes, count: Int(count))
+        }
+    }
+    func refusePlainWrite<E: Error & Equatable>(_ expected: E) throws {
+        let before = try databaseImage()
+        let cloud = CloudKitSyncManager.shared.observation
+        var edited = annotation
+        edited.note = "stale plain replacement"
+        edited.colorHex = "#ffffff"
+        edited.tags = ["stale replacement tag"]
+        try rejects(expected) { try store.updateAnnotation(edited) }
+        try check(try databaseImage() == before, "refused plain Save changed SQLite bytes")
+        let after = CloudKitSyncManager.shared.observation
+        try check(after.uploads == cloud.uploads && after.trackPending == cloud.trackPending &&
+                  after.deletes == cloud.deletes, "refused plain Save published a CloudKit callback")
+    }
     func intent(_ session: AnnotationLocalEditorSession, snapshot: AnnotationLocalEditorSnapshot,
                 mutation: UUID = UUID(), suffix: String = "one", preview: String = "תצוגה פשוטה") throws -> AnnotationLocalEditorIntent {
         try session.prepareSave(snapshot: snapshot, mutationID: mutation, body: fixtureBody(suffix),
@@ -98,6 +124,38 @@ func retireLocalEditorDuringSQL(_ context: OpaquePointer?, _ count: Int32,
         Unmanaged<AnnotationLocalEditorLifetime>.fromOpaque(pointer).takeUnretainedValue().retire()
     }
     sqlite3_result_int(context, 1)
+}
+
+// Fault injection belongs only to this owned fixture connection. The actual
+// SQLite update hook proves the preview write ran before its version INSERT
+// is denied; the original driver must roll the complete transaction back.
+final class LocalSQLiteWriteFailureProbe: Sendable {
+    struct Observation: Sendable {
+        var previewUpdates = 0
+        var deniedVersionInserts = 0
+    }
+    private let state = Mutex(Observation())
+    var observation: Observation { state.withLock { $0 } }
+    func recordPreview() { state.withLock { $0.previewUpdates += 1 } }
+    func recordRefusal() { state.withLock { $0.deniedVersionInserts += 1 } }
+}
+
+func observeLocalPreviewWrite(_ context: UnsafeMutableRawPointer?, _ operation: Int32,
+                              _ database: UnsafePointer<CChar>?, _ table: UnsafePointer<CChar>?,
+                              _ rowID: sqlite3_int64) {
+    guard let context, operation == SQLITE_UPDATE, let database, let table,
+          String(cString: database) == "main", String(cString: table) == "annotations" else { return }
+    Unmanaged<LocalSQLiteWriteFailureProbe>.fromOpaque(context).takeUnretainedValue().recordPreview()
+}
+
+func refuseLocalVersionInsert(_ context: UnsafeMutableRawPointer?, _ operation: Int32,
+                              _ table: UnsafePointer<CChar>?, _ column: UnsafePointer<CChar>?,
+                              _ database: UnsafePointer<CChar>?, _ trigger: UnsafePointer<CChar>?) -> Int32 {
+    guard let context, operation == SQLITE_INSERT, let database, let table,
+          String(cString: database) == "main",
+          String(cString: table) == "otzaria_annotation_exchange_versions" else { return SQLITE_OK }
+    Unmanaged<LocalSQLiteWriteFailureProbe>.fromOpaque(context).takeUnretainedValue().recordRefusal()
+    return SQLITE_DENY
 }
 
 @MainActor
@@ -240,12 +298,14 @@ final class LocalCases {
             let raw = try f.replacePayload(saved) { fields in var body = fields["richBody"]!.object!; body["formatVersion"] = .integer(99); fields["richBody"] = .object(body) }
             let value = try await s.read(); try check(value.document?.originalBytes == raw, "unknown bytes lost")
             try rejects(AnnotationLocalEditorError.unsupportedBody) { _ = try f.intent(s, snapshot: value) }
+            try f.refusePlainWrite(AnnotationPlainWriteError.requiresExpandedEditor)
         }
         await run("future_envelope_is_retained_and_read_only") {
             let f = try fixture("future-envelope"); let s = try f.session(); let saved = try await f.initialSave(s)
             let raw = try f.replacePayload(saved) { $0["schemaVersion"] = .integer(2) }
             let value = try await s.read(); try check(value.document?.originalBytes == raw, "future envelope lost")
             try rejects(AnnotationLocalEditorError.unsupportedEnvelope) { _ = try f.intent(s, snapshot: value) }
+            try f.refusePlainWrite(AnnotationPlainWriteError.unavailable)
         }
         await run("unknown_envelope_and_rich_metadata_survive_supported_edit") {
             let f = try fixture("unknown-metadata"); let s = try f.session(); let saved = try await f.initialSave(s)
@@ -283,34 +343,55 @@ final class LocalCases {
             let f = try fixture("future-schema")
             try f.ledger.installSchema()
             try f.db.execute(query: "PRAGMA ignore_check_constraints=ON;")
-            try f.db.execute(query: "UPDATE otzaria_annotation_exchange_schema SET version=2;")
+            try f.db.execute(query: "UPDATE otzaria_annotation_exchange_schema SET version=3;")
             try f.db.execute(query: "PRAGMA ignore_check_constraints=OFF;")
             let s = try f.session(); try await rejectsAsync(AnnotationExchangeError.schemaMismatch) { _ = try await s.read() }
-            try check(try f.scalar("SELECT version FROM otzaria_annotation_exchange_schema;") == 2, "future schema changed")
+            try check(try f.scalar("SELECT version FROM otzaria_annotation_exchange_schema;") == 3, "future schema changed")
+            try f.refusePlainWrite(AnnotationExchangeError.schemaMismatch)
         }
         await run("partial_schema_is_not_repaired_by_read") {
             let f = try fixture("partial-schema"); try f.db.execute(query: "CREATE TABLE otzaria_annotation_exchange_heads(opaque TEXT);")
             let s = try f.session(); try await rejectsAsync(AnnotationExchangeError.schemaMismatch) { _ = try await s.read() }
             try check(try f.scalar("SELECT COUNT(*) FROM sqlite_master WHERE name LIKE 'otzaria_annotation_exchange_%';") == 1, "partial schema repaired")
+            try f.refusePlainWrite(AnnotationExchangeError.schemaMismatch)
         }
         await run("corrupt_body_digest_is_rejected") {
             let f = try fixture("digest"); let s = try f.session(); _ = try await f.initialSave(s)
             try f.db.execute(query: "UPDATE otzaria_annotation_exchange_versions SET payload_digest=?;", parameters: [String(repeating: "0", count: 64)])
             try await rejectsAsync(AnnotationExchangeError.corruptRecord) { _ = try await s.read() }
+            try f.refusePlainWrite(AnnotationExchangeError.corruptRecord)
         }
-        await run("payload_bound_failure_rolls_back_preview_schema_and_queue") {
+        await run("payload_bound_refusal_preserves_preview_schema_and_queue") {
             let f = try fixture("large"); let s = try f.session(); let old = try await s.read()
-            let body = TorahAnnotationEnvelope.RichBody(format: fixtureFormat.identifier, formatVersion: 1, bytes: Data(repeating: 1, count: TorahAnnotationEnvelopeCodec.maximumBytes))
-            let intent = try s.prepareSave(snapshot: old, mutationID: UUID(), body: body, textPreview: "changed", editorRevision: nil)
-            try await rejectsAsync(AnnotationExchangeError.payloadTooLarge) { _ = try await s.save(intent) }
-            try check(try f.rows() == old.source.canonicalBytes && !f.ledger.hasInstalledSchema(), "outer rollback failed")
+            let before = try f.databaseImage()
+            let body = TorahAnnotationEnvelope.RichBody(format: fixtureFormat.identifier, formatVersion: 1,
+                bytes: Data(repeating: 1, count: TorahAnnotationPayloadLimits.maximumBodyBytes + 1))
+            try rejects(AnnotationLocalEditorError.unsupportedBody) {
+                _ = try s.prepareSave(snapshot: old, mutationID: UUID(), body: body, textPreview: "changed", editorRevision: nil)
+            }
+            try check(try f.databaseImage() == before && f.rows() == old.source.canonicalBytes &&
+                      !f.ledger.hasInstalledSchema(), "oversized body changed original storage")
+            try check(CloudKitSyncManager.shared.observation.uploads.isEmpty, "oversized body published")
         }
         await run("sqlite_failure_after_preview_rolls_back_entire_commit") {
             let f = try fixture("rollback"); try f.ledger.installSchema(); let s = try f.session(); let old = try await s.read()
-            try f.db.execute(query: "CREATE TRIGGER fail_head BEFORE INSERT ON otzaria_annotation_exchange_heads BEGIN SELECT RAISE(ABORT,'owned injected failure'); END;")
+            let before = try f.databaseImage()
+            let fault = LocalSQLiteWriteFailureProbe()
+            let pointer = Unmanaged.passUnretained(fault).toOpaque()
+            try check(sqlite3_set_authorizer(f.db.dbPointer, refuseLocalVersionInsert, pointer) == SQLITE_OK,
+                      "owned SQLite authorizer registration")
+            let priorObserver = sqlite3_update_hook(f.db.dbPointer, observeLocalPreviewWrite, pointer)
+            defer {
+                sqlite3_set_authorizer(f.db.dbPointer, nil, nil)
+                sqlite3_update_hook(f.db.dbPointer, nil, nil)
+            }
+            try check(priorObserver == nil, "fixture already has an update observer")
             do { _ = try await s.save(f.intent(s, snapshot: old)); throw LocalCheckFailure("expected SQLite failure") } catch is SQLiteError {}
-            try check(try f.rows() == old.source.canonicalBytes, "preview escaped rollback")
+            try check(fault.observation.previewUpdates == 1 && fault.observation.deniedVersionInserts == 1,
+                      "failure did not follow the actual original preview UPDATE")
+            try check(try f.databaseImage() == before && f.rows() == old.source.canonicalBytes, "preview escaped rollback")
             try check(try f.scalar("SELECT COUNT(*) FROM otzaria_annotation_exchange_versions;") == 0, "version escaped rollback")
+            try check(CloudKitSyncManager.shared.observation.uploads.isEmpty, "failed transaction published")
         }
         await run("retirement_during_original_sql_rolls_back_before_commit") {
             let f = try fixture("retire-sql"); let owner = AnnotationLocalEditorLifetime(); let storage = try f.storage(owner: owner)
@@ -322,11 +403,18 @@ final class LocalCases {
             try rejects(AnnotationLocalEditorError.retired) { _ = try storage.commit(intent) }
             try check(try f.rows() == old.source.canonicalBytes && !f.ledger.hasInstalledSchema(), "retired transaction committed")
         }
-        await run("normal_plain_save_preserves_rich_bytes_but_marks_body_stale") {
+        await run("normal_plain_save_refuses_rich_body_before_any_original_write") {
+            // The current repository now refuses an old quick editor after a rich
+            // commit. Historical passes of the former stale-body behavior remain
+            // attributable to their original source only.
             let f = try fixture("normal-after-rich"); let s = try f.session(); let saved = try await f.initialSave(s)
-            var changed = saved.snapshot.annotation; changed.note = "normal Save after rich"; try f.store.updateAnnotation(changed)
-            let value = try await s.read(); try check(value.version?.payload == saved.snapshot.version?.payload, "normal Save erased body")
-            try rejects(AnnotationLocalEditorError.staleBody) { _ = try f.intent(s, snapshot: value) }
+            try f.refusePlainWrite(AnnotationPlainWriteError.requiresExpandedEditor)
+            let value = try await s.read()
+            try check(value.version?.payload == saved.snapshot.version?.payload &&
+                      value.revision == saved.snapshot.revision &&
+                      value.source.canonicalBytes == saved.snapshot.source.canonicalBytes,
+                      "refused plain Save changed the saved rich note")
+            _ = try f.intent(s, snapshot: value)
         }
         await run("lowercase_original_uuid_bytes_are_not_restamped") {
             let f = try fixture("uuid-case"); try f.db.execute(query: "UPDATE annotations SET ckRecordId=lower(ckRecordId);")

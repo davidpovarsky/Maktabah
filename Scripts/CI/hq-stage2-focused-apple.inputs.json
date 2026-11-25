@@ -1,9 +1,9 @@
 {
-  "application_source_sha": "d49cedb3d5c163b7a008248d94b80a2eda28e3ce",
+  "application_source_sha": "0b61afcce2b2dcfe6ec39845bfd1d4e902fe06ef",
   "application_trees": {
-    "Source": "91c1adf6c97cd8676e8b2c76860a40f78924b1ec",
-    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
-    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078"
+    "Maktabah.xcodeproj": "35e9feff47092409d9ea2cccb99afa8ebc3575a4",
+    "Source": "96fb80b44a491ea0974ce23c29f23903ce434817",
+    "Vendor": "39fa45fdcbda36a964528cceee299ff6d94ef3f2"
   },
   "artifacts": [
     {
@@ -70,8 +70,19 @@
     "Vendor/ZayitSearchPort/Rust": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8",
     "Vendor/ZayitSearchPort/Upstream": "db6dc60006a51db83ec2c6feed1158e4da1a617b"
   },
-  "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
-  "otzaria_test_additions_sha256": "ef5d287ee888b306fab1ddf0e75242245f756976370129c433f1276a96b5611e",
+  "final_product_source": {
+    "manifest": "Scripts/CI/final-integration-source.inputs.json",
+    "sha256": "e705d7e597af4163176519656332a626d3a59bbadb0ca12f2cafdd43300a8044"
+  },
+  "hanlin_gitlink": "fe3f75d0638671c749225e9a8ddd487db70981cf",
+  "mac_shared_composition": {
+    "historic_receipts_preserved": true,
+    "manifest": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
+    "manifest_sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
+    "new_runtime_acceptance_required": true,
+    "previous_application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed"
+  },
+  "otzaria_test_additions_sha256": "546dc405db0cb9b409c54b6737404c4ccf67ab0767d4e1bafe2b9b9bb27bd279",
   "rebuild_zayit_framework": false,
   "resource_bundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",
   "resource_producer_sha": "70810eec46ad1fec6f30d983bf31e5f922dacb61",

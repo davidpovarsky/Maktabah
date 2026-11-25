@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "source": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+  "rows": [
+    {
+      "path": "AGENTS.md",
+      "revision": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "git_blob": "7bb033aff1bfc351ae03369667dc3c929d5226e7",
+      "bytes": 10467,
+      "sha256": "e371f43f3d108f3848741a61eb6875c37fd8b8afcd451cd5673c6a0596fc28a9",
+      "disposition": "read only"
+    },
+    {
+      "path": "PROJECT_AGENT_GUIDANCE.md",
+      "revision": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "git_blob": "f37b33123b66c3c473d56a876f2b7257d2f1744c",
+      "bytes": 6185,
+      "sha256": "cd245836cee86bd38e66bfb26d45dc0ff8bf80945038be7c5ed75d319472d49d",
+      "disposition": "read only"
+    },
+    {
+      "path": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "revision": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "git_blob": "9a3a57bbfed634f2e136c608b11c781312b0e8ff",
+      "bytes": 12242,
+      "sha256": "45c08f1786508e8932ae138e4c493ac6ce8cceb79ca27922a893c0141d391fdf",
+      "disposition": "read only"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+      "revision": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "git_blob": "feffbb8b323e9ed2b1212f4d7a1adaab4f8ecca3",
+      "bytes": 3885,
+      "sha256": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb",
+      "disposition": "read only"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "revision": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "git_blob": "ac647984ac55dd3e5fdbcb2f5ca5ac3743863720",
+      "bytes": 25753,
+      "sha256": "97c22429e8c76cf34e16b7fa9665be9aa4b84d0b29d0a43919e11cca18e39865",
+      "disposition": "existing downstream product edit proposed"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+      "revision": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "git_blob": "950e13695e35c1e3ddc6ca63b4373f2a8ac8f255",
+      "bytes": 9524,
+      "sha256": "ab12767d96243fec6e5b914c56061fcb5cfb9e1d88add827eeaf3e382592e2b3",
+      "disposition": "existing downstream product edit proposed"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "revision": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "git_blob": "e74b4b23a71c1bac6276af93317fc5ed859d0e68",
+      "bytes": 9538,
+      "sha256": "06d68fa6efb79ed534902cc3ea7ad73852f534a204059f1d1db2d9401f724b1a",
+      "disposition": "read only"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift",
+      "revision": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "git_blob": "c2c7109e0bb7ec6ce56e43c4b725624da98935eb",
+      "bytes": 6562,
+      "sha256": "c4f2349ca01c7a3a34ec6a8384ee789bc948e134385258469fbeadbed6df8065",
+      "disposition": "read only"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift",
+      "revision": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "git_blob": "a1ddaf0ff4a243d9cef5850c144941728927f650",
+      "bytes": 14853,
+      "sha256": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17",
+      "disposition": "read only"
+    },
+    {
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "revision": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "git_blob": "a7d7180ef1b7ba77a40a98d32592365206c1e41f",
+      "bytes": 14916,
+      "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+      "disposition": "read only"
+    },
+    {
+      "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "revision": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "git_blob": "101c5619549996fa2a0595df68aa59f1d43d04fa",
+      "bytes": 45760,
+      "sha256": "a0f9643764f12b3be4ac0e3ac441cfbfe638d7bc1a1cbe9d25acf8265d7e358b",
+      "disposition": "read only"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "revision": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "git_blob": "f911919c04eea11e779ccbb171b59101681641cb",
+      "bytes": 62736,
+      "sha256": "c961ed6c51a1344a19951ed2239626bfbf512707a52f841d27258633b847b4f6",
+      "disposition": "read only"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "revision": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "git_blob": "30d65e436e53d7520953eba3dfa87129581a5e7c",
+      "bytes": 10075,
+      "sha256": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29",
+      "disposition": "read only"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+      "revision": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "git_blob": "3d30c8f4010fca13fff2a2c41bf0f2907d04d457",
+      "bytes": 9216,
+      "sha256": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab",
+      "disposition": "read only"
+    }
+  ],
+  "original_sdk_comparison_reference": {
+    "source": "f8bc89c6a96552582ecf070ff920cc86f92868d4",
+    "file": "OriginalEditorFramework/AnytypeOriginalEditorHost.swift",
+    "sha256": "a83337834a54d70db883076e0556316c85aae4bdf03b14d8400293936ba3cb2a",
+    "evidence": "SDK owner exact-source read: nonempty/noNUL native IDs, no independent UTF8 length cap, Binding equality uses exact UTF8. Source integration remains root-owned."
+  }
+}

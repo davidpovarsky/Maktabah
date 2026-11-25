@@ -1,0 +1,174 @@
+[
+  {
+    "name" : "legacy_read_has_no_schema_or_original_mutation",
+    "status" : "PASS"
+  },
+  {
+    "name" : "same_uuid_atomic_two_block_body_and_plain_preview",
+    "status" : "PASS"
+  },
+  {
+    "name" : "all_original_metadata_tags_and_uuid_preserved",
+    "status" : "PASS"
+  },
+  {
+    "name" : "original_queue_upload_delete_preserved_and_no_exchange_destination",
+    "status" : "PASS"
+  },
+  {
+    "name" : "original_store_cache_reads_committed_preview",
+    "status" : "PASS"
+  },
+  {
+    "name" : "original_cloudkit_boundary_receives_plain_record_once_without_requeue",
+    "status" : "PASS"
+  },
+  {
+    "name" : "exact_retry_returns_same_version_without_duplicate_publication",
+    "status" : "PASS"
+  },
+  {
+    "name" : "same_mutation_different_body_is_conflict",
+    "status" : "PASS"
+  },
+  {
+    "name" : "new_revision_preserves_immutable_previous_bytes",
+    "status" : "PASS"
+  },
+  {
+    "name" : "second_session_stale_revision_cannot_overwrite",
+    "status" : "PASS"
+  },
+  {
+    "name" : "normal_save_invalidates_old_rich_intent_without_altering_normal_path",
+    "status" : "PASS"
+  },
+  {
+    "name" : "original_tag_change_invalidates_source_witness",
+    "status" : "PASS"
+  },
+  {
+    "name" : "changed_original_row_is_rejected_by_post_worker_read_publication",
+    "status" : "PASS"
+  },
+  {
+    "name" : "changed_version_is_rejected_by_post_worker_read_publication",
+    "status" : "PASS"
+  },
+  {
+    "name" : "pending_original_delete_cannot_be_resurrected",
+    "status" : "PASS"
+  },
+  {
+    "name" : "missing_original_annotation_is_not_recreated",
+    "status" : "PASS"
+  },
+  {
+    "name" : "ambiguous_uuid_is_never_selected_by_first_match",
+    "status" : "PASS"
+  },
+  {
+    "name" : "profile_switch_and_return_never_revives_old_owner",
+    "status" : "PASS"
+  },
+  {
+    "name" : "disconnect_reconnect_same_file_requires_fresh_session",
+    "status" : "PASS"
+  },
+  {
+    "name" : "retire_before_save_has_no_schema_or_write",
+    "status" : "PASS"
+  },
+  {
+    "name" : "read_and_cancel_does_not_save_or_backfill",
+    "status" : "PASS"
+  },
+  {
+    "name" : "foreign_session_snapshot_is_denied",
+    "status" : "PASS"
+  },
+  {
+    "name" : "unsupported_body_format_is_readable_but_never_overwritten",
+    "status" : "PASS"
+  },
+  {
+    "name" : "future_envelope_is_retained_and_read_only",
+    "status" : "PASS"
+  },
+  {
+    "name" : "unknown_envelope_and_rich_metadata_survive_supported_edit",
+    "status" : "PASS"
+  },
+  {
+    "name" : "altered_snapshot_document_cannot_remove_preserved_unknown_fields",
+    "status" : "PASS"
+  },
+  {
+    "name" : "unknown_local_commit_marker_is_not_reinterpreted",
+    "status" : "PASS"
+  },
+  {
+    "name" : "future_database_schema_is_not_migrated_by_read",
+    "status" : "PASS"
+  },
+  {
+    "name" : "partial_schema_is_not_repaired_by_read",
+    "status" : "PASS"
+  },
+  {
+    "name" : "corrupt_body_digest_is_rejected",
+    "status" : "PASS"
+  },
+  {
+    "name" : "payload_bound_refusal_preserves_preview_schema_and_queue",
+    "status" : "PASS"
+  },
+  {
+    "name" : "sqlite_failure_after_preview_rolls_back_entire_commit",
+    "status" : "PASS"
+  },
+  {
+    "name" : "retirement_during_original_sql_rolls_back_before_commit",
+    "status" : "PASS"
+  },
+  {
+    "name" : "normal_plain_save_refuses_rich_body_before_any_original_write",
+    "status" : "PASS"
+  },
+  {
+    "name" : "lowercase_original_uuid_bytes_are_not_restamped",
+    "status" : "PASS"
+  },
+  {
+    "name" : "nul_preview_is_rejected_before_original_sqlite_string_binding",
+    "status" : "PASS"
+  },
+  {
+    "name" : "empty_format_contract_has_no_implicit_editor_default",
+    "status" : "PASS"
+  },
+  {
+    "name" : "format_conversion_is_not_implicit_even_when_both_are_known",
+    "status" : "PASS"
+  },
+  {
+    "name" : "replay_of_older_head_cannot_replace_or_publish_newer_body",
+    "status" : "PASS"
+  },
+  {
+    "name" : "retirement_during_publication_reports_real_commit_without_owner_delivery",
+    "status" : "PASS"
+  },
+  {
+    "name" : "orphaned_version_is_not_treated_as_a_legacy_empty_note",
+    "status" : "PASS"
+  },
+  {
+    "name" : "original_exchange_api_still_rejects_empty_destinations",
+    "status" : "PASS"
+  },
+  {
+    "name" : "ordinary_original_save_and_tags_still_work_on_legacy_note",
+    "status" : "PASS"
+  }
+]

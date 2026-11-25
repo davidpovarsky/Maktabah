@@ -107,3 +107,57 @@ extension View {
     }
 }
 
+
+/// Observe the real native Button press without adding a drag recognizer to a
+/// toolbar control. The single external surface follows this small motion.
+struct LibrarySearchPressStyle: ButtonStyle {
+    let onPressed: (Bool) -> Void
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .onChange(of: configuration.isPressed) { _, pressed in onPressed(pressed) }
+            .onDisappear { onPressed(false) }
+    }
+}
+
+/// Gelatin's movement/stretch is confined to a dedicated 16pt handle. Neither
+/// the original text field nor the scrolling result list inherits its gesture.
+struct LibrarySearchMotionHandle: View {
+    @Binding var offset: CGSize
+    @Binding var stretch: CGSize
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    var body: some View {
+        Capsule()
+            .fill(.secondary.opacity(0.45))
+            .frame(width: 36, height: 4)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .contentShape(Rectangle())
+            .gesture(drag, including: reduceMotion ? .none : .all)
+            .accessibilityHidden(true)
+    }
+
+    private var drag: some Gesture {
+        DragGesture(minimumDistance: 0, coordinateSpace: .global)
+            .onChanged { value in
+                let x = ease(value.translation.width)
+                let y = ease(value.translation.height)
+                withAnimation(.smooth(duration: 0.22)) {
+                    offset = CGSize(width: x, height: y)
+                    stretch = CGSize(width: 1 + 0.12 * min(abs(x) / 130, 1),
+                                     height: 1 + 0.12 * min(abs(y) / 130, 1))
+                }
+            }
+            .onEnded { _ in
+                withAnimation(.smooth(duration: 0.55, extraBounce: 0.45)) {
+                    offset = .zero
+                    stretch = CGSize(width: 1, height: 1)
+                }
+            }
+    }
+
+    private func ease(_ input: CGFloat) -> CGFloat {
+        guard input != 0 else { return 0 }
+        return CGFloat(pow(Double(abs(input)), 0.5)) * (input < 0 ? -1 : 1)
+    }
+}

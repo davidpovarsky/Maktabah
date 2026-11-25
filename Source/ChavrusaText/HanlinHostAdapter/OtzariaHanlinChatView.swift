@@ -190,8 +190,10 @@ private struct OtzariaHanlinChatView: View {
                     }
                 }
                 .padding()
-                .padding(.bottom, composerHeight)
             }
+            // Auto-follow must place the final message above the floating input.
+            // Stack padding alone leaves source actions under the native editor.
+            .safeAreaPadding(.bottom, composerHeight)
             .scrollDismissesKeyboard(.interactively)
             .onChange(of: session.messages.last?.content) { _, _ in
                 if let last = session.messages.last { reader.scrollTo(last.id, anchor: .bottom) }
@@ -205,13 +207,14 @@ private struct OtzariaHanlinChatView: View {
             toolbarHeight: toolbarHeight, isExpanded: expanded))
         return HanlinMorphComposer(
             isExpanded: $expanded, activePage: $activePage, availableHeight: availableHeight, accessoryHeight: 0,
+            inputHeight: inputHeight,
             title: { _ in String(localized: "Study chat") },
             subtitle: { _ in String(localized: "Conversation appearance") },
             backIdentifier: { _ in "otzaria-hanlin-composer-back" },
             onOpen: { expanded = true },
             onBackgroundTap: { expanded = false },
-            onInputHeightChange: { inputHeight = $0 },
-            onToolbarHeightChange: { toolbarHeight = $0 }) {
+            onToolbarHeightChange: { toolbarHeight = $0 },
+            home: {
                 Picker(String(localized: "Appearance"), selection: $session.selectedProfile) {
                     ForEach(session.presentationDescriptor.availableProfiles, id: \.reference) { profile in
                         Text(profile.shellID == "hanlin.research" ? String(localized: "Research") : String(localized: "Standard"))
@@ -220,9 +223,9 @@ private struct OtzariaHanlinChatView: View {
                 }
                 .disabled(session.isStreaming)
                 .accessibilityIdentifier("otzaria-hanlin-profile-picker")
-            } detail: { _ in
+            }, detail: { _ in
                 EmptyView()
-            } input: {
+            }, input: {
                 HStack(alignment: .bottom, spacing: 10) {
                     NativeMultilineTextEditor(
                         text: Binding(
@@ -247,7 +250,12 @@ private struct OtzariaHanlinChatView: View {
                     }
                 }
                 .padding(10)
-            }
+                .fixedSize(horizontal: false, vertical: true)
+                .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { height in
+                    guard height.isFinite, height > 1, abs(height - inputHeight) > 0.5 else { return }
+                    inputHeight = height
+                }
+            })
             .padding(12)
     }
 }

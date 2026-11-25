@@ -1,0 +1,14 @@
+{
+  "scope": "INDEPENDENT_SOURCE_REVIEW_ONLY",
+  "reviewer": "/root/library_acceptance",
+  "application_source_sha": "3a7d048c02b28ef81de2e1b4824f9ea996cf54ad",
+  "manifest_sha256": "4d6da0883818fe730218e8f3b3222c47cb536e15b37cdf5fe5e929bfce7d1ece",
+  "verified_product_objects": 34,
+  "unchanged_component_objects": 27,
+  "explicit_merge_objects": 7,
+  "historical_receipts_preserved": 3,
+  "retained_build_inputs_and_engine_test_additions": "PASS",
+  "old_prepared_receipt_reusable": false,
+  "requires_new_actual_app_build": true,
+  "native_acceptance": "NOT_CLAIMED"
+}

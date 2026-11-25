@@ -1,0 +1,366 @@
+{
+  "observed_at": "2026-11-25T02:52:10.208222+00:00",
+  "host": "macOS-27.0-arm64-arm-64bit",
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+  "source_sha": "b0a89ffa103cb31e4414576236aa748a0187674e",
+  "source_archive": {
+    "manifest_sha256": "84b9ca90087dc8d9bf9f83a22a2f9ce70d750b13c556f6eb999e46fe19469e95",
+    "canonical_commit": "b0a89ffa103cb31e4414576236aa748a0187674e",
+    "verified_file_count": 92,
+    "git_history_transferred": false
+  },
+  "source_files_before": {
+    "Source/Core/Database/SQLiteDatabase.swift": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+    "Source/Core/CloudKit/SyncPendingStore.swift": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+    "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29",
+    "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift": "dd3e5482126b04cae72ad4100d65f125c48f8cd0e98a2c00755570f6c4d6d833",
+    "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeIdentity.swift": "e847f6836a01685f4a8f13f58811975da37ea029c4bb0f2c116a5f96bf4a1eb9",
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+    "Tests/HQ/annotation-exchange/AnnotationExchangeTestSupport.swift": "ceef8fc5c2b23eccecca09cedf93d4f42f5d2e7030872f2f24070412e59825e9",
+    "Tests/HQ/annotation-exchange/AnnotationExchangeAcceptance.swift": "07127d813934854b8c177e3569710903d2f06b90a14b93f673fce5b04ab66bdc",
+    "tools/hq-annotation-exchange-acceptance.py": "179c5493464cb2f5a5060445d0962aa45ab9d77038f173b2cefe7b5e925e5ac8",
+    "tools/exact-source-archive.py": "793a6761ba64f410448d51f03dd4bd700865fc4db9471df001c171f289d9c897",
+    "Source/Features/Annotations/Database/AnnotationRepository.swift": "0e5f39c024d79eda212650cdc22b44209aa7d323966dc38106b77e8604739f6f",
+    "Source/Core/Configuration/ReusableFunc.swift": "dcfbf50da4a828231dcaeb0d83da6eaecbaade6bfc7e47ad691ad026853e87b7",
+    "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift": "bd78a3f63e300164551411227835e108923729bbd83ed82cfea05e0e5d3dd433",
+    "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift": "90916d670e0a58623bce4c60cb09ff2678bbe4f308b50201897b278cf232aaca",
+    "Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift": "b0ff33f02f65d5f0632b15a354cbe2f7dd41b548abea5d83fb20be39e7ca52c9",
+    "Source/Otzaria/Actions/Integration/ActionLiveOccurrenceCounter.swift": "61a3cbbd3578713454f20bea7854b7a5bcbc3de396740862a064f64d4ab63312",
+    "Source/Otzaria/Actions/Integration/ActionOccurrenceCoveragePolicy.swift": "e308e16cc8da3e1efed5abe4a3424fb173095727676caca70dc0bec1894a6e43",
+    "Source/Otzaria/Actions/Package.swift": "f3c61079df27e8b27ad08675db230b478995218f3f781993488a622390799944",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift": "f1c46980c4f39d98991629f04699d6a5ddf7cd8d4f4a1db1433d86ec02bba7b1",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift": "7134e762c385c6dbd4ad7ee21b0237f0ce5440943329911fe583cc1fd1684de6",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift": "d28f2578557eac47cb15864823d7727e2b10c80921e97326f9de24cf4fbd90e5",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift": "aee72c3c9d39e58b82b6eeb5939f6dcca59bcb3d8681ae087f8eef46f049c85d",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift": "902863b2b4ef706176ed998e29ba550199eb6fc29c7bba7497b5f85e8a02ec40",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionCommentary.swift": "a0c786e172ddbb3ef2437a228f3dc77c4cef2cf06788554f9e5616f5ee4d2f73",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift": "86f271de67b8e7de87c98f335cb714c31583d0f881e872170e1324c979cf7c93",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNativeUIFailure.swift": "3ab7a8fce4297ee72b16e72ae10891333bd26b00c66e6138e6b98640acd34666",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift": "d63d8ad2bf2c284ec9ffb42a836d82b930c5d8eaa93c9b03cb0b424c4e3ec8f1",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOccurrenceCount.swift": "ecac5538a3fae48ef1d3f3682f31b3407785aa8867bcbac1e78b462972d31dd7",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift": "79f55666020cfdaf794f90260d600d3c2b4dbc437ccb78c48390b7ca93611cd1",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift": "666e87a1e3e7c9d6f7b7c6ca2a8a624b5368837f2666e9bc5b541f600e3a0014",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift": "2ace2006d6aefddb6e277da24d88f95abbdebd86665e8f40e1dae7db965e4843",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift": "59b585db5cd4fc0f05c5774bb1cdab4b9392940683c74302154bd1c77901b43a",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift": "3cbeb8013798aba9782059e29bddf88d21a98714d6e2e342d7fc5e2257ba2c49",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift": "61d7627dd9c68513a3a6102b12154f2b11b1ffd4dab7cbfb226563b59ecf2252",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift": "11267448ee64f23ccbc858a5aaf0b89ae6dda208262177a0015cca52d6ed0a03",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift": "aac053ac7dea75abe5eadac90f29e1605118ab20a886c9d1065f5b58d46342b9",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift": "bc356126c53d2022323ae1983c9e4e5a2204c4a2dd16a6721f009ab31c3807b6",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift": "1230c42e974b63bd26af3b60804d625ce9cea79cfe9b9186872ff50d0cb09086",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift": "89af621942e11b74290633f0562f5451ae7dba73530dbc2a0b4b6b7555d182ae",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift": "f449f5be10b1e7f43a7769fa56678e699db7bd306eafe7e1bf54d4caf17b8c23",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift": "4e175d23a23c1ecdfd2c2c466e4f658dbe62be1ec078b7c7a7fee2b9188574d8",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift": "9e6e9c568c4927bb760b69f95d845bb095ff279baf65ab9a4197632d70eedb0d",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift": "653e4f9245ef7d476fde62a6d6224712bd55cc0a95559bc9548761b237a62a24",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-catalog.v1.json": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-request.v1.schema.json": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-result.v1.schema.json": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-acceptance-cases.v1.json": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-capability-matrix.v1.json": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/examples.v1.json": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/BackendSemantics/BackendSemanticsTests.swift": "97e869791abbcf736890a0fd387eba00739bbd50cd11aa168fb295e83f3b8358",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/ContractAPITests.swift": "e74b362654f3396f0274fee3a493110205384b5d8c498d25f181a30a4e2ec9df",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/WireSecurityTests.swift": "43e9b63c86674cf0e8abde0db4582d68ac1638988335203854386b941a622485",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/ColdSearchExecutionOfflineTests.swift": "54c2d18250e7e9715352ff029139ba690e296c15877bfb23e092d1dff02b0f22",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/EngineTests.swift": "638580f65fb7f1436bb91ded515f94f66dda39ef1bcd2a0562d059898d083a84",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/ExistingSearchPreparationObservationTests.swift": "ad24426235ea2b469c84b9b23e99309651cc27e647df9b077129379fb525fd0a",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/NoteDraftActionTests.swift": "b4031a94105c6f198b00bd4419afe0d3d1693003ccd9ee5288384a5e2871f852",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/OccurrenceActionTests.swift": "db5a29b8ae9053a7cae202c4b7be3d4f81b8c161cd546b6c2dc0cf1ec841a608",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/SemanticJourneyTests.swift": "6bf41160e05f894207e641c2c9a6d39553814b0b3fcab6fd99c71d37b56e6943",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Ports/MockPorts.swift": "c2f575a0c8b224cca29b1715e372f6f0785a2df93c4ff85c7bc582fde189448c",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogActionResolverTests.swift": "7f761fc50452b7c93dda2b26872edc371644ea46a30ef1334b3db90fc51b841b",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogSourceSectionsTests.swift": "502c9445d753960caa233d1b3f290a2eab8517e2080a44f592121f76eb087254",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CommentaryActionTests.swift": "a8df3edd8832ea9f1b383ba52b84113fb3e108405b4fd1fe2a1d97ecfb554f7a",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/SearchResultsActionTests.swift": "db189ccc54e82b2280b078dcd02e845d07ad3cba52a86f6d7a5e52551411e2a9"
+  },
+  "source_status_before": "EXACT_COMMITTED_SOURCE_ARCHIVE_NOT_GIT_CHECKOUT",
+  "build_command": [
+    "/usr/bin/swift",
+    "build",
+    "--package-path",
+    "/Users/m1/builds/Maktabah-b0a89ffa-identity-component-20261125/build/exchange28/owned-ff8b1e2d-7d41-422a-aa46-dd8427eaa26e/package",
+    "--scratch-path",
+    "/Users/m1/builds/Maktabah-b0a89ffa-identity-component-20261125/build/exchange28/owned-ff8b1e2d-7d41-422a-aa46-dd8427eaa26e/swift-build",
+    "-j",
+    "4"
+  ],
+  "owned_directory": "/Users/m1/builds/Maktabah-b0a89ffa-identity-component-20261125/build/exchange28/owned-ff8b1e2d-7d41-422a-aa46-dd8427eaa26e",
+  "actual_sqlite": true,
+  "sqlite_module_provider": "Original Apple SDK SQLite3 module",
+  "actual_original_sync_pending_store": true,
+  "original_annotation_repository_runtime_executed": false,
+  "digest_provider": "Production CryptoKit SHA256",
+  "native_ui_executed": 0,
+  "cloudkit_runtime_executed": 0,
+  "anytype_runtime_executed": 0,
+  "transport_executed": 0,
+  "physical_device_executed": 0,
+  "live_capability_enabled": false,
+  "cases": [
+    {
+      "milliseconds": 0.6470680236816406,
+      "name": "actual_platform_SHA256_known_vectors",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 45.86803913116455,
+      "name": "constructor_is_inert_and_capability_stays_off",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 12.563943862915039,
+      "name": "exact_rich_bytes_preview_and_unknown_fields_survive_reopen",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 6.443977355957031,
+      "name": "unknown_version_is_exact_quarantine_without_execution",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 11.335968971252441,
+      "name": "all_original_handles_close_before_reopen_and_retry",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 0.6539821624755859,
+      "name": "duplicate_escaped_keys_malformed_UTF8_and_numbers_are_rejected",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 6.058096885681152,
+      "name": "invalid_UUID_base64_types_and_scope_are_rejected",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 2.4080276489257812,
+      "name": "oversized_payload_fails_intact_without_rows",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 6.749987602233887,
+      "name": "schema_constraints_reject_fractional_revision_and_invalid_status",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 2.838015556335449,
+      "name": "unknown_ledger_schema_fails_closed",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 3.8160085678100586,
+      "name": "missing_or_ambiguous_original_UUID_is_not_backfilled",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 29.671907424926758,
+      "name": "same_second_source_edit_rejects_stale_witness",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 19.917964935302734,
+      "name": "tag_locator_and_embedded_NUL_each_change_source_witness",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 4.3250322341918945,
+      "name": "source_metadata_and_revision_mismatch_do_not_write",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 4.990935325622559,
+      "name": "dangling_original_tag_link_changes_witness_and_rejects_stale_commit",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 8.916974067687988,
+      "name": "idempotent_retry_binds_exact_payload_and_destination_set",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 17.07303524017334,
+      "name": "ACK_is_bound_to_destination_account_space_UUID_revision_digest_and_message",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 11.337995529174805,
+      "name": "old_ACK_does_not_consume_newer_revision_or_account",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 42.932987213134766,
+      "name": "nested_enqueue_failure_rolls_back_source_cloud_queue_and_ledger",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 41.970014572143555,
+      "name": "outer_failure_after_inner_release_rolls_back_everything",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 63.54999542236328,
+      "name": "successful_outer_transaction_preserves_original_cloud_queue_semantics",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 14.255046844482422,
+      "name": "tombstone_requires_prior_identity_and_absent_original_source",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 8.115053176879883,
+      "name": "known_inbox_is_review_only_exact_idempotent_and_account_scoped",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 3.8379430770874023,
+      "name": "incoming_digest_and_identity_mismatch_are_rejected",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 7.46607780456543,
+      "name": "corrupt_payload_and_orphan_outbox_fail_closed",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 12.0849609375,
+      "name": "pre_cancelled_commit_and_ACK_do_not_write",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 20.905017852783203,
+      "name": "cancellation_after_real_enqueue_rolls_back_before_commit",
+      "status": "PASS"
+    },
+    {
+      "milliseconds": 42.86599159240723,
+      "name": "eight_concurrent_same_revision_writers_have_one_atomic_winner",
+      "status": "PASS"
+    }
+  ],
+  "process_termination_checks": [
+    {
+      "phase": "after",
+      "termination_command": [
+        "/Users/m1/builds/Maktabah-b0a89ffa-identity-component-20261125/build/exchange28/owned-ff8b1e2d-7d41-422a-aa46-dd8427eaa26e/swift-build/out/Products/Debug/ExchangeAcceptance",
+        "crash-after-commit",
+        "/Users/m1/builds/Maktabah-b0a89ffa-identity-component-20261125/build/exchange28/owned-ff8b1e2d-7d41-422a-aa46-dd8427eaa26e/fixtures"
+      ],
+      "terminated_exit": 73,
+      "expected_terminated_exit": 73,
+      "status": "PASS",
+      "actual_journal_observation": "CRASH_JOURNAL_MODE wal; synchronous=2",
+      "verify_command": [
+        "/Users/m1/builds/Maktabah-b0a89ffa-identity-component-20261125/build/exchange28/owned-ff8b1e2d-7d41-422a-aa46-dd8427eaa26e/swift-build/out/Products/Debug/ExchangeAcceptance",
+        "verify-crash-after",
+        "/Users/m1/builds/Maktabah-b0a89ffa-identity-component-20261125/build/exchange28/owned-ff8b1e2d-7d41-422a-aa46-dd8427eaa26e/fixtures"
+      ],
+      "verify_exit": 0
+    },
+    {
+      "phase": "before",
+      "termination_command": [
+        "/Users/m1/builds/Maktabah-b0a89ffa-identity-component-20261125/build/exchange28/owned-ff8b1e2d-7d41-422a-aa46-dd8427eaa26e/swift-build/out/Products/Debug/ExchangeAcceptance",
+        "crash-before-outer-commit",
+        "/Users/m1/builds/Maktabah-b0a89ffa-identity-component-20261125/build/exchange28/owned-ff8b1e2d-7d41-422a-aa46-dd8427eaa26e/fixtures"
+      ],
+      "terminated_exit": 73,
+      "expected_terminated_exit": 73,
+      "status": "PASS",
+      "actual_journal_observation": "CRASH_JOURNAL_MODE wal; synchronous=2",
+      "verify_command": [
+        "/Users/m1/builds/Maktabah-b0a89ffa-identity-component-20261125/build/exchange28/owned-ff8b1e2d-7d41-422a-aa46-dd8427eaa26e/swift-build/out/Products/Debug/ExchangeAcceptance",
+        "verify-crash-before",
+        "/Users/m1/builds/Maktabah-b0a89ffa-identity-component-20261125/build/exchange28/owned-ff8b1e2d-7d41-422a-aa46-dd8427eaa26e/fixtures"
+      ],
+      "verify_exit": 0
+    }
+  ],
+  "build_seconds": 67.182827625,
+  "compile_exit": 0,
+  "test_command": [
+    "/Users/m1/builds/Maktabah-b0a89ffa-identity-component-20261125/build/exchange28/owned-ff8b1e2d-7d41-422a-aa46-dd8427eaa26e/swift-build/out/Products/Debug/ExchangeAcceptance",
+    "self-tests",
+    "/Users/m1/builds/Maktabah-b0a89ffa-identity-component-20261125/build/exchange28/owned-ff8b1e2d-7d41-422a-aa46-dd8427eaa26e/fixtures"
+  ],
+  "execute_exit": 0,
+  "sqlite_version": "3.54.0",
+  "independent_python_SHA256": "1ec5d78ea1971ac472ad074b3c008790cba52afac3e1d8d1129c4800e2d4b169",
+  "cloudkit_queue_bytes_unchanged": true,
+  "cloudkit_queue_rows_SHA256": "ce475c91b22e5f56aefbf401c7b2c7f499b47bd2e26e752174b7a3f2c9de921b",
+  "cloudkit_queue_rows_count": 2,
+  "source_files_after": {
+    "Source/Core/Database/SQLiteDatabase.swift": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+    "Source/Core/CloudKit/SyncPendingStore.swift": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+    "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29",
+    "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift": "dd3e5482126b04cae72ad4100d65f125c48f8cd0e98a2c00755570f6c4d6d833",
+    "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeIdentity.swift": "e847f6836a01685f4a8f13f58811975da37ea029c4bb0f2c116a5f96bf4a1eb9",
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+    "Tests/HQ/annotation-exchange/AnnotationExchangeTestSupport.swift": "ceef8fc5c2b23eccecca09cedf93d4f42f5d2e7030872f2f24070412e59825e9",
+    "Tests/HQ/annotation-exchange/AnnotationExchangeAcceptance.swift": "07127d813934854b8c177e3569710903d2f06b90a14b93f673fce5b04ab66bdc",
+    "tools/hq-annotation-exchange-acceptance.py": "179c5493464cb2f5a5060445d0962aa45ab9d77038f173b2cefe7b5e925e5ac8",
+    "tools/exact-source-archive.py": "793a6761ba64f410448d51f03dd4bd700865fc4db9471df001c171f289d9c897",
+    "Source/Features/Annotations/Database/AnnotationRepository.swift": "0e5f39c024d79eda212650cdc22b44209aa7d323966dc38106b77e8604739f6f",
+    "Source/Core/Configuration/ReusableFunc.swift": "dcfbf50da4a828231dcaeb0d83da6eaecbaade6bfc7e47ad691ad026853e87b7",
+    "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift": "bd78a3f63e300164551411227835e108923729bbd83ed82cfea05e0e5d3dd433",
+    "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift": "90916d670e0a58623bce4c60cb09ff2678bbe4f308b50201897b278cf232aaca",
+    "Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift": "b0ff33f02f65d5f0632b15a354cbe2f7dd41b548abea5d83fb20be39e7ca52c9",
+    "Source/Otzaria/Actions/Integration/ActionLiveOccurrenceCounter.swift": "61a3cbbd3578713454f20bea7854b7a5bcbc3de396740862a064f64d4ab63312",
+    "Source/Otzaria/Actions/Integration/ActionOccurrenceCoveragePolicy.swift": "e308e16cc8da3e1efed5abe4a3424fb173095727676caca70dc0bec1894a6e43",
+    "Source/Otzaria/Actions/Package.swift": "f3c61079df27e8b27ad08675db230b478995218f3f781993488a622390799944",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift": "f1c46980c4f39d98991629f04699d6a5ddf7cd8d4f4a1db1433d86ec02bba7b1",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift": "7134e762c385c6dbd4ad7ee21b0237f0ce5440943329911fe583cc1fd1684de6",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift": "d28f2578557eac47cb15864823d7727e2b10c80921e97326f9de24cf4fbd90e5",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift": "aee72c3c9d39e58b82b6eeb5939f6dcca59bcb3d8681ae087f8eef46f049c85d",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift": "902863b2b4ef706176ed998e29ba550199eb6fc29c7bba7497b5f85e8a02ec40",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionCommentary.swift": "a0c786e172ddbb3ef2437a228f3dc77c4cef2cf06788554f9e5616f5ee4d2f73",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift": "86f271de67b8e7de87c98f335cb714c31583d0f881e872170e1324c979cf7c93",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNativeUIFailure.swift": "3ab7a8fce4297ee72b16e72ae10891333bd26b00c66e6138e6b98640acd34666",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift": "d63d8ad2bf2c284ec9ffb42a836d82b930c5d8eaa93c9b03cb0b424c4e3ec8f1",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOccurrenceCount.swift": "ecac5538a3fae48ef1d3f3682f31b3407785aa8867bcbac1e78b462972d31dd7",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift": "79f55666020cfdaf794f90260d600d3c2b4dbc437ccb78c48390b7ca93611cd1",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift": "666e87a1e3e7c9d6f7b7c6ca2a8a624b5368837f2666e9bc5b541f600e3a0014",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift": "2ace2006d6aefddb6e277da24d88f95abbdebd86665e8f40e1dae7db965e4843",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift": "59b585db5cd4fc0f05c5774bb1cdab4b9392940683c74302154bd1c77901b43a",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift": "3cbeb8013798aba9782059e29bddf88d21a98714d6e2e342d7fc5e2257ba2c49",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift": "61d7627dd9c68513a3a6102b12154f2b11b1ffd4dab7cbfb226563b59ecf2252",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift": "11267448ee64f23ccbc858a5aaf0b89ae6dda208262177a0015cca52d6ed0a03",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift": "aac053ac7dea75abe5eadac90f29e1605118ab20a886c9d1065f5b58d46342b9",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift": "bc356126c53d2022323ae1983c9e4e5a2204c4a2dd16a6721f009ab31c3807b6",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift": "1230c42e974b63bd26af3b60804d625ce9cea79cfe9b9186872ff50d0cb09086",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift": "89af621942e11b74290633f0562f5451ae7dba73530dbc2a0b4b6b7555d182ae",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift": "f449f5be10b1e7f43a7769fa56678e699db7bd306eafe7e1bf54d4caf17b8c23",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift": "4e175d23a23c1ecdfd2c2c466e4f658dbe62be1ec078b7c7a7fee2b9188574d8",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift": "9e6e9c568c4927bb760b69f95d845bb095ff279baf65ab9a4197632d70eedb0d",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift": "653e4f9245ef7d476fde62a6d6224712bd55cc0a95559bc9548761b237a62a24",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-catalog.v1.json": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-request.v1.schema.json": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-result.v1.schema.json": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-acceptance-cases.v1.json": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-capability-matrix.v1.json": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/examples.v1.json": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/BackendSemantics/BackendSemanticsTests.swift": "97e869791abbcf736890a0fd387eba00739bbd50cd11aa168fb295e83f3b8358",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/ContractAPITests.swift": "e74b362654f3396f0274fee3a493110205384b5d8c498d25f181a30a4e2ec9df",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/WireSecurityTests.swift": "43e9b63c86674cf0e8abde0db4582d68ac1638988335203854386b941a622485",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/ColdSearchExecutionOfflineTests.swift": "54c2d18250e7e9715352ff029139ba690e296c15877bfb23e092d1dff02b0f22",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/EngineTests.swift": "638580f65fb7f1436bb91ded515f94f66dda39ef1bcd2a0562d059898d083a84",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/ExistingSearchPreparationObservationTests.swift": "ad24426235ea2b469c84b9b23e99309651cc27e647df9b077129379fb525fd0a",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/NoteDraftActionTests.swift": "b4031a94105c6f198b00bd4419afe0d3d1693003ccd9ee5288384a5e2871f852",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/OccurrenceActionTests.swift": "db5a29b8ae9053a7cae202c4b7be3d4f81b8c161cd546b6c2dc0cf1ec841a608",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/SemanticJourneyTests.swift": "6bf41160e05f894207e641c2c9a6d39553814b0b3fcab6fd99c71d37b56e6943",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Ports/MockPorts.swift": "c2f575a0c8b224cca29b1715e372f6f0785a2df93c4ff85c7bc582fde189448c",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogActionResolverTests.swift": "7f761fc50452b7c93dda2b26872edc371644ea46a30ef1334b3db90fc51b841b",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogSourceSectionsTests.swift": "502c9445d753960caa233d1b3f290a2eab8517e2080a44f592121f76eb087254",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CommentaryActionTests.swift": "a8df3edd8832ea9f1b383ba52b84113fb3e108405b4fd1fe2a1d97ecfb554f7a",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/SearchResultsActionTests.swift": "db189ccc54e82b2280b078dcd02e845d07ad3cba52a86f6d7a5e52551411e2a9"
+  },
+  "source_bytes_unchanged_during_run": true,
+  "status": "PASS_ACTUAL_SQLITE_COMPONENT",
+  "passed_cases": 28,
+  "failed_cases": 0
+}

@@ -1,0 +1,207 @@
+[
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/AnnotationExchangeLedger.swift",
+    "bytes": 62736,
+    "sha256": "c961ed6c51a1344a19951ed2239626bfbf512707a52f841d27258633b847b4f6"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/AnnotationLocalEditorCloudOwnership.swift",
+    "bytes": 14853,
+    "sha256": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/AnnotationLocalEditorModels.swift",
+    "bytes": 3885,
+    "sha256": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/AnnotationLocalEditorPersistence.swift",
+    "bytes": 56888,
+    "sha256": "971b28da430bb9334aa151e04d9014af462732d81fac3f726019ada3ecba930b"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/AnnotationLocalEditorSession.swift",
+    "bytes": 13345,
+    "sha256": "4335d52759540beb7fd594dc1808b09981584f09e3bf7899349f6a3c2d146d63"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/BudgetOpenSSLDigest.swift",
+    "bytes": 739,
+    "sha256": "103513498af5fe88cadd353b8c6219f5c54f1065e07168c4d3dadfcd8e04be3c"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/SQLiteDatabase.swift",
+    "bytes": 14916,
+    "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/SyncPendingStore.swift",
+    "bytes": 3534,
+    "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/original/TorahAnnotationEnvelope.swift",
+    "bytes": 10075,
+    "sha256": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29"
+  },
+  {
+    "path": "/mnt/development/projects/worktrees/Maktabah-local-native-attempt-20261123/docs/hq-integration/local-native-attempt-20261123/controls/NativeAttemptControlSupport.swift",
+    "bytes": 8739,
+    "sha256": "71c018d7446f06e9bd68ad52c8195b882ed006bfcc4f0da8cc891aa3af7b3547"
+  },
+  {
+    "path": "/mnt/development/projects/worktrees/Maktabah-local-native-attempt-20261123/docs/hq-integration/local-native-attempt-20261123/controls/NativeAttemptControls.swift",
+    "bytes": 29877,
+    "sha256": "9d328a5ec308b1ba95a96056e426985a36f1bc1d9b8070c8950e26d27eb03a70"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionBackendArgumentTarget.o",
+    "bytes": 46824,
+    "sha256": "437008b789425b8dab489ca2d0d552882bb630063d143c9aa9e12cf11ccd2e70"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionCommentary.o",
+    "bytes": 64904,
+    "sha256": "24e635464c960a6cd5fd4d51a31048449cdf56288ff9850ea0c17761f926aa64"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionDeadline.o",
+    "bytes": 134960,
+    "sha256": "7ba4f372b4892913234f52b3103a0b24b7c6b9e2cb326ffa188e1c0e4780aba1"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionExecutionContext.o",
+    "bytes": 84024,
+    "sha256": "38b4e9dc2bb43e0386ec5b376851758bf0599ae30ae5160e84eb932b9da0baf3"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionExecutor.o",
+    "bytes": 1653712,
+    "sha256": "3e1f6223ba48452aa53549b86916ecb7d04a370f624c0de6d6554b9de669229c"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionJSON.o",
+    "bytes": 90184,
+    "sha256": "802f8bde1382fbd90dbdb7b92fd80fd8936379e252dbb158e4e90717d8487da6"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionNativeUIFailure.o",
+    "bytes": 37488,
+    "sha256": "146cd3e9e8bb823148acfc391927b6b7f33f5a872fd647853d3ddd032d723e05"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionNavigationAuthority.o",
+    "bytes": 136592,
+    "sha256": "b656541f8dd1f8b4a06a3a5a0c56d5409d655dcae6c3aa7e5de884b34fd40ec4"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionNoteDraft.o",
+    "bytes": 111000,
+    "sha256": "129fe58e01ef52c46fcde364d096b48f1b9f48451dfaa9b1970945a8054acb7c"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionOccurrenceCount.o",
+    "bytes": 323328,
+    "sha256": "e97feb7060bad0e0db08acc61e2b3215d44aa1208737b3d3518e9a9a1549bbd7"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionPolicy.o",
+    "bytes": 70632,
+    "sha256": "052cab5704d09a753a01c128334d6a244218ddc1f61f9e8ce909df9ee0a02380"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionPorts.o",
+    "bytes": 301320,
+    "sha256": "ff564540c58077bdaf39e08bb3f1528eff0a6293c43b55006142fb6799e22b96"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionReferences.o",
+    "bytes": 409776,
+    "sha256": "11d8c9570395bb2bbb6247a2f0370a3152e938a0a1fc172448e270d90663e3fc"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionRegistry.o",
+    "bytes": 168800,
+    "sha256": "35360bfec030434d97f97debb1875e13e806b004f1de71eabf67e92f0ebf73e0"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionRequest.o",
+    "bytes": 510576,
+    "sha256": "3f5c99ea84c8cc40f7f818a6a673c4de872f743a30146fc791014258712060df"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionSchemaValidator.o",
+    "bytes": 120544,
+    "sha256": "2cba299b29ed3a9cba4a8f9f7819a75819c19f0689d68d4976109c3639c0ecf9"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionSearch.o",
+    "bytes": 315568,
+    "sha256": "99680e2646c2555d764874c80d082c67f6d1656d1a70461d335a58fcb730a9ac"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionSearchArgumentMapping.o",
+    "bytes": 35480,
+    "sha256": "52d35a36e75cb6bfcec4f438cb41304b8d4a06578230dea706857886478359c2"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionSearchResults.o",
+    "bytes": 126736,
+    "sha256": "b46787e8ba29dfb59e42283de8b0ad405cfc1e65eb4dc9777ba66248e7efdf46"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionSearchSemantics.o",
+    "bytes": 100160,
+    "sha256": "a2d9bf65c7f5c98116e6eb85d8ea6064ef00ca1e830110974fccfbe57741c362"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionSemanticJourneys.o",
+    "bytes": 251072,
+    "sha256": "c8c79eb1a0d77e724ca737079a007163bfe23f63958126b4dae1fb3f717eb36f"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionValidation.o",
+    "bytes": 155672,
+    "sha256": "4a5866b42337b02e2933ded4d92e10bfb424096a54c5c4866238dbc1a72a23e7"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/ActionWireCodec.o",
+    "bytes": 137720,
+    "sha256": "8acb627ed6d9b792fbf6317fab34a7331957f28a5359668b0095485bbb5545fa"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/BackendSemanticProfile.o",
+    "bytes": 183904,
+    "sha256": "09e018b7a3414f45cebb20273099cdfe7df544eef9aec75d1cdd4512a9b4bec2"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/CatalogActionResolver+SourceSections.o",
+    "bytes": 47488,
+    "sha256": "883eea4fa07b4da026986228baf320c72043540a86e8e9362e9e4a0a85c67de5"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/CatalogActionResolver.o",
+    "bytes": 645864,
+    "sha256": "4307b93cdcb364184118c282d3e53882c0acadd86454f7aaefadd42be84b0848"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/EmbeddedActionResponseProof.o",
+    "bytes": 146136,
+    "sha256": "7c1495046ea22ea3d8b9bc8efce48e30c44c47f80f89e4905908ad7384b5f3aa"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/Modules/OtzariaActionCore.o",
+    "bytes": 562408,
+    "sha256": "6eefe02cf6d714e38a28dc7fe4f0a81a1637a72c23ddcd383ec273b6302604ee"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/resource_bundle_accessor.o",
+    "bytes": 33784,
+    "sha256": "fc011a527d858a023ef5cdb0d925dddbe64ab88c51a564c56eb1ecd097fead52"
+  },
+  {
+    "path": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/controls/attempt-1/core-build/out/Products/Debug-linux-aarch64/OtzariaActionCore.o",
+    "bytes": 6552048,
+    "sha256": "9d0ee25f3f7c59d59c204d70e10b6067b20c7d53d2988554c834622ecfeeddee"
+  }
+]

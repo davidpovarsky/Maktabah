@@ -102,6 +102,12 @@ def zip_members(zipped):
 
 
 def stage(config, evidence):
+    if config.get("producer_kind") == "local-mac":
+        helper = ("original_editor_production_admission.py"
+                  if config.get("schema") == "otzaria.original-editor.production-input/1"
+                  else "original_editor_local_admission.py")
+        local = runpy.run_path(str(owned_path(ROOT, "Scripts/CI/" + helper)))
+        return local["restore"](ROOT, config, evidence, SDK, zip_members)
     if config.get("schema") == 2:
         continuation = runpy.run_path(str(owned_path(ROOT, "Scripts/CI/original_editor_continuation_admission.py")))
         return continuation["stage"](ROOT, config, evidence, SDK, download)
@@ -190,7 +196,8 @@ if __name__ == "__main__":
     committed = subprocess.check_output(["git", "show", "HEAD:" + args.admission], cwd=ROOT, timeout=60)
     require(path.read_bytes() == committed, "SDK input manifest differs from reviewed source")
     config = SDK["read_json"](path)
-    require(config.get("schema") in {1, 2} and config.get("repository") == REPOSITORY, "Wrong SDK input contract")
+    require(config.get("schema") in {1, 2, 3, "otzaria.original-editor.production-input/1"}
+            and config.get("repository") == REPOSITORY, "Wrong SDK input contract")
     evidence = ROOT / "build/original-editor-sdk-metadata"
     evidence.mkdir(parents=True, exist_ok=True)
     stage(config, evidence)

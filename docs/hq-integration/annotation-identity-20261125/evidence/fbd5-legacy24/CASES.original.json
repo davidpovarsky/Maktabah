@@ -1,0 +1,98 @@
+[
+  {
+    "name" : "existing_lowercase_uuid_remains_mapping_free",
+    "status" : "PASS"
+  },
+  {
+    "name" : "legacy_read_is_unregistered_without_side_effects",
+    "status" : "PASS"
+  },
+  {
+    "name" : "explicit_registration_preserves_original_rows_and_cloud_queue",
+    "status" : "PASS"
+  },
+  {
+    "name" : "registration_retry_is_exactly_idempotent",
+    "status" : "PASS"
+  },
+  {
+    "name" : "stable_uuid_uses_original_record_not_rowid_or_profile",
+    "status" : "PASS"
+  },
+  {
+    "name" : "distinct_original_record_ids_have_distinct_aliases",
+    "status" : "PASS"
+  },
+  {
+    "name" : "canonical_int64_legacy_fields_preserve_original_interpolation",
+    "status" : "PASS"
+  },
+  {
+    "name" : "malformed_or_unknown_legacy_identifiers_fail_closed",
+    "status" : "PASS"
+  },
+  {
+    "name" : "duplicate_original_record_ids_refuse_before_schema_install",
+    "status" : "PASS"
+  },
+  {
+    "name" : "changed_original_record_is_not_silently_adopted",
+    "status" : "PASS"
+  },
+  {
+    "name" : "duplicate_direct_uuid_case_variants_are_ambiguous",
+    "status" : "PASS"
+  },
+  {
+    "name" : "mapped_and_direct_uuid_collision_is_rejected_in_both_directions",
+    "status" : "PASS"
+  },
+  {
+    "name" : "unknown_mapping_schema_is_preserved_and_refused",
+    "status" : "PASS"
+  },
+  {
+    "name" : "unknown_mapping_trigger_is_preserved_and_refused",
+    "status" : "PASS"
+  },
+  {
+    "name" : "temporary_shadow_cannot_capture_identity",
+    "status" : "PASS"
+  },
+  {
+    "name" : "corrupt_alias_uuid_does_not_rebind_original_note",
+    "status" : "PASS"
+  },
+  {
+    "name" : "outer_transaction_rollback_removes_identity_and_ddl",
+    "status" : "PASS"
+  },
+  {
+    "name" : "cancelled_registration_cannot_write_or_create_schema",
+    "status" : "PASS"
+  },
+  {
+    "name" : "deleted_mapped_source_stays_absent_without_identity_reuse",
+    "status" : "PASS"
+  },
+  {
+    "name" : "legacy_editor_saves_rich_body_with_original_cloudkit_key",
+    "status" : "PASS"
+  },
+  {
+    "name" : "registered_legacy_rich_body_blocks_plain_overwrite",
+    "status" : "PASS"
+  },
+  {
+    "name" : "two_legacy_editors_keep_original_compare_and_swap",
+    "status" : "PASS"
+  },
+  {
+    "name" : "profile_switch_retires_legacy_session_even_for_same_stable_uuid",
+    "status" : "PASS"
+  },
+  {
+    "name" : "concurrent_connections_preserve_one_durable_identity",
+    "status" : "PASS"
+  }
+]

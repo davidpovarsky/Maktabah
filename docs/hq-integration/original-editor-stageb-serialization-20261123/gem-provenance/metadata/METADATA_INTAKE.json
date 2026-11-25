@@ -1,0 +1,522 @@
+{
+  "scope": "genuine package metadata only; no gem installed or helper executed",
+  "runtime_context_sha256": "a5c9a9649dc78bf7de478461774cea486e948e7f3e725f6c14375d926b13565f",
+  "rows": [
+    {
+      "name": "atomos",
+      "version": "0.1.3",
+      "url": "https://rubygems.org/api/v2/rubygems/atomos/versions/0.1.3.json",
+      "retrieved_at": "2026-11-23T12:07:50.843303+00:00",
+      "status": 200,
+      "final_url": "https://rubygems.org/api/v2/rubygems/atomos/versions/0.1.3.json",
+      "headers": {
+        "Connection": "close",
+        "Content-Length": "1284",
+        "Content-Type": "application/json; charset=utf-8",
+        "x-frame-options": "SAMEORIGIN",
+        "x-xss-protection": "0",
+        "x-content-type-options": "nosniff",
+        "x-permitted-cross-domain-policies": "none",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "cross-origin-opener-policy": "same-origin",
+        "last-modified": "Fri, 28 Feb 2025 10:24:26 GMT",
+        "cache-control": "max-age=60, public",
+        "x-request-id": "fea9494c-299b-48e6-a281-75e4e99d78ff",
+        "x-runtime": "0.014062",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "X-Backend": "F_Rails 32.188.254.245:443",
+        "Accept-Ranges": "bytes",
+        "Age": "0",
+        "Date": "Mon, 23 Nov 2026 12:07:51 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-mrs1530055-MRS",
+        "X-Cache": "MISS",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1795435671.245685,VS0,VE602",
+        "Vary": "Accept-Encoding",
+        "ETag": "\"faa31ed400874124a0df063d23268919\"",
+        "Server": "RubyGems.org"
+      },
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/metadata/atomos-0.1.3.json",
+      "size": 1284,
+      "sha256": "a4f52644a0d21a135e0e840719e2a4cacbed765d4f9f89f5864c18717390ebfc",
+      "identity_matches": true,
+      "api_sha": "7d43b22f2454a36bace5532d30785b06de3711399cb1c6bf932573eda536789f",
+      "gem_uri": "https://rubygems.org/gems/atomos-0.1.3.gem",
+      "dependencies": {
+        "development": [
+          {
+            "name": "bundler",
+            "requirements": "~> 1.16"
+          },
+          {
+            "name": "rake",
+            "requirements": "~> 10.0"
+          },
+          {
+            "name": "rspec",
+            "requirements": "~> 3.0"
+          },
+          {
+            "name": "rubocop",
+            "requirements": ">= 0"
+          }
+        ],
+        "runtime": []
+      },
+      "ruby_version": ">= 2.0"
+    },
+    {
+      "name": "CFPropertyList",
+      "version": "3.0.8",
+      "url": "https://rubygems.org/api/v2/rubygems/CFPropertyList/versions/3.0.8.json",
+      "retrieved_at": "2026-11-23T12:07:50.844090+00:00",
+      "status": 200,
+      "final_url": "https://rubygems.org/api/v2/rubygems/CFPropertyList/versions/3.0.8.json",
+      "headers": {
+        "Connection": "close",
+        "Content-Length": "1529",
+        "Content-Type": "application/json; charset=utf-8",
+        "x-frame-options": "SAMEORIGIN",
+        "x-xss-protection": "0",
+        "x-content-type-options": "nosniff",
+        "x-permitted-cross-domain-policies": "none",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "cross-origin-opener-policy": "same-origin",
+        "last-modified": "Wed, 19 Nov 2025 05:45:45 GMT",
+        "cache-control": "max-age=60, public",
+        "x-request-id": "7b34dacd-5000-4a7e-a3c7-63a693de983d",
+        "x-runtime": "0.010865",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "X-Backend": "F_Rails 35.155.75.66:443",
+        "Accept-Ranges": "bytes",
+        "Age": "0",
+        "Date": "Mon, 23 Nov 2026 12:07:51 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-mrs1530039-MRS",
+        "X-Cache": "MISS",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1795435671.244905,VS0,VE432",
+        "Vary": "Accept-Encoding",
+        "ETag": "\"64277ae219863fb693e361dad6d350d3\"",
+        "Server": "RubyGems.org"
+      },
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/metadata/CFPropertyList-3.0.8.json",
+      "size": 1529,
+      "sha256": "9910a3ef724c53d3dbeaf0ae0d28dfb27a5a1926cb7869ff0656ce4ce3e72f98",
+      "identity_matches": true,
+      "api_sha": "2c99d0d980536d3d7ab252f7bd59ac8be50fbdd1ff487c98c949bb66bb114261",
+      "gem_uri": "https://rubygems.org/gems/CFPropertyList-3.0.8.gem",
+      "dependencies": {
+        "development": [
+          {
+            "name": "libxml-ruby",
+            "requirements": ">= 0"
+          },
+          {
+            "name": "minitest",
+            "requirements": ">= 0"
+          },
+          {
+            "name": "nokogiri",
+            "requirements": ">= 0"
+          },
+          {
+            "name": "rake",
+            "requirements": ">= 0.7.0"
+          }
+        ],
+        "runtime": []
+      },
+      "ruby_version": ">= 0"
+    },
+    {
+      "name": "claide",
+      "version": "1.1.0",
+      "url": "https://rubygems.org/api/v2/rubygems/claide/versions/1.1.0.json",
+      "retrieved_at": "2026-11-23T12:07:50.844594+00:00",
+      "status": 200,
+      "final_url": "https://rubygems.org/api/v2/rubygems/claide/versions/1.1.0.json",
+      "headers": {
+        "Connection": "close",
+        "Content-Length": "1118",
+        "x-permitted-cross-domain-policies": "none",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "cross-origin-opener-policy": "same-origin",
+        "x-runtime": "0.013258",
+        "x-frame-options": "SAMEORIGIN",
+        "via": "1.1 varnish, 1.1 varnish",
+        "x-request-id": "a91b9846-4923-4d39-9d79-da9b976164e7",
+        "x-content-type-options": "nosniff",
+        "x-xss-protection": "0",
+        "content-type": "application/json; charset=utf-8",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "cache-control": "max-age=60, public",
+        "last-modified": "Sat, 01 Jun 2024 03:28:23 GMT",
+        "X-Backend": "F_sigsci_waf 199.232.81.51:443",
+        "Accept-Ranges": "bytes",
+        "Age": "0",
+        "Date": "Mon, 23 Nov 2026 12:07:51 GMT",
+        "X-Served-By": "cache-mrs1530062-MRS, cache-mrs1530062-MRS, cache-mrs1530048-MRS",
+        "X-Cache": "MISS, MISS",
+        "X-Cache-Hits": "0, 0",
+        "X-Timer": "S1795435671.242687,VS0,VE460",
+        "Vary": "Accept-Encoding",
+        "ETag": "\"6d702e9301a2e2190636ec779513dc6d\"",
+        "Server": "RubyGems.org"
+      },
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/metadata/claide-1.1.0.json",
+      "size": 1118,
+      "sha256": "12005fac19404820f1e5b8fb729bb84eea5258cb720d4ab90e2539a99c260ad3",
+      "identity_matches": true,
+      "api_sha": "6d3c5c089dde904d96aa30e73306d0d4bd444b1accb9b3125ce14a3c0183f82e",
+      "gem_uri": "https://rubygems.org/gems/claide-1.1.0.gem",
+      "dependencies": {
+        "development": [],
+        "runtime": []
+      },
+      "ruby_version": ">= 2.3.0"
+    },
+    {
+      "name": "colored2",
+      "version": "3.1.2",
+      "url": "https://rubygems.org/api/v2/rubygems/colored2/versions/3.1.2.json",
+      "retrieved_at": "2026-11-23T12:07:50.845514+00:00",
+      "status": 200,
+      "final_url": "https://rubygems.org/api/v2/rubygems/colored2/versions/3.1.2.json",
+      "headers": {
+        "Connection": "close",
+        "Content-Length": "2988",
+        "Content-Type": "application/json; charset=utf-8",
+        "x-frame-options": "SAMEORIGIN",
+        "x-xss-protection": "0",
+        "x-content-type-options": "nosniff",
+        "x-permitted-cross-domain-policies": "none",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "cross-origin-opener-policy": "same-origin",
+        "last-modified": "Sat, 24 Oct 2026 02:00:21 GMT",
+        "cache-control": "max-age=60, public",
+        "x-request-id": "22da039f-5428-4921-9588-4f55f05bd174",
+        "x-runtime": "0.010508",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "X-Backend": "F_Rails 35.155.75.66:443",
+        "Accept-Ranges": "bytes",
+        "Age": "0",
+        "Date": "Mon, 23 Nov 2026 12:07:51 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-mrs1530063-MRS",
+        "X-Cache": "MISS",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1795435671.255135,VS0,VE446",
+        "Vary": "Accept-Encoding",
+        "ETag": "\"da847b87fc293894a7b1c17da724f517\"",
+        "Server": "RubyGems.org"
+      },
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/metadata/colored2-3.1.2.json",
+      "size": 2988,
+      "sha256": "9f5b9315f37839d90b377fe673ca9a50442aa23b8b5267209acd1318807506f3",
+      "identity_matches": true,
+      "api_sha": "b13c2bd7eeae2cf7356a62501d398e72fde78780bd26aec6a979578293c28b4a",
+      "gem_uri": "https://rubygems.org/gems/colored2-3.1.2.gem",
+      "dependencies": {
+        "development": [
+          {
+            "name": "codeclimate-test-reporter",
+            "requirements": ">= 0"
+          },
+          {
+            "name": "rake",
+            "requirements": "~> 10.0"
+          },
+          {
+            "name": "rspec",
+            "requirements": "~> 3.4"
+          }
+        ],
+        "runtime": []
+      },
+      "ruby_version": ">= 2.0.0"
+    },
+    {
+      "name": "nanaimo",
+      "version": "0.4.0",
+      "url": "https://rubygems.org/api/v2/rubygems/nanaimo/versions/0.4.0.json",
+      "retrieved_at": "2026-11-23T12:07:51.700173+00:00",
+      "status": 200,
+      "final_url": "https://rubygems.org/api/v2/rubygems/nanaimo/versions/0.4.0.json",
+      "headers": {
+        "Connection": "close",
+        "Content-Length": "1287",
+        "Content-Type": "application/json; charset=utf-8",
+        "x-frame-options": "SAMEORIGIN",
+        "x-xss-protection": "0",
+        "x-content-type-options": "nosniff",
+        "x-permitted-cross-domain-policies": "none",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "cross-origin-opener-policy": "same-origin",
+        "last-modified": "Thu, 03 Oct 2024 02:45:33 GMT",
+        "cache-control": "max-age=60, public",
+        "x-request-id": "7da4375c-c3df-4d3d-a4f6-69df820d5c75",
+        "x-runtime": "0.010981",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "X-Backend": "F_Rails 34.208.183.74:443",
+        "Accept-Ranges": "bytes",
+        "Age": "0",
+        "Date": "Mon, 23 Nov 2026 12:07:52 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-mrs1530077-MRS",
+        "X-Cache": "HIT",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1795435672.812204,VS0,VE567",
+        "Vary": "Accept-Encoding",
+        "ETag": "\"e4f703fe75f9d71a6ab41d99b609b815\"",
+        "Server": "RubyGems.org"
+      },
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/metadata/nanaimo-0.4.0.json",
+      "size": 1287,
+      "sha256": "57f283753614b928413220987c804fb23355b15e543246241d620a61a20a75a1",
+      "identity_matches": true,
+      "api_sha": "faf069551bab17f15169c1f74a1c73c220657e71b6e900919897a10d991d0723",
+      "gem_uri": "https://rubygems.org/gems/nanaimo-0.4.0.gem",
+      "dependencies": {
+        "development": [
+          {
+            "name": "bundler",
+            "requirements": "~> 2.3"
+          },
+          {
+            "name": "rake",
+            "requirements": "~> 12.3"
+          },
+          {
+            "name": "rspec",
+            "requirements": "~> 3.0"
+          }
+        ],
+        "runtime": []
+      },
+      "ruby_version": ">= 2.3.0"
+    },
+    {
+      "name": "rexml",
+      "version": "3.4.4",
+      "url": "https://rubygems.org/api/v2/rubygems/rexml/versions/3.4.4.json",
+      "retrieved_at": "2026-11-23T12:07:51.726585+00:00",
+      "status": 200,
+      "final_url": "https://rubygems.org/api/v2/rubygems/rexml/versions/3.4.4.json",
+      "headers": {
+        "Connection": "close",
+        "Content-Length": "1183",
+        "Content-Type": "application/json; charset=utf-8",
+        "x-frame-options": "SAMEORIGIN",
+        "x-xss-protection": "0",
+        "x-content-type-options": "nosniff",
+        "x-permitted-cross-domain-policies": "none",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "cross-origin-opener-policy": "same-origin",
+        "last-modified": "Wed, 10 Sep 2025 11:56:11 GMT",
+        "cache-control": "max-age=60, public",
+        "x-request-id": "0e7d77a8-5648-44d9-8724-a4b193441fc0",
+        "x-runtime": "0.009125",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "X-Backend": "F_Rails 35.155.75.66:443",
+        "Accept-Ranges": "bytes",
+        "Age": "0",
+        "Date": "Mon, 23 Nov 2026 12:07:52 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-mrs1530076-MRS",
+        "X-Cache": "HIT",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1795435672.842004,VS0,VE445",
+        "Vary": "Accept-Encoding",
+        "ETag": "\"5c69c369e082a2e399df9d00c735d6fc\"",
+        "Server": "RubyGems.org"
+      },
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/metadata/rexml-3.4.4.json",
+      "size": 1183,
+      "sha256": "976cfd645e3dabcc209a5922bfc2e31f27747ae52d4ba2436627b914cb5cd4dc",
+      "identity_matches": true,
+      "api_sha": "19e0a2c3425dfbf2d4fc1189747bdb2f849b6c5e74180401b15734bc97b5d142",
+      "gem_uri": "https://rubygems.org/gems/rexml-3.4.4.gem",
+      "dependencies": {
+        "development": [],
+        "runtime": []
+      },
+      "ruby_version": ">= 2.5.0"
+    },
+    {
+      "name": "nkf",
+      "version": "0.2.0",
+      "url": "https://rubygems.org/api/v2/rubygems/nkf/versions/0.2.0.json",
+      "retrieved_at": "2026-11-23T12:07:51.729798+00:00",
+      "status": 200,
+      "final_url": "https://rubygems.org/api/v2/rubygems/nkf/versions/0.2.0.json",
+      "headers": {
+        "Connection": "close",
+        "Content-Length": "1274",
+        "Content-Type": "application/json; charset=utf-8",
+        "x-frame-options": "SAMEORIGIN",
+        "x-xss-protection": "0",
+        "x-content-type-options": "nosniff",
+        "x-permitted-cross-domain-policies": "none",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "cross-origin-opener-policy": "same-origin",
+        "last-modified": "Wed, 10 Jun 2026 09:13:14 GMT",
+        "cache-control": "max-age=60, public",
+        "x-request-id": "4b382a3d-b752-4f80-b77e-ac946f60f199",
+        "x-runtime": "0.014218",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "X-Backend": "F_Rails 34.208.183.74:443",
+        "Accept-Ranges": "bytes",
+        "Age": "0",
+        "Date": "Mon, 23 Nov 2026 12:07:52 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-mrs1530054-MRS",
+        "X-Cache": "MISS",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1795435672.853641,VS0,VE600",
+        "Vary": "Accept-Encoding",
+        "ETag": "\"09bda1b69f6001ea80bf23779390481e\"",
+        "Server": "RubyGems.org"
+      },
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/metadata/nkf-0.2.0.json",
+      "size": 1274,
+      "sha256": "3ecfa6b35b1855f6207c261a67bdd08f1c4df683a53ac55f6282531c49a26bb4",
+      "identity_matches": true,
+      "api_sha": "3e6f022d1743a863bf05e936c7c2110be07ba1c593ea974df75d89e8bf7cc967",
+      "gem_uri": "https://rubygems.org/gems/nkf-0.2.0-java.gem",
+      "dependencies": {
+        "development": [],
+        "runtime": []
+      },
+      "ruby_version": ">= 2.3.0"
+    },
+    {
+      "name": "base64",
+      "version": "0.2.0",
+      "url": "https://rubygems.org/api/v2/rubygems/base64/versions/0.2.0.json",
+      "retrieved_at": "2026-11-23T12:07:51.870760+00:00",
+      "status": 200,
+      "final_url": "https://rubygems.org/api/v2/rubygems/base64/versions/0.2.0.json",
+      "headers": {
+        "Connection": "close",
+        "Content-Length": "1363",
+        "Content-Type": "application/json; charset=utf-8",
+        "x-frame-options": "SAMEORIGIN",
+        "x-xss-protection": "0",
+        "x-content-type-options": "nosniff",
+        "x-permitted-cross-domain-policies": "none",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "cross-origin-opener-policy": "same-origin",
+        "last-modified": "Fri, 30 May 2025 06:24:39 GMT",
+        "cache-control": "max-age=60, public",
+        "x-request-id": "f32f5bed-c6c8-4d81-bc7e-810ce0a307fc",
+        "x-runtime": "0.012007",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "X-Backend": "F_Rails 34.208.183.74:443",
+        "Accept-Ranges": "bytes",
+        "Age": "0",
+        "Date": "Mon, 23 Nov 2026 12:07:52 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-mrs1530078-MRS",
+        "X-Cache": "MISS",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1795435672.982540,VS0,VE619",
+        "Vary": "Accept-Encoding",
+        "ETag": "\"d376c7c0cbb4aa53fcf7b2395d7d356e\"",
+        "Server": "RubyGems.org"
+      },
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/metadata/base64-0.2.0.json",
+      "size": 1363,
+      "sha256": "642672593a60e5699e078c341e11d1e1a64eaaa229092465b22ba4775f568c42",
+      "identity_matches": true,
+      "api_sha": "0f25e9b21a02a0cc0cea8ef92b2041035d39350946e8789c562b2d1a3da01507",
+      "gem_uri": "https://rubygems.org/gems/base64-0.2.0.gem",
+      "dependencies": {
+        "development": [],
+        "runtime": []
+      },
+      "ruby_version": ">= 2.4"
+    },
+    {
+      "name": "xcodeproj",
+      "version": "1.28.1",
+      "url": "https://rubygems.org/api/v2/rubygems/xcodeproj/versions/1.28.1.json",
+      "retrieved_at": "2026-11-23T12:07:52.310675+00:00",
+      "status": 200,
+      "final_url": "https://rubygems.org/api/v2/rubygems/xcodeproj/versions/1.28.1.json",
+      "headers": {
+        "Connection": "close",
+        "Content-Length": "1891",
+        "Content-Type": "application/json; charset=utf-8",
+        "x-frame-options": "SAMEORIGIN",
+        "x-xss-protection": "0",
+        "x-content-type-options": "nosniff",
+        "x-permitted-cross-domain-policies": "none",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "cross-origin-opener-policy": "same-origin",
+        "last-modified": "Mon, 06 Jul 2026 18:05:18 GMT",
+        "cache-control": "max-age=60, public",
+        "x-request-id": "40464d04-ecb4-4c1c-b461-05d9cf731109",
+        "x-runtime": "0.011418",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "X-Backend": "F_Rails 32.188.254.245:443",
+        "Accept-Ranges": "bytes",
+        "Age": "0",
+        "Date": "Mon, 23 Nov 2026 12:07:53 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-mrs1530067-MRS",
+        "X-Cache": "MISS",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1795435672.432369,VS0,VE592",
+        "Vary": "Accept-Encoding",
+        "ETag": "\"c5020860848e994f83620c8c441685ff\"",
+        "Server": "RubyGems.org"
+      },
+      "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/metadata/xcodeproj-1.28.1.json",
+      "size": 1891,
+      "sha256": "e94cdd52ae28230f73522c2d9810772032c0597770f82c60c4946850916dc275",
+      "identity_matches": true,
+      "api_sha": "6f12670f00739d9817ca27ac89d6ef01cc86050e22a0bc08a3131487e5b5cddc",
+      "gem_uri": "https://rubygems.org/gems/xcodeproj-1.28.1.gem",
+      "dependencies": {
+        "development": [],
+        "runtime": [
+          {
+            "name": "atomos",
+            "requirements": "~> 0.1.3"
+          },
+          {
+            "name": "base64",
+            "requirements": ">= 0"
+          },
+          {
+            "name": "CFPropertyList",
+            "requirements": ">= 2.3.3, < 4.0"
+          },
+          {
+            "name": "claide",
+            "requirements": ">= 1.0.2, < 2.0"
+          },
+          {
+            "name": "colored2",
+            "requirements": "~> 3.1"
+          },
+          {
+            "name": "nanaimo",
+            "requirements": "~> 0.4.0"
+          },
+          {
+            "name": "nkf",
+            "requirements": ">= 0"
+          },
+          {
+            "name": "rexml",
+            "requirements": ">= 3.3.6, < 4.0"
+          }
+        ]
+      },
+      "ruby_version": ">= 2.6.0"
+    }
+  ]
+}

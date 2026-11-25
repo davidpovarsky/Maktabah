@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme LastUpgradeVersion="2700" version="1.7">
+   <BuildAction parallelizeBuildables="NO" buildImplicitDependencies="YES">
+      <BuildActionEntries>
+         <BuildActionEntry buildForTesting="YES" buildForRunning="NO" buildForProfiling="NO" buildForArchiving="NO" buildForAnalyzing="YES">
+            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="F30576DD2FA46222005732C6" BuildableName="Maktabah.app" BlueprintName="Maktabah-iOS" ReferencedContainer="container:Maktabah.xcodeproj"/>
+         </BuildActionEntry>
+         <BuildActionEntry buildForTesting="YES" buildForRunning="NO" buildForProfiling="NO" buildForArchiving="NO" buildForAnalyzing="YES">
+            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="9A7A8DF8CEC43F196DDCD80A" BuildableName="Maktabah-iOSNativeTests.xctest" BlueprintName="Maktabah-iOSNativeTests" ReferencedContainer="container:Maktabah.xcodeproj"/>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction buildConfiguration="Debug" selectedDebuggerIdentifier="Xcode.DebuggerFoundation.Debugger.LLDB" selectedLauncherIdentifier="Xcode.DebuggerFoundation.Launcher.LLDB" shouldUseLaunchSchemeArgsEnv="YES">
+      <Testables>
+         <TestableReference skipped="NO" parallelizable="NO">
+            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="9A7A8DF8CEC43F196DDCD80A" BuildableName="Maktabah-iOSNativeTests.xctest" BlueprintName="Maktabah-iOSNativeTests" ReferencedContainer="container:Maktabah.xcodeproj"/>
+         </TestableReference>
+      </Testables>
+      <MacroExpansion>
+         <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="F30576DD2FA46222005732C6" BuildableName="Maktabah.app" BlueprintName="Maktabah-iOS" ReferencedContainer="container:Maktabah.xcodeproj"/>
+      </MacroExpansion>
+   </TestAction>
+   <AnalyzeAction buildConfiguration="Debug"/>
+</Scheme>

@@ -1,0 +1,21 @@
+{
+  "status": "PROPOSAL_ONLY_NO_PRODUCT_OR_TEST_EDIT",
+  "base": "2ef81ac195c002863486e473dad95f336f3e1675",
+  "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "oldSHA256": "b84f49a0d177b14bdd3a8eafab2b287d423c730e857540386cd8d6767b8d2712",
+  "proposedSHA256": "96a58eca04196c10423ca663bd8e6a6ea43cbd6aadd1bcdf7dcce88ac7ca03ee",
+  "diffSHA256": "62271d1b3073707a28f371ff5253f399ecf51a1aa59accdf710c40e142aa4989",
+  "diffBytes": 6311,
+  "scope": [
+    "Exact original midpoint already requested by existing tap",
+    "Unique enabled selector and exact label child; new target enabled requirement",
+    "Finite positive all frames; finite midpoint; exact selector and window midpoint containment",
+    "Original full target containment in actual window, live hit-test and exact target/window currentness retained",
+    "Original raw full-selector boolean and every full-precision rectangle remain diagnostic",
+    "Existing100 transitions, original IDs/revisions/content/cold restore/deadlines/tap code unchanged"
+  ],
+  "noToleranceOrRounding": true,
+  "noRuntimeExecuted": true,
+  "oldFailurePreserved": true,
+  "wholeParentVisualAcceptanceNotClaimed": true
+}

@@ -1,0 +1,7 @@
+{
+  "status": "ROOT_REVIEW_ROW_SHAPE_ASSERTION_FAILED_NO_COMMIT_OR_PUSH",
+  "reason": "Groups/Library original receipts carry blob+bytes+sha256; full-v32 carries bytes+sha256. All22shared byte identities match; common byte fields and every provided Git blob are verified separately.",
+  "original_tool_output": "Traceback (most recent call last):\n  File \"/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_bfdf534be03148e0b2681150d2aeb313/script.py\", line 32, in <module>\n    if p in combined:assert combined[p]==row\n                            ^^^^^^^^^^^^^^^^\nAssertionError",
+  "row_shape_review": "{\"different_row_shapes_count\": 22, \"first_rows\": [{\"path\": \".github/workflows/otzaria-reader-groups-full-v32.yml\", \"groups_row\": {\"blob\": \"095d64f64d1d55251bb21a23a783e2a8ed05d188\", \"bytes\": 12675, \"sha256\": \"5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c\"}, \"full_row\": {\"bytes\": 12675, \"sha256\": \"5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c\"}}, {\"path\": \"Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift\", \"groups_row\": {\"blob\": \"e91d90a25c0cbd5158a7c4dffe054f9bd2637698\", \"bytes\": 290684, \"sha256\": \"d8ae7aa91ad09866a8842684fae51b1d19e1d084b27a8a6b5d7cb45b523c091f\"}, \"full_row\": {\"bytes\": 290684, \"sha256\": \"d8ae7aa91ad09866a8842684fae51b1d19e1d084b27a8a6b5d7cb45b523c091f\"}}], \"byte_identity_all_shared\": true}",
+  "source_admission_replayed": false
+}

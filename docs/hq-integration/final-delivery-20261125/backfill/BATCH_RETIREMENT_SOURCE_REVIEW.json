@@ -1,0 +1,13 @@
+{
+  "after_sha256": "59ccab3a7cb5004592e7c70889d57ce74a8679209ba7565069441ffb0d70c6dc",
+  "apple_ios_typecheck_and_runtime_required": true,
+  "before_sha256": "bb830f57f0e3cf41d981281eeb9f63ef4b5b5654b78c398238ce96ae0857144c",
+  "macos_active_bytes": 4956,
+  "macos_active_sha256": "1d58b2e4638c409f7a5492e6dc3cfd16ae6e5b346559262569de8e6888fe509f",
+  "macos_sqlite_reexecution_required_for_this_delta": false,
+  "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+  "schema": "otzaria.host-native-batch-retirement-source-review/1",
+  "sdk_source": "6168d8b4ee875b58f534eddec190d072cfb3a5ac",
+  "semantics": "Closed weak batch token retired synchronously under Host mutex; SDK defers observers; strong releases outside Host lock; bind both run and connection before await",
+  "status": "SOURCE_ONLY_IOS_BRIDGE_MACOS_ACTIVE_BYTES_UNCHANGED"
+}

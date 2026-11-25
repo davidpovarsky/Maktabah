@@ -1,0 +1,5 @@
+{
+  "reason": "Exact original CloudOwnership compares original Annotation values; explicit shape adapter lacked Equatable. Only adapter conformance added, no production source change.",
+  "before_sha256": "1061c685c1490de046869659183c726d610afe985a22e6f284a6cfaef0c99a33",
+  "after_sha256": "71c018d7446f06e9bd68ad52c8195b882ed006bfcc4f0da8cc891aa3af7b3547"
+}

@@ -1,0 +1,42 @@
+{
+  "actual_shared_pod_sources": {
+    "FirebaseCore": 13,
+    "FirebaseCoreInternal": 13,
+    "FirebaseInstallations": 17,
+    "GoogleDataTransport": 36,
+    "GoogleUtilities": 23,
+    "PromisesObjC": 19,
+    "PromisesSwift": 19,
+    "nanopb": 3
+  },
+  "all_other_objects_unchanged": true,
+  "at": "2026-11-25T16:24:40.516499+00:00",
+  "compiler_or_ui_credit": false,
+  "exit_code": 0,
+  "original_project_and_pod_inputs_unchanged": true,
+  "preserved_shared_product_owners": {
+    "CEF000000000000000000002": {
+      "owners": {
+        "4B3202272EDAFE85003B95D1": {
+          "framework_phase": "4B3202252EDAFE85003B95D1",
+          "link": "CEF000000000000000000003",
+          "name": "Maktabah"
+        },
+        "4B7C90A02F83494200454BE1": {
+          "framework_phase": "4B7C91072F83494200454BE1",
+          "link": "CEF000000000000000000004",
+          "name": "Maktabah-Direct"
+        }
+      },
+      "product": "ZIPFoundation"
+    }
+  },
+  "source_helpers": {
+    "hq-original-editor-app-target.rb": "5d8cfba7763011d1b9d6a5eddef47642777cb53dfb18f2c525facc23d8ebd32c",
+    "original_editor_shared_product_ownership.rb": "247827007abf2049ccc93a08e2bea4aebd687cabe4293b941f66fef52a68410b",
+    "test_original_editor_shared_product_ownership.rb": "1fd9bfc944c5d194661b7fa66f0d5c60560484ed01cfb870fb13cefa6089f516"
+  },
+  "status": "PASS_REAL_PROJECT_TARGET_PROJECTION",
+  "target": "Maktabah-iOS",
+  "whole_project_inverse_exact": true
+}

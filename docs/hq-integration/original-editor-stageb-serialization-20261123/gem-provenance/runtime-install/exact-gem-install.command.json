@@ -1,0 +1,28 @@
+{
+  "label": "exact-gem-install",
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-root/usr/bin/ruby3.2",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-install/install_exact.rb",
+    "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/PACKAGES_INTAKE.json"
+  ],
+  "cwd": null,
+  "exit": 1,
+  "timed_out": false,
+  "child_reaped": true,
+  "owned_group_drained": true,
+  "elapsed_seconds": 0.21585556399077177,
+  "stdout": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-install/exact-gem-install.stdout",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/portable-gems/runtime-install/exact-gem-install.stderr",
+    "size": 1353,
+    "sha256": "10df289a425b78ad06e08e66431501265912b3ad016b977213ecf3782e653c69"
+  }
+}

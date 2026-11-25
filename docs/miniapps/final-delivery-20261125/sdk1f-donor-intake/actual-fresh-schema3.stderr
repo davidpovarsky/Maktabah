@@ -1,0 +1,19 @@
+test_actual_new_native_and_swift_origins_are_preserved (__main__.FreshOriginalABI.test_actual_new_native_and_swift_origins_are_preserved) ... ok
+test_exact_three_target_wrapper_is_required (__main__.FreshOriginalABI.test_exact_three_target_wrapper_is_required) ... ok
+test_fresh_origin_requires_current_file_contract (__main__.FreshOriginalABI.test_fresh_origin_requires_current_file_contract) ... ok
+test_generation_failure_remains_historical_failure (__main__.FreshOriginalABI.test_generation_failure_remains_historical_failure) ... ok
+test_installed_native_abi_cannot_be_incomplete (__main__.FreshOriginalABI.test_installed_native_abi_cannot_be_incomplete) ... ok
+test_legacy_route_cannot_admit_fresh_schema (__main__.FreshOriginalABI.test_legacy_route_cannot_admit_fresh_schema) ... ok
+test_native_counts_are_exact (__main__.FreshOriginalABI.test_native_counts_are_exact) ... ok
+test_native_origin_cannot_borrow_github_identity (__main__.FreshOriginalABI.test_native_origin_cannot_borrow_github_identity) ... ok
+test_old_verifier_source_cannot_admit_new_route (__main__.FreshOriginalABI.test_old_verifier_source_cannot_admit_new_route) ... ok
+test_other_sdk_source_is_rejected (__main__.FreshOriginalABI.test_other_sdk_source_is_rejected) ... ok
+test_swift_gate_cannot_be_promoted_to_full_sdk (__main__.FreshOriginalABI.test_swift_gate_cannot_be_promoted_to_full_sdk) ... ok
+test_swift_origin_cannot_be_relabelled_as_current_framework (__main__.FreshOriginalABI.test_swift_origin_cannot_be_relabelled_as_current_framework) ... ok
+test_verifier_cannot_claim_native_execution (__main__.FreshOriginalABI.test_verifier_cannot_claim_native_execution) ... ok
+test_verifier_must_bind_current_abi_bytes (__main__.FreshOriginalABI.test_verifier_must_bind_current_abi_bytes) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.035s
+
+OK

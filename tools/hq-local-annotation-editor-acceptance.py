@@ -15,6 +15,7 @@ import json
 import os
 import platform
 import re
+import runpy
 import shutil
 import sqlite3
 import subprocess
@@ -35,9 +36,17 @@ SOURCES = [
     "Source/Core/CloudKit/SyncPendingStore.swift",
     "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
     "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+    "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeIdentity.swift",
     "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
     "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
     "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift",
+    "Source/Core/CloudKit/CloudKitCoreManager.swift",
+    "Source/Core/CloudKit/CloudKitUploadDebouncer.swift",
+    "Source/Core/CloudKit/CloudKitSyncable.swift",
+    "Source/Core/CloudKit/AnnotationSyncHandler.swift",
+    "Tests/HQ/local-annotation-cloud/LocalAnnotationCloudBoundary.swift",
     "Tests/HQ/sqlite/UnusedZstdBoundary.swift",
     "Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift",
     "Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift",
@@ -194,7 +203,7 @@ def main():
         if not (sdk / "usr/include/sqlite3.h").is_file():
             raise RuntimeError("Original Apple SDK SQLite3 module required")
         core = ROOT / "Source/Otzaria/Actions"
-        provenance = SOURCES + ["tools/hq-local-annotation-editor-acceptance.py", "Maktabah.xcodeproj/project.pbxproj",
+        provenance = SOURCES + ["tools/hq-local-annotation-editor-acceptance.py", "tools/exact-source-archive.py", "Maktabah.xcodeproj/project.pbxproj",
             "Source/Core/Database/CloudKitSyncManager.swift", "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift"]
         provenance += [str(p.relative_to(ROOT)).replace("\\", "/") for p in sorted(core.rglob("*"))
                        if p.is_file() and ".build" not in p.parts and p.suffix in (".swift", ".json", ".resolved")]
@@ -202,8 +211,7 @@ def main():
             raise RuntimeError("Whole original local Core package required")
         before = {p: sha(ROOT / p) for p in provenance}
         report["source_before"] = before
-        report["source_sha"] = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
-        report["source_status"] = subprocess.check_output(["git", "status", "--short"], cwd=ROOT, text=True)
+        report.update(runpy.run_path(str(ROOT / "tools/exact-source-archive.py"))["source_identity"](ROOT, provenance))
         report["swift"] = subprocess.check_output([swift, "--version"], text=True).strip()
         report["sdk"] = str(sdk)
         expected = declaration_names((ROOT / SOURCES[-1]).read_text(encoding="utf-8"))
@@ -255,7 +263,17 @@ let package = Package(name: "LocalAnnotationEditorAcceptance",
         report["status"] = "FAILED" if report["commands"] else "NOT_RUN"
         print(repr(error))
     finally:
+        # Preserve actual partial rows even when the executable exits nonzero.
+        # Partial execution still cannot satisfy the unchanged 43-case gate.
+        if "owned_directory" in report:
+            case_file = Path(report["owned_directory"]) / "fixtures/CASES.json"
+            if case_file.is_file():
+                try: report["cases"] = json.loads(case_file.read_text())
+                except Exception as error: report["cases_read_error"] = repr(error)
         if before is not None:
+            final_identity = runpy.run_path(str(ROOT / "tools/exact-source-archive.py"))["source_identity"](ROOT, provenance)
+            if final_identity["source_sha"] != report["source_sha"] or final_identity["source_archive"] != report["source_archive"]:
+                report["status"] = "FAILED"
             report["source_after"] = {p: sha(ROOT / p) for p in provenance}
             report["source_unchanged"] = before == report["source_after"]
             if not report["source_unchanged"]:

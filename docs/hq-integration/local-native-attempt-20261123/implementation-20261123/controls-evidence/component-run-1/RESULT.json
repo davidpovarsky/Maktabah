@@ -1,0 +1,76 @@
+{
+  "assertions" : 80,
+  "cases" : [
+    {
+      "assertions" : 15,
+      "detail" : "actual original SQLite component",
+      "name" : "read_only_then_exact_saved_image_and_original_table_preservation",
+      "status" : "PASS"
+    },
+    {
+      "assertions" : 7,
+      "detail" : "actual original SQLite component",
+      "name" : "native_comparison_exact_utf8_no_invented_length_cap",
+      "status" : "PASS"
+    },
+    {
+      "assertions" : 5,
+      "detail" : "actual original SQLite component",
+      "name" : "outer_transaction_only_all_three_transitions",
+      "status" : "PASS"
+    },
+    {
+      "assertions" : 9,
+      "detail" : "actual original SQLite component",
+      "name" : "full_source_full_version_saved_revision_and_pending_delete_CAS",
+      "status" : "PASS"
+    },
+    {
+      "assertions" : 9,
+      "detail" : "actual original SQLite component",
+      "name" : "prepared_abandon_is_explicit_same_DB_CAS_and_old_token_stays_dead",
+      "status" : "PASS"
+    },
+    {
+      "assertions" : 8,
+      "detail" : "actual original SQLite component",
+      "name" : "possible_dispatch_blocks_every_new_session_revision_and_tuple",
+      "status" : "PASS"
+    },
+    {
+      "assertions" : 3,
+      "detail" : "actual original SQLite component",
+      "name" : "real_original_DB_serialization_mark_vs_abandon_one_winner",
+      "status" : "PASS"
+    },
+    {
+      "assertions" : 7,
+      "detail" : "actual original SQLite component",
+      "name" : "real_COMMIT_veto_cancellation_and_success_receipt_boundary",
+      "status" : "PASS"
+    },
+    {
+      "assertions" : 2,
+      "detail" : "actual original SQLite component",
+      "name" : "retired_owner_waiting_for_original_DB_lock_cannot_write",
+      "status" : "PASS"
+    },
+    {
+      "assertions" : 10,
+      "detail" : "actual original SQLite component",
+      "name" : "exact_main_schema_temp_shadow_future_version_and_corrupt_identity_fail_closed",
+      "status" : "PASS"
+    },
+    {
+      "assertions" : 5,
+      "detail" : "actual original SQLite component",
+      "name" : "actual_Session_wrappers_no_publication_callbacks_for_bookkeeping",
+      "status" : "PASS"
+    }
+  ],
+  "fail" : 0,
+  "nativeInvocationCount" : 0,
+  "pass" : 11,
+  "scope" : "NEW real original SQLite\/version\/lifetime\/persistence\/Session component controls with explicit Linux\/application adapters; no Apple UI or SDK\/native archive\/import qualification",
+  "testsReplayed" : 0
+}

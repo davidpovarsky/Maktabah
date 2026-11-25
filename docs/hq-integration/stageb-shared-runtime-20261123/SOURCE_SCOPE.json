@@ -1,0 +1,67 @@
+{
+  "base": "bc76e0a22e145a261b27f2574a75a9eb715f4b9b",
+  "branch": "codex/otzaria-stageb-shared-runtime-20261123",
+  "changed_source_inputs": {
+    "Scripts/CI/hq-original-editor-app-target.rb": {
+      "before_git_blob": "78aed62e70ecec009f761a34e8733a62307f7860",
+      "bytes": 19577,
+      "origin_commit": "8792e0f82b4ad8e8415aa60086528495d3c041c1",
+      "ownership": "EXISTING_DOWNSTREAM_CI_INTEGRATION_SEAM",
+      "sha256": "d22a87eef8ec8ebad0f83f41759470d906bea7e08fbb5b959ff775e0112de201"
+    },
+    "Scripts/CI/hq-original-editor-distribution.py": {
+      "before_git_blob": "8fd65781013bcf64ece60cf4f714c13c9e19a01a",
+      "bytes": 51752,
+      "origin_commit": "8792e0f82b4ad8e8415aa60086528495d3c041c1",
+      "ownership": "EXISTING_DOWNSTREAM_CI_INTEGRATION_SEAM",
+      "sha256": "f5936cc31f9129b8f94a0196b50956b80497e7390887ff67c1f17846230fc52e"
+    },
+    "Scripts/CI/original_editor_shared_runtime.py": {
+      "before_git_blob": null,
+      "bytes": 18967,
+      "origin_commit": null,
+      "ownership": "NEW_DOWNSTREAM_CI_ADAPTER",
+      "sha256": "8dd9763f1c82831f08545c1734b5d561499f770581fff11ce9ee5b9ab5648089"
+    },
+    "Scripts/CI/restore-original-editor-distribution.py": {
+      "before_git_blob": "23626f44c327b45e803f49ee7e23a6148659903d",
+      "bytes": 12485,
+      "origin_commit": "8792e0f82b4ad8e8415aa60086528495d3c041c1",
+      "ownership": "EXISTING_DOWNSTREAM_CI_INTEGRATION_SEAM",
+      "sha256": "1af004d836ed31f26e24f7db33823da5ab583c81a6451199a0023b7f46de481c"
+    },
+    "Scripts/CI/runtime27-original-editor-native.py": {
+      "before_git_blob": "11b81f2709b66178f4f806acb1141450e14dd1f8",
+      "bytes": 43839,
+      "origin_commit": "8792e0f82b4ad8e8415aa60086528495d3c041c1",
+      "ownership": "EXISTING_DOWNSTREAM_CI_INTEGRATION_SEAM",
+      "sha256": "18fe2822310e2c454836eb895e2eecc836abbff880b0e35f3d707e0b85fdb334"
+    }
+  },
+  "checks": {
+    "git_whitespace": "PASS",
+    "native_host_shared_route": "NOT_RUN",
+    "original_editor_en_he_save_process_relaunch": "NOT_RUN",
+    "python_ast": "PASS",
+    "ruby_execution": "NOT_RUN"
+  },
+  "full_producer_activation": "GATED_ON_FINAL_QUALIFIED_CORE_HANLIN_AND_ABI",
+  "runtime_only_continuation": {
+    "run_id": 45246154996,
+    "source_sha": "7574b9a4a9a5372fc7a9e7323e579ec3dd610e0b",
+    "terminal_result": "NOT_ADMITTED_BY_THIS_CHECKPOINT"
+  },
+  "schema": 1,
+  "stageb_source": "00b30baa97fe14c0ba5be550e7a72cf64e768951",
+  "status": "PREPARED_NOT_NATIVE_QUALIFIED",
+  "unchanged_native_probe_and_admission_blobs": {
+    "Scripts/CI/OriginalEditorDistributionAPICheck.swift": "2e6700b242113e0ba6efa382354de0e1b422fecd",
+    "Scripts/CI/runtime27-original-editor.inputs.json": "9171f651afbbd0eac02768462f62ff28db6df8ba"
+  },
+  "unchanged_protected_trees": {
+    "Maktabah-iOSUITests": "ca36ba13f1fd900adf528a3e404fed6a66290b6b",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  }
+}

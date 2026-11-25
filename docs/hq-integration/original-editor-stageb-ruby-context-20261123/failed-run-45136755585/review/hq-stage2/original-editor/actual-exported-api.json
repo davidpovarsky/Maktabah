@@ -1,0 +1,7 @@
+{
+  "api_probe_sha256": "5f0cca78ac048f47c55468601ecd6851683ecdf46ec3edb77722c25cb9a52b2c",
+  "native_execution": false,
+  "scope": "EXPORTED_SPI_AND_HOST_COMPILER_ADMISSION_ONLY",
+  "source_sha": "de63125b97cd5b91a1fa4f4b71d03738076e735f",
+  "status": "ACTUAL_EXPORTED_API_TYPECHECK_PASS"
+}

@@ -1,0 +1,32 @@
+{
+  "apple_product_checks_executed": 0,
+  "application_tests_executed": 0,
+  "runs": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "Scripts/CI/test_miniapps_runtime_closure.py"
+      ],
+      "log": "original-ownership-controls.log",
+      "log_bytes": 102,
+      "log_sha256": "e6ec182765cd965f2837d8eeaef5a64af48a104f245cd1a0b7281559194c57c1",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "Scripts/CI/test_macho_symbol_coverage.py"
+      ],
+      "log": "bounded-coverage-controls.log",
+      "log_bytes": 1450,
+      "log_sha256": "7d84d81d70bcff33119d92cf1ee468881b3fa9eda6b754e40b450ff0da59fffa",
+      "returncode": 0
+    }
+  ],
+  "source_sha256": {
+    "Scripts/CI/macho_symbol_coverage.py": "d63bbdd8d07fb91471eaec84709ff729221f9f45eb51eb281df33e046518ec2e",
+    "Scripts/CI/miniapps-consumer-runtime-closure.py": "8a66495974bb07f07d7baf306234ba4c6625ce1f4b3344fd7ce94be1f5a17187",
+    "Scripts/CI/test_macho_symbol_coverage.py": "c22bc0a308c325d7fdf624ad41af149a9758a360fbf8533402b608064069e0ad"
+  },
+  "status": "PORTABLE_INSPECTOR_CONTROLS_PASS"
+}

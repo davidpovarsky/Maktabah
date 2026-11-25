@@ -1,0 +1,11 @@
+{
+  "annotationID" : 1,
+  "annotationUUID" : "FF0F372F-2139-8112-BA14-7CBF849AABF9",
+  "databasePath" : "\/Users\/m1\/builds\/Maktabah-fbd5e241-identity-component-20261125\/build\/legacy24\/owned-c1a0c9cd-8973-4a1a-8130-9a7369f5348e\/fixtures\/legacy-cold-profile\/Annotations.sqlite",
+  "mode" : "legacy-write",
+  "originalRecordID" : "legacy_28_2_4_1700000001",
+  "payloadSHA256" : "f5e4a3c3d9ee1ac62746748062ec29cc4d2bded4b67d676bf6ff4214441c8775",
+  "processID" : 77183,
+  "revision" : 1,
+  "sourceSHA256" : "c18380f3c494bfa375eba72202ad812c5ae3442e4890c324c55944823df08b40"
+}

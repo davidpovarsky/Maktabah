@@ -1,0 +1,322 @@
+{
+  "header_search_paths": [
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/swift-cmark/src/include",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/swift-cmark/extensions/include",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/swift-markdown/Sources/CAtomic/include",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/iosMath/iosMath",
+    "Pods/Headers/Public/FirebaseInstallations",
+    "Pods/Headers/Public/FirebaseCore",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/firebase-ios-sdk/CoreOnly/Sources",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/firebase-ios-sdk/FirebaseMessaging/Sources/Public",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/GoogleUtilities/GoogleUtilities/AppDelegateSwizzler/Public",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/GoogleUtilities/GoogleUtilities/Network/Public",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/GoogleUtilities/GoogleUtilities/NSData+zlib/Public",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/GoogleUtilities/GoogleUtilities/Reachability/Public",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/GoogleUtilities/GoogleUtilities/MethodSwizzler/Public",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/GoogleUtilities/GoogleUtilities/SwizzlerTestHelpers/Public",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/GoogleUtilities/GoogleUtilities/Logger/Public",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/GoogleUtilities/GoogleUtilities/Environment/Public",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/GoogleUtilities/third_party/IsAppEncrypted/Public",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/GoogleUtilities/GoogleUtilities/UserDefaults/Public",
+    "Pods/Headers/Public/GoogleDataTransport",
+    "Pods/Headers/Public/PromisesObjC",
+    "Pods/Headers/Public/nanopb"
+  ],
+  "module_maps": [
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/swift-cmark/src/include/module.modulemap",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/swift-cmark/extensions/include/module.modulemap",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/swift-markdown/Sources/CAtomic/include/module.modulemap",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/iosMath/iosMath/module.modulemap",
+    "Pods/Headers/Public/FirebaseInstallations/FirebaseInstallations.modulemap",
+    "Pods/Headers/Public/FirebaseCore/FirebaseCore.modulemap",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/Packages/firebase-ios-sdk/CoreOnly/Sources/module.modulemap",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/GeneratedModuleMaps/FirebaseMessaging.modulemap",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/GeneratedModuleMaps/GoogleUtilities-AppDelegateSwizzler.modulemap",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/GeneratedModuleMaps/GoogleUtilities-Network.modulemap",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/GeneratedModuleMaps/GoogleUtilities-NSData.modulemap",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/GeneratedModuleMaps/GoogleUtilities-Reachability.modulemap",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/GeneratedModuleMaps/GoogleUtilities-MethodSwizzler.modulemap",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/GeneratedModuleMaps/GoogleUtilities-SwizzlerTestHelpers.modulemap",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/GeneratedModuleMaps/GoogleUtilities-Logger.modulemap",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/GeneratedModuleMaps/GoogleUtilities-Environment.modulemap",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/GeneratedModuleMaps/third-party-IsAppEncrypted.modulemap",
+    "build/original-editor-local-sdk292-collections13-8ae85a64/distribution/Clang/GeneratedModuleMaps/GoogleUtilities-UserDefaults.modulemap",
+    "Pods/Headers/Public/GoogleDataTransport/GoogleDataTransport.modulemap",
+    "Pods/Headers/Public/FBLPromises/PromisesObjC.modulemap",
+    "Pods/Headers/Public/nanopb/nanopb.modulemap"
+  ],
+  "native_build_or_runtime_qualified": false,
+  "original_export_modified": false,
+  "producer_identity": {
+    "manifest_sha256": "1fc857e1401f57bd040449d86a0e41ae96cb177978c4905d791dcfaea820dafe",
+    "original_package_lock_sha256": "1bc7e7feca002067509fe101844624c43ef9cc52e191786688e25d3b0210277c",
+    "run_attempt": "1",
+    "run_id": "local-74fe4306-c10d-41d8-b4ea-6391d717ffad",
+    "source_sha": "8ae85a6490c4fb763fcd01d5f93345f7e071db92"
+  },
+  "reused_identical_host_modules": [
+    {
+      "declarations": {
+        "FirebaseInstallations/FIRInstallations.h": {
+          "host": "Pods/Headers/Public/FirebaseInstallations/FIRInstallations.h",
+          "sha256": "f33523e9515e02b345f675d530ced0640bbd015ed662cc617ad8a572078131d6"
+        },
+        "FirebaseInstallations/FIRInstallationsAuthTokenResult.h": {
+          "host": "Pods/Headers/Public/FirebaseInstallations/FIRInstallationsAuthTokenResult.h",
+          "sha256": "0a4d37d76661a0dabcec6b6c57bce3771c98fb0d12d8549f9ffa7895f2ad4feb"
+        },
+        "FirebaseInstallations/FIRInstallationsErrors.h": {
+          "host": "Pods/Headers/Public/FirebaseInstallations/FIRInstallationsErrors.h",
+          "sha256": "d6d05d517e4c61f5e9e4b6c7e1f99d702b30e533efe46a1b1469f2333df37502"
+        },
+        "FirebaseInstallations/FirebaseInstallations.h": {
+          "host": "Pods/Headers/Public/FirebaseInstallations/FirebaseInstallations.h",
+          "sha256": "545a4503c9f9445fc62efd0df5012bd08a18b43cedef6bfbbe5ac3bff8630349"
+        }
+      },
+      "host_map": "Pods/Headers/Public/FirebaseInstallations/FirebaseInstallations.modulemap",
+      "host_map_sha256": "f990a4475a2b4e6e1365c8dbbdfc897691abe8bdd29a7c77207215da3114cd7a",
+      "module": "FirebaseInstallations",
+      "sdk_map": "Clang/GeneratedModuleMaps/FirebaseInstallations.modulemap",
+      "sdk_map_sha256": "e3abb89886dafd8995b014a119d5e611ba3d32c0271449ae92d8e167f114b885"
+    },
+    {
+      "declarations": {
+        "FirebaseCore/FIRApp.h": {
+          "host": "Pods/Headers/Public/FirebaseCore/FIRApp.h",
+          "sha256": "61a4299ef7c705bdc5bcb47bf31a8b85c243b5e40b5f25e05f1c2822bf19cfe8"
+        },
+        "FirebaseCore/FIRConfiguration.h": {
+          "host": "Pods/Headers/Public/FirebaseCore/FIRConfiguration.h",
+          "sha256": "53ed9b3fe9a7a2329d7f143531eda65d97d13d17d56b26691f4209ff34722b0d"
+        },
+        "FirebaseCore/FIRLoggerLevel.h": {
+          "host": "Pods/Headers/Public/FirebaseCore/FIRLoggerLevel.h",
+          "sha256": "a52fdf18260fd95d31fb00c22d367ef0340bacef09cbb3b25381a05742e59905"
+        },
+        "FirebaseCore/FIROptions.h": {
+          "host": "Pods/Headers/Public/FirebaseCore/FIROptions.h",
+          "sha256": "7e4d9b40207daacfc12a3ed9786acb3f5ff868ddc68fe94523444146fafdfe8d"
+        },
+        "FirebaseCore/FIRTimestamp.h": {
+          "host": "Pods/Headers/Public/FirebaseCore/FIRTimestamp.h",
+          "sha256": "36f2d49c130c18b607731d781dd35e7b037d859f16360df3c11c036e92de6f2e"
+        },
+        "FirebaseCore/FIRVersion.h": {
+          "host": "Pods/Headers/Public/FirebaseCore/FIRVersion.h",
+          "sha256": "346f63df1fbb7a868d21b5650f073e83449eaadde90ac40102d4d9b25c7aff18"
+        },
+        "FirebaseCore/FirebaseCore.h": {
+          "host": "Pods/Headers/Public/FirebaseCore/FirebaseCore.h",
+          "sha256": "5032f43c730426e96d1990101cb9dc00c636710d7471586eeac1a4f4bfc70888"
+        }
+      },
+      "host_map": "Pods/Headers/Public/FirebaseCore/FirebaseCore.modulemap",
+      "host_map_sha256": "7103b03f6ab68d7759019b1eb81a149f00226648524d91429c56060750d519fc",
+      "module": "FirebaseCore",
+      "sdk_map": "Clang/GeneratedModuleMaps/FirebaseCore.modulemap",
+      "sdk_map_sha256": "1b3fc030486357654cfee0113bc14ba944533c1d3762f679c022cfb5302b0528"
+    },
+    {
+      "declarations": {
+        "GoogleDataTransport/GDTCORClock.h": {
+          "host": "Pods/Headers/Public/GoogleDataTransport/GDTCORClock.h",
+          "sha256": "971fe1c54919b7764337fd983fd279a54a29e3f998e9b7ffb558fdc677be749d"
+        },
+        "GoogleDataTransport/GDTCORConsoleLogger.h": {
+          "host": "Pods/Headers/Public/GoogleDataTransport/GDTCORConsoleLogger.h",
+          "sha256": "b2c2a8360fdc71bc803b492aab8714789f35d3b584732addb5815a5e7df212eb"
+        },
+        "GoogleDataTransport/GDTCOREndpoints.h": {
+          "host": "Pods/Headers/Public/GoogleDataTransport/GDTCOREndpoints.h",
+          "sha256": "cbd2d1cacf1937dd67a5f5f049e45ed52feee2879c5b0b95733f294ac705846b"
+        },
+        "GoogleDataTransport/GDTCOREvent.h": {
+          "host": "Pods/Headers/Public/GoogleDataTransport/GDTCOREvent.h",
+          "sha256": "3ceb5c8bd69ad5ab0259c17e4f9c9ba39fde64aec77b3852872b4da201c7d6d1"
+        },
+        "GoogleDataTransport/GDTCOREventDataObject.h": {
+          "host": "Pods/Headers/Public/GoogleDataTransport/GDTCOREventDataObject.h",
+          "sha256": "d0a8ad28fcbf8e6c40ff0c15fe822728f6c33acb35c58ad2b9434c57b6c244d0"
+        },
+        "GoogleDataTransport/GDTCOREventTransformer.h": {
+          "host": "Pods/Headers/Public/GoogleDataTransport/GDTCOREventTransformer.h",
+          "sha256": "14c7a4e67677b2841dafbaa86a9e56bb3520cdfe40406adc910db1dd7dfcf398"
+        },
+        "GoogleDataTransport/GDTCORProductData.h": {
+          "host": "Pods/Headers/Public/GoogleDataTransport/GDTCORProductData.h",
+          "sha256": "8ee436b8b263ea7d3b7ccafab817b8fa8a374bc3c2a845deda043f8395368e6b"
+        },
+        "GoogleDataTransport/GDTCORTargets.h": {
+          "host": "Pods/Headers/Public/GoogleDataTransport/GDTCORTargets.h",
+          "sha256": "983153cd9e133d7e48421d829fb58adf353f460bbf4b72b2d257768b4a74429c"
+        },
+        "GoogleDataTransport/GDTCORTransport.h": {
+          "host": "Pods/Headers/Public/GoogleDataTransport/GDTCORTransport.h",
+          "sha256": "0ae262b7ccfd1104e904e241119c90dede24ae96de08387036f4988f95107ade"
+        },
+        "GoogleDataTransport/GoogleDataTransport.h": {
+          "host": "Pods/Headers/Public/GoogleDataTransport/GoogleDataTransport.h",
+          "sha256": "3537de5b4843d80c5527d3532b7a7a9848529092a1cdd925087903662358a1ca"
+        }
+      },
+      "host_map": "Pods/Headers/Public/GoogleDataTransport/GoogleDataTransport.modulemap",
+      "host_map_sha256": "e44749b63cfa9cd31062bd96c17ec8b9fa3887f27daac87de6ed413798b10d22",
+      "module": "GoogleDataTransport",
+      "sdk_map": "Clang/GeneratedModuleMaps/GoogleDataTransport.modulemap",
+      "sdk_map_sha256": "7bdfb22466770a8cf63764f41462f194bf75d7d846959f5ef8f6f83c0d9f6871"
+    },
+    {
+      "declarations": {
+        "FBLPromise+All.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+All.h",
+          "sha256": "83a05428b31324019123fe178c653f759686eeb036ed6d7a5592bc5af335798b"
+        },
+        "FBLPromise+Always.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+Always.h",
+          "sha256": "9922cba8b21f2da01d2125339829c7139748e6ae5a7dcb5db9af6ce03770af0e"
+        },
+        "FBLPromise+Any.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+Any.h",
+          "sha256": "11330ad82395f9a8e57c0e17c43514273577a7c2d4680f8637db112f0344d029"
+        },
+        "FBLPromise+Async.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+Async.h",
+          "sha256": "74773c0126d7990c6b9294020446c064be074e03ba27b80d8aff5eaf3bbdd905"
+        },
+        "FBLPromise+Await.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+Await.h",
+          "sha256": "5bb92a65b0bbd530f55eff7076d3088e80db61267992d512928939b4f652e40f"
+        },
+        "FBLPromise+Catch.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+Catch.h",
+          "sha256": "930c82eef53fe8066d89c8802d494dd23fe7ae6cc6ed0144c638c1576e694136"
+        },
+        "FBLPromise+Delay.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+Delay.h",
+          "sha256": "9d297bc04250fadc30e5dfc15a59e803832ff7075ed290c8d9225a3c84a8def2"
+        },
+        "FBLPromise+Do.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+Do.h",
+          "sha256": "01baccba2ff2de30515579680b67a4e19730a4140f96abb6f7f68f453bce13af"
+        },
+        "FBLPromise+Race.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+Race.h",
+          "sha256": "08db93462990d2b645354ba6c0ffe160eaa2db4e3e25b7dfac490e34116e2158"
+        },
+        "FBLPromise+Recover.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+Recover.h",
+          "sha256": "58fd959a430b10987da4ffac5b6a56e7de39fc810812189bffbac67c26885904"
+        },
+        "FBLPromise+Reduce.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+Reduce.h",
+          "sha256": "395a0aef6f726ec7fc117f034700914627516d33d78518876635782a7e3412d1"
+        },
+        "FBLPromise+Retry.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+Retry.h",
+          "sha256": "a27323c5a6f593b048fc19849796105f0b9a60b67080487f11130f219e6eb656"
+        },
+        "FBLPromise+Testing.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+Testing.h",
+          "sha256": "7c4559bf575f60328738aca266a81dca161d511674b4a5ac1c654f2102fbd1fd"
+        },
+        "FBLPromise+Then.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+Then.h",
+          "sha256": "40c1fb9334481df1d8fc09f6f22522a07c42bcfd5dbe9109e0689f7e9b3a7812"
+        },
+        "FBLPromise+Timeout.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+Timeout.h",
+          "sha256": "3686861e7cbd6cb11c8308e35b9510c5905ac913dc40e4695bb5897716bc8838"
+        },
+        "FBLPromise+Validate.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+Validate.h",
+          "sha256": "73ef09f931a4370d09667f88b7f2c140fdc30026adc0096e3a12cb3433e8cccc"
+        },
+        "FBLPromise+Wrap.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise+Wrap.h",
+          "sha256": "9b9efa0c2bc3883718a2d8f1ba6c6b84e54e27c5f252725c20ceea955beada74"
+        },
+        "FBLPromise.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromise.h",
+          "sha256": "f33a355500779769ef38a547bb5adaf9045dd5ab1bf3efe915ff6b6c44de84c9"
+        },
+        "FBLPromiseError.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromiseError.h",
+          "sha256": "dcb043361912bb20c4d4b13c2a4f5cd7dcad2f1030e400509c9bbb278ff5ca4f"
+        },
+        "FBLPromisePrivate.h": {
+          "exported_to_host": false,
+          "host": "Pods/Headers/Private/PromisesObjC/FBLPromisePrivate.h",
+          "kind": "excluded_private",
+          "sha256": "c936f11a36f9e05917d29e9acadcbb536ed6532a053d713db899e2bd44e53efe"
+        },
+        "FBLPromises.h": {
+          "host": "Pods/Headers/Public/PromisesObjC/FBLPromises.h",
+          "sha256": "c07f5e593b162fd122c6c51d0bb1b581b0fcbd8f7b125e3969d5abae9c2fa8cd"
+        }
+      },
+      "host_map": "Pods/Headers/Public/FBLPromises/PromisesObjC.modulemap",
+      "host_map_sha256": "99203a1247e67d234fd5c2e8019b608524983416cc5e1e4a42f5bc7d5d4a382a",
+      "module": "FBLPromises",
+      "sdk_map": "Clang/Packages/promises/Sources/FBLPromises/include/module.modulemap",
+      "sdk_map_sha256": "556b42a95954304835be0f863d0eb78e98ffae8db359dc7fbc1c6ee06e90f081"
+    },
+    {
+      "declarations": {
+        "nanopb/pb.h": {
+          "host": "Pods/Headers/Public/nanopb/pb.h",
+          "sha256": "dcb4ae324cf8e285ded0ff8a1a20852f3f2dfddb05ec548ec3f4c4410f37893b"
+        },
+        "nanopb/pb_common.h": {
+          "host": "Pods/Headers/Public/nanopb/pb_common.h",
+          "sha256": "3ed0e7518cd2c604f2631f38ba8d3119daaeeb3c5b39cb6db968ca54032d7541"
+        },
+        "nanopb/pb_decode.h": {
+          "host": "Pods/Headers/Public/nanopb/pb_decode.h",
+          "sha256": "adfe53f3612e65c45614f129226e8b00dde7cc8f1cf7ed32eb5876598a5b2894"
+        },
+        "nanopb/pb_encode.h": {
+          "host": "Pods/Headers/Public/nanopb/pb_encode.h",
+          "sha256": "764aee8e79802e0755e5d29083236b144a0af09dade01eefc787fa6baa74ab84"
+        },
+        "pb.h": {
+          "host": "Pods/Headers/Public/nanopb/pb.h",
+          "kind": "transparent_forwarder",
+          "sha256": "ffb03e429cb90d2e89c56eee94464913e0d42b22b4eb5b20fab14bded1d4e73f",
+          "target": "nanopb/pb.h",
+          "target_sha256": "dcb4ae324cf8e285ded0ff8a1a20852f3f2dfddb05ec548ec3f4c4410f37893b"
+        },
+        "pb_common.h": {
+          "host": "Pods/Headers/Public/nanopb/pb_common.h",
+          "kind": "transparent_forwarder",
+          "sha256": "8479f2612a1df0bb1c5e2010da8aae590bb5695738ed25f0df7d5e2c301ebacb",
+          "target": "nanopb/pb_common.h",
+          "target_sha256": "3ed0e7518cd2c604f2631f38ba8d3119daaeeb3c5b39cb6db968ca54032d7541"
+        },
+        "pb_decode.h": {
+          "host": "Pods/Headers/Public/nanopb/pb_decode.h",
+          "kind": "transparent_forwarder",
+          "sha256": "00c9aa27bfe36745d7902a4a4aa282b6d4ce4fee3ea77eaf2c44c512d7b972b2",
+          "target": "nanopb/pb_decode.h",
+          "target_sha256": "adfe53f3612e65c45614f129226e8b00dde7cc8f1cf7ed32eb5876598a5b2894"
+        },
+        "pb_encode.h": {
+          "host": "Pods/Headers/Public/nanopb/pb_encode.h",
+          "kind": "transparent_forwarder",
+          "sha256": "92c444291d604cd07c478c623966f66c23b3b567a18c4cbd1dd79391694851d9",
+          "target": "nanopb/pb_encode.h",
+          "target_sha256": "764aee8e79802e0755e5d29083236b144a0af09dade01eefc787fa6baa74ab84"
+        }
+      },
+      "host_map": "Pods/Headers/Public/nanopb/nanopb.modulemap",
+      "host_map_sha256": "21556b147a442845857c3ee4904d9b08854b0021fbcaf7365fda78506e0ca6fc",
+      "module": "nanopb",
+      "sdk_map": "Clang/GeneratedModuleMaps/nanopb.modulemap",
+      "sdk_map_sha256": "67be0438fd89fb1eecb1461d5879cad43874d7ceb8fbea2cd639e7330dc4a6ef"
+    }
+  ],
+  "runtime_collisions": [],
+  "schema": 1,
+  "shared_implementation_required": true,
+  "status": "HOST_CLANG_CONTEXT_COMPOSED"
+}

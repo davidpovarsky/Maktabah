@@ -227,6 +227,123 @@ def make_manifest(ref):
             "status": "GIT_SOURCE_INVENTORY_NOT_DEVICE_ACCEPTANCE", "files": entries}
 
 
+
+# Reviewed Library morph scope; historical source routes retain their old gate.
+LIBRARY_MORPH_BASE = "1969b2065469b55e38e42cbb838a469ffa6a80f7"
+PALETTE_COMPONENT = "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift"
+MORPH_PRODUCT_PATHS = (IPAD, SIDEBAR, PALETTE, PALETTE_COMPONENT)
+MORPH_SPLIT_HOOK = """        .overlay {
+            ReaderLibrarySearchMorph(manager: bManager, sidebar: sidebar)
+        }
+"""
+
+
+def library_morph_issues(files):
+    """Narrow source composition gate; native geometry/focus still need runtime."""
+    text = lambda path: files.get(path, b"").decode("utf-8")
+    ipad, sidebar, adapter, component = map(text, MORPH_PRODUCT_PATHS)
+    original_ipad = content(LIBRARY_MORPH_BASE, IPAD).decode("utf-8")
+    original_adapter = content(LIBRARY_MORPH_BASE, PALETTE).decode("utf-8")
+    original_component = content(LIBRARY_MORPH_BASE, PALETTE_COMPONENT).decode("utf-8")
+    issues = []
+
+    def member(source, name):
+        match = re.search(r"^    private (?:var|func) " + re.escape(name) + r"\b", source, re.M)
+        if not match:
+            return None
+        start = source.find("{", match.end())
+        depth = 0
+        for index in range(start, len(source)):
+            if source[index] == "{":
+                depth += 1
+            elif source[index] == "}":
+                depth -= 1
+                if depth == 0:
+                    return source[match.start():index + 1]
+        return None
+
+    def section(source, begin, end):
+        if begin not in source or end not in source.split(begin, 1)[1]:
+            return None
+        return source.split(begin, 1)[1].split(end, 1)[0]
+
+    toolbar = section(sidebar, "struct Exact9401ViewerToolbar:", "/// Mounted by the already scene-lived")
+    if (toolbar is None
+            or toolbar.count('.accessibilityIdentifier("reader-command-palette-launcher")') != 1
+            or 'Button {\n                        sidebar?.presentLibrarySearch()' not in toolbar
+            or "ReaderToolbarFrameReader(tracksPosition: isPresented)" not in toolbar
+            or ipad.count("Exact9401ViewerToolbar(") != 1):
+        issues.append("ONE_PALETTE_LAUNCHER_REQUIRED")
+
+    # Removing exactly the split-level hook must restore the existing original
+    # workspace composition, including title, reader and toolbar ownership.
+    if (ipad.count("ReaderLibrarySearchMorph(") != 1 or ipad.count(MORPH_SPLIT_HOOK) != 1
+            or member(ipad.replace(MORPH_SPLIT_HOOK, "", 1), "workspaceViewerTabContent")
+            != member(original_ipad, "workspaceViewerTabContent")):
+        issues.append("ONE_SPLIT_LEVEL_MORPH_REQUIRED")
+
+    shell = member(adapter, "searchShell")
+    if (shell is None or shell.count("LibraryCommandPaletteAdapter(") != 1
+            or adapter.count("LibraryCommandPaletteAdapter(") != 1
+            or sidebar.count("LibraryCommandPaletteAdapter(") != 0
+            or adapter.count("CommandPaletteView(") != 1
+            or member(adapter, "commands") != member(original_adapter, "commands")
+            or "initialQuery: manager.libraryViewModel.searchQuery" not in adapter
+            or "queryBinding: Bindable(manager.libraryViewModel).searchQuery" not in adapter
+            or "isActive: isExpanded, drawsSurface: false" not in shell):
+        issues.append("CURRENT_PALETTE_MUST_BE_REUSED")
+
+    # Only the expanded native child may be conditional: the original input
+    # must dismantle on close while the one outer morph surface stays mounted.
+    expanded = section(shell or "", "            if isExpanded {\n",
+                       "\n            }\n\n            compactContents(")
+    if (shell is None or shell.count("ZStack(alignment: .topLeading)") != 1
+            or shell.count("if isExpanded") != 1 or expanded is None
+            or "return ZStack(alignment: .topLeading) {" not in shell.split("if isExpanded", 1)[0]
+            or expanded.count("LibraryCommandPaletteAdapter(") != 1
+            or expanded.count(".transition(.opacity)") != 1
+            or any(value in expanded for value in ("ZStack(", "compactContents(", ".modifier(SafariGlass(", ".clipShape("))
+            or shell.count(".modifier(SafariGlass(radius: radius))") != 1
+            or ".clipShape(RoundedRectangle(cornerRadius: radius" not in shell
+            or ".opacity(isExpanded ? 1 : 0)" not in shell
+            or ".opacity(isExpanded ? 0 : 1)" not in shell
+            or ".accessibilityHidden(!isExpanded)" not in shell
+            or ".allowsHitTesting(isExpanded)" not in shell
+            or any(value in shell for value in ("if !isExpanded", ".shadow(", ".gelatinMotionOnly()", ".gesture("))):
+        issues.append("SINGLE_STABLE_MORPH_SURFACE_REQUIRED")
+
+    # Preserve original query synchronization, result rows, recents and actions.
+    # The only action change admitted here is the inactive-palette guard.
+    for name in ("results", "makeRows", "runSelection", "run"):
+        current = member(component, name)
+        if current is not None:
+            current = current.replace("        guard isActive else { return }\n", "", 1)
+        if current != member(original_component, name):
+            issues.append("ORIGINAL_PALETTE_SELECTION_CHANGED:" + name)
+    before_query = ".onChange(of: queryBinding?.wrappedValue)"
+    after_query = "#if os(macOS)"
+    if section(component, before_query, after_query) != section(original_component, before_query, after_query):
+        issues.append("ORIGINAL_PALETTE_QUERY_CHANGED")
+    field = member(component, "searchField")
+    if field is not None:
+        field = field.replace("wantsFocus: isActive && isSearchFieldFocused,", "wantsFocus: isSearchFieldFocused,")
+        field = field.replace(".keyboardShortcut(isActive && !isSearchFieldFocused ? KeyboardShortcut.cancelAction : nil)",
+                              ".keyboardShortcut(isSearchFieldFocused ? nil : KeyboardShortcut.cancelAction)")
+        field = field.replace(".keyboardShortcut(isActive ? KeyboardShortcut.cancelAction : nil)",
+                              ".keyboardShortcut(.cancelAction)")
+    original_field_marker = "#if os(iOS)\n/// The palette's actual text input"
+    if (field != member(original_component, "searchField")
+            or original_field_marker not in component
+            or component.split(original_field_marker, 1)[-1] != original_component.split(original_field_marker, 1)[-1]):
+        issues.append("ORIGINAL_PALETTE_KEYBOARD_CHANGED")
+    if any(value not in component for value in (
+            "isActive: Bool = true", "drawsSurface: Bool = true",
+            "wantsFocus: isActive && isSearchFieldFocused", ".task(id: isActive)",
+            "guard !Task.isCancelled else { return }", ".accessibilityHidden(!isActive)")):
+        issues.append("RETAINED_PALETTE_FOCUS_LIFECYCLE_REQUIRED")
+    return issues
+
+
 def source_issues(files, baseline):
     issues = []
     def string(path):
@@ -284,10 +401,13 @@ def source_issues(files, baseline):
         issues.append("SINGLE_READER_TWO_COLUMN_REQUIRED")
     if "ReaderSidebarPager(coordinator: sidebar)" not in viewer or "iOSTOCView(" not in ipad:
         issues.append("ORIGINAL_SIDEBAR_COMPONENTS_MISSING")
-    if sidebar.count('systemImage: "magnifyingglass"') != 1 or viewer.count("Exact9401ViewerToolbar(") != 1:
-        issues.append("ONE_PALETTE_LAUNCHER_REQUIRED")
-    if sidebar.count("LibraryCommandPaletteAdapter(") != 1 or files.get(PALETTE) != content(FEATURE, PALETTE):
-        issues.append("CURRENT_PALETTE_MUST_BE_REUSED")
+    if "ReaderLibrarySearchMorph(" in ipad:
+        issues.extend(library_morph_issues(files))
+    else:
+        if sidebar.count('systemImage: "magnifyingglass"') != 1 or viewer.count("Exact9401ViewerToolbar(") != 1:
+            issues.append("ONE_PALETTE_LAUNCHER_REQUIRED")
+        if sidebar.count("LibraryCommandPaletteAdapter(") != 1 or files.get(PALETTE) != content(FEATURE, PALETTE):
+            issues.append("CURRENT_PALETTE_MUST_BE_REUSED")
     if (sidebar.count("StudyProfileMenu(") != 1 or "usesNativeToolbar: true" not in sidebar
             or sidebar.count("StudyProfileManagementView(") != 1):
         issues.append("NATIVE_PROFILE_TOOLBAR_REQUIRED")

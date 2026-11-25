@@ -602,6 +602,54 @@ public actor ActionExecutor {
         }
     }
 
+    /// Host opt-in for a cold, installed search source. The normal advertisement
+    /// and system report retain their original availableNow semantics. This
+    /// projection uses one canonical metadata request and may add only the fixed
+    /// read action after a separate positive, source-bound observation.
+    public func advertisedActionsWithExistingSearchPreparation(for backend: ActionBackendID,
+                                                               context: ActionExecutionContext) async -> [ActionDescriptor] {
+        let request = ActionRequest(action: "system.listBackends", arguments: ["includeReadiness": .bool(true)], expectedBackend: backend)
+        let result = await execute(request, context: context)
+        guard result.status == .completed, let reports = result.data?["backends"]?.array,
+              let report = reports.first(where: { $0.object?["id"] == .string(backend.rawValue) })?.object,
+              let operations = report["operations"]?.object else { return [] }
+        let available = registry.descriptors.filter { descriptor in
+            guard ActionRegistry.implemented.contains(descriptor.id), operations[descriptor.id]?.object?["availableNow"] == .bool(true) else { return false }
+            guard (try? ActionPolicy.authorize(descriptor, context: context, backend: backend)) != nil else { return false }
+            return !["reader.open", "reader.openCommentary", "notes.prepareDraft", "search.openResults"].contains(descriptor.id) || (ActionPolicy.foregroundScene(context) != nil && ui != nil)
+        }
+        guard !available.contains(where: { $0.id == "search.query" }), backend == .otzaria,
+              let descriptor = registry.descriptors.first(where: { $0.id == "search.query" }),
+              ActionRegistry.implemented.contains(descriptor.id),
+              operations[descriptor.id]?.object?["registered"] == .bool(true),
+              operations[descriptor.id]?.object?["supported"] == .bool(true),
+              (try? ActionPolicy.authorize(descriptor, context: context, backend: backend)) != nil,
+              let observationPort = search as? any ActionSearchPreparationObservationPort,
+              observationPort.hasSearchExecutionPreparation,
+              let snapshot = ledger[RequestKey(subject: context.subjectID, id: request.requestId)]?.snapshot,
+              snapshot.backend == backend, result.backendGeneration == snapshot.generation,
+              workers < maxWorkers else { return available }
+        let (sum, overflow) = clock.now().addingReportingOverflow(5_000_000_000)
+        let deadline = overflow ? UInt64.max : sum
+        let invocation = ActionPortInvocation(requestId: request.requestId, snapshot: snapshot,
+            deadlineUptimeNanoseconds: deadline)
+        do {
+            try await recheck(snapshot, deadline: deadline)
+            guard workers < maxWorkers else { return [] }
+            workers += 1
+            let observation = try await ActionDeadline.run(until: deadline, clock: clock, operation: {
+                try await observationPort.observeExistingSearchPreparation(invocation: invocation)
+            }, onWorkerFinished: { [weak self] in await self?.workerFinished() })
+            try await recheck(snapshot, deadline: deadline)
+            guard observation == .eligible(invocation: invocation) else { return available }
+            return available + [descriptor]
+        } catch {
+            // A failed/stale/cancelled observation cannot retain an earlier
+            // projection across its await, let alone advertise the cold action.
+            return []
+        }
+    }
+
     private func equivalent(_ lhs: ActionRequest, _ rhs: ActionRequest) throws -> Bool {
         if lhs == rhs { return true }
         // Already-validated signed/unsigned storage for the same JSON integer

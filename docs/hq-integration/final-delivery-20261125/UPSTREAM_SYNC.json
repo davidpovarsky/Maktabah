@@ -1,0 +1,36 @@
+{
+  "recorded_at_utc": "2026-11-25T02:01:37.916618+00:00",
+  "default": {
+    "defaultBranchRef": {
+      "name": "dev"
+    }
+  },
+  "recent_heads": [
+    "final-refresh/codex/otzaria-final-delivery-20261125|a12040e85ad5a39192371e5bdc50a7251b142362|2026-11-25T01:45:37+00:00|Record final integration milestones and truthful remaining acceptance gates",
+    "final-refresh/codex/otzaria-native-share-20261125|82c1bc16e49b76fd1e8cb16b5be9e0d643db8b57|2026-11-25T01:35:59+00:00|feat: share saved native notes through original Anytype account UI",
+    "final-refresh/codex/otzaria-miniapps-final-20261125|2c86aa9725a73fb2b4c6575e9c32312ec33f491b|2026-11-25T01:17:03+00:00|Admit source-bound local Mac MiniApps producer artifacts",
+    "final-refresh/codex/otzaria-library-acceptance-20261125|74ae9510d90b50343e961967616e5630d1682295|2026-11-25T01:14:04+00:00|Add verified managed library updates through original installer",
+    "final-refresh/codex/otzaria-editor-empty-note-20261125|6b330a2964adf30932cfb7e86fc984068c7c5d10|2026-11-25T00:55:14+00:00|Preserve empty note edits and isolate each editor window",
+    "final-refresh/codex/otzaria-integrated-normal-editor-20261124|08f50a5646b7669d15f8c53cb13c84ac504a02bd|2026-11-24T21:00:32+00:00|Bind integrated SDK routes to the production annotation lifecycle",
+    "final-refresh/codex/otzaria-sdk-final-routes-20261124|20bbba26a061369ccdb326af90e4896966d7c6c4|2026-11-24T20:59:58+00:00|Bind local annotation SDK contracts and actual device build products",
+    "final-refresh/codex/otzaria-production-annotation-host-20261124|e069d17c04c6acefd74bd74b902a1d92e7078a58|2026-11-24T20:58:55+00:00|Reject unsafe plain annotation writes inside the SQLite transaction",
+    "final-refresh/codex/otzaria-mac-execution-report-20261124|b51d9a4b95f1a92bd4032c4d805a3852567c14d6|2026-11-24T22:54:34+02:00|docs: accept exact local annotation Debug SDK with native consumers",
+    "final-refresh/codex/otzaria-mac-final-integration-20261124|119c7384180c9dbac5883b65672ee59851f21d70|2026-11-24T20:02:40+00:00|Bind focused Reader and Live UI to the qualified built SDK",
+    "final-refresh/codex/otzaria-device-signature-20261124|0b1f9bff9ca0834181088fedbc4dc53dfa4f7a67|2026-11-24T18:45:31+00:00|Bind device archive ownership to actual Xcode product paths",
+    "final-refresh/codex/otzaria-sdk-route-verification-20261124|fc95b2eb2c594f5d152f61a16c54162964cf1bfa|2026-11-24T18:28:48+00:00|Verify captured original SDK identities after UI and archive",
+    "final-refresh/codex/otzaria-final-sdk-admission-20261124|16a75012f7499f17ad6d68b228d077542879268d|2026-11-24T18:00:16+00:00|Wire original SDK routes into final CI and preserve persistent Mac signing material",
+    "final-refresh/codex/otzaria-composer-source-binding-20261124|b6839cf60c967e03c9faf03846e03faeef78171d|2026-11-24T17:27:55+00:00|Bind the reviewed composer source without relabeling retained native builds",
+    "final-refresh/codex/otzaria-hanlin-composer-inset-20261124|d3da55417a30e9a06b0255e2d0b561955034b260|2026-11-24T17:05:32+00:00|fix(hanlin): reserve composer safe area during transcript auto-follow",
+    "final-refresh/codex/otzaria-hanlin-live-diagnostic-20261124|1d334366edc373e75c156be472868485730c6a4e|2026-11-24T16:26:38+00:00|fix(ci): bind live diagnostics to native enums and available provider",
+    "final-refresh/codex/otzaria-sdk-stageb-mac-20261124|d5d94921751a7c94232cdc39714555b6f1db2eb5|2026-11-24T16:07:45+00:00|Bind current Mac StageB source and exact generated build projections",
+    "final-refresh/codex/otzaria-mac-prepared-inputs-20261124|9c14da550ca334eebe2b2fce5735c01b4b9d1a3c|2026-11-24T16:06:37+00:00|fix(ci): retain Debug dylib identity in prepared input capture",
+    "final-refresh/codex/otzaria-mac-source-union-20261124|7d439c6e236fac1a3f8004375d61201da8e6d024|2026-11-24T15:16:44+00:00|fix(ci): relocate verified package Git alternates on real Mac",
+    "final-refresh/codex/otzaria-miniapps-bridge-20261123|8cdc0c0833154e71af5047983c47115db0005e35|2026-11-24T04:15:18+00:00|test: scope original reader Annotations popup",
+    "final-refresh/codex/otzaria-hanlin-thought-signature-live-20261123|fd7fc6688c9b5128498f01ed5bef922b116e397b|2026-11-23T23:10:44+00:00|ci: qualify original live flow with preserved thought signatures",
+    "final-refresh/codex/otzaria-oracle-completion-20261123|c4b2bfeeeefba779e8c1ac23f301b853ddcf66f0|2026-11-23T22:55:14+00:00|docs: retain Core fixture failure and focused continuation evidence",
+    "final-refresh/codex/otzaria-hanlin-thought-signature-continuation-20261123|73cbc16722ea33f3600ba19f1ca35dbd1a4d9812|2026-11-23T22:43:50+00:00|build: adopt signed tool continuation dependency source",
+    "final-refresh/codex/otzaria-multipart-manifest-stream-20261123|573e4dc004dd61ba3d8f1ed8a42901ba1f3e956f|2026-11-23T23:12:59+02:00|Qualify two held manifest stream controls and retain authentic35 prior passes",
+    "final-refresh/codex/otzaria-latest-multipart-20261123|4310c29728de5bbba2dc6584642c6934d554e213|2026-11-23T22:39:03+02:00|Support authenticated multipart library archives with original resume and verification"
+  ],
+  "local_source": "a12040e85ad5a39192371e5bdc50a7251b142362"
+}

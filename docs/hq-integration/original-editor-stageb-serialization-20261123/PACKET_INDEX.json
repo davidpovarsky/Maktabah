@@ -1,0 +1,741 @@
+{
+  "schema": 1,
+  "scope": "Source preparation plus one actual portable full-helper serialization experiment; no Apple or UI qualification",
+  "files": [
+    {
+      "path": "CONTROL_RUN.json",
+      "size": 675,
+      "sha256": "2be5913037801371b10d1aaa6acede62c50a3f1c404c93deb4477b14efd68a06"
+    },
+    {
+      "path": "CONTROL_RUN.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "CONTROL_RUN.stdout",
+      "size": 252,
+      "sha256": "2cf0488f2d73f3bf39c24741ffb63d3d1fe03bef47630e93b10f46de22ae68ab"
+    },
+    {
+      "path": "README.md",
+      "size": 3608,
+      "sha256": "40be87fc8c8c149c6addd56aa277a9dbebd16a6accc8ada6758b6300844f6073"
+    },
+    {
+      "path": "ROOT_SOURCE_REVIEW.json",
+      "size": 735,
+      "sha256": "81253b2682adbc6dd918bcbcb98e0ac68f50916a55ef525266fe33af18a14761"
+    },
+    {
+      "path": "SOURCE_CHECKPOINT.json",
+      "size": 990,
+      "sha256": "1b33bda2e30d4c8f8ed70ca0d705d420a57cbc88fa4c3626cfd93f6bc4a273df"
+    },
+    {
+      "path": "SOURCE_CORRESPONDENCE.json",
+      "size": 3077,
+      "sha256": "022f9daf5ea126ffa2a598b3dc8ba757202be2a135ca34d458bda81cb471e267"
+    },
+    {
+      "path": "actual-controls/RESULT.json",
+      "size": 9626,
+      "sha256": "f406b6ce15e3e46f5faf7b96f77a4805ba5700d53755af1257b7a71646b70773"
+    },
+    {
+      "path": "actual-controls/candidate_nonselected_corruption_rollback/COMMAND.json",
+      "size": 1785,
+      "sha256": "f26c167cd0325d913863835620c296ca0ce8ef1ddfd84c3be39728ed04c50af3"
+    },
+    {
+      "path": "actual-controls/candidate_nonselected_corruption_rollback/Maktabah.xcodeproj/project.pbxproj",
+      "size": 620777,
+      "sha256": "fcac6c6d17d98edf2b34712efaae5a52e5c8e3c84a3fc1fd038cfe4a9335245c"
+    },
+    {
+      "path": "actual-controls/candidate_nonselected_corruption_rollback/actual-gems.json",
+      "size": 2559,
+      "sha256": "396578a37615f6633e73b2beda5aadc10308d9c1af7dc7ac56e6c74f1f4cb7de"
+    },
+    {
+      "path": "actual-controls/candidate_nonselected_corruption_rollback/command.stderr",
+      "size": 229,
+      "sha256": "6c912ed1180eda551ae8811f79f8b29996098075e50bb29f7965608648311907"
+    },
+    {
+      "path": "actual-controls/candidate_nonselected_corruption_rollback/command.stdout",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "actual-controls/candidate_nonselected_corruption_rollback/first-actual-save.pbxproj",
+      "size": 628036,
+      "sha256": "49626de5808a4676809cd3b90ef11a9026db7c7d675e38c06d6791118c808c28"
+    },
+    {
+      "path": "actual-controls/candidate_nonselected_corruption_rollback/helper-receipt.json.rejected-project.pbxproj",
+      "size": 628048,
+      "sha256": "942bfa537b45a63c02fc9779be031c78fae169c4a84bfdba3ab355b8cdf7bdb4"
+    },
+    {
+      "path": "actual-controls/candidate_roundtrip/COMMAND.json",
+      "size": 1508,
+      "sha256": "7215cd1e17342000eb98f51151a2c20882084f1e5c930f497e370bf07a10a207"
+    },
+    {
+      "path": "actual-controls/candidate_roundtrip/Maktabah.xcodeproj/project.pbxproj",
+      "size": 628036,
+      "sha256": "36e77cd12dd631700e434b525b86d150211f34b2fd896ea43d86a5bac896d81e"
+    },
+    {
+      "path": "actual-controls/candidate_roundtrip/actual-gems.json",
+      "size": 2559,
+      "sha256": "396578a37615f6633e73b2beda5aadc10308d9c1af7dc7ac56e6c74f1f4cb7de"
+    },
+    {
+      "path": "actual-controls/candidate_roundtrip/command.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "actual-controls/candidate_roundtrip/command.stdout",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "actual-controls/candidate_roundtrip/helper-receipt.json",
+      "size": 14394,
+      "sha256": "047df601875ce3c58ef29a4418ded63161236ad814ea2e8c50d46a794772443f"
+    },
+    {
+      "path": "actual-controls/original_failure_and_rollback/COMMAND.json",
+      "size": 1561,
+      "sha256": "d8f68d9d3021809acc806f330b63d5055bbaee69908f068a0886b49f1eac2a49"
+    },
+    {
+      "path": "actual-controls/original_failure_and_rollback/Maktabah.xcodeproj/project.pbxproj",
+      "size": 620777,
+      "sha256": "fcac6c6d17d98edf2b34712efaae5a52e5c8e3c84a3fc1fd038cfe4a9335245c"
+    },
+    {
+      "path": "actual-controls/original_failure_and_rollback/actual-gems.json",
+      "size": 2559,
+      "sha256": "396578a37615f6633e73b2beda5aadc10308d9c1af7dc7ac56e6c74f1f4cb7de"
+    },
+    {
+      "path": "actual-controls/original_failure_and_rollback/command.stderr",
+      "size": 230,
+      "sha256": "e7080314bcc1af0fd9b10348e3757891cffa6202cc6496a5347fd5e4b74484e5"
+    },
+    {
+      "path": "actual-controls/original_failure_and_rollback/command.stdout",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "actual-controls/original_failure_and_rollback/helper-receipt.json.rejected-project.pbxproj",
+      "size": 628036,
+      "sha256": "328170113d4c401e81fb97eee8ccb5666c76b52c2e6586445467adb2306b3f20"
+    },
+    {
+      "path": "controls/inject_post_save_corruption.rb",
+      "size": 602,
+      "sha256": "ad3f56296f4ffc9b36ac3ed4266b89c26c30a612435f9924a0895e95be6ec69f"
+    },
+    {
+      "path": "controls/pin_actual_gems.rb",
+      "size": 1022,
+      "sha256": "27676b224c11bfa9a2fe6e856285bac78e1baa3e8adf6ee58391c2f9ebc01b47"
+    },
+    {
+      "path": "controls/run_full_helper.py",
+      "size": 11471,
+      "sha256": "d291e314fc8534ebdeaa3b39d16ff40149ccd9036883d300e7a1690c262de9de"
+    },
+    {
+      "path": "failure-run-45167025321/ARCHIVE_MEMBERS.json",
+      "size": 48259,
+      "sha256": "d5ca6d59d8db557fe20bee50f26490c135623165778c761147f87947cfd6e92b"
+    },
+    {
+      "path": "failure-run-45167025321/DIAGNOSIS.md",
+      "size": 1234,
+      "sha256": "a651dd41d2b4c0740c706a59de9a1fc78d24733c9114c02b0df99b95319f45cd"
+    },
+    {
+      "path": "failure-run-45167025321/INTAKE.json",
+      "size": 2204,
+      "sha256": "13818751596fd870fff6ee5de828638cadc8d21d908ebec2386553a470760a88"
+    },
+    {
+      "path": "failure-run-45167025321/PACKET_INDEX.json",
+      "size": 4952,
+      "sha256": "9e3d7975070146a33b2e271ab6007fe144a5b6539f512b86f0b65a24588c92dd"
+    },
+    {
+      "path": "failure-run-45167025321/artifact-download-local-flag-refusal.empty",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failure-run-45167025321/artifact-download-supported.command.json",
+      "size": 581,
+      "sha256": "41fa87f3a107acd30f79d50b0fd964a3c89e99fbdb1cb7c8d16d354d1cadb3f1"
+    },
+    {
+      "path": "failure-run-45167025321/artifact-download-supported.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failure-run-45167025321/artifact-download.command.json",
+      "size": 546,
+      "sha256": "d75f141c55a061239ef99e441820a061b039576add99cfdf146ed5b6c0104307"
+    },
+    {
+      "path": "failure-run-45167025321/artifact-download.stderr",
+      "size": 1420,
+      "sha256": "700da6b169f0cb442a277e3e4b9b16b788aca31845efec55f7697c34b2f980c3"
+    },
+    {
+      "path": "failure-run-45167025321/artifacts.command.json",
+      "size": 538,
+      "sha256": "39c2270fb9aa307c4ff3456cfbd2de4dcfd9c8870714e1bb8802c0061b60eeee"
+    },
+    {
+      "path": "failure-run-45167025321/artifacts.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failure-run-45167025321/artifacts.stdout",
+      "size": 833,
+      "sha256": "feb94fdd5247813697a68ac49d01dcbdba9d391aeccab8baf0417d24ba6f3b7c"
+    },
+    {
+      "path": "failure-run-45167025321/jobs.command.json",
+      "size": 544,
+      "sha256": "b7d51955a5dd04927d575e6a4f65829ab6b4218be09a4ad66ce23eab70f46dee"
+    },
+    {
+      "path": "failure-run-45167025321/jobs.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failure-run-45167025321/jobs.stdout",
+      "size": 4872,
+      "sha256": "f686cf5a8cc66be09782d580237c4df3e2634d25517260ddab6ebb65e1c23930"
+    },
+    {
+      "path": "failure-run-45167025321/observer-final-metadata.command.json",
+      "size": 561,
+      "sha256": "987c33d2fca6abeb0395843f45ca5c5b42ddc1b9b0e22390ccec63e99953f91b"
+    },
+    {
+      "path": "failure-run-45167025321/observer-final-metadata.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failure-run-45167025321/observer-final-metadata.stdout",
+      "size": 12809,
+      "sha256": "c7c8fed1ce1085ff1c4a7cf69b199a1f1f82dceebf66ad9dba42b0c162c6c707"
+    },
+    {
+      "path": "failure-run-45167025321/observer-watch.command.json",
+      "size": 640,
+      "sha256": "c8df5c3bfe294d44aeead3fae3aab235e1181a04054bd402549aae824bfa71fa"
+    },
+    {
+      "path": "failure-run-45167025321/observer-watch.state.json",
+      "size": 2676,
+      "sha256": "ae9fc9fc2cd15954415390d18e579f548c028b96fa7e993e4d4e6ba3fd228ac1"
+    },
+    {
+      "path": "failure-run-45167025321/observer-watch.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "failure-run-45167025321/observer-watch.stdout",
+      "size": 1887,
+      "sha256": "48582ac760428b19372e26dc17bda0e21822f4eb2ed461185d579b899d0c0539"
+    },
+    {
+      "path": "failure-run-45167025321/original-stageb-evidence.zip",
+      "size": 31287629,
+      "sha256": "7602d45b602b595de6feea5dcd95c9468ef08fb9769c74b2efe443fbbb22e5ef"
+    },
+    {
+      "path": "failure-run-45167025321/review/SETTINGS_SERIALIZATION_DIAGNOSIS.json",
+      "size": 26339,
+      "sha256": "a8644442803802f8d19f09d568e2a1bf9988b6bde57f44100dbf7a8d2b976ceb"
+    },
+    {
+      "path": "failure-run-45167025321/review/app-target-configuration.json.rejected-project.pbxproj",
+      "size": 628036,
+      "sha256": "5951407fc4406817189eff8cb40f2da94dc82628e0274e2d11c29ffc21a7c800"
+    },
+    {
+      "path": "failure-run-45167025321/review/app-target-plan.json",
+      "size": 4262,
+      "sha256": "edbcfcff5faf69df62beeba48c2472ec8cf73a86a2d9c01fb2fd8da91c70eeba"
+    },
+    {
+      "path": "failure-run-45167025321/review/generated-Maktabah-project.pbxproj",
+      "size": 620777,
+      "sha256": "fcac6c6d17d98edf2b34712efaae5a52e5c8e3c84a3fc1fd038cfe4a9335245c"
+    },
+    {
+      "path": "failure-run-45167025321/review/hq-stage2-result.json",
+      "size": 90511,
+      "sha256": "bf492d6082bfe181f21c209bb588c0e613fdc07a640897e384cf4e3d0db6947a"
+    },
+    {
+      "path": "failure-run-45167025321/review/original-editor-app-target.log",
+      "size": 512,
+      "sha256": "bdbd246374ae8604fdaa185a8a7889bf5af7677ba41e366ea2d1a30233c477e5"
+    },
+    {
+      "path": "failure-run-45167025321/review/original-editor-native-evidence-result.json",
+      "size": 64677,
+      "sha256": "61c50feb1581664836f1488ef5ab3370b23e05c765ba9ec169df4fd27fb1889f"
+    },
+    {
+      "path": "failure-run-45167025321/review/pod-ruby-context.json",
+      "size": 99644,
+      "sha256": "a5c9a9649dc78bf7de478461774cea486e948e7f3e725f6c14375d926b13565f"
+    },
+    {
+      "path": "final-source-admission/FINAL_INPUT_PROOF.json",
+      "size": 82613,
+      "sha256": "6dda59b815c944e8f2d4bd890a2e05acf395e9f8db13885dac7c6f914bba5d2b"
+    },
+    {
+      "path": "final-source-admission/PRIOR_OUTPUT_PRESERVATION.json",
+      "size": 878,
+      "sha256": "ce54a825e4106a13a873de2a70812e83e0007743e63abfd8cf6d2b15b1e6809d"
+    },
+    {
+      "path": "final-source-admission/RESULT.json",
+      "size": 1092,
+      "sha256": "64503c5d6a15dce52041e08fbbcda1b009ac9e457358d60350dd45ce64e7c19e"
+    },
+    {
+      "path": "final-source-admission/actual-output/declarations.json",
+      "size": 432,
+      "sha256": "8fa41c3ed986fef179a63e50e34a8106b95f5a46adf112dd030564569aec5c4c"
+    },
+    {
+      "path": "final-source-admission/actual-output/python-runtime-preflight.json",
+      "size": 2108,
+      "sha256": "4d19c3535e0cde8eb19f0e81ae3a7af5bc4f8baf0752f1b77e53a6ec0a7d3560"
+    },
+    {
+      "path": "final-source-admission/actual-output/selection.json",
+      "size": 177918,
+      "sha256": "f05d571be2395b258bd181d4d0330a65a108bc80e04e120c2f89b280aa947f61"
+    },
+    {
+      "path": "final-source-admission/actual-output/source-before.json",
+      "size": 64154,
+      "sha256": "2a3e9b80c5844e6c5d398de2c27e7523ea9e1b3e9773a3e8be8d23e0ad6d6713"
+    },
+    {
+      "path": "final-source-admission/prepare.command.json",
+      "size": 673,
+      "sha256": "098fbcfc06232f28f56d4c06b234369e2d4c19d264f6070041d31e3a6d81593f"
+    },
+    {
+      "path": "final-source-admission/prepare.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "final-source-admission/prepare.stdout",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "final-source-admission/previous-owned-prepare-output/declarations.json",
+      "size": 432,
+      "sha256": "8fa41c3ed986fef179a63e50e34a8106b95f5a46adf112dd030564569aec5c4c"
+    },
+    {
+      "path": "final-source-admission/previous-owned-prepare-output/python-runtime-preflight.json",
+      "size": 2108,
+      "sha256": "4d19c3535e0cde8eb19f0e81ae3a7af5bc4f8baf0752f1b77e53a6ec0a7d3560"
+    },
+    {
+      "path": "final-source-admission/previous-owned-prepare-output/selection.json",
+      "size": 177918,
+      "sha256": "f05d571be2395b258bd181d4d0330a65a108bc80e04e120c2f89b280aa947f61"
+    },
+    {
+      "path": "final-source-admission/previous-owned-prepare-output/source-before.json",
+      "size": 64154,
+      "sha256": "98b3fd1a9d339bd669fe40c8cdb84ca6fce1e484cb59d2e4d1842210bda151c4"
+    },
+    {
+      "path": "gem-provenance/CI_PACKAGE_SOURCE_BINDING.json",
+      "size": 90065,
+      "sha256": "cc4d3aaba003e78df3ccacdc721eb96895e968612edaf2d96d87df5093730309"
+    },
+    {
+      "path": "gem-provenance/CI_SOURCE_CORRESPONDENCE.json",
+      "size": 93092,
+      "sha256": "7a68c7697e61417a3e94c15a59c8a8c180afde2b791bfde23e41de0b9d654e2b"
+    },
+    {
+      "path": "gem-provenance/INSTALLED_PACKAGE_BINDING.json",
+      "size": 98557,
+      "sha256": "696f323c88c283d01c735aa8cc5f6c5aac823be4ab38e534f4489c6278b9953e"
+    },
+    {
+      "path": "gem-provenance/ORIGINAL_PORTABLE_RUBY_ADMISSION.json",
+      "size": 4004,
+      "sha256": "16e91525bc1de9a09ce272ede6f4ca1ee3bbfa3bce5fcb221e19a2187b18cf5e"
+    },
+    {
+      "path": "gem-provenance/PACKAGES_INTAKE.json",
+      "size": 17728,
+      "sha256": "0052c461b5e41e2af4db6ca5df3740870ff14066bf0e3d0b59532c999b407118"
+    },
+    {
+      "path": "gem-provenance/PACKAGE_MEMBERS.json",
+      "size": 51579,
+      "sha256": "6e024c27321c308d84b0e1b587f4b28ff65eaa625c84ad3132d10f565a447371"
+    },
+    {
+      "path": "gem-provenance/RUNTIME_INSTALL.json",
+      "size": 6692,
+      "sha256": "5d4d727de85f6a21eda6772882af3005d2c21f7bc092074c3a605555b92dca6d"
+    },
+    {
+      "path": "gem-provenance/RUNTIME_INSTALL_ATTEMPT2.json",
+      "size": 1518,
+      "sha256": "6c770b7a4c8b36035b852dfce485c7c555cb4c43c700c40ecd25f1a35effb2c1"
+    },
+    {
+      "path": "gem-provenance/actual-linux-nkf/a79c381dae6e-nkf.so",
+      "size": 606840,
+      "sha256": "6f32d9d7e19d6a3ef26759621f564183438601636f241a331c4362d461293108"
+    },
+    {
+      "path": "gem-provenance/actual-linux-nkf/fc42dd5afde2-nkf.so",
+      "size": 606840,
+      "sha256": "6f32d9d7e19d6a3ef26759621f564183438601636f241a331c4362d461293108"
+    },
+    {
+      "path": "gem-provenance/metadata/CFPropertyList-3.0.8.json",
+      "size": 1529,
+      "sha256": "9910a3ef724c53d3dbeaf0ae0d28dfb27a5a1926cb7869ff0656ce4ce3e72f98"
+    },
+    {
+      "path": "gem-provenance/metadata/CFPropertyList-3.0.8.receipt.json",
+      "size": 2208,
+      "sha256": "7373a434a0a647626e9450027d2e24b46624f40e3faa0e3a81a2022a8f7621fe"
+    },
+    {
+      "path": "gem-provenance/metadata/METADATA_INTAKE.json",
+      "size": 20889,
+      "sha256": "b475bfc275bf08948414c2871bec8587747d07d9b3d84ac7b7dbf062cfc55d90"
+    },
+    {
+      "path": "gem-provenance/metadata/atomos-0.1.3.json",
+      "size": 1284,
+      "sha256": "a4f52644a0d21a135e0e840719e2a4cacbed765d4f9f89f5864c18717390ebfc"
+    },
+    {
+      "path": "gem-provenance/metadata/atomos-0.1.3.receipt.json",
+      "size": 2168,
+      "sha256": "43fa5993153872c5056baf0fcf5400d48aef72e91e3d1f6daa8ecaef32cfb6ab"
+    },
+    {
+      "path": "gem-provenance/metadata/base64-0.2.0.json",
+      "size": 1363,
+      "sha256": "642672593a60e5699e078c341e11d1e1a64eaaa229092465b22ba4775f568c42"
+    },
+    {
+      "path": "gem-provenance/metadata/base64-0.2.0.receipt.json",
+      "size": 1860,
+      "sha256": "5cc0e8ff1dd71c7ac9807fe24cfe55a5f70f8c1825bef27d198d2e2c52f69da5"
+    },
+    {
+      "path": "gem-provenance/metadata/claide-1.1.0.json",
+      "size": 1118,
+      "sha256": "12005fac19404820f1e5b8fb729bb84eea5258cb720d4ab90e2539a99c260ad3"
+    },
+    {
+      "path": "gem-provenance/metadata/claide-1.1.0.receipt.json",
+      "size": 1933,
+      "sha256": "f47084330a84d9caa8f3d69a1f561e81ccac8e2fd33402ca162a338c6478d131"
+    },
+    {
+      "path": "gem-provenance/metadata/colored2-3.1.2.json",
+      "size": 2988,
+      "sha256": "9f5b9315f37839d90b377fe673ca9a50442aa23b8b5267209acd1318807506f3"
+    },
+    {
+      "path": "gem-provenance/metadata/colored2-3.1.2.receipt.json",
+      "size": 2118,
+      "sha256": "e4f850fd3a06e475e7ae0c2caf9a29c91636868274dd46cbcd6fed32a2b73680"
+    },
+    {
+      "path": "gem-provenance/metadata/nanaimo-0.4.0.json",
+      "size": 1287,
+      "sha256": "57f283753614b928413220987c804fb23355b15e543246241d620a61a20a75a1"
+    },
+    {
+      "path": "gem-provenance/metadata/nanaimo-0.4.0.receipt.json",
+      "size": 2097,
+      "sha256": "17c3a95bd1e922e970e756cccb0adbdf82eb50db9c7e87506feb31945c8ab1fa"
+    },
+    {
+      "path": "gem-provenance/metadata/nkf-0.2.0-ruby.json",
+      "size": 1254,
+      "sha256": "dde665e61750b6a1cce1b3ced8bb2a51aa5b54ddb75d54a671aa187a8c06d92e"
+    },
+    {
+      "path": "gem-provenance/metadata/nkf-0.2.0-ruby.receipt.json",
+      "size": 1417,
+      "sha256": "d03e4e6cad799124fe308a8bfd2544948b9b4b81d9121875b0d02ab8b858a88c"
+    },
+    {
+      "path": "gem-provenance/metadata/nkf-0.2.0.json",
+      "size": 1274,
+      "sha256": "3ecfa6b35b1855f6207c261a67bdd08f1c4df683a53ac55f6282531c49a26bb4"
+    },
+    {
+      "path": "gem-provenance/metadata/nkf-0.2.0.receipt.json",
+      "size": 1852,
+      "sha256": "33e06a736506be0ea6ab58b5257c947a41b9a3da8077431f5883655283d72aff"
+    },
+    {
+      "path": "gem-provenance/metadata/nkf-versions.json",
+      "size": 5591,
+      "sha256": "85697d15410fa492fa1ccdf2cb5946d368319c47f0209e33945b030c92425a2a"
+    },
+    {
+      "path": "gem-provenance/metadata/nkf-versions.receipt.json",
+      "size": 1359,
+      "sha256": "506d3aeff014c25052bc650706b7060f58bd2d47350390ebe868f4a2e981f69c"
+    },
+    {
+      "path": "gem-provenance/metadata/rexml-3.4.4.json",
+      "size": 1183,
+      "sha256": "976cfd645e3dabcc209a5922bfc2e31f27747ae52d4ba2436627b914cb5cd4dc"
+    },
+    {
+      "path": "gem-provenance/metadata/rexml-3.4.4.receipt.json",
+      "size": 1855,
+      "sha256": "4e90297b97d5d4b1d940d99150fe21dbfdb058d46a2f492059c7288317a58917"
+    },
+    {
+      "path": "gem-provenance/metadata/xcodeproj-1.28.1.json",
+      "size": 1891,
+      "sha256": "e94cdd52ae28230f73522c2d9810772032c0597770f82c60c4946850916dc275"
+    },
+    {
+      "path": "gem-provenance/metadata/xcodeproj-1.28.1.receipt.json",
+      "size": 2529,
+      "sha256": "3a593f212500bb231979b7d1b8dcfd23f223910e5234f6a16dd2b421f88b28a8"
+    },
+    {
+      "path": "gem-provenance/packages/CFPropertyList-3.0.8.gem",
+      "size": 18432,
+      "sha256": "2c99d0d980536d3d7ab252f7bd59ac8be50fbdd1ff487c98c949bb66bb114261"
+    },
+    {
+      "path": "gem-provenance/packages/CFPropertyList-3.0.8.gem.receipt.json",
+      "size": 1828,
+      "sha256": "ae364497bda2ddac4802d0e7bc5f8f92b1aa83d20b7a2301a89793b564e739ac"
+    },
+    {
+      "path": "gem-provenance/packages/atomos-0.1.3.gem",
+      "size": 10240,
+      "sha256": "7d43b22f2454a36bace5532d30785b06de3711399cb1c6bf932573eda536789f"
+    },
+    {
+      "path": "gem-provenance/packages/atomos-0.1.3.gem.receipt.json",
+      "size": 1782,
+      "sha256": "d75a62a54b50ebc9896e3a5ebb30110b50306902a53527749d54020cbef50ae4"
+    },
+    {
+      "path": "gem-provenance/packages/base64-0.2.0.gem",
+      "size": 8704,
+      "sha256": "0f25e9b21a02a0cc0cea8ef92b2041035d39350946e8789c562b2d1a3da01507"
+    },
+    {
+      "path": "gem-provenance/packages/base64-0.2.0.gem.receipt.json",
+      "size": 1779,
+      "sha256": "01fb2ddc582ce811b6506de2d35f7725b6abe22449898c1e176609bd99294b49"
+    },
+    {
+      "path": "gem-provenance/packages/claide-1.1.0.gem",
+      "size": 28160,
+      "sha256": "6d3c5c089dde904d96aa30e73306d0d4bd444b1accb9b3125ce14a3c0183f82e"
+    },
+    {
+      "path": "gem-provenance/packages/claide-1.1.0.gem.receipt.json",
+      "size": 1789,
+      "sha256": "c8381b7467d649365705867a5e124615f50d722cc57c9799753e4ca596b69042"
+    },
+    {
+      "path": "gem-provenance/packages/colored2-3.1.2.gem",
+      "size": 10240,
+      "sha256": "b13c2bd7eeae2cf7356a62501d398e72fde78780bd26aec6a979578293c28b4a"
+    },
+    {
+      "path": "gem-provenance/packages/colored2-3.1.2.gem.receipt.json",
+      "size": 1803,
+      "sha256": "fc7b941deb84fdf84edf0a6f61673a41af5cefafca1da35ee4cf091579b6945e"
+    },
+    {
+      "path": "gem-provenance/packages/nanaimo-0.4.0.gem",
+      "size": 20480,
+      "sha256": "faf069551bab17f15169c1f74a1c73c220657e71b6e900919897a10d991d0723"
+    },
+    {
+      "path": "gem-provenance/packages/nanaimo-0.4.0.gem.receipt.json",
+      "size": 1787,
+      "sha256": "93e503702487dd66014619eb2911ff091071472fab10b369a4f39439ae7c63c0"
+    },
+    {
+      "path": "gem-provenance/packages/nkf-0.2.0.gem",
+      "size": 194048,
+      "sha256": "fbc151bda025451f627fafdfcb3f4f13d0b22ae11f58c6d3a2939c76c5f5f126"
+    },
+    {
+      "path": "gem-provenance/packages/nkf-0.2.0.gem.receipt.json",
+      "size": 1766,
+      "sha256": "b014a0dda1657d44d639fca2f9178a4a11e457141ac1138aa0b3a61ca83387da"
+    },
+    {
+      "path": "gem-provenance/packages/rexml-3.4.4.gem",
+      "size": 105984,
+      "sha256": "19e0a2c3425dfbf2d4fc1189747bdb2f849b6c5e74180401b15734bc97b5d142"
+    },
+    {
+      "path": "gem-provenance/packages/rexml-3.4.4.gem.receipt.json",
+      "size": 1776,
+      "sha256": "f43b09e2ac713794ec87b60248dc3bd40c8627ef8a7d93e682f0f802e4a46088"
+    },
+    {
+      "path": "gem-provenance/packages/xcodeproj-1.28.1.gem",
+      "size": 83968,
+      "sha256": "6f12670f00739d9817ca27ac89d6ef01cc86050e22a0bc08a3131487e5b5cddc"
+    },
+    {
+      "path": "gem-provenance/packages/xcodeproj-1.28.1.gem.receipt.json",
+      "size": 1820,
+      "sha256": "6825e6d4550390e36a221876673bc2077820934a168092c2273ede3e53d38134"
+    },
+    {
+      "path": "gem-provenance/runtime-install/exact-gem-install-attempt2.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "gem-provenance/runtime-install/exact-gem-install-attempt2.stdout",
+      "size": 543,
+      "sha256": "9549f130552dec08a98bf001d8fad56fc7a0d50e00aeda40977fa124b63e2513"
+    },
+    {
+      "path": "gem-provenance/runtime-install/exact-gem-install.command.json",
+      "size": 1306,
+      "sha256": "6b92435597babdf4daaeb685bca2efe4dabdd8f1d3b972c1011d474a716ddb82"
+    },
+    {
+      "path": "gem-provenance/runtime-install/exact-gem-install.stderr",
+      "size": 1353,
+      "sha256": "10df289a425b78ad06e08e66431501265912b3ad016b977213ecf3782e653c69"
+    },
+    {
+      "path": "gem-provenance/runtime-install/exact-gem-install.stdout",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "gem-provenance/runtime-install/install_exact.rb",
+      "size": 582,
+      "sha256": "de64b17eeea3030b5d3acbb59253d8386977632b5433fe3e46f51a835cb7efc5"
+    },
+    {
+      "path": "gem-provenance/runtime-install/ruby-dev-download.command.json",
+      "size": 995,
+      "sha256": "25b5e22e743dee68b5b6b4c8401521d81accfec6b75c273a80093085ccfb4d26"
+    },
+    {
+      "path": "gem-provenance/runtime-install/ruby-dev-download.stderr",
+      "size": 317,
+      "sha256": "b570eafc3575f03e666d39cc6cfc4bd536a218fad155e1e0e3a8194835ba5308"
+    },
+    {
+      "path": "gem-provenance/runtime-install/ruby-dev-download.stdout",
+      "size": 177,
+      "sha256": "3013194ee0ef8e62b26a54a564dee0471f587f86d8ba0f07c12f4be7ca8359ec"
+    },
+    {
+      "path": "gem-provenance/runtime-install/ruby-dev-extract.command.json",
+      "size": 1146,
+      "sha256": "145784cf26ab0d833bef2406cdce1a3dc30569823c46aff731879b5e9e9b7514"
+    },
+    {
+      "path": "gem-provenance/runtime-install/ruby-dev-extract.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "gem-provenance/runtime-install/ruby-dev-extract.stdout",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "gem-provenance/runtime-install/ruby-dev-metadata.command.json",
+      "size": 858,
+      "sha256": "6b74b3d198a53db2498106f7166f9845341705af7c1549402585b028eb31e259"
+    },
+    {
+      "path": "gem-provenance/runtime-install/ruby-dev-metadata.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "gem-provenance/runtime-install/ruby-dev-metadata.stdout",
+      "size": 1414,
+      "sha256": "74b5a3c78f7690eb08236d0015e0537d97c3ff00fab30eb4b346c0675c179162"
+    },
+    {
+      "path": "gem-provenance/runtime-install/ruby3.2-dev_3.2.3-1ubuntu0.24.04.9_arm64.deb",
+      "size": 404000,
+      "sha256": "6c65da386117a693ad38fb04602d3320f579314c83a73b3bb17b02361ef299fe"
+    },
+    {
+      "path": "source/HELPER_SERIALIZATION.diff",
+      "size": 1415,
+      "sha256": "854642e2871ab2690ac6860b7d40078d158e147b3debf70c15d0fe9a5e2529cc"
+    },
+    {
+      "path": "source/SOURCE_DELTA.json",
+      "size": 656,
+      "sha256": "5d09458eac48760276f43c21281af76cc6620772092d7dcac60407df68e76573"
+    },
+    {
+      "path": "source/hq-original-editor-app-target.after.rb",
+      "size": 9849,
+      "sha256": "ada86a8a7e4bf3f38abf7366614a341183cedaf80d1febc41f45717249ca291e"
+    },
+    {
+      "path": "source/hq-original-editor-app-target.before.rb",
+      "size": 9232,
+      "sha256": "92a591a8b02fb1e789cdc95febcbd760451584749f4708fa723297f5c34b898a"
+    },
+    {
+      "path": "source/original_pbx_source.py",
+      "size": 4635,
+      "sha256": "113436ddb2837c9d0c65a650dbde8fe18461c0421a94f6830f60f55961332055"
+    }
+  ]
+}

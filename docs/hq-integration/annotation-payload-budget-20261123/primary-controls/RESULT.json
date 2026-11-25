@@ -1,0 +1,299 @@
+{
+  "status": "PASS",
+  "scope": "Oracle Linux actual SQLite typed-envelope controls",
+  "base": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+  "native_body_qualified": false,
+  "apple_ui_qualified": false,
+  "swift": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu",
+  "binaries": {
+    "LegacySeed": {
+      "sha256": "52ab29e7809171e1bd644b5410924cdf094afc6aec643eb76a2fe23e232aa619",
+      "bytes": 5494272
+    },
+    "BudgetAccept": {
+      "sha256": "79ea8e080133b9b525b823de795d6017fbbe43f744204d9a811b1fab088d6d90",
+      "bytes": 5668712
+    }
+  },
+  "seeder": {
+    "fixtureCount": 16,
+    "fixtures": [
+      {
+        "name": "legacy-read",
+        "rowsSHA256": "4e7825067eb5dbc9ba1ab1c0c7cb6720750df391d8b0e4e0ff2eb1492253e714",
+        "version": 1
+      },
+      {
+        "name": "upgrade",
+        "rowsSHA256": "caeb57bd072ea15b69576e0d3c9944d4ca829ffbdc98c6a95d8d812ac4f1f558",
+        "version": 1
+      },
+      {
+        "name": "raw-preservation",
+        "rowsSHA256": "c4398c8a156bb42a00bdf25575739aa14a2cc8507e9ed67bea62bbbfd17cc5ca",
+        "version": 1
+      },
+      {
+        "name": "outer-rollback",
+        "rowsSHA256": "c9e891d30d73eb43e00f31036f7f232f13f71a17ca918d7ab242ea23c36cc88f",
+        "version": 1
+      },
+      {
+        "name": "cas-rollback",
+        "rowsSHA256": "c19697536d6f9921404e90fe0c216d004652b385cf3b39d7440daaeb094cc18f",
+        "version": 1
+      },
+      {
+        "name": "denied-write",
+        "rowsSHA256": "6c45ef81a43b944dc311b5f172a667d8f3b37f5c23024ffcc8337249ce2329c9",
+        "version": 1
+      },
+      {
+        "name": "cancelled-migration",
+        "rowsSHA256": "ca19014d60cc533cb778e787e4b9b100dc8a9957b111fad0a7f1a41504860bd2",
+        "version": 1
+      },
+      {
+        "name": "future",
+        "rowsSHA256": "8c560f11a6e372de0cae4abd4b4f48e5cce26616924bbd3f55eed51116b92d11",
+        "version": 1
+      },
+      {
+        "name": "partial",
+        "rowsSHA256": "55e349c61f1b783f3aa1d942e4565adb6b484b2b5b8bd149212a2863edc1f6bf",
+        "version": 1
+      },
+      {
+        "name": "altered",
+        "rowsSHA256": "24454d360efa0f78d68afd90c0ee221b1cfa66dd2c1aa61d1fb1677a7619e78e",
+        "version": 1
+      },
+      {
+        "name": "user-index",
+        "rowsSHA256": "a46fe3e1a0ee71386e88072297f6cd0fcffd9383c90f750528d4bbd4fe11ad56",
+        "version": 1
+      },
+      {
+        "name": "trigger",
+        "rowsSHA256": "fb035a935e4ccb87248b98f5ab9502e78247b19cf3be48ab2cdb2aaa1514a6f6",
+        "version": 1
+      },
+      {
+        "name": "external-reference",
+        "rowsSHA256": "a6f04f4ebca1584fe86e59004311425ca6739693342942ac43dc5ece0a21f446",
+        "version": 1
+      },
+      {
+        "name": "scratch-collision",
+        "rowsSHA256": "6a8edc03d2884a719d3fc6a5327464827b30cd95658090b05e80d39bac4a6e7d",
+        "version": 1
+      },
+      {
+        "name": "temp-shadow",
+        "rowsSHA256": "8504eb121622297cbc60a90f6375fc33b1d094bfde40ef7241eaf0779a6c1def",
+        "version": 1
+      },
+      {
+        "name": "incoming-upgrade",
+        "rowsSHA256": "aad85497c035d98b20103a98eca0a2f0a1c8ea59e13d39d106fc4c8956127ac8",
+        "version": 1
+      }
+    ],
+    "nativeRuntime": false,
+    "scope": "Whole original v1 Ledger and Envelope produced owned fixtures",
+    "status": "PASS"
+  },
+  "controls": {
+    "appleRuntime": false,
+    "cases": [
+      {
+        "name": "typed_limits_and_real_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "legacy_read_and_unknown_bytes_do_not_migrate",
+        "status": "PASS"
+      },
+      {
+        "name": "exact_framed_body_and_one_byte_over",
+        "status": "PASS"
+      },
+      {
+        "name": "whole_envelope_unknown_metadata_exact_limit_and_over",
+        "status": "PASS"
+      },
+      {
+        "name": "strict_json_grammar_not_weakened",
+        "status": "PASS"
+      },
+      {
+        "name": "fresh_v2_idempotent_and_unrelated_rows_unchanged",
+        "status": "PASS"
+      },
+      {
+        "name": "legacy_upgrade_preserves_rowid_types_bytes_native_history_and_foreign_keys",
+        "status": "PASS"
+      },
+      {
+        "name": "embedded_NUL_invalid_UTF8_and_blob_storage_preserved",
+        "status": "PASS"
+      },
+      {
+        "name": "actual_outer_transaction_failure_rolls_back_schema_and_data",
+        "status": "PASS"
+      },
+      {
+        "name": "actual_payload_CAS_failure_rolls_back_migration",
+        "status": "PASS"
+      },
+      {
+        "name": "actual_SQLite_insert_denial_rolls_back_migration",
+        "status": "PASS"
+      },
+      {
+        "name": "refuse_future_without_repair",
+        "status": "PASS"
+      },
+      {
+        "name": "refuse_partial_without_repair",
+        "status": "PASS"
+      },
+      {
+        "name": "refuse_altered_without_repair",
+        "status": "PASS"
+      },
+      {
+        "name": "refuse_user-index_without_repair",
+        "status": "PASS"
+      },
+      {
+        "name": "refuse_trigger_without_repair",
+        "status": "PASS"
+      },
+      {
+        "name": "refuse_external-reference_without_repair",
+        "status": "PASS"
+      },
+      {
+        "name": "refuse_scratch-collision_without_repair",
+        "status": "PASS"
+      },
+      {
+        "name": "refuse_temp-shadow_without_repair",
+        "status": "PASS"
+      },
+      {
+        "name": "fresh-external-view_rejected_before_create",
+        "status": "PASS"
+      },
+      {
+        "name": "fresh-scratch-name_rejected_before_create",
+        "status": "PASS"
+      },
+      {
+        "name": "exact_2MiB_real_commit_replay_and_unknown_inbox_preservation",
+        "status": "PASS"
+      },
+      {
+        "name": "cancellation_during_real_schema_drop_rolls_back",
+        "status": "PASS"
+      }
+    ],
+    "failed": 0,
+    "nativeBodyAuthority": false,
+    "passed": 23,
+    "scope": "Whole original SQLite/Envelope/Ledger with owned v1 fixtures and actual OpenSSL",
+    "status": "PASS",
+    "userDatabaseTouched": false
+  },
+  "sources_unchanged_during_execution": true,
+  "commands": [
+    {
+      "name": "swift-version",
+      "argv": [
+        "/usr/local/bin/swift",
+        "--version"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.115,
+      "process_group_drained": true,
+      "stdout_bytes": 76,
+      "stdout_sha256": "59360730c588801a672c1118d5d1debc93581f6b74e6a82d5d8cbda1b4a729ce",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile",
+      "argv": [
+        "/usr/local/bin/swift",
+        "build",
+        "--package-path",
+        "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1",
+        "--scratch-path",
+        "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/build",
+        "--jobs",
+        "2"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 21.737,
+      "process_group_drained": true,
+      "stdout_bytes": 527,
+      "stdout_sha256": "51e6f89b93e022f15eb670bb2819d60f5d89f7ac657df1412e7808c769475d69",
+      "stderr_bytes": 2468,
+      "stderr_sha256": "20a12b951c62d117a1aa8cdc40dca39c447ca23b44817c54b9ed0ee2dc284703"
+    },
+    {
+      "name": "bin-path",
+      "argv": [
+        "/usr/local/bin/swift",
+        "build",
+        "--package-path",
+        "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1",
+        "--scratch-path",
+        "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/build",
+        "--show-bin-path"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.867,
+      "process_group_drained": true,
+      "stdout_bytes": 138,
+      "stdout_sha256": "4bd3161a69944314d5fb139316b6a7597612023623d4215834055795f4ac27d9",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "original-v1-seed",
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/build/out/Products/Debug-linux-aarch64/LegacySeed",
+        "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/owned-fixtures"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.866,
+      "process_group_drained": true,
+      "stdout_bytes": 1997,
+      "stdout_sha256": "0567a403beb7feb1921d1ba1b3e9b995876f9b76d117969217465c59989282c0",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "candidate-controls",
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/build/out/Products/Debug-linux-aarch64/BudgetAccept",
+        "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/owned-fixtures"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 1.718,
+      "process_group_drained": true,
+      "stdout_bytes": 1832,
+      "stdout_sha256": "c7edf96ce897ae1fd9f33d440a2b993eec0a7f8a57eb2122ba1f4a2f91a286df",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "all_owned_process_groups_drained": true
+}

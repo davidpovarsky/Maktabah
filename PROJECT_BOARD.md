@@ -8,6 +8,8 @@ Do not turn this into a duplicate issue tracker or a dump of temporary thoughts.
 
 Quick captures that still need classification.
 
+- Native production bootstrap evidence must bind the remote asset separately from the installed archive: v40 remote asset is a589-byte manifest while the archive is2,129,902,636 bytes. CI now verifies the bounded manifest digest and all official part identities, then the original three phase reports and actual nonzero resume. Use the original report.finalPath for the managed App Group database; a private-container legacy path is not authoritative. Source controls alone do not satisfy composed-build native installation acceptance (2026-11-23).
+
 - PERF-02 actual full-v32 Reader source stress passed 121 outputs / 113,608 independently decoded row appearances with identical content before/after the narrow fetch-lock fix 92e7cd3e. Queued cancellation measured 4,484 ms before and 16 ms after in one instrumented Windows observation per source; focused actual-SQLite RED 23/26 becomes GREEN 26/26, including recursion/acquisition/cleanup. Original lock, statements, decoder ownership and source DB are preserved. Current BookPageCache costs page counts (200/5000), not the historical 50-MB claim; application RSS, Apple/Native and physical/UI gates remain open. See `docs/hq-integration/perf02-full-v32-20261120`.
 - Before a future upstream sync, re-establish provenance: on 2026-11-16 the actual bismillah-100/Maktabah remote HEAD/main was d46af139b3a265399c16d87f5923acd8e3444024, force-updated from retained46e893c6 and with no merge base against the native493 lineage. Phase1 fetched objects for read-only ownership verification and performed no upstream merge. Do not treat the former upstream/main ref as current authority or resolve this history change by reset/ours/theirs.
 
@@ -18,6 +20,8 @@ Quick captures that still need classification.
 Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
+
+- The existing original-editor StageB journey is a Debug/simulator qualification using an ordinary page in an owned localOnly account. It does not enable the normal production annotation entry, dedicated Annotation visibility or cross-app exchange. A real user account's original editor writes before Host Save, so the ordinary Otzaria UI requires an owned localOnly draft lifecycle with canonical SQLite body/CAS, explicit source retirement and recovery; keep cross-app delivery separate. Implementation is in progress under docs/hq-integration/production-annotation-lifecycle-20261124 (2026-11-24).
 
 - Guided-tour research: keep explicit tutorial execution on the existing Core/Registry and use native scene-bound coaching; TipKit is for contextual feature discovery. Beacon a177c6fa uses a global coordinator, the first connected scene and automatic missing-target skips, so it is not safe to adopt as-is for this app's exact-scene/receipt contract. No tour SDK or product code was added. See `docs/hq-integration/guided-tours-20261120/GUIDED_TOURS_DECISION.md` for the implementation decision and remaining native/RTL/accessibility gates (2026-11-19).
 
@@ -154,6 +158,8 @@ Use Markdown checkboxes where useful:
 
 ## Done
 
+- [x] Add the Otzaria MiniApps consumer bridge and durable original-annotation receipt (2026-11-23). Reader selection and the original note editor share through the lean HanlinMiniAppsBridge/Picker products; execution remains in the separate app. External edits use the original captured SQLite handle and row writer because existing note onSave callers have mixed synchronous/asynchronous persistence semantics. The edit and receipt commit atomically before callback acknowledgement. Focused portable checks: 10 document + 7 real SQLite receipt checks passed, including process restart replay; Apple/native acceptance remains a separate integration gate. Evidence: `Tests/HQ/miniapps/README.md`.
+
 Completed items that are still useful to retain because they document an important decision, discovery, or implementation.
 
 - [x] Archive the previous experimental study workspace before faithful rebuild migration (2026-11-05, `[נועם | DEV] [MAIN_SESSION]`). The old build used `Maktabah/States/study_workspace_v1.json` and `study_workspace_v1.bak.json`, while the rebuild uses a separate sidecar path. Both old files are copied as opaque bytes, never decoded, imported or overwritten; repeat attach preserves the first archive. Four additional real persistence checks passed locally (41 total). Apple runtime validation remains separate.
@@ -202,3 +208,5 @@ Example:
 ## Archive
 
 Older completed/superseded items that still have historical value.
+
+- Stage B original SDK composition: reuse byte-identical SwiftPM Clang declarations through the host context; Firebase/Promises/Google/nanopb need one shared runtime product closure because the retained AnytypeOriginalEditor binary also defines their ObjC classes. Failure and focused repair evidence: docs/hq-integration/stageb-host-context-20261123. Native save/relaunch acceptance remains open. The shared-provider Host route is prepared in docs/hq-integration/stageb-shared-runtime-20261123, with complete source/header/library ownership checks and generated-project inverse; final core/Hanlin/ABI and native producer/Stage B gates remain open.

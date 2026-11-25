@@ -1,0 +1,28 @@
+{
+  "after_podfile_sha256": "6a5eefdd54434e4c77fb2fe39c7f3e6362b6bc1f58ce25a921bdae00b01577bb",
+  "after_project_sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb",
+  "app_group": "group.com.davidpovarsky.chavrusatext",
+  "before_head": "05f5697418493594589e1614e72da94ab12cf165",
+  "before_podfile_sha256": "bc10dd717dcbdf5958e94354ea2a19479306b0eb2e5d9fd46c6da95c3c849f46",
+  "before_project_sha256": "87ec425710947f6bd7de3c484bcc2074063e88c5fdc3dce41901547992f42c32",
+  "bundle_host": "com.davidpovarsky.chavrusatext",
+  "helper_sha256": "a517f77dcc365e6de5913ab562bb306f7f2f454f4b39b76fcd97ce6014d8e1e8",
+  "layout_repair": "Independent review caught required CocoaPods baseConfigurationReference metadata; fixed and exercised against actual preserved Mac project. Prior AST pass was syntax only.",
+  "native_runtime_executed": false,
+  "object_ids": {
+    "configs": "EBD4D979230621127E6D45EC",
+    "debug": "F47AEF17D4EACBE870FB9727",
+    "dependency": "CF544876DB8F90978BF73042",
+    "frameworks": "091DEDAE2623080B2ECBDAC7",
+    "group": "DB44B80150B4C113F2D62723",
+    "product": "DA0739AC20CFFFFFB5B5B372",
+    "proxy": "9C01A559722E3DAD707EB015",
+    "release": "576AEAC83488884DEEAEE06A",
+    "resources": "81351E17F8BFC73A4578F286",
+    "sources": "8E031407F5B8C0AA54243A7C",
+    "target": "9A7A8DF8CEC43F196DDCD80A"
+  },
+  "ordinary_ui_executed": false,
+  "sdk_injection": "Test-only same-admission import projection; actual projection and native execution pending",
+  "status": "SOURCE_AND_APPLE_PROJECT_PARSE_VERIFIED_RUNTIME_PENDING"
+}

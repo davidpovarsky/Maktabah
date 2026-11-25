@@ -1,0 +1,29 @@
+{
+  "scope": "READ_ONLY_NATIVE_LOCALIZATION_REFERENCE_NOT_UI_EXECUTION",
+  "runtime": "iOS 27.0",
+  "uiKitAccessibility": {
+    "path": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.1.434.0.dmYYVr/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/UIKit.axbundle/he.lproj/Accessibility.strings",
+    "strings": {
+      "table.view.reorder.control.label": "שינוי הסדר של %@",
+      "table.view.reorder.control": "שינוי הסדר"
+    }
+  },
+  "uiKitCore": {
+    "path": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.1.434.0.dmYYVr/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/UIKitCore.framework/he.lproj/Localizable.strings",
+    "strings": {
+      "Done": "סיום",
+      "Edit": "עריכה",
+      "Delete": "מחיקה"
+    }
+  },
+  "sharedPickerSource": "4b772b5a7f0eb826c9b9204122bba516af777592",
+  "sharedPickerResource": "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsPicker/Resources/he.lproj/Localizable.strings",
+  "sharedPickerLabels": {
+    "More": "עוד",
+    "Done": "סיום",
+    "Edit": "עריכה",
+    "Add to Favorites": "הוספה למועדפים"
+  },
+  "originalInspectorNotesLabel": "הערות",
+  "actualNativeUICasesExecuted": 0
+}

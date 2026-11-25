@@ -1,0 +1,166 @@
+{
+  "base": "ce0f62baba7360514e7fa8cad21f0caaf2d0ab8f",
+  "case_names": [
+    "unprepared_discovery_does_not_install_schema_or_register_identity",
+    "current_plan_preserves_legacy_and_uuid_original_identity",
+    "utf8_8192_boundary_preserves_multibyte_and_long_note_bytes",
+    "capture_text_comparison_rejects_normalization_nul_and_truncation",
+    "native_seed_1mib_boundary_retains_oversize_bytes",
+    "same_preview_different_full_text_is_refused",
+    "long_preview_requires_exact_scalar_boundary",
+    "saved_text_changed_after_plan_requires_new_explicit_preparation",
+    "candidate_rechecks_original_metadata_and_revision_before_native_work",
+    "existing_opaque_rich_body_is_preserved_without_native_decode",
+    "future_envelope_is_retained_without_downgrade",
+    "highlights_and_pending_deletions_are_not_converted",
+    "retired_run_cannot_read_or_recover_current_authority",
+    "original_profile_switch_retires_captured_scan",
+    "bounded_scan_rejects_foreign_session_and_invalid_cursor",
+    "resume_uses_real_canonical_saved_version_without_duplicate_conversion",
+    "sqlite_nul_text_is_refused_without_truncated_selection"
+  ],
+  "cloudkit_transport_tests": 0,
+  "compiled_source_files": [
+    {
+      "path": "Source/Features/Annotations/Models/Annotation.swift",
+      "sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d"
+    },
+    {
+      "path": "Source/Features/Annotations/Models/AnnotationNode.swift",
+      "sha256": "1c73ff3edbc122af24050ecc088d7142c85d886547336167375bfd4d26e48392"
+    },
+    {
+      "path": "Source/Features/Annotations/Models/AnnotationChangeTypes.swift",
+      "sha256": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b"
+    },
+    {
+      "path": "Source/Features/Annotations/Models/AnnotationEvent.swift",
+      "sha256": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21"
+    },
+    {
+      "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "sha256": "0e5f39c024d79eda212650cdc22b44209aa7d323966dc38106b77e8604739f6f"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/AnnotationCloudImportIdentity.swift",
+      "sha256": "176c9caa5780dafff2622f2e2fbf40410f66bbaab3a10bbbcfffcac80ee9c787"
+    },
+    {
+      "path": "Source/Features/Annotations/Database/AnnotationStore.swift",
+      "sha256": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37"
+    },
+    {
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+    },
+    {
+      "path": "Source/Core/CloudKit/SyncPendingStore.swift",
+      "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "sha256": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "sha256": "dd3e5482126b04cae72ad4100d65f125c48f8cd0e98a2c00755570f6c4d6d833"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeIdentity.swift",
+      "sha256": "e847f6836a01685f4a8f13f58811975da37ea029c4bb0f2c116a5f96bf4a1eb9"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+      "sha256": "59ccab3a7cb5004592e7c70889d57ce74a8679209ba7565069441ffb0d70c6dc"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "sha256": "55cdffbc143511a620613c87cd9915d3e52e3175bb423d53779f2912db354fee"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+      "sha256": "a2ee22f90dab7106b35e3a57c751de86ebfbe5185cbebbadda9a2b526b90ecc9"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift",
+      "sha256": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift",
+      "sha256": "2b0c7f737f39118dd07622d4199bac25285fd51b017af886d45d2aee013da99c"
+    },
+    {
+      "path": "Source/Core/CloudKit/CloudKitCoreManager.swift",
+      "sha256": "1d0778f9b096983378ebc8d9ce44cb59300792b8beccf50adf46a5ee1a87ece0"
+    },
+    {
+      "path": "Source/Core/CloudKit/CloudKitUploadDebouncer.swift",
+      "sha256": "20f36acf1114f2d13c3d7edbaa1979b5bdc89aa9caeabec00b818ee4cf59f9a2"
+    },
+    {
+      "path": "Source/Core/CloudKit/CloudKitSyncable.swift",
+      "sha256": "439c932ab1686853198bb953ace1195f8acb57048b979c12d540e96d4443f69d"
+    },
+    {
+      "path": "Source/Core/CloudKit/AnnotationSyncHandler.swift",
+      "sha256": "42f673842385504947fe5f4c798282a67920c1bd051cd67558723aa5defaea7a"
+    },
+    {
+      "path": "Tests/HQ/local-annotation-cloud/LocalAnnotationCloudBoundary.swift",
+      "sha256": "080306f6c765208bd4e2012267eb9866181e4bc25285d7beea6578d405a771b7"
+    },
+    {
+      "path": "Tests/HQ/sqlite/UnusedZstdBoundary.swift",
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+    },
+    {
+      "path": "Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift",
+      "sha256": "0d5eee1b035e3b05938f72e6acb08415c2a621870dd51795a90eb83eacb16b46"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Backfill/AnnotationBackfillPlanner.swift",
+      "sha256": "e062dab9c5f18ea76f6417fe65b8d48c2df9efc49b1d4f38d2f89b81f081914f"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Backfill/AnnotationNativeBackfillCatalog.swift",
+      "sha256": "8c0f9789e9f7b66309497898d2578d71844d057f6552a8da3e4a60a32aef70d9"
+    },
+    {
+      "path": "Tests/HQ/native-annotation-backfill/AnnotationNativeBackfillAcceptance.swift",
+      "sha256": "967ae0e0f909899e6af3d8e56f9c4166ad414844e434d4219b7c25b9d6dab552"
+    }
+  ],
+  "historical_compile_failure": {
+    "cases_executed": 0,
+    "cause": "Test file omitted explicit original OtzariaActionCore import for its genuine AnnotationEnvelopeJSONCodec.",
+    "job_id": "job_1142a48cc9b1",
+    "production_code_changed": false,
+    "source": "562b90f003df0bdc5fd158157feea55807989780"
+  },
+  "host_batch_bridge": "6f6e3c2a3ebfcc5b8c36247e113b65306d644b7d",
+  "native_5000": 0,
+  "native_engine_tests": 0,
+  "product_context": [
+    {
+      "path": "Source/ChavrusaText/Annotations/Backfill/AnnotationNativeBackfillModel.swift",
+      "sha256": "d3c7d41bbd1f33277a58c5a3ff8bc67a85688c20a6b56dac3ef40891f2706b22"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Backfill/AnnotationNativeBackfillSection.swift",
+      "sha256": "d064a7393841a4fd1d3ee0540ac34902c786cfb7fdb55fa54fab824c9278b922"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Backfill/AnnotationBackfillView.swift",
+      "sha256": "ed1c099cf1f83d7f13ecf98b2ce0880c1aa75fb7d0366d9eccc55329407783d4"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Backfill/AnnotationBackfill.xcstrings",
+      "sha256": "f271278ed1db96af1ec79d7e5c1d364d055e2565338db921c08184bc7ebd1a03"
+    }
+  ],
+  "required_sdk": "6168d8b4ee875b58f534eddec190d072cfb3a5ac",
+  "runner_sha256": "954c8e3bdf914dcba64fd35f09a22a1251f73e99f3414541298d031b2973ccd2",
+  "schema": "otzaria.native-backfill-batch-consumer-source.v1",
+  "status": "SOURCE_ONLY_ACTUAL_MAC_GATE_PENDING",
+  "ui_tests": 0
+}

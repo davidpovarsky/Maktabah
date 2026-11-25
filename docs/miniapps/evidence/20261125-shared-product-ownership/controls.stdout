@@ -1,0 +1,34 @@
+{
+  "status": "PASS_REAL_PROJECT_OWNERSHIP_AND_EIGHT_REJECTIONS",
+  "project_json_sha256": "4892d31b48d092ad12c11cb384b00bcff161ea493b295495b3d4ab45d8915029",
+  "source_plan_sha256": "0abb83429588912eb20ec952205d5c242c44200740a7db3bcd791cf641b1d847",
+  "shared_products": 12,
+  "preserved_other_targets": {
+    "CEF000000000000000000002": {
+      "product": "ZIPFoundation",
+      "owners": {
+        "4B7C90A02F83494200454BE1": {
+          "name": "Maktabah-Direct",
+          "framework_phase": "4B7C91072F83494200454BE1",
+          "link": "CEF000000000000000000004"
+        },
+        "4B3202272EDAFE85003B95D1": {
+          "name": "Maktabah",
+          "framework_phase": "4B3202252EDAFE85003B95D1",
+          "link": "CEF000000000000000000003"
+        }
+      }
+    }
+  },
+  "rejected_mutations": {
+    "unknown_product_referrer": "Shared ZIP product has an unknown referrer",
+    "different_owner_target": "Shared ZIP target membership differs",
+    "duplicate_owner_dependency": "Shared ZIP owner is not the original application",
+    "owner_link_in_another_phase": "Original ZIP link is referenced outside its owner phase",
+    "other_product_shared_by_targets": "Unreviewed shared product owners",
+    "second_owner_link": "Ambiguous original ZIP owner link input",
+    "app_link_in_another_phase": "Shared link input is owned by another phase",
+    "missing_original_owner_dependency": "Shared ZIP target membership differs"
+  },
+  "compiler_or_ui_credit": false
+}

@@ -1,0 +1,37 @@
+{
+  "observed_utc": "2026-11-25T05:14:21.487507+00:00",
+  "status": "SWIFT_PARSE_PASS",
+  "command": [
+    "xcrun",
+    "--sdk",
+    "iphonesimulator",
+    "swiftc",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios18.0-simulator",
+    "-sdk",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+    "-module-name",
+    "MaktabahMiniAppsSyntax",
+    "/Users/m1/builds/_preflight/otzaria-miniapps-adapter-20261125/0520/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+    "/Users/m1/builds/_preflight/otzaria-miniapps-adapter-20261125/0520/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+    "/Users/m1/builds/_preflight/otzaria-miniapps-adapter-20261125/0520/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift",
+    "/Users/m1/builds/_preflight/otzaria-miniapps-adapter-20261125/0520/Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift",
+    "/Users/m1/builds/_preflight/otzaria-miniapps-adapter-20261125/0520/Source/ChavrusaText/MiniApps/OtzariaMiniAppsPersistence.swift",
+    "/Users/m1/builds/_preflight/otzaria-miniapps-adapter-20261125/0520/Source/Features/Setting/SettingsView.swift"
+  ],
+  "source_sha256": {
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift": "af3a9fcb4b56e6e462f3babf9ad9d97f479a7609679a49db78758578333fb3cc",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift": "d6a71151e2a0054fe635c1981bdf70af4b7721c1732afd77ade797ede853ccd5",
+    "Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift": "8dc1de150879f1eb99220c8449f1c6d81923086429ec72f0f7e9cf79aa42fabd",
+    "Source/ChavrusaText/MiniApps/OtzariaMiniAppsPersistence.swift": "f3545bc8a2a755ccb44f17b24ed14d8a4f62a1468b8b3712970260b1c404456e",
+    "Source/Features/Setting/SettingsView.swift": "d32a6afba58f05a60c31dce28f77840b4ca71eab1336a3333b56dec44b915d33"
+  },
+  "compiler": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0\n",
+  "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+  "native_app_acceptance": "NOT_RUN",
+  "api_typecheck": "NOT_RUN",
+  "returncode": 0
+}

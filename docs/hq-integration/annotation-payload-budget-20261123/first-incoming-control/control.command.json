@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/build/out/Products/Debug-linux-aarch64/FirstInbox",
+    "/mnt/development/projects/diagnostics/otzaria-annotation-payload-budget-20261123/portable-attempt1/owned-fixtures"
+  ],
+  "returncode": 0,
+  "seconds": 0.519,
+  "process_group_drained": true,
+  "stdout_sha256": "f3a219440e083310f27ee68802fe542f1482ff3cd59046c78410f12ae931f6fb",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_bytes": 0
+}

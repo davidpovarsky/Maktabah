@@ -1,0 +1,43 @@
+{
+  "all_source_files_verified_unchanged": true,
+  "archive_bytes": 6218470,
+  "archive_path": "/Users/m1/builds/otzaria-sqlite-final-57a4193d-proof-attempt02-20261125/raw-evidence.tar.gz",
+  "archive_readback_verified": true,
+  "archive_sha256": "cef1d6de1aaece41544663ed98f8fd1f628291ec2f99ccf38a6a860a99e8b01d",
+  "files": 469,
+  "free_bytes": 6667636736,
+  "inventory_sha256": "996f8d3bdc408319bd0b31a810a157b309e4a0ded30c47bf163f7c42783ef9f8",
+  "summaries": {
+    "long23": {
+      "cold_reopen_gates": 1,
+      "failed_cases": 0,
+      "finished_at": "2026-11-25T05:25:48.707149+00:00",
+      "passed_cases": 23,
+      "result_sha256": "ac9045a56e599be441937490cb7fd8a78fc71e3074fda9140fd169220f352f47",
+      "source_path": "/Users/m1/builds/otzaria-sqlite-final-57a4193d-long23-attempt01-20261125",
+      "started_at": "2026-11-25T05:25:08.147089+00:00",
+      "status": "PASS_APPLE_FOUNDATION_ORIGINAL_SQLITE_LONG_NOTE"
+    },
+    "original43": {
+      "cold_reopen_gates": 2,
+      "failed_cases": 0,
+      "finished_at": "2026-11-25T05:21:20.284771+00:00",
+      "passed_cases": 43,
+      "result_sha256": "4686298448b2cd2f9d193d5f343eba343c71f3692d209627a68f25412f2ccb78",
+      "source_path": "/Users/m1/builds/otzaria-sqlite-final-57a4193d-original43-attempt01-20261125",
+      "started_at": "2026-11-25T05:18:40.980842+00:00",
+      "status": "PASS_APPLE_FOUNDATION_COMPONENT"
+    },
+    "revision36": {
+      "cold_reopen_gates": 3,
+      "failed_cases": 0,
+      "finished_at": "2026-11-25T05:17:05.190563+00:00",
+      "passed_cases": 36,
+      "result_sha256": "be5a8662225f971ebf8b61fac56025e8234a9f68df06dcfcca6001b222fdec13",
+      "source_path": "/Users/m1/builds/otzaria-sqlite-final-57a4193d-revision36-attempt01-20261125",
+      "started_at": "2026-11-25T05:16:41.412957+00:00",
+      "status": "PASS_APPLE_FOUNDATION_ORIGINAL_SQLITE_REVISION"
+    }
+  },
+  "uncompressed_bytes": 34928685
+}

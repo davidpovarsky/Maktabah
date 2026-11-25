@@ -1,0 +1,10 @@
+{
+  "command": [
+    "lipo",
+    "-archs",
+    "/Users/runner/work/Maktabah/Maktabah/build/original-editor-sdk-input/distribution/Frameworks/AmplitudeCore.framework/AmplitudeCore"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "stdout": "x86_64 arm64\n"
+}

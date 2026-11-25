@@ -1,0 +1,265 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "ANNOTATION_PAYLOAD_POLICY.json",
+      "bytes": 2255,
+      "sha256": "818bd440374cd49072f018065d300209bd2dafc506ec16d8c2c686736bde7077"
+    },
+    {
+      "path": "FINAL_PRODUCT_AND_SCHEMA_CONTROL.diff",
+      "bytes": 34610,
+      "sha256": "a7f8d050dde564334ca72b7d897a437dea3ff5495e52d329d6db4104fa3ed877"
+    },
+    {
+      "path": "INDEPENDENT_SOURCE_REVIEW.json",
+      "bytes": 2533,
+      "sha256": "8ca17a171a843819efee4fc94d87b9af724f58ad8a490d7876d246897536eebc"
+    },
+    {
+      "path": "LEDGER_SOURCE.diff",
+      "bytes": 22773,
+      "sha256": "2cf9fd7c091bb3321a90ce3871b24441e9e28958088a6ad1018f8d88dc73a604"
+    },
+    {
+      "path": "LEDGER_SOURCE_PREPARATION.json",
+      "bytes": 596,
+      "sha256": "85051bf8c8802030e9adb67b443cf725ed7129ea01cbe8ca896fed36851c2317"
+    },
+    {
+      "path": "LEDGER_SOURCE_V2.diff",
+      "bytes": 23072,
+      "sha256": "560227cea407f8a911d758149718922b823f057abf96dfc07c1077b2edc2ae7c"
+    },
+    {
+      "path": "LEDGER_SOURCE_V2_PREPARATION.json",
+      "bytes": 447,
+      "sha256": "9d25e6c1ee76833a00a850fd65bb736cadfc96544af2b9d591658808d2e1c71a"
+    },
+    {
+      "path": "PUBLICATION_PREPARATION_FAILURE.json",
+      "bytes": 348,
+      "sha256": "74194cf5487a2b9c63e3d45327ebb5b797e222ceeacfce727003ea0e85bddb12"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4363,
+      "sha256": "1683784fd71a42432cd0a3e5ad5f2214c285a60ecc71ac155d712f1462cb8da7"
+    },
+    {
+      "path": "SOURCE.diff",
+      "bytes": 8743,
+      "sha256": "3650427655f78a658afd9101d3e644ead71e22835a3a17c55fab11d75f262388"
+    },
+    {
+      "path": "SOURCE_CORRESPONDENCE.json",
+      "bytes": 1935,
+      "sha256": "d0f320ec53f340bc579b329087591d3bb5db243511c239c7bac990ee4e43db7f"
+    },
+    {
+      "path": "SOURCE_SEAL.json",
+      "bytes": 3505,
+      "sha256": "642365c664665cbe58a4516585ba8a4db23b33bd9a430bd2128d5448fb771431"
+    },
+    {
+      "path": "WHOLE_ACTION_CORE_SOURCE.json",
+      "bytes": 10140,
+      "sha256": "e32b449ef46b810364d8e648c8c4ea806212bc6c08155096c7e376c1f985cc63"
+    },
+    {
+      "path": "after/Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "bytes": 62736,
+      "sha256": "c961ed6c51a1344a19951ed2239626bfbf512707a52f841d27258633b847b4f6"
+    },
+    {
+      "path": "after/Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "bytes": 10075,
+      "sha256": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29"
+    },
+    {
+      "path": "after/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "bytes": 25753,
+      "sha256": "97c22429e8c76cf34e16b7fa9665be9aa4b84d0b29d0a43919e11cca18e39865"
+    },
+    {
+      "path": "after/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "bytes": 9538,
+      "sha256": "06d68fa6efb79ed534902cc3ea7ad73852f534a204059f1d1db2d9401f724b1a"
+    },
+    {
+      "path": "after/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+      "bytes": 9216,
+      "sha256": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab"
+    },
+    {
+      "path": "after/Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift",
+      "bytes": 39693,
+      "sha256": "4db8ecd15194da0cbfbe13100debd0437d6bf83fc0fbf8df5afdbe202388f355"
+    },
+    {
+      "path": "before/Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "bytes": 52783,
+      "sha256": "26dc7075df6d73f9dc9c5d2cc46547d9496d71c96469fe8adf3a4e779d9b53cc"
+    },
+    {
+      "path": "before/Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "bytes": 8619,
+      "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f"
+    },
+    {
+      "path": "before/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "bytes": 25713,
+      "sha256": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972"
+    },
+    {
+      "path": "before/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+      "bytes": 9530,
+      "sha256": "3460e43127e69d07a917d9b28b10edd1b37046586f9d12ba91de84ab8ee4c7ca"
+    },
+    {
+      "path": "before/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+      "bytes": 8441,
+      "sha256": "a94dd85985f288edbd2e10b5a14b1731be25a8d25893e832e8515af63307cbdf"
+    },
+    {
+      "path": "before/Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift",
+      "bytes": 39693,
+      "sha256": "130dfa7cb4e50b9a01f85c796a76b93a5bcc0b6a35fd2d23e0da593c82738b2a"
+    },
+    {
+      "path": "first-incoming-control/EXECUTED_DRIVER.py",
+      "bytes": 7438,
+      "sha256": "0df64f014e06a19d5d3ddabf25aeaeb6b168c0aa4fc65f9f9c7ccbfbc9a9a6f7"
+    },
+    {
+      "path": "first-incoming-control/RESULT.json",
+      "bytes": 1977,
+      "sha256": "1d98a419a5c999c75da448fa14c451a9ea24e56928990709ae844f6a87f27b9a"
+    },
+    {
+      "path": "first-incoming-control/compile.command.json",
+      "bytes": 649,
+      "sha256": "5ab2abb9e202c9f2b9a4efc71442e6963e8dac7184b78b74f9eb3045102ee498"
+    },
+    {
+      "path": "first-incoming-control/compile.stderr",
+      "bytes": 1232,
+      "sha256": "25cffb06c21476682f1c0a7bd454ce3ee6507ffec7d6ed4c717448a346d9d2b0"
+    },
+    {
+      "path": "first-incoming-control/compile.stdout",
+      "bytes": 275,
+      "sha256": "7649315cb1c0ce971078023f08ea6e0bb7a3c04ee0672f7ecf24f8bad591bcea"
+    },
+    {
+      "path": "first-incoming-control/control.command.json",
+      "bytes": 563,
+      "sha256": "c576fc93aaa7b5115de0738f4b1007aa3d442776d1b8827008da8e5415c23e2c"
+    },
+    {
+      "path": "first-incoming-control/control.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "first-incoming-control/control.stdout",
+      "bytes": 358,
+      "sha256": "f3a219440e083310f27ee68802fe542f1482ff3cd59046c78410f12ae931f6fb"
+    },
+    {
+      "path": "primary-controls/EXECUTED_RUNNER.py",
+      "bytes": 6893,
+      "sha256": "80d668a20b3a5e560f31595b78878a827d35823521e701797cd7831b6753c164"
+    },
+    {
+      "path": "primary-controls/RESULT.json",
+      "bytes": 9567,
+      "sha256": "fea683be05b3daf8bf8f68e0325e920f9da1269858612a3d7172007ffb5c383b"
+    },
+    {
+      "path": "primary-controls/SOURCE_AFTER.json",
+      "bytes": 2283,
+      "sha256": "d44b9130965c23277669052ca594abf25e0a430ca1d36691b1a3cc82b93f7ec9"
+    },
+    {
+      "path": "primary-controls/SOURCE_BEFORE.json",
+      "bytes": 2283,
+      "sha256": "d44b9130965c23277669052ca594abf25e0a430ca1d36691b1a3cc82b93f7ec9"
+    },
+    {
+      "path": "primary-controls/bin-path.command.json",
+      "bytes": 687,
+      "sha256": "d0e9112210ac0f158e3f295559a4446431c8fd1dd340776086fd625e59098178"
+    },
+    {
+      "path": "primary-controls/bin-path.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "primary-controls/bin-path.stdout.log",
+      "bytes": 138,
+      "sha256": "4bd3161a69944314d5fb139316b6a7597612023623d4215834055795f4ac27d9"
+    },
+    {
+      "path": "primary-controls/candidate-controls.command.json",
+      "bytes": 651,
+      "sha256": "b136c7fee8272ef6465a42b33c7537b13870bb38518b0332581b16892b370792"
+    },
+    {
+      "path": "primary-controls/candidate-controls.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "primary-controls/candidate-controls.stdout.log",
+      "bytes": 1832,
+      "sha256": "c7edf96ce897ae1fd9f33d440a2b993eec0a7f8a57eb2122ba1f4a2f91a286df"
+    },
+    {
+      "path": "primary-controls/compile.command.json",
+      "bytes": 690,
+      "sha256": "3b02158921d9fd4f32a20e34c4de98079e4545061e51909356fd9f09a7dd51da"
+    },
+    {
+      "path": "primary-controls/compile.stderr.log",
+      "bytes": 2468,
+      "sha256": "20a12b951c62d117a1aa8cdc40dca39c447ca23b44817c54b9ed0ee2dc284703"
+    },
+    {
+      "path": "primary-controls/compile.stdout.log",
+      "bytes": 527,
+      "sha256": "51e6f89b93e022f15eb670bb2819d60f5d89f7ac657df1412e7808c769475d69"
+    },
+    {
+      "path": "primary-controls/original-v1-seed.command.json",
+      "bytes": 647,
+      "sha256": "89ca3579be512a8e57472349a80ce21b2bc5a4072481ec4f2c09aedfbb5cc19c"
+    },
+    {
+      "path": "primary-controls/original-v1-seed.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "primary-controls/original-v1-seed.stdout.log",
+      "bytes": 1997,
+      "sha256": "0567a403beb7feb1921d1ba1b3e9b995876f9b76d117969217465c59989282c0"
+    },
+    {
+      "path": "primary-controls/swift-version.command.json",
+      "bytes": 410,
+      "sha256": "2deba7791d5bf5b06fe484f9ca4666ec3e7c4e3af08d4f03cc9b2d307e70faab"
+    },
+    {
+      "path": "primary-controls/swift-version.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "primary-controls/swift-version.stdout.log",
+      "bytes": 76,
+      "sha256": "59360730c588801a672c1118d5d1debc93581f6b74e6a82d5d8cbda1b4a729ce"
+    }
+  ]
+}

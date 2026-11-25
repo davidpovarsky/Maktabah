@@ -1,4 +1,4 @@
-#if DEBUG && os(iOS) && targetEnvironment(simulator) && canImport(AnytypeOriginalEditor)
+#if os(iOS) && canImport(AnytypeOriginalEditor)
 import Foundation
 @preconcurrency import Combine
 import AnytypeOriginalEditor
@@ -10,6 +10,7 @@ import AnytypeOriginalEditor
 final class AnnotationOriginalEditorSourceObservation {
     let annotationID: Int64
     let annotationUUID: UUID
+    private let originalRecordID: String
     let profileID: UUID
     private let lifetime = AnnotationLocalEditorLifetime()
     private let presentationLifetime: AnnotationLocalEditorLifetime
@@ -19,13 +20,16 @@ final class AnnotationOriginalEditorSourceObservation {
     private var mappingSubscription: StudyWorkspaceMappingSubscription?
     private var annotationSubscription: AnyCancellable?
     private var nativeSource: AnytypeOriginalEditorSourceLifetime?
+    private var nativeImport: AnytypeOriginalAnnotationImportSourceLifetime?
+    private var localAnnotation: AnytypeOriginalEditorLocalAnnotationSourceLifetime?
     private var localSession: AnnotationLocalEditorSession?
 
     init(annotation: Annotation, store: AnnotationStore,
          workspace: StudyWorkspaceNavigationAdapter,
          presentationLifetime: AnnotationLocalEditorLifetime) throws {
         guard let id = annotation.id, id > 0,
-              let uuid = annotation.ckRecordId.flatMap(UUID.init(uuidString:)),
+              let recordID = annotation.ckRecordId,
+              let uuid = try store.resolveAnnotationExchangeIdentity(annotation: annotation),
               let mapping = workspace.mappingOwnershipObservation(),
               mapping.coverage == .liveNativeSetters,
               mapping.source.event.phase == .available,
@@ -35,6 +39,7 @@ final class AnnotationOriginalEditorSourceObservation {
         self.presentationLifetime = presentationLifetime
         annotationID = id
         annotationUUID = uuid
+        originalRecordID = recordID
         profileID = mapping.projection.profileID
         expectedMapping = mapping
         self.workspace = workspace
@@ -42,8 +47,8 @@ final class AnnotationOriginalEditorSourceObservation {
         mappingSubscription = mapping.source.subscribeInvalidation(owner: self) { owner, _ in
             owner.retire()
         }
-        annotationSubscription = store.events.sink { [lifetime] event in
-            if Self.affects(event, id: id, uuid: uuid) { lifetime.retire() }
+        annotationSubscription = store.events.sink { [lifetime, recordID] event in
+            if Self.affects(event, id: id, uuid: uuid, recordID: recordID) { lifetime.retire() }
         }
         try requireCurrent()
     }
@@ -82,8 +87,8 @@ final class AnnotationOriginalEditorSourceObservation {
             return
         }
         localSession = session
-        let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, session] event in
-            if Self.affects(event, id: id, uuid: uuid) {
+        let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, session] event in
+            if Self.affects(event, id: id, uuid: uuid, recordID: recordID) {
                 lifetime.retire()
                 session.retire()
             }
@@ -98,14 +103,14 @@ final class AnnotationOriginalEditorSourceObservation {
     /// handoff the two idempotent invalidation sinks overlap without a gap.
     func bind(_ source: AnytypeOriginalEditorSourceLifetime) throws {
         try requireCurrent()
-        guard nativeSource == nil, let localSession,
+        guard nativeSource == nil, nativeImport == nil, localAnnotation == nil, let localSession,
               source.binding.annotationUUID == annotationUUID,
               source.binding.hostProfileID.utf8.elementsEqual(profileID.uuidString.utf8) else {
             throw AnnotationLocalEditorError.wrongOwner
         }
         nativeSource = source
-        let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, localSession, source] event in
-            if Self.affects(event, id: id, uuid: uuid) {
+        let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, localSession, source] event in
+            if Self.affects(event, id: id, uuid: uuid, recordID: recordID) {
                 lifetime.retire()
                 localSession.retire()
                 // Nonisolated SDK retirement also fences a queued native RPC
@@ -118,10 +123,103 @@ final class AnnotationOriginalEditorSourceObservation {
         try requireCurrent()
     }
 
+    /// A pre-import saved source has no existing-object binding. Link the
+    /// actual source/presentation generations before native preparation begins.
+    func bindImport(_ source: AnytypeOriginalAnnotationImportSourceLifetime,
+                    local: AnnotationLocalEditorSession) throws {
+        do {
+            try requireCurrent()
+            guard nativeSource == nil, nativeImport == nil, localAnnotation == nil,
+                  localSession === local,
+                  source.source.annotationUUID == annotationUUID,
+                  source.source.preparedSessionID == local.id else {
+                throw AnnotationLocalEditorError.wrongOwner
+            }
+            try lifetime.bindNativeImportRetirement(source)
+            try presentationLifetime.bindNativeImportRetirement(source)
+            nativeImport = source
+            try requireCurrent()
+            guard source.isCurrent else { throw AnnotationLocalEditorError.retired }
+        } catch {
+            source.retire()
+            throw error
+        }
+    }
+
+
+    /// Preserve the already-observed native read owner while binding the new,
+    /// separate conditional replacement owner. Both retire on the same source,
+    /// DB, presentation and scene invalidation; neither is adopted from history.
+    func bindReplacement(_ source: AnytypeOriginalAnnotationImportSourceLifetime,
+                         readSource: AnytypeOriginalEditorSourceLifetime,
+                         local: AnnotationLocalEditorSession) throws {
+        do {
+            try requireCurrent()
+            let binding = readSource.binding
+            guard nativeSource === readSource, readSource.isCurrent,
+                  nativeImport == nil, localAnnotation == nil, localSession === local,
+                  source.source.annotationUUID == annotationUUID,
+                  source.source.preparedSessionID == local.id,
+                  source.source.annotationUUID == binding.annotationUUID,
+                  source.source.savedRevision == binding.expectedRevision,
+                  source.source.sourceDigest == binding.sourceWitnessSHA256,
+                  source.source.accountID.utf8.elementsEqual(binding.accountID.utf8),
+                  source.source.spaceID.utf8.elementsEqual(binding.spaceID.utf8) else {
+                throw AnnotationLocalEditorError.wrongOwner
+            }
+            try lifetime.bindNativeImportRetirement(source)
+            try presentationLifetime.bindNativeImportRetirement(source)
+            nativeImport = source
+            try requireCurrent()
+            guard source.isCurrent else { throw AnnotationLocalEditorError.retired }
+        } catch {
+            source.retire()
+            throw error
+        }
+    }
+
+    /// Link the canonical saved row, native draft, original DB and presentation
+    /// before the factory can suspend or dispatch any native work.
+    func bindLocalAnnotation(
+        _ source: AnytypeOriginalEditorLocalAnnotationSourceLifetime,
+        local: AnnotationLocalEditorSession,
+        snapshot: AnnotationLocalEditorSnapshot
+    ) throws {
+        do {
+            try requireCurrent()
+            guard nativeSource == nil, nativeImport == nil, localAnnotation == nil,
+                  localSession === local,
+                  source.source.annotationUUID == annotationUUID,
+                  source.source.hostProfileID.utf8.elementsEqual(profileID.uuidString.utf8) else {
+                throw AnnotationLocalEditorError.wrongOwner
+            }
+            try local.bindLocalAnnotationRetirement(source, snapshot: snapshot)
+            try lifetime.bindLocalAnnotationRetirement(source)
+            try presentationLifetime.bindLocalAnnotationRetirement(source)
+            localAnnotation = source
+            let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, local, source] event in
+                if Self.affects(event, id: id, uuid: uuid, recordID: recordID) {
+                    lifetime.retire()
+                    local.retire()
+                    source.retire()
+                }
+            }
+            annotationSubscription?.cancel()
+            annotationSubscription = next
+            try requireCurrent()
+            guard source.isCurrent else { throw AnnotationLocalEditorError.retired }
+        } catch {
+            source.retire()
+            throw error
+        }
+    }
+
     func retire() {
         lifetime.retire()
         localSession?.retire()
         nativeSource?.retire()
+        nativeImport?.retire()
+        localAnnotation?.retire()
         mappingSubscription?.cancel()
         mappingSubscription = nil
         annotationSubscription?.cancel()
@@ -129,9 +227,10 @@ final class AnnotationOriginalEditorSourceObservation {
         localSession = nil
     }
 
-    private nonisolated static func affects(_ event: AnnotationEvent, id: Int64, uuid: UUID) -> Bool {
+    private nonisolated static func affects(_ event: AnnotationEvent, id: Int64, uuid: UUID, recordID: String) -> Bool {
         func matches(_ annotation: Annotation) -> Bool {
             annotation.id == id || annotation.ckRecordId.flatMap(UUID.init(uuidString:)) == uuid
+                || annotation.ckRecordId.map({ $0.utf8.elementsEqual(recordID.utf8) }) == true
         }
         switch event {
         case .added(let annotation), .updated(let annotation): return matches(annotation)
@@ -145,6 +244,8 @@ final class AnnotationOriginalEditorSourceObservation {
         lifetime.retire()
         localSession?.retire()
         nativeSource?.retire()
+        nativeImport?.retire()
+        localAnnotation?.retire()
         mappingSubscription?.cancel()
         annotationSubscription?.cancel()
     }
