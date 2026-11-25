@@ -79,7 +79,9 @@ struct AnnotationNativeBackfillSection: View {
             } label: {
                 Text("Convert saved notes", tableName: "AnnotationBackfill")
             }
+            .accessibilityIdentifier("annotation-native-backfill-confirm")
             Button(role: .cancel) {} label: { Text("Cancel", tableName: "AnnotationBackfill") }
+                .accessibilityIdentifier("annotation-native-backfill-cancel-confirmation")
         } message: {
             Text("The original editor will preserve each complete saved note before saving its expanded format. Saved changes follow your existing iCloud settings. You can pause and continue; notes already converted will be kept.",
                  tableName: "AnnotationBackfill")

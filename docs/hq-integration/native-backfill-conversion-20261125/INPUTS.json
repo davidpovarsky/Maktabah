@@ -12,7 +12,7 @@
     "Source/ChavrusaText/Annotations/Backfill/AnnotationBackfillView.swift": "ed1c099cf1f83d7f13ecf98b2ce0880c1aa75fb7d0366d9eccc55329407783d4",
     "Source/ChavrusaText/Annotations/Backfill/AnnotationNativeBackfillCatalog.swift": "b9d452b14680f4604fcaf28c41b81cd27d9ad916ab5cd93e4f7768dff1a1e49e",
     "Source/ChavrusaText/Annotations/Backfill/AnnotationNativeBackfillModel.swift": "7c7aff7865efc558b147d74b4193ce61c65306d7e4eac40589968ae7ee2a93ed",
-    "Source/ChavrusaText/Annotations/Backfill/AnnotationNativeBackfillSection.swift": "5cafc829b2a595a57a7658a91f842c4bf97edc4bbd32a356f15a280beb8eb60f",
+    "Source/ChavrusaText/Annotations/Backfill/AnnotationNativeBackfillSection.swift": "faf7aea59ec9d41911c05cf209f134c9d54f4ff8db480b64e5941d7a87c8418d",
     "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeIdentity.swift": "e847f6836a01685f4a8f13f58811975da37ea029c4bb0f2c116a5f96bf4a1eb9",
     "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift": "dd3e5482126b04cae72ad4100d65f125c48f8cd0e98a2c00755570f6c4d6d833",
     "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29",
