@@ -1,6 +1,22 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Share Mini App Files": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Share Mini App Files"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שיתוף קבצים ממיני־אפליקציות"
+          }
+        }
+      }
+    },
     "Mini Apps": {
       "localizations": {
         "en": {

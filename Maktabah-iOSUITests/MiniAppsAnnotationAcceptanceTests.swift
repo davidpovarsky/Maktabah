@@ -743,7 +743,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     @MainActor
     func testOriginalNativeFilesRoundTripAndReplayAfterColdReopen() async throws {
         XCTAssertTrue(isPad)
-        executionTimeAllowance = 900
+        executionTimeAllowance = 1200
         let shared = URL(fileURLWithPath: try XCTUnwrap(
             ProcessInfo.processInfo.environment["MINIAPPS_NATIVE_SHARED_GROUP"]
         )).appendingPathComponent("MiniAppsBridge/v1", isDirectory: true)
@@ -922,6 +922,136 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertEqual(try persistedReceipt(requestID: second.request.id, databasePath: document.profile).count, 1)
         XCTAssertEqual(try fileSHA256(corpus), originalCorpus)
         retainScreenshot(app, named: "file-workshop-original-editor-after-duplicate")
+        try await verifyPlainNoteFileReturnAndSharing(producer, shared: shared)
+        XCTAssertEqual(try fileSHA256(corpus), originalCorpus)
+    }
+
+    @MainActor
+    private func verifyPlainNoteFileReturnAndSharing(_ producer: XCUIApplication, shared: URL) async throws {
+        // The legacy note stays plain. Its actual private file and original
+        // activity UI must remain usable after transport ACK and process exit.
+        app.terminate()
+        XCTAssertTrue(app.wait(for: .notRunning, timeout: 20))
+        launchReader(scenario: "readerDetail", backend: "otzaria", language: "en", recordViewport: true)
+        assertReaderHasText()
+        try await openAnnotations()
+        let previous = Set(annotationRows().allElementsBoundByIndex.map(\.identifier))
+        tap(app.navigationBars["Annotations"].buttons["Close"])
+        tap(try originalStudyToolsActionInWindow())
+        let tools = app.segmentedControls["torah-inspector-tools"]
+        XCTAssertTrue(tools.waitForExistence(timeout: 15))
+        tap(tools.buttons["Notes"])
+        tap(app.buttons["torah-inspector-add-note"])
+        let note = app.textViews["annotation-note-text"]
+        XCTAssertTrue(note.waitForExistence(timeout: 15))
+        let fileText = "LegacyFile" + UUID().uuidString.replacingOccurrences(of: "-", with: "")
+        tap(note); note.typeText(fileText)
+        tap(app.buttons["annotation-save-toolbar"])
+        try await requireNativeCondition(timeout: 30) { !note.exists }
+        tap(app.buttons["torah-inspector-close"])
+        try await openAnnotations()
+        try await requireNativeCondition(timeout: 20) {
+            self.annotationRows().allElementsBoundByIndex.filter { !previous.contains($0.identifier) }.count == 1
+        }
+        let row = try XCTUnwrap(annotationRows().allElementsBoundByIndex.first { !previous.contains($0.identifier) })
+        let rowID = try XCTUnwrap(Int64(row.identifier.dropFirst("original-book-annotation-".count)))
+        let rowIdentifier = row.identifier
+        editAnnotation(row)
+        XCTAssertTrue(note.waitForExistence(timeout: 15))
+        XCTAssertEqual(note.value as? String, fileText)
+        XCTAssertFalse(app.buttons["otzaria-note-share-files"].exists)
+        let request = try await launchActualFileWorkshop(producer, shared: shared, nativeEditor: false)
+        XCTAssertTrue(request.request.inputs.filter { $0.kind == "file" }.isEmpty)
+        let document = try JSONDecoder().decode(Document.self, from:
+            Data(try XCTUnwrap(request.request.source.metadata["otzaria.annotation.v1"]).utf8))
+        XCTAssertEqual(document.annotationID, rowID)
+        XCTAssertFalse(document.isReaderSelection)
+        let originalState = try savedMiniAppsLaunchState(rowID: rowID, databasePath: document.profile)
+        let editor = try await actualFileEditor(producer)
+        XCTAssertEqual(editor.value as? String, fileText)
+        retainScreenshot(producer, named: "file-workshop-legacy-note-actual-new-file")
+        try await pressFileWorkshopAction("fileworkshop.return", producer: producer)
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 90))
+        let completed = try await acknowledgedFileRecord(request.request.id, shared: shared)
+        let result = try XCTUnwrap(completed.result)
+        XCTAssertEqual(result.status, "success")
+        XCTAssertEqual(result.metadata?["fileMode"], "new-utf8")
+        XCTAssertEqual(result.items.count, 1)
+        let file = try XCTUnwrap(result.items.first)
+        let bytes = Data(fileText.utf8)
+        XCTAssertEqual(try actualSharedFile(file, shared: shared), bytes)
+        let saved = try persistedReceipt(requestID: request.request.id, databasePath: document.profile)
+        XCTAssertEqual(saved.annotationID, rowID)
+        XCTAssertEqual(saved.annotationUUID, document.annotationUUID)
+        XCTAssertEqual(saved.count, 1)
+        XCTAssertTrue(note.waitForExistence(timeout: 30))
+        XCTAssertEqual(note.value as? String, saved.note)
+        let original = document.draftNote as NSString
+        let insertion = request.request.source.selection.map { $0.location + $0.length } ?? original.length
+        XCTAssertEqual(request.request.source.selection?.length ?? 0, 0)
+        let length = (saved.note as NSString).length - original.length
+        XCTAssertGreaterThan(length, 0)
+        let retainedURL = try XCTUnwrap(URL(string: (saved.note as NSString).substring(
+            with: NSRange(location: insertion, length: length))))
+        XCTAssertTrue(retainedURL.isFileURL)
+        XCTAssertEqual(retainedURL.lastPathComponent, try XCTUnwrap(file.attachmentID).uuidString + "-document.txt")
+        XCTAssertEqual(retainedURL.deletingLastPathComponent().lastPathComponent, request.request.id.uuidString)
+        XCTAssertEqual(retainedURL.deletingLastPathComponent().deletingLastPathComponent().lastPathComponent, "MiniApps")
+        XCTAssertEqual(saved.note, original.replacingCharacters(
+            in: NSRange(location: insertion, length: 0), with: retainedURL.absoluteString))
+        XCTAssertEqual(try Data(contentsOf: retainedURL), bytes)
+        let savedState = try savedMiniAppsLaunchState(rowID: rowID, databasePath: document.profile)
+        XCTAssertEqual(savedState.filter { $0.first == "version" }, originalState.filter { $0.first == "version" },
+            "Returning a file must not convert the original plain note to a native archive")
+        attachReceipt(saved, requestID: request.request.id, name: "file-workshop-legacy-durable-file-receipt")
+
+        app.terminate()
+        XCTAssertTrue(app.wait(for: .notRunning, timeout: 20))
+        launchReader(scenario: "readerDetail", backend: "otzaria", language: "en", recordViewport: true)
+        assertReaderHasText()
+        try await openAnnotations()
+        let reopened = annotationRows().matching(identifier: rowIdentifier).firstMatch
+        XCTAssertTrue(reopened.waitForExistence(timeout: 30))
+        editAnnotation(reopened)
+        XCTAssertTrue(note.waitForExistence(timeout: 20))
+        XCTAssertEqual(note.value as? String, saved.note)
+        XCTAssertEqual(try Data(contentsOf: retainedURL), bytes)
+        let share = app.buttons["otzaria-note-share-files"]
+        XCTAssertTrue(share.waitForExistence(timeout: 20) && share.isHittable)
+        tap(share)
+        let activity = app.descendants(matching: .any)["otzaria-note-retained-files-share"]
+        XCTAssertTrue(activity.waitForExistence(timeout: 20),
+            "The original UIActivityViewController must present the retained actual file")
+        let filename = app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "document.txt")).firstMatch
+        XCTAssertTrue(filename.waitForExistence(timeout: 20))
+        retainScreenshot(app, named: "otzaria-legacy-retained-file-original-share-after-cold-reopen")
+        let hierarchy = XCTAttachment(string: app.debugDescription)
+        hierarchy.name = "otzaria-legacy-retained-file-original-share-accessibility"
+        hierarchy.lifetime = .keepAlways; add(hierarchy)
+        XCTAssertEqual(try savedMiniAppsLaunchState(rowID: rowID, databasePath: document.profile), savedState)
+
+        // Close the original share presentation by ending this source process,
+        // then deliver the exact real callback once more through the OS.
+        app.terminate()
+        XCTAssertTrue(app.wait(for: .notRunning, timeout: 20))
+        var callback = try XCTUnwrap(URLComponents(url: XCTUnwrap(request.request.callbacks.success),
+            resolvingAgainstBaseURL: false))
+        callback.queryItems = (callback.queryItems ?? []) + [.init(name: "request", value: request.request.id.uuidString)]
+        XCUIDevice.shared.system.open(try XCTUnwrap(callback.url))
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 60))
+        XCTAssertEqual(try savedMiniAppsLaunchState(rowID: rowID, databasePath: document.profile), savedState)
+        XCTAssertEqual(try persistedReceipt(requestID: request.request.id, databasePath: document.profile).count, 1)
+        XCTAssertEqual(try Data(contentsOf: retainedURL), bytes)
+        let proof: [String: Any] = ["requestID": request.request.id.uuidString,
+            "annotationID": rowID, "annotationUUID": document.annotationUUID,
+            "retainedFileURL": retainedURL.absoluteString, "bytes": bytes.count,
+            "sha256": SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined(),
+            "plainFormatPreserved": true, "originalShareAfterColdReopen": true,
+            "duplicateCallbackDidNotRewriteNote": true]
+        let attachment = XCTAttachment(data: try JSONSerialization.data(withJSONObject: proof, options: [.sortedKeys]),
+            uniformTypeIdentifier: "public.json")
+        attachment.name = "otzaria-legacy-real-file-sharing-and-replay"
+        attachment.lifetime = .keepAlways; add(attachment)
     }
 
     @MainActor
@@ -965,10 +1095,11 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     }
 
     @MainActor
-    private func launchActualFileWorkshop(_ producer: XCUIApplication, shared: URL) async throws -> Record {
+    private func launchActualFileWorkshop(_ producer: XCUIApplication, shared: URL,
+                                          nativeEditor: Bool = true) async throws -> Record {
         let before = Set(try records(in: shared).map { $0.request.id })
-        tap(app.buttons["annotation-expanded-editor-miniapps"])
-        try await confirmOriginalMiniAppsSave()
+        tap(app.buttons[nativeEditor ? "annotation-expanded-editor-miniapps" : "otzaria-note-miniapps"])
+        if nativeEditor { try await confirmOriginalMiniAppsSave() }
         let launch = app.buttons["miniapps-launch-org.itorah.miniapps.fileworkshop"]
         if !launch.waitForExistence(timeout: 3) { tap(app.buttons["miniapps-more"]) }
         XCTAssertTrue(launch.waitForExistence(timeout: 30) && launch.isHittable); tap(launch)
@@ -979,7 +1110,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let record = try XCTUnwrap(additions.first)
         XCTAssertEqual(record.request.appID, "org.itorah.miniapps.fileworkshop")
         XCTAssertEqual(record.request.source.appID, "com.davidpovarsky.chavrusatext")
-        XCTAssertEqual(record.request.source.kind, "native-annotation")
+        XCTAssertEqual(record.request.source.kind, nativeEditor ? "native-annotation" : "annotation")
         XCTAssertNil(record.result); XCTAssertFalse(record.acknowledged)
         return record
     }

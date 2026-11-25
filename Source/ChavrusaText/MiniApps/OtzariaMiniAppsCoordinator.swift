@@ -415,6 +415,48 @@ final class OtzariaMiniAppsCoordinator {
     }
     #endif
 
+    func hasRetainedFiles(for annotation: Annotation) -> Bool {
+        (try? OtzariaMiniAppsPersistence.retainedFiles(for: annotation).isEmpty) == false
+    }
+
+    /// The plain note keeps its original text/URL representation. This native
+    /// action reopens committed files from the current private Documents root,
+    /// so transport ACK and a cold application launch do not remove access.
+    func shareRetainedFiles(for annotation: Annotation, sourceView: UIView?) {
+        do {
+            let references = try OtzariaMiniAppsPersistence.retainedFiles(for: annotation)
+            guard !references.isEmpty else { throw OtzariaMiniAppsError.noResult }
+            let documents = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
+                appropriateFor: nil, create: false).resolvingSymlinksInPath()
+            let root = documents.appendingPathComponent("MiniApps", isDirectory: true)
+            var files: [URL] = []
+            for reference in references {
+                guard let id = reference.content.attachmentID else { throw MiniAppBridgeError.invalidAttachment }
+                let name = reference.content.name.map { URL(fileURLWithPath: $0).lastPathComponent }
+                    ?? id.uuidString.lowercased()
+                let path = root.appendingPathComponent(reference.requestID.uuidString, isDirectory: true)
+                    .appendingPathComponent(id.uuidString + "-" + name)
+                let values = try path.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey])
+                guard values.isRegularFile == true, values.isSymbolicLink != true,
+                      path.resolvingSymlinksInPath().path.hasPrefix(root.path + "/") else {
+                    throw MiniAppBridgeError.invalidAttachment
+                }
+                if !files.contains(path) { files.append(path) }
+            }
+            let scene = sourceView?.window?.windowScene
+            guard let presenter = presenter(in: scene, sourceView: sourceView) else {
+                throw OtzariaMiniAppsError.unavailable
+            }
+            let activity = UIActivityViewController(activityItems: files, applicationActivities: nil)
+            activity.view.accessibilityIdentifier = "otzaria-note-retained-files-share"
+            if let popover = activity.popoverPresentationController {
+                popover.sourceView = sourceView ?? presenter.view
+                popover.sourceRect = (sourceView ?? presenter.view).bounds
+            }
+            presenter.present(activity, animated: true)
+        } catch { show(error: error, sourceView: sourceView) }
+    }
+
     private func retainAttachments(_ result: MiniAppResult, store: MiniAppBridgeStore) throws -> [UUID: URL] {
         let attachments = result.items.compactMap(\.attachmentID)
         guard !attachments.isEmpty else { return [:] }

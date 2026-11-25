@@ -647,6 +647,76 @@ def verify_file_returns(records, group):
             "native_upload_and_sqlite_receipt_atomic": False}
 
 
+def verify_plain_file_return(records, group, udid):
+    require(len(records) == 1, "One real legacy note file return and native share journey are required")
+    row = records[0]
+    record = row["shared_record"]
+    request, result = record["request"], record.get("result") or {}
+    document = json.loads(request["source"]["metadata"]["otzaria.annotation.v1"])
+    rows = row["original_receipt_rows"]
+    require(request["appID"] == FILE_WORKSHOP and request["source"]["kind"] == "annotation"
+            and record["acknowledged"] is True and result.get("status") == "success"
+            and result.get("operation") == "insert" and result.get("metadata", {}).get("fileMode") == "new-utf8"
+            and document["annotationID"] is not None and not document["isReaderSelection"]
+            and len(result.get("items", [])) == 1 and len(rows) == 1
+            and rows[0][0] == document["annotationID"]
+            and rows[0][1] == rows[0][2] == document["annotationUUID"]
+            and rows[0][5:10] == (document["bookID"], document["contentID"],
+                document["rangeLocation"], document["rangeLength"], document["context"])
+            and json.loads(rows[0][4]) == result,
+            "The original plain-note file return lacks an exact durable receipt and source anchor")
+    item = result["items"][0]
+    data, shared_proof = actual_shared_file(group, item)
+    require(not [item for item in request["inputs"] if item.get("kind") == "file"]
+            and re.fullmatch(rb"LegacyFile[0-9A-F]{32}", data)
+            and data.decode("utf-8") == document["draftNote"],
+            "The genuine legacy file must be created from actual user-entered note bytes")
+    private = Path(capture("xcrun", "simctl", "get_app_container", udid, BUNDLE, "data")).resolve()
+    retained = private / "Documents/MiniApps" / str(uuid.UUID(request["id"])).upper() / (
+        str(uuid.UUID(item["attachmentID"])).upper() + "-" + Path(item["name"]).name)
+    require(not retained.is_symlink() and retained.resolve().is_relative_to(private / "Documents/MiniApps"),
+            "The retained attachment escaped the original private Documents root")
+    descriptor = os.open(retained, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC)
+    with os.fdopen(descriptor, "rb") as stream:
+        before = os.fstat(stream.fileno())
+        require(stat.S_ISREG(before.st_mode), "The retained original attachment is not a regular file")
+        private_data = stream.read()
+        after = os.fstat(stream.fileno())
+    require((before.st_dev, before.st_ino, before.st_size, before.st_mtime_ns)
+            == (after.st_dev, after.st_ino, after.st_size, after.st_mtime_ns)
+            and len(private_data) == before.st_size and private_data == data,
+            "The actual private file is missing, changed, or differs after ACK, cold reopen and replay")
+    encoded = document["draftNote"].encode("utf-16-le")
+    selection = document.get("selection")
+    position = ((selection["location"] + selection["length"]) * 2 if selection else len(encoded))
+    require(selection is None or selection["length"] == 0, "The legacy creation must keep original note text")
+    require(0 <= position <= len(encoded), "Legacy source selection is invalid")
+    expected = (encoded[:position] + retained.as_uri().encode("utf-16-le") + encoded[position:]).decode("utf-16-le")
+    require(rows[0][3] == expected, "The original plain-note text/URL format was changed or inserted twice")
+    connection = sqlite3.connect(Path(document["profile"]).as_uri() + "?mode=ro", uri=True)
+    try:
+        schema = connection.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name='otzaria_annotation_exchange_versions'"
+        ).fetchall()
+        versions = connection.execute(
+            "SELECT payload_base64 FROM otzaria_annotation_exchange_versions WHERE "
+            "namespace='otzaria.local.annotation' AND lower(annotation_uuid)=lower(?)",
+            (document["annotationUUID"],)).fetchall() if schema else []
+        for version in versions:
+            envelope = json.loads(base64.b64decode(version[0], validate=True))
+            require(envelope.get("richBody") is None,
+                    "The original legacy note was unexpectedly converted to a rich document")
+    finally:
+        connection.close()
+    row["actual_retained_private_file"] = {"path": str(retained), "bytes": len(private_data),
+        "sha256": hashlib.sha256(private_data).hexdigest()}
+    row["actual_shared_file"] = shared_proof
+    return {"status": "ACTUAL_LEGACY_FILE_BYTES_AND_ORIGINAL_NOTE_RECEIPT_PASS",
+            "successful_file_callbacks": 1, "source_linked_annotation": list(rows[0][:3]),
+            "retained_file": row["actual_retained_private_file"], "plain_format_preserved": True,
+            "cold_reopen_native_activity_ui_and_duplicate_callback": "ASSERTED_BY_ACTUAL_XCTEST"}
+
+
 class ActualMiniAppsProducer:
     def __init__(self):
         self.udid = None
@@ -723,7 +793,7 @@ class ActualMiniAppsProducer:
         if label == "phone":
             self.capture_phone_picker(udid)
             return
-        report = {"status": "INCOMPLETE", "records": [], "rich_records": [], "file_records": [],
+        report = {"status": "INCOMPLETE", "records": [], "rich_records": [], "file_records": [], "plain_file_records": [],
                   "fixture_producer": False, "synthetic_results_written": False}
         try:
             for path in sorted((self.group / "MiniAppsBridge/v1/requests").glob("*.json")):
@@ -746,7 +816,10 @@ class ActualMiniAppsProducer:
                 result = record.get("result") or {}
                 text = "\n".join(item["text"] for item in result.get("items", []) if item.get("text") is not None)
                 if request["appID"] == FILE_WORKSHOP:
-                    report["file_records"].append({"shared_record": record, "original_receipt_rows": rows})
+                    kind = request["source"].get("kind")
+                    require(kind in ("native-annotation", "annotation"), "Unexpected original file entry point")
+                    collection = "file_records" if kind == "native-annotation" else "plain_file_records"
+                    report[collection].append({"shared_record": record, "original_receipt_rows": rows})
                     continue
                 if request["source"].get("kind") == "native-annotation":
                     verified = (record["acknowledged"] is True and result.get("status") == "success"
@@ -840,7 +913,12 @@ class ActualMiniAppsProducer:
             require(len(file_identities) == 1 and file_identities.isdisjoint(identities | rich_identities)
                     and tuple(reader["original_receipt_rows"][0][:3]) not in file_identities,
                     "Native file callbacks crossed another original document")
-            report["actual_callbacks"] = 7
+            report["original_legacy_files"] = verify_plain_file_return(report["plain_file_records"], self.group, udid)
+            legacy_identity = tuple(report["plain_file_records"][0]["original_receipt_rows"][0][:3])
+            require(legacy_identity not in identities | rich_identities | file_identities
+                    and legacy_identity != tuple(reader["original_receipt_rows"][0][:3]),
+                    "The plain-note file callback crossed another original document")
+            report["actual_callbacks"] = 8
             report["actual_file_cancellations"] = 1
             report["plain_editor_and_reader_callbacks"] = 3
             report["original_rich_editor_callbacks"] = 2
