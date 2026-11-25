@@ -66,14 +66,58 @@ private enum SheetSwipeChoice: String, CaseIterable, Identifiable {
     }
 }
 
-private enum SheetBackgroundStyle: String, CaseIterable, Identifiable {
-    case material, solid
+private enum PanelMode: String, CaseIterable, Identifiable {
+    case sheet, inspector, split
     var id: String { rawValue }
 
     var title: String {
         switch self {
-        case .material: return "חומר מערכתי"
+        case .sheet: return "Sheet מערכתי"
+        case .inspector: return "Inspector מערכתי"
+        case .split: return "שתי עמודות"
+        }
+    }
+
+    var symbol: String {
+        switch self {
+        case .sheet: return "rectangle.bottomthird.inset.filled"
+        case .inspector: return "sidebar.right"
+        case .split: return "rectangle.split.2x1"
+        }
+    }
+
+    var hint: String {
+        switch self {
+        case .sheet:
+            return "גרור את ידית המערכת ושנה את המיקום, הגובה והרקע. כאשר מותר, אפשר להשתמש גם בספר שמאחור."
+        case .inspector:
+            return "Inspector של SwiftUI: חלונית צד מקורית שהמערכת מתאימה לרוחב החלון. שנה את רוחבה באמצעות קו ההפרדה כשהמערכת מאפשרת זאת."
+        case .split:
+            return "NavigationSplitView המקורי של Apple: הספר והשיחה מוצגים יחד בשתי עמודות. בחר מצב אחר בלי למחוק הודעות."
+        }
+    }
+}
+
+private enum SheetBackgroundStyle: String, CaseIterable, Identifiable {
+    case system, material, ultraThin, regularGlass, clearGlass, transparent, solid
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .system: return "ברירת מחדל של המערכת"
+        case .material: return "Regular Material"
+        case .ultraThin: return "Ultra Thin Material"
+        case .regularGlass: return "Liquid Glass רגילה"
+        case .clearGlass: return "Liquid Glass שקופה"
+        case .transparent: return "שקיפות מלאה (ללא זכוכית)"
         case .solid: return "רקע אטום"
+        }
+    }
+
+    var showsReaderThrough: Bool {
+        switch self {
+        case .ultraThin, .regularGlass, .clearGlass, .transparent: return true
+        default: return false
         }
     }
 }
@@ -86,8 +130,15 @@ private struct DemoChatMessage: Identifiable {
 
 struct ContentView: View {
     @State private var showStudySheet = false
-    @State private var isDocked = false
-    @State private var dockAfterSheetDismissal = false
+    @State private var dockedMode: PanelMode?
+    @State private var showInspector = false
+    @State private var pendingModeAfterSheetDismissal: PanelMode?
+    @State private var transitionID = UUID()
+    @State private var isTransitioning = false
+    @State private var inspectorIdealWidth: CGFloat = 420
+
+    private var isDocked: Bool { dockedMode == .split }
+    private var hasDockedPanel: Bool { dockedMode != nil }
     @State private var splitVisibility: NavigationSplitViewVisibility = .all
     @State private var compactColumn: NavigationSplitViewColumn = .detail
     @State private var readerScrollPosition = ScrollPosition()
@@ -95,7 +146,7 @@ struct ContentView: View {
     @State private var detent: PresentationDetent = .medium
     @State private var backgroundTouches: BackgroundTouchChoice = .throughMedium
     @State private var swipePriority: SheetSwipeChoice = .scrolls
-    @State private var sheetBackground: SheetBackgroundStyle = .material
+    @State private var sheetBackground: SheetBackgroundStyle = .system
 
     @State private var readerCount = 0
     @State private var chapter = 0
@@ -115,21 +166,29 @@ struct ContentView: View {
                     columnVisibility: $splitVisibility,
                     preferredCompactColumn: $compactColumn
                 ) {
-                    chatPanel(isDocked: true)
-                        .navigationSplitViewColumnWidth(min: 340, ideal: 420, max: 560)
+                    chatPanel(mode: .split)
+                        .navigationSplitViewColumnWidth(min: 320, ideal: 420, max: 600)
                 } detail: {
                     readerWorkspace
                 }
                 .navigationSplitViewStyle(.balanced)
             } else {
                 readerWorkspace
+                    .inspector(isPresented: $showInspector) {
+                        chatPanel(mode: .inspector)
+                            .inspectorColumnWidth(min: 300, ideal: inspectorIdealWidth, max: 650)
+                    }
             }
         }
         .environment(\.layoutDirection, .rightToLeft)
-        // The sheet is owned by the same stable root in both layouts. Never
-        // present a sheet and mount the docked chat at the same time.
+        .onChange(of: showInspector) { _, visible in
+            // The system can dismiss an inspector in a compact window.
+            if !visible && dockedMode == .inspector {
+                dockedMode = nil
+            }
+        }
         .sheet(isPresented: $showStudySheet, onDismiss: sheetDidDismiss) {
-            chatPanel(isDocked: false)
+            chatPanel(mode: .sheet)
                 .presentationDetents([.height(180), .medium, .large], selection: $detent)
                 .presentationDragIndicator(.visible)
                 .presentationBackgroundInteraction(backgroundTouches.systemValue)
@@ -144,7 +203,7 @@ struct ContentView: View {
             GeometryReader { geometry in
                 ScrollView {
                     VStack(alignment: .leading, spacing: 18) {
-                        if isDocked {
+                        if hasDockedPanel {
                             // In docked study mode, reserve the detail column for
                             // the book itself, not the Sheet experimentation UI.
                             readingCard
@@ -171,77 +230,114 @@ struct ContentView: View {
                 .scrollPosition($readerScrollPosition)
                 .background(Color(uiColor: .systemGroupedBackground))
             }
-            .navigationTitle(isDocked ? "אוצריא · ספר לימוד" : "אוצריא · Native Sheet Lab")
+            .navigationTitle(hasDockedPanel ? "אוצריא · ספר לימוד" : "אוצריא · Native Sheet Lab")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    if isDocked {
-                        Button(action: restoreSheet) {
-                            Label("החזר את Hanlin לחלונית", systemImage: "rectangle.bottomthird.inset.filled")
+                    Menu {
+                        ForEach(PanelMode.allCases) { mode in
+                            Button {
+                                selectMode(mode)
+                            } label: {
+                                Label(mode.title, systemImage: mode.symbol)
+                            }
                         }
-                        .buttonStyle(.glass)
-                        .accessibilityIdentifier("hanlin-reader-undock")
-                    } else {
-                        Button {
-                            showStudySheet = true
-                        } label: {
-                            Label("פתח Hanlin", systemImage: "bubble.left.and.bubble.right")
+                        if hasDockedPanel {
+                            Button("סגור שיחה", systemImage: "xmark", action: closePanel)
                         }
+                    } label: {
+                        Label("Hanlin", systemImage: hasDockedPanel ? "sidebar.right" : "bubble.left.and.bubble.right")
                     }
+                    .buttonStyle(.glass)
+                    .disabled(isTransitioning)
+                    .accessibilityIdentifier("hanlin-reader-mode-menu")
                 }
             }
         }
     }
 
-    // Both branches use the same panel component and bindings. Messages, draft,
-    // reader chapter, bookmark, typography and scroll position are not duplicated.
-    private func chatPanel(isDocked: Bool) -> some View {
+    private func chatPanel(mode: PanelMode) -> some View {
         NativeStudyChatPanel(
-            isDocked: isDocked,
-            onToggleLayout: isDocked ? restoreSheet : requestDock,
-            onClose: isDocked ? closeDockedChat : closeSheet,
+            mode: mode,
+            onChooseMode: selectMode,
+            onClose: closePanel,
             placement: $placement,
             detent: $detent,
             backgroundTouches: $backgroundTouches,
             swipePriority: $swipePriority,
             sheetBackground: $sheetBackground,
+            inspectorIdealWidth: $inspectorIdealWidth,
             messages: $messages,
             draft: $draft
         )
     }
 
-    private func requestDock() {
-        guard !isDocked, showStudySheet else { return }
-        dockAfterSheetDismissal = true
-        showStudySheet = false
-    }
+    // A single presentation owns the conversation at any moment. A modal
+    // sheet finishes its native dismissal before a docked surface mounts.
+    private func selectMode(_ target: PanelMode) {
+        guard !isTransitioning else { return }
 
-    private func sheetDidDismiss() {
-        guard dockAfterSheetDismissal else { return }
-        dockAfterSheetDismissal = false
-        splitVisibility = .all
-        compactColumn = .detail
-        isDocked = true
-    }
+        if showStudySheet {
+            guard target != .sheet else { return }
+            pendingModeAfterSheetDismissal = target
+            isTransitioning = true
+            showStudySheet = false
+            return
+        }
 
-    private func restoreSheet() {
-        guard isDocked else { return }
-        isDocked = false
-        // Wait for the native split view to unmount before presenting the sheet.
-        Task { @MainActor in
-            await Task.yield()
-            if !isDocked { showStudySheet = true }
+        if dockedMode == target { return }
+        if target == .sheet {
+            let hadDockedPanel = hasDockedPanel
+            let ticket = UUID()
+            transitionID = ticket
+
+            if !hadDockedPanel {
+                showStudySheet = true
+                return
+            }
+
+            isTransitioning = true
+            // Let the native inspector/split surface finish closing before
+            // asking SwiftUI to present a sheet from the stable root.
+            withAnimation(.default, completionCriteria: .removed) {
+                showInspector = false
+                dockedMode = nil
+            } completion: {
+                Task { @MainActor in
+                    await Task.yield()
+                    guard transitionID == ticket, dockedMode == nil else { return }
+                    showStudySheet = true
+                    isTransitioning = false
+                }
+            }
+        } else {
+            activateDockedMode(target)
         }
     }
 
-    private func closeDockedChat() {
-        isDocked = false
+    private func activateDockedMode(_ mode: PanelMode) {
+        guard mode != .sheet else { return }
         showStudySheet = false
+        splitVisibility = .all
+        compactColumn = .detail
+        dockedMode = mode
+        showInspector = mode == .inspector
     }
 
-    private func closeSheet() {
-        dockAfterSheetDismissal = false
+    private func sheetDidDismiss() {
+        guard let mode = pendingModeAfterSheetDismissal else { return }
+        pendingModeAfterSheetDismissal = nil
+        activateDockedMode(mode)
+        isTransitioning = false
+    }
+
+    private func closePanel() {
+        transitionID = UUID()
+        pendingModeAfterSheetDismissal = nil
+        isTransitioning = false
         showStudySheet = false
+        showInspector = false
+        dockedMode = nil
     }
 
     private var hero: some View {
@@ -260,13 +356,13 @@ struct ContentView: View {
                 Spacer()
                 Button {
                     detent = .medium
-                    showStudySheet = true
+                    selectMode(.sheet)
                 } label: {
                     Label("פתח חלונית", systemImage: "rectangle.bottomthird.inset.filled")
                 }
                 .buttonStyle(.borderedProminent)
             }
-            Text("בדוק את הגרירה והמיקום של ה־Sheet, והעבר את אותה שיחה לעמודת צד מערכתית בלחיצה על כפתור הזכוכית. הספר נשאר פעיל בשני המצבים.")
+            Text("בחר Sheet, Inspector או תצוגת שתי עמודות מקורית. ב־Sheet אפשר להשוות בין רקע המערכת, חומרים וזכוכית נוזלית שקופה. אותה שיחה ואותו ספר נשמרים במעבר.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
@@ -353,19 +449,24 @@ struct ContentView: View {
                 swipePriority: $swipePriority,
                 sheetBackground: $sheetBackground
             )
-            Button {
-                showStudySheet = true
-            } label: {
-                Label("בדוק את החלונית", systemImage: "rectangle.stack.badge.plus")
-                    .frame(maxWidth: .infinity)
+            VStack(spacing: 8) {
+                ForEach(PanelMode.allCases) { mode in
+                    Button {
+                        selectMode(mode)
+                    } label: {
+                        Label(mode.title, systemImage: mode.symbol)
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.glass)
+                }
             }
-            .buttonStyle(.borderedProminent)
+            .disabled(isTransitioning)
             Button("אפס לברירות מחדל") {
                 placement = .leading
                 detent = .medium
                 backgroundTouches = .throughMedium
                 swipePriority = .scrolls
-                sheetBackground = .material
+                sheetBackground = .system
             }
             .font(.footnote)
         }
@@ -410,8 +511,26 @@ private struct NativeSheetSurface: ViewModifier {
     @ViewBuilder
     func body(content: Content) -> some View {
         switch style {
+        case .system:
+            content
         case .material:
             content.presentationBackground(.regularMaterial)
+        case .ultraThin:
+            content.presentationBackground(.ultraThinMaterial)
+        case .regularGlass:
+            content.presentationBackground {
+                Color.clear
+                    .glassEffect(.regular, in: .rect(cornerRadius: 30))
+                    .ignoresSafeArea()
+            }
+        case .clearGlass:
+            content.presentationBackground {
+                Color.clear
+                    .glassEffect(.clear, in: .rect(cornerRadius: 30))
+                    .ignoresSafeArea()
+            }
+        case .transparent:
+            content.presentationBackground(Color.clear)
         case .solid:
             content.presentationBackground(Color(uiColor: .systemBackground))
         }
@@ -470,7 +589,8 @@ private struct SheetExperimentControls: View {
                         Text(item.title).tag(item)
                     }
                 }
-                .pickerStyle(.segmented)
+                .pickerStyle(.menu)
+                .accessibilityIdentifier("sheet-background-picker")
             }
         }
         .controlSize(.regular)
@@ -478,14 +598,15 @@ private struct SheetExperimentControls: View {
 }
 
 private struct NativeStudyChatPanel: View {
-    let isDocked: Bool
-    let onToggleLayout: () -> Void
+    let mode: PanelMode
+    let onChooseMode: (PanelMode) -> Void
     let onClose: () -> Void
     @Binding var placement: SheetPlacementChoice
     @Binding var detent: PresentationDetent
     @Binding var backgroundTouches: BackgroundTouchChoice
     @Binding var swipePriority: SheetSwipeChoice
     @Binding var sheetBackground: SheetBackgroundStyle
+    @Binding var inspectorIdealWidth: CGFloat
     @Binding var messages: [DemoChatMessage]
     @Binding var draft: String
     @FocusState private var inputFocused: Bool
@@ -497,32 +618,53 @@ private struct NativeStudyChatPanel: View {
                     .font(.title3)
                     .foregroundStyle(.tint)
                 VStack(alignment: .leading, spacing: 1) {
-                    Text(isDocked ? "Hanlin · Split View" : "Hanlin · Native Sheet")
+                    Text("Hanlin · " + mode.title)
+                        .lineLimit(1)
                         .font(.headline)
                     Text("שיחה מקומית להדגמת התצוגה")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
                 Spacer(minLength: 8)
-                Button(action: onToggleLayout) {
-                    Image(systemName: isDocked ? "rectangle.bottomthird.inset.filled" : "sidebar.right")
+                Menu {
+                    ForEach(PanelMode.allCases) { target in
+                        Button {
+                            inputFocused = false
+                            onChooseMode(target)
+                        } label: {
+                            Label(target.title, systemImage: target == mode ? "checkmark" : target.symbol)
+                        }
+                        .disabled(target == mode)
+                    }
+                } label: {
+                    Image(systemName: "sidebar.right")
                         .font(.system(size: 17, weight: .semibold))
-                        .frame(width: 36, height: 36)
+                        .frame(width: 34, height: 34)
                 }
                 .buttonStyle(.glass)
-                .help(isDocked ? "חזור ל־Sheet" : "הצג את Hanlin בעמודה לצד הספר")
-                .accessibilityLabel(isDocked ? "החזר את השיחה לחלונית המערכת" : "הצג את השיחה בשתי עמודות")
+                .accessibilityLabel("בחר צורת הצגת השיחה")
                 .accessibilityIdentifier("hanlin-layout-toggle")
-                if !isDocked {
+
+                if mode == .sheet {
                     Menu {
-                    Button("מזער", systemImage: "arrow.down.to.line") { detent = .height(180) }
-                    Button("בינוני", systemImage: "rectangle.center.inset.filled") { detent = .medium }
-                    Button("הרחב", systemImage: "arrow.up.left.and.arrow.down.right") { detent = .large }
-                } label: {
-                    Image(systemName: "arrow.up.left.and.arrow.down.right")
-                        .frame(width: 36, height: 36)
-                }
-                    .accessibilityLabel("שנה גובה חלונית")
+                        Button("מזער", systemImage: "arrow.down.to.line") { detent = .height(180) }
+                        Button("בינוני", systemImage: "rectangle.center.inset.filled") { detent = .medium }
+                        Button("הרחב", systemImage: "arrow.up.left.and.arrow.down.right") { detent = .large }
+                        Divider()
+                        ForEach(SheetBackgroundStyle.allCases) { style in
+                            Button {
+                                sheetBackground = style
+                            } label: {
+                                Label(style.title, systemImage: sheetBackground == style ? "checkmark" : "circle.lefthalf.filled")
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "circle.lefthalf.filled")
+                            .frame(width: 34, height: 34)
+                    }
+                    .buttonStyle(.glass)
+                    .accessibilityLabel("גובה ורקע חלונית")
+                    .accessibilityIdentifier("hanlin-sheet-appearance")
                 }
                 Button(action: onClose) {
                     Image(systemName: "xmark.circle.fill")
@@ -539,9 +681,7 @@ private struct NativeStudyChatPanel: View {
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    Text(isDocked
-                         ? "מצב שתי עמודות: הספר והשיחה מוצגים יחד ב־NavigationSplitView המקורי של Apple. כפתור סרגל הצד מחזיר ל־Sheet, בלי למחוק את ההודעות."
-                         : "גרור את ידית המערכת כדי לשנות גובה. בזמן שהחלונית בגובה קטן או בינוני, נסה ללחוץ על הספר שמאחוריה.")
+                    Text(mode.hint)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -552,14 +692,16 @@ private struct NativeStudyChatPanel: View {
                                 .font(.body)
                                 .padding(12)
                                 .background(
-                                    message.isUser ? Color.accentColor.opacity(0.14) : Color(uiColor: .secondarySystemBackground),
+                                    message.isUser ? Color.accentColor.opacity(0.15) :
+                                        (mode == .sheet && sheetBackground.showsReaderThrough ?
+                                            Color.secondary.opacity(0.10) : Color(uiColor: .secondarySystemBackground)),
                                     in: RoundedRectangle(cornerRadius: 16)
                                 )
                                 .frame(maxWidth: 480, alignment: .leading)
                             if message.isUser { Spacer(minLength: 24) }
                         }
                     }
-                    if !isDocked {
+                    if mode == .sheet {
                         DisclosureGroup {
                             SheetExperimentControls(
                             placement: $placement,
@@ -574,7 +716,24 @@ private struct NativeStudyChatPanel: View {
                             .font(.subheadline.weight(.semibold))
                     }
                     .padding(12)
-                        .background(Color(uiColor: .tertiarySystemBackground), in: RoundedRectangle(cornerRadius: 14))
+                        .background(sheetBackground.showsReaderThrough ? Color.secondary.opacity(0.10) : Color(uiColor: .tertiarySystemBackground), in: RoundedRectangle(cornerRadius: 14))
+                    }
+                    if mode == .inspector {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Label("רוחב Inspector מבוקש", systemImage: "sidebar.right")
+                                .font(.subheadline.weight(.semibold))
+                            Picker("רוחב", selection: $inspectorIdealWidth) {
+                                Text("צר").tag(CGFloat(340))
+                                Text("רגיל").tag(CGFloat(420))
+                                Text("רחב").tag(CGFloat(560))
+                            }
+                            .pickerStyle(.segmented)
+                            Text("זהו רוחב מועדף; המערכת קובעת את הרוחב בפועל לפי גודל החלון.")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(12)
+                        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 14))
                     }
                 }
                 .padding(16)
@@ -611,3 +770,4 @@ private struct NativeStudyChatPanel: View {
         inputFocused = false
     }
 }
+
