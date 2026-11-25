@@ -83,17 +83,31 @@ final class AnnotationLocalEditorSession {
 }
 
 extension AnnotationStore {
-    /// Explicit opt-in, saved UUID only. Normal note Save/Cancel/tags and their
+    /// Read-only identity lookup on the current original profile connection.
+    /// It never registers a legacy alias or changes the saved CloudKit identity.
+    @MainActor
+    func resolveAnnotationExchangeIdentity(annotation: Annotation) throws -> UUID? {
+        guard let id = annotation.id, id > 0 else { throw AnnotationLocalEditorError.missingAnnotation }
+        let connection = try repository.captureLocalEditorConnection()
+        try connection.lifetime.requireCurrent()
+        let uuid = try AnnotationExchangeIdentity.resolve(database: connection.database, annotationID: id,
+                                                          originalRecordID: annotation.ckRecordId)
+        try connection.lifetime.requireCurrent()
+        return uuid
+    }
+
+    /// Explicit opt-in, saved or explicitly migrated identity only. Normal note Save/Cancel/tags and their
     /// original cache/CloudKit methods remain unchanged. A future real editor
     /// must declare the exact body formats it can round-trip; there is no default.
     @MainActor
     func makeLocalAnnotationEditor(annotation: Annotation,
                                    supportedFormats: Set<AnnotationLocalEditorBodyFormat>) throws -> AnnotationLocalEditorSession {
-        guard let id = annotation.id, id > 0,
-              let uuid = annotation.ckRecordId.flatMap(UUID.init(uuidString:)) else {
+        guard let id = annotation.id, id > 0 else { throw AnnotationLocalEditorError.missingAnnotation }
+        let connection = try repository.captureLocalEditorConnection()
+        guard let uuid = try AnnotationExchangeIdentity.resolve(database: connection.database, annotationID: id,
+              originalRecordID: annotation.ckRecordId) else {
             throw AnnotationLocalEditorError.missingAnnotation
         }
-        let connection = try repository.captureLocalEditorConnection()
         let persistence = try AnnotationLocalEditorPersistence(connection: connection, annotationID: id,
             annotationUUID: uuid, sessionID: UUID(), owner: AnnotationLocalEditorLifetime(),
             formats: supportedFormats, digest: AnnotationExchangePlatformDigest())
