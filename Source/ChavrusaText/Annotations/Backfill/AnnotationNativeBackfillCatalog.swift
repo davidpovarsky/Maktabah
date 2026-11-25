@@ -44,6 +44,9 @@ struct AnnotationNativeBackfillBatch: Sendable {
 /// It accepts only a byte-preserving saved-plain conversion with a current plan.
 enum AnnotationNativeBackfillPolicy {
     static let maximumUnchangedPreviewBytes = 8_192
+    /// Same existing UTF8 bound enforced by the original SDK plain seed.
+    /// Longer stored notes remain byte-for-byte unchanged; no truncation.
+    static let maximumPlainSeedBytes = 1_048_576
 
     static func disposition(snapshot: AnnotationLocalEditorSnapshot,
                             plan: AnnotationExchangeVersion?,
@@ -67,7 +70,7 @@ enum AnnotationNativeBackfillPolicy {
             }
         }
         guard !text.utf8.contains(0) else { return .unsupported }
-        guard text.utf8.count <= maximumUnchangedPreviewBytes else { return .longNote }
+        guard text.utf8.count <= maximumPlainSeedBytes else { return .longNote }
         guard let plan, plan.namespace == AnnotationBackfillPlanner.namespace,
               plan.annotationUUID == snapshot.annotationUUID, plan.revision > 0,
               plan.sourceDigest == snapshot.source.digest, plan.destinationsJSON == "[]",
@@ -103,10 +106,24 @@ enum AnnotationNativeBackfillPolicy {
         }
     }
 
-    static func requireExactPreview(savedText: String, originalNativePreview: String) throws {
+    static func requireExactCapturedText(savedText: String, originalNativeFullPlainText: String,
+                                         originalNativePreview: String) throws {
         guard !savedText.isEmpty, !savedText.utf8.contains(0),
-              savedText.utf8.count <= maximumUnchangedPreviewBytes,
-              savedText.utf8.elementsEqual(originalNativePreview.utf8) else {
+              savedText.utf8.count <= maximumPlainSeedBytes,
+              savedText.utf8.elementsEqual(originalNativeFullPlainText.utf8),
+              originalNativePreview.utf8.count <= maximumUnchangedPreviewBytes,
+              savedText.utf8.starts(with: originalNativePreview.utf8) else {
+            throw AnnotationNativeBackfillError.previewWouldChangeSavedText
+        }
+        // Preserve the complete original text and require the exact bounded
+        // projection from that text, including scalar boundaries in Hebrew/emoji.
+        var expected = "", bytes = 0
+        for scalar in savedText.unicodeScalars {
+            let fragment = String(scalar), count = fragment.utf8.count
+            guard bytes + count <= maximumUnchangedPreviewBytes else { break }
+            expected.unicodeScalars.append(scalar); bytes += count
+        }
+        guard expected.utf8.elementsEqual(originalNativePreview.utf8) else {
             throw AnnotationNativeBackfillError.previewWouldChangeSavedText
         }
     }

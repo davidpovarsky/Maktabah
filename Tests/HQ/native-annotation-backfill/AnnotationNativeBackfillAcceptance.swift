@@ -186,20 +186,70 @@ private struct NativeBackfillSelectionAcceptance {
             let f = try Fixture(root: root, name: "boundaries", texts: [boundary, long, emojiBoundary])
             try f.prepare()
             let rows = try f.noWrites { try f.items() }
-            try require(rows.map(\.disposition) == [.ready, .longNote, .ready], "UTF-8 boundary was measured as characters")
+            try require(rows.map(\.disposition) == [.ready, .ready, .ready], "UTF-8 boundary was measured as characters")
             try require(f.text(1)?.utf8.elementsEqual(boundary.utf8) == true
                 && f.text(2)?.utf8.elementsEqual(long.utf8) == true
                 && f.text(3)?.utf8.elementsEqual(emojiBoundary.utf8) == true, "boundary text changed")
             try require(f.scalar("SELECT length(CAST(note AS BLOB)) FROM annotations WHERE id=2;") == 8_193,
                         "long note was truncated")
         }
-        run("preview_comparison_rejects_whitespace_normalization_and_long_text") {
+        run("capture_text_comparison_rejects_normalization_nul_and_truncation") {
             let boundary = String(repeating: "א", count: 4_096)
-            try AnnotationNativeBackfillPolicy.requireExactPreview(savedText: boundary, originalNativePreview: boundary)
-            try refuses { try AnnotationNativeBackfillPolicy.requireExactPreview(savedText: "a ", originalNativePreview: "a") }
-            try refuses { try AnnotationNativeBackfillPolicy.requireExactPreview(savedText: "\u{00e9}", originalNativePreview: "e\u{301}") }
-            try refuses { try AnnotationNativeBackfillPolicy.requireExactPreview(savedText: boundary + "x", originalNativePreview: boundary) }
-            try refuses { try AnnotationNativeBackfillPolicy.requireExactPreview(savedText: "a\0b", originalNativePreview: "a\0b") }
+            try AnnotationNativeBackfillPolicy.requireExactCapturedText(savedText: boundary,
+                originalNativeFullPlainText: boundary, originalNativePreview: boundary)
+            try AnnotationNativeBackfillPolicy.requireExactCapturedText(savedText: boundary + "x",
+                originalNativeFullPlainText: boundary + "x", originalNativePreview: boundary)
+            for (saved, captured, preview) in [
+                ("a ", "a", "a"), ("\u{00e9}", "e\u{301}", "e\u{301}"),
+                (boundary + "x", boundary, boundary), ("a\0b", "a\0b", "a\0b")
+            ] {
+                try refuses { try AnnotationNativeBackfillPolicy.requireExactCapturedText(savedText: saved,
+                    originalNativeFullPlainText: captured, originalNativePreview: preview) }
+            }
+        }
+        run("native_seed_1mib_boundary_retains_oversize_bytes") {
+            let boundary = String(repeating: "א", count: 524_288)
+            let over = boundary + "x"
+            let f = try Fixture(root: root, name: "seed-limit", texts: [boundary, over])
+            try f.prepare()
+            let rows = try f.noWrites { try f.items() }
+            try require(rows.map(\.disposition) == [.ready, .longNote],
+                        "original 1 MiB UTF8 seed boundary was not enforced")
+            try require(rows[1].candidate == nil, "oversize original note was offered for truncation")
+            try require(f.text(1)?.utf8.elementsEqual(boundary.utf8) == true
+                && f.text(2)?.utf8.elementsEqual(over.utf8) == true, "large saved bytes were changed")
+            try require(f.scalar("SELECT length(CAST(note AS BLOB)) FROM annotations WHERE id=2;") == 1_048_577,
+                        "oversize note was truncated")
+            try AnnotationNativeBackfillPolicy.requireExactCapturedText(savedText: boundary,
+                originalNativeFullPlainText: boundary,
+                originalNativePreview: String(repeating: "א", count: 4_096))
+            try refuses { try AnnotationNativeBackfillPolicy.requireExactCapturedText(savedText: over,
+                originalNativeFullPlainText: over, originalNativePreview: String(repeating: "א", count: 4_096)) }
+        }
+        run("same_preview_different_full_text_is_refused") {
+            let prefix = String(repeating: "a", count: 8_192)
+            let saved = prefix + " complete original סוף"
+            let f = try Fixture(root: root, name: "same-preview", texts: [saved])
+            try f.prepare()
+            try f.noWrites {
+                try refuses { try AnnotationNativeBackfillPolicy.requireExactCapturedText(savedText: saved,
+                    originalNativeFullPlainText: prefix + " altered", originalNativePreview: prefix) }
+                try require(f.items()[0].disposition == .ready, "failed capture changed eligibility")
+            }
+            try require(f.text(1)?.utf8.elementsEqual(saved.utf8) == true, "mismatch overwrote original full text")
+            try require(f.scalar("SELECT COUNT(*) FROM otzaria_annotation_exchange_versions WHERE namespace='otzaria.local.annotation';") == 0,
+                        "mismatched capture produced a saved rich revision")
+        }
+        run("long_preview_requires_exact_scalar_boundary") {
+            let prefix = String(repeating: "א", count: 4_095)
+            let full = prefix + "📖" + "tail"
+            try require(prefix.utf8.count == 8_190 && full.utf8.count > 8_192, "multibyte fixture differs")
+            try AnnotationNativeBackfillPolicy.requireExactCapturedText(savedText: full,
+                originalNativeFullPlainText: full, originalNativePreview: prefix)
+            for bad in [String(prefix.dropLast()), prefix + "📖", prefix + "xx"] {
+                try refuses { try AnnotationNativeBackfillPolicy.requireExactCapturedText(savedText: full,
+                    originalNativeFullPlainText: full, originalNativePreview: bad) }
+            }
         }
         run("saved_text_changed_after_plan_requires_new_explicit_preparation") {
             let f = try Fixture(root: root, name: "source-change", texts: ["first"])
@@ -311,7 +361,7 @@ private struct NativeBackfillSelectionAcceptance {
                         "NUL-containing original bytes changed")
         }
         try write(results, root.appendingPathComponent("CASES.json"))
-        guard results.count == 14, results.allSatisfy({ $0.status == "PASS" }) else {
+        guard results.count == 17, results.allSatisfy({ $0.status == "PASS" }) else {
             throw NativeBackfillFailure(description: "new native-backfill selection controls failed")
         }
     }

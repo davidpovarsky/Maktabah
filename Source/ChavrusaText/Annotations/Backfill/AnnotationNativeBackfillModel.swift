@@ -12,6 +12,7 @@ private final class AnnotationNativeBackfillRunOwner {
     let mapping: StudyWorkspaceMappingObservation
     private weak var workspace: StudyWorkspaceNavigationAdapter?
     private var subscription: StudyWorkspaceMappingSubscription?
+    private var batchSource: AnytypeOriginalEditorLocalAnnotationBatchSourceLifetime?
 
     init(workspace: StudyWorkspaceNavigationAdapter,
          connection: AnnotationLocalEditorConnection) throws {
@@ -43,6 +44,26 @@ private final class AnnotationNativeBackfillRunOwner {
         guard isCurrent else { throw AnnotationNativeBackfillError.wrongProfile }
     }
 
+    /// Both captured parent generations close the exact SDK token before
+    /// native factory admission. There is no polling-only await gap.
+    func bindNativeBatch(_ source: AnytypeOriginalEditorLocalAnnotationBatchSourceLifetime) throws {
+        do {
+            try requireCurrent()
+            guard batchSource == nil, source.isCurrent,
+                  source.source.hostProfileID.utf8.elementsEqual(mapping.projection.profileID.uuidString.utf8) else {
+                throw AnnotationNativeBackfillError.wrongProfile
+            }
+            try lifetime.bindNativeBackfillRetirement(source)
+            try connection.lifetime.bindNativeBackfillRetirement(source)
+            batchSource = source
+            try requireCurrent()
+            guard source.isCurrent else { throw AnnotationNativeBackfillError.wrongProfile }
+        } catch {
+            source.retire()
+            throw error
+        }
+    }
+
     func retire() {
         lifetime.retire()
         subscription?.cancel(); subscription = nil
@@ -66,6 +87,7 @@ final class AnnotationNativeBackfillModel {
     private(set) var lastCommit: AnnotationExchangeCommit?
     private(set) var failureCode: String?
     private(set) var retainedCaptureDirectory: URL?
+    private(set) var batchLimitReached = false
 
     @ObservationIgnored private var worker: Task<Void, Never>?
     @ObservationIgnored private var cleanup: Task<Void, Error>?
@@ -74,6 +96,9 @@ final class AnnotationNativeBackfillModel {
     @ObservationIgnored private var observation: AnnotationOriginalEditorSourceObservation?
     @ObservationIgnored private var nativeSource: AnytypeOriginalEditorLocalAnnotationSourceLifetime?
     @ObservationIgnored private var native: AnytypeOriginalEditorLocalAnnotationSession?
+    @ObservationIgnored private var nativeBatchSource: AnytypeOriginalEditorLocalAnnotationBatchSourceLifetime?
+    @ObservationIgnored private var nativeBatch: AnytypeOriginalEditorLocalAnnotationBatchSession?
+    @ObservationIgnored private var nativeAdmissions = 0
     @ObservationIgnored private var afterClose: State = .paused
     @ObservationIgnored private var requestedNativeRuntime = false
 
@@ -95,7 +120,7 @@ final class AnnotationNativeBackfillModel {
         runOwner = owner
         state = .running; total = 0; scanned = 0; converted = 0; retained = [:]
         lastCommit = nil; failureCode = nil; retainedCaptureDirectory = nil
-        requestedNativeRuntime = false
+        requestedNativeRuntime = false; batchLimitReached = false; nativeAdmissions = 0
         worker = Task { [self] in
             var terminal = State.completed
             do {
@@ -121,6 +146,9 @@ final class AnnotationNativeBackfillModel {
                             retained[item.disposition, default: 0] += 1
                             continue
                         }
+                        if nativeAdmissions >= AnytypeOriginalEditorLocalAnnotationBatchSession.maximumAnnotations {
+                            batchLimitReached = true; terminal = .paused; break scanLoop
+                        }
                         do {
                             let outcome = try await convert(candidate, owner: owner, workspace: workspace)
                             switch outcome {
@@ -137,8 +165,8 @@ final class AnnotationNativeBackfillModel {
                                 retained[.changed, default: 0] += 1
                             } else if (error as? AnnotationNativeBackfillError) == .previewWouldChangeSavedText,
                                       owner.isCurrent, !Task.isCancelled {
-                                // A completed native capture with a nonidentical preview
-                                // cannot Save this note. Its private draft is already
+                                // A completed capture whose complete text or bounded
+                                // preview differs cannot Save. Its private draft is already
                                 // retired; retain the original and continue other notes.
                                 retained[.previewMismatch, default: 0] += 1
                             } else { throw error }
@@ -154,6 +182,7 @@ final class AnnotationNativeBackfillModel {
                 terminal = owner.isCurrent && !Task.isCancelled ? .failed : .paused
             }
             retireCurrentNote()
+            retireCurrentBatch()
             owner.retire()
             if requestedNativeRuntime {
                 afterClose = terminal
@@ -184,6 +213,7 @@ final class AnnotationNativeBackfillModel {
         worker?.cancel()
         runOwner?.retire()
         retireCurrentNote()
+        retireCurrentBatch()
     }
 
     /// Retry the retained failed native Stop only. It never repeats a body
@@ -234,12 +264,16 @@ final class AnnotationNativeBackfillModel {
         let lifetime = AnytypeOriginalEditorLocalAnnotationSourceLifetime(source: descriptor)
         nativeSource = lifetime
         try source.bindLocalAnnotation(lifetime, local: local, snapshot: captured)
-        // A factory can have dispatched original native work before throwing.
-        // Its retained SDK owner must still perform the actual Stop/drain.
-        requestedNativeRuntime = true
-        let opened = try await AnytypeOriginalEditorModule.openLocalAnnotation(
-            appGroup: ITorahSharedContainer.chavrusaTextAppGroupIdentifier,
-            sourceLifetime: lifetime, body: .plainText(savedText)
+        let batch = try await currentBatch(owner: owner)
+        try owner.requireCurrent(); try source.requireCurrent(); try Task.checkCancellation()
+        guard nativeAdmissions < AnytypeOriginalEditorLocalAnnotationBatchSession.maximumAnnotations else {
+            throw AnnotationNativeBackfillError.sourceChanged
+        }
+        // Count admission attempts, including retained/uncertain ones. A UUID
+        // is never retried inside the same original private Space.
+        nativeAdmissions += 1
+        let opened = try await batch.openPlainAnnotation(
+            sourceLifetime: lifetime, text: savedText
         ) { [source, local] actual in
             actual == descriptor && source.isCurrent && local.isCurrent
         }
@@ -267,19 +301,53 @@ final class AnnotationNativeBackfillModel {
         guard actual.nativeCapture.snapshot.provenance.matchesCaptureBinding(binding) else {
             throw AnnotationLocalEditorError.wrongOwner
         }
-        try AnnotationNativeBackfillPolicy.requireExactPreview(savedText: savedText,
-            originalNativePreview: actual.textPreview)
+        try AnnotationNativeBackfillPolicy.requireExactCapturedText(savedText: savedText,
+            originalNativeFullPlainText: actual.fullPlainText, originalNativePreview: actual.textPreview)
         try owner.requireCurrent(); try source.requireCurrent()
         try AnnotationOriginalEditorMount.assertUnchanged(captured, try await local.read())
         try source.requireCurrent(); try Task.checkCancellation()
-        let snapshot = actual.nativeCapture.snapshot
-        let body = TorahAnnotationEnvelope.RichBody(format: AnytypeOriginalEditorSnapshot.format,
-            formatVersion: AnytypeOriginalEditorSnapshot.formatVersion, bytes: snapshot.bodyBytes)
-        let intent = try local.prepareSave(snapshot: captured, mutationID: UUID(), body: body,
-            textPreview: actual.textPreview, editorRevision: snapshot.nativeArchiveSHA256)
+        let intent = try local.prepareNativeBackfill(snapshot: captured, mutationID: UUID(),
+            capture: actual, nativeSession: opened, hostProfileID: source.profileID)
         // Reuse the real saved-note CAS, original pending queue/cache publication
         // and configured CloudKit path. No Anytype destination is introduced.
         return try await local.save(intent)
+    }
+
+    private func currentBatch(owner: AnnotationNativeBackfillRunOwner) async throws
+        -> AnytypeOriginalEditorLocalAnnotationBatchSession {
+        try owner.requireCurrent(); try Task.checkCancellation()
+        if let nativeBatch {
+            guard let nativeBatchSource, nativeBatchSource.isCurrent,
+                  nativeBatch.source == nativeBatchSource.source else {
+                throw AnnotationNativeBackfillError.wrongProfile
+            }
+            return nativeBatch
+        }
+        let descriptor = try AnytypeOriginalEditorLocalAnnotationBatchSource(
+            hostProfileID: owner.mapping.projection.profileID.uuidString, batchID: UUID())
+        let lifetime = AnytypeOriginalEditorLocalAnnotationBatchSourceLifetime(source: descriptor)
+        try owner.bindNativeBatch(lifetime)
+        nativeBatchSource = lifetime
+        // The actual runtime may dispatch before a throwing factory returns;
+        // retain Stop/drain ownership even if opening the batch fails.
+        requestedNativeRuntime = true
+        let opened = try await AnytypeOriginalEditorModule.openLocalAnnotationBatch(
+            appGroup: ITorahSharedContainer.chavrusaTextAppGroupIdentifier,
+            sourceLifetime: lifetime
+        ) { [owner] actual in
+            actual == descriptor && owner.isCurrent
+        }
+        nativeBatch = opened
+        try owner.requireCurrent(); try Task.checkCancellation()
+        guard lifetime.isCurrent, opened.source == descriptor else {
+            throw AnnotationNativeBackfillError.wrongProfile
+        }
+        return opened
+    }
+
+    private func retireCurrentBatch() {
+        nativeBatch?.retire(); nativeBatch = nil
+        nativeBatchSource?.retire(); nativeBatchSource = nil
     }
 
     private func retireCurrentNote() {
@@ -310,6 +378,7 @@ final class AnnotationNativeBackfillModel {
 
     isolated deinit {
         runOwner?.retire(); native?.retire(); nativeSource?.retire()
+        nativeBatch?.retire(); nativeBatchSource?.retire()
         observation?.retire(); local?.retire(); worker?.cancel()
     }
 }

@@ -35,23 +35,6 @@
         }
       }
     },
-    "%lld longer notes kept unchanged": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld longer notes kept unchanged"
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld הערות ארוכות נשמרו ללא שינוי"
-          }
-        }
-      }
-    },
     "%lld notes converted": {
       "extractionState": "manual",
       "localizations": {
@@ -357,23 +340,6 @@
         }
       }
     },
-    "Only saved notes are converted. Sharing with Anytype remains a separate choice. Existing rich notes and longer notes are kept unchanged.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Only saved notes are converted. Sharing with Anytype remains a separate choice. Existing rich notes and longer notes are kept unchanged."
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "רק הערות שמורות יומרו. השיתוף עם Anytype יישאר פעולה נפרדת לבחירתך. הערות בפורמט עשיר והערות ארוכות יישמרו ללא שינוי."
-          }
-        }
-      }
-    },
     "Open preparation from the current study workspace to convert its notes.": {
       "extractionState": "manual",
       "localizations": {
@@ -608,6 +574,56 @@
           "stringUnit": {
             "state": "translated",
             "value": "בשלב זה ההערות השמורות נשארות בפרופיל הנוכחי. השיתוף נעשה בנפרד, לפי בחירתך בעורך ההערה."
+          }
+        }
+      }
+    },
+    "Only saved notes are converted. Sharing with Anytype remains a separate choice. Existing rich notes and notes beyond the supported size remain unchanged.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only saved notes are converted. Sharing with Anytype remains a separate choice. Existing rich notes and notes beyond the supported size remain unchanged."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "רק הערות שמורות מומרות. שיתוף עם Anytype נשאר בחירה נפרדת. הערות עשירות קיימות והערות שחורגות מהגודל הנתמך נשארות ללא שינוי."
+          }
+        }
+      }
+    },
+    "%lld notes beyond the supported size kept unchanged": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld notes beyond the supported size kept unchanged"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld הערות שחורגות מהגודל הנתמך נשארו ללא שינוי"
+          }
+        }
+      }
+    },
+    "This conversion run reached its 5,000-note limit. Continue to check the remaining notes.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This conversion run reached its 5,000-note limit. Continue to check the remaining notes."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המרה זו הגיעה למגבלה של 5,000 הערות. המשיכו כדי לבדוק את ההערות שנותרו."
           }
         }
       }

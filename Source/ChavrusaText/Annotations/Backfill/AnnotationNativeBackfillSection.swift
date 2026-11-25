@@ -15,7 +15,7 @@ struct AnnotationNativeBackfillSection: View {
         Section {
             Text("Convert saved notes to expanded editing", tableName: "AnnotationBackfill")
                 .font(.headline)
-            Text("Only saved notes are converted. Sharing with Anytype remains a separate choice. Existing rich notes and longer notes are kept unchanged.",
+            Text("Only saved notes are converted. Sharing with Anytype remains a separate choice. Existing rich notes and notes beyond the supported size remain unchanged.",
                  tableName: "AnnotationBackfill")
                 .font(.footnote).foregroundStyle(.secondary)
             if model.state != .ready {
@@ -27,7 +27,7 @@ struct AnnotationNativeBackfillSection: View {
                          value: model.converted, identifier: "annotation-native-backfill-converted", showZero: true)
                 countRow(String(localized: "%lld rich notes kept unchanged", table: "AnnotationBackfill"),
                          value: model.count(.existingRich), identifier: "annotation-native-backfill-rich")
-                countRow(String(localized: "%lld longer notes kept unchanged", table: "AnnotationBackfill"),
+                countRow(String(localized: "%lld notes beyond the supported size kept unchanged", table: "AnnotationBackfill"),
                          value: model.count(.longNote), identifier: "annotation-native-backfill-long")
                 countRow(String(localized: "%lld notes need preparation again", table: "AnnotationBackfill"),
                          value: model.count(.needsPreparation), identifier: "annotation-native-backfill-unprepared")
@@ -106,6 +106,11 @@ struct AnnotationNativeBackfillSection: View {
             } icon: { Image(systemName: "checkmark.circle") }
                 .accessibilityIdentifier("annotation-native-backfill-complete")
         case .paused:
+            if model.batchLimitReached {
+                Text("This conversion run reached its 5,000-note limit. Continue to check the remaining notes.",
+                     tableName: "AnnotationBackfill")
+                    .accessibilityIdentifier("annotation-native-backfill-batch-limit")
+            }
             Text("Conversion paused. Saved conversions are kept; continue to check the remaining notes.",
                  tableName: "AnnotationBackfill")
                 .accessibilityIdentifier("annotation-native-backfill-paused")
