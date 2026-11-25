@@ -1,0 +1,12 @@
+{
+  "actual_apple_product_checks_executed": 0,
+  "log_sha256": "fc8fdc28fea71fcb580f4aa5b3b72a80cdfafa2e3844eeceab0d5f61fe0e115c",
+  "previous_controls_retained": true,
+  "returncode": 0,
+  "reviewed_gap": "old parser accepted incomplete Load command without cmd; now actual native per-member header count, ordered commands and total sizes are mandatory",
+  "source_sha256": {
+    "Scripts/CI/macho_symbol_coverage.py": "2b82b3d30251bb07dd7fb62d4e5e6c7cb04e7ffd22cc96c6c4a00eb1507be6e8",
+    "Scripts/CI/test_macho_symbol_coverage.py": "703df48969a4ed1590240dc1741cec647f8f6356f9efa70c360db07044e6fe50"
+  },
+  "status": "PORTABLE_HEADER_COVERAGE_CONTROLS_PASS"
+}

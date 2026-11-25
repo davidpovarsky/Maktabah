@@ -11,7 +11,10 @@ import json
 from pathlib import Path
 import plistlib
 import re
+import runpy
 import subprocess
+
+SYMBOLS = runpy.run_path(str(Path(__file__).with_name("macho_symbol_coverage.py")))
 
 HISTORICAL_SOURCE = "d3da55417a30e9a06b0255e2d0b561955034b260"
 IMAGE_MAGIC = {b"\xce\xfa\xed\xfe", b"\xcf\xfa\xed\xfe", b"\xfe\xed\xfa\xce", b"\xfe\xed\xfa\xcf",
@@ -193,31 +196,22 @@ def audit(root, app, evidence):
                  "line": line})
         observed_shared.update(item for item in SHARED_NAMES if item in name or item in load_text)
         observed_families.update(item for item in KNOWN_FAMILIES if item in name or item in load_text)
-        symbol_path = evidence / f"{index:03d}-symbols.txt.gz"
+        coverage = SYMBOLS["inspect"](image, evidence, f"{index:03d}")
+        require(coverage["binary_sha256"] == row["sha256"],
+                "Actual image changed after the product inventory: " + name)
         lines, new_symbols, old_symbols = 0, [], 0
-        process = subprocess.Popen(["xcrun", "nm", "-a", str(image)],
-                                   stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        try:
-            with gzip.open(symbol_path, "wb", compresslevel=1) as output:
-                for raw in process.stdout:
-                    output.write(raw)
-                    lines += 1
-                    line = raw.decode("utf-8", errors="replace")
-                    if NEW_ENGINE_SYMBOL.search(line):
-                        new_symbols.append(line.strip())
-                    if ORIGINAL_ENGINE_SYMBOL.search(line):
-                        old_symbols += 1
-                        if not owner:
-                            violations.append({"image": name, "kind": "EXTRA_ENGINE_SYMBOL_OWNER",
-                                               "symbol": line.strip()})
-                    observed_shared.update(item for item in SHARED_NAMES if item in line)
-                    observed_families.update(item for item in KNOWN_FAMILIES if item in line)
-            exit_code = process.wait(timeout=120)
-        except BaseException:
-            process.kill()
-            process.wait(timeout=10)
-            raise
-        require(exit_code == 0, "Cannot inspect actual full consumer symbols: " + name)
+        for stream in coverage["symbol_streams"]:
+            for line in SYMBOLS["lines"](evidence / stream["path"]):
+                lines += 1
+                if NEW_ENGINE_SYMBOL.search(line):
+                    new_symbols.append(line.strip())
+                if ORIGINAL_ENGINE_SYMBOL.search(line):
+                    old_symbols += 1
+                    if not owner:
+                        violations.append({"image": name, "kind": "EXTRA_ENGINE_SYMBOL_OWNER",
+                                           "symbol": line.strip()})
+                observed_shared.update(item for item in SHARED_NAMES if item in line)
+                observed_families.update(item for item in KNOWN_FAMILIES if item in line)
         violations.extend({"image": name, "kind": "NEW_MINIAPPS_ENGINE_SYMBOL", "symbol": line}
                           for line in new_symbols)
         row.update(
@@ -225,9 +219,8 @@ def audit(root, app, evidence):
             loads={"path": load_path.name, "sha256": sha(load_path), "bytes": load_path.stat().st_size,
                    "returncode": loads.returncode, "new_engine_matches": new_loads,
                    "original_engine_matches": old_loads},
-            symbols={"path": symbol_path.name, "sha256": sha(symbol_path),
-                     "compressed_bytes": symbol_path.stat().st_size, "line_count": lines,
-                     "returncode": exit_code, "new_engine_match_count": len(new_symbols),
+            symbols={"coverage": coverage, "line_count": lines,
+                     "new_engine_match_count": len(new_symbols),
                      "original_sefaria_engine_match_count": old_symbols})
     historical = source(root, HISTORICAL_SOURCE, "Maktabah.xcodeproj/project.pbxproj").decode()
     current = (root / "Maktabah.xcodeproj/project.pbxproj").read_text()
@@ -237,7 +230,7 @@ def audit(root, app, evidence):
     require(not (added & set(NEW_ENGINE_NAMES)), "A new active MiniApps engine product entered the original consumer")
     passed = not violations and set(SHARED_NAMES) <= observed_shared
     report = {
-        "schema": "otzaria.miniapps.actual-consumer-runtime-closure/2",
+        "schema": "otzaria.miniapps.actual-consumer-runtime-closure/3",
         "status": "ACTUAL_ORIGINAL_CONSUMER_NO_NEW_MINIAPPS_RUNTIME_PASS" if passed else "FAIL",
         "app": str(app), "images": image_rows, "in_app_aliases": aliases,
         "new_or_unowned_runtime_matches": violations,
