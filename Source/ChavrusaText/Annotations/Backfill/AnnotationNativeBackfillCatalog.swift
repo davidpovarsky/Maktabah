@@ -9,7 +9,7 @@ enum AnnotationNativeBackfillError: Error, Sendable, Equatable {
 
 enum AnnotationNativeBackfillDisposition: String, Sendable, CaseIterable {
     case ready, existingRich, metadataOnly, pendingDeletion
-    case needsPreparation, longNote, unsupported, changed
+    case needsPreparation, longNote, unsupported, changed, previewMismatch
 }
 
 /// Selection data only. A new actual local session must read and compare the

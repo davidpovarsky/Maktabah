@@ -35,6 +35,8 @@ struct AnnotationNativeBackfillSection: View {
                          value: model.count(.changed), identifier: "annotation-native-backfill-changed")
                 countRow(String(localized: "%lld unsupported notes kept unchanged", table: "AnnotationBackfill"),
                          value: model.count(.unsupported), identifier: "annotation-native-backfill-unsupported")
+                countRow(String(localized: "%lld notes need manual review and remain unchanged", table: "AnnotationBackfill"),
+                         value: model.count(.previewMismatch), identifier: "annotation-native-backfill-preview-mismatch")
                 countRow(String(localized: "%lld highlights kept as highlights", table: "AnnotationBackfill"),
                          value: model.count(.metadataOnly), identifier: "annotation-native-backfill-highlights")
                 countRow(String(localized: "%lld pending deletions kept unchanged", table: "AnnotationBackfill"),

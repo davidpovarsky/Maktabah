@@ -63,6 +63,10 @@ that preview into the original `annotations.note`. Therefore this worker admits
 only a complete saved note at or below that byte limit whose original native
 preview is exactly equal in UTF-8 bytes. It rejects whitespace normalization,
 Unicode normalization, truncation, embedded NULs or any other difference.
+A completed, provenance-verified capture with a nonidentical preview is retained
+with a visible manual-review count and does not stop conversion of later notes.
+Cancellation, owner loss and uncertain/native failures are not caught by this
+retention exception; the exact-byte Save refusal remains unchanged.
 
 A longer saved note is retained unchanged and counted visibly. It is not treated
 as converted. The unchanged planner can still prepare its complete text digest;

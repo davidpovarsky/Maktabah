@@ -135,6 +135,12 @@ final class AnnotationNativeBackfillModel {
                         } catch {
                             if Self.isChangedSource(error), owner.isCurrent, !Task.isCancelled {
                                 retained[.changed, default: 0] += 1
+                            } else if (error as? AnnotationNativeBackfillError) == .previewWouldChangeSavedText,
+                                      owner.isCurrent, !Task.isCancelled {
+                                // A completed native capture with a nonidentical preview
+                                // cannot Save this note. Its private draft is already
+                                // retired; retain the original and continue other notes.
+                                retained[.previewMismatch, default: 0] += 1
                             } else { throw error }
                         }
                     }
