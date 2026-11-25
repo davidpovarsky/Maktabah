@@ -1,6 +1,7 @@
 import XCTest
 import CryptoKit
 import SQLite3
+import UIKit
 
 /// Exercises the ordinary entry and canonical storage. It never activates the
 /// SDK qualification account, injects native bodies, or writes SQLite directly.
@@ -613,6 +614,478 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         let actual = candidates()
         XCTAssertEqual(actual.count, 1)
         return try XCTUnwrap(actual.first)
+    }
+
+
+    // These journeys use the original account UI and a dedicated real-network
+    // development account. Its recovery key is never an app launch argument,
+    // SDK constructor input, log message, attachment, or committed fixture.
+    @MainActor
+    func testOrdinarySharedNoteUpdatesSameObjectAndReceivesSavedContent() async throws {
+        var context = try await createAndShareOrdinaryNativeNote(prefix: "Exchange")
+        let shared = context.saved
+        try editAnnotation(app.buttons[context.rowIdentifier])
+        tap(app.buttons["annotation-expanded-editor-open"])
+        let host = try await expandedHost()
+        let discarded = " private-only-" + UUID().uuidString
+        let second = try await uniqueBody(context.secondText, in: host)
+        second.coordinate(withNormalizedOffset: CGVector(dx: 0.98, dy: 0.5)).tap()
+        second.typeText(discarded)
+        try await requireTypedFragment(discarded, in: host)
+        tap(app.buttons["annotation-expanded-editor-close"])
+        tap(app.buttons["Discard draft"])
+        try await waitForAbsence(app.textViews["annotation-note-text"])
+        XCTAssertEqual(try readCanonicalRow(context.rowID), shared)
+
+        // Read the actual original copy after discarding the private edit.
+        // Reading/closing the review must not modify the local canonical row.
+        try await openOrdinaryNativeRead(context, updating: false)
+        let review = app.descendants(matching: .any)["annotation-anytype-receive-review"]
+        XCTAssertTrue(review.waitForExistence(timeout: 120))
+        XCTAssertFalse(review.staticTexts.matching(NSPredicate(
+            format: "label CONTAINS %@", discarded)).firstMatch.exists)
+        XCTAssertTrue(review.staticTexts.matching(NSPredicate(
+            format: "label CONTAINS %@", context.secondText)).firstMatch.exists)
+        tap(app.buttons["annotation-anytype-receive-close"])
+        try await waitForAbsence(app.textViews["annotation-note-text"])
+        XCTAssertEqual(try readCanonicalRow(context.rowID), shared)
+        attachExchangeStorage(shared, stage: "discard-remained-private", objectID: context.objectID)
+
+        context = try await editAndSaveOrdinaryNativeNote(context, suffix: " saved-update")
+        let beforeUpdate = try nativeHistoryRecords(context.saved.uuid,
+            suffix: ".native-revision-history",
+            schema: "otzaria.original.annotation.revision-result.v1")
+        try await openOrdinaryNativeRead(context, updating: true)
+        let accept = app.buttons["annotation-anytype-update-accept"]
+        XCTAssertTrue(accept.waitForExistence(timeout: 120))
+        tap(accept)
+        let confirm = app.buttons.matching(NSPredicate(
+            format: "label == %@", "Update this copy in Anytype")).allElementsBoundByIndex.filter(\.isHittable)
+        try nativeRequire(confirm.count == 1, "Require one actual update confirmation")
+        tap(try XCTUnwrap(confirm.first))
+        let verified = app.descendants(matching: .any)["annotation-anytype-update-verified"]
+        XCTAssertTrue(verified.waitForExistence(timeout: 120))
+        XCTAssertFalse(app.descendants(matching: .any)["annotation-anytype-update-unverified"].exists)
+        XCTAssertFalse(app.descendants(matching: .any)["annotation-anytype-update-conflict"].exists)
+        _ = try verifyNewNativeHistory(context, previous: beforeUpdate,
+            suffix: ".native-revision-history", schema: "otzaria.original.annotation.revision-result.v1")
+        XCTAssertEqual(try readCanonicalRow(context.rowID), context.saved)
+        tap(app.buttons["annotation-anytype-receive-close"])
+        try await waitForAbsence(app.textViews["annotation-note-text"])
+        attachExchangeStorage(context.saved, stage: "same-object-update", objectID: context.objectID)
+
+        try await openOrdinaryNativeRead(context, updating: false)
+        let receive = app.buttons["annotation-anytype-receive-accept"]
+        XCTAssertTrue(receive.waitForExistence(timeout: 120))
+        tap(receive)
+        let use = app.buttons.matching(NSPredicate(
+            format: "label == %@", "Use the Anytype version here")).allElementsBoundByIndex.filter(\.isHittable)
+        try nativeRequire(use.count == 1, "Require one actual receive confirmation")
+        tap(try XCTUnwrap(use.first))
+        XCTAssertTrue(app.descendants(matching: .any)["annotation-anytype-receive-saved"]
+            .waitForExistence(timeout: 120))
+        let received = try readCanonicalRow(context.rowID)
+        XCTAssertEqual(received.id, context.saved.id)
+        XCTAssertEqual(received.uuid, context.saved.uuid)
+        XCTAssertEqual(received.revision, context.saved.revision + 1)
+        XCTAssertNotNil(received.body)
+        XCTAssertTrue(received.preview.contains(context.firstText))
+        XCTAssertTrue(received.preview.contains(context.secondText))
+        tap(app.buttons["annotation-anytype-receive-close"])
+        try await waitForAbsence(app.textViews["annotation-note-text"])
+        context.saved = received
+        try await coldReopenOrdinaryNativeNote(context)
+        attachExchangeStorage(received, stage: "received-and-cold-reopened", objectID: context.objectID)
+    }
+
+    @MainActor
+    func testOrdinaryNativeCopyChiddushLifecyclePreservesIdentity() async throws {
+        try await exerciseOrdinaryNativeLifecycle(role: "chiddush", title: "Chiddush",
+            promotion: "Turn into a chiddush")
+    }
+
+    @MainActor
+    func testOrdinaryNativeCopyArticleLifecyclePreservesIdentity() async throws {
+        try await exerciseOrdinaryNativeLifecycle(role: "article", title: "Article",
+            promotion: "Turn into an article")
+    }
+
+    @MainActor
+    func testOrdinaryNativeCopyResearchLifecyclePreservesIdentity() async throws {
+        try await exerciseOrdinaryNativeLifecycle(role: "research", title: "Research",
+            promotion: "Turn into research")
+    }
+
+    private struct OrdinaryNativeExchangeContext {
+        let rowIdentifier: String
+        let rowID: Int64
+        let firstText: String
+        var secondText: String
+        var saved: CanonicalRow
+        let objectID: String
+    }
+
+    private enum OrdinaryNetworkFixture {
+        static let accountID = "AA5y2wipdZPPGiMoK3hckf6DUJQHHehNPt6BgyenPamSnfQm"
+        static let spaceID = "bafyreigdy7rjfil42wczgnam5njdwy5e2pcio23p2jls4ycgtzmp3usdqa.2xu9o61hnno0b"
+        static let spaceTitle = "Otzaria original network acceptance"
+        // Reserved for the independent peer CAS regression. UI creates new notes.
+        static let protectedRoot = "bafyreiarjeh5gi2eb6cespoglsvraum4ku226iainadbhfkncyvsavgadm"
+        static let keyPath = "/Users/m1/builds/anytype-original-network-acceptance-20261125/run-1-private/development-mnemonic.private"
+    }
+
+    private enum OrdinaryNativeAcceptanceError: Error { case failed(String) }
+
+    private func nativeRequire(_ value: Bool, _ message: String) throws {
+        guard value else {
+            XCTFail(message)
+            throw OrdinaryNativeAcceptanceError.failed(message)
+        }
+    }
+
+    @MainActor
+    private func createAndShareOrdinaryNativeNote(prefix: String) async throws -> OrdinaryNativeExchangeContext {
+        try nativeRequire(ProcessInfo.processInfo.environment["OTZARIA_ANYTYPE_NETWORK_UI"] == "test-owned-original-account",
+            "This journey requires the explicit private development-account route")
+        for key in ["OTZARIA_ORIGINAL_EDITOR_QUALIFICATION", "OTZARIA_ORIGINAL_EDITOR_PROCESS_RESUME"] {
+            XCTAssertNil(ProcessInfo.processInfo.environment[key])
+        }
+        XCTAssertTrue(isPad)
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(scenario: "readerDetail", backend: "otzaria", language: "en", recordViewport: true)
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        XCTAssertNil(app.launchEnvironment["OTZARIA_ANYTYPE_NETWORK_UI"])
+        XCTAssertNil(app.launchEnvironment["OTZARIA_ORIGINAL_EDITOR_QUALIFICATION"])
+        XCTAssertNil(app.launchEnvironment["OTZARIA_ORIGINAL_EDITOR_PROCESS_RESUME"])
+        assertReaderHasText()
+        try await openAnnotations()
+        let previous = Set(annotationRows().allElementsBoundByIndex.map(\.identifier))
+        tap(app.navigationBars["Annotations"].buttons["Close"])
+        tap(try originalStudyToolsActionInWindow())
+        tap(app.segmentedControls["torah-inspector-tools"].buttons["Notes"])
+        tap(app.buttons["torah-inspector-add-note"])
+        let quick = app.textViews["annotation-note-text"]
+        XCTAssertTrue(quick.waitForExistence(timeout: 15))
+        let first = prefix + " original UI " + UUID().uuidString
+        let second = "Hebrew source \u{05ea}\u{05d5}\u{05e8}\u{05d4} " + UUID().uuidString
+        tap(quick); quick.typeText(first)
+        tap(app.buttons["annotation-save-toolbar"])
+        try await waitForAbsence(quick)
+        tap(app.buttons["torah-inspector-close"])
+        try await openAnnotations()
+        let row = try await newAnnotationRow(previous: previous)
+        let identifier = row.identifier
+        let rowID = try XCTUnwrap(Int64(identifier.dropFirst("original-book-annotation-".count)))
+        try editAnnotation(row)
+        try await waitForEnabled(app.buttons["annotation-expanded-editor-open"])
+        tap(app.buttons["annotation-expanded-editor-open"])
+        let host = try await expandedHost()
+        let body = try await uniqueBody(first, in: host)
+        body.coordinate(withNormalizedOffset: CGVector(dx: 0.98, dy: 0.5)).tap()
+        body.typeText("\n")
+        let blank = try await blankBody(after: first, in: host)
+        tap(blank); blank.typeText(second)
+        try await assertTwoBodies(first, second, in: host)
+        tap(app.buttons["annotation-expanded-editor-save"])
+        XCTAssertTrue(app.staticTexts["Note saved"].waitForExistence(timeout: 120))
+        let saved = try readCanonicalRow(rowID)
+        try nativeRequire(saved.body != nil, "The ordinary native editor must save an actual rich body")
+        tap(app.buttons["annotation-expanded-editor-close"])
+        try await waitForAbsence(quick)
+        try editAnnotation(app.buttons[identifier])
+        try await waitForEnabled(app.buttons["annotation-anytype-share-open"])
+        tap(app.buttons["annotation-anytype-share-open"])
+        try await selectOriginalDevelopmentSpace(accountViewID: "annotation-anytype-original-account")
+        let selected = app.staticTexts["annotation-anytype-selected-space"]
+        XCTAssertTrue(selected.waitForExistence(timeout: 120))
+        try nativeRequire(selected.label == OrdinaryNetworkFixture.spaceID,
+            "Refuse to send unless the original UI selected the exact test-owned Space")
+        let send = app.buttons["annotation-anytype-share-confirm"]
+        try await waitForEnabled(send)
+        tap(send)
+        XCTAssertTrue(app.descendants(matching: .any)["annotation-anytype-native-copy-verified"]
+            .waitForExistence(timeout: 120))
+        let imports = try nativeHistoryRecords(saved.uuid, suffix: ".native-import-history",
+            schema: "otzaria.original.annotation.native-commit.v1")
+        try nativeRequire(imports.count == 1, "One ordinary send must produce one actual import receipt")
+        let record = try XCTUnwrap(imports.values.first)
+        try nativeRequire(record["status"] as? String == "LOCAL_NATIVE_IMPORT_READBACK_VERIFIED",
+            "The original import must have genuine readback")
+        try nativeRequire(record["accountID"] as? String == OrdinaryNetworkFixture.accountID
+            && record["spaceID"] as? String == OrdinaryNetworkFixture.spaceID,
+            "The receipt must belong to the genuine test-owned account and Space")
+        try nativeRequire(record["annotationUUID"] as? String == saved.uuid.uuidString
+            && (record["savedRevision"] as? NSNumber)?.int64Value == saved.revision
+            && record["payloadDigest"] as? String == saved.payloadDigest
+            && record["bodyDigest"] as? String == saved.body.map(Self.sha256),
+            "The actual import must bind the saved local note exactly")
+        try verifyNativeResponse(record)
+        let objectID = try XCTUnwrap(record["objectID"] as? String)
+        try nativeRequire(!objectID.isEmpty && objectID != OrdinaryNetworkFixture.protectedRoot,
+            "UI must create its own root and preserve the independent peer regression object")
+        XCTAssertEqual(try readCanonicalRow(rowID), saved)
+        tap(app.buttons["annotation-anytype-share-close"])
+        try await waitForAbsence(quick)
+        attachExchangeStorage(saved, stage: "ordinary-native-copy", objectID: objectID)
+        return .init(rowIdentifier: identifier, rowID: rowID, firstText: first,
+            secondText: second, saved: saved, objectID: objectID)
+    }
+
+    @MainActor
+    private func selectOriginalDevelopmentSpace(accountViewID: String) async throws {
+        let account = app.descendants(matching: .any)[accountViewID]
+        XCTAssertTrue(account.waitForExistence(timeout: 120))
+        let login = account.buttons["I already have a key"]
+        let space = account.buttons.matching(NSPredicate(format: "label == %@", OrdinaryNetworkFixture.spaceTitle))
+        let ready = await XCTWaiter.fulfillment(of: [XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in login.exists || space.count > 0 }, object: nil)], timeout: 120)
+        XCTAssertEqual(ready, .completed)
+        if login.exists {
+            tap(login)
+            let fields = account.textViews
+            XCTAssertTrue(fields.firstMatch.waitForExistence(timeout: 30))
+            try nativeRequire(fields.count == 1, "Require the original single recovery-key field")
+            let file = URL(fileURLWithPath: OrdinaryNetworkFixture.keyPath)
+            let values = try file.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
+            let attributes = try FileManager.default.attributesOfItem(atPath: file.path)
+            try nativeRequire(values.isRegularFile == true && values.isSymbolicLink != true
+                && (values.fileSize ?? 0) > 0 && (values.fileSize ?? 0) < 2048
+                && ((attributes[.posixPermissions] as? NSNumber)?.intValue ?? 0o777) & 0o077 == 0,
+                "Only the retained private development fixture may enter the original login UI")
+            let phrase = try String(contentsOf: file, encoding: .utf8).trimmingCharacters(in: .whitespacesAndNewlines)
+            // Paste through the original UIKit editing menu. No typeText call,
+            // assertion, attachment or test log receives the recovery-key value.
+            UIPasteboard.general.setItems([["public.utf8-plain-text": phrase]], options: [
+                .localOnly: true, .expirationDate: Date().addingTimeInterval(120)
+            ])
+            defer { UIPasteboard.general.items = [] }
+            let field = fields.firstMatch
+            tap(field); field.press(forDuration: 1)
+            let menuPaste = app.menuItems["Paste"]
+            let buttonPaste = app.buttons["Paste"]
+            let pasteReady = await XCTWaiter.fulfillment(of: [XCTNSPredicateExpectation(
+                predicate: NSPredicate { _, _ in menuPaste.exists || buttonPaste.exists }, object: nil)], timeout: 15)
+            XCTAssertEqual(pasteReady, .completed)
+            if menuPaste.exists && menuPaste.isHittable { tap(menuPaste) }
+            else { try nativeRequire(buttonPaste.exists && buttonPaste.isHittable, "Original Paste must be visible"); tap(buttonPaste) }
+            if app.alerts.buttons["Allow Paste"].waitForExistence(timeout: 2) {
+                tap(app.alerts.buttons["Allow Paste"])
+            }
+            let enter = account.buttons["Enter"]
+            try await waitForEnabled(enter)
+            tap(enter)
+            XCTAssertTrue(space.firstMatch.waitForExistence(timeout: 120))
+        }
+        try nativeRequire(space.count == 1, "Require one real original picker row for the owned Space")
+        tap(space.firstMatch)
+        // Evidence may resume only after the credential UI has gone away.
+        let closed = await XCTWaiter.fulfillment(of: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: account)], timeout: 120)
+        XCTAssertEqual(closed, .completed)
+    }
+
+    @MainActor
+    private func openOrdinaryNativeRead(_ context: OrdinaryNativeExchangeContext, updating: Bool) async throws {
+        try editAnnotation(app.buttons[context.rowIdentifier])
+        let open = app.buttons[updating ? "annotation-anytype-update-open" : "annotation-anytype-receive-open"]
+        try await waitForEnabled(open); tap(open)
+        try await selectOriginalDevelopmentSpace(accountViewID: "annotation-anytype-receive-account")
+        let read = app.buttons["annotation-anytype-receive-read"]
+        try await waitForEnabled(read)
+        tap(read)
+    }
+
+    @MainActor
+    private func editAndSaveOrdinaryNativeNote(_ original: OrdinaryNativeExchangeContext,
+                                              suffix: String) async throws -> OrdinaryNativeExchangeContext {
+        var context = original
+        try editAnnotation(app.buttons[context.rowIdentifier])
+        try await waitForEnabled(app.buttons["annotation-expanded-editor-open"])
+        tap(app.buttons["annotation-expanded-editor-open"])
+        let host = try await expandedHost()
+        let second = try await uniqueBody(context.secondText, in: host)
+        second.coordinate(withNormalizedOffset: CGVector(dx: 0.98, dy: 0.5)).tap()
+        second.typeText(suffix)
+        context.secondText += suffix
+        try await assertTwoBodies(context.firstText, context.secondText, in: host)
+        tap(app.buttons["annotation-expanded-editor-save"])
+        XCTAssertTrue(app.staticTexts["Note saved"].waitForExistence(timeout: 120))
+        context.saved = try readCanonicalRow(context.rowID)
+        XCTAssertEqual(context.saved.uuid, original.saved.uuid)
+        XCTAssertEqual(context.saved.revision, original.saved.revision + 1)
+        XCTAssertNotEqual(context.saved.body, original.saved.body)
+        tap(app.buttons["annotation-expanded-editor-close"])
+        try await waitForAbsence(app.textViews["annotation-note-text"])
+        return context
+    }
+
+    @MainActor
+    private func exerciseOrdinaryNativeLifecycle(role: String, title: String, promotion: String) async throws {
+        var context = try await createAndShareOrdinaryNativeNote(prefix: title)
+        try await manageOrdinaryNativeCopy(context, currentType: "Annotation",
+            action: "Archive this copy", wireAction: "archive", archived: true, resultingRole: nil)
+        try await manageOrdinaryNativeCopy(context, currentType: "Annotation",
+            action: "Restore this copy", wireAction: "restore", archived: false, resultingRole: nil)
+        try await manageOrdinaryNativeCopy(context, currentType: "Annotation",
+            action: promotion, wireAction: "promote", archived: false, resultingRole: role)
+        context = try await editAndSaveOrdinaryNativeNote(context, suffix: " updated-" + role)
+        try await manageOrdinaryNativeCopy(context, currentType: title,
+            action: "Update this document from the saved note", wireAction: "replace-promoted-document",
+            archived: false, resultingRole: role)
+        try await manageOrdinaryNativeCopy(context, currentType: title,
+            action: "Archive this copy", wireAction: "archive", archived: true, resultingRole: role)
+        try await manageOrdinaryNativeCopy(context, currentType: title,
+            action: "Restore this copy", wireAction: "restore", archived: false, resultingRole: role)
+        try await manageOrdinaryNativeCopy(context, currentType: title,
+            action: "Return to an annotation", wireAction: "revert-promotion", archived: false, resultingRole: nil)
+        try await coldReopenOrdinaryNativeNote(context)
+        attachExchangeStorage(context.saved, stage: role + "-lifecycle-cold", objectID: context.objectID)
+    }
+
+    @MainActor
+    private func chooseOriginalManagePicker(_ identifier: String, option: String) throws {
+        let picker = app.descendants(matching: .any)[identifier]
+        try nativeRequire(picker.exists && picker.isHittable, "Require the original manage picker")
+        tap(picker)
+        let choices = app.buttons.matching(NSPredicate(format: "label == %@", option))
+            .allElementsBoundByIndex.filter(\.isHittable)
+        try nativeRequire(choices.count == 1, "Require one actual picker option: " + option)
+        tap(try XCTUnwrap(choices.first))
+    }
+
+    @MainActor
+    private func manageOrdinaryNativeCopy(_ context: OrdinaryNativeExchangeContext,
+        currentType: String, action: String, wireAction: String, archived: Bool, resultingRole: String?) async throws {
+        let previous = try nativeHistoryRecords(context.saved.uuid, suffix: ".native-lifecycle-history",
+            schema: "otzaria.original.annotation.lifecycle-result.v1")
+        try editAnnotation(app.buttons[context.rowIdentifier])
+        let open = app.buttons["annotation-anytype-manage-open"]
+        try await waitForEnabled(open); tap(open)
+        try await selectOriginalDevelopmentSpace(accountViewID: "annotation-anytype-manage-account")
+        try chooseOriginalManagePicker("annotation-anytype-manage-copy", option: "Shared copy 1")
+        try chooseOriginalManagePicker("annotation-anytype-manage-type", option: currentType)
+        try chooseOriginalManagePicker("annotation-anytype-manage-action", option: action)
+        tap(app.buttons["annotation-anytype-manage-read"])
+        XCTAssertTrue(app.descendants(matching: .any)["annotation-anytype-manage-review"]
+            .waitForExistence(timeout: 120))
+        let apply = app.buttons["annotation-anytype-manage-apply"]
+        try await waitForEnabled(apply); tap(apply)
+        let confirm = app.buttons["annotation-anytype-manage-confirm"]
+        try await waitForEnabled(confirm); tap(confirm)
+        XCTAssertTrue(app.descendants(matching: .any)["annotation-anytype-manage-verified"]
+            .waitForExistence(timeout: 120))
+        let record = try verifyNewNativeHistory(context, previous: previous,
+            suffix: ".native-lifecycle-history", schema: "otzaria.original.annotation.lifecycle-result.v1")
+        let actualAction = try XCTUnwrap(record["action"] as? [String: Any])
+        XCTAssertEqual(actualAction["name"] as? String, wireAction)
+        XCTAssertEqual(actualAction["role"] as? String, wireAction == "promote" ? resultingRole : nil)
+        XCTAssertEqual(record["isArchived"] as? Bool, archived)
+        XCTAssertEqual(record["documentRole"] as? String, resultingRole)
+        XCTAssertEqual(try readCanonicalRow(context.rowID), context.saved,
+            "Managing the original shared copy must not replace the private saved local note")
+        tap(app.buttons["annotation-anytype-manage-close"])
+        try await waitForAbsence(app.textViews["annotation-note-text"])
+        attachExchangeStorage(context.saved, stage: (resultingRole ?? "annotation") + "-" + wireAction,
+            objectID: context.objectID)
+    }
+
+    @MainActor
+    private func coldReopenOrdinaryNativeNote(_ context: OrdinaryNativeExchangeContext) async throws {
+        let args = app.launchArguments, environment = app.launchEnvironment
+        app.terminate()
+        XCTAssertTrue(app.wait(for: .notRunning, timeout: 15))
+        app.launch()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
+        XCTAssertEqual(app.launchArguments, args); XCTAssertEqual(app.launchEnvironment, environment)
+        assertReaderHasText()
+        try await openAnnotations()
+        try editAnnotation(app.buttons[context.rowIdentifier])
+        try await waitForEnabled(app.buttons["annotation-expanded-editor-open"])
+        tap(app.buttons["annotation-expanded-editor-open"])
+        let host = try await expandedHost()
+        try await assertTwoBodies(context.firstText, context.secondText, in: host)
+        XCTAssertEqual(try readCanonicalRow(context.rowID), context.saved)
+        tap(app.buttons["annotation-expanded-editor-close"])
+        tap(app.buttons["Discard draft"])
+        try await waitForAbsence(app.textViews["annotation-note-text"])
+    }
+
+    @MainActor
+    private func nativeHistoryRecords(_ annotation: UUID, suffix: String,
+                                      schema: String) throws -> [String: [String: Any]] {
+        try nativeRequire([".native-import-history", ".native-revision-history", ".native-lifecycle-history"]
+            .contains(suffix), "The reader is restricted to the original local history directories")
+        let sidecar = try workspaceSidecarURL()
+        let container = (0..<6).reduce(sidecar) { value, _ in value.deletingLastPathComponent() }
+        let parent = container.appendingPathComponent("Library/Application Support/Maktabah-Debug")
+        let directory = parent.appendingPathComponent("Annotations.sqlite" + suffix)
+            .appendingPathComponent(annotation.uuidString)
+        try nativeRequire(directory.standardizedFileURL.resolvingSymlinksInPath() == directory.standardizedFileURL,
+            "No history path alias may redirect this read")
+        guard FileManager.default.fileExists(atPath: directory.path) else { return [:] }
+        let keys: [URLResourceKey] = [.isRegularFileKey, .isDirectoryKey, .isSymbolicLinkKey, .fileSizeKey]
+        let enumerator = try XCTUnwrap(FileManager.default.enumerator(at: directory,
+            includingPropertiesForKeys: keys, options: [.skipsHiddenFiles]))
+        var result: [String: [String: Any]] = [:]
+        var visited = 0
+        for case let url as URL in enumerator {
+            visited += 1
+            try nativeRequire(visited <= 160, "Bound the history of this fresh UI-owned note")
+            let values = try url.resourceValues(forKeys: Set(keys))
+            try nativeRequire(values.isSymbolicLink != true, "History readers do not follow aliases")
+            if values.isDirectory == true { continue }
+            try nativeRequire(values.isRegularFile == true && (values.fileSize ?? 0) <= 64 * 1024 * 1024,
+                "Require a bounded actual history file")
+            guard url.pathExtension == "json" else { continue }
+            let bytes = try Data(contentsOf: url)
+            let record = try XCTUnwrap(JSONSerialization.jsonObject(with: bytes) as? [String: Any])
+            if record["schema"] as? String == schema { result[url.path] = record }
+        }
+        return result
+    }
+
+    private func verifyNativeResponse(_ record: [String: Any]) throws {
+        try nativeRequire(record["remoteDeviceAcknowledgement"] as? Bool == false,
+            "A local native readback must not manufacture a remote-device acknowledgement")
+        let bytes = try XCTUnwrap((record["nativeResponseBytes"] as? String).flatMap { Data(base64Encoded: $0) })
+        try nativeRequire(!bytes.isEmpty && Self.sha256(bytes) == record["nativeResponseSHA256"] as? String,
+            "The retained original native response must match its digest")
+    }
+
+    @MainActor
+    private func verifyNewNativeHistory(_ context: OrdinaryNativeExchangeContext,
+        previous: [String: [String: Any]], suffix: String, schema: String) throws -> [String: Any] {
+        let after = try nativeHistoryRecords(context.saved.uuid, suffix: suffix, schema: schema)
+        let added = Set(after.keys).subtracting(previous.keys)
+        try nativeRequire(added.count == 1, "One explicit UI action must produce one new result")
+        let record = try XCTUnwrap(after[try XCTUnwrap(added.first)])
+        try nativeRequire(record["kind"] as? String == "verified"
+            && record["objectID"] as? String == context.objectID,
+            "The actual original readback must verify the same native root")
+        let source = try XCTUnwrap(record["source"] as? [String: Any])
+        try nativeRequire(source["accountID"] as? String == OrdinaryNetworkFixture.accountID
+            && source["spaceID"] as? String == OrdinaryNetworkFixture.spaceID
+            && source["annotationUUID"] as? String == context.saved.uuid.uuidString
+            && (source["savedRevision"] as? NSNumber)?.int64Value == context.saved.revision,
+            "The action must retain the captured real account, Space and local note")
+        try verifyNativeResponse(record)
+        return record
+    }
+
+    private func attachExchangeStorage(_ row: CanonicalRow, stage: String, objectID: String) {
+        let value: [String: Any] = [
+            "stage": stage, "annotation_id": row.id, "annotation_uuid": row.uuid.uuidString,
+            "revision": row.revision, "payload_sha256": row.payloadDigest ?? "",
+            "native_body_sha256": row.body.map(Self.sha256) ?? "",
+            "native_object_id": objectID, "remote_device_acknowledgement": false,
+            "sqlite_open_mode": "read-only", "qualification_mode": false
+        ]
+        guard let bytes = try? JSONSerialization.data(withJSONObject: value, options: [.sortedKeys]) else {
+            XCTFail("The actual exchange observation must serialize"); return
+        }
+        let attachment = XCTAttachment(data: bytes, uniformTypeIdentifier: "public.json")
+        attachment.name = "ordinary-exchange-" + stage; attachment.lifetime = .keepAlways; add(attachment)
+        print("ORDINARY_NATIVE_EXCHANGE " + String(decoding: bytes, as: UTF8.self))
     }
 
     private struct CanonicalRow: Equatable {

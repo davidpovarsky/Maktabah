@@ -1,0 +1,150 @@
+{
+  "anytype_executed": 0,
+  "archive_bytes": 107369,
+  "cases": [
+    {
+      "name": "unprepared_discovery_does_not_install_schema_or_register_identity",
+      "seconds": 0.024053292,
+      "status": "PASS"
+    },
+    {
+      "name": "current_plan_preserves_legacy_and_uuid_original_identity",
+      "seconds": 0.057686208,
+      "status": "PASS"
+    },
+    {
+      "name": "utf8_8192_boundary_preserves_multibyte_and_long_note_bytes",
+      "seconds": 0.060947125,
+      "status": "PASS"
+    },
+    {
+      "name": "capture_text_comparison_rejects_normalization_nul_and_truncation",
+      "seconds": 0.007497625,
+      "status": "PASS"
+    },
+    {
+      "name": "native_seed_1mib_boundary_retains_oversize_bytes",
+      "seconds": 0.663440542,
+      "status": "PASS"
+    },
+    {
+      "name": "same_preview_different_full_text_is_refused",
+      "seconds": 0.043617125,
+      "status": "PASS"
+    },
+    {
+      "name": "long_preview_requires_exact_scalar_boundary",
+      "seconds": 0.00603375,
+      "status": "PASS"
+    },
+    {
+      "name": "saved_text_changed_after_plan_requires_new_explicit_preparation",
+      "seconds": 0.019574458,
+      "status": "PASS"
+    },
+    {
+      "name": "candidate_rechecks_original_metadata_and_revision_before_native_work",
+      "seconds": 0.027467583,
+      "status": "PASS"
+    },
+    {
+      "name": "existing_opaque_rich_body_is_preserved_without_native_decode",
+      "seconds": 0.04368675,
+      "status": "PASS"
+    },
+    {
+      "name": "future_envelope_is_retained_without_downgrade",
+      "seconds": 0.030072417,
+      "status": "PASS"
+    },
+    {
+      "name": "highlights_and_pending_deletions_are_not_converted",
+      "seconds": 0.021961667,
+      "status": "PASS"
+    },
+    {
+      "name": "retired_run_cannot_read_or_recover_current_authority",
+      "seconds": 0.011071583,
+      "status": "PASS"
+    },
+    {
+      "name": "original_profile_switch_retires_captured_scan",
+      "seconds": 0.020461084,
+      "status": "PASS"
+    },
+    {
+      "name": "bounded_scan_rejects_foreign_session_and_invalid_cursor",
+      "seconds": 0.007870792,
+      "status": "PASS"
+    },
+    {
+      "name": "resume_uses_real_canonical_saved_version_without_duplicate_conversion",
+      "seconds": 0.023365791,
+      "status": "PASS"
+    },
+    {
+      "name": "sqlite_nul_text_is_refused_without_truncated_selection",
+      "seconds": 0.007274,
+      "status": "PASS"
+    }
+  ],
+  "cloudkit_transport_executed": 0,
+  "cold_rescan": {
+    "canonical_rich_retained": true,
+    "cold_process_id": 22195,
+    "first_process_id": 22194,
+    "new_native_operations": 0,
+    "scope": "Actual separate Foundation executable process, not the iOS app"
+  },
+  "compiled_swift_sources": 27,
+  "evidence_archive_sha256": "cd10b5d50f3105b0b1970e548ad7fd95553bf49ccb3cca15c03b791ab6722f7f",
+  "executable_sha256": "980dfd2b96d1a6cd51aab2d91a699be8fb785ddf44b8ea0c80915009a6892d98",
+  "failed_cases": 0,
+  "historical_failed_job": "job_1142a48cc9b1",
+  "independent_sqlite_readback": {
+    "anytype_outbox_count": 0,
+    "canonical_local_versions": 1,
+    "component_body_sha256": "6991172b6a84381a3bd16282570d1e82b55fd78d6c4e723ef83060f93f644112",
+    "full_text_mismatch_preserved_original": true,
+    "original_legacy_cloudkit_identity_preserved": true,
+    "original_seed_size_note_bytes": [
+      1048576,
+      1048577
+    ],
+    "original_seed_size_note_sha256": [
+      "6d421b9f33e005f6af06fb171fbe18a69eefca90e289b71bd3205e44667a0eb9",
+      "516dd93c7ca3e2760a4cc24b57883b943323041288e4ef94d026680b07b8fdf8"
+    ],
+    "original_upload_pending": true,
+    "unchanged_note_bytes": [
+      8192,
+      8193,
+      8192
+    ],
+    "unchanged_note_sha256": [
+      "5fcd36aa22ebd099540f39d713a327484e0884579db62aea6fecba317bd18ccd",
+      "d95a89eeb7ac940ed75ed3135a1e027e60b4326009a87770c0e0601e00a0e123",
+      "b7af6609f6df23d1761aa0c481d1ac8f3b67606646d4e1a6eefce2aefd22df64"
+    ]
+  },
+  "job_id": "job_c83f237ed359",
+  "mac_evidence": "/Users/m1/builds/Maktabah-native-backfill-6da4c21a-20261125/attempt-1",
+  "native_5000_executed": 0,
+  "native_ui_executed": 0,
+  "passed_cases": 17,
+  "product_checkpoint": "562b90f003df0bdc5fd158157feea55807989780",
+  "raw_bytes": 4614899,
+  "raw_file_index_sha256": "778d0ca70e9d4f1e6e121d14ced6e324f8939b5fec2b56cb7bab967ef3fe0d7e",
+  "raw_files": 73,
+  "schema": "otzaria.actual-apple-native-backfill-proof.v1",
+  "scope": "Whole original SQLite/save/identity + unchanged planner; explicit catalog/UI/CloudKit doubles; test.opaque fixture body. Native worker/UI are source provenance only.",
+  "source_archive": {
+    "canonical_commit": "6da4c21a0151630395f1cd6e1ed2f56b217f550e",
+    "git_history_transferred": false,
+    "manifest_sha256": "95f1ed58206dc458534735c232ca687c7112532aabf7b510f8c089a87595e48b",
+    "verified_file_count": 87
+  },
+  "source_checkpoint": "6da4c21a0151630395f1cd6e1ed2f56b217f550e",
+  "status": "PASS_APPLE_FOUNDATION_NATIVE_BACKFILL_SELECTION",
+  "verified_source_files": 87
+}

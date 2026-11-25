@@ -1,0 +1,8 @@
+{
+  "byte_identical_retrieval": true,
+  "bytes": 2871,
+  "original_run": "script_job_a90f81a343de40be98466c6e2510c096",
+  "retrieved_at": "2026-11-25T06:53:58.917821+00:00",
+  "source_path": "/Users/m1/builds/maktabah-ordinary-network-source-20261125/RESULT.json",
+  "source_sha256": "ec1155fccc39d9532e3a7231b8325954f64733ad70e0b6f0e8201df7534f7704"
+}

@@ -1,0 +1,15 @@
+{
+  "all_member_sizes_and_sha256_verified": true,
+  "archive_sha256": "cd10b5d50f3105b0b1970e548ad7fd95553bf49ccb3cca15c03b791ab6722f7f",
+  "embedded_index_byte_identical": true,
+  "hosted_review_merge": "0af1784de2af029d1c6ccd844f19aed0dabed08f",
+  "index_sha256": "778d0ca70e9d4f1e6e121d14ced6e324f8939b5fec2b56cb7bab967ef3fe0d7e",
+  "integrated_proof_commit": "bcb4a20572db2cf84f62ba223bf5ae1028806ffd",
+  "raw_bytes": 4614899,
+  "raw_members": 73,
+  "scope": "Preserve 17 previously executed original Apple component tests; no new native engine, hosted UI, peer delivery or 5000-note pass claimed",
+  "source_evidence_commit": "df1d27a2b1a706987b290e026ce8f97afcb2421c",
+  "status": "INDEPENDENT_ARCHIVE_IDENTITY_VERIFIED",
+  "verification_job": "script_job_c1bbd82dfb434d02867b9a971d56c457",
+  "verified_at": "2026-11-25T06:35:58.699214+00:00"
+}
