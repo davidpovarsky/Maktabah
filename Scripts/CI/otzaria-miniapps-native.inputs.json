@@ -1,7 +1,7 @@
 {
   "local_producer_manifest": {
-    "path": "/Users/m1/builds/hanlin-miniapps-final-native-20261125/build/native-final-evidence/attempt-86a6dde3-build01/consumer-build/producer-manifest.json",
-    "sha256": "7db9894cb261ed13b9c9e7d393c2355af57f8281739f8629f3498a17369c980c"
+    "path": "/Users/m1/builds/hanlin-miniapps-native-recovery-86a6-20261125/build/native-final-evidence/attempt-86a6dde3-build04/consumer-build/producer-manifest.json",
+    "sha256": "a46fa7e5196e2a66ad7c0126302b390d400cbc6dca84e96d697fa9bf3cb10b25"
   },
   "local_producer_preparation": {
     "path": "Scripts/CI/miniapps-producer-preparation-86a6dde3.json",
