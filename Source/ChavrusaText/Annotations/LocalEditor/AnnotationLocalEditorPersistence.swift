@@ -1091,9 +1091,13 @@ struct AnnotationLocalEditorNativeRevisionTarget: Sendable, Equatable {
 
     init(objectID: String, expectedHeads: [String], expectedRootDigest: String) throws {
         guard !objectID.isEmpty, !objectID.utf8.contains(0),
-              !expectedHeads.isEmpty, expectedHeads.count <= 4_096,
-              expectedHeads.allSatisfy({ !$0.isEmpty && !$0.utf8.contains(0) }),
-              Set(expectedHeads.map { Data($0.utf8) }).count == expectedHeads.count,
+              !expectedHeads.isEmpty, expectedHeads.count <= 64,
+              expectedHeads.allSatisfy({
+                  !$0.isEmpty && $0.utf8.count <= 512 && !$0.utf8.contains(0)
+              }),
+              zip(expectedHeads, expectedHeads.dropFirst()).allSatisfy({
+                  $0.utf8.lexicographicallyPrecedes($1.utf8)
+              }),
               AnnotationExchangeValidation.digest(expectedRootDigest) else {
             throw AnnotationLocalEditorNativeAttemptError.invalidComparison
         }

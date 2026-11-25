@@ -193,7 +193,8 @@ final class AnnotationOriginalEditorRevisionAttempt {
             let transition: AnnotationLocalEditorNativeTransitionOutcome
             do {
                 try await Task.detached {
-                    try AnnotationOriginalEditorRevisionFile.verifyWitness(witness, at: witnessURL)
+                    try AnnotationOriginalEditorRevisionFile.verifyWitness(witness, at: witnessURL,
+                        capturedDatabaseURL: prepared.snapshot.databaseURL)
                 }.value
                 try Task.checkCancellation()
                 guard isCurrent(sourceLifetime.source) else { throw AnnotationLocalEditorError.retired }
@@ -346,17 +347,27 @@ enum AnnotationOriginalEditorRevisionFile {
     }
 
     static func persistWitness(_ witness: Witness, capturedDatabaseURL: URL) throws -> URL {
-        try requireReadHistory(witness.retainedReadURL)
+        try requireReadPath(witness.retainedReadURL, source: witness.source, database: capturedDatabaseURL)
         let directory = try directory(database: capturedDatabaseURL,
             annotation: witness.source.annotationUUID, attempt: witness.source.attemptID)
         let url = directory.appendingPathComponent("request.json")
         try write(witness, at: url)
-        try verifyWitness(witness, at: url)
+        try verifyWitness(witness, at: url, capturedDatabaseURL: capturedDatabaseURL)
         return url
     }
 
-    static func verifyWitness(_ witness: Witness, at url: URL) throws {
-        try requireReadHistory(witness.retainedReadURL)
+    static func verifyWitness(_ witness: Witness, at url: URL, capturedDatabaseURL: URL) throws {
+        let root = try historyRoot(database: capturedDatabaseURL)
+        let note = root.appendingPathComponent(witness.source.annotationUUID.uuidString, isDirectory: true)
+        let attempt = note.appendingPathComponent(witness.source.attemptID.uuidString, isDirectory: true)
+        guard witness.schema == "otzaria.original.annotation.revision-witness.v1",
+              witness.operation == "replace-existing-native-root", !witness.remoteDeviceAcknowledgement,
+              witness.source.namespace == "otzaria.local.annotation",
+              attempt.appendingPathComponent("request.json").standardizedFileURL == url.standardizedFileURL else {
+            throw AnnotationOriginalEditorRevisionError.wrongAttempt
+        }
+        try requireDirectory(root); try requireDirectory(note); try requireDirectory(attempt)
+        try requireReadPath(witness.retainedReadURL, source: witness.source, database: capturedDatabaseURL)
         let bytes = try encode(witness)
         try requireFile(url, maximum: 8 * 1_024 * 1_024)
         guard try readHistoryDigest(witness.retainedReadURL) == witness.retainedReadSHA256,
@@ -437,6 +448,17 @@ enum AnnotationOriginalEditorRevisionFile {
                 throw AnnotationOriginalEditorRevisionError.wrongAttempt
             }
             guard record.kind == .verified else { continue }
+            let requestURL = attempt.appendingPathComponent("request.json")
+            try requireFile(requestURL, maximum: 8 * 1_024 * 1_024)
+            let witness = try JSONDecoder().decode(Witness.self, from: Data(contentsOf: requestURL))
+            try verifyWitness(witness, at: requestURL, capturedDatabaseURL: capturedDatabaseURL)
+            guard try encode(record.source) == encode(witness.source),
+                  record.objectID.utf8.elementsEqual(witness.objectID.utf8),
+                  record.requestSHA256 == witness.requestSHA256,
+                  record.expectedRootSHA256 == witness.expectedRootSHA256,
+                  try encode(record.expectedHeads) == encode(witness.expectedHeads) else {
+                throw AnnotationOriginalEditorRevisionError.conflictingHistory
+            }
             guard record.source.savedRevision > 0, !record.source.accountID.isEmpty,
                   !record.source.spaceID.isEmpty, !record.objectID.isEmpty,
                   let response = record.nativeResponseBytes, !response.isEmpty,
@@ -489,6 +511,21 @@ enum AnnotationOriginalEditorRevisionFile {
     static func readHistoryDigest(_ url: URL) throws -> String {
         try requireReadHistory(url)
         return sha256(try Data(contentsOf: url))
+    }
+
+    private static func requireReadPath(_ url: URL, source: Source, database: URL) throws {
+        guard database.isFileURL, url.isFileURL else { throw AnnotationOriginalEditorRevisionError.unsafeStorage }
+        let database = database.standardizedFileURL.resolvingSymlinksInPath()
+        let parent = database.deletingLastPathComponent()
+            .appendingPathComponent(database.lastPathComponent + ".native-receive-history", isDirectory: true)
+        let note = parent.appendingPathComponent(source.annotationUUID.uuidString, isDirectory: true)
+        guard url.deletingLastPathComponent().standardizedFileURL == note,
+              url.pathExtension == "json",
+              let readID = UUID(uuidString: url.deletingPathExtension().lastPathComponent),
+              readID.uuidString == url.deletingPathExtension().lastPathComponent else {
+            throw AnnotationOriginalEditorRevisionError.unsafeStorage
+        }
+        try requireDirectory(parent); try requireDirectory(note); try requireReadHistory(url)
     }
 
     private static func requireReadHistory(_ url: URL) throws {
