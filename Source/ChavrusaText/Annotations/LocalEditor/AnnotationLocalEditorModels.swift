@@ -28,6 +28,10 @@ final class AnnotationLocalEditorLifetime: Sendable {
             weak var source: AnytypeOriginalEditorLocalAnnotationSourceLifetime?
         }
         var localAnnotations: [LocalAnnotationLink] = []
+        struct NativeBackfillLink: Sendable {
+            weak var source: AnytypeOriginalEditorLocalAnnotationBatchSourceLifetime?
+        }
+        var nativeBackfills: [NativeBackfillLink] = []
         #endif
     }
     private let state = Mutex(State())
@@ -36,17 +40,21 @@ final class AnnotationLocalEditorLifetime: Sendable {
         #if os(iOS) && canImport(AnytypeOriginalEditor)
         let retained = state.withLock { value -> (
             [AnytypeOriginalAnnotationImportSourceLifetime],
-            [AnytypeOriginalEditorLocalAnnotationSourceLifetime]
+            [AnytypeOriginalEditorLocalAnnotationSourceLifetime],
+            [AnytypeOriginalEditorLocalAnnotationBatchSourceLifetime]
         ) in
-            guard !value.retired else { return ([], []) }
+            guard !value.retired else { return ([], [], []) }
             value.retired = true
             let imports = value.nativeImports.compactMap { $0.source }
             let annotations = value.localAnnotations.compactMap { $0.source }
+            let backfills = value.nativeBackfills.compactMap { $0.source }
             value.nativeImports.removeAll()
             value.localAnnotations.removeAll()
+            value.nativeBackfills.removeAll()
             for source in imports { source.retire() }
             for source in annotations { source.retire() }
-            return (imports, annotations)
+            for source in backfills { source.retire() }
+            return (imports, annotations, backfills)
         }
         // A last strong release/deinit must occur outside this Host lock too.
         withExtendedLifetime(retained) {}
@@ -102,6 +110,25 @@ final class AnnotationLocalEditorLifetime: Sendable {
             value.localAnnotations = sources.map { .init(source: $0) }
             if !sources.contains(where: { $0 === source }) {
                 value.localAnnotations.append(.init(source: source))
+            }
+            return sources
+        }
+        withExtendedLifetime(retained) {}
+    }
+
+    /// The bounded Backfill run must retire with BOTH its run owner and the
+    /// captured original DB connection before native GCD admission can occur.
+    /// The SDK token marks itself unavailable synchronously and defers observers.
+    func bindNativeBackfillRetirement(_ source: AnytypeOriginalEditorLocalAnnotationBatchSourceLifetime) throws {
+        let retained = try state.withLock { value in
+            guard !value.retired, source.isCurrent else {
+                source.retire()
+                throw AnnotationLocalEditorError.retired
+            }
+            let sources = value.nativeBackfills.compactMap { $0.source }
+            value.nativeBackfills = sources.map { .init(source: $0) }
+            if !sources.contains(where: { $0 === source }) {
+                value.nativeBackfills.append(.init(source: source))
             }
             return sources
         }
