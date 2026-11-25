@@ -1,0 +1,8 @@
+{
+  "archive_path": "/tmp/otzaria-sqlite-final-proof-20261125/raw-evidence.tar.gz",
+  "archive_sha256": "cef1d6de1aaece41544663ed98f8fd1f628291ec2f99ccf38a6a860a99e8b01d",
+  "files": 469,
+  "inventory_sha256": "996f8d3bdc408319bd0b31a810a157b309e4a0ded30c47bf163f7c42783ef9f8",
+  "raw_bytes": 34928685,
+  "status": "PASS_DURABLE_ORACLE_ARCHIVE_READBACK"
+}
