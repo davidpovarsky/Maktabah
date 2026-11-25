@@ -1,0 +1,367 @@
+[
+  {
+    "path": "passed-6da4/attempt-1/ADMISSION.json",
+    "bytes": 219,
+    "sha256": "74341dcea50654cc59906a218a334827a13e80c360e13ee0c752002e541d5c83"
+  },
+  {
+    "path": "passed-6da4/attempt-1/COMMAND.json",
+    "bytes": 997,
+    "sha256": "b3f83c6a9514f11fd345ac466b754060c39c349e37462bf8ffe607a8ba8ed5cd"
+  },
+  {
+    "path": "passed-6da4/attempt-1/RESULT.json",
+    "bytes": 786,
+    "sha256": "610c600a6fff8249ca8650ea4f2a1d0c64bfc9fe2abc3cbc7cd862a716cd5831"
+  },
+  {
+    "path": "passed-6da4/attempt-1/runner.stderr.log",
+    "bytes": 30,
+    "sha256": "bbc8b176d3c74d4c5a7fd00b40280f98168e116d5272273bfe8e71407625540e"
+  },
+  {
+    "path": "passed-6da4/attempt-1/runner.stdout.log",
+    "bytes": 101,
+    "sha256": "e67b82cdfb494ab74d2c50273c3fce551f482c66f62bcc62e7260cc95c760591"
+  },
+  {
+    "path": "passed-6da4/attempt-1/gate/RESULT.json",
+    "bytes": 34318,
+    "sha256": "869930ce4324ca22277fe7d410365660c3108de87a0636b4b6908839d522a00e"
+  },
+  {
+    "path": "passed-6da4/attempt-1/gate/binary-path.log",
+    "bytes": 149,
+    "sha256": "e049440d3232f265b661b5f4b89aab85887bc3a525aaf1d2079834f6963c8b87"
+  },
+  {
+    "path": "passed-6da4/attempt-1/gate/cold-rescan.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "passed-6da4/attempt-1/gate/compile.log",
+    "bytes": 3901,
+    "sha256": "0e81fce3dff9ce92290061271479a1f414bae679499e92f2d8727b84b4938990"
+  },
+  {
+    "path": "passed-6da4/attempt-1/gate/selection-cases.log",
+    "bytes": 1040,
+    "sha256": "24a5c9607a460d98a3eb3ec5a9eba3286c71be93c49b3a233ab4dd83dc398676"
+  },
+  {
+    "path": "passed-6da4/transfer/SOURCE_INPUTS.json",
+    "bytes": 24720,
+    "sha256": "95f1ed58206dc458534735c232ca687c7112532aabf7b510f8c089a87595e48b"
+  },
+  {
+    "path": "failed-562b/attempt-1/ADMISSION.json",
+    "bytes": 237,
+    "sha256": "38c0b34b59fc5157c2ab159481085ed62b35396bbfb38cfae5d5a39658c2686b"
+  },
+  {
+    "path": "failed-562b/attempt-1/COMMAND.json",
+    "bytes": 993,
+    "sha256": "7fcd7f12546e521004ae3dc15419753ac1ce50cc05458cfa13d7f477666b897c"
+  },
+  {
+    "path": "failed-562b/attempt-1/RESULT.json",
+    "bytes": 577,
+    "sha256": "1174dd380b43a12c50a06b15745dabf755c2a32bb327e742c4efe56ae7a32398"
+  },
+  {
+    "path": "failed-562b/attempt-1/runner.stderr.log",
+    "bytes": 30,
+    "sha256": "bbc8b176d3c74d4c5a7fd00b40280f98168e116d5272273bfe8e71407625540e"
+  },
+  {
+    "path": "failed-562b/attempt-1/runner.stdout.log",
+    "bytes": 102,
+    "sha256": "f94d1e0aa3487f54830168011c81104b21e56c7aa2a8a5a8014a65dd94a634ae"
+  },
+  {
+    "path": "failed-562b/attempt-1/gate/RESULT.json",
+    "bytes": 28748,
+    "sha256": "703638f431500e6b1c7abea9e0baf8b991b8d8f7610951a5486538cc8f4c2607"
+  },
+  {
+    "path": "failed-562b/attempt-1/gate/compile.log",
+    "bytes": 17138,
+    "sha256": "05729e6740e839673ed2294c91f2f20d3a25f5d0af6d85cdd578f71837b60821"
+  },
+  {
+    "path": "failed-562b/transfer/SOURCE_INPUTS.json",
+    "bytes": 24720,
+    "sha256": "eb56e31e77dbad95ca7406dfd80c1469917b5f0dd711396aba7315caa0a65460"
+  },
+  {
+    "path": "passed-6da4/fixtures/CASES.json",
+    "bytes": 2244,
+    "sha256": "d84c79603b8052e9b87a89503da6a023a98f86ff18769ad04f4e4b0dd2bf6e88"
+  },
+  {
+    "path": "passed-6da4/fixtures/COLD.json",
+    "bytes": 82,
+    "sha256": "fbecba38200be8e8def9ef207e6db31e01d1f713d9ec665213ee1a2d939b9a8c"
+  },
+  {
+    "path": "passed-6da4/fixtures/RESUME.json",
+    "bytes": 87,
+    "sha256": "48cecd095e094a4d4e8844910d2beb82cc12ba4ad8365bf84583c7fbb34f3627"
+  },
+  {
+    "path": "passed-6da4/fixtures/boundaries/Annotations.sqlite",
+    "bytes": 167936,
+    "sha256": "88ab4395591cd44cd05ff7cbfe15c0dfb60a90d1acc750af2df74c9134db12b0"
+  },
+  {
+    "path": "passed-6da4/fixtures/boundaries/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb"
+  },
+  {
+    "path": "passed-6da4/fixtures/boundaries/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "passed-6da4/fixtures/candidate-change/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "9264c4d9e2f25f0cfbabe2f309d6248ad59b0e796a6054e1c879d7bebb68f9a7"
+  },
+  {
+    "path": "passed-6da4/fixtures/candidate-change/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "f4cfd1d5ef3ac01dd79546c7b11547147342ab7e39518e509ad2fc6d5bb36b08"
+  },
+  {
+    "path": "passed-6da4/fixtures/candidate-change/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "passed-6da4/fixtures/canonical-resume/Annotations.sqlite",
+    "bytes": 114688,
+    "sha256": "0c002fbe27cd0cb6d0c5d1e1375458ab047d896682d9b93c0d0d1a1186b7e49c"
+  },
+  {
+    "path": "passed-6da4/fixtures/canonical-resume/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb"
+  },
+  {
+    "path": "passed-6da4/fixtures/canonical-resume/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "passed-6da4/fixtures/future/Annotations.sqlite",
+    "bytes": 114688,
+    "sha256": "7186847a96c6ad846e137ae0071065704085edfb8c0450d6ad8186a6b4266db0"
+  },
+  {
+    "path": "passed-6da4/fixtures/future/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "2d017004a8d79a22158726f8a66ca0b8153bcd235b8d8d10d35cd4bbd879fdfe"
+  },
+  {
+    "path": "passed-6da4/fixtures/future/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "passed-6da4/fixtures/legacy/Annotations.sqlite",
+    "bytes": 118784,
+    "sha256": "0e70afbedd09e4e8da19e6797db0f2caaf14caa66e456f8d03111a91b4494ef9"
+  },
+  {
+    "path": "passed-6da4/fixtures/legacy/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb"
+  },
+  {
+    "path": "passed-6da4/fixtures/legacy/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "passed-6da4/fixtures/new-profile/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "0b9747e86d8be006bf28d07efb7e25b8a34462116b401bfb766addef423ab6a5"
+  },
+  {
+    "path": "passed-6da4/fixtures/new-profile/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "753adaf4fdfcf9b968a7301a5a09e09c83de8caa3c0aabdb0ef6de14c21cfedb"
+  },
+  {
+    "path": "passed-6da4/fixtures/new-profile/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "passed-6da4/fixtures/non-notes/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "9af9a817665d9889a92c26ead60c83a6dfe53d1ccdf526cf9416e87f24e9762f"
+  },
+  {
+    "path": "passed-6da4/fixtures/non-notes/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "83de44f6cc8e694fc9f0ef98bb896ae090fbe0f61c1aa6a6cd98caa627e35b69"
+  },
+  {
+    "path": "passed-6da4/fixtures/non-notes/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "passed-6da4/fixtures/nul/Annotations.sqlite",
+    "bytes": 4096,
+    "sha256": "2e96884c16791c7d4bde90a6db2c9da33c2a2aab3e52088adc148c368552a423"
+  },
+  {
+    "path": "passed-6da4/fixtures/nul/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "9c26f3b27827d3fda9c7827eeba59eeb2085b700e093fd435bd094e1b188e0ab"
+  },
+  {
+    "path": "passed-6da4/fixtures/nul/Annotations.sqlite-wal",
+    "bytes": 140112,
+    "sha256": "e260ab0d8050a63761db514d6e76712d7b5749253e94e884be7b8bbb28d91312"
+  },
+  {
+    "path": "passed-6da4/fixtures/old-profile/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "b8bee98c53ff9fd182ee15f6738a76fb3f4ed55de575cd69d06c34dcd00eed9b"
+  },
+  {
+    "path": "passed-6da4/fixtures/old-profile/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "284e9d0580a5611b6bf14864f52847dfd819fece09f448e6e502245d36f0a731"
+  },
+  {
+    "path": "passed-6da4/fixtures/old-profile/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "passed-6da4/fixtures/opaque/Annotations.sqlite",
+    "bytes": 114688,
+    "sha256": "402cfeedfce0b26afd3db4606d6dcfccb914dbaac8fac1cd6aac53496a0adda9"
+  },
+  {
+    "path": "passed-6da4/fixtures/opaque/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "caa220ece86bb0defc39c086de63ca1379ea20bde0ec12cc6eb32a87e4f85ac0"
+  },
+  {
+    "path": "passed-6da4/fixtures/opaque/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "passed-6da4/fixtures/retired/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "b8bee98c53ff9fd182ee15f6738a76fb3f4ed55de575cd69d06c34dcd00eed9b"
+  },
+  {
+    "path": "passed-6da4/fixtures/retired/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "fabcf209a02ad18afd051378ae0dae5b941ba62b3799120056d96a527b17b6b6"
+  },
+  {
+    "path": "passed-6da4/fixtures/retired/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "passed-6da4/fixtures/same-preview/Annotations.sqlite",
+    "bytes": 126976,
+    "sha256": "ef33ad26f67ff9face152432447aac72496d6bd400c8fcfabacfc315678537dc"
+  },
+  {
+    "path": "passed-6da4/fixtures/same-preview/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb"
+  },
+  {
+    "path": "passed-6da4/fixtures/same-preview/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "passed-6da4/fixtures/scan-bounds/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "91f7a7572fb58d577a2f82ab3a998fa00e1f499761bcc799f45b20bc2b99301c"
+  },
+  {
+    "path": "passed-6da4/fixtures/scan-bounds/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "f5c1cc9d0d5b42c5b6cb26f7b8857045f47b87b57582239c1b0f8e1873a9a087"
+  },
+  {
+    "path": "passed-6da4/fixtures/scan-bounds/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "passed-6da4/fixtures/seed-limit/Annotations.sqlite",
+    "bytes": 2228224,
+    "sha256": "78e9121b454148622001241bd18bd110158ec5e3dfecdae8a39a0e2e7281c5cc"
+  },
+  {
+    "path": "passed-6da4/fixtures/seed-limit/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb"
+  },
+  {
+    "path": "passed-6da4/fixtures/seed-limit/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "passed-6da4/fixtures/source-change/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "bcf1bc9650e8fb3094cea7ab42ff67b149bcff92b65a0c8f78a3c233fecda99f"
+  },
+  {
+    "path": "passed-6da4/fixtures/source-change/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "f2124ca4de8e111b1091f351fe40e0e0442a1865965b178136a87621e41eec73"
+  },
+  {
+    "path": "passed-6da4/fixtures/source-change/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "passed-6da4/fixtures/unprepared/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "6a7bd699b01fc60edd352ba5a28b052ef14c0c8c5bc46cc82120fcbbf678776b"
+  },
+  {
+    "path": "passed-6da4/fixtures/unprepared/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "354303097ccbd9bf92bad141a12a91e4365b9aabca1129ea6eaec1f4c3aa27bf"
+  },
+  {
+    "path": "passed-6da4/fixtures/unprepared/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "passed-6da4/fixtures/uuid/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "a8f018a63fc997eb3530b6308708b8acd0450aa8f757bea3c69e0720ba4c786d"
+  },
+  {
+    "path": "passed-6da4/fixtures/uuid/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "6981cb4d5f3879d4b09c17ee61d06783bddc357588a4e640a5ae48584b74746f"
+  },
+  {
+    "path": "passed-6da4/fixtures/uuid/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]
