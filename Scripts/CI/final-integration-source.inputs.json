@@ -8,14 +8,14 @@
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda"
   },
-  "application_source_sha": "25fe3014b7087b91ecb0bdded0f204d811534551",
+  "application_source_sha": "2a742f38ed149038e3ec5027643e0d4744b881ca",
   "application_trees": {
     "Maktabah-iOSUITests": "492494f622a5b557698b33ef1dd6b5eabf459459",
     "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3",
     "Source": "865ef9c1d485e011fe34108beee7dbe126b80ca8",
-    "Vendor": "673a6a8c66ea28350d689da3d60275b63f4d2b91"
+    "Vendor": "6e58b7ac171ad91f91f0357faf8e8a894a278345"
   },
-  "hanlin_source": "9ef80a6ddfc997724360a9a34bb1d05cbf7cad40",
+  "hanlin_source": "4b772b5a7f0eb826c9b9204122bba516af777592",
   "historical_application_source": "d3da55417a30e9a06b0255e2d0b561955034b260",
   "historical_control_source": "602659607a3a6a2586a7c4a8d7ce6114eec8cd86",
   "integration_base": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
@@ -854,7 +854,7 @@
       "after": {
         "kind": "commit",
         "mode": "160000",
-        "object": "9ef80a6ddfc997724360a9a34bb1d05cbf7cad40"
+        "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
       },
       "before": {
         "kind": "commit",
@@ -900,10 +900,10 @@
       },
       "patch": {
         "bytes": 323,
-        "sha256": "d2e65915c5058f849def93c600d7849426e017da846176effa4c43fd32175641"
+        "sha256": "896771b18041b4adc072ba9595febc41f65ed906f2acf2ccb32d126b3b754cd0"
       },
       "path": "Vendor/HanlinSDK",
-      "reason": "Reviewed exact combined standalone producer source9ef80a6ddfc997724360a9a34bb1d05cbf7cad40. Both shared SDK and current producer are required to bind that same identity. All shared package sources fromprevious571a remain identical; project/build corrections are retained. No consumer engine copy is added."
+      "reason": "Reviewed current standalone producer4b772b5a7f0eb826c9b9204122bba516af777592 retains notification Swift6.4 object-code correction and compatible ZIPFoundation bounds. Entire AgentSDK/Platform/PresentationSDK closure is byte-identical to the actual original SDK producer's6f525 source; Bridge/Picker bytes are unchanged from9ef80. Actual current standalone app receipt remains required; no consumer runtime copy is introduced."
     }
   ],
   "product_roots": [
