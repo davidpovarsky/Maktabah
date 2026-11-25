@@ -21,3 +21,9 @@ The OriginalEditor facade retires a native draft after any attempted native muta
 The new API compiler probe calls the real Attachment initializer, export and file-aware apply overload. It is not a runtime test. A newly qualified OriginalEditor SDK containing the native file facade is required before the Maktabah build can pass this probe. Historical e791/282-member qualification does not cover the new file APIs or the current corrected HanlinPlatform.
 
 The actual two-app acceptance must demonstrate native block/file upload and byte readback, cold reopen of the saved archive, callback replay without duplicate canonical files, changed-content preservation and cancellation/failure recovery. The existing text-only journey and portable file checks do not provide this evidence.
+
+## Adapter budget and installable file utility
+
+OtzariaMiniAppsNativeFileBudget.maximumBytes is the single 8 MiB aggregate transfer ceiling, derived from the original SDK OriginalAnnotationNativeArchiveLayout.maximumExpandedBytes. It does not raise the canonical TorahAnnotationPayloadLimits.maximumArchiveBytes (1 MiB) or the original complete payload/import gates. A terminal capture that exceeds those original gates fails and retains the callback for recovery; there is no independent attachment count cap.
+
+MiniApps/FileWorkshop contains a real installable NativeScript package for creating UTF-8 text files, reading/editing supplied UTF-8 attachments, and returning unchanged binary bytes under an optional new name. All completion requires the user-visible Return file action. The package binds actual per-window original host services and uses getContext, readAttachment, writeAttachment, complete and cancel. Source/ZIP syntax and packaging are not native acceptance.

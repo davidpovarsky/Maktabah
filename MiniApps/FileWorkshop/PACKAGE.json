@@ -1,0 +1,15 @@
+{
+  "app_id": "org.itorah.miniapps.fileworkshop",
+  "archive": "FileWorkshop.hanlinNativeScript",
+  "bundled_runtime": false,
+  "bytes": 4489,
+  "files": {
+    "nativescript/app/bundle.mjs": "9fc44afcf003ebf802b15bea5fdfde0f36832e61511f5596eab3b7567d6e501c",
+    "nativescript/app/package.json": "c0082b4731adfad3352ab7971b5ca0cee55cb0f9722e64563a42937e870c4333",
+    "script.json": "1646e3433362ee59bdd3993403ed4be82b83d62937d78ea7219540dac7f3ca5b"
+  },
+  "native_acceptance": "NOT_RUN",
+  "schema": 1,
+  "sha256": "dcb4acdf172edf46f9b13fd965ff0d7a0b62828b26a240704f8fd0baa2d02857",
+  "version": "1.0.0"
+}

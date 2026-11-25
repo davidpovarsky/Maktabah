@@ -228,7 +228,7 @@ final class AnnotationOriginalEditorMount {
         guard !saveAttempted, case .local(let session) = nativeOwner else {
             throw AnnotationLocalEditorError.wrongOwner
         }
-        let files = try await session.exportMiniAppsFiles(context: context, maximumBytes: 8 * 1_048_576)
+        let files = try await session.exportMiniAppsFiles(context: context, maximumBytes: OtzariaMiniAppsNativeFileBudget.maximumBytes)
         _ = try await readCurrentSnapshot()
         return files
     }

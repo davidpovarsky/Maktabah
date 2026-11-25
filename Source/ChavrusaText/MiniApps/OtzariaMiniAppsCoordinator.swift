@@ -9,6 +9,14 @@ import HanlinMiniAppsPicker
 import AnytypeOriginalEditor
 #endif
 
+/// Aggregate bytes accepted by the native-file adapter. This mirrors the
+/// OriginalEditor SDK maximumExpandedBytes in OriginalAnnotationNativeArchiveLayout.
+/// It does not alter TorahAnnotationPayloadLimits.maximumArchiveBytes (1 MiB):
+/// original compressed archive and complete payload gates still run at save.
+enum OtzariaMiniAppsNativeFileBudget {
+    static let maximumBytes = 8 * 1_048_576
+}
+
 /// The only MiniApps integration owner in this app. Execution remains in Hanlin MiniApps.
 @MainActor
 final class OtzariaMiniAppsCoordinator {
@@ -140,7 +148,7 @@ final class OtzariaMiniAppsCoordinator {
             let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
             let nativeContext = String(decoding: try encoder.encode(context), as: UTF8.self)
             let store = try MiniAppBridgeStore()
-            var remaining = 8 * 1_048_576
+            var remaining = OtzariaMiniAppsNativeFileBudget.maximumBytes
             var nativeFileBlocks: [String: String] = [:]
             let fileInputs = try files.map { file -> MiniAppContent in
                 guard file.attachment.data.count <= remaining else { throw MiniAppBridgeError.invalidAttachment }
@@ -346,7 +354,7 @@ final class OtzariaMiniAppsCoordinator {
     private func originalEditorPayload(_ result: MiniAppResult, store: MiniAppBridgeStore) throws
         -> (text: String, attachments: [AnytypeOriginalEditorMiniAppsAttachment]) {
         guard !result.items.isEmpty else { throw OtzariaMiniAppsError.noResult }
-        var remaining = 8 * 1_048_576
+        var remaining = OtzariaMiniAppsNativeFileBudget.maximumBytes
         var text: [String] = []
         var attachments: [AnytypeOriginalEditorMiniAppsAttachment] = []
         for item in result.items {
@@ -377,7 +385,7 @@ final class OtzariaMiniAppsCoordinator {
     /// Read an immutable bounded snapshot through one no-follow descriptor.
     /// A changed/truncated file fails before any native document mutation.
     private static func readOriginalAttachment(at url: URL, maximumBytes: Int) throws -> Data {
-        guard maximumBytes >= 0, maximumBytes <= 8 * 1_048_576 else {
+        guard maximumBytes >= 0, maximumBytes <= OtzariaMiniAppsNativeFileBudget.maximumBytes else {
             throw MiniAppBridgeError.invalidAttachment
         }
         let descriptor = Darwin.open(url.path, O_RDONLY | O_NOFOLLOW | O_CLOEXEC)
