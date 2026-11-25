@@ -1433,6 +1433,9 @@
 		A5733B9DAC7104C63B1536E6 /* AnnotationBackfillPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C725A87853F7E4416D1B6 /* AnnotationBackfillPlanner.swift */; };
 		D75E8675ADC0DAF7C3E3358B /* AnnotationBackfillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA58A22EFA5C94735F60BB /* AnnotationBackfillView.swift */; };
 		79DA4EE26773BE98954F6D4E /* AnnotationBackfill.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 35FBD567DB60305AAA80DF3A /* AnnotationBackfill.xcstrings */; };
+		8B407D0966F045C9C01630E5 /* AnnotationNativeBackfillCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98770A6E81F728898180A4A /* AnnotationNativeBackfillCatalog.swift */; };
+		BA7D9899102E1442A7D6170E /* AnnotationNativeBackfillModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B3C959BE1BBA2AACB91DD1 /* AnnotationNativeBackfillModel.swift */; };
+		9B0DE0028DA57DC37A84B004 /* AnnotationNativeBackfillSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AF032B95DC3A973A9AF429 /* AnnotationNativeBackfillSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2247,6 +2250,9 @@
 		D60C725A87853F7E4416D1B6 /* AnnotationBackfillPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Backfill/AnnotationBackfillPlanner.swift"; sourceTree = "<group>"; };
 		4AEA58A22EFA5C94735F60BB /* AnnotationBackfillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Backfill/AnnotationBackfillView.swift"; sourceTree = "<group>"; };
 		35FBD567DB60305AAA80DF3A /* AnnotationBackfill.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = "Annotations/Backfill/AnnotationBackfill.xcstrings"; sourceTree = "<group>"; };
+		E98770A6E81F728898180A4A /* AnnotationNativeBackfillCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Backfill/AnnotationNativeBackfillCatalog.swift"; sourceTree = "<group>"; };
+		C0B3C959BE1BBA2AACB91DD1 /* AnnotationNativeBackfillModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Backfill/AnnotationNativeBackfillModel.swift"; sourceTree = "<group>"; };
+		A6AF032B95DC3A973A9AF429 /* AnnotationNativeBackfillSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Backfill/AnnotationNativeBackfillSection.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2336,6 +2342,9 @@
 				DE72A20933EEE552ED6AC840 /* AnnotationExchangeIdentity.swift */,
 				D60C725A87853F7E4416D1B6 /* AnnotationBackfillPlanner.swift */,
 				4AEA58A22EFA5C94735F60BB /* AnnotationBackfillView.swift */,
+				A6AF032B95DC3A973A9AF429 /* AnnotationNativeBackfillSection.swift */,
+				C0B3C959BE1BBA2AACB91DD1 /* AnnotationNativeBackfillModel.swift */,
+				E98770A6E81F728898180A4A /* AnnotationNativeBackfillCatalog.swift */,
 				35FBD567DB60305AAA80DF3A /* AnnotationBackfill.xcstrings */,
 				7582DC05D9E1950BEEE7D085 /* AnnotationOriginalEditorMount.swift */,
 				E859C54909759C046AAFE93F /* AnnotationOriginalEditorQualification.swift */,
@@ -5117,6 +5126,9 @@
 				5AB7EAC38B502CB77986FF07 /* AnnotationExchangeIdentity.swift in Sources */,
 				A5733B9DAC7104C63B1536E6 /* AnnotationBackfillPlanner.swift in Sources */,
 				D75E8675ADC0DAF7C3E3358B /* AnnotationBackfillView.swift in Sources */,
+				9B0DE0028DA57DC37A84B004 /* AnnotationNativeBackfillSection.swift in Sources */,
+				BA7D9899102E1442A7D6170E /* AnnotationNativeBackfillModel.swift in Sources */,
+				8B407D0966F045C9C01630E5 /* AnnotationNativeBackfillCatalog.swift in Sources */,
 				0A5B8A034B694C2818E41C8A /* AnnotationOriginalEditorMount.swift in Sources */,
 				C618B79C91FD2056B24F707B /* AnnotationOriginalEditorQualification.swift in Sources */,
 				99F17897FA4D1681FA1511C9 /* AnnotationOriginalEditorSourceObservation.swift in Sources */,
