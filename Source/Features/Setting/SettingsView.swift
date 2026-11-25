@@ -297,6 +297,16 @@ extension SettingsView {
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
+            #if os(iOS)
+            if backendCoordinator.activeBackendID == .otzaria {
+                NavigationLink("otzaria.update.title") {
+                    OtzariaLibraryUpdateView()
+                }
+                .accessibilityIdentifier("settings-otzaria-library-updates")
+                .disabled(backendCoordinator.isTransitioning)
+            }
+            #endif
+
             if backendCoordinator.activeCapabilities.contains(.offlineLibrary),
                backendCoordinator.offlineProvider() != nil {
                 NavigationLink("Manage Offline Library") {
@@ -374,6 +384,15 @@ extension SettingsView {
 
     private var annotationsSection: some View {
         Section {
+            #if os(iOS)
+            NavigationLink {
+                AnnotationBackfillView()
+            } label: {
+                Text("Prepare existing notes", tableName: "AnnotationBackfill")
+            }
+            .accessibilityIdentifier("annotation-backfill-settings")
+            #endif
+
             Toggle(isOn: $viewModel.hideMissingBookAnnotations) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(.Setting.hideMissingBookAnnotations)

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "archive": "seforim-schema7.db.zst",
+  "size": 2129902636,
+  "sha256": "39a2b52129323ea53ac3629835c4721e25acff010a8fc971bf076a666a3b9587",
+  "partSizeLimit": 1992294400,
+  "githubAssetLimit": 2147483648,
+  "parts": [
+    {
+      "name": "seforim-schema7.db.zst.part-000",
+      "size": 1992294400,
+      "sha256": "91a9985084e5217b661664c3b53c357aaf354498752bf9f7c55d93581dcc9c33"
+    },
+    {
+      "name": "seforim-schema7.db.zst.part-001",
+      "size": 137608236,
+      "sha256": "a5469c776bae891d49dfcf33986474416b56ee739c4b0fba37ef7eb9ec53af1a"
+    }
+  ]
+}

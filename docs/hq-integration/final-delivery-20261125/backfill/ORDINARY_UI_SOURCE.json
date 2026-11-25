@@ -1,0 +1,38 @@
+{
+  "status": "SOURCE_ONLY_NOT_RUN",
+  "case": "ProductionAnnotationEditorAcceptanceTests/testOrdinaryPreparationConvertsSavedNoteOnceAndReopensNativeBodyAfterColdLaunch",
+  "previous_test_file_sha256": "941a98ada29a216fc3aa23f5c9302312965d6a4fc3df356da0c02506d7bc15bf",
+  "new_test_file_sha256": "aa37d9c35b1b8215db36479c77bf9de9722ecd42819a4281e0f59ee9fe85d532",
+  "original_method_and_helpers_byte_identical": true,
+  "qualification_mode": false,
+  "sqlite_writes_by_test": 0,
+  "native_bodies_injected": 0,
+  "original_ui_controller_update_pending": false,
+  "previous_controller_sha256": "6949cfbe6943e0ddd57f19c6a1d990a1b6e55a1ee72d3fa407afe6e71681e33b",
+  "controller_sha256": "e1c20b326cbcecf0ded659baa9c53901f3bc2dbf7ea673756ef4c5e1ca57915c",
+  "exact_observation_stages": [
+    "saved-plain-row",
+    "native-clear-kept-same-uuid",
+    "native-body-saved-same-uuid",
+    "discard-preserved-canonical-bytes",
+    "cold-open-preserved-same-rich-body",
+    "backfill-saved-plain-row",
+    "backfill-confirmation-cancelled",
+    "backfill-native-body-saved",
+    "backfill-repeat-kept-same-version",
+    "backfill-cold-native-render-kept-body"
+  ],
+  "selected_cases": [
+    "ProductionAnnotationEditorAcceptanceTests/testOrdinaryEditorSavesSameAnnotationDiscardsDraftAndRecoversAfterTermination",
+    "ProductionAnnotationEditorAcceptanceTests/testOrdinaryPreparationConvertsSavedNoteOnceAndReopensNativeBodyAfterColdLaunch"
+  ],
+  "native_ui_executions": 0,
+  "collector_fix": "Existing ordinary clear observation was missing from the old four-stage collector; all five actual stages now required. New Backfill five-stage journey is separately bound to its own retained real SQLite row.",
+  "independent_review": {
+    "reviewer": "library_acceptance",
+    "reviewed_head": "a57289cd3f65459193e25141ece434f4a0a4c325",
+    "finding": "Regular-width confirmationDialog may omit the Cancel button",
+    "resolution": "Tap actual Cancel when presented, otherwise require original popover/sheet containing the confirmation and dismiss at a point verified outside its current frame. Require disappearance and the unchanged original saved row before reconfirming.",
+    "native_ui_credit": false
+  }
+}

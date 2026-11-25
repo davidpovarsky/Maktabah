@@ -298,7 +298,10 @@ final class OtzariaMiniAppsCoordinator {
             do {
                 guard let model,
                       model.annotation.ckRecordId == document.annotationUUID,
-                      model.annotation.id == document.annotationID else { throw OtzariaMiniAppsError.missingDocument }
+                      model.annotation.id == document.annotationID,
+                      let expectedNativeAnnotationUUID = model.mount?.binding.annotationUUID else {
+                    throw OtzariaMiniAppsError.missingDocument
+                }
                 let files = try self.retainAttachments(result, store: store)
                 guard !result.items.isEmpty else { throw OtzariaMiniAppsError.noResult }
                 let text = try result.items.map { item -> String in
@@ -317,7 +320,7 @@ final class OtzariaMiniAppsCoordinator {
                 case .completedWithoutOwnership(let committed): receipt = committed
                 }
                 guard receipt.mutationID == result.requestID,
-                      receipt.annotationUUID == UUID(uuidString: document.annotationUUID) else {
+                      receipt.annotationUUID == expectedNativeAnnotationUUID else {
                     throw MiniAppBridgeError.conflictingResult
                 }
                 // The native archive and exact result receipt already committed

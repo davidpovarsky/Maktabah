@@ -1,0 +1,10 @@
+{
+  "scope": "SOURCE_REGISTRATION_ONLY",
+  "name": "AnnotationOriginalEditorReceive.swift",
+  "file_reference": "E7117E78E62BEB44CF259B84",
+  "build_reference": "8D1A9D5FD552552489C1F551",
+  "source_phase": "F30576E22FA46222005732C6",
+  "before_sha256": "8050b7cffba1a5a4532edf890110bb76f1c6ffc04e604a3af75302d6af1b9efb",
+  "after_sha256": "4da12e08af82e5eae4dc3bb05bfc7e19f1ba9f33cacafd2b9622aa0ed55e8a42",
+  "app_build_executed": false
+}

@@ -1,0 +1,14 @@
+{
+  "observedAt": "2026-11-25T01:42:21.320365+00:00",
+  "parser": "actual macOS plutil",
+  "projectSHA256": "baecccfe7115b27c248f06683999a67a38b73e2ae9f33aeb678fa17ed1fdef95",
+  "iosSourceMembership": {
+    "OtzariaLibraryUpdatePolicy.swift": 1,
+    "OtzariaLibraryUpdateView.swift": 1,
+    "OtzariaMiniAppsCoordinator.swift": 1,
+    "OtzariaMiniAppsDocument.swift": 1,
+    "OtzariaMiniAppsPersistence.swift": 1,
+    "OtzariaMiniAppsReceiptJournal.swift": 1
+  },
+  "scope": "source registration only, not compile/runtime"
+}

@@ -1,0 +1,59 @@
+[
+  {
+    "path": "AnnotationOriginalEditorImport.swift",
+    "sha256": "2377acd8064f7287126f248266cb0cf73cd88d3e327e99526d36e04c670d4123",
+    "command": [
+      "xcrun",
+      "swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+      "-F",
+      "/Users/m1/builds/anytype-34b8a7c5ddb3-sdk/build/SDK-Work/producer-derived-preserved/Build/Products/Debug-Anytype-iphonesimulator",
+      "/Users/m1/builds/otzaria-native-share-20261125/AnnotationOriginalEditorImport.swift"
+    ],
+    "exit": 0,
+    "stderr": ""
+  },
+  {
+    "path": "AnnotationOriginalEditorProductionUI.swift",
+    "sha256": "2538e127de364edd33b7eaa25c560fa4e6d8793ba867cfc82c2077ddd0efd9cc",
+    "command": [
+      "xcrun",
+      "swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+      "-F",
+      "/Users/m1/builds/anytype-34b8a7c5ddb3-sdk/build/SDK-Work/producer-derived-preserved/Build/Products/Debug-Anytype-iphonesimulator",
+      "/Users/m1/builds/otzaria-native-share-20261125/AnnotationOriginalEditorProductionUI.swift"
+    ],
+    "exit": 0,
+    "stderr": ""
+  },
+  {
+    "path": "ProductionAnnotationEditorAcceptanceTests.swift",
+    "sha256": "320739203190ba1eecbeaeaf457a24821f4ad065b59a54dbea6e2f61cf563e6e",
+    "command": [
+      "xcrun",
+      "swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+      "-F",
+      "/Users/m1/builds/anytype-34b8a7c5ddb3-sdk/build/SDK-Work/producer-derived-preserved/Build/Products/Debug-Anytype-iphonesimulator",
+      "/Users/m1/builds/otzaria-native-share-20261125/ProductionAnnotationEditorAcceptanceTests.swift"
+    ],
+    "exit": 0,
+    "stderr": ""
+  }
+]

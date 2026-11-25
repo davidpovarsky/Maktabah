@@ -45,6 +45,27 @@ final class AnnotationLocalEditorPersistence: Sendable {
     func prepare(snapshot: AnnotationLocalEditorSnapshot, mutationID: UUID,
                  body: TorahAnnotationEnvelope.RichBody, textPreview: String,
                  editorRevision: String?) throws -> AnnotationLocalEditorIntent {
+        try prepare(snapshot: snapshot, mutationID: mutationID, body: body,
+            textPreview: textPreview, editorRevision: editorRevision,
+            noteWritePolicy: .replaceWithPreview)
+    }
+
+    /// Internal storage boundary for the first original native conversion. The
+    /// iOS Session entry requires the SDK's closed, current native capture and
+    /// exact full-text equality before calling here. This boundary independently
+    /// refuses an existing rich body and keeps the actual saved note in SQLite.
+    func prepareNativeBackfill(snapshot: AnnotationLocalEditorSnapshot, mutationID: UUID,
+                               body: TorahAnnotationEnvelope.RichBody, textPreview: String,
+                               editorRevision: String?) throws -> AnnotationLocalEditorIntent {
+        try prepare(snapshot: snapshot, mutationID: mutationID, body: body,
+            textPreview: textPreview, editorRevision: editorRevision,
+            noteWritePolicy: .preserveOriginalText)
+    }
+
+    private func prepare(snapshot: AnnotationLocalEditorSnapshot, mutationID: UUID,
+                         body: TorahAnnotationEnvelope.RichBody, textPreview: String,
+                         editorRevision: String?,
+                         noteWritePolicy: AnnotationLocalEditorNoteWritePolicy) throws -> AnnotationLocalEditorIntent {
         try connection.requireCurrent(owner: owner)
         try requireSnapshotOwner(snapshot)
         try requireEditable(snapshot)
@@ -60,7 +81,19 @@ final class AnnotationLocalEditorPersistence: Sendable {
                 throw AnnotationLocalEditorError.unsupportedBody
             }
         }
-        let fields: ActionObject = [
+        if noteWritePolicy == .preserveOriginalText {
+            guard let originalText = snapshot.annotation.note, !originalText.isEmpty,
+                  !originalText.utf8.contains(0),
+                  originalText.utf8.starts(with: textPreview.utf8),
+                  originalText.utf8.count > 8_192 || originalText.utf8.elementsEqual(textPreview.utf8) else {
+                throw AnnotationLocalEditorError.invalidPreview
+            }
+            if case .supported(let existing, _)? = snapshot.document,
+               existing.richBody != nil {
+                throw AnnotationLocalEditorError.unsupportedBody
+            }
+        }
+        var fields: ActionObject = [
             "namespace": .string(Self.namespace), "annotationUUID": .string(annotationUUID.uuidString),
             "expectedRevision": .integer(snapshot.revision), "sourceSHA256": .string(snapshot.source.digest),
             "priorPayloadSHA256": snapshot.version.map { .string($0.payloadDigest) } ?? .null,
@@ -68,10 +101,19 @@ final class AnnotationLocalEditorPersistence: Sendable {
             "bytesBase64": .string(body.bytes.base64EncodedString()), "textPreview": .string(textPreview),
             "editorRevision": editorRevision.map(ActionJSON.string) ?? .null
         ]
+        if noteWritePolicy == .preserveOriginalText {
+            guard let originalText = snapshot.annotation.note else {
+                throw AnnotationLocalEditorError.invalidIntent
+            }
+            fields["savedNoteWrite"] = .string("preserve-original-text.v1")
+            fields["savedNoteSHA256"] = .string(try digest.sha256(Data(originalText.utf8)))
+        }
+        // The default edit keeps its original canonical fields and digest.
         let intentDigest = try digest.sha256(AnnotationExchangeValidation.canonical(.object(fields)))
         guard AnnotationExchangeValidation.digest(intentDigest) else { throw AnnotationLocalEditorError.corruptRecord }
         return .init(mutationID: mutationID, snapshot: snapshot, body: body, textPreview: textPreview,
-                     editorRevision: editorRevision, intentDigest: intentDigest)
+                     editorRevision: editorRevision, intentDigest: intentDigest,
+                     noteWritePolicy: noteWritePolicy)
     }
 
     func commit(_ intent: AnnotationLocalEditorIntent) throws -> AnnotationLocalEditorCommitted {
@@ -79,7 +121,8 @@ final class AnnotationLocalEditorPersistence: Sendable {
         // Recompute the command from its original snapshot, never from newer DB
         // contents. This also checks unsupported versions/formats before writes.
         let validated = try prepare(snapshot: intent.snapshot, mutationID: intent.mutationID,
-            body: intent.body, textPreview: intent.textPreview, editorRevision: intent.editorRevision)
+            body: intent.body, textPreview: intent.textPreview, editorRevision: intent.editorRevision,
+            noteWritePolicy: intent.noteWritePolicy)
         guard validated.intentDigest == intent.intentDigest else { throw AnnotationLocalEditorError.invalidIntent }
         var result: AnnotationLocalEditorCommitted?
         try connection.database.transaction {
@@ -101,11 +144,25 @@ final class AnnotationLocalEditorPersistence: Sendable {
                 SELECT COUNT(*) FROM sync_pending WHERE ck_record_id = ? COLLATE NOCASE AND operation = 'delete';
                 """, parameters: [recordID]) { $0.int64(at: 0) }.first ?? 0
             guard deleted == 0 else { throw AnnotationLocalEditorError.pendingDeletion }
+            let savedNoteText: String
+            switch intent.noteWritePolicy {
+            case .replaceWithPreview:
+                savedNoteText = intent.textPreview
+            case .preserveOriginalText:
+                guard let originalText = before.annotation.note,
+                      let capturedText = intent.snapshot.annotation.note,
+                      originalText.utf8.elementsEqual(capturedText.utf8) else {
+                    throw AnnotationExchangeError.staleSource
+                }
+                // Use the current row validated inside this same transaction.
+                // A caller-supplied snapshot cannot substitute different text.
+                savedNoteText = originalText
+            }
             try Task.checkCancellation()
             try connection.database.execute(query: """
                 UPDATE annotations SET note = ?, lastModified = ?
                 WHERE id = ? AND ckRecordId = ? COLLATE NOCASE;
-                """, parameters: [intent.textPreview, Int64(Date().timeIntervalSince1970), annotationID, recordID])
+                """, parameters: [savedNoteText, Int64(Date().timeIntervalSince1970), annotationID, recordID])
             // Same original pending queue, in the same outer transaction. No
             // exchange destination or acknowledgement is manufactured here.
             try connection.syncPending.addPendingSync(ckRecordId: recordID, operation: "upload")
@@ -116,7 +173,7 @@ final class AnnotationLocalEditorPersistence: Sendable {
             guard receipt.deliveries.isEmpty else { throw AnnotationLocalEditorError.corruptRecord }
             let after = try snapshotLocked()
             guard after.revision == receipt.revision, after.version?.payloadDigest == receipt.payloadDigest,
-                  after.annotation.note?.utf8.elementsEqual(intent.textPreview.utf8) == true else {
+                  after.annotation.note?.utf8.elementsEqual(savedNoteText.utf8) == true else {
                 throw AnnotationLocalEditorError.corruptRecord
             }
             try requireCurrent()
@@ -185,10 +242,11 @@ final class AnnotationLocalEditorPersistence: Sendable {
     private func snapshotLocked() throws -> AnnotationLocalEditorSnapshot {
         let source = try ledger.captureSource(annotationUUID: annotationUUID)
         guard source.exists else { throw AnnotationLocalEditorError.missingAnnotation }
-        let rows = try connection.database.fetch(query: "SELECT * FROM annotations WHERE ckRecordId = ? COLLATE NOCASE;",
-            parameters: [annotationUUID.uuidString]) { connection.mapRow($0, []) }
+        let rows = try connection.database.fetch(query: "SELECT * FROM main.annotations WHERE id = ?;",
+            parameters: [annotationID]) { connection.mapRow($0, []) }
         guard rows.count == 1, var annotation = rows.first, annotation.id == annotationID,
-              annotation.ckRecordId.flatMap(UUID.init(uuidString:)) == annotationUUID else {
+              try AnnotationExchangeIdentity.resolve(database: connection.database, annotationID: annotationID,
+                  originalRecordID: annotation.ckRecordId) == annotationUUID else {
             throw AnnotationLocalEditorError.missingAnnotation
         }
         // Same query/order as the original fetchTags, on the captured handle.
@@ -1060,9 +1118,10 @@ extension AnnotationLocalEditorPersistence {
             }
             let ledger = AnnotationExchangeLedger(database: database, digest: AnnotationExchangePlatformDigest())
             guard try ledger.hasInstalledSchema() else { return }
-            // Legacy rows with no UUID cannot name an immutable rich version.
-            // The exact original record-ID comparison above still protects identity.
-            guard let uuid = records[0].flatMap(UUID.init(uuidString:)),
+            // Unregistered legacy rows cannot name an immutable rich version.
+            // Explicitly registered aliases obey the same opaque-body guard.
+            guard let uuid = try AnnotationExchangeIdentity.resolve(database: database, annotationID: annotationID,
+                  originalRecordID: records[0]),
                   let version = try ledger.currentVersion(namespace: Self.namespace, annotationUUID: uuid) else {
                 return
             }
@@ -1073,6 +1132,296 @@ extension AnnotationLocalEditorPersistence {
             guard envelope.richBody == nil else {
                 throw AnnotationPlainWriteError.requiresExpandedEditor
             }
+        }
+    }
+}
+
+
+// MARK: - Conditional replacement of an existing original native root
+
+/// Historical comparison data only. The SDK still requires its nonconstructible
+/// current-session token; this value cannot authorize any native operation.
+struct AnnotationLocalEditorNativeRevisionTarget: Sendable, Equatable {
+    let objectID: String
+    let expectedHeads: [String]
+    let expectedRootDigest: String
+
+    init(objectID: String, expectedHeads: [String], expectedRootDigest: String) throws {
+        guard !objectID.isEmpty, !objectID.utf8.contains(0),
+              !expectedHeads.isEmpty, expectedHeads.count <= 64,
+              expectedHeads.allSatisfy({
+                  !$0.isEmpty && $0.utf8.count <= 512 && !$0.utf8.contains(0)
+              }),
+              zip(expectedHeads, expectedHeads.dropFirst()).allSatisfy({ pair in
+                  pair.0.utf8.lexicographicallyPrecedes(pair.1.utf8)
+              }),
+              AnnotationExchangeValidation.digest(expectedRootDigest) else {
+            throw AnnotationLocalEditorNativeAttemptError.invalidComparison
+        }
+        self.objectID = objectID
+        self.expectedHeads = expectedHeads
+        self.expectedRootDigest = expectedRootDigest
+    }
+
+    fileprivate var canonicalBytes: Data {
+        get throws {
+            try JSONSerialization.data(withJSONObject: [
+                "operation": "replace-existing-native-root",
+                "objectID": objectID,
+                "expectedHeads": expectedHeads,
+                "expectedRootSHA256": expectedRootDigest
+            ], options: [.sortedKeys, .withoutEscapingSlashes])
+        }
+    }
+}
+
+/// This is deliberately a different closed type from fresh-import preparation.
+/// A historical import remains permanently uncertain after possible dispatch.
+/// Preparing a conditional revision never changes, deletes or adopts that row.
+final class AnnotationLocalEditorNativeRevisionPreparation: Sendable {
+    let target: AnnotationLocalEditorNativeRevisionTarget
+    let observation: AnnotationLocalEditorNativeAttemptObservation
+    var snapshot: AnnotationLocalEditorSnapshot { original.snapshot }
+    var comparison: AnnotationLocalEditorNativeComparison { original.comparison }
+    fileprivate let original: AnnotationLocalEditorNativePreparation
+    fileprivate let imageBase64: String
+    fileprivate let imageDigest: String
+    fileprivate let targetBase64: String
+    fileprivate let targetDigest: String
+
+    fileprivate init(original: AnnotationLocalEditorNativePreparation,
+                     target: AnnotationLocalEditorNativeRevisionTarget,
+                     imageBase64: String, imageDigest: String,
+                     targetBase64: String, targetDigest: String) {
+        self.original = original; self.target = target
+        observation = original.observation
+        self.imageBase64 = imageBase64; self.imageDigest = imageDigest
+        self.targetBase64 = targetBase64; self.targetDigest = targetDigest
+    }
+
+    fileprivate var parameters: [Any] {
+        [observation.attemptID.uuidString, imageBase64, imageDigest, targetBase64, targetDigest]
+    }
+}
+
+enum AnnotationLocalEditorNativeRevisionPreparationOutcome: Sendable {
+    case prepared(AnnotationLocalEditorNativeRevisionPreparation)
+    case recordedWithoutOwnership(AnnotationLocalEditorNativeAttemptObservation)
+}
+
+extension AnnotationLocalEditorPersistence {
+    private enum NativeRevisionTables {
+        static let schema = "otzaria_local_editor_native_revision_schema"
+        static let attempts = "otzaria_local_editor_native_revision_attempts"
+        static let maximumImageBytes =
+            2 * (8_388_608 + TorahAnnotationPayloadLimits.maximumEnvelopeBytes) + 65_536
+        static let maximumImageBase64Bytes = 4 * ((maximumImageBytes + 2) / 3)
+        static let maximumRequestBytes = 2 * 1_024 * 1_024
+        static let maximumRequestBase64Bytes = 4 * ((maximumRequestBytes + 2) / 3)
+        static let exactPredicate = """
+            attempt_uuid = ? COLLATE BINARY AND image_base64 = ? COLLATE BINARY
+            AND image_sha256 = ? COLLATE BINARY AND target_base64 = ? COLLATE BINARY
+            AND target_sha256 = ? COLLATE BINARY AND operation = 'revision'
+            """
+    }
+
+    func prepareNativeRevision(
+        snapshot: AnnotationLocalEditorSnapshot,
+        comparison: AnnotationLocalEditorNativeComparison,
+        target: AnnotationLocalEditorNativeRevisionTarget
+    ) throws -> AnnotationLocalEditorNativeRevisionPreparation {
+        try requireSnapshotOwner(snapshot)
+        return try withNativeAttemptCommit {
+            let actual = try requireNativeSavedSnapshotLocked(snapshot)
+            let image = try nativeFrozenImage(snapshot: actual, comparison: comparison)
+            let imageBytes = try JSONSerialization.data(withJSONObject: [
+                "schema": "otzaria.original.annotation.revision-source.v1",
+                "columns": AnnotationLocalEditorNativeFrozenImage.columns,
+                "values": image.parameters
+            ], options: [.sortedKeys, .withoutEscapingSlashes])
+            let targetBytes = try target.canonicalBytes
+            guard imageBytes.count <= NativeRevisionTables.maximumImageBytes,
+                  targetBytes.count <= NativeRevisionTables.maximumRequestBytes else {
+                throw AnnotationLocalEditorNativeAttemptError.invalidComparison
+            }
+            try requireNativeRevisionSchemaLocked(installIfAbsent: true)
+            let observation = image.observation(storage: self, state: .prepared)
+            let original = AnnotationLocalEditorNativePreparation(storage: self,
+                snapshot: actual, comparison: comparison, observation: observation, image: image)
+            let prepared = AnnotationLocalEditorNativeRevisionPreparation(original: original,
+                target: target, imageBase64: imageBytes.base64EncodedString(),
+                imageDigest: try digest.sha256(imageBytes),
+                targetBase64: targetBytes.base64EncodedString(),
+                targetDigest: try digest.sha256(targetBytes))
+            try connection.database.execute(query: """
+                INSERT INTO main.\(NativeRevisionTables.attempts)
+                (attempt_uuid, image_base64, image_sha256, target_base64,
+                 target_sha256, operation, dispatch_state)
+                VALUES (?, ?, ?, ?, ?, 'revision', 'prepared');
+                """, parameters: prepared.parameters)
+            guard sqlite3_changes64(connection.database.dbPointer) == 1 else {
+                throw AnnotationLocalEditorNativeAttemptError.corruptRecord
+            }
+            try requireNativeRevisionImageLocked(prepared, request: nil)
+            return prepared
+        }
+    }
+
+    /// The exact bounded SDK request is durably added in the same original
+    /// SQLite commit as possible-dispatch. Repeating this method cannot invoke
+    /// native work or turn an uncertain revision into a retry permit.
+    func markNativeRevisionMayHaveDispatched(
+        _ prepared: AnnotationLocalEditorNativeRevisionPreparation,
+        requestBytes: Data, requestSHA256: String
+    ) throws -> AnnotationLocalEditorNativeAttemptObservation {
+        guard prepared.original.storage === self,
+              prepared.observation.observedBy === self,
+              !requestBytes.isEmpty,
+              requestBytes.count <= NativeRevisionTables.maximumRequestBytes,
+              AnnotationExchangeValidation.digest(requestSHA256),
+              try digest.sha256(requestBytes) == requestSHA256 else {
+            throw AnnotationLocalEditorNativeAttemptError.wrongPreparation
+        }
+        return try withNativeAttemptCommit {
+            try requireNativeRevisionSchemaLocked(installIfAbsent: false)
+            _ = try requireNativeSavedSnapshotLocked(prepared.snapshot)
+            try requireNativeRevisionImageLocked(prepared, request: nil)
+            let request = (requestBytes.base64EncodedString(), requestSHA256)
+            try connection.database.execute(query: """
+                UPDATE main.\(NativeRevisionTables.attempts)
+                SET request_base64 = ?, request_sha256 = ?,
+                    dispatch_state = 'dispatch_may_have_occurred'
+                WHERE \(NativeRevisionTables.exactPredicate)
+                    AND dispatch_state = 'prepared'
+                    AND request_base64 IS NULL AND request_sha256 IS NULL;
+                """, parameters: [request.0, request.1] + prepared.parameters)
+            guard sqlite3_changes64(connection.database.dbPointer) == 1 else {
+                throw AnnotationLocalEditorNativeAttemptError.observationChanged
+            }
+            try requireNativeRevisionImageLocked(prepared, request: request)
+            return prepared.original.image.observation(storage: self, state: .dispatchMayHaveOccurred)
+        }
+    }
+
+    func ownsNativeRevisionPreparation(_ prepared: AnnotationLocalEditorNativeRevisionPreparation) -> Bool {
+        ownsNativePreparation(prepared.original)
+    }
+
+    #if os(iOS) && canImport(AnytypeOriginalEditor)
+    func bindNativeRevisionRetirement(
+        _ source: AnytypeOriginalAnnotationImportSourceLifetime,
+        prepared: AnnotationLocalEditorNativeRevisionPreparation
+    ) throws {
+        try bindNativeImportRetirement(source, prepared: prepared.original)
+    }
+    #endif
+
+    private func requireNativeRevisionImageLocked(
+        _ prepared: AnnotationLocalEditorNativeRevisionPreparation,
+        request: (String, String)?
+    ) throws {
+        let tail: String
+        let parameters: [Any]
+        if let request {
+            tail = """
+                AND dispatch_state = 'dispatch_may_have_occurred'
+                AND request_base64 = ? COLLATE BINARY AND request_sha256 = ? COLLATE BINARY
+                """
+            parameters = prepared.parameters + [request.0, request.1]
+        } else {
+            tail = "AND dispatch_state = 'prepared' AND request_base64 IS NULL AND request_sha256 IS NULL"
+            parameters = prepared.parameters
+        }
+        let count = try connection.database.fetch(query: """
+            SELECT COUNT(*) FROM main.\(NativeRevisionTables.attempts)
+            WHERE \(NativeRevisionTables.exactPredicate) \(tail);
+            """, parameters: parameters) { $0.int64(at: 0) }
+        guard count == [1] else { throw AnnotationLocalEditorNativeAttemptError.observationChanged }
+    }
+
+    private static var nativeRevisionDefinitions: [(name: String, type: String, table: String, sql: String)] {
+        let schema = NativeRevisionTables.schema, attempts = NativeRevisionTables.attempts
+        return [
+            (schema, "table", schema, """
+                CREATE TABLE \(schema) (
+                    singleton INTEGER PRIMARY KEY CHECK(singleton = 1),
+                    version INTEGER NOT NULL CHECK(typeof(version) = 'integer' AND version = 1)
+                )
+                """),
+            (attempts, "table", attempts, """
+                CREATE TABLE \(attempts) (
+                    attempt_uuid TEXT PRIMARY KEY NOT NULL CHECK(typeof(attempt_uuid) = 'text' AND length(CAST(attempt_uuid AS BLOB)) = 36),
+                    operation TEXT NOT NULL CHECK(typeof(operation) = 'text' AND operation = 'revision'),
+                    image_base64 TEXT NOT NULL CHECK(typeof(image_base64) = 'text' AND length(CAST(image_base64 AS BLOB)) BETWEEN 1 AND \(NativeRevisionTables.maximumImageBase64Bytes)),
+                    image_sha256 TEXT NOT NULL CHECK(typeof(image_sha256) = 'text' AND length(CAST(image_sha256 AS BLOB)) = 64),
+                    target_base64 TEXT NOT NULL CHECK(typeof(target_base64) = 'text' AND length(CAST(target_base64 AS BLOB)) BETWEEN 1 AND \(NativeRevisionTables.maximumRequestBase64Bytes)),
+                    target_sha256 TEXT NOT NULL CHECK(typeof(target_sha256) = 'text' AND length(CAST(target_sha256 AS BLOB)) = 64),
+                    request_base64 TEXT,
+                    request_sha256 TEXT,
+                    dispatch_state TEXT NOT NULL CHECK(typeof(dispatch_state) = 'text' AND dispatch_state IN ('prepared', 'dispatch_may_have_occurred')),
+                    CHECK((dispatch_state = 'prepared' AND request_base64 IS NULL AND request_sha256 IS NULL)
+                       OR (dispatch_state = 'dispatch_may_have_occurred' AND typeof(request_base64) = 'text'
+                           AND length(CAST(request_base64 AS BLOB)) BETWEEN 1 AND \(NativeRevisionTables.maximumRequestBase64Bytes)
+                           AND typeof(request_sha256) = 'text' AND length(CAST(request_sha256 AS BLOB)) = 64))
+                )
+                """)
+        ]
+    }
+
+    private func requireNativeRevisionSchemaLocked(installIfAbsent: Bool) throws {
+        let names = [NativeRevisionTables.schema, NativeRevisionTables.attempts]
+        let shadows = try connection.database.fetch(query: """
+            SELECT COUNT(*) FROM sqlite_temp_master
+            WHERE name COLLATE NOCASE IN (?, ?) OR tbl_name COLLATE NOCASE IN (?, ?)
+                OR instr(lower(coalesce(sql, '')), 'otzaria_local_editor_native_revision') > 0;
+            """, parameters: names + names) { $0.int64(at: 0) }
+        guard shadows == [0] else { throw AnnotationLocalEditorNativeAttemptError.schemaMismatch }
+        let definitions = Self.nativeRevisionDefinitions
+        func objects() throws -> [(String, String, String, String?)] {
+            try connection.database.fetch(query: """
+                SELECT name, type, tbl_name, sql FROM main.sqlite_master
+                WHERE name COLLATE NOCASE IN (?, ?) OR tbl_name COLLATE NOCASE IN (?, ?)
+                LIMIT 5;
+                """, parameters: names + names) { row in
+                    (try Self.nativeAttemptText(row, 0, maximumBytes: 256),
+                     try Self.nativeAttemptText(row, 1, maximumBytes: 16),
+                     try Self.nativeAttemptText(row, 2, maximumBytes: 256),
+                     row.isNull(at: 3) ? nil : try Self.nativeAttemptText(row, 3, maximumBytes: 8_192))
+                }
+        }
+        var actual = try objects()
+        if actual.isEmpty {
+            guard installIfAbsent else { throw AnnotationLocalEditorNativeAttemptError.noPreparedAttempt }
+            for definition in definitions {
+                try connection.database.execute(query: definition.sql.replacingOccurrences(
+                    of: "CREATE TABLE " + definition.name, with: "CREATE TABLE main." + definition.name))
+            }
+            try connection.database.execute(query: """
+                INSERT INTO main.\(NativeRevisionTables.schema) (singleton, version) VALUES (1, 1);
+                """)
+            actual = try objects()
+        }
+        guard actual.count == 3 else { throw AnnotationLocalEditorNativeAttemptError.schemaMismatch }
+        for definition in definitions {
+            let matches = actual.filter { $0.0 == definition.name }
+            guard matches.count == 1, let row = matches.first,
+                  row.1 == definition.type, row.2 == definition.table, row.3 == definition.sql else {
+                throw AnnotationLocalEditorNativeAttemptError.schemaMismatch
+            }
+        }
+        let automatic = actual.filter { !names.contains($0.0) }
+        guard automatic.count == 1, let index = automatic.first,
+              index.0 == "sqlite_autoindex_" + NativeRevisionTables.attempts + "_1",
+              index.1 == "index", index.2 == NativeRevisionTables.attempts, index.3 == nil else {
+            throw AnnotationLocalEditorNativeAttemptError.schemaMismatch
+        }
+        let versions = try connection.database.fetch(query: """
+            SELECT singleton, version FROM main.\(NativeRevisionTables.schema) LIMIT 2;
+            """) { ($0.type(at: 0), $0.int64(at: 0), $0.type(at: 1), $0.int64(at: 1)) }
+        guard versions.count == 1, let version = versions.first,
+              version.0 == SQLITE_INTEGER, version.1 == 1,
+              version.2 == SQLITE_INTEGER, version.3 == 1 else {
+            throw AnnotationLocalEditorNativeAttemptError.schemaMismatch
         }
     }
 }

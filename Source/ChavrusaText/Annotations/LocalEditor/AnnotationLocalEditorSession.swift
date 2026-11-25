@@ -107,17 +107,39 @@ final class AnnotationLocalEditorSession {
 }
 
 extension AnnotationStore {
-    /// Explicit opt-in, saved UUID only. Normal note Save/Cancel/tags and their
+    /// Read-only identity lookup on the current original profile connection.
+    /// It never registers a legacy alias or changes the saved CloudKit identity.
+    @MainActor
+    func resolveAnnotationExchangeIdentity(annotation: Annotation) throws -> UUID? {
+        guard let id = annotation.id, id > 0 else { throw AnnotationLocalEditorError.missingAnnotation }
+        let connection = try repository.captureLocalEditorConnection()
+        try connection.lifetime.requireCurrent()
+        let uuid = try AnnotationExchangeIdentity.resolve(database: connection.database, annotationID: id,
+                                                          originalRecordID: annotation.ckRecordId)
+        try connection.lifetime.requireCurrent()
+        return uuid
+    }
+
+    /// Explicit opt-in, saved or explicitly migrated identity only. Normal note Save/Cancel/tags and their
     /// original cache/CloudKit methods remain unchanged. A future real editor
     /// must declare the exact body formats it can round-trip; there is no default.
     @MainActor
     func makeLocalAnnotationEditor(annotation: Annotation,
                                    supportedFormats: Set<AnnotationLocalEditorBodyFormat>) throws -> AnnotationLocalEditorSession {
-        guard let id = annotation.id, id > 0,
-              let uuid = annotation.ckRecordId.flatMap(UUID.init(uuidString:)) else {
+        guard let id = annotation.id, id > 0 else { throw AnnotationLocalEditorError.missingAnnotation }
+        let connection = try repository.captureLocalEditorConnection()
+        let uuid: UUID
+        if let original = annotation.ckRecordId.flatMap(UUID.init(uuidString:)) {
+            // Keep the original UUID constructor inert. The first actual read
+            // validates uniqueness and the current stored bytes; cached UUID
+            // letter case never restamps the original CloudKit record name.
+            uuid = original
+        } else if let registered = try AnnotationExchangeIdentity.resolve(
+            database: connection.database, annotationID: id, originalRecordID: annotation.ckRecordId) {
+            uuid = registered
+        } else {
             throw AnnotationLocalEditorError.missingAnnotation
         }
-        let connection = try repository.captureLocalEditorConnection()
         let persistence = try AnnotationLocalEditorPersistence(connection: connection, annotationID: id,
             annotationUUID: uuid, sessionID: UUID(), owner: AnnotationLocalEditorLifetime(),
             formats: supportedFormats, digest: AnnotationExchangePlatformDigest())
@@ -308,3 +330,100 @@ extension AnnotationLocalEditorSession {
     }
     #endif
 }
+
+
+// A separate conditional-update owner leaves original fresh-import history intact.
+extension AnnotationLocalEditorSession {
+    func prepareNativeRevision(
+        snapshot: AnnotationLocalEditorSnapshot,
+        comparison: AnnotationLocalEditorNativeComparison,
+        target: AnnotationLocalEditorNativeRevisionTarget
+    ) async throws -> AnnotationLocalEditorNativeRevisionPreparationOutcome {
+        guard !busy else { throw AnnotationLocalEditorError.busy }
+        guard isCurrent else { throw AnnotationLocalEditorError.retired }
+        busy = true
+        defer { busy = false }
+        let storage = persistence, owner = persistence.owner
+        let worker = Task.detached {
+            try storage.prepareNativeRevision(snapshot: snapshot, comparison: comparison, target: target)
+        }
+        return try await withTaskCancellationHandler {
+            let prepared = try await worker.value
+            return storage.canDeliverNativeSnapshot(prepared.snapshot)
+                ? .prepared(prepared) : .recordedWithoutOwnership(prepared.observation)
+        } onCancel: {
+            owner.retire(); worker.cancel()
+        }
+    }
+
+    func markNativeRevisionMayHaveDispatched(
+        _ prepared: AnnotationLocalEditorNativeRevisionPreparation,
+        requestBytes: Data, requestSHA256: String
+    ) async throws -> AnnotationLocalEditorNativeTransitionOutcome {
+        guard !busy else { throw AnnotationLocalEditorError.busy }
+        guard isCurrent else { throw AnnotationLocalEditorError.retired }
+        busy = true
+        defer { busy = false }
+        let storage = persistence, owner = persistence.owner
+        let worker = Task.detached {
+            try storage.markNativeRevisionMayHaveDispatched(prepared,
+                requestBytes: requestBytes, requestSHA256: requestSHA256)
+        }
+        return try await withTaskCancellationHandler {
+            let receipt = try await worker.value
+            return storage.canDeliverNativeSnapshot(prepared.snapshot)
+                ? .recorded(receipt) : .recordedWithoutOwnership(receipt)
+        } onCancel: {
+            owner.retire(); worker.cancel()
+        }
+    }
+
+    func ownsNativeRevisionPreparation(_ prepared: AnnotationLocalEditorNativeRevisionPreparation) -> Bool {
+        persistence.ownsNativeRevisionPreparation(prepared)
+    }
+
+    #if os(iOS) && canImport(AnytypeOriginalEditor)
+    func bindNativeRevisionRetirement(
+        _ source: AnytypeOriginalAnnotationImportSourceLifetime,
+        prepared: AnnotationLocalEditorNativeRevisionPreparation
+    ) throws {
+        try persistence.bindNativeRevisionRetirement(source, prepared: prepared)
+    }
+    #endif
+}
+
+#if os(iOS) && canImport(AnytypeOriginalEditor)
+extension AnnotationLocalEditorSession {
+    /// First native conversion only. Full original text and the bounded preview
+    /// come from the same closed SDK capture, validated against its still-current
+    /// native session. The ordinary editor save API keeps its existing behavior.
+    func prepareNativeBackfill(snapshot: AnnotationLocalEditorSnapshot, mutationID: UUID,
+                               capture: AnytypeOriginalEditorLocalAnnotationCapture,
+                               nativeSession: AnytypeOriginalEditorLocalAnnotationSession,
+                               hostProfileID: UUID) throws -> AnnotationLocalEditorIntent {
+        guard !busy else { throw AnnotationLocalEditorError.busy }
+        guard isCurrent else { throw AnnotationLocalEditorError.retired }
+        try nativeSession.validateCapturedSource(capture)
+        let binding = nativeSession.binding
+        let actual = capture.nativeCapture.snapshot
+        guard binding.hostProfileID.utf8.elementsEqual(hostProfileID.uuidString.utf8),
+              binding.annotationUUID == snapshot.annotationUUID,
+              binding.expectedRevision == snapshot.revision,
+              binding.sourceWitnessSHA256 == snapshot.source.digest,
+              actual.provenance.matchesCaptureBinding(binding),
+              let originalText = snapshot.annotation.note,
+              originalText.utf8.elementsEqual(capture.fullPlainText.utf8) else {
+            throw AnnotationLocalEditorError.wrongOwner
+        }
+        try persistence.requireUnchanged(snapshot)
+        try nativeSession.validateCapturedSource(capture)
+        let body = TorahAnnotationEnvelope.RichBody(
+            format: AnytypeOriginalEditorSnapshot.format,
+            formatVersion: AnytypeOriginalEditorSnapshot.formatVersion,
+            bytes: actual.bodyBytes)
+        return try persistence.prepareNativeBackfill(snapshot: snapshot, mutationID: mutationID,
+            body: body, textPreview: capture.textPreview,
+            editorRevision: actual.nativeArchiveSHA256)
+    }
+}
+#endif

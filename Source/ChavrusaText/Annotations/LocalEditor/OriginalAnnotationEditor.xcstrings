@@ -1,6 +1,40 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Anytype has not finished closing. Retry the original close operation before switching accounts.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anytype has not finished closing. Retry the original close operation before switching accounts."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anytype טרם סיים להיסגר. יש לנסות שוב את פעולת הסגירה לפני מעבר בין חשבונות."
+          }
+        }
+      }
+    },
+    "Anytype read back the complete note and its object mapping. Delivery to another device has not yet been verified.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anytype read back the complete note and its object mapping. Delivery to another device has not yet been verified."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anytype קרא בחזרה את ההערה המלאה ואת מיפוי האובייקטים שלה. המסירה למכשיר אחר עדיין לא אומתה."
+          }
+        }
+      }
+    },
     "Checking the saved note…": {
       "extractionState": "manual",
       "localizations": {
@@ -52,6 +86,23 @@
         }
       }
     },
+    "Close this screen and check Anytype before trying again. A started transfer may already have created a copy; it will not be sent twice automatically.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close this screen and check Anytype before trying again. A started transfer may already have created a copy; it will not be sent twice automatically."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יש לסגור את המסך ולבדוק ב־Anytype לפני ניסיון נוסף. ייתכן שהעברה שכבר החלה יצרה עותק; ההערה לא תישלח שוב באופן אוטומטי."
+          }
+        }
+      }
+    },
     "Continue editing": {
       "extractionState": "manual",
       "localizations": {
@@ -65,6 +116,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "המשך בעריכה"
+          }
+        }
+      }
+    },
+    "Copy verified in Anytype": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy verified in Anytype"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "העותק אומת ב־Anytype"
           }
         }
       }
@@ -120,6 +188,23 @@
         }
       }
     },
+    "Finishing the original Anytype operation…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finishing the original Anytype operation…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "משלים את הפעולה ב־Anytype…"
+          }
+        }
+      }
+    },
     "Note saved": {
       "extractionState": "manual",
       "localizations": {
@@ -133,6 +218,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "ההערה נשמרה"
+          }
+        }
+      }
+    },
+    "Only the saved rich note will be copied to the selected Anytype space.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only the saved rich note will be copied to the selected Anytype space."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "רק ההערה העשירה השמורה תועתק למרחב שנבחר ב־Anytype."
           }
         }
       }
@@ -167,6 +269,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "פותח את ההערה השמורה…"
+          }
+        }
+      }
+    },
+    "Retry close": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry close"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ניסיון נוסף לסגירה"
+          }
+        }
+      }
+    },
+    "Retry closing the local editor": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry closing the local editor"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ניסיון נוסף לסגירת העורך המקומי"
           }
         }
       }
@@ -235,6 +371,91 @@
           "stringUnit": {
             "state": "translated",
             "value": "שומר את ההערה…"
+          }
+        }
+      }
+    },
+    "Send saved note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Send saved note"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שליחת ההערה השמורה"
+          }
+        }
+      }
+    },
+    "Send this saved note?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Send this saved note?"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לשלוח את ההערה השמורה?"
+          }
+        }
+      }
+    },
+    "Share saved note with Anytype": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Share saved note with Anytype"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שיתוף ההערה השמורה עם Anytype"
+          }
+        }
+      }
+    },
+    "Share with Anytype": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Share with Anytype"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שיתוף עם Anytype"
+          }
+        }
+      }
+    },
+    "Sharing could not finish": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sharing could not finish"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן היה להשלים את השיתוף"
           }
         }
       }
@@ -405,6 +626,626 @@
           "stringUnit": {
             "state": "translated",
             "value": "השתמש בעורך המורחב כדי לשנות את ההערה המעוצבת."
+          }
+        }
+      }
+    },
+    "Receive saved changes from Anytype": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Receive saved changes from Anytype"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קבלת שינויים שמורים מ־Anytype"
+          }
+        }
+      }
+    },
+    "Reading the original Anytype note…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading the original Anytype note…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קורא את ההערה המקורית ב־Anytype…"
+          }
+        }
+      }
+    },
+    "Choose the shared copy": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose the shared copy"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בחירת העותק המשותף"
+          }
+        }
+      }
+    },
+    "Anytype copy": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anytype copy"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "העותק ב־Anytype"
+          }
+        }
+      }
+    },
+    "Read saved changes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read saved changes"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קריאת השינויים השמורים"
+          }
+        }
+      }
+    },
+    "The note will be read from the account and space you selected.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The note will be read from the account and space you selected."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההערה תיקרא מהחשבון ומהמרחב שבחרת."
+          }
+        }
+      }
+    },
+    "Both versions need review": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Both versions need review"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יש לבדוק את שתי הגרסאות"
+          }
+        }
+      }
+    },
+    "Your saved note changed since it was shared. Both full versions are retained. Choose explicitly which version to keep here.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your saved note changed since it was shared. Both full versions are retained. Choose explicitly which version to keep here."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההערה השמורה השתנתה מאז השיתוף. שתי הגרסאות המלאות נשמרות. יש לבחור איזו גרסה לשמור כאן."
+          }
+        }
+      }
+    },
+    "Saved on this device": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved on this device"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שמור במכשיר הזה"
+          }
+        }
+      }
+    },
+    "Read from Anytype": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read from Anytype"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נקרא מ־Anytype"
+          }
+        }
+      }
+    },
+    "Use the Anytype version here": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use the Anytype version here"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שמירת גרסת Anytype כאן"
+          }
+        }
+      }
+    },
+    "Keep the local version": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep the local version"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שמירת הגרסה המקומית"
+          }
+        }
+      }
+    },
+    "The preview is plain text. The complete original formatting, objects and files are kept when you save.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The preview is plain text. The complete original formatting, objects and files are kept when you save."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "התצוגה המקדימה היא טקסט פשוט. בשמירה נשמרים העיצוב המקורי המלא, האובייקטים והקבצים."
+          }
+        }
+      }
+    },
+    "Anytype version saved locally": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anytype version saved locally"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "גרסת Anytype נשמרה במכשיר"
+          }
+        }
+      }
+    },
+    "The same note ID and complete original body were saved. Reopen the expanded editor to continue privately.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The same note ID and complete original body were saved. Reopen the expanded editor to continue privately."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מזהה ההערה והתוכן המקורי המלא נשמרו. אפשר לפתוח שוב את העורך המורחב כדי להמשיך בעריכה פרטית."
+          }
+        }
+      }
+    },
+    "No shared copy in this space": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No shared copy in this space"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אין עותק משותף במרחב הזה"
+          }
+        }
+      }
+    },
+    "Share this saved note with Anytype first, then choose that account and space when receiving it.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Share this saved note with Anytype first, then choose that account and space when receiving it."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יש לשתף תחילה את ההערה השמורה עם Anytype, ואז לבחור את אותו חשבון ומרחב בעת קבלתה."
+          }
+        }
+      }
+    },
+    "The local note changed": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The local note changed"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההערה המקומית השתנתה"
+          }
+        }
+      }
+    },
+    "No older version was applied. The full received version is retained. Close and reopen the note to review again.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No older version was applied. The full received version is retained. Close and reopen the note to review again."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא הוחלה גרסה ישנה יותר. הגרסה המלאה שהתקבלה נשמרה. יש לסגור ולפתוח שוב את ההערה כדי לבדוק אותה מחדש."
+          }
+        }
+      }
+    },
+    "The original read could not finish": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The original read could not finish"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קריאת ההערה המקורית לא הושלמה"
+          }
+        }
+      }
+    },
+    "Receive from Anytype": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Receive from Anytype"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קבלה מ־Anytype"
+          }
+        }
+      }
+    },
+    "Replace the saved local version?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Replace the saved local version?"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "להחליף את הגרסה המקומית השמורה?"
+          }
+        }
+      }
+    },
+    "Both complete versions are retained. Your note ID, source anchor, tags and local permissions stay with this note.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Both complete versions are retained. Your note ID, source anchor, tags and local permissions stay with this note."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שתי הגרסאות המלאות נשמרות. מזהה ההערה, העוגן במקור, התגיות וההרשאות המקומיות נשארים עם ההערה."
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ביטול"
+          }
+        }
+      }
+    },
+    "Retry closing Anytype": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry closing Anytype"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ניסיון נוסף לסגירת Anytype"
+          }
+        }
+      }
+    },
+    "Retry closing the private editor": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry closing the private editor"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ניסיון נוסף לסגירת העורך הפרטי"
+          }
+        }
+      }
+    },
+    "Anytype refused this update before writing because its saved version changed. Both reviewed versions are retained. Close and review the current versions again." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anytype refused this update before writing because its saved version changed. Both reviewed versions are retained. Close and review the current versions again."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anytype דחה את העדכון לפני הכתיבה משום שהגרסה השמורה השתנתה. שתי הגרסאות שנבדקו נשמרות. יש לסגור ולבדוק מחדש את הגרסאות העדכניות."
+          }
+        }
+      }
+    },
+    "Check the Anytype version" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check the Anytype version"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "יש לבדוק את הגרסה ב־Anytype"
+          }
+        }
+      }
+    },
+    "Keep both versions unchanged" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep both versions unchanged"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "השארת שתי הגרסאות ללא שינוי"
+          }
+        }
+      }
+    },
+    "Only your saved rich note will update the reviewed Anytype object. The original engine will check its version again before writing. Both full versions are retained." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only your saved rich note will update the reviewed Anytype object. The original engine will check its version again before writing. Both full versions are retained."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "רק ההערה העשירה השמורה תעדכן את אובייקט Anytype שנבדק. המנוע המקורי יבדוק שוב את גרסתו לפני הכתיבה. שתי הגרסאות המלאות נשמרות."
+          }
+        }
+      }
+    },
+    "The Anytype note changed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Anytype note changed"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ההערה ב־Anytype השתנתה"
+          }
+        }
+      }
+    },
+    "The operation has no verified readback. A change may already be present. Its history is retained and it will not retry automatically." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The operation has no verified readback. A change may already be present. Its history is retained and it will not retry automatically."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "לפעולה אין קריאה חוזרת מאומתת. ייתכן שהשינוי כבר נשמר. היסטוריית הפעולה נשמרת והיא לא תבוצע שוב באופן אוטומטי."
+          }
+        }
+      }
+    },
+    "The original engine read back the saved rich note under the same object ID. Visibility on another device is verified separately." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The original engine read back the saved rich note under the same object ID. Visibility on another device is verified separately."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "המנוע המקורי קרא מחדש את ההערה העשירה השמורה עם אותו מזהה אובייקט. הופעתה במכשיר אחר נבדקת בנפרד."
+          }
+        }
+      }
+    },
+    "Update in Anytype" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update in Anytype"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "עדכון ב־Anytype"
+          }
+        }
+      }
+    },
+    "Update saved note in Anytype" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update saved note in Anytype"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "עדכון ההערה השמורה ב־Anytype"
+          }
+        }
+      }
+    },
+    "Update this copy in Anytype" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update this copy in Anytype"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "עדכון עותק זה ב־Anytype"
+          }
+        }
+      }
+    },
+    "Update this existing Anytype note?" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update this existing Anytype note?"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "לעדכן את ההערה הקיימת הזו ב־Anytype?"
+          }
+        }
+      }
+    },
+    "Update verified in Anytype" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update verified in Anytype"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "העדכון ב־Anytype אומת"
           }
         }
       }

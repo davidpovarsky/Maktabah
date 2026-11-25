@@ -17,11 +17,19 @@ OUT = ROOT / "build/production-annotation-native-evidence"
 ARTIFACTS = ROOT / "build/artifacts"
 SELECTION = OUT / "selection.json"
 SELECTOR = "ProductionAnnotationEditorAcceptanceTests/testOrdinaryEditorSavesSameAnnotationDiscardsDraftAndRecoversAfterTermination"
-GROUPS = [{"label": "11-reader", "size": "11", "hid_comparison": False, "case_ids": [SELECTOR]}]
+BACKFILL_SELECTOR = "ProductionAnnotationEditorAcceptanceTests/testOrdinaryPreparationConvertsSavedNoteOnceAndReopensNativeBodyAfterColdLaunch"
+SELECTORS = [SELECTOR, BACKFILL_SELECTOR]
+GROUPS = [{"label": "11-reader", "size": "11", "hid_comparison": False, "case_ids": SELECTORS}]
 BUNDLE = "com.davidpovarsky.chavrusatext"
 PREFIX = "NORMAL_ANNOTATION_STORAGE "
-STAGES = ["saved-plain-row", "native-body-saved-same-uuid", "discard-preserved-canonical-bytes",
-          "cold-open-preserved-same-rich-body"]
+STAGES_BY_SELECTOR = {
+    SELECTOR: ["saved-plain-row", "native-clear-kept-same-uuid", "native-body-saved-same-uuid",
+               "discard-preserved-canonical-bytes", "cold-open-preserved-same-rich-body"],
+    BACKFILL_SELECTOR: ["backfill-saved-plain-row", "backfill-confirmation-cancelled",
+                        "backfill-native-body-saved", "backfill-repeat-kept-same-version",
+                        "backfill-cold-native-render-kept-body"],
+}
+STAGES = [stage for stages in STAGES_BY_SELECTOR.values() for stage in stages]
 FIELDS = {"stage", "annotation_id", "annotation_uuid", "revision", "payload_sha256", "native_body_bytes",
           "native_body_sha256", "source_sha256", "mutation_id", "sqlite_open_mode", "qualification_mode"}
 
@@ -78,19 +86,22 @@ def prepare():
     context = source_context()
     contract = json.loads((ROOT / "docs/hq-integration/runtime27/R27_CASES.json").read_text())
     existing = {row["case_id"] for row in contract["cases"] + contract.get("supplemental_cases", [])}
-    require(SELECTOR not in existing, "The dedicated ordinary case must not change Native116/Release114")
-    contract.setdefault("supplemental_cases", []).append({
-        "case_id": SELECTOR, "device": "ipad11", "status": "NOT_RUN",
-        "oracle": "Ordinary UI, original native blocks, same saved UUID/revision and opaque SQLite body, discard and actual cold process recovery"})
+    require(not existing.intersection(SELECTORS), "Dedicated ordinary cases must not change Native116/Release114")
+    for selector, oracle in [
+        (SELECTOR, "Ordinary UI, original native blocks, same saved UUID/revision and opaque SQLite body, clear/discard and actual cold process recovery"),
+        (BACKFILL_SELECTOR, "Actual UI-created saved plain note, original Settings preparation and explicit confirmation/cancel, native conversion, idempotent scan and cold original body rendering"),
+    ]:
+        contract.setdefault("supplemental_cases", []).append({
+            "case_id": selector, "device": "ipad11", "status": "NOT_RUN", "oracle": oracle})
     source = context["application_source_sha"]
     contract.update(source_test_commit=source, app_source=source, application_source_sha=source,
-                    execution_case_ids=[SELECTOR], execution_groups=GROUPS, required_nonzero_cases=1,
-                    native_cases_executed=0, expected_per_device={"ipad11": 1, "ipad13": 0, "iphone": 0},
+                    execution_case_ids=SELECTORS, execution_groups=GROUPS, required_nonzero_cases=len(SELECTORS),
+                    native_cases_executed=0, expected_per_device={"ipad11": len(SELECTORS), "ipad13": 0, "iphone": 0},
                     diagnostic_only=True, hid_comparison=False,
-                    scope="Separate ordinary local annotation editor acceptance; no qualification mode, cross-app sync or physical-device credit")
+                    scope="Separate ordinary local editor and explicit native Backfill acceptance; no qualification mode, cross-app sync or physical-device credit")
     runpy.run_path(str(ROOT / "Scripts/CI/runtime27.py"))["execution_groups"](contract)
     declarations = runpy.run_path(str(ROOT / "Scripts/CI/verify-faithful-xctest.py"))["validate_selections"](
-        [SELECTOR], ROOT / "Maktabah-iOSUITests")
+        SELECTORS, ROOT / "Maktabah-iOSUITests")
     require(declarations["status"] == "DECLARATIONS_MATCH", "Ordinary XCTest declaration is missing")
     write(OUT / "declarations.json", declarations)
     write(SELECTION, contract)
@@ -135,11 +146,11 @@ class OrdinaryEvidence:
         write(OUT / "ordinary-storage-observations.json", self.state)
 
     def validate_selection(self, baseline, release_manifest, selection):
-        require(not baseline and release_manifest is None and selection == [SELECTOR],
+        require(not baseline and release_manifest is None and selection == SELECTORS,
                 "The callback belongs only to the dedicated ordinary case")
 
     def stage(self, udid, container, label, selection):
-        require(self.udid is None and label == "11-reader" and selection == [SELECTOR],
+        require(self.udid is None and label == "11-reader" and selection == SELECTORS,
                 "Unexpected original matrix scope")
         actual = owned_container(udid)
         require(actual == Path(container).resolve(strict=True), "The original matrix container differs")
@@ -162,7 +173,9 @@ class OrdinaryEvidence:
                     and value.get("stage") in STAGES
                     and value.get("qualification_mode") is False
                     and value.get("sqlite_open_mode") == "read-only", "Unexpected ordinary observation schema")
-            require(len(self.state["observations"]) < len(STAGES), "Unexpected duplicate storage observation")
+            require(len(self.state["observations"]) < len(STAGES)
+                    and value["stage"] not in {row["stage"] for row in self.state["observations"]},
+                    "Unexpected duplicate storage observation")
             self.state["observations"].append(value)
             self.persist()
         return line
@@ -178,48 +191,83 @@ class OrdinaryEvidence:
             self.state.update(observed_database_path=str(database),
                               container_relocated=database != self.database)
             observations = self.state["observations"]
-            if [row["stage"] for row in observations] != STAGES:
+            if len(observations) != len(STAGES) or {row["stage"] for row in observations} != set(STAGES):
                 self.state["status"] = "INCOMPLETE_TEST_OBSERVATIONS"
                 return
-            before, saved, discarded, cold = observations
-            require(type(before["annotation_id"]) is int and before["annotation_id"] > 0
-                    and all(row["annotation_id"] == before["annotation_id"]
-                            and row["annotation_uuid"] == before["annotation_uuid"] for row in observations),
-                    "The normal journey changed its original row or UUID")
-            require(saved["revision"] == before["revision"] + 1 and before["native_body_bytes"] == 0
-                    and saved["native_body_bytes"] > 16, "The normal journey did not commit a full native body")
-            require(all({key: value for key, value in row.items() if key != "stage"}
-                        == {key: value for key, value in saved.items() if key != "stage"}
-                        for row in (discarded, cold)), "Discard or cold reopen changed canonical storage")
+            verified = []
             with closing(sqlite3.connect(database.as_uri() + "?mode=ro", uri=True, timeout=5)) as connection:
                 require(connection.execute("PRAGMA quick_check").fetchall() == [("ok",)],
                         "Original annotation database failed its actual SQLite check")
-                rows = connection.execute("""
-                    SELECT a.id, a.ckRecordId, h.revision, v.payload_digest, v.payload_base64, v.mutation_id, v.source_digest
-                    FROM annotations a JOIN otzaria_annotation_exchange_heads h
-                      ON h.namespace = 'otzaria.local.annotation' AND lower(h.annotation_uuid) = lower(a.ckRecordId)
-                    JOIN otzaria_annotation_exchange_versions v
-                      ON v.namespace = h.namespace AND v.annotation_uuid = h.annotation_uuid AND v.revision = h.revision
-                    WHERE a.id = ?
-                    """, (saved["annotation_id"],)).fetchall()
-            require(len(rows) == 1, "Exactly one real saved canonical version is required")
-            identity, record_id, revision, sha, encoded, mutation, source = rows[0]
-            import base64
-            raw = base64.b64decode(encoded, validate=True)
-            require(hashlib.sha256(raw).hexdigest() == sha == saved["payload_sha256"],
-                    "Current canonical envelope differs from the actual saved observation")
-            envelope = json.loads(raw)
-            rich = envelope["richBody"]
-            body = base64.b64decode(rich["bytesBase64"], validate=True)
-            require(rich["format"] == "anytype.native-protobuf-archive" and rich["formatVersion"] == 1
-                    and len(body) == saved["native_body_bytes"]
-                    and hashlib.sha256(body).hexdigest() == saved["native_body_sha256"]
-                    and str(uuid.UUID(record_id)).upper() == saved["annotation_uuid"]
-                    and revision == saved["revision"] and mutation == saved["mutation_id"]
-                    and source == saved["source_sha256"], "Original read-only SQLite body verification differs")
+                for selector, stages in STAGES_BY_SELECTOR.items():
+                    journey = [row for row in observations if row["stage"] in stages]
+                    require([row["stage"] for row in journey] == stages,
+                            "An ordinary journey has missing, repeated or reordered observations")
+                    before, intermediate, saved, retained, cold = journey
+                    require(type(before["annotation_id"]) is int and before["annotation_id"] > 0
+                            and all(row["annotation_id"] == before["annotation_id"]
+                                    and row["annotation_uuid"] == before["annotation_uuid"] for row in journey),
+                            "An ordinary journey changed its original row or UUID")
+                    require(before["native_body_bytes"] == 0 and before["payload_sha256"] == ""
+                            and saved["revision"] == before["revision"] + 1
+                            and saved["native_body_bytes"] > 16,
+                            "An ordinary journey did not commit one complete native body")
+                    comparable = lambda row: {key: value for key, value in row.items() if key != "stage"}
+                    if selector == SELECTOR:
+                        # The actual existing UI test clears plain input, saves
+                        # that empty note, then restores it before native editing.
+                        # No rich ledger revision may be fabricated by clearing.
+                        require(intermediate["revision"] == before["revision"]
+                                and intermediate["native_body_bytes"] == 0
+                                and intermediate["payload_sha256"] == ""
+                                and intermediate["mutation_id"] == ""
+                                and intermediate["source_sha256"] == "",
+                                "Clearing ordinary plain text unexpectedly created a rich version")
+                    else:
+                        require(comparable(intermediate) == comparable(before),
+                                "Cancelling the actual conversion confirmation changed saved storage")
+                    require(all(comparable(row) == comparable(saved) for row in (retained, cold)),
+                            "Discard, repeat conversion or cold reopen changed canonical storage")
+                    rows = connection.execute("""
+                        SELECT a.id, a.ckRecordId, h.revision, v.payload_digest, v.payload_base64, v.mutation_id, v.source_digest
+                        FROM annotations a JOIN otzaria_annotation_exchange_heads h
+                          ON h.namespace = 'otzaria.local.annotation' AND lower(h.annotation_uuid) = lower(a.ckRecordId)
+                        JOIN otzaria_annotation_exchange_versions v
+                          ON v.namespace = h.namespace AND v.annotation_uuid = h.annotation_uuid AND v.revision = h.revision
+                        WHERE a.id = ?
+                        """, (saved["annotation_id"],)).fetchall()
+                    require(len(rows) == 1, "Exactly one real saved canonical version is required per journey")
+                    identity, record_id, revision, sha, encoded, mutation, source = rows[0]
+                    import base64
+                    raw = base64.b64decode(encoded, validate=True)
+                    require(base64.b64encode(raw).decode("ascii") == encoded
+                            and hashlib.sha256(raw).hexdigest() == sha == saved["payload_sha256"],
+                            "Current canonical envelope differs from the actual saved observation")
+                    envelope = json.loads(raw)
+                    rich = envelope["richBody"]
+                    body = base64.b64decode(rich["bytesBase64"], validate=True)
+                    require(envelope.get("namespace") == "otzaria.local.annotation"
+                            and envelope.get("schemaVersion") == 1
+                            and envelope.get("deletionState") == "active"
+                            and str(uuid.UUID(envelope["annotationUUID"])).upper() == saved["annotation_uuid"]
+                            and rich["format"] == "anytype.native-protobuf-archive" and rich["formatVersion"] == 1
+                            and base64.b64encode(body).decode("ascii") == rich["bytesBase64"]
+                            and len(body) == saved["native_body_bytes"]
+                            and hashlib.sha256(body).hexdigest() == saved["native_body_sha256"]
+                            and str(uuid.UUID(record_id)).upper() == saved["annotation_uuid"]
+                            and revision == saved["revision"] and mutation == saved["mutation_id"]
+                            and source == saved["source_sha256"],
+                            "Original read-only SQLite body verification differs")
+                    verified.append({"case_id": selector, "annotation_id": identity,
+                                     "annotation_uuid": saved["annotation_uuid"], "revision": revision,
+                                     "payload_sha256": sha, "native_body_sha256": hashlib.sha256(body).hexdigest()})
+            require(len({row["annotation_id"] for row in verified}) == len(SELECTORS)
+                    and len({row["annotation_uuid"] for row in verified}) == len(SELECTORS),
+                    "The two actual UI-created saved notes must remain distinct")
             self.state.update(status="ACTUAL_CANONICAL_SQLITE_OBSERVED", quick_check="ok",
-                              final_annotation_id=identity, final_payload_sha256=sha,
-                              final_native_body_sha256=hashlib.sha256(body).hexdigest(),
+                              final_annotations=verified,
+                              final_annotation_id=verified[0]["annotation_id"],
+                              final_payload_sha256=verified[0]["payload_sha256"],
+                              final_native_body_sha256=verified[0]["native_body_sha256"],
                               original_sdk_account_material_read=False)
         except BaseException as error:
             self.state.update(status="COLLECTION_FAILED", error=type(error).__name__ + ": " + str(error))
@@ -261,7 +309,7 @@ def execute():
 
 def collect():
     report = {"status": "FAILED", "scope": "ORDINARY_LOCAL_ANNOTATION_EDITOR",
-              "required_case_ids": [SELECTOR], "qualification_mode": False,
+              "required_case_ids": SELECTORS, "qualification_mode": False,
               "cross_app_sync_accepted": False, "physical_ipad_accepted": False,
               "full_native116_accepted": False, "full_release114_accepted": False}
     try:
@@ -282,9 +330,9 @@ def collect():
         require(len(devices) == 1 and devices[0].get("label") == "11-reader"
                 and devices[0].get("status") == "EXECUTED_PASS"
                 and devices[0].get("ownedSimulatorCleanup") == "PASS"
-                and report.get("executed_ui_pass") == 1
+                and report.get("executed_ui_pass") == len(SELECTORS)
                 and all(report.get(key, 0) == 0 for key in ["executed_ui_fail", "executed_ui_skip", "ui_not_run"]),
-                "The ordinary native case must actually execute and pass without skips")
+                "Both ordinary native cases must actually execute and pass without skips")
         report["status"] = "ORDINARY_LOCAL_EDITOR_UI_AND_CANONICAL_STORAGE_PASS"
         return 0
     except Exception as error:

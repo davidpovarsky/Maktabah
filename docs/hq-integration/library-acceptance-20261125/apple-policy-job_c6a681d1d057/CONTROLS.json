@@ -1,0 +1,73 @@
+{
+  "cases" : [
+    {
+      "name" : "official_v32_to_v40_full_snapshot_available",
+      "status" : "PASS"
+    },
+    {
+      "name" : "identical_installed_snapshot_is_current",
+      "status" : "PASS"
+    },
+    {
+      "name" : "older_release_does_not_downgrade",
+      "status" : "PASS"
+    },
+    {
+      "name" : "republished_installed_id_with_changed_digest_refused",
+      "status" : "PASS"
+    },
+    {
+      "name" : "foreign_provider_installation_refused",
+      "status" : "PASS"
+    },
+    {
+      "name" : "nonproduction_profile_refused",
+      "status" : "PASS"
+    },
+    {
+      "name" : "unsupported_profile_version_refused",
+      "status" : "PASS"
+    },
+    {
+      "name" : "foreign_sql_archive_identity_refused",
+      "status" : "PASS"
+    },
+    {
+      "name" : "untrusted_direct_download_host_refused",
+      "status" : "PASS"
+    },
+    {
+      "name" : "missing_archive_digest_refused",
+      "status" : "PASS"
+    },
+    {
+      "name" : "malformed_version_tags_refused",
+      "status" : "PASS"
+    },
+    {
+      "name" : "multipart_aggregate_size_change_refused",
+      "status" : "PASS"
+    },
+    {
+      "name" : "same_version_different_release_is_not_upgrade",
+      "status" : "PASS"
+    },
+    {
+      "name" : "official_monolithic_archive_remains_supported",
+      "status" : "PASS"
+    },
+    {
+      "name" : "original_installer_iso8601_manifest_roundtrip",
+      "status" : "PASS"
+    }
+  ],
+  "counts" : {
+    "FAIL" : 0,
+    "PASS" : 15,
+    "SKIP" : 0
+  },
+  "fixture_database_size_v40_is_controlled" : true,
+  "native_app_update_acceptance" : false,
+  "scope" : "Original official metadata and real Swift update policy; no archive or database mutation",
+  "status" : "APPLE_UPDATE_POLICY_PASS"
+}

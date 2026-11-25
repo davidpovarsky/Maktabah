@@ -1,0 +1,31 @@
+{
+  "archive": {
+    "bytes": 195237,
+    "mac_path": "/Users/m1/builds/Maktabah-74ae9510-library-policy-20261125/build/library-policy-job_c6a681d1d057.tar.gz",
+    "oracle_path": "/mnt/development/projects/worktrees/Maktabah-library-acceptance-20261125/build/library-policy-job_c6a681d1d057.tar.gz",
+    "sha256": "a7f79445df27ab1766269f6bd56b9d4fe7612a73a75be875e386669844d203c4"
+  },
+  "bundle_sha256": "dd81d1579003fc13a97d6d63eb03213e890e2d6bcb9b0072f5239ad1dd47436c",
+  "copied_files": [
+    "CONTROLS.json",
+    "RESULT.json",
+    "compile.log",
+    "controls.log",
+    "sdk.log",
+    "swift.log",
+    "xcode.log"
+  ],
+  "counts": {
+    "FAIL": 0,
+    "PASS": 15,
+    "SKIP": 0
+  },
+  "duration_seconds": 26.39,
+  "finished_at": "2026-11-25T01:38:26.114786+00:00",
+  "job_id": "job_c6a681d1d057",
+  "native_application_acceptance": false,
+  "own_output_disk_kib": 31164,
+  "started_at": "2026-11-25T01:37:59.725013+00:00",
+  "status": "APPLE_UPDATE_POLICY_PASS",
+  "tested_source": "74ae9510d90b50343e961967616e5630d1682295"
+}

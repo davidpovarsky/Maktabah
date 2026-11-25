@@ -1,0 +1,67 @@
+[
+  {
+    "name" : "inspection_has_no_schema_identity_or_original_writes",
+    "seconds" : 0.013291084,
+    "status" : "PASS"
+  },
+  {
+    "name" : "legacy_and_uuid_migration_preserve_original_rows_and_cloud_queue",
+    "seconds" : 0.734279625,
+    "status" : "PASS"
+  },
+  {
+    "name" : "repeated_scan_is_idempotent",
+    "seconds" : 0.6413222919999999,
+    "status" : "PASS"
+  },
+  {
+    "name" : "plain_A_B_A_edits_keep_three_distinct_plan_versions",
+    "seconds" : 0.027591083000000002,
+    "status" : "PASS"
+  },
+  {
+    "name" : "rich_saved_body_is_retained_as_opaque_original_version",
+    "seconds" : 0.013563209,
+    "status" : "PASS"
+  },
+  {
+    "name" : "invalid_legacy_row_rolls_back_whole_batch",
+    "seconds" : 0.016760625,
+    "status" : "PASS"
+  },
+  {
+    "name" : "retirement_after_actual_SQLite_insert_rolls_back_all_new_state",
+    "seconds" : 0.009713,
+    "status" : "PASS"
+  },
+  {
+    "name" : "highlights_and_pending_deletions_do_not_become_notes",
+    "seconds" : 0.009280834,
+    "status" : "PASS"
+  },
+  {
+    "name" : "profile_switch_retires_old_plan_without_writing",
+    "seconds" : 0.010040041999999999,
+    "status" : "PASS"
+  },
+  {
+    "name" : "batch_bounds_and_foreign_session_are_rejected",
+    "seconds" : 0.005333958,
+    "status" : "PASS"
+  },
+  {
+    "name" : "actual_local_preparation_performance_100",
+    "seconds" : 0.708128208,
+    "status" : "PASS"
+  },
+  {
+    "name" : "actual_local_preparation_performance_1000",
+    "seconds" : 6.787641042000001,
+    "status" : "PASS"
+  },
+  {
+    "name" : "actual_local_preparation_performance_5000",
+    "seconds" : 33.193592042,
+    "status" : "PASS"
+  }
+]

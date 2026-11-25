@@ -191,8 +191,16 @@ def source_context(*, projection_output=None, require_current_build=False):
     if local:
         runpy.run_path(str(ROOT / "Scripts/CI/original_editor_local_admission.py"))["validate_configuration"](sdk_input)
         composition = composed_product_source(historical_control_source=HISTORICAL_CONTROL_SOURCE)
-        mac_source = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_mac_source.py"))["verify"](
-            ROOT, MAC_SOURCE_INPUTS, MAC_SOURCE_SHA256)
+        source_binding = json.loads((ROOT / "Scripts/CI/hq-stage2-focused-apple.inputs.json").read_bytes()).get("final_product_source")
+        if source_binding is not None:
+            require(source_binding == {"manifest": "Scripts/CI/final-integration-source.inputs.json",
+                                       "sha256": "4d6da0883818fe730218e8f3b3222c47cb536e15b37cdf5fe5e929bfce7d1ece"},
+                    "Unreviewed integrated source profile")
+            mac_source = runpy.run_path(str(ROOT / "Scripts/CI/final_integration_source.py"))["verify"](
+                ROOT, ROOT / source_binding["manifest"], source_binding["sha256"])
+        else:
+            mac_source = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_mac_source.py"))["verify"](
+                ROOT, MAC_SOURCE_INPUTS, MAC_SOURCE_SHA256)
         product_source, hanlin = mac_source["application_source_sha"], mac_source["hanlin_source"]
         projection = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_mac_projection.py"))["verify"](
             ROOT, mac_source, ADMISSION, require_current_build=require_current_build)
@@ -243,6 +251,7 @@ def runtime_dependency_preflight():
     if sdk_input.get("producer_kind") == "local-mac":
         pending.append(ci / "original_editor_local_admission.py")
         pending.append(ci / "original_editor_mac_source.py")
+        pending.append(ci / "final_integration_source.py")
         pending.append(ci / "original_editor_mac_projection.py")
     checked, imported = {}, set()
     while pending:

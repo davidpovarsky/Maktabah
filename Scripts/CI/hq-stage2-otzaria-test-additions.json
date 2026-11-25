@@ -475,7 +475,7 @@
     }
   ],
   "excluded_build_inputs": {
-    "Maktabah.xcodeproj/project.pbxproj": "57318b85b046648b3839e7d0437e30c9f2234449",
+    "Maktabah.xcodeproj/project.pbxproj": "cb9c48600607150e5b26d9cb4019f2204082f113",
     "Vendor/OtzariaSearchEngine/build_xcframework.sh": "c144bfd775b393c4621b41bd2688fad16f79c315",
     "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "0d92196706d534d91041373676e9699b023c9528",
     "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "6bd9288a85e67132e9283ab7516435cfa442c74a"
@@ -505,5 +505,13 @@
     "original_editor_parent": "cf58e555f952f5ed19972d73e9f86fd0e9b20527",
     "reviewed_project_blob": "57318b85b046648b3839e7d0437e30c9f2234449",
     "scope": "Preserve four MiniApps files and two lean products together with original editor Import source membership. No engine test sources added."
+  },
+  "final_integrated_project_review": {
+    "application_source_sha": "3a7d048c02b28ef81de2e1b4824f9ea996cf54ad",
+    "reviewed_project_blob": "cb9c48600607150e5b26d9cb4019f2204082f113",
+    "actual_membership_receipt": "docs/hq-integration/final-delivery-20261125/MERGED_PROJECT_REGISTRATION.json",
+    "actual_membership_receipt_sha256": "4659b14d9dc666ad60940542fd74e0e000dd0fa5302af4c250be7eaa84262182",
+    "standalone_engine_tests_not_in_app_target": true,
+    "native_acceptance": "NOT_CLAIMED"
   }
 }

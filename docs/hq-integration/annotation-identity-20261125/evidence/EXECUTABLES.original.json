@@ -1,0 +1,23 @@
+[
+  {
+    "bytes": 5551280,
+    "canonicalSource": "fbd5e241d8924ffd1e20078cd40c4fd950f76a70",
+    "path": "/Users/m1/builds/Maktabah-fbd5e241-identity-component-20261125/build/local43/owned-f383ec1c-8939-4813-984c-efb8db95a825/swift-build/out/Products/Debug/LocalAnnotationEditorAcceptance",
+    "sha256": "55328c19417ce7c0dcfa8daa6044e49a4f521a268a6a531b1d5435af6993647f",
+    "suite": "local43"
+  },
+  {
+    "bytes": 5350112,
+    "canonicalSource": "fbd5e241d8924ffd1e20078cd40c4fd950f76a70",
+    "path": "/Users/m1/builds/Maktabah-fbd5e241-identity-component-20261125/build/legacy24/owned-c1a0c9cd-8973-4a1a-8130-9a7369f5348e/swift-build/out/Products/Debug/LegacyAnnotationIdentityAcceptance",
+    "sha256": "3c8c129dc59b3fd86d4549bc50db56fd3df064ff6a400570fa0f43320fa2ddfa",
+    "suite": "legacy24"
+  },
+  {
+    "bytes": 3755424,
+    "canonicalSource": "b0a89ffa103cb31e4414576236aa748a0187674e",
+    "path": "/Users/m1/builds/Maktabah-b0a89ffa-identity-component-20261125/build/exchange28/owned-ff8b1e2d-7d41-422a-aa46-dd8427eaa26e/swift-build/out/Products/Debug/ExchangeAcceptance",
+    "sha256": "531fd71618166dad871f5dccd07b23a6049bd5789098358e9a398be7f676e415",
+    "suite": "exchange28"
+  }
+]

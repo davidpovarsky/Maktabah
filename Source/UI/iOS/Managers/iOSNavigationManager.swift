@@ -122,6 +122,19 @@ class iOSNavigationManager: BackendSwitchParticipant {
             )
         )
 
+        observerTokens.append(
+            NotificationToken(
+                token: NotificationCenter.default.addObserver(
+                    forName: .otzariaManagedLibraryDidUpdate, object: nil, queue: .main
+                ) { [weak self] _ in
+                    MainActor.assumeIsolated {
+                        guard let self else { return }
+                        OtzariaLibraryUpdateNavigation.reload(self)
+                    }
+                }
+            )
+        )
+
         // Note: Library backend switching is orchestrated fail-closed via BackendSwitchParticipant
 
         observerTokens.append(

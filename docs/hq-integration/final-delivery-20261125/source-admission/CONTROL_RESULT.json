@@ -1,0 +1,16 @@
+{
+  "scope": "SOURCE_ADMISSION_TAMPER_CONTROLS_ONLY",
+  "started_at_utc": "2026-11-25T02:08:42.953186+00:00",
+  "finished_at_utc": "2026-11-25T02:08:43.989116+00:00",
+  "exit_code": 0,
+  "command": [
+    "python3",
+    "tools/test-final-integration-source.py"
+  ],
+  "native_tests_executed": 0,
+  "source_inputs_sha256": {
+    "tools/test-final-integration-source.py": "d78d8a4e4e6572f136da78312fc74b0b8a16aa9c909954484bc02f6fc0d0bc58",
+    "Scripts/CI/final_integration_source.py": "dab4de411c708ddd5fc5bd37624f83a220b5f024478e6bc98c5cab72838b5198",
+    "Scripts/CI/final-integration-source.inputs.json": "4d6da0883818fe730218e8f3b3222c47cb536e15b37cdf5fe5e929bfce7d1ece"
+  }
+}

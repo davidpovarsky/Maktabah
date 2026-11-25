@@ -25,7 +25,7 @@ struct AnnotationOriginalEditorEntryDraft {
 
     func requireUnchanged(_ annotation: Annotation) throws {
         guard let id = annotation.id, id > 0,
-              annotation.ckRecordId.flatMap(UUID.init(uuidString:)) != nil else {
+              let recordID = annotation.ckRecordId, !recordID.isEmpty else {
             throw AnnotationOriginalEditorUIError.saveFirst
         }
         let originalColor = annotation.type == .underline
@@ -73,6 +73,8 @@ struct AnnotationOriginalEditorProductionEntry: View {
     @State private var inspection: AnnotationLocalEditorSession?
     @State private var presentation: AnnotationOriginalEditorProductionPresentation?
     @State private var entryMessage: String?
+    @State private var sharePresentation: AnnotationOriginalEditorSharePresentation?
+    @State private var receivePresentation: AnnotationOriginalEditorReceivePresentation?
 
     static var qualificationOwnsEntry: Bool {
         #if DEBUG && targetEnvironment(simulator)
@@ -113,6 +115,59 @@ struct AnnotationOriginalEditorProductionEntry: View {
                 .accessibilityIdentifier("annotation-expanded-editor-open")
                 .disabled(entryError != nil)
 
+                if availability == .rich {
+                    Button {
+                        do {
+                            try draft().requireUnchanged(annotation)
+                            guard let workspace, let inspected, availability == .rich else {
+                                throw AnnotationOriginalEditorUIError.unavailable
+                            }
+                            sharePresentation = .init(annotation: annotation,
+                                inspected: inspected, workspace: workspace)
+                        } catch { entryMessage = error.localizedDescription }
+                    } label: {
+                        Label {
+                            Text("Share saved note with Anytype", tableName: "OriginalAnnotationEditor")
+                        } icon: { Image(systemName: "square.and.arrow.up") }
+                    }
+                    .accessibilityIdentifier("annotation-anytype-share-open")
+                    .disabled(entryError != nil)
+
+                    Button {
+                        do {
+                            try draft().requireUnchanged(annotation)
+                            guard let workspace, let inspected, availability == .rich else {
+                                throw AnnotationOriginalEditorUIError.unavailable
+                            }
+                            receivePresentation = .init(annotation: annotation,
+                                inspected: inspected, workspace: workspace, operationKind: .update)
+                        } catch { entryMessage = error.localizedDescription }
+                    } label: {
+                        Label {
+                            Text("Update saved note in Anytype", tableName: "OriginalAnnotationEditor")
+                        } icon: { Image(systemName: "arrow.triangle.2.circlepath") }
+                    }
+                    .accessibilityIdentifier("annotation-anytype-update-open")
+                    .disabled(entryError != nil)
+
+                    Button {
+                        do {
+                            try draft().requireUnchanged(annotation)
+                            guard let workspace, let inspected, availability == .rich else {
+                                throw AnnotationOriginalEditorUIError.unavailable
+                            }
+                            receivePresentation = .init(annotation: annotation,
+                                inspected: inspected, workspace: workspace)
+                        } catch { entryMessage = error.localizedDescription }
+                    } label: {
+                        Label {
+                            Text("Receive saved changes from Anytype", tableName: "OriginalAnnotationEditor")
+                        } icon: { Image(systemName: "square.and.arrow.down") }
+                    }
+                    .accessibilityIdentifier("annotation-anytype-receive-open")
+                    .disabled(entryError != nil)
+                }
+
                 if availability == .checking {
                     ProgressView {
                         Text("Checking the saved note…", tableName: "OriginalAnnotationEditor")
@@ -132,6 +187,18 @@ struct AnnotationOriginalEditorProductionEntry: View {
                 inspection?.retire()
                 inspection = nil
             }
+            .fullScreenCover(item: $receivePresentation, onDismiss: {
+                closeOriginalSheet()
+            }) { model in
+                AnnotationOriginalEditorReceiveView(model: model)
+                    .interactiveDismissDisabled(true)
+            }
+            .fullScreenCover(item: $sharePresentation, onDismiss: {
+                closeOriginalSheet()
+            }) { model in
+                AnnotationOriginalEditorShareView(model: model)
+                    .interactiveDismissDisabled(true)
+            }
             .fullScreenCover(item: $presentation, onDismiss: {
                 // Do not return to a stale plain Save action after native editing.
                 closeOriginalSheet()
@@ -148,12 +215,16 @@ struct AnnotationOriginalEditorProductionEntry: View {
         inspected = nil
         entryMessage = nil
         guard let id = annotation.id, id > 0,
-              annotation.ckRecordId.flatMap(UUID.init(uuidString:)) != nil else {
+              let recordID = annotation.ckRecordId, !recordID.isEmpty else {
             availability = .plain
             return
         }
         availability = .checking
         do {
+            guard let uuid = try AnnotationStore.shared.resolveAnnotationExchangeIdentity(annotation: annotation) else {
+                availability = .plain
+                return
+            }
             let local = try AnnotationStore.shared.makeLocalAnnotationEditor(
                 annotation: annotation, supportedFormats: AnnotationOriginalEditorMount.supportedFormats
             )
@@ -162,7 +233,8 @@ struct AnnotationOriginalEditorProductionEntry: View {
             let snapshot = try await local.read()
             try Task.checkCancellation()
             guard snapshot.annotation.id == annotation.id,
-                  snapshot.annotationUUID == annotation.ckRecordId.flatMap(UUID.init(uuidString:)),
+                  snapshot.annotationUUID == uuid,
+                  snapshot.annotation.ckRecordId.map({ Array($0.utf8) }) == annotation.ckRecordId.map({ Array($0.utf8) }),
                   snapshot.annotation.bkId == annotation.bkId,
                   snapshot.annotation.contentId == annotation.contentId,
                   snapshot.annotation.backendLocator == annotation.backendLocator,
@@ -495,9 +567,279 @@ struct AnnotationOriginalEditorProductionView: View {
     }
 }
 
+/// The source is frozen before authentication. Neither a changed row nor a
+/// newly selected profile may be silently adopted after the account UI returns.
+@MainActor @Observable
+private final class AnnotationOriginalEditorSharePresentation: Identifiable {
+    enum Stage { case opening, authenticating, confirmation, sending, copied, failed, closing, closeFailed, closed }
+    let id = UUID()
+    let annotation: Annotation
+    private let inspected: AnnotationLocalEditorSnapshot
+    private let workspace: StudyWorkspaceNavigationAdapter
+    private let lifetime = AnnotationLocalEditorLifetime()
+    private var local: AnnotationLocalEditorSession?
+    private var observation: AnnotationOriginalEditorSourceObservation?
+    private var snapshot: AnnotationLocalEditorSnapshot?
+    private var presentation: AnytypeOriginalEditorAccountSession.Presentation?
+    private var account: AnytypeOriginalEditorAccountSession?
+    private var attempt: AnnotationOriginalEditorImportAttempt?
+    private var operation: Task<Void, Never>?
+    private var closeTask: Task<Void, Never>?
+    private var began = false
+    private(set) var stage = Stage.opening
+    private(set) var receiptURL: URL?
+    private(set) var localStopNeedsRetry = false
+    var controller: UIViewController? { presentation?.viewController }
+    var spaceID: String? { account?.identity.spaceID }
+    var canClose: Bool { stage != .sending && stage != .closing && stage != .closed }
+
+    init(annotation: Annotation, inspected: AnnotationLocalEditorSnapshot,
+         workspace: StudyWorkspaceNavigationAdapter) {
+        self.annotation = annotation
+        self.inspected = inspected
+        self.workspace = workspace
+    }
+
+    func begin() async {
+        guard !began else { return }
+        began = true
+        do {
+            let observation = try AnnotationOriginalEditorSourceObservation(
+                annotation: annotation, store: AnnotationStore.shared,
+                workspace: workspace, presentationLifetime: lifetime)
+            self.observation = observation
+            let local = try AnnotationStore.shared.makeLocalAnnotationEditor(
+                annotation: annotation, supportedFormats: AnnotationOriginalEditorMount.supportedFormats)
+            self.local = local
+            try observation.bindLocal(local)
+            let snapshot = try await local.read()
+            try observation.requireCurrent()
+            guard snapshot.annotationUUID == inspected.annotationUUID,
+                  snapshot.source == inspected.source, snapshot.revision == inspected.revision,
+                  snapshot.version == inspected.version,
+                  snapshot.databaseURL == inspected.databaseURL,
+                  try AnnotationOriginalEditorMount.nativeBody(in: snapshot) != nil else {
+                throw AnnotationOriginalEditorUIError.changed
+            }
+            self.snapshot = snapshot
+            localStopNeedsRetry = true
+            try await AnytypeOriginalEditorModule.suspendLocalAnnotationRuntime(
+                appGroup: ITorahSharedContainer.chavrusaTextAppGroupIdentifier)
+            localStopNeedsRetry = false
+            try observation.requireCurrent()
+            try Task.checkCancellation()
+            presentation = try AnytypeOriginalEditorAccountSession.makePresentation(
+                appGroup: ITorahSharedContainer.chavrusaTextAppGroupIdentifier,
+                onReady: { [weak self] session in self?.selected(session) },
+                onFailure: { [weak self] _ in self?.authenticationFailed() })
+            stage = .authenticating
+        } catch {
+            if stage != .closing && stage != .closed { stage = .failed }
+        }
+    }
+
+    func retryLocalStop() {
+        guard stage == .failed, localStopNeedsRetry, presentation == nil,
+              operation == nil, let observation else { return }
+        stage = .opening
+        operation = Task { [self] in
+            defer { operation = nil }
+            do {
+                try await AnytypeOriginalEditorModule.retrySuspendLocalAnnotationRuntime(
+                    appGroup: ITorahSharedContainer.chavrusaTextAppGroupIdentifier)
+                localStopNeedsRetry = false
+                try observation.requireCurrent()
+                try Task.checkCancellation()
+                presentation = try AnytypeOriginalEditorAccountSession.makePresentation(
+                    appGroup: ITorahSharedContainer.chavrusaTextAppGroupIdentifier,
+                    onReady: { [weak self] session in self?.selected(session) },
+                    onFailure: { [weak self] _ in self?.authenticationFailed() })
+                stage = .authenticating
+            } catch {
+                if stage != .closing && stage != .closed { stage = .failed }
+            }
+        }
+    }
+
+    private func selected(_ session: AnytypeOriginalEditorAccountSession) {
+        guard stage == .authenticating else { return }
+        do {
+            try observation?.requireCurrent()
+            guard lifetime.isCurrent, observation != nil else { throw AnnotationOriginalEditorUIError.closed }
+            try session.validateCurrent()
+            account = session
+            stage = .confirmation
+        } catch { stage = .failed }
+    }
+
+    private func authenticationFailed() {
+        guard stage != .closing, stage != .closed, stage != .closeFailed else { return }
+        stage = .failed
+    }
+
+    func sendSavedNote() {
+        guard stage == .confirmation, operation == nil,
+              let local, let snapshot, let observation, let account else { return }
+        stage = .sending
+        operation = Task { [self] in
+            defer { operation = nil }
+            do {
+                try observation.requireCurrent()
+                try account.validateCurrent()
+                let prepared = try await AnnotationOriginalEditorImportAttempt.prepare(
+                    local: local, snapshot: snapshot, observation: observation, account: account)
+                switch prepared {
+                case .recordedWithoutOwnership:
+                    throw AnnotationOriginalEditorUIError.changed
+                case .prepared(let attempt):
+                    self.attempt = attempt
+                    let invocation = try await attempt.invoke()
+                    switch invocation {
+                    case .recordedWithoutOwnership:
+                        throw AnnotationOriginalEditorUIError.changed
+                    case .nativeAwaitReturned:
+                        // The returned await is NOT success. Only its independent
+                        // genuine readback and completed durable write earn this UI.
+                        receiptURL = try await attempt.history.durableNativeReceipt()
+                        stage = .copied
+                    }
+                }
+            } catch { stage = .failed }
+        }
+    }
+
+    func close(retrying: Bool = false) {
+        guard canClose || (retrying && stage == .closeFailed) else { return }
+        guard closeTask == nil else { return }
+        lifetime.retire()
+        observation?.retire()
+        local?.retire()
+        attempt?.retire()
+        stage = .closing
+        closeTask = Task { [self] in
+            defer { closeTask = nil }
+            do {
+                if let presentation {
+                    if retrying { try await presentation.retryClose() }
+                    else { try await presentation.close() }
+                }
+                account = nil
+                presentation = nil
+                stage = .closed
+            } catch { stage = .closeFailed }
+        }
+    }
+
+    func removed() {
+        // Covers scene/window removal independently of the close button. The
+        // original one-use import keeps its late drained history and never retries.
+        attempt?.requestCancellation()
+        operation?.cancel()
+        if stage == .sending { stage = .failed }
+        close()
+    }
+
+    isolated deinit {
+        lifetime.retire()
+        observation?.retire()
+        local?.retire()
+        attempt?.retire()
+    }
+}
+
+@MainActor
+private struct AnnotationOriginalEditorShareView: View {
+    @Environment(\.dismiss) private var dismiss
+    let model: AnnotationOriginalEditorSharePresentation
+
+    var body: some View {
+        NavigationStack {
+            Group {
+                switch model.stage {
+                case .opening, .sending, .closing:
+                    ProgressView {
+                        Text("Finishing the original Anytype operation…", tableName: "OriginalAnnotationEditor")
+                    }
+                case .authenticating:
+                    if let controller = model.controller {
+                        AnnotationOriginalEditorProductionController(controller: controller)
+                            .accessibilityIdentifier("annotation-anytype-original-account")
+                    }
+                case .confirmation:
+                    VStack(spacing: 20) {
+                        Text("Send this saved note?", tableName: "OriginalAnnotationEditor").font(.title2)
+                        Text("Only the saved rich note will be copied to the selected Anytype space.",
+                             tableName: "OriginalAnnotationEditor")
+                        if let spaceID = model.spaceID {
+                            Text(spaceID).font(.caption).textSelection(.enabled)
+                                .accessibilityIdentifier("annotation-anytype-selected-space")
+                        }
+                        Button { model.sendSavedNote() } label: {
+                            Text("Send saved note", tableName: "OriginalAnnotationEditor")
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .accessibilityIdentifier("annotation-anytype-share-confirm")
+                    }.padding()
+                case .copied:
+                    ContentUnavailableView {
+                        Label {
+                            Text("Copy verified in Anytype", tableName: "OriginalAnnotationEditor")
+                        } icon: { Image(systemName: "checkmark.circle") }
+                    } description: {
+                        Text("Anytype read back the complete note and its object mapping. Delivery to another device has not yet been verified.",
+                             tableName: "OriginalAnnotationEditor")
+                    }
+                    .accessibilityIdentifier("annotation-anytype-native-copy-verified")
+                case .failed:
+                    ContentUnavailableView {
+                        Label {
+                            Text("Sharing could not finish", tableName: "OriginalAnnotationEditor")
+                        } icon: { Image(systemName: "exclamationmark.triangle") }
+                    } description: {
+                        Text("Close this screen and check Anytype before trying again. A started transfer may already have created a copy; it will not be sent twice automatically.",
+                             tableName: "OriginalAnnotationEditor")
+                    } actions: {
+                        if model.localStopNeedsRetry {
+                            Button { model.retryLocalStop() } label: {
+                                Text("Retry closing the local editor", tableName: "OriginalAnnotationEditor")
+                            }
+                            .accessibilityIdentifier("annotation-anytype-retry-local-stop")
+                        }
+                    }
+                case .closeFailed:
+                    VStack(spacing: 20) {
+                        Text("Anytype has not finished closing. Retry the original close operation before switching accounts.",
+                             tableName: "OriginalAnnotationEditor")
+                        Button { model.close(retrying: true) } label: {
+                            Text("Retry close", tableName: "OriginalAnnotationEditor")
+                        }
+                        .accessibilityIdentifier("annotation-anytype-retry-close")
+                    }.padding()
+                case .closed:
+                    EmptyView()
+                }
+            }
+            .navigationTitle(Text("Share with Anytype", tableName: "OriginalAnnotationEditor"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button { model.close() } label: {
+                        Text("Close", tableName: "OriginalAnnotationEditor")
+                    }
+                    .disabled(!model.canClose || model.stage == .closeFailed)
+                    .accessibilityIdentifier("annotation-anytype-share-close")
+                }
+            }
+        }
+        .task { await model.begin() }
+        .onChange(of: model.stage) { _, stage in if stage == .closed { dismiss() } }
+        .onDisappear { model.removed() }
+    }
+}
+
 /// The complete supplied controller belongs to the original native SDK.
 @MainActor
-private struct AnnotationOriginalEditorProductionController: UIViewControllerRepresentable {
+struct AnnotationOriginalEditorProductionController: UIViewControllerRepresentable {
     let controller: UIViewController
     func makeUIViewController(context: Context) -> UIViewController { controller }
     func updateUIViewController(_ controller: UIViewController, context: Context) {}

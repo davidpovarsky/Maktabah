@@ -1,0 +1,617 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "%lld changed notes kept unchanged": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld changed notes kept unchanged"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld הערות שהשתנו נשמרו ללא שינוי"
+          }
+        }
+      }
+    },
+    "%lld highlights kept as highlights": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld highlights kept as highlights"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld סימונים נשמרו כסימונים"
+          }
+        }
+      }
+    },
+    "%lld longer notes kept unchanged": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld longer notes kept unchanged"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld הערות ארוכות נשמרו ללא שינוי"
+          }
+        }
+      }
+    },
+    "%lld notes converted": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld notes converted"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld הערות הומרו"
+          }
+        }
+      }
+    },
+    "%lld notes need manual review and remain unchanged": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld notes need manual review and remain unchanged"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld הערות דורשות בדיקה ידנית ונשמרו ללא שינוי"
+          }
+        }
+      }
+    },
+    "%lld notes need preparation again": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld notes need preparation again"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld הערות דורשות הכנה מחדש"
+          }
+        }
+      }
+    },
+    "%lld notes ready": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld notes ready"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld הערות מוכנות"
+          }
+        }
+      }
+    },
+    "%lld pending deletions kept unchanged": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld pending deletions kept unchanged"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld מחיקות ממתינות נשמרו ללא שינוי"
+          }
+        }
+      }
+    },
+    "%lld rich notes kept unchanged": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld rich notes kept unchanged"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld הערות בפורמט עשיר נשמרו ללא שינוי"
+          }
+        }
+      }
+    },
+    "%lld unsupported notes kept unchanged": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld unsupported notes kept unchanged"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld הערות שאינן נתמכות נשמרו ללא שינוי"
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ביטול"
+          }
+        }
+      }
+    },
+    "Check and continue": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check and continue"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בדיקה והמשך"
+          }
+        }
+      }
+    },
+    "Check and continue conversion": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check and continue conversion"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בדיקה והמשך המרה"
+          }
+        }
+      }
+    },
+    "Closing the private editor…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Closing the private editor…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "סגירת העורך הפרטי…"
+          }
+        }
+      }
+    },
+    "Conversion paused. Saved conversions are kept; continue to check the remaining notes.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conversion paused. Saved conversions are kept; continue to check the remaining notes."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההמרה הושהתה. המרות שנשמרו נשארות במקומן; אפשר להמשיך כדי לבדוק את ההערות שנותרו."
+          }
+        }
+      }
+    },
+    "Conversion scan complete": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conversion scan complete"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "סריקת ההמרה הושלמה"
+          }
+        }
+      }
+    },
+    "Conversion stopped because a saved note or the original editor could not be verified. Saved conversions are kept; other notes remain unchanged.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conversion stopped because a saved note or the original editor could not be verified. Saved conversions are kept; other notes remain unchanged."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההמרה נעצרה כי לא ניתן היה לאמת הערה שמורה או את העורך המקורי. המרות שנשמרו נשארות במקומן; שאר ההערות נשארות ללא שינוי."
+          }
+        }
+      }
+    },
+    "Convert saved notes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Convert saved notes"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המרת הערות שמורות"
+          }
+        }
+      }
+    },
+    "Convert saved notes to expanded editing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Convert saved notes to expanded editing"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המרת הערות שמורות לעריכה מורחבת"
+          }
+        }
+      }
+    },
+    "Convert these saved notes?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Convert these saved notes?"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "להמיר את ההערות השמורות?"
+          }
+        }
+      }
+    },
+    "Finish closing the private editor": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finish closing the private editor"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השלמת סגירת העורך הפרטי"
+          }
+        }
+      }
+    },
+    "Only saved notes are converted. Sharing with Anytype remains a separate choice. Existing rich notes and longer notes are kept unchanged.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only saved notes are converted. Sharing with Anytype remains a separate choice. Existing rich notes and longer notes are kept unchanged."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "רק הערות שמורות יומרו. השיתוף עם Anytype יישאר פעולה נפרדת לבחירתך. הערות בפורמט עשיר והערות ארוכות יישמרו ללא שינוי."
+          }
+        }
+      }
+    },
+    "Open preparation from the current study workspace to convert its notes.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open preparation from the current study workspace to convert its notes."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "כדי להמיר את ההערות, יש לפתוח את מסך ההכנה מתוך סביבת הלימוד הנוכחית."
+          }
+        }
+      }
+    },
+    "Pause conversion": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause conversion"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השהיית ההמרה"
+          }
+        }
+      }
+    },
+    "Pause preparation": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause preparation"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השהיית ההכנה"
+          }
+        }
+      }
+    },
+    "Pausing conversion…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pausing conversion…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השהיית ההמרה…"
+          }
+        }
+      }
+    },
+    "Preparation complete": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparation complete"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההכנה הושלמה"
+          }
+        }
+      }
+    },
+    "Preparation paused. Continue whenever you are ready.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparation paused. Continue whenever you are ready."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההכנה הושהתה. אפשר להמשיך בכל עת."
+          }
+        }
+      }
+    },
+    "Preparation stopped because a saved note could not be verified. Your existing notes were kept. Reopen this page to retry.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparation stopped because a saved note could not be verified. Your existing notes were kept. Reopen this page to retry."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההכנה נעצרה כי לא ניתן היה לאמת הערה שמורה. ההערות הקיימות נשמרו. אפשר לפתוח דף זה מחדש ולנסות שוב."
+          }
+        }
+      }
+    },
+    "Prepare existing notes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prepare existing notes"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הכנת הערות קיימות"
+          }
+        }
+      }
+    },
+    "Prepare existing notes for expanded editing and sharing.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prepare existing notes for expanded editing and sharing."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הכנת ההערות הקיימות לעריכה מורחבת ולשיתוף."
+          }
+        }
+      }
+    },
+    "Prepare notes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prepare notes"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הכנת הערות"
+          }
+        }
+      }
+    },
+    "Prepare the existing notes above before starting conversion.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prepare the existing notes above before starting conversion."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יש להכין תחילה את ההערות הקיימות באמצעות הפעולה שלמעלה."
+          }
+        }
+      }
+    },
+    "The original editor will preserve each complete saved note before saving its expanded format. Saved changes follow your existing iCloud settings. You can pause and continue; notes already converted will be kept.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The original editor will preserve each complete saved note before saving its expanded format. Saved changes follow your existing iCloud settings. You can pause and continue; notes already converted will be kept."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "העורך המקורי ישמור את מלוא התוכן של כל הערה לפני שמירתה בפורמט המורחב. שינויים שמורים יסונכרנו בהתאם להגדרות iCloud הקיימות. אפשר להשהות ולהמשיך; הערות שכבר הומרו יישמרו."
+          }
+        }
+      }
+    },
+    "The private editor has not finished closing. Close any other expanded editor, then retry closing here.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The private editor has not finished closing. Close any other expanded editor, then retry closing here."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "סגירת העורך הפרטי טרם הסתיימה. יש לסגור כל עורך מורחב אחר, ואז לנסות שוב את הסגירה כאן."
+          }
+        }
+      }
+    },
+    "This step keeps your saved notes in the current profile. Sharing remains a separate choice in the note editor.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This step keeps your saved notes in the current profile. Sharing remains a separate choice in the note editor."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בשלב זה ההערות השמורות נשארות בפרופיל הנוכחי. השיתוף נעשה בנפרד, לפי בחירתך בעורך ההערה."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

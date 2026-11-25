@@ -19,7 +19,6 @@ struct iOSAnnotationEditorSheet: View {
     @State private var operationErrorMessage: String?
     @State private var editorTextView: UITextView?
     @State private var hasInitialized: Bool = false
-    @State private var miniAppsEditorID = UUID()
     #if os(iOS) && canImport(AnytypeOriginalEditor)
     @State private var originalEditorAvailability: AnnotationOriginalEditorAvailability = .checking
     #endif
@@ -32,6 +31,7 @@ struct iOSAnnotationEditorSheet: View {
         true
         #endif
     }
+    @State private var miniAppsEditorID = UUID()
 
     private var availableColors: [UIColor] {
         if isUnderline {
@@ -212,6 +212,7 @@ struct iOSAnnotationEditorSheet: View {
                     } label: {
                         Image(systemName: "square.grid.2x2")
                     }
+                    .disabled(!allowsPlainEditing)
                     .accessibilityIdentifier("otzaria-note-miniapps")
                     .accessibilityLabel(String(localized: "Mini Apps"))
                 }

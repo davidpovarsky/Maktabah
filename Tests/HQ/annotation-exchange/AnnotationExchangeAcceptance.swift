@@ -245,7 +245,15 @@ final class Acceptance {
         }
         test("nested_enqueue_failure_rolls_back_source_cloud_queue_and_ledger") {
             let f = try Fixture(root: root, name: "enqueue-failure"), before = try f.originals()
-            try f.db.execute(query: "CREATE TRIGGER reject_exchange BEFORE INSERT ON otzaria_annotation_exchange_outbox BEGIN SELECT RAISE(ABORT,'owned fixture enqueue failure'); END;")
+            let fault = ExchangeWriteFault(.rejectOutbox)
+            let pointer = Unmanaged.passUnretained(fault).toOpaque()
+            try require(sqlite3_set_authorizer(f.db.dbPointer, authorizeExchangeWriteFault, pointer) == SQLITE_OK,
+                        "SQLite authorizer registration failed")
+            sqlite3_update_hook(f.db.dbPointer, observeExchangeWriteFault, pointer)
+            defer {
+                sqlite3_set_authorizer(f.db.dbPointer, nil, nil)
+                sqlite3_update_hook(f.db.dbPointer, nil, nil)
+            }
             var sawExpected = false
             do {
                 try f.db.transaction {
@@ -254,9 +262,13 @@ final class Acceptance {
                     _ = try f.commit()
                 }
             } catch let error as SQLiteError {
-                sawExpected = error.localizedDescription.contains("owned fixture enqueue failure")
+                sawExpected = error.localizedDescription.contains("not authorized")
             }
-            try require(sawExpected, "did not execute failing INSERT trigger")
+            let observed = fault.observation
+            try require(sawExpected && observed.deniedOutboxAuthorizations == 1
+                        && observed.outboxWasAttemptedAfterVersionAndHead,
+                        "did not reach failing outbox INSERT after actual version/head writes")
+            try JSONEncoder().encode(observed).write(to: root.appendingPathComponent("enqueue-failure-hook.json"))
             try require(f.originals() == before, "outer source/CloudKit transaction leaked")
             try require(f.scalar("SELECT count(*) FROM otzaria_annotation_exchange_versions;") == 0, "version survived failed enqueue")
             try require(f.scalar("SELECT count(*) FROM otzaria_annotation_exchange_heads;") == 0, "head survived failed enqueue")
@@ -358,13 +370,21 @@ final class Acceptance {
         }
         await asyncTest("cancellation_after_real_enqueue_rolls_back_before_commit") {
             let f = try Fixture(root: root, name: "cancel-after-insert"), before = try f.originals()
-            let status = sqlite3_create_function_v2(f.db.dbPointer, "cancel_exchange_task", 0, SQLITE_UTF8, nil,
-                                                   cancelExchangeTask, nil, nil, nil)
-            try require(status == SQLITE_OK, "SQLite callback setup failed")
-            try f.db.execute(query: "CREATE TRIGGER cancel_after_enqueue AFTER INSERT ON otzaria_annotation_exchange_outbox BEGIN SELECT cancel_exchange_task(); END;")
+            let fault = ExchangeWriteFault(.cancelAfterOutbox)
+            let pointer = Unmanaged.passUnretained(fault).toOpaque()
+            sqlite3_update_hook(f.db.dbPointer, observeExchangeWriteFault, pointer)
+            defer { sqlite3_update_hook(f.db.dbPointer, nil, nil) }
             let task = Task.detached { try f.commit() }
             do { _ = try await task.value; throw CheckFailure("cancelled insert committed") }
             catch is CancellationError {}
+            let observed = fault.observation
+            try require(observed.cancellationsAfterOutboxInsert == 1
+                        && observed.insertedTables.filter({ $0 == "otzaria_annotation_exchange_outbox" }).count == 1
+                        && observed.insertedTables.contains("otzaria_annotation_exchange_versions")
+                        && observed.insertedTables.contains("otzaria_annotation_exchange_heads")
+                        && observed.insertedRowIDs.allSatisfy({ $0 > 0 }),
+                        "cancellation did not follow actual outbox/version/head inserts")
+            try JSONEncoder().encode(observed).write(to: root.appendingPathComponent("enqueue-cancellation-hook.json"))
             try require(f.scalar("SELECT count(*) FROM otzaria_annotation_exchange_outbox;") == 0, "cancellation left outbox")
             try require(f.scalar("SELECT count(*) FROM otzaria_annotation_exchange_heads;") == 0 && f.originals() == before, "cancellation leaked head/source")
         }

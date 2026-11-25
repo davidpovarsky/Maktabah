@@ -1,0 +1,1 @@
+{"status": "PASS_APPLE_PROJECT_REGISTRATION", "scope": "ACTUAL_MAC_PLUTIL_SOURCE_GRAPH_ONLY", "new_objects": 2, "changed_existing_objects": ["CFEE00000000000000000001", "F30576E22FA46222005732C6"], "iOS_only": true, "all_other_objects_unchanged": true, "app_build_executed": false, "evidence": "/Users/m1/builds/_preflight/otzaria-receive-registration-20261125/035501"}

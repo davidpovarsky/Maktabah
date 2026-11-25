@@ -775,9 +775,6 @@ def main():
                     help="Exact local capture from an actual successful prior app/UI-runner build")
     ap.add_argument("--prepared-inputs-sha256", help="Reviewed SHA256 of that immutable capture")
     args = ap.parse_args()
-    require(not args.simulator_data_profile or
-            (args.build_for_testing and not args.preflight_only and not args.prepare_inputs_only),
-            "Embedded test profile requires the actual Debug Simulator test build")
     require(bool(args.prepared_inputs_manifest) == bool(args.prepared_inputs_sha256),
             "Prepared input reuse requires both the capture and its reviewed SHA256")
     require(not (args.original_editor_routes and args.original_editor_admission),
@@ -787,6 +784,9 @@ def main():
     require(not args.prepared_inputs_manifest or ((args.original_editor_admission or args.original_editor_routes)
             and args.build_for_testing and not args.preflight_only and not args.prepare_inputs_only),
             "Prepared inputs may only continue into original SDK admission and a real native build")
+    require(not args.simulator_data_profile or
+            (args.build_for_testing and not args.preflight_only and not args.prepare_inputs_only),
+            "Embedded test profile requires the actual Debug Simulator test build")
     require(not args.original_editor_admission or
             (args.build_for_testing and not args.preflight_only and not args.prepare_inputs_only),
             "Original editor qualification requires the real Debug Simulator test build")

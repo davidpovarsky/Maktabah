@@ -1,0 +1,88 @@
+{
+  "changed_inputs": [
+    {
+      "after": {
+        "bytes": 8300,
+        "git_blob": "e491e7a4bd9b12be51c9b808a5505abb11d8a058",
+        "mode": "100644",
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+        "sha256": "bb830f57f0e3cf41d981281eeb9f63ef4b5b5654b78c398238ce96ae0857144c"
+      },
+      "before": {
+        "bytes": 7400,
+        "git_blob": "baf85044c51fffb4a74a173f86c1809338481382",
+        "mode": "100644",
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+        "sha256": "efd039844bcb3103ccac4342ffced1c6f52959847893edf3c650c5cedcdc9515"
+      },
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift"
+    },
+    {
+      "after": {
+        "bytes": 82141,
+        "git_blob": "225377b799d67ca37ece5a2f08e1a6c8aec495be",
+        "mode": "100644",
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+        "sha256": "55cdffbc143511a620613c87cd9915d3e52e3175bb423d53779f2912db354fee"
+      },
+      "before": {
+        "bytes": 78865,
+        "git_blob": "8f0786356ba71e135c99e5ecb4897a8832655845",
+        "mode": "100644",
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+        "sha256": "204670ccfd801edbe715e893d7feb6eb3ceed17e3c100fee27a0dc936bc750dc"
+      },
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift"
+    },
+    {
+      "after": {
+        "bytes": 20575,
+        "git_blob": "a7b4165218563403f5091e9f455d5a7c55c38733",
+        "mode": "100644",
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+        "sha256": "a2ee22f90dab7106b35e3a57c751de86ebfbe5185cbebbadda9a2b526b90ecc9"
+      },
+      "before": {
+        "bytes": 18479,
+        "git_blob": "034a0b9307385cf71ac64854121e394f10c84d70",
+        "mode": "100644",
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+        "sha256": "c77fe33a28b9854b088ea27478364c25d18d0311b67a99385b5e3e1bc5de8e9d"
+      },
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift"
+    },
+    {
+      "after": {
+        "bytes": 614824,
+        "git_blob": "0f553ed0882d5148aa0ee23afefbf8b16e82b862",
+        "mode": "100644",
+        "path": "Maktabah.xcodeproj/project.pbxproj",
+        "sha256": "155e7d2a43db05eca5cfa63bbe590e1bd90460402b24377e31d9096942b94a33"
+      },
+      "before": {
+        "bytes": 613099,
+        "git_blob": "e8e9651b5d331af83e4e42574ca0e3697d33b569",
+        "mode": "100644",
+        "path": "Maktabah.xcodeproj/project.pbxproj",
+        "sha256": "462e1dd8287da751ac0c92019f44239c7b128fa4c43cc90245853076e320abab"
+      },
+      "path": "Maktabah.xcodeproj/project.pbxproj"
+    }
+  ],
+  "not_claimed": [
+    "native SDK",
+    "native UI",
+    "real CloudKit transport",
+    "final app build"
+  ],
+  "original36_harness_unchanged": true,
+  "original43_source_and_driver_unchanged": true,
+  "preserved_blocked_attempt": "job_0994b2ee8fe0",
+  "previous_actual_cases_executed": 0,
+  "previous_component_checkpoint": "a547b60dc88039592a1718a3a773eead448a647e",
+  "previous_source_sha": "75058d1c1abbfb0fb37fc819dcece47b853eb4da",
+  "product_source_sha": "ce0f62baba7360514e7fa8cad21f0caaf2d0ab8f",
+  "reason": "Shared prepare/commit now has explicit complete-note preservation; original43 must rerun, revision36 remains unexecuted and must use this exact closure.",
+  "status": "SOURCE_REVIEW_ONLY_NOT_EXECUTED",
+  "unchanged_original_inputs": 79
+}

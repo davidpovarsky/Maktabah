@@ -1,0 +1,527 @@
+[
+  {
+    "name": "build_provenance.json",
+    "bytes": 6773,
+    "sha256": "48c36bfbd35040061fd845c498303491648b13cbe2f93d159185197bef917f81",
+    "body": {
+      "assets": [
+        {
+          "name": "library_stats.json",
+          "sha256": "775881280e9cb4376f6c44abf300cb7db7c79f308e0b16182777ff5ed137a5ae",
+          "size": 82
+        },
+        {
+          "name": "patch-v24-v40.db.zst",
+          "sha256": "07ec019cecfd92de1e69c41306c9d9d534b58751b010ca7e8acef18bf8bc8b7f",
+          "size": 346
+        },
+        {
+          "name": "patch-v24-v40.db.zst.manifest.json",
+          "sha256": "135fbec7f1b47c01c592fd752ce61e6c5295a9d0ffb4e9ff9e71c37d5e11345c",
+          "size": 547
+        },
+        {
+          "name": "patch-v32-v40.db.zst",
+          "sha256": "1da99d7ea3058abef7970df23521c5bcd49e4a822ac5875636cc08ce5b7cd25d",
+          "size": 504579613
+        },
+        {
+          "name": "patch-v32-v40.db.zst.manifest.json",
+          "sha256": "ad18e47a4c22c17e346e90ca34644a0947a0b803d45ff6e5b3ee8420d6a1cee2",
+          "size": 8010
+        },
+        {
+          "name": "patch-v36-v40.db.zst",
+          "sha256": "40ad4540621914a105b99b770d3411d66ccd9bc35607638c96994ee750746a39",
+          "size": 205764070
+        },
+        {
+          "name": "patch-v36-v40.db.zst.manifest.json",
+          "sha256": "fae96139372cb8eba4957d78e7b24da670b22c6f843d9f13a49fa1e52d861dc8",
+          "size": 8543
+        },
+        {
+          "name": "patch-v38-v40.db.zst",
+          "sha256": "8bdc2687cd17c1dab2070c2d50a9aa5af2a6def64de839e298b89b0a5e53f4f8",
+          "size": 71267484
+        },
+        {
+          "name": "patch-v38-v40.db.zst.manifest.json",
+          "sha256": "4c7a8c00d54ce8e04e8b26dd3af947a482f7689e48b795a33757654eca34b8f3",
+          "size": 8542
+        },
+        {
+          "name": "patch-v39-v40.db.zst",
+          "sha256": "8dd41264633cd63d684d5a8413dbf5f2ae9f1b26e4b15e48730f780e6c99f4fc",
+          "size": 5388543
+        },
+        {
+          "name": "patch-v39-v40.db.zst.manifest.json",
+          "sha256": "d05bb6191ea0e3022a2e5fec650b20ba5eba71d45259011246a1e28b768aa53a",
+          "size": 8540
+        },
+        {
+          "name": "seforim-schema7.db.zst.manifest.json",
+          "sha256": "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3",
+          "size": 589
+        },
+        {
+          "name": "seforim-schema7.db.zst.part-000",
+          "sha256": "91a9985084e5217b661664c3b53c357aaf354498752bf9f7c55d93581dcc9c33",
+          "size": 1992294400
+        },
+        {
+          "name": "seforim-schema7.db.zst.part-001",
+          "sha256": "a5469c776bae891d49dfcf33986474416b56ee739c4b0fba37ef7eb9ec53af1a",
+          "size": 137608236
+        },
+        {
+          "name": "seforim.db.buildstate.zst",
+          "sha256": "18a9a6fb4eff312a9362a9a69b3b6758d57e08aa5fc86959866bf4b94f912288",
+          "size": 733482062
+        }
+      ],
+      "config_sha256": "bd9e6f345f2f56c22ec3df2a6133b639c202aacd48338c34f8940e57d5fc5d3c",
+      "correlation_id": "sefaria:45139177019:1:2026-11-23_10-32-45139177019-1:dedbf438875bc475d994066ec90580c98e2cfe9c13148cfb9f08f2eaf224dc6d",
+      "db_schema": {
+        "db_schema_version": 7,
+        "tables": {
+          "alt_toc_entry": [
+            "hasChildren",
+            "id",
+            "isLastChild",
+            "level",
+            "lineId",
+            "parentId",
+            "structureId",
+            "textId"
+          ],
+          "alt_toc_structure": [
+            "bookId",
+            "heTitle",
+            "id",
+            "key",
+            "title"
+          ],
+          "author": [
+            "id",
+            "name"
+          ],
+          "banner": [
+            "id",
+            "text"
+          ],
+          "book": [
+            "categoryId",
+            "collectiveTitleEn",
+            "collectiveTitleHe",
+            "contentHash",
+            "dependenceType",
+            "hasAltStructures",
+            "hasCommentaryConnection",
+            "hasNekudot",
+            "hasOtherConnection",
+            "hasReferenceConnection",
+            "hasSourceConnection",
+            "hasTargumConnection",
+            "hasTeamim",
+            "heDesc",
+            "heRef",
+            "heShortDesc",
+            "id",
+            "isBaseBook",
+            "notesContent",
+            "orderIndex",
+            "sourceId",
+            "title",
+            "totalLines"
+          ],
+          "book_acronym": [
+            "bookId",
+            "term"
+          ],
+          "book_author": [
+            "authorId",
+            "bookId"
+          ],
+          "book_banner": [
+            "bannerId",
+            "bookId"
+          ],
+          "book_base_text": [
+            "baseBookId",
+            "bookId"
+          ],
+          "book_generation": [
+            "bookId",
+            "generationId"
+          ],
+          "book_has_links": [
+            "bookId",
+            "hasSourceLinks",
+            "hasTargetLinks"
+          ],
+          "book_protection": [
+            "bookId",
+            "level"
+          ],
+          "book_pub_date": [
+            "bookId",
+            "pubDateId"
+          ],
+          "book_pub_place": [
+            "bookId",
+            "pubPlaceId"
+          ],
+          "book_topic": [
+            "bookId",
+            "topicId"
+          ],
+          "book_version": [
+            "bookId",
+            "hasContent",
+            "heVersionNotes",
+            "heVersionTitle",
+            "id",
+            "license",
+            "priority",
+            "versionNotes",
+            "versionSource",
+            "versionTitle"
+          ],
+          "category": [
+            "heDesc",
+            "heShortDesc",
+            "id",
+            "level",
+            "orderIndex",
+            "parentId",
+            "title"
+          ],
+          "category_closure": [
+            "ancestorId",
+            "descendantId"
+          ],
+          "connection_type": [
+            "id",
+            "name"
+          ],
+          "default_commentator": [
+            "bookId",
+            "commentatorBookId",
+            "position"
+          ],
+          "default_targum": [
+            "bookId",
+            "position",
+            "targumBookId"
+          ],
+          "generation": [
+            "id",
+            "name"
+          ],
+          "line": [
+            "bookId",
+            "charCount",
+            "heRef",
+            "id",
+            "lineIndex",
+            "tocEntryId"
+          ],
+          "line_alt_toc": [
+            "altTocEntryId",
+            "lineId",
+            "structureId"
+          ],
+          "line_content": [
+            "content",
+            "id"
+          ],
+          "line_dh": [
+            "bookId",
+            "dhDisplay",
+            "dhText",
+            "lineIndex"
+          ],
+          "line_divine_name": [
+            "charStart",
+            "lineId",
+            "span"
+          ],
+          "line_note": [
+            "body",
+            "charPos",
+            "hasMarker",
+            "lineId",
+            "noteIndex"
+          ],
+          "line_note_divine_name": [
+            "charStart",
+            "lineId",
+            "noteIndex",
+            "span"
+          ],
+          "line_ref": [
+            "bookId",
+            "lineIndex",
+            "refKeyHash"
+          ],
+          "line_toc": [
+            "lineId",
+            "tocEntryId"
+          ],
+          "link": [
+            "baseProvenance",
+            "connectionTypeId",
+            "id",
+            "sourceBookId",
+            "sourceLineId",
+            "targetBookId",
+            "targetBookOrderIndex",
+            "targetLineId",
+            "targetLineIndex"
+          ],
+          "link_anchor": [
+            "charEnd",
+            "charStart",
+            "label",
+            "linkId",
+            "side"
+          ],
+          "link_coverage": [
+            "lineId",
+            "linkId",
+            "side"
+          ],
+          "link_range": [
+            "endLineId",
+            "endLineIndex",
+            "linkId",
+            "side"
+          ],
+          "link_suppressed_side": [
+            "linkId",
+            "reasonMask",
+            "side"
+          ],
+          "pub_date": [
+            "date",
+            "id"
+          ],
+          "pub_place": [
+            "id",
+            "name"
+          ],
+          "schema_meta": [
+            "key",
+            "value"
+          ],
+          "source": [
+            "id",
+            "name"
+          ],
+          "tocEntry": [
+            "bookId",
+            "hasChildren",
+            "id",
+            "isLastChild",
+            "level",
+            "lineId",
+            "parentId",
+            "textId"
+          ],
+          "tocText": [
+            "id",
+            "text"
+          ],
+          "topic": [
+            "id",
+            "name"
+          ],
+          "version_line": [
+            "charCount",
+            "content",
+            "lineId",
+            "versionId"
+          ],
+          "zstd_dict": [
+            "dict",
+            "id"
+          ]
+        }
+      },
+      "expected_links_commit": "28976848e5b0da77f8a2670abcf6655d8f482cc4",
+      "fordb_archive_sha256": "4be7b46c3a578165be8246372c18958b0e180f640a320e71a44943e3ec3faf10",
+      "fordb_tag": "fordb-sha256-4be7b46c3a578165be8246372c18958b0e180f640a320e71a44943e3ec3faf10",
+      "lineage_sha256": "1134d85f8f2a25a33860497d7950987292d578d828f97ceb00a9b83eea671230",
+      "linker_commit": "5c0e2a91b45e421b704c006b4c96976bd8561b17",
+      "linker_engine_fingerprint": "dump=44e55916743983b8;engine_src=bbcf4ff94398e7e8;gpu-server=d9da16119e9c0de64224d7b187cd999b2ead4bad;he_ref_ner=37ff5191562e8655;he_subref_ner=4480a8acec08bae0;python_runtime=d4dc6ca766526322;sefaria=59291d9f8754de0062711bc1cd49214b0e618fc5;sefaria_patch=9417fd1aba7bf248;policy=drop;bavli=0",
+      "linker_payload_sha256": "1dae85a8a32d713991da57c68f179ec23f47ef0cbf0f9ad9daf89368cafbb956",
+      "linker_relink_request_id": "e8198ecf3a0c54a4652144ee2dad4acda4a687589363b1b877ce221569a7296d",
+      "linker_relink_run_attempt": 1,
+      "linker_relink_run_id": 45160201521,
+      "otzaria_asset_sha256": "580bfa03ef3e25d848e9bea525592ee6c434589ef060df12c03f610ae7932be4",
+      "otzaria_tag": "library-links-45147067439-1-28976848e5b0",
+      "otzaria_target_commit": "28976848e5b0da77f8a2670abcf6655d8f482cc4",
+      "packaged_links_tree_sha256": "dd6d97178192115ce8e3060d356938b278eeb8948d2144de7155e0a20d23d78f",
+      "phase2_implementation_commit": "c5e2801083e820374e4457b81845a451f3be2244",
+      "schema_version": 5,
+      "sefaria_archive_sha256": "1226ae7c58ce40b79d7801c9d91c849e514389f800b16c21a6a32f153849f87c",
+      "sefaria_release_metadata_sha256": "dedbf438875bc475d994066ec90580c98e2cfe9c13148cfb9f08f2eaf224dc6d",
+      "sefaria_tag": "2026-11-23_10-32-45139177019-1",
+      "snapshot_release_tag": "lines-snapshot-sha256-b0551fb0531643fe4b00dd6ef177b7f197e320bf9b2cc7868694adcc2b57e244",
+      "snapshot_zst_sha256": "b0551fb0531643fe4b00dd6ef177b7f197e320bf9b2cc7868694adcc2b57e244",
+      "source_commit": "c5e2801083e820374e4457b81845a451f3be2244",
+      "source_links_tree_sha256": "3bff557c78986cf89c3cda1adcd07e59ce68628f1dd89f7945b7d081da578761"
+    }
+  },
+  {
+    "name": "library_stats.json",
+    "bytes": 82,
+    "sha256": "775881280e9cb4376f6c44abf300cb7db7c79f308e0b16182777ff5ed137a5ae",
+    "body": {
+      "schema_version": 1,
+      "db_version": 40,
+      "books": 8259,
+      "links": 7001824,
+      "lines": 7925185
+    }
+  },
+  {
+    "name": "patch-v32-v40.db.zst.manifest.json",
+    "bytes": 8010,
+    "sha256": "ad18e47a4c22c17e346e90ca34644a0947a0b803d45ff6e5b3ee8420d6a1cee2",
+    "body": {
+      "fromVersion": 32,
+      "toVersion": 40,
+      "fromSchemaVersion": 6,
+      "toSchemaVersion": 7,
+      "patchFormatVersion": 4,
+      "fromContentHash": "56bf95ee5035469cf62dd8d99329727384d00220d3d2709dd836dff6f6476f68",
+      "toContentHash": "006b59566d12e64d438dd8d9f27e1697fdf227f03dda2e39b805cc3011ebbca0",
+      "fromTableContentHashes": {
+        "source": "318c2beb4baf26c839423c9d9234a77c5f57d82c697e636951705569f92b15c7",
+        "author": "f66efb9d69bf60291511738d3d2756547ce844d954babf49a41625c6267e10e5",
+        "topic": "73555c9e6b8040458379c1714a4d523e513600d2fd22b2fd5ab210bad34bc6f0",
+        "pub_place": "70f1c84419af40389c3f89d6ad2b2ccc04c4e341134cb7bec46189803576dd57",
+        "pub_date": "908f119d3c54dad7f4adbced3d32fea3a7a8a5e16811bd4751f7c3fa7894fec4",
+        "connection_type": "c7098066f802fffd0492ae97a9e4b1b26a66fe69e3980f7d42907befadb24bd8",
+        "generation": "c0fba33554dc0c7088f8a9befa36ddeb3975662d4f3fcd222ac4bc6ab8dbcdd1",
+        "category": "4bfaf382a81af680d5ee62af29c143e0c70286f2bd5fad4ea96d34811dce04b7",
+        "category_closure": "d05bc72836c8e387c6304bf0a12ded3dbb43f17abcbd00a4d0c6059964020bce",
+        "tocText": "f0ec83a4d26ef0df32de6951d5d7e9241cc256e50c2d2fcd627c2c4ae039ba40",
+        "book": "3f71eb52dcd5d04356cae0738b4cbe740619538ac63c34fbc9b38b2f1caa7cd6",
+        "book_topic": "b9e5759792e00b777e07a1a2af9466073b1c5fde9e01b4232d667ac9e038a4f4",
+        "book_author": "a5787150d7d0a5a72b2ea7f46d6382f7375d06d47b763e85448b8cdc64706f96",
+        "book_base_text": "5baa7ddb25275a47072c2e0e06309295bee7d9ef46d67c16122eb4ca1c359176",
+        "book_pub_place": "80ed756148f0aeeb3cf9f78bd548ddfe1ff0f68673633640816fa4efd360cb12",
+        "book_pub_date": "3823700961ddb2244dabad0a30d679e7956a46d9bef3ee2f48ee41bb56828a43",
+        "book_generation": "a1f9b0b793048d1f78c2dc448e9192fd3bad002f885ec709b9af5a50fcdd5ae6",
+        "tocEntry": "e6bfb5471cd73d996c45b256bbffcbed70d01fa4da38d220c8d362d42c032453",
+        "line": "1e2e336b30272607a5a40cc81e6aca3fa9b1769bed00703821e1ebe5b09a0eef",
+        "line_content": "5712628d56236f66c020648cd87089ea6fd3d81fa4da544a9ebe3a2d29c53cbe",
+        "zstd_dict": "1d927b8a4598b1a671379c3c2abda94eed6e8183c4829265399e61008dafca7d",
+        "line_toc": "03001f0f55c718416f6f8d9e5a2e283b936628a05dfdd6f3bb7edb190ca666ba",
+        "line_ref": "3d4ec5a78350a5f88b1b111e1df833e8545d644db1582f0655f57514a2ce0157",
+        "line_dh": "a32ee72b0ac018a14e817d99492a54a7f76942cee76d462624df7474d2710f99",
+        "link": "e3ddb2f6670de20bd80802b9cad725a281f8812598411f59a1539b21aa762954",
+        "link_anchor": "f056a77637955679dad3c35794c2fef50b8748b87299acef490f15ea6c2e745f",
+        "link_range": "f3782a119b72a79b988a8f5365c918925a77e6fb5b9dc3650bbba2fa7c5ac2f5",
+        "link_coverage": "2dd65524f1fda2d769f3c630c12cc6515b10a44ebef338b16936a0f02d375dd9",
+        "link_suppressed_side": "0f91a08c9129f5783202e25763e2b4781f4c6005bc8181f228018085368b80f4",
+        "book_has_links": "877d991e04f12142e389ee0e8502ec700d08d5323182cd8706475f9636d21b5d",
+        "book_version": "a28171d389fb3be2bf43c6a9c0ad4533943e8618d839c0f84ea8ae128c90f1f6",
+        "version_line": "bbc84d445e8267653cba580e50f011494d3e23419d3dc84b32837a98af7332b6",
+        "book_acronym": "7a02dcd463386e5721a25fdc961378ece3a9c72cdf4ceef5ef3a39402eb6a329",
+        "alt_toc_structure": "e1c8557b64d56f6711285e4cf7c578f6957d8557e33ad87acc626b2fcd3fec54",
+        "alt_toc_entry": "c12ee025fd30c2a06e08a1a131a5b756d713eecd13379b877bc9a0c7c6bc91f8",
+        "line_alt_toc": "3f7b9516c2724195d965d7dde479ffcd0d3b07e59286650b0abf59ece8a760d6",
+        "default_commentator": "dc32e5e7049e98b85ab559a148ae34d303720bbcb827809b01fd2c83d7263726",
+        "default_targum": "bc590dcc8664e530bfe5b8f6512391679b8587ee3c6651d59d6a7aa06430748e",
+        "schema_meta": "ba424034e62ebff874c548dc49f97d275ba51bb5f673cd5db78ab89608496beb"
+      },
+      "toTableContentHashes": {
+        "source": "318c2beb4baf26c839423c9d9234a77c5f57d82c697e636951705569f92b15c7",
+        "author": "c8274c525e9fdc1098bf785241c0b4c8e5423ed4a4f4c68279376732e747790c",
+        "topic": "16cc085ad3c1ceb176aae09deb7ec6ec8bc095fc5c19d43096f88ba7ebbc641c",
+        "pub_place": "88942f571eee511b5459e41a55292ef06c10c7879db6718865d272085e1fcd9b",
+        "pub_date": "260989e87837d6821764faffd8d1b965b74c8d8312175c1d2683c8add1945b0f",
+        "connection_type": "c7098066f802fffd0492ae97a9e4b1b26a66fe69e3980f7d42907befadb24bd8",
+        "generation": "c0fba33554dc0c7088f8a9befa36ddeb3975662d4f3fcd222ac4bc6ab8dbcdd1",
+        "category": "99985462785aea0c7dd1d8096654be66475353bf1bf21c0e605d4a1d87160d18",
+        "category_closure": "7c8901c277fc76f9c949ba589916f004195b9d2a2fe8e4b4216395aaef12bfb4",
+        "tocText": "d20f5beceae444b1a6a61f2dc9c672bd7fd13ecb5c4db6ff1cc4a836b66f4283",
+        "book": "8a7b0e679ca0e76a693bf529b9ded04e00b4bcf2eca3c88db6319b99de4cc0cc",
+        "book_topic": "e4e9c6547891ea1546bb46f6bb4b796c48e1104e706899f208b0c8b8aa58d002",
+        "book_author": "dbb659f441217b1fa7bb0f11463727232f02ae29ce6ebb02169de994170303f5",
+        "book_base_text": "aaa66ee307eeaef8b9698eeea929c681466be798ab8604d3affb443424b06fa5",
+        "book_pub_place": "6ad337400c41eb1016814b25136488c433f4dcbe12257c311ac572c43a7ea812",
+        "book_pub_date": "2312f8756704d7e819aac19de830109ad570162289b425ccde42f4f324b7d049",
+        "book_generation": "bffc6efc6cefa6d7b8811fd21ea579d179d5c3e1ec25486b92f301757c85a2e2",
+        "tocEntry": "ad0cedf0d73a351aad7cff9b9b3adb455b4cd423caaa9134c60f5a67472ccbad",
+        "line": "31a77e34895306d5bfcce1c3ac8a4dda6aac447f01f6034fcbab05358287511d",
+        "line_content": "821163e7e5f87fc496b7fe7f9980fdbe9599e67b1bfde66d79d97d6fb03e90f5",
+        "zstd_dict": "1d927b8a4598b1a671379c3c2abda94eed6e8183c4829265399e61008dafca7d",
+        "line_toc": "0ef8d4a9b3d7af0ae21ed92e0657210c780a07f3f502b11b18a3bbe7180d2bf5",
+        "line_ref": "1f4aba8f12dc8b830571f56c72f1896e51fc1fcc2b7b4e923e15a91ea8bde39b",
+        "line_dh": "32a07b0c3d8bb00f7ea10305bf112d0eab57612fe01cc4becc401047b497f476",
+        "link": "0bd52087c55a2413b248daa8b709314615afc903307990ba0544e0a49a2d52dc",
+        "link_anchor": "effadeb338475dccf3550572f69fe5101583acd2d1b372038233103eb08b260c",
+        "link_range": "f3472590698d57c80b09724c8353333e93792bb96b5d1971f2f4ed8a1e564536",
+        "link_coverage": "5b79202cf3fb80810467cf03100f9c1c5b79356f16af5432f70e0463a24519b8",
+        "link_suppressed_side": "72f5ce2a9548fa36a873c8eee0071f1a8b51d1a0f4c213a22f61e49fee5474c9",
+        "book_has_links": "c11beb7bd75b901af95d9f3c3db6a261d8ef935fd209e613b58f0bbf3fc6f929",
+        "book_version": "cce3ffeb1be8e0c9e67cfc803185168f2d085ce80c9326d88b39317f583bf0bc",
+        "version_line": "5c71de6f49ac86ff3a9000bc4ee42d4f0a5a282f24861feb3f48957ba9b7c294",
+        "book_acronym": "958d35e4bd05523785ed7642373f7eab07a6f5b389bca7f04c43f53f98448ac7",
+        "alt_toc_structure": "a73b8fcafdfe5079bcdb96b6be9f6a94c2b0f7c8f85e27942b087abb0a522f61",
+        "alt_toc_entry": "5c58705178badfb3d04485d23bde8a5e3b9a8fa3b7c6e3639cae556ad16b6ac9",
+        "line_alt_toc": "6238be54838117ec7d0fc48e7ebef75b9cb97f8224df8e46ed6eb7861f59b034",
+        "default_commentator": "8bd6054631c79f830a8b6742577171b8cb46b24df2e58170d8f4baab2fff5fbc",
+        "default_targum": "bc590dcc8664e530bfe5b8f6512391679b8587ee3c6651d59d6a7aa06430748e",
+        "banner": "853a887eab9b9c8898589f034347df9d0635adedc6dde5e27930883548ff32e9",
+        "book_banner": "b3b1e0a86098539a63c081e2ba23fe0884a906e3f3106b793f11c76b52c15b7e",
+        "book_protection": "716118d0f9ddda57977955750ce09d46def6d5df483d2e13c2fb62ed552b3516",
+        "line_divine_name": "822d6a04158ac5b86d7346699a7b925df914b1d3eaf2366ae2688ac0ce888965",
+        "line_note": "f1b58d6f398b5786be5b2dcb31e78ddff0b1d5f1edfab150202f9df6f46e8101",
+        "line_note_divine_name": "fd66312a902def3f89b93a96045bcbf1acc780a88b887790cdfddbb0485c78e1",
+        "schema_meta": "6a517a616ae6ec0432768f1b3356f7f134dcbe8c7a31ce693c6477fff276ceb0"
+      },
+      "patchFiles": [
+        {
+          "file": "patch-v32-v40.db.zst",
+          "compression": "zstd",
+          "sha256": "1da99d7ea3058abef7970df23521c5bcd49e4a822ac5875636cc08ce5b7cd25d",
+          "size": 504579613,
+          "uncompressedSha256": "6c1d9332924826c33b4a55d2a3b8257f28b2d11592a4672639d9f2169955f090",
+          "uncompressedSize": 1033662464
+        }
+      ]
+    }
+  },
+  {
+    "name": "seforim-schema7.db.zst.manifest.json",
+    "bytes": 589,
+    "sha256": "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3",
+    "body": {
+      "schemaVersion": 1,
+      "archive": "seforim-schema7.db.zst",
+      "size": 2129902636,
+      "sha256": "39a2b52129323ea53ac3629835c4721e25acff010a8fc971bf076a666a3b9587",
+      "partSizeLimit": 1992294400,
+      "githubAssetLimit": 2147483648,
+      "parts": [
+        {
+          "name": "seforim-schema7.db.zst.part-000",
+          "size": 1992294400,
+          "sha256": "91a9985084e5217b661664c3b53c357aaf354498752bf9f7c55d93581dcc9c33"
+        },
+        {
+          "name": "seforim-schema7.db.zst.part-001",
+          "size": 137608236,
+          "sha256": "a5469c776bae891d49dfcf33986474416b56ee739c4b0fba37ef7eb9ec53af1a"
+        }
+      ]
+    }
+  }
+]
