@@ -1,0 +1,17 @@
+{
+  "consumer_revision": "70eb9c2d2cdfd920a65da59643dff7d4e7b775ff",
+  "miniapps_producer_revision": "70eb9c2d2cdfd920a65da59643dff7d4e7b775ff",
+  "miniapps_shared_trees": {
+    "Packages/HanlinMiniAppsBridge": "98ef5d2b47c03f4ea98319a851abae183f500a40",
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsBridge": "5334065bd54293b0e9c9a6e05eab166804796e41",
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsPicker": "1feabd59239b4ce32b007d1ff252cc30703a8774"
+  },
+  "schema": "otzaria.shared-hanlin-source-equivalence/1",
+  "scope": "BYTE_IDENTICAL_SHARED_PACKAGES_ONLY_NO_NEW_NATIVE_CREDIT",
+  "sdk_producer_revision": "6f447bfc62d6bcf1043b92e12c026b321543e370",
+  "shared_trees": {
+    "Packages/HanlinAgentSDK": "498032fa42a1bccbbbfcd0335ee61533af3ad086",
+    "Packages/HanlinPlatform": "b2407238ee930a0808ad393a264cb4f9660e78eb",
+    "Packages/HanlinPresentationSDK": "b695125356df74b9d31974583d605c381555ad58"
+  }
+}
