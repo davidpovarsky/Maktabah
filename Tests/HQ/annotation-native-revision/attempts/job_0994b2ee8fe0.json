@@ -1,0 +1,35 @@
+{
+  "status": "BLOCKED_BEFORE_EXTRACTION_AND_SWIFT",
+  "source_sha": "a547b60dc88039592a1718a3a773eead448a647e",
+  "product_source_sha": "75058d1c1abbfb0fb37fc819dcece47b853eb4da",
+  "declared_cases": 36,
+  "executed_cases": 0,
+  "archive_extracted": false,
+  "swift_compile_started": false,
+  "observed_free_bytes": 5411233792,
+  "required_free_bytes": 7568621568,
+  "sentinel": {
+    "id": "job_0994b2ee8fe0",
+    "type": "job_result",
+    "source": "script_run@host_4b47bdb65d00e49d",
+    "severity": "warning",
+    "tool": "script_run",
+    "host": "host_4b47bdb65d00e49d",
+    "status": "failed",
+    "exit_code": 1,
+    "created_at": 1795580081.3198612,
+    "started_at": "2026-11-25T04:14:41.366728+00:00",
+    "finished_at": "2026-11-25T04:14:41.463385+00:00",
+    "duration_s": 0.1,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 1800,
+    "read": true,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"phase\": \"SQLITE36_EXACT_SOURCE_COMPONENT\", \"free_bytes\": 5411233792, \"own_remaining_peak_bytes\": 1073741824, \"external_remaining_bytes\": 4294967296, \"root_parser_remaining_bytes\": 52428800, \"os_margin_bytes\": 2147483648, \"required_free_bytes\": 7568621568}\nTraceback (most recent call last):\n  File \"/Users/m1/sentinelx/uploads/.sentinelx_uploads/script_job_1deb3ada610e4d7db9c60b43d9b07560/script.py\", line 8, in <module>\n    assert free>=required\nAssertionError"
+  }
+}
