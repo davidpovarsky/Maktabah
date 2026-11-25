@@ -24,6 +24,77 @@ SHARED = runpy.run_path(str(ROOT / 'Scripts/CI/original_editor_shared_runtime.py
 require, digest, read_json = (API[name] for name in ('require', 'digest', 'read_json'))
 
 
+def exact_producer_path(root, relative, *, build=False):
+    path = root / relative
+    require(path.is_relative_to(root / 'build' if build else root)
+            and path.resolve() == path and path.is_file() and not path.is_symlink(),
+            'Original donor receipt escaped its retained producer: ' + str(relative))
+    return path
+
+
+def collect_donor_receipts(producer_root, abi_path, source_before, qualification):
+    """Reverify the real installed ABI; retain every historical identity verbatim."""
+    reference = read_json(abi_path)
+    if reference.get('schema') != LOCAL['DONOR_SCHEMA']:
+        return {}
+    policy_path = exact_producer_path(producer_root, LOCAL['DONOR_POLICY'])
+    policy = read_json(policy_path)
+    require(digest(policy_path) == reference.get('policy_sha256'),
+            'Donor policy changed before packaging')
+    donor_root = Path(reference['donor_root'])
+    require(donor_root.is_absolute() and donor_root.resolve() == donor_root
+            and donor_root != producer_root
+            and subprocess.check_output(['git', '-C', str(donor_root), 'rev-parse', 'HEAD'],
+                                        text=True).strip() == LOCAL['DONOR_SOURCE'],
+            'Original donor checkout identity differs')
+    paths = {'abi_donor_policy': policy_path}
+    for role, row in policy['receipts'].items():
+        path = exact_producer_path(donor_root, row['path'], build=True)
+        require(digest(path) == row['sha256'], 'Original donor receipt changed: ' + role)
+        paths['abi_donor_' + role] = path
+    donor_abi = read_json(paths['abi_donor_abi'])
+    wrapper = donor_abi['pinned_wrapper']
+    wrapper_path = exact_producer_path(
+        donor_root, (Path(policy['receipts']['abi']['path']).parent / wrapper['path']).as_posix(),
+        build=True)
+    require(wrapper_path.stat().st_size == wrapper['bytes']
+            and digest(wrapper_path) == wrapper['sha256'],
+            'Original pinned-wrapper receipt changed before packaging')
+    paths['abi_donor_pinned_wrapper'] = wrapper_path
+    require(set(paths) == LOCAL['DONOR_ROLES'], 'Incomplete original donor transport closure')
+
+    # The frozen producer's existing verifier checks original receipts/source,
+    # all 733 generated files, and all 17 actual installed Lib members. It does
+    # not run a generator, build or native/editor test.
+    verify_code = (
+        "import json,sys;from pathlib import Path;"
+        "root=Path(sys.argv[1]);sys.path.insert(0,str(root/'Tools/OriginalEditor'));"
+        "from donor_abi_input import verify;"
+        "source=json.loads(Path(sys.argv[3]).read_text());"
+        "print(json.dumps(verify(root,Path(sys.argv[2]),sys.argv[4],source)))"
+    )
+    observed = json.loads(subprocess.check_output(
+        [sys.executable, '-I', '-B', '-c', verify_code, str(producer_root), str(abi_path),
+         str(source_before), digest(abi_path)], text=True, timeout=600))
+    require(observed == qualification.get('heart'),
+            'Actual current native donor verification differs from the qualified SDK')
+    return paths
+
+
+def local_execution_receipt(producer_root, evidence, identity, *, donor=False):
+    path = evidence / 'local-execution.json'
+    if not path.exists() and donor:
+        # A bounded genuine continuation keeps the original execution descriptor;
+        # it does not create a second UUID or pretend to be another producer.
+        path = Path(identity['local_execution']['evidence_root']) / 'local-execution.json'
+    require(path.is_relative_to(producer_root / 'build') and path.resolve() == path
+            and path.is_file() and not path.is_symlink()
+            and digest(path) == identity['local_execution_sha256']
+            and read_json(path) == identity['local_execution'],
+            'Exact original local execution descriptor is unavailable')
+    return path
+
+
 def prepare(producer_root, evidence, abi_path, destination):
     producer_root, evidence, abi_path = map(lambda value: Path(value).resolve(),
                                            (producer_root, evidence, abi_path))
@@ -65,6 +136,8 @@ def prepare(producer_root, evidence, abi_path, destination):
     expected = {**exported['files'], 'QUALIFICATION.json': {
         'bytes': qualification_path.stat().st_size, 'sha256': digest(qualification_path)}}
     require(API['inventory'](distribution) == expected, 'Actual qualified SDK differs from the exported closure')
+    donor_paths = collect_donor_receipts(producer_root, abi_path, evidence / 'source-before.json', qualification)
+    local_execution_path = local_execution_receipt(producer_root, evidence, identity, donor=bool(donor_paths))
     destination.mkdir(parents=True)
 
     def copy(source, name):
@@ -77,11 +150,12 @@ def prepare(producer_root, evidence, abi_path, destination):
         return {'path': target.relative_to(ROOT).as_posix(), **before}
 
     receipts = {
-        'execution': copy(evidence / 'local-execution.json', 'local-execution.json'),
+        'execution': copy(local_execution_path, 'local-execution.json'),
         'source_before': copy(evidence / 'source-before.json', 'source-before.json'),
         'source_after': copy(evidence / 'source-after.json', 'source-after.json'),
         'abi': copy(abi_path, 'qualified-import-abi.json'),
     }
+    receipts.update({role: copy(path, role + '.json') for role, path in donor_paths.items()})
     manifest = copy(evidence / 'framework-distribution.json', 'framework-distribution.json')
     hanlin = copy(evidence / 'original-hanlin-snapshot.json', 'original-hanlin-snapshot.json')
     archive = destination / 'framework.zip'
@@ -116,6 +190,8 @@ def prepare(producer_root, evidence, abi_path, destination):
         'status': 'QUALIFIED_LOCAL_SDK_SIMULATOR_INPUT_REQUIRES_COMMITTED_ADMISSION',
         'native_stageb_qualified': False, 'device_framework_qualified': False,
     }
+    if donor_paths:
+        config['abi_provenance'] = LOCAL['DONOR_SCHEMA']
     if contract:
         config['public_host_contract_sha256'] = contract
     LOCAL['validate_provenance'](ROOT, config, qualification, API)
