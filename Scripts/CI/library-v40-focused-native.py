@@ -21,6 +21,11 @@ SOURCE_FILES = [
     "Scripts/CI/otzaria_bootstrap_evidence.py",
     "Scripts/CI/original_editor_sdk_routes.py",
     "Scripts/CI/mac-prepared-inputs.py",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+    "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+    "Scripts/CI/runtime27-original-editor.inputs.json",
+    "Scripts/CI/original_editor_mac_projection.py",
+    "Scripts/CI/hq-stage2-focused-apple.py",
     "Source/Otzaria/Bootstrap/OtzariaNativeBootstrapAcceptanceRunner.swift",
     "Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift",
     "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift",
@@ -56,13 +61,20 @@ def command(args, timeout=90, check=True):
         raise RuntimeError("Command failed: " + repr(args) + "\n" + result.stderr[-4000:])
     return result
 
-def source_context(expected):
+def source_context(expected, *, allow_build_projection=False):
     require(re.fullmatch(r"[0-9a-f]{40}", expected), "Canonical selected source SHA required")
     require(command(["git", "rev-parse", "HEAD"]).stdout.strip() == expected, "Checkout changed")
-    require(not command(["git", "status", "--porcelain", "--untracked-files=no"]).stdout.strip(),
-            "Tracked source must be clean")
+    changed = command(["git", "diff", "--name-only", "--ignore-submodules=none", "HEAD", "--"]).stdout.splitlines()
+    allowed = {"Maktabah.xcodeproj/project.pbxproj", "Source/PrivacyInfo.xcprivacy"} if allow_build_projection else set()
+    require(set(changed) <= allowed, "Tracked source differs outside exact generated build projections")
+    names = list(SOURCE_FILES)
+    for name in ("Scripts/CI/final_integration_source.py", "Scripts/CI/final-integration-source.inputs.json"):
+        if (ROOT / name).exists():
+            names.append(name)
+        else:
+            require(not allow_build_projection, "Final integrated source admission is required: " + name)
     result = {}
-    for name in SOURCE_FILES:
+    for name in names:
         path = ROOT / name
         committed = subprocess.check_output(["git", "-C", str(ROOT), "show", "HEAD:" + name], timeout=30)
         require(path.read_bytes() == committed, "Input differs from committed source: " + name)
@@ -115,13 +127,25 @@ def qualified_build_context(app):
     require(build.get("status") == "SIMULATOR_BUILD_FOR_REAL_UI_PASS"
             and build.get("checkout_sha") == command(["git", "rev-parse", "HEAD"]).stdout.strip(),
             "No authentic same-checkout integrated app build")
+    source_binding = json.loads((ROOT / "Scripts/CI/hq-stage2-focused-apple.inputs.json").read_bytes()).get("final_product_source")
+    require(isinstance(source_binding, dict)
+            and set(source_binding) == {"manifest", "sha256"}
+            and source_binding["manifest"] == "Scripts/CI/final-integration-source.inputs.json",
+            "Explicit final integrated source profile required")
+    source = runpy.run_path(str(ROOT / "Scripts/CI/final_integration_source.py"))["verify"](
+        ROOT, ROOT / source_binding["manifest"], source_binding["sha256"])
+    projection = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_mac_projection.py"))["verify"](
+        ROOT, source, ROOT / "Scripts/CI/runtime27-original-editor.inputs.json", require_current_build=True)
+    require(projection.get("current_product_build_verified") is True,
+            "Generated source requires the current final successful app build")
     routes = build.get("original_editor_routes")
     require(isinstance(routes, dict), "Final original SDK route receipt required")
     verified = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_sdk_routes.py"))["verify"](
         ROOT, routes["path"], "Debug", "iphonesimulator", app,
         route_sha256=routes["sha256"], after_ui=True)
     images = runpy.run_path(str(ROOT / "Scripts/CI/mac-prepared-inputs.py"))["code_images"](ROOT)
-    return {"build_receipt": witness(path), "qualified_sdk_route": verified, "complete_native_images": images}
+    return {"build_receipt": witness(path), "final_source": source, "generated_projection": projection,
+            "qualified_sdk_route": verified, "complete_native_images": images}
 
 def bounded(args, log, timeout, env, report, out):
     with log.open("w") as stream:
@@ -186,7 +210,7 @@ def main():
     bundle_id = None
     before_source = None
     try:
-        before_source = source_context(args.expected_sha)
+        before_source = source_context(args.expected_sha, allow_build_projection=not args.prepare_only)
         report["inputs_before"] = before_source
         release, manifest, stats, provenance = metadata_context()
         report["official_metadata"] = {"release_id": release["id"], "archive": manifest,
@@ -322,7 +346,7 @@ def main():
                 success = False
         if before_source is not None:
             try:
-                report["inputs_after"] = source_context(args.expected_sha)
+                report["inputs_after"] = source_context(args.expected_sha, allow_build_projection=not args.prepare_only)
                 require(before_source == report["inputs_after"], "Source changed during acceptance")
             except Exception as error:
                 report["status"] = "FAILED"

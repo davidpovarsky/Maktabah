@@ -80,6 +80,8 @@ Actual execution on the real Mac, after the final integrated build and root's me
 FAITHFUL_RUNTIME27_IDENTIFIER=<verified SDK-matched runtime identifier> python3 Scripts/CI/library-v40-focused-native.py --expected-sha <exact final checkout SHA> --reserved-other-bytes <measured concurrent incremental growth>
 ```
 
+Actual execution additionally verifies the final integrated source profile and the original generated-project/privacy projection against the current successful build. Only those two original generated paths may differ from Git, and neither is accepted without its exact build receipt; preparation-only still requires a clean checkout. All admission helpers, profiles and input manifests are bound to committed bytes before and after.
+
 This is prepared source, not a v40 acceptance result. It explicitly grants no Native116, Release114, normal Settings update or physical iPad acceptance. Latest production release drift is rejected before a payload download. Run IDs, original phase reports and checksum indexes are written under `build/artifacts/native-v40-integrated-<UUID>/`.
 
 ## Remaining original acceptance
