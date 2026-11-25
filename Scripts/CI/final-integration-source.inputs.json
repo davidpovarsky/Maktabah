@@ -10,14 +10,14 @@
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda"
   },
-  "application_source_sha": "a21a985f5d215559b362feb5e5a307112448bc28",
+  "application_source_sha": "3df5772dcdc87f10e55c01c830c65322428bde35",
   "application_trees": {
     "Maktabah-iOSUITests": "b862fc5efecb679fa3e930b4434df83ec1942666",
     "Maktabah.xcodeproj": "35e9feff47092409d9ea2cccb99afa8ebc3575a4",
     "Source": "9214fc6357b817d3999bfbed52ef7f618ba43279",
-    "Vendor": "2645f7cbdf624ed932ba1bcd951bb5df40f0fd40"
+    "Vendor": "97b631066ee949c7be360e98e1f91d4d247657c0"
   },
-  "hanlin_source": "27381e90a11c46cf6b6864d2fb703f16f07af4ca",
+  "hanlin_source": "70eb9c2d2cdfd920a65da59643dff7d4e7b775ff",
   "historical_application_source": "d3da55417a30e9a06b0255e2d0b561955034b260",
   "historical_control_source": "602659607a3a6a2586a7c4a8d7ce6114eec8cd86",
   "integration_base": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
@@ -1314,7 +1314,7 @@
       "after": {
         "kind": "commit",
         "mode": "160000",
-        "object": "27381e90a11c46cf6b6864d2fb703f16f07af4ca"
+        "object": "70eb9c2d2cdfd920a65da59643dff7d4e7b775ff"
       },
       "before": {
         "kind": "commit",
@@ -1370,10 +1370,10 @@
       },
       "patch": {
         "bytes": 323,
-        "sha256": "74f3896c616b75b320ede150516fbc486c9b1ce75938eb9dc50fb6c7e855f77f"
+        "sha256": "272ff408d9fbee6574e20abf489b59749faf7955e7ea7206704922f6884ac57c"
       },
       "path": "Vendor/HanlinSDK",
-      "reason": "Use frozen actual standalone3f5 source, including corrected upstream Platform catalog/cancellation implementation; consumer Bridge/Picker remain the same single shared packages. Historical e791 SDK is not requalified by this source pin. Adopt final integrated producer27381. Complete four consumed package trees match the actual SDK6f source exactly (959 leaves), preserving original SDK producer identity. Full native acceptance remains required."
+      "reason": "Use frozen actual standalone3f5 source, including corrected upstream Platform catalog/cancellation implementation; consumer Bridge/Picker remain the same single shared packages. Historical e791 SDK is not requalified by this source pin. Adopt final integrated producer27381. Complete four consumed package trees match the actual SDK6f source exactly (959 leaves), preserving original SDK producer identity. Full native acceptance remains required. Adopt standalone70eb catalog localization correction; all four shared package trees and 959 leaf objects remain exactly equal to qualified SDK6f and prior273. Standalone actual build/UI evidence is admitted separately."
     }
   ],
   "product_roots": [
