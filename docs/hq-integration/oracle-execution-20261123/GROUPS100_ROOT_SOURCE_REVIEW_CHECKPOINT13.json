@@ -1,0 +1,35 @@
+{
+  "exact_patch": "62271d1b3073707a28f371ff5253f399ecf51a1aa59accdf710c40e142aa4989",
+  "source": "89996e576d12bc6894a65c0e5c21c0d184e16188",
+  "root_image_sha256": "7a15ec73d19319482423674d95faa157c9f857a22ac49bfe4b23c3ac4b15d8b1",
+  "image_later_than_snapshot_seconds": 3.931,
+  "native_pass_claimed": false,
+  "independent_merge": {
+    "state": "SOURCE_COMPOSITION_ONLY_NO_TEST_EXECUTION",
+    "inputs": [
+      {
+        "name": "full-v32",
+        "source": "46321de8f26255aa1543eed69f908f93d306c6c0",
+        "sha256": "88da4560aab504034f9dc64107998097e12ecbf6798f28e25d20a6fc2aac34d0",
+        "bytes": 275222
+      },
+      {
+        "name": "canonical",
+        "source": "1969b2065469b55e38e42cbb838a469ffa6a80f7",
+        "sha256": "8b9973dd2742dab3840361da27492b41752d26954cd7f3081d6d1ee20ed6f03b",
+        "bytes": 204965
+      },
+      {
+        "name": "library",
+        "source": "efd7250b8fa8f0556683af6b50733aeccb149b61",
+        "sha256": "362305cf90284c92c3b1b2f78e096d31106e6bd2b70508b69fc372bbfaeee07a",
+        "bytes": 211980
+      }
+    ],
+    "result_path": "/mnt/development/projects/diagnostics/otzaria-final-composition-20261123/full-v32-root-merge/MERGED.swift",
+    "result_bytes": 282237,
+    "result_sha256": "92c09ee7e8227cde2a94dc26daf5e56ba6ee9268565586d877183fe64bcf9eb0",
+    "merge_returncode": 0,
+    "stderr": ""
+  }
+}

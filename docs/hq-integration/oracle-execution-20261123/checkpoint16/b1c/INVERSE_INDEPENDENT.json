@@ -1,0 +1,113 @@
+{
+  "all_twelve_full_afterimages_reverse_to_original_or_absence": true,
+  "before_candidate_paths": 75,
+  "candidate_patch_sha256": "cdcc868240e6889e2774da3316c73ff18da5ce90fa57a78419cea2521a95da8c",
+  "candidate_preimages": {
+    "core/application/owned_annotation_import.go": null,
+    "core/block/import/common/objectcreator/objectcreator.go": {
+      "bytes": 22926,
+      "git_blob": "4bfad158aaeb14488b33751b897f223d4b5ec0ae",
+      "sha256": "0e6cd629e88ceaa1195c31f55cdaf0337f03282a26df9904ec6b857f6675c62d"
+    },
+    "core/block/import/common/objectcreator/owned_annotation.go": null,
+    "core/block/import/owned_annotation_comparison.go": null,
+    "core/block/import/owned_annotation_graph.go": null,
+    "core/block/import/owned_annotation_readback.go": null,
+    "core/block/import/owned_import_dependencies.go": {
+      "bytes": 4632,
+      "git_blob": "900961c992b3ebb33e82514c6c3fb6a60fbe6c9b",
+      "sha256": "f6bc99b3c2de3e41aea66f9c3b3b68822e2af5fa200469e34049c8a4fca00993"
+    },
+    "core/block/import/owned_import_operation.go": {
+      "bytes": 6059,
+      "git_blob": "301b0953c534fdc4a145d5bedca8978c7be6fe49",
+      "sha256": "8fba0afe60bd32ed51707ca43ed0beb7a45e30470a32811e290a6aaef4073b13"
+    },
+    "core/block/import/processor.go": {
+      "bytes": 23225,
+      "git_blob": "737eb9a88faea0c37ce4301f8fa4e0454073360d",
+      "sha256": "bc2ee47724a4f32615a5b5a81f3a3eb25779f273c94fa543ea82169788c7bba6"
+    },
+    "core/block/object/objectcreator/owned_annotation_observer.go": null,
+    "core/pinkha/annotationschema/definition.go": {
+      "bytes": 3520,
+      "git_blob": "a090d0c474f0535fc538239375bd7998e622fd63",
+      "sha256": "cce970f838d91d9f3f06af5e4f2511afc6838c69704deaa4099ba9c392996eac"
+    },
+    "core/pinkha/annotationschema/definition/definition.go": null
+  },
+  "commands": [
+    {
+      "command": [
+        "git",
+        "apply",
+        "--check",
+        "/mnt/development/projects/diagnostics/otzaria-bc-root-independent-review-20261123/retained-r14.patch"
+      ],
+      "cwd": "/mnt/development/projects/diagnostics/otzaria-bc-root-independent-review-20261123/composition-62e5f1c9",
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "/mnt/development/projects/diagnostics/otzaria-bc-root-independent-review-20261123/retained-r14.patch"
+      ],
+      "cwd": "/mnt/development/projects/diagnostics/otzaria-bc-root-independent-review-20261123/composition-62e5f1c9",
+      "exit_code": 0,
+      "stderr": "/mnt/development/projects/diagnostics/otzaria-bc-root-independent-review-20261123/retained-r14.patch:107: new blank line at EOF.\n+\nwarning: 1 line adds whitespace errors.\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--check",
+        "/mnt/development/projects/diagnostics/otzaria-bc-root-independent-review-20261123/retained-B1C_SOURCE.patch"
+      ],
+      "cwd": "/mnt/development/projects/diagnostics/otzaria-bc-root-independent-review-20261123/composition-62e5f1c9",
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "/mnt/development/projects/diagnostics/otzaria-bc-root-independent-review-20261123/retained-B1C_SOURCE.patch"
+      ],
+      "cwd": "/mnt/development/projects/diagnostics/otzaria-bc-root-independent-review-20261123/composition-62e5f1c9",
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--reverse",
+        "--check",
+        "/mnt/development/projects/diagnostics/otzaria-bc-root-independent-review-20261123/retained-B1C_SOURCE.patch"
+      ],
+      "cwd": "/mnt/development/projects/diagnostics/otzaria-bc-root-independent-review-20261123/composition-62e5f1c9",
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--reverse",
+        "/mnt/development/projects/diagnostics/otzaria-bc-root-independent-review-20261123/retained-B1C_SOURCE.patch"
+      ],
+      "cwd": "/mnt/development/projects/diagnostics/otzaria-bc-root-independent-review-20261123/composition-62e5f1c9",
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "unrelated_preexisting_afterimages_unchanged": true
+}

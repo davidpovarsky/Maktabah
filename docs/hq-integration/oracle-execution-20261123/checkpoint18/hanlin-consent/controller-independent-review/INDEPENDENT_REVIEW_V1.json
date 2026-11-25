@@ -1,0 +1,40 @@
+{
+  "status": "SOURCE_REVIEW_REQUIRES_ONE_PREFLIGHT_HISTORY_CORRECTION",
+  "controller_sha256": "0b377e7f03c94d41fefc252b8a0b405d4dd192cbcc7c0817d50f4d3c93643733",
+  "binding_sha256": "0ae015ba76101b13a710c0f6fd8a4cde5e4ca9ea43791c74447ddd1e04f17bf9",
+  "finding": {
+    "path": "controller120.py",
+    "preflight_lines": [
+      141,
+      145
+    ],
+    "predicate_lines": [
+      31,
+      35
+    ],
+    "cause": "The no-previous-manual-run preflight uses exact_run, whose attempt==1 requirement belongs to new attempt-1 discovery. A same-source/same-branch manual run at attempt>=2 is filtered out of history.",
+    "consequence": "A completed prior run at attempt>=2 can leave previous_ids empty and satisfy the one-new-source-run preflight; active-workflow checks do not detect a completed prior run.",
+    "minimal_correction": "Reject existing manual history on the exact source/branch independently of attempt, preserving exact_run and all actual dispatch/watch/cleanup functions.",
+    "control_gap": "The actual retained eighth-control set checks an existing attempt-1 run only; the proposed new attempt-2 check has not been executed by this reviewer."
+  },
+  "verified": {
+    "full_module_read": true,
+    "only_changed_ast_function": "Lifecycle.preflight",
+    "unchanged_ast_functions": 18,
+    "whole_inverse_outside_preflight_and_first_docstring_line": true,
+    "five_prepared_git_blob_bindings": true,
+    "authentic_prior_intake_and_cleanup_exact": true,
+    "retained_controls": {
+      "pass": 8,
+      "fail": 0,
+      "replayed": false
+    },
+    "correspondence_receipt_sha256": "0f4aaee61d305b77574e31d2b8d25dbf851332f2c668c76aa02f8aaade09144f"
+  },
+  "limits": [
+    "No controller or control imported/invoked by reviewer.",
+    "No credential, network, dispatch or provider access.",
+    "The API96c commit is absent from the local mirror; tree identity was checked against prepared39b and the root-provided remote publication receipt remains separately owned.",
+    "Review concerns orchestrator source only, not actual consent behavior or native qualification."
+  ]
+}

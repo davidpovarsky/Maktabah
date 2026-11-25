@@ -1,0 +1,16 @@
+{
+  "activation_branch": "codex/otzaria-tool-result-continuation-20261123",
+  "attempt": 1,
+  "cas_force_false": true,
+  "conclusion": null,
+  "created_at": "2026-11-23T21:59:16.670015+00:00",
+  "live_provider_called": false,
+  "prior_activation_head": "07431abccbfb151ca2dab67bca6cf86fcb2bd3b8",
+  "run": 45275019854,
+  "same_tree_local_review_source": "f354ea69d2994e6ef50a64a41a7ddeb0779206fb",
+  "single_original_suite_execution_requested": true,
+  "source": "d4286d1afa661af930f7addd6f63fff0effe4414",
+  "status": "queued",
+  "tree": "aaa0512eee2676ce650baff4d0a26c5998e7d0f7",
+  "url": "https://github.com/davidpovarsky/swift-ai-sdk/actions/runs/45275019854"
+}

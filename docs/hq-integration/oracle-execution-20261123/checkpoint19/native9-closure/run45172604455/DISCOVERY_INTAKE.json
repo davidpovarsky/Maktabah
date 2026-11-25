@@ -1,0 +1,16 @@
+{
+  "run_id": 45172604455,
+  "status": "queued",
+  "conclusion": null,
+  "html_url": "https://github.com/davidpovarsky/anytype-swift/actions/runs/45172604455",
+  "head_sha": "333a34a80dfc60ff45a3497b2f4346d658ce51e7",
+  "run_attempt": 1,
+  "event": "push",
+  "workflow_id": 427683940,
+  "binding_sha256": "ba77602a5c2f88c4f59dfe4dc43ad989eaea78414f47b1099f253c81fbe371af",
+  "watcher_sha256": "01c098f1ee2e9ba05e0e5ad3f92e27d259ac983787f749500ab90666cc85ad57",
+  "watcher_prior_inverse_exact_except_binding": true,
+  "discovery_commands": 1,
+  "native_run_dispatched_by_agent": false,
+  "observer_started": false
+}

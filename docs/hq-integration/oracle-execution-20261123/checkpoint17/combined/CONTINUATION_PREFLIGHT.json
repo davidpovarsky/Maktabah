@@ -1,0 +1,43 @@
+{
+  "observed_utc": "2026-11-23T11:00:00.848048+00:00",
+  "old_observer_terminal": {
+    "run_id": 45158596483,
+    "source_sha": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+    "expected_attempt": 1,
+    "window": 1,
+    "started_at": "2026-11-23T10:43:29.391381+00:00",
+    "controller_pid": 2688895,
+    "interval_seconds": 120,
+    "maximum_observation_seconds": 3300,
+    "dispatches": 0,
+    "reruns": 0,
+    "watch_pid": 2688896,
+    "watch_exit_code": 4,
+    "status": "OBSERVER_TERMINAL_READ_FAILED_NO_RUNTIME_CONCLUSION",
+    "watch_process_reaped": true,
+    "elapsed_seconds": 0.10637581627815962,
+    "finished_at": "2026-11-23T10:43:29.497756+00:00"
+  },
+  "cause": "Initial observer launch ran as root; its gh had no configured authentication. The existing ubuntu gh authenticated the exact original run.",
+  "runtime_source_unchanged": true,
+  "run_id": 45158596483,
+  "source": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+  "attempt": 1,
+  "run_status": "completed",
+  "conclusion": "failure",
+  "run_metadata_sha256": "c8f5695a24c650d4b34327b1849fcfc71e50dc5ddb31d891dc8914879a00f3e7",
+  "new_dispatches": 0,
+  "reruns": 0,
+  "controller_unchanged": true,
+  "sole_lock_verified": true,
+  "jobs": [
+    {
+      "id": 137637831318,
+      "name": "One app build and three independent original native cohorts",
+      "conclusion": "cancelled",
+      "size_in_bytes": null,
+      "digest": null
+    }
+  ],
+  "artifacts": []
+}

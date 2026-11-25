@@ -1,0 +1,266 @@
+{
+  "intake": {
+    "actual_any_sync_input_match_sha256": "c5120dc9a5eb05ec68e43dcc2bb01c0e928b39c5d9d05880d5b5b916079b50fe",
+    "actual_original_export_zip_count": 4,
+    "actual_registration_calls": 1,
+    "actual_type_apply_calls": 1,
+    "actual_unique_schema_creates": 18,
+    "all_11_commands_terminal_and_drained": true,
+    "archive_control_binary_compiled": false,
+    "archive_control_cases_executed": 0,
+    "artifact_bytes": 2940742,
+    "artifact_id": 14798506507,
+    "artifact_sha256": "ce3c5bd8b4c3869a99dda8c8d5d0811586c7b5e86cd7e53bbee22e099db69355",
+    "body_ack_authority": false,
+    "cleanup": {
+      "body_ack_authority": false,
+      "cold_reopen_qualified": false,
+      "import_started": false,
+      "original_account_stop_returned_or_app_absent": true,
+      "owned_directory_removed": true
+    },
+    "cold_reopen_qualified": false,
+    "compiler_coverage_sha256": "eba1ee924526c269d895e4260513766d5f825fbe81aa549d42bf8aed7d2b4e73",
+    "created_at": "2026-11-23T07:53:02.962043+00:00",
+    "export_body_fidelity_qualified": false,
+    "failure_assertion": "owned_annotation_export_native_test.go:95: actual export lacks its native annotation root/type/Space",
+    "github_digest_matches": true,
+    "historical_native_tests_replayed": false,
+    "index_rows_verified": 38,
+    "native_application_binary_compiled": true,
+    "native_leaf_fail": 4,
+    "native_leaf_outcomes": [
+      {
+        "action": "fail",
+        "elapsed": 0.15,
+        "test": "TestOtzariaOwnedAnnotationNativeExports/text"
+      },
+      {
+        "action": "fail",
+        "elapsed": 0.04,
+        "test": "TestOtzariaOwnedAnnotationNativeExports/format"
+      },
+      {
+        "action": "fail",
+        "elapsed": 0.03,
+        "test": "TestOtzariaOwnedAnnotationNativeExports/nested"
+      },
+      {
+        "action": "fail",
+        "elapsed": 0.06,
+        "test": "TestOtzariaOwnedAnnotationNativeExports/attachment"
+      }
+    ],
+    "native_leaf_pass": 0,
+    "native_leaf_skip": 0,
+    "native_parent_outcomes": [
+      {
+        "action": "fail",
+        "elapsed": 5.03,
+        "test": "TestOtzariaOwnedAnnotationNativeExports"
+      }
+    ],
+    "observer_lock_released": true,
+    "observer_process_absent": true,
+    "owned_native_temporary_removed": true,
+    "production_import_activated": false,
+    "run_attempt": 1,
+    "run_id": 45130249062,
+    "safe_unique_crc_members": 39,
+    "schema": 1,
+    "source_intake_sha256": "c91865363b7f9e6f21ef342617224a7d084ca7216ac03415d9a2e7adc324c0ec",
+    "source_sha": "0ab05476960c6bbc563c12e038f16c6ceb25c1cd",
+    "specimen_inventory_sha256": "c6f85ff08f26b294365e2b744fd4e88925d8344899e25f3004e3200efc34c398",
+    "status": "AUTHENTICATED_NATIVE_FAILURE_WITH_FOUR_ORIGINAL_EXPORTS"
+  },
+  "root_verification": {
+    "status": "ROOT_BYTE_INTAKE_ONLY_NO_BODY_TEST_REEXECUTION",
+    "outer_members_verified": 39,
+    "specimen_checks": [
+      {
+        "kind": "text",
+        "zip_sha256": "07298fe234e9c6cb2dd6d8e511c05ed3883ca6436cd373f81c23f8e6820e7315",
+        "members_verified": 67,
+        "expanded_bytes": 113295
+      },
+      {
+        "kind": "format",
+        "zip_sha256": "e2a96654955c108e156fdb8ef7a4ea00b2f46a214dfafaf85b861964c4f97c0a",
+        "members_verified": 67,
+        "expanded_bytes": 113923
+      },
+      {
+        "kind": "nested",
+        "zip_sha256": "2d8561cbde873d6365e4c147521fc9f74cd54698b8a811f45bc5ff9110bf7903",
+        "members_verified": 68,
+        "expanded_bytes": 115792
+      },
+      {
+        "kind": "attachment",
+        "zip_sha256": "83332781c3499f8b97b92cc2770eaa54292252dbd435e82444aad16fdd825e6e",
+        "members_verified": 87,
+        "expanded_bytes": 146942
+      }
+    ],
+    "diagnosis_sha256": "3605f9034e6c758ad4a7dac4f6ec21590a362490ea466385bb828557f2c7c8d6",
+    "source_models": [
+      {
+        "path": "pb/snapshot.pb.go",
+        "revision": "d98420b1113536afd08cde6de9a5816f6d27ffff",
+        "sha256": "1f7db6d8380e6ed78cae661da45771d70604ef56ac330a73140ecff538c534d0"
+      },
+      {
+        "path": "pb/changes.pb.go",
+        "revision": "d98420b1113536afd08cde6de9a5816f6d27ffff",
+        "sha256": "8cd42aca2e459f4f56cfd9e62f3cc757b41efe418463a01ad1ede42bcde58f7d"
+      },
+      {
+        "path": "pkg/lib/pb/model/models.pb.go",
+        "revision": "d98420b1113536afd08cde6de9a5816f6d27ffff",
+        "sha256": "1e7bea1584323e3d69fb7a9f1cbe0815ab274cc1b847508b3c3c6feb9a4ad99d"
+      },
+      {
+        "path": "core/domain/types.go",
+        "revision": "d98420b1113536afd08cde6de9a5816f6d27ffff",
+        "sha256": "483288dd36387889c5a91940892f36e0becd581968bf3eafb5416df775f1270e"
+      },
+      {
+        "path": "core/domain/uniquekey.go",
+        "revision": "d98420b1113536afd08cde6de9a5816f6d27ffff",
+        "sha256": "9be092ee44d38a4bc19cd3440063d62d3530ca3a0357a3393aa3e59d5c74aca9"
+      },
+      {
+        "path": "core/converter/pbc/pbc.go",
+        "revision": "d98420b1113536afd08cde6de9a5816f6d27ffff",
+        "sha256": "164b5e95d4a057495cc2421b0156d2c017ab102681ad663f24185fef0eb0a05d"
+      }
+    ],
+    "diagnosed_specimens": [
+      {
+        "actual_space_matches_original_registration": true,
+        "archive_bytes": 79989,
+        "archive_sha256": "07298fe234e9c6cb2dd6d8e511c05ed3883ca6436cd373f81c23f8e6820e7315",
+        "existing_fixture_string_comparison_matches": false,
+        "expected_original_internal_type": "pinkhatorahannotationv1",
+        "expected_original_serialized_type": "ot-pinkhatorahannotationv1",
+        "kind": "text",
+        "kinds": {
+          "objects": 2,
+          "relations": 62,
+          "types": 3
+        },
+        "native_body_assertions_reexecuted": false,
+        "original_url_representation_comparison_matches": true,
+        "root_from_actual_exported_native_name": {
+          "block_count": 6,
+          "id": "bafyreigzy67xsmxpydlxpzfira3zhlpgsonegvmckgj74i74qzijzv7ksi",
+          "member": "objects/bafyreigzy67xsmxpydlxpzfira3zhlpgsonegvmckgj74i74qzijzv7ksi.pb",
+          "object_types": [
+            "ot-pinkhatorahannotationv1"
+          ],
+          "smart_block_type": 16,
+          "space_id": "bafyreiby6i7wjbxqa2ouppsofwc4fmcclaq5cvzf5ght6z5ittgyg2i6gy.1sep3oi03n0aj"
+        },
+        "standalone_forensic_parser_only": true
+      },
+      {
+        "actual_space_matches_original_registration": true,
+        "archive_bytes": 80271,
+        "archive_sha256": "e2a96654955c108e156fdb8ef7a4ea00b2f46a214dfafaf85b861964c4f97c0a",
+        "existing_fixture_string_comparison_matches": false,
+        "expected_original_internal_type": "pinkhatorahannotationv1",
+        "expected_original_serialized_type": "ot-pinkhatorahannotationv1",
+        "kind": "format",
+        "kinds": {
+          "objects": 2,
+          "relations": 62,
+          "types": 3
+        },
+        "native_body_assertions_reexecuted": false,
+        "original_url_representation_comparison_matches": true,
+        "root_from_actual_exported_native_name": {
+          "block_count": 6,
+          "id": "bafyreie5mwemqp2dyikoanzitwr6vugvemn6emsftzgi7m3hjau36zd3gq",
+          "member": "objects/bafyreie5mwemqp2dyikoanzitwr6vugvemn6emsftzgi7m3hjau36zd3gq.pb",
+          "object_types": [
+            "ot-pinkhatorahannotationv1"
+          ],
+          "smart_block_type": 16,
+          "space_id": "bafyreiby6i7wjbxqa2ouppsofwc4fmcclaq5cvzf5ght6z5ittgyg2i6gy.1sep3oi03n0aj"
+        },
+        "standalone_forensic_parser_only": true
+      },
+      {
+        "actual_space_matches_original_registration": true,
+        "archive_bytes": 81382,
+        "archive_sha256": "2d8561cbde873d6365e4c147521fc9f74cd54698b8a811f45bc5ff9110bf7903",
+        "existing_fixture_string_comparison_matches": false,
+        "expected_original_internal_type": "pinkhatorahannotationv1",
+        "expected_original_serialized_type": "ot-pinkhatorahannotationv1",
+        "kind": "nested",
+        "kinds": {
+          "objects": 3,
+          "relations": 62,
+          "types": 3
+        },
+        "native_body_assertions_reexecuted": false,
+        "original_url_representation_comparison_matches": true,
+        "root_from_actual_exported_native_name": {
+          "block_count": 7,
+          "id": "bafyreifmzyz52u7e6lgmfoiagv5t2swd2cehhdnzrsp7tnmqvgur2vajv4",
+          "member": "objects/bafyreifmzyz52u7e6lgmfoiagv5t2swd2cehhdnzrsp7tnmqvgur2vajv4.pb",
+          "object_types": [
+            "ot-pinkhatorahannotationv1"
+          ],
+          "smart_block_type": 16,
+          "space_id": "bafyreiby6i7wjbxqa2ouppsofwc4fmcclaq5cvzf5ght6z5ittgyg2i6gy.1sep3oi03n0aj"
+        },
+        "standalone_forensic_parser_only": true
+      },
+      {
+        "actual_space_matches_original_registration": true,
+        "archive_bytes": 103617,
+        "archive_sha256": "83332781c3499f8b97b92cc2770eaa54292252dbd435e82444aad16fdd825e6e",
+        "existing_fixture_string_comparison_matches": false,
+        "expected_original_internal_type": "pinkhatorahannotationv1",
+        "expected_original_serialized_type": "ot-pinkhatorahannotationv1",
+        "kind": "attachment",
+        "kinds": {
+          "filesObjects": 1,
+          "objects": 2,
+          "relations": 78,
+          "types": 5
+        },
+        "native_body_assertions_reexecuted": false,
+        "original_url_representation_comparison_matches": true,
+        "root_from_actual_exported_native_name": {
+          "block_count": 5,
+          "id": "bafyreigpaqeubly2cqsuazxws5tr2l235hbzsdfalyyl2y357tjb67i3wi",
+          "member": "objects/bafyreigpaqeubly2cqsuazxws5tr2l235hbzsdfalyyl2y357tjb67i3wi.pb",
+          "object_types": [
+            "ot-pinkhatorahannotationv1"
+          ],
+          "smart_block_type": 16,
+          "space_id": "bafyreiby6i7wjbxqa2ouppsofwc4fmcclaq5cvzf5ght6z5ittgyg2i6gy.1sep3oi03n0aj"
+        },
+        "standalone_forensic_parser_only": true
+      }
+    ],
+    "unchanged_assertions": [
+      "native root identity",
+      "same native Space",
+      "text and style",
+      "marks",
+      "nested block and object",
+      "attachment original upload identity and bytes",
+      "original export report",
+      "native cleanup"
+    ],
+    "artifact_index_candidates": [
+      "EVIDENCE_INDEX.json"
+    ]
+  },
+  "type_patch_sha256": "1b4d333335d7e3a6fe0e8aa107a75673f2dabc3c13cbc9ed1ab30fae2f5006a3",
+  "type_patch_accepted": true,
+  "cap_change": "PENDING_COORDINATED_TYPED_ANNOTATION_POLICY"
+}

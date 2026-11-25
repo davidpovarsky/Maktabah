@@ -1,0 +1,645 @@
+{
+  "metadata": {
+    "run": {
+      "id": 45128868702,
+      "head_sha": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "failure",
+      "updated_at": "2026-11-23T08:21:48Z",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45128868702"
+    },
+    "jobs": [
+      {
+        "id": 137539472312,
+        "name": "Original app, live provider, canonical Core and native source return",
+        "conclusion": "failure",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-23T07:24:45Z",
+            "completed_at": "2026-11-23T07:24:48Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-23T07:24:48Z",
+            "completed_at": "2026-11-23T07:25:01Z"
+          },
+          {
+            "name": "Verify the immutable Live13 cold-search repair source boundary",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-23T07:25:01Z",
+            "completed_at": "2026-11-23T07:25:03Z"
+          },
+          {
+            "name": "Require the reviewed existing credential configuration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-23T07:25:03Z",
+            "completed_at": "2026-11-23T07:25:03Z"
+          },
+          {
+            "name": "Select an existing SDK-matched runtime",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-23T07:25:03Z",
+            "completed_at": "2026-11-23T07:26:07Z"
+          },
+          {
+            "name": "Verify the real Simulator App Group resolver interface",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-11-23T07:26:07Z",
+            "completed_at": "2026-11-23T07:26:08Z"
+          },
+          {
+            "name": "Select CPython supported by the original decoder wheel",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-23T07:26:08Z",
+            "completed_at": "2026-11-23T07:26:08Z"
+          },
+          {
+            "name": "Prepare and verify the original SQL decoder dependency",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-11-23T07:26:08Z",
+            "completed_at": "2026-11-23T07:26:15Z"
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-11-23T07:26:15Z",
+            "completed_at": "2026-11-23T07:26:16Z"
+          },
+          {
+            "name": "Run ruby/setup-ruby@v1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-11-23T07:26:16Z",
+            "completed_at": "2026-11-23T07:26:18Z"
+          },
+          {
+            "name": "Read source-pinned Zayit build mode",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-11-23T07:26:18Z",
+            "completed_at": "2026-11-23T07:26:18Z"
+          },
+          {
+            "name": "Use Rust only for the reviewed matching Zayit build",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 12,
+            "started_at": "2026-11-23T07:26:18Z",
+            "completed_at": "2026-11-23T07:26:18Z"
+          },
+          {
+            "name": "Key disposable compiler cache by real SDK and native inputs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-11-23T07:26:18Z",
+            "completed_at": "2026-11-23T07:26:19Z"
+          },
+          {
+            "name": "Run actions/cache/restore@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-11-23T07:26:19Z",
+            "completed_at": "2026-11-23T07:26:19Z"
+          },
+          {
+            "name": "Build the original app and original UI test runner once",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-11-23T07:26:19Z",
+            "completed_at": "2026-11-23T08:04:39Z"
+          },
+          {
+            "name": "Retain compiler cache only after an actual matching test build",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-11-23T08:04:39Z",
+            "completed_at": "2026-11-23T08:04:40Z"
+          },
+          {
+            "name": "Run actions/cache/save@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-11-23T08:04:40Z",
+            "completed_at": "2026-11-23T08:05:54Z"
+          },
+          {
+            "name": "Execute one original live Native case and admit bounded evidence",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 18,
+            "started_at": "2026-11-23T08:05:54Z",
+            "completed_at": "2026-11-23T08:21:36Z"
+          },
+          {
+            "name": "Verify private input removal and original evidence restoration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19,
+            "started_at": "2026-11-23T08:21:36Z",
+            "completed_at": "2026-11-23T08:21:37Z"
+          },
+          {
+            "name": "Publish only admitted credential-scanned evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20,
+            "started_at": "2026-11-23T08:21:37Z",
+            "completed_at": "2026-11-23T08:21:40Z"
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 38,
+            "started_at": "2026-11-23T08:21:40Z",
+            "completed_at": "2026-11-23T08:21:40Z"
+          },
+          {
+            "name": "Post Select CPython supported by the original decoder wheel",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 39,
+            "started_at": "2026-11-23T08:21:40Z",
+            "completed_at": "2026-11-23T08:21:40Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 40,
+            "started_at": "2026-11-23T08:21:40Z",
+            "completed_at": "2026-11-23T08:21:42Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 41,
+            "started_at": "2026-11-23T08:21:42Z",
+            "completed_at": "2026-11-23T08:21:45Z"
+          }
+        ]
+      }
+    ],
+    "artifacts": {
+      "total_count": 1,
+      "artifacts": [
+        {
+          "id": 14800318079,
+          "node_id": "MDg6QXJ0aWZhY3QxNDgwMDMxODA3OQ==",
+          "name": "otzaria-hanlin-live-native-evidence",
+          "size_in_bytes": 76403,
+          "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14800318079",
+          "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14800318079/zip",
+          "expired": false,
+          "digest": "sha256:e204466e925de636ce9a60c19b990d689ff6690a944091200c1f78ecb141fe86",
+          "created_at": "2026-11-23T08:21:40Z",
+          "updated_at": "2026-11-23T08:21:40Z",
+          "expires_at": "2027-02-21T07:07:51Z",
+          "workflow_run": {
+            "id": 45128868702,
+            "repository_id": 1280062128,
+            "head_repository_id": 1280062128,
+            "head_branch": "codex/otzaria-hanlin-live13-20261123",
+            "head_sha": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3"
+          }
+        }
+      ]
+    },
+    "intake_directory": "/mnt/development/projects/diagnostics/otzaria-hanlin-live13-20261123/45128868702"
+  },
+  "artifact": {
+    "schema": 1,
+    "run": 45128868702,
+    "attempt": 1,
+    "head": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+    "artifact_id": 14800318079,
+    "artifact_bytes": 76403,
+    "artifact_sha256": "e204466e925de636ce9a60c19b990d689ff6690a944091200c1f78ecb141fe86",
+    "all_crc_pass": true,
+    "members": [
+      {
+        "path": "admission.json",
+        "bytes": 1628,
+        "sha256": "aa075aaaa0582c7239005785ee4fc22fbbf005b53cc58799908a0b57e4c304aa"
+      },
+      {
+        "path": "app-group-resolver-interface.json",
+        "bytes": 678,
+        "sha256": "8854e1f916fbcbde204c22f40d46714951bb6a4e2fa67efe08d3daf014da75c8"
+      },
+      {
+        "path": "declarations.json",
+        "bytes": 378,
+        "sha256": "0fed38adfa5d55010a9ff2993f6c83a6705e3bddb17eebe69f2461c277136a77"
+      },
+      {
+        "path": "artifact-isolation.json",
+        "bytes": 257,
+        "sha256": "1f686d2067e2b5da0fd767357e191aa26049e8a29ded32f0c8e85f1ba98f6f5b"
+      },
+      {
+        "path": "faithful-ipad-matrix.json",
+        "bytes": 23072,
+        "sha256": "fdb13fc339a2c25ff8b8ee985149013b832a8c8349960153750b14aba0067dc1"
+      },
+      {
+        "path": "python-oracle-environment.json",
+        "bytes": 654,
+        "sha256": "77d23e83351b75870dc60ce65ab1eb712b91cda9fa31044314d588316aecef92"
+      },
+      {
+        "path": "result.json",
+        "bytes": 1139,
+        "sha256": "dba36638b65e1dac4660905b764981c6dda0b1556604f9c4c71b4106e15c9e34"
+      },
+      {
+        "path": "original-build-result.json",
+        "bytes": 83603,
+        "sha256": "c31ee1bd6c96ab22389a1558232a9aa31fc83974e3a26757818a630b95cb1fc2"
+      },
+      {
+        "path": "selection.json",
+        "bytes": 642,
+        "sha256": "2ee3649a010b596b1cfea694455fde5e511de3eac55704a8892d37789a1e6cea"
+      },
+      {
+        "path": "source-after.json",
+        "bytes": 64716,
+        "sha256": "a8d9b72032eeb9d107403cde096c970649dced62895296545c386e645fd10218"
+      },
+      {
+        "path": "source-before.json",
+        "bytes": 64716,
+        "sha256": "a8d9b72032eeb9d107403cde096c970649dced62895296545c386e645fd10218"
+      }
+    ]
+  },
+  "failure": {
+    "result.json": {
+      "connection_diagnostic_status": "NOT_CAPTURED",
+      "credential_in_child_environment": false,
+      "credential_in_test_arguments": false,
+      "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/",
+      "error_kind": "ValueError",
+      "failure_phase": "NATIVE_MATRIX",
+      "log_redactions": 0,
+      "matrix_exit_code": 1,
+      "matrix_failures": [
+        {
+          "error": "TimeoutExpired: Command '['xcrun', 'simctl', 'get_app_container', 'AAA60DAF-E474-4B51-A8EA-B751E1FCD0F4', 'com.davidpovarsky.chavrusatext', 'app']' timed out after 45 seconds",
+          "failedPhase": "INSTALL_TIMEOUT",
+          "ownedSimulatorCleanup": "PASS",
+          "status": "FAIL"
+        }
+      ],
+      "model": "gemini-3.5-flash-lite",
+      "native116_acceptance": false,
+      "prior_artifacts_restored": true,
+      "private_input_consumed": false,
+      "private_input_removed": false,
+      "private_input_staged": false,
+      "raw_container_or_result_bundle_published": false,
+      "release114_acceptance": false,
+      "selector": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+      "status": "FAIL",
+      "verified_completed_provider_conversations": 0
+    },
+    "admission.json": {
+      "files": {
+        "app-group-resolver-interface.json": {
+          "bytes": 678,
+          "sha256": "8854e1f916fbcbde204c22f40d46714951bb6a4e2fa67efe08d3daf014da75c8"
+        },
+        "artifact-isolation.json": {
+          "bytes": 257,
+          "sha256": "1f686d2067e2b5da0fd767357e191aa26049e8a29ded32f0c8e85f1ba98f6f5b"
+        },
+        "declarations.json": {
+          "bytes": 378,
+          "sha256": "0fed38adfa5d55010a9ff2993f6c83a6705e3bddb17eebe69f2461c277136a77"
+        },
+        "faithful-ipad-matrix.json": {
+          "bytes": 23072,
+          "sha256": "fdb13fc339a2c25ff8b8ee985149013b832a8c8349960153750b14aba0067dc1"
+        },
+        "original-build-result.json": {
+          "bytes": 83603,
+          "sha256": "c31ee1bd6c96ab22389a1558232a9aa31fc83974e3a26757818a630b95cb1fc2"
+        },
+        "python-oracle-environment.json": {
+          "bytes": 654,
+          "sha256": "77d23e83351b75870dc60ce65ab1eb712b91cda9fa31044314d588316aecef92"
+        },
+        "result.json": {
+          "bytes": 1139,
+          "sha256": "dba36638b65e1dac4660905b764981c6dda0b1556604f9c4c71b4106e15c9e34"
+        },
+        "selection.json": {
+          "bytes": 642,
+          "sha256": "2ee3649a010b596b1cfea694455fde5e511de3eac55704a8892d37789a1e6cea"
+        },
+        "source-after.json": {
+          "bytes": 64716,
+          "sha256": "a8d9b72032eeb9d107403cde096c970649dced62895296545c386e645fd10218"
+        },
+        "source-before.json": {
+          "bytes": 64716,
+          "sha256": "a8d9b72032eeb9d107403cde096c970649dced62895296545c386e645fd10218"
+        }
+      },
+      "private_input_removed": false,
+      "provider_file_excluded": true,
+      "raw_video_excluded": true,
+      "raw_xcresult_and_attachments_excluded": true,
+      "status": "SCANNED_ALLOWLIST_ONLY"
+    },
+    "artifact-isolation.json": {
+      "had_prior": true,
+      "prior_identity": {
+        "content_sha256": "a5ae9d50b7e9537dce57fd23c9b5158faf4095db016e173c9934fa05fd93bfd5",
+        "directory_inode": 2027109,
+        "files": 1
+      },
+      "restored": true,
+      "run_attempt": "1",
+      "run_id": "45128868702"
+    },
+    "declarations.json": {
+      "status": "DECLARATIONS_MATCH",
+      "suites": [
+        {
+          "expected": [
+            "testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
+          ],
+          "selection": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+          "status": "DECLARATIONS_MATCH",
+          "suite": "HanlinLiveProviderAcceptanceTests"
+        }
+      ]
+    },
+    "selection.json": {
+      "cases": [
+        {
+          "case_id": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+          "device": "ipad11"
+        }
+      ],
+      "diagnostic_only": true,
+      "execution_case_ids": [
+        "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
+      ],
+      "execution_groups": [
+        {
+          "case_ids": [
+            "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
+          ],
+          "hid_comparison": false,
+          "label": "11",
+          "size": "11"
+        }
+      ],
+      "hid_comparison": false,
+      "required_nonzero_cases": 1
+    },
+    "app-group-resolver-interface.json": {
+      "command": [
+        "xcrun",
+        "simctl",
+        "help",
+        "get_app_container"
+      ],
+      "exit_code": 0,
+      "help_sha256": "62b5b30225c28644c70945a598f2385b4414e2f11c75c4ec2d134d6822f0053b",
+      "help": "Print the path of the installed app's container\nUsage: simctl get_app_container <device> <app bundle identifier> [<container>]\n\ncontainer   Optionally specify the container. Defaults to app.\n  app                 The .app bundle\n  data                The application's data container\n  groups              The App Group containers\n  <group identifier>  A specific App Group container\n\n\n",
+      "actual_installed_container_resolution": "DEFERRED_TO_OWNED_NATIVE_FIXTURE"
+    },
+    "python-oracle-environment.json": {
+      "status": "ORIGINAL_DECODER_DEPENDENCY_SMOKE_PASS",
+      "python_executable": "/Users/runner/work/Maktabah/Maktabah/build/hanlin-live-python/bin/python",
+      "python_version": "3.12.10 (v3.12.10:0cc81280367, Apr  8 2025, 08:46:59) [Clang 13.0.0 (clang-1300.0.29.30)]",
+      "zstandard_version": "0.25.0",
+      "original_decoder_sha256": "ddc49ce62e4c2b621fb84add244d86371eb82d202e5efbddecfb145fdeb797f5",
+      "compressed_sample_sha256": "3841e17c6985c1cf4497811798be38285eaf93768f8eda410c422eff7cf4268e",
+      "sample_sha256": "67fbd5685d6857fc93895bae7f9da89bb04bb5268a66a4af83baf275db0e99cb",
+      "actual_native_fixture_checked": false,
+      "provider_called": false
+    },
+    "original-build-result.json": {
+      "top_level_keys": [
+        "status",
+        "scope",
+        "device",
+        "runtime",
+        "no_fixture_or_app_model_mocks",
+        "signing",
+        "archive",
+        "distribution",
+        "checkout_sha",
+        "application_source_sha",
+        "validator_sha256",
+        "inputs_sha256",
+        "workflow_sha256",
+        "project_sha256",
+        "application_trees",
+        "otzaria_test_additions",
+        "zayit_framework",
+        "hanlin_gitlink",
+        "embedded_bundle_build",
+        "package_resolved_sha256",
+        "package_pins",
+        "zayit_test_metadata",
+        "xcode",
+        "swift",
+        "sdk_path",
+        "sdk_version",
+        "developer_dir",
+        "commands",
+        "hanlin_sdk_source",
+        "native_context",
+        "artifact_inputs",
+        "resource_inputs",
+        "generated_configuration",
+        "actual_source_inputs_verified",
+        "actual_package_checkouts",
+        "compiler_macro_authorization",
+        "sdk_selection",
+        "built_app_embedded_bundle_sha256",
+        "package_resolved_after_sha256"
+      ],
+      "summary": {
+        "status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+        "scope": "SIMULATOR_BUILD_FOR_REAL_UI",
+        "device": "NOT_RUN",
+        "runtime": "NOT_RUN",
+        "no_fixture_or_app_model_mocks": true,
+        "signing": "SIMULATOR_AD_HOC_ONLY",
+        "archive": false,
+        "distribution": false,
+        "checkout_sha": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+        "application_source_sha": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+        "validator_sha256": "0dbe133b8f0ee188dc2f0d0c375972a210571498ecac928f1174730ebb0e83f5",
+        "inputs_sha256": "3e92cd67cdd10289f84468e5a24a489e5dfd381d352a7ef660ff4734851a348a",
+        "workflow_sha256": "a498b99ec37f50b03348cc32b801a45bf1f50839d302702a02229fa2ccacb224",
+        "project_sha256": "0013989dc2dda8a9a6c31ea088dc901ab782b6517ad48c7554d57d1f321abf04",
+        "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+        "package_resolved_sha256": "722609bb6b71362aee5e7f401246edcd037a2d1815c2fc4704bf93830d9f5530",
+        "xcode": "Xcode 27.2\nBuild version 27B52",
+        "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+        "sdk_path": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.2.sdk",
+        "sdk_version": "27.2",
+        "developer_dir": "/Applications/Xcode_27.2.app/Contents/Developer",
+        "actual_source_inputs_verified": 1013,
+        "sdk_selection": "PER_TARGET_FROM_ORIGINAL_SIMULATOR_DESTINATION",
+        "built_app_embedded_bundle_sha256": "6ed1fee31285b96164acc8a17ab1d9d97cbde1394e8dcdd3a1d557fe0ce377ce",
+        "package_resolved_after_sha256": "722609bb6b71362aee5e7f401246edcd037a2d1815c2fc4704bf93830d9f5530"
+      },
+      "collections": {
+        "application_trees": 3,
+        "otzaria_test_additions": 9,
+        "zayit_framework": 6,
+        "embedded_bundle_build": 6,
+        "package_pins": 17,
+        "zayit_test_metadata": 6,
+        "commands": 13,
+        "hanlin_sdk_source": 7,
+        "native_context": 11,
+        "artifact_inputs": 4,
+        "resource_inputs": 4,
+        "generated_configuration": 1,
+        "actual_package_checkouts": 17,
+        "compiler_macro_authorization": 10
+      }
+    },
+    "source-before.json": {
+      "top_level_keys": [
+        "application_source_sha",
+        "application_trees",
+        "binaries",
+        "checkout_sha",
+        "execution_inputs",
+        "generated_project_sha256",
+        "original_build_status",
+        "reviewed_source_sha",
+        "workspace_sha256"
+      ],
+      "summary": {
+        "application_source_sha": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+        "checkout_sha": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+        "generated_project_sha256": "6a5a3ea917d891b7590e84ee6924fcecbdc311522682dcb9b18cdfd57a883e08",
+        "original_build_status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+        "reviewed_source_sha": "869f6a5a5eedbc94484467fe1c92f2802f497cda",
+        "workspace_sha256": "d27bfdb7fb6d0dc873c287f7c4b84c161de200fec99b9a0fb11eec850896eb3f"
+      },
+      "collections": {
+        "application_trees": 3,
+        "binaries": 5,
+        "execution_inputs": 284
+      }
+    },
+    "source_before_after_byte_identical": true
+  },
+  "cleanup": {
+    "receipt": {
+      "schema": 1,
+      "observed_at": "2026-11-23T08:34:20.727076+00:00",
+      "run_id": 45128868702,
+      "attempt": 1,
+      "independent_secret_metadata_http_status": 404,
+      "secret_value_read": false,
+      "lifecycle": {
+        "repository": "davidpovarsky/Maktabah",
+        "secret_name": "OTZARIA_LIVE_GEMINI_API_KEY",
+        "source_environment_name": "GEMINI_API_KEY",
+        "checkout_sha": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+        "branch": "codex/otzaria-hanlin-live13-20261123",
+        "started_utc": "2026-11-23T07:07:42.447209+00:00",
+        "controller_sha256": "a2b555d88413a93796d86d0b3c8c6e9bcdb7a2936b60b9fd2d15cdb77011c212",
+        "binding_sha256": "c41665203c70bec4153ae5e23c5b7c19f57d0ba552153ce7b30b57a99eee8748",
+        "credential_in_argv": false,
+        "credential_value_or_hash_recorded": false,
+        "secret_cleanup_required": false,
+        "new_provider_probe_requests": 0,
+        "preflight": {
+          "remote_exact_source": true,
+          "manual_only_workflow": true,
+          "admission_sha256": "39ef499f1bcad7645786c55634f861e271765cc02aae52a35c261d44b56a516e",
+          "previous_live_run": 45114449674,
+          "previous_conclusion": "failure",
+          "active_live_runs": 0,
+          "secret_prior_http": 404,
+          "new_provider_requests": 0
+        },
+        "state": "DELETED_AND_ABSENCE_VERIFIED",
+        "secret_set_started_utc": "2026-11-23T07:07:46.791612+00:00",
+        "metadata": {
+          "name": "OTZARIA_LIVE_GEMINI_API_KEY",
+          "created_at": "2026-11-23T07:07:48Z",
+          "updated_at": "2026-11-23T07:07:48Z"
+        },
+        "dispatch_started_utc": "2026-11-23T07:07:48.608340+00:00",
+        "dispatch_exit_code": 0,
+        "run_id": 45128868702,
+        "run_attempt": 1,
+        "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45128868702",
+        "observer_windows": 2,
+        "observer_started_utc": "2026-11-23T08:04:18.190517+00:00",
+        "watch_timed_out": false,
+        "observed_run": {
+          "id": 45128868702,
+          "head_sha": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "failure",
+          "updated_at": "2026-11-23T08:21:48Z",
+          "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45128868702"
+        },
+        "watch_exit_code": 1,
+        "cleanup_receipt": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-oracle-live13-20261123\\cleanup.json"
+      },
+      "cleanup": {
+        "state": "DELETED_AND_ABSENCE_VERIFIED",
+        "before_metadata": {
+          "name": "OTZARIA_LIVE_GEMINI_API_KEY",
+          "created_at": "2026-11-23T07:07:48Z",
+          "updated_at": "2026-11-23T07:07:48Z"
+        },
+        "delete_http_status": 204,
+        "after_http_status": 404,
+        "checkout_sha": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+        "run_id": 45128868702,
+        "finished_at": "2026-11-23T08:22:36.144054+00:00"
+      }
+    },
+    "receipt_sha256": "600956f472a78bc1544a127806e60e59d86bc51eea680c0d7d8aeb38d7724ac9"
+  }
+}

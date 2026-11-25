@@ -1,0 +1,33 @@
+{
+  "status": "ACCEPT_PREFLIGHT_ONLY_CONSENT_FOLLOWUP_ORCHESTRATOR_SOURCE",
+  "candidate_sha256": "ef6f1c42598f719c256e8cd45138fb6ee89aea44fab45f666f51c57a815e5c74",
+  "binding_sha256": "0ae015ba76101b13a710c0f6fd8a4cde5e4ca9ea43791c74447ddd1e04f17bf9",
+  "delta_sha256": "e15ee48920acc5553563d4fb8adb02c69d600f269aa8993c03bb1cc0028b20f1",
+  "full_inverse_to_original_prior_controller": true,
+  "delta_inverse_to_retained_buggy_candidate": true,
+  "unchanged_ast_functions": 18,
+  "closed_finding": "Prior same-SHA/same-branch manual runs are refused regardless of current run_attempt. Discovery and watch retain exact attempt1.",
+  "retained_controls": {
+    "original_eight_actual_receipts_byte_exact": true,
+    "one_new_actual_control_result_sha256": "bd2ff19d1849c346b35838d15c5adb7dab7bd7ba483a716187da8c1755e161c1",
+    "actual_control_command_sha256": "f4c4fec0cb1fd810c470cdaac1ed982b352556e58a208255539cd5c2a3c139f4",
+    "control_source_sha256": "e5c7094f27b38c392fcebc840a09ac0906cb03989b38a001484837ad1026fb8e",
+    "stdout_sha256": "2c20e2b1a6cafedc97c8a976a7ef968478a13d4ea884eeba46e2d29f0b41fe0d",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reviewer_replayed_any_controls": false
+  },
+  "source_correspondence_sha256": "b8d04854bbc79aaaad13c267005dc523cadf6109995f7b27514bb3edad86bb91",
+  "original_independent_receipt_sha256": "0f4aaee61d305b77574e31d2b8d25dbf851332f2c668c76aa02f8aaade09144f",
+  "actual_application_source": "7841f4af33142f72936ca97428733b3059f806b0",
+  "prepared_ci_source": "39b021a944245b2ab6b235dd5ef4bc6982db93ea",
+  "prepared_tree": "d41adf7b7a773f140899a2f0efcbe83404d0eb07",
+  "root_published_api_source": "96c5b1b60c15a9a0cf1c4356f9822c64d9864c86",
+  "five_input_blobs_prepared_and_genuine_prior_receipts": "Previously independently verified and unchanged; remote API commit object absent locally, root publication independently owned.",
+  "scope": [
+    "Read-only source, byte/AST inverse, retained control command/result/log correspondence.",
+    "No controller/main/Lifecycle constructor or controls invoked by reviewer.",
+    "No credential, API, provider, dispatch or native execution by reviewer.",
+    "Existing consent failure remains0PASS1FAIL; no native or timeout recovery acceptance.",
+    "Root owns deployment, one actual run, observation and credential cleanup."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "source": "f8bc89c6a96552582ecf070ff920cc86f92868d4",
+  "branch": "codex/otzaria-original-production-composed-20261123",
+  "repository": "davidpovarsky/anytype-swift",
+  "expected_previous": "ABSENT",
+  "before": "",
+  "exit": 0,
+  "stdout": "To https://github.com/davidpovarsky/anytype-swift.git\n*\tf8bc89c6a96552582ecf070ff920cc86f92868d4:refs/heads/codex/otzaria-original-production-composed-20261123\t[new branch]\nDone\n",
+  "stderr": "remote: \nremote: Create a pull request for 'codex/otzaria-original-production-composed-20261123' on GitHub by visiting:        \nremote:      https://github.com/davidpovarsky/anytype-swift/pull/new/codex/otzaria-original-production-composed-20261123        \nremote: \n",
+  "publication_utc": "2026-11-23T11:37:19.653933+00:00",
+  "scope": "SOURCE_ONLY_SKIP_CI",
+  "remote_confirmed": "f8bc89c6a96552582ecf070ff920cc86f92868d4"
+}

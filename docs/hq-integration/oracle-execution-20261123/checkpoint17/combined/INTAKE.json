@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "observed_utc": "2026-11-23T11:01:05.317545+00:00",
+  "scope": "AUTHENTIC_TERMINAL_INFRASTRUCTURE_ONLY_NO_SOURCE_OR_RUNTIME_EXECUTION",
+  "run": {
+    "id": 45158596483,
+    "head_sha": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45158596483",
+    "updated_at": "2026-11-23T10:57:50Z"
+  },
+  "job": {
+    "id": 137637831318,
+    "conclusion": "cancelled",
+    "runner_id": 0,
+    "steps": [],
+    "completed_at": "2026-11-23T10:57:49Z"
+  },
+  "artifact_count": 0,
+  "annotation": "The job was not acquired by Runner of type hosted even after multiple attempts",
+  "counts": {
+    "selected": 10,
+    "PASS": 0,
+    "FAIL": 0,
+    "SKIP": 0,
+    "NOT_RUN": 10
+  },
+  "cohorts": {
+    "Groups": 1,
+    "Library": 7,
+    "full_v32": 2
+  },
+  "source_admission": "Root's original four local admission commands passed before activation; no CI checkout/source admission/toolchain/build/native step ran in this attempt.",
+  "observer_failure": {
+    "job": "job_cf3b9c43669c",
+    "controller_bytes_unchanged": true,
+    "execution_user": "root",
+    "failure": "gh lacked that user's authentication; observer exited and was reaped in0.106seconds. Existing ubuntu gh was used for later authenticated terminal metadata.",
+    "runtime_causal_claim": false,
+    "sole_lock_reacquired": true,
+    "child_and_parent_absence_verified": true
+  },
+  "next_step": "Keep source/workflow/test bytes frozen. A single unchanged-source retry may be admitted after currently owned Apple qualification capacity frees; no retry started.",
+  "new_dispatches": 0,
+  "reruns": 0,
+  "native_acceptance": false,
+  "evidence": [
+    {
+      "path": "observer-authenticated-continuation/run.json",
+      "bytes": 12803,
+      "sha256": "c8f5695a24c650d4b34327b1849fcfc71e50dc5ddb31d891dc8914879a00f3e7"
+    },
+    {
+      "path": "observer-authenticated-continuation/jobs.json",
+      "bytes": 1015,
+      "sha256": "42abad1c1dd66b418400ceb604b4c9385c1e95b150fe1fcf4312732fb43a87bd"
+    },
+    {
+      "path": "observer-authenticated-continuation/artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+    },
+    {
+      "path": "observer-authenticated-continuation/check-run.json",
+      "bytes": 3119,
+      "sha256": "4b9d600c80a92bd0e902da8d79bd52f5d53f5e618ed59911d2f6a2a5b258f1ca"
+    },
+    {
+      "path": "observer-authenticated-continuation/annotations.json",
+      "bytes": 344,
+      "sha256": "d48a6167e878c25d694b431476ac810f3cfe6d0b619e4d3323f49155c878b4d4"
+    },
+    {
+      "path": "observer-authenticated-continuation/CONTINUATION_PREFLIGHT.json",
+      "bytes": 1439,
+      "sha256": "411f62c23429b52bbdc8db072f3b1d8a32c492d76cd85bb9b6ed797b26babccb"
+    },
+    {
+      "path": "watch-window-1/observer-start.json",
+      "bytes": 333,
+      "sha256": "2a33148f669e53669b961b8194b6fb09beba2b86a32380667c48413d2c1e33ec"
+    },
+    {
+      "path": "watch-window-1/observer-result.json",
+      "bytes": 551,
+      "sha256": "f110fce18c092828d0a433baacc5709fc809a544437728c023c9c601f1213972"
+    },
+    {
+      "path": "watch-window-1/gh-watch.log",
+      "bytes": 157,
+      "sha256": "69f5519080eaf4c3a8900ff6c94fe8295d61829c17161fb23806005b55bc84b9"
+    },
+    {
+      "path": "watch-window-1/terminal-read.stderr.log",
+      "bytes": 157,
+      "sha256": "69f5519080eaf4c3a8900ff6c94fe8295d61829c17161fb23806005b55bc84b9"
+    }
+  ]
+}

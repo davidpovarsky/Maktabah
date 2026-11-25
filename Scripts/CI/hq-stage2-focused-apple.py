@@ -761,6 +761,8 @@ def main():
     ap.add_argument("--preflight-only", action="store_true", help="Source/input closure only; no SDK or downloads")
     ap.add_argument("--build-for-testing", action="store_true", help="Same exact inputs, real UI runner, simulator-only ad-hoc signing")
     ap.add_argument("--derived-data", default="build/hq-stage2/DerivedData")
+    ap.add_argument("--simulator-data-profile", choices=["production", "miniTest10"],
+                    help="Build-time original data profile for real cold URL Simulator acceptance")
     ap.add_argument("--original-editor-admission",
                     help="Exact reviewed SDK distribution input; optional Debug Simulator app target only")
     ap.add_argument("--original-editor-routes", action="store_true",
@@ -782,6 +784,9 @@ def main():
     require(not args.prepared_inputs_manifest or ((args.original_editor_admission or args.original_editor_routes)
             and args.build_for_testing and not args.preflight_only and not args.prepare_inputs_only),
             "Prepared inputs may only continue into original SDK admission and a real native build")
+    require(not args.simulator_data_profile or
+            (args.build_for_testing and not args.preflight_only and not args.prepare_inputs_only),
+            "Embedded test profile requires the actual Debug Simulator test build")
     require(not args.original_editor_admission or
             (args.build_for_testing and not args.preflight_only and not args.prepare_inputs_only),
             "Original editor qualification requires the real Debug Simulator test build")
@@ -865,7 +870,15 @@ def main():
                    *signing,
                    "ARCHS=arm64", "ONLY_ACTIVE_ARCH=YES", "ENABLE_USER_SCRIPT_SANDBOXING=NO",
                    "RCT_NO_LAUNCH_PACKAGER=1", "SKIP_BUNDLING=1", "FAIL_ON_MISSING_BUNDLE=1"]
+        if args.simulator_data_profile:
+            command.append("OTZARIA_DEFAULT_DATA_PROFILE=" + args.simulator_data_profile)
         logged(command, "simulator-build-for-testing.log" if args.build_for_testing else "unsigned-app-build.log", report)
+        if args.simulator_data_profile:
+            built_info = derived_data / "Build/Products/Debug-iphonesimulator/Maktabah.app/Info.plist"
+            profile = plistlib.loads(built_info.read_bytes()).get("OtzariaDefaultDataProfile")
+            require(profile == args.simulator_data_profile, "Built app lost the explicitly selected original profile")
+            report["simulator_embedded_data_profile"] = profile
+            report["built_app_info_sha256"] = digest(built_info)
         verify_selected_zayit_files(report)
         if args.build_for_testing:
             verify_zayit_test_metadata(report, derived_data /

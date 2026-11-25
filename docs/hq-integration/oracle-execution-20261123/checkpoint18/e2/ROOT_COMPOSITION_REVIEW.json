@@ -1,0 +1,45 @@
+{
+  "source": "f8bc89c6a96552582ecf070ff920cc86f92868d4",
+  "tree": "2e8444b691c3b41538d9176de71769988252fe2d",
+  "parent": "40f2413f29a92b201b04b9745ad1f485e736522e",
+  "packet": {
+    "sha256": "aa6c9ebcb337df31d9bf49650815488547db703f7f66c35126fca2908c656a66",
+    "verified_rows": 10,
+    "verified_bytes": 264955
+  },
+  "status": "ROOT_ACCEPTED_SOURCE_COMPOSITION_ONLY",
+  "whole_product_afterimages_verified": 33,
+  "imported_product_and_evidence_verified": 95,
+  "unchanged_native_profile_boundaries": [
+    {
+      "path": "Tools/OriginalEditor",
+      "base_tree": "9874b57f6071b0a636f6c132558a2d287fc0a70c",
+      "index_changes": []
+    },
+    {
+      "path": "Tools/Hanlin",
+      "base_tree": "875192626e2f53f03ebf2936fea4446e3016bf40",
+      "index_changes": []
+    },
+    {
+      "path": "Tools/PinkhaNativeDerived",
+      "base_tree": "bc92bf25edc23db2d91b37d5878854640a444382",
+      "index_changes": []
+    },
+    {
+      "path": "Modules/ProtobufMessages",
+      "base_tree": "fda7d1587eca4858c2944af7304f978f1eb513c0",
+      "index_changes": []
+    },
+    {
+      "path": "Anytype/Sources/ServiceLayer",
+      "base_tree": "58d8c58a037d3c5af61a6be42737aee5ee8d279a",
+      "index_changes": []
+    }
+  ],
+  "accepted_peer_semantics_sha256": "09e5d29c2690bd95b7cd04b09c373c5b8885709f5d0ffa2a340cb90183141b79",
+  "accepted_final_launch_composition_review_sha256": "f64a648c875cffa5ad34a85b12d09193148661bfd97231d99204be9439ecbf61",
+  "tests_replayed": 0,
+  "native_apple_compilation": "NOT_RUN",
+  "native_abi_account_ui": "NOT_RUN"
+}

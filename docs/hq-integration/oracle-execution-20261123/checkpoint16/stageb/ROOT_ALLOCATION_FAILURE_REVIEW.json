@@ -1,0 +1,16 @@
+{
+  "source_sha": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+  "run_id": 45150723169,
+  "attempt": 1,
+  "index_sha256": "11024b06f6b9f902c630ef288cb1f71bb6b675ab38d5fdfef3bebd441d07c95d",
+  "packet_files_exact": 14,
+  "actual_job_id": 137611120474,
+  "steps_count": 0,
+  "artifact_count": 0,
+  "runner_id": 0,
+  "actual_annotation": "The job was not acquired by Runner of type hosted even after multiple attempts",
+  "status": "ROOT_ACCEPTED_RUNNER_ALLOCATION_FAILURE_NO_SOURCE_OR_NATIVE_EXECUTED",
+  "same_source_retry": "ONE_ATTEMPT_2_AUTHORIZED_AFTER_PRIOR_WATCHER_TERMINAL_AND_SDK_PROBE_COMPLETED",
+  "code_changes": 0,
+  "timestamp_utc": "2026-11-23T10:26:20.276551+00:00"
+}

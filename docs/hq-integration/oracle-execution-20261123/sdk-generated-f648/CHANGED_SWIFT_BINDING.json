@@ -1,0 +1,61 @@
+{
+  "at_utc": "2026-11-23T21:35:14.068699+00:00",
+  "changed_swift": {
+    "artifact": {
+      "digest": "sha256:1f4074fe76a3b77d955d749e3169e2a8f444b849be0b834a60ad1c10c5893d34",
+      "id": 14863169524,
+      "name": "Otzaria-Import-RPC-Swift-SDK-45269355714-1",
+      "size_in_bytes": 58301859
+    },
+    "authenticated_receipt_sha256": "d860dfdc8cbc620af2aa6bb71962f6364f5fb25a615a2900838e7b1ee128729e",
+    "compiler_seconds": 59.357,
+    "frontend_invocations": 1,
+    "input_files_equal_current_committed_sdk": 689,
+    "module_files": 3,
+    "primary_paths": [
+      "Modules/ProtobufMessages/Sources/Protocol/Commands/Anytype_Rpc.Annotation.Import.swift",
+      "Modules/ProtobufMessages/Sources/Loc/Generated/Error+Localization.swift"
+    ],
+    "run": {
+      "conclusion": "success",
+      "head_sha": "fc4a84f68d26bcf36a8662367d08475b4024824a",
+      "html_url": "https://github.com/davidpovarsky/anytype-swift/actions/runs/45269355714",
+      "id": 45269355714,
+      "run_attempt": 1
+    },
+    "source_index_matches_all_adopted_sdk_rows": 733
+  },
+  "committed_postimages_installer": {
+    "actual_result": {
+      "head": "f648a4f7bc6bb131369caf46fd35bba95302aff7",
+      "head_git_blobs": 733,
+      "tracked_source_clean": true,
+      "working_files": 733
+    },
+    "function": "verify_committed_generated",
+    "install_invoked": false,
+    "path": "/mnt/development/projects/worktrees/anytype-original-import-rpc-abi-20261123/Tools/OriginalEditor/ImportRPC/install_import_rpc_abi.py",
+    "sha256": "339ef8ab8a33cccc2e9313779b7680d3c50d7ac74cd99370db05470f7fdfa0c4"
+  },
+  "generated_index_sha256": "c38fe4efadaa1c4676084b8ca6303387b0efa61fa540ba4d9af00d67c8c85070",
+  "generated_postimage_source": "81115fe82b4ffbedd49ca69a573d85acafa67650",
+  "generator_invocations": 0,
+  "lib_installed": false,
+  "native_tests": 0,
+  "new_compiler_invocations": 0,
+  "note": "Historical boundary receipt remains unchanged; this additive receipt records subsequently authenticated two-primary Swift success. It does not qualify the entire SDK or ABI.",
+  "original_product_source": "4fd99f19b0ec361ba84ac4b2822cae10c6818f99",
+  "remaining_gates": [
+    "Actual final shared Native/RPC union",
+    "Genuine Lib ABI artifact and installer receipt",
+    "Complete SDK producer typecheck/build/consumer/runtime",
+    "StageB edit/save/exit/new PID/reopen EN/HE"
+  ],
+  "schema": "otzaria.complete-sdk-changed-swift-source-binding/1",
+  "sdk_head": "f648a4f7bc6bb131369caf46fd35bba95302aff7",
+  "sdk_tree": "733fe9299e3145cecd0968e5bdff1f7a00c7d361",
+  "source_and_generated_working_bytes_stable": true,
+  "source_controls_invoked": 1,
+  "source_writes": 0,
+  "status": "PASS_SOURCE_AND_CHANGED_SWIFT_BOUND_NO_FULL_SDK_CREDIT"
+}

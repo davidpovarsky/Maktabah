@@ -1,0 +1,80 @@
+{
+  "accepted_semantics": [
+    {
+      "boundary": "Atomic caller installation",
+      "finding": "All throwing checks and caller/capture construction precede the final actor owner assignment. The same immutable caller then returns without another await or throwing check.",
+      "source": "Anytype/Sources/Pinkha/AI/PinkhaHanlinAuthService.swift:314-325"
+    },
+    {
+      "boundary": "Original parent and whole UI lifetime",
+      "finding": "Forwarded original methods retain the same registered actor/caller capture. Finite original UI operations own admissions through their Seed/default-space/state continuation, while the temporary UI attempt does not replace OriginalAuthRequestContext.parent or become an artificial startup ancestor. Retirement/cancellation uses actual original capture validation.",
+      "source": "PinkhaHanlinAuthService.swift:139-151,189-243,605-632; unchanged AuthService.swift:22-94"
+    },
+    {
+      "boundary": "Actual named completion",
+      "finding": "Four auxiliary named original RPCs reject any preexisting unrelated Invocation binding, permit only the exact named call and retain original captures in actual Invocation completion. The follow-up releases local admissions and outer lease before awaiting that same attempt drain, then validates again. It cannot self-deadlock by retaining its own outer admission. WalletConvert is separately bound through the original registered Auth wrapper. All five original service call sites match actual Git.",
+      "source": "PinkhaHanlinAuthService.swift:245-293; unchanged Invocation.swift:117-135"
+    },
+    {
+      "boundary": "Retained close and real Stop",
+      "finding": "Synchronous caller retirement prevents later admission. One retained close joins an accepted Stop or dispatches original logout(false) before awaiting a retired startup. Actual original AccountStop.invoke has no ACCOUNT_IS_NOT_RUNNING success conversion. Failed Stop retains successfulStopRequired and the same close owner; only explicit retry may replace the returned failed close task. Drain-only receipt applies only when no startup was admitted. Release requires successful auth close and does not manufacture facade FIFO/consumer/selection drain facts.",
+      "source": "PinkhaHanlinAuthService.swift:341-415,505-565; unchanged AuthService.swift:305-352; AuthMiddleService.swift:34-38"
+    },
+    {
+      "boundary": "Real recovery identity and callback ordering",
+      "finding": "The native-facing callback enqueues and returns; original event handler sends the subject; the Login for-await body records the current recovery reference and native account ID without joining. A MainActor-created real Task is stored before it can dispatch. Only the separately scheduled select task awaits that exact throwing task completion, then rechecks the same operation/caller and exact UTF8 ID before original select. No event or UI scheduling token is treated as native/account authority.",
+      "source": "LoginViewModel.swift:301-421,481-499; unchanged ServiceMessageHandlerAdapter.swift:91-119; AccountEventHandler.swift:117-134"
+    },
+    {
+      "boundary": "Cancellation/error/same-ID retry",
+      "finding": "Wallet caller cancellation requests task.cancel but does not claim task completion. Select cancellation does not cancel the recovery and is checked through actual caller.validateCurrent after its await; original attempt validation also checks Task cancellation. A failed recovery throws through task.value and blocks select. Private per-recovery UUID plus native account ID changes the original task(id:) key for an explicit same-ID retry, stays stable for duplicate events on the same recovery, and is never passed to Auth/native. Nil caller retains original accountId scheduling.",
+      "source": "LoginViewModel.swift:331-395,397-421,484-499; LoginView.swift:32; unchanged AsyncThrowsTask.swift:48-53"
+    },
+    {
+      "boundary": "Settings and finite original effects",
+      "finding": "Reuse accepted synchronous original storage/callback review. Six paths preserve the accepted bodies except the explicitly proved empty-line spaces; Auth coordinator carries the same caller. No new storage engine or async import task is invented. Historically admitted effects are retained honestly.",
+      "source": "Exact retained SETTINGS_PROPOSAL_PEER_REVIEW.json e1e88c3d…; current six Settings/picker paths"
+    }
+  ],
+  "base": "257c49a5871c62611d88fab00a8124c7ff072166",
+  "blocking_findings": [
+    {
+      "id": "MIGRATION_DEBUG",
+      "original_source": "dbfc60976b574ce752734736f6d4eabe74578e5f",
+      "state": "SOURCE_CORRECTED_IN_0366_INDEPENDENT_INVERSE_VERIFIED_NO_NATIVE_CREDIT"
+    },
+    {
+      "id": "LAUNCH_DEBUG",
+      "state": "OPEN_SOURCE_CORRECTION_OWNED_BY_ROOT_AND_SDK"
+    }
+  ],
+  "decision": "CORE_FORWARDING_AND_RECOVERY_SOURCE_ACCEPTED_WITH_REACHABLE_LAUNCH_ADMIN_BLOCKER",
+  "migration_correction": "0366b4e4e912ba11c5413516d215bc4a234aa3ca",
+  "product_edits_tests_build_push_ci_by_reviewer": false,
+  "provenance": {
+    "full_base_inverse_files": 23,
+    "index_rows": 188,
+    "migration_full_inverse_files": 2,
+    "migration_packet_rows": 17,
+    "packet_files": 189,
+    "protected_original_files": 9,
+    "whitespace_only_lines": 13
+  },
+  "retained_execution_only": {
+    "actual_swiftui_combine_native_execution": false,
+    "assertions": 91,
+    "controls": 22,
+    "recovery_four_compiled_segments_exact_to_final_source": true,
+    "reexecuted": false,
+    "result_and_all12_command_logs_authenticated": true
+  },
+  "reviewed_utc": "2026-11-23T11:16:43.214744+00:00",
+  "schema_version": 1,
+  "scope_limits": [
+    "Real original native/Apple framework compilation and account startup/Stop remain unqualified by this review.",
+    "SwiftUI task scheduling, Combine delivery and full original UI behavior need actual Apple execution; the retained six recovery cases use explicit boundary doubles.",
+    "Original AccountShow contains its original account ID data and does not gain a new native producing-operation provenance contract.",
+    "Complete bootstrap boundary remains withheld until exact Launch and facade changes are independently bound."
+  ],
+  "source": "dbfc60976b574ce752734736f6d4eabe74578e5f"
+}

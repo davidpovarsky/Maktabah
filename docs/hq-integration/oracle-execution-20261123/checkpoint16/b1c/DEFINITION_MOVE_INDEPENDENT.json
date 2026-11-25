@@ -1,0 +1,58 @@
+{
+  "entire_original_imports_constants_17_pairs_definitions_body_exact_after_package_comment_only_removal": true,
+  "leaf_sha256": "c50a6e719a149e1da89daeaddfe33178ed285d3b2bb5ca5a53c38cea96e0683b",
+  "original_17_pairs_preserved": true,
+  "original_sha256": "cce970f838d91d9f3f06af5e4f2511afc6838c69704deaa4099ba9c392996eac",
+  "owned_array_accessor_and_original_private_parent_shape": true,
+  "parent_forwarder_sha256": "23b67a4f03a5bf11024861d137cd505ed5cc2b8e82e866fe5805cf198acadb1b",
+  "unchanged_schema_siblings": [
+    {
+      "heart_path": "core/pinkha/annotationschema/observe.go",
+      "references": {
+        "Definitions": 8,
+        "Protocol": 0,
+        "TypeUniqueKey": 1
+      },
+      "relationNames_occurrences": 2,
+      "revision": "7496e47fa4d37b0117abeae6b35ca5f4c8eaf638",
+      "sha256": "06eac0c21b0974863a197f8f1a3ae80804c5d97d3e4a49e8f775e9cccc1cc193",
+      "source_path": "docs/pinkha/torah-integration/native-annotation-schema-readback-20261122/native/core/pinkha/annotationschema/observe.go"
+    },
+    {
+      "heart_path": "core/pinkha/annotationschema/type_layout.go",
+      "references": {
+        "Definitions": 0,
+        "Protocol": 0,
+        "TypeUniqueKey": 0
+      },
+      "relationNames_occurrences": 3,
+      "revision": "7496e47fa4d37b0117abeae6b35ca5f4c8eaf638",
+      "sha256": "574f1fc23e9387c59167fdeac72b6a4d727f4c6c782b03ed2a99593a0e7ad312",
+      "source_path": "docs/pinkha/torah-integration/native-annotation-schema-readback-20261122/native/core/pinkha/annotationschema/type_layout.go"
+    },
+    {
+      "heart_path": "core/pinkha/annotationschema/register.go",
+      "references": {
+        "Definitions": 13,
+        "Protocol": 0,
+        "TypeUniqueKey": 0
+      },
+      "relationNames_occurrences": 3,
+      "revision": "7496e47fa4d37b0117abeae6b35ca5f4c8eaf638",
+      "sha256": "a14d21693fa8e60fe7e4d581295816a7e9a73919e61eafd5fd1532b9928cd9fc",
+      "source_path": "docs/pinkha/torah-integration/native-annotation-schema-registration-20261122/native/core/pinkha/annotationschema/register.go"
+    },
+    {
+      "heart_path": "core/pinkha/annotationschema/register_type_layout.go",
+      "references": {
+        "Definitions": 3,
+        "Protocol": 0,
+        "TypeUniqueKey": 1
+      },
+      "relationNames_occurrences": 3,
+      "revision": "7496e47fa4d37b0117abeae6b35ca5f4c8eaf638",
+      "sha256": "1f50a65ff9bc3e3acccea2fcd53dce03f025f280940502b028a22d3e75b0d6ce",
+      "source_path": "docs/pinkha/torah-integration/native-annotation-schema-native-defaults-20261122/native/core/pinkha/annotationschema/register_type_layout.go"
+    }
+  ]
+}

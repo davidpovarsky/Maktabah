@@ -1,0 +1,325 @@
+{
+  "count": 53,
+  "files": [
+    {
+      "path": "checkpoint19/native9-prior/INTAKE.json",
+      "bytes": 3566,
+      "sha256": "eb13b5704c85c819af602be50b753f5bb0eef4d6ec9850460f534f57bc9e47ec",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/45165374342/INTAKE.json"
+    },
+    {
+      "path": "checkpoint19/native9-prior/DECLARED_CLOSURE_DIAGNOSIS.json",
+      "bytes": 1239,
+      "sha256": "982d75ccd0fe2a559958280241556c7e25f3427ad7016dcd3b9cd807f6fd9dbf",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/45165374342/DECLARED_CLOSURE_DIAGNOSIS.json"
+    },
+    {
+      "path": "checkpoint19/native9-prior/ARTIFACT_ACQUISITION.json",
+      "bytes": 638,
+      "sha256": "73d063ce84dee75d398c457e7875e8fa3dc63e5c9f1d03304cdf49df84ef8743",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/45165374342/ARTIFACT_ACQUISITION.json"
+    },
+    {
+      "path": "checkpoint19/native9-prior/TERMINAL_OBSERVATION.json",
+      "bytes": 1010,
+      "sha256": "48baf80de760ce8c384ef5c869c2734dc91e2613fc99498787c983f27732a6dd",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/45165374342/TERMINAL_OBSERVATION.json"
+    },
+    {
+      "path": "checkpoint19/native9-prior/WATCH_RESULT_1.json",
+      "bytes": 880,
+      "sha256": "446cfc4a9d0af740985c48ad5295d992af2989131cf841b75bd933d8ffbb9993",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/45165374342/WATCH_RESULT_1.json"
+    },
+    {
+      "path": "checkpoint19/native9-closure/ROOT_SOURCE_REVIEW.json",
+      "bytes": 773,
+      "sha256": "eebc415175e92f9f604c8663b4ca3881b3fba1bb8aef474b1224d4a76d78c775",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-closure-20261123/ROOT_SOURCE_REVIEW.json"
+    },
+    {
+      "path": "checkpoint19/native9-closure/SOURCE_ADMISSION.json",
+      "bytes": 12776,
+      "sha256": "80781db4b4024449434db0377bd89205c5899d2fbd9aaffcfa01528e1eb35a42",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-closure-20261123/SOURCE_ADMISSION.json"
+    },
+    {
+      "path": "checkpoint19/native9-closure/SOURCE_ADMISSION_COMMAND.json",
+      "bytes": 1618,
+      "sha256": "9b506900c53d6b3979072b4bd9ee4c663fb2ed24798d94ac77c04274f75dd6dd",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-closure-20261123/SOURCE_ADMISSION_COMMAND.json"
+    },
+    {
+      "path": "checkpoint19/native9-closure/SOURCE_PUBLICATION.json",
+      "bytes": 1098,
+      "sha256": "bfea416cb3e24f48454c66c700d0c68b1a5f89fb12d2176c9c786c8dc59bb235",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-closure-20261123/SOURCE_PUBLICATION.json"
+    },
+    {
+      "path": "checkpoint19/native9-closure/FINAL_API_SOURCE.json",
+      "bytes": 558,
+      "sha256": "94f46e7a1e8eff45cdcfd237a0756214815d5cc52cf246f5c2f106db76152b9e",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-closure-20261123/FINAL_API_SOURCE.json"
+    },
+    {
+      "path": "checkpoint19/native9-closure/FINAL_API_SOURCE_ADMISSION.json",
+      "bytes": 12776,
+      "sha256": "5cef8351ed10f08db1c8fb828c8666b6dda1b17268db2ce5dd769813d90f7f1c",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-closure-20261123/FINAL_API_SOURCE_ADMISSION.json"
+    },
+    {
+      "path": "checkpoint19/native9-closure/API_PUBLICATION_PACKET.json",
+      "bytes": 4257,
+      "sha256": "be921dbca1a446cd442f6eb95d3aef4840a37f9e4d0d04743b1424d1f866a0a4",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-closure-20261123/API_PUBLICATION_PACKET.json"
+    },
+    {
+      "path": "checkpoint19/native9-closure/run45172604455/WATCH_BINDING.json",
+      "bytes": 860,
+      "sha256": "ba77602a5c2f88c4f59dfe4dc43ad989eaea78414f47b1099f253c81fbe371af",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-closure-20261123/45172604455/WATCH_BINDING.json"
+    },
+    {
+      "path": "checkpoint19/native9-closure/run45172604455/WATCH_OWNER_1.json",
+      "bytes": 382,
+      "sha256": "1b4e92911e5d3c913431810d4d46fee46b97e712c49b41f8419bdd3d86d599b7",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-closure-20261123/45172604455/WATCH_OWNER_1.json"
+    },
+    {
+      "path": "checkpoint19/native9-closure/run45172604455/WATCH_START_1.json",
+      "bytes": 910,
+      "sha256": "a4037ddbaacc5b34b96504794a567e0ae01e1a44ddd3c057c3e8e0c35d141a1c",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-closure-20261123/45172604455/WATCH_START_1.json"
+    },
+    {
+      "path": "checkpoint19/native9-closure/run45172604455/DISCOVERY_INTAKE.json",
+      "bytes": 615,
+      "sha256": "5b0474dd841d1b9b00e9dbb043ad86da72c2d41e44cde7989ed0dab44b09c3a9",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-closure-20261123/45172604455/DISCOVERY_INTAKE.json"
+    },
+    {
+      "path": "checkpoint19/stageb-serialization/ROOT_SOURCE_REVIEW.json",
+      "bytes": 735,
+      "sha256": "81253b2682adbc6dd918bcbcb98e0ac68f50916a55ef525266fe33af18a14761",
+      "source": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/ROOT_SOURCE_REVIEW.json"
+    },
+    {
+      "path": "checkpoint19/stageb-serialization/RESULT.json",
+      "bytes": 9626,
+      "sha256": "f406b6ce15e3e46f5faf7b96f77a4805ba5700d53755af1257b7a71646b70773",
+      "source": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/control-results/RESULT.json"
+    },
+    {
+      "path": "checkpoint19/stageb-serialization/ROOT_FINAL_ACTIVATION_REVIEW.json",
+      "bytes": 978,
+      "sha256": "c25416f9796ebc5cf8dfde32d9a0a43efd7ad31eb7cf77b3894b77ea5f4dc1ee",
+      "source": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/ROOT_FINAL_ACTIVATION_REVIEW.json"
+    },
+    {
+      "path": "checkpoint19/stageb-serialization/ACTIVATION_PREPARATION.json",
+      "bytes": 1405,
+      "sha256": "831d91aaf11dc16bdf2f24a6ae79c1e8c77f308c57210a405fd745d13bcc0c31",
+      "source": "/mnt/development/projects/diagnostics/otzaria-original-editor-stageb-20261123/settings-serialization-repair/ACTIVATION_PREPARATION.json"
+    },
+    {
+      "path": "checkpoint19/stageb-serialization/PACKET_INDEX.json",
+      "bytes": 27216,
+      "sha256": "77fd05b735089279081ac23e7420ea01415c5c0b89199eb526175cd1ea009bbb",
+      "source": "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/docs/hq-integration/original-editor-stageb-serialization-20261123/PACKET_INDEX.json"
+    },
+    {
+      "path": "checkpoint19/stageb-serialization/SOURCE_CORRESPONDENCE.json",
+      "bytes": 3077,
+      "sha256": "022f9daf5ea126ffa2a598b3dc8ba757202be2a135ca34d458bda81cb471e267",
+      "source": "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/docs/hq-integration/original-editor-stageb-serialization-20261123/SOURCE_CORRESPONDENCE.json"
+    },
+    {
+      "path": "checkpoint19/stageb-serialization/README.md",
+      "bytes": 3608,
+      "sha256": "40be87fc8c8c149c6addd56aa277a9dbebd16a6accc8ada6758b6300844f6073",
+      "source": "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/docs/hq-integration/original-editor-stageb-serialization-20261123/README.md"
+    },
+    {
+      "path": "checkpoint19/stageb-serialization/failure-run-45167025321/INTAKE.json",
+      "bytes": 2204,
+      "sha256": "13818751596fd870fff6ee5de828638cadc8d21d908ebec2386553a470760a88",
+      "source": "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/docs/hq-integration/original-editor-stageb-serialization-20261123/failure-run-45167025321/INTAKE.json"
+    },
+    {
+      "path": "checkpoint19/stageb-serialization/failure-run-45167025321/DIAGNOSIS.md",
+      "bytes": 1234,
+      "sha256": "a651dd41d2b4c0740c706a59de9a1fc78d24733c9114c02b0df99b95319f45cd",
+      "source": "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/docs/hq-integration/original-editor-stageb-serialization-20261123/failure-run-45167025321/DIAGNOSIS.md"
+    },
+    {
+      "path": "checkpoint19/stageb-serialization/failure-run-45167025321/review/SETTINGS_SERIALIZATION_DIAGNOSIS.json",
+      "bytes": 26339,
+      "sha256": "a8644442803802f8d19f09d568e2a1bf9988b6bde57f44100dbf7a8d2b976ceb",
+      "source": "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/docs/hq-integration/original-editor-stageb-serialization-20261123/failure-run-45167025321/review/SETTINGS_SERIALIZATION_DIAGNOSIS.json"
+    },
+    {
+      "path": "checkpoint19/stageb-serialization/source/HELPER_SERIALIZATION.diff",
+      "bytes": 1415,
+      "sha256": "854642e2871ab2690ac6860b7d40078d158e147b3debf70c15d0fe9a5e2529cc",
+      "source": "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/docs/hq-integration/original-editor-stageb-serialization-20261123/source/HELPER_SERIALIZATION.diff"
+    },
+    {
+      "path": "checkpoint19/stageb-serialization/source/SOURCE_DELTA.json",
+      "bytes": 656,
+      "sha256": "5d09458eac48760276f43c21281af76cc6620772092d7dcac60407df68e76573",
+      "source": "/mnt/development/projects/worktrees/Maktabah-original-editor-stageb-20261123/docs/hq-integration/original-editor-stageb-serialization-20261123/source/SOURCE_DELTA.json"
+    },
+    {
+      "path": "checkpoint19/live-consent/windows-deployment/DEPLOYMENT.json",
+      "bytes": 1092,
+      "sha256": "1ce44bddc9c846d1d3896263ddcd26f748022a84d04ed1815d2821a3254e246a",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/windows-deployment/DEPLOYMENT.json"
+    },
+    {
+      "path": "checkpoint19/live-consent/windows-deployment/ACTIVATION_INTENT.json",
+      "bytes": 1070,
+      "sha256": "0a403cfcfc34cd8bf8c61d2d96657c06f6b5c1d40c8c017ede4306c480917eda",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/windows-deployment/ACTIVATION_INTENT.json"
+    },
+    {
+      "path": "checkpoint19/live-consent/45168227740/INITIAL_LIFECYCLE.json",
+      "bytes": 1756,
+      "sha256": "3cd164bd716ba0ab9a218e32ca741f963904a91f27cbe9405846d6d90164ed01",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/45168227740/INITIAL_LIFECYCLE.json"
+    },
+    {
+      "path": "checkpoint19/live-consent/45168227740/WATCH_OWNER.json",
+      "bytes": 1092,
+      "sha256": "905e41c5aa6c7c41a912920463d8d7b2d413cb4fc465081c477dc1b5edca1573",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live-consent-20261123/45168227740/WATCH_OWNER.json"
+    },
+    {
+      "path": "checkpoint19/host-native-attempt/ROOT_SOURCE_CORRESPONDENCE.json",
+      "bytes": 1277,
+      "sha256": "4e971e6cb30bc804c7cd479f946ecde23335b5a848ae839f43d15c67305f38e2",
+      "source": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/ROOT_SOURCE_CORRESPONDENCE.json"
+    },
+    {
+      "path": "checkpoint19/host-native-attempt/ROOT_SOURCE_PUBLICATION.json",
+      "bytes": 934,
+      "sha256": "bdfd5c54cc3a73e202bdeb898d92a6c405653e1e9d4cd3405b6439dc3155d65e",
+      "source": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/ROOT_SOURCE_PUBLICATION.json"
+    },
+    {
+      "path": "checkpoint19/host-native-attempt/PACKET_INDEX.json",
+      "bytes": 10028,
+      "sha256": "d4ef9938cc65cf7143ac658c2c0a88953009a1b2042d18b59fce3f18c7dddd71",
+      "source": "/mnt/development/projects/worktrees/Maktabah-local-native-attempt-20261123/docs/hq-integration/local-native-attempt-20261123/implementation-20261123/PACKET_INDEX.json"
+    },
+    {
+      "path": "checkpoint19/host-native-attempt/SOURCE_ADMISSION.json",
+      "bytes": 2837,
+      "sha256": "f9b817c32f5fded27a3ba54623cf193eebb79698a6e4972cc94bd32879a24051",
+      "source": "/mnt/development/projects/worktrees/Maktabah-local-native-attempt-20261123/docs/hq-integration/local-native-attempt-20261123/implementation-20261123/SOURCE_ADMISSION.json"
+    },
+    {
+      "path": "checkpoint19/host-native-attempt/README.md",
+      "bytes": 6579,
+      "sha256": "b842d22a7b99b638aeca00059e5f162f88b5c4349b9474ca457eb7bbd3c1e228",
+      "source": "/mnt/development/projects/worktrees/Maktabah-local-native-attempt-20261123/docs/hq-integration/local-native-attempt-20261123/implementation-20261123/README.md"
+    },
+    {
+      "path": "checkpoint19/host-native-attempt/controls-evidence/component-run-1/RESULT.json",
+      "bytes": 2447,
+      "sha256": "54ab66f70cbbdbe865cf0ad37f8e9c8f448313d519aee905bfc5033baaf13889",
+      "source": "/mnt/development/projects/worktrees/Maktabah-local-native-attempt-20261123/docs/hq-integration/local-native-attempt-20261123/implementation-20261123/controls-evidence/component-run-1/RESULT.json"
+    },
+    {
+      "path": "checkpoint19/host-native-attempt/controls-evidence/process-reopen-1/PROCESS_RESULTS.json",
+      "bytes": 537,
+      "sha256": "9b07a73475439b2c6ea91a615faa544a09b84829606548ed1b9f9bd98dfefd4c",
+      "source": "/mnt/development/projects/worktrees/Maktabah-local-native-attempt-20261123/docs/hq-integration/local-native-attempt-20261123/implementation-20261123/controls-evidence/process-reopen-1/PROCESS_RESULTS.json"
+    },
+    {
+      "path": "checkpoint19/host-native-attempt/controls-evidence/process-reopen-1/REOPEN_RESULT.json",
+      "bytes": 511,
+      "sha256": "ac8cf5905f21bf30c8abfbc9e6c837c0fdc9a9374182fb57cce6c700dcbecece",
+      "source": "/mnt/development/projects/worktrees/Maktabah-local-native-attempt-20261123/docs/hq-integration/local-native-attempt-20261123/implementation-20261123/controls-evidence/process-reopen-1/REOPEN_RESULT.json"
+    },
+    {
+      "path": "checkpoint19/native-rpc/ROOT_LOGGING_REVIEW.json",
+      "bytes": 714,
+      "sha256": "1e0a0cb67cf21da30a1dbc276c03ca281367c57e96d92da011be37f5aaa99e60",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-logging-root-20261123/ROOT_REVIEW.json"
+    },
+    {
+      "path": "checkpoint19/native-rpc/PEER_LOGGING_REVIEW.json",
+      "bytes": 4223,
+      "sha256": "2270b67231d44341ee4234c93860348cbc2cbf80c2c076a05715694690c6c32f",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-logging-peer-20261123/INDEPENDENT_REVIEW.json"
+    },
+    {
+      "path": "checkpoint19/native-rpc/SOURCE_PUBLICATION.json",
+      "bytes": 975,
+      "sha256": "f72f1a2bd047eaadb93480a3559b3227d848dd2ef832f7ebea5f06bd5b329759",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-rpc-source-20261123/RPC_SOURCE_PUBLICATION.json"
+    },
+    {
+      "path": "checkpoint19/production-sdk-plan/ROOT_REVIEW.json",
+      "bytes": 1139,
+      "sha256": "04f759952d2e22a5f0bbab4e1e7f413746ceb8354f0eaf7b6f0a64e54aa4f832",
+      "source": "/mnt/development/projects/diagnostics/otzaria-original-production-sdk-plan-20261123/ROOT_REVIEW.json"
+    },
+    {
+      "path": "checkpoint19/swift-import-history/SOURCE_PREPARATION.json",
+      "bytes": 994,
+      "sha256": "5bc2166a8e66eb69d298915800bcdaf3b418ae5d4f08b8ffcf0801c88e32d57d",
+      "source": "/mnt/development/projects/diagnostics/otzaria-original-import-history-20261123/SOURCE_PREPARATION.json"
+    },
+    {
+      "path": "checkpoint19/swift-import-history/SOURCE_PROOF.json",
+      "bytes": 3134,
+      "sha256": "c400f9a77522462b62eede57dd21922c4900eeee0c69c2e75f0b4af16d45fb03",
+      "source": "/mnt/development/projects/worktrees/anytype-otzaria-original-import-history-20261123/docs/pinkha/torah-integration/original-annotation-import-history-20261123/SOURCE_PROOF.json"
+    },
+    {
+      "path": "checkpoint19/swift-import-history/PACKET_INDEX.json",
+      "bytes": 881,
+      "sha256": "f4ed1707059d61615fb07ac784980b664657b833c8683346999a8be199633440",
+      "source": "/mnt/development/projects/worktrees/anytype-otzaria-original-import-history-20261123/docs/pinkha/torah-integration/original-annotation-import-history-20261123/PACKET_INDEX.json"
+    },
+    {
+      "path": "checkpoint19/swift-import-history/EXACT_APPEND_ONLY.diff",
+      "bytes": 7724,
+      "sha256": "5493f659a7636079288315548282b76fa71de807ea20898122bbe01c3741094e",
+      "source": "/mnt/development/projects/worktrees/anytype-otzaria-original-import-history-20261123/docs/pinkha/torah-integration/original-annotation-import-history-20261123/EXACT_APPEND_ONLY.diff"
+    },
+    {
+      "path": "checkpoint19/swift-import-history/Invocation.after.swift",
+      "bytes": 21201,
+      "sha256": "513d3fd1b732ec58aa2a04972a344bc47352c133b81e4a21184975349a8f67dc",
+      "source": "/mnt/development/projects/worktrees/anytype-otzaria-original-import-history-20261123/docs/pinkha/torah-integration/original-annotation-import-history-20261123/Invocation.after.swift"
+    },
+    {
+      "path": "checkpoint19/swift-import-history/README.md",
+      "bytes": 2184,
+      "sha256": "e7fd0611607f6d082819c85617f3e5146dee786a09dccea7117956dd413eb874",
+      "source": "/mnt/development/projects/worktrees/anytype-otzaria-original-import-history-20261123/docs/pinkha/torah-integration/original-annotation-import-history-20261123/README.md"
+    },
+    {
+      "path": "checkpoint19/production-sdk-plan/PACKET_INDEX.json",
+      "bytes": 2749,
+      "sha256": "31832cbe2c1904d830145924fab48d10b9ebc34add0d2e17390e023ebd76aaf9",
+      "source": "/mnt/development/projects/worktrees/anytype-otzaria-original-production-build-plan-20261123/docs/pinkha/torah-integration/original-production-native-sdk-plan-20261123/PACKET_INDEX.json"
+    },
+    {
+      "path": "checkpoint19/production-sdk-plan/PRODUCTION_PROPOSAL.md",
+      "bytes": 17261,
+      "sha256": "006ccaf8487a35b97d6339296a3c4feacc9b5740b0970f3d675bc477f954ce84",
+      "source": "/mnt/development/projects/worktrees/anytype-otzaria-original-production-build-plan-20261123/docs/pinkha/torah-integration/original-production-native-sdk-plan-20261123/PRODUCTION_PROPOSAL.md"
+    },
+    {
+      "path": "checkpoint19/live-consent/OWNED_LOG_SNAPSHOT.json",
+      "bytes": 7541,
+      "sha256": "00df76d77d47bd014f173ad0cfd3d76c0d35a0a2c060d657d38504384c5f0791",
+      "source": "Read-only existing Windows controller lifecycle and sole watch log; no additional GitHub polling"
+    }
+  ],
+  "tests_replayed": 0,
+  "large_artifacts": "Original 31MB StageB ZIP and official packages remain byte-bound in source2abbea packet; no duplicate archive copy in this checkpoint."
+}

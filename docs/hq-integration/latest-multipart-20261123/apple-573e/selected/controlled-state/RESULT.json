@@ -1,0 +1,62 @@
+{
+  "cases" : [
+    {
+      "name" : "manifest_stream_declared_length_mismatch_cancels",
+      "status" : "PASS"
+    },
+    {
+      "name" : "manifest_stream_actual_byte_overflow_cancels",
+      "status" : "PASS"
+    }
+  ],
+  "counts" : {
+    "FAIL" : 0,
+    "PASS" : 2,
+    "SKIP" : 0
+  },
+  "native_app_or_sqlite_installation_acceptance" : false,
+  "observations" : [
+    {
+      "case" : "manifest_stream_declared_length_mismatch_cancels",
+      "elapsed_seconds" : 0.0098754050000025018,
+      "fixture_manifest_bytes" : 465,
+      "fixture_mime" : "application\/octet-stream",
+      "owned_stop_observed_before_cleanup" : true,
+      "requests" : [
+        {
+          "range" : "",
+          "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest",
+          "validator" : ""
+        },
+        {
+          "range" : "",
+          "url" : "https:\/\/github.com\/Otzaria\/SeforimLibrary\/releases\/download\/controlled-mime-manifest_stream_declared_length_mismatch_cancels\/seforim-schema7.db.zst.manifest.json",
+          "validator" : ""
+        }
+      ],
+      "stop_events_after_cleanup" : 2
+    },
+    {
+      "case" : "manifest_stream_actual_byte_overflow_cancels",
+      "elapsed_seconds" : 0.0040309629999910612,
+      "fixture_manifest_bytes" : 465,
+      "fixture_mime" : "application\/octet-stream",
+      "owned_stop_observed_before_cleanup" : true,
+      "requests" : [
+        {
+          "range" : "",
+          "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest",
+          "validator" : ""
+        },
+        {
+          "range" : "",
+          "url" : "https:\/\/github.com\/Otzaria\/SeforimLibrary\/releases\/download\/controlled-mime-manifest_stream_actual_byte_overflow_cancels\/seforim-schema7.db.zst.manifest.json",
+          "validator" : ""
+        }
+      ],
+      "stop_events_after_cleanup" : 2
+    }
+  ],
+  "public_network_requests" : 0,
+  "status" : "APPLE_STREAM_CONTROLS_PASS"
+}

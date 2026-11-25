@@ -1,0 +1,55 @@
+{
+  "checked_at_utc": "2026-11-23T20:47:02.572643+00:00",
+  "operation": "Read-only original configured legacy Books Updates catalog; no payload download, updater execution or database open",
+  "url": "https://drive.google.com/uc?export=download&id=1FYrscpCBIuIym2ZHB6QBwYfy9eswYDna",
+  "resolved_url": "https://drive.usercontent.google.com/download?id=1FYrscpCBIuIym2ZHB6QBwYfy9eswYDna&export=download",
+  "http_status": 200,
+  "content_type": "application/octet-stream",
+  "bytes": 792,
+  "sha256": "99c2cf2fb5e4d5c9f30d2d0016cd769eef2b0953642e3464619310da4710c293",
+  "header": [
+    "bkid",
+    "cat",
+    "verName",
+    "link",
+    "size",
+    "bk"
+  ],
+  "data_rows": 7,
+  "column_counts": [
+    6
+  ],
+  "delimiter": ";",
+  "same_bytes_as_20261120": true,
+  "authenticated_provider_contract": false,
+  "signature_verified": false,
+  "contract_fields_required": [
+    "backend",
+    "target_schema",
+    "source_database_digest",
+    "migration_manifest"
+  ],
+  "contract_fields_observed": [],
+  "status": "BLOCKED_AUTHENTIC_PROVIDER_CONTRACT",
+  "source_comparison": {
+    "historical_source": "837497a0666b01979715e3d0a81a983259ac8537",
+    "current_source": "4f21b1d5038960170feca1d8a7ca6382ccecd439",
+    "paths": [
+      "Source/ChavrusaText/BookUpdates",
+      "Source/Features/Library/Database/Updater",
+      "Source/Features/Library/ViewModel/BookUpdateVM.swift",
+      "Source/Features/Library/Models",
+      "Source/Features/Library/Updates/BookUpdateView.swift",
+      "Source/LibraryBackend",
+      "tools/hq-updates-test-apple.py",
+      "tools/hq-updates-extract-fixtures.py",
+      "Tests/HQ/updates"
+    ],
+    "changed_paths": [
+      "Source/LibraryBackend/BackendCoordinator.swift"
+    ],
+    "new_tests_executed": 0,
+    "historical_test_run": 44190056702,
+    "historical_results_not_claimed_as_new": true
+  }
+}

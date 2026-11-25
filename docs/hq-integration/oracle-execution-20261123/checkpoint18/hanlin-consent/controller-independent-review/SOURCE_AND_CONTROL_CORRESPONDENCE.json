@@ -1,0 +1,171 @@
+{
+  "files": {
+    "controller120.py": {
+      "bytes": 15905,
+      "sha256": "0b377e7f03c94d41fefc252b8a0b405d4dd192cbcc7c0817d50f4d3c93643733"
+    },
+    "prior-controller120.py": {
+      "bytes": 14161,
+      "sha256": "7fdb372e536e888f50dbb4975ccf002db8e5b8944100353feea2fd0ec3e4c65c"
+    },
+    "binding.json": {
+      "bytes": 1852,
+      "sha256": "0ae015ba76101b13a710c0f6fd8a4cde5e4ca9ea43791c74447ddd1e04f17bf9"
+    },
+    "CONTROLLER_PREFLIGHT_ONLY.diff": {
+      "bytes": 4994,
+      "sha256": "d461545d7866ae42c739d31c1cc7746f783ae683a98f291441924a855f557b2d"
+    },
+    "SOURCE_CORRESPONDENCE.json": {
+      "bytes": 1349,
+      "sha256": "64f8b9f1f7c80562f0eb3d0a84c5f9438162590869045a8addc84a1273051b86"
+    },
+    "CONTROL_COMMAND.json": {
+      "bytes": 537,
+      "sha256": "669e156732f4970f1c67c45e410757e6b5a8f8eca23dcd7925b57026766c65f1"
+    },
+    "CONTROL_RESULT.json": {
+      "bytes": 2949,
+      "sha256": "946e65f7f30dec93bacdacbb6afef22af4edbe1aaa8497f685dbf219489c740d"
+    },
+    "check_preflight_followup.py": {
+      "bytes": 5687,
+      "sha256": "6da674468020bc453a1a0570de85c961ebd4222cd257a5daf9327670bcd6c657"
+    },
+    "controls.stdout": {
+      "bytes": 2499,
+      "sha256": "419d8f4e1e419d76349c1b9c26999c9f8c68d62a3e18b8694db71cbd76023312"
+    },
+    "controls.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "changed_functions": [
+    "Lifecycle.preflight"
+  ],
+  "unchanged_functions": [
+    "utc",
+    "digest",
+    "owned_metadata",
+    "exact_run",
+    "newly_dispatched_runs",
+    "http_response",
+    "Lifecycle.__init__",
+    "Lifecycle.acquire",
+    "Lifecycle.save",
+    "Lifecycle.command",
+    "Lifecycle.api",
+    "Lifecycle.secret_http",
+    "Lifecycle.remote_file",
+    "Lifecycle.configure_and_dispatch",
+    "Lifecycle.cleanup",
+    "Lifecycle.watch",
+    "Lifecycle.execute",
+    "main"
+  ],
+  "whole_inverse_and_diff_exact": true,
+  "retained_controls_verified_without_execution": {
+    "cases": 8,
+    "command_and_stdout_match": true,
+    "control_source_sha256": "6da674468020bc453a1a0570de85c961ebd4222cd257a5daf9327670bcd6c657"
+  },
+  "binding": {
+    "schema": 1,
+    "repository": "davidpovarsky/Maktabah",
+    "branch": "codex/otzaria-hanlin-live-consent-20261123",
+    "checkout_sha": "96c5b1b60c15a9a0cf1c4356f9822c64d9864c86",
+    "application_source_sha": "7841f4af33142f72936ca97428733b3059f806b0",
+    "source_review_status": "REVIEWED_SINGLE_CONSENT_OBSERVATION_FOLLOWUP",
+    "workflow": {
+      "path": ".github/workflows/otzaria-hanlin-live-native.yml",
+      "git_blob": "07b02e5aba3ecfebbfae1dde4d01559d46071642",
+      "sha256": "fb52e49bdb8b993ddb7bd5c7c58ebf7148a8b791b75d0497a635873c2fdfb847"
+    },
+    "admission": {
+      "path": "docs/hq-integration/hanlin-live-consent-20261123/LIVE_CONSENT_SOURCE_ADMISSION.json",
+      "git_blob": "f8b69ac4341b41770c4fdd1d54c1a71ef4f5e42a",
+      "sha256": "5894948186dd97ba39e4c456532f9cc8dcdb6a564ac8b19ec928881e1da54678"
+    },
+    "source_guard": {
+      "path": "Scripts/CI/verify-hanlin-live-consent-source.py",
+      "git_blob": "dc12df5c51d8032e3af902cc310aff520b3e8664",
+      "sha256": "46938548eed940bbe88fd8a0fe0e4d7feec1e15f49221dfe403a6bec1ceb7243"
+    },
+    "previous_intake": {
+      "path": "docs/hq-integration/hanlin-live-consent-20261123/runtime-45145388957/INTAKE.json",
+      "git_blob": "d61e3327eee78d1932c1fb0f6888e920ebdc6465",
+      "sha256": "91ee4ca0edc05ea4459d8cfaad0f975da1318796720f2289cd1d0af8a90ad32f"
+    },
+    "previous_cleanup": {
+      "path": "docs/hq-integration/hanlin-live-consent-20261123/runtime-45145388957/CLEANUP_BINDING.json",
+      "git_blob": "8cfe3557bf072f5a77ccee6f1e6ae850379ffa1f",
+      "sha256": "96db6e589f2744765e257fda9b4caa34e5ef88989e785089f339dfcde534d9ce"
+    },
+    "source_review_sha256": "ff6c9ef0afc6d01fe182fb2ca909dbd1f7712ef88728c64f90e826377762e7ca",
+    "expected_ci_tree": "d41adf7b7a773f140899a2f0efcbe83404d0eb07",
+    "manual_dispatches_allowed": 1,
+    "no_provider_probe": true,
+    "credential_value_or_hash_recorded": false
+  },
+  "api_commit_exists": false,
+  "prepared_commit": {
+    "sha": "39b021a944245b2ab6b235dd5ef4bc6982db93ea",
+    "tree": "d41adf7b7a773f140899a2f0efcbe83404d0eb07",
+    "parent": "7841f4af33142f72936ca97428733b3059f806b0"
+  },
+  "five_bindings": [
+    {
+      "key": "workflow",
+      "path": ".github/workflows/otzaria-hanlin-live-native.yml",
+      "bytes": 10188,
+      "git_blob": "07b02e5aba3ecfebbfae1dde4d01559d46071642",
+      "sha256": "fb52e49bdb8b993ddb7bd5c7c58ebf7148a8b791b75d0497a635873c2fdfb847",
+      "api_git_object_verified": false
+    },
+    {
+      "key": "admission",
+      "path": "docs/hq-integration/hanlin-live-consent-20261123/LIVE_CONSENT_SOURCE_ADMISSION.json",
+      "bytes": 2316,
+      "git_blob": "f8b69ac4341b41770c4fdd1d54c1a71ef4f5e42a",
+      "sha256": "5894948186dd97ba39e4c456532f9cc8dcdb6a564ac8b19ec928881e1da54678",
+      "api_git_object_verified": false
+    },
+    {
+      "key": "source_guard",
+      "path": "Scripts/CI/verify-hanlin-live-consent-source.py",
+      "bytes": 16195,
+      "git_blob": "dc12df5c51d8032e3af902cc310aff520b3e8664",
+      "sha256": "46938548eed940bbe88fd8a0fe0e4d7feec1e15f49221dfe403a6bec1ceb7243",
+      "api_git_object_verified": false
+    },
+    {
+      "key": "previous_intake",
+      "path": "docs/hq-integration/hanlin-live-consent-20261123/runtime-45145388957/INTAKE.json",
+      "bytes": 8712,
+      "git_blob": "d61e3327eee78d1932c1fb0f6888e920ebdc6465",
+      "sha256": "91ee4ca0edc05ea4459d8cfaad0f975da1318796720f2289cd1d0af8a90ad32f",
+      "api_git_object_verified": false
+    },
+    {
+      "key": "previous_cleanup",
+      "path": "docs/hq-integration/hanlin-live-consent-20261123/runtime-45145388957/CLEANUP_BINDING.json",
+      "bytes": 1765,
+      "git_blob": "8cfe3557bf072f5a77ccee6f1e6ae850379ffa1f",
+      "sha256": "96db6e589f2744765e257fda9b4caa34e5ef88989e785089f339dfcde534d9ce",
+      "api_git_object_verified": false
+    }
+  ],
+  "genuine_prior_receipts_byte_equal": true,
+  "genuine_prior_run": {
+    "id": 45145388957,
+    "head_sha": "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3",
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "event": "workflow_dispatch",
+    "head_branch": "codex/otzaria-hanlin-live13-20261123"
+  },
+  "review_execution": "AST and byte comparison only; no controller/control imported or invoked, no network/credentials/provider.",
+  "administrative_read_note": "First read-only checker used a wrong metadata dictionary key and exited before writing; corrected to actual git_blob key. No source/control/runtime execution."
+}

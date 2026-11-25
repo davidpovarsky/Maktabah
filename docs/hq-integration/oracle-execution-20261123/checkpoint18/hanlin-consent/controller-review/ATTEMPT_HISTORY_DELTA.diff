@@ -1,0 +1,14 @@
+--- a/controller120.py
++++ b/controller120.py
+@@ -141,7 +141,10 @@
+         existing = self.api("repos/" + REPOSITORY + "/actions/workflows/" +
+                             workflow_name + "/runs?head_sha=" + b["checkout_sha"] + "&per_page=100")
+         assert existing["total_count"] <= 100, "Prior run inventory requires bounded review"
+-        previous_ids = sorted(row["id"] for row in existing["workflow_runs"] if exact_run(row, b))
++        previous_ids = sorted(row["id"] for row in existing["workflow_runs"]
++                              if row.get("head_sha") == b["checkout_sha"]
++                              and row.get("head_branch") == b["branch"]
++                              and row.get("event") == "workflow_dispatch")
+         assert previous_ids == [], "This new reviewed source already has an exact manual run; do not redispatch"
+         self.record["preexisting_exact_run_ids"] = previous_ids
+         for status in ("queued", "in_progress", "waiting", "pending", "requested"):

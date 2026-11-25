@@ -1,0 +1,17 @@
+{
+  "status": "ROOT_ACCEPTED_SOURCE_ONLY_ACTUAL_GENERATION_REQUIRED",
+  "source": "0a232149712dbdb925cec96e565dae925b2e09c3",
+  "index_rows": 29,
+  "index_sha256": "8522594d51d131204845137a311e01ac6ea5b900021a742cd6552017d5269fae",
+  "full_original_grpc_inverse": true,
+  "exact_excluded_methods": [
+    "/anytype.ClientCommands/AnnotationImport",
+    "/anytype.ClientCommands/AnnotationImportCancel"
+  ],
+  "all_other_log_and_trace_behaviour_preserved": true,
+  "focused_test_functions_read": 3,
+  "actual_tests_executed": false,
+  "generation_or_native_activation": false,
+  "peer_sha256": "2270b67231d44341ee4234c93860348cbc2cbf80c2c076a05715694690c6c32f",
+  "created_utc": "2026-11-23T12:17:41.600972+00:00"
+}

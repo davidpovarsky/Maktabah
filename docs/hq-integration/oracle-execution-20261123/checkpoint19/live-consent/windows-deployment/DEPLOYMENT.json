@@ -1,0 +1,19 @@
+{
+  "state": "EXACT_CONTROLLER_DEPLOYED_NO_LIFECYCLE_START",
+  "utc": "2026-11-23T11:44:07.537158+00:00",
+  "directory": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-oracle-live-consent-20261123",
+  "controller_sha256": "ef6f1c42598f719c256e8cd45138fb6ee89aea44fab45f666f51c57a815e5c74",
+  "binding_sha256": "0ae015ba76101b13a710c0f6fd8a4cde5e4ca9ea43791c74447ddd1e04f17bf9",
+  "source_ci": "96c5b1b60c15a9a0cf1c4356f9822c64d9864c86",
+  "proof_git_commit": "6f0dd542238752102477acbc9711fa13075ec016",
+  "python_path": "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+  "python_version": "3.12.5 (tags/v3.12.5:ff3bc82, Aug  6 2024, 20:45:27) [MSC v.1940 64 bit (AMD64)]",
+  "python_binary_sha256": "5aba6ec903f2e0e946459f98dc45c8129d3f22187f5adac00713d733191d3a3f",
+  "prior_lifecycle_closed": true,
+  "prior_cleanup_sha256": "e5beaba6748c34188ee31fb9c876cf9d9a49519c93460b7f182e1faef1c9c5be",
+  "independent_secret_http_status": 404,
+  "new_secret_configured": false,
+  "dispatches": 0,
+  "provider_requests": 0,
+  "credential_value_or_hash_recorded": false
+}

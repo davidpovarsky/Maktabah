@@ -1,0 +1,18 @@
+{
+  "commit": "997e285617d57b31c4205976f01019819fa29a03",
+  "tree": "9792983b1fcae7d46df366bde86e01a461658aea",
+  "parent": "f8bc89c6a96552582ecf070ff920cc86f92868d4",
+  "branch": "codex/otzaria-original-import-history-20261123",
+  "worktree": "/mnt/development/projects/worktrees/anytype-otzaria-original-import-history-20261123",
+  "product_path": "Modules/ProtobufMessages/Sources/Invocation.swift",
+  "changed_paths": 7,
+  "proof_sha256": "c400f9a77522462b62eede57dd21922c4900eeee0c69c2e75f0b4af16d45fb03",
+  "index_sha256": "f4ed1707059d61615fb07ac784980b664657b833c8683346999a8be199633440",
+  "original_sha256": "7265a3ec902081f62c79c6fc56cb71b1ff81c687a595a3e15b78351cc9aa8dfd",
+  "after_sha256": "513d3fd1b732ec58aa2a04972a344bc47352c133b81e4a21184975349a8f67dc",
+  "added_bytes": 7311,
+  "upstream_develop_observed": "d857b23ea540be33d6faab4f7a7a1a260ab578c1",
+  "merge_base": "d5650321577a209505a3277c8437b7608cff1cb9",
+  "native_or_compiler_execution": false,
+  "published": false
+}

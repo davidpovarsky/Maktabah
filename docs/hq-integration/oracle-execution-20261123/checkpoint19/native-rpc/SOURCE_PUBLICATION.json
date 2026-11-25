@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "utc": "2026-11-23T12:20:03.925089+00:00",
+  "branch": "codex/otzaria-native-import-rpc-source-20261123",
+  "head": "0a232149712dbdb925cec96e565dae925b2e09c3",
+  "tree": "8a8122092208662546d4128df927a01596d95a0b",
+  "expected_remote_lease": "absent",
+  "remote_verified": "0a232149712dbdb925cec96e565dae925b2e09c3\trefs/heads/codex/otzaria-native-import-rpc-source-20261123",
+  "outcome": {
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "remote: \nremote: Create a pull request for 'codex/otzaria-native-import-rpc-source-20261123' on GitHub by visiting:        \nremote:      https://github.com/davidpovarsky/anytype-swift/pull/new/codex/otzaria-native-import-rpc-source-20261123        \nremote: \nTo https://github.com/davidpovarsky/anytype-swift.git\n * [new branch]            0a232149712dbdb925cec96e565dae925b2e09c3 -> codex/otzaria-native-import-rpc-source-20261123\n"
+  },
+  "source_only": true,
+  "native_or_generator_activation": false
+}

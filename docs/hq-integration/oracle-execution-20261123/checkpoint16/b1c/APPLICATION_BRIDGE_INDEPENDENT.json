@@ -1,0 +1,20 @@
+{
+  "all_composed_native_symbol_occurrences": {
+    "prepareOwnedAccountAnnotationImport": [
+      "core/application/owned_annotation_import.go"
+    ],
+    "startOwnedAnnotationImport": [
+      "core/application/owned_annotation_import.go"
+    ]
+  },
+  "exact_blocks_equal": true,
+  "native_stop_or_registry_engine_changes_in_candidate": false,
+  "new_private_bridge_sha256": "c3b4c650efab4c4f3e1c8b6e5daeda4d30d523bf8461c833c00be10126843ff8",
+  "original_heart_base_has_no_symbol": true,
+  "original_insertion_and_return_block_sha256": "7f408f67df562bce25c4cf51993cb3f3926817f0f41ccd23b826e6dcf0dc59c8",
+  "original_operation_start_block_equal": true,
+  "original_registry_entire_file_retained": true,
+  "original_registry_sha256": "3ed41b1989e03d087c393d04b5b3c3a5d6a813830e4c42bebb6f2c4d727e67ee",
+  "original_tryRLock_app_wallet_lease_registry_pending_retirement_context_block_sha256": "78823197a23f9c0add39a81b4eee7585ebbd87a8ffa94038f57f01f1c012b4e9",
+  "private_method_only_no_endpoint_enabled": true
+}

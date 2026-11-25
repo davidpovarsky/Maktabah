@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3865C0F9E0544C8295042E32 /* OtzariaMiniAppsReceiptJournal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B7F90E14837B2401142E49 /* OtzariaMiniAppsReceiptJournal.swift */; };
+		60DB1F3E58098755E2F671C4 /* HanlinMiniAppsPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 976C5031FA42A812F1702310 /* HanlinMiniAppsPicker */; };
+		4BC135C049250C535F472871 /* HanlinMiniAppsBridge in Frameworks */ = {isa = PBXBuildFile; productRef = 7413321BE558BC1F71A54B4B /* HanlinMiniAppsBridge */; };
+		90B385F55E383935BEAEF25F /* OtzariaMiniAppsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AA94A8A28760FBE845CC8B /* OtzariaMiniAppsCoordinator.swift */; };
+		271517033AF3F4DB5556A1C9 /* OtzariaMiniAppsPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9DAB057834E634B0EF4FAC /* OtzariaMiniAppsPersistence.swift */; };
+		A8D0FDD98E7AC822576830D0 /* OtzariaMiniAppsDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A0930B3E2A184FCEF2375E /* OtzariaMiniAppsDocument.swift */; };
 		12625FDCCD291F169D6788B2 /* MaktabahBookUpdateSafety.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */; };
 		36A587F9D67487F899E8D564 /* MaktabahBookUpdateSafety.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */; };
 		CC37848F7DE08819914E0505 /* MaktabahBookUpdateSafety.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */; };
@@ -1486,6 +1492,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C4B7F90E14837B2401142E49 /* OtzariaMiniAppsReceiptJournal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/MiniApps/OtzariaMiniAppsReceiptJournal.swift; sourceTree = SOURCE_ROOT; };
+		24AA94A8A28760FBE845CC8B /* OtzariaMiniAppsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift; sourceTree = SOURCE_ROOT; };
+		3E9DAB057834E634B0EF4FAC /* OtzariaMiniAppsPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/MiniApps/OtzariaMiniAppsPersistence.swift; sourceTree = SOURCE_ROOT; };
+		43A0930B3E2A184FCEF2375E /* OtzariaMiniAppsDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/MiniApps/OtzariaMiniAppsDocument.swift; sourceTree = SOURCE_ROOT; };
 		93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookUpdates/MaktabahBookUpdateSafety.swift"; sourceTree = "<group>"; };
 		F30578022FA46222005732C6 /* Maktabah-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Maktabah-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF0000000000000000000001 /* BackendAnnotationBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/BackendAnnotationBridge.swift"; sourceTree = "<group>"; };
@@ -2279,6 +2289,8 @@
 				E8AF13DBAAB27A9D851D1C51 /* HanlinPresentationKit in Frameworks */,
 				FE6A59AF7AC18FAB419866BB /* HanlinRichUI in Frameworks */,
 				FBB04E8421920F230B29069D /* HanlinPlatformContracts in Frameworks */,
+				60DB1F3E58098755E2F671C4 /* HanlinMiniAppsPicker in Frameworks */,
+				4BC135C049250C535F472871 /* HanlinMiniAppsBridge in Frameworks */,
 				0E9CF3EC22339C1D8A3C4838 /* ChavrusaUIRoutingHost in Frameworks */,
 				1C985DC975CED210B2EE1259 /* CommandPalette in Frameworks */,
 				B30000000000000000000001 /* AnchoredPopup in Frameworks */,
@@ -3905,6 +3917,10 @@
 				F42668FE5B9E0D7D95054B2B /* OtzariaHanlinChatSession.swift */,
 				0B179A7D53E7B5E5F7920D18 /* OtzariaHanlinChatView.swift */,
 				8C3C3FCF16863769D7BE6F42 /* OtzariaHanlinConversationStore.swift */,
+				C4B7F90E14837B2401142E49 /* OtzariaMiniAppsReceiptJournal.swift */,
+				24AA94A8A28760FBE845CC8B /* OtzariaMiniAppsCoordinator.swift */,
+				3E9DAB057834E634B0EF4FAC /* OtzariaMiniAppsPersistence.swift */,
+				43A0930B3E2A184FCEF2375E /* OtzariaMiniAppsDocument.swift */,
 				211B7EF6AFB2FC51C8BCF2D4 /* MaktabahNativeRoutingComposition.swift */,
 				9DBFB4BB6059F173573A2F20 /* MaktabahNativeRoutingHost.swift */,
 				348F3CE98841B091C9694605 /* MaktabahNativeSceneBindings.swift */,
@@ -4066,6 +4082,8 @@
 				B8B0F4BF32E70713AE17DB39 /* HanlinPresentationKit */,
 				D8320A0FB8BA35EB57884C8B /* HanlinRichUI */,
 				AB1C35328B7CAAA7507D9019 /* HanlinPlatformContracts */,
+				976C5031FA42A812F1702310 /* HanlinMiniAppsPicker */,
+				7413321BE558BC1F71A54B4B /* HanlinMiniAppsBridge */,
 				051C43E6363E71B6FF327F74 /* ChavrusaUIRoutingHost */,
 				BF8626D7580C7BB2D53851F8 /* CommandPalette */,
 				B20000000000000000000001 /* AnchoredPopup */,
@@ -4131,6 +4149,7 @@
 				029CD78E719D2D8F539F1C85 /* Original HanlinAgentSDK */,
 				7E52A289619B444249DD5758 /* Original HanlinPresentationSDK */,
 				8B664D33DF7899B0EDCAB128 /* Original HanlinPlatform */,
+				4123546A4003B96EC4740932 /* HanlinMiniAppsBridge package */,
 				E10A0780E847BB0F646D6289 /* ChavrusaUIRoutingHost */,
 				66370DCD8947589AD0EB9BEB /* CommandPalette source fork */,
 				B10000000000000000000001 /* XCRemoteSwiftPackageReference "AnchoredPopup" */,
@@ -5080,6 +5099,10 @@
 				4ABF24C49DF9D33D87252086 /* OtzariaHanlinChatSession.swift in Sources */,
 				6D1791650F3AFF85633314E5 /* OtzariaHanlinChatView.swift in Sources */,
 				BB72DD22574E9AAA36CB64FB /* OtzariaHanlinConversationStore.swift in Sources */,
+				3865C0F9E0544C8295042E32 /* OtzariaMiniAppsReceiptJournal.swift in Sources */,
+				90B385F55E383935BEAEF25F /* OtzariaMiniAppsCoordinator.swift in Sources */,
+				271517033AF3F4DB5556A1C9 /* OtzariaMiniAppsPersistence.swift in Sources */,
+				A8D0FDD98E7AC822576830D0 /* OtzariaMiniAppsDocument.swift in Sources */,
 				00701EB57805E06E41C36D74 /* MaktabahNativeRoutingComposition.swift in Sources */,
 				BE73D8D2D661A23C82874079 /* MaktabahNativeRoutingHost.swift in Sources */,
 				272FA036D80429868E339D38 /* MaktabahNativeSceneBindings.swift in Sources */,
@@ -6511,6 +6534,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
+		4123546A4003B96EC4740932 /* HanlinMiniAppsBridge package */ = {isa = XCLocalSwiftPackageReference; relativePath = Vendor/HanlinSDK/Packages/HanlinMiniAppsBridge; };
         66370DCD8947589AD0EB9BEB /* CommandPalette source fork */ = {
             isa = XCLocalSwiftPackageReference;
             relativePath = Source/ChavrusaText/Dependencies/CommandPalette;
@@ -6594,6 +6618,8 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		976C5031FA42A812F1702310 /* HanlinMiniAppsPicker */ = {isa = XCSwiftPackageProductDependency; package = 4123546A4003B96EC4740932; productName = HanlinMiniAppsPicker; };
+		7413321BE558BC1F71A54B4B /* HanlinMiniAppsBridge */ = {isa = XCSwiftPackageProductDependency; package = 4123546A4003B96EC4740932; productName = HanlinMiniAppsBridge; };
 		B20000000000000000000001 /* AnchoredPopup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B10000000000000000000001 /* XCRemoteSwiftPackageReference "AnchoredPopup" */;

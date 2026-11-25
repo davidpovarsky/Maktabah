@@ -1,0 +1,13 @@
+{
+  "source": "1ec511b046fff1c46aaeb8425b98932a19400ad2",
+  "source_parent": "754de0332028a626ecd48de129c76355bf6c4491",
+  "tree": "5ad7c12f9244e168b618189682cf6413672cd312",
+  "run": 45159946802,
+  "attempt": 1,
+  "watcher": "job_876d557ec9f1",
+  "owner": "/root/asana_scope",
+  "binding_sha256": "f81fe88859ad80dda74ea2c739ad2d62914448fa05c652affae735b70f9c0566",
+  "root_review_sha256": "4c35660d5546c45b96c417faff08b6091ec40586a6e17d9603e6895c72309b9d",
+  "source_admission_sha256": "f7a3832532760a9b8421cffb6f0498207a5aecd7b0181778fb305478b5e4b80b",
+  "native_acceptance": false
+}

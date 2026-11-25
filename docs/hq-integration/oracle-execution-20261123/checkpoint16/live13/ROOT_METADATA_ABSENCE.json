@@ -1,0 +1,8 @@
+{
+  "http_status": 404,
+  "observed_utc": "2026-11-23T10:24:56Z",
+  "metadata_only": true,
+  "returncode": 1,
+  "stderr": "gh: Not Found (HTTP 404)\n",
+  "credential_values_or_hashes_read": false
+}

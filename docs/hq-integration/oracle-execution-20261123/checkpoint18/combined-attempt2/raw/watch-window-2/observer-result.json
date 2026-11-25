@@ -1,0 +1,23 @@
+{
+  "run_id": 45158596483,
+  "source_sha": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+  "expected_attempt": 2,
+  "window": 2,
+  "started_at": "2026-11-23T11:05:14.722399+00:00",
+  "controller_pid": 2705486,
+  "interval_seconds": 120,
+  "maximum_observation_seconds": 3300,
+  "dispatches": 0,
+  "reruns": 0,
+  "watch_pid": 2705487,
+  "watch_exit_code": 1,
+  "run_status": "completed",
+  "run_conclusion": "failure",
+  "status": "AUTHENTIC_RUN_COMPLETED",
+  "jobs_metadata": "RETAINED",
+  "artifacts_metadata": "RETAINED",
+  "artifacts": [],
+  "watch_process_reaped": true,
+  "elapsed_seconds": 971.5070536127314,
+  "finished_at": "2026-11-23T11:21:26.229453+00:00"
+}

@@ -1,0 +1,32 @@
+{
+  "source": "fa816b14d25a4ced0031b1a9c972040b89cb451e",
+  "tree": "05efa75cd74723dece4046f8ba8dfeec2b95e8ef",
+  "parent": "53f37ee66d0bf6ccb209eb97f0fdf8ad4b0c2ef6",
+  "packet": {
+    "sha256": "186c8e2386c48ea5ce36b3e721733f1fdbb32e0c6550f46ee1318b5d6c3216a7",
+    "verified_rows": 90,
+    "verified_bytes": 37011715
+  },
+  "status": "ROOT_ACCEPTED_EXACT_FIVE_LINE_GENERATED_FLAGS_REPAIR",
+  "sole_executable_change": "Scripts/CI/hq-original-editor-app-target.rb",
+  "helper_sha256": "92a591a8b02fb1e789cdc95febcbd760451584749f4708fa723297f5c34b898a",
+  "whole_inverse_matches_old_helper": true,
+  "unchanged_prepared_trees": {
+    "Scripts": "37925c9ef7d9d3c8c50c0da64eca3dab19fdec5b",
+    "tools": "c275775bbd8811baefa0045a6e832d0b242f0834",
+    ".github": "e50a7eaa5d993a70cd01beed779fd9328f4812c1",
+    "Source": "fada5ad1164ed81e248dec54e1ceedfd2741fa57",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+    "Maktabah-iOSUITests": "ca36ba13f1fd900adf528a3e404fed6a66290b6b"
+  },
+  "actual_git_and_worktree_inputs_verified": 285,
+  "reused_prepare_exit": 0,
+  "reused_control_result_sha256": "e9eed6c90e5be8d83070582ed00aa59ad93de109d9b8f984e4ca58a5fb5242ba",
+  "reused_control_cases": 6,
+  "reused_control_assertions": 19,
+  "tests_replayed": 0,
+  "full_xcodeproj_mutation_control": "NOT_RUN_NO_ACTUAL_GEM",
+  "apple_build_and_journey": "NOT_RUN",
+  "ci_publication": "AUTHORIZED_OWNED_BRANCH_NEW_SOURCE_PUSH"
+}

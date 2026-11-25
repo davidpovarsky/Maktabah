@@ -1,0 +1,31 @@
+{
+  "source": "539a45c1744512da600835115dace02d9ae7ac23",
+  "index_rows": 56,
+  "index_bytes": 339896,
+  "index_sha256": "d4ef9938cc65cf7143ac658c2c0a88953009a1b2042d18b59fce3f18c7dddd71",
+  "full_actual_inverse": true,
+  "semantic_review": "ACCEPTED_SOURCE_AND_NEW_COMPONENT_CONTROLS",
+  "native_sdk_ui": "NOT_RUN",
+  "preparation_note": "First root metadata helper expected index key files; actual key rows was read and used. No product/control changes or tests occurred.",
+  "created_utc": "2026-11-23T12:16:08.254241+00:00",
+  "full_product_additions_and_control_sources_read": true,
+  "original_git_input_rows_verified": 41,
+  "materialized_rows_verified": 43,
+  "actual_compiler_inputs_verified": 12,
+  "actual_binary_sha256": "987597eaa2c3a8e329681206167f62b575f41365b6bfc7cccd92f286a6cb03a3",
+  "new_cases": 12,
+  "new_assertions": 84,
+  "old_suites_replayed": 0,
+  "explicit_adapters": [
+    "Annotation row/value shape",
+    "original-store dependency shape",
+    "unconfigured CloudKit",
+    "OpenSSL SHA256 in place of Apple CryptoKit"
+  ],
+  "source_values": [
+    "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+    "current isolated candidate over 83e7e6db234117e43a5b025c0cf923aecedfaa4a"
+  ],
+  "identity_writer_present": false,
+  "SDK_or_native_invoked": false
+}

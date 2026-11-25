@@ -1,0 +1,14 @@
+{
+  "source": "a3d235e821dc40687ebab9844f8ef88737f6be17",
+  "run": 45150723169,
+  "attempt": 2,
+  "root_verified_index_rows": 35,
+  "original_artifact_sha256": "153a4687d03719039503d1b666a8620899fa813985179d0cf0b819cf0af5bca5",
+  "actual_config_uuid": "F305776D2FA46222005732C6",
+  "actual_swift_flags": "$(inherited) -D EXPO_CONFIGURATION_DEBUG",
+  "actual_project_unchanged_to_plan": true,
+  "helper_complete_source_read": true,
+  "helper_sha256": "094f10867cb070035aa7044bc94f57df712b0b8ccfdcd4cf758a75c21f455e6a",
+  "app_compile_or_native_journey_executed": false,
+  "root_intake": "ACCEPTED_AUTHENTIC_RUBY_BOUNDARY_PASS_AND_NEXT_EXACT_SETTING_REFUSAL"
+}

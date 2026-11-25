@@ -1,0 +1,77 @@
+--- a/controller120.py
++++ b/controller120.py
+@@ -1,4 +1,4 @@
+-"""Owned temporary-credential lifecycle for one reviewed same-source infrastructure retry.
++"""Owned temporary-credential lifecycle for one reviewed consent-observation follow-up.
+ This is orchestration only; the original source-bound Apple runner owns acceptance.
+ No provider request is made here and no credential value/hash is retained.
+ """
+@@ -101,25 +101,51 @@
+         b = self.binding
+         assert b["schema"] == 1 and b["repository"] == REPOSITORY
+         assert re.fullmatch(r"[0-9a-f]{40}", b["checkout_sha"])
+-        assert b["branch"] == "codex/otzaria-hanlin-live13-20261123"
++        assert b["branch"] == "codex/otzaria-hanlin-live-consent-20261123"
+         assert b["workflow"]["path"] == ".github/workflows/otzaria-hanlin-live-native.yml"
+-        assert b["source_review_status"] == "REVIEWED_FOR_ONE_SAME_SOURCE_INFRASTRUCTURE_RETRY"
++        assert b["source_review_status"] == "REVIEWED_SINGLE_CONSENT_OBSERVATION_FOLLOWUP"
++        assert b["application_source_sha"] == "7841f4af33142f72936ca97428733b3059f806b0"
+         ref = self.api("repos/" + REPOSITORY + "/git/ref/heads/" + b["branch"])
+         assert ref["object"]["sha"] == b["checkout_sha"], "Reviewed branch changed"
+         workflow = self.remote_file(b["workflow"]).decode()
+         assert re.search(r"(?m)^  workflow_dispatch:", workflow)
+         assert not re.search(r"(?m)^  (push|pull_request|schedule):", workflow)
+-        self.remote_file(b["admission"])
+-        previous = self.api("repos/" + REPOSITORY + "/actions/runs/45128868702")
++        admission = json.loads(self.remote_file(b["admission"]))
++        assert admission["application_source_sha"] == b["application_source_sha"]
++        assert admission["baseline_live13_source"] == "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3"
++        assert admission["source_guard_sha256"] == b["source_guard"]["sha256"]
++        self.remote_file(b["source_guard"])
++        previous = self.api("repos/" + REPOSITORY + "/actions/runs/45145388957")
++        assert previous["id"] == 45145388957
+         assert previous["head_sha"] == "aa7741b16d00fbee8dea8ff67a25cf1cc7c0a9e3"
+         assert previous["run_attempt"] == 1 and previous["status"] == "completed"
+         assert previous["conclusion"] == "failure"
++        prior = json.loads(self.remote_file(b["previous_intake"]))
++        assert prior["run"]["id"] == previous["id"]
++        assert prior["run"]["head_sha"] == previous["head_sha"]
++        assert prior["run"]["attempt"] == 1
++        assert {key: prior["outcome"][key] for key in
++                ("selected", "executed", "passed", "failed", "skipped", "not_run")} == {
++                    "selected": 1, "executed": 1, "passed": 0, "failed": 1,
++                    "skipped": 0, "not_run": 0}
++        assert prior["boundary"]["actual_value"] == "0"
++        assert prior["boundary"]["expected_value"] == "1"
++        assert prior["outcome"]["provider_completed_conversations_verified"] == 0
++        cleanup = json.loads(self.remote_file(b["previous_cleanup"]))
++        receipt = cleanup["receipts"][0]["receipt"]
++        assert cleanup["run_id"] == receipt["run_id"] == previous["id"]
++        assert receipt["checkout_sha"] == previous["head_sha"]
++        assert receipt["delete_http_status"] == 204 and receipt["after_http_status"] == 404
++        assert cleanup["receipts"][1]["receipt"]["http_status"] == 404
+         workflow_name = Path(b["workflow"]["path"]).name
+         existing = self.api("repos/" + REPOSITORY + "/actions/workflows/" +
+                             workflow_name + "/runs?head_sha=" + b["checkout_sha"] + "&per_page=100")
+         assert existing["total_count"] <= 100, "Prior run inventory requires bounded review"
+-        previous_ids = sorted(row["id"] for row in existing["workflow_runs"] if exact_run(row, b))
+-        assert previous["id"] in previous_ids, "Previous same-source run missing from inventory"
++        previous_ids = sorted(row["id"] for row in existing["workflow_runs"]
++                              if row.get("head_sha") == b["checkout_sha"]
++                              and row.get("head_branch") == b["branch"]
++                              and row.get("event") == "workflow_dispatch")
++        assert previous_ids == [], "This new reviewed source already has an exact manual run; do not redispatch"
+         self.record["preexisting_exact_run_ids"] = previous_ids
+         for status in ("queued", "in_progress", "waiting", "pending", "requested"):
+             runs = self.api("repos/" + REPOSITORY + "/actions/workflows/" +
+@@ -130,7 +156,9 @@
+         self.record["preflight"] = {
+             "remote_exact_source": True, "manual_only_workflow": True,
+             "admission_sha256": b["admission"]["sha256"],
+-            "previous_live_run": 45128868702, "previous_conclusion": "failure",
++            "previous_live_run": previous["id"], "previous_conclusion": "failure",
++            "previous_counts": {"PASS": 0, "FAIL": 1, "SKIP": 0, "NOT_RUN": 0},
++            "previous_cleanup": "DELETE204_GET404_WITH_INDEPENDENT_ABSENCE",
+             "active_live_runs": 0, "secret_prior_http": status,
+             "new_provider_requests": 0}
+         self.record["state"] = "PREPARED_SOURCE_BOUND"

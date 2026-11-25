@@ -1,0 +1,72 @@
+{
+  "devices": [
+    {
+      "architecture": "arm64",
+      "deviceId": "1FC02FCF-4804-4FAF-8EA8-8AC69F175266",
+      "deviceName": "Faithful 11-inch fcd1277a",
+      "modelName": "iPad Pro 11-inch (M5)",
+      "osBuildNumber": "24B8117",
+      "osVersion": "27.2",
+      "platform": "iOS Simulator"
+    }
+  ],
+  "duration": "Ran for 5 minutes, 41 seconds",
+  "durationInSeconds": 341.8422700166702,
+  "hasMediaAttachments": true,
+  "hasPerformanceMetrics": false,
+  "startTime": 1795467033.059,
+  "testDescription": "Test case with 1 run",
+  "testIdentifier": "HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent()",
+  "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+  "testName": "testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent()",
+  "testPlanConfigurations": [
+    {
+      "configurationId": "1",
+      "configurationName": "Test Scheme Action"
+    }
+  ],
+  "testResult": "Failed",
+  "testRuns": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "name": "HanlinLiveProviderAcceptanceTests.testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent()",
+                  "nodeType": "Source Code Reference",
+                  "sourceLocation": {
+                    "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+                    "lineNumber": 727
+                  }
+                }
+              ],
+              "name": "XCTAssertTrue failed - Only the original Host result callback may create the native source receipt",
+              "nodeType": "Test Case Run",
+              "result": "Failed",
+              "sourceLocation": {
+                "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+                "lineNumber": 727
+              }
+            }
+          ],
+          "duration": "5m 41s",
+          "durationInSeconds": 341.8422700166702,
+          "name": "Test Scheme Action",
+          "nodeIdentifier": "1",
+          "nodeIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinLiveProviderAcceptanceTests/testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent",
+          "nodeType": "Test Plan Configuration",
+          "result": "Failed"
+        }
+      ],
+      "details": "iOS Simulator 27.2",
+      "duration": "5m 41s",
+      "durationInSeconds": 341.8422700166702,
+      "name": "iPad Pro 11-inch (M5)",
+      "nodeIdentifier": "1FC02FCF-4804-4FAF-8EA8-8AC69F175266",
+      "nodeType": "Device",
+      "result": "Failed"
+    }
+  ]
+}

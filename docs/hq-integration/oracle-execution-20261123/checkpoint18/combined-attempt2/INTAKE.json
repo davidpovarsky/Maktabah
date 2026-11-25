@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "observed_utc": "2026-11-23T11:39:03.019664+00:00",
+  "scope": "AUTHENTIC_SECOND_HOSTED_ALLOCATION_FAILURE_ZERO_EXECUTION",
+  "run": {
+    "id": 45158596483,
+    "head_sha": "fd710ee3ea03a96f02de37a8fe37087874ad4f5c",
+    "attempt": 2,
+    "status": "completed",
+    "conclusion": "failure",
+    "updated_at": "2026-11-23T11:20:06Z",
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/45158596483"
+  },
+  "job": {
+    "id": 137649119937,
+    "conclusion": "cancelled",
+    "runner_id": 0,
+    "steps": [],
+    "started_at": "2026-11-23T11:05:05Z",
+    "completed_at": "2026-11-23T11:20:05Z"
+  },
+  "annotation": "The job was not acquired by Runner of type hosted even after multiple attempts",
+  "artifact_count": 0,
+  "counts": {
+    "selected": 10,
+    "PASS": 0,
+    "FAIL": 0,
+    "SKIP": 0,
+    "NOT_RUN": 10
+  },
+  "cohorts": {
+    "Groups": 1,
+    "Library": 7,
+    "full_v32": 2
+  },
+  "source_and_workflow_unchanged": true,
+  "checkout_source_gate_toolchain_build_native": "NOT_RUN",
+  "observer": {
+    "sentinel_job": "job_e7a355349676",
+    "execution_user": "ubuntu",
+    "actual_uid": 1001,
+    "start": "2026-11-23T11:05:14.722399+00:00",
+    "finished": "2026-11-23T11:21:26.229453+00:00",
+    "watch_exit_code": 1,
+    "parent_and_child_absent": true,
+    "watch_reaped": true,
+    "sole_lock_reacquired": true
+  },
+  "previous_attempt1_intake_sha256": "83bf7c4cc18c49c2909824622384e42c201abfe7dc706e6426082b907d0b0faa",
+  "new_dispatches": 0,
+  "total_rerun_requests_for_this_source": 1,
+  "third_attempt": "NOT_STARTED_NO_BLIND_RETRY_WHILE_OTHER_OWNED_APPLE_LANES_ACTIVE",
+  "native_acceptance": false,
+  "evidence": [
+    {
+      "path": "raw/watch-window-2/artifacts.json",
+      "bytes": 42,
+      "sha256": "f7417e1fb877d3f5934f143cc38ad9e2905476e8f5ac6776507d09441efcd6f6"
+    },
+    {
+      "path": "raw/watch-window-2/gh-watch.log",
+      "bytes": 2778,
+      "sha256": "30abd29b86cf85f86c9ca43e5e9045c0a60764f751b0eab3584f73fdb5c00c31"
+    },
+    {
+      "path": "raw/watch-window-2/jobs.json",
+      "bytes": 1238,
+      "sha256": "a3a2377a5e092f2969dcae45b8f463f2b6e76d7323eac53b5466b669364ac7f7"
+    },
+    {
+      "path": "raw/watch-window-2/observer-result.json",
+      "bytes": 667,
+      "sha256": "75d7b6715e66058da4e84a319acecc46eea1be7e6ca5a0524e0aa0324f583bfe"
+    },
+    {
+      "path": "raw/watch-window-2/observer-start.json",
+      "bytes": 333,
+      "sha256": "881efd430ebc28a09fb1f7a30588d4354fd33bcc5258a5ace13f0cf4249ecb76"
+    },
+    {
+      "path": "raw/watch-window-2/run.json",
+      "bytes": 14217,
+      "sha256": "4d21293e63fd82e106b0f243c10456e902d4226dd009e69ea741786d6e8077f8"
+    },
+    {
+      "path": "raw/attempt-2-activation/ACTIVATION.json",
+      "bytes": 1175,
+      "sha256": "0e6f54f5c44933f1a504383529b55dd3020455df5909d05ab169a981fc6a6fa2"
+    },
+    {
+      "path": "raw/attempt-2-activation/ACTUAL_OBSERVER_START.json",
+      "bytes": 1491,
+      "sha256": "bc0a58d632c4a76e228f8b1f7fb10af77d28c79fe721f30fd6d5a9cb906fc900"
+    },
+    {
+      "path": "raw/attempt-2-activation/RERUN_INTENT.json",
+      "bytes": 852,
+      "sha256": "4213e296880ecc119f620eb0b7afc111133a68a2acde9d7d634ed67684bd682a"
+    },
+    {
+      "path": "raw/attempt-2-activation/RERUN_REQUEST.json",
+      "bytes": 877,
+      "sha256": "1007e2a09f97260711d5b59f391293fb5014c229b9942dd7231e282cbc2a2850"
+    },
+    {
+      "path": "raw/attempt-2-activation/after-0.json",
+      "bytes": 12795,
+      "sha256": "9d0acf849cd6f90891560436c8a05b976ec709870995e93f4e2015487788f8c1"
+    },
+    {
+      "path": "raw/attempt-2-activation/after-1.json",
+      "bytes": 12880,
+      "sha256": "5329147ce1f6a47900a8350ab13c06264b34d2407e61b7ac1b6f3226a321df0b"
+    },
+    {
+      "path": "raw/attempt-2-activation/before.json",
+      "bytes": 12803,
+      "sha256": "c8f5695a24c650d4b34327b1849fcfc71e50dc5ddb31d891dc8914879a00f3e7"
+    },
+    {
+      "path": "annotations.json",
+      "bytes": 344,
+      "sha256": "d48a6167e878c25d694b431476ac810f3cfe6d0b619e4d3323f49155c878b4d4"
+    },
+    {
+      "path": "check-run.json",
+      "bytes": 3119,
+      "sha256": "94d61b1ac4be2e31fa2c232a64e4d6a4e73e04bf2804e7758f87715809eee930"
+    }
+  ]
+}

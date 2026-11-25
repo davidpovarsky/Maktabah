@@ -1,0 +1,20 @@
+{
+  "changed_paths": [
+    "Tools/OriginalEditor/framework_profile.json",
+    "Tools/OriginalEditor/framework_profile.py",
+    "Tools/OriginalEditor/generated_import_source.py",
+    "Tools/OriginalEditor/test_generated_import_source.py",
+    "docs/pinkha/torah-integration/evidence/original-editor-install-name-20261122/admission/INPUTS.json",
+    "docs/pinkha/torah-integration/generated-sdk-source-binding-20261123/BOUNDARY.json",
+    "docs/pinkha/torah-integration/generated-sdk-source-binding-20261123/SOURCE_CONTROLS.json",
+    "docs/pinkha/torah-integration/generated-sdk-source-binding-20261123/source-controls.log"
+  ],
+  "clean": true,
+  "head": "f648a4f7bc6bb131369caf46fd35bba95302aff7",
+  "new_product_delta": 0,
+  "parent": "81115fe82b4ffbedd49ca69a573d85acafa67650",
+  "producer_activated": false,
+  "published": false,
+  "source_boundary_receipt_sha256": "53c8255cb00d7cc8bc5344c69b5ad2b95e49f476acf63820d9b2246578e6dcbf",
+  "tree": "733fe9299e3145cecd0968e5bdff1f7a00c7d361"
+}

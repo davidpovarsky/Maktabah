@@ -1,0 +1,57 @@
+{
+  "created_utc": "2026-11-23T12:10:44.214864+00:00",
+  "parent_proposal_source": "2fb4f5d6a058a6e2fa1e69c72072279b674cd4ba",
+  "base_source": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+  "rows": [
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "base_source": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "base_blob": "ac647984ac55dd3e5fdbcb2f5ca5ac3743863720",
+      "before_bytes": 25753,
+      "before_sha256": "97c22429e8c76cf34e16b7fa9665be9aa4b84d0b29d0a43919e11cca18e39865",
+      "after_bytes": 56888,
+      "after_sha256": "971b28da430bb9334aa151e04d9014af462732d81fac3f726019ada3ecba930b",
+      "entire_original_prefix_exact": true,
+      "added_bytes": 31135,
+      "compiled_copy_exact": true
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+      "base_source": "83e7e6db234117e43a5b025c0cf923aecedfaa4a",
+      "base_blob": "950e13695e35c1e3ddc6ca63b4373f2a8ac8f255",
+      "before_bytes": 9524,
+      "before_sha256": "ab12767d96243fec6e5b914c56061fcb5cfb9e1d88add827eeaf3e382592e2b3",
+      "after_bytes": 13345,
+      "after_sha256": "4335d52759540beb7fd594dc1808b09981584f09e3bf7899349f6a3c2d146d63",
+      "entire_original_prefix_exact": true,
+      "added_bytes": 3821,
+      "compiled_copy_exact": true
+    }
+  ],
+  "exact_product_allowlist": [
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift"
+  ],
+  "entire_original_methods_byte_exact": true,
+  "inverse_actual_git_apply": "PASS; --reverse --check then real reverse into owned isolated diagnostics; exact full original files verified",
+  "inverse_workdir": "/mnt/development/projects/diagnostics/otzaria-local-native-attempt-20261123/implementation-inverse-1",
+  "product_diff_bytes": 36523,
+  "product_diff_sha256": "2c9f22387dc6e85382878800836c7236a7ae1f4ef2e8362860d55dbabe3ba533",
+  "materialized_git_source_count": 43,
+  "actual_swift_compiler_input_count": 12,
+  "only_original_core_build_target": "OtzariaActionCore",
+  "core_tests_not_built_or_run": true,
+  "new_controls": {
+    "component_cases": 11,
+    "component_assertions": 80,
+    "separate_process_cases": 1,
+    "separate_process_assertions": 4,
+    "failed": 0,
+    "skip": 0,
+    "original_suites_replayed": 0,
+    "native_invocations": 0
+  },
+  "native_ui_sdk_qualification": "NOT_RUN",
+  "saved_body_control_scope": "Explicit opaque synthetic bytes; original envelope/version preservation only, not native archive validation/import",
+  "prior_compile_failures_retained": "SwiftPM target-directory packaging; adapter Equatable; control enum property; duplicate aggregate/per-file linker inputs. No product correction was required."
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-24T00:18:54.850105+00:00",
+  "native_status": "NOT_RUN_REQUIRES_ACTUAL_APP_UI_BUILD_AND_EXECUTION",
+  "required_case": "MiniAppsAnnotationAcceptanceTests/testOriginalNoteReturnsTextFromActualMiniAppsAndPersistsAfterRelaunch",
+  "required_actual_callbacks": 3,
+  "reader_entry": "Actual UITextView selection gesture and native Mini Apps action; no selection/result/database fixture.",
+  "reader_result": "Separate real TextStudio output committed as a new original annotation with book/content/UTF16/context anchors.",
+  "source_invariant": "Installed canonical miniTest10 seforim.db SHA256 before/after; rendered source bytes unchanged.",
+  "corpus_expected_sha256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "changed_test_source_compile_owner": "Actual original Maktabah-iOS UI target in build-for-testing; no repeated standalone compiler suite.",
+  "syntax_parse": "PASS_SYNTAX_ONLY",
+  "selected_declaration": {
+    "suites": [
+      {
+        "suite": "MiniAppsAnnotationAcceptanceTests",
+        "selection": "MiniAppsAnnotationAcceptanceTests/testOriginalNoteReturnsTextFromActualMiniAppsAndPersistsAfterRelaunch",
+        "expected": [
+          "testOriginalNoteReturnsTextFromActualMiniAppsAndPersistsAfterRelaunch"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      }
+    ],
+    "status": "DECLARATIONS_MATCH"
+  },
+  "producer_previous": "e12cf1ceee0ef0dc5a5e1426f8b0dd5b5b760f5d",
+  "producer_source": "a774de24926ca13d563c45c42917d03b8c04296f",
+  "producer_run": 45294462656,
+  "changed_sdk_paths": [
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsPicker/MiniAppPicker.swift"
+  ],
+  "unchanged_imported_sdk_trees": {
+    "Packages/HanlinAgentSDK": "43b32ee3f37ac1fa2becad7e36e657f104c1cd54",
+    "Packages/HanlinPlatform": "177f9937ba622a893711504e6a985d2f52570799",
+    "Packages/HanlinPresentationSDK": "2b3ce2f330b8d75226b50f22f2230f5c52bf25bb",
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsBridge": "a30232f412d5e506ad160716b6aaa3402ef1b047"
+  },
+  "portable_evidence_reused": "17 existing Document/ReceiptJournal checks; tested sources and Foundation bridge bytes unchanged.",
+  "source_hashes": {
+    "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift": "4b43b28e5bae9e70aa41a89c21582012649e8bf178045e19799af714e8fae63b",
+    "Scripts/CI/otzaria-miniapps-native.py": "aa91b13fedf1f1220ef90d931676b66f81838a4cbe8251b03690c076ff8c00f3"
+  },
+  "workflow_yaml_changed": false
+}

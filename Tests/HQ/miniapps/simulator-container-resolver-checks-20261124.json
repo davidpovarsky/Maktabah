@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "status": "FOCUSED_CONTAINER_ADMISSION_CHECKS_PASS",
+  "executed": 8,
+  "failed": 0,
+  "native_tests_executed": 0,
+  "simulator_executed": false,
+  "fixture_scope": "Temporary filesystem metadata/code-image fixtures for admission logic only; not actual Apple containers or cross-app acceptance",
+  "source_sha256": {
+    "Scripts/CI/miniapps-simulator-containers.py": "efc64aeac5139e4e1e284c6966cd60e3e3a2d9760d7a44fce3eaa3bd71813a17",
+    "tools/test-miniapps-simulator-containers.py": "01e7af3731e1130bc6097e4016951242436d748adf14aaa44b0e9131edea1480"
+  },
+  "command": "python3 -B tools/test-miniapps-simulator-containers.py",
+  "output": "test_different_installed_executable_rejected (__main__.NativeContainerAdmissionTests.test_different_installed_executable_rejected) ... ok\ntest_different_installed_info_rejected (__main__.NativeContainerAdmissionTests.test_different_installed_info_rejected) ... ok\ntest_duplicate_group_metadata_rejected (__main__.NativeContainerAdmissionTests.test_duplicate_group_metadata_rejected) ... ok\ntest_exact_installed_identity_and_metadata_resolve (__main__.NativeContainerAdmissionTests.test_exact_installed_identity_and_metadata_resolve) ... ok\ntest_existing_group_without_installed_entitlement_rejected (__main__.NativeContainerAdmissionTests.test_existing_group_without_installed_entitlement_rejected) ... ok\ntest_other_simulator_identity_rejected_before_native_query (__main__.NativeContainerAdmissionTests.test_other_simulator_identity_rejected_before_native_query) ... ok\ntest_redirected_native_parent_rejected (__main__.NativeContainerAdmissionTests.test_redirected_native_parent_rejected) ... ok\ntest_timeout_remains_recorded_without_reinstall_or_repeated_query (__main__.NativeContainerAdmissionTests.test_timeout_remains_recorded_without_reinstall_or_repeated_query) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.042s\n\nOK",
+  "unchanged_17_portable_cases": "NOT_RERUN; prior accepted code input hashes unchanged"
+}

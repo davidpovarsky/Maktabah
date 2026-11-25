@@ -1,0 +1,17 @@
+{
+  "source": "96c5b1b60c15a9a0cf1c4356f9822c64d9864c86",
+  "app_source": "7841f4af33142f72936ca97428733b3059f806b0",
+  "controller_sha256": "ef6f1c42598f719c256e8cd45138fb6ee89aea44fab45f666f51c57a815e5c74",
+  "binding_sha256": "0ae015ba76101b13a710c0f6fd8a4cde5e4ca9ea43791c74447ddd1e04f17bf9",
+  "proof_git_commit": "6f0dd542238752102477acbc9711fa13075ec016",
+  "deployment_receipt_sha256": "1ce44bddc9c846d1d3896263ddcd26f748022a84d04ed1815d2821a3254e246a",
+  "owner": "/root",
+  "single_manual_dispatch": 1,
+  "maximum_observation_seconds": 3300,
+  "interval_seconds": 120,
+  "earlier_native9_lane": "Owner /root/asana_scope reported run45165374342 terminal failure; observer closed11:36:20, lock released. Exact cause under intake.",
+  "other_owned_apple_lane": "StageB run45167025321 /root/original_sdk",
+  "credential_value_or_hash_recorded": false,
+  "source_of_authorization": "Current explicit user instruction to perform all work autonomously; prior authorized existing temporary credential lifecycle retained",
+  "utc": "2026-11-23T11:46:24.504276+00:00"
+}

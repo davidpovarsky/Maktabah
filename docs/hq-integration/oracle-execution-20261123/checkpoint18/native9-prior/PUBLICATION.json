@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-23T11:24:15.781409+00:00",
+  "base": "1ec511b046fff1c46aaeb8425b98932a19400ad2",
+  "commit": "a80c5ca494ba768649285ee0f2079c22cc114e8a",
+  "tree": "8d9eef9d3447666b5108c82935f9ea27176cf845",
+  "branch": "codex/otzaria-native-import-results-20261123",
+  "remote": "a80c5ca494ba768649285ee0f2079c22cc114e8a\trefs/heads/codex/otzaria-native-import-results-20261123",
+  "changed_files": 25,
+  "allowlist": "docs/pinkha/torah-integration/native-owned-annotation-contract-20261123/bc-native-qualification-20261123/run-45159946802-attempt-1",
+  "index_rows_verified": 24,
+  "index_sha256": "808700804dbae58cafce6aa8f55cdd3534c44f0a7eb0c6d345a9af665ac945ad",
+  "intake_sha256": "da43d9ccb3e0a29ff8e125af21ccb830f65c7cd64c2de6b2a4f30423fc65b11c",
+  "clean": true,
+  "workflow_or_product_changes": false,
+  "retry_dispatched": false
+}

@@ -1,0 +1,106 @@
+{
+  "published": {
+    "source": "d6f3ec7a56999ad18f6f0e9d13cc41588849a7a6",
+    "parent": "c3825a6bcef50f0d8fb233a3392f5f801fc75cf3",
+    "tree": "573608f0788f493a54f96b221b1aaf8dacd6dde5",
+    "product_trees": {
+      "Source": "efdfe18a0f43a55ca19e089fdad95ed369343233",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "Maktabah.xcodeproj": "8c0fa1ccfbcfae01fae3c267512864e00efcf078",
+      "Maktabah-iOSUITests": "593efc2a78f9a721515733531db2e8da0cd89987"
+    },
+    "branch": "codex/otzaria-final-composition-20261123",
+    "clean": true,
+    "published": true,
+    "native_acceptance": false,
+    "composition_manifest_sha256": "4bb8d5237df0df32741ac25336cc24b669a41fdbb51f5d98f8c23374e7574f8b",
+    "root_review_sha256": "2a5b23cd7e4e7b871021915f9f8170e50f4cffb8a8cb0c8307a1b3ff5e452ac5"
+  },
+  "root_review": {
+    "verified_code": 3,
+    "verified_evidence": 17,
+    "inverse_exact": true,
+    "diff_sha256": "da555cc31b9dc246bcae36819b673f81a1bbc24be19a21737a40da589d083594",
+    "source_scope": {
+      "base": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+      "faithful_normalization": "Remove exactly the new observer type/comment, restore only the existing captureOpenLibraryPalette helper from base: entire file equals base bytes.",
+      "faithful_normalized_sha256": "7c1e4e376b5fdf965b4a799f922851e00d88c572f3102d0ad4d5d0db8bd82156",
+      "original_test_method_count": 44,
+      "test_method_names_sha256": "9e79728d28386a8379b346246b8b4a1cdd78ac1167e01b761f07c4bfb607a4aa",
+      "all_existing_case_methods_byte_preserved": true,
+      "native_mainactor_bridge_byte_preserved": true,
+      "adapter_normalization": "Restore only searchShell and its type documentation comment: entire file equals base bytes.",
+      "adapter_normalized_sha256": "ec9b6510ff19fdebf3023d07029e7829b5c6639878132fa607492983868cd40c",
+      "original_component_path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "original_component_sha256": "07bf0af9e7b0131865d4422507aef69d7330a27ce22b8ba00297c51f5e6f0931",
+      "original_dismantle_sha256": "141e2fee0056de4fbfef00e808f5ecd0c9c7340e4d5b4ed7903b80d7f7f1e451",
+      "source_contract": "No existing case body, timeout, assertion, test selector, public production route, original action/query or native input teardown source changed."
+    },
+    "controls": {
+      "scope": "Five new lifecycle composition controls; no native acceptance and no old suite replay",
+      "base": "00b5c67120a9e76c98f87a49601fb26e84c0cc4c",
+      "checker_sha256": "2a9969ee5326224e54b24c926dfc6f7a9b212b989aec11f50109cd08e693dc50",
+      "control_sha256": "faeec0905ed2cfac0a6ad000d378f847c56d44b074ecf7e7ad5af5d5c46dc59a",
+      "cases": [
+        {
+          "case": "actual_conditional_native_child_unconditional_outer_shell",
+          "expected": "accept",
+          "issues": [],
+          "adapter_sha256": "5f9a1377f1ae556430027936b3f89954f466ef650bc7da60fc8b6891b5cee124",
+          "result": "PASS"
+        },
+        {
+          "case": "unconditionally_mounted_native_child_rejected",
+          "expected": "reject",
+          "issues": [
+            "SINGLE_STABLE_MORPH_SURFACE_REQUIRED"
+          ],
+          "adapter_sha256": "4566ed2435df4246525a9438dfbef5b2e0cd24adb40670ae8903cd95e670391c",
+          "result": "PASS"
+        },
+        {
+          "case": "conditional_whole_outer_shell_rejected",
+          "expected": "reject",
+          "issues": [
+            "SINGLE_STABLE_MORPH_SURFACE_REQUIRED"
+          ],
+          "adapter_sha256": "fd1624a7b98dfd11e2ced12d23b3d8f3878605af2d025e51924523dc1d14c9a4",
+          "result": "PASS"
+        },
+        {
+          "case": "compact_child_inside_expanded_branch_rejected",
+          "expected": "reject",
+          "issues": [
+            "SINGLE_STABLE_MORPH_SURFACE_REQUIRED"
+          ],
+          "adapter_sha256": "cc25a5fb30a5ac5b1a05c1a37992a6be60fb1ed9c7b07bdfc36227d1bdd7c9cd",
+          "result": "PASS"
+        },
+        {
+          "case": "surface_inside_expanded_branch_rejected",
+          "expected": "reject",
+          "issues": [
+            "SINGLE_STABLE_MORPH_SURFACE_REQUIRED"
+          ],
+          "adapter_sha256": "72cafdacf793a67acdab9d317058b254b13e54edc9d103a37209ea03fae666d9",
+          "result": "PASS"
+        }
+      ]
+    },
+    "control_harness": "#!/usr/bin/env python3\n\"\"\"New lifecycle source mutations only; never native or historical-suite credit.\"\"\"\nimport hashlib\nimport importlib.util\nimport json\nfrom pathlib import Path\nimport subprocess\nimport sys\n\nroot = Path(sys.argv[1]).resolve()\nbase = \"00b5c67120a9e76c98f87a49601fb26e84c0cc4c\"\npath = root / \"Scripts/CI/verify-9401-exact-source.py\"\nspec = importlib.util.spec_from_file_location(\"lifecycle_source_gate\", path)\ngate = importlib.util.module_from_spec(spec)\nspec.loader.exec_module(gate)\nfiles = {p: subprocess.run([\"git\", \"-C\", str(root), \"show\", base + \":\" + p],\n                          check=True, capture_output=True).stdout\n         for p in gate.MORPH_PRODUCT_PATHS}\ncandidate = (root / gate.PALETTE).read_text()\nfiles[gate.PALETTE] = candidate.encode()\nrows = []\ndef check(name, source, expected):\n    changed = dict(files)\n    changed[gate.PALETTE] = source.encode()\n    issues = gate.library_morph_issues(changed)\n    passed = issues == [] if expected == \"accept\" else \"SINGLE_STABLE_MORPH_SURFACE_REQUIRED\" in issues\n    rows.append({\"case\": name, \"expected\": expected, \"issues\": issues,\n                 \"adapter_sha256\": hashlib.sha256(source.encode()).hexdigest(),\n                 \"result\": \"PASS\" if passed else \"FAIL\"})\n    assert passed, rows[-1]\n\ndef once(source, old, new):\n    assert source.count(old) == 1, old\n    return source.replace(old, new, 1)\n\ncheck(\"actual_conditional_native_child_unconditional_outer_shell\", candidate, \"accept\")\nunconditional = once(candidate, \"            if isExpanded {\\n\", \"            Group {\\n\")\ncheck(\"unconditionally_mounted_native_child_rejected\", unconditional, \"reject\")\n\nouter = once(unconditional, \"        return ZStack(alignment: .topLeading) {\\n\",\n             \"        return Group {\\n            if isExpanded {\\n                ZStack(alignment: .topLeading) {\\n\")\nouter = once(outer, \"        .accessibilityHidden(!isExpanded)\\n    }\\n\\n    private func compactContents\",\n             \"        .accessibilityHidden(!isExpanded)\\n            }\\n        }\\n    }\\n\\n    private func compactContents\")\ncheck(\"conditional_whole_outer_shell_rejected\", outer, \"reject\")\n\ncompact = once(candidate, \"\\n            }\\n\\n            compactContents(width: compact.width)\",\n               \"\\n\\n            compactContents(width: compact.width)\")\ncompact = once(compact, \"                .accessibilityHidden(true)\\n        }\\n\",\n               \"                .accessibilityHidden(true)\\n            }\\n        }\\n\")\ncheck(\"compact_child_inside_expanded_branch_rejected\", compact, \"reject\")\n\nsurface = once(candidate, \"        .modifier(SafariGlass(radius: radius))\\n\", \"\")\nsurface = once(surface, \"                .transition(.opacity)\\n\",\n               \"                .transition(.opacity)\\n                .modifier(SafariGlass(radius: radius))\\n\")\ncheck(\"surface_inside_expanded_branch_rejected\", surface, \"reject\")\n\nprint(json.dumps({\"scope\": \"Five new lifecycle composition controls; no native acceptance and no old suite replay\",\n                  \"base\": base, \"checker_sha256\": hashlib.sha256(path.read_bytes()).hexdigest(),\n                  \"control_sha256\": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),\n                  \"cases\": rows}, indent=2))\n",
+    "syntax": {
+      "scope": "Swift syntax parse only on Oracle Linux; no Apple modules/typecheck/runtime qualification",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "/mnt/development/projects/worktrees/Maktabah-library-native-lifecycle-20261123/Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+        "/mnt/development/projects/worktrees/Maktabah-library-native-lifecycle-20261123/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+      ],
+      "returncode": 0,
+      "toolchain": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu\n",
+      "stdout_bytes": 0,
+      "stderr_bytes": 0
+    }
+  }
+}

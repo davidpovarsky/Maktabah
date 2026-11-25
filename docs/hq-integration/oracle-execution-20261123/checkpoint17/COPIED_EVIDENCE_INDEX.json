@@ -1,0 +1,119 @@
+{
+  "files": [
+    {
+      "path": "checkpoint17/native/ROOT_FIXTURE_AND_ACTIVATION_REVIEW.json",
+      "bytes": 1923,
+      "sha256": "4c35660d5546c45b96c417faff08b6091ec40586a6e17d9603e6895c72309b9d",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/root-review/ROOT_FIXTURE_AND_ACTIVATION_REVIEW.json"
+    },
+    {
+      "path": "checkpoint17/native/FINAL_API_SOURCE_ADMISSION.json",
+      "bytes": 12622,
+      "sha256": "f7a3832532760a9b8421cffb6f0498207a5aecd7b0181778fb305478b5e4b80b",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/preparation/FINAL_API_SOURCE_ADMISSION.json"
+    },
+    {
+      "path": "checkpoint17/native/WATCH_BINDING.json",
+      "bytes": 530,
+      "sha256": "f81fe88859ad80dda74ea2c739ad2d62914448fa05c652affae735b70f9c0566",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/45159946802/WATCH_BINDING.json"
+    },
+    {
+      "path": "checkpoint17/native/WATCH_OWNER_1.json",
+      "bytes": 382,
+      "sha256": "1f313053d9ca880d527f95bc2dce00d07dd3d4195b3308a25e3135c646b32c09",
+      "source": "/mnt/development/projects/diagnostics/otzaria-native-import-qualification-20261123/45159946802/WATCH_OWNER_1.json"
+    },
+    {
+      "path": "checkpoint17/combined/run.json",
+      "bytes": 12803,
+      "sha256": "c8f5695a24c650d4b34327b1849fcfc71e50dc5ddb31d891dc8914879a00f3e7",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/observer-authenticated-continuation/run.json"
+    },
+    {
+      "path": "checkpoint17/combined/jobs.json",
+      "bytes": 1015,
+      "sha256": "42abad1c1dd66b418400ceb604b4c9385c1e95b150fe1fcf4312732fb43a87bd",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/observer-authenticated-continuation/jobs.json"
+    },
+    {
+      "path": "checkpoint17/combined/artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/observer-authenticated-continuation/artifacts.json"
+    },
+    {
+      "path": "checkpoint17/combined/check-run.json",
+      "bytes": 3119,
+      "sha256": "4b9d600c80a92bd0e902da8d79bd52f5d53f5e618ed59911d2f6a2a5b258f1ca",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/observer-authenticated-continuation/check-run.json"
+    },
+    {
+      "path": "checkpoint17/combined/annotations.json",
+      "bytes": 344,
+      "sha256": "d48a6167e878c25d694b431476ac810f3cfe6d0b619e4d3323f49155c878b4d4",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/observer-authenticated-continuation/annotations.json"
+    },
+    {
+      "path": "checkpoint17/combined/CONTINUATION_PREFLIGHT.json",
+      "bytes": 1439,
+      "sha256": "411f62c23429b52bbdc8db072f3b1d8a32c492d76cd85bb9b6ed797b26babccb",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/observer-authenticated-continuation/CONTINUATION_PREFLIGHT.json"
+    },
+    {
+      "path": "checkpoint17/combined/initial-observer/observer-start.json",
+      "bytes": 333,
+      "sha256": "2a33148f669e53669b961b8194b6fb09beba2b86a32380667c48413d2c1e33ec",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/watch-window-1/observer-start.json"
+    },
+    {
+      "path": "checkpoint17/combined/initial-observer/observer-result.json",
+      "bytes": 551,
+      "sha256": "f110fce18c092828d0a433baacc5709fc809a544437728c023c9c601f1213972",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/watch-window-1/observer-result.json"
+    },
+    {
+      "path": "checkpoint17/combined/initial-observer/gh-watch.log",
+      "bytes": 157,
+      "sha256": "69f5519080eaf4c3a8900ff6c94fe8295d61829c17161fb23806005b55bc84b9",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/watch-window-1/gh-watch.log"
+    },
+    {
+      "path": "checkpoint17/combined/initial-observer/terminal-read.stderr.log",
+      "bytes": 157,
+      "sha256": "69f5519080eaf4c3a8900ff6c94fe8295d61829c17161fb23806005b55bc84b9",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/watch-window-1/terminal-read.stderr.log"
+    },
+    {
+      "path": "checkpoint17/combined/INTAKE.json",
+      "bytes": 3556,
+      "sha256": "83bf7c4cc18c49c2909824622384e42c201abfe7dc706e6426082b907d0b0faa",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/root-terminal-intake/INTAKE.json"
+    },
+    {
+      "path": "checkpoint17/combined/PACKET_INDEX.json",
+      "bytes": 1970,
+      "sha256": "f2a6c9e4e6327f488b4cf898a915c78363a33fb573a178541286adaac1e7526a",
+      "source": "/mnt/development/projects/diagnostics/otzaria-reader-groups-full-v32-notify-module-20261123/45158596483/root-terminal-intake/PACKET_INDEX.json"
+    },
+    {
+      "path": "checkpoint17/live13/INTAKE.json",
+      "bytes": 8712,
+      "sha256": "91ee4ca0edc05ea4459d8cfaad0f975da1318796720f2289cd1d0af8a90ad32f",
+      "source": "/mnt/development/projects/diagnostics/otzaria-hanlin-live13-infrastructure-retry1-20261123/45145388957/INTAKE.json"
+    },
+    {
+      "path": "checkpoint17/bindings/REMAINING_BINDINGS.md",
+      "bytes": 14533,
+      "sha256": "4b9a7e53b8f77b700a23f49981bedfbc2c353f95427720df25bb82bd62eb9698",
+      "source": "/mnt/development/projects/diagnostics/otzaria-bc-root-independent-review-20261123/REMAINING_BINDINGS.md"
+    },
+    {
+      "path": "checkpoint17/bindings/REMAINING_BINDINGS_SOURCES.json",
+      "bytes": 8795,
+      "sha256": "0cb4374bf1737342f732695e3ce642005cf444dca77d4c679e38b58ad9c614d8",
+      "source": "/mnt/development/projects/diagnostics/otzaria-bc-root-independent-review-20261123/REMAINING_BINDINGS_SOURCES.json"
+    }
+  ],
+  "scope": "Exact retained artifacts; no native or portable test replay."
+}

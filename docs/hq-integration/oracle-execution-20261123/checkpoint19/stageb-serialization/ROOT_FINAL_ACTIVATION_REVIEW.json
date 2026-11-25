@@ -1,0 +1,23 @@
+{
+  "status": "ROOT_FINAL_ACTIVATION_ACCEPTED",
+  "source": "00b30baa97fe14c0ba5be550e7a72cf64e768951",
+  "tree": "1b22bf4ec07d7d82c4001a768d64d7fff655f493",
+  "parent": "2abbea9f706bd77a1b7e80553141b5d1aac6b864",
+  "expected_remote": "fa816b14d25a4ced0031b1a9c972040b89cb451e",
+  "index_rows": 147,
+  "index_bytes": 39869401,
+  "index_sha256": "77fd05b735089279081ac23e7420ea01415c5c0b89199eb526175cd1ea009bbb",
+  "previous130_evidence_rows_unchanged": true,
+  "one_previous_readme_prepare_status_update_reviewed": true,
+  "additional_final_rows": 16,
+  "actual_execution_inputs_verified": 285,
+  "prepared_and_final_trees_verified": 7,
+  "official_package_source_files_independently_hashed": 263,
+  "apple_build_outputs_not_claimed": 5,
+  "original_prepare_reexecuted_by_root": false,
+  "old_controls_replayed": 0,
+  "native_build_or_execution": false,
+  "workflow_changed": false,
+  "one_push_attempt1_authorized": true,
+  "created_utc": "2026-11-23T12:26:36.488692+00:00"
+}

@@ -1,0 +1,39 @@
+{
+  "observed_at_utc": "2026-11-23T20:53:11.594359+00:00",
+  "run_id": 45253606271,
+  "attempt": 1,
+  "source": "0123b569d489984ade291b5c065eb5fe6500dec6",
+  "prior_observer": {
+    "job_id": "job_4c46807ed871",
+    "status": "succeeded",
+    "finished_at": "2026-11-23T20:48:39.066878+00:00",
+    "mode": "start",
+    "watch_timed_out": true,
+    "run_still_active": true,
+    "owned_processes_absent_before_continue": true
+  },
+  "current_observer": {
+    "job_id": "job_4c1bc592e0ae",
+    "mode": "continue",
+    "window": 2,
+    "started_at": "2026-11-23T20:50:10.035454+00:00",
+    "controller_sha256": "5a2cef943f5921d555c5d5aa946bd59903f6b12d46a271bbe92216e576635640",
+    "binding_sha256": "8848c1f495215764409ab359557894cf1efd9e34f8d4e2fc4b85599b8d280397"
+  },
+  "run_stage": {
+    "job_id": 137969479243,
+    "runner_id": 1000024911,
+    "original_app_and_ui_test_build": "PASS",
+    "matching_cache_save": "PASS",
+    "native_live_case": "IN_PROGRESS_NOT_ACCEPTED"
+  },
+  "secret_metadata": {
+    "name": "OTZARIA_LIVE_GEMINI_API_KEY",
+    "created_at": "2026-11-23T19:53:28Z",
+    "updated_at": "2026-11-23T19:53:28Z"
+  },
+  "secret_cleanup_required": true,
+  "additional_dispatches": 0,
+  "additional_secret_sets": 0,
+  "credential_value_or_hash_recorded": false
+}
