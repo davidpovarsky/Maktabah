@@ -24,7 +24,16 @@ class LocalProducerAdmissionIntegrityTests(unittest.TestCase):
         self.run_git("init", "-q")
         (self.sdk / "engine.js").write_text("export const originalSource = true;\n")
         (self.sdk / "other.js").write_text("export const other = true;\n")
-        self.run_git("add", "engine.js", "other.js")
+        declared = self.sdk / HELPER["PRODUCER_INVENTORY_SOURCE"]
+        declared.parent.mkdir(parents=True)
+        declared.write_text("def main():\n" + "\n".join(
+            "    " + line for line in HELPER["PRODUCER_INVENTORY_DECLARATION"].splitlines()) + "\n")
+        for name in ["AI_HLY.xcodeproj/project.pbxproj", "RuntimeDependencies.lock.json",
+                     "AI_HLY.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"]:
+            path = self.sdk / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text("Original source-inventory integrity control only.\n")
+        self.run_git("add", ".")
         self.run_git("-c", "user.name=Admission Control", "-c", "user.email=control@example.invalid",
                      "commit", "-q", "-m", "Original control source")
         self.sha = self.run_git("rev-parse", "HEAD")
@@ -46,7 +55,8 @@ class LocalProducerAdmissionIntegrityTests(unittest.TestCase):
             "build_receipt_name": self.receipt.name, "build_receipt_sha256": self.digest(self.receipt),
             "build_log_name": self.log.name, "build_log_sha256": self.digest(self.log),
             "source_identity": {"commit": self.sha, "tree": self.run_git("rev-parse", "HEAD^{tree}"),
-                                "tracked_file_sha256": {"engine.js": self.digest(self.sdk / "engine.js")}},
+                                "tracked_file_sha256": {name: self.digest(self.sdk / name)
+                                    for name in self.run_git("ls-files").splitlines()}},
             "app_files": {"control.txt": {"kind": "file", "bytes": 7, "mode": 0o644,
                                           "sha256": hashlib.sha256(b"control").hexdigest()}},
         }
@@ -215,6 +225,42 @@ class LocalProducerAdmissionIntegrityTests(unittest.TestCase):
         for name in generated:
             self.assertNotEqual(subprocess.run(["git", "-C", str(self.sdk), "cat-file", "-e", name],
                 capture_output=True).returncode, 0)
+
+    def update_control_source(self):
+        self.run_git("add", ".")
+        self.run_git("-c", "user.name=Admission Control", "-c", "user.email=control@example.invalid",
+                     "commit", "-q", "-m", "Changed source-inventory control")
+        self.sha = self.run_git("rev-parse", "HEAD")
+        self.config["producer_source_sha"] = self.sha
+        self.manifest["producer_sha"] = self.sha
+        self.manifest["source_identity"].update(commit=self.sha, tree=self.run_git("rev-parse", "HEAD^{tree}"),
+            tracked_file_sha256={name: self.digest(self.sdk / name) for name in self.run_git("ls-files").splitlines()})
+        self.save_manifest()
+
+    def test_incomplete_recorded_source_inventory_is_rejected(self):
+        del self.manifest["source_identity"]["tracked_file_sha256"]["other.js"]
+        self.save_manifest()
+        with self.assertRaisesRegex(RuntimeError, "inventory is incomplete"):
+            self.validate()
+
+    def test_undeclared_inventory_file_is_rejected_even_when_its_blob_is_real(self):
+        (self.sdk / "README.md").write_text("Not part of the original producer source inventory.\n")
+        self.update_control_source()
+        with self.assertRaisesRegex(RuntimeError, "inventory is incomplete"):
+            self.validate()
+
+    def test_changed_original_inventory_predicate_is_rejected(self):
+        path = self.sdk / HELPER["PRODUCER_INVENTORY_SOURCE"]
+        path.write_text(path.read_text().replace("'.swift'", "'.txt'"))
+        self.update_control_source()
+        with self.assertRaisesRegex(RuntimeError, "source-inventory declaration changed"):
+            self.validate()
+
+    def test_selected_source_symlink_requires_an_explicit_new_review(self):
+        (self.sdk / "linked.js").symlink_to("engine.js")
+        self.update_control_source()
+        with self.assertRaisesRegex(RuntimeError, "not a reviewed regular file"):
+            self.validate()
 
     def test_dirty_preparation_without_committed_review_is_rejected(self):
         self.make_preparation()
