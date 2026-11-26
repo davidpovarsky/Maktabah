@@ -11,14 +11,15 @@
     "original_explicit_save": "5010787a974b9fc825f2746ae1fa1bfbc6f3f132",
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda",
+    "reader_annotations_presentation": "a41d59462ff4f42b1f1c564c21402e7878c6164c",
     "reader_designkit_composition": "abfb936361812a50ba19c60ad7c6ef7f7f90d668",
     "reader_source_actions": "b55dc047c29fd298a2262079724dab1712f74b2b"
   },
-  "application_source_sha": "0895f7efd434d3df2da78fb76d8bf8f0c2f1827b",
+  "application_source_sha": "a41d59462ff4f42b1f1c564c21402e7878c6164c",
   "application_trees": {
     "Maktabah-iOSUITests": "0cb5ba233e55e62e649b8c5214ef1d1bf13e0cdf",
     "Maktabah.xcodeproj": "35e9feff47092409d9ea2cccb99afa8ebc3575a4",
-    "Source": "6b707b3fa8f5cd3877a18f2ad87f27164ac4c8f9",
+    "Source": "f2082dfd0e918a798165c77101681652b6dd4f5f",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -115,6 +116,13 @@
           "mode": "100644",
           "object": "de180b24b17386a0fcbea0dcf4e59d530afad4fa",
           "sha256": "edd8c182207e14233f3cccb17c5b621e8451806e613949d57578d685202115ae"
+        },
+        "reader_annotations_presentation": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
         },
         "reader_designkit_composition": {
           "bytes": 99229,
@@ -264,6 +272,13 @@
           "mode": "100644",
           "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
           "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+        },
+        "reader_annotations_presentation": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
         "reader_designkit_composition": {
           "bytes": 5988,
@@ -625,6 +640,13 @@
           "object": "f3958b83b551c6c05b6c34efbf5dc0ddf4b18f85",
           "sha256": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f"
         },
+        "reader_annotations_presentation": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "reader_designkit_composition": {
           "bytes": 21873,
           "kind": "blob",
@@ -787,6 +809,13 @@
           "object": "0d65ce897954a8e70d4a334c4d08761470e2d84a",
           "sha256": "9b8879af22cc56e94b94b4105b95bcd5fc2dc5e2cb7d14ea3a2b56cb1ae341e1"
         },
+        "reader_annotations_presentation": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "reader_designkit_composition": {
           "bytes": 54697,
           "kind": "blob",
@@ -903,6 +932,13 @@
           "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
           "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
         },
+        "reader_annotations_presentation": {
+          "bytes": 38923,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
+          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
+        },
         "reader_designkit_composition": {
           "bytes": 38923,
           "kind": "blob",
@@ -1008,6 +1044,13 @@
           "object": "43d0b2a31f90da0dbf012df367e2c8394a08c355",
           "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
         },
+        "reader_annotations_presentation": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "reader_designkit_composition": {
           "bytes": 37347,
           "kind": "blob",
@@ -1106,6 +1149,13 @@
           "mode": "100644",
           "object": "ed7eaacdd03eca57dbc4ed6019e304c0f217f7c4",
           "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
+        },
+        "reader_annotations_presentation": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
         "reader_designkit_composition": {
           "bytes": 15325,
@@ -1221,6 +1271,25 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
+        "bytes": 7191,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "aa0c14c0697bf32bbefa23c11a2ef1b0b2d2dd2d",
+        "sha256": "68b84193d04e9ba8d25196f61e0085ac910757ea85f5912f37d4490d2607b23d"
+      },
+      "before": {
+        "bytes": 7989,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "39769ae3d8469e6713ce77b32a28937a84b3c11d",
+        "sha256": "b1873fdeaa9da48dfcdde2a622d205f616fc9f5025b121937751c1bf5c78eb39"
+      },
+      "component": "reader_annotations_presentation",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
         "bytes": 24610,
         "kind": "blob",
         "mode": "100644",
@@ -1240,11 +1309,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 12212,
+        "bytes": 13136,
         "kind": "blob",
         "mode": "100644",
-        "object": "3d0e3b4301b3d65b403eb4c09c01e8ab196391d5",
-        "sha256": "ef13f645acd1d64b0059d32aea33a2644c85eac5786a69e04fe76095c6b0e47e"
+        "object": "57de10ba22570bac6f238e7588db4fc81494819f",
+        "sha256": "0bd04283437282e0cc5b6eacdfd5ae0a894862eee2ba3adb21b2fdc08147ed11"
       },
       "before": {
         "bytes": 12411,
@@ -1253,7 +1322,7 @@
         "object": "a6bfea6931dc52fe6457073be8a4490abeb99ede",
         "sha256": "f7c4dd59cc65242faf7c7bfc3ce5d71478d40ba1acfb1e014935d0cffb68e3b5"
       },
-      "component": "reader_designkit_composition",
+      "component": "reader_annotations_presentation",
       "path": "Source/Features/Reader/iOS/iOSReaderView.swift"
     },
     {
@@ -1387,6 +1456,13 @@
           "mode": "100644",
           "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
           "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
+        },
+        "reader_annotations_presentation": {
+          "bytes": 352039,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
+          "sha256": "39400d65b2612496c5591f8ee482ec71b52f11dd94d23f03f964ec6503c03c39"
         },
         "reader_designkit_composition": {
           "bytes": 352039,
@@ -1776,6 +1852,11 @@
           "kind": "commit",
           "mode": "160000",
           "object": "571a1ab79171d59415c85cfeea6e8e01c74596db"
+        },
+        "reader_annotations_presentation": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
         },
         "reader_designkit_composition": {
           "kind": "commit",
