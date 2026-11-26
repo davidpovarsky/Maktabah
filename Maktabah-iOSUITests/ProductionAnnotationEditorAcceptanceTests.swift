@@ -431,7 +431,17 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         let conversion = app.buttons["annotation-native-backfill-start"]
         try revealPreparationControl(preparation, towardsBottom: false)
         tap(preparation)
-        XCTAssertTrue(app.descendants(matching: .any)["annotation-backfill-complete"].waitForExistence(timeout: 300))
+        let preparationComplete = app.descendants(matching: .any)["annotation-backfill-complete"]
+        let preparationError = app.descendants(matching: .any)["annotation-backfill-error"]
+        let preparationDeadline = Date().addingTimeInterval(1_800)
+        while !preparationComplete.exists && !preparationError.exists && Date() < preparationDeadline {
+            try await Task.sleep(for: .seconds(5))
+        }
+        guard preparationComplete.exists && !preparationError.exists else {
+            retainNativeEvidence("scale-backfill-preparation-error")
+            XCTFail("The original preparation did not verify every saved note")
+            return
+        }
         try revealPreparationControl(conversion)
         try await waitForEnabled(conversion)
         tap(conversion)
