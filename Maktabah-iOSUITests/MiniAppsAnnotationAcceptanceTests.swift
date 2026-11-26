@@ -218,12 +218,13 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         // Like the actual MiniApps producer, activate the UISwitch inside
         // SwiftUI's labeled row. The row's center is the text label.
         let window = windowRow.switches.firstMatch
-        XCTAssertTrue(window.waitForExistence(timeout: 15))
         for _ in 0..<6 {
-            if window.isHittable { break }
+            if window.exists && window.isHittable { break }
             app.swipeUp()
         }
+        XCTAssertTrue(window.waitForExistence(timeout: 15))
         XCTAssertTrue(window.isHittable)
+        try snapshot("window-native-control-before-change")
         window.tap()
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared).opensInNewWindow != original.opensInNewWindow
