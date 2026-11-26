@@ -1,0 +1,155 @@
+{
+  "baseline_source": "29a731e273f9a757c743c49e182fece0e8047d46",
+  "controls": [
+    {
+      "name": "v32 Reader entire runtime body unchanged after explicit profile/artifact substitution",
+      "passed": true
+    },
+    {
+      "name": "v32 Inspector entire runtime body unchanged after exact default identity/artifact substitution",
+      "passed": true
+    },
+    {
+      "name": "v32 immutable installer admission function unchanged",
+      "passed": true
+    },
+    {
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: '/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/reader-full-v32-ui-observation-20261123/FullV32ObservationCatalog.swift'",
+      "name": "v32 exact catalog source unchanged",
+      "passed": false
+    },
+    {
+      "name": "v32 fresh native install commands and exact admission unchanged",
+      "passed": true
+    },
+    {
+      "name": "v32 original owned simulator shutdown/delete unchanged",
+      "passed": true
+    },
+    {
+      "name": "separate finalized v40 corpus target admission",
+      "passed": true
+    },
+    {
+      "name": "reject v32 schema",
+      "passed": true
+    },
+    {
+      "name": "reject v32 database hash",
+      "passed": true
+    },
+    {
+      "name": "reject v32 counts",
+      "passed": true
+    },
+    {
+      "name": "reject wrong release",
+      "passed": true
+    },
+    {
+      "name": "reject wrong selected case",
+      "passed": true
+    },
+    {
+      "name": "reject unowned installation policy",
+      "passed": true
+    },
+    {
+      "name": "reject unknown book id",
+      "passed": true
+    },
+    {
+      "name": "reject wrong complete book count",
+      "passed": true
+    },
+    {
+      "name": "reject unfinalized title",
+      "passed": true
+    },
+    {
+      "name": "reject v32 stress book",
+      "passed": true
+    },
+    {
+      "name": "reject wrong stress row count",
+      "passed": true
+    },
+    {
+      "name": "reject wrong source length",
+      "passed": true
+    },
+    {
+      "name": "reject unfinalized unit",
+      "passed": true
+    },
+    {
+      "name": "reject negative focus",
+      "passed": true
+    },
+    {
+      "name": "synthetic native-report control with exact independent v40 pins",
+      "passed": true
+    },
+    {
+      "name": "reject synthetic native report passed",
+      "passed": true
+    },
+    {
+      "name": "reject synthetic native report phase",
+      "passed": true
+    },
+    {
+      "name": "reject synthetic native report assetName",
+      "passed": true
+    },
+    {
+      "name": "reject synthetic native report actualSHA256",
+      "passed": true
+    },
+    {
+      "name": "reject synthetic native report expectedSHA256",
+      "passed": true
+    },
+    {
+      "name": "reject synthetic native report extractedBytes",
+      "passed": true
+    },
+    {
+      "name": "reject synthetic native report bookCount",
+      "passed": true
+    },
+    {
+      "name": "reject synthetic native report lineCount",
+      "passed": true
+    },
+    {
+      "name": "same-device container relocation retains exact relative corpus path",
+      "passed": true
+    },
+    {
+      "name": "reject another simulator's prior database",
+      "passed": true
+    },
+    {
+      "name": "reject escaping prior database path",
+      "passed": true
+    }
+  ],
+  "current_corpus_installed": false,
+  "failed": 1,
+  "native_report_fixtures_are_synthetic_controls_only": true,
+  "native_ui_executed": 0,
+  "passed": 32,
+  "performance_acceptance": false,
+  "preserved_v32_runtime_bodies": {
+    "inspector_runtime_body": {
+      "bytes": 9388,
+      "sha256": "bd41745b0e6f4125aa5f6ec476cac502f0493c1a6f00444ec8c4ff257ad8592e"
+    },
+    "reader_runtime_body": {
+      "bytes": 8432,
+      "sha256": "61ec3657cc992c83347f909606b6205e299160fc54a7e6d1db721692f73eae2e"
+    }
+  },
+  "status": "SOURCE_ADMISSION_CONTROLS_ONLY"
+}

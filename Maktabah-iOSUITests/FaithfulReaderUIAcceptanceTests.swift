@@ -4041,7 +4041,22 @@ private struct FullV32ReaderTarget: Decodable {
     let sectionLocator: String
     let focusLocator: String
 }
+private enum FullReaderObservationCorpus: String {
+    case v32 = "full-v32"
+    case v40 = "full-v40"
+
+    var databaseSHA256: String {
+        switch self {
+        case .v32: return "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765"
+        case .v40: return "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01"
+        }
+    }
+}
 private struct FullV32ReaderCatalog: Decodable {
+    // The established source-observation wire format keeps its original name.
+    // v40 has separate XCTest selectors, corpus admission and evidence output.
+    let corpusProfile: String?
+    let inspectorBookIDs: [Int]?
     let schema: Int
     let databaseSHA256: String
     let targets: [FullV32ReaderTarget]
@@ -4095,18 +4110,36 @@ extension FaithfulProductionReleaseTests {
     @MainActor private func fullV32Attach(_ value: [String: Any], _ name: String) throws {
         let bytes = try JSONSerialization.data(withJSONObject: value, options: [.sortedKeys])
         let attachment = XCTAttachment(data: bytes, uniformTypeIdentifier: "public.json")
-        attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
+        attachment.name = fullCorpusArtifactName(name)
+        attachment.lifetime = .keepAlways; add(attachment)
     }
 
-    @MainActor private func fullV32Catalog() throws -> FullV32ReaderCatalog {
+    @MainActor private func fullCorpusArtifactName(_ name: String) -> String {
+        // These are artifact labels only. The original app IPC/source hooks
+        // remain unchanged and do not assert which corpus was installed.
+        ProcessInfo.processInfo.environment["READER_OBSERVATION_CORPUS"] == "full-v40"
+            ? name.replacingOccurrences(of: "full-v32", with: "full-v40") : name
+    }
+
+    @MainActor private func fullV32Catalog(_ corpus: FullReaderObservationCorpus = .v32) throws -> FullV32ReaderCatalog {
         let path = try XCTUnwrap(ProcessInfo.processInfo.environment["FULL_V32_CATALOG_FILE"])
         let bytes = try fullV32BoundedData(URL(fileURLWithPath: path), limit: 131072)
         try fullV32Require(bytes.count <= 131072, "The independently generated target catalog must be bounded")
         let catalog = try JSONDecoder().decode(FullV32ReaderCatalog.self, from: bytes)
         try fullV32Require(catalog.schema == 1 && catalog.targets.count == 10
             && Set(catalog.targets.map(\.key)).count == 10
-            && catalog.databaseSHA256 == "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
-            "Require the ten actual original full-v32 identities, never a mini database")
+            && catalog.databaseSHA256 == corpus.databaseSHA256,
+            "Require the ten actual original " + corpus.rawValue + " identities, never a mini database")
+        let selected = ProcessInfo.processInfo.environment["READER_OBSERVATION_CORPUS"]
+        try fullV32Require(selected == nil && corpus == .v32 || selected == corpus.rawValue,
+                           "The selected XCTest case must match the independently admitted corpus")
+        if corpus == .v40 {
+            let ids = try XCTUnwrap(catalog.inspectorBookIDs)
+            try fullV32Require(catalog.corpusProfile == corpus.rawValue
+                && ids == [103, 28, 3152] && Set(ids).count == 3
+                && ids.allSatisfy { id in catalog.targets.filter { $0.bookID == id }.count == 3 },
+                "v40 must carry its own three actual hash-bound SQL book identities")
+        }
         return catalog
     }
 
@@ -4393,8 +4426,18 @@ extension FaithfulProductionReleaseTests {
 
     @MainActor
     func testTwentyOriginalFullV32ReaderOpensAndForcedRelaunch() throws {
+        try observeTwentyOriginalFullCorpusReaderOpensAndForcedRelaunch(.v32)
+    }
+
+    @MainActor
+    func testTwentyOriginalFullV40ReaderOpensAndForcedRelaunch() throws {
+        try observeTwentyOriginalFullCorpusReaderOpensAndForcedRelaunch(.v40)
+    }
+
+    @MainActor
+    private func observeTwentyOriginalFullCorpusReaderOpensAndForcedRelaunch(_ corpus: FullReaderObservationCorpus) throws {
         let deadline = ProcessInfo.processInfo.systemUptime + 600
-        let catalog = try fullV32Catalog()
+        let catalog = try fullV32Catalog(corpus)
         let basename = "full-v32-reader-" + UUID().uuidString
         XCUIDevice.shared.orientation = .landscapeLeft
         fullV32Launch(basename)
@@ -4508,7 +4551,7 @@ extension FaithfulProductionReleaseTests {
         _ = try fullV32Host("complete_reader", context: context,
             fields: ["observations": completionRows, "forcedRelaunches": 10, "forcedRestoreEvidence": forcedRestores])
         let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
-        image.name = "full-v32-original-reader-final"; image.lifetime = .keepAlways; add(image)
+        image.name = fullCorpusArtifactName("full-v32-original-reader-final"); image.lifetime = .keepAlways; add(image)
     }
 
     @MainActor private func fullV32Rect(_ frame: CGRect) throws -> [String: Double] {
@@ -4700,8 +4743,18 @@ extension FaithfulProductionReleaseTests {
 
     @MainActor
     func testOriginalFullV32InspectorRelationshipScalesAndReturn() throws {
+        try observeOriginalFullCorpusInspectorRelationshipScalesAndReturn(.v32)
+    }
+
+    @MainActor
+    func testOriginalFullV40InspectorRelationshipScalesAndReturn() throws {
+        try observeOriginalFullCorpusInspectorRelationshipScalesAndReturn(.v40)
+    }
+
+    @MainActor
+    private func observeOriginalFullCorpusInspectorRelationshipScalesAndReturn(_ corpus: FullReaderObservationCorpus) throws {
         let deadline = ProcessInfo.processInfo.systemUptime + 600
-        let catalog = try fullV32Catalog()
+        let catalog = try fullV32Catalog(corpus)
         let basename = "full-v32-reader-" + UUID().uuidString
         XCUIDevice.shared.orientation = .landscapeLeft
         fullV32Launch(basename)
@@ -4716,7 +4769,12 @@ extension FaithfulProductionReleaseTests {
         // Derashot HaRan chapters, retaining empty/over-size outcomes. The
         // 110,196-line stress chapter belongs to the Reader-open case; it is not
         // silently added as an unbounded Inspector relationship workload.
-        let inspectorTargets = catalog.targets.filter { [103, 28, 3152].contains($0.bookID) }
+        // v32 retains the exact original identity set. v40 is admitted against
+        // its separately frozen SQL catalog; no v32 identifiers are substituted.
+        let inspectorBookIDs: [Int]
+        if corpus == .v32 { inspectorBookIDs = [103, 28, 3152] }
+        else { inspectorBookIDs = try XCTUnwrap(catalog.inspectorBookIDs) }
+        let inspectorTargets = catalog.targets.filter { inspectorBookIDs.contains($0.bookID) }
         try fullV32Require(inspectorTargets.count == 9, "Require the original nine qualified Inspector chapter identities")
         for target in inspectorTargets {
             let route = try fullV32Open(target, context: context, deadline: deadline, sectionOnly: true)
@@ -4789,7 +4847,7 @@ extension FaithfulProductionReleaseTests {
             try fullV32Require(expanded.waitForExistence(timeout: 15),
                                "The original source row expansion must produce its real native content marker")
             let expandedImage = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
-            expandedImage.name = "full-v32-original-expanded-source-" + key + "-" + String(required)
+            expandedImage.name = fullCorpusArtifactName("full-v32-original-expanded-source-" + key + "-" + String(required))
             expandedImage.lifetime = .keepAlways; add(expandedImage)
             try fullV32Require(firstRow.firstMatch.isHittable, "The original expanded source must remain reachable")
             tap(firstRow.firstMatch)
