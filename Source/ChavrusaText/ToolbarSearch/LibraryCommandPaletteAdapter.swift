@@ -6,16 +6,18 @@ struct LibraryCommandPaletteAdapter: View {
     var isActive = true
     var drawsSurface = true
     let onDismiss: () -> Void
+    @Environment(\.locale) private var locale
 
     private var commands: [Command] {
         // This is the original library's canonical filtered book membership, not another
         // search model or a second search-history store. IDs include the canonical locator.
         let books = manager.libraryViewModel.bookLookup.values.map(\.book)
+        let booksSection = String(localized: "Books", locale: locale)
         var seen = Set<String>()
         return books.sorted { $0.book.localizedStandardCompare($1.book) == .orderedAscending }.compactMap { book in
             let id = book.backendLocator?.persistenceKey ?? "book:\(book.id)"
             guard seen.insert(id).inserted else { return nil }
-            return Command(book.book, id: id, section: "ספרים", symbol: "book.closed") {
+            return Command(book.book, id: id, section: booksSection, symbol: "book.closed") {
                 manager.openBook(book)
             }
         }
@@ -28,7 +30,7 @@ struct LibraryCommandPaletteAdapter: View {
     private var palette: some View {
         CommandPaletteView(
             commands: commands,
-            placeholder: "חפש ספר בספרייה…",
+            placeholder: String(localized: "Search for a book in the library…", locale: locale),
             initialQuery: manager.libraryViewModel.searchQuery,
             autofocus: true,
             isActive: isActive,
@@ -157,7 +159,7 @@ struct SafariLibrarySearchField: View {
             Image(systemName: "books.vertical")
                 .font(.system(size: 17, weight: .medium))
                 .foregroundStyle(.secondary)
-            TextField("חיפוש בספרייה", text: $query)
+            TextField("Search Library", text: $query)
                 .textFieldStyle(.plain)
                 .font(.system(size: 16, weight: .medium))
                 .foregroundStyle(.primary)
@@ -171,7 +173,7 @@ struct SafariLibrarySearchField: View {
                 .simultaneousGesture(TapGesture().onEnded { _ in onExpand() })
                 .submitLabel(.search)
                 .onSubmit(onExpand)
-                .accessibilityLabel("חיפוש בספרייה")
+                .accessibilityLabel(Text("Search Library"))
                 .accessibilityIdentifier("reader-library-search-field")
             Image(systemName: "magnifyingglass")
                 .font(.system(size: 18, weight: .regular))
@@ -314,8 +316,13 @@ struct ReaderLibrarySearchMorph: View {
             if width >= 140 {
                 Image(systemName: "books.vertical")
                     .foregroundStyle(.secondary)
-                Text(manager.libraryViewModel.searchQuery.isEmpty
-                     ? "חיפוש בספרייה" : manager.libraryViewModel.searchQuery)
+                Group {
+                    if manager.libraryViewModel.searchQuery.isEmpty {
+                        Text("Search Library")
+                    } else {
+                        Text(verbatim: manager.libraryViewModel.searchQuery)
+                    }
+                }
                     .font(.callout.weight(.medium))
                     .lineLimit(1)
                     .frame(maxWidth: .infinity)

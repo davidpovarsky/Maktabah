@@ -1,6 +1,46 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Books": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ספרים"
+          }
+        }
+      }
+    },
+    "Search for a book in the library…": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חפש ספר בספרייה…"
+          }
+        }
+      }
+    },
+    "Hide Sidebar": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הסתר סרגל צד"
+          }
+        }
+      }
+    },
+    "Show Sidebar": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצג סרגל צד"
+          }
+        }
+      }
+    },
     "Open destination": {
       "localizations": {
         "he": {

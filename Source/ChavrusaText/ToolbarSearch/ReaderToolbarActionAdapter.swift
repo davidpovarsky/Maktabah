@@ -145,7 +145,7 @@ struct ReaderToolbarActionAdapter: View {
                     .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .accessibilityLabel(sidebarIsOpen ? "הסתר סרגל צד" : "הצג סרגל צד")
+            .accessibilityLabel(sidebarIsOpen ? Text("Hide Sidebar") : Text("Show Sidebar"))
             .accessibilityIdentifier("reader-host-sidebar-toggle")
         }
     }
