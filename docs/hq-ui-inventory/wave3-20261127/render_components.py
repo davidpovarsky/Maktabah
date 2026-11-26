@@ -36,6 +36,7 @@ for row in r["surfaces"]:
     })
 out = {
     "source_sha": r["source_sha"],
+    "owner_os_scope_override": r["owner_os_scope_override"],
     "boundary": "All original facets preserved verbatim. A source anchor or root-context route does not close UI03-07. Neither public-API inappropriateness nor original unavailable status waives native UI/guide/state requirements.",
     "original_status_counts": dict(collections.Counter(x["original_status"] for x in facets)),
     "original_intent_suitability_counts": dict(collections.Counter(x["original_app_intent_suitability"] for x in facets)),

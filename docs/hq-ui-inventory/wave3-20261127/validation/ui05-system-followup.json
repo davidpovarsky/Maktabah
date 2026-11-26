@@ -1,0 +1,31 @@
+{
+  "source_sha": "b2ff5512d2788390acf6dd7c3a90d24f16e0b0ee",
+  "recorded_utc": "2026-11-26T23:20:23.906647+00:00",
+  "scope": "Original owned URL transport unit/security contract plus two HTTPS transport cases. No simctl invocation or native UI execution by these portable tests.",
+  "command": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "python3",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-ui-contracts-20261127/Scripts/CI/test-runtime27-url-delivery.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "test_summary": "----------------------------------------------------------------------\nRan 18 tests in 0.050s\n\nOK",
+  "log_sha256": "824b915aed4c9a7a301cbe37b1062e55ce3b83aa2d1d4de0c578cc60282f814d",
+  "source_file_sha256": {
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "993398ffc48d842351634385da40f0e65a02ea2b10ffdfe510d85baa63600076",
+    "Scripts/CI/runtime27-url-delivery.py": "b2abff73996b5e01bcd73aa4057438c014f8ee7e42214b63476711d947590a80",
+    "Scripts/CI/test-runtime27-url-delivery.py": "4469d13c99c4591dc810880e2ee7c0da714a21537dcbe922ea379b9a53efb723"
+  },
+  "original_native_test_source_exact_prefix_preserved": true,
+  "original_native116_release114_manifest_changes": [],
+  "native_cases": [
+    "NativeRoutingAcceptanceTests/testUniversalHTTPSHistoryAndLibraryPreserveOriginalReader",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneUniversalHTTPSHistoryAndLibraryPreserveOriginalReader"
+  ],
+  "native_case_execution": "NOT_RUN",
+  "apple_test_bundle_compile": "NOT_RUN_BY_THIS_LANE",
+  "transport_boundary": "Only exact production HTTPS origin and history/library public-v2 roots added. Same ownership/nonce/replay/limits/security/refusal; OS routing and real visible receipts must still pass."
+}

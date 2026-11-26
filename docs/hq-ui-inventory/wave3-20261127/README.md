@@ -110,9 +110,16 @@ runtime acceptance:
 | Batch B 1219848733895424 | Debug and Release, final integrated Native116 and Release114+2, production v40 assets/indexes and combined feature acceptance. miniTest10 does not satisfy production data acceptance. |
 | Upstream audit 1220769157395027 | Current source-bound ownership/provenance/license review, including any changed protected hunk; authentic prior 55 owner signatures remain immutable evidence. |
 
-The original Q-UI07-049 iOS 26 family is retained. The current app's iOS 27
-deployment target does not satisfy that older requirement. No requirement
-or case was silently removed.
+The original Q-UI07-049 iOS 26 family is retained as historical input. The
+owner's explicit 17 November clarification superseded the earlier iOS
+26–27 scope: Maktabah targets iOS/iPadOS 27.0 only, with no legacy iOS 26
+compatibility requirement. OWNER_OS_SCOPE_OVERRIDE.json records the exact
+source excerpts and links from Asana tasks 1220542174542004 and
+1220636669052920. This is a sourced owner scope correction, not an
+unimplemented-feature exclusion. No deployment setting, test assertion,
+or runtime installation is changed. Original per-row public-intent,
+private-state, mutation and activation facets are retained separately in
+REQUIREMENT_FACETS.json.
 
 Genuine VoiceOver speech tests remain required. An infrastructure failure
 is not a speech PASS, and physical iPad/iPhone checks must be performed and

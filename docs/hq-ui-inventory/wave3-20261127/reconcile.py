@@ -82,6 +82,11 @@ assert len(expected_sefaria) == 45
 contracts_raw = a.contracts.read_bytes()
 contracts = json.loads(contracts_raw)
 assert len({t["id"] for t in contracts["tasks"]}) == len(contracts["tasks"]) == 14
+owner_scope_path = a.contracts.with_name("OWNER_OS_SCOPE_OVERRIDE.json")
+owner_scope_raw = owner_scope_path.read_bytes()
+owner_scope = json.loads(owner_scope_raw)
+assert owner_scope["minimum_ios_ipados"] == "27.0"
+assert owner_scope["requires_ios26_compatibility"] is False
 
 # This explicit reconciliation retains the original locator and describes why
 # it moved. The user-visible action and its destructive role still exist.
@@ -404,11 +409,12 @@ report = {
         "rtl_english_keyboard_resize_multiwindow": "ORIGINAL_CASES_RETAINED_FINAL_CANDIDATE_RUN_REQUIRED",
         "production_v40": "FINAL_PRODUCTION_ACCEPTANCE_REQUIRED_PORTABLE_OR_MINITEST10_IS_NOT_SUBSTITUTE",
         "physical_iPad_iPhone": "OWNER_RUN_NOT_PERFORMED_BY_THIS_AUDIT",
-        "iOS26_original_Q_UI07_049": "ORIGINAL_REQUIREMENT_RETAINED_CURRENT_APP_TARGET27_DOES_NOT_SATISFY_IT",
+        "iOS26_original_Q_UI07_049": "SUPERSEDED_BY_EXPLICIT_OWNER_2026_11_17_IOS27_ONLY; historical case retained",
         "owner_gate": "REQUIRES_AUTHENTIC_SOURCE_BOUND_ATTESTATION_FOR_NEW_PROTECTED_DELTA; NO_SIGNATURE_GENERATED"},
     "original_source_ports": ports,
     "source_evidence": {path: evidence(path) for path in sorted(evidence_paths)},
     "test_source_catalog": test_catalog,
+    "owner_os_scope_override": {"file": owner_scope_path.name, "sha256": sha(owner_scope_raw), "decision": owner_scope},
     "summary": summary, "surfaces": surfaces}
 a.output.parent.mkdir(parents=True, exist_ok=True)
 a.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
