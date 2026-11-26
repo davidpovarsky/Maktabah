@@ -136,5 +136,59 @@ class OwnedURLTransportTests(unittest.TestCase):
         self.assert_rejected()
 
 
+    def test_exact_production_https_roots_use_real_system_transport(self):
+        for root in ["native.history", "native.library"]:
+            with self.subTest(root=root):
+                self.calls.clear()
+                self.seen.clear()
+                self.payload["url"] = (
+                    "https://davidpovarsky.github.io/chavrusatext/action/v2/"
+                    + root + "?route=AbC123_-"
+                )
+                result = self.execute()
+                self.assertTrue(result["delivered"])
+                self.assertEqual(set(result), {"udid", "transport", "delivered", "nonce", "time"})
+                self.assertEqual(self.calls, [
+                    (["xcrun", "simctl", "openurl", self.udid, self.payload["url"]],
+                     dict(capture_output=True, timeout=12, check=False))
+                ])
+                self.assertNotIn(self.payload["url"], json.dumps(result))
+                self.assertNotIn(self.token, json.dumps(result))
+
+    def test_https_foreign_origin_noncanonical_paths_and_mutations_are_rejected(self):
+        canonical = "https://davidpovarsky.github.io/chavrusatext/action/v2/native.history?route=AbC123_-"
+        invalid = [
+            canonical.replace("https://", "http://"),
+            canonical.replace("davidpovarsky.github.io", "example.com"),
+            canonical.replace("davidpovarsky.github.io", "davidpovarsky.github.io.example.com"),
+            canonical.replace("https://", "https://user@"),
+            canonical.replace(".github.io/", ".github.io:443/"),
+            canonical.replace("/chavrusatext/", "/another-app/"),
+            canonical.replace("/action/", "/%61ction/"),
+            canonical.replace("/v2/", "/v1/"),
+            canonical.replace("/v2/", "/v3/"),
+            canonical.replace("native.history", "native.history.delete"),
+            canonical.replace("native.history", "native.library/delete"),
+            canonical.replace("native.history", "native.reader.noteDraft"),
+            canonical.replace("native.history", "native.settings"),
+            canonical.replace("native.history", "native.reader"),
+            canonical + "&route=Another",
+            canonical + "&save=true",
+            canonical + "#open",
+            canonical + ";echo unsafe",
+            canonical.replace("?route=", "?query=private&route="),
+            canonical.replace("AbC123_-", "%41bC123_-"),
+        ]
+        for value in invalid:
+            with self.subTest(url=value):
+                self.payload["url"] = value
+                result = self.execute()
+                self.assertFalse(result["delivered"])
+                self.assertEqual(self.calls, [])
+                self.assertEqual(self.seen, set())
+                self.assertNotIn(value, json.dumps(result))
+                self.assertNotIn(self.token, json.dumps(result))
+
+
 if __name__ == "__main__":
     unittest.main()

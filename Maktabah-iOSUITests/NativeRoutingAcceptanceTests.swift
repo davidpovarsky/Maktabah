@@ -2496,3 +2496,60 @@ extension NativeRoutingPhoneAcceptanceTests {
         try runSemanticCatalogHeadingStops(expectedPad: false)
     }
 }
+
+
+// Separate UI-05 system acceptance. These cases supplement the original
+// Native116 / Release114+2 selections; they do not replace any original case.
+extension NativeRoutingAcceptanceTests {
+    private func publicHTTPSRootURL(_ destination: String) throws -> URL {
+        XCTAssertTrue(["native.history", "native.library"].contains(destination))
+        let payload: [String: Any] = [
+            "version": 2, "destination": destination,
+            "backend": "otzaria", "presentation": "currentTab"
+        ]
+        let bytes = try JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys])
+        let token = bytes.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        return try XCTUnwrap(URL(string:
+            "https://davidpovarsky.github.io/chavrusatext/action/v2/\(destination)?route=\(token)"))
+    }
+
+    @MainActor
+    func testUniversalHTTPSHistoryAndLibraryPreserveOriginalReader() throws {
+        _ = try launchCurrentCanonicalReader()
+        let original = try actualReaderWorkspace().current()
+        let locator = app.staticTexts["reader-current-locator"].label
+        XCTAssertFalse(locator.isEmpty)
+        var before = try actualNativeReceiptLines()
+        let historyLink = try publicHTTPSRootURL("native.history")
+        let input = XCTAttachment(string: historyLink.absoluteString)
+        input.name = "actual-production-https-system-input"
+        input.lifetime = .keepAlways; add(input)
+
+        // The owned driver invokes simctl openurl with the exact HTTPS URL.
+        // No scheme rewrite, app decoder call, synthetic receipt or fallback
+        // is used. Safari staying foreground must fail this original oracle.
+        try openInExistingProcess(historyLink)
+        XCTAssertTrue(history.waitForExistence(timeout: 15))
+        try requirePublicRootReceipt("native.history", before: before)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        capture("universal-https-original-history-visible-receipt")
+
+        before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicHTTPSRootURL("native.library"))
+        try requirePublicRootReceipt("native.library", before: before)
+        try requirePreservedOriginalWorkspace(original)
+        try requireReaderLocator(locator)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        capture("universal-https-original-library-reader-return")
+    }
+}
+
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor
+    func testPhoneUniversalHTTPSHistoryAndLibraryPreserveOriginalReader() throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        try testUniversalHTTPSHistoryAndLibraryPreserveOriginalReader()
+    }
+}
