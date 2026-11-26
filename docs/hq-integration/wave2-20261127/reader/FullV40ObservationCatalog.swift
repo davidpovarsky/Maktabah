@@ -33,7 +33,15 @@ private func sha(_ data: Data) -> String {
         let sourceUTF16Length: Int
     }
     struct Targets: Decodable { let books: [Book]; let retainedChapter: Chapter }
-    struct Input: Decodable { let databaseURI: String; let databaseSHA256: String; let v40Targets: Targets }
+    struct PreviewTarget: Decodable { let bookID: Int; let focusLineIndex: Int; let mode: String }
+    struct ServiceIdentity: Decodable { let path: String; let sha256: String; let compileInputsPath: String }
+    struct Input: Decodable {
+        let databaseURI: String
+        let databaseSHA256: String
+        let v40Targets: Targets
+        let previewTargets: [PreviewTarget]?
+        let sourceService: ServiceIdentity?
+    }
     static func main() throws {
         let input = try JSONDecoder().decode(Input.self, from: Data(contentsOf:
             URL(fileURLWithPath: CommandLine.arguments[1])))
@@ -51,15 +59,16 @@ private func sha(_ data: Data) -> String {
         var targets: [[String: Any]] = []
         var writtenUnits = Set<String>()
 
-        func target(bookID: Int, focus: Int, position: String, expectedCount: Int?) throws -> [String: Any] {
+        func target(bookID: Int, focus: Int, position: String, expectedCount: Int?,
+                    mode: OtzariaUnitMode = .chapter, includeAnchorDetails: Bool = false) throws -> [String: Any] {
             let titles = try database.fetch(query: "SELECT title FROM book WHERE id = ?", parameters: [bookID]) { $0.string(at: 0) }
             try require(titles.count == 1 && titles[0]?.isEmpty == false, "Exact actual book identity missing")
-            guard let descriptor = try service.descriptor(bookId: bookID, containingLineIndex: focus, mode: .chapter),
-                  let unit = try service.readingUnit(bookId: bookID, containingLineIndex: focus, mode: .chapter) else {
-                throw CatalogError(message: "Original containing chapter is unavailable")
+            guard let descriptor = try service.descriptor(bookId: bookID, containingLineIndex: focus, mode: mode),
+                  let unit = try service.readingUnit(bookId: bookID, containingLineIndex: focus, mode: mode) else {
+                throw CatalogError(message: "Original containing reading unit is unavailable")
             }
-            try require(unit.mode == .chapter && descriptor.mode == .chapter,
-                        "A line/paragraph fallback cannot stand in for a full chapter")
+            try require(unit.mode == mode && descriptor.mode == mode,
+                        "A fallback cannot stand in for the requested original reading-unit mode")
             try require(unit.id == descriptor.id && unit.sourceLineIndices == descriptor.sourceLineIndices,
                         "Original descriptor and source unit disagree")
             let rows = try database.fetch(query:
@@ -93,12 +102,14 @@ private func sha(_ data: Data) -> String {
             let focused = unit.lineAnchors.filter { $0.lineIndex == focus }
             try require(focused.count == 1, "Focus must be an actual unique original anchor")
             let anchor = focused[0]
-            let basename = "\(bookID)-\(unit.startLineIndex)-\(unit.endLineIndex).source.utf8"
+            let basename = includeAnchorDetails
+                ? "\(bookID)-\(mode.rawValue)-\(unit.startLineIndex)-\(unit.endLineIndex).source.utf8"
+                : "\(bookID)-\(unit.startLineIndex)-\(unit.endLineIndex).source.utf8"
             let bytes = Data(unit.plainText.utf8)
             if writtenUnits.insert(basename).inserted {
                 try bytes.write(to: output.appendingPathComponent(basename), options: .atomic)
             }
-            return [
+            var result: [String: Any] = [
                 "key": "\(bookID)-\(position)", "bookID": bookID, "bookTitle": titles[0]!,
                 "position": position, "focusLineIndex": focus, "unitID": unit.id,
                 "unitMode": unit.mode.rawValue, "unitStartLineIndex": unit.startLineIndex,
@@ -113,6 +124,67 @@ private func sha(_ data: Data) -> String {
                 "sectionLocator": "otzaria|book:\(bookID)|line:\(unit.startLineIndex)",
                 "focusLocator": "otzaria|book:\(bookID)|line:\(focus)"
             ]
+            if includeAnchorDetails {
+                result["sourceUTF8"] = unit.plainText
+                result["anchors"] = unit.lineAnchors.map { anchor -> [String: Any] in
+                    ["lineID": anchor.id, "bookID": anchor.bookId, "lineIndex": anchor.lineIndex,
+                     "heRef": anchor.heRef as Any? ?? NSNull(), "rangeLocation": anchor.range.location,
+                     "rangeLength": anchor.range.length, "text": anchor.text,
+                     "textSHA256": sha(Data(anchor.text.utf8))]
+                }
+            }
+            return result
+        }
+        if let requests = input.previewTargets {
+            // Selected hit identities must come from an actual original provider
+            // result/trace. This source oracle does not fabricate or run search.
+            try require(!requests.isEmpty && requests.count <= 9,
+                        "One to nine independently selected preview/mode targets required")
+            guard let identity = input.sourceService else {
+                throw CatalogError(message: "Actual compiled ReadingUnitService identity is required")
+            }
+            let serviceURL = URL(fileURLWithPath: identity.path)
+            let serviceBytes = try Data(contentsOf: serviceURL)
+            try require(serviceURL.lastPathComponent == "OtzariaReadingUnitService.swift"
+                        && identity.sha256.count == 64
+                        && sha(serviceBytes) == identity.sha256,
+                        "The actual original service source hash changed")
+            let compileURL = URL(fileURLWithPath: identity.compileInputsPath)
+            let compileBytes = try Data(contentsOf: compileURL)
+            guard let compile = try JSONSerialization.jsonObject(with: compileBytes) as? [String: Any],
+                  let hashes = compile["source_sha256"] as? [String: String],
+                  let command = compile["command"] as? [String]
+            else { throw CatalogError(message: "Retained actual catalog compile inputs are missing") }
+            try require(hashes["Source/Otzaria/Reading/OtzariaReadingUnitService.swift"] == identity.sha256
+                        && command.contains(identity.path),
+                        "The preview oracle must bind the service to its actual catalog compile command")
+            var keys = Set<String>()
+            for (index, request) in requests.enumerated() {
+                let mode: OtzariaUnitMode
+                switch request.mode {
+                case "line": mode = .line
+                case "paragraph": mode = .paragraph
+                case "chapter": mode = .chapter
+                default: throw CatalogError(message: "Unknown original reading-unit mode")
+                }
+                try require(request.bookID > 0 && request.focusLineIndex >= 0
+                            && keys.insert("\(request.bookID):\(request.focusLineIndex):\(request.mode)").inserted,
+                            "Preview targets must have unique actual book/line/mode identities")
+                targets.append(try target(bookID: request.bookID, focus: request.focusLineIndex,
+                    position: "preview-\(request.mode)-\(index)", expectedCount: nil,
+                    mode: mode, includeAnchorDetails: true))
+            }
+            let previews: [String: Any] = [
+                "schema": 1, "status": "ORIGINAL_SOURCE_PREVIEW_CATALOG_ONLY_NOT_SEARCH_OR_UI",
+                "corpusProfile": "full-v40", "databaseSHA256": input.databaseSHA256,
+                "sourceServiceSHA256": identity.sha256,
+                "catalogCompileInputsSHA256": sha(compileBytes), "targets": targets,
+                "uiExecuted": 0, "searchProviderExecuted": false,
+                "identityRequirement": "Native test must match the actual provider hit book/line tuple before using these original complete-unit bytes"
+            ]
+            try JSONSerialization.data(withJSONObject: previews, options: [.prettyPrinted, .sortedKeys])
+                .write(to: output.appendingPathComponent("preview-targets.json"), options: .atomic)
+            return
         }
         for book in input.v40Targets.books {
             let bookID = book.bookID, count = book.lineCount
