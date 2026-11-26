@@ -449,6 +449,23 @@ def prepare_react_sources(config, report):
     logged(["chmod", "-R", "+x", str(vendor / "node_modules/.bin"), str(vendor / "node_modules/expo/bin")], "native-script-permissions.log", report)
 
 
+def inspect_generated_expo_providers(root):
+    support = root / "Pods" / "Target Support Files"
+    app = support / "Pods-Maktabah-iOS" / "ExpoModulesProvider.swift"
+    expected = {app}
+    if "target 'Maktabah-iOSNativeTests' do" in (root / "Podfile").read_text():
+        expected.add(support / "Pods-Maktabah-iOSNativeTests" / app.name)
+    providers = set((root / "Pods").rglob(app.name))
+    require(providers == expected, "Missing or unexpected target-specific Expo provider")
+    require(all(path.is_file() and not path.is_symlink() for path in providers),
+            "Generated Expo providers must be regular files")
+    records = [{"path": str(path.relative_to(root)), "sha256": digest(path)}
+               for path in sorted(providers)]
+    require(len({record["sha256"] for record in records}) == 1,
+            "The hosted native test provider differs from the app provider")
+    return app, records
+
+
 def install_real_pods(report, original_editor=False):
     ruby_module = ruby_context = None
     if original_editor:
@@ -466,11 +483,9 @@ def install_real_pods(report, original_editor=False):
     report["native_context"]["generated_project_sha256"] = digest(ROOT / "Maktabah.xcodeproj/project.pbxproj")
     shutil.copyfile(ROOT / "Maktabah.xcodeproj/project.pbxproj", OUT / "generated-Maktabah-project.pbxproj")
     report["native_context"]["workspace_sha256"] = digest(ROOT / "Maktabah.xcworkspace/contents.xcworkspacedata")
-    report["native_context"]["generated_expo_providers"] = []
-    for provider in (ROOT / "Pods").rglob("ExpoModulesProvider.swift"):
-        report["native_context"]["generated_expo_providers"].append({"path": str(provider.relative_to(ROOT)), "sha256": digest(provider)})
-        require(len(report["native_context"]["generated_expo_providers"]) == 1, "Ambiguous generated Expo provider")
-        shutil.copyfile(provider, OUT / "ExpoModulesProvider.swift")
+    provider, records = inspect_generated_expo_providers(ROOT)
+    report["native_context"]["generated_expo_providers"] = records
+    shutil.copyfile(provider, OUT / "ExpoModulesProvider.swift")
     (OUT / "generated-pods-project.diff").write_text(capture("git", "diff", "--", "Maktabah.xcodeproj/project.pbxproj") + "\n")
     shutil.copyfile(ROOT / "Podfile.lock", OUT / "resolved-Podfile.lock")
     # The generated workspace has its own SwiftPM lock location. Restore the
