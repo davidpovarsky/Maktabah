@@ -114,12 +114,14 @@ struct AnnotationListView: View {
             } label: {
                 Label(String(localized: .Annotation.exportAnnotationsJson), systemImage: "square.and.arrow.up")
             }
+            .accessibilityIdentifier("original-annotations-export-json")
 
             Button {
                 isImporting = true
             } label: {
                 Label(String(localized: .Annotation.importAnnotationsJson), systemImage: "square.and.arrow.down")
             }
+            .accessibilityIdentifier("original-annotations-import-json")
 
             Divider()
 
@@ -131,6 +133,7 @@ struct AnnotationListView: View {
         } label: {
             Image(systemName: "arrow.up.arrow.down.circle")
         }
+        .accessibilityIdentifier("original-annotations-file-menu")
     }
 
     private func exportAnnotations() {
