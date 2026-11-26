@@ -655,15 +655,21 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         tap(open)
         var host = try await richHost()
         let firstBody = try await richBody(first, host: host)
+        let firstBodyFrame = firstBody.frame
         firstBody.coordinate(withNormalizedOffset: CGVector(dx: 0.98, dy: 0.5)).tap()
-        firstBody.typeText("\n")
-        // Use the real Return focus transfer. An empty native UITextView
-        // may not expose an AX value or a hittable element above the keyboard.
         let keyboard = app.keyboards.firstMatch
+        let returnKeys = keyboard.buttons.matching(NSPredicate(format: "label =[c] %@", "return"))
         try await requireNativeCondition(timeout: 20) {
-            guard keyboard.exists && keyboard.isHittable else { return false }
-            let focused = host.textViews.allElementsBoundByIndex.filter(\.hasFocus)
-            return focused.count == 1 && (focused[0].value as? String ?? "").isEmpty
+            returnKeys.allElementsBoundByIndex.filter(\.isHittable).count == 1
+        }
+        let returnKey = try XCTUnwrap(returnKeys.allElementsBoundByIndex.first { $0.isHittable })
+        returnKey.tap()
+        // The user can type when the original editor has moved focus below
+        // the original body. UIKit may expose placeholder text as the value.
+        try await requireNativeCondition(timeout: 20) {
+            host.textViews.allElementsBoundByIndex.filter {
+                $0.hasFocus && !$0.frame.isEmpty && $0.frame.midY > firstBodyFrame.midY
+            }.count == 1
         }
         app.typeText(second)
         let hide = keyboard.buttons.matching(NSPredicate(format: "label IN %@",
