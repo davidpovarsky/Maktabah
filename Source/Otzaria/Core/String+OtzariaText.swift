@@ -73,8 +73,9 @@ extension String {
             utf16Offset += len
         }
 
-        let normText = String(String.UnicodeScalarView(normalizedScalars))
+        let normText = String(String.UnicodeScalarView(normalizedScalars)) as NSString
         var ranges: [NSRange] = []
+        var seenRanges: Set<NSRange> = []
 
         for keyword in keywords {
             var normKeyScalars: [UnicodeScalar] = []
@@ -87,22 +88,23 @@ extension String {
                 .trimmingCharacters(in: .whitespacesAndNewlines)
             guard !normKey.isEmpty else { continue }
 
-            var searchStart = normText.startIndex
-            while searchStart < normText.endIndex,
-                  let found = normText.range(of: normKey, options: [.caseInsensitive], range: searchStart..<normText.endIndex) {
-                let normalizedRange = NSRange(found, in: normText)
+            var searchOffset = 0
+            while searchOffset < normText.length {
+                let remaining = NSRange(location: searchOffset, length: normText.length - searchOffset)
+                let normalizedRange = normText.range(of: normKey, options: .caseInsensitive, range: remaining)
+                guard normalizedRange.location != NSNotFound else { break }
                 let endOffset = NSMaxRange(normalizedRange)
 
                 if normalizedRange.location < indexMap.count, endOffset <= indexMap.count {
                     let startUtf16 = indexMap[normalizedRange.location]
                     let endUtf16 = endOffset < indexMap.count ? indexMap[endOffset] : self.utf16.count
                     let range = NSRange(location: startUtf16, length: max(0, endUtf16 - startUtf16))
-                    if !ranges.contains(where: { $0.location == range.location && $0.length == range.length }) {
+                    if seenRanges.insert(range).inserted {
                         ranges.append(range)
                     }
                 }
 
-                searchStart = found.upperBound
+                searchOffset = endOffset
             }
         }
 
