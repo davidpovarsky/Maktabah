@@ -25,3 +25,11 @@ The exact original full-v32 UI case configuration and Groups100 case configurati
 The Apple Swift 6 `-O` comparison used the same 52,332-row chapter, with 8,307,947 input UTF-16 units. Both variants returned the same ordered 49,065 ranges, SHA-256 `7523844d78a9c5e3fa21128a3cab2d141528d54b73163c0de75c301ae76cdf8f`. The original range loop took 10.23 and 10.40 s. Searching the normalized NSString with UTF-16 positions and a set for duplicate ranges took 1.77 and 1.80 s. A separate 30,000-range synthetic fixture retained identical exact offsets and decreased from about 656 ms to 69–71 ms. All 15 existing Unicode and source-position controls produced identical result bytes. These measurements cover Foundation search and range mapping, with UIKit and the physical iPad cases pending.
 
 Raw Apple run logs are under `/Users/m1/builds/otzaria-core-20261126/highlight` in `benchmark-baseline-*.log`, `benchmark-utf16-*.log`, and `utf16-controls.json`.
+
+## Full v40 Zayit pagination
+
+The pinned Rust builder ran on Oracle over the verified v40 database. The index contains all 8,259 books, 7,920,224 lines with indexable chunks, and 7,930,286 documents. The builder skips lines without indexable chunks, so the line count differs from the total source rows. The original index metadata SHA-256 is `de424710eab0f4cdd87b0b8c909925cada16de4753e5faa97ed4f4374c658217`.
+
+The real engine returned 50 results at offsets 0, 50 and 100 for `בראשית`, total 111,380 on each page. All 150 ordered identities were distinct. The test joined each line ID against the verified SQLite database and checked book ID, source line index and nonempty stable book identity. The raw query receipt has SHA-256 `6514d109e2c7415dcc7fc0c28c92504318fafcee89b236e60733ba4ef18f0994`. The test source is `Tests/HQ/search/ZayitFullCorpusPagination.rs`, based on the example target run in an isolated copy of the locked `Vendor/ZayitSearchPort/Rust` crate.
+
+Oracle raw evidence under `/mnt/development/projects/worktrees/Maktabah-core-final-20261126/build/zayit-v40-source` includes `full-index.log`, `full-index.exit` and `pagination-150.json`. Packaging uses a separate index copy bound to the official remote manifest digest. The original builder output is preserved. The native search UI cases remain open.
