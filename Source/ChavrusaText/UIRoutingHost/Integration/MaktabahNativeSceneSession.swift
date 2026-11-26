@@ -580,7 +580,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         if let evidence = visibilityChecks[readerID]?(), evidence.isVisible, evidence.sceneID == sceneID,
            let current = try project().surface(.reader),
            current == evidence.surface,
-           try project().hasRenderedReaderEvidence(sceneID: sceneID) { reader = current }
+           try project().hasRenderedReaderEvidence(sceneID: sceneID, includingContainingSection: true) { reader = current }
         let inspectorID = UIDestinationID(rawValue: "native.reader.inspector")!
         let inspectorWitnessed: Bool
         if let evidence = visibilityChecks[inspectorID]?(), evidence.isVisible, evidence.sceneID == sceneID,
