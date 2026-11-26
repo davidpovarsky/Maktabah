@@ -660,7 +660,11 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         // Use the real Return focus transfer. An empty native UITextView
         // may not expose an AX value or a hittable element above the keyboard.
         let keyboard = app.keyboards.firstMatch
-        try await requireNativeCondition(timeout: 20) { keyboard.exists && keyboard.isHittable }
+        try await requireNativeCondition(timeout: 20) {
+            guard keyboard.exists && keyboard.isHittable else { return false }
+            let focused = host.textViews.allElementsBoundByIndex.filter(\.hasFocus)
+            return focused.count == 1 && (focused[0].value as? String ?? "").isEmpty
+        }
         app.typeText(second)
         let hide = keyboard.buttons.matching(NSPredicate(format: "label IN %@",
             ["Hide Keyboard", "Hide keyboard", "Dismiss Keyboard", "Dismiss keyboard"]))
