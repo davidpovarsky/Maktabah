@@ -4,7 +4,7 @@ import OtzariaActionCore
 /// Additive facade over the real application coordinator. No automatic backend
 /// selection, app composition, UI command, private registration or new engine.
 @MainActor
-final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort {
+final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort {
     typealias ReadinessProbe = @MainActor @Sendable (ActionBackendSnapshot) async throws -> ActionBackendRuntimeEvidence
     typealias EpochProbe = @Sendable () async -> UInt64?
     typealias EmbeddedSearch = @Sendable (ActionSearchQuery, ActionPortInvocation) async throws -> ActionSearchPage
@@ -310,6 +310,28 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
             throw ActionPortError.invalidResponse
         }
         return result
+    }
+
+    func tableOfContents(for work: ActionWorkRef, maximumEntries: Int,
+                         invocation: ActionPortInvocation) async throws -> [ActionSourceSectionEntry] {
+        guard work.catalogRevision == nil, (1...101).contains(maximumEntries) else {
+            throw ActionContractError.invalid("workRef")
+        }
+        try await require("reader.getTOC", backend: work.backend, invocation: invocation)
+        let catalog = try await catalogWorks(backend: work.backend, invocation: invocation)
+        guard let sourceWork = catalog.works.first(where: { $0.locator.workKey == work.workKey }) else {
+            throw ActionPortError.notFound
+        }
+        let nodes: [LibraryTOCNode]
+        do { nodes = try await coordinator.tableOfContents(for: sourceWork) }
+        catch { throw safe(error) }
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: work.backend)
+        let task = Task.detached {
+            try ActionLibraryProjection.sourceSections(nodes, invocation: invocation, maximumEntries: maximumEntries)
+        }
+        let entries = try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
+        try await require("reader.getTOC", backend: work.backend, invocation: invocation)
+        return entries
     }
 
     func commentaryLinks(for baseLocator: ActionTextRef,

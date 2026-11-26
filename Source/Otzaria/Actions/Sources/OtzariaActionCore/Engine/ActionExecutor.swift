@@ -198,6 +198,7 @@ public actor ActionExecutor {
                         && (descriptor.id != "notes.prepareDraft" || notesSupported)
                         && (descriptor.id != "search.openResults" || searchResultsSupported)
                         && (descriptor.id != "search.countOccurrences" || occurrenceSupported)
+                        && (descriptor.id != "reader.getTOC" || state is any ActionTableOfContentsPort)
                     let supported = implemented && raw?.registered == true && raw?.supported == true
                     var fields: ActionObject = ["registered": .bool(raw?.registered == true), "supported": .bool(supported)]
                     if includeReadiness { fields["availableNow"] = .bool(supported && raw?.availableNow == true && target == snapshot.backend
@@ -284,6 +285,26 @@ public actor ActionExecutor {
             case .ambiguous(let candidates): result = try ambiguity(candidates, limit: 25, request: request, context: context, snapshot: snapshot)
             case .notFound: throw ActionPortError.notFound
             }
+        case "reader.getTOC":
+            guard let rawWork = request.arguments["workRef"] else { throw ActionContractError.invalid("workRef") }
+            let work = try rawWork.decoded(as: ActionWorkRef.self)
+            try ActionPolicy.work(work.workKey, backend: backend, context: context)
+            guard let toc = state as? any ActionTableOfContentsPort else {
+                throw ActionEngineFailure(.notSupported, "table_of_contents_unavailable")
+            }
+            let limit = try ActionValidation.integer(request.arguments, key: "limit", default: 20, range: 1...100)
+            let entries = try await toc.tableOfContents(for: work, maximumEntries: limit + 1, invocation: invocation)
+            try await recheck(snapshot, deadline: deadline)
+            guard entries.count <= limit + 1 else { throw ActionPortError.invalidResponse }
+            for entry in entries {
+                do { try ActionValidation.text(entry.locator, backend: backend) }
+                catch { throw ActionPortError.invalidResponse }
+                guard entry.locator.workKey == work.workKey, ActionValidation.nonempty(entry.title, max: 512) else {
+                    throw ActionPortError.invalidResponse
+                }
+            }
+            result = completed(["workRef": try .encoded(work), "entries": try .encoded(Array(entries.prefix(limit))),
+                                "truncated": .bool(entries.count > limit)])
         case "search.query":
             guard let query = searchQuery else { throw ActionPortError.invalidResponse }
             let page = try await search.search(query, invocation: invocation)

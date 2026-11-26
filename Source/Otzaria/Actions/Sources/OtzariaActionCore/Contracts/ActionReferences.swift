@@ -95,7 +95,7 @@ public struct ActionCatalogEntry: Sendable, Equatable {
 
 /// A section title and locator read from the selected work's original TOC.
 /// This is source data, not an existence proof or a navigation grant.
-public struct ActionSourceSectionEntry: Sendable, Equatable {
+public struct ActionSourceSectionEntry: Codable, Sendable, Equatable {
     public let locator: ActionTextRef
     public let title: String
     public init(locator: ActionTextRef, title: String) {
