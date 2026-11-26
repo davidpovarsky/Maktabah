@@ -1,0 +1,43 @@
+{
+  "full_sdk_accepted_by_this_readback": false,
+  "latest_graph_source_qualified": false,
+  "native_build_rerun": false,
+  "native_source_tree": "4b1ce2b7629974eb2bff91155f66b03122548aa6",
+  "recorded_original_status": "ORIGINAL_ABI_PASS",
+  "sdk_source_sha": "8ae85a6490c4fb763fcd01d5f93345f7e071db92",
+  "slices": [
+    {
+      "architectures": [
+        "x86_64",
+        "arm64"
+      ],
+      "bytes": 624631536,
+      "command": [
+        "xcrun",
+        "lipo",
+        "-archs",
+        "/Users/m1/builds/otzaria-shared-agent1-20261126/abi-inspection/source/Dependencies/Middleware/Lib.xcframework/ios-arm64_x86_64-simulator/Lib.framework/Lib"
+      ],
+      "platform": "ios",
+      "sha256": "0510830763adcc6106cc05cb2cdd5e969cb74006484c4b5ca6eb96a48b4f6ebf",
+      "variant": "simulator"
+    },
+    {
+      "architectures": [
+        "arm64"
+      ],
+      "bytes": 316699760,
+      "command": [
+        "xcrun",
+        "lipo",
+        "-archs",
+        "/Users/m1/builds/otzaria-shared-agent1-20261126/abi-inspection/source/Dependencies/Middleware/Lib.xcframework/ios-arm64/Lib.framework/Lib"
+      ],
+      "platform": "ios",
+      "sha256": "9448664d71e0691a59d7ff796ee4e2fcce055d4942804e935e72daddd3f41f6c",
+      "variant": ""
+    }
+  ],
+  "status": "PASS_ACTUAL_RETAINED_ABI_SLICES",
+  "xcode": "Xcode 27.0\nBuild version 27A266a"
+}
