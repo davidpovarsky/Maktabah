@@ -1285,6 +1285,7 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         return databaseURL
     }
 
+    @MainActor
     private func readCanonicalRow(_ rowID: Int64, databaseURL: URL? = nil) throws -> CanonicalRow {
         let databaseURL = try databaseURL ?? canonicalAnnotationDatabase()
         let path = databaseURL.path
