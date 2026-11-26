@@ -1,0 +1,23 @@
+test_arbitrary_urls_shell_text_extra_query_and_paths_rejected (__main__.OwnedURLTransportTests.test_arbitrary_urls_shell_text_extra_query_and_paths_rejected) ... ok
+test_exact_owned_argv_and_public_transport_only_ack (__main__.OwnedURLTransportTests.test_exact_owned_argv_and_public_transport_only_ack) ... ok
+test_exact_production_https_roots_use_real_system_transport (__main__.OwnedURLTransportTests.test_exact_production_https_roots_use_real_system_transport) ... ok
+test_explicit_public_v2_inspector_reaches_actual_app_parser (__main__.OwnedURLTransportTests.test_explicit_public_v2_inspector_reaches_actual_app_parser) ... ok
+test_explicit_search_and_annotations_envelopes_only (__main__.OwnedURLTransportTests.test_explicit_search_and_annotations_envelopes_only) ... ok
+test_https_foreign_origin_noncanonical_paths_and_mutations_are_rejected (__main__.OwnedURLTransportTests.test_https_foreign_origin_noncanonical_paths_and_mutations_are_rejected) ... ok
+test_intentional_v2_refusal_reaches_actual_app_parser (__main__.OwnedURLTransportTests.test_intentional_v2_refusal_reaches_actual_app_parser) ... ok
+test_nonce_filename_mismatch_rejected (__main__.OwnedURLTransportTests.test_nonce_filename_mismatch_rejected) ... ok
+test_only_explicit_reader_v2_envelope_is_delivered (__main__.OwnedURLTransportTests.test_only_explicit_reader_v2_envelope_is_delivered) ... ok
+test_repeated_transport_nonce_is_not_reexecuted (__main__.OwnedURLTransportTests.test_repeated_transport_nonce_is_not_reexecuted) ... ok
+test_stale_file_rejected (__main__.OwnedURLTransportTests.test_stale_file_rejected) ... ok
+test_subprocess_failure_does_not_export_sensitive_stderr (__main__.OwnedURLTransportTests.test_subprocess_failure_does_not_export_sensitive_stderr) ... ok
+test_uninstalled_inspector_versions_children_and_mutations_rejected (__main__.OwnedURLTransportTests.test_uninstalled_inspector_versions_children_and_mutations_rejected) ... ok
+test_uninstalled_reader_envelopes_are_rejected (__main__.OwnedURLTransportTests.test_uninstalled_reader_envelopes_are_rejected) ... ok
+test_uninstalled_root_versions_components_and_mutations_rejected (__main__.OwnedURLTransportTests.test_uninstalled_root_versions_components_and_mutations_rejected) ... ok
+test_unknown_fields_and_bounded_request_count (__main__.OwnedURLTransportTests.test_unknown_fields_and_bounded_request_count) ... ok
+test_wrong_credential_rejected (__main__.OwnedURLTransportTests.test_wrong_credential_rejected) ... ok
+test_wrong_target_rejected (__main__.OwnedURLTransportTests.test_wrong_target_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.050s
+
+OK

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "authority": "Explicit owner clarification dated 2026-11-17; supersedes the older iOS26–27 coverage-plan scope",
+  "minimum_ios_ipados": "27.0",
+  "requires_ios26_compatibility": false,
+  "historical_requirement_retained": "Q-UI07-049 remains in the untouched historical 51-family input; it is not a current release blocker.",
+  "source_evidence": [
+    {
+      "task_id": "1220542174542004",
+      "url": "https://app.asana.com/1/1219597879016953/task/1220542174542004",
+      "task_modified_at": "2026-11-24T00:43:06.208Z",
+      "section": "OWNER OTZARIA SWIFTUI/iOS27 CLARIFICATION | 2026-11-17",
+      "excerpt": "Owner's minimum target = iOS 27.0."
+    },
+    {
+      "task_id": "1220636669052920",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219603102275846/task/1220636669052920",
+      "task_modified_at": "2026-11-26T12:46:57.188Z",
+      "section": "HANLIN-PRESENTATION-SDK-01 | OWNER SPEC | 2026-11-17",
+      "excerpt": "Owner decided iOS 27.0 only",
+      "additional_excerpt": "Target iOS/iPadOS 27.0 (no legacy compatibility requirement)."
+    }
+  ],
+  "boundary": "Scope correction only. No deployment target, runtime installation, original test assertion, source pin, or acceptance result is changed."
+}
