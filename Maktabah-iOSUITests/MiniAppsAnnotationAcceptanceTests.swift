@@ -52,6 +52,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         var locale: String { self == .hebrew ? "he_IL" : "en_US" }
         var isRTL: Bool { self == .hebrew }
         var more: String { self == .hebrew ? "עוד" : "More" }
+        var suggestions: String { self == .hebrew ? "הצעות" : "Suggestions" }
         var edit: String { self == .hebrew ? "עריכה" : "Edit" }
         var done: String { self == .hebrew ? "סיום" : "Done" }
         var addFavorite: String { self == .hebrew ? "הוספה למועדפים" : "Add to Favorites" }
@@ -219,10 +220,14 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         func scrollToWindowSwitch() -> XCUIElement {
             // The SwiftUI row contains the actual UIKit switch. Bring the
             // destination into the viewport before requiring its child.
+            let chooser = app.collectionViews.containing(.staticText, identifier: language.suggestions)
+            XCTAssertTrue(chooser.firstMatch.waitForExistence(timeout: 15))
+            XCTAssertEqual(chooser.count, 1, "Scroll only the original Apps list inside its popover or sheet")
+            let list = chooser.firstMatch
             let window = app.switches["miniapps-new-window"].switches.firstMatch
             for _ in 0..<6 {
                 if window.exists && window.isHittable { break }
-                app.swipeUp()
+                list.swipeUp()
             }
             XCTAssertTrue(window.waitForExistence(timeout: 15))
             XCTAssertTrue(window.isHittable && window.isEnabled)
@@ -815,6 +820,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(quick.waitForExistence(timeout: 15))
         let sourceText = "OriginalAttachment" + UUID().uuidString.replacingOccurrences(of: "-", with: "")
         tap(quick); quick.typeText(sourceText)
+        XCTAssertEqual(quick.value as? String, sourceText, "The original compact editor must receive the seed text")
         tap(app.buttons["annotation-save-toolbar"])
         try await requireNativeCondition(timeout: 30) { !quick.exists }
         tap(app.buttons["torah-inspector-close"])
@@ -826,6 +832,8 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let rowID = try XCTUnwrap(Int64(row.identifier.dropFirst("original-book-annotation-".count)))
         let rowIdentifier = row.identifier
         editAnnotation(row)
+        XCTAssertTrue(quick.waitForExistence(timeout: 15))
+        XCTAssertEqual(quick.value as? String, sourceText, "The original compact editor must reload the saved seed text")
         try await openActualRichEditor()
         let fileHost = try await richHost()
         _ = try await richBody(sourceText, host: fileHost)
@@ -1277,7 +1285,15 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     @MainActor
     private func richBody(_ text: String, host: XCUIElement) async throws -> XCUIElement {
         let bodies = host.textViews.matching(NSPredicate(format: "value == %@", text))
-        try await requireNativeCondition(timeout: 30) { bodies.count == 1 && bodies.firstMatch.isHittable }
+        let ready = try await waitUntil(timeout: 30) { bodies.count == 1 && bodies.firstMatch.isHittable }
+        if !ready {
+            retainScreenshot(app, named: "miniapps-original-rich-body-not-ready")
+            let hierarchy = XCTAttachment(string: host.debugDescription)
+            hierarchy.name = "miniapps-original-expanded-host-accessibility"
+            hierarchy.lifetime = .keepAlways
+            add(hierarchy)
+        }
+        XCTAssertTrue(ready, "The exact original native body must be visible and hittable")
         XCTAssertEqual(bodies.count, 1)
         XCTAssertFalse(bodies.firstMatch.frame.isEmpty)
         return bodies.firstMatch
