@@ -678,7 +678,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
             XCTAssertEqual(seed.request.operation, "insert")
             let baseline = try richState(rowID: rowID, databasePath: document.profile)
             try typeActualStudioResult(second, producer: producer)
-            tap(producer.buttons["miniapps.textstudio.return"])
+            try await returnActualStudioResult(producer)
             XCTAssertTrue(app.wait(for: .runningForeground, timeout: 90))
             try await requireNativeCondition(timeout: 60) {
                 (try? self.records(in: shared).first { $0.request.id == seed.request.id }?.acknowledged) == true
@@ -809,7 +809,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
             "TextStudio must still hold its pending original result when the user returns to it")
         let expectedWarm = try expectedNativeBodies(request: warm.request, text: warmText,
             bodyOverrides: [second: newerSecond])
-        tap(producer.buttons["miniapps.textstudio.return"])
+        try await returnActualStudioResult(producer)
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 60))
         try await requireNativeCondition(timeout: 60) {
             (try? self.records(in: shared).first { $0.request.id == warm.request.id }?.acknowledged) == true
@@ -850,7 +850,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         app.terminate()
         XCTAssertTrue(app.wait(for: .notRunning, timeout: 20))
         XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 15))
-        tap(producer.buttons["miniapps.textstudio.return"])
+        try await returnActualStudioResult(producer)
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 90),
             "Only the actual MiniApps callback may cold-launch the original source")
         try await requireNativeCondition(timeout: 60) {
@@ -1341,6 +1341,18 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         editor.tap(); editor.typeKey("a", modifierFlags: .command); editor.typeText(text)
         XCTAssertEqual(editor.value as? String, text)
         XCTAssertTrue(producer.buttons["miniapps.textstudio.return"].isHittable)
+    }
+
+    @MainActor
+    private func returnActualStudioResult(_ producer: XCUIApplication) async throws {
+        let button = producer.buttons["miniapps.textstudio.return"]
+        let window = producer.windows.firstMatch
+        try await requireNativeCondition(timeout: 15) {
+            guard window.exists, button.exists, button.isHittable, button.isEnabled else { return false }
+            let frame = button.frame
+            return !frame.isEmpty && window.frame.contains(CGPoint(x: frame.midX, y: frame.midY))
+        }
+        button.tap()
     }
 
     private func expectedNativeBodies(request: Request, text: String,
