@@ -4,7 +4,7 @@ import OtzariaActionCore
 /// Additive facade over the real application coordinator. No automatic backend
 /// selection, app composition, UI command, private registration or new engine.
 @MainActor
-final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort, ActionVersionListPort, ActionNavigationStructurePort, ActionNavigationItemsPort, ActionCatalogAuthorsPort {
+final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort, ActionVersionListPort, ActionNavigationStructurePort, ActionNavigationItemsPort, ActionCatalogAuthorsPort, ActionRelatedSourcesPort {
     typealias ReadinessProbe = @MainActor @Sendable (ActionBackendSnapshot) async throws -> ActionBackendRuntimeEvidence
     typealias EpochProbe = @Sendable () async -> UInt64?
     typealias EmbeddedSearch = @Sendable (ActionSearchQuery, ActionPortInvocation) async throws -> ActionSearchPage
@@ -406,6 +406,33 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
         let entries = try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
         try await require("reader.getTOC", backend: work.backend, invocation: invocation)
         return entries
+    }
+
+    func relatedSources(for locator: ActionTextRef,
+                        invocation: ActionPortInvocation) async throws -> [ActionRelatedSource] {
+        let backend = locator.backend
+        try await require("reader.relatedSources", backend: backend, invocation: invocation)
+        guard try await validate(locator, invocation: invocation) == locator else { throw ActionPortError.invalidResponse }
+        let native = try ActionAppIdentityBridge.appLocator(locator)
+        let original: [LibraryRelatedSource]
+        do { original = try await coordinator.links(for: native) }
+        catch { throw safe(error) }
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
+        guard original.count <= 10_000 else { throw ActionPortError.invalidResponse }
+        let works = try await catalogWorks(backend: backend, invocation: invocation)
+        var result: [ActionRelatedSource] = []
+        for (index, link) in original.enumerated() {
+            if index.isMultiple(of: 256) {
+                await Task.yield()
+                try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
+            }
+            guard ActionAppIdentityBridge.actionBackend(link.locator.backend) == backend,
+                  works.workKeys.contains(link.locator.workKey) else { throw ActionPortError.invalidResponse }
+            result.append(.init(locator: try ActionAppIdentityBridge.actionRef(link.locator),
+                                displayRef: link.displayRef, category: link.category, relationshipType: link.type))
+        }
+        try await require("reader.relatedSources", backend: backend, invocation: invocation)
+        return result
     }
 
     func commentaryLinks(for baseLocator: ActionTextRef,
