@@ -143,8 +143,10 @@ struct ViewOptionsView: View {
                         Picker("Text", selection: readerTextModeBinding) {
                             ForEach(modes) { mode in
                                 Text(readerModeTitle(mode)).tag(mode)
+                                    .accessibilityIdentifier("reader-text-mode-\(mode.rawValue)")
                             }
                         }
+                        .accessibilityIdentifier("reader-text-mode")
                     }
                     Toggle("Show Harakat", isOn: showHarakatBinding)
                     Toggle("Clickable Annotations", isOn: clickableAnnotationBinding)
@@ -178,6 +180,7 @@ struct ViewOptionsView: View {
                     Button("Close") {
                         dismiss()
                     }
+                    .accessibilityIdentifier("reader-options-close")
                 }
             }
         }

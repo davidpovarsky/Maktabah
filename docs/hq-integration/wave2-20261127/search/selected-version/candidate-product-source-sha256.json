@@ -1,0 +1,12 @@
+{
+  "Source/ChavrusaText/Search/UI/GlobalSearchResultsHeader.swift": "fc6cd46b1e4254ce085185b4fcd6dec26c3f8bee231935430ce1155012cbf3aa",
+  "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift": "c79d9fbeddb58c7995645df9b6ca5cf26223990f1d181697a68789855d6cbc8b",
+  "Source/Features/Reader/iOS/ViewOptionsView.swift": "0b8977cfe9df88698fd132d1c8a963d66bd2983090015278a2893f76f28a3ef3",
+  "Source/Features/Search/iOS/SearchResultsListView.swift": "f2e04982fed6c3f6fa83fa57255c693ae7b96ad1a1c11f46b9053e4af01f0ec7",
+  "Source/Features/Search/iOS/iOSSearchFilterViewController.swift": "e610d23f2870f96743375ca20d0cab04b75bd52dd37172facd7195bb171e695f",
+  "Source/LibraryBackend/BackendCoordinator.swift": "b67742f249c0f4ad4ed8e0a5fac1b45b7936bd726655ed034ac35664e3d0f955",
+  "Source/LibraryBackend/LibraryBackendProtocols.swift": "3bb0953ddde8c9b3fae14c65ae05bf53c84b2335dd7a1bf0a4fccf063ddce279",
+  "Source/Sefaria/Domain/SefariaModels.swift": "9db878b285dc69a0c86f4b7a97eab923860bd9d6aa07b2b3d6f572a0dce8ac81",
+  "Source/Sefaria/Network/SefariaRemoteStore.swift": "b5f574b845861c68aa80bb38befa8703217b9628be199fc4132f6a9d5d184395",
+  "Source/Sefaria/Reading/SefariaHybridStore.swift": "8895e9035525cb8511ab0967a2a579e28c5b177559e7387bd111b77fbcb51cd5"
+}

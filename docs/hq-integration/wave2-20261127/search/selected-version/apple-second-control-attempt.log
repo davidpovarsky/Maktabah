@@ -1,0 +1,16 @@
+COMPILE baseline 1 /Users/m1/builds/otzaria-wave2-search-20261127/selected-version-controls-20261126T2345/LibraryBackendModels.swift:114:6: error: invalid redeclaration of 'LibraryReadingUnitPolicy'
+112 | }
+113 | 
+114 | enum LibraryReadingUnitPolicy {
+    |      `- error: invalid redeclaration of 'LibraryReadingUnitPolicy'
+115 |     static func isWorkRoot(_ locator: TextLocator) -> Bool {
+116 |         switch locator.position {
+
+COMPILE candidate 1 /Users/m1/builds/otzaria-wave2-search-20261127/selected-version-controls-20261126T2345/LibraryBackendModels.swift:114:6: error: invalid redeclaration of 'LibraryReadingUnitPolicy'
+112 | }
+113 | 
+114 | enum LibraryReadingUnitPolicy {
+    |      `- error: invalid redeclaration of 'LibraryReadingUnitPolicy'
+115 |     static func isWorkRoot(_ locator: TextLocator) -> Bool {
+116 |         switch locator.position {
+

@@ -1,0 +1,18 @@
+{
+  "SefariaTextsV3DTO.swift": "0b95f7078957f487215fc48ade7485a8c2834170a41962cffa8dc4c77934454c",
+  "SefariaNetworkConfiguration.swift": "649ee30d66557af5ee27126306bc7700e7f6f9166aabec41d6fc2960a4e11ee3",
+  "SefariaDiskCache.swift": "11aaa12a3b50e5121f62651408518ed5c10c826cbd1bb5ed34362df81bb3ebac",
+  "Controls.swift": "38ce9be383ec7c09e6dc880a455370ed296355582c9fc7f50cdac0076bb4639f",
+  "ProtocolSelection.swift": "37e3b602aa8cd371d6d5d6c4456d3430fcb6201c3468ae0f4eeeeba21e632099",
+  "LibraryBackendModels.swift": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d",
+  "ControlDependencies.swift": "acb7bb7f2759aa252210a1c570ca347f3fffaec14b71e2b685b8446f20752b04",
+  "SefariaModels.swift": "9db878b285dc69a0c86f4b7a97eab923860bd9d6aa07b2b3d6f572a0dce8ac81",
+  "candidate/ExtractedSections.swift": "91238cc11bb43ef92d720711e0d48fcfb684147fbc1b3522007efd45256a0df9",
+  "baseline/ExtractedSections.swift": "daa7d6961e23fb02bd9a5eb9d9144077e3e30060439db5bc27fc728ca9fd10e9",
+  "fixtures/psalms-versions.json": "eecd6e6730b69068ae54366ab22744d88aa1d86b3ab7d2e1e8d90bc13dc06a2a",
+  "fixtures/psalms131-default.json": "d7ab00f86f433101d34777e9a8367106579f40ba02b00d3280af6ab21ceab7e2",
+  "fixtures/psalms131-text-only.json": "91f06351d29667c1ed6dfea121d07a66588e3e0422d535edf9d2993cff36c9cf",
+  "fixtures/psalms131-french.json": "4c61e42677908a6532e7fc0cafddc900a5628a6d29b60131d5c6c22eb2e3916a",
+  "fixtures/psalms131-nikkud.json": "ab49f556f8149783d64419225c28b4e417ca218deae29e5115a5fd8fa67aa01d",
+  "fixtures/psalms131-jps1917.json": "992c55eb141f129f39f8a7a695ccb8e7b0ab7c97915dcfe2eb8c7ece36290bf2"
+}

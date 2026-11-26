@@ -1,0 +1,11 @@
+{
+  "commit": "4449813af3db0cc43d2802c30b9d73ce0459d26d",
+  "files": {
+    "Source/LibraryBackend/LibraryBackendProtocols.swift": "de28cf7350e82b3766b6a5404e2f7e9271c48723a124d752e02e244f6de4e674",
+    "Source/LibraryBackend/BackendCoordinator.swift": "c3815a44393ecec66c0ab6eece436fb763b3c4527cd7e8d9c1ce2ea9c649b0b4",
+    "Source/Sefaria/Domain/SefariaModels.swift": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+    "Source/Sefaria/Network/SefariaRemoteStore.swift": "fa7e1a1db54ef8bc61190e21a9d84ab8323827e8d286ababe89699930c64ef77",
+    "Source/Sefaria/Reading/SefariaHybridStore.swift": "4910ab6f1e1f2293ca82e8cc6a45f68ca159e89f04759e7e7011916f40e977fa",
+    "Source/Features/Search/iOS/SearchResultsListView.swift": "68de873ac09b141c1ecc3e2323707bacf1975f34a04c9e169f385c42d149ac87"
+  }
+}

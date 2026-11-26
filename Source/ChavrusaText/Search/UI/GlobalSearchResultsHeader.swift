@@ -32,6 +32,7 @@ struct GlobalSearchResultsHeader: View {
                                     Picker("מיון", selection: $session.sefariaSortOrder) {
                                         Text("רלוונטיות").tag(LibrarySearchSortOrder.relevance)
                                         Text("סדר קנוני").tag(LibrarySearchSortOrder.canonical)
+                                            .accessibilityIdentifier("global-search-sort-canonical")
                                         Text("סדר כרונולוגי").tag(LibrarySearchSortOrder.chronological)
                                     }
                                     Toggle("סדר הפוך", isOn: $session.sefariaReverseSort)

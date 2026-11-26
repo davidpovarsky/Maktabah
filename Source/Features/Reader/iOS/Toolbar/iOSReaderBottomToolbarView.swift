@@ -79,6 +79,7 @@ struct iOSReaderBottomToolbarView: View {
             }) {
                 Label("View Options", systemImage: "textformat")
             }
+            .accessibilityIdentifier("reader-text-options")
             .accessibilityLabel(String(localized: "Text Options"))
             .help(String(localized: "Text Options"))
 
@@ -125,10 +126,12 @@ struct iOSReaderBottomToolbarView: View {
                                 Text(option.title)
                             }
                         }
+                        .accessibilityIdentifier("reader-display-unit-\(option.mode.storageValue)")
                     }
                 } label: {
                     Label("Display by", systemImage: "text.badge.checkmark")
                 }
+                .accessibilityIdentifier("reader-display-unit-menu")
             }
         } label: {
             Label("More Reader Actions", systemImage: "ellipsis")
