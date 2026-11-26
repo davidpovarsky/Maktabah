@@ -3,6 +3,7 @@
     "anytype_native_host": "fd2d0afecdb0ba1bba16d84e99445ab599e5de2e",
     "app_intent_scoped_discovery": "0d26949822be9056add3bade87b5aa7010daffcd",
     "empty_note": "6b330a2964adf30932cfb7e86fc984068c7c5d10",
+    "full_v40_occurrence_diagnostic": "4a39a8d78dc91ff246813001c33c92cd21cddd99",
     "hebrew_highlight_utf16": "ec3798b7055ac6280503f5a1f023d218d2bf86da",
     "hebrew_shortcuts": "3da99a3f91b4066f88bef54bc733a5e164c85641",
     "library": "74ae9510d90b50343e961967616e5630d1682295",
@@ -34,11 +35,11 @@
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "39932c2f468609263e5033e2fd7156eb36502a3c",
+  "application_source_sha": "4a39a8d78dc91ff246813001c33c92cd21cddd99",
   "application_trees": {
     "Maktabah-iOSUITests": "b862fc5efecb679fa3e930b4434df83ec1942666",
     "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "d5555f5fdae5622abbeb12b25444462129fcb5a4",
+    "Source": "cecc5b97c68136169c5cafc7dcaeaf8656710923",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -79,6 +80,13 @@
           "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
         },
         "empty_note": null,
+        "full_v40_occurrence_diagnostic": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
+        },
         "hebrew_highlight_utf16": {
           "bytes": 71096,
           "kind": "blob",
@@ -348,6 +356,13 @@
           "mode": "100644",
           "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
           "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
+        },
+        "full_v40_occurrence_diagnostic": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
         "hebrew_highlight_utf16": {
           "bytes": 5427,
@@ -849,6 +864,13 @@
           "object": "e13367ed199e31a5fa1a3b64fd2b7657c9510642",
           "sha256": "10784f7c6d55fc646ce6a8d2a1e5575f8cefbf841e64c3c806eeb930511dd5c3"
         },
+        "full_v40_occurrence_diagnostic": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "hebrew_highlight_utf16": {
           "bytes": 21097,
           "kind": "blob",
@@ -1098,6 +1120,13 @@
           "mode": "100644",
           "object": "a79cbb5419d5ed811b9b078926ff379238bbd3ab",
           "sha256": "d8bb718cb4ea62a7d7344bdde77bb43a486da301c7b02d77dc6d5203de8506fd"
+        },
+        "full_v40_occurrence_diagnostic": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
         },
         "hebrew_highlight_utf16": {
           "bytes": 42323,
@@ -1388,6 +1417,13 @@
           "object": "0bb33c1579b32389f11a2bb003b76ebfad9caaf5",
           "sha256": "fb43edb485fc2b99eae1d1a05aea667556c4c9a56c97fe3d26f3a6799193db31"
         },
+        "full_v40_occurrence_diagnostic": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "hebrew_highlight_utf16": {
           "bytes": 54697,
           "kind": "blob",
@@ -1657,6 +1693,13 @@
           "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
           "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
         },
+        "full_v40_occurrence_diagnostic": {
+          "bytes": 38923,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
+          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
+        },
         "hebrew_highlight_utf16": {
           "bytes": 38814,
           "kind": "blob",
@@ -1920,6 +1963,13 @@
           "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
         },
         "empty_note": null,
+        "full_v40_occurrence_diagnostic": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "hebrew_highlight_utf16": {
           "bytes": 30093,
           "kind": "blob",
@@ -2159,6 +2209,13 @@
           "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
         "empty_note": null,
+        "full_v40_occurrence_diagnostic": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
         "hebrew_highlight_utf16": {
           "bytes": 12957,
           "kind": "blob",
@@ -2784,6 +2841,13 @@
           "mode": "100644",
           "object": "74cdb0174d3903ecca6d657d436507a8dddc4d6c",
           "sha256": "b6e0e9bc42140fd896a20a1ee6eb2f17d65d5b6dee3854a5b6869e78dcf23f1f"
+        },
+        "full_v40_occurrence_diagnostic": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
         },
         "hebrew_highlight_utf16": {
           "bytes": 22996,
@@ -3490,6 +3554,25 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
+        "bytes": 21723,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "a93d683fb2e7bd15fa5a3923c20af046da905df0",
+        "sha256": "05867abac8ad265d79227b7a81937a31772dd5d2983b1f02fdd2defd121bd5f3"
+      },
+      "before": {
+        "bytes": 20822,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "f00ab3d246626a203c87d1c7790caf3be197eac1",
+        "sha256": "2cea09618644b879c60af0f85c788c3a707e2c8ba85e2781ca64a807fd066111"
+      },
+      "component": "full_v40_occurrence_diagnostic",
+      "path": "Source/Otzaria/Search/Distribution/OtzariaPrebuiltSearchAcceptanceRunner.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
         "bytes": 44036,
         "kind": "blob",
         "mode": "100644",
@@ -3609,6 +3692,11 @@
           "kind": "commit",
           "mode": "160000",
           "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
+        },
+        "full_v40_occurrence_diagnostic": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
         },
         "hebrew_highlight_utf16": {
           "kind": "commit",
