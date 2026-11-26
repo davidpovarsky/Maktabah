@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Optional app-only admission of the original same-toolchain SDK distribution."""
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 import gzip
 import hashlib
 import json
@@ -209,7 +210,9 @@ def code_images(directory):
 
 def scan_binary_output(path, *, symbols, xcode_preview=False):
     count, nonempty = 0, False
-    with Path(path).open("rb") as stream:
+    path = Path(path)
+    open_output = gzip.open if path.suffix == ".gz" else open
+    with open_output(path, "rb") as stream:
         for line in stream:
             nonempty |= bool(line.strip())
             require_no_syntax_names([line.decode("utf-8", errors="replace")])
@@ -226,21 +229,34 @@ def binary_command(argv, *, root, evidence, label, symbols=False, xcode_preview=
     evidence.mkdir(parents=True, exist_ok=True)
     destination = evidence / (label + ".txt.gz")
     require(not destination.exists(), "Refusing stale runtime closure output")
-    with tempfile.TemporaryFile() as temporary:
-        result = subprocess.run(argv, cwd=root, stdout=temporary, stderr=subprocess.STDOUT, timeout=240)
-        size = temporary.tell()
-        require(0 < size <= 512 * 1024 * 1024, "Missing or oversized actual binary-command output")
-        temporary.seek(0)
-        with destination.open("xb") as saved, gzip.GzipFile(filename="", mode="wb", fileobj=saved, mtime=0) as zipped:
-            shutil.copyfileobj(temporary, zipped)
-    row = {"command": argv, "returncode": result.returncode, "uncompressed_bytes": size,
+    def save_output(process, archive):
+        size = 0
+        with process.stdout as stream:
+            while chunk := stream.read(1024 * 1024):
+                size += len(chunk)
+                require(size <= 512 * 1024 * 1024, "Oversized actual binary-command output")
+                archive.write(chunk)
+        return size
+
+    # The largest original tables cannot always fit as raw temporary files.
+    # Stream the complete output to gzip and scan that same retained evidence.
+    with destination.open("xb") as saved, gzip.GzipFile(
+            filename="", mode="wb", fileobj=saved, mtime=0) as archive:
+        with subprocess.Popen(argv, cwd=root, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) as process:
+            with ThreadPoolExecutor(max_workers=1) as executor:
+                output = executor.submit(save_output, process, archive)
+                try:
+                    returncode = process.wait(timeout=240)
+                except BaseException:
+                    process.kill()
+                    raise
+                size = output.result()
+    require(size > 0, "Missing actual binary-command output")
+    row = {"command": argv, "returncode": returncode, "uncompressed_bytes": size,
            "output": destination.name, "bytes": destination.stat().st_size, "sha256": digest(destination)}
     write(evidence / (label + ".json"), row)
-    require(result.returncode == 0, "Actual runtime closure command failed: " + label)
-    with gzip.open(destination, "rb") as zipped, tempfile.NamedTemporaryFile() as plain:
-        shutil.copyfileobj(zipped, plain)
-        plain.flush()
-        row.update(scan_binary_output(plain.name, symbols=symbols, xcode_preview=xcode_preview))
+    require(returncode == 0, "Actual runtime closure command failed: " + label)
+    row.update(scan_binary_output(destination, symbols=symbols, xcode_preview=xcode_preview))
     write(evidence / (label + ".json"), row)
     return row
 
