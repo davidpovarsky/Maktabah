@@ -392,47 +392,56 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         launchReader(scenario: "readerDetail", backend: "otzaria", language: "en", recordViewport: true)
         XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
         assertReaderHasText()
-        try await openAnnotations()
-        let previous = Set(annotationRows().allElementsBoundByIndex.map(\.identifier))
-        _ = try XCTUnwrap(previous.isEmpty ? true : nil, "The scale fixture requires a fresh annotations store")
-        tap(app.navigationBars["Annotations"].buttons["Close"])
-        tap(try originalStudyToolsActionInWindow())
-        let tools = app.segmentedControls["torah-inspector-tools"]
-        XCTAssertTrue(tools.waitForExistence(timeout: 15))
-        tap(tools.buttons["Notes"])
-        tap(app.buttons["torah-inspector-add-note"])
-        let quick = app.textViews["annotation-note-text"]
-        XCTAssertTrue(quick.waitForExistence(timeout: 15))
-        let marker = "Backfill שלום " + UUID().uuidString
-        tap(quick)
-        quick.typeText(marker)
-        tap(app.buttons["annotation-save-toolbar"])
-        try await waitForAbsence(quick)
-        tap(app.buttons["torah-inspector-close"])
-        try await openAnnotations()
-        let reference = try await newAnnotationRow(previous: previous)
-        let referenceID = try XCTUnwrap(Int64(reference.identifier.dropFirst("original-book-annotation-".count)))
-        let referenceRow = try readCanonicalRow(referenceID)
-        XCTAssertEqual(referenceRow.preview, marker)
-        XCTAssertEqual(referenceRow.revision, 0)
-        XCTAssertNil(referenceRow.body)
-
         let databaseURL = try canonicalAnnotationDatabase()
-        app.terminate()
-        XCTAssertTrue(app.wait(for: .notRunning, timeout: 15))
-        let seeds = try seedHistoricalPlainNotes(reference: referenceRow, marker: marker, databaseURL: databaseURL)
-        XCTAssertEqual(seeds.count, 5_000)
-        app.launch()
-        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
-        assertReaderHasText()
+        let seeds: [(id: Int64, uuid: UUID, text: String)]
+        if ProcessInfo.processInfo.environment["OTZARIA_RESUME_EXISTING_SQLITE_BACKFILL_FIXTURE"] == "1" {
+            seeds = try readExistingScaleFixture(databaseURL: databaseURL)
+            let existingCount = try confirmedNativeBackfillCount(databaseURL: databaseURL)
+            _ = try XCTUnwrap((1..<5_000).contains(existingCount) ? true : nil,
+                              "The retained fixture must contain a partially converted native batch")
+            retainNativeEvidence("scale-backfill-existing-fixture-\(existingCount)")
+        } else {
+            try await openAnnotations()
+            let previous = Set(annotationRows().allElementsBoundByIndex.map(\.identifier))
+            _ = try XCTUnwrap(previous.isEmpty ? true : nil, "The scale fixture requires a fresh annotations store")
+            tap(app.navigationBars["Annotations"].buttons["Close"])
+            tap(try originalStudyToolsActionInWindow())
+            let tools = app.segmentedControls["torah-inspector-tools"]
+            XCTAssertTrue(tools.waitForExistence(timeout: 15))
+            tap(tools.buttons["Notes"])
+            tap(app.buttons["torah-inspector-add-note"])
+            let quick = app.textViews["annotation-note-text"]
+            XCTAssertTrue(quick.waitForExistence(timeout: 15))
+            let marker = "Backfill שלום " + UUID().uuidString
+            tap(quick)
+            quick.typeText(marker)
+            tap(app.buttons["annotation-save-toolbar"])
+            try await waitForAbsence(quick)
+            tap(app.buttons["torah-inspector-close"])
+            try await openAnnotations()
+            let reference = try await newAnnotationRow(previous: previous)
+            let referenceID = try XCTUnwrap(Int64(reference.identifier.dropFirst("original-book-annotation-".count)))
+            let referenceRow = try readCanonicalRow(referenceID)
+            XCTAssertEqual(referenceRow.preview, marker)
+            XCTAssertEqual(referenceRow.revision, 0)
+            XCTAssertNil(referenceRow.body)
+
+            app.terminate()
+            XCTAssertTrue(app.wait(for: .notRunning, timeout: 15))
+            seeds = try seedHistoricalPlainNotes(reference: referenceRow, marker: marker, databaseURL: databaseURL)
+            XCTAssertEqual(seeds.count, 5_000)
+            app.launch()
+            XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
+            assertReaderHasText()
+        }
 
         try await openOrdinaryNotePreparation()
         let preparation = app.buttons["annotation-backfill-start"]
         let conversion = app.buttons["annotation-native-backfill-start"]
         try revealPreparationControl(preparation, towardsBottom: false)
-        tap(preparation)
         let preparationComplete = app.descendants(matching: .any)["annotation-backfill-complete"]
         let preparationError = app.descendants(matching: .any)["annotation-backfill-error"]
+        if !preparationComplete.exists { tap(preparation) }
         let preparationDeadline = Date().addingTimeInterval(1_800)
         while !preparationComplete.exists && !preparationError.exists && Date() < preparationDeadline {
             try await Task.sleep(for: .seconds(5))
@@ -451,7 +460,7 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         let convertedDatabase = try canonicalAnnotationDatabase()
         let deadline = Date().addingTimeInterval(12_000)
         let checkpoints = [1_200, 2_400, 3_600]
-        var lastCommitted = 0
+        var lastCommitted = try confirmedNativeBackfillCount(databaseURL: convertedDatabase)
         var finished = false
         for _ in 0..<7 {
             try await confirmBulkNativeConversion(conversion)
@@ -468,12 +477,23 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
             }
             let committed = try confirmedNativeBackfillCount(databaseURL: convertedDatabase)
             XCTAssertGreaterThanOrEqual(committed, lastCommitted, "Conversion must preserve previously saved native rows")
+            if !complete.exists { retainNativeEvidence("scale-backfill-checkpoint-\(committed)") }
+            let finishClosing = app.buttons["annotation-native-backfill-close-retry"]
+            for _ in 0..<2 where closeFailure.exists {
+                try revealPreparationControl(finishClosing)
+                try await waitForEnabled(finishClosing)
+                tap(finishClosing)
+                let retryDeadline = Date().addingTimeInterval(120)
+                let closing = app.staticTexts["Closing the private editor…"]
+                while !conversion.exists && (!closeFailure.exists || closing.exists) && Date() < retryDeadline {
+                    try await Task.sleep(for: .seconds(2))
+                }
+            }
             if complete.exists && !failure.exists && !closeFailure.exists && !paused.exists {
                 XCTAssertEqual(committed, 5_000, "All 5,000 original SQLite rows require a committed native body")
                 finished = committed == 5_000
                 break
             }
-            retainNativeEvidence("scale-backfill-checkpoint-\(committed)")
             guard !closeFailure.exists, (paused.exists || failure.exists), committed > lastCommitted,
                   Date() < deadline else { break }
             lastCommitted = committed
@@ -539,6 +559,35 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertEqual(Int(sqlite3_column_int64(statement, 1)), count,
                        "Continuing must not create an extra revision for an already converted note")
         return count
+    }
+
+    /// Read the synthetic inputs from the retained device without writing to its store.
+    private func readExistingScaleFixture(databaseURL: URL) throws
+        -> [(id: Int64, uuid: UUID, text: String)] {
+        var handle: OpaquePointer?
+        XCTAssertEqual(sqlite3_open_v2(databaseURL.path, &handle, SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX, nil), SQLITE_OK)
+        let database = try XCTUnwrap(handle)
+        defer { sqlite3_close(database) }
+        var raw: OpaquePointer?
+        let query = "SELECT id, ckRecordId, note FROM annotations ORDER BY id"
+        XCTAssertEqual(sqlite3_prepare_v2(database, query, -1, &raw, nil), SQLITE_OK)
+        let statement = try XCTUnwrap(raw)
+        defer { sqlite3_finalize(statement) }
+        var records: [(id: Int64, uuid: UUID, text: String)] = []
+        while sqlite3_step(statement) == SQLITE_ROW {
+            let uuidText = String(cString: try XCTUnwrap(sqlite3_column_text(statement, 1)))
+            let text = String(cString: try XCTUnwrap(sqlite3_column_text(statement, 2)))
+            records.append((sqlite3_column_int64(statement, 0), try XCTUnwrap(UUID(uuidString: uuidText)), text))
+        }
+        let marker = try XCTUnwrap(records.first?.text)
+        let prefix = "Backfill שלום "
+        _ = try XCTUnwrap(marker.hasPrefix(prefix) ? UUID(uuidString: String(marker.dropFirst(prefix.count))) : nil)
+        _ = try XCTUnwrap(records.count == 5_000 ? true : nil)
+        XCTAssertEqual(Set(records.map(\.uuid)).count, records.count)
+        for (index, row) in records.enumerated().dropFirst() {
+            XCTAssertEqual(row.text, "\(marker) \(index) 📖")
+        }
+        return records
     }
 
     /// Seed historical inputs inside the owned simulator while its application is stopped.
