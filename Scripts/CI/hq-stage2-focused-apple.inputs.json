@@ -1,5 +1,5 @@
 {
-  "application_source_sha": "2d41b2d373dd7309c147a340eb6adad18d5b5ad3",
+  "application_source_sha": "80f4b3178ea2371e1e407c5292242f33b3192fc5",
   "application_trees": {
     "Source": "7b4acc32a8bf1874477ad0a9e0eb99fea85363b6",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6",
@@ -72,7 +72,7 @@
   },
   "final_product_source": {
     "manifest": "Scripts/CI/final-integration-source.inputs.json",
-    "sha256": "4cce7128cca9df446c912b7d5084000aecd26f93a6881bc758c62917f4caea6f"
+    "sha256": "30777938303b9dc75969d45377fd46d62e332ef8222ca7b644785b4e4f95bc5d"
   },
   "hanlin_gitlink": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
   "mac_shared_composition": {
