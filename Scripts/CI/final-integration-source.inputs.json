@@ -1,6 +1,7 @@
 {
   "accepted_components": {
     "empty_note": "6b330a2964adf30932cfb7e86fc984068c7c5d10",
+    "hanlin_live_transcript_source": "9007179cc4da634dfee5588b06f227927362eaf4",
     "library": "74ae9510d90b50343e961967616e5630d1682295",
     "miniapps": "8cdc0c0833154e71af5047983c47115db0005e35",
     "native_share": "82c1bc16e49b76fd1e8cb16b5be9e0d643db8b57",
@@ -12,11 +13,11 @@
     "reader_designkit_composition": "abfb936361812a50ba19c60ad7c6ef7f7f90d668",
     "reader_source_actions": "b55dc047c29fd298a2262079724dab1712f74b2b"
   },
-  "application_source_sha": "abfb936361812a50ba19c60ad7c6ef7f7f90d668",
+  "application_source_sha": "9007179cc4da634dfee5588b06f227927362eaf4",
   "application_trees": {
-    "Maktabah-iOSUITests": "b862fc5efecb679fa3e930b4434df83ec1942666",
+    "Maktabah-iOSUITests": "0cb5ba233e55e62e649b8c5214ef1d1bf13e0cdf",
     "Maktabah.xcodeproj": "35e9feff47092409d9ea2cccb99afa8ebc3575a4",
-    "Source": "a74d68ae26ed3e837ff5504a84c97f6a4e39e67b",
+    "Source": "f44c8683f15a3448197fe4a3a3133a27f6d2294a",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -32,6 +33,25 @@
   },
   "product_delta": [
     {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 51717,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "9ec96bfee04f56f2836845663b0d1915bef48275",
+        "sha256": "6bfb5a3d66eb95a25a849bd18fd7fbd4c9c4ef3abbfbc3f3e2d0763307f7a547"
+      },
+      "before": {
+        "bytes": 51279,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "0ea8241d50712b3e01f2790ae7927047df0e49a4",
+        "sha256": "c8810b3f3c9ca42e71286f75dc255825b1a107f6baaf35ca45c93e7ff126b593"
+      },
+      "component": "hanlin_live_transcript_source",
+      "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift"
+    },
+    {
       "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
         "bytes": 99229,
@@ -43,6 +63,13 @@
       "before": null,
       "component_objects": {
         "empty_note": null,
+        "hanlin_live_transcript_source": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
+        },
         "library": null,
         "miniapps": {
           "bytes": 33785,
@@ -159,6 +186,13 @@
           "mode": "100644",
           "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
           "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
+        },
+        "hanlin_live_transcript_source": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
         "library": {
           "bytes": 4432,
@@ -506,6 +540,13 @@
           "object": "e13367ed199e31a5fa1a3b64fd2b7657c9510642",
           "sha256": "10784f7c6d55fc646ce6a8d2a1e5575f8cefbf841e64c3c806eeb930511dd5c3"
         },
+        "hanlin_live_transcript_source": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "library": {
           "bytes": 14652,
           "kind": "blob",
@@ -601,6 +642,13 @@
           "mode": "100644",
           "object": "a79cbb5419d5ed811b9b078926ff379238bbd3ab",
           "sha256": "d8bb718cb4ea62a7d7344bdde77bb43a486da301c7b02d77dc6d5203de8506fd"
+        },
+        "hanlin_live_transcript_source": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
         },
         "library": {
           "bytes": 18170,
@@ -737,6 +785,13 @@
           "object": "0bb33c1579b32389f11a2bb003b76ebfad9caaf5",
           "sha256": "fb43edb485fc2b99eae1d1a05aea667556c4c9a56c97fe3d26f3a6799193db31"
         },
+        "hanlin_live_transcript_source": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "library": {
           "bytes": 10832,
           "kind": "blob",
@@ -833,6 +888,13 @@
           "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
           "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
         },
+        "hanlin_live_transcript_source": {
+          "bytes": 38923,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
+          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
+        },
         "library": {
           "bytes": 38814,
           "kind": "blob",
@@ -914,11 +976,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 23279,
+        "bytes": 23345,
         "kind": "blob",
         "mode": "100644",
-        "object": "e55f071e968da05de07946e9fcc73842c19192d8",
-        "sha256": "265643c14396f1fd1794def68c9cf1aa348a14cd97a5ebe68abbe6a5938194fc"
+        "object": "542e7a2b4bb0ce9f43605a0ad26cb7ef70e8ad25",
+        "sha256": "e1f6e9e48ae0a48d1306a5ed20a2c07ffa6f57b1f309a12730d94766c56d460f"
       },
       "before": {
         "bytes": 22959,
@@ -927,7 +989,7 @@
         "object": "9956c8d5d4b9d618b9bb10e45cd347ac2dc91379",
         "sha256": "0e0c2837474533513762d37639bd5e49a0a44eb943c03da865460546b0b24c28"
       },
-      "component": "original_lifecycle_and_native_batch",
+      "component": "hanlin_live_transcript_source",
       "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift"
     },
     {
@@ -942,6 +1004,13 @@
       "before": null,
       "component_objects": {
         "empty_note": null,
+        "hanlin_live_transcript_source": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "library": null,
         "miniapps": {
           "bytes": 19883,
@@ -1027,6 +1096,13 @@
       "before": null,
       "component_objects": {
         "empty_note": null,
+        "hanlin_live_transcript_source": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
         "library": null,
         "miniapps": {
           "bytes": 6782,
@@ -1200,6 +1276,13 @@
           "object": "74cdb0174d3903ecca6d657d436507a8dddc4d6c",
           "sha256": "b6e0e9bc42140fd896a20a1ee6eb2f17d65d5b6dee3854a5b6869e78dcf23f1f"
         },
+        "hanlin_live_transcript_source": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        },
         "library": {
           "bytes": 22603,
           "kind": "blob",
@@ -1358,6 +1441,13 @@
           "mode": "100644",
           "object": "511a85ca4442f82c7f9edbe5303eacf073730017",
           "sha256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46"
+        },
+        "hanlin_live_transcript_source": {
+          "bytes": 352039,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
+          "sha256": "39400d65b2612496c5591f8ee482ec71b52f11dd94d23f03f964ec6503c03c39"
         },
         "library": {
           "bytes": 348941,
@@ -1753,6 +1843,11 @@
           "kind": "commit",
           "mode": "160000",
           "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
+        },
+        "hanlin_live_transcript_source": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
         },
         "library": {
           "kind": "commit",
