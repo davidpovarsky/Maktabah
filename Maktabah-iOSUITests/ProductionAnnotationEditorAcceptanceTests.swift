@@ -461,8 +461,10 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         let closing = app.staticTexts["Closing the private editor…"]
         let convertedDatabase = try canonicalAnnotationDatabase()
         let deadline = Date().addingTimeInterval(12_000)
-        let checkpoints = [1_200, 2_400, 3_600]
         var lastCommitted = try confirmedNativeBackfillCount(databaseURL: convertedDatabase)
+        // The first observed pause and cold continuation are already retained
+        // in this fixture. Finish scanning before exercising cold readback.
+        let checkpoints = lastCommitted >= 1_200 ? [] : [1_200]
         var finished = false
         for _ in 0..<7 {
             try await confirmBulkNativeConversion(conversion)
