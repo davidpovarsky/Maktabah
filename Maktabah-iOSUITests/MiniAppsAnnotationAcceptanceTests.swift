@@ -431,7 +431,9 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
 
         let existingRequests = Set(try records(in: shared).map { $0.request.id })
         tap(app.buttons["otzaria-note-miniapps"])
-        try await verifyPickerEditing(shared: shared)
+        if ProcessInfo.processInfo.environment["MINIAPPS_NATIVE_CALLBACK_ACCEPTANCE_ONLY"] != "1" {
+            try await verifyPickerEditing(shared: shared)
+        }
         let textStudio = app.buttons["miniapps-launch-nativeapp.textstudio"]
         if !textStudio.waitForExistence(timeout: 3) {
             tap(app.buttons["miniapps-more"])
