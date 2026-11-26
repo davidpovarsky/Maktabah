@@ -942,15 +942,18 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         }
         let current = try directory.synchronousScene(sceneID: owner.sceneID, context: owner.context,
             backend: backend.currentBackendSnapshot())
-        guard current.revision == receipt.appliedSceneRevision, current.visibleRoute == receipt.route,
+        guard current.revision >= receipt.appliedSceneRevision,
               current.backendSnapshot == receipt.backendSnapshot else {
-            #if DEBUG
-            OtzariaFileLogger.shared.log("[SemanticJourneyWitness] stage=reader-receipt"
-                + " sameRevision=\(current.revision == receipt.appliedSceneRevision)"
-                + " sameRoute=\(current.visibleRoute == receipt.route)"
-                + " sameBackend=\(current.backendSnapshot == receipt.backendSnapshot)")
-            #endif
             throw ActionPortError.staleState
+        }
+        // The native observer retires the request-specific route after commit.
+        // Verify the correlated receipt against the destination's live UIKit surface.
+        do { try entry.session.validateCompletedJourneySurface(receipt) }
+        catch {
+            #if DEBUG
+            OtzariaFileLogger.shared.log("[SemanticJourneyWitness] stage=reader-receipt liveCompletedSurface=false")
+            #endif
+            throw error
         }
         let observed = try hanlinSource(sceneID: owner.sceneID, entry: entry)
         guard observed.backend == owner.observation.backend,
@@ -979,15 +982,18 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         }
         let current = try directory.synchronousScene(sceneID: owner.sceneID, context: owner.context,
             backend: backend.currentBackendSnapshot())
-        guard current.revision == receipt.appliedSceneRevision, current.visibleRoute == receipt.route,
+        guard current.revision >= receipt.appliedSceneRevision,
               current.backendSnapshot == receipt.backendSnapshot else {
-            #if DEBUG
-            OtzariaFileLogger.shared.log("[SemanticJourneyWitness] stage=search-receipt"
-                + " sameRevision=\(current.revision == receipt.appliedSceneRevision)"
-                + " sameRoute=\(current.visibleRoute == receipt.route)"
-                + " sameBackend=\(current.backendSnapshot == receipt.backendSnapshot)")
-            #endif
             throw ActionPortError.staleState
+        }
+        // The native observer retires the request-specific route after commit.
+        // Verify the correlated receipt against the destination's live UIKit surface.
+        do { try entry.session.validateCompletedJourneySurface(receipt) }
+        catch {
+            #if DEBUG
+            OtzariaFileLogger.shared.log("[SemanticJourneyWitness] stage=search-receipt liveCompletedSurface=false")
+            #endif
+            throw error
         }
         let observed = try hanlinSource(sceneID: owner.sceneID, entry: entry)
         let prior = owner.observation

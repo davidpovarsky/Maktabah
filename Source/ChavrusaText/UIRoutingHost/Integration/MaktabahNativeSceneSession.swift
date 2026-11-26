@@ -60,6 +60,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     let workspaceProjectionSource: MaktabahNativeWorkspaceProjectionSource?
     private var lease: NativeSceneDirectory.Lease?
     private var command: UISceneCommand?
+    @ObservationIgnored private var lastCompletedSurface: (route: RouteSpec, evidence: NativeSurfaceWitness.Evidence)?
     var readerBinding: MaktabahNativeReaderBinding?
     var searchResultsBinding: MaktabahNativeSearchResultsBinding?
     @ObservationIgnored private weak var nativeSearchField: UISearchTextField?
@@ -360,6 +361,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         try presentation.begin(value)
         inspectorBinding = inspector
         retainedSearchField = field
+        lastCompletedSurface = nil
         command = value; submissionID = value.invocation.requestId
     }
 
@@ -741,14 +743,33 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
 
     func endObservation(requestID: UUID) {
         guard submissionID == requestID else { return }
+        if let command, let observed = visible[command.route.route.destination],
+           observed.isVisible, observed.submissionID == requestID,
+           observed.surface.observedRoute(for: command, backend: command.invocation.snapshot) == command.route.route {
+            lastCompletedSurface = (command.route.route, observed)
+        }
         presentation.end(requestID: requestID); submissionID = nil
         // Keep only the independently observed surface. Clear private request
         // metadata after its owner has validated the complete visible receipt.
         command = nil; retainedSearchField = nil; inspectorBinding = nil
     }
 
+    func validateCompletedJourneySurface(_ receipt: UISceneReceipt) throws {
+        guard mounted, foreground, isPresentationReady, receipt.sceneID == sceneID,
+              let completed = lastCompletedSurface, completed.route == receipt.route,
+              completed.evidence.submissionID == receipt.requestId,
+              let visible = visibilityChecks[receipt.route.destination]?(),
+              visible.isVisible, visible.sceneID == sceneID,
+              let kind = surfaceKind(receipt.route.destination), let actual = try surface(kind),
+              actual == visible.surface, actual == completed.evidence.surface,
+              kind != .reader || (try project().hasRenderedReaderEvidence(sceneID: sceneID)) else {
+            throw ActionPortError.staleState
+        }
+    }
+
     func unmount() {
         guard mounted else { return }
+        lastCompletedSurface = nil
         mounted = false; presentation.revoke(); submissionID = nil; command = nil; visible.removeAll(); visibilityChecks.removeAll()
         nativeSearchField = nil; retainedSearchField = nil; inspectorBinding = nil
         noteEditorOwner = nil; noteDraftBinding = nil
