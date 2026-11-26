@@ -1,0 +1,782 @@
+{
+  "engine": "zayit",
+  "artifactIdentity": "17cabb80e86ac8c2d1a3ce16a4e1457d4351709798f2b91a84120d4dd0c6c480",
+  "tag": "zayit-search-data-v40-20261123094345-17cabb80e86a",
+  "title": "Zayit search data v40-20261123094345",
+  "sourceHost": "torah-social",
+  "sourceDirectory": "/mnt/development/projects/worktrees/Maktabah-core-final-20261126/build/zayit-v40-source/artifact-v40",
+  "releasePage": "https://github.com/davidpovarsky/Maktabah/releases/tag/zayit-search-data-v40-20261123094345-17cabb80e86a",
+  "tagLookupAPI": "https://api.github.com/repos/davidpovarsky/Maktabah/releases/tags/zayit-search-data-v40-20261123094345-17cabb80e86a",
+  "downloadBaseURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a",
+  "manifest": {
+    "name": "zayit-search-manifest.json",
+    "bytes": 25766,
+    "sha256": "577176375f735af240d8a1e84f0a1ad23bf18018ae4c0f716e8acb142d8d8691",
+    "role": "manifest",
+    "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-search-manifest.json"
+  },
+  "verifiedPackagingReceipt": {
+    "path": "/mnt/development/projects/worktrees/Maktabah-core-final-20261126/build/zayit-v40-source/ZAYIT_V40_PACKAGE_RECEIPT.json",
+    "sha256": "e086bd03a07d25b93598dc38294c80322d090d9881fb3ad7e859c6643ca4b4fc"
+  },
+  "assetCount": 76,
+  "compressedIndexBytes": 3159917458,
+  "uploadBytes": 3159943522,
+  "largestAssetBytes": 436703806,
+  "assets": [
+    {
+      "name": "zayit-search-manifest.json",
+      "bytes": 25766,
+      "sha256": "577176375f735af240d8a1e84f0a1ad23bf18018ae4c0f716e8acb142d8d8691",
+      "role": "manifest",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-search-manifest.json"
+    },
+    {
+      "name": "zayit-search-build-metrics.json",
+      "bytes": 298,
+      "sha256": "0b4f7d2a170d491e25e00d0c7a32c8950fec3af88d169831f4f0b3a70e870b26",
+      "role": "buildMetrics",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-search-build-metrics.json"
+    },
+    {
+      "name": "zayit-index-0000.zst",
+      "bytes": 3104199,
+      "sha256": "632dcfc940cb8df513afab164561aed39279ba44f9a27a1d906c4b2d7675fc21",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0000.zst",
+      "destinationPath": "0cd8bcbb2d444ae6878da56407cff626.fast",
+      "destinationOffset": 0,
+      "uncompressedBytes": 11754165
+    },
+    {
+      "name": "zayit-index-0001.zst",
+      "bytes": 1814435,
+      "sha256": "b57dab3baa3e3c846e1c4c12ec1c2681276e6f9525bce868d153884a5776ce40",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0001.zst",
+      "destinationPath": "0cd8bcbb2d444ae6878da56407cff626.fieldnorm",
+      "destinationOffset": 0,
+      "uncompressedBytes": 15360193
+    },
+    {
+      "name": "zayit-index-0002.zst",
+      "bytes": 294292080,
+      "sha256": "59b523d76f63e8d93bba56612db3ce01e306f5b56ac90546bc8be118a61c5087",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0002.zst",
+      "destinationPath": "0cd8bcbb2d444ae6878da56407cff626.idx",
+      "destinationOffset": 0,
+      "uncompressedBytes": 399782081
+    },
+    {
+      "name": "zayit-index-0003.zst",
+      "bytes": 436703806,
+      "sha256": "2bd184ee8ea167cb1e2df08eac7ca0aa0b843ccd8333f7a437a26d552fe1303e",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0003.zst",
+      "destinationPath": "0cd8bcbb2d444ae6878da56407cff626.pos",
+      "destinationOffset": 0,
+      "uncompressedBytes": 479770374
+    },
+    {
+      "name": "zayit-index-0004.zst",
+      "bytes": 1975402,
+      "sha256": "64eeb25b9db1ac472a37763721f42265a8070cf519e5f2eba6b77d6088fb3d2d",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0004.zst",
+      "destinationPath": "0cd8bcbb2d444ae6878da56407cff626.store",
+      "destinationOffset": 0,
+      "uncompressedBytes": 18683639
+    },
+    {
+      "name": "zayit-index-0005.zst",
+      "bytes": 7124693,
+      "sha256": "4800ed00605ee336fcb88b1f9c9bcac8a92278baa9cddc559bcaf39d5c577777",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0005.zst",
+      "destinationPath": "0cd8bcbb2d444ae6878da56407cff626.term",
+      "destinationOffset": 0,
+      "uncompressedBytes": 14040981
+    },
+    {
+      "name": "zayit-index-0006.zst",
+      "bytes": 12497,
+      "sha256": "db0ca83835e6efbd803d73b2cef218887fec240fcae6de14239957241d30b84f",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0006.zst",
+      "destinationPath": "18a72915de4b454daf49652839062ea8.fast",
+      "destinationOffset": 0,
+      "uncompressedBytes": 121907
+    },
+    {
+      "name": "zayit-index-0007.zst",
+      "bytes": 21223,
+      "sha256": "3665c8936d92dbb3706aff5bf6b6fdc6ca01316f6a58655835f1e1f19755e9ca",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0007.zst",
+      "destinationPath": "18a72915de4b454daf49652839062ea8.fieldnorm",
+      "destinationOffset": 0,
+      "uncompressedBytes": 240193
+    },
+    {
+      "name": "zayit-index-0008.zst",
+      "bytes": 2426471,
+      "sha256": "2146fe8e457e3f8b71772e3a0a40a6a1b37f33502f4228038c3e0e10f9acdca9",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0008.zst",
+      "destinationPath": "18a72915de4b454daf49652839062ea8.idx",
+      "destinationOffset": 0,
+      "uncompressedBytes": 3557238
+    },
+    {
+      "name": "zayit-index-0009.zst",
+      "bytes": 3255107,
+      "sha256": "bd71e27312ddf6ef688a79519579808b995b12d60f44a201a45dfe01b1934798",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0009.zst",
+      "destinationPath": "18a72915de4b454daf49652839062ea8.pos",
+      "destinationOffset": 0,
+      "uncompressedBytes": 3565067
+    },
+    {
+      "name": "zayit-index-0010.zst",
+      "bytes": 13357,
+      "sha256": "d9a8272478ea8d357988756caf5df9fffb71c9932bf390516e5ccd59b5f4bd55",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0010.zst",
+      "destinationPath": "18a72915de4b454daf49652839062ea8.store",
+      "destinationOffset": 0,
+      "uncompressedBytes": 275824
+    },
+    {
+      "name": "zayit-index-0011.zst",
+      "bytes": 672504,
+      "sha256": "2029c2cb0eb1826253579bc28adf91ad0f870961b1043a25db683f4f8a058bde",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0011.zst",
+      "destinationPath": "18a72915de4b454daf49652839062ea8.term",
+      "destinationOffset": 0,
+      "uncompressedBytes": 1042254
+    },
+    {
+      "name": "zayit-index-0012.zst",
+      "bytes": 4885681,
+      "sha256": "9648d53a8ee62dde4978ca71482b77c7077bf38737b3ffad153ef717f60ab831",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0012.zst",
+      "destinationPath": "223352e3689a4a24b5f6a7e36b97158f.fast",
+      "destinationOffset": 0,
+      "uncompressedBytes": 13967235
+    },
+    {
+      "name": "zayit-index-0013.zst",
+      "bytes": 1806770,
+      "sha256": "a70583d050cdc46b277372e2b3cca46f85dcc90e6f61ab8bb61a988f7e2c3afa",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0013.zst",
+      "destinationPath": "223352e3689a4a24b5f6a7e36b97158f.fieldnorm",
+      "destinationOffset": 0,
+      "uncompressedBytes": 15360193
+    },
+    {
+      "name": "zayit-index-0014.zst",
+      "bytes": 182939927,
+      "sha256": "1bc188cb586472ce80f6a0c2ee4aecf638ddac4f2cc92fd74522dc694d628a4a",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0014.zst",
+      "destinationPath": "223352e3689a4a24b5f6a7e36b97158f.idx",
+      "destinationOffset": 0,
+      "uncompressedBytes": 252316375
+    },
+    {
+      "name": "zayit-index-0015.zst",
+      "bytes": 231196004,
+      "sha256": "41f2b1c0f8f4463dabd41a6c1e26e5a9b6ba5dd1434eda8b43d51aa87329a834",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0015.zst",
+      "destinationPath": "223352e3689a4a24b5f6a7e36b97158f.pos",
+      "destinationOffset": 0,
+      "uncompressedBytes": 259013804
+    },
+    {
+      "name": "zayit-index-0016.zst",
+      "bytes": 4086300,
+      "sha256": "24b9ad7f5b1bf0b907f7151b0b8b0cca7fe287c1f3c782ee3b091a3e2491fbb0",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0016.zst",
+      "destinationPath": "223352e3689a4a24b5f6a7e36b97158f.store",
+      "destinationOffset": 0,
+      "uncompressedBytes": 19741763
+    },
+    {
+      "name": "zayit-index-0017.zst",
+      "bytes": 5840753,
+      "sha256": "3bf173240e99485ba4386a7ca7c5757bc5ec0531ec08c3e1dcd9570a5f785405",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0017.zst",
+      "destinationPath": "223352e3689a4a24b5f6a7e36b97158f.term",
+      "destinationOffset": 0,
+      "uncompressedBytes": 11978496
+    },
+    {
+      "name": "zayit-index-0018.zst",
+      "bytes": 485920,
+      "sha256": "2bf926110407acc7529458a58664689e88da85c8aec80980cd93d1b20a84e004",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0018.zst",
+      "destinationPath": "23581d1dbd494b6484165ae601befa7d.fast",
+      "destinationOffset": 0,
+      "uncompressedBytes": 1381267
+    },
+    {
+      "name": "zayit-index-0019.zst",
+      "bytes": 237096,
+      "sha256": "93cdaf5010c1e3e6438b2f2f68e88a051638ceebe7eb52feff174d23eb602da5",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0019.zst",
+      "destinationPath": "23581d1dbd494b6484165ae601befa7d.fieldnorm",
+      "destinationOffset": 0,
+      "uncompressedBytes": 1920193
+    },
+    {
+      "name": "zayit-index-0020.zst",
+      "bytes": 27042004,
+      "sha256": "a3a45b8dbf9f46f2e7dab12783fd92f7c3a34b3e94b2ab1e82371e85c31330f2",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0020.zst",
+      "destinationPath": "23581d1dbd494b6484165ae601befa7d.idx",
+      "destinationOffset": 0,
+      "uncompressedBytes": 36917787
+    },
+    {
+      "name": "zayit-index-0021.zst",
+      "bytes": 33817410,
+      "sha256": "1057f01dfc52f26a57204ae7e6a226eb68be330d75e5984c7d9f4720b712e60d",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0021.zst",
+      "destinationPath": "23581d1dbd494b6484165ae601befa7d.pos",
+      "destinationOffset": 0,
+      "uncompressedBytes": 37246543
+    },
+    {
+      "name": "zayit-index-0022.zst",
+      "bytes": 349720,
+      "sha256": "071a1be9eed79a73e89ff5d5097ee0cb510edb4834dba61d94909647647b1cef",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0022.zst",
+      "destinationPath": "23581d1dbd494b6484165ae601befa7d.store",
+      "destinationOffset": 0,
+      "uncompressedBytes": 2409528
+    },
+    {
+      "name": "zayit-index-0023.zst",
+      "bytes": 2164755,
+      "sha256": "81399a9a0ab119296adfa847776abde8dda64d4dfc2a24365be28431f84fc688",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0023.zst",
+      "destinationPath": "23581d1dbd494b6484165ae601befa7d.term",
+      "destinationOffset": 0,
+      "uncompressedBytes": 3470583
+    },
+    {
+      "name": "zayit-index-0024.zst",
+      "bytes": 1854638,
+      "sha256": "00b8aed6b146f0a2d3691a5fbcbd3b24e4f498fd8caa1a64ed67599a3d4d532b",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0024.zst",
+      "destinationPath": "2662ff535e584797b5b8e5f7ea3b8f48.fast",
+      "destinationOffset": 0,
+      "uncompressedBytes": 9142599
+    },
+    {
+      "name": "zayit-index-0025.zst",
+      "bytes": 1728596,
+      "sha256": "990ee6e1ea2e21d5763afa3cf403fff76e8cfb01127aa2eaa7c6acccf81c3225",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0025.zst",
+      "destinationPath": "2662ff535e584797b5b8e5f7ea3b8f48.fieldnorm",
+      "destinationOffset": 0,
+      "uncompressedBytes": 15360192
+    },
+    {
+      "name": "zayit-index-0026.zst",
+      "bytes": 242747938,
+      "sha256": "32e5df454e900c81ce7e4f6c01fb628a06f7b9e41a0bbd0f90d9a48a121bde9e",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0026.zst",
+      "destinationPath": "2662ff535e584797b5b8e5f7ea3b8f48.idx",
+      "destinationOffset": 0,
+      "uncompressedBytes": 330006498
+    },
+    {
+      "name": "zayit-index-0027.zst",
+      "bytes": 313448696,
+      "sha256": "f3b410fe571b72b0e296967c8c69eaa75ecb5eab731dc1359e5217b8fe0e7fcd",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0027.zst",
+      "destinationPath": "2662ff535e584797b5b8e5f7ea3b8f48.pos",
+      "destinationOffset": 0,
+      "uncompressedBytes": 343351647
+    },
+    {
+      "name": "zayit-index-0028.zst",
+      "bytes": 1786892,
+      "sha256": "c90ffa0be00be6f0bdf669f4d1cbf48c4cea07fb8e2c6eb45b0b028830bd89e1",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0028.zst",
+      "destinationPath": "2662ff535e584797b5b8e5f7ea3b8f48.store",
+      "destinationOffset": 0,
+      "uncompressedBytes": 18504763
+    },
+    {
+      "name": "zayit-index-0029.zst",
+      "bytes": 7156333,
+      "sha256": "28b5d41f473dd90d65872cd7f2bc27150f5b4c92f338728fc680e7cb412e9063",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0029.zst",
+      "destinationPath": "2662ff535e584797b5b8e5f7ea3b8f48.term",
+      "destinationOffset": 0,
+      "uncompressedBytes": 14001196
+    },
+    {
+      "name": "zayit-index-0030.zst",
+      "bytes": 3979006,
+      "sha256": "0e6823e471ea9a605239b7d156e6134b3387e0d907d27e53943bfa2cdcacfd86",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0030.zst",
+      "destinationPath": "4fc1e74562a2451da95457b760d5f6da.fast",
+      "destinationOffset": 0,
+      "uncompressedBytes": 13228463
+    },
+    {
+      "name": "zayit-index-0031.zst",
+      "bytes": 1756858,
+      "sha256": "82def2094efd769841c7c6d672554fa1f71a462d479c1b43fca31ce7105d3c84",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0031.zst",
+      "destinationPath": "4fc1e74562a2451da95457b760d5f6da.fieldnorm",
+      "destinationOffset": 0,
+      "uncompressedBytes": 15360193
+    },
+    {
+      "name": "zayit-index-0032.zst",
+      "bytes": 158447529,
+      "sha256": "c4357a09615e8cc1b2dde1d5b5e071f367d59a49df662c16b4e5bf261bbc67b6",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0032.zst",
+      "destinationPath": "4fc1e74562a2451da95457b760d5f6da.idx",
+      "destinationOffset": 0,
+      "uncompressedBytes": 214867893
+    },
+    {
+      "name": "zayit-index-0033.zst",
+      "bytes": 171125805,
+      "sha256": "dd43b0362919908c3ca7864a6d4f5dfb5131ae353627476f98835fa2a2e76bb3",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0033.zst",
+      "destinationPath": "4fc1e74562a2451da95457b760d5f6da.pos",
+      "destinationOffset": 0,
+      "uncompressedBytes": 191802243
+    },
+    {
+      "name": "zayit-index-0034.zst",
+      "bytes": 3276478,
+      "sha256": "78d2edcf0c4028fc089748ff06596bfd73d04f58a6418cf9bd5aeed4be53efbb",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0034.zst",
+      "destinationPath": "4fc1e74562a2451da95457b760d5f6da.store",
+      "destinationOffset": 0,
+      "uncompressedBytes": 19065387
+    },
+    {
+      "name": "zayit-index-0035.zst",
+      "bytes": 5907150,
+      "sha256": "d7d713a5fafb9d310ec14556c507e3057d3cea45fb30f3db1e57bc26de68a683",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0035.zst",
+      "destinationPath": "4fc1e74562a2451da95457b760d5f6da.term",
+      "destinationOffset": 0,
+      "uncompressedBytes": 12087807
+    },
+    {
+      "name": "zayit-index-0036.zst",
+      "bytes": 3134,
+      "sha256": "8ad029a21d907df4b6dbd795ad4a81cdaed8ef1fcb46e6a216d492758e28f914",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0036.zst",
+      "destinationPath": "5b36dbbc38a945bf84e4c5a695a6d0d4.fast",
+      "destinationOffset": 0,
+      "uncompressedBytes": 125288
+    },
+    {
+      "name": "zayit-index-0037.zst",
+      "bytes": 20387,
+      "sha256": "db21519f51793dab979c23ee33ff60f816409e938ed31f4ae1f624d1e3a44af1",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0037.zst",
+      "destinationPath": "5b36dbbc38a945bf84e4c5a695a6d0d4.fieldnorm",
+      "destinationOffset": 0,
+      "uncompressedBytes": 240193
+    },
+    {
+      "name": "zayit-index-0038.zst",
+      "bytes": 3085086,
+      "sha256": "a9e7b877d17aa2abda20b4fa0c6d36cffc2d85b49e9a6a99faabae76ddf88773",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0038.zst",
+      "destinationPath": "5b36dbbc38a945bf84e4c5a695a6d0d4.idx",
+      "destinationOffset": 0,
+      "uncompressedBytes": 4448004
+    },
+    {
+      "name": "zayit-index-0039.zst",
+      "bytes": 4987090,
+      "sha256": "a5c4785ffcfcc98526b6be76e0c86c9d1316f90c633d2ec584a5f7f91ea9af2b",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0039.zst",
+      "destinationPath": "5b36dbbc38a945bf84e4c5a695a6d0d4.pos",
+      "destinationOffset": 0,
+      "uncompressedBytes": 5454129
+    },
+    {
+      "name": "zayit-index-0040.zst",
+      "bytes": 12071,
+      "sha256": "974040bccfdb7ce765de563f6bff0feb350cbdd007c402a4dd3f1f923b5c5c01",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0040.zst",
+      "destinationPath": "5b36dbbc38a945bf84e4c5a695a6d0d4.store",
+      "destinationOffset": 0,
+      "uncompressedBytes": 277208
+    },
+    {
+      "name": "zayit-index-0041.zst",
+      "bytes": 790503,
+      "sha256": "2e3163eb3a4e4a57b359e0b94e020c60902821c9c63d0c565e654d6d049219b3",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0041.zst",
+      "destinationPath": "5b36dbbc38a945bf84e4c5a695a6d0d4.term",
+      "destinationOffset": 0,
+      "uncompressedBytes": 1203751
+    },
+    {
+      "name": "zayit-index-0042.zst",
+      "bytes": 2047135,
+      "sha256": "945d23b5a092594cb7a69608848b053f61d756569c24a4814f9f85f02f1d48d1",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0042.zst",
+      "destinationPath": "ae0a2b1ffdbd4542851d9b1b223c95dd.fast",
+      "destinationOffset": 0,
+      "uncompressedBytes": 9479176
+    },
+    {
+      "name": "zayit-index-0043.zst",
+      "bytes": 1886739,
+      "sha256": "0a12e1b7a47e3dda7c62f0c343d1902d6cda3dcf42cf69f1616bdfaeea87a9f8",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0043.zst",
+      "destinationPath": "ae0a2b1ffdbd4542851d9b1b223c95dd.fieldnorm",
+      "destinationOffset": 0,
+      "uncompressedBytes": 15360193
+    },
+    {
+      "name": "zayit-index-0044.zst",
+      "bytes": 190337179,
+      "sha256": "dea50d9d6760ac12ad3b3e778061630568995904b5380219f7ab6d37ddcff99c",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0044.zst",
+      "destinationPath": "ae0a2b1ffdbd4542851d9b1b223c95dd.idx",
+      "destinationOffset": 0,
+      "uncompressedBytes": 265877293
+    },
+    {
+      "name": "zayit-index-0045.zst",
+      "bytes": 226064075,
+      "sha256": "9627b5774946f2fcfbdda55a77095d271c43815bf36055fb39709f1edb7311f7",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0045.zst",
+      "destinationPath": "ae0a2b1ffdbd4542851d9b1b223c95dd.pos",
+      "destinationOffset": 0,
+      "uncompressedBytes": 247249602
+    },
+    {
+      "name": "zayit-index-0046.zst",
+      "bytes": 1464965,
+      "sha256": "0754ab51a213d8352c60b8e7dfbfe827b308eccfba454ad501d0fbac3d7c36ed",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0046.zst",
+      "destinationPath": "ae0a2b1ffdbd4542851d9b1b223c95dd.store",
+      "destinationOffset": 0,
+      "uncompressedBytes": 18717611
+    },
+    {
+      "name": "zayit-index-0047.zst",
+      "bytes": 5949904,
+      "sha256": "5c90cea1fbea59908176cbca6659f6fc3ef45cec49d97f4e125769aa81df5fd2",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0047.zst",
+      "destinationPath": "ae0a2b1ffdbd4542851d9b1b223c95dd.term",
+      "destinationOffset": 0,
+      "uncompressedBytes": 11378946
+    },
+    {
+      "name": "zayit-index-0048.zst",
+      "bytes": 12094,
+      "sha256": "35e94949b38fababd0a75d1b1663d46fa7b64c7679ed0bcfde7b1a98cf39dc46",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0048.zst",
+      "destinationPath": "b8932c336de44d69aba389040576eb34.fast",
+      "destinationOffset": 0,
+      "uncompressedBytes": 68614
+    },
+    {
+      "name": "zayit-index-0049.zst",
+      "bytes": 10656,
+      "sha256": "01f8b988efcea648433c5beb8a6f973173ac081d3fe1bd806a0e135d5733de2e",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0049.zst",
+      "destinationPath": "b8932c336de44d69aba389040576eb34.fieldnorm",
+      "destinationOffset": 0,
+      "uncompressedBytes": 123613
+    },
+    {
+      "name": "zayit-index-0050.zst",
+      "bytes": 603597,
+      "sha256": "ad122fc92b1dcb2787a31150c70850074ec85c12dd6c0f7ae71f8301e83cdc5f",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0050.zst",
+      "destinationPath": "b8932c336de44d69aba389040576eb34.idx",
+      "destinationOffset": 0,
+      "uncompressedBytes": 1004102
+    },
+    {
+      "name": "zayit-index-0051.zst",
+      "bytes": 596978,
+      "sha256": "e468424d34143edd64bfe8c9397ae0f1e470a28ec8418513b5b31ce036e33030",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0051.zst",
+      "destinationPath": "b8932c336de44d69aba389040576eb34.pos",
+      "destinationOffset": 0,
+      "uncompressedBytes": 672928
+    },
+    {
+      "name": "zayit-index-0052.zst",
+      "bytes": 11413,
+      "sha256": "c1e3f4666187819bdf5adb644afe7986ba8e73c4eba9fc07fcc200a941622e7c",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0052.zst",
+      "destinationPath": "b8932c336de44d69aba389040576eb34.store",
+      "destinationOffset": 0,
+      "uncompressedBytes": 145922
+    },
+    {
+      "name": "zayit-index-0053.zst",
+      "bytes": 313631,
+      "sha256": "05d9b65347b874ed3dd252e51bf29546d71268018defbb4f78fdd4be4acded21",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0053.zst",
+      "destinationPath": "b8932c336de44d69aba389040576eb34.term",
+      "destinationOffset": 0,
+      "uncompressedBytes": 484588
+    },
+    {
+      "name": "zayit-index-0054.zst",
+      "bytes": 3203236,
+      "sha256": "808169ccbf88da66ff9528cdced488d3d2297a5d34d07d49c2a416ef60f0d224",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0054.zst",
+      "destinationPath": "c320db8ff16049a8a3d144602eac97f6.fast",
+      "destinationOffset": 0,
+      "uncompressedBytes": 11595088
+    },
+    {
+      "name": "zayit-index-0055.zst",
+      "bytes": 1864702,
+      "sha256": "c03e2a8b8b44c977c1f78d90c8b2e1ecb93b426946168c55cffdf33615aaaa71",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0055.zst",
+      "destinationPath": "c320db8ff16049a8a3d144602eac97f6.fieldnorm",
+      "destinationOffset": 0,
+      "uncompressedBytes": 15360193
+    },
+    {
+      "name": "zayit-index-0056.zst",
+      "bytes": 227510972,
+      "sha256": "b04607b998d978405ec704d0e4306d5fc8bdd25eee368868f2a92be1dad91a57",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0056.zst",
+      "destinationPath": "c320db8ff16049a8a3d144602eac97f6.idx",
+      "destinationOffset": 0,
+      "uncompressedBytes": 311668553
+    },
+    {
+      "name": "zayit-index-0057.zst",
+      "bytes": 307727623,
+      "sha256": "f9e6fd16983bd576ae7023c97ddbc44bffa70056d502e31ecb275d16f8fe9286",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0057.zst",
+      "destinationPath": "c320db8ff16049a8a3d144602eac97f6.pos",
+      "destinationOffset": 0,
+      "uncompressedBytes": 336072522
+    },
+    {
+      "name": "zayit-index-0058.zst",
+      "bytes": 2386095,
+      "sha256": "b13c913fc461066f136303f7767b0ce5c059eabdcfbedafd9094602d9e14265d",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0058.zst",
+      "destinationPath": "c320db8ff16049a8a3d144602eac97f6.store",
+      "destinationOffset": 0,
+      "uncompressedBytes": 18650988
+    },
+    {
+      "name": "zayit-index-0059.zst",
+      "bytes": 6588139,
+      "sha256": "6edba781c0b37bc509a4a8b1fa911c1ab8319bdbda4b3f68130165b81ec6d048",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0059.zst",
+      "destinationPath": "c320db8ff16049a8a3d144602eac97f6.term",
+      "destinationOffset": 0,
+      "uncompressedBytes": 14822745
+    },
+    {
+      "name": "zayit-index-0060.zst",
+      "bytes": 27831,
+      "sha256": "fe198be024ff4c0d14bba3373195d146cbf24b316219910ab031e3d3df209de0",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0060.zst",
+      "destinationPath": "f68ccceda02942d4a8f114e7237f9b70.fast",
+      "destinationOffset": 0,
+      "uncompressedBytes": 113900
+    },
+    {
+      "name": "zayit-index-0061.zst",
+      "bytes": 20828,
+      "sha256": "f5d490f578ad6ece5fea2a48a9568cd00043481d142fc110db8618817bdaaa8a",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0061.zst",
+      "destinationPath": "f68ccceda02942d4a8f114e7237f9b70.fieldnorm",
+      "destinationOffset": 0,
+      "uncompressedBytes": 240193
+    },
+    {
+      "name": "zayit-index-0062.zst",
+      "bytes": 1401028,
+      "sha256": "d76f35d9ad13fd032af1b119d63c4a3a751ef749a26498c128601a52325fff60",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0062.zst",
+      "destinationPath": "f68ccceda02942d4a8f114e7237f9b70.idx",
+      "destinationOffset": 0,
+      "uncompressedBytes": 2105368
+    },
+    {
+      "name": "zayit-index-0063.zst",
+      "bytes": 1419078,
+      "sha256": "646f5a9f1657246428e72974466660eed2002960b0b7682a9a9a29136767ba70",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0063.zst",
+      "destinationPath": "f68ccceda02942d4a8f114e7237f9b70.pos",
+      "destinationOffset": 0,
+      "uncompressedBytes": 1587771
+    },
+    {
+      "name": "zayit-index-0064.zst",
+      "bytes": 23184,
+      "sha256": "de607f46737d6d683e389c45b0434f842d9953cf772de366338cac7b6d20b70c",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0064.zst",
+      "destinationPath": "f68ccceda02942d4a8f114e7237f9b70.store",
+      "destinationOffset": 0,
+      "uncompressedBytes": 275619
+    },
+    {
+      "name": "zayit-index-0065.zst",
+      "bytes": 513269,
+      "sha256": "df101e5286c2c190f33f7f080a6cabd35b3eab2ffec8c7c2fc06af04b4329719",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0065.zst",
+      "destinationPath": "f68ccceda02942d4a8f114e7237f9b70.term",
+      "destinationOffset": 0,
+      "uncompressedBytes": 834373
+    },
+    {
+      "name": "zayit-index-0066.zst",
+      "bytes": 20560,
+      "sha256": "509d2679c7678d9f99ca11a24258c107d06c77b699cc2f9faccd9bd2f85f5f51",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0066.zst",
+      "destinationPath": "fa371c2dbbbc4c17847c6f7b5e8f058f.fast",
+      "destinationOffset": 0,
+      "uncompressedBytes": 114148
+    },
+    {
+      "name": "zayit-index-0067.zst",
+      "bytes": 20804,
+      "sha256": "4507f82a9f60b30d0f5084f11f49f2fcdffef1eeb2c063b92c6aea4f9c3b6716",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0067.zst",
+      "destinationPath": "fa371c2dbbbc4c17847c6f7b5e8f058f.fieldnorm",
+      "destinationOffset": 0,
+      "uncompressedBytes": 240193
+    },
+    {
+      "name": "zayit-index-0068.zst",
+      "bytes": 3424503,
+      "sha256": "32b5f0e8b97801e46fae4878063d23b6b90fe10bdeff63af9f29ead52b1c6e88",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0068.zst",
+      "destinationPath": "fa371c2dbbbc4c17847c6f7b5e8f058f.idx",
+      "destinationOffset": 0,
+      "uncompressedBytes": 4922983
+    },
+    {
+      "name": "zayit-index-0069.zst",
+      "bytes": 5256985,
+      "sha256": "95d70d26b41e1998c0c8fdcdc891aaa02b562a1b8c0640b3b4846fafe24a93ec",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0069.zst",
+      "destinationPath": "fa371c2dbbbc4c17847c6f7b5e8f058f.pos",
+      "destinationOffset": 0,
+      "uncompressedBytes": 5727518
+    },
+    {
+      "name": "zayit-index-0070.zst",
+      "bytes": 21114,
+      "sha256": "1c0c7e0b5dace771c604552470140d351f2aba5ef3eef4577d7ae8daa9b25a98",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0070.zst",
+      "destinationPath": "fa371c2dbbbc4c17847c6f7b5e8f058f.store",
+      "destinationOffset": 0,
+      "uncompressedBytes": 274125
+    },
+    {
+      "name": "zayit-index-0071.zst",
+      "bytes": 805537,
+      "sha256": "173f7eaa929c21ab31961d37ce674aa3d1715d622aaa01c46ab8e1d5b53a8437",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0071.zst",
+      "destinationPath": "fa371c2dbbbc4c17847c6f7b5e8f058f.term",
+      "destinationOffset": 0,
+      "uncompressedBytes": 1237118
+    },
+    {
+      "name": "zayit-index-0072.zst",
+      "bytes": 747,
+      "sha256": "18cf42c73a9465260defe46939f81740fa629ede886329274b34194935f167af",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0072.zst",
+      "destinationPath": "meta.json",
+      "destinationOffset": 0,
+      "uncompressedBytes": 4348
+    },
+    {
+      "name": "zayit-index-0073.zst",
+      "bytes": 553,
+      "sha256": "f292c8f05541473abbbf64b7c11c887f3016b2f3ac2247253e0df96554ab2bb7",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-index-0073.zst",
+      "destinationPath": "zayit-index-metadata.json",
+      "destinationOffset": 0,
+      "uncompressedBytes": 977
+    }
+  ]
+}

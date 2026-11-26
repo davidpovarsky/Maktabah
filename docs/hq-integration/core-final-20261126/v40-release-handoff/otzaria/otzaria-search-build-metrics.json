@@ -1,0 +1,23 @@
+{
+  "artifactIdentity": "f8fea8efcac5fc06b272a061b44f0e0ee66d16ae12f1e864f9510e437e929139",
+  "buildDurationSeconds": 1963.0,
+  "bytesBeforeOptimize": 6778981087,
+  "databaseBytes": 4355063808,
+  "documentCount": 7925185,
+  "fileCount": 7,
+  "finalOptimizedIndexBytes": 5696232697,
+  "formatVersion": 1,
+  "freeDiskAtStartBytes": null,
+  "generatedAtEpoch": 1795658895,
+  "installPeakAdditionalBytes": 10920299867,
+  "omittedRuntimeLockFiles": [
+    ".tantivy-meta.lock",
+    ".tantivy-writer.lock"
+  ],
+  "optimizeDurationSeconds": 493.9690999984741,
+  "packageBytes": 4150325346,
+  "peakBuildWorkspaceBytes": 13306327040,
+  "segmentsAfterOptimize": 1,
+  "segmentsBeforeOptimize": 4697,
+  "sourceCount": 8259
+}

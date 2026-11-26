@@ -1,0 +1,11 @@
+{
+  "artifactIdentity": "17cabb80e86ac8c2d1a3ce16a4e1457d4351709798f2b91a84120d4dd0c6c480",
+  "books": 8259,
+  "compressedBytes": 3159917458,
+  "databaseBytes": 4355063808,
+  "documents": 7930286,
+  "indexBytes": 4108856448,
+  "lines": 7920224,
+  "peakBuildWorkspaceBytes": 0,
+  "splitLines": 19
+}

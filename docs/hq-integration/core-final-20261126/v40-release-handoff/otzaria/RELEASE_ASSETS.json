@@ -1,0 +1,192 @@
+{
+  "engine": "otzaria",
+  "artifactIdentity": "f8fea8efcac5fc06b272a061b44f0e0ee66d16ae12f1e864f9510e437e929139",
+  "tag": "otzaria-search-data-v40-20261123094345-f8fea8efcac5",
+  "title": "Otzaria search data v40-20261123094345",
+  "sourceHost": "scaleway-mac",
+  "sourceDirectory": "/Users/m1/builds/otzaria-core-20261126/otzaria-lexical-producer/attempt-20261126T021159-23772/package-v40/artifact",
+  "releasePage": "https://github.com/davidpovarsky/Maktabah/releases/tag/otzaria-search-data-v40-20261123094345-f8fea8efcac5",
+  "tagLookupAPI": "https://api.github.com/repos/davidpovarsky/Maktabah/releases/tags/otzaria-search-data-v40-20261123094345-f8fea8efcac5",
+  "downloadBaseURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5",
+  "manifest": {
+    "name": "otzaria-search-manifest.json",
+    "bytes": 7413,
+    "sha256": "c10824ac3cc38514b64cb59e0c588c8b56d5d86ac3213bcd56bd75048cfb2b8b",
+    "role": "manifest",
+    "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-search-manifest.json"
+  },
+  "verifiedPackagingReceipt": {
+    "path": "/Users/m1/builds/otzaria-core-20261126/otzaria-lexical-producer/attempt-20261126T021159-23772/package-v40/OTZARIA_V40_PACKAGE_RECEIPT.json",
+    "sha256": "0e96add34b6465f3cb17910940aae9994739211757e134344ddf6e6ef9863121"
+  },
+  "assetCount": 17,
+  "compressedIndexBytes": 4150325346,
+  "uploadBytes": 4150333471,
+  "largestAssetBytes": 478203591,
+  "assets": [
+    {
+      "name": "otzaria-search-manifest.json",
+      "bytes": 7413,
+      "sha256": "c10824ac3cc38514b64cb59e0c588c8b56d5d86ac3213bcd56bd75048cfb2b8b",
+      "role": "manifest",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-search-manifest.json"
+    },
+    {
+      "name": "otzaria-search-build-metrics.json",
+      "bytes": 712,
+      "sha256": "6791fde9421e7095ba77c0aceb067e6abb0268399a497f12cbafdd8aff49b789",
+      "role": "buildMetrics",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-search-build-metrics.json"
+    },
+    {
+      "name": "otzaria-lexical-0000.zst",
+      "bytes": 77008992,
+      "sha256": "a52b7ab1e614aa1c1fd70fea5586da48b43b8ba481bf8b39e10c3c3039574139",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-lexical-0000.zst",
+      "destinationPath": "334035800b4e47d1b3640990bff95f50.fast",
+      "destinationOffset": 0,
+      "uncompressedBytes": 271243185
+    },
+    {
+      "name": "otzaria-lexical-0001.zst",
+      "bytes": 5822300,
+      "sha256": "405b766e5963e5cd040ba536507f82dc46ab014e6411ed128562314e2e4ec3fe",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-lexical-0001.zst",
+      "destinationPath": "334035800b4e47d1b3640990bff95f50.fieldnorm",
+      "destinationOffset": 0,
+      "uncompressedBytes": 31700872
+    },
+    {
+      "name": "otzaria-lexical-0002.zst",
+      "bytes": 395954977,
+      "sha256": "c8116ee5a4f4d59dc86e7ce5e618c32ef771c52254c5dd61d1fa78e1080c6bad",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-lexical-0002.zst",
+      "destinationPath": "334035800b4e47d1b3640990bff95f50.idx",
+      "destinationOffset": 0,
+      "uncompressedBytes": 536870912
+    },
+    {
+      "name": "otzaria-lexical-0003.zst",
+      "bytes": 337646553,
+      "sha256": "27fc3db80eb0c1ae13f8d422c71a81c5f546ccf44d8f6a8886149decbed3b8c7",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-lexical-0003.zst",
+      "destinationPath": "334035800b4e47d1b3640990bff95f50.idx",
+      "destinationOffset": 536870912,
+      "uncompressedBytes": 489139925
+    },
+    {
+      "name": "otzaria-lexical-0004.zst",
+      "bytes": 478203591,
+      "sha256": "96ca9560be7df7ae6c0d214a9d8cde38021c37a5571b33fef2f3e265b5d1ff58",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-lexical-0004.zst",
+      "destinationPath": "334035800b4e47d1b3640990bff95f50.pos",
+      "destinationOffset": 0,
+      "uncompressedBytes": 536870912
+    },
+    {
+      "name": "otzaria-lexical-0005.zst",
+      "bytes": 342562300,
+      "sha256": "7ca4f7683888111f9d1a301f5d4484e7ec7b5363aac736788034ea18876df0eb",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-lexical-0005.zst",
+      "destinationPath": "334035800b4e47d1b3640990bff95f50.pos",
+      "destinationOffset": 536870912,
+      "uncompressedBytes": 384912563
+    },
+    {
+      "name": "otzaria-lexical-0006.zst",
+      "bytes": 394277572,
+      "sha256": "571e78322b4ec9f095431739f7f2916ae90db02a0f79e3dc2b974a1368e8f39c",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-lexical-0006.zst",
+      "destinationPath": "334035800b4e47d1b3640990bff95f50.store",
+      "destinationOffset": 0,
+      "uncompressedBytes": 536870912
+    },
+    {
+      "name": "otzaria-lexical-0007.zst",
+      "bytes": 392762100,
+      "sha256": "bac4a4299e068534320636a9344b537349cc1fb198d5bf5121e3ca375d465b05",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-lexical-0007.zst",
+      "destinationPath": "334035800b4e47d1b3640990bff95f50.store",
+      "destinationOffset": 536870912,
+      "uncompressedBytes": 536870912
+    },
+    {
+      "name": "otzaria-lexical-0008.zst",
+      "bytes": 392408474,
+      "sha256": "b6f44814252e9209b36d8704de09735160a3ed21457c495d3de1b5b989368230",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-lexical-0008.zst",
+      "destinationPath": "334035800b4e47d1b3640990bff95f50.store",
+      "destinationOffset": 1073741824,
+      "uncompressedBytes": 536870912
+    },
+    {
+      "name": "otzaria-lexical-0009.zst",
+      "bytes": 392930681,
+      "sha256": "e7070b102fe1bc241343f9ba953b6da83c65c3c3725a8675a61240c90be7c20c",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-lexical-0009.zst",
+      "destinationPath": "334035800b4e47d1b3640990bff95f50.store",
+      "destinationOffset": 1610612736,
+      "uncompressedBytes": 536870912
+    },
+    {
+      "name": "otzaria-lexical-0010.zst",
+      "bytes": 393362987,
+      "sha256": "315bb4d7e1c00d2cd58ffdbea42dfbad7e1246cad22373905d56666fd91a8747",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-lexical-0010.zst",
+      "destinationPath": "334035800b4e47d1b3640990bff95f50.store",
+      "destinationOffset": 2147483648,
+      "uncompressedBytes": 536870912
+    },
+    {
+      "name": "otzaria-lexical-0011.zst",
+      "bytes": 394053768,
+      "sha256": "b2227557ebf51ca3e2ea7568975fa226caee9fd596364a9b26bec676880d6c96",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-lexical-0011.zst",
+      "destinationPath": "334035800b4e47d1b3640990bff95f50.store",
+      "destinationOffset": 2684354560,
+      "uncompressedBytes": 536870912
+    },
+    {
+      "name": "otzaria-lexical-0012.zst",
+      "bytes": 123834554,
+      "sha256": "a3a193895ccb342b3f197817238c5ae762a155d0d172b551f6ddc95ae6a56a57",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-lexical-0012.zst",
+      "destinationPath": "334035800b4e47d1b3640990bff95f50.store",
+      "destinationOffset": 3221225472,
+      "uncompressedBytes": 167912221
+    },
+    {
+      "name": "otzaria-lexical-0013.zst",
+      "bytes": 29496006,
+      "sha256": "80b02495cf03c05b56019e9652a764df8bc83e1c3d5ba72ab36cd7c516857290",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-lexical-0013.zst",
+      "destinationPath": "334035800b4e47d1b3640990bff95f50.term",
+      "destinationOffset": 0,
+      "uncompressedBytes": 56353569
+    },
+    {
+      "name": "otzaria-lexical-0014.zst",
+      "bytes": 491,
+      "sha256": "1e7a53df68afbac98264f569309caa80aa49ef3d1bd298ac532d0da251b3a358",
+      "role": "indexPart",
+      "browserDownloadURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-search-data-v40-20261123094345-f8fea8efcac5/otzaria-lexical-0014.zst",
+      "destinationPath": "meta.json",
+      "destinationOffset": 0,
+      "uncompressedBytes": 3066
+    }
+  ]
+}
