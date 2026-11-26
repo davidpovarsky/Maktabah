@@ -65,6 +65,9 @@ def configuration():
     value = json.loads(INPUTS.read_text())
     require(re.fullmatch(r"[a-f0-9]{40}", value["producer_source_sha"]), "Producer source must be frozen")
     require(value["producer_repository"] == "davidpovarsky/hanlin-ai", "Unexpected producer source repository")
+    consumer = value.get("consumer_sdk_source_sha", value["producer_source_sha"])
+    require(isinstance(consumer, str) and re.fullmatch(r"[a-f0-9]{40}", consumer),
+            "Consumer shared SDK source must be frozen")
     origin = value.get("producer_origin", "github-actions")
     require(origin in ("github-actions", "local-mac"), "Unsupported producer execution origin")
     if origin == "github-actions":
@@ -120,6 +123,30 @@ def original_editor_build_arguments():
     return ["--original-editor-routes"]
 
 
+def miniapps_source_admission(config, inputs):
+    producer = config["producer_source_sha"]
+    consumer = config.get("consumer_sdk_source_sha", producer)
+    require(inputs["hanlin_gitlink"] == consumer
+            and git("rev-parse", "HEAD:Vendor/HanlinSDK") == consumer,
+            "Consumer shared SDK differs from its explicit source pin")
+    pin = config.get("miniapps_source_equivalence")
+    if pin is None:
+        require(consumer == producer,
+                "Distinct MiniApps producer/consumer sources require a committed bridge review")
+        return None
+    helper = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_hanlin_equivalence.py"))
+    return helper["read_miniapps_review"](ROOT, pin, producer, consumer)
+
+
+def verify_miniapps_source_ownership():
+    config = configuration()
+    inputs = json.loads(BUILD_INPUTS.read_text())
+    admitted = miniapps_source_admission(config, inputs)
+    helper = runpy.run_path(str(ROOT / "Scripts/CI/original_editor_hanlin_equivalence.py"))
+    return helper["verify_miniapps_sources"](
+        ROOT, config["producer_source_sha"], inputs["hanlin_gitlink"], admitted)
+
+
 def source_context():
     config = configuration()
     inputs = json.loads(BUILD_INPUTS.read_text())
@@ -134,11 +161,12 @@ def source_context():
             "Original consumer application or test changed after source pin")
     require(all(inputs["application_trees"][p] == trees[p] for p in inputs["application_trees"]),
             "Original native build pins do not bind this source")
-    require(inputs["hanlin_gitlink"] == config["producer_source_sha"], "Consumer SDK and actual producer differ")
+    bridge_admission = miniapps_source_admission(config, inputs)
     original = runpy.run_path(str(ROOT / "Scripts/CI/completion-focused-native.py"))
     editor_admission = original_editor_admission(config)
     return {"checkout_sha": head, "application_source_sha": source, "application_trees": trees,
             "producer_inputs": config,
+            "miniapps_bridge_source_equivalence": bridge_admission,
             "original_editor_admission": editor_admission,
             "original_case_catalog_sha256": digest(ROOT / "docs/hq-integration/runtime27/R27_CASES.json"),
             "execution_inputs": original["exact_working_inputs"](["Scripts/CI", ".github/workflows", "Maktabah-iOSUITests", "tools", "MiniApps/FileWorkshop"])}
@@ -182,6 +210,7 @@ def prepare():
 
 def restore_producer():
     config = configuration()
+    write(OUT / "miniapps-bridge-source-proof.json", verify_miniapps_source_ownership())
     if config.get("producer_origin") == "local-mac":
         helper = runpy.run_path(str(ROOT / "Scripts/CI/miniapps-local-producer.py"))
         return helper["restore"](config, PRODUCER_DIR, OUT, ROOT / "Vendor/HanlinSDK", PRODUCER)
@@ -1080,6 +1109,10 @@ def collect():
                 "Actual original iPhone picker evidence is incomplete")
         report["iphone_hebrew_picker"] = picker
         report["producer_admission"] = json.loads((OUT / "producer-admission.json").read_text())
+        bridge_proof = verify_miniapps_source_ownership()
+        require(bridge_proof == json.loads((OUT / "miniapps-bridge-source-proof.json").read_text()),
+                "Original shared MiniApps source changed during native acceptance")
+        report["miniapps_bridge_source_ownership"] = bridge_proof
         report["status"] = "ACTUAL_TWO_APP_CONSUMER_UI_EXECUTED_PASS"
         return 0
     except Exception as error:

@@ -1,0 +1,198 @@
+{
+  "consumer": {
+    "modules": [
+      "HanlinMiniAppsBridge",
+      "HanlinMiniAppsPicker"
+    ],
+    "repository": "davidpovarsky/hanlin-ai",
+    "revision": "7ee863657323f314f25a6e58bca0aa9ee669e51b",
+    "target": "Maktabah-iOS"
+  },
+  "consumer_files": {
+    "Packages/HanlinMiniAppsBridge/Package.swift": {
+      "blob": "927b2801029268b21f42b663452ee4a9f6f2876b",
+      "bytes": 711,
+      "sha256": "579cdb6febf974d7f463aee0cd6592cdf0cfd5a4c8e53840009ff170e52b6e2e"
+    },
+    "Packages/HanlinMiniAppsBridge/README.md": {
+      "blob": "208727b410c28337b07d81b1830ccf4ee7f73b13",
+      "bytes": 3999,
+      "sha256": "e506bbcee3c9c10ae42d3b961a9b7fecd40e900f6d55a1742bbc042a43cec486"
+    },
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsBridge/MiniAppBridgeStore.swift": {
+      "blob": "6e53a5dcaec0b46e36ee314cba4e2c152bae6b4d",
+      "bytes": 11436,
+      "sha256": "a50fcd574c1716c62440ec46ed58e4576d0906c3084b9a7a0e1b3ddad97a1048"
+    },
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsBridge/MiniAppContracts.swift": {
+      "blob": "b9ecd557d14a1248faa1be84d2fe0ac842c1b972",
+      "bytes": 9297,
+      "sha256": "68dd3e2a75baa2cb92b3b8dacf2595ca7d73d1421316c00ac29f5bad18c93f42"
+    },
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsBridge/MiniAppPreferences.swift": {
+      "blob": "3ab044676ea540822e5c9bf648282dc1eca05bc7",
+      "bytes": 3755,
+      "sha256": "8a359491aac0f7602cd5347395f7c36755e5450b16edea2388818d3aa46357d4"
+    },
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsPicker/MiniAppPicker.swift": {
+      "blob": "97f775753e0f24e446479687176b43071556566b",
+      "bytes": 18382,
+      "sha256": "6ebef61a6c81d4d583d4d8ee94a4657bfb1f1abd53a881bafb8bf0aef8cb9d0d"
+    },
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsPicker/Resources/en.lproj/Localizable.strings": {
+      "blob": "04a63692ad44042db1e5341af1fc3a6ccbf9d185",
+      "bytes": 1848,
+      "sha256": "1e7e5001049acf763bb950d8c6bc7906a82300e25ded7904caaefc37c820534e"
+    },
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsPicker/Resources/he.lproj/Localizable.strings": {
+      "blob": "2dd968c9fc86259f5d0ba0ab12ac5ca50c2662c6",
+      "bytes": 2431,
+      "sha256": "5c12392611d138854e20ca02ac56105501d583378bfad4a3de7d2c3db738d156"
+    },
+    "Packages/HanlinMiniAppsBridge/Tests/HanlinMiniAppsBridgeTests/MiniAppBridgeTests.swift": {
+      "blob": "2a2604704a2eee7e5911628ac99672a244bdfad8",
+      "bytes": 11987,
+      "sha256": "29b90907c4caa183291d2aea307d48dad4f6a91d49e464dbb3d72360270db557"
+    },
+    "Packages/HanlinMiniAppsBridge/Verification/AppleCompilation/BridgeCompilation.xcodeproj/project.pbxproj": {
+      "blob": "bc8ce0950ad57d59b32f2fe73f8153e69c0401d2",
+      "bytes": 4489,
+      "sha256": "c5ba64f0c889c5dfacca3e32c841e6f397a23e394cdeac570947104715c0a2e8"
+    },
+    "Packages/HanlinMiniAppsBridge/Verification/AppleCompilation/BridgeCompilation.xcodeproj/xcshareddata/xcschemes/HanlinMiniAppsBridgeCompilation.xcscheme": {
+      "blob": "5efea91b6a993e1473ae19abc415bff89e447a15",
+      "bytes": 1137,
+      "sha256": "c86649c7b6be80d5a89451fb1e8395bd0c029ecf9bed88c8608560318bb3e42c"
+    },
+    "Packages/HanlinMiniAppsBridge/Verification/AppleCompilation/CompilationProbe.swift": {
+      "blob": "0edcfb94d428a04af3fdf15d3febb4ac483ea4e5",
+      "bytes": 899,
+      "sha256": "7c460732e7972e3194387de304bafa343f81249325a44826cfb65a4c9aafb10a"
+    },
+    "Packages/HanlinMiniAppsBridge/Verification/apple-swiftui-20261123-excerpt.txt": {
+      "blob": "bc2209434c1ed9c559576f1361dcd51d8b6ba84d",
+      "bytes": 1144,
+      "sha256": "4274afefa09cdde7c317da66c65d58d596970aba3e471fe0372cc972d30b71eb"
+    },
+    "Packages/HanlinMiniAppsBridge/Verification/apple-swiftui-20261123.json": {
+      "blob": "f12609271152f51988d287723c98deab86329cda",
+      "bytes": 3486,
+      "sha256": "4aa15164091ef2f6d6b58d5114ba46db94481ffdb17da8cfe116a95564c5ced5"
+    },
+    "Packages/HanlinMiniAppsBridge/Verification/portable-manifest-20261123.json": {
+      "blob": "b8ca9b8523dfb4f03c8ea0fac14727acdda545a7",
+      "bytes": 1330,
+      "sha256": "6f71bdc7f82302ce811f37ec10ff278a9a9b08b01663acddeff49fb533bad4be"
+    },
+    "Packages/HanlinMiniAppsBridge/Verification/portable-swift-20261123.txt": {
+      "blob": "4d6783b55a773e036e03d4c5fa2cf7ca542b7945",
+      "bytes": 2972,
+      "sha256": "5fb7a5af356a554e42820b7acf82ccabf8b62eefb615577c89afb3dac756447f"
+    }
+  },
+  "consumer_trees": {
+    "Packages/HanlinMiniAppsBridge": "f9e7a3a2324c88bbceaf81484f9bad1db1b740db",
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsBridge": "5334065bd54293b0e9c9a6e05eab166804796e41",
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsPicker": "f0f17afc728387b6bbc6d6868b3bc9d23643018a"
+  },
+  "producer": {
+    "repository": "davidpovarsky/hanlin-ai",
+    "revision": "9565a9e4775901a4cee6f0402d7fd2978fab6612",
+    "target": "HanlinMiniApps"
+  },
+  "producer_files": {
+    "Packages/HanlinMiniAppsBridge/Package.swift": {
+      "blob": "927b2801029268b21f42b663452ee4a9f6f2876b",
+      "bytes": 711,
+      "sha256": "579cdb6febf974d7f463aee0cd6592cdf0cfd5a4c8e53840009ff170e52b6e2e"
+    },
+    "Packages/HanlinMiniAppsBridge/README.md": {
+      "blob": "208727b410c28337b07d81b1830ccf4ee7f73b13",
+      "bytes": 3999,
+      "sha256": "e506bbcee3c9c10ae42d3b961a9b7fecd40e900f6d55a1742bbc042a43cec486"
+    },
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsBridge/MiniAppBridgeStore.swift": {
+      "blob": "6e53a5dcaec0b46e36ee314cba4e2c152bae6b4d",
+      "bytes": 11436,
+      "sha256": "a50fcd574c1716c62440ec46ed58e4576d0906c3084b9a7a0e1b3ddad97a1048"
+    },
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsBridge/MiniAppContracts.swift": {
+      "blob": "b9ecd557d14a1248faa1be84d2fe0ac842c1b972",
+      "bytes": 9297,
+      "sha256": "68dd3e2a75baa2cb92b3b8dacf2595ca7d73d1421316c00ac29f5bad18c93f42"
+    },
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsBridge/MiniAppPreferences.swift": {
+      "blob": "3ab044676ea540822e5c9bf648282dc1eca05bc7",
+      "bytes": 3755,
+      "sha256": "8a359491aac0f7602cd5347395f7c36755e5450b16edea2388818d3aa46357d4"
+    },
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsPicker/MiniAppPicker.swift": {
+      "blob": "44e1ec3c59f647c51862a3b886d29443af46d7ef",
+      "bytes": 18347,
+      "sha256": "03993583c5be506133e8849499f99ccfe20226323e293284ba6e2a9f0858ebbd"
+    },
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsPicker/Resources/en.lproj/Localizable.strings": {
+      "blob": "04a63692ad44042db1e5341af1fc3a6ccbf9d185",
+      "bytes": 1848,
+      "sha256": "1e7e5001049acf763bb950d8c6bc7906a82300e25ded7904caaefc37c820534e"
+    },
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsPicker/Resources/he.lproj/Localizable.strings": {
+      "blob": "2dd968c9fc86259f5d0ba0ab12ac5ca50c2662c6",
+      "bytes": 2431,
+      "sha256": "5c12392611d138854e20ca02ac56105501d583378bfad4a3de7d2c3db738d156"
+    },
+    "Packages/HanlinMiniAppsBridge/Tests/HanlinMiniAppsBridgeTests/MiniAppBridgeTests.swift": {
+      "blob": "2a2604704a2eee7e5911628ac99672a244bdfad8",
+      "bytes": 11987,
+      "sha256": "29b90907c4caa183291d2aea307d48dad4f6a91d49e464dbb3d72360270db557"
+    },
+    "Packages/HanlinMiniAppsBridge/Verification/AppleCompilation/BridgeCompilation.xcodeproj/project.pbxproj": {
+      "blob": "bc8ce0950ad57d59b32f2fe73f8153e69c0401d2",
+      "bytes": 4489,
+      "sha256": "c5ba64f0c889c5dfacca3e32c841e6f397a23e394cdeac570947104715c0a2e8"
+    },
+    "Packages/HanlinMiniAppsBridge/Verification/AppleCompilation/BridgeCompilation.xcodeproj/xcshareddata/xcschemes/HanlinMiniAppsBridgeCompilation.xcscheme": {
+      "blob": "5efea91b6a993e1473ae19abc415bff89e447a15",
+      "bytes": 1137,
+      "sha256": "c86649c7b6be80d5a89451fb1e8395bd0c029ecf9bed88c8608560318bb3e42c"
+    },
+    "Packages/HanlinMiniAppsBridge/Verification/AppleCompilation/CompilationProbe.swift": {
+      "blob": "0edcfb94d428a04af3fdf15d3febb4ac483ea4e5",
+      "bytes": 899,
+      "sha256": "7c460732e7972e3194387de304bafa343f81249325a44826cfb65a4c9aafb10a"
+    },
+    "Packages/HanlinMiniAppsBridge/Verification/apple-swiftui-20261123-excerpt.txt": {
+      "blob": "bc2209434c1ed9c559576f1361dcd51d8b6ba84d",
+      "bytes": 1144,
+      "sha256": "4274afefa09cdde7c317da66c65d58d596970aba3e471fe0372cc972d30b71eb"
+    },
+    "Packages/HanlinMiniAppsBridge/Verification/apple-swiftui-20261123.json": {
+      "blob": "f12609271152f51988d287723c98deab86329cda",
+      "bytes": 3486,
+      "sha256": "4aa15164091ef2f6d6b58d5114ba46db94481ffdb17da8cfe116a95564c5ced5"
+    },
+    "Packages/HanlinMiniAppsBridge/Verification/portable-manifest-20261123.json": {
+      "blob": "b8ca9b8523dfb4f03c8ea0fac14727acdda545a7",
+      "bytes": 1330,
+      "sha256": "6f71bdc7f82302ce811f37ec10ff278a9a9b08b01663acddeff49fb533bad4be"
+    },
+    "Packages/HanlinMiniAppsBridge/Verification/portable-swift-20261123.txt": {
+      "blob": "4d6783b55a773e036e03d4c5fa2cf7ca542b7945",
+      "bytes": 2972,
+      "sha256": "5fb7a5af356a554e42820b7acf82ccabf8b62eefb615577c89afb3dac756447f"
+    }
+  },
+  "producer_trees": {
+    "Packages/HanlinMiniAppsBridge": "98ef5d2b47c03f4ea98319a851abae183f500a40",
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsBridge": "5334065bd54293b0e9c9a6e05eab166804796e41",
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsPicker": "1feabd59239b4ce32b007d1ff252cc30703a8774"
+  },
+  "reviewed_picker_change": {
+    "consumer_blob": "97f775753e0f24e446479687176b43071556566b",
+    "operation": "ADD_NATIVE_ROW_CONTENT_SHAPE",
+    "path": "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsPicker/MiniAppPicker.swift",
+    "producer_blob": "44e1ec3c59f647c51862a3b886d29443af46d7ef"
+  },
+  "schema": "otzaria.miniapps-source-equivalence/1",
+  "scope": "EXACT_BRIDGE_WITH_REVIEWED_PICKER_HIT_AREA_ONLY_NO_NEW_NATIVE_CREDIT"
+}
