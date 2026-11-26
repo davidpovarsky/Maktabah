@@ -132,7 +132,9 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertFalse(dismiss.exists, "Edit mode has one native Done action")
         try snapshot("native-edit")
 
-        let visible = app.switches["miniapps-visible-" + first.id]
+        let visibleRow = app.switches["miniapps-visible-" + first.id]
+        XCTAssertTrue(visibleRow.waitForExistence(timeout: 15))
+        let visible = visibleRow.switches.firstMatch
         XCTAssertTrue(visible.waitForExistence(timeout: 15) && visible.isHittable && visible.isEnabled)
         visible.tap()
         try await requireNativeCondition(timeout: 15) {
@@ -798,6 +800,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(quick.waitForExistence(timeout: 15))
         let sourceText = "OriginalAttachment" + UUID().uuidString.replacingOccurrences(of: "-", with: "")
         tap(quick); quick.typeText(sourceText)
+        XCTAssertEqual(quick.value as? String, sourceText, "The original compact editor must receive the seed text")
         tap(app.buttons["annotation-save-toolbar"])
         try await requireNativeCondition(timeout: 30) { !quick.exists }
         tap(app.buttons["torah-inspector-close"])
@@ -809,6 +812,8 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let rowID = try XCTUnwrap(Int64(row.identifier.dropFirst("original-book-annotation-".count)))
         let rowIdentifier = row.identifier
         editAnnotation(row)
+        XCTAssertTrue(quick.waitForExistence(timeout: 15))
+        XCTAssertEqual(quick.value as? String, sourceText, "The original compact editor must reload the saved seed text")
         try await openActualRichEditor()
         let fileHost = try await richHost()
         _ = try await richBody(sourceText, host: fileHost)
@@ -1261,6 +1266,12 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     private func richBody(_ text: String, host: XCUIElement) async throws -> XCUIElement {
         let bodies = host.textViews.matching(NSPredicate(format: "value == %@", text))
         try await requireNativeCondition(timeout: 30) { bodies.count == 1 && bodies.firstMatch.isHittable }
+        if bodies.count != 1 || !bodies.firstMatch.isHittable {
+            let hierarchy = XCTAttachment(string: host.debugDescription)
+            hierarchy.name = "original-rich-editor-host-on-body-mismatch"
+            hierarchy.lifetime = .keepAlways
+            add(hierarchy)
+        }
         XCTAssertEqual(bodies.count, 1)
         XCTAssertFalse(bodies.firstMatch.frame.isEmpty)
         return bodies.firstMatch
