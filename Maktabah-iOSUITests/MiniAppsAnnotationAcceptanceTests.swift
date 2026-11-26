@@ -1,4 +1,5 @@
 import XCTest
+import UIKit
 import SQLite3
 import CryptoKit
 
@@ -655,23 +656,40 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         tap(open)
         var host = try await richHost()
         let firstBody = try await richBody(first, host: host)
-        let firstBodyFrame = firstBody.frame
-        firstBody.coordinate(withNormalizedOffset: CGVector(dx: 0.98, dy: 0.5)).tap()
         let keyboard = app.keyboards.firstMatch
-        let returnKeys = keyboard.buttons.matching(NSPredicate(format: "label =[c] %@", "return"))
-        try await requireNativeCondition(timeout: 20) {
-            returnKeys.allElementsBoundByIndex.filter(\.isHittable).count == 1
+        if ProcessInfo.processInfo.environment["MINIAPPS_RICH_ORIGINAL_PASTE_SEED"] == "1" {
+            // Use the original clipboard command to create both real blocks.
+            // This fixture leaves the keyboard-focus regression test available.
+            UIPasteboard.general.string = first + "\n" + second
+            firstBody.tap()
+            firstBody.doubleTap()
+            let selectAll = app.descendants(matching: .any)["Select All"].firstMatch
+            XCTAssertTrue(selectAll.waitForExistence(timeout: 15) && selectAll.isHittable)
+            selectAll.tap()
+            let paste = app.descendants(matching: .any)["Paste"].firstMatch
+            XCTAssertTrue(paste.waitForExistence(timeout: 15) && paste.isHittable)
+            paste.tap()
+            let system = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+            let allow = system.alerts.buttons["Allow Paste"].firstMatch
+            if allow.exists && allow.isHittable { allow.tap() }
+        } else {
+            let firstBodyFrame = firstBody.frame
+            firstBody.coordinate(withNormalizedOffset: CGVector(dx: 0.98, dy: 0.5)).tap()
+            let returnKeys = keyboard.buttons.matching(NSPredicate(format: "label =[c] %@", "return"))
+            try await requireNativeCondition(timeout: 20) {
+                returnKeys.allElementsBoundByIndex.filter(\.isHittable).count == 1
+            }
+            let returnKey = try XCTUnwrap(returnKeys.allElementsBoundByIndex.first { $0.isHittable })
+            returnKey.tap()
+            // The user can type when the original editor has moved focus below
+            // the original body. UIKit may expose placeholder text as the value.
+            try await requireNativeCondition(timeout: 20) {
+                host.textViews.allElementsBoundByIndex.filter {
+                    $0.hasFocus && !$0.frame.isEmpty && $0.frame.midY > firstBodyFrame.midY
+                }.count == 1
+            }
+            app.typeText(second)
         }
-        let returnKey = try XCTUnwrap(returnKeys.allElementsBoundByIndex.first { $0.isHittable })
-        returnKey.tap()
-        // The user can type when the original editor has moved focus below
-        // the original body. UIKit may expose placeholder text as the value.
-        try await requireNativeCondition(timeout: 20) {
-            host.textViews.allElementsBoundByIndex.filter {
-                $0.hasFocus && !$0.frame.isEmpty && $0.frame.midY > firstBodyFrame.midY
-            }.count == 1
-        }
-        app.typeText(second)
         let hide = keyboard.buttons.matching(NSPredicate(format: "label IN %@",
             ["Hide Keyboard", "Hide keyboard", "Dismiss Keyboard", "Dismiss keyboard"]))
         let visibleHide = hide.allElementsBoundByIndex.filter(\.isHittable)
