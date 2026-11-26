@@ -19,6 +19,14 @@ class OriginalEngineOwnershipControls(unittest.TestCase):
         self.assertEqual(API["original_image_owner"]("Frameworks/React_Core.framework/React_Core", self.original),
                          "ORIGINAL_SEFARIA_LOCKED_POD_FRAMEWORK")
 
+    def test_attested_split_debug_keeps_a_single_application_engine_owner(self):
+        self.original["application_engine_image"] = "Maktabah.debug.dylib"
+        self.assertIsNone(API["original_image_owner"]("Maktabah", self.original))
+        self.assertEqual(API["original_image_owner"]("Maktabah.debug.dylib", self.original),
+                         "ORIGINAL_SEFARIA_STATIC_LINK_IN_APPLICATION")
+        self.assertIsNone(API["original_image_owner"]("Frameworks/Maktabah.debug.dylib", self.original))
+        self.assertIsNone(API["original_image_owner"]("Maktabah-extra.debug.dylib", self.original))
+
     def test_added_runtime_in_sdk_extension_or_nested_framework_is_not_original_owner(self):
         for path in [
             "Frameworks/AnytypeOriginalEditor.framework/AnytypeOriginalEditor",

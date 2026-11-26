@@ -61,6 +61,87 @@ def source(root, revision, path):
     return subprocess.check_output(["git", "show", revision + ":" + path], cwd=root, timeout=90)
 
 
+def application_engine_image(app, executable):
+    """Locate Xcode's real split Debug executable by observed Mach-O commands."""
+    stub, debug = app / executable, app / (executable + ".debug.dylib")
+    if not debug.exists() and not debug.is_symlink():
+        return executable, None
+    require(debug.is_file() and not debug.is_symlink() and stub.is_file() and not stub.is_symlink(),
+            "Aliased Xcode split executable")
+    argv = ["xcrun", "otool"]
+    loads = subprocess.check_output([*argv, "-L", str(stub)], text=True, timeout=60)
+    image_id = subprocess.check_output([*argv, "-D", str(debug)], text=True, timeout=60)
+    section = subprocess.check_output([*argv, "-s", "__TEXT", "__debug_dylib", str(stub)], text=True, timeout=60)
+    reference = "@rpath/" + debug.name
+    rows = section.splitlines()
+    require(rows[:2] == [str(stub) + ":", "Contents of (__TEXT,__debug_dylib) section"],
+            "Missing real Xcode stub section")
+    address = None
+    section_bytes = bytearray()
+    for line in rows[2:]:
+        columns = line.split()
+        require(len(columns) > 1 and re.fullmatch(r"[a-fA-F0-9]+", columns[0])
+                and all(re.fullmatch(r"[a-fA-F0-9]{2}|[a-fA-F0-9]{4}|[a-fA-F0-9]{8}", word)
+                        for word in columns[1:]), "Invalid Xcode stub-section bytes")
+        current = int(columns[0], 16)
+        require(address is None or address == current, "Incomplete Xcode stub-section bytes")
+        data = b"".join(bytes.fromhex(word)[::-1] for word in columns[1:])
+        section_bytes.extend(data)
+        address = current + len(data)
+    require(section_bytes.rstrip(b"\0") == debug.name.encode()
+            and image_id.splitlines() == [str(debug) + ":", reference]
+            and [line.strip().split(" (", 1)[0] for line in loads.splitlines()[1:]].count(reference) == 1,
+            "Actual Xcode executable does not own its split Debug image")
+    return debug.name, {"stub_sha256": sha(stub), "implementation_sha256": sha(debug),
+                        "install_name": reference, "stub_section_sha256": hashlib.sha256(section_bytes).hexdigest()}
+
+
+def original_pod_resources(root, app, pods):
+    name = app.parent.name
+    require(name.endswith("-iphonesimulator"), "Expected owned Simulator products")
+    config = name.removesuffix("-iphonesimulator")
+    require(config in {"Debug", "Release"}, "Unknown original CocoaPods resource configuration")
+    folder = root / "Pods/Target Support Files/Pods-Maktabah-iOS"
+    prefix = "Pods-Maktabah-iOS-resources-" + config + "-"
+    source_list = folder / (prefix + "input-files.xcfilelist")
+    output_list = folder / (prefix + "output-files.xcfilelist")
+    require(all(p.is_file() and not p.is_symlink() for p in (source_list, output_list)),
+            "Missing original generated CocoaPods resource routes")
+    outputs = output_list.read_text().splitlines()
+    result = {}
+
+    def payload(directory):
+        require(directory.is_dir() and not directory.is_symlink(), "Missing original CocoaPods resource bundle")
+        files = {}
+        for entry in sorted(directory.rglob("*")):
+            relative = entry.relative_to(directory)
+            require(not entry.is_symlink(), "Aliased original CocoaPods resource")
+            if relative.parts[0] == "_CodeSignature" or not entry.is_file():
+                continue
+            with entry.open("rb") as stream:
+                header = stream.read(8)
+            require(header[:4] not in IMAGE_MAGIC and header != b"!<arch>\n",
+                    "A CocoaPods resource bundle contains an additional original engine image")
+            files[relative.as_posix()] = sha(entry)
+        require("Info.plist" in files, "Missing original CocoaPods resource bundle metadata")
+        return files
+
+    for row in source_list.read_text().splitlines():
+        match = re.fullmatch(r"\$\{PODS_CONFIGURATION_BUILD_DIR\}/([A-Za-z0-9_+.-]+)/([A-Za-z0-9_+.-]+\.bundle)", row)
+        if not match:
+            continue
+        pod, bundle = match.groups()
+        if not ORIGINAL_ENGINE_NAME.search(bundle):
+            continue
+        expected = "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/" + bundle
+        require(pod in pods and outputs.count(expected) == 1 and bundle not in result,
+                "An original engine resource lacks a unique locked CocoaPods route")
+        files = payload(app.parent / pod / bundle)
+        require(files == payload(app / bundle), "An embedded original engine resource differs from CocoaPods: " + bundle)
+        result[bundle] = {"pod": pod, "version": pods[pod], "files": files}
+    return {"input_list_sha256": sha(source_list), "output_list_sha256": sha(output_list), "bundles": result}
+
+
 def original_engine_provenance(root, app):
     old = source(root, HISTORICAL_SOURCE, "Podfile")
     current = source(root, "HEAD", "Podfile")
@@ -109,6 +190,8 @@ def original_engine_provenance(root, app):
         node_versions[name] = {"version": package["version"], "package_json_sha256": sha(path)}
     require(pods["React-Core"] == node_versions["react-native"]["version"],
             "Actual React Native Pod and original installed package versions differ")
+    engine_image, split_debug = application_engine_image(app, executable)
+    resources = original_pod_resources(root, app, pods)
     return {
         "source": HISTORICAL_SOURCE,
         "historical_podfile_sha256": hashlib.sha256(old).hexdigest(),
@@ -119,14 +202,15 @@ def original_engine_provenance(root, app):
         "installed_manifest_sha256": sha(installed),
         "resolved_pod_versions": pods,
         "installed_original_engine_packages": node_versions,
-        "application_executable": executable,
+        "application_executable": executable, "application_engine_image": engine_image,
+        "application_split_debug": split_debug, "original_pod_resources": resources,
         "allowed_original_framework_modules": sorted(modules),
     }
 
 
 def original_image_owner(name, provenance):
     """Only the original executable or a direct framework from actual locked Pods."""
-    if name == provenance["application_executable"]:
+    if name == provenance.get("application_engine_image", provenance["application_executable"]):
         return "ORIGINAL_SEFARIA_STATIC_LINK_IN_APPLICATION"
     parts = Path(name).parts
     if len(parts) >= 2 and parts[0] == "Frameworks" and parts[1].endswith(".framework"):
@@ -149,6 +233,8 @@ def audit(root, app, evidence):
             violations.append({"path": name, "kind": "NEW_MINIAPPS_ENGINE_PRODUCT"})
         if ORIGINAL_ENGINE_NAME.search(name):
             owner = original_image_owner(name, provenance)
+            if Path(name).parts[0] in provenance["original_pod_resources"]["bundles"]:
+                owner = "ORIGINAL_SEFARIA_LOCKED_POD_RESOURCE"
             destination = original_observations if owner else violations
             destination.append({"path": name, "kind": owner or "EXTRA_ORIGINAL_ENGINE_PRODUCT_OWNER"})
         if path.is_symlink():
