@@ -678,11 +678,11 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
             try typeActualStudioResult(second, producer: producer)
             tap(producer.buttons["miniapps.textstudio.return"])
             XCTAssertTrue(app.wait(for: .runningForeground, timeout: 90))
-            host = try await richHost()
-            try await assertNativeBodies([first, second], host: host)
             try await requireNativeCondition(timeout: 60) {
                 (try? self.records(in: shared).first { $0.request.id == seed.request.id }?.acknowledged) == true
             }
+            host = try await richHost()
+            try await assertNativeBodies([first, second], host: host)
             let saved = try richState(rowID: rowID, databasePath: document.profile)
             XCTAssertEqual(saved.revision, baseline.revision + 1)
             XCTAssertEqual(saved.mutationID, seed.request.id)
@@ -782,11 +782,11 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
             bodyOverrides: [second: newerSecond])
         tap(producer.buttons["miniapps.textstudio.return"])
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 60))
-        host = try await richHost()
-        try await assertNativeBodies(expectedWarm, host: host)
         try await requireNativeCondition(timeout: 60) {
             (try? self.records(in: shared).first { $0.request.id == warm.request.id }?.acknowledged) == true
         }
+        host = try await richHost()
+        try await assertNativeBodies(expectedWarm, host: host)
         let warmSaved = try richState(rowID: rowID, databasePath: warmDocument.profile)
         XCTAssertEqual(warmSaved.revision, launch.revision + 1)
         XCTAssertEqual(warmSaved.mutationID, warm.request.id)
@@ -824,11 +824,11 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         tap(producer.buttons["miniapps.textstudio.return"])
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 90),
             "Only the actual MiniApps callback may cold-launch the original source")
-        host = try await richHost()
-        try await assertNativeBodies(expectedCold, host: host)
         try await requireNativeCondition(timeout: 60) {
             (try? self.records(in: shared).first { $0.request.id == cold.request.id }?.acknowledged) == true
         }
+        host = try await richHost()
+        try await assertNativeBodies(expectedCold, host: host)
         let coldSaved = try richState(rowID: rowID, databasePath: coldDocument.profile)
         XCTAssertEqual(coldSaved.revision, coldBaseline.revision + 1)
         XCTAssertEqual(coldSaved.mutationID, cold.request.id)
@@ -993,8 +993,8 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         try await pressFileWorkshopAction("fileworkshop.return", producer: producer)
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 90),
             "Only the real file callback may cold launch the original source app")
-        _ = try await richHost()
         let secondCompleted = try await acknowledgedFileRecord(second.request.id, shared: shared)
+        _ = try await richHost()
         let secondResult = try XCTUnwrap(secondCompleted.result)
         XCTAssertEqual(secondResult.status, "success")
         XCTAssertEqual(secondResult.metadata?["fileMode"], "edited-utf8")
