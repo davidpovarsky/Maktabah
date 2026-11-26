@@ -1,6 +1,7 @@
 #if os(iOS)
 import SwiftUI
 import OtzariaUIRouting
+import OtzariaActionCore
 import ChavrusaUIRoutingHost
 
 private struct MaktabahNativeRoutingSessionKey: EnvironmentKey {
@@ -54,8 +55,12 @@ struct MaktabahNativeRoutingHost: ViewModifier {
             .environment(\.maktabahNativeRoutingSession, session)
             .modifier(OtzariaHanlinChatPresentationHost(owner: hanlinChat))
             .environment(\.otzariaGuidedTour, guidedTour)
+            .environment(\.otzariaGuidedReadingDestination, guideReadingDestination)
             .safeAreaInset(edge: .bottom, spacing: 0) {
-                if let guidedTour { OtzariaGuidedTourPanel(run: guidedTour) }
+                if let guidedTour, guidedTour.step.destination.destination.rawValue != "native.reader.inspector"
+                    || guidedTour.phase != .coaching {
+                    OtzariaGuidedTourPanel(run: guidedTour)
+                }
             }
             .background {
                 ReaderSceneIdentityReader(observeWindow: { source, window in
@@ -109,6 +114,15 @@ struct MaktabahNativeRoutingHost: ViewModifier {
                 session = nil
             }
     }
+    /// The study journey retains the actual mounted reader's public destination.
+    /// Menu visibility never guesses a book or grants content authority.
+    private var guideReadingDestination: PublicNavigationSpecV2? {
+        guard let content = try? projection.surface(.reader)?.content else { return nil }
+        let current = ActionReaderDestination(sectionLocator: content.sectionLocator,
+            focusLocator: content.focusLocator, presentationMode: .sameTab)
+        return .init(destination: UIDestinationID(rawValue: "native.reader")!, content: current)
+    }
+
     private func refreshProjection(workspaceChanged: Bool = true) {
         guard let session else { mountIfReady(); return }
         let bindings = bindings
@@ -163,7 +177,15 @@ private struct OtzariaGuidedTourKey: EnvironmentKey {
     static let defaultValue: UIGuideRun? = nil
 }
 
+private struct OtzariaGuidedReadingDestinationKey: EnvironmentKey {
+    static let defaultValue: PublicNavigationSpecV2? = nil
+}
+
 fileprivate extension EnvironmentValues {
+    var otzariaGuidedReadingDestination: PublicNavigationSpecV2? {
+        get { self[OtzariaGuidedReadingDestinationKey.self] }
+        set { self[OtzariaGuidedReadingDestinationKey.self] = newValue }
+    }
     var otzariaGuidedTour: UIGuideRun? {
         get { self[OtzariaGuidedTourKey.self] }
         set { self[OtzariaGuidedTourKey.self] = newValue }
@@ -172,6 +194,7 @@ fileprivate extension EnvironmentValues {
 
 struct OtzariaGuidedTourButton: View {
     @Environment(\.otzariaGuidedTour) private var run
+    @Environment(\.otzariaGuidedReadingDestination) private var readingDestination
     @Environment(\.locale) private var locale
     var body: some View {
         if let run {
@@ -185,8 +208,32 @@ struct OtzariaGuidedTourButton: View {
                     if run.phase == .completed || run.phase == .stopped {
                         Button(guideText("Replay", "הפעלה מחדש", language: language)) { run.replay() }
                     }
-                    Button(guideText("Automatic", "אוטומטי", language: language)) { run.start(.automatic) }
-                    Button(guideText("Practice", "תרגול", language: language)) { run.start(.manual) }
+                    Button(guideText("Automatic", "אוטומטי", language: language)) {
+                        if let definition = try? OtzariaGuidedTourPanel.appTour() { run.start(.automatic, definition: definition) }
+                    }
+                    Button(guideText("Practice", "תרגול", language: language)) {
+                        if let definition = try? OtzariaGuidedTourPanel.appTour() { run.start(.manual, definition: definition) }
+                    }
+                    Menu(guideText("Find a text", "מציאת טקסט", language: language)) {
+                        Button(guideText("Automatic", "אוטומטי", language: language)) {
+                            if let definition = try? OtzariaGuidedTourPanel.searchTour() { run.start(.automatic, definition: definition) }
+                        }
+                        Button(guideText("Practice", "תרגול", language: language)) {
+                            if let definition = try? OtzariaGuidedTourPanel.searchTour() { run.start(.manual, definition: definition) }
+                        }
+                    }
+                    Menu(guideText("Study the current text", "לימוד הטקסט הנוכחי", language: language)) {
+                        Button(guideText("Automatic", "אוטומטי", language: language)) {
+                            if let readingDestination, let definition = try? OtzariaGuidedTourPanel.studyTour(readingDestination) {
+                                run.start(.automatic, definition: definition)
+                            }
+                        }
+                        Button(guideText("Practice", "תרגול", language: language)) {
+                            if let readingDestination, let definition = try? OtzariaGuidedTourPanel.studyTour(readingDestination) {
+                                run.start(.manual, definition: definition)
+                            }
+                        }
+                    }.disabled(readingDestination == nil)
                 }
             } label: {
                 Image(systemName: "questionmark.circle")
@@ -235,12 +282,38 @@ private struct OtzariaGuidedTourPanel: View {
         }
         if run.phase == .coaching {
             if run.stepIndex > 0 { Button(text("Back", "חזרה")) { run.back() } }
-            Button(text("Next", "הבא")) { run.next() }
+            Button(run.isLastStep ? text("Finish", "סיום הסיור") : text("Next", "הבא")) { run.next() }
         }
         if run.phase != .navigating {
             Button(text("Explore", "שיטוט חופשי")) { Task { await run.explore() } }
         }
         Button(text("Stop", "סיום")) { Task { await run.stop() } }
+    }
+
+    static func searchTour() throws -> UIGuideDefinition {
+        try .init(steps: [
+            .init(destination: .init(destination: UIDestinationID(rawValue: "native.library")!),
+                  english: "Start with a topic or collection in the library.", hebrew: "מתחילים בנושא או באוסף מתוך הספרייה."),
+            .init(destination: .init(destination: UIDestinationID(rawValue: "native.search")!,
+                                     component: UIDestinationID(rawValue: "native.search.query")!),
+                  english: "The search field is focused. Enter a title or phrase; Explore lets you try it.",
+                  hebrew: "שדה החיפוש ממוקד. אפשר להזין כותר או ביטוי; שיטוט חופשי מאפשר לנסות."),
+            .init(destination: .init(destination: UIDestinationID(rawValue: "native.history")!),
+                  english: "History keeps the texts you opened, so you can return to them.",
+                  hebrew: "ההיסטוריה שומרת את הטקסטים שנפתחו כדי שאפשר יהיה לחזור אליהם.")
+        ])
+    }
+
+    static func studyTour(_ reader: PublicNavigationSpecV2) throws -> UIGuideDefinition {
+        try .init(steps: [
+            .init(destination: reader, english: "Continue from the current text and position.",
+                  hebrew: "ממשיכים מתוך הטקסט והמיקום הנוכחיים."),
+            .init(destination: .init(destination: UIDestinationID(rawValue: "native.reader.inspector")!, presentation: .inspector),
+                  english: "The original study tools show sources and commentary for this text.",
+                  hebrew: "כלי הלימוד מציגים מקורות ופירושים לטקסט הזה."),
+            .init(destination: reader, english: "Return to the same text after reviewing its study tools.",
+                  hebrew: "חוזרים לאותו הטקסט לאחר העיון בכלי הלימוד.")
+        ])
     }
 
     static func appTour() throws -> UIGuideDefinition {
@@ -264,9 +337,17 @@ private func guideText(_ english: String, _ hebrew: String, language: String) ->
 struct MaktabahNativeRoutingSurface: ViewModifier {
     let kind: MaktabahNativeSceneProjection.Surface
     var inspectorReader: ReaderViewModel? = nil
+    @Environment(\.otzariaGuidedTour) private var guidedTour
 
     func body(content: Content) -> some View {
-        content.background {
+        content.safeAreaInset(edge: .bottom, spacing: 0) {
+            // On compact layouts the original inspector is a sheet. Keep its
+            // guide controls in that actual presentation, not behind the sheet.
+            if kind == .inspector, let guidedTour,
+               guidedTour.step.destination.destination.rawValue == "native.reader.inspector" {
+                OtzariaGuidedTourPanel(run: guidedTour)
+            }
+        }.background {
             MaktabahNativeRoutingWitness(kind: kind, inspectorReader: inspectorReader)
         }
     }
