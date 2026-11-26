@@ -131,9 +131,9 @@ struct iOSReaderBottomToolbarView: View {
                 }
             }
         } label: {
-            Image(systemName: "ellipsis")
+            Label("More Reader Actions", systemImage: "ellipsis")
+                .labelStyle(.iconOnly)
         }
-        .accessibilityLabel(String(localized: "More Reader Actions"))
         .accessibilityIdentifier("reader-more-menu")
         .popover(isPresented: $showingOptions) {
             ViewOptionsView(readerViewModel: viewModel)

@@ -21,6 +21,16 @@
         }
       }
     },
+    "More Reader Actions": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פעולות נוספות בקורא"
+          }
+        }
+      }
+    },
     "Hide Sidebar": {
       "localizations": {
         "he": {
