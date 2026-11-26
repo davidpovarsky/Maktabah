@@ -1,0 +1,42 @@
+{
+  "status": "FAILED",
+  "scope": "Apple-SDK typecheck only; no application execution or UI acceptance",
+  "inputs": {
+    "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+    "ProductionOtzariaAcceptanceTests.swift": "5093acece3e24a951f796f7ce238a739a25df6a71dfc7d9a73c8ae8fcd0fe504"
+  },
+  "command": [
+    "xcrun",
+    "swiftc",
+    "-typecheck",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-target",
+    "arm64-apple-ios27.0-simulator",
+    "-sdk",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+    "-F",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+    "-module-cache-path",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-1/module-cache",
+    "-module-name",
+    "Maktabah_iOSUITests",
+    "-D",
+    "DEBUG",
+    "-enable-upcoming-feature",
+    "NonisolatedNonsendingByDefault",
+    "-enable-upcoming-feature",
+    "InferIsolatedConformances",
+    "-enable-upcoming-feature",
+    "MemberImportVisibility",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-1/MaktabahUITestBase.swift",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-1/ProductionOtzariaAcceptanceTests.swift"
+  ],
+  "exit_code": 1,
+  "started_at": "2026-11-26T23:25:46.329722+00:00",
+  "finished_at": "2026-11-26T23:26:02.159058+00:00",
+  "xcode": "Xcode 27.0\nBuild version 27A266a\n",
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0\n",
+  "free_bytes_after": 4120924160
+}
