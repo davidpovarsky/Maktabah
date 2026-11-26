@@ -540,6 +540,60 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
     }
 
     @MainActor
+    func testRetainedBackfillSamplesOpenInTheirOriginalWorkspaces() async throws {
+        struct Sample: Decodable {
+            let namespace: UUID
+            let id: Int64
+            let uuid: UUID
+            let text: String
+        }
+        executionTimeAllowance = 1_200
+        XCTAssertTrue(isPad)
+        XCUIDevice.shared.orientation = .landscapeLeft
+        let path = try XCTUnwrap(ProcessInfo.processInfo.environment["OTZARIA_BACKFILL_NATIVE_SAMPLE_PLAN"])
+        let samples = try JSONDecoder().decode([Sample].self, from: Data(contentsOf: URL(fileURLWithPath: path)))
+        XCTAssertFalse(samples.isEmpty)
+        XCTAssertEqual(Set(samples.map(\\.namespace)).count, samples.count)
+        for sample in samples {
+            launchWithTier(.realUI, scenario: "readerDetail", backend: "otzaria", extraArgs: [
+                "-preferredBackend", "otzaria", "-smokeBackend", "otzaria",
+                "-ChavrusaTextFaithfulReaderUIEnabled", "YES",
+                "-studyWorkspaceTestingNamespace", sample.namespace.uuidString
+            ], language: "en", locale: "en_US")
+            XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+            assertReaderHasText()
+            let stored = try readCanonicalRow(sample.id)
+            XCTAssertEqual(stored.uuid, sample.uuid)
+            XCTAssertEqual(stored.preview, sample.text)
+            XCTAssertEqual(stored.revision, 1)
+            XCTAssertNotNil(stored.body)
+            try await openAnnotations()
+            let search = app.searchFields.firstMatch
+            if !search.exists || !search.isHittable { app.swipeDown() }
+            XCTAssertTrue(search.waitForExistence(timeout: 15) && search.isHittable)
+            tap(search)
+            search.typeText(sample.text)
+            let row = annotationRows().matching(identifier: "original-book-annotation-\\(sample.id)").firstMatch
+            XCTAssertTrue(row.waitForExistence(timeout: 25))
+            let keyboard = app.keyboards.firstMatch
+            if keyboard.exists {
+                let searchAction = keyboard.buttons["Search"]
+                if searchAction.exists && searchAction.isHittable { searchAction.tap() }
+            }
+            try editAnnotation(row)
+            let editor = app.buttons["annotation-expanded-editor-open"]
+            try await waitForEnabled(editor)
+            tap(editor)
+            let host = try await expandedHost()
+            _ = try await uniqueBody(sample.text, in: host)
+            XCTAssertEqual(try readCanonicalRow(sample.id), stored)
+            attachStorage(stored, stage: "scale-native-editor-reopened")
+            app.terminate()
+            XCTAssertTrue(app.wait(for: .notRunning, timeout: 20))
+        }
+    }
+
+    @MainActor
     private func confirmBulkNativeConversion(_ conversion: XCUIElement) async throws {
         try revealPreparationControl(conversion)
         try await waitForEnabled(conversion)
