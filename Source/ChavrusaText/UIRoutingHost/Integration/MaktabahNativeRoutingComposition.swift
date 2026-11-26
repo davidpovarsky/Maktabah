@@ -911,9 +911,29 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         try Task.checkCancellation()
         guard let entry = scenes[owner.sceneID], entry.managerID == owner.managerID,
               contexts[owner.sceneID] == nil else { throw ActionPortError.staleState }
-        do {
-            guard try hanlinSource(sceneID: owner.sceneID, entry: entry) == owner.observation else { throw ActionPortError.staleState }
-        } catch { throw ActionPortError.staleState }
+        let current: HanlinSourceObservation
+        do { current = try hanlinSource(sceneID: owner.sceneID, entry: entry) }
+        catch {
+            #if DEBUG
+            OtzariaFileLogger.shared.log("[SemanticJourneyWitness] stage=live-authority sourceAvailable=false")
+            #endif
+            throw ActionPortError.staleState
+        }
+        let expected = owner.observation
+        guard current == expected else {
+            #if DEBUG
+            OtzariaFileLogger.shared.log("[SemanticJourneyWitness] stage=live-authority"
+                + " sameBackend=\(current.backend == expected.backend)"
+                + " sameMappingSource=\(current.source == expected.source)"
+                + " sameEpoch=\(current.epoch == expected.epoch)"
+                + " sameProjection=\(current.projection == expected.projection)"
+                + " sameReaderContent=\(current.readerContent == expected.readerContent)"
+                + " sameReadSource=\(current.currentWorkReadSource == expected.currentWorkReadSource)"
+                + " sameRange=\(current.selectedRange == expected.selectedRange)"
+                + " sameLocale=\(current.locale == expected.locale)")
+            #endif
+            throw ActionPortError.staleState
+        }
     }
 
     private func semanticJourneyInvocation(_ continuing: SemanticJourneyInvocation?, fallback: ActionRequest,
@@ -923,11 +943,21 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         try validateSemanticJourney(continuing.owner)
         let request = continuing.request, encoder = JSONEncoder()
         encoder.outputFormatting = [.sortedKeys]
+        let sameArguments = try encoder.encode(request.arguments) == encoder.encode(fallback.arguments)
         guard continuing.owner.sceneID == sceneID, continuing.owner.observation == observed,
               request.action == fallback.action, request.expectedBackend == fallback.expectedBackend,
               request.expectedGeneration == fallback.expectedGeneration,
-              request.requestedPresentation == fallback.requestedPresentation,
-              try encoder.encode(request.arguments) == encoder.encode(fallback.arguments) else {
+              request.requestedPresentation == fallback.requestedPresentation, sameArguments else {
+            #if DEBUG
+            OtzariaFileLogger.shared.log("[SemanticJourneyWitness] stage=continued-request"
+                + " sameScene=\(continuing.owner.sceneID == sceneID)"
+                + " sameObservation=\(continuing.owner.observation == observed)"
+                + " sameAction=\(request.action == fallback.action)"
+                + " sameBackend=\(request.expectedBackend == fallback.expectedBackend)"
+                + " sameGeneration=\(request.expectedGeneration == fallback.expectedGeneration)"
+                + " samePresentation=\(request.requestedPresentation == fallback.requestedPresentation)"
+                + " sameArguments=\(sameArguments)")
+            #endif
             throw ActionPortError.staleState
         }
         return (request, continuing.owner.context)
