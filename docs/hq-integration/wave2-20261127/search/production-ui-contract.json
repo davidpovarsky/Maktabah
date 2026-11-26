@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "scope": "Published production v40 package UI acceptance; Native results pending",
+  "base": "29a731e273f9a757c743c49e182fece0e8047d46",
+  "testTarget": "Maktabah-iOSUITests",
+  "suite": "PublishedProductionSearchDataTests",
+  "sourceFile": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+  "orderedSelectors": [
+    "Maktabah-iOSUITests/PublishedProductionSearchDataTests/testPublishedV40PackagesInstallThroughOriginalSearchDataAndColdReopen",
+    "Maktabah-iOSUITests/PublishedProductionSearchDataTests/testPublishedV40ZayitPages50_100_150RetainSQLIdentity",
+    "Maktabah-iOSUITests/PublishedProductionSearchDataTests/testPublishedV40OtzariaPagesRetainCumulativeSQLMetadata"
+  ],
+  "requiredRunnerEnvironment": {
+    "PRODUCTION_SEARCH_CONTAINER_PARENT": "<owned Simulator directory>/<UDID>/data/Containers/Data/Application",
+    "SIMULATOR_UDID": "<the same owned Simulator UDID>"
+  },
+  "forbiddenRunnerEnvironment": [
+    "OTZARIA_SHARED_ROOT_OVERRIDE",
+    "OTZARIA_PRODUCTION_DB_PATH"
+  ],
+  "prerequisites": [
+    "Root library UI acceptance already installed managed production v40 with original manifest",
+    "Both published index installation manifests absent at start of install selector",
+    "Keep the same app data container across these ordered selector runs",
+    "Do not reinstall app with data reset or copy index payloads into it"
+  ],
+  "launch": {
+    "tier": "production",
+    "backend": "otzaria",
+    "language": "he",
+    "locale": "he_IL",
+    "orientation": "landscapeLeft",
+    "normalBootstrap": true,
+    "workspaceNamespace": null,
+    "diagnostics": [
+      "-GlobalSearchNativeTraceEnabled YES",
+      "-GlobalSearchNativeTraceNamespace <new test UUID>"
+    ]
+  },
+  "observation": {
+    "onlyDebug": true,
+    "suppliesResponses": false,
+    "seedsWorkspace": false,
+    "mutatesQueryOptions": false,
+    "queryText": "hashed",
+    "processID": true,
+    "originalProviders": true,
+    "originalPublishedUIModel": true,
+    "readOnlyIndependentSQL": true
+  },
+  "installTimeoutSeconds": 5400,
+  "evidence": [
+    "Original native screenshot and hierarchy before/after installation, after cold reopen, every page count",
+    "Exact original installed manifests",
+    "Original provider and published-page events, paired with independent read-only SQL rows",
+    "Streaming SHA-256 of exact managed v40 DB before and after install",
+    "Unchanged original container metadata and database manifest bytes"
+  ],
+  "remaining": [
+    "Actual Apple compile and UI execution on integration candidate",
+    "Offline negative network control and offline UI acceptance",
+    "F01/F02/F04 real-version grouping/translation corpus cases beyond these two engines"
+  ]
+}

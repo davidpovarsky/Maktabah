@@ -1,0 +1,22 @@
+{
+  "kind": "zayit",
+  "url": "https://github.com/davidpovarsky/Maktabah/releases/download/zayit-search-data-v40-20261123094345-17cabb80e86a/zayit-search-manifest.json",
+  "manifest_sha256": "577176375f735af240d8a1e84f0a1ad23bf18018ae4c0f716e8acb142d8d8691",
+  "manifest_bytes": 25766,
+  "extractedBytes": 4108856448,
+  "packagedBytes": 3159917458,
+  "sumUncompressed": 4108856448,
+  "sumPackaged": 3159917458,
+  "largestPackagedPart": 436703806,
+  "compression": [
+    "zstd"
+  ],
+  "parts": 74,
+  "counts": {
+    "books": 8259,
+    "documents": 7930286,
+    "lines": 7920224,
+    "splitLines": 19
+  },
+  "sourceDatabase": null
+}
