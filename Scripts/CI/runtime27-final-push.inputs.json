@@ -1,35 +1,35 @@
 {
-  "schema": "otzaria-final-runtime-push-v1",
-  "state": "FINALIZED",
-  "reviewed_wrapper_base": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
-  "application_source_sha": "f2e3fecbd3e6f36d8a8b7edd7c95e6015acb48fb",
-  "reviewed_r27_sha256": "7439fd761e6661db719259bdf1e32eb59bb9dbdf084747849b92147e7702e004",
+  "application_source_sha": "22fd689971ebe6506087cd85d740f54d5d9f36e5",
   "application_trees": {
-    "Source": "c8a1184d7a2305656d4b61f5b896a38fb9485f53",
-    "Vendor": "206715dd2022ff73184860bec183578c8799d812",
+    "Maktabah-iOSUITests": "9a567ab65ae1d73545292a02183ff6ba877ee18f",
     "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Maktabah-iOSUITests": "15ea404a920d0152c47146988c1f7f5e48b6194a"
+    "Source": "5be8b3a43a7cb0c7868989abbe845ef7d8f479aa",
+    "Vendor": "206715dd2022ff73184860bec183578c8799d812"
   },
-  "source_pin_sha256": {
-    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "bcbae2085537f46c057667d39fdf7da809d1eec981a8df05da4c6253ff13914e",
-    "docs/hq-integration/runtime27/R27_CASES.json": "6538c21575ff67d5bfa08f5966968a143407ddec81a9fc51b8b847c84df9c8ed",
-    "Scripts/CI/runtime27-release-manifest.json": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f",
-    "Scripts/CI/hq-v32-prebuilt-native.py": "36ef3c8369e69607912b3805d4d3646b0166e2716e2cc9d18f86b2fdf2876436"
-  },
-  "selection": {
-    "native_cases": 116,
-    "release_ui_cases": 114,
-    "release_oracle_cases": 2,
-    "per_test_timeout_seconds": 600
-  },
+  "reviewed_r27_sha256": "7439fd761e6661db719259bdf1e32eb59bb9dbdf084747849b92147e7702e004",
+  "reviewed_wrapper_base": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
   "routes": {
-    "ui": {
-      "ref": "refs/heads/codex/otzaria-final-native116-20261120",
-      "workflow": ".github/workflows/otzaria-final-native-push.yml"
-    },
     "release": {
       "ref": "refs/heads/codex/otzaria-final-release114-20261120",
       "workflow": ".github/workflows/otzaria-final-release-push.yml"
+    },
+    "ui": {
+      "ref": "refs/heads/codex/otzaria-final-native116-20261120",
+      "workflow": ".github/workflows/otzaria-final-native-push.yml"
     }
-  }
+  },
+  "schema": "otzaria-final-runtime-push-v1",
+  "selection": {
+    "native_cases": 116,
+    "per_test_timeout_seconds": 600,
+    "release_oracle_cases": 2,
+    "release_ui_cases": 114
+  },
+  "source_pin_sha256": {
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "028f3644be2a13fbb5dcfd8020850c3cf9493077b15f9b1fd1d51a311888bd48",
+    "Scripts/CI/hq-v32-prebuilt-native.py": "36ef3c8369e69607912b3805d4d3646b0166e2716e2cc9d18f86b2fdf2876436",
+    "Scripts/CI/runtime27-release-manifest.json": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f",
+    "docs/hq-integration/runtime27/R27_CASES.json": "6538c21575ff67d5bfa08f5966968a143407ddec81a9fc51b8b847c84df9c8ed"
+  },
+  "state": "FINALIZED"
 }

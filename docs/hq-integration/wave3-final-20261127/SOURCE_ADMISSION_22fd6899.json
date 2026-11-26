@@ -1,0 +1,147 @@
+{
+  "apple_upload_claimed": false,
+  "application_source_sha": "22fd689971ebe6506087cd85d740f54d5d9f36e5",
+  "changed_paths_since_previous_admission": [
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "source": "29a731e273f9a757c743c49e182fece0e8047d46"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "source": "29a731e273f9a757c743c49e182fece0e8047d46"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift",
+      "source": "d18b6a0e76bc1846c50de5864afcd876d606ab11"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+      "source": "29a731e273f9a757c743c49e182fece0e8047d46"
+    },
+    {
+      "adoption": "EXPLICIT_REVIEWED_MERGE",
+      "path": "Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift",
+      "source": "d18b6a0e76bc1846c50de5864afcd876d606ab11"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DocumentTabsHost.swift",
+      "source": "29a731e273f9a757c743c49e182fece0e8047d46"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/ChavrusaText/ThirdPartyNotices/NOTICE.txt",
+      "source": "29a731e273f9a757c743c49e182fece0e8047d46"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "source": "29a731e273f9a757c743c49e182fece0e8047d46"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "source": "29a731e273f9a757c743c49e182fece0e8047d46"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "source": "29a731e273f9a757c743c49e182fece0e8047d46"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "source": "22fd689971ebe6506087cd85d740f54d5d9f36e5"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentOutcome.swift",
+      "source": "9090271b6ccd132e0e3a39951c48e758e58a57cc"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift",
+      "source": "29a731e273f9a757c743c49e182fece0e8047d46"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
+      "source": "a40ff8a4a6a48170b0ed0a9917d59ffcb8e92b7a"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/Features/Reader/iOS/iOSReaderTabView.swift",
+      "source": "29a731e273f9a757c743c49e182fece0e8047d46"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/Features/Reader/iOS/iOSReaderView.swift",
+      "source": "29a731e273f9a757c743c49e182fece0e8047d46"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "source": "29a731e273f9a757c743c49e182fece0e8047d46"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/Localizable.xcstrings",
+      "source": "9090271b6ccd132e0e3a39951c48e758e58a57cc"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "source": "29a731e273f9a757c743c49e182fece0e8047d46"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "source": "29a731e273f9a757c743c49e182fece0e8047d46"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "path": "Source/UI/iOS/Views/iPhoneLayout.swift",
+      "source": "29a731e273f9a757c743c49e182fece0e8047d46"
+    }
+  ],
+  "component_count": 61,
+  "metadata_sha256": {
+    "Scripts/CI/final-integration-source.inputs.json": "b9371759fcf84f44d0f1a19bbbdff2707fa9c5db180f920a458bbc7e58acb0bb",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "028f3644be2a13fbb5dcfd8020850c3cf9493077b15f9b1fd1d51a311888bd48",
+    "Scripts/CI/runtime27-final-push.inputs.json": "8f46ce56953c50311ce1d71fe166e0fb35d1b5bf422f39fab47b38131b16e773"
+  },
+  "native_acceptance_claimed": false,
+  "new_owner_signatures_claimed": false,
+  "new_source_component_commits": {
+    "wave2_toc_load_generation": "a40ff8a4a6a48170b0ed0a9917d59ffcb8e92b7a",
+    "wave3_annotation_surface_observation": "22fd689971ebe6506087cd85d740f54d5d9f36e5",
+    "wave3_miniapps_durable_launch_context": "b7a0a96021ca1cbce9cd9b497e6439988cabc0ea",
+    "wave3_miniapps_return_context": "d18b6a0e76bc1846c50de5864afcd876d606ab11",
+    "wave3_retained_user_integration_29a": "29a731e273f9a757c743c49e182fece0e8047d46",
+    "wave3_system_intent_localization": "9090271b6ccd132e0e3a39951c48e758e58a57cc"
+  },
+  "original_selections": {
+    "native_cases": 116,
+    "per_test_timeout_seconds": 600,
+    "release_oracle_cases": 2,
+    "release_ui_cases": 114
+  },
+  "preserved_engine_resource_build_input_sha256": "367149f9f2410551dafb52eb7635206af559940ca77e95082b3318a569553da8",
+  "previous_application_source_sha": "f2e3fecbd3e6f36d8a8b7edd7c95e6015acb48fb",
+  "product_delta_count": 120,
+  "restrictions": "No verifier, signature registry, SDK admission, original selection, timeout, runtime driver, old receipt or release condition changed. This metadata makes the exact product buildable and does not qualify it.",
+  "retained_integration": "29a731e273f9a757c743c49e182fece0e8047d46",
+  "review_evidence": {
+    "annotations": "Original realUIKit witness polling scope gains annotations only. Actual Debug attempt blocked at source admission; native test not yet executed.",
+    "intent_localization": "Ten localized outcomes; all671preexisting catalog entries unchanged, exact status/ACK semantics retained; original focused portable test1/1. Mac/UI still pending.",
+    "miniapps": "Original two-product-commit handoff1220939708773629; blob/receipt/archive hash readback, historical warm/cold evidence. No current integrated native pass claimed.",
+    "retained_integration": "User-specified29a; immutable55/55 owner gate reread on2026-11-26. Existing historical native results retain their original source identities.",
+    "toc": "bbc68b0d source and59d3bf9e evidence byte verified; original Apple component controls baseline20/34 and candidate34/34; full UI still pending."
+  },
+  "schema": "otzaria.wave3-source-admission-review/1",
+  "scope": "SOURCE_IDENTITY_ONLY_REQUIRES_NEW_NATIVE_ACCEPTANCE"
+}
